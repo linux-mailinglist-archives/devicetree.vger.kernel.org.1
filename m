@@ -1,300 +1,212 @@
-Return-Path: <devicetree+bounces-279777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279780-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iFCdNBZwwmmncwQAu9opvQ
-	(envelope-from <devicetree+bounces-279777-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:05:58 +0100
+	id yA9ULvVwwmmncwQAu9opvQ
+	(envelope-from <devicetree+bounces-279780-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:09:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E798306FBA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:05:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EEE430708C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:09:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 62D0130EAD05
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 11:00:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A911302FAAE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 11:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0311A2D63F8;
-	Tue, 24 Mar 2026 11:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262A03E6DEA;
+	Tue, 24 Mar 2026 11:04:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="evfMiBj6"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="f05CdQI/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589F33E928D
-	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 11:00:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E3B43E7149
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 11:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774350027; cv=none; b=cCDJcSVMIhEzgMePY3C+joo1opt7v6q/2ylvxN84FBUczYpbks/mo/aERMTBeKo5n90mnr9Ls3lc3TIdUn3a5siWpgfrQbOwAIGUDeFFcDFp46MpvZnSMeazkQwe0NLB/Zk3m2a26MHWTFdcHNQItGlli8WDATRUzOhNIGUalio=
+	t=1774350253; cv=none; b=iWFe0Ahg6FaW+IBj6W5G6wdtWJ1hPi5dqt091uL5z0rcpeLtBp2SfnNVdHht5vRWVgILF8Kqz4F5/OJUibHQ5Ra8vGJ/LiwED6VPcxLaxuLoM03z0DIhGA3T0grHEvTfqcbHQ0TZEHPVC9uHk5m4BVy3VeEmgJ7XURcKWZmifrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774350027; c=relaxed/simple;
-	bh=cIzV8A6gjnfBxi7M/jkO/ioGwvuFgJlAElj7dwnbGAo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oxJaDxOZXNvZRRe8mhkniolH12F+J4k/9fkSL7MZUw5yHfCF9uXwQR9Bs71xai+9rPjWQtIuNgag/Y3Esk/hwMsmSYNyPgKhQONQ6QDfp95JSqCv9AQOXAPSgvV/rkM4P1UBpgpYVCGo6riek8y+R6TG0hiC0K07BnQMkzKqpzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=evfMiBj6; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-829a27414a3so2334480b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 04:00:26 -0700 (PDT)
+	s=arc-20240116; t=1774350253; c=relaxed/simple;
+	bh=kXwTzM8m3chUzL42QlXn8SAnILWR/tBEk4o9I2s9F4s=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=GyaLWQkEAHJ4Ib02ruAqlUKhqJ6t2fOVNVc/SEEa/w4BfM7cJmO3Bxh5Ez7/l9o6QAdavv4BR93crzZuXNK/UKaqPZD1ICJNX0DfKPIcfha8WIhLz/fsB+nsoigXTo9M6hM1dIbsEb1y/ag/6YWrTQx75Xrq0tmN9D/78oo7aaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=f05CdQI/; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b97905516faso133559966b.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 04:04:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774350026; x=1774954826; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vg+tszAFkDYIKeCq8j/spGiQp8FN+9eBFj0O9Fz1BUg=;
-        b=evfMiBj66QGvoFL1YW/+gtZecFQCjFVXPLpxT9vzWoAKcwXKmiIbAjiK49Xnaa3yrt
-         3XFGn3UShpRqMtYw2QEbhvbNfgWMyWXv6chz152DnMmVmcgXV9v+ch12guRiUb0rcDVb
-         gCX7vfOSegCuquPxF4PAYB8u9hjZOHHsMm3AALAXklmMS4dZs0NTXbKiqkiSio5Lyxng
-         wMY3HE3pTNs+mFtPYF+HW+2qlXmlNWkxRFKsT+CgyXmM/pwnNv4RL+i7ev1H8BhVq6wM
-         LjlcxSQnhNfXGWfkr+EzpyCS9rG2QNR2dtH1Zv8BT9XLk/9xQM2WGS6GgZIn85gXjX2K
-         B3PQ==
+        d=fairphone.com; s=fair; t=1774350250; x=1774955050; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HJSft7WXDopdPtbx38F8LsPABdfo1rbEMNuhG4z7KvU=;
+        b=f05CdQI/RavHH7lpKnR8u9xg+5kpwVVik9lHUmiBDRB9heFQblojFpnqXMhBEr5FVy
+         HOyDRAwoaWbuhCfjHMT5Xm1d/yYQ3rj5YLn+/3wLm+WRq0cP9HsWNmLyuxI2T84quOtZ
+         KsdOBQE6S4UOYggdm141w2LkF3QtPIWowY1MJ4XM5vs3p7coPS1laMINOfZU7KWBrJ7t
+         Qua30+1Kccp4JfNKOA4/LSEiDQ6cQGgihOT7tgNH6jyZ9ZF58F749tyZbR2wvkdc51kb
+         to6rB98I0bdETPYqdi/QIMV6DKUOXlK7Qt87jbvneKPb+1g/+6Wv64BcJ5i19lF+JNxT
+         XeFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774350026; x=1774954826;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Vg+tszAFkDYIKeCq8j/spGiQp8FN+9eBFj0O9Fz1BUg=;
-        b=OE1xf/g7aw7lSfskRIT/pLEhRMVzuQjHs5CDEM3/wKAjFq5m/fLeJfNIk1eiwC1IyB
-         MCinCm96Ay6Jh8+vo/66dMBnWziq6OusV3QDfwhH99aHgYqRKmGb+hOgKCt2td2pHcJ/
-         R0tEm6WWmMsco380J/DW2IbwiYlZabauSg67ScCS/kVuiVu2AXAkP7bJtPHl/vmksVG0
-         HslKT2bbdBcxkjr15Fuv7e/q6CPYtsv6TmcSxlVbS00NpyDFP+ziaaF1n1AEIF/S9mZr
-         NAV/6hGENB9R7cR6/GHh+8yqYN+Vpgxj9L8GFIdg19VL6XLpVrU6Q6QuqM/bSt9+Okzo
-         sbnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXYib5dRVCqaco2SIpIhNIdaQPUGxKGnJCIxkWlA7Zr7Cx+KAgAk9174uTpiZBlz00lavU4/QB8bacE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1KT8q4WlTvMwj8EpHURAOXhOyj4G7zyxm5qd0sGqF40E/SAD4
-	MPWh3e2TeZecCf+YgC5L6znQIh4qH62yBEQVD6Yv/n06sfGBofJ+RrV8
-X-Gm-Gg: ATEYQzzW9Lq5uRkuk5X2Ka6jU7LRgvHJEOZ9W4+yF2Ba14+zmgK9pqe2VNwowXxvGcm
-	vatpmF6++U3SfLVFg+7OA0PZYVEI5c5bDD8qoUKxzYXrE3WFPJYYY8Ho4qkFbMzBMvKspFOR67H
-	M+f2ENS9vdMAzCQ6eFdwTd6W4SdHDsGH5/F6jlEXH3BV+hmgivcMKBQ9fHeGOI//pqIuYIIZQqz
-	YVCD0hLTpjft1D/dPPh7+9dtOLapttK/IFHZoT6zlhnZI6+MhZjHiJWwVIMkooMDQqWHsNBJ2pK
-	CM8QG68EDmcwaZ2n6wN/u5yYa8wfu9dahUvoS77pAPqKCHeM76wmKzuU1b+Rex7J0OVJXzLXCQ2
-	eR4gbmdsJlnIzUMoVuF4Z+WHd+/P2aW1Xy2QZUPcJEovBqsyMRV+zrT4HZHytKH0JvK57K4LDCI
-	hIDv0XpAxOAe6AKJtkFXaHlsx21y6fdRlffamu03gNzmBk44c=
-X-Received: by 2002:a05:6a00:1a89:b0:81f:b97:14a with SMTP id d2e1a72fcca58-82a8c3b8f88mr13871688b3a.61.1774350025354;
-        Tue, 24 Mar 2026 04:00:25 -0700 (PDT)
-Received: from [172.16.20.13] ([136.226.252.245])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82b03bc1e59sm12800759b3a.13.2026.03.24.04.00.16
+        d=1e100.net; s=20251104; t=1774350250; x=1774955050;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HJSft7WXDopdPtbx38F8LsPABdfo1rbEMNuhG4z7KvU=;
+        b=JxO6wZuqeIjPT3FHNInv1RC8KlYacaQL7sB+I/bQskQ95VH2fF3s7ief8FJ/77RDu7
+         9iOc+rUJTndk0nre/vAXiXAAeuAyCaz5Hx05Q1qgImFUtji9x2kMmHNVe1QUI4d1nLzU
+         Pij597bSRHEt0V2DtqBdV4NQFmyYfXtCvcqP+tblpWJYBR2MyRN5bXciuwiHJPUHHHfa
+         /wMcq59zGIyG7mGeF131xuKDrBHARSDQ8gyiCyGsOiUqFR1Nfr04bCWw+7ZJ/12Qhuzd
+         E6ym7xt2Jy4LxH94wbz0gdQ6Jcb3twhWf2fyGqFy26cmT39Rkk3iQsLixhvfcy2Td8JW
+         OITg==
+X-Forwarded-Encrypted: i=1; AJvYcCV/xMCt1pSPPYMHfPZfA6vU1HcUsEMTjQlxpliEzYrh+g/VsE7zdvABc/BPsEqZljMhZlEGq0pC3eCY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyor05PP6DHLoHs3QqJTWHB6v3Y7cdKhCrCrrK0i4P7Ey34Wjkb
+	6j1LAE4Q92meVaWmyBryb59kp7S+1dv8B7G0gAUr6PGJHT2vJCy6yq4+fYo9Dt6LaV0=
+X-Gm-Gg: ATEYQzzooEhAHWzkN2nk/uinSDPHOoBSdxTyQ+gSsDwAxeglL63j/WMNEZP300EDYOo
+	m1wgug72qbjvkvZNradFKMFNn+6IoBw038iH2CYUE7W3Qawl8IYrUEYsbAi8E39xv1Qo+iNQ29n
+	9/Mtn13uYNgTyr1b5olgTQ2dE/jmIo+YS/fIDAfM6pvTyNB8WvXb816NCUa+X4r7Of+Yj0tR5Ze
+	6CnEoApITkVJXOXap81RfDyucNF0DfGFN/QC9IkKtGgFfbFvsK6CMCGA+UMKVSGGZEsXHMHFwz2
+	h69pSi2EWDhjztQyfcJErqx2Tyh2XJoI6OFsDa2VHZUXht+JOkMTRMs1G76xRYwMBsWP3WKssgF
+	HOusAKukgjM5LLL/6QqWJgV3vZRTR//V6BCG35BxIHOzNzQQ4Esicp1o+vii9arf3tOUYUwRs1a
+	tbhM2cEj2AnQ8308jcf2IG7QZ2ph1bSkm8j4gq0UeNiUbbfD5NrmlSMcL+Irv3ZC5wyJBp
+X-Received: by 2002:a17:907:7ba2:b0:b98:4156:878e with SMTP id a640c23a62f3a-b9841568891mr1060559066b.47.1774350249586;
+        Tue, 24 Mar 2026 04:04:09 -0700 (PDT)
+Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b983387103asm622419066b.57.2026.03.24.04.04.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Mar 2026 04:00:24 -0700 (PDT)
-Message-ID: <1ecbcd57-83d9-410c-8e1a-d6a171321ccd@gmail.com>
-Date: Tue, 24 Mar 2026 16:30:43 +0530
+        Tue, 24 Mar 2026 04:04:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] drm: bridge: ti-sn65dsi83: Improve dual-link LVDS
- support
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Marek Vasut <marex@nabladev.com>, andrzej.hajda@intel.com,
- neil.armstrong@linaro.org, rfoss@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- valentin@compulab.co.il, philippe.schenker@toradex.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260312043743.261475-1-tessolveupstream@gmail.com>
- <9f694b2d-44bc-46ad-8aa3-b464c2f0da13@nabladev.com>
- <176ed865-11a6-42de-89e0-06951b59a430@gmail.com>
- <DH0X7QW3AH3C.PRNRA8CRSSKA@bootlin.com>
- <49b79a0d-844b-4fee-bccb-706187ed76d1@gmail.com>
- <DH5S3DYT0PJQ.11ABZFGEU6ZPC@bootlin.com>
- <a937f714-d013-4ac2-a52b-2893fc16f225@gmail.com>
- <DH6T0NTZHP93.2DWN4BWDPP331@bootlin.com>
-Content-Language: en-US
-From: tessolveupstream@gmail.com
-In-Reply-To: <DH6T0NTZHP93.2DWN4BWDPP331@bootlin.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Date: Tue, 24 Mar 2026 12:04:06 +0100
+Message-Id: <DHAYO287YDEO.12W871ZAAJ6GD@fairphone.com>
+Cc: <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Brian
+ Masney" <bmasney@redhat.com>, "Konrad Dybcio"
+ <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 0/9] interconnect: qcom: let MSM8974 interconnect
+ work again
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Alexandre Messier" <alex@me.ssier.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Georgi Djakov" <djakov@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Luca Weiss" <luca.weiss@fairphone.com>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Brian Masney"
+ <masneyb@onstation.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260324-msm8974-icc-v2-0-527280043ad8@oss.qualcomm.com>
+ <b09a51bf-26b8-4c88-ab23-c92ddc1fb801@me.ssier.org>
+In-Reply-To: <b09a51bf-26b8-4c88-ab23-c92ddc1fb801@me.ssier.org>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279777-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,compulab.co.il,toradex.com,lists.freedesktop.org,vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[tessolveupstream@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FROM_NO_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-279780-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[fairphone.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 4E798306FBA
+X-Rspamd-Queue-Id: 1EEE430708C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-
-On 19-03-2026 19:17, Luca Ceresoli wrote:
-> On Thu Mar 19, 2026 at 10:55 AM CET, tessolveupstream wrote:
->>
->>
->> On 18-03-2026 14:21, Luca Ceresoli wrote:
->>> Hello Sudarshan,
->>>
->>> On Wed Mar 18, 2026 at 6:45 AM CET, tessolveupstream wrote:
->>>>>>> You might want to look at recently posted:
->>>>>>>
->>>>>>> [PATCH 2/3] drm/bridge: ti-sn65dsi83: halve horizontal syncs for dual LVDS output
->>>>>>
->>>>>> Thanks for pointing this out.
->>>>>> I tried applying the patch “[PATCH 2/3] drm/bridge: ti-sn65dsi83: halve horizontal syncs for dual LVDS output” on top of the current tree and
->>>>>> removed the changes that I had previously added in the driver.
->>>>>> However, with this patch applied, I am currently seeing only the backlight turning on and no image on the LVDS panel.
->>>>>> For reference, the LVDS panel used on our platform is G133HAN01.1 and the
->>>>>> DSI-to-dual-link LVDS bridge is SN65DSI84ZXHR.
->>>>>
->>>>> Thanks for having tried.
->>>>>
->>>>> Can you please test with both the fixes in the series applied + the test
->>>>> pattern feature and report the results you get with and without test
->>>>> pattern enabled?
->>>>>
->>>>> The patches to apply are:
->>>>>
->>>>>  - https://lore.kernel.org/all/20260226-ti-sn65dsi83-dual-lvds-fixes-and-test-pattern-v1-1-2e15f5a9a6a0@bootlin.com/
->>>>>  - https://lore.kernel.org/all/20260226-ti-sn65dsi83-dual-lvds-fixes-and-test-pattern-v1-2-2e15f5a9a6a0@bootlin.com/
->>>>>  - https://lore.kernel.org/lkml/20260309-ti-sn65dsi83-dual-lvds-fixes-and-test-pattern-v2-1-e6aaa7e1d181@bootlin.com/
->>>>>
->>>>
->>>> Thanks for the suggestions.
->>>>
->>>> I tested the three patches together as mentioned, but the LVDS panel
->>>> still only shows the backlight and no image. I also tried removing the
->>>> test-pattern patch and retesting with only the remaining two fixes, but
->>>> the result remained the same — only the backlight turns on and no image
->>>> is displayed.
->>>
->>> Sure, the test pattern patch does not change anything, unless you enable
->>> the test pattern.
->>>
->>>>> The first thing I suggest doing on your side is testing with the 3 patches
->>>>> mentioned above.
->>>>>
->>>>> If you display works, good! Let us know (you can also add your Tested-by /
->>>>> Reviewed-by tags to the test_pattern patch too if applicable).
->>>>>
->>>>> If it doesn't work, compare the individual register values to find the
->>>>> differences, try to figure out why the working setting works and how to
->>>>> apply that change to the driver in away that keeps other boards
->>>>> working. You're welcome to come back here to discuss it in case you can't
->>>>> find out on your own.
->>>>>
->>>>
->>>> I tested the three patches as suggested, but the panel still shows only the
->>>> backlight with no visible image. I’m unsure how to translate the working
->>>> register values into a generic fix based on display timings. Any guidance
->>>> on the right direction would be helpful.
->>>
->>> What you should do is:
->>>
->>>  1. with your patches, and while the display is enabled (and working) do
->>>
->>>      cat /sys/kernel/debug/regmap/4-002c/registers >regs.working
->>>
->>>  2. remove your patches, add the 3 I mentioned, and while the display is
->>>     enabled (but only backlight is working) do
->>>
->>>      cat /sys/kernel/debug/regmap/4-002c/registers >regs.broken
->>>
->>> Then compare regs.working and regs.broken. Which registers differ? Can you
->>> give a reason for the differences?
->>>
->>> You can come back with these values here so we may discuss them.
->>>
->>
->> I followed your suggestion and captured the register dumps in both cases.
-> 
-> Thanks for getting the values.
-> 
->> In the working case, several of the timing registers remain at 0,
->> while in the broken case they are programmed with non-zero values.
-> 
-> Yes, but read the documentation carefully and you will discover this is
-> OK. Also you shuld analyze all the differences, some are very interesting.
-> 
-> The differences are:
-> 
->   reg working broken  what changes
->   12:   53      55    CHA_DSI_CLK_RANGE
->   18:   6f      0f    HS_NEG_POLARITY, VS_NEG_POLARITY
->   19:   00      05    CHB_LVDS_VOD_SWING, CHA_LVDS_VOD_SWING
->   24:   00      38    CHA_VERTICAL_DISPLAY_SIZE_LOW (*)
->   25:   00      04    CHA_VERTICAL_DISPLAY_SIZE_HIGH (*)
->   2c:   10      15    CHA_HSYNC_PULSE_WIDTH_LOW
->   34:   28      2c    CHA_HORIZONTAL_BACK_PORCH
->   36:   00      0e    CHA_VERTICAL_BACK_PORCH (*)
->   38:   00      1d    CHA_HORIZONTAL_FRONT_PORCH (*)
->   3a:   00      08    CHA_VERTICAL_FRONT_PORCH (*)
-> 
-> Values with (*) are those you mentioned above (zero in the working case,
-> nonzero in the "broken" case). The docs for these registers says: "TEST
-> PATTERN GENERATION PURPOSE ONLY". Those values are irrelevant when not
-> using the test pattern.
-> 
-> Your timings are all different. That means probably you have them
-> incorrectly described in device tree or the panel driver, so the
-> ti-sn65dsi83 driver computes them using a correct formula but based on
-> incorrect inputs, thus producing incorrect output values into the
-> registers. What are the timings in your dts or the panel drivers? If you
-> don't understand the question: what is your panel description in device
-> tree?
+On Tue Mar 24, 2026 at 3:09 AM CET, Alexandre Messier wrote:
+> On 2026-03-23 20:10, Dmitry Baryshkov wrote:
+>> Commit d6edc31f3a68 ("clk: qcom: smd-rpm: Separate out interconnect bus
+>> clocks") moved control over several RPM resources from the clk-smd-rpm
+>> driver to the icc-rpm.c interconnect helpers. Most of the platforms were
+>> fixed before that commit or shortly after. However the MSM8974 was left
+>> as a foster child in broken state. Fix the loose ends and reenable
+>> interconnects on that platform.
+>>=20
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>> ---
+>> Changes in v2:
+>> - Swapped order of clocks and clock-names properties (Konrad)
+>> - Corrected the ocmem comment regarding core clock (Konrad)
+>> - Link to v1: https://lore.kernel.org/r/20260323-msm8974-icc-v1-0-7892b8=
+d5f2ea@oss.qualcomm.com
+>>=20
+>> ---
+>> Dmitry Baryshkov (9):
+>>       dt-bindings: interconnect: qcom,msm8974: drop bus clocks
+>>       dt-bindings: interconnect: qcom,msm8974: use qcom,rpm-common
+>>       interconnect: qcom: drop unused is_on flag
+>>       interconnect: qcom: icc-rpm: allow overwriting get_bw callback
+>>       interconnect: qcom: define OCMEM bus resource
+>>       interconnect: qcom: let platforms declare their bugginess
+>>       interconnect: qcom: msm8974: switch to the main icc-rpm driver
+>>       interconnect: qcom: msm8974: expand DEFINE_QNODE macros
+>>       ARM: dts: qcom: msm8974: Drop RPM bus clocks
+>>=20
+>>  .../bindings/interconnect/qcom,msm8974.yaml        |   28 +-
+>>  arch/arm/boot/dts/qcom/qcom-msm8974.dtsi           |   21 +-
+>>  drivers/interconnect/qcom/icc-rpm-clocks.c         |    6 +
+>>  drivers/interconnect/qcom/icc-rpm.c                |   18 +-
+>>  drivers/interconnect/qcom/icc-rpm.h                |    7 +-
+>>  drivers/interconnect/qcom/msm8974.c                | 1637 +++++++++++++=
+++-----
+>>  6 files changed, 1274 insertions(+), 443 deletions(-)
+>> ---
+>> base-commit: 8e5a478b6d6a5bb0a3d52147862b15e4d826af19
+>> change-id: 20260322-msm8974-icc-0ac4c28e139a
+>>=20
+>> Best regards,
+>> -- =20
+>> With best wishes
+>> Dmitry
+>>=20
+>>=20
 >
+> Tried this patch series on top of 7.0-rc5, using "htc,m8", and can confir=
+m the device boots properly now!
 
-Thanks for the detailed explanation.
-Regarding the panel timings, they are not explicitly defined in the DTS. 
-The panel is currently using the timings provided by the panel driver 
-(panel-simple.c), specifically:
+Thanks for testing!
 
-static const struct display_timing auo_g133han01_timings = {
-        .pixelclock = { 134000000, 141200000, 149000000 },
-        .hactive = { 1920, 1920, 1920 },
-        .hfront_porch = { 39, 58, 77 },
-        .hback_porch = { 59, 88, 117 },
-        .hsync_len = { 28, 42, 56 },
-        .vactive = { 1080, 1080, 1080 },
-        .vfront_porch = { 3, 8, 11 },
-        .vback_porch = { 5, 14, 19 },
-        .vsync_len = { 4, 14, 19 },
-};
+> I do see these messages in the kernel log now:
+>
+> [    0.692540] ocmem fdd00000.sram: error -ENOENT: Unable to get core clo=
+ck
+> [    0.692582] ocmem fdd00000.sram: probe with driver ocmem failed with e=
+rror -2
+> [   24.173125] mmcc-msm8974 fd8c0000.clock-controller: sync_state() pendi=
+ng due to fdd00000.sram
 
-The panel I am using is based on AUO G133HAN01, and the datasheet can 
-be found here:
-https://datasheet4u.com/pdf/1257948/G133HAN01.0.pdf > About CHA_DSI_CLK_RANGE: what is your DSI clock?
-> 
+For that you need this patch series
 
-In the current working configuration, the measured clock frequencies 
-are:
-DSI_CLK: ~422MHz
-LVDS_CLK(both A & B Channels): ~70MHz
-> Finally I don't think the swing values are problematic, so I'd leave them
-> as the last thing to check.
-> 
-> Luca
-> 
-> --
-> Luca Ceresoli, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+https://lore.kernel.org/linux-arm-msm/20260323-ocmem-v1-0-ad9bcae44763@oss.=
+qualcomm.com/t/
 
+Then ocmem probes again correctly:
+[    0.859855] ocmem fdd00000.sram: 8 ports, 3 regions, 24 macros, interlea=
+ved
+
+Regards
+Luca
 
