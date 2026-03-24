@@ -1,51 +1,85 @@
-Return-Path: <devicetree+bounces-279820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279822-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yEVFLwOAwmlneQQAu9opvQ
-	(envelope-from <devicetree+bounces-279820-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:13:55 +0100
+	id 6F9PEz2AwmlneQQAu9opvQ
+	(envelope-from <devicetree+bounces-279822-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:14:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37892307FCE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:13:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B595330801F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:14:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BC5B930C1DA9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:05:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EBC4C3108AC6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:07:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C8D83EE1FF;
-	Tue, 24 Mar 2026 12:04:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7E943F076E;
+	Tue, 24 Mar 2026 12:07:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="Xvs+ehkT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KaaoS0Ue"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B303EF673;
-	Tue, 24 Mar 2026 12:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-dy1-f170.google.com (mail-dy1-f170.google.com [74.125.82.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57FCC3F2107
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 12:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774353895; cv=none; b=DlLiYQe+CxMFulH7yuxquPh7BNnSJRpZFvmg19JvADo87D02t+oq1Zc5JrDPnB0YTr/o0wdq/7yy6fuIpeyZndxMVVKGP7SirFSwkcMW9HCh1F8hC7+MAPrOPc4HuKVtDZGFo4saRvmH23bVFpTuUYJoYNO1kadzFDP7syJR7uM=
+	t=1774354072; cv=none; b=G2Ko+lCH0sjrAMD8d3ghyEdWh2QoK7I7s/EVCnRMXY38FVKs7tyfg8v24zZm9b1fzxwcfo5typWIfyqJ1UjVhQckJTQ+0nf/pnLqwDbBNo0f+aNkxX36hKJ8AC+9mwyQ3MdrUtsNCWIbm9mpjx/95cD7hmumO53NYiCcqAur7XI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774353895; c=relaxed/simple;
-	bh=NaxP08zN77vip4UHQcZc9oRFoOqkd9B8OMX9MCY9/aA=;
+	s=arc-20240116; t=1774354072; c=relaxed/simple;
+	bh=EHL8E+Jx89ou6n08IDPBdu6NV+0S9S5LQYQ5JG0FpmA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RVBhaqNezjoE84kgqtigD6ozse3sM3vr8RnwChmfiy/cdT80m9X/mAcoZ7Gk9RTmVRSC0/IgYbGMOO+OURxmraHZpoyrz2TBZtMkD9qkbAq9kNuoKPSrSwM4cL/KyDHiH/G2aBmMSVpJVTRI71QjBnQSPPc5aGaWwMHq1L3beqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=Xvs+ehkT; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 905761476;
-	Tue, 24 Mar 2026 05:04:45 -0700 (PDT)
-Received: from [10.57.76.67] (unknown [10.57.76.67])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D39A43FAF5;
-	Tue, 24 Mar 2026 05:04:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1774353891; bh=NaxP08zN77vip4UHQcZc9oRFoOqkd9B8OMX9MCY9/aA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Xvs+ehkTEbm++1ybxYpV14cv2yuqzKIiK0wyP5KiiCdFXoq7zayhc+Vzlhnj9zGg4
-	 hejDcnIrWIJywFqKikarNMB0nNMfiF8fC4OtqxShqaYEv/kqYE0jTpH+Dv0evtFAFT
-	 xLZOjTgQZQyNw1UxK6L93VdLCJyoCpx+nDRGlzT4=
-Message-ID: <c91176d1-851a-4cf5-b7dc-cde431a8326e@arm.com>
-Date: Tue, 24 Mar 2026 12:04:44 +0000
+	 In-Reply-To:Content-Type; b=PZYAeNPv4vQ20uYJDgEf211XaedGEGRT3X0gYdggodP2m+0kpNGtKCIpHQh07AnS7vE3vnhWf8AlkIDE1ssrwTrVGdmJTK6HCzFetLYfw9t7jI3hxYRTJ74xpuVNI4WEgELDsZ2lcakrTKYNXHP5LmrwcKX9BzpZmEfiXVh0Iz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KaaoS0Ue; arc=none smtp.client-ip=74.125.82.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f170.google.com with SMTP id 5a478bee46e88-2b4520f6b32so1384787eec.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 05:07:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774354066; x=1774958866; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=1/rsn/lXVCc3yikp+gMBEl35mfBKkCjw13MbKLj88B4=;
+        b=KaaoS0Ue95T2p/4ysIiEQy5z41TCPLP1S/KAXXZ+iFbCQmitNZoLXKFG9H35d6L6az
+         P7WGpfZ2INnG3NAGIm1pBjUyO/aSSTF1Oj/BfpZfppiCEIQ4Mserh9OZLWyTiZ3n9FFU
+         OuSorKs60HR3fviKueZQ0uUy6mXH3Ql3rW3iQgMDU3a0cUf7y48/1C5x8sFkBXR1VNBq
+         nNxeorJ1rE8QxlCfOUIFJ2buKLH+shbdKRVtVMnBn+0eis3fJpxa/r+dNltNh1f8QDmx
+         uNHd5Qmvn7owvnm4ZPNLPdrSXayO3OTq1oIYzNZTRasMfvvKlnZM1MgiUwXXs0XSqEqL
+         e0OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774354066; x=1774958866;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1/rsn/lXVCc3yikp+gMBEl35mfBKkCjw13MbKLj88B4=;
+        b=nxhwIu2KfCAqNaxs1Is4uDLkvlVYFb5c3PUskiJRELC+/eseia6N6imlFXLL5Fn4rr
+         CRJ8fN+7UfgAAba1TMEoGtN/OgikvnYHmzTDAo7OQ+vwdUysFZ7TZJepNdifKg+uYtHW
+         2fjNYiBilusShOpLPE3EmnSPSzhd5YvUzqojYtA+qkEqY4IrmnueFvOlRyuxAFDzHHoA
+         9II5M6HQMEX37ffp2BMhI03DzEcrGdoqbB22XjFjVU5h54JuAJkXWAwrhNINCVQmIXHH
+         FAL8lsZFOOY2YMRPnrhxfbR9s2PexY0att7c568tCYL4aCWm98X5ZZfHqvfPySVjd0FE
+         EmwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVbIumKXLadke4MYyWmGrSG9fWNONRGBoyvgwDF0ANWSkWE9oGi/YwTR2UH8VoT76m3dpb6hJPDbuCP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuTnehFcTkwC4YORFMA26sjssaFh8Amjqnf6p2eakjPXJUHfAf
+	h+ikJqB2e5JeSHo3Ura+BJ3Sn8OJyGp01/TQUDn6EdxjnaE2ng2aeJUYkZVs7Q==
+X-Gm-Gg: ATEYQzy4baxCQF6BB/5pJxj7fHGMent15+cJ7KopqTzn5AKiS8rik5u8CFx1pz9S6Cr
+	jg5xmNNgBWfLfT26kcpeoV9YAA/9nlaPPjvBCz1uXvVY89vN1kv6lzGR8ml7oD+9RijH+Hfp9k4
+	xv6FdG2j6mg3zpIDKXN5P1Odc7N0Y/Nq8mZ7Eui1fwGMqPL/8l5U0L75Cb2iskj4472JWcpdjKy
+	bi7kBCc51Pc3xzErXiqOys6BnlN/v/QdSDtumwlAQXZGxiP1vEdSaAsVDbAZkt+QerexQ9Bn0hf
+	9lHZtvOE0TuxRlz+/UnK0DjbuYC+ZLfdIMvsSwKdJeMr0MiffR2QZWoBdee8NW6wR9Z/uYwGP1B
+	knV1yLAtI+jJtfBX1E6Ij0BkWZ4gG/HrdoLvvTtSXedA0WIRSneUuNBj4oULXfKccIyYuVwz6uf
+	JBmxYGxjzozAjNThF4IJZIxviCiqA568y4J10/swh7CHteBltfeubjB3GS0sjzF4C9gUnqgSCv
+X-Received: by 2002:a05:7301:e30:b0:2be:969:75f3 with SMTP id 5a478bee46e88-2c1097ae086mr6341785eec.34.1774354065661;
+        Tue, 24 Mar 2026 05:07:45 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c10b17d1ddsm14898035eec.11.2026.03.24.05.07.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Mar 2026 05:07:43 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <61770780-add7-4ee7-8139-1f8dcf9d189c@roeck-us.net>
+Date: Tue, 24 Mar 2026 05:07:41 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,151 +87,155 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: dma: arm-dma350: document generic and
- combined IRQ topologies
-To: Jun Guo <jun.guo@cixtech.com>, peter.chen@cixtech.com,
- fugang.duan@cixtech.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, vkoul@kernel.org, ychuang3@nuvoton.com,
- schung@nuvoton.com, Frank.Li@kernel.org
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
- linux-arm-kernel@lists.infradead.org
-References: <20260323114822.1925869-1-jun.guo@cixtech.com>
- <20260323114822.1925869-2-jun.guo@cixtech.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20260323114822.1925869-2-jun.guo@cixtech.com>
+Subject: Re: [PATCH 1/3] dt-bindings: hwmon: Add support for NXP P3T1084UK
+ temperature sensor
+To: Anshika Gupta <guptaanshika.ag@gmail.com>, corbet@lwn.net,
+ skhan@linuxfoundation.org, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+Cc: lakshaypiplani77@gmail.com
+References: <20260323162252.15508-1-guptaanshika.ag@gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20260323162252.15508-1-guptaanshika.ag@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-279820-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-279822-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[arm.com:+];
+	DMARC_NA(0.00)[roeck-us.net];
+	FREEMAIL_TO(0.00)[gmail.com,lwn.net,linuxfoundation.org,vger.kernel.org,kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robin.murphy@arm.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,arm.com:dkim,arm.com:mid]
-X-Rspamd-Queue-Id: 37892307FCE
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid,devicetree.org:url,nxp.com:url]
+X-Rspamd-Queue-Id: B595330801F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-23 11:48 am, Jun Guo wrote:
-> Update the DMA-350 DT binding to match the current driver behavior.
+On 3/23/26 09:22, Anshika Gupta wrote:
+> The P3T1084UK is an NXP digital temperature sensor compatible with the
+> Texas Instruments TMP108 register and protocol specification. This patch
+> extends the existing DT binding for "ti,tmp108" to document the
+> compatible string for P3T1084UK so that the hwmon TMP108 driver can
+> bind to this device.
 > 
-> Allow both:
-> - "arm,dma-350" as the generic compatible, and
-> - "cix,sky1-dma-350", "arm,dma-350" for SoC-specific fallback usage.
+> Signed-off-by: Lakshay Piplani <lakshaypiplani77@gmail.com>
+> Signed-off-by: Anshika Gupta <guptaanshika.ag@gmail.com>
+> ---
+>   Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml | 8 +++++---
+>   1 file changed, 5 insertions(+), 3 deletions(-)
 > 
-> Also document interrupt topology variants supported by hardware
-> integration:
-> - one combined interrupt for all channels, or
-> - one interrupt per channel (up to 8 channels).
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
+> index 9f6c9f6fa561..47714df5aaff 100644
+> --- a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
+> @@ -4,20 +4,21 @@
+>   $id: http://devicetree.org/schemas/hwmon/ti,tmp108.yaml#
+>   $schema: http://devicetree.org/meta-schemas/core.yaml#
+>   
+> -title: TMP108/P3T1035/P3T1085/P3T2030 temperature sensor
+> +title: TMP108/P3T1035/P3T1084/P3T1085/P3T2030 temperature sensor
+>   
+>   maintainers:
+>     - Krzysztof Kozlowski <krzk@kernel.org>
+>   
+>   description: |
+> -  The TMP108 or NXP P3T Family (P3T1035, P3T1085 and P3T2030) is a digital-
+> +  The TMP108 or NXP P3T Family (P3T1035, P3T1084, P3T1085 and P3T2030) is a digital-
+>     output temperature sensor with a dynamically-programmable limit window,
+>     and under- and over-temperature alert functions.
+>   
+> -  NXP P3T Family (P3T1035, P3T1085 and P3T2030) supports I3C.
+> +  NXP P3T Family (P3T1035, P3T1084, P3T1085 and P3T2030) supports I3C.
+>   
+>     Datasheets:
+>       https://www.ti.com/product/TMP108
+> +    https://www.nxp.com/docs/en/data-sheet/P3T1084UK.pdf
+>       https://www.nxp.com/docs/en/data-sheet/P3T1085UK.pdf
+>       https://www.nxp.com/docs/en/data-sheet/P3T1035XUK_P3T2030XUK.pdf
+>   
+> @@ -28,6 +29,7 @@ properties:
+>             - const: nxp,p3t2030
+>             - const: nxp,p3t1035
+>         - const: nxp,p3t1035
+> +      - const: nxp,p3t1084
 
-To repeat myself for the 3rd time, this is at best unnecessary, and at 
-worst arguably wrong. Here's an example of a system which happens to use 
-the combined interrupt from another IP block which also offers both options:
+Indentation seems off here.
 
-https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/freescale/imx8qm.dtsi#n279
-
-Same thing here; each channel is a distinct interrupt source, so it is 
-perfectly honest to describe that consistently in DT, regardless of 
-whether or not the interrupt signals are still distinct by the time they 
-reach the interrupt controller.
-
-Furthermore, in this case the IRQ_COMB_NONSEC interrupt actually has 
-additional functionality beyond just being a mux of the individual 
-IRQ_CHANNEL interrupts. So although Linux probably won't ever care, if 
-it's going to be in the DT binding then it should really be distinct 
-from the channel interrupts anyway, since systems could well wire them 
-*all* up, and an OS could choose to use the IRQ_CHANNEL outputs directly 
-for individual channel completion/error status, while also using the 
-IRQ_COMB_NONSEC just for its overall INTR_ALLCH{STOPPED,PAUSED,IDLE} status.
-
-If you only want to make your thing work in Linux, all that is needed is 
-a 1-line change in the driver to enable the INTR_ANYCHINTR bit (which as 
-I've also said before, we can do unconditionally because we're *not* 
-using the other INTR_ALLCH stuff), and to write your DT using the 
-existing binding. "One interrupt per channel" already carries no 
-expectation that they all have to be *different* interrupts.
+Should nxp,p3t1084 be listed as compatible to nxp,p3t1085 instead of
+requiring a code change, similar to nxp,p3t2030 and nxp,p3t1035 ?
+Unless I am missing something, both use the same I3C device provisional
+ID, so I assume they are register compatible.
 
 Thanks,
-Robin.
+Guenter
 
-> Assisted-by: Cursor: GPT-5.3-Codex
-> Signed-off-by: Jun Guo <jun.guo@cixtech.com>
-> ---
->   .../devicetree/bindings/dma/arm,dma-350.yaml  | 34 +++++++++++++------
->   1 file changed, 24 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
-> index 429f682f15d8..47091614d1b4 100644
-> --- a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
-> +++ b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
-> @@ -14,7 +14,14 @@ allOf:
+>         - const: nxp,p3t1085
+>         - const: ti,tmp108
 >   
->   properties:
->     compatible:
-> -    const: arm,dma-350
-> +    description:
-> +      Use "arm,dma-350" for generic integration. A SoC-specific
-> +      compatible may be listed first, followed by "arm,dma-350".
-> +    oneOf:
-> +      - const: arm,dma-350
-> +      - items:
-> +          - const: cix,sky1-dma-350
-> +          - const: arm,dma-350
->   
->     reg:
->       items:
-> @@ -22,15 +29,22 @@ properties:
->   
->     interrupts:
->       minItems: 1
-> -    items:
-> -      - description: Channel 0 interrupt
-> -      - description: Channel 1 interrupt
-> -      - description: Channel 2 interrupt
-> -      - description: Channel 3 interrupt
-> -      - description: Channel 4 interrupt
-> -      - description: Channel 5 interrupt
-> -      - description: Channel 6 interrupt
-> -      - description: Channel 7 interrupt
-> +    maxItems: 8
-> +    description:
-> +      Either one interrupt per channel (8 interrupts), or one
-> +      combined interrupt for all channels.
-> +    oneOf:
-> +      - items:
-> +          - description: Channel 0 interrupt
-> +          - description: Channel 1 interrupt
-> +          - description: Channel 2 interrupt
-> +          - description: Channel 3 interrupt
-> +          - description: Channel 4 interrupt
-> +          - description: Channel 5 interrupt
-> +          - description: Channel 6 interrupt
-> +          - description: Channel 7 interrupt
-> +      - items:
-> +          - description: Combined interrupt shared by all channels
->   
->     "#dma-cells":
->       const: 1
 
 
