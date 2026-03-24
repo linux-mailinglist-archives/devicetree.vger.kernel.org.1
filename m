@@ -1,118 +1,169 @@
-Return-Path: <devicetree+bounces-279714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279716-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AIw1Fo9hwmmecAQAu9opvQ
-	(envelope-from <devicetree+bounces-279714-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 11:03:59 +0100
+	id EFSQBsNhwmmecAQAu9opvQ
+	(envelope-from <devicetree+bounces-279716-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 11:04:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3521306261
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 11:03:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81A2230628F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 11:04:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 30744302604B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:54:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9916A305CA0A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:55:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3883361658;
-	Tue, 24 Mar 2026 09:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEAAA3DF004;
+	Tue, 24 Mar 2026 09:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bBXX2HTw"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="CQS24YV8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9AF27EFEE;
-	Tue, 24 Mar 2026 09:54:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58E643DDDD2;
+	Tue, 24 Mar 2026 09:55:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774346089; cv=none; b=adagvfQxqdwg8O5QgHkYgTStj7dilwcddTFdUmj1IepDNQk6mw8vXFQ1XTcj/TH2uT8hU7iDHMH80OEjVcv6s2F8EfqyWFPFxAMka6tjlXlOI95+YO8uJM3kuEJT3lusFKUZC3KPrePwgUWDHCJO7aYI3+59/AMA1ZQoPsmau4Y=
+	t=1774346138; cv=none; b=nqL7sY1L+hIQqtT74ULbV6mTOAKzE0gYDsyI3YUe+8NrztcqhKgUnWDW6c0ZWMPmJsSVVnne73okPXQJ0fzOsF79/gE2iUCGcQF22jUBVer2uRj+xzovg4DlPd5HvL6bQKnblQCslDBdcu2NBpL+TswZRrBU1wU0k2CCgmaIlUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774346089; c=relaxed/simple;
-	bh=XaFzr+YEjUMzzdze01fC+C0a/ccH9sqXCsUIJsqKR50=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=urSxIe3xJw1CsC6Pr1JfDPi77jCkbD47pj+eGJ1+Wg/tGi0xS0CMU/YXZeuE+cVa9xscTPnY/pfvg+Gbz53D+ygu3QHUmhLGywbU0Xkxd889a1JpKwN4mfGkiIQErKIpIg4AY8/I/9DGIpu1YZVGPtBQK8tZnZZAj5AqGoElnDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bBXX2HTw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9E61C2BCB1;
-	Tue, 24 Mar 2026 09:54:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774346089;
-	bh=XaFzr+YEjUMzzdze01fC+C0a/ccH9sqXCsUIJsqKR50=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bBXX2HTw/oCXSQFIgYluZ+o0MmrV7W3Fl5DKQ3DHsDdp1LhgYAngpJHutHkAbYBjt
-	 7eCxSYZAbJb9V5/OQfYViaSPN18RWvIqWfagT6pyxTYC3IHhYpSH8wjB+96DmdjPK5
-	 eeuqmuYOU23p99DyYy6aRN0sDVA8yBQ7bl+y1oIvdoAx72Ai/NFEC02kA6dGIMa4C3
-	 lDZcrCerNd2yAybV0oxvr6qpiS5Fzli4PBVj+FYv097XaGDormfxq00TRqUYtmNSJK
-	 oik0QoJqfbMDNEkQTE/WmDoc32cr6niN7kKNBZxRhnURp1W0Ej/p5uotyjCP/HYA1f
-	 syyZdXf2trV3w==
-Date: Tue, 24 Mar 2026 10:54:46 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Meiker Gao <ot_meiker.gao@mediatek.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Bayi Cheng <bayi.cheng@mediatek.com>, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com, sirius.wang@mediatek.com, vince-wl.liu@mediatek.com, 
-	jh.hsu@mediatek.com, linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: spi: Fix clock-names definition
-Message-ID: <20260324-magic-camouflaged-albatross-6fdeb1@quoll>
-References: <20260324032624.1708029-1-ot_meiker.gao@mediatek.com>
- <20260324032624.1708029-2-ot_meiker.gao@mediatek.com>
+	s=arc-20240116; t=1774346138; c=relaxed/simple;
+	bh=SvcMeguSRkWrLxMP69EzttgFFrHoKqRHj37zkRnISQc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=G0Qjwgtypq0GSeODa+n0IQwzHHc8WJ7b7seuOVcaKYE8Gy7lB968O4l+ksf/c4ifN+O4qsOoMOZoaHBDdIhAoTJyofBn7dsirxXcXABOPXbgl6JEWECrsQkmMERW1Ox7d2js8JKcbNVcysSCYaprJmWIyTLXShPCuVDUZUdbBTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=CQS24YV8; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 97b5824a276711f1a39cd589f645bc18-20260324
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=R+HKfYoQgsNwD7jVdncT8/msTLWuYCDRN7Wa25YoGP0=;
+	b=CQS24YV84Nsc87F4gcqzyVaypGVLURPBDED+DEf3bkpjhtl1+t4VsSSSp2h0LJkbb5d6vRLrid0YZAXJ7mgjvRvWh/gqlqk1uAnKu+ZketPOkjrfUH/qMfB30dv4PJdWnebeSnPvbtuCrLb3IKQys6JPuu3iATz4xDLEZPVd8QM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12,REQID:421da3a0-0a25-4387-93d7-bcf45638ccd8,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:e7bac3a,CLOUDID:50c364e0-cf51-4058-942d-ef4f058f9afa,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI:0,OSA
+	:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 97b5824a276711f1a39cd589f645bc18-20260324
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw02.mediatek.com
+	(envelope-from <jianhua.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 649656606; Tue, 24 Mar 2026 17:55:30 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Tue, 24 Mar 2026 17:55:28 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Tue, 24 Mar 2026 17:55:27 +0800
+From: Jianhua Lin <jianhua.lin@mediatek.com>
+To: <nicolas@ndufresne.ca>, <mchehab@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <matthias.bgg@gmail.com>,
+	<angelogioacchino.delregno@collabora.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-media@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<sirius.wang@mediatek.com>, <vince-wl.liu@mediatek.com>,
+	<jh.hsu@mediatek.com>, Jianhua Lin <jianhua.lin@mediatek.com>
+Subject: [PATCH v4 0/3] Mediatek MT8189 JPEG support
+Date: Tue, 24 Mar 2026 17:54:52 +0800
+Message-ID: <20260324095455.1437-1-jianhua.lin@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260324032624.1708029-2-ot_meiker.gao@mediatek.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279714-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_TO(0.00)[ndufresne.ca,kernel.org,gmail.com,collabora.com];
 	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-279716-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[jianhua.lin@mediatek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mediatek.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mediatek.com:email]
-X-Rspamd-Queue-Id: E3521306261
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:dkim,mediatek.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 81A2230628F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 24, 2026 at 11:26:17AM +0800, Meiker Gao wrote:
-> Update the device tree binding for the Mediatek
-> MT8196 NOR controller to require that the 'clock-names'
-> property contains exactly six entries, in the strict order:
-> "spi", "sf", "axi", "axi_s", "bclk", "27m".
-> 
-> Signed-off-by: Meiker Gao <ot_meiker.gao@mediatek.com>
-> Change-Id: I0542d6d726f1af34ef76c1a58ba4e4b02ec45fe6
+This series is based on tag: next-20260320, linux-next/master
 
-Please do not send patches which were never checked with tools. Run
-checkpatch.
+Changes compared with v3:
+- The v4 is resending the cover-letter, because the v3 cover-letter was
+  not sent successfully.
 
-Best regards,
-Krzysztof
+Changes compared with v2:
+- Dropped the dts patch (arm64: dts: mt8188: update JPEG encoder/decoder
+  compatible) as it belongs to a different tree/series.
+- Patches 1/3 (dt-bindings: decoder):
+  - Changed the MT8189 compatible to be a standalone `const` instead of
+    an `enum`.
+  - Added an `allOf` block with conditional checks to enforce the single
+    clock ("jpgdec") requirement for MT8189, while preserving the
+    two-clock requirement for older SoCs.
+  - Updated commit message to reflect the schema structure changes and
+    hardware differences.
+- Patches 2/3 (dt-bindings: encoder):
+  - Changed the MT8189 compatible to be a standalone `const` instead of
+    an `enum` inside the `items` list, as it does not fallback to
+    "mediatek,mtk-jpgenc" due to 34-bit IOVA requirements.
+  - Updated commit message to explain the standalone compatible design.
+- Patches 3/3 (media: mediatek: jpeg):
+  - Refined commit message for better clarity regarding 34-bit IOVA and
+    single clock configuration.
+
+Changes compared with v1:
+- Patches 1/4:
+  - Updating commit message
+- Patches 2/4, 3/4: 
+  - Updating commit message
+  - Adjusted property descriptions acorrding to hardware requirements
+  - Improved formatting for better readability and consistency
+- Patches 4/4:
+  - Updating commit message
+
+Jianhua Lin (3):
+  dt-bindings: media: mediatek-jpeg-decoder: add MT8189 compatible
+    string
+  dt-bindings: media: mediatek-jpeg-encoder: add MT8189 compatible
+    string
+  media: mediatek: jpeg: add compatible for MT8189 SoC
+
+ .../bindings/media/mediatek-jpeg-decoder.yaml | 39 +++++++++++++---
+ .../bindings/media/mediatek-jpeg-encoder.yaml | 20 ++++++---
+ .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 44 +++++++++++++++++++
+ 3 files changed, 91 insertions(+), 12 deletions(-)
+
+-- 
+2.46.0
 
 
