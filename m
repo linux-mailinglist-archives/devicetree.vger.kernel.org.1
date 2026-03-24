@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-279482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279484-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cG7QD8PzwWmPYQQAu9opvQ
-	(envelope-from <devicetree+bounces-279482-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 03:15:31 +0100
+	id pzkJHxT0wWmmYQQAu9opvQ
+	(envelope-from <devicetree+bounces-279484-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 03:16:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE5B930106F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 03:15:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F0A63010C7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 03:16:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D13B830A4562
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 02:07:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 08AF030D33A7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 02:08:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3077B37EFEB;
-	Tue, 24 Mar 2026 02:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFD504207A;
+	Tue, 24 Mar 2026 02:07:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="nTl6i4/C"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="eD0wY6Gy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-173.mta1.migadu.com (out-173.mta1.migadu.com [95.215.58.173])
+Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com [95.215.58.186])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A566A2E414
-	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 02:07:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 287BC37C923
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 02:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.186
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774318071; cv=none; b=ruBTsczmc88YwU2XZVuxUMYKtsV4VJQJJY8ru7a7EyE+HQt6DrlVcVcu0LOooBjx+asO0+H0UvH7qfhPUCJAXw4l5+RgsewF4yc1AD90Q9BNxIP47UPhiaof46AFT5NRWX7lD5BEWNz5vxAm+dandCDY+IA1SrSGUDHxIIOya3M=
+	t=1774318075; cv=none; b=UTuyMCT51CtSoWEBfNoyQotKkBdD7OcRDWegPXbIp3oIMUXV+zvyFLhYN2w6rsc4BnZ+jjQ5XUk8k1dBIcNGsdlsHcY9txVt62cYH2rDgGzupEUVeEbBGM1wX1Bd8gGxqoO6cNW382c1cerJJoMNW6FsVo5mf8po9LX6f+VoF/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774318071; c=relaxed/simple;
-	bh=6sndJc0GBJQmB9Do3SK54gedFQw9+lX80iibDDxFoFc=;
+	s=arc-20240116; t=1774318075; c=relaxed/simple;
+	bh=+xaw/AUFJw6Qn+Wudp9UTDMJK6rSUPaHJM0s6syWqZc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=T67NxWRlajJsGl8cLYH5xJ0un9yZs5qeJ69wXAb4QE1ybwFhatz/vK3I4UVeo7xxnYgJkiSefAUBrd1r/P1MXxBQQgFhOvpUn+oiwbs+0IbSDKzEAH9EhyH7fDcXOJ0k1nAMtypS45V+2FUeCS/n9GMb3ADwnqz/XB2IBhBhPqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=nTl6i4/C; arc=none smtp.client-ip=95.215.58.173
+	 In-Reply-To:To:Cc; b=rOYIp+n6CsifP5MmL8qLldjRmG3Z+zrFx8V3SgcY4Sx1UwvLa77992qcpX4KxKyXHX47bTuZjLgNt1f5aY5izGtQozIeqq1JY0oQ1JGHQ2vJEh5PvblivlX9c+iHSnQ7apRP50XGZeoBSU4M9yele3qvBcK9aqamuK1tt8miVzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=eD0wY6Gy; arc=none smtp.client-ip=95.215.58.186
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1774318067;
+	s=key1; t=1774318072;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=YHq+H6MH4LbASJLjMcjCQqRRO4xEm/zZrOQ3FUn7dvc=;
-	b=nTl6i4/CzEDqO4S08SPO7fruV6VKSHfaRofFzvio/3XPplsFZR0p+VYDWWkXovguheH7V6
-	PcQCLovk6udEDfcTuIJO28T5EKc2jm4Qlf5YHLfCW16gqVxQii+WfqaEDRVQk9C4nUYYHe
-	hy4jszrIlp/OZiH9M6qfqLoYOgUNPYVNaorcqsMV6AkrYfCEPhEmaxCXN0T7hA1fWPWKb5
-	HBeddbVnG6UGP2m80buDXY3qUece0rp7OwsKJHvY+zjsBjfTRtRInhhY/or2onp2zSn3Co
-	rM4Kr7MB1BLuamFfWdZStS13h/oS1Hz//Yms7pay23jemZvmSb8f+UtyQtbtXg==
+	bh=aqYmQ0oXqjFq1ORTXZyNxxxe2YBn40njmgLMo5bDfWI=;
+	b=eD0wY6Gymxkij8OPrxfYq/3rH3d076xTH1Xrf7dN+A7gu27b25HtCY+56IS+BtfXregJb/
+	Gm5esCEmJx20wmaOQ0/nlk6EVFlNzSbGR3c1uPTvD10wcYhaYRyu/vWYMxsuHDiaFovQiy
+	QVshcTXqCJYk3nmGZQ6tZ17wJJqMBkT14n4eQLkAIBhkfJ7wgN88+nctigpLDWCfc0WVUW
+	odMImW1izOb8GjO8DtiXVmxum4FLiEw5d0mngdvc/GwuNDCB0isTecoG/I2yF8gxa0Vulc
+	mmqzRZZUw6etdTc3AscXWLJI2eap2h4KcQUNjGVVL6giJGWaZ2M75aVE8mHOqQ==
 From: Paul Sajna <sajattack@postmarketos.org>
-Date: Mon, 23 Mar 2026 19:06:32 -0700
-Subject: [PATCH v6 02/15] arm64: dts: qcom: sdm845-lg-common: Enable venus
+Date: Mon, 23 Mar 2026 19:06:33 -0700
+Subject: [PATCH v6 03/15] arm64: dts: qcom: sdm845-lg-common: Enable qups
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +58,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260323-judyln-dts-v6-2-29d70ca1651c@postmarketos.org>
+Message-Id: <20260323-judyln-dts-v6-3-29d70ca1651c@postmarketos.org>
 References: <20260323-judyln-dts-v6-0-29d70ca1651c@postmarketos.org>
 In-Reply-To: <20260323-judyln-dts-v6-0-29d70ca1651c@postmarketos.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -70,11 +70,11 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  ~postmarketos/upstreaming@lists.sr.ht, Amir Dahan <system64fumo@tuta.io>, 
  Christopher Brown <crispybrown@gmail.com>, 
  Paul Sajna <sajattack@postmarketos.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774318055; l=563;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774318055; l=712;
  i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
- bh=6sndJc0GBJQmB9Do3SK54gedFQw9+lX80iibDDxFoFc=;
- b=5N1Q50wJ7bNWmZyC8eXo8k+88v00vaQvHzvSvv4kehGKjBj89+D8Ws6q7nfa9iMgs9zyY/tcP
- BoTeoS3zzDcCRQupqALtRxxwktr7iiWo9dkvC8TA/XSDfgPKvLXvCeZ
+ bh=+xaw/AUFJw6Qn+Wudp9UTDMJK6rSUPaHJM0s6syWqZc=;
+ b=Nftk5MGWEAc2JIuM6BrNppLB1Hj8HqeDuaCXq1JtxER9I1c1MwivgbHV2iY/QEESRI+L/9AG7
+ hPKBFTw2mCdA9BetrgtOO+Bu2OV6Pc3k9j8RENvKX+EH3Qq+ZJmaYfc
 X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
  pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
 X-Migadu-Flow: FLOW_OUT
@@ -83,12 +83,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[postmarketos.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[postmarketos.org:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279482-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-279484-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,tuta.io,gmail.com,postmarketos.org];
@@ -102,33 +102,40 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sajattack@postmarketos.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[postmarketos.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[postmarketos.org:dkim,postmarketos.org:email,postmarketos.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: AE5B930106F
+X-Rspamd-Queue-Id: 0F0A63010C7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Qualcomm video en/de-coder
+Qualcomm serial communicators required for i2c, serial, and spi
 
 Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-index 93ed8f240461..87ac41ec2e46 100644
+index 87ac41ec2e46..eb8de8d01177 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-@@ -580,3 +580,7 @@ &usb_1_qmpphy {
- 
+@@ -482,6 +482,14 @@ &pm8998_resin {
  	status = "okay";
  };
-+
-+&venus {
+ 
++&qupv3_id_0 {
 +	status = "okay";
 +};
++
++&qupv3_id_1 {
++	status = "okay";
++};
++
+ &sdhc_2 {
+ 	cd-gpios = <&tlmm 126 GPIO_ACTIVE_LOW>;
+ 
 
 -- 
 2.53.0
