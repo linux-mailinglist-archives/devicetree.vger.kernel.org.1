@@ -1,86 +1,104 @@
-Return-Path: <devicetree+bounces-279819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279821-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CFXXJVF/wmnqdAQAu9opvQ
-	(envelope-from <devicetree+bounces-279819-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:10:57 +0100
+	id 4O4/BWeBwmlneQQAu9opvQ
+	(envelope-from <devicetree+bounces-279821-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:19:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00346307F2D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:10:56 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E2FB3080FA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:19:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D1F3030825F9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:02:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E7202308FA1F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1138E37C10F;
-	Tue, 24 Mar 2026 12:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 079E03F7865;
+	Tue, 24 Mar 2026 12:05:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NJnODxpr"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eiiwG5ed";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ByGO/wZh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f181.google.com (mail-dy1-f181.google.com [74.125.82.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6F93EF0DD
-	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 12:02:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC86E3F54D8
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 12:04:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774353726; cv=none; b=hK5CV11piAGDK5gOO4ZMxTgrkKAmelF7glzh9U6ftVI7Dvg4bXcIqUtLUY7GWa/yaTKxcPcIZYsAAKQk1SfPB6j/JG7mgjJikhVXEL7SlP807LotE8hBe8XKjCYYQw/PRT7i0C5Dx9SvCIdaXuoJRcJxmT2gVzRjgIy9FqPF0t0=
+	t=1774353901; cv=none; b=lDTsUog1InKOKUGf1kmTHwd8Yr6KyhAWAF9LQQFW3MUEV0Z2xTgZ/P8qPp+0QxY2ktvXGp1eXrUqlewFvnRZwXpQNDwuxziES/757BUnzphVv1jEl+vDQh0sKeeNqau68PpPDj52xuwwqZJoX8hjU7bDmirL4T2tbwtJigm6q60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774353726; c=relaxed/simple;
-	bh=EUUQ8XnCoFxZc5Dgh6FndAK97NzbYP6VaYZ7nQS0BCA=;
+	s=arc-20240116; t=1774353901; c=relaxed/simple;
+	bh=INmeiGJKMXk+0PJEej2mrgVEmYRHxRGrlBMc5p0a5aY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CmefSX2Ma0ib5RdyQ9HMfzlfOctE+Rwo2N73c0KpEOuVbQ/ouxJBc8DkLlMuSpquCc4t6ihUpI+523QGdS1LPdSLafrK9qbLuWslSQOzg5clP5kOZ0GixBTfcHn1WFu4193w/Bcm0keDI6p9LakUI2Vv2I/cupi9IG0Q8HKbe4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NJnODxpr; arc=none smtp.client-ip=74.125.82.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f181.google.com with SMTP id 5a478bee46e88-2ba895adfeaso1312352eec.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 05:02:03 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=lfOyTPIcglmmj9SvDrJ/TgZ5CcWJWpFmDiG8pWfzI42YDgV/73o5WRSdzWnPombH+/Qruuoyod2RZ2eevbb5eM19k1oEc+vXnTkkXwX53qO5VTyEI2URhYgPnC8e4NiKDB+o/tpHB4HukPmjxTNF7YJMBhZh089rFU8rB7KYPMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eiiwG5ed; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ByGO/wZh; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62OBaoj81291168
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 12:04:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	E5IUEO5PyBIerJfWjfzoqFirzXsSOD9hNzXQV1mXr0E=; b=eiiwG5edacFrpRTZ
+	EtFrpYBAz2dzEh8QgxuzMve34/TbRlhIqFNx0EIQC9p4hZ2Sc1R0WIg2sTP6BzrM
+	ZMpxlfMwVzsguvbqR5NsG0MiTxuaUDz7gQK9z/PxTLu1TEuNtp0aZM+jWN5B0FTG
+	cAEb6aMA1eo/Z0VWzsnyIojgSv0Q7zlmm7vQ+g3Jors7pW4zXq4WIA+Gen1trqxO
+	8FKevj/nVzz62rhyId8j2AORT2bDOzfq1W9g4Gu+AsQMotjMluRzjhztxSKw7emf
+	qjozK5HoD7x8HTa7uMYLbYLYuYjcsGG4hg2oWm9+adG+aTQzddUtS3YHqtw1B3gb
+	YkEiWw==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d3sw40439-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 12:04:54 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2aed1beaa73so69743805ad.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 05:04:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774353722; x=1774958522; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=r7Cvw7CMASLC6B/r3+cukkHse/ycf7d5uQq99RiEAg0=;
-        b=NJnODxpr5gUfK5SIDrxtARgXCMUiWVVaMJIgqPKKPrS10tjFobAlXGQWdfZw3N1Swg
-         veyQnM7vahPwd2K/prXjeg+M+ydTeq6YLDOcZxyHsyeMq3c9JcrIie1jXOI1F2Xlt/NN
-         pmZuaekEfKWHS6tCYcirlzOGbrzrBnT4pjxKAcX2tK5a1ipBhttZ8Q8O7+MVx3c1i4P/
-         HZcZbrJu3YLPtuQB8SG9UDEUNH0pToi+VV0Gu2PAQrTch/Hm/aCalzOzNH6eTIy7Iedv
-         +pHYtxxA//c9/lyt/gVRwzC+Ia+1gO+r81oWCVl0WGAC0KuaCsQ6+fFfXWP1XxLc4zPV
-         y4cQ==
+        d=oss.qualcomm.com; s=google; t=1774353831; x=1774958631; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E5IUEO5PyBIerJfWjfzoqFirzXsSOD9hNzXQV1mXr0E=;
+        b=ByGO/wZhHkNCfRtNzd1cWKYIk+yqjgVvcHWz1qtlz0D2awkgtOI7dNlRXDmrU0Ag/Y
+         BpqSzHy+W85eb/bADDL83GXly35Bem0OlZARvt5kCtW7uVV7AHlwySJ49Klk1wMsou71
+         pJvHr5+zv+BPeoWe6Fhdz3mt2jSP2Dq3go/N2gwnTMpMqYQXxye/4/VjtZtqnQNqPsvH
+         aB7J/7Kfwpz79/HsOhoChNdIIMrDmJS8mE/scs6eVX/qJl4hfaZTWNrNbS5VVXQGC6Uq
+         tgMjbZC/Mw9k6/LKuIgI6kkJlJaKhPZsehOBjSgNRfJTe2aZR8wQ266lw3dsRtHAEWNt
+         /X2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774353722; x=1774958522;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=r7Cvw7CMASLC6B/r3+cukkHse/ycf7d5uQq99RiEAg0=;
-        b=q8KN7jiCVcIai6FH1dqDnEl2D0CmpVoUT8ffrxEhk+VvOoW7lIz+kENsnHDn3XNn0r
-         JmXim++MEVdxDp+siJgLmIsoUTcDVdRvVsGH5W/WhuiROE4xAcr3rjOk+XgPJ9G9BCYV
-         0eQ3EY3/zklfC87V21jdSstWiDvWvuNReMWtaqGsMvmLv/e1UkkSk+FnA0b6Jh2Ustgj
-         d9KBJMXFhdUdQhyd1mu5WCxFCjN6Vf4O8cZ043EzNfRl7AkSCHRc0a1AdjjXwebfKJs/
-         fKUl7shBZeOqx+OFYKDcDzBkQyah6vPImdIl4q/eC6or3nLjrWfXeVsmdtSZ9tuZED7z
-         +oRw==
-X-Forwarded-Encrypted: i=1; AJvYcCX/QgMjPlFDEKJKtTdXlWZyNpLa78nTfYOMpwxe19OeJrXFY+T35iIgQVALDuIQ8Vg+YPPd7oBOn/gp@vger.kernel.org
-X-Gm-Message-State: AOJu0YzG7LmFNfEzwxZqVaYQW3B+rklTMr8IMpZ0RBoYPaLZL953OQio
-	ftR1i3b8foCREml1rZUvSQFOWUV1+YeKEGJk/8ulvqC0CDLmU9a9Vr5W
-X-Gm-Gg: ATEYQzxq9unfMb1reEKkZU6D3FyvEK0AnF+8yYVTZbd/vO28SrrHT0hObDIirC49XUT
-	zEWgBwiQ/CpvuyTHr6TdofXNdYez/vMa3Ijckxvq+oenClstRVrQfUIWgNQ19zrvPel5gWqhw9Z
-	ub1xoNAo9ZltCPTi6m0jE5LyvZFPAjWpLJSGrQht6NS55XQyezODSK8vHU2W/5JH8VDyh1f+TDA
-	yEqjqr7+axj69cbp6eIudyhCdncdlKt0ZwV3IaZKvx562XjpmSq2kUPqcuGkN0OXFFWitqO6iS9
-	BjYdenQGYwkru1hhaD2ZZfJDKGhCFThQ0X8b/cBIu5FvK+2x2QNE4Pfi6sn97eYWPUagPujIw2Q
-	BmaddHFscEi0g/KtFbD8ovashU1po1XSfkRrCWXqEnTepYYHv1406tDYeUfwCiPZNwAgizLCIgC
-	dUA5cLyxxgY/JBblHPyvw5a2ahL7/jG7fnj8cvkr703IhLxisKeAEaMeEJ28HSALUDD4/AQ4DxN
-	Z/wGrIVeXY=
-X-Received: by 2002:a05:7300:548:b0:2c0:fd7c:ddf4 with SMTP id 5a478bee46e88-2c109752dd0mr7204385eec.21.1774353721366;
-        Tue, 24 Mar 2026 05:02:01 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c10b31bef1sm18999251eec.26.2026.03.24.05.02.00
+        d=1e100.net; s=20251104; t=1774353831; x=1774958631;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E5IUEO5PyBIerJfWjfzoqFirzXsSOD9hNzXQV1mXr0E=;
+        b=Ng5VUqUX4K+wEgZWM3yC/c4k9tpX50aJ8elZtKxaWKgl1/pdYjv8yCO4lEWeH6HhRe
+         KzFm4umuRrupgtAm1dSdEWB8qSjcjobVSZgZt5P7178sVGMHNCWNmLwL6hAQ7Vp6cdK0
+         QnPoLNmiGxXNfXSohe9d6V50SEep83QB9KCdnZONB3HDqm/Aq387C1z80J5HDlZMW+kE
+         ZeQzNDF6QCiiYSns3nC6xg1XZfWH4nX/rpuRW3X3iN3ZCzZqBfnPLD1yoet7+x22H7nW
+         W1N1nqqFbgBn4lkBRPuVmrgQ8JHra9fFCYhJZitFo0GorYROSRpvO/KdjSoGRZRBFnr7
+         6EyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWq5aew6K7yEaZA5kIl23ff1thmrpFDaHODf/6KFfAzoX8pc84yXccQHyfSGh+dCiKA8ulmvITHO4AP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBE68zJCzccYko1Q802fNS5iqNKL0V0u+xHuWFByJS29IN0ES/
+	uirdNceUnKz5WGNEJv/oGhDC2nKEfaPrnYoPGAzTr8V1BvsrFnPhFpC84dN68QdDDI5TP7PrwfU
+	cOxa4Z5ZE5bAtn3j1OxkEnR8FzPX/hw1i+lDWf3/WgNCaQA03xW6SVyRB+aWMUyNY
+X-Gm-Gg: ATEYQzynI7/mP3NdzxtYUuuACK8ZYB4wLhC9rAOL34uy2emy9xkJlrFmYBRpVWNMwft
+	+XErGxpVT95rLyIJ3K2tLQA4ie7i5MZP7zBuTFdEpRPw/rdeZqu+C6loYXtzvKk1FlBmaY6oUkY
+	LRRllq1UCsSAM3aa3wUKcBXP8X26MA1tzIz9ZRLzw5ypec8VKnD+MGJaHOiA5OjNxwNVt5i4wGN
+	MOxiuA5tuEiPnhTji3DU5LPraa1Ri2Dk+T+f8nArOn8tcWvz9h+U1fZEqtU2JGnEy3iSiNi6DD4
+	sg8TujA08I6zBn6S/bs93yr/R9FnsUwteNFICWGMK/a9DF8dNDVwF70IdB5C26i4cHkQxddyeH6
+	lIBhDtYwq37a/4ER+EASUZyr0YnMZM4RmdPP+L3yGcXFfnoExOHq31w==
+X-Received: by 2002:a17:903:3ba5:b0:2b0:5aab:c40a with SMTP id d9443c01a7336-2b08277aecamr143662645ad.31.1774353831151;
+        Tue, 24 Mar 2026 05:03:51 -0700 (PDT)
+X-Received: by 2002:a17:903:3ba5:b0:2b0:5aab:c40a with SMTP id d9443c01a7336-2b08277aecamr143662045ad.31.1774353830506;
+        Tue, 24 Mar 2026 05:03:50 -0700 (PDT)
+Received: from [10.218.35.45] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b083656f65sm208995095ad.45.2026.03.24.05.03.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Mar 2026 05:02:00 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <77e59d08-841f-40fd-a18e-f57271a395df@roeck-us.net>
-Date: Tue, 24 Mar 2026 05:01:59 -0700
+        Tue, 24 Mar 2026 05:03:50 -0700 (PDT)
+Message-ID: <f97c6dfa-55dc-4792-95d6-4aa1bce3694d@oss.qualcomm.com>
+Date: Tue, 24 Mar 2026 17:33:42 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,163 +106,201 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] hwmon: (tmp108) Add support for NXP P3T1084UK
-To: Anshika Gupta <guptaanshika.ag@gmail.com>, corbet@lwn.net,
- skhan@linuxfoundation.org, linux-hwmon@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: lakshaypiplani77@gmail.com
-References: <20260323162252.15508-1-guptaanshika.ag@gmail.com>
- <20260323162252.15508-3-guptaanshika.ag@gmail.com>
+Subject: Re: [PATCH v8 3/3] PCI: Add support for PCIe WAKE# interrupt
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+        Pavel Machek <pavel@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Danilo Krummrich <dakr@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, Linus Walleij <linusw@kernel.org>,
+        Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>,
+        Saravana Kannan <saravanak@kernel.org>, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-gpio@vger.kernel.org, quic_vbadigan@quicinc.com,
+        sherry.sun@nxp.com, driver-core@lists.linux.dev,
+        devicetree@vger.kernel.org
+References: <20260313-wakeirq_support-v8-0-48a0a702518a@oss.qualcomm.com>
+ <20260313-wakeirq_support-v8-3-48a0a702518a@oss.qualcomm.com>
+ <4n5heks4oymfz75wiajyc5zuzzulmwyfj2couudbi7gi67h2rk@smpnmyhdjkns>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20260323162252.15508-3-guptaanshika.ag@gmail.com>
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <4n5heks4oymfz75wiajyc5zuzzulmwyfj2couudbi7gi67h2rk@smpnmyhdjkns>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI0MDA5NiBTYWx0ZWRfXwJTsG886KXcl
+ +E9d8oyheryZqn3YQeQKVOve4lkZsVuB61x0TCgcf3yb1dDsd8gl5rLama8R8RfWBCqR1iDbFaT
+ whl4zdcXoFIX87t1V6BSzuNDZOJKvH/2PzGv1YfW6K/LAMTX9gTXTsQGHO3cOSh1g9CBc4nFwvW
+ EaFoBHfGv6QpDqopLFvlReGP9v52FGbRlarpIxm9AtUrhdEX4tXoTeAH5gsoJgCN2B1OFyKi239
+ 7puq7R4iKs/+7Gt5sfnxc4pDn9WLFGDq8+HFxJuvuENpSlwdTUieciZzioiPBKFLeevOspeYr4T
+ 6HBld+04OqgCx+ZuTW1PXA+i9ZSSzVz7CmNN1MVcZi/tWHsRChA6USulxjsBUFBrQVxfk7eyZl6
+ OjI8Hj04f7bNd3Rg3ZZ43T81SANvTuJoW7yAVxh78UAoxKsKXaqcVwx3eyAq9GgVkwFrYjTNAY0
+ e9JMn+xlFbvba1HE75w==
+X-Proofpoint-GUID: uETA7HRt5liRwBqlCDPWPQYVXcEmMmqI
+X-Authority-Analysis: v=2.4 cv=bpVBxUai c=1 sm=1 tr=0 ts=69c27de7 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=NEAV23lmAAAA:8 a=KKAkSRfTAAAA:8
+ a=rFA5VEQNUbPbIC_WhckA:9 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: uETA7HRt5liRwBqlCDPWPQYVXcEmMmqI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-24_02,2026-03-23_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1015 priorityscore=1501 malwarescore=0 adultscore=0
+ bulkscore=0 spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603240096
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,lwn.net,linuxfoundation.org,vger.kernel.org,kernel.org];
-	TAGGED_FROM(0.00)[bounces-279819-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-279821-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,linaro.org:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krishna.chundru@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 00346307F2D
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 1E2FB3080FA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/23/26 09:22, Anshika Gupta wrote:
-> The NXP P3T1084UK is a ±0.4°C accurate digital temperature sensor with
-> a 12-bit temperature register, configuration register, and alert
-> functionality over I²C/I3C. Its register interface matches the TMP108
-> programming model, so the existing tmp108 driver can bind it without
-> functional changes.
-> 
-> Add "nxp,p3t1084uk" to the OF match table and "p3t1084" to the I²C
 
-This does not match the code (added "uk").
 
-Also (from Sashiko's review):
+On 3/17/2026 12:56 PM, Manivannan Sadhasivam wrote:
+> On Fri, Mar 13, 2026 at 12:38:42PM +0530, Krishna Chaitanya Chundru wrote:
+>> According to the PCI Express specification (PCIe r7.0, Section 5.3.3.2),
+>> two link wakeup mechanisms are defined: Beacon and WAKE#. Beacon is a
+>> hardware-only mechanism and is invisible to software (PCIe r7.0,
+>> Section 4.2.7.8.1). This change adds support for the WAKE# mechanism in
+>> the PCI core.
+>>
+>> According to the PCIe specification, multiple WAKE# signals can exist in
+>> a system or each component in the hierarchy could share a single WAKE#
+>> signal. In configurations involving a PCIe switch, each downstream port
+>> (DSP) of the switch may be connected to a separate WAKE# line, allowing
+>> each endpoint to signal WAKE# independently. From figure 5.4 in sec
+>> 5.3.3.2, WAKE# can also be terminated at the switch itself. To support
+>> this, the WAKE# should be described in the device tree node of the
+>> endpoint/bridge. If all endpoints share a single WAKE# line, then each
+>> endpoint node should describe the same WAKE# signal or a single WAKE# in
+>> the Root Port node.
+>>
+>> In pci_device_add(), PCI framework will search for the WAKE# in device
+>> node, If not found, it searches in its upstream port only if upstream port
+>> is Root Port. Once found, register for the wake IRQ in shared mode, as the
+>> WAKE# may be shared among multiple endpoints.
+>>
+>> dev_pm_set_dedicated_shared_wake_irq() associates a wakeup IRQ with a
+>> device and requests it, but the PM core keeps the IRQ disabled by default.
+>> The IRQ is enabled only when the device is permitted to wake the system,
+>> i.e. during system suspend and after runtime suspend, and only when device
+>> wakeup is enabled.
+>>
+>> When the wake IRQ fires, the wakeirq handler invokes pm_runtime_resume() to
+>> bring the device back to an active power state, such as transitioning from
+>> D3cold to D0. Once the device is active and the link is usable, the
+>> endpoint may generate a PME, which is then handled by the PCI core through
+>> PME polling or the PCIe PME service driver to complete the wakeup of the
+>> endpoint.
+>>
+>> WAKE# is added in dts schema and merged based on below links.
+>>
+>> Link: https://lore.kernel.org/all/20250515090517.3506772-1-krishna.chundru@oss.qualcomm.com/
+>> Link: https://github.com/devicetree-org/dt-schema/pull/170
+>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> ---
+>>   drivers/pci/of.c       | 74 ++++++++++++++++++++++++++++++++++++++++++++++++++
+>>   drivers/pci/pci.c      | 10 +++++++
+>>   drivers/pci/pci.h      |  2 ++
+>>   drivers/pci/probe.c    |  2 ++
+>>   drivers/pci/remove.c   |  1 +
+>>   include/linux/of_pci.h |  4 +++
+>>   include/linux/pci.h    |  2 ++
+>>   7 files changed, 95 insertions(+)
+>>
+>> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+>> index 9f8eb5df279ed28db7a3b2fd29c65da9975c2efa..b7199d3598b31b62245716c178a5a73565efc89e 100644
+>> --- a/drivers/pci/of.c
+>> +++ b/drivers/pci/of.c
+>> @@ -7,6 +7,7 @@
+>>   #define pr_fmt(fmt)	"PCI: OF: " fmt
+>>   
+>>   #include <linux/cleanup.h>
+>> +#include <linux/gpio/consumer.h>
+>>   #include <linux/irqdomain.h>
+>>   #include <linux/kernel.h>
+>>   #include <linux/pci.h>
+>> @@ -15,6 +16,7 @@
+>>   #include <linux/of_address.h>
+>>   #include <linux/of_pci.h>
+>>   #include <linux/platform_device.h>
+>> +#include <linux/pm_wakeirq.h>
+>>   #include "pci.h"
+>>   
+>>   #ifdef CONFIG_PCI
+>> @@ -586,6 +588,78 @@ int of_irq_parse_and_map_pci(const struct pci_dev *dev, u8 slot, u8 pin)
+>>   	return irq_create_of_mapping(&oirq);
+>>   }
+>>   EXPORT_SYMBOL_GPL(of_irq_parse_and_map_pci);
+>> +
+>> +static void pci_configure_wake_irq(struct pci_dev *pdev, struct gpio_desc *wake)
+>> +{
+>> +	int ret, wake_irq;
+>> +
+>> +	wake_irq = gpiod_to_irq(wake);
+>> +	if (wake_irq < 0) {
+>> +		pci_err(pdev, "Failed to get wake irq: %d\n", wake_irq);
+>> +		return;
+>> +	}
+>> +
+>> +	device_init_wakeup(&pdev->dev, true);
+> Just set wakeup only if dev_pm_set_dedicated_shared_wake_irq() succeeds.
+ack.
+>> +
+>> +	/*
+>> +	 * dev_pm_set_dedicated_shared_wake_irq() associates a wakeup IRQ with the
+>> +	 * device and requests it, but the PM core keeps it disabled by default.
+>> +	 * The IRQ is enabled only when the device is allowed to wake the system
+>> +	 * (during system suspend and after runtime suspend), and only if device
+>> +	 * wakeup is enabled.
+>> +	 *
+>> +	 * When the wake IRQ fires, the wakeirq handler invokes pm_runtime_resume()
+>> +	 * to bring the device back to an active power state (e.g. from D3cold to D0).
+>> +	 * Once the device is active and the link is usable, the endpoint may signal
+>> +	 * a PME, which is then handled by the PCI core (either via PME polling or the
+>> +	 * PCIe PME service driver) to wakeup particular endpoint.
+>> +	 */
+>> +	ret = dev_pm_set_dedicated_shared_wake_irq(&pdev->dev, wake_irq,
+>> +						   IRQ_TYPE_EDGE_FALLING);
+> Isn't WAKE# a level triggered signal?
+Ack. I will change IRQ_TYPE_EDGE_FALLING to IRQ_TYPE_LEVEL_LOW.
+>> +	if (ret < 0) {
+>> +		pci_err(pdev, "Failed to set wake IRQ: %d\n", ret);
+> s/wake/WAKE#
+ack.
 
-The commit message mentions the device supports functionality over I2C/I3C.
-However, the driver's I3C device ID match table doesn't seem to be updated
-for this new device.
-
-Will the driver be able to bind to the device on an I3C bus without an
-entry in p3t1085_i3c_ids?
-
-static const struct i3c_device_id p3t1085_i3c_ids[] = {
-	I3C_DEVICE(0x011B, 0x1529, &tmp108_data),
-	I3C_DEVICE(0x011B, 0x152B, &p3t1035_data),
-	{}
-};
-
-... which is actually also a concern/question for P3T1085. As far as
-I can see from the datasheet, both use 0x1529. This should be mentioned
-somewhere, maybe as comment in p3t1085_i3c_ids.
-
-> device-id table so the driver probes the device via both devicetree and
-> board data.
-> 
-> Datasheet: https://www.nxp.com/part/P3T1084UK
->             https://www.nxp.com/docs/en/data-sheet/P3T1084UK.pdf
-> 
-> Signed-off-by: Lakshay Piplani <lakshaypiplani77@gmail.com>
-> Signed-off-by: Anshika Gupta <guptaanshika.ag@gmail.com>
-
-Per this sequence, Lakshay would be the author, which is not reflected
-by the e-mail itself. That suggests that Signed-off-by: Lakshay ... might
-not be appropriate.
-
-> ---
->   drivers/hwmon/tmp108.c | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/hwmon/tmp108.c b/drivers/hwmon/tmp108.c
-> index 3ea5f6485744..db46961a31d3 100644
-> --- a/drivers/hwmon/tmp108.c
-> +++ b/drivers/hwmon/tmp108.c
-> @@ -538,6 +538,7 @@ static DEFINE_SIMPLE_DEV_PM_OPS(tmp108_dev_pm_ops, tmp108_suspend, tmp108_resume
->   
->   static const struct i2c_device_id tmp108_i2c_ids[] = {
->   	{ "p3t1035", (unsigned long)&p3t1035_data },
-> +        { "p3t1084", (unsigned long)&tmp108_data },
-
-Indentation seems off here.
-
->   	{ "p3t1085", (unsigned long)&tmp108_data },
->   	{ "tmp108", (unsigned long)&tmp108_data },
->   	{}
-> @@ -546,6 +547,7 @@ MODULE_DEVICE_TABLE(i2c, tmp108_i2c_ids);
->   
->   static const struct of_device_id tmp108_of_ids[] = {
->   	{ .compatible = "nxp,p3t1035", .data = &p3t1035_data },
-> +	{ .compatible = "nxp,p3t1084", .data = &tmp108_data },
->   	{ .compatible = "nxp,p3t1085", .data = &tmp108_data },
->   	{ .compatible = "ti,tmp108", .data = &tmp108_data },
->   	{}
+- Krishna Chaitanya.
+> - Mani
+>
 
 
