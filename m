@@ -1,152 +1,213 @@
-Return-Path: <devicetree+bounces-280092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280096-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0N97JEMXw2lCoAQAu9opvQ
-	(envelope-from <devicetree+bounces-280092-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 23:59:15 +0100
+	id oDI8N1AZw2kUoQQAu9opvQ
+	(envelope-from <devicetree+bounces-280096-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 00:08:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3166931D8FA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 23:59:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8425C31DA18
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 00:08:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2B426302A077
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 22:58:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8780B302A6AA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 23:07:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C12B3C73D7;
-	Tue, 24 Mar 2026 22:58:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C67A43C7DF6;
+	Tue, 24 Mar 2026 23:07:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jnjEg8u6"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aDSKXnum"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 356FE33C52E;
-	Tue, 24 Mar 2026 22:57:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1E83537E0;
+	Tue, 24 Mar 2026 23:07:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774393080; cv=none; b=SdJ0nKnlAMoUGbdGxIHY4Ly0cCFgqhl5nnOdH077CAL4fUUhwXQVB+jEGAwnSHNg9nWUfx3yZ74mz207n1Gjze6nQhc7tg8pQhJnRbn08Xzf7OlE2r7W/yrmGyfczOh7DD7p76507YEI3ryDqjGuWVtMDP032P4Ee1v91PYackc=
+	t=1774393652; cv=none; b=aEJ/zaJU3OK0oHGmz7kBWQUPQ6CaHnkB1CKvfEZG5pV3QYntd4e83ga/4GZgzTsVnERiYS9bh7N0a94d+8YwOr8zIt5TOXQDjfKvOlTUCxNrug0BqawvsTyh6U9A0r5ecJcvUWm+ZThn/79zHTzuEgBQxU9k84WQnlAYXvRjlPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774393080; c=relaxed/simple;
-	bh=CMhGjpHVL0E5bl2i3OV14j4oPRoXe7C71tConmD/AU8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=j9YfUj7AYNFAop+H1Goq5SseZKTuMR6qw7Phx9jDx6YkUphpNI6ldnORXOplxZqed8qGLEbTTtRLSLv8RU9Qq2AuTDC0LEtSrFQwgpGK0QVOau56cSH/5e4iV/hpeC6QyZKtzzBSwGBA1Vsn/98ijO0mIx09gWSQJY02qYg7QkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jnjEg8u6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82B6FC19424;
-	Tue, 24 Mar 2026 22:57:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774393079;
-	bh=CMhGjpHVL0E5bl2i3OV14j4oPRoXe7C71tConmD/AU8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=jnjEg8u6tA6GdcwIKvw8RwZAOd36Nn7Ho6WTpexn7SIqvHQ/6KqJu2mTfRZYSfOY6
-	 9W3/xDOqV1fsI6aOI3guyoybnNgwD+gPAdDFoi7DS/+YP9ED+KZEru4Gzdj47FIFTz
-	 TXZfHoOWzFClb1Z8zDhufWSVHX2m9qyO6XdiuIc5x0UTs5GkQhWOLQ13qFXJlPT/Vz
-	 tXy/Cwj/N/PKebVR/ScjPK5EFyOTlWfVF7LVmVFzx1aJsnuwylvDTNz8NA0w7g9vku
-	 zK9dHJGPbbQVDx1vES6D39bxf5YX0SRMzlwrSu5EA/oCZrw62PGH5Ysm+53iS/7ppO
-	 hPd8xJTOqWLmg==
-Date: Tue, 24 Mar 2026 17:57:58 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1774393652; c=relaxed/simple;
+	bh=Fk4wnbWrvlRCpYY7EBpy23iVhDEFFSBBmhNUHDrnqG4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ed5j6OkGRw8KHNHJ8uSC6RxP5dGum19ypDJPEX2KC4yABHAcGtb7BAAXonQT2pCTxOu8rXo0cpg56oJ850cquyGpQIC8Tmqm+ETAXM4x/tlTThUwsaR7p2M/0qpVKCwgaSyst2CIgdhoZZSTC3qI8BmIZqPUuCC5t52WmimDDTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aDSKXnum; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1774393651; x=1805929651;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Fk4wnbWrvlRCpYY7EBpy23iVhDEFFSBBmhNUHDrnqG4=;
+  b=aDSKXnumR8zhloF71Id+ISuPShHU6Dz1GIfvMd7DGvb+nnPSxTZjzchu
+   pYQvTt7VZFZnm3UJMpJTua5JBEc8alMW040s6PCzXEm4isgV2rpk//lfZ
+   ZFn94XPWhagmoJ8DDJH7IqsIkm4JOPz2maPxK9gn0fOg6nXUWf8B0gE9Z
+   jDjoVGmye5TqY/4b9B/4P4GyeI+KIGIgSEVh0y7EP7uuDH7sWRqsRvkjC
+   Jc7Zq9eVhueDhbb4N5ESaTHpHHnd7iIAc6xnteLj5Vbs4hCDd8K8O93Pm
+   EbISxbukq5vLX3wcAOmdP/a/9hSfPoKzrFdKfFddwNKMvFmuulMJj+xjN
+   w==;
+X-CSE-ConnectionGUID: +Eikmg69SaOmS+4uStbeXA==
+X-CSE-MsgGUID: yd1refesTlaNnzCsyOJLyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75618051"
+X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; 
+   d="scan'208";a="75618051"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2026 16:07:31 -0700
+X-CSE-ConnectionGUID: SrpYwx6GQpubSXWUutx8/A==
+X-CSE-MsgGUID: wFIBomXZTwmmjw22K+0L0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; 
+   d="scan'208";a="224511070"
+Received: from lkp-server01.sh.intel.com (HELO 3905d212be1b) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 24 Mar 2026 16:07:26 -0700
+Received: from kbuild by 3905d212be1b with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w5AqJ-000000005YH-1gIj;
+	Tue, 24 Mar 2026 23:07:23 +0000
+Date: Wed, 25 Mar 2026 07:06:56 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yu-Chun Lin <eleanor.lin@realtek.com>, mturquette@baylibre.com,
+	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, p.zabel@pengutronix.de, cylee12@realtek.com,
+	afaerber@suse.com, jyanchou@realtek.com
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-realtek-soc@lists.infradead.org, james.tai@realtek.com,
+	cy.huang@realtek.com, stanley_chang@realtek.com,
+	eleanor.lin@realtek.com
+Subject: Re: [PATCH v5 09/10] clk: realtek: Add RTD1625-CRT clock controller
+ driver
+Message-ID: <202603250636.b3J5aCGL-lkp@intel.com>
+References: <20260324025332.3416977-10-eleanor.lin@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>, 
- linux-tegra@vger.kernel.org
-To: Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <20260324121631.771628-3-jonathanh@nvidia.com>
-References: <20260324121631.771628-1-jonathanh@nvidia.com>
- <20260324121631.771628-3-jonathanh@nvidia.com>
-Message-Id: <177439307874.2078673.11304788250514370726.robh@kernel.org>
-Subject: Re: [PATCH V2 2/3] dt-bindings: net: Fix Tegra234 MGBE PTP clock
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260324025332.3416977-10-eleanor.lin@realtek.com>
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[google.com,kernel.org,redhat.com,gmail.com,davemloft.net,vger.kernel.org,lunn.ch];
-	TAGGED_FROM(0.00)[bounces-280092-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-280096-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.103.194.128:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email]
-X-Rspamd-Queue-Id: 3166931D8FA
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url]
+X-Rspamd-Queue-Id: 8425C31DA18
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hi Yu-Chun,
 
-On Tue, 24 Mar 2026 12:16:30 +0000, Jon Hunter wrote:
-> The PTP clock for the Tegra234 MGBE device is incorrectly named
-> 'ptp-ref' and should be 'ptp_ref'. This is causing the following
-> warning to be observed on Tegra234 platforms that use this device:
-> 
->  ERR KERN tegra-mgbe 6800000.ethernet eth0: Invalid PTP clock rate
->  WARNING KERN tegra-mgbe 6800000.ethernet eth0: PTP init failed
-> 
-> Although this constitutes an ABI breakage in the binding for this
-> device, PTP support has clearly never worked and so fix this now
-> so we can correct the device-tree for this device. Note that the
-> MGBE driver still supports the legacy 'ptp-ref' clock name and so
-> older/existing device-trees will still work, but given that this
-> is not the correct name, there is no point to advertise this in the
-> binding.
-> 
-> Fixes: 189c2e5c7669 ("dt-bindings: net: Add Tegra234 MGBE")
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+kernel test robot noticed the following build errors:
 
-My bot found errors running 'make dt_binding_check' on your patch:
+[auto build test ERROR on clk/clk-next]
+[also build test ERROR on robh/for-next linus/master v7.0-rc5 next-20260324]
+[cannot apply to pza/reset/next pza/imx-drm/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-yamllint warnings/errors:
+url:    https://github.com/intel-lab-lkp/linux/commits/Yu-Chun-Lin/dt-bindings-clock-Add-Realtek-RTD1625-Clock-Reset-Controller/20260324-171912
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20260324025332.3416977-10-eleanor.lin%40realtek.com
+patch subject: [PATCH v5 09/10] clk: realtek: Add RTD1625-CRT clock controller driver
+config: nios2-randconfig-001-20260325 (https://download.01.org/0day-ci/archive/20260325/202603250636.b3J5aCGL-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260325/202603250636.b3J5aCGL-lkp@intel.com/reproduce)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.example.dtb: ethernet@6800000 (nvidia,tegra234-mgbe): clock-names:3: 'ptp_ref' was expected
-	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603250636.b3J5aCGL-lkp@intel.com/
 
-doc reference errors (make refcheckdocs):
+All errors (new ones prefixed by >>):
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260324121631.771628-3-jonathanh@nvidia.com
+   nios2-linux-ld: drivers/clk/realtek/common.o: in function `rtk_clk_probe':
+>> drivers/clk/realtek/common.c:54: undefined reference to `rtk_reset_controller_add'
+>> drivers/clk/realtek/common.c:54:(.text+0x134): relocation truncated to fit: R_NIOS2_CALL26 against `rtk_reset_controller_add'
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for RTK_CLK_COMMON
+   Depends on [n]: COMMON_CLK [=y] && COMMON_CLK_REALTEK [=y] && RESET_CONTROLLER [=n]
+   Selected by [y]:
+   - COMMON_CLK_RTD1625 [=y] && COMMON_CLK [=y] && COMMON_CLK_REALTEK [=y]
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
 
-pip3 install dtschema --upgrade
+vim +54 drivers/clk/realtek/common.c
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  12  
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  13  int rtk_clk_probe(struct platform_device *pdev, const struct rtk_clk_desc *desc)
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  14  {
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  15  	int i, ret;
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  16  	struct regmap *regmap;
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  17  	struct device *dev = &pdev->dev;
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  18  	struct rtk_reset_initdata reset_initdata = {0};
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  19  
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  20  	regmap = device_node_to_regmap(pdev->dev.of_node);
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  21  	if (IS_ERR(regmap))
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  22  		return dev_err_probe(dev, PTR_ERR(regmap), "failed to get regmap\n");
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  23  
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  24  	for (i = 0; i < desc->num_clks; i++)
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  25  		desc->clks[i]->regmap = regmap;
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  26  
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  27  	for (i = 0; i < desc->clk_data->num; i++) {
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  28  		struct clk_hw *hw = desc->clk_data->hws[i];
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  29  
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  30  		if (!hw)
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  31  			continue;
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  32  
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  33  		ret = devm_clk_hw_register(dev, hw);
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  34  
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  35  		if (ret) {
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  36  			dev_warn(dev, "failed to register hw of clk%d: %d\n", i,
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  37  				 ret);
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  38  			desc->clk_data->hws[i] = NULL;
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  39  		}
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  40  	}
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  41  
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  42  	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  43  					  desc->clk_data);
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  44  	if (ret)
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  45  		return dev_err_probe(dev, ret, "failed to add clock provider\n");
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  46  
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  47  	if (!desc->num_reset_descs)
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  48  		return 0;
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  49  
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  50  	reset_initdata.regmap = regmap;
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  51  	reset_initdata.num_descs = desc->num_reset_descs;
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  52  	reset_initdata.descs = desc->reset_descs;
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  53  
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24 @54  	return rtk_reset_controller_add(dev, &reset_initdata);
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  55  }
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  56  EXPORT_SYMBOL_GPL(rtk_clk_probe);
+105a817ead5cd3 Cheng-Yu Lee 2026-03-24  57  
 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
