@@ -1,256 +1,248 @@
-Return-Path: <devicetree+bounces-279684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279686-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yE+SFDlawmnQbwQAu9opvQ
-	(envelope-from <devicetree+bounces-279684-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:32:41 +0100
+	id KG1uOFRbwmnQbwQAu9opvQ
+	(envelope-from <devicetree+bounces-279686-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:37:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B14C305A2A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:32:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44583305B18
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:37:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E1B81303F0A0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:20:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0B9E13203842
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:24:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1EEE3D903E;
-	Tue, 24 Mar 2026 09:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9194B3DCD94;
+	Tue, 24 Mar 2026 09:23:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gu61lEDK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TTlaY5lB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27641372EED;
-	Tue, 24 Mar 2026 09:20:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC5C3DC4CB
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 09:23:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774344054; cv=none; b=hCtplkRO38FzmKW7IAEuFoQUJ8pB+bexeohZzw0TIl3unJx5c1/bx+I11VR4ag9aSh10Qlsw38EoKuASAh/nM2U+HKuvC13SweNM/L4KZsYu9KVpt5LZ2OuznHgcURY5aE68FdCYQMLS4XxlYdUguyZ6xass77t/eYIzcoNLRfI=
+	t=1774344238; cv=none; b=SV+3JjIZmnWT/ww03v6bXFbVP5rrDKbI2a+B2yy5MgaFH2bBQhKmT4IiSmlB/Cwm7QKuBPxZTtFAzXztJeW3ydb6wWs6DQyl6TaL5OBsyEGXitAOFIQ5K21oZfpD0Byf2BSA41MJep69ticJ75T2QqXg/CrmQs/jXLqkuRbiyR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774344054; c=relaxed/simple;
-	bh=w5xTSyD9au6QJlfLkBDAjSdfDSrRJuHsjffbvMb4zBU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cbidq/rxKBr27vsoM2cKDj9FkHgZhD+tNvzciwuH/3oNF3keDeFZuWcxBDqbZ6CxTmmjfMCaTMcAL8udSUuGK0e6e1dzD7bZP/xILAonaTDs09A9asqKBmVcAUe7nvkWoGkqb9j6CQAjui1L+ir5RxwUxuoG69nROeDjFNf211U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gu61lEDK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0545AC2BC9E;
-	Tue, 24 Mar 2026 09:20:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774344053;
-	bh=w5xTSyD9au6QJlfLkBDAjSdfDSrRJuHsjffbvMb4zBU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gu61lEDKm40+ng6AZkyQBKS7A9c0sXDbweFMh5nr6rZvZKFGJ21wuj2BXaPEtBGU/
-	 Jyy7GgOl0QkcpPbczyutOluHQhpxFu5Kdt9J0Z1irM6QKTE6bBVuphxT7OSK8F57ey
-	 jdlJb0V7WgCorzL4CmcwKQv55yn9aREJmxaQKF/Re2KgywZWOGNA7cqWDLB/KGCPo8
-	 IYC1bc0Q0zycrBiZhthQiH8QJdieLraP2U3IFr1KNB1iWh1nDauJ6hr8lZrqkS1AM+
-	 ti/55+iKO8FmQ8VIpqfSw6hrxqTYYzPEMsWiVnQ1VZny5ktdKJzSF9InmfOWyfDa4w
-	 RJaa8rGQE2j3A==
-Date: Tue, 24 Mar 2026 10:20:51 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: nick.hawkins@hpe.com
-Cc: Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jean-Marie Verdun <verdun@hpe.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: hpe: Add HPE GSC SoC and DL340 Gen12
- board DTS
-Message-ID: <20260324-valiant-copperhead-of-psychology-fe202e@quoll>
-References: <20260323194223.683487-1-nick.hawkins@hpe.com>
- <20260323194223.683487-4-nick.hawkins@hpe.com>
+	s=arc-20240116; t=1774344238; c=relaxed/simple;
+	bh=eORHv6uMOxEZQvZKT0NGFZMJsp3s4BCbYLo0O/D16Zw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=l0p8+xtzHHhvEJ3fiYnm1rBtEain7aybV2Qpfax3O+8uH8t0Q4mnco3exycpye6zn21z0vxqqBHWQ13GZDVdhuk0R8KNeDsBboEQEhCXFQumo6TvfQHEVFAlgqxFDwmk1lx3aT0Laawxr3N/Fq5XzxRgQE9lJloGIg/9sLRw7yE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TTlaY5lB; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-48558d6ef83so35437735e9.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 02:23:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1774344226; x=1774949026; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G5BTS4Xu7BcfhUbuvKmb6N+eqgb+/BungbccHaCogJs=;
+        b=TTlaY5lBI780CEmaF4G6s2ABEbZEWSzZ1EONPBx3jInjBgAa4HB+O5DJRlJ5WTAv3g
+         Qbewwz2/QM8/eLhZJMCr74z5dvRLdP/VBFKby9XZr1X2UsBOG+hkLeVvxjqAZ4wLLoC5
+         gPhHmj6MQdNo2IEUabVpFaqKum3i+bPb+/KXRq+xikZAmO7MWXExUU/PkDnJZdwNc23h
+         b/1f4a2QhDt27syw9Wc5FdCL2/gKPbPgaJWgoIgD8YvNqPIE0f1/lkgSt1XOA3TPEQ8Q
+         K4YVcZQelrVd9Zrzg/7yyICI4YjzFW8aXg98pKmlGX0X2TXcQw+L5les5r7NZk1EIccm
+         t/gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774344226; x=1774949026;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G5BTS4Xu7BcfhUbuvKmb6N+eqgb+/BungbccHaCogJs=;
+        b=NeVlk1RSAvy+T9yleccuaQpL0QFULxyDocBKDtdclx5A7fvggUm4S0LmS7tbh83/Ts
+         YlnhMtn1xobUWy/d2UBvFFRkMUX4Lgbp0j4DWA+xzwd+BIBsDS3NV6MISkYycSGVxg1W
+         iWjZy/IkP7G4EO+yy41HkK+OfayN5WzK2pNEUq9KBEvE3hzgdxOjf0LGKKAsUh6xl1/7
+         IcWLsvRI1jZucniOxfXPBzsxhsyb3X2rA6UK+qZS7F7We10d/mVqmwjXTqy6C+1EiVa0
+         qrBSc8bm12KlELX47ZtBx9Lmk2KxBn995ZdrxfJ+DU1+3L+VJIx4d/1eI0M8ygHIm/6A
+         F5xw==
+X-Forwarded-Encrypted: i=1; AJvYcCVKy4FLr5SCQwBgvsuzRMlVrq3DOuDCBKT/AOua+J0RhBmi3qGDjdLRJa9sGK1agoZBUauXZ4V/UqRJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2/lct5vuiM9BDWgCpf5RmUP5WsC2UtE84mO78ZiMbVWCbItRn
+	09y5mf6N6LUOLFl0w1ivlW19/NxdLhToolC48w4bcnNgCpqIgybjEKtGBEbc3X/+ILM=
+X-Gm-Gg: ATEYQzxMlkIAjukT+PUJ/Ympxo+OXKZ+S1eyK3y+brfbUv/okCigzPtwznMa8csK0TY
+	dB/Axlm0eXnka8iYwYBQ2eLlMrio4nC6GTrFfjZ/NzGqDbYNrzo6h5PtEiw0v5Xb/VH06yrnY46
+	2s0/Eik5yxBmKOIbsxsyRwQWScf/gWyNbLJxQAkbwJjTRmUG/gTDfO2qQlVuZOenhP3vgLxOXih
+	SUkf9b1UM+5yQF+n8yY0yPY6gJ8hB6dgibx/TiihcK94w+YCZu0HUFwh/PeRSBjg1c2c+8tlN33
+	jgtniN2YARftcrTuX9y1aQjWF/nTPKk42fw1Y6fInfPFEFl2dF4YieVmryvZCP65WNF6cf1hS1s
+	7iwWuLM7q46QIqI4MfBYpZhwD/9xBaXihUQ4Z7eSghtQ5Iixrqj/TDTpfeSAuMgGJfJEbJ+EgJ3
+	qHSRXxiDVlsdJ4bdOXk1bqI3AIkhAJK3kfCQ82+w9y8lsT
+X-Received: by 2002:a05:600c:a596:b0:486:ffa3:594 with SMTP id 5b1f17b1804b1-486ffa30b0amr132702615e9.23.1774344225686;
+        Tue, 24 Mar 2026 02:23:45 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-487116c44bfsm41808585e9.9.2026.03.24.02.23.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Mar 2026 02:23:38 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Tue, 24 Mar 2026 10:23:22 +0100
+Subject: [PATCH v2] dt-bindings: usb: document the Renesas
+ UPD720201/UPD720202 USB 3.0 xHCI Host Controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260323194223.683487-4-nick.hawkins@hpe.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260324-topic-sm8650-ayaneo-pocket-s2-upd-bindings-v2-1-b86a1543b76b@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAAlYwmkC/53NQQ6DIBCF4asY1p0GEIntqvdoXKAMOmkLBKypM
+ d691CN0+b/F+zaWMRFmdq02lnChTMGXkKeKDZPxIwLZ0kxyqXktLjCHSAPkV6sbDmY1HgPEMDx
+ whizhHS305C35MUNdi15qq1zvNCuHMaGjz4Hdu9IT5Tmk9bAX8Vv/YhYBAlqFCl2jFZfy9iRvU
+ jiHNLJu3/cvQADm8uUAAAA=
+X-Change-ID: 20260319-topic-sm8650-ayaneo-pocket-s2-upd-bindings-331b26d4fbf6
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ Michal Pecio <michal.pecio@gmail.com>, linux-arm-msm@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2777;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=eORHv6uMOxEZQvZKT0NGFZMJsp3s4BCbYLo0O/D16Zw=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBpwlgUNXlsxFgShF54TYDVG1RvCpnFEmpxXa5+pnAN
+ EhfuNCOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCacJYFAAKCRB33NvayMhJ0ZAYEA
+ CTtXaX+QkB8DgDMLvFTrRnE7nh8tqLti7a4LyO4nYHeud+aKpAFrzh09iL9TsRro7mPdHVa20bNJ9u
+ 3Sq+qZQd3ThEBEDzeO3oXDrTE0oTpH2HshAymgxaMQpG1MfnZdFHYFMpnU27xKmo/7OYVNf4DNoM1A
+ zCoDM6YBHKNuxjO01QkwtivZgSaj8MGqxDAHF6juKnTscUri0qJpo8gESOppMHz+3CThUSeUphkY0K
+ XiAEEe6tGlW5nqkQljBJyUQLvKpViMFEp+rcQPc/BCMYx7+rPE+XeNBqak7xO4G+dz1HlIQlaPp9Vz
+ heEswCfTFi+shHXTfxwfXfge85LQwwS3G7fsJ0CCTeLjuJ1T73JH0422eshrdxwj3Qk7FTw7kr+xFR
+ 6OXhznoZxjDIvo9EwOPZKPJt7XWtdBvJeq/9YCWyg0DuR/9veDp1zBiw1AG9VsJfnZzvjD5rLu1vIH
+ EV2o0UhJghb9n9EixQakI2MFilElfB6AAeNzRW6rJo354neqKYueFNtxNdbMkle/TTFze12RolMKJS
+ nHRBaY8DsbBqbpa0JFEW+u+i0FP42fTqv6IfGyDWFZYIMr3kJCERDevPoX1Nxe+K/h31ykJnhuzaHC
+ DylioeoldQHPsoyKVyXEoepO/MvydYe0eaxUkuFgEgmtV8UYiyV0+JB5QwBQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279684-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-279686-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,linaro.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,hpe.com:email,0.0.0.1:email,0.0.0.0:email,4.196.180.0:email,c00000f0:email]
-X-Rspamd-Queue-Id: 5B14C305A2A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,msgid.link:url,devicetree.org:url]
+X-Rspamd-Queue-Id: 44583305B18
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 23, 2026 at 02:42:23PM -0500, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
-> 
-> Add SoC-level DTSI for the HPE GSC ARM64 BMC SoC, covering the CPU
-> cluster, GIC v3 interrupt controller, ARM64 generic timer, and console
-> UART.
-> 
-> Add the board-level DTS for the HPE DL340 Gen12, which includes
-> gsc.dtsi and adds memory and chosen nodes.
-> 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-> ---
->  arch/arm64/boot/dts/hpe/Makefile           |   2 +
->  arch/arm64/boot/dts/hpe/gsc-dl340gen12.dts |  18 ++++
->  arch/arm64/boot/dts/hpe/gsc.dtsi           | 106 +++++++++++++++++++++
->  3 files changed, 126 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/hpe/Makefile
->  create mode 100644 arch/arm64/boot/dts/hpe/gsc-dl340gen12.dts
->  create mode 100644 arch/arm64/boot/dts/hpe/gsc.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/hpe/Makefile b/arch/arm64/boot/dts/hpe/Makefile
-> new file mode 100644
-> index 000000000000..804f7c54e9b6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/hpe/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +dtb-$(CONFIG_ARCH_HPE_GSC) += gsc-dl340gen12.dtb
-> diff --git a/arch/arm64/boot/dts/hpe/gsc-dl340gen12.dts b/arch/arm64/boot/dts/hpe/gsc-dl340gen12.dts
-> new file mode 100644
-> index 000000000000..42cfeac99029
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/hpe/gsc-dl340gen12.dts
-> @@ -0,0 +1,18 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/dts-v1/;
-> +
-> +#include "gsc.dtsi"
-> +
-> +/ {
-> +	compatible = "hpe,gsc-dl340gen12", "hpe,gsc";
-> +	model = "HPE ProLiant DL340 Gen12";
-> +
-> +	chosen {
-> +		stdout-path = &uartc;
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x00000000 0x40000000>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/hpe/gsc.dtsi b/arch/arm64/boot/dts/hpe/gsc.dtsi
-> new file mode 100644
-> index 000000000000..3433c4a18512
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/hpe/gsc.dtsi
-> @@ -0,0 +1,106 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree file for HPE GSC
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0>;
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0 0xa0008048>;
-> +		};
-> +
-> +		cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <1>;
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0 0xa0008048>;
-> +		};
-> +	};
-> +
-> +	clocks {
+Document the Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller,
+which connects over PCIe and requires specific power supplies to
+start up.
 
-Drop node
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+- [1] https://lore.kernel.org/all/20260220-topic-sm8650-ayaneo-pocket-s2-base-v5-1-1ad79caa1efa@linaro.org/
+---
+Changes in v2:
+- Added the PCI ID for uPD720202, thanks to Michal Pecio
+- Link to v1: https://patch.msgid.link/20260319-topic-sm8650-ayaneo-pocket-s2-upd-bindings-v1-1-84e4ef564022@linaro.org
+---
+ .../bindings/usb/renesas,upd720201-pci.yaml        | 63 ++++++++++++++++++++++
+ 1 file changed, 63 insertions(+)
 
-> +		osc: osc {
+diff --git a/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml b/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml
+new file mode 100644
+index 000000000000..4e890d0d2070
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/renesas,upd720201-pci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: UPD720201/UPD720202 USB 3.0 xHCI Host Controller (PCIe)
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++description:
++  UPD720201 USB 3.0 xHCI Host Controller via PCIe x1 Gen2 interface.
++  The UPD720202 supports up to two downstream ports, while UPD720201
++  supports up to four downstream USB 3.0 rev1.0 ports.
++
++properties:
++  compatible:
++    enum:
++      - pci1912,0014 # UPD720201
++      - pci1912,0015 # UPD720202
++
++  reg:
++    maxItems: 1
++
++  avdd33-supply:
++    description: +3.3 V power supply for analog circuit
++
++  vdd10-supply:
++    description: +1.05 V power supply
++
++  vdd33-supply:
++    description: +3.3 V power supply
++
++required:
++  - compatible
++  - reg
++  - avdd33-supply
++  - vdd10-supply
++  - vdd33-supply
++
++allOf:
++  - $ref: usb-xhci.yaml
++
++additionalProperties: true
++
++examples:
++  - |
++    pcie@0 {
++        reg = <0x0 0x1000>;
++        ranges = <0x02000000 0x0 0x100000 0x10000000 0x0 0x0>;
++        #address-cells = <3>;
++        #size-cells = <2>;
++        device_type = "pci";
++
++        usb-controller@0 {
++            compatible = "pci1912,0014";
++            reg = <0x0 0x0 0x0 0x0 0x0>;
++            avdd33-supply = <&avdd33_reg>;
++            vdd10-supply = <&vdd10_reg>;
++            vdd33-supply = <&vdd33_reg>;
++        };
++    };
 
-Please use name for all fixed clocks which matches current format
-recommendation: 'clock-<freq>' (see also the pattern in the binding for
-any other options).
-https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml
-
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-output-names = "osc";
-> +			clock-frequency = <33333333>;
-> +		};
-> +	};
-> +
-> +	timer {
-
-Any particular reason not to follow DTS coding style for ordering nodes?
-
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupt-parent = <&gic>;
-> +	};
-> +
-> +	ahb: ahb@80000000 {
-
-Convention is rather soc@
-
-> +		compatible = "simple-bus";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		reg = <0x80000000 0x80000000>;
-> +		ranges;
-> +
-> +		gic: gic@ce000000 {
-> +			compatible = "arm,gic-v3";
-> +			#interrupt-cells = <3>;
-> +			#address-cells = <0>;
-> +			interrupt-controller;
-> +			redistributor-stride = <0x0 0x20000>;
-> +			#redistributor-regions = <1>;
-> +			reg = <0xce000000 0x10000>,
-> +			      <0xce060000 0x40000>,
-> +			      <0xce200000 0x40000>;
-
-Same question - any reason to deviate from DTS coding style?
-
-> +		};
-> +
-> +		uartc: serial@c00000f0 {
-> +			compatible = "ns16550a";
-> +			reg = <0xc00000f0 0x8>;
-> +			interrupts = <0 19 4>;
-
-Use proper defines.
+---
+base-commit: 8e42d2514a7e8eb8d740d0ba82339dd6c0b6463f
+change-id: 20260319-topic-sm8650-ayaneo-pocket-s2-upd-bindings-331b26d4fbf6
 
 Best regards,
-Krzysztof
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
