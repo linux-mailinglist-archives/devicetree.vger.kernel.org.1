@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-279973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279976-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2OPnKQXBwmmjlQQAu9opvQ
-	(envelope-from <devicetree+bounces-279973-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 17:51:17 +0100
+	id 0DcgI9DBwmmjlQQAu9opvQ
+	(envelope-from <devicetree+bounces-279976-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 17:54:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46C1931966F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 17:51:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08563319749
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 17:54:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C3766306F17B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 16:44:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8CC3130C46CE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 16:44:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793BF3FEB01;
-	Tue, 24 Mar 2026 16:44:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DCED40710C;
+	Tue, 24 Mar 2026 16:44:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gnmMkuLI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C3o8s0Ol"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0353FE644;
-	Tue, 24 Mar 2026 16:44:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A906407101;
+	Tue, 24 Mar 2026 16:44:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774370643; cv=none; b=tZmINWm0/ZBndNMjLtv4YxodcCBFiMCOguAc82ur/uCyUrzq8sEVKMqlea0Tr+9paapanP2GrFt6hVNNkRxCuaMSV1rUpPJMbM7bxKBIH0KgNvewt0+Hy8Bo4/Zeyf51r0ucUr0f7TEy+K0i5zmVbpR0qp5Y16bZ+Y9SQB3fnBU=
+	t=1774370645; cv=none; b=isHaq0I+rRuEZT8c6v+l6y+9FZ0u6WLVqkU5PB7JLhvQGL80/wJG2Rqz4SlQCR/zKgajStfHxyC/wTdYNGb8S5bPjGjIDG7g2rItWayQNYcobSuy+DDNwQBFEUStDsidCrQIHr3amn24f+BPmzstMZhat0Xcjn2yweW4ltzh5v0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774370643; c=relaxed/simple;
-	bh=uNk+5l4j5lYbYuM0VQJOR8shYhm489bqZiHsaW/YJrg=;
+	s=arc-20240116; t=1774370645; c=relaxed/simple;
+	bh=b0m0FnMqUK3YcK+u1bAXX+KhD9qbCEgekt0QI4jDH9Y=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SaW2XBGp/7vQSWWQ4yl/wJIFrQ67Suddo5JYK6JFcz5DeJu/0qLccsXP1GxQkiCj7JTwx/hSI2Nxtn1TObj5d2QbCiLZX4g0u4EB2+5PFUmmLgCR8uamx8HKk5imYyfZce493zCt06CDpQRJv/PAmB+yGJUYIj60Wd6GxYpEIEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gnmMkuLI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC357C2BCC7;
-	Tue, 24 Mar 2026 16:44:02 +0000 (UTC)
+	 MIME-Version; b=IZQ1UhvEELnRP2DuKPr53BONlhFU22hnJxwb7P91CtrL6tsfN+/c06D0kG2T561DwS8jlZlmNKNzhfEEsrxBI5bdCFmkX8ShnT9hgQTLtGD+922GW9dtegIp9me9/8G/aAE6+wofMdNt1xU7p4f7tOoAH1ZxA9OXgEepNF3to4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C3o8s0Ol; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36C6AC2BCB6;
+	Tue, 24 Mar 2026 16:44:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774370643;
-	bh=uNk+5l4j5lYbYuM0VQJOR8shYhm489bqZiHsaW/YJrg=;
+	s=k20201202; t=1774370645;
+	bh=b0m0FnMqUK3YcK+u1bAXX+KhD9qbCEgekt0QI4jDH9Y=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=gnmMkuLIPy/3dOerLZTV5S9nifmLUuXUBt129KvZCUgiuvT5AR7PRnkgLwOzsl9YE
-	 vNFMk3Xuhhv+zaJz2gK15DayDFcFTwNg/O/s6Ubtd6fgBxW8u5I5JmSqp5w2zGnEEE
-	 AyfdhQgdTQbymfSYQk8ZXYx/IowOksUxdzuXhqo7C9265L3pI/GRQ9hiNk7P8AGPce
-	 2o9b6JPJ0ljamfWCpMCrq5/s8qiDZugyhabkOuKahenbdVMgG1wPOdzVluAkib0Oqc
-	 lwwM78NZ1IQVf9Bc3oUJOmig9LtB1US3PxTIKN63JgV0LD3n9gpC4WFLkxGnp2YMs4
-	 OH0BAewXE9rVw==
+	b=C3o8s0Ol4By0oYHYu2S85is0Yw89BKW8tT0wJQwH6GAicXAoVwsw9NyoEqTrGrmT3
+	 d6lQ7pzdiVGr4OPazoq7jhAC68KzgOBKtXlJLFcpOUNdxvSRLPCaEE235HqCUJAnN6
+	 mlKtv/132wg0q6Qmq3bqCNaRG7m3nc877Q8S+K9xYumBzTdG5JFcPY8mPGhaBU9FNb
+	 4wBkwNfDU6rwcdBSIt/2L3XWjsn0bXGtrDCQDNHEWS14VlTXRuDLeWD0C9HrDnzGtQ
+	 gG7xfCX3rSGROT0LfF8/uISCwAWzK711a7YLVhfWP82qZ9tkTmbRdBKcMmBsZDX39M
+	 48wsqiXWrwuFg==
 Received: by wens.tw (Postfix, from userid 1000)
-	id C06785FEC0; Wed, 25 Mar 2026 00:44:00 +0800 (CST)
+	id D76AD5FFBF; Wed, 25 Mar 2026 00:44:00 +0800 (CST)
 From: Chen-Yu Tsai <wens@kernel.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -57,9 +57,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-sunxi@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 4/7] soc: sunxi: sram: Allow SRAM to be claimed multiple times
-Date: Wed, 25 Mar 2026 00:43:52 +0800
-Message-ID: <20260324164357.1607247-5-wens@kernel.org>
+Subject: [PATCH 5/7] soc: sunxi: sram: Support claiming multiple regions per device
+Date: Wed, 25 Mar 2026 00:43:53 +0800
+Message-ID: <20260324164357.1607247-6-wens@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260324164357.1607247-1-wens@kernel.org>
 References: <20260324164357.1607247-1-wens@kernel.org>
@@ -77,14 +77,14 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279973-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-279976-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -96,91 +96,242 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 46C1931966F
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 08563319749
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On the H616, the SRAM C region is an alias mapping to part of the VE
-SRAM (accessible in whole at a different address) and part of the DE
-SRAM (otherwise unaccessible). As such both the VE and DE need to claim
-this SRAM region to prevent access from the CPU.
+On the H616, the video engine needs to claim two SRAM regions.
 
-The SRAM claim API is designed so that a "claim" routes the SRAM to the
-peripheral device, disabling access from the CPU. So long as the written
-register value is the same for all the claimants involved, allowing
-multiple or repeated claims is trivial. This is indeed the case for all
-supported SRAM regions. The only known SRAM region to have multiple
-different settings is the SRAM C2 region; this can be claimed by the AE,
-CE, or ACE (assumed to be AE + CE). This region is not supported, and
-likely will never be needed nor supported, as there is no documentation
-for the peripherals involved.
-
-Change the SRAM region "claimed" field from a boolean to a reference
-count. A claim will increment the count, while a release decreases it.
-The first claim will trigger the register value write. The driver
-otherwise behaves as before.
+Support claiming multiple regions per device.
 
 Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
 ---
- drivers/soc/sunxi/sunxi_sram.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+ drivers/soc/sunxi/sunxi_sram.c | 164 +++++++++++++++++++--------------
+ 1 file changed, 96 insertions(+), 68 deletions(-)
 
 diff --git a/drivers/soc/sunxi/sunxi_sram.c b/drivers/soc/sunxi/sunxi_sram.c
-index 5e8c80ae3509..aba155379ccc 100644
+index aba155379ccc..4d81897179e7 100644
 --- a/drivers/soc/sunxi/sunxi_sram.c
 +++ b/drivers/soc/sunxi/sunxi_sram.c
-@@ -12,6 +12,7 @@
+@@ -165,79 +165,48 @@ static inline struct sunxi_sram_desc *to_sram_desc(const struct sunxi_sram_data
+ 	return container_of(data, struct sunxi_sram_desc, data);
+ }
  
- #include <linux/debugfs.h>
- #include <linux/io.h>
-+#include <linux/limits.h>
- #include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of.h>
-@@ -38,7 +39,7 @@ struct sunxi_sram_data {
+-static const struct sunxi_sram_data *sunxi_sram_of_parse(struct device_node *node,
+-							 unsigned int *reg_value)
++static const struct sunxi_sram_data *sunxi_sram_get_match(struct device_node *np, u8 val,
++							  unsigned int *reg_value)
+ {
+ 	const struct of_device_id *match;
+ 	const struct sunxi_sram_data *data;
+ 	const struct sunxi_sram_func *func;
+-	struct of_phandle_args args;
+-	u8 val;
+-	int ret;
+-
+-	ret = of_parse_phandle_with_fixed_args(node, "allwinner,sram", 1, 0,
+-					       &args);
+-	if (ret)
+-		return ERR_PTR(ret);
  
- struct sunxi_sram_desc {
- 	struct sunxi_sram_data	data;
--	bool			claimed;
-+	u8			claim_cnt;
- };
+-	if (!of_device_is_available(args.np)) {
+-		ret = -EBUSY;
+-		goto err;
+-	}
++	if (!of_device_is_available(np))
++		return ERR_PTR(-ENODEV);
  
- #define SUNXI_SRAM_MAP(_reg_val, _val, _func)			\
-@@ -244,9 +245,11 @@ int sunxi_sram_claim(struct device *dev)
+-	val = args.args[0];
+-
+-	match = of_match_node(sunxi_sram_dt_ids, args.np);
+-	if (!match) {
+-		ret = -EINVAL;
+-		goto err;
+-	}
++	match = of_match_node(sunxi_sram_dt_ids, np);
++	if (!match)
++		return ERR_PTR(-ENODEV);
  
- 	spin_lock(&sram_lock);
+ 	data = match->data;
+-	if (!data) {
+-		ret = -EINVAL;
+-		goto err;
+-	}
+-
+-	for (func = data->func; func->func; func++) {
+-		if (val == func->val) {
+-			if (reg_value)
+-				*reg_value = func->reg_val;
++	if (!data)
++		return ERR_PTR(-EINVAL);
  
--	if (sram_desc->claimed) {
-+	if (sram_desc->claim_cnt) {
-+		if (!WARN_ON(sram_desc->claim_cnt == U8_MAX))
-+			sram_desc->claim_cnt++;
- 		spin_unlock(&sram_lock);
--		return -EBUSY;
-+		return 0;
++	for (func = data->func; func->func; func++)
++		if (val == func->val)
+ 			break;
+-		}
+-	}
+ 
+-	if (!func->func) {
+-		ret = -EINVAL;
+-		goto err;
+-	}
++	if (!func->func)
++		return ERR_PTR(-EINVAL);
+ 
+-	of_node_put(args.np);
+-	return match->data;
++	if (reg_value)
++		*reg_value = func->reg_val;
+ 
+-err:
+-	of_node_put(args.np);
+-	return ERR_PTR(ret);
++	return data;
+ }
+ 
+-int sunxi_sram_claim(struct device *dev)
++#define SUNXI_SRAM_PROP "allwinner,sram"
++#define SUNXI_SRAM_CELLS 1
++
++static int sunxi_sram_claim_one(struct device_node *np, u8 arg)
+ {
+ 	const struct sunxi_sram_data *sram_data;
+ 	struct sunxi_sram_desc *sram_desc;
+ 	unsigned int device;
+ 	u32 val, mask;
+ 
+-	if (IS_ERR(base))
+-		return PTR_ERR(base);
+-
+-	if (!base)
+-		return -EPROBE_DEFER;
+-
+-	if (!dev || !dev->of_node)
+-		return -EINVAL;
+-
+-	sram_data = sunxi_sram_of_parse(dev->of_node, &device);
++	sram_data = sunxi_sram_get_match(np, arg, &device);
+ 	if (IS_ERR(sram_data))
+ 		return PTR_ERR(sram_data);
+ 
+@@ -248,33 +217,28 @@ int sunxi_sram_claim(struct device *dev)
+ 	if (sram_desc->claim_cnt) {
+ 		if (!WARN_ON(sram_desc->claim_cnt == U8_MAX))
+ 			sram_desc->claim_cnt++;
+-		spin_unlock(&sram_lock);
+-		return 0;
++	} else {
++		mask = GENMASK(sram_data->offset + sram_data->width - 1,
++			       sram_data->offset);
++		val = readl(base + sram_data->reg);
++		val &= ~mask;
++		writel(val | ((device << sram_data->offset) & mask),
++		       base + sram_data->reg);
++
++		sram_desc->claim_cnt++;
  	}
  
- 	mask = GENMASK(sram_data->offset + sram_data->width - 1,
-@@ -256,7 +259,7 @@ int sunxi_sram_claim(struct device *dev)
- 	writel(val | ((device << sram_data->offset) & mask),
- 	       base + sram_data->reg);
- 
--	sram_desc->claimed = true;
-+	sram_desc->claim_cnt++;
+-	mask = GENMASK(sram_data->offset + sram_data->width - 1,
+-		       sram_data->offset);
+-	val = readl(base + sram_data->reg);
+-	val &= ~mask;
+-	writel(val | ((device << sram_data->offset) & mask),
+-	       base + sram_data->reg);
+-
+-	sram_desc->claim_cnt++;
  	spin_unlock(&sram_lock);
  
  	return 0;
-@@ -278,7 +281,8 @@ void sunxi_sram_release(struct device *dev)
- 	sram_desc = to_sram_desc(sram_data);
+ }
+-EXPORT_SYMBOL(sunxi_sram_claim);
  
- 	spin_lock(&sram_lock);
--	sram_desc->claimed = false;
-+	if (!WARN_ON(sram_desc->claim_cnt == 0))
-+		sram_desc->claim_cnt--;
+-void sunxi_sram_release(struct device *dev)
++static void sunxi_sram_release_one(struct device_node *np, u8 arg)
+ {
+ 	const struct sunxi_sram_data *sram_data;
+ 	struct sunxi_sram_desc *sram_desc;
+ 
+-	if (!dev || !dev->of_node)
+-		return;
+-
+-	sram_data = sunxi_sram_of_parse(dev->of_node, NULL);
++	sram_data = sunxi_sram_get_match(np, arg, NULL);
+ 	if (IS_ERR(sram_data))
+ 		return;
+ 
+@@ -285,6 +249,70 @@ void sunxi_sram_release(struct device *dev)
+ 		sram_desc->claim_cnt--;
  	spin_unlock(&sram_lock);
  }
++
++int sunxi_sram_claim(struct device *dev)
++{
++	struct of_phandle_iterator it;
++	int err;
++	int count = 0;
++
++	if (IS_ERR(base))
++		return PTR_ERR(base);
++
++	if (!base)
++		return -EPROBE_DEFER;
++
++	if (!dev || !dev->of_node)
++		return -EINVAL;
++
++	of_for_each_phandle(&it, err, dev->of_node, SUNXI_SRAM_PROP,
++			    NULL, SUNXI_SRAM_CELLS) {
++		u32 args[SUNXI_SRAM_CELLS];
++
++		of_phandle_iterator_args(&it, args, SUNXI_SRAM_CELLS);
++
++		err = sunxi_sram_claim_one(it.node, args[0]);
++		if (err)
++			goto err;
++
++		count++;
++	}
++
++	if (count == 0)
++		return -ENOENT;
++
++	return 0;
++
++err:
++	while (count--) {
++		struct of_phandle_args args;
++
++		of_parse_phandle_with_fixed_args(dev->of_node, SUNXI_SRAM_PROP,
++						 SUNXI_SRAM_CELLS, count, &args);
++		sunxi_sram_release_one(args.np, args.args[0]);
++	}
++
++	return err;
++}
++EXPORT_SYMBOL(sunxi_sram_claim);
++
++void sunxi_sram_release(struct device *dev)
++{
++	struct of_phandle_iterator it;
++	int err;
++
++	if (!dev || !dev->of_node)
++		return;
++
++	of_for_each_phandle(&it, err, dev->of_node, SUNXI_SRAM_PROP,
++			    NULL, SUNXI_SRAM_CELLS) {
++		u32 args[SUNXI_SRAM_CELLS];
++
++		of_phandle_iterator_args(&it, args, SUNXI_SRAM_CELLS);
++
++		sunxi_sram_release_one(it.node, args[0]);
++	}
++}
  EXPORT_SYMBOL(sunxi_sram_release);
+ 
+ struct sunxi_sramc_variant {
 -- 
 2.47.3
 
