@@ -1,134 +1,179 @@
-Return-Path: <devicetree+bounces-280076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280078-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gJFGNLILw2lKnwQAu9opvQ
-	(envelope-from <devicetree+bounces-280076-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 23:09:54 +0100
+	id QIVOBeQNw2lKnwQAu9opvQ
+	(envelope-from <devicetree+bounces-280078-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 23:19:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7062131D259
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 23:09:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 742E031D441
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 23:19:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D64C73046E97
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 22:09:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AD3DD305C6CF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 22:15:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9798E3C13FF;
-	Tue, 24 Mar 2026 22:09:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5251F3C6616;
+	Tue, 24 Mar 2026 22:15:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tuXinN2+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VKwMqnVV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7422C3AC0DE;
-	Tue, 24 Mar 2026 22:09:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7A63A7584;
+	Tue, 24 Mar 2026 22:15:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774390192; cv=none; b=nrP1VZE1CDvu0mjE5SSiB0GP6wXysc5dAm5waGQnjeWxgAh1gwYGhtNatnBH+Xd/Xd2l9pUmAMrpQvYQwZxBoj5vx3k7tw7jbOFYfRjBjsjl5xCqKjd/p62BiVlMXbve5BVTgSqLTFac70CLK4eCMTHUK+NtVxps0e5ZBhTEpVQ=
+	t=1774390502; cv=none; b=HmVhcs3mrnsB+lw7m2KO9EQU2QhOWOAjcOhHZsnjEhhaIaGKB6EoKWVw6SuZaczuoWFprxbEoslyKoDR3OCvBQRf7Ya/gIkuC0+DaCWVvL1cPobp5Gv9EV1iWEB92z9DSuPVtcKJWAA/U+Br/qi+qMMPYvXcmTv2yiLI0sWu8DM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774390192; c=relaxed/simple;
-	bh=7j8Ky5lso1k7J2uDYMW9hlAWHsxyR7vRQ7da5WAJfEw=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XvTZAQQNDAxkvLs/grOeh22HMzyySeih4ISFvLx+/fyb99HGXzB+MbesXmFEYWTrx5jy0MSt5NNvW0y6sWQM6uRnVVnK+d26O716GARYqJ/a0+HGHezcAw2ABMCh0IZJTJwkVuyl0KzGlIcpf7ixrp7/6C2N8fcb9Litbsai8r8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tuXinN2+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4452C19424;
-	Tue, 24 Mar 2026 22:09:51 +0000 (UTC)
+	s=arc-20240116; t=1774390502; c=relaxed/simple;
+	bh=6M+XUCcxZWilfRRqN6XK5hJIeS+gRK3D84YRPNc1+qA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KMWhWm+yNr0Mh2YVzPsGAGdp/AB3whFIOObgMSoiD4auTpz1Z0ATisMfYv4q7uLobzPlX2E8AUhkBJgLENorYCE6dZCdiUv0YNNybrsgxo9NtqYzyTvzcFkCTy3dZnuaba1/KxuvLyayZSVlxDPgdmSb1G5aQvmvXR4EPAXX2fY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VKwMqnVV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BDA6DC19424;
+	Tue, 24 Mar 2026 22:15:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774390192;
-	bh=7j8Ky5lso1k7J2uDYMW9hlAWHsxyR7vRQ7da5WAJfEw=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=tuXinN2+A68pMTzb1oX5TWUcCu3BHM7Gkw0cdO5VaoJiw0yAVW+FaC1osUUNSIjvO
-	 yKfi2qeDVFViC2Iuja2kaNFYuUCpfaE4RZ46wRugPwNGxOZPwiPoYRYVhdfOj/14DL
-	 jBCyZo7wMmgy6DX3fcOGsXlEzY7pB0uw7N1M2ElDyjq8T1F0B66qD5TbRJb43LU0s9
-	 IA7J5U+zJcSwWBGT4m+XhD9mOI9sGWlJ/YOsjklMtuuv23Om6JACnH+3YvLptzoQf0
-	 YR9ZS++mfRRaOHfK1hcRgw9xgiOwG2VsaOYRY5iofCsOlRHFnJUeTVJF7OAKhQwQT+
-	 9gMcSwhW4QQoQ==
-Date: Wed, 25 Mar 2026 06:09:50 +0800
-From: Yixun Lan <dlan@kernel.org>
-To: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
-	"open list:RISC-V SPACEMIT SoC Support" <spacemit@lists.linux.dev>
-Subject: Re: [PATCH 4/6] riscv: dts: spacemit: enable QSPI and add SPI NOR on
- Milk-V Jupiter
-Message-ID: <20260324220950-GKB767626@kernel.org>
-References: <20260322203356.2206927-1-aurelien@aurel32.net>
- <20260322203356.2206927-5-aurelien@aurel32.net>
- <20260324090220-GKA739629@kernel.org>
- <acL_xPYiGXUp_Tir@aurel32.net>
+	s=k20201202; t=1774390501;
+	bh=6M+XUCcxZWilfRRqN6XK5hJIeS+gRK3D84YRPNc1+qA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=VKwMqnVVHjuFUF2BWRuRx2Pah0UdzUUx5O2DslvPo+YeDZdYvefCv7v2uosRFeK1e
+	 nDocPUpZ251pao9edzT6tK0DZruvcods4HjSln2EFpqzGLCKTzc+Mh9qNiwV6tiFGV
+	 jLlki4djqg6vBnGIS+Z18kyStEaitqn1oFKvBQsbeSXsAigXGQLC9C+OD3pK6BOijw
+	 mUxwPMesokP2vuwz63vhkf2jxr+YneIMPYoetCbI4LDaRfQr6h9xFkplTYUfMbIdBV
+	 j/hwnzxdaI9VY65m0Y+D0bisNCL1G3PCWZr49UArlEhNqFIxQOknVN+3AxEtadU/Jp
+	 qF+IYN9Quq5QQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B464DFEC104;
+	Tue, 24 Mar 2026 22:15:01 +0000 (UTC)
+From: Vasiliy Doylov via B4 Relay <devnull+nekocwd.mainlining.org@kernel.org>
+Subject: [PATCH v4 0/3] media: i2c: lc898217xc: initial driver
+Date: Wed, 25 Mar 2026 01:14:58 +0300
+Message-Id: <20260325-media-i2c-lc898217xc-initial-driver-v4-0-6ad6fd74915e@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <acL_xPYiGXUp_Tir@aurel32.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOMMw2kC/53NTQrCMBCG4atI1o4kk6Y/rryHuIjJpA7UVFIJi
+ vTuRgU3uhCX3zA8701MlJgmsV7cRKLME4+xjGq5EO5gY0/AvmyBEo1EbOBIni0wOhhc27Womos
+ DjnxmO4BPnCmBb/ZGWqWNIyOKdEoU+PKsbHdlH3g6j+n6jGb1uL58Lauf/KxAAmEIHvcYvKHN0
+ XIcylfsV2PqxSOS8Q8YC1zbqtaOgibbfoX1G1Yo1W+wLnBVE+q2a6hD9QHP83wHhm6pk40BAAA
+ =
+X-Change-ID: 20250227-media-i2c-lc898217xc-initial-driver-d7b50a135ce5
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, david@ixit.cz
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ Vitalii Skorkin <nikroks@mainlining.org>, 
+ Antonio Rische <nt8r@protonmail.com>, 
+ Vasiliy Doylov <nekocwd@mainlining.org>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2363;
+ i=nekocwd@mainlining.org; h=from:subject:message-id;
+ bh=6M+XUCcxZWilfRRqN6XK5hJIeS+gRK3D84YRPNc1+qA=;
+ b=owGbwMvMwCVmXFbadLHr1XTG02pJDJmHeZ5YmeZH6l5mzH5gwl+5x+1wp/VpDoWnmxkPpQdz6
+ EzemunTUcrCIMbFICumyNL9/vC9B/N4WUvVP/HCzGFlAhnCwMUpABNpMmRkaN+25FKKdOZZaYYG
+ oZsBtgu5vzH4JmbYJavfFLWKCbz8neGvRHdOf1LRNMY2bvvHre9nLj16RP9a5vHkorfCE/1nn6x
+ nAQA=
+X-Developer-Key: i=nekocwd@mainlining.org; a=openpgp;
+ fpr=8BEFC3DEE09E0D057527F20D33767582D18AEA97
+X-Endpoint-Received: by B4 Relay for nekocwd@mainlining.org/default with
+ auth_id=692
+X-Original-From: Vasiliy Doylov <nekocwd@mainlining.org>
+Reply-To: nekocwd@mainlining.org
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-280076-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-280078-lists,devicetree=lfdr.de,nekocwd.mainlining.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_CC(0.00)[vger.kernel.org,mainlining.org,protonmail.com];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7062131D259
+	HAS_REPLYTO(0.00)[nekocwd@mainlining.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:email,mainlining.org:replyto,mainlining.org:mid,protonmail.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 742E031D441
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Aurelien, 
+LX898217XC is a 11 bit DAC, designed for linear control
+of voice coil motor. This driver creates a V4L2 subdevice
+and provides control to set the desired focus.
 
-On 22:19 Tue 24 Mar     , Aurelien Jarno wrote:
-> Hi Yixun,
-> 
-> On 2026-03-24 17:02, Yixun Lan wrote:
-> > Hi Aurelien,
-..
-> > ..
-> > > Also add the bootph-pre-ram property to make the device tree usable by
-> > > early firmware/bootloaders without modification, as U-Boot is stored on
-> > > this NOR flash.
-> > Is the dtb file actually used by U-Boot? I'd highly doubt about this,
-> > if not the case or has not been tested, I'd suggest then not to add
-> > this property..
-> 
-> It is currently not used by U-Boot, currently SPL support is not 
-> available, but patches have been posted to added it. I just wanted to 
-> anticipate the addition of the Milk-V Jupiter board in U-boot, but if 
-> that hurt, i can remove it (or you can removed it when merging).
-Not hurt since it isn't really used in Kernel, but I just don't
-want to add things without test..
+Tested on Oneplus 6 (oneplus-enchilada)
 
-I can remove it if there is no other changes, then no iteration needed.
-Let's wait a few more days to see if people have additional comments for
-this series
+Co-developed-by: Vitalii Skorkin <nikroks@mainlining.org>
+Signed-off-by: Vitalii Skorkin <nikroks@mainlining.org>
+Co-developed-by: Antonio Rische <nt8r@protonmail.com>
+Signed-off-by: Antonio Rische <nt8r@protonmail.com>
+Signed-off-by: Vasiliy Doylov <nekocwd@mainlining.org>
+---
+Changes in v4:
+- Removed unused focus ctrl (Dave)
+- Added ctrl state restore on runtime_resume (Dave)
+- Removed subscribe/unsubscribe event handlers (Dave)
+- Removed V4L2_SUBDEV_FL_HAS_EVENTS flag (Dave)
+- Changed supplies from vcc to vdd + vana
+- Fixed free and PM issues on probe fail
+- Fixed typo in devicetree documentation
+- Link to v3: https://lore.kernel.org/r/20251201-media-i2c-lc898217xc-initial-driver-v3-0-46e23897e921@mainlining.org
 
--- 
-Yixun Lan (dlan)
+Changes in v3:
+- Fixed MAINTAINERS (Krzysztof)
+- Reordered commits (Krzysztof)
+- Removed blank line from device-tree documentation (Krzysztof)
+- Refactored to use CCI regmap
+- Refactored to use dev_err_probe in probe
+- Link to v2: https://lore.kernel.org/all/20250304-media-i2c-lc898217xc-initial-driver-v2-0-6a463cef3ea8@mainlining.org/
+
+Changes in v2:
+- PM functions annotated as __maybe_unused.
+- Fixed dt bindings documentation commit message
+- Added v4l2 events (now v4l2-compliance shows no failed tests)
+- Link to v1: https://lore.kernel.org/r/20250304-media-i2c-lc898217xc-initial-driver-v1-0-e2ffd2b2fd5e@mainlining.org
+
+---
+Vasiliy Doylov (3):
+      media: dt-bindings: Add LC898217XC documentation
+      media: i2c: Add driver for LC898217XC VCM
+      MAINTAINERS: Add entry for Onsemi LC898217XC lens voice coil driver
+
+ .../bindings/media/i2c/onnn,lc898217xc.yaml        |  59 +++++
+ MAINTAINERS                                        |   7 +
+ drivers/media/i2c/Kconfig                          |   9 +
+ drivers/media/i2c/Makefile                         |   1 +
+ drivers/media/i2c/lc898217xc.c                     | 289 +++++++++++++++++++++
+ 5 files changed, 365 insertions(+)
+---
+base-commit: 09c0f7f1bcdbc3c37a5a760cbec76bf18f278406
+change-id: 20250227-media-i2c-lc898217xc-initial-driver-d7b50a135ce5
+
+Best regards,
+--  
+Vasiliy Doylov <nekocwd@mainlining.org>
+
+
 
