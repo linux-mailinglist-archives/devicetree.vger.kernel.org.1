@@ -1,227 +1,180 @@
-Return-Path: <devicetree+bounces-279663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279664-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0Lb9DPBLwmnvbAQAu9opvQ
-	(envelope-from <devicetree+bounces-279663-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:31:44 +0100
+	id CEaDKZ5PwmnvbAQAu9opvQ
+	(envelope-from <devicetree+bounces-279664-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:47:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9968304A91
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:31:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16DBC304F39
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:47:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 28AD93053990
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:25:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 502CE3209559
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:29:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B68C3CBE79;
-	Tue, 24 Mar 2026 08:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBFCA36D9FA;
+	Tue, 24 Mar 2026 08:28:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f98KC4CZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jQlt1Xvc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB4CF314A83;
-	Tue, 24 Mar 2026 08:23:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E985A3B6BF1;
+	Tue, 24 Mar 2026 08:28:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774340626; cv=none; b=cxEhz9YFpyc/vnFgT/fqmkzHdVA0J3bIzv95WoIQYtEtCBYZ6dSpqGRkS9rTdHmmbOYNPlZTHYEYEwWWv1Vst0V9phuO0ISAfR8xv92CMJC+bXbBNUND5yezt+MXpDDJbmyv2n1cKx2BMOwlIMCeNO4XBSnP8mgW6eUFVOHxiQk=
+	t=1774340913; cv=none; b=cixjXVc9wjyMAIQJQygvAz1Zc0P+gM7f4IykxlCHfMJApSpTURA9yfxsiSfGssU7ltQGJRwXxUtJZtBAWJ5ID9l5hqQUkExrEiUrkc1JD3EJzk9wx8In3fNMxELwzWyyTJO3iuFF9aYHROkL/z6hXoLUa0DSv0SyUq+HhLRbHec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774340626; c=relaxed/simple;
-	bh=YW1oumcShmJdUX2bVPw92WTp71r+w0EzqGKv/olyY1o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YqvjX4uTCXpXg7yi1qNHk1D2vzcR4GQl7KN8+61nodQHyYdjTsvWyFFS1rye+vFxwOTEQCKXqP7kYTIAdlhnPm75hLmFByjJeImuWtGs/otKBqSOs2k8QgwvhxbcHSEgZjmSARnWrluJV0NwSUV2CTMZgzfI24jjYxbVu2tSB0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f98KC4CZ; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774340621; x=1805876621;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YW1oumcShmJdUX2bVPw92WTp71r+w0EzqGKv/olyY1o=;
-  b=f98KC4CZaeyfxG72WM3q5bNculu5cr2oPVcqctGYfy2+RGPWoAJjKuYc
-   bapjY04kxd1XNghpd73P4tJGwnjvTyBa7EXb8I/E/VNTZeHB8q0Le1mCR
-   vFEo9ZsVTVfbQ86sy0+AQW+zVIwq/tsOk7WpwgLJCfdrMw1lCADbmX68F
-   dYkUDBj81E2egEg9Reg26QNnwUHva3MZyWG/TGhatvnZCaEj6qKrIZe2i
-   gyMqLM0aojP2Lh2xc3VtZh/Wjt8zL17aAx6GYZFz1alL3/RvgAiIKfuVj
-   j1ax8dwqkU1YqTcQtlH7SeKUY7UhmNFvA8t/0MQvYLMbczeFTTDLjgabZ
-   A==;
-X-CSE-ConnectionGUID: lhTINTyIQBGAVB3YCA1CPQ==
-X-CSE-MsgGUID: jCWPLS3ZSX2hrWhRxHKgVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="75321931"
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; 
-   d="scan'208";a="75321931"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2026 01:23:39 -0700
-X-CSE-ConnectionGUID: la5BPmR+SsCZF91N9qYV7w==
-X-CSE-MsgGUID: quziYg/kR1KJj/tuViZhjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; 
-   d="scan'208";a="223500798"
-Received: from lkp-server01.sh.intel.com (HELO 3905d212be1b) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 24 Mar 2026 01:23:35 -0700
-Received: from kbuild by 3905d212be1b with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w4x2y-000000004DX-3E8K;
-	Tue, 24 Mar 2026 08:23:32 +0000
-Date: Tue, 24 Mar 2026 16:22:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thierry Reding <thierry.reding@kernel.org>,
-	Bjorn Helgaas <helgaas@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Jon Hunter <jonathanh@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] PCI: tegra: Add Tegra264 support
-Message-ID: <202603241635.M39jGMQX-lkp@intel.com>
-References: <20260320225443.2571920-5-thierry.reding@kernel.org>
+	s=arc-20240116; t=1774340913; c=relaxed/simple;
+	bh=GUHvuweWwDEanr6pMLHDaloqrj5OS4LjWFK/HLlQMOc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nT0U0gZ3Ki+Qsudu3u7kUZrMblAEowDdXWOLhIisBTMI/lMTXeNTmDlbO69DKRXF2J4dkOr6TJNVACUMXvtfVSm2XJUpTbbmcoVt1i9dCJQxRErxolGc+GRiVGV4jCbf6WuNN0x4emZqc7R9Hfm81FfMyEE2LXbdZV7xGoHFoss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jQlt1Xvc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 68B44C19424;
+	Tue, 24 Mar 2026 08:28:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774340912;
+	bh=GUHvuweWwDEanr6pMLHDaloqrj5OS4LjWFK/HLlQMOc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=jQlt1XvcUUbFdhQ0mEw+Ns7DDoHzzkJXO41dHvq6NsFRx0bAEh9OoqFU9wruNzEgA
+	 rLqsKybK0Cgqy5RpTo54w5gRGXTfyjEc643yMHx1Bsz5FqUHGtwJBc8zbeaQohb/ay
+	 FcwkeSNb6rZSuheSklloaUcY54v+Mb5ZlkuSsqtqhoi5DpyeC1eVmZ10/TDkM03uZ5
+	 qchAOoH6IZ17aPRZiUdZhY3lVjI5Ez9ewhY9AdhZCrtV8M0LenzzrLWu8YZBUt5OhO
+	 EvjlatUSq/F8T3SkkaaBZdx3Lrn+SgxbLci0nR26+xLtr/IbqiI5XtayhH6Xhu/W67
+	 ch0cudFjMTKsA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 556E8F532F2;
+	Tue, 24 Mar 2026 08:28:32 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v7 0/3] Add Amlogic general DMA
+Date: Tue, 24 Mar 2026 08:28:26 +0000
+Message-Id: <20260324-amlogic-dma-v7-0-f8b91ee192c1@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260320225443.2571920-5-thierry.reding@kernel.org>
-X-Spamd-Result: default: False [-1.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACpLwmkC/23OwW7CMAwG4FdBOS9T49jJstPeY9ohrR2ItFLUT
+ hUI9d0X0BCE7vjb+n77rCYZs0zqfXNWo8x5ysO+BP+yUd0u7reiM5esoAEyYEjH/nvY5k5zH7U
+ P6D1Tx+BQFXEYJeXjte3zq+Rdnn6G8XQtn81leutxVc9sdKMF3oKQl+Ci//jbvnZDry5NM9y0a
+ wz4WkPRSEBswbNHXmt719A83bZFk0ttSBSEAdYaH/TzbSw6AQk6gxLafz6nu7YN1pqKjhHJssH
+ EaNfaPepQa1e0sxYDg20Z21ovy/ILUrO8B94BAAA=
+X-Change-ID: 20251215-amlogic-dma-79477d5cd264
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Frank Li <Frank.Li@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774340908; l=2377;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=GUHvuweWwDEanr6pMLHDaloqrj5OS4LjWFK/HLlQMOc=;
+ b=9EbQS3w9WGhhASrwGp6av1fS9ubYNcbdzl6H7tFdfQXVqNoQRyy//Fwsl9BXqmVal+z5WwGax
+ BNpu30ZxB6VCfB5sbyGNRZMveLyCnkCGQZzumBokWkK4RZ0fqlCEfCo
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279663-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-279664-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,01.org:url,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: E9968304A91
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amlogic.com:email,amlogic.com:replyto,amlogic.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 16DBC304F39
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Thierry,
+Add DMA driver and bindigns for the Amlogic SoCs.
 
-kernel test robot noticed the following build errors:
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v7:
+- Take use vchan to support mltiple txns.
+- Link to v6: https://lore.kernel.org/r/20260309-amlogic-dma-v6-0-63349d23bd4b@amlogic.com
 
-[auto build test ERROR on tegra/for-next]
-[also build test ERROR on next-20260323]
-[cannot apply to pci/next pci/for-linus drm-tegra/drm/tegra/for-next linus/master v7.0-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Changes in v6:
+- Some minor modifications according to Frank's suggestion.
+- Link to v5: https://lore.kernel.org/r/20260304-amlogic-dma-v5-0-aa453d14fd43@amlogic.com
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thierry-Reding/soc-tegra-Update-BPMP-ABI-header/20260323-093336
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/tegra/linux.git for-next
-patch link:    https://lore.kernel.org/r/20260320225443.2571920-5-thierry.reding%40kernel.org
-patch subject: [PATCH v2 4/5] PCI: tegra: Add Tegra264 support
-config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20260324/202603241635.M39jGMQX-lkp@intel.com/config)
-compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260324/202603241635.M39jGMQX-lkp@intel.com/reproduce)
+Changes in v5:
+- Rename head file and rename macro definition.
+- Rename the subject in [2/3] from "dma" to "dmaengine".
+- Link to v4: https://lore.kernel.org/r/20260227-amlogic-dma-v4-0-f25e4614e9b7@amlogic.com
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603241635.M39jGMQX-lkp@intel.com/
+Changes in v4:
+- Support split transfer when data len > MAX_LEN.
+- When a module fails or exits, perform de-initialization.
+- Some other minor modifications.
+- Link to v3: https://lore.kernel.org/r/20260206-amlogic-dma-v3-0-56fb9f59ed22@amlogic.com
 
-All errors (new ones prefixed by >>):
+Changes in v3:
+- Adjust the format of binding according to Frank's suggestion.
+- Some code format modified according to Frank's suggestion.
+- Support one prep_sg and one submit, drop multi prep_sg and one submit.
+- Keep pre state when resume from pause status.
+- Link to v2: https://lore.kernel.org/r/20260127-amlogic-dma-v2-0-4525d327d74d@amlogic.com
 
->> drivers/pci/controller/pcie-tegra264.c:302:16: error: use of undeclared identifier 'PCIE_LINK_WAIT_US_MIN'
-                   usleep_range(PCIE_LINK_WAIT_US_MIN, PCIE_LINK_WAIT_US_MAX);
-                                ^
->> drivers/pci/controller/pcie-tegra264.c:302:39: error: use of undeclared identifier 'PCIE_LINK_WAIT_US_MAX'
-                   usleep_range(PCIE_LINK_WAIT_US_MIN, PCIE_LINK_WAIT_US_MAX);
-                                                       ^
-   drivers/pci/controller/pcie-tegra264.c:392:16: error: call to undeclared function 'tegra_bpmp_get_with_id'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-                   pcie->bpmp = tegra_bpmp_get_with_id(dev, &pcie->ctl_id);
-                                ^
-   drivers/pci/controller/pcie-tegra264.c:392:14: error: incompatible integer to pointer conversion assigning to 'struct tegra_bpmp *' from 'int' [-Wint-conversion]
-                   pcie->bpmp = tegra_bpmp_get_with_id(dev, &pcie->ctl_id);
-                              ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   4 errors generated.
+Changes in v2:
+- Introduce what the DMA is used for in the A9 SoC.
+- Some minor modifications were made according to Krzysztof's suggestions.
+- Some modifications were made according to Neil's suggestions.
+- Fix a build error.
+- Link to v1: https://lore.kernel.org/r/20251216-amlogic-dma-v1-0-e289e57e96a7@amlogic.com
 
+---
+Xianwei Zhao (3):
+      dt-bindings: dma: Add Amlogic A9 SoC DMA
+      dmaengine: amlogic: Add general DMA driver for A9
+      MAINTAINERS: Add an entry for Amlogic DMA driver
 
-vim +/PCIE_LINK_WAIT_US_MIN +302 drivers/pci/controller/pcie-tegra264.c
+ .../devicetree/bindings/dma/amlogic,a9-dma.yaml    |  65 ++
+ MAINTAINERS                                        |   7 +
+ drivers/dma/Kconfig                                |  10 +
+ drivers/dma/Makefile                               |   1 +
+ drivers/dma/amlogic-dma.c                          | 682 +++++++++++++++++++++
+ include/dt-bindings/dma/amlogic,a9-dma.h           |   8 +
+ 6 files changed, 773 insertions(+)
+---
+base-commit: 18171b875aa51c7b1770005f048528c95bd95e40
+change-id: 20251215-amlogic-dma-79477d5cd264
 
-   278	
-   279	static void tegra264_pcie_init(struct tegra264_pcie *pcie)
-   280	{
-   281		enum pci_bus_speed speed;
-   282		unsigned int i;
-   283		u32 value;
-   284	
-   285		/* bring the link out of reset */
-   286		value = readl(pcie->xtl + XTL_RC_MGMT_PERST_CONTROL);
-   287		value |= XTL_RC_MGMT_PERST_CONTROL_PERST_O_N;
-   288		writel(value, pcie->xtl + XTL_RC_MGMT_PERST_CONTROL);
-   289	
-   290		if (!tegra_is_silicon()) {
-   291			dev_info(pcie->dev,
-   292				 "skipping link state for PCIe #%u in simulation\n",
-   293				 pcie->ctl_id);
-   294			pcie->link_up = true;
-   295			return;
-   296		}
-   297	
-   298		for (i = 0; i < PCIE_LINK_WAIT_MAX_RETRIES; i++) {
-   299			if (tegra264_pcie_link_up(pcie, NULL))
-   300				break;
-   301	
- > 302			usleep_range(PCIE_LINK_WAIT_US_MIN, PCIE_LINK_WAIT_US_MAX);
-   303		}
-   304	
-   305		if (tegra264_pcie_link_up(pcie, &speed)) {
-   306			/* Per PCIe r5.0, 6.6.1 wait for 100ms after DLL up */
-   307			msleep(PCIE_RESET_CONFIG_WAIT_MS);
-   308	
-   309			dev_info(pcie->dev, "PCIe #%u link is up (speed: %s)\n",
-   310				 pcie->ctl_id, pci_speed_string(speed));
-   311			tegra264_pcie_icc_set(pcie);
-   312			pcie->link_up = true;
-   313		} else {
-   314			dev_info(pcie->dev, "PCIe #%u link is down\n", pcie->ctl_id);
-   315	
-   316			value = readl(pcie->xtl + XTL_RC_MGMT_CLOCK_CONTROL);
-   317	
-   318			/*
-   319			 * Set link state only when link fails and no hot-plug feature
-   320			 * is present.
-   321			 */
-   322			if ((value & XTL_RC_MGMT_CLOCK_CONTROL_PEX_CLKREQ_I_N_PIN_USE_CONV_TO_PRSNT) == 0) {
-   323				dev_info(pcie->dev,
-   324					 "PCIe #%u link is down and not hotplug-capable, turning off\n",
-   325					 pcie->ctl_id);
-   326				tegra264_pcie_bpmp_set_rp_state(pcie);
-   327				pcie->link_up = false;
-   328			} else {
-   329				pcie->link_up = true;
-   330			}
-   331		}
-   332	}
-   333	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
