@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-279672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279673-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SNVUCyZRwmnNbgQAu9opvQ
-	(envelope-from <devicetree+bounces-279672-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:53:58 +0100
+	id sPMHBEZRwmnNbgQAu9opvQ
+	(envelope-from <devicetree+bounces-279673-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:54:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85EEF305169
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:53:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E329E3051B5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:54:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4FCBF31D723F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:48:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4345A3064034
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D332F3D88E7;
-	Tue, 24 Mar 2026 08:48:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275B53D6CA7;
+	Tue, 24 Mar 2026 08:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AnnfWuz8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tr6nHkEG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B026736493B;
-	Tue, 24 Mar 2026 08:48:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 019B239182A;
+	Tue, 24 Mar 2026 08:50:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774342081; cv=none; b=YUaBZUaOxZbozfQQ6ShP9GTrxwIjXK/BH8A3USyyKOKvDhIKw9LFaSPToSaDiqjZWyo/46sSWHKEwFnyaUsEnvC6w93+0PWsQJDBmWUFkgUS1OmZp/+z8e1aUklzQJcbv3ULgw3nvAuWHje3/0lOggNhD3grIReAJwnGmoQgqvE=
+	t=1774342230; cv=none; b=MmlLXStSI1a226vlLj/RXRis2IsFdqRe3iInOuCkL+/+ZZw5aUgq5xfXaXrbOpvxCJr+J9uXt1yAGPm8UYAvrurt3fV+8ZKU282K7mruXQ17gPEOBfUDLPpVrng4Xa7v8zeKDlQwBrGhh0ZOMxPEg6BQtB6EUACcFZrcPF/4pRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774342081; c=relaxed/simple;
-	bh=ix2Fecint5FiA5s4mDWUWlFNQNkl4uSNPkhTuoKP12s=;
+	s=arc-20240116; t=1774342230; c=relaxed/simple;
+	bh=yQMqSqIh1zk8IlN4O+K8IvmdWDSB2YjZNTsuYc3uEXE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NEveGZvRBdGG6+7b7IQl/AxuTs57W5a65+4IbZVM508Me5m/Cu9s6wnvKQ/TeDSkrjl4ERxMMQSyNzI/nHNmxeX7CU+oSyGV3PVuIKpJlIcA1UIAp5cIaD0wAhTuApe/bZNfQJdnOXiTa3DYOvcf8tVkOf+NkOnNvcyUiQAGmxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AnnfWuz8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A5DEC19424;
-	Tue, 24 Mar 2026 08:48:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dFoN343g3eUOSX9dGjkZDnIEw3VjLSxRM0eonScffdtGez/6+Tl0tNDUne+tkf/tB/OcyvzOFFgIN5eLbzYh4INKk+etdl41JjrL7aiv7w/OKYh4z7iWRndMCp3htHAC+aI3yuOeRb8O41TfWkZ1Vjqb7xt8oDEad58R8/JUB9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tr6nHkEG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C431C19424;
+	Tue, 24 Mar 2026 08:50:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774342081;
-	bh=ix2Fecint5FiA5s4mDWUWlFNQNkl4uSNPkhTuoKP12s=;
+	s=k20201202; t=1774342229;
+	bh=yQMqSqIh1zk8IlN4O+K8IvmdWDSB2YjZNTsuYc3uEXE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AnnfWuz82pjwgSh/h6fYf0TXk243a8v7a1di3JppVUY23vzEqT7xvFmdBmc/7nUmA
-	 bEMp3Db02y6MRqJgu9fyMuxNIqgjLF5QA4LvrwNS87mV5OZ4v6FzxiQIuSSXHbHfri
-	 KF/2j8WeohRz+pi87mV4eA5O7q5W9Dm2AWmSgcczp2NfNyomz+ey3jP9NlFMbQi1cF
-	 gfFCKz+dtGKwaZ2tMAV5Cuzzlrd+w4p/moO80HHk/LAkcW9EpOX/lpdz0Y2BOKn03I
-	 4DodTuA6xP20OZ2d2sDtBda3LoLn6idzjwbJS6Bu+2+OHF0/ezmW3NYtIA3qPVqbzZ
-	 KTSnibFDJcTJg==
-Date: Tue, 24 Mar 2026 09:47:59 +0100
+	b=Tr6nHkEGzsmo+61dbGoFnF3bL9xtEpdMx7jEWurRdPXglzGgpy46s+4M+joC3UQ1W
+	 raKP4OiQcxPNmCmGe7WZzo9e3eWR8npKE+nxJk2Lw1xMrr+wMb5l77P08VSY4onvRl
+	 4o3X822mLlItYzccLwLKTI0GrY44K6uruAT/SEbYhKFfXwxJduhFB5W9DCUvPFepU/
+	 FCqtU3Dp4+B6YnJgEj4oMXUbfheIY10r7pRl5EflAPwIqcMCqfYskzn2WIy3nMJEsS
+	 MnQHqpTSPQf4rRulVRMzVVIPh0rmN3/03LaBBzyJMIP+HduF/wym9mbz9sPLwLc1of
+	 rFLD1WtoyvCPA==
+Date: Tue, 24 Mar 2026 09:50:27 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yu-Chun Lin <eleanor.lin@realtek.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, cylee12@realtek.com, 
-	afaerber@suse.com, jyanchou@realtek.com, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-realtek-soc@lists.infradead.org, james.tai@realtek.com, 
-	cy.huang@realtek.com, stanley_chang@realtek.com
-Subject: Re: [PATCH v5 01/10] dt-bindings: clock: Add Realtek RTD1625 Clock &
- Reset Controller
-Message-ID: <20260324-chirpy-vigilant-pony-c16e2f@quoll>
-References: <20260324025332.3416977-1-eleanor.lin@realtek.com>
- <20260324025332.3416977-2-eleanor.lin@realtek.com>
+To: Aaron Kling <webgeek1234@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Xilin Wu <wuxilin123@gmail.com>
+Subject: Re: [PATCH v4 1/6] dt-bindings: vendor-prefixes: Add AYN Technologies
+Message-ID: <20260324-amusing-russet-husky-4053b6@quoll>
+References: <20260323-ayn-qcs8550-v4-0-33a8ac3d53fa@gmail.com>
+ <20260323-ayn-qcs8550-v4-1-33a8ac3d53fa@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,46 +64,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260324025332.3416977-2-eleanor.lin@realtek.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <20260323-ayn-qcs8550-v4-1-33a8ac3d53fa@gmail.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279672-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-279673-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 85EEF305169
+X-Rspamd-Queue-Id: E329E3051B5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 24, 2026 at 10:53:22AM +0800, Yu-Chun Lin wrote:
-> Add DT binding schema for Realtek RTD1625 clock and reset controller
+On Mon, Mar 23, 2026 at 11:27:43AM -0500, Aaron Kling wrote:
+> From: Xilin Wu <wuxilin123@gmail.com>
 > 
-> Co-developed-by: Cheng-Yu Lee <cylee12@realtek.com>
-> Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
-> Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+> Add an entry for AYN Technologies (https://www.ayntec.com/)
+> 
+> Signed-off-by: Xilin Wu <wuxilin123@gmail.com>
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
