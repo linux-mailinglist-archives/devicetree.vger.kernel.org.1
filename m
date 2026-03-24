@@ -1,174 +1,205 @@
-Return-Path: <devicetree+bounces-279649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279651-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mMDWJTlKwmnYbQQAu9opvQ
-	(envelope-from <devicetree+bounces-279649-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:24:25 +0100
+	id mFk+G5JGwmnvbAQAu9opvQ
+	(envelope-from <devicetree+bounces-279651-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:08:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0797C3048CD
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:24:25 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65B7D3045B9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:08:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 53EDE32233C1
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:03:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 427AB3025230
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:08:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F5F5347508;
-	Tue, 24 Mar 2026 08:02:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9C533B19A2;
+	Tue, 24 Mar 2026 08:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ffRjdtZY";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="DYRA645w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nooFF0DD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5E6F1684B0
-	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 08:02:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD0863C5DC5
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 08:07:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774339361; cv=none; b=eCQM+Xpc44vaIvSPlD8mYiu45N7/jEUKCH8TClKDAEIIsPmTbn1i60Hd3q5wwmAuTemgZ/EjM57IhdQcIWcEEf6P0ACzPKMp50dwIhdSm4nlGmr2llWxQr7oyMmjaNVunmY6KRBK5yKd6Yz3MzJyieDQylHzrVMJd/1Lge/91i4=
+	t=1774339677; cv=none; b=RttdOnGCm1VnMg58S1w2ze2UzdS+AAYsnCoHvUaDh9qRyJR33QSIxsTj1n97gW6esQOMuUkq6qsU5X4f5TeccwLWd7u+8IMiGRWmWT5Sj8rgG6bAOjmZzRR619G7BRzczX8xtW442Idg4j25FxknsKGZ8XiOxhISenqxMtDPmis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774339361; c=relaxed/simple;
-	bh=Pz21v89mgKvxDDXEm4UmGj7tuc5PFErBer+IwkrrpBU=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=an/oHexd9kAuBQPuAwpTamE42fo1w860tzmWLjEC2tbaN0Llhn80SrQ/lVxMxEQRV8GB6dR8Ad6pcRHUxQm1f7pMIsmSRUvW4X7RH9m/gHoYfqavvk5J9Bl3XZhoQIcMepEOT8ULKW64V0Zb7xILw6cF5r4fCDwINdcZMRHe7Sg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ffRjdtZY; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=DYRA645w; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1774339353;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JZkji+aeo/J3L7vBsxBs/MQaHOamVQrNiki5qdjf+wY=;
-	b=ffRjdtZYaRYb+UOrT6usN5PccmXFvVFJCMfphjOjpjj6C5XU1Oy7bIxOi6UyULBBhNOKeT
-	N+tBsmG6Uw65nbBbnhBWMRekrbiyd0HXjFq1CVWSeV7OVGWv6njcU81KVyNcyi1CbdV28U
-	8IUfOQvmpC3SgFPQY8p9y6LSlMi7LjU=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-396-Q31UYjaZPZWxx7OVFd-SlQ-1; Tue, 24 Mar 2026 04:02:32 -0400
-X-MC-Unique: Q31UYjaZPZWxx7OVFd-SlQ-1
-X-Mimecast-MFC-AGG-ID: Q31UYjaZPZWxx7OVFd-SlQ_1774339351
-Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-48704f66776so11027615e9.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 01:02:31 -0700 (PDT)
+	s=arc-20240116; t=1774339677; c=relaxed/simple;
+	bh=IceAUN0OJIIAbe19yvKfIpOhT3L2MW8JFDntDXdVY0g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HBPxz30FLANRnQVnjiKjCbykeqPn+vLMnoW0UyG2irNcd5B0SQEzQHLNkn2/wWv5+/MUIODi0pX3vA3Rc91N/zby1yqc+rm9/r2Y1iy6zFqxR+MqizpSbDZvl3+NSnxzSz2U18GVk2g7Ua1XtVH+flSXatq514xA1GrAtZJUjQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nooFF0DD; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-66971ccfcabso1548436a12.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 01:07:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1774339350; x=1774944150; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=JZkji+aeo/J3L7vBsxBs/MQaHOamVQrNiki5qdjf+wY=;
-        b=DYRA645woD4AIamBSFhHd5oi4gXV5r0g/O/xQDoUFMeg57f6MDH6ID4LKmqbjngRCb
-         exxioUUWHrf621vgV+xfjH/T4eMCAv2Y8rh+vyvRlWKQgw4KPGENzL7tzcPYd5BL1SHL
-         tpN8a2iiZzxeMgj7O3GkjifOI9HxxjIqgpE6MXBVUrfhpQ+lbtgT7mdf9UEv3uuV9wPT
-         UGw0qLH6dWbiy4gpWK96Q8MpK5+4jqUFBkz6BDasJZ8nk+rmOg2H+L1ylLOTs2jm2LbM
-         oF5LaBnGOMSjkMJFv1/KvxyesDQIEPLjn4eYlbvueBnbNFnJ3fDelQ1C41rufb0fp8R1
-         7u9g==
+        d=gmail.com; s=20251104; t=1774339667; x=1774944467; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hU4A868t/KxQ8kSoseiIZSNGuwyJwQACouL71HeRn80=;
+        b=nooFF0DDlWn3Xwd8OeeEkkhVBO18PJvGJFaweNxgRiO2KJbPXWL7L3SXtnPnoJkEFj
+         0KXQyGk6VSxP8Domp+J2O83zhz1NEnInV+3hr/qdCsaeVgRy8LmyDY4upSYdZxhpLoVx
+         pICFCvdP4a9lyJIWd0cnJS2n2zVCLdPsV1wWy8FlsDRkcGoSix4Co75yxNgm2Ry2yu3I
+         USs20T7rG5A35iXfNIBhwBEWbqKUfC8dOMZaAPSafiC9ef5CLO/9byt/Pbeoc/cKuxW6
+         L4CDagq89oyvmU+lmu63q4NGKnt1/oglSvCqnYRJ2BmLFNIrmAI+CqxT3mpNIT/sdbuz
+         qYKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774339350; x=1774944150;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20251104; t=1774339667; x=1774944467;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JZkji+aeo/J3L7vBsxBs/MQaHOamVQrNiki5qdjf+wY=;
-        b=tStaQfhF0vIWe43hkmbUSQYgHxcX1ulL28UyrU394mTK9DKyQuOoBlScoNetwQWtQY
-         L8Ba6oQSb2qWdPM6EIS7LdO6pSz3dwAXqEALON6BIxRM3jHsTH5q8P859J0DQJNrbnZY
-         IxYW1DEpSCdn0PcK2NkCxeVPyjOipnV+JsAsC42i2F18LAblFiu8mC2wa8p61L84NVQQ
-         Xc1x0rKS4jsbNpZV/MMXuOFDy76ykgPntFnAbiuAo77LoFdm5cB3B6zJu+4YDqhen+2a
-         92WKmeAAlJ2cLder1uakiRnAweqeS3Y8hpKvwg7gfziEePoNoV+MOuyFdQSlehnwiVTO
-         F8uw==
-X-Forwarded-Encrypted: i=1; AJvYcCW7YNqxCTO77KSyH4674DINSGoBv7RQ90CijD7CvJYGP5bTFNb9UpHVlzgY4Iubzs2QqndWxFaDgWUZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvKAdCHrVIGTKbzphFJ+7NrBkNyM70XXJtw7bSrA5wGcfYfSty
-	i3tsY7QNodYaQKT1OF2LB1rXw/Fxjofo4M9cEHozBchYY/v+B5H5YDNobc5yk42m6mkhOARFMXg
-	tB8o/Evt9Km++fvBDoq7m4Fc1PkUMhtYSDKyLgfugPac7WWkCuQHlBxii9Hk803cDB+oJ0zs=
-X-Gm-Gg: ATEYQzzZH4Ps2mfDBu3O+Z4r47sAJBJSTo6Byx0g9h/ELbCIoQUnIYvvHmsN5ioDb3n
-	SLkBycCy8JP52YRc1pqsvRd5VlCrv+ZlAlzz+1pL8/wJMeGD6GrBqTHt9w5rGAhnPP6Dr9A1nrT
-	8bnrpI3s9vcMg2iiNwl9jZbipz/FTWHtMbWEGIOA2wJQvL2dAqRLcySUDYn3MliF6shsuoUvQS9
-	VlRE2vVFYVOPbPoRZ8AjrKjt40Ml6+CQk2jVR239YVRjeWqTh5L1+3tjN1jO323MXG1ruNYuFJM
-	RcemLkKSyCFkoPa04e7yRmKuu4x0vZC90ZWnag6fBAFdZOogsd2xsrBUjAx010F+f9Wt9JIFieH
-	/1tUcWCCHwR6e+OKnkz4sJdSaIKXl41hEyXk4D4y0AM96+H1BJy9lk7x0+dOskRQ+nOjWuQn1oR
-	bOB76i
-X-Received: by 2002:a05:600c:8b32:b0:485:4394:b0e with SMTP id 5b1f17b1804b1-486fedbad16mr202978805e9.12.1774339350323;
-        Tue, 24 Mar 2026 01:02:30 -0700 (PDT)
-X-Received: by 2002:a05:600c:8b32:b0:485:4394:b0e with SMTP id 5b1f17b1804b1-486fedbad16mr202978115e9.12.1774339349760;
-        Tue, 24 Mar 2026 01:02:29 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b6470393fsm36915974f8f.17.2026.03.24.01.02.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Mar 2026 01:02:29 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Aurelien Jarno <aurelien@aurel32.net>, linux-kernel@vger.kernel.org, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, Paul Walmsley
- <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
- <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: Aurelien Jarno <aurelien@aurel32.net>, "open list:OPEN FIRMWARE AND
- FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "open
- list:RISC-V SPACEMIT SoC Support" <linux-riscv@lists.infradead.org>, "open
- list:RISC-V SPACEMIT SoC Support" <spacemit@lists.linux.dev>
-Subject: Re: [PATCH 6/6] riscv: dts: spacemit: enable PCIe ports on Milk-V
- Jupiter
-In-Reply-To: <20260322203356.2206927-7-aurelien@aurel32.net>
-References: <20260322203356.2206927-1-aurelien@aurel32.net>
- <20260322203356.2206927-7-aurelien@aurel32.net>
-Date: Tue, 24 Mar 2026 09:02:28 +0100
-Message-ID: <87341p8xkb.fsf@ocarina.mail-host-address-is-not-set>
+        bh=hU4A868t/KxQ8kSoseiIZSNGuwyJwQACouL71HeRn80=;
+        b=Jm/mAIV54R2FhyTOyTtFiY+C/WXNxy/6GJ20fEez0FqXRWDeztReXS3VfvFVmVgc93
+         g1vTU59d2lA7QZsRyipOoqxbNesjFL8wydzS5vYa86hfLsbD1/gl8GMaFVw7E9QKa6bv
+         5g4he5T+nCZlJ9A5CegzsM7IlYD53B2nhkYknVJI18JaJxpy3GzQxFPpwu9xcLofTT8H
+         fG03YHUyVHmu1hkzgv0j5Dw9P7fquFBq4o3yKFMRMxgHs5BrqJUvE9QWzMgQeh50inzU
+         t0o2dUqJXLmOIbXRhViR/iIxPkgPhhI7YRBSEw4U37dcwhqpckkhjycYFjknd4YZf5uP
+         hCTg==
+X-Forwarded-Encrypted: i=1; AJvYcCWIz9A+plm1AfLLeQRRD4BWhofDPrEiHqCvgN9ZUxITCOcCa8CgSlx8bc2f5Mo5qmk3+ZeILssEtCoq@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKkjh9eivJx5PaanABeELTxuDwyTxORLm6ijqSYabhzIjmsy64
+	qYewxPemjkX5puXy2BO3hSbF7ndXQBGKR5fsm/6SaVSbxTayfo588Mw4
+X-Gm-Gg: ATEYQzyIbxKaY5TRtboKOOWkO4vbPp8CLC8higcr5ZdwP783rLF1OJJGUNQUrlDnuIk
+	IKCHmJrFuQTlzjgqY0i8E24N+B27SmnvHyd76Q/UciKOk7KHW4yONb9B3QJMYxFAllDnd0+7VAh
+	kL2omdjseATeCo4QhSfLUqaQp5REuX+GSScgf/+9M5xa39sfyMuHlcarvIX14tpZ4QUykV2cnyU
+	xHFMa2mEDjQ9ZjTqyMLAcsxCeYOvBq5Boak3ItCtogHt93jJ1KHdJveJq5G7epQNYXJfKThzf6i
+	VO8p5Voq4ROezdLKLxAEnZ9LyRl1sIVDJqjPsv86+ksIcuDG8aFq409zYnaF4uEF1sLFBdUBqJo
+	nz4rOHuZoWYYR6/dUcCVa52Gkm5uu/so5p+X79uODdWCq5LgOQlALA5UzmqbcZrCgU1kkURVOoj
+	3wn41U1fjYgfPnYSiFkDWMrXUsTw==
+X-Received: by 2002:a05:6402:2342:b0:667:2fd:4ead with SMTP id 4fb4d7f45d1cf-668c9b206ffmr10183916a12.27.1774339666291;
+        Tue, 24 Mar 2026 01:07:46 -0700 (PDT)
+Received: from [192.168.1.31] ([178.230.175.206])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-668d219abf6sm4487923a12.20.2026.03.24.01.07.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Mar 2026 01:07:45 -0700 (PDT)
+Message-ID: <2fd29380-468a-4f09-853a-f63c67a3a3aa@gmail.com>
+Date: Tue, 24 Mar 2026 09:07:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: Add Xiaomi 12 Lite 5G (taoyao)
+ DTS
+To: Val Packett <val@packett.cool>, devicetree@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org
+References: <20260305093941.305122-1-zstaseg@gmail.com>
+ <20260305093941.305122-3-zstaseg@gmail.com>
+ <9ea41e6c-7643-452e-abf4-f35238807a26@packett.cool>
+ <3bb1da4f-f2dc-421d-95f1-5bba9e3e1aec@gmail.com>
+ <02913b5c-ce09-4fb7-a3dd-71bf7330439d@packett.cool>
+Content-Language: en-US
+From: Stanislav Zaikin <zstaseg@gmail.com>
+In-Reply-To: <02913b5c-ce09-4fb7-a3dd-71bf7330439d@packett.cool>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-279649-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[javierm@redhat.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_FROM(0.00)[bounces-279651-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aurel32.net:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ocarina.mail-host-address-is-not-set:mid]
-X-Rspamd-Queue-Id: 0797C3048CD
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zstaseg@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.0.0:email]
+X-Rspamd-Queue-Id: 65B7D3045B9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Aurelien Jarno <aurelien@aurel32.net> writes:
-
-> Enable the two PCIe controller along with and their associated PHY. They
-> are routed to the M.2 M-key connector and to the the PCIe x8 slot.
+On 3/23/26 9:49 PM, Val Packett wrote:
 >
-> Add an always-on regulator sourcing 3.3V from the DC-IN input, to power
-> the PCIe ports.
+> On 3/23/26 05:04, Stanislav Zaikin wrote:
+>> On 3/21/26 8:36 AM, Val Packett wrote:
+>>> Hello again :)
+>>>
+>>> On 3/5/26 6:39 AM, Stanislav Zaikin wrote:
+>>>> Xiaomi 12 Lite 5G is a handset released in 2022
+>>>> […]
+>>>> +    touchscreen@0 {
+>>>> +        compatible = "goodix,gt9916";
+>>>> +        reg = <0>;
+>>>> +
+>>>> +        interrupts-extended = <&tlmm 81 IRQ_TYPE_LEVEL_LOW>;
+>>>> +
+>>>> +        reset-gpios = <&tlmm 105 GPIO_ACTIVE_LOW>;
+>>>> +
+>>>> +        avdd-supply = <&vreg_l7c_3p0>;
+>>>> +        vddio-supply = <&vreg_l2c_1p8>;
+>>>> +
+>>>> +        spi-max-frequency = <5000000>;
+>>>> +
+>>>> +        touchscreen-size-x = <10800>;
+>>>> +        touchscreen-size-y = <24000>;
+>>>> […]
+>>>
+>>> I have noticed this previously and started wondering why the size 
+>>> was 10x higher. Now with my own device (motorola-dubai) I actually 
+>>> found out why…
+>>>
+>>> With the actual 1080x2400 size, the mm values reported by libinput 
+>>> are 10x higher than what they should be, e.g. touching the bottom 
+>>> right corner with libinput debug-events:
+>>>
+>>>  event3   TOUCH_MOTION              2  +1.493s  0 (0) 98.80/98.75 
+>>> (1067.00/2370.00mm)
+>>>
+>>> (2.4 meter tall phone! :D) which was mooooostly "fine" except 
+>>> Phosh's on-screen keyboard was accidentally detecting super-fast 
+>>> down swipes as I was typing normally, and suddenly closing the 
+>>> keyboard as I was typing.
+>>>
+>> I wonder why some other devices with gt9916 (there are a couple in 
+>> mainline) that specifies 1080x2400. I don't think we can make this 
+>> assumption unless there was a mistake already in those mainline dts.
+>>
+>> Best regards,
+>> Stanislav
 >
-> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-> ---
+> Not sure what you meant there..
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+I meant the existing dts files that use gt9916:
 
--- 
+sm8550-qrd.dts
+
+sm8650-qrd.dts
+
+sm8650-hdk-display-card.dtso
+
+All of those specify 1080x2400. That means either those boards weren't 
+tested (by physically tapping the touchscreen at least) or that there's 
+something else.
+
+> I have not seen other devices do the 10800/24000 thing. Please set 
+> 1080/2400 (actual size not 10x larger).
+That part I get and I will.
+
 Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+Stanislav
 
