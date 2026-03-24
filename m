@@ -1,42 +1,103 @@
-Return-Path: <devicetree+bounces-279658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279655-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +AE3M0NJwmnvbAQAu9opvQ
-	(envelope-from <devicetree+bounces-279658-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:20:19 +0100
+	id qBHREORNwmnvbAQAu9opvQ
+	(envelope-from <devicetree+bounces-279655-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:40:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D05413047B3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:20:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACA9C304D15
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:40:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D49B9301371E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:20:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5818330E927E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:14:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FE4B35C181;
-	Tue, 24 Mar 2026 08:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0913C873B;
+	Tue, 24 Mar 2026 08:13:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="KbjwEFuV";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="tLRjGBKs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rmisp-mx-out1.tele.net (rmisp-mx-out1.tele.net [194.208.23.36])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B08315793;
-	Tue, 24 Mar 2026 08:20:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.208.23.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 198EB390999
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 08:13:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774340411; cv=none; b=q2kz7OswlXjIMO+Zpmt9z0R7ehfKcI6qJ8WYrhmmsWp7lvIlqxt2HYmxSZW7vfmoyPRSnzezvg9qKc04eTHG4JbNiUw7XZ5ivh+qshpDIMi5s4Iu2MRBxxgQKENirNLrlR1Vtyx90v1UhBUzM5udJCyn2yHuOEhLd3azSuZ1HLw=
+	t=1774340028; cv=none; b=HtoWRRVBguC1fo9DvnvVBik0PZiRenwDy6XQn76z4c+58Ojo3S/67CxcvSTOtoM83rMy2uOegm4ZTDny7nGzcn7e/H/c8dJ2rid2sVv53+6bUusyIPr/pEDA4J6MvdXGFWLwJa3X2BXXQbfRfPPkgKCrEMwugpLSjrfkDihsDhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774340411; c=relaxed/simple;
-	bh=6Nj7K0puMLvdvQEy4b5/QBJf7rztEGJDx6sVVYANlq0=;
+	s=arc-20240116; t=1774340028; c=relaxed/simple;
+	bh=iNaf9eBN6ctYm3Zb4iv7+Xg3CD88VXO0Qx3TRMXdTrY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uOmP+iuAuTgU4lhDe8YNUl4ypkeI9Bbkw/pnkqn2+ZomdexwukoYnv3MsLBzu7oKr5wWTZoN787i9A4N4Qg8i4tze5/YXi9DK3rIqMBnG5VSUyXssNu/nkazqrFK8gJR+PgFShVWuiyIzue8BKL32i+VN39DnCPximmPlL237PQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=fail smtp.mailfrom=emfend.at; arc=none smtp.client-ip=194.208.23.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=emfend.at
-Received: from [192.168.0.207] (194-208-208-245.tele.net [194.208.208.245])
-	by rmisp-mx-out1.tele.net (Postfix) with ESMTPA id 3D9F110E3CAA;
-	Tue, 24 Mar 2026 09:12:40 +0100 (CET)
-Message-ID: <47cee08f-4500-48ee-aea6-afba5a611211@emfend.at>
-Date: Tue, 24 Mar 2026 09:12:40 +0100
+	 In-Reply-To:Content-Type; b=oxEsW2EHbEx0ChvYC0z2Z4IERMRHhlsMLyJY6MJo7kqkJduZUntJQcmUgRHS1+cv59/wr1StNGxfEdVTTtrqVYeGrrVIAi/9R+Z4tolKmNGsV8swFwDPRRj7gfmG+40Na2AQpNNbOF2D9UnVowBcfcXbAZtRZA7gofNAavmnw/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=KbjwEFuV; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=tLRjGBKs; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1774340018;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ts8QTgurhQrOhcbvZk0taNObr5EoxTyEYtshId05lwo=;
+	b=KbjwEFuVqe+3MSvIDCuLMhDqswHy2DIsgTubivBIaRVDEBaUQAmMjkFXdGpnS69UpKF3Ba
+	MVynQPG82zle71D8Safc6Qg9HZnn48J89Hut2VQBs8nHCWRI3kqj0CkESEJRkDIHHtQ2mr
+	I7G47z7wCmeJJvWK9Ec+vAqUpyIIWvo=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-304-SBMIwDewMmWXjbkqCkd1eA-1; Tue, 24 Mar 2026 04:13:37 -0400
+X-MC-Unique: SBMIwDewMmWXjbkqCkd1eA-1
+X-Mimecast-MFC-AGG-ID: SBMIwDewMmWXjbkqCkd1eA_1774340016
+Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-43b3c9568a3so3871381f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 01:13:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1774340016; x=1774944816; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ts8QTgurhQrOhcbvZk0taNObr5EoxTyEYtshId05lwo=;
+        b=tLRjGBKsWx2v3MkqFof6mhkeG72MBCIalqseUCWx+26IeUgmwOx483p21Vv7uTmGPk
+         8Dn6GtmSnjS4K9yS0XgDPU1ezNssjfT3HKMI68OCBHuVEhWi8YgHraQXnBWz2LVpE2RR
+         6MvG7IUHSxFglOcL1y9spYDIp8oDSS2ndlG9sCJPzmeFDbOyE1tNSb2HIhLrq6p1BGjL
+         f8FrPrFsYXFc8Iv6Ykc/27hS5nC46VG9w1IFBiUfewv/i1qpIoqtmqY8YpLfGUIT8d9I
+         1edNVHIpev48Um5iBxRsQ9b7Z5sZW51jfufsAVmS5U4zqndPB4iPUgOm8KqqkEZA5Yy4
+         CtdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774340016; x=1774944816;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ts8QTgurhQrOhcbvZk0taNObr5EoxTyEYtshId05lwo=;
+        b=dwYMML1kuGSXN7Qpog43neYcCnaaRudPB5en2L9Qrk/XjAT14CsPwGwd/0gmt1E2Ac
+         Y2C4jXIGd6Hv8VsV0C6UP1hmUUGShRVeq9h98cpmoy8iwjqglzPCSvJjrCBDZwLF9Ttp
+         5Ee1S/eRTGXX6NBSocgSeb8RkOpOhXAA7ESvUiaO040PhKWiO9KMTdUTXgUpmP6V2gfv
+         4DKRFgWSKmihkUE3TK3RqYBr6z2aBelh40yhvp+xx5yHEhKd/dw5+WckYVyk4Guh+/0X
+         S6nAsdsyIjt4OlwvRq3pXZ2HkgSgMrJdq2RnRX7rbU2g02s6Jv9vuAGs/mAZLXDy3hG8
+         2iKg==
+X-Forwarded-Encrypted: i=1; AJvYcCWk1yqeoGpzCRq/Ob/tFOVyvMfywshCJc5p6F3PhEARJWPG1OyS8p8LKNNHbk2lNDQjx3VbAP8Zyf+Q@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6U+makgLkSVNDAGCUU8lHPz69fKaUKqsGlPhdn+WzaW7iggq8
+	61UI06NSfsBp90N3p8lpZO9JnahwYcm2wIBKk6LW99L2dEK4rTsKK4py2oOdNAiWu6pRdz4TuY/
+	fck5J302wa+Ezc6O7yr+nJvT6We3I79b5LR6Mu7f9Lwv8Guh22h6mVexKwt7RfsU=
+X-Gm-Gg: ATEYQzwPsa0o0xKWz5t2RXYirFPB7/2JE55WThtEFQoZ4Uf1sY37rnthj0dnXjZPag3
+	6ykubCep9S69CQSkYkbisO7yZuILydWOwGQQq3rfSc9jEQR1x0js8kEa3H7KBlW6hO4v9+4mfsi
+	8QaKnOG+zLEx128JYWjOnZEDmhXzkwJJsiORZKbTOdDnUbUc4Cpo1jE4GsumAfix+klcdOEBb+b
+	t2EDas++WO6Lx4RYH9VQbfnfMFHx3iH1iTY15GkyBBwF1CRClTzrSmlFNho+Gy+/4VA6kZXq/3d
+	xHSlL53Ag7FTabbTyiGbfetvE02MI/opOwQM+9slrqjqeR3bLYDlIkMJp2DH2CvmAC0K4vgXzCL
+	4QAU08N6JPuUZdZPqoYxsUTxG+pxRNP0gnp9rwBwrNdKLNzZ5sL1CDIpk
+X-Received: by 2002:a05:6000:4382:b0:43b:3e40:222d with SMTP id ffacd0b85a97d-43b64244451mr22895160f8f.19.1774340015876;
+        Tue, 24 Mar 2026 01:13:35 -0700 (PDT)
+X-Received: by 2002:a05:6000:4382:b0:43b:3e40:222d with SMTP id ffacd0b85a97d-43b64244451mr22895104f8f.19.1774340015382;
+        Tue, 24 Mar 2026 01:13:35 -0700 (PDT)
+Received: from [192.168.88.32] ([212.105.153.60])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b644ae048sm35875560f8f.1.2026.03.24.01.13.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Mar 2026 01:13:34 -0700 (PDT)
+Message-ID: <c4e3c49e-ecc0-4702-9d2c-88ff420c4647@redhat.com>
+Date: Tue, 24 Mar 2026 09:13:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,243 +105,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 8/9] media: i2c: ov08d10: add support for reset and
- power management
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Jimmy Su <jimmy.su@intel.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, bsp-development.geo@leica-geosystems.com
-References: <20260309-ov08d10-v2-0-81f8b5d99984@emfend.at>
- <20260309-ov08d10-v2-8-81f8b5d99984@emfend.at>
- <abkUy5U-cwK-6_kz@kekkonen.localdomain>
-Content-Language: de-DE
-From: Matthias Fend <matthias.fend@emfend.at>
-In-Reply-To: <abkUy5U-cwK-6_kz@kekkonen.localdomain>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v2 net-next 11/14] net: dsa: netc: add phylink MAC
+ operations
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: claudiu.manoil@nxp.com, vladimir.oltean@nxp.com, xiaoning.wang@nxp.com,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ f.fainelli@gmail.com, frank.li@nxp.com, chleroy@kernel.org,
+ horms@kernel.org, andrew@lunn.ch, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ imx@lists.linux.dev, Wei Fang <wei.fang@nxp.com>
+References: <20260323060752.1157031-1-wei.fang@nxp.com>
+ <20260323060752.1157031-12-wei.fang@nxp.com>
+ <acEIQqI-_oyCym8O@shell.armlinux.org.uk>
+Content-Language: en-US
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <acEIQqI-_oyCym8O@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[nxp.com,lunn.ch,davemloft.net,google.com,kernel.org,gmail.com,vger.kernel.org,lists.ozlabs.org,lists.infradead.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-279655-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279658-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[emfend.at];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[matthias.fend@emfend.at,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pabeni@redhat.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D05413047B3
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: ACA9C304D15
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Sakari,
-
-Thanks for your comments.
-
-Am 17.03.2026 um 09:46 schrieb Sakari Ailus:
-> On Mon, Mar 09, 2026 at 06:07:10PM +0100, Matthias Fend wrote:
->> Add support for the required power supplies as well as the control of an
->> optional sensor reset.
->>
->> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
->> ---
->>   drivers/media/i2c/ov08d10.c | 93 ++++++++++++++++++++++++++++++++++++++++++++-
->>   1 file changed, 92 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/media/i2c/ov08d10.c b/drivers/media/i2c/ov08d10.c
->> index ce0fa30a86129302b5dda0b8796e44054fd77c88..19035991e8bb164d4fca5d87ee4551191974e8bb 100644
->> --- a/drivers/media/i2c/ov08d10.c
->> +++ b/drivers/media/i2c/ov08d10.c
->> @@ -8,6 +8,7 @@
->>   #include <linux/module.h>
->>   #include <linux/pm_runtime.h>
->>   #include <linux/regulator/consumer.h>
->> +#include <linux/reset.h>
->>   #include <media/v4l2-ctrls.h>
->>   #include <media/v4l2-device.h>
->>   #include <media/v4l2-fwnode.h>
->> @@ -513,9 +514,17 @@ static const char * const ov08d10_test_pattern_menu[] = {
->>   	"Standard Color Bar",
->>   };
->>   
->> +static const char *const ov08d10_supply_names[] = {
->> +	"dovdd",	/* Digital I/O power */
->> +	"avdd",		/* Analog power */
->> +	"dvdd",		/* Digital core power */
->> +};
->> +
->>   struct ov08d10 {
->>   	struct device *dev;
->>   	struct clk *clk;
->> +	struct reset_control *reset;
->> +	struct regulator_bulk_data supplies[ARRAY_SIZE(ov08d10_supply_names)];
->>   
->>   	struct v4l2_subdev sd;
->>   	struct media_pad pad;
->> @@ -1265,6 +1274,56 @@ static const struct v4l2_subdev_internal_ops ov08d10_internal_ops = {
->>   	.open = ov08d10_open,
->>   };
->>   
->> +static int ov08d10_power_off(struct device *dev)
+On 3/23/26 10:30 AM, Russell King (Oracle) wrote:
+> On Mon, Mar 23, 2026 at 02:07:49PM +0800, Wei Fang wrote:
+>> +static void netc_port_set_mac_mode(struct netc_port *np,
+>> +				   unsigned int mode,
+>> +				   phy_interface_t phy_mode)
 >> +{
->> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
->> +	struct ov08d10 *ov08d10 = to_ov08d10(sd);
+>> +	u32 mask = PM_IF_MODE_IFMODE | PM_IF_MODE_REVMII | PM_IF_MODE_ENA;
+>> +	u32 val = 0;
 >> +
->> +	reset_control_assert(ov08d10->reset);
->> +
->> +	regulator_bulk_disable(ARRAY_SIZE(ov08d10->supplies),
->> +			       ov08d10->supplies);
->> +
->> +	clk_disable_unprepare(ov08d10->clk);
->> +
->> +	return 0;
->> +}
->> +
->> +static int ov08d10_power_on(struct device *dev)
->> +{
->> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
->> +	struct ov08d10 *ov08d10 = to_ov08d10(sd);
->> +	int ret;
->> +
->> +	ret = regulator_bulk_enable(ARRAY_SIZE(ov08d10->supplies),
->> +				    ov08d10->supplies);
->> +	if (ret < 0) {
->> +		dev_err(dev, "failed to enable regulators: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = clk_prepare_enable(ov08d10->clk);
->> +	if (ret < 0) {
->> +		regulator_bulk_disable(ARRAY_SIZE(ov08d10->supplies),
->> +				       ov08d10->supplies);
->> +
->> +		dev_err(dev, "failed to enable imaging clock: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	if (ov08d10->reset) {
->> +		/* Delay from DVDD stable to sensor XSHUTDN pull up: 5ms */
->> +		fsleep(5 * USEC_PER_MSEC);
->> +
->> +		reset_control_deassert(ov08d10->reset);
->> +
->> +		/* Delay from XSHUTDN pull up to SCCB start: 8ms */
->> +		fsleep(8 * USEC_PER_MSEC);
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->>   static int ov08d10_identify_module(struct ov08d10 *ov08d10)
->>   {
->>   	struct i2c_client *client = v4l2_get_subdevdata(&ov08d10->sd);
->> @@ -1371,6 +1430,10 @@ static void ov08d10_remove(struct i2c_client *client)
->>   	media_entity_cleanup(&sd->entity);
->>   	v4l2_ctrl_handler_free(sd->ctrl_handler);
->>   	pm_runtime_disable(ov08d10->dev);
->> +	if (!pm_runtime_status_suspended(ov08d10->dev)) {
->> +		ov08d10_power_off(ov08d10->dev);
->> +		pm_runtime_set_suspended(ov08d10->dev);
->> +	}
->>   	mutex_destroy(&ov08d10->mutex);
->>   }
->>   
->> @@ -1378,6 +1441,7 @@ static int ov08d10_probe(struct i2c_client *client)
->>   {
->>   	struct ov08d10 *ov08d10;
->>   	unsigned long freq;
->> +	unsigned int i;
->>   	int ret;
->>   
->>   	ov08d10 = devm_kzalloc(&client->dev, sizeof(*ov08d10), GFP_KERNEL);
->> @@ -1403,12 +1467,32 @@ static int ov08d10_probe(struct i2c_client *client)
->>   		return ret;
->>   	}
->>   
->> +	ov08d10->reset = devm_reset_control_get_optional_exclusive(ov08d10->dev, NULL);
->> +	if (IS_ERR(ov08d10->reset))
->> +		return dev_err_probe(ov08d10->dev, PTR_ERR(ov08d10->reset),
->> +				     "failed to get reset\n");
->> +	reset_control_assert(ov08d10->reset);
->> +
->> +	for (i = 0; i < ARRAY_SIZE(ov08d10_supply_names); i++)
+>> +	switch (phy_mode) {
+>> +	case PHY_INTERFACE_MODE_RGMII:
+>> +	case PHY_INTERFACE_MODE_RGMII_ID:
+>> +	case PHY_INTERFACE_MODE_RGMII_RXID:
+>> +	case PHY_INTERFACE_MODE_RGMII_TXID:
+>> +		val |= IFMODE_RGMII;
+>> +		/* Enable auto-negotiation for the MAC if its
+>> +		 * RGMII interface supports In-Band status.
+>> +		 */
+>> +		if (phylink_autoneg_inband(mode))
+>> +			val |= PM_IF_MODE_ENA;
 > 
-> You can declare i here.
+> I would prefer newer drivers not to use phylink_autoneg_inband()
+> anymore. Note that there is no need to support RGMII inband in the
+> kernel (nor is there any proper support without a "phylink_pcs"
+> being present to provide the inband status.)
+Would you mind sharing a patch adding a comment nearby
+phylink_autoneg_inband(), explaining the above for future memory?
 
-Right. But since the variable will also be needed in other places in the 
-next commit, it would have to be moved again. Therefore, in the end, 
-might it be simpler to leave it where it is?
+Thanks,
 
-Thanks
-  ~Matthias
-
-> 
->> +		ov08d10->supplies[i].supply = ov08d10_supply_names[i];
->> +
->> +	ret = devm_regulator_bulk_get(ov08d10->dev,
->> +				      ARRAY_SIZE(ov08d10->supplies),
->> +				      ov08d10->supplies);
->> +	if (ret)
->> +		return dev_err_probe(ov08d10->dev, ret,
->> +				     "failed to get regulators\n");
->> +
->>   	v4l2_i2c_subdev_init(&ov08d10->sd, client, &ov08d10_subdev_ops);
->>   
->> +	ret = ov08d10_power_on(ov08d10->dev);
->> +	if (ret)
->> +		return dev_err_probe(ov08d10->dev, ret, "failed to power on\n");
->> +
->>   	ret = ov08d10_identify_module(ov08d10);
->>   	if (ret) {
->>   		dev_err(ov08d10->dev, "failed to find sensor: %d\n", ret);
->> -		return ret;
->> +		goto probe_error_power_off;
->>   	}
->>   
->>   	mutex_init(&ov08d10->mutex);
->> @@ -1452,9 +1536,15 @@ static int ov08d10_probe(struct i2c_client *client)
->>   	v4l2_ctrl_handler_free(ov08d10->sd.ctrl_handler);
->>   	mutex_destroy(&ov08d10->mutex);
->>   
->> +probe_error_power_off:
->> +	ov08d10_power_off(ov08d10->dev);
->> +
->>   	return ret;
->>   }
->>   
->> +static DEFINE_RUNTIME_DEV_PM_OPS(ov08d10_pm_ops,
->> +				 ov08d10_power_off, ov08d10_power_on, NULL);
->> +
->>   #ifdef CONFIG_ACPI
->>   static const struct acpi_device_id ov08d10_acpi_ids[] = {
->>   	{ "OVTI08D1" },
->> @@ -1473,6 +1563,7 @@ MODULE_DEVICE_TABLE(of, ov08d10_of_match);
->>   static struct i2c_driver ov08d10_i2c_driver = {
->>   	.driver = {
->>   		.name = "ov08d10",
->> +		.pm = pm_ptr(&ov08d10_pm_ops),
->>   		.acpi_match_table = ACPI_PTR(ov08d10_acpi_ids),
->>   		.of_match_table = ov08d10_of_match,
->>   	},
->>
-> 
+Paolo
 
 
