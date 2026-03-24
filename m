@@ -1,171 +1,165 @@
-Return-Path: <devicetree+bounces-279838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279844-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GD7oFm+EwmkAegQAu9opvQ
-	(envelope-from <devicetree+bounces-279838-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:32:47 +0100
+	id MHAsH3SFwmkAegQAu9opvQ
+	(envelope-from <devicetree+bounces-279844-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:37:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6F7D308492
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:32:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E00730862E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:37:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8EAF4308E4A2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:28:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E2003309F6AD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:30:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 804343ED5C6;
-	Tue, 24 Mar 2026 12:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C2863F9F3B;
+	Tue, 24 Mar 2026 12:30:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="R1r/LdNx"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="SdxsBP5a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 608AF3F7ABC;
-	Tue, 24 Mar 2026 12:28:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F943F99CD;
+	Tue, 24 Mar 2026 12:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774355305; cv=none; b=Y8h/7SXO1MUcJCXSKHejd4eQ8wmgFesq6Llfqr/C86k/feAK2vhpEnyDF1YzMs4s1KsSMxjPRlKEF0lIxz/xG6JuZ3jcSBjdvEBOCP2d5XavQMFxui3t6rUGbpUF6gbtbxttJ6HLbwbqT9Ba/Fo3x267hVeGjaV2xBVRV1ErzCU=
+	t=1774355430; cv=none; b=POf4XFjnu1PnqculilLo9MAOJ06cwk0vCDSf6LMJ7ewFtKGsnkqE6JADYCVe+Sgl6EOQ7qiRxIrOJFjLpExoDXuxTnpMkQrk2Sge+YrQaqU9t3/xUtQHguFy98tP+K4pLHZlKFdRxFB6jG4JOS+WV20q5ySEOqVNep1MxhN7gcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774355305; c=relaxed/simple;
-	bh=3VnP6m7etZxs7IKEhPIG4ni84DChqCCpSXhE7LlGtIY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mlg+CeooZ6aM9HbUIUAEJQgcBmrg433BUIajfPgQQarBgxnanoQF6HVa/WOf5GuVn0HhF1ul29PH7vJVTOzOgWvbK8wn7qSU+p9NqE9zOioaAHIjLr76ufArUM2F1hPZa4e0p1FfIZjlYGL4dE6v35wRtPRswAjkvfBn8VR9Rl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=R1r/LdNx; arc=none smtp.client-ip=193.136.128.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 44CD0600085A;
-	Tue, 24 Mar 2026 12:28:19 +0000 (WET)
-X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
- with LMTP id ZSyy3OFlWjsN; Tue, 24 Mar 2026 12:28:17 +0000 (WET)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id B7CE36000872;
-	Tue, 24 Mar 2026 12:28:16 +0000 (WET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
-	s=mail2; t=1774355296;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0H07sbfA7geFvMVbwBHgjO9Zv4YRqDulO8wi0QJ4JIg=;
-	b=R1r/LdNxDWwh5jSyABP8e+EE3vZwy4hwHQI6Fb+sHg77++Ws2tOUkybACtMSYyv1beB9bT
-	Ia7pVb1GUjrjT2sWiAmuZ3wT/znd3dEBIyiiUMMrMnnwiVfSJzSELd9Saj9OrIN+xyRqlE
-	5qYq/U02pF8nrIhBKMGz3rn03bRE/suN1vgf4jNFJ7YFeXEHg63FH+Btc9D66tGirT6a6B
-	rfIervl+oGLlR5NxihO/gaz3dcI2Xswn7SISTuXtkl5Zz/FFJp87s95VH7dcZ1hUzVon+c
-	cK8xdEWDNzomsLF6f7CSX+AbM77BXQio+Y+acBK9zAl6pilcUQbqHWZtIXvr2Q==
-Received: from [IPV6:2001:8a0:57db:f00:3ee2:38aa:e2c9:7dde] (unknown [IPv6:2001:8a0:57db:f00:3ee2:38aa:e2c9:7dde])
-	(Authenticated sender: ist187313)
-	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 466F1360187;
-	Tue, 24 Mar 2026 12:28:16 +0000 (WET)
-Message-ID: <991ecd66-9db0-468d-b3b0-570ca89191bf@tecnico.ulisboa.pt>
-Date: Tue, 24 Mar 2026 12:28:16 +0000
+	s=arc-20240116; t=1774355430; c=relaxed/simple;
+	bh=rQpwsN7Cjk47XkxRTNapKlV5btqq58zaFAbWUaMcZsY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Zjky9EniRwEo080SWwsWtzegDk/8I0xYRHdBPr9379AUjNwZsjTw7Z9qmwAIoUBrjKbH0jX0WTZlfVgrbAKoC127rztCSQ3t9wmKC6OLGbBdj+JuYwXuHlteHNng+knItqPLbXlrdw1ZhLoubRomn784gyMJZaOj1nZ0FYbgKTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=SdxsBP5a; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=r2f84TTEWNrh6ZSSjAaDbdTly3GCRBMKBI+zPfcgc9Y=; b=SdxsBP5aJYd4z/xFwxCiA3pg2V
+	sTHuoCjzNSO3ZJ5umP6P3cZXGC/5ziC+kfIm8sJEHJRiic2wPmYXNFUyM9l0fHLsDJ4f4JVlxsI33
+	OcnmHXrll+bTLVa6hnH8JYiWjnddwpwwwGALji7C/57ZbXsMUNx2dJCTPoer0xGgcaRzdPPvFKgC7
+	NUaR8rCrpNqUkxwGc0LzrZ/jCaeGVzBvJtmz0oO7QUbWKPh7SwfGpiQFivoiCeuwAt5FX6Vy5+tO1
+	SpPef78ma2kA8OHhtNyR6JFaLxPzt9hwGA08McUAIbCzyNv6iFKRbIm4E7s0k5ILxji0XZDDQdgmx
+	JybvRH/w==;
+Received: from sslproxy05.your-server.de ([78.46.172.2])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <nora.schiffer@ew.tq-group.com>)
+	id 1w50tp-0005qD-1u;
+	Tue, 24 Mar 2026 13:30:21 +0100
+Received: from localhost ([127.0.0.1])
+	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <nora.schiffer@ew.tq-group.com>)
+	id 1w50tp-000Pna-1M;
+	Tue, 24 Mar 2026 13:30:20 +0100
+From: Nora Schiffer <nora.schiffer@ew.tq-group.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>
+Cc: Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	Nora Schiffer <nora.schiffer@ew.tq-group.com>
+Subject: [PATCH v2 0/7] J722S SGMII support
+Date: Tue, 24 Mar 2026 13:29:36 +0100
+Message-ID: <cover.1774354734.git.nora.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/6] usb: xhci: tegra: Remove redundant mutex when
- setting phy mode
-To: Thierry Reding <thierry.reding@kernel.org>
-Cc: Mathias Nyman <mathias.nyman@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, JC Kuo <jckuo@nvidia.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-usb@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-References: <20260127-diogo-tegra_phy-v2-0-787b9eed3ed5@tecnico.ulisboa.pt>
- <20260127-diogo-tegra_phy-v2-2-787b9eed3ed5@tecnico.ulisboa.pt>
- <acJ50sQraVmy4zXs@orome>
-Content-Language: en-US
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-In-Reply-To: <acJ50sQraVmy4zXs@orome>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: Clear (ClamAV 1.4.3/27950/Tue Mar 24 07:24:19 2026)
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[tecnico.ulisboa.pt,quarantine];
-	R_DKIM_ALLOW(-0.20)[tecnico.ulisboa.pt:s=mail2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279838-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-279844-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[intel.com,linuxfoundation.org,gmail.com,nvidia.com,kernel.org,linaro.org,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ulisboa.pt:email,tecnico.ulisboa.pt:dkim,tecnico.ulisboa.pt:mid];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[diogo.ivo@tecnico.ulisboa.pt,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[tecnico.ulisboa.pt:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nora.schiffer@ew.tq-group.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: C6F7D308492
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,tq-group.com:url,ew.tq-group.com:dkim,ew.tq-group.com:mid]
+X-Rspamd-Queue-Id: 1E00730862E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+The J722S CPSW and SERDES are very similar to the variants found on the
+AM64, but they additionally support SGMII. Introduce new compatible
+strings for the J722S to add this support to the drivers.
 
+This is a prerequisite for the Single-Pair Ethernet interface of the
+TQ-Systems MBa67xx baseboard for the TQMa67xx SoM, which will be
+submitted separately.
 
-On 3/24/26 11:48, Thierry Reding wrote:
-> On Tue, Jan 27, 2026 at 03:11:48PM +0000, Diogo Ivo wrote:
->> As the PHY subsystem already synchronizes concurrent accesses to a PHY
->> instance with a core-internal mutex remove the driver specific mutex
->> synchronization.
->>
->> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
->> ---
->> v1->v2:
->> - New patch
->> ---
->>   drivers/usb/host/xhci-tegra.c | 4 ----
->>   1 file changed, 4 deletions(-)
->>
->> diff --git a/drivers/usb/host/xhci-tegra.c b/drivers/usb/host/xhci-tegra.c
->> index 8b492871d21d..927861ca14f2 100644
->> --- a/drivers/usb/host/xhci-tegra.c
->> +++ b/drivers/usb/host/xhci-tegra.c
->> @@ -1357,15 +1357,11 @@ static void tegra_xhci_id_work(struct work_struct *work)
->>   
->>   	dev_dbg(tegra->dev, "host mode %s\n", str_on_off(tegra->host_mode));
->>   
->> -	mutex_lock(&tegra->lock);
->> -
->>   	if (tegra->host_mode)
->>   		phy_set_mode_ext(phy, PHY_MODE_USB_OTG, USB_ROLE_HOST);
->>   	else
->>   		phy_set_mode_ext(phy, PHY_MODE_USB_OTG, USB_ROLE_NONE);
->>   
->> -	mutex_unlock(&tegra->lock);
->> -
-> 
-> It looks to me like the mutex here is trying to protect against
-> tegra->host_mode changing while we're setting a different mode. That
-> doesn't seem to be taken care of by the PHY internal mutex.
+v2:
+- Keep support for the AM64 compatible strings as a fallback, adjust commit
+  messages (patches 1-3 and 7)
+- No changes to patches 4-6
 
-I'm not sure I understand your point. Do you mean guarding against
-tegra->host_mode changing in tegra_xhci_id_notify()? If so I don't see
-how it would guard against that.
+Nora Schiffer (7):
+  dt-bindings: phy: ti: phy-j721e-wiz: Add ti,j722s-wiz-10g compatible
+  dt-bindings: phy: ti: phy-gmii-sel: Add ti,j722s-phy-gmii-sel
+    compatible
+  dt-bindings: net: ti: k3-am654-cpsw-nuss: Add ti,j722s-cpsw-nuss
+    compatible
+  phy: ti: phy-j721e-wiz: add support for J722S SoC family
+  phy: ti: gmii-sel: add support for J722S SoC family
+  net: ethernet: ti: am65-cpsw: add support for J722S SoC family
+  arm64: dts: ti: k3-j722s-main: use J722S compatibles for WIZ, gmii-sel
+    and CPSW3G
 
-Diogo
+ .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 20 ++++++++++------
+ .../bindings/phy/ti,phy-gmii-sel.yaml         | 24 ++++++++++++-------
+ .../bindings/phy/ti,phy-j721e-wiz.yaml        | 20 ++++++++++------
+ arch/arm64/boot/dts/ti/k3-j722s-main.dtsi     | 12 ++++++++--
+ drivers/net/ethernet/ti/am65-cpsw-nuss.c      |  8 +++++++
+ drivers/phy/ti/phy-gmii-sel.c                 | 11 +++++++++
+ drivers/phy/ti/phy-j721e-wiz.c                | 24 +++++++++++++++++++
+ 7 files changed, 94 insertions(+), 25 deletions(-)
 
-> Thierry
+-- 
+TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht München, HRB 105018
+Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+https://www.tq-group.com/
 
