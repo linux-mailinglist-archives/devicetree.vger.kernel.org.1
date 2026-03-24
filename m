@@ -1,125 +1,145 @@
-Return-Path: <devicetree+bounces-279879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280042-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2IRPA+SNwmnDewQAu9opvQ
-	(envelope-from <devicetree+bounces-279879-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 14:13:08 +0100
+	id MN/PIL/pwmnnnAQAu9opvQ
+	(envelope-from <devicetree+bounces-280042-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 20:45:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4FE6309167
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 14:13:07 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F7F431BB7E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 20:45:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6C92431CE594
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:55:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id ED2DD304EE79
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 19:44:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054893FA5F0;
-	Tue, 24 Mar 2026 12:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F170238F929;
+	Tue, 24 Mar 2026 19:44:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mV/4d8fS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="arziCHdE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7EF3FA5E2;
-	Tue, 24 Mar 2026 12:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC6BA3451CF;
+	Tue, 24 Mar 2026 19:44:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774356853; cv=none; b=tSyFy8alLSoHcDrA+5Aa8mZ5Hh6ihRRMQMUk9+lLkiooinQNRXxDvl70lS15fWVmlHf6C5QyGVDdNTF9gATjmWwO7mVgHW1rH4qZXV5yOQSA6M8bUF57uJJF+L6HwQxC4p92UKlYdGYWmdo7spxR2/PSdzACSWZ073Ibv/EDz9Y=
+	t=1774381453; cv=none; b=QHd86smJs+kV3o9pz7ssPQp3HpR9pBCHEY9yox5n6xkkuv89o3th4grfOasWX0gBBUoUYDrfmxAppmhtRm3oiSHKspx+vIuThp/iPlk6UPTyLAStg02DHJoYTLfqSQzTHGn0Fdk30u+BtLqKSSU5bABi9yBSmz80nptNiyCDzEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774356853; c=relaxed/simple;
-	bh=X056UQ+E8ZZsLbM4gsXZpqj2276GOk+0DrTcty1UD14=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bGG0ojipPNdodaSDOvQ7uwQITPbK64w8SxhXL4MXOeYmGlegJN26G++G3D5FOjN79OoskPWO7Y/LgB+SrN2whS5ZeCSdtM2A3k2zrwqaPEeYlad0Ne8czmiqTx/30edeg2iCPS2sUgayYTFvhRtvME5zxhfy4sYiPV1ZKjvjTo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mV/4d8fS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4EF6C19424;
-	Tue, 24 Mar 2026 12:54:10 +0000 (UTC)
+	s=arc-20240116; t=1774381453; c=relaxed/simple;
+	bh=plo2BsN6TPry+7IqvpvQqRQxEQf/o9qNSVJWv21qtAA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=uESouTD0V2ftmfQQYc5D8Vna/adFLAwSLLyKs+5ajitGDrN76r8tf1U9HTUPV6RjMLHsFCd6W86z0tcs9DFo+FmZ1v2Jn+4cBPyc102MzDUkDgt/Nsw6WdfmJDQtWy7MFoFW5pO6bkUY8qL4EAzZZIM2RUpA2I6IerAizqfMuqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=arziCHdE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26723C2BCB1;
+	Tue, 24 Mar 2026 19:44:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774356853;
-	bh=X056UQ+E8ZZsLbM4gsXZpqj2276GOk+0DrTcty1UD14=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mV/4d8fSYxWZlacVCKui2jT4IWSbZ0wkmj1Gdjanmz1rq8qI9nnnG6p5rzgdmVz8j
-	 hB1+BnNtTvQrsmC80g3ypsPBiimtxXnj2mC61+DvlP6aBAVD/sAKB6zof9HRD32odj
-	 UC+IibluOupx7w685nD6lBeAkHICRjHpwfgaf0PpchK1pi2Rn2e3uPfCFsqrkQt2g+
-	 jqovuJ5FEh7tFLVlYmkRhcFwKT+mxx1p5G0tH6xjgSKRKR+qaumN85LX9ibR7E3V0W
-	 fbWy7lkmozPbE7rfcckoEEZaDfOOFyH/x6wZYAwF4pczJV4mzhGivCBcUxy04DanFZ
-	 wNSvigWbLZ7yQ==
-Message-ID: <055a7281-3e41-4e26-a8c8-5e28d69c0685@kernel.org>
-Date: Tue, 24 Mar 2026 12:54:08 +0000
+	s=k20201202; t=1774381453;
+	bh=plo2BsN6TPry+7IqvpvQqRQxEQf/o9qNSVJWv21qtAA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=arziCHdE1NM/Gy9crGNG7EEgv2FMpcFZIO4abbT+YWJj+HU1tqEHcrSTx+WSmC1UC
+	 VJJrPh72PUwadrlL6ZagpMVKh6avIAXhgSuLazTlf0zw6eT5XXca547HsEvCwO5yLs
+	 GxJBu9BnDp2lOll/Dtb8tcwb+EVb8lowGO4L76ldkInJTGRpE4CZ/SLo12UBQTrpWh
+	 oRIVWBWT6udtulx2JvyAiSqfQDdLsT8sF38BjT186AX5r95aoNH52vZcgzAggQ5wNY
+	 SyBjuPebkNnlsJYgjRSmCtqDSxDoSfIpqDpORNrtrc61A/txyIzcQCCgj5TDpspwUc
+	 IqmHP6TQdWjag==
+From: Mark Brown <broonie@kernel.org>
+To: olivier.moysan@foss.st.com, arnaud.pouliquen@foss.st.com, 
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, 
+ Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: lgirdwood@gmail.com, krzk+dt@kernel.org, robh@kernel.org, 
+ conor+dt@kernel.org, devicetree@vger.kernel.org, 
+ linux-sound@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20260321012011.125791-1-jihed.chaibi.dev@gmail.com>
+References: <20260321012011.125791-1-jihed.chaibi.dev@gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: stm32: Fix incorrect compatible
+ string in stm32h7-sai match
+Message-Id: <177435712084.80116.5302380668283249517.b4-ty@b4>
+Date: Tue, 24 Mar 2026 12:58:40 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/3] media: qcom: camss: CAMSS Offline Processing
- Engine support
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
- vladimir.zapolskiy@linaro.org, laurent.pinchart@ideasonboard.com,
- kieran.bingham@ideasonboard.com, robh@kernel.org, krzk+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- johannes.goede@oss.qualcomm.com, mchehab@kernel.org
-References: <xy6TKmdveRx4cMshSHEUGZ7s3lbsurWcsc2vq05A7_N4bCialR7EelZitouugtZDkpFCAghjqY4NDdSQEIPprw==@protonmail.internalid>
- <20260323125824.211615-1-loic.poulain@oss.qualcomm.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20260323125824.211615-1-loic.poulain@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Mailer: b4 0.16-dev-6cc06
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1174; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=plo2BsN6TPry+7IqvpvQqRQxEQf/o9qNSVJWv21qtAA=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBpwumKdqUnr28hTL5soqDMs+G6Rv0vwemjk3MdZ
+ 6pYqlb7Wu6JATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCacLpigAKCRAk1otyXVSH
+ 0IvqB/9D5tShr/o1I2myc+UJ63dP7OyphYGaE1zN3aptMeKDcvAVsBE/xXuVYn4kb7jZyn7i/YK
+ 6z4wA3la+lr/ye1loftr0T85d0CGjZJFjz3vRGcLmNk4N5LMeyOm0F74kGn++skaK46qOJustqK
+ utK4ZQU+Jk/qhH463CQA58v188a8ZYJueoJ9/7Ui5orpLejlZR8jGNxIJt0lCVTrw7YHT0pN9On
+ eu9+3kIHPT9nL4gJtvWjOmuAw049QYDVYz/BH5LpWZZ0BaMjm3sTAQxFFqmwPPQnnR0UfF0qw3B
+ 64aRhp0qVp5vWYYfA6jmr9IX19juUTvnWpM29cRLdQybJR08
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279879-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-280042-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[foss.st.com,gmail.com];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A4FE6309167
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1F7F431BB7E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 23/03/2026 12:58, Loic Poulain wrote:
-> This first version is intentionally minimalistic. It provides a working
-> configuration using a fixed set of static processing parameters, mainly
-> to achieve correct and good-quality debayering.
+On Sat, 21 Mar 2026 02:20:11 +0100, Jihed Chaibi wrote:
+> ASoC: dt-bindings: stm32: Fix incorrect compatible string in stm32h7-sai match
 
-You need the other 50% of the kernel side - the generation of bayer 
-statistics in the IFE, as well as generation of parameters to feed back 
-into the OPE - which requires a user-space implementation too, so a lot 
-of work there too.
+Applied to
 
-I'd also say when we have an ICP we should be using it via the HFI 
-protocol, thus burying all of the IPE/OPE BPS and CDM complexity in the 
-firmware.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.0
 
-Understood Agatti has no ICP so you're limited to direct OPE/IFE 
-register access here. For HFI capable platforms - the majority - HFI is 
-the way to go.
+Thanks!
 
-I'll publish an RFC for Hamoa for that soonish so we can make sure both 
-coexist.
+[1/1] ASoC: dt-bindings: stm32: Fix incorrect compatible string in stm32h7-sai match
+      https://git.kernel.org/broonie/sound/c/91049ec2e183
 
----
-bod
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
