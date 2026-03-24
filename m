@@ -1,184 +1,250 @@
-Return-Path: <devicetree+bounces-279815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279819-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yEntBdF+wmnqdAQAu9opvQ
-	(envelope-from <devicetree+bounces-279815-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:08:49 +0100
+	id CFXXJVF/wmnqdAQAu9opvQ
+	(envelope-from <devicetree+bounces-279819-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:10:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 834F9307EAC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:08:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00346307F2D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 13:10:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6124A309661D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:01:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D1F3030825F9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 12:02:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F195F3F0AB0;
-	Tue, 24 Mar 2026 12:01:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1138E37C10F;
+	Tue, 24 Mar 2026 12:02:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NJnODxpr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023098.outbound.protection.outlook.com [52.101.127.98])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f181.google.com (mail-dy1-f181.google.com [74.125.82.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B0E33EE1C8;
-	Tue, 24 Mar 2026 12:01:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.98
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774353684; cv=fail; b=Bo9mHcn4Ti4cG/SiJqj7NsqEJ2Jz5QPcEtzLnwsmke7nWp/kOq5OuzFiuZGFPlRsvW2OVsfhhwoHRkV9vPR8lKtpN2nhjXnLfygjfQ/CLNE+PTQkUaNB38oaTrEH1rqCtAhgB5K+ML1+cQbPe79Crrx/9IizdTDBNzhmE3wrA94=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774353684; c=relaxed/simple;
-	bh=dYIZHQann72PEHWA7xBFzSc5W+gp6LiDsiFDG9OXrHI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Y5pzQB1SefuO8Yr1TnV9hbrD9H9jLrGxLOPzU2NbrwASGlWyrlemUAAPsVB19COCJJpOwTVKJCDL3Sf2hxVRDY4T4A+s3a6XXlpgvvisaAJN9hqrn8PQ5PCR7DOtxlx0a9WGsa6I/KugN0gvHObZT+wTKCxbGMsonz21I4YrAgk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.98
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oWMn6h0jVYZYg7psgTl5Lr7N1TgrzV/lq32lObUJhwN/Q02U2WS4EPgOborsA5VQCm+6K/gGSNvASFMhZw7Z3AguK5UpaOY6l1dl6/drMrJ7gcKfhgGWHSHTTKtbSGGZHfzzfonhU+WWfM6kCwRM1GYJEsl52TIonsGJvU7s94yVjaPQBvbGym1icWkPbqjycwkUCJBDxkr5o7FglkcwGc6UNeAAp41v3C0VHYXFyXbjIIN02l+oHYp7sJolrLPyF5hTD5/ZFAhWM5gRcSI6WMF+/IY9VMBdYyZzkBofcNeQxMBeREDxx6/HddK5jXTw007R3L+FVS1tiVaDcM0piQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LWWYCFNj3Zlidx+/Ni8noLymGVAiUD1w5Es+iD96Ye4=;
- b=E2O5trhsriFdLCky1QoYF6KCPtz+1vyPqaOZRgJimnq6UKewDEKPx3ha9Lfa7TkuUkw8Z0WIwkmpJ607tLZc+k9UDbt/wfYRpDS2DyVuwGR/SIkvvy7+dLEWbcvPgsLe9STx4eU5R11esDSD+04yT/DKeJ28R46nE8BhK37tW1KdonjpY6hkMbHVUHglvgseQykW9xS4d41zCASRqhM7v+0FOBtSrN4Agnn8hwFCtDEdzdfY4HQd3xhLMeeRSfbGLANBLTJJ9+LWTeQsvyjGlQrz9cMGIZltKlvMB2+Ww4CfjQD6Ri+rRGU2dmGDl3S+8QKIeMk22WXu9Cl5H7ep/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from PS2PR02CA0089.apcprd02.prod.outlook.com (2603:1096:300:5c::29)
- by JH0PR06MB6918.apcprd06.prod.outlook.com (2603:1096:990:65::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.31; Tue, 24 Mar
- 2026 12:01:16 +0000
-Received: from TY2PEPF0000AB86.apcprd03.prod.outlook.com
- (2603:1096:300:5c:cafe::f) by PS2PR02CA0089.outlook.office365.com
- (2603:1096:300:5c::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.31 via Frontend Transport; Tue,
- 24 Mar 2026 12:01:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB86.mail.protection.outlook.com (10.167.253.10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.19 via Frontend Transport; Tue, 24 Mar 2026 12:01:16 +0000
-Received: from guoo-System-Product-Name.. (unknown [172.20.64.188])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id E92234126F9C;
-	Tue, 24 Mar 2026 20:01:14 +0800 (CST)
-From: Jun Guo <jun.guo@cixtech.com>
-To: peter.chen@cixtech.com,
-	fugang.duan@cixtech.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	vkoul@kernel.org,
-	ychuang3@nuvoton.com,
-	schung@nuvoton.com,
-	robin.murphy@arm.com,
-	Frank.Li@kernel.org
-Cc: dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	linux-arm-kernel@lists.infradead.org,
-	Jun Guo <jun.guo@cixtech.com>
-Subject: [PATCH v5 3/3] arm64: dts: cix: add DT nodes for DMA
-Date: Tue, 24 Mar 2026 20:01:13 +0800
-Message-Id: <20260324120113.3681830-4-jun.guo@cixtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260324120113.3681830-1-jun.guo@cixtech.com>
-References: <20260324120113.3681830-1-jun.guo@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6F93EF0DD
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 12:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774353726; cv=none; b=hK5CV11piAGDK5gOO4ZMxTgrkKAmelF7glzh9U6ftVI7Dvg4bXcIqUtLUY7GWa/yaTKxcPcIZYsAAKQk1SfPB6j/JG7mgjJikhVXEL7SlP807LotE8hBe8XKjCYYQw/PRT7i0C5Dx9SvCIdaXuoJRcJxmT2gVzRjgIy9FqPF0t0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774353726; c=relaxed/simple;
+	bh=EUUQ8XnCoFxZc5Dgh6FndAK97NzbYP6VaYZ7nQS0BCA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CmefSX2Ma0ib5RdyQ9HMfzlfOctE+Rwo2N73c0KpEOuVbQ/ouxJBc8DkLlMuSpquCc4t6ihUpI+523QGdS1LPdSLafrK9qbLuWslSQOzg5clP5kOZ0GixBTfcHn1WFu4193w/Bcm0keDI6p9LakUI2Vv2I/cupi9IG0Q8HKbe4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NJnODxpr; arc=none smtp.client-ip=74.125.82.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f181.google.com with SMTP id 5a478bee46e88-2ba895adfeaso1312352eec.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 05:02:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774353722; x=1774958522; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=r7Cvw7CMASLC6B/r3+cukkHse/ycf7d5uQq99RiEAg0=;
+        b=NJnODxpr5gUfK5SIDrxtARgXCMUiWVVaMJIgqPKKPrS10tjFobAlXGQWdfZw3N1Swg
+         veyQnM7vahPwd2K/prXjeg+M+ydTeq6YLDOcZxyHsyeMq3c9JcrIie1jXOI1F2Xlt/NN
+         pmZuaekEfKWHS6tCYcirlzOGbrzrBnT4pjxKAcX2tK5a1ipBhttZ8Q8O7+MVx3c1i4P/
+         HZcZbrJu3YLPtuQB8SG9UDEUNH0pToi+VV0Gu2PAQrTch/Hm/aCalzOzNH6eTIy7Iedv
+         +pHYtxxA//c9/lyt/gVRwzC+Ia+1gO+r81oWCVl0WGAC0KuaCsQ6+fFfXWP1XxLc4zPV
+         y4cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774353722; x=1774958522;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=r7Cvw7CMASLC6B/r3+cukkHse/ycf7d5uQq99RiEAg0=;
+        b=q8KN7jiCVcIai6FH1dqDnEl2D0CmpVoUT8ffrxEhk+VvOoW7lIz+kENsnHDn3XNn0r
+         JmXim++MEVdxDp+siJgLmIsoUTcDVdRvVsGH5W/WhuiROE4xAcr3rjOk+XgPJ9G9BCYV
+         0eQ3EY3/zklfC87V21jdSstWiDvWvuNReMWtaqGsMvmLv/e1UkkSk+FnA0b6Jh2Ustgj
+         d9KBJMXFhdUdQhyd1mu5WCxFCjN6Vf4O8cZ043EzNfRl7AkSCHRc0a1AdjjXwebfKJs/
+         fKUl7shBZeOqx+OFYKDcDzBkQyah6vPImdIl4q/eC6or3nLjrWfXeVsmdtSZ9tuZED7z
+         +oRw==
+X-Forwarded-Encrypted: i=1; AJvYcCX/QgMjPlFDEKJKtTdXlWZyNpLa78nTfYOMpwxe19OeJrXFY+T35iIgQVALDuIQ8Vg+YPPd7oBOn/gp@vger.kernel.org
+X-Gm-Message-State: AOJu0YzG7LmFNfEzwxZqVaYQW3B+rklTMr8IMpZ0RBoYPaLZL953OQio
+	ftR1i3b8foCREml1rZUvSQFOWUV1+YeKEGJk/8ulvqC0CDLmU9a9Vr5W
+X-Gm-Gg: ATEYQzxq9unfMb1reEKkZU6D3FyvEK0AnF+8yYVTZbd/vO28SrrHT0hObDIirC49XUT
+	zEWgBwiQ/CpvuyTHr6TdofXNdYez/vMa3Ijckxvq+oenClstRVrQfUIWgNQ19zrvPel5gWqhw9Z
+	ub1xoNAo9ZltCPTi6m0jE5LyvZFPAjWpLJSGrQht6NS55XQyezODSK8vHU2W/5JH8VDyh1f+TDA
+	yEqjqr7+axj69cbp6eIudyhCdncdlKt0ZwV3IaZKvx562XjpmSq2kUPqcuGkN0OXFFWitqO6iS9
+	BjYdenQGYwkru1hhaD2ZZfJDKGhCFThQ0X8b/cBIu5FvK+2x2QNE4Pfi6sn97eYWPUagPujIw2Q
+	BmaddHFscEi0g/KtFbD8ovashU1po1XSfkRrCWXqEnTepYYHv1406tDYeUfwCiPZNwAgizLCIgC
+	dUA5cLyxxgY/JBblHPyvw5a2ahL7/jG7fnj8cvkr703IhLxisKeAEaMeEJ28HSALUDD4/AQ4DxN
+	Z/wGrIVeXY=
+X-Received: by 2002:a05:7300:548:b0:2c0:fd7c:ddf4 with SMTP id 5a478bee46e88-2c109752dd0mr7204385eec.21.1774353721366;
+        Tue, 24 Mar 2026 05:02:01 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c10b31bef1sm18999251eec.26.2026.03.24.05.02.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Mar 2026 05:02:00 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <77e59d08-841f-40fd-a18e-f57271a395df@roeck-us.net>
+Date: Tue, 24 Mar 2026 05:01:59 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] hwmon: (tmp108) Add support for NXP P3T1084UK
+To: Anshika Gupta <guptaanshika.ag@gmail.com>, corbet@lwn.net,
+ skhan@linuxfoundation.org, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+Cc: lakshaypiplani77@gmail.com
+References: <20260323162252.15508-1-guptaanshika.ag@gmail.com>
+ <20260323162252.15508-3-guptaanshika.ag@gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20260323162252.15508-3-guptaanshika.ag@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB86:EE_|JH0PR06MB6918:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 38f0ea97-5934-4217-2dd9-08de899d0d88
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700016|82310400026|376014|7416014|921020|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	K42PWuQuvq6bXJE/20NtZAs7Jsesy81jHv89v0t/2/Qtj2BzCvfT7GMm7s5Y10bi/nXPC4dWACrkxNNujXb4AR4iCB1xx5XwY2ik2kv+D21W+JGSKGG0IyXaKnef1LTnuuBjsEngHx+iYdxZX6+cBE5Nsp7/D/uS1igGSBoiglJLntTDJdFjijrVZ3Ie5AKEJvyO8NKvDVc1B1Fp7iTyzdGIVtBYLoDaU7AQussxGZ8qfCUnYJlRPgMDKOmbEXq4c1s+0pcuQh+KOL7oj+xRhmE7T9ypmMy7Ygy4F4y5lHajDRjiyYS26W0187pMuaErTNO364aBkrLU719GR6tdgLp+LoNq4r5h5jrl665qAma634/7RsUi5z5L4VP5dfzU1AAV8W0W32K7hMXW8KNGSITq1TyGJoa3UJLK4NYKCbQXPgCPM2SQap2YSCVHK3bfN+aSS2xilTm5+dxV1LbRFvMSU2gRtkO+6Eu/o0w3Exj/gdHvUdNV/bVVRi6qC/QZ7HQQXBJf0PdI+9G2yCr1eQ6bqbt/G4KqogJ/gq8rD5tAxYvkpBoxH5J2sld7FeNeV3/8bjUwbDmVDaD45tzXgOeHNXjS/jNGH6v/MJ4b0bZzXbklyhSEtBlhdtf9u4tq3B/HKN0wXRfxINtbrLsCfQ0bMp1tdWRESrdymE+f+TxHGcKmEy3aylwz3fl0Ps5FixMGSH9wdziV+8Sz7PlETewhqRutD1wiJQ8LEoLPgHSrC6KshjiqqOZKTojtqc0wYetUD74GjZcbcGTyz1ptJtBh7nctmV95WHC5hENHY2Gn6vyUZqml3bfuf4sGFbA2
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(82310400026)(376014)(7416014)(921020)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	bQIc2DcuCBQw74f3bB5epBywbsq1IPKZWPUVfSD2kyLXP0sIbWzDkEiT0gBPmlgvneVGRE4wnQ20ybhwPEfBIH8/duPCzvigwuBQ2cmOlgSWXjicUfqwHjsed7lkQQ9i55upy7aDXbqSX6kPggHR3xhmK9FK0j0dj+iACpHlS+U38BwF+Qfo/DY3GjPvFHjJu+rKOBzmUIz+Q3lvTtQnFmxt06lDHOa6tuDtPVhN3fCJ9WhHfpd1yJGNXIRMGv5DmRfq8xjqsmTGJvKiNSeQFIJnHCF76Z68X6yBxMDpSH3uXj7or04Ilre0tz7mTs0byVeZYiV0pJU+RdY2DBscShzBqV2/MKIr4J7jYW19g3i5XVGi/Y3HcbiEx0LUFt+gbL87qRoeV/EdSuJGBhUDcz0RDrNU/HSKdjqCjYD5fABntZcI371Rv7nS14A/aqqF
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2026 12:01:16.0988
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38f0ea97-5934-4217-2dd9-08de899d0d88
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	TY2PEPF0000AB86.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB6918
-X-Spamd-Result: default: False [3.54 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DMARC_NA(0.00)[cixtech.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-279815-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,lwn.net,linuxfoundation.org,vger.kernel.org,kernel.org];
+	TAGGED_FROM(0.00)[bounces-279819-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jun.guo@cixtech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 834F9307EAC
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 00346307F2D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add the device tree node for the dma controller of the CIX SKY1 SoC.
+On 3/23/26 09:22, Anshika Gupta wrote:
+> The NXP P3T1084UK is a ±0.4°C accurate digital temperature sensor with
+> a 12-bit temperature register, configuration register, and alert
+> functionality over I²C/I3C. Its register interface matches the TMP108
+> programming model, so the existing tmp108 driver can bind it without
+> functional changes.
+> 
+> Add "nxp,p3t1084uk" to the OF match table and "p3t1084" to the I²C
 
-Signed-off-by: Jun Guo <jun.guo@cixtech.com>
----
- arch/arm64/boot/dts/cix/sky1.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+This does not match the code (added "uk").
 
-diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-index 210739beac6d..124a29147c6c 100644
---- a/arch/arm64/boot/dts/cix/sky1.dtsi
-+++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-@@ -480,6 +480,13 @@ iomuxc: pinctrl@4170000 {
- 			reg = <0x0 0x04170000 0x0 0x1000>;
- 		};
- 
-+		fch_dmac: dma-controller@4190000 {
-+			compatible = "arm,dma-350";
-+			reg = <0x0 0x4190000 0x0 0x10000>;
-+			interrupts = <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH 0>;
-+			#dma-cells = <1>;
-+		};
-+
- 		mbox_ap2se: mailbox@5060000 {
- 			compatible = "cix,sky1-mbox";
- 			reg = <0x0 0x05060000 0x0 0x10000>;
--- 
-2.34.1
+Also (from Sashiko's review):
+
+The commit message mentions the device supports functionality over I2C/I3C.
+However, the driver's I3C device ID match table doesn't seem to be updated
+for this new device.
+
+Will the driver be able to bind to the device on an I3C bus without an
+entry in p3t1085_i3c_ids?
+
+static const struct i3c_device_id p3t1085_i3c_ids[] = {
+	I3C_DEVICE(0x011B, 0x1529, &tmp108_data),
+	I3C_DEVICE(0x011B, 0x152B, &p3t1035_data),
+	{}
+};
+
+... which is actually also a concern/question for P3T1085. As far as
+I can see from the datasheet, both use 0x1529. This should be mentioned
+somewhere, maybe as comment in p3t1085_i3c_ids.
+
+> device-id table so the driver probes the device via both devicetree and
+> board data.
+> 
+> Datasheet: https://www.nxp.com/part/P3T1084UK
+>             https://www.nxp.com/docs/en/data-sheet/P3T1084UK.pdf
+> 
+> Signed-off-by: Lakshay Piplani <lakshaypiplani77@gmail.com>
+> Signed-off-by: Anshika Gupta <guptaanshika.ag@gmail.com>
+
+Per this sequence, Lakshay would be the author, which is not reflected
+by the e-mail itself. That suggests that Signed-off-by: Lakshay ... might
+not be appropriate.
+
+> ---
+>   drivers/hwmon/tmp108.c | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/hwmon/tmp108.c b/drivers/hwmon/tmp108.c
+> index 3ea5f6485744..db46961a31d3 100644
+> --- a/drivers/hwmon/tmp108.c
+> +++ b/drivers/hwmon/tmp108.c
+> @@ -538,6 +538,7 @@ static DEFINE_SIMPLE_DEV_PM_OPS(tmp108_dev_pm_ops, tmp108_suspend, tmp108_resume
+>   
+>   static const struct i2c_device_id tmp108_i2c_ids[] = {
+>   	{ "p3t1035", (unsigned long)&p3t1035_data },
+> +        { "p3t1084", (unsigned long)&tmp108_data },
+
+Indentation seems off here.
+
+>   	{ "p3t1085", (unsigned long)&tmp108_data },
+>   	{ "tmp108", (unsigned long)&tmp108_data },
+>   	{}
+> @@ -546,6 +547,7 @@ MODULE_DEVICE_TABLE(i2c, tmp108_i2c_ids);
+>   
+>   static const struct of_device_id tmp108_of_ids[] = {
+>   	{ .compatible = "nxp,p3t1035", .data = &p3t1035_data },
+> +	{ .compatible = "nxp,p3t1084", .data = &tmp108_data },
+>   	{ .compatible = "nxp,p3t1085", .data = &tmp108_data },
+>   	{ .compatible = "ti,tmp108", .data = &tmp108_data },
+>   	{}
 
 
