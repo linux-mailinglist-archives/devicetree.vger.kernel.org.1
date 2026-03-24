@@ -1,253 +1,292 @@
-Return-Path: <devicetree+bounces-279754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279763-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kAd6EV1twmmncwQAu9opvQ
-	(envelope-from <devicetree+bounces-279754-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 11:54:21 +0100
+	id MDybB+RswmmncwQAu9opvQ
+	(envelope-from <devicetree+bounces-279763-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 11:52:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 270D2306CE4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 11:54:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79D1F306C1F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 11:52:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EE158303ABF2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:47:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A6B76306AED4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:50:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB593E5EC0;
-	Tue, 24 Mar 2026 10:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5914E3DEAC9;
+	Tue, 24 Mar 2026 10:50:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="En1BNxMD"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="EZpbpWIf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazon11012042.outbound.protection.outlook.com [52.101.43.42])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A0E3E6DE4;
-	Tue, 24 Mar 2026 10:46:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.43.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774349206; cv=fail; b=KyGa3uEpx67GKGjCHklxFUXXkIoOjYl6na1JKMqSyigOLtzu+ye6/3udI5BqsfL1Q9qkSH6DhYnhIFV4Q12/D0fuZRWJCNsJh5KNP/lRSo8fXEqodvAXwUEX/9GRoTq/tRmPsCZCufKOQyu9P1voFI+CsKim6Ei+BUdoYATFNeo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774349206; c=relaxed/simple;
-	bh=wIokt4ywa/YDLXH4rNMG41hA4KqbvYZds1Jp+DIuD6E=;
-	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=jC8zFfBTu1KS9NopZSJ3CRhE1V2vagH2Mgxa5aRZ7onx9QNNIv1iYRwjmyRQjmAisQr7UsePYyGc8RzID09GhZjfcEZAiyOmCacUMGDz8vqOQUXrZhkSD03b1tpZiuG7kacFt/k5r3srh1IF5tuWpflDuw2VKdjiRgQ4mNEzu6o=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=En1BNxMD; arc=fail smtp.client-ip=52.101.43.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=khwhB4FseL3VioZnObW/suhV39KbPa9HGzvaPDFtrcHhfpYdH9L752+zSyBNIp9lZGCIeYxkeZksObA1GY9pOus4Qjkfm0/EGoU96WT3RmyMT3XEPgunnXiibRem3Kbum+YBWPz0XSwt2+umHHvROwEnFpE7T8QqFey0qqN7Ea3vdIZ0yloa78q3frP19uJMoWr4g+7xxPqUprjtGSYf1seUqbsr2lnecEFE/O8VQil0iIdlilYEFAZAwk0iLFSKVAwMGxYuJfh4IFNAsdUWyMkzSml3PNRQwWaXSt4ANcoYC8V/gItked+GBtjZi+5Hgxgn3Ay4g92vgrXY2o5MSQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uTOIQPGQ3G6IfAErTI8UTvP0bnD9xcBwd0Y2htmCQt4=;
- b=BiUXAOTLTl6HfPOd9568Pc64TPSOiS30BxBXtCSv6YkI+R8oGZrnxHBEYsgbP5FBuwLNXsQp/KIVjZD77euvqjqNInnBsOT9VSOkDBAHVkujUOjQnZYwb87djE+AKf7qaZcv7P4HOdHpjlmeQAeKqAhPOjmZFbHlLI8oyODRso7O6ih4a5m1sFVbzKNIvFNyymd48ZAIrnzC4+o1YEujxPeIeuDNUAY6c9pspQCmM0RaFJhCdLULBOAvddl9/lxHvpsJGW+NdCYnRsq0c2Ca4uxB9d2I9iPJN0rVPqywgmJ5iow7Qyl8FRxMO80I7n2hNu2kCwAewz1weiftOLGPUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uTOIQPGQ3G6IfAErTI8UTvP0bnD9xcBwd0Y2htmCQt4=;
- b=En1BNxMDXIf6VuiXXBS7f4pEqpjvPmQvtt0hLsQy3rEpPTASmsH2YLHSrSkHdH/Hnx5KKfEFXUX6TUj3S/FQUVkqGRXzKHwe8PCDu2BhmTSPTrpA4pMNycrP4d5YcicJA9qTun+jgGxqOo4UhA08FIBnxskXkLLx+c7Vo4zo6KLz5ZBE85ZikisDcN1TtpxphfJoNExI3+TIzW5SDqOFAeK7KD2WxOQVgyb3GNSg7dTpJBa1kzkhHn6RRyY9g30OS+G3UNG3BlBK9qU/2DEjZAU727cjQ6oECcu7WafpoMDE/aYHubQzePjLgdlSPScpgDRIgHcj7fNODacWgipJrA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS2PR12MB9750.namprd12.prod.outlook.com (2603:10b6:8:2b0::12)
- by SA0PR12MB7462.namprd12.prod.outlook.com (2603:10b6:806:24b::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.15; Tue, 24 Mar
- 2026 10:46:37 +0000
-Received: from DS2PR12MB9750.namprd12.prod.outlook.com
- ([fe80::56a8:d6bf:e24c:b391]) by DS2PR12MB9750.namprd12.prod.outlook.com
- ([fe80::56a8:d6bf:e24c:b391%6]) with mapi id 15.20.9745.019; Tue, 24 Mar 2026
- 10:46:37 +0000
-Message-ID: <9d203e60-6aed-476b-b0f2-36adf7f8dc7c@nvidia.com>
-Date: Tue, 24 Mar 2026 10:46:33 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 9/9] arm64: tegra: Enable GPCDMA and add iommu-map in
- Tegra264
-To: Akhil R <akhilrajeev@nvidia.com>, Vinod Koul <vkoul@kernel.org>,
- Frank Li <Frank.Li@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@kernel.org>,
- Laxman Dewangan <ldewangan@nvidia.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260316171823.61800-1-akhilrajeev@nvidia.com>
- <20260316171823.61800-10-akhilrajeev@nvidia.com>
-From: Jon Hunter <jonathanh@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <20260316171823.61800-10-akhilrajeev@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO2P265CA0302.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:a5::26) To DS2PR12MB9750.namprd12.prod.outlook.com
- (2603:10b6:8:2b0::12)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AABE3DF00F;
+	Tue, 24 Mar 2026 10:50:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774349429; cv=none; b=oOn4mMKYISvUxxi7JSCVPWs9Ug5/R4pw7P0jSyPYKwfLsq+Ye4j3Cfhx3g6JkFXGq37Z0Wg61/Ob+uNdU3uZUuUN8jcORxx5LSO3f4ab/R2Mu9BjGueZDVYEJn9wMFNRn6AGvuwRcHkraw+OI5uITExmquAHE5ChY3OyDAtaxbI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774349429; c=relaxed/simple;
+	bh=1WtNlVI+w1qUcrumaIdXKE0MuxzfP955dqwu3O0p62U=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=hU8likpb8/8YT7Vb6c01jATkC/qGHHXEIvpHY9BE4TwT24XSrM3OVHW5h29W9FQx+NKe24G6+87qItfOx67ioeKKaZ38gn+OfxWRcYaKfNJBWpR5y+zPHvNxhS3FH3hKQSwpviRh9xHcM5b/9yinQNOUUiOta/kdCCdiiJonLVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=EZpbpWIf; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1774349427; x=1805885427;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=1WtNlVI+w1qUcrumaIdXKE0MuxzfP955dqwu3O0p62U=;
+  b=EZpbpWIfBTVQosbxNs9xM7YmmL3E2Ocs/1xsdEHt+aWqKIugvs1zEFTP
+   /qg5+efmU+f/vtILZdtxk3ZKD7Urm7IS5a1Vz4uAmSg1SgE/zpazIXDWi
+   n8jn7MSo4tL+RdVkc0mUVNNoQ7Jbe+1qZHNk9i8qGn1Gg6UTSO3PhCi46
+   muxifsj8467+saG2UAvmwd+T6+M1C0KGqm3kEigFW9t8jU6wclG3/SQgz
+   7YOvCcF47Nl/rHuKlt7ei/x6cFEWBXydfMuNRQeVO3lphf5BsfIXmKtF9
+   uQmOpbHitB6Yi6U4Eze3U+i1VZNV1CqcLz/l0qdd/Vty9JfiOdJW5kTIm
+   w==;
+X-CSE-ConnectionGUID: Vq74BuQ4T0ugMhVa5vdexg==
+X-CSE-MsgGUID: HL1WO7gfTi2ZQ4Vl54iovw==
+X-IronPort-AV: E=Sophos;i="6.23,138,1770620400"; 
+   d="scan'208";a="222375794"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 24 Mar 2026 03:50:26 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 24 Mar 2026 03:49:58 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Tue, 24 Mar 2026 03:49:55 -0700
+From: =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+Subject: [PATCH net-next v2 0/9] net: dsa: add DSA support for the LAN9645x
+ switch chip family
+Date: Tue, 24 Mar 2026 11:46:43 +0100
+Message-ID: <20260324-dsa_lan9645x_switch_driver_base-v2-0-f7504e3b0681@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PR12MB9750:EE_|SA0PR12MB7462:EE_
-X-MS-Office365-Filtering-Correlation-Id: 39ed26ae-a72f-43f7-71db-08de89929fdd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|7416014|376014|921020|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	3w3CHzTHjVNalWWCYEKYM+GyjNLbx/Xv9ti6+wJClJ2YtdX8NZEyTyx5ZXpzMRt5G45M232GRg6bJbBWfmwMCCjwUmICN5V/B1s6Xd9sO6zfjpwLWOM0BRdLLVE46wfKIHgM+2w9/UampVRFT+te5T3adLWCtMoILMR5O2fmCT3MD+LDKH5bPx18rWxzklJ8aIgBgW3249f69Dj8lu1qG6ImWz6cE2Jh0qcuBgjUOaHlnpOf1djI+Ndz0G/M9jY1OGqfBpUSJq6TfEeM6q4k1H1eOR50sMou554Gwfa/9VCY9Y9oxQKFPJPoQZftsCmBq9tHSHNOpvAtcR2ViXa5tvh4gMbPMfUxLJvbmXLZ/sp/W9z7cC1dU44BOCyHnAwjyuuZbbOwzkAoTQk2OvEVOvwrNfOkpIYzf9kiIxrWFQ1dSTAnIPm16V7UaAJWp2NDsclVvdVWxrc5PHE+osvZ8y/HHeRrto8tnMBm+c+I5X2pmvGEYK2u26wUER7h0BszWccSTEdQAGUfOO09Yq2YiIPwvdcZEBtvARYqhSgVJZ1bBKln9Bt5F/gpiJnzzAKZd0YjjuZpVcfLA+nH++cw2YhuVrQTHVCyPAsjsQyHUMLrE2lhQUDvwLo7hmt79HwLWxCzzQBRURKvb6J7ZsSA70nYGQWyYi30E/m0PvUq3UpDSt8UtnScXRhKh6uct7rRLGzW7ao12YYKAOv60UrA4sf85OdxuTiblbIUj2c2BkiM2Ddawad2VmKc4LCZ+n4qGYJZUN7f06yG47T2EQsnmQ==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS2PR12MB9750.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(921020)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NmJsQVRIbDBLakRWZjlwRDhyUnN4ZGt5SFZsNUlVTGJuUzZaQ3VscEgrL0tu?=
- =?utf-8?B?R3ZtVWhBMGNHNUZ3ZlRwM2pCWEt6ZkNET1VTN01RWmlFeW1GSWRqYkFJOHN4?=
- =?utf-8?B?TXowZ3g0MkFreXNYWDU0RFJwVldVVGo5QzBCSkQ5a3lIVDBTU1lMRklvT1U3?=
- =?utf-8?B?L1hsNzlmQXprK0hlbmw4Y1haZ3Y0ZWlpTk42MmRBQUdsVURoYWV1VFF3MkZi?=
- =?utf-8?B?M1ZQS0gzUFJPcG5uK2lnUWRvMWpvZWFNYlBwTmtlYlRuMTladStQbnh4TExa?=
- =?utf-8?B?YmFBMDlhMXl1aXpyUE04M2hlNGZuQkRjT29ncmZyUFVzZ0gwYzV0RTVGNzZ6?=
- =?utf-8?B?Q3JJOHMrcWdUWFlTWE95bkZ6djRQQkorczR1V3V1STdieEoyRmF2Y0FieGxR?=
- =?utf-8?B?b2I1OVR6WjB1YXpIa1VrU2JTNEQ5UGpxekpJU0J0RXptY2FjTWRSNjNQSFhU?=
- =?utf-8?B?elhGUDRlZS9LTkEzbEN6c0tqVTlmRGoyaTdvS0ttZWNyRW1xWmVqUjdOT0Fn?=
- =?utf-8?B?RmJzOVJhdVhNcVlMR1RSZEFUUWVjQjF2blFXOTlHT3JnUzVmK1dLQnNLd2dG?=
- =?utf-8?B?NGJhWFp1VkRsQkI0WmRZcFpPOTVFa0pYYXdCQzBmVUVWaEtxdmhLcHkyRWl0?=
- =?utf-8?B?YU9ya3haV083QnBpcGUrVUtzK3NUY3d2NHZqSTRuR1hSZmNpVG1SRzVZaXRa?=
- =?utf-8?B?UmdvTHZ1K0Fyck9KSVRBTkhCazVNOUJSV1E4RHJpYnlZWlg5d2diR1BRMUZv?=
- =?utf-8?B?U3kyTE8zTmRyLzFvYld6Q3Q4b24xR2NGS3VLRmo5SFVQS1N1Q2RRb05zdmlu?=
- =?utf-8?B?T2s1a0ZzcTNHc3B5T3FWeXF6c01Da0h6RHhzNThpZ2U0OFJ6bms2Z0hVNzVY?=
- =?utf-8?B?USt5THRMMXdwTWwxNDRGYkdEZ0VFWWpFYjFQdTBWZkw2dDdqNnBSU21DaWFk?=
- =?utf-8?B?ZlFKV0gvN2twSUxxVWhkdFNNT1htSXhJWXdid3NkbzFKNi9aS2pBTFIwa1Nk?=
- =?utf-8?B?YTI1WVVBME1qWEZLdFFEMEFCcmdvdjJnQyszT2tpQW5ad3QwZTJ1cUFKT2R2?=
- =?utf-8?B?OFJtaXRNWi95OWdYZC8rZWV4ZTRnSi9WSitzUXpGYlc5U095TlNXR3hIQUlm?=
- =?utf-8?B?ZnhZdHVzNGpYT1BOczF2VzU4Zy9VenFKTXExN1pwMmI1dDNGbjZSRDZrUWt5?=
- =?utf-8?B?QzRmMlVka1FpUWtTRnM1b1FQLzA1dVc0aG1ycUZRazRKMEgyZDBHZkUvRXlt?=
- =?utf-8?B?MzgwbS83WmxkK3o2SHl2WWRvZzBqbEdCb1hZeDhYYk5iUCt5dTdLU2d3SnJX?=
- =?utf-8?B?eHBLUmFTRGJYbEpwbDhDU21yWmFyUHBaMzRZZTRJbEU4aTJualFaQ2tRYngw?=
- =?utf-8?B?VlFQZWFVTnNyVHRwdzB4YlViZUdYZlZ1NUxSZm9Nc1ZWNXlXRGVEYTZCYjZ3?=
- =?utf-8?B?NnlLcG51ZjJjdDdVQkZmdW5qclVJNm1zVDJWMUZlS1BuSS9aay9NU0dBUTJK?=
- =?utf-8?B?UFlhOFVYTlJFczNnKzVDUjVJcXR3NGluMkJ2cWRpSmVVMFVFOFZLaWR5ZFNr?=
- =?utf-8?B?MmlxQW8xYWE0SWpyNWY2N3R2TTBIdk00WnlYbm13UjNSbWtPbFhhb0ZYMTZL?=
- =?utf-8?B?WjViLzNTR013TVlvRXRNNDAxSWdZSHVRNDJySUhiaFRyWThqOHpaTnJhVDB5?=
- =?utf-8?B?NUZqenVQYXpuQkVoWmhrbDEzWXZjWDNzTjErTW41QkZLeUc0NFJsMUJTVHRq?=
- =?utf-8?B?M3VZdUhJb09CSTU1QVBvdDI5ZUtRMFJwQ1pUaXJXbFZJckRxRk5YZ1owQXNH?=
- =?utf-8?B?a3JPQm11MUVxbTNkNFFCVHpWVjkzTXRXaDRBS1BUY2pjOTVSWVpsN01XOE4r?=
- =?utf-8?B?bENsR0RwNm56ckZubno2enE3c1d2TE1PRy9mN1dEcEpQR3I1cnVXeHJKamIv?=
- =?utf-8?B?TE5SUk5hVk5vaWJtOFdkZ1pNUUw5ZmJMYm1WRlhybTF5RTlGVWRQa3RqajZQ?=
- =?utf-8?B?Y0lXaUh5RkZwdHNzVUE2aEpmcjkvM2xkUHRJb014OWZIVklWNXY0V2tWV2xG?=
- =?utf-8?B?NGZqWVFkclBPbXpWMnpScGtjcHNhcldrZ0ljMmpWeXVIUnphTnV2NytoOE9m?=
- =?utf-8?B?cVJrckZpbzVSeXNtV3ZuVHVZbjFCZk1EalFXS3FuOWN1S1pGSUV3TENMd09a?=
- =?utf-8?B?MGgzTEFjUnlVSytndGM4NVppNjRIZ3Rqby9YeXl2NkRvbWUrSkFwVzc0d3Ra?=
- =?utf-8?B?TC93cjlMdy9LamZoeW9NK3l6eWZzYUtIRFFuY2JRQkpESDBVRTNGNGxGRFlE?=
- =?utf-8?B?eG9iR01KQ2ExQk4rSEJoSTgyeGJBSHNrenJLYkJSanlEYmJsQWFQZz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 39ed26ae-a72f-43f7-71db-08de89929fdd
-X-MS-Exchange-CrossTenant-AuthSource: DS2PR12MB9750.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2026 10:46:37.4382
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Nd959Xa4iuRjRLQtcZvtpxuFo1KWs7GCQJewujb35mciuGz3YzyV+iOvTrnkfcXBHYnprU+P0nclKG8q3QH88g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7462
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAJRrwmkC/4XNSwqDMBSF4a3IHTclj2prR91HEcnjpl6oiSRiL
+ eLeG9xAh4cfzrdBxkSY4V5tkHChTDGUIU8V2EGHFzJyZYPksuFScOay7t86tM2lXvv8odkOvUu
+ 0YOqNzsiUkMZ4q67oDJSXKaGn9RCeEHBmAdcZulIGynNM34NexNEPRXH1V1kE48x4f7NaqLbx9
+ WMkm6IdaDrbOEK37/sPxsDBJNwAAAA=
+To: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>, "Vladimir
+ Oltean" <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Woojung Huh <woojung.huh@microchip.com>, Russell King
+	<linux@armlinux.org.uk>, Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>
+CC: <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+X-Mailer: b4 0.15-dev
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279754-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-279763-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonathanh@nvidia.com,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[226.204.49.0:email];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[microchip.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.128.44.128:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nvidia.com:email,nvidia.com:mid,Nvidia.com:dkim,c4e0000:email,c5a0000:email]
-X-Rspamd-Queue-Id: 270D2306CE4
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:dkim,microchip.com:mid,microchip.com:email,microchip.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,test_fdb_stress_test.sh:url,bridge_vlan_mcast.sh:url,bridge_vlan_unaware.sh:url,bridge_vlan_aware.sh:url]
+X-Rspamd-Queue-Id: 79D1F306C1F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This series provides the Microchip LAN9645X Switch driver.
 
+The LAN9645x is a family of chips with ethernet switch functionality and
+multiple peripheral functions. The switch delivers up to 9 ethernet
+ports and 12 Gbps switching bandwidth.
 
-On 16/03/2026 17:18, Akhil R wrote:
-> Remove the fallback compatible string "nvidia,tegra186-gpcdma" and
-> enable GPCDMA in Tegra264. Tegra186 compatible cannot work on
-> Tegra264 because of the register offset changes and absence of
-> the reset property.
-> 
-> Also add the iommu-map property so that each channel uses a separate
-> stream ID and gets its own IOMMU domain for memory.
-> 
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-> ---
->   arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi | 4 ++++
->   arch/arm64/boot/dts/nvidia/tegra264.dtsi       | 3 ++-
->   2 files changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi b/arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi
-> index 7e2c3e66c2ab..c8beb616964a 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi
-> @@ -16,6 +16,10 @@ serial@c4e0000 {
->   		serial@c5a0000 {
->   			status = "okay";
->   		};
-> +
-> +		dma-controller@8400000 {
-> +			status = "okay";
-> +		};
->   	};
+The switch chip has 5 integrated copper PHYs, support for 2x RGMII
+interfaces, 2x SGMII and one QSGMII interface.
 
-We need to fix the ordering here, because we order these according to 
-the address. Thierry may be able to fix this when applying.
+The switch chip is from the same design architecture family as ocelot
+and lan966x, and the driver reflects this similarity. However, LAN9645x
+does not have an internal CPU in any package, and must be driven
+externally. For register IO it supports interfaces such as SPI, I2C and
+MDIO.
 
->   
->   	bus@8100000000 {
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra264.dtsi b/arch/arm64/boot/dts/nvidia/tegra264.dtsi
-> index 24cc2c51a272..b2f20d4b567a 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra264.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra264.dtsi
-> @@ -3208,7 +3208,7 @@ agic_page5: interrupt-controller@99b0000 {
->   		};
->   
->   		gpcdma: dma-controller@8400000 {
-> -			compatible = "nvidia,tegra264-gpcdma", "nvidia,tegra186-gpcdma";
-> +			compatible = "nvidia,tegra264-gpcdma";
+The chip supports a variety of network features such as
 
-Ideally this would be a separate patch with the appropriate fixes tag, 
-however, there is a dependency on patch 2/9. Really patch 2/9 should be 
-the first patch in the series as this is a fix and preparing for 
-enabling Tegra264 support. And this part should probably be patch 2/9. 
-Then this patch that enables this, the final one in the series.
+* Mactable for MDB/FDB functionality
+* Bridge forwarding offload
+* VLAN-aware bridging
+* IGMP/MLD snooping
+* Link aggregation
+* PTP timestamping
+* FRER (802.1CB)
+* Media Redundancy Protocol
+* Parallel Redundancy and High-Availability Seamless Redundancy
+  (HSR/PRP) in DANH/DANP mode
+* Per stream filtering and policing
+* Shapers such as Credit Based Shaping and Time Aware Shaing
+* Frame preemption
+* A TCAM (VCAP) for line-rate frame processing
 
->   			reg = <0x0 0x08400000 0x0 0x210000>;
->   			interrupts = <GIC_SPI 584 IRQ_TYPE_LEVEL_HIGH>,
->   				     <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>,
-> @@ -3244,6 +3244,7 @@ gpcdma: dma-controller@8400000 {
->   				     <GIC_SPI 615 IRQ_TYPE_LEVEL_HIGH>;
->   			#dma-cells = <1>;
->   			iommus = <&smmu1 0x00000800>;
-> +			iommu-map = <1 &smmu1 0x801 31>;
->   			dma-coherent;
->   			dma-channel-mask = <0xfffffffe>;
->   			status = "disabled";
+The LAN9645x family consists of the following SKUs:
 
+LAN96455F
+LAN96457F
+LAN96459F
+LAN96455S
+LAN96457S
+LAN96459S
+
+The difference between the SKUs is the number of supported ports (5, 7
+or 9) and features supported. The F subfamily supports HSR/PRP and TSN,
+while the S subfamily does not.
+
+The intended way to bind this driver is using a parent MFD driver,
+responsible for the register IO protocol, and distributing regmaps to
+child devices. The goal is to use the same approach as the MFD driver in
+drivers/mfd/ocelot-spi.c.
+
+This driver expects to request named regmaps from a parent device. This
+approach is similar to the DSA driver
+
+drivers/net/dsa/ocelot/ocelot_ext.c
+
+which supports being driven by an external CPU via SPI with parent
+device drivers/mfd/ocelot-spi.c.
+
+The MFD driver will come in a later series, because there are
+requirements on the number of child devices before a driver qualifies as
+a MFD device.
+
+Development is done using the LAN966x as a host CPU, running the lan966x
+swichdev driver, using the EVB-LAN9668 EDS2 board.
+
+The datasheet is available here:
+https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/LAN9645xF-Data-Sheet-DS00006065.pdf
+
+This series will deliver the following features:
+
+* Standalone ports
+* Bridge forwarding and FDB offloading
+* VLAN-aware bridge
+* Stats integration
+
+More support will be added at a later stage. Here is a tentative plan of
+future patches for this DSA driver:
+
+* Add LAG support.
+* Add MDB support.
+* Add TC matchall mirror support.
+* Add TC matchall police support.
+* Add DCB/qos support.
+* Add simple TC support: mqprio, cbs, tbf, ebf.
+* Add TC flower filter support.
+* Add HSR/PRP offloading support.
+* Add PTP support.
+* Add TC taprio support.
+
+For completeness I include tentative plan of planned patches for
+LAN9645x peripherals:
+
+* Extend pinctrl-ocelot for LAN9645x:
+  https://lore.kernel.org/linux-gpio/20260119-pinctrl_ocelot_extend_support_for_lan9645x-v1-0-1228155ed0ee@microchip.com/
+* Add driver for internal PHY:
+  https://lore.kernel.org/netdev/20260123-phy_micrel_add_support_for_lan9645x_internal_phy-v1-1-8484b1a5a7fd@microchip.com/
+* MFD driver for managing register IO protocol and child device
+  initialization.
+* Extend pinctrl-microchip-sgpio for LAN9645x support.
+* Extend i2c_designware for LAN9645x support.
+* Add driver for outbound interrupt controller.
+* Add serdes driver for lan9645x.
+
+Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
+---
+Changes in v2:
+- Individual patches have specific v2 changes.
+- Ran DSA, and std counters, selftests, which prompted several changes.
+  The following selftests pass, except for some expected failures:
+    - bridge_vlan_aware.sh
+    - bridge_vlan_unaware.sh
+    - bridge_vlan_mcast.sh
+    - no_forwarding.sh
+    - bridge_mdb.sh
+    - bridge_mld.sh
+    - test_fdb_stress_test.sh
+    - .../drivers/net/hw/ethtool_rmon.sh
+    - .../drivers/net/hw/ethtool_std_stats.sh (from Ioana's series)
+- Added new patch for MDB management, as this was required for selftests.
+- Added port_set_host_flood to enable unknown traffic to standalone during
+  promisc/ALL_MULTI (selftests).
+- Remove the dubugfs.
+- Link to v1: https://lore.kernel.org/r/20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com
+
+---
+Jens Emil Schulz Østergaard (9):
+      net: dsa: add tag driver for LAN9645X
+      dt-bindings: net: lan9645x: add LAN9645X switch bindings
+      net: dsa: lan9645x: add autogenerated register macros
+      net: dsa: lan9645x: add basic dsa driver for LAN9645X
+      net: dsa: lan9645x: add bridge support
+      net: dsa: lan9645x: add vlan support
+      net: dsa: lan9645x: add mac table integration
+      net: dsa: lan9645x: add mdb management
+      net: dsa: lan9645x: add port statistics
+
+ .../net/dsa/microchip,lan96455s-switch.yaml        |  119 ++
+ MAINTAINERS                                        |   10 +
+ drivers/net/dsa/Kconfig                            |    2 +
+ drivers/net/dsa/microchip/Makefile                 |    1 +
+ drivers/net/dsa/microchip/lan9645x/Kconfig         |   11 +
+ drivers/net/dsa/microchip/lan9645x/Makefile        |   12 +
+ drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c  |  420 +++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_main.c |  982 ++++++++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_main.h |  450 +++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_mdb.c  |  391 ++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_npi.c  |   99 +
+ .../net/dsa/microchip/lan9645x/lan9645x_phylink.c  |  381 ++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_port.c |  190 ++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_regs.h | 1915 ++++++++++++++++++++
+ .../net/dsa/microchip/lan9645x/lan9645x_stats.c    |  922 ++++++++++
+ .../net/dsa/microchip/lan9645x/lan9645x_stats.h    |  277 +++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_vlan.c |  353 ++++
+ include/linux/dsa/lan9645x.h                       |  145 ++
+ include/net/dsa.h                                  |    2 +
+ net/dsa/Kconfig                                    |   11 +
+ net/dsa/Makefile                                   |    1 +
+ net/dsa/tag_lan9645x.c                             |  291 +++
+ 22 files changed, 6985 insertions(+)
+---
+base-commit: fb78a629b4f0eb399b413f6c093a3da177b3a4eb
+change-id: 20260210-dsa_lan9645x_switch_driver_base-312bbfc37edb
+
+Best regards,
 -- 
-nvpublic
+Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
 
 
