@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-280047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280045-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8OjpHv3swmkdnQQAu9opvQ
-	(envelope-from <devicetree+bounces-280047-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 20:58:53 +0100
+	id OCAdJu3rwmkdnQQAu9opvQ
+	(envelope-from <devicetree+bounces-280045-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 20:54:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0025031BF91
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 20:58:52 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 541B731BEBE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 20:54:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3AA1930EAF12
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 19:54:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 46711303F434
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 19:54:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F3F034028B;
-	Tue, 24 Mar 2026 19:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F71236681F;
+	Tue, 24 Mar 2026 19:54:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="BKwGRvQt"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="jpPR/w5+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2802437B01F;
-	Tue, 24 Mar 2026 19:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E98E30B517;
+	Tue, 24 Mar 2026 19:54:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774382055; cv=none; b=dPiJoG2Pn7A9+f8l4lcdgN6ro2BIFtLhhohYkgyaKLSJmrhn6/nUfp9dP0PVZ357srNcWLdhFg6DdMFgWov7XfuT4j0pphCdVPEo02CeFmh58q6FHl8zOLzOz4DnRLAke2dvTh2APfm2n9N6cOQFsSIUeUzszi7OYkFEdBlEo1Q=
+	t=1774382049; cv=none; b=F3arvuOHlQnF/BlwyWWohMdIKGXyz4t83ERwhJqFgY6yXdZ8Y1FhkH8Aosp/66UznHPxiO5j+0CZ2FwFwPyZbDAXMGn/VELLhryb/NoigdWB9mHXkkAtWwAn3lazZ/4gBrVo87IC/eXx/slhYdmXytMz2SElb1p3k5szwOkQqEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774382055; c=relaxed/simple;
-	bh=VnjcG/VpEFpPDSKnGEgi6+RUDiLXcAievwDKomQusuU=;
+	s=arc-20240116; t=1774382049; c=relaxed/simple;
+	bh=HQURqJAd1BBhIuDWiRqfputPMN8/xfNewOJFHjftDFw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Nyps7lfxSBIAgyWR8nvm7XxI8gJEvo2p/UFNwLgM2h/7kx2qdFQ/ZBRk27xOyBRjR3ugYKI7BL6XP5jErHeFK3k9DFA00lDjyec1sQvi/zsf6h7eOqh5d/HvbNgH4U/Xk4dQSEPDwGUO9t6y6RV9k2rQHMolt/jwyKlypI82kFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=BKwGRvQt; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=qJpUvoQpSFhHu62OC877FTjns7h47LenBosMAoF+YqWuDi7qCLdW9NzbKBEd6bTpCNDsNOdfRMX/iqLY+muzZ0keApuimxBO0mt1etAFxqeUkMDALkE/kNNVNDqwxz1Jdknx0S/NCAGihz8Qgyl6KkbmxNEZmBYFkYCzRWAx09w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=jpPR/w5+; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=rSECv1OVuOQtvHFvE1M/Wc8ov8pydQb30vNJDMTEfro=; b=BKwGRvQts0E/BK+8liAolY6R5G
-	GHzfgcyu6lstm9Ap5WLpMeaUwAc8IuZpDZ5LjEor/SMg9+KMG6fQ1+vHtGCFs0xfai57pHRQ6/wta
-	dCs/qB/Muu5NjZ0LLZGN4f+Bh9xzJ8wCza9a8uzF2S1XrdLr4DL25LpL7lGn+jgynmBW0VieDWhub
-	kez39/UMy0aQvmUmZELYBkAlN5hr9mW0bgQMFVN5S1cPER2iqfplypje2PDooWZGq1VkDv6vym2JM
-	W9EFZneo6Qh3PqkH9Slh+0gwy77Ad2UfcXP2MQ312CvNq1I4j86B3lTjmoDdA0IQBO3DzE47E1GTt
-	K8+bhNPA==;
+	bh=9nBnkj9tfTuMXhIzz+DGJVWVI0zu+01Vvu5cL1hf+R4=; b=jpPR/w5+QDT69WE/LB7EDTmkVn
+	xvQuE1G8RK2io4DmyM8p85uN70mgpvwvel7qm5CHpk50bNHSmLBNxJBnZyFr2NNhG2g9wiMSS/Zs0
+	78ks52yvecjAVEFvZfUPrFwFOBdPpmfIcdx+XcWnf8tNGLE+XYhJdQwAuv/7nu5I+RbuhNhTPMLuU
+	Ckpn1sCcz9nSFdG4ZNW5bfV+aumGT6BT4MnEiNIyy5skJW9InBXi3o2QrfFzL+0mDUWtBK84buBZx
+	uWKb39kzkuiNXC7l7oW9btdK9UhWSr0bDbdnQKx5cHdLAhdrR549NyT7r3mX6GJ4YopC10+AQ7Nt1
+	Yem/EVxQ==;
 From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>,
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Alexey Charkov <alchark@gmail.com>,
+	linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Anand Moon <linux.amoon@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Shawn Lin <shawn.lin@rock-chips.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Enable PCIe CLKREQ# for RK3588 on Rock 5b-5bp-5t series
-Date: Tue, 24 Mar 2026 20:53:54 +0100
-Message-ID: <177438200687.818857.194935185801364893.b4-ty@sntech.de>
+	kernel@collabora.com
+Subject: Re: (subset) [PATCH 0/2] Add SPDIF support to RK3576
+Date: Tue, 24 Mar 2026 20:53:55 +0100
+Message-ID: <177438200683.818857.15979454514161981065.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260316073621.39027-1-linux.amoon@gmail.com>
-References: <20260316073621.39027-1-linux.amoon@gmail.com>
+In-Reply-To: <20260316-rk3576-spdif-v1-0-acb75088b560@collabora.com>
+References: <20260316-rk3576-spdif-v1-0-acb75088b560@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,51 +72,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
 	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280047-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,radxa.com,collabora.com,cknow.org,vger.kernel.org,lists.infradead.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-280045-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,collabora.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[sntech.de,gmail.com,vger.kernel.org,lists.infradead.org,collabora.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[sntech.de:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 0025031BF91
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sntech.de:dkim,sntech.de:email,sntech.de:mid]
+X-Rspamd-Queue-Id: 541B731BEBE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Mon, 16 Mar 2026 13:03:55 +0530, Anand Moon wrote:
-> Add supports-clkreq and the corresponding pinmux configurations for PCIe
-> ASPM L1 substates on the Rock 5B, 5B+ and 5T.
-> The supports-clkreq flag informs the PCIe controller that the hardware
-> routing for the CLKREQ# sideband signal is present. This enables support
-> for PCIe ASPM (Active State Power Management) L1 substates, allowing for
-> better power efficiency.
+On Mon, 16 Mar 2026 19:22:59 +0100, Sebastian Reichel wrote:
+> Add SPDIF support on RK3576 in preparation for Displayport audio
+> support. My expectation is that Mark picks up the DT binding via
+> his audio tree and Heiko picks up the DTS via the Rockchip tree.
 > 
-> [...]
+> 
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: Enable PCIe CLKREQ# for RK3588 on Rock 5b-5bp-5t series
-      commit: 0f36806da4834cbdfe790de6b88347348cdad32a
+[2/2] arm64: dts: rockchip: Add SPDIF nodes to RK3576 device tree
+      commit: edd3173f3d4424861c1e036b76f0f30b581bb4bc
 
 Best regards,
 -- 
