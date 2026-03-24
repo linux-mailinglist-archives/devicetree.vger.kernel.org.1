@@ -1,186 +1,200 @@
-Return-Path: <devicetree+bounces-279636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279628-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SIGYAklAwmmCagQAu9opvQ
-	(envelope-from <devicetree+bounces-279636-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:42:01 +0100
+	id 4KKGHtc9wmmCagQAu9opvQ
+	(envelope-from <devicetree+bounces-279628-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:31:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A858304188
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:42:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA456303FEE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:31:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 15F5431B3642
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 07:32:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1DB7B314B873
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 07:14:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C20D32F757;
-	Tue, 24 Mar 2026 07:32:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152463C4551;
+	Tue, 24 Mar 2026 07:14:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="aMHgH1lo"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="sRhzucIw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618EA33065D;
-	Tue, 24 Mar 2026 07:32:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDE1C3264D9;
+	Tue, 24 Mar 2026 07:14:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774337548; cv=none; b=p4vG5n9u/iIzHPEhwG0DuBdySHnhX9C3grOKtRbxnMnrkEPUTqETCMlPUxc0LFxUQ1ptRN4fm0Jagpv09Qt1T4szEQukJKw0tVpfP1NB9/IFITqZ1RP6LTDgZ1kf7CojtoXrKXsGLjv/bz4VZQem9iZ8Xqv8iXfxx6W+HoulHC0=
+	t=1774336475; cv=none; b=jtaen1dyZYgvlK1aF6X13MSwTFtN3/DhtWkQEsdtTxOpAx4kV6xGJ0eWJnISd0ypcLiqWHqb1SFsbprurCXiOPdDe/fc2tVDcJo5ZFoZoGzBwc/WKb/CGump0M47f3s4d8eDhFGGvp6W1EWzD6IuGg5siV7pktIzARXhWnWFe7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774337548; c=relaxed/simple;
-	bh=DoySZJb+/dX4tX+SckY2cfiJpr62a6BkVboaZ+y3eVU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=YN0IUT6FHTIa8D1vrhQrxSi+GVa88b+Byac4viJhzm+gYSORQYZJIOt6RHeU8KDMtKVoOsXfp0nhya+sQmfOuH3yUWlOv+fBvLqr62dmydrgFBTpatKggelPPuYDfXsqd2El0f4lN9vo3fHqF5vbxhoWPTQDIGeBidOQgiYfXjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=aMHgH1lo; arc=none smtp.client-ip=168.119.41.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
-	 s=mail; h=Cc:To:Message-Id:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Subject:Date:From:Sender:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=KS6J46kYK+sVTlFskCuxSfFQijC3eqAgPVExn/P68gI=; b=aMHgH1locKZJ7MEsKcLzpSNyRr
-	utWm2qH8ZZDRLXPCY3lFQSAomDAKdhhiDdUgjf6rH4AUR8CU/N8e0zlASKii6LXm4Qs0MgxRladQZ
-	icDW7twLiONsVl1Y8qgb2G9EzhIQPabmPAgfPdpO4OgLHS8o/9opAZ3xbZBOduMho/Ng=;
-Received: from 194-208-208-245.tele.net ([194.208.208.245]:62112 helo=[127.0.1.1])
-	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.93)
-	(envelope-from <matthias.fend@emfend.at>)
-	id 1w4vvO-009jM8-AH; Tue, 24 Mar 2026 08:11:41 +0100
-From: Matthias Fend <matthias.fend@emfend.at>
-Date: Tue, 24 Mar 2026 08:11:25 +0100
-Subject: [PATCH RESEND v2] media: i2c: imx283: add support for
- non-continuous MIPI clock mode
+	s=arc-20240116; t=1774336475; c=relaxed/simple;
+	bh=bs9igt7QnRCfi3tNaWUo+QmiS8fZ9TbwBeMVconoKwU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Y2CfhPFqKUPXe70AD6JLgRoN1XcRkKUY6COD/4HXGmeKNm+7A0dvCmN4NqH4+gFkY17PjCOuDWNQQlY6QFE9JVLOJwn0ntvs+itsd0wB3xCZJcZKAa7jhImzREswTt8gxTHPnLI2qQnj5jLnf1UnCWxamvEsNctOk+BTE4h+tfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=sRhzucIw; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62O411pr2961633;
+	Tue, 24 Mar 2026 03:14:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=+sl3PiRipwsGINx83TTd88wQxhb
+	ZVt0kR+Q83e5WkSA=; b=sRhzucIw/vbzU2d9S/UhmR2zoQzpO16wwUcwMCRuVxM
+	gkPhlJEYlVB3KKYDP+4/2rT8EzYcUeGDFDXSY41HCJoQVtl2VGvf7ktTVHBVVJxN
+	fPAlXKpL7qqMj2soo98t33czYOqL/AtvPcPFMd0ftZrdz055wI9mp4Jxlzd1JSmG
+	6BgLfAmpEI9FgBcoa43+o0dY1A1ocMnj5nAc3ra1vIlPJ8OF0dLyjs7D8Rhp1w0M
+	2AHXcYZjMZZrMoNWJXpiD8IF7D4qC2HoFBqEGMZJzf0oWu7lpdRVx8awifRfy4A3
+	gHUDq3MBKnEA/DTBc8bpwHeVYh2v+UZXBx7HK2mJODw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4d1r822nea-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Mar 2026 03:14:02 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 62O7E1Zr020225
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 24 Mar 2026 03:14:01 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Tue, 24 Mar
+ 2026 03:14:01 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Tue, 24 Mar 2026 03:14:01 -0400
+Received: from CJONES7-T01.ad.analog.com (HYB-jCCu8MOWEgi.ad.analog.com [10.116.223.230] (may be forged))
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 62O7Dg0b003654;
+	Tue, 24 Mar 2026 03:13:45 -0400
+From: Carlos Jones Jr <carlosjr.jones@analog.com>
+To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        David Lechner <dlechner@baylibre.com>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Liam Beguin
+	<liambeguin@gmail.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Andy
+ Shevchenko <andy@kernel.org>,
+        Tobias Sperling <tobias.sperling@softing.com>,
+        Jorge Marques <jorge.marques@analog.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/4] Add support for LTC2305
+Date: Tue, 24 Mar 2026 15:13:27 +0800
+Message-ID: <20260324071331.842-1-carlosjr.jones@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260324-imx283-ext-v2-1-4931dbd46c95@emfend.at>
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Umang Jain <uajain@igalia.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Matthias Fend <matthias.fend@emfend.at>
-X-Mailer: b4 0.14.2
-X-Spam-Score: 
-X-Spam-Bar: 
-X-Spam-Report: 
-X-Spamd-Result: default: False [1.04 / 15.00];
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI0MDA1NyBTYWx0ZWRfX+YzO/GMqt2CP
+ tMTTIK44NKtHB0RBULDx2Y8AAOwuyilWe6w7Es6z72a5AUro1i447qTBaGMNPAWcVDBYIsW7Rcm
+ lqbXP89GrH3UfDvIsjaKQIx9o9jcIqZlRfhU57Jsuzvyk375G6CxRUyGgN7FkGyh2x3Yf07lsP6
+ v5Q3qpLIoOzzGJf5v94M159au6M2cKVvpzEzr8gjUfPxkEFvBYL86h9B99fXX7B4sV5R45n0PxP
+ 8uRzhDoysIjLp2+Y8rAsoIU6LWkxVbdEZA93b6Hj/Zix4bo1v9ZSi8dyLKJw7A/RjdUz587x3TT
+ 69wdTl9OcDz0tWG3H6+aC5z6RVvdv8cFdd56FloXqJllSsdreD4i+no+W9KrzBjbWG6A54hdNOQ
+ CLdyP+tJF3EJIobKe8KPmN2RpZGJrFDHzW6SNhelKMLrbphhh70oAYXiQKySeTdVxGfCepOP3xP
+ 1jJBAaScYx+SfYR6w/w==
+X-Authority-Analysis: v=2.4 cv=edIwvrEH c=1 sm=1 tr=0 ts=69c239ba cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=0sLvza09kfJOxVLZPwjg:22 a=Z0pTeXoby7EwIRygza74:22 a=VwQbUJbxAAAA:8
+ a=gAnH3GRIAAAA:8 a=bnWB3NjIizojX1aHmW8A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: -khZwBqQp4_JLI1EnviBjP1Q_hPuU7r0
+X-Proofpoint-GUID: -khZwBqQp4_JLI1EnviBjP1Q_hPuU7r0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-24_02,2026-03-23_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 adultscore=0 clxscore=1015 phishscore=0
+ lowpriorityscore=0 bulkscore=0 priorityscore=1501 malwarescore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
+ definitions=main-2603240057
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[emfend.at:s=mail];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279636-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-279628-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[emfend.at];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[emfend.at:-];
+	FREEMAIL_TO(0.00)[kernel.org,metafoo.de,baylibre.com,analog.com,gmail.com,softing.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:dkim,analog.com:mid];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
-	FROM_NEQ_ENVFROM(0.00)[matthias.fend@emfend.at,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[carlosjr.jones@analog.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[analog.com:+];
 	PRECEDENCE_BULK(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[emfend.at:email,emfend.at:mid,ideasonboard.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5A858304188
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: DA456303FEE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for selecting between continuous and non-continuous MIPI clock
-mode.
+The LTC2305 is a 2-channel, 12-bit, fast ADC with an I2C interface,
+compatible with the LTC2309 (which has 8 channels).
 
-Previously, the CSI-2 non-continuous clock endpoint flag was ignored and
-the sensor was always configured for non-continuous clock mode. For
-existing device tree nodes that do not have this property enabled, this
-update will therefore change the actual clock mode.
+This patch adds support for the LTC2305 by introducing a chip_info
+structure to handle the different channel configurations between the two
+variants. The LTC2305 exposes 2 single-ended channels and 2 differential
+combinations.
 
-Reviewed-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
----
-Add support for selecting the MIPI clock mode (continuous, non-continuous).
+Also updates the device tree bindings to include the lltc,ltc2305
+compatible string and documents it in the Kconfig.
 ---
 Changes in v2:
-- Drop '[PATCH 1/3] media: dt-bindings: imx283: add clock-noncontinuous' (Krzysztof)
-- Drop '[PATCH 3/3] media: i2c: imx283: implement {g,s}_register' (Dave)
-- Link to v1: https://lore.kernel.org/r/20251217-imx283-ext-v1-0-906a762f592d@emfend.at
+- Changed usleep_range() to fsleep()
+- Added missing #include <linux/array_size.h> header
+- Removed explicit .read_delay_us = 0 initialization (implicit zero)
+- Added __counted_by_ptr() annotation to channels pointer
+- Modified ltc2309 struct to store only read_delay_us value instead
+  of full chip_info pointer, reducing memory overhead
+- Alphabetically ordered device entries in ID tables (ltc2305
+  before ltc2309)
+- Reformatted Kconfig help text with explicit bulleted list of
+  supported devices instead of vague "and similar" language
+- Added device names to chip_info structure for proper sysfs
+  identification
+- Split changes into proper preparatory patches before adding
+  new device support
+- Link to v1: https://lore.kernel.org/all/20260320140819.191700-1-carlosjr.jones@analog.com/
+
+Note:
+The ltc2309_chip_info structure has a 4-byte hole due to alignment
+requirements for the __counted_by_ptr() annotation. The count field
+must precede the pointer field for the bounds checking to work correctly.
+The total structure size remains 32 bytes either way due to required
+padding, so the memory overhead is minimal (8 bytes total for both chip
+variants).
 ---
- drivers/media/i2c/imx283.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Carlos Jones Jr (4):
+  iio: adc: ltc2309: Introduce chip_info structure
+  iio: adc: ltc2309: Use i2c_get_match_data() helper
+  dt-bindings: iio: adc: ltc2497: Add LTC2305 compatible
+  iio: adc: ltc2309: Add LTC2305 support
 
-diff --git a/drivers/media/i2c/imx283.c b/drivers/media/i2c/imx283.c
-index 8ab63ad8f385f6e2a2d7432feff0af09a5356dc4..7a6ab2941ea985401b21d60163b58e980cf31ddc 100644
---- a/drivers/media/i2c/imx283.c
-+++ b/drivers/media/i2c/imx283.c
-@@ -149,6 +149,9 @@
- #define IMX283_REG_PLSTMG02		CCI_REG8(0x36aa)
- #define   IMX283_PLSTMG02_VAL		0x00
- 
-+#define IMX283_REG_MIPI_CLK		CCI_REG8(0x3a43)
-+#define   IMX283_MIPI_CLK_NONCONTINUOUS	BIT(0)
-+
- #define IMX283_REG_EBD_X_OUT_SIZE	CCI_REG16_LE(0x3a54)
- 
- /* Test pattern generator */
-@@ -565,6 +568,7 @@ struct imx283 {
- 	struct v4l2_ctrl *hblank;
- 	struct v4l2_ctrl *vflip;
- 
-+	bool mipi_clk_noncontinuous;
- 	unsigned long link_freq_bitmap;
- 
- 	u16 hmax;
-@@ -988,6 +992,7 @@ static int imx283_set_pad_format(struct v4l2_subdev *sd,
- static int imx283_standby_cancel(struct imx283 *imx283)
- {
- 	unsigned int link_freq_idx;
-+	u8 mipi_clk;
- 	int ret = 0;
- 
- 	cci_write(imx283->cci, IMX283_REG_STANDBY,
-@@ -1007,6 +1012,10 @@ static int imx283_standby_cancel(struct imx283 *imx283)
- 	/* Enable PLL */
- 	cci_write(imx283->cci, IMX283_REG_STBPL, IMX283_STBPL_NORMAL, &ret);
- 
-+	/* Configure MIPI clock mode */
-+	mipi_clk = imx283->mipi_clk_noncontinuous ? IMX283_MIPI_CLK_NONCONTINUOUS : 0;
-+	cci_write(imx283->cci, IMX283_REG_MIPI_CLK, mipi_clk, &ret);
-+
- 	/* Configure the MIPI link speed */
- 	link_freq_idx = __ffs(imx283->link_freq_bitmap);
- 	cci_multi_reg_write(imx283->cci, link_freq_reglist[link_freq_idx].regs,
-@@ -1426,6 +1435,9 @@ static int imx283_parse_endpoint(struct imx283 *imx283)
- 		goto done_endpoint_free;
- 	}
- 
-+	imx283->mipi_clk_noncontinuous =
-+		bus_cfg.bus.mipi_csi2.flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK;
-+
- 	ret = v4l2_link_freq_to_bitmap(imx283->dev, bus_cfg.link_frequencies,
- 				       bus_cfg.nr_of_link_frequencies,
- 				       link_frequencies, ARRAY_SIZE(link_frequencies),
+ .../bindings/iio/adc/lltc,ltc2497.yaml        |  9 ++-
+ drivers/iio/adc/Kconfig                       |  8 ++-
+ drivers/iio/adc/ltc2309.c                     | 59 ++++++++++++++++---
+ 3 files changed, 65 insertions(+), 11 deletions(-)
 
----
-base-commit: 3aa9296a23ec41a8424e9a2346eea59fb6cb7d8c
-change-id: 20251216-imx283-ext-5968a658dbe6
-
-Best regards,
 -- 
-Matthias Fend <matthias.fend@emfend.at>
+2.43.0
 
 
