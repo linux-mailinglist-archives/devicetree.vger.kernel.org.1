@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-280095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280094-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QAlWFZkXw2lCoAQAu9opvQ
-	(envelope-from <devicetree+bounces-280095-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 00:00:41 +0100
+	id YKiGKgYXw2lCoAQAu9opvQ
+	(envelope-from <devicetree+bounces-280094-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 23:58:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60A1431D949
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 00:00:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2871831D8CB
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 23:58:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C2B92311A64D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 22:58:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F3A113072F38
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 22:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF7C3C7E09;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D6E3C73F6;
 	Tue, 24 Mar 2026 22:58:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49AEF3C7E08;
-	Tue, 24 Mar 2026 22:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8AA3C7E0A;
+	Tue, 24 Mar 2026 22:58:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774393084; cv=none; b=t6iqHMx2bN0fejkF5+q+L0Y6weOh/79UlYemCTBdW/9TXxuFMjXd0Q1nbcO8wV3wHynI5xhGvuV5sEQu8xfYgCVfvLPqGLwt3ubGYIldhTMhBNmsJ+vn+dGVtz8c8GeX5xSeilwUNYRDl9lWi4qDU1vG3DPuluk1rJwrrmBJWps=
+	t=1774393084; cv=none; b=SGNre0FUErDkLNpPw6mjULxZX80z+3HWRnR7clZkPSnF7RauO0j3uBewQk/1yL4pL8M+uIQY6i/dOkfjrJprjXEyakyw84LwZ2khuW/nlIeboAYWbCiEZiVLILzs2SY1ovRWoWn6HIvYrQvaKPnNYawfyLzQcJ50q1fV6a81ctw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1774393084; c=relaxed/simple;
-	bh=lK8enCH9Mq/ykr9gHpVCWCtvGBLudclG3Jad4gdM9+o=;
+	bh=kDkMpF4f/zShZoQyS2bVy28n8MEDtIPPndBchULuPlk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rSQNL9NvmiSAF4rIn4bQsoj/4jJOLLctcf0IccnjvExTVUJugEesTF16jmkIN8yP6JztYZClNPsgkycrTmj7eGl4yAHBvqMhVvCXs0+cN5r9rfjPLTDjmXgZiEwVoCBDKZHXdazkZEwEvQ3gdaTpj9Pf9E2NfwvrWp6j96nW2jQ=
+	 MIME-Version; b=iJed7pHPHyr61+QgkKlzwsmRbgU1Pa/A70oTY/QhooczLH9htM+CimFtkOfTp5A3fCkdSg7mqaiAe5WNB+zDkzhhbBTmWIU0FXX3i0MvqH2JdCjQz5eqS3qas87eLIi/EXxdeaDCBNqix0xLr1xko+rMgM1q37DrX9F/5uU4TF8=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: sx4OHp5cQ82O3F0fKoVjmA==
-X-CSE-MsgGUID: ac/HC4SBRJmm2Cq/EZrs9A==
+X-CSE-ConnectionGUID: Ew6y+YbdQC+GBjNUvfcnNA==
+X-CSE-MsgGUID: fmLzuA7PQN2jb+9HdRWPSw==
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 25 Mar 2026 07:52:54 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 25 Mar 2026 07:52:59 +0900
 Received: from mind-2s.example.org (unknown [10.24.0.35])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 1C48D400B54B;
-	Wed, 25 Mar 2026 07:52:50 +0900 (JST)
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 48D2E400B54B;
+	Wed, 25 Mar 2026 07:52:55 +0900 (JST)
 From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 To: Geert Uytterhoeven <geert+renesas@glider.be>,
 	Magnus Damm <magnus.damm@gmail.com>,
@@ -52,9 +52,9 @@ Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	linux-clk@vger.kernel.org,
 	Biju Das <biju.das.jz@bp.renesas.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 1/2] arm64: dts: renesas: r9a09g056: Remove wdt{0,2,3} nodes
-Date: Tue, 24 Mar 2026 22:52:34 +0000
-Message-ID: <20260324225239.19136-2-fabrizio.castro.jz@renesas.com>
+Subject: [PATCH 2/2] clk: renesas: r9a09g056: Remove entries for WDT{0,2,3}
+Date: Tue, 24 Mar 2026 22:52:35 +0000
+Message-ID: <20260324225239.19136-3-fabrizio.castro.jz@renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260324225239.19136-1-fabrizio.castro.jz@renesas.com>
 References: <20260324225239.19136-1-fabrizio.castro.jz@renesas.com>
@@ -70,100 +70,86 @@ X-Spamd-Result: default: False [1.64 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,baylibre.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-280095-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-280094-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.198.94.208:email,0.219.186.0:email];
-	FROM_NEQ_ENVFROM(0.00)[fabrizio.castro.jz@renesas.com,devicetree@vger.kernel.org];
 	R_DKIM_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[fabrizio.castro.jz@renesas.com,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[11c00800:email,11c00400:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,12c03000:email,renesas.com:email,renesas.com:mid,0.198.93.64:email]
-X-Rspamd-Queue-Id: 60A1431D949
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2871831D8CB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Renesas RZ/V2N SoC (a.k.a. r9a09g056) comes with 4 CA55
-cores and 1 CM33 core.
+The Renesas RZ/V2N SoC (a.k.a. r9a09g056) comes with 4 watchdogs.
 
-While the user manual doesn't explicitly specify which cores
-should have access to particular watchdogs, it turns out that
-(similarly to the Renesas RZ/V2H(P)) it only makes sense for
-Linux to use WDT1.
+As it turns out, it only makes sense for Linux to have access to
+WDT1.
 
-Remove DT nodes wdt{0,2,3} from the RZ/V2N SoC specific dtsi
-to make it compliant with the original design intent.
+Remove the clock and reset entries for WDT{0,2,3} to prevent
+interfering with the CM33 core.
 
-This change is harmless as there are no users for the nodes
-being stripped out of this device tree.
+This change is harmless as only WDT1 is currently used in Linux,
+there are no users for the WDT{0,2,3} IPs.
 
 Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 ---
- arch/arm64/boot/dts/renesas/r9a09g056.dtsi | 30 ----------------------
- 1 file changed, 30 deletions(-)
+ drivers/clk/renesas/r9a09g056-cpg.c | 15 ---------------
+ 1 file changed, 15 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g056.dtsi b/arch/arm64/boot/dts/renesas/r9a09g056.dtsi
-index 9192c5bf7e59..40525470194e 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g056.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g056.dtsi
-@@ -599,16 +599,6 @@ ostm7: timer@12c03000 {
- 			status = "disabled";
- 		};
- 
--		wdt0: watchdog@11c00400 {
--			compatible = "renesas,r9a09g056-wdt", "renesas,r9a09g057-wdt";
--			reg = <0 0x11c00400 0 0x400>;
--			clocks = <&cpg CPG_MOD 0x4b>, <&cpg CPG_MOD 0x4c>;
--			clock-names = "pclk", "oscclk";
--			resets = <&cpg 0x75>;
--			power-domains = <&cpg>;
--			status = "disabled";
--		};
--
- 		wdt1: watchdog@14400000 {
- 			compatible = "renesas,r9a09g056-wdt", "renesas,r9a09g057-wdt";
- 			reg = <0 0x14400000 0 0x400>;
-@@ -619,26 +609,6 @@ wdt1: watchdog@14400000 {
- 			status = "disabled";
- 		};
- 
--		wdt2: watchdog@13000000 {
--			compatible = "renesas,r9a09g056-wdt", "renesas,r9a09g057-wdt";
--			reg = <0 0x13000000 0 0x400>;
--			clocks = <&cpg CPG_MOD 0x4f>, <&cpg CPG_MOD 0x50>;
--			clock-names = "pclk", "oscclk";
--			resets = <&cpg 0x77>;
--			power-domains = <&cpg>;
--			status = "disabled";
--		};
--
--		wdt3: watchdog@13000400 {
--			compatible = "renesas,r9a09g056-wdt", "renesas,r9a09g057-wdt";
--			reg = <0 0x13000400 0 0x400>;
--			clocks = <&cpg CPG_MOD 0x51>, <&cpg CPG_MOD 0x52>;
--			clock-names = "pclk", "oscclk";
--			resets = <&cpg 0x78>;
--			power-domains = <&cpg>;
--			status = "disabled";
--		};
--
- 		rtc: rtc@11c00800 {
- 			compatible = "renesas,r9a09g056-rtca3", "renesas,rz-rtca3";
- 			reg = <0 0x11c00800 0 0x400>;
+diff --git a/drivers/clk/renesas/r9a09g056-cpg.c b/drivers/clk/renesas/r9a09g056-cpg.c
+index 549c882f9a18..2ff2935aeb0d 100644
+--- a/drivers/clk/renesas/r9a09g056-cpg.c
++++ b/drivers/clk/renesas/r9a09g056-cpg.c
+@@ -273,22 +273,10 @@ static const struct rzv2h_mod_clk r9a09g056_mod_clks[] __initconst = {
+ 						BUS_MSTOP(11, BIT(15))),
+ 	DEF_MOD("gtm_7_pclk",			CLK_PLLCLN_DIV16, 4, 10, 2, 10,
+ 						BUS_MSTOP(12, BIT(0))),
+-	DEF_MOD("wdt_0_clkp",			CLK_PLLCM33_DIV16, 4, 11, 2, 11,
+-						BUS_MSTOP(3, BIT(10))),
+-	DEF_MOD("wdt_0_clk_loco",		CLK_QEXTAL, 4, 12, 2, 12,
+-						BUS_MSTOP(3, BIT(10))),
+ 	DEF_MOD("wdt_1_clkp",			CLK_PLLCLN_DIV16, 4, 13, 2, 13,
+ 						BUS_MSTOP(1, BIT(0))),
+ 	DEF_MOD("wdt_1_clk_loco",		CLK_QEXTAL, 4, 14, 2, 14,
+ 						BUS_MSTOP(1, BIT(0))),
+-	DEF_MOD("wdt_2_clkp",			CLK_PLLCLN_DIV16, 4, 15, 2, 15,
+-						BUS_MSTOP(5, BIT(12))),
+-	DEF_MOD("wdt_2_clk_loco",		CLK_QEXTAL, 5, 0, 2, 16,
+-						BUS_MSTOP(5, BIT(12))),
+-	DEF_MOD("wdt_3_clkp",			CLK_PLLCLN_DIV16, 5, 1, 2, 17,
+-						BUS_MSTOP(5, BIT(13))),
+-	DEF_MOD("wdt_3_clk_loco",		CLK_QEXTAL, 5, 2, 2, 18,
+-						BUS_MSTOP(5, BIT(13))),
+ 	DEF_MOD("rtc_0_clk_rtc",		CLK_PLLCM33_DIV16, 5, 3, 2, 19,
+ 						BUS_MSTOP(3, BIT(11) | BIT(12))),
+ 	DEF_MOD("rspi_0_pclk",			CLK_PLLCLN_DIV8, 5, 4, 2, 20,
+@@ -571,10 +559,7 @@ static const struct rzv2h_reset r9a09g056_resets[] __initconst = {
+ 	DEF_RST(7, 2, 3, 3),		/* GTM_5_PRESETZ */
+ 	DEF_RST(7, 3, 3, 4),		/* GTM_6_PRESETZ */
+ 	DEF_RST(7, 4, 3, 5),		/* GTM_7_PRESETZ */
+-	DEF_RST(7, 5, 3, 6),		/* WDT_0_RESET */
+ 	DEF_RST(7, 6, 3, 7),		/* WDT_1_RESET */
+-	DEF_RST(7, 7, 3, 8),		/* WDT_2_RESET */
+-	DEF_RST(7, 8, 3, 9),		/* WDT_3_RESET */
+ 	DEF_RST(8, 1, 3, 18),		/* RSCI0_PRESETN */
+ 	DEF_RST(8, 2, 3, 19),		/* RSCI0_TRESETN */
+ 	DEF_RST(8, 3, 3, 20),		/* RSCI1_PRESETN */
 -- 
 2.43.0
 
