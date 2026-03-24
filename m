@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-279514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279518-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UF1cMk7+wWnqYgQAu9opvQ
-	(envelope-from <devicetree+bounces-279514-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 04:00:30 +0100
+	id UHyLEY/9wWnqYgQAu9opvQ
+	(envelope-from <devicetree+bounces-279518-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 03:57:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AF11301684
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 04:00:30 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C7DC3015B8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 03:57:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 59E1A304ADAC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 02:56:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4D95F30197DB
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 02:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53A97389107;
-	Tue, 24 Mar 2026 02:56:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F7738AC6D;
+	Tue, 24 Mar 2026 02:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="kQsb/OUY"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="CIo6DP7+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2EBB388E4E;
-	Tue, 24 Mar 2026 02:56:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD967388E7A;
+	Tue, 24 Mar 2026 02:56:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774321014; cv=none; b=riWidOJzo4uUrwoSfnsJ3aVSUGw4LShBkN/+K8q6kvKcLuFVTcTxgiijG2e4Bvd1v7A24yr1AcgIHiPQnmSwgeWFN75NOWP0lfUJhBqMu/B5GJ1yfuR58c+sntolxw8ND1/2MnhXNoQAhhcb+w91ja+V3yCJrdpXh5Mtp/p/wd8=
+	t=1774321015; cv=none; b=t8UMxLFPbmTXm8H4vEDJHcwABFCD1ihbpXcA0d/8YOfv/NWq6F6T5h1koewBT3FGvKAc+CUqsAq87z6N3lpfMUUL5T6E+aoCDIs8FGQhl8lBSIB59Btt0WbuFlQHeXJ9N/UUBFD6xRsiV/gdpXuDzVayIMBtAUQDkteJ5cEGqfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774321014; c=relaxed/simple;
-	bh=iVybwPPMJxkW0F2npBOCFZ1DZK6j5vOiDvF/sjgpWA8=;
+	s=arc-20240116; t=1774321015; c=relaxed/simple;
+	bh=POOHqqxtA21ajaBz/3NF9f/GPHMg31DqKiT4JanHApU=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JHr7WDpvBILFp2FxwCzX75qOvVy4t0McJW01eIt4CwIDkDCpnB55Wc3pieGWQ4e0ZIo0vc/PsrpEo2OH8BiWvFx/qHfjjbk7CGOFjdhhAeY6/g7gFomYhzM4UWLV5XnNYPTyNIqNE2yhciixfsVuIs+YomE+6xvAM3aoqixMkT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=kQsb/OUY; arc=none smtp.client-ip=211.75.126.72
+	 MIME-Version:Content-Type; b=OLdmmk7xA/wCTh8I6Wdqjfds9iDkr+t0XP1OCUFylMxz650FIDfSKLYQ208DpuNaP8yOwmcTCrHJPO5fP15GC+lCQlMrEezBDRszMJAt4gZFYr7NJu1Nm4xuwHrkP03NRCHns9u/o10UezWfw7hxG247e5YTt/6TD9XPPdZzLmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=CIo6DP7+; arc=none smtp.client-ip=211.75.126.72
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 62O2rWVW1278451, This message is accepted by code: ctloc85258
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 62O2rXt65278453, This message is accepted by code: ctloc85258
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1774320812; bh=6XmEXoNvQpHnGXXW5vJRRUsAQOh6nBmLz22bOxzyt0Q=;
+	t=1774320813; bh=rjkTB/VfnHd5x/i85I4AqRLXhPiPeOFV8rGAGsqWHJg=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
 	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=kQsb/OUYrG/ZFJfcLlp4jjeAeYGxIGiwiqYlhDLxXzsw3nj3rbzHx1BN9fDI0/ZcL
-	 13gefIWbAvwCQE+D+n77sxJCQ8EJ+EKAthzNx/5FX02hMmXJbdhsZk7lG38GKtSNdc
-	 ixmTiOxnwI2nsLlfpL/s0WCIFivvvQjoGyczLjNmqBszzQIyhoPq6wZnGy3Otqg419
-	 8KKlDcsR83DDptJinPGJyut85Eos4+xtAzI3QjvcDVmZgM6SaNERTeRqWV9fckmR7b
-	 s4makJc8UALpO1VDw47kJyxyMKwiqArt4KcHq88tjdoha32AtKrWGSMIgJhR2tRG7L
-	 Cmxsabc9sdtug==
-Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 62O2rWVW1278451
+	b=CIo6DP7+9d7taoedOZdt6dQv+jc4OazejTpublCG52vwAp/ljZQibRwCWp4mFtBs+
+	 CRqAdEckupuD/tgfyMXGgCMkcEItG+3zWdOICT366MTHBiJrkAhkykm6CvPd+6krOM
+	 ZcbmdZRBdBF1+B7JNngvLt2FQcZ/nj9nrbM2WyxF85iMrT9f0r1JyepHGlrA5RFB8I
+	 WmUR0QzFlaiiqwdXrL47I61G/BXBPX8lj5ZKerbZrAx693rpDYXEaHn4mdl00XtKmm
+	 296oEWXH95x9QCxAxMeJvXb69pHT/RmWCnR5IinYfV7fScOW2FoZeC5hNZcIA3E43U
+	 PSmKfiEs6lIgw==
+Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 62O2rXt65278453
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 24 Mar 2026 10:53:32 +0800
+	Tue, 24 Mar 2026 10:53:33 +0800
 Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.2.1748.10; Tue, 24 Mar 2026 10:53:33 +0800
 Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
  RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Tue, 24 Mar 2026 10:53:32 +0800
+ 15.2.1748.10; Tue, 24 Mar 2026 10:53:33 +0800
 Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS06.realtek.com.tw
  (10.21.1.56) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Tue, 24 Mar 2026 10:53:32 +0800
+ Transport; Tue, 24 Mar 2026 10:53:33 +0800
 From: Yu-Chun Lin <eleanor.lin@realtek.com>
 To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
         <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <p.zabel@pengutronix.de>,
@@ -69,9 +69,9 @@ CC: <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
         <linux-realtek-soc@lists.infradead.org>, <james.tai@realtek.com>,
         <cy.huang@realtek.com>, <stanley_chang@realtek.com>,
         <eleanor.lin@realtek.com>
-Subject: [PATCH v5 02/10] arm64: dts: realtek: Add clock support for RTD1625
-Date: Tue, 24 Mar 2026 10:53:23 +0800
-Message-ID: <20260324025332.3416977-3-eleanor.lin@realtek.com>
+Subject: [PATCH v5 03/10] reset: Add Realtek basic reset support
+Date: Tue, 24 Mar 2026 10:53:24 +0800
+Message-ID: <20260324025332.3416977-4-eleanor.lin@realtek.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260324025332.3416977-1-eleanor.lin@realtek.com>
 References: <20260324025332.3416977-1-eleanor.lin@realtek.com>
@@ -90,97 +90,244 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279514-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-279518-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.2.59.134:email,0.0.0.0:email,realtek.com:dkim,realtek.com:email,realtek.com:mid,5.215.92.128:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	DBL_PROHIBIT(0.00)[0.0.30.120:email,0.0.27.176:email];
 	DKIM_TRACE(0.00)[realtek.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:dkim,realtek.com:email,realtek.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 5AF11301684
+X-Rspamd-Queue-Id: 5C7DC3015B8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add the clock controller nodes and osc27m fixed clock for the
-Realtek RTD1625 SoC.
+From: Cheng-Yu Lee <cylee12@realtek.com>
 
+Define the reset operations backed by a regmap-based register
+interface and prepare the reset controller to be registered
+through the reset framework.
+
+Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
+Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 ---
 Changes in v5:
-- Reordered device nodes alphabetically.
+- Created drivers/reset/realtek/ directory and include/linux/reset/realtek.h.
+- Extracted the common reset helpers:
+ - Moved the source code to drivers/reset/realtek/common.c and
+ - the header to include/linux/reset/realtek.h
+- Renamed rtk_reset_bank to rtk_reset_desc.
+- Added 'bits' member to rtk_reset_desc structure.
+- Removed rtk_reset_get_id() and rtk_reset_get_bank() helper.
+- Introduced rtk_reset_get_desc().
 ---
- arch/arm64/boot/dts/realtek/kent.dtsi | 30 +++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+ MAINTAINERS                    |  1 +
+ drivers/reset/Kconfig          |  1 +
+ drivers/reset/Makefile         |  1 +
+ drivers/reset/realtek/Kconfig  |  3 ++
+ drivers/reset/realtek/Makefile |  2 +
+ drivers/reset/realtek/common.c | 91 ++++++++++++++++++++++++++++++++++
+ include/linux/reset/realtek.h  | 25 ++++++++++
+ 7 files changed, 124 insertions(+)
+ create mode 100644 drivers/reset/realtek/Kconfig
+ create mode 100644 drivers/reset/realtek/Makefile
+ create mode 100644 drivers/reset/realtek/common.c
+ create mode 100644 include/linux/reset/realtek.h
 
-diff --git a/arch/arm64/boot/dts/realtek/kent.dtsi b/arch/arm64/boot/dts/realtek/kent.dtsi
-index ae006ce24420..3f3383872a49 100644
---- a/arch/arm64/boot/dts/realtek/kent.dtsi
-+++ b/arch/arm64/boot/dts/realtek/kent.dtsi
-@@ -26,6 +26,15 @@ timer {
- 			     <GIC_PPI  9 IRQ_TYPE_LEVEL_HIGH>;
- 	};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 721356d4c02c..9419b0497e0b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -22229,6 +22229,7 @@ L:	devicetree@vger.kernel.org
+ L:	linux-clk@vger.kernel.org
+ S:	Supported
+ F:	Documentation/devicetree/bindings/clock/realtek*
++F:	drivers/reset/realtek/*
+ F:	include/dt-bindings/clock/realtek*
  
-+	clocks {
-+		osc27m: osc {
-+			compatible = "fixed-clock";
-+			clock-frequency = <27000000>;
-+			clock-output-names = "osc27m";
-+			#clock-cells = <0>;
-+		};
-+	};
-+
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-@@ -141,6 +150,13 @@ rbus: bus@98000000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
+ REALTEK SPI-NAND
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index 7ce151f6a7e4..03be1931f264 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -398,6 +398,7 @@ config RESET_ZYNQMP
  
-+			cc: clock-controller@0 {
-+				compatible = "realtek,rtd1625-crt-clk";
-+				reg = <0x0 0x900>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
+ source "drivers/reset/amlogic/Kconfig"
+ source "drivers/reset/hisilicon/Kconfig"
++source "drivers/reset/realtek/Kconfig"
+ source "drivers/reset/spacemit/Kconfig"
+ source "drivers/reset/starfive/Kconfig"
+ source "drivers/reset/sti/Kconfig"
+diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+index fc0cc99f8514..4407d1630070 100644
+--- a/drivers/reset/Makefile
++++ b/drivers/reset/Makefile
+@@ -2,6 +2,7 @@
+ obj-y += core.o
+ obj-y += amlogic/
+ obj-y += hisilicon/
++obj-y += realtek/
+ obj-y += spacemit/
+ obj-y += starfive/
+ obj-y += sti/
+diff --git a/drivers/reset/realtek/Kconfig b/drivers/reset/realtek/Kconfig
+new file mode 100644
+index 000000000000..99a14d355803
+--- /dev/null
++++ b/drivers/reset/realtek/Kconfig
+@@ -0,0 +1,3 @@
++# SPDX-License-Identifier: GPL-2.0-only
++config RESET_RTK_COMMON
++	bool
+diff --git a/drivers/reset/realtek/Makefile b/drivers/reset/realtek/Makefile
+new file mode 100644
+index 000000000000..b59a3f7f2453
+--- /dev/null
++++ b/drivers/reset/realtek/Makefile
+@@ -0,0 +1,2 @@
++# SPDX-License-Identifier: GPL-2.0-only
++obj-$(CONFIG_RESET_RTK_COMMON) += common.o
+diff --git a/drivers/reset/realtek/common.c b/drivers/reset/realtek/common.c
+new file mode 100644
+index 000000000000..b9e3219dc8f7
+--- /dev/null
++++ b/drivers/reset/realtek/common.c
+@@ -0,0 +1,91 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (C) 2019 Realtek Semiconductor Corporation
++ */
 +
- 			uart0: serial@7800 {
- 				compatible = "snps,dw-apb-uart";
- 				reg = <0x7800 0x100>;
-@@ -150,6 +166,20 @@ uart0: serial@7800 {
- 				reg-shift = <2>;
- 				status = "disabled";
- 			};
++#include <linux/device.h>
++#include <linux/of.h>
++#include <linux/regmap.h>
++#include <linux/reset-controller.h>
++#include <linux/reset/realtek.h>
 +
-+			ic: clock-controller@7088 {
-+				compatible = "realtek,rtd1625-iso-clk";
-+				reg = <0x7088 0x8>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
++struct rtk_reset_data {
++	struct reset_controller_dev rcdev;
++	struct rtk_reset_desc *descs;
++	struct regmap *regmap;
++};
 +
-+			iso_s_cc: clock-controller@146310 {
-+				compatible = "realtek,rtd1625-iso-s-clk";
-+				reg = <0x146310 0x8>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
- 		};
- 
- 		gic: interrupt-controller@ff100000 {
++static inline struct rtk_reset_data *to_rtk_reset_controller(struct reset_controller_dev *r)
++{
++	return container_of(r, struct rtk_reset_data, rcdev);
++}
++
++static inline struct rtk_reset_desc *rtk_reset_get_desc(struct rtk_reset_data *data,
++							unsigned long idx)
++{
++	return &data->descs[idx];
++}
++
++static int rtk_reset_assert(struct reset_controller_dev *rcdev,
++			    unsigned long idx)
++{
++	struct rtk_reset_data *data = to_rtk_reset_controller(rcdev);
++	struct rtk_reset_desc *desc = rtk_reset_get_desc(data, idx);
++	u32 mask = desc->write_en ? (0x3 << desc->bit) : BIT(desc->bit);
++	u32 val  = desc->write_en ? (0x2 << desc->bit) : 0;
++
++	return regmap_update_bits(data->regmap, desc->ofs, mask, val);
++}
++
++static int rtk_reset_deassert(struct reset_controller_dev *rcdev,
++			      unsigned long idx)
++{
++	struct rtk_reset_data *data = to_rtk_reset_controller(rcdev);
++	struct rtk_reset_desc *desc = rtk_reset_get_desc(data, idx);
++	u32 mask = desc->write_en ? (0x3 << desc->bit) : BIT(desc->bit);
++	u32 val  = mask;
++
++	return regmap_update_bits(data->regmap, desc->ofs, mask, val);
++}
++
++static int rtk_reset_status(struct reset_controller_dev *rcdev,
++			    unsigned long idx)
++{
++	struct rtk_reset_data *data = to_rtk_reset_controller(rcdev);
++	struct rtk_reset_desc *desc = rtk_reset_get_desc(data, idx);
++	u32 val;
++	int ret;
++
++	ret = regmap_read(data->regmap, desc->ofs, &val);
++	if (ret)
++		return ret;
++
++	return !((val >> desc->bit) & 1);
++}
++
++static const struct reset_control_ops rtk_reset_ops = {
++	.assert   = rtk_reset_assert,
++	.deassert = rtk_reset_deassert,
++	.status   = rtk_reset_status,
++};
++
++int rtk_reset_controller_add(struct device *dev,
++			     struct rtk_reset_initdata *initdata)
++{
++	struct rtk_reset_data *data;
++
++	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	data->regmap          = initdata->regmap;
++	data->descs           = initdata->descs;
++	data->rcdev.owner     = THIS_MODULE;
++	data->rcdev.ops       = &rtk_reset_ops;
++	data->rcdev.dev       = dev;
++	data->rcdev.of_node   = dev->of_node;
++	data->rcdev.nr_resets = initdata->num_descs;
++
++	return devm_reset_controller_register(dev, &data->rcdev);
++}
++EXPORT_SYMBOL_GPL(rtk_reset_controller_add);
+diff --git a/include/linux/reset/realtek.h b/include/linux/reset/realtek.h
+new file mode 100644
+index 000000000000..3c2226e3ed26
+--- /dev/null
++++ b/include/linux/reset/realtek.h
+@@ -0,0 +1,25 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef __LINUX_RESET_REALTEK_H__
++#define __LINUX_RESET_REALTEK_H__
++
++#include <linux/types.h>
++
++struct device;
++struct regmap;
++
++struct rtk_reset_desc {
++	u32 ofs;
++	u32 bit;
++	u32 write_en;
++};
++
++struct rtk_reset_initdata {
++	struct rtk_reset_desc *descs;
++	u32 num_descs;
++	struct regmap *regmap;
++};
++
++int rtk_reset_controller_add(struct device *dev,
++			     struct rtk_reset_initdata *initdata);
++
++#endif /* __LINUX_RESET_REALTEK_H__ */
 -- 
 2.34.1
 
