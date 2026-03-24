@@ -1,327 +1,156 @@
-Return-Path: <devicetree+bounces-279980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279982-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SIhdHRvCwmmjlQQAu9opvQ
-	(envelope-from <devicetree+bounces-279980-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 17:55:55 +0100
+	id yBDJF0XDwmmjlQQAu9opvQ
+	(envelope-from <devicetree+bounces-279982-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 18:00:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6CF33197B3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 17:55:54 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E4F33198E4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 18:00:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 36F42302A06F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 16:54:29 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D16F63056CC5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 16:56:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 879A03D1CAA;
-	Tue, 24 Mar 2026 16:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C488405AAF;
+	Tue, 24 Mar 2026 16:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aTiI3B0t"
+	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="T+rLzfT6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F49E38F92A;
-	Tue, 24 Mar 2026 16:54:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774371268; cv=none; b=tOqplr+9IWiR5PwQFOZaLW2Sr76MYO6f3WTa80C7qknvTUc2e4kcp81VqS9v8eCiSK56YYE/r1Ul7GwSO+M5/hNhDPO4bt+eDlKvOH9NWTA09hHCEn7pcGE9wgheIsCXIKA+gUhe2VxJcJsHUHRW/axUcKzR3iNLtLYUsUGz94U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774371268; c=relaxed/simple;
-	bh=6XwTfsRWoS93cnxOuZ3FgxopYlNBweflJgztMgNywtw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=r285Ml2UmlwOmyGKoaycXIObA044009SOxX5IVw7oV4F02HfXkAcvFZkJtoI2HopKBCVmD4g2T/nscm7crbD2O+4RMNbXl0BZ/s1unyi9qy1NkzeHhnFom0LJgB/dmRQmbuQqrJw4EKaQ4sKxQoCJPFWf3y6TX48ZtIyCtbGxSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aTiI3B0t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D065C19424;
-	Tue, 24 Mar 2026 16:54:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774371268;
-	bh=6XwTfsRWoS93cnxOuZ3FgxopYlNBweflJgztMgNywtw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=aTiI3B0tekb0ODeo1RRtl5msPPkbfMkXmTJ3L5ORFH0Itzy3wlIM6tAAVk5QydB4B
-	 KaEOgbhfEsTubYPztwrfV8TY2GzNK2kaGJhKFBK8P9ajQPv6TPESIT5cEiYhpX4vMs
-	 xJSTkDI/eiuQOmX5b4SLYwqM2m2DXtgflsXglqPxTRwxXHmGiNDdeORax6MiiZBbvQ
-	 QfwBicuahSCqk0hOc/D7Gzvq83/OgDVE9irHbTzKBnK/mW9buEG3HVRovKQC+Nzn+F
-	 2pk4cJMey8KfztKJEuaqv8pziQvEaBid24S6q+oZU+7Rptxc7EbtGiaLNQ7t0sjOw3
-	 PpfVdS4/xXupw==
-From: Simon Horman <horms@kernel.org>
-To: wei.fang@nxp.com
-Cc: Simon Horman <horms@kernel.org>,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	andrew@lunn.ch,
-	vladimir.oltean@nxp.com,
-	frank.li@nxp.com,
-	pabeni@redhat.com,
-	conor+dt@kernel.org,
-	xiaoning.wang@nxp.com,
-	davem@davemloft.net,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev,
-	kuba@kernel.org,
-	edumazet@google.com,
-	linux-kernel@vger.kernel.org,
-	linux@armlinux.org.uk,
-	andrew+netdev@lunn.ch,
-	f.fainelli@gmail.com,
-	claudiu.manoil@nxp.com,
-	netdev@vger.kernel.org,
-	chleroy@kernel.org,
-	linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v2 net-next 09/14] net: dsa: add NETC switch tag support
-Date: Tue, 24 Mar 2026 16:54:15 +0000
-Message-ID: <20260324165415.243214-1-horms@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260323060752.1157031-10-wei.fang@nxp.com>
-References: <20260323060752.1157031-10-wei.fang@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A43405ADD;
+	Tue, 24 Mar 2026 16:56:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774371386; cv=pass; b=JEUKg61xnkg78oCbAYVwENLBOojLdOk20YIKEiKf0InK+EqkaXNcf0siJyjL7FuPTPhfLemsP/4jopOQUI+jQvzcxqWlNgRwHNPGciZKXpwYJa8Ii44j04nFIo3zz0054FV3bQ+qq7UFC3fNkNuMlb3T6Fu+cuD/WbPT47/+0gc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774371386; c=relaxed/simple;
+	bh=ce5KgZpNqQXpdfz+fCZfMY2AY+7fq0BiWHSfcjJHws0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sO9jqNfJmFmO5LOGaSwGpjHg2oCuzDOnjwZnDCOaPsHleVN6lKWwmrF+VRTg6+Kxtum/g8u9hpJsVdfXrEhNMe5AnsTidDOtoXCuB4npJkmiXhnnuDYxMW3LCs9xVQV/Q4P3EcHzL/Qg9ndcq1rpNM2wv2ou3VJ0Ojiu/MOb+VY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=T+rLzfT6; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
+ARC-Seal: i=1; a=rsa-sha256; t=1774371363; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=WDaP5f4TUhtcoSFuDnk3D3GgbpPqY3U0w/BSQBhwQMxJoQn2FPNITKn+oKydoBn+MGjHNXcfrowNjya/Us6Ehb6c4syEyFXNTKRenPDltf3RAch6pEOBDUa6brD4myndBQEFFVWen0hoYXpnbaGyyKtJeVbAaKSte1ONTaaHvkQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1774371363; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Jiy7RO9txASLPqZYKrGArRewWy+3t2WyQyeCTuVmXy4=; 
+	b=apLOPBX6Wp9f1EaqyKjyBYRazZdqSmGQGIqvIJ125nOyFnZYydxZ9USnkO1FeFOzS4O8D0VdJ8Ul5apRTXH11rOCkPF/VgYHzE6jUHCq0Q/ctJ6+QEPoe/mBcr5R0GmEJiqeZgC1LBHw7GwjBk/D6smJh1TmqT92ueyvXjVfffo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=ziyao.cc;
+	spf=pass  smtp.mailfrom=me@ziyao.cc;
+	dmarc=pass header.from=<me@ziyao.cc>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774371363;
+	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=Jiy7RO9txASLPqZYKrGArRewWy+3t2WyQyeCTuVmXy4=;
+	b=T+rLzfT6sCf/pqDn1dxCrg3R1bNkfSReYXzi6M+pmTImhA87l+LmTyvTFzOlRiUH
+	wQgGyLTF1yXAWy0KWb4NBS3Ks7X7WhYc0E1PNn8XK9JYG5APTkcQ3JTIJC/cKXIQp+1
+	wmAvh2lUPtu33ypCQ3XRNSH6bzNrh48esF697qik=
+Received: by mx.zohomail.com with SMTPS id 1774371361201648.8428770573439;
+	Tue, 24 Mar 2026 09:56:01 -0700 (PDT)
+Date: Tue, 24 Mar 2026 16:55:40 +0000
+From: Yao Zi <me@ziyao.cc>
+To: wjjsn <wjjsn@qq.com>, Huacai Chen <chenhuacai@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	kernel@xen0n.name, devicetree@vger.kernel.org,
+	loongarch@lists.linux.dev, linux-kernel@vger.kernel.org,
+	wjjsn <2858482031@qq.com>
+Subject: Re: [PATCH v5 0/2] Add Loongson-2K0300 processor support
+Message-ID: <acLCDL_nJom8AzjK@pie>
+References: <tencent_325FB1D2C600CD55E367332EC453E5A64B09@qq.com>
+ <ab_iF2hjZRfp16HP@pie>
+ <CAAhV-H7FZ65D9mHgW8_-_QiZ2Kv2cxVo5P72AJhc3JptviFpNA@mail.gmail.com>
+ <tencent_CA7176E8823B957F1AEB15254D17904D5505@qq.com>
+ <acCoo_ZrTmZGZH5d@pie>
+ <tencent_414FBFBEE2A4510232AB52CE665C04A6C20A@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <tencent_414FBFBEE2A4510232AB52CE665C04A6C20A@qq.com>
+X-ZohoMailClient: External
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ziyao.cc,quarantine];
+	R_DKIM_ALLOW(-0.20)[ziyao.cc:s=zmail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lunn.ch,nxp.com,redhat.com,davemloft.net,lists.infradead.org,lists.linux.dev,google.com,armlinux.org.uk,gmail.com,lists.ozlabs.org];
+	TAGGED_FROM(0.00)[bounces-279982-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	TAGGED_FROM(0.00)[bounces-279980-lists,devicetree=lfdr.de];
+	RSPAMD_URIBL_FAIL(0.00)[ziyao.cc:query timed out];
+	FREEMAIL_TO(0.00)[qq.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DKIM_TRACE(0.00)[ziyao.cc:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.dev:url]
-X-Rspamd-Queue-Id: C6CF33197B3
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,xen0n.name,vger.kernel.org,lists.linux.dev,qq.com];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2E4F33198E4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This is an AI-generated review of your patch. The human sending this
-email has considered the AI review valid, or at least plausible.
+On Tue, Mar 24, 2026 at 11:09:16PM +0800, wjjsn wrote:
+> On 3/23/26 10:42, Yao Zi wrote:
+> > On Mon, Mar 23, 2026 at 12:33:31AM +0800, wjjsn wrote:
 
-For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
----
-net: dsa: add NETC switch tag support
+...
 
-This commit introduces support for the NXP NETC switch tag protocol,
-a proprietary header used by NETC switches. The tag supports three
-types (Forward, To_Port, and To_Host) with variable length (6-14 bytes).
+> > >    the clk_apb_gate will
+> > >    turn off by kernel while booting,though 16100000.serial is using
+> > 
+> > This is unlikely an issue in the clock driver, but rather the consumer
+> > is doing something wrong, though I haven't seen similar issues when
+> > working on the clock driver.
+> > 
+> > Please try booting the kernel with clk_ignore_unused, and check
+> > /sys/kernel/debug/clk/clk_summary to see whether the serial correctly
+> > acquires the apb gate clock. If not, one (and the most possible) reason
+> > is both clock-frequency and clocks properties are specified in its
+> > devicetree node, where 8250 driver would ignore the latter.
+> > 
+> 
+>  When I use 'clocks = <&clk LS2K0300_CLK_DEV_DIV>;', the system log gets
+> stuck at the message about closing unused clocks, and there are no further
+> logs. It seems like the clock for the serial port is being closed. However,
+> if I set the parameter to not close unused clocks as a startup parameter,
+> the serial port can continue to be used. If I use 'clocks = <&clk
+> LS2K0300_CLK_APB_GATE>;', then the clock for the serial port is not closed
+> and can start normally. I have not specified the clock frequency in the
 
-> diff --git a/include/linux/dsa/tag_netc.h b/include/linux/dsa/tag_netc.h
-> new file mode 100644
-> index 000000000000..fe964722e5b0
-> --- /dev/null
-> +++ b/include/linux/dsa/tag_netc.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: GPL-2.0
-> + *
-> + * Copyright 2025-2026 NXP
-> + */
-> +
-> +#ifndef __NET_DSA_TAG_NETC_H
-> +#define __NET_DSA_TAG_NETC_H
-> +
-> +#include <linux/skbuff.h>
-> +#include <net/dsa.h>
-> +
-> +#define NETC_TAG_MAX_LEN			14
-> +
-> +#endif
+This is the expected behavior, because LS2K0300_CLK_APB_GATE takes
+LS2K0300_CLK_APB_DIV as parent, and unused clocks would be automatically
+disabled by kernel.
 
-[ ... ]
+It's intended to let consumers take the GATE clock instead of the DIV
+clock, just like what you have done in your patch.
 
-> diff --git a/net/dsa/tag_netc.c b/net/dsa/tag_netc.c
-> new file mode 100644
-> index 000000000000..15b0dd5c5408
-> --- /dev/null
-> +++ b/net/dsa/tag_netc.c
+> Regards,
+> wjjsn
 
-[ ... ]
-
-> @@ -0,0 +1,180 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2025-2026 NXP
-> + */
-> +
-> +#include <linux/dsa/tag_netc.h>
-> +
-> +#include "tag.h"
-> +
-> +#define NETC_NAME			"nxp_netc"
-> +
-> +/* Forward NXP switch tag */
-> +#define NETC_TAG_FORWARD		0
-> +
-> +/* To_Port NXP switch tag */
-> +#define NETC_TAG_TO_PORT		1
-> +/* SubType0: No request to perform timestamping */
-> +#define NETC_TAG_TP_SUBTYPE0		0
-> +
-> +/* To_Host NXP switch tag */
-> +#define NETC_TAG_TO_HOST		2
-> +/* SubType0: frames redirected or copied to CPU port */
-> +#define NETC_TAG_TH_SUBTYPE0		0
-> +/* SubType1: frames redirected or copied to CPU port with timestamp */
-> +#define NETC_TAG_TH_SUBTYPE1		1
-> +/* SubType2: Transmit timestamp response (two-step timestamping) */
-> +#define NETC_TAG_TH_SUBTYPE2		2
-> +
-> +/* NETC switch tag lengths */
-> +#define NETC_TAG_FORWARD_LEN		6
-> +#define NETC_TAG_TP_SUBTYPE0_LEN	6
-> +#define NETC_TAG_TH_SUBTYPE0_LEN	6
-> +#define NETC_TAG_TH_SUBTYPE1_LEN	14
-> +#define NETC_TAG_TH_SUBTYPE2_LEN	14
-> +#define NETC_TAG_CMN_LEN		5
-> +
-> +#define NETC_TAG_SUBTYPE		GENMASK(3, 0)
-> +#define NETC_TAG_TYPE			GENMASK(7, 4)
-> +#define NETC_TAG_QV			BIT(0)
-> +#define NETC_TAG_IPV			GENMASK(4, 2)
-> +#define NETC_TAG_SWITCH			GENMASK(2, 0)
-> +#define NETC_TAG_PORT			GENMASK(7, 3)
-> +
-> +struct netc_tag_cmn {
-> +	__be16 tpid;
-> +	u8 type;
-> +	u8 qos;
-> +	u8 switch_port;
-> +} __packed;
-
-[ ... ]
-
-> +static int netc_get_rx_tag_len(int rx_type)
-> +{
-> +	int type = FIELD_GET(NETC_TAG_TYPE, rx_type);
-> +
-> +	if (type == NETC_TAG_TO_HOST) {
-> +		u8 subtype = rx_type & NETC_TAG_SUBTYPE;
-> +
-> +		if (subtype == NETC_TAG_TH_SUBTYPE1)
-> +			return NETC_TAG_TH_SUBTYPE1_LEN;
-> +		else if (subtype == NETC_TAG_TH_SUBTYPE2)
-> +			return NETC_TAG_TH_SUBTYPE2_LEN;
-> +		else
-> +			return NETC_TAG_TH_SUBTYPE0_LEN;
-> +	}
-> +
-> +	return NETC_TAG_FORWARD_LEN;
-> +}
-> +
-> +static struct sk_buff *netc_rcv(struct sk_buff *skb,
-> +				struct net_device *ndev)
-> +{
-> +	struct netc_tag_cmn *tag_cmn = dsa_etype_header_pos_rx(skb);
-> +	int tag_len = netc_get_rx_tag_len(tag_cmn->type);
-                                             ^^^^^^^^^^^^
-
-Is the tag header guaranteed to be in the linear region of the skb?
-Looking at other EtherType-based DSA tag drivers (tag_ar9331, tag_lan9303,
-tag_dsa, tag_edsa, tag_a5psw, tag_brcm_legacy, tag_mxl-gsw1xx,
-tag_gswip, and tag_mtk), they all call pskb_may_pull() before accessing
-tag data to ensure the header is linearized.
-
-For example, tag_ar9331.c:
-
-static struct sk_buff *ar9331_tag_rcv(struct sk_buff *skb,
-                                      struct net_device *ndev)
-{
-    if (unlikely(!pskb_may_pull(skb, AR9331_HDR_LEN)))
-        return NULL;
-    ...
-}
-
-Similarly, tag_lan9303.c:
-
-static struct sk_buff *lan9303_rcv(struct sk_buff *skb,
-                                   struct net_device *ndev)
-{
-    if (unlikely(!pskb_may_pull(skb, LAN9303_TAG_LEN)))
-        return NULL;
-    ...
-}
-
-Without this check, netc_rcv() accesses tag_cmn->type, tag_cmn->tpid,
-tag_cmn->qos, and tag_cmn->switch_port before verifying these bytes are
-linearized. The struct netc_tag_cmn is 5 bytes, with 3 bytes at
-skb->data through skb->data+2 that may not be guaranteed to be in the
-linear region.
-
-Additionally, netc_get_rx_tag_len() can return up to 14 bytes
-(NETC_TAG_TH_SUBTYPE1_LEN or NETC_TAG_TH_SUBTYPE2_LEN), and this value
-is passed directly to skb_pull_rcsum():
-
-> +	int tag_len = netc_get_rx_tag_len(tag_cmn->type);
-> +	int sw_id, port;
-> +
-> +	if (ntohs(tag_cmn->tpid) != ETH_P_NXP_NETC) {
-> +		dev_warn_ratelimited(&ndev->dev, "Unknown TPID 0x%04x\n",
-> +				     ntohs(tag_cmn->tpid));
-> +
-> +		return NULL;
-> +	}
-> +
-> +	if (tag_cmn->qos & NETC_TAG_QV)
-> +		skb->priority = FIELD_GET(NETC_TAG_IPV, tag_cmn->qos);
-> +
-> +	sw_id = NETC_TAG_SWITCH & tag_cmn->switch_port;
-> +	/* ENETC VEPA switch ID (0) is not supported yet */
-> +	if (!sw_id) {
-> +		dev_warn_ratelimited(&ndev->dev,
-> +				     "VEPA switch ID is not supported yet\n");
-> +
-> +		return NULL;
-> +	}
-> +
-> +	port = FIELD_GET(NETC_TAG_PORT, tag_cmn->switch_port);
-> +	skb->dev = dsa_conduit_find_user(ndev, sw_id, port);
-> +	if (!skb->dev)
-> +		return NULL;
-> +
-> +	if (tag_cmn->type == NETC_TAG_FORWARD)
-> +		dsa_default_offload_fwd_mark(skb);
-> +
-> +	/* Remove Switch tag from the frame */
-> +	skb_pull_rcsum(skb, tag_len);
-                     ^^^^^^^^^^^^^^^^^^
-
-The skb_pull_rcsum() function contains BUG_ON(len > skb->len). If a
-truncated or malformed packet arrives with fewer than tag_len bytes
-remaining, the kernel will panic rather than gracefully handling the
-error.
-
-Should a check like this be added at the beginning of netc_rcv():
-
-if (unlikely(!pskb_may_pull(skb, NETC_TAG_MAX_LEN - 2)))
-    return NULL;
-
-The -2 would account for the EtherType bytes already consumed by
-eth_type_trans().
-
-> +	dsa_strip_etype_header(skb, tag_len);
-> +
-> +	return skb;
-> +}
-
-[ ... ]
+Regards,
+Yao Zi
 
