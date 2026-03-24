@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-279697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279699-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OE4iFudcwmlKcAQAu9opvQ
-	(envelope-from <devicetree+bounces-279697-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:44:07 +0100
+	id oALbCe5cwmlKcAQAu9opvQ
+	(envelope-from <devicetree+bounces-279699-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:44:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D281F305CE2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:44:06 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2486E305CE9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:44:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F0DDD307BB48
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:37:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CCB803040048
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44F063DEFE4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB9F3DF016;
 	Tue, 24 Mar 2026 09:37:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="nf1A3cLb"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="d7zUGY7S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F093DC4D9;
-	Tue, 24 Mar 2026 09:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 644B63DE457;
+	Tue, 24 Mar 2026 09:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774345036; cv=none; b=tyYuZb8eR6TWBklxnJUEyI/ROsXz7tw/6kwPtQjNHb7c2RVbUDeCDT9I/eyJZTRXtQNGriFeS4AwlsTFIsDu6iwgu0agtGYWTk7DdQeqMq9f9AZHmQvwZCCwfBCyVe4eeg65UEDQwoJuMAWbidAaHPIpzAp42P/hsOrfQr6hhuM=
+	t=1774345036; cv=none; b=KZnKFIaHlAYMkTwHGrJV+6p2p0ziDONTHG9X4SulVc/EyEypeywZz9cLDD7+wAY60gjqXZJxxEwIHk7EVGexaVx5imLUoa+epHA+dGnLm43bY9d19q7WpXVpZji1HY8CTKh8jbGuT2YenLC4gtyhP8KSwhlla999U/D9Mhfn23k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1774345036; c=relaxed/simple;
-	bh=QnwY138a8nQ7iWK+gvjDSfRMmJTSvm9dpepcjPOMV28=;
+	bh=nDBp8jeEjvdxNkPnQrCUmyAOOiIlzYgnU6I61uSHsE8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VtpyFUSNGbGT/Mu5gDThOPFCmn9tcZD9kigx/uxyQk2O6/gtvMB56GC3dZVgY1w7wIL3px42CclVChUVEQtjXWNftKYV5AHvRR5ULkvY4LWIsLeFJpqaqR9NROPmvqiiN3yXzQUgF8tywRnHqlPsuTBcoF8aLr0TJ01idEF8WxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=nf1A3cLb; arc=none smtp.client-ip=217.194.8.81
+	 MIME-Version; b=ryFoRvcv/sq8vMyUuNE7Zk4hdyDCntzYZrGRs066uewIBW7rYAwmJUXltw5TQ5w/mk5ehcGLpbc/F4SOYRDN2qoiO5eQXyXi9l2/naeS07Kn3p1eFgrQ66bZiOUJNv8b/2iInSZ3Y1M6b4w4NT1XvvgdPtwkeSJSwizCwIIATlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=d7zUGY7S; arc=none smtp.client-ip=217.194.8.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
 Received: from francesco-nb.corp.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch [83.173.201.248])
-	by mail11.truemail.it (Postfix) with ESMTPA id D354B275C0;
-	Tue, 24 Mar 2026 10:37:12 +0100 (CET)
+	by mail11.truemail.it (Postfix) with ESMTPA id 6E763275C2;
+	Tue, 24 Mar 2026 10:37:13 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
 	s=default; t=1774345033;
-	bh=ziNRxF6wJwQ72ndkJaxRGJmIPHBGp++CSki9vPy5xpk=; h=From:To:Subject;
-	b=nf1A3cLb6AxucZ9/fzjIeOHLm7VwWO1mlI+4XwM3kFyDAcxRNN2lPdeXSJx05+I+M
-	 2ag15jOg1ubvJssfUxPPJHwcQ78MAtpNr2zuCXQPKlNHTbspOjHcAfKK0IBZWEa2n1
-	 dDfotOdpjYxxEuG+oK9CFNwVReuQD0ng9VN7pifdrK67ZmMLCKL40I7WYWERuG8q9C
-	 s6YrryMDheL6WU1s9b+3vbWpTjmb1cA9wPp40DlijpSdxa/1k9aNkfwx6fkBdQCJ4h
-	 ns1mmIF5FOFcWQ8ik/vUxhpeOlUVAqodozyGzXxTt4R0+RNe+jUocjEzgl9LV2UJak
-	 fdaxX9PLky2tA==
+	bh=jZNbwPwadK6eSTN74+FL8+k6mnPnpO9N/0QmszQIkW0=; h=From:To:Subject;
+	b=d7zUGY7STC+8wvXJvNrTv8D9IPNhjI92/McEqX6GJI0NuuG/+0d7K1uf+NWM7sb5M
+	 TjdGWugioUNPQsDmFXP7sEv8IpATlpIBzVlf0n5YkHDyMvBXDPtPlLFgeXqQeQ6rrw
+	 q4IQAqNj4bBFtvuk8p8bSrb/mjwWghqlqHI0Gvo5JVZekIlHRhmN8ZP2YnY6xw54Zz
+	 ghWmSF8jwPu9XcJjUsmMNo7dSUDdQfmYp2MoZ7PyXrD78moszpNEysAMNM7ETHKMeC
+	 JqgIwoJR+waGKxR7CrZiE3USC9OzFCUPWj5iDeHSC2pzAyh6EHwapaihkcs7qYUjoa
+	 2OAZKFhKhJrgA==
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Nishanth Menon <nm@ti.com>,
 	Vignesh Raghavendra <vigneshr@ti.com>,
@@ -57,9 +57,9 @@ Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 5/7] arm64: dts: ti: k3-am62p-verdin: Split UART_2 pinctrl group
-Date: Tue, 24 Mar 2026 10:37:00 +0100
-Message-ID: <20260324093705.26730-6-francesco@dolcini.it>
+Subject: [PATCH v1 6/7] arm64: dts: ti: k3-am62p-verdin: Add SPI_1_CS as GPIO
+Date: Tue, 24 Mar 2026 10:37:01 +0100
+Message-ID: <20260324093705.26730-7-francesco@dolcini.it>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260324093705.26730-1-francesco@dolcini.it>
 References: <20260324093705.26730-1-francesco@dolcini.it>
@@ -74,91 +74,61 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279697-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.50:email];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-279699-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[dolcini.it:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,toradex.com:email,dolcini.it:dkim,dolcini.it:mid]
-X-Rspamd-Queue-Id: D281F305CE2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:email,dolcini.it:dkim,dolcini.it:mid]
+X-Rspamd-Queue-Id: 2486E305CE9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Some carrier board reuse the UART_2 control signals as GPIO, split
-the pinctrl RTC/CTS in separated nodes to maximize flexibility.
+Add a pinctrl to use SPI_1 CS as GPIO.
 
 Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
- arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi | 22 +++++++++++++++++----
- 1 file changed, 18 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
-index 34954df692a3..1c4c951e5e94 100644
+index 1c4c951e5e94..7ee894d59113 100644
 --- a/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
 +++ b/arch/arm64/boot/dts/ti/k3-am62p-verdin.dtsi
-@@ -767,15 +767,27 @@ AM62PX_MCU_IOPAD(0x0084, PIN_OUTPUT, 0) /* (F13) WKUP_CLKOUT0 */ /* SODIMM 91 */
+@@ -247,6 +247,13 @@ AM62PX_IOPAD(0x0018, PIN_INPUT, 7) /* (M24) OSPI0_D3.GPIO0_6 */ /* SODIMM 62 */
  		>;
  	};
  
--	/* Verdin UART_2 */
-+	/* Verdin UART_2 RX/TX */
- 	pinctrl_wkup_uart0: wkup-uart0-default-pins {
++	/* Verdin SPI_1_CS as GPIO */
++	pinctrl_spi1_cs_gpio: main-gpio0-7-default-pins {
++		pinctrl-single,pins = <
++			AM62PX_IOPAD(0x001c, PIN_OUTPUT, 7) /* (N21) OSPI0_D4.GPIO0_7 */ /* SODIMM 202 */
++		>;
++	};
++
+ 	/* Verdin QSPI_1_CS# as GPIO (conflict with Verdin QSPI_1 interface) */
+ 	pinctrl_qspi1_cs_gpio: main-gpio0-11-default-pins {
  		pinctrl-single,pins = <
--			AM62PX_MCU_IOPAD(0x002c, PIN_INPUT,  0) /* (C7) WKUP_UART0_CTSn */ /* SODIMM 143 */
--			AM62PX_MCU_IOPAD(0x0030, PIN_OUTPUT, 0) /* (C6) WKUP_UART0_RTSn */ /* SODIMM 141 */
- 			AM62PX_MCU_IOPAD(0x0024, PIN_INPUT,  0) /* (D8) WKUP_UART0_RXD  */ /* SODIMM 137 */
- 			AM62PX_MCU_IOPAD(0x0028, PIN_OUTPUT, 0) /* (D7) WKUP_UART0_TXD  */ /* SODIMM 139 */
- 		>;
- 	};
-+
-+	/* Verdin UART_2 CTS */
-+	pinctrl_wkup_uart0_cts: wkup-uart0-cts-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x002c, PIN_INPUT,  0) /* (C7) WKUP_UART0_CTSn */ /* SODIMM 143 */
-+		>;
-+	};
-+
-+	/* Verdin UART_2 RTS */
-+	pinctrl_wkup_uart0_rts: wkup-uart0-rts-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x0030, PIN_OUTPUT, 0) /* (C6) WKUP_UART0_RTSn */ /* SODIMM 141 */
-+		>;
-+	};
- };
- 
- /* Verdin I2S_1_MCLK */
-@@ -1410,7 +1422,9 @@ som_eeprom: eeprom@50 {
- /* Verdin UART_2 */
- &wkup_uart0 {
- 	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_wkup_uart0>;
-+	pinctrl-0 = <&pinctrl_wkup_uart0>,
-+		    <&pinctrl_wkup_uart0_cts>,
-+		    <&pinctrl_wkup_uart0_rts>;
- 	uart-has-rtscts;
- 	status = "disabled";
- };
 -- 
 2.47.3
 
