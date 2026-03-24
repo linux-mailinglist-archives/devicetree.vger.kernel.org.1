@@ -1,149 +1,177 @@
-Return-Path: <devicetree+bounces-279665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279668-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ILWdHltNwmnvbAQAu9opvQ
-	(envelope-from <devicetree+bounces-279665-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:37:47 +0100
+	id QFxoKLdNwmnvbAQAu9opvQ
+	(envelope-from <devicetree+bounces-279668-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:39:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FF61304C23
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 713E1304CAA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:39:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 250B93041659
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:28:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1D3383080129
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:30:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 967C03CFF57;
-	Tue, 24 Mar 2026 08:28:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF743C65E8;
+	Tue, 24 Mar 2026 08:30:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YQRc0Cwr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="exKCxVSs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED5783CAE85;
-	Tue, 24 Mar 2026 08:28:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9245938C431;
+	Tue, 24 Mar 2026 08:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774340913; cv=none; b=ZXXi0d5c7zW7eWIwjhnliDj5vLh5Df0eu/0Ki1pwfVo08mGx/wtOORSb2FiyQEBqSdcM/DZW+sl46/IWlE+yU1QjftMpNzoPoYG059b/f4T27owcTsXsjYP6B5A7PC6hKWVFmywwDG6mg/C5Ou4X5BH+25iwv7a+JSa0bykWL0k=
+	t=1774341020; cv=none; b=grW2oml78lEeBNw/937867F85s9h9+rHyXdDUYl4NDdJpjLWqUv5rB9pvxNthXbg6ZArijBtTRFNy9AuOXiuV9jLGNI8e2QQ/scQ2nQRbfjtqRVMc9w+sxFIKGyuNvKRNDBw+jlxSo5a90z91K2bBO/PXpqE9UsrXAs4SKoKSYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774340913; c=relaxed/simple;
-	bh=kdSXp5Qbia4qiLAhNtnkaEIWENtU3D2yrCCRDU+8y4g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Bp/g0gFtR631D4iT5il14bloryngcXK2k/gkmIkaeu9FQIGrjCj0MiET3rROXaLsrDBVsMNnbStvKRNh3z94ihVWWQRRuQW0t6/mv18MVws9lL8nlQOBcyB+G9xQIYe/WjgPHmBd1YykdMx/K42jmRcTlyLQbrlQx9ZLMPkPBbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YQRc0Cwr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A7D09C2BCC7;
-	Tue, 24 Mar 2026 08:28:32 +0000 (UTC)
+	s=arc-20240116; t=1774341020; c=relaxed/simple;
+	bh=4qlA6viWpqd13jvr2kafvBM9jjklMzD2WWn9GBDGmlI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f51x79ENu543IbGmoAw3EepxknjK7t4k1HeF4gQkD7RpzBOuRw/H71geDRYA06c+KQbwS2fXwd2trQcHHY+BaypSk/39ScCQqOwvZ/T39OnKOQyXGhfnSjtFlRMUbFw7Hvz/EueaMUzurGvMks0jPg50PTGsoGrLY17Y/CgLPXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=exKCxVSs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CADCC2BC9E;
+	Tue, 24 Mar 2026 08:30:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774340912;
-	bh=kdSXp5Qbia4qiLAhNtnkaEIWENtU3D2yrCCRDU+8y4g=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=YQRc0Cwr1K1+fgNCuAKep8SvNufo2jBYVViAtCLoGtfoIs+TtU1hkYpaAJKOpzr5B
-	 JtNtZ00J30dQq4KO9jdUgAIdYGMkvP6bKWY6oXApNfneupt3pBLkvlSlGH5XU3Mdfd
-	 SkxRanIO7ame3Il7NvJQ+zGUn4wHCCEwQXhCm/dtHQ4aYcwxKBtCMMd88XN3BDI0e+
-	 nlYBOZEc6NsZFbjwOSukggBi0gWkjtu8G7Zx69mLoVMz/n1YlZmSfs9P/jkZ0z32HN
-	 2PGkBvjiVDhUWHUElARrNMPE1YumV8AFPuyNAB7QVM06tD4nPsj43Q6hRYEFwdJw/I
-	 qJd83dYo4rNQg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B4A7F532F5;
-	Tue, 24 Mar 2026 08:28:32 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 24 Mar 2026 08:28:29 +0000
-Subject: [PATCH v7 3/3] MAINTAINERS: Add an entry for Amlogic DMA driver
+	s=k20201202; t=1774341019;
+	bh=4qlA6viWpqd13jvr2kafvBM9jjklMzD2WWn9GBDGmlI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=exKCxVSsE4Kl8zy7RG1vmac4iqVwGFD6kxsMi9GwQ44q4THo9tPaqzc5/G64+wSup
+	 nFgaTjkcwpUyW7nmd0kapwYbX01+sZgMcM+ITNcIW0NPPHEPgl5jfQVlYQQ3jwUDfd
+	 ZW6aijpS6Y5Om2vctLaVhEBBxmW0KhUodLvJC2PhnFA05wd5pzA4ciJ39Rlnst3Bjd
+	 QiPZcKKYEZV5Lqa1j14VQJqrdJOv/TeRmYpgX5gfJ3qQdAecqOQlPdtWjLuIZiMwQa
+	 FvWJcDfWtgAhao5a25eQcWYS4IDu1VnbCX+FQ4pUYQvNVQqXX+pa04n4DQFFKunJRS
+	 UfE6wIvsblxKw==
+Date: Tue, 24 Mar 2026 09:30:17 +0100
+From: Thierry Reding <thierry.reding@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: Document Tegra194 and Tegra264
+ controllers
+Message-ID: <acJKkASRYT_iPUrh@orome>
+References: <20260320234056.2579010-1-thierry.reding@kernel.org>
+ <20260321-witty-fortunate-elephant-ce50fe@quoll>
+ <acFRczOXps0nRfMl@orome>
+ <aa424f26-1bc8-41d3-b83a-5f1879cd2559@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260324-amlogic-dma-v7-3-f8b91ee192c1@amlogic.com>
-References: <20260324-amlogic-dma-v7-0-f8b91ee192c1@amlogic.com>
-In-Reply-To: <20260324-amlogic-dma-v7-0-f8b91ee192c1@amlogic.com>
-To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
- Frank Li <Frank.Li@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774340908; l=791;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=3ILqFEE9mmDp095lkKeN49I2hs9aNRjaPs7y2SEtITs=;
- b=w338/xjTz4xrKx9K3hjryxkE89qUnidqboaxn/njZvmrHoCV8B2ZHYjV9GnO/TGvyA+SGPtJL
- XBYQezm/JeNDTE5H77kndmJvNM+77h5ks4H1yPlh2WMNAwh15v9g5SN
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6iyxgnj7nrbixuvz"
+Content-Disposition: inline
+In-Reply-To: <aa424f26-1bc8-41d3-b83a-5f1879cd2559@kernel.org>
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279665-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-279668-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,infradead.org:email,amlogic.com:email,amlogic.com:replyto,amlogic.com:mid]
-X-Rspamd-Queue-Id: 0FF61304C23
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 713E1304CAA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Add Amlogic DMA controller entry to MAINTAINERS to clarify
-the maintainers.
+--6iyxgnj7nrbixuvz
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: Document Tegra194 and Tegra264
+ controllers
+MIME-Version: 1.0
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+On Mon, Mar 23, 2026 at 04:00:54PM +0100, Krzysztof Kozlowski wrote:
+> On 23/03/2026 15:45, Thierry Reding wrote:
+> > On Sat, Mar 21, 2026 at 11:47:59AM +0100, Krzysztof Kozlowski wrote:
+> >> On Sat, Mar 21, 2026 at 12:40:55AM +0100, Thierry Reding wrote:
+> >>> From: Thierry Reding <treding@nvidia.com>
+> >>>
+> >>> The PWM controller found on Tegra264 is largely compatible with the o=
+ne
+> >>> on prior generations, but it comes with some extra features, hence a =
+new
+> >>> compatible string is needed.
+> >>
+> >> Extra features means devices are compatible.
+> >>
+> >> You also always need a new compatible even without extra features, so
+> >> last part is just confusing. Suggests like you could skip new
+> >> compatible.
+> >=20
+> > Erm... if the hardware was exactly identical, then there'd be no need
+> > for a new compatible string. It's certainly good practice to add one
+> > anyway, but what's the point in having 10 different compatible strings
+> > for exactly the same hardware?
+>=20
+> Because integration is different. Nothing new here, DT maintainers
+> request it for years and is since long time documented in writing binding=
+s.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 55af015174a5..e9c52dfba2df 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1316,6 +1316,13 @@ F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
- F:	drivers/perf/amlogic/
- F:	include/soc/amlogic/
- 
-+AMLOGIC DMA DRIVER
-+M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
-+L:	linux-amlogic@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
-+F:	drivers/dma/amlogic-dma.c
-+
- AMLOGIC ISP DRIVER
- M:	Keke Li <keke.li@amlogic.com>
- L:	linux-media@vger.kernel.org
+It's more subtle than that. The reason why we want a specific compatible
+string is because the different integration might potentially introduce
+a bug that we might, potentially, have to work around at some point
+using a specific compatible string. If the hardware is backwards-
+compatible and the driver can match on an existing compatible string and
+work, there's no requirement for an extra, more specific compatible.
 
--- 
-2.52.0
+What you describe is good practice, and I agree it's a good idea. But if
+we had chosen to not implement the new features and not update the
+bindings and instead reuse any of the existing compatible strings,
+nobody would've care one bit.
 
+Heck, if your position is that you *need* a new compatible for every new
+integration, there'd be no point in even having fallback compatible
+strings in the first place.
 
+Thierry
+
+--6iyxgnj7nrbixuvz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmnCS5YACgkQ3SOs138+
+s6FCFxAAqmNtt6SNkMTQ3ll7RotXQ9JMymU6XjajircnmXoImxBM8CUqLHqkHMww
+IzGPQH3xtsggs0zsziFH/Wf6rpE30pqw5awweYxvnZDYD7HHTBknVqfrEgSAx8ez
+KU48HSFvdjbOd5+ijk4N0GhbNYQbOIoLJPB2blkT5zYD23VVbMp/8WSEQtnamITJ
+8AMU4/5ZkVDuuGGkloR1UO9MYZujW+tlfgildDVNugwpRrJtHgvJezatXIHTcYq4
+aCWGo+AUvTv1VsEV0HGOgxDWQbSBryD1ooaAOUtFsv0GUlu15FazB4fS/MUtEohD
+jKNcqepiidq2P/6rwq7C4rPBtu+rmMVwJ7NNuWF3wWIx/2AE1wb0bAG/exVgBBbZ
+f0wiVWHjyYL8XyYd2LStqwg7GDUzBlvviKfGdKOpmOCNEBUDXr8oE/05zzRZ5Xlw
+AnAHbCMkD816eF7Cgw+JWlF3GsVwunUS/YpCZqdubg7KgVw7dcB7HcNcy5hqPCOP
+pUZC649+t6WNzDe/NVu1eRHuekKj+YhsBvbHtFTPsbJalk55J4t1cDcD5IOBnTGg
+JsyYuI+VndGEylsnvw7b3rQZgVodS+ZPCWXmxzYlgaro9uKFDrTxi/GdLheXFnJ3
+ddYWJ9DFrLKAgkuVPI6BONHH4hXqebK7xwwM+GL36YbD5+fwZ9U=
+=26Qy
+-----END PGP SIGNATURE-----
+
+--6iyxgnj7nrbixuvz--
 
