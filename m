@@ -1,70 +1,59 @@
-Return-Path: <devicetree+bounces-280681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280682-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yLszDDMZxGnlwQQAu9opvQ
-	(envelope-from <devicetree+bounces-280681-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 18:19:47 +0100
+	id QmM6NcgZxGkPwgQAu9opvQ
+	(envelope-from <devicetree+bounces-280682-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 18:22:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38636329B21
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 18:19:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63E7F329B84
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 18:22:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5C3C4305D49B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 17:09:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 921943002D3E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 17:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02E01401A38;
-	Wed, 25 Mar 2026 17:09:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3563E6DDF;
+	Wed, 25 Mar 2026 17:10:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZAMXUhuN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X/XxSy7y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE7EB401A09;
-	Wed, 25 Mar 2026 17:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C558E32AABD;
+	Wed, 25 Mar 2026 17:10:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774458565; cv=none; b=sLzl6MUEbe5wkKfjT8LSa7fJHsJxSas7CZded5TUhz366+Hyl3ExTqa/YZlmxkShqRxPA0AKgp+WbA//TvgQBX9PMOHzxP9LWPfbj7z9aumGqsIU6gdEedGwoL2T5CmoCWeoKMALzY7Oy7TK43z6qRzftySC8wGLX6iqMteXdsg=
+	t=1774458658; cv=none; b=hh3oNfRR50IM+DVgDev+wm9LB0ad9gUGQcwE+xbPUU5H8ngBRlvFwhd+X/PHV0tf7ayUtZjRDz0ZreOLwzSuEAaHeqrVgN+d1BVO7x0Mpjfhf3I6W54T9Y2Bmtuu1fmOgyXVEUw7vrou+Rs5c3j39oIovF+hMEHRnm/PHzfWDlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774458565; c=relaxed/simple;
-	bh=JRXYE/U8JS2O1cvWaeN5bQL5zUw+3JhAHGNHnw+1HNI=;
+	s=arc-20240116; t=1774458658; c=relaxed/simple;
+	bh=J+Fixd0f//mIuFaOL58NS0MH0mJ6VNSO3vzD3qkldRU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xn4nsfDJfRHKWwEFGMIKAbkz4u72s4xqojniGqeg3F3xbY3twkP8grIljdf19TR7T6gsrVjH+YkwKH3OjwtEeHIyXRPiVZXLcVNYxRhbVF/0KAwZgkTh6zLEXbH8LIib556NsBrdu+nBekbympdyNZ8QwxpG1uh47WlrgM248I8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZAMXUhuN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3420C4CEF7;
-	Wed, 25 Mar 2026 17:09:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=D9cLasObwciJYwGZ25MBb0vUgxbyD5sxImRmcfWa3bYYbKpjYpyX+X0zjqQxiAZADZ/uCaze2S/u/2guv8QGxBr+TYz7XmsPW0e3NQPkzqHURzsv3kUaC5ShT4kxxB8nYWJYrZNc8dVlSlBId07n0LbKSz/s2b9jSJbme7LLmgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X/XxSy7y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6056EC4CEF7;
+	Wed, 25 Mar 2026 17:10:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774458564;
-	bh=JRXYE/U8JS2O1cvWaeN5bQL5zUw+3JhAHGNHnw+1HNI=;
+	s=k20201202; t=1774458658;
+	bh=J+Fixd0f//mIuFaOL58NS0MH0mJ6VNSO3vzD3qkldRU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZAMXUhuNT66mvS0iWK53vTyXWWeQZT7xKEsQ/XK3vAjbzkwr9WbLA6P6x/N3I0EaG
-	 skOFZtbj62dBviBdA7KGsK0nW6Gr5c55tGh6L/Q8AWxoAkyxZfZDriY7+2nt51ZMUd
-	 HobEbQSyQ/k2jAoMZT60WQEcCZMB08HZbt8YxKPj8pzSsSiFimuLDPpuWS/+R1Eg7c
-	 AKWwpggTDn5i6NIqddsyY/L3khFaMYvki0+HIMCyZm4+foHa6IBbwKsUOOqEZILTqo
-	 aC99G0vWquyOnPHf/MJlwEtPsYlotnVoC2DtNg4zTECuE0wYG77oVeRJSC+hK3sXio
-	 riWqfCxaKPoLw==
-Date: Wed, 25 Mar 2026 12:09:22 -0500
-From: Rob Herring <robh@kernel.org>
-To: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	van Spriel <arend@broadcom.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-	linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v4 8/9] dt-bindings: net: wireless: brcm: Add compatible
- for bcm43752
-Message-ID: <20260325170922.GA3822305-robh@kernel.org>
-References: <20260325-add-emmc-t7-vim4-v4-0-44c7b4a5e459@aliel.fr>
- <20260325-add-emmc-t7-vim4-v4-8-44c7b4a5e459@aliel.fr>
+	b=X/XxSy7yiwi6qFJSeCZh3XxrBMcvVic+FhJJZ9QBYdnEtdhE6PuBBxYuo4kI5U2IR
+	 n+AwZ4kFbA3DNnCnYbiBVhm0tr2vKhFkCgfPNlWFhOFduz+ScdzaqAqQ0YpxzHEnE1
+	 eeBs2SXLbb1eBvsX63X6k+gxtpMkyI3L02k8UXdVewnZdzHJ4NF/GQ9P6oA85c3iuz
+	 pz/h5z7KfVXVvXqeROXwzscBsfmCUo+WHw+jfv2a0xa9p23HriEynaQIDIEyTk2/qY
+	 h4mzVKYKCVj4JOgn2fdvT8IW3ikZjsb643cjEwaUlXJFekpp8R10s6SREGUk4sV4fW
+	 5LtHZGrGzIaZQ==
+Date: Wed, 25 Mar 2026 18:10:53 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Jarkko Nikula <jarkko.nikula@linux.intel.com>, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH v1 1/1] dt-bindings: i2c: dw: Remove unused bindings
+Message-ID: <acQWy8e_Eqm6ANI2@zenone.zhora.eu>
+References: <20260224115210.3499191-1-andriy.shevchenko@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,65 +62,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260325-add-emmc-t7-vim4-v4-8-44c7b4a5e459@aliel.fr>
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+In-Reply-To: <20260224115210.3499191-1-andriy.shevchenko@linux.intel.com>
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org,sipsolutions.net,broadcom.com,lists.infradead.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-280681-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-280682-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,aliel.fr:email]
-X-Rspamd-Queue-Id: 38636329B21
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,zenone.zhora.eu:mid]
+X-Rspamd-Queue-Id: 63E7F329B84
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 25, 2026 at 10:15:26AM +0100, Ronald Claveau wrote:
-> Add bcm43752 compatible with its bcm4329 compatible fallback.
-> 
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Hi Andy,
 
-Missing Conor's ack.
+On Tue, Feb 24, 2026 at 12:52:10PM +0100, Andy Shevchenko wrote:
+> As stated in the d70f60ad964d ("i2c: designware: Remove
+> not-going-to-be-supported code for Baikal SoC") the Baikal
+> platforms are not supported and the respective driver code
+> was removed. Remove the currently unused bindings.
+> 
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-> ---
->  Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> index 3be7576787644..81fd3e37452a6 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> @@ -42,6 +42,7 @@ properties:
->                - brcm,bcm4356-fmac
->                - brcm,bcm4359-fmac
->                - brcm,bcm4366-fmac
-> +              - brcm,bcm43752-fmac
->                - cypress,cyw4373-fmac
->                - cypress,cyw43012-fmac
->                - infineon,cyw43439-fmac
-> 
-> -- 
-> 2.49.0
-> 
+merged to i2c/i2c-host.
+
+Thanks,
+Andi
 
