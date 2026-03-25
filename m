@@ -1,237 +1,230 @@
-Return-Path: <devicetree+bounces-280612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280614-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2A12Jmf9w2lXvQQAu9opvQ
-	(envelope-from <devicetree+bounces-280612-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:21:11 +0100
+	id KLoTCn/9w2lXvQQAu9opvQ
+	(envelope-from <devicetree+bounces-280614-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:21:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 108D3327CC9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:21:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97DF2327CFE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:21:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5D6A0305AC9B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 15:09:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 595F030B8349
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 15:09:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9DA33EB80B;
-	Wed, 25 Mar 2026 15:01:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ALcwvNFr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C275402BAF;
+	Wed, 25 Mar 2026 15:02:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013049.outbound.protection.outlook.com [40.107.159.49])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F4C3F54D3;
-	Wed, 25 Mar 2026 15:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774450889; cv=fail; b=o74a4/YzOQ95wgTi1zExir+bY+oLAvVQ+b+JusOSW49EJF1tbSkGs9aI4C0wrU0NjP0FU/2s8P1fpp5yOdQJQnLmeIU1RHqGMZEZKDbuhV4O4rFrTFANtMlDt+6pSGRq9fMkKCuRiPw0hGMc6uFwgHcEYqdeXUMKsBHb+TgfJew=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774450889; c=relaxed/simple;
-	bh=nSvlUjXG8Jfj+aJLo+ZZSbGklX0OoppZDCspvkTLIMc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=ffBVFIa11nTRm8ERyPEHCfuT6Lff8FcVqy9iyEhp0w1zoIztPO1vragSBZVudDpV54JtkQN+UUiX2IcyQDBZlLJgoINu+EKbOMAFgn3yzvlK2p8NM5UEioUCKYIur5zDlI353Ogx8XlfybmyxZWVfPcMK2okhAyLNbXrxZp0XKA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ALcwvNFr; arc=fail smtp.client-ip=40.107.159.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VxCcgkrqGRtEhTQB6Uq+qnANG8BuX6OZeYoCz2YrmAXUw0spHem0xjlKz/hm1S7zkbqDg3ESuLp4kyxoZyzYExr30pIC5LGfwBLwlqKilqtq03bcZGzdHDCUDZHdiY0X6NQ7g8HNVhWUf9xrBwWpV4HM6Ux+awlFPYC+Oeqz501qcmW1sBPy3FbRVXcmGpDcqo//dC69HRvdMCH6/V3vP2q+Yasq026xNgApOCNZRPOEIuYtSH5AgJ7IxEv6661MVeCI25YH/2r4d1VsuK2FlpISTV8OuuQrP63PxVc7TPd7v6EgZDOzbNNCAFxB20oIUZKz+z0Ga2y3uJpz9db/6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gv9HNQ5MoPLy+t0XbwaCPyA2iytsG9rMYXRd60f/DWc=;
- b=Wl7FT47M/DE5Dmh7tzGHBA2ZDt5GsT+STR1JfZc3jmesrv+pJHmj7SxRTTS+U7BIUk9/teKB7lpxysG52oA2/HB2XZaLeV7CXHHYdKGpyouAtfFdGqbI9XrhxmUXbl3J5Al6XmU0M/n6kjmCckWG4BHntne5p13nRTXERWeveZAyhoVM01pRwd+2NREqz1j2emkiq6q7Y/ulYGNc44jdDJ3yMyLGQuKdLgmcWujbSV2j4LvECRsJfxLyJspBp3PDQxgyCCU2EyXzPUPlnuEqUYIfqRPAkCH73gr9VLc6DI3bv1Q9Zie9H3dLS/kDlwx7wi14e4OOg/vL7LgEEqzAwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gv9HNQ5MoPLy+t0XbwaCPyA2iytsG9rMYXRd60f/DWc=;
- b=ALcwvNFr/UYmkODwYglgxxTVfyeuzA7XvUylQR7YKjPnuw6b5aG7wIBUrnzn1mEnWhnNc69hUsS7D0XNK8bLnUxIRQwn/TGS00wnxoFJUgT+KgxrXANGlFjLuqwq4D+/fzUulH+WOMpyeIQ20fvORYjeqX4g33s7ytBBQw+sh/HqM5+QYZNXrG2RmcVlYWjGGGcf30AMdgye4GgXlReVis8nFCuLASIGwDwAcTqoL9h9ytay/xe11PLVowQxqq5t3frYpRzVvbLkYQIwFhkWvsWYbaldCoPzX5UJfEz2mBGiFWnHuu/+TR06voVlIcOPP1mWFA3w3eUFzGk5NBr7Mw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by DU0PR04MB9322.eurprd04.prod.outlook.com (2603:10a6:10:355::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Wed, 25 Mar
- 2026 15:01:25 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9723.030; Wed, 25 Mar 2026
- 15:01:24 +0000
-Date: Wed, 25 Mar 2026 11:01:15 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Ernest Van Hoecke <ernestvanhoecke@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/6] arm64: dts: freescale: Add Verdin iMX95 support
-Message-ID: <acP4u5VWZzhFcw_b@lizhi-Precision-Tower-5810>
-References: <20260313-verdin-imx95-upstream-frank-li-base-v2-0-bd488be7c699@toradex.com>
- <20260313-verdin-imx95-upstream-frank-li-base-v2-2-bd488be7c699@toradex.com>
- <acK4awcokUyCHrG5@lizhi-Precision-Tower-5810>
- <20260325112724.GA7964@francesco-nb>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260325112724.GA7964@francesco-nb>
-X-ClientProxiedBy: PH7PR17CA0027.namprd17.prod.outlook.com
- (2603:10b6:510:323::13) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EE863E63B7;
+	Wed, 25 Mar 2026 15:02:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774450927; cv=none; b=ToI9KZYqNkbme/mqE3OsgrG/NVDhACLH4bEsl/eDmtJsyixtYy06g/+4Jw+Go/OFEW/yiuZpkZyt/uqD9h/dSOIsGa8XG2gOavxD8rdWBp/EePEyBJDNcqEmTjSSTsv5tvnOM3uChlgsWeGsgHkrh35p7HdOL6XKeSkyv0lFNhc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774450927; c=relaxed/simple;
+	bh=DxdQ77nCASc6jDoVDE5avAvW8b84dFl6QPJEHn21+Z0=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qI8S7iQLAQRN6pFbquZ94K24qqSZozc4FPuMhAWN9q6LSacZyWHGBQQZ4BByrBZwwE3zbWcZVBkfj/sL4U8m8kQn/uO9bZp/X0UFQnIKXLM2nC1PWl71gd9/bvySQGhzQLCg5d7JIIJsYBe3qqrgCTg4rSHBPd9ss+OB3sVeT2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.224.107])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4fgqqV1l0bzHnGhV;
+	Wed, 25 Mar 2026 23:01:26 +0800 (CST)
+Received: from dubpeml500005.china.huawei.com (unknown [7.214.145.207])
+	by mail.maildlp.com (Postfix) with ESMTPS id BF2FB40584;
+	Wed, 25 Mar 2026 23:02:01 +0800 (CST)
+Received: from localhost (10.203.177.15) by dubpeml500005.china.huawei.com
+ (7.214.145.207) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Wed, 25 Mar
+ 2026 15:02:00 +0000
+Date: Wed, 25 Mar 2026 15:01:59 +0000
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Sirat <email@sirat.me>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <jic23@kernel.org>, <dlechner@baylibre.com>,
+	<nuno.sa@analog.com>, <andy@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 1/2] dt-bindings: iio: proximity: add ST VL53L1X ToF
+ sensor
+Message-ID: <20260325150159.00004c3e@huawei.com>
+In-Reply-To: <CANn+LW+X5puvzY+cKYKAbWY6L2d_0P_2AZxuRkwH7ngc6T-vJA@mail.gmail.com>
+References: <20260325063254.18062-1-email@sirat.me>
+	<20260325063254.18062-2-email@sirat.me>
+	<20260325-gentle-earthworm-of-progress-1f9f46@quoll>
+	<CANn+LW+Y6j0xk2x02-BUL9qNq2gf-PXspi4wP_KGd7Abz3hOYw@mail.gmail.com>
+	<4d10b6c0-d599-4fc5-b9ed-ce669ac46e84@kernel.org>
+	<CANn+LWJQM45rAT+mzS9ZEGBgmqChbxUtStdzhbzthXUPJ=2csg@mail.gmail.com>
+	<20260325133806.00007b68@huawei.com>
+	<f27bfbe4-aa90-4631-b96b-efb8465b05d4@kernel.org>
+	<20260325140633.0000059c@huawei.com>
+	<CANn+LW+X5puvzY+cKYKAbWY6L2d_0P_2AZxuRkwH7ngc6T-vJA@mail.gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DU0PR04MB9322:EE_
-X-MS-Office365-Filtering-Correlation-Id: a0de4e03-430b-49b0-bcf9-08de8a7f620b
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|19092799006|366016|52116014|7416014|376014|1800799024|38350700014|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
- 4YABHRx9eSTXqYNXpi+ASKc0129YV4wi2sA0B5OSabQvwugYGIQjz4QwGzbiZT9cHwLaKLCofX3Xfb1sKtoTk6wXfXXm8Ho2kkKzMvjvZ1mQn0z5VvFlobs2xx9+RQx6GoATemz7oOPECQaTfezGdDkMiIVFR//jT19jjAiV41RNwSrehwuSlVb1028DtWGb9ds1zJJGwKbBH6/rlDoyJu9Vk4jJZqAe63M/BeQqwzJ8QdikbaCg0pBD5P6HotsXyzyBMYc9/qwnBxoVgZlbyCX2dnZj1c+m0kTMWqLHonVW53rCRzwD91pSiTirW24ljrwy/rq23OKNjExSm7LULbG7eeOnRyLip4u2n9D0uoKUMKhdwO2KupgaWfE5tKXqutU/bQPBdDGCJQKnGQezcYIbK+6lPmUgCiSkrNL2Zec+H+qhp1TwZnftEVRv58SELNyx9w3oS5z/XtLNIdy90Eah0eDh9SflEJ9YiYmjLhFMrZgUewUQrqX5ISfkhXZxWhqKx7B7uF7MsjetyLAnL1XhYRHlqfFXMtf9OiN7NyM1WcROAUShB2TXlvCjid7/YGKOkt+yqHrQMlBjf7VXig+u4LOewGm1FlKR/OWGyRVnYHTJsD5FYBIQ5YzxHpGbWCYERlOgGNaBu5qqzVX2Ioqsobd3DwjjDRD3Ep962D4crIVSnJCcYYgbL/e1rBUdZhmENKT1p72wplxTwRNEYEdjxtM3tn04Z32kIOdJh2nR4tr6sJ5TMaXz5XK7P5zNakxZRzi9302qfphAsv6oJlsUR4guXAz3z3Bxck3KiOY=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(52116014)(7416014)(376014)(1800799024)(38350700014)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?WI7tf3MCyOUbeD5FqaZPp+EtnVu/BY1GAd47AvygoCRdpBBu6s+LLZMQymWN?=
- =?us-ascii?Q?8LcjB5nujG9OZQBf75j57WmKh/1avpL9mFhDoaHZWqRLv75Q9lZZzxuBKtBK?=
- =?us-ascii?Q?Cxvg/IflLEWf4HWxLBwcz/qit9McFxWk1d66+sZAffdYQ+5TVwjmJK2auW24?=
- =?us-ascii?Q?bo4q6jOpXAuxb1pxjzvv2Y0wN/PArpgflx3yKlgzDNPCJ7GvXFs3oIwOzsiO?=
- =?us-ascii?Q?BmxqcTfF53IBsY4XDGDbFy5c+leFXPQS/dQdL+gSOJSo3OmB5cY8L51R7Q3t?=
- =?us-ascii?Q?Q4lzsKYNXxyimr8OC3UtBb8pHc7WPsATnW1ZdjeZrG/+NtLO/whGP2MjvSS6?=
- =?us-ascii?Q?NFr1ownhj4a/txRxHSCL7DiieFYlroZbX68WrfHvxQpFIHShg6dg77cIQR5d?=
- =?us-ascii?Q?n0kmOMWnNpPdSYo6KrOVTR/f9FYhsJctNuY/iTZaJlES73IantK5NRsVxE0R?=
- =?us-ascii?Q?pPeHU37qhoMvTQdQ7zrbi3724EThExN4D5c1ajfEcxqkN/A8pKTl3eo43Nrs?=
- =?us-ascii?Q?WNNMC2yca6LHCbAUU4v3c6zYmahX57TOgYmEMY5k0ZMpFLWVqz69SJvEaoQz?=
- =?us-ascii?Q?eV4k3rYIC4DGIbvQsQMt9YKcGIiVfpRK4tH/fxT+9F4MjRhv5SHydMtgI8pK?=
- =?us-ascii?Q?Y/AiFtLs7LehNgcVVdIjhBMZ36II53uK2sor56royW78ieKxCDOzTEafJzRH?=
- =?us-ascii?Q?6h7/w53r8X2gttqIjttJU4Cn1iMB2DZucEQ7BK75GN2bEO2+vZtHZFhqtLqu?=
- =?us-ascii?Q?jqDrBbS/TkRxBNWJBBi3CfYxEWqRK4dpIpu45hy2U0gvKpmwP200iHLhtj3p?=
- =?us-ascii?Q?ixQcPPpAZiTpuawgqxJ19AI/g7iK9hSo06ZcIWFJs1Vw1B5SbPoVIlM2/iYy?=
- =?us-ascii?Q?zu3Ebv5LcEfq4dHHynHuA+h3yQfQu1pvnWkNjWr+y05ljEWz4+rmd1Pf3Epp?=
- =?us-ascii?Q?rDu9bjqbJjd4yMfJ+JUEXoA9lZGNXpkk/OsanwUiOEYnRfA5F4W+HC8Mi78t?=
- =?us-ascii?Q?FRAg8zJfe/bJMiYDQT96M4ebQ3WNq6ZUqkI30UCe2TuPcqQCxGBtvZY7jDI7?=
- =?us-ascii?Q?qWWuT6v+qN7LrFtx/Jp7ZPGxwBJMI9XOPnLLqQkoeXUfFiY+UNz35pG6+M+B?=
- =?us-ascii?Q?Wa16v5bQBM760PYUK9imrw4GuHdgFmHPemxlTrH1Q7GehlCHp1e5LgHltErJ?=
- =?us-ascii?Q?cI0TI/Gq8lbGHNqsZsn0GFpJwaY0D9RHaJYF80HnmoUz4B8Imo+nCBYMEb7T?=
- =?us-ascii?Q?JmMyFExwmKnbnFmk24iIVksQs7ZnTVsKh0pC5yr8Iuo+/26BKnkP0ub1lzUa?=
- =?us-ascii?Q?OAtrZkujOJayxMvJSjw6M4ISUtHvzC78XmaHsnzFryWe1bucNbNyqdudg8n9?=
- =?us-ascii?Q?myLyVIASWlXwc5AOysweWq4P4aViYG8pIh4NIDElvuZ3fOVy4WdTlH+m5wDf?=
- =?us-ascii?Q?co9AtlWzd9c9BWOwQ5DxJkBOp51mB+jtA2GaVlHU2sqb56JfBjn6IJjhN/EJ?=
- =?us-ascii?Q?1zDvt9qGwfg5Ht4LFsDR91UvL0JcsaRgyeMTGLOkZ8CRr5Y9StOjstjfoEAO?=
- =?us-ascii?Q?2spztuVmID7nnmr97E6L7VfKW3D7RRostaAg7LqhNvfnikZfQC6jamkNwVsW?=
- =?us-ascii?Q?4GtODHQAJQG6+TuuUAyUWEa5TRFCQXU37LEh5gofTPAqnpJ65V8RPTXs+lQY?=
- =?us-ascii?Q?SVrtFPgPM4cazSiq5l2MqEvZYGaHBd+bY5RA0RQ+Ef4WH0CXOKhdMFeE4WPU?=
- =?us-ascii?Q?8+4fBpUUnw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a0de4e03-430b-49b0-bcf9-08de8a7f620b
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 15:01:24.6510
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uVc7GukBZ9oYDnZGY6+jpCqHgHnarsUB7GWqekRnw/9TrveUdIoPHAtgY3f90aZC5l1XAeubN8AfVvDYSiBCsQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9322
-X-Spamd-Result: default: False [1.84 / 15.00];
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml500010.china.huawei.com (7.191.174.240) To
+ dubpeml500005.china.huawei.com (7.214.145.207)
+X-Spamd-Result: default: False [1.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[huawei.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-280612-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-280614-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,toradex.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jonathan.cameron@huawei.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:email,toradex.com:url]
-X-Rspamd-Queue-Id: 108D3327CC9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:email,huawei.com:mid,sirat.me:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 97DF2327CFE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 25, 2026 at 12:27:24PM +0100, Francesco Dolcini wrote:
-> On Tue, Mar 24, 2026 at 12:14:35PM -0400, Frank Li wrote:
-> > On Fri, Mar 13, 2026 at 09:57:43AM +0100, Ernest Van Hoecke wrote:
-> > > From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
-> > >
-> > > Add support for the Toradex Verdin iMX95 and its development carrier
-> > > board.
-> > >
-> > > The module consists of an NXP i.MX95 family SoC, up to 16GB LPDDR4x RAM,
-> > > up to 128GB of storage, a USB 3.2 OTG and USB 2.0 Host, a Gigabit
-> > > Ethernet PHY, an I2C EEPROM and Temperature Sensor, an RX8130 RTC, an
-> > > I3C bus, one Quad lane CSI interface, one Quad lane DSI or CSI
-> > > interface, one LVDS interface (one or two channels), and some optional
-> > > addons: TPM 2.0, and a WiFi/BT module.
-> > >
-> > > Link: https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95
-> > > Link: https://www.toradex.com/products/carrier-board/verdin-development-board-kit
-> > > Co-developed-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> > > Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> > > Co-developed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
-> > > ---
-> > > v2: Reordered nodes alphanumerically by node name
-> > > v1: https://lore.kernel.org/all/20260305-verdin-imx95-upstream-frank-li-base-v1-2-823fad02def9@toradex.com/
-> > > ---
-> > > +
-> > > +/* Verdin UART_1, connector X50 through RS485 transceiver */
-> > > +&lpuart7 {
-> > > +	rs485-rts-active-low;
-> > > +	rs485-rx-during-tx;
-> > > +	linux,rs485-enabled-at-boot-time;
-> > > +
+On Wed, 25 Mar 2026 20:38:48 +0600
+Sirat <email@sirat.me> wrote:
+
+> On Wed, Mar 25, 2026 at 8:06=E2=80=AFPM Jonathan Cameron
+> <jonathan.cameron@huawei.com> wrote:
 > >
-> > Nit: needn't empty line between status and other property, suggest run
-> > https://github.com/lznuaa/dt-format to speed up process.
->
-> Please review Documentation/devicetree/bindings/dts-coding-style.rst.
->
-> Quoting from there
->  > "status" (if applicable), preceded by a blank line if there is content before the property
->
-> I would be careful on taking every detail of such a style guide literally,
-> but your comment here is not correct and it's not helping anyone.
+> > On Wed, 25 Mar 2026 14:44:13 +0100
+> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > =20
+> > > On 25/03/2026 14:38, Jonathan Cameron wrote: =20
+> > > > On Wed, 25 Mar 2026 15:18:05 +0600
+> > > > Sirat <email@sirat.me> wrote:
+> > > > =20
+> > > >> On Wed, Mar 25, 2026 at 2:58=E2=80=AFPM Krzysztof Kozlowski <krzk@=
+kernel.org> wrote: =20
+> > > >>>
+> > > >>> On 25/03/2026 09:48, Sirat wrote: =20
+> > > >>>> On Wed, Mar 25, 2026 at 2:05=E2=80=AFPM Krzysztof Kozlowski <krz=
+k@kernel.org> wrote: =20
+> > > >>>>>
+> > > >>>>> On Wed, Mar 25, 2026 at 12:32:22PM +0600, Siratul Islam wrote: =
+=20
+> > > >>>>>> Add device tree binding documentation for the STMicroelectroni=
+cs
+> > > >>>>>> VL53L1X Time-of-Flight ranging sensor connected via I2C.
+> > > >>>>>>
+> > > >>>>>> Make vdd-supply required. The device requires power to operate
+> > > >>>>>> and the property should have been required from the start. =20
+> > > >>>>>
+> > > >>>>> That's ABI break and device for many years was working fine, so=
+ this
+> > > >>>>> should not be changed.
+> > > >>>>> =20
+> > > >>>> Jonathan and David asked that vdd-supply be made required. I fee=
+l like
+> > > >>>> there is a conflict here that I am not able to resolve myself.
+> > > >>>>
+> > > >>>> What I think about it is the binding does not correctly describe=
+ the
+> > > >>>> hardware and we should consider this a bug and fix it.
+> > > >>>> The driver worked because of a fallback mechanism (dummy/fake
+> > > >>>> regulator) and not because power was optional.
+> > > >>>> =20
+> > > >>>
+> > > >>>
+> > > >>> I looked at v6 and v5 and I do not see such comment for binding t=
+hat
+> > > >>> existing device should change ABI. Can you point me to it?
+> > > >>> =20
+> > > >> "Make it required and add a note to the commit message to say why =
+the
+> > > >> requirement should always have been there. Devices tend not to work
+> > > >> with no power." - Jonathan (v3:
+> > > >> https://lore.kernel.org/linux-iio/20260322115704.10b2e0d4@jic23-hu=
+awei)
+> > > >>
+> > > >> "No, bindings should not depend on driver implementation." - David
+> > > >> (When I asked if I should  drop the hard requirement in the bindin=
+g,
+> > > >> v6: https://lore.kernel.org/linux-iio/55e92148-b5de-4fb8-af0b-9476=
+235341bc@baylibre.com/)
+> > > >>
+> > > >> "From the point of view of the devicetree, it doesn't matter what =
+the
+> > > >> driver does. It matters that the chip can't work without power. ;-=
+)" -
+> > > >> David (v1: https://lore.kernel.org/linux-iio/d0ec6a2f-6d30-4774-89=
+50-15dd3c4b020b@baylibre.com)
+> > > >>
+> > > >> I'm not sure if this is the correct way to quote. But I have added=
+ the links. =20
+> > > >
+> > > > This came up a few years back - though I doubt I can track down the
+> > > > exact discussion however.
+> > > >
+> > > > From a Linux point of view we are breaking binding checks only if t=
+he
+> > > > supply (that should always have been there as chips tend not to work
+> > > > well without power) is not present.  We absolutely have to
+> > > > keep the driver running whether or not the supply is specified.
+> > > > Do other DT users provide such a constraint? I've no idea.
+> > > >
+> > > > If the DT maintainer preference is leave it not required (perhaps
+> > > > with a comment saying new users of the binding should supply it)
+> > > > then that's fine by me. I'll keep it in mind for future similar cha=
+nges. =20
+> > >
+> > > If this was other ABI, e.g. clock, then answer would be - do not requ=
+ire
+> > > it, because that's ABI break. Therefore I would stick to that also to
+> > > regulators. Once Rob also expressed such thoughts, although noting th=
+at
+> > > it is not that big deal.
+> > >
+> > > New device in this binding of course should require the supply. =20
+> > Seems my memory was less than perfect on this :
+> > https://lore.kernel.org/linux-iio/20241119140409.GA1093349-robh@kernel.=
+org/#t
+> >
+> > Rob expressed that we are inconsistent on this, but he'd rather not
+> > have regulators as a special case.
+> >
+> > So let's only make this required for the new device.
+> > =20
+> So since it is a new device, how do I require this? should we split to
+> a new binding (like I had in v1) and make that required. That would
+> also allow us to correctly name the xshut pin.
+>=20
+> Or do we do the "allOf:" exclusion? In that case, I think it wouldn't
+> make sense to someone reading the binding without the context of
+> commit history, as it would imply one of the devices explicitly
+> doesn't need power.
+This + add a comment that it's only not required for other devices
+for backwards compatibility reasons.
 
-Thank you point out,  there are not extra empty line in existing dts.
-git grep -r -a3 "status =" arch/arm64/boot/dts/
+>=20
+> I'm willing to do whichever is prefered tough and move this forward.
+> >
+> > =20
+> Thanks,
+>=20
+> Sirat
 
-I think it should update dts-coding-style.rst to match most existing one.
-
-Frank
-
->
-> Francesco
->
 
