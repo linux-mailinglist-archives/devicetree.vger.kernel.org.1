@@ -1,316 +1,211 @@
-Return-Path: <devicetree+bounces-280155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280162-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cBzADWpOw2kbqAQAu9opvQ
-	(envelope-from <devicetree+bounces-280155-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 03:54:34 +0100
+	id YFygDCJPw2k5qAQAu9opvQ
+	(envelope-from <devicetree+bounces-280162-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 03:57:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8720731EE73
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 03:54:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B4C31EEC0
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 03:57:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 90701304C131
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 02:48:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5046E3015BBE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 02:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0C3927F4F5;
-	Wed, 25 Mar 2026 02:48:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7D3296BBA;
+	Wed, 25 Mar 2026 02:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="ZwVcqgS6"
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="FThqQYLa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023107.outbound.protection.outlook.com [40.107.44.107])
+Received: from canpmsgout11.his.huawei.com (canpmsgout11.his.huawei.com [113.46.200.226])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AAF579CD;
-	Wed, 25 Mar 2026 02:48:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.107
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774406900; cv=fail; b=Nv6C1lBHCSfJTWU7MquNhhPw/plgvAizKO5SLzV2LadVlZ3GMtMYklfvC9vM/ZmZfhqiYMfEn8A+Pa9ujAmn2DUmzS9xR+WPIrAMPS/wxysap587JThDLd0o7TTzuWCUVXoTubYhI9fqgETork6HWRMwyGnszMVWZnkwfFgwTxI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774406900; c=relaxed/simple;
-	bh=TLM8O9tPM9IrPdSrxqyo0SeoDYbQSzVUURaa+5Uey0k=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=cbBcVlkEk5VRPYWHWRt1SC9HC7/GkxoHVCsrV6m1q5gfGNyUGhONY6bvqu7VUVX/hBjUc61a6WJcDyXEVQvVA7neg0HpRffCqhbP+/wAE7S46s++kcw+dzIPwuZ5ad7v9tD22uUm1U96kiSUIzDZSIKUFrqSyGbFPhQzI2s9TzQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=ZwVcqgS6; arc=fail smtp.client-ip=40.107.44.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=V/hCMHl2CfqOQNBCUlbbZShah/dwRycdqP/ny3mEmimy/QRmj7CPv0oydoPchSwDRC1M93FSdi15LzjwJhHay04nw564U35g11nNDlE0SaEsqFH20b0cTfneMFDvBTgbs1v0Qhx2pW2B9rGVVNJd/ej6LDCUqmRjtm02D5CpVgE7dmiwie62XFLNUQVEmmUCcbP9mP/fURy4mX9HFcDTvNpkKH+AHr5GwXdRC8V/ynw42BIkQuroeMxdqVAqRpyqnBEg9ntdtN89DWghtJ/7BlZYfz/Zx4n7FjEUybUyP7W9+UkReo6YeFY1wiVAaLGbKdHe0B3sdo0OmLfYFFSRIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Lq0T1S+FFsvnKXCCuV+pWKYzVePyuEfmjErJokPG8zg=;
- b=JauN2LMiL/V918lUqpdeUjK7+zdUx+QlZ9N+gLAdJ/Zs9yt+1JXhItrhPmBIN9kIfs2yhe9h3lBEf5iVA+2SzMth039zrCNvpDLFdgdGveatd837TQRc3C3pXFCXFFscazL4xvEzRlcfWbvaq37X6y9BphvdjYCSrvdnVMR2B9uJZuRTzAr8rV20kmoLydcjB99qsGZOvB9900BinghPUz0CpsAnZp14+obusGM8ShjSmFHSR6FqLXtNq3wkVnxb4Xaq6zDvirR3GjB+o7R2d59jsp50sJ7wOwyXtbraajZwMJTKCONODGpJfT8PBXnQEMDXChRmQSynLcr5BwGSag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Lq0T1S+FFsvnKXCCuV+pWKYzVePyuEfmjErJokPG8zg=;
- b=ZwVcqgS63KM1rhOpf9kBGQBcN/LUCe3fga8b4H4wgVv9TxJzOyzXhHHtIyayP8DJB+7FZ7YbjMlt/vDYL8OE9WNmLQPsRSfGJ78jdirtUijvr2NHclvnGZ67ogbiWt4OWAp1PhzfdaI26WJbMXgv5CQ3d91x4i58ZtTlBYLOls5+IjBKoKkkLltz+j1DVVUQTzYFvIoRuVIkjDzZBwBh1+VgQB44q/32Kfj4pVxCV/wzwfs6P57yCUkxYrcesMrUThtLzXLqNsynvLPYoqbov1pHbT8GkHPKOj677THVl/dUexXI1G1k9g3qjcoRmIXnYQrekDTO0RorskWgyu8h5w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by SI3PR03MB10032.apcprd03.prod.outlook.com (2603:1096:4:2a4::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.31; Wed, 25 Mar
- 2026 02:48:16 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::78d4:9dee:2e32:d1e4]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::78d4:9dee:2e32:d1e4%3]) with mapi id 15.20.9723.030; Wed, 25 Mar 2026
- 02:48:16 +0000
-Message-ID: <316efeff-477d-4d8d-9c60-ac7c4e5b9b33@amlogic.com>
-Date: Wed, 25 Mar 2026 10:48:10 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/9] arm64: dts: amlogic: t7: Add eMMC, SD card and
- SDIO pinctrl nodes
-Content-Language: en-US
-To: Ronald Claveau <linux-kernel-dev@aliel.fr>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Johannes Berg <johannes@sipsolutions.net>, van Spriel <arend@broadcom.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org
-References: <20260323-add-emmc-t7-vim4-v3-0-5159d90a984c@aliel.fr>
- <20260323-add-emmc-t7-vim4-v3-1-5159d90a984c@aliel.fr>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <20260323-add-emmc-t7-vim4-v3-1-5159d90a984c@aliel.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2P153CA0016.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:140::17) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479A013A244;
+	Wed, 25 Mar 2026 02:57:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.226
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774407450; cv=none; b=pWu40V/tSyA2bh4kWPEFZc9qlisRIYsnNazZLO1XQeI7pieX/LqjCrpF75SZ7phlgtHS/bRN9wcGZnDes/uzau9qlK9RnBCZDtZwLaDcLyCjWGbn9iBjFC/OTlZ7LSPDFxaSI/6OAT3gF5snK2z5XRL5bLnIfBgCU9mmqJcYg5Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774407450; c=relaxed/simple;
+	bh=dadLwEk45JgDyaGlBSNKCNIGLRbpTR8hROU59Q81vfo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hGoGvawZhFHrwjC1WrgHkPCuKNPYWNmQSPrQfkYqf/MDBxqKnLnktUgTpKx+kRVZ2jGgOdy372vObP+2gaG4KqRPvNG7r2rzPHWRcr4wulePmCz94S89iROPqv/GXNuhKmUycd19F+cIrIRGW46cvMH8RZAMzmL4WoNmGfaHD5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=FThqQYLa; arc=none smtp.client-ip=113.46.200.226
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=Egb4IyOXbT/uZAplagVgZZDuS6BpP8QjqLm6e9M6jQI=;
+	b=FThqQYLaTLZeDrzKn/5ooHp6xmSSbuuVuVhI/fdJl/wxIMHmLT9jb56wDB+Z4jn4DMKemh2xF
+	mc1lqD3J69OPKaUGwcZZp786eQ5aGHhFBfhj3UxlonLjW2qZQXyrpE5DL9+apUuHnu6JWWQ33hU
+	0JHW+M9SVdTFwqxtoVTHGXw=
+Received: from mail.maildlp.com (unknown [172.19.163.15])
+	by canpmsgout11.his.huawei.com (SkyGuard) with ESMTPS id 4fgWd12js1zKmB3;
+	Wed, 25 Mar 2026 10:51:17 +0800 (CST)
+Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
+	by mail.maildlp.com (Postfix) with ESMTPS id 9273840539;
+	Wed, 25 Mar 2026 10:57:24 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by dggpemf500011.china.huawei.com
+ (7.185.36.131) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Wed, 25 Mar
+ 2026 10:57:21 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
+	<will@kernel.org>, <chenhuacai@kernel.org>, <kernel@xen0n.name>,
+	<maddy@linux.ibm.com>, <mpe@ellerman.id.au>, <npiggin@gmail.com>,
+	<chleroy@kernel.org>, <pjw@kernel.org>, <palmer@dabbelt.com>,
+	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <tglx@kernel.org>,
+	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
+	<hpa@zytor.com>, <robh@kernel.org>, <saravanak@kernel.org>,
+	<akpm@linux-foundation.org>, <bhe@redhat.com>, <vgoyal@redhat.com>,
+	<dyoung@redhat.com>, <rdunlap@infradead.org>, <peterz@infradead.org>,
+	<pawan.kumar.gupta@linux.intel.com>, <feng.tang@linux.alibaba.com>,
+	<dapeng1.mi@linux.intel.com>, <kees@kernel.org>, <elver@google.com>,
+	<paulmck@kernel.org>, <lirongqing@baidu.com>, <ruanjinjie@huawei.com>,
+	<rppt@kernel.org>, <ardb@kernel.org>, <leitao@debian.org>, <osandov@fb.com>,
+	<cfsworks@gmail.com>, <tangyouling@kylinos.cn>, <sourabhjain@linux.ibm.com>,
+	<ritesh.list@gmail.com>, <eajames@linux.ibm.com>,
+	<songshuaishuai@tinylab.org>, <kevin.brodsky@arm.com>,
+	<samuel.holland@sifive.com>, <vishal.moola@gmail.com>,
+	<junhui.liu@pigmoral.tech>, <coxu@redhat.com>, <liaoyuanhong@vivo.com>,
+	<jbohac@suse.cz>, <fuqiang.wang@easystack.cn>, <guoren@kernel.org>,
+	<chenjiahao16@huawei.com>, <hbathini@linux.ibm.com>, <james.morse@arm.com>,
+	<takahiro.akashi@linaro.org>, <lizhengyu3@huawei.com>, <x86@kernel.org>,
+	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <loongarch@lists.linux.dev>,
+	<linuxppc-dev@lists.ozlabs.org>, <linux-riscv@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <kexec@lists.infradead.org>
+Subject: [PATCH v10 0/8] arm64/riscv: Add support for crashkernel CMA reservation
+Date: Wed, 25 Mar 2026 10:58:56 +0800
+Message-ID: <20260325025904.2811960-1-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SI3PR03MB10032:EE_
-X-MS-Office365-Filtering-Correlation-Id: e19a0ca5-4462-4d2c-b356-08de8a18f6e7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|921020|7053199007|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	Yk41VjJkCHmZKOTydfCgWYZ2HgIMGYPV7y0GelV/HJ37kcDFaW8w2gc/9KpNL2v0/K9Vy/MIeDVN68CHU8ilHjpSXEdx56h0t28Y73NFwQqU8/7tZHz+MEoa5Q/doggP3FozIsjnCXo5ucxFkrRdWp5aFRFuGH3ZF0V40jtDPBs3vFYrNahyHzU8IKXOHuLo48eyavtw2MjIBJzeYyOl4MkP+mzJDKpCkggx9i99tbOesw0Ylvev9uwyF7tzZ1TGE+A3OLnYZm07rKfRsFEwSP7YHv4VsZhLZbKVsIPQyIalvYyKZQqD5fmZX6WgiYHZP8aUuk50HRZONFsJ4wAAQPjrjGHM+4F6wnhgqnEzzGKTakOh9hgZh9ZAezgDiyxlU2rgXHb0CD0VBea8QwaUTmMMLZgGkCiiX69vmE8cwVCJ+N0ccyk7gsUyBNIpeFB5lbuDwZPPn5WUGE2Kb/jmlU/MQW6TyR26HeKQaw2jA0qY0OlPHyG8rU1zqLWJoz9FJDt0dNlLAo6boQz25xAz/PSebQ7qRLPwjU8hRCXd5HCziAdZkesANb7ITwL3H3/7wXuxbM0ZcrHp3YWmKwse745oAm1K6PSE74jnJyXr/5vVxRunjxIhVvX8I8oJE5AJ9VCEAi7ZwxBrIl+9F/qfkhmGPOwSyzmYMZMiNaaf72vVQEE355MC3vGNUQ1cbW1YQzXWyKOvboJtbDFmXH/6WHYXB7NUL2bCOwjlIWmewjqpVhoEMDO+UhwrYYVVMpiosnFS2CHo3JSU1AAg6AgJIw==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(921020)(7053199007)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UEl2ako5bi9CMEFUZ21nVVJPSDA5NGh0MHNjaVhnRG5LaUlCazZUUnZBbE9F?=
- =?utf-8?B?USs2Qms2RGFiZEdSdlRBSldpSDV3aHExOUVIc3BacTlXeklESW03MEhyVkFt?=
- =?utf-8?B?azk2QUhyVU4rY2NDcmMrY0M0aGFNeWZpejdDQmJOSmFIcUk4OGE5OTNreVpx?=
- =?utf-8?B?WTZIMCtrMWdGNmJ4Y3Y2WjJ4SkRRczZVU2xmTXRoRDlKVUZYbzhmL2krbi9h?=
- =?utf-8?B?VWF1Z0RzcjlCSmMvYXlscGkySWJjM0M4ZmU1UzZRc3V0TUUrUUVOOFEyN2xD?=
- =?utf-8?B?UVhVSEszcUFLMFNvaUtXdWNwa2hnL0lYZ1IyQjJOWUZrYlZzdXVmdkcwSmx5?=
- =?utf-8?B?T0tEUDFDTCtTTHQ2YUhVRDM4WUJocERhZ3JOVm9CRDZRUXpYaVdvMlFhajZQ?=
- =?utf-8?B?d05ZQk1HdFhuSCsyS3IrU2NiaFN5OGQ5OW1sV0dEcU5ub2hwbUVaUmZGUTJH?=
- =?utf-8?B?dmYxUE9VMUorUmFOYTRWUVgremhMNkxieUIrMnV2SXgwZW16MkxnSE91bGcy?=
- =?utf-8?B?VzRHQncyeElvRHJSQmZjNUlBSVQxa1Z1dDBlNEwyNllDd2pRUGwyejRER2ps?=
- =?utf-8?B?ZlkyWWd3R29nK1NicW9kdDNVdldXZWRkakFocG9YWG1HTC9Sd240YUphWURV?=
- =?utf-8?B?SzhFbFNjQlpQa0ROdnE0TFJ0eTg0cUw2Nmp4ZSt5R0FsS2FUTzRBZFNkWnBF?=
- =?utf-8?B?emdlRWRncHcrUS9lMHlGWmpzL3BTektob2U5SytXK3NocmVjQmQzZUg3Z3VJ?=
- =?utf-8?B?bmhHSFI0WnZiQkNKN3RsYlluY01Ob0VWN3I5SUg0ZmlYWU52UmpxS0diM2xX?=
- =?utf-8?B?clhCWHpDVlNTc2FiZjNMdTJOU2Q1QTJtbmFXa2ZwcE9saUFHa2doNDRJTExO?=
- =?utf-8?B?eC85S1RUOUpUcld2S1oxZDVVVXFGWnl2Q0ZIUktoeXNJd0t5U1VVajZacWpI?=
- =?utf-8?B?RGVHZkNjR3REQnZ5aDRSQ2xTTWdYMnR2dWNoYnJqRXhld24rWDdUWlk3UTIw?=
- =?utf-8?B?V3BSUEpDSEx2VGZiYW8vWmlWYk82bThaZlgwZFN2c3lGK0VNZVdSRDRmNEpZ?=
- =?utf-8?B?cGsrc2pXZWxGblhVNHhpaXBvekRlaWJiQ3hqVTF1cFR5OWlBTm41Z1FKOVFw?=
- =?utf-8?B?U0k5T1kvdmwzcEpDcWl2YXVvZ0hCZjlvZXI0cmFpTDRMVDZ4TWRXMEJVcDlQ?=
- =?utf-8?B?WVNTNUR0YWE5YkJER3Y2MkhEeEdOV1ZCaTlJNmVvUHV4YkVWN1I1QnBiSWh0?=
- =?utf-8?B?alkyNmhSdkFqdkwxYnpEc2YwTjdQS2c1RXg2T1NpZFNSU2FJVUhidjhHMWsr?=
- =?utf-8?B?NjU3MStFcW93ZW1kbmxoYm1hTWZGd2oxbXVOYzgvTUhJcUJCbjArTnVReUx3?=
- =?utf-8?B?M291RFZCbHRMR3hsazEvZWt5RXdpcmNDZkhDWTFhS2xiTG4xMk5udTlWVnZ2?=
- =?utf-8?B?b253SlBaSkt5UEY1TGR0VHVIRHRqUCt3V0toNHViZEl5K0RDSHNvUytQUS9V?=
- =?utf-8?B?MXVTenZNSDVudk5udXp0UDZJekg4YllqRG5Wb1YwWkhrRzRtRjdURW9aeWtm?=
- =?utf-8?B?bHFZN3NIKzBGdjBJTVYzREJqSnJITHBzekdlek9aV2RDWmJhK2MvTmprM2dw?=
- =?utf-8?B?ajZWWGE4Z2owWm5lZzhTalpFSGVoQ0FRSHV6bVcvZ0pRTjk4Wk5vd0dva285?=
- =?utf-8?B?YzB6QVdVRGZCa0JHdTdxaDFaWFhVVld5dkxuaUFubCtPdHdrRjcxVzczMjNw?=
- =?utf-8?B?TmljZHJlNUZ3SUh1MmNxUFdIRkkwUFlLUCs3SDMyLy8yamtHbHlXZElIWXdU?=
- =?utf-8?B?SDNXZGNNRzE0NU5ZT21XV29lU0hWRHJSNXdMM3BrWmdrTkhVUWZaa3hValNK?=
- =?utf-8?B?c1F2aFVvMDRsU3lyelZ1UFNZV1N6a2t5c3o4TC9oWEk2Z2dndTdYbFpJNGYx?=
- =?utf-8?B?dzdCSk5TdUUzSENvaFRRZ2liSStoWTIwaDhBdkpCK3ZTalB5MVJWSU92TXRv?=
- =?utf-8?B?Y1MrbzRpY0h0aitNaHFqRG9KZUxxV0I3TDJCdVhYYjkrZTN1K3B6bTgwc05m?=
- =?utf-8?B?TVZ0dTYzNmdLUUhFdU9CSkpIS2dCNzBReDdvUXcvTXc5bElzUngrTkVmVVl2?=
- =?utf-8?B?VGlXaTNGb3dWaU9EYVdCTjB6bjJTbFZrcG9SMHBXTDJ3cHVUOHg2SnYwUlZM?=
- =?utf-8?B?T3o4Nml0UUloNzI5dzNGY2puOHVZV1RROFgwYUp5ZHQxcm10Z25TVjF5VUtu?=
- =?utf-8?B?U2ZCK0NzVW1yWTMrcksyclRxZUpSZXVac1JiT3hrcEcxdlJXM1FDNmhISCt1?=
- =?utf-8?B?ZzRNZ2lPUjZVaFh1ZUtqZGFEak41azgxSjNWaUQvZVZCN01hUi9oUT09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e19a0ca5-4462-4d2c-b356-08de8a18f6e7
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 02:48:16.0754
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kcK6vDhMdaSUaPWn3Rw8+Zp/tAZX/QBqbtvg/z6gcv9VPtaTdBIFom9ObV2zuoAu3OZ7F0zhDTe1dzMfXDaGfd6+7JO0o0Lmf1hxXH47QM8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI3PR03MB10032
-X-Spamd-Result: default: False [1.34 / 15.00];
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
+ dggpemf500011.china.huawei.com (7.185.36.131)
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[amlogic.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amlogic.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-280155-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[aliel.fr,linaro.org,baylibre.com,googlemail.com,kernel.org,sipsolutions.net,broadcom.com];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,infradead.org,linux.alibaba.com,google.com,baidu.com,huawei.com,debian.org,fb.com,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,suse.cz,easystack.cn,linaro.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[huawei.com:+];
+	TAGGED_FROM(0.00)[bounces-280162-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xianwei.zhao@amlogic.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[amlogic.com:+];
+	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_GT_50(0.00)[68];
+	TO_DN_NONE(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.15.240:email,aliel.fr:email,amlogic.com:dkim,amlogic.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.15.160:email]
-X-Rspamd-Queue-Id: 8720731EE73
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:dkim,huawei.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 38B4C31EEC0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Ronald,
+The crash memory allocation, and the exclude of crashk_res, crashk_low_res
+and crashk_cma memory are almost identical across different architectures,
+This patch set handle them in crash core in a general way, which eliminate
+a lot of duplication code.
 
-On 2026/3/23 17:55, Ronald Claveau wrote:
-> These pinctrl nodes are required by the eMMC, SD card and SDIO drivers
-> to configure pin muxing at runtime.
-> 
-> - eMMC: control, 4-bit/8-bit data, data strobe and clock gate pins
-> - SD card: data, clock, command and clock gate pins
-> - SDIO: data, clock, command and clock gate pins
-> 
-> Signed-off-by: Ronald Claveau<linux-kernel-dev@aliel.fr>
-> ---
->   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 98 +++++++++++++++++++++++++++++
->   1 file changed, 98 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> index 6510068bcff92..ac8de8e9b8010 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> @@ -250,6 +250,104 @@ gpio: bank@4000 {
->                                          #gpio-cells = <2>;
->                                          gpio-ranges = <&periphs_pinctrl 0 0 157>;
->                                  };
-> +
-> +                               emmc_ctrl_pins: emmc-ctrl {
-> +                                       mux-0 {
-> +                                               groups = "emmc_cmd";
-> +                                               function = "emmc";
-> +                                               bias-pull-up;
-> +                                       };
-> +
-> +                                       mux-1 {
-> +                                               groups = "emmc_clk";
-> +                                               function = "emmc";
-> +                                               bias-disable;
-> +                                       };
-> +                               };
-> +
-> +                               emmc_data_4b_pins: emmc-data-4b {
-> +                                       mux-0 {
-> +                                               groups = "emmc_nand_d0",
-> +                                                        "emmc_nand_d1",
-> +                                                        "emmc_nand_d2",
-> +                                                        "emmc_nand_d3";
-> +                                               function = "emmc";
-> +                                               bias-pull-up;
-> +                                       };
-> +                               };
-> +
-> +                               emmc_data_8b_pins: emmc-data-8b {
-> +                                       mux-0 {
-> +                                               groups = "emmc_nand_d0",
-> +                                                        "emmc_nand_d1",
-> +                                                        "emmc_nand_d2",
-> +                                                        "emmc_nand_d3",
-> +                                                        "emmc_nand_d4",
-> +                                                        "emmc_nand_d5",
-> +                                                        "emmc_nand_d6",
-> +                                                        "emmc_nand_d7";
-> +                                               function = "emmc";
-> +                                               bias-pull-up;
-> +                                       };
-> +                               };
-> +
-> +                               emmc_ds_pins: emmc-ds {
-> +                                       mux {
-> +                                               groups = "emmc_nand_ds";
-> +                                               function = "emmc";
-> +                                               bias-pull-down;
-> +                                       };
-> +                               };
-> +
-> +                               emmc_clk_gate_pins: emmc_clk_gate {
+And add support for crashkernel CMA reservation for arm64 and riscv.
 
-Node names should use hyphens ('-') instead of underscores ('_'), 
-consistent with the following nodes.
+Rebased on v7.0-rc1.
 
-> +                                       mux {
-> +                                               groups = "GPIOB_8";
-> +                                               function = "gpio_periphs";
-> +                                               bias-pull-down;
-> +                                       };
-> +                               };
-> +
-> +                               sdcard_pins: sdcard {
-> +                                       mux {
-> +                                               groups = "sdcard_d0",
-> +                                                        "sdcard_d1",
-> +                                                        "sdcard_d2",
-> +                                                        "sdcard_d3",
-> +                                                        "sdcard_clk",
-> +                                                        "sdcard_cmd";
-> +                                               function = "sdcard";
-> +                                               bias-pull-up;
-> +                                       };
-> +                               };
-> +
-> +                               sdcard_clk_gate_pins: sdcard_clk_gate {
-> +                                       mux {
-> +                                               groups = "GPIOC_4";
-> +                                               function = "gpio_periphs";
-> +                                               bias-pull-down;
-> +                                       };
-> +                               };
-> +
-> +                               sdio_pins: sdio {
-> +                                       mux-0 {
-> +                                               groups = "sdio_d0",
-> +                                                        "sdio_d1",
-> +                                                        "sdio_d2",
-> +                                                        "sdio_d3",
-> +                                                        "sdio_clk",
-> +                                                        "sdio_cmd";
-> +                                               function = "sdio";
-> +                                               bias-pull-up;
-> +                                       };
-> +                               };
-> +
-> +                               sdio_clk_gate_pins: sdio_clk_gate {
-> +                                       mux {
-> +                                               groups = "GPIOX_4";
-> +                                               function = "gpio_periphs";
-> +                                               bias-pull-up;
-> +                                       };
-> +                               };
->                          };
-> 
->                          gpio_intc: interrupt-controller@4080 {
+Basic second kernel boot test were performed on QEMU platforms for x86,
+ARM64, and RISC-V architectures with the following parameters:
+
+	"cma=256M crashkernel=256M crashkernel=64M,cma"
+
+Changes in v10:
+- Fix crashk_low_res not excluded bug in the existing
+  RISC-V code.
+- Fix an existing memory leak issue in the existing PowerPC code.
+- Fix the ordering issue of adding CMA ranges to
+  "linux,usable-memory-range".
+- Fix an existing concurrency issue. A Concurrent memory hotplug may occur
+  between reading memblock and attempting to fill cmem during kexec_load()
+  for almost all existing architectures.
+- Link to v9: https://lore.kernel.org/all/20260323072745.2481719-1-ruanjinjie@huawei.com/
+
+Changes in v9:
+- Collect Reviewed-by and Acked-by, and prepare for Sashiko AI review.
+- Link to v8: https://lore.kernel.org/all/20260302035315.3892241-1-ruanjinjie@huawei.com/
+
+Changes in v8:
+- Fix the build issues reported by kernel test robot and Sourabh.
+- Link to v7: https://lore.kernel.org/all/20260226130437.1867658-1-ruanjinjie@huawei.com/
+
+Changes in v7:
+- Correct the inclusion of CMA-reserved ranges for kdump kernel in of/kexec
+  for arm64 and riscv.
+- Add Acked-by.
+- Link to v6: https://lore.kernel.org/all/20260224085342.387996-1-ruanjinjie@huawei.com/
+
+Changes in v6:
+- Update the crash core exclude code as Mike suggested.
+- Rebased on v7.0-rc1.
+- Add acked-by.
+- Link to v5: https://lore.kernel.org/all/20260212101001.343158-1-ruanjinjie@huawei.com/
+
+Changes in v5:
+- Fix the kernel test robot build warnings.
+- Sort crash memory ranges before preparing elfcorehdr for powerpc
+- Link to v4: https://lore.kernel.org/all/20260209095931.2813152-1-ruanjinjie@huawei.com/
+
+Changes in v4:
+- Move the size calculation (and the realloc if needed) into the
+  generic crash.
+- Link to v3: https://lore.kernel.org/all/20260204093728.1447527-1-ruanjinjie@huawei.com/
+
+Jinjie Ruan (7):
+  riscv: kexec_file: Fix crashk_low_res not exclude bug
+  powerpc/crash: Fix possible memory leak in update_crash_elfcorehdr()
+  crash: Exclude crash kernel memory in crash core
+  crash: Use crash_exclude_core_ranges() on powerpc
+  arm64: kexec: Add support for crashkernel CMA reservation
+  riscv: kexec: Add support for crashkernel CMA reservation
+  crash: Fix race condition between crash kernel loading and memory
+    hotplug
+
+Sourabh Jain (1):
+  powerpc/crash: sort crash memory ranges before preparing elfcorehdr
+
+ .../admin-guide/kernel-parameters.txt         |  16 +--
+ arch/arm64/kernel/machine_kexec_file.c        |  39 ++-----
+ arch/arm64/mm/init.c                          |   5 +-
+ arch/loongarch/kernel/machine_kexec_file.c    |  39 ++-----
+ arch/powerpc/include/asm/kexec_ranges.h       |   1 -
+ arch/powerpc/kexec/crash.c                    |   7 +-
+ arch/powerpc/kexec/ranges.c                   | 101 +----------------
+ arch/riscv/kernel/machine_kexec_file.c        |  38 ++-----
+ arch/riscv/mm/init.c                          |   5 +-
+ arch/x86/kernel/crash.c                       |  89 ++-------------
+ drivers/of/fdt.c                              |   9 +-
+ drivers/of/kexec.c                            |   9 ++
+ include/linux/crash_core.h                    |   9 ++
+ kernel/crash_core.c                           | 105 +++++++++++++++++-
+ 14 files changed, 195 insertions(+), 277 deletions(-)
+
+-- 
+2.34.1
+
 
