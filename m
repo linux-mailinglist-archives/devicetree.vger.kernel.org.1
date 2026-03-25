@@ -1,230 +1,148 @@
-Return-Path: <devicetree+bounces-280322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280327-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wK4ZBB+xw2nAtAQAu9opvQ
-	(envelope-from <devicetree+bounces-280322-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:55:43 +0100
+	id gDw/O6Kxw2kktgQAu9opvQ
+	(envelope-from <devicetree+bounces-280327-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:57:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8557D3227BC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:55:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54AD7322883
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:57:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BFBD8302F9BD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:50:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6D560300A614
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:54:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3C103A1A41;
-	Wed, 25 Mar 2026 09:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E813739F196;
+	Wed, 25 Mar 2026 09:54:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hqOR5Yi5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="T/SPqxwk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D113A1D0A
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:50:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774432238; cv=pass; b=ray/AereJKHvP2bb0GImSJDViC2Z0+LS4dS6rbDMJ6MukXOD+CJmBavzAUpnyYHgaKT9xnruOivWmPL2q3AV/OU+n1r2RJrYfvaQDGigBv+Y6WHoLn703uuLQ9mH0SedJVAs3D2SMjJF3RZdUMWuE63tOsxf6bR5XBarZq62xCA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774432238; c=relaxed/simple;
-	bh=aiSVuAMFyzPKAzJTJDYZxW4eA/pbkXu4TdDmr28NT8U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Y2xAIOF2Nc7oNgQKuHxGz5jSGImVnVSt4050nmOYPUgN1bbQNdFYVRKEu2ILxtwWWO2CwxF/G0iB5Wy7FnHNrRprWauELG8kFMtK7MN4cVw1+lSa7fDfQ4JNENZ3n2Tr/lUqoOK/zd3LD/Khe0yqje0GBOAKljemR/cP+bnVhtE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hqOR5Yi5; arc=pass smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-65c0891f4e9so4159449a12.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 02:50:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774432234; cv=none;
-        d=google.com; s=arc-20240605;
-        b=jB5dtGUdk8Nz8f17cEMkNKjsYksAOqptZYt+OEF7+n26aLtXMukTG0rJ3FlF//UF2k
-         ODw2oq3GbwwebZD1+TvWSqZNPue9Uw2fG6MxVooYgRPTmMb0Ly2VOdtZ5WOvEBnYV3NX
-         tT0hcVj589Db7qt1N191M2xmMPn3BlDu3SaeGIPnCoOpgdLSLse5p4Q3AYh65oSJjuwY
-         Q8phTNNpPe72qelocnDZrziqPlmbCKphlXZyrXGgLqpdzVstlfTynjC4y/skVfNOw62T
-         /ciXvaU1tmbhSaepQMztm9LuovWQ+wVu0yGy96+ZBhYirE3kpA1SZCdMtZgT0gSz2U5u
-         pO2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=VP0SehC+D3+hhDWyfoKCodtXephnp1PrBhw2LiSs1TA=;
-        fh=oUHPpKJJK0ceUObzlEqE4Q2A95rDT2X18TJ94IEU9Xc=;
-        b=OCBj2lBhRDa+IXv0A4qk1m2ptMbJNylG1GVkzsQkMTiZ2oP11fyFBwn0iOnq1lFjE5
-         47BBqOTSxUPIaKAL8lV0stbott1+9JhWz/mqq/GTMnQpTahF010KgKGsXnx+URgHvAj1
-         2oSLvtEYMNaNr+MIydVVkERgNGVB6oflC3670YdmhgCiUKPMMs/bTdLN+LDMrhf2AQSu
-         i2rN0EKGGh7fDz+IeQxGYCTnURr+HVpnobU8J3/MtgIjorvRRzL/RneYQWnu6MRhECJ/
-         +GhpIubTiy3bf9SIodiAWawQ4mTmEH6U/48uWtXPBdO8TL3xPPKOziY3YDFpCoVQBI7p
-         KyFw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774432234; x=1775037034; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VP0SehC+D3+hhDWyfoKCodtXephnp1PrBhw2LiSs1TA=;
-        b=hqOR5Yi5QOah6+kteLEooDf8gErduAQpk0q9lUjCXUdXnGBRPQFcyf0RpJQ8qwvP3L
-         2rYxuflye4Yp6NKobnH5DxKDM7FQywHYOWGw2P+Ma48bRzI/j4DiuIE70/gOe0rK9j+W
-         VItqIyNBojLF11zW7gYLn3/87sD+NijAu00S1UMp0+EROpoTnGKdhBed9r7cQkGmahx7
-         OaKe7LkvxwOO8ovzJ9UEgc9t8ahpzJCV6RWoIblteBYPExLMS6sVJJbFSnggg9dLA1AQ
-         dwl3NdWWWndikxNtngtNHZ/zqg91UfAOvJXbfiG+gABtVf2uMkh2bfj50m67X0X3CY95
-         ISPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774432234; x=1775037034;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=VP0SehC+D3+hhDWyfoKCodtXephnp1PrBhw2LiSs1TA=;
-        b=oAH4tn0PyihxdLg8OZrlYMlja1l6MDHoOomKk8zgY3rrL6WmE8Jo/S/mhMKXyVyiEz
-         amIcvMwAdSWSwfiCADldqzi6uJPfQOQ50InV0nhByHalGyRfjyuaKa7ACUFPSzbnf0ns
-         00rh8lq5WH+x435xKsCsXF95iIzQBgOSponsQL9I1fSHjXouNlxa2+v3Pw26W5kjmKVC
-         D1uEzbF1m/eHucjWWkL4uncx6pFmOWFf8z+hnoeT/a0rbqu3vWQWHgDrdYkjgWE7oYb6
-         hFdNkHEK6gXcFNWSjgDJkUXkDdtl+TVP1Jt9rOvH77bkEGJxcBnjFPGyJaE6gFYxahBp
-         S/Jw==
-X-Forwarded-Encrypted: i=1; AJvYcCX0jE/ZksFZOO7mlZ6T3XB8k+XuFSyPbeVAtvE9ApDmIJvmur0YHB6/yb8DB4GegzyHEalOmegv/RLj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyydqhCoePe3OK24+eOWvdf1yqoaOv8ExDs/F1/bNR7xRxU5XqX
-	svyjc1dyV/Iy7vOfe2o5NCo6rhyPIoS29CU+k9Ch82MxDNPqiXjvnxgHgRG0k1AXyl+AnJ3QtEr
-	9ESXFUwFtFi150QN9f+a6LU9i5SDj4m0=
-X-Gm-Gg: ATEYQzze3XMdlFOonfrBetHyKCTWkE/wsfCk+gkoQhGeUKJDSpI4NyZUacW+WL2L+vh
-	z29q1spUrTeACkz/rkluF8zkGgV0QzT2Sir7I07kXRixAjkmEuWoL5leTCwleULU9bAYR/Yh3de
-	UnvlxUfk8j37nKaH7GDEjZReYwfk2+2+qnhOFHdtn6hnghQ2BvY+bdOsWLOPSHOezSRpGh41/z+
-	DVJegT6x7LK2eEaLeLkakJcfFSi+l/AET4W6+OgREcukqq5x9W/I6NHXPwP5NocFElGE9yb1pol
-	NRjLlMvy
-X-Received: by 2002:a17:907:72c7:b0:b96:f6f1:e7af with SMTP id
- a640c23a62f3a-b9b0ea7e884mr143299166b.9.1774432233910; Wed, 25 Mar 2026
- 02:50:33 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678A839D6FA
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:54:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774432496; cv=none; b=AlCARpZ7TCDYuogJHQjj5S0ZwtZ2lq56Clt//UNMn063ng7fJFG/wmWORJ4hUVMaD1PdwOlf0YrNdv18RLyxM+jD+gBZ9Se+Vf6CLTGakfz20CsJisFJNKvyqYdsAzTmJUtTKTSyHbRqcgvhmle9vo/RaH4qbHZg7NYDQRSgqW0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774432496; c=relaxed/simple;
+	bh=ytngJLLxg84vkD0c23N9PuGvpAftX7ITkcxywtv6FZY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=N0gGg2COFYTfr9JKEejdAoToI6tMr28FsfKpkYA/rzggHe7CStY8GZ0ZftQtnU98YEhuvvU3mivUpvzVfBxJAACETPY5XrcaSH6FBUWQhLWd+bKupYUky0trYKiadc9pTyzZMjo7HPIE4GXHnCdk5y1WDHFi2i6VfDMMAj6spBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=T/SPqxwk; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 1BEDD1A2FE3;
+	Wed, 25 Mar 2026 09:54:53 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id DD4D4601A1;
+	Wed, 25 Mar 2026 09:54:52 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 88DFC104513B9;
+	Wed, 25 Mar 2026 10:54:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1774432492; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=+H5s+x44ry9i9n0frvxY321pHv3G5vTtrk1Z6KHg5Jw=;
+	b=T/SPqxwkKvnL0kyFNj41YZroTUgmLAE9yL8yKBCmJYpuPYj8SkUuJXesJKKHaln/RWfFqE
+	ivcSNPWRxGEmYMA+k2IzFPsZpOBJaGRj6ydo5ttK2RnDW534qCwaflCUn075pZv8Gw48py
+	MGSGFRGMhY1hE5E2wND6VntlTqXXjufC4vMcs6tyvq5FqEpzGh7VAHJJHYwwfCorysNVxa
+	e2f8j/zoEeEedNLWp1qdvnUVkEn+PhGjhHdjfQZTG6RC0R+ITCQpwrrKMx2AUNbudI6tDi
+	HXebva+tpDhqSQqPeFuNb8jIY8GhAJPNEbJby6iSTEg/PzoEO/FvImKhPklS8w==
+From: Romain Gantois <romain.gantois@bootlin.com>
+Subject: [PATCH RESEND v2 0/3] misc: ti_fpc202: Add LED support
+Date: Wed, 25 Mar 2026 10:54:30 +0100
+Message-Id: <20260325-fpc202-leds-v2-0-a2f4da739b92@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260310091054.2029912-1-egbostina@gmail.com> <acKyJTkqq-bV_3jZ@lizhi-Precision-Tower-5810>
-In-Reply-To: <acKyJTkqq-bV_3jZ@lizhi-Precision-Tower-5810>
-From: Eddie <egbostina@gmail.com>
-Date: Wed, 25 Mar 2026 11:50:22 +0200
-X-Gm-Features: AQROBzD-kPMMH1jFoji7rnPnjGOGNLf_VyIguCX0e1QYp30ObYBIhsUdhFbiTf0
-Message-ID: <CAEFOc61tNbF+cE0waQpfvuSe7enJkDk_yzcGXZ_-D1Kvj_5G-w@mail.gmail.com>
-Subject: Re: [RFC PATCH] arm64: dts: imx8mp-edm-g-wb: Use 0 for reserved bit
-To: Frank Li <Frank.li@nxp.com>
-Cc: daniel.baluta@nxp.com, simona.toaca@nxp.com, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Felix Gu <ustc.gu@gmail.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Romain Gantois <romain.gantois@bootlin.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280322-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,bootlin.com,vger.kernel.org,microchip.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-280327-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[egbostina@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,nxp.com:email]
-X-Rspamd-Queue-Id: 8557D3227BC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 54AD7322883
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Frank,
+Hi everyone,
 
->> Change 0x41 to 0x40 to leave the reserved bit cleared, as
->> recommended by the reference manual.
->
-> Any impact if set bit 0 to 1?
->
+This series depends on "misc: ti_fpc202: two small fixes" by Felix Gu:
 
+https://lore.kernel.org/all/20260221-fp202-v1-0-4d28cb8b28fb@gmail.com/
 
-I have not tested this on hardware with the bit cleared, so
-I cannot confirm functional impact for sure, but according to
-section 8.2.4.238 of the iMX8MP reference manual, bit 0 of
-SW_PAD_CTL_PAD_SAI1_RXD6 is reserved with a reset value of 0.
-The only defined fields are PE (bit 8), HYS (bit 7),
-PUE (bit 6), ODE (bit 5), FSEL (bit 4), and DSE (bits 2:1).
+The FPC202 dual port controller features eight special-purpose ports which
+are meant to drive LEDs. These support PWM and blink offloading.
 
-Both 0x41 and 0x40 should result in identical pad behavior.
-Leaving it set probably risks undefined behavior in future
-revisions of the silicon.
+This is version two of my series which adds support for these
+special-purpose LED ports.
 
+Best Regards,
 
->> This also allows for
->> easier conversion to symbolic macros.
->
-> Can you send this patch also?
+Romain
 
-Yes, I will send a followup patch soon.
+Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+---
+Changes in v2:
+- Avoided selecting foreign subsystems in Kconfig
+- Rebased on conflicting bugfix series
+- Link to v1: https://lore.kernel.org/r/20260127-fpc202-leds-v1-0-ebd0cfb9f9a1@bootlin.com
 
-Thanks for the review.
+---
+Romain Gantois (3):
+      misc: ti_fpc202: Depend on GPIOLIB instead of selecting it
+      dt-bindings: misc: Describe FPC202 LED features
+      misc: ti_fpc202: Support special-purpose GPIO lines with LED features
 
-Eduard
+ .../devicetree/bindings/misc/ti,fpc202.yaml        |  22 ++
+ drivers/misc/Kconfig                               |   3 +-
+ drivers/misc/ti_fpc202.c                           | 339 ++++++++++++++++++++-
+ 3 files changed, 350 insertions(+), 14 deletions(-)
+---
+base-commit: 486b22d5a7306613f12e308208cd54352099d444
+change-id: 20260126-fpc202-leds-53def6ce751e
 
-=C3=8En mar., 24 mar. 2026 la 17:48, Frank Li <Frank.li@nxp.com> a scris:
->
-> On Tue, Mar 10, 2026 at 09:10:53AM +0000, Eduard Bostina wrote:
->
-> Remove RFC.
->
-> > The i.MX8MP Reference Manual documents bit 0 of the
-> > IOMUXC_SW_PAD_CTL_PAD registers as reserved. The hd3ss3220
-> > IRQ pin (SAI1_RXD6/GPIO4_IO08) currently uses pad config
-> > value 0x41 which sets this reserved bit.
-> >
-> > Change 0x41 to 0x40 to leave the reserved bit cleared, as
-> > recommended by the reference manual.
->
-> Any impact if set bit 0 to 1?
->
-> > This also allows for
-> > easier conversion to symbolic macros.
->
-> Can you send this patch also?
->
-> Frank
-> >
-> > Signed-off-by: Eduard Bostina <egbostina@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8mp-edm-g-wb.dts | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-edm-g-wb.dts b/arch/a=
-rm64/boot/dts/freescale/imx8mp-edm-g-wb.dts
-> > index 242fa930b..a78401d11 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp-edm-g-wb.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-edm-g-wb.dts
-> > @@ -345,7 +345,7 @@ MX8MP_IOMUXC_SAI1_TXD5__GPIO4_IO17                0=
-x16 /* DSI_VDDEN */
-> >
-> >       pinctrl_hd3ss3220_irq: hd3ss3220-irqgrp {
-> >               fsl,pins =3D <
-> > -                     MX8MP_IOMUXC_SAI1_RXD6__GPIO4_IO08              0=
-x41 /* GPIO_P253 */
-> > +                     MX8MP_IOMUXC_SAI1_RXD6__GPIO4_IO08              0=
-x40 /* GPIO_P253 */
-> >               >;
-> >       };
-> >
-> > --
-> > 2.43.0
-> >
+Best regards,
+-- 
+Romain Gantois <romain.gantois@bootlin.com>
+
 
