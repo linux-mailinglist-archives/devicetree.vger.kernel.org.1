@@ -1,346 +1,229 @@
-Return-Path: <devicetree+bounces-280780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280782-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AIXaEypjxGkuywQAu9opvQ
-	(envelope-from <devicetree+bounces-280780-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 23:35:22 +0100
+	id OCd+J41jxGmBywQAu9opvQ
+	(envelope-from <devicetree+bounces-280782-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 23:37:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBDF832D104
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 23:35:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E44F232D165
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 23:37:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5669E3082A48
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 22:32:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2BC503058E04
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 22:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C7EF3382EC;
-	Wed, 25 Mar 2026 22:32:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5A3346E70;
+	Wed, 25 Mar 2026 22:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="FhpMVubn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="sSZS/ohx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 756AB35DA7B;
-	Wed, 25 Mar 2026 22:32:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0883385B9
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 22:33:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774477950; cv=none; b=szylcTh/IwWSi8O6lipwSE3mbkw+ZCB1oeZ1Do2EJEAKxF/oukXDHdMRymzQN1dcFixhwGMwLQdQYgRTCc/ktP6x9cj/szqSIE71g0/L54osGpSykKadtmcEdU9J4RjlxsmEJJAlSKQWwl5fDv3gmEUKvPaLSTfzEhwEEsSiKQY=
+	t=1774477996; cv=none; b=DpYRDDNqn54ICltZuTKxd2Kk2bpL4k+dhHUwsWGlirgT+bOqz9UuQhIovH97stgu+EDol6PY7TAW0oTKodg1avB5Qz+Wj+G8iOVA8p1V5mB9Rc0hQbvDx/pfEDVLLJvUBMG3D8rLb7YskUKedj9gf2IeLZ2UNf30gSwvijnO4lE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774477950; c=relaxed/simple;
-	bh=tJuvdhJxmWTI0Sx5YELI4sXXkyHVhV2DJahJAn+GNRw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=amWIEamwDV6uOtP53A+BbgH1mNzx7gM0h+dkeboFyIxe2Jje8HBNhIfAz7aBqhybvNYSqPY5FepWte318J5ummJES5hALV1yd6YLLL/6oJXoybRxAJzf/K9oh1sYAnTL1M6pY1y6nlcwiyp0BrcXhFfD6G15AZrx/5XC76jh/dM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=FhpMVubn; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0516787.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62PJ8i2G3262248;
-	Wed, 25 Mar 2026 18:32:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=6Lddh
-	Gto96KfcjWemUfO/EkQriBTYvBAYn8cKlTQpPk=; b=FhpMVubnCTzQx/vwC5Mn1
-	Ff4bTp4+/DGYZOjwcwvjiIWMil0tSTfwYyzHKt/W11Qku91o+qyMUf4G6kWKHoUP
-	v/fBHYoYsV9iDp9u81dtnvRh3V2sFwrD+eMV8sfDT6wl1mh8HckHT+oCnl9DRdYu
-	G98a9cELF+HJDPni40OvRjKvAr4g3zTirE63LVevsEkoAzb/EiJrrcUk97W0Tp4O
-	Zh0QSV/ZLCYx9SHbvojpZ9Im/dcoOpjdZsnQ6BTjYQkzWL/MMPwf+5+SKNRESdyg
-	5+lk3FYRlFB+t1MlOAslD18Sjxrhw41ynP23bhPTKWRFyg2KhGRZTKTkDy7suftW
-	w==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4d4gygt3wt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Mar 2026 18:32:26 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 62PMWPtY054898
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 25 Mar 2026 18:32:25 -0400
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Wed, 25 Mar 2026 18:32:25 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Wed, 25 Mar 2026 18:32:25 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Wed, 25 Mar 2026 18:32:25 -0400
-Received: from HYB-VFz9h4bIQxi.ad.analog.com (HYB-VFz9h4bIQxi.ad.analog.com [10.118.4.22])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 62PMW4ak032703;
-	Wed, 25 Mar 2026 18:32:17 -0400
-From: Jan Carlo Roleda <jancarlo.roleda@analog.com>
-Date: Thu, 26 Mar 2026 06:30:12 +0800
-Subject: [PATCH v2 3/3] dt-bindings: leds: Document LTC3208 Multidisplay
- LED Driver
+	s=arc-20240116; t=1774477996; c=relaxed/simple;
+	bh=naBQi7shofUGxunBgNte7CeJA8dVw8PHKBKVIyPmkh4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OAXPmYH8Hddfs3Z0UaXKPVJGD8dt9cYAQCFXGKvGoMm8P2ZpLDnTuhLZrKkqPYM2y/pJGMtQz/zIncRs0R6Eg8CWVKIM1h6rvsS1Zzc9tkNw+QVzYMrwqBZyhMUoOmhy9X2hUzIH1f5NQJZOlVONUejYx80sKsmXEld4CPLPsnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=sSZS/ohx; arc=none smtp.client-ip=74.125.82.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f50.google.com with SMTP id a92af1059eb24-127380532eeso773670c88.1
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 15:33:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774477994; x=1775082794; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=14O+rHUy9JUHv4nndxIKJLmJP+F4NFBUxwm3pxRAatw=;
+        b=sSZS/ohx2r5eSqD3yx1nUzQ2cL3d5PMh6tIFW3z5QIZjMrPdgGQkdwnSaFSnAW15zc
+         b2jagFUbbcSne5XZFRo5H1yb39FraR7PVLMKFgG0rTqHyGQcg1PUrGRJEzjJS2h7Hjru
+         tr9SSUqbRjbuXL+bNk2oZ9wMk0vOjiMY5bNgJHhgcSlXNSI5Hi+upeH9bVfHTC67rP9o
+         uUQVAe6B4w4KVww2AFk2BbaeHNxAGMxNWak5D4g+WOnKn2gsrVwectxpf/gcz6gdZ6My
+         wid/+tQ+/nYMDQUmCYC9kOtdeLuo6NZ9ivuSfKs9WZhqQh6EegWdxTMhlPCVvRbFCiOA
+         fJuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774477994; x=1775082794;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=14O+rHUy9JUHv4nndxIKJLmJP+F4NFBUxwm3pxRAatw=;
+        b=kLrkyux8oehhTjhNrJxX+AKWGInljPgXNEA+7VHLKbeHoYZ7L+TustITLurljG64dt
+         l25rdDHnaDpo7DoRybURqpPDZD41HF0ki/jczEMxkCP2NvRQ0MtlKn55iinRh8LAqesO
+         1xeAn0E3JhTeqJC2i3Aomq9//caYS+nq6f8u8jCrfiF743zrsN5qqjhpeVZwbD93zEBX
+         P/BqpeIrgHRumyTWVSZ6u6H2MtwIWqe2Fs8/MNB019W9d7TB5xx1ti8qI9EDgjZt4f1h
+         J0KgMINuQFXckKfxT0Gqs5K1iQNJ4LtIayMA+297RAx7hFIh9qcgOSZZDroGQxCWw0LN
+         EG1A==
+X-Forwarded-Encrypted: i=1; AJvYcCWMSMcZE3UwOH1sruUbAIgotV2x7n9CV13Zcj2Lh7+dZbLySvyAGFMm7pNMx2mr3ttdHZSskN4ReGMf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1VrLH/tzmAW+YcvWkBvJs24pg6abP91XncelabsUthgLjUkLc
+	Uhmbejz1vAKOJ8Y4vzQZHs4juf57EbkJuod9Oujyr/O+i0xU7a/sYW/b
+X-Gm-Gg: ATEYQzy87I22drT98w3C6d6LiXJQ1SdLCONIo7T+j0Z4uCGAz4/siXER+HOCKLwC9Mx
+	Dcga/HK3o58khXDQ1Zk7zLcDxd0iGbUe8fdwrHCmV73AAyODsd/ZbgA8dgxmOmSYul3ISigks3d
+	DPtcI+fudmwSXOh8lWMmdx83aYV/6Nqqw0v4lX5x3Vq4+qKbvaFCWJr+wOdsmn8Ef7SxrMXHgrK
+	yvblbkrjmJ4e8TPt9iTu/cRsNb1c+7ajPAKhOu7Udk5p9ezbWk4iBlR0ABANU8hmsfYCldkkbdp
+	fE/dA+DIsinG0g6VK611keDnfqsi1MMwR8ids9q2E4vYge3ShwKLSoVcDKfl9FEBmlgFaoe9xZn
+	9ub+daCOYL0JGajDZixfp7w9ahxApT2UPFFefS5PY59IWrAgfwwyt5cc8vbW7OPak7r16i8yW1K
+	5VDLEqfZUdSHoMO7m22pcfdAOOXUdf6MVugY82YlhKJEBW/UMsJ9VH8gTbwT8vhmgtJjjto8LZ
+X-Received: by 2002:a05:7022:402:b0:11b:c1ab:bdd4 with SMTP id a92af1059eb24-12a96f04f69mr2620804c88.38.1774477994108;
+        Wed, 25 Mar 2026 15:33:14 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12aa762430bsm1567649c88.10.2026.03.25.15.33.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Mar 2026 15:33:13 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <f016c567-dd37-4f1a-8c8d-5b8dc6a3b9a3@roeck-us.net>
+Date: Wed, 25 Mar 2026 15:33:11 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: emc2305: Add
+ fan-shutdown-percent property
+To: Rob Herring <robh@kernel.org>, florin.leotescu@oss.nxp.com
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Shych <michaelsh@nvidia.com>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, daniel.baluta@nxp.com, viorel.suman@nxp.com,
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ festevam@gmail.com, Florin Leotescu <florin.leotescu@nxp.com>
+References: <20260320152959.1575978-1-florin.leotescu@oss.nxp.com>
+ <20260320152959.1575978-2-florin.leotescu@oss.nxp.com>
+ <20260325215630.GA6513-robh@kernel.org>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20260325215630.GA6513-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-ID: <20260326-upstream-ltc3208-v2-3-3dbc992b6098@analog.com>
-References: <20260326-upstream-ltc3208-v2-0-3dbc992b6098@analog.com>
-In-Reply-To: <20260326-upstream-ltc3208-v2-0-3dbc992b6098@analog.com>
-To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Jan Carlo Roleda <jancarlo.roleda@analog.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774477924; l=5265;
- i=jancarlo.roleda@analog.com; s=20260317; h=from:subject:message-id;
- bh=tJuvdhJxmWTI0Sx5YELI4sXXkyHVhV2DJahJAn+GNRw=;
- b=q1RHIPFP181TRu0IxAs8ERMvIjT1aRN1oini1clzLq+vEbpo9y89zfAndzEHXk0MSxlAxD8lB
- 5j+7j7XhCAUBF3Y/RoFwSUAP64roOGlbULsuzPoh7GqAYbJNFMElpjq
-X-Developer-Key: i=jancarlo.roleda@analog.com; a=ed25519;
- pk=zPMh+eO6/Mj6tqaie75BLiTLQvE3f9pck0UejKLmLMc=
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI1MDE2NyBTYWx0ZWRfX6kWAY34lH5sB
- CKSKPc3R8yp7FdnfPjKl5VyRgQbkLnZHnwoj7jux8/O+b+WGOarwLSKyn2qRhQqFZ+L8VIaaZxa
- tTjM3EsGVbhxiaDtB7Nr4f2fQCS4xdYF3lpPbA8pyGkfbE15Nu5xmSxKW9qClTWLhE9gnYQdkyK
- i6p62/CdeaOaFr7KNFoyZ4IMqZiLM/vqJYjijubCMQ/hfWrDZAo6UySWuyFoZcTdB+hj+tghioD
- uiaIEZwaAL3lMteb2qCYU5fWZbdazwwCUf/Jt+Qy4IIchQB+FJpGJAalgBJ0qaqRVeWGXMpIZGQ
- 1H3Khui2aU6FjYbB65Vt9QlSwr3QM8qX93Str6ZEm4zNehATdwWczX6pL+FEQwUdeubopbAK1VN
- Jzfdsos7uKR5ltYt0BQgcmC1wj5HpAUCP56t1fGeOWxrY9HvCAHTP6HUr+BnSvMeOd7TnWyFN3m
- xL3QAzSBU4y8fvb9+rw==
-X-Authority-Analysis: v=2.4 cv=ZsTg6t7G c=1 sm=1 tr=0 ts=69c4627a cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=0sLvza09kfJOxVLZPwjg:22 a=OmVn7CZJonkx5R5zMQLL:22 a=gEfo2CItAAAA:8
- a=gAnH3GRIAAAA:8 a=VwQbUJbxAAAA:8 a=DfgavVszv1SWYE2HNeIA:9 a=QEXdDO2ut3YA:10
- a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-ORIG-GUID: Zxvp9udrzTlp0cdxKRgVvgRBqRtgtiwO
-X-Proofpoint-GUID: Zxvp9udrzTlp0cdxKRgVvgRBqRtgtiwO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-25_06,2026-03-24_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 suspectscore=0 impostorscore=0 adultscore=0
- clxscore=1015 malwarescore=0 lowpriorityscore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603250167
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[analog.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280780-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[jancarlo.roleda@analog.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-280782-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,vger.kernel.org,nxp.com,lists.infradead.org,lists.linux.dev,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: BBDF832D104
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E44F232D165
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add Documentation for LTC3208 Multidisplay LED Driver.
+On 3/25/26 14:56, Rob Herring wrote:
+> On Fri, Mar 20, 2026 at 05:29:58PM +0200, florin.leotescu@oss.nxp.com wrote:
+>> From: Florin Leotescu <florin.leotescu@nxp.com>
+>>
+>> The EMC2305 fan controller supports multiple independent PWM fan
+>> outputs. Some systems require fans to enter a defined safe state
+>> during system shutdown or reboot handoff, until firmware or the next
+>> boot stage reconfigures the controller.
+>>
+>> Add an optional "fan-shutdown-percent" property to fan child nodes
+>> allowing the shutdown fan speed to be configured per fan output.
+> 
+> Why not a common fan property in fan-common.yaml?
+> 
+> We generally specify fan speeds in RPM (and then map RPMs to duty cycle
+> for PWM).
+> 
 
-Signed-off-by: Jan Carlo Roleda <jancarlo.roleda@analog.com>
----
- .../devicetree/bindings/leds/adi,ltc3208.yaml      | 158 +++++++++++++++++++++
- MAINTAINERS                                        |   1 +
- 2 files changed, 159 insertions(+)
+The problem here is mentioning "fan speed" instead of referring to pwm
+duty cyle in the first place. It is not just misleading, it is wrong.
 
-diff --git a/Documentation/devicetree/bindings/leds/adi,ltc3208.yaml b/Documentation/devicetree/bindings/leds/adi,ltc3208.yaml
-new file mode 100644
-index 000000000000..c139937936bc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/adi,ltc3208.yaml
-@@ -0,0 +1,158 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (c) 2026 Analog Devices, Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/adi,ltc3208.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LTC3208 Multidisplay LED Controller from Linear Technologies (Now Analog Devices).
-+
-+maintainers:
-+  - Jan Carlo Roleda <jancarlo.roleda@analog.com>
-+
-+description:
-+  The LTC3208 is a multidisplay LED controller that can support up to 1A to all
-+  connected LEDs.
-+
-+  The datasheet for this device can be found in
-+  https://www.analog.com/en/products/ltc3208.html
-+
-+properties:
-+  compatible:
-+    const: adi,ltc3208
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+  adi,disable-camhl-pin:
-+    type: boolean
-+    description:
-+      Configures whether the external CAMHL pin is disabled.
-+      if disabled then the output pins associated with CAM will always select
-+      the CAM register's high half-byte brightness.
-+
-+  adi,cfg-enrgbs-pin:
-+    type: boolean
-+    description:
-+      Configures which channel the ENRGBS pin toggles when it receives a signal.
-+      ENRGBS pin controls the SUB channel's output pins if this is set,
-+      or RGB channel's output pins if this is unset.
-+
-+  adi,disable-rgb-aux4-dropout:
-+    type: boolean
-+    description:
-+      Configures the RGB and AUX4 dropout signals to be disabled.
-+
-+  adi,aux1-channel:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description:
-+      LED Channel that the AUX1 output pin mirrors its brightness level from.
-+    enum: [aux, main, sub, cam]
-+    default: aux
-+
-+  adi,aux2-channel:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description:
-+      LED Channel that the AUX2 output pin mirrors its brightness level from.
-+    enum: [aux, main, sub, cam]
-+    default: aux
-+
-+  adi,aux3-channel:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description:
-+      LED Channel that the AUX3 output pin mirrors its brightness level from.
-+    enum: [aux, main, sub, cam]
-+    default: aux
-+
-+  adi,aux4-channel:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description:
-+      LED Channel that the AUX4 output pin mirrors its brightness level from.
-+    enum: [aux, main, sub, cam]
-+    default: aux
-+
-+patternProperties:
-+  "^led@[0-7]$":
-+    type: object
-+    $ref: /schemas/leds/common.yaml#
-+    unevaluatedProperties: false
-+    properties:
-+      reg:
-+        description:
-+          LED Channel Number. each channel maps to a specific channel group used
-+          to configure the brightness level of the output pins corresponding to
-+          the channel.
-+        enum:
-+          - 0 # Main Channel (8-bit brightness)
-+          - 1 # Sub Channel (8-bit brightness)
-+          - 2 # AUX Channel (4-bit brightness)
-+          - 3 # Camera Channel, Low-side byte (4-bit brightness)
-+          - 4 # Camera Channel, High-side byte (4-bit brightness)
-+          - 5 # Red Channel (4-bit brightness)
-+          - 6 # Blue Channel (4-bit brightness)
-+          - 7 # Green Channel (4-bit brightness)
-+    required:
-+      - reg
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/leds/common.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      led-controller@1b {
-+        compatible = "adi,ltc3208";
-+        reg = <0x1b>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        adi,disable-camhl-pin;
-+        adi,cfg-enrgbs-pin;
-+        adi,disable-rgb-aux4-dropout;
-+
-+        led@0 {
-+          reg = <0>;
-+        };
-+
-+        led@1 {
-+          reg = <1>;
-+        };
-+
-+        led@2 {
-+          reg = <2>;
-+        };
-+
-+        led@3 {
-+          reg = <3>;
-+        };
-+
-+        led@4 {
-+          reg = <4>;
-+        };
-+
-+        led@5 {
-+          reg = <5>;
-+        };
-+
-+        led@6 {
-+          reg = <6>;
-+        };
-+
-+        led@7 {
-+          reg = <7>;
-+        };
-+      };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 48bae02057d5..97072e906928 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15131,6 +15131,7 @@ M:	Jan Carlo Roleda <jancarlo.roleda@analog.com>
- L:	linux-leds@vger.kernel.org
- S:	Maintained
- W:	https://ez.analog.com/linux-software-drivers
-+F:	Documentation/devicetree/bindings/leds/adi,ltc3208.yaml
- F:	drivers/leds/leds-ltc3208.c
- 
- LTC4282 HARDWARE MONITOR DRIVER
+It is impossible to associate fan speed with a specific duty cycle because
+that differs for each fan. It isn't even consistent for the same fan model -
+one never knows what fan speed one gets for a given duty cycle. It depends
+on the air flow in the chassis and on fan-to-fan deviations. It will change
+over the lifetime of a fan. It may even change with the ambient temperature.
+Fan controllers use a feedback loop for that purpose, but that doesn't
+work here since, after all, this is a shutdown parameter.
 
--- 
-2.43.0
+I don't think anything but specifying a shutdown duty cycle is
+feasible here.
+
+> Also, we have (or can have) cooling levels defined. Perhaps we should
+> define the cooling level for shutdown? Maybe other things with cooling
+> levels need a shutdown level too?
+> 
+
+Unless I am missing something, the thermal subsystem does not currently have
+a concept of a "shutdown cooling state". The driver supports registering
+with the thermal subsystem, but it is not mandatory. Even if the thermal
+subsystem would support shutdown cooling states or a similar concept,
+I do not think it would be a good idea to mandate its existence or in a fan
+controller driver.
+
+Thanks,
+Guenter
 
 
