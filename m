@@ -1,159 +1,224 @@
-Return-Path: <devicetree+bounces-280222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280231-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UAG5LFqMw2nJrQQAu9opvQ
-	(envelope-from <devicetree+bounces-280222-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 08:18:50 +0100
+	id iO4qJwCWw2ncrgQAu9opvQ
+	(envelope-from <devicetree+bounces-280231-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:00:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DEC4320938
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 08:18:50 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B57453210B0
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 08:59:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 08E5B3018746
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 07:18:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A8A853046DA2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 07:58:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC262F691F;
-	Wed, 25 Mar 2026 07:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F5DC3947B8;
+	Wed, 25 Mar 2026 07:58:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b="BPpQfoXr"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mq6qVMEh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ironport.ite.com.tw (hc210-202-87-179.vdslpro.static.apol.com.tw [210.202.87.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4192066DE;
-	Wed, 25 Mar 2026 07:18:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.202.87.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A83BF296BBC
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 07:58:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774423126; cv=none; b=Oiy2FhbkarKV7N9h07TSQ78tpVaL5vgHFVqppxufUNpc9LMTAgDUnOBL2hXTzLJ+akcNCbaqLZbFovwATuAu00GZG8uikQwKwVO/C3n63EkTLClZJXaaB2SexLHVi8ftVH5EEUawvRloyZrsWOBm/qKDsmYBB+mbCsS87vnEGWo=
+	t=1774425507; cv=none; b=lVpc/yvgcamB9WAUMAU1gbdm/PyW0wdl0qR849OzDDeJBuSCl6iLD2pqY2lR+rahy1M8RfWxxUIFoGFyqSRPRR5OYPGjsQ+iVbVE4PhWHOJo/yfOpSFeIv23oZY5YfUe79hHpcJr7K5A28RoHD1tWjkxEIHeyH8I1hS/ge9XLWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774423126; c=relaxed/simple;
-	bh=bdavyyoUTNKItAHqdOBXRhd77HAxpq2KJ3lt8jJEtj4=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=BIOX4g4/ds6KbpxdDy39ngFFt3KXfl2QFMMPD9q5TdjGOoW+7aRcyhujZng29eqwYKIDcTDp8obJAW8d3w+XcEovvJPp5OBzyTFApqU0+SR4D3y3sqMEL6HejUMwN6y3Pb0thhSAOcAxvlRkdQJoFUYpHjoZvqETTbGK/0NXA5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw; spf=pass smtp.mailfrom=ite.com.tw; dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b=BPpQfoXr; arc=none smtp.client-ip=210.202.87.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ite.com.tw
+	s=arc-20240116; t=1774425507; c=relaxed/simple;
+	bh=pgBo8/Kx1aaY0ic9ZG8/TNmyttEXy1UGyzChAT/giXg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eo0Ze8H2xhoFoaMF7SF71ciRxOAp/5o34ZQTRg5DcCu+6HtRnYVHgXxOh6lpXjXgzsNs+mFfXskRhYMawrpcZn5N6+lPWT8I+ZqqumAdTGkgyWmZSALDL8sXJ8D8J7aqYYC8fJsr2M0sNalu4VIOXi4zFBwUEi7xjfX/7X1x4/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mq6qVMEh; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2aaed195901so26385425ad.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 00:58:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=ite.com.tw; s=dkim;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=bdavyyoUTNKItAHqdOBXRhd77HAxpq2KJ3lt8jJEtj4=;
-  b=BPpQfoXrhgc2EOcDfMVtVrC+KRzWl/XiIICbdPkcOj4DSunA9R4yJ0VJ
-   pZkTzbzZx/EZ6upJwWiQsw4fX5eWR67sTZViZqYMv+/GcCo9CIiMg7cwn
-   S/IDKffvfxverpyAr/oDWx24O/Adz8ls7Kq4SLkp1X18f90SYhKJCwonJ
-   Cyq90DE4tb3E1ML/d7MFtR0ZOxz2HM/xA/ZkwL+FSFWSYx/aDeQtTGStw
-   ZcdV9tAfUfaXCOA9rOKPvcn9mkV65QZwEu+PbtE59h8i814u6SCCWL9/2
-   UgSyDOO350VrCgBp/jT/V2cO/kJR8/ma0RgWJdXsIZHKK5b5W84p7/Zh3
-   w==;
-X-CSE-ConnectionGUID: MFHJV8G9S5Oe7tF9bNs+Nw==
-X-CSE-MsgGUID: x5F5Dj5KSXyUWhb2mFvDCg==
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 25 Mar 2026 15:11:26 +0800
-Received: from hscmail1.internal.ite.com.tw (HSCMAIL2.internal.ite.com.tw [192.168.35.41])
-	by mse.ite.com.tw with ESMTP id 62P7HJQB064344;
-	Wed, 25 Mar 2026 15:17:19 +0800 (+08)
-	(envelope-from Pet.Weng@ite.com.tw)
-Received: from HSCMAIL2.internal.ite.com.tw (192.168.35.41) by
- HSCMAIL2.internal.ite.com.tw (192.168.35.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 25 Mar 2026 15:17:17 +0800
-Received: from HSCMAIL2.internal.ite.com.tw ([fe80::b248:38e6:120d:a86f]) by
- HSCMAIL2.internal.ite.com.tw ([fe80::b248:38e6:120d:a86f%15]) with mapi id
- 15.02.2562.037; Wed, 25 Mar 2026 15:17:17 +0800
-From: <Pet.Weng@ite.com.tw>
-To: <krzk@kernel.org>
-CC: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
-        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
-        <jernej.skrabec@gmail.com>, <maarten.lankhorst@linux.intel.com>,
-        <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
-        <simona@ffwll.ch>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <Hermes.Wu@ite.com.tw>, <Kenneth.Hung@ite.com.tw>,
-        <Jau-Chih.Tseng@ite.com.tw>, <treapking@google.com>,
-        <dmitry.baryshkov@oss.qualcomm.com>
-Subject: RE: [PATCH v8 0/2] Add ITE IT61620 MIPI DSI to HDMI bridge driver
-Thread-Topic: [PATCH v8 0/2] Add ITE IT61620 MIPI DSI to HDMI bridge driver
-Thread-Index: AQHcuD4b8pZ312tun0GZYK1eIkb+LbW4PtIAgAadBnA=
-Date: Wed, 25 Mar 2026 07:17:17 +0000
-Message-ID: <1a631cd80f4648a79e3024b947d089d8@ite.com.tw>
-References: <20260320-it61620-0714-v8-0-0e70271cf5a9@ite.com.tw>
- <20260321-albatross-of-terrific-prestige-95cdbc@quoll>
-In-Reply-To: <20260321-albatross-of-terrific-prestige-95cdbc@quoll>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-tm-snts-smtp: DD5D23E65372F106C74697949AA6642957769EE7C0DEA5D1BBB7EAB109B403002002:8
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=chromium.org; s=google; t=1774425504; x=1775030304; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fzYr866Y+nhDeVzwxBplwIhb3zjPYVx7VrTJzl9KpOQ=;
+        b=mq6qVMEhWYYMrxeYG6I8mn+BihrtdvNvHJPY0D6Wvg9E29829Ii/j1FFb88h4usj0Z
+         /7FzGMrGFqCUAy1GpY2JvdbUmTcnhhOfZZq4ohw0XxB+pBOOyw17pcvqTyRLh4HO+yve
+         7nBwBCFXiDITG70W+luVhfAYUIQqjDkbmy39M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774425504; x=1775030304;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fzYr866Y+nhDeVzwxBplwIhb3zjPYVx7VrTJzl9KpOQ=;
+        b=L4FHwdO2iwGkR7RYsV1w6ZyFm5zgfdpnj9rnMRp34W83aqdaT1OtnnGV5SNNYWeFrc
+         FS8g90Hydv7HlhYYjaPIobKU5GmF4yCxbcCon5ZPggtbdF5aUOP7RkOarsSIUgNK4BrG
+         RAjmtsV3MH7+qNPJK2na5dH6y127dKdid8NpLqdGbLpXHclKep8YUtiXI6msMIbSgazo
+         owozWdPE1Mw/yhL0cdoj0/ht7+qrW3hijALduT75ZDQvDiTmV0c+tfOtrpmo4kc1YiOj
+         Pu1i08koR5JcWorlcQmw6blkKcBjLh0bGKc+0cd2Ij3oytLlXV7H4IGcDZUWgOuFwqQV
+         msLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV2HO34+fsF2mQysN1BxwPuIUNS7LmNCN5BcDI7/9Aqg22FPYZD9AU/ef9MAV2L4veAZ+2eX33brG1r@vger.kernel.org
+X-Gm-Message-State: AOJu0YwjMsc9qryEQERmd1XNCY5b29SSAMYC9vTetglktd5sQB2p6M6o
+	c782QB+TkUa4KDCF0HomT9AcS1OjfWb04FEc0L2Q5oPh8yQ3lwJ/PGouqLepmN2O6w==
+X-Gm-Gg: ATEYQzy+0fmfLoT+DUaXXoLbkUDi8ix66qDnYZz6lQiii7DuWpTyxbsRrcLw5UD3v4Y
+	I679aT23t40oiUS1LUBCf5UHgviCqdPCV2ZLpYjcYI5rR3dYvoXDhA5s3BUAiEGDh6bkoWyoU+U
+	Y92D5D/AUjZfNvkDHHg7vk7G0pGjGm/MlL+gP/dCO8tEwozQpKLPNudmU6zKXojUyKYcf2Zakpy
+	z8DDrJoP9iAHcJxcnxtAwPG0IBCwk1oeCnva11J/PEA2jI+1CrX6D6pzUulGNI2H7U/ugwiSQro
+	I/x5HPhcicLQDV4/mVJlM/6loOHubMxV6dNe1xSxFHx5eZQUuHkjQeLOnL0ltFuB7n7MyFIjsNq
+	dfL3wbalJIavN9Fw9YFDKAPQpIVFhSK+ix0OA8sWHtp+j9bqRM3nGUUKdiv/9EA2vqyUyrwrWxA
+	NSnuEGArne+sbhHCIOyPj84A0IzYywOKFcZP9xjNGEFT7LuoeCSdpPVw5UgngXrJ23kRJ6dhHNY
+	qpZd5I=
+X-Received: by 2002:a17:903:37c3:b0:2b0:5aab:c40a with SMTP id d9443c01a7336-2b0b0af4c01mr28590075ad.31.1774425503648;
+        Wed, 25 Mar 2026 00:58:23 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2a00:79e0:201d:8:7ff0:bee3:7d45:eab])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b08366c3f7sm219682465ad.60.2026.03.25.00.58.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Mar 2026 00:58:23 -0700 (PDT)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Binns <frank.binns@imgtec.com>,
+	Matt Coster <matt.coster@imgtec.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+	Icenowy Zheng <icenowy@aosc.io>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] powervr: MT8173 GPU support
+Date: Wed, 25 Mar 2026 15:19:44 +0800
+Message-ID: <20260325071951.544031-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.53.0.1018.g2bb0e51243-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MAIL:mse.ite.com.tw 62P7HJQB064344
-X-Spamd-Result: default: False [0.44 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ite.com.tw,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[ite.com.tw:s=dkim];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-280222-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,lists.freedesktop.org,vger.kernel.org,ite.com.tw,google.com,oss.qualcomm.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,ite.com.tw:dkim,ite.com.tw:email,ite.com.tw:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,imgtec.com,linux.intel.com,suse.de];
+	FREEMAIL_CC(0.00)[iscas.ac.cn,aosc.io,chromium.org,gmail.com,ffwll.ch,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[ite.com.tw:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Pet.Weng@ite.com.tw,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-280231-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[chromium.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 2DEC4320938
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,chromium.org:dkim,chromium.org:mid,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: B57453210B0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-SGkgS3J6eXN6dG9mLCANCj4gDQo+IE9uIEZyaSwgTWFyIDIwLCAyMDI2IGF0IDAzOjUwOjQwUE0g
-KzA4MDAsIFBldCBXZW5nIHdyb3RlOg0KPiA+IFRoaXMgcGF0Y2ggc2VyaWVzIGFkZHMgc3VwcG9y
-dCBmb3IgdGhlIElURSBJVDYxNjIwIE1JUEkgRFNJIHRvIEhETUkNCj4gPiBicmlkZ2UgY2hpcC4N
-Cj4gPg0KPiA+IFRoZSBJVDYxNjIwIGlzIGFuIEkyQy1jb250cm9sbGVkIGJyaWRnZSB0aGF0IHJl
-Y2VpdmVzIE1JUEkgRFNJIGlucHV0DQo+ID4gYW5kIG91dHB1dHMgSERNSSBzaWduYWxzLiBBIHNp
-bmdsZS1wb3J0IE1JUEkgRFNJIGlucHV0IGlzIGNvbnZlcnRlZCB0bw0KPiA+IGFuIEhETUkgMS40
-IG91dHB1dC4gVGhpcyBzZXJpZXMgaW50cm9kdWNlczoNCj4gPiAtIEEgZGV2aWNlIHRyZWUgYmlu
-ZGluZyBZQU1MIGZpbGUgZGVzY3JpYmluZyB0aGUgaGFyZHdhcmUNCj4gPiAtIEEgbmV3IERSTSBi
-cmlkZ2UgZHJpdmVyIGltcGxlbWVudGluZyB0aGUgYmFzaWMgZnVuY3Rpb25hbGl0eQ0KPiA+DQo+
-ID4gU2lnbmVkLW9mZi1ieTogUGV0IFdlbmcgPHBldC53ZW5nQGl0ZS5jb20udHc+DQo+ID4gLS0t
-DQo+ID4gQ2hhbmdlcyBpbiB2ODoNCj4gPiAtIGR0LWJpbmRpbmc6DQo+ID4gIDEuIENsYXJpZnkg
-dGhlIGhhcmR3YXJlIGRpZmZlcmVuY2VzIGJldHdlZW4gSVQ2MTYyIGFuZCBJVDYxNjIwIGluIHRo
-ZQ0KPiA+ICAgICBkZXNjcmlwdGlvbiAoSVQ2MTYyMCBpcyBzaW5nbGUtcG9ydCBhbmQgbGFja3Mg
-YW4gaW50ZXJuYWwgTUNVKS4gCVtLcnp5c3p0b2ZdDQo+ID4gIDIuIERyb3BwZWQgUmV2aWV3ZWQt
-YnkgZnJvbSBLcnp5c3p0b2YgZHVlIHRvIGRlc2NyaXB0aW9uIGNoYW5nZXMuDQo+IA0KPiBEZXNj
-cmlwdGlvbj8gTGlrZSB0ZXh0PyBUaGF0IGlzIHRoZSByZWFzb24gdG8gZHJvcCBzb21lb25lJ3Mg
-cmV2aWV3Pw0KPiANCj4gWW91IGFzayB1cyB0byBwZXJmb3JtIHRoZSB3b3JrIHR3aWNlLCBqdXN0
-IGJlY2F1c2UgaXJyZWxldmFudCB0aGluZw0KPiBjaGFuZ2VkLiBSZWFkIGNhcmVmdWx5bCB0aGUg
-ZG9jcy4NCj4gDQo+IFBsZWFzZSByZWFkOg0KPiBodHRwczovL2VsaXhpci5ib290bGluLmNvbS9s
-aW51eC92Ni4xMi1yYzMvc291cmNlL0RvY3VtZW50YXRpb24vcHJvY2Vzcy9zdWJtaXR0aW5nLXBh
-dGNoZXMucnN0I0w1NzcNCj4gDQo+IElmIGEgdGFnIHdhcyBub3QgYWRkZWQgb24gcHVycG9zZSwg
-cGxlYXNlIHN0YXRlIHdoeSBhbmQgd2hhdCBjaGFuZ2VkLg0KPiANCj4gQmVzdCByZWdhcmRzLA0K
-PiBLcnp5c3p0b2YNCg0KVGhhbmtzIGZvciB0aGUgY2xhcmlmaWNhdGlvbi4NCg0KVGhlIHVwZGF0
-ZSBvbmx5IHJlZmluZXMgdGhlIGRlc2NyaXB0aW9uIHRvIGNsYXJpZnkgdGhlIGhhcmR3YXJlDQpk
-aWZmZXJlbmNlcyBhbmQgZG9lcyBub3QgY2hhbmdlIHRoZSBiaW5kaW5nIGl0c2VsZi4NCg0KSSB3
-aWxsIGtlZXAgdGhlIFJldmlld2VkLWJ5IHRhZyBpbiB0aGUgbmV4dCB2ZXJzaW9uIHVubGVzcyB0
-aGVyZSBhcmUNCm9iamVjdGlvbnMuDQoNCkJlc3QgcmVnYXJkcywNClBldA0K
+Hi everyone,
+
+This is v2 of my MT8173 PowerVR GPU support series.
+
+Changes since v1:
+- Adapted to changed DT bindings
+- Dropped driver change
+- Use same power domain for "a" and "b" GPU power domains
+
+This update was requested by Icenowy.
+
+
+This series enables the PowerVR GPU found in the MT8173 SoC, found in
+some Chromebooks.
+
+This version is different from the initial powervr driver submission [1]
+in that it splits out the GPU glue layer support out of the powervr
+driver and into a separate clock and power domain driver. The glue code
+is otherwise the same, and also the same as found in the ChromeOS
+kernels, with some extra comments and macro names added where possible.
+
+Patch 1 adds a binding for the glue layer, called mfgtop. The glue layer
+contains clock and power controls for the GPU.
+
+Patch 2 adds a driver for the glue layer.
+
+Patch 3 adds an entry for the MT8173 GPU and 6XT series to the PowerVR
+binding.
+
+Patch 4 adds an entry for the PowerVR 6XT series GPU to the driver.
+
+Patch 5 corrects the clock for the GPU (called MFG) power domain.
+
+Patch 6 adds device nodes for the GPU and glue layer to the MT8173 dtsi
+file.
+
+Patch 2 and 6 depend on patch 1 to build. I suppose some common
+immutable tree would be needed from the MediaTek maintainers.
+
+The kernel driver successfully probes the hardware and loads the
+"rogue_4.40.2.51_v1.fw" firmware provided by Imagination Technologies [2].
+Userspace was tested with Mesa 24.0.8 from Debian Trixie rebuilt with
+the powervr vulkan driver enabled. `vulkaninfo` gives some information
+about the GPU (attached at the end), but running the `triangle` example
+from the Sascha Willems demos [3] with -DUSE_D2D_WSI=ON as recommended [4]
+failed with:
+
+    Can't find a display and a display mode!
+
+Same program worked correctly on a BeaglePlay and displayed a color
+gradient triangle. Not sure what went wrong here.
+
+Anyway, please have a look and test.
+
+
+Thanks
+ChenYu
+
+[1] https://lore.kernel.org/dri-devel/20220815165156.118212-2-sarah.walker@imgtec.com/
+[2] https://gitlab.freedesktop.org/imagination/linux-firmware/-/tree/powervr
+[3] https://github.com/SaschaWillems/Vulkan
+[4] https://lore.kernel.org/dri-devel/f2b2671e-5acc-4dec-9c2e-3c9cd2e1f19e@imgtec.com/
+
+Chen-Yu Tsai (5):
+  dt-bindings: clock: mediatek: Add mt8173 mfgtop
+  clk: mediatek: Add mt8173-mfgtop driver
+  dt-bindings: gpu: powervr-rogue: Add MediaTek MT8173 GPU
+  arm64: dts: mediatek: mt8173: Fix MFG_ASYNC power domain clock
+  arm64: dts: mediatek: mt8173: Add GPU device nodes
+
+ .../clock/mediatek,mt8173-mfgtop.yaml         |  70 +++++
+ .../bindings/gpu/img,powervr-rogue.yaml       |   1 +
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi      |  33 ++-
+ drivers/clk/mediatek/Kconfig                  |   9 +
+ drivers/clk/mediatek/Makefile                 |   1 +
+ drivers/clk/mediatek/clk-mt8173-mfgtop.c      | 243 ++++++++++++++++++
+ include/dt-bindings/clock/mt8173-clk.h        |   7 +
+ 7 files changed, 363 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8173-mfgtop.yaml
+ create mode 100644 drivers/clk/mediatek/clk-mt8173-mfgtop.c
+
+-- 
+2.53.0.1018.g2bb0e51243-goog
+
 
