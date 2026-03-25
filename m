@@ -1,235 +1,465 @@
-Return-Path: <devicetree+bounces-280369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280373-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6KLQDaLCw2kOuAQAu9opvQ
-	(envelope-from <devicetree+bounces-280369-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 12:10:26 +0100
+	id EBnjIMfCw2kOuAQAu9opvQ
+	(envelope-from <devicetree+bounces-280373-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 12:11:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A93173239E2
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 12:10:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16E2C323A46
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 12:11:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9E737301CFFC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:01:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6A1673150D93
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCDE93BE16E;
-	Wed, 25 Mar 2026 11:01:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340E23B3887;
+	Wed, 25 Mar 2026 11:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LipQJGIy";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="N8xUJWar"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TPhieP6S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 829213A6B96
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 11:01:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560B93B9601
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 11:01:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774436469; cv=none; b=t0qg44A3rGxmBpf/shIbYqpAJgNZLkmRqyRpZFxLkIteK5EKnEUAbCbrnB3NBLMWqvFPjU5yaWJIjMLOrwiLQE8nzGvOyv3BtioScUt6yOM8xU3tsEs6kLqm0KqOPJu8f2KE2hYwWfJE1EGADE9gw3hvVNVBXnzmWNlhUj3EgPI=
+	t=1774436516; cv=none; b=hOSEFQbLXluJSaJCQt8Lq5rbOpBHzvYz1HXIzkEa2wPmdH4dvk2tksCMP0IM8oCzJ/E+Vm5pNLrns1f+t10wCkf1g2ZmRLoaFZgVMcM69MoYAO5ojZu2uHr0w2YVpV4TB86DKBAS2ZcGBJtuV5mwpi/1v76SWbbEpBj/uBWSm6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774436469; c=relaxed/simple;
-	bh=rqGnXxoqdAugxHvA6CzEp0CYwxmp8z2ymbpkYHo4E4U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qm4nPBu4WGdmWKM+wHZU9FyyFkDpDZ3CdKSHiJDGKFZtYb8f8HI3tzpxMrHK/hOyJRhqj/HChMbfhB1Yn/BZ1180TatDu5SIEogkOgW0LGIQUov+YOBqOUbjRaUwAZG7TC5UUUP2BL1M//BtvKhDAQXeFRhzGVVSEODBNHv6e7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LipQJGIy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=N8xUJWar; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62PARAj23110460
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 11:01:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	hGtV6zDVSwgBPYnSRKOHJUG196PP0EnvE8OiixR/6hc=; b=LipQJGIyEmtS1R07
-	LHh+c2e4syDdNrMrv2NvjiCjcAF2MONhFi5dc3hgYPYo5/C8RrBaWe2r1zMQtRhm
-	4pD0w3WG0/bEtJNQp4s2DkER6XXXfQQUrd1vBHHytJs12hzbNBTuSQnE5Qizc7K0
-	VVVx/8qC578XCEhe/G1c/MqORtVpNddgv/S7ZSAQDgljZ/aCzaIJLArBRMgmiOpn
-	xSh8nfQstCmJvwqH2mitLpKbYGzCQi4zoO4OXop+O3BRtP6ggzIPq13GmXSUK0+W
-	Ca4xqIrKbkGxTg48/xbiwoIshr4qGEJBGRjoOpM9rivOdk97LhD0cev78qAARyuv
-	uAw3kA==
-Received: from mail-vs1-f72.google.com (mail-vs1-f72.google.com [209.85.217.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d3vhvv3va-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 11:01:07 +0000 (GMT)
-Received: by mail-vs1-f72.google.com with SMTP id ada2fe7eead31-60274569cf9so836459137.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 04:01:07 -0700 (PDT)
+	s=arc-20240116; t=1774436516; c=relaxed/simple;
+	bh=cig6sPdMQIkhTTtCcrsqWIpzCRGJ5kA8tX/p0P6Yo20=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=pm2iiNi0MXAjGc9Gt39IBN852z79f7rUFD2YUJXz3IMdJPm0chkAusup+jQRA0pVxIjWKrrbwx1ITJVPKYHdjDWElWjgOUe1NX+6/3/sDHLH4JLTQPOkaWxQPspkG2RltwBSpR51IQSCjxE+YPVxOZYlMdmNjqol5apGaHjU6FY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TPhieP6S; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-439c56e822eso2180809f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 04:01:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1774436467; x=1775041267; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hGtV6zDVSwgBPYnSRKOHJUG196PP0EnvE8OiixR/6hc=;
-        b=N8xUJWarQLBFlDFzzXErOrDpvB60X8LO189DcsW7qIapemhOcdXylTRPjdtwU7vL8b
-         XT++fn+g0vArKMWsad26OIJg8W/DnrGpfWFcGrDfaGvbM6z4yt4r3TLciPRQHCDxXSap
-         6N0tdVrGLYUcGRhEweAfPhKyIs0nGnug09gFwS6FrVGK8sjtPFFolltUhERXtBXD2c12
-         v1K3BGd4Iq8pBkIcqKPaAtiOB1rqiO8ZNnQywoMlw+tg/CqpIyLbOGDP8tNHX9EfD/Ah
-         pWlhOmiNyYc0X9ls1QnaQ+ruKveRjiZz05spzxuJhL6otDlE+Z+z3jxPN8ZbmfYyaeyh
-         7nOg==
+        d=gmail.com; s=20251104; t=1774436513; x=1775041313; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=2CmYpByYPZGX4g9nqhPAYqXEmVxCeRwCQg1UHu6Jr9s=;
+        b=TPhieP6SQhw2sy7V84ELwhFcyzmNua9Ic6KTAK/H1E7QAqqW4BNhkCqdPBfjWUgHXX
+         0R6TfOXOi7+T5iLH7bYjiH61Jg5F0WYa6Y1yVNbKWDVJjjj6ndbUozj8GO5gEbIiGKw+
+         9H5ln6GboOl68rFgymt2YrAXO3zZ3cE0dvnAGPZCP+Biy+9wrDtZ92dl0iOf8qIpRdJN
+         BwuFkJajcyIMJTSFnl+rJTQdJZ2bH2o8NSXpcYYjHUEp8vGuEiDk7TzmBjCbj4Wmw7Np
+         lq6pooptU9EHlhm01sjyFhcqcKsZxHjA+kyxw1PWKDD09kTmInBJOax+0CmCmNA1oAgw
+         Ia4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774436467; x=1775041267;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hGtV6zDVSwgBPYnSRKOHJUG196PP0EnvE8OiixR/6hc=;
-        b=NEdzNab8EZNDOOT9OoXWpnEdUp5KPvoasI+Ut1nARFNHRfva0JOVH3EsryCqiCmBm7
-         vQEHBhZ44a4rFqe7TC86sIqN3ePBuTMddv+F0j8xYXNPtKT83MdZ9z97tBCwq7vEo57D
-         OJKH2pX7X87hrBuXQqafIgZZGygGvavRlvle3VFV+40rAyU7q4Q3JI9ZhrOU3qlr7F2c
-         i1kxAOzhcW4yEtwGLQKx895LViJ1YAyf8xBf6QfprEvkCXV35PJ4WjGb0cFz0xSkxi89
-         YNXluZSX3AOvJI2eKO8YDZcc+8pQsUvBZptA4jjvogyOD4bq+ehNqExxsVpXpSWVw9C6
-         oiSw==
-X-Forwarded-Encrypted: i=1; AJvYcCU+b5NUCuz56oVMuFNz0L1JTZ5P/Ezs5PrDLwKB/g2k+UzfikX28cOTyLNuqj1bUaC6Oi0wy3XO+Xmz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+qgQvZCfp30jJ97W5Nr1vBOnyUczg+iMjFn/lmkr4elF0gzeM
-	O0CHd1d0+u3FLy/EfOcuM20q1JLJpisFlR8CGYZAWzOQ2Z1IrIek3Xo5OKtp4MfFhxc8lT5dV/c
-	GHNfKRuAbtntpfakfRoK4+hkHsDncdcgEGtKGtuBtqD1dr1TsnQbqUyYafC3P3rRA
-X-Gm-Gg: ATEYQzyVry9FgqBmyWaMYdOzRafq92pPBa2hBiZgdAIZugYc2keyIS38u9uZlJAOIfJ
-	DIWubbSr5ZYJbsBh+BqWs1eiRLKbvTnBWdCrSKfDx7LYYdhcvqyhwTEgT4wmbTwUFEeLepV4eQK
-	ek6SP7E2uN2eqRTmhNfg88rs/kQZxJMtni262PEbpXxbcPS4AfrMW17SpERUfs6Omb4ZKvvyg6w
-	gTQDRBnNabSvuj0JIgjzK9/MECvP5cygm4Gd2BYPh5I4SqINMBAfG01c0q9p8UsLQBa/qEQAge2
-	nSZ0aGYG5VUOJAZIsblV9rFbDh1SitC1y8BUEN4RXUJRFnbDMarYWdFiUOrG93RqsjGmT4/73VM
-	eHLr0Ocjpxbc8ix/yEb7OJwh88gLxE+oLJXuWH9vkM1vglHiVP1YQH/vv5G/TslqElp2gOd02WR
-	ypfP4=
-X-Received: by 2002:a05:6102:3106:b0:5ff:9d74:9677 with SMTP id ada2fe7eead31-60387269985mr490671137.3.1774436466782;
-        Wed, 25 Mar 2026 04:01:06 -0700 (PDT)
-X-Received: by 2002:a05:6102:3106:b0:5ff:9d74:9677 with SMTP id ada2fe7eead31-60387269985mr490634137.3.1774436466209;
-        Wed, 25 Mar 2026 04:01:06 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9833871003sm785427466b.54.2026.03.25.04.01.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Mar 2026 04:01:05 -0700 (PDT)
-Message-ID: <df041143-46a4-4cfe-a587-a613242d4bde@oss.qualcomm.com>
-Date: Wed, 25 Mar 2026 12:01:03 +0100
+        d=1e100.net; s=20251104; t=1774436513; x=1775041313;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2CmYpByYPZGX4g9nqhPAYqXEmVxCeRwCQg1UHu6Jr9s=;
+        b=QYATAnPVrwG0wG30ddrqZSP7QDGVuIdP4Ey/fxRoleDCefB23SUB+xk9l/lqF1xGdo
+         Vlj4K/8znv7Jc/kX6rSMSA0XjDpToQZ/m9ZqKRTg/AIcVlz0McRhK0O7FT8fbAEZPckx
+         7LX4QJJsT6KY30brLk6sjPVJHmTUHXIk7zGWCVO1vY3461qKbjJlW6VeOiyOiwqtzyx/
+         Habk1zHgHdx9baX6ZxuVn4IixHUdV3wA8oz/3Eb9FeopXrAIlz/QnKKXBGAPfH6DWJ1S
+         vDRXtmkoeYNfifVphxs+D2nTL4SfxzoV0VZknkFcaqSRjK3o9sfWj8GqLjfhCRgFaFT6
+         pvNA==
+X-Forwarded-Encrypted: i=1; AJvYcCXJ1OrsZm8E282uVrQwLtJCrn95yfYcjxHhV763o2koShJNeg6PbwPoCC1OR8jVcZuhyGUxwN469eTS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxl6GF/B/Ar0CIWY/UusZhV09Ua/0JRpN4nJZDOLMJYP5WnYouQ
+	5oWxASa5ayMNzZRu2ouzYNW6ghrn7/6BER5j7xw4dG7rK5tVNAaU51vT
+X-Gm-Gg: ATEYQzwrogL6aNm04ECOgVBRZeBOVR+GhIarOszTzN1UCQvt6DKD8G66KgKwsLekp6n
+	GFWVFF57WavhkMNBGncP0VSW6TDlK+lsTA48fY/RhYlR3oU8sdn113d6MDvCDxDRgfDxSRYqGgU
+	wQ2BoMgddz3zzq+QAh3Zu+YFlcY1JHbThUxpq57KXAdWD2KLDFLPJiWXvmOBSrbYJ68ZRMKBST7
+	5/KmnHDBUnIzb+yAec7C/W4g4/lpFwpHrpM5vlDDPRgUQ+9xU2V1o8zW1ffrRN9ZvUTag7GzIsf
+	nR/zxHXl5jHc+yvdet0NysFZfkMUF9he7JVK9WfVB4ecebrZyhNBby1KqXI9LXCVZl6ZRqMKQeN
+	5lKiKeF3zLVnx6LWi0NxAfs05xZIC0d4rU5ZXAQeWALHvwQAXtBe+cuVnUiNB8LF/LXyorQPucI
+	SM8LN9a/C0Cm5CrWswgZRLXv4oqNEtIEo=
+X-Received: by 2002:a05:6000:2483:b0:43b:4aba:8f4f with SMTP id ffacd0b85a97d-43b88a8ead2mr4271739f8f.45.1774436512571;
+        Wed, 25 Mar 2026 04:01:52 -0700 (PDT)
+Received: from [192.168.1.187] ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b64703c27sm46296280f8f.18.2026.03.25.04.01.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Mar 2026 04:01:52 -0700 (PDT)
+Message-ID: <1920a90a223c1394004d269895df54eee720125a.camel@gmail.com>
+Subject: Re: [PATCH v3 2/2] iio: dac: ad5706r: Add support for AD5706R DAC
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Jonathan Cameron	 <jic23@kernel.org>, David
+ Lechner <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=	
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Date: Wed, 25 Mar 2026 11:02:38 +0000
+In-Reply-To: <20260318-dev_ad5706r-v3-2-5d078f41e988@analog.com>
+References: <20260318-dev_ad5706r-v3-0-5d078f41e988@analog.com>
+	 <20260318-dev_ad5706r-v3-2-5d078f41e988@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/9] interconnect: qcom: drop unused is_on flag
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Brian Masney <masneyb@onstation.org>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260323-msm8974-icc-v1-0-7892b8d5f2ea@oss.qualcomm.com>
- <20260323-msm8974-icc-v1-3-7892b8d5f2ea@oss.qualcomm.com>
- <3d75f9fa-f744-4437-8c68-16ca751193ae@oss.qualcomm.com>
- <ky6o64toksq4ozbbad4i7mrmrqjkq5ffphrwdruejq6godxco5@ds2een4mht2v>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <ky6o64toksq4ozbbad4i7mrmrqjkq5ffphrwdruejq6godxco5@ds2een4mht2v>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI1MDA3OCBTYWx0ZWRfX161Jmz3rFQee
- WbwvvomfAJgdvpz0dVpl1HDmORagJUDWVUmexUxe86oEQZgI+y7tPvRdLZHMa9bc66eE47K7mq/
- ZUqRwvGreF5L3ITrlEEdTdPfvthCUNXizcTiD6CDMy4HlDaufEBq3CagJUSsGqlWKlNKIEWs4XA
- WExkTA24zS6cChwL3LiY3nuAuaFBqKVDC9D1yQVb0cXKb0hc3JscMhBUmDet8FwLWtXV0bFHKgw
- pD3yCaQC9WORZzoSvBfr1V2qHh027rUhDR9YhqrxXc4w1thPntCsUA5xFR1JqDhGZrReC1z7PsM
- hmyWRACdju4Q9/yZYVAYks8PQ3R1HGDCsYZhSk1RKPSVwZeSt0/0d2//Alp7sVTtSnCfYGz/8ZN
- JnXlfOAlDz+8NOUlcqXyHBCiTaonTsyWI6g/a9SxSIP4giVaVC02HO9uNX2CtIkHxQzx3XKQ715
- bsAzLziZXHI7iKH4KeA==
-X-Authority-Analysis: v=2.4 cv=P5M3RyAu c=1 sm=1 tr=0 ts=69c3c073 cx=c_pps
- a=DUEm7b3gzWu7BqY5nP7+9g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
- a=EUspDBNiAAAA:8 a=14PZQ2iapyptJwwRuREA:9 a=QEXdDO2ut3YA:10
- a=-aSRE8QhW-JAV6biHavz:22
-X-Proofpoint-ORIG-GUID: QfJcduPMlF6yDQTOmHyDWp7MDu_9aTR5
-X-Proofpoint-GUID: QfJcduPMlF6yDQTOmHyDWp7MDu_9aTR5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-25_03,2026-03-24_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 spamscore=0 bulkscore=0 clxscore=1015 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603250078
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280369-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-280373-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: A93173239E2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:email,analog.com:url]
+X-Rspamd-Queue-Id: 16E2C323A46
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/24/26 12:12 AM, Dmitry Baryshkov wrote:
-> On Mon, Mar 23, 2026 at 11:26:47AM +0100, Konrad Dybcio wrote:
->> On 3/23/26 2:17 AM, Dmitry Baryshkov wrote:
->>> The commit 2e2113c8a64f ("interconnect: qcom: rpm: Handle interface
->>> clocks") has added the is_on flag to the qcom_icc_provider, but failed
->>> to actually utilize it. Drop the flag.
->>>
->>> Fixes: 2e2113c8a64f ("interconnect: qcom: rpm: Handle interface clocks")
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->>> ---
->>>  drivers/interconnect/qcom/icc-rpm.h | 2 --
->>>  1 file changed, 2 deletions(-)
->>>
->>> diff --git a/drivers/interconnect/qcom/icc-rpm.h b/drivers/interconnect/qcom/icc-rpm.h
->>> index f4883d43eae4..3366531f66fc 100644
->>> --- a/drivers/interconnect/qcom/icc-rpm.h
->>> +++ b/drivers/interconnect/qcom/icc-rpm.h
->>> @@ -51,7 +51,6 @@ struct rpm_clk_resource {
->>>   * @bus_clk: a pointer to a HLOS-owned bus clock
->>>   * @intf_clks: a clk_bulk_data array of interface clocks
->>>   * @keep_alive: whether to always keep a minimum vote on the bus clocks
->>> - * @is_on: whether the bus is powered on
->>>   */
->>>  struct qcom_icc_provider {
->>>  	struct icc_provider provider;
->>> @@ -66,7 +65,6 @@ struct qcom_icc_provider {
->>>  	struct clk *bus_clk;
->>>  	struct clk_bulk_data *intf_clks;
->>>  	bool keep_alive;
->>> -	bool is_on;
->>
->> Hm, looks like the clock vote is kept all the way from .probe()
->> to .remove(). I wonder if that's really what should happen..
-> 
-> Well, it's probably up to you to decide. I've a bit lost my way in the
-> vendor's adhoc / bus / etc. code.
-> 
->>
->> That's what drivers/interconnect/qcom/holi.c does on msm-5.10
->>
->> Maybe "iface clocks" are only needed to execute a ->set() on a node?
-> 
-> Hmm, I don't know. AXI clocks seems to describe the clocking between the
-> NoC and a particular device. So maybe it's required for as long as there
-> is something using the NoC.
+On Wed, 2026-03-18 at 13:13 +0800, Alexis Czezar Torreno wrote:
+> Add support for the Analog Devices AD5706R, a 4-channel 16-bit
+> current output digital-to-analog converter with SPI interface.
+>=20
+> Features:
+> =C2=A0 - 4 independent DAC channels
+> =C2=A0 - Hardware and software LDAC trigger
+> =C2=A0 - Configurable output range
+> =C2=A0 - PWM-based LDAC control
+> =C2=A0 - Dither and toggle modes
+> =C2=A0 - Dynamically configurable SPI speed
+>=20
+> Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+>=20
+> ---
 
-I'll keep this on my infinite todolist
+Not sure if everyone is aware of this but AI review in:
 
-Konrad
+https://sashiko.dev/#/patchset/20260318-dev_ad5706r-v3-0-5d078f41e988%40ana=
+log.com
+
+The DMA comment is an interesting one. Likely it needs improvement in the r=
+eview-prompt repo given
+it's one of those case we know what we're doing (at least we think we know =
+:)).=C2=A0Still has a point
+in that IIO_DMA_MINALIGN should be used.
+
+At some point we need to add some IIO specific bits :)
+
+- Nuno S=C3=A1
+
+> Changes since v1:
+> =C2=A0 - Removed PWM, GPIO, clock generator, debugfs, regmap, IIO_BUFFER
+> =C2=A0 - Removed all custom ext_info sysfs attributes
+> =C2=A0 - Simplified to basic raw read/write and read-only scale
+> =C2=A0 - SPI read/write can handle multibyte registers
+> ---
+> ---
+> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> =C2=A0drivers/iio/dac/Kconfig=C2=A0=C2=A0 |=C2=A0 10 +++
+> =C2=A0drivers/iio/dac/Makefile=C2=A0 |=C2=A0=C2=A0 1 +
+> =C2=A0drivers/iio/dac/ad5706r.c | 222 +++++++++++++++++++++++++++++++++++=
++++++++++++
+> =C2=A04 files changed, 234 insertions(+)
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 17a3d2d45fccb9cd3c93fd35666fb85d17d53cde..3d7bd98b4d1b55836e40687a9=
+a3ac9f4935a8acb 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1502,6 +1502,7 @@ L:	linux-iio@vger.kernel.org
+> =C2=A0S:	Supported
+> =C2=A0W:	https://ez.analog.com/linux-software-drivers
+> =C2=A0F:	Documentation/devicetree/bindings/iio/dac/adi,ad5706r.yaml
+> +F:	drivers/iio/dac/ad5706r.c
+> =C2=A0
+> =C2=A0ANALOG DEVICES INC AD7091R DRIVER
+> =C2=A0M:	Marcelo Schmitt <marcelo.schmitt@analog.com>
+> diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
+> index db9f5c711b3df90641f017652fbbef594cc1627d..8ccbdf6dfbca8640a47bf05b4=
+afc6b4bf90a7e26 100644
+> --- a/drivers/iio/dac/Kconfig
+> +++ b/drivers/iio/dac/Kconfig
+> @@ -178,6 +178,16 @@ config AD5624R_SPI
+> =C2=A0	=C2=A0 Say yes here to build support for Analog Devices AD5624R, A=
+D5644R and
+> =C2=A0	=C2=A0 AD5664R converters (DAC). This driver uses the common SPI i=
+nterface.
+> =C2=A0
+> +config AD5706R
+> +	tristate "Analog Devices AD5706R DAC driver"
+> +	depends on SPI
+> +	help
+> +	=C2=A0 Say yes here to build support for Analog Devices AD5706R 4-chann=
+el,
+> +	=C2=A0 16-bit current output DAC.
+> +
+> +	=C2=A0 To compile this driver as a module, choose M here: the
+> +	=C2=A0 module will be called ad5706r.
+> +
+> =C2=A0config AD9739A
+> =C2=A0	tristate "Analog Devices AD9739A RF DAC spi driver"
+> =C2=A0	depends on SPI
+> diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
+> index 2a80bbf4e80ad557da79ed916027cedff286984b..0034317984985035f7987a744=
+899924bfd4612e3 100644
+> --- a/drivers/iio/dac/Makefile
+> +++ b/drivers/iio/dac/Makefile
+> @@ -21,6 +21,7 @@ obj-$(CONFIG_AD5449) +=3D ad5449.o
+> =C2=A0obj-$(CONFIG_AD5592R_BASE) +=3D ad5592r-base.o
+> =C2=A0obj-$(CONFIG_AD5592R) +=3D ad5592r.o
+> =C2=A0obj-$(CONFIG_AD5593R) +=3D ad5593r.o
+> +obj-$(CONFIG_AD5706R) +=3D ad5706r.o
+> =C2=A0obj-$(CONFIG_AD5755) +=3D ad5755.o
+> =C2=A0obj-$(CONFIG_AD5758) +=3D ad5758.o
+> =C2=A0obj-$(CONFIG_AD5761) +=3D ad5761.o
+> diff --git a/drivers/iio/dac/ad5706r.c b/drivers/iio/dac/ad5706r.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..840ee7b6db2e05ea35b27ff77=
+6f0c5c8a961d9c1
+> --- /dev/null
+> +++ b/drivers/iio/dac/ad5706r.c
+> @@ -0,0 +1,222 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * AD5706R 16-bit Current Output Digital to Analog Converter
+> + *
+> + * Copyright 2026 Analog Devices Inc.
+> + */
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/bits.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/unaligned.h>
+> +
+> +/* SPI frame layout */
+> +#define AD5706R_RD_MASK			BIT(15)
+> +#define AD5706R_ADDR_MASK		GENMASK(11, 0)
+> +
+> +/* Registers */
+> +#define AD5706R_REG_DAC_INPUT_A_CH(x)		(0x60 + ((x) * 2))
+> +#define AD5706R_REG_DAC_DATA_READBACK_CH(x)	(0x68 + ((x) * 2))
+> +
+> +#define AD5706R_DAC_RESOLUTION		16
+> +#define AD5706R_DAC_MAX_CODE		BIT(16)
+> +#define AD5706R_MULTIBYTE_REG_START	0x14
+> +#define AD5706R_MULTIBYTE_REG_END	0x71
+> +#define AD5706R_SINGLE_BYTE_LEN		1
+> +#define AD5706R_DOUBLE_BYTE_LEN		2
+> +
+> +struct ad5706r_state {
+> +	struct spi_device *spi;
+> +	struct mutex lock; /* Protects SPI transfers */
+> +
+> +	u8 tx_buf[4] __aligned(ARCH_DMA_MINALIGN);
+> +	u8 rx_buf[2];
+> +};
+> +
+> +static int ad5706r_reg_len(unsigned int reg)
+> +{
+> +	if (reg >=3D AD5706R_MULTIBYTE_REG_START && reg <=3D AD5706R_MULTIBYTE_=
+REG_END)
+> +		return AD5706R_DOUBLE_BYTE_LEN;
+> +
+> +	return AD5706R_SINGLE_BYTE_LEN;
+> +}
+> +
+> +static int ad5706r_spi_write(struct ad5706r_state *st, u16 reg, u16 val)
+> +{
+> +	unsigned int num_bytes =3D ad5706r_reg_len(reg);
+> +	struct spi_transfer xfer =3D {
+> +		.tx_buf =3D st->tx_buf,
+> +		.len =3D num_bytes + 2,
+> +	};
+> +
+> +	put_unaligned_be16(reg, &st->tx_buf[0]);
+> +
+> +	if (num_bytes =3D=3D 1)
+> +		st->tx_buf[2] =3D val;
+> +	else if (num_bytes =3D=3D 2)
+> +		put_unaligned_be16(val, &st->tx_buf[2]);
+> +	else
+> +		return -EINVAL;
+> +
+> +	return spi_sync_transfer(st->spi, &xfer, 1);
+> +}
+> +
+> +static int ad5706r_spi_read(struct ad5706r_state *st, u16 reg, u16 *val)
+> +{
+> +	unsigned int num_bytes =3D ad5706r_reg_len(reg);
+> +	u16 cmd;
+> +	int ret;
+> +
+> +	struct spi_transfer xfer[] =3D {
+> +		{
+> +			.tx_buf =3D st->tx_buf,
+> +			.len =3D 2,
+> +		},
+> +		{
+> +			.rx_buf =3D st->rx_buf,
+> +			.len =3D num_bytes,
+> +		},
+> +	};
+> +
+> +	cmd =3D AD5706R_RD_MASK | (reg & AD5706R_ADDR_MASK);
+> +	put_unaligned_be16(cmd, &st->tx_buf[0]);
+> +
+> +	ret =3D spi_sync_transfer(st->spi, xfer, ARRAY_SIZE(xfer));
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (num_bytes =3D=3D 1)
+> +		*val =3D st->rx_buf[0];
+> +	else if (num_bytes =3D=3D 2)
+> +		*val =3D get_unaligned_be16(st->rx_buf);
+> +	else
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad5706r_read_raw(struct iio_dev *indio_dev,
+> +			=C2=A0=C2=A0=C2=A0 struct iio_chan_spec const *chan, int *val,
+> +			=C2=A0=C2=A0=C2=A0 int *val2, long mask)
+> +{
+> +	struct ad5706r_state *st =3D iio_priv(indio_dev);
+> +	u16 reg_val;
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		scoped_guard(mutex, &st->lock) {
+> +			ret =3D ad5706r_spi_read(st, AD5706R_REG_DAC_DATA_READBACK_CH(chan-
+> >channel),
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &reg_val);
+> +
+> +			if (ret)
+> +				return ret;
+> +
+> +			*val =3D reg_val;
+> +		}
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*val =3D 50;
+> +		*val2 =3D AD5706R_DAC_RESOLUTION;
+> +		return IIO_VAL_FRACTIONAL_LOG2;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int ad5706r_write_raw(struct iio_dev *indio_dev,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_chan_spec const *chan, int val,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0 int val2, long mask)
+> +{
+> +	struct ad5706r_state *st =3D iio_priv(indio_dev);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		if (val < 0 || val >=3D AD5706R_DAC_MAX_CODE)
+> +			return -EINVAL;
+> +
+> +		guard(mutex)(&st->lock);
+> +		return ad5706r_spi_write(st,
+> +					 AD5706R_REG_DAC_INPUT_A_CH(chan->channel),
+> +					 val);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static const struct iio_info ad5706r_info =3D {
+> +	.read_raw =3D ad5706r_read_raw,
+> +	.write_raw =3D ad5706r_write_raw,
+> +};
+> +
+> +#define AD5706R_CHAN(_channel) {				\
+> +	.type =3D IIO_CURRENT,					\
+> +	.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |		\
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BIT(IIO_CHAN_INFO_SCALE),	\
+> +	.output =3D 1,						\
+> +	.indexed =3D 1,						\
+> +	.channel =3D _channel,					\
+> +}
+> +
+> +static const struct iio_chan_spec ad5706r_channels[] =3D {
+> +	AD5706R_CHAN(0),
+> +	AD5706R_CHAN(1),
+> +	AD5706R_CHAN(2),
+> +	AD5706R_CHAN(3),
+> +};
+> +
+> +static int ad5706r_probe(struct spi_device *spi)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct ad5706r_state *st;
+> +	int ret;
+> +
+> +	indio_dev =3D devm_iio_device_alloc(&spi->dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st =3D iio_priv(indio_dev);
+> +	st->spi =3D spi;
+> +
+> +	ret =3D devm_mutex_init(&spi->dev, &st->lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->name =3D "ad5706r";
+> +	indio_dev->info =3D &ad5706r_info;
+> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
+> +	indio_dev->channels =3D ad5706r_channels;
+> +	indio_dev->num_channels =3D ARRAY_SIZE(ad5706r_channels);
+> +
+> +	return devm_iio_device_register(&spi->dev, indio_dev);
+> +}
+> +
+> +static const struct of_device_id ad5706r_of_match[] =3D {
+> +	{ .compatible =3D "adi,ad5706r" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, ad5706r_of_match);
+> +
+> +static const struct spi_device_id ad5706r_id[] =3D {
+> +	{ "ad5706r" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(spi, ad5706r_id);
+> +
+> +static struct spi_driver ad5706r_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "ad5706r",
+> +		.of_match_table =3D ad5706r_of_match,
+> +	},
+> +	.probe =3D ad5706r_probe,
+> +	.id_table =3D ad5706r_id,
+> +};
+> +module_spi_driver(ad5706r_driver);
+> +
+> +MODULE_AUTHOR("Alexis Czezar Torreno <alexisczezar.torreno@analog.com>")=
+;
+> +MODULE_DESCRIPTION("AD5706R 16-bit Current Output DAC driver");
+> +MODULE_LICENSE("GPL");
 
