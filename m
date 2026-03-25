@@ -1,226 +1,163 @@
-Return-Path: <devicetree+bounces-280326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280323-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6GoNNo6xw2kktgQAu9opvQ
-	(envelope-from <devicetree+bounces-280326-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:57:34 +0100
+	id YMIFIyexw2nAtAQAu9opvQ
+	(envelope-from <devicetree+bounces-280323-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:55:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F4E832286B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:57:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAA973227D9
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:55:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F0A713137144
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:51:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A07F43033D3C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C581738D6A4;
-	Wed, 25 Mar 2026 09:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF8E23A1E95;
+	Wed, 25 Mar 2026 09:50:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="oqinl9dv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NmJztJHW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68E5D3A4505
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 914013A254C
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:50:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774432259; cv=none; b=Oy43LtC1W4mrTt3N+Ep3b/Ml0Y2YZtA4wRllLnOzisfHDRZtvCb/EKsj5H0AjzOWWn2EeZX1Le8MnGtqjAUP3ZZZfrCRB0FXMgfuCVqw1SJZnxYu3Lw0VD4oyB0Wys+kNaqbqdGzsEmNISiXCXDrI4KrAwv1MEfZvz3mTnU82gM=
+	t=1774432242; cv=none; b=G4284FmNULO+N2tSJUTgRAWza0UthG9R6gW6W38bkti/9tEJwRE4KHo68QJtPHq0mCmmu3syQVTSNiOufGsb0ndWMrNf9HPWcSTif8H5Cmbvj4ID6M+l2wzft5Ff9Ljqd7T8V90akLmrpCZkVHRCCRVi3NCNp7HTQDwtrjJnPxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774432259; c=relaxed/simple;
-	bh=00stqMDSLC8zHkq6vuvmGRmlLz7NFbDhqHtOZK7Au68=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dAgo6pl5pcPic3+JR29rNb0X+flHsp6Da5MGwimr6nOPWkmTHasNKfvYlewHi0VrdbzBZQrN2FrP5KYgLj0J5e13BrQufc5zNX/AqDka6pcJeZbzv4CIDUhg4wLyTcLzT/57b0GdSBvROI92GEFAR85vkcU0bqoMMsBMw6y8hE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=oqinl9dv; arc=none smtp.client-ip=209.85.128.49
+	s=arc-20240116; t=1774432242; c=relaxed/simple;
+	bh=BtU/1FlmpGpeVuq2O50FZAVFbmjaQJruHeTie0Nm7GM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Q9evzHYSKsQTy60KwKODdZyAPYg+qPLsExtCwX/q9uu17CmIVazCViLHJ9hxNUDLF/gJ8jZhdF5ayWW+Iaik8gi0HQjlJCquNkBN7DdykAfyzSSjuQtOy5ipFNH1UWAHPe/8FuaA/i8fq5F9QkdAIAh2TUyNfElk7h3VHdSdJqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NmJztJHW; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-48702d51cd0so49455615e9.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 02:50:47 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-486507134e4so27183915e9.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 02:50:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774432246; x=1775037046; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=p9U89LuLFXoVjIbPXNI+E/8nZsSQ3ZaCzlKQvO4O4BY=;
-        b=oqinl9dvBdFxKNJpZUuRdsXVGk88H1Uj5c7Z8oUwnWgbL9S51PUBs4dQGLAoQME95K
-         sGEgzNSdbrkwdrzv4mvtzCg7vVByTplJ9d/oB6nXebFw07X9h4vBRpIBClygeSE1q2F1
-         SBTyPI/oAw0y/gZ6Vg9OVn+CQA6HqC1UbGldVgDQvcvUIcGXo2DRlszov8tCWKyuOgCl
-         c+3GJRoYyL0ZfI/OQad1NhMg2IXARZ0skVX7h+lm+dVUwKTOQGaeVdB2oQN9zzdpVpBN
-         6yNd3k34u7Kcw6DegEWsTPOMU+DfdZ9W7fjUbBiA7iB2iedGfWUintBTIqTId2gwZ1Pt
-         fTjw==
+        d=gmail.com; s=20251104; t=1774432238; x=1775037038; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dPn24ee3Ut3if8Ncvi7vY0xSmV1MlIqacbWnXs0wBFE=;
+        b=NmJztJHWHjZTZyfJW4XnjBEqwfx5j7bUcZcAzliL1wnALQEmXwUNJMqquyiJH5ODVU
+         cftwLIUEGTHVFBN3ga7rw3iB39wSp5MRabn9cI4yb+tBjV9HYAHsbFrcuUvg4LSVTWMU
+         hOqO0LVk6oVT4X5rjeBZihrlF1eLyelVkPMnVabRo+9qYgAkE4yCB9AseMJpEqRhgzL4
+         YOIhWJe9OPVNKt6T5HBpnA5i1jcP55df1xlVmf8FWG6/+zqnND1c0seLhr4XPpWIodiv
+         pO+DqtwM5iElxHjIlFjeFH7XoTCV2hxpDBlV9wrkO5ZJHAgUdrMkHFVrnN6lbkij+e/L
+         3pPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774432246; x=1775037046;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20251104; t=1774432238; x=1775037038;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=p9U89LuLFXoVjIbPXNI+E/8nZsSQ3ZaCzlKQvO4O4BY=;
-        b=VTPrRcruN7UrNtJlMFpmB4yIG4Tmqg97164APHGR8J10pT1mAPXyd9mJ6CK69UR8YS
-         vcZJsJyP4xYUcHdtLtIgZntmqSXc+YB6gGIaxI0RB3nQU/vWUsE1WjYqsrKqDdn/1q2x
-         ejYgZQbgxcVCxlATX3ezQj4GQ7Mw2zQQc5q5gZuIc6+MTsyNL26bGve3Do6UyR+HNUhp
-         H/JYozKz9aT/p/lyRO6wFk3WcWQQw63hqKCo4Og9jKHo8G0AQwZkPLppIr8KozpoAs72
-         Fq+r0nEIvxrIKYel9oLVz9ZPZuNRcvUSMueHpgu5B8vGy265w9WwFQYiluBiilRtZdW+
-         7LoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXrGdDpEgtxmk1C84Zq4B+/XlqKPlxFSyGHpEvrzvawSdujc6Iqp07IbxLj+c1MRmlKIecZc6MMzGp4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcA2OCi5ZQgYpJ3mw75wIEKBagV7+pRw+E48Ln1slHQ3nB4YkU
-	tymfcQvShjip2aTGu8jpKRcM53So1s0EgpjeFlvZjEGu2057MpF1Z/c=
-X-Gm-Gg: ATEYQzwmBRlvf5wAiq8ekUz7gptVx8ySW+ymW7PPCjeDz2bH5hoItqmtdSow1hJ4xVF
-	p4QzFFeSeUlkw5z0Lernu/oxkUmH9AN3vR+7QAp0DLoHnhxNKSOGT9JMTnsp3RjOeUKJINTckiS
-	7WcqvaS6lPbnNXZOrXNHvbxibtxTAgmH+Ok+jfrK/Y3/D7W2QAVTmdx+PuyVTuoR/qmWCMOZLpt
-	/Y1UYMJj4C3Blzf3+TRTvualVIbfxztPQyKe/6yyjNM/oKD7BhyAMRLTDcjQdcBF4BqjXztn3hy
-	dnphhcfKP3x7Xe5IfPTjjZSqGlpnW1pZ41cYlYGXNSLhgDu2ufc/eCye0bpgpMD1ndG0+XnXBsU
-	iUiqbiwJHFh2LcB17AUudg16rLubMfp3LpwfmMi+vj0aPpU6SZii++RxP3luntIN8y2804hhW6t
-	NOFuz0VzgYU5UXuZtqF0AOpkB4PfS6weZ8HQvGKGG9iahoR7TG5YAjqFk4x6msR+7KQWxsBa5yi
-	iydkNQyV540Fjfr0Hzu2tIadg==
-X-Received: by 2002:a05:600d:1c:b0:483:badb:618e with SMTP id 5b1f17b1804b1-48715fd4787mr34101735e9.8.1774432245606;
-        Wed, 25 Mar 2026 02:50:45 -0700 (PDT)
-Received: from localhost.localdomain (lmontsouris-658-1-96-160.w81-250.abo.wanadoo.fr. [81.250.250.160])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48711764625sm122268895e9.14.2026.03.25.02.50.44
+        bh=dPn24ee3Ut3if8Ncvi7vY0xSmV1MlIqacbWnXs0wBFE=;
+        b=AGrc4cP6ScyMj+uaGVqLKYdYdzsmA02xBGflKMFluXgs8TN2QwxWCrsmNwtLn3hedw
+         d9XswwX4f24BTyae+Bc/mT8cAaHQkhOvtugJn4ke5d3ztEH+Q2iSMWPgCLL51NTtZogX
+         gbpqvuKG2u7Y0GSXintQT1XcdNL4iVSkL9WUqV06wlA06Ut5Qk4SNhddIOt2n3cdac9w
+         rfZLbS7o8jL7rg1LhPtsLxpQdAp4gXu+HLReYaCVOmWoMwLm5ZgaRnPq0zFO3/6jChyW
+         3gTDcSCguliBh0VybGyWM8FGq3xNBfoa2oTawAkGo4FqG+RzD5o/z0Dq42pTRQZjepuo
+         RhWQ==
+X-Gm-Message-State: AOJu0YzvQKtj3H/XcUKa6eR471LvqECYEjg6gT+aiAlTW8FW2zmCD4Z+
+	1ZH6LowoIPbebAGLmtLac47tS9iIc/bNzxtTsUrM9OFrxrBn5FdF/OXiYLKCPdi/
+X-Gm-Gg: ATEYQzy1+y+gKwX6xHz8nhHCKL10M3whorBrjlrV86ZZ6epJV0NT5INeRb/Dmz+G7xQ
+	OKAQ5K+PZttNZSqPM2ubuAak8G7l8mvf4Frwl7n0w6g1xiJZJDyrUD2Asg/h9EuRZzGGtXXAIQr
+	JHxD1p1ivld1dO1oBngaNXLETMjX7/oAqh6IBLbjT4B/ry7sF/cMVHChbzZzkQGb3d6gSs21bA9
+	dlcW5clLNG9cqfdQZ1WbUYtsm/CXw0bw/G9fj2t/rLkxtO707VZSHlT9nkUdZoxmgnUtyDsmJUj
+	JR4DOu04b3xzO/hofq5lIVjIY7m3uGaQ1iIJzLYjvV8ZoOlt2FVR2u8svOHVKkqcvKec9+utppG
+	QrO1mhMDtSRNcUlWDvRRpbJTUSmu5gCpo+W9NdG6DJww2w6bGuOM6UvkPTnzuEROSG1cI1TDd5L
+	NQ3AdmijNSDgJC2qA9y0YfWiEqAE8YbgeBg2fjd06Qz0Ni75+695rnAzfjJNQG9WGYyGNem1QjA
+	L/8ZTYiw0SBLjxRDjWgNuqhqt223Mbgd9bMF7ePYkpgogW0zmqqSNDiW24+N+bCRHYjY8CQBs3B
+X-Received: by 2002:a05:600c:c490:b0:485:2c61:9459 with SMTP id 5b1f17b1804b1-48715fd526cmr41004935e9.8.1774432237393;
+        Wed, 25 Mar 2026 02:50:37 -0700 (PDT)
+Received: from [127.0.1.1] (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-487116ee57esm111397755e9.14.2026.03.25.02.50.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Mar 2026 02:50:44 -0700 (PDT)
-From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-To: lee@kernel.org,
-	andreas@kemnade.info
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	jihed.chaibi.dev@gmail.com
-Subject: [PATCH] dt-bindings: mfd: twl: Reference converted YAML schemas for subnodes
-Date: Wed, 25 Mar 2026 10:50:16 +0100
-Message-ID: <20260325095016.48752-1-jihed.chaibi.dev@gmail.com>
-X-Mailer: git-send-email 2.47.3
+        Wed, 25 Mar 2026 02:50:36 -0700 (PDT)
+From: Franz Schnyder <fra.schnyder@gmail.com>
+Subject: [PATCH 0/3] arm64: dts: freescale: imx95-toradex-smarc: Add
+ Bluetooth and SER2
+Date: Wed, 25 Mar 2026 10:50:19 +0100
+Message-Id: <20260325-mainline-update-imx95-v1-0-b5ebe976655b@toradex.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANuvw2kC/x2MQQqAIBAAvxJ7TtishPpKdLDcaqFMtCIQ/550H
+ IaZCIE8U4C+iODp4cCnzVCVBcybtisJNplBolRYy0Ycmu3OlsTtjL6yPt6uFYiTWdTcNpNGyK3
+ ztPD7f4cxpQ9kZqivZwAAAA==
+X-Change-ID: 20260324-mainline-update-imx95-00bdf6c54ba0
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Francesco Dolcini <francesco@dolcini.it>, 
+ Franz Schnyder <franz.schnyder@toradex.com>
+X-Mailer: b4 0.14.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
-	FROM_NEQ_ENVFROM(0.00)[jihedchaibidev@gmail.com,devicetree@vger.kernel.org];
-	TO_DN_NONE(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280326-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-280323-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fraschnyder@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7F4E832286B
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:email,toradex.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CAA973227D9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Now that all TWL subnode bindings (audio, keypad, twl4030-usb, gpio,
-usb-comparator) have been converted to YAML and merged into mainline,
-update the parent ti,twl.yaml to properly reference them via $ref.
+This patch series adds support for missing interfaces on the Toradex 
+SMARC i.MX95 SoM.
 
-Previously these subnodes used inline compatible definitions with
-additionalProperties: true, which meant properties defined in the
-subnode schemas were not being validated. Replace them with $ref to the
-appropriate schemas and unevaluatedProperties: false, matching the
-pattern already used by the madc, gpadc, and charger subnodes.
+It adds:
+- SER2 interface
+- UART interface for Bluetooth
+- WIFI_UART_EN as a gpio-hog to select the UART function by default,  
+  as the MAYA-W260 UART signals are shared with the JTAG.
 
-Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Signed-off-by: Franz Schnyder <franz.schnyder@toradex.com>
 ---
- .../devicetree/bindings/mfd/ti,twl.yaml       | 50 ++++---------------
- 1 file changed, 10 insertions(+), 40 deletions(-)
+Franz Schnyder (3):
+      arm64: dts: freescale: imx95-toradex-smarc: Add SER2 interface
+      arm64: dts: freescale: imx95-toradex-smarc: Enable bluetooth on lpuart5
+      arm64: dts: freescale: imx95-toradex-smarc: Use gpio-hog for WIFI_UART_EN
 
-diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-index 9cc3e4721612..a3af8e717ec7 100644
---- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-+++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-@@ -265,47 +265,23 @@ properties:
- 
-   audio:
-     type: object
--    additionalProperties: true
--
--    properties:
--      compatible:
--        const: ti,twl4030-audio
--
--    required:
--      - compatible
-+    $ref: /schemas/sound/ti,twl4030-audio.yaml
-+    unevaluatedProperties: false
- 
-   keypad:
-     type: object
--    additionalProperties: true
--
--    properties:
--      compatible:
--        const: ti,twl4030-keypad
--
--    required:
--      - compatible
-+    $ref: /schemas/input/ti,twl4030-keypad.yaml
-+    unevaluatedProperties: false
- 
-   twl4030-usb:
-     type: object
--    additionalProperties: true
--
--    properties:
--      compatible:
--        const: ti,twl4030-usb
--
--    required:
--      - compatible
-+    $ref: /schemas/usb/ti,twl4030-usb.yaml
-+    unevaluatedProperties: false
- 
-   gpio:
-     type: object
--    additionalProperties: true
--
--    properties:
--      compatible:
--        const: ti,twl4030-gpio
--
--    required:
--      - compatible
-+    $ref: /schemas/gpio/ti,twl4030-gpio.yaml
-+    unevaluatedProperties: false
- 
-   power:
-     type: object
-@@ -371,14 +347,8 @@ properties:
- 
-   usb-comparator:
-     type: object
--    additionalProperties: true
--
--    properties:
--      compatible:
--        const: ti,twl6030-usb
--
--    required:
--      - compatible
-+    $ref: /schemas/usb/ti,twl6030-usb.yaml
-+    unevaluatedProperties: false
- 
-   pwm:
-     type: object
+ .../boot/dts/freescale/imx95-toradex-smarc-dev.dts |  5 +++
+ .../boot/dts/freescale/imx95-toradex-smarc.dtsi    | 44 ++++++++++++++++++++++
+ 2 files changed, 49 insertions(+)
+---
+base-commit: efc6947b672d449d6b4560a55ad3589a6bee746c
+change-id: 20260324-mainline-update-imx95-00bdf6c54ba0
+
+Best regards,
 -- 
-2.47.3
+Franz Schnyder <franz.schnyder@toradex.com>
 
 
