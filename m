@@ -1,44 +1,45 @@
-Return-Path: <devicetree+bounces-280416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280415-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gMNQKmPKw2lKuAQAu9opvQ
-	(envelope-from <devicetree+bounces-280416-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 12:43:31 +0100
+	id WBeIIcfLw2lKuAQAu9opvQ
+	(envelope-from <devicetree+bounces-280415-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 12:49:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46058324184
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 12:43:31 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84C2232435C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 12:49:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AB9A33142EC7
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:33:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B9CEC3074579
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:33:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD143CAE80;
-	Wed, 25 Mar 2026 11:32:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B953C7E13;
+	Wed, 25 Mar 2026 11:32:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591113CEBA4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591A83CEBA5
 	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 11:32:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774438355; cv=none; b=ZThiyZvIMHFQJsurUFfpGKMwyUjedsW1TzB7sHQo2YciD0u34FTy13vKzX3eRWi7bCRaeo19yNe8ThH35G2/Frs+A9LfwjQQKh1j7YuJcIw5lL9upyzL7BjQXwvavHMh43F80iG3jpz/kux4uRMQR669XU1S73qSNJfhpqqoTZk=
+	t=1774438354; cv=none; b=d9UsM/Hndelw+YQ/JaQZ1HPXlQXStGLzUfHKbG3VtJBFcnEli5nY4wwLI3rcdcPw782Lm2V8KpGnjYmETbq/PVZFMSeSpJCvByjHHjfPpSbiTyN+nNsKbROhbXwGfZwrUvC2xgp7X1uOrGppbvzWtdmMJVxcmg0gqakkROeDe6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774438355; c=relaxed/simple;
-	bh=RGJyt7QkBA8kKreybmqR0T/2LcA2lqfsR63NYfeg8/w=;
+	s=arc-20240116; t=1774438354; c=relaxed/simple;
+	bh=6asgsNJtNzqMYXCTCShnu8Ynt63KMbLBDHWMKz336dA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Mk9U0uEMvLpGmpcvnQddZpqnqomlEFL2KsT5iPyXuhkYQopX2gVEm5LJ1hQcOGX/3clEiAYn/eQcMo2cVrAD93EG7+wIhYwX0Gjk6900APgdGd93AXFk9y8ZnV/JVJFp/ItjUcnSRmiwJnUWzQ5/2biFqA8UJ1GE2Kl69CDeizI=
+	 In-Reply-To:To:Cc; b=eIx3UEkIA+BZTpkEiCBWuGQcmalbptRZCvbynQUfynZVe11sMzuz/fgDWEQmoAE60u4W1EmbrOp1cynm/oXdepX4FPXFTBOCxDUWA5at2k/huV3WVaL2tyXikx2+0B3fbAA1cxVHAKG2LCehyznDJ8QteqgUCPQE0mESkjuA8mE=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.trumtrar.info)
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <s.trumtrar@pengutronix.de>)
-	id 1w5MT8-0005WU-9a; Wed, 25 Mar 2026 12:32:14 +0100
+	id 1w5MT8-0005WU-Uq; Wed, 25 Mar 2026 12:32:14 +0100
 From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Date: Wed, 25 Mar 2026 12:32:00 +0100
-Subject: [PATCH 2/4] drm/panel: simple: add JuTouch JT070TM041
+Date: Wed, 25 Mar 2026 12:32:01 +0100
+Subject: [PATCH 3/4] dt-bindings: arm: fsl: add compatible for new Skov
+ I.MX8MP variant
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,7 +48,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260325-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v1-2-10255d236439@pengutronix.de>
+Message-Id: <20260325-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v1-3-10255d236439@pengutronix.de>
 References: <20260325-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v1-0-10255d236439@pengutronix.de>
 In-Reply-To: <20260325-v7-0-topic-imx8mp-skov-dts-jutouch-7inch-v1-0-10255d236439@pengutronix.de>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -74,7 +75,7 @@ X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -83,81 +84,44 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ravnborg.org,nxp.com,pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280416-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-280415-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[s.trumtrar@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	NEURAL_HAM(-0.00)[-0.998];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:email,pengutronix.de:mid]
-X-Rspamd-Queue-Id: 46058324184
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,pengutronix.de:email,pengutronix.de:mid]
+X-Rspamd-Queue-Id: 84C2232435C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add JuTouch Technology JT070TM041 7" 1024x600 LVDS panel support.
+In preparation for adding a new device tree variant with a different 7"
+panel, describe the DT compatible in the binding.
 
 Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
 ---
- drivers/gpu/drm/panel/panel-simple.c | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 91ab280869bac..6ac263f83793b 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -2940,6 +2940,35 @@ static const struct panel_desc innolux_zj070na_01p = {
- 	},
- };
- 
-+static const struct display_timing jutouch_jt070tm041_timing = {
-+	.pixelclock = { 40800000, 51200000, 67200000 },
-+	.hactive = { 1024, 1024, 1024 },
-+	.hfront_porch = { 16, 160, 216 },
-+	.hback_porch = { 160, 160, 160 },
-+	.hsync_len = { 1, 1, 140 },
-+	.vactive = { 600, 600, 600 },
-+	.vfront_porch = { 1, 12, 127 },
-+	.vback_porch = { 23, 23, 23 },
-+	.vsync_len = { 1, 1, 20 },
-+};
-+
-+static const struct panel_desc jutouch_jt070tm041 = {
-+	.timings = &jutouch_jt070tm041_timing,
-+	.num_timings = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 154,
-+		.height = 86,
-+	},
-+	.delay = {
-+		.enable = 50,
-+		.disable = 50,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct display_timing jutouch_jt101tm023_timing = {
- 	.pixelclock = { 66300000, 72400000, 78900000 },
- 	.hactive = { 1280, 1280, 1280 },
-@@ -5352,6 +5381,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "innolux,zj070na-01p",
- 		.data = &innolux_zj070na_01p,
-+	}, {
-+		.compatible = "jutouch,jt070tm041",
-+		.data = &jutouch_jt070tm041,
- 	}, {
- 		.compatible = "jutouch,jt101tm023",
- 		.data = &jutouch_jt101tm023,
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 5716d701292cf..84ebc8c28b70a 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1122,6 +1122,7 @@ properties:
+               - skov,imx8mp-skov-revb-mi1010ait-1cp1 # SKOV i.MX8MP climate control with 10.1" panel
+               - skov,imx8mp-skov-revc-hdmi # SKOV i.MX8MP climate control without panel
+               - skov,imx8mp-skov-revc-bd500 # SKOV i.MX8MP climate control with LED frontplate
++              - skov,imx8mp-skov-revc-jutouch-jt070tm041 # SKOV i.MX8MP climate control with 7" JuTouch panel
+               - skov,imx8mp-skov-revc-jutouch-jt101tm023 # SKOV i.MX8MP climate control with 10" JuTouch panel
+               - skov,imx8mp-skov-revc-tian-g07017 # SKOV i.MX8MP climate control with 7" panel
+               - ultratronik,imx8mp-ultra-mach-sbc # Ultratronik SBC i.MX8MP based board
 
 -- 
 2.51.0
