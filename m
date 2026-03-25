@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-280275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280278-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4CPyE6Gkw2lssQQAu9opvQ
-	(envelope-from <devicetree+bounces-280275-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:02:25 +0100
+	id wD0oFgmlw2lhtAQAu9opvQ
+	(envelope-from <devicetree+bounces-280278-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:04:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFFF0321CF0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:02:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD443321D79
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:04:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BC2043046018
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:00:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E9B6930A3A49
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:00:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE6953358C2;
-	Wed, 25 Mar 2026 09:00:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A871932D0F5;
+	Wed, 25 Mar 2026 09:00:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="FY5iUkMt"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="gxSREEvd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA52C3009E2
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:00:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E3015665C
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:00:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774429234; cv=none; b=NT5F1BXSYU3MT5s+IbnlPN3xn6mtVUPcpCXQhL5CqKNLhR8jU+0Eq4etILFmrjWSecjHpYHG5IrAi0y+7l/AiXsuXo+eoqTfuFlPFSz2HvdnmTlXlkkDh5bwL07bdsjokJ8wZ2iyMGP5b6knzChmbUmZVSA+VjdL6d6llSej3Rw=
+	t=1774429238; cv=none; b=SdMMVKpoKyuAdEvM99wi+9HP5RSTzpF+KyvDQJPAB68KEv8YunGve+BpcmABUgYGmoTscbpfxXWTbbyEYm3d0/KejsUU+0prOIKKf0qmKokbLaZ7djPN0l1Hs/uZIS6g58L5qIuZCgjaAJl+Rl/xvMkJ8n3ymGw7Pzu8AOGE0NE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774429234; c=relaxed/simple;
-	bh=CPcTlIJgIyK5T1j0XTj81N/5/UyvrLhYjXjqTIrrO1s=;
+	s=arc-20240116; t=1774429238; c=relaxed/simple;
+	bh=rYdxiFd8V1p9D8axzTRdYHSmxWdNu1JUKInL/cS/0xI=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=Xvl4HkyiJ0ZAL0KJ+6mnqe7i4OhJnY8YxvCQOttgD4IoJlsG1qcMBFxHec+XBpHQzTPLgRLoGmScpLTGt5HRJCP0gKwqAF32L0RUPEeqVhuij79OBktoEVbdNT+sN8IvhFsJLnEk76//OdREOMm8AC6HrlUnsHr+2ltT6Tj0HDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=FY5iUkMt; arc=none smtp.client-ip=210.118.77.12
+	 Content-Type:References; b=rLtLvbtynS9n4hS1jyIGBtGapJ1QGSUsV4lgjpvL+rodmxPQIHH4dw0Vcmdz2Ouk30ztM6vpkqyM8GIV7RnwvzP3ZYfMJ5LsSbg0Zbt95liKecQnDC/LgMqqIIgeDMMBiwfMp5B4zT1Qiszl4MM6Rl2GtmwaPevGwq85ZKhk9rU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=gxSREEvd; arc=none smtp.client-ip=210.118.77.11
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20260325090031euoutp02f8cc5d3f8d86f0c2c7120a32b01feb8b~gCfwhI_8Q0087600876euoutp02Z
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:00:31 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20260325090031euoutp02f8cc5d3f8d86f0c2c7120a32b01feb8b~gCfwhI_8Q0087600876euoutp02Z
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20260325090032euoutp016ba4bc7a5afdab0b1061b3666675f0ff~gCfxSePv72240722407euoutp01d
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:00:32 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20260325090032euoutp016ba4bc7a5afdab0b1061b3666675f0ff~gCfxSePv72240722407euoutp01d
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1774429231;
-	bh=qDkZBH8D9QGZmacGWO/wLlPET8ve8kNAHImwlz5MpvM=;
+	s=mail20170921; t=1774429232;
+	bh=wwurihy1qMKafazYkjQUEhOehZg0+KQHoNwHol2qBYc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FY5iUkMtR9ARTfG7/tVvrcKFos/ZapigxegUHHHt0vVky5lQ6qCjTliLvuGask1oQ
-	 21IwycinJ4E1/p2/flJXeKCCStkMrEvvF8uaS2bNbvl9sZI5ui9VowP/SNvPuwSh2c
-	 8+0fWXCDgF7ZVqkiXWdFAzAcncbLr7/irtU2PxMc=
+	b=gxSREEvdokyuM4SJvoYNxRBCw5lJqnKxsVDEvWM8vPv+T0ROzMuuoUJpSVYpaS58c
+	 Y8AwYTshgbVkhx1d2g5lOXTl51tvwt0eyQioLsQNKunLt3jhQVTQkqE+Z672ZdpERL
+	 yC0g5fL8R1nNpgjHlQzpfEg3CwvoujmFLw42FFo8=
 Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
 	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20260325090031eucas1p185465a9f6f2a06a4b1d0cb2b13a92aef~gCfwMvlkl0601006010eucas1p13;
-	Wed, 25 Mar 2026 09:00:31 +0000 (GMT)
+	20260325090032eucas1p1bf0dfc6d73868e576d829d9d2208672b~gCfw1aKZu1802018020eucas1p1t;
+	Wed, 25 Mar 2026 09:00:32 +0000 (GMT)
 Received: from AMDC4653.digital.local (unknown [106.120.51.32]) by
 	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20260325090030eusmtip1a3370e43b1c03e214df9fdc959e30922~gCfvqWu7e0170001700eusmtip1S;
-	Wed, 25 Mar 2026 09:00:30 +0000 (GMT)
+	20260325090031eusmtip187bfb06cefb9c4211a0093e10bb3ac8a~gCfwSg-9U3134631346eusmtip1N;
+	Wed, 25 Mar 2026 09:00:31 +0000 (GMT)
 From: Marek Szyprowski <m.szyprowski@samsung.com>
 To: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-mm@kvack.org, iommu@lists.linux.dev
@@ -61,9 +61,9 @@ Cc: Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring
 	<oreoluwa.babatunde@oss.qualcomm.com>, Saravana Kannan
 	<saravanak@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, Robin
 	Murphy <robin.murphy@arm.com>
-Subject: [PATCH v3 2/7] of: reserved_mem: use -ENODEV instead of -ENOENT
-Date: Wed, 25 Mar 2026 10:00:18 +0100
-Message-Id: <20260325090023.3175348-3-m.szyprowski@samsung.com>
+Subject: [PATCH v3 3/7] of: reserved_mem: switch to ops based OF_DECLARE()
+Date: Wed, 25 Mar 2026 10:00:19 +0100
+Message-Id: <20260325090023.3175348-4-m.szyprowski@samsung.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260325090023.3175348-1-m.szyprowski@samsung.com>
 Precedence: bulk
@@ -73,14 +73,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20260325090031eucas1p185465a9f6f2a06a4b1d0cb2b13a92aef
+X-CMS-MailID: 20260325090032eucas1p1bf0dfc6d73868e576d829d9d2208672b
 X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20260325090031eucas1p185465a9f6f2a06a4b1d0cb2b13a92aef
+X-RootMTR: 20260325090032eucas1p1bf0dfc6d73868e576d829d9d2208672b
 X-EPHeader: CA
-X-CMS-RootMailID: 20260325090031eucas1p185465a9f6f2a06a4b1d0cb2b13a92aef
+X-CMS-RootMailID: 20260325090032eucas1p1bf0dfc6d73868e576d829d9d2208672b
 References: <20260325090023.3175348-1-m.szyprowski@samsung.com>
-	<CGME20260325090031eucas1p185465a9f6f2a06a4b1d0cb2b13a92aef@eucas1p1.samsung.com>
+	<CGME20260325090032eucas1p1bf0dfc6d73868e576d829d9d2208672b@eucas1p1.samsung.com>
 X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
@@ -94,7 +94,7 @@ X-Spamd-Result: default: False [-1.16 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[samsung.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280275-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-280278-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -107,74 +107,249 @@ X-Spamd-Result: default: False [-1.16 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:dkim,samsung.com:email,samsung.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CFFF0321CF0
+X-Rspamd-Queue-Id: AD443321D79
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-When given reserved memory region doesn't really support given node,
-return -ENODEV instead of -ENOENT. Then fix __reserved_mem_init_node()
-function to properly propagate error code different from -ENODEV instead
-of silently ignoring it.
+Move init function from OF_DECLARE() argument to the given reserved
+memory region ops structure and then pass that structure to the
+OF_DECLARE() initializer. This node_init callback is mandatory for the
+reserved mem driver. Such change makes it possible in the future to add
+more functions called by the generic code before given memory region is
+initialized and rmem object is created.
 
 Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
 ---
- drivers/of/of_reserved_mem.c | 7 ++++---
- kernel/dma/coherent.c        | 2 +-
- kernel/dma/contiguous.c      | 2 +-
- 3 files changed, 6 insertions(+), 5 deletions(-)
+ drivers/memory/tegra/tegra210-emc-table.c | 16 ++++++++--------
+ drivers/of/of_reserved_mem.c              | 17 +++++++++++++----
+ include/linux/of_reserved_mem.h           | 13 ++++++-------
+ kernel/dma/coherent.c                     | 13 +++++++------
+ kernel/dma/contiguous.c                   | 15 ++++++++-------
+ kernel/dma/swiotlb.c                      | 14 +++++++-------
+ 6 files changed, 49 insertions(+), 39 deletions(-)
 
+diff --git a/drivers/memory/tegra/tegra210-emc-table.c b/drivers/memory/tegra/tegra210-emc-table.c
+index ac1d1e13482a..4b3c478b2743 100644
+--- a/drivers/memory/tegra/tegra210-emc-table.c
++++ b/drivers/memory/tegra/tegra210-emc-table.c
+@@ -70,20 +70,20 @@ static void tegra210_emc_table_device_release(struct reserved_mem *rmem,
+ 	memunmap(timings);
+ }
+ 
+-static const struct reserved_mem_ops tegra210_emc_table_ops = {
+-	.device_init = tegra210_emc_table_device_init,
+-	.device_release = tegra210_emc_table_device_release,
+-};
+-
+ static int tegra210_emc_table_init(unsigned long node,
+ 				   struct reserved_mem *rmem)
+ {
+ 	pr_debug("Tegra210 EMC table at %pa, size %lu bytes\n", &rmem->base,
+ 		 (unsigned long)rmem->size);
+ 
+-	rmem->ops = &tegra210_emc_table_ops;
+-
+ 	return 0;
+ }
++
++static const struct reserved_mem_ops tegra210_emc_table_ops = {
++	.node_init = tegra210_emc_table_init,
++	.device_init = tegra210_emc_table_device_init,
++	.device_release = tegra210_emc_table_device_release,
++};
++
+ RESERVEDMEM_OF_DECLARE(tegra210_emc_table, "nvidia,tegra210-emc-table",
+-		       tegra210_emc_table_init);
++		       &tegra210_emc_table_ops);
 diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 6705b7afebf0..9aff460a0420 100644
+index 9aff460a0420..4dd0d6f6a4b0 100644
 --- a/drivers/of/of_reserved_mem.c
 +++ b/drivers/of/of_reserved_mem.c
-@@ -488,9 +488,10 @@ static int __init __reserved_mem_init_node(struct reserved_mem *rmem,
- {
- 	extern const struct of_device_id __reservedmem_of_table[];
- 	const struct of_device_id *i;
--	int ret = -ENOENT;
-+	int ret = -ENODEV;
+@@ -480,8 +480,16 @@ static int __init __reserved_mem_alloc_size(unsigned long node, const char *unam
+ static const struct of_device_id __rmem_of_table_sentinel
+ 	__used __section("__reservedmem_of_table_end");
  
--	for (i = __reservedmem_of_table; i < &__rmem_of_table_sentinel; i++) {
-+	for (i = __reservedmem_of_table; ret == -ENODEV &&
-+	     i < &__rmem_of_table_sentinel; i++) {
- 		reservedmem_of_init_fn initfn = i->data;
+-/*
+- * __reserved_mem_init_node() - call region specific reserved memory init code
++/**
++ * __reserved_mem_init_node() - initialize a reserved memory region
++ * @rmem: reserved_mem structure to initialize
++ * @node: FDT node describing the reserved memory region
++ *
++ * This function iterates through the reserved memory drivers and calls the
++ * node_init callback for the compatible entry matching the node. On success,
++ * the operations pointer is stored in the reserved_mem structure.
++ *
++ * Return: 0 on success, -ENODEV if no compatible match found
+  */
+ static int __init __reserved_mem_init_node(struct reserved_mem *rmem,
+ 					   unsigned long node)
+@@ -492,14 +500,15 @@ static int __init __reserved_mem_init_node(struct reserved_mem *rmem,
+ 
+ 	for (i = __reservedmem_of_table; ret == -ENODEV &&
+ 	     i < &__rmem_of_table_sentinel; i++) {
+-		reservedmem_of_init_fn initfn = i->data;
++		const struct reserved_mem_ops *ops = i->data;
  		const char *compat = i->compatible;
  
-@@ -574,7 +575,7 @@ static void __init fdt_init_reserved_mem_node(struct reserved_mem *rmem,
- 	nomap = of_get_flat_dt_prop(node, "no-map", NULL) != NULL;
+ 		if (!of_flat_dt_is_compatible(node, compat))
+ 			continue;
  
- 	err = __reserved_mem_init_node(rmem, node);
--	if (err != 0 && err != -ENOENT) {
-+	if (err != 0 && err != -ENODEV) {
- 		pr_info("node %s compatible matching fail\n", rmem->name);
- 		if (nomap)
- 			memblock_clear_nomap(rmem->base, rmem->size);
+-		ret = initfn(node, rmem);
++		ret = ops->node_init(node, rmem);
+ 		if (ret == 0) {
++			rmem->ops = ops;
+ 			pr_info("initialized node %s, compatible id %s\n",
+ 				rmem->name, compat);
+ 			break;
+diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
+index 5159938bfe03..747a1e73d5dd 100644
+--- a/include/linux/of_reserved_mem.h
++++ b/include/linux/of_reserved_mem.h
+@@ -18,19 +18,17 @@ struct reserved_mem {
+ };
+ 
+ struct reserved_mem_ops {
++	int	(*node_init)(unsigned long fdt_node, struct reserved_mem *rmem);
+ 	int	(*device_init)(struct reserved_mem *rmem,
+ 			       struct device *dev);
+ 	void	(*device_release)(struct reserved_mem *rmem,
+ 				  struct device *dev);
+ };
+ 
+-typedef int (*reservedmem_of_init_fn)(unsigned long node,
+-				      struct reserved_mem *rmem);
+-
+ #ifdef CONFIG_OF_RESERVED_MEM
+ 
+-#define RESERVEDMEM_OF_DECLARE(name, compat, init)			\
+-	_OF_DECLARE(reservedmem, name, compat, init, reservedmem_of_init_fn)
++#define RESERVEDMEM_OF_DECLARE(name, compat, ops)			\
++	_OF_DECLARE(reservedmem, name, compat, ops, struct reserved_mem_ops *)
+ 
+ int of_reserved_mem_device_init_by_idx(struct device *dev,
+ 				       struct device_node *np, int idx);
+@@ -48,8 +46,9 @@ int of_reserved_mem_region_count(const struct device_node *np);
+ 
+ #else
+ 
+-#define RESERVEDMEM_OF_DECLARE(name, compat, init)			\
+-	_OF_DECLARE_STUB(reservedmem, name, compat, init, reservedmem_of_init_fn)
++#define RESERVEDMEM_OF_DECLARE(name, compat, ops)			\
++	_OF_DECLARE_STUB(reservedmem, name, compat, ops,		\
++			 struct reserved_mem_ops *)
+ 
+ static inline int of_reserved_mem_device_init_by_idx(struct device *dev,
+ 					struct device_node *np, int idx)
 diff --git a/kernel/dma/coherent.c b/kernel/dma/coherent.c
-index 34621acbd3c5..64f9ba618e19 100644
+index 64f9ba618e19..bcdc0f76d2e8 100644
 --- a/kernel/dma/coherent.c
 +++ b/kernel/dma/coherent.c
-@@ -370,7 +370,7 @@ static const struct reserved_mem_ops rmem_dma_ops = {
+@@ -362,10 +362,6 @@ static void rmem_dma_device_release(struct reserved_mem *rmem,
+ 		dev->dma_mem = NULL;
+ }
+ 
+-static const struct reserved_mem_ops rmem_dma_ops = {
+-	.device_init	= rmem_dma_device_init,
+-	.device_release	= rmem_dma_device_release,
+-};
+ 
  static int __init rmem_dma_setup(unsigned long node, struct reserved_mem *rmem)
  {
- 	if (of_get_flat_dt_prop(node, "reusable", NULL))
--		return -EINVAL;
-+		return -ENODEV;
+@@ -388,7 +384,6 @@ static int __init rmem_dma_setup(unsigned long node, struct reserved_mem *rmem)
+ 	}
+ #endif
  
- #ifdef CONFIG_ARM
- 	if (!of_get_flat_dt_prop(node, "no-map", NULL)) {
+-	rmem->ops = &rmem_dma_ops;
+ 	pr_info("Reserved memory: created DMA memory pool at %pa, size %ld MiB\n",
+ 		&rmem->base, (unsigned long)rmem->size / SZ_1M);
+ 	return 0;
+@@ -405,5 +400,11 @@ static int __init dma_init_reserved_memory(void)
+ core_initcall(dma_init_reserved_memory);
+ #endif /* CONFIG_DMA_GLOBAL_POOL */
+ 
+-RESERVEDMEM_OF_DECLARE(dma, "shared-dma-pool", rmem_dma_setup);
++static const struct reserved_mem_ops rmem_dma_ops = {
++	.node_init	= rmem_dma_setup,
++	.device_init	= rmem_dma_device_init,
++	.device_release	= rmem_dma_device_release,
++};
++
++RESERVEDMEM_OF_DECLARE(dma, "shared-dma-pool", &rmem_dma_ops);
+ #endif
 diff --git a/kernel/dma/contiguous.c b/kernel/dma/contiguous.c
-index 81a2fa4971ee..e6fc6906b5c0 100644
+index e6fc6906b5c0..efeebda92537 100644
 --- a/kernel/dma/contiguous.c
 +++ b/kernel/dma/contiguous.c
-@@ -483,7 +483,7 @@ static int __init rmem_cma_setup(unsigned long node, struct reserved_mem *rmem)
+@@ -470,11 +470,6 @@ static void rmem_cma_device_release(struct reserved_mem *rmem,
+ 	dev->cma_area = NULL;
+ }
  
- 	if (!of_get_flat_dt_prop(node, "reusable", NULL) ||
+-static const struct reserved_mem_ops rmem_cma_ops = {
+-	.device_init	= rmem_cma_device_init,
+-	.device_release = rmem_cma_device_release,
+-};
+-
+ static int __init rmem_cma_setup(unsigned long node, struct reserved_mem *rmem)
+ {
+ 	bool default_cma = of_get_flat_dt_prop(node, "linux,cma-default", NULL);
+@@ -499,7 +494,6 @@ static int __init rmem_cma_setup(unsigned long node, struct reserved_mem *rmem)
+ 	if (default_cma)
+ 		dma_contiguous_default_area = cma;
+ 
+-	rmem->ops = &rmem_cma_ops;
+ 	rmem->priv = cma;
+ 
+ 	pr_info("Reserved memory: created CMA memory pool at %pa, size %ld MiB\n",
+@@ -511,5 +505,12 @@ static int __init rmem_cma_setup(unsigned long node, struct reserved_mem *rmem)
+ 
+ 	return 0;
+ }
+-RESERVEDMEM_OF_DECLARE(cma, "shared-dma-pool", rmem_cma_setup);
++
++static const struct reserved_mem_ops rmem_cma_ops = {
++	.node_init	= rmem_cma_setup,
++	.device_init	= rmem_cma_device_init,
++	.device_release = rmem_cma_device_release,
++};
++
++RESERVEDMEM_OF_DECLARE(cma, "shared-dma-pool", &rmem_cma_ops);
+ #endif
+diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+index 2f53d8c599d1..9a15e7231e39 100644
+--- a/kernel/dma/swiotlb.c
++++ b/kernel/dma/swiotlb.c
+@@ -1877,11 +1877,6 @@ static void rmem_swiotlb_device_release(struct reserved_mem *rmem,
+ 	dev->dma_io_tlb_mem = &io_tlb_default_mem;
+ }
+ 
+-static const struct reserved_mem_ops rmem_swiotlb_ops = {
+-	.device_init = rmem_swiotlb_device_init,
+-	.device_release = rmem_swiotlb_device_release,
+-};
+-
+ static int __init rmem_swiotlb_setup(unsigned long node,
+ 				     struct reserved_mem *rmem)
+ {
+@@ -1891,11 +1886,16 @@ static int __init rmem_swiotlb_setup(unsigned long node,
  	    of_get_flat_dt_prop(node, "no-map", NULL))
--		return -EINVAL;
-+		return -ENODEV;
+ 		return -EINVAL;
  
- 	if (!IS_ALIGNED(rmem->base | rmem->size, CMA_MIN_ALIGNMENT_BYTES)) {
- 		pr_err("Reserved memory: incorrect alignment of CMA region\n");
+-	rmem->ops = &rmem_swiotlb_ops;
+ 	pr_info("Reserved memory: created restricted DMA pool at %pa, size %ld MiB\n",
+ 		&rmem->base, (unsigned long)rmem->size / SZ_1M);
+ 	return 0;
+ }
+ 
+-RESERVEDMEM_OF_DECLARE(dma, "restricted-dma-pool", rmem_swiotlb_setup);
++static const struct reserved_mem_ops rmem_swiotlb_ops = {
++	.node_init = rmem_swiotlb_setup,
++	.device_init = rmem_swiotlb_device_init,
++	.device_release = rmem_swiotlb_device_release,
++};
++
++RESERVEDMEM_OF_DECLARE(dma, "restricted-dma-pool", &rmem_swiotlb_ops);
+ #endif /* CONFIG_DMA_RESTRICTED_POOL */
 -- 
 2.34.1
 
