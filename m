@@ -1,170 +1,158 @@
-Return-Path: <devicetree+bounces-280337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280350-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2PtKBHO1w2litgQAu9opvQ
-	(envelope-from <devicetree+bounces-280337-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:14:11 +0100
+	id MHqFAsC3w2litgQAu9opvQ
+	(envelope-from <devicetree+bounces-280350-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:24:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F2CC322B33
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:14:10 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC44322DA7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:23:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E78B8303D3BA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:14:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 10035301282A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:23:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2EC3A962C;
-	Wed, 25 Mar 2026 10:14:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X6Wi+i3D"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1651438AC7D;
+	Wed, 25 Mar 2026 10:23:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8EC939A814
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 10:14:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2480344DB9
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 10:23:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774433647; cv=none; b=cQ1Z85kxF0loptygptLJbGLRO+agCjhYiBerC/WaztX0L0DNbTDPZxuyAinqZdCCG4zIaDOoRaxcVRXbHJWHZGfUZIT+Fhb37ifd8BgtAWQBOqrxkjdw1g1eg0LnHhSvK056L3ZBuu6gVdZUR32i/FrAonQCjRgUtQFw1pbz+JY=
+	t=1774434234; cv=none; b=TRWef9bSU1HkfRBAjknpP/iS/RGy86CXKqBEkH4jxet3W4DG9d8s+waU/7nsu9XOACeRivVK1GHYQhUCXNVS/bqUpjU96SZSVoClCGVnFg1ussZomvHxPmYYLp8Kq6ZnJh+I4rulbqW7SZwaYhF+j2aIKmj3JJKtYRa9jydGHHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774433647; c=relaxed/simple;
-	bh=odJWbCaP0lmit5rLsXxRBXtkP6ZV4LNpp0nhdo89p6I=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=r9JFQONhTDDCuvmvTkaw31x/qdmcqd4yKYXBSpKJ5HhU0lHN5/hhcBV63K7H8IGfEnZi+tW1499v5BWb/R2L51jXLVse/jeFTiwGWh8b8NYnLC3f2YAMq7o9SV1jNZnnOoa51kH9Cfr4KId21WBGXEBdCZDCJy0iAHTGpxHORwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X6Wi+i3D; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1774434234; c=relaxed/simple;
+	bh=OEBtpeSr41dZ3EZGknc7L9hCWxi5F1KcZZ1/d9YvxG4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iQx7iu+/fSGh5njuYBAwvvyz5P9/MsW/1mEB+RyJ1ycYwrNA6J/3+0BGBBPfucBkiwOSsdO5BIDTsD3Y9BAOQDyiWcboe2M9H+391YNu05Sp/7l2fd6ZTwborDTNaUcBsou6AdvFAWraGwjhnpXEdmMrAEkpE8KMqyVpHU92Gpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-439b9b1900bso3342740f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 03:14:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774433644; x=1775038444; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=dFC9v3RA0+njBsaguL/yT+mILr4lqhBw+oEWCcpW5UA=;
-        b=X6Wi+i3DJPfitsgNgUCGfJwzqTR1BeZL9HBN9wBb5/pVskRv89DBmHtir5M3DEufFE
-         ApA7cZvoy2J1mbPVVjB1CK2iMhyQzNYJ7+xx0XckftRKrlTgH6j1BZbaQ4bjILL+k1Eu
-         TG3HkU+cUN0C6Ck9jdr8IXlG5/i7tODdJlAz7HdyA9ytvARpt6B8Tt0pJGmEpQndvPpj
-         p0hZaOhsFhrC9uksfPwp3ormm/ObRiA5/8S3hAv3rfw/1Akd/ddmPTdiLpV+c3ulLGef
-         lqtCHwVv1JtAleoSizJ4kyCgXsukcQxdH8Oc4g6IvqRPYtiB8GWoZ9NZXdHddj7BPEqo
-         T1fw==
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-5091d71aa11so9258481cf.1
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 03:23:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774433644; x=1775038444;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dFC9v3RA0+njBsaguL/yT+mILr4lqhBw+oEWCcpW5UA=;
-        b=NdYEL15LgqE2j2tcqL3fo/NkMdJb+sjV/Uv/POWyR2HkUL1PWpIbHdiDEj/UMRCiBg
-         sfDXNbHmSaN6SZFzozK2pT/0sXhnxnONHcR/0XSNT8vTMCA0W0OSzvtwTtFYKaLEyQEM
-         eGS5FcJ/L0zJCT3tTbAPqEt5Ya25+2DFJWNq+HwIf/QjCbv49qc8s48qun2Gje2Nf81L
-         aLmHmokjmSvdpCcjwel0pWUlbES7wZsbKCetvuNq1sknSAxv5pBZI0TRN+W9h+MLZSuP
-         INK/tu5/vJYuEZx/yluocSsC0GEKZk+qsQ0SiKhkMaHD3Mmi2+3tQt1FcSKvfNfdCbY4
-         xQmw==
-X-Forwarded-Encrypted: i=1; AJvYcCVjhc8cr/kHAPC/h5mfSx5FdLAzoWkFk+HCs8MsPvYvnYcEx7U1EWXwT3eHS0VnSMM0r3Pouq30sZ2Z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+X3zEBXvjkwVSPjKqC87+PEk6f2jZhHAd1jaj5iNNqExsTnjR
-	NGLq4W3pD2O7JL2YGmBAtu6Z52g6DIQVZbbxekXTJBeUBTonFfTBgaUQ
-X-Gm-Gg: ATEYQzyCldMA8ivQTi943YQGDe/iHt9x1IfSWBK33vgqPo9I0CgQzp7844b++LBmvnn
-	QeNDhMpskmGuNPewdJaed1KKb3M94hPe1vuwoEAMFYdYGr04v4L3Am225/OlPaZQqjKJOTNSaNt
-	4EI+WQgO1C2wdBXrxPOZXOCNv3yFklZ4EUc98gnpJaAfOxMRRq3MOlo7A3F7McUqHv4BIyBFMdL
-	HV4f35tePfN8HcjpZMj2VmHwDkqOREyb/rMcOwSNt7cnveUSBoRdIT6blXUkJz6wvtU7dWEq3OR
-	nJ86T5h2e7/Gc3VtfiUrcjp0HEckBSPm/RQFytwr07vOyMgQTRbsZTC98DpfQHOeyIBSg9qTYmO
-	g+qPQPyAwotqpH8753QfSGGr+Jk21Rv2GxvgVrIMoI1f3iRbGhuz7ntEc7fh7q4IkWKG/RLsr7l
-	URAMo2xdlrAMw24oADliLX1/kRXEksJEE=
-X-Received: by 2002:a05:6000:22c1:b0:43b:87e9:6aee with SMTP id ffacd0b85a97d-43b88a57005mr3984417f8f.54.1774433643870;
-        Wed, 25 Mar 2026 03:14:03 -0700 (PDT)
-Received: from [192.168.1.187] ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b85082842sm10732177f8f.20.2026.03.25.03.14.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Mar 2026 03:14:03 -0700 (PDT)
-Message-ID: <975f2df6090f3aea0524369ef07f2a648064f010.camel@gmail.com>
-Subject: Re: [PATCH v3 2/2] iio: dac: ad5706r: Add support for AD5706R DAC
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: "Torreno, Alexis Czezar" <AlexisCzezar.Torreno@analog.com>, Jonathan
- Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, "Hennerich, Michael"	
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, "Sa,
- Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,  "linux-iio@vger.kernel.org"	
- <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"	
- <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"	
- <linux-kernel@vger.kernel.org>
-Date: Wed, 25 Mar 2026 10:14:50 +0000
-In-Reply-To: <PH0PR03MB6351C1D87987E0533F4A07EEF149A@PH0PR03MB6351.namprd03.prod.outlook.com>
-References: <20260318-dev_ad5706r-v3-0-5d078f41e988@analog.com>
-		<20260318-dev_ad5706r-v3-2-5d078f41e988@analog.com>
-	 <20260321183909.45761710@jic23-huawei>
-	 <PH0PR03MB635133FB434235B7542770ABF149A@PH0PR03MB6351.namprd03.prod.outlook.com>
-	 <PH0PR03MB6351C1D87987E0533F4A07EEF149A@PH0PR03MB6351.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+        d=1e100.net; s=20251104; t=1774434232; x=1775039032;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HNQGjJuwM+3CX5QT0Pm/2VPyuySRhYU5/R5xPZKy+IA=;
+        b=SAVDIdIAE/U4rl8uqvNV1ddFI36gWL1De8lMgqelZ4wtDVxQ5Zkr0DEzdB7BUeARwU
+         yMPMp2pJgceW0aBWcjM7qQrbeOP8PYpQxBJVOzGSwUMHUnDPuoYlspYHt4BMajq2LosY
+         9nuj8mtlp+fqN2NAUEZt4U7DdtkrdUbxvw/YRJs5CCrbg6qZFx26Wzrit/wGcdA5RtIc
+         XMqKHj3x4ZmrrlLfN2wm7ZOL+ukw20I7K2XGQxnzV3D5VmpzcAA22ty8Gng3njB9WZ4w
+         OYr3IVcgWRXPW7UujE7vDNWxCMIaB/1lODI/wZEaq3dj4hKhZcl2xNCwnMt3R3wxChAj
+         x01w==
+X-Forwarded-Encrypted: i=1; AJvYcCVkM8n39I9/4kYmjVMYhE/JQKxsgaswzmu0YnC9ysfKr8B0rxhh11zn8MdJfqoNwmX8QMTJSeRhoj4g@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDxAmD/48ApeAmLX2CIY2wZ/3O60OT7xZD7tJh2VKWxDxTTDkU
+	FaOPqmYDa6gDX9nMou1/0knSEPGbeVgHFNqZFP8jjR6pWq+a+Y5S63bbOql04bvsASo=
+X-Gm-Gg: ATEYQzyQ09FJF9Kp8TO7KjCUsYK7carBvzMR3tAtyAKJWuKecCDqwzyX6cesu5Xr4dH
+	6OGyQx77p8yFoWQtVk1mBdNTVLkICSMqhxBw1G0iGuEkf73SNk97ukF+YQTMMwGWnMjkqFtehg+
+	IUYIHRa4A8mkKCPag9nt2ApJ6CItiyMW3j0hkL43hQGMds/7ovPR92gWcS0Bt4MzTDsjtYcgtse
+	hAOmqu+pX7lRCAjwsF7JVi9lPfODfAYE8cCnxhdJh9DSJOedKj92I82BW5ezjGvH+jts1Elx+ZV
+	HptCY1ZZu2lywqUHVL7qaCPXPZxQ1s831inmFUC1Qu2aPInH2vm7TG3DhxbGseKjzJq2lvkSsc/
+	9w54KOYulSLzB5Ru0VVG+zt+MdLRQdePR/u/gMxcg9FQr1DIws7L3zG9ZlJ1P0+oZthJu7qMXdO
+	yaxTnv1xjrBKfyDAF+8yc4ACNc3KHoqv2ClIVqso5bMH9yYP88fb7pyQnbuk0OgLjohxogQy3GB
+	9Q=
+X-Received: by 2002:ac8:7fc1:0:b0:50b:3128:9916 with SMTP id d75a77b69052e-50b6ed9c8cbmr88572181cf.18.1774434231549;
+        Wed, 25 Mar 2026 03:23:51 -0700 (PDT)
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com. [209.85.222.178])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89c85215255sm170385906d6.3.2026.03.25.03.23.51
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Mar 2026 03:23:51 -0700 (PDT)
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-8cfbbdbaf3cso88768785a.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 03:23:51 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWv0pcyK9TfzNN3qFs7kScpPegpq/Ew3oYDpgLzQVlGENAnKMUW6BU1qZE+4IP6NrqcknU9vY7M0hwL@vger.kernel.org
+X-Received: by 2002:a05:6102:2ac7:b0:600:d0f:bacf with SMTP id
+ ada2fe7eead31-603161b855fmr3344811137.11.1774433798679; Wed, 25 Mar 2026
+ 03:16:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spamd-Result: default: False [-0.66 / 15.00];
+References: <20260324225239.19136-1-fabrizio.castro.jz@renesas.com> <20260324225239.19136-2-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <20260324225239.19136-2-fabrizio.castro.jz@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 25 Mar 2026 11:16:25 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXcKBYrQ+5fP4b99zKD0q81LXeH4w6ssP+iOUQNEeB3Vw@mail.gmail.com>
+X-Gm-Features: AQROBzC-crhwu8Gg_duZpu3fi-1fiqmCCzQLU7W9KwffAtApPIHHGTBoF1MILbE
+Message-ID: <CAMuHMdXcKBYrQ+5fP4b99zKD0q81LXeH4w6ssP+iOUQNEeB3Vw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a09g056: Remove wdt{0,2,3} nodes
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-280337-lists,devicetree=lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,baylibre.com,vger.kernel.org,bp.renesas.com];
+	TAGGED_FROM(0.00)[bounces-280350-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9F2CC322B33
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,glider.be:email,mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linux-m68k.org:email]
+X-Rspamd-Queue-Id: 0AC44322DA7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 2026-03-25 at 03:13 +0000, Torreno, Alexis Czezar wrote:
-> > > > +	ret =3D spi_sync_transfer(st->spi, xfer, ARRAY_SIZE(xfer));
-> > >=20
-> > > Can you use spi_write_the_read()?
-> > > Has the added advantage that it bounces the data so doesn't need DMA =
-safe.
-> > > Can also use more meaningful types like
-> > > __be16 tx;
-> > > __be16 rx16;
-> > > u8 rx8;
-> >=20
-> > Ok, will shift to spi_write_the_read(). There was another place to use =
-this
-> > above, just trimmed it off here. Noted on the more meaningful variables=
-.
-> >=20
->=20
-> I only just checked spi_write_then_read() but, it seems this doesn't supp=
-ort
-> variable spi_speed_frequency for my future patches. Should I still use it=
- for now
-> and revert in the future?
+On Tue, 24 Mar 2026 at 23:53, Fabrizio Castro
+<fabrizio.castro.jz@renesas.com> wrote:
+> The Renesas RZ/V2N SoC (a.k.a. r9a09g056) comes with 4 CA55
+> cores and 1 CM33 core.
+>
+> While the user manual doesn't explicitly specify which cores
+> should have access to particular watchdogs, it turns out that
+> (similarly to the Renesas RZ/V2H(P)) it only makes sense for
+> Linux to use WDT1.
+>
+> Remove DT nodes wdt{0,2,3} from the RZ/V2N SoC specific dtsi
+> to make it compliant with the original design intent.
+>
+> This change is harmless as there are no users for the nodes
+> being stripped out of this device tree.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 
-There's still the open regmap discussion. Independent of that, if you can't=
- use
-spi_write_then_read(), you need to make sure the buffers you pass spi are D=
-MA safe.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.1.
 
-- Nuno S=C3=A1
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
