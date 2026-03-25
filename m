@@ -1,207 +1,280 @@
-Return-Path: <devicetree+bounces-280354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280356-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uCg3OEG7w2kKtwQAu9opvQ
-	(envelope-from <devicetree+bounces-280354-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:38:57 +0100
+	id mHGZIEy7w2kKtwQAu9opvQ
+	(envelope-from <devicetree+bounces-280356-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:39:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B44D32320D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:38:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6456323214
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:39:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C92AF3114DE5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:25:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8CCCA315F93F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:31:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 164F539FCAE;
-	Wed, 25 Mar 2026 10:25:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B7993B774E;
+	Wed, 25 Mar 2026 10:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z6eYyiES"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="U55CSvfC";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="McxXC8B1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-a7-smtp.messagingengine.com (fout-a7-smtp.messagingengine.com [103.168.172.150])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4FEC39D6F4;
-	Wed, 25 Mar 2026 10:25:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A93583B6C02;
+	Wed, 25 Mar 2026 10:31:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774434336; cv=none; b=Q8W+928+a3ZkId8gFrEg6pavrz08DWDx5WG4oFGV2nRS2EV6SiUDmBb8HnjG6y7nsAzSJoGALBFCEz/Jdrj+x3wVtBlZ5qcphNOqAkMnprEr4/46McADmvS4EwkH0t/tSOka6UAHZqZYPskzFyigV1U5GhBhoCKSKZPH1VktEJk=
+	t=1774434678; cv=none; b=qtTKVRswiyA1YbYZLaTu/SJce3OPFLeNRP0mwfESx/eAm0LevR5Nk6zg4zCncOfkKGEgKJ7/aSg5YWeLYLGUUjWSfi4MSbC480F7eJQWedkMV4kvdSm7bfjDR5zKTr10cR8v4O4ssbJ586gLdGJem+FM0RziXzJYqDJUbcFkM6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774434336; c=relaxed/simple;
-	bh=eXpDdX/kQyDxNpLURS993lHyshWENbFjP5/yo5InZe4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qXamsWUd79WmVbUTyxk2fLqyAlZFKMgRsXK1tpybrkifDGr6ZGoMln/14Ldubkr3VZVI2sbBmowJ93Gz9CECAb1AA/SKI6AewCKyQ7Xha/U7k7N4mnijO3bZ0lwb5KYG5gHjL5tzQdewOUibGpPOzNkIlEI71L6WHxYN3KAU9XE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z6eYyiES; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C03E1C2BCB4;
-	Wed, 25 Mar 2026 10:25:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774434335;
-	bh=eXpDdX/kQyDxNpLURS993lHyshWENbFjP5/yo5InZe4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Z6eYyiESvckSaaTv0qKMPPOIb+r1EBMMegIRq1Uz9cyWz89rEHUkeS+9+pBlPprzP
-	 qUXMfYeFI1q0z3JlZptW4zO7wJoDcD92GD5nMVOm5w9Q2aMH4XzTNf1YEj6wFl7aB3
-	 drgMylG372bBWhtOfUK9hTIj97S0uo0tI+BjPcTsQrnrUzIqJwOBTWO7RtHBb8K30S
-	 w7MpJh13Hy83lil0oKIm0ckEcj3dLnFKFyQHZPPqlGLJnWeul117IJEGhT6gf4sRAS
-	 fO+fF6Q68v79sy8Rr1anfosS6IJj0zqrofIma85wX1YJDI3FVG3hLfp9FMXAfVfT3V
-	 nT2D5E9WufqNg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B181BFEA824;
-	Wed, 25 Mar 2026 10:25:35 +0000 (UTC)
-From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
-Date: Wed, 25 Mar 2026 11:25:35 +0100
-Subject: [PATCH v3 2/2] arm64: dts: rockchip: add mipi csi-2 receiver nodes
- to rk3588
+	s=arc-20240116; t=1774434678; c=relaxed/simple;
+	bh=Ytgb+4Z3q1HjWEbfbi8B+K2f4PrwdXddDyYI43PpL0Q=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=QM1RRyzNtHFvn2ZG9chIhkPecWiy6rhRyN95U7ALg/gybOUzYBmWj8p2utPZ0jsOwaoOvm6bNO9cQUAXT38zr39JGFWs6ByVUGxCoEXXbL8RkA6atBSqq6Kaaca7Mz75JijMDVEZiSXkfossn+xAawg/Ci7rRaFbC7bB58MLd80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=U55CSvfC; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=McxXC8B1; arc=none smtp.client-ip=103.168.172.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+	by mailfout.phl.internal (Postfix) with ESMTP id 8E576EC007A;
+	Wed, 25 Mar 2026 06:31:15 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-04.internal (MEProxy); Wed, 25 Mar 2026 06:31:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1774434675;
+	 x=1774521075; bh=nOZsBL95nAhweeH92Dp+s8gwCED82gOoXWW4sho0wpc=; b=
+	U55CSvfC6XY4xAzmu3d81QOxz+teYemQsdjYqgshmirhrKBPvbfJyiHI6KY/gfak
+	HRdwOjYxac9Od/IQgZbvh0aaRuZzfxPAe5OxwHaINgqGug+9L+RjTvIMP9MBWn0L
+	wWEvCS0oPtA5FSo++BIb3cSTCj1sFI3Kh7K71LHr7ozp/Xw6be6l5mCgVGHf68LA
+	bU7bHBRuSmMeXmpkvH5Qv44aoJTZdNl5C9MHsAgtB7KzKClRr2n/15GnlTdcMA3n
+	bZDoR33vkAtk65Qf0E9xq6VYkgY7DVcdR6Sfg3rfNO42RwFRgfRWEDkrM/zWP4Oz
+	f9kMiuakxhbkFwkEkffIrA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1774434675; x=
+	1774521075; bh=nOZsBL95nAhweeH92Dp+s8gwCED82gOoXWW4sho0wpc=; b=M
+	cxXC8B1pZ4XhHJEJRe6XbyGjh5qfn6+y1LoL5Zmhwm2Y2jWtK8ayNKsvSFBCD2Re
+	NhkOHVLHBHxrpm5WCn11HFvu99IhHgQ4uPn5hjGJSyacBJJfB1hdX0Wtnr5jdLHp
+	On+wES7TE+DDq9bxMFXwVGk1ovH4zPNk+VyIuvMshKQCAadEzKka6Pwam0EmOcgW
+	nTum7nJRXz/s/2LS9cy8GefACy4FNdAzxhVjf1J5RS+2Kt5Ymp8HOpWZDJeLYb+O
+	lByrJ2s2FoIEkhHdUNqhaA8MNG9HHtbphZwrzO3RMafyrGItU3I4E7PjZ9oMZ/+2
+	Qvxzg12o+uEqz9yQgeSgg==
+X-ME-Sender: <xms:cbnDabo1UFdJwpbrxA42Igr1OKxwCPdt4VhsZBItEEyf9yxfS18raQ>
+    <xme:cbnDaQfQcuzSkpGf8E-FKYeOWogdqddxOVyoXVs2eFjgWS_IVR7fE6vW3qWs5dJ8_
+    rzfJCQKyY_G6pye56t7F_i82T1HZ4IScR4zEBArsqaLjhVelaidYw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdefvdegvdefucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepofggfffhvfevkfgjfhfutgfgsehtqhertdertdejnecuhfhrohhmpedftehrnhgu
+    uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
+    hrnhepkedvuefhiedtueeijeevtdeiieejfeelvefffeelkeeiteejffdvkefgteeuhffg
+    necuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtne
+    curfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnugesrghrnhgusgdruggvpdhnsggprhgt
+    phhtthhopeduiedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheprhihrghnpggthh
+    gvnhesrghsphgvvgguthgvtghhrdgtohhmpdhrtghpthhtohephihhpggthhhunhhgsegr
+    shhpvggvughtvggthhdrtghomhdprhgtphhtthhopegrnhgurhgvfiestghouggvtghonh
+    hsthhruhgtthdrtghomhdrrghupdhrtghpthhtohepmhgrtghivghjrdhlrgifnhhitgii
+    rghksehinhhtvghlrdgtohhmpdhrtghpthhtohepjhhovghlsehjmhhsrdhiugdrrghupd
+    hrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptgho
+    nhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrsehkvghrnh
+    gvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:cbnDaX2k39X3tB1eVoZdsH3a2rR-Kfzg45viTlUTMzx7dJPQRugnYQ>
+    <xmx:cbnDaSAWglBxqkW5Xfz_eloOAf5tS0s_icOs_dbVJxcvcEulqbkhaQ>
+    <xmx:cbnDaeDHpQ8mB2dETY6HX5RcLgaDNdeI7a7RDo5qbXI8rWyT7TBQiQ>
+    <xmx:cbnDaTMzT0ABjv5WXH6o-HY8dXRNkmkey-a9FMsPaGZJ94atmHtC6w>
+    <xmx:c7nDacnB8ldaU7195uwNYbGFDkaHpRwFU3uW6h3AmpoWapnIxKblE41i>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id BFFF9700065; Wed, 25 Mar 2026 06:31:13 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260305-rk3588-csi2rx-v3-2-754473981f39@collabora.com>
-References: <20260305-rk3588-csi2rx-v3-0-754473981f39@collabora.com>
-In-Reply-To: <20260305-rk3588-csi2rx-v3-0-754473981f39@collabora.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Frank Li <Frank.li@nxp.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Collabora Kernel Team <kernel@collabora.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Michael Riesch <michael.riesch@collabora.com>
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774434334; l=2503;
- i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
- bh=eOx/3+fLG0p1riU9lvyNxwYlp2uG1DyRr96Nkcj8cCQ=;
- b=88X1+5RPNBwR+aEH0UzzpSoiSmSWeI27iJXJWQAFUO8dGOUF6H/Zf+W/3eP25aduk7l+lu5ru
- yZ34GeKdCQaCpycS3z2fj6VaLtjSVGLZQN/xXBLTRgwgT7dSmVbqpio
-X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
- pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
-X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
- with auth_id=371
-X-Original-From: Michael Riesch <michael.riesch@collabora.com>
-Reply-To: michael.riesch@collabora.com
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-ThreadId: A224H4bSXjB-
+Date: Wed, 25 Mar 2026 11:30:53 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: aspeedyh <yh_chung@aspeedtech.com>,
+ "Andrew Jeffery" <andrew@codeconstruct.com.au>,
+ "Conor Dooley" <conor@kernel.org>
+Cc: "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Joel Stanley" <joel@jms.id.au>,
+ "Ryan Chen" <ryan_chen@aspeedtech.com>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+ "maciej.lawniczak@intel.com" <maciej.lawniczak@intel.com>,
+ "Mark Brown" <broonie@kernel.org>
+Message-Id: <14870d17-2471-4522-b8b5-03cb9002a4f7@app.fastmail.com>
+In-Reply-To: 
+ <KL1PR0601MB4276B5BE3B96C18E3A66AD709049A@KL1PR0601MB4276.apcprd06.prod.outlook.com>
+References: <20260313-upstream_espi-v1-0-9504428e1f43@aspeedtech.com>
+ <20260313-energy-casket-ca8adc1f1fd1@spud>
+ <23909400-4e7f-49c9-a982-14036372af98@app.fastmail.com>
+ <c3b28ee92fa46700887d0c68b23045b2418358a7.camel@codeconstruct.com.au>
+ <KL1PR0601MB4276ED93723F0B1F42349AD89041A@KL1PR0601MB4276.apcprd06.prod.outlook.com>
+ <0f7f0f96-a918-47d5-a0bd-bbde494c8fed@app.fastmail.com>
+ <KL1PR0601MB4276B5BE3B96C18E3A66AD709049A@KL1PR0601MB4276.apcprd06.prod.outlook.com>
+Subject: Re: [PATCH 0/7] soc: aspeed: Add AST2600 eSPI controller support
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.65 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[arndb.de,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[arndb.de:s=fm1,messagingengine.com:s=fm1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-280354-lists,devicetree=lfdr.de,michael.riesch.collabora.com];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-280356-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[16];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
+	FROM_NEQ_ENVFROM(0.00)[arnd@arndb.de,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[arndb.de:+,messagingengine.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	HAS_REPLYTO(0.00)[michael.riesch@collabora.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,collabora.com:email,collabora.com:replyto,collabora.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,fdd30000:email,fdc70000:email,fdd50000:email]
-X-Rspamd-Queue-Id: 5B44D32320D
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[messagingengine.com:dkim,outlook.com:email,app.fastmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arndb.de:dkim]
+X-Rspamd-Queue-Id: D6456323214
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Michael Riesch <michael.riesch@collabora.com>
+On Wed, Mar 25, 2026, at 09:41, YH Chung wrote:
+>> On Tue, Mar 17, 2026, at 09:14, YH Chung wrote:
+>> From reading the old comments that Andrew linked to at
+>>=20
+>> https://lore.kernel.org/linux-aspeed/HK0PR06MB377924CFCBFE9BD40E1C4A5=
+D91
+>> D49@HK0PR06MB3779.apcprd06.prod.outlook.com/
+>>=20
+>> I understand that the SoC has a "hardware mode" in which eSPI is
+>> directly implemented by redirecting upper-level eSPI transactions into
+>> functional blocks of the chip, while the software mode behaves like
+>> a regular SPI endpoint controller and your driver implements the
+>> same interfaces in a mix of kernel and userspace components. Can you
+>> confirm that this is a correct understanding of what the hardware
+>> does, or where I misunderstand parts?
+>
+> Broadly yes, except that the AST2600 does not operate in a single glob=
+al
+> "hardware mode" or "software mode". Instead, some backends in the eSPI=
+ target
+> controller support per-function HW/SW mode selection.
+>
+> Depending on that function-specific setting, the controller either for=
+wards a
+> received transaction directly to the corresponding hardware block or t=
+raps it
+> for software handling instead.
+>
+> This mechanism exists because some backend blocks include their own ha=
+rdware
+> filtering, but not all request types could be validated generically in
+> hardware. For example, the LPC bridge can reject illegal requests. In =
+some
+> cases, blindly forwarding host requests to the target block would also=
+ have
+> security implications.
+>
+> The channel/backend mapping on AST2600 can be summarized as:
+>
+> eSPI
+> =E2=94=9C=E2=94=80=E2=94=80 Peripheral
+> =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 Memory (HW mode only)
+> =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 LPC bridge (HW mode only)
+> =E2=94=9C=E2=94=80=E2=94=80 Virtual Wire
+> =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 GPIO (HW/SW mode selection)
+> =E2=94=9C=E2=94=80=E2=94=80 Out-of-Band (SW mode only)
+> =E2=94=94=E2=94=80=E2=94=80 Flash
+>    =E2=94=94=E2=94=80=E2=94=80 Storage controller (HW/SW mode selectio=
+n)
+>
+> From the link thread, what Jeremy mentioned is the GPIO HW/SW mode for=
+ CH1,
+> which determines whether the host can directly control the correspondi=
+ng BMC
+> GPIO output, or whether BMC software can inspect and decide whether to=
+ act on
+> that request.
+>
+> Another example is the Target Attached Flash Sharing (TAFS) defined by=
+ the
+> eSPI specification that allows BMC to share its storage with the host.
+>
+> In hardware mode, the eSPI Target Device controller routes the request
+> directly to a predefined storage controller on AST2600.
+> In software mode, it raises an interrupt and lets software handle the
+> transaction instead.
+>
+> So I would not describe the AST2600 eSPI block as being globally in ei=
+ther
+> "hardware mode" or "software mode".
+> That choice is made per backend function, and some backend functions d=
+o not
+> implement such a switch at all.
 
-The Rockchip RK3588 features six MIPI CSI-2 receiver units:
- - MIPI0: connected to MIPI DCPHY0 (not supported)
- - MIPI1: connected to MIPI DCPHY1 (not supported)
- - MIPI2: connected to MIPI DPHY0
- - MIPI3: connected to MIPI DPHY0-1 (not supported)
- - MIPI4: connected to MIPI DPHY1
- - MIPI5: connected to MIPI DPHY1-1 (not supported)
-As the MIPI DCPHYs as well as the split DPHY mode of the DPHYs
-are not yet supported, add only the device tree nodes for the
-MIPI2 and MIPI4 units.
+I see, thanks for the detailed explanation! Two follow-up questions:
 
-Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 52 +++++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
+- For the HW-mode-only peripherals (memory, LPC), is there any
+  driver interaction at all for setting it up, or is this completely
+  transparent to Linux running on the BMC?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index 7fe9593d8c19..6c593b0255c3 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -1430,6 +1430,58 @@ av1d: video-codec@fdc70000 {
- 		resets = <&cru SRST_A_AV1>, <&cru SRST_P_AV1>, <&cru SRST_A_AV1_BIU>, <&cru SRST_P_AV1_BIU>;
- 	};
- 
-+	csi2: csi@fdd30000 {
-+		compatible = "rockchip,rk3588-mipi-csi2", "rockchip,rk3568-mipi-csi2";
-+		reg = <0x0 0xfdd30000 0x0 0x10000>;
-+		interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "err1", "err2";
-+		clocks = <&cru PCLK_CSI_HOST_2>;
-+		phys = <&csi_dphy0>;
-+		power-domains = <&power RK3588_PD_VI>;
-+		resets = <&cru SRST_P_CSI_HOST_2>;
-+		status = "disabled";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			csi2_in: port@0 {
-+				reg = <0>;
-+			};
-+
-+			csi2_out: port@1 {
-+				reg = <1>;
-+			};
-+		};
-+	};
-+
-+	csi4: csi@fdd50000 {
-+		compatible = "rockchip,rk3588-mipi-csi2", "rockchip,rk3568-mipi-csi2";
-+		reg = <0x0 0xfdd50000 0x0 0x10000>;
-+		interrupts = <GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "err1", "err2";
-+		clocks = <&cru PCLK_CSI_HOST_4>;
-+		phys = <&csi_dphy1>;
-+		power-domains = <&power RK3588_PD_VI>;
-+		resets = <&cru SRST_P_CSI_HOST_4>;
-+		status = "disabled";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			csi4_in: port@0 {
-+				reg = <0>;
-+			};
-+
-+			csi4_out: port@1 {
-+				reg = <1>;
-+			};
-+		};
-+	};
-+
- 	vop: vop@fdd90000 {
- 		compatible = "rockchip,rk3588-vop";
- 		reg = <0x0 0xfdd90000 0x0 0x4200>, <0x0 0xfdd95000 0x0 0x1000>;
+- For the other devices running in SW mode, is the interface that the
+  driver sees abstract in the sense that the same low-level code
+  is shared for all of them, or are these still separate functional
+  blocks that each need their own register-level interface?
 
--- 
-2.39.5
+>> For the higher-level interfaces (flash, gpio, ...), I don't think
+>> there is any consensus yet about how this should be done, but again
+>> I think this won't be drivers/soc but instead something more
+>> generic.
+>
+> For the flash-related interface, would it make sense to follow the
+> configuration model used by the USB gadget mass-storage function, and =
+expose
+> the backing storage selection through configfs?=20
+>
+> For the attributes, perhaps the only backing storage object and read-o=
+nly
+> flag would be required in our case.
+>
+> For the Virtual Wire GPIO, we think GPIO subsystem may be leveraged he=
+re,
+> though some corner cases may not map cleanly to a typical GPIO control=
+ler
+> model.
+>
+> For the Out-of-band channel, since the eSPI spec models it for tunnele=
+d SMBus
+> packets, we may want to integrate it with the kernel's MCTP stack if t=
+hat is
+> a suitable fit.
 
+These all seem to be viable options, but I still think we should
+focus on agreeing on a design for the low-level hardware interface
+and whether this can or should be abstracted between SoC vendor
+specific drivers before trying to solve the user interface side.
 
+      Arnd
 
