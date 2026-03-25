@@ -1,358 +1,275 @@
-Return-Path: <devicetree+bounces-280580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280587-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gI9NJcj6w2k/vQQAu9opvQ
-	(envelope-from <devicetree+bounces-280580-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:10:00 +0100
+	id MMR3JfH6w2k/vQQAu9opvQ
+	(envelope-from <devicetree+bounces-280587-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:10:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9EBE327907
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:09:59 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A89832793C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:10:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 19AE732DC876
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 14:53:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C30B6331D42A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 14:59:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1843E9F97;
-	Wed, 25 Mar 2026 14:47:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26E5D3FEB1E;
+	Wed, 25 Mar 2026 14:51:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0B8F3E4C86;
-	Wed, 25 Mar 2026 14:47:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 023BA407102
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 14:51:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774450047; cv=none; b=usREeBPW15bBM8nD4+VnH4QLe4P9HEKX7Wu3M6L55N+uR4Rln5XsVd8Oq25HX7Nhci8bUhw6uo5p2Th6DUAGdvTY4IX05OA1qDYiguTLJhyIvMUnW+JNMDuEfW4kX/ASeShYtPuOO1Txvj4H8htpbRjvsJO1JqV9IFIkEVRGtwg=
+	t=1774450299; cv=none; b=jeW1OlL7xQFWQ5rd2wSvjLPj8zJuhzPunLvovIHvLpVb1BMNLBd9ph0bgLA7ONVviLyZvX1B9jQPsitWoQ+UuKH1jHvKH+RB1sX5SPNNzolsehtaPvjQxaSIXmCzH9qaRROQf3z8GpxZJYM1IiBh2Ps81y0Cq7Obx49ZfAKuqsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774450047; c=relaxed/simple;
-	bh=/C6cB0+Xx+NDl68yR+mJudD4MBpP7mbYmW9+uHqkPW8=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZFEUYOuYAPX2a+3l5TirGUyIdrCs0B4n17z6V0Oty9QNdGQ3pthUtMl5CtxDCtTqcQ5TOWZpgE7UMO+6+PakqjKJyiFP7qEY9SO4oy9wYIiEpu+ZPM7ruTcH2bBqsMXYdJtXdAIw506QTkyzzfrNw2is/2tGiu3e/PM/rosJfNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.224.150])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4fgqVY3yYLzHnGj3;
-	Wed, 25 Mar 2026 22:46:45 +0800 (CST)
-Received: from dubpeml500005.china.huawei.com (unknown [7.214.145.207])
-	by mail.maildlp.com (Postfix) with ESMTPS id 123EE40571;
-	Wed, 25 Mar 2026 22:47:21 +0800 (CST)
-Received: from localhost (10.203.177.15) by dubpeml500005.china.huawei.com
- (7.214.145.207) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Wed, 25 Mar
- 2026 14:47:20 +0000
-Date: Wed, 25 Mar 2026 14:47:19 +0000
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Siratul Islam <email@sirat.me>
-CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<jic23@kernel.org>, <dlechner@baylibre.com>, <nuno.sa@analog.com>,
-	<andy@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>, Andy Shevchenko
-	<andriy.shevchenko@intel.com>
-Subject: Re: [PATCH v7 2/2] iio: proximity: add driver for ST VL53L1X ToF
- sensor
-Message-ID: <20260325144719.00005a92@huawei.com>
-In-Reply-To: <20260325063254.18062-3-email@sirat.me>
-References: <20260325063254.18062-1-email@sirat.me>
-	<20260325063254.18062-3-email@sirat.me>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1774450299; c=relaxed/simple;
+	bh=AAt/uvenKGL+Ryz2b/3L5NYQML3KEDJotNpayoZXI6Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VShCGdXXlybcVjsB6UaFPKKzjEMLkM1Qcl9L5qZMWc6Uf900JJaWgfpsY5jbSQTkVB/7uKyJiDPrcT2i1CKLys2yiBZ/yUh+Au7XudL3Q6Y75BGLyNhzoaelrZEnJlWYJ/P437YetqAwJDx6EilFRqb+0vgZ6QFmu722U3hsH2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=peter.mobile.pengutronix.de)
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <s.pueschel@pengutronix.de>)
+	id 1w5PZS-00050C-L6; Wed, 25 Mar 2026 15:50:58 +0100
+From: =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
+Subject: [PATCH v4 00/27] media: platform: rga: Add RGA3 support
+Date: Wed, 25 Mar 2026 15:50:31 +0100
+Message-Id: <20260325-spu-rga3-v4-0-e90ec1c61354@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500010.china.huawei.com (7.191.174.240) To
- dubpeml500005.china.huawei.com (7.214.145.207)
-X-Spamd-Result: default: False [1.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[huawei.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22Qy26DMBBFfwV5XbfjBxhY9T+qLAyeEC94xDaIK
+ Mq/dyCKiNQux5pzxvfeWcTgMbI6u7OAi49+HGjQHxlrL3bokHtHM5MgcwEgeJxmHjqreGkBEET
+ ZCAmM1qeAZ7/uqp8TzRcf0xhuu3kR2+tLYg7JIjhwVVhX5rkBDfJ7wqGbUxgHv346ZJtpkQctQ
+ b3RkuiqrGxhKm3ORvxLqxddgJDvtxXRxjTSKChMg80f+vGMFfA6UzHpme3opc72LwlZ7FI/9v3
+ s0tYCbx20udS6NdrWlJ5EjY3IW9rxqc56dN5+DbgmuvL4BeQe0kOGAQAA
+X-Change-ID: 20251001-spu-rga3-8a00e018b120
+To: Jacob Chen <jacob-chen@iotwrt.com>, 
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, kernel@pengutronix.de, nicolas@ndufresne.ca, 
+ sebastian.reichel@collabora.com, 
+ =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Michael Olbrich <m.olbrich@pengutronix.de>
+X-Mailer: b4 0.15.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-280580-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-280587-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonathan.cameron@huawei.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[s.pueschel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sirat.me:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,huawei.com:mid]
-X-Rspamd-Queue-Id: C9EBE327907
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:email,pengutronix.de:mid]
+X-Rspamd-Queue-Id: 1A89832793C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 25 Mar 2026 12:32:23 +0600
-Siratul Islam <email@sirat.me> wrote:
+This series adds support for the Raster Graphic Acceleration 3 (RGA3)
+peripheral, which is included in the RK3588 SoC. The RK3588
+contains one RGA2-Enhanced core (which is already implemented by the
+rockchip rga driver) and two independent RGA3 cores. They feature
+a similar functionality of scaling, cropping and rotating of up to two input
+images into one output image. Key differences of the RGA3 are:
 
-> Add support for the STMicroelectronics VL53L1X Time-of-Flight
-> ranging sensor with I2C interface.
-> 
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-> Signed-off-by: Siratul Islam <email@sirat.me>
+- supports 10bit YUV output formats
+- supports 8x8 tiles and FBCD as inputs and outputs
+- supports BT2020 color space conversion
+- max output resolution of (8192-64)x(8192-64)
+- MMU can map up to 32G DDR RAM
+- fully planar formats (3 planes) are not supported
+- max scale up/down factor of 8 (RGA2 allows up to 16)
 
-Hi Siratul,
+This patch set adds support for one RGA3 core in the existing
+rga m2m driver. The feature set of the PR is limited to scaling,
+format and color space conversions between common 8bit RGB/YUV formats.
+This already allows a practical usage of the RGA3.
 
-I used this as a bit of an experiment as you'd +CC lkml and took a close
-read of the feedback google's AI bot produced.
-https://sashiko.dev/#/patchset/20260325063254.18062-1-email%40sirat.me
+During testing it has been noted that the scaling of the hardware is
+slightly incorrect. A test conversion of 128x128 RGBA to 256x256 RGBA
+causes a slight shift to the bottom right. The shift is suddle, as it seems
+that the image is shifted by about 2px down and right and then cropped to
+it's final size (probably caused by the source sampling).
+The same behavior has been observed when using the vendor driver
+with the librga library.
 
-Be very careful when considering the output. There are some things
-in here that are not true, or we don't generally defend against (like the
-interrupt type related comments).
+Furthermore comparing the RGA3 conversion with the GStreamer
+videoconvertscale element, the chroma-site is different. A quick testing
+didn't reveal a chroma-site that creates the same image with the
+GStreamer Element. Also when converting from YUV to RGB the RGB values
+differ by 1 or 2. This doesn't seem to be a colorspace conversion issue
+but rather a slightly different precision on the calculation.
 
-The iio_trigger_get() is (I think) a more general problem so ignore that
-for your driver - will just be a tiny memory leak and stop the
-module being easily unloaded.  I'll take a look at that one on a more general
-basis. 
+This was tested on a Radxa Rock 5T. Around 80 fps were measured when
+scaling and converting from RGBA 480x360 to NV12 3840x2160 in a single
+gstreamer pipeline. Format conversions were tested with a single
+gstreamer pipeline converting a fixed input to a given input format.
+Afterwards it's piped through the RGA3 and the result is converted back
+to rgba and compared against a given hash value (generated after
+comparing the output manually to the input).
 
-The regmap one is where these bots excel in that they sometimes go deeper
-in analysis than a typical person focused on one driver.
+The patchset also fixes the failing v4l2-compliance tests due to the
+missing colorimetry propagation from output to capture:
 
-The stuff on using standard devm_ wasn't from the bot and I think will make
-things rather simpler.
+  v4l2-compliance 1.32.0, 64 bits, 64-bit time_t
+  ...
+  	Card type        : rga2
+  ...
+  Total for rockchip-rga device /dev/video0: 48, Succeeded: 48, Failed: 0, Warnings: 0
 
-Thanks,
+  v4l2-compliance 1.32.0, 64 bits, 64-bit time_t
+  ...
+	Card type        : rga3
+  ...
+  Total for rockchip-rga device /dev/video1: 48, Succeeded: 48, Failed: 0, Warnings: 0
 
-Jonathan
+To distinguish the RGA2 core from the RGA3 cores the Card type is set
+accordingly. Scheduling operations between both RGA3 cores to double
+the possible frame rate might be a future improvement. Until then
+additional RGA3 cores are disabled to only provide one video device to
+the user space. This prevents a potential ABI breakage when multi core
+support is implemented.
 
+The DTS change at the end is just as a preview, as this series targets
+media/next. After it's merged the DTS change will be sent as a new
+patch not targeting media.
 
-> ---
->  MAINTAINERS                         |   1 +
->  drivers/iio/proximity/Kconfig       |  15 +
->  drivers/iio/proximity/Makefile      |   1 +
->  drivers/iio/proximity/vl53l1x-i2c.c | 795 ++++++++++++++++++++++++++++
->  4 files changed, 812 insertions(+)
->  create mode 100644 drivers/iio/proximity/vl53l1x-i2c.c
-> 
+Patch 1 updates the dtb bindings doc to support the RGA3
+Patch 2-5 extend v4l2 common functionality
+Patch 6-9 are general cleanups
+Patch 10-25 prepare the rga driver for the RGA3
+Patch 26 adds RGA3 support to the rga driver
+Patch 27 dtsi additions for the RGA3
 
-> diff --git a/drivers/iio/proximity/vl53l1x-i2c.c b/drivers/iio/proximity/vl53l1x-i2c.c
-> new file mode 100644
-> index 000000000000..085bff04f5d9
-> --- /dev/null
-> +++ b/drivers/iio/proximity/vl53l1x-i2c.c
+Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
+---
+Changes in v4:
+- Add Nicolas to Cc for potential reviews and Sebastian for the nice
+  RK3588 mainline status table
+- Improved single memory plane y stride alignment adjustments
+- Adjusted scaling inaccuracy description
+- Dropped required iommu property from the binding yaml
+- Fixed binding yaml indentation
+- Link to v3: https://lore.kernel.org/r/20260127-spu-rga3-v3-0-77b273067beb@pengutronix.de
 
-> +static void vl53l1x_power_off(void *priv)
+Changes in v3:
+- Add iommus property to the dtb bindings documentation
+- Drop interrupt name from the dtsi
+- Added v4l2_format_info for missing 2 byte RGB formats
+- Fixed incorrect dt node reference in the binding patch commit message
+- Removed now unused depth member of rga_frame
+- Replaced RGA3 semi planar bool with v4l2_format_info check
+- Calculated x_div/y_div variables instead of storing them
+- Limited width/height to even values for YUV formats
+- Support all 4 CSC modes: BT601L, BT601F, BT709L, BT2020L
+- Note slightly incorrect scaling by the hardware
+- Fix stride alignment to bytes
+- Use early returns in rga-buf init/cleanup
+- Fix incorrect devm_clk_bulk_get with devm_clk_bulk_get_all
+- Don't enforce max scaling factor in try_fmt (only in s_fmt)
+- Merge single register editing RGA3 functions into the other functions
+- Link to v2: https://lore.kernel.org/r/20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de
 
-See below. I'm not seeing a reason we need to handle this
-in a driver specific way.
+Changes in v2:
+- Removed overclocking (assigning higher clock speeds in the dts)
+- Disable the second RGA3 core
+- Improved RGA3 feature documentation and code comments
+- Don't write the whole command buffer in each frame
+- Don't announce CIDs for the RGA3 and error out on s_selection
+- Check the max scaling factor of 16 (RGA2) and 8 (RGA3)
+- Move stride alignment and alpha checking to v4l2 common
+- Register the interrupt as shared for an external IOMMU
+- Add IOMMU patch as dependency to fix sporadic hangups
+- Link to v1: https://lore.kernel.org/r/20251007-spu-rga3-v1-0-36ad85570402@pengutronix.de
 
-> +{
-> +	struct vl53l1x_data *data = priv;
-> +
-> +	reset_control_assert(data->xshut_reset);
-> +	regulator_disable(data->vdd_supply);
-> +}
-> +
-> +static int vl53l1x_power_on(struct vl53l1x_data *data)
-> +{
-> +	int ret;
-> +
-> +	ret = regulator_enable(data->vdd_supply);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = reset_control_deassert(data->xshut_reset);
-> +	if (ret) {
-> +		regulator_disable(data->vdd_supply);
-> +		return ret;
-> +	}
-> +	/*
-> +	 * 1.2 ms max boot duration.
-> +	 * Datasheet Section 3.6 "Power up and boot sequence".
-> +	 */
-> +	fsleep(1200);
-> +
-> +	return 0;
-> +}
-> +
+---
+Michael Olbrich (1):
+      media: rockchip: rga: share the interrupt when an external iommu is used
 
-> +
-> +static int vl53l1x_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct vl53l1x_data *data;
-> +	struct iio_dev *indio_dev;
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(client->adapter,
-> +				     I2C_FUNC_SMBUS_READ_I2C_BLOCK |
-> +				     I2C_FUNC_SMBUS_BYTE_DATA))
-Sashiko had an interesting comment on this...
-https://sashiko.dev/#/patchset/20260325063254.18062-1-email%40sirat.me
-(note in general be careful with this tools feedback, it has a significant
-false positive rate!)
+Sven Püschel (26):
+      media: dt-bindings: media: rockchip-rga: add rockchip,rk3588-rga3
+      media: v4l2-common: sort RGB formats in v4l2_format_info
+      media: v4l2-common: add missing 1 and 2 byte RGB formats to v4l2_format_info
+      media: v4l2-common: add has_alpha to v4l2_format_info
+      media: v4l2-common: add v4l2_fill_pixfmt_mp_aligned helper
+      media: rockchip: rga: use clk_bulk api
+      media: rockchip: rga: use stride for offset calculation
+      media: rockchip: rga: remove redundant rga_frame variables
+      media: rockchip: rga: announce and sync colorimetry
+      media: rockchip: rga: move hw specific parts to a dedicated struct
+      media: rockchip: rga: avoid odd frame sizes for YUV formats
+      media: rockchip: rga: calculate x_div/y_div using v4l2_format_info
+      media: rockchip: rga: move cmdbuf to rga_ctx
+      media: rockchip: rga: align stride to 4 bytes
+      media: rockchip: rga: prepare cmdbuf on streamon
+      media: rockchip: rga: check scaling factor
+      media: rockchip: rga: use card type to specify rga type
+      media: rockchip: rga: change offset to dma_addresses
+      media: rockchip: rga: support external iommus
+      media: rockchip: rga: remove size from rga_frame
+      media: rockchip: rga: remove stride from rga_frame
+      media: rockchip: rga: move rga_fmt to rga-hw.h
+      media: rockchip: rga: add feature flags
+      media: rockchip: rga: disable multi-core support
+      media: rockchip: rga: add rga3 support
+      arm64: dts: rockchip: add rga3 dt nodes
 
-"Does this check needlessly reject pure I2C adapters?
-The driver configures regmap with reg_bits = 16, which forces regmap to use
-raw I2C transfers requiring I2C_FUNC_I2C. Checking for SMBUS_READ_I2C_BLOCK
-might prevent the driver from loading on pure I2C adapters that can perfectly
-support the device via regmap."
+ .../devicetree/bindings/media/rockchip-rga.yaml    |  10 +-
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |  44 ++
+ drivers/media/platform/rockchip/rga/Makefile       |   2 +-
+ drivers/media/platform/rockchip/rga/rga-buf.c      |  61 ++-
+ drivers/media/platform/rockchip/rga/rga-hw.c       | 358 +++++++++----
+ drivers/media/platform/rockchip/rga/rga-hw.h       |  14 +-
+ drivers/media/platform/rockchip/rga/rga.c          | 577 ++++++++++-----------
+ drivers/media/platform/rockchip/rga/rga.h          |  85 +--
+ drivers/media/platform/rockchip/rga/rga3-hw.c      | 507 ++++++++++++++++++
+ drivers/media/platform/rockchip/rga/rga3-hw.h      | 192 +++++++
+ drivers/media/v4l2-core/v4l2-common.c              | 128 +++--
+ include/media/v4l2-common.h                        |   6 +
+ 12 files changed, 1480 insertions(+), 504 deletions(-)
+---
+base-commit: 0e2c4117c3512cf6b8f54c2c3d37564bfa3ccd67
+change-id: 20251001-spu-rga3-8a00e018b120
+prerequisite-change-id: 20251126-spu-iommudtefix-cd0c5244c74a:v1
+prerequisite-patch-id: 10c6c977c0f71400931941b42da73adcaf63e810
 
-By by reading the comment is actually wrong, however... It did made me look.
-With regbits == 16 & valbits == 8
-The regmap code checks for I2C_FUNC_SMBUS_I2C_BLOCK
-(and if not present fails).
-
-So the I2C_FUNC_SMBUS_BYTE_DATA seems unused and
-a broader check on both read and write versions of I2C_BLOCK seems
-appropriate.
-
-However, not a lot of point in checking it at all given regmap does
-so for us. So I'd drop this check.
-
-If anyone is bored, we should probably take a look to see if there
-are other redundant (or wrong) calls for this.
-
-There is another point about trigger references that might be
-correct (but not unique to this driver so ignore it).  That warrants
-some investigation - I'll take a look in near future.
-
-> +		return -EOPNOTSUPP;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	data = iio_priv(indio_dev);
-> +	data->irq = client->irq;
-> +
-> +	data->regmap = devm_regmap_init_i2c(client, &vl53l1x_regmap_config);
-> +	if (IS_ERR(data->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(data->regmap),
-> +				     "regmap initialization failed\n");
-> +
-> +	data->vdd_supply = devm_regulator_get(dev, "vdd");
-
-I'm not sure if we had this discussion already but why do you need to keep vdd_supply
-around?  Why not
-	devm_regulator_get_enabled()?
-
-Given you turn it on before reset and off afterwards and otherwise don't touch
-it should end up as effectively the same as you have here.
-
-I was expecting to see use of the regulator elsewhere, but seems not for now.
-Note that if you do change this then rename the helpers to reflect they are
-only doing reset handling.
-
-
-> +	if (IS_ERR(data->vdd_supply))
-> +		return dev_err_probe(dev, PTR_ERR(data->vdd_supply),
-> +				     "Unable to get VDD regulator\n");
-> +
-> +	/*
-> +	 * XSHUT held low puts the chip in hardware standby. All register
-> +	 * state is lost on de-assert so this is functionally a reset.
-> +	 */
-> +	data->xshut_reset = devm_reset_control_get_optional_exclusive(dev, NULL);
-
-If you can switch to devm_regulator_get_enabled() this can I think be
-	ret = devm_reset_control_get_optional_exclusive_deasserted()
-removing the need to register the action to power off.
-
-If you do that remember we still need the sleep after this call.
-
-> +	if (IS_ERR(data->xshut_reset))
-> +		return dev_err_probe(dev, PTR_ERR(data->xshut_reset),
-> +				     "Cannot get reset control\n");
-> +
-> +	ret = vl53l1x_power_on(data);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to power on the chip\n");
-> +
-> +	ret = devm_add_action_or_reset(dev, vl53l1x_power_off, data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = vl53l1x_chip_init(data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = vl53l1x_set_distance_mode(data, VL53L1X_LONG);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* 50 ms timing budget (per ST Ultra Lite Driver) */
-> +	ret = vl53l1x_set_timing_budget(data, 50);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* 50 ms inter-measurement period (per ST Ultra Lite Driver) */
-> +	ret = vl53l1x_set_inter_measurement_ms(data, 50);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * The hardware only supports "autonomous" continuous ranging mode.
-> +	 * Start ranging here and leave it running for the lifetime of
-> +	 * the device. Both direct reads and the buffer path rely on this.
-> +	 */
-> +	ret = vl53l1x_start_ranging(data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_add_action_or_reset(dev, vl53l1x_stop_ranging_action, data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->name = "vl53l1x";
-> +	indio_dev->info = &vl53l1x_info;
-> +	indio_dev->channels = vl53l1x_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(vl53l1x_channels);
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	if (client->irq) {
-> +		struct iio_trigger *trig;
-> +
-> +		init_completion(&data->completion);
-> +
-> +		trig = devm_iio_trigger_alloc(dev, "%s-dev%d", indio_dev->name,
-> +					      iio_device_id(indio_dev));
-> +		if (!trig)
-> +			return -ENOMEM;
-> +
-> +		trig->ops = &vl53l1x_trigger_ops;
-> +		iio_trigger_set_drvdata(trig, indio_dev);
-> +		ret = devm_iio_trigger_register(dev, trig);
-> +		if (ret)
-> +			return ret;
-> +
-> +		indio_dev->trig = iio_trigger_get(trig);
-
-So Sashiko had a comment on this that has me thinking.  Don't bother fixing it
-in this driver as it true it's a common bug (and leaks a trigger structure).
-I'll look into it.
-
-
-> +
-> +		ret = vl53l1x_configure_irq(dev, client->irq, indio_dev);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
-> +						      &vl53l1x_trigger_handler,
-> +						      NULL);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-
+Best regards,
+--  
+Sven Püschel <s.pueschel@pengutronix.de>
 
 
