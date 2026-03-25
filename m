@@ -1,156 +1,132 @@
-Return-Path: <devicetree+bounces-280696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280698-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id APmLFiYjxGmZwgQAu9opvQ
-	(envelope-from <devicetree+bounces-280696-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 19:02:14 +0100
+	id uLmII48jxGljwwQAu9opvQ
+	(envelope-from <devicetree+bounces-280698-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 19:03:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB9A832A3BC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 19:02:13 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7227932A433
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 19:03:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 88B113053757
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 17:57:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 982F23005319
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 18:03:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50432219A8A;
-	Wed, 25 Mar 2026 17:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B127413236;
+	Wed, 25 Mar 2026 18:03:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gbDVLN8F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cgbXDzFK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29C003A6EF4;
-	Wed, 25 Mar 2026 17:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06B78413227;
+	Wed, 25 Mar 2026 18:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774461438; cv=none; b=K+v7Jtr/sXPwPibAmZsNrW6I8Lo8ONdQtcxW4HLvqdWXHBbewmBaQSFLi360L6pvl5fNwZdf1oeTW+IYvet2oWGq6Q8n57oSQhi381iijvaW9jyB2LLqXVCUXPbpxJoCM1PKCTJXOnoFXolX4vZBMc1C/aoyiB4djUpJqFe3fy4=
+	t=1774461818; cv=none; b=PQeQiqLu6fXFYvZJZoPMGkbRQggcNh4mZxAsJl7dgOAeDRvtJIkorlPuugn2He2Uv9YRIqEyEeVXnaEq3BeWASrFyjqMaC47sz9t/s15JkX0RXYx3MMaRJ3XVUsDabYb+maAFq3z4LJJ4rjE4KSWzMEyE5DeXFxNZ69l5lKK5PY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774461438; c=relaxed/simple;
-	bh=qsTEgT/W9QOLmt4TqjUxrRDazuJnu2x+qBXV69+B19g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Xr7dpgdmKd0hjs+7Kh/xRsUlbcvhwJgIK0zz7CxBq7hlBl2w3bBQ9nrpv0tT2PTyWDixIzL1nzNsdMItJ5ba1hxCaAPg4vSZi0lwCk9Jr85lTglwaf3XT+Ai+KCuwf58thzg7Rkbr3OoKZFrLa+gB63EgXR+8f2lLGuwNaJghP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gbDVLN8F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D9C0CC4AF0D;
-	Wed, 25 Mar 2026 17:57:17 +0000 (UTC)
+	s=arc-20240116; t=1774461818; c=relaxed/simple;
+	bh=z+3MKcnaVgxUUEFrOwwtAjO55jdTD/Aap52HWyvjU10=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LO1xr1L0aAwIHfowoBnCGlpvlJI3JDi6kJOuTX27cI52nZ9BJtfBqgEfK5+n4yNwSQ73DK+/+KgiHANxhOuVnoHrj3xYMTklDU+Sj5cA6yLK/3ySrMy7mI8R2RZ8/xdH2YIjwcqY8hqxtq7tY0LpRozz4iMEgAWXDw+BMM5L74g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cgbXDzFK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E8DAC4CEF7;
+	Wed, 25 Mar 2026 18:03:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774461437;
-	bh=qsTEgT/W9QOLmt4TqjUxrRDazuJnu2x+qBXV69+B19g=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=gbDVLN8Fpu3Y7PeQcKnWHkJUTKf7w+RjrgOa4GMGSBzumrQ3tRCcOw1dTcUkw+RJ9
-	 kNnF5Qz3on9ZZ4/8YlCe8Kej/Q6SkMbd/NoO7lntP9qggA2ZK0IaV+/8LTqcLfez7L
-	 bqcvltmDsasyZiAyCULo1aqYerh7lQTGrHCX4n1HC9OJ80YOmJLkkAgrehPhoTFl/H
-	 xod+SHD842T1SzWIrradQuinkf1r1q61sFnju1crX2dfDXVk7i/yy7e+xTNNTanYnf
-	 dQ/15NmiF0wufdYttkfRec5qB7cWXyXpKQons7uHXbzHn2+MfnjnDgqs8zSwtZFBED
-	 27V0cw/Rumj1Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CACA3109C04D;
-	Wed, 25 Mar 2026 17:57:17 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Wed, 25 Mar 2026 18:57:17 +0100
-Subject: [PATCH v4 3/3] arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable
- ath10k host-cap skip quirk
+	s=k20201202; t=1774461817;
+	bh=z+3MKcnaVgxUUEFrOwwtAjO55jdTD/Aap52HWyvjU10=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cgbXDzFKuEwm0erfN2A14a6MqFPpdOFQ+JZrgxmk4/cS1JbAJDF8DZga7kHsEW5bZ
+	 zDYC9Jir/eUEG4lbfiVZe4uP96ssgyIY6mC9r3aGjmXQ+dEfU+oewxtydbBUifUGEg
+	 qTuY79FjkjNFPwzlz+1D0lSMPKb0UQ/USGXaohr0W/6ZhTtG4INz1/q9/UDHusbsr+
+	 tfkSjgKZdLFKfiygvCDhjoEEIJ4WTeYnnVLTNA2ZfTTtVLbiBJUxuK0ALluwhxtlfH
+	 5QX5ElCYZzn8oYIv/rLT+1Y7hF027n1q3Xh4asYYc2UnGeCba+yIuvBc+ygqYIvYKQ
+	 ZZNqfjEBOpdLw==
+Date: Wed, 25 Mar 2026 18:03:30 +0000
+From: Simon Horman <horms@kernel.org>
+To: lizhi2@eswincomputing.com
+Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
+	pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	maxime.chevallier@bootlin.com, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	pritesh.patel@einfochips.com, weishangjuan@eswincomputing.com
+Subject: Re: [PATCH net-next v5 3/3] riscv: dts: eswin:
+ eic7700-hifive-premier-p550: enable Ethernet controller
+Message-ID: <20260325180330.GL111839@horms.kernel.org>
+References: <20260324073017.376-1-lizhi2@eswincomputing.com>
+ <20260324073408.439-1-lizhi2@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260325-skip-host-cam-qmi-req-v4-3-bc08538487aa@ixit.cz>
-References: <20260325-skip-host-cam-qmi-req-v4-0-bc08538487aa@ixit.cz>
-In-Reply-To: <20260325-skip-host-cam-qmi-req-v4-0-bc08538487aa@ixit.cz>
-To: Johannes Berg <johannes@sipsolutions.net>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Paul Sajna <sajattack@postmarketos.org>
-Cc: Amit Pundir <amit.pundir@linaro.org>, linux-wireless@vger.kernel.org, 
- devicetree@vger.kernel.org, ath10k@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- phone-devel@vger.kernel.org, David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=865; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=7WCT4AIXs3RES5sBwcwPY1VLLZLiJwKsEh3sFLY3XeA=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpxCH731ERAs00JnGTMwhjDc7fvFNGG6zHnruKt
- CzctlaDyk6JAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCacQh+wAKCRBgAj/E00kg
- ch0UD/9bRRDJsrM0G4teP9+2n5J/36wjbkVECTL3P9N4I0zEVmBUPaHYndwRhiz2OdWQ850FzrC
- 9l3RUNEjqdi14CbA3wNDnNBlqGdS4m7pnEjPTCgz9rUa4pqqV0blSTnsxMPUkldndytGhBMwCKv
- 0FZ3HnHYNjX/9p/OrHglUWmuuSeWS7pCWZQEuTC+yNesYSgdUoFJpgQKZ/AIephysyQGo06c0Cx
- 3/5FajViggtoX8K9bYrnoRaOiBNoGs2i6iKNn6ybc++JRtcwDkUjKzhE36jVN8YpsvijHreLHyu
- 73SmHDNuQxi7fq7P6paQx6SjMpNMrhSEvQocilCvJmiUYAH1t8Q5OFXGiuDDWcvcsz80tr+o37x
- R9i5YxVJ6xDXBT8XEJWfEIyqsu97obj4TILDO3NDEKOkduvAnVPsirgFlsnxi4DSL/i08yJOf3y
- eQGFnhEqzkok4HpJyylXIqGQ0sAQHXcPijZhs0lpdUz9hnhnzdCLxl8iUBx5Wm2HrKONCex7uSz
- VTG56POA1mOSu48mQV2blAZIyNk8lM52x8t8OAE1j7Ny0ov41eHqmcBT2KYnB6c0ZV4V+8/wraS
- zazwSChKzwhWB4ku7qk80ODz/xgoYzcE/trWbyUqIeyNCwAzGWpXLJeeyZisCa4PEQLcyF8covI
- zF7BssX7Fpp7DYA==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260324073408.439-1-lizhi2@eswincomputing.com>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280696-lists,devicetree=lfdr.de,david.ixit.cz];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com,bootlin.com,eswincomputing.com,einfochips.com];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[david@ixit.cz];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-280698-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ixit.cz:email,ixit.cz:replyto,ixit.cz:mid]
-X-Rspamd-Queue-Id: AB9A832A3BC
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	DBL_PROHIBIT(0.00)[3.1.11.0:email];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:email]
+X-Rspamd-Queue-Id: 7227932A433
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Amit Pundir <amit.pundir@linaro.org>
+On Tue, Mar 24, 2026 at 03:34:08PM +0800, lizhi2@eswincomputing.com wrote:
+> From: Zhi Li <lizhi2@eswincomputing.com>
+> 
+> Enable the on-board Gigabit Ethernet controller on the
+> HiFive Premier P550 development board.
+> 
+> Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
+> ---
+>  .../dts/eswin/eic7700-hifive-premier-p550.dts | 42 ++++++++++++
+>  arch/riscv/boot/dts/eswin/eic7700.dtsi        | 66 +++++++++++++++++++
+>  2 files changed, 108 insertions(+)
 
-The Wi-Fi firmware used on Xiaomi Poco F1 (beryllium) phone doesn't
-support the host-capability QMI request, so add a quirk to skip it on
-this device.
+Unfortunately this does not compile:
 
-Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-index 1298485c42142..950bbcc3bf91f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-@@ -661,5 +661,6 @@ &wifi {
- 	vdd-3.3-ch1-supply = <&vreg_l23a_3p3>;
- 
- 	qcom,calibration-variant = "xiaomi_beryllium";
-+	qcom,snoc-host-cap-skip-quirk;
- };
- 
+$ ARCH=riscv make allmodconfig dtbs
+...
+  DTC     arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dtb
+arch/riscv/boot/dts/eswin/eic7700.dtsi:300.28-330.5: ERROR (phandle_references): /soc/ethernet@50400000: Reference to non-existent node or label "clk"
+...
 
 -- 
-2.53.0
-
-
+pw-bot: changes-requested
 
