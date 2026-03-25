@@ -1,159 +1,170 @@
-Return-Path: <devicetree+bounces-280336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280337-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cHNnD2G1w2litgQAu9opvQ
-	(envelope-from <devicetree+bounces-280336-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:13:53 +0100
+	id 2PtKBHO1w2litgQAu9opvQ
+	(envelope-from <devicetree+bounces-280337-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:14:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5E56322B16
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:13:52 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F2CC322B33
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:14:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 03EDC3016AE5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:13:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E78B8303D3BA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6DB23A6EF5;
-	Wed, 25 Mar 2026 10:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2EC3A962C;
+	Wed, 25 Mar 2026 10:14:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X6Wi+i3D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B2127FB2E
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 10:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8EC939A814
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 10:14:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774433630; cv=none; b=nV0tLOn/GQDIudvroNl/7i7GFYG+U8T/rCiZ9BXNwlGNkb2ldBBzRx9G1Zs34lw5g5WgK1lwREmaoRzKvQRx6HHmrzT22ukcaA8NnfqN1exKXjBcOJCy+9o+dtX2X7U6QETYi9lcwU/GIeZzAQW79aBWouBqWvUK8ySf6osoGwQ=
+	t=1774433647; cv=none; b=cQ1Z85kxF0loptygptLJbGLRO+agCjhYiBerC/WaztX0L0DNbTDPZxuyAinqZdCCG4zIaDOoRaxcVRXbHJWHZGfUZIT+Fhb37ifd8BgtAWQBOqrxkjdw1g1eg0LnHhSvK056L3ZBuu6gVdZUR32i/FrAonQCjRgUtQFw1pbz+JY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774433630; c=relaxed/simple;
-	bh=d10Wzuq54/lvVZqTRXUFEqKdYGcg4pnSSJK7jHjepFQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GcEkukzfIGSp7zty+LSGX/Lpi6zTbu0C599p1v/4v/Yv16S9iho4mb0gW+vz9IzCRkwV+WtA3zm6ykzuYmTHInu5sqz3+nPYSnccw2cEIQRX/dVNBiE/yrjcbuJO+jDTyY0si9R9IwkrGsND2Cc/vTvTmYwuVGkPCTbhymHS+NU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1774433647; c=relaxed/simple;
+	bh=odJWbCaP0lmit5rLsXxRBXtkP6ZV4LNpp0nhdo89p6I=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=r9JFQONhTDDCuvmvTkaw31x/qdmcqd4yKYXBSpKJ5HhU0lHN5/hhcBV63K7H8IGfEnZi+tW1499v5BWb/R2L51jXLVse/jeFTiwGWh8b8NYnLC3f2YAMq7o9SV1jNZnnOoa51kH9Cfr4KId21WBGXEBdCZDCJy0iAHTGpxHORwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X6Wi+i3D; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-56ba039eecbso1996033e0c.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 03:13:48 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-439b9b1900bso3342740f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 03:14:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774433644; x=1775038444; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dFC9v3RA0+njBsaguL/yT+mILr4lqhBw+oEWCcpW5UA=;
+        b=X6Wi+i3DJPfitsgNgUCGfJwzqTR1BeZL9HBN9wBb5/pVskRv89DBmHtir5M3DEufFE
+         ApA7cZvoy2J1mbPVVjB1CK2iMhyQzNYJ7+xx0XckftRKrlTgH6j1BZbaQ4bjILL+k1Eu
+         TG3HkU+cUN0C6Ck9jdr8IXlG5/i7tODdJlAz7HdyA9ytvARpt6B8Tt0pJGmEpQndvPpj
+         p0hZaOhsFhrC9uksfPwp3ormm/ObRiA5/8S3hAv3rfw/1Akd/ddmPTdiLpV+c3ulLGef
+         lqtCHwVv1JtAleoSizJ4kyCgXsukcQxdH8Oc4g6IvqRPYtiB8GWoZ9NZXdHddj7BPEqo
+         T1fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774433628; x=1775038428;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CDaG/7sO/tQakw0RmIEn3KICwhpxzHUr5uWeZRW8Hmw=;
-        b=PpNfK/yGF7vBI2Ccm7lWJlj74eq3NiVgpwCPBh0DX4yfH54WtWoH0pILE7xG8gdI1R
-         akzFUQs/rlBrK8rTfg6BSOmWZLYQKHYBBYEs5uo8lvc4tm/9ZzemD4Uv09vNKZFV4tDD
-         /DXXV4BmkNckTk2Wk/tZh37zYKcJIFDfDmPkeJL6FLABkZSKIfVzzfuPxx9WugYJwN2v
-         jVyr967GKCPLNhiMC4kEiZtoQ9lWZo+KtTctcRXowBid11bAby5j/AyK2GgxTMgJJpSW
-         bRDEGkRBPpv5ZvTNhCDgr/Zy4bMYFep0DOlDueiK8YRzl4wAywKm6HQQaRvzLsr4qhn4
-         vdww==
-X-Forwarded-Encrypted: i=1; AJvYcCV5WmflfYkm6WJqYyqwxkkhAePg7mTN/+wyY1TShC7Nz0NJuAhKkh/CJZ1sjJlFyfL1brkOjexPsm/5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxh//RIchPl3UJ/uY/pKoskOxzAJznfRak/FiSuW7z1xi4C8saw
-	In0Bkbn2wUJcpoj2UAVRxBuOLenoXlnlK/YykjYB/WAQo5XENFcwM4PMkYeZpz8WigQ=
-X-Gm-Gg: ATEYQzy+IgiLGQj6Z8S1vaAmVBEur4FhS9/YhucTgVcBiOuV307nCbeA0/vvFy6pRsX
-	LbTxuQS9wtm2HfNF0lbp6UKt9j0FSKehsNz/ePOaSHadArX7z1Vsz9BzC2POk0UCLJ176xU6tVm
-	3mvNgrcuRmwxQKfjPgw8+wM+HtGGh+QC+lndEWjxRXHG96iosuxee6fD8Q/wyQQ8kEPVceBg5N/
-	PdYv03tlQkqRbCMszktDVcWmCZF2aVUiD1182srnFt3EbIC/DFHeu/15u137IiXCJ0AKVlUVKMD
-	t2RcLhrGLnlITyMrxAw8PP3ap7OgYzD2DL6HWee1E8S29uk+hkGN4M24oSIYNO49j95ZJ2OIEpB
-	YRIJHn8EWOSROuoCXbhxIULOjggO3NyuPCGyZYXHmdXBSXoodl8MV+Hv2zCSj5+Ygz4QGIVRQJJ
-	LcWtVTUZ9MrGyQM0fegZDcV5r74dK1izKwplV3mu0ebY9Flg7BgH8HXBgnY1Gc
-X-Received: by 2002:a05:6122:3383:b0:56b:5e7e:d3fb with SMTP id 71dfb90a1353d-56d220627a0mr1375569e0c.12.1774433627718;
-        Wed, 25 Mar 2026 03:13:47 -0700 (PDT)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56cddcc34afsm20163882e0c.16.2026.03.25.03.13.47
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Mar 2026 03:13:47 -0700 (PDT)
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-5ffd57b6fc6so1485614137.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 03:13:47 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXp9JG8i6nivgJDumI/DqTlZ+/Hqjh4zBMx49OD7H7i9GkFr+dze6oS2HmEytHr0u+MJfjQ8XQPmm/6@vger.kernel.org
-X-Received: by 2002:a05:6102:5091:b0:5ff:f516:a2aa with SMTP id
- ada2fe7eead31-603870e0d2emr1309775137.12.1774433626857; Wed, 25 Mar 2026
- 03:13:46 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1774433644; x=1775038444;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dFC9v3RA0+njBsaguL/yT+mILr4lqhBw+oEWCcpW5UA=;
+        b=NdYEL15LgqE2j2tcqL3fo/NkMdJb+sjV/Uv/POWyR2HkUL1PWpIbHdiDEj/UMRCiBg
+         sfDXNbHmSaN6SZFzozK2pT/0sXhnxnONHcR/0XSNT8vTMCA0W0OSzvtwTtFYKaLEyQEM
+         eGS5FcJ/L0zJCT3tTbAPqEt5Ya25+2DFJWNq+HwIf/QjCbv49qc8s48qun2Gje2Nf81L
+         aLmHmokjmSvdpCcjwel0pWUlbES7wZsbKCetvuNq1sknSAxv5pBZI0TRN+W9h+MLZSuP
+         INK/tu5/vJYuEZx/yluocSsC0GEKZk+qsQ0SiKhkMaHD3Mmi2+3tQt1FcSKvfNfdCbY4
+         xQmw==
+X-Forwarded-Encrypted: i=1; AJvYcCVjhc8cr/kHAPC/h5mfSx5FdLAzoWkFk+HCs8MsPvYvnYcEx7U1EWXwT3eHS0VnSMM0r3Pouq30sZ2Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+X3zEBXvjkwVSPjKqC87+PEk6f2jZhHAd1jaj5iNNqExsTnjR
+	NGLq4W3pD2O7JL2YGmBAtu6Z52g6DIQVZbbxekXTJBeUBTonFfTBgaUQ
+X-Gm-Gg: ATEYQzyCldMA8ivQTi943YQGDe/iHt9x1IfSWBK33vgqPo9I0CgQzp7844b++LBmvnn
+	QeNDhMpskmGuNPewdJaed1KKb3M94hPe1vuwoEAMFYdYGr04v4L3Am225/OlPaZQqjKJOTNSaNt
+	4EI+WQgO1C2wdBXrxPOZXOCNv3yFklZ4EUc98gnpJaAfOxMRRq3MOlo7A3F7McUqHv4BIyBFMdL
+	HV4f35tePfN8HcjpZMj2VmHwDkqOREyb/rMcOwSNt7cnveUSBoRdIT6blXUkJz6wvtU7dWEq3OR
+	nJ86T5h2e7/Gc3VtfiUrcjp0HEckBSPm/RQFytwr07vOyMgQTRbsZTC98DpfQHOeyIBSg9qTYmO
+	g+qPQPyAwotqpH8753QfSGGr+Jk21Rv2GxvgVrIMoI1f3iRbGhuz7ntEc7fh7q4IkWKG/RLsr7l
+	URAMo2xdlrAMw24oADliLX1/kRXEksJEE=
+X-Received: by 2002:a05:6000:22c1:b0:43b:87e9:6aee with SMTP id ffacd0b85a97d-43b88a57005mr3984417f8f.54.1774433643870;
+        Wed, 25 Mar 2026 03:14:03 -0700 (PDT)
+Received: from [192.168.1.187] ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b85082842sm10732177f8f.20.2026.03.25.03.14.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Mar 2026 03:14:03 -0700 (PDT)
+Message-ID: <975f2df6090f3aea0524369ef07f2a648064f010.camel@gmail.com>
+Subject: Re: [PATCH v3 2/2] iio: dac: ad5706r: Add support for AD5706R DAC
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: "Torreno, Alexis Czezar" <AlexisCzezar.Torreno@analog.com>, Jonathan
+ Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, "Hennerich, Michael"	
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, "Sa,
+ Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,  "linux-iio@vger.kernel.org"	
+ <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"	
+ <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"	
+ <linux-kernel@vger.kernel.org>
+Date: Wed, 25 Mar 2026 10:14:50 +0000
+In-Reply-To: <PH0PR03MB6351C1D87987E0533F4A07EEF149A@PH0PR03MB6351.namprd03.prod.outlook.com>
+References: <20260318-dev_ad5706r-v3-0-5d078f41e988@analog.com>
+		<20260318-dev_ad5706r-v3-2-5d078f41e988@analog.com>
+	 <20260321183909.45761710@jic23-huawei>
+	 <PH0PR03MB635133FB434235B7542770ABF149A@PH0PR03MB6351.namprd03.prod.outlook.com>
+	 <PH0PR03MB6351C1D87987E0533F4A07EEF149A@PH0PR03MB6351.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260325095718.388157-1-herve.codina@bootlin.com>
-In-Reply-To: <20260325095718.388157-1-herve.codina@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 25 Mar 2026 11:13:35 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXp_ruuv5ap1onR7eSc8zvnDEDPjUu9FPsQbFzqCRC2Tg@mail.gmail.com>
-X-Gm-Features: AQROBzD4PFt-v9V-tVmsmIWbbuwIBhiLHVDtgtW23ooqR9mX6RydgMF4Wv44TKg
-Message-ID: <CAMuHMdXp_ruuv5ap1onR7eSc8zvnDEDPjUu9FPsQbFzqCRC2Tg@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: r9a06g032: Add #address-cells in the GIC node
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[sang-engineering.com,gmail.com,kernel.org,vger.kernel.org,se.com,bootlin.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-280336-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-280337-lists,devicetree=lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:email,sang-engineering.com:email]
-X-Rspamd-Queue-Id: D5E56322B16
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9F2CC322B33
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 25 Mar 2026 at 10:58, Herve Codina (Schneider Electric)
-<herve.codina@bootlin.com> wrote:
-> When checking dts involving the r9a06g032.dtsi file, the following kind
-> of warnings are reported:
->    Missing property '#address-cells' in node xxx, using 0 as fallback
->
-> Indeed, #address-cells is not present in the GIC interrupt controller
-> node.
->
-> Fix it adding the missing property.
->
-> Value '0' is correct because:
-> 1. GIC interrupt controller does not have children,
-> 2. interrupt-map property in PCI node and in IRQ mux node consists of
->    several components and the component related to "parent unit
->    address", which size is defined by '#address-cells' of the node
->    pointed to by the interrupt-parent component, is not used (=0)
->
-> No functional change.
->
-> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
-> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On Wed, 2026-03-25 at 03:13 +0000, Torreno, Alexis Czezar wrote:
+> > > > +	ret =3D spi_sync_transfer(st->spi, xfer, ARRAY_SIZE(xfer));
+> > >=20
+> > > Can you use spi_write_the_read()?
+> > > Has the added advantage that it bounces the data so doesn't need DMA =
+safe.
+> > > Can also use more meaningful types like
+> > > __be16 tx;
+> > > __be16 rx16;
+> > > u8 rx8;
+> >=20
+> > Ok, will shift to spi_write_the_read(). There was another place to use =
+this
+> > above, just trimmed it off here. Noted on the more meaningful variables=
+.
+> >=20
+>=20
+> I only just checked spi_write_then_read() but, it seems this doesn't supp=
+ort
+> variable spi_speed_frequency for my future patches. Should I still use it=
+ for now
+> and revert in the future?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v7.1.
+There's still the open regmap discussion. Independent of that, if you can't=
+ use
+spi_write_then_read(), you need to make sure the buffers you pass spi are D=
+MA safe.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+- Nuno S=C3=A1
 
