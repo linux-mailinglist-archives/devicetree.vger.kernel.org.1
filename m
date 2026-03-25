@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-280590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280582-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qMz2FgX9w2lwvQQAu9opvQ
-	(envelope-from <devicetree+bounces-280590-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:19:33 +0100
+	id kMKUBKMDxGnOvQQAu9opvQ
+	(envelope-from <devicetree+bounces-280582-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:47:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A68F7327C56
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:19:32 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9807D328654
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:47:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5FBE930D0A66
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 15:00:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 502D33130AA8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 14:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A743DFC79;
-	Wed, 25 Mar 2026 14:51:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E2F340B6D7;
+	Wed, 25 Mar 2026 14:51:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83124410D1D
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 14:51:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD0D4035DE
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 14:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774450304; cv=none; b=e15Puif8uMLqRd29TjndcEAWwv5wY6oHYJJsn3RHyGkvfl7oSWnDUwgHlvgb2r6xE0CbbDfu8eXfOpG7o/FaFs+WihFNiQUs2nD3KylPFEYjpM0Frol97U+E180Jh4Y9THk6XiPKV+FQMemLcChK0+c33O53hh8xyrxxaD2gQ2M=
+	t=1774450293; cv=none; b=SKJ9aY6yby62820MOxnuILmLmGLEFOpMxk++WC8WeObnPN+XrbNM8aurMd3mA2HbKiaGtpOuGGONIgHA7zagr8QeLQ6IQMsBmQuJidGgQsgKOY+YcDN18Ga5xl6C5p19aAWOsAs8tIxGYBA3LvTZCOzsNjrEfzMyX0VCe8GWGbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774450304; c=relaxed/simple;
-	bh=+4HUE3OS8AXbNG2CkQ3sDztRprlDBRPYq95KPWDzutk=;
+	s=arc-20240116; t=1774450293; c=relaxed/simple;
+	bh=gPbM2ntWEVJKb5duLxVXP5Frg6guvtbDlPli/HqhZRs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ethxg2dZGOZq163CuOS/JyjJUN/odOMgsqJRhePC+fguX1HozV9Km0G5x6Dg2fcxVmCFRf5eKt1wid6nxUYNJg5z8F8NG7jYCWlylmvTdhGY9m0QvqCKg+8/lb2scB0qDt2fwolcGr5K/Mc1KzMHZ0+eKGaJcJPwfq1ZZqLLzAc=
+	 In-Reply-To:To:Cc; b=o4zepsA+C31iQcxxGUCsKzu21/6lBhQ+BYyC9gKc+JUjHzHJ8+H+nYpq9zLB5R6DY+WMjLIvOFFjDPIAi5fm1yHzI2BT49OYJNrTU0i3d1MPe/x0jeO/T29uoHXiQG++0ZJfdym9SmidOy+krs6keNShjN+xgUqhMaMx3Wfn7H4=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=peter.mobile.pengutronix.de)
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1w5PZT-00050C-K4; Wed, 25 Mar 2026 15:50:59 +0100
+	id 1w5PZT-00050C-Nz; Wed, 25 Mar 2026 15:50:59 +0100
 From: =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-Date: Wed, 25 Mar 2026 15:50:39 +0100
-Subject: [PATCH v4 08/27] media: rockchip: rga: remove redundant rga_frame
- variables
+Date: Wed, 25 Mar 2026 15:50:40 +0100
+Subject: [PATCH v4 09/27] media: rockchip: rga: announce and sync
+ colorimetry
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,7 +48,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260325-spu-rga3-v4-8-e90ec1c61354@pengutronix.de>
+Message-Id: <20260325-spu-rga3-v4-9-e90ec1c61354@pengutronix.de>
 References: <20260325-spu-rga3-v4-0-e90ec1c61354@pengutronix.de>
 In-Reply-To: <20260325-spu-rga3-v4-0-e90ec1c61354@pengutronix.de>
 To: Jacob Chen <jacob-chen@iotwrt.com>, 
@@ -71,12 +71,12 @@ X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280590-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-280582-lists,devicetree=lfdr.de];
 	DMARC_NA(0.00)[pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -87,197 +87,92 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[s.pueschel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,pengutronix.de:email,pengutronix.de:mid]
-X-Rspamd-Queue-Id: A68F7327C56
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,pengutronix.de:email,pengutronix.de:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9807D328654
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Remove the redundant rga_frame variables width, height and color space.
-The value of these variables is already contained in the pix member
-of rga_frame. The code also keeps these values in sync. Therefore drop
-them in favor of the existing pix member.
+Announce the capability to adjust the quantization and ycbcr_enc on the
+capture side and check if the SET_CSC flag is set when the colorimetry
+is changed. Furthermore copy the colorimetry from the output to the
+capture side to fix the currently failing v4l2-compliance tests, which
+expect exactly this behavior.
 
 Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
 ---
- drivers/media/platform/rockchip/rga/rga-buf.c |  6 ++---
- drivers/media/platform/rockchip/rga/rga-hw.c  |  6 ++---
- drivers/media/platform/rockchip/rga/rga.c     | 32 ++++++++++-----------------
- drivers/media/platform/rockchip/rga/rga.h     |  5 -----
- 4 files changed, 18 insertions(+), 31 deletions(-)
+ drivers/media/platform/rockchip/rga/rga.c | 37 +++++++++++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
-diff --git a/drivers/media/platform/rockchip/rga/rga-buf.c b/drivers/media/platform/rockchip/rga/rga-buf.c
-index 65fc0d5b4aa10..ffc6162b2e681 100644
---- a/drivers/media/platform/rockchip/rga/rga-buf.c
-+++ b/drivers/media/platform/rockchip/rga/rga-buf.c
-@@ -103,10 +103,10 @@ static int get_plane_offset(struct rga_frame *f,
- 	if (plane == 0)
- 		return 0;
- 	if (plane == 1)
--		return stride * f->height;
-+		return stride * f->pix.height;
- 	if (plane == 2)
--		return stride * f->height +
--		       (stride * f->height / info->hdiv / info->vdiv);
-+		return stride * f->pix.height +
-+		       (stride * f->pix.height / info->hdiv / info->vdiv);
- 
- 	return -EINVAL;
- }
-diff --git a/drivers/media/platform/rockchip/rga/rga-hw.c b/drivers/media/platform/rockchip/rga/rga-hw.c
-index 43ed742a16492..f1d5237472941 100644
---- a/drivers/media/platform/rockchip/rga/rga-hw.c
-+++ b/drivers/media/platform/rockchip/rga/rga-hw.c
-@@ -53,7 +53,7 @@ rga_get_addr_offset(struct rga_frame *frm, struct rga_addr_offset *offset,
- 	x_div = frm->fmt->x_div;
- 	y_div = frm->fmt->y_div;
- 	uv_stride = frm->stride / x_div;
--	pixel_width = frm->stride / frm->width;
-+	pixel_width = frm->stride / frm->pix.width;
- 
- 	lt->y_off = offset->y_off + y * frm->stride + x * pixel_width;
- 	lt->u_off = offset->u_off + (y / y_div) * uv_stride + x / x_div;
-@@ -191,7 +191,7 @@ static void rga_cmd_set_trans_info(struct rga_ctx *ctx)
- 
- 	if (RGA_COLOR_FMT_IS_YUV(ctx->in.fmt->hw_format) &&
- 	    RGA_COLOR_FMT_IS_RGB(ctx->out.fmt->hw_format)) {
--		switch (ctx->in.colorspace) {
-+		switch (ctx->in.pix.colorspace) {
- 		case V4L2_COLORSPACE_REC709:
- 			src_info.data.csc_mode = RGA_SRC_CSC_MODE_BT709_R0;
- 			break;
-@@ -203,7 +203,7 @@ static void rga_cmd_set_trans_info(struct rga_ctx *ctx)
- 
- 	if (RGA_COLOR_FMT_IS_RGB(ctx->in.fmt->hw_format) &&
- 	    RGA_COLOR_FMT_IS_YUV(ctx->out.fmt->hw_format)) {
--		switch (ctx->out.colorspace) {
-+		switch (ctx->out.pix.colorspace) {
- 		case V4L2_COLORSPACE_REC709:
- 			dst_info.data.csc_mode = RGA_SRC_CSC_MODE_BT709_R0;
- 			break;
 diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/platform/rockchip/rga/rga.c
-index c07207edffdb6..ca8d8a53dc251 100644
+index ca8d8a53dc251..8c34f73d69764 100644
 --- a/drivers/media/platform/rockchip/rga/rga.c
 +++ b/drivers/media/platform/rockchip/rga/rga.c
-@@ -329,9 +329,6 @@ static struct rga_fmt *rga_fmt_find(u32 pixelformat)
- }
+@@ -437,6 +437,15 @@ static int vidioc_enum_fmt(struct file *file, void *priv, struct v4l2_fmtdesc *f
+ 	fmt = &formats[f->index];
+ 	f->pixelformat = fmt->fourcc;
  
- static struct rga_frame def_frame = {
--	.width = DEFAULT_WIDTH,
--	.height = DEFAULT_HEIGHT,
--	.colorspace = V4L2_COLORSPACE_DEFAULT,
- 	.crop.left = 0,
- 	.crop.top = 0,
- 	.crop.width = DEFAULT_WIDTH,
-@@ -363,9 +360,9 @@ static int rga_open(struct file *file)
- 	ctx->out = def_frame;
- 
- 	v4l2_fill_pixfmt_mp(&ctx->in.pix,
--			    ctx->in.fmt->fourcc, ctx->out.width, ctx->out.height);
-+			    ctx->in.fmt->fourcc, DEFAULT_WIDTH, DEFAULT_HEIGHT);
- 	v4l2_fill_pixfmt_mp(&ctx->out.pix,
--			    ctx->out.fmt->fourcc, ctx->out.width, ctx->out.height);
-+			    ctx->out.fmt->fourcc, DEFAULT_WIDTH, DEFAULT_HEIGHT);
- 
- 	if (mutex_lock_interruptible(&rga->mutex)) {
- 		kfree(ctx);
-@@ -453,10 +450,8 @@ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
- 	if (IS_ERR(frm))
- 		return PTR_ERR(frm);
- 
--	v4l2_fill_pixfmt_mp(pix_fmt, frm->fmt->fourcc, frm->width, frm->height);
--
-+	*pix_fmt = frm->pix;
- 	pix_fmt->field = V4L2_FIELD_NONE;
--	pix_fmt->colorspace = frm->colorspace;
- 
++	if (f->type != V4L2_BUF_TYPE_VIDEO_CAPTURE &&
++	    f->type != V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE)
++		return 0;
++
++	/* allow changing the quantization and xfer func for YUV formats */
++	if (v4l2_is_format_yuv(v4l2_format_info(f->pixelformat)))
++		f->flags |= V4L2_FMT_FLAG_CSC_QUANTIZATION |
++			    V4L2_FMT_FLAG_CSC_YCBCR_ENC;
++
  	return 0;
  }
-@@ -505,27 +500,24 @@ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
- 	frm = rga_get_frame(ctx, f->type);
- 	if (IS_ERR(frm))
- 		return PTR_ERR(frm);
--	frm->width = pix_fmt->width;
--	frm->height = pix_fmt->height;
- 	frm->size = 0;
- 	for (i = 0; i < pix_fmt->num_planes; i++)
- 		frm->size += pix_fmt->plane_fmt[i].sizeimage;
+ 
+@@ -459,8 +468,25 @@ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ static int vidioc_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ {
+ 	struct v4l2_pix_format_mplane *pix_fmt = &f->fmt.pix_mp;
++	struct rga_ctx *ctx = file_to_rga_ctx(file);
+ 	struct rga_fmt *fmt;
+ 
++	if (V4L2_TYPE_IS_CAPTURE(f->type)) {
++		const struct rga_frame *frm;
++
++		frm = rga_get_frame(ctx, f->type);
++		if (IS_ERR(frm))
++			return PTR_ERR(frm);
++
++		if (!(pix_fmt->flags & V4L2_PIX_FMT_FLAG_SET_CSC)) {
++			pix_fmt->quantization = frm->pix.quantization;
++			pix_fmt->ycbcr_enc = frm->pix.ycbcr_enc;
++		}
++		/* disallow values not announced in vidioc_enum_fmt */
++		pix_fmt->colorspace = frm->pix.colorspace;
++		pix_fmt->xfer_func = frm->pix.xfer_func;
++	}
++
+ 	fmt = rga_fmt_find(pix_fmt->pixelformat);
+ 	if (!fmt)
+ 		fmt = &formats[0];
+@@ -506,6 +532,17 @@ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
  	frm->fmt = rga_fmt_find(pix_fmt->pixelformat);
  	frm->stride = pix_fmt->plane_fmt[0].bytesperline;
--	frm->colorspace = pix_fmt->colorspace;
  
++	/*
++	 * Copy colorimetry from output to capture as required by the
++	 * v4l2-compliance tests
++	 */
++	if (V4L2_TYPE_IS_OUTPUT(f->type)) {
++		ctx->out.pix.colorspace = pix_fmt->colorspace;
++		ctx->out.pix.ycbcr_enc = pix_fmt->ycbcr_enc;
++		ctx->out.pix.quantization = pix_fmt->quantization;
++		ctx->out.pix.xfer_func = pix_fmt->xfer_func;
++	}
++
  	/* Reset crop settings */
  	frm->crop.left = 0;
  	frm->crop.top = 0;
--	frm->crop.width = frm->width;
--	frm->crop.height = frm->height;
-+	frm->crop.width = pix_fmt->width;
-+	frm->crop.height = pix_fmt->height;
- 
- 	frm->pix = *pix_fmt;
- 
- 	v4l2_dbg(debug, 1, &rga->v4l2_dev,
- 		 "[%s] fmt - %p4cc %dx%d (stride %d, sizeimage %d)\n",
- 		  V4L2_TYPE_IS_OUTPUT(f->type) ? "OUTPUT" : "CAPTURE",
--		  &frm->fmt->fourcc, frm->width, frm->height,
-+		  &frm->fmt->fourcc, pix_fmt->width, pix_fmt->height,
- 		  frm->stride, frm->size);
- 
- 	for (i = 0; i < pix_fmt->num_planes; i++) {
-@@ -579,8 +571,8 @@ static int vidioc_g_selection(struct file *file, void *priv,
- 	} else {
- 		s->r.left = 0;
- 		s->r.top = 0;
--		s->r.width = f->width;
--		s->r.height = f->height;
-+		s->r.width = f->pix.width;
-+		s->r.height = f->pix.height;
- 	}
- 
- 	return 0;
-@@ -629,8 +621,8 @@ static int vidioc_s_selection(struct file *file, void *priv,
- 		return -EINVAL;
- 	}
- 
--	if (s->r.left + s->r.width > f->width ||
--	    s->r.top + s->r.height > f->height ||
-+	if (s->r.left + s->r.width > f->pix.width ||
-+	    s->r.top + s->r.height > f->pix.height ||
- 	    s->r.width < MIN_WIDTH || s->r.height < MIN_HEIGHT) {
- 		v4l2_dbg(debug, 1, &rga->v4l2_dev, "unsupported crop value.\n");
- 		return -EINVAL;
-@@ -821,8 +813,8 @@ static int rga_probe(struct platform_device *pdev)
- 		goto rel_m2m;
- 	}
- 
--	def_frame.stride = (def_frame.width * def_frame.fmt->depth) >> 3;
--	def_frame.size = def_frame.stride * def_frame.height;
-+	def_frame.stride = (DEFAULT_WIDTH * def_frame.fmt->depth) >> 3;
-+	def_frame.size = def_frame.stride * DEFAULT_HEIGHT;
- 
- 	ret = video_register_device(vfd, VFL_TYPE_VIDEO, -1);
- 	if (ret) {
-diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/platform/rockchip/rga/rga.h
-index 477cf5b62bbb2..c4a3905a48f0d 100644
---- a/drivers/media/platform/rockchip/rga/rga.h
-+++ b/drivers/media/platform/rockchip/rga/rga.h
-@@ -24,11 +24,6 @@ struct rga_fmt {
- };
- 
- struct rga_frame {
--	/* Original dimensions */
--	u32 width;
--	u32 height;
--	u32 colorspace;
--
- 	/* Crop */
- 	struct v4l2_rect crop;
- 
 
 -- 
 2.53.0
