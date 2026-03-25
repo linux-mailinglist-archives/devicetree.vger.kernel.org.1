@@ -1,196 +1,230 @@
-Return-Path: <devicetree+bounces-280325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280322-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eGGtFB2ww2nAtAQAu9opvQ
-	(envelope-from <devicetree+bounces-280325-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:51:25 +0100
+	id wK4ZBB+xw2nAtAQAu9opvQ
+	(envelope-from <devicetree+bounces-280322-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:55:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFD9A322748
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:51:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8557D3227BC
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:55:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B357B3025E71
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:50:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BFBD8302F9BD
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:50:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E75363A3800;
-	Wed, 25 Mar 2026 09:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3C103A1A41;
+	Wed, 25 Mar 2026 09:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lLec8iyQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hqOR5Yi5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1E839FCCC
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:50:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774432245; cv=none; b=BcdNFMr9GlqX2kxMQPI8zRR5F/I9hHewn8GD3HJTLChAv3WC3saZZH9FLYq24Ip6sHCwvH+iiV5BoFyzirdRP9gi8AFuV4kGeQA6uzCZuiVrHkvtCI1njGsiyex+1AWk7PuDjTpQBsxeb+Uli8cNvRpEimNXuAT8XZfxRxlqvgo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774432245; c=relaxed/simple;
-	bh=uoakx01xCZbpN07NnILah4RhFwsBs37YreFODQ1tNu4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KPAoOYmmTHZL1X74LpW8FoHp2ae5IQYkOzfdq/ABn/FQmyC1Hq0890BBVdQTyp6vahCC7c1tPTR68SNtxginth2x6CvcBLMSl+6zcj4xV1/bitHMom4ck/GO16JnY860i25r9F3fCnIkpVtyEYSGgVWUAbU2G8GRl5QHdO4ol6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lLec8iyQ; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D113A1D0A
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:50:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774432238; cv=pass; b=ray/AereJKHvP2bb0GImSJDViC2Z0+LS4dS6rbDMJ6MukXOD+CJmBavzAUpnyYHgaKT9xnruOivWmPL2q3AV/OU+n1r2RJrYfvaQDGigBv+Y6WHoLn703uuLQ9mH0SedJVAs3D2SMjJF3RZdUMWuE63tOsxf6bR5XBarZq62xCA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774432238; c=relaxed/simple;
+	bh=aiSVuAMFyzPKAzJTJDYZxW4eA/pbkXu4TdDmr28NT8U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y2xAIOF2Nc7oNgQKuHxGz5jSGImVnVSt4050nmOYPUgN1bbQNdFYVRKEu2ILxtwWWO2CwxF/G0iB5Wy7FnHNrRprWauELG8kFMtK7MN4cVw1+lSa7fDfQ4JNENZ3n2Tr/lUqoOK/zd3LD/Khe0yqje0GBOAKljemR/cP+bnVhtE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hqOR5Yi5; arc=pass smtp.client-ip=209.85.208.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-48540d21f7dso54471035e9.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 02:50:42 -0700 (PDT)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-65c0891f4e9so4159449a12.1
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 02:50:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774432234; cv=none;
+        d=google.com; s=arc-20240605;
+        b=jB5dtGUdk8Nz8f17cEMkNKjsYksAOqptZYt+OEF7+n26aLtXMukTG0rJ3FlF//UF2k
+         ODw2oq3GbwwebZD1+TvWSqZNPue9Uw2fG6MxVooYgRPTmMb0Ly2VOdtZ5WOvEBnYV3NX
+         tT0hcVj589Db7qt1N191M2xmMPn3BlDu3SaeGIPnCoOpgdLSLse5p4Q3AYh65oSJjuwY
+         Q8phTNNpPe72qelocnDZrziqPlmbCKphlXZyrXGgLqpdzVstlfTynjC4y/skVfNOw62T
+         /ciXvaU1tmbhSaepQMztm9LuovWQ+wVu0yGy96+ZBhYirE3kpA1SZCdMtZgT0gSz2U5u
+         pO2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=VP0SehC+D3+hhDWyfoKCodtXephnp1PrBhw2LiSs1TA=;
+        fh=oUHPpKJJK0ceUObzlEqE4Q2A95rDT2X18TJ94IEU9Xc=;
+        b=OCBj2lBhRDa+IXv0A4qk1m2ptMbJNylG1GVkzsQkMTiZ2oP11fyFBwn0iOnq1lFjE5
+         47BBqOTSxUPIaKAL8lV0stbott1+9JhWz/mqq/GTMnQpTahF010KgKGsXnx+URgHvAj1
+         2oSLvtEYMNaNr+MIydVVkERgNGVB6oflC3670YdmhgCiUKPMMs/bTdLN+LDMrhf2AQSu
+         i2rN0EKGGh7fDz+IeQxGYCTnURr+HVpnobU8J3/MtgIjorvRRzL/RneYQWnu6MRhECJ/
+         +GhpIubTiy3bf9SIodiAWawQ4mTmEH6U/48uWtXPBdO8TL3xPPKOziY3YDFpCoVQBI7p
+         KyFw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774432240; x=1775037040; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8v8tAbQoKbSTjNpEbNtHGD1YISjFB6GU03P9dCTjvKk=;
-        b=lLec8iyQQVD9tPbR6S63uwdDKo9ybnyHl5X2KgJDBZhsWvZLt9dO43DmxO/nsFoNAB
-         CpKwEu1WrcsXFrznHSoVAKLzWb7UH92ZGP8dmVcxtlaujXzAmvKklBokk+D4eDXjPX7D
-         tuHXzR3eBlfbfEgb4H/sTAyc0PtaLAARK339cS8VaUbEz5IM23+PbUzsYhp3Ua7E4sNL
-         SHJcO9+AocromHc7Xp4oX09B4IAKJSGn9rw4S42h9PC0i1OnzZgF8HnLUaMcg0eteAbp
-         rhTHucSG4nsZc1wiSmOMzAZqfpYrQUHBaNFH9D5esnG4bnwrf34q0zMbjjNTwVOyLY2L
-         vkBQ==
+        d=gmail.com; s=20251104; t=1774432234; x=1775037034; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VP0SehC+D3+hhDWyfoKCodtXephnp1PrBhw2LiSs1TA=;
+        b=hqOR5Yi5QOah6+kteLEooDf8gErduAQpk0q9lUjCXUdXnGBRPQFcyf0RpJQ8qwvP3L
+         2rYxuflye4Yp6NKobnH5DxKDM7FQywHYOWGw2P+Ma48bRzI/j4DiuIE70/gOe0rK9j+W
+         VItqIyNBojLF11zW7gYLn3/87sD+NijAu00S1UMp0+EROpoTnGKdhBed9r7cQkGmahx7
+         OaKe7LkvxwOO8ovzJ9UEgc9t8ahpzJCV6RWoIblteBYPExLMS6sVJJbFSnggg9dLA1AQ
+         dwl3NdWWWndikxNtngtNHZ/zqg91UfAOvJXbfiG+gABtVf2uMkh2bfj50m67X0X3CY95
+         ISPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774432240; x=1775037040;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8v8tAbQoKbSTjNpEbNtHGD1YISjFB6GU03P9dCTjvKk=;
-        b=rK5j1hVAVbvwnZU+511IBXAMPmQtc1mNFwigBlv4fWJu7M9ofYHKExtjpgbPpRfU4p
-         nEDFUOMqrhxflbJyRkH70RvlRTaKFalnPQWr1aZ+46R1+bYnFamXU7c+seHeldFCO1JW
-         H/9fiwV2t7nZcNN6Vg4nc5rH+EIJd3TLB1yoabpax1aWg+tb33qg2iS6+ZNbIEtqD658
-         CqGFeeG0oF49bbEafqpGASE7T0MoLmXjwD0z9+t8EkV9+DiGtPfSYvU3Zab9uomkaqge
-         iRBJ6moY1WHLhJUOlhlrrECQHmZA9bNWklXj96wLGa+Jrq3ZUsMXA3azfaHRcFhI+RQF
-         6eUg==
-X-Gm-Message-State: AOJu0Yzj7+WhI0NzHzEQRtAHnNLojhGkb7nD2NxQ7y98A/wfNTeswoFN
-	kkKgjnufuOEYIaHvyAh2UQQEPCpaNoTiCLkMIw50MVRlna/Q257OIA+i
-X-Gm-Gg: ATEYQzy1nIAbwTo7vyqEvIg6GMvjb/ALplsSJyC6V5jRqBfu2fKZtqmTiOSCz9Znp1c
-	zfme19pGQouHA9mSoehIZvlkJkb9w+lT6FdtN+0zkhJxhfXnTfN3k86NNpNdXOLxvbKRMLiFINN
-	Wt4RrDGQOL8ZBS5K56mll2k8ktq2twhI5EWy7EKe8hvgwA6nBlsKNAB0YNim5QeWwYsyF7+0Vlf
-	/TazuH9Z+3IXcbKT+uo7EQuwirufXmjQBEfo2pa7HUeyZo6shSWlTmAb76U2WmzTJ74XNO2fN8m
-	AV/YmIckdhntaWaj8ZM7YQ5D4MQHkgahaxLK3mA1PIFnlSsDw9BohR5Pqe1scZuQVryUTJCWQYE
-	9l7hQ4qxHLsziD7LO65cuXcDOPnNFnozdtvKuluQoPWrzBjDpTSFZqH5JvjiIjVrFwiNEKgA8s+
-	8HObDHBdQW5n7Rc0Qy3QPASyegSILv9uUOd/VzDaoHb5YeMikucC3drfnQet05og/yNMD1v8FNU
-	d3Dg7FbFCfGg1qacdnkUirDGRGsZTevFg38CGXMyfcEFpxbokXgV/IOa8Ax+C7VcHqBdGOEzoCj
-X-Received: by 2002:a05:600d:8449:b0:485:39d4:2dd9 with SMTP id 5b1f17b1804b1-487160afe8cmr30769345e9.33.1774432240097;
-        Wed, 25 Mar 2026 02:50:40 -0700 (PDT)
-Received: from [127.0.1.1] (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-487116ee57esm111397755e9.14.2026.03.25.02.50.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Mar 2026 02:50:39 -0700 (PDT)
-From: Franz Schnyder <fra.schnyder@gmail.com>
-Date: Wed, 25 Mar 2026 10:50:21 +0100
-Subject: [PATCH 2/3] arm64: dts: freescale: imx95-toradex-smarc: Enable
- bluetooth on lpuart5
+        d=1e100.net; s=20251104; t=1774432234; x=1775037034;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=VP0SehC+D3+hhDWyfoKCodtXephnp1PrBhw2LiSs1TA=;
+        b=oAH4tn0PyihxdLg8OZrlYMlja1l6MDHoOomKk8zgY3rrL6WmE8Jo/S/mhMKXyVyiEz
+         amIcvMwAdSWSwfiCADldqzi6uJPfQOQ50InV0nhByHalGyRfjyuaKa7ACUFPSzbnf0ns
+         00rh8lq5WH+x435xKsCsXF95iIzQBgOSponsQL9I1fSHjXouNlxa2+v3Pw26W5kjmKVC
+         D1uEzbF1m/eHucjWWkL4uncx6pFmOWFf8z+hnoeT/a0rbqu3vWQWHgDrdYkjgWE7oYb6
+         hFdNkHEK6gXcFNWSjgDJkUXkDdtl+TVP1Jt9rOvH77bkEGJxcBnjFPGyJaE6gFYxahBp
+         S/Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCX0jE/ZksFZOO7mlZ6T3XB8k+XuFSyPbeVAtvE9ApDmIJvmur0YHB6/yb8DB4GegzyHEalOmegv/RLj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyydqhCoePe3OK24+eOWvdf1yqoaOv8ExDs/F1/bNR7xRxU5XqX
+	svyjc1dyV/Iy7vOfe2o5NCo6rhyPIoS29CU+k9Ch82MxDNPqiXjvnxgHgRG0k1AXyl+AnJ3QtEr
+	9ESXFUwFtFi150QN9f+a6LU9i5SDj4m0=
+X-Gm-Gg: ATEYQzze3XMdlFOonfrBetHyKCTWkE/wsfCk+gkoQhGeUKJDSpI4NyZUacW+WL2L+vh
+	z29q1spUrTeACkz/rkluF8zkGgV0QzT2Sir7I07kXRixAjkmEuWoL5leTCwleULU9bAYR/Yh3de
+	UnvlxUfk8j37nKaH7GDEjZReYwfk2+2+qnhOFHdtn6hnghQ2BvY+bdOsWLOPSHOezSRpGh41/z+
+	DVJegT6x7LK2eEaLeLkakJcfFSi+l/AET4W6+OgREcukqq5x9W/I6NHXPwP5NocFElGE9yb1pol
+	NRjLlMvy
+X-Received: by 2002:a17:907:72c7:b0:b96:f6f1:e7af with SMTP id
+ a640c23a62f3a-b9b0ea7e884mr143299166b.9.1774432233910; Wed, 25 Mar 2026
+ 02:50:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260325-mainline-update-imx95-v1-2-b5ebe976655b@toradex.com>
-References: <20260325-mainline-update-imx95-v1-0-b5ebe976655b@toradex.com>
-In-Reply-To: <20260325-mainline-update-imx95-v1-0-b5ebe976655b@toradex.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Francesco Dolcini <francesco@dolcini.it>, 
- Franz Schnyder <franz.schnyder@toradex.com>
-X-Mailer: b4 0.14.3
+References: <20260310091054.2029912-1-egbostina@gmail.com> <acKyJTkqq-bV_3jZ@lizhi-Precision-Tower-5810>
+In-Reply-To: <acKyJTkqq-bV_3jZ@lizhi-Precision-Tower-5810>
+From: Eddie <egbostina@gmail.com>
+Date: Wed, 25 Mar 2026 11:50:22 +0200
+X-Gm-Features: AQROBzD-kPMMH1jFoji7rnPnjGOGNLf_VyIguCX0e1QYp30ObYBIhsUdhFbiTf0
+Message-ID: <CAEFOc61tNbF+cE0waQpfvuSe7enJkDk_yzcGXZ_-D1Kvj_5G-w@mail.gmail.com>
+Subject: Re: [RFC PATCH] arm64: dts: imx8mp-edm-g-wb: Use 0 for reserved bit
+To: Frank Li <Frank.li@nxp.com>
+Cc: daniel.baluta@nxp.com, simona.toaca@nxp.com, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280325-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-280322-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fraschnyder@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[egbostina@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,toradex.com:email,toradex.com:mid]
-X-Rspamd-Queue-Id: BFD9A322748
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,nxp.com:email]
+X-Rspamd-Queue-Id: 8557D3227BC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Franz Schnyder <franz.schnyder@toradex.com>
+Hi Frank,
 
-The Toradex SMARC iMX95 uses the MAYA-W260 WiFi/Bluetooth module, which
-uses the UART interface for Bluetooth.
+>> Change 0x41 to 0x40 to leave the reserved bit cleared, as
+>> recommended by the reference manual.
+>
+> Any impact if set bit 0 to 1?
+>
 
-Add the missing UART support to enable bluetooth functionality on the
-MAYA-W260.
 
-Signed-off-by: Franz Schnyder <franz.schnyder@toradex.com>
----
-Although Documentation/devicetree/bindings/dts-coding-style.rst
-recommends an empty line between status and latest property, leave it
-unchanged for consistency with the rest of the file.
----
- .../boot/dts/freescale/imx95-toradex-smarc.dtsi     | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+I have not tested this on hardware with the bit cleared, so
+I cannot confirm functional impact for sure, but according to
+section 8.2.4.238 of the iMX8MP reference manual, bit 0 of
+SW_PAD_CTL_PAD_SAI1_RXD6 is reserved with a reset value of 0.
+The only defined fields are PE (bit 8), HYS (bit 7),
+PUE (bit 6), ODE (bit 5), FSEL (bit 4), and DSE (bits 2:1).
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi b/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
-index 1d369983cf7d..a90edefc5197 100644
---- a/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
-@@ -616,6 +616,19 @@ &lpuart3 {
- 	pinctrl-0 = <&pinctrl_uart3>;
- };
- 
-+/* On-module Bluetooth */
-+&lpuart5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_bt_uart>;
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "nxp,88w8987-bt";
-+		fw-init-baudrate = <3000000>;
-+	};
-+};
-+
- /* SMARC SER2 */
- &lpuart6 {
- 	pinctrl-names = "default";
-@@ -830,6 +843,14 @@ &wdog3 {
- };
- 
- &scmi_iomuxc {
-+	/* On-module Bluetooth, UART pins shared with JTAG */
-+	pinctrl_bt_uart: btuartgrp {
-+		fsl,pins = <IMX95_PAD_DAP_TDO_TRACESWO__LPUART5_TX	0x31e>, /* WiFI_UART_RXD */
-+			   <IMX95_PAD_DAP_TDI__LPUART5_RX		0x31e>, /* WiFI_UART_TXD */
-+			   <IMX95_PAD_DAP_TCLK_SWCLK__LPUART5_CTS_B	0x31e>, /* WiFI_UART_RTS# */
-+			   <IMX95_PAD_DAP_TMS_SWDIO__LPUART5_RTS_B	0x31e>; /* WiFI_UART_CTS# */
-+	};
-+
- 	/* SMARC CAM_MCK */
- 	pinctrl_cam_mck: cammckgrp {
- 		fsl,pins = <IMX95_PAD_CCM_CLKO1__CCMSRCGPCMIX_TOP_CLKO_1	0x51e>; /* SMARC S6 - CAM_MCK */
+Both 0x41 and 0x40 should result in identical pad behavior.
+Leaving it set probably risks undefined behavior in future
+revisions of the silicon.
 
--- 
-2.43.0
 
+>> This also allows for
+>> easier conversion to symbolic macros.
+>
+> Can you send this patch also?
+
+Yes, I will send a followup patch soon.
+
+Thanks for the review.
+
+Eduard
+
+=C3=8En mar., 24 mar. 2026 la 17:48, Frank Li <Frank.li@nxp.com> a scris:
+>
+> On Tue, Mar 10, 2026 at 09:10:53AM +0000, Eduard Bostina wrote:
+>
+> Remove RFC.
+>
+> > The i.MX8MP Reference Manual documents bit 0 of the
+> > IOMUXC_SW_PAD_CTL_PAD registers as reserved. The hd3ss3220
+> > IRQ pin (SAI1_RXD6/GPIO4_IO08) currently uses pad config
+> > value 0x41 which sets this reserved bit.
+> >
+> > Change 0x41 to 0x40 to leave the reserved bit cleared, as
+> > recommended by the reference manual.
+>
+> Any impact if set bit 0 to 1?
+>
+> > This also allows for
+> > easier conversion to symbolic macros.
+>
+> Can you send this patch also?
+>
+> Frank
+> >
+> > Signed-off-by: Eduard Bostina <egbostina@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mp-edm-g-wb.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-edm-g-wb.dts b/arch/a=
+rm64/boot/dts/freescale/imx8mp-edm-g-wb.dts
+> > index 242fa930b..a78401d11 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp-edm-g-wb.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-edm-g-wb.dts
+> > @@ -345,7 +345,7 @@ MX8MP_IOMUXC_SAI1_TXD5__GPIO4_IO17                0=
+x16 /* DSI_VDDEN */
+> >
+> >       pinctrl_hd3ss3220_irq: hd3ss3220-irqgrp {
+> >               fsl,pins =3D <
+> > -                     MX8MP_IOMUXC_SAI1_RXD6__GPIO4_IO08              0=
+x41 /* GPIO_P253 */
+> > +                     MX8MP_IOMUXC_SAI1_RXD6__GPIO4_IO08              0=
+x40 /* GPIO_P253 */
+> >               >;
+> >       };
+> >
+> > --
+> > 2.43.0
+> >
 
