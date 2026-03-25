@@ -1,254 +1,226 @@
-Return-Path: <devicetree+bounces-280321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280326-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4KsAAOGww2nAtAQAu9opvQ
-	(envelope-from <devicetree+bounces-280321-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:54:41 +0100
+	id 6GoNNo6xw2kktgQAu9opvQ
+	(envelope-from <devicetree+bounces-280326-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:57:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5128C32278E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:54:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F4E832286B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:57:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3405230D338B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:50:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F0A713137144
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:51:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3915939F17E;
-	Wed, 25 Mar 2026 09:50:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C581738D6A4;
+	Wed, 25 Mar 2026 09:50:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XhgqgzL5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="oqinl9dv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 136E138D00F;
-	Wed, 25 Mar 2026 09:49:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68E5D3A4505
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:50:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774432200; cv=none; b=bBu6fLpkx/NfYOv0ZUNtA7kvRwKNgkn9CbqPDdu5eu1MRTgCv2bhDLIZ8vHkrMjtLHG0fIjcyir9ZkAZLkgKVsdlwT3saB46QFgoYvi3BJKMIHvJIWVYkU376uEUdcJcPjlc3VX4wofDMw8c9IRgqT9VOmHqyjvYJvbE/5wgcvo=
+	t=1774432259; cv=none; b=Oy43LtC1W4mrTt3N+Ep3b/Ml0Y2YZtA4wRllLnOzisfHDRZtvCb/EKsj5H0AjzOWWn2EeZX1Le8MnGtqjAUP3ZZZfrCRB0FXMgfuCVqw1SJZnxYu3Lw0VD4oyB0Wys+kNaqbqdGzsEmNISiXCXDrI4KrAwv1MEfZvz3mTnU82gM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774432200; c=relaxed/simple;
-	bh=X1k4Y4EE4YQHMjaQk+NB75V1fsruJnokoLSnoO0Mz44=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QPOFYaR7ubLAVQmAn9QbXYnHmEGnVcSIQPFrRkHGrd1jByKPX4sEKyWVwtRG9j9L2pSFiDh9DHyktjbmA17uSwmr2lrPNVbibx71GdEnw6hzFQA/4rkRaB3QDai0/v73hHp3w2z8/r/7OafrlPUMLD5LH2md+2PkyPzdBmS19Yo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XhgqgzL5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAAD0C2BC9E;
-	Wed, 25 Mar 2026 09:49:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774432199;
-	bh=X1k4Y4EE4YQHMjaQk+NB75V1fsruJnokoLSnoO0Mz44=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=XhgqgzL50hIGhXpz4uMEVwMJkvcl+Pbi8YextVbKeMJSz5QmWv3qujNvSEcpoewr/
-	 nbLcC6FgxuZGMiuVGXrFbHGhFc2yAbic5xrl8p6HcHRUpSIkToAgMWijJ4rUTOKpc8
-	 xRrEBXOmBjwcvU+LdPcSbPMk1LEbCVpZ98Q/GGuuWfJxIAQKlZd9iHWrKWmDNOXYS4
-	 1wdexkB4HDkdCyOzxPF1CHEr0mVR6+EzSGoijbw5kVcgWZMPpFLYz+NQNOcPl+tFyB
-	 fnmRy3/YNIbZLLTgeR1ZpC62SzJrvX0xhzCuxGIJlXiMIIzah0rxtZHdJlOubEA701
-	 Yzh2N2i8sRbTQ==
-From: Yixun Lan <dlan@kernel.org>
-Date: Wed, 25 Mar 2026 09:49:25 +0000
-Subject: [PATCH 2/2] dts: riscv: spacemit: k3: Add i2c nodes
+	s=arc-20240116; t=1774432259; c=relaxed/simple;
+	bh=00stqMDSLC8zHkq6vuvmGRmlLz7NFbDhqHtOZK7Au68=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dAgo6pl5pcPic3+JR29rNb0X+flHsp6Da5MGwimr6nOPWkmTHasNKfvYlewHi0VrdbzBZQrN2FrP5KYgLj0J5e13BrQufc5zNX/AqDka6pcJeZbzv4CIDUhg4wLyTcLzT/57b0GdSBvROI92GEFAR85vkcU0bqoMMsBMw6y8hE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=oqinl9dv; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-48702d51cd0so49455615e9.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 02:50:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774432246; x=1775037046; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=p9U89LuLFXoVjIbPXNI+E/8nZsSQ3ZaCzlKQvO4O4BY=;
+        b=oqinl9dvBdFxKNJpZUuRdsXVGk88H1Uj5c7Z8oUwnWgbL9S51PUBs4dQGLAoQME95K
+         sGEgzNSdbrkwdrzv4mvtzCg7vVByTplJ9d/oB6nXebFw07X9h4vBRpIBClygeSE1q2F1
+         SBTyPI/oAw0y/gZ6Vg9OVn+CQA6HqC1UbGldVgDQvcvUIcGXo2DRlszov8tCWKyuOgCl
+         c+3GJRoYyL0ZfI/OQad1NhMg2IXARZ0skVX7h+lm+dVUwKTOQGaeVdB2oQN9zzdpVpBN
+         6yNd3k34u7Kcw6DegEWsTPOMU+DfdZ9W7fjUbBiA7iB2iedGfWUintBTIqTId2gwZ1Pt
+         fTjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774432246; x=1775037046;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p9U89LuLFXoVjIbPXNI+E/8nZsSQ3ZaCzlKQvO4O4BY=;
+        b=VTPrRcruN7UrNtJlMFpmB4yIG4Tmqg97164APHGR8J10pT1mAPXyd9mJ6CK69UR8YS
+         vcZJsJyP4xYUcHdtLtIgZntmqSXc+YB6gGIaxI0RB3nQU/vWUsE1WjYqsrKqDdn/1q2x
+         ejYgZQbgxcVCxlATX3ezQj4GQ7Mw2zQQc5q5gZuIc6+MTsyNL26bGve3Do6UyR+HNUhp
+         H/JYozKz9aT/p/lyRO6wFk3WcWQQw63hqKCo4Og9jKHo8G0AQwZkPLppIr8KozpoAs72
+         Fq+r0nEIvxrIKYel9oLVz9ZPZuNRcvUSMueHpgu5B8vGy265w9WwFQYiluBiilRtZdW+
+         7LoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXrGdDpEgtxmk1C84Zq4B+/XlqKPlxFSyGHpEvrzvawSdujc6Iqp07IbxLj+c1MRmlKIecZc6MMzGp4@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcA2OCi5ZQgYpJ3mw75wIEKBagV7+pRw+E48Ln1slHQ3nB4YkU
+	tymfcQvShjip2aTGu8jpKRcM53So1s0EgpjeFlvZjEGu2057MpF1Z/c=
+X-Gm-Gg: ATEYQzwmBRlvf5wAiq8ekUz7gptVx8ySW+ymW7PPCjeDz2bH5hoItqmtdSow1hJ4xVF
+	p4QzFFeSeUlkw5z0Lernu/oxkUmH9AN3vR+7QAp0DLoHnhxNKSOGT9JMTnsp3RjOeUKJINTckiS
+	7WcqvaS6lPbnNXZOrXNHvbxibtxTAgmH+Ok+jfrK/Y3/D7W2QAVTmdx+PuyVTuoR/qmWCMOZLpt
+	/Y1UYMJj4C3Blzf3+TRTvualVIbfxztPQyKe/6yyjNM/oKD7BhyAMRLTDcjQdcBF4BqjXztn3hy
+	dnphhcfKP3x7Xe5IfPTjjZSqGlpnW1pZ41cYlYGXNSLhgDu2ufc/eCye0bpgpMD1ndG0+XnXBsU
+	iUiqbiwJHFh2LcB17AUudg16rLubMfp3LpwfmMi+vj0aPpU6SZii++RxP3luntIN8y2804hhW6t
+	NOFuz0VzgYU5UXuZtqF0AOpkB4PfS6weZ8HQvGKGG9iahoR7TG5YAjqFk4x6msR+7KQWxsBa5yi
+	iydkNQyV540Fjfr0Hzu2tIadg==
+X-Received: by 2002:a05:600d:1c:b0:483:badb:618e with SMTP id 5b1f17b1804b1-48715fd4787mr34101735e9.8.1774432245606;
+        Wed, 25 Mar 2026 02:50:45 -0700 (PDT)
+Received: from localhost.localdomain (lmontsouris-658-1-96-160.w81-250.abo.wanadoo.fr. [81.250.250.160])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48711764625sm122268895e9.14.2026.03.25.02.50.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Mar 2026 02:50:44 -0700 (PDT)
+From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+To: lee@kernel.org,
+	andreas@kemnade.info
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	jihed.chaibi.dev@gmail.com
+Subject: [PATCH] dt-bindings: mfd: twl: Reference converted YAML schemas for subnodes
+Date: Wed, 25 Mar 2026 10:50:16 +0100
+Message-ID: <20260325095016.48752-1-jihed.chaibi.dev@gmail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260325-02-k3-i2c-v1-2-78f29c83d9ac@kernel.org>
-References: <20260325-02-k3-i2c-v1-0-78f29c83d9ac@kernel.org>
-In-Reply-To: <20260325-02-k3-i2c-v1-0-78f29c83d9ac@kernel.org>
-To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Yixun Lan <dlan@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4203; i=dlan@kernel.org;
- h=from:subject:message-id; bh=X1k4Y4EE4YQHMjaQk+NB75V1fsruJnokoLSnoO0Mz44=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpw6+68B4Ynmk/4vmUI5pb9NNMYuq/KGssGHfec
- 64a8hi4ZcuJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCacOvuhsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
- maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+16Qg/+J/xjfwMHNZpV14qZa7xQXrQ2098qMROtZsPA1luX24RsYITtn+k+5
- 9nJqLfC5knQQnpye97T35CFzkpPAsCpIIG83kOnJMa/OLoCbxpW3KE400ooceT5v31UQKGmBd1a
- QT2DbExx98ybViap9BcShvLrtbv+TjiGIY/mOngjRLkjvTmCSJa/32JkjPMNOdjVqmbdbH9PYVN
- 7EWkEK+XOaZ/GUT5XBUYyAY3887WxpD4P6SVxRrocRVPx52hWbQhXdxbnmF0Vj0EF6R8KzmFYBc
- z2JZG5jogqWjEaK4oQ59++Q6Ice7MZrdQfBL/pN48tl6gP70UEexBEAhWjG4jIkYpj/ZYz0WLc6
- O8C8R6f5YULYPiQT9K132JTNnNtyYZLs3L5P2TYH3n0iegaqlHaYwp4YEy6aU0vJEBpcnXyOtGT
- yFQyYSfkT/PiUsj4RYRCQQaQ8XKWJyS4GvEY2cHAmuQhGxbA59G/CZoliUOPQmiJUTfEmTjU4NZ
- ffS3UoLfwlLy8xy5OOrl2o4Q8MvU56rQmnbXBmdRgADDMswDhkfkgY0vvunMK3QRUPqvdsx0KFc
- HoZsIrro70rEy733o0yBngAfE7wT/ytMN1aQ+R7zLyp7LNuThRAZX75cNvKlmSGc1+hCTngO7yy
- Clrp5exweEXT3Th4yaltXgnFAJLjDA=
-X-Developer-Key: i=dlan@kernel.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
+	FROM_NEQ_ENVFROM(0.00)[jihedchaibidev@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_NONE(0.00)[];
+	TAGGED_FROM(0.00)[bounces-280326-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280321-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5128C32278E
+X-Rspamd-Queue-Id: 7F4E832286B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Populate all I2C devicetree nodes for SpacemiT K3 SoC.
+Now that all TWL subnode bindings (audio, keypad, twl4030-usb, gpio,
+usb-comparator) have been converted to YAML and merged into mainline,
+update the parent ti,twl.yaml to properly reference them via $ref.
 
-Signed-off-by: Yixun Lan <dlan@kernel.org>
+Previously these subnodes used inline compatible definitions with
+additionalProperties: true, which meant properties defined in the
+subnode schemas were not being validated. Replace them with $ref to the
+appropriate schemas and unevaluatedProperties: false, matching the
+pattern already used by the madc, gpadc, and charger subnodes.
+
+Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
 ---
- arch/riscv/boot/dts/spacemit/k3.dtsi | 98 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 98 insertions(+)
+ .../devicetree/bindings/mfd/ti,twl.yaml       | 50 ++++---------------
+ 1 file changed, 10 insertions(+), 40 deletions(-)
 
-diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-index a3a8ceddabec..cab72591b7f1 100644
---- a/arch/riscv/boot/dts/spacemit/k3.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-@@ -438,6 +438,76 @@ soc: soc {
- 		dma-noncoherent;
- 		ranges;
+diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+index 9cc3e4721612..a3af8e717ec7 100644
+--- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
++++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+@@ -265,47 +265,23 @@ properties:
  
-+		i2c0: i2c@d4010800 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd4010800 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <36 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI0>,
-+				 <&syscon_apbc CLK_APBC_TWSI0_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI0>;
-+			status = "disabled";
-+		};
-+
-+		i2c1: i2c@d4011000 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd4011000 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <37 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI1>,
-+				 <&syscon_apbc CLK_APBC_TWSI1_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI1>;
-+			status = "disabled";
-+		};
-+
-+		i2c2: i2c@d4012000 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd4012000 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <38 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI2>,
-+				 <&syscon_apbc CLK_APBC_TWSI2_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI2>;
-+			status = "disabled";
-+		};
-+
-+		i2c4: i2c@d4012800 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd4012800 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <40 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI4>,
-+				 <&syscon_apbc CLK_APBC_TWSI4_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI4>;
-+			status = "disabled";
-+		};
-+
-+		i2c5: i2c@d4013800 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd4013800 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <41 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI5>,
-+				 <&syscon_apbc CLK_APBC_TWSI5_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI5>;
-+			status = "disabled";
-+		};
-+
- 		syscon_apbc: system-controller@d4015000 {
- 			compatible = "spacemit,k3-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
-@@ -564,6 +634,20 @@ uart9: serial@d4017800 {
- 			status = "disabled";
- 		};
+   audio:
+     type: object
+-    additionalProperties: true
+-
+-    properties:
+-      compatible:
+-        const: ti,twl4030-audio
+-
+-    required:
+-      - compatible
++    $ref: /schemas/sound/ti,twl4030-audio.yaml
++    unevaluatedProperties: false
  
-+		i2c6: i2c@d4018800 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd4018800 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <70 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI6>,
-+				 <&syscon_apbc CLK_APBC_TWSI6_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI6>;
-+			status = "disabled";
-+		};
-+
- 		gpio: gpio@d4019000 {
- 			compatible = "spacemit,k3-gpio";
- 			reg = <0x0 0xd4019000 0x0 0x100>;
-@@ -582,6 +666,20 @@ gpio: gpio@d4019000 {
- 				      <&pinctrl 3 0 96 32>;
- 		};
+   keypad:
+     type: object
+-    additionalProperties: true
+-
+-    properties:
+-      compatible:
+-        const: ti,twl4030-keypad
+-
+-    required:
+-      - compatible
++    $ref: /schemas/input/ti,twl4030-keypad.yaml
++    unevaluatedProperties: false
  
-+		i2c8: i2c@d401d800 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd401d800 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI8>,
-+				 <&syscon_apbc CLK_APBC_TWSI8_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI8>;
-+			status = "disabled";
-+		};
-+
- 		pinctrl: pinctrl@d401e000 {
- 			compatible = "spacemit,k3-pinctrl";
- 			reg = <0x0 0xd401e000 0x0 0x1000>;
-
+   twl4030-usb:
+     type: object
+-    additionalProperties: true
+-
+-    properties:
+-      compatible:
+-        const: ti,twl4030-usb
+-
+-    required:
+-      - compatible
++    $ref: /schemas/usb/ti,twl4030-usb.yaml
++    unevaluatedProperties: false
+ 
+   gpio:
+     type: object
+-    additionalProperties: true
+-
+-    properties:
+-      compatible:
+-        const: ti,twl4030-gpio
+-
+-    required:
+-      - compatible
++    $ref: /schemas/gpio/ti,twl4030-gpio.yaml
++    unevaluatedProperties: false
+ 
+   power:
+     type: object
+@@ -371,14 +347,8 @@ properties:
+ 
+   usb-comparator:
+     type: object
+-    additionalProperties: true
+-
+-    properties:
+-      compatible:
+-        const: ti,twl6030-usb
+-
+-    required:
+-      - compatible
++    $ref: /schemas/usb/ti,twl6030-usb.yaml
++    unevaluatedProperties: false
+ 
+   pwm:
+     type: object
 -- 
-2.53.0
+2.47.3
 
 
