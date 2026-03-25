@@ -1,178 +1,223 @@
-Return-Path: <devicetree+bounces-280601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280610-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yFZxAX/7w2k/vQQAu9opvQ
-	(envelope-from <devicetree+bounces-280601-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:13:03 +0100
+	id gMqzAaQExGnOvQQAu9opvQ
+	(envelope-from <devicetree+bounces-280610-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:52:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8312D3279D9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:13:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BFD732873C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:51:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0BF5731B9F7F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 15:01:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2449A32CD2E4
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 15:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15A8541C308;
-	Wed, 25 Mar 2026 14:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B543E8C66;
+	Wed, 25 Mar 2026 14:55:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="QhZ/5Dcx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013020.outbound.protection.outlook.com [40.107.159.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 756D94218A8
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 14:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774450316; cv=none; b=lQqPQa/Faj89i8L7MMp9lWxGgnVmb6CoF6LWRxxRrrpeqn7jKVvb8RiDnskurkDDyrPZjIyFSeKzYZ5PNntaDhMUkUl+T3g59I9A7wWkBNYLZM0S3rK/o2WTze6T/bNOCryu5Bgo6AH0LenyZEhktLccNJtTdbm4ofrUUv1Hjf0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774450316; c=relaxed/simple;
-	bh=ObZviKpJk4gfdCnRY802bi/Mc/33SGuma6hYQ7oO8iE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=N5cBBqg3Osg8HE2TBO8VvL/FG/EyiYoAHC+Mw0g/uNBlWT8vlgcIS39gNkwkZDo58clHMKx6kKiwvITuY01vINhioY1u96pInJQCYcP6+yWlPIoBjo0MMeDPu6hCMmMmwhEPYW9udZ09LubhXK0JcRjH6IJ5Poae/isTnqdJdWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=peter.mobile.pengutronix.de)
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1w5PZX-00050C-8q; Wed, 25 Mar 2026 15:51:03 +0100
-From: =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-Date: Wed, 25 Mar 2026 15:50:58 +0100
-Subject: [PATCH v4 27/27] arm64: dts: rockchip: add rga3 dt nodes
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C71A13E63BE;
+	Wed, 25 Mar 2026 14:54:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.20
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774450501; cv=fail; b=onv44KuU3E+QqTSPP2+jvSm0eEkZsfcM3ZR6hMdc5c3hmpW27kIjS7kP5AaBOKrsxC5hye+qrIGzxX0c//4r9k0lxpSnrbu7t7OwQuel1yWsgp4vDjen5Nw/CH7jtyADsQndzKEZxgSrIGvA02RYQUC5Af+lW+z3N6UMBLhdifs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774450501; c=relaxed/simple;
+	bh=xIt11UG5FmW0iV5TiRpvLWN02NqFgkdewAE7H5+ib7I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=u0gNyWloLxhS88qI52H/W3H5rhn7SsuW7glrn3rtlgWERIPEo2mzCY3WFxc8oi3He2dtbvOPrVt1XJYNLWgP3SNHAjAv62vEdbbEU7xPjUq1qPwfzjcJkWDEy72BHc4WuTVAHLlW4ug/nuYdI0XWV7qSqxsTaTt2NPbXDYW3w8c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=QhZ/5Dcx; arc=fail smtp.client-ip=40.107.159.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=s/hRYR8qaABGRJs9uMMdbOzh5d4zoRpK6bN0Vu/5A1inT23Xh05++qzzxPMgESfxL6TogUROwipR6bGF+sqR82y2pawiX7+PZcATGiQcE33vp+8lkSbnqx+9QL+WWPuRCPrpIRyqlFWSTaBZJsYOXSif5T5vWeTuawlttxssWuE/EueeW8dV7F4ZUJd4/gdNMQu4o/pJy8cw/VQj9Fw1wFDwqZRy0YvGef8PholY3lo7WiGKiGVmkwAEq+FfNnRlBFHroHzSNsk/LllCCnxx9MELtIacRNgSKbxWWz6yQN7uhnfzDvxXp3KPmWo+erS1c+6EA4giT+n7Bx7/OkXRzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oGiGgg5Zd6Hy1LT4A8o+mz0IWMCHiK0/VW/7irwh2AE=;
+ b=NynJZhbuZknnqvhcxmuxMDrbRnRCOkAk2KTgmxeGw4ADTPxg7XJAIxb5/Pv9Ej9VtHiVYL9neOV6xVEu9FgDbGnLT/ambd1vRzb9DDJ0T1TX3rADQ7h/YtgcnWp3WNauWHgFe8x/I4GfZbCrEsWXGnma+VXWNgIfg+G92J061RaW1lhoDQQmRmIQBJVnqBOAZ35Ki4etzpsP55d4FwjrWUn9e7gmxqyfgIyKjxSx3Il0ZwVaLqP9XkB3Dl0qqT5dNwCZz7wLYTaaj3yB+U7tg2bAOBvQEvXZEjmz1OcABfJdVUOUSqcQUILgXr7V8qY8OKAku+G6CNac1Ny9ci4tJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oGiGgg5Zd6Hy1LT4A8o+mz0IWMCHiK0/VW/7irwh2AE=;
+ b=QhZ/5DcxV0UU78fc8JRehbcXSxSO2Gd4GMvY+xMr72m1IGoZm6WVTvIZx4OqQ/1r3fkZf8rCxXEW3sq2a5bjTMiM8Ds+0HPf0tIvl4ofaFObW0HtX1NdcOzHm9/jGsH93TMyfhdLembuDFTvg6lAdNqX1CzhUZh3EwJWgM5VL2GShGaXd+sSJVSiq5IjXmzmdqjYOAlZl+Z2+E7hk2euLT2PXXu1tfdxEAXwN5N0E4VWRv+1jrEyIF9Z+qaoESNfNmDiAYFOXgKo0j8anoFUjV5DiJsrsqYTzJJ2sIzyKbozPsGVoHuZpM08vCPb/nVGNoNwQscKckIYbicrFEg/Iw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by AM9PR04MB7489.eurprd04.prod.outlook.com (2603:10a6:20b:281::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Wed, 25 Mar
+ 2026 14:54:56 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9723.030; Wed, 25 Mar 2026
+ 14:54:55 +0000
+Date: Wed, 25 Mar 2026 10:54:46 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Franz Schnyder <fra.schnyder@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Franz Schnyder <franz.schnyder@toradex.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco@dolcini.it>
+Subject: Re: [PATCH 3/3] arm64: dts: freescale: imx95-toradex-smarc: Use
+ gpio-hog for WIFI_UART_EN
+Message-ID: <acP3NiGvRCc1SgjE@lizhi-Precision-Tower-5810>
+References: <20260325-mainline-update-imx95-v1-0-b5ebe976655b@toradex.com>
+ <20260325115513.707914-1-fra.schnyder@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260325115513.707914-1-fra.schnyder@gmail.com>
+X-ClientProxiedBy: BY1P220CA0011.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:59d::11) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260325-spu-rga3-v4-27-e90ec1c61354@pengutronix.de>
-References: <20260325-spu-rga3-v4-0-e90ec1c61354@pengutronix.de>
-In-Reply-To: <20260325-spu-rga3-v4-0-e90ec1c61354@pengutronix.de>
-To: Jacob Chen <jacob-chen@iotwrt.com>, 
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, kernel@pengutronix.de, nicolas@ndufresne.ca, 
- sebastian.reichel@collabora.com, 
- =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-X-Mailer: b4 0.15.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM9PR04MB7489:EE_
+X-MS-Office365-Filtering-Correlation-Id: 01ccdb7a-487e-46df-2a23-08de8a7e7a10
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|52116014|19092799006|366016|1800799024|56012099003|22082099003|18002099003|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	RfJ8269rF4ijR/3BTjs2TEKafrzDW+Y49tr1G+c/r7R6mvENVzDXtYRc/wKkB+Huf/cVfAwca6flr1Z1esDZbKDMAFpmPWb73rW71UpNF4ZK4P8vprxrEMxz5lgV5pylTCVUw7xHeqN1wuFaicBFhvTE/MGaPqgrD4DNDvd8BWIcZ1qny7zNwX6m9SlY7+Z2af0QzXRv6/mbzzsRfuad+fI+3fPTgA8iE9s/Wk451iKto7A7fL2kGoQ9ewPJkoj8EhY0apVhNDy0CvC/c4k7GfPGpoN8kwBYVPinPlbh5vAOud7p0iNNB0EnYkielrLQPUYlkQbyZb1i3uQclQ9Mna7KnpXkVmcUFUBpb0ZdHQOXizoiu2KlduY1eOmfa8yRE+D9yKzYff0TVN5eyvVcxqy5Atq2PPVyEWTxgWDkeMP+BTHIbd/Da0xX/9w1d4Ao5lkEyTuv5EGeHQjLiBcASHssxPm6bTukXfUuqJYPF50avbG0EeVh0JkrONZSEIcMh+JZUOcmpPDbViXnADl6iG2s97e04Q3zD8/jO/NCiPk2wVeE+6bSt1xJucVS+jpjzx1XZ8ZFWoQmCNSH4EoEFSb/AMNpJqFH9dUCn8t7Pi6AOPvgTXJV+K1cf0lwsW7psiPOZniNOg3BsvgriJCd+1ADiCVTEK/VwO06IMwu8JtoMeaxzExiFCri6S96BL33h62ETRz8vhN2ep3tokrMx03azIrEkHsjm5JVkHU2mOPFBOuzylnWT1i6BwV0QZcI56eBGpeOVYRqxvhq2NwTXoaXrPEAK/DyWzV46ko89jA=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(19092799006)(366016)(1800799024)(56012099003)(22082099003)(18002099003)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?OyYzziY9kPjzX973U2eUWVjz9JUQy9yj/cXEkoBa/q9/E5KOU1RnUtrms+8e?=
+ =?us-ascii?Q?6SHNaEGZ7z5S/Xdm/6yKvdqbqHvd7iVZkR1IJEAJVQ9Pz6wv0vQolnVY//UN?=
+ =?us-ascii?Q?sDy+4bXIQ4mUHflZgF5ymO1pPUyzpXbgAhTYHhTk19xfvi6QJ7syyHzdIUHu?=
+ =?us-ascii?Q?N0c419bYqu40Cc2WWhVaaIh35caUS1IRUcwsLzy76C9sRNlyiqCQB87DLwIR?=
+ =?us-ascii?Q?p1ipkDAM2dwRnVMfPzpdGsvX1M9z3SlkX/b7sPXcmtVhm9peomqjrb+SPwfb?=
+ =?us-ascii?Q?DKc0DHDm64axscG5XqyOf+NtC8+VOAgea0FpBqMjyXvxhBNNM2AVr6SEkuko?=
+ =?us-ascii?Q?xRuf/orUx27TOW7evxoSUgbFq7wy82PXKCNjeW715vfb7TSgvLfxQt7rSFK8?=
+ =?us-ascii?Q?hcWdgr1MSza08+EPbraOhLM/zw8DS5HnbV11ebSNF121uEthm9rrTee6Dhr+?=
+ =?us-ascii?Q?HyZ9FWXVl8jkoEgYXBu3OyoWmvuz/1oMKQlsd0XSFDi4jNqKtGRKtHY98TwL?=
+ =?us-ascii?Q?uJVRJkYjHqgyS2da59sVGmR5X1G5Y34hITgQpcOZ+uERO6HDrtJmXRXfG+KW?=
+ =?us-ascii?Q?1Rb2yAnW9LvfWEKvTUeMlQWmdE/ek4Crk7kLjNwec5jagkJwfIhsvWNhim0F?=
+ =?us-ascii?Q?0JuX5dApsOs8RQ2flZ6qRcIlGj9RhOTVC+2Tzc9hJA/CBUj1XDQ7ZiBoiiFO?=
+ =?us-ascii?Q?NcmlpT9/oLQgdKskBAlctqTpFMTqzMeA00EAEWwVHRobo8FUDWIbcW9Tu8jU?=
+ =?us-ascii?Q?qMORlpV30k9uf8IAGya7pdypy8ERBHbOWUOPcHcvMTELtcdVxxwHNtWFLy9x?=
+ =?us-ascii?Q?xGl8BOEMLovW2tK7u1PplvAnUFH4U1vf2tl9vGlglxkFenBYHBvLf+srDag0?=
+ =?us-ascii?Q?rI8zRx6ryws0IFahH28P2JH4CUid3TgLzphAqMVifAolioUvdqBAep6nbH4/?=
+ =?us-ascii?Q?bFhvwvXRW1mihXhiPtFj2sZV/BjRoxnNIG2q1FpTCtzJ2rT0CkRSY74yw8mZ?=
+ =?us-ascii?Q?Wt8zVnxgQkPNmKxttXxSSRvWX1WrtjFDF8A2FomOWMoDn7nvmqfF/zTVKm4X?=
+ =?us-ascii?Q?CtEysRbmvCyMIYwP4l9hcbaCYKqL4RLKAuFym0/hBxBM+1NRltgW+NnUoDMQ?=
+ =?us-ascii?Q?HkdjvHLmsF3gcPgjz26nuhfGEsKfGC2MPr7LvJvp9o9yaPvxi9J3g7yiMCJe?=
+ =?us-ascii?Q?RuJu0WWbu1IKDg9LEucvyTZwLbkS/IbfKE6T4T1VtfQ8oad4cGWL4Y/Iwvc8?=
+ =?us-ascii?Q?msyj+9wjlWWWRd4F9aPocrvtORGPg1Kzdzfya5O6cZv+reaGxN8eTk08AS77?=
+ =?us-ascii?Q?NSY5CCCut9f/Not+2eCBWlYbRvfChn3Gs51Xi1SzLY1mViZj/bcAfz5UgcDM?=
+ =?us-ascii?Q?KUN+/AqsESPZGSKa/yAp3NsDwjXSZ4R1/vP1rVHEiN99RLTC4aeA0smXJNSs?=
+ =?us-ascii?Q?DTLb7LKUx2QBuIsIDLDyyUNzbU3EgzdZZWbsund9PWJAzLi76YrfXHIiukbS?=
+ =?us-ascii?Q?5XvwrnugFxeRuF+0QE46omOizZvgz+OvHSEBUwCwE6xR3HTJbuKN8ezbsd4U?=
+ =?us-ascii?Q?HK/rHJ0PVjdweKlrGsiLJKT5wVKlU52GkBtU3g4dlZwlL99FKBmi5hMJWeNw?=
+ =?us-ascii?Q?IhwRier9ONrnqzedbFqaaMIZ++cYwkZ2RLsLZFy2xTnHFXVHMSpa7iKMVwO3?=
+ =?us-ascii?Q?kD0Z8p4xQEvOFLV0tT8LDRigN4aWosSb//KbC1z6oxT6Ap9E?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01ccdb7a-487e-46df-2a23-08de8a7e7a10
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 14:54:55.3598
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: F7GONJexe0fDk8Usu/Pjk+sDyttq07SV6WrfdnE+ScZoApu/72UzhgEfENec3r32sl09sMssPrFQEcKXaLqxvw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7489
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-280610-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280601-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,toradex.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,dolcini.it];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[s.pueschel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.28:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,pengutronix.de:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,fdb60000:email,fdb70f00:email,fdba0000:email]
-X-Rspamd-Queue-Id: 8312D3279D9
+	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,toradex.com:email,0.0.0.21:email]
+X-Rspamd-Queue-Id: 7BFD732873C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add devicetree nodes for the RGA3 (Raster Graphics Acceleration 3)
-peripheral in the RK3588.
+On Wed, Mar 25, 2026 at 12:55:11PM +0100, Franz Schnyder wrote:
+> From: Franz Schnyder <franz.schnyder@toradex.com>
+>
+> On the Toradex SMARC iMX95, the WiFi UART signals are shared with the
+> JTAG. The WIFI_UART_EN signal is used to select between these
+> two functions.
+>
+> Configure the signal as gpio-hog and drive it high to select the UART
+> function by default. Add a label to override the hog in derived
+> device trees.
 
-The existing rga node refers to the RGA2-Enhanced peripheral. The RK3588
-contains one RGA2-Enhanced core and two RGA3 cores. Both feature a similar
-functionality of scaling, cropping and rotating of up to two input
-images into one output image. Key differences of the RGA3 are:
+gpio hog have problem about probe order, are you sure gpio device probe
+before pcie?
 
-- supports 10bit YUV output formats
-- supports 8x8 tiles and FBCD as inputs and outputs
-- supports BT2020 color space conversion
-- max output resolution of (8192-64)x(8192-64)
-- MMU can map up to 32G DDR RAM
-- fully planar formats (3 planes) are not supported
-- max scale up/down factor of 8 (RGA2 allows up to 16)
+I have not seen any place refer to wifi_uart_en.
 
-Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 44 +++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+Frank
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index 7fe9593d8c198..87334636544f8 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -1273,6 +1273,50 @@ rga: rga@fdb80000 {
- 		power-domains = <&power RK3588_PD_VDPU>;
- 	};
- 
-+	rga3_core0: rga@fdb60000 {
-+		compatible = "rockchip,rk3588-rga3";
-+		reg = <0x0 0xfdb60000 0x0 0x200>;
-+		interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_RGA3_0>, <&cru HCLK_RGA3_0>, <&cru CLK_RGA3_0_CORE>;
-+		clock-names = "aclk", "hclk", "sclk";
-+		resets = <&cru SRST_RGA3_0_CORE>, <&cru SRST_A_RGA3_0>, <&cru SRST_H_RGA3_0>;
-+		reset-names = "core", "axi", "ahb";
-+		power-domains = <&power RK3588_PD_RGA30>;
-+		iommus = <&rga3_0_mmu>;
-+	};
-+
-+	rga3_0_mmu: iommu@fdb60f00 {
-+		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-+		reg = <0x0 0xfdb60f00 0x0 0x100>;
-+		interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_RGA3_0>, <&cru HCLK_RGA3_0>;
-+		clock-names = "aclk", "iface";
-+		#iommu-cells = <0>;
-+		power-domains = <&power RK3588_PD_RGA30>;
-+	};
-+
-+	rga3_core1: rga@fdb70000 {
-+		compatible = "rockchip,rk3588-rga3";
-+		reg = <0x0 0xfdb70000 0x0 0x200>;
-+		interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_RGA3_1>, <&cru HCLK_RGA3_1>, <&cru CLK_RGA3_1_CORE>;
-+		clock-names = "aclk", "hclk", "sclk";
-+		resets = <&cru SRST_RGA3_1_CORE>, <&cru SRST_A_RGA3_1>, <&cru SRST_H_RGA3_1>;
-+		reset-names = "core", "axi", "ahb";
-+		power-domains = <&power RK3588_PD_RGA31>;
-+		iommus = <&rga3_1_mmu>;
-+	};
-+
-+	rga3_1_mmu: iommu@fdb70f00 {
-+		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-+		reg = <0x0 0xfdb70f00 0x0 0x100>;
-+		interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_RGA3_1>, <&cru HCLK_RGA3_1>;
-+		clock-names = "aclk", "iface";
-+		#iommu-cells = <0>;
-+		power-domains = <&power RK3588_PD_RGA31>;
-+	};
-+
- 	vepu121_0: video-codec@fdba0000 {
- 		compatible = "rockchip,rk3588-vepu121";
- 		reg = <0x0 0xfdba0000 0x0 0x800>;
-
--- 
-2.53.0
-
+>
+> Signed-off-by: Franz Schnyder <franz.schnyder@toradex.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi b/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
+> index a90edefc5197..29e3f5bf867b 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
+> @@ -451,6 +451,13 @@ som_gpio_expander_1: gpio@21 {
+>  			"",
+>  			"",
+>  			"SMARC_SDIO_WP";
+> +
+> +		wifi_uart_en: wifi-uart-en-hog {
+> +			gpio-hog;
+> +			gpios = <12 GPIO_ACTIVE_HIGH>;
+> +			line-name = "WIFI_UART_EN";
+> +			output-high;
+> +		};
+>  	};
+>
+>  	embedded-controller@28 {
+> --
+> 2.43.0
+>
 
