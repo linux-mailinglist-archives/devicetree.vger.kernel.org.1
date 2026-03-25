@@ -1,156 +1,161 @@
-Return-Path: <devicetree+bounces-280355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280357-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YNRWFSa8w2kRtwQAu9opvQ
-	(envelope-from <devicetree+bounces-280355-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:42:46 +0100
+	id kLgiOm+7w2kKtwQAu9opvQ
+	(envelope-from <devicetree+bounces-280357-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:39:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C00EE3232F5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:42:45 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F388B323258
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 11:39:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C381C312619E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:31:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 09AD83080792
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 709EE3B6C07;
-	Wed, 25 Mar 2026 10:31:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1DF3B7B64;
+	Wed, 25 Mar 2026 10:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MNmggxTi"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="anV/GIpt";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="vPKDJhxf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-a1-smtp.messagingengine.com (fhigh-a1-smtp.messagingengine.com [103.168.172.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 485273B6342;
-	Wed, 25 Mar 2026 10:31:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40F3A3B7B93;
+	Wed, 25 Mar 2026 10:32:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774434674; cv=none; b=CjJ5CCYnoqMIrEvR+p6uXFHVL5fCu2FBYo7d1+tMdPZOLuI7G3NmfVtZlA+0WeLtbvcgXwNSNdCLq0TfjmVwCDlB+IUzApVWuuSMOLImy2r3e/7a1vvlbVskPyI3PaJnnrakTA/Kzb50Xy04b77B41S5xdKDKD++q3cdl3Ubvmw=
+	t=1774434734; cv=none; b=k0ITFr4jsF28+7yAAlrXLZhUgDm5KgV7bXz5TKZVN7imtKij7lo9PR+tsfr/neB8y0Mu63WvZcHQPj9C/RKKYOrYb9LpJJcxGH8DGmHkmW9Qg2INm7iCYU7MrKIF9yjj+FVhDvPSJAh7XPG5/08G/pbaVNfkmSBeb6X86XGMR7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774434674; c=relaxed/simple;
-	bh=oJjXP7xdNnZ/BGIVuhLzu0MfsHL3XvKpMIM3SaBhYfk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oJTOnEZwmqOEOgrZ8ukUv2dAIsqrAxgZbQAuwJSnXdtgzOCzDygyYepIB+NSSGb2wEFB1hTcTGzjBZD96Tp3X+LqnSRtFyQMIL1Bkid8gYoCC6J34vwaQK6wgGvE9OFzu7J5s4ZTjsbKEbtGNzGAyRJIdTGvAOIzuaL7IuhLWPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MNmggxTi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68BABC4CEF7;
-	Wed, 25 Mar 2026 10:31:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774434673;
-	bh=oJjXP7xdNnZ/BGIVuhLzu0MfsHL3XvKpMIM3SaBhYfk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MNmggxTin7K/6W/4SAhXxVVhhDmcwZaEhsjbkFJHNe0FYCa7T9o4k6z1t2QuMcGmk
-	 77wUYCQTFU54CIbmC1E+4JnJe/CDzVLutHSsNR3KlBsrlAzWiGVU8lz97OAW7eNgLn
-	 ALBL9WqwNniCGj6bi5utGFCqQ5UN9ep5k6/6yd8ImitK/Xp8jlegDjw45EM29a+j4N
-	 NkpbYmaW3cdXPPUHrBCkfPh+yfzQIXixAyYawvKhvA3/ia8HXrlMRm2a2qebz5JhoG
-	 00Pfy1wr7CgjBofXbGUNLA4uZhJ9yqh+asjiB1txJ98jFVMPlNTrrfibDmL9NQ9Sr9
-	 WARIuC86D6dCw==
-Date: Wed, 25 Mar 2026 11:31:11 +0100
-From: Thierry Reding <thierry.reding@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Akhil R <akhilrajeev@nvidia.com>, Frank.Li@nxp.com, 
-	acpica-devel@lists.linux.dev, alexandre.belloni@bootlin.com, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, ebiggers@kernel.org, fredrik.markstrom@est.tech, 
-	jonathanh@nvidia.com, krzk+dt@kernel.org, lenb@kernel.org, linux-acpi@vger.kernel.org, 
-	linux-hwmon@vger.kernel.org, linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux@roeck-us.net, miquel.raynal@bootlin.com, 
-	p.zabel@pengutronix.de, rafael@kernel.org, robert.moore@intel.com, robh@kernel.org, 
-	smangipudi@nvidia.com
-Subject: Re: [PATCH 12/12] arm64: defconfig: Enable I3C and SPD5118 hwmon
-Message-ID: <acO4NKPDUayny-I4@orome>
-References: <20260319-nano-manatee-of-vastness-fbafa1@quoll>
- <20260319170929.14543-1-akhilrajeev@nvidia.com>
- <67165a1f-9fa3-4853-b530-b1f9d6e4c2cf@kernel.org>
+	s=arc-20240116; t=1774434734; c=relaxed/simple;
+	bh=FzTTRUzL/ZZ7Ln0Ns38q9GaqFjqu7n1C5tzFiktCu3Q=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=e0zxtA60U40UtfwOyJMt+jZ18MhYX6Ju+96LpIBlwDi+2WnefmyVBRKv+pJ3OJPtY/FUYLpH3o4QPXZ4m9vv3D/6m1rGOufUCcxzcEIZIu2LP2uC72SzTHLpwud8Qr1H4b/wSU8nUYON6GWjLFbr/qffT2EfP09aQtlP6nAh5EM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=anV/GIpt; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=vPKDJhxf; arc=none smtp.client-ip=103.168.172.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 8CFD31400219;
+	Wed, 25 Mar 2026 06:32:12 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-04.internal (MEProxy); Wed, 25 Mar 2026 06:32:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1774434732;
+	 x=1774521132; bh=PcRO1NS2oDeg1E+vmYQzsnkDfERWn8h/Qdjm2aphaMg=; b=
+	anV/GIpt46yqdPvtNPX2lLCd+r470fmmo+t2N5JbsdaeVEmc2NwuYs7JVoPyT5NP
+	63nXQgdrsK6p+F6uHeko/nv5FrmC0CtxbIke7axH9GaRjxa2zGDyXdkQ1Nmp0PNQ
+	4UHUkuXkvXu425ZOR7kEnpcmFNxjbcuw5UTuox0yHtwy1VRCarM9Z5yULPlmeSwF
+	+8gXsMhpx7uFwXJYofse4a191HiUGFY4l0Qm4OksIuPgl5N7Zoyn2rewum0Fz/rz
+	dFRtJoAK8XiI+t6cjXyD3T8dJRKwOjP9FHkPGjI67OJ5DWEFgcXnEmCwFz8w8cNF
+	UN6Qp8Oyy0nBn7VQnaWkdA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1774434732; x=
+	1774521132; bh=PcRO1NS2oDeg1E+vmYQzsnkDfERWn8h/Qdjm2aphaMg=; b=v
+	PKDJhxfS8OSyCXWjTVHVQNzvKFongTUNhjaZUAZ+kuQEE00t27nJmDMtlva70AMf
+	M3O3ZBpL3TNCpAf7pyRMOV0khfZ5MMJKFURrttMqzDn6R381htLgDGIy3XYfve6J
+	n6O96Up4QWrEqct5x+Qta988J4Bd7ai1BqAiG62OHsfFjontsEAtLbpZapGRkQIy
+	9PlmQEisIJ08lXC9ySNyZDcbJ3u2CwBN5Y5Cp9rIbOYumM114gAh0fNnjpoZu/Nk
+	Wka+Be30YCQE9bu6z0HP7WWijRbYK6bQSAczFYcU3KnCeY25Tj3vkVlmUGbWUoLD
+	XsQduGPrY2jTmf4bdKmCA==
+X-ME-Sender: <xms:q7nDaStoaHUSoi9PKzVx1puWwaszqKDxJ9R4xAeQZJDVc2lw268yYQ>
+    <xme:q7nDaSTQPfjfVAtBoeVYEdO4JpslCUOZXEzTG3T5tMT7As9BUWTkw-UkAjOb279_U
+    r405xqqq1cgXLRUcXjLMK3VfX7M3S-HoyziJ-AI731PREwosOWPwQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdefvdegvdefucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedftehrnhgu
+    uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
+    hrnhepfefhheetffduvdfgieeghfejtedvkeetkeejfeekkeelffejteevvdeghffhiefh
+    necuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtne
+    curfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnugesrghrnhgusgdruggvpdhnsggprhgt
+    phhtthhopedutddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheprhhomhgrihhnrd
+    hgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhrtghpthhtohepthhhohhmrghsrdhp
+    vghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepuhhsthgtrdhguh
+    esghhmrghilhdrtghomhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdho
+    rhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
+    eprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgrhgvghhkhheslhhinhhu
+    gihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopegtohhnohhrrdguohholhgvhi
+    esmhhitghrohgthhhiphdrtghomhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhg
+    vghrrdhkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:q7nDaf55Ox_da8hQrAl5yaoptX-uyRJlHj4CUehEww5BAZjGWGeMCQ>
+    <xmx:q7nDaa6cF0_hbiaQYAeEqj-eVkyZmmquRq4TXeL6u2NMTWxQnUPQPQ>
+    <xmx:q7nDaRRz-sum-nLM7oKXhxKQAsyfRo82lXwqxBDjIlonbAibjHaFjQ>
+    <xmx:q7nDaS8I6Q1RX5rHnEPKBIQAwqWdhsUvzwPz51RAqLy7seD_HMYjSA>
+    <xmx:rLnDaftqmIH9tHbuyQsdGNMY_LqIChelT2ZP3szAyYPbXVSXOidP6XTz>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 0DC74700069; Wed, 25 Mar 2026 06:32:11 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hefw7yhop4kz6jja"
-Content-Disposition: inline
-In-Reply-To: <67165a1f-9fa3-4853-b530-b1f9d6e4c2cf@kernel.org>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-ThreadId: ASG4bdBXeNMN
+Date: Wed, 25 Mar 2026 11:31:50 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Romain Gantois" <romain.gantois@bootlin.com>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
+Cc: "Felix Gu" <ustc.gu@gmail.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ "Conor.Dooley" <conor.dooley@microchip.com>
+Message-Id: <e66a0925-b676-4113-9951-ee973866d388@app.fastmail.com>
+In-Reply-To: <20260325-fpc202-leds-v2-0-a2f4da739b92@bootlin.com>
+References: <20260325-fpc202-leds-v2-0-a2f4da739b92@bootlin.com>
+Subject: Re: [PATCH RESEND v2 0/3] misc: ti_fpc202: Add LED support
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.65 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[arndb.de,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[arndb.de:s=fm1,messagingengine.com:s=fm1];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280355-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,bootlin.com,vger.kernel.org,microchip.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	TAGGED_FROM(0.00)[bounces-280357-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[arnd@arndb.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[arndb.de:+,messagingengine.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C00EE3232F5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[app.fastmail.com:mid,messagingengine.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,arndb.de:dkim]
+X-Rspamd-Queue-Id: F388B323258
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Wed, Mar 25, 2026, at 10:54, Romain Gantois wrote:
+> ---
+> Changes in v2:
+> - Avoided selecting foreign subsystems in Kconfig
+> - Rebased on conflicting bugfix series
+> - Link to v1: 
+> https://lore.kernel.org/r/20260127-fpc202-leds-v1-0-ebd0cfb9f9a1@bootlin.com
 
---hefw7yhop4kz6jja
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 12/12] arm64: defconfig: Enable I3C and SPD5118 hwmon
-MIME-Version: 1.0
+Looks good to me, thanks for updating it.
 
-On Thu, Mar 19, 2026 at 06:15:14PM +0100, Krzysztof Kozlowski wrote:
-> On 19/03/2026 18:09, Akhil R wrote:
-> > On Thu, 19 Mar 2026 10:40:34 +0100, Krzysztof Kozlowski wrote:
-> >> On Wed, Mar 18, 2026 at 10:57:25PM +0530, Akhil R wrote:
-> >>> Add I3C subsystem support, DesignWare I3C master controller, and
-> >>> SPD5118 hwmon sensor as modules to the defconfig.
-> >>
-> >> Why? If there is no user of that, why would we want it? Your commit msg
-> >> should explain that.
-> >=20
-> > Ack. This is for Tegra410 which has a DesignWare I3C host controller.
-> > I will add this in the commit message.
->=20
-> Board or products. Not SoCs.
-
-Is this a new requirement? I see a bit of both in defconfig changes.
-Some mention specific products, other mention SoCs. Does this
-requirement apply to DT platforms or also ACPI platforms?
-
-Thierry
-
---hefw7yhop4kz6jja
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmnDuWsACgkQ3SOs138+
-s6GkJQ/+KHih7KGdwK8LUXDaRizPuwcIwvX5HHc3TOdKw2Gw/XtV+JaoI7c4wtx4
-MvnJjhsHhu4zH+4SMnxqEzTP8jbxcV96L9WhQ+Zfurvs+4X+vZ0KsNXN7H+uTeOB
-UKlf8JumnoVOs74dUSxIy4c9s2XoY/q6W/pBIguuczmMO/uyuUIIV7tiS+IAHVvG
-V+ySkgCNZR+6XH9tyAdN5xTvt7K26KFKoPUgOEXzY7k1gPWCL297YdEoWAfaw0PR
-7DxE9hn9z8DcflEbdkwLwD6z5wfJBgTPvZZgXNheyMv3Spr3lpmAOLFqW6a5QicG
-HllawC3G+ShlLltKAbjxygCX87Wf6fmKKYT40da3GrEkex+GWfDsDYXK5hijGDas
-2nxOZPvXBvQ8aV4Fx4kJHr0GmL6psv8VRVvDT1GWn3clzC7VBOzeMvf7cJBXImMv
-uxr53vBDzVSuLNZbt2ZZu+teJREZG+pM4nxC3jPIgh2t2tXWDtfco9O9qUyJsK2Y
-ibZ4l+p2uBzRu3cD3obBsHjnVLY79XEd6LN9RH6ZXNGn5t6PVHarP2gLW5hx5VI/
-rc++EMVFU2qrO2fe+duASYGyQs+BS4u7u5S9j/jnjEO+Z7kZi4zPk9cnAZEZXSZl
-tWV0O0BCLlbHYHHVrKTMZmT7Ay//JLt0uEEsogX+Cm7vH3z0U6M=
-=cTw6
------END PGP SIGNATURE-----
-
---hefw7yhop4kz6jja--
+     Arnd
 
