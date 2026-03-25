@@ -1,152 +1,274 @@
-Return-Path: <devicetree+bounces-280769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280773-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MEZMBr5exGkkywQAu9opvQ
-	(envelope-from <devicetree+bounces-280769-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 23:16:30 +0100
+	id uMpCCGBgxGkuywQAu9opvQ
+	(envelope-from <devicetree+bounces-280773-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 23:23:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6895132CD21
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 23:16:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05AD32CE17
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 23:23:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F051030254EA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 22:16:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 71F7E30846C6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 22:22:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD88B30596D;
-	Wed, 25 Mar 2026 22:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3D90355F39;
+	Wed, 25 Mar 2026 22:22:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b="TzDpLPyo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RjCchrBL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47BEE749C;
-	Wed, 25 Mar 2026 22:16:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=88.97.38.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7513C3264C7;
+	Wed, 25 Mar 2026 22:22:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774476973; cv=none; b=poQlw4tHQt/rX67KK8Q4DMFaGuGIoFQCmE+YswilArtekXoEByYikDLr59OtlEhcgGc4iuntI41LgpXjhgsJpR2JV9VjPwvTbZiQKh+rD4wQn0g8HA2inMCNMyBQseRjgQkWjdU/ZbAYm9RXRnp4pDTTn+7bfhNwJYiO7bLZjLY=
+	t=1774477355; cv=none; b=m+uuPq4GxOhvh0nlnGxa0gK0M+/VDvhlVq3yhkfrGSB4pbrDBv2izxvAUPzwArg10ZPjIXoy59R410UQcoM/SCtVTKLE3c97jpYg5WK2HccJY9suWWOjBniDAMSr8NWo4EtsvUH0ITe/f+0uWjygqrkLaOwUwWEtqRT+FmtAE08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774476973; c=relaxed/simple;
-	bh=Z8CurjlzVO6oEEWpQW0GpyYWUWY2tf33N/Sx0Va/zj0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N35regyZD+U4cU4TPKk2a8HVg2CdRy9i+0ZgFfHadt/unuyX/NB26/UE7A1j9Gow8y2kWfgLre08qA+B8cQJeuj1OagfoLARCQfvt1kGXWL31CfmfdZT5j7qBtQzgB44Zb87qkQIf9+yCjlVVr3cO2L/lAuiWfC5JMzsi4zXWyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org; spf=pass smtp.mailfrom=mess.org; dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b=TzDpLPyo; arc=none smtp.client-ip=88.97.38.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mess.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
-	t=1774476602; bh=Z8CurjlzVO6oEEWpQW0GpyYWUWY2tf33N/Sx0Va/zj0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TzDpLPyoZ/wAHO/pPjHsoyh120LxTFaW4h80MYAM9rV7YoVt10AHClEUpkrx1kM/g
-	 fkMZE8ks/rR0fUABZs55I22AZNxepGnKZoW7aDJhDHy/BfEo8Qw5ReL1xcTb3ZLTDH
-	 hxXUqUG0QsDBLANfTNdvay/4oZJtQa6xAPnRer3FEEA1L5MeEpTF0mKmJ6F3QETR6o
-	 6kWDqOGHbLe+o80oZY49MWdiRvBr8WgHB/BtZqaoSdscGr2exqcdD3WxiVQ3fX5cKO
-	 IHbE3ovO0Hnmw/ZuJUUBiCz/hOVnJ0lZr8ZA46jMMv9QHxKvPv/vS4irV8siawmDIa
-	 eWogZfU10xOjg==
-Received: by gofer.mess.org (Postfix, from userid 1000)
-	id C198E1011B2; Wed, 25 Mar 2026 22:10:02 +0000 (GMT)
-Date: Wed, 25 Mar 2026 22:10:02 +0000
-From: Sean Young <sean@mess.org>
-To: Biswapriyo Nath <nathbappai@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Martin Botka <martin.botka@somainline.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-	linux-clk@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH 0/7] Add vibrator, IR transmitter and USB-C handling in
- xiaomi-ginkgo
-Message-ID: <acRdOmHKQmBp-RSd@gofer.mess.org>
-References: <20260325-ginkgo-add-usb-ir-vib-v1-0-446c6e865ad6@gmail.com>
+	s=arc-20240116; t=1774477355; c=relaxed/simple;
+	bh=wr80KYo5vG+oY5OuzYhkOh8zc961m+DacPboYs6g2zA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FA/8piogX0I5aaFWUEB+wPEv6Li7Zo1vpRa1PaCljeRGEDhE2aWB8yhTruc+VBlYO3mnWg326m0cFVi7t+ajHfL29TNLtRhNDUl4cnscZJi3JjjkcdQ/RRtrfD//r/A37RfvzCVRIvLV/1Wqx5Bc2P68sqlBrh8p4ajDfkkKjeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RjCchrBL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1A207C4CEF7;
+	Wed, 25 Mar 2026 22:22:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774477355;
+	bh=wr80KYo5vG+oY5OuzYhkOh8zc961m+DacPboYs6g2zA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=RjCchrBLSnDkwOzM3Wkuj5APNMp5Hx7xRhhXkKtq9XNf5dJ9UVwyH1n2khDKjmdeL
+	 jNFoB8OWMllOaSFepTv4OEw8nWAERgN1yicHUFqOPnk3xUM+GpQ34Pe/o+4pr3K88L
+	 PCVfxAkIymKSmzoaQH7s5GFr6DDSzIZ6oBlko4bOlzAWL+eOh/zvmFZiNkWNS3JacZ
+	 aInP4Wc9xERLLRqzcu8IFeFHHJmE8dRjOsWVXOJdqJIDnqTG3TR9upM0tLLeI7LDte
+	 2LsXDSdFvre8G7H4hJC+L9UOoenjoX5inafbrv5AFGJRaTLcklsJc8mb6QmctYAu1k
+	 vSIYG8nJCafiA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F2A8B109E528;
+	Wed, 25 Mar 2026 22:22:34 +0000 (UTC)
+From: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>
+Subject: [PATCH v9 0/6] Introduce MAX77759 charger driver
+Date: Wed, 25 Mar 2026 22:22:21 +0000
+Message-Id: <20260325-max77759-charger-v9-0-4486dd297adc@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260325-ginkgo-add-usb-ir-vib-v1-0-446c6e865ad6@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAB5gxGkC/3XRzW7DIAwH8FeJODcTGGxgp73HtANfSSOtTZVMU
+ acq7z7SbWom2NEg/7D/3NicpiHN7Lm5sSktwzyM51zYQ8PC0Z371A4x1ww4oBAc25O7aq3Rtvl
+ 66tPUGgRPQJFIOJbbLlPqhuudfH3L9XGYP8bp8/7CIrbTHwxkiS2i5S15SMqbTneoXvpx7N/TU
+ xhPbNMWeAggTEWALIAHtNZwR4YKQe4E0BVBZgFVIlIdBmehENSvQDwPURHUtoVVIFUwMUVRCPg
+ QgNdywCx45NKi1OSwKwTaCUJVBNpyMIFbH51WvkxS74VakjoLyUTLdUhkAxaC2QlQm8FsgjfkI
+ 2qebNgLh+a7U4r/OgEo5NVN0PHvH6zr+gVLsPIVuQIAAA==
+X-Change-ID: 20251105-max77759-charger-852b626d661a
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Lee Jones <lee@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Badhri Jagan Sridharan <badhri@google.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Mark Brown <broonie@kernel.org>, 
+ Matti Vaittinen <mazziesaccount@gmail.com>, 
+ Andrew Morton <akpm@linux-foundation.org>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>, 
+ Amit Sunil Dhamne <amitsd@google.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774477354; l=6774;
+ i=amitsd@google.com; s=20241031; h=from:subject:message-id;
+ bh=wr80KYo5vG+oY5OuzYhkOh8zc961m+DacPboYs6g2zA=;
+ b=sm8VTAh5gyjneG+gDpJx/HvtUrlSkC+cdEd4VecAQ/o3kae/HjfCYeBoKOAYCb5U/uEoPlIwx
+ fkGEj5iNlTAAwxvWDGVI+a4fTrXYDXYaG48qWRAyOe22CrTw/5jPFF9
+X-Developer-Key: i=amitsd@google.com; a=ed25519;
+ pk=wD+XZSST4dmnNZf62/lqJpLm7fiyT8iv462zmQ3H6bI=
+X-Endpoint-Received: by B4 Relay for amitsd@google.com/20241031 with
+ auth_id=262
+X-Original-From: Amit Sunil Dhamne <amitsd@google.com>
+Reply-To: amitsd@google.com
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mess.org,none];
-	R_DKIM_ALLOW(-0.20)[mess.org:s=2020];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280769-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-280773-lists,devicetree=lfdr.de,amitsd.google.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,linuxfoundation.org,google.com,linux.intel.com,samsung.com,gmail.com,linux-foundation.org];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sean@mess.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mess.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mess.org:dkim,mess.org:email,gofer.mess.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6895132CD21
+	HAS_REPLYTO(0.00)[amitsd@google.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B05AD32CE17
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 25, 2026 at 06:07:23PM +0000, Biswapriyo Nath wrote:
-> This patch series add support for various components in Xiaomi Redmi
-> Note 8.
-> 
-> Most notably:
-> - IR transmitter
+MAX77759 PMIC is used in Pixel 6 and 6 Pro (Oriole/Raven) boards.
+One of the functions of the MAX77759 PMIC is a battery charger. This
+patchset introduces a driver for this function. One of the unique
+features of this charger driver is that it works with a USB input where
+the Type-C controller is TCPCI based.
 
-For the IR stuff:
+Changes to the board files will follow soon once this patchset is reviewed.
 
-Signed-off-by: Sean Young <sean@mess.org>
+For reference to the MAX77759 MFD based patchset (present in upstream):
+https://lore.kernel.org/all/20250509-max77759-mfd-v10-0-962ac15ee3ef@linaro.org/
 
-Thanks,
-Sean
+Dependency list for patches (directionality indicates depends on):
+[6] -> [5] -> [4] & [3]
 
-> - USB-C OTG
-> - Vibrator
-> 
-> Also, fix some bindings warning as reported due to previous commits.
-> These are tested with linux-next tag next-20260320.
-> 
-> Signed-off-by: Biswapriyo Nath <nathbappai@gmail.com>
-> ---
-> Biswapriyo Nath (7):
->       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Enable vibrator
->       arm64: dts: qcom: sm6125: Enable USB-C port handling
->       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Add PMI632 Type-C property
->       dt-bindings: leds: irled: ir-spi-led: Add new duty-cycle value
->       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Add IR transmitter
->       arm64: dts: qcom: sm6125: Use 64 bit addressing
->       dt-bindings: clock: qcom, dispcc-sm6125: Add #reset-cells property
-> 
->  .../bindings/clock/qcom,dispcc-sm6125.yaml         |   3 +
->  .../devicetree/bindings/leds/irled/ir-spi-led.yaml |   2 +-
->  .../boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi |  56 +++++++
->  arch/arm64/boot/dts/qcom/sm6125.dtsi               | 168 +++++++++++----------
->  4 files changed, 152 insertions(+), 77 deletions(-)
-> ---
-> base-commit: 785f0eb2f85decbe7c1ef9ae922931f0194ffc2e
-> change-id: 20260325-ginkgo-add-usb-ir-vib-4a51bd9ff64b
-> 
-> Best regards,
-> --  
-> Biswapriyo Nath <nathbappai@gmail.com>
+The changes need to be applied in order. In this case this probably
+would be the USB subsystem as that's the leaf in the dependency list.
+
+Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+---
+Changes in v9:
+- Fixed nits in mfd/max77759.* (Lee Jones)
+  - s/max77759_chrg_irq_chip/max77759_chgr_irq_chip
+  - s/bettery/battery
+  - Fix alignment in descriptions in kerneldoc comments
+- Link to v8 resend: https://lore.kernel.org/r/20260314-max77759-charger-v8-0-226ca5f8c7d2@google.com
+- Link to v8: https://lore.kernel.org/all/20260224-max77759-charger-v8-0-eb86bd570e9c@google.com/
+
+Changes in v8:
+- Add an newline char at the end of dev_* prints. (André Draszik)
+- Return PTR_ERR() instead of -EPROBE_DEFER when devm_power_supply_register()
+  fails in max77759 charger probe. (André Draszik)
+- Link to v7: https://lore.kernel.org/r/20260218-max77759-charger-v7-0-e8d907ce69c5@google.com
+
+Changes in v7:
+- Add register relock for protected registers in fail path. (André Draszik)
+- Switch to usage of scoped_guard instead of guard. (LKP test bot)
+- Link to v6: https://lore.kernel.org/r/20260214-max77759-charger-v6-0-28c09bda74b4@google.com
+
+Changes in v6:
+-  Linear Range usage (André Draszik):
+  - Dedicate individual arrays for inlim, chgcc & chg_cv_prm to simplify
+    code.
+  - Use numerical values instead of macros for linear_range array init.
+  - Remove macros defining current and voltage limits due to above.
+  - Didn't use Reviewed-by tag for Patch 3 due to the above.
+  - Add new linear_ranges api to leverage it for obtaining selector
+    values.
+  - Improve voltage and current getters and setters functions by leveraging
+    existing and new linear_ranges API.
+- IRQ related changes (André Draszik)
+  - Dedicated names for individual irqs.
+  - Refactor irq handlers.
+  - Ratelimit prints
+- Retry mechanism (André Draszik):
+  - Initialize error retry counter to 0 when psy work is scheduled on a
+    new notifier event.
+  - Protect the counter using a lock.
+  - Add appropriate prints.
+- Link to v5: https://lore.kernel.org/r/20260203-max77759-charger-v5-0-b50395376a5f@google.com
+
+Changes in v5:
+- Use linear_range library instead of reinventing it. (André Draszik)
+  - This requires a selector_max value so modified mfd/max77759.h to
+    include it for CHGCC and CHG_ILIM.
+  - Removed "reviewed-by" for Patch 3 (mfd) due to above
+- Use asnyc probe type. (André Draszik)
+- Retry mechanism for psy_work. (André Draszik)
+- Minor nits (André Draszik):
+  - Use named initializers for instantiating structs.
+  - Use static qualifier for `psy_name` variable.
+  - Refactor if-else ladder to remove else handling if return in prior
+    "if" loop.
+  - Remove redundant `unlikely`.
+- Link to v4: https://lore.kernel.org/r/20260121-max77759-charger-v4-0-694234c8ded1@google.com
+
+Changes in v4:
+- Removed a stray tabspace in mfd/max77759.h. (André Draszik)
+- Fixed the following issues in Patch 4/5 (André Draszik):
+  - Re-order Kconfig entry
+  - Refactored to not use global variable
+  - Use of clamp() to clamp values instead of duplicating logic
+  - Return IRQ_NONE for unhandled irqs or error conditions
+  - Remove debug messages in irq handler
+  - Refactor code to use dev_err_probe in *_init_irqhandler()
+  - Remove unneeded irq_flags
+  - Check return values of regmap ops
+  - Other nits like newlines, not using greedy init, using print stmnts
+- Link to v3: https://lore.kernel.org/r/20251227-max77759-charger-v3-0-54e664f5ca92@google.com
+
+Changes in v3:
+- Had incorrectly folded the charger sub-device with the pmic parent.
+  Corrected it. (Krzysztof Kozlowski)
+- Link to v2: https://lore.kernel.org/r/20251218-max77759-charger-v2-0-2b259980a686@google.com
+
+Changes in v2:
+- Fold charger binding in maxim,max77759-charger.yaml to its parent
+  node. (Krzysztof Kozlowski)
+- Renamed regulator supplier & consumer. (Krzysztof Kozlowski & Heikki
+  Krogerus)
+- Removed explicit setting of irq trigger types in max77759 driver.
+  (André Draszik & Krzysztof Kozlowski)
+- Complete bit definitions for IRQ registers. (André Draszik)
+- Consolidate all bit definitions for charger IP in mfd/max77759.h.
+  (André Draszik)
+- Modify the handling of charger IRQs such that regmap IRQ chip handles
+  masking, de-mux and acking of interrupts. (André Draszik)
+- Remove unused macro definitions relating to Charger modes in tcpci
+  maxim driver (André Draszik)
+- Add dependency on Regulator class in Kconfig definition for max77759
+  chg. (Kernel Test Robot)
+- Link to v1: https://lore.kernel.org/r/20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com
+
+---
+Amit Sunil Dhamne (6):
+      dt-bindings: mfd: maxim,max77759: reference power-supply schema and add regulator property
+      dt-bindings: usb: maxim,max33359: Add supply property for vbus
+      mfd: max77759: add register bitmasks and modify irq configs for charger
+      lib/linear_ranges: Add linear_range_get_selector_high_array
+      power: supply: max77759: add charger driver
+      usb: typec: tcpm/tcpci_maxim: deprecate WAR for setting charger mode
+
+ .../devicetree/bindings/mfd/maxim,max77759.yaml    |  16 +-
+ .../devicetree/bindings/usb/maxim,max33359.yaml    |   4 +
+ MAINTAINERS                                        |   6 +
+ drivers/mfd/max77759.c                             |  95 ++-
+ drivers/power/supply/Kconfig                       |  11 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/max77759_charger.c            | 774 +++++++++++++++++++++
+ drivers/usb/typec/tcpm/tcpci_maxim.h               |   1 +
+ drivers/usb/typec/tcpm/tcpci_maxim_core.c          |  54 +-
+ include/linux/linear_range.h                       |   3 +
+ include/linux/mfd/max77759.h                       | 166 ++++-
+ lib/linear_ranges.c                                |  36 +
+ 12 files changed, 1106 insertions(+), 61 deletions(-)
+---
+base-commit: ecc64d2dc9ff9738d2a896beb68e02c2feaf9a02
+change-id: 20251105-max77759-charger-852b626d661a
+
+Best regards,
+-- 
+Amit Sunil Dhamne <amitsd@google.com>
+
+
 
