@@ -1,54 +1,53 @@
-Return-Path: <devicetree+bounces-280713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280714-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +KHbL3YoxGmZwgQAu9opvQ
-	(envelope-from <devicetree+bounces-280713-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 19:24:54 +0100
+	id aBH4Gn0oxGmZwgQAu9opvQ
+	(envelope-from <devicetree+bounces-280714-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 19:25:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 192C132A887
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 19:24:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0451332A89D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 19:25:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 993B930D8CD8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 18:16:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C620D303B7F9
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 18:17:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ACF231A549;
-	Wed, 25 Mar 2026 18:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D625311942;
+	Wed, 25 Mar 2026 18:17:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IuF3YWGv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rNeKzCkz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4DD26ED28;
-	Wed, 25 Mar 2026 18:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE6542DE709;
+	Wed, 25 Mar 2026 18:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774462609; cv=none; b=W8yE/Xl/WOmZd8wIrwHU7vfOOPfQ2k9+gOoSJRdMTpGmqH9jd5G9WT83Is3OiJMt0KPIsV87qO6CCeaEOLKO9choFR8AU24Y93k2n5AyEQ6k8gON6s+r8QYVr4kcKZaPj8eixtE9gTpGoR28sOHQxcrsMgYP8PE9IDzLOQtLkRA=
+	t=1774462624; cv=none; b=UMpYcuD6uAxhchFEoinkYBdGd7M+hsm2hnxDQzy2dOOmA6ximMDtmzj2EZbbYYz3tIzZoxnC2DewxWMLG2gXHC9YQWTemva3C/ZKgERjGmkYxgLVJw6QNN83/JW76slbnxhc9FinAyPZojP1kw9zlAWPDjm+BkI66iBuxrennRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774462609; c=relaxed/simple;
-	bh=Rnj85twtesCZWmRKlew1BUMysMtURXXKALXyvov6u7I=;
+	s=arc-20240116; t=1774462624; c=relaxed/simple;
+	bh=dN1owC4wQeRllfjoQmd/3Y8PsVaW/qeYmie9bwIKyis=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IZqls97xB/gPJCBlBQedld7Wh+2fbs1bBD+3jNMrnveip1rQtapNUGWHvAqi5CHKHc35IfgCig1QsFmBChczifHXiGnBKRMNAd5HIS1OniIHD6HQQEFlScohFX6/YfM6VqOO6nIK7INyH59+6Sxie/dEaiqH8k6DBfdvtYfWZWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IuF3YWGv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA426C4CEF7;
-	Wed, 25 Mar 2026 18:16:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sPRPVodbIDHYMtRLggrpuwioXHdKjI4BsQbNrcHSrM3MYtL/SgECp5Cdr/ckegsnGP6F0JaEXkIzACre8CUU1wzJO6NvFnnlBQVSYvR1FbKx9wN26wD1zNm3ema9cF0HUt72Q0gK+12x3a9LM2UyMY/pNM0OImke7uijvjQf5Pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rNeKzCkz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B263FC19423;
+	Wed, 25 Mar 2026 18:17:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774462608;
-	bh=Rnj85twtesCZWmRKlew1BUMysMtURXXKALXyvov6u7I=;
+	s=k20201202; t=1774462624;
+	bh=dN1owC4wQeRllfjoQmd/3Y8PsVaW/qeYmie9bwIKyis=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IuF3YWGvw9rVb3ip9/c+ttWK8jvlcYjD58J0u3wjHwEpPltSf/Z0JkY8yWhjz+qWy
-	 jnMQFZDSIJBUFv8xAOzHXhAjoVtTNl1L3o6VHHBFZfe6yTuUK5GV32jbHQp9irWkEj
-	 uC9voQAZ8/X4cBkx6JSVQHDN1oD19BNIcNRYMNfnA5/KSM256P+WzmPAHU+tiSH7mi
-	 brD9gtRfEGVKxoayq8J1j0bBjMEB/xh8pK9q2h6veOtdh7qG0axatgkK403KD9Dy+1
-	 4LTarJwt7+6zLvHUcodyUwxzmvYQM19r71R3nnWtPIXsLqKlzTbomfdSmSgSroRoBf
-	 G83DjrqHzuHNg==
-Date: Wed, 25 Mar 2026 18:16:43 +0000
+	b=rNeKzCkzgWPO4uXanrCyZnmi0efPD0jFWWckAHuAqn3Oek4c0ntR5OimoBj293tJj
+	 PqA2p7jbFFR2f9tUi8UmiG511QiGEzh03CsjpgR3pKf2cEb5N30DGvwocExgMqJFjG
+	 6mcP2uBMsU5Ue/HN/mCpdJJU13D8aSl6NKt3EQfN6uALqP8QSBduTf7tVRdAilopow
+	 vifvhVo9PjbA7W3aYMqeSIWmX9+x2DMwhwRSC5NwVVGB/IP3TPeUMwXonUXbV4ssZH
+	 UXwslDJo/r690AUno7HxBSJuqnUzPkFn3j9KNCSE+QGeXqRX5se0ttrsfjsZpjh3Zz
+	 yKxKvcOzFyHLQ==
+Date: Wed, 25 Mar 2026 18:16:59 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Yixun Lan <dlan@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Yixun Lan <dlan@kernel.org>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
@@ -58,10 +57,9 @@ Cc: Yixun Lan <dlan@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
 	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
 	linux-kernel@vger.kernel.org
 Subject: Re: [PATCH 1/2] dt-bindings: i2c: spacemit: k3: Add compatible
-Message-ID: <20260325-thinning-apricot-c156914803d6@spud>
+Message-ID: <20260325-entering-grandpa-7bf99307a74c@spud>
 References: <20260325-02-k3-i2c-v1-0-78f29c83d9ac@kernel.org>
  <20260325-02-k3-i2c-v1-1-78f29c83d9ac@kernel.org>
- <87zf3w6o6q.fsf@ocarina.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,9 +67,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="PJMmZAkwfk4triIZ"
+	protocol="application/pgp-signature"; boundary="FMGqwg53RZq43Ijf"
 Content-Disposition: inline
-In-Reply-To: <87zf3w6o6q.fsf@ocarina.mail-host-address-is-not-set>
+In-Reply-To: <20260325-02-k3-i2c-v1-1-78f29c83d9ac@kernel.org>
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -84,11 +82,11 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280713-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-280714-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -100,45 +98,36 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 192C132A887
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email]
+X-Rspamd-Queue-Id: 0451332A89D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---PJMmZAkwfk4triIZ
+--FMGqwg53RZq43Ijf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 25, 2026 at 02:20:13PM +0100, Javier Martinez Canillas wrote:
-> Yixun Lan <dlan@kernel.org> writes:
+On Wed, Mar 25, 2026 at 09:49:24AM +0000, Yixun Lan wrote:
+> Add a compatible string for the I2C controller found in SpacemiT K3 SoC
+> which use same I2C IP as K1, so make it fallback to K1 compatible.
 >=20
-> > Add a compatible string for the I2C controller found in SpacemiT K3 SoC
-> > which use same I2C IP as K1, so make it fallback to K1 compatible.
-> >
->=20
-> If is the same IP as K1, shouldn't the "spacemit,k1-i2c" compatible be
-> used in the k3.dtsi instead? My understanding is that this is the meaning
-> of compatible, and there's no need to add another compatible string for k=
-3.
+> Signed-off-by: Yixun Lan <dlan@kernel.org>
 
-Your understanding is incorrect! What Yixun has done here is what we
-want people to do, because even if the IP is the same there can be
-differences due to integration that are problematic. Having a device
-specific compatible allows us to handle these kinds of problems if they
-crop up in the future.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
---PJMmZAkwfk4triIZ
+--FMGqwg53RZq43Ijf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCacQmiwAKCRB4tDGHoIJi
-0qthAP9kd3bs5AG5Rmqrqov+rI1UksYOg3k8ZWPEl0SafVYBvwD8Cxm5AxliDjKs
-5EwdvAOJXa8tCAw3rTT0sMwtNvkREwk=
-=lc5S
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCacQmmwAKCRB4tDGHoIJi
+0iyeAP4ryfPudFLay6Bnhb2ABJb+xaEVUmItrsc0JPNDccLSsQEAplVuih6J45RG
+9z+9Upz415mnSSZhBSHkRcjbrT7oeQs=
+=kZAL
 -----END PGP SIGNATURE-----
 
---PJMmZAkwfk4triIZ--
+--FMGqwg53RZq43Ijf--
 
