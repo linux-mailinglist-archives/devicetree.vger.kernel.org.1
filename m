@@ -1,239 +1,277 @@
-Return-Path: <devicetree+bounces-280551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280570-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gDQ8GQkAxGmlvQQAu9opvQ
-	(envelope-from <devicetree+bounces-280551-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:32:25 +0100
+	id 2EthDML5w2klvQQAu9opvQ
+	(envelope-from <devicetree+bounces-280570-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:05:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9A2732808F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:32:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 759653277DB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:05:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F2E8331733C1
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 14:40:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9BAC3328CEF6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 14:50:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46CB63EAC79;
-	Wed, 25 Mar 2026 14:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE7C63F2105;
+	Wed, 25 Mar 2026 14:44:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b="Vi4bPuUN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87FA3E556C
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 14:39:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774449545; cv=none; b=FH4UhuBOHvv2df1iNm9uhWjOXIZllySMNxkmCax652acLbGyd3/YYHImpcbyNX9IhXrWnyrF9/028OT+IG9hxTz1K2bNsGqlFMMGGF25XEEddYRpTytnWkBu8cnB0+cK91UP2FZXeKPrjV9I55MFp2h4CzQW5WAJpkz/aFTEfDI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774449545; c=relaxed/simple;
-	bh=igOIPBvufIdq/zX1gcJ+5PZ3YA+A8TDi5yscYGtrCSc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jbaxnwaAgMfWwAZF+zHNEGVP5mP437NJVTnVVAuMtQ0tno3kbB3MMIdTtD0omnSY2pHEI6yMzmtylp4K1kx5uPpyk2f0K9zetlU+8CF7d+GzRmeopmTP/y7mqQbIriRwUgZs4rbxEvkyuq00kCnIsANRnWI/4/TD/1xjMFK/23E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-798374d0f44so14887567b3.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 07:39:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774449543; x=1775054343;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=61Bu6okO/rekN6OSvH+vN+cZWNdav7wgTTpXxse1ogQ=;
-        b=NpyIFttuumVUj/XJCz1bPtn1rbUn8JAKTf7IfmIWwDGrNpyEwfusYPFa16kl7o67r1
-         hCfXHcNFxfMEGIT6sUF9l1lp1dlpbZYbYd6i1D3gI4FZqARth4wWm4mzhwVxIhw41/wK
-         CLELaVcL33zkMe23iDMR+c3/VMEL6XqD+kZotaAFv8fBl6X2X64m9TXbltJYBVeIzveO
-         d9Om4EtsneImwWq/hMJ7bglY6uw8dlJm17nOZ2zzdGGZ4rFzbnjYFIzdFIS18SZ9gPjL
-         bjGzD8xJIHJJvpeRU1oYgqCXu0vPk/vxCvuWnFSjyFwOh4AV6pFEvbk/qys6/szgKLxc
-         kQdg==
-X-Forwarded-Encrypted: i=1; AJvYcCXk16iUoXlipiv4TD1ZRu7gZVeo0kLZqFto25PcMa37ED9rTs+kjK3+5pUrNsbPYmqaTPxWZUHi2cO0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMLuiLxjuUe7GU7m7/IZPp6e+68ui3QBPdtjGdpy5trC0qb5pB
-	xVBY9yhZerv9QriEV6kaYJwGkydi68u3nfW37dy3FUMRvrcCm0bfPjJVwQQwTjn5
-X-Gm-Gg: ATEYQzze19KBUPoaS6Xph6QHxGoCvXzl86otQXdUeTYlMZdpjCAGNNVZPDddHQwHy4i
-	h3cPkzG2zDZW7gk9Fh9f8bSUp3dQKmZhRSC1lexFFupq4Eg+4R64dUVU80YuND7YgkKztoqz7W/
-	GJwkf7ywTFAK4aXYS7sXTEu98FYOgh3SJDIC241a+fQ5b8thL99wFCF9VnCcgIs6MPMK4A+dqy+
-	0jINSwnVR5CDII/2j5lFnFmCib1NI+y1iaJD3vlG6pPFL2ASmiV1drJ5/BKm4ouFfWm/MZMid0g
-	LrF4WkHnpcR+bM+x4mm7W/v9qeCfFMqjblG1RvymC/ctzwHhNyfa0s1jS31T1LmNZuniSxHFPjn
-	ZNSAnuwN9TFpQzckrdf+bbCyb8O3Dnsq5oqIaozzhTOG4RtnZk2OUZjlLmIKRy31wcqMNEE2edV
-	ZEkaXESDUCsYNFr8xuw/6eCZyXyeO4yuxyDCoiKajg0pXk/qcH0h6ltkJFvtB4zk/Egm+y9Elx2
-	5r/64INLMztUpn7LRjq8QTLw0TJgerVY8xcICe8eXeRBw==
-X-Received: by 2002:a05:690c:dd5:b0:79a:ac83:ac67 with SMTP id 00721157ae682-79ac2e7e1eemr70830877b3.9.1774449542467;
-        Wed, 25 Mar 2026 07:39:02 -0700 (PDT)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-79ab6833bf8sm44593257b3.36.2026.03.25.07.39.00
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Mar 2026 07:39:01 -0700 (PDT)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-79a8e873ca1so13175897b3.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 07:39:00 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXfGXTTLL3nFqkU3QqTRzfWR+IuPpUK7dFCmJsI8IUYCaG98OjcBZPR21eFtDMVcCq9mKZmBY75ogk4@vger.kernel.org
-X-Received: by 2002:a05:690e:14c6:b0:64a:d677:85c with SMTP id
- 956f58d0204a3-64ed7976bffmr6741184d50.37.1774449540439; Wed, 25 Mar 2026
- 07:39:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C682225403;
+	Wed, 25 Mar 2026 14:44:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774449894; cv=pass; b=ce0LRPO6wA0HL05nWFbqS+87DC6fw+QGLSdNxohbeDimM69kPEBnX8Qf4LCve7YvEgflEK5URu8ee4yfxYttVAmMDgQE94ZC/W1wzF1Lzaf7fRcKlv/mEhvd/+1iK+hHS0t/a2Gtxq731Hy9yE+9JV7uvnpCI4z06G+pjTzDRN4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774449894; c=relaxed/simple;
+	bh=Gc7FcksWMiQVBDEzy4Q2dW4tjWnIHwPS6XvhUaiHv48=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=dM3nfwlELwkDGentGstr9gdo/9ZZW3QOEff5CY7SQUVFlZmNG2khDOlZBDrTjRQIAD3VX7i0sOrRuHLPl+TnjwUyqxF5Twa5wKFNa9IU60xlxs4nbec5zrBtFLLup0q9ikKm9GYWIgwYZTaQnwBFKSk0Tw0s5t07JP53BfUC2J0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b=Vi4bPuUN; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1774449856; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=fNRVGybp0b0ccTPEK93XLei9ra26a+WiK5T3HjYSwdjw0QX2kcQrJL0nSD+JukDDmVHNZ4wXzGSKKRA4TbVjiMMf+FpU6Z7wJEcRf9/gcFm2uqJYFF+GMKth/GCo4drecmKMtffXva2gnCvQ8qzqrgnDMWHFi3Yk8sVqGjanHSA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1774449856; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=xLWt4Q3M25ZHux2mJmZzU06JtrlUU7M4bRigJUnf5rs=; 
+	b=RJaCrtontfYAy5AIPGGtIE0x/ZruFSWKTnFPC4hGog+3QdLh2VMMTCAsyBLDHg0Hn4ks3rt20LBfGmaoqqcbER2JS8KEddB8PxlJxK+rT24ImJ3c3d+cWsynoAU8YT9yGWnccKig9UQbwCH50tcFZlqeC5S/g3oH0D6RINF2zbo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=louisalexis.eyraud@collabora.com;
+	dmarc=pass header.from=<louisalexis.eyraud@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774449856;
+	s=zohomail; d=collabora.com; i=louisalexis.eyraud@collabora.com;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=xLWt4Q3M25ZHux2mJmZzU06JtrlUU7M4bRigJUnf5rs=;
+	b=Vi4bPuUNNPi2QNEocePGBUXkNmGOhjpUsr3LEaJfvQ9sirNaFJNUiAxsQ1kUTJHA
+	wuEr/oz/5n8No780ciaNqvzLiNaeWEsECL0yo68RjQbKQvQ3Hf/qKGD7sy0wvg3Irlb
+	ot9LTVnFpcSlZOQ7WXHBnTi3EWtG67rJU7T+YBG0=
+Received: by mx.zohomail.com with SMTPS id 1774449855209698.9967635371158;
+	Wed, 25 Mar 2026 07:44:15 -0700 (PDT)
+Message-ID: <d2b284b8786fdf241a328bb4497c037b1d517c25.camel@collabora.com>
+Subject: Re: [PATCH net-next 2/2] net: phy: Introduce Airoha AN8801/R
+ Gigabit Ethernet PHY driver
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, kevin-kw.huang@airoha.com,
+ macpaul.lin@mediatek.com, matthias.bgg@gmail.com, 	kernel@collabora.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Date: Wed, 25 Mar 2026 15:44:09 +0100
+In-Reply-To: <aaheilkwpQ90xMmR@shell.armlinux.org.uk>
+References: 
+	<20260304-add-airoha-an8801-support-v1-0-0ae4ee5a2f9d@collabora.com>
+	 <20260304-add-airoha-an8801-support-v1-2-0ae4ee5a2f9d@collabora.com>
+	 <aaheilkwpQ90xMmR@shell.armlinux.org.uk>
+Organization: Collabora Ltd
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260325063254.18062-1-email@sirat.me> <20260325063254.18062-2-email@sirat.me>
- <20260325-gentle-earthworm-of-progress-1f9f46@quoll> <CANn+LW+Y6j0xk2x02-BUL9qNq2gf-PXspi4wP_KGd7Abz3hOYw@mail.gmail.com>
- <4d10b6c0-d599-4fc5-b9ed-ce669ac46e84@kernel.org> <CANn+LWJQM45rAT+mzS9ZEGBgmqChbxUtStdzhbzthXUPJ=2csg@mail.gmail.com>
- <20260325133806.00007b68@huawei.com> <f27bfbe4-aa90-4631-b96b-efb8465b05d4@kernel.org>
- <20260325140633.0000059c@huawei.com>
-In-Reply-To: <20260325140633.0000059c@huawei.com>
-From: Sirat <email@sirat.me>
-Date: Wed, 25 Mar 2026 20:38:48 +0600
-X-Gmail-Original-Message-ID: <CANn+LW+X5puvzY+cKYKAbWY6L2d_0P_2AZxuRkwH7ngc6T-vJA@mail.gmail.com>
-X-Gm-Features: AQROBzDkjAh4hCh3Uyr-Slorzdt9NTaXwv1Q7lSZlelAjuGoxx4z2SpgGTTNCdg
-Message-ID: <CANn+LW+X5puvzY+cKYKAbWY6L2d_0P_2AZxuRkwH7ngc6T-vJA@mail.gmail.com>
-Subject: Re: [PATCH v7 1/2] dt-bindings: iio: proximity: add ST VL53L1X ToF sensor
-To: Jonathan Cameron <jonathan.cameron@huawei.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-ZohoMailClient: External
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-280551-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-280570-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[sirat.me];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,collabora.com,gmail.com,airoha.com,mediatek.com,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[email@sirat.me,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,huawei.com:email]
-X-Rspamd-Queue-Id: D9A2732808F
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 759653277DB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 25, 2026 at 8:06=E2=80=AFPM Jonathan Cameron
-<jonathan.cameron@huawei.com> wrote:
->
-> On Wed, 25 Mar 2026 14:44:13 +0100
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> > On 25/03/2026 14:38, Jonathan Cameron wrote:
-> > > On Wed, 25 Mar 2026 15:18:05 +0600
-> > > Sirat <email@sirat.me> wrote:
-> > >
-> > >> On Wed, Mar 25, 2026 at 2:58=E2=80=AFPM Krzysztof Kozlowski <krzk@ke=
-rnel.org> wrote:
-> > >>>
-> > >>> On 25/03/2026 09:48, Sirat wrote:
-> > >>>> On Wed, Mar 25, 2026 at 2:05=E2=80=AFPM Krzysztof Kozlowski <krzk@=
-kernel.org> wrote:
-> > >>>>>
-> > >>>>> On Wed, Mar 25, 2026 at 12:32:22PM +0600, Siratul Islam wrote:
-> > >>>>>> Add device tree binding documentation for the STMicroelectronics
-> > >>>>>> VL53L1X Time-of-Flight ranging sensor connected via I2C.
-> > >>>>>>
-> > >>>>>> Make vdd-supply required. The device requires power to operate
-> > >>>>>> and the property should have been required from the start.
-> > >>>>>
-> > >>>>> That's ABI break and device for many years was working fine, so t=
-his
-> > >>>>> should not be changed.
-> > >>>>>
-> > >>>> Jonathan and David asked that vdd-supply be made required. I feel =
-like
-> > >>>> there is a conflict here that I am not able to resolve myself.
-> > >>>>
-> > >>>> What I think about it is the binding does not correctly describe t=
-he
-> > >>>> hardware and we should consider this a bug and fix it.
-> > >>>> The driver worked because of a fallback mechanism (dummy/fake
-> > >>>> regulator) and not because power was optional.
-> > >>>>
-> > >>>
-> > >>>
-> > >>> I looked at v6 and v5 and I do not see such comment for binding tha=
-t
-> > >>> existing device should change ABI. Can you point me to it?
-> > >>>
-> > >> "Make it required and add a note to the commit message to say why th=
-e
-> > >> requirement should always have been there. Devices tend not to work
-> > >> with no power." - Jonathan (v3:
-> > >> https://lore.kernel.org/linux-iio/20260322115704.10b2e0d4@jic23-huaw=
-ei)
-> > >>
-> > >> "No, bindings should not depend on driver implementation." - David
-> > >> (When I asked if I should  drop the hard requirement in the binding,
-> > >> v6: https://lore.kernel.org/linux-iio/55e92148-b5de-4fb8-af0b-947623=
-5341bc@baylibre.com/)
-> > >>
-> > >> "From the point of view of the devicetree, it doesn't matter what th=
-e
-> > >> driver does. It matters that the chip can't work without power. ;-)"=
- -
-> > >> David (v1: https://lore.kernel.org/linux-iio/d0ec6a2f-6d30-4774-8950=
--15dd3c4b020b@baylibre.com)
-> > >>
-> > >> I'm not sure if this is the correct way to quote. But I have added t=
-he links.
-> > >
-> > > This came up a few years back - though I doubt I can track down the
-> > > exact discussion however.
-> > >
-> > > From a Linux point of view we are breaking binding checks only if the
-> > > supply (that should always have been there as chips tend not to work
-> > > well without power) is not present.  We absolutely have to
-> > > keep the driver running whether or not the supply is specified.
-> > > Do other DT users provide such a constraint? I've no idea.
-> > >
-> > > If the DT maintainer preference is leave it not required (perhaps
-> > > with a comment saying new users of the binding should supply it)
-> > > then that's fine by me. I'll keep it in mind for future similar chang=
-es.
-> >
-> > If this was other ABI, e.g. clock, then answer would be - do not requir=
-e
-> > it, because that's ABI break. Therefore I would stick to that also to
-> > regulators. Once Rob also expressed such thoughts, although noting that
-> > it is not that big deal.
-> >
-> > New device in this binding of course should require the supply.
-> Seems my memory was less than perfect on this :
-> https://lore.kernel.org/linux-iio/20241119140409.GA1093349-robh@kernel.or=
-g/#t
->
-> Rob expressed that we are inconsistent on this, but he'd rather not
-> have regulators as a special case.
->
-> So let's only make this required for the new device.
->
-So since it is a new device, how do I require this? should we split to
-a new binding (like I had in v1) and make that required. That would
-also allow us to correctly name the xshut pin.
+Hi Russell,
 
-Or do we do the "allOf:" exclusion? In that case, I think it wouldn't
-make sense to someone reading the binding without the context of
-commit history, as it would imply one of the devices explicitly
-doesn't need power.
+On Wed, 2026-03-04 at 16:32 +0000, Russell King (Oracle) wrote:
+> On Wed, Mar 04, 2026 at 10:35:29AM +0100, Louis-Alexis Eyraud wrote:
+> > +static void an8801r_get_wol(struct phy_device *phydev,
+> > +			=C2=A0=C2=A0=C2=A0 struct ethtool_wolinfo *wol)
+> > +{
+> > +	u32 reg_val;
+> > +
+> > +	air_buckpbus_reg_read(phydev,
+> > AN8801_BPBUS_REG_WAKEUP_CTL1, &reg_val);
+> > +
+> > +	wol->supported =3D WAKE_MAGIC;
+> > +
+> > +	if (reg_val & AN8801_WOL_WAKE_MAGIC_EN)
+> > +		wol->wolopts |=3D WAKE_MAGIC;
+> > +	else
+> > +		wol->wolopts &=3D ~WAKE_MAGIC;
+>=20
+> Please only support WoL if you know that the PHY has been wired up in
+> such a way to allow it to actually wake the system. The PHY itself
+> merely supporting WoL is insufficient.
+>=20
+> Please look at my recent change to realtek_main.c in commit
+> b826bf795564 ("net: phy: realtek: fix RTL8211F wake-on-lan support")
+> to see a possible way to achieve this.
+>=20
+First, sorry for the delay, and thank you for pointing out this commit.
 
-I'm willing to do whichever is prefered tough and move this forward.
->
->
-Thanks,
+It indeed showed me what the WoL implementation for this PHY driver was
+missing, not only for the get_wol/set_wol but also elsewhere in the
+driver.
 
-Sirat
+So for v2, I've reworked in a similar way the get_wol/set_wol, the
+interrupt handling (to process differently the magic packet and the
+link change interrupts) and also added custom probe, suspend and resume
+callbacks (to be able to disable link change interrupt during suspend
+time and enable it again after resume if the user has enabled the WoL
+setting, like you did for RTL8211F).
+
+I had a bit of trouble make it work right. At first I could not read
+properly the PHY buckpbus registers in the suspend callback, and adding
+a delay at resume time was needed as a workaround to make the WoL
+behaviour work consistently. But in the end I found out it was the
+Ethernet interface pinctrl config for sleep state in my board
+devicetree that caused me those issues.
+It works fine now without any workaround.
+
+> > +static int an8801r_config_init(struct phy_device *phydev)
+> > +{
+> > +	u8 led_default_function[AN8801R_NUM_LEDS] =3D { 0 };
+> > +	int prev_page, ret;
+> > +
+> > +	ret =3D an8801r_of_init_leds(phydev, led_default_function);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Disable Low Power Mode (LPM) */
+> > +	ret =3D phy_write_mmd(phydev, MDIO_MMD_VEND2,
+> > AN8801_REG_PHY_INTERNAL0,
+> > +			=C2=A0=C2=A0=C2=A0 FIELD_PREP(AN8801_PHY_INTFUNC_MASK,
+> > 0x1e));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret =3D phy_write_mmd(phydev, MDIO_MMD_VEND2,
+> > AN8801_REG_PHY_INTERNAL1,
+> > +			=C2=A0=C2=A0=C2=A0 FIELD_PREP(AN8801_PHY_INTFUNC_MASK,
+> > 0x2));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Disable EEE by default */
+> > +	ret =3D phy_write_mmd(phydev, MDIO_MMD_AN, MDIO_AN_EEE_ADV,
+> > 0);
+> > +	if (ret)
+> > +		return ret;
+>=20
+> Are you sure this is safe, e.g. over a suspend/resume, and doesn't
+> cause the hardware vs software state to desync?=20
+While reworking PHY WoL support, I've tested removing this EEE
+disabling done during driver initial config and I did not notice any
+particular issue, especially during suspend/resume sequences.=C2=A0Still
+unsure why the downstream driver disabled it in first place.
+
+The EEE support seems working fine too from what ethtool reports on my
+board, so I'll remove the lines from v2.
+>=20
+> > +
+> > +	prev_page =3D phy_select_page(phydev,
+> > AIR_PHY_PAGE_EXTENDED_1);
+> > +	if (prev_page < 0)
+> > +		return prev_page;
+>=20
+> No, this is buggy. Please read the phy_select_page() documentation to
+> find out why.
+>=20
+> > +
+> > +	/* Set the PHY to perform auto-downshift after 3 auto-
+> > negotiation
+> > +	 * attempts
+> > +	 */
+> > +	__phy_write(phydev, AN8801_EXT_REG_PHY,
+> > +		=C2=A0=C2=A0=C2=A0 FIELD_PREP(AN8801_EXT_PHY_CTRL1, 0x1d) |
+> > +		=C2=A0=C2=A0=C2=A0 FIELD_PREP(AN8801_EXT_PHY_DOWNSHIFT_CTL, 1) |
+> > +		=C2=A0=C2=A0=C2=A0 AN8801_EXT_PHY_DOWNSHIFT_EN);
+> > +
+> > +	ret =3D phy_restore_page(phydev, prev_page, ret);
+> > +	if (ret)
+> > +		return ret;
+>=20
+> However, the bug could've been avoided by using the appropriate
+> accessor:
+>=20
+> 	ret =3D phy_write_paged(phydev, AIR_PHY_PAGE_EXTENDED_1,
+> 			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AN8801_EXT_REG_PHY,
+> 			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 FIELD_PREP(AN8801_EXT_PHY_CTRL1, 0x1d)
+> |
+> 			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> FIELD_PREP(AN8801_EXT_PHY_DOWNSHIFT_CTL, 1) |
+> 			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AN8801_EXT_PHY_DOWNSHIFT_EN);
+> 	if (ret < 0)
+> 		return ret;
+thanks for catching this bug.
+I've replaced for v2 the __phy_write call by phy_write_paged cas you
+suggested.
+> > +static int an8801r_read_status(struct phy_device *phydev)
+> > +{
+> > +	int prev_speed, ret;
+> > +	u32 val;
+> > +
+> > +	prev_speed =3D phydev->speed;
+> > +
+> > +	ret =3D genphy_read_status(phydev);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (!phydev->link)
+> > +		return 0;
+> > +
+> > +	if (prev_speed !=3D phydev->speed) {
+>=20
+> Maybe:
+>=20
+> 	if (phydev->link && prev_speed !=3D phydev->speed) {
+>=20
+> ?
+Ack.
+
+Thanks again for the review.
+
+Regards,
+Louis-Alexis
+>=20
+> Thanks.
 
