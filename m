@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-280176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280178-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wDEdLTxUw2n4qAQAu9opvQ
-	(envelope-from <devicetree+bounces-280176-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 04:19:24 +0100
+	id mJI+DwxVw2n4qAQAu9opvQ
+	(envelope-from <devicetree+bounces-280178-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 04:22:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA51031F199
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 04:19:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F2B31F1ED
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 04:22:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 80FFC304A109
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 03:19:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 618C030F9B2A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 03:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9427F28B7EA;
-	Wed, 25 Mar 2026 03:19:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7F32D7DEE;
+	Wed, 25 Mar 2026 03:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="R1FTTIN6"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="qLSIgIEp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29DF71A76BB;
-	Wed, 25 Mar 2026 03:19:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8B042D661C;
+	Wed, 25 Mar 2026 03:19:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774408761; cv=none; b=uSOVKDNITq4ISLkhW1YJVdalqDdnf5wcmbL4oywnDKLriE9KC1SLvegTPvss/N9YytfKJ/cBfPQ6S8Mv/iWNjdNOWvZKZqP3XsWjClxvjseaI6wZdItlokFaneXEeJdW0d0z8qSyWjpxWsO0ZhjnN/ZTuL8kZ1SN4LCxWegh6lw=
+	t=1774408764; cv=none; b=HJlz90JqCTNZqMDEqe95kIo9Shq9TTDS+/+zd8iibVUrAnfHHg84jgXVlSfvYXZj3qz5L3eHAOt93OkPg5ntX+LrIqJ4hq2EVQE8SQNJkad5bbU0fZQaaL8tPZpGhV8nm2Ur5qlVHqSP60oNpwnYvf549pu6e9O6mbPZx/K9Fd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774408761; c=relaxed/simple;
-	bh=6kIxtPvCYWl2f/i1aXx6lwJCPk4EYQx5zBghfCGwAVU=;
+	s=arc-20240116; t=1774408764; c=relaxed/simple;
+	bh=G7Rql0ZYU2V1MVuifXCClibzwheZDBwS6gzSfp/2mNI=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ft1/F3gZhs9f6IwP378/bYu7FH6VYnRhymOctw8XwF52WnLeWSYhybQKkMPBud4fV5coOeiDbzJVXoxme2OwJNL14mZoFPyjusEIjesjXZ1e5oCsqRTuTKrm9AD5eyb0EHhQ3WtCUBcFotDd/xyI+on/v9ysOci/lMDj0IQg1x0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=R1FTTIN6; arc=none smtp.client-ip=210.61.82.184
+	 MIME-Version:Content-Type; b=pAq4seSpENDBZElwY+HGTpv0ma278Nrd3RD7mb8r2xSyrq5YoYXab6chVNfPaFjnNY3LAKavfI9kmHg3VK9kFfV/G/A8d+5McRVEGXA0wQ/PqvmZoZtjAmCuAflECcVLGzUkjWqXm+7f6loUWw5C+rzmYwyort+0arQ2TqXpImQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=qLSIgIEp; arc=none smtp.client-ip=60.244.123.138
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 62bdfc8827f911f1a39cd589f645bc18-20260325
+X-UUID: 638b482827f911f1a02d4725871ece0b-20260325
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=2Eto/koeMj9W08OyMdWoPq4maMPXzwgWrY2x5NXKmTI=;
-	b=R1FTTIN6TKgK8Fo8cZYRzssteQuTGil3FnLqJnsFGN1u6aBCVfv+B4y8hp1CzvMU9aFNkmf2rkZrFVyOCey8ZRM579Ea6lm+imheGA10GjEe7ol+9n72nSst4lK2BfBahAdW+sCXkOcZcVANk7GxQnxSg60CFjCHNqYSqGLi14E=;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=xskrL9INQfPxARGxwOUl2CXsP/NF/qOjwGw8Tn++M6o=;
+	b=qLSIgIEplGTw1eXrL7dtIINilwIMEota4WWArBu2NW/1XH550ZRiJqRfXCpzEERUSmS3pBF2S8eicCnGJaREz2I/TRB5WL0eUzdnQcHYFAspJODLT6m1HP9ih+0ZzJDxJ5AnPWM6UogoI/6/Cu2ydqjcl6YlJERgyzietVqpWT8=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.12,REQID:1fdbfa17-b84a-42aa-a692-446a9664606e,IP:0,U
-	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-5
-X-CID-META: VersionHash:e7bac3a,CLOUDID:05826be0-cf51-4058-942d-ef4f058f9afa,B
+X-CID-O-INFO: VERSION:1.3.12,REQID:e35a12a0-daca-42a5-94d2-ebafbca998d8,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:e7bac3a,CLOUDID:20826be0-cf51-4058-942d-ef4f058f9afa,B
 	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
 	0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI
 	:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
@@ -50,18 +50,18 @@ X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 62bdfc8827f911f1a39cd589f645bc18-20260325
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
+X-UUID: 638b482827f911f1a02d4725871ece0b-20260325
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
 	(envelope-from <ot_meiker.gao@mediatek.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 634532731; Wed, 25 Mar 2026 11:19:08 +0800
+	with ESMTP id 2090352827; Wed, 25 Mar 2026 11:19:09 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
  mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 25 Mar 2026 11:19:06 +0800
+ 15.2.2562.29; Wed, 25 Mar 2026 11:19:08 +0800
 Received: from mtksitap99.mediatek.inc (10.233.130.16) by
  mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Wed, 25 Mar 2026 11:19:06 +0800
+ 15.2.2562.29 via Frontend Transport; Wed, 25 Mar 2026 11:19:08 +0800
 From: Meiker Gao <ot_meiker.gao@mediatek.com>
 To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
  Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
@@ -74,9 +74,9 @@ CC: Bayi Cheng <bayi.cheng@mediatek.com>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
 	Meiker Gao <ot_meiker.gao@mediatek.com>
-Subject: [PATCH 1/2] dt-bindings: spi: Fix clock-names definition
-Date: Wed, 25 Mar 2026 11:18:54 +0800
-Message-ID: <20260325031900.2099969-2-ot_meiker.gao@mediatek.com>
+Subject: [PATCH 2/2] spi: spi-mtk-nor: add new clock support
+Date: Wed, 25 Mar 2026 11:18:55 +0800
+Message-ID: <20260325031900.2099969-3-ot_meiker.gao@mediatek.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260325031900.2099969-1-ot_meiker.gao@mediatek.com>
 References: <20260325031900.2099969-1-ot_meiker.gao@mediatek.com>
@@ -93,18 +93,18 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[17];
-	TAGGED_FROM(0.00)[bounces-280176-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-280178-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ot_meiker.gao@mediatek.com,devicetree@vger.kernel.org];
@@ -114,42 +114,122 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mediatek.com:dkim,mediatek.com:email,mediatek.com:mid]
-X-Rspamd-Queue-Id: AA51031F199
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:dkim,mediatek.com:email,mediatek.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 90F2B31F1ED
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Update the device tree binding for the Mediatek.
+one more clock gate need to be added.
 
 Signed-off-by: Meiker Gao <ot_meiker.gao@mediatek.com>
 ---
- .../devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml      | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/spi/spi-mtk-nor.c | 48 ++++++++++++++++++++++++++-------------
+ 1 file changed, 32 insertions(+), 16 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
-index a453996c13f2..0255e19efc8d 100644
---- a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
-+++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
-@@ -56,14 +56,17 @@ properties:
-                      design, so this is optional.
-       - description: clock used for controller axi slave bus.
-                      this depends on hardware design, so it is optional.
-+      - description: clock used for controller axi_f, axi_h, and
-+                     axi_p to support the new platform.
+diff --git a/drivers/spi/spi-mtk-nor.c b/drivers/spi/spi-mtk-nor.c
+index 1e5ec0840174..e34b0414372f 100644
+--- a/drivers/spi/spi-mtk-nor.c
++++ b/drivers/spi/spi-mtk-nor.c
+@@ -118,8 +118,9 @@ struct mtk_nor {
+ 	dma_addr_t buffer_dma;
+ 	struct clk *spi_clk;
+ 	struct clk *ctlr_clk;
+-	struct clk *axi_clk;
+-	struct clk *axi_s_clk;
++	struct clk *axi_f_clk;
++	struct clk *axi_h_clk;
++	struct clk *axi_p_clk;
+ 	unsigned int spi_freq;
+ 	bool wbuf_en;
+ 	bool has_irq;
+@@ -705,8 +706,9 @@ static void mtk_nor_disable_clk(struct mtk_nor *sp)
+ {
+ 	clk_disable_unprepare(sp->spi_clk);
+ 	clk_disable_unprepare(sp->ctlr_clk);
+-	clk_disable_unprepare(sp->axi_clk);
+-	clk_disable_unprepare(sp->axi_s_clk);
++	clk_disable_unprepare(sp->axi_f_clk);
++	clk_disable_unprepare(sp->axi_h_clk);
++	clk_disable_unprepare(sp->axi_p_clk);
+ }
  
-   clock-names:
-     minItems: 2
-     items:
-       - const: spi
-       - const: sf
--      - const: axi
--      - const: axi_s
-+      - const: axi_f
-+      - const: axi_h
-+      - const: axi_p
+ static int mtk_nor_enable_clk(struct mtk_nor *sp)
+@@ -723,18 +725,27 @@ static int mtk_nor_enable_clk(struct mtk_nor *sp)
+ 		return ret;
+ 	}
  
- required:
-   - compatible
+-	ret = clk_prepare_enable(sp->axi_clk);
++	ret = clk_prepare_enable(sp->axi_f_clk);
+ 	if (ret) {
+ 		clk_disable_unprepare(sp->spi_clk);
+ 		clk_disable_unprepare(sp->ctlr_clk);
+ 		return ret;
+ 	}
+ 
+-	ret = clk_prepare_enable(sp->axi_s_clk);
++	ret = clk_prepare_enable(sp->axi_h_clk);
+ 	if (ret) {
+ 		clk_disable_unprepare(sp->spi_clk);
+ 		clk_disable_unprepare(sp->ctlr_clk);
+-		clk_disable_unprepare(sp->axi_clk);
++		clk_disable_unprepare(sp->axi_f_clk);
++		return ret;
++	}
++
++	ret = clk_prepare_enable(sp->axi_p_clk);
++	if (ret) {
++		clk_disable_unprepare(sp->spi_clk);
++		clk_disable_unprepare(sp->ctlr_clk);
++		clk_disable_unprepare(sp->axi_f_clk);
++		clk_disable_unprepare(sp->axi_h_clk);
+ 		return ret;
+ 	}
+ 
+@@ -813,7 +824,7 @@ static int mtk_nor_probe(struct platform_device *pdev)
+ 	struct mtk_nor *sp;
+ 	struct mtk_nor_caps *caps;
+ 	void __iomem *base;
+-	struct clk *spi_clk, *ctlr_clk, *axi_clk, *axi_s_clk;
++	struct clk *spi_clk, *ctlr_clk, *axi_f_clk, *axi_h_clk, *axi_p_clk;
+ 	int ret, irq;
+ 
+ 	base = devm_platform_ioremap_resource(pdev, 0);
+@@ -828,13 +839,17 @@ static int mtk_nor_probe(struct platform_device *pdev)
+ 	if (IS_ERR(ctlr_clk))
+ 		return PTR_ERR(ctlr_clk);
+ 
+-	axi_clk = devm_clk_get_optional(&pdev->dev, "axi");
+-	if (IS_ERR(axi_clk))
+-		return PTR_ERR(axi_clk);
++	axi_f_clk = devm_clk_get_optional(&pdev->dev, "axi_f");
++	if (IS_ERR(axi_f_clk))
++		return PTR_ERR(axi_f_clk);
++
++	axi_h_clk = devm_clk_get_optional(&pdev->dev, "axi_h");
++	if (IS_ERR(axi_h_clk))
++		return PTR_ERR(axi_h_clk);
+ 
+-	axi_s_clk = devm_clk_get_optional(&pdev->dev, "axi_s");
+-	if (IS_ERR(axi_s_clk))
+-		return PTR_ERR(axi_s_clk);
++	axi_p_clk = devm_clk_get_optional(&pdev->dev, "axi_p");
++	if (IS_ERR(axi_p_clk))
++		return PTR_ERR(axi_p_clk);
+ 
+ 	caps = (struct mtk_nor_caps *)of_device_get_match_data(&pdev->dev);
+ 
+@@ -869,8 +884,9 @@ static int mtk_nor_probe(struct platform_device *pdev)
+ 	sp->dev = &pdev->dev;
+ 	sp->spi_clk = spi_clk;
+ 	sp->ctlr_clk = ctlr_clk;
+-	sp->axi_clk = axi_clk;
+-	sp->axi_s_clk = axi_s_clk;
++	sp->axi_f_clk = axi_f_clk;
++	sp->axi_h_clk = axi_h_clk;
++	sp->axi_p_clk = axi_p_clk;
+ 	sp->caps = caps;
+ 	sp->high_dma = caps->dma_bits > 32;
+ 	sp->buffer = dmam_alloc_coherent(&pdev->dev,
 -- 
 2.45.2
 
