@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-280596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280598-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cA+cAmX5w2kxvQQAu9opvQ
-	(envelope-from <devicetree+bounces-280596-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:04:05 +0100
+	id SIYuF8QBxGm0vQQAu9opvQ
+	(envelope-from <devicetree+bounces-280598-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:39:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1329D32771D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:04:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2311328399
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:39:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D4569300B9EF
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 15:00:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2E4D333B784E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 15:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B87103EC2CA;
-	Wed, 25 Mar 2026 14:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D640421F0F;
+	Wed, 25 Mar 2026 14:51:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CE8241B359
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 14:51:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C3B140F8DA
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 14:51:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774450311; cv=none; b=r1jMDTncJSkgqjNwAqrcaQirx5bS/3sX3VNT2OmfFE1j3Z/iaRPnBvVKQT8o706Oq94knyv2EdAbibGxCOxUpVDf2DTA57u6S+3oHXHAF61A+n6uU9LURR/sHVpjfd8sgNU9EtIZDeLPDGfirWWCpPCW99ydyvZV9Hl3/lZCxGo=
+	t=1774450313; cv=none; b=lk4zGFh8H0JIMgmBgne0hLRWn696a2LdX/VwiSXr0kH8dxc7qZ6REs0ZFsF8ivZ9acLpcTlIxgIJui0X6Oj0XEfFFP43MhuKbzTc3L5rEZTOiNzVX6Wr3KBRX48tjQbHoK37KgSt0HoWfhc6W5r6mjnOgb42FNXdFRa9bfP6bbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774450311; c=relaxed/simple;
-	bh=dTqzbxm6klr8/m7B13qvKNvy3ZwdLeF9iC4vbG1f4/c=;
+	s=arc-20240116; t=1774450313; c=relaxed/simple;
+	bh=L2RLeX58RWJrOJCyQlLypImAQFl7uH3kq7hYltPkvcc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PzOfg0p4i4Acedt4yeBhd7J1nw/S2dADtDzpZKfOD4e7rt3s2+1J1u+Q1dZlSYPA5g9B/89fZBskLSq4f2clvpSyv2OeahXgulrsmdiwKIoYMMeLIHGg3GceHgfHhGGzSwF+Ivllcvpsn2Kh2kp54vq5JRgJjVLjeBUxsIJMs6w=
+	 In-Reply-To:To:Cc; b=mSaajmy4sZep4Sxt5b5ygPwQ8YDp9AUxk8KqnwAJuWPmOcX5wuTyO5ffibisSL02/OK9LymZa8fvS4uqaxETjHoAB1lneU4P3Ibhe3mrHYbZySXvwtkRiINjy+dXgvFBTAXqcuTDLHKMe8cIGJ/5lp5LTw5TAJYJf3opQu2HMsE=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=peter.mobile.pengutronix.de)
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1w5PZW-00050C-Hh; Wed, 25 Mar 2026 15:51:02 +0100
+	id 1w5PZW-00050C-UM; Wed, 25 Mar 2026 15:51:02 +0100
 From: =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-Date: Wed, 25 Mar 2026 15:50:55 +0100
-Subject: [PATCH v4 24/27] media: rockchip: rga: add feature flags
+Date: Wed, 25 Mar 2026 15:50:56 +0100
+Subject: [PATCH v4 25/27] media: rockchip: rga: disable multi-core support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,7 +47,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260325-spu-rga3-v4-24-e90ec1c61354@pengutronix.de>
+Message-Id: <20260325-spu-rga3-v4-25-e90ec1c61354@pengutronix.de>
 References: <20260325-spu-rga3-v4-0-e90ec1c61354@pengutronix.de>
 In-Reply-To: <20260325-spu-rga3-v4-0-e90ec1c61354@pengutronix.de>
 To: Jacob Chen <jacob-chen@iotwrt.com>, 
@@ -70,12 +70,12 @@ X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280596-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-280598-lists,devicetree=lfdr.de];
 	DMARC_NA(0.00)[pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -86,120 +86,98 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[s.pueschel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,pengutronix.de:mid,collabora.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1329D32771D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,pengutronix.de:email,pengutronix.de:mid]
+X-Rspamd-Queue-Id: B2311328399
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-In preparation to the RGA3 addition add feature flags, which can limit
-the exposed feature set of the video device, like rotating or selection
-support. This is necessary as the RGA3 doesn't initially implement the
-full feature set currently exposed by the driver.
+Disable multi-core support in preparation of the RGA3 addition. The
+RK3588 SoC features two equal RGA3 cores. This allows scheduling of the
+work between both cores, which is not yet implemented. Until it is
+implemented avoid exposing both cores as independent video devices to
+prevent an ABI breakage when multi-core support is added.
 
+This patch is copied from the Hantro driver patch to disable multi core
+support by Sebastian Reichel. See
+commit ccdeb8d57f7f ("media: hantro: Disable multicore support")
+
+Link: https://lore.kernel.org/all/20240618183816.77597-4-sebastian.reichel@collabora.com/
 Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
 ---
- drivers/media/platform/rockchip/rga/rga-hw.c |  4 ++++
- drivers/media/platform/rockchip/rga/rga.c    | 23 +++++++++++++++--------
- drivers/media/platform/rockchip/rga/rga.h    |  7 +++++++
- 3 files changed, 26 insertions(+), 8 deletions(-)
+ drivers/media/platform/rockchip/rga/rga.c | 47 +++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
 
-diff --git a/drivers/media/platform/rockchip/rga/rga-hw.c b/drivers/media/platform/rockchip/rga/rga-hw.c
-index e76d1994b8684..c7b68b27f89b2 100644
---- a/drivers/media/platform/rockchip/rga/rga-hw.c
-+++ b/drivers/media/platform/rockchip/rga/rga-hw.c
-@@ -602,6 +602,10 @@ const struct rga_hw rga2_hw = {
- 	.max_height = MAX_HEIGHT,
- 	.max_scaling_factor = MAX_SCALING_FACTOR,
- 	.stride_alignment = 4,
-+	.features = RGA_FEATURE_FLIP
-+		  | RGA_FEATURE_ROTATE
-+		  | RGA_FEATURE_BG_COLOR
-+		  | RGA_FEATURE_SELECTION,
- 
- 	.setup_cmdbuf = rga_hw_setup_cmdbuf,
- 	.start = rga_hw_start,
 diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/platform/rockchip/rga/rga.c
-index 364c1dac3f81c..b0c88ad647e96 100644
+index b0c88ad647e96..fd92ecf408e0c 100644
 --- a/drivers/media/platform/rockchip/rga/rga.c
 +++ b/drivers/media/platform/rockchip/rga/rga.c
-@@ -162,17 +162,21 @@ static int rga_setup_ctrls(struct rga_ctx *ctx)
+@@ -708,6 +708,49 @@ static int rga_parse_dt(struct rockchip_rga *rga)
+ 	return 0;
+ }
  
- 	v4l2_ctrl_handler_init(&ctx->ctrl_handler, 4);
- 
--	v4l2_ctrl_new_std(&ctx->ctrl_handler, &rga_ctrl_ops,
--			  V4L2_CID_HFLIP, 0, 1, 1, 0);
-+	if (rga->hw->features & RGA_FEATURE_FLIP) {
-+		v4l2_ctrl_new_std(&ctx->ctrl_handler, &rga_ctrl_ops,
-+				  V4L2_CID_HFLIP, 0, 1, 1, 0);
- 
--	v4l2_ctrl_new_std(&ctx->ctrl_handler, &rga_ctrl_ops,
--			  V4L2_CID_VFLIP, 0, 1, 1, 0);
-+		v4l2_ctrl_new_std(&ctx->ctrl_handler, &rga_ctrl_ops,
-+				  V4L2_CID_VFLIP, 0, 1, 1, 0);
-+	}
- 
--	v4l2_ctrl_new_std(&ctx->ctrl_handler, &rga_ctrl_ops,
--			  V4L2_CID_ROTATE, 0, 270, 90, 0);
-+	if (rga->hw->features & RGA_FEATURE_ROTATE)
-+		v4l2_ctrl_new_std(&ctx->ctrl_handler, &rga_ctrl_ops,
-+				  V4L2_CID_ROTATE, 0, 270, 90, 0);
- 
--	v4l2_ctrl_new_std(&ctx->ctrl_handler, &rga_ctrl_ops,
--			  V4L2_CID_BG_COLOR, 0, 0xffffffff, 1, 0);
-+	if (rga->hw->features & RGA_FEATURE_BG_COLOR)
-+		v4l2_ctrl_new_std(&ctx->ctrl_handler, &rga_ctrl_ops,
-+				  V4L2_CID_BG_COLOR, 0, 0xffffffff, 1, 0);
- 
- 	if (ctx->ctrl_handler.error) {
- 		int err = ctx->ctrl_handler.error;
-@@ -536,6 +540,9 @@ static int vidioc_s_selection(struct file *file, void *priv,
- 	struct rga_frame *f;
- 	int ret = 0;
- 
-+	if (!(rga->hw->features & RGA_FEATURE_SELECTION))
++/*
++ * Some SoCs, like RK3588 have multiple identical RGA3 cores, but the
++ * kernel is currently missing support for multi-core handling. Exposing
++ * separate devices for each core to userspace is bad, since that does
++ * not allow scheduling tasks properly (and creates ABI). With this workaround
++ * the driver will only probe for the first core and early exit for the other
++ * cores. Once the driver gains multi-core support, the same technique
++ * for detecting the main core can be used to cluster all cores together.
++ */
++static int rga_disable_multicore(struct device *dev)
++{
++	struct device_node *node = NULL;
++	const char *compatible;
++	bool is_main_core;
++	int ret;
++
++	/* Intentionally ignores the fallback strings */
++	ret = of_property_read_string(dev->of_node, "compatible", &compatible);
++	if (ret)
++		return ret;
++
++	/* The first compatible and available node found is considered the main core */
++	do {
++		node = of_find_compatible_node(node, NULL, compatible);
++		if (of_device_is_available(node))
++			break;
++	} while (node);
++
++	if (!node)
 +		return -EINVAL;
 +
- 	f = rga_get_frame(ctx, s->type);
- 	if (IS_ERR(f))
- 		return PTR_ERR(f);
-diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/platform/rockchip/rga/rga.h
-index d98e57c6d7b57..849b96392b780 100644
---- a/drivers/media/platform/rockchip/rga/rga.h
-+++ b/drivers/media/platform/rockchip/rga/rga.h
-@@ -6,6 +6,7 @@
- #ifndef __RGA_H__
- #define __RGA_H__
- 
-+#include <linux/bits.h>
- #include <linux/clk.h>
- #include <linux/platform_device.h>
- #include <media/videobuf2-v4l2.h>
-@@ -133,6 +134,11 @@ static inline void rga_mod(struct rockchip_rga *rga, u32 reg, u32 val, u32 mask)
- 	rga_write(rga, reg, temp);
- };
- 
-+#define RGA_FEATURE_FLIP	BIT(0)
-+#define RGA_FEATURE_ROTATE	BIT(1)
-+#define RGA_FEATURE_BG_COLOR	BIT(2)
-+#define RGA_FEATURE_SELECTION	BIT(3)
++	is_main_core = (dev->of_node == node);
 +
- struct rga_hw {
- 	const char *card_type;
- 	bool has_internal_iommu;
-@@ -141,6 +147,7 @@ struct rga_hw {
- 	u32 max_width, max_height;
- 	u8 max_scaling_factor;
- 	u8 stride_alignment;
-+	u8 features;
++	of_node_put(node);
++
++	if (!is_main_core) {
++		dev_info(dev, "missing multi-core support, ignoring this instance\n");
++		return -ENODEV;
++	}
++
++	return 0;
++}
++
+ static int rga_probe(struct platform_device *pdev)
+ {
+ 	struct rockchip_rga *rga;
+@@ -718,6 +761,10 @@ static int rga_probe(struct platform_device *pdev)
+ 	if (!pdev->dev.of_node)
+ 		return -ENODEV;
  
- 	void (*setup_cmdbuf)(struct rga_ctx *ctx);
- 	void (*start)(struct rockchip_rga *rga,
++	ret = rga_disable_multicore(&pdev->dev);
++	if (ret)
++		return ret;
++
+ 	rga = devm_kzalloc(&pdev->dev, sizeof(*rga), GFP_KERNEL);
+ 	if (!rga)
+ 		return -ENOMEM;
 
 -- 
 2.53.0
