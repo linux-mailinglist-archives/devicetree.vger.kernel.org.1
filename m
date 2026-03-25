@@ -1,231 +1,197 @@
-Return-Path: <devicetree+bounces-280307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280295-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sKC2OfSpw2nAtAQAu9opvQ
-	(envelope-from <devicetree+bounces-280307-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:25:08 +0100
+	id 6ItmBympw2nAtAQAu9opvQ
+	(envelope-from <devicetree+bounces-280295-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:21:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDD8F322247
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:25:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 903FD32214A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 10:21:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 699EB307786D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:20:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id ACCEB302F6BD
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 09:16:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E55673A3806;
-	Wed, 25 Mar 2026 09:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63952317171;
+	Wed, 25 Mar 2026 09:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="gWcWq1PD"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="ZnphFnjB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (pouet.aliel.fr [65.21.61.41])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 707DF39FCB3;
-	Wed, 25 Mar 2026 09:18:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBFB32FFFBE;
+	Wed, 25 Mar 2026 09:15:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774430336; cv=none; b=UhvMAsHa9r4Blko/DhOZUaHznnCZN0feBJGyLawAJg72KzDrpoMXbRfaMoA8DZeM7ZAmdS7V/lBHVnR1cqWcJUEnnrtAvSRfK7XKE1MfAfTzKxxngDj2K6SE7on6DHYRX8OZxFcbIvDRbE6g3+J1kapsF239464lgrCbAGh2zxo=
+	t=1774430161; cv=none; b=toRWKoSw1tdn5gpMrIS/6A0KYqTJoMEgs6UD2+7wNXl6s65Ci5NCltr1WssBnjmoHzK6gL1l5Dwi2tz6LLGpDcVcJObYg+OanfEMlu1DTXIosqlpoACxGkpLcVF7J8pLlZcWMkJMQnV7fWizvib7uBBKusIhZCI57A1blul4Nb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774430336; c=relaxed/simple;
-	bh=Ywdd79SLlnG+5FuD1iPwguAxNCDzzkCuTsJrgYS9eQA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lyNDEpGXVU6OPJGthOt+1kFrU5uaMFQpi67biDOPjeN54p6bJYPE+Cb+HGzpX0Sk4fu4bTPEupljtstUCez0f4lDNGfJKhfbeoTtd4QisX0rFgy2Wisi99G3k4SBaFWedUaVPS88KTo40Bpe6uNBYUkyakpbq1cAvW4J1cq0M9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=gWcWq1PD; arc=none smtp.client-ip=65.21.61.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774430334;
-	bh=Ywdd79SLlnG+5FuD1iPwguAxNCDzzkCuTsJrgYS9eQA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=gWcWq1PDwjcigIyzZuzcDyxFMTMWBD8dD6gtjR0ZwBFpS3o6ouvjIubwDdJYAUH0G
-	 9k2fRTIFoeWjBZ+8sBT3sKLiUV1p4z/CMo/b4hdPaC5xzYcI9ocWS/X+uoPy3rX3KA
-	 6fSHLJ0TXTXP5m2dh0EdSFa21/77UnOB0RTG1n2g=
-Date: Wed, 25 Mar 2026 10:15:27 +0100
-Subject: [PATCH v4 9/9] arm64: dts: amlogic: t7: khadas-vim4: Add MMC nodes
+	s=arc-20240116; t=1774430161; c=relaxed/simple;
+	bh=gK91G0Kh3+mdj3OrhSUyPB44TdtMO6pJoTRl9mo39qQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=TFJUvt9QSQ47gvllmklojIviCesogGctmzPz4O3u6la8w18dvT79OipES1GYtrohCzUbeHkf4w0Gt07bUVv3IIKHAXfAWl5rBfrMrRBfROemUy81agdT4ZI+K6ruxsnuZlMXiDaHmxNtE33ah7xWjXb6bqB8iXySD3/SYsheogc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=ZnphFnjB; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1774430157;
+	bh=gK91G0Kh3+mdj3OrhSUyPB44TdtMO6pJoTRl9mo39qQ=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=ZnphFnjBKvQXgZewq1BcRIyvVp/KbXTSwy5zs660K1Q/BPNeFqfRZfvVEdKoK67iR
+	 OVB8Y5kuoKvgaLyJk0RFnEfYhPhmM5xSgFwWqE1TQfZ4A8Q5LHrsPY6L3C4c+y0StC
+	 OEkHNOg8VK9kjYfrF6V0ZUlbncIGBOaC+LfLuQHDTj3IvZtyI9FzdhjcbzZW6Wq7Wh
+	 13E+wFO/y6QXMrBDMmSuEOtMAhnAcwCycyfzTWRKxalbbA2FES4fnkF+y9troHKI2j
+	 dt7XWyY2nv5lSC77qVcjwQtL3Wz5wItkd8JRLeHrf/KKGBum3zbKOG2EP+L8cZhcCQ
+	 2mYJfLdMxno2w==
+Received: from pecola.lan (unknown [159.196.93.152])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 7D3296452E;
+	Wed, 25 Mar 2026 17:15:54 +0800 (AWST)
+Message-ID: <28eee6d05ed1e1814f09ec907d56798a279f226d.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v27 3/4] i2c: ast2600: Add controller driver for AST2600
+ new register set
+From: Jeremy Kerr <jk@codeconstruct.com.au>
+To: Ryan Chen <ryan_chen@aspeedtech.com>,
+ "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+ <andrew@codeconstruct.com.au>, Benjamin Herrenschmidt
+ <benh@kernel.crashing.org>,  Philipp Zabel <p.zabel@pengutronix.de>
+Cc: "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>, 
+	"devicetree@vger.kernel.org"
+	 <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	 <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	 <linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	 <linux-kernel@vger.kernel.org>, "openbmc@lists.ozlabs.org"
+	 <openbmc@lists.ozlabs.org>
+Date: Wed, 25 Mar 2026 17:15:54 +0800
+In-Reply-To: <TY2PPF5CB9A1BE6D451E8AFDBA03B81AFB4F249A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+References: <20260324-upstream_i2c-v27-0-f19b511c8c28@aspeedtech.com>
+	 <20260324-upstream_i2c-v27-3-f19b511c8c28@aspeedtech.com>
+	 <db921d6b820a13d59d0ffb0ab042dc6c8c11897f.camel@codeconstruct.com.au>
+	 <TY2PPF5CB9A1BE6D451E8AFDBA03B81AFB4F249A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.46.4-2+deb12u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260325-add-emmc-t7-vim4-v4-9-44c7b4a5e459@aliel.fr>
-References: <20260325-add-emmc-t7-vim4-v4-0-44c7b4a5e459@aliel.fr>
-In-Reply-To: <20260325-add-emmc-t7-vim4-v4-0-44c7b4a5e459@aliel.fr>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
- Johannes Berg <johannes@sipsolutions.net>, van Spriel <arend@broadcom.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1774430325; l=2817;
- i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=Ywdd79SLlnG+5FuD1iPwguAxNCDzzkCuTsJrgYS9eQA=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
- BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QA+DqgPzHFvSj/VdwT8CAbor/ztcDnZtWfN7B556gbTRDjcH1gWwlAtrt9SWA3FOpJn18xDOz3U
- OFYqrTEbetgM=
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
- fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.56 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
+	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-280295-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org,sipsolutions.net,broadcom.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[aliel.fr];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-280307-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[aliel.fr:+];
+	FROM_NEQ_ENVFROM(0.00)[jk@codeconstruct.com.au,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid,0.0.0.0:email,0.0.0.1:email]
-X-Rspamd-Queue-Id: EDD8F322247
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aspeedtech.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,codeconstruct.com.au:dkim,codeconstruct.com.au:mid]
+X-Rspamd-Queue-Id: 903FD32214A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable and configure the three MMC controllers for the Khadas VIM4 board:
-- sd_emmc_a: SDIO interface for the BCM43752 Wi-Fi module
-- sd_emmc_b: SD card slot
-- sd_emmc_c: eMMC storage
-
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 90 +++++++++++++++++++++-
- 1 file changed, 89 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 770f06b0b16c7..5a73ae081036c 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -14,7 +14,10 @@ / {
- 	compatible = "khadas,vim4", "amlogic,a311d2", "amlogic,t7";
- 
- 	aliases {
--		serial0 = &uart_a;
-+		serial0	= &uart_a;
-+		mmc0	= &sd_emmc_c;
-+		mmc1	= &sd_emmc_b;
-+		mmc2	= &sd_emmc_a;
- 	};
- 
- 	memory@0 {
-@@ -159,6 +162,91 @@ &pwm_ab {
- 	pinctrl-names = "default";
- };
- 
-+/* SDIO */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	cap-sdio-irq;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+	no-mmc;
-+	no-sd;
-+
-+	power-domains = <&pwrc PWRC_T7_SDIO_A_ID>;
-+
-+	keep-power-in-suspend;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddao_1v8>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm43752-fmac", "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+	no-sdio;
-+	no-mmc;
-+
-+	power-domains = <&pwrc PWRC_T7_SDIO_B_ID>;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&sd_3v3>;
-+	vqmmc-supply = <&vddio_c>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+	non-removable;
-+	no-sdio;
-+	no-sd;
-+
-+	power-domains = <&pwrc PWRC_T7_EMMC_ID>;
-+
-+	vmmc-supply = <&vddio_3v3>;
-+	vqmmc-supply = <&vddio_1v8>;
-+};
-+
- &uart_a {
- 	status = "okay";
- 	clocks = <&xtal>, <&xtal>, <&xtal>;
-
--- 
-2.49.0
+SGkgUnlhbiwKCj4gPiBJIHdvdWxkIHN1Z2dlc3Qgc2VwYXJhdGluZyB0aGUgc3RyaW5nIHBhcnNp
+bmcgZnJvbSB0aGUgImlzIHRoZSBtb2RlIGF2YWlsYWJsZSIKPiA+IGxvZ2ljLCBtb3JlIG9uIHRo
+YXQgYmVsb3cuCj4gPiAKPiBJIHdpbGwgc2VwYXJhdGUgd2l0aCBmb2xsb3dpbmcuCj4gwqAKPiBz
+dGF0aWMgaW50IGFzdDI2MDBfaTJjX3hmZXJfbW9kZV9wYXJzZShjb25zdCBjaGFyICpidWYsIGVu
+dW0geGZlcl9tb2RlICptb2RlKQo+IHsKPiDCoMKgwqAgaWYgKHN5c2ZzX3N0cmVxKGJ1ZiwgImJ5
+dGUiKSnCoMKgIHsgKm1vZGUgPSBCWVRFX01PREU7IHJldHVybiAwOyB9Cj4gwqDCoMKgIGlmIChz
+eXNmc19zdHJlcShidWYsICJidWZmZXIiKSkgeyAqbW9kZSA9IEJVRkZfTU9ERTsgcmV0dXJuIDA7
+IH0KPiDCoMKgwqAgaWYgKHN5c2ZzX3N0cmVxKGJ1ZiwgImRtYSIpKcKgwqDCoCB7ICptb2RlID0g
+RE1BX01PREU7wqAgcmV0dXJuIDA7IH0KPiDCoMKgwqAgcmV0dXJuIC1FSU5WQUw7Cj4gfQoKT0ss
+IGJ1dCB3aXRoIGtlcm5lbC1zdHlsZSBmb3JtYXR0aW5nLgoKPiAKPiBzdGF0aWMgaW50IGFzdDI2
+MDBfaTJjX3hmZXJfbW9kZV9jaGVjayhzdHJ1Y3QgYXN0MjYwMF9pMmNfYnVzICppMmNfYnVzLAo+
+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgZW51bSB4ZmVyX21vZGUgbW9kZSkKPiB7Cj4gwqDCoMKgIGlm
+IChtb2RlID09IEJVRkZfTU9ERSAmJiAhaTJjX2J1cy0+YnVmX2Jhc2UpCj4gwqDCoMKgwqDCoMKg
+wqAgcmV0dXJuIC1FSU5WQUw7Cj4gwqDCoMKgIGlmIChtb2RlID09IERNQV9NT0RFICYmICFpMmNf
+YnVzLT5kbWFfYXZhaWxhYmxlKQo+IMKgwqDCoMKgwqDCoMKgIHJldHVybiAtRUlOVkFMOwo+IMKg
+wqDCoCByZXR1cm4gMDsKPiB9Cj4gCj4gPiA+ICsKPiA+ID4gK3N0YXRpYyBjb25zdCBjaGFyICph
+c3QyNjAwX2kyY194ZmVyX21vZGVfbmFtZShlbnVtIHhmZXJfbW9kZSBtb2RlKSB7Cj4gPiA+ICvC
+oMKgwqDCoMKgwqDCoHN3aXRjaCAobW9kZSkgewo+ID4gPiArwqDCoMKgwqDCoMKgwqBjYXNlIEJZ
+VEVfTU9ERToKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiAiYnl0
+ZSI7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoGNhc2UgRE1BX01PREU6Cj4gPiA+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gImRtYSI7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoGNh
+c2UgQlVGRl9NT0RFOgo+ID4gPiArwqDCoMKgwqDCoMKgwqBkZWZhdWx0Ogo+ID4gPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuICJidWZmZXIiOwo+ID4gPiArwqDCoMKgwqDC
+oMKgwqB9Cj4gPiA+ICt9Cj4gPiA+ICsKPiA+ID4gK3N0YXRpYyBzc2l6ZV90IHhmZXJfbW9kZV9z
+aG93KHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0Cj4gPiA+ICtkZXZpY2VfYXR0cmlidXRlICph
+dHRyLCBjaGFyICpidWYpIHsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IGFzdDI2MDBfaTJj
+X2J1cyAqaTJjX2J1cyA9IGRldl9nZXRfZHJ2ZGF0YShkZXYpOwo+ID4gPiArCj4gPiA+ICvCoMKg
+wqDCoMKgwqDCoHJldHVybiBzeXNmc19lbWl0KGJ1ZiwgIiVzXG4iLAo+ID4gPiArYXN0MjYwMF9p
+MmNfeGZlcl9tb2RlX25hbWUoaTJjX2J1cy0+bW9kZSkpOwo+ID4gPiArfQo+ID4gPiArCj4gPiA+
+ICtzdGF0aWMgc3NpemVfdCB4ZmVyX21vZGVfc3RvcmUoc3RydWN0IGRldmljZSAqZGV2LAo+ID4g
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSAqYXR0ciwKPiA+ID4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29uc3QgY2hhciAq
+YnVmLCBzaXplX3QgY291bnQpCj4gPiB7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoHN0cnVjdCBhc3Qy
+NjAwX2kyY19idXMgKmkyY19idXMgPSBkZXZfZ2V0X2RydmRhdGEoZGV2KTsKPiA+ID4gK8KgwqDC
+oMKgwqDCoMKgZW51bSB4ZmVyX21vZGUgbW9kZTsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgaW50IHJl
+dDsKPiA+ID4gKwo+ID4gPiArwqDCoMKgwqDCoMKgwqByZXQgPSBhc3QyNjAwX2kyY194ZmVyX21v
+ZGVfcGFyc2UoaTJjX2J1cywgYnVmLCAmbW9kZSk7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoGlmIChy
+ZXQpCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Owo+ID4g
+PiArCj4gPiA+ICvCoMKgwqDCoMKgwqDCoGkyY19sb2NrX2J1cygmaTJjX2J1cy0+YWRhcCwgSTJD
+X0xPQ0tfUk9PVF9BREFQVEVSKTsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgYXN0MjYwMF9pMmNfc2V0
+X3hmZXJfbW9kZShpMmNfYnVzLCBtb2RlKTsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgaTJjX3VubG9j
+a19idXMoJmkyY19idXMtPmFkYXAsIEkyQ19MT0NLX1JPT1RfQURBUFRFUik7Cj4gPiA+ICsKPiA+
+ID4gK8KgwqDCoMKgwqDCoMKgcmV0dXJuIGNvdW50Owo+ID4gPiArfQo+ID4gPiArCj4gPiA+ICtz
+dGF0aWMgREVWSUNFX0FUVFJfUlcoeGZlcl9tb2RlKTsKPiA+IAo+ID4gVGhpcyB3aWxsIG5lZWQg
+c3lzZnMgQUJJIGRvY3VtZW50YXRpb24uCj4gCj4gU2luY2UgaXQgaXMgaW4gc3lzZnMgL3N5cy9i
+dXMvcGxhdGZvcm0vZHJpdmVycy9pMmNfYXN0MjYwMAo+IFNvIEkgYWRkIERvY3VtZW50YXRpb24v
+QUJJL3Rlc3Rpbmcvc3lzZnMtYnVzLXBsYXRmb3JtLWRyaXZlcnMtaTJjLWFzdDI2MDAgCj4gYW0g
+SSByaWdodD8KCkkgd291bGQgc3VnZ2VzdCBEb2N1bWVudGF0aW9uL0FCSS90ZXN0aW5nL3N5c2Zz
+LWRyaXZlci1hc3QyNjAwLWkyYwoKPiAKPiBXaGF0OsKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvc3lz
+L2J1cy9wbGF0Zm9ybS9kcml2ZXJzL2kyYy1hc3QyNjAwLy4uLi94ZmVyX21vZGUKPiBEYXRlOsKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqBNYXJjaCAyMDI2Cj4gS2VybmVsVmVyc2lvbjrCoMKgNi54CgpL
+ZXJuZWxWZXJzaW9uIGlzIG9wdGlvbmFsLCBidXQgaWYgeW91IGluY2x1ZGUgaXQsIGl0IHdvdWxk
+IGJlIDcueC4KCj4gQ29udGFjdDrCoMKgwqDCoMKgwqDCoMKgUnlhbiBDaGVuIDxyeWFuX2NoZW5A
+YXNwZWVkdGVjaC5jb20+Cj4gRGVzY3JpcHRpb246CgpLZWVwIHRoZSBmaXJzdCBsaW5lIG9mIHRo
+ZSBkZXNjcmlwdGlvbiBvbiB0aGUgc2FtZSBsaW5lLgoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoFNob3dzIG9yIHNldHMgdGhlIHRyYW5zZmVyIG1vZGUgZm9yIHRoZSBBU1BFRUQg
+QVNUMjYwMCBJMkMKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbnRyb2xsZXIu
+IFZhbGlkIHZhbHVlcyBhcmU6Cj4gCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAt
+ICJieXRlIjrCoMKgIFByb2dyYW1tZWQgSS9PLCBvbmUgYnl0ZSBhdCBhIHRpbWUuCj4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAtICJidWZmZXIiOiBQcm9ncmFtbWVkIEkvTyB1c2lu
+ZyB0aGUgaGFyZHdhcmUgRklGTyBidWZmZXIuCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAtICJkbWEiOsKgwqDCoCBETUEgdHJhbnNmZXIgKG9ubHkgYXZhaWxhYmxlIGlmIGFzcGVl
+ZCxlbmFibGUtZG1hCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIGlzIHNldCBpbiB0aGUgZGV2aWNlIHRyZWUpLgoKRGVjb3VwbGUgdGhpcyBm
+cm9tIHRoZSBkZXZpY2UgdHJlZSBjb25maWd1cmF0aW9uIG1lY2hhbmlzbToKCiDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoC0gImRtYSI6wqDCoMKgIERNQSB0cmFuc2ZlciAoaWYgRE1B
+IGlzIGF2YWlsYWJsZSBmb3IgdGhpcwogICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnRy
+b2xsZXIpCgo+IGkyY19idXMtPmJ1Zl9iYXNlID0gZGV2bV9wbGF0Zm9ybV9nZXRfYW5kX2lvcmVt
+YXBfcmVzb3VyY2UocGRldiwgMSwgJnJlcyk7Cj4gaWYgKCFJU19FUlIoaTJjX2J1cy0+YnVmX2Jh
+c2UpKQo+IMKgwqDCoCBpMmNfYnVzLT5idWZfc2l6ZSA9IHJlc291cmNlX3NpemUocmVzKSAvIDI7
+Cj4gZWxzZQo+IMKgwqDCoCBpMmNfYnVzLT5idWZfYmFzZSA9IE5VTEw7CgpJIHdvdWxkIHN1Z2dl
+c3QgYSB0ZW1wb3JhcnksIHNvIHRoZXJlJ3Mgbm8gY2hhbmNlIHRoYXQgZnV0dXJlIGNoYW5nZXMK
+Y291bGQgc2VlIGFuIEVSUl9QVFIgdmFsdWUgaW4gaTJjX2J1cy0+YnVmX2Jhc2U6CgogICAgYnVm
+X2Jhc2UgPSBkZXZtX3BsYXRmb3JtX2dldF9hbmRfaW9yZW1hcF9yZXNvdXJjZShwZGV2LCAxLCAm
+cmVzKTsKICAgIGlmICghSVNfRVJSKGJ1Zl9iYXNlKSkgewogICAgICAgIGkyY19idXMtPmJ1Zl9i
+YXNlID0gYnVmX2Jhc2UKICAgIMKgwqDCoCBpMmNfYnVzLT5idWZfc2l6ZSA9IHJlc291cmNlX3Np
+emUocmVzKSAvIDI7CiAgICB9CgphbmQgeW91IGhhdmUga3phbGxvYygpZWQsIHNvIG5vIG5lZWQg
+Zm9yIHRoZSBOVUxMIGluaXQgaW4gdGhlIGVycm9yIHBhdGguCgpDaGVlcnMsCgoKSmVyZW15Cg==
 
 
