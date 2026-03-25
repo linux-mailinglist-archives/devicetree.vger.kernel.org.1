@@ -1,256 +1,160 @@
-Return-Path: <devicetree+bounces-280662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280664-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MDE6FNcTxGmfwAQAu9opvQ
-	(envelope-from <devicetree+bounces-280662-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 17:56:55 +0100
+	id aMtKHQ8RxGnuvwQAu9opvQ
+	(envelope-from <devicetree+bounces-280664-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 17:45:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F56C32979F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 17:56:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB92F32943F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 17:45:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 832B630EE444
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:35:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 23EDA30E0D3B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 16:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 783A13FBEAF;
-	Wed, 25 Mar 2026 16:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A00E3FD152;
+	Wed, 25 Mar 2026 16:36:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f52.google.com (mail-yx1-f52.google.com [74.125.224.52])
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2A0F3FB07A
-	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 16:33:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C0F3FCB28
+	for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 16:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774456424; cv=none; b=l0qaIovXy8un1X1sMNywXCyV5bzx+9EDAZZ3f5yshX4NO/SUWIAHlcNHc6dm5grzVEKmOt7JpivjKrDiHH0zzzajmR8ZOgZHB2LSfUwTO+/lVyCCAFQQMBNWdszmA79nJIlcmocUkeXc3eTax4x7EOavNzDENAEJEWtRCDd4/Ig=
+	t=1774456561; cv=none; b=b6s9BCIhjvMKq5Gvaa2UAPDdURybvv10oTfgBx2XYBEZNBVFAdTMlvHnUOr8Vd0Au5fXsN6Bry+RkA3PFQ9INurQfjuK8ZSZ3XIeDrEo4D77rr7fxjLzgWBgQrKQNUfPiRc8DSw3dJ+C7uo9btCmitgAhroU6tGfw6zrOTtuwR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774456424; c=relaxed/simple;
-	bh=h0O2cYoRVNJWzf+TBUudwD+89c3pM+LYikcFSp4MzJE=;
+	s=arc-20240116; t=1774456561; c=relaxed/simple;
+	bh=vX6p1CDvWad+GoKbzvthJkwyI07/wTijn9ZWHgYK/o4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=M078BiVrceK2MiKaNOUiLQsjybRiY0K7hJ2ahuAxhQ7Vq2hzFWbIozsFubiwjKitYdQd+O8Kjeb01She0ICX4+umBMi/VZbuPXgzOeTLmyDddJ4H3UyJQ2z1+7Xbp9DhINNJRpkVXUhLZsQlMZgYCyn5afa4/hF/eKUilvDo0/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=74.125.224.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me
+	 To:Cc:Content-Type; b=sLNeyl/TtD5dd5qM+RnjtHdOcuFGxgzHlObaZNuP2rgcAvm8bmEr5MbJZ0tuZ6DkQ7Wjov2yXY9Y/DGGZihT90ZxgPMNG528XJch9A9zPFVXNH8qVEH82f7EGHCkmgoitk8yIaKUjQ1smn72HeRgmRLicTdSSOhiV23q4/ajCws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-649278a69c5so53591d50.3
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:33:36 -0700 (PDT)
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-602947681e2so1555156137.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:35:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774456415; x=1775061215;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=8us9FMf4Ix2FjVhaTc55RnFnYiTbZ7h6aPgiDRplAFk=;
-        b=kCtq4BiXHI1mE0ATq1yyrXjrS+zf+XKLaiYuQpWgEu70LnPzXiGLDLLxrnAHUbAWBW
-         HJ6pXA6SZH1pYqRiv87UaUt95aGH9UBOEK/Zs94LN+t812DX+0rtTDRxbRCNqgoAOs79
-         CNGlLu9nkX0g+iQ5YKxW4Q1RGR++g/5SyWHAURPhmt3TNwhAod5TU8/L4FMZfYeX8DeY
-         fUQIkxhLPAeBQEkmy60q/qoLygTXvXb13LmY9ZpiP8JEk9DA9Bdxr+idjdw9NYx1V8y9
-         6lNx+/GdvvKPW5lwkT/M5p8fE51q2Xs2RjdlKxMmU+6FguY/t7xevFsch3g1H79edGlj
-         uggw==
-X-Forwarded-Encrypted: i=1; AJvYcCXOYg0jUyBM6Nr124ZORxAG9yw69bucS7zb/HOY+v+Y3IetDgkRQIUyY8XbNG8k6+RH9R31X6YxQ+y/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuGym/T5lg/RKn8mB86g7cB0CzhL+LYflKDYfkxidIyMw/Qsnf
-	xaQKlSkSRI6feE/y+hz4OvpYUpX/Agf0LcttS3+8zVO08/VZYtNHRNdD0AZEpn4W
-X-Gm-Gg: ATEYQzxcoR3S7KJgSgEjc3pvfQd9DNHmxbM2Su+6ubjz2iknQ+HRRo4r5ADy34Cl0LU
-	yK57P8kIJUs5G+2Usgfask5W6Qj07iQr7hEMx3dy0xs3aBHOOlvgJ5IiuVV1EGQLr64AYL9xfET
-	S/3wJGnqbCBuFlKucdIcNHXkn3zmtH2Ed1MC23gEE3YwFgMGl7DMwhm37wt/y7A7bj2AheRxhkn
-	LocC2OTN60M7H3FS8xpWn7V2eW1rO5OdRjDGRROBunekwfhlFx+nr4SQ5iWJrH5jccp8CHz9yz+
-	yPcP5kzriwHBLQj3pQhOUSTnrVKesPZTTMLguWplPXKuGD1/62O4OTPzy7n369ddHXpAt/jKqPI
-	MSDCqzR0+3ySHjwpqZ18cJ3Jv3he2ubr1PbfLF/ofIGc5Xm8IcBcgE9VUH5qdDQH6SakCF5BBY0
-	VNE3vBUrec/Ayn+rCC8VMY/iWba5x+7wff7a/4tKCXeXdTHTUtM/Jq4v16EeYcOwVIGlS24oKoG
-	pPTZKPpn77eG5ccO2mgOTcJ17ExJk8j62J044gO+PSOfGfJ4ozx
-X-Received: by 2002:a05:690e:1517:b0:64c:f929:7489 with SMTP id 956f58d0204a3-64ee6091275mr3922630d50.22.1774456415016;
-        Wed, 25 Mar 2026 09:33:35 -0700 (PDT)
-Received: from mail-yx1-f46.google.com (mail-yx1-f46.google.com. [74.125.224.46])
-        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-64ef6c0ffefsm200628d50.15.2026.03.25.09.33.34
+        d=1e100.net; s=20251104; t=1774456559; x=1775061359;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sDjwaAywwU03wv0+eLKkG3IGOSH5Z69cyrkxX7M6ckw=;
+        b=ilACfTuWNGHnz4DhBjh9HJjNBTJgJ/aIbKon2oIFVWZvX6n/LeTK+i7PEjEdE6LxvY
+         P4T2cZtNv4Xa9zmKvJJzF/PLss8eB9PrVi6mUxVrcDvZGwm0Ks+lgQiuP/Wg9CXliwPr
+         iFODuByboLks1nOzek1rcOFRHgPPvxkTIwY8Q9NQw/Mby+mh7Q3eBOaS7a66XbmjQAhf
+         omMp7dCsCS1mV6kgBWD7Vxx1wAN2P8TUFAXOePV7o+c9JKeIoKf+sRfPGPpkRjuX1Rqd
+         IwVq/z6MDl+WeQx0Biaw+xr2hUXdE1QHgYL+lcr6ot8P2ZWYGV6d/0QqBejBBVVMvHOi
+         /Phg==
+X-Forwarded-Encrypted: i=1; AJvYcCVz0ENIBxgE/KxKVZZIIpqbbV3VEa+DjZ3Yrx1owQxmxzJsFMOIif4c9SD1eUsHz9tSu2nrp+Wit5+i@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0DAxhB6Qk8LrAX+h7VUq0siHbAGOeYCb9dTdnNouuBmJoF6vO
+	6+CaFZw4HTKsKDYK/VJZb+QN5+ldSd8DDgDWC8uraiiA9er9by5MzTTilztQM7GzbQo=
+X-Gm-Gg: ATEYQzwV8bi1BlahBBoiIslX+WOw6c94Ol3dpfimZbqoBqoQsij1IKCEKbhY5UQQaAQ
+	csPOgI9r3GEiWyfNKRkthsfy/BaQhrN5FjedyLQOp6R7bylzVSigdyn06pMyD58E32PbN05ZR86
+	axJEKvUPlZhhxt8wzemFr0dSWgkvRF10X2cDAMS1YNk/Jtq98RF4KjuNpnvxmwchuTtKnrHjvnD
+	a7kkr8enxA5aZdlzsTr13GnyW1xMnjqbN7CNPw8XI5UkonxITykp3f6roHMqpZNHmXEIph4360C
+	BFeeahYyRGMIB5HLnb+gzqPDkkcHTKGPGNAww5s+GF8yChhHqBH+UhKQFjUoFrhGD9PxJalorDP
+	/f90b/n15L6avRqKpzDGa/te/iPIISikQihjmzkVLkiX87MprTQwDoz2SfpK4+ix5fa0J8BOc2J
+	/w7ZN/GoORuGJcohhBf6+VUx8cNNgmfToXXnNrBeOtAMvWhEV7G6lPTzrk97xSMYGEZbUyLoU=
+X-Received: by 2002:a05:6102:5493:b0:5fd:ff75:f437 with SMTP id ada2fe7eead31-603922d8a90mr2364009137.33.1774456559061;
+        Wed, 25 Mar 2026 09:35:59 -0700 (PDT)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-604d50649ccsm202268137.3.2026.03.25.09.35.57
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Mar 2026 09:33:34 -0700 (PDT)
-Received: by mail-yx1-f46.google.com with SMTP id 956f58d0204a3-64ad46a44easo77963d50.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:33:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWrrnCDTgHhkzZaPurOwKJo4BWzLnoVpDJjNGTgzvzUyhniMCUmLS9I+/h+HcKAk3ehSYV8WIZQY6qy@vger.kernel.org
-X-Received: by 2002:a05:690e:1286:b0:64c:a09f:12ab with SMTP id
- 956f58d0204a3-64ee60a15f8mr3833496d50.30.1774456414053; Wed, 25 Mar 2026
- 09:33:34 -0700 (PDT)
+        Wed, 25 Mar 2026 09:35:58 -0700 (PDT)
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-60328e74569so1107743137.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Mar 2026 09:35:57 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUFGl8GfKGWM7+CtiR5dLawwRpVxbJC//cA3CZgKnI5nnFQP38nyHHD7CPoc5OExoMRAaUaQFm5I5g0@vger.kernel.org
+X-Received: by 2002:a67:e703:0:b0:5ff:ea89:44b5 with SMTP id
+ ada2fe7eead31-6038753a92emr2391289137.32.1774456557341; Wed, 25 Mar 2026
+ 09:35:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260325063254.18062-1-email@sirat.me> <20260325063254.18062-3-email@sirat.me>
- <20260325144719.00005a92@huawei.com>
-In-Reply-To: <20260325144719.00005a92@huawei.com>
-From: Sirat <email@sirat.me>
-Date: Wed, 25 Mar 2026 22:33:22 +0600
-X-Gmail-Original-Message-ID: <CANn+LW+tLc2sQwfknieUi1pCat0+HQWrCFN0WTJ4rC_7_qFGpQ@mail.gmail.com>
-X-Gm-Features: AQROBzDyk3XrETGSBpjycQrkM6of18Z8KC1GFbAqmc5msBHz6MbZdMnXNCjnOgQ
-Message-ID: <CANn+LW+tLc2sQwfknieUi1pCat0+HQWrCFN0WTJ4rC_7_qFGpQ@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] iio: proximity: add driver for ST VL53L1X ToF sensor
-To: Jonathan Cameron <jonathan.cameron@huawei.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, jic23@kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
-	Andy Shevchenko <andriy.shevchenko@intel.com>
+References: <cover.1772468323.git.geert+renesas@glider.be> <10876b30a8bdb7d1cfcc2f23fb859f2ffea335fe.1772468323.git.geert+renesas@glider.be>
+ <20260313215912.GA3415767-robh@kernel.org>
+In-Reply-To: <20260313215912.GA3415767-robh@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 25 Mar 2026 17:35:45 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXFd5Sva4Hu7KufgMfiiF02Z1z+UgLyJH=KYPvch4673Q@mail.gmail.com>
+X-Gm-Features: AQROBzAa9n7pyJe-8mgf6m8MWZ5EBfxKw9iKFNekZ5OaRcP6UMYY0cGuEWeDl6U
+Message-ID: <CAMuHMdXFd5Sva4Hu7KufgMfiiF02Z1z+UgLyJH=KYPvch4673Q@mail.gmail.com>
+Subject: Re: [PATCH 7/7] soc: renesas: Convert to of_machine_get_match()
+To: Rob Herring <robh@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+	Saravana Kannan <saravanak@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Ilia Lin <ilia.lin@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-280662-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linaro.org,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-280664-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[sirat.me];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[email@sirat.me,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree];
 	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,huawei.com:email,sirat.me:email]
-X-Rspamd-Queue-Id: 4F56C32979F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux-m68k.org:email,glider.be:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: EB92F32943F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 25, 2026 at 8:47=E2=80=AFPM Jonathan Cameron
-<jonathan.cameron@huawei.com> wrote:
->
-> On Wed, 25 Mar 2026 12:32:23 +0600
-> Siratul Islam <email@sirat.me> wrote:
->
-> > Add support for the STMicroelectronics VL53L1X Time-of-Flight
-> > ranging sensor with I2C interface.
+Hi Rob,
+
+On Fri, 13 Mar 2026 at 22:59, Rob Herring <robh@kernel.org> wrote:
+> On Mon, Mar 02, 2026 at 05:29:11PM +0100, Geert Uytterhoeven wrote:
+> > Use the of_machine_get_match() helper to avoid accessing of_root
+> > directly, which is planned to become private.
 > >
-> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > Signed-off-by: Siratul Islam <email@sirat.me>
->
-> Hi Siratul,
->
-> I used this as a bit of an experiment as you'd +CC lkml and took a close
-> read of the feedback google's AI bot produced.
-> https://sashiko.dev/#/patchset/20260325063254.18062-1-email%40sirat.me
->
-> Be very careful when considering the output. There are some things
-> in here that are not true, or we don't generally defend against (like the
-> interrupt type related comments).
->
-> The iio_trigger_get() is (I think) a more general problem so ignore that
-> for your driver - will just be a tiny memory leak and stop the
-> module being easily unloaded.  I'll take a look at that one on a more gen=
-eral
-> basis.
->
-> The regmap one is where these bots excel in that they sometimes go deeper
-> in analysis than a typical person focused on one driver.
->
-> The stuff on using standard devm_ wasn't from the bot and I think will ma=
-ke
-> things rather simpler.
->
-> Thanks,
->
-> Jonathan
->
->
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > > ---
-> >  MAINTAINERS                         |   1 +
-> >  drivers/iio/proximity/Kconfig       |  15 +
-> >  drivers/iio/proximity/Makefile      |   1 +
-> >  drivers/iio/proximity/vl53l1x-i2c.c | 795 ++++++++++++++++++++++++++++
-> >  4 files changed, 812 insertions(+)
-> >  create mode 100644 drivers/iio/proximity/vl53l1x-i2c.c
-> >
+> > This is an alternative solution to "[PATCH v2 8/9] soc: renesas: don't
+> > access of_root directly"
+> > https://lore.kernel.org/20260223-soc-of-root-v2-8-b45da45903c8@oss.qualcomm.com
 >
-> > diff --git a/drivers/iio/proximity/vl53l1x-i2c.c b/drivers/iio/proximit=
-y/vl53l1x-i2c.c
-> > new file mode 100644
-> > index 000000000000..085bff04f5d9
-> > --- /dev/null
-> > +++ b/drivers/iio/proximity/vl53l1x-i2c.c
-...
-> > +
-> > +static int vl53l1x_probe(struct i2c_client *client)
-> > +{
-> > +     struct device *dev =3D &client->dev;
-> > +     struct vl53l1x_data *data;
-> > +     struct iio_dev *indio_dev;
-> > +     int ret;
-> > +
-> > +     if (!i2c_check_functionality(client->adapter,
-> > +                                  I2C_FUNC_SMBUS_READ_I2C_BLOCK |
-> > +                                  I2C_FUNC_SMBUS_BYTE_DATA))
-> Sashiko had an interesting comment on this...
-> https://sashiko.dev/#/patchset/20260325063254.18062-1-email%40sirat.me
-> (note in general be careful with this tools feedback, it has a significan=
-t
-> false positive rate!)
->
-> "Does this check needlessly reject pure I2C adapters?
-> The driver configures regmap with reg_bits =3D 16, which forces regmap to=
- use
-> raw I2C transfers requiring I2C_FUNC_I2C. Checking for SMBUS_READ_I2C_BLO=
-CK
-> might prevent the driver from loading on pure I2C adapters that can perfe=
-ctly
-> support the device via regmap."
->
-> By by reading the comment is actually wrong, however... It did made me lo=
-ok.
-> With regbits =3D=3D 16 & valbits =3D=3D 8
-> The regmap code checks for I2C_FUNC_SMBUS_I2C_BLOCK
-> (and if not present fails).
->
-> So the I2C_FUNC_SMBUS_BYTE_DATA seems unused and
-> a broader check on both read and write versions of I2C_BLOCK seems
-> appropriate.
->
-> However, not a lot of point in checking it at all given regmap does
-> so for us. So I'd drop this check.
->
-> If anyone is bored, we should probably take a look to see if there
-> are other redundant (or wrong) calls for this.
->
-> There is another point about trigger references that might be
-> correct (but not unique to this driver so ignore it).  That warrants
-> some investigation - I'll take a look in near future.
->
-I will drop the check altogether here then.
-...
-> > +     /*
-> > +      * XSHUT held low puts the chip in hardware standby. All register
-> > +      * state is lost on de-assert so this is functionally a reset.
-> > +      */
-> > +     data->xshut_reset =3D devm_reset_control_get_optional_exclusive(d=
-ev, NULL);
->
-> If you can switch to devm_regulator_get_enabled() this can I think be
->         ret =3D devm_reset_control_get_optional_exclusive_deasserted()
-> removing the need to register the action to power off.
->
-> If you do that remember we still need the sleep after this call.
->
-So I will move the sleep after
-devm_reset_control_get_optional_exclusive_deasserted() then.
->
->
-Thanks for the detailed review, Jonathan!
+> Greg applied this, so you'll have to respin on top of that. Next cycle I
+> guess. Unless you get him to revert it.
 
-A quick question. Since these are some small  fixes, mostly removals,
-and the patch has seen quite some revisions, does the 1 week wait rule
-still apply here? I am still getting used to this mailing workflow
-coming from the PR workflow of Github and it will help me in the
-future.
+That was my impression, too, but apparently he skipped that patch.
+So you can still apply this patch, too.
 
-Thanks
-Sirat
+> I'm applying the rest of the series.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
