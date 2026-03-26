@@ -1,183 +1,187 @@
-Return-Path: <devicetree+bounces-281099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281103-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4OWzJlEHxWnn5gQAu9opvQ
-	(envelope-from <devicetree+bounces-281099-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:15:45 +0100
+	id YJWgAMcExWmM5gQAu9opvQ
+	(envelope-from <devicetree+bounces-281103-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:04:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2B753331C5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:15:44 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C23D4332E11
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:04:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0BA8E31CC7BF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:02:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 05FF23014622
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BABEB3DBD75;
-	Thu, 26 Mar 2026 09:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F3A13E51DE;
+	Thu, 26 Mar 2026 10:02:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="XVGLFt7A"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="ItYBcwZi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from courrier.aliel.fr (pouet.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE7534F48F
-	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 09:58:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF05E3D3013;
+	Thu, 26 Mar 2026 10:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774519125; cv=none; b=U6W2UTIv3jHVRkJQP0mpL9uZUo6BL+1OVm4VviXrTnc5kNi6BeZsRzQ1wbdT4z/zX9yn8YcX7hkUwjzUvFWUap5wb886Praw3bCZGeCYrGv4SD+zIxqXh3gHM/pHT5Io1NV8QZVQR6M6aD4a9rgAGzY6VxbzW67m63KAYnmFLnA=
+	t=1774519320; cv=none; b=RYD9/DIOf/P3zEXHmydHcGtIr1hNHOPw8wee8iRTi4/XUx5DWFSJG+goVq8d9ZKjPOleIXL+FqRQ/+osDTWFfMLDMPsk7n+WziBXfpfgI8MVWHAGRhFj/0//MMwXUW5S+dqxb+6SU6TfiDqaXRaOB6mmherkjAGEJOI8A1/saS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774519125; c=relaxed/simple;
-	bh=6IqqQfMoQbRxVazGX5hKi7O8RtJ1WBB2vj4yvCARcA4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=Y/vqTsnHUJxdzdmyfPm2/xZhJYDdy6ByFSmkmEwp58GL1QTjzITfy80MRHucSK4NSfuXk1ZMdX+keZxJcozz3j+UGANSR2AvcVXfje4HYwgJ1eW8rHlcUkDxR11lgTzeIel6bU8FVGYq1Uxmf9V8laFmvAZE7kIcKHxNig1thoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=XVGLFt7A; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20260326095833euoutp02fede41848cd56f0f28399a2c6c6b7718~gW7tvu7k10342703427euoutp02j
-	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 09:58:33 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20260326095833euoutp02fede41848cd56f0f28399a2c6c6b7718~gW7tvu7k10342703427euoutp02j
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1774519113;
-	bh=guDjPoCVnwYxXsCuno8FxlAqWDyeX+17V89RQydjDBU=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=XVGLFt7Apqn21yhPWeW1UNuhKNqTboOtZ+UhS0CgObFVgMXWsowDWbu+tsM39Lyws
-	 WYbg+km/a8z317lu3iAH0Q8461T4DF+/r6W6OVS6Kv5p6Qa60MMn0mGJBdimobDgV3
-	 0Sm0SC4jjh7ucYpJIlfauJFgIvcrvltVOJDm2l8M=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20260326095833eucas1p1f993eda67f6c9a6b3e67a439f023871d~gW7tMghLC0527405274eucas1p1x;
-	Thu, 26 Mar 2026 09:58:33 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20260326095832eusmtip2da486e52f07287d36be8ef809ccac84b~gW7sXJRUn1854318543eusmtip2P;
-	Thu, 26 Mar 2026 09:58:32 +0000 (GMT)
-Message-ID: <fe9359e0-1c9a-4113-82c3-0275c932a58a@samsung.com>
-Date: Thu, 26 Mar 2026 10:58:31 +0100
+	s=arc-20240116; t=1774519320; c=relaxed/simple;
+	bh=YrKt0Ww3CgM+qr6VBXPFTJI/TUiGPe735lMX0b/L28k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Yul6dZbEObt4CEBPKELkETdByjQmDII+uOMwVt7m20toutWmvYV49CUaulj3RPk4W+/p2ossHCmjt4wNA4X3HbgMcIJrhHIcKjCpwxqx/O/AuSOD8gZpFaRnKk6NhsDLOrFYkKtpyWdhYGxb+siIsGtJ8JjpXZtjQwoBYh1w8P4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=ItYBcwZi; arc=none smtp.client-ip=65.21.61.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1774519314;
+	bh=YrKt0Ww3CgM+qr6VBXPFTJI/TUiGPe735lMX0b/L28k=;
+	h=From:Subject:Date:To:Cc;
+	b=ItYBcwZivHMGiCGLcWmoy0XvR7D54lAMd808KbEAoOR44pqsXyBCXYGz0TxzyJ1er
+	 hv6Kem6meJiUYVyUW4i0oFEXVVs8MUr+tCzJZyB/KTJl3hdUqvMPjAv5FBdwJuLE7i
+	 MBdu9mHNPRGgkThVCkMg1WSSIg3d784zWkOT+NSQ=
+Subject: [PATCH v5 0/9] arm64: dts: amlogic: Add MMC/SD/SDIO support for
+ Khadas VIM4 (Amlogic T7)
+Date: Thu, 26 Mar 2026 10:59:11 +0100
+Message-Id: <20260326-add-emmc-t7-vim4-v5-0-d3f182b48e9d@aliel.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
-Subject: Re: [PATCH v3 0/7] Refactor reserved memory regions handling code
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mm@kvack.org, iommu@lists.linux.dev, Krzysztof Kozlowski
-	<krzk@kernel.org>, Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>,
-	Saravana Kannan <saravanak@kernel.org>, Andrew Morton
-	<akpm@linux-foundation.org>, Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20260325141648.GA2685599-robh@kernel.org>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20260326095833eucas1p1f993eda67f6c9a6b3e67a439f023871d
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20260325090029eucas1p1932917cc4839c3349932aeda37a7125d
-X-EPHeader: CA
-X-CMS-RootMailID: 20260325090029eucas1p1932917cc4839c3349932aeda37a7125d
-References: <CGME20260325090029eucas1p1932917cc4839c3349932aeda37a7125d@eucas1p1.samsung.com>
-	<20260325090023.3175348-1-m.szyprowski@samsung.com>
-	<20260325141648.GA2685599-robh@kernel.org>
-X-Spamd-Result: default: False [-2.15 / 15.00];
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6WQ3WqEMBBGX0Vy3ZH86kZK2fcovcjquKZrYpuoW
+ BbfvVktdGl715uBb8I5H5MriRgsRlJlVxJwttEOPgX1kJG6M/6MYJuUCae8oIJTME0D6FwNYwm
+ zdRIK07ACtSyYbEnC3gK2dtmUzy97Dvg+JfO4L4nDGM1mrrLHXcwELSnlPE9TihIYvFrj8246G
+ tcPZ1vn9eCebvqTiQgpODtWmcdlhC+DJre2zsZxCB/bPTPb6rZ3zg6MspLqXCipaCrorZ8WuGD
+ w2EOD89H0Fvu8DZtn5v9gxTcruPj9ZbMACoop3Whq9EHWP3h5z6s/eJl4KevyJI1CqfQdv67rJ
+ x8mKU/VAQAA
+X-Change-ID: 20260320-add-emmc-t7-vim4-6ad16e94614f
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+ Johannes Berg <johannes@sipsolutions.net>, van Spriel <arend@broadcom.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, Nick Xie <nick@khadas.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openssh-sha256; t=1774519311; l=3343;
+ i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
+ bh=YrKt0Ww3CgM+qr6VBXPFTJI/TUiGPe735lMX0b/L28k=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
+ BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QIHRXjWTzrMh5ahGI4R/IpDrnH6+QXhObnxkTH8FTvGDua87mdIW3Kn2PADGdEJ8fTRpOFFNaXK
+ uzvWV+G6OPQk=
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
+ fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
+	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[samsung.com:+];
-	TAGGED_FROM(0.00)[bounces-281099-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org,sipsolutions.net,broadcom.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[aliel.fr];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-281103-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.szyprowski@samsung.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[aliel.fr:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[fireeye.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:dkim,samsung.com:mid,sashiko.dev:url]
-X-Rspamd-Queue-Id: F2B753331C5
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aliel.fr:dkim,aliel.fr:email,aliel.fr:mid,amlogic.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C23D4332E11
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Rob
+This patch series depends on Jian's SCMI clock patches yet to merge
+https://lore.kernel.org/all/20260313070022.700437-1-jian.hu@amlogic.com/
 
-On 25.03.2026 15:16, Rob Herring wrote:
-> On Wed, Mar 25, 2026 at 10:00:16AM +0100, Marek Szyprowski wrote:
->> The reserved memory regions handling code was reworked to handle
->> unlimited so called "static" memory nodes in commit 00c9a452a235 ("of:
->> reserved_mem: Add code to dynamically allocate reserved_mem array").
->>
->> The side effect of this rework was a set of bugs fixed later by commits
->> 0fd17e598333 ("of: reserved_mem: Allow reserved_mem framework detect
->> "cma=" kernel param") and 2c223f7239f3 ("of: reserved_mem: Restructure
->> call site for dma_contiguous_early_fixup()"). As a result, the code in
->> drivers/of/of_reserved_mem.c became a mix of generic code and CMA
->> specific fixups.
->>
->> In this patchset I try to untangle this spaghetti and perform some code
->> cleanup. I hope nothing breaks this time.
->>
->> Best regards
->> Marek Szyprowski, PhD
->> Samsung R&D Institute Poland
->>
->>
->> Changelog:
->>
->> v3:
->> - fixed more issues pointed by Sashiko in
->>    https://protect2.fireeye.com/v1/url?k=c0975fdb-a11c4aed-c096d494-74fe485cbff1-5d0a8d4ece172e7b&q=1&e=abd3a151-11c5-430e-a6ac-b04cc3b34ab7&u=https%3A%2F%2Fsashiko.dev%2F%23%2Fpatchset%2F20260323100901.4079171-1-m.szyprowski%40samsung.com
->>    (restored use of _OF_DECLARE macro, extended some comments and commit
->>    descriptions, the remaining items I consider not relevant)
->>
->> v2: https://lore.kernel.org/all/20260323100901.4079171-1-m.szyprowski@samsung.com/
->> - added missing ops assignment removal in tegra210-emc-table and swiotlb
->>    drivers
->> - fixed issues pointed by kernel test robot and Sashiko: removed typos,
->>    improved comments
->> - fixed incorrect node passed to fdt_validate_reserved_mem_node() in
->>    fdt_scan_reserved_mem_reg_nodes()
->>
->> v1: https://lore.kernel.org/all/20260313150802.1121442-1-m.szyprowski@samsung.com/
->> - initial version
->>
->>
->> Patch summary:
->>
->> Marek Szyprowski (7):
->>    of: reserved_mem: remove fdt node from the structure
->>    of: reserved_mem: use -ENODEV instead of -ENOENT
->>    of: reserved_mem: switch to ops based OF_DECLARE()
->>    of: reserved_mem: replace CMA quirks by generic methods
->>    of: reserved_mem: rearrange code a bit
->>    of: reserved_mem: clarify fdt_scan_reserved_mem*() functions
->>    of: reserved_mem: rework fdt_init_reserved_mem_node()
-> I've applied the series, thanks!
+This series adds device tree support for the MMC, SD card and SDIO
+interfaces on the Amlogic T7 SoC and the Khadas VIM4 board.
 
-I forgot to mention this earlier. There are other pending changes 
-tokernel/dma/contiguous.c like 
-https://lore.kernel.org/all/20260303-dma-buf-heaps-as-modules-v3-0-24344812c707@kernel.org/ 
-which I would like to merge to -next. This conflicts with this patchset. 
-Could You provide a stable branch with those changes to let me resolve 
-conflicts in kernel/dma/contiguous.c on top of it?
+The first patches add the necessary building blocks in the T7 SoC
+DTSI: pinctrl nodes for pin muxing, PWM controller nodes, and MMC
+controller nodes. The amlogic,t7-mmc and amlogic,t7-pwm compatible
+strings are introduced with fallbacks to existing drivers, avoiding
+the need for new driver code.
 
-Best regards
+The remaining patches enable these interfaces on the Khadas VIM4
+board, including the power regulators, the SDIO power sequence and
+32.768kHz PWM clock required by the BCM43752 Wi-Fi module, and the
+board-specific MMC controller configurations.
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+Changes in v5:
+- Add missing trailers according to Rob's feedback.
+- Change mux-0 to mux in pinctrl nodes for single mux. Neil's feedback.
+- Move disabled status at the end of node properties. Neil's feedback.
+- Restore space instead of tab in VIM4 DTS file according to Neil's feedback.
+- Link to v4: https://lore.kernel.org/r/20260325-add-emmc-t7-vim4-v4-0-44c7b4a5e459@aliel.fr
+
+Changes in v4:
+- Address potential DT binding API break from Xianwei's feedback.
+- Change underscore to dash in pinctrl nodes names from Xianwei's feedback.
+- Link to v3: https://lore.kernel.org/r/20260323-add-emmc-t7-vim4-v3-0-5159d90a984c@aliel.fr
+
+Changes in v3:
+- Remove all changes about fixed pll clock from analog controller.
+- Use clocks retrieved through SCMI.
+- Add other MMC controllers
+- Manage Wi-Fi module enablement. 
+- Link to v2: https://lore.kernel.org/r/20260218101709.35450-1-linux-kernel-dev@aliel.fr
+
+Changes in v2:
+- Resend v1 patches as attached to the first patch.
+- Link to v1: https://lore.kernel.org/r/20260218101709.35450-1-linux-kernel-dev@aliel.fr
+
+---
+Ronald Claveau (9):
+      arm64: dts: amlogic: t7: Add eMMC, SD card and SDIO pinctrl nodes
+      dt-bindings: mmc: amlogic: Add compatible for T7 mmc
+      arm64: dts: amlogic: t7: Add MMC controller nodes
+      arm64: dts: amlogic: t7: Add PWM pinctrl nodes
+      arm64: dts: amlogic: t7: Add PWM controller nodes
+      arm64: dts: amlogic: t7: khadas-vim4: Add power regulators
+      arm64: dts: amlogic: t7: khadas-vim4: Add SDIO power sequence and WiFi clock
+      dt-bindings: net: wireless: brcm: Add compatible for bcm43752
+      arm64: dts: amlogic: t7: khadas-vim4: Add MMC nodes
+
+ .../bindings/mmc/amlogic,meson-gx-mmc.yaml         |   4 +
+ .../bindings/net/wireless/brcm,bcm4329-fmac.yaml   |   1 +
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 200 ++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        | 336 +++++++++++++++++++++
+ 4 files changed, 541 insertions(+)
+---
+base-commit: f6eb9ae8b9fc13c3971e4a6d1e8442f253001f36
+change-id: 20260320-add-emmc-t7-vim4-6ad16e94614f
+prerequisite-message-id: <20260313070022.700437-1-jian.hu@amlogic.com>
+prerequisite-patch-id: f03a086b4137158412b2d47b3de793b858de8dde
+prerequisite-patch-id: 123970c9b29c2090440f2fd71c85d3c6fd8e36de
+prerequisite-patch-id: 3e2e56b0926ba327b520f935df4ced5089bbe503
+
+Best regards,
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+Ronald Claveau <linux-kernel-dev@aliel.fr>
 
 
