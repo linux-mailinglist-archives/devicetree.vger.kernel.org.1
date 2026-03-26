@@ -1,122 +1,171 @@
-Return-Path: <devicetree+bounces-281286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281288-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eJm2CmRTxWmD9QQAu9opvQ
-	(envelope-from <devicetree+bounces-281286-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:40:20 +0100
+	id 4K1RKnZUxWmD9QQAu9opvQ
+	(envelope-from <devicetree+bounces-281288-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:44:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93B6B337BB3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:40:19 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACD48337CDC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:44:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 95D7D3174C15
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 15:27:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D3B8B3186108
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 15:28:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AC1B4035DC;
-	Thu, 26 Mar 2026 15:26:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3BAF4035D8;
+	Thu, 26 Mar 2026 15:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OiQg2z3P"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Pn8mO+aa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 374103F210F;
-	Thu, 26 Mar 2026 15:26:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 332FC4035DA;
+	Thu, 26 Mar 2026 15:27:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774538776; cv=none; b=DIJqtcQVYRo9sk9ijUrHk2auY8sO+pKweVAGeE1tvzod2N496Yh6Qr45VHSF9Oq0yhYnbg8v90KiRAqwnrWuvrAYYywfa3nGxLWQhpK8rhtYevvS01axhyS31kUf5fYlYkiHkJiuf4dndDavMJVErx0ePReXs97lGDqlSPrRI24=
+	t=1774538846; cv=none; b=BXTdgbdeuz58n5sEoNjMJCzYBH4tnVA55Qij1ltJkBvAGeWLekR877171lzvJLwMP5oodKlidQ50QuiLxsfp96Be0PR7tiIdCf0MW1uOQCNlATZBd3ir7iPozyls0m4r0Jg1mt9wocM3hgp/A2IHACpFEvQvkJoSenBzyuWgn7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774538776; c=relaxed/simple;
-	bh=n+bIFKSjOB2crmf5AvxNH7lVOr7PCQpihLEsRVjMmi0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A7jpUoBLEZfR1+1F3H/NWj6P4ycryKsUsP2iaBxRGrpzJsBtAY34OpWuJ9rEA98LNOavrSF1dUuan97H9HDZDNUWi1jmr896Q2f2X+UvbWZ9Zrn5Lflzh1QgrgAaYnYv1tL99P5lJclYVn9hFW9sEUCjfqY6I7jppT2XFzmGrc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OiQg2z3P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B53FC2BCB0;
-	Thu, 26 Mar 2026 15:26:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774538775;
-	bh=n+bIFKSjOB2crmf5AvxNH7lVOr7PCQpihLEsRVjMmi0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OiQg2z3PfkurTNn6KUVBI3W95j4EtDIUdMOnt/ajBxfnUzKpI7FbeG7N/Hp7xP1qy
-	 aBNGJbPw1mvIx8zdLU9X4uZUmaOhHB1mq5fjof7xh+QAzvQS+W9zfg00IsE5D1jSZA
-	 RJ9aExSejDG2F+fJ0YX9h7erEVGXC8DjBAMCXvozi9RspGoKy3WI7Oq9YEqZd3TV1/
-	 dXFTNJwODrGTyl7KSqEc8pN63XfmF9qQF22hCo+dI23TELjRvettaOMpi/CCRQ7iIS
-	 JVpV1mEFUGSKOTb+URSeDkAqNAfLiYRbpviLeGrH8O/SOK52KV40vVKUVVWjS4Jmos
-	 aEWIoRfh/G1yg==
-Date: Thu, 26 Mar 2026 10:26:12 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Yixun Lan <dlan@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	spacemit@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
-	Matthias Kaehlcke <mka@chromium.org>, devicetree@vger.kernel.org,
-	Junzhong Pan <panjunzhong@linux.spacemit.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add support for Terminus FE1.1s
- USB2.0 Hub controller
-Message-ID: <177453877141.2506202.3743813210780505738.robh@kernel.org>
-References: <20260319-03-usb-hub-fe1-v2-0-e4e26809dd7d@kernel.org>
- <20260319-03-usb-hub-fe1-v2-1-e4e26809dd7d@kernel.org>
+	s=arc-20240116; t=1774538846; c=relaxed/simple;
+	bh=F/NVPAUEX863N5p/JogYiLbDmDQADflpMpHbLXA+WdI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Y8W6g3x/CSa7L4ewat6UaW4Z334G2JXvSywy9YCD6gLZQ1jY4WNU3ZarJkBaK/w0Tbkv/OFPS5NcjkhdVPijUqm40g1L2aJW/uTp2Or1KTzdxBF/8cImF2I32saMACk7H5Czlz+vnpjDW2wnQWvzofX068vjTuah7m2qpyXC5Z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Pn8mO+aa; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 5A8E426272;
+	Thu, 26 Mar 2026 16:27:23 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id ugizE2OidUAj; Thu, 26 Mar 2026 16:27:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1774538842; bh=F/NVPAUEX863N5p/JogYiLbDmDQADflpMpHbLXA+WdI=;
+	h=From:To:Cc:Subject:Date;
+	b=Pn8mO+aak2XI2zdbheSVMH022Bgqk1IGkLOfPrpceEmfiIg1zOusLvNa6sTOFbA6Q
+	 5C760+VihtUfegyp94dDeH4lltyvgSomc/wN8aPW0jWEdiYfUz/MfhgbDs8Q1/7F8v
+	 xBD9pv6xk2kkkyFGV88ljoIEmzA4cY9h48HtScYADDXpXQ7D6EWv1lVGuhZGVdy1jJ
+	 ts9lRWN4jtm2KCnmOCvRkZ436fR9yJtrQYQC7KH+aHd/6whSnYPtsIpZ5Xg56XJmD0
+	 yh9KdrLcOBEKzrEH+MJAKTwBMJKjqdp3aMxTVnYZDOL0OUNB6HMZYMan9l/SqrdI++
+	 rNlJTuoZ9Idpw==
+From: Rustam Adilov <adilov@disroot.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Rustam Adilov <adilov@disroot.org>
+Subject: [PATCH v5 0/8] i2c: rtl9300: support for RTL9607C I2C controller
+Date: Thu, 26 Mar 2026 20:26:48 +0500
+Message-ID: <20260326152656.14030-1-adilov@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260319-03-usb-hub-fe1-v2-1-e4e26809dd7d@kernel.org>
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,linuxfoundation.org,lists.linux.dev,kernel.org,chromium.org,linux.spacemit.com];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-281286-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-281288-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[disroot.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_WP_URI(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,terminus-usa.com:url]
-X-Rspamd-Queue-Id: 93B6B337BB3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:dkim,disroot.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: ACD48337CDC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This patch series for the RTL9300 I2C driver adds i2c support for
+RTL9607C SoC. They are somewhat different to the RTL9300 and
+RTL9310 but not enough to warrant a new whole driver.
 
-On Thu, 19 Mar 2026 07:51:03 +0000, Yixun Lan wrote:
-> Terminus FE1.1s is USB2.0 protocol compliant 4-port USB HUB, It support
-> MTT (Multiple Transaction Translator) mode, the upstream port supports
-> high-speed 480MHz and full-speed 12MHz modes, also has integrated 5V to
-> 3.3V, 1.8V regulator and Power-On-Reset circuit.
-> 
-> Introduce the DT binding for it.
-> 
-> Link: https://terminus-usa.com/wp-content/uploads/2024/06/FE1.1s-Product-Brief-Rev.-2.0-2023.pdf [1]
-> Signed-off-by: Yixun Lan <dlan@kernel.org>
-> ---
->  .../devicetree/bindings/usb/terminus,fe11.yaml     | 62 ++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
-> 
+The patch series was split into patches that add/change something in the
+driver to smooth out the RTL9607C support addition in the end and for
+ease of review. Because of that, the patch 8 depends on all the prior
+patches before it.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+RTL9607C primarly uses the i2c controller for communication with laser
+driver over on i2c interface 1 or 2.
+
+I have successfully tested the byte read operations on my RTL9607C board
+which has GN25L95 laser driver in OpenWrt.
+
+This patch series now depends on the patch [1] from Jan Kantert.
+
+[1] -
+https://lore.kernel.org/all/20260227111134.2163701-1-jan-kernel@kantert.net/
+
+---
+Changelog in v5
+- reworded the commit message in Patch 5 to make it clear that the existing
+  devices also have i2c master controller clocks.
+- Link to v4: https://lore.kernel.org/linux-i2c/20260323071337.15410-1-adilov@disroot.org/
+
+Changelog in v4
+- moved the patch 7 that changes bindings to be before patch 5 where clk
+  is introduced in the driver.
+- changed the "realtek,rtl9607-i2c" compatible to require the "clocks" to
+  be specified and with it moved it out of "realtek,rtl9310-i2c" check to its
+  own place for cleanliness (how it was originally in v1).
+- Link to v3: https://lore.kernel.org/linux-i2c/20260322123411.32102-1-adilov@disroot.org/
+
+Changelog in v3
+- Patch 7
+  - reworded the commit message to better describe i2c clock.
+  - make clocks property available for all compatibles.
+  - change "realtek,rtl9607-i2c" compatible to be under the same if statement
+    as "realtek,rtl9310-i2c" for "realtek,scl".
+- Link to v2: https://lore.kernel.org/linux-i2c/20260319175753.32338-1-adilov@disroot.org/
+
+Changelog in v2
+- rebased on top of the patch from Jan Kantert.
+- Patch 7 (to my best understanding of Krzysztof's request):
+ - added the "clocks: false" for compatibles that are not realtek,rtl9607-i2c.
+- Link to v1: https://lore.kernel.org/linux-i2c/20260314082628.25206-1-adilov@disroot.org/
+
+Rustam Adilov (8):
+  i2c: rtl9300: split data_reg into read and write reg
+  i2c: rtl9300: introduce max length property to driver data
+  i2c: rtl9300: introduce F_BUSY to the reg_fields struct
+  i2c: rtl9300: introduce a property for 8 bit width reg address
+  dt-bindings: i2c: realtek,rtl9301-i2c: extend for clocks and RTL9607C
+    support
+  i2c: rtl9300: introduce clk struct for upcoming rtl9607 support
+  i2c: rtl9300: intoduce new function properties to driver data
+  i2c: rtl9300: add RTL9607C i2c controller support
+
+ .../bindings/i2c/realtek,rtl9301-i2c.yaml     |  15 ++
+ drivers/i2c/busses/i2c-rtl9300.c              | 191 ++++++++++++++----
+ 2 files changed, 171 insertions(+), 35 deletions(-)
+
+-- 
+2.53.0
 
 
