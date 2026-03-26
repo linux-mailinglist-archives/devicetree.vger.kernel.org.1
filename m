@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-280934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280936-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aIEyKqXbxGkq4gQAu9opvQ
-	(envelope-from <devicetree+bounces-280934-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 08:09:25 +0100
+	id WPerDljbxGkq4gQAu9opvQ
+	(envelope-from <devicetree+bounces-280936-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 08:08:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 295EB330414
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 08:09:25 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6F713303CD
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 08:08:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 86F533105CAE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 07:02:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6F3BA30E987E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 07:03:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A26391E6C;
-	Thu, 26 Mar 2026 07:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C8D13B4EA8;
+	Thu, 26 Mar 2026 07:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y/VPM8zY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P8lZfuet"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB4DD38E5C0;
-	Thu, 26 Mar 2026 07:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B06F4353EDE;
+	Thu, 26 Mar 2026 07:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774508532; cv=none; b=BZhADlJdJCyz7thYy36hOLgzZNg3wBD/MJOiEBxHljRF+Zj9Qt2701hgm/ir1FLl5MzzbFH0CsWJ3Y17jKOslm7SmXreFp9QIPfWRpMZIaBjaTKNCHj3p7kcAg2bd6qlZDfcjGQAoR8U9A516L8KuykMQyzIQM/3z1IpHIqPZdQ=
+	t=1774508578; cv=none; b=c57MThdysRSUrLvQqtaF+RGVW1w7qA4YSHbg8Sm5lt6vmBjTwYSgAQBWsush3ce46XJCSHHPYopVZTC+gjD3s6iDz7hjHlRf8DfpN55ncwLx2mMgV2gzbZO+EcNIWH9FwpMzqd9Px0tMfRDAogJMYzknj6Xkq0Us3Lj3lu1V3Bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774508532; c=relaxed/simple;
-	bh=pO1h3ubT2qclNuMe09uahHKMaBdgnKCOwzVePLCVo0E=;
+	s=arc-20240116; t=1774508578; c=relaxed/simple;
+	bh=CGrVv79BVmYu/CCI/LGEs2hyUijxb9tirpLfSuDx4uU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gJ0LK+4ZYUK0HDDXRrvcxy5sRD6OLlAgOOU164IXFO6DRY96sjg7UZIoXQsYwnQ+Vav8UCVp2gqEA2kyuNaltBa/HolXhTngPBkiLkZ/neEA7GJ92bx0+CuZ+IYIO7N4toD9KAUO/7G1Y9Sv7HE39ODB4vxeSR2o8mZRQ4sU4tQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y/VPM8zY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D8EBC116C6;
-	Thu, 26 Mar 2026 07:02:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kmCjUFvSgbc2sPOeJlQSrKVoXXQXcoODlC3EZcd1nUtmb2KaYWtOJMhqkuUiaWEa55wtivtInyAJIr/tLVm3mq/XlOZQ2cBuQ8hTvHICT97aPLTsGvKbqKwz70fpPs+dcyNXR1t0o1uUhOoXBz7AWtpUpK0I5HipXqPQvrERl1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P8lZfuet; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B6C3C116C6;
+	Thu, 26 Mar 2026 07:02:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774508532;
-	bh=pO1h3ubT2qclNuMe09uahHKMaBdgnKCOwzVePLCVo0E=;
+	s=k20201202; t=1774508578;
+	bh=CGrVv79BVmYu/CCI/LGEs2hyUijxb9tirpLfSuDx4uU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y/VPM8zYngSQ6DAIurBIQmv3O3AJj893sEGSlTvkBSM19gMhoCFXAVh05Mgqhrhek
-	 ggzJYbWakBsKbmoWN8y9bNbOx8NTUmi/6kB226A0YSDvI2ozMl3Een29jaL1cxERLy
-	 mKowYz94ptIsGxkGL6Bhgbo7YjU3xJAyegvwE6x0M3sN5iV8ECYKKJ4xY/Xk/lM+t+
-	 n8SUW4/YwgPFap/UD4FvGxSlYg8kF2XSuLoYNr9JgV7+Ie2t9INgV+a90eEvoNRVn/
-	 KhDXq10uCilz/VbWKqvvqRBXquI+K9giLtiE6Ntiso+ug8x0ssziZnL++LPQYdBK8N
-	 e9UWPZgXHO8RQ==
-Message-ID: <0d7dfe5b-5e2d-4850-8922-16eb6bd9bcae@kernel.org>
-Date: Thu, 26 Mar 2026 08:02:08 +0100
+	b=P8lZfuetmvLqGiUOovlQcwXkGKN/F9mV7CvBn3d94zGxNWsmATyMp7jTd69OR780M
+	 bEao0MVao9KBwwNfQNMMuycQufD+5PU0JffxPX006tJITTZFU4Oo8f+ZCtxknBjRJ4
+	 ilDhpyR6CfS8vSEQpN6mfaIf0KEq8+aOrnXZrEWzwiJq7srU8jDoDUJqJ1qmy+oXu1
+	 6ZnmKoSEeWFxdcrG9p9B1wgD2fSFN3b0Tp2cj7mkOhcjGinOZAtC39yIwRljMG7C9m
+	 AUEeH88gUSsaIMtNgnqHzsWRn/J+jIzIYHT+tGqSYWHz8nkQT7MfqzEWDm3r1QfaWI
+	 mWz0rmuKaKmPg==
+Message-ID: <2d0ef51c-c0c1-4670-9221-e0b62ca75fae@kernel.org>
+Date: Thu, 26 Mar 2026 08:02:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,17 +53,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: i2c: ls2x-i2c: Add clock- related
- properties
-To: Hongliang Wang <wanghongliang@loongson.cn>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, loongarch@lists.linux.dev
-References: <20260325011852.19079-1-wanghongliang@loongson.cn>
- <20260325011852.19079-2-wanghongliang@loongson.cn>
- <20260325-outstanding-weasel-of-fruition-89db37@quoll>
- <1b5283d8-294c-86de-c3d8-bf205ac24216@loongson.cn>
+Subject: Re: [PATCH] dts: riscv: spacemit: k3: add P1 PMIC regulator tree
+To: Yixun Lan <dlan@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20260325-02-k3-i2c-v1-1-a793776b88bc@kernel.org>
+ <6530526f-59ca-4753-a068-46c62a1a1fed@kernel.org>
+ <20260325234835-GKA777612@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,63 +109,53 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <1b5283d8-294c-86de-c3d8-bf205ac24216@loongson.cn>
+In-Reply-To: <20260325234835-GKA777612@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-280934-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-280936-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 295EB330414
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C6F713303CD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 26/03/2026 03:12, Hongliang Wang wrote:
-> Hi Krzysztof,
-> 
-> Consider the clock framework relies on the device tree, and can only be 
-> used on
-> Loongson 2K platform with dts parameter mechanism, It cannot be used on 
-> Loongson
+On 26/03/2026 00:48, Yixun Lan wrote:
+>>
+>>
+>>> +
+>>> +	reg_aux_vcc3v3: regulator-aux-vcc3v3 {
+>>
+>> This is even more pointless because there is no user. Dead code.
+>>
+> reg_aux_vcc3v3 is used by various devices, but I can drop it too,
 
-Don't top post or request read receipts.
+Which ones?
 
-> 3A+7A platform with the acpi parameter mechanism.
 
-And this patch is for ACPI? Then we finish discussion here, because
-dt-bindings is not for ACPI.
-
-> The i2c-ls2x driver is compatible with both Loongson 2K and 3A+7A 
-> platform, parse
-> the same parameters regardless of dts or acpi parameter passing, So 
-> clock-input
-> and clock-div attributes are defined to describe input clock of i2c 
-> controller and
-> divisor of input clock. It can be used on both 2K and 3A+7A platform.
-
-And you cannot use them in DTS.
 
 Best regards,
 Krzysztof
