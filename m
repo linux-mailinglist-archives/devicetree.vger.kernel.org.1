@@ -1,231 +1,217 @@
-Return-Path: <devicetree+bounces-281110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281100-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yPYHKh0HxWnn5gQAu9opvQ
-	(envelope-from <devicetree+bounces-281110-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:14:53 +0100
+	id WG9XBBkJxWnn5gQAu9opvQ
+	(envelope-from <devicetree+bounces-281100-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:23:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 174BA333187
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:14:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A17AC3333D6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:23:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AF25D315EF96
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:06:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F0C1F30F409A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6A393EBF08;
-	Thu, 26 Mar 2026 10:02:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CF43CB2F2;
+	Thu, 26 Mar 2026 10:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="b7LdDrWD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HbnZB+J2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (pouet.aliel.fr [65.21.61.41])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A0903E7158;
-	Thu, 26 Mar 2026 10:02:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 106943CB2E6;
+	Thu, 26 Mar 2026 10:00:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774519325; cv=none; b=E9dOhfrwTiu+5uP56tpEvG0zrYnV9Q4nkLkBg5SqssjkmFVqFrsKa188R7tzoYYlaLT6YkqsNCapiAuv0yX7mrAE3ODnirjvmDdct1/RjpXY34/2FZmiSBOhYgOqXNaUsNX8Ji/iFX4kOznwkohAT9iAyYNTcRgd4Gn6b+/lXUU=
+	t=1774519229; cv=none; b=eVNuNSvKKsYKU8bXlth80yC8o985xKWD2XCOjyoEUJvcTFKT+A/BOYqpE2iVA6G/CiUFFv8GPIxvaEzQ1fQx2dfAfuhsAhivriWkxzNKg6ZRKTkrpmv1pn1FYwboKOmNipv2t89dYOemT+YC/xgfHSdj0M/Ff3BAHua/uix+PLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774519325; c=relaxed/simple;
-	bh=SN3GcE+7DDqwPEJFK+/S2nmtpKZI7ca2JpiaH3/MPVc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=El8ZK50cDYLRXT/bzdjz2QSWcCpSf6kDGxjbatIF2NrhPGSqsv3bt4BpVEpWS2CIOH4dsuSGcezNNIrCibaHBd8rZNRljeh33wKDIGlw8YJwaqdB5fOHElACTpBZkH+n5nDVLjPFuzN4Dvjc5rLIs7d+HtmD2IeG5qW6/NK3qxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=b7LdDrWD; arc=none smtp.client-ip=65.21.61.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774519322;
-	bh=SN3GcE+7DDqwPEJFK+/S2nmtpKZI7ca2JpiaH3/MPVc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=b7LdDrWDyx3sV7ysP86zr31s+Lae8ND39IOosLxANVvreWUc88tWAvBORI0QyaRU2
-	 X28awifUf9K4zQZtgHtIwhZwESD5RhNnmWOQuMLjN0yjm57t1uSMqdAD8pbuglerwP
-	 aHG1iywn7Bg6Ew7SKExSsAQoFtdF9wzi99XWawSU=
-Date: Thu, 26 Mar 2026 10:59:20 +0100
-Subject: [PATCH v5 9/9] arm64: dts: amlogic: t7: khadas-vim4: Add MMC nodes
+	s=arc-20240116; t=1774519229; c=relaxed/simple;
+	bh=YpjKz+MXrEJKD/amzHLZygjzl2q1zYJTn/2+9zrnFbk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lphtx27Pxfg1PvOn1e9HAkqjruzv7nI4O1cX9Xkwwa/u8cz4UhvlLcY6u/bx0XaWtJvKKswvV0MFJtXtRGA+8PPmrq3dGrhuGs3l+pw5AgTF7dBDCsy6eMUHt5HiOMJxWQmmMY8zrKD/P4Wv7Zj4kNYrmrqRMDQAnz0/z/NMB00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HbnZB+J2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1692C19423;
+	Thu, 26 Mar 2026 10:00:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774519228;
+	bh=YpjKz+MXrEJKD/amzHLZygjzl2q1zYJTn/2+9zrnFbk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HbnZB+J2EUiWTIcTl5ux6o4nmsX0zdPCeKA9X2E2pqwVjLqHXljiFGkZePyN9Uo5k
+	 UQq2HnTy4Jh6bUXew9Nk6dQR9OcIPSjXV3O6fT5jnjvr4okYPP59GBAoIc0X+HX6C3
+	 rZ2BSOZhNu0rhiapGbswtE+4dWW3abszZ2TernYS1U7Y9mktHT9zFxsq7DnzcKKfvQ
+	 exvsjEcmDHQwwcxLWLVoeYE8/tR2Bszae26Tuve04yoL5qmJaiHH7jWMAgdVDqlCow
+	 fAUsK3OrU+CclrDswok0HGiZaDO6fTtArHEIvjD062Lk03TVEQorQXzibIR4NKtEsb
+	 MRpiZiCbzgwqQ==
+Date: Thu, 26 Mar 2026 11:00:24 +0100
+From: Thierry Reding <thierry.reding@kernel.org>
+To: Mikko Perttunen <mperttunen@nvidia.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jon Hunter <jonathanh@nvidia.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] firmware: tegra: bpmp: Add
+ tegra_bpmp_get_with_id() function
+Message-ID: <acUDq3bt7P2vL5tg@orome>
+References: <20260320225443.2571920-1-thierry.reding@kernel.org>
+ <20260320225443.2571920-3-thierry.reding@kernel.org>
+ <24777801.6Emhk5qWAg@senjougahara>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260326-add-emmc-t7-vim4-v5-9-d3f182b48e9d@aliel.fr>
-References: <20260326-add-emmc-t7-vim4-v5-0-d3f182b48e9d@aliel.fr>
-In-Reply-To: <20260326-add-emmc-t7-vim4-v5-0-d3f182b48e9d@aliel.fr>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
- Johannes Berg <johannes@sipsolutions.net>, van Spriel <arend@broadcom.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1774519313; l=2772;
- i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=SN3GcE+7DDqwPEJFK+/S2nmtpKZI7ca2JpiaH3/MPVc=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
- BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QJIX22fPeHgunMEWRlgpEd9pdcy2wktjVrQCxvP0exgrJ7aGyj0z6OP8zhC/6IS6fn0k1HmyPGt
- iO9SRy0vMrgk=
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
- fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pu5ew2iy2ugqzuez"
+Content-Disposition: inline
+In-Reply-To: <24777801.6Emhk5qWAg@senjougahara>
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org,sipsolutions.net,broadcom.com];
-	TAGGED_FROM(0.00)[bounces-281110-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	DMARC_NA(0.00)[aliel.fr];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-281100-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[aliel.fr:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aliel.fr:dkim,aliel.fr:email,aliel.fr:mid,linaro.org:email,0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 174BA333187
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A17AC3333D6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable and configure the three MMC controllers for the Khadas VIM4 board:
-- sd_emmc_a: SDIO interface for the BCM43752 Wi-Fi module
-- sd_emmc_b: SD card slot
-- sd_emmc_c: eMMC storage
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 88 ++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+--pu5ew2iy2ugqzuez
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 2/5] firmware: tegra: bpmp: Add
+ tegra_bpmp_get_with_id() function
+MIME-Version: 1.0
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 770f06b0b16c7..78d02370553cd 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -15,6 +15,9 @@ / {
- 
- 	aliases {
- 		serial0 = &uart_a;
-+		mmc0 = &sd_emmc_c;
-+		mmc1 = &sd_emmc_b;
-+		mmc2 = &sd_emmc_a;
- 	};
- 
- 	memory@0 {
-@@ -159,6 +162,91 @@ &pwm_ab {
- 	pinctrl-names = "default";
- };
- 
-+/* SDIO */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	cap-sdio-irq;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+	no-mmc;
-+	no-sd;
-+
-+	power-domains = <&pwrc PWRC_T7_SDIO_A_ID>;
-+
-+	keep-power-in-suspend;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddao_1v8>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm43752-fmac", "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+	no-sdio;
-+	no-mmc;
-+
-+	power-domains = <&pwrc PWRC_T7_SDIO_B_ID>;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&sd_3v3>;
-+	vqmmc-supply = <&vddio_c>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+	non-removable;
-+	no-sdio;
-+	no-sd;
-+
-+	power-domains = <&pwrc PWRC_T7_EMMC_ID>;
-+
-+	vmmc-supply = <&vddio_3v3>;
-+	vqmmc-supply = <&vddio_1v8>;
-+};
-+
- &uart_a {
- 	status = "okay";
- 	clocks = <&xtal>, <&xtal>, <&xtal>;
+On Wed, Mar 25, 2026 at 11:28:41AM +0900, Mikko Perttunen wrote:
+> On Saturday, March 21, 2026 7:54=E2=80=AFAM Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > Some device tree bindings need to specify a parameter along with a BPMP
+> > phandle reference to designate the ID associated with a given controller
+> > that needs to interoperate with BPMP. Typically this is specified as an
+> > extra cell in the nvidia,bpmp property, so add a helper to parse this ID
+> > while resolving the phandle reference.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >  drivers/firmware/tegra/bpmp.c | 34 ++++++++++++++++++++++++++++++++++
+> >  include/soc/tegra/bpmp.h      |  1 +
+> >  2 files changed, 35 insertions(+)
+> >=20
+> > diff --git a/drivers/firmware/tegra/bpmp.c b/drivers/firmware/tegra/bpm=
+p.c
+> > index e74bba7ccc44..753472b53bd8 100644
+> > --- a/drivers/firmware/tegra/bpmp.c
+> > +++ b/drivers/firmware/tegra/bpmp.c
+> > @@ -32,6 +32,40 @@ channel_to_ops(struct tegra_bpmp_channel *channel)
+> >  	return bpmp->soc->ops;
+> >  }
+> > =20
+> > +struct tegra_bpmp *tegra_bpmp_get_with_id(struct device *dev, unsigned=
+ int=20
+> *id)
+> > +{
+> > +	struct platform_device *pdev;
+> > +	struct of_phandle_args args;
+> > +	struct tegra_bpmp *bpmp;
+> > +	int err;
+> > +
+> > +	err =3D __of_parse_phandle_with_args(dev->of_node, "nvidia,bpmp", NUL=
+L,
+> > +					   1, 0, &args);
+> > +	if (err < 0)
+> > +		return ERR_PTR(err);
+> > +
+> > +	pdev =3D of_find_device_by_node(args.np);
+> > +	if (!pdev) {
+> > +		bpmp =3D ERR_PTR(-ENODEV);
+> > +		goto put;
+> > +	}
+> > +
+> > +	bpmp =3D platform_get_drvdata(pdev);
+> > +	if (!bpmp) {
+> > +		bpmp =3D ERR_PTR(-EPROBE_DEFER);
+> > +		put_device(&pdev->dev);
+> > +		goto put;
+> > +	}
+> > +
+> > +	if (id)
+> > +		*id =3D args.args[0];
+> > +
+> > +put:
+> > +	of_node_put(args.np);
+> > +	return bpmp;
+> > +}
+> > +EXPORT_SYMBOL_GPL(tegra_bpmp_get_with_id);
+> > +
+> >  struct tegra_bpmp *tegra_bpmp_get(struct device *dev)
+> >  {
+> >  	struct platform_device *pdev;
+> > diff --git a/include/soc/tegra/bpmp.h b/include/soc/tegra/bpmp.h
+> > index f5e4ac5b8cce..424188c100d9 100644
+> > --- a/include/soc/tegra/bpmp.h
+> > +++ b/include/soc/tegra/bpmp.h
+> > @@ -127,6 +127,7 @@ struct tegra_bpmp_message {
+> > =20
+> >  #if IS_ENABLED(CONFIG_TEGRA_BPMP)
+> >  struct tegra_bpmp *tegra_bpmp_get(struct device *dev);
+> > +struct tegra_bpmp *tegra_bpmp_get_with_id(struct device *dev, unsigned=
+ int=20
+> *id);
+>=20
+> Should add a stub function in the #else branch, as well.
 
--- 
-2.49.0
+Good point. Done.
 
+Thierry
+
+--pu5ew2iy2ugqzuez
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmnFA7UACgkQ3SOs138+
+s6Em5w/+KkKgYHMUISCj532bdIof02gpfGfp/DB5EFjFjW6ST6rASh5Q2g272YNw
+n9nD8AxA3Z89OZgoAl5pqZ6AFFghe2eK2I7yGV3rxcIoxGvBF37Yl9caQp+YO+H5
+2FBj6MSmBN8Rf/4IMZavXfxjCfvrfHU01qYUL73bPtQAzKaWGW4Opc284LIi/STw
+vRoqqpAtxRdqtMvA81z24BQ0n5UyDiUJmvy/QMoNea8wRwVkVp2mmltx1foJ1PZA
+ze7OxaOe2dVj4dsfJYd7D0rDf9k1Wp9XG065Zvn1orsAfj8s3bqPT4nFz8mggxID
+jSCNFdp8PtWwwNOWr90Z0rBrBX/uI2E77q3phWHWqQ41JFK0EHAunBQ/pAJ82d5T
+STSApB7hquaMv3QEf2gryrCHu2r+nbBD7QrP4hQpH/MvxLu8mJ86zimmsQEvdc4h
+lczoADmSIen5E4MuF+bTvguVvCbAsHyuUIZ45LhIZTWH8FjQkY0OaT0gy4x/2mBc
+QVRjucIInQDtKfQtcv925RYzwkmCTnI6O135v8kyGEIxmBXA9uOUcmV6cn6luhbJ
+cnkrcT8o2XO4QIT5Qh7Y+guVlsvz+T4aN0pWUmMecxJJCtJ9X7b298tUJtyTzEVU
+1A2Gsa10bUeMTQL0WUHhNkBRrftScKT/xjjpOq0ClmVRc44wSPE=
+=qh4a
+-----END PGP SIGNATURE-----
+
+--pu5ew2iy2ugqzuez--
 
