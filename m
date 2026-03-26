@@ -1,138 +1,142 @@
-Return-Path: <devicetree+bounces-280925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280927-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WATLBQPVxGnk4AQAu9opvQ
-	(envelope-from <devicetree+bounces-280925-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 07:41:07 +0100
+	id S5QIKDjVxGlT4QQAu9opvQ
+	(envelope-from <devicetree+bounces-280927-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 07:42:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FC7232FF80
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 07:41:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20FEA32FFBC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 07:42:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CD7F1302FE9D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 06:33:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8A6203079AF4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 06:35:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F433370EB;
-	Thu, 26 Mar 2026 06:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FC8E34678C;
+	Thu, 26 Mar 2026 06:35:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="RVchZcSx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tlvjf7Jd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDE23597B;
-	Thu, 26 Mar 2026 06:33:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79D3C33CEB5;
+	Thu, 26 Mar 2026 06:35:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774506834; cv=none; b=FGXH4TXgtrDr/rtbffM8JkaNX3k0uMW6ZqRS8FAC+RKY8x2RWoJNQwwXsA3L/HZJMCWK4DlYIBK0tWl4vwwSqHGmtmSqdKuGNV3rNNAMgh4qKhE2/ScHrcAFh5lS749QKesT+zaJN1sN97qGiIhk/EmBAKqgX8K+By+Z4VWtVFQ=
+	t=1774506947; cv=none; b=tmsO9wIoVu+25Xzy0iJ81ZhZnmDipB276U1+iR+ZXvx6b2V9IU9Bsqw3ooHp1KAatqrmUIufdOcpEhMZ4g53cccfjqO3zmgEXzdeRZo+JIVRbAV0YEK89Jxy6b+XF7MNjXsmCiOqpHIrlfRbuYgDUGPefjPxs6S5VzIfsT2LvOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774506834; c=relaxed/simple;
-	bh=om8C4xRL4G5OJYvxqnzGtRDXoa6aYun3rB72EV+Md+Q=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=dbugTebAjp6NBG8rzwD1iuasSSORo0yBhd7mhXeIVDi5tqRYtmEp4tA8uTkHYn8NPCSCYyCsDHwJJ7q8HC+Tfs4PwZZxNG7gxknsR/y1qB20skK/k+yAJI6n/+u9Er9VzElgM/whgzMA22HiwDLkkyg0f4fhbhED1O5OtiTI5No=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=RVchZcSx; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1774506830;
-	bh=om8C4xRL4G5OJYvxqnzGtRDXoa6aYun3rB72EV+Md+Q=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=RVchZcSxXPFdsmnvH4AnQkN2+1gupNkeRKHB4UHoEkEzw6Fy9/wccbzesTahCb74v
-	 fFVTp01572MGe129MFl9h0qdwaG8L8FM57vgieBVBIQ3OfjyDj1PM0EcXma98VM1Es
-	 6sSVHur16IsQVaJahX3t+3cTBeWUleQWGaEZyM7jN/9Q/ubIr+TdApYHdwJKKNEBHp
-	 rss334e0TEB5gA+Insa7bE/hIDbhw7M2kqr0cvGCPORbmRBwVa0Erx3+VEkYP0BVrf
-	 96Rm1Na7Zy9HCT43XSST04jQzJcJjvr9kU45Z5dLezfk9MgjCVSlALzF/Ln2hInT7w
-	 6M0alBAbbVcDQ==
-Received: from [192.168.68.115] (unknown [180.150.112.60])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id CF6326597C;
-	Thu, 26 Mar 2026 14:33:49 +0800 (AWST)
-Message-ID: <0f98ee4fcc662e80160026208b18e655eeb50ad1.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] ARM: dts: aspeed: anacapa: Add eeprom device node
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Colin Huang <u8813345@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, 	linux-kernel@vger.kernel.org,
- colin.huang2@amd.com
-Date: Thu, 26 Mar 2026 17:03:49 +1030
-In-Reply-To: <CAPBH0A9oatx7U2+3dvGVgonHEm+yq5TFM9mTcdStau2Lk1XytA@mail.gmail.com>
-References: <20260302-add-new-eeprom-node-v1-1-2bcf87bc22e4@gmail.com>
-	 <fd932aa3f0cae64f40c3b207657032e7bf61066a.camel@codeconstruct.com.au>
-	 <CAPBH0A9oatx7U2+3dvGVgonHEm+yq5TFM9mTcdStau2Lk1XytA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1774506947; c=relaxed/simple;
+	bh=mXw+OnzMTg/llL26Q+CuSnTiRZOcs0RZPrPP1Kk4svA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PJ9Xf+m6F/bot2FcbofafGmk8bnTi8VZ2S3odAfcyhvUx7qHClsC3GOJKwIuvwQSu+F2FSfi4YnAgwGLwS+rLKtcQXsn7w9YqKKuhux+5nhByorO7dLI9A7+UN5qf9XA8VUJumCnQTIM6Df9GpHXN+rLfWcjh5AqxteRVOKTdGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tlvjf7Jd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 14574C19423;
+	Thu, 26 Mar 2026 06:35:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774506947;
+	bh=mXw+OnzMTg/llL26Q+CuSnTiRZOcs0RZPrPP1Kk4svA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Tlvjf7JdSHXxQLDgiwkI+gx3cEMeCILMoLYre+Qn8k9YrVAmMNzlSxpI2vdxFUP4I
+	 EeywSuAodFlNYpFHiPHz1SDY54LoH5NNISksD+p6nIdCFWiP7ReMBzmps894gCYjW4
+	 2vL0l0Ih1fvtyEe7umkH8xc9tvXXk4PZJqbuBNWFhrJvWtDxBs9pjhfwQPM1Xq/4ek
+	 3mcK0pn3i/QXUCc6moj0KTwmUPg8P887nDAmSajZKcx19G94emUHhHcL/DLy9sX7vw
+	 jPBPjdQLQw8d00wX3m+4hRtuDMGzFlMXhbLflMlLWZ8dzsPikGu0VX+zQQLFbjEoDm
+	 7SZgdtB7YxxyQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 08122109E556;
+	Thu, 26 Mar 2026 06:35:47 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH 0/2] Add PWM support Amlogic S7 S7D S6
+Date: Thu, 26 Mar 2026 06:35:37 +0000
+Message-Id: <20260326-s6-s7-pwm-v1-0-67e2f72b98bc@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALnTxGkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDYyNT3WIz3WJz3YLyXF0jC0MzU4skCwtzYzMloPqCotS0zAqwWdGxtbU
+ A5IPHXVsAAAA=
+X-Change-ID: 20260325-s6-s7-pwm-281658b88736
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Junyi Zhao <junyi.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774506945; l=648;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=mXw+OnzMTg/llL26Q+CuSnTiRZOcs0RZPrPP1Kk4svA=;
+ b=OKuOvNZb4cwcyMGkRCZPv7Lo3XaP6ugCt+rAwxMUC/RBELX+R+vk05Ud6A/aa/KMmrd7brkrb
+ 15QAhUmz6DYDQdl0VlL1R4Ir0jw8UGCNuyqUtL27raJ6dhJ2p/+1wE0
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-280925-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-280927-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,linaro.org,baylibre.com,googlemail.com];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[codeconstruct.com.au:dkim,codeconstruct.com.au:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7FC7232FF80
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amlogic.com:email,amlogic.com:replyto,amlogic.com:mid]
+X-Rspamd-Queue-Id: 20FEA32FFBC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 2026-03-06 at 14:06 +0800, Colin Huang wrote:
-> Hi Andrew,
->=20
-> Thanks for the feedback.
->=20
-> In our case the only functional difference between DCSCM rev=E2=80=AFB/C =
-and
-> rev=E2=80=AFD is the EEPROM I=C2=B2C address change (0x50 =E2=86=92 0x51)=
-.
-> Other than this, the hardware is identical and all device-tree
-> described components share the same wiring and behaviour.
->=20
-> Maintaining two separate devicetrees for a single=E2=80=91byte address sh=
-ift
-> doesn=E2=80=99t scale well for us.=20
+Add bindings and driver support Amlogic S7/S7D/S6 SoCs.
 
-I disagree that there's a problem of scale. The kernel's dts files are
-processed with the C pre-processor - you can #include one file from
-another. .dtsi files work this way, and as a related example, we
-maintain two devicetrees for the AST2600 EVB where -A1 had some minor
-differences in the regulator configuration:
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Junyi Zhao (1):
+      dt-bindings: pwm: amlogic: Add new bindings for S6 S7 S7D
 
- * https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/=
-arch/arm/boot/dts/aspeed/aspeed-ast2600-evb.dts?h=3Dv7.0-rc5
- * https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/=
-arch/arm/boot/dts/aspeed/aspeed-ast2600-evb-a1.dts?h=3Dv7.0-rc5
+Xianwei Zhao (1):
+      pwm: meson: Add support for Amlogic S7
 
-See also my response to Kevin Tung earlier:
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml       | 27 ++++++++++++++++++
+ drivers/pwm/pwm-meson.c                            | 32 ++++++++++++++++++++--
+ 2 files changed, 57 insertions(+), 2 deletions(-)
+---
+base-commit: 8ab1fc9104158045f68fde2d0ae16f5fbcf8bfbd
+change-id: 20260325-s6-s7-pwm-281658b88736
 
-https://lore.kernel.org/all/d7794f74b26bbc1ee0a70e39c5671acc018f80eb.camel@=
-codeconstruct.com.au/
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Andrew
+
 
