@@ -1,229 +1,143 @@
-Return-Path: <devicetree+bounces-281373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281382-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oLd9JXWIxWlc+wQAu9opvQ
-	(envelope-from <devicetree+bounces-281373-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 20:26:45 +0100
+	id WEN8BpGMxWlc+wQAu9opvQ
+	(envelope-from <devicetree+bounces-281382-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 20:44:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECDC333AE91
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 20:26:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5B3533B123
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 20:44:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1C2E930A8497
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:17:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6CDF530848DE
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 905D63A3823;
-	Thu, 26 Mar 2026 19:17:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30FCA3A0E88;
+	Thu, 26 Mar 2026 19:41:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GY3JXy0s"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="hwE8Y/Mr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D7A39A7FD
-	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 19:17:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9D733EAE6;
+	Thu, 26 Mar 2026 19:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774552678; cv=none; b=XJKMQEqF2mF6xcPdF1umT4L+zaAHsoayUsW8/uIuuRl8OQHfg12cNn6xmwLWDTnWgjJtGYx1RT/9z3wYV7TgIbrxmw5bZC95jvJPaJE85293WG+/Tt5YNy7Zjv+MhLUQvdE6RkwlLDjEMP6rzzmlRIHiOP+JQDOVW2it7Z2FZs0=
+	t=1774554095; cv=none; b=fEyfjTEnoLug7kTujeyTTvaTQGOQAwgo9hVyLgyd7xWNX1tVtoayH4Fsws5dvPhkN+bkVXX0QygTEKVP6KD9fPpajyWTF8MNCmFIuEDRs/3Aq9kGJGcWjl1xBShI1Kqa+ELhS+++wBnqt1LB39Utty9TvhO5Bww2nBW2D53Vu08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774552678; c=relaxed/simple;
-	bh=MIPDAAbAiXqMvXBIOxEoTP500rJ337ZU7Yo9oo0ehx8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=F7z+FFd1pbzaItVG86Un97z2KeonMA2lAcheGarzM17cfnRQ401EZJUb4vb30IFFcusJw1xHYqSkqretYz40ZX779FyxEtQLWh8YcYsja3x3K7wfxV7UVEcH+Kf9K1+FRl1GdjF3cnlPll5KLcjJ7RttPE4b8vySzV15ggYxs6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GY3JXy0s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB474C116C6
-	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 19:17:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774552677;
-	bh=MIPDAAbAiXqMvXBIOxEoTP500rJ337ZU7Yo9oo0ehx8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=GY3JXy0sfIJdIm0SatxG0BC8n15a+5U7pKcDBxTkUZIG1jg9B5cr2KTikwQjAMblI
-	 4aYOyGPGIzkfvg2frCTWc8URL/tqwTN8j0f4wvLeW4D+0y4ZOQcPuLii+ojoJt0wgo
-	 /qU9F1CV31X67OmxQ7h/IemwDc2EfQMF11gfk0GX1I/+AAb8zWSf7HC4M6HV69ql2m
-	 MFq+KskoO4rnYqaN7PNliHfzEC0afcCfM9Pr7pRBj3AJsqAulLBX1o507F6L7cYikZ
-	 sILjk+ZJ4euEamphD7NNno0yAuNu34apLP/g1ykcPkdHqEHbWoyGoklTtMn93SXmnT
-	 ZUS9lGeOMmUSQ==
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-66a851e62c6so1413318a12.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 12:17:57 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWms21Df8l08N4fy+oj1SrLkOFtzcRswgDA9Wikdkdh3153qMjF7ehk4lrh6M5dYY6wwZgw5O99ZqDe@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9apXjOaLyLm0NowF5DsSNRCd31fTrXc2KVQ4hbolkw7o25+iR
-	qybQhRzuDeFAY8PFzh8anG2Q6un6zfLzFULJi/4grb5y7aQxTNI2Cb+ZL1RHxY161bUhRzq6h22
-	tju8mu/ctEUgT44kmVp40RFmSaNsrNA==
-X-Received: by 2002:a05:6402:51cf:b0:669:afeb:a6f3 with SMTP id
- 4fb4d7f45d1cf-66a8270edbbmr5537445a12.27.1774552676256; Thu, 26 Mar 2026
- 12:17:56 -0700 (PDT)
+	s=arc-20240116; t=1774554095; c=relaxed/simple;
+	bh=em8UZf/f+4PxDG3BVyhlRjFiAr/cgm2WnglEmMQ6Pbs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rla/yt6C1Knrqx5nxpOb5yoohGLvk0iVTGQV+rLHfVAUzKdeaVKiMDVdrlUSUjOr/vW56hZ6QdA6SrUcfGvAji9UPZeFa/pF6KBBo7SjFIObKrS2TtX79N/iPknAqf1PFNlZwBNm1tojFP0EDQg4ugz7a2j5N9XCsUUjhyw4Gv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=hwE8Y/Mr; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 93DCB269C2;
+	Thu, 26 Mar 2026 20:34:54 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id UaiAd6agqRC4; Thu, 26 Mar 2026 20:34:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1774553693; bh=em8UZf/f+4PxDG3BVyhlRjFiAr/cgm2WnglEmMQ6Pbs=;
+	h=From:To:Cc:Subject:Date;
+	b=hwE8Y/MreRJqy40rH0Nl9HWQtmkgL24NpDSBuqkuuIZMptmsRTeyII1UgsDDpGFe2
+	 byWof2wyjAjDIcwe0y/XP+L0LNUrb7SLuuo/KTV4U819O6F6LGpIhlSLgJQKE/a2ZD
+	 X2kiAQoypp+mffsxNdsOdWVT0qNdoQPZco7mGzzP/ui2i6/Z2egx7/CKgkikewBejW
+	 jQT16yBLVQMhfjjSZv9zFEQzIX9S4ngeB5eMXM4LR0su7MJne4ln0zEy/goVi7R1/R
+	 hC8J8SNUybzp56UkpLLbObVYIAYtSnOhrtQyExSdQBt1SvA44DER9J2IRPcktuBdrG
+	 qSBRrSeU3MVWg==
+From: Rustam Adilov <adilov@disroot.org>
+To: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stanley Chang <stanley_chang@realtek.com>,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Rustam Adilov <adilov@disroot.org>
+Subject: [PATCH 0/6]  phy: realtek: usb2: support for RTL9607C USB2 PHY
+Date: Fri, 27 Mar 2026 00:34:13 +0500
+Message-ID: <20260326193419.48419-1-adilov@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20260325090029eucas1p1932917cc4839c3349932aeda37a7125d@eucas1p1.samsung.com>
- <20260325090023.3175348-1-m.szyprowski@samsung.com> <20260325141648.GA2685599-robh@kernel.org>
- <fe9359e0-1c9a-4113-82c3-0275c932a58a@samsung.com>
-In-Reply-To: <fe9359e0-1c9a-4113-82c3-0275c932a58a@samsung.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 26 Mar 2026 14:17:44 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK9Gn4rZAzZ7HN88eeZWcbAvyNj1sCtn140XK83qDGuCA@mail.gmail.com>
-X-Gm-Features: AQROBzC6LkjDlFn6WnwHsN-rfeYOnWBi9c0g8XrRpCGf7exOQ4jNH_gHGfxdWqA
-Message-ID: <CAL_JsqK9Gn4rZAzZ7HN88eeZWcbAvyNj1sCtn140XK83qDGuCA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/7] Refactor reserved memory regions handling code
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-mm@kvack.org, iommu@lists.linux.dev, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>, 
-	Saravana Kannan <saravanak@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, 
-	Robin Murphy <robin.murphy@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281373-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-281382-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[disroot.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree];
+	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:email,sashiko.dev:url,fireeye.com:url]
-X-Rspamd-Queue-Id: ECDC333AE91
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:dkim,disroot.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A5B3533B123
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 26, 2026 at 4:58=E2=80=AFAM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
->
-> Hi Rob
->
-> On 25.03.2026 15:16, Rob Herring wrote:
-> > On Wed, Mar 25, 2026 at 10:00:16AM +0100, Marek Szyprowski wrote:
-> >> The reserved memory regions handling code was reworked to handle
-> >> unlimited so called "static" memory nodes in commit 00c9a452a235 ("of:
-> >> reserved_mem: Add code to dynamically allocate reserved_mem array").
-> >>
-> >> The side effect of this rework was a set of bugs fixed later by commit=
-s
-> >> 0fd17e598333 ("of: reserved_mem: Allow reserved_mem framework detect
-> >> "cma=3D" kernel param") and 2c223f7239f3 ("of: reserved_mem: Restructu=
-re
-> >> call site for dma_contiguous_early_fixup()"). As a result, the code in
-> >> drivers/of/of_reserved_mem.c became a mix of generic code and CMA
-> >> specific fixups.
-> >>
-> >> In this patchset I try to untangle this spaghetti and perform some cod=
-e
-> >> cleanup. I hope nothing breaks this time.
-> >>
-> >> Best regards
-> >> Marek Szyprowski, PhD
-> >> Samsung R&D Institute Poland
-> >>
-> >>
-> >> Changelog:
-> >>
-> >> v3:
-> >> - fixed more issues pointed by Sashiko in
-> >>    https://protect2.fireeye.com/v1/url?k=3Dc0975fdb-a11c4aed-c096d494-=
-74fe485cbff1-5d0a8d4ece172e7b&q=3D1&e=3Dabd3a151-11c5-430e-a6ac-b04cc3b34ab=
-7&u=3Dhttps%3A%2F%2Fsashiko.dev%2F%23%2Fpatchset%2F20260323100901.4079171-1=
--m.szyprowski%40samsung.com
-> >>    (restored use of _OF_DECLARE macro, extended some comments and comm=
-it
-> >>    descriptions, the remaining items I consider not relevant)
-> >>
-> >> v2: https://lore.kernel.org/all/20260323100901.4079171-1-m.szyprowski@=
-samsung.com/
-> >> - added missing ops assignment removal in tegra210-emc-table and swiot=
-lb
-> >>    drivers
-> >> - fixed issues pointed by kernel test robot and Sashiko: removed typos=
-,
-> >>    improved comments
-> >> - fixed incorrect node passed to fdt_validate_reserved_mem_node() in
-> >>    fdt_scan_reserved_mem_reg_nodes()
-> >>
-> >> v1: https://lore.kernel.org/all/20260313150802.1121442-1-m.szyprowski@=
-samsung.com/
-> >> - initial version
-> >>
-> >>
-> >> Patch summary:
-> >>
-> >> Marek Szyprowski (7):
-> >>    of: reserved_mem: remove fdt node from the structure
-> >>    of: reserved_mem: use -ENODEV instead of -ENOENT
-> >>    of: reserved_mem: switch to ops based OF_DECLARE()
-> >>    of: reserved_mem: replace CMA quirks by generic methods
-> >>    of: reserved_mem: rearrange code a bit
-> >>    of: reserved_mem: clarify fdt_scan_reserved_mem*() functions
-> >>    of: reserved_mem: rework fdt_init_reserved_mem_node()
-> > I've applied the series, thanks!
->
-> I forgot to mention this earlier. There are other pending changes
-> tokernel/dma/contiguous.c like
-> https://lore.kernel.org/all/20260303-dma-buf-heaps-as-modules-v3-0-243448=
-12c707@kernel.org/
-> which I would like to merge to -next. This conflicts with this patchset.
-> Could You provide a stable branch with those changes to let me resolve
-> conflicts in kernel/dma/contiguous.c on top of it?
+This patch series for Realtek USB2 PHY driver adds support for RTL9607C
+USB2 PHY.
 
-Here you go:
+RTL9607C is a big endian MIPS CPU which is quite far from RTD series SoCs
+supported by realtek usb2 phy driver, but the phy initilization is found
+to be very indentical in most areas.
 
-The following changes since commit 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f=
-:
+Most of the code was based on the Realtek's usb driver from the GPL tarball
+in [1] and adjusted to fit into the realtek usb2 phy driver code format.
 
-  Linux 7.0-rc1 (2026-02-22 13:18:59 -0800)
+The patch series was split into smaller patches that add/change something
+in the driver that are not exactly related to RTL9607C and that also
+helps for easier review. That also means, patch 5 depends on all the prior
+patches that come before it.
 
-are available in the Git repository at:
+USB2 PHY on RTL9607C is primarly used for its internal OHCI/EHCI controllers.
 
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
-dt-reserved-mem-cleanups
+[1] - https://github.com/jameywine/GPL-for-GP3000/blob/main/linux-5.10.x/arch/mips/rtl9607c/usb.c
 
-for you to fetch changes up to 34e0e2a8ea9e9e4f4dceb33072103dffaa1366b3:
+Rustam Adilov (6):
+  phy: realtek: usb2: introduce vstatus/new_reg_req variables to driver
+    data
+  phy: realtek: usb2: introduce read and write functions to driver data
+  dt-bindings: phy: realtek,usb2phy.yaml: extend for resets and RTL9607C
+    support
+  phy: realtek: usb2: introduce reset controller struct
+  phy: realtek: usb2: add support for RTL9607C USB2 PHY
+  phy: realtek: usb2: Make configs available for MACH_REALTEK_RTL
 
-  of: reserved_mem: rework fdt_init_reserved_mem_node() (2026-03-26
-14:12:02 -0500)
+ .../bindings/phy/realtek,usb2phy.yaml         |  23 ++-
+ drivers/phy/realtek/Kconfig                   |   2 +-
+ drivers/phy/realtek/phy-rtk-usb2.c            | 189 ++++++++++++++++--
+ 3 files changed, 194 insertions(+), 20 deletions(-)
 
-----------------------------------------------------------------
-Marek Szyprowski (7):
-      of: reserved_mem: remove fdt node from the structure
-      of: reserved_mem: use -ENODEV instead of -ENOENT
-      of: reserved_mem: switch to ops based OF_DECLARE()
-      of: reserved_mem: replace CMA quirks by generic methods
-      of: reserved_mem: rearrange code a bit
-      of: reserved_mem: clarify fdt_scan_reserved_mem*() functions
-      of: reserved_mem: rework fdt_init_reserved_mem_node()
+-- 
+2.53.0
 
- drivers/memory/tegra/tegra210-emc-table.c |  19 +++++-----
- drivers/of/fdt.c                          |   2 +-
- drivers/of/of_private.h                   |   2 +-
- drivers/of/of_reserved_mem.c              | 320
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
-+++++++++++++++++++++------------------------------------------------------=
----------------
- include/linux/cma.h                       |  10 ------
- include/linux/dma-map-ops.h               |   3 --
- include/linux/of_reserved_mem.h           |  16 +++++----
- kernel/dma/coherent.c                     |  19 +++++-----
- kernel/dma/contiguous.c                   |  86
-+++++++++++++++++++++++++++++++--------------
- kernel/dma/swiotlb.c                      |  19 +++++-----
- 10 files changed, 285 insertions(+), 211 deletions(-)
 
