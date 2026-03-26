@@ -1,191 +1,127 @@
-Return-Path: <devicetree+bounces-281364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281359-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gDh+AO59xWnw+QQAu9opvQ
-	(envelope-from <devicetree+bounces-281364-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:41:50 +0100
+	id OIWeJkl9xWnw+QQAu9opvQ
+	(envelope-from <devicetree+bounces-281359-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:39:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69E0033A4E1
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:41:49 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C6F833A446
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:39:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 92B2F30AA5BE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 18:38:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 199613031980
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 18:35:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D553A5451;
-	Thu, 26 Mar 2026 18:38:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1684A3A2560;
+	Thu, 26 Mar 2026 18:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="aEAZ2zOV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kgqXfxZh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E8F13A2569;
-	Thu, 26 Mar 2026 18:38:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.119.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5C643A0B28;
+	Thu, 26 Mar 2026 18:35:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774550290; cv=none; b=a1WzZQ0xeNibanabDTcE+tYwoKse8sXMuJcaWGvMywSGd9B1zVC59cOMsakMSc56blqv3QhLeJ12CjyaPAGkqKBzeaRXCLpp1puNEZY60Js91SAsmljsV9pQtUbfuTIjpcejVdBx7IT9nsj3/5uzclmnFpzgOpVb8RMABLg+nqY=
+	t=1774550145; cv=none; b=EqUzdbWBlGk7+zRdDxjttK+Daf76S6BN5X8vfOuCVC27x7nDkrJyPJ2j5UdEsMzGAwFbKCQ153JtxYz+/Rd1rb4PRN4pZYYs7kSLULA1lzHltfukfx6tT2VY49rek/A5dsUSKeij49jSbSyu0OFsqoQWUQ6h5r11h0KVayPX84g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774550290; c=relaxed/simple;
-	bh=aoTx0M62WPQUSa6YRlTCH6X4r6DsNP7Snxsf5BAYfEI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qobVLF4YWNvBAg4fTWLZrqkJsf86aDaBS2VKK72ee0bv+xIbX25ro19cNR+V0FKlTGDn+cQnQu7lZW4RwwrPBp+0CYkfvU5T5/Zy7zjtSf8Pa4erega/tnn1NrD2jloGgZy3pDOiQ3G2aklRHExKLNDyz6nEvPa1z5Tx1u9+R3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=aEAZ2zOV; arc=none smtp.client-ip=195.154.119.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-	; s=202004.hall; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-Type:From:Reply-To:
-	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-	bh=iO1EmeWh+Lq1L5K3DhLyTQerUA8FzD+PRV6OahdSGak=; b=aEAZ2zOVYyHxILLKf1Ha2rJt8o
-	Myh3pxFRNIUwlFYVO8Y9pBvUmYMFjOOsWO8Kzm2FzeH+08L1NP9m1KztnevK5sqyuP+rBXjvBDg/H
-	X2Vg5qa1RQJdxR+CME2XYZW6QeXGQ8/gge+LjBD3VCVhyj2yTG2a5Nv1Lws9CSH7yuD/nVqHTBXfD
-	eMwJV+POi874Gar2tRYB8y8HtXTmysPhL4fgLX6cY9sKRbqnUPnz3INXNR0PrtMI/SpiRvkiGDcB5
-	IGJRlVZd4MDwrgS0wy4r+SDJIyGxsneEFcBYaXwHg02/4iKCH3bm59s3sjVZLmc5Y1+tUIrnxjS0l
-	yFiVNOHA==;
-Received: from authenticated user
-	by hall.aurel32.net with esmtpsa  (TLS1.3)  tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <aurelien@aurel32.net>)
-	id 1w5pao-0000000GAk7-09cX;
-	Thu, 26 Mar 2026 19:38:06 +0100
-From: Aurelien Jarno <aurelien@aurel32.net>
-To: linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1774550145; c=relaxed/simple;
+	bh=s7C/YJ3bH4vIrxytCLP5AZqS4GyFkVHBtGdzI0XhstE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nu9HBRSxaTn6yKgQvXOXpOSCIH5gnduNvsT6R/tiksLu5aysJPCaI1NT8k1aagMhSFtt8osR4ojGgdfgfEhZ0hpyC4623WlIPseSJ7PvS3Asvt9srwkptW33kyUlMJWjXWeIjL8nefm9QDa+ErovefWMS5N4qoxIQT46TQXcCUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kgqXfxZh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E51EC116C6;
+	Thu, 26 Mar 2026 18:35:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774550144;
+	bh=s7C/YJ3bH4vIrxytCLP5AZqS4GyFkVHBtGdzI0XhstE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kgqXfxZhmtLXcyBlNt8utRu6PZXVezS9rzQ0jAEWt0zfBcatzo+Hvddgxtgkq0C60
+	 ZkKnfmtYsl7efB3JpANu5jOs0S8f9y1LS/7Yyxa+XKk7rxRwkjDYU8R11SjpcQ/cRj
+	 Am+J0D6dZ9mgTU7uUGGDl+g3Jh+y7fDWKrN6rpieMfQSwXjuY7O/nCJBOrE4vbnnCE
+	 Th5d3TOLYUDOduiTJsiU4BGcCDSUc8qLcrhjWUSBlE/eq3/tZFpq/sFOmjLynmXOmc
+	 B2lqLg9Nj38tjQmnRG/ClozFZuWdYbpx1jfrAfCtm6ohDwt8EWa3HrpXenMLFYYugW
+	 AGiqLjIoDmIRg==
+Date: Thu, 26 Mar 2026 18:35:40 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Yixun Lan <dlan@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: Aurelien Jarno <aurelien@aurel32.net>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-riscv@lists.infradead.org (open list:RISC-V SPACEMIT SoC Support),
-	spacemit@lists.linux.dev (open list:RISC-V SPACEMIT SoC Support)
-Subject: [PATCH v2 6/6] riscv: dts: spacemit: enable PCIe ports on Milk-V Jupiter
-Date: Thu, 26 Mar 2026 19:35:34 +0100
-Message-ID: <20260326183745.1370642-7-aurelien@aurel32.net>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260326183745.1370642-1-aurelien@aurel32.net>
-References: <20260326183745.1370642-1-aurelien@aurel32.net>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] regulator: dt-bindings: mt6315: Add regulator
+ supplies
+Message-ID: <20260326-laptop-smock-c028f709d6fc@spud>
+References: <20260326081050.1115201-1-wenst@chromium.org>
+ <20260326081050.1115201-2-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lFhfG7hb4m/dorJL"
+Content-Disposition: inline
+In-Reply-To: <20260326081050.1115201-2-wenst@chromium.org>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[aurel32.net,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[aurel32.net:s=202004.hall];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-281364-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-281359-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[aurelien@aurel32.net,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[aurel32.net:+];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aurel32.net:dkim,aurel32.net:email,aurel32.net:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 69E0033A4E1
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5C6F833A446
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable the two PCIe controller along with and their associated PHY. They
-are routed to the M.2 M-key connector and to the PCIe x8 slot.
 
-Add an always-on regulator sourcing 3.3V from the DC-IN input, to power
-the PCIe ports.
+--lFhfG7hb4m/dorJL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
----
- .../boot/dts/spacemit/k1-milkv-jupiter.dts    | 42 +++++++++++++++++++
- 1 file changed, 42 insertions(+)
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-v2:
- - Collect Reviewed-by:
- - Fix a typo in the description
+--lFhfG7hb4m/dorJL
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-index 8eeaf2631b719..afaad59e6bce2 100644
---- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-@@ -40,6 +40,16 @@ led2 {
- 		};
- 	};
- 
-+	pcie_vcc_3v3: regulator-pcie-vcc3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie_vcc3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+		vin-supply = <&reg_dc_in>;
-+	};
-+
- 	reg_dc_in: regulator-dc-in-12v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "dc_in_12v";
-@@ -291,6 +301,38 @@ dldo7 {
- 	};
- };
- 
-+&pcie1_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_3_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie1_port {
-+	phys = <&pcie1_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+};
-+
-+&pcie1 {
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
-+&pcie2_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_4_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie2_port {
-+	phys = <&pcie2_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+};
-+
-+&pcie2 {
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
- &qspi {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&qspi_cfg>;
--- 
-2.51.0
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCacV8fAAKCRB4tDGHoIJi
+0slGAQDMcXP9eQdwOuxSiXJm+WfUqeKNCujzmY37ft3YdB/vywEAw+ZQyth8/OoR
+nidyq8Yjr30Vc+7aLWSu9aSfYzMGIAc=
+=INcA
+-----END PGP SIGNATURE-----
+
+--lFhfG7hb4m/dorJL--
 
