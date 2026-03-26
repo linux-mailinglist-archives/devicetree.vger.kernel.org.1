@@ -1,175 +1,194 @@
-Return-Path: <devicetree+bounces-280994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280995-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oF3rKtrsxGnN5AQAu9opvQ
-	(envelope-from <devicetree+bounces-280994-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:22:50 +0100
+	id 0NCfFI3txGnN5AQAu9opvQ
+	(envelope-from <devicetree+bounces-280995-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:25:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E5F63313AD
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:22:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7629331482
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:25:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AEEF2300AB1D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 08:17:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 18D66305C8F1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 08:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70C9C38C2DB;
-	Thu, 26 Mar 2026 08:17:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A953A6EF4;
+	Thu, 26 Mar 2026 08:18:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iROPofh8"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="Fcsk5S4X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0EA311942;
-	Thu, 26 Mar 2026 08:17:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875363AA1B9;
+	Thu, 26 Mar 2026 08:18:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.194.254.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774513036; cv=none; b=dwnrz2SfAN4VVvIHsSEXdoBAqDR+fnq1OtyYHskXMHEa3S0i6vOiolVcxDlvnVIniBQwe2x6wiPhG4BaHLZSlNSpyUDOfVcMRqcNu9zkZDvONzXk9Sk8l1fdv4TLO7Co2fKdMXoaAgeTppqyrC39KhksPLYVx3WDverJW3Tk0Yk=
+	t=1774513136; cv=none; b=JPUeLetMw0vivymCj5eSUIC/aq9/cgoEIAIKxNfsO/MdnC5/aA1Quiyc9Aw4ebmry1bugdY3V9xFKamaY/FrnQqdgDxvjRyCQOPZFckPigDQEEtNamkMEEeeJstPALtsdBC+XqdVNCsxfhqQKmBz6N1iMqphIqEPokHdUiW+uv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774513036; c=relaxed/simple;
-	bh=o5w9pCdQJwJqIVMSOTmmS4wYOSdHSHb2HuYN1QFD+iM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TtPfYiHrA0wmO16QG/TddO1BJpLyBspOD69ZXBuIjjzpRijV4x3iWNgHbit7i8YeCxSGq67ywV0zzw+QMY5AJARiPjf4wavG9oO9aoJBm07dYZAvFnLgTBgHga4n5+MvcSipPIRbDeYhF5uVfrlGJ4B7v7F9DG41mkL/uENtk+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iROPofh8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FE0EC116C6;
-	Thu, 26 Mar 2026 08:17:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774513035;
-	bh=o5w9pCdQJwJqIVMSOTmmS4wYOSdHSHb2HuYN1QFD+iM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=iROPofh8FMQsZItMkKQeqjSxBOoQDko4rjzNC4WXNGgosWHZYvS0goy5tCRlc+4Np
-	 NQfss1cj9XhKsN3P4btYYz3xCJdei9fskeQ6gkEo2TXRRW67Z0wNLmn83N3YDWzxjW
-	 HSvXNMWsEbNlDy/lJP34ri9Qyzj3yV7Tz6Riou2aXLDfRr2Fkxhd6ICSzY7Zj2udDd
-	 BqvpYDjPbwWQ0sqy4gVi/TiPgbZU5rRZvHblVpDYIkwP063XKectD7noXqoy0CPFNc
-	 SteGkqLGRYTSEDHU8Hlt8ssOIt69eMUMRcO+WaC/FNB3gohnBk9LGHitDBuyCh076m
-	 jHS8YXlhSK71w==
-Date: Thu, 26 Mar 2026 08:17:08 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: "Jones, Carlos jr" <Carlosjr.Jones@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, "Hennerich,
- Michael" <Michael.Hennerich@analog.com>, Liam Beguin
- <liambeguin@gmail.com>, "Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko
- <andy@kernel.org>, Tobias Sperling <tobias.sperling@softing.com>, "Marques,
- Jorge" <Jorge.Marques@analog.com>, "linux-iio@vger.kernel.org"
- <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, Kyle Hsieh <kylehsieh1995@gmail.com>
-Subject: Re: [PATCH v2 0/4] Add support for LTC2305
-Message-ID: <20260326081708.05b50999@jic23-huawei>
-In-Reply-To: <SJ0PR03MB5854559AD0D2624A6251ED6FF456A@SJ0PR03MB5854.namprd03.prod.outlook.com>
-References: <20260324071331.842-1-carlosjr.jones@analog.com>
-	<20260325201931.26ca84c1@jic23-huawei>
-	<SJ0PR03MB5854559AD0D2624A6251ED6FF456A@SJ0PR03MB5854.namprd03.prod.outlook.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1774513136; c=relaxed/simple;
+	bh=QZYhKiS4lwwd48rBHO86C8x7uMbv/XFwiRuoHArvWw4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QgRBqSv95AZgU8fovOI5lr8I0ZEcM8DcNr72thrCEXxDdWEYB4T3I9n5PhNJvNQERkAsV8jwIHwfWXLgYMT93IyT2Nx4QnsLGxtsyUwJnO3Fftfap6c8BXeaw3vO8yPmUsJuLShSQD0r84zX80uhCxIjzpPTnfq0bq3vYAaNNJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=Fcsk5S4X; arc=none smtp.client-ip=18.194.254.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1774513078;
+	bh=rRU+260XXpNc6ZQtDU8cpYIkfTiNBj6tvslzTN4JpFQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:To;
+	b=Fcsk5S4XZowMEIB14aRNuJZWwyB7hrTogztfkHlb17xaaFqW2DX6odrvYBv8xAaqM
+	 KQ2dpyNaI4dWxrFruk4FlGAHVXM94pe/U2aYiqucsuLU7HlyJ2AwUmXvFDQVS6cdJ9
+	 IsJ95CZCbf82/WjZLKerLedhz47JyiY9TnpM/cik=
+X-QQ-mid: esmtpgz14t1774513076t119d99a7
+X-QQ-Originating-IP: SyEQruZzhtsP2fkfOFgqYJ5sWBGHI2PROvsDS28KBOA=
+Received: from = ( [120.237.158.181])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 26 Mar 2026 16:17:52 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 203640637198776903
+EX-QQ-RecipientCnt: 21
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: [PATCH v2 0/7] dmaengine: Add Peripheral DMA support for SpacemiT
+ K3 SoC
+Date: Thu, 26 Mar 2026 16:17:15 +0800
+Message-Id: <20260326-k3-pdma-v2-0-ca94ca7bb595@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2XMQQ6CMBCF4auQWVtCO0iDK+9hWNQyyEQLTYsEQ
+ 3p3K1uX/8vLt0OkwBThUuwQaOXI85RDnQqwo5keJLjPDapSTYVSiycK3zsjtJUa6xpljQ3ktw8
+ 08HZIty73yHGZw+eAV/lb/41VCikGbHukVt/PaK4vnt5bGb2x5Hgp7eygSyl9ARwTgkOnAAAA
+X-Change-ID: 20260317-k3-pdma-7c1734431436
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@kernel.org>, 
+ Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
+ Guodong Xu <guodong@riscstar.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ dmaengine@vger.kernel.org, linux-clk@vger.kernel.org, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ liyeshan <yeshan.li@spacemit.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774513072; l=2351;
+ i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
+ bh=QZYhKiS4lwwd48rBHO86C8x7uMbv/XFwiRuoHArvWw4=;
+ b=gDmQLaCbeIT3EXk4mBIUOPgp92kb86VjaSMjPN5Kwpi0jRYxJtns2hHmFjYP7tv7jA8SASiJ6
+ AnyHEpc0ly0ClqNUvYN8KKtWfpzN85L8nHYz7+JrgBfNYZ9dpPAb+Gm
+X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
+ pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: OPtS5Xt3l5tAKtpLhiOjL9eT4geL0t0ojocuJsbK4sbkwK117zJEuvWH
+	IqP+XiGrPSeWfhxaE45rGuId2FN24GV3oMdfUbMw2NhgyPGGRXnFI0AmQdJGTu3Goiw18IP
+	yfXhuSEQ1N88J0DeBYpDTbLc33dkH5YQD7czauWgdD3PgaM2ssVCM9e8a1Acp0PA2h3083w
+	B3cXUn37SUZ7qAbOjFgZjW/cE9vE37LUyxd1tO+XC7sN/PHYnF0UJuIAqDUuuPYmC/0H2zc
+	+qJ/c4P3eDb7AoEB5FmrfvDQGDNWUnggOpVux35x7Tav2r+twNmipMFqZHUhHceLd2ZJNBz
+	Tt2ckV8mCBY8YZjuhtI+cQ7eZPHONNlnI/B+/MbhqxFVyea7w9mOJY5JdoP0KElLx1mcqO4
+	tzCSBlGKYhOk+B9qcv12D/vfkNLeQsw/xBBENuAeQdIUUL+pPpvl/fdzbEgdOdnTBOQtH+h
+	2eqXIglRa2s+DHsyR4aebQoPNapK0EEow9zIocLtHfH/tlzf3zlO0RGRJr42m0gXjyqK/O/
+	ScTlyseLVIDYxFMFzNVeENZqhA/jpwlgNG3AySGGLFodTRzoT1/ONUmRf6X6CC014vVtczQ
+	O/403ACb7T3UospVJGw/0XLDCoIl1unS3KsBGqc12Ka6hPMTVkhORaSIoQBFELYH3fQLSOM
+	gefoF1qC041tg0rEY+YSAHXkrbDePXz++RgH5qXBBX4v6g05OjHk13x6Ei11PntmLf+h/T3
+	oGdQTMhjMgAD9btzad69VDAwjQffRSFj8laSFGDncD1X191QBWV7WBMmc/ndmxdLcumCDgK
+	6eb+x3weRmYwDZdchYdIhlEtc+E5pE9puejtH//5M9MsdSv1Ja5WMdxxnLjGL0xMhtlMHEE
+	mcwvgL/68gi+xWzZPAYjozOgAC5oC2EAqlMcWA6lpwMTdf3AZJSG6BSYsZ7QAhfR3E5Yzsm
+	jvWMOmymt32p6l2VIPpt2u8KZtLDgsRXSxQfJOwV66H94m6Z+wjXZfhCECyki3VmUOzmJUH
+	0OpyhUNO21AD8owp6kg1PjVQYc0TZ0V4dC3M82ajZnPWtBmxrUiXQS9Q0TeXawapGg8xZnX
+	4C3Pg8Vn2zfSM4uMdt4idLtJW3QXPkxAKTzKK7mUUEHiP5iYBuEcw0=
+X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
+X-QQ-RECHKSPAM: 0
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-280994-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[metafoo.de,kernel.org,baylibre.com,analog.com,gmail.com,softing.com,vger.kernel.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[spacemit.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-280995-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.spacemit.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.spacemit.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	REDIRECTOR_URL(0.00)[urldefense.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[urldefense.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email]
-X-Rspamd-Queue-Id: 0E5F63313AD
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.spacemit.com:dkim,linux.spacemit.com:mid,spacemit.com:email]
+X-Rspamd-Queue-Id: A7629331482
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 26 Mar 2026 02:21:28 +0000
-"Jones, Carlos jr" <Carlosjr.Jones@analog.com> wrote:
+Hi all,
 
-> > On Tue, 24 Mar 2026 15:13:27 +0800
-> > Carlos Jones Jr <carlosjr.jones@analog.com> wrote:
-> >   
-> > > The LTC2305 is a 2-channel, 12-bit, fast ADC with an I2C interface,
-> > > compatible with the LTC2309 (which has 8 channels).
-> > >
-> > > This patch adds support for the LTC2305 by introducing a chip_info
-> > > structure to handle the different channel configurations between the
-> > > two variants. The LTC2305 exposes 2 single-ended channels and 2
-> > > differential combinations.
-> > >
-> > > Also updates the device tree bindings to include the lltc,ltc2305
-> > > compatible string and documents it in the Kconfig.
-> > > ---  
-> > 
-> > Whilst checking for what comments were in v1, I realized we have two
-> > different people looking at the same thing within a few weeks of each other.
-> > +cc Kyle.
-> > 
-> > https://urldefense.com/v3/__https://lore.kernel.org/all/20260325-
-> > add_ltc2305_driver-v5-0-
-> > e0d29daa54f9@gmail.com/*r__;Iw!!A3Ni8CS0y2Y!6jxk_dJQLHUO4PVi3Oca_
-> > VzVHN-qeFu-y2tE5xXMwuy-
-> > x2UFG5Fn3KO4Cw15QcDsqTCgFXQQLLRQrdgokg$
-> > 
-> > I guess this is just a case of neither noticing on the list?
-> > Too many similar part names, so I missed it until now.
-> > 
-> > Currently I have Kyle's patches queued up.  All else being equal that seems fair
-> > as Kyle started on this last year whereas Carlos' work on this is much more
-> > recent.
-> > 
-> > I'm seeing some small differences. Please could you work together on this.
-> > Ideally send any additional changes on top of Kyle's series.
-> > 
-> > Thanks,
-> > 
-> > Jonathan
-> >   
-> 
-> First off, my apologies to everyone for not knowing how to check for
-> existing upstream request for the LTC2305 device before working on it
-> and wasting everyone's review time. It's a learning experience for me.
-It is pretty rare!  Only tend to see this sort of collision once every
-few years.
+This patch series introduces Peripheral DMA (PDMA) support for the 
+SpacemiT K3 SoC, leveraging the existing mmp_pdma driver.
 
-> 
-> But it's still awesome to see how both ended up with almost the same
-> code after review.
-> 
-> I'll reply to Kyle's series to ask if the delay for LTC2305 could be included.
-Excellent!  Note I've merged Kyle's code, so patches on top please.
-Potentially the delay might be a fix if I understand it correctly.
+The K3 PDMA IP is largely based on the design found in the previous 
+SpacemiT K1 SoC, but introduces a few key architectural differences:
+1. It features a variable extended DRCMR base address for DMA request 
+   numbers (>= 64) depending on the hardware implementation.
+2. Unlike the K1 SoC, where some DMA masters had memory addressing 
+   limitations (requiring a dedicated dma-bus), the K3 DMA masters 
+   have full memory addressing capabilities.
 
-Thanks,
+The series is structured as follows:
+- Patch 1-3: Introduce the necessary dt-bindings, including DMA request 
+  definitions for both K1 and K3, and the new K3 compatible string.
+- Patch 4-5: Refactor the mmp_pdma driver to support variable extended 
+  DRCMR bases, and add the specific implementation/ops for the K3 SoC.
+- Patch 6: Fixes a critical clock issue where the DDR bus clock 
+  (top_dclk) could be gated by CCF, which would cause DMA engines to 
+  hang and lead to system instability.
+- Patch 7: Finally, instantiates the PDMA controller node in the 
+  SpacemiT K3 device tree.
 
-Jonathan
+---
+Guodong Xu (4):
+      dt-bindings: dmaengine: Add SpacemiT K1 DMA request definitions
+      dt-bindings: dmaengine: Add SpacemiT K3 DMA compatible string
+      dmaengine: mmp_pdma: support variable extended DRCMR base
+      dmaengine: mmp_pdma: add Spacemit K3 support
 
-> 
-> Kind regards,
-> Carlos
-> 
+Troy Mitchell (2):
+      clk: spacemit: k3: mark top_dclk as CLK_IS_CRITICAL
+      riscv: dts: spacemit: Add PDMA controller node for K3 SoC
+
+liyeshan (1):
+      dt-bindings: dmaengine: Add SpacemiT K3 DMA request definitions
+
+ .../devicetree/bindings/dma/spacemit,k1-pdma.yaml  |  4 +-
+ arch/riscv/boot/dts/spacemit/k3.dtsi               | 11 +++
+ drivers/clk/spacemit/ccu-k3.c                      |  2 +-
+ drivers/dma/mmp_pdma.c                             | 37 +++++++++-
+ include/dt-bindings/dma/k1-pdma.h                  | 56 +++++++++++++++
+ include/dt-bindings/dma/k3-pdma.h                  | 83 ++++++++++++++++++++++
+ 6 files changed, 188 insertions(+), 5 deletions(-)
+---
+base-commit: 02f90981a67f3b9ee7d6684e7503a4fed7aade0c
+change-id: 20260317-k3-pdma-7c1734431436
+
+Best regards,
+-- 
+Troy Mitchell <troy.mitchell@linux.spacemit.com>
 
 
