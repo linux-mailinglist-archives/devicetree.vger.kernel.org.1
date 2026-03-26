@@ -1,241 +1,147 @@
-Return-Path: <devicetree+bounces-281152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281153-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +NBHNbsVxWnr6QQAu9opvQ
-	(envelope-from <devicetree+bounces-281152-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:17:15 +0100
+	id 8KgLKeEVxWnr6QQAu9opvQ
+	(envelope-from <devicetree+bounces-281153-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:17:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD540334442
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:17:14 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC6D5334460
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:17:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2F9F13041E01
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:56:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 385E431219F8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:57:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D3A3E3DA6;
-	Thu, 26 Mar 2026 10:51:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACCBD3E638C;
+	Thu, 26 Mar 2026 10:53:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPJIWRgp"
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="b4O8r4Jq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCEF73DDDD3;
-	Thu, 26 Mar 2026 10:51:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76A6137754B;
+	Thu, 26 Mar 2026 10:53:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774522280; cv=none; b=c7VV6mTM/7RUyOpX8oplHf4/4D18/+jjcnDP3Qb5AD1bMAJ4o4xa6g/bZcNwxME5HwCcyCYAKiB6iWoDZ+im2Gki+i9rsrwl3mfxc3yO9oHcoMHM+LghEDjzWExGo1Q1nF9dY7Rb+IAq8Vppv+q1xBtmxm0my3BaRAQyI7L7da4=
+	t=1774522409; cv=none; b=n1zgUzOrTLKhnFiLE1qEmnqzgnlRkEAk+WO26cdqwEdudDxDl7ov1/xBc36toWCb/1NXV6mAdcU0xY+YF1SPLGufkZv0ShFDEXl+CqYo7MKa92iWLkwnr7iLMHaAz/DrGGFNo54DN4ettuJZb2LAECHOLEcdTCLx/aofc4nlrrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774522280; c=relaxed/simple;
-	bh=u6EZGlMh29IsIeDQA19WFLVtpE5oyFCv9a5xoycxBUI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RL9L6bz1Ixwb8TRjJdMUEJsDM8opy+UoNbXDyjMblZnfUesNYKsBhBUcMIH/VkLp+cdy+kIs6ozYy+vmr1iYRkIkS26gYeyLB29G8wDrsM5rYhssaQYA+VhOmL1heN7eDmTKA+jC8LCn78LoUbhHWpUSUvpTnJgmOA+oP9FUY2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPJIWRgp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CA4AC116C6;
-	Thu, 26 Mar 2026 10:51:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774522280;
-	bh=u6EZGlMh29IsIeDQA19WFLVtpE5oyFCv9a5xoycxBUI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=CPJIWRgppRweaVYOahHej5lq9M383F3uuff0aKKodezrDAXutUsHUymx+mOio1QJ1
-	 PAiak9q4Ceukp0VbvwT9uph3n1OIvR+ZchbEgBXYlroCvo6eZiS6DovFAk3JKyuQCN
-	 1y74gfYaHqbqsHxTnNdQPkscr/WIdnbkSCfwxug2zuf90BdyYzabM7DsFcLHHOS6gB
-	 c/FcrUxKgbxFW4W3G6prq01j8mZdyn1fJ4jcxhsXbKkIueYUseKYGLYn+I3liSHdih
-	 r/AqNwnykFbzfIlcEKuAkvyGiqHP/dGsDGO7M/eI+iAm5YufNMNysGJ2c9DAJafLqK
-	 ERUFUQG9KgUhA==
-From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 26 Mar 2026 11:51:12 +0100
-Subject: [PATCH v4 2/2] mfd: arizona: Convert GPIO IRQ handling to
- descriptors
+	s=arc-20240116; t=1774522409; c=relaxed/simple;
+	bh=TbxaIif3p8WQ6+e44Bzl22FNO5C/zwaxFLGv4rhnrAI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ACFB1BXf+AC92LjPauiF7ngPURuBmB3W+a0tlS/b9MGbz3WdC9AR3ge1ScLMhTnKk99ppEPcvZPRIHbUH0k6aPMultvmjELIcw7zv1PvtnR2Vjx5CjFQXsRkCU3Yw+pSXm+vfrDCr2rkGlat1BO3B25b4ICkrHOzhxxX+CBvzMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=b4O8r4Jq; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EC4611AED;
+	Thu, 26 Mar 2026 03:53:20 -0700 (PDT)
+Received: from arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5BEE03FB90;
+	Thu, 26 Mar 2026 03:53:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1774522406; bh=TbxaIif3p8WQ6+e44Bzl22FNO5C/zwaxFLGv4rhnrAI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b4O8r4Jq2CFcar+ykaYubGzY5y5qXmjwpctKmzjtCbYrCy7ZWRYDuVV6rw/K5YRYE
+	 cFU8FIDuxcRiwzgg6ypdQsF6ZJHHAtZPQCtyFE9nn5+FJpKL3uUn2slYkKqObCNZpl
+	 vTALvEOciub+LB3zvVDl3q8MoMa8BSfaYZ27RjFc=
+Date: Thu, 26 Mar 2026 10:53:16 +0000
+From: Catalin Marinas <catalin.marinas@arm.com>
+To: Jinjie Ruan <ruanjinjie@huawei.com>
+Cc: corbet@lwn.net, skhan@linuxfoundation.org, will@kernel.org,
+	chenhuacai@kernel.org, kernel@xen0n.name, maddy@linux.ibm.com,
+	mpe@ellerman.id.au, npiggin@gmail.com, chleroy@kernel.org,
+	pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, tglx@kernel.org, mingo@redhat.com, bp@alien8.de,
+	dave.hansen@linux.intel.com, hpa@zytor.com, robh@kernel.org,
+	saravanak@kernel.org, akpm@linux-foundation.org, bhe@redhat.com,
+	vgoyal@redhat.com, dyoung@redhat.com, rdunlap@infradead.org,
+	peterz@infradead.org, pawan.kumar.gupta@linux.intel.com,
+	feng.tang@linux.alibaba.com, dapeng1.mi@linux.intel.com,
+	kees@kernel.org, elver@google.com, paulmck@kernel.org,
+	lirongqing@baidu.com, rppt@kernel.org, ardb@kernel.org,
+	leitao@debian.org, osandov@fb.com, cfsworks@gmail.com,
+	tangyouling@kylinos.cn, sourabhjain@linux.ibm.com,
+	ritesh.list@gmail.com, eajames@linux.ibm.com,
+	songshuaishuai@tinylab.org, kevin.brodsky@arm.com,
+	samuel.holland@sifive.com, vishal.moola@gmail.com,
+	junhui.liu@pigmoral.tech, coxu@redhat.com, liaoyuanhong@vivo.com,
+	jbohac@suse.cz, fuqiang.wang@easystack.cn, guoren@kernel.org,
+	chenjiahao16@huawei.com, hbathini@linux.ibm.com,
+	james.morse@arm.com, takahiro.akashi@linaro.org,
+	lizhengyu3@huawei.com, x86@kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	loongarch@lists.linux.dev, linuxppc-dev@lists.ozlabs.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	kexec@lists.infradead.org
+Subject: Re: [PATCH v10 4/8] crash: Exclude crash kernel memory in crash core
+Message-ID: <acUQHCETMXaEtdK5@arm.com>
+References: <20260325025904.2811960-1-ruanjinjie@huawei.com>
+ <20260325025904.2811960-5-ruanjinjie@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260326-mfd-arizona-irq-v4-2-50c47ed0a18e@kernel.org>
-References: <20260326-mfd-arizona-irq-v4-0-50c47ed0a18e@kernel.org>
-In-Reply-To: <20260326-mfd-arizona-irq-v4-0-50c47ed0a18e@kernel.org>
-To: Lee Jones <lee@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc: patches@opensource.cirrus.com, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- Linus Walleij <linusw@kernel.org>
-X-Mailer: b4 0.14.3
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260325025904.2811960-5-ruanjinjie@huawei.com>
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
+	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-281152-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[arm.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,infradead.org,linux.alibaba.com,google.com,baidu.com,debian.org,fb.com,kylinos.cn,tinylab.org,arm.com,sifive.com,pigmoral.tech,vivo.com,suse.cz,easystack.cn,huawei.com,linaro.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
+	TAGGED_FROM(0.00)[bounces-281153-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[catalin.marinas@arm.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_GT_50(0.00)[67];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cirrus.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DD540334442
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,arm.com:dkim,arm.com:email,arm.com:mid]
+X-Rspamd-Queue-Id: AC6D5334460
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Convert the arizona polling GPIO handling to use a GPIO descriptor
-instead of passing a global GPIO number as platform data.
+On Wed, Mar 25, 2026 at 10:59:00AM +0800, Jinjie Ruan wrote:
+> The crash memory alloc, and the exclude of crashk_res, crashk_low_res
+> and crashk_cma memory are almost identical across different architectures,
+> handling them in the crash core would eliminate a lot of duplication, so
+> do them in the common code.
+> 
+> To achieve the above goal, three architecture-specific functions are
+> introduced:
+> 
+> - arch_get_system_nr_ranges(). Pre-counts the max number of memory ranges.
+> 
+> - arch_crash_populate_cmem(). Collects the memory ranges and fills them
+>   into cmem.
+> 
+> - arch_crash_exclude_ranges(). Architecture's additional crash memory
+>   ranges exclusion, defaulting to empty.
+> 
+> Reviewed-by: Sourabh Jain <sourabhjain@linux.ibm.com>
+> Acked-by: Baoquan He <bhe@redhat.com>
+> Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 
-This mechanism is not used in the kernel, but let's preserve
-the mechanism to be nice.
+For arm64:
 
-Users can define "irq-gpios" in the devicetree or software node
-for the Arizona chip to provide the GPIO line corresponding to
-the IRQ.
-
-Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-Signed-off-by: Linus Walleij <linusw@kernel.org>
----
- drivers/mfd/arizona-irq.c         | 46 +++++++++++++++++++--------------------
- include/linux/mfd/arizona/core.h  |  2 ++
- include/linux/mfd/arizona/pdata.h |  5 -----
- 3 files changed, 24 insertions(+), 29 deletions(-)
-
-diff --git a/drivers/mfd/arizona-irq.c b/drivers/mfd/arizona-irq.c
-index 544016d420fe..8b752a1257b1 100644
---- a/drivers/mfd/arizona-irq.c
-+++ b/drivers/mfd/arizona-irq.c
-@@ -136,21 +136,19 @@ static irqreturn_t arizona_irq_thread(int irq, void *data)
- 			dev_err(arizona->dev,
- 				"Failed to read main IRQ status: %d\n", ret);
- 		}
--#ifdef CONFIG_GPIOLIB_LEGACY
- 		/*
- 		 * Poll the IRQ pin status to see if we're really done
- 		 * if the interrupt controller can't do it for us.
- 		 */
--		if (!arizona->pdata.irq_gpio) {
-+		if (!arizona->irq_gpiod) {
- 			break;
- 		} else if (arizona->pdata.irq_flags & IRQF_TRIGGER_RISING &&
--			   gpio_get_value_cansleep(arizona->pdata.irq_gpio)) {
-+			   gpiod_get_value_cansleep(arizona->irq_gpiod)) {
- 			poll = true;
- 		} else if (arizona->pdata.irq_flags & IRQF_TRIGGER_FALLING &&
--			   !gpio_get_value_cansleep(arizona->pdata.irq_gpio)) {
-+			   !gpiod_get_value_cansleep(arizona->irq_gpiod)) {
- 			poll = true;
- 		}
--#endif
- 	} while (poll);
- 
- 	pm_runtime_put_autosuspend(arizona->dev);
-@@ -350,27 +348,26 @@ int arizona_irq_init(struct arizona *arizona)
- 		goto err_map_main_irq;
- 	}
- 
--#ifdef CONFIG_GPIOLIB_LEGACY
--	/* Used to emulate edge trigger and to work around broken pinmux */
--	if (arizona->pdata.irq_gpio) {
--		if (gpio_to_irq(arizona->pdata.irq_gpio) != arizona->irq) {
--			dev_warn(arizona->dev, "IRQ %d is not GPIO %d (%d)\n",
--				 arizona->irq, arizona->pdata.irq_gpio,
--				 gpio_to_irq(arizona->pdata.irq_gpio));
--			arizona->irq = gpio_to_irq(arizona->pdata.irq_gpio);
--		}
--
--		ret = devm_gpio_request_one(arizona->dev,
--					    arizona->pdata.irq_gpio,
--					    GPIOF_IN, "arizona IRQ");
--		if (ret != 0) {
--			dev_err(arizona->dev,
--				"Failed to request IRQ GPIO %d:: %d\n",
--				arizona->pdata.irq_gpio, ret);
--			arizona->pdata.irq_gpio = 0;
-+	/*
-+	 * Used to emulate edge trigger and to work around broken pinmux
-+	 * define "irq-gpios" in device tree or software node.
-+	 */
-+	arizona->irq_gpiod = devm_gpiod_get_optional(arizona->dev, "irq",
-+						     GPIOD_IN);
-+	if (IS_ERR(arizona->irq_gpiod)) {
-+		ret = dev_err_probe(arizona->dev,
-+				    PTR_ERR(arizona->irq_gpiod),
-+				    "error getting IRQ GPIO\n");
-+		goto err_irq_gpiod;
-+	}
-+	if (arizona->irq_gpiod) {
-+		if (gpiod_to_irq(arizona->irq_gpiod) != arizona->irq) {
-+			dev_warn(arizona->dev, "IRQ %d does not match GPIO's IRQ %d\n",
-+				 arizona->irq, gpiod_to_irq(arizona->irq_gpiod));
-+			arizona->irq = gpiod_to_irq(arizona->irq_gpiod);
- 		}
-+		gpiod_set_consumer_name(arizona->irq_gpiod, "arizona IRQ");
- 	}
--#endif
- 
- 	ret = request_threaded_irq(arizona->irq, NULL, arizona_irq_thread,
- 				   flags, "arizona", arizona);
-@@ -409,6 +406,7 @@ int arizona_irq_init(struct arizona *arizona)
- 	arizona_free_irq(arizona, ARIZONA_IRQ_BOOT_DONE, arizona);
- err_boot_done:
- 	free_irq(arizona->irq, arizona);
-+err_irq_gpiod:
- err_main_irq:
- 	regmap_del_irq_chip(irq_find_mapping(arizona->virq,
- 					     ARIZONA_MAIN_IRQ_INDEX),
-diff --git a/include/linux/mfd/arizona/core.h b/include/linux/mfd/arizona/core.h
-index 6d6f96b2b29f..7129651c9af6 100644
---- a/include/linux/mfd/arizona/core.h
-+++ b/include/linux/mfd/arizona/core.h
-@@ -11,6 +11,7 @@
- #define _WM_ARIZONA_CORE_H
- 
- #include <linux/clk.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/interrupt.h>
- #include <linux/notifier.h>
- #include <linux/regmap.h>
-@@ -136,6 +137,7 @@ struct arizona {
- 	struct irq_domain *virq;
- 	struct regmap_irq_chip_data *aod_irq_chip;
- 	struct regmap_irq_chip_data *irq_chip;
-+	struct gpio_desc *irq_gpiod;
- 
- 	bool hpdet_clamp;
- 	unsigned int hp_ena;
-diff --git a/include/linux/mfd/arizona/pdata.h b/include/linux/mfd/arizona/pdata.h
-index f72e6d4b14a7..20118bad869a 100644
---- a/include/linux/mfd/arizona/pdata.h
-+++ b/include/linux/mfd/arizona/pdata.h
-@@ -188,11 +188,6 @@ struct arizona_pdata {
- 	/** Haptic actuator type */
- 	unsigned int hap_act;
- 
--#ifdef CONFIG_GPIOLIB_LEGACY
--	/** GPIO for primary IRQ (used for edge triggered emulation) */
--	int irq_gpio;
--#endif
--
- 	/** General purpose switch control */
- 	unsigned int gpsw;
- };
-
--- 
-2.53.0
-
+Acked-by: Catalin Marinas <catalin.marinas@arm.com>
 
