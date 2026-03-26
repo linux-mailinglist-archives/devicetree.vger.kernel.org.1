@@ -1,77 +1,66 @@
-Return-Path: <devicetree+bounces-281275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281276-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ABFXM9tMxWkU8wQAu9opvQ
-	(envelope-from <devicetree+bounces-281275-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:12:27 +0100
+	id +IhVC7lNxWkb9QQAu9opvQ
+	(envelope-from <devicetree+bounces-281276-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:16:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47F4733753F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:12:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0CBA337600
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:16:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D17D3309C86D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 15:05:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F2DB9303CE92
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 15:07:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F5913FEB18;
-	Thu, 26 Mar 2026 15:05:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA683FE678;
+	Thu, 26 Mar 2026 15:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="abog6Eds"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="n5z6ZPE5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 097B73624CA;
-	Thu, 26 Mar 2026 15:05:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A0CA3FAE11;
+	Thu, 26 Mar 2026 15:07:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774537507; cv=none; b=YXLZlrHIQr+D76lWaRArDpyBHYSw+7o2cPLJtwQJgJJzDlWAxAHOD1bP9z5M1ZPkCKeMlAJyn4Rn01vz41w9t5Xh2mp6Q+P8Xkb119H3i+p3cUrR188pc3QlnRrWCZ5iTPwjxex6k3V5tNh0FTT39Q1FY2aTEUjYjAzrN/8bhrg=
+	t=1774537641; cv=none; b=LOSU/e0K5qECkwUqBuk5Oggm3f3cILmBZFCESA+ldVvII5VBozHQ9mDhjmdwR8ILN3Ina/Aqs1Va8RhVp/wR/Sp4JzoORVlZkx0nP9VGaH+G0EiyVDgvuadbIotQa7Q3RgBqYANBFfU16BeR6BwQY4P9bfCc2WG3b2tNk35bUvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774537507; c=relaxed/simple;
-	bh=pM2qPJP0N0ADDCsOppxXwTkoZA/x2DQWuP5hXPmDSj4=;
+	s=arc-20240116; t=1774537641; c=relaxed/simple;
+	bh=LO1oFh14z1O6KLrk2O+WUrI9N+3ROHB/C8xXT4WeNeE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h9fia93GgoAsruzOByEQAfYCXRnKmhrOBIsuwWWICmDuXOYLbGlypAzQmEuuUoGgZQ34ii0tnOvulkqiyr6gGaW1VALylMw/d18Jk4izntaCajzeHI5Mr5iVbQg/xO3GGq0Fv7ctce+jKMW7ezZuUXV/LVWGF5lGqkRMsMH1gYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=abog6Eds; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69651C116C6;
-	Thu, 26 Mar 2026 15:05:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774537506;
-	bh=pM2qPJP0N0ADDCsOppxXwTkoZA/x2DQWuP5hXPmDSj4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=abog6EdsAq6OJFP0NMkHKKgpox06HvO++xGDNqtPH5yVn5RhV0F9JeCLrGrSTOJ3u
-	 OTmLCfzJxb3413mKiR4n0VFIfv93CclcwtzZd+gU0mzRLBTYOPs37wXStTDSqieKb/
-	 awY0n2lRKCZlAdRJFqN4g+ZMLpwEnpT8fXpwyqkJnL5xS0jjIWH+Kesugl2qJIqWxE
-	 WQAl0S5mw7a48J09F+dDl/cedMmCcW7HZ1O+KUmQuxE2EE7tnps9H1N5FNS9Mb/C5f
-	 rtlzzhQEfmh6OLvPkmKnuBYlQJImiSyfPEqrH6uP2CqVfmip+lYA/i+CpmDkmvrETW
-	 UL8QqDqV0upGA==
-Date: Thu, 26 Mar 2026 10:05:03 -0500
-From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Akhil R <akhilrajeev@nvidia.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Robert Moore <robert.moore@intel.com>, Len Brown <lenb@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Eric Biggers <ebiggers@kernel.org>,
-	Fredrik Markstrom <fredrik.markstrom@est.tech>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Jon Hunter <jonathanh@nvidia.com>,
-	Suresh Mangipudi <smangipudi@nvidia.com>,
-	linux-tegra@vger.kernel.org, linux-i3c@lists.infradead.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=aTD7y7ec1pCPnjWMV3XTlFGg3Rn2XCHSEnzdaDlkNOnz+EvC6BJVK2HgnR3AJG8+mx7EGxcipOmFleirplBssLXKOlHC7KIBMpogOSS9hPGDlONEC99osOmZp2Y+SQF8h2E+ipBoGcuIdro9nHlqXus1Nh3yYzacCxCXhRZf5jo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=n5z6ZPE5; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=owd16l7+Or4A0xmmYcujKyUBRd8f0q5codg/YsopPr0=; b=n5z6ZPE5137gKnKIsQiKbu/CHF
+	nIS1YevwYFrxeZ2SbSi4e8GXHBAV+AX+uhHXhBjfnSRDJ6iQNG0C1Jsu3HteEzT9NcMfHwMzAYm6G
+	fVJpfo2+FWqkrmkmDqXiHjTNlYXUx93goPqmB8uJ/OA2JwjVZrI2oFtrGJdjunDxxEok=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1w5mIi-00DUvB-BO; Thu, 26 Mar 2026 16:07:12 +0100
+Date: Thu, 26 Mar 2026 16:07:12 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Joy Zou <joy.zou@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Ye Li <ye.li@nxp.com>,
+	Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev,
-	linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH 01/12] dt-bindings: i3c: Add mipi-i3c-static-method to
- support SETAASA
-Message-ID: <20260326150503.GA2360967-robh@kernel.org>
-References: <20260318172820.13771-1-akhilrajeev@nvidia.com>
- <20260318172820.13771-2-akhilrajeev@nvidia.com>
- <20260318-tweed-herbicide-eb924ef056b8@spud>
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/5] arm64: dts: imx91-11x11-evk: remove unused
+ property clock-frequency from mdio node
+Message-ID: <309f557b-8008-4c65-8c01-6e1c68028af5@lunn.ch>
+References: <20260326-b4-imx91-qsb-dts-v2-0-b991b81639e6@nxp.com>
+ <20260326-b4-imx91-qsb-dts-v2-2-b991b81639e6@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,107 +69,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260318-tweed-herbicide-eb924ef056b8@spud>
-X-Spamd-Result: default: False [0.34 / 15.00];
+In-Reply-To: <20260326-b4-imx91-qsb-dts-v2-2-b991b81639e6@nxp.com>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281275-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-281276-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mipi.org:url]
-X-Rspamd-Queue-Id: 47F4733753F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C0CBA337600
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 05:31:50PM +0000, Conor Dooley wrote:
-> On Wed, Mar 18, 2026 at 10:57:14PM +0530, Akhil R wrote:
-> > Add the 'mipi-i3c-static-method' property mentioned in the MIPI I3C
-> > Discovery and Configuration Specification [1] to specify which discovery
-> > method an I3C device supports during bus initialization. The property is
-> > a bitmap, where a bit value of 1 indicates support for that method, and 0
-> > indicates lack of support.
-> > Bit 0: SETDASA CCC (Direct)
-> > Bit 1: SETAASA CCC (Broadcast)
-> > Bit 2: Other CCC (vendor / standards extension)
-> > All other bits are reserved.
-> > 
-> > It is specifically needed when an I3C device requires SETAASA for the
-> > address assignment. SETDASA will be supported by default if this property
-> > is absent - which means for now the property just serves as a flag to
-> > enable SETAASA, but keep the property as a bitmap to align with the
-> > specifications.
-> > 
-> > [1] https://www.mipi.org/specifications/disco
-> > 
-> > Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-> > ---
-> >  .../devicetree/bindings/i3c/i3c.yaml          | 30 ++++++++++++++++---
-> >  1 file changed, 26 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
-> > index e25fa72fd785..1705d90d4d79 100644
-> > --- a/Documentation/devicetree/bindings/i3c/i3c.yaml
-> > +++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
-> > @@ -31,10 +31,12 @@ properties:
-> >        described in the device tree, which in turn means we have to describe
-> >        I3C devices.
-> >  
-> > -      Another use case for describing an I3C device in the device tree is when
-> > -      this I3C device has a static I2C address and we want to assign it a
-> > -      specific I3C dynamic address before the DAA takes place (so that other
-> > -      devices on the bus can't take this dynamic address).
-> > +      Other use-cases for describing an I3C device in the device tree are:
-> > +      - When the I3C device has a static I2C address and we want to assign
-> > +        it a specific I3C dynamic address before the DAA takes place (so
-> > +        that other devices on the bus can't take this dynamic address).
-> > +      - When the I3C device requires SETAASA for its discovery and uses a
-> > +        pre-defined static address.
-> >  
-> >    "#size-cells":
-> >      const: 0
-> > @@ -147,6 +149,26 @@ patternProperties:
-> >            through SETDASA. If static address is not present, this address is assigned
-> >            through SETNEWDA after assigning a temporary address via ENTDAA.
-> >  
-> > +      mipi-i3c-static-method:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        minimum: 0x1
-> > +        maximum: 0xff
-> > +        default: 1
-> > +        description: |
-> > +          Bitmap describing which methods of Dynamic Address Assignment from a
-> > +          static address are supported by this I3C Target. A bit value of 1
-> > +          indicates support for that method, and 0 indicates lack of support.
+On Thu, Mar 26, 2026 at 03:51:38PM +0800, Joy Zou wrote:
+> The clock-frequency property is not implemented. Remove it to clean up the
+> device tree.
 > 
-> I really am not keen on properties that are bitmaps, why can't we just
-> use the strings "setdasa", "setaasa" etc?
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
 
-If this comes from a specification, then I'd tend to just copy it rather 
-than invent our own thing. Obviously if is something structured 
-fundamentally different from how DT is designed, then we wouldn't. But 
-this is just a simple property.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Rob
-
+    Andrew
 
