@@ -1,171 +1,170 @@
-Return-Path: <devicetree+bounces-281170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281174-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6JuBCb0WxWnr6QQAu9opvQ
-	(envelope-from <devicetree+bounces-281170-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:21:33 +0100
+	id SBxwCOQXxWnr6QQAu9opvQ
+	(envelope-from <devicetree+bounces-281174-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:26:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BEB13345EC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:21:32 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA811334732
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:26:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DAB1B3017C05
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:12:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 81D8E3075015
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205423890F2;
-	Thu, 26 Mar 2026 11:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E230236EA90;
+	Thu, 26 Mar 2026 11:19:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pbWogabT"
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="PqfD5wy9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from canpmsgout05.his.huawei.com (canpmsgout05.his.huawei.com [113.46.200.220])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEA6734DB56;
-	Thu, 26 Mar 2026 11:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A32CE38C430;
+	Thu, 26 Mar 2026 11:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.220
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774523575; cv=none; b=f/frSh7aLndrQv+YLF56dGXwB+Wb9NlU+pZXoflDJMkK/tdb4u22OnfRb0SWpPOtKrq4iWnHwthyrOTYXklnS+f3BYHswldYlgAprLiMEIXr2Sayo9LKxiBLPPvULdS5nTRcoR5v7rFYP8HRZB25j/XrHy/4mHZXTDQCKsymiYE=
+	t=1774523984; cv=none; b=TOhLqhtSns7yEJ6lLJ2RZmxW4uMRSeIZHVYso2SwBX/tLlHR7NLpVLvSFmF80y0/i1inXYNSvEmZJ4QjNDot25e78t/8z7EdYNE+WFXPY2MrAkKbM7eW04PasMGpMU53XFmGoMExqCPui5QOMSwIfqnJIJqsu7YbvpeUJg+4fNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774523575; c=relaxed/simple;
-	bh=qoB08ukvYi13eMgh24vsSnbcyuGpHGrmmlty/+9QQB8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Wb1n+k8KIAi/Xwku4YfOnc7onURKlJw+m3cesEhDLm2wS1MFnFd/z58g4fIFpzyyUWLn6lvP7HVbku4AfWt6WUJKm9VqsHIlhOJ8wXvu56jDUchrcVjxvV6ypaaqE/WX+CyAuqRJ5WFOa8lLz6sMaO3vA8CM4DrZIuMuR4xkQyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pbWogabT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34703C116C6;
-	Thu, 26 Mar 2026 11:12:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774523574;
-	bh=qoB08ukvYi13eMgh24vsSnbcyuGpHGrmmlty/+9QQB8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pbWogabTxklNbJaGRwwLltRy7BV+4DqnQj8b3kJMf9K7q7Ux1w9gBK+L2bsgIE3lv
-	 75CUid0pRU26TbRCTAOXI4amxb03ZaLIO5zF/fgVmsS5fG5kNBGnphvsYb2sIRtIOY
-	 K452aTd5WXxafj25CbAIrUAuaEyMzj3XxbaukGVAJZxf6JN2jHP+Ri+tHbDKi3etlR
-	 0VgKCwT/hvDYahaPjogfNoJqwh9U7cDnjWMc5qiLT1HHnvCIgf88Ij+/kbEtm6eB5m
-	 WhZkbjiz1qOA7Y5GMsLFJXEpe1Zgi8u7MMPJx/KVbcIdwulRC4zELmqCqZ7xjkbdZ8
-	 REV/6b5IoHLJw==
-Message-ID: <cf7566f9-d038-4ddd-bb95-ef350f17aeb9@kernel.org>
-Date: Thu, 26 Mar 2026 12:12:49 +0100
+	s=arc-20240116; t=1774523984; c=relaxed/simple;
+	bh=5zWpjUiosTsBLXN9TPN/TysyeBthI/0455XUGFFlDcc=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	 In-Reply-To:Content-Type; b=tp1KnaMpWTo5fyQkZuj0osO+D76KBzx5tpiUyEkHJEpu3hmm7T0jGfJIKgGZONS3/aM3nvq3DrVWW4AzG+Y8zqRmmjOLAqVtYS7eOsd+pXB/uEjX77ONOL+PlKO15gy8sL3ksIXHDmn0jWyErvQvgdwHJx1tzl3XVwRT+danms4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=PqfD5wy9; arc=none smtp.client-ip=113.46.200.220
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=4eUbyrBQrZeyw3b/k/SDrTACodn8YBSMmYKpGCCfH9E=;
+	b=PqfD5wy934jLNLeuXyaaOLg1+NyOaHiHgYF2LSoav3XafE3peWSUj2uOnPF8hsW/eYKyKuIHB
+	5/KMAFgPcTmA6XJp+T7F8S82XOXNdfs6CQzyraZDnhcdH+dqpo7V67PYgw8rXtt9iqY99o2hes/
+	oZm+auom9IW5mWJazjO8v/8=
+Received: from mail.maildlp.com (unknown [172.19.162.140])
+	by canpmsgout05.his.huawei.com (SkyGuard) with ESMTPS id 4fhLkf6WRjz12LGC;
+	Thu, 26 Mar 2026 19:14:02 +0800 (CST)
+Received: from dggemv706-chm.china.huawei.com (unknown [10.3.19.33])
+	by mail.maildlp.com (Postfix) with ESMTPS id A396C2025E;
+	Thu, 26 Mar 2026 19:19:29 +0800 (CST)
+Received: from kwepemq100003.china.huawei.com (7.202.195.72) by
+ dggemv706-chm.china.huawei.com (10.3.19.33) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Thu, 26 Mar 2026 19:19:29 +0800
+Received: from [10.67.113.213] (10.67.113.213) by
+ kwepemq100003.china.huawei.com (7.202.195.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Thu, 26 Mar 2026 19:19:28 +0800
+Message-ID: <69C51640.8070408@hisilicon.com>
+Date: Thu, 26 Mar 2026 19:19:28 +0800
+From: Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: tegra: add e2426-1099+e2423-1099 support
-To: Thierry Reding <thierry.reding@kernel.org>
-Cc: Chun Ng <chunn@nvidia.com>, linux-tegra@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com,
- jonathanh@nvidia.com, ankitag@nvidia.com
-References: <20260325212628.1234082-1-chunn@nvidia.com>
- <20260325212628.1234082-5-chunn@nvidia.com>
- <20260326-valiant-marmot-of-variation-9df0be@quoll> <acUQ1mOQ2ajrnUC9@orome>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <acUQ1mOQ2ajrnUC9@orome>
-Content-Type: text/plain; charset=UTF-8
+To: Bhargav Joshi <rougueprince47@gmail.com>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <ulf.hansson@linaro.org>,
+	<zhangfei.gao@linaro.org>, <linux-mmc@vger.kernel.org>
+CC: <daniel.baluta@nxp.com>, <simona.toaca@nxp.com>, <d-gole@ti.com>,
+	<m-chawdhry@ti.com>, <linux-kernel@vger.kernel.org>, <xuwei5@hisilicon.com>
+Subject: Re: [PATCH v2 0/2] mmc: hisilicon: Convert dw-mshc bindings and fix
+ dtbs
+References: <20260325225439.68161-1-rougueprince47@gmail.com>
+In-Reply-To: <20260325225439.68161-1-rougueprince47@gmail.com>
+Content-Type: text/plain; charset="ISO-8859-1"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
+ kwepemq100003.china.huawei.com (7.202.195.72)
+X-Spamd-Result: default: False [1.34 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[hisilicon.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),quarantine];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[nvidia.com,vger.kernel.org,kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-281174-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,huawei.com:dkim];
+	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org,lists.infradead.org,kernel.org,linaro.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-281170-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[huawei.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[xuwei5@hisilicon.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7BEB13345EC
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: CA811334732
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 26/03/2026 12:03, Thierry Reding wrote:
-> On Thu, Mar 26, 2026 at 11:18:17AM +0100, Krzysztof Kozlowski wrote:
->> On Wed, Mar 25, 2026 at 09:26:28PM +0000, Chun Ng wrote:
->>> Add the Tegra238 SoC device tree (tegra238.dtsi) and a minimal device
->>> tree for the Tegra238 E2426-1099+E2423-1099 engineering reference
->>> platform. The device-tree is not yet bootable and further enablement
->>
->> Then drop it. If this cannot be booted then it is pointless in the
->> kernel, no benefit, no one can ever use it.
+Hi Bhargav,
+
+On 2026/3/26 6:54, Bhargav Joshi wrote:
+> This series converts the Hisilicon dw-mshc text bindings to DT schema
+> format and cleans up legacy node names in Hisilicon board files.
 > 
-> The purpose of this series is to establish a common baseline that people
-> can use to work on top off. We expect the non-bootable state to be very
-> temporary, but for practical reasons I want to get this merged so we can
-> make quicker progress.
+> While testing the new YAML schema, dtbs_check flagged the hi3660, 
+> hi3670, and hi6220 SoC files for using the non-standard 'dwmmc' node 
+> name prefix. resulting in warnings.
+> 
+> Patch 1 Convert to DT schema
+> Patch 2 updates the Hisilicon dtsi files to use standard 'mmc' 
+> node name.
+> 
+> Changes in v2:
+>  - Patch 1: 
+>     - Grouped compatible strings into an enum.
+>     - Replaced raw numbers with proper flags.
+>     - Fixed property order and removed invalid hex values.
+>     - Added explanation for clock order change in commit message.
+>     - Collected Acked-by tag.
+>  - Patch 2: 
+>     - No code changes.
+>     - Collected Acked-by and Reviewed-by tags.
+> 
+> Signed-off-by: Bhargav Joshi <rougueprince47@gmail.com>
+> ---
+> Note: this patch is part of the process for applying to GSoC device
+> tree bindings conversion project #
+> https://github.com/LinuxFoundationGSoC/ProjectIdeas/wiki/GSoC-2026-Device-Tree-Bindings
+> 
+> - The file is enabled by arm64 defconfig (CONFIG_MMC_DW_K3=y)
+> - It is used in following
+>     /arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+>     -included by /arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
+>     /arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+>     -included by /arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+> 
+> Bhargav Joshi (2):
+>   dt-bindings: mmc: hisilicon,hi3660-dw-mshc: Convert to DT schema
+>   arm64: dts: hisilicon: Rename dwmmc nodes to mmc
+> 
+>  .../mmc/hisilicon,hi3660-dw-mshc.yaml         | 117 ++++++++++++++++++
+>  .../devicetree/bindings/mmc/k3-dw-mshc.txt    |  73 -----------
+>  arch/arm64/boot/dts/hisilicon/hi3660.dtsi     |   4 +-
+>  arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |   4 +-
+>  arch/arm64/boot/dts/hisilicon/hi6220.dtsi     |   6 +-
+>  5 files changed, 124 insertions(+), 80 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/hisilicon,hi3660-dw-mshc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/k3-dw-mshc.txt
+> 
 
-If this cannot be booted, then there are no practical reasons - no one
-will be able to develop on top of it.
+Series applied to the HiSilicon arm64 dt tree.
+Thanks!
 
-The only way anyone could use it is to have additional patch on top, to
-make it booting. Thus if you have already patches on top, which you need
-to share with every team/person, then you can as well share this one.
-
-What is the benefit for the community of having this patch in the kernel?
-=
-
-Best regards,
-Krzysztof
+Best Regards,
+Wei
 
