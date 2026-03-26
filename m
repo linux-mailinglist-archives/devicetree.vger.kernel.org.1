@@ -1,186 +1,230 @@
-Return-Path: <devicetree+bounces-281196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281185-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0FB3OoYmxWkU7QQAu9opvQ
-	(envelope-from <devicetree+bounces-281196-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:28:54 +0100
+	id cD7SEFkixWmC7AQAu9opvQ
+	(envelope-from <devicetree+bounces-281185-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:11:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76A393352E9
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:28:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99090334FD2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:11:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F408B3087D34
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:19:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5B854300C586
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:05:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C863F7A89;
-	Thu, 26 Mar 2026 12:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD053C278D;
+	Thu, 26 Mar 2026 12:05:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b="csuMkZ9D"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="f4wEmmvT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cyan.elm.relay.mailchannels.net (cyan.elm.relay.mailchannels.net [23.83.212.47])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D523139A04C;
-	Thu, 26 Mar 2026 12:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.212.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774527590; cv=pass; b=OEXgVmCziG7gUXDg9xkI5F25ypQhLzF4ny9EfLBE4723R2bO2YszhgChv/o9o2dvuZjqWAeFayVkwMSPCP8U9tUi5es4EYT+RVAOHVy7C4msLi59EXL/7QUjSIpOd5E6ZA5mROsGOQNlf/dt0BqkZFO/9scoJsD+vD0lky79qjY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774527590; c=relaxed/simple;
-	bh=Vz5S9H6Pby4OehJkIKEruyNQa86WKw88cdgPJyrBVwM=;
-	h=Message-ID:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:Date; b=t3QXPOzeeU2mSRnmuymY5tEn+FtU1WkzVfv5Z5qf6qdgEEdwmqc9WrDV6flQxYhEZE9UXS2IuIqY1fSNNl/p+qQ/4GH8o8TatUDY3M7biS2MnLQ/DbGh+2Hpq0Xx6qAYUTwBBOXSFoMxv6zKKJvdogZsjDV0Aykx9t+RF0NUxak=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com; spf=pass smtp.mailfrom=smankusors.com; dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b=csuMkZ9D; arc=pass smtp.client-ip=23.83.212.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smankusors.com
-X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 101134E1E60;
-	Thu, 26 Mar 2026 12:01:01 +0000 (UTC)
-Received: from fr-int-smtpout19.hostinger.io (trex-green-1.trex.outbound.svc.cluster.local [100.96.16.108])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 90FDF4E12E1;
-	Thu, 26 Mar 2026 12:00:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
-	t=1774526460;
-	b=RHa03PlWrVDJ/85j0zUqDyMfNvYtMhq2SIz4mKQwxzJR/IE3saYfP1VEnKdHOmoiXN/cwS
-	zOPVpIEiePpyIKAo+CLrXpBK0/rFyAFAPZKBEyG/X5hIIHYRebrHM1MxYAn2UOiyG/HLZt
-	3jO24+bv+xdZf6F7GZwgdt9y+yW0W+dKZiuShgAa1iji4i0UyUPUUW3hyPGyIH8ojBBbrZ
-	khKuzdogHuhh/R/Wk6OVheFkIXlIV10fT7xoxJT/gBvIe4EwqmFQLtoaChn49277UNEhUP
-	1OTKPAxGrV4AJ7QI5I1688WyG1fq33PaePndycdEIGRgv/Zx46zLJYKbJq8Zgg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1774526460;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=WnrocUNggqvz3INtqivTHgtL/XlNGyk5luM3l6z3IRg=;
-	b=dVfs+qeTiJVbAsQv9imN6JTAwjIi+RHV4qI9Gge5vQVZ4bj0RYU3mfWNS57vAKELMkHuBq
-	p/CMW+Y2nC7hLEq8+Z4GzNniNs72sJTXgKXabxgGPUp2IoLifojzZ7MwhIZ0cbpvTMndv9
-	6NSd9GwubfBCWPo9PcKef/WXWVGHJnM5Fte4qvWrJeRE0xxkOQ7rg9ZOGMI32VW3xXbmlR
-	c79OmKxB74zohO0X0C7+dXFo+dmc/3zP3t7gUpBFyFXuFC8zMRElkg+H1QzOKjhpbHI48U
-	yvK62W11K8pvEH9tyKb9wreD6a4SeRo2kUe+Iq9KZLKY+0KG7/RebZ9AM+dGpw==
-ARC-Authentication-Results: i=1;
-	rspamd-db964497c-4fp6h;
-	auth=pass smtp.auth=hostingeremail smtp.mailfrom=linux@smankusors.com
-X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostingeremail|x-authuser|linux@smankusors.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Zesty-Interest: 7f38a29149175688_1774526460811_1763565449
-X-MC-Loop-Signature: 1774526460811:3013558152
-X-MC-Ingress-Time: 1774526460810
-Received: from fr-int-smtpout19.hostinger.io (fr-int-smtpout19.hostinger.io
- [148.222.54.35])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.96.16.108 (trex/7.1.5);
-	Thu, 26 Mar 2026 12:01:00 +0000
-Received: from [IPV6:2001:448a:502c:4ea6:f59a:8eea:dae5:9f6f] (unknown [IPv6:2001:448a:502c:4ea6:f59a:8eea:dae5:9f6f])
-	(Authenticated sender: linux@smankusors.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fhMmh2MhYz1xy3;
-	Thu, 26 Mar 2026 12:00:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smankusors.com;
-	s=hostingermail-a; t=1774526455;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WnrocUNggqvz3INtqivTHgtL/XlNGyk5luM3l6z3IRg=;
-	b=csuMkZ9DeSB5Mn7kzz/JWo3ZtTdopKQ3wc7i+YUjubdzDfQGpMIdRdJll1gSqayO7VOOUo
-	JfgxDa7lXKDjdCY1sv6X2AlFt8KXNBNlsCpyGqLG4uHggkUrktNwvNxwoN1wE6QkYia8jd
-	qC2XRv8an6FMejIMn8KAqHdVW0cCzcXBedOCpCNZL5MOEUVCbR5jJjCEa44PYhmBumvuhz
-	oimLN4fzFZS0OaHRL2QzN0SiaGyqROMEZDWLTiqyZCoOrBNeQu01QUSFV49DdDokLaDEaB
-	nfW+DUccsXllYaXZdQ/4Ei2dE0EyMxhVJQ3hDC3x69XmwQrlEqDJ3BVPLOEA2g==
-Message-ID: <0b85a229-219f-4457-8fe4-bd4b3545684f@smankusors.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B86A34C81E;
+	Thu, 26 Mar 2026 12:05:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774526733; cv=none; b=nQndLnyr5kImcJrfXLE1Ofj41zUq7fTGEEtWInWwxpBmBzLLvIs1tNvQfGP5AV7/QLBuzi/2ZgLsIprlemk7guFUYgyLwy5w9wnufvWt0vnpiYcDDGjneggoD7XEr2Zd+2BlSCsKR0LgxD133herUy0K/3YiCF0Y9z1k0MJbdCc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774526733; c=relaxed/simple;
+	bh=WsRvRfGS7kj5nGC1UujX10ZyLUt0WSnoAgn65iDtQRo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WWNdYzga61NuijteKeNC6XhH69fB5bJPPNH9vvFV1Us9FdsG33f34YATWG7UDWRnMvr7G7QD8V+oSB8leA6cbzgNTXKAcvkZEN00c6d9F0BpdCVmXG2RXPbqCelx7hqtX7oKGKVJwS9QVN2NBYeCOtWpy6vkaEOlnir28Vhi19Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=f4wEmmvT; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1774526730;
+	bh=WsRvRfGS7kj5nGC1UujX10ZyLUt0WSnoAgn65iDtQRo=;
+	h=From:Subject:Date:To:Cc:From;
+	b=f4wEmmvTNTYbeWgKquj3lxcRdCX8ihgdjkvREWueMDki1YzMMpPUxLkHa1xzsdWqV
+	 K+0T1DE7qDoxINbbVnjFF+wohMMkgQKrelko0uwrYR7FLXxSf40dWZ4WLhmoVgUaG8
+	 9Q/GC7GjAxsTDxEEJodPVevOBWXWqI38kkmkkFOMx07BksCIS0BukgNZuLTF8weuM3
+	 DgxrojUj8ym+iHSlrqtlVqDU/AuEfiyBpAGaaDg/d4mcgqVt/A88lfsFxiKAZwtWDv
+	 8hAVdzSPIOIGsPwjnYZ6GeBpqG7sXB2suXJeaaJ0w6ra5YKnNkB2lqXkMnxNxnlVOp
+	 e+JmDprY5mTTw==
+Received: from yukiji.home (lfbn-idf1-1-2269-27.w92-151.abo.wanadoo.fr [92.151.67.27])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E2DB217E607F;
+	Thu, 26 Mar 2026 13:05:29 +0100 (CET)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Subject: [PATCH net-next v2 0/4] Introduce Airoha AN8801R series Gigabit
+ Ethernet PHY driver
+Date: Thu, 26 Mar 2026 13:04:11 +0100
+Message-Id: <20260326-add-airoha-an8801-support-v2-0-1a42d6b6050f@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iio: adc: qcom-pm8xxx-xoadc: add support for reading
- channel labels
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- phone-devel@vger.kernel.org
-References: <20260326-pm8xxx-xoadc-label-v1-0-027805dad4db@smankusors.com>
- <20260326-pm8xxx-xoadc-label-v1-2-027805dad4db@smankusors.com>
- <acUIAh_r7mSfIiEB@ashevche-desk.local>
-Content-Language: en-US
-From: Antony Kurniawan Soemardi <linux@smankusors.com>
-In-Reply-To: <acUIAh_r7mSfIiEB@ashevche-desk.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Date: Thu, 26 Mar 2026 12:00:52 +0000 (UTC)
-X-CM-Analysis: v=2.4 cv=ZbRPNdVA c=1 sm=1 tr=0 ts=69c51ff7 a=1IylDFeuS8XspTXaodopzQ==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=o-qGAwvgtZWI0aAfrXgA:9 a=QEXdDO2ut3YA:10
-X-CM-Envelope: MS4xfEJbGOOMJFcoSDip9GVhDzxy3RTdNLi2Pj75jTPWSN/LqpOUlqw30nxPqxINYmumlmZV09yvfURl/iz5uTi5v27joQfPArNaMKV72xu97lmprqHt7eNX 6cNvmQk68faXYMzN2jh9ucymnaoKWGB0Y99LenjoTze6jHscKYDtu3oVbsjTzAexKK/8eE+g71dQzpbYratRvQr3Sk1cQo6pnVxqGFktTTmheXT0l0O7OIRd e3Fa+6NENVm0r14LySe6rDwPACWWdR8WqUbLaWgTvEAQPmQAqGDtuENku0G4ii152UgEv/y48Pz49We12aN4SjDmdFLP86V64t1SWskKGkXcYM1q+I9FutVM sxzO2XNEwkkkKy92rOWpnz3okoSIA9rWyHmhzGz6MA0hpuyS0xj3kzAsQlJGqZMD73PcZBR68jgVAnHaNwNAPug8ITkstCsZfRW+SMKmab9fFml9hnHqqGZj 5r371m5PY6ZlDfAsfNTQ4aG/wXcwwRGS+F5NBD0S42NXWBf+7JAup+Ft80l/jKmEHquAAo3WIuWPYM6elGrx8WdDtbnKufs8BKUU2/zvOluIP4wR/orTm166 mGnyNYz3cIXGBgyHLPqhjSQIOqbaFs2suKQnhnPPKEtyGOUT/SblOnFc13u96xRncaBCH0wX0Ki2onyMKmaG9qA05Uu9Izwp0WUUDyxbg5dsHquMOQGwt3RN MTii9hQMCde6wr8oV4OCe8A9hHTZ3sBVmd7qlbhk+L0fMwSyEM21wi5IZiqJ5QoND8thTSQlH40=
-X-AuthUser: linux@smankusors.com
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32Pwa6CMBBFf4V07by00FJw5X+8uBiYQZpoi20lv
+ hj+3QZdv+XNzZx75iUSR8dJHKuXiLy65IIvoT5UYpzRXxgclSxqWbeykQ0gEaCLYUZA33VSQXo
+ sS4gZjCWjNWqcmES5XyJP7rmzf4XnDJ6fWZw/TeT7o4zlbz1gYhjD7ebysSLFpkfd9raxqmdtu
+ oFH25GURLa1ZNEOaNW0s2aXcoh/+wOr2mFfV/2P66pAgkTWzAbrqafTGK5XHELEn6Ihztu2vQH
+ lV++RHAEAAA==
+X-Change-ID: 20260303-add-airoha-an8801-support-57d544a4afed
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: kevin-kw.huang@airoha.com, macpaul.lin@mediatek.com, 
+ matthias.bgg@gmail.com, kernel@collabora.com, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774526729; l=5132;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=WsRvRfGS7kj5nGC1UujX10ZyLUt0WSnoAgn65iDtQRo=;
+ b=J1uYoT2YSzWNSMzFuYWO8ua1BGrBYOvu2zwx3Juhqu93tsWeBJMU9kEHtMSBQPDHysJNNcFyn
+ mB68hODK5UfBcir5Lz5aOz5TeDxjPRm7e/0WzesdZjiRN4wjOBNUi88
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[smankusors.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[smankusors.com:s=hostingermail-a];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281196-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[smankusors.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@smankusors.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-281185-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,collabora.com,gmail.com,armlinux.org.uk];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[airoha.com,mediatek.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 76A393352E9
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,gitlab.com:url]
+X-Rspamd-Queue-Id: 99090334FD2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/26/2026 5:18 PM, Andy Shevchenko wrote:
- >> Tested-on: Sony Xperia SP (PM8921)
- >
- > Interesting, never saw this tag before.
+This series introduces the Airoha AN8801R Gigabit Ethernet PHY initial
+support.
 
-Oh, I just realized I misremember Tested-by tag as Tested-on... Let me
-know if it's not acceptable.
+The Airoha AN8801R is a low power single-port Ethernet PHY Transceiver
+with Single-port serdes interface for 1000Base-X/RGMII.
+This chip is compliant with 10Base-T, 100Base-TX and 1000Base-T IEEE
+802.3(u,ab) and supports:
+  - Energy Efficient Ethernet (802.3az)
+  - Full Duplex Control Flow (802.3x)
+  - auto-negotiation
+  - crossover detect and autocorrection,
+  - Wake-on-LAN with Magic Packet
+  - Jumbo Frame up to 9 Kilobytes.
+This PHY also supports up to three user-configurable LEDs, which are
+usually used for LAN Activity, 100M, 1000M indication.
 
- >> +	if (!ch) {
- >> +		dev_err(adc->dev, "no such channel %lu\n", chan->address);
- >> +		return -EINVAL;
- >> +	}
- >
- > Isn't it a dead code? Also poisoning dmesg with this recurrent 
-message is not
- > good idea to begin with (the user space will have a door to flood it, 
-which
- > might be considered as an assistance to hackers to clear immediate 
-logs after
- > a successful attack).
+The series provides the devicetree binding and the driver that have been
+written by AngeloGioacchino Del Regno, based on downstream
+implementation ([1]). The driver allows setting up PHY LEDs, 10/100M,
+1000M speeds, and Wake on LAN and PHY interrupts.
 
-Good point about the successful attack hint! I was copying the existing
-code from pm8xxx_read_raw. Do you think those checks are unnecessary for
-pm8xxx_read_raw as well?
+Since v2, the series also adds the air_phy_lib library, which goal is to
+share common code between air_en8811h and air_an8801 drivers, and its use
+in them. The first shared functions are the existing BuckPbus register
+accessors and air_phy_read/write_page functions coming from air_en8811h
+driver.
 
-Thanks,
-Antony K. S.
+The series is based on net-next kernel tree (sha1: d1e59a4697371) and
+I have tested it on Mediatek Genio 720-EVK board (that integrates an
+Airoha AN8801RIN/A Ethernet PHY) with early board hardware enablement
+patches.
+
+[1]: https://gitlab.com/mediatek/aiot/bsp/linux/-/blob/mtk-v6.6/drivers/net/phy/an8801.c
+
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+Changes in v2:
+- Rebased on net-next (d1e59a4697371)
+- Fixed dt-bindings to remove the leds property from the required ones and
+  add wakeup-source as valid property
+- Added new reviewed-by trailer for dt_bindings
+- Added new patches (2 and 3) to create air_phy_lib, to share common code
+  between air_en8811h and air_an8801 drivers and use it in air_en8811h.
+- Remove custom BuckPBus register accessor functions and definitions from
+  air_an8801 and use the ones from air_phy_lib. It also fixes a build
+  issue on v1 due to an uninitialized variable used in
+  __air_buckpbus_reg_read, that is now removed from driver code
+- Added air_an8801_probe function to allocate the newly added private
+  data structure and detect if the PHY is wakeup capable and the interrupt
+  can be registered as a wakeup IRQ, and perform the needed actions
+- Added an8801r_suspend and an8801r_resume functions to perform specific
+  actions when WoL is enabled (reset its status, enable/disable the Link
+  Changed interrupt) and call the genphy_suspend/resume functions if
+  needed
+- Modified an8801r_get_wol to return WoL is not supported if the PHY
+  device is not wakeup capable
+- Modified an8801r_set_wol to return EOPNOTSUPP error code if the PHY
+  device is not wakeup capable, and to update the wakeup flag according
+  to WoL mode
+- Modified an8801r_config_init to remove EEE disabling and replace
+  __phy_write use by phy_write_paged
+- Reworked an8801r_rgmii_delay_config and its subfunctions to fix a
+  double return use in PHY_INTERFACE_MODE_RGMII_ID case, replace the
+  magic value use for default TX and RX delay and handle better the
+  enable/disable the inserted delays for all RGMII modes
+- Merged an8801r_did_interrupt function in an8801r_handle_interrupt
+- Modified the an8801r_handle_interrupt processing to process differently
+  the Magic Packet (to notify system wakeup) and the Link Changed
+  interrupt (to notify PHY state machine)
+- Splitted the reset WoL status part from an8801r_ack_interrupt and fix
+  an issue that in some random cases made WAKEUP_CTL1 register lose the
+  Magic Packet WoL settings
+- Modified an8801r_of_init_leds function so it does not return an error
+  if the leds configuration is not present in devicetree
+- Removed feature field and add PHY_ALWAYS_CALL_SUSPEND flag in
+  airoha_driver data structure
+
+- Link to v1: https://lore.kernel.org/r/20260304-add-airoha-an8801-support-v1-0-0ae4ee5a2f9d@collabora.com
+
+---
+AngeloGioacchino Del Regno (2):
+      dt-bindings: net: Add support for Airoha AN8801/R GbE PHY
+      net: phy: Introduce Airoha AN8801/R Gigabit Ethernet PHY driver
+
+Louis-Alexis Eyraud (2):
+      net: phy: Add Airoha phy library for shared code
+      net: phy: air_phy_lib: Factorize BuckPBus register accessors
+
+ .../devicetree/bindings/net/airoha,an8801.yaml     |   85 ++
+ drivers/net/phy/Kconfig                            |   12 +
+ drivers/net/phy/Makefile                           |    2 +
+ drivers/net/phy/air_an8801.c                       | 1115 ++++++++++++++++++++
+ drivers/net/phy/air_en8811h.c                      |  316 +-----
+ drivers/net/phy/air_phy_lib.c                      |  210 ++++
+ drivers/net/phy/air_phy_lib.h                      |   37 +
+ 7 files changed, 1519 insertions(+), 258 deletions(-)
+---
+base-commit: d1e59a46973719e458bec78d00dd767d7a7ba71f
+change-id: 20260303-add-airoha-an8801-support-57d544a4afed
+
+Best regards,
+-- 
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+
 
