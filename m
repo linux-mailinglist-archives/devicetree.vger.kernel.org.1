@@ -1,238 +1,318 @@
-Return-Path: <devicetree+bounces-281312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281314-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0FAsCExexWlM9wQAu9opvQ
-	(envelope-from <devicetree+bounces-281312-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 17:26:52 +0100
+	id AFLBIxdfxWlM9wQAu9opvQ
+	(envelope-from <devicetree+bounces-281314-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 17:30:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81E003385B7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 17:26:51 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64C2C338673
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 17:30:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DE3B1300EC9A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:20:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 373943029B56
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:25:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF253C198E;
-	Thu, 26 Mar 2026 16:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 412B340626D;
+	Thu, 26 Mar 2026 16:25:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F8mHPbZM"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="cjiUQbwb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF67394799;
-	Thu, 26 Mar 2026 16:19:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E894014B5;
+	Thu, 26 Mar 2026 16:25:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774541999; cv=none; b=Pt17Ym0TTJg0WF63ESf6hP0F6aRLugnspj4p4VT2WXGNPGmifrCozeaPpNbjzh+K5/3bAeUXjR+E4MZ8+QPM51cFx2jA0zzg7dcDM26KFXne1a/cRXzo3NGFEGh8FH9eUYvgY8emqG4TLkXGxohLFC+wZpbVhlSomfnTSIl9jEk=
+	t=1774542328; cv=none; b=iThb63eQQngK3CqPm9UNVz3FzU/5Mqb2bMg2ZIBwl/q3TdqrcOXfPyRzSJyTpYLmxUgvuMJpvDNfi0q8+mKSxXcZv+ynJllfE/gSp9sxa/JJW4iBump86tQt7QSTZqTsRE65WtvXjIGNZH05jeZhWHqkqJjvSClWlQBNGx58HtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774541999; c=relaxed/simple;
-	bh=HUtRwEpymq8y1tHT5IuCcbjZ8WgelRutIBJgFxgBfwY=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=Nh3GDQ1K/Dlmns3pEiP7iu5pALHQQQhqqwlq4K48jB7ip6yfWThZYwov4EesUDfSL4MEqNqEBP5B/CYHZeoMUnTbWR//heA28XYyZndZi2OYNfN/TsVFu9kqqFYrq4AxmByJIiuSRGk+NOrdcNICw+FFIHK9xIFJuOBkVd/v0x4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F8mHPbZM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58181C116C6;
-	Thu, 26 Mar 2026 16:19:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774541998;
-	bh=HUtRwEpymq8y1tHT5IuCcbjZ8WgelRutIBJgFxgBfwY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=F8mHPbZMLywhR2KPKiO47GUlQve1aWTvrP9jUY2zHBn/GgXJAJ8kIosO6KRmT2xPy
-	 0IOXnbxBuiHeZMvRl+TjIGCZL+xLIklcHleCk7JhPz7DuyprdCRvXeIavUjsvsJn3u
-	 2Q1RhEo14xk900QBnukOrxjvVlgBCi/2LncSYTzSdhsFA5hJ9IBKJY83E/k7nfnIj+
-	 5lTlIF6wm86KROEBrkkqhHauUmxF3ByqGulkPiq2SUiGMalg+b2lo7okZjYoEqA7SE
-	 DQIUYImcIBQS+JZCWgUDtLEZ0SBKAUGmugBagt425A+Pxg6+wxIOHa2m/AYEY0slHj
-	 ZzEGDAJHfpMMw==
-Date: Thu, 26 Mar 2026 11:19:57 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>
-Cc: Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>, Marc Zyngier <maz@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Juergen Gross <jgross@suse.com>,
-	Stefano Stabellini <sstabellini@kernel.org>,
-	Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Prakash Gupta <prakash.gupta@oss.qualcomm.com>,
-	Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org, imx@lists.linux.dev,
-	xen-devel@lists.xenproject.org, linux-arm-msm@vger.kernel.org,
-	Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
-Subject: Re: [PATCH v11 2/3] of: Factor arguments passed to of_map_id() into
- a struct
-Message-ID: <20260326161957.GA1324845@bhelgaas>
+	s=arc-20240116; t=1774542328; c=relaxed/simple;
+	bh=qF6gRDc8RYgoX+No8kzyA59zdoU3O7W1kBS00VWobyE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CSCD+BWr0XjjtAggn24eC50TYe//Tvi7Z5Q2M7VB2omAUE5RYbckS5klu6JWnZoCwcXDtE1Vvtr18oJo3MLA/PiaNMvfE2ZKSPvNwWd8sX6KJbqW0qmk5HFIQL/BgiRnir8ozMkuB/mQkH0MpzNYgTav+ZR9kpSJNXo2dj+gA9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=cjiUQbwb; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References
+	:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=4UuansGauhhO4oWioGAsAw03xo3dgsUr/Pr5BJ42cQ4=; b=cjiUQbwbHseDGJ892BMJTMm3hF
+	UUBNuOFN1tRdW4DieTlOHxlZ70eZyXIeUL8K+AnPEWRhORvpAhmGl+yRfZ8GhdLjLc9qQK0nXZLip
+	t+T2pSGDzdUCpav2VnUifFsI18X6XoF66zlJB9kKP0knQ7NAHaov3gyv4sruUl2Xkv3g=;
+Received: from 194-208-226-106.tele.net ([194.208.226.106]:52693 helo=[192.168.0.207])
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+	(Exim 4.93)
+	(envelope-from <matthias.fend.oss@emfend.at>)
+	id 1w5nWE-00GGZa-AL; Thu, 26 Mar 2026 17:25:15 +0100
+Message-ID: <0faf22b3-e20a-40ce-b628-54d33e123e0d@emfend.at>
+Date: Thu, 26 Mar 2026 17:25:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260325-parse_iommu_cells-v11-2-1fefa5c0e82c@oss.qualcomm.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 8/9] media: i2c: ov08d10: add support for reset and
+ power management
+To: Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Matthias Fend <matthias.fend@emfend.at>
+Cc: Jimmy Su <jimmy.su@intel.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, bsp-development.geo@leica-geosystems.com
+References: <20260324-ov08d10-v3-0-1e44069cf91e@emfend.at>
+ <20260324-ov08d10-v3-8-1e44069cf91e@emfend.at>
+ <acU0Gky-EldJlx0t@kekkonen.localdomain>
+Content-Language: de-DE
+From: Matthias Fend <matthias.fend.oss@emfend.at>
+In-Reply-To: <acU0Gky-EldJlx0t@kekkonen.localdomain>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
+X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[emfend.at:s=mail];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-281312-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-281314-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[39];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[emfend.at];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[amd.com,8bytes.org,kernel.org,arm.com,google.com,nxp.com,pengutronix.de,gmail.com,suse.com,epam.com,oss.qualcomm.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.xenproject.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.860];
+	FROM_NEQ_ENVFROM(0.00)[matthias.fend.oss@emfend.at,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DKIM_TRACE(0.00)[emfend.at:-];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,iommu_spec.np:url]
-X-Rspamd-Queue-Id: 81E003385B7
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 64C2C338673
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-[cc->to: Richard, Lucas for pci-imx6.c question]
+Hi Sakari,
 
-On Wed, Mar 25, 2026 at 04:38:23PM +0530, Vijayanand Jitta wrote:
-> From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+Am 26.03.2026 um 14:26 schrieb Sakari Ailus:
+> Hi Matthias,
 > 
-> Change of_map_id() to take a pointer to struct of_phandle_args
-> instead of passing target device node and translated IDs separately.
-> Update all callers accordingly.
+> A few more minor comments.
 > 
-> Add an explicit filter_np parameter to of_map_id() and of_map_msi_id()
-> to separate the filter input from the output. Previously, the target
-> parameter served dual purpose: as an input filter (if non-NULL, only
-> match entries targeting that node) and as an output (receiving the
-> matched node with a reference held). Now filter_np is the explicit
-> input filter and arg->np is the pure output.
+> On Tue, Mar 24, 2026 at 11:41:42AM +0100, Matthias Fend wrote:
+>> Add support for the required power supplies as well as the control of an
+>> optional sensor reset.
+>>
+>> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+>> ---
+>>   drivers/media/i2c/ov08d10.c | 93 ++++++++++++++++++++++++++++++++++++++++++++-
+>>   1 file changed, 92 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/media/i2c/ov08d10.c b/drivers/media/i2c/ov08d10.c
+>> index ce0fa30a86129302b5dda0b8796e44054fd77c88..19035991e8bb164d4fca5d87ee4551191974e8bb 100644
+>> --- a/drivers/media/i2c/ov08d10.c
+>> +++ b/drivers/media/i2c/ov08d10.c
+>> @@ -8,6 +8,7 @@
+>>   #include <linux/module.h>
+>>   #include <linux/pm_runtime.h>
+>>   #include <linux/regulator/consumer.h>
+>> +#include <linux/reset.h>
+>>   #include <media/v4l2-ctrls.h>
+>>   #include <media/v4l2-device.h>
+>>   #include <media/v4l2-fwnode.h>
+>> @@ -513,9 +514,17 @@ static const char * const ov08d10_test_pattern_menu[] = {
+>>   	"Standard Color Bar",
+>>   };
+>>   
+>> +static const char *const ov08d10_supply_names[] = {
+>> +	"dovdd",	/* Digital I/O power */
+>> +	"avdd",		/* Analog power */
+>> +	"dvdd",		/* Digital core power */
+>> +};
+>> +
+>>   struct ov08d10 {
+>>   	struct device *dev;
+>>   	struct clk *clk;
+>> +	struct reset_control *reset;
+>> +	struct regulator_bulk_data supplies[ARRAY_SIZE(ov08d10_supply_names)];
+>>   
+>>   	struct v4l2_subdev sd;
+>>   	struct media_pad pad;
+>> @@ -1265,6 +1274,56 @@ static const struct v4l2_subdev_internal_ops ov08d10_internal_ops = {
+>>   	.open = ov08d10_open,
+>>   };
+>>   
+>> +static int ov08d10_power_off(struct device *dev)
+>> +{
+>> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+>> +	struct ov08d10 *ov08d10 = to_ov08d10(sd);
+>> +
+>> +	reset_control_assert(ov08d10->reset);
+>> +
+>> +	regulator_bulk_disable(ARRAY_SIZE(ov08d10->supplies),
+>> +			       ov08d10->supplies);
+>> +
+>> +	clk_disable_unprepare(ov08d10->clk);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ov08d10_power_on(struct device *dev)
+>> +{
+>> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+>> +	struct ov08d10 *ov08d10 = to_ov08d10(sd);
+>> +	int ret;
+>> +
+>> +	ret = regulator_bulk_enable(ARRAY_SIZE(ov08d10->supplies),
+>> +				    ov08d10->supplies);
+>> +	if (ret < 0) {
+>> +		dev_err(dev, "failed to enable regulators: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	ret = clk_prepare_enable(ov08d10->clk);
+>> +	if (ret < 0) {
+>> +		regulator_bulk_disable(ARRAY_SIZE(ov08d10->supplies),
+>> +				       ov08d10->supplies);
+>> +
+>> +		dev_err(dev, "failed to enable imaging clock: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	if (ov08d10->reset) {
+>> +		/* Delay from DVDD stable to sensor XSHUTDN pull up: 5ms */
+>> +		fsleep(5 * USEC_PER_MSEC);
+>> +
+>> +		reset_control_deassert(ov08d10->reset);
+>> +
+>> +		/* Delay from XSHUTDN pull up to SCCB start: 8ms */
+>> +		fsleep(8 * USEC_PER_MSEC);
 > 
-> Previously, of_map_id() would call of_node_put() on the matched node
-> when a filter was provided, making reference ownership inconsistent.
-> Remove this internal of_node_put() call so that of_map_id() now always
-> transfers ownership of the matched node reference to the caller via
-> arg->np. Callers are now consistently responsible for releasing this
-> reference with of_node_put(arg->np) when done.
-> ...
+> Don't you need the fsleep()'s (or at least the latter one) even if you have
+> no reset GPIO?
 
-Not actually part of *this* patch, and AFAICS this patch is correct
-as-is, but is it necessary to have different logic around
-of_node_put() for imx_pcie_add_lut_by_rid() and
-apple_pcie_enable_device()?
+Good point. I couldn't find any explicit information in the datasheet 
+about operating without a hardware reset.
 
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -1137,6 +1137,8 @@ static void imx_pcie_remove_lut(struct imx_pcie *imx_pcie, u16 rid)
->  
->  static int imx_pcie_add_lut_by_rid(struct imx_pcie *imx_pcie, u32 rid)
->  {
-> +	struct of_phandle_args iommu_spec = {};
-> +	struct of_phandle_args msi_spec = {};
->  	struct device *dev = imx_pcie->pci->dev;
->  	struct device_node *target;
->  	u32 sid_i, sid_m;
-> @@ -1144,7 +1146,12 @@ static int imx_pcie_add_lut_by_rid(struct imx_pcie *imx_pcie, u32 rid)
->  	u32 sid = 0;
->  
->  	target = NULL;
-> -	err_i = of_map_iommu_id(dev->of_node, rid, &target, &sid_i);
-> +	err_i = of_map_iommu_id(dev->of_node, rid, &iommu_spec);
-> +	if (!err_i) {
-> +		target = iommu_spec.np;
-> +		sid_i = iommu_spec.args[0];
-> +	}
-> +
->  	if (target) {
->  		of_node_put(target);
+While I didn't encounter any problems during my tests without a reset, 
+that's probably just coincidence, and I think it's a good idea to wait 
+for the delay you suggested in any case.
 
-Here it's conditional on "target" even though of_node_put() checks
-internally for non-NULL, so it would be safe without the conditional
-here.
+> 
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static int ov08d10_identify_module(struct ov08d10 *ov08d10)
+>>   {
+>>   	struct i2c_client *client = v4l2_get_subdevdata(&ov08d10->sd);
+>> @@ -1371,6 +1430,10 @@ static void ov08d10_remove(struct i2c_client *client)
+>>   	media_entity_cleanup(&sd->entity);
+>>   	v4l2_ctrl_handler_free(sd->ctrl_handler);
+>>   	pm_runtime_disable(ov08d10->dev);
+>> +	if (!pm_runtime_status_suspended(ov08d10->dev)) {
+>> +		ov08d10_power_off(ov08d10->dev);
+>> +		pm_runtime_set_suspended(ov08d10->dev);
+>> +	}
+>>   	mutex_destroy(&ov08d10->mutex);
+>>   }
+>>   
+>> @@ -1378,6 +1441,7 @@ static int ov08d10_probe(struct i2c_client *client)
+>>   {
+>>   	struct ov08d10 *ov08d10;
+>>   	unsigned long freq;
+>> +	unsigned int i;
+>>   	int ret;
+>>   
+>>   	ov08d10 = devm_kzalloc(&client->dev, sizeof(*ov08d10), GFP_KERNEL);
+>> @@ -1403,12 +1467,32 @@ static int ov08d10_probe(struct i2c_client *client)
+>>   		return ret;
+>>   	}
+>>   
+>> +	ov08d10->reset = devm_reset_control_get_optional_exclusive(ov08d10->dev, NULL);
+> 
+> This is a bit long.
+> 
+> I'll take the set now but please post a fix on top.
 
->  	} else {
-> @@ -1156,8 +1163,11 @@ static int imx_pcie_add_lut_by_rid(struct imx_pcie *imx_pcie, u32 rid)
->  		err_i = -EINVAL;
->  	}
->  
-> -	target = NULL;
-> -	err_m = of_map_msi_id(dev->of_node, rid, &target, &sid_m);
-> +	err_m = of_map_msi_id(dev->of_node, rid, NULL, &msi_spec);
-> +	if (!err_m) {
-> +		target = msi_spec.np;
-> +		sid_m = msi_spec.args[0];
-> +	}
->  
->  	/*
->  	 *   err_m      target
+I just posted a fixup. I hope it was as you intended.
 
-And here (outside the diff context) we also call of_node_put()
-conditionally:
+Thanks
+  ~Matthias
 
-  ...
-  else if (target)
-    of_node_put(target);
+> 
+>> +	if (IS_ERR(ov08d10->reset))
+>> +		return dev_err_probe(ov08d10->dev, PTR_ERR(ov08d10->reset),
+>> +				     "failed to get reset\n");
+>> +	reset_control_assert(ov08d10->reset);
+>> +
+>> +	for (i = 0; i < ARRAY_SIZE(ov08d10_supply_names); i++)
+>> +		ov08d10->supplies[i].supply = ov08d10_supply_names[i];
+>> +
+>> +	ret = devm_regulator_bulk_get(ov08d10->dev,
+>> +				      ARRAY_SIZE(ov08d10->supplies),
+>> +				      ov08d10->supplies);
+>> +	if (ret)
+>> +		return dev_err_probe(ov08d10->dev, ret,
+>> +				     "failed to get regulators\n");
+>> +
+>>   	v4l2_i2c_subdev_init(&ov08d10->sd, client, &ov08d10_subdev_ops);
+>>   
+>> +	ret = ov08d10_power_on(ov08d10->dev);
+>> +	if (ret)
+>> +		return dev_err_probe(ov08d10->dev, ret, "failed to power on\n");
+>> +
+>>   	ret = ov08d10_identify_module(ov08d10);
+>>   	if (ret) {
+>>   		dev_err(ov08d10->dev, "failed to find sensor: %d\n", ret);
+>> -		return ret;
+>> +		goto probe_error_power_off;
+>>   	}
+>>   
+>>   	mutex_init(&ov08d10->mutex);
+>> @@ -1452,9 +1536,15 @@ static int ov08d10_probe(struct i2c_client *client)
+>>   	v4l2_ctrl_handler_free(ov08d10->sd.ctrl_handler);
+>>   	mutex_destroy(&ov08d10->mutex);
+>>   
+>> +probe_error_power_off:
+>> +	ov08d10_power_off(ov08d10->dev);
+>> +
+>>   	return ret;
+>>   }
+>>   
+>> +static DEFINE_RUNTIME_DEV_PM_OPS(ov08d10_pm_ops,
+>> +				 ov08d10_power_off, ov08d10_power_on, NULL);
+>> +
+>>   #ifdef CONFIG_ACPI
+>>   static const struct acpi_device_id ov08d10_acpi_ids[] = {
+>>   	{ "OVTI08D1" },
+>> @@ -1473,6 +1563,7 @@ MODULE_DEVICE_TABLE(of, ov08d10_of_match);
+>>   static struct i2c_driver ov08d10_i2c_driver = {
+>>   	.driver = {
+>>   		.name = "ov08d10",
+>> +		.pm = pm_ptr(&ov08d10_pm_ops),
+>>   		.acpi_match_table = ACPI_PTR(ov08d10_acpi_ids),
+>>   		.of_match_table = ov08d10_of_match,
+>>   	},
+>>
+> 
 
-> diff --git a/drivers/pci/controller/pcie-apple.c b/drivers/pci/controller/pcie-apple.c
-> index a0937b7b3c4d..c2cffc0659f4 100644
-> --- a/drivers/pci/controller/pcie-apple.c
-> +++ b/drivers/pci/controller/pcie-apple.c
-> @@ -755,6 +755,7 @@ static int apple_pcie_enable_device(struct pci_host_bridge *bridge, struct pci_d
->  {
->  	u32 sid, rid = pci_dev_id(pdev);
->  	struct apple_pcie_port *port;
-> +	struct of_phandle_args iommu_spec = {};
->  	int idx, err;
->  
->  	port = apple_pcie_get_port(pdev);
-> @@ -764,10 +765,12 @@ static int apple_pcie_enable_device(struct pci_host_bridge *bridge, struct pci_d
->  	dev_dbg(&pdev->dev, "added to bus %s, index %d\n",
->  		pci_name(pdev->bus->self), port->idx);
->  
-> -	err = of_map_iommu_id(port->pcie->dev->of_node, rid, NULL, &sid);
-> +	err = of_map_iommu_id(port->pcie->dev->of_node, rid, &iommu_spec);
->  	if (err)
->  		return err;
->  
-> +	of_node_put(iommu_spec.np);
-
-Here we call of_node_put() unconditionally.
-
-I think it would be much nicer if imx_pcie_add_lut_by_rid() used the
-same style as apple_pcie_enable_device() and did the of_node_put()
-unconditionally.  That would untangle the function a bit and make it
-easier to analyze.
-
-> +	sid = iommu_spec.args[0];
->  	mutex_lock(&port->pcie->lock);
->  
->  	idx = bitmap_find_free_region(port->sid_map, port->sid_map_sz, 0);
 
