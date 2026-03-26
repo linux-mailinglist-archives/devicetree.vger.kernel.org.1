@@ -1,260 +1,157 @@
-Return-Path: <devicetree+bounces-281296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281287-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cHAGACZUxWmD9QQAu9opvQ
-	(envelope-from <devicetree+bounces-281296-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:43:34 +0100
+	id aK64CORSxWmD9QQAu9opvQ
+	(envelope-from <devicetree+bounces-281287-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:38:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92051337C8E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:43:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFF63337B0D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:38:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0F9613119995
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 15:30:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3850E30F2802
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 15:28:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4790F410D3E;
-	Thu, 26 Mar 2026 15:27:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9BF3402BBC;
+	Thu, 26 Mar 2026 15:27:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="dKlkU9Fs"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="1T8b5Jwh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1F9D410D0C;
-	Thu, 26 Mar 2026 15:27:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A6137F740;
+	Thu, 26 Mar 2026 15:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774538869; cv=none; b=NjXd+bw+BpTI0vySWHuENRTR2fb8jmadrG0Nc1Qkgaj3qnVN5p8gNKg6Tqkn8kJU/8vBzvSGx67uTwvbhyewSXbiU2OmmjazZxgCrz/vQoh1Neyh1sTgeGNA/yoOVZELusIADb7AUwXeDQm6NwIRbI5Ay5g3Fa0Ts19qYpQ0G0k=
+	t=1774538836; cv=none; b=IGTUL7wJHx80FWZJjc8Fdq3Lm3bPlslPytd55iZM+3cBpYqST244bpaxZvcLvaigFnWUOGshVGaNbjYQjgdy21CnBBoxMOZfuCCeWCu6sv9aBaSe4FWf8DqGTCu1vyxsy3r1qiXw2zIaiau0PNWsRDsFxsuGB9aCwAgNYOs5aUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774538869; c=relaxed/simple;
-	bh=oxOd6xrPkNkZz6QA/SUlqhCBJiX5nvMMbOMTlIgZTp8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SZy9fLQKsq5G+bHeqvShiJrEQlLhQ/I8yd0uz0HLdkHL/MYlwXnABeD+HIlIPPQwqdPhCPRf6GRYYYggcGiCKAqfDrzvHpxXGfDhzsuJoaYJZrXHPV9nSzjYam8YLQ7QEnVilbNwrSQbPEmwWIt01007dH5emG5QUm5h4u2iweQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=dKlkU9Fs; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 6141726452;
-	Thu, 26 Mar 2026 16:27:46 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 3h6aOJDXUMj7; Thu, 26 Mar 2026 16:27:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1774538865; bh=oxOd6xrPkNkZz6QA/SUlqhCBJiX5nvMMbOMTlIgZTp8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=dKlkU9Fssx0Jr3ukCF17/A/0betPxNHrNeCa6qjpcbcXOkp3SnvSoq2xUISMdpn74
-	 m+h/5OxNEr8pL3wB+LDDS0tj9LWs6g31A0lWWeD7BQneuVVKp9X7+mNSr93TX8svEK
-	 BGvwrCdFWqEaWQ5r5BKF6V6nfglvF6nvqqni8/y3SH2rTLcKFH6KYakZq0gcS1GOXI
-	 EbKQF0Jml2/iqoErfH/5lCHZCfovtu+joo3RGEo2Z1i85qnjy0rIdBWNnoqZuALaSL
-	 2gE/b6vzEOoWM17t8PFCRgRA1WMmf7lptlq0xERn9oWCd4T4HekoKVpm+qhw3c9a9w
-	 DwGLT/IVG8aWg==
-From: Rustam Adilov <adilov@disroot.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	Andi Shyti <andi.shyti@kernel.org>,
+	s=arc-20240116; t=1774538836; c=relaxed/simple;
+	bh=xp/FcAIY4MWxs591sba8YBWW3xp77iN8bj2fb0SMr0Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nby8glWsi8LNylwA4iLma8GNtFvoV7W4ta4iemsfGeLj6CrwtijAaJSdycufD287KeIbjGeodiy1+xg7TXareUl06BR1xvTQpq1MabKVr+DMKeTGJ2nots4uwGM5Hj+jOxr+3zffqMcW3mgtbPtgexI2N8JGDAOOteR+I8QTu30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=1T8b5Jwh; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=gzVATzeIpqjOe+8Cx38MLFUSi1q5cYwLtg5AqfYWoD0=; b=1T8b5Jwhep6s1bdWD5TFn69pLd
+	SZy76s1Snrm8+z47EkFs8pZ+0aN7O1f/CRLTzggTAK990pTxU/0jKo2cqbVyH6JLzbiRwv14myAiT
+	eTR5fybqRfzJ31fYr2YHTHbg2A68ALLDfCJbdipXFN7uhgA+1NVXH2puZFFppl3R+IsnI8D7Rd3Iy
+	yxjDkb5v6q0ydugukyqGcRF8U125/05UaD43B7lTf8nI3TnXbp/gXXQfL3QmejCzKSrIvZFu36hxC
+	Vn/nM434Xrgmgt020x4M0+hBAje0q8xBEhZ+6yB1qj2vdhNBkchMmXOEv7UmuthB5MCmMx/YrYF7Q
+	HQF3D0bA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:51150)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1w5mbs-000000004xT-2JKK;
+	Thu, 26 Mar 2026 15:27:00 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1w5mbq-0000000078D-0OZH;
+	Thu, 26 Mar 2026 15:26:58 +0000
+Date: Thu, 26 Mar 2026 15:26:57 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Rustam Adilov <adilov@disroot.org>
-Subject: [PATCH v5 8/8] i2c: rtl9300: add RTL9607C i2c controller support
-Date: Thu, 26 Mar 2026 20:26:56 +0500
-Message-ID: <20260326152656.14030-9-adilov@disroot.org>
-In-Reply-To: <20260326152656.14030-1-adilov@disroot.org>
-References: <20260326152656.14030-1-adilov@disroot.org>
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>, kevin-kw.huang@airoha.com,
+	macpaul.lin@mediatek.com, matthias.bgg@gmail.com,
+	kernel@collabora.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 4/4] net: phy: Introduce Airoha AN8801/R
+ Gigabit Ethernet PHY driver
+Message-ID: <acVQQQiciPQBkQOG@shell.armlinux.org.uk>
+References: <20260326-add-airoha-an8801-support-v2-0-1a42d6b6050f@collabora.com>
+ <20260326-add-airoha-an8801-support-v2-4-1a42d6b6050f@collabora.com>
+ <acVND6DdpM9czIwU@shell.armlinux.org.uk>
+ <044110c5-da1e-48c0-93fd-35553e86b271@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <044110c5-da1e-48c0-93fd-35553e86b271@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-281287-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,collabora.com,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,airoha.com,mediatek.com,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281296-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.964];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,disroot.org:dkim,disroot.org:email,disroot.org:mid,alliedtelesis.co.nz:email]
-X-Rspamd-Queue-Id: 92051337C8E
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[shell.armlinux.org.uk:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,armlinux.org.uk:url]
+X-Rspamd-Queue-Id: AFF63337B0D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the internal I2C controllers of RTL9607C series based
-SoCs. Add register definitions, chip-specific functions and macros too.
+On Thu, Mar 26, 2026 at 04:24:23PM +0100, Andrew Lunn wrote:
+> On Thu, Mar 26, 2026 at 03:13:19PM +0000, Russell King (Oracle) wrote:
+> > On Thu, Mar 26, 2026 at 01:04:15PM +0100, Louis-Alexis Eyraud wrote:
+> > > +static int an8801r_set_wol(struct phy_device *phydev,
+> > > +			   struct ethtool_wolinfo *wol)
+> > > +{
+> > > +	struct net_device *attach_dev = phydev->attached_dev;
+> > > +	const unsigned char *macaddr = attach_dev->dev_addr;
+> > 
+> > This isn't a criticism for this patch, but a discussion point for
+> > phylib itself.
+> > 
+> > It occurs to me that there's a weakness in the phylib interface for WoL,
+> > specifically when WoL is enabled at the PHY, but someone then changes
+> > the interface's MAC address - there doesn't seem to be a way for the
+> > address programmed into the PHY to be updated. Should there be?
+> > 
+> > Do we instead expect users to disable WoL before changing the MAC for
+> > a network interface?
+> 
+> Program the MAC address during suspend? I assume userspace is no
+> longer active at this point, so the address should be stable.
 
-Make use of the clk introduced from the previous patch to get the clk_div
-value and use it during the rtl9607c channel configuration.
+What is the timing requirements for a system going into suspend vs a WoL
+packet being sent? Should a WoL packet abort entry into suspend? If yes,
+then we need to program the MAC before the PHY is suspended, because
+suspend could already be in progress.
 
-Introduce a new EXT_SCK_5MS field to the reg fields struct which is going
-to be initialized by rtl9607c init function at the end of the probe.
-
-This patch depends on all the previous patches in this patch series.
-
-Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Signed-off-by: Rustam Adilov <adilov@disroot.org>
----
- drivers/i2c/busses/i2c-rtl9300.c | 70 ++++++++++++++++++++++++++++++++
- 1 file changed, 70 insertions(+)
-
-diff --git a/drivers/i2c/busses/i2c-rtl9300.c b/drivers/i2c/busses/i2c-rtl9300.c
-index b718b74afe0d..8cedffbb2964 100644
---- a/drivers/i2c/busses/i2c-rtl9300.c
-+++ b/drivers/i2c/busses/i2c-rtl9300.c
-@@ -57,6 +57,7 @@ enum rtl9300_i2c_reg_fields {
- 	F_SDA_SEL,
- 	F_BUSY,
- 	F_CLK_DIV,
-+	F_EXT_SCK_5MS,
- 
- 	/* keep last */
- 	F_NUM_FIELDS
-@@ -77,8 +78,10 @@ struct rtl9300_i2c_drv_data {
- 
- #define RTL9300_I2C_MUX_NCHAN	8
- #define RTL9310_I2C_MUX_NCHAN	12
-+#define RTL9607_I2C_MUX_NCHAN	1
- 
- #define RTL9300_I2C_MAX_DATA_LEN	16
-+#define RTL9607_I2C_MAX_DATA_LEN	4
- 
- struct rtl9300_i2c {
- 	struct regmap *regmap;
-@@ -127,6 +130,14 @@ struct rtl9300_i2c_xfer {
- #define RTL9310_I2C_MST_MEMADDR_CTRL			0x4
- #define RTL9310_I2C_MST_DATA_CTRL			0x8
- 
-+#define RTL9607_I2C_CONFIG				0x22f50
-+#define RTL9607_IO_MODE_EN				0x23014
-+#define RTL9607_I2C_IND_WD				0x0
-+#define RTL9607_I2C_IND_ADR				0x8
-+#define RTL9607_I2C_IND_CMD				0x10
-+#define RTL9607_I2C_IND_RD				0x18
-+#define RTL9607_REG_ADDR_8BIT_LEN			0
-+
- static int rtl9300_i2c_reg_addr_set(struct rtl9300_i2c *i2c, u32 reg, u16 len)
- {
- 	int ret;
-@@ -178,6 +189,27 @@ static int rtl9300_i2c_config_chan(struct rtl9300_i2c *i2c, struct rtl9300_i2c_c
- 	return 0;
- }
- 
-+static int rtl9607_i2c_config_chan(struct rtl9300_i2c *i2c, struct rtl9300_i2c_chan *chan)
-+{
-+	const struct rtl9300_i2c_drv_data *drv_data;
-+	int ret;
-+
-+	if (i2c->sda_num == chan->sda_num)
-+		return 0;
-+
-+	ret = regmap_field_write(i2c->fields[F_CLK_DIV], chan->clk_div);
-+	if (ret)
-+		return ret;
-+
-+	drv_data = device_get_match_data(i2c->dev);
-+	ret = drv_data->select_scl(i2c, i2c->scl_num);
-+	if (ret)
-+		return ret;
-+
-+	i2c->sda_num = chan->sda_num;
-+	return 0;
-+}
-+
- static void rtl9300_i2c_config_clock(u32 clock_freq, struct rtl9300_i2c_chan *chan)
- {
- 	struct rtl9300_i2c *i2c = chan->i2c;
-@@ -202,6 +234,13 @@ static void rtl9300_i2c_config_clock(u32 clock_freq, struct rtl9300_i2c_chan *ch
- 	}
- }
- 
-+static void rtl9607_i2c_config_clock(u32 clock_freq, struct rtl9300_i2c_chan *chan)
-+{
-+	struct rtl9300_i2c *i2c = chan->i2c;
-+
-+	chan->clk_div = clk_get_rate(i2c->clk) / clock_freq - 1;
-+}
-+
- static int rtl9300_i2c_read(struct rtl9300_i2c *i2c, u8 *buf, u8 len)
- {
- 	u32 vals[4] = {};
-@@ -422,6 +461,11 @@ static int rtl9300_i2c_init(struct rtl9300_i2c *i2c)
- 	return regmap_field_write(i2c->fields[F_RD_MODE], 0);
- }
- 
-+static int rtl9607_i2c_init(struct rtl9300_i2c *i2c)
-+{
-+	return regmap_field_write(i2c->fields[F_EXT_SCK_5MS], 1);
-+}
-+
- static int rtl9300_i2c_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -574,6 +618,31 @@ static const struct rtl9300_i2c_drv_data rtl9310_i2c_drv_data = {
- 	.reg_addr_8bit_len = RTL9300_REG_ADDR_8BIT_LEN,
- };
- 
-+static const struct rtl9300_i2c_drv_data rtl9607_i2c_drv_data = {
-+	.field_desc = {
-+		[F_SCL_SEL]		= GLB_REG_FIELD(RTL9607_IO_MODE_EN, 13, 14),
-+		[F_EXT_SCK_5MS]		= MST_REG_FIELD(RTL9607_I2C_CONFIG, 26, 26),
-+		[F_DEV_ADDR]		= MST_REG_FIELD(RTL9607_I2C_CONFIG, 14, 20),
-+		[F_MEM_ADDR_WIDTH]	= MST_REG_FIELD(RTL9607_I2C_CONFIG, 12, 13),
-+		[F_DATA_WIDTH]		= MST_REG_FIELD(RTL9607_I2C_CONFIG, 10, 11),
-+		[F_CLK_DIV]		= MST_REG_FIELD(RTL9607_I2C_CONFIG, 0, 9),
-+		[F_I2C_FAIL]		= MST_REG_FIELD(RTL9607_I2C_IND_CMD, 3, 3),
-+		[F_BUSY]		= MST_REG_FIELD(RTL9607_I2C_IND_CMD, 2, 2),
-+		[F_RWOP]		= MST_REG_FIELD(RTL9607_I2C_IND_CMD, 1, 1),
-+		[F_I2C_TRIG]		= MST_REG_FIELD(RTL9607_I2C_IND_CMD, 0, 0),
-+		[F_MEM_ADDR]		= MST_REG_FIELD(RTL9607_I2C_IND_ADR, 0, 31),
-+	},
-+	.select_scl = rtl9310_i2c_select_scl,
-+	.config_chan = rtl9607_i2c_config_chan,
-+	.config_clock = rtl9607_i2c_config_clock,
-+	.misc_init = rtl9607_i2c_init,
-+	.rd_reg = RTL9607_I2C_IND_RD,
-+	.wd_reg = RTL9607_I2C_IND_WD,
-+	.max_nchan = RTL9607_I2C_MUX_NCHAN,
-+	.max_data_len = RTL9607_I2C_MAX_DATA_LEN,
-+	.reg_addr_8bit_len = RTL9607_REG_ADDR_8BIT_LEN,
-+};
-+
- static const struct of_device_id i2c_rtl9300_dt_ids[] = {
- 	{ .compatible = "realtek,rtl9301-i2c", .data = (void *) &rtl9300_i2c_drv_data },
- 	{ .compatible = "realtek,rtl9302b-i2c", .data = (void *) &rtl9300_i2c_drv_data },
-@@ -583,6 +652,7 @@ static const struct of_device_id i2c_rtl9300_dt_ids[] = {
- 	{ .compatible = "realtek,rtl9311-i2c", .data = (void *) &rtl9310_i2c_drv_data },
- 	{ .compatible = "realtek,rtl9312-i2c", .data = (void *) &rtl9310_i2c_drv_data },
- 	{ .compatible = "realtek,rtl9313-i2c", .data = (void *) &rtl9310_i2c_drv_data },
-+	{ .compatible = "realtek,rtl9607-i2c", .data = (void *) &rtl9607_i2c_drv_data },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, i2c_rtl9300_dt_ids);
 -- 
-2.53.0
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
