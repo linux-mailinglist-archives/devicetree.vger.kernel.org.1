@@ -1,127 +1,227 @@
-Return-Path: <devicetree+bounces-281359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281366-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OIWeJkl9xWnw+QQAu9opvQ
-	(envelope-from <devicetree+bounces-281359-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:39:05 +0100
+	id iF6tKgaAxWkk+wQAu9opvQ
+	(envelope-from <devicetree+bounces-281366-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:50:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C6F833A446
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:39:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CADC33A665
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:50:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 199613031980
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 18:35:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 104B230FB5FF
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 18:38:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1684A3A2560;
-	Thu, 26 Mar 2026 18:35:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DA0D3A3817;
+	Thu, 26 Mar 2026 18:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kgqXfxZh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jQnF4Gnc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5C643A0B28;
-	Thu, 26 Mar 2026 18:35:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED4C3A1691
+	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 18:38:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774550145; cv=none; b=EqUzdbWBlGk7+zRdDxjttK+Daf76S6BN5X8vfOuCVC27x7nDkrJyPJ2j5UdEsMzGAwFbKCQ153JtxYz+/Rd1rb4PRN4pZYYs7kSLULA1lzHltfukfx6tT2VY49rek/A5dsUSKeij49jSbSyu0OFsqoQWUQ6h5r11h0KVayPX84g=
+	t=1774550302; cv=none; b=Q63xQEyzgfUn67L0ugjNCcGxiohJHAAqykx4B3+tacARvq0BxJTz1v1v3Q/eY4KtcFQ/hVBl3ZKKEEbhhfp4+sbC7d4lslpwneKRuYAeKxVUwHBTSvELfpXFiYLbwyZGBcejSYX3EedpnT6v8PtsbQyYBsmsB3IZEDQuhqhAdl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774550145; c=relaxed/simple;
-	bh=s7C/YJ3bH4vIrxytCLP5AZqS4GyFkVHBtGdzI0XhstE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nu9HBRSxaTn6yKgQvXOXpOSCIH5gnduNvsT6R/tiksLu5aysJPCaI1NT8k1aagMhSFtt8osR4ojGgdfgfEhZ0hpyC4623WlIPseSJ7PvS3Asvt9srwkptW33kyUlMJWjXWeIjL8nefm9QDa+ErovefWMS5N4qoxIQT46TQXcCUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kgqXfxZh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E51EC116C6;
-	Thu, 26 Mar 2026 18:35:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774550144;
-	bh=s7C/YJ3bH4vIrxytCLP5AZqS4GyFkVHBtGdzI0XhstE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kgqXfxZhmtLXcyBlNt8utRu6PZXVezS9rzQ0jAEWt0zfBcatzo+Hvddgxtgkq0C60
-	 ZkKnfmtYsl7efB3JpANu5jOs0S8f9y1LS/7Yyxa+XKk7rxRwkjDYU8R11SjpcQ/cRj
-	 Am+J0D6dZ9mgTU7uUGGDl+g3Jh+y7fDWKrN6rpieMfQSwXjuY7O/nCJBOrE4vbnnCE
-	 Th5d3TOLYUDOduiTJsiU4BGcCDSUc8qLcrhjWUSBlE/eq3/tZFpq/sFOmjLynmXOmc
-	 B2lqLg9Nj38tjQmnRG/ClozFZuWdYbpx1jfrAfCtm6ohDwt8EWa3HrpXenMLFYYugW
-	 AGiqLjIoDmIRg==
-Date: Thu, 26 Mar 2026 18:35:40 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] regulator: dt-bindings: mt6315: Add regulator
- supplies
-Message-ID: <20260326-laptop-smock-c028f709d6fc@spud>
-References: <20260326081050.1115201-1-wenst@chromium.org>
- <20260326081050.1115201-2-wenst@chromium.org>
+	s=arc-20240116; t=1774550302; c=relaxed/simple;
+	bh=aB4CNW0exvmw3n8TwyU2vVZfOExsUbeZNUie+PL3Vh0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dfcTcdNN89ac1GUjTmU8NbnClOVRlAWNkJxKZWBTFmP1K1ByqLVAQuo9Zc3lxcuaKqkCUWrEwzuH2kb4u5QSgkXSivvgozB66/NN+rLj3p4UrfkfIvlMgihuSDtO11QA3tLiyzUvh/o9F6rtwOyailASse0gSIbui5xbT3C58nU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jQnF4Gnc; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-829afe24fb5so987633b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 11:38:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774550300; x=1775155100; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7oiN7Yy7Qxs4sWHwlcPw/bXT9Anfd8Nbb6kyzbKKQkA=;
+        b=jQnF4GncqRfyKG9KM/ZsEqpCRpSpOoVARrbQegzhMua5jh2ylFG/mPMFv38fIydUKD
+         JHNMeev9peIdOrdFSsuBv3cxKNuBSts5FU2p+5STihbbCDSE4qYsvsWmvdBTQTlLbtBa
+         nhwYuvHahxuHvyHF/p6Ox35+9irPtCi4vs58/xZZQN7Ngzna06iIBVWH9y6VLEi3Mdjj
+         /SePz0CK2vRR50ynUblmxAXxP0dGlcxPxKoxOR0XBTknwMzBkrQyiGrWXq00kAl0G5BG
+         zLXjl4+1Sn26unZ8t2m9bPf0bj167zI/e/jLAiuxjMc6BmA0ltbVogIdkxryttihN8j4
+         g0fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774550300; x=1775155100;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7oiN7Yy7Qxs4sWHwlcPw/bXT9Anfd8Nbb6kyzbKKQkA=;
+        b=PjTrYeW3WRhZOdL5dlG1+NP+JeOQk57QIeB3B1nHzNAFfKiF8z43RoDX6bx9oDLArY
+         gjV3jEfOOpZ7sDPzDJTqVFD2FR89kpbxfIyHTBlBgaKNRCWK8cetiPanVzQjUBhV1rgY
+         0qEMlKdIN6NmkUNg3q8D3zBx+ZhAd714iTxC1sXQNGNusdD6iVTg3s5KdjqGkT97EaLW
+         rnbdPaPBJFXPf+fvEvSlya1Gmo92U35oTbeuhndw5sMX0L38ac7fJnvbbp3lfntx8WOp
+         YXYF9hYfZuOTrrEidtKi6go5/HbZFuFmdKpBixOMiZUvKAVCRIFHZjBoi0Uct7cUxrKN
+         2olA==
+X-Forwarded-Encrypted: i=1; AJvYcCX0OjszfT2rFHXJu3mE0InUSQNtxeEhzCCaOCAZ9V66o6NM/8lidfP8BOmEv8dIQ102KCvXlhWzBM9A@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfYCxQnO8Y3s+zLltKl962/+C4eHr4w4cwMQE8z1niQDXODBfd
+	6Lts2cfA6FT/K4nKODbhZirmR10CNfC4JYFLZm8VYB3HaldsrwoxTFxM
+X-Gm-Gg: ATEYQzwKWz0y5AWlDgc5O2/u4RjR/VM1lWQkrRdSmHNpA1OIlpStY7/MVM+44exnLkQ
+	1Ta5MLsuZ0HWo4MoruJoOnE+decZLobgBRXWpRmk27WVuP8GQpAbR5fPU7DNvKh/ioWSIHyTkby
+	TVGCy+szva2YUtGyJjubD8s3bCYFZef/EZxaRAZZT+fj2nD+F9gKPit+Dd/w2RN9mx2Td5bJimP
+	yyCwpRzAOIz4ge3eNyq9gPcuenLHuB6jT4VqsjPd2OZpLbxE434+6MMcnCiu/0fKpMb0pbYifie
+	nm7zY30c9uY/PpjxF5NSdc1sK/s+MaFnWt9ZKD7G9FDLjFIEuQrnrqXJHA0Ozfvgnp4xkEssEwV
+	Yo/vi79vtDi6d6aq5Csj7LRiwSKBOAZvRc2yfOcesJHeYkNwcAgtKx15ZGVOuEUWgMQZTfbPn0+
+	7kOQru0UO/KrQ4mggf7qJfEpACX/QFiu0V2V+nLNOHk5aV3snx
+X-Received: by 2002:a05:6a00:3e1c:b0:82a:6ef8:cb43 with SMTP id d2e1a72fcca58-82c6ded85d7mr8921857b3a.19.1774550299986;
+        Thu, 26 Mar 2026 11:38:19 -0700 (PDT)
+Received: from padmashree.. ([2401:4900:94ef:3410:58df:a970:79c4:10c7])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82c7d390a4csm4211314b3a.31.2026.03.26.11.38.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Mar 2026 11:38:19 -0700 (PDT)
+From: Padmashree S S <padmashreess2006@gmail.com>
+To: k.marinushkin@gmail.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org
+Cc: robh@kernel.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Padmashree S S <padmashreess2006@gmail.com>
+Subject: [PATCH v2] dt-bindings: sound: Convert pcm3060 to DT schema
+Date: Fri, 27 Mar 2026 00:07:47 +0530
+Message-ID: <20260326183747.528754-1-padmashreess2006@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="lFhfG7hb4m/dorJL"
-Content-Disposition: inline
-In-Reply-To: <20260326081050.1115201-2-wenst@chromium.org>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281359-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-281366-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[padmashreess2006@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5C6F833A446
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 0CADC33A665
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Note:
+* This patch is part of the GSoC2026 application process for device tree bindings conversions
+* https://github.com/LinuxFoundationGSoC/ProjectIdeas/wiki/GSoC-2026-Device-Tree-Bindings
 
---lFhfG7hb4m/dorJL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Padmashree S S <padmashreess2006@gmail.com>
+---
+ .../devicetree/bindings/sound/pcm3060.txt     | 23 ----------
+ .../devicetree/bindings/sound/pcm3060.yaml    | 45 +++++++++++++++++++
+ 2 files changed, 45 insertions(+), 23 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/pcm3060.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/pcm3060.yaml
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+diff --git a/Documentation/devicetree/bindings/sound/pcm3060.txt b/Documentation/devicetree/bindings/sound/pcm3060.txt
+deleted file mode 100644
+index 97de66932d44..000000000000
+--- a/Documentation/devicetree/bindings/sound/pcm3060.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-PCM3060 audio CODEC
+-
+-This driver supports both I2C and SPI.
+-
+-Required properties:
+-
+-- compatible: "ti,pcm3060"
+-
+-- reg : the I2C address of the device for I2C, the chip select
+-        number for SPI.
+-
+-Optional properties:
+-
+-- ti,out-single-ended: "true" if output is single-ended;
+-                       "false" or not specified if output is differential.
+-
+-Examples:
+-
+-	pcm3060: pcm3060@46 {
+-		 compatible = "ti,pcm3060";
+-		 reg = <0x46>;
+-		 ti,out-single-ended = "true";
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/pcm3060.yaml b/Documentation/devicetree/bindings/sound/pcm3060.yaml
+new file mode 100644
+index 000000000000..ceb6f044b196
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/pcm3060.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/pcm3060.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: PCM3060 audio CODEC
++
++maintainers:
++  - Kirill Marinushkin <k.marinushkin@gmail.com>
++
++properties:
++  compatible:
++    const: ti,pcm3060
++
++  reg:
++    maxItems: 1
++    description: |
++      The I2C address of the device
++      or SPI chip select number.
++
++  ti,out-single-ended:
++    type: boolean
++    description: |
++      If present, the output is single-ended.
++      If absent, the output is differential.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      pcm3060: audio-codec@46 {
++        compatible = "ti,pcm3060";
++        reg = <0x46>;
++        ti,out-single-ended;
++      };
++    };
+-- 
+2.43.0
 
---lFhfG7hb4m/dorJL
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCacV8fAAKCRB4tDGHoIJi
-0slGAQDMcXP9eQdwOuxSiXJm+WfUqeKNCujzmY37ft3YdB/vywEAw+ZQyth8/OoR
-nidyq8Yjr30Vc+7aLWSu9aSfYzMGIAc=
-=INcA
------END PGP SIGNATURE-----
-
---lFhfG7hb4m/dorJL--
 
