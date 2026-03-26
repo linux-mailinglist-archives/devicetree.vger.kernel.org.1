@@ -1,242 +1,182 @@
-Return-Path: <devicetree+bounces-281069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281071-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gJiEJiP8xGny5QQAu9opvQ
-	(envelope-from <devicetree+bounces-281069-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:28:03 +0100
+	id WEGaCM79xGny5QQAu9opvQ
+	(envelope-from <devicetree+bounces-281071-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:35:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BCAB332538
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:28:03 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6297E332683
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:35:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 98596302FB08
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:28:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B77023056425
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:30:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9C03537CD;
-	Thu, 26 Mar 2026 09:28:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="eQ3/7Ykj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8270233C53D;
+	Thu, 26 Mar 2026 09:30:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (pouet.aliel.fr [65.21.61.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB83630E85D;
-	Thu, 26 Mar 2026 09:27:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AEE13783C8
+	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 09:30:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774517280; cv=none; b=BMuEu7QbtapL5ugjrsD/FJelThMIpseSBag7IGJ68BiuVMOPlUfivzaa40c038Xv8Lg/E7Pmv3j2gg2Uc6/URJNaRYC9gBxG0A9KjDV59IijGJGlEAHDI1maUMEEVN4KJPWfN0Lp9Ka/TZ6KLfQ3XW63q12OcVrkN9SVs+2bWDw=
+	t=1774517404; cv=none; b=XsE1sPhFyxkeTqXnLIYYcqoLLiXW5xRvVczrAGqCD8yYYjMl0yiCNY2ZcBDawT+uOa9UDo4SkNlKOfgoyDe69WC58JfB6aduX2f/59ZG782CdqNWB3ky6e6/u4mec3mZ1ubuf9GKz8v85b86Y0sFeEdzw/mwjDSXSDxC4lWz0v0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774517280; c=relaxed/simple;
-	bh=hCffSrytymkZsTF+g18yVFG0ugDdfGbOo15ZfjxCRlA=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=oi/QB8bQGg/UqNW+U0Ie9NRkSRawe16hQdxcIZVWKllR3TMJ2BKyafPJSNK/Tv0HvgBUlisBlpkEWk+HlLpnPZHEokiLSqDoWxIsWZDFfLXDKuA32ChaNJfXPVPYCaJZv/Zd+zgOSPmcQi0FcpgvUG/BprcUOhbDjupeqyjod1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=eQ3/7Ykj; arc=none smtp.client-ip=65.21.61.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-Message-ID: <802bc778-9e18-4273-9757-c0d663e8b14a@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774517276;
-	bh=hCffSrytymkZsTF+g18yVFG0ugDdfGbOo15ZfjxCRlA=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=eQ3/7Ykj9LCvsbKYSiqPnT9GfUx9Eyibc77/pFGLIy68mfwchsIIBIA4mt1YpPzMX
-	 qzJhnNCu+i0VUh5RXafyaHWePHRsm3BCaZsY6YTN8ZRBwHqCqzovwcig9uJMe0TfqI
-	 xvgmxbihm57B90MJpQ3wb+JUn+BMn80mc8QgNLa4=
-Date: Thu, 26 Mar 2026 10:27:54 +0100
+	s=arc-20240116; t=1774517404; c=relaxed/simple;
+	bh=k9HDcRqBnuJFvwQk6gqRTKhQzZwVzR+lN2z+BoG0Ts4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qPh6+RyadUS6WGF3ZNRLTHl/m/95wQ1m71qQt/I6bQjby5VuXYYQznNUZE9NtlRSF4LIr1b4rS5VGgIlCim4nwkbHCsb3WwShcBnv5AB+dlnrHUpiW6OPDH9vZ85AYIC87onaTD9mFVk2WsAvFSvbNMpXvkJMIRupMh8Sm+6zEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-94ab69af6c8so1191867241.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 02:30:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774517401; x=1775122201;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2PE3iyzx6jIK3ZsNdv8OtLecBaLX2UfrDS1pqoPXCU0=;
+        b=f8JBbduQjqa9xUcSvi/j4GE6sJ60FBQ2f3Ewbrbme0MEvoTOnBPgHvozi6X8/EkKOt
+         yWdzNnSJgdJlNnnyQ1ADv3tOQmiZAMK8/vcqM9de3mWC1DhNNT4fPZT6x1CwLYzldrLF
+         O+KKIq5FkykfwyDPjs+a8FodO+TH9Z4bE1IHieYufPOpsQT53IYZY1+LTVQPNZtHj+fR
+         U9J42UZH4YzpVr0bPc/q39AmcYrV6nHz4ygW4QtEdi0bew4j4sPaWM3zL1hB5Gx/LnPC
+         rdAud8oKMYmwmnVN0koILz4wKblft3cf5K5VoXdQXfC/oGN/qYS4k8PMMdoXNuT+ajEJ
+         SDgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW9Hin+B0Dheo0qK3gFPXtRQlp6pGIDupx0P9+Mtwsi3oV9Q86h5cleQGuhu9Vp0evF6Ips+bu+QEZR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOWPgG3ztQ6S7H2nwtl1Y9N3LKP0rH3cGRf3fTT55tFiU5k5tG
+	DYbCNMU2tX4KEpY9q8ccB7FhSn58nM4ron5c9DMJB7qWotLyc2JcMoO7JrxUS7AqRaM=
+X-Gm-Gg: ATEYQzx844bfHehSWSuEIpL/HGBKUysrOF2nZ84dn/CBJ3KMjl5ncQZhBfCk6IF1fth
+	bl2Je9u30ZunKmoJ/6epFt1HYKg7uChqvnPbpJZzeR7fj6ItnYdF/LF6OiA/arn3I/mz2NZzmhh
+	lTemXJEJ+Y4iguPjCnAZPxIfAkaSWJoWmH+CfiHUoBIr3ehW/jKUeTvg4XtNnrRnGnsOQCWOAxP
+	WGnkhhRJqar2HthsL1Dn4IRWsuuHB4gFWRNHyXT/TOcRXiZogcbXay5PgpxYHKmV966xg8tL9wc
+	EqvHs+yh/uVZeUfeDhvwAbAvlcKF0PYhOikIiHK44x39LB0WRwgl6apr9hKxpSXOVD/Jck+Nnv2
+	KHFsE0RK4LjOZOP9P47MYd+2oL9JuNiWXk8GE3NrO9pGFW/aQBg2n/7Tj9XKmiuUbFzwN9J5a62
+	C+8TEBLaaX9Ng8iDftCVgzIGyNpFgS9yj6fRFVNx9aUFy8PJKaT3XS5ibvSKtW
+X-Received: by 2002:a05:6102:580d:b0:5ff:fac2:836e with SMTP id ada2fe7eead31-604e4961ec0mr277912137.4.1774517401563;
+        Thu, 26 Mar 2026 02:30:01 -0700 (PDT)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-604d5313adbsm2460892137.8.2026.03.26.02.30.00
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Mar 2026 02:30:00 -0700 (PDT)
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-5ffdd9a6155so1689747137.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 02:30:00 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXOXYD//t2IxfjZPRga6FQfGs/XwUi1//cGWmquCa/syd2Q3U01ybL93cCbByD3XEXZfQRlOxk8Q5Uh@vger.kernel.org
+X-Received: by 2002:a05:6102:f95:b0:600:d0f:bacf with SMTP id
+ ada2fe7eead31-604e4d73ea0mr248413137.11.1774517400168; Thu, 26 Mar 2026
+ 02:30:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH v4 9/9] arm64: dts: amlogic: t7: khadas-vim4: Add MMC
- nodes
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Johannes Berg <johannes@sipsolutions.net>, van Spriel <arend@broadcom.com>
-References: <20260325-add-emmc-t7-vim4-v4-0-44c7b4a5e459@aliel.fr>
- <20260325-add-emmc-t7-vim4-v4-9-44c7b4a5e459@aliel.fr>
- <512d95b5-5348-4c7c-961c-b6ca1431cee4@linaro.org>
-Content-Language: en-US
-In-Reply-To: <512d95b5-5348-4c7c-961c-b6ca1431cee4@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+References: <20260203123503.314755-1-biju.das.jz@bp.renesas.com> <20260203123503.314755-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20260203123503.314755-3-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 26 Mar 2026 10:29:48 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWS4QuPL31T8TGhs_iK3oG0wkRgtoMXF0n0YVBdBJk-ww@mail.gmail.com>
+X-Gm-Features: AQROBzAm_WIhUFg5CDklg-yPQ4dppCZIKqU-HJ1ZQvbi70s_CgoDPHKhQhy0-xk
+Message-ID: <CAMuHMdWS4QuPL31T8TGhs_iK3oG0wkRgtoMXF0n0YVBdBJk-ww@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: renesas: rzg3l-smarc-som: Enable eth0
+ (GBETH0) interface
+To: Biju <biju.das.au@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	DMARC_NA(0.00)[aliel.fr];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281069-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,bp.renesas.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[aliel.fr:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,baylibre.com,googlemail.com,kernel.org,linaro.org,sipsolutions.net,broadcom.com];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-281071-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linaro.org:email,0.0.0.0:email]
-X-Rspamd-Queue-Id: 3BCAB332538
+	DBL_PROHIBIT(0.00)[0.0.0.7:email];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 6297E332683
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/26/26 9:54 AM, Neil Armstrong wrote:
-> On 3/25/26 10:15, Ronald Claveau wrote:
->> Enable and configure the three MMC controllers for the Khadas VIM4 board:
->> - sd_emmc_a: SDIO interface for the BCM43752 Wi-Fi module
->> - sd_emmc_b: SD card slot
->> - sd_emmc_c: eMMC storage
->>
->> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
->> ---
->>   .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 90 ++++++++++++
->> +++++++++-
->>   1 file changed, 89 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-
->> vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
->> index 770f06b0b16c7..5a73ae081036c 100644
->> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
->> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
->> @@ -14,7 +14,10 @@ / {
->>       compatible = "khadas,vim4", "amlogic,a311d2", "amlogic,t7";
->>         aliases {
->> -        serial0 = &uart_a;
->> +        serial0    = &uart_a;
-> 
-> Spurious change
-> 
+Hi Biju,
 
-Thanks I will keep space instead of tab here.
+On Tue, 3 Feb 2026 at 13:35, Biju <biju.das.au@gmail.com> wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> Enable the Gigabit Ethernet Interfaces (GBETH0) populated on the RZ/G3L
+> SMARC EVK. The eth1, pincontrol definitions and hotplug support will be
+> added later.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
->> +        mmc0    = &sd_emmc_c;
->> +        mmc1    = &sd_emmc_b;
->> +        mmc2    = &sd_emmc_a;
->>       };
->>         memory@0 {
->> @@ -159,6 +162,91 @@ &pwm_ab {
->>       pinctrl-names = "default";
->>   };
->>   +/* SDIO */
->> +&sd_emmc_a {
->> +    status = "okay";
->> +    pinctrl-0 = <&sdio_pins>;
->> +    pinctrl-1 = <&sdio_clk_gate_pins>;
->> +    pinctrl-names = "default", "clk-gate";
->> +    #address-cells = <1>;
->> +    #size-cells = <0>;
->> +
->> +    bus-width = <4>;
->> +    cap-sd-highspeed;
->> +    sd-uhs-sdr12;
->> +    sd-uhs-sdr25;
->> +    sd-uhs-sdr50;
->> +    sd-uhs-sdr104;
->> +    cap-sdio-irq;
->> +    max-frequency = <200000000>;
->> +    non-removable;
->> +    disable-wp;
->> +    no-mmc;
->> +    no-sd;
->> +
->> +    power-domains = <&pwrc PWRC_T7_SDIO_A_ID>;
->> +
->> +    keep-power-in-suspend;
->> +
->> +    mmc-pwrseq = <&sdio_pwrseq>;
->> +
->> +    vmmc-supply = <&vddao_3v3>;
->> +    vqmmc-supply = <&vddao_1v8>;
->> +
->> +    brcmf: wifi@1 {
->> +        reg = <1>;
->> +        compatible = "brcm,bcm43752-fmac", "brcm,bcm4329-fmac";
->> +    };
->> +};
->> +
->> +/* SD card */
->> +&sd_emmc_b {
->> +    status = "okay";
->> +    pinctrl-0 = <&sdcard_pins>;
->> +    pinctrl-1 = <&sdcard_clk_gate_pins>;
->> +    pinctrl-names = "default", "clk-gate";
->> +
->> +    bus-width = <4>;
->> +    cap-sd-highspeed;
->> +    sd-uhs-sdr12;
->> +    sd-uhs-sdr25;
->> +    sd-uhs-sdr50;
->> +    sd-uhs-sdr104;
->> +    max-frequency = <200000000>;
->> +    disable-wp;
->> +    no-sdio;
->> +    no-mmc;
->> +
->> +    power-domains = <&pwrc PWRC_T7_SDIO_B_ID>;
->> +
->> +    cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
->> +    vmmc-supply = <&sd_3v3>;
->> +    vqmmc-supply = <&vddio_c>;
->> +};
->> +
->> +/* eMMC */
->> +&sd_emmc_c {
->> +    status = "okay";
->> +    pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>,
->> <&emmc_ds_pins>;
->> +    pinctrl-1 = <&emmc_clk_gate_pins>;
->> +    pinctrl-names = "default", "clk-gate";
->> +
->> +    bus-width = <8>;
->> +    cap-mmc-highspeed;
->> +    mmc-ddr-1_8v;
->> +    mmc-hs200-1_8v;
->> +    max-frequency = <200000000>;
->> +    disable-wp;
->> +    non-removable;
->> +    no-sdio;
->> +    no-sd;
->> +
->> +    power-domains = <&pwrc PWRC_T7_EMMC_ID>;
->> +
->> +    vmmc-supply = <&vddio_3v3>;
->> +    vqmmc-supply = <&vddio_1v8>;
->> +};
->> +
->>   &uart_a {
->>       status = "okay";
->>       clocks = <&xtal>, <&xtal>, <&xtal>;
->>
-> 
-> With that:
-> 
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> Thanks,
-> Neil
+Thanks for your patch!
 
+> --- a/arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi
+
+>  &extal_clk {
+>         clock-frequency = <24000000>;
+>  };
+> +
+> +&mdio0 {
+> +       phy0: ethernet-phy@7 {
+> +               compatible = "ethernet-phy-id0022.1640",
+> +                            "ethernet-phy-ieee802.3-c22";
+
+Drop the latter?
+
+> +               reg = <7>;
+> +               rxc-skew-psec = <1400>;
+> +               txc-skew-psec = <1400>;
+> +               rxdv-skew-psec = <0>;
+> +               txdv-skew-psec = <0>;
+
+txen-skew-psec?
+
+> +               rxd0-skew-psec = <0>;
+> +               rxd1-skew-psec = <0>;
+> +               rxd2-skew-psec = <0>;
+> +               rxd3-skew-psec = <0>;
+> +               txd0-skew-psec = <0>;
+> +               txd1-skew-psec = <0>;
+> +               txd2-skew-psec = <0>;
+> +               txd3-skew-psec = <0>;
+> +       };
+> +};
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Best regards,
-Ronald
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
