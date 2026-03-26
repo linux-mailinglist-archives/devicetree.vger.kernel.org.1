@@ -1,245 +1,354 @@
-Return-Path: <devicetree+bounces-281194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281197-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YGAWFc0kxWkU7QQAu9opvQ
-	(envelope-from <devicetree+bounces-281194-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:21:33 +0100
+	id iA1NHfolxWkU7QQAu9opvQ
+	(envelope-from <devicetree+bounces-281197-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:26:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 504263351F0
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:21:32 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E56513352AF
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:26:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D2E13302EA96
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:18:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E26CE30F5AC3
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:20:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F3163F7A99;
-	Thu, 26 Mar 2026 12:17:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="mTQ5p4Pr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF113F7AAE;
+	Thu, 26 Mar 2026 12:20:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011020.outbound.protection.outlook.com [40.107.130.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E49FD3E7145;
-	Thu, 26 Mar 2026 12:17:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.20
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774527477; cv=fail; b=qhUghRpb2HBsb85o44DFJpo5HoPwtJIYv7HgOqxZEMbZufHKzRjo6447xO4x3UwitH1Yrj+pKpPpWYT63NxH3+rVWfBYxi82fwEi6KvToiEcWyTMwY5ZZi6c4C6D7REbH64h3PHeHboTzTxI81zN4N/maDgLl1jtXbTmL6bBBr0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774527477; c=relaxed/simple;
-	bh=Kp2Z3nXUSnCcVHEi80ape2yS2FkOyTfi254l9bmXCTQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Oq/AXywOUiiBgrComdbTiJgl05JOTgPWyMKqS3Er7p8vVgAWYvqw9hOAT/j8Ib2tbjYstD+II73p8p5QKULi7h8JLF9fpmy8977nw9NdhlJzxrUWTyJFGWmFLb9+PKTOESnNBfjccoJD7cpl2T0X9pxexAc5q5YrifKvz6P/GDo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=mTQ5p4Pr; arc=fail smtp.client-ip=40.107.130.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=p8RbnJtaRcsRYFwcE2E3eJCoiJUoZa3CL/IvQcH5wdIbn9TILXYEZA3rFRnXOgD8IA47iNmba7dYUWPveHrt2/fZFFbI2ILdCNOq+TgYmeCQY5z2Uek9gRbSKSRR+d+O83Ga5rtYsuVodAqee8SulhWWrvpIy+Bwb80LHe7dVbCM7sfUQSqaD72+ZmkRZddyVHY7HPdxa2zzfKbxfFRE2nYa7MEAWL5IVCFaTTysCUhXiCU+IgpniVr+zNz2JCMOFDGd2t3f/j3GnC7frFJvavn6+mXeTmiDEkkr6NB1aYrQfpRzdwRzH/I6fN4mWL01uQNYOf6K9fxNQ9hi1zhLkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VQAQsTMDZkqZ3clNWAoD9Tuqcy8i4qiqZDJqp5x03m4=;
- b=b24Yil4nl1GicVjCuwyUIJqXOdow3NAwwlk688RNIAzYNpvUmdrAs2uTDne8ewTHeeJqy1p6tueHb1yn5AiSj2Sv+XDGUz/TfQl1UZ5raU3W98IAFC1r0zLh2CBMFokK8qNvKTQQCw52ZbP8gzIH2xyXSDvM5w/VflvegHxVuX7OxvvGEs1SwbLyCUFLn++tTyjhbDSa0B3D+FeGNcblKeXhcgeLUlhl0jO4r8Yj33vnr5TX1W/bF5db/2wfnZUwc+A8x3r/9XoswXKP0oH3rFwzAOwBxTOXsRVRYUaR6dTj4VaR+rg5a+H6NTzs0WOyn96NHDNbHj9FQFN/g0/A3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VQAQsTMDZkqZ3clNWAoD9Tuqcy8i4qiqZDJqp5x03m4=;
- b=mTQ5p4PrqzIBNrgeOaaGDzVUwzVNPrY3m61MjfPBSNur+Oykciam07+VOjgw0o/0Y+I2vWbl4PpmXdu8PzQxsatFjGqcYHVpYHnoE5W2bhYnN+cvo18pqODdpsuJTU4YWAWDasrVgmTUm8lghG50s/GKhd3wgp8QPTywbjVOGITuP4c+UQQglxRyBla/I7M9xa3osesCUN9beEWJAU4xhTtODRyB5XsuGTT5l01AoCwymIW6HSv99rB3EFAL6hsZSVZf/8dd2yWtj73Y+LEyeaMHJhWUSQ9zHXln/Pbo1tUg+ZAveTF1W2lncS34DEMGRILWyBxAm88Ngbu/468UYQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by AM9PR04MB8809.eurprd04.prod.outlook.com (2603:10a6:20b:408::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Thu, 26 Mar
- 2026 12:17:52 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::4972:7eaa:b9f6:7b5e]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::4972:7eaa:b9f6:7b5e%3]) with mapi id 15.20.9723.030; Thu, 26 Mar 2026
- 12:17:29 +0000
-Date: Thu, 26 Mar 2026 20:20:00 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Daniel Baluta <daniel.baluta@oss.nxp.com>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 0/4] Add i.MX94 remoteproc support and reset vector
- handling improvements
-Message-ID: <acT7VJP0vZ7bT9mk@shlinux89>
-References: <20260312-imx943-rproc-v1-0-3e66596592a8@nxp.com>
- <b5e05fe6-97c4-40cd-b7cc-b417d8717aec@oss.nxp.com>
- <acFPGVNOornxsPG6@p14s>
- <80c7815b-26d9-4876-a44f-3e17b6338dc6@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <80c7815b-26d9-4876-a44f-3e17b6338dc6@oss.nxp.com>
-X-ClientProxiedBy: SG2PR02CA0084.apcprd02.prod.outlook.com
- (2603:1096:4:90::24) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C94E7347530
+	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 12:20:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774527645; cv=none; b=gyrdgMAec7+z92afYP/GyZHbIjxYoM9Muwely8WAQnZdNVYGbLnkKGd1kWTJJAEPeDbuU+lS+dpRMACjd6vBxcP8iImdd0DYoLmihDQHP3RAQukfgvWquHD8mLWq+adDe00HYS5Fi9yhZlZ/XFgHt5BveLxuy9LkvKSNIBrQjJo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774527645; c=relaxed/simple;
+	bh=SjA50/xzPCzBZpeiNlpZ1frmsgq4yd5aqt5t9Ve+hv0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gO0qX17jsg+rwwl/LN+0GuKBG3FHcPts+338EzYZczW7dQcrb/O6IvVWv8lU/UYUnTRO0vjYU0HTlqyjEqRQ92cOPbLLKENSbS1J0n6Irvogi3jnMX5e4D/dQxE6obCwFCJCd9BJEP13CEB7/huYVeNe32ld2rKLNPCv3wAJw2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-79ac94fc3ffso9356317b3.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 05:20:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774527643; x=1775132443;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=a7OU8fAyOGvGnQIm42e3kymPTmEmyDZVdHe89ZVPV8s=;
+        b=sf9Tk4Ak/9hfMRh695riVcFU+nwPUNAE17sLe3/6xSpXoHNngxgdhV+ufJwHyF3+nC
+         FRMHc3VJo7mnWshN5YPLInpbYKy/Ia7uUeWOb3bdM1uIoCB96nVDoN8i/kaO26hfxlEL
+         bvGkVQwgarfwuvs7qnqe1Gh3ynfTHCa2XC+ps8tRd+ZtL86s9b7BtsXfhvTDnSABeleQ
+         ZTvQ27PWsVHTjxJi2sAEX0vVW0XXroRFpUwlmq0RJxdszO1Wzb3HEvu5DbVMcAL18tWZ
+         smObuFpxRD5deLm+mUVsqDdXTc5Ty4nvEwkD+jO62aVQIAMtEnulKvpc91sRDCUisojG
+         cpxg==
+X-Forwarded-Encrypted: i=1; AJvYcCV9HVuzYEiuJn+weoyM2xSLxrfZe5z+rCzGdlbIeMvX1bZAqHYAYskLXr/VXJzKm6EiXq4u/DBCRrOE@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKEWBUTAacGiFUT4U4NDXnl6Uat8A1UnAWU11c6+nyyG96DPyo
+	kcsL70B5Z6izszd25PsXZ448mj2BV8BtQEpwNwHnCLZtmj3ChI95i7WJBBvK/IaP
+X-Gm-Gg: ATEYQzzXXf92ImJ+/D4eWbTd6u3JkSYdp27G+EeIdtOpjjQa5g+pU5PNXND5klSJW1e
+	08I/TfvAfk2keSa6A1RK9hSLdw5mEtjdC4DvN5oTKQT7qStO/4eGsaF+NJrEtnpVavSdWTipfcN
+	5eTtUnZ9uM34Hq2TtauvPvjDYMq4kDEBLWNjynjaFyUGGjJLZwZAouZRpzlK5Qcb+3AxmRjmEeN
+	BgQ3i+h+8aJeevXOTWcXGmBIyyxhQWLAhXX6nOVSYopHIZB7A+4hvtlEdajmVRdXofoeY/UuGop
+	+CsSPe/I0Ney+rpvwcq+W/1DWORkoWaPmD1Nu63rPcmI/zSF2q7rLuOW6cEnlKWQTabG1wJarT9
+	Mk8BX/M2X5kucAt+2PFwyYt4xSylGKUVG0ZsZrqlkfJiWJuHHBT51MSCo7WHXrs58EHujQ3UhL4
+	j//Uogk9EHGhgMJPU03GYSZBdbSbGZ3jqTzdu9b4vecbmQdEIHX33CsvTJ3T6GzMOlciHCcOkhW
+	/yDJJYsWmqmq7sMxmJG8nDWfyIr/ki2Y+gFMDpCSw==
+X-Received: by 2002:a05:690c:d89:b0:79a:b9a5:9e85 with SMTP id 00721157ae682-79acf2e8b32mr73579517b3.2.1774527642420;
+        Thu, 26 Mar 2026 05:20:42 -0700 (PDT)
+Received: from mail-yx1-f43.google.com (mail-yx1-f43.google.com. [74.125.224.43])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-79b1e400dd9sm12005967b3.39.2026.03.26.05.20.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Mar 2026 05:20:41 -0700 (PDT)
+Received: by mail-yx1-f43.google.com with SMTP id 956f58d0204a3-64ae222d978so956354d50.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 05:20:41 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWCUhOVRWVyMgz0mu7tcwqyWdVAYXOyg7JWyo45KXql4iC890JbLjrrGqi+jRClbL/nG1hD0HCr/c1Q@vger.kernel.org
+X-Received: by 2002:a05:690e:408a:b0:64e:e74c:76b with SMTP id
+ 956f58d0204a3-64ee74c0e9dmr6490680d50.37.1774527641472; Thu, 26 Mar 2026
+ 05:20:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|AM9PR04MB8809:EE_
-X-MS-Office365-Filtering-Correlation-Id: 205a8241-e28c-476e-d022-08de8b31a63e
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|7416014|376014|19092799006|366016|22082099003|18002099003|56012099003|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	0QwBigSm9KNvppmbsNBLyalN28L9Mdph99GWKYDfC7OcIruuaa7oWVovNDp41q5RyF3mlyBAd4ezgkn3TqKD31RZZ2n1Z7aUUzk5pueaUYnC3v32fFUuaE4iDoMhXFoXTkO8CnwxKeOiYp1hbzhEDOksCD0/GW+EwS2ESMxpu+M2XhJIIxMdj2JVF32IAYNALNWmK2hZLXE7R2xtE+fnBKBsfs8eV6ZlaA5YH6R9akX90qNW7b6VSiq+zOVJMmfCzOmK4Ly0KoSN9hlkQ6nDP212iOh1WkUPBuoNzoiJISZDETZY2WUtxQFV+kypVuOc3RjmdIsb/wmqY83ux3FXlXOMbB/UXXwY4PIsvwGRCCJLGKLO2HuhAzhRRmouZ+vOLpz4BomepA9QfRKW3cOiHm4MpX1c2SidPOQrAvUz3RpHcdEcqLjM1c9dCTyONgrnQclAT/sCgVfpxA2uh+dTaRemJS3ZUxtDi73e5z2cUJJtJng+6O1ianT+nQsl0uqfzkKm8vEFXyGwVmVYIUjR0eogoDb4NCrkUgtbmLYEN0eZVfatBknCCMzj5Y7NL9fE7D5j84EdtHKZSGRR4NGVTd5ccMwKQtD2IMMnMa//jSyFVXvrGFifR59SOKOVlAfo8Vc0M5sbRVmORLaxVFyY1DbJLK1QNN1Pz65mVlnNFdEkdYu+pWLuqi2cfHZec0IUxTSI+jBIJPLK/Fe9TpkVDOjw0DT88K+EUwPU/fmoBB36IrjTITzYNg8ioGm4sgA5
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(7416014)(376014)(19092799006)(366016)(22082099003)(18002099003)(56012099003)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?MG43VXZMR1RITmpFZGJjaXc1TXJKZHBXMURtVjN2M0o0RVJXbFpSaG51bjl5?=
- =?utf-8?B?VjlSZ3FDTkhsZGRhOHVrMWVSbEV4bGQvaTgzaDlPTkEyS1BUNm1UbXMvcWs1?=
- =?utf-8?B?T041NWVoakxiWWNaVTBmNEFMSnhnOFFOeGdpbDM1NkRCNmZFYTRRV09CMWxS?=
- =?utf-8?B?bUhZQ0VyUk9ZUlY4cC90aElnTzZTZ08xRkFMZjM4NUdSYjlmNnNNb3hyNXZC?=
- =?utf-8?B?UEd5ejd4amJPd1pyd1hMRnZUVDZVUnRqcnF1V1BCRjFVSElYcnFicEJ5Rzhn?=
- =?utf-8?B?RGErSHRlb2NEY2Z3cFl5TmZONmFoOGpMYmcxZVk5ZmFuOGJLVVRpR3p6dTJr?=
- =?utf-8?B?VGI2S2xLU3VScVlNOC9OQ2JkZ0lQRnpUVnI0bkZmZWhPMFhJbzRReU5GcGtN?=
- =?utf-8?B?MUhaS2QwL01TcWcrbk51MHhEYkdSSHIwMm5wV2hyUFpTSFVxR3NnRWJxQ1Jx?=
- =?utf-8?B?NEF5SGRKYmwzTjYxNUQxTzE2Rld0YTNqeXZDMkM1OFY2aW03V0ZCTGQ3bTEx?=
- =?utf-8?B?YVZBeE50N0RtanViTHRsb1NUTkEwaXpiSFl6Z3lYZTJydXVUNGx0NVd0Ylgy?=
- =?utf-8?B?cGVLaS9DeFlwcDBPN214WGhueTF1OVdOTHBFdVhlQ3pEMGJnbDBSQzhaL3V0?=
- =?utf-8?B?UVMzV2xaQmp5Y0NBeUNWTTFkYmpRVHV5OUpPTVlsemM4Y2lMMWhIWXlJRmdz?=
- =?utf-8?B?MXVIZHRnTEo0UWZhZ0tuWlQxRkRqdzQvT24wakkxVlZaMFVUT2ozNEZNOXZk?=
- =?utf-8?B?Z0VMVE9oR1R5STB4YzhJeUxBbEVIdWtmbERla21WcnduSURVRjMrSzhITFpk?=
- =?utf-8?B?RlFCbkwvQXJXVTNMUk45TGdodFJIamRTcTc2TkhEMVhkTXhkUEJXdkhKVzZY?=
- =?utf-8?B?cTRMN0pITjZUL2x6L0xvOUdIOGlqek9GTlhKT0NjMVU3cFdGWGxib0NEZy9G?=
- =?utf-8?B?Q2VSY1lEV3FNd0xibmhwUmhWN0gvZVJMc1YxczE5Y1Q3NWxnSWNYV2NreUxU?=
- =?utf-8?B?bDgvbDliQ0c5K291K090MkdqSGxreThUQ2lFL25Qb0ZMQkRUOERLN2hEQXB5?=
- =?utf-8?B?dU5XcHVZR3k4L2xNeWhGOHZFZlpoL0xzcVE0L0hpbEQwNnV0VGUrUER4OW5o?=
- =?utf-8?B?akZ3Wk9DeC9ZS0M0N2dBZ2VQb2RadjMwcFlZeVA3c3p0NlN1RzhocG5scGRO?=
- =?utf-8?B?cXdocG9NM1RGQVRKM3dtemR5SEg0cHVaZ0NIWFpXa0dsa2ZLWHloZUlZRUVN?=
- =?utf-8?B?YXU5cFRzWFNPdlFOU1ZaUVVzQUFhQnNBOTZxUlNFdHd6QXFZTTFzN3JCV21W?=
- =?utf-8?B?VjNMTzJORUQ5cHhaRFdkWVZYRkMySnRSNWpUS1FEZFppamc1TkRxRW5JMW12?=
- =?utf-8?B?K01QbTM2ZEZLOWpnL2lKd2FYdWt3T1BZcittVjB3M3oxTXhOWTE4elJCZHlt?=
- =?utf-8?B?S0dQU2RYalhDSUxoVFNkRGpPcldvb05Wbko1YmNDN2ZRUi9HZURZUUlFSk9t?=
- =?utf-8?B?YzJ3ZTRybDNBU2RrV0hlMnUwcXZDWEp6NVJYMlZkQ2hYdnFSU1JMU1plejRq?=
- =?utf-8?B?Nm9NZmFWTkZpMEpScnM1R1l3b0N6L1RUVzl0aVhpN1puTlhxVHJ5bjJlVlB5?=
- =?utf-8?B?L1hZUzRXWS80NXdWQTFnQktONzdxaytBcUJsK1dabkRscXI5a05VT2lGeHNv?=
- =?utf-8?B?c0xZUXQwY29sYnVGazAyaGQyUzVsbmxOOWpXTTA0a0VKTFhxcFM1LzYzS093?=
- =?utf-8?B?ai94cEpQczI2d0xPNUoyMnFMaFlVY3E2UnJSNmJaeHhNeUkwM3htdXRLK1hz?=
- =?utf-8?B?UWsxbm9PWWJnczdhblZiano5WThaT0w0MzlIZkd0endFUnBZSHVuaXZVeExE?=
- =?utf-8?B?TC95OWVpU1RhRklTZlRlZjFvMDR3NSs5eGE3Qm9JaFJNYXIrc0s1bUdKelRU?=
- =?utf-8?B?VWdpdWM0MWdNeEoxVm5uSXp2MTFLaERUUHp0bDQ2aTExdURrM0l5aE9vRTho?=
- =?utf-8?B?bXVoTTNxQTdTem9wOXZxQ3JVUUJVUlJCTVpuQVFhbEJLanRXLzNDUysyVWlJ?=
- =?utf-8?B?ZXYwY3d5bDF5bE9ScVl6Wjg3MXhoNDluM0pCNnlHVExzd2tKbE9XZTd6Zkp0?=
- =?utf-8?B?QllQSXpnUWhmbmRONXp4KzB1VHAzRGljMnRBL0lwcHRwTitVMEJ3cjdueHBU?=
- =?utf-8?B?NVFOcEt3SEdiMW1UV0lhNndUb1ZtQWUyOFlQUzBjcVlEbTNjcGJjWHNnbWo4?=
- =?utf-8?B?RjczWWphNnc3QndRQlR4b2duTU1XWEcrdXBiUml0WEErMHJVTm1rWUp6SDNN?=
- =?utf-8?B?YzdlTmlRZGp4amtpdDMzNW1vcDZlaU9zZkxsZWdWOFBpYkJ0OGxmZz09?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 205a8241-e28c-476e-d022-08de8b31a63e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2026 12:17:29.5490
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4sSpqMuX+BrUsJIV9B/93WvN07TfjQPVmdALqvhW6pYgoelaALyVaZKFY5UL32Ke219G4t4kZQWJuBZgL4ZZgA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8809
-X-Spamd-Result: default: False [2.44 / 15.00];
+References: <20260325202005.29822-1-email@sirat.me> <20260325202005.29822-3-email@sirat.me>
+ <acUHDGUqg4RdI7fW@ashevche-desk.local>
+In-Reply-To: <acUHDGUqg4RdI7fW@ashevche-desk.local>
+From: Sirat <email@sirat.me>
+Date: Thu, 26 Mar 2026 18:20:30 +0600
+X-Gmail-Original-Message-ID: <CANn+LW+26VVCvr1aaqgBc8OiY7-OM8K_vWYN7wz=8-S4ChTPyA@mail.gmail.com>
+X-Gm-Features: AQROBzCbsxKRoKqt2OgrX0C5boggozm_EFZh5iePbC7NZOX5nXS6PRubvYu5qvA
+Message-ID: <CANn+LW+26VVCvr1aaqgBc8OiY7-OM8K_vWYN7wz=8-S4ChTPyA@mail.gmail.com>
+Subject: Re: [PATCH v8 2/2] iio: proximity: add driver for ST VL53L1X ToF sensor
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, jic23@kernel.org, 
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281194-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[NXP1.onmicrosoft.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 504263351F0
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[sirat.me];
+	TAGGED_FROM(0.00)[bounces-281197-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[email@sirat.me,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: E56513352AF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 25, 2026 at 10:41:29AM +0200, Daniel Baluta wrote:
->On 3/23/26 16:32, Mathieu Poirier wrote:
->> On Fri, Mar 20, 2026 at 11:19:06AM +0200, Daniel Baluta wrote:
->>> On 3/12/26 14:36, Peng Fan (OSS) wrote:
->>>> This series adds remoteproc support for the i.MX94 family, including the
->>>> CM70, CM71, and CM33S cores, and introduces a new device‑tree property to
->>>> correctly derive the hardware reset vector for Cortex‑M processors whose
->>>> ELF entry point does not directly correspond to the actual reset address.
->>>>
->>>> Background:
->>>> Cortex‑M processors fetch their initial SP and PC from a fixed reset vector
->>>> table. While ELF images embed the entry point (e_entry), this value is
->>>> not always aligned to the hardware reset address. On platforms such as
->>>> i.MX94 CM33S, masking is required to compute the correct reset vector
->>>> address before programming the SoC reset registers.
->>> What happens if the reset vector is at 0 and the e_entry point is at 0x800...?
->>>
->>> In this case masking will no longer work! Can we implement a generic approach?
->>>
->> I will wait to see an R-B from Daniel before looking at this set.
->>
->> Thanks,
->> Mathieu
->>  
->>
->Hi Mathieu, Peng,
+On Thu, Mar 26, 2026 at 4:14=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@intel.com> wrote:
 >
->Patchseries mostly looks good to me. The only blocking issue here is how to correctly specify the hardware reset address.
+> On Thu, Mar 26, 2026 at 02:19:42AM +0600, Siratul Islam wrote:
+> > Add support for the STMicroelectronics VL53L1X Time-of-Flight
+> > ranging sensor with I2C interface.
 >
->I see two options here:
+> Some ideas for small followup amendments.
 >
->1) Create a special section in TCM that holds the PC/Stack initial value as concluded here [1]. But this
+> ...
 >
->doesn't work in all the cases 
+> > +#define VL53L1X_REG_SOFT_RESET                                        =
+       0x0000
+> > +#define VL53L1X_REG_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BOUND            0=
+x0008
+> > +#define VL53L1X_REG_VHV_CONFIG__INIT                                 0=
+x000B
+> > +#define VL53L1X_REG_GPIO_HV_MUX__CTRL                                 =
+       0x0030
+> > +#define VL53L1X_REG_GPIO__TIO_HV_STATUS                               =
+       0x0031
+> > +#define VL53L1X_REG_SYSTEM__INTERRUPT_CONFIG_GPIO                    0=
+x0046
+> > +#define VL53L1X_REG_PHASECAL_CONFIG__TIMEOUT_MACROP                  0=
+x004B
+> > +#define VL53L1X_REG_RANGE_CONFIG__TIMEOUT_MACROP_A                   0=
+x005E
+> > +#define VL53L1X_REG_RANGE_CONFIG__VCSEL_PERIOD_A                     0=
+x0060
+> > +#define VL53L1X_REG_RANGE_CONFIG__TIMEOUT_MACROP_B                   0=
+x0061
+> > +#define VL53L1X_REG_RANGE_CONFIG__VCSEL_PERIOD_B                     0=
+x0063
+> > +#define VL53L1X_REG_RANGE_CONFIG__VALID_PHASE_HIGH                   0=
+x0069
+> > +#define VL53L1X_REG_SYSTEM__INTERMEASUREMENT_PERIOD                  0=
+x006C
+> > +#define VL53L1X_REG_SD_CONFIG__WOI_SD0                                =
+       0x0078
+> > +#define VL53L1X_REG_SD_CONFIG__WOI_SD1                                =
+       0x0079
+> > +#define VL53L1X_REG_SD_CONFIG__INITIAL_PHASE_SD0                     0=
+x007A
+> > +#define VL53L1X_REG_SD_CONFIG__INITIAL_PHASE_SD1                     0=
+x007B
+> > +#define VL53L1X_REG_SYSTEM__INTERRUPT_CLEAR                          0=
+x0086
+> > +#define VL53L1X_REG_SYSTEM__MODE_START                                =
+       0x0087
+> > +#define VL53L1X_REG_RESULT__RANGE_STATUS                             0=
+x0089
+> > +#define VL53L1X_REG_RESULT__FINAL_CROSSTALK_CORRECTED_RANGE_MM_SD0   0=
+x0096
+> > +#define VL53L1X_REG_RESULT__OSC_CALIBRATE_VAL                         =
+       0x00DE
+> > +#define VL53L1X_REG_FIRMWARE__SYSTEM_STATUS                          0=
+x00E5
+> > +#define VL53L1X_REG_IDENTIFICATION__MODEL_ID                         0=
+x010F
+> > +#define VL53L1X_REG_DEFAULT_CONFIG                                   0=
+x002D
 >
->2) Add a per device data that holds the hardware reset mask that gets applied to entry address read from ELF.
+> Keep the list ordered by the value?
 >
->I'm fine going with option 2) and that's because this change is IMX rproc driver specific, it scales well and will be maintained by Peng.
+> ...
+>
+> > +static int vl53l1x_chip_init(struct vl53l1x_data *data)
+> > +{
+> > +     struct device *dev =3D regmap_get_device(data->regmap);
+> > +     unsigned int val;
+> > +     u16 model_id;
+> > +     int ret;
+> > +
+> > +     if (!data->xshut_reset) {
+> > +             ret =3D regmap_write(data->regmap, VL53L1X_REG_SOFT_RESET=
+, 0x00);
+> > +             if (ret)
+> > +                     return ret;
+> > +             fsleep(100); /* conservative reset pulse, no spec */
+> > +
+> > +             ret =3D regmap_write(data->regmap, VL53L1X_REG_SOFT_RESET=
+, 0x01);
+> > +             if (ret)
+> > +                     return ret;
+> > +             fsleep(1000); /* conservative boot wait, no spec */
+> > +     }
+> > +
+> > +     ret =3D regmap_read_poll_timeout(data->regmap,
+> > +                                    VL53L1X_REG_FIRMWARE__SYSTEM_STATU=
+S, val,
+> > +                                    val & BIT(0),
+> > +                                    1 * USEC_PER_MSEC,
+> > +                                    100 * USEC_PER_MSEC);
+>
+> Use logical split
+>
+>         ret =3D regmap_read_poll_timeout(data->regmap,
+>                                        VL53L1X_REG_FIRMWARE__SYSTEM_STATU=
+S,
+>                                        val, val & BIT(0),
+>                                        1 * USEC_PER_MSEC, 100 * USEC_PER_=
+MSEC);
+>
+> > +     if (ret)
+> > +             return dev_err_probe(dev, ret, "firmware boot timeout\n")=
+;
+> > +
+> > +     ret =3D vl53l1x_read_u16(data, VL53L1X_REG_IDENTIFICATION__MODEL_=
+ID,
+> > +                            &model_id);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     if (model_id !=3D VL53L1X_MODEL_ID_VAL)
+> > +             dev_info(dev, "unknown model id: 0x%04x, continuing\n", m=
+odel_id);
+> > +
+> > +     ret =3D regmap_bulk_write(data->regmap, VL53L1X_REG_DEFAULT_CONFI=
+G,
+> > +                             vl53l1x_default_config,
+> > +                             sizeof(vl53l1x_default_config));
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret =3D regmap_read(data->regmap, VL53L1X_REG_GPIO_HV_MUX__CTRL, =
+&val);
+> > +     if (ret)
+> > +             return ret;
+> > +     data->gpio_polarity =3D !!(val & VL53L1X_GPIO_HV_MUX_POLARITY);
+> > +
+> > +     /* Initial ranging cycle for VHV calibration */
+> > +     ret =3D vl53l1x_start_ranging(data);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     /* 1ms poll, 1s timeout covers max timing budgets (per ST Ultra L=
+ite Driver) */
+> > +     ret =3D regmap_read_poll_timeout(data->regmap,
+> > +                                    VL53L1X_REG_GPIO__TIO_HV_STATUS, v=
+al,
+> > +                                    (val & 1) !=3D data->gpio_polarity=
+,
+> > +                                    1 * USEC_PER_MSEC,
+> > +                                    1000 * USEC_PER_MSEC);
+>
+> Ditto.
+>
+>         ret =3D regmap_read_poll_timeout(data->regmap,
+>                                        VL53L1X_REG_GPIO__TIO_HV_STATUS,
+>                                        val, (val & 1) !=3D data->gpio_pol=
+arity,
+>                                        1 * USEC_PER_MSEC, 1 * USEC_PER_SE=
+C);
+>
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret =3D vl53l1x_clear_irq(data);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret =3D vl53l1x_stop_ranging(data);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret =3D regmap_write(data->regmap,
+> > +                        VL53L1X_REG_VHV_CONFIG__TIMEOUT_MACROP_LOOP_BO=
+UND,
+> > +                        VL53L1X_VHV_LOOP_BOUND_TWO);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     return regmap_write(data->regmap, VL53L1X_REG_VHV_CONFIG__INIT, 0=
+x00);
+> > +}
+>
+> ...
+>
+> > +     if (data->irq) {
+> > +             reinit_completion(&data->completion);
+> > +
+> > +             ret =3D vl53l1x_clear_irq(data);
+> > +             if (ret)
+> > +                     return ret;
+> > +
+> > +             if (!wait_for_completion_timeout(&data->completion, HZ))
+> > +                     return -ETIMEDOUT;
+> > +     } else {
+> > +             unsigned int rdy;
+> > +
+> > +             /* 1ms poll, 1s timeout covers max timing budgets (per ST=
+ Ultra Lite Driver) */
+> > +             ret =3D regmap_read_poll_timeout(data->regmap,
+> > +                                            VL53L1X_REG_GPIO__TIO_HV_S=
+TATUS, rdy,
+> > +                                            (rdy & 1) !=3D data->gpio_=
+polarity,
+> > +                                            1 * USEC_PER_MSEC,
+> > +                                            1000 * USEC_PER_MSEC);
+>
+> Ditto.
+>
+>                 ret =3D regmap_read_poll_timeout(data->regmap,
+>                                                VL53L1X_REG_GPIO__TIO_HV_S=
+TATUS,
+>                                                rdy, (rdy & 1) !=3D data->=
+gpio_polarity,
+>                                                1 * USEC_PER_MSEC, 1 * USE=
+C_PER_SEC);
+>
+> Yes, in this case they are slightly longer than 80 characters. But
+> looking at the above this entire call should be a helper, so you can
+> reuse it here and above.
+>
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
+>
+Hi Andy!
 
-Thanks, I will go with option 2.
+Thanks for the review again. I will send a small separate cleanup
+patch for this once it gets to a more stable stage.
 
-Thanks
-Peng
-
->
->thanks,
->
->Daniel.
->
->[1] https://lore.kernel.org/linux-remoteproc/38476dd0-07a6-310f-1fba-2b3021a5b007@kontron.de/
->
+Sirat
 
