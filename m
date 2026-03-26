@@ -1,812 +1,234 @@
-Return-Path: <devicetree+bounces-281396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281398-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4EJ3OPubxWnP/wQAu9opvQ
-	(envelope-from <devicetree+bounces-281396-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 21:50:03 +0100
+	id wFAEGMicxWnP/wQAu9opvQ
+	(envelope-from <devicetree+bounces-281398-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 21:53:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A0733B907
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 21:50:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF90033B980
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 21:53:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4217D3081BDF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 20:45:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6FABF306A953
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 20:50:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B55F3A6EF9;
-	Thu, 26 Mar 2026 20:44:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F87637882B;
+	Thu, 26 Mar 2026 20:50:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tinyisr.com header.i=@tinyisr.com header.b="ZtfQqevE";
-	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="tivCmOZ7"
+	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="JASJfDzI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11022114.outbound.protection.outlook.com [40.107.209.114])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D18B73A6F1C
-	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 20:44:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774557898; cv=none; b=GJD/FODrHjaYjjyNOeLjl3wj0icr9bFXlzAYeBNOU5cEo0TdccNSA08kJkme3avjzME8jYgq2d5LW6FBrrad2jAXdVVAOaIIjmK3Fja2Zsu33E/dQMsrITlY5UyvzjYmRXT+Mn7VsRjn4V3+AE2NrCptcyFPlUM4S7X7Tg3lVeo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774557898; c=relaxed/simple;
-	bh=SkahBgnIniEZDix2ESYC1gkBOcdSCs5IHBK6BEAuKaQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hoAZvLyp+6qMGyGvLDWHXr1xJn8KNBZDSCaolft3+AnbcWk5983IIQiLmEKhb2jVO5+HdqKKcJ/JqUQpefTXZ81pmq+X6LFJBPt7/PnKxTrYBEpMaU9nDggVHEUO5rflf1unq7ybIXxAr1MOjGxQk7P2l4ZWYC+oB7CrFqR6wKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=tinyisr.com; spf=pass smtp.mailfrom=tinyisr.com; dkim=pass (2048-bit key) header.d=tinyisr.com header.i=@tinyisr.com header.b=ZtfQqevE; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=tivCmOZ7; arc=none smtp.client-ip=34.202.193.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=tinyisr.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tinyisr.com
-Authentication-Results: purelymail.com; auth=pass
-DKIM-Signature: a=rsa-sha256; b=ZtfQqevEH/eddWxwOSOedvV8HGkaNOMpwSmbKikt5SYNLXsGOvs25LXeIx15v2FPtZegbb6JXM0dztyjfHSPBH4HTKuIng3a38+qW50WVjEZxSh8RVsOCSuo1t3aTZadoaguyafpP3KTVQVTgY3b4CWys5k2OhjEqRsm+5ErXD7sZnoAJZ8nkU9qyXUy1XnFOGElHFOmhMJjkZmjoS1JfGtmoRpChsJG74zRXsCihIIH+bwms0qdCevp8icVeUzPsQtNtAMX81znvkAHrIjqb6vSh2Sy0h0eKBJe7NKsTi5EmE6kQRdcg7eFLCwLC8nJd7dThA+4B+7Td+9UiiwcJg==; s=purelymail1; d=tinyisr.com; v=1; bh=SkahBgnIniEZDix2ESYC1gkBOcdSCs5IHBK6BEAuKaQ=; h=Received:From:To:Subject:Date;
-DKIM-Signature: a=rsa-sha256; b=tivCmOZ7ORj80ALwkrkhaAQUF6iROpkTleY8cUN0f2D7nk7L6mAe5D0oJ1xl/neVNGaVvfcIXYsGJv93jwLLIblZZFXegITxkstANfPAIWI6PzLZY4Bor+RaZ3EMGIhiDcMa95/sTOrOJ2HoN+3spQp+maVoLwmNBWkpQxYCVq66n1PxrdvoCPREiZArGcqnABAjyRat4BteNyYw4WOyyUI1AC2Xwgl1G3k5vyPXROr6X3XrhNHeWb/lvAtyRyfOGprzHFl2YUC91WEJHGJ8yOm1oo+LNu2115jhhVpT9ReqfNuFHiwSrKhkB78X3GjU7JB/owUqac+2SYF/DeVsNQ==; s=purelymail1; d=purelymail.com; v=1; bh=SkahBgnIniEZDix2ESYC1gkBOcdSCs5IHBK6BEAuKaQ=; h=Feedback-ID:Received:From:To:Subject:Date;
-Feedback-ID: 99681:12517:null:purelymail
-X-Pm-Original-To: devicetree@vger.kernel.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 1206586277;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Thu, 26 Mar 2026 20:44:38 +0000 (UTC)
-From: Joris Vaisvila <joey@tinyisr.com>
-To: netdev@vger.kernel.org
-Cc: horms@kernel.org,
-	pabeni@redhat.com,
-	kuba@kernel.org,
-	edumazet@google.com,
-	davem@davemloft.net,
-	olteanv@gmail.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joris Vaisvila <joey@tinyisr.com>
-Subject: [PATCH net-next 4/4] net: dsa: initial support for MT7628 embedded switch
-Date: Thu, 26 Mar 2026 22:44:13 +0200
-Message-ID: <20260326204413.3317584-5-joey@tinyisr.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260326204413.3317584-1-joey@tinyisr.com>
-References: <20260326204413.3317584-1-joey@tinyisr.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8306322A00;
+	Thu, 26 Mar 2026 20:50:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.114
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774558252; cv=fail; b=mo3GXPiZTpqHdVZjq1d16sRV2mC8QB/eTN1e4TYc824OboytE6DcsemvJ4N0ROg2Z3od1khCg4WeonYgINfFw959W53N2vyHFg984KPuX+6//W9riPeP4FwZGOQzuxPNQPZo7d0DSy51cS+PY0E9JRwK2hYDh4oVGelHSeyD3u0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774558252; c=relaxed/simple;
+	bh=ZNaep1lITPb7F9sckJ65mbAUwj0yvfIP1HUHr+/lKK4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=nJcLGRsC6SIbU247aubNbjqQuci2RkrY3LddidbnYoNetBgFlmxtMH3PkpdWzbxP2pkFqFMr2+e7NAgqdVhu1bHpwmf7j+jHTMB45beBp+H3Ov3cxi2qHsl7I1FECE0GdNmOn1TTzYomCdvyQoXPvLd3LyBfmr9/EDGwzE/R7Uk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=JASJfDzI; arc=fail smtp.client-ip=40.107.209.114
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QxSWYwcjXJfDKqTQybwmB4gE2w/ezxZkT8CJJIhJkL8DAcyzTbFKkl6ImXouvidPaTz6T5Lxt++GTc334VnoNzka9Blb9O1eo+E6VXHLPGaXrI5bkvQtiZ6UgumRc9ZWwmaVtEwy0QuoTS5vwp0ngrHBJ6MEjpfC8xYVmuNyYRsgueDEMpw94iNcqKDU8WFr69BqpGd4g5vDZQ01/Wp9ptrxtIqrFvs0ZT8o17Yb9W5qD8ECKK3DDMKAECEIOw9jBczkfSXkAZ9I8IYMLU6oe5f2omA4Imq+atbyAvsxZcMd+vP0i3rUoKKqpAEDdOuOylZCHt9GPN1PRLDPcf6WxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GIx4hxBOGv1Bm0fV7N2JMmMymCzgF9ipa7WMznKwBgs=;
+ b=hkT6TldwoUo53OGHDJGmBQIyYrjKuaiintS42g27sPqpxY6hMhKIY4+kb7OyxQvZe8RkgoGu9LQjUEOCm9+ssbHwmGzBzmTZrSZUZ46f+4G8Ap+qGXLWsUGHNOJSBij07xWSDgYLc7xVTGBwhcls8i8cIq98Qr/Oec3KLSjFvY/FUgxdFkPedhGEhLHlQBcVWsNQHWvSqmNQIakc5DCkcnDigSlsNjLWlgYtKRae2VwmZiTYVzAd0IxSclPmwY4cnT8IttloBphxrkssfacUEifuFytugNGVu04WFsMhNVMZ+9vZigKnoKWTZcLKw73PwEmhDKJb4AkdTmBYELKP0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 50.233.182.194) smtp.rcpttodomain=arndb.de smtp.mailfrom=axiado.com;
+ dmarc=none action=none header.from=axiado.com; dkim=none (message not
+ signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GIx4hxBOGv1Bm0fV7N2JMmMymCzgF9ipa7WMznKwBgs=;
+ b=JASJfDzIm3IlBsdW6Jqb68jhdzok/52kj9zAh5kV60Dqte9rVySeJpdRCyXMcJmhbUWwzXI9Qrjh5neApqI1vuz9fZJosVaJdLGyr+F3rd4qhiEmcIMBvQbSrTYn8rHSDnuplC+Tyln8SgMdewQoBMEf2JfQUb9RJIH80ot4mnmv9ChWiJYRpcxMRSe8MRrLyxuIAl65GBV/x8XgMbTydtPFkdI/IsqiTbtTomrCZNteFCEi7gSR5De8EnZ3Z/jPnNzi2+cUjdyX3lY+LECFBje3CxbUZcuGAvq57+kVZrqH5iGj3C6ghA/HtNfYaJ9ZIux7C54hpiZ4ofsXsZpKvw==
+Received: from SJ0PR13CA0140.namprd13.prod.outlook.com (2603:10b6:a03:2c6::25)
+ by DS0PR18MB5286.namprd18.prod.outlook.com (2603:10b6:8:124::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Thu, 26 Mar
+ 2026 20:50:46 +0000
+Received: from SJ5PEPF000001D3.namprd05.prod.outlook.com
+ (2603:10b6:a03:2c6:cafe::a2) by SJ0PR13CA0140.outlook.office365.com
+ (2603:10b6:a03:2c6::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.20 via Frontend Transport; Thu,
+ 26 Mar 2026 20:50:46 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 50.233.182.194)
+ smtp.mailfrom=axiado.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axiado.com;
+Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
+ designate 50.233.182.194 as permitted sender)
+ receiver=protection.outlook.com; client-ip=50.233.182.194;
+ helo=smtp.corp.axiado.com;
+Received: from smtp.corp.axiado.com (50.233.182.194) by
+ SJ5PEPF000001D3.mail.protection.outlook.com (10.167.242.55) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.21
+ via Frontend Transport; Thu, 26 Mar 2026 20:50:45 +0000
+Received: from vm-swbuild02.AxiadoRD (vm-swbuild02.axiadoRD [10.4.1.182])
+	by smtp.corp.axiado.com (Postfix) with ESMTP id 4021D4157BE1;
+	Thu, 26 Mar 2026 13:50:44 -0700 (PDT)
+From: Karthikeyan Mitran <kmitran@axiado.com>
+Date: Thu, 26 Mar 2026 13:50:25 -0700
+Subject: [PATCH v5] MAINTAINERS: Add Axiado reviewer and Maintainers
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by Purelymail
-Content-Type: text/plain; charset=UTF-8
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260326-maintainers-addition-and-axiado-ax3000_dtsi-update-v5-1-648dfe9bff29@axiado.com>
+X-B4-Tracking: v=1; b=H4sIABCcxWkC/6XOwQ6CMAwG4FcxO1tTN5jMk+9hjClsSA8C2SbBE
+ N7dgQfjVQ9L8zdtv00iOM8uiONmEt4NHLhrU8i3G1E11N4csE1ZSJQapdRwJ25jes4HIGs5pgW
+ g1gKNTLZLRSHi1cbA8OgtRQeyVge316XBXIl0uPeu5nFFz5eUGw6x88/1D4Naun9xgwIEUiWa3
+ BSmkOr0nt1V3V0s3pB9DIXyJyNLRpFRXhlba12YL2Oe5xd7kIpjWQEAAA==
+X-Change-ID: 20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-2f37e16b9053
+To: Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Prasad Bolisetty <pbolisetty@axiado.com>, Tzu-Hao Wei <twei@axiado.com>, 
+ Axiado Reviewers <linux-maintainer@axiado.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Drew Fustini <fustini@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+ Harshit Shah <hshah@axiado.com>, Karthikeyan Mitran <kmitran@axiado.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2207; i=kmitran@axiado.com;
+ h=from:subject:message-id; bh=OgUYodLQN0KuLEyreD8JZZdfEQd4E+MzFyS4GeJhOLk=;
+ b=owEBbQKS/ZANAwAKAfykr3bAxbrPAcsmYgBpxZwkiJGZdQVexqoGjl7S3Hcryr/vFRCbbpceE
+ IPIg41/noOJAjMEAAEKAB0WIQQykBiJeI5kfMQLrdj8pK92wMW6zwUCacWcJAAKCRD8pK92wMW6
+ zxcLD/9JieQi7PVjCbVMEmfTpwwKGLxBvALZiYr78CwpAIacTwcSpHB5veM9Vqs7n7qxEvzpoNg
+ WfMIT43bKdcHtSMJRf4zjkI6LbamoWwCOJ/PULvrBsYI4Ndft42BDCQc3zJfYNRyKkfEmieBHJN
+ ehaCXLUXIsGuysa2r+iO+/X/O4ZoGH3aBnLt9DvX7Yvjw8KAbvQ2prw2Fzaa1NPxI6jX/tQNC7e
+ a5hdKrsOjn4JQCgvkZA9b6xER/Z/gsj8/+JGFORcTGSA2DYkp3T04ZC2AfKKA/zn2rZ/TG3zTKQ
+ vtuIBql9Ohc4zcn1sgZ2FaO9GVrshJeUfsUDYKiO2a+zzyul7Cyp135M7zpEzF8zKoyciZvYvid
+ ClIKDk+cXyr+PCMYi5HMmRlliwLmsqlj9eIN+fUi73FI2Pd2663CRT9c7Ket32hQ8vvOjt1mr0C
+ 9C2CXbiG+7B0eUq5fot8eZvbp+6PeyQ36CtGX3Zln2SCNr5BFrEDH1acy6SuLutdNzkgTdpAeMc
+ pcVlhm0URPGvPfdPybSdaf3bwfkJv2gC0lRHqZHoDQxnyi2u/uCVJEhA+b0Eo2hc2sCFP/AhLce
+ /LalLAK3B7LoWvwJiNHhlVnIR2iNXxwGPt1yfbXMun27jS4Y8GizBC5S+SrB4bpZMvTZSau1W8x
+ +wdybDxUzwqBkMQ==
+X-Developer-Key: i=kmitran@axiado.com; a=openpgp;
+ fpr=32901889788E647CC40BADD8FCA4AF76C0C5BACF
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D3:EE_|DS0PR18MB5286:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc6a9a2e-8825-4a45-643e-08de8b795a6e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|36860700016|82310400026|13003099007|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	YEHgwJg/1qiZ3uhUIQPWJft2+UYZZskYy2ZuHDqywB2MzUDuxQBiQHkptgsk1uD7+c39kmmBbFsAxG5nX05Zbq2B72ioOMLFqoqIo9bsHp00KsYIqPz92R48p43GbhCvoPq1wheYAkB9LwjfqUbWj6tqDXK7ovVsQ1QTB1fm9vyYUpASRoxfN3qfiFu9PsPRefFiK+hBj7WA8gVPdggCxFCu/LWHHX/+z5gQkgOt2u9TB9f8vkUlcQAyVBuTdVqySWUI4nNS/9ZBVtvP77l2KLgSter7QNrUJxHZMShQsAaN+6ry4I74TtoV9bai+YKJ7HBP6LDp/M5liNCyHhcYVCs6ZYCxHwPXLFBXorAA7vqzVdoKg8KZR1grbtZY4GNsAq7flXeQa1HCZ8Bv+cCpO6oqgbt5pw+k1TIyOpHZZhMhR47h0zFD7QgGxaFK+DbszjWuFCKL0O7jYjgACt0dtLIB0Vh+qL3XEbya5cJ6kbf7zZMp0IIsoB9jZB84JGBI9xytoufKnn2Ab1ofK5kfIdiVifLVxJKAvM6gi+r5MyJT7YQx2IPUis5FpUTeV0ELEAuQSFuzcxzHZF08vbMDXhoU2ZlizQ4X6OaHNww3LPYpcckzQsaT0K+p76NsBn+frgkUEamRNiBY9xl7367LwF5jrlPtfn4kCWipU9hAZOc14+3t1V7lm7/G8FF+lypaTuCTZCFu8+nekSE7/yLpMEfil2G0WWy44N8nDXgTDMPuEHGnI1nw981sqXliRaDp5sf0pMQ0L4rvtUYXBgd5gyJtxC5KWezpmWiHUI8Hnho=
+X-Forefront-Antispam-Report:
+	CIP:50.233.182.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(36860700016)(82310400026)(13003099007)(56012099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	8l9+CY8LKemsckxZZBDJXg9gJBu/c29f9btwmCQXQAGgjMAJm3sKANVT0kQrO6c/Nevqpr2XUsDb/YP2x6JsUNwPyFPxoQlD2PCVoex9QOrm2cFHGKhgYoGy7rmtcj10FxHGkmcKyT2xd6atAj+rk1i1GSCPGDjo4Sz9OAUu2bzkmCbsP3kIbbMw43O8Frp5n5YlBk0rINRlkpyPdvdXd9Z6e5fiePXHXiVZyhKe7aXg+AIgObvfnNSPOH27gNntYJLP1HZ9wh3KkUPe26Wy/kfyhDLSRId9iare6PDA+KbbgYcbu8+pdYbf8o4GO/s0r+RynG56n9ctsDcbeXkH6sCTib6u/bAUfjOQUitq4p4ODzhudT+0pUDQzI1tQoZOYQQKyGbFZdM7YnY9t/dYSzL4lbn/Y3Y1tmr0TK45fjobr4YXYqv+KqRDbIs7kDeY
+X-OriginatorOrg: axiado.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2026 20:50:45.6520
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc6a9a2e-8825-4a45-643e-08de8b795a6e
+X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[50.233.182.194];Helo=[smtp.corp.axiado.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ5PEPF000001D3.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR18MB5286
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[tinyisr.com,reject];
-	R_DKIM_ALLOW(-0.20)[tinyisr.com:s=purelymail1,purelymail.com:s=purelymail1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_DKIM_ALLOW(-0.20)[axiado.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-281398-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281396-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	DMARC_NA(0.00)[axiado.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,redhat.com,google.com,davemloft.net,gmail.com,lunn.ch,vger.kernel.org,tinyisr.com];
-	DKIM_TRACE(0.00)[tinyisr.com:+,purelymail.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joey@tinyisr.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kmitran@axiado.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[axiado.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,openwrt.org:email,tinyisr.com:dkim,tinyisr.com:email,tinyisr.com:mid,vittgam.net:email,purelymail.com:dkim]
-X-Rspamd-Queue-Id: 61A0733B907
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: CF90033B980
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the MT7628 embedded switch.
+From: Prasad Bolisetty <pbolisetty@axiado.com>
 
-The switch has 5 built-in 100Mbps user ports (ports 0-4) and one 1Gbps
-port that is internally attached to the SoCs CPU MAC and serves as the
-CPU port.
+Adding 3 new maintainers Prasad,Tzu-Hao, and Karthikeyan
+and adding a group reviewer entry for review coverage,
+Removed previous maintainer as the previous maintainer moved from project
 
-The switch hardware has a very limited 16 entry VLAN table. Configuring
-VLANs is the only way to control switch forwarding. Currently 6 entries
-are used by tag_8021q to isolate the ports. Double tag feature is
-enabled to force the switch to append the VLAN tag even if the incoming
-packet is already tagged, this simulates VLAN-unaware functionality and
-simplifies the tagger implementation.
-
-Signed-off-by: Joris Vaisvila <joey@tinyisr.com>
+Signed-off-by: Prasad Bolisetty <pbolisetty@axiado.com>
+Acked-by: Harshit Shah <hshah@axiado.com>
+Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
+Signed-off-by: Karthikeyan Mitran <kmitran@axiado.com>
 ---
- drivers/net/dsa/Kconfig  |   7 +
- drivers/net/dsa/Makefile |   1 +
- drivers/net/dsa/mt7628.c | 637 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 645 insertions(+)
- create mode 100644 drivers/net/dsa/mt7628.c
+----
+This patch removes a Axiado SoC maintainer and adds 3 more.
 
-diff --git a/drivers/net/dsa/Kconfig b/drivers/net/dsa/Kconfig
-index 39fb8ead16b5..d07fc8dfe228 100644
---- a/drivers/net/dsa/Kconfig
-+++ b/drivers/net/dsa/Kconfig
-@@ -70,6 +70,13 @@ config NET_DSA_MV88E6060
- =09  This enables support for the Marvell 88E6060 ethernet switch
- =09  chip.
-=20
-+config NET_DSA_MT7628
-+=09tristate "MT7628 Embedded ethernet switch support"
-+=09select NET_DSA_TAG_MT7628
-+=09select MEDIATEK_FE_SOC_PHY
-+=09help
-+=09  This enables support for the switch in the MT7628 SoC.
-+
- source "drivers/net/dsa/microchip/Kconfig"
-=20
- source "drivers/net/dsa/mv88e6xxx/Kconfig"
-diff --git a/drivers/net/dsa/Makefile b/drivers/net/dsa/Makefile
-index f5a463b87ec2..22da6b680f29 100644
---- a/drivers/net/dsa/Makefile
-+++ b/drivers/net/dsa/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_NET_DSA_VITESSE_VSC73XX) +=3D vitesse-vsc73x=
-x-core.o
- obj-$(CONFIG_NET_DSA_VITESSE_VSC73XX_PLATFORM) +=3D vitesse-vsc73xx-platfo=
-rm.o
- obj-$(CONFIG_NET_DSA_VITESSE_VSC73XX_SPI) +=3D vitesse-vsc73xx-spi.o
- obj-$(CONFIG_NET_DSA_YT921X) +=3D yt921x.o
-+obj-$(CONFIG_NET_DSA_MT7628) +=3D mt7628.o
- obj-y=09=09=09=09+=3D b53/
- obj-y=09=09=09=09+=3D hirschmann/
- obj-y=09=09=09=09+=3D lantiq/
-diff --git a/drivers/net/dsa/mt7628.c b/drivers/net/dsa/mt7628.c
-new file mode 100644
-index 000000000000..76ce5cd3c435
---- /dev/null
-+++ b/drivers/net/dsa/mt7628.c
-@@ -0,0 +1,637 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Mediatek MT7628 Embedded Switch (ESW) DSA driver
-+ * Copyright (C) 2026 Joris Vaisvila <joey@tinyisr.com>
-+ *
-+ * Portions derived from OpenWRT esw_rt3050 driver:
-+ * Copyright (C) 2009-2015 John Crispin <blogic@openwrt.org>
-+ * Copyright (C) 2009-2015 Felix Fietkau <nbd@nbd.name>
-+ * Copyright (C) 2013-2015 Michael Lee <igvtee@gmail.com>
-+ * Copyright (C) 2016 Vittorio Gambaletta <openwrt@vittgam.net>
-+ */
-+
-+#include <linux/platform_device.h>
-+#include <linux/etherdevice.h>
-+#include <linux/netdevice.h>
-+#include <linux/dsa/8021q.h>
-+#include <linux/if_bridge.h>
-+#include <linux/module.h>
-+#include <linux/mdio.h>
-+#include <linux/of.h>
-+#include <linux/of_mdio.h>
-+#include <linux/of_net.h>
-+#include <linux/kernel.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+#include <net/dsa.h>
-+
-+#define MT7628_ESW_REG_IMR 0x04
-+#define MT7628_ESW_REG_FCT0 0x08
-+#define MT7628_ESW_REG_PFC1 0x14
-+#define MT7628_ESW_REG_PVIDC(port) (0x40 + 4 * ((port) / 2))
-+#define MT7628_ESW_REG_VLANI(vlan) (0x50 + 4 * ((vlan) / 2))
-+#define MT7628_ESW_REG_VMSC(vlan) (0x70 + 4 * ((vlan) / 4))
-+#define MT7628_ESW_REG_VUB(vlan) (0x100 + 4 * ((vlan) / 4))
-+#define MT7628_ESW_REG_SOCPC 0x8c
-+#define MT7628_ESW_REG_POC0 0x90
-+#define MT7628_ESW_REG_POC2 0x98
-+#define MT7628_ESW_REG_SGC 0x9c
-+#define MT7628_ESW_REG_PCR0 0xc0
-+#define MT7628_ESW_REG_PCR1 0xc4
-+#define MT7628_ESW_REG_FPA2 0xc8
-+#define MT7628_ESW_REG_FCT2 0xcc
-+#define MT7628_ESW_REG_SGC2 0xe4
-+
-+#define MT7628_ESW_FCT0_DROP_SET_TH GENMASK(7, 0)
-+#define MT7628_ESW_FCT0_DROP_RLS_TH GENMASK(15, 8)
-+#define MT7628_ESW_FCT0_FC_SET_TH GENMASK(23, 16)
-+#define MT7628_ESW_FCT0_FC_RLS_TH GENMASK(31, 24)
-+
-+#define MT7628_ESW_PFC1_EN_VLAN GENMASK(22, 16)
-+
-+#define MT7628_ESW_PVID_S 12
-+#define MT7628_ESW_PVID_M GENMASK(11, 0)
-+#define MT7628_ESW_PVID_SHIFT(port) \
-+=09(MT7628_ESW_PVID_S * ((port) % 2))
-+#define MT7628_ESW_PVID_MASK(port) \
-+=09(MT7628_ESW_PVID_M << MT7628_ESW_PVID_SHIFT(port))
-+#define MT7628_ESW_PVID_PREP(port, pvid) \
-+=09(((pvid) & MT7628_ESW_PVID_M) << MT7628_ESW_PVID_SHIFT(port))
-+
-+#define MT7628_ESW_VID_S 12
-+#define MT7628_ESW_VID_M GENMASK(11, 0)
-+#define MT7628_ESW_VID_SHIFT(vlan) \
-+=09(MT7628_ESW_VID_S * ((vlan) % 2))
-+#define MT7628_ESW_VID_MASK(vlan) \
-+=09(MT7628_ESW_VID_M << MT7628_ESW_VID_SHIFT(vlan))
-+#define MT7628_ESW_VID_PREP(vlan, vid) \
-+=09(((vid) & MT7628_ESW_VID_M) << MT7628_ESW_VID_SHIFT(vlan))
-+
-+#define MT7628_ESW_VMSC_S 8
-+#define MT7628_ESW_VMSC_M GENMASK(7, 0)
-+#define MT7628_ESW_VMSC_SHIFT(vlan) \
-+=09(MT7628_ESW_VMSC_S * ((vlan) % 4))
-+#define MT7628_ESW_VMSC_MASK(vlan) \
-+=09(MT7628_ESW_VMSC_M << MT7628_ESW_VMSC_SHIFT(vlan))
-+#define MT7628_ESW_VMSC_PREP(vlan, vmsc) \
-+=09(((vmsc) & MT7628_ESW_VMSC_M) << MT7628_ESW_VMSC_SHIFT(vlan))
-+
-+#define MT7628_ESW_VUB_S 7
-+#define MT7628_ESW_VUB_M GENMASK(6, 0)
-+#define MT7628_ESW_VUB_SHIFT(vlan) \
-+=09(MT7628_ESW_VUB_S * ((vlan) % 4))
-+#define MT7628_ESW_VUB_MASK(vlan) \
-+=09(MT7628_ESW_VUB_M << MT7628_ESW_VUB_SHIFT(vlan))
-+#define MT7628_ESW_VUB_PREP(vlan, vub) \
-+=09(((vub) & MT7628_ESW_VUB_M) << MT7628_ESW_VUB_SHIFT(vlan))
-+
-+#define MT7628_ESW_SOCPC_CRC_PADDING BIT(25)
-+#define MT7628_ESW_SOCPC_DISBC2CPU GENMASK(22, 16)
-+#define MT7628_ESW_SOCPC_DISMC2CPU GENMASK(14, 8)
-+#define MT7628_ESW_SOCPC_DISUN2CPU GENMASK(6, 0)
-+
-+#define MT7628_ESW_POC0_PORT_DISABLE GENMASK(29, 23)
-+
-+#define MT7628_ESW_POC2_PER_VLAN_UNTAG_EN BIT(15)
-+
-+#define MT7628_ESW_SGC_AGING_INTERVAL GENMASK(3, 0)
-+#define MT7628_ESW_BC_STORM_PROT GENMASK(5, 4)
-+#define MT7628_ESW_PKT_MAX_LEN GENMASK(7, 6)
-+#define MT7628_ESW_DIS_PKT_ABORT BIT(8)
-+#define MT7628_ESW_ADDRESS_HASH_ALG GENMASK(10, 9)
-+#define MT7628_ESW_DISABLE_TX_BACKOFF BIT(11)
-+#define MT7628_ESW_BP_JAM_CNT GENMASK(15, 12)
-+#define MT7628_ESW_DISMIIPORT_WASTX GENMASK(17, 16)
-+#define MT7628_ESW_BP_MODE GENMASK(19, 18)
-+#define MT7628_ESW_BISH_DIS BIT(20)
-+#define MT7628_ESW_BISH_TH GENMASK(22, 21)
-+#define MT7628_ESW_LED_FLASH_TIME GENMASK(24, 23)
-+#define MT7628_ESW_RMC_RULE GENMASK(26, 25)
-+#define MT7628_ESW_IP_MULT_RULE GENMASK(28, 27)
-+#define MT7628_ESW_LEN_ERR_CHK BIT(29)
-+#define MT7628_ESW_BKOFF_ALG BIT(30)
-+
-+#define MT7628_ESW_PCR0_WT_NWAY_DATA GENMASK(31, 16)
-+#define MT7628_ESW_PCR0_RD_PHY_CMD BIT(14)
-+#define MT7628_ESW_PCR0_WT_PHY_CMD BIT(13)
-+#define MT7628_ESW_PCR0_CPU_PHY_REG GENMASK(12, 8)
-+#define MT7628_ESW_PCR0_CPU_PHY_ADDR GENMASK(4, 0)
-+
-+#define MT7628_ESW_PCR1_RD_DATA GENMASK(31, 16)
-+#define MT7628_ESW_PCR1_RD_DONE BIT(1)
-+#define MT7628_ESW_PCR1_WT_DONE BIT(0)
-+
-+#define MT7628_ESW_FPA2_AP_EN BIT(29)
-+#define MT7628_ESW_FPA2_EXT_PHY_ADDR_BASE GENMASK(28, 24)
-+#define MT7628_ESW_FPA2_FORCE_RGMII_LINK1 BIT(13)
-+#define MT7628_ESW_FPA2_FORCE_RGMII_EN1 BIT(11)
-+
-+#define MT7628_ESW_FCT2_MUST_DROP_RLS_TH GENMASK(17, 13)
-+#define MT7628_ESW_FCT2_MUST_DROP_SET_TH GENMASK(12, 8)
-+#define MT7628_ESW_FCT2_MC_PER_PORT_TH GENMASK(5, 0)
-+
-+#define MT7628_ESW_SGC2_SPECIAL_TAG_EN BIT(23)
-+#define MT7628_ESW_SGC2_TX_CPU_TPID_BIT_MAP GENMASK(22, 16)
-+#define MT7628_ESW_SGC2_DOUBLE_TAG_EN GENMASK(6, 0)
-+
-+#define MT7628_ESW_PORTS_NOCPU GENMASK(5, 0)
-+#define MT7628_ESW_PORTS_CPU BIT(6)
-+#define MT7628_ESW_PORTS_ALL GENMASK(6, 0)
-+
-+#define MT7628_ESW_NUM_PORTS 7
-+#define MT7628_NUM_VLANS 16
-+
-+static const struct regmap_config mt7628_esw_regmap_cfg =3D {
-+=09.name =3D "mt7628-esw",
-+=09.reg_bits =3D 32,
-+=09.val_bits =3D 32,
-+=09.reg_stride =3D 4,
-+=09.fast_io =3D true,
-+=09.reg_format_endian =3D REGMAP_ENDIAN_LITTLE,
-+=09.val_format_endian =3D REGMAP_ENDIAN_LITTLE,
-+};
-+
-+struct mt7628_vlan {
-+=09bool active;
-+=09u8 members;
-+=09u8 untag;
-+=09u16 vid;
-+};
-+
-+struct mt7628_esw {
-+=09void __iomem *base;
-+=09struct reset_control *rst_ephy;
-+=09struct reset_control *rst_esw;
-+=09struct regmap *regmap;
-+=09struct dsa_switch *ds;
-+=09u16 tag_8021q_pvid[MT7628_ESW_NUM_PORTS];
-+=09struct mt7628_vlan vlans[MT7628_NUM_VLANS];
-+=09struct device *dev;
-+};
-+
-+static int mt7628_mii_read(struct mii_bus *bus, int port, int regnum)
-+{
-+=09struct mt7628_esw *esw =3D bus->priv;
-+=09int ret;
-+=09u32 val;
-+
-+=09ret =3D regmap_read_poll_timeout(esw->regmap, MT7628_ESW_REG_PCR1, val,
-+=09=09=09=09       !(val & MT7628_ESW_PCR1_RD_DONE), 10,
-+=09=09=09=09       5000);
-+=09if (ret)
-+=09=09goto out;
-+
-+=09ret =3D regmap_write(esw->regmap, MT7628_ESW_REG_PCR0,
-+=09=09=09   FIELD_PREP(MT7628_ESW_PCR0_CPU_PHY_REG,
-+=09=09=09=09      regnum) |
-+=09=09=09   FIELD_PREP(MT7628_ESW_PCR0_CPU_PHY_ADDR,
-+=09=09=09=09      port) | MT7628_ESW_PCR0_RD_PHY_CMD);
-+=09if (ret)
-+=09=09goto out;
-+
-+=09ret =3D regmap_read_poll_timeout(esw->regmap, MT7628_ESW_REG_PCR1, val,
-+=09=09=09=09       (val & MT7628_ESW_PCR1_RD_DONE), 10,
-+=09=09=09=09       5000);
-+out:
-+=09if (ret) {
-+=09=09dev_err(&bus->dev, "read failed. MDIO timeout?\n");
-+=09=09return -ETIMEDOUT;
-+=09}
-+=09return FIELD_GET(MT7628_ESW_PCR1_RD_DATA, val);
-+}
-+
-+static int mt7628_mii_write(struct mii_bus *bus, int port, int regnum, u16=
- dat)
-+{
-+=09struct mt7628_esw *esw =3D bus->priv;
-+=09u32 val;
-+=09int ret;
-+
-+=09ret =3D regmap_read_poll_timeout(esw->regmap, MT7628_ESW_REG_PCR1, val,
-+=09=09=09=09       !(val & MT7628_ESW_PCR1_WT_DONE), 10,
-+=09=09=09=09       5000);
-+=09if (ret)
-+=09=09goto out;
-+
-+=09ret =3D regmap_write(esw->regmap, MT7628_ESW_REG_PCR0,
-+=09=09=09   FIELD_PREP(MT7628_ESW_PCR0_WT_NWAY_DATA, dat) |
-+=09=09=09   FIELD_PREP(MT7628_ESW_PCR0_CPU_PHY_REG,
-+=09=09=09=09      regnum) |
-+=09=09=09   FIELD_PREP(MT7628_ESW_PCR0_CPU_PHY_ADDR,
-+=09=09=09=09      port) | MT7628_ESW_PCR0_WT_PHY_CMD);
-+=09if (ret)
-+=09=09goto out;
-+
-+=09ret =3D regmap_read_poll_timeout(esw->regmap, MT7628_ESW_REG_PCR1, val,
-+=09=09=09=09       (val & MT7628_ESW_PCR1_WT_DONE), 10,
-+=09=09=09=09       5000);
-+out:
-+=09if (ret) {
-+=09=09dev_err(&bus->dev, "write failed. MDIO timeout?\n");
-+=09=09return -ETIMEDOUT;
-+=09}
-+=09return ret;
-+}
-+
-+static int mt7628_setup_internal_mdio(struct dsa_switch *ds)
-+{
-+=09struct mt7628_esw *esw =3D ds->priv;
-+=09struct device_node *mdio;
-+=09struct mii_bus *bus;
-+=09int ret =3D 0;
-+
-+=09mdio =3D of_get_child_by_name(ds->dev->of_node, "mdio");
-+=09if (mdio && !of_device_is_available(mdio))
-+=09=09goto out_put_node;
-+
-+=09bus =3D devm_mdiobus_alloc(esw->dev);
-+=09if (!bus) {
-+=09=09ret =3D -ENOMEM;
-+=09=09goto out_put_node;
-+=09}
-+
-+=09bus->name =3D "MT7628 internal MDIO bus";
-+=09snprintf(bus->id, MII_BUS_ID_SIZE, "%s-mii", dev_name(ds->dev));
-+=09bus->priv =3D esw;
-+=09bus->read =3D mt7628_mii_read;
-+=09bus->write =3D mt7628_mii_write;
-+=09bus->parent =3D esw->dev;
-+=09if (!mdio) {
-+=09=09ds->user_mii_bus =3D bus;
-+=09=09bus->phy_mask =3D ~ds->phys_mii_mask;
-+=09}
-+
-+=09ret =3D devm_of_mdiobus_register(esw->dev, bus, mdio);
-+
-+out_put_node:
-+=09of_node_put(mdio);
-+=09return ret;
-+}
-+
-+static void mt7628_switch_init(struct dsa_switch *ds)
-+{
-+=09struct mt7628_esw *esw =3D ds->priv;
-+
-+=09regmap_write(esw->regmap, MT7628_ESW_REG_FCT0,
-+=09=09     FIELD_PREP(MT7628_ESW_FCT0_DROP_SET_TH, 0x50) |
-+=09=09     FIELD_PREP(MT7628_ESW_FCT0_DROP_RLS_TH, 0x78) |
-+=09=09     FIELD_PREP(MT7628_ESW_FCT0_FC_SET_TH, 0xa0) |
-+=09=09     FIELD_PREP(MT7628_ESW_FCT0_FC_RLS_TH, 0xc8));
-+
-+=09regmap_write(esw->regmap, MT7628_ESW_REG_FCT2,
-+=09=09     FIELD_PREP(MT7628_ESW_FCT2_MC_PER_PORT_TH, 0xc) |
-+=09=09     FIELD_PREP(MT7628_ESW_FCT2_MUST_DROP_SET_TH, 0x10) |
-+=09=09     FIELD_PREP(MT7628_ESW_FCT2_MUST_DROP_RLS_TH, 0x12));
-+
-+=09/*
-+=09 * general switch configuration:
-+=09 * 300s aging interval
-+=09 * broadcast storm prevention disabled
-+=09 * max packet length 1536 bytes
-+=09 * disable collision 16 packet abort and late collision abort
-+=09 * use xor48 for address hashing
-+=09 * disable tx backoff
-+=09 * 10 packet back pressure jam
-+=09 * disable was_transmit
-+=09 * jam until BP condition released
-+=09 * 30ms LED flash
-+=09 * rmc tb fault to all ports
-+=09 * unmatched IGMP as broadcast
-+=09 */
-+=09regmap_write(esw->regmap, MT7628_ESW_REG_SGC,
-+=09=09     FIELD_PREP(MT7628_ESW_SGC_AGING_INTERVAL, 1) |
-+=09=09     FIELD_PREP(MT7628_ESW_BC_STORM_PROT, 0) |
-+=09=09     FIELD_PREP(MT7628_ESW_PKT_MAX_LEN, 0) |
-+=09=09     MT7628_ESW_DIS_PKT_ABORT |
-+=09=09     FIELD_PREP(MT7628_ESW_ADDRESS_HASH_ALG, 1) |
-+=09=09     MT7628_ESW_DISABLE_TX_BACKOFF |
-+=09=09     FIELD_PREP(MT7628_ESW_BP_JAM_CNT, 10) |
-+=09=09     FIELD_PREP(MT7628_ESW_DISMIIPORT_WASTX, 0) |
-+=09=09     FIELD_PREP(MT7628_ESW_BP_MODE, 0b10) |
-+=09=09     FIELD_PREP(MT7628_ESW_LED_FLASH_TIME, 0) |
-+=09=09     FIELD_PREP(MT7628_ESW_RMC_RULE, 0) |
-+=09=09     FIELD_PREP(MT7628_ESW_IP_MULT_RULE, 0));
-+
-+=09regmap_write(esw->regmap, MT7628_ESW_REG_SOCPC,
-+=09=09     MT7628_ESW_SOCPC_CRC_PADDING |
-+=09=09     FIELD_PREP(MT7628_ESW_SOCPC_DISUN2CPU,
-+=09=09=09=09MT7628_ESW_PORTS_CPU) |
-+=09=09     FIELD_PREP(MT7628_ESW_SOCPC_DISMC2CPU,
-+=09=09=09=09MT7628_ESW_PORTS_CPU) |
-+=09=09     FIELD_PREP(MT7628_ESW_SOCPC_DISBC2CPU,
-+=09=09=09=09MT7628_ESW_PORTS_CPU));
-+
-+=09regmap_set_bits(esw->regmap, MT7628_ESW_REG_FPA2,
-+=09=09=09MT7628_ESW_FPA2_FORCE_RGMII_EN1 |
-+=09=09=09MT7628_ESW_FPA2_FORCE_RGMII_LINK1 |
-+=09=09=09MT7628_ESW_FPA2_AP_EN);
-+
-+=09regmap_update_bits(esw->regmap, MT7628_ESW_REG_FPA2,
-+=09=09=09   MT7628_ESW_FPA2_EXT_PHY_ADDR_BASE,
-+=09=09=09   FIELD_PREP(MT7628_ESW_FPA2_EXT_PHY_ADDR_BASE, 31));
-+
-+=09/* disable all interrupts */
-+=09regmap_write(esw->regmap, MT7628_ESW_REG_IMR, 0);
-+
-+=09/* enable MT7628 DSA tag on CPU port */
-+=09regmap_write(esw->regmap, MT7628_ESW_REG_SGC2,
-+=09=09     MT7628_ESW_SGC2_SPECIAL_TAG_EN |
-+=09=09     FIELD_PREP(MT7628_ESW_SGC2_TX_CPU_TPID_BIT_MAP,
-+=09=09=09=09MT7628_ESW_PORTS_CPU));
-+
-+=09/*
-+=09 * Double tag feature allows switch to always append the port PVID VLAN=
- tag
-+=09 * regardless of if the incoming packet already has a VLAN tag.
-+=09 * This is enabled to simulate VLAN unawareness.
-+=09 */
-+=09regmap_set_bits(esw->regmap, MT7628_ESW_REG_SGC2,
-+=09=09=09FIELD_PREP(MT7628_ESW_SGC2_DOUBLE_TAG_EN,
-+=09=09=09=09   MT7628_ESW_PORTS_NOCPU));
-+
-+=09regmap_set_bits(esw->regmap, MT7628_ESW_REG_POC2,
-+=09=09=09MT7628_ESW_POC2_PER_VLAN_UNTAG_EN);
-+
-+=09regmap_update_bits(esw->regmap, MT7628_ESW_REG_PFC1,
-+=09=09=09   MT7628_ESW_PFC1_EN_VLAN,
-+=09=09=09   FIELD_PREP(MT7628_ESW_PFC1_EN_VLAN,
-+=09=09=09=09      MT7628_ESW_PORTS_ALL));
-+}
-+
-+static void mt7628_esw_set_pvid(struct mt7628_esw *esw, unsigned int port,
-+=09=09=09=09unsigned int pvid)
-+{
-+=09regmap_update_bits(esw->regmap, MT7628_ESW_REG_PVIDC(port),
-+=09=09=09   MT7628_ESW_PVID_MASK(port),
-+=09=09=09   MT7628_ESW_PVID_PREP(port, pvid));
-+}
-+
-+static void mt7628_esw_set_vlan_id(struct mt7628_esw *esw, unsigned int vl=
-an,
-+=09=09=09=09   unsigned int vid)
-+{
-+=09regmap_update_bits(esw->regmap, MT7628_ESW_REG_VLANI(vlan),
-+=09=09=09   MT7628_ESW_VID_MASK(vlan),
-+=09=09=09   MT7628_ESW_VID_PREP(vlan, vid));
-+}
-+
-+static void mt7628_esw_set_vmsc(struct mt7628_esw *esw, unsigned int vlan,
-+=09=09=09=09unsigned int msc)
-+{
-+=09regmap_update_bits(esw->regmap, MT7628_ESW_REG_VMSC(vlan),
-+=09=09=09   MT7628_ESW_VMSC_MASK(vlan),
-+=09=09=09   MT7628_ESW_VMSC_PREP(vlan, msc));
-+}
-+
-+static void mt7628_esw_set_vub(struct mt7628_esw *esw, unsigned int vlan,
-+=09=09=09       unsigned int vub)
-+{
-+=09regmap_update_bits(esw->regmap, MT7628_ESW_REG_VUB(vlan),
-+=09=09=09   MT7628_ESW_VUB_MASK(vlan),
-+=09=09=09   MT7628_ESW_VUB_PREP(vlan, vub));
-+}
-+
-+static void mt7628_vlan_sync(struct dsa_switch *ds)
-+{
-+=09struct mt7628_esw *esw =3D ds->priv;
-+=09int i;
-+
-+=09for (i =3D 0; i < MT7628_NUM_VLANS; i++) {
-+=09=09struct mt7628_vlan *vlan =3D &esw->vlans[i];
-+
-+=09=09mt7628_esw_set_vmsc(esw, i, vlan->members);
-+=09=09mt7628_esw_set_vlan_id(esw, i, vlan->vid);
-+=09=09mt7628_esw_set_vub(esw, i, vlan->untag);
-+=09}
-+
-+=09for (i =3D 0; i < ds->num_ports; i++)
-+=09=09mt7628_esw_set_pvid(esw, i, esw->tag_8021q_pvid[i]);
-+}
-+
-+static int mt7628_setup(struct dsa_switch *ds)
-+{
-+=09struct mt7628_esw *esw =3D ds->priv;
-+=09int ret;
-+
-+=09reset_control_reset(esw->rst_esw);
-+=09usleep_range(1000, 2000);
-+=09reset_control_reset(esw->rst_ephy);
-+=09usleep_range(1000, 2000);
-+=09/*
-+=09 * all MMIO reads hang if esw is not out of reset
-+=09 * ephy needs extra time to get out of reset or it ends up misconfigure=
-d
-+=09 */
-+=09mt7628_switch_init(ds);
-+=09rtnl_lock();
-+=09dsa_tag_8021q_register(ds, htons(ETH_P_8021Q));
-+=09rtnl_unlock();
-+
-+=09ret =3D mt7628_setup_internal_mdio(ds);
-+=09return ret;
-+}
-+
-+static int mt7628_port_enable(struct dsa_switch *ds, int port,
-+=09=09=09      struct phy_device *phy)
-+{
-+=09struct mt7628_esw *esw =3D ds->priv;
-+
-+=09regmap_clear_bits(esw->regmap, MT7628_ESW_REG_POC0,
-+=09=09=09  FIELD_PREP(MT7628_ESW_POC0_PORT_DISABLE, BIT(port)));
-+=09return 0;
-+}
-+
-+static void mt7628_port_disable(struct dsa_switch *ds, int port)
-+{
-+=09struct mt7628_esw *esw =3D ds->priv;
-+
-+=09regmap_set_bits(esw->regmap, MT7628_ESW_REG_POC0,
-+=09=09=09FIELD_PREP(MT7628_ESW_POC0_PORT_DISABLE, BIT(port)));
-+}
-+
-+static enum dsa_tag_protocol
-+mt7628_get_tag_proto(struct dsa_switch *ds, int port, enum dsa_tag_protoco=
-l mp)
-+{
-+=09return DSA_TAG_PROTO_MT7628;
-+}
-+
-+static void mt7628_phylink_get_caps(struct dsa_switch *ds, int port,
-+=09=09=09=09    struct phylink_config *config)
-+{
-+=09switch (port) {
-+=09case 0:
-+=09case 1:
-+=09case 2:
-+=09case 3:
-+=09case 4:
-+=09=09config->mac_capabilities =3D MAC_100 | MAC_10;
-+=09=09__set_bit(PHY_INTERFACE_MODE_INTERNAL,
-+=09=09=09  config->supported_interfaces);
-+=09=09break;
-+=09case 6:
-+=09=09config->mac_capabilities =3D MAC_1000 | MAC_100 | MAC_10;
-+=09=09__set_bit(PHY_INTERFACE_MODE_RGMII,
-+=09=09=09  config->supported_interfaces);
-+=09=09break;
-+=09case 5:
-+=09default:
-+=09=09/* Port 5 does not exist on MT7628; other ports are invalid */
-+=09=09return;
-+=09}
-+}
-+
-+static int mt7628_dsa_8021q_vlan_add(struct dsa_switch *ds, int port,
-+=09=09=09=09     u16 vid, u16 flags)
-+{
-+=09struct mt7628_esw *esw =3D ds->priv;
-+=09struct mt7628_vlan *vlan =3D NULL;
-+=09int i;
-+
-+=09for (i =3D 0; i < MT7628_NUM_VLANS; i++) {
-+=09=09struct mt7628_vlan *check_vlan =3D &esw->vlans[i];
-+
-+=09=09if (!check_vlan->active && !vlan) {
-+=09=09=09vlan =3D check_vlan;
-+=09=09} else if (check_vlan->vid =3D=3D vid) {
-+=09=09=09vlan =3D check_vlan;
-+=09=09=09break;
-+=09=09}
-+=09}
-+
-+=09if (!vlan)
-+=09=09return -ENOSPC;
-+
-+=09vlan->vid =3D vid;
-+=09vlan->active =3D true;
-+=09vlan->members |=3D BIT(port);
-+
-+=09if (flags & BRIDGE_VLAN_INFO_PVID)
-+=09=09esw->tag_8021q_pvid[port] =3D vid;
-+
-+=09if (flags & BRIDGE_VLAN_INFO_UNTAGGED)
-+=09=09vlan->untag |=3D BIT(port);
-+
-+=09mt7628_vlan_sync(ds);
-+=09return 0;
-+}
-+
-+static int mt7628_dsa_8021q_vlan_del(struct dsa_switch *ds, int port, u16 =
-vid)
-+{
-+=09struct mt7628_esw *esw =3D ds->priv;
-+=09struct mt7628_vlan *vlan =3D NULL;
-+=09int i;
-+
-+=09for (i =3D 0; i < MT7628_NUM_VLANS; i++) {
-+=09=09struct mt7628_vlan *check_vlan =3D &esw->vlans[i];
-+
-+=09=09if (!check_vlan->active || check_vlan->vid !=3D vid)
-+=09=09=09continue;
-+=09=09vlan =3D check_vlan;
-+=09=09break;
-+=09}
-+=09if (!vlan)
-+=09=09return -ENOENT;
-+
-+=09vlan->members &=3D ~BIT(port);
-+=09vlan->untag &=3D ~BIT(port);
-+
-+=09if (!vlan->members)
-+=09=09vlan->active =3D false;
-+
-+=09mt7628_vlan_sync(ds);
-+=09return 0;
-+}
-+
-+static struct dsa_switch_ops mt7628_switch_ops =3D {
-+=09.get_tag_protocol =3D mt7628_get_tag_proto,
-+=09.setup =3D mt7628_setup,
-+=09.port_enable =3D mt7628_port_enable,
-+=09.port_disable =3D mt7628_port_disable,
-+=09.phylink_get_caps =3D mt7628_phylink_get_caps,
-+=09.tag_8021q_vlan_add =3D mt7628_dsa_8021q_vlan_add,
-+=09.tag_8021q_vlan_del =3D mt7628_dsa_8021q_vlan_del,
-+};
-+
-+static int mt7628_probe(struct platform_device *pdev)
-+{
-+=09struct device *dev =3D &pdev->dev;
-+=09struct mt7628_esw *esw;
-+=09struct dsa_switch *ds;
-+
-+=09ds =3D devm_kzalloc(&pdev->dev, sizeof(*ds), GFP_KERNEL);
-+=09if (!ds)
-+=09=09return -ENOMEM;
-+
-+=09esw =3D devm_kzalloc(&pdev->dev, sizeof(*esw), GFP_KERNEL);
-+=09if (!esw)
-+=09=09return -ENOMEM;
-+
-+=09esw->base =3D devm_platform_ioremap_resource(pdev, 0);
-+=09if (IS_ERR(esw->base))
-+=09=09return PTR_ERR(esw->base);
-+
-+=09esw->regmap =3D devm_regmap_init_mmio(&pdev->dev, esw->base,
-+=09=09=09=09=09    &mt7628_esw_regmap_cfg);
-+=09if (IS_ERR(esw->regmap))
-+=09=09return PTR_ERR(esw->regmap);
-+
-+=09esw->rst_ephy =3D devm_reset_control_get_exclusive(&pdev->dev, "ephy");
-+=09if (IS_ERR(esw->rst_ephy))
-+=09=09return dev_err_probe(dev, PTR_ERR(esw->rst_ephy),
-+=09=09=09=09     "failed to get EPHY reset\n");
-+
-+=09esw->rst_esw =3D devm_reset_control_get_exclusive(&pdev->dev, "esw");
-+=09if (IS_ERR(esw->rst_esw))
-+=09=09return dev_err_probe(dev, PTR_ERR(esw->rst_esw),
-+=09=09=09=09     "failed to get ESW reset\n");
-+
-+=09ds->dev =3D dev;
-+=09ds->num_ports =3D MT7628_ESW_NUM_PORTS;
-+=09ds->ops =3D &mt7628_switch_ops;
-+=09ds->priv =3D esw;
-+=09esw->ds =3D ds;
-+=09esw->dev =3D dev;
-+=09dev_set_drvdata(dev, esw);
-+
-+=09return dsa_register_switch(ds);
-+}
-+
-+static void mt7628_remove(struct platform_device *pdev)
-+{
-+=09struct mt7628_esw *esw =3D platform_get_drvdata(pdev);
-+
-+=09if (!esw)
-+=09=09return;
-+
-+=09dsa_unregister_switch(esw->ds);
-+}
-+
-+static void mt7628_shutdown(struct platform_device *pdev)
-+{
-+=09struct mt7628_esw *esw =3D platform_get_drvdata(pdev);
-+
-+=09if (!esw)
-+=09=09return;
-+
-+=09dsa_switch_shutdown(esw->ds);
-+=09dev_set_drvdata(&pdev->dev, NULL);
-+}
-+
-+static const struct of_device_id mt7628_of_match[] =3D {
-+=09{ .compatible =3D "mediatek,mt7628-esw" },
-+=09{}
-+};
-+
-+MODULE_DEVICE_TABLE(of, mt7628_of_match);
-+
-+static struct platform_driver mt7628_driver =3D {
-+=09.driver =3D {
-+=09=09   .name =3D "mt7628-esw",
-+=09=09   .of_match_table =3D mt7628_of_match,
-+=09=09    },
-+=09.probe =3D mt7628_probe,
-+=09.remove =3D mt7628_remove,
-+=09.shutdown =3D mt7628_shutdown,
-+};
-+
-+module_platform_driver(mt7628_driver);
-+
-+MODULE_AUTHOR("Joris Vaisvila <joey@tinyisr.com>");
-+MODULE_DESCRIPTION("Driver for Mediatek MT7628 embedded switch");
-+MODULE_LICENSE("GPL");
---=20
-2.53.0
+A maintainer has moved on from the project, so we are adding three new maintainers (Prasad, Tzu-Hao, and Karthikeyan) along with a reviewer group for broader coverage. also commit message amended to have the same. the other patch has a dtb address hex value change from capital to lowercase.
+
+Patch 1: Removed one and added new maintainers and reviewer group for Axiado SoC
+
+Changes since v4: Droped the ax3000.dtsi patch,to make it purely a maintainers update
+
+Changes in v4:
+- Updated commit message to clarify maintainer removal and additions
+- v4: https://lore.kernel.org/linux-devicetree/20260302-maintainers-addition-and-axiado-ax3000_dtsi-update-v4-0-84a5c9df6689@axiado.com/
+
+Changes in v3:
+- Updated commit message
+- v3: https://lore.kernel.org/linux-devicetree/20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-v3-0-a3b095989823@axiado.com/
+---
+
+---
+ MAINTAINERS | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 55af015174a5..49f47e8c2ec3 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2605,7 +2605,10 @@ F:	arch/arm/mach-aspeed/
+ N:	aspeed
+ 
+ ARM/AXIADO ARCHITECTURE
+-M:	Harshit Shah <hshah@axiado.com>
++M:	Prasad Bolisetty <pbolisetty@axiado.com>
++M:	Tzu-Hao Wei <twei@axiado.com>
++M:	Karthikeyan Mitran <kmitran@axiado.com>
++R:	Axiado Reviewers <linux-maintainer@axiado.com>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/arm/axiado.yaml
+
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-2f37e16b9053
+
+Best regards,
+-- 
+Karthikeyan Mitran <kmitran@axiado.com>
 
 
