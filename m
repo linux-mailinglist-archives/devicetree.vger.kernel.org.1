@@ -1,186 +1,184 @@
-Return-Path: <devicetree+bounces-280967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280969-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iIiVGJXkxGnz4gQAu9opvQ
-	(envelope-from <devicetree+bounces-280967-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 08:47:33 +0100
+	id 8MdFGzjmxGnz4gQAu9opvQ
+	(envelope-from <devicetree+bounces-280969-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 08:54:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6EBA3309A8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 08:47:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB353330ADA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 08:54:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8E1143037793
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 07:47:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BABBD301F9E8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 07:49:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11FA53AE181;
-	Thu, 26 Mar 2026 07:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F2D734C130;
+	Thu, 26 Mar 2026 07:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="OTlQB8ly";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="DlpuwW/i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kyg27/QD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9582330EF7F
-	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 07:47:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C3230DD0A;
+	Thu, 26 Mar 2026 07:49:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774511250; cv=none; b=HJplY3klYd/f423UdomYTdPj9LB8DLGH1PaWt7/LpMKYoRNnSmYxpKWtTa+NXIJQIALuvOb2MM3tTwXttF+UBwL6hifwjApEDyX3INPyBY6cfGEbHD3MWF/d8wnoLYxmAraNIhx8407hpPq7+lFlTXyCusVTW9px8H6GNjFsuRE=
+	t=1774511364; cv=none; b=CNpzK+OyzzfVSsNnHVx9gW7dJhocscmn2EznmQnl/nQ9C0OFpHR81v3RB1u+b2kP+LbC6ZHRxrfFuZvYcHcycWkvOs5XPRgDzLulGL6UP+KhErPq9SCJtRHs57pSuZxb7UEmVzYdZzUYt2f8g8fi3nyWb/A03Pbkc1C7k44xv3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774511250; c=relaxed/simple;
-	bh=O0eARiw1G6RmntTPXYAxLsbyESCE+Ern2D5WQkar8Lo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=GAAHpZMN9F/roLarmX6GgEAAJvwcv71wIAmBhlMt4CFioO991LPAiHyd23fmG25O5TvS2GNjh3RCg2BO0Y3W9TdaeE70lWBSwoMmm26W1GyaBA6iRD1bvbzlC3XsiFjoulrKWCXPmNJMhfMg9XpD9gR6h2442cnN9IlNrKJAEIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=OTlQB8ly; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=DlpuwW/i; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1774511247;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8jsqEMVBo618iREZvKPp9ckkBj0Js5bgevHsPaD2c9U=;
-	b=OTlQB8lyqYiPtmwramwqWPJa8xnfXgCV9GIvYY7FXLhVQQv6VATiLjSILW5ukBbETj7LaQ
-	ngmKrLR+CtaVxpTNtfAaLpeu2Hs5eGPg+y5r9/9jTY1UPxFsMAdqBND3uBSD/k+EHnrvN0
-	/b7ZEMDKbJHS7HMjqdQoPQQABN4kpdw=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-582-tfhB3thyOLe2vhSBCKZecg-1; Thu, 26 Mar 2026 03:47:26 -0400
-X-MC-Unique: tfhB3thyOLe2vhSBCKZecg-1
-X-Mimecast-MFC-AGG-ID: tfhB3thyOLe2vhSBCKZecg_1774511245
-Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-43b4d3919e4so385998f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 00:47:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1774511245; x=1775116045; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8jsqEMVBo618iREZvKPp9ckkBj0Js5bgevHsPaD2c9U=;
-        b=DlpuwW/i2APYEE+T67EIHWFHSVDVVlPHzscIcHUHCH8XS0rgRE31eLf5EfRvXTiwNv
-         89sZsIVxCCTGmNYpWP4p6UTcdZoVkYLKQ4yWXCNnuzN1iwOhX75qXbs+6sS3PvlvoS+N
-         9497EH4hMHXLEhIfobnEHVJoaMtWkb8H0c8pRsPz0wDUgh/WFNISKsc4FdeSbPIyRswE
-         Bfp3pmPQnABe3wo69ARuGxijRJrEViEVcJ8t3Ej2HcjGBboIvSn8VWsqrYx5+fY1BAHI
-         /+SbaxkPaEgp+kXBKDWQE9G4TIhO9fJMirtuu/5skHc7mfwj3xzKcaqOmr8pcSNKz5P6
-         JGTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774511245; x=1775116045;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8jsqEMVBo618iREZvKPp9ckkBj0Js5bgevHsPaD2c9U=;
-        b=Fe3Kp2aMH0zH8mnQ39794cSpxQXTzmCTo2/MevJxSYPI7iYrv7eVQOyx8t81PeJeMy
-         WhVDFrGcMBIrPgjsc/iWedqg6N+iWx+MxwTSTR8orLC2g8xGytElIzKTF+W67+2kPvJN
-         pj4opfkthGVGtjK6somBJX/wKk6P1lVb3DoLjLlbe5Lxgph3xGw9yH6hSr/ZJK2nDJSs
-         fNvx63Lg2z5BOooSLbbrkon8niNfk6v0hocm/DeH1m3l8BcCCXw+8GMyg10oStjfF9dz
-         pwOF7NZ3tYlKx+h6Gha6j7OSu1EVoYO4cf36tBq7QxWs+QGgcn01n7KTWZJKC+P1ugSW
-         V0VA==
-X-Forwarded-Encrypted: i=1; AJvYcCU6S6x5/An8dDLxyJ8ZfabJLO9V/F/GNpjZsopSRQ2Jj4GnJbf4X68JvEZ3/JqeEksMkFMz0HOi4AhF@vger.kernel.org
-X-Gm-Message-State: AOJu0YySRkss15lalUGEgnIk5ZqhZespDd4AsVk4CWioZwnuFfYhYIBY
-	HCIboLZjPMZ/IATrP/JRvtJqvW2UqEesh3wVNF7WfJO5Ly7O7Z4dVxsmDxhh8JPQ/8HKlPcfjaf
-	mz/PNSqqA+FrcubV0g6P/Rq0YdwUudafkhV6AYfGXIaxcrH/1tY/W0BhjwLyzpTU=
-X-Gm-Gg: ATEYQzwUSYrzBUoXj+ayuT2kMY/6I1+SFJc/dCo28NNUtxVHpnBDjcu5Hnmzq/U0GUE
-	nlqqnGjvaPgMujz1LrRMJXIwbEd6ny7P8N7j9n6v5bGjXHCuUHW/wWaWAIszjvAelayakzW650r
-	6XLEh1JYIZm1pH/K396bTLzDT5mnWv45V/GzPzVzcuccgV+Jpz/lOjAhtQyryC++6y3HdzTBMzP
-	TAvaowQI0lBs/Al8DwSqTBsJ2jrxv7MRssrOZNftTX4UgnL2KDuB2OdlYPO0DeEu3lmBrKBhULB
-	/h5L/emvWRYsKp75Uu4q/Ao83VmCVthrWPskrVyxwrn5IxJ3N6QHc3BLbwuMW6g48EDGOAd7pgm
-	IU8hfgUiazl1NpfCXiQ7mM/bPNFus6nHIdeR9PDGZzREabSFGVz8SxHTW8G/UG/oL7EVWdsmBPU
-	fA7pbM
-X-Received: by 2002:a05:6000:4312:b0:43b:54c9:85f4 with SMTP id ffacd0b85a97d-43b88a8ee05mr9887125f8f.39.1774511244659;
-        Thu, 26 Mar 2026 00:47:24 -0700 (PDT)
-X-Received: by 2002:a05:6000:4312:b0:43b:54c9:85f4 with SMTP id ffacd0b85a97d-43b88a8ee05mr9887076f8f.39.1774511244195;
-        Thu, 26 Mar 2026 00:47:24 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b919e722dsm5509708f8f.35.2026.03.26.00.47.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Mar 2026 00:47:23 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Yixun Lan <dlan@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
- Ghiti <alex@ghiti.fr>, Troy Mitchell <troy.mitchell@linux.spacemit.com>,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: i2c: spacemit: k3: Add compatible
-In-Reply-To: <20260325-thinning-apricot-c156914803d6@spud>
-References: <20260325-02-k3-i2c-v1-0-78f29c83d9ac@kernel.org>
- <20260325-02-k3-i2c-v1-1-78f29c83d9ac@kernel.org>
- <87zf3w6o6q.fsf@ocarina.mail-host-address-is-not-set>
- <20260325-thinning-apricot-c156914803d6@spud>
-Date: Thu, 26 Mar 2026 08:47:22 +0100
-Message-ID: <87wlyz6nhx.fsf@ocarina.mail-host-address-is-not-set>
+	s=arc-20240116; t=1774511364; c=relaxed/simple;
+	bh=FCiZyztzTkX0CyM84RU4JfI9wCheqkaRyooArvKDF5k=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=g6iQG+AvOEI46JeXGXtyDorYAm0amA62UMOvAo/rr5MHgzrhTwMhrav7rE32vOFDSyvL8ybfooRot+h7rx6thm8lTNLpdX0S2kag6MtZSQWbnx0SHDNQ9JM4lFoRbihvTWYPisiu/13b5KpogTHJAmjBjU74swcvlozMH6OJCCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kyg27/QD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80E2CC116C6;
+	Thu, 26 Mar 2026 07:49:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774511363;
+	bh=FCiZyztzTkX0CyM84RU4JfI9wCheqkaRyooArvKDF5k=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=Kyg27/QDQSurWNTQUTV69RjoLCB1nADLBaU5jNNiFUfeoS2w9KEIvGtKQ2VGC6wn8
+	 8CaHUz/ghxJ8OzmURKtrviSpLY3Ny/VPvCwiev0Y0znncxZoxUpOb7QUPo0+09F+XO
+	 JkdLUhR8Uo3xMkbCCovX5QCzsa+1yyN8yRS2LcjVDyn1MfLsNfHr2ex2+T1Kk+fBnz
+	 AzNnSbhrewa+jgsoyU0OWLg2lUXdImP8Yd4sCsu16wxIUda9ffVgk1PP3K3D12AjxL
+	 3XbhLl1Ulw2qAeEHt+CLGc2Xuj01ZN7G9MeWXk5I6Oj61aaJPL7fQ4qeYzF/t7u2M2
+	 W3R62aMYD4ZBA==
+Message-ID: <900dc1a4-66ab-411f-8a32-4c6cf339e8ec@kernel.org>
+Date: Thu, 26 Mar 2026 08:49:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: i2c: ls2x-i2c: Add clock- related
+ properties
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Hongliang Wang <wanghongliang@loongson.cn>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, loongarch@lists.linux.dev
+References: <20260325011852.19079-1-wanghongliang@loongson.cn>
+ <20260325011852.19079-2-wanghongliang@loongson.cn>
+ <20260325-outstanding-weasel-of-fruition-89db37@quoll>
+ <1b5283d8-294c-86de-c3d8-bf205ac24216@loongson.cn>
+ <0d7dfe5b-5e2d-4850-8922-16eb6bd9bcae@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <0d7dfe5b-5e2d-4850-8922-16eb6bd9bcae@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-280967-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-280969-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[javierm@redhat.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C6EBA3309A8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CB353330ADA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Conor Dooley <conor@kernel.org> writes:
+On 26/03/2026 08:02, Krzysztof Kozlowski wrote:
+> On 26/03/2026 03:12, Hongliang Wang wrote:
+>> Hi Krzysztof,
+>>
+>> Consider the clock framework relies on the device tree, and can only be 
+>> used on
+>> Loongson 2K platform with dts parameter mechanism, It cannot be used on 
+>> Loongson
+> 
+> Don't top post or request read receipts.
+> 
+>> 3A+7A platform with the acpi parameter mechanism.
+> 
+> And this patch is for ACPI? Then we finish discussion here, because
+> dt-bindings is not for ACPI.
+> 
+>> The i2c-ls2x driver is compatible with both Loongson 2K and 3A+7A 
+>> platform, parse
+>> the same parameters regardless of dts or acpi parameter passing, So 
+>> clock-input
+>> and clock-div attributes are defined to describe input clock of i2c 
+>> controller and
+>> divisor of input clock. It can be used on both 2K and 3A+7A platform.
+> 
+> And you cannot use them in DTS.
 
-Hello Conor,
+I need to keep guessing what you want to achieve, because neither your
+message nor commit text was explicit - if you need properties for ACPI
+and you want to be sure that DTS does not have them, then you could
+define them as "foo:false" with a comment why (you always explain WHY
+you are doing things). We don't have such convention so far, but I think
+it will be useful when Rob finishes the ABI checker.
 
-> On Wed, Mar 25, 2026 at 02:20:13PM +0100, Javier Martinez Canillas wrote:
->> Yixun Lan <dlan@kernel.org> writes:
->> 
->> > Add a compatible string for the I2C controller found in SpacemiT K3 SoC
->> > which use same I2C IP as K1, so make it fallback to K1 compatible.
->> >
->> 
->> If is the same IP as K1, shouldn't the "spacemit,k1-i2c" compatible be
->> used in the k3.dtsi instead? My understanding is that this is the meaning
->> of compatible, and there's no need to add another compatible string for k3.
->
-> Your understanding is incorrect! What Yixun has done here is what we
-> want people to do, because even if the IP is the same there can be
-> differences due to integration that are problematic. Having a device
-> specific compatible allows us to handle these kinds of problems if they
-> crop up in the future.
+*Otherwise* minimum would be a comment in the driver that these are not
+allowed in DTS.
 
-Thanks for the clarification! It seems the convention changed over the
-years then.
-
--- 
 Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+Krzysztof
 
