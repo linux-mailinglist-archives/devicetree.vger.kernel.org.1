@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-281363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281365-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EHZlKOB/xWkk+wQAu9opvQ
-	(envelope-from <devicetree+bounces-281363-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:50:08 +0100
+	id YE05KG1/xWkk+wQAu9opvQ
+	(envelope-from <devicetree+bounces-281365-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:48:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99BBF33A631
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:50:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C69433A5E8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:48:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D712D30DAF04
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 18:38:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1EAD330E9855
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 18:38:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6DBF3A4530;
-	Thu, 26 Mar 2026 18:38:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13DA3A5E82;
+	Thu, 26 Mar 2026 18:38:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="hJiSQDph"
+	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="Y67fJhjr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8542D3A1D1B;
-	Thu, 26 Mar 2026 18:38:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 434883A256E;
+	Thu, 26 Mar 2026 18:38:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.119.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774550289; cv=none; b=hUUz6HmTPji45lSH5Tqn9CRdNaH/OOvdnSRfbj2FhH/GD0wABwX8qDWurMbWBzDY6NaiBZA0Orm83Hmb6h4uiaLbMAfyyGxWcquqnFozn8AKPCm5rVQMBygE0LEFcF4sII++ezysh/hNh0RPYYuJ08n2N1i7nriWLfmSwnR62nM=
+	t=1774550290; cv=none; b=YGVqsE6KYHX/kHzqNKREpwwoaUdFXIqUMz09NJcaR0bZEtZT1bgLme0cgY4IWGOgXDRHCS2bTz1Pw6zgoDN7ghZsxBgmXbXn6kbdC8mU4I4S+50Ndkcr6nyZVPinqbg9CyOhX+otfO/KMRJg1UoaSvgYrXMdku6CCU15WfDJKf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774550289; c=relaxed/simple;
-	bh=KCWBbfrTOUMcx0cIWGLjyLL5xytign+TYvgFQPTLs14=;
+	s=arc-20240116; t=1774550290; c=relaxed/simple;
+	bh=Wg8dF4Ez2L/t9Cq/QcTOnBgcuy4Q5bRNlhgTN1nH2u0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RBjj3Rry+hFp31DjVEJosFjwWE5t9ji/qUXqB9VQ1Ghw016xulv9ILntPt8jqGE13x3JrQmb/xZlKsi40N8sm3a8fgjlOn+L0HsvZvyZJhjIktMOlO7SxrfEQ7Kr4l9jDpt2xD3F3Sfb5M9KnlTQ+b10RpnYXIU26u68SqbpuZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=hJiSQDph; arc=none smtp.client-ip=195.154.119.183
+	 MIME-Version; b=a4kTWQRQiWrpX2TT4LoQ8HPTa46ve1lNxi6S0YaToD03MJWtam/hM5Zy1WAG7dmI2xKDkMBXekaPihC65HOcnN398Cu/yx/WA0Hv/dtl4uoJWJmrw/4jNZleaeaxPllYICKY+vlCC2obasAQb+LVWfT/RhfpvaOag3p130isD6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=Y67fJhjr; arc=none smtp.client-ip=195.154.119.183
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
 	; s=202004.hall; h=Content-Transfer-Encoding:MIME-Version:References:
 	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-Type:From:Reply-To:
 	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-	bh=3on1Dl9hWGjs68TWWHrwVaSnOV+T0jR1PO3sYA88TQ4=; b=hJiSQDphQUuf9rSArYSlR5Vsg/
-	b+fDKy2WRFniSRVCyGy1MsMD9ZV4dgerQvWFf8dj0B3XpDkpaNXzuqPiZuKoU6ByffzbXdf/pGVK5
-	lv5CY8DjUE9hFZ4b6hSflsGSvY5vqQsq3g9dC6SKrCvv3bUcxZ2DUa04dHcZLWGEmLds9sqQKiapj
-	GNuNZweiAogLQ0WroozF2sgJqtoOXjaja/48syRRpBRbGn13fQ8ZTYMgRO1lP5KePgl2wCCZ5Wvor
-	rcZRJcS0P6J2JecOm+Vgs9xmGmU70EXGzMg+VMdb4w0b7EFw0hBDnSYmoXaNr9nleLXB3T9Ci6G+I
-	ZEqg9OhQ==;
+	bh=LOzo504Q+HcWKPGfQ4ITo0nHxBZ+WPeVELxNohKFadw=; b=Y67fJhjrbNSWTOerrlRom1/2TK
+	4RDuQWs9/dof3DHMVax0gvo+/maZE6xORIZY2MWQ6LC6aJhGWus4iUrIwF/46l8LttchbH9AwDHWJ
+	gKk0eY/p+36InGKBQTqrL8xUi9ZISXJapuIDPbYrqjh712wVX7hKA9EzB0/tHD9r1MnZv5zffl68/
+	wtyJ8nPd9uKKNGhhNGo1F2e2iA02D+zcKDTsPiSZqB7X/AGxNnM4jXs0MPAcddvE/u9VlNvTH5k+F
+	VDGmvGCEJlzJPhCpiAZFWh/BDVchs61IYZv5B1uzaowXnV04ftFeNE5DQycYmeROEzG5/0wBkQbaG
+	zhefyQVA==;
 Received: from authenticated user
 	by hall.aurel32.net with esmtpsa  (TLS1.3)  tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <aurelien@aurel32.net>)
-	id 1w5pan-0000000GAjq-1QCF;
+	id 1w5pan-0000000GAk3-2eiV;
 	Thu, 26 Mar 2026 19:38:05 +0100
 From: Aurelien Jarno <aurelien@aurel32.net>
 To: linux-kernel@vger.kernel.org,
@@ -65,9 +65,9 @@ Cc: Aurelien Jarno <aurelien@aurel32.net>,
 	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
 	linux-riscv@lists.infradead.org (open list:RISC-V SPACEMIT SoC Support),
 	spacemit@lists.linux.dev (open list:RISC-V SPACEMIT SoC Support)
-Subject: [PATCH v2 4/6] riscv: dts: spacemit: enable QSPI and add SPI NOR on Milk-V Jupiter
-Date: Thu, 26 Mar 2026 19:35:32 +0100
-Message-ID: <20260326183745.1370642-5-aurelien@aurel32.net>
+Subject: [PATCH v2 5/6] riscv: dts: spacemit: enable USB 3 ports on Milk-V Jupiter
+Date: Thu, 26 Mar 2026 19:35:33 +0100
+Message-ID: <20260326183745.1370642-6-aurelien@aurel32.net>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260326183745.1370642-1-aurelien@aurel32.net>
 References: <20260326183745.1370642-1-aurelien@aurel32.net>
@@ -85,13 +85,13 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[aurel32.net,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[aurel32.net:s=202004.hall];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-281363-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-281365-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -101,99 +101,114 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[aurelien@aurel32.net,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 99BBF33A631
+X-Rspamd-Queue-Id: 0C69433A5E8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add the QSPI controller node for the Milk-V Jupiter board and describe
-the attached SPI NOR flash (GD25Q64E).
+Enable the DWC3 USB 3.0 controller (USB#2 port in the K1 datasheet) and
+its associated combo_phy (USB 3 PHY) and usbphy2 (USB 2 PHY) on the
+Milk-V Jupiter board.
 
-The flash supports a frequency up to 133MHz (80 MHz for reads), and the
-SoC supports a frequency up to 104 MHz. However tests have shown that
-the flash is not reliably detected above 26.5 MHz, consistent with
-frequency used in the vendor kernel. Therefore, use this frequency.
+The board uses a VLI VL817 hub, providing four ports. Two are routed to
+the 3.0 type-A connectors, and two to the F_USB3 front USB header. The
+hub requires two separate 5V power supplies: one for the hub itself and
+one for the USB connectors. Add an always-on regulator sourcing 5V from
+the DC-IN input, along with two GPIO-controlled fixed regulators to
+manage the hub and connectors power supplies.
 
-The m25p,fast-read properties is taken from the vendor kernel, and the
-GD25Q64E datasheet confirms tha the fast read opcodes are supported.
-
-Add a corresponding flash partition layout, matching the layout and the
-names used in the vendor U-Boot.
+Note that the board also provides four USB 2.0 ports (two via type-A
+connectors and two via the F_USB2 front USB header), but these are
+handled by a different controller (USB#1 port in the K1 datasheet).
 
 Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
 Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 ---
- .../boot/dts/spacemit/k1-milkv-jupiter.dts    | 43 ++++++++++++++++++-
- 1 file changed, 42 insertions(+), 1 deletion(-)
+ .../boot/dts/spacemit/k1-milkv-jupiter.dts    | 62 +++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
 v2:
- - Remove bootph-pre-ram property from SPI NOR flash and update the patch description accordingly
- - Mention that the fast read opcodes is marked as supported in the datasheet
  - Collect Reviewed-by:
 
 diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-index 836311c3f035c..bac6438c67532 100644
+index bac6438c67532..8eeaf2631b719 100644
 --- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
 +++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-@@ -173,7 +173,7 @@ buck3_1v8: buck3 {
- 				regulator-always-on;
- 			};
- 
--			buck4 {
-+			buck4_3v3: buck4 {
- 				regulator-min-microvolt = <500000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-ramp-delay = <5000>;
-@@ -256,6 +256,47 @@ dldo7 {
+@@ -58,6 +58,41 @@ reg_vcc_4v: regulator-vcc-4v {
+ 		regulator-always-on;
+ 		vin-supply = <&reg_dc_in>;
  	};
- };
- 
-+&qspi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&qspi_cfg>;
-+	status = "okay";
 +
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <26500000>;
-+		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <4>;
-+		vcc-supply = <&buck4_3v3>; /* QSPI_VCC1833 */
-+		m25p,fast-read;
++	reg_vcc_5v: regulator-vcc-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_5v";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-boot-on;
++		regulator-always-on;
++		vin-supply = <&reg_dc_in>;
++	};
 +
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
++	regulator-usb3-vbus-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "USB30_VBUS";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++		vin-supply = <&reg_vcc_5v>;
++		gpio = <&gpio K1_GPIO(97) GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
 +
-+			bootinfo@0 {
-+				reg = <0x0 0x10000>;
-+			};
-+			private@10000 {
-+				reg = <0x10000 0x10000>;
-+			};
-+			fsbl@20000 {
-+				reg = <0x20000 0x40000>;
-+			};
-+			env@60000 {
-+				reg = <0x60000 0x10000>;
-+			};
-+			opensbi@70000 {
-+				reg = <0x70000 0x30000>;
-+			};
-+			uboot@a00000 {
-+				reg = <0xa0000 0x760000>;
-+			};
-+		};
++	usb3_hub_5v: regulator-usb3-hub-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "USB30_HUB";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&reg_vcc_5v>;
++		gpio = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
++		enable-active-high;
 +	};
 +};
 +
- &uart0 {
- 	pinctrl-names = "default";
++&combo_phy {
++	status = "okay";
+ };
+ 
+ &eth0 {
+@@ -302,3 +337,30 @@ &uart0 {
  	pinctrl-0 = <&uart0_2_cfg>;
+ 	status = "okay";
+ };
++
++&usbphy2 {
++	status = "okay";
++};
++
++&usb_dwc3 {
++	dr_mode = "host";
++	#address-cells = <1>;
++	#size-cells = <0>;
++	status = "okay";
++
++	hub_2_0: hub@1 {
++		compatible = "usb2109,2817";
++		reg = <0x1>;
++		vdd-supply = <&usb3_hub_5v>;
++		peer-hub = <&hub_3_0>;
++		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
++	};
++
++	hub_3_0: hub@2 {
++		compatible = "usb2109,817";
++		reg = <0x2>;
++		vdd-supply = <&usb3_hub_5v>;
++		peer-hub = <&hub_2_0>;
++		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
++	};
++};
 -- 
 2.51.0
 
