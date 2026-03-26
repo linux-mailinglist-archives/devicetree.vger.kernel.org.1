@@ -1,165 +1,165 @@
-Return-Path: <devicetree+bounces-281358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281360-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GCgINRx/xWkk+wQAu9opvQ
-	(envelope-from <devicetree+bounces-281358-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:46:52 +0100
+	id eA96A799xWnw+QQAu9opvQ
+	(envelope-from <devicetree+bounces-281360-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:41:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1BA333A58E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:46:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79FA933A4C2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:41:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 89A7730125B0
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 18:34:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 251EA30844D4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 18:38:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BB1839FCC1;
-	Thu, 26 Mar 2026 18:34:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47ADA3A2577;
+	Thu, 26 Mar 2026 18:38:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YLQ8s2Ys"
+	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="e9aQd6Dz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4735D288CA3;
-	Thu, 26 Mar 2026 18:34:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD0639FCAD;
+	Thu, 26 Mar 2026 18:38:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.119.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774550083; cv=none; b=FO012ERhgBqTnWvKVgPaAjZJM/pIEzfmyWwCbxX9TkIPXNzXEne2iuCR7D1eKRmzyhc6T/W0vMiVmnbk2ClMPpIbZwpYuvgL0lJfr/ARttqgoM2lkEmN7NrrZgbXzZnR0Ljzn4U4rx2jkjdbvYDKOs2I7oy0dKNZ+VUyu8qUpH0=
+	t=1774550288; cv=none; b=flQn+dqWpUsvylLO7A/gcRNus80rqg47jEc1ug0srJsiikYXcghJ0zEwtscYo314BFqlV5uzbATJ7qQM0Vcqks2RCkwv00PgErwg/WfzLqLRr6aFZjQc2o1toMiG4IXOORxkanb4Y2SgICOQ8X2qhwr+nj/PfB/gZUqOoVkGBdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774550083; c=relaxed/simple;
-	bh=+WFhHAP+I6U56ZY1SPoQXhOLT+bdcm5oHSlV3lm2fRk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AmHB+gFBIok+m/Y7Ubt0ETEhYQNvLq56BuqJACvQkZsJ5wsqw4a7TNWBtpmWRhOZrqALdg9yjnpDUrKu7sEWwbPSofT2NoQp/7r23An4WrGhpCN+vD4zK7+b9A+pQcK9OVuroCHMXx8Wl4cQhlb269GgeBklAx5KyFvbaowouus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YLQ8s2Ys; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 588ACC116C6;
-	Thu, 26 Mar 2026 18:34:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774550083;
-	bh=+WFhHAP+I6U56ZY1SPoQXhOLT+bdcm5oHSlV3lm2fRk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YLQ8s2Ys1REk6EW7Qhg3mlYZf3hKzj8IindqDfPFSPV9j2xX5TipAVNqRAUNL+Wea
-	 x4Y0N8d3LK8wCT2DArdswnWLaR795pWrpELuTVswjw2gttc7K7J4eNtCdjcjpqbJlz
-	 yK/HKpZlVj7Z37+hYHahAhIkr6dwVwIfBpaLT3hLCoQEgAeJNgF7DSLH3zUsKsCDi2
-	 ckkp3Xk9BU37wOBORGkLpHEm38eeWkBZRrpzO5xlZPT4MNuBpD4kU3BAl74GVvgSo5
-	 NsK/KDCX/pTx8/NsY9pHgcp5u+/sfcKA5UVl8fiQSP8dqqxQ67uoL7JcWFreNn9cnY
-	 ZF0JxhevI/KOQ==
-Date: Thu, 26 Mar 2026 18:34:37 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	s=arc-20240116; t=1774550288; c=relaxed/simple;
+	bh=Z5d+qisrCUqKR1bEaqfGKNaDzKxqIcu4biwQahRJmYM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=mdsbUH9DyvoenLcFn2fkinkV8U1f1ZGqmCNXkFt4dSh/w3sQhqc+rW8+PwixNLNcsxss30c0ed4c48uBwKKap07Gd8fYJ5C7yzAzvVmIXc+6qkmS4YmfVbzJ4xSWtVgD4TZKWaL5NzSDmBxTwoh2LY2J6/MX1YaPrAD93czqalE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=e9aQd6Dz; arc=none smtp.client-ip=195.154.119.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=Content-Transfer-Encoding:MIME-Version:References:
+	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-Type:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=+KcrpH8cwpBflE8VQsFexd/Z08Riudm3og8OXJwlHKs=; b=e9aQd6DzTfCmxNpweipgrREW1l
+	0UXaQu4R9x8fFWKS1BIIj9CQfmi3R2KaM6qU+uFNDy19x8Vy1x6oL0psyhdicFnl4PetlH/rcGsd3
+	5bbphhjJUniMorY84mibFyR94ezf6t/9lQknfVW/qwhnNlmBOxAFSYNCqp/LA0sH2KfChIgh7PwlO
+	ddEsDQ8FI1qJApvR+vNh2nt0enzH5f+u+Bh+r8H1+LNBoQVqCDbkQdtGa5adIHd90dSxYxIxx8rom
+	nk3Wr57Y36Mqc+/30tC7GcOyhLGL19i96tTrkjbBXGOxdUJCQw1BPkZlE92TXVy4Sp7z9mn7pOYLF
+	5q1unowQ==;
+Received: from authenticated user
+	by hall.aurel32.net with esmtpsa  (TLS1.3)  tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1w5pal-0000000GAjN-3tDk;
+	Thu, 26 Mar 2026 19:38:03 +0100
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Frank Li <Frank.Li@kernel.org>, Guodong Xu <guodong@riscstar.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 2/7] dt-bindings: dmaengine: Add SpacemiT K3 DMA
- compatible string
-Message-ID: <20260326-explode-surplus-24c0e0813099@spud>
-References: <20260326-k3-pdma-v2-0-ca94ca7bb595@linux.spacemit.com>
- <20260326-k3-pdma-v2-2-ca94ca7bb595@linux.spacemit.com>
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@kernel.org>
+Cc: Aurelien Jarno <aurelien@aurel32.net>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-riscv@lists.infradead.org (open list:RISC-V SPACEMIT SoC Support),
+	spacemit@lists.linux.dev (open list:RISC-V SPACEMIT SoC Support)
+Subject: [PATCH v2 1/6] riscv: dts: spacemit: add LEDs for Milk-V Jupiter board
+Date: Thu, 26 Mar 2026 19:35:29 +0100
+Message-ID: <20260326183745.1370642-2-aurelien@aurel32.net>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260326183745.1370642-1-aurelien@aurel32.net>
+References: <20260326183745.1370642-1-aurelien@aurel32.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3c5c3SbeQ5J8Cvcr"
-Content-Disposition: inline
-In-Reply-To: <20260326-k3-pdma-v2-2-ca94ca7bb595@linux.spacemit.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[aurel32.net,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[aurel32.net:s=202004.hall];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-281358-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-281360-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[aurelien@aurel32.net,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[aurel32.net:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: D1BA333A58E
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aurel32.net:dkim,aurel32.net:email,aurel32.net:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 79FA933A4C2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+The Milk-V Jupiter board provides support for two LEDs through the front
+panel header. The "Power LED" indicates the system is running, and the
+"HDD LED" shows disk activity. Configure the corresponding LED triggers
+accordingly.
 
---3c5c3SbeQ5J8Cvcr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Caveats:
+- The LEDs are driven through a 4.7k series resistor, making them
+  quite faint.
+- The disk activity trigger requires a storage controller on the M.2 or
+  PCIe interface. That said, it matches the purpose and the vendor
+  kernel.
 
-On Thu, Mar 26, 2026 at 04:17:17PM +0800, Troy Mitchell wrote:
-> From: Guodong Xu <guodong@riscstar.com>
->=20
-> Add k3 compatible string.
+Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+---
+ .../boot/dts/spacemit/k1-milkv-jupiter.dts      | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-That's obvious. What you need to explain is why it is not compatible with
-the existing k1.
-pw-bot: changes-requested
-Cheers,
-Conor.
+v2:
+ - Collect Reviewed-by:
 
->=20
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> ---
->  Documentation/devicetree/bindings/dma/spacemit,k1-pdma.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/dma/spacemit,k1-pdma.yaml =
-b/Documentation/devicetree/bindings/dma/spacemit,k1-pdma.yaml
-> index ec06235baf5c..62ce6d81526b 100644
-> --- a/Documentation/devicetree/bindings/dma/spacemit,k1-pdma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/spacemit,k1-pdma.yaml
-> @@ -14,7 +14,9 @@ allOf:
-> =20
->  properties:
->    compatible:
-> -    const: spacemit,k1-pdma
-> +    enum:
-> +      - spacemit,k1-pdma
-> +      - spacemit,k3-pdma
-> =20
->    reg:
->      maxItems: 1
->=20
-> --=20
-> 2.53.0
->=20
 
---3c5c3SbeQ5J8Cvcr
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
+index 9959c8023ece0..3cd83c5924e4f 100644
+--- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
++++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
+@@ -21,6 +21,23 @@ chosen {
+ 		stdout-path = "serial0";
+ 	};
+ 
++	leds {
++		compatible = "gpio-leds";
++
++		led1 {
++			label = "pwr-led";
++			gpios = <&gpio K1_GPIO(96) GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "default-on";
++			default-state = "on";
++		};
++
++		led2 {
++			label = "hdd-led";
++			gpios = <&gpio K1_GPIO(92) GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "disk-activity";
++		};
++	};
++
+ 	reg_dc_in: regulator-dc-in-12v {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "dc_in_12v";
+-- 
+2.51.0
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCacV8PQAKCRB4tDGHoIJi
-0iSJAQCYik/5JNh07McaFHFAtO7PKvqeDrCRfWwv0LzCc+MAOQD+I6kaG8JvSER/
-6z5GZ8MFkLGErIBUFMmIqZJuwKZldAo=
-=sPth
------END PGP SIGNATURE-----
-
---3c5c3SbeQ5J8Cvcr--
 
