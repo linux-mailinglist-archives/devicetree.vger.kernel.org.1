@@ -1,217 +1,149 @@
-Return-Path: <devicetree+bounces-281100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281111-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WG9XBBkJxWnn5gQAu9opvQ
-	(envelope-from <devicetree+bounces-281100-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:23:21 +0100
+	id OAh7F6UHxWnn5gQAu9opvQ
+	(envelope-from <devicetree+bounces-281111-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:17:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A17AC3333D6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:23:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D548A333230
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 11:17:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F0C1F30F409A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:04:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EC5C33223B7B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CF43CB2F2;
-	Thu, 26 Mar 2026 10:00:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HbnZB+J2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 695473DA7D6;
+	Thu, 26 Mar 2026 10:06:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 106943CB2E6;
-	Thu, 26 Mar 2026 10:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 982F13D669C
+	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 10:06:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774519229; cv=none; b=eVNuNSvKKsYKU8bXlth80yC8o985xKWD2XCOjyoEUJvcTFKT+A/BOYqpE2iVA6G/CiUFFv8GPIxvaEzQ1fQx2dfAfuhsAhivriWkxzNKg6ZRKTkrpmv1pn1FYwboKOmNipv2t89dYOemT+YC/xgfHSdj0M/Ff3BAHua/uix+PLQ=
+	t=1774519591; cv=none; b=sARtPN4XjaRq/vFeTSp6Vr/ejYF04tDHAqnrrb5n8hW5GnjuRAgSZwV1KxPtDQZ6qPI90Z6Vr7CnY5/wHaVIDgE2woj3JpwX9O9iFZgb2chZGdaTq0yUu2emfYkbYl7XD1CpWT0K2LqQtqkQPo84Dx+6HrQjbCp4LKLzAucgcLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774519229; c=relaxed/simple;
-	bh=YpjKz+MXrEJKD/amzHLZygjzl2q1zYJTn/2+9zrnFbk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lphtx27Pxfg1PvOn1e9HAkqjruzv7nI4O1cX9Xkwwa/u8cz4UhvlLcY6u/bx0XaWtJvKKswvV0MFJtXtRGA+8PPmrq3dGrhuGs3l+pw5AgTF7dBDCsy6eMUHt5HiOMJxWQmmMY8zrKD/P4Wv7Zj4kNYrmrqRMDQAnz0/z/NMB00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HbnZB+J2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1692C19423;
-	Thu, 26 Mar 2026 10:00:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774519228;
-	bh=YpjKz+MXrEJKD/amzHLZygjzl2q1zYJTn/2+9zrnFbk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HbnZB+J2EUiWTIcTl5ux6o4nmsX0zdPCeKA9X2E2pqwVjLqHXljiFGkZePyN9Uo5k
-	 UQq2HnTy4Jh6bUXew9Nk6dQR9OcIPSjXV3O6fT5jnjvr4okYPP59GBAoIc0X+HX6C3
-	 rZ2BSOZhNu0rhiapGbswtE+4dWW3abszZ2TernYS1U7Y9mktHT9zFxsq7DnzcKKfvQ
-	 exvsjEcmDHQwwcxLWLVoeYE8/tR2Bszae26Tuve04yoL5qmJaiHH7jWMAgdVDqlCow
-	 fAUsK3OrU+CclrDswok0HGiZaDO6fTtArHEIvjD062Lk03TVEQorQXzibIR4NKtEsb
-	 MRpiZiCbzgwqQ==
-Date: Thu, 26 Mar 2026 11:00:24 +0100
-From: Thierry Reding <thierry.reding@kernel.org>
-To: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jon Hunter <jonathanh@nvidia.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] firmware: tegra: bpmp: Add
- tegra_bpmp_get_with_id() function
-Message-ID: <acUDq3bt7P2vL5tg@orome>
-References: <20260320225443.2571920-1-thierry.reding@kernel.org>
- <20260320225443.2571920-3-thierry.reding@kernel.org>
- <24777801.6Emhk5qWAg@senjougahara>
+	s=arc-20240116; t=1774519591; c=relaxed/simple;
+	bh=Dnk/Ep000DxDlm30ft/36GISAeJC6MWSp0hczCHVrsI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=K1VvjbnjLuZU7w0bAjcBoxfXHDwok91ut5neeFvY04dDjWoqBa/KV7NrVpUXJ8RfeM/Bfgcbfxaq+q3JFcq/2bXV++1BwuHpvoktKLbiV7uHT2Zg8fMchFph4aLnkfKNENu0thx93KcCTNkewJO0WDB6XtgA/0cvNo0PRJ9Klf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-602a0648aa3so509269137.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 03:06:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774519587; x=1775124387;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YTtqqo6x9S580GU00V14/uSms4ERMBvfiBHq57QUXIo=;
+        b=J8QQ75t6dvsNTWvzmnbmpENH4bPFlTIpT1L98mjYOCd0hWk/nPqwAW4YRf3hRl+BUK
+         QrfQAR6Ku1oCdvvIttUwvWoyVbSWEitBIEe+XIHa71wrwZznu01cW3zijT+2SGf34Qp2
+         PXyTsIaoETWrkcSjLk69FtIZk0LwfOV/GFJ9Uxi1KOj0zCAz11W9pv2dDDeaefXuRJLm
+         D3Es5lrfirmw2tG/RM5ZLvzsP/64EyZ/AZledXrJwCRhUZddpO5liRMoH6aJHdzp4tSy
+         3n9DnqOJpiovvqtxTKmZ8ftmUypZQ2YADGmsD19kixSDp2IdRjyR5EFsMHQ8MZpP4riX
+         DJVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUc7tKiQiS1Re9OE+vH4jBqrNad2LIBQ9MQVbNcIt6jKoL+hMf29Q6OZ+4XQdCsBEwO8GUZ1WaVMv1C@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzd3U+cY8/thlplb4GE71qEOYPJkETdZiboaeMjoDGkMTKa1XQT
+	aGpWJEYA5810hQ50hwZJqj02gIUHTNsx438phoBh+vjNyhW/T/Q/+AIAr5mBIpS6fAk=
+X-Gm-Gg: ATEYQzxBaqvHInKllP21/05bMSJJ3p68a3w7wlv3gKkTPrK9R67npIYVAcqjkLTskjH
+	cDOQEjH4KOfx9/YjFY+eJ2ZBwtJbQ9BBCVHOhECbS9jGBhR0lU827paCKnPa6MWQQF9OieUWxdT
+	wQqu/pkhnPm8kfSBn/vFfWU9W2VSy2r2JSqm7U9nuzbr3RBysPXQi1o9HgVx5SZHP0EZuS7ojJJ
+	6Udgvd59w7rYUtG8LUAfPF49Oeg8dPrK9qLe1QG0vk3/sDEkyCAP75TygE1R9HIefLMUnl97mZM
+	16F00Kcw7CChlCbIFTnIRHRYUBpkLxMwFyt5Z1ExdxRZrj72tFvfqTdhxItjqhpHuvixc48hS5M
+	IomxToCHagEgICSBbcBOpuXhTF54QMzDffHTrxRtzWf6oPLOYnYKs24aKM3HJcEbec2J4PpdY8s
+	wM7S2ag+1O7hiCEhtJNJMklK9yWPif6trUTjQ9qfTybOaBJ818VKCWY2HXmSDY
+X-Received: by 2002:a67:e70f:0:b0:5ff:b3f7:48de with SMTP id ada2fe7eead31-6036ceac83amr3192698137.0.1774519587384;
+        Thu, 26 Mar 2026 03:06:27 -0700 (PDT)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-604d50645a4sm2483358137.2.2026.03.26.03.06.26
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Mar 2026 03:06:26 -0700 (PDT)
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-94ac8cbf3feso478997241.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 03:06:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVGAdYB/uCaqznaF7d/iwG2nqsiVhzgVKD/D1Bujx7iRpMi/SxN3V9v60DxN4em8JOdFaWPOHXCWGn0@vger.kernel.org
+X-Received: by 2002:a05:6102:ccb:b0:5f7:307e:80d9 with SMTP id
+ ada2fe7eead31-60394931699mr3392374137.28.1774519586614; Thu, 26 Mar 2026
+ 03:06:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="pu5ew2iy2ugqzuez"
-Content-Disposition: inline
-In-Reply-To: <24777801.6Emhk5qWAg@senjougahara>
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+References: <20260302165441.4457-1-ovidiu.panait.rb@renesas.com> <20260302165441.4457-8-ovidiu.panait.rb@renesas.com>
+In-Reply-To: <20260302165441.4457-8-ovidiu.panait.rb@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 26 Mar 2026 11:06:15 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXu13hd95vQGKnwhJvamYEU30stfqpEup-UES0T1WJwwg@mail.gmail.com>
+X-Gm-Features: AQROBzCyFc0L7MNPsR8v6JpI5CURIKpqB0sB1nizHY9j3c8L_BX7fUgN2HFl9ps
+Message-ID: <CAMuHMdXu13hd95vQGKnwhJvamYEU30stfqpEup-UES0T1WJwwg@mail.gmail.com>
+Subject: Re: [PATCH v4 7/7] arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Add
+ versa3 clock generator node
+To: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	biju.das.jz@bp.renesas.com, fabrizio.castro.jz@renesas.com, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,baylibre.com,bp.renesas.com,renesas.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-281111-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281100-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A17AC3333D6
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,linux-m68k.org:email,mail.gmail.com:mid,glider.be:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D548A333230
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Mon, 2 Mar 2026 at 17:55, Ovidiu Panait <ovidiu.panait.rb@renesas.com> wrote:
+> Add versa3 clock generator node. It provides clocks for the RTC, PCIe
+> and audio devices.
+>
+> Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+> ---
+> v4 changes: None.
+>
+> v3 changes:
+> - Added comments to document rtxin_clk and qextal_clk routing.
 
---pu5ew2iy2ugqzuez
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 2/5] firmware: tegra: bpmp: Add
- tegra_bpmp_get_with_id() function
-MIME-Version: 1.0
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.1.
 
-On Wed, Mar 25, 2026 at 11:28:41AM +0900, Mikko Perttunen wrote:
-> On Saturday, March 21, 2026 7:54=E2=80=AFAM Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Some device tree bindings need to specify a parameter along with a BPMP
-> > phandle reference to designate the ID associated with a given controller
-> > that needs to interoperate with BPMP. Typically this is specified as an
-> > extra cell in the nvidia,bpmp property, so add a helper to parse this ID
-> > while resolving the phandle reference.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >  drivers/firmware/tegra/bpmp.c | 34 ++++++++++++++++++++++++++++++++++
-> >  include/soc/tegra/bpmp.h      |  1 +
-> >  2 files changed, 35 insertions(+)
-> >=20
-> > diff --git a/drivers/firmware/tegra/bpmp.c b/drivers/firmware/tegra/bpm=
-p.c
-> > index e74bba7ccc44..753472b53bd8 100644
-> > --- a/drivers/firmware/tegra/bpmp.c
-> > +++ b/drivers/firmware/tegra/bpmp.c
-> > @@ -32,6 +32,40 @@ channel_to_ops(struct tegra_bpmp_channel *channel)
-> >  	return bpmp->soc->ops;
-> >  }
-> > =20
-> > +struct tegra_bpmp *tegra_bpmp_get_with_id(struct device *dev, unsigned=
- int=20
-> *id)
-> > +{
-> > +	struct platform_device *pdev;
-> > +	struct of_phandle_args args;
-> > +	struct tegra_bpmp *bpmp;
-> > +	int err;
-> > +
-> > +	err =3D __of_parse_phandle_with_args(dev->of_node, "nvidia,bpmp", NUL=
-L,
-> > +					   1, 0, &args);
-> > +	if (err < 0)
-> > +		return ERR_PTR(err);
-> > +
-> > +	pdev =3D of_find_device_by_node(args.np);
-> > +	if (!pdev) {
-> > +		bpmp =3D ERR_PTR(-ENODEV);
-> > +		goto put;
-> > +	}
-> > +
-> > +	bpmp =3D platform_get_drvdata(pdev);
-> > +	if (!bpmp) {
-> > +		bpmp =3D ERR_PTR(-EPROBE_DEFER);
-> > +		put_device(&pdev->dev);
-> > +		goto put;
-> > +	}
-> > +
-> > +	if (id)
-> > +		*id =3D args.args[0];
-> > +
-> > +put:
-> > +	of_node_put(args.np);
-> > +	return bpmp;
-> > +}
-> > +EXPORT_SYMBOL_GPL(tegra_bpmp_get_with_id);
-> > +
-> >  struct tegra_bpmp *tegra_bpmp_get(struct device *dev)
-> >  {
-> >  	struct platform_device *pdev;
-> > diff --git a/include/soc/tegra/bpmp.h b/include/soc/tegra/bpmp.h
-> > index f5e4ac5b8cce..424188c100d9 100644
-> > --- a/include/soc/tegra/bpmp.h
-> > +++ b/include/soc/tegra/bpmp.h
-> > @@ -127,6 +127,7 @@ struct tegra_bpmp_message {
-> > =20
-> >  #if IS_ENABLED(CONFIG_TEGRA_BPMP)
-> >  struct tegra_bpmp *tegra_bpmp_get(struct device *dev);
-> > +struct tegra_bpmp *tegra_bpmp_get_with_id(struct device *dev, unsigned=
- int=20
-> *id);
->=20
-> Should add a stub function in the #else branch, as well.
+Gr{oetje,eeting}s,
 
-Good point. Done.
+                        Geert
 
-Thierry
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
---pu5ew2iy2ugqzuez
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmnFA7UACgkQ3SOs138+
-s6Em5w/+KkKgYHMUISCj532bdIof02gpfGfp/DB5EFjFjW6ST6rASh5Q2g272YNw
-n9nD8AxA3Z89OZgoAl5pqZ6AFFghe2eK2I7yGV3rxcIoxGvBF37Yl9caQp+YO+H5
-2FBj6MSmBN8Rf/4IMZavXfxjCfvrfHU01qYUL73bPtQAzKaWGW4Opc284LIi/STw
-vRoqqpAtxRdqtMvA81z24BQ0n5UyDiUJmvy/QMoNea8wRwVkVp2mmltx1foJ1PZA
-ze7OxaOe2dVj4dsfJYd7D0rDf9k1Wp9XG065Zvn1orsAfj8s3bqPT4nFz8mggxID
-jSCNFdp8PtWwwNOWr90Z0rBrBX/uI2E77q3phWHWqQ41JFK0EHAunBQ/pAJ82d5T
-STSApB7hquaMv3QEf2gryrCHu2r+nbBD7QrP4hQpH/MvxLu8mJ86zimmsQEvdc4h
-lczoADmSIen5E4MuF+bTvguVvCbAsHyuUIZ45LhIZTWH8FjQkY0OaT0gy4x/2mBc
-QVRjucIInQDtKfQtcv925RYzwkmCTnI6O135v8kyGEIxmBXA9uOUcmV6cn6luhbJ
-cnkrcT8o2XO4QIT5Qh7Y+guVlsvz+T4aN0pWUmMecxJJCtJ9X7b298tUJtyTzEVU
-1A2Gsa10bUeMTQL0WUHhNkBRrftScKT/xjjpOq0ClmVRc44wSPE=
-=qh4a
------END PGP SIGNATURE-----
-
---pu5ew2iy2ugqzuez--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
