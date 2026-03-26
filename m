@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-281193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281195-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IE/ZAq0lxWkU7QQAu9opvQ
-	(envelope-from <devicetree+bounces-281193-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:25:17 +0100
+	id YOr/FOwkxWkU7QQAu9opvQ
+	(envelope-from <devicetree+bounces-281195-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:22:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5799933527B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:25:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C146933521C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:22:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A476C300A384
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:14:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 100643024477
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 12:19:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDAA93F786B;
-	Thu, 26 Mar 2026 12:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2228A3E7145;
+	Thu, 26 Mar 2026 12:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="VPG6ZaWP"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="eRP0fnIh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A8938B121;
-	Thu, 26 Mar 2026 12:14:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A815433F8D4;
+	Thu, 26 Mar 2026 12:18:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774527265; cv=none; b=dg6yUfd7chFBT96xilf0CalauPxUTfM7Ct4QVAfEgNFqL/+oZe9RoeTxHy5PWh/7nmWwLaTHMrTWrh/fm8NAjm+SzGR+S8PV5CV7+ZyMngZzwKlRnL6qu6mdQFz3/TzuHTXVpuymuoOC7+RzqmXyGd7Ls6sDxCatnBmAgMc0Z7I=
+	t=1774527540; cv=none; b=mr446TkT6bMhJQdGaoocglWXwvTV/bW7TRADAJ0V16QO4orhIAyuHRvPBYI4/qfbGb6taaEtDudR+KTKZJd2SsMiGe8tDev0F+VJ3II2yBJLddvFn/DUKPQ/OHyWmBeFiAb8Hrg74iZzsqwKZR4jSNLgXFu0OVXBiYrjWjPbQ34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774527265; c=relaxed/simple;
-	bh=bwHn5ee8/BMiVEQ2a0oY/PvtpiJF7va3KpPKdeTQTfs=;
+	s=arc-20240116; t=1774527540; c=relaxed/simple;
+	bh=9UlhdLvO/oAVXnN0UVC/Y9bBJYS4roP0RLGr6kuLNUM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DIbRuXXzLD7Ez7ZRwbaVz84oWYvyUCZ81DTpRhCfznfyzo3tfb/BRm0wXiiL4oWonNOu6hcA3pkv4DZ5VjPfQeSAaBtYXI1qy8zPYjbyH/JvITntFxqR9bDrPL+mSBP1+P4k5Aj6fM6t2P8hlil1L9dAL753j2nRy+YAo1YDvAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=VPG6ZaWP; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=XT+bGVSy7jb4K+NWbMmoKuEdTNnndYnXMXddY6jthsslik82NdANr2MZQZTxOuKtn0wBYl+9In0Ngrxk+FUxx1NVhO+AXKU/2zLknBbRw+TLT0RX2KwkCGRMm8NLcRbcbblwWDsp2fBVkL9+A9UiqChxLr+Z+rDAHarcd76YrYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=eRP0fnIh; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -39,13 +39,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=nODx/pKi0XY2U0hMYX1gKhrixXQuNH+ob0VCp10UmDM=; b=VPG6ZaWPQYooabUf1pTssgK19i
-	9edbhjTKUlwuiUunE6xIcxMOI1ys3rsdTQbq2rZ8vMezzrkL0R8E4zjXrJjXmZ4/VAD/tl2BHzLa4
-	ca7NhAOuq1Zda82EfcvNvZ1zfmVV0WkwtW6jJ0igHPKI4EZESzjO1xWL3DuArqszoM1w=;
+	bh=Wrg/kFgdY4Ptg/fFnrPXnWqYCPBktQnEu4NL0+V4Z0g=; b=eRP0fnIhsKI0g0t9tYe40Yq79P
+	mnKkbFlSpxgAFFR0p57/eU1lzKnzCA+A4eHmhE0mhOIG9IrSg/krHXlYCCHFPjZhdJGv5kLJHIY+m
+	g5Xkae8Pprrr7DYlTEnwtf7UeqgSyf3NatYdGmV81RrcnHI4Q76ZFmKyExPFLNQrQFTc=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1w5jbF-00DTO2-Vo; Thu, 26 Mar 2026 13:14:09 +0100
-Date: Thu, 26 Mar 2026 13:14:09 +0100
+	id 1w5jfk-00DTRF-6F; Thu, 26 Mar 2026 13:18:48 +0100
+Date: Thu, 26 Mar 2026 13:18:48 +0100
 From: Andrew Lunn <andrew@lunn.ch>
 To: Fidelio Lawson <lawson.fidelio@gmail.com>
 Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
@@ -60,11 +60,11 @@ Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
 	netdev@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Fidelio Lawson <fidelio.lawson@exotec.com>
-Subject: Re: [PATCH 1/3] dt-bindings: dsa: microchip: add KSZ low-loss cable
- errata properties
-Message-ID: <521cf729-50d2-44c1-8c96-c1fba2127b9d@lunn.ch>
+Subject: Re: [PATCH 3/3] net: dsa: microchip: implement KSZ87xx Module 3
+ low-loss cable errata
+Message-ID: <ab6a06c1-2d7d-4032-8d38-063470cd45c0@lunn.ch>
 References: <20260326-ksz87xx_errata_low_loss_connections-v1-0-79a698f43626@exotec.com>
- <20260326-ksz87xx_errata_low_loss_connections-v1-1-79a698f43626@exotec.com>
+ <20260326-ksz87xx_errata_low_loss_connections-v1-3-79a698f43626@exotec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,18 +73,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260326-ksz87xx_errata_low_loss_connections-v1-1-79a698f43626@exotec.com>
+In-Reply-To: <20260326-ksz87xx_errata_low_loss_connections-v1-3-79a698f43626@exotec.com>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
 	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281193-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-281195-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -99,42 +99,29 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[lunn.ch:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:dkim,lunn.ch:mid]
-X-Rspamd-Queue-Id: 5799933527B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lunn.ch:dkim,lunn.ch:mid]
+X-Rspamd-Queue-Id: C146933521C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 26, 2026 at 10:10:21AM +0100, Fidelio Lawson wrote:
-> Microchip KSZ87xx switches are affected by the "Module 3: Equalizer fix
-> for short cables" erratum described in DS80000687C.
-> The embedded PHY receivers are tuned for long, high-loss cables,
-> which may cause signal distortion when operated with short or low-loss
-> cabling such as CAT5e or CAT6. In these cases,
-> the PHY may fail to establish a link due to internal over-amplification.
-> 
-> Two workarounds are provided by Microchip, each configuring a different
-> indirect register value to adjust the PHY equalizer settings.
-> 
-> This patch introduces two new device tree properties to enable and
-> select the appropriate workaround:
-> 
->   - microchip,low-loss-errata-enable: boolean enabling the feature
->   - microchip,low-loss-errata: selects workaround 1 or 2 (default: 1)
-> 
-> These properties allow board designers to opt into the errata fix
-> according to the targeted cable characteristics of their platform.
+> +	mutex_lock(&dev->alu_mutex);
+> +
+> +	ret = ksz_write8(dev, regs[REG_IND_CTRL_0], 0xA0);
+> +
+> +	if (!ret)
+> +		ret = ksz_write8(dev, 0x6F, indir_reg);
+> +
+> +	if (!ret)
+> +		ret = ksz_write8(dev, regs[REG_IND_BYTE], indir_val);
+> +
+> +	mutex_unlock(&dev->alu_mutex);
 
-Does the errata give any indication how the two different workarounds
-differ? How would a user decided which to use?
+What address space are these registers in? Normally workarounds for a
+PHY would be in the PHY driver. But that assumes the registers are
+accessible from the PHY driver.
 
-I also question if this should be a DT property. The length of the
-cables is not a property of the board.
-
-A PHY tunable would better reflect the same board can be used with
-different cables, with different lengths/quality.
-
-	  Andrew
+	   Andrew
 
