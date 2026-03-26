@@ -1,40 +1,41 @@
-Return-Path: <devicetree+bounces-281074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281075-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CFxiIP7+xGny5QQAu9opvQ
-	(envelope-from <devicetree+bounces-281074-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:40:14 +0100
+	id MJz1H4X/xGkz5gQAu9opvQ
+	(envelope-from <devicetree+bounces-281075-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:42:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85AA9332745
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:40:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12C023327F0
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:42:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5AA4B309C4A8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:32:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F3EC13047E6C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 502EF346E68;
-	Thu, 26 Mar 2026 09:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B4C34C9B7;
+	Thu, 26 Mar 2026 09:32:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-sc.amlogic.com (unknown [64.106.246.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79D163446CA;
-	Thu, 26 Mar 2026 09:32:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C9F34751C;
+	Thu, 26 Mar 2026 09:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.106.246.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774517528; cv=none; b=cEjCD0glSwkqXJ6UnNplBu86byUuFkRdPhlvakGz10ApVpktcsjMepkqts8vttXOHPA7sCB7SuN6RwX7YpBQkSvNXlLF0f0wBdZK3YI98rDAmVt4xZyDDXv8R8ZDclnr2JxVIwZ8jCCQ7LGHpjHtdt9bOi0DfnT2WEEHEKCE3ng=
+	t=1774517529; cv=none; b=DQ79V5amtcOVtTLuH2TURq3ApDmzxVNTQHgjLMk3SXtsfRdsjJ8Yz1guWXKUXP4qu1mMe9g/iReo5K4EMp8O7//jDqruIrcG2gTvEjPXdF5lIp3UoounizsaH1Ye2imDtsVVOtx0elYVTbBqZKj3RKSUAU7OPwqomy13wxuG7Hw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774517528; c=relaxed/simple;
-	bh=5Wn8pMnSHriyYN9VcgOgkUBmSD7wDP6882vdHQNfcAE=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=S2raEnsTTE8S1NlVUC+gZalKD7qHWutjGzV4YtEPKqBjnvn5SN7q97AQW5WZy/mWrqwp3c1tfbGa/gKjyBTmmh7gkk0F2uD6yG5Uxu+JNMwelg2PtjoOaxD83a/b79LJxLGiIh/VzSBWDK9jhthw34KRGyXTBbzoCUDVoN11NbQ=
+	s=arc-20240116; t=1774517529; c=relaxed/simple;
+	bh=ZS+mni+DG21izNCvLs9bEFDU/kwUdP/kClRFAklpS2k=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ChwbYmAuZFasUd/w2JJTmlwJNVvAr/6q9mjZsNj/SWtUWitcP1Knq9QhOoODl7n2iv7JAYHveNWodlSy7GUMG0ILcLvE1M+kDpNDWDZBHWo/HO/ylUGaRw5RIHM4KId1Flk4SuOJZC04NVko6zb598j/viN157GeIcQ1ejvdDmk=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; arc=none smtp.client-ip=64.106.246.77
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
 Received: from rd03-sz.software.amlogic (10.28.11.121) by mailsc.amlogic.com
  (10.8.11.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Thu, 26 Mar
- 2026 02:25:58 -0700
+ 2026 02:26:03 -0700
 From: Jian Hu <jian.hu@amlogic.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
 	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, "Martin
@@ -42,16 +43,19 @@ To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
 	<sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, robh+dt
 	<robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
 	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: Jian Hu <jian.hu@amlogic.com>, devicetree <devicetree@vger.kernel.org>,
-	linux-clk <linux-clk@vger.kernel.org>, linux-amlogic
+CC: Jian Hu <jian.hu@amlogic.com>, Ronald Claveau <linux-kernel-dev@aliel.fr>,
+	devicetree <devicetree@vger.kernel.org>, linux-clk
+	<linux-clk@vger.kernel.org>, linux-amlogic
 	<linux-amlogic@lists.infradead.org>, linux-kernel
 	<linux-kernel@vger.kernel.org>, linux-arm-kernel
-	<linux-arm-kernel@lists.infradead.org>, Ronald Claveau
-	<linux-kernel-dev@aliel.fr>, Ferass El Hafidi <funderscore@postmarketos.org>
-Subject: [PATCH v3 0/3] Add the missing mpll3 clock and clock controller nodes
-Date: Thu, 26 Mar 2026 17:26:42 +0800
-Message-ID: <20260326092645.1053261-1-jian.hu@amlogic.com>
+	<linux-arm-kernel@lists.infradead.org>, Ferass El Hafidi
+	<funderscore@postmarketos.org>
+Subject: [PATCH v3 1/3] dt-bindings: clock: amlogic: Fix redundant hyphen in "amlogic,t7-gp1--pll" string.
+Date: Thu, 26 Mar 2026 17:26:43 +0800
+Message-ID: <20260326092645.1053261-2-jian.hu@amlogic.com>
 X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20260326092645.1053261-1-jian.hu@amlogic.com>
+References: <20260326092645.1053261-1-jian.hu@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,18 +72,18 @@ X-Spamd-Result: default: False [3.04 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-281074-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-281075-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_ALL(0.00)[];
 	FREEMAIL_TO(0.00)[baylibre.com,linaro.org,googlemail.com,kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_NEQ_ENVFROM(0.00)[jian.hu@amlogic.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
@@ -88,86 +92,33 @@ X-Spamd-Result: default: False [3.04 / 15.00];
 	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,amlogic.com:mid]
-X-Rspamd-Queue-Id: 85AA9332745
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amlogic.com:email,amlogic.com:mid,aliel.fr:email]
+X-Rspamd-Queue-Id: 12C023327F0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This series adds the missing mpll3 parent clock and completes the
-Amlogic T7 SoC clock controller DT support.
+Fix redundant hyphen in "amlogic,t7-gp1--pll" string.
 
-- Fix redundant hyphen in for gp1 pll
-- Add the missing mpll3 parent clock definition to t7-peripherals-clkc.yaml
-- Add Amlogic T7 SoC clock controller nodes
+Fixes: 5437753728ac ("dt-bindings: clock: add Amlogic T7 PLL clock controller")
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+ .../devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml          | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes in v3 since v2 at [2]:
-
-- Move Ronald's SoB tag to the top (as original author of the base patches)
-- Add Krzysztof's Reviewed-by for Patch 2
-- Update cover letter structure for clarity
-
-Changes in v2 since v1 at [1]:
-
-- Add Ronald Claveau's Signed-off-by to the first and third patches
-- Fix compilation error for amlogic-peripherals-clkc.yaml
-- Update commit message for amlogic-peripherals-clkc.yaml
-- Add Fixes tag
-- Remove the blank line in the watchdog node of meson-t7.dtsi
-- Add 'reg' property to sram node
-- Add a space after the clock controller label
-
-### Background
-This series is based on Ronald's initial T7 clock series [3], which aimed
-to enable T7 EMMC DT but lacked a complete clock controller implementation.
-The T7 clock tree in Ronald's series (fixed PLL, fixed fdivX and sys clocks)
-is handled by the SCP firmware via SCMI [4]. Therefore, his clock drivers
-do not need to be added. I have discussed with Ronald and agreed that I
-will submit the T7 clock DT first, then he can proceed with his EMMC work.
-
-### Series Overview
-1. Patch 1: Fix redundant hyphen in amlogic,t7-pll-clkc DT binding
-   - Based on Ronald's "[3/7] dt-bindings: clk: meson: Add Amlogic T7 fix pll support"
-2. Patch 2: Add missing mpll3 parent clock definition to t7-peripherals-clkc.yaml
-3. Patch 3: Add complete T7 clock controller nodes
-   - Based on Ronald's initial PLL and peripheral clock nodes
-   - Remove unused fixed PLL node
-   - Add PCIe and HDMI PLL nodes
-   - Add SCMI clock nodes for clocks handled by SCP firmware
-   - Update fixed clock index in peripheral clock nodes
-   - Add gp1 and mpll1 clock index in peripheral clock nodes
-
-### Dependencies
-- Patch 3 depends on Patch 2
-
-### ABI Risk
-The amlogic,t7-peripherals-clkc DT binding was merged in v7.0-rc1 [5],
-but the corresponding Amlogic T7 SoC DT has not been submitted upstream
-yet. Thus, no real users or systems are affected by the DT binding ABI
-breakage in this series.
-
-### Credit
-- Patch 1 is based on Ronald's "[PATCH 3/7] dt-bindings: clk: meson: Add Amlogic T7 fix pll support"
-- Patch 3 is based on Ronald's "[6/7] arm64: dts: amlogic: Add clock and EMMC for T7"
-- Patch 1 and Patch 3 retain Ronald's Signed-off-by
-- Thanks to Ronald for pointing out the gp1 pll typo and initial clock work
-
-[1]: https://lore.kernel.org/all/20260305074328.639993-1-jian.hu@amlogic.com
-[2]: https://lore.kernel.org/all/20260313070022.700437-1-jian.hu@amlogic.com/
-[3]: https://lore.kernel.org/all/20260218101709.35450-1-linux-kernel-dev@aliel.fr/
-[4]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/dt-bindings/clock/amlogic,t7-scmi.h
-[5]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml?h=v7.0-rc1
-
-Jian Hu (3):
-  dt-bindings: clock: amlogic: Fix redundant hyphen in
-    "amlogic,t7-gp1--pll" string.
-  dt-bindings: clock: amlogic: t7: Add missing mpll3 parent clock
-  arm64: dts: amlogic: t7: Add clock controller nodes
-
- .../clock/amlogic,t7-peripherals-clkc.yaml    |  12 +-
- .../bindings/clock/amlogic,t7-pll-clkc.yaml   |   2 +-
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 125 ++++++++++++++++++
- 3 files changed, 134 insertions(+), 5 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+index 49c61f65deff..b488d92b7984 100644
+--- a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
++++ b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+@@ -72,7 +72,7 @@ allOf:
+           contains:
+             enum:
+               - amlogic,t7-gp0-pll
+-              - amlogic,t7-gp1--pll
++              - amlogic,t7-gp1-pll
+               - amlogic,t7-hifi-pll
+               - amlogic,t7-pcie-pll
+               - amlogic,t7-mpll
 -- 
 2.47.1
 
