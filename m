@@ -1,172 +1,200 @@
-Return-Path: <devicetree+bounces-281011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281013-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iPbzKPPwxGnv5AQAu9opvQ
-	(envelope-from <devicetree+bounces-281011-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:40:19 +0100
+	id KAxCB8jvxGnv5AQAu9opvQ
+	(envelope-from <devicetree+bounces-281013-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:35:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10BE333180A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:40:19 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CE2B3316E4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:35:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8699C30179CA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 08:32:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8A0753007A43
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 08:33:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B94FF3A7F48;
-	Thu, 26 Mar 2026 08:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B81B3B47EE;
+	Thu, 26 Mar 2026 08:33:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j5RLwB4m"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aL1wWndH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9634128506A;
-	Thu, 26 Mar 2026 08:32:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE9C2367DC
+	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 08:33:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774513974; cv=none; b=JZN+kJsrx2euEZDdzzfkdRKObrIisZD6DVd60NQ75C51+Rb4w9VRBYuQGCK3YSKyP4Pvs6hpgcxaoLUF6dhaoIBEpNb0LTMFn0ZTDT58+wtfYXHJYCkKN3Y1rCLWBD+KIR2Cm7mhxAGubTN9mdiAbdtyrg7fUiU0YhzBNhdLTKw=
+	t=1774514032; cv=none; b=QOUdM29TH1lz45+Soc+SbhF+uyFpXBFup20AQLaQ98pjI2F9D9F6+9s9PQi59wsOZrOGrRdQPV6MwF8s2xFV8qsgIJ5OCObgE/e7QDSNB67I1bobO5+5Uw0oOEo2eSReJaRWtltaeQslv379yky0mxdB7FwOPoTeIEUFCFZV3cU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774513974; c=relaxed/simple;
-	bh=7N6DCs6w4lwaNrc8nplqZYAKIoynQ0BIoe3R98tHZo8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fHUOqRPNeFRt+rA04MggF6nQUCkYxNSJOwq8hRi8IvSn+zTg50HtYh4WgncN2u1oxMzOtxNRamBghqlZ6ngVmvGUHC2dfgtAN9uzvfs3j41QxSq+2jVCyjVAWeWw8cHMl1mZ8CNtgaP2TQyj8Iv7FWuNC8pJ3rsvrSZxXiB0W5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j5RLwB4m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BADF8C19423;
-	Thu, 26 Mar 2026 08:32:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774513974;
-	bh=7N6DCs6w4lwaNrc8nplqZYAKIoynQ0BIoe3R98tHZo8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j5RLwB4mhSjAIbIkojluWbsyoV5NJ8KnCXPIRLdGJowWFWZ6zi8iN0C2sWJ+/IENT
-	 64ZGKgjnh3Q0D2BYQJ0gHui4P4WPjnPXb9I97NqAqsmF6/Gxjy/R6CABPzFucg6tZk
-	 ObGqjd1m9KFjITbk+Fuc1DcbKtGYTBBD/SE+DXiuD+7JrSs3b760mCaljM0lTOQqj4
-	 h8Way9dg8eOJohLIp4ss+wFBKvOeUrdXX7aUioOxzS0ND39ZHBjl+7O7Rur8psRVAG
-	 CpoDqH06ONCM565L+wa204itAZx3kYLOsitmc35115imWAuNGSiKDlzAWEIUZGg482
-	 co2W62RVQRMiw==
-Date: Thu, 26 Mar 2026 09:32:51 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH V3 1/3] net: stmmac: Fix PTP ref clock for Tegra234
-Message-ID: <20260326-gigantic-tentacled-hornet-cbdb8d@quoll>
-References: <20260325135811.148480-1-jonathanh@nvidia.com>
- <20260325135811.148480-2-jonathanh@nvidia.com>
+	s=arc-20240116; t=1774514032; c=relaxed/simple;
+	bh=jshjgZiMIwcilVmlXIyF9YBtwwM76mKXDdYGm857RDQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=ri6nrAHMUb8EIOByau3ME/1owIbDpYoEKzu06J6sz2peJxGkD3ohnFquv3OCQ4UKYAA04c+uJfBT9qWP9U76BozklroR9XJYQNJk4Ugm3RzMIp8HCIlO9NtNxvzOa5bUfwa2D9a27YrzN6USx5IdtnnE+bKF2t60y5HI6AIF7Nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aL1wWndH; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-486fba7ce4cso6857635e9.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 01:33:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1774514029; x=1775118829; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LlFbzvdK/QjehwI/ahd2UAunEZQRZ3Ftqd+hlVRhyxA=;
+        b=aL1wWndHTnn8nRWx5vc/mPKVZz9TwZoQlMy53F6wC1xGbYJoughilFltwdnJOealpa
+         GKgSOJ8wJNV7JQWGWcNUcXbU6z0pUT8kMRNlsjlMVIgyjltHdmk3P4IHQ9ZGuKDCCy5w
+         k1382m8YUxqspY1NaLF8aRUHOzaw3NuysFwK7LAdZOgl0il8F5Wal6E6ggz4/pmhcGkS
+         U3w1yTJSI4grfiE9llmmuZjrIggv7HMVSQDHsHt+Uwh3zYJ/Mr/IkRCTALBWpi/DDq1Y
+         K8RAnJCQcHI5pFCHEDk7dzTMo1mxTvLMvdcLH18/IVjGUt30VYJerMW8soU47eKhY9FL
+         kB9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774514029; x=1775118829;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LlFbzvdK/QjehwI/ahd2UAunEZQRZ3Ftqd+hlVRhyxA=;
+        b=M3qv22WbN0m75WM0/HbqJwd8hzJsmiMb1Wr1/roLLjM1oMbxPmFK02lDLVu4dnSZZg
+         x9yhbpe6PPcokXj4pRvutdp/MsrNVepoHtE5ObvRhHKcMM6S1zDHKnq6R84J8YWXObuf
+         uoBqhH3Jsvwk1y8gRYg1KRRP6WBnqjQhNKUOaMJ0NjVMXycack3x1f74shasNj4/xklM
+         Yk/8zq7GrBLomngvVRI5O/CM10y2ojC6PGn1WNIPE5qLtjpO3bIZXHKG6gsAU/JiaJy0
+         NFNyjLlPgMavpvIMhiwL5RhJbu9SYrTrn4N1o+r1bKuJXvbopufm07Vy+fn8LG5zTVhq
+         1taQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXPn17PpaccFfDqNRux1V8p25MxOEW7c7MddasVPYG8hp+NC5RW5NQus/KcV6DIm3efO3CHzl0No8h6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0rE+ddZ4QsYMB1cQ1wE5kQ8pfA1mL1sqCGakRKkEZEUn9wtmK
+	rHthIASjSfCK/KhCUafYBoWUBCkGDivmoIQyUEWjmw1Ky0DgDrcOVm6q41TVX68svWo=
+X-Gm-Gg: ATEYQzwmoNLZWvx+PiKlAp7hXv3/nrQAOXSWWnD7RtlEKY7ID3e9a2eSIDS7dp7aRwl
+	awxYORP6/cbkvS8ENBRMBeeswe/0f4aGQFI5nYYcAukwNRSWe6sev7O28vEKxfvco9GX7h3+Fw0
+	Y9FfFlz8S/Nv2RY+LesDM5yOYvE/u9NyhWvQPKvFJLF+2jaLOWLT/Hmdgc2/Ds66pO9mPGEfg/w
+	rcXZOTztgixy8Z+SHkaHputYamsvCqXAZydu/Lh42+XXY0aqU3sx/ede9wMl4pNpHYFrX+sI8cT
+	aaloxe9ETcLoJbg4NlD+KpfECSniHGuAv32Qv+qFS6hPYn7omOfY5dc61FqtL/DgPe86rhb91yx
+	9BTTqIaPZApdJNcuFYrOKW0QL3CHdlUMN4asIqc5exCu7kBIHIFH2cPNPiqTNIWSR0c9i0kNCj7
+	cNjDf+T7VZrBWDslNBSqE9syAo1pcwDKXv0P/8z/9XeITXa/98A/WrYc9AYR8bfh/isoXbe/3h9
+	EejPdta7mpL8p8VFw==
+X-Received: by 2002:a05:600c:4ed0:b0:487:288:1199 with SMTP id 5b1f17b1804b1-487160934dcmr99014245e9.28.1774514028792;
+        Thu, 26 Mar 2026 01:33:48 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:106d:1080:8431:f88b:714d:f78d? ([2a01:e0a:106d:1080:8431:f88b:714d:f78d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48722be608bsm20860305e9.0.2026.03.26.01.33.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Mar 2026 01:33:48 -0700 (PDT)
+Message-ID: <3827b0ab-69c7-4e46-b1fb-a9fa99399299@linaro.org>
+Date: Thu, 26 Mar 2026 09:33:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260325135811.148480-2-jonathanh@nvidia.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 2/2] drm/panel: simple: Add Tianma TM050RDH03 panel
+To: Liu Ying <victor.liu@nxp.com>, Jessica Zhang <jesszhan0024@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260227-tianma-tm050rdh03-v1-0-cab78a0d765d@nxp.com>
+ <20260227-tianma-tm050rdh03-v1-2-cab78a0d765d@nxp.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260227-tianma-tm050rdh03-v1-2-cab78a0d765d@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-281011-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-281013-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[nxp.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ravnborg.org];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:replyto,linaro.org:mid,nxp.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email]
-X-Rspamd-Queue-Id: 10BE333180A
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_EQ_FROM(0.00)[]
+X-Rspamd-Queue-Id: 1CE2B3316E4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 25, 2026 at 01:58:09PM +0000, Jon Hunter wrote:
-> Since commit 030ce919e114 ("net: stmmac: make sure that ptp_rate is not
-> 0 before configuring timestamping") was added the following error is
-> observed on Tegra234:
+On 2/27/26 10:31, Liu Ying wrote:
+> Add the Tianma Micro-electronics TM050RDH03 5.0" WVGA TFT LCD panel.
 > 
->  ERR KERN tegra-mgbe 6800000.ethernet eth0: Invalid PTP clock rate
->  WARNING KERN tegra-mgbe 6800000.ethernet eth0: PTP init failed
+> Reuse panel ontat,kd50g21-40nt-a1's panel description as they are
+> identical.
 > 
-> It turns out that the Tegra234 device-tree binding defines the PTP ref
-> clock name as 'ptp-ref' and not 'ptp_ref' and the above commit now
-> exposes this and that the PTP clock is not configured correctly.
-> 
-> In order to update device-tree to use the correct 'ptp_ref' name, update
-> the Tegra MGBE driver to use 'ptp_ref' by default and fallback to using
-> 'ptp-ref' if 'ptp_ref' is not found.
-> 
-> Fixes: d8ca113724e7 ("net: stmmac: tegra: Add MGBE support")
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 > ---
->  .../net/ethernet/stmicro/stmmac/dwmac-tegra.c | 19 +++++++++++++++++--
->  1 file changed, 17 insertions(+), 2 deletions(-)
+>   drivers/gpu/drm/panel/panel-simple.c | 3 +++
+>   1 file changed, 3 insertions(+)
 > 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-tegra.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-tegra.c
-> index b4b39e6a169e..ec18ee46889f 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-tegra.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-tegra.c
-> @@ -9,7 +9,7 @@
->  #include "stmmac_platform.h"
->  
->  static const char *const mgbe_clks[] = {
-> -	"rx-pcs", "tx", "tx-pcs", "mac-divider", "mac", "mgbe", "ptp-ref", "mac"
-> +	"rx-pcs", "tx", "tx-pcs", "mac-divider", "mac", "mgbe", "ptp_ref", "mac"
->  };
->  
->  struct tegra_mgbe {
-> @@ -216,6 +216,7 @@ static int tegra_mgbe_probe(struct platform_device *pdev)
->  	struct plat_stmmacenet_data *plat;
->  	struct stmmac_resources res;
->  	struct tegra_mgbe *mgbe;
-> +	bool use_legacy_ptp;
->  	int irq, err, i;
->  	u32 value;
->  
-> @@ -257,9 +258,23 @@ static int tegra_mgbe_probe(struct platform_device *pdev)
->  	if (!mgbe->clks)
->  		return -ENOMEM;
->  
-> -	for (i = 0; i <  ARRAY_SIZE(mgbe_clks); i++)
-> +	/*
-> +	 * Older device-trees use 'ptp-ref' rather than 'ptp_ref'.
-> +	 * Fall back to the legacy name when 'ptp_ref' is absent.
-> +	 */
-> +	use_legacy_ptp = of_property_match_string(pdev->dev.of_node,
-> +						  "clock-names", "ptp_ref") < 0;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(mgbe_clks); i++) {
->  		mgbe->clks[i].id = mgbe_clks[i];
->  
-> +		if (use_legacy_ptp && !strcmp(mgbe_clks[i], "ptp_ref")) {
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index e5fc9b072404..af84a90015fe 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -5519,6 +5519,9 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "tianma,p0700wxf1mbaa",
+>   		.data = &tianma_p0700wxf1mbaa,
+> +	}, {
+> +		.compatible = "tianma,tm050rdh03",
+> +		.data = &ontat_kd50g21_40nt_a1,
+>   	}, {
+>   		.compatible = "tianma,tm070jdhg30",
+>   		.data = &tianma_tm070jdhg30,
+> 
 
-Why index 0 is not valid? And why -EINVAL would be considered as legacy
-clock present?
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-> +			dev_warn(mgbe->dev,
-> +				 "Device-tree update needed for PTP clock!\n");
-> +			mgbe->clks[i].id = "ptp-ref";
-
-Best regards,
-Krzysztof
-
+Thanks,
+Neil
 
