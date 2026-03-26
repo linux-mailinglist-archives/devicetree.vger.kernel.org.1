@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-280902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280903-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WKxgJ6XNxGnb3wQAu9opvQ
-	(envelope-from <devicetree+bounces-280902-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 07:09:41 +0100
+	id oGSVC7fOxGnb3wQAu9opvQ
+	(envelope-from <devicetree+bounces-280903-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 07:14:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B03DF32F9CF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 07:09:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F01732FACE
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 07:14:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 95425301821B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 06:07:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 609B7304ADBD
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 06:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 820F93AE6E9;
-	Thu, 26 Mar 2026 06:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8EE3382CF;
+	Thu, 26 Mar 2026 06:10:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="khH2mG+u"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="KMhiSzgs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F8BC15530C;
-	Thu, 26 Mar 2026 06:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 653A13B2BA;
+	Thu, 26 Mar 2026 06:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774505275; cv=none; b=TQPwcms1XOlIHIZYPpeZi4YNSYr5VrMOKLSIYmeC3mBc5wdyMfIs4uMKD94k09PrTeyudttaMOM8P6E+tX6tyMQr2qjC0Ocw9tTr2NOJ4eGofCNZjHJUqCrP6V9O61dt80praVMenjiQuSLfVRimuSeOXhdkC3GJFWzG7IpJ7xU=
+	t=1774505414; cv=none; b=gPXTBpbku9a5FUxg69BFzaeIJAxd/qvmuiNMQR0Zp27YH3GgWbdE1Bq4Sceh/FMm36Ktrj9e9e9xDw78v4LDA7tTSz7Rh8Ko93tEfNTt9rJ6WZSJTm93/FDZfTFvydonNmn0xQzY7IYa8rl7wfBY8pnFngPHk0vdo4yzjc/uf1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774505275; c=relaxed/simple;
-	bh=D4BWqwsowftV0uLn6UqEICU6dheuLBTYAGw06kSQO3c=;
+	s=arc-20240116; t=1774505414; c=relaxed/simple;
+	bh=hidLBtwhQbxPBXbheN85pSsa8RQxYeW+MLrk6uzD3ac=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rUDlPSfoUXVmo0qNsvGFrCIf6MRrnGSurYRIxyshX0AUUtL4LuWOjptsdDJF2xUTAszIPsXgsA/opgrZp83dmESBscVe2jvAwIN4fHhjGJxwstJ+29SVCZPoxaW3i3y7jd2F6xRyqzNbLWoxg0uauGZeEXEGqX60bk2eSKG3HrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=khH2mG+u; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=fJszJaraifpBnA2bn+rC1quSXtl4Y7Svsy9pu673ekYtE4LDiEYyMkPqxKXrbP0/+cv+gwmTPXlEHsLxvHFBYj7dBOiOp8FrGq5DCdQK4MFJjVnVBTvxHjn6G+7iM7yXUKuIXsDvhYVMaZUcCkJWTIaPuZMdPwSr7xNVhMasJkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=KMhiSzgs; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1774505272;
-	bh=D4BWqwsowftV0uLn6UqEICU6dheuLBTYAGw06kSQO3c=;
+	d=codeconstruct.com.au; s=2022a; t=1774505411;
+	bh=hidLBtwhQbxPBXbheN85pSsa8RQxYeW+MLrk6uzD3ac=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=khH2mG+uBGCYkDqfbI4rBOR+DTt4gDN3awebhhzeDtW0i7D3pFkiOjQbFbo4FjsfX
-	 hFlHdj8si7MP1DHnhNbUp3N8c2TsJISpuRilYRg/TpM4rP2me+OoPSM02N69Rh1djq
-	 w2M2xXTnQquI/E9IkIhPLX0NXuMtf8GYQbNRPkvyoCkAR4on53/sA7OvI2W66kesbB
-	 p1xejc2yVcKPEt1JaD05UqQ9f6ihO5wmxvFWc4QO9pt7c/lf7c9U9JSwiZhVyxk8Yo
-	 jYeLz1YCr2Tpx92RMhR2xapSSlCKX0dGwldW/Pwbg8ubyoDFQ1lAR4z8aPKRFs9aHv
-	 d1mRbsa8jIfuQ==
+	b=KMhiSzgs0FiJF1ZY/gHkQ+gt0zCunXJNaCStpNJfIiNdsSrkcKNb5QW4c5Grx5QBE
+	 ENlC2WhRG/AQG+nVfFt3lXtpRvLKPI2NNgQ9qbL7UR3SevefGE6eu+AJjhD3bpI9W5
+	 NdlWFj4g10N/XCODybZzWndp94Kxey7+q8n6iayvQknF3uu7P7Hjm8WxrydLnQOWuE
+	 9qrSj5odCfF9zbpupYHRX27hyo26d3auWuZsCYSgmwTzB+6twIozI8Lilaw0jUie/B
+	 O8QIOOAqxm2R99ITRmwjfSZaBV37z6Vl0/kSbm27JvCsd+Gkm6Pc+aJAldaXi+ik7J
+	 VM5DHsKt4rviQ==
 Received: from [192.168.68.115] (unknown [180.150.112.60])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 7CDF76597C;
-	Thu, 26 Mar 2026 14:07:51 +0800 (AWST)
-Message-ID: <d7794f74b26bbc1ee0a70e39c5671acc018f80eb.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v5 2/8] ARM: dts: aspeed: yosemite5: Remove ambiguous
- power monitor DTS nodes
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id D19B36597C;
+	Thu, 26 Mar 2026 14:10:10 +0800 (AWST)
+Message-ID: <e24ec25ff7d731cf6ca094028b1336dacd01ac9c.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v5 3/8] ARM: dts: aspeed: yosemite5: Add new SGPIO line
+ names and rename signal
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
 To: Kevin Tung <kevin.tung.openbmc@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -59,12 +59,12 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Prasasd <amithash@meta.com>, Kevin Tung	 <Kevin.Tung@quantatw.com>, Ken
  Chen <Ken.Chen@quantatw.com>, Leo Yang	 <Leo-Yang@quantatw.com>, Jackson
  Liu <Jackson.Liu@quantatw.com>, Daniel Hsu	 <Daniel-Hsu@quantatw.com>
-Date: Thu, 26 Mar 2026 16:37:51 +1030
-In-Reply-To: <CABh9gBd3b9TB1-s=Gq1q-M8bX+4UioXePUF0DPVrU2N3N8S9yw@mail.gmail.com>
+Date: Thu, 26 Mar 2026 16:40:10 +1030
+In-Reply-To: <CABh9gBe2BcgnONwx=cmcOAsT15HgVGjxSChgFMvckTAW_8JfMQ@mail.gmail.com>
 References: <20260223-yv5_revise_dts-v5-0-fc913e902488@gmail.com>
-	 <20260223-yv5_revise_dts-v5-2-fc913e902488@gmail.com>
-	 <73ea41bf341df0e3215c58a029c9ea2386c4ef8a.camel@codeconstruct.com.au>
-	 <CABh9gBd3b9TB1-s=Gq1q-M8bX+4UioXePUF0DPVrU2N3N8S9yw@mail.gmail.com>
+	 <20260223-yv5_revise_dts-v5-3-fc913e902488@gmail.com>
+	 <391b9b912492c07fd1fd7a737b7f49382d361fe2.camel@codeconstruct.com.au>
+	 <CABh9gBe2BcgnONwx=cmcOAsT15HgVGjxSChgFMvckTAW_8JfMQ@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.2-0+deb13u1 
@@ -79,12 +79,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
 	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-280902-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-280903-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -100,78 +100,48 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,codeconstruct.com.au:dkim,codeconstruct.com.au:email,codeconstruct.com.au:mid]
-X-Rspamd-Queue-Id: B03DF32F9CF
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,codeconstruct.com.au:dkim,codeconstruct.com.au:mid]
+X-Rspamd-Queue-Id: 8F01732FACE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Hi Kevin,
 
-Sorry for the delay.
+On Mon, 2026-03-09 at 11:34 -0700, Kevin Tung wrote:
+> > Broadly, it feels a lot like you're revising platform designs, then
+> > trying to make the one devicetree fit the current design, and are not
+> > explicitly communicating that this is what you're doing.
+> >=20
+> > If that _is_ what you're doing, then we can come up with much better
+> > schemes to handle it that aren't a constant stream of compatibility
+> > breaks.
+> >=20
+> > I need you to engage with this concern.
+> >=20
+> Thanks for your feedback. I realize there may be a lack of knowledge
+> on my side regarding the best practices here.
+> Could you kindly guide me on how we might implement a better approach
+> that avoids a constant stream of compatibility breaks?
+> I=E2=80=99d like to ensure we handle this correctly and align with the
+> expected workflow.
 
-On Mon, 2026-03-09 at 11:41 -0700, Kevin Tung wrote:
-> On Tue, Mar 3, 2026 at 6:41=E2=80=AFPM Andrew Jeffery
-> <andrew@codeconstruct.com.au> wrote:
-> >=20
-> > Hi Kevin,
-> >=20
-> > Sorry for the patchy replies so far, but this series bothers me and
-> > other priorities keep bumping it down the list.
-> >=20
-> > On Mon, 2026-02-23 at 19:17 +0800, Kevin Tung wrote:
-> > > Two different power monitor devices, using different drivers, reuse
-> > > I2C addresses 0x40 and 0x45 on bus 10 across Yosemite5 board variants=
-.
-> > > Defining these devices statically in the DTS can lead to incorrect
-> > > driver binding on newer boards when the wrong device is instantiated.
-> >=20
-> > There are effective methods of maintaining devicetrees for variants.
-> > Why are we choosing to remove information about the platform rather
-> > than use existing techniques to properly describe them?
-> >=20
-> Hi Andrew,
+Sure, see the reply I just sent here:
+
+https://lore.kernel.org/all/d7794f74b26bbc1ee0a70e39c5671acc018f80eb.camel@=
+codeconstruct.com.au/
+
 >=20
-> This is due to hardware design changes during earlier development
-> stages, and the fix is expected to remain stable as the design has
-> matured.
-> Could you guide me on the best way to maintain devicetrees for
-> variants? Thank you :)
+> > From inspection, I only find patches 1, 4 and 7 of this series to be
+> > something I'd consider applying without further discussion.
+> >=20
+> Got it. Should I split patches 1, 4, and 7 into a separate series?
+> This would keep the current series shorter by excluding items that
+> don=E2=80=99t require further discussion.
+>=20
 
-My expectation is your platforms move through several design phases
-prior to (mass?) production. My suspicion is that you have sent a
-devicetree for the pre-production design phases, and you're trying to
-evolve that one devicetree to match the design for whatever current
-phase you're in.
-
-So, ideally: Send a devicetree only for the finalised design. Don't
-send devicetrees for pre-production designs.
-
-If you feel you can't do that for some reason, an alternative is to
-have a separate .dts file for each phase in the design process.
-
-This may sound tedious but it doesn't have to be a burden to maintain.
-
-For instance, you can use one or more .dtsi files to describe the
-common components and relationships for your platform. These .dtsi
-files are then #included into .dts files as usual. Often .dtsi files
-are used to isolate different hardware scopes (SoC vs board, for
-instance), but we're not limited to that, we can use them for the
-purpose outlined above too.
-
-If there are only (very) minor differences, there's also the option of
-#including another .dts file. From there you can adjust properties or
-even delete nodes where it makes sense. For example, we maintain a .dts
-file for the latest revision of the AST2600-EVB, but we also have a
-separate .dts for the A1 revision with a different regulator setup:
-
-- https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/a=
-rch/arm/boot/dts/aspeed/aspeed-ast2600-evb.dts?h=3Dv7.0-rc5
-- https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/a=
-rch/arm/boot/dts/aspeed/aspeed-ast2600-evb-a1.dts?h=3Dv7.0-rc5
-
-Any of these are better options than this current approach of trying to
-justify incompatible changes against unclear design boundaries.
+I am okay with that, so long as it makes sense in the context of the
+discussion linked above.
 
 Andrew
 
