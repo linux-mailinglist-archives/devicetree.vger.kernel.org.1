@@ -1,221 +1,186 @@
-Return-Path: <devicetree+bounces-281381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281383-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4O4ZNReNxWlc+wQAu9opvQ
-	(envelope-from <devicetree+bounces-281381-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 20:46:31 +0100
+	id 0D95DX+NxWlG/QQAu9opvQ
+	(envelope-from <devicetree+bounces-281383-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 20:48:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3563C33B1B3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 20:46:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A815933B1F5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 20:48:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8F40D30A77D8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:40:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 589313011128
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:42:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB6C63A5E6F;
-	Thu, 26 Mar 2026 19:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF1239D6DB;
+	Thu, 26 Mar 2026 19:42:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="XTH6vNZf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZLbLVLgv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com [95.215.58.170])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7911839EF2D
-	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 19:40:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87B9D2376FD
+	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 19:42:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774554013; cv=none; b=fnJfZh0UkvxHvaZgT2H37hnKefYolqaVSgAqC26SlReQ5fIyLnNG3azqO7JUFXaesyRy9Gb/Xd759Gl6PF6fNOxcIc+ZWPHS8GpbdgJ/wsl0jQ9zNcP3vHcYg1L84Je+xrPc1KhJlzkBk2Aqvei5u8uT8A9ea92pcpnRdx5AKjk=
+	t=1774554159; cv=none; b=idSPB3MQzhVh9jz5acs35iCq9nspJeBQK4edvu4nRDUmtzOPDeH2WTCuB8HcdgxiHw2L0MVcVjGeE7P8nbiRWvEX13MkQbFy3CKAbNyoesCF+eDCNqLuTzvIwm/vUeDaSDw7atfRMwZto9qt1L+P/8HKy+25iQ6jydoE9s2Ghvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774554013; c=relaxed/simple;
-	bh=vrl0CXld5pnl3+j2iO7woriOvcxFLATcV9RLuYGwkcU=;
-	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
-	 In-Reply-To:References; b=Uc4WxjZj8MiwoBT/EsGZilkWelau6ViW0Ca72dBVd5pG/7PTmqJlZ+6XB3tatAwrE1uigvDJRppXQ32dk7AWHVlvGVf9VGRVqVn/q35RXJPueAEOsRTc93TCC9mIxPYIMc5DvkswOXh2dSTIB6vj8WLhDHL1NiVL2uL1KLihrqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=XTH6vNZf; arc=none smtp.client-ip=95.215.58.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+	s=arc-20240116; t=1774554159; c=relaxed/simple;
+	bh=Y2ZHozORnLfqvKi2dwhQTPb5sPuBtjKNxVIRQIiOzsg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ABhiy8SSQDiTjS1n1Ls8HjOKb/TNQoyb1SUushqNr+jM7ZjryAzeKQbxAMdyUAVKK1b2uHEmyuP/Q5UQvU86/Ngi08DGxM/hRDamdAHvLZVB3X1wuJKSW1yJVHTvnu2vbnwvLraX9Ra2dOEpzH5kaNWTv+4bp0q1IDbfhTjM7sc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZLbLVLgv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C9B6C4AF0B
+	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 19:42:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774554159;
+	bh=Y2ZHozORnLfqvKi2dwhQTPb5sPuBtjKNxVIRQIiOzsg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ZLbLVLgvUsqHZKVA1+e3imKCmqIoVEkun5ZRNqM7lbL1EeK45BJ63eP/YP64X0gBA
+	 0fbGQKnS/h8sMuT0HSsszhRY3fO/xwDo3yGNxd9wqqBupGAqjPDOYWM4JO+5VkKrY2
+	 rbk7a+2hjn6RrquDffH43lFRwFN+wS56GYGSqgLM9PzRj1BvplJw5gUEj2llY8NyrT
+	 QhIOGjjRGTOB1FcuuZRqvmv0/4SOEbv+7hi834VtTaKeQx1nkElKWQE37ZwApuN/IR
+	 t3ah8M72NV4upm4AJ95KO7OtNI8Myy1O1sklmXIbTZ3v81aHnBEFNjZpS+RaV2DStW
+	 3g8GOFo1OspQw==
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b97bca3797dso212702966b.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 12:42:39 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXXEoWFI6kmwXfvRYIWeQQScqEkp1ew+OoWY4mU7Z6RajXfq6nqwEY2tHk2h4qmO6x7G7OZljL5iNz3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw17U6QhleofDo4/PEOkT+CRu23YKhcqCAagRB1oGpGP/82DACW
+	vRPJiEg5gu/8Zo8O9ION2/uZdZy9Sg00CjqZbCAxUkA7LkYTCy0lb5Ju6gx9HgMHFZYdM6swx4H
+	NHFyXVHiSMds1b1/J4ZFzILLQ0OCIIg==
+X-Received: by 2002:a17:907:3c96:b0:b98:49d:7e37 with SMTP id
+ a640c23a62f3a-b9a5427e5a8mr665511866b.44.1774554157684; Thu, 26 Mar 2026
+ 12:42:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1774553998;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2sSZdOlH6LcaXmEulL+Z3vD5W8JNjS8vj1IOyQwqalY=;
-	b=XTH6vNZfTs+Rhn/5LbLqBySMN0ZX5pl6xsbTh9654tQcRAh1k+4nFg2w4G1u1qCntQiaZ8
-	A/R2MUis4bsWUAwdlxAgvsKMoCQTVTKo5FYZ+UF5W86+DpeBTmUVbgxC4++ZpZuZrgdUd4
-	CJEUl378fYQ+f+HtmI79PftGLkYVsggFhKDl/3JVteu3ZiYS8a22o8T7OP9KUtpDC4JYac
-	9CXVos/p6+ikPQVwciRBc6BdRnFiAKhP5CmwYb+nAvENQrNDTM6rf7qlh3ECM895NMgvQF
-	+ztY6H8YDr09klaAyYgCcmhSwrhKLlLhwgvTQs0BGGViqdjhMKM87IDTt2Ed8Q==
-Date: Thu, 26 Mar 2026 19:39:49 +0000
-Content-Type: text/plain; charset="utf-8"
+References: <20260305-rk3588-csi2rx-v3-0-754473981f39@collabora.com>
+ <20260305-rk3588-csi2rx-v3-1-754473981f39@collabora.com> <20260325210634.GA3963190-robh@kernel.org>
+ <703bcf13-ab45-4e9a-b80c-80911d85d819@collabora.com>
+In-Reply-To: <703bcf13-ab45-4e9a-b80c-80911d85d819@collabora.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 26 Mar 2026 14:42:26 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLy4=z24-RrJWLp3hPpTwYLJ8=ehRw8cRdhZiW-eAsYCA@mail.gmail.com>
+X-Gm-Features: AQROBzAHITEw9UIh2Vq6i4lzrBpyx12hq94f54-wyHg8H8rls8eAXLegvhqv8Gk
+Message-ID: <CAL_JsqLy4=z24-RrJWLp3hPpTwYLJ8=ehRw8cRdhZiW-eAsYCA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] media: dt-bindings: rockchip,rk3568-mipi-csi2: add
+ rk3588 compatible
+To: Michael Riesch <michael.riesch@collabora.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Frank Li <Frank.li@nxp.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Kever Yang <kever.yang@rock-chips.com>, 
+	Collabora Kernel Team <kernel@collabora.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Paul Sajna" <sajattack@postmarketos.org>
-Message-ID: <425dcdb501ed6ebb0e652c58ef2c56c78754884b@postmarketos.org>
-TLS-Required: No
-Subject: Re: [PATCH v4 2/3] ath10k: Add device-tree quirk to skip host cap
- QMI requests
-To: david@ixit.cz, "Johannes Berg" <johannes@sipsolutions.net>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Jeff Johnson" <jjohnson@kernel.org>,
- "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konradybcio@kernel.org>
-Cc: "Amit Pundir" <amit.pundir@linaro.org>, linux-wireless@vger.kernel.org,
- devicetree@vger.kernel.org, ath10k@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- phone-devel@vger.kernel.org, "David Heidelberg" <david@ixit.cz>
-In-Reply-To: <20260325-skip-host-cam-qmi-req-v4-2-bc08538487aa@ixit.cz>
-References: <20260325-skip-host-cam-qmi-req-v4-0-bc08538487aa@ixit.cz>
- <20260325-skip-host-cam-qmi-req-v4-2-bc08538487aa@ixit.cz>
-X-Migadu-Flow: FLOW_OUT
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[postmarketos.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[postmarketos.org:s=key1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281381-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-281383-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sajattack@postmarketos.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[postmarketos.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ixit.cz:email]
-X-Rspamd-Queue-Id: 3563C33B1B3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email]
+X-Rspamd-Queue-Id: A815933B1F5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-March 25, 2026 at 5:57 PM, "David Heidelberg via B4 Relay" <devnull+david=
-.ixit.cz@kernel.org mailto:devnull+david.ixit.cz@kernel.org?to=3D%22David=
-%20Heidelberg%20via%20B4%20Relay%22%20%3Cdevnull%2Bdavid.ixit.cz%40kernel=
-.org%3E > wrote:
-
-
->=20
->=20From: Amit Pundir <amit.pundir@linaro.org>
->=20
->=20Some firmware versions do not support the host capability QMI request=
-.
-> Since this request occurs before firmware-N.bin and board-M.bin are
-> loaded, the quirk cannot be expressed in the firmware itself.
->=20
->=20The root cause is unclear, but there appears to be a generation of
-> firmware that lacks host capability support.
->=20
->=20Without this quirk, ath10k_qmi_host_cap_send_sync() returns
-> QMI_ERR_MALFORMED_MSG_V01 before loading the firmware. This error is no=
-t
-> fatal - Wi-Fi services still come up successfully if the request is sim=
-ply
-> skipped.
->=20
->=20Add a device-tree quirk to skip the host capability QMI request on de=
-vices
-> whose firmware does not support it.
->=20
->=20For example, firmware build
-> "QC_IMAGE_VERSION_STRING=3DWLAN.HL.2.0.c3-00257-QCAHLSWMTPLZ-1"
-> on Xiaomi Poco F1 phone requires this quirk.
->=20
->=20Suggested-by: Bjorn Andersson <andersson@kernel.org>
-> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  drivers/net/wireless/ath/ath10k/qmi.c | 13 ++++++++++---
->  drivers/net/wireless/ath/ath10k/snoc.c | 3 +++
->  drivers/net/wireless/ath/ath10k/snoc.h | 1 +
->  3 files changed, 14 insertions(+), 3 deletions(-)
->=20
->=20diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wire=
-less/ath/ath10k/qmi.c
-> index eebd78e7ff6bc..e7f90fd9e9b83 100644
-> --- a/drivers/net/wireless/ath/ath10k/qmi.c
-> +++ b/drivers/net/wireless/ath/ath10k/qmi.c
-> @@ -808,6 +808,7 @@ ath10k_qmi_ind_register_send_sync_msg(struct ath10k=
-_qmi *qmi)
->  static void ath10k_qmi_event_server_arrive(struct ath10k_qmi *qmi)
->  {
->  struct ath10k *ar =3D qmi->ar;
-> + struct ath10k_snoc *ar_snoc =3D ath10k_snoc_priv(ar);
->  int ret;
->=20=20
->=20 ret =3D ath10k_qmi_ind_register_send_sync_msg(qmi);
-> @@ -819,9 +820,15 @@ static void ath10k_qmi_event_server_arrive(struct =
-ath10k_qmi *qmi)
->  return;
->  }
->=20=20
->=20- ret =3D ath10k_qmi_host_cap_send_sync(qmi);
-> - if (ret)
-> - return;
-> + /*
-> + * Skip the host capability request for the firmware versions which
-> + * do not support this feature.
-> + */
-> + if (!test_bit(ATH10K_SNOC_FLAG_SKIP_HOST_CAP_QUIRK, &ar_snoc->flags))=
- {
-> + ret =3D ath10k_qmi_host_cap_send_sync(qmi);
-> + if (ret)
-> + return;
-> + }
->=20=20
->=20 ret =3D ath10k_qmi_msa_mem_info_send_sync_msg(qmi);
->  if (ret)
-> diff --git a/drivers/net/wireless/ath/ath10k/snoc.c b/drivers/net/wirel=
-ess/ath/ath10k/snoc.c
-> index f72f236fb9eb3..3106502275781 100644
-> --- a/drivers/net/wireless/ath/ath10k/snoc.c
-> +++ b/drivers/net/wireless/ath/ath10k/snoc.c
-> @@ -1362,6 +1362,9 @@ static void ath10k_snoc_quirks_init(struct ath10k=
- *ar)
->=20=20
->=20 if (of_property_read_bool(dev->of_node, "qcom,snoc-host-cap-8bit-qui=
-rk"))
->  set_bit(ATH10K_SNOC_FLAG_8BIT_HOST_CAP_QUIRK, &ar_snoc->flags);
-> +
-> + if (of_property_read_bool(dev->of_node, "qcom,snoc-host-cap-skip-quir=
-k"))
-> + set_bit(ATH10K_SNOC_FLAG_SKIP_HOST_CAP_QUIRK, &ar_snoc->flags);
->  }
->=20=20
->=20 int ath10k_snoc_fw_indication(struct ath10k *ar, u64 type)
-> diff --git a/drivers/net/wireless/ath/ath10k/snoc.h b/drivers/net/wirel=
-ess/ath/ath10k/snoc.h
-> index 1ecae34687c21..46574fd8f84ee 100644
-> --- a/drivers/net/wireless/ath/ath10k/snoc.h
-> +++ b/drivers/net/wireless/ath/ath10k/snoc.h
-> @@ -51,6 +51,7 @@ enum ath10k_snoc_flags {
->  ATH10K_SNOC_FLAG_MODEM_STOPPED,
->  ATH10K_SNOC_FLAG_RECOVERY,
->  ATH10K_SNOC_FLAG_8BIT_HOST_CAP_QUIRK,
-> + ATH10K_SNOC_FLAG_SKIP_HOST_CAP_QUIRK,
->  };
->=20=20
->=20 struct clk_bulk_data;
->=20
->=20--=20
->=202.53.0
+On Wed, Mar 25, 2026 at 4:34=E2=80=AFPM Michael Riesch
+<michael.riesch@collabora.com> wrote:
 >
+> Hi Rob,
+>
+> On 3/25/26 22:06, Rob Herring wrote:
+> > On Wed, Mar 25, 2026 at 11:25:34AM +0100, Michael Riesch wrote:
+> >> The RK3588 MIPI CSI-2 receivers are compatible to the ones found in
+> >> the RK3568.
+> >> Introduce a list of compatible variants and add the RK3588 variant to
+> >> it.
+> >>
+> >> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>
+> First of all, apologies for applying your Acked-by tag. I figured
+> resolving the merged conflict was trivial and impossible to screw up, but=
+...
 
-Tested-by: Paul Sajna <sajattack@postmarketos.org>
+No worries. I would have kept it too.
+
+> >> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+> >> ---
+> >>  .../devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml   | 10 +=
+++++++---
+> >>  1 file changed, 7 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-m=
+ipi-csi2.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mip=
+i-csi2.yaml
+> >> index 4ac4a3b6f406..3d3b3cd78884 100644
+> >> --- a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi=
+2.yaml
+> >> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi=
+2.yaml
+> >> @@ -16,9 +16,13 @@ description:
+> >>
+> >>  properties:
+> >>    compatible:
+> >> -    enum:
+> >> -      - fsl,imx93-mipi-csi2
+> >> -      - rockchip,rk3568-mipi-csi2
+> >> +    oneOf:
+> >> +      - const: fsl,imx93-mipi-csi2
+> >> +      - const: rockchip,rk3568-mipi-csi2
+> >
+> > These 2 should be a single enum as they were before.
+>
+> ... hm. Well.
+>
+> First, do you mean
+>
+> properties:
+>   compatible:
+>     oneOf:
+>       - enum:
+>          - fsl,imx93-mipi-csi2
+>          - rockchip,rk3568-mipi-csi2
+>       - items:
+>          - enum:
+>             - rockchip,rk3588-mipi-csi2
+>          - const: rockchip,rk3568-mipi-csi2
+> ?
+
+Yes.
+
+> If so, what is the practical difference?
+
+First, then you aren't changing what's already there. For validation,
+there is no difference other than failures with 'oneOf' give poor
+error messages. It wouldn't be much better, just one less oneOf entry.
+
+Rob
 
