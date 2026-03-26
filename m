@@ -1,73 +1,63 @@
-Return-Path: <devicetree+bounces-281284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281283-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uM15Hk9SxWmD9QQAu9opvQ
-	(envelope-from <devicetree+bounces-281284-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:35:43 +0100
+	id +GEtMkFSxWmD9QQAu9opvQ
+	(envelope-from <devicetree+bounces-281283-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:35:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20696337AAC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:35:43 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2628337A9C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:35:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 95A97300130B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 15:25:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4C94030CDB5F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 15:25:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F7C40626D;
-	Thu, 26 Mar 2026 15:24:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93C09405ADB;
+	Thu, 26 Mar 2026 15:24:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="AtNy/DLH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kaAEnN52"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18F57405ACA;
-	Thu, 26 Mar 2026 15:24:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2F13FFAA8;
+	Thu, 26 Mar 2026 15:24:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774538681; cv=none; b=V7+Y4hz3lO2JyPsq6K1rb8pS3MT9Or09Q2tCmxtpZdbgpmDjhUOXhAM2IveaZtaIpJB763D/IgVfql0fi53hxKSC6pm2eWafiY4ishrFdQlByJpseNmFuLDBV+gOmS61926nU016njWZ8SmiMjjudcTXX7W79AP42wfcb5iI1PU=
+	t=1774538680; cv=none; b=qyu1Pwtnyl+UouyU3/CtVgpOF8z/QCvMrz1q+KwbynbObpk3f/99Ah338fsU+UPmWSTi+yHT3X7wkCYnvZKvctpjcHjJjzK+/fSa4t0NaACnFUYKqmVDELfyVA7tJuyYPfCjumfbpSt+ISVC7ejNE7PbtV/2SreApXbAZuo0+zA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774538681; c=relaxed/simple;
-	bh=/mgXAcvJTZN55Rw6eRGhfsII3E2iPLsWEYwGCvqKlXI=;
+	s=arc-20240116; t=1774538680; c=relaxed/simple;
+	bh=VC8lDUeLQaF89olSSrKq5JgPweNUCYlwAaUQYICMSVc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sew3S/+LI8+ydk63hdjXjhF/xsc0qBYfxr9IoIzXVN0CkQqfAC94y9frRnIp+kcb5nSH+nu1kDFAXrJ6YDiBA5HOURewjc3SqjmrLmWFMtpm6nD6YRZ3MKatSUVPyu3hBi9bgv8xQ4Mb/hsUhJMbHXtZPMcbXU0CKY4DT/RYBck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=AtNy/DLH; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=yqjbpiDcHC6AwPh2QC2yHN18vthccDIXI82Vxclmimg=; b=AtNy/DLHjEfyeQ9EHXJqWyK++U
-	pzDjpjsmSM+vpt7k01cyb4YN4Jqz8qvVR1fHpZ8YaKItFJGkZakuYryCR3Rk9RgHHaf+khxUjynvR
-	yaQ0rdqc4YwIp9ekJQ0aZfk14y8AFjkiM6FJ9t9BNajKuLC67P/u1sN7kjCkKptyJraY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1w5mZL-00DV6x-Ea; Thu, 26 Mar 2026 16:24:23 +0100
-Date: Thu, 26 Mar 2026 16:24:23 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>, kevin-kw.huang@airoha.com,
-	macpaul.lin@mediatek.com, matthias.bgg@gmail.com,
-	kernel@collabora.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 4/4] net: phy: Introduce Airoha AN8801/R
- Gigabit Ethernet PHY driver
-Message-ID: <044110c5-da1e-48c0-93fd-35553e86b271@lunn.ch>
-References: <20260326-add-airoha-an8801-support-v2-0-1a42d6b6050f@collabora.com>
- <20260326-add-airoha-an8801-support-v2-4-1a42d6b6050f@collabora.com>
- <acVND6DdpM9czIwU@shell.armlinux.org.uk>
+	 Content-Type:Content-Disposition:In-Reply-To; b=A7fmLGpL0kqkmEA1U3qaMOW3m6tFN5WUIMmWsWZoWCeQKyYkq6/wd4xvm2eZbqR1zD6E0z8rdK1hg/m7J4ItiTbZFYBEWHOtyTH/cVkPHA9yctOgXEvnjhjvF8ji5ex6Z6wAq8sZbll5zkiJWkFxt56b5EgrrgzmeizfptGmtR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kaAEnN52; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8768C19423;
+	Thu, 26 Mar 2026 15:24:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774538680;
+	bh=VC8lDUeLQaF89olSSrKq5JgPweNUCYlwAaUQYICMSVc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kaAEnN52eATLIBzXKxWYkAjEQF54lvKDkYc4MOirqFrd5bD5DAIMQRi7Z6XFDonBb
+	 WKa61FlMkBcd/iXQJ6NVvj56BLrUfSeujVI4srqkrjEo0YNkS+P6/Xr/rSzIa4TTE8
+	 2nnxiSlLoWZ9fwxqX9ylNk7h2LFe47bb/mfRrR6P0j9DmK3EzFipJ7bxp5c8xm2TuS
+	 NiMdnWVRBzuXH1POPXiMkAnG50ifQBOXsOongqLa/bTPgKB4QNBbt70yCIYs0d7SRq
+	 J1Ih9mzFlDLWUDBMRSL14ekNbotN/3lElMlAvI5lwEmHOwIOUc4QCgy+qNYqG3bT9G
+	 pKTZSBiYPPjOg==
+Date: Thu, 26 Mar 2026 10:24:36 -0500
+From: Rob Herring <robh@kernel.org>
+To: Ahmed Tiba <ahmed.tiba@arm.com>
+Cc: linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-cxl@vger.kernel.org, Michael.Zhao2@arm.com,
+	linux-arm-kernel@lists.infradead.org, Dmitry.Lamerov@arm.com,
+	rafael@kernel.org, conor@kernel.org, will@kernel.org, bp@alien8.de,
+	catalin.marinas@arm.com, krzk+dt@kernel.org,
+	linux-doc@vger.kernel.org, mchehab+huawei@kernel.org,
+	tony.luck@intel.com
+Subject: Re: [PATCH v3 09/10] dt-bindings: firmware: add arm,ras-cper
+Message-ID: <20260326152436.GA2484010-robh@kernel.org>
+References: <20260318-topics-ahmtib01-ras_ffh_arm_internal_review-v3-0-48e6a1c249ef@arm.com>
+ <20260318-topics-ahmtib01-ras_ffh_arm_internal_review-v3-9-48e6a1c249ef@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,60 +66,131 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <acVND6DdpM9czIwU@shell.armlinux.org.uk>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+In-Reply-To: <20260318-topics-ahmtib01-ras_ffh_arm_internal_review-v3-9-48e6a1c249ef@arm.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281284-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-281283-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,collabora.com,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,airoha.com,mediatek.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lunn.ch:dkim,lunn.ch:mid]
-X-Rspamd-Queue-Id: 20696337AAC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: B2628337A9C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 26, 2026 at 03:13:19PM +0000, Russell King (Oracle) wrote:
-> On Thu, Mar 26, 2026 at 01:04:15PM +0100, Louis-Alexis Eyraud wrote:
-> > +static int an8801r_set_wol(struct phy_device *phydev,
-> > +			   struct ethtool_wolinfo *wol)
-> > +{
-> > +	struct net_device *attach_dev = phydev->attached_dev;
-> > +	const unsigned char *macaddr = attach_dev->dev_addr;
+On Wed, Mar 18, 2026 at 08:48:06PM +0000, Ahmed Tiba wrote:
+> Describe the DeviceTree node that exposes the Arm firmware-first
+> CPER provider and hook the file into MAINTAINERS so the
+> binding has an owner.
 > 
-> This isn't a criticism for this patch, but a discussion point for
-> phylib itself.
+> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
+> ---
+>  .../devicetree/bindings/firmware/arm,ras-cper.yaml | 71 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++
+>  2 files changed, 76 insertions(+)
 > 
-> It occurs to me that there's a weakness in the phylib interface for WoL,
-> specifically when WoL is enabled at the PHY, but someone then changes
-> the interface's MAC address - there doesn't seem to be a way for the
-> address programmed into the PHY to be updated. Should there be?
-> 
-> Do we instead expect users to disable WoL before changing the MAC for
-> a network interface?
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,ras-cper.yaml b/Documentation/devicetree/bindings/firmware/arm,ras-cper.yaml
+> new file mode 100644
+> index 000000000000..bd93cfb8d222
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/firmware/arm,ras-cper.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/arm,ras-cper.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Arm RAS CPER provider
+> +
+> +maintainers:
+> +  - Ahmed Tiba <ahmed.tiba@arm.com>
+> +
+> +description: |
+> +  Arm Reliability, Availability and Serviceability (RAS) firmware can expose
+> +  a firmware-first CPER error source directly via DeviceTree. Firmware
+> +  provides the CPER Generic Error Status block and notifies the OS through
+> +  an interrupt.
+> +
+> +properties:
+> +  compatible:
+> +    const: arm,ras-cper
+> +
+> +  reg:
+> +    minItems: 1
+> +    items:
+> +      - description:
+> +          CPER Generic Error Status block exposed by firmware
+> +      - description:
+> +          Optional 32- or 64-bit doorbell register used on platforms
+> +          where firmware needs an explicit "ack" handshake before overwriting
+> +          the CPER buffer. Firmware watches bit 0 and expects the OS to set it
+> +          once the current status block has been consumed.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description:
+> +      Interrupt used to signal that a new status record is ready.
+> +
+> +  memory-region:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 
-Program the MAC address during suspend? I assume userspace is no
-longer active at this point, so the address should be stable.
+memory-region already has a defined type. You just need to define how 
+many entries (maxItems: 1).
 
-       Andrew
+> +    description:
+> +      Optional phandle to the reserved-memory entry that backs the status
+> +      buffer so firmware and the OS use the same carved-out region.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    reserved-memory {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +      ras_cper_buffer: cper@fe800000 {
+> +        reg = <0x0 0xfe800000 0x0 0x1000>;
+> +        no-map;
+> +      };
+> +    };
+> +
+> +    error-handler@fe800000 {
+> +      compatible = "arm,ras-cper";
+> +      reg = <0xfe800000 0x1000>,
+
+Wait! Why is the reserved address here? There's 2 problems with that. 
+There shouldn't be same address in 2 places in the DT. The 2nd is 
+reserved memory should only be regions within DRAM (or whatever is 
+system memory).
+
+Rob
 
