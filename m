@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-281329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281330-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UCS8LtxvxWkB+QQAu9opvQ
-	(envelope-from <devicetree+bounces-281329-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 18:41:48 +0100
+	id UF5rLOBvxWkB+QQAu9opvQ
+	(envelope-from <devicetree+bounces-281330-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 18:41:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73B533394FD
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 18:41:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39D25339514
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 18:41:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 138E1315E4EF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 17:34:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1A2ED31606BD
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 17:35:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE2C6428826;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED61B42882D;
 	Thu, 26 Mar 2026 17:31:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="e9NHhoOC"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RqvAEkDB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DE4D427A14;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25C31426ED5;
 	Thu, 26 Mar 2026 17:31:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774546307; cv=none; b=of2mimjTuwJ6zcTcALCch135lzB7MQDBMnaSwZseFyGpG7Ohhbc1bSzsLbuWdN12UhJjQGHY6wii/vTS7iqvZJtryHKoBgab/80M7qsZabu6bcT/Tlgsg6rXXViKXYYX+xillwlCZLswa9y0FkeZFvET4ynwXC3S+xYteikfdME=
+	t=1774546307; cv=none; b=m4M3PGtnCr3GDauozvogj4i2mabEXAYkbYpD+XZq50qiM8eRvZvxdHynoN8MtwWPgJYOT+3q/KOpWN6s4EzCc4rE92TN/pVqUmM0fpHC7QxEIEo2GoPVVqL/Fj7c5yRuIx/jHKhybaXm/Ta9SQaoKcmufE3BF3LUPm6gkIvRUfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1774546307; c=relaxed/simple;
-	bh=ib7f4PTuwY8kPJVoSf2e6nZJwrE7r5uosxSm8TrvvSk=;
+	bh=F8JAjw7zuFpQ0NaM9MjWnMhCvWSZlJX0EsmVnxMtSKc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RKJKOKzprptEe1P/vIlD8MiLthoUXFRwm74jeFZ3xsSAPXbbhsv/wRKxyMJOlffFVaMfe8NRFZS2jnSp4+EY8xTUJVXst+Mi+VeKwBGdE5QPZ0eGxLaQfzPbwnG78fPA87KOTZ2OjBsN993uBSalkMi1vUb0A/SE6Wi6XV4aL48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=e9NHhoOC; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=O1rvKdY4Ez4AllVeD3QZpBIWDYtvi0GvXCfXRBeL38HO6jUWVO12dtZRcO566UKNmgLWHUdwObJ7Fuh08w8RNEOXE4zQBz8DsAWDtrOcewwHLjccoQ1jtAD2jS+fXXtVNtZNzYLlOChtt4pLdLrSgf6rXR5SaEiWEFZmwL3uuOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RqvAEkDB; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1774546298;
-	bh=ib7f4PTuwY8kPJVoSf2e6nZJwrE7r5uosxSm8TrvvSk=;
+	bh=F8JAjw7zuFpQ0NaM9MjWnMhCvWSZlJX0EsmVnxMtSKc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=e9NHhoOC/tS4QF6dvsQmLl/fSCjHJ7Ar/sftRfUqtINjfevSvGHNvyOkhufYEUJPx
-	 15l9oJJnMO57BtvoF49ywI4Q9WVfGey8nxPKvSx1USG7qqcwF1eZsCt0caMUP1tYIN
-	 yOsESEDcNlt32DxHu0ouyrO/gUMYZd/v9gzznhCzf5qk5FDbGdvAb3TGbyAtkcf9FT
-	 YPZOEiTn4ZP5b/ko8nwmDG2N1AKVwl61S01O3qs18cdZkx/6rzIphWR12OFUwcGg9Z
-	 yiBZAxnLR8OiuYXb7rM1rI4Tyb3vg6F3uWceiRKvDR+Z7dgnGNxVuGoXyHCsavrO/B
-	 TK2dgbaXtfeEQ==
+	b=RqvAEkDBBnfVkfv8HZIRJd5sSoFDIicDfbfvbGE2IDHWH9KzCBt7+s+9qlNugDg/h
+	 lvx9xJxqazzWqi4+Z1p3zIAFoYDydkb6qCl710bu7kWaVeRju1/e3lLdxun+8zXUcd
+	 Ky5WbpjbazNc8nfciWgrSQNsW8vLV1WeVnO4s3i1xW8fvEPNAGpp8TQF9uR/G3/J5u
+	 /ddUmdMgNBREosgIJV6ramH0AkPOjH9C6DMV2t0sl845i6VcHOz2tlRqvwlBYfIOzQ
+	 5SltSl3scDkAS/T3/eNoCx6CGAA/x4EuI0/6sWrZZLcfC47EIcx4iSjahd97mQpSUE
+	 GzH/aXHUjvY3w==
 Received: from jupiter.universe (dyndsl-091-248-208-149.ewe-ip-backbone.de [91.248.208.149])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9B20817E6190;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 880BC17E618F;
 	Thu, 26 Mar 2026 18:31:38 +0100 (CET)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id 4057948002B; Thu, 26 Mar 2026 18:31:38 +0100 (CET)
+	id 418EF48002D; Thu, 26 Mar 2026 18:31:38 +0100 (CET)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Thu, 26 Mar 2026 18:31:26 +0100
-Subject: [PATCH 02/10] drm/bridge: synopsys: dw-dp: Support
- MEDIA_BUS_FMT_FIXED
+Date: Thu, 26 Mar 2026 18:31:27 +0100
+Subject: [PATCH 03/10] drm/bridge: synopsys: dw-dp: Add follow-up bridge
+ support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +65,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260326-synopsys-dw-dp-improvements-v1-2-501849162290@collabora.com>
+Message-Id: <20260326-synopsys-dw-dp-improvements-v1-3-501849162290@collabora.com>
 References: <20260326-synopsys-dw-dp-improvements-v1-0-501849162290@collabora.com>
 In-Reply-To: <20260326-synopsys-dw-dp-improvements-v1-0-501849162290@collabora.com>
 To: Sandy Huang <hjc@rock-chips.com>, 
@@ -85,21 +85,21 @@ Cc: Damon Ding <damon.ding@rock-chips.com>,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  kernel@collabora.com, Sebastian Reichel <sebastian.reichel@collabora.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1544;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2142;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=ib7f4PTuwY8kPJVoSf2e6nZJwrE7r5uosxSm8TrvvSk=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGnFbXmnC95nPls+Yyqj1s1uG/t8PoHbkbItM
- bGyvgrYUxUvbIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJpxW15AAoJENju1/PI
- O/qaRRkP/3sVxjoSl1PgF87qI641Ov3TtoVcKAbmcIJqgaXsblfVJwnpBmlL1Mgx9Dz4tO0KuDX
- lQhaFyKh4KSBnlGtoRK19Tv9/4PRi1XjU7LVwp+GARCJTJeyf8fNmFpZaqyp98NRX9NFNIZpQ6G
- P0QG2//my/aVFJBYymneWVSOt3h1Q9xX8btrbvFRtR34LGceSD5EkKk7lX5w1phjAnorkGTV08N
- PXzbqDe+sMKiscKDzVfG8IgoOD1m+bw05XBm2LbbHgyp8VEWAuwDnDz1EHcMV2OI+Ak745UBzzP
- NCxZ1xCu62N9D3JkQ49MmT+Z+GG1JYbc/ihnlfS3vYBOef0MVGblknVFti/r+icjl48/h3lC+Kx
- btHavU8mKc1HAUVIbFmG91rmmyw2gK9AnRaGJosbeGc3Y9sZMQUbiRVFKn1srsYclHBXoQHlK8/
- 2fyuNN1Sn7IQws3bj7QLVW1+Ia5U95O2wrB8DtpArUEM5fB1D7+//FGL33XuRvCECCVF5mK/Wck
- /QU7KshHx/QzBvGj/upYW1RusnHu8apSh2tthsoEOybCQ86yR3Z2Sss35FI6yfp18Zxjsecmb4u
- T7r/1u+qQY5LiHtbZ/qajIPhwAxEhrhMWYZjEWsxNB3J40IEo8GaYhn97zQyjjXDRxne32fGiT/
- 12nDsKJrEgnQuNV3/nPk15Q==
+ bh=F8JAjw7zuFpQ0NaM9MjWnMhCvWSZlJX0EsmVnxMtSKc=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGnFbXlSm0BskU2K+eIvRC3EQjnd0YNvceXZS
+ Isa6hpg1H8Ta4kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJpxW15AAoJENju1/PI
+ O/qaqhwQAIoD9cmmn+KtfXZ+6pSS5GjMwJRAQDFsDEF2VfUxha3XwrtIoVyNqtmoIy0rBxL69hw
+ aa1C9mjlrj0NsWzYbG+9ohoRTxHt4cRlsbSTxU7vq6PwaoNI1Ad2YBhVCL1eABsw5XmPSQ5r3L2
+ O2z6dxLmFEimjk0s3ofczG2E0lxw8UvIpna4tP/KosGrudM6yTBKrM88QyWZs+rJ0cBCx5/NZLf
+ 8DNUMxoxRPhkLIZWOlu9W12bcfmwFLlzlo5lCVXJzEw7nvIp7cJAzrZ1wlkXwG9fTid8m9KuBMI
+ A/TAqCgm+XDvXlJDkuQqeW387a6bTY0qgXtny6l+pLb4Pi8C1ETA0VR9I6GMjt+9cmva9AeLTpX
+ vIrFQ39RH8NL/pvsORlsJrfvOzy0FP6j6DErCjhweFDOOkaAtWSpGuI915rIRglFJBJ+IH91BOk
+ NGN5oDQHGohOpTBibcC1+YkX/3Z3qOboGFYBF8lemwP6s/W1oOnfZaZxlfAwIj4vtIKB98FaNiJ
+ Bk9YrdSpXreG9O5L9ZBqkK40xfVQqitsgmAf2sX69cfrEY9NrTw+KYklaqjva7BBAPLAtcTI40C
+ bYT+1uLNLcEN+WtCTO8Tahl3euWOhCZE4YX4Dq62CxlHUw0Sp/4gGXQjsq8TanRTzd21T6qouKJ
+ 88aIEnf6AEtdb46OhdLkn3g==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -111,7 +111,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-281329-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-281330-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -130,46 +130,72 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 73B533394FD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rk3576:email,2b010000:email,0.0.0.22:email,collabora.com:dkim,collabora.com:email,collabora.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,2ac50000:email,27e40000:email]
+X-Rspamd-Queue-Id: 39D25339514
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for MEDIA_BUS_FMT_FIXED, which is e.g. requested for USB-C
-DP chains as the last bridge in the chain (aux-hpd-bridge) does not
-implement atomic_get_output_bus_fmts(), which results in the generic
-drm_atomic_bridge_chain_select_bus_fmts() code using MEDIA_BUS_FMT_FIXED
-instead.
+Add support to use USB-C connectors with the DP altmode helper code on
+devicetree based platforms. To get this working there must be a DRM
+bridge chain from the DisplayPort controller to the USB-C connector.
+E.g. on Rockchip RK3576:
+
+root@rk3576 # cat /sys/kernel/debug/dri/0/encoder-0/bridges
+bridge[0]: dw_dp_bridge_funcs
+        refcount: 7
+        type: [10] DP
+        OF: /soc/dp@27e40000:rockchip,rk3576-dp
+        ops: [0x47] detect edid hpd
+bridge[1]: drm_aux_bridge_funcs
+        refcount: 4
+        type: [0] Unknown
+        OF: /soc/phy@2b010000:rockchip,rk3576-usbdp-phy
+        ops: [0x0]
+bridge[2]: drm_aux_hpd_bridge_funcs
+        refcount: 5
+        type: [10] DP
+        OF: /soc/i2c@2ac50000/typec-portc@22/connector:usb-c-connector
+        ops: [0x4] hpd
 
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- drivers/gpu/drm/bridge/synopsys/dw-dp.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/bridge/synopsys/dw-dp.c | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-dp.c b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-index 8f2739fa189e..222862d962d9 100644
+index 222862d962d9..c3a108f1faa9 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-dp.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-@@ -1528,6 +1528,7 @@ static int dw_dp_bridge_atomic_check(struct drm_bridge *bridge,
- 				     struct drm_connector_state *conn_state)
+@@ -1978,7 +1978,7 @@ struct dw_dp *dw_dp_bind(struct device *dev, struct drm_encoder *encoder,
  {
- 	struct drm_display_mode *adjusted_mode = &crtc_state->adjusted_mode;
-+	unsigned int out_bus_format = bridge_state->output_bus_cfg.format;
- 	struct dw_dp *dp = bridge_to_dp(bridge);
- 	struct dw_dp_bridge_state *state;
- 	const struct dw_dp_output_format *fmt;
-@@ -1538,7 +1539,10 @@ static int dw_dp_bridge_atomic_check(struct drm_bridge *bridge,
- 	state = to_dw_dp_bridge_state(bridge_state);
- 	mode = &state->mode;
+ 	struct platform_device *pdev = to_platform_device(dev);
+ 	struct dw_dp *dp;
+-	struct drm_bridge *bridge;
++	struct drm_bridge *bridge, *next_bridge;
+ 	void __iomem *res;
+ 	int ret;
  
--	fmt = dw_dp_get_output_format(bridge_state->output_bus_cfg.format);
-+	if (out_bus_format == MEDIA_BUS_FMT_FIXED)
-+		out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
+@@ -2072,6 +2072,20 @@ struct dw_dp *dw_dp_bind(struct device *dev, struct drm_encoder *encoder,
+ 		goto unregister_aux;
+ 	}
+ 
++	next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
++	if (IS_ERR(next_bridge)) {
++		ret = PTR_ERR(next_bridge);
++		dev_err_probe(dev, ret, "failed to get follow-up bridge.\n");
++		goto unregister_aux;
++	}
 +
-+	fmt = dw_dp_get_output_format(out_bus_format);
- 	if (!fmt)
- 		return -EINVAL;
++	ret = drm_bridge_attach(encoder, next_bridge, bridge,
++				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
++	if (ret) {
++		dev_err_probe(dev, ret, "Failed to attach next bridge\n");
++		goto unregister_aux;
++	}
++
+ 	dw_dp_init_hw(dp);
  
+ 	ret = phy_init(dp->phy);
 
 -- 
 2.53.0
