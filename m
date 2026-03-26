@@ -1,157 +1,230 @@
-Return-Path: <devicetree+bounces-281287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281298-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aK64CORSxWmD9QQAu9opvQ
-	(envelope-from <devicetree+bounces-281287-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:38:12 +0100
+	id OIrDONZXxWkk9gQAu9opvQ
+	(envelope-from <devicetree+bounces-281298-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:59:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFF63337B0D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:38:11 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB501337FF2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 16:59:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3850E30F2802
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 15:28:07 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4E5D930E91A5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 15:34:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9BF3402BBC;
-	Thu, 26 Mar 2026 15:27:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="1T8b5Jwh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 908A63FF8A5;
+	Thu, 26 Mar 2026 15:34:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A6137F740;
-	Thu, 26 Mar 2026 15:27:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A8AF2DB789
+	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 15:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774538836; cv=none; b=IGTUL7wJHx80FWZJjc8Fdq3Lm3bPlslPytd55iZM+3cBpYqST244bpaxZvcLvaigFnWUOGshVGaNbjYQjgdy21CnBBoxMOZfuCCeWCu6sv9aBaSe4FWf8DqGTCu1vyxsy3r1qiXw2zIaiau0PNWsRDsFxsuGB9aCwAgNYOs5aUY=
+	t=1774539276; cv=none; b=dDBTVB3ur/o1AyYHy5G7lmq28EdtUmnlGVhz5Dh1nfzarF1jwN8mRaWpOttIscoj/59Elal3adEwhLy6OYqRTjTFIpO79INmiuf/V/IFTtBItrbs6RX7HIXAkpe6C7VZwnvYnAeV6dT3HhnaoxSg4gOmXyH//N8l7Zp80PUFG68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774538836; c=relaxed/simple;
-	bh=xp/FcAIY4MWxs591sba8YBWW3xp77iN8bj2fb0SMr0Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nby8glWsi8LNylwA4iLma8GNtFvoV7W4ta4iemsfGeLj6CrwtijAaJSdycufD287KeIbjGeodiy1+xg7TXareUl06BR1xvTQpq1MabKVr+DMKeTGJ2nots4uwGM5Hj+jOxr+3zffqMcW3mgtbPtgexI2N8JGDAOOteR+I8QTu30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=1T8b5Jwh; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=gzVATzeIpqjOe+8Cx38MLFUSi1q5cYwLtg5AqfYWoD0=; b=1T8b5Jwhep6s1bdWD5TFn69pLd
-	SZy76s1Snrm8+z47EkFs8pZ+0aN7O1f/CRLTzggTAK990pTxU/0jKo2cqbVyH6JLzbiRwv14myAiT
-	eTR5fybqRfzJ31fYr2YHTHbg2A68ALLDfCJbdipXFN7uhgA+1NVXH2puZFFppl3R+IsnI8D7Rd3Iy
-	yxjDkb5v6q0ydugukyqGcRF8U125/05UaD43B7lTf8nI3TnXbp/gXXQfL3QmejCzKSrIvZFu36hxC
-	Vn/nM434Xrgmgt020x4M0+hBAje0q8xBEhZ+6yB1qj2vdhNBkchMmXOEv7UmuthB5MCmMx/YrYF7Q
-	HQF3D0bA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:51150)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1w5mbs-000000004xT-2JKK;
-	Thu, 26 Mar 2026 15:27:00 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1w5mbq-0000000078D-0OZH;
-	Thu, 26 Mar 2026 15:26:58 +0000
-Date: Thu, 26 Mar 2026 15:26:57 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>, kevin-kw.huang@airoha.com,
-	macpaul.lin@mediatek.com, matthias.bgg@gmail.com,
-	kernel@collabora.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 4/4] net: phy: Introduce Airoha AN8801/R
- Gigabit Ethernet PHY driver
-Message-ID: <acVQQQiciPQBkQOG@shell.armlinux.org.uk>
-References: <20260326-add-airoha-an8801-support-v2-0-1a42d6b6050f@collabora.com>
- <20260326-add-airoha-an8801-support-v2-4-1a42d6b6050f@collabora.com>
- <acVND6DdpM9czIwU@shell.armlinux.org.uk>
- <044110c5-da1e-48c0-93fd-35553e86b271@lunn.ch>
+	s=arc-20240116; t=1774539276; c=relaxed/simple;
+	bh=peWwslY60X5deNxQgqJv7OYyoSx6v0JNvTUpeeVZ1q4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Q1qG6eyINCnOqmjrbV3hx3dp6aQ7P8GWZ14RL/oazW3dxLA5nvDscX/5CHMwB07XxTSd2KPgiqoukmclYAakkW0C1FkEDCNN2QQZNr0uSLUhHNXmgXWKTZZThb2gPxHNvW96bTytOieIRDVjH1dQGWV3sgyi6iQXki+vyORz5Gg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-94de68feaf4so691139241.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 08:34:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774539274; x=1775144074;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ICY5En3i4NzNQi5qrag5c9s0SZbURVLCotK2DvpExx4=;
+        b=YWbgZwarmx45PTYhNW1ufPb+XVaEbq5YMT+G4mzs1QZWCBCxYueVP6BuVzck9RmWAj
+         ymcvq+Y0P6yKmu95MC3NfTjt2VL1Ao3sXCeSnAzXlX9uvGDL7mwKpTd2E0fsqZD4C4sT
+         sHYCxZBkd7MpQ+4PZPWA3oRAL2CRyQE6pQgZ1K6r4H4U/w2uk9TxaqqyRAtucTHp2pES
+         bw0U80k67NJFXzXgDPZKWd4S7e1VOfsMhQNRG7qAE353lbYGpkIVxY3I1VCqeHh+i/IK
+         hv+0iVjUZ0HFivsl3ud5fZDFgqFzkcNUM7TCQ3Z0/ovNnakSDIJMSPxGUqjiS1zgy/dR
+         XOxA==
+X-Forwarded-Encrypted: i=1; AJvYcCUmWxORk8MQOxs1S/7mwpoaDj3akcyVThx7icNAvEAzSW2IMpxuEYRHMTkyk9zs7Py2GmCL6IW8JeND@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzqr6WkrD6pJgd4D7Pk54bF2ZINh+WyietVREl9lMNIaSjji7Ng
+	sr05D827SPHBRg+MjOeyO4AUXCQoIapuFNsY2R8rM+JdCPm11M8V44K4gTEV1nKoO0s=
+X-Gm-Gg: ATEYQzwWo5Dly2uTgBB0ng25JfvdxBTLiGr3gmJuyiRITFMwId4nCp8gqJM6QVePktv
+	3wsx56TAiCJlnC2vPhRzREb4n85/ynCQUpeBszM1INlyM3zdmQbPQ16zLgVEVIe+7YI+Iwn6wx8
+	7rgInrD2/N8clzfvEMQAWZxRQxaWT+HpFTwduH+U/xBiDmutQYmb5JnJ2CWcmoHkW00R596eEDj
+	WA5+yw+oQGt673ep8N9xX2ohpqNGnc55dhxBcC3sdkbyXsIZ+WhBwiOkNuV/ObjjoxyDQ5DU2zC
+	BreMjOVXaEQ2fqkv/yfZKawH9OJlJ2XLm9hweh8a2KrdeJZwwrl7Y+LO7F9+AjqY7lB2+jF11bc
+	v5vqov/tuUw+54d6OeDWZxjyouiJVesid+By+qE8ouO1ZvrWhbeI7oXAfcRD+CTAdB88iId1Rxe
+	fP+CUqZxHzNSHIgj+o9iIDMVQTMAq2aaf3h8MPZoE2WONkFYBmKLFAUXgKKnBLVaTP
+X-Received: by 2002:a05:6102:3a0c:b0:5ee:a0e6:a9f4 with SMTP id ada2fe7eead31-603870ce0bcmr4281069137.12.1774539274043;
+        Thu, 26 Mar 2026 08:34:34 -0700 (PDT)
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com. [209.85.221.180])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-951be1065ffsm4155962241.2.2026.03.26.08.34.33
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Mar 2026 08:34:33 -0700 (PDT)
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-56ce44a204dso843373e0c.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 08:34:33 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVDPKVak+pF4TKJjBj+ZzhPCCWLi/vY3QroGHrBV0YCWhsE8r5XAfOweNTAGnC7j9Fu6DmYQL2rj9L/@vger.kernel.org
+X-Received: by 2002:a05:6102:5801:b0:5f5:2539:9b11 with SMTP id
+ ada2fe7eead31-603870ce0f5mr4152226137.14.1774538871002; Thu, 26 Mar 2026
+ 08:27:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <044110c5-da1e-48c0-93fd-35553e86b271@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spamd-Result: default: False [1.14 / 15.00];
+References: <20260319155334.51278-1-john.madieu.xa@bp.renesas.com> <20260319155334.51278-5-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20260319155334.51278-5-john.madieu.xa@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 26 Mar 2026 16:27:40 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVbP5Bbr9KuxoEb48zUvubT3CN7sC9oVat2NcNWaBwOtQ@mail.gmail.com>
+X-Gm-Features: AQROBzCXM6uPDs6UcVr58TTtg0-_14CRbEgbIPerOfaOzDyxBM9HF9kuEp2hlRY
+Message-ID: <CAMuHMdVbP5Bbr9KuxoEb48zUvubT3CN7sC9oVat2NcNWaBwOtQ@mail.gmail.com>
+Subject: Re: [PATCH 04/22] dt-bindings: dma: renesas,rz-dmac: Document
+ optional DMA ACK cell
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Vinod Koul <vkoul@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Thomas Gleixner <tglx@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	John Madieu <john.madieu@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org, 
+	linux-sound@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-281287-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,collabora.com,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,airoha.com,mediatek.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[renesas.com,kernel.org,baylibre.com,gmail.com,perex.cz,suse.com,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-281298-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.964];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[shell.armlinux.org.uk:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,armlinux.org.uk:url]
-X-Rspamd-Queue-Id: AFF63337B0D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linux-m68k.org:email,mail.gmail.com:mid,renesas.com:email]
+X-Rspamd-Queue-Id: EB501337FF2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 26, 2026 at 04:24:23PM +0100, Andrew Lunn wrote:
-> On Thu, Mar 26, 2026 at 03:13:19PM +0000, Russell King (Oracle) wrote:
-> > On Thu, Mar 26, 2026 at 01:04:15PM +0100, Louis-Alexis Eyraud wrote:
-> > > +static int an8801r_set_wol(struct phy_device *phydev,
-> > > +			   struct ethtool_wolinfo *wol)
-> > > +{
-> > > +	struct net_device *attach_dev = phydev->attached_dev;
-> > > +	const unsigned char *macaddr = attach_dev->dev_addr;
-> > 
-> > This isn't a criticism for this patch, but a discussion point for
-> > phylib itself.
-> > 
-> > It occurs to me that there's a weakness in the phylib interface for WoL,
-> > specifically when WoL is enabled at the PHY, but someone then changes
-> > the interface's MAC address - there doesn't seem to be a way for the
-> > address programmed into the PHY to be updated. Should there be?
-> > 
-> > Do we instead expect users to disable WoL before changing the MAC for
-> > a network interface?
-> 
-> Program the MAC address during suspend? I assume userspace is no
-> longer active at this point, so the address should be stable.
+Hi John,
 
-What is the timing requirements for a system going into suspend vs a WoL
-packet being sent? Should a WoL packet abort entry into suspend? If yes,
-then we need to program the MAC before the PHY is suspended, because
-suspend could already be in progress.
+On Thu, 19 Mar 2026 at 16:55, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
+> Some peripherals on RZ/V2H, RZ/V2N, and RZ/G3E SoCs require explicit
+> ACK signal routing through the ICU. Document the optional second cell
+> in the DMA specifier for specifying the ACK signal number.
+>
+> The first cell remains unchanged and specifies the encoded MID/RID and
+> channel configuration. The optional second cell specifies the DMA ACK
+> signal number for peripherals requiring level-based handshaking.
+>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+
+Thanks for your patch!
+
+Just a quick head-up, as I haven't read the actual secion in the
+documentation yet.
+
+> --- a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+> +++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+> @@ -63,17 +63,27 @@ properties:
+>        - const: register
+>
+>    '#dma-cells':
+> -    const: 1
+> -    description:
+> +    description: |
+>        The cell specifies the encoded MID/RID or the REQ No values of
+>        the DMAC port connected to the DMA client and the slave channel
+>        configuration parameters.
+> +      Use 1 cell for basic DMA configuration.
+> +      Use 2 cells when DMA ACK signal routing through ICU is required
+> +      (RZ/V2H, RZ/V2N, RZ/G3E audio peripherals such as SSIU, SPDIF, SRC, DVC).
+> +
+> +      First cell:
+>        bits[0:9] - Specifies the MID/RID or the REQ No value
+>        bit[10] - Specifies DMA request high enable (HIEN)
+>        bit[11] - Specifies DMA request detection type (LVL)
+>        bits[12:14] - Specifies DMAACK output mode (AM)
+>        bit[15] - Specifies Transfer Mode (TM)
+>
+> +      Second cell (optional, when #dma-cells = <2>):
+> +      bits[6:0] - DMA acknowledge signal number (from ICU ACK table),
+> +                  where 0 is a valid signal number.
+> +                  Required for peripherals using level-based DMA
+> +                  handshaking (SSIU, SPDIF, RSPI, SCU, ADC, PDM).
+
+How do you expect this to work? #dma-cells applies to all DMA consumers
+of this provider, and these SoCs already have DMA users relying on
+#dma-cells being one.
+In addition, you cannot have optional cells: if #dma-cells is two,
+then all consumers must supply two cells (of course we could switch
+all of them to two cells at once).  However, as zero is a valid signal
+number, we cannot use that as a dummy when no DMA acknowledge signal
+number is needed (we could use e.g. 0xffffffff instead).
+
+Is there any other way to provide this information?
+E.g. could we have a table in the driver that contains this info for
+the (presumably few) MID/RID values that need it?
+
+> +
+>    dma-channels:
+>      const: 16
+>
+> @@ -212,6 +222,20 @@ allOf:
+>          - renesas,icu
+>          - resets
+>
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g057-dmac
+> +    then:
+> +      properties:
+> +        '#dma-cells':
+> +          enum: [1, 2]
+> +    else:
+> +      properties:
+> +        '#dma-cells':
+> +          const: 1
+> +
+>    - if:
+>        properties:
+>          compatible:
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
