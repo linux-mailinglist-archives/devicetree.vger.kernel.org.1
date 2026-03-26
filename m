@@ -1,231 +1,272 @@
-Return-Path: <devicetree+bounces-281217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281215-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +K58O8MuxWnb7gQAu9opvQ
-	(envelope-from <devicetree+bounces-281217-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 14:04:04 +0100
+	id uOCGA40uxWnb7gQAu9opvQ
+	(envelope-from <devicetree+bounces-281215-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 14:03:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17AA9335AA7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 14:03:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED518335A64
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 14:02:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 90247301ABBC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:03:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5839030391AC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 13:02:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28B82BF006;
-	Thu, 26 Mar 2026 13:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95D5288C81;
+	Thu, 26 Mar 2026 13:02:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="pRHHXT9R"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="r6Alunm1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A10B2BE641;
-	Thu, 26 Mar 2026 13:03:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9EA2848A7
+	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 13:02:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774530190; cv=none; b=MbEvE5hWOHN2AWspHIpXGv62BySJyMOgpi2gIh5QULPGlJ5SjUyp/JDJBHMCOyXurZ39GZc0nHQw32qu73neRHpW9fdPvMpvGn+2yVv5pdr5Vb1U6dv6t6sPzdwZ7Bqpj9QqYZJSSr/J02jaL8hwXKexQxdWDT2Z4rjr4w2iqic=
+	t=1774530176; cv=none; b=KBPzm9sIFAzxwKCh8kRIQdI8F3gx864vFs8F2LjJNCGThixCj9if3PqKWPXw4fiMZAs07W9Fv5tfAzn+1ZwNp0RciypYrnA5XGM7cpecHpR2ZKwUHAlWAy6+KLnaqgEMssoMUNm8ehXWJELPi9ZjM7Z45g8SmbSSlvy5NCcxFDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774530190; c=relaxed/simple;
-	bh=oSOUR8TPxuD/ElPS+/dfeOAbwyi5r34433c4oa9bGcY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ue/k7nuYoWTkJMZYj200zyXEMLsmVqZSQ1IwOB1QpIgjg4lnix936jKVlBItvMmM9GPRJl8STZN0RkoTjDFVSMzcQ1l0v2HjaaB0Qoxc05aKoe0qhqgR1SKjg3w6aIVgeXz/f6vaYGrhTp2eYgolux27o0ygtnsVFJvwMXIxV1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=pRHHXT9R; arc=none smtp.client-ip=188.40.3.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=MK4q1k/Sv2tScGTDH98afQQfCpOfA19Nvh1Hj5gVd+o=; b=pRHHXT9RhGTC/PQ4qDGmZKAjq8
-	5DyfhdGOiHh7KIr/jm4zal2UWGr7lZFM3HMnLCDrVlWBNxJ3QUKDDhgUIFa05qq0VPybFwyE802XH
-	1ndHHPzizBliRzIYa1oQXnvJUUWnahJZYXZDEU4ms8Y25QVoskVqE+AYwfvvmRDmFoYb51n7OqQIe
-	eiiRpRFoHWyhce4k0QCfvWOnNumUNX8JxGMQdErSEqpa9GJ+8GNrguvjO3rDFLwWmeETpGNKn+zi8
-	j4r0w3Jaa3ovRzdgw5+2gJe6gw0UVU7xa6Dj4+9BCZxXN+zAXL0NgXCMeROAHicFVRSOKFPzfhxFg
-	z+OOTQzQ==;
-Received: from sslproxy06.your-server.de ([78.46.172.3])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w5kMd-0009n1-0K;
-	Thu, 26 Mar 2026 14:03:07 +0100
-Received: from localhost ([127.0.0.1])
-	by sslproxy06.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w5kM5-000ByX-16;
-	Thu, 26 Mar 2026 14:03:06 +0100
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux@ew.tq-group.com,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v4 2/2] arm64: dts: imx8qm-tqma8qm-mba8x: Disable Cortex-A72 cluster
-Date: Thu, 26 Mar 2026 14:02:22 +0100
-Message-ID: <20260326130225.1406806-3-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260326130225.1406806-1-alexander.stein@ew.tq-group.com>
-References: <20260326130225.1406806-1-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1774530176; c=relaxed/simple;
+	bh=jKX+SQCqxTstz4Yz3auE7XL0Ie43vgH+CNTRsn2H/7I=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=WRNh5B2dn/1m1cH75Pm4VLbknhi3ctUqnrOYpFMv9kAuzhmuW3gnorcFla1vDsZtY3z/K/RKnbQT5bkSp1pjnHTfVOK3hGgV1iONca1SLUobHGU5rapGah3aeAozBk3XApqgRKqSeeZqgFF9AOn6bUfbTIYtpTAsIMHYpKZfZeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=r6Alunm1; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 01265240027
+	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 14:02:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1774530168; bh=8D5RUCFCzzI6tssL0TKoTALpO3v9xvBpTfxtDwrZmJo=;
+	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
+	 MIME-Version:OpenPGP:From;
+	b=r6Alunm1vznswNbinR6fqlZuUkU9OPWXc89iCrpESuiJ4YXgYQcjQM9Kkf+PVuqL4
+	 XUKuiZq/PIl+ts5U1GyOhfNtYVbvyc7zVedEdb4C4/UPzeuKOsio6EI3c6P3m8krP3
+	 bl5a0qCmzcaK3R0KI9Oos3COsNkF9ADiimBTfoH0y/D+fIvgkphsCbqRZ8BkO+qgke
+	 WG+Pp4D/FKoWshH0g4NDaSvFlpJb6YtlyXfZ80oko0CJHE2hxqL2CTto4x7bvfZS4a
+	 HPMRrCMopTmgdfIaac2sW81yVMJoqCtRdp8cX+DoJgLoyAVB4mw8bIFi54+TGHAx0y
+	 RVJ/hoqKnTfBA==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4fhP852KcFz9rxL;
+	Thu, 26 Mar 2026 14:02:45 +0100 (CET)
+Message-ID: <3281ba870fff981a1c37989000fdc6a8c448a304.camel@posteo.de>
+Subject: Re: [PATCH v4 1/2] dt-bindings: embedded-controller: Add
+ synology,microp device
+From: Markus Probst <markus.probst@posteo.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Krzysztof Kozlowski	
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda	
+ <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>, Gary Guo
+ <gary@garyguo.net>,  =?ISO-8859-1?Q?Bj=F6rn?= Roy Baron	
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, Andreas
+ Hindborg	 <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross	 <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg
+ Kroah-Hartman	 <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+Date: Thu, 26 Mar 2026 13:02:47 +0000
+In-Reply-To: <20260325220749.GA17597-robh@kernel.org>
+References: <20260320-synology_microp_initial-v4-0-0423ddb83ca4@posteo.de>
+	 <20260320-synology_microp_initial-v4-1-0423ddb83ca4@posteo.de>
+	 <20260321-rose-armadillo-of-drama-09fdcf@quoll>
+	 <a6fe54fcf985100fc85450e680e8f7da49e6b067.camel@posteo.de>
+	 <56ece3e3-871f-4ef7-9ad1-cd7f68f9d003@kernel.org>
+	 <881644afe920a222a7fa6b2221fcc157c037ccd5.camel@posteo.de>
+	 <20260325220749.GA17597-robh@kernel.org>
+Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
+ keydata=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
+ jfGillcaQOqFZ3WwVqyzG1BUfTow==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-D23wPW0YuoH2GJPyqFYu"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: Clear (ClamAV 1.4.3/27952/Thu Mar 26 07:24:52 2026)
-X-Spamd-Result: default: False [0.84 / 15.00];
+OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281217-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org,glider.be];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RSPAMD_EMAILBL_FAIL(0.00)[cpu.0.0.0.100:query timed out,memory.4.196.180.0:query timed out,alexander.stein.ew.tq-group.com:query timed out,cpu.0.0.0.101:query timed out];
-	PRECEDENCE_BULK(0.00)[];
-	MAILSPIKE_FAIL(0.00)[2600:3c04:e001:36c::12fc:5321:query timed out];
-	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,linuxfoundation.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-281215-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RSPAMD_URIBL_FAIL(0.00)[posteo.de:query timed out];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[posteo.de:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	MAILSPIKE_FAIL(0.00)[172.232.135.74:query timed out];
 	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[4.196.180.0:email];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tq-group.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.101:email,0.0.0.100:email]
-X-Rspamd-Queue-Id: 17AA9335AA7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,posteo.de:dkim,posteo.de:mid]
+X-Rspamd-Queue-Id: ED518335A64
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Due to missing workaround for "ERR050104: Arm/A53: Cache coherency issue"
-disable the whole Cortex-A72 cluster.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v4:
-* None
+--=-D23wPW0YuoH2GJPyqFYu
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
- .../dts/freescale/imx8qm-tqma8qm-mba8x.dts    | 39 -------------------
- .../boot/dts/freescale/imx8qm-tqma8qm.dtsi    | 13 +++++--
- 2 files changed, 10 insertions(+), 42 deletions(-)
+On Wed, 2026-03-25 at 17:07 -0500, Rob Herring wrote:
+> On Sat, Mar 21, 2026 at 01:02:22PM +0000, Markus Probst wrote:
+> > On Sat, 2026-03-21 at 13:32 +0100, Krzysztof Kozlowski wrote:
+> > > On 21/03/2026 13:17, Markus Probst wrote:
+> > > > On Sat, 2026-03-21 at 11:21 +0100, Krzysztof Kozlowski wrote:
+> > > > > On Fri, Mar 20, 2026 at 11:09:53PM +0100, Markus Probst wrote:
+> > > > > > +
+> > > > > > +examples:
+> > > > > > +  - |
+> > > > > > +    #include <dt-bindings/leds/common.h>
+> > > > > > +
+> > > > > > +    embedded-controller {
+> > > > > > +      compatible =3D "synology,microp";
+> > > > > > +
+> > > > > > +      power-led {
+> > > > > > +        color =3D <LED_COLOR_ID_BLUE>;
+> > > > > > +        function =3D LED_FUNCTION_POWER;
+> > > > > > +      };
+> > > > > > +
+> > > > > > +      status-led {
+> > > > > > +        color =3D <LED_COLOR_ID_MULTI>;
+> > > > > > +        function =3D LED_FUNCTION_STATUS;
+> > > > > > +      };
+> > > > >=20
+> > > > > Where are other leds? Binding mentions 4.
+> > > > >=20
+> > > > Status and Power leds exist on every Synology NAS model I am aware =
+of.
+> > > > But there are models which have additionally a usb or alert led. Th=
+e
+> > > > device nodes for those leds should only be present, if they exist
+> > > > physically on the device.
+> > >=20
+> > > Then help me to understand - are these different models?
+> > Yes, even with different CPU architectures.
+> > How much the "microp" device differs is not clear, but the
+> > communication protocol is the same.
+> > >=20
+> > > EC is not a generic purpose component and is tightly coupled with the
+> > > actual board it is being present on. Unless exactly same board is use=
+d
+> > > in different models (unlikely) then the compatible defines the LEDs a=
+nd
+> > > they are not needed in DT.
+> > So for instance "synology,ds923p-microp", "synology,ds723p-microp" etc.
+> > ?
+> >=20
+> > I can do that, but that would be many.
+>=20
+> How many is many?
+Estimated 300.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-tqma8qm-mba8x.dts b/arch/arm64/boot/dts/freescale/imx8qm-tqma8qm-mba8x.dts
-index bf972010a88e7..ab3b244b684fd 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm-tqma8qm-mba8x.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-tqma8qm-mba8x.dts
-@@ -298,45 +298,6 @@ map3 {
- 				};
- 			};
- 		};
--
--		cpu1-thermal {
--			trips {
--				soc_active1_0: trip-active0 {
--					temperature = <40000>;
--					hysteresis = <5000>;
--					type = "active";
--				};
--
--				soc_active1_1: trip-active1 {
--					temperature = <48000>;
--					hysteresis = <3000>;
--					type = "active";
--				};
--
--				soc_active1_2: trip-active2 {
--					temperature = <60000>;
--					hysteresis = <10000>;
--					type = "active";
--				};
--			};
--
--			cooling-maps {
--				map1 {
--					trip = <&soc_active1_0>;
--					cooling-device = <&fan0 1 1>;
--				};
--
--				map2 {
--					trip = <&soc_active1_1>;
--					cooling-device = <&fan0 2 2>;
--				};
--
--				map3 {
--					trip = <&soc_active1_2>;
--					cooling-device = <&fan0 3 3>;
--				};
--			};
--		};
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-tqma8qm.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-tqma8qm.dtsi
-index d94605c999915..f0e398eb2aad7 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm-tqma8qm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-tqma8qm.dtsi
-@@ -15,6 +15,13 @@ / {
- 	model = "TQ-Systems i.MX8QM TQMa8QM";
- 	compatible = "tq,imx8qm-tqma8qm", "fsl,imx8qm";
- 
-+	/* Due to missing workaround for ERR050104 */
-+	cpus {
-+		/delete-node/ cpu-map;
-+		/delete-node/ cpu@100;
-+		/delete-node/ cpu@101;
-+	};
-+
- 	memory@80000000 {
- 		device_type = "memory";
- 		/*
-@@ -174,6 +181,8 @@ &mu2_m0 {
- };
- 
- &thermal_zones {
-+	/delete-node/ cpu1-thermal;
-+
- 	pmic0-thermal {
- 		polling-delay-passive = <250>;
- 		polling-delay = <2000>;
-@@ -199,9 +208,7 @@ map0 {
- 					<&A53_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
- 					<&A53_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
- 					<&A53_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
--					<&A53_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
--					<&A72_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
--					<&A72_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+					<&A53_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
- 			};
- 		};
- 	};
--- 
-2.43.0
+As a side note: I only have 1 model I can test the driver with.
+>=20
+> > Having it generic seems more flexible.
+>=20
+> Is there firmware for these ECs? If so is it the same or different=20
+> firmware for each device? If the former or the functionality is really=
+=20
+> trivial, then I'd be more comfortable with 1 or a few compatibles.=20
+The firmware is not public and the exact differences between them isn't
+documented. The communication protocol is the same though.
 
+>=20
+> Generic means you'll need to add quirk properties when there is some=20
+> difference the OS needs to handle which we'll reject. So stuck with one=
+=20
+> compatible and no way to distinguish different ECs is anything but=20
+> flexible.
+Describing the physical leds that are present on the NAS device are not
+quirk properties, at least in my definition.
+
+Thanks
+- Markus Probst
+
+
+>=20
+> Rob
+
+--=-D23wPW0YuoH2GJPyqFYu
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmnFLmYbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSigwP/RZwWVRZtNf4KdOvVP+V
+5hkEwvkbX+UFK+yZHXJQS6Vgma73RipzRhdX2aP7d4s+NC3U1kbw8hy1eun8Qz5s
+eHOO7lDgsoE5X0dyCqCaFR7dYXOXSLRUkvW6xLOCarOdltZ4VwOFlhkS5Y0qCIRg
+MV9uZbiSCYCflDuNtblygHHWxbMGKoyYXK7yzd3AC0mE7QK0c2x0hK9BlUVkqJzh
+RCWYGHuRORiIHxC3RXelxik2Qmf+0PccMnKdl/mAexhpb9jfX7CxBCXh+5OBG4w/
+KYRvp9DubAU80wN6YPeW1mLI4Ibqhfefo8gmWu7g6h7zFGjwhtfhPWkjFd+ZS22T
+z9gkI+1DoUWqoHJZ3JPlBJIe5uHf2iVJZdhhI6r5kY/6mScA9WcI0efJhBtTTNe9
+th69W+FAUEP3DQDcq5a8rPOA3bOqBPrD2mbDpmCs7Zi87u6SHsSKu+1gJ3BDAN6u
+lYLv5EfH7dIyss50HEgpF55ACIqhc4fA2FNLK3HMbkfDiNCdXhT6c/NBxS8H7S8P
+O+SxjKOfe5cIx+EbW5XwNO2AegCOX7cN2RxHB1CiouIeS5eot2tLIfbIZUF8OyMh
+S5oDV/kE2YmuSZnGAimIryDE7p80I5ZlL991Z7ggV+lnINLqbDGwIiFOncsx74IN
+tQTz3g63ydwPKRayhA8gnl91
+=S2g8
+-----END PGP SIGNATURE-----
+
+--=-D23wPW0YuoH2GJPyqFYu--
 
