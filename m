@@ -1,96 +1,93 @@
-Return-Path: <devicetree+bounces-281046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281044-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oKC1BJX5xGmC5QQAu9opvQ
-	(envelope-from <devicetree+bounces-281046-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:17:09 +0100
+	id cKNqIq76xGnn5QQAu9opvQ
+	(envelope-from <devicetree+bounces-281044-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:21:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86BB2332206
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:17:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E854F332323
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 10:21:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 15894306DCD9
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:06:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B892630A7A2E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 09:06:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A733BB9EE;
-	Thu, 26 Mar 2026 09:06:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 457A63B9D85;
+	Thu, 26 Mar 2026 09:06:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PJJM+PHt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JRkt6/JL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38D13B7779
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C50DF33ADA0
 	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 09:06:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774515999; cv=none; b=hUcoJMKlU7wNZC+jpEXkphFyTAokvq7SYs9r9Of1ffBAO62B8QDmChXh7/ySOFXZZuWivGaV/0Glehzv4PnBkpVYCeiHcgGy/Yg6mNRV68RU9iZ0t8c8gRRAZexnZqXbFqOr8vuVxoDLpZ2cd5m94HKEzpo7sc5JwVkKgU+j4kk=
+	t=1774515998; cv=none; b=cO5FE3UKRzgwf1A9VczZ4tPuVWPlk0rxILWAdNXqDTupdNe3Ri3HaiBWLFoSPorg6dqUX3tqSsM7/Raens0+hq1F+7y7NB31etL2bd4kSGvGhUvr/N0dnrykkeYc2vAzOX+zWf/n/GKnAxadOpstAVPNeWHgv2mfJPWlBwciDWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774515999; c=relaxed/simple;
-	bh=SFtRV6uGPjFWwt2dvotphXcNlqN5L5KCJkqsMmHEk5E=;
+	s=arc-20240116; t=1774515998; c=relaxed/simple;
+	bh=/7/QorcQZWCmJoeyZCBgMaQWGymJXwf6GoULHauSgmk=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=kc7tYkIYTEHfWfi0339eh5OjXRBkdq/986AsR3H5aKB+JSgO9OdlVPdNt9EV/KJGw0GQ8O5nyweaUQw8B4pZSmc0Zya6pbEqkUnEXOXXWD0HfrADboNAlpxkUwwboNEvzdp0/ATGBLsFXfixPsMxzY5VH3hi34TEhKlMsyaqPSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PJJM+PHt; arc=none smtp.client-ip=209.85.128.54
+	 MIME-Version:Content-Type; b=PJc7IiHZeCkzXu12wt5JGvDvE6yPoWYIkAVL/nvnZRlo48weGnr2pZ3UnDRqpmhWjd/DZLHInRnHH/pFcbifSU2VwuclXzZhVDZzf0Q/XsO8xV9PqArP/RaslhaZpwy5YuXnB5xZ3ZR8sv6FdIIDaUyrfyxwGFleUtDi6rQWApE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JRkt6/JL; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-486fd5360d4so9235705e9.1
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-486b9675d36so6493665e9.0
         for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 02:06:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1774515995; x=1775120795; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1sq2P0HkEGVyLD86Q+rD29RmS9E+DZcdoWjOdX4Q/j0=;
-        b=PJJM+PHtojS1pGdzhbcV5BKZd1X0fV6rGQ8/IjkrAuV7y/d9LM8pgIlNyNFx+Dz5gc
-         YJ2EkQ2Vv+2bCBIAZk6qdO/PQyroGwAe3lG3HHRv+wAcj5wWPy27AvGElb4KbKQWU+OV
-         SWpkf+i257oMlsqORxPgls8O7eqCGxqYEKmoDmpBBLCKh6pzy3tW7hgDgHxsLHQEMmch
-         XrZbcilEPPUqvQmrJSStM8OCfNb+bT9G9HlXW2G2eFwan2ckRT/alKG7H20gO6Lou1M5
-         EPCYaM6MgcfgrMFOcPATLBWnQAwIYDfJQk49FoRdOM7t9PY4dlTxRFzxxDz02lNvVlcf
-         gN1w==
+        bh=+Xlwh2nloblz8DH/N1OHqaA32fAZ3UK1+Bg0PjnWip8=;
+        b=JRkt6/JLfQbrap7gh+d85mD6r5eWUrQSc7ab00ZBmtv3Phs4sVYbvR8EGa/j47XSbM
+         ATOTs7fga3/ZQeP/vdU12ybR08754B3efbZlAnglGKEbvB1Ea2b64QOhhSdwnDEkUYp7
+         kzpTIl5n6TCxS+HuTs4LOe0sk5N0zGMt3YFVz5BFIj+621UWvoo17ThswZd0cpz/BBYZ
+         WDqGExxb/uAMubNT1zcv/TOSoGgo/4ci+RRp3Ni3KwQJMOerkRGbZ66zmKGjtUvl+1sd
+         UpTE5PjnqYf16KYNCED57J9xmzq63UVHONcuYWPz8UzaNa3XqPmmHSSVCfUKLPs06vG2
+         QCqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20251104; t=1774515995; x=1775120795;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=1sq2P0HkEGVyLD86Q+rD29RmS9E+DZcdoWjOdX4Q/j0=;
-        b=Em3f4p5p66OJzLxz5N542HGcNcBJXvyHJHt9EkDWM4T8SxjTYwzurYTj1rRLrZbamV
-         TnO0znunDfGQ6LwA6hfGDouQkXqcv2v1r9sS9SABepi6RTz1DHEPPsHm7mNqFjsAeNz5
-         SWdNGTBU1Z1RfHZ//kVVYUNWY1E/LQceEuNiMfSbSx0mlUIOPCJNBFXEm2DToPULbe9x
-         GsXe6VK2EHDl0yJQJDbkhmk9coTtkuFemdCZ30IPEXs0EFtUNASjPwbFQKZ6tOtjcemG
-         j8+LjqvYHvxZ1ZNizBvJgZf8cgnHRuJChcHU2i4n1pszKow0G38xYlAl88X8Bg7Rpfe9
-         q2NQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVLruZC0xbhytTA2N1yJknvba3XM8EB2pBa1dUqRZkFE+KkdRmirNASYZEyVIbkUOj9vA7pQ/h/lo2A@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNsokpfFmRSujtdLqVJhzJwfGOEnL1+noIXLIrFa9PyHT9W8+R
-	XQz3s1tSU+chwlq4t3eTlcxriZn28nYVwTpzkJydEDzLR6ZhtFZVqhVNESZQFjBTQps=
-X-Gm-Gg: ATEYQzylZGVpXg/96ey5c/pGJCSr8LEvXhnevMg2gZzYS+4/SnkdYguwDym9XR33hQo
-	BsffSMEATXJaLGsWtafXMjGKdhQ3qS3FvFyvXeHGJddzHnDtTyOFHydXoGbqSLTq2hxnlp0dQp1
-	WXx42kZ0OVCJF+IjDgcB7qONJiytVmw062xzX2tAO6KhH6Xkfi0G1a/RsrH8TEByw46Iht5DVM7
-	Akan2g8HxG2Z+v0PGSv7ov2HgA3urpiUJ/kr5rEvPcC2JZOBoq8i8upyjtbaenf0845S/LSh0NH
-	T08lF92LhhtATY4xGFonS3Nu8g1kjmC3grd0z0yet55ICklVUzmUCbP9xtce1kipj48C65P7Z9C
-	Po2/XC5wBaU4KkSHkGd6pyJg/z75lgN35NC94AcBvZy3ZLY1X/FAvt6fuMxDozsvjKZI5OHYmMJ
-	PIHhiMSiLoHj7rZsXHn9fCCFX7slqMxRhJfuPE6dBgsEwI
-X-Received: by 2002:a05:600c:3b12:b0:485:3f1c:d887 with SMTP id 5b1f17b1804b1-4871606dc4fmr98188405e9.26.1774515994012;
-        Thu, 26 Mar 2026 02:06:34 -0700 (PDT)
+        bh=+Xlwh2nloblz8DH/N1OHqaA32fAZ3UK1+Bg0PjnWip8=;
+        b=iZHeoJFMc/yR25EyITALlxR7+LZv9fIY6AYjGwia+GPJlbstG45OhN2PxdP6V0gbY5
+         33mDPNXhFUyaXxfhztmTA4bQIGOA1sv+3w5BBYyvY9vsliOUTz8vhflEBs78OQW9BuEf
+         sDSGJLGoxIs34aOZIGv4fIphAancLE0fIBmsx4G1bmCBUdl9qVHybKn4p+roFgXTTC0n
+         ChQZT8Mil1xZQLJjq/H7jl0mj+Ixb6MTek7W+SRwFsalUHJo8US5tPCIhzZv8EdHbqC3
+         D5L2aO21+Q4O+12rH5xUu/LfqGYGmcqWIRT0YJiEaNrjcnHFOex3kYJ7dxiXmWH86Imi
+         QPNw==
+X-Forwarded-Encrypted: i=1; AJvYcCV0JHW1hPsz6xszmQ0HgAr4AmZPi2ZPbm66Ppdm8MiM3ON8+NuiinjRe88XHk4f1Lrlo6ICV9Qm0Q0I@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCIwgaGnhfydGTyuVCDDEnx9LvGXnTgpUvOgV+iqIKY7Pqy/Ec
+	U/7hTX/Vd9Kyad99m5U380SXvhKobdRZ7bpdeaNHLdhMHMCuF4GYFdu9Rq7bwDlK/7g=
+X-Gm-Gg: ATEYQzwviiySw9+Qw4hF3L5U73OsJerJu24F6K8pmJeKsa5oAqruXo8QKi32J/5G51W
+	JPa/sDDti1tT0O5tD0b/Ij3YAAKIGcZ9BW7rqqWLiysNcBsQfJuCy/84dmWQnH2MB0H7c/R9udq
+	ZSEVgZg9FePbrVSOnWs/lrt+kqYBCwb2AAEEij5UHvSCcBH2P3262Zde2ihFHHpQpDVTdwyEIOT
+	XuUOOqqDr2Ejx+R8SushgBop+Q+1qTIBc3B8DBugJmHgq0VNMTIvkabmkOgWvreQqZLaWjeORE4
+	UJcALrVUVkiL1FLG+SX/fWsdc/bKyWKBBRjgJyfFHi+7XNoAtbNUgYkEauNUNaJzBJRloMfaRM6
+	rYJH3WjyjiFeupvV0I9rUreAf2SFbHakk/lcd1qzlzqvVTFwFiRFUrzuICq1ZoGKzrwD4LHio+i
+	lkqDDgqlg02tLHRIXwpIvB9MspLON3qArCqm8/jceftcgm7FFr9NrnYBM=
+X-Received: by 2002:a05:600c:4baa:b0:47e:e2ec:9947 with SMTP id 5b1f17b1804b1-4871607ac9dmr52495635e9.33.1774515995000;
+        Thu, 26 Mar 2026 02:06:35 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4872090368dsm14726905e9.5.2026.03.26.02.06.33
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4872090368dsm14726905e9.5.2026.03.26.02.06.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Mar 2026 02:06:33 -0700 (PDT)
+        Thu, 26 Mar 2026 02:06:34 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+To: khilman@baylibre.com, martin.blumenstingl@googlemail.com, 
+ jbrunet@baylibre.com, Nick Xie <nick@khadas.com>
+Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260305-fix-amlt7-gic-dts-v1-1-5944415c74bf@aliel.fr>
-References: <20260305-fix-amlt7-gic-dts-v1-1-5944415c74bf@aliel.fr>
-Subject: Re: [PATCH] arm64: dts: amlogic: Fix GIC register ranges for
- Amlogic T7
-Message-Id: <177451599311.122020.5478331004952016731.b4-ty@linaro.org>
-Date: Thu, 26 Mar 2026 10:06:33 +0100
+In-Reply-To: <20260306030756.2421841-1-nick@khadas.com>
+References: <20260306030756.2421841-1-nick@khadas.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: t7: khadas-vim4: fix board model
+ name
+Message-Id: <177451599416.122020.7359168833224163139.b4-ty@linaro.org>
+Date: Thu, 26 Mar 2026 10:06:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,14 +101,14 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	DKIM_TRACE(0.00)[linaro.org:+];
-	TAGGED_FROM(0.00)[bounces-281046-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-281044-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[baylibre.com,googlemail.com,kernel.org,aliel.fr];
+	FREEMAIL_TO(0.00)[baylibre.com,googlemail.com,khadas.com];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -121,33 +118,29 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 86BB2332206
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:dkim,linaro.org:mid]
+X-Rspamd-Queue-Id: E854F332323
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Hi,
 
-On Thu, 05 Mar 2026 23:11:25 +0100, Ronald Claveau wrote:
-> This patch aims to fix the GIC register ranges for Amlogic T7 SoC family.
+On Fri, 06 Mar 2026 11:07:56 +0800, Nick Xie wrote:
+> Update the model property to "Khadas VIM4" to match the official
+> product branding and maintain consistency with other Khadas boards
+> (e.g., VIM1, VIM2, VIM3) in the kernel tree.
 > 
-> - Context
-> Kernel log shows a warning about GIC
-> [    0.000000] GIC: GICv2 detected, but range too small and irqchip.gicv2_force_probe not set
 > 
-> Using cat /proc/interrupts command shows GIC as GIC-0
-> 
-> [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v7.1/arm64-dt)
 
-[1/1] arm64: dts: amlogic: Fix GIC register ranges for Amlogic T7
-      https://git.kernel.org/amlogic/c/dbb92c6f1ecd0dcd76a3d1002141f340737f55f2
+[1/1] arm64: dts: amlogic: t7: khadas-vim4: fix board model name
+      https://git.kernel.org/amlogic/c/771d092af02a11ec565494052d18ddfb5e2f1428
 
 These changes has been applied on the intermediate git tree [1].
 
