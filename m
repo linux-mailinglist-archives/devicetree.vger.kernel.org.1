@@ -1,148 +1,239 @@
-Return-Path: <devicetree+bounces-281385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281386-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YKEDBROQxWlG/QQAu9opvQ
-	(envelope-from <devicetree+bounces-281385-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 20:59:15 +0100
+	id cJyvL3yQxWlG/QQAu9opvQ
+	(envelope-from <devicetree+bounces-281386-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 21:01:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66F3733B30A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 20:59:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33ED033B338
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 21:01:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D5FB2300E277
-	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:57:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 774BD301051E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Mar 2026 19:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF386393DE8;
-	Thu, 26 Mar 2026 19:57:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A7DD39EF2E;
+	Thu, 26 Mar 2026 19:59:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q4rcr3ic"
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="r6kr1aM6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA5D334B662;
-	Thu, 26 Mar 2026 19:57:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38FD0351C3E
+	for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 19:59:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774555055; cv=none; b=EwIplTUcuSY6IH0O2EQlpCw5auFzeyDoXMM7oDJTdu0MW2C23UUWYC84HM2Dy1NUHtoeu0wwyIq5m0L1zvhvo88H8JqXwp0IUd+gjDHsdZf0gK9XK2PgYcfHM3fbkP7pOljJlJDAY6CccvICrEBJmWEf7m4NahYYxshJD8QnouQ=
+	t=1774555162; cv=none; b=Y2zoDrccC3Cl/wdgI1YoVqtrCae+fPiObSRjJRGMo5kh+hOwXT9qjNbFna0ltnIJ5DtRIXCP/q4HdRBYm+2Pqg2YBnkWd12VoAAN7tuxeSCs0t9n0N00wH311FMxaSijFSzDMX3DfIdoHyyZ/p7Y7qKOTURJPcHFAyPFPssnizI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774555055; c=relaxed/simple;
-	bh=JttQr6ja19BA2NJCGUge8nm+gAYUlqCp/BXQRJsn6tk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LCxC59vrNrQ2S+6U1yOSUIbbPujAlOyKBeiR2lcda7gR7ih0skchiVKwbjv4JwJImHo9lwxCbXgkyPNSMOUIiyxEcWPwg3ai4l5lt52/Zw20GempgoW+1rFVQ/PWrb2Ok1gtKjlxnChpS2481XXcpsOZfOpbEM3LDz16c81NKnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q4rcr3ic; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB2D5C116C6;
-	Thu, 26 Mar 2026 19:57:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774555055;
-	bh=JttQr6ja19BA2NJCGUge8nm+gAYUlqCp/BXQRJsn6tk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Q4rcr3icHxtXNIKV8otrzy/M2ts4J7FKyHvTRDMiThEsg3UsHYnmzKAdkZBLAiAVw
-	 eFF4tMoGYttH/02V0fPgQPIa3MhtZJ8b+yceKHAxBRXzsbt1N+72iLv03D+yauctUu
-	 9LT26ZJbFPwjYlnM7WNeCBaos22MgZljhJCRLJKRfGjVy+9rUmnGupu+cy6fXs5B7y
-	 8kuddANncDFk51SIdCZLxdHVk0ima/XP8697+mocmMMikvRi9Hqbr400A6GkIqfXOz
-	 nkUwG1vWUhYvBsSGmWl9Gs6Opcb8SRt/6C3Lw8M1h5hApLzdIb4Wg10GlygF926V2O
-	 Be9VPD/rBkL7Q==
-Date: Thu, 26 Mar 2026 19:57:25 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nick Xie <nick@khadas.com>
-Cc: neil.armstrong@linaro.org, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com, jbrunet@baylibre.com,
- dlechner@baylibre.com, andy@kernel.org, krzk+dt@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/4] iio: adc: meson-saradc: add support for Meson S4
-Message-ID: <20260326195725.4be0624a@jic23-huawei>
-In-Reply-To: <20260325070618.81955-1-nick@khadas.com>
-References: <20260325070618.81955-1-nick@khadas.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1774555162; c=relaxed/simple;
+	bh=8dEreTq+ClyahaXJ6jaZkn9ylJrISDINPNdiqWkJrGo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=M5DFs6QELNQiZ/wAotxPjILfTGktXbCXPb8u3cetIcwtrqEX0XYyHf0SS2X9V9jqBAxJNu7YwHlx0oXMWVrzB9i4tO1PVdkniolXzo9HtY7Pd4mxqQs72auOr5HtOTFm4e8DDCoivc2/1CCv882Wu7C53c4bDHBqaxO2DqJicME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=r6kr1aM6; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-43b4f48c47cso1026378f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Mar 2026 12:59:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=flipper.net; s=google; t=1774555159; x=1775159959; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pyiyouDNO/j0IqzSw//lozm1XupWUO2SGUR/Oq71IO4=;
+        b=r6kr1aM6uQ04qD71X+Fm7bBMK5bDExJnWnc702+hUGiRxq//5+A73rdNHRd0BJsg13
+         j4hnAJkw+zTs6pWgdXuSiQCNO7zP73RxkbVFImJKAypITsoq51V9DOP7Non8GpBSoWe3
+         Yg5fXSpd7bXNAzTHn0Dav9BmS2SjyDZdQHlANHb+KyyehbR84eW5QfWrf/YmH8vVVcRV
+         zvw/SUGTdjKDiDVX3zyudzNBH8ZRJ11n7/3RSGx2l6ftVh5kveaBvm8snx0IOdniT3ed
+         V5PBxWw2dnAF0lqTurf+f+CTnbLw8t5fi/VGNI90yU9DLkUVqDHCYhR53KC2k2oQld8w
+         QAbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774555159; x=1775159959;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pyiyouDNO/j0IqzSw//lozm1XupWUO2SGUR/Oq71IO4=;
+        b=EFc0RXrEzESPLP04IykXecXcbm5FN+oUbt94HaPBDEFfWg3j8fk+QmbnglY43Ek1MT
+         TYIlieCetiYDtv0fM1cBzBUuQHtAv7YvyLkKdNkCRlds3x++hCvJZhZ9+f/fsxnuMowF
+         WlhbJMXw9wWhPNaCGnh4MM9i+UXc3dlp+25GlSUvcQxfwd34ZZAtoInubaXO4PACNqhd
+         iQXB1ogPyYLNGZFGXNMIbbp/xRc3JxIT5iAqxhVqMlyLMswVRDkoRzHhuDq62n3Y1+Uy
+         GxF1Af53OTwC3QIZgxyGSnaj1JRGJ7W3mvJK7ASdzYLXrQ95pHP0D4IQ6WHc03qwSNnI
+         6Y9A==
+X-Forwarded-Encrypted: i=1; AJvYcCXDoIeLgl5hhx9unVdyQSU7cAnOO8tS/Eg8apGypBRKE0IteXnbB+3SUR+3dsXsRIdn8EfCQA5HBZqm@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbCCqvwrsWHA6NW8Iad51OAzHqqARTfg9B4S5fLlAtNh7cmAl1
+	9LzXlN5t/fkoNV8Wft3FIPBeK1FvobVxcx95WzrjdvlTQBMavhBhJ7IRDsGPtFuOJxM=
+X-Gm-Gg: ATEYQzwje6x1n3Vr2HtpUGcYUZDHb+bU0B1G4bWQOPgS4xeQNOLUNPDggMm+Gl9saz+
+	ZCQTd2vGd+zgUj+ssOV1GlfczEwlCOCh6Ms5gEba7RvPQv4QNlcBUx0VF4NtExslARKKrS4xPVT
+	bCnk19nkIGZnNPMV9mKzXF2jjEaFreO0i42KI8twa4Bu43zB6yZO4MhRXcHQokNyoIzbrOknsS3
+	Mb8fiyn6hmWIx8u5FXnQ5KoEB6+8TsGUYC8d+g7edz+CPI4gxnrKBr5MVxuDmJRmsOd9R9RBaQk
+	jvYvjkZEbnmLR+3lnb7wDHN+vC6AnM2zplNNyO1D6CDV8NWWE0V7l1kzoGunWJBxce+vXUcsVgG
+	i+PBfprEE2Bg98pSFblGkoS4+2XF+a+bJSSxk4vRREtSnTbwXi1B5b2P5PEb42Gy5N2ozys6QIo
+	8OLuBaiN2iSnLsP5lAk5x2Z1LvJXb///+LhPWQbyAjxKMU+A47asmBKvZZTEmUvxdhx+5KjGL1b
+	iWJ8w==
+X-Received: by 2002:a5d:5d0e:0:b0:439:ca9b:1f61 with SMTP id ffacd0b85a97d-43b889a4a1bmr13790147f8f.17.1774555158127;
+        Thu, 26 Mar 2026 12:59:18 -0700 (PDT)
+Received: from alchark-surface.localdomain (bba-86-98-192-109.alshamil.net.ae. [86.98.192.109])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b919df7dcsm11339012f8f.27.2026.03.26.12.59.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Mar 2026 12:59:17 -0700 (PDT)
+From: Alexey Charkov <alchark@flipper.net>
+Subject: [PATCH v4 0/2] Add support for Texas Instruments INA4230 power
+ monitor
+Date: Thu, 26 Mar 2026 23:58:59 +0400
+Message-Id: <20260326-ina4230-v4-0-c1e312c09de7@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-B4-Tracking: v=1; b=H4sIAAOQxWkC/2XM0QrCIBTG8VcZXmccjzqzq94jutDpmhBr6JBi7
+ N1zI1rR5Xc4v/9Eko/BJ3KsJhJ9Dinc+zLEriJNZ/qrp8GVTRCwBmSaht4I5ECVMIACNJPckfI
+ 9RN+Gx1o6X8ruQhrv8bmGM1uu7wbKTyMzClSjZc7rA3OiPrW3MAw+7ns/kqWScZMccJNYpJRWa
+ Me0Q2P/Jf+SDDbJi4TaWG6UaqSCXznP8wv/o7edFAEAAA==
+X-Change-ID: 20260219-ina4230-74a02409153d
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Alexey Charkov <alchark@flipper.net>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5538; i=alchark@flipper.net;
+ h=from:subject:message-id; bh=8dEreTq+ClyahaXJ6jaZkn9ylJrISDINPNdiqWkJrGo=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWQencAj6xXUey9psUKGesU3ln+XT5yIXrPaZfkuD96Hy
+ 9blVn5h6pjIwiDGxWAppsgy99sS26lGfLN2eXh8hZnDygQyRFqkgQEIWBj4chPzSo10jPRMtQ31
+ DA11jHWMGLg4BWCqOXYz/I9j1DFPb9IO+SfjXhG4ruzyxoivp8+/OWKvv2ix8CeW07cYGe7JXPx
+ 3IGU645fA1EijU/bnt/Ovt+550GCo3KPIkr9jCTcA
+X-Developer-Key: i=alchark@flipper.net; a=openpgp;
+ fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
+	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-281385-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	DKIM_TRACE(0.00)[flipper.net:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org,vger.kernel.org,lists.infradead.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-281386-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,khadas.com:email]
-X-Rspamd-Queue-Id: 66F3733B30A
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,flipper.net:dkim,flipper.net:email,flipper.net:mid]
+X-Rspamd-Queue-Id: 33ED033B338
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 25 Mar 2026 15:06:14 +0800
-Nick Xie <nick@khadas.com> wrote:
+TI INA4230 is a 4-channel power monitor with I2C interface, similar in
+operation to INA3221 (3-channel) and INA219 (single-channel) but with
+a different register layout, different alerting mechanism and slightly
+different support for directly reading calculated current/power/energy
+values (pre-multiplied by the device itself and needing only to be scaled
+by the driver depending on its selected LSB unit values).
 
-> This series adds support for the SARADC IP block found in the Amlogic
-> Meson S4 (S905Y4) SoC and enables it for the Khadas VIM1S board to
-> support the onboard ADC 'Function' key.
-> 
-> There are no known hardware differences between the SARADC on the S4
-> and the previous G12A generation. The S4 bindings utilize a fallback
-> to G12A, but a dedicated driver match entry is included to ensure the
-> correct part name is exposed to the userspace ABI.
-> 
-Applied patches 1 and 2 to the togreg branch of iio.git.
+In this initial implementation, the driver supports reading voltage,
+current, power and energy values, but does not yet support alerts, which
+can be added separately if needed. Also the overflows during hardware
+calculations are not yet handled, nor is the support for the device's
+internal 32-bit energy counter reset.
 
-> Changes in v3:
-> - Patch 1: Updated the commit message to explicitly explain why the
->   comment regarding the generic fallback was added.
-> - Patch 2: Retained the driver patch and updated the commit message to
->   clarify that the dedicated match entry is kept specifically for
->   userspace ABI naming purposes.
-> - Link to v2: https://lore.kernel.org/all/20260323013408.429701-1-nick@khadas.com/
-> 
-> Changes in v2:
-> - Addressed feedback from Krzysztof Kozlowski:
->   - Updated dt-bindings commit message to explain the hardware compatibility.
->   - Separated the S4 compatible string in the YAML bindings to ensure it
->     correctly falls back to the specific "amlogic,meson-g12a-saradc" rather
->     than the generic "amlogic,meson-saradc".
->   - Updated the S4 SoC dtsi to use the correct G12A fallback.
-> - Added Martin's Reviewed-by tags where appropriate.
-> - Link to v1: https://lore.kernel.org/all/20260228065840.702651-1-nick@khadas.com/
-> 
-> 
-> Nick Xie (4):
->   dt-bindings: iio: adc: amlogic,meson-saradc: add S4 compatible
->   iio: adc: meson-saradc: add support for Meson S4
->   arm64: dts: amlogic: meson-s4: add internal SARADC controller
->   arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s: add Function key
->     support
-> 
->  .../iio/adc/amlogic,meson-saradc.yaml         |  4 ++++
->  .../amlogic/meson-s4-s905y4-khadas-vim1s.dts  | 19 +++++++++++++++++++
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 14 ++++++++++++++
->  drivers/iio/adc/meson_saradc.c                |  8 ++++++++
->  4 files changed, 45 insertions(+)
-> 
+An example device tree using this binding and driver is available at [1]
+(not currently upstreamed, as the device in question is in engineering
+phase and not yet publicly available)
+
+[1] https://github.com/flipperdevices/flipper-linux-kernel/blob/flipper-devel/arch/arm64/boot/dts/rockchip/rk3576-flipper-one-rev-f0b0c1.dts
+
+Signed-off-by: Alexey Charkov <alchark@flipper.net>
+---
+Changes in v4:
+- Aligned the maximum value of ti,maximum-expected-current-microamp property
+  in the binding with the one expected by the driver (Guenter Roeck)
+  "2147A ought to be enough for anybody (c)"
+- Actually requested the optional vs-supply regulator in the driver (Guenter Roeck)
+- Program the ALERT_POL bit according to the value of ti,alert-polarity-active-high
+  even though the alerts themselves are not yet implemented (Guenter Roeck)
+- Added a check for manually disabled channels in the is_enabled() function to
+  avoid reading invalid data from them (Guenter Roeck)
+- Dropped support for the single-shot mode as its operation is not clearly
+  documented in the datasheet and there is no pressing need to support it (Guenter Roeck)
+- NB: AI feedback regarding regmap_noinc_read() producing incorrect byte order on LE
+  hosts is incorrect, as its implementation does a byte-wise read and doesn't care
+  about the regmap value width or endianness flags, so it produces a 4-byte output
+  buffer in the same byte order as the device returns, which is BE in this case
+- NB: AI feedback regarding fail-path pm_runtime_put_noidle() potentially being
+  unbalanced if the probe loop failed early is technically correct but practically
+  irrelevant, as the driver will simply fail to load, and the usage count won't
+  decrease beyond zero anyway. The alternatives are cumbersome for no real benefit
+- Link to v3: https://lore.kernel.org/r/20260310-ina4230-v3-0-06ab3a77c570@flipper.net
+
+Changes in v3:
+- Updated the description of the ti,maximum-expected-current-microamp property
+  in the binding to clarify how it is used, and drop the irrelevant mention of
+  the PMbus (Guenter Roeck)
+- Use div64_u64() instead of do_div() for the final division in the calibration value
+  calculation to avoid overflows in the denominator (Guenter Roeck)
+- Avoid overflow while scaling the voltage values on 32-bit platforms (Guenter Roeck)
+- Use regmap_noinc_read() instead of regmap_raw_read() for reading the energy values
+  to ensure that the regmap / bus driver don't wander off to adjacent registers
+  during the read operation (on INA4230 the whole 32 bits should be read from
+  the same register offset) (Guenter Roeck)
+- Remove redundant call to ina4230_set_calibration() in the current read path,
+  as the calibration value is already set when enabling the channel and restored
+  across PM changes via regcache_sync() (Guenter Roeck)
+- Add missing write_enable() function to make hwmon_in_enable writes work as
+  advertised in is_visible() (Guenter Roeck)
+- Add a check for disabled channels before calling pm_runtime_put_noidle() on them
+  to avoid refcount underflow due to imbalanced get_sync/put_noidle calls (Guenter Roeck)
+- Dropped unused include of linux/debugfs.h
+- Add missing return checks on regmap_write() calls
+- uO -> uOhm in the error message to avoid confusion
+- Move probe-time calibration after enabling runtime PM to avoid it being reverted
+  by the PM sync
+- Link to v2: https://lore.kernel.org/r/20260302-ina4230-v2-0-55b49d19d2ab@flipper.net
+
+Changes in v2:
+- Replace u64/u64 division with do_div() (kernel test robot)
+- Add an example with ti,maximum-expected-current-microamp property in
+  bindings (Krzysztof Kozlowski)
+- Include the newly added binding in MAINTAINERS file (Krzysztof Kozlowski)
+- Use dev_err_probe() where appropriate in the driver (Krzysztof Kozlowski)
+- Switch to devm_regmap_field_bulk_alloc() instead of an open-coded loop
+- Add a bounds check for the calculated calibration value,
+  and a corresponding error message
+- Link to v1: https://lore.kernel.org/r/20260225-ina4230-v1-0-92b1de981d46@flipper.net
+
+---
+Alexey Charkov (2):
+      dt-bindings: hwmon: Add TI INA4230 4-channel I2C power monitor
+      hwmon: Add support for TI INA4230 power monitor
+
+ .../devicetree/bindings/hwmon/ti,ina4230.yaml      |  134 +++
+ MAINTAINERS                                        |    7 +
+ drivers/hwmon/Kconfig                              |   11 +
+ drivers/hwmon/Makefile                             |    1 +
+ drivers/hwmon/ina4230.c                            | 1032 ++++++++++++++++++++
+ 5 files changed, 1185 insertions(+)
+---
+base-commit: 66ba480978ce390e631e870b740a3406e3eb6b01
+change-id: 20260219-ina4230-74a02409153d
+
+Best regards,
+-- 
+Alexey Charkov <alchark@flipper.net>
 
 
