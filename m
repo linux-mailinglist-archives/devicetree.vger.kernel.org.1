@@ -1,62 +1,56 @@
-Return-Path: <devicetree+bounces-281829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281753-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6EUpIVrrxmloQAUAu9opvQ
-	(envelope-from <devicetree+bounces-281829-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 21:40:58 +0100
+	id WIxIHkC/xmnoNwUAu9opvQ
+	(envelope-from <devicetree+bounces-281753-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 18:32:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46C4134B252
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 21:40:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E12348639
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 18:32:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1020A303A1F8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 20:40:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 80D0930E1000
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 17:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1ACD37FF46;
-	Fri, 27 Mar 2026 20:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6053C3E4C7B;
+	Fri, 27 Mar 2026 17:25:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AH/aPUBo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ha7FqDDP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DF7332F742;
-	Fri, 27 Mar 2026 20:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3745B3ACF09;
+	Fri, 27 Mar 2026 17:25:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774644054; cv=none; b=iq4ctCx38USpxOc6HCaGcQGtqowncfmJFExWTbWOuKftxtBIQHbMFs3Qb15+Jp8MDLpYGVasnTPZN7UTL8BuztD3vVrYQVlfciFOZmKZriNZM0BCLMYE2wpprnejktzkvZczJcoRs654MAqiwunZMnrp4O/C/CH1HWUaRe+XT7Y=
+	t=1774632329; cv=none; b=O3yCUVqDaZSEoTBYRiMErK+dVJco8OfrKLUusLb4aKe0D8dwCLXqLLYDhrRv6ll1VVguKn9FKJuNRZS7qbPt4Nvxs7j3ZfE/5l0gVVqkHxoG/c+hJkTv0qA0EYauD9JobFkZ7SBwKmIocgbcRDOlKNlWddNOaokoP/GuBgqjZrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774644054; c=relaxed/simple;
-	bh=/ezLVy3GZhWlSKa9nvaADKtZcRVrgEC0HxqJGqIEYPI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=jBhuo2FYfqkKm/vsuvZT7547noLbkdmIJX4Y5O3aQGPOJzwyKlO2GRluT6vAaIaWUWInaznX/oOZuI6U77k77U7RXbDDqFYrf4qf+5XjN57oYxq/3zWiYeKXudpYUeRc/BcNECY0MjqqP/VFLF9BGxLkkDJdXTr5n3Tu9Xy2ltY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AH/aPUBo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D77BC19423;
-	Fri, 27 Mar 2026 20:40:51 +0000 (UTC)
+	s=arc-20240116; t=1774632329; c=relaxed/simple;
+	bh=wP07MCoE5Leq1WsPpP2sxNPCLJfyGnjf5lGaQDv3kmA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JrV6wwTQK4+Mlvpd4Youxa3DDEekFgT0rspuBJRM3foKC6XNjZPC620AfLglR27AbZ9rcK3KwIFtCt/qUsV3jhOdxdmyL+kKoofyMI3A3qT8kYcyBXhTY0sJ9ncQuBIN/QNElMF8ZRLdh3QKi0u9qG0NJIc7WJVpj7bKbQl/9wo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ha7FqDDP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E54DEC2BC9E;
+	Fri, 27 Mar 2026 17:25:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774644054;
-	bh=/ezLVy3GZhWlSKa9nvaADKtZcRVrgEC0HxqJGqIEYPI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=AH/aPUBoSJkiBjQqZR1M6QyALe0uK7mtVJbkfe5WbAc8tLRZeZszZGkw5GyORtBu/
-	 aCp3LTusO3OWa6o+DuMd0x8Ho/5QEP8HtcytdEyXWAHIdkcQcZb8W0o6AHkBHA8z/l
-	 8QhNFi+2AXcsL+Qy+HRXq/aWh8+OgG1vCaDSE6cXFDpSC2mDKKJv2l4QVg9Nr1jgtM
-	 NELrstPWDB+mNeAW3d0ors/S1PVCF2d6P/XkUTs2Z9uIZyrTjWgI47GQ+fQpz/U84O
-	 1TyUWOafJ1jj4ZSURVgQJsaZwa7o3pTAkAdY0+uW6KFzjMr/442jGvewl0mp5qwjx8
-	 OJG/yIwqS8CNQ==
-From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, Khushal Chitturi <khushalchitturi@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
- koro.chen@mediatek.com, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-In-Reply-To: <20260327134649.31376-1-khushalchitturi@gmail.com>
-References: <20260327134649.31376-1-khushalchitturi@gmail.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: mediatek,mt8173-rt5650-rt5514:
- convert to DT schema
-Message-Id: <177463208948.777262.1614314585663974285.b4-ty@b4>
-Date: Fri, 27 Mar 2026 17:21:29 +0000
+	s=k20201202; t=1774632328;
+	bh=wP07MCoE5Leq1WsPpP2sxNPCLJfyGnjf5lGaQDv3kmA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ha7FqDDPj+KPmbP+v7G123+vo7+WvX9ANZyyF5C0KVphR4K3Cnl9hvR9nJjyuIftD
+	 tDeqhULszj6oz9xwv7ppURiCvBmG39I+V8gyeAEGlqPk2afYULVTYiTU519sHxhRzs
+	 /p4BLqpWOUrkbPgySfg5KNIxRluDZcyuI80vKfosc+UzEg/fqiB0K0sHTp+71w/jfZ
+	 /Peukliwt4EfBeuK9S/Qz6I9/+aXFNA7O4SToStON+3apRSN6KuJ4Yl2bP2+V8QZxA
+	 EGFQV4NchzTkKfYZhVBG9cKXedBORFvtP+zPkK+9+z61a1KJqWP23tohpetzE/jaTU
+	 7FUfoEZwhn/8Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D84F010F2858;
+	Fri, 27 Mar 2026 17:25:28 +0000 (UTC)
+From: =?utf-8?q?Nuno_S=C3=A1_via_B4_Relay?= <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v8 0/3] hwmon: Add support for the LTC4283 Hot Swap
+ Controller
+Date: Fri, 27 Mar 2026 17:26:13 +0000
+Message-Id: <20260327-ltc4283-support-v8-0-471de255d728@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,81 +58,107 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev-ad80c
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1162; i=broonie@kernel.org;
- h=from:subject:message-id; bh=/ezLVy3GZhWlSKa9nvaADKtZcRVrgEC0HxqJGqIEYPI=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBpxutS/ovJb6SR3kEuiSgzP/pmOBz6pkYdq+zg9
- iprs81yeHyJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCacbrUgAKCRAk1otyXVSH
- 0GfPB/4noaJ7sEbVurq/yn/pmLXMIIFv71dC4eCXNY0lKVQ4/RrySFl9c5SlyzNWkXnFhwJS78n
- 9YSaNciI+oAulSjz3X4l+xphTRs5Z8C3KZX4YYVtuAKF3Y5zz3VaD0iFLRQ6PuLG/CH2HFU37EE
- keIL+HHQhapJQiPZbP+5DRLuMgSFc6nrUvf8HXPFteCG12wGQX4Az9e1OWj1wS7JeK0wrrrVIp5
- FQ+e5TsNXP5ZMR2qe7SviG2gyy7OTH7YYI5khdn2qk9X2ZkojV8I1LTVqB9TWG7FPsrgy/wJ1a1
- zxS/56xv3po9EB4VD4PASwcqiNypZIdjrEyEpR8CC+wsVumr
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WNQQrDIBQFrxL+uhajiZWuco+ShZhvIqQqaqUle
+ Pfa7LucgTfvgITRYoJ7d0DEYpP1roG8dKA35VYkdmkMjDJBOeVkz3pgkpP0CsHHTKjg5iaV1qM
+ aoK1CRGPfZ/ExN95syj5+zoMifvZ/qwhCCRrs+5EyoxY2Kad2v161f8Jca/0Cl+nMMK8AAAA=
+X-Change-ID: 20260303-ltc4283-support-063f78acc5a4
+To: linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+ Bartosz Golaszewski <brgl@kernel.org>
+X-Mailer: b4 0.15.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774632374; l=1827;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=wP07MCoE5Leq1WsPpP2sxNPCLJfyGnjf5lGaQDv3kmA=;
+ b=Q1nzDECbjvmzhD8F/jUVZDSHmwCeuMks6JUDapVMLTH1OJdSFYj0xw0RWt7NjcddbfLZLYTLC
+ z3ckPOWC3R5Dx2e+2VcYWI5rpJsi1TA5mN2Zxo8QZT6bzRi/ViLZnBL
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
+ auth_id=100
+X-Original-From: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
+Reply-To: nuno.sa@analog.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281829-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-281753-lists,devicetree=lfdr.de,nuno.sa.analog.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[nuno.sa@analog.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 46C4134B252
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:replyto,analog.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D5E12348639
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 27 Mar 2026 19:16:49 +0530, Khushal Chitturi wrote:
-> ASoC: dt-bindings: mediatek,mt8173-rt5650-rt5514: convert to DT schema
+This is v8 for the LTC4283 how swap controller. 
 
-Applied to
+Similar to the LTC4282 device, we're clearing some fault logs in the
+reset_history attributes.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.1
+---
+Changes in v8:
+- Patch 1:
+   * Improved descriptin in adi,fet-turn-off-disable so it's more clear;
+   * Same for adi,dvdt-inrush-control-disable;
+   * Fixed typo in adi,external-fault-retry-enable description.
+- Patch 2:
+   * Use return value from clamp_val();
+   * Add missing 'ret < 0' for device_property_match_property_string()
+     calls;
+   * Fixed logic in when adi,vpower-drns-enable is enabled;
+   * Check default state of the pgio4 pin. So that we can, accordingly
+     flag st->ext_fault.
+- Link to v7: https://lore.kernel.org/linux-hwmon/20260314-ltc4283-support-v7-0-1cda48e93802@analog.com/ 
+---
+
+---
+Nuno Sá (3):
+      dt-bindings: hwmon: Document the LTC4283 Swap Controller
+      hwmon: ltc4283: Add support for the LTC4283 Swap Controller
+      gpio: gpio-ltc4283: Add support for the LTC4283 Swap Controller
+
+ .../devicetree/bindings/hwmon/adi,ltc4283.yaml     |  272 +++
+ Documentation/hwmon/index.rst                      |    1 +
+ Documentation/hwmon/ltc4283.rst                    |  266 +++
+ MAINTAINERS                                        |    9 +
+ drivers/gpio/Kconfig                               |   15 +
+ drivers/gpio/Makefile                              |    1 +
+ drivers/gpio/gpio-ltc4283.c                        |  218 +++
+ drivers/hwmon/Kconfig                              |   12 +
+ drivers/hwmon/Makefile                             |    1 +
+ drivers/hwmon/ltc4283.c                            | 1796 ++++++++++++++++++++
+ 10 files changed, 2591 insertions(+)
+---
+base-commit: cd041796c380961f0e3c04d9627af80131608adc
+change-id: 20260303-ltc4283-support-063f78acc5a4
+--
 
 Thanks!
+- Nuno Sá
 
-[1/1] ASoC: dt-bindings: mediatek,mt8173-rt5650-rt5514: convert to DT schema
-      https://git.kernel.org/broonie/sound/c/472d77bdc511
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 
