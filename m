@@ -1,60 +1,54 @@
-Return-Path: <devicetree+bounces-281811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281814-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CFnGBdflxmnrPwUAu9opvQ
-	(envelope-from <devicetree+bounces-281811-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 21:17:27 +0100
+	id iGOXMejlxmnrPwUAu9opvQ
+	(envelope-from <devicetree+bounces-281814-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 21:17:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6848034AC8D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 21:17:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42A6E34AC9D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 21:17:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4FA8313EE83
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 20:11:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BF8EC30ACB2E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 20:12:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FCEE39DBFA;
-	Fri, 27 Mar 2026 20:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8F03988FE;
+	Fri, 27 Mar 2026 20:12:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CT635IC3"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="sSptJLDs";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="OVJUCQ0b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27961393DD3;
-	Fri, 27 Mar 2026 20:11:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9539B393DE2;
+	Fri, 27 Mar 2026 20:12:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774642282; cv=none; b=pmdJ42qbPm+DYv+bditVKA2YBu3rocFcsloEoZ/LXKOVtd+hHM5B7b51EmsuPWxi0psK4wdDYCvVj31ucLZSj6sWkWLmhqy65lmM8MNdkWEtB4Bl1ZsrDFRiMpNa00zTIB49doj12kTX364Ak03k841JTmv6YYNjyMWsijvTmhw=
+	t=1774642323; cv=none; b=pn3NktgZa0gR4DhMMN/cOz2ID19GrOs6AfunumjJiJCY3OfwtwDg1kaPn6Nh5TOWxBEMdKxFKinM2o6vIxiit4WViD/WpUW2mVG2RGgQh7AhYD7Ekz0Ikle83d8/XRB12+K5CxfLcq13z33kOog03+Fn5IxKWn5ufm0G1N8AfFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774642282; c=relaxed/simple;
-	bh=dVZyfeEgrkGYmDshoQsQ4RLpKkjU6LGopLTjHakrndA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ud3MI6bcyaUsHhIkvkbWI56vnVk7mNJBhXrS6wroIwlljmJP1HFShOOZZ0Kvp07NgcJgmDaqsYnbxlfxyekJlvygH5gPKLGAwz1njlp4rMiXbibx3MYppouG8CdnN7iMnYNlk5wgSAyk2mlnlTJkTIBsrlI7Syzdh83oxPmldyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CT635IC3; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id DFC971A3033;
-	Fri, 27 Mar 2026 20:11:19 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B404060268;
-	Fri, 27 Mar 2026 20:11:19 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6938510451AF7;
-	Fri, 27 Mar 2026 21:11:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774642278; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=DIlrp9PjoRowHYZrJ7gc0fvN1Nwlk04nBRTDWt8Ig3w=;
-	b=CT635IC3QQJ9j3PVQe+py5sJkt2oMZwPoLThB5jvtWnOVqrWOrq06xqGcCgdgXoHJrXMr8
-	uwoBdNqh6pcF5Rb6AZPWqVjjWhdlSOKjY7aMMMQjEtKclEDtR7TWilFV65QqoTtDTO5uFA
-	+mBgamfOadbous7asK2oPVEV9yM6mVd01qKXYoeUloq9u2tbyrhHNyQP1SqbY42kbsoFOk
-	3+NjTBkXzG/FgzWZMF3aXuqFHqfpDssBTR/MrXgdQdQvtMrVvcyyK64rqJqZr6jTryo5Vv
-	heas5wAdL2apG+2aZufBT46a39qq+r7cwH1GQpZKtc8/8YZ0+2IZXdgDKta5LA==
-From: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-Date: Fri, 27 Mar 2026 21:09:38 +0100
-Subject: [PATCH 16/16] ARM: dts: renesas: r9a06g032: Describe the EIP-150
- block
+	s=arc-20240116; t=1774642323; c=relaxed/simple;
+	bh=wp85Izuvgs1/BBpNSpDNM8HQ3t2NnPm3AnGl4AKRDXI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aUZeqXWl1aBavMiO97lwNfh7w0pLi83cK43AyXRJInPr0J6o+xvz3ARABYTH8hy6t3uhzznziWXBilKUvpUKk6VtNKC5wibUQBQD0LgVr80LTHQF00WJpo/CCGOFeexl0xGkFghjcKRKS0j13m7YLpmpxn/sH908hkGUBiCJksA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=sSptJLDs; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=OVJUCQ0b; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1774642307; bh=4h88egP+wMClL/kBIddRbIy
+	9tren44YmNHTekhaFBm4=; b=sSptJLDsW51cArja/uh7/OxtiLyBaM3kqaJ98LIm6xiGdkv3nS
+	BbzVyWBPh6q5E4UgMtLBPMU5s79VqnkfBb9basevPnvKmCaz22nFAnLWInlIcfX1/mgL+xkxbsI
+	VIGI7eQBG6mbv5Vcxv3IRHuptSKbD1XjE05hnCLTJld4gCuF03wC/Gz8iwLL1+xriWFQnfIO2RH
+	3JBEmNu9L1Qw5ZAXDoWwuc1rBJN8V4wyzrH0j5pf+H+Q4rKu+v55676AVwXAfVImiUngdp61mTV
+	+9Jz83r1rPovEdfS8ZDsVIaiHiUObx1Nz9zijx8noTrlX89XYfg8H/ii/oyg8BmJ2cA==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1774642307; bh=4h88egP+wMClL/kBIddRbIy
+	9tren44YmNHTekhaFBm4=; b=OVJUCQ0bw33Rx7lncuCQ09eKdD7EGl1z1mjJk7xZEWCNYVCnBU
+	BcJEkOkt18YZOpYlCJLomQZihM5mpRPx0FBA==;
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH 0/7] MSM8953/SDM632 rpmpd/mss fixes
+Date: Fri, 27 Mar 2026 21:11:42 +0100
+Message-Id: <20260327-sdm632-rpmpd-v1-0-6098dc997d66@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,141 +56,96 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260327-schneider-v7-0-rc1-crypto-v1-16-5e6ff7853994@bootlin.com>
-References: <20260327-schneider-v7-0-rc1-crypto-v1-0-5e6ff7853994@bootlin.com>
-In-Reply-To: <20260327-schneider-v7-0-rc1-crypto-v1-0-5e6ff7853994@bootlin.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
- Olivia Mackall <olivia@selenic.com>, 
- Herbert Xu <herbert@gondor.apana.org.au>, 
- Jayesh Choudhary <j-choudhary@ti.com>, 
- "David S. Miller" <davem@davemloft.net>, 
- Christian Marangi <ansuelsmth@gmail.com>, 
- Antoine Tenart <atenart@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Pascal EBERHARD <pascal.eberhard@se.com>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-crypto@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDY0NL3eKUXDNjI92igtyCFN1kg1Tj1CRTE4s0UwsloJaCotS0zAqwcdG
+ xtbUAZLisIF4AAAA=
+X-Change-ID: 20260319-sdm632-rpmpd-c0e3eb548f58
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Ulf Hansson <ulf.hansson@linaro.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Stephan Gerhold <stephan@gerhold.net>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-remoteproc@vger.kernel.org, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+X-Mailer: b4 0.15.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774642307; l=1659;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=wp85Izuvgs1/BBpNSpDNM8HQ3t2NnPm3AnGl4AKRDXI=;
+ b=iXfKb+Fuw9GT7dLNVUFNY64r0T24USPXZFdxR7up9Lz7xRh1RhGAxXbQBuXJ0j6pgICD+ellm
+ +8RIC4Wv0N1C8eiv/JJ/4ku2vJocrAekH4HrZSZYUdXzidNGY0ak3C1
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
+X-Spamd-Result: default: False [0.59 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_MIXED_CHARSET(1.25)[subject];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
+	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281811-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[baylibre.com,kernel.org,selenic.com,gondor.apana.org.au,ti.com,davemloft.net,gmail.com,glider.be];
+	TAGGED_FROM(0.00)[bounces-281814-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FROM_NEQ_ENVFROM(0.00)[barnabas.czeman@mainlining.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mainlining.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[2.99.5.224:email,2.99.68.96:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,2.98.246.64:email,0.0.0.2:email,2.99.21.128:email,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid]
-X-Rspamd-Queue-Id: 6848034AC8D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mainlining.org:dkim,mainlining.org:email,mainlining.org:mid]
+X-Rspamd-Queue-Id: 42A6E34AC9D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The EIP-150 is composed of 3 blocks:
-* An interrupt controller named EIP-201 AIC
-    - fed by a clock coming from the EIP-150
-    - connected to the main GIC
-* A random number generator named EIP-76
-    - fed by a clock coming from the EIP-150
-    - signalling interrupts through the AIC
-* A public key accelerator engine named EIP-28
-    - Fed by a clock coming from the EIP-150
-    - Signalling interrupts through the AIC
+SDM632 pm domains are different from MSM8953 because MSM8953
+is defining pm8953_s1 as regulator but SDM632 is defining it
+as pm domain.
 
-Signed-off-by: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
+This patch series correcting the pm domains defined in rpmpd
+driver and splitting the MSS resources for the both SoC to match
+the reality.
+
+These changes was discussed in a previous threads:
+https://lore.kernel.org/all/2b057aa5-4416-4fd4-aeab-6bc23acbb53d@oss.qualcomm.com/
+
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
 ---
- arch/arm/boot/dts/renesas/r9a06g032.dtsi | 42 ++++++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+Barnabás Czémán (7):
+      dt-bindings: power: qcom-rpmpd: Split MSM8953 and SDM632
+      pmdomain: qcom: rpmpd: Split SDM632 pm domains from MSM8953
+      remoteproc: qcom_q6v5_mss: Use mss as regulator for MSM8953
+      arm64: dts: qcom: msm8953: fix modem pm domains
+      dt-bindings: remoteproc: qcom,msm8916-mss-pil: Add SDM632
+      remoteproc: qcom_q6v5_mss: Add SDM632 MSS
+      arm64: dts: qcom: sdm632: Correct power domains
 
-diff --git a/arch/arm/boot/dts/renesas/r9a06g032.dtsi b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-index f4f760aff28b..6aaa93ed03d6 100644
---- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-+++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-@@ -8,6 +8,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/r9a06g032-sysctrl.h>
-+#include <dt-bindings/interrupt-controller/inside-secure,safexcel-eip201.h>
- 
- / {
- 	compatible = "renesas,r9a06g032";
-@@ -170,6 +171,47 @@ usb@2,0 {
- 			};
- 		};
- 
-+		eip150: bus@40040000 {
-+			compatible = "inside-secure,safexcel-eip150", "simple-pm-bus";
-+			clocks = <&sysctrl R9A06G032_HCLK_CRYPTO_EIP150>;
-+			#clock-cells = <0>;
-+			clock-map = <&sysctrl R9A06G032_HCLK_CRYPTO_EIP150>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x40040000 0x40040000 0x10000>;
-+			status = "disabled";
-+
-+			eip76_rng: rng@40040000 {
-+				compatible = "inside-secure,safexcel-eip76";
-+				reg = <0x40040000 0x80>;
-+				interrupt-parent = <&eip201_aic>;
-+				interrupts = <AIC_TRNG_INT IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&eip150>;
-+				status = "disabled";
-+			};
-+
-+			eip28_pka: crypto@40044000 {
-+				compatible = "inside-secure,safexcel-eip28";
-+				reg = <0x40044000 0x4000>;
-+				interrupt-parent = <&eip201_aic>;
-+				interrupts = <AIC_PKA_INT0 IRQ_TYPE_EDGE_RISING>,
-+					     <AIC_PKA_INT1 IRQ_TYPE_EDGE_RISING>,
-+					     <AIC_PKA_INT2 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&eip150>;
-+				status = "disabled";
-+			};
-+
-+			eip201_aic: interrupt-controller@40048000 {
-+				compatible = "inside-secure,safexcel-eip201";
-+				reg = <0x40048000 0x4000>;
-+				interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+				clocks = <&eip150>;
-+				status = "disabled";
-+			};
-+		};
-+
- 		uart0: serial@40060000 {
- 			compatible = "renesas,r9a06g032-uart", "renesas,rzn1-uart", "snps,dw-apb-uart";
- 			reg = <0x40060000 0x400>;
+ .../devicetree/bindings/power/qcom,rpmpd.yaml      |  1 +
+ .../bindings/remoteproc/qcom,msm8916-mss-pil.yaml  |  9 ++--
+ arch/arm64/boot/dts/qcom/msm8953.dtsi              |  5 +-
+ arch/arm64/boot/dts/qcom/sdm632.dtsi               | 31 ++++++++++++
+ drivers/pmdomain/qcom/rpmpd.c                      | 39 ++++++++-------
+ drivers/remoteproc/qcom_q6v5_mss.c                 | 56 ++++++++++++++++++++--
+ include/dt-bindings/power/qcom-rpmpd.h             | 20 +++++---
+ 7 files changed, 127 insertions(+), 34 deletions(-)
+---
+base-commit: 8e42d2514a7e8eb8d740d0ba82339dd6c0b6463f
+change-id: 20260319-sdm632-rpmpd-c0e3eb548f58
 
--- 
-2.51.1
+Best regards,
+--  
+Barnabás Czémán <barnabas.czeman@mainlining.org>
 
 
