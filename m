@@ -1,130 +1,197 @@
-Return-Path: <devicetree+bounces-281621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281612-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ICo0IiOAxmm1LAUAu9opvQ
-	(envelope-from <devicetree+bounces-281621-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:03:31 +0100
+	id SEmlMkF6xmnwKgUAu9opvQ
+	(envelope-from <devicetree+bounces-281612-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 13:38:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF472344AE0
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:03:30 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48C93344496
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 13:38:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EC6493071A70
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:55:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1594F301413D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:38:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E033BA245;
-	Fri, 27 Mar 2026 12:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87969229B18;
+	Fri, 27 Mar 2026 12:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="UuDXQ6UH"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="l/9oU4EV";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hdiAeJcp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7D33914E1;
-	Fri, 27 Mar 2026 12:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B775217F27
+	for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 12:38:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774616159; cv=none; b=ko4nxImUZhZtHY6hQ4smK+OtPTCPaK1Z7v+Sr26aphe/bYlYOkyDG8S71ZCqgwJ4H4Q397qibfyzXuUPktNuNqcFHHDPRasCnJd81zyhhLVSGkgAwtOaAIiLt0ucBOXJyakx1LGmyTMX+NcQSmLFC8rjy3EvHhT5KxAf0hibTcM=
+	t=1774615102; cv=none; b=fYC7KAuS3AYOT5BViAzvhRpyp7Qetj/a/4W4Hs+eSXgZuaXCxTxfrun5fv2h8G9SVVKmKXYgXUXJN8CIYCuyDA9N7SM+qfM6HewJy+N0jcM1yVuamF9EfxlFfzeM6+gCYQNBBn9yoPyptFcex+xjAPxYHDkkqXMnsmQLGt1jACs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774616159; c=relaxed/simple;
-	bh=wI265DU1zQyJuVh/cOxpbjdnIdFBQbqGC5Af6QBodKI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Mb8Xg+N4QzsUaFem+v+xBVUJQ8xkc5LJnEtm+axmv4R/Xfsm25hOI3Y+Q5HCkWajm/bCYsYG669vbr6JJ6g8rjTp5PzEdp2z6Yt4Z6bo5TVlWxHn2m6vDdUl3G32GdvrCyYSiIA7eqyXnZda/hmVG1iBDDnT09rgmVuLxczFHUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=UuDXQ6UH; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=cMp2C5O1khQmjkF3fvxbwjVEMOLIqREAg3Lz7C/AiC4=; b=UuDXQ6UHwHs1C5K+O8cL9Pj1Hg
-	8VI42USN8Rp99l9uoEaA+8QNuDUc5lhms5SN9XQov7MmCdkWxUNHU7hah6Qadsb6e833D1RS1Gv1C
-	Hdw8F8T8jjgN8bn79+Ddn0SVoIZfZEc/ZocCGG9zRkizaopxFLr5Sf4N1Ep3kgT1H3aZlMrIf0Og0
-	8Ep1V1k45Uj8sO3AGz93W84cOzhIplQvtH1AB1mka5tkBxv8wB3CaqEFp9HqWSeFIwumrRACR9XNy
-	T3BBhj9TBoCc+x7fFR4c5CByBsZdJqjIvzK2ixTSEg8jYPpCY/myZQD4DILQnGj4AaFvKQUVCiXsg
-	laoYkizw==;
-Date: Fri, 27 Mar 2026 13:36:12 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Thomas Richard <thomas.richard@bootlin.com>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman
- <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
- <tony@atomide.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones
- <lee@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/8] regulator: pbias: Add pbias SIM regulator for OMAP4
-Message-ID: <20260327133612.6ee909fd@kemnade.info>
-In-Reply-To: <20260323-omap4-fix-usb-support-v1-1-b668132124ac@bootlin.com>
-References: <20260323-omap4-fix-usb-support-v1-0-b668132124ac@bootlin.com>
-	<20260323-omap4-fix-usb-support-v1-1-b668132124ac@bootlin.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1774615102; c=relaxed/simple;
+	bh=2e/we/OejT8jR7LpR46W/LqsBN/KR3kZ/VKrfYK5fN0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=o91ZcJ7JPZD88V05QVKQQO074GLohnKXckQ7y9KB136E5PJYbUl8etnq77Dlt+wnEFJXEZa/3sc8fUD888U21NEYdg5cAx7eDYSlWqFz9sSEUr16vVdYDP1C1qFC3PkmSjCRvjDwyckI+AH4HOlYCpT2aQtsF3eoL2oORWe9J68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=l/9oU4EV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hdiAeJcp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62R6vtSb1226393
+	for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 12:38:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8lTJiQQbjA6cM3TQhlJ9uuo3fVulj9CHLFEalD5HBZw=; b=l/9oU4EVMOsRLZbY
+	+sqa8Rs5BFo+7OWNckvKcMt3JPLAEGkgelfNfeI7DcBi1DNf8dWC5tccVkmO19nt
+	UrVbcbhEUH6HiUwhKVAKk2x2lX5bGbm1vDnyMveD3kNmULOpb2hMeyovgFMRs+Pw
+	m4J5xWvlW17piiQEl8+nubxZlGIMjNkGTTvNjIJbdmJiTczL13Q6WCP6QuDyMVNG
+	qp1uKB3PxMJoOSG9xamgtpDxJVDju8vYWhcUU04pucj/yG0n+vaPuJnoAdKD+87v
+	9uxeuEcDb1N68N9v/hITo4L3Y9QG2LWPVGKV3lL3rJpcmpGthOu8oijaPyxGYZ+F
+	KgTbOA==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d59r1bj3k-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 12:38:20 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-50b86b756c4so5960401cf.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 05:38:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1774615100; x=1775219900; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=8lTJiQQbjA6cM3TQhlJ9uuo3fVulj9CHLFEalD5HBZw=;
+        b=hdiAeJcpszelVofEbQkTPdiMtkrCAix3Pxz3wyjK///p7wKgvZTTM6njPKxh+Jhh02
+         regTfmSQ86SppPOTa95GnG36mKEf0YRBc4ZZdYnI+cXxXahEBsjihXstWzqDYQUw1K/x
+         LFbotFYjYNC28sfS1UfJx0f7f2+4xW5CFHPpWp1vKbeavOjlJz7f6i8+Dii6/LpkgEXQ
+         T/WPXax02Aai88tzRxcVSmmU6tb1SLEbwanPhymrRBFw4qTuemQAybrHvBO+ZMLOCuU2
+         i14EuERgubSkevpFIeAnz3AdGxLPzOwXfqTFkQIVd0/owKGVnwpzV7DuSfFquOht04zK
+         vdyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774615100; x=1775219900;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8lTJiQQbjA6cM3TQhlJ9uuo3fVulj9CHLFEalD5HBZw=;
+        b=lTqt2fVFcSnSslmm4G7+od/m3rpMroCufOrLkdtHPS0AEM3KshDF+cgVWjD8KWUhFU
+         SQ3bnx0IBUpriIDW6B31a/i6IO7RK2eEHuUAykWTfSR4wUc/D1ugAECn2l0xtBlnBDcu
+         077W12xW9gdvJZb6Efr74Cb8ZOl6hUTDQKMNuObdfgUJ2QEGNZD5xdXfEvOlETGN6BTE
+         QGTOk5nBHKM3vttlVwfujtnfqlDfsRPTpCzSXodiT3aaCF+88O100NOpIUPLE6zjqOzs
+         v1oJW6FnkDRtqLZaPav/Ovnl4fl0QlDUZaywvc+Y8qvWEbqa+zQcIVbyPz5mB+swCB8V
+         PBvw==
+X-Forwarded-Encrypted: i=1; AJvYcCW4PuMnoq56v6icS5IQvI10QuEdNf7QpQ6cMBExCvMEj7LPZph3zOy3GgeaRpAaHvMf3zZ6GXBmBYJX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxTps5Q9WH7oSjoGbtQlSN13YKhESxMZ0hXMtargIrF9QgZewm
+	dxioxIseyDeWcxBTixuz9PhV7vz9pwoMPj+HCUqdjjXDtsYu43LNZCCeVS/l4kOLxKdL/iQX/Il
+	N6FaavFtYAp7pD5SwAq3b9VZg0itkLJRer4SyMJZiB7ekSzzuKxB7cjL4H9ZQIqak
+X-Gm-Gg: ATEYQzx3EH4AIk3HyJlFJXV1kKkNn54csVaApZtelpDqAlBm9oL3a/G1Qwbx4vomTuc
+	1aGDfycCEyKDmp8VLh7/4aQl0z6rvFc+GcueGWETDikG2EBZLmGg4xsycBXyl5VxSn/zKE4wR5X
+	NL/27P1l5cHqtiyLl9gRoFgucq+V/gJ+eYCRgJIQ50d1lkJ4g0JtEYW+bXIw2MQ6F+60Plw3NV5
+	NpZr2pgKN7f90NpK/lG4KG404X2FVDKlcIRdC7F1b0i8OKanzcAgKqgvolwgORwonAcVw1jD8bk
+	qbzluMAmrWJ/2Eim+bcD5spV4hazTc3yv2vzHkHeMCQjA2Vy9fWibZyNuT6Wkm9ZJdhPeKvyK0+
+	b2VZiw4w52Xn+SzQx4UhNBeuuI+x+gS8eA+MyYV90cNJeDJIhrGENOC/SS5rrjKWjCQRTFymQsn
+	q0CKg=
+X-Received: by 2002:a05:622a:1e1a:b0:50b:2972:4bec with SMTP id d75a77b69052e-50ba3858ba1mr23296201cf.3.1774615099686;
+        Fri, 27 Mar 2026 05:38:19 -0700 (PDT)
+X-Received: by 2002:a05:622a:1e1a:b0:50b:2972:4bec with SMTP id d75a77b69052e-50ba3858ba1mr23295851cf.3.1774615099232;
+        Fri, 27 Mar 2026 05:38:19 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9b20445b9esm239458566b.62.2026.03.27.05.38.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Mar 2026 05:38:18 -0700 (PDT)
+Message-ID: <4ff355a7-bf1b-45bc-8a72-aa773dc95582@oss.qualcomm.com>
+Date: Fri, 27 Mar 2026 13:38:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: eliza: Add thermal sensors
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260327101225.382493-2-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260327101225.382493-2-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI3MDA4NiBTYWx0ZWRfX5CROgXzAGLQE
+ dXAsB2+Q3pcmlKJMpmgNr39+s3LRvl0DpY86FQXgsg9ws72O/TpybKuvpmsA1+nrSxkhAJTTJFo
+ EJh8ctlFrH3V4CUtzB0o73itAuOuQ0hB6jLZP6yh3j7NkoLqe7x6l5BLFbzfcsIxxVVD2GvuEzl
+ VoONTZfnS3xIhPcgZXmvQ2drUs2REFDv+1FpBJLsOi0x9giwrSEHKgkEePaW5r8MmVC8wD0R20S
+ 5kPnEEzeItlh8kFW/Xia6owf3touKGkKT3Oa/hScT8jPgAwyuD/G10pJOrzCaXyTVIPw7ff+O14
+ Z73VcZKLzrtjlArwrCFgAB4ZLcCzpUbY3MtmuB4ivRIbbbRRlZwJem4iIuR2ndARziIq6Yh2VkM
+ mCL2eTVKt+zKx1rVBT+TXc/xbk1in2NV8+ftjJ9yZFD8Y35Er7DtoXqrR1wN5CKBb9c+BtJJbrj
+ jpZryGeOMVOzKWj4fIQ==
+X-Proofpoint-GUID: q0ZwSocMU8TnKQOCBECLCyO_VOBpc181
+X-Proofpoint-ORIG-GUID: q0ZwSocMU8TnKQOCBECLCyO_VOBpc181
+X-Authority-Analysis: v=2.4 cv=JaCxbEKV c=1 sm=1 tr=0 ts=69c67a3c cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=imO6bpS-6So6pA60xL8A:9 a=QEXdDO2ut3YA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-26_04,2026-03-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 phishscore=0 bulkscore=0 malwarescore=0
+ lowpriorityscore=0 spamscore=0 impostorscore=0 adultscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603270086
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kemnade.info,none];
-	R_DKIM_ALLOW(-0.20)[kemnade.info:s=20220719];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281621-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[iki.fi,baylibre.com,kernel.org,atomide.com,gmail.com,bootlin.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-281612-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andreas@kemnade.info,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kemnade.info:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:email,kemnade.info:dkim,kemnade.info:mid]
-X-Rspamd-Queue-Id: EF472344AE0
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 48C93344496
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 23 Mar 2026 16:02:42 +0100
-Thomas Richard <thomas.richard@bootlin.com> wrote:
-
-> Add support for the pbias SIM regulator found on OMAP4 (for USB I/O cell).
+On 3/27/26 11:12 AM, Krzysztof Kozlowski wrote:
+> Add TSENS thermal sensors to Qualcomm Eliza SoC among with thermal
+> zones.  The TSENS is compatible with previous generations.
 > 
-> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
 > ---
->  drivers/regulator/pbias-regulator.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
 > 
-> diff --git a/drivers/regulator/pbias-regulator.c b/drivers/regulator/pbias-regulator.c
-> index cd5a0d7e44555f04d1e44470036c6e3d9feb7be6..10c4940e73635293bebd26bf99a9067eb6e39107 100644
-> --- a/drivers/regulator/pbias-regulator.c
-> +++ b/drivers/regulator/pbias-regulator.c
-> @@ -81,6 +81,16 @@ static const struct pbias_reg_info pbias_sim_omap3 = {
->  	.name = "pbias_sim_omap3"
->  };
->  
-> +static const struct pbias_reg_info pbias_sim_omap4 = {
-> +	.enable = BIT(28) |  BIT(20),
-> +	.enable_mask = BIT(31) | BIT(28) | BIT(20),
-> +	.vmode = BIT(31),
+> Binding was waiting for 1.5 months on the lists. Eventually I resent it
+> now:
+> https://lore.kernel.org/all/20260327100733.365573-2-krzysztof.kozlowski@oss.qualcomm.com/
+> 
+> so feel free to pick up the DTS with the binding, since it is not being
+> taken via thermal.
+> ---
 
-BIT(27)? or am I mixing something up?
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Regards,
-Andreas
+Konrad
 
