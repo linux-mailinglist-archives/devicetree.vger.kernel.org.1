@@ -1,158 +1,257 @@
-Return-Path: <devicetree+bounces-281590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281588-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4AVdAzFuxmmkJwUAu9opvQ
-	(envelope-from <devicetree+bounces-281590-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:46:57 +0100
+	id oLLVE2duxmmkJwUAu9opvQ
+	(envelope-from <devicetree+bounces-281588-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:47:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7A15343BC9
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:46:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE110343BFC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:47:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 83D6C30C9FC3
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 11:43:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 498AB3020D7D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 11:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AED237D11E;
-	Fri, 27 Mar 2026 11:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B7F37B03A;
+	Fri, 27 Mar 2026 11:42:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VCFZDlcy"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="hvfeRcuX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010023.outbound.protection.outlook.com [52.101.46.23])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07CF337BE88
-	for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 11:43:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774611831; cv=none; b=tcbulnLLzMn5vczLZVRVUzFMYoIsfoWnC/N3Iyyr9FFQba5K275olvitcelsAdQMNTYjdr/FKAokaWeYfrH6p++rYnlQcuZobG+KwBlY1H5F77nmx+gph4Kkp1IkPhglJgSc+USpDrCBXFIIvCVmftVq8UBcrng/2P6GnpsNZ6s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774611831; c=relaxed/simple;
-	bh=fHCWZwzs9paKBTwVocNY1Bav5dyWetLR7DtSeiePs98=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rzsUqirmwB6wlbXFeCMqheTmRfNANE9g1zyNpMqsRh7AxGJW5JPJ1R85EexAe4nuMPwQ0dlkHMbKe1CH5UsEzEB3BQavrkByfOpqEm7wQWXFS9kwf2HWK8MIyJxC8CKEdA0ZOdHTi5C34y8/fEeF8iZQjNZS8QPPT+muc2cIdn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VCFZDlcy; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-486507134e4so23549785e9.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 04:43:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774611828; x=1775216628; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fHCWZwzs9paKBTwVocNY1Bav5dyWetLR7DtSeiePs98=;
-        b=VCFZDlcymyWedTuxXRYLvs43DT350r6kakAIya0z6X5bnX+75jGT8Yw4nD7Cm12gRQ
-         kwkVmGTxBj8e7paOG72+bwqJI0e5ojbCmGeugkp8CViZzQWIPSm46YbK4PtV1o+4Ved+
-         zN0V0Lx6M6yzTM/XGarWn82if5ioivbWOSctocnJt7UiGurR6zQ+f0GY3HAkAdKPOEau
-         Bpnc4nDl0p7u87r6vweMFq/UtIzrjzfd9Qq62T7iwZY85qr51rpIQ7rPlPYswMt6BOEW
-         iF56Stgvw/2eSd/WNIaTf6jhVc/+pSc3zbXcwTRimnNaeys9lAi1mlHMG4eR9K796UOw
-         EXNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774611828; x=1775216628;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=fHCWZwzs9paKBTwVocNY1Bav5dyWetLR7DtSeiePs98=;
-        b=sNm24tzza8F+LOFSBoxT1RR+pXxcPvdjjs63nKyYgNgy2w7NShQpRFMxv1pPUa7bVb
-         q3jD/mjsf8UZkvc1JQzHuPchxZp+fr2KBYQRIdWlp3parpne5hRCLgFP99PXO3NZ8dor
-         Glxs4zu6wFv2TqomTX+g0zQgdX+8aNwfEy0Q9n0MEU+4KbCTtSj3ag9uCZ/XiH8pDmAN
-         lorIiBKPoyd9V2rEuhONS/+pqTBW3un47YOiCk6JurlYSpuOIZL/eukzKrbuCFYDXu0y
-         Md0HuYhog8pMlF72DS2s9snPYXf/VeZ81GEhMT06LA7jyNmrovRMgztX7LzLQrObv4UN
-         CBcg==
-X-Forwarded-Encrypted: i=1; AJvYcCXhi1m0my5CydbSHprKgyKYyBYAExjCpT2mYoTaeD6dkAYHqEISBoEjvNkJ+pzXFUT3k7o8vXt8u/Xy@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmpBqziXbLhTReByLvhbCPGbblyHx5ztgjaFCHXZO0Ph+NCh1V
-	RkbsoRlHCFWRuZi+yaOPM6pc3raZw1WNOESaH26AUYO8PnySwuLd/r1f
-X-Gm-Gg: ATEYQzzStwboco2OrUDdYGSnFCCQPcYmaAJ13GOmqy4zcww45Byo9rzkzIKsoFGB/BU
-	XrlxS26yeXA5tTYnFoJo0hXZOxhjzaqjiRiFEripbq9GzU8Yy8aoq5lxtV3SyKu/L0tCKcSUgXw
-	H5WcbYqGB8Hbimn7gGD0TRzMFd0P6w57urkm/JZUnsVA7kk9nfsZE8zyJWmL0qnnqhJrCiZtVt4
-	BpzuLef2xm/1gSVKfADHDLzL7OhpLQ6lmo1RLFoQ/mfNzufiTAYyE6A6OET8dufma7slxD5VXgC
-	iJF2Yb63h2xB5SiMUcEJ48qjy/j7HGWHzgNUJaL3X8zLtQNtfua+NNVC+OtVIGWoBk0mvmtJS19
-	LZVxWH7wQODG/J0qEQlngtTVUNZfSb2WK1vaxJcXPweMdJYFriL0J6WqimmxgDIBVGvkZhnkLJt
-	r9hIwrgf2wVlLeFtRC4t0D3ds4u6pvrR1/D9m7WrxlcEf7DD8QczumG+3BLeHsnY7rb2SFGUU3p
-	jBwMmPUk1jVSjeHqw==
-X-Received: by 2002:a05:600c:810b:b0:487:219e:41c with SMTP id 5b1f17b1804b1-48727f36da5mr33865035e9.28.1774611828249;
-        Fri, 27 Mar 2026 04:43:48 -0700 (PDT)
-Received: from jernej-laptop.localnet (118.red-213-98-130.staticip.rima-tde.net. [213.98.130.118])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48722c6b495sm184799345e9.2.2026.03.27.04.43.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Mar 2026 04:43:47 -0700 (PDT)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
- Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2 2/3] dt-bindings: pinctrl: sun55i-a523: increase IRQ banks
- number
-Date: Fri, 27 Mar 2026 12:41:04 +0100
-Message-ID: <5976712.DvuYhMxLoT@jernej-laptop>
-In-Reply-To: <20260327113006.3135663-3-andre.przywara@arm.com>
-References:
- <20260327113006.3135663-1-andre.przywara@arm.com>
- <20260327113006.3135663-3-andre.przywara@arm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A89379ED2;
+	Fri, 27 Mar 2026 11:42:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.46.23
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774611754; cv=fail; b=lhrVIJTEBKLL4E3NLaE42F5o3wWRHaa9joC+v9gcoHT7CkdkoPvTrLnaMg3EY1lQB4CvZPNu1DxLakcDxEiylFm7yRK1H1akocPk1ajGmggSybpgBvf1a2UfAC3ESjI+uuEJBGo2Ex4ODdaKJJ8CDlrrAhBq7OwQvLYKBFlNMxA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774611754; c=relaxed/simple;
+	bh=3Ifbb44lFfRiaLcHR0qQmd7rByDQeVfFJhs0cdMj97o=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=X6omwRn9tNBD8azyiru5VbnZNPR2w13Z7d/49Y8hpuyOho6WK1czXZqk2XivMtQn9J3VyhdkPCoHczVqOBsRbXFaecDG/RItFRvADOOefx2dYcId+vNLt3NK5DBxjjGx488YRg5lFE5Nlbycbo6+sbHe8ZlxTywGLqXSG3Ap7v0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=hvfeRcuX; arc=fail smtp.client-ip=52.101.46.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YeE/orj4kVlvxfbyet0sZHPR6uS6EMtHVlMe/4KYxotUSou6o9ya/ONzpeAdv1EQb23zjS4Aomgj1k6zei4kGnaBJK1fF1O6+m0qZXTk7TTMD61hTo63JgWLQXsNNbaxj8zIpJQxTKwVkYzSnavm37xidCaAHx6bQ+I0p0hhAYAy3arl4X2LvZTY9d4Er2QZbmCKHn6AFV3Xa1IEeg22bsZb5mTXR2wijMl81mjQ+hZmI2MQvo4Rb+4d2ReejBxaa29mccslgvn6B6qBjyh12sRu7kvodbw4NbBQd6lZQe0sC/4RD3Yx4ziylfbyq6KoZQVaBBv4sCU93akCsYj5zA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tD8bAf7vSZo26Z8+ty8eD2xQ82JX1Fqvq6fCGUaSkwc=;
+ b=HuSq5j3wQjepAIcdYRhodchaWP9W2fn4kci74zrOT/ZtLYaT08GpiB7VV+cOveufAUAE3ajkkVH7TIPR46weI4sj7RQeOVTzYBDRVanVZ3HjQF8xfv98YF3seeCuqLA2I8YKkwikc8A1CkOb/8k4pxpnCQBzH9yNDWiARSwL7lFVzhdnkMjn2LkPNKOqcQbL38dkE2l/hUupPs+CZaXpXKay/QMtZXqRGUVqlOUK6Oi/YvBc7iwkA35N09C0ve676rHuJL0NoDJCGc6pjFrblD43Fm1FSwrK4cTM3/B4Sppn/tUoD1CHPH1L//JsQXicJXb+d342x2TOLbQL64PuZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=bootlin.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tD8bAf7vSZo26Z8+ty8eD2xQ82JX1Fqvq6fCGUaSkwc=;
+ b=hvfeRcuX+nLW0qFnLU9hLJBhixSztEvETmKg6m4Me5dPIQvP9u5PQdUZx7UsrEcvBBlxYhXCA1wdJFN8m9gbVBFk574L/MVJj0jKWEtCK3lIvTuu651C70n0weWz/QvGodG/JsNkFmoLQ7Mre75fnB5eUuIPLnX334DXTlFQxCoNQ8SHnKGTEA+iRe4lmC+lpEo41ACa+qF6/X1GdyZ1YdthlosnR7ryYqTjsnCZR6K7sA1zOGWNZkC1mQcc7cSGPISetS2yPpefxH72sw/TicJJEZOCpuWPDoTNIUILQCnrgdib6MhV9FYYM2o3tBMsVyv0Gelqu8nfiO55I9LUIg==
+Received: from DM6PR08CA0043.namprd08.prod.outlook.com (2603:10b6:5:1e0::17)
+ by CH3PR12MB9079.namprd12.prod.outlook.com (2603:10b6:610:1a1::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.8; Fri, 27 Mar
+ 2026 11:42:26 +0000
+Received: from CY4PEPF0000E9D7.namprd05.prod.outlook.com
+ (2603:10b6:5:1e0:cafe::a) by DM6PR08CA0043.outlook.office365.com
+ (2603:10b6:5:1e0::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.23 via Frontend Transport; Fri,
+ 27 Mar 2026 11:42:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ CY4PEPF0000E9D7.mail.protection.outlook.com (10.167.241.70) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9745.21 via Frontend Transport; Fri, 27 Mar 2026 11:42:25 +0000
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 27 Mar
+ 2026 04:42:12 -0700
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail203.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 27 Mar
+ 2026 04:42:11 -0700
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
+ Transport; Fri, 27 Mar 2026 04:42:05 -0700
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <alexandre.belloni@bootlin.com>
+CC: <Frank.Li@nxp.com>, <acpica-devel@lists.linux.dev>,
+	<akhilrajeev@nvidia.com>, <conor+dt@kernel.org>, <conor@kernel.org>,
+	<devicetree@vger.kernel.org>, <ebiggers@kernel.org>,
+	<fredrik.markstrom@est.tech>, <jonathanh@nvidia.com>, <krzk+dt@kernel.org>,
+	<lenb@kernel.org>, <linux-acpi@vger.kernel.org>,
+	<linux-hwmon@vger.kernel.org>, <linux-i3c@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+	<linux@roeck-us.net>, <miquel.raynal@bootlin.com>, <p.zabel@pengutronix.de>,
+	<rafael@kernel.org>, <robert.moore@intel.com>, <robh@kernel.org>,
+	<smangipudi@nvidia.com>, <thierry.reding@kernel.org>
+Subject: Re: [PATCH 01/12] dt-bindings: i3c: Add mipi-i3c-static-method to support SETAASA
+Date: Fri, 27 Mar 2026 17:12:04 +0530
+Message-ID: <20260327114204.46556-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20260327082721f7e69e6a@mail.local>
+References: <20260327082721f7e69e6a@mail.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D7:EE_|CH3PR12MB9079:EE_
+X-MS-Office365-Filtering-Correlation-Id: 64464096-a5f5-46ac-adfc-08de8bf5eaba
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|7416014|36860700016|376014|13003099007|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	kB+llwkeY7GyoM9NIgM+w170Yai/RItxkAYH3q3LRnVawlKfGQXceHAr4/lTwwI+lpsOFbRz3wV9RQsgOSyAqhy3K3uLfIRe1W2sa1FyiwSFvdcZCXyhBDnH7jm4eeWuptjFW08FM5Blc3emwwgemeHVDjhqJ9SFO252VndGD756fTGl33R3DdGUBDXtZTZYvrL4dl4E3IkVuqzBR4hKfQgoljGW7ZmmWzROFtPFa3F73+BU/A/4f8UV8Kjz9r67f5iRmu+h4xNR/fL6dERc6sh8Eovg/6LfnmnWnh5AdtEITehrFodB0xNkU9x54wgyGzYhPEHXxf94axnIn8T2lU7/FdLvrFI11S2u8e+FruwHmd8+XkX2xu4qPEKwnmZVL6L9zCSo0EyP+GJAAIeIjp9WyeJLLuZCVp8Db2pvj5n5iZzn23q8fU8Xo6xuL6PPiZWFaw96REOxSbHbcVKJ6S2kh8D5iOfcnAvE/q1WJDP3bmRRiIzvrqRfT+dPYZObr9y3IaVFX+8SGFHeHnnUohhjwbr5I7f+xoGVCnpxTYuU37BQEiNRv7L/JJ5eXobRMaJ4hU2ydsaZqVsukIYmZYs+NRKoDJg7odPMpnzgtwg3cPb9gcmEwWSO23HQGb3Cv6DS58snAs3JrQ543y2dbCCFWsG6EWj0t9EzyA/WMH8c5NlPx1DuMUS72JTadQ9gozz7ckYDrDZR0DA5fhuU6eC2LEoRdV2tiIQPYSxfpOCBVKkkkGdS3RegyOkdN6H2XbiIfra1Kyr51/19YL43jg==
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(36860700016)(376014)(13003099007)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	T3MuXZ7ocO2j6jP/Nl+9ve/r+qfWB3gcnHysvJoALs3ERHqhq54REcexq3bPhqYtVW8luJAegH8u22Ie5dB6hwZ58dda+WUGIxJjISL00vUfzcWXYc2IQ/vWDICADBt3JZko2i+uEQA67LL4zofsQFXUHY0ZdQxTqNiWjOcEtOBhdw/JsCUaRmrL+ifYyT8OQaZzA6MwmmnCy3gtEl7IBaCT5pmhPKUdS3sX5CyDCEEjM1IYPWISXkii4nGt8MZA2zNCqtEjru3RGtwc+1aS7zZhXwwR9u7OgK/UwwZXkkVVOanTWI8+IcVOmYi2Q/+i5Zn2117NqqYys8rH6SkqtJv8NcnfgXqBK4+wxN46EJarzzd1771LcCvQEou8xBXYLbfDMrFUstENpMTmtr6DH/yOtGN2ouh0JSNL3Eqwjz4BiAkYhqmfQbxXUuvuCaSb
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2026 11:42:25.3080
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64464096-a5f5-46ac-adfc-08de8bf5eaba
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000E9D7.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9079
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-281590-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-281588-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jernejskrabec@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mipi.org:url,nvidia.com:email,nvidia.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,Nvidia.com:dkim];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B7A15343BC9
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: DE110343BFC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Dne petek, 27. marec 2026 ob 12:30:05 Srednjeevropski standardni =C4=8Das j=
-e Andre Przywara napisal(a):
-> The Allwinner A523 SoC implements 10 GPIO banks in the first pinctrl
-> instance, but it skips the first bank (PortA), so their index goes from
-> 1 to 10. The same is actually true for the IRQ banks: there are registers
-> for 11 banks, though the first bank is not implemented (RAZ/WI).
-> In contrast to previous SoCs, the count of the IRQ banks starts with this
-> first unimplemented bank, so we need to provide an interrupt for it.
-> And indeed the A523 user manual lists an interrupt number for PortA, so we
-> need to increase the maximum number of interrupts per pin controller to 1=
-1,
-> to be able to assign the correct interrupt number for each bank.
->=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+On Fri, 27 Mar 2026 09:27:21 +0100, Alexandre Belloni wrote:
+> On 27/03/2026 13:48:58+0530, Akhil R wrote:
+>> On Thu, 26 Mar 2026 16:44:31 +0100, Alexandre Belloni wrote:
+>> > On 26/03/2026 10:05:03-0500, Rob Herring wrote:
+>> >> On Wed, Mar 18, 2026 at 05:31:50PM +0000, Conor Dooley wrote:
+>> >> > On Wed, Mar 18, 2026 at 10:57:14PM +0530, Akhil R wrote:
+>> >> > > Add the 'mipi-i3c-static-method' property mentioned in the MIPI I3C
+>> >> > > Discovery and Configuration Specification [1] to specify which discovery
+>> >> > > method an I3C device supports during bus initialization. The property is
+>> >> > > a bitmap, where a bit value of 1 indicates support for that method, and 0
+>> >> > > indicates lack of support.
+>> >> > > Bit 0: SETDASA CCC (Direct)
+>> >> > > Bit 1: SETAASA CCC (Broadcast)
+>> >> > > Bit 2: Other CCC (vendor / standards extension)
+>> >> > > All other bits are reserved.
+>> >> > > 
+>> >> > > It is specifically needed when an I3C device requires SETAASA for the
+>> >> > > address assignment. SETDASA will be supported by default if this property
+>> >> > > is absent - which means for now the property just serves as a flag to
+>> >> > > enable SETAASA, but keep the property as a bitmap to align with the
+>> >> > > specifications.
+>> >> > > 
+>> >> > > [1] https://www.mipi.org/specifications/disco
+>> >> > > 
+>> >> > > Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+>> >> > > ---
+>> >> > >  .../devicetree/bindings/i3c/i3c.yaml          | 30 ++++++++++++++++---
+>> >> > >  1 file changed, 26 insertions(+), 4 deletions(-)
+>> >> > > 
+>> >> > > diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
+>> >> > > index e25fa72fd785..1705d90d4d79 100644
+>> >> > > --- a/Documentation/devicetree/bindings/i3c/i3c.yaml
+>> >> > > +++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
+>> >> > > @@ -31,10 +31,12 @@ properties:
+>> >> > >        described in the device tree, which in turn means we have to describe
+>> >> > >        I3C devices.
+>> >> > >  
+>> >> > > -      Another use case for describing an I3C device in the device tree is when
+>> >> > > -      this I3C device has a static I2C address and we want to assign it a
+>> >> > > -      specific I3C dynamic address before the DAA takes place (so that other
+>> >> > > -      devices on the bus can't take this dynamic address).
+>> >> > > +      Other use-cases for describing an I3C device in the device tree are:
+>> >> > > +      - When the I3C device has a static I2C address and we want to assign
+>> >> > > +        it a specific I3C dynamic address before the DAA takes place (so
+>> >> > > +        that other devices on the bus can't take this dynamic address).
+>> >> > > +      - When the I3C device requires SETAASA for its discovery and uses a
+>> >> > > +        pre-defined static address.
+>> >> > >  
+>> >> > >    "#size-cells":
+>> >> > >      const: 0
+>> >> > > @@ -147,6 +149,26 @@ patternProperties:
+>> >> > >            through SETDASA. If static address is not present, this address is assigned
+>> >> > >            through SETNEWDA after assigning a temporary address via ENTDAA.
+>> >> > >  
+>> >> > > +      mipi-i3c-static-method:
+>> >> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+>> >> > > +        minimum: 0x1
+>> >> > > +        maximum: 0xff
+>> >> > > +        default: 1
+>> >> > > +        description: |
+>> >> > > +          Bitmap describing which methods of Dynamic Address Assignment from a
+>> >> > > +          static address are supported by this I3C Target. A bit value of 1
+>> >> > > +          indicates support for that method, and 0 indicates lack of support.
+>> >> > 
+>> >> > I really am not keen on properties that are bitmaps, why can't we just
+>> >> > use the strings "setdasa", "setaasa" etc?
+>> >> 
+>> >> If this comes from a specification, then I'd tend to just copy it rather 
+>> >> than invent our own thing. Obviously if is something structured 
+>> >> fundamentally different from how DT is designed, then we wouldn't. But 
+>> >> this is just a simple property.
+>> >> 
+>> > 
+>> > The issue being that the specification is not public so it is difficult
+>> > to take any decision.
+>> 
+>> There is a public version available in the same link, but you would still
+>> have to provide them a name and an email ID. The document will be sent to
+>> the mail ID.
+>> 
+> 
+> The public version only contains one property:
+> mipi-disco-interface-revision
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Could you check once if the below link works?
+https://www.mipi.org/mipi-disco-for-i3c-download
 
-Best regards,
-Jernej
-
-
+Best Regards,
+Akhil
 
