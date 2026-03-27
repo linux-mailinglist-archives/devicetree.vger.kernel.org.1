@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-281799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281801-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ANMVCGTkxmmjPwUAu9opvQ
-	(envelope-from <devicetree+bounces-281799-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 21:11:16 +0100
+	id sHiHOxflxmmjPwUAu9opvQ
+	(envelope-from <devicetree+bounces-281801-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 21:14:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C919634A9EE
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 21:11:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BBD534AB3A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 21:14:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 17F4C3045248
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 20:10:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ED3DF30E8C63
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 20:10:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5F0538F920;
-	Fri, 27 Mar 2026 20:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2862A39283C;
+	Fri, 27 Mar 2026 20:10:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iW2Xhm0W"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="aHGM3meg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8102B38F643;
-	Fri, 27 Mar 2026 20:10:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9803921E7
+	for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 20:10:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774642238; cv=none; b=E6ZLD62fi3hc1ypgq3PC9uvrNXXCay3HDQ9s7tui5XvCz2DJnNlvN8UdKyEM7WGynfdgd4b1sg8jQ8x1f5S4dh2deb9biF59Po5o542QYc4O237cVMY11GXSfE49HX/RwmH6jFigLicoZnVh4UlDpnz38MgBvtS5sL1whz0St+k=
+	t=1774642250; cv=none; b=o6E7XWuGY+5rxRJgbyG+iFcGemzSfJkwVAs8lhRxWX5/fh+Iloa/84s2B0DRFu3nLejIQzr5IR//9yIloYSzimX2aFUv+iJKDPf3I2z5Nv85t9zg+QaRT1Nc55xpY7zbIMYgs80tdMEqxYrYpI0DjIaUcr+R4Xb5CQZzJS78IQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774642238; c=relaxed/simple;
-	bh=hsP7fHqPt9mP87f1VpCI1fLI42QC74jqzhrlvlxm5us=;
+	s=arc-20240116; t=1774642250; c=relaxed/simple;
+	bh=PKrOSUYH0iJI9iHWHiN/7WH/2D8sWmOZLuUr5mUsIuY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=c0coz0ACANiQD70bkJWX8psbtWBsax3pvIV3LplirvANdXg+cgRw39gthxoI0UV51xgDxHNPWkhkWwRNXxj90SPe2vKHnBe4b8WA/v5RC9L77RsWdxp498jPd7xEMXjf8G9P+YOXtD4uxMDuLAI/5mU7jFSkH51isqT1PlNIS4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iW2Xhm0W; arc=none smtp.client-ip=185.171.202.116
+	 In-Reply-To:To:Cc; b=ASlh8ZcAOWQsWbNEHeaEog/DnuXr7EGl1HDV4ZqcvPQXyV9tdc1qWDyGJ9VwAz6uxNx3WlLXl5VscDbIJBn1N2RDTpdnLmL940bA5qaiT1VhVf81YHm+zDqVWoy9dZc+Ij/0nPH0PfBwv+LPbIDgv3ZAkF/KO5Zo72T8dQ0xSZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=aHGM3meg; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 2BE8FC58754;
-	Fri, 27 Mar 2026 20:11:05 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 8F3104E42829;
+	Fri, 27 Mar 2026 20:10:40 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 5618060268;
-	Fri, 27 Mar 2026 20:10:36 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0D89F10451AFF;
-	Fri, 27 Mar 2026 21:10:31 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 62CE260268;
+	Fri, 27 Mar 2026 20:10:40 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1DC9F10451AD3;
+	Fri, 27 Mar 2026 21:10:35 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774642235; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1774642239; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=Bv5k4m7ct4CZYhqzZBg0LTSqAE21eXTy+4/0cBCVguk=;
-	b=iW2Xhm0WEU7YSS3l6jm/y3D79IbblvrQT76gkk4GswHH1AGqkmLkFcQ7yVEZL4rFKBn67e
-	AMmX+xIEQVIs5YOzaDAaMVVq+gKaeYDmF6mQa4o1JelpN8EcyFhNgUM82Wtgyujb5doFeS
-	WD3cHETp6pjqNpplGnAy8UCJUg5eoWqaTrPT5CP+0zvJfgKnnk1umGFd8zXlLD1T2559+U
-	Ezm/zg8pnlia+jNmOaH8ot28qNaFHE67kbawBCUgdztQKCOfj26WQbJW9U40069UAZ53so
-	dRfZLKH0ELZ6Yuy+wW6nYFi+D6dPpEMWoo3lrIxpdRCQNj63NKXgR5gD7PtQzQ==
+	bh=Ddul0e9GZFCUS58sTFnpBUCJG4K93ySFv+lJJXOGGaw=;
+	b=aHGM3megSlFnSCTO/n0CbVEayHxGnRqfvs837i9jzWvBCdRvVztVvy6L03HgwgunsqaM07
+	/vv3Gfw9ozzmvOoR3GzYU/Mncapea7/fHy5MrEAR+A2AQxir+NKU7bq83SyrdR69tXupSB
+	z0mU1WaG18HgPO6HtsZNLloQJkHu40lLu8uD/diO0O8YeuxQBD9jufzfsAgB1FeYIuiLG8
+	v8E11pOPU9gCCfdZ0deuQH4LN23Hy+zf7sZF5EgwLOB0plnX5+qRLIYXX+IHhBSA7Rt4MT
+	kALEkfbO5wbrhnlfVA4wlot0iDJmI4ibmt1k7Gjz2+6sagtVfkXqH6iRrTLOfQ==
 From: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-Date: Fri, 27 Mar 2026 21:09:26 +0100
-Subject: [PATCH 04/16] dt-bindings: crypto: eip28: Describe EIP-28 PKA
+Date: Fri, 27 Mar 2026 21:09:27 +0100
+Subject: [PATCH 05/16] dt-bindings: bus: eip150: Describe the EIP-150
+ container node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260327-schneider-v7-0-rc1-crypto-v1-4-5e6ff7853994@bootlin.com>
+Message-Id: <20260327-schneider-v7-0-rc1-crypto-v1-5-5e6ff7853994@bootlin.com>
 References: <20260327-schneider-v7-0-rc1-crypto-v1-0-5e6ff7853994@bootlin.com>
 In-Reply-To: <20260327-schneider-v7-0-rc1-crypto-v1-0-5e6ff7853994@bootlin.com>
 To: Michael Turquette <mturquette@baylibre.com>, 
@@ -89,81 +90,112 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281799-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-281801-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[baylibre.com,kernel.org,selenic.com,gondor.apana.org.au,ti.com,davemloft.net,gmail.com,glider.be];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-0.995];
+	NEURAL_HAM(-0.00)[-0.993];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid]
-X-Rspamd-Queue-Id: C919634A9EE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: 7BBD534AB3A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Describe the Public Key Accelerator named EIP-28 from Inside-Secure,
-part of the SafeXcel family, it is typically included in a bigger
-hardware container named EIP-150.
+Part of Inside-Secure's SafeXcel family, the EIP-150 is some kind of
+container node composed of:
+- a public key accelerator,
+- random number generator,
+- an interrupt controller.
+
+It also acts as proxy for the clocks.
 
 Signed-off-by: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
 ---
- .../crypto/inside-secure,safexcel-eip28.yaml       | 31 ++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ .../bus/inside-secure,safexcel-eip150.yaml         | 58 ++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip28.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip28.yaml
+diff --git a/Documentation/devicetree/bindings/bus/inside-secure,safexcel-eip150.yaml b/Documentation/devicetree/bindings/bus/inside-secure,safexcel-eip150.yaml
 new file mode 100644
-index 000000000000..96acb257450a
+index 000000000000..1b3d83a852f5
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip28.yaml
-@@ -0,0 +1,31 @@
++++ b/Documentation/devicetree/bindings/bus/inside-secure,safexcel-eip150.yaml
+@@ -0,0 +1,58 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/crypto/inside-secure,safexcel-eip28.yaml#
++$id: http://devicetree.org/schemas/bus/inside-secure,safexcel-eip150.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Inside-Secure SafeXcel EIP-28 Public Key Accelerator
++title: Inside-Secure SafeXcel EIP-150 container
 +
 +maintainers:
 +  - Miquel Raynal <miquel.raynal@bootlin.com>
 +
++description:
++  The EIP-150 is a hardware container, it has its own interrupt
++  controller inside to which a random number generator and a public key
++  accelerator are wired.
++
++allOf:
++  - $ref: simple-pm-bus.yaml#
++  - $ref: /schemas/clock/clock-nexus-node.yaml#
++
 +properties:
 +  compatible:
-+    const: inside-secure,safexcel-eip28
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 3
++    items:
++      - const: inside-secure,safexcel-eip150
++      - {} # simple-pm-bus, but not listed here to avoid false select
 +
 +  clocks:
 +    minItems: 1
 +
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
++  ranges: true
++
++patternProperties:
++  "^interrupt-controller@[0-9a-f]+$":
++    type: object
++    $ref: /schemas/interrupt-controller/inside-secure,safexcel-eip201.yaml#
++
++  "^rng@[0-9a-f]+$":
++    type: object
++    $ref: /schemas/rng/inside-secure,safexcel-eip76.yaml#
++
++  "^crypto@[0-9a-f]+$":
++    type: object
++    $ref: /schemas/crypto/inside-secure,safexcel-eip28.yaml#
++
 +required:
 +  - compatible
-+  - reg
-+  - interrupts
 +  - clocks
++  - "#address-cells"
++  - "#size-cells"
++  - ranges
 +
-+additionalProperties: false
++unevaluatedProperties: false
 
 -- 
 2.51.1
