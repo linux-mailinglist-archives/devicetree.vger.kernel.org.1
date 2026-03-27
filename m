@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-281763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281775-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KO/dFFvDxmm8OQUAu9opvQ
-	(envelope-from <devicetree+bounces-281763-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 18:50:19 +0100
+	id IBiXEnTJxmn5OgUAu9opvQ
+	(envelope-from <devicetree+bounces-281775-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 19:16:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A134F3489F8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 18:50:18 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B46E9348EB7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 19:16:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EB2673076344
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 17:45:13 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 030DC302DD45
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 18:16:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FFB43FCB24;
-	Fri, 27 Mar 2026 17:45:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B128A402448;
+	Fri, 27 Mar 2026 18:16:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b="Ool4RBTP"
+	dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b="ieja83Wt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13E6A378D9F;
-	Fri, 27 Mar 2026 17:45:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.143.35
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A935719A288;
+	Fri, 27 Mar 2026 18:15:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.147.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774633512; cv=none; b=cYLUlY4aMBpTYFJSMIUl4zwwXJGUhCKHmNOoFIrLjyfrG/o9zPVaRlPMkMIG3A0ABY97w1No1OVdZsGIjJbEsmVX+IiRYlSRVzt/vHvbJ3EHTSjMVWlyvgY5H9ITXj9+gsnMry96MR/E+07NuXuiT1C7TLyjjKu3urZEnVrB/kE=
+	t=1774635363; cv=none; b=qovJDCugoYa5SWt2f223BHYF8rm2enbsNvU5BAnzZAErWCB+I/Ywm1zsLb6DWj+BXIzUcb0s60DvNq0NdJiH7DGqFPbDlLiHC0/4ocORPzkb+AvwfH70+gKe6N0jRcoocG2YM+gd2qyD7iytD54DyXXOW5569+PrJCvgfFM18pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774633512; c=relaxed/simple;
-	bh=cMjjFIRv2pNOdL3cv3r0I0ZtQifSqPXZBySNX3jY5Q0=;
+	s=arc-20240116; t=1774635363; c=relaxed/simple;
+	bh=bo5GdBa6G3d63Ox97a8utKJoa06KDNsD2SP0aUfJr+g=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=frNrVi19dp8iQGT08XS67tIBullTEddq1kCLKs64TMCuJb1cTzQ46qfymOjZYMgbZoYoByheYmgo1+Ltrwqy21SanZ/63gqC58L3i01ocRzMXXsZuM+5uH9V3CIkT1hldJmO4AH4HuGwIGEaS/AxRTsDJ0owGAqjeXPlQjmRndw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com; spf=pass smtp.mailfrom=hpe.com; dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b=Ool4RBTP; arc=none smtp.client-ip=148.163.143.35
+	 MIME-Version; b=kbs9luChPfzADrcU89ouBOw7ScAtAgr676rX0Fw9pnrOI36FXtrFy51yvxzcGLTjzY0Pc7pzRZOLVwJ/qmqicTH/UkiFY2bcte4gDSubF/+bg1wxrH/HLfBDzDDydU1UAo4YflYc7iL0sLIIqZsSj9LwkCAhZcm4P/XV6eUxCtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com; spf=pass smtp.mailfrom=hpe.com; dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b=ieja83Wt; arc=none smtp.client-ip=148.163.147.86
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hpe.com
-Received: from pps.filterd (m0150245.ppops.net [127.0.0.1])
-	by mx0b-002e3701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62RCdot91069498;
+Received: from pps.filterd (m0134420.ppops.net [127.0.0.1])
+	by mx0b-002e3701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62RCeMJJ1436948;
 	Fri, 27 Mar 2026 17:44:51 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=cc
 	:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=pps0720; bh=b9B5i30/KDHH7
-	GOTnT0LmcZyBmyOnXeONI9jSuqZmRQ=; b=Ool4RBTPBCkzFE/nFbNl+mTC5nsAn
-	uefKsdnU0+LjwwHLYy7281I1gG679SU2rVoIqrclBSy8iJy9Qot2l5Z/5Asr+zQJ
-	hekg6ipT/ytZFQJ4YkNYLZeqYrKsrS00IwGIGKSXFIsr5TYelGFPNPCZniVpOUeW
-	IOwCOYU6Yqk3gMKUv9+QS9zoMrbWpWWK3LT2P46joSu9OdfwKuFND4J71/+EtW07
-	eDZCPDTk2CN9pmyo0t66gStogMgYGcO1uw3Xd7yRHqxRkyo4g2X+4KaBFnZNhNr1
-	PGMOfYm1JIJKlM97y6I3vUlNpk0NW8VrVEJbCdnriOOdAAzWqGq0fO57A==
-Received: from p1lg14878.it.hpe.com (p1lg14878.it.hpe.com [16.230.97.204])
-	by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 4d5t39kh9u-1
+	:mime-version:references:subject:to; s=pps0720; bh=QmopYxJuCQEZ8
+	zllUw4s6HsivJfzbT5IkcJ5NS0N8js=; b=ieja83Wt3E8FODs/sPSms5XvUBiZL
+	aKkr6shxcGp9wXclu3Y9tzLtq09aIZIQIOZozCLWEO3YypSKBhhTYUiWO6WH0QG7
+	BDBf/QNb6zWenFxdOSl4O6V/GgAHbA7b5kR8SPL7nCAzWXMq/8+ngqn8hbOK/dtE
+	sk7L7PBXLYjXz5bAAqKgp5rNUHlRrEmXhUWCIOE8C/Vm/79zMM9QPe8uMan5sX7h
+	v7nS/YOg2cwMp/cwDhVqSH7vu/W6BZN9usxnZ/u/+K7ItP5bXdMQRX1irirDTgYy
+	94kZdUuSV+xtNluHogDU8cNAJm9fw0ROOIdiX6f3j3yh/BRK7o2yiJJ+w==
+Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
+	by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 4d5t3fkhhc-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
 	Fri, 27 Mar 2026 17:44:51 +0000 (GMT)
 Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by p1lg14878.it.hpe.com (Postfix) with ESMTPS id A619EA9F11;
-	Fri, 27 Mar 2026 17:44:50 +0000 (UTC)
+	by p1lg14880.it.hpe.com (Postfix) with ESMTPS id 5C7B881B5B0;
+	Fri, 27 Mar 2026 17:44:51 +0000 (UTC)
 Received: from hpe.com (unknown [16.231.227.36])
-	by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id 3A429810AF3;
+	by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id AA5E7810ADF;
 	Fri, 27 Mar 2026 17:44:50 +0000 (UTC)
 From: nick.hawkins@hpe.com
 To: catalin.marinas@arm.com, will@kernel.org, robh@kernel.org,
         krzk+dt@kernel.org, conor+dt@kernel.org
 Cc: nick.hawkins@hpe.com, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/3] dt-bindings: arm: hpe,gxp: Add HPE GSC platform compatible
-Date: Fri, 27 Mar 2026 12:44:43 -0500
-Message-Id: <20260327174445.3275835-2-nick.hawkins@hpe.com>
+Subject: [PATCH v3 2/3] arm64: Kconfig: Add ARCH_HPE platform
+Date: Fri, 27 Mar 2026 12:44:44 -0500
+Message-Id: <20260327174445.3275835-3-nick.hawkins@hpe.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260327174445.3275835-1-nick.hawkins@hpe.com>
 References: <20260327174445.3275835-1-nick.hawkins@hpe.com>
@@ -77,124 +77,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI3MDEyMyBTYWx0ZWRfX6dDJiwm9GfTq
- LwU5IZtVcobTaN4IUIpJg+hbseOIG4+fG4dyVjespzct27ZACDCvXiThDqcYU98FDa+spQOXys2
- xAT9Lw0jF4muIoB1aEMF6Xhl7Ft2sM1xAyBWvMkX+KHgiAhm6jfMtcUJrVqOwhnzb4I4jdwd41N
- VE1hFYqwhgodZ2hTf8XFFPAgd0q0RP2+bATQZ3v/EzxmTXsTh3p+ZljxdryiI5sfn6wr9tOLF72
- aO4Ea/NzRGPDJIE8/M8htLYVTgkUznRPqfYgNCh/6maAXODNzde9vS+k9+0zW/8yJTnZBYb/qCB
- TdQMe9bPqkvd3l4Q+DhioLpCw0BYRg9lptK/vkZyYIf1TZASDZjS7r7arGeK7DJ4hKakba8Qw/z
- GUOl7Eti6yuwZg6WNbZD53ARdgNAjiqDqO2olMpFZkfh85BRL15ju09+ZlMAesMkfdJsj69XGuZ
- 6XU3hiyhPvDK863fwTw==
-X-Authority-Analysis: v=2.4 cv=Kf7fcAYD c=1 sm=1 tr=0 ts=69c6c213 cx=c_pps
- a=UObrlqRbTUrrdMEdGJ+KZA==:117 a=UObrlqRbTUrrdMEdGJ+KZA==:17
+X-Proofpoint-ORIG-GUID: k5T4Sv0AGOoivFrw5RtAxpwDNDYxFuF2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI3MDEyMyBTYWx0ZWRfXxMyu+iM8RSem
+ 1I1DvlttUCTqRFD9vW+mgTOZ2XG34lydxjpTG6fSK+zIJKV6xl8+++gsK0tuGQyy7LrCBVqv7GU
+ CT+YEhpWA14PM2gPoNZNg37UCVzitR0X0zBdUeuN2JGU6vuqhLBg19aya/hlUErlxCbwfRavnzY
+ 5mgPSw6buOX0+TaBac0cGhzV/rVPN3/SzS/uYzbWpx0qa8Uvg3FM7ErphHCAqznOYUZQNAJdWOL
+ LVKb0gmkn+eRqV8NMvb/zxibQSbhGlEdxAOLSTri6vg7zRMu0DPiKa+ZN977l9c4zZxn3A0iteq
+ jwaGXjYsYctA6Qe/AYfKAo2hfQaxODcOrRUMfjCo7i2VCqyZq+7Yd+m4JQlrulkrKfo8iA/aRrF
+ IX6GgaxA3DMtucCfp2OtYDiiPZFlkuGb0PM8MIk67Kqoy7c3wdu8JiSYdViB/wShoha3AtiRwk3
+ 1agq4I1swZ4FTeq8uQg==
+X-Authority-Analysis: v=2.4 cv=YPySCBGx c=1 sm=1 tr=0 ts=69c6c213 cx=c_pps
+ a=A+SOMQ4XYIH4HgQ50p3F5Q==:117 a=A+SOMQ4XYIH4HgQ50p3F5Q==:17
  a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gQcMVamqm3wCPoSYhaRC:22
- a=6XKncaru_qjgLvANlS_8:22 a=gEfo2CItAAAA:8 a=MvuuwTCpAAAA:8 a=VwQbUJbxAAAA:8
- a=HR7gm4R6eJ7T60OizSAA:9 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-GUID: U3VF8hWytEHK1Fwsqd2P3bHZcPsxzRI9
-X-Proofpoint-ORIG-GUID: U3VF8hWytEHK1Fwsqd2P3bHZcPsxzRI9
+ a=RtSn8ETxjE2H05FtM2s8:22 a=MvuuwTCpAAAA:8 a=XVOEL-q19URcyAXAXPUA:9
+X-Proofpoint-GUID: k5T4Sv0AGOoivFrw5RtAxpwDNDYxFuF2
 X-HPE-SCL: -1
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-27_01,2026-03-26_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 impostorscore=0
- spamscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0 suspectscore=0
+ adultscore=0 phishscore=0 priorityscore=1501 clxscore=1015 impostorscore=0
+ malwarescore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603270123
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[hpe.com,reject];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[hpe.com,reject];
 	R_DKIM_ALLOW(-0.20)[hpe.com:s=pps0720];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_SEVEN(0.00)[7];
+	TAGGED_FROM(0.00)[bounces-281775-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[hpe.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,hpe.com:dkim,hpe.com:email,hpe.com:mid];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[nick.hawkins@hpe.com,devicetree@vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281763-lists,devicetree=lfdr.de];
-	TO_DN_NONE(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[hpe.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,hpe.com:dkim,hpe.com:email,hpe.com:mid]
-X-Rspamd-Queue-Id: A134F3489F8
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: B46E9348EB7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Nick Hawkins <nick.hawkins@hpe.com>
 
-Add the HPE GSC ARM64 BMC SoC compatibles to the existing
-hpe,gxp.yaml binding.
-
-The initial board compatible is hpe,gsc-dl340gen12 for the DL340 Gen12
-server platform.
-
-Add the arm64 DTS path to the existing ARM/HPE GXP MAINTAINERS entry,
-renamed to ARM/HPE GXP/GSC ARCHITECTURE.
+Add the ARCH_HPE config for HPE ARM64 BMC SoCs to Kconfig.platforms.
 
 Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
 ---
- Documentation/devicetree/bindings/arm/hpe,gxp.yaml | 7 ++++++-
- MAINTAINERS                                        | 3 ++-
- 2 files changed, 8 insertions(+), 2 deletions(-)
+ arch/arm64/Kconfig.platforms | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/hpe,gxp.yaml b/Documentation/devicetree/bindings/arm/hpe,gxp.yaml
-index 224bbcb93f95..6f057cd58571 100644
---- a/Documentation/devicetree/bindings/arm/hpe,gxp.yaml
-+++ b/Documentation/devicetree/bindings/arm/hpe,gxp.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/arm/hpe,gxp.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index 54eb1d7fd419..b4217809c774 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -168,6 +168,17 @@ config ARCH_HISI
+ 	help
+ 	  This enables support for Hisilicon ARMv8 SoC family
  
--title: HPE BMC GXP platforms
-+title: HPE BMC GXP and GSC platforms
- 
- maintainers:
-   - Nick Hawkins <nick.hawkins@hpe.com>
-@@ -18,6 +18,11 @@ properties:
-           - enum:
-               - hpe,gxp-dl360gen10
-           - const: hpe,gxp
-+      - description: GSC Based Boards
-+        items:
-+          - enum:
-+              - hpe,gsc-dl340gen12
-+          - const: hpe,gsc
- 
- required:
-   - compatible
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2265e2c9bfbe..80c66de5e342 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2859,7 +2859,7 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kristoffer/linux-hpc.git
- F:	arch/arm/mach-sa1100/include/mach/jornada720.h
- F:	arch/arm/mach-sa1100/jornada720.c
- 
--ARM/HPE GXP ARCHITECTURE
-+ARM/HPE GXP/GSC ARCHITECTURE
- M:	Jean-Marie Verdun <verdun@hpe.com>
- M:	Nick Hawkins <nick.hawkins@hpe.com>
- S:	Maintained
-@@ -2870,6 +2870,7 @@ F:	Documentation/devicetree/bindings/spi/hpe,gxp-spifi.yaml
- F:	Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
- F:	Documentation/hwmon/gxp-fan-ctrl.rst
- F:	arch/arm/boot/dts/hpe/
-+F:	arch/arm64/boot/dts/hpe/
- F:	drivers/clocksource/timer-gxp.c
- F:	drivers/hwmon/gxp-fan-ctrl.c
- F:	drivers/i2c/busses/i2c-gxp.c
++config ARCH_HPE
++	bool "HPE SoC Support"
++	select PINCTRL
++	select GENERIC_IRQ_CHIP
++	select CLKSRC_MMIO
++	help
++	  This enables support for HPE ARM-based SoC chips used
++	  on HPE servers. HPE SoCs serve as the Baseboard
++	  Management Controller (BMC) providing out-of-band server
++	  management.
++
+ config ARCH_KEEMBAY
+ 	bool "Keem Bay SoC"
+ 	help
 -- 
 2.34.1
 
