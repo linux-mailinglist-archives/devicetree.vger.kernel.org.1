@@ -1,192 +1,307 @@
-Return-Path: <devicetree+bounces-281646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281654-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0NU1KQOGxmlALQUAu9opvQ
-	(envelope-from <devicetree+bounces-281646-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:28:35 +0100
+	id OHPjGyKIxmlELgUAu9opvQ
+	(envelope-from <devicetree+bounces-281654-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:37:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27345345325
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:28:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5AF03455D1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:37:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E72573037150
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 13:28:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3CF68309B0A3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 13:34:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61DF43EB7F1;
-	Fri, 27 Mar 2026 13:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B3534DB6C;
+	Fri, 27 Mar 2026 13:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Is/EO2DQ"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="VRHCRqHK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF2863E9F7A
-	for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 13:28:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8BC3315D40
+	for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 13:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774618088; cv=none; b=J9F+e7kBpa069FT/7AQRbbU/+frrM31LWy+XWVrUwADlE5NALE4kfB/K/TKZjbrJTBpe0XOLs6kQDV4PwxtJEswp2Sxkq7zZbydmRcAbcQ4FKI+xdUgHz1fzaCSj3rDPXkGwAUC+s8ebab9FFGRstTMUduf8TgsJ9bWWShveBO8=
+	t=1774618451; cv=none; b=r2wlgY96/icUcx8a/yOOD1VbiAnqXleU5oye4IYClJxxwuepl3sCvQV6WK7+jLvEPNX8OpgdOAQ3DxvJzhVsW9gF0jkf2VZXld/51tRVDEAWpT3iscyxmuSNahuWMOBMbju3aIZxvkrKh+emFNSyvWyf5anj2p+CibKj8Vd9iQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774618088; c=relaxed/simple;
-	bh=++hkBnIAEvloFIQ575XrWS1bjaaVT6AJ+ILFSO/cg2M=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dJPHCl03rVGdWuHala9lr0GI6j8KHNg/0X2EBxnn/XMhUj8YqBwpHCvdlc7W+V3t9Zl+qbUQfhoO7wMoUOG5dXSwMeHmvwZKofBZg3p9snUzA62vgd88MsQ2LQxeijxIspz6OmLIx86AJA4EAkocPnGEqmc3tJVPIDEBjohzTTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Is/EO2DQ; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-48702d51cd0so24324845e9.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 06:28:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774618085; x=1775222885; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8sojWPfL6Z8AVWMTcumjRgckMPGB7q4CLXGUVSk+dCo=;
-        b=Is/EO2DQQ//4BrvGojf1/76xa0kisca2CRPn2ftxmwgsmsM3Q9h60V3+pZvobea+cF
-         DBU30isrXdsznWBv7koPYVcT6s+d6807190EpC5idJ3gR6CX0hvP+ZPylsSwJnWd0hDa
-         8qGkH49b6iOAAkwzbiiqOn145pwSYSSH5jHRhdcNe4BlGHbRL+GC7Yr2370sD2LB7f53
-         4uflbX9p0dpCHU2saK3GLmg3Vj6hahyLC3lKmu52sdMmpEpMEjE8Z06ihDiiLwjV1NrU
-         tE35bqlKWMmDx/BVGHWoEm5Krk4b+TMPI0RbD+/e4ERuhnslvErCNeJB+gKppFfDmyK/
-         8f2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774618085; x=1775222885;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=8sojWPfL6Z8AVWMTcumjRgckMPGB7q4CLXGUVSk+dCo=;
-        b=Q3KCbrRcRozgp534LeQ+YViM0+yDC8S8J4mGZVKA2ilVegBdkZXJ/ep9Mdr11SgpCu
-         TZvD0mW9uqf39YUKZNqG5m8WBi2l10eytRKnJkaKmGfFPmOkwURRi4/fCcWLwXKfz/HA
-         o9F+qsTK/EclQj0/zbbkWIwgBxLrRKph3yiwORYGCif4LgOvewC2fcRGz2d3EUw1c24W
-         4aJcnVTlo7ouqp7A7Si9KaSa0iRVzPNgGQ+ZsT7wc1YqqfPNdLpOcDunim8UynCIjSfh
-         ut+in9CHRvCHBx5WUo+VwsqPnzpgXgrD4ZM7RYVIrn4B2Mc5269DUWpmcrlDor3Ew9zh
-         TI2g==
-X-Forwarded-Encrypted: i=1; AJvYcCV9TQ6Nm7cM+U7nNBfNZ5uM9lsQphHRnkPv27BU+qTzaDAdHWYoQ9Tr9B9Zv6Wv0ovpDpi0hwhz06JJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwsLX7WOiFhGsYXI85uC0s/6IsALEqPnvh2Oac26CjHlkpUYbbK
-	kWXgU4Ikh4UaQCKCNrKYyxFd9rbBBIW78eW3awGqpAAh8k6Hq+d+G9KT
-X-Gm-Gg: ATEYQzzQcSPX5hBlaklODyUf1TCSRaJfyMK3k9crmRrMcRQnb55ay5oc9jkn+5GtpNK
-	UoFzC+5jRNGFtdynqYpXE/b7xInukoaxpJw84IPl2NlX5LsXzVIAzwbL+neMko3zpEzc9mHLzlM
-	c2Ft5yqp4Oj8gG5KJWP4B+JP9qp2wRQxfcgBnG7OXt0UPTld3VN9pDGtODnJUAgcxqc86OwHx6C
-	2X6g71zxosAgw393zMgHHSprQYhMqIp6ZAmE3xTfNdrMcO8mc3eZJ4uTxjRsTdIcWVfmEe26a/x
-	yFXK1UXlhO3O85AK6sPbRh8pp6PxTgd3m64FMC9l8nRGivdjSevaGjiAE9wtTCzNE049nhjIHGS
-	7bXsFkyooLDQ/6hwx+OFiHV0kvd0Q6wmZLFzy5pqJFQb6SKVjvxPQj0/I2b9M+JUzvGCbL1z7F/
-	BWOt0965IMUICpj7adHC4gzfZCxZWOGnjnikvUJ6E0Ac1RNhW6AZQ5Yo7pAGXfRpTU
-X-Received: by 2002:a05:600c:4f53:b0:485:481c:e7bb with SMTP id 5b1f17b1804b1-48727ee9b89mr42168595e9.20.1774618084923;
-        Fri, 27 Mar 2026 06:28:04 -0700 (PDT)
-Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48722d2366dsm87955895e9.10.2026.03.27.06.28.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Mar 2026 06:28:04 -0700 (PDT)
-Date: Fri, 27 Mar 2026 13:28:03 +0000
-From: David Laight <david.laight.linux@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Petr Mladek <pmladek@suse.com>, rodrigo.alencar@analog.com,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Jonathan Cameron
- <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Andy Shevchenko
- <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Andrew Morton
- <akpm@linux-foundation.org>, Steven Rostedt <rostedt@goodmis.org>, Rasmus
- Villemoes <linux@rasmusvillemoes.dk>, Sergey Senozhatsky
- <senozhatsky@chromium.org>, Shuah Khan <skhan@linuxfoundation.org>
-Subject: Re: [PATCH v9 2/9] lib: vsprintf: export simple_strntoull() in a
- safe prototype
-Message-ID: <20260327132803.1fe51253@pumpkin>
-In-Reply-To: <acZitENbWQF7cmDA@ashevche-desk.local>
-References: <20260320-adf41513-iio-driver-v9-0-132f0d076374@analog.com>
-	<20260320-adf41513-iio-driver-v9-2-132f0d076374@analog.com>
-	<acZDneLrIPOmU5ci@pathway.suse.cz>
-	<acZLHAT5qJyjKTsp@ashevche-desk.local>
-	<20260327104440.079343c9@pumpkin>
-	<acZitENbWQF7cmDA@ashevche-desk.local>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+	s=arc-20240116; t=1774618451; c=relaxed/simple;
+	bh=I9YYmUqjmwDAglHQt+TdLLFYv6Br2Cvm3hV87CemV6M=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=W5id+uR8ax2N6ozdzytxuohtE6sT833G+fgSHOGLl8g5N+w3hW2RKQrslZqFMUhQg5I/Ng/cDAtVv6n//hgzRlJ2hmkQPjiDKoMsJjDRQRkS8ly0ZzCz7yyy7xYRLeGsnW1eyyzTxX83ZS78PXvqFXdjhc82aGqWj0XkehtCmmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=VRHCRqHK; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 6E040240028
+	for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 14:34:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1774618442; bh=B1HXLdfLQtkgXuwTVMV/gzXIibl5wOZ8hLFBdEzZ17I=;
+	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
+	 MIME-Version:OpenPGP:From;
+	b=VRHCRqHKDpOK7yBvG0CJwOI1af0EaJiHkNt8pTX1mjssDRXSWrhMRtaHNzZO/sWfV
+	 rDOqKimZVjxh496PBB3njwTbxPIALZuSqjRGyID9H1FKpNenhKMuQwA5RtlbXNvGgh
+	 aSCp2OfQ9G/XrqoACFYfgPdj+VColDTb50jNHiExbd1W94V6mj3YvRL5Bj/JyGkpdJ
+	 yM9yAxk8tqIVyGFnRVm8WOOVIDQRdVLtb8n7BLwMztUhX3i/XAW65EwsR9hJWDvCHG
+	 YsP83bNjIoANGR1fZtvI4FLVWzG0K1svgW9IqQ/1FF21yKl8lM8yRb/kQrG09SnTnQ
+	 ciog2tSb3KOHg==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4fj1ng6c0Hz9rxM;
+	Fri, 27 Mar 2026 14:33:59 +0100 (CET)
+Message-ID: <a2f8a64cf2281e11b5287049bc06697e65e41c9c.camel@posteo.de>
+Subject: Re: [PATCH v4 1/2] dt-bindings: embedded-controller: Add
+ synology,microp device
+From: Markus Probst <markus.probst@posteo.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Krzysztof Kozlowski	
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda	
+ <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>, Gary Guo
+ <gary@garyguo.net>,  =?ISO-8859-1?Q?Bj=F6rn?= Roy Baron	
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, Andreas
+ Hindborg	 <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross	 <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg
+ Kroah-Hartman	 <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+Date: Fri, 27 Mar 2026 13:34:01 +0000
+In-Reply-To: <CAL_JsqJUVh1YnhmYYj4ara5BheaLOL1oayjtWNuPH53q1d4xXA@mail.gmail.com>
+References: <20260320-synology_microp_initial-v4-0-0423ddb83ca4@posteo.de>
+	 <20260320-synology_microp_initial-v4-1-0423ddb83ca4@posteo.de>
+	 <20260321-rose-armadillo-of-drama-09fdcf@quoll>
+	 <a6fe54fcf985100fc85450e680e8f7da49e6b067.camel@posteo.de>
+	 <56ece3e3-871f-4ef7-9ad1-cd7f68f9d003@kernel.org>
+	 <881644afe920a222a7fa6b2221fcc157c037ccd5.camel@posteo.de>
+	 <20260325220749.GA17597-robh@kernel.org>
+	 <3281ba870fff981a1c37989000fdc6a8c448a304.camel@posteo.de>
+	 <CAL_JsqJUVh1YnhmYYj4ara5BheaLOL1oayjtWNuPH53q1d4xXA@mail.gmail.com>
+Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
+ keydata=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
+ jfGillcaQOqFZ3WwVqyzG1BUfTow==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-l/3+qkQAWaxnFt1MJeEB"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.16 / 15.00];
+OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281646-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,linuxfoundation.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-281654-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[posteo.de:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[davidlaightlinux@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email]
-X-Rspamd-Queue-Id: 27345345325
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,posteo.de:dkim,posteo.de:email,posteo.de:mid]
+X-Rspamd-Queue-Id: C5AF03455D1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 27 Mar 2026 12:57:56 +0200
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 
-> On Fri, Mar 27, 2026 at 10:44:40AM +0000, David Laight wrote:
-,,,
-> > > but also wants to have the fraction part be limited in some cases to =
-s32
-> > > or so:
-> > >=20
-> > > 	struct float
-> > > 	{
-> > > 		s64 integer;
-> > > 		s32 fraction; // precision may be lost if input is longer
-> > > 	} =20
+--=-l/3+qkQAWaxnFt1MJeEB
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, 2026-03-26 at 14:36 -0500, Rob Herring wrote:
+> On Thu, Mar 26, 2026 at 8:02=E2=80=AFAM Markus Probst <markus.probst@post=
+eo.de> wrote:
 > >=20
-> > Are those 'fraction' counts of (say) 10^-6 (like times in seconds+usecs)
-> > or true binary values where the value could be treated as a u64 (or u12=
-8)
-> > for addition and subtraction. =20
+> > On Wed, 2026-03-25 at 17:07 -0500, Rob Herring wrote:
+> > > On Sat, Mar 21, 2026 at 01:02:22PM +0000, Markus Probst wrote:
+> > > > On Sat, 2026-03-21 at 13:32 +0100, Krzysztof Kozlowski wrote:
+> > > > > On 21/03/2026 13:17, Markus Probst wrote:
+> > > > > > On Sat, 2026-03-21 at 11:21 +0100, Krzysztof Kozlowski wrote:
+> > > > > > > On Fri, Mar 20, 2026 at 11:09:53PM +0100, Markus Probst wrote=
+:
+> > > > > > > > +
+> > > > > > > > +examples:
+> > > > > > > > +  - |
+> > > > > > > > +    #include <dt-bindings/leds/common.h>
+> > > > > > > > +
+> > > > > > > > +    embedded-controller {
+> > > > > > > > +      compatible =3D "synology,microp";
+> > > > > > > > +
+> > > > > > > > +      power-led {
+> > > > > > > > +        color =3D <LED_COLOR_ID_BLUE>;
+> > > > > > > > +        function =3D LED_FUNCTION_POWER;
+> > > > > > > > +      };
+> > > > > > > > +
+> > > > > > > > +      status-led {
+> > > > > > > > +        color =3D <LED_COLOR_ID_MULTI>;
+> > > > > > > > +        function =3D LED_FUNCTION_STATUS;
+> > > > > > > > +      };
+> > > > > > >=20
+> > > > > > > Where are other leds? Binding mentions 4.
+> > > > > > >=20
+> > > > > > Status and Power leds exist on every Synology NAS model I am aw=
+are of.
+> > > > > > But there are models which have additionally a usb or alert led=
+. The
+> > > > > > device nodes for those leds should only be present, if they exi=
+st
+> > > > > > physically on the device.
+> > > > >=20
+> > > > > Then help me to understand - are these different models?
+> > > > Yes, even with different CPU architectures.
+> > > > How much the "microp" device differs is not clear, but the
+> > > > communication protocol is the same.
+> > > > >=20
+> > > > > EC is not a generic purpose component and is tightly coupled with=
+ the
+> > > > > actual board it is being present on. Unless exactly same board is=
+ used
+> > > > > in different models (unlikely) then the compatible defines the LE=
+Ds and
+> > > > > they are not needed in DT.
+> > > > So for instance "synology,ds923p-microp", "synology,ds723p-microp" =
+etc.
+> > > > ?
+> > > >=20
+> > > > I can do that, but that would be many.
+> > >=20
+> > > How many is many?
+> > Estimated 300.
 >=20
-> It depends. IIO has scale on top of that, so the fraction part can be 10=
-=E2=81=BB=C2=B3,
-> 10=E2=81=BB=E2=81=B6, 10=E2=81=BB=E2=81=B9. I don't remember by heart if =
-the ABI requires all digits to be
-> placed, I think we don't require that.
+> Okay, that's a lot and probably safe to say there are not 300
+> variations of the EC.
+>=20
+> > As a side note: I only have 1 model I can test the driver with.
+> > >=20
+> > > > Having it generic seems more flexible.
+> > >=20
+> > > Is there firmware for these ECs? If so is it the same or different
+> > > firmware for each device? If the former or the functionality is reall=
+y
+> > > trivial, then I'd be more comfortable with 1 or a few compatibles.
+> > The firmware is not public and the exact differences between them isn't
+> > documented. The communication protocol is the same though.
+> >=20
+> > >=20
+> > > Generic means you'll need to add quirk properties when there is some
+> > > difference the OS needs to handle which we'll reject. So stuck with o=
+ne
+> > > compatible and no way to distinguish different ECs is anything but
+> > > flexible.
+> > Describing the physical leds that are present on the NAS device are not
+> > quirk properties, at least in my definition.
+>=20
+> That's not what I mean. I mean things like this other device needs
+> some different timing for power-on/reset or delays between accesses or
+> some LED control is inverted or some protocol difference... Could be
+> about anything. The key thing is you have specific enough information
+> (compatible) to start with that you can handle any issue that comes up
+> *without* changing the DT.
+>=20
+> As you said, you only have 1 device. Make the binding specific to that
+> 1 device. If the next one that comes along can reuse the binding as
+> it, then great. Nothing to do. If it can't, then it gets its own new
+> compatible. Strictly speaking we would add a new compatible for each
+> device, but it's a judgement call that there aren't going to be
+> differences to handle. In this case, there likely aren't 300 versions
+> of h/w, the functionality is simple enough, and the functionality is
+> entirely optional (just a guess). But that's all really your argument
+> to make.
+I think I will go with different compatible, but instead of 1 I will
+compile a small list of devices, which:
+- are most similar to my testing device
+- have unique functionality (like having additionally a "cpu fan" or
+similar). This way I can implement every functionality in the driver,
+which makes it easier to add devices in the future.
+- I know are owned by people who like to experiment with their device
+(including my device)
 
-Seems like you want this function (untested):
-u64 strtofrac(const char *buf, const char **end, unsigned int len)
-{
-	u64 val =3D 0;
-	unsigned int digit;
+Thanks
+- Markus Probst
 
-	while (len--) {
-		digit =3D *buf - '0';
-		if (digit <=3D 9) {
-			buf++;
-			val +=3D digit;
-		}
-		val *=3D 10;
-	}
-	while (*buf - '0' <=3D 9u)
-		buf++;
-	*end =3D buf;
-	return val;
-}
+>=20
+> Rob
 
-	David
+--=-l/3+qkQAWaxnFt1MJeEB
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 
+-----BEGIN PGP SIGNATURE-----
+
+iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmnGhzsbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSPwIP/1Jz/Y1Rr5cQEs7B6/De
+bELTI3cyFlsLlPnrjjMJHHmsWdaCOnP6/tq9j916t+b9d18G9u0n6YCzOJSYM8Bc
+rknvuSm5VaYS3rjFASfsMfWqgXDR9+Y4tEkBDVt6p6J7a2+qIFn+2itmN1ZRfvwL
+LPKoniu2G3cGBSiNj7bKtOuXo0/g0AaXMAvKKNIi63SL2voqHQNdkWnl8ebdc5Ve
+B0laeTRHobQmbcZpajrCK7JL4MeOFEyBEQX9oViorP25DzSJycKWJGYF1YYnb86m
+AsS5SRrsN1ePFu5X5qiO7+AspzZ39HAqKBAKDX1VJs6jO+0if6j6n0ztnpIKRkIm
+v5SQ+q7nKPur4YT/tt3g+BvGVVH/r3w90v6GWP/1y+l+joZWBDEOtQw+6auSvtBI
+vMyUDpVsBWjZ0FG8Cz7e6lhRxa+fTO/eCJ4ZFM+BElksOsh9U/itznXdD3ctY8r/
+DSgW3+0uTikb9oOqewpxKcD5RzUP11LmzqS8BiKnNtMJ3AT1E/Z8c9ejjF8rlDqA
+HG/DV7CnFnsNFf2c4n4hveOfA8wdXa0QtnnwI013rS4Ft40knJjgQUFMj3sQVLqS
+GH0HQmTMdC4L2tUeAZp09+KwzMPLky1Tpey8C7atrS/ljHdx+UQid1MjHwrmdpst
+N9YKumtSiDrYZGhyn3i6soLG
+=lpC6
+-----END PGP SIGNATURE-----
+
+--=-l/3+qkQAWaxnFt1MJeEB--
 
