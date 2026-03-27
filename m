@@ -1,186 +1,153 @@
-Return-Path: <devicetree+bounces-281673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281674-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eDOXEmKUxmkyMAUAu9opvQ
-	(envelope-from <devicetree+bounces-281673-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 15:29:54 +0100
+	id EJSoHDiUxmkyMAUAu9opvQ
+	(envelope-from <devicetree+bounces-281674-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 15:29:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB381346132
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 15:29:53 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E69B3460FD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 15:29:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 58F3830BFF22
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:24:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 718C330828EB
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:27:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE22391518;
-	Fri, 27 Mar 2026 14:24:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAB4E3F54AA;
+	Fri, 27 Mar 2026 14:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Q6242UEd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GWfVpPlh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA48F3F20E2;
-	Fri, 27 Mar 2026 14:24:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C790C3F23C9;
+	Fri, 27 Mar 2026 14:27:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774621460; cv=none; b=Qq08CJaIqfy1pLgC0jVN93HFkxFOC6mgxXxMR6M+5/oQNSgUZb4h+gk1FgTQAWukX4sEu0v9hOlvEjjGEB+qdhjAmoFM4+0+MGEeExPeMzHl+0SboIMOydjqFu5se/addKp49FwtDcTGf0aMmHKE/fuH2T0ZxDbiMum9jiCf7vY=
+	t=1774621631; cv=none; b=uWccN80FjaSl+ZRMEcl4iT9CIbSKYFmLb3KAC8oGv7L6j0PzOKO68PxFm9dkBm9Z1ZVKLF7NhnbVNVYPteZmw2Jd74zXWn7BKCmGbFM1UtU2+n0gUdgZXrmD2xtwHgFoB97vz+t0H5EXAnE3L5cChsbZXvoi6xN5sCzob4mt5OI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774621460; c=relaxed/simple;
-	bh=B4keCgz4A2l6iRmTPeNPl7YLtpj6kCreS+MjycvwNVU=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=U6D3XdOWhnybvuYfmEa545m6UahE2T/5YsQAdrHDTsFhm/s0VemoS9tdpLrAOi4qthpfnG/rErOBE7x6ol665BJ/WySKQQ1Ay6nqYtbz2/xu6ihZ5A3jCrcAEf2LFwgunbjj8diYq9IayNM1UnUHecxkbLC942DgTgpSquhelcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Q6242UEd; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id E176226471;
-	Fri, 27 Mar 2026 15:24:13 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id RemHeoGUlZbQ; Fri, 27 Mar 2026 15:24:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1774621453; bh=B4keCgz4A2l6iRmTPeNPl7YLtpj6kCreS+MjycvwNVU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=Q6242UEdYnGkMITmednJtWnN7W73/kQKymKpelhsH9b+JswZN6G8HvXM0vk13TfJ1
-	 y2uPUww4e6BIIDOolFNxJh+LXQdgSg3XZ7a//HT6F44xjFtYI5uc+BLH6Gky7WwfEA
-	 tZdFFCKkkC9pXc4WteNkDoD7UGEn+vt7OA0OwEvWoXdoe4+Kz4BUeMEJOzYT37LVEK
-	 YYnesd5LUWNPEK8C3buOHYY0zxzGZOU7EHFOVfc6TfNbFRO0Qn5urqZUtERPLXQiyr
-	 vbffMLITtH/1fbdqe/iBvuENcTCkFPyPIbnFUopTqNMtmf0GUFei2Qq+ftTkJsPP1r
-	 8JoYLSEqR5Umg==
+	s=arc-20240116; t=1774621631; c=relaxed/simple;
+	bh=/QeOB+Z7W09aV1b0ziQv/YIh9g569a7nv45izCn4ZV4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bejOcK5/K10GLoP7EOYarLyHJRzJIJl3PnsNr3E7rFOZV82i/lyKZYvzybz9qEh1EFeVqtn0BO8BLalw8kOhnctbOEvXP3f3PaYYgOF+ZAea3NuOnSHyOQA49O9+X4laG5GLmdlJwWsuoWZYc1VKor1YTX96Au0b0j2eSc/0ii4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GWfVpPlh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 012E4C19423;
+	Fri, 27 Mar 2026 14:27:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774621631;
+	bh=/QeOB+Z7W09aV1b0ziQv/YIh9g569a7nv45izCn4ZV4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GWfVpPlhSxyNfQsi+TL0X7lQRFB6Uf4vvmwHhR0ZDmvhd5uC9LIQMnCF1BS51S5cX
+	 yc3VYGwLA0gsvToug3oKHBB1XmK4gKEIFsD2l+HlFOT7T5zKCrYJCPz7izJx6KrSdr
+	 6LQzDDVshzIdaXX/D6x8nAPjK0HOvjDft71KkZfvnMU3hcfeOdM0qta3cCjk8JYirf
+	 nYFvNvwt2ano7MfHThAhczs0Xq0w5CBxXaoVumJ9uE08X//JrLBYPnSkyVykKijw5a
+	 8V1tMw1agddcMteZJjLrBCkcWAWWaXd47dPQDqLHuBQ2lOEx2i4aNbg7YKKrN5IcSc
+	 hsb/qhtp7OG0A==
+Date: Fri, 27 Mar 2026 15:27:08 +0100
+From: Thierry Reding <thierry.reding@kernel.org>
+To: Sumit Gupta <sumitg@nvidia.com>
+Cc: treding@nvidia.com, jonathanh@nvidia.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, bbasu@nvidia.com
+Subject: Re: [PATCH v2 0/2] soc/tegra: cbb: Add Tegra238 support
+Message-ID: <acaTo8UpTACvjO-3@orome>
+References: <20260325125726.2694144-1-sumitg@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 27 Mar 2026 14:24:13 +0000
-From: Rustam Adilov <adilov@disroot.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stanley
- Chang <stanley_chang@realtek.com>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/6] dt-bindings: phy: realtek,usb2phy.yaml: extend for
- resets and RTL9607C support
-In-Reply-To: <20260327-berserk-roaring-quetzal-24dd7e@quoll>
-References: <20260326193419.48419-1-adilov@disroot.org>
- <20260326193419.48419-4-adilov@disroot.org>
- <20260327-berserk-roaring-quetzal-24dd7e@quoll>
-Message-ID: <7fd85481d499b86a26410d5b90f7041b@disroot.org>
-X-Sender: adilov@disroot.org
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oejbgn3l2na3dgct"
+Content-Disposition: inline
+In-Reply-To: <20260325125726.2694144-1-sumitg@nvidia.com>
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281673-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[disroot.org:+];
+	TAGGED_FROM(0.00)[bounces-281674-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,disroot.org:dkim,disroot.org:mid]
-X-Rspamd-Queue-Id: AB381346132
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1E69B3460FD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-27 08:28, Krzysztof Kozlowski wrote:
-> On Fri, Mar 27, 2026 at 12:34:16AM +0500, Rustam Adilov wrote:
->>  description: |
->> -  Realtek USB 2.0 PHY support the digital home center (DHC) RTD series SoCs.
->> +  Realtek USB 2.0 PHY support the digital home center (DHC) RTD and
->> +  RTL9607C series SoCs.
->>    The USB 2.0 PHY driver is designed to support the XHCI controller. The SoCs
->>    support multiple XHCI controllers. One PHY device node maps to one XHCI
->>    controller.
->> +  This driver also supports the OCHI and EHCI controllers.
-> 
-> Hardware is fixed, does not change. Don't reference your driver changes
-> here.
 
-Will remove this line.
->>  
->>    RTD1295/RTD1619 SoCs USB
->>    The USB architecture includes three XHCI controllers.
->> @@ -57,6 +59,12 @@ description: |
->>    XHCI controller#1 -- usb2phy -- phy#0
->>    XHCI controller#2 -- usb2phy -- phy#0
->>  
->> +  RTL9607C SoCs USB
->> +  The USB architecture includes OHCI and EHCI controllers.
->> +  Both of them map to one USB2.0 PHY.
->> +  OHCI controller#0 -- usb2phy -- phy#0
->> +  EHCI controller#0 -- usb2phy -- phy#0
->> +
->>  properties:
->>    compatible:
->>      enum:
->> @@ -69,6 +77,7 @@ properties:
->>        - realtek,rtd1395-usb2phy-2port
->>        - realtek,rtd1619-usb2phy
->>        - realtek,rtd1619b-usb2phy
->> +      - realtek,rtl9607-usb2phy
->>  
->>    reg:
->>      items:
->> @@ -130,6 +139,9 @@ properties:
->>      minimum: -8
->>      maximum: 8
->>  
->> +  resets:
->> +    maxItems: 1
->> +
->>  required:
->>    - compatible
->>    - reg
->> @@ -157,6 +169,15 @@ allOf:
->>      then:
->>        properties:
->>          realtek,driving-level-compensate: false
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - realtek,rtl9607-usb2phy
->> +    then:
->> +      required:
->> +        - resets
-> 
-> If it is unclear, they might not have it so,
-> 
-> else: ... :false
+--oejbgn3l2na3dgct
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 0/2] soc/tegra: cbb: Add Tegra238 support
+MIME-Version: 1.0
 
-Right, i suppose if RTD SoCs had them they would have been added here already so..
-will make the resets false for other devices
+On Wed, Mar 25, 2026 at 06:27:24PM +0530, Sumit Gupta wrote:
+> Add support for Control Backbone (CBB) 2.0 based fabrics in Tegra238 SoC.
+>=20
+> The series includes:
+> - DT binding updates for Tegra238 CBB compatible strings
+> - Driver support for Tegra238 AON, APE, BPMP, and CBB fabrics
+>=20
+> v1[1] -> v2:
+> - Add DT maintainers for review. Forgot to add earlier.
+>=20
+> Sumit Gupta (2):
+>   dt-bindings: arm: tegra: Add Tegra238 CBB compatible strings
+>   soc/tegra: cbb: Add support for CBB fabrics in Tegra238
+>=20
+>  .../arm/tegra/nvidia,tegra234-cbb.yaml        |   4 +
+>  drivers/soc/tegra/cbb/tegra234-cbb.c          | 134 ++++++++++++++++++
+>  2 files changed, 138 insertions(+)
+>=20
+> [1] https://lore.kernel.org/lkml/20260303155927.1885297-1-sumitg@nvidia.c=
+om/
 
-> see example-schema.
-> 
-> Best regards,
-> Krzysztof
+Applied after adjusting the commit message as suggested by Krzysztof.
 
 Thanks,
-Rustam
+Thierry
+
+--oejbgn3l2na3dgct
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmnGk7wACgkQ3SOs138+
+s6G/ZQ/7BwaUApwCYPzpAw1MzCOBKNAzVyLcuyL3QAvp9CzvS0VmfcdqeORpQS0D
+lYbk9bPbVXNKpyIYnB3Yhu+2KKBG5WJP+gdUVc1LRHgWpTbU5CjQNB6n+hG16G1S
+S0IjenIoRPj+IZFrnzn2HiAwwDbP/mzWX0HVTe9vrM+/hmT/CFXxWh8qGNdr1JBB
+yJDWg+u9A7xQMl80pAIVRFsq6o5ptsClFHeB74CCQtXeazPJw46H9639BG4Eb6Gb
+TshhBNCeo/1rbP2O1h05uMxmKoDirvaE6G8mTLDty7XweYeMBF8d6+PONG25XM10
+Jk89cnX8Ewiy99ag63xSMU9+q5U8b9UEmc/Ux99KONWHASON+zfGvVYEROspGe4o
+ies+hGBUYL9GcWKwLRtRu04AtVr2sg33nySzkpQQFiOHzcdi24I19dxNaY7fblPe
+D700tQJx7XWHQws64vB6I5cgST+/5sDOKx0qfSHQUTFB/U9honK3QFnsDggSPJVD
+iVdOdo7zUm/o5If1wY/MSjftAF/w8FLVudRT0kbno5VsKorGfS5k2VImTx1R45WA
+oFfEE5GLa0PHPspts/xNjQXOOCFvULuhHCY1dru74FxBwkkwviXlo3/NdQMI3U/V
+Qif5oxgDc+XykaR7LuKfbNP4S3SyFqDnjiVlAwDxYqQuG2Pux+A=
+=rIbU
+-----END PGP SIGNATURE-----
+
+--oejbgn3l2na3dgct--
 
