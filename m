@@ -1,58 +1,53 @@
-Return-Path: <devicetree+bounces-281679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281680-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wIKJOESZxmnrMQUAu9opvQ
-	(envelope-from <devicetree+bounces-281679-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 15:50:44 +0100
+	id wLE5CTqbxmnrMQUAu9opvQ
+	(envelope-from <devicetree+bounces-281680-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 15:59:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8001A346534
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 15:50:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F5CE346687
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 15:59:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9631A307BE58
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:47:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 66E59301452B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:55:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EE023F99DF;
-	Fri, 27 Mar 2026 14:47:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 869253FA5EB;
+	Fri, 27 Mar 2026 14:55:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="2vByoiUz"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="NVUt3fDw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B8D3F8DE0
-	for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 14:47:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF5843F99DF;
+	Fri, 27 Mar 2026 14:55:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774622848; cv=none; b=YFzu5hZs69z3wad6cNYBB4bUoyarxwFlSCnw9bw6XoUAlCXVNTXEB67058xw1MLZN8eDMBSCdaYwDWqkzDJ5QcqD2TtV1Q8bs2fKSPJe5If7EX1h+akCi7OQuzeV+ZLLR4B4Qh0VVnTViTZSrCL0yUCS7sGoJP9v5qVQ7Tz9e+c=
+	t=1774623322; cv=none; b=ftCJIL70y/FOviEgPPWpWCNKFPBrktQ9OuYD82qFIpx8K+ZcwBg8gU6xhoPf8NBj9m29fT8kNjR0zyhy78SsID3+JubQWUYzsrj0wEE+DRI5yIvzMsZ99KdNcCnHWr1wqsGgEE5HGwAObSbEvRsLDy2s8EkSG3Ij0V9IMa1CpHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774622848; c=relaxed/simple;
-	bh=mv50InzxGmrH/dwP6GxECiBQQLiAGey6qxvdpRhNokk=;
+	s=arc-20240116; t=1774623322; c=relaxed/simple;
+	bh=T+KQ37jHwWtYw3vucW7+wu32h2LngUqMA4j4rk4dfyE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EXHsI/n5/FPC9NIobnrebSr8knyLXFp8olqMuqOJAmJNivXRpM12SRgGy7q6QLAaj8cFXRHvpDV+TAMB5gdfxL7VYQ6es+Nup/yIF/ejMOm50E54t6f5Mx48iChGXZyiC+9K4DbdONv3nMkpZ+2um5M0avMwLL2HiZC77JT/w0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=2vByoiUz; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 874984E42823;
-	Fri, 27 Mar 2026 14:47:24 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 4F9AE60230;
-	Fri, 27 Mar 2026 14:47:24 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C99471045138A;
-	Fri, 27 Mar 2026 15:47:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774622843; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 In-Reply-To:Content-Type; b=Lrh/BQYw0rJG7Ucxuc/wz9y/o0eLL2jPF4cfJW+bzx2AYhnRZML5pz+l06wtUcjrkvvuVgAxECnAN8tprM9QH+BTqlazVR2KyJZ/SgLgu1/cLqBa4SlClJg+d3kE/rI135ZXloe+/J1ojA45TVyjJYR96QjTXdigX2gfbCJvFOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=NVUt3fDw; arc=none smtp.client-ip=178.251.229.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E68BA108582;
+	Fri, 27 Mar 2026 15:55:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1774623317;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=KT8q+a1H6pXhdT5WL17Gq3UEkkAXi2qzZCZkmYxjylw=;
-	b=2vByoiUz6mG3CAaErP7kEjeSdkD4QI6FX/KBSqZ42DHCamxYP+sfFHSaINePBIaC/SRWyI
-	dFoldWu6CFt07LX0A5PiQrK9pvF0ZDPBgO+pccoIbBVvsAFEif+t45mynU9mzqW+t9xAaf
-	41w68mQYIPmWSqYg9hnx9ojzOpRXoR5jZO70pfEYJZ2niNB1A+pRpYax7j4KU+K3d18aZ+
-	veXt3F1Iqo8ksCGa25hJvQLeo1MC/VjkRZG+9SpKGEfz4hlFPkQa+mc4N5MdwtoiNaV68F
-	N0DVLISjTTUXV+zp1ZThR9iytf9vQcK7+3468T69B6lpVvRsFrBAucPTB0B0iQ==
-Message-ID: <2848158c-a807-4d26-be87-248d4107c5b4@bootlin.com>
-Date: Fri, 27 Mar 2026 15:47:18 +0100
+	bh=O3U6KBp5eEItdm326gyDQSusCSAfn1puIfEFX1XPUdk=;
+	b=NVUt3fDwRABcutDS7WJf5ejKhiImODoNwU89rycq8ImOEeRghCk4mHysUjpxLN+JdLxrAD
+	YysQpaCV5wz9GErd08aZm92Sjtx7Hyxe4xkrz2m19gQ8HejFS6dmM/wmRVgfvGoR7qJFYt
+	9TLOjEb2UZmwRRfo7dzMn43E/2jJUrbMMFa6m7VSthcZ5rTn1uRBwPgaX5ARIYUpmCZ01L
+	d7tU4T5XCqnTgL129b541YEVYG9auPJ5sNTZJ/7PeMCKHQPA3fTkrE0/jxYepIHpm93mzm
+	csG7ctMpvOfcfyZSqRo4jk2bPoksajsq13/wzLL28DcUNhtZu0GDQPy8KTTgsQ==
+Message-ID: <80e21085-84b9-4ebd-9a60-1d7acfc1a56b@nabladev.com>
+Date: Fri, 27 Mar 2026 15:55:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +57,8 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 3/3] net: dsa: microchip: implement KSZ87xx Module 3
  low-loss cable errata
-To: Vladimir Oltean <olteanv@gmail.com>,
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>,
+ Vladimir Oltean <olteanv@gmail.com>,
  Fidelio Lawson <lawson.fidelio@gmail.com>
 Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
  Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
@@ -78,171 +74,58 @@ References: <20260326-ksz87xx_errata_low_loss_connections-v1-0-79a698f43626@exot
  <20260326-ksz87xx_errata_low_loss_connections-v1-3-79a698f43626@exotec.com>
  <20260326-ksz87xx_errata_low_loss_connections-v1-3-79a698f43626@exotec.com>
  <20260326094211.hdaf4tz7lbjyjznn@skbuf>
+ <2848158c-a807-4d26-be87-248d4107c5b4@bootlin.com>
 Content-Language: en-US
-From: Bastien Curutchet <bastien.curutchet@bootlin.com>
-In-Reply-To: <20260326094211.hdaf4tz7lbjyjznn@skbuf>
+From: Marek Vasut <marex@nabladev.com>
+In-Reply-To: <2848158c-a807-4d26-be87-248d4107c5b4@bootlin.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-281680-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281679-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[bootlin.com,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bastien.curutchet@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-0.940];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.931];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nabladev.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,exotec.com:email,bootlin.com:dkim,bootlin.com:mid]
-X-Rspamd-Queue-Id: 8001A346534
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nabladev.com:dkim,nabladev.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8F5CE346687
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Vladimir, Hi Fidelio
+On 3/27/26 3:47 PM, Bastien Curutchet wrote:
 
-On 3/26/26 10:42 AM, Vladimir Oltean wrote:
-> On Thu, Mar 26, 2026 at 10:10:23AM +0100, Fidelio Lawson wrote:
->> Implement the "Module 3: Equalizer fix for short cables" erratum from
->> Microchip document DS80000687C for KSZ87xx switches.
->>
->> The issue affects short or low-loss cable links (e.g. CAT5e/CAT6),
->> where the PHY receiver equalizer may amplify high-amplitude signals
->> excessively, resulting in internal distortion and link establishment
->> failures.
->>
->> Depending on the selected workaround (1 or 2), the driver writes a
->> specific value to the indirect PHY register
->> using the 6E/6F/A0 indirect access mechanism.
->>
->> The errata fix is applied during global switch initialization when
->> enabled via device tree.
->>
->> Signed-off-by: Fidelio Lawson <fidelio.lawson@exotec.com>
->> ---
->>   drivers/net/dsa/microchip/ksz8.c | 46 ++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 46 insertions(+)
->>
->> diff --git a/drivers/net/dsa/microchip/ksz8.c b/drivers/net/dsa/microchip/ksz8.c
->> index 78b42cf50ce2..b6f3a1ce85fc 100644
->> --- a/drivers/net/dsa/microchip/ksz8.c
->> +++ b/drivers/net/dsa/microchip/ksz8.c
->> @@ -1901,6 +1901,41 @@ void ksz8_phylink_mac_link_up(struct phylink_config *config,
->>   		ksz8_phy_port_link_up(dev, port, duplex, tx_pause, rx_pause);
->>   }
->>   
->> +static int ksz8_handle_module3_errata(struct ksz_device *dev)
->> +{
->> +	int ret = 0;
-> 
-> "ret" does not need to be zero-initialized. It is unconditionally
-> overwritten by ksz_write8().
-> 
-> And please sort lines with variable declarations in decreasing line
-> length order. Netdev calls this "reverse Christmas tree" ordering and is
-> the preferred coding style.
-> 
->> +	const u16 *regs = dev->info->regs;
->> +	u16 indir_reg = 0x0000;
->> +	u8 indir_val = 0x00;
->> +
->> +	switch (dev->low_loss_wa_mode) {
->> +	case KSZ_LOW_LOSS_WA_1:
->> +		indir_reg = 0x3C;
->> +		indir_val = 0x15;
->> +		break;
->> +	case KSZ_LOW_LOSS_WA_2:
->> +		indir_reg = 0x4C;
->> +		indir_val = 0x40;
-> 
-> Do the 3c and 4c registers have any associated documentation? Do we know
-> what they are or what they do? We should have some macros for them,
-> instead of magic numbers.
-> 
->> +		break;
->> +	default:
->> +		break;
-> 
-> Is it expected that in the default case (no workaround), the code flow
-> writes indir_val = 0x00 to indir_reg = 0x0000? Or would it be better to
-> just exit early without making any change?
-> 
->> +	}
->> +
->> +	mutex_lock(&dev->alu_mutex);
->> +
->> +	ret = ksz_write8(dev, regs[REG_IND_CTRL_0], 0xA0);
->> +
->> +	if (!ret)
->> +		ret = ksz_write8(dev, 0x6F, indir_reg);
->> +
->> +	if (!ret)
->> +		ret = ksz_write8(dev, regs[REG_IND_BYTE], indir_val);
-> 
-> Is this sequence better suited for ksz8_ind_write8()? Perhaps wrapped in
-> another layer similar to ksz8_pme_write8(), once we know what the magic
-> numbers represent in terms of indirect table?
-> 
->> +
->> +	mutex_unlock(&dev->alu_mutex);
->> +
->> +	return ret;
->> +}
->> +
->>   static int ksz8_handle_global_errata(struct dsa_switch *ds)
->>   {
->>   	struct ksz_device *dev = ds->priv;
->> @@ -1915,6 +1950,17 @@ static int ksz8_handle_global_errata(struct dsa_switch *ds)
->>   	if (dev->info->ksz87xx_eee_link_erratum)
->>   		ret = ksz8_ind_write8(dev, TABLE_EEE, REG_IND_EEE_GLOB2_HI, 0);
->>   
->> +	/* KSZ87xx Errata DS80000687C.
->> +	 * Module 3: Equalizer fix for short cables
->> +	 * The receiver of the embedded PHYs is tuned by default
->> +	 * to support long cable length applications.
->> +	 * Because of this, the equalizer in the PHY may amplify
->> +	 * high amplitude receiver signals to the point that
->> +	 * the signal is distorted internally
->> +	 */
->> +	if (!ret && dev->low_loss_wa_enable && ksz_is_ksz87xx(dev))
->> +		ret = ksz8_handle_module3_errata(dev);
->> +
->>   	return ret;
->>   }
->>   
->>
->> -- 
->> 2.53.0
->>
-> 
-> FYI, the driver is in a restructuring process. The ksz88xx_switch_ops
-> will be split out of the common ksz_switch_ops. This will conflict with
-> your series, so you should rebase on top of that much larger set.
-> You can coordinate with Bastien Curutchet to see what is the status:
-> https://lore.kernel.org/netdev/20260313153849.qkfzv5c2u6fepjku@skbuf
+Hello Bastien,
 
-Indeed, I'm currently polishing a first iteration for it. I'll send it 
-ASAP.
-
-
-Best regards,
-Bastien
+>> FYI, the driver is in a restructuring process. The ksz88xx_switch_ops
+>> will be split out of the common ksz_switch_ops. This will conflict with
+>> your series, so you should rebase on top of that much larger set.
+>> You can coordinate with Bastien Curutchet to see what is the status:
+>> https://lore.kernel.org/netdev/20260313153849.qkfzv5c2u6fepjku@skbuf
+> 
+> Indeed, I'm currently polishing a first iteration for it. I'll send it 
+> ASAP.
+I would argue that this low-loss cable errata is a bugfix, so maybe that 
+should have a priority over restructuring ?
 
