@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-281790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281791-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MPdOIBDbxmkoPQUAu9opvQ
-	(envelope-from <devicetree+bounces-281790-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 20:31:28 +0100
+	id +MtfBEnbxmkoPQUAu9opvQ
+	(envelope-from <devicetree+bounces-281791-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 20:32:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D80EC34A2B7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 20:31:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A58B134A32A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 20:32:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 745533104068
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 19:26:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7015A30191B3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 19:26:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D569737CD57;
-	Fri, 27 Mar 2026 19:26:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD88037CD57;
+	Fri, 27 Mar 2026 19:26:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF2537CD41;
-	Fri, 27 Mar 2026 19:26:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A5E3750B9;
+	Fri, 27 Mar 2026 19:26:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774639584; cv=none; b=RBoVy7Gn85zo+vrk+sF1d8MaTc9KLv+D6Ca+OnS+GEgAD3IW9jzarohVySb0arVJZYtylB5o6eaMGO6CGyTZXgCMWjp0TW7EQCR8LHIFdZahPZUUfxWC425TlGmzBr9RDN3Vt/x5+GRokH1JqgXdZb+LdKbNfl6ph+ANvCUbrEo=
+	t=1774639591; cv=none; b=Q8o5ENW3qIVZ2ADq8FbY06noZiY72MJgzVv1wHA5POafYilCMeyiAeHwS+Ja96X0+RRta/NcZ7I+yFIOlnxBjN2NQUJNIWXXXzgQ9lFuw/1yUWEbrTB0QB2ZtBcmtzOeN1bBQlBb8tKW5TDOOWM4QVh7X5qOSO9fTHS+urKzlYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774639584; c=relaxed/simple;
-	bh=iC0usF5gOebcTMo2OP0Wt9AuQh4+e6rlP3cTrBDxJoc=;
+	s=arc-20240116; t=1774639591; c=relaxed/simple;
+	bh=Ot80DxInnW1eLVVpqx2PX5Nm7DsJGE/xGpXm42N7vTE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TweHXvZibCmQarkU8W0cXteTk40hPZqgCxYs0T1S+SFa/EYfIPYD9VBlgJbscVVasAcnmB34MPhr9XWVsCnG9KFybt5u+z+9KXirLCbFueE0TWIsWAA/4crpfw9RuLDRw8K0JeU5chZgQzNLKbOqQhThi7twxH3IVX/TsYCeP9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
+	 MIME-Version; b=bnaN3VA+KGZVL2ToW646F2u2+fSuKTqoRglH5iQu3DOaLCn4KDENi0iDhl4B/kxk9pIk52oJ5LJjIIs7/bGVU3xIdlfS74VPcuGFUplHCO5UCpMj/31nxQMOps4dgVkAi8E9HEOe2bHzmzJ80lEGVQ8voE9bp6u2WdlnF1Q0JXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: ILfxP6rgRxO+dEkL2dNCMg==
-X-CSE-MsgGUID: tLAaFHKqTqSrFQ07E7JunQ==
+X-CSE-ConnectionGUID: ywSHoiNqQrWYgjG7Ei0IjQ==
+X-CSE-MsgGUID: h5KLAy1AQl6rkWp7LV4lhQ==
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 28 Mar 2026 04:26:22 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 28 Mar 2026 04:26:29 +0900
 Received: from demon-pc.localdomain (unknown [10.226.93.36])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 6EFC64014C3F;
-	Sat, 28 Mar 2026 04:26:17 +0900 (JST)
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id D17C44014C3F;
+	Sat, 28 Mar 2026 04:26:23 +0900 (JST)
 From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 To: Biju Das <biju.das.jz@bp.renesas.com>,
 	Daniel Lezcano <daniel.lezcano@kernel.org>,
@@ -56,9 +56,9 @@ Cc: linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Subject: [PATCH 10/11] arm64: dts: renesas: r9a09g077: add MTU3 support
-Date: Fri, 27 Mar 2026 21:24:24 +0200
-Message-ID: <20260327192425.438263-11-cosmin-gabriel.tanislav.xa@renesas.com>
+Subject: [PATCH 11/11] arm64: dts: renesas: r9a09g087: add MTU3 support
+Date: Fri, 27 Mar 2026 21:24:25 +0200
+Message-ID: <20260327192425.438263-12-cosmin-gabriel.tanislav.xa@renesas.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260327192425.438263-1-cosmin-gabriel.tanislav.xa@renesas.com>
 References: <20260327192425.438263-1-cosmin-gabriel.tanislav.xa@renesas.com>
@@ -74,7 +74,7 @@ X-Spamd-Result: default: False [1.64 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
@@ -84,7 +84,7 @@ X-Spamd-Result: default: False [1.64 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-281790-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-281791-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -93,32 +93,32 @@ X-Spamd-Result: default: False [1.64 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[cosmin-gabriel.tanislav.xa@renesas.com,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email,renesas.com:mid,5.93.79.48:email,5.93.129.48:email,4.242.122.192:email]
-X-Rspamd-Queue-Id: D80EC34A2B7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[4.242.122.192:email,5.93.129.48:email,renesas.com:email,renesas.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,5.93.79.48:email]
+X-Rspamd-Queue-Id: A58B134A32A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Renesas RZ/T2H (R9A09G077) SoC has an MTU3 block.
+The Renesas RZ/N2H (R9A09G087) SoC has an MTU3 block.
 
 Add support for it.
 
 Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 ---
- arch/arm64/boot/dts/renesas/r9a09g077.dtsi | 68 ++++++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r9a09g087.dtsi | 68 ++++++++++++++++++++++
  1 file changed, 68 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
-index 3761551c9647..fe5d206d4def 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
-@@ -1116,6 +1116,74 @@ gic: interrupt-controller@83000000 {
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
+index f697e9698ed3..c64b532f3d23 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
+@@ -1119,6 +1119,74 @@ gic: interrupt-controller@83000000 {
  			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
  		};
  
 +		mtu3: timer@90001200 {
-+			compatible = "renesas,r9a09g077-mtu3",
++			compatible = "renesas,r9a09g087-mtu3",
 +				     "renesas,rz-mtu3";
 +			reg = <0 0x90001200 0 0xb00>;
 +			interrupts = <GIC_SPI 420 IRQ_TYPE_EDGE_RISING>,
@@ -186,7 +186,7 @@ index 3761551c9647..fe5d206d4def 100644
 +		};
 +
  		adc0: adc@90014000 {
- 			compatible = "renesas,r9a09g077-adc";
+ 			compatible = "renesas,r9a09g087-adc", "renesas,r9a09g077-adc";
  			reg = <0 0x90014000 0 0x400>;
 -- 
 2.53.0
