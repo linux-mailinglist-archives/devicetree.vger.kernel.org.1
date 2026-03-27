@@ -1,181 +1,278 @@
-Return-Path: <devicetree+bounces-281653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281675-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eGYPCJmHxmlALQUAu9opvQ
-	(envelope-from <devicetree+bounces-281653-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:35:21 +0100
+	id oCgOOHGWxmnrMQUAu9opvQ
+	(envelope-from <devicetree+bounces-281675-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 15:38:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B572D3454DB
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:35:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43B99346354
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 15:38:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D2769306EB35
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 13:30:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A4A03052B94
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 14:32:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 520533EC2EE;
-	Fri, 27 Mar 2026 13:30:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD5B83F23A4;
+	Fri, 27 Mar 2026 14:32:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a2caN0+u"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Q4PigAW8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011023.outbound.protection.outlook.com [40.107.130.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 165E938655F;
-	Fri, 27 Mar 2026 13:30:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774618219; cv=none; b=HJR6cRlsbmnMr4D39+18mQXzQ2kCZdtEuIuqv1nA8D7rYcT1RmdPAaHmeDXTuHNy2ixHZNl30uzPDvIv9DNj7Ie7vilotaKLEVJdsc2OSn/ViPa9rHrjOzZRyWm0Z5/3dXa/8qtGYMhUyLtbkil66MjI5C+wsjht6NmoB5LssVk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774618219; c=relaxed/simple;
-	bh=5BGVxKnhc8w27oGyJiGN11xQUs8HA3TLrtWytOF51bE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Bal3RdOPrQzY21ERx2CPtNvEgi7OqnNPwOK+TyM1GHgg6ezl93cnCl4DdYOgwgJC/16wjXsRpKK2uXSQD31gzWjdDP4P2LpreFgIFTfh6NHKDRSFWRiZOIGYzAhWonSsGBy1KpbKnqw5NPyhZ8z9kIZx23/C1B9HOqBHCrQnbRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a2caN0+u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E4528C19423;
-	Fri, 27 Mar 2026 13:30:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774618219;
-	bh=5BGVxKnhc8w27oGyJiGN11xQUs8HA3TLrtWytOF51bE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=a2caN0+uO4hO72Lq8cvot0kOAUNeuU9iN2l0TomchpazLL3PnujD6zYD1xtZ3T1ge
-	 hQj4swxQ4FbJfli3f0teDmdbGGxiEVZyVcYs1b/+QuCLgU1/cCtjFH8PLHIagv70S/
-	 NQPAKyv9rIbIRChOt0IqE3LKJn0z1GBpt6nd51fPEGa2u23cqEWbBjQoz0tXJUTcU8
-	 4xmDiEJ+r2UXA7ftuEpRaz0b58bCrCWehbWhfW1g0hdbbKi5exFCXmcveMV6wRUulz
-	 BzwKJYWLgdBgrjIpIsMHmMjq6B8h+CKHNTIfQqyOQ6o364pBszfv0+3tKx9VldbElX
-	 hlnI9kJ7Wy9VQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D486010ED674;
-	Fri, 27 Mar 2026 13:30:18 +0000 (UTC)
-From: Cristian Cozzolino via B4 Relay <devnull+cristian_ci.protonmail.com@kernel.org>
-Date: Fri, 27 Mar 2026 15:30:52 +0100
-Subject: [PATCH v4 6/6] arm64: dts: qcom: msm8953-flipkart-rimob: Enable
- Hall sensor
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67B6B3ED110;
+	Fri, 27 Mar 2026 14:32:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.23
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774621958; cv=fail; b=L9eYBy4h8+YQMJTRfobJnitV1Qs4G0RL0xh7xEPd2OBTpxhJBWMNW3CU4suZSHVH2nyTNra3m4nUTU6hPh0Xg/rAWYNx71EGbs+8fJQXFsduj2w4BlUsywtuDjVznNGV2x9ck6E54yJyPtKgu6xsSDQkWsb+WAkhlP5aildL9kM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774621958; c=relaxed/simple;
+	bh=4hOKi8ImEPvTIZ5aT6M82MPIkpG2neLrGdgoLKd4RDk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=b6aPIxRTAUZle33rKHeGo91qA4ghPsch/Js3KFrXnzzm7A9s7+DcHDfHQM66owEpPkyHol52nCIb5s7o2JkZTY29Znawk0/9TIk6TPsohWCxYfo1/SDUIhszrMytim9Asu1sIwzOPklkvv2pAGIFuPSX/PNr8vyslDA9xrGlhE4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Q4PigAW8; arc=fail smtp.client-ip=40.107.130.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=R3gDyXVLqxNudLPYnfy1sY7sHjXbJL9AeW4Dl//5nZpKh0QpKRuTu9Ml3kKru/eWCRlxHI0wmmTO+HScqfeGNGPoX7I1dVvpY1WwFdV08ExCy7nmwSoIl4EvXxbw0UQYRDkw2qOBD/+pOQCJHRj9tQxy7O74SzSZFaI12mDFBZGbw1pTdjBMe0dz1FPpvRyiVX5nV9koeBH2liO9bKH1u8kcEvzGF4wHUMyvmLnV7RSZHoNdGH/FUI0PnLMU6AAo6HiwfcnB5POfXLj9D1MiVO6y45IjNVKwNPYBZcy8MN3RbFh6BvZ49QroE8te7FpkmtrDHSf4f+YLI3fQGCYltQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oDAGWYFnOWrSyzhJRtFUl6uWjJY92VZ2GiL2CNjA8NQ=;
+ b=OS9IV11R2RtXQ/MLUKcEjzg1BOdno7kvkj7QWvbolbJXrnNsiEZUeF32oWOd3KCC6Kem1mqZCN9rjvtOCF7hAKbY8Lkr42Zf4MevdZdkXT6NPUVOhvf59yQi/GCJZ+zWy1Cg3AyVy62H80qSROTnsy1nACQ9sUBYKH0e+Q542jvVmyUIW3I+2NqBRmvS42QWd4SbG2VgNi3T3gXBLu8MZMcfwV27NHIUn0V7iA7VTZomcDzvfKLZD7sRtwiejS8/n5VKqsXpdZvXeSC1IhC1VQATBwkbWC5rrUUZkuAE7OKBH8FnwU28gl8u8LdrNBk75utv2TqSZUrG9e8ANoNC/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oDAGWYFnOWrSyzhJRtFUl6uWjJY92VZ2GiL2CNjA8NQ=;
+ b=Q4PigAW8EsV2Fmuze7l9uU0dFQteeopy/SJEtwxsybA6mYk3FalhzUTpq29hF2oyZAwmlWwzw4kNCLEpuls9HteY+R8GUbqyKsUlkqNyTYwr0nWm7ocHxjRS608OwP/bsRPuayIt2agb+huoVIFJaQ3Ltr0ggKhR2HGL3u+nkoHZR6WSi9Afg8VX5ogSBVu/e/X0nt/tLUEZUgxCUDS/ak/WEr18Lewa76ITwopYtFkvlAwmsWybEVSk410J/xX392o+LTk5Fe7OykdOHcebNamHzKzTZFwJo0Sg02UkN6/Bq+uBkflSjBgjvbU1ImAvw+KMjiTeiQn9TC5gNmyNnQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by PA4PR04MB7566.eurprd04.prod.outlook.com (2603:10a6:102:f0::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.23; Fri, 27 Mar
+ 2026 14:32:32 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9745.023; Fri, 27 Mar 2026
+ 14:32:32 +0000
+Date: Fri, 27 Mar 2026 10:32:17 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Gilles Talis <gilles.talis@gmail.com>,
+	Viorel Suman <viorel.suman@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Manoj Sai <abbaraju.manojsai@amarulasolutions.com>,
+	Matteo Lisi <matteo.lisi@engicam.com>,
+	Ray Chang <ray.chang@technexion.com>,
+	Richard Hu <richard.hu@technexion.com>, Heiko Schocher <hs@denx.de>,
+	Martyn Welch <martyn.welch@collabora.com>,
+	Josua Mayer <josua@solid-run.com>,
+	Goran =?utf-8?B?UmHEkWVub3ZpxIc=?= <goran.radni@gmail.com>,
+	=?iso-8859-1?Q?B=F6rge_Str=FCmpfel?= <boerge.struempfel@gmail.com>,
+	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+	Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, kernel@dh-electronics.com,
+	Peng Fan <peng.fan@nxp.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>
+Subject: Re: [PATCH v2 00/12] arm64: dts: imx8mp: Correct PAD settings for
+ PMIC_nINT
+Message-ID: <acaU8SPQ3aJkG808@lizhi-Precision-Tower-5810>
+References: <20260326-imx8mp-dts-fix-v2-v2-0-62c4ce727448@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260326-imx8mp-dts-fix-v2-v2-0-62c4ce727448@nxp.com>
+X-ClientProxiedBy: BYAPR08CA0043.namprd08.prod.outlook.com
+ (2603:10b6:a03:117::20) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260327-rimob-new-features-v4-6-06edff9c4509@protonmail.com>
-References: <20260327-rimob-new-features-v4-0-06edff9c4509@protonmail.com>
-In-Reply-To: <20260327-rimob-new-features-v4-0-06edff9c4509@protonmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Cristian Cozzolino <cristian_ci@protonmail.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774621871; l=1551;
- i=cristian_ci@protonmail.com; s=20250620; h=from:subject:message-id;
- bh=qjRJ0X+ghZb8YDf+gcP0JTOiaPJ3AI/2/QR/QNsMqZY=;
- b=nFg5wkNjlIPy6PXSIpFJr1FgiQfn3kXcgy+YIcsZLIkt0OKDd1DDtICYuTGE6ciE/SfMc8Y1h
- NFhe2Ewo7SpDfaz9T0KCVXeHsrng++BSOw/idV8GOX/m7Znp/l9Hcjn
-X-Developer-Key: i=cristian_ci@protonmail.com; a=ed25519;
- pk=xH5IvIPUNHV1Q8R0/pq2CfuVFR/wTiAyuyi6IwedjZY=
-X-Endpoint-Received: by B4 Relay for cristian_ci@protonmail.com/20250620
- with auth_id=438
-X-Original-From: Cristian Cozzolino <cristian_ci@protonmail.com>
-Reply-To: cristian_ci@protonmail.com
-X-Spamd-Result: default: False [1.34 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PA4PR04MB7566:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1884c198-d762-42a1-7737-08de8c0dae7e
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|1800799024|19092799006|376014|52116014|7416014|38350700014|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+ /p+xIP5a70ieozD9xAN3eFWqAF7FrGAR5AuibV7ph3CBwkmnixY3D5LEYC9KUNtFwDhIofHdvxWtIJuZz6/L1chMnPEmS+OdqV4WS4AOlCE6onJi6aL60PapPJ2UM7uy+cDjB1VDfEqk2lC7Qtw081CC2Ryon5gAH7Cf1crX5neV/Nae3Bhu4PU2DoUZ4I4u28SHuQzwfB1jndSp4LNP8aazGt6Rt1yUC3TvGGKCljoDvAEENYp6aYaoovXFIoniuVOLjmjtKvvPJMBLu+t9rvY1n+Nmc/U8bWXaKM4W4uwdpKqwX7BdcVVWVaoMVzrrYw5hNX1YC6os6zR3LSeGGqTz6/8ZHzMJliVmfjWCC6Jh1u9g2b+MvdxVr1aRSTvH3b56ekjlQvVP7brkiNrHueMybPCZEqCP/MC8hJ2HIxVDjCU9YpzwQQCVTNWzilaInAJ/yhJnk2x98FCA57GaZB3cJR+xI9Jk05egCVA11UtOuBKVzJlPse/4/ifL3ZvJvDEgas3L22ZQBriCXo06MzODutuVwfGr6+pC7ON6+RNCfIoP02WIuCR7BIp1URXfeBbII49yBkh4j3rOa72m2hzEMyGTrnqLPdK7T2NVsZ3dtQk9MGXAVOMHhOgwv+apIKxi3a+nfVbAgTQoI0q5z7de7VMYoHQyCyWS811dVbvXISeQ8xhvhQAQ6e2o0MRZVPFkAJhDJtpdsBRDNN5c5GWVxx+cJGSrnO1IY47aCnysbmumNkVjc/VjFF8DNhd0m6GMLMZxiIy/xMNASmT5aqy5LcgFmOhqmjpIQ9RxUgHt+TyzcuVjboIGcfXcgoFY
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(376014)(52116014)(7416014)(38350700014)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?lRTl6NE3QrhOkplOm8Xq59zFnmFg4sIAdZij5MSp/AMCgOCsLhNvM6F53i7y?=
+ =?us-ascii?Q?wzwdasiZx093Geg7f0TaPkDQ9RiBxvaC2rPr/EmMojUzEuO0wZu70lkfgSHS?=
+ =?us-ascii?Q?s4tdjf06B3tEKHiO8uZBIOj0r1tVumqUEaZOq6ZtzuUiwJyf66rblq2V5dZ1?=
+ =?us-ascii?Q?mffegVPFHfOmc4yb7OOA79rtlYmbYFvRqOuRgSHaODg2llnrAffbV1mjI3lQ?=
+ =?us-ascii?Q?WfMmax9Zpa0cEYOa7phBoXGj/Notu3Fz3ouRP9DMm1Zc47C5pzmGM9tZguUb?=
+ =?us-ascii?Q?6ULkk5x+IUdtwvvrK8yCXm02WVNUKOS/We+14nA3C9ryTQbl1LQZi/+Celkp?=
+ =?us-ascii?Q?BBz2/63VP7FAiGHCLyLzkBIRqnOAkh/J0qu4VN01YXvPm46Ux+7rb4lNDG3G?=
+ =?us-ascii?Q?mCJHLmWoio1qTKE/Krf99Agv/TcwC2sofq+F8VFQUBKn8gtVNPTNPvbn1Dq3?=
+ =?us-ascii?Q?dLdqofYHyfkoGXoO08upYoUO9PYQ+UGs3GlwGhNX27vY3zr9vHpUxn5fJJfl?=
+ =?us-ascii?Q?KwK3O5B+jyvMIyLaZ0l6viYoDZxPpmocc0LpSX2FkMrGWeDr1CboCvKdrTzG?=
+ =?us-ascii?Q?sobm+wGzOth1+UAfaAy9Hmeh82192CwLOKlVZs1Xx2BfqB4fG+u4buKC0/cv?=
+ =?us-ascii?Q?86tyrk8jT1uYQDvi68umxHt/JH0QBskmshUzAF43Xit6wCf5njavKIplVaW7?=
+ =?us-ascii?Q?t8wBM9ph9D9KzjHlU08iGC5TGrb+C2Dunhi5HsWcFv25b0sgWLcYllEcbW7L?=
+ =?us-ascii?Q?fBzQn0Wuh25ufIbF4aBNydCmddxGcbb8uznMsGU9CWaPGyRD0YdEwq6MBVw/?=
+ =?us-ascii?Q?SZNDg/iOGhPRFWQ3RHKLfxArGT6pi56VSLQIN9ZbbJB+EPzNFngakJzfvtDm?=
+ =?us-ascii?Q?7Z0SWCtBX9MC19cK+lZwWijheYPzAJ/X3KOEsN7IQFUYfDvaVSOu9HLh8bHd?=
+ =?us-ascii?Q?9iKdDo+X+ZkyV6VXx7DVG2ochPzzkNlS3EwXMdJLMZHF2yDfwm9yMn09JuqD?=
+ =?us-ascii?Q?SU6tuOflsEc1T3atDHtzt9MjRKmlPa9zdFwRiOA2rtNZatppyZg6vrMDLbfM?=
+ =?us-ascii?Q?gUtmxJ5QUaL9xM+J6pGSCUWAJtFBDmMgX1GGBkU23P2q5was1IijywcJqiQf?=
+ =?us-ascii?Q?xkyYusnAOWyuNZgVkjvBk/no7SXxRMECk3qbLZ+flqXW/E5GcqWT8jgTYtH0?=
+ =?us-ascii?Q?ucH2kQebsoXD3gikXUEE/G4YthAUogV+vKpWo/+cwATRDoGyKFnY0r5pO+26?=
+ =?us-ascii?Q?579Ra9e/oMZspewm2S5FYc7BlItO2g5EqPpdtsloYMOmecqLrqLVBDbRQtWe?=
+ =?us-ascii?Q?2zxXrNFYHarDvRaG+Es5AGxKu/K5DA5yYxbJMFJyvkw1qcbO9BUzZE4uxYe4?=
+ =?us-ascii?Q?tjGZf4eZCq05Ct1RDN+L62CtIVy8Cv1NXFqx9KJr0WgClZw7N0YXxZ8+t2Q2?=
+ =?us-ascii?Q?yQs8CnUzgW5PwmC9blO80llqvhqg5iUwOeP0Vh5KXU0I/7e5SUhIRjrJ6fg2?=
+ =?us-ascii?Q?1gXCKua4lXFDkwMz2GOCRzANc+lW5O+Dqv+sv+fDvgMdiwGxkfQMDA8tgD+Z?=
+ =?us-ascii?Q?O/W9gKuOofvpbCnTNaO9qW2h5SgkMrd1Fz9ENYsfWpWCwHO3hmoIQbBOezBT?=
+ =?us-ascii?Q?maWwnycRKXb6441v7HpFZd4OJ2Su5IxLqGT1H1f+0iGtDUuFDP1g6DJl+abZ?=
+ =?us-ascii?Q?gjcTsAlJ7FBSGC6pM9rtwRcAi+qzJE2qPKOuO3qOWMhlJM1v?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1884c198-d762-42a1-7737-08de8c0dae7e
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2026 14:32:32.5342
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: K6h5Tj/njmHv/jRts6mx2BkyDkQdu/QozyeNqX4NI0kXpccpHYpZbVHRCQC/UpyNsW0G3b0FhB8997efWGFEfQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7566
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-281653-lists,devicetree=lfdr.de,cristian_ci.protonmail.com];
+	TAGGED_FROM(0.00)[bounces-281675-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[protonmail.com];
-	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DBL_PROHIBIT(0.00)[5.93.78.104:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,lists.sr.ht,protonmail.com,oss.qualcomm.com];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	HAS_REPLYTO(0.00)[cristian_ci@protonmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[33];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,ideasonboard.com,nxp.com,amarulasolutions.com,engicam.com,technexion.com,denx.de,collabora.com,solid-run.com,dh-electronics.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,protonmail.com:email,protonmail.com:replyto,protonmail.com:mid,qualcomm.com:email]
-X-Rspamd-Queue-Id: B572D3454DB
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:dkim,nxp.com:email]
+X-Rspamd-Queue-Id: 43B99346354
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Cristian Cozzolino <cristian_ci@protonmail.com>
+On Thu, Mar 26, 2026 at 03:28:04PM +0800, Peng Fan (OSS) wrote:
+> As reported in [1], there is interrupt storm for i.MX8MP DEBIX Model A.
+> Per schematic, there is no on board PULL-UP resistors for GPIO1_IO03,
+> so need to set PAD PUE and PU together to make pull up work properly.
+>
+> DEBIX Model SOM also has same issue as reported in [2].
+>
+> I gave a check on current i.MX8MP based boards, most boards have wrong
+> PAD settings with PMIC_nINT. It is low level triggered interrupt.
+> many boards only set PU, but PUE not set, so pull up not work properly.
+>
+> Patch 1 and 2 are to fix issue that confirmed by Laurent and  Kieran.
+>
+> I checked AB2 and NAVQ schematic, so these two boards are also having
+> same issue.
+>
+> For other boards, I not able to find any public schematics. For per
+> the DT settings(interrupt is configured LOW LEVEL trigger), so PMIC_nINT
+> should be configured as PULL UP, per NXP reference design, there is no
+> on-board resistors for PMIC_nINT, it counts on SoC internal PULL. So I think
+> these boards are also having issues. But I use phase "there might be" in
+> commit log.
+>
+> The last two patches, I think the PAD settings are wrong, but not sure
+> they have interrupt storm issues, so just correct the settings.
+>
+> For imx8mp-skov-reva.dtsi, I am not sure whether it needs same fix, so
+> not touch it.
+>
+> [1] https://lore.kernel.org/all/20260323105858.GA2185714@killaraus.ideasonboard.com/
+> [2] https://lore.kernel.org/all/20260324194353.GB2352505@killaraus.ideasonboard.com/
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+> Changes in V2:
+>  - Fix more boards
+>  - Drop preceding zero
+>  - Link to v1: https://lore.kernel.org/all/20260324-imx8mp-dts-fix-v1-1-df0eb2f62543@nxp.com/
+>
+> ---
+> Peng Fan (12):
+>       arm64: dts: imx8mp-debix-model-a: Correct PAD settings for PMIC_nINT
+>       arm64: dts: imx8mp-debix-som-a: Correct PAD settings for PMIC_nINT
+>       arm64: dts: imx8mp-navqp: Correct PAD settings for PMIC_nINT
+>       arm64: dts: imx8mp-ab2: Correct PAD settings for PMIC_nINT
 
-Enable the Hall effect sensor (flip cover) for Billion Capture+.
-The GPIO is mapped to SW_LID events as in other qcom devices.
+This one squash to 7adad1a52c420 ("arm64: dts: imx8mp-ab2: add support for NXP i.MX8MP audio board (version 2)")
+because it is still in my tree.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
----
- arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+>       arm64: dts: imx8mp-icore-mx8mp: Correct PAD settings for PMIC_nINT
+>       arm64: dts: imx8mp-edm-g: Correct PAD settings for PMIC_nINT
+>       arm64: dts: imx8mp-aristainetos3a-som-v1: Correct PAD settings for PMIC_nINT
+>       arm64: dts: imx8mp-nitrogen-som: Correct PAD settings for PMIC_nINT
+>       arm64: dts: imx8mp-sr-som: Correct PAD settings for PMIC_nINT
+>       arm64: dts: imx8mp-ultra-mach-sbc: Correct PAD settings for PMIC_nINT
+>       arm64: dts: imx8mp-dhcom-som: Correct PAD settings for PMIC_nINT
+>       arm64: dts: imx8mp-data-modul-edm-sbc: Correct PAD settings for PMIC_nINT
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts b/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
-index a1280b0e7e90..8e3874740cf9 100644
---- a/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
-@@ -47,9 +47,18 @@ framebuffer@90001000 {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		pinctrl-0 = <&gpio_key_default>;
-+		pinctrl-0 = <&gpio_hall_sensor_default>, <&gpio_key_default>;
- 		pinctrl-names = "default";
- 
-+		event-hall-sensor {
-+			label = "Hall Effect Sensor";
-+			gpios = <&tlmm 46 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_LID>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+
- 		key-volume-up {
- 			label = "Volume Up";
- 			gpios = <&tlmm 85 GPIO_ACTIVE_LOW>;
-@@ -329,6 +338,13 @@ &sdhc_2 {
- &tlmm {
- 	gpio-reserved-ranges = <0 4>, <135 4>;
- 
-+	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
-+		pins = "gpio46";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	gpio_key_default: gpio-key-default-state {
- 		pins = "gpio85";
- 		function = "gpio";
+Other apply to 7.0 fixes branch. Thanks
 
--- 
-2.53.0
-
-
+Frank
+>
+>  arch/arm64/boot/dts/freescale/imx8mp-ab2.dts                    | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp-aristainetos3a-som-v1.dtsi | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts     | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts          | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts     | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp-debix-som-a.dtsi           | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi             | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp-edm-g.dtsi                 | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi           | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp-navqp.dts                  | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp-nitrogen-som.dtsi          | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp-sr-som.dtsi                | 4 ++--
+>  arch/arm64/boot/dts/freescale/imx8mp-ultra-mach-sbc.dts         | 4 ++--
+>  13 files changed, 15 insertions(+), 15 deletions(-)
+> ---
+> base-commit: 66ba480978ce390e631e870b740a3406e3eb6b01
+> change-id: 20260326-imx8mp-dts-fix-v2-89ede7320c6a
+>
+> Best regards,
+> --
+> Peng Fan <peng.fan@nxp.com>
+>
 
