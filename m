@@ -1,279 +1,158 @@
-Return-Path: <devicetree+bounces-281585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281590-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kG+XLMxtxmmkJwUAu9opvQ
-	(envelope-from <devicetree+bounces-281585-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:45:16 +0100
+	id 4AVdAzFuxmmkJwUAu9opvQ
+	(envelope-from <devicetree+bounces-281590-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:46:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE3E4343B60
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:45:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7A15343BC9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:46:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A5D393007B04
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 11:40:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 83D6C30C9FC3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 11:43:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80C1437646A;
-	Fri, 27 Mar 2026 11:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AED237D11E;
+	Fri, 27 Mar 2026 11:43:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D7T6XwZ3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VCFZDlcy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D01534A3B1;
-	Fri, 27 Mar 2026 11:40:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07CF337BE88
+	for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 11:43:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774611653; cv=none; b=qwtaXgeJmB2rR/E1XsjnnBZZvWMEMA4XDRE2o8IEycviRkRVfHt9OYaCfAOhGDb3RMhriI4vilh6h21OaZMbRFrssFfPnH08uqPflGsUeShdLVtSbloL0Z2gp4PRLx/cUPt8A4OOvTiVsKU5HHh2rsV25iUqZUZeF+pLP0lajR8=
+	t=1774611831; cv=none; b=tcbulnLLzMn5vczLZVRVUzFMYoIsfoWnC/N3Iyyr9FFQba5K275olvitcelsAdQMNTYjdr/FKAokaWeYfrH6p++rYnlQcuZobG+KwBlY1H5F77nmx+gph4Kkp1IkPhglJgSc+USpDrCBXFIIvCVmftVq8UBcrng/2P6GnpsNZ6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774611653; c=relaxed/simple;
-	bh=oCaLqBZDaC93Q1Vr3h7PyfXZkIMecNbwtU337s35gvs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=U3XKzZ6L+LyT9lN/AXbkRH1hjbwtWzG0+YA3WPPcgxJipHXdsxHKGpr74YqrCiBZTC4mpHBVcANjtYsHVo+XeBg0B2k/CljVElrvRa6ChaBTkwKgUHqoq1O5xWUfKu/eQD1OPHXgBvgFe6JcKCr0kyoTTfTWGGn7diR/+dIxjuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D7T6XwZ3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B869C19423;
-	Fri, 27 Mar 2026 11:40:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774611653;
-	bh=oCaLqBZDaC93Q1Vr3h7PyfXZkIMecNbwtU337s35gvs=;
-	h=From:Date:Subject:To:Cc:From;
-	b=D7T6XwZ34zs9yQdyTVx0dkD2D8LWcYmheLcu1eaFFcd8P2ABrraru9d+cdKbdsbvm
-	 pLJb3qbhlp5bB7gCVONxyDSV9SCeCx/MPpTTwemBTT4U/B8odquVD5PjjrcLY2UnSG
-	 +SW+PZZ8jZDzwGIp0Wuni6I7s6VEIBmIGx5c5uTQEpnFAZYuQxaBp1+Xb5PrNr0SPY
-	 AnwPdV7XUEBqFchognL/QUpPF5AyRfGGrwxopAGtJnLSNXlX2JkUQCozpMCUdHCQ/X
-	 XnKt0/vfmODQlmArigfT08Vx46MLy+2P1HPyo84mg18ivEtb7meyU6ZCs68gNVU2jJ
-	 Lyp1PuGOj5gxA==
-From: Yixun Lan <dlan@kernel.org>
-Date: Fri, 27 Mar 2026 11:40:40 +0000
-Subject: [PATCH v2] dts: riscv: spacemit: k3: Add i2c nodes
+	s=arc-20240116; t=1774611831; c=relaxed/simple;
+	bh=fHCWZwzs9paKBTwVocNY1Bav5dyWetLR7DtSeiePs98=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rzsUqirmwB6wlbXFeCMqheTmRfNANE9g1zyNpMqsRh7AxGJW5JPJ1R85EexAe4nuMPwQ0dlkHMbKe1CH5UsEzEB3BQavrkByfOpqEm7wQWXFS9kwf2HWK8MIyJxC8CKEdA0ZOdHTi5C34y8/fEeF8iZQjNZS8QPPT+muc2cIdn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VCFZDlcy; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-486507134e4so23549785e9.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 04:43:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774611828; x=1775216628; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fHCWZwzs9paKBTwVocNY1Bav5dyWetLR7DtSeiePs98=;
+        b=VCFZDlcymyWedTuxXRYLvs43DT350r6kakAIya0z6X5bnX+75jGT8Yw4nD7Cm12gRQ
+         kwkVmGTxBj8e7paOG72+bwqJI0e5ojbCmGeugkp8CViZzQWIPSm46YbK4PtV1o+4Ved+
+         zN0V0Lx6M6yzTM/XGarWn82if5ioivbWOSctocnJt7UiGurR6zQ+f0GY3HAkAdKPOEau
+         Bpnc4nDl0p7u87r6vweMFq/UtIzrjzfd9Qq62T7iwZY85qr51rpIQ7rPlPYswMt6BOEW
+         iF56Stgvw/2eSd/WNIaTf6jhVc/+pSc3zbXcwTRimnNaeys9lAi1mlHMG4eR9K796UOw
+         EXNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774611828; x=1775216628;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=fHCWZwzs9paKBTwVocNY1Bav5dyWetLR7DtSeiePs98=;
+        b=sNm24tzza8F+LOFSBoxT1RR+pXxcPvdjjs63nKyYgNgy2w7NShQpRFMxv1pPUa7bVb
+         q3jD/mjsf8UZkvc1JQzHuPchxZp+fr2KBYQRIdWlp3parpne5hRCLgFP99PXO3NZ8dor
+         Glxs4zu6wFv2TqomTX+g0zQgdX+8aNwfEy0Q9n0MEU+4KbCTtSj3ag9uCZ/XiH8pDmAN
+         lorIiBKPoyd9V2rEuhONS/+pqTBW3un47YOiCk6JurlYSpuOIZL/eukzKrbuCFYDXu0y
+         Md0HuYhog8pMlF72DS2s9snPYXf/VeZ81GEhMT06LA7jyNmrovRMgztX7LzLQrObv4UN
+         CBcg==
+X-Forwarded-Encrypted: i=1; AJvYcCXhi1m0my5CydbSHprKgyKYyBYAExjCpT2mYoTaeD6dkAYHqEISBoEjvNkJ+pzXFUT3k7o8vXt8u/Xy@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmpBqziXbLhTReByLvhbCPGbblyHx5ztgjaFCHXZO0Ph+NCh1V
+	RkbsoRlHCFWRuZi+yaOPM6pc3raZw1WNOESaH26AUYO8PnySwuLd/r1f
+X-Gm-Gg: ATEYQzzStwboco2OrUDdYGSnFCCQPcYmaAJ13GOmqy4zcww45Byo9rzkzIKsoFGB/BU
+	XrlxS26yeXA5tTYnFoJo0hXZOxhjzaqjiRiFEripbq9GzU8Yy8aoq5lxtV3SyKu/L0tCKcSUgXw
+	H5WcbYqGB8Hbimn7gGD0TRzMFd0P6w57urkm/JZUnsVA7kk9nfsZE8zyJWmL0qnnqhJrCiZtVt4
+	BpzuLef2xm/1gSVKfADHDLzL7OhpLQ6lmo1RLFoQ/mfNzufiTAYyE6A6OET8dufma7slxD5VXgC
+	iJF2Yb63h2xB5SiMUcEJ48qjy/j7HGWHzgNUJaL3X8zLtQNtfua+NNVC+OtVIGWoBk0mvmtJS19
+	LZVxWH7wQODG/J0qEQlngtTVUNZfSb2WK1vaxJcXPweMdJYFriL0J6WqimmxgDIBVGvkZhnkLJt
+	r9hIwrgf2wVlLeFtRC4t0D3ds4u6pvrR1/D9m7WrxlcEf7DD8QczumG+3BLeHsnY7rb2SFGUU3p
+	jBwMmPUk1jVSjeHqw==
+X-Received: by 2002:a05:600c:810b:b0:487:219e:41c with SMTP id 5b1f17b1804b1-48727f36da5mr33865035e9.28.1774611828249;
+        Fri, 27 Mar 2026 04:43:48 -0700 (PDT)
+Received: from jernej-laptop.localnet (118.red-213-98-130.staticip.rima-tde.net. [213.98.130.118])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48722c6b495sm184799345e9.2.2026.03.27.04.43.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Mar 2026 04:43:47 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v2 2/3] dt-bindings: pinctrl: sun55i-a523: increase IRQ banks
+ number
+Date: Fri, 27 Mar 2026 12:41:04 +0100
+Message-ID: <5976712.DvuYhMxLoT@jernej-laptop>
+In-Reply-To: <20260327113006.3135663-3-andre.przywara@arm.com>
+References:
+ <20260327113006.3135663-1-andre.przywara@arm.com>
+ <20260327113006.3135663-3-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260327-02-k3-i2c-v2-1-2119c0918868@kernel.org>
-X-B4-Tracking: v=1; b=H4sIALdsxmkC/02NQQ6CMBBFr0JmbQ1M0wquvIdh0ZQBJhjQKRIN6
- d2taKLL9/Lz/gqBhCnAMVtBaOHA05gAdxn43o0dKW4SA+Zoc10UKkc1aMXolXWNQWOtq5yGtL8
- KtfzYWuf6w0K3e0rOP9lzmCd5bn9L8bbfNJq/9JJ+1KFssfKlbirnTwPJSJf9JB3UMcYXe8s6v
- 7gAAAA=
-X-Change-ID: 20260311-02-k3-i2c-6ad52566a9a3
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: spacemit@lists.linux.dev, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Yixun Lan <dlan@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5216; i=dlan@kernel.org;
- h=from:subject:message-id; bh=oCaLqBZDaC93Q1Vr3h7PyfXZkIMecNbwtU337s35gvs=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpxmy+UQIbB5rlbm6ksKYnrYxigUqoUiFclyNcr
- 09u2qtkUwWJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCacZsvhsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
- maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+0/thAAipoIdeviWuzI0rLj3aeIfJU13YQxnpu4NkAHDCwdJ2fPLLQAxWove
- xB9agc9Y4XFakaB+mSR/FWzdkf4rZScD675LOkbn7zZmLmWyNEVhJJo12O4yZvWwH9pGBlpVum3
- H/jKHemwUnG5kd0ujb9b09sxr3+Nn1u9KrznmaMe9kvepHVAWGX++/MlcTrwpwTXLvbn0diD9fu
- Q4m1Gkk5o51PrgVgc7MYo8i6ZE5rYB0Ene6+8YS9LO9Bd5uuXEypHZz+UB42B/QJ/q4DYM9sXi2
- 46MnnPzpzyYHAlYvpWyAoXOzI/WTVRLzwpIbTt5zyrRnvBJlhvrXBG76kcp6L/fqL8V2NRt/h37
- M99S8r9lIrE47Y61ReI8EAwLgzRlUg3We522UQBWIrqWkiRBjBKbwfwCMoQ9fLW+Anl37VrFSEJ
- iK7TMslgU3Vtcup4rgNgYLIAg+KbI6ujK0wVqXdKo+j6rZ5AG5sRUIlWQQcrQUDrOTJC/bcJhoC
- x3HU4uQquVpHLrALeWoEn1QXADexzrfdmGh7/r8jRzjnQ/XzlqUnJtri3DVreqIcKTAfPvRZOrI
- CKSfQ6zhfuvon5wL3NigcsKK5+3jWdHJE+Q9+7xhlS84JRK51RVgVzqVNtHhYlweipJAukYZEl5
- 8FlRf+1c+SXv1tvnxOOIoKIS93wcTg=
-X-Developer-Key: i=dlan@kernel.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281585-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-281590-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jernejskrabec@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: AE3E4343B60
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B7A15343BC9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Populate all I2C devicetree nodes for SpacemiT K3 SoC. The controller of
-i2c3 is reserved for secure domain, and not available from Linux. The
-controller of i2c7 simply doesn't exist from hardware perspective, as
-vendor directly name the i2c controller used for PMIC as i2c8.
+Dne petek, 27. marec 2026 ob 12:30:05 Srednjeevropski standardni =C4=8Das j=
+e Andre Przywara napisal(a):
+> The Allwinner A523 SoC implements 10 GPIO banks in the first pinctrl
+> instance, but it skips the first bank (PortA), so their index goes from
+> 1 to 10. The same is actually true for the IRQ banks: there are registers
+> for 11 banks, though the first bank is not implemented (RAZ/WI).
+> In contrast to previous SoCs, the count of the IRQ banks starts with this
+> first unimplemented bank, so we need to provide an interrupt for it.
+> And indeed the A523 user manual lists an interrupt number for PortA, so we
+> need to increase the maximum number of interrupts per pin controller to 1=
+1,
+> to be able to assign the correct interrupt number for each bank.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Signed-off-by: Yixun Lan <dlan@kernel.org>
----
-This series try to introduce a compatible string for the I2C
-controller found in K3 SoC, and add all devicetree nodes .
----
-Changes in v2:
-- drop compatible binding patch which merged into i2c subsystem
-- add comments about why no i2c3 and i2c7
-- Link to v1: https://lore.kernel.org/r/20260325-02-k3-i2c-v1-0-78f29c83d9ac@kernel.org
----
- arch/riscv/boot/dts/spacemit/k3.dtsi | 100 +++++++++++++++++++++++++++++++++++
- 1 file changed, 100 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-index a3a8ceddabec..38e6e212fbf2 100644
---- a/arch/riscv/boot/dts/spacemit/k3.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-@@ -438,6 +438,76 @@ soc: soc {
- 		dma-noncoherent;
- 		ranges;
- 
-+		i2c0: i2c@d4010800 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd4010800 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <36 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI0>,
-+				 <&syscon_apbc CLK_APBC_TWSI0_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI0>;
-+			status = "disabled";
-+		};
-+
-+		i2c1: i2c@d4011000 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd4011000 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <37 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI1>,
-+				 <&syscon_apbc CLK_APBC_TWSI1_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI1>;
-+			status = "disabled";
-+		};
-+
-+		i2c2: i2c@d4012000 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd4012000 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <38 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI2>,
-+				 <&syscon_apbc CLK_APBC_TWSI2_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI2>;
-+			status = "disabled";
-+		};
-+
-+		i2c4: i2c@d4012800 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd4012800 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <40 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI4>,
-+				 <&syscon_apbc CLK_APBC_TWSI4_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI4>;
-+			status = "disabled";
-+		};
-+
-+		i2c5: i2c@d4013800 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd4013800 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <41 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI5>,
-+				 <&syscon_apbc CLK_APBC_TWSI5_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI5>;
-+			status = "disabled";
-+		};
-+
- 		syscon_apbc: system-controller@d4015000 {
- 			compatible = "spacemit,k3-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
-@@ -564,6 +634,20 @@ uart9: serial@d4017800 {
- 			status = "disabled";
- 		};
- 
-+		i2c6: i2c@d4018800 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd4018800 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <70 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI6>,
-+				 <&syscon_apbc CLK_APBC_TWSI6_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI6>;
-+			status = "disabled";
-+		};
-+
- 		gpio: gpio@d4019000 {
- 			compatible = "spacemit,k3-gpio";
- 			reg = <0x0 0xd4019000 0x0 0x100>;
-@@ -582,6 +666,20 @@ gpio: gpio@d4019000 {
- 				      <&pinctrl 3 0 96 32>;
- 		};
- 
-+		i2c8: i2c@d401d800 {
-+			compatible = "spacemit,k3-i2c", "spacemit,k1-i2c";
-+			reg = <0x0 0xd401d800 0x0 0x38>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&syscon_apbc CLK_APBC_TWSI8>,
-+				 <&syscon_apbc CLK_APBC_TWSI8_BUS>;
-+			clock-names = "func", "bus";
-+			clock-frequency = <400000>;
-+			resets = <&syscon_apbc RESET_APBC_TWSI8>;
-+			status = "disabled";
-+		};
-+
- 		pinctrl: pinctrl@d401e000 {
- 			compatible = "spacemit,k3-pinctrl";
- 			reg = <0x0 0xd401e000 0x0 0x1000>;
-@@ -677,6 +775,8 @@ clint: timer@e081c000 {
- 					      <&cpu7_intc 3>, <&cpu7_intc 7>;
- 		};
- 
-+		/* sec_i2c3: 0xf0614000, not available from Linux */
-+
- 		mimsic: interrupt-controller@f1000000 {
- 			compatible = "spacemit,k3-imsics", "riscv,imsics";
- 			reg = <0x0 0xf1000000 0x0 0x10000>;
-
----
-base-commit: d72db7cc40947f208e77fbc6049f2da6ea6822f4
-change-id: 20260311-02-k3-i2c-6ad52566a9a3
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
--- 
-Yixun Lan <dlan@kernel.org>
+Jernej
+
 
 
