@@ -1,178 +1,147 @@
-Return-Path: <devicetree+bounces-281498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281499-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GCY4NJBBxmlRIAUAu9opvQ
-	(envelope-from <devicetree+bounces-281498-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 09:36:32 +0100
+	id sGaSEOlCxmlRIAUAu9opvQ
+	(envelope-from <devicetree+bounces-281499-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 09:42:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D73CF3411BF
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 09:36:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C15E434126D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 09:42:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 807083017AA5
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 08:31:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3FFD43013D62
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 08:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0173D0924;
-	Fri, 27 Mar 2026 08:31:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893353D667C;
+	Fri, 27 Mar 2026 08:41:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fhZfLO80"
+	dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b="HclnjMe7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC5533D47DB
-	for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 08:31:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1391D3A453F;
+	Fri, 27 Mar 2026 08:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=88.97.38.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774600286; cv=none; b=kFiEv/1CFQktGj+y7LEPvqHHbJxnJAkqDAxOaD0gEk+PgWgs4+HXSWLQNCOaGtlEVuxRt6Ij29WHc2vMTgUWBLhjgZZgCTE1UzWP8BUA8osww8sA83HrphU6soYmwYwEDFdMkb1QdOBOz2AslTm6UQx3wNXoTz1IJ+nNqz4w6qM=
+	t=1774600888; cv=none; b=CfOh69+2NbWbvHeBLAsdXsm6WdI5elxhWbsMpspGGYh2RSwdSKufVqw4wvtrQkocghEAFdIcAwLiy3mcrcfB1cv2/8q1Tu0b8gHpq5ptkbgcKXjrzu2EkQPPymI5UjCRWPIvwiFwGpWUEd65180GmPlSDuvfZnMKUOe61OLqAYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774600286; c=relaxed/simple;
-	bh=rEvXfRjXGnFiPFkzSq7G2X0rafT0YoJFCHEzbQPw7Zw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=m8eQRGDZkoxiTLfFbwCP4Q+jhYRtk2ZEJJxt6cem1zo+QWhih9OrwjdA4/OE4LYL+tbeLG0B36j/FINGknh7cmA8aq+96FsKFysQQkAKtfNQjWaoujFY/PKDWdcDlmsa8s7tFLFQQBar6sSeE2jylF0T0hGVnk09bLFEVGVbzas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fhZfLO80; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-439bcec8613so1339751f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 01:31:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1774600283; x=1775205083; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HQ1yZdSv4qzrzrFbTamOK/pWWsZOMgXzJj/IX5g2c2E=;
-        b=fhZfLO80KOdH/xaQq+4gchwLnEZwAM81BRCBD+Hzxixf9rEKIv0MmeFkv5oSXCQx+p
-         Rodx+82lHLCDe5WxjO4Yj/OFvFXm9SlZPt0zhx7mKGt8uXpVb/9DLerSPTIcO6jiJmy/
-         emu2ziX8fBIlZMlchwbJbDyud9K3t47MDde+vQnKMNy4LvjRHw2X97GD1Ks0Imha0m+H
-         aw6v95+9mtbV+0rtldKAm4W7ovnzLj0R6ovqqUcxaTX9fjMTx11YsRsvSMU9Kmta/qpp
-         XpKn42VUtsi49IJzQboeT1qEjUr5al155ngv1uGmRjmqA51SyG4/REkAp3vD8Dx9NGtN
-         j0Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774600283; x=1775205083;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=HQ1yZdSv4qzrzrFbTamOK/pWWsZOMgXzJj/IX5g2c2E=;
-        b=k+3/SskBrsQgc79l5nw9+SKddt1+CANwDeH4CyfJWPki4Y7xD8mL2XB5qS40ydoh/l
-         7IG5HABBVcnVog5WrWRQ6yY1zbFDNuGG5wX7SB+yM29SVzxuteHlj84VuwZZK4F7mmpu
-         HgNJw8YZElXGm1it/QOO4AG1Df4vJpvvlb/205UI+f872oUNNBtQFpIkPT6V2nRw1pP9
-         dizBNFMhymLfzQp8O5E2/SAtbhZBaNiQJa2tqz6e8sFyxVDoxzVnR7+Zsw9ayixqC8HR
-         ffXUpwirC+Sz6WX+ncSshHEtEKQvPlYN1yx8VdgpU7HCy6C/XfDRgbuX4BPvj7uS9Z0A
-         fCGw==
-X-Forwarded-Encrypted: i=1; AJvYcCVVYzGMzWPSLh0axAzZdI3ZOkVgXrWSqnsEZKidICVRrLvH1HjA5y/JuS+u2ExNdfXcWgl50LV8/vlm@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvYlsDWOi8RmdlPvveimDhNeLaaS8po2oDmRRpn27jTZhl4uK5
-	Fdc6fmmmc7kbNBp223We+cUSy1r6X7HDw42ECUEdhDdHbWuPgJOOVYGUMptjLL5xxq8=
-X-Gm-Gg: ATEYQzzDHjuEcnUWtWSEAI29ccUXQxAzDpMcf3+8/1TELSsc7lBXP+8SNLKsVX8/HDi
-	EdUXOqt47JL/90SDp1AA/Dw0MsvrFQJyaDZ75Sisgfmy2Ua+79PTs2lfzoOxB25NdMGXpyKVu9D
-	p6mBUcI0CSukFNSGeQyJ4uGoAuVsIKL1k610hQQ0VTDL3EORJpuz6EYPMvOPXeM8FFFcpiKfM7v
-	IYI53f53peQxqeG6G5tvPvW4WOxPjDjW9VLQKoXzjh1LhwEu+mRmBdAhjKZ1+CvdUPiA9ta+XNm
-	IWlEWExVqL3iDGKdIZDeofMV9hQoNxzuFy/fgAHt6uWqvmnDsO5sfq5rOmEhkgFh8HjEsikRKLA
-	4VYO8iYQWxWVCwv8BdFCM8h7CYD4S4YBUiIsqqlvzVvbZ4YH6SVJTTbReZOBwNHGLytZweqnU+0
-	RUqm+yIhaIf0of1cRZ1EYoVeBvPCXon1iLk6OmYBEmLZHd
-X-Received: by 2002:a05:6000:2505:b0:439:caf7:a5e5 with SMTP id ffacd0b85a97d-43b9ea46754mr2454666f8f.31.1774600282992;
-        Fri, 27 Mar 2026 01:31:22 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b9179b212sm14490849f8f.0.2026.03.27.01.31.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Mar 2026 01:31:22 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: khilman@baylibre.com, martin.blumenstingl@googlemail.com, 
- jbrunet@baylibre.com, jic23@kernel.org, dlechner@baylibre.com, 
- andy@kernel.org, Nick Xie <nick@khadas.com>
-Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
- linux-iio@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20260325070618.81955-1-nick@khadas.com>
-References: <20260325070618.81955-1-nick@khadas.com>
-Subject: Re: (subset) [PATCH v3 0/4] iio: adc: meson-saradc: add support
- for Meson S4
-Message-Id: <177460028211.2323693.5107431910130043283.b4-ty@linaro.org>
-Date: Fri, 27 Mar 2026 09:31:22 +0100
+	s=arc-20240116; t=1774600888; c=relaxed/simple;
+	bh=fq9JTGo3oNehZ2jTqn0zteRFSrcthfNS+Aevbze4JtY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EbfhdtCPhcuwLyxwXerg5UP51cHhnC57uWnZV2ebiGgjWmBGZUiP3jWMQZW0VGKcdiWzbAC+RaR6JGMBklDGMsaxUwMKomkWinDitsEGi/YbU2b94cNjJQRhknVZaqGAiVOlZUG93LY1TFS811Zr0xSScErGL5xwjE76Iofuc/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org; spf=pass smtp.mailfrom=mess.org; dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b=HclnjMe7; arc=none smtp.client-ip=88.97.38.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mess.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
+	t=1774600878; bh=fq9JTGo3oNehZ2jTqn0zteRFSrcthfNS+Aevbze4JtY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HclnjMe7VqtNBdrpZhXlxga5+RCIEvcQMVmsh9nM/Z6PfKcl1JZK2ClyuZMrdmC2N
+	 VSggEUdZ+hHzzMtt8fEINQVJxxn272yBDa9LQ3a8Uackn6IxfiaECsjhC2tBdTBu1C
+	 BQ4xNshjIuPVvDkWSobi0V7cKvGLX5CfTroPpNhB5ljzb8q6wlU1ehZ7tLd4l1KRX7
+	 9DV8hPTF19oXuzwTYv89t+std2Q1zgmOVI9XrLLnSHQ/7DKBedLPf/twdYcag5MJER
+	 6pQjMynD2zUqPyT9pP0wGKbx/LHMhVV5tCscRRwkrDGvw1SIM/FaboB4nbft+tR2tI
+	 me9V2j2MoBMxw==
+Received: by gofer.mess.org (Postfix, from userid 1000)
+	id 74EAE1011B2; Fri, 27 Mar 2026 08:41:18 +0000 (GMT)
+Date: Fri, 27 Mar 2026 08:41:18 +0000
+From: Sean Young <sean@mess.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Biswapriyo Nath <nathbappai@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Martin Botka <martin.botka@somainline.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-clk@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org
+Subject: Re: [PATCH 4/7] dt-bindings: leds: irled: ir-spi-led: Add new
+ duty-cycle value
+Message-ID: <acZCrqffLvUpM7AW@gofer.mess.org>
+References: <20260325-ginkgo-add-usb-ir-vib-v1-0-446c6e865ad6@gmail.com>
+ <20260325-ginkgo-add-usb-ir-vib-v1-4-446c6e865ad6@gmail.com>
+ <20260327-natural-wild-mongrel-5bcc43@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260327-natural-wild-mongrel-5bcc43@quoll>
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[mess.org,none];
+	R_DKIM_ALLOW(-0.20)[mess.org:s=2020];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-281498-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[baylibre.com,googlemail.com,kernel.org,khadas.com];
+	TAGGED_FROM(0.00)[bounces-281499-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,baylibre.com,somainline.org,vger.kernel.org,lists.sr.ht];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sean@mess.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mess.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D73CF3411BF
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mess.org:dkim]
+X-Rspamd-Queue-Id: C15E434126D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
-
-On Wed, 25 Mar 2026 15:06:14 +0800, Nick Xie wrote:
-> This series adds support for the SARADC IP block found in the Amlogic
-> Meson S4 (S905Y4) SoC and enables it for the Khadas VIM1S board to
-> support the onboard ADC 'Function' key.
+On Fri, Mar 27, 2026 at 08:51:18AM +0100, Krzysztof Kozlowski wrote:
+> On Wed, Mar 25, 2026 at 06:07:27PM +0000, Biswapriyo Nath wrote:
+> > 30 duty cycle for IR transmitter is used in Xiaomi Redmi Note 8 (ginkgo).
+> > 
+> > Signed-off-by: Biswapriyo Nath <nathbappai@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/leds/irled/ir-spi-led.yaml | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/leds/irled/ir-spi-led.yaml b/Documentation/devicetree/bindings/leds/irled/ir-spi-led.yaml
+> > index 72cadebf6e3..0297bfbb275 100644
+> > --- a/Documentation/devicetree/bindings/leds/irled/ir-spi-led.yaml
+> > +++ b/Documentation/devicetree/bindings/leds/irled/ir-spi-led.yaml
+> > @@ -25,7 +25,7 @@ properties:
+> >  
+> >    duty-cycle:
+> >      $ref: /schemas/types.yaml#/definitions/uint8
+> > -    enum: [50, 60, 70, 75, 80, 90]
+> > +    enum: [30, 50, 60, 70, 75, 80, 90]
 > 
-> There are no known hardware differences between the SARADC on the S4
-> and the previous G12A generation. The S4 bindings utilize a fallback
-> to G12A, but a dedicated driver match entry is included to ensure the
-> correct part name is exposed to the userspace ABI.
-> 
-> [...]
+> Hm, why is this enum, instead of 1-99, in the first place?
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v7.1/arm64-dt)
+Well in reality only a few different duty cycles are used by IR protocols.
+30% is quite common so that should part of the list. 
 
-[3/4] arm64: dts: amlogic: meson-s4: add internal SARADC controller
-      https://git.kernel.org/amlogic/c/3b095e9b3674da0666aea3021167ca44097ed7fa
-[4/4] arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s: add Function key support
-      https://git.kernel.org/amlogic/c/97c4d4b7de6ef264fbd45300a168c2a0874d6c75
+Having said that a range of 1-99 would be nicer. Do we set this like so:
 
-These changes has been applied on the intermediate git tree [1].
+ - minimum: 1
+ - maximum: 99
 
-The v7.1/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+?
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+Thanks,
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+Sean
 
