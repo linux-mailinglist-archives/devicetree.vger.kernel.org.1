@@ -1,139 +1,130 @@
-Return-Path: <devicetree+bounces-281580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281581-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +JtzAvJqxmmkJwUAu9opvQ
-	(envelope-from <devicetree+bounces-281580-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:33:06 +0100
+	id UEMHM+FrxmmkJwUAu9opvQ
+	(envelope-from <devicetree+bounces-281581-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:37:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CE32343843
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:33:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31ECB343906
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 12:37:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 66BA4309F6B7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 11:30:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B29D5305FFD9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Mar 2026 11:32:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E6283559C0;
-	Fri, 27 Mar 2026 11:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="ifRKBWRH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A467377578;
+	Fri, 27 Mar 2026 11:32:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87A02459DD;
-	Fri, 27 Mar 2026 11:30:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49989351C1B;
+	Fri, 27 Mar 2026 11:32:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774611027; cv=none; b=DQdFfbnWT5UJolbmL6VJoTeKAHrMYuGvJTePgqqYcoY4tmllAq3HSfDZbK4ztTZpm2gb+CZhiC88vGD6dvy2U9lhKrznxRsztE8jm/NI1LexN/KHLqPsjboaEygeRW4TG+VKIhFO3FRawlJq8IDxlALSJK8zpfcUk4N2zR9W958=
+	t=1774611150; cv=none; b=ueggs9AnTC8IzLAs+UZ4zPPfE9qPoB0aHWaw9bnY6CIFL8VVGuHt1fLxcY6ItptL4WdAfkF5p2Ee3QkQbQ5Xx1Ua9Wj5ESu5WMROCFaJ3tz2P7Qmpl+Gytjk6rewobVtz8vf97Un5F5MssfRjQp7l+1R8g8WQML+m/GW77x2yZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774611027; c=relaxed/simple;
-	bh=Y3T8xRAs7JXDcEo+gWDq1I9uwUeHLYQQvz2VKR+rIUI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rNGQm2HyVKTyV/2TeUXQNv6sUO6LBhxe5FEEogBn6+5AWej7EQdM82t/p4FanWxx2Ne5AbYTDi5u4UqWMS853uXyhb4XU3o66qh2V/4ZFAxaubREq5wtmnoLfCl+q/pdthAttLYey93C5FSJbeBChYdw713mRF4W2tonIJARINA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=ifRKBWRH; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AA2F635A5;
-	Fri, 27 Mar 2026 04:30:17 -0700 (PDT)
-Received: from e142021.cambridge.arm.com (e142021.arm.com [10.1.36.137])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 22CC03F915;
-	Fri, 27 Mar 2026 04:30:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1774611023; bh=Y3T8xRAs7JXDcEo+gWDq1I9uwUeHLYQQvz2VKR+rIUI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ifRKBWRHlSdvntmE1SxaosuGSreCu5yjtYQl5wL/Ksnz/TA9plMpK522zRHKs0rok
-	 Qw8edHAldAkI5OwAbfOI/umOzqQN/zYTaEb2TghGB70uk8Ev72CEZb208hXOggt9mT
-	 eK0h/2GyC/f9D5KNdTFJ5mPrrDPXykBjpk3CAr5E=
-From: Andre Przywara <andre.przywara@arm.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1774611150; c=relaxed/simple;
+	bh=RtXQCJ0TXrzXdGoLnh5AEt9Fy5qnNmlf5vZHFBE71GA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JSqH4qDJ/7FN/Ywe5TmMekAtHxkDTxYoxrpqRotg7pSCLuDi3AGOMaoHf6YEjA4upAYJw/8krhjPNSY60QytutVp+V7QlrwlSIpXmV/U55y1a9dYFjGVUUB3vFfo6cERSqhOy0x0ycTs96mYtL2/fxDpbyjntA13UhPsHfsJtu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1w65QG-000000002WE-3FcO;
+	Fri, 27 Mar 2026 11:32:16 +0000
+Date: Fri, 27 Mar 2026 11:32:13 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Joris Vaisvila <joey@tinyisr.com>
+Cc: netdev@vger.kernel.org, horms@kernel.org, pabeni@redhat.com,
+	kuba@kernel.org, edumazet@google.com, davem@davemloft.net,
+	olteanv@gmail.com, Andrew Lunn <andrew@lunn.ch>,
+	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: allwinner: a523: Add missing GPIO interrupt
-Date: Fri, 27 Mar 2026 11:30:06 +0000
-Message-ID: <20260327113006.3135663-4-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260327113006.3135663-1-andre.przywara@arm.com>
-References: <20260327113006.3135663-1-andre.przywara@arm.com>
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dsa: add MT7628 ESW
+Message-ID: <acZqvZfYXR_4sMlT@makrotopia.org>
+References: <20260326204413.3317584-1-joey@tinyisr.com>
+ <20260326204413.3317584-2-joey@tinyisr.com>
+ <acW9G8vrMz89Enss@makrotopia.org>
+ <acYZOEksxcc-uHcT@archlinux>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <acYZOEksxcc-uHcT@archlinux>
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org];
-	TAGGED_FROM(0.00)[bounces-281580-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-281581-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,redhat.com,google.com,davemloft.net,gmail.com,lunn.ch];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DMARC_NA(0.00)[makrotopia.org];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.27.119.64:email];
-	DKIM_TRACE(0.00)[arm.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:dkim,arm.com:email,arm.com:mid,0.30.132.128:email]
-X-Rspamd-Queue-Id: 5CE32343843
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.964];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[makrotopia.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.6:email,vonger.cn:url]
+X-Rspamd-Queue-Id: 31ECB343906
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Even though the Allwinner A523 SoC implements 10 GPIO banks, it has
-actually registers for 11 IRQ banks, and even an interrupt assigned to
-the first, non-implemented IRQ bank.
-Add that first interrupt to the list of GPIO interrupts, to correct the
-association between IRQs and GPIO banks.
+On Fri, Mar 27, 2026 at 08:00:51AM +0200, Joris Vaisvila wrote:
+> Hi Daniel, thanks for the feedback
+> 
+> On Thu, Mar 26, 2026 at 11:11:23PM +0000, Daniel Golle wrote:
+> > > [...]
+> > > +            port@6 {
+> > > +                reg = <6>;
+> > > +                ethernet = <&ethernet>;
+> > > +                phy-mode = "rgmii";
+> > 
+> > Is this actually RGMII internally? Or some unknown internal way to
+> > wire the switch CPU port to the CPU MAC? In this case, "internal"
+> > should be used here as well.
+> 
+> I don't know how to find this out for sure.
+> 
+> In the MT7628 doc (https://vonger.cn/upload/MT7628_Full.pdf) port 6 is
+> refered to as RGMII port 1 (RGMII port 0 being the non-existent port 5),
+> but there are no clock registers to be seen.
+> In RT3050 docs there are RGMII clock registers for port 5, but nothing
+> for port 6, so maybe the CPU port is really using some mystery internal
+> connection and only uses "RGMII" as a way to say it's a Gigabit port?
+> 
+> On the hardware I'm testing on, it works fine with the port set to
+> "internal" or "rgmii". Would it make more sense to set "internal" then? 
 
-This fixes GPIO IRQ operation on boards with A523 SoCs, as seen by
-broken SD card detect functionality, for instance.
-
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-Fixes: 35ac96f79664 ("arm64: dts: allwinner: Add Allwinner A523 .dtsi file")
-Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
----
- arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-index 9335977751e2..cea5b166c00f 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-@@ -128,7 +128,8 @@ gpu: gpu@1800000 {
- 		pio: pinctrl@2000000 {
- 			compatible = "allwinner,sun55i-a523-pinctrl";
- 			reg = <0x2000000 0x800>;
--			interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
-+			interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.43.0
-
+"internal" then. It's a single-die SoC, the switch sharing the same
+memory space, clocking domain, ... with all the rest of the SoC makes
+it very unlikely that RGMII would be used as an on-die connection
+type. (unlike eg. MT7621 or MT7623A which are using multiple dies in
+the same package, and actually RGMII or TRGMII to connect the
+MDIO-managed switch part to the main SoC, see "MCM" / "multi-chip
+module" in the mt7530 driver...)
 
