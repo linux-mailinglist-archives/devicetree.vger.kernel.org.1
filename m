@@ -1,201 +1,209 @@
-Return-Path: <devicetree+bounces-281897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281901-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GECrLv5Dx2mSUwUAu9opvQ
-	(envelope-from <devicetree+bounces-281897-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 03:59:10 +0100
+	id EFqlLFlkx2lAWgUAu9opvQ
+	(envelope-from <devicetree+bounces-281901-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 06:17:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A34934D1F5
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 03:59:10 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B868F34D50B
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 06:17:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6FC4C3031F16
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 02:59:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 679FE3025201
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 05:16:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3C6C35CB9B;
-	Sat, 28 Mar 2026 02:58:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 008C233B96F;
+	Sat, 28 Mar 2026 05:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eWJwcpPN"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="YOuFXUDk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A9340DFDE
-	for <devicetree@vger.kernel.org>; Sat, 28 Mar 2026 02:58:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B76D4155A5D;
+	Sat, 28 Mar 2026 05:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774666737; cv=none; b=Fg2NM0CXoKxe9UqCAcmfpqwXeJE7vO00aWeRSs4+xuUwNIaZ1S4oV57EnTx0mrYM7IlPhEM+7uj7OXMcWiU5o7g3vv7cdq50A5zSTB5IZpe43CJITZwSc+nL581mgRDDRfuiNm/DWH1c6OjH9vcOt+Kf7FUS0Owov924/FuTxPE=
+	t=1774675008; cv=none; b=SV6UAt8f3ugwvkSpOywxjDWvUb4Xj+/9FezZIDN95Tj9GLQ35L+PPxj+4UcTcYb2qE/wcc+1RIINWjA92a5ZW0EAU9thWY9/TV9VlcpJfKikFtu5u4aJRtUPcZjyhj1J9FNAxXxxwm5onDkCY48qTsz6d9Go1sxPDaTJC4A/SGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774666737; c=relaxed/simple;
-	bh=olwM+iFW1baLC0frxkhwsk/23pWJgNDyvNMv4ihorwY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IOjaeHFNXREQGk7NBmnYNiu0u8MevjWcpZeEAot/YfaWG9eiEJd+qv/WZ2Q8dvbQj5McCBNSUGwI8yEIAQ2DxuWXVhZ6szBoFGzKUz68Gdg15fUNZfF09iTYVTT3bUXIsnWIrzq7RvvZfO1WgiSP6mSyfJnvXL6pW533bx/2fLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eWJwcpPN; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-43ccda008cdso290099f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Mar 2026 19:58:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774666735; x=1775271535; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aItUBK61tk6fxXXaFLwlpx4OpsBWZ3pyf1T32wUZFWY=;
-        b=eWJwcpPNWfOLODHUnlNpHde+OXK1Qx0BoC1oMkvd28TCJhqbFUYAbH/b1IuiqC8ANu
-         cV+9HqKZVwZwCzMzDC6L34cY++7p0ZK1wqk+rX6uYLM4EtVpAB9Bnfybnx4MxGIx4SwX
-         xeHBTyCUxkzsMlJWy9xdSP8JmgQ0GRdtj9VJIT3evGaNkKeTixS66DOuGVB56ztk6Rl4
-         JJ8lWZOgNxpV/Js8NhikTxYGZWY5dlAZqrjH238Gg5jI21Wvg7ovFNEbDvkB5ayWG3Zy
-         zPwUoznKlw7WQGn9JK0zaSTPxl+Ly/C/YnLVi/1xkTf9m3nUqA8HGwii1giekuWYMcgN
-         p5hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774666735; x=1775271535;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aItUBK61tk6fxXXaFLwlpx4OpsBWZ3pyf1T32wUZFWY=;
-        b=XkZoKFkmlwHWkM9EmMCnD7IJgVyi6Bf9vBiNPEQTdlXYL64tUBWaxWwtOa+rPZyt8+
-         fLzxBNCjRiQW3sWAjrfIV0vEBrdWGo94EugBusZlDfbtzafsSUNY4JwL0dnmpQeMK5cF
-         Hqc/GmutECIS4i+BCo+h09jT3UTdS9+WH+1hxz2NjQ9C2zeW3ugXyCu9vG7hENLgMrf0
-         S8ulSze0LflL/cGCD3jq/4i6RKuzF6Lj2KLymLyjQe92j4TBWt5zl5i6fe8xmzQyNLtZ
-         L8VcBTK0uDeVlJ+frrTaRaOYJnX9NjWnUKzkXWeLkKAIWvXzBfchYWnjgKqszjCbeWHd
-         Nogg==
-X-Forwarded-Encrypted: i=1; AJvYcCWK/XuehyZMDrLGTEKGjuNAlwskcoy8HBsT/BNgynotgXrHyps+wbL14+4+jgA++IDkpkvyWdgQX/jo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlwBvo2rJjalubv3yLqJNZ8zPTq81q84hdghSW5nlEV0EyR42v
-	6N8u5BCjdLZVXRwmmUnQci/25ipvVxrAEn0OU+Q3L7vahtAOFBGgwom0
-X-Gm-Gg: ATEYQzwR4pH7Q428g+b04c0Budj5DTnkA5tl9yaSDW3vQKnmOXuLNDlEP8ksDxublZF
-	3qPEY9p3Ea5hYr5zT5jeNCUe1rLFXYK3iNDy/0l4lTyojaSjWYqE1/AP/56U7CTSibL/MzbbW/4
-	l0X+R/QwqyrDcxJNaqyaTd8VnWNOqBFuC4mtKhZEoPBKJ1Av6J8yYX/cRmrBP7Z/KNyNwrDijHC
-	f3M5yqCKWHzGOsuvM1fNkPwcvbXfiGqmzzSlhrK14FYHPn9mXaek+z9xqcfRS49hg7dJjM4YZyY
-	E/VzpEwMVRbkdgSBWyiNigW8ROwCDPQw30eO6sRw/xMcjG3sWk0UigiJWELfsNeqqWCnW0oFhRO
-	Cmgh9TjWiQ6WPxh4xbTcVQQ+B3ED091eA4dZtRUFEJDoS3WL9l2VSodnPw0Fm4nN0wjErntPuzz
-	awDUf5mEUXDUtO82sRZ26ZHtvZwfXDrDWtkyg18eBdIWQ29nu7
-X-Received: by 2002:a05:6000:240d:b0:439:bb46:7457 with SMTP id ffacd0b85a97d-43b97a4b813mr13247505f8f.16.1774666734587;
-        Fri, 27 Mar 2026 19:58:54 -0700 (PDT)
-Received: from [10.34.37.37] ([185.25.49.104])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43cf245e4f5sm2316659f8f.19.2026.03.27.19.58.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Mar 2026 19:58:53 -0700 (PDT)
-Message-ID: <8129d377-8a63-4589-820b-930a2b43a2f7@gmail.com>
-Date: Sat, 28 Mar 2026 03:58:47 +0100
+	s=arc-20240116; t=1774675008; c=relaxed/simple;
+	bh=0rIHMxjGErlS1YPGsRhI9pFUyvyJHnqt21nwbE0/QcE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ebb0fv67m1UIvQUjmKyLDDOzG324hSx90BFJW2YZIk9TPmzwt3gYz4dnzPr4OjzEJIg+Ga28HOvt0SIcbowCHF6HulTMNhgs98tdrQ6OEfKzS7CxUEMugsF6xEYePvUcqoZVcLrZi7dvmXUi+Y9tUa1rCS8/sF+75YpNEjdoqDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=YOuFXUDk; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 494e0f4a2a6511f19a16598d5ca7f8ec-20260328
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=ItY3XW4lOvR6siOUQ5bYSIbpXYmHoGqydFeMTzgi2E4=;
+	b=YOuFXUDkvjcpUOAsMrgpqKJ3TYzSpYynJ5ous4/1E49573A0q6KuR3TCIyS3P+PwVUhyyZlUbx/+mKEWFbo6BkQaLyeLt039lcbOr+CteTjrUvQ2T0wjZm19937g4GtPml0gbXd9MCjAFrwNs7NvYLFdCYuPsqwj6vzvB5DL3Fw=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12,REQID:039bd3ce-3756-4408-b3e8-69d795262eff,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:e7bac3a,CLOUDID:9c254d94-f8ef-4ca8-bea0-143568f9ca1d,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:-3,IP:nil,URL:99|1,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI:0,
+	OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 494e0f4a2a6511f19a16598d5ca7f8ec-20260328
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
+	(envelope-from <yunfei.dong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1256195620; Sat, 28 Mar 2026 13:16:33 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Sat, 28 Mar 2026 13:16:32 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Sat, 28 Mar 2026 13:16:31 +0800
+From: Yunfei Dong <yunfei.dong@mediatek.com>
+To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>, Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil
+	<hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>
+CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, Yunfei
+ Dong <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v4 00/14] media: mediatek: vcodec: support video decoder in mt8196
+Date: Sat, 28 Mar 2026 13:16:10 +0800
+Message-ID: <20260328051630.7937-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: Add clock guard DT description
-To: Conor Dooley <conor@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260318-feature-clock-guard-v1-0-6137cb4084b7@bruker.com>
- <20260318-feature-clock-guard-v1-2-6137cb4084b7@bruker.com>
- <20260318225510.GA639444-robh@kernel.org>
- <7c7034a7-686a-42c2-bdba-6f31b5179f7c@gmail.com>
- <20260319-yearly-wrongful-883f7fd86a69@spud>
- <b45d9845-2d56-4fdd-a3ac-b0e0e27ba573@gmail.com>
- <20260323-sanctuary-semantic-432089feb1c7@spud>
- <d097826c-3db5-4902-acee-ffcff7436d4e@gmail.com>
- <8e7d0c53-aa23-4514-81a5-335a76bb0c45@kernel.org>
- <4d575f17-5cd5-495c-99a9-176b3393d54d@gmail.com>
- <20260326-nursery-outer-55799f675e14@spud>
-Content-Language: en-US
-From: Vyacheslav Yurkov <uvv.mail@gmail.com>
-In-Reply-To: <20260326-nursery-outer-55799f675e14@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281897-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-281901-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[collabora.com,xs4all.nl,chromium.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[uvvmail@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[yunfei.dong@mediatek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mediatek.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3A34934D1F5
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:dkim,mediatek.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B868F34D50B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 26.03.2026 19:32, Conor Dooley wrote:
+This patch set adds support for the video decoder on the MediaTek MT8196
+platform, leveraging the VCP microprocessor for enhanced performance. It
+introduces new firmware interfaces for kernel-side communication with VCP,
+adds MT8196 compatible, codec levels/profiles, and private data. Rewrites
+the AV1 driver to support extended VSI structures, then change irq table
+and cdf table size.
 
->> I was not sure how to provide a diagram in the mailing list, so I posted in
->> on Github https://github.com/OSS-Keepers/clock-controller-guard/issues/1
->>
->> It is a driver which models dependencies for other drivers. These are soft
->> or "indirect" dependencies, because we cannot access the FPGA unless the
->> FPGA_PLL_locked, and GPIO is telling us we are good to go.
->>
->> Conor, I think this should answer your question as well.
-> 
-> Not really, but it gets part of the way there. I want to know what this
-> provider actually is. I now know it is a PLL, not an off-chip
-> oscillator, but I know nothing about the interface that you have to it
-> (or if you have one at all). What compatible string/kernel driver does
-> it use?
-> 
-> Because SoC-FPGAs can route GPIOs from the SoC part to the FPGA fabric
-> and use them as if interacting with something off-chip, I'm not sure if
-> we are dealing with an separate FPGA or a SoC-FPGA. Which is it?
-> Effectively I want to understand why you cannot just read the lock bit
-> from the PLL directly. In my experience with *SoC*-FPGAs, things like
-> PLLs that must lock for the fabric to be usable have a register
-> interface from which the lock bit can be read, that is of course not
-> clocked by the PLL output clock and therefore accessible before the
-> PLL has locked.
-> 
-> I think more info is needed here to guide you on where such a "helper
-> driver" should be located and what the dt represetation should be.
+This patch set depends on "Add VCP support for mt8196"[1]
 
-I really appreciate your feedback on this. Here's an attempt to provide 
-a better exlanation.
+[1] https://patchwork.kernel.org/project/linux-remoteproc/patch/20250402092134.12293-2-xiangzhi.tang@mediatek.com/
 
-We have various use cases. Most of the time it's a PLL in the FPGA but 
-it can also be some signal from a custom FPGA IP used to indicate if 
-some preconditions are met and the IP is ready to be used (some kind of 
-inverted reset but exposed by the IP). For a PLL we typically get the 
-signal connected either to a GPIO IP block (altr,pio-1.0) OR to a bit in 
-a custom IP register.
-In addition, some of the IPs in our design do not have a proper split 
-between registers and IP core, which means that if an external clock 
-and/or PLL lock is missing and we access the registers we won’t ever get 
-an answer and thus stall the CPU.
+Compliance Test Result:
+- v4l2-compliance: 48/49 tests passed, 1 failed (known issue)
+- fail: v4l2-test-controls.cpp(981): ret (got 13)
+-        test VIDIOC_G/S/TRY_EXT_CTRLS: FAIL
 
-We are using a SoC-FPGA and use some GPIO IP within the FPGA 
-(altr,pio-1.0 for example).
+Fluster Test Result:
+- H264:
+- Ran 95/135 tests successfully   in 73.540 secs
+- H265:
+- Ran 142/147 tests successfully  in 100.168 secs
+- VP9:
+- Ran 276/305 tests successfully  in 106.804 secs
+- AV1:
+- Ran 240/242 tests successfully  in 23.991 secs
+---
+Changed in v4:
+- Rebase to latest codebase
+- Move dt-bindings and compatible to the after of vcp driver ready
+- MT8189 base on MT8196 patch set
 
-The PLL itself doesn't have any registers but the signal indicating that 
-it is locked is available and routed to such a GPIO.
+Changed in v3:
+- Depends on change no update
+- Add Compliance and Fluster test result
+- Re-write the commit message for patch 12
+- Change the patches according to review suggestion for patch: 3/4/5/6/14
 
-The point is that we will have several IPs/drivers that will depend on 
-the same preconditions (clk, gpios being high or low) and we want to use 
-this clk_guard driver as an aggregator for those pre-conditions. Define 
-once, reuse a lot.
+Changed in v2:
+- re-write the commit message for patch 1
+---
+Yunfei Dong (14):
+  media: mediatek: vcodec: add driver to support vcp
+  media: mediatek: vcodec: add driver to support vcp encoder
+  media: mediatek: vcodec: get different firmware ipi id
+  media: mediatek: vcodec: get share memory address
+  media: mediatek: vcodec: define MT8196 vcodec levels.
+  media: mediatek: vcodec: support vcp architecture
+  media: mediatek: vcodec: support 36bit iova address
+  media: mediatek: vcodec: clean xpc status
+  media: mediatek: vcodec: add debug information
+  media: mediatek: vcodec: send share memory address to vcp
+  dt-bindings: media: mediatek: vcodec: add decoder dt-bindings for
+    mt8196
+  media: mediatek: vcodec: add decoder compatible to support mt8196
+  media: mediatek: decoder: fill av1 buffer size with picinfo
+  media: mediatek: decoder: support av1 extend vsi
 
-Slava
+ .../media/mediatek,vcodec-subdev-decoder.yaml |   1 +
+ .../media/platform/mediatek/vcodec/Kconfig    |   4 +
+ .../platform/mediatek/vcodec/common/Makefile  |   4 +
+ .../mediatek/vcodec/common/mtk_vcodec_dbgfs.c |  21 +-
+ .../mediatek/vcodec/common/mtk_vcodec_fw.c    |  16 +
+ .../mediatek/vcodec/common/mtk_vcodec_fw.h    |   2 +
+ .../vcodec/common/mtk_vcodec_fw_priv.h        |  12 +
+ .../vcodec/common/mtk_vcodec_fw_vcp.c         | 561 ++++++++++++++++++
+ .../vcodec/common/mtk_vcodec_fw_vcp.h         | 153 +++++
+ .../vcodec/decoder/mtk_vcodec_dec_drv.c       |  16 +
+ .../vcodec/decoder/mtk_vcodec_dec_drv.h       |   1 +
+ .../vcodec/decoder/mtk_vcodec_dec_hw.c        |  28 +
+ .../vcodec/decoder/mtk_vcodec_dec_hw.h        |  13 +-
+ .../vcodec/decoder/mtk_vcodec_dec_stateless.c |   6 +
+ .../vcodec/decoder/vdec/vdec_av1_req_lat_if.c | 113 +++-
+ .../decoder/vdec/vdec_h264_req_multi_if.c     |  11 +-
+ .../decoder/vdec/vdec_hevc_req_multi_if.c     |  12 +-
+ .../vcodec/decoder/vdec/vdec_vp8_req_if.c     |   5 +-
+ .../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c |  27 +-
+ .../mediatek/vcodec/decoder/vdec_ipi_msg.h    |   2 +
+ .../mediatek/vcodec/decoder/vdec_vpu_if.c     |  12 +-
+ .../mediatek/vcodec/encoder/mtk_vcodec_enc.c  |   1 -
+ .../mediatek/vcodec/encoder/mtk_vcodec_enc.h  |   2 +
+ 23 files changed, 985 insertions(+), 38 deletions(-)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.c
+ create mode 100644 drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.h
+
+-- 
+2.45.2
+
 
