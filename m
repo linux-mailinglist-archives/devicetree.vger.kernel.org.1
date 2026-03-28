@@ -1,132 +1,276 @@
-Return-Path: <devicetree+bounces-281961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281980-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gOgkGDDIx2kycQUAu9opvQ
-	(envelope-from <devicetree+bounces-281961-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 13:23:12 +0100
+	id AC9OCgH5x2lMfQUAu9opvQ
+	(envelope-from <devicetree+bounces-281980-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 16:51:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB8FA34E66F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 13:23:11 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A820E34F017
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 16:51:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 589483017271
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 12:22:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 11DBA30041CE
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 15:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 421E7389112;
-	Sat, 28 Mar 2026 12:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B66EA13AA2D;
+	Sat, 28 Mar 2026 15:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hcz/+6YA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oC+iXwZ3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD9838735C;
-	Sat, 28 Mar 2026 12:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8344A342510
+	for <devicetree@vger.kernel.org>; Sat, 28 Mar 2026 15:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774700578; cv=none; b=FMNHiWstkYdWeXjSBpyv5hynIOp3BJ5yogqpoVxdthBnY1H90PO9+I4HwzLOn+gTjymictQh0TSJOvgCgTUKbVDOyeyy8TtHyVumHZLLcy+9FKqJjYcmpae8rOkfTx3phSf+HzwfHKsu7U6k3qWIFlTRO5ljxQCAXq/sKVJTZ48=
+	t=1774713086; cv=none; b=EatD7hI2sDPQ2xYc4Cx/TFgNHAtF+08KzbVPKA+8oOPX3suRbanHgGcUg86Q2InQuIEYsS8+v7sp7tWwNSOvfCjsE5Kb+0CUC5ZivYQMKhrYE3BcKiDDdBZ2eEu1WnQ1K5Sg1Tqos4CQYK73tbvVbA7K36tvhOg4ksLHFZxWXc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774700578; c=relaxed/simple;
-	bh=Mly8B4u7fTwOeSb20IKpa1TiC6F4KcjHsnLcnx0UgTg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FWuyeJNUeANSbVlFHXpIxQ8XnTaxu0QOeBeVYc72lumyH/1wXAuh6iMiG6PfvRsZG9BIaUWFjD0fVQxTYKL9VeU5wjtmS3+YzPz11n4kfi5WrrJxA5q7ATX0bQUI/g6on74ZE2D524cdBPVGw4ZhxWgtTmyH7P4w+bi7bvmXfYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hcz/+6YA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64274C4CEF7;
-	Sat, 28 Mar 2026 12:22:57 +0000 (UTC)
+	s=arc-20240116; t=1774713086; c=relaxed/simple;
+	bh=J97nhqd19Owfth49YYD2VgMcKu6wbx/SAYjRjMlEcXA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hlnO1Tz2XoBG8J+w9F1jRA9dCENHOt4FT3ogw47kM7VZHCZTkTiCjP2dSV3LAf5xD3491aKgBYXd3YJC2z4AVJSDBccPXiEq0B6glo+B2dREKlEuTbpuNkESKsOyamJuoO39IuDELR6IoAkp8n1pGDvo7xytZeuygRnef7vGGYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oC+iXwZ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 148B1C4CEF7
+	for <devicetree@vger.kernel.org>; Sat, 28 Mar 2026 15:51:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774700578;
-	bh=Mly8B4u7fTwOeSb20IKpa1TiC6F4KcjHsnLcnx0UgTg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hcz/+6YAHhlvNN8zkv8SgKEkEyCL39Ya/SRpYpqYI6z20GT5IHXyuu6dvHq/A7yT7
-	 YRJD5976OaqZxNf1/cCTNERJm1F8Ol589NZZhjvB7xL6C79f9ihePa2bclpA4/Bd9n
-	 mn4IR5tkobFPDPXtelyuH9LkB8pUKn0DIsg8lYhqG1xSs5A3cQzpQ/9Iw7BCnzQZtw
-	 MANAej57BdfimWpod33B0gEY7buwBc4ofyhv6MGFd4+oSYfXtfvMC1a5J9oSSqALtU
-	 o7SPZRs3PgusxdaWnT+2lGVO89x8HN2UIH1Z5px25yvAHO3YkSe16nZ2kQpXTtOqlA
-	 LGADZHY6rOoKQ==
-Date: Sat, 28 Mar 2026 13:22:55 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yunfei Dong <yunfei.dong@mediatek.com>
-Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>, 
-	Sebastian Fricke <sebastian.fricke@collabora.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
-	Nathan Hebert <nhebert@chromium.org>, Daniel Almeida <daniel.almeida@collabora.com>, 
-	Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>, 
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v4 11/14] dt-bindings: media: mediatek: vcodec: add
- decoder dt-bindings for mt8196
-Message-ID: <20260328-tangible-guppy-of-emphasis-7685f3@quoll>
-References: <20260328051630.7937-1-yunfei.dong@mediatek.com>
- <20260328051630.7937-12-yunfei.dong@mediatek.com>
+	s=k20201202; t=1774713086;
+	bh=J97nhqd19Owfth49YYD2VgMcKu6wbx/SAYjRjMlEcXA=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=oC+iXwZ3tYP/pdI4sh3avdRuetKb+/1pf1CqwMIu29W+0dBM3cLIg6XkWML/47BwU
+	 dG/bu8uk2SHSzKV7M1MTABmBrW+USGtsHTqoqcOSFzipyNGSU+tqe9NQQj9M9cY0ed
+	 a7rvKWD9Oh4ngQmsOIb6jWB9H+ZaDAPvQaUoSJ2i8ErUf1RY21exEaqR9vacpUQ7Rf
+	 01RZzesx2k5DjQCPJUs43jzR7HR7bH2wQ9AX0nJxp6+ZcPDiF6WK7twqpdCwYnoEc/
+	 raakD+T2VM8XN5kjuG44Ipopp3dgSvL3lddotfbqoSoTB/ASF+SVj4df2ISmI2DCGr
+	 pMuXnGWT3S50g==
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-386b553c70eso24729501fa.0
+        for <devicetree@vger.kernel.org>; Sat, 28 Mar 2026 08:51:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCULzRUhLonFnXArc5eBIRlTQ/iVER/We5uT7tvMZ/PExqRuh11IORfAMAGz5Q9ZfkONF7WSfXdys9gl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrfdMsDNSDSxBbKpmYVS92rxKc3I5y5h7XLeuRQ6zjrnCUE7LV
+	oEgxx8KZbqSatuhMIEdJTUyDijunf5k6cKMfNabtC6pCEhy6THObhZyMagdlhz3g1LRpMmxAqrF
+	O48CdMXLWp87nMBV5b/tvHg7Qmpa2GW0=
+X-Received: by 2002:ac2:482b:0:b0:5a2:a1aa:2b8a with SMTP id
+ 2adb3069b0e04-5a2ab92b48dmr1928277e87.31.1774701460967; Sat, 28 Mar 2026
+ 05:37:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260328051630.7937-12-yunfei.dong@mediatek.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+References: <20260121-a733-rtc-v1-0-d359437f23a7@pigmoral.tech> <20260121-a733-rtc-v1-1-d359437f23a7@pigmoral.tech>
+In-Reply-To: <20260121-a733-rtc-v1-1-d359437f23a7@pigmoral.tech>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Sat, 28 Mar 2026 20:37:26 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67844OPwE6VJ0PAs5LsmCa2h0FvXOBUomZ50dM5tZ0Zow@mail.gmail.com>
+X-Gm-Features: AQROBzAjNUlKB5AcxIrVhPiEv-8viiXBsmIlq5_4UPHivayPQSg3rbcnxOKBQII
+Message-ID: <CAGb2v67844OPwE6VJ0PAs5LsmCa2h0FvXOBUomZ50dM5tZ0Zow@mail.gmail.com>
+Subject: Re: [PATCH 1/7] dt-bindings: rtc: sun6i: Add Allwinner A733 support
+To: Junhui Liu <junhui.liu@pigmoral.tech>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Ripard <mripard@kernel.org>, linux-clk@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-281980-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281961-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[collabora.com,xs4all.nl,chromium.org,ffwll.ch,vger.kernel.org,lists.infradead.org,mediatek.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,sholland.org,bootlin.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mediatek.com:email]
-X-Rspamd-Queue-Id: CB8FA34E66F
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[wens@kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pigmoral.tech:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: A820E34F017
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sat, Mar 28, 2026 at 01:16:21PM +0800, Yunfei Dong wrote:
-> Add decoder document in dt-bindings yaml file for mt8196 platform.
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+On Wed, Jan 21, 2026 at 7:03=E2=80=AFPM Junhui Liu <junhui.liu@pigmoral.tec=
+h> wrote:
+>
+> The RTC module in the Allwinner A733 SoC is functionally compatible with
+> the sun6i RTC, but its internal Clock Control Unit (CCU) has significant
+> changes.
+>
+> The A733 supports selecting the oscillator between three frequencies:
+> 19.2MHz, 24MHz, and 26MHz. The RTC CCU relies on hardware to detect
+> which frequency is actually used on the board. By defining all three
+> frequencies as fixed-clocks in the device tree, the driver can identify
+> the hardware-detected frequency and expose it to the rest of the system.
+
+No. The board device tree shall have the exact and correct frequency
+defined in the external crystal device node. The operating system can
+use the hardware-detected frequency to "fix" the in-system representation
+if it is off.
+
+> Additionally, the A733 RTC CCU provides several new DCXO gate clocks for
+> specific modules, including SerDes, HDMI, and UFS.
+>
+> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
 > ---
->  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml           | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml      | 38 ++++++++++++++++=
+++++--
+>  include/dt-bindings/clock/sun60i-a733-rtc.h        | 16 +++++++++
+>  2 files changed, 52 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rt=
+c.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> index 9df5cdb6f63f..b18431955783 100644
+> --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> @@ -26,6 +26,7 @@ properties:
+>            - allwinner,sun50i-h6-rtc
+>            - allwinner,sun50i-h616-rtc
+>            - allwinner,sun50i-r329-rtc
+> +          - allwinner,sun60i-a733-rtc
+>        - items:
+>            - const: allwinner,sun50i-a64-rtc
+>            - const: allwinner,sun8i-h3-rtc
+> @@ -46,11 +47,11 @@ properties:
+>
+>    clocks:
+>      minItems: 1
+> -    maxItems: 4
+> +    maxItems: 6
+>
+>    clock-names:
+>      minItems: 1
+> -    maxItems: 4
+> +    maxItems: 6
+>
+>    clock-output-names:
+>      minItems: 1
+> @@ -156,6 +157,38 @@ allOf:
+>          - clocks
+>          - clock-names
+>
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: allwinner,sun60i-a733-rtc
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 5
+> +          items:
+> +            - description: Bus clock for register access
 
-Still incomplete constraints. If the binding defines flexibly/variable
-lists, each device MUST have them constrained.
+> +            - description: 19.2 MHz oscillator
+> +            - description: 24 MHz oscillator
+> +            - description: 26 MHz oscillator
 
-Or explained WHY NOT in the commit msg. You have entire commit msg to
-say something useful explaining unexpected changes, instead of repeating
-the subject.
+No. There is only one input. As in there is only one set of pins for the
+DCXO. The inputs are the same as on R329 / A523. Just use that list.
 
-Also, reversed subject prefix:
-Please use subject prefixes matching the subsystem. You can get them for
-example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+> +            - description: AHB parent for internal SPI clock
+> +            - description: External 32768 Hz oscillator
+> +
+> +        clock-names:
+> +          minItems: 5
+> +          items:
+> +            - const: bus
+> +            - const: osc19M
+> +            - const: osc24M
+> +            - const: osc26M
+> +            - const: ahb
+> +            - const: ext-osc32k
+> +
+> +      required:
+> +        - clocks
+> +        - clock-names
+> +
+>    - if:
+>        properties:
+>          compatible:
+> @@ -164,6 +197,7 @@ allOf:
+>                - allwinner,sun8i-r40-rtc
+>                - allwinner,sun50i-h616-rtc
+>                - allwinner,sun50i-r329-rtc
+> +              - allwinner,sun60i-a733-rtc
+>
+>      then:
+>        properties:
+> diff --git a/include/dt-bindings/clock/sun60i-a733-rtc.h b/include/dt-bin=
+dings/clock/sun60i-a733-rtc.h
+> new file mode 100644
+> index 000000000000..8a2b5facad73
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/sun60i-a733-rtc.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
+> +
+> +#ifndef _DT_BINDINGS_CLK_SUN60I_A733_RTC_H_
+> +#define _DT_BINDINGS_CLK_SUN60I_A733_RTC_H_
+> +
+> +#define CLK_IOSC               0
+> +#define CLK_OSC32K             1
+> +#define CLK_HOSC               2
 
-Best regards,
-Krzysztof
+The DCXO enable control has been present since at least the H6. We just
+never added it, as we would never disable it anyway.
 
+If you compare the RTC clock trees of the A733 and A523, the only addition
+besides the new gates seems to be the LOSC auto selection. But even that
+is just an illusion, as the A523 has the same registers for that.
+
+One could say the A733 RTC is almost backward compatible to the A523, if
+not for the two fastboot registers the A523 has at 0x120 and 0x124.
+
+So I ask that you try to integrate the differences into the existing
+driver and bindings. You can tweak and export internal clks if you
+need.
+
+> +#define CLK_RTC_32K            3
+
+AFAICT besides being an internal clock, this is also fed to GPIO for
+debounce? We probably need to expose this on the A523 as well.
+
+
+Thanks
+ChenYu
+
+
+> +#define CLK_OSC32K_FANOUT      4
+> +#define CLK_HOSC_SERDES1       5
+> +#define CLK_HOSC_SERDES0       6
+> +#define CLK_HOSC_HDMI          7
+> +#define CLK_HOSC_UFS           8
+> +
+> +#endif /* _DT_BINDINGS_CLK_SUN60I_A733_RTC_H_ */
+>
+> --
+> 2.52.0
+>
+>
 
