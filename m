@@ -1,148 +1,118 @@
-Return-Path: <devicetree+bounces-281914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281881-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CL3wF8d4x2n2XwUAu9opvQ
-	(envelope-from <devicetree+bounces-281914-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 07:44:23 +0100
+	id GHWZM9Ehx2m5TQUAu9opvQ
+	(envelope-from <devicetree+bounces-281881-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 01:33:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F41B634D870
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 07:44:22 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 324E734CB7E
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 01:33:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E32E53030568
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 06:44:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 36B25302146F
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 00:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0754331E83D;
-	Sat, 28 Mar 2026 06:44:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37CB41BD9D0;
+	Sat, 28 Mar 2026 00:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="hWyq9Wjd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gM7prA5X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4072530594E;
-	Sat, 28 Mar 2026 06:44:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1339B27472;
+	Sat, 28 Mar 2026 00:33:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774680254; cv=none; b=rx9gwDiHLbV6HHNNhOJbkHQpoyYOTdiZmG5Zchf0OLia51zrgS6PYJSHv6pIbyqRF8WoOSmtf5kmR2HenAKoKRyBVpu7eXe26nChiXSGZYEG7mV5u7SR4tcNrwifLlHqv9u0Uq/cRraOmAh1RpAobVBQIQKi9YPNQU24SGjEaR0=
+	t=1774657996; cv=none; b=pjgUHWrCkVtSZq8mI6z+W0mgLuh3SeLAZEi8vEqnKAVJxxUnnCqdb1I0AAFD7Ilb4q/D2oo2UFdaXMbg+DsTWyRPtRGnewOItfM6u2uLt/8X2pKyOp+r17rrEkmRSRXNACLhaDMDdriSbArJ9T+4T16CRXuv1JcJ+G8yewE/4KU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774680254; c=relaxed/simple;
-	bh=RBXNJJ8EaafUN/nAGcFL5PvLmEn59wP/OTkqFfmTb6E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZmCeCGtC6Sc4/HtFaPMHXHoDR2XX7d3u4rPQh5DK49X4AYgrt8Z1IjjPf8sPHEVGCGY8Zee3fHwyWoj2/3TSvYcla0nhbIqPHI7gf55/O/IA1vShN71DH2LEluEzEIPcEjg4p28uZzMAzsi0SqhB75SY73uP7T0lKehR+CT2riE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=hWyq9Wjd; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4fjSfK20kRz9tG4;
-	Sat, 28 Mar 2026 07:44:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1774680249;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fl3Rq3/3SgX6MR2829FOQt8jronsIDrj2ERwCx2UFAg=;
-	b=hWyq9WjdJv1K/QxX13gkILqsqVkjzrrzJUpfx8AeTXhCYrxiyZus6T/myKG5KS7I4nrdCp
-	8G1QV0OOGR9HYwRbDqCXNNj4HfjrUfVaaFmenRa+ZR45N6fFlRC4lvXpEXxY/i7glDzFfN
-	C5FIc/oDQBxQCnhQHMqebsAoR9kHj8AP21O51eKdD3VJIn9TCeMf9S11JrvxmZHh0kScy6
-	tNTV7gVutXBOahOdMgYWhQ/H9c3JfgRyQq+9VF4BeEaGBE3r2QW6/J1O1Uan01fw0xgGIt
-	GJ0rdLmY05rf8hX4vW3PTXmphmef63a8OKwlw05OVVVXMeU6YRtCKk4WKLvMsA==
-Message-ID: <b8edd13e-8f54-4479-bf03-96fbf546b317@mailbox.org>
-Date: Sat, 28 Mar 2026 01:16:29 +0100
+	s=arc-20240116; t=1774657996; c=relaxed/simple;
+	bh=FHeI1U9zHljUfkTrcBPVT4RBkEQ0KmgHmn4tWtjNYI4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GQoRLjTjRDO68cCUEVYPRy5ea62txc+SrKT/rVDjai7Ilt+x/QSdyWntbDjYs08FI8NU0W9Ljd9nvsBN4ufECrhfQEM7QlboRZoeWo2ultaqCKgCJ1beFnKOhTT8iUoRQdclFI8mulVqEiLEdS9vs13xVCYEqw9ClX7pP7VBaII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gM7prA5X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D6EFC19423;
+	Sat, 28 Mar 2026 00:33:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774657995;
+	bh=FHeI1U9zHljUfkTrcBPVT4RBkEQ0KmgHmn4tWtjNYI4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=gM7prA5Xzq2hAE61BmrHOAtNaAZlmGQzeco1BrW0lOPBZEEWhyefaRwU71RREjych
+	 bP6jzTdHxm3tzNj7jysH5mMpCTbf6osLqJvxpKchFHRHznOnDsqA25mGFAOGG3vxWg
+	 i5B047/8d4R/J0GUsRy2we9uCo4NfSOEx6Gg5VVrd3LvqrefULSk6WHpJ+0mfIW4MI
+	 f3yRfR4dgU6PtUM5Lz2EJwE9GBx6bQvZwugRP2HExfZb30SgTOH2rnw3SIqTPue8yA
+	 7+sI5b4djppbDTYuVMZzOrPw8WLt1A36ioVwxO4v8YDR5zNSudQJ6QYar5eNoA4Lpk
+	 i9n774Ihk5mGw==
+From: Thierry Reding <thierry.reding@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: tegra: smaug: Enable SPI-NOR flash
+Date: Sat, 28 Mar 2026 01:33:08 +0100
+Message-ID: <177465797840.888940.3081008578776144909.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260203-smaug-spi_flash-v1-1-a6d477ac7055@tecnico.ulisboa.pt>
+References: <20260203-smaug-spi_flash-v1-1-a6d477ac7055@tecnico.ulisboa.pt>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/3] soc: renesas: Add Renesas R-Car MFIS driver
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-renesas-soc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>
-References: <20260325110717.17083-1-wsa+renesas@sang-engineering.com>
- <20260325110717.17083-3-wsa+renesas@sang-engineering.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20260325110717.17083-3-wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: my61mtagtobh15t7rpd7ax89t6g616xs
-X-MBO-RS-ID: 6893a9ce2cb72a91118
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,renesas.com,glider.be,gmail.com];
-	TAGGED_FROM(0.00)[bounces-281914-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-281881-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,nvidia.com,tecnico.ulisboa.pt];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,mailbox.org:mid]
-X-Rspamd-Queue-Id: F41B634D870
+	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,nvidia.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 324E734CB7E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/25/26 12:07 PM, Wolfram Sang wrote:
+From: Thierry Reding <treding@nvidia.com>
 
-Hello Wolfram,
 
-> +static int mfis_mb_iicr_send_data(struct mbox_chan *chan, void *data)
-> +{
-> +	struct mfis_priv *priv = mfis_mb_mbox_to_priv(chan->mbox);
-> +	struct mfis_chan_priv *chan_priv = chan->con_priv;
-> +
-> +	/* Our doorbell still active? */
-> +	if (mfis_read(&priv->mbox_reg, chan_priv->reg) & 1)
+On Tue, 03 Feb 2026 17:01:17 +0000, Diogo Ivo wrote:
+> Add support for the SPI-NOR flash found in Pixel C devices.
+> 
+> 
 
-Super-nitpick, please use BIT(0) instead of 1, since this is a register 
-bit check. This way:
+Applied, thanks!
 
-if (mfis_read(&priv->mbox_reg, chan_priv->reg) & BIT(0))
+[1/1] arm64: tegra: smaug: Enable SPI-NOR flash
+      commit: e4722f5510930df0ae2467132f558b90fdc81ee0
 
-> +		return -EBUSY;
-> +
-> +	/* Start our doorbell */
-> +	mfis_write(&priv->mbox_reg, chan_priv->reg, 1);
-
-Same here.
-
-> +	return 0;
-> +}
-> +
-> +static bool mfis_mb_iicr_last_tx_done(struct mbox_chan *chan)
-> +{
-> +	struct mfis_priv *priv = mfis_mb_mbox_to_priv(chan->mbox);
-> +	struct mfis_chan_priv *chan_priv = chan->con_priv;
-> +
-> +	/* Our doorbell still active? */
-> +	return !(mfis_read(&priv->mbox_reg, chan_priv->reg) & 1);
-Same here.
-
-The rest is very nice, thank you !
+Best regards,
+-- 
+Thierry Reding <treding@nvidia.com>
 
