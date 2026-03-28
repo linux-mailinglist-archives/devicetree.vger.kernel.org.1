@@ -1,56 +1,83 @@
-Return-Path: <devicetree+bounces-282003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282005-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gHGNMKZdyGnAkwUAu9opvQ
-	(envelope-from <devicetree+bounces-282003-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 00:00:54 +0100
+	id 1BjeNuNmyGlUlgUAu9opvQ
+	(envelope-from <devicetree+bounces-282005-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 00:40:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B4183502D3
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 00:00:53 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72FFA3503CD
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 00:40:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7B7C7301FFBE
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 22:58:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8C1F7300825B
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 23:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD74A372691;
-	Sat, 28 Mar 2026 22:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70712FFDE3;
+	Sat, 28 Mar 2026 23:40:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RFJksslz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VKmSeC15"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com [74.125.224.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83E0371041;
-	Sat, 28 Mar 2026 22:58:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BEB421D5B0
+	for <devicetree@vger.kernel.org>; Sat, 28 Mar 2026 23:40:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774738724; cv=none; b=aAVLBAqtEsWkU4vNmVf4TVvTYRYeBYQB2J6RqRpdE4+4s2iDIgFc/bS84D3zSnDZRT7N/djRf+d+3jWeIJp3QNlDONbD9L/0oGue/rxdwWmS4q8/AXIu6x/h+A0WlCgQvKlH+EmoDL8+ib/RGAYHqQnnBQKXFKCN4ns7z7svKJw=
+	t=1774741215; cv=none; b=pW9m0KRb6RYqN/6oz5H/k12Fb3t/giuzTgmmr3FMt7J+oif7G6T4ZxrRq0QxxNudH9mo5V+zDYsAGyFx6AnSsn8roA27DcisKZQiKdb2nhRMDuLoP30qsGjkBPqS3FKCrkH3WdLywYbywR4pla1g7qpO4XdR+M9Ksy8tPiXzyTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774738724; c=relaxed/simple;
-	bh=8xdx2HbnXq6Mh5ZvIUF+ZUXZWo/BQLtnb8f+Cdo6Grc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qoZlbnNL0PGkd/eCJMoy9X9Yo9W9ed4zV0BLI2nxOeXhfYPeWS70fK7UOC28Vdx7EHUWQHBCn5Adx4k0aJP1y+Vj3jCjzdloDCxyqO/nY6RaO13I/0ajRMgDWszGwsYHtqJiCFeYp/25NP+H+LQcurZln8IdKfUDe12anjbHEwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RFJksslz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6B98CC2BCB3;
-	Sat, 28 Mar 2026 22:58:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774738724;
-	bh=8xdx2HbnXq6Mh5ZvIUF+ZUXZWo/BQLtnb8f+Cdo6Grc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=RFJksslzzjITuKUd1UEXaFl7CmLl8xBG15X2gBgA/vjip5sqwKfpOZz21d1nGLiTh
-	 y8EGjRZ4OH/+ZSAXi8d/cREGlxbAJgJ3GGPslFhZ2wTnhBQo+0X1kst4g3NeGdUxrF
-	 FrmcZKJ2Ajg2md+hTckz0WzdI9/bO1c7Saf6w3rKawAwaTQtmIOWTmYv+ZAHoRU0aQ
-	 FHFLW7gZf7pvKibUW3pEmciogULni835CwpKm+mMHeGcZopP7umTnzC0IqZaPfb25m
-	 TH7kxxoE/Bdm8DaFJafuq+WLjMXiwMCaZHHwPZf46xul+bdfCjO81BLwaq3xX6qfBZ
-	 eDmpxU3t+oDuA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60CCC10D1490;
-	Sat, 28 Mar 2026 22:58:44 +0000 (UTC)
-From: =?utf-8?q?Pablo_Correa_G=C3=B3mez_via_B4_Relay?= <devnull+pabloyoyoista.postmarketos.org@kernel.org>
-Date: Sat, 28 Mar 2026 23:58:42 +0100
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sdm670-google-common: enable
- debug uart
+	s=arc-20240116; t=1774741215; c=relaxed/simple;
+	bh=iBfmwIN/aW/lfWocegSWcnPg3oUdouAqfTYTm8tAdhI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=QxSRS2Ng50hwE3RAHKBYTux+OcS8D3+Pz6AJr0EfKig31vT/JRFekrZioBTlKn1E5vl+LTQPgWxqIb83Z60/PcNQMghkzjtfdFqgLs2LhpYvGEJQcwDJDVWI865JL6o+TN3iozVfOVoJElFcNSd/aWvvshUxI5lERayHky8VNpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VKmSeC15; arc=none smtp.client-ip=74.125.224.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-64d5a7926cfso3881545d50.2
+        for <devicetree@vger.kernel.org>; Sat, 28 Mar 2026 16:40:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774741213; x=1775346013; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=D6KQA/Fx9D9/4JQMN8XwpW8Ndz5zn5yIIrnM3uQJKv4=;
+        b=VKmSeC15YcUkZPtdFDKGa1IohUZp4ef1FNQ1SmwFRuArBLjQndphxwapzFwjfGrU4u
+         S/b4MTpA4L88Mxtrk6ambqW+6xzx8Hq3Su+H3Cc/zWo6EeJslr+5z5+THP9KRJg2e5bP
+         fAlVwJguVo+WWUOpYCtHe2+g0+MKDXyqgVSVGq6wvKAI8DS0sfKVJqQEoA3k0THW5hVp
+         e0YpcYMnMWEtQ99v01xDgvZ8gCL86JNNWTkhmgZEgAFf3KtzLkywSH8GN2avxMLErkzV
+         pq1SZN/6JxqNADSDQWfAZZnmTesQLd0LnrNRr5yNwaJ7wiEyIV+CrJXQ4kGQ8wuoF84T
+         f0pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774741213; x=1775346013;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D6KQA/Fx9D9/4JQMN8XwpW8Ndz5zn5yIIrnM3uQJKv4=;
+        b=cKC54EKR+6bV0WEMfAmIxamw2yM+HbHCu/vKDDV2tg9D3RAJtu645ley48ZJ8hpsAi
+         aDurpBt/LLgTpC3u9gwvoYdWfT+nIV9CBHR9iGETCGF1qVpLjHIeZywzSLfcJopmhYLh
+         iN4OjEJ+WF86gpPYRdc7P6X8gkea2WeYe8/XmLNplWJTgso1zYRr7AI7ei7Aj0rQLudM
+         /zRoeBArHVuMkU5Ze2L8Jx9UCNZMl1yeAmfd4TWDyAcaRFwJwREqsfdrUSeIGhu9Je53
+         gA4pZawSQa2SygoTlu4hBCiTY2b1Kc4oSsMIHF8/egQDSRBsiOaD5XimdCyyES677dQK
+         izmg==
+X-Forwarded-Encrypted: i=1; AJvYcCVsXD4yDfH4/4yihS2IWu+80cCi5XGOQ060MkugMO5Sn19REJ9AliXtlMTB9mbM5kap3barKRlvaaBB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxm1e4hOIqHgvLFdZFvQXNhFf4TsRkmVyJ+M91IX9gruJfIO/fF
+	ZAvyKl2gUPMRwbVF88GE+famZ0lEreNxcOD0am2i8YAVCEL/6ZxNJDGs
+X-Gm-Gg: ATEYQzwhCQ7RYDScjNOrH60bbX6yvcwt0r04GZe84WBjoYOmN0BMe67NkbqrJJNMkM2
+	sOJHiF6UWdXy5aCe0eIupockzPaNBqV9B/bR+fuWgHYei7mNpWXtdbBRZfKVeXy1Z/FGOIrQviF
+	OWw5wq0v7eOK0vEO64OLtoG5V7VkdZXiIThfSNGclhcGpbADCpZz7hR0fUIPrjywETALo3poOuJ
+	fwaEtFE5ZSEEAM83hKAoTl/2i46T8ch1p8Zqh+MbAIlPkdoB/CyxdHzRxA7kaFJS4ArozYNrHuB
+	1QBD//7iCmKpYivnb+2iJk3J8cbkGXVwX27Q1WcH1q8Lj4h6CPzL2qTYM9K02zCPiTM0v2dVpIb
+	GXZjjnS60vrnMPDGsvU9T0BAIG5jr3DQsOFXv7+z/wXBhBpZn5fRXbe1ElRV4aPqZA2utkqSb76
+	Tjsm1YeT3RrFHbhfUA
+X-Received: by 2002:a05:690c:387:b0:798:3be8:b68a with SMTP id 00721157ae682-79bde0b7b15mr78629767b3.56.1774741213414;
+        Sat, 28 Mar 2026 16:40:13 -0700 (PDT)
+Received: from [192.168.2.165] ([2600:1700:220:59e0::914])
+        by smtp.googlemail.com with ESMTPSA id 00721157ae682-79cba66cf09sm15559127b3.43.2026.03.28.16.40.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Mar 2026 16:40:12 -0700 (PDT)
+From: Anirudh Srinivasan <anirudhsriniv@gmail.com>
+Date: Sat, 28 Mar 2026 18:39:59 -0500
+Subject: [PATCH] ARM: dts: aspeed: Enable networking for Asus Kommando IPMI
+ Card
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,131 +85,119 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260328-pabloyoyoista-debug-uart-on-rdacayan-next-v2-3-53abd9db8f0a@postmarketos.org>
-References: <20260328-pabloyoyoista-debug-uart-on-rdacayan-next-v2-0-53abd9db8f0a@postmarketos.org>
-In-Reply-To: <20260328-pabloyoyoista-debug-uart-on-rdacayan-next-v2-0-53abd9db8f0a@postmarketos.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Richard Acayan <mailingradian@gmail.com>, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- =?utf-8?q?Pablo_Correa_G=C3=B3mez?= <pabloyoyoista@postmarketos.org>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1252;
- i=pabloyoyoista@postmarketos.org; h=from:subject:message-id;
- bh=VHLwmsN4P772ow9/6v2H4OaVcZPfDAQIcntWKTFdTMc=;
- b=owEBbQKS/ZANAwAKAXo0JWX/Y195AcsmYgBpyF0jwo9ChontKOekSZeLAjjzU+r6p2WR0QcFi
- vA/A5w5wPSJAjMEAAEKAB0WIQS9CheUSi6o/ykTCaJ6NCVl/2NfeQUCachdIwAKCRB6NCVl/2Nf
- ebVsD/0QRLuK8Ucw1STYeq/wT+8NLzuboHnCm7ZTq9pm1guBCDN1wiLK0waovOjOjCaHizTN70L
- qE5wX1FmsU0RiBNz4HYmRh2NYi+CZqGQwbCdcKGn6LWa/TrIDuffWf4W1W8bZ0PbpivJKaVw2uZ
- mZad7ViAZ243rQL2aJGI3571o6vYJkrK9kf5vg9lgdSfuyYtfzdQYmIMSK8fzz5ciHL3iaG5i//
- G7Zhl6L1jAaasLTRyjjPuJId/DzOQo9OU4c8fx2cYUOto2YM+q9D02m3QUcNxzCg0PQOo10hAoO
- Y6CTBswwUm/qsWQ/uDAsDAdiHEI2vSNGhpQouHPoGEFHMeT4nJh2uIoD7zVWhg3LxQzvCbKqNwr
- Wb1cnCnk7Equ8cqPTT2MPKnPlm3X8JldXltsIH0CJDKCIFbTQOz7N/Qc2js6O1QnKgzNH3EvhS4
- dr0IldQetl1S1PskjGv2RSVo5TmRZlNUyeoN7AvLDV/guSaEiiIomXZ863kNjVVjGqdDLUC1elw
- QoaCWj51oRphKBEs/Ny3lCz5em+J7jKEiIwZSGcYSwezZAx/fgdS65EJKSME90uL/k0SPUXkJOA
- Hr/MiSAuKuNjR8U9h+mZrUR4SX9K6LCQLQ4Q+L9orkIerLy05lLR8vIGPpfhmsQZSy3YC95N4WU
- DFFg0fDnr6AtDEA==
-X-Developer-Key: i=pabloyoyoista@postmarketos.org; a=openpgp;
- fpr=BD0A17944A2EA8FF291309A27A342565FF635F79
-X-Endpoint-Received: by B4 Relay for pabloyoyoista@postmarketos.org/default
- with auth_id=698
-X-Original-From: =?utf-8?q?Pablo_Correa_G=C3=B3mez?= <pabloyoyoista@postmarketos.org>
-Reply-To: pabloyoyoista@postmarketos.org
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260328-asus-kommando-networking-v1-1-66d308b88536@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yWNwQrDIBAFfyXsuYKaRqW/UnLQdU0lRFtN2kLIv
+ 1ea4wy8eTtUKpEq3LodCr1jjTk1EJcO8GHTRCz6xiC5VLyXhtm6VTbnZbHJZ5Zo/eQyxzSxAbk
+ S0lrlDEKbPwuF+P2n7+PJhV5be1hPCc5WYthScb11WrkroaHgsTdGo3dB99xbScNgjAgorDBac
+ xiP4wfEBxgrtgAAAA==
+X-Change-ID: 20260328-asus-kommando-networking-5c0612aa6b8c
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, Anirudh Srinivasan <anirudhsriniv@gmail.com>
+X-Mailer: b4 0.14.2
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282003-lists,devicetree=lfdr.de,pabloyoyoista.postmarketos.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,lists.sr.ht,postmarketos.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-282005-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.987];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[anirudhsriniv@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	HAS_REPLYTO(0.00)[pabloyoyoista@postmarketos.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[postmarketos.org:email,postmarketos.org:replyto,postmarketos.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0B4183502D3
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email]
+X-Rspamd-Queue-Id: 72FFA3503CD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Pablo Correa Gómez <pabloyoyoista@postmarketos.org>
+Adds the DT nodes needed for ethernet support for Asus Kommando, with
+phy mode set to rgmii-id.
 
-This has been tested on the Pixel 3a with USB Cereal board
+When this DT was originally added, the phy mode was set to rgmii (which
+was incorrect). It was suggested to remove networking support from the
+DT till the Aspeed networking driver was patched so that the correct phy
+mode could be used.
 
-Depends on
-https://lore.kernel.org/all/20260310002606.16413-5-mailingradian@gmail.com/
+The discussion in [1] mentions that u-boot was inserting clk delays that
+weren't needed, which resulted in needing to set the phy mode in linux
+to rgmii incorrectly. The solution suggested there was to patch u-boot to
+no longer insert these clk delays and use rgmii-id as the phy mode for
+any future DTs added to linux.
 
-Signed-off-by: Pablo Correa Gómez <pabloyoyoista@postmarketos.org>
+This DT was tested with a u-boot DT modified to insert clk delays of 0
+(instead of patching u-boot itself). [2] adds a u-boot DT for this
+device (without networking) and describes how to patch it to add
+networking support. If this patched DT is used, then networking works
+with rgmii-id phy mode in both u-boot and linux.
+
+[1] https://lore.kernel.org/linux-aspeed/ef88bb50-9f2c-458d-a7e5-dc5ecb9c777a@lunn.ch/
+[2] https://lore.kernel.org/openbmc/20260328-asus-kommando-v2-1-2a656f8cd314@gmail.com/
+
+Signed-off-by: Anirudh Srinivasan <anirudhsriniv@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/sdm670-google-common.dtsi | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+This patch is based off aspeed/arm/dt from bmc tree
+---
+ .../dts/aspeed/aspeed-bmc-asus-kommando-ipmi-card.dts  | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-common.dtsi b/arch/arm64/boot/dts/qcom/sdm670-google-common.dtsi
-index 32dce1cfdf6f..e8bd5f3861e4 100644
---- a/arch/arm64/boot/dts/qcom/sdm670-google-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm670-google-common.dtsi
-@@ -27,7 +27,9 @@
- /delete-node/ &gpu_mem;
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-kommando-ipmi-card.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-kommando-ipmi-card.dts
+index ab7ad320067c1ddc0fea9ac386fd488c8ef28184..e0f7d92efa18ccbad2c336236c3b9d01b7de1bba 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-kommando-ipmi-card.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-kommando-ipmi-card.dts
+@@ -107,6 +107,24 @@ &gpio1 {
+ 	/*18E0 32*/ "","","","","","","","";
+ };
  
- / {
--	aliases { };
-+	aliases {
-+		serial0 = &uart12;
++&mac2 {
++	status = "okay";
++
++	phy-mode = "rgmii-id";
++	phy-handle = <&ethphy2>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rgmii3_default>;
++};
++
++&mdio2 {
++	status = "okay";
++
++	ethphy2: ethernet-phy@0 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <0>;
 +	};
- 
- 	battery: battery {
- 		compatible = "simple-battery";
-@@ -683,6 +685,16 @@ &qupv3_id_1 {
++};
++
+ &vhub {
  	status = "okay";
  };
- 
-+&qup_uart12_rx {
-+	drive-strength = <2>;
-+	bias-pull-up;
-+};
-+
-+&qup_uart12_tx {
-+	drive-strength = <2>;
-+	bias-disable;
-+};
-+
- &sdhc_1 {
- 	supports-cqe;
- 	mmc-hs200-1_8v;
-@@ -749,6 +761,10 @@ ts-switch-pins {
- 	};
- };
- 
-+&uart12 {
-+	status = "okay";
-+};
-+
- &usb_1_hsphy {
- 	vdd-supply = <&vreg_l1b_0p925>;
- 	vdda-pll-supply = <&vreg_l10a_1p8>;
 
+---
+base-commit: 76b4ec8efdc3887cdbf730da2e55881fc1a18770
+change-id: 20260328-asus-kommando-networking-5c0612aa6b8c
+
+Best regards,
 -- 
-2.53.0
-
+Anirudh Srinivasan <anirudhsriniv@gmail.com>
 
 
