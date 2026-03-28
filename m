@@ -1,233 +1,176 @@
-Return-Path: <devicetree+bounces-281996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-281998-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +sZsFNZQyGlykAUAu9opvQ
-	(envelope-from <devicetree+bounces-281996-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 23:06:14 +0100
+	id IFaBDUpbyGk0kwUAu9opvQ
+	(envelope-from <devicetree+bounces-281998-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 23:50:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94BA835019E
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 23:06:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A70535025D
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 23:50:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B40FB30151F1
-	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 22:06:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 29F7C301AD26
+	for <lists+devicetree@lfdr.de>; Sat, 28 Mar 2026 22:49:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF04B2D6E58;
-	Sat, 28 Mar 2026 22:06:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A182E355026;
+	Sat, 28 Mar 2026 22:49:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O6yLyMe8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bCApMGdn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC58A18787A;
-	Sat, 28 Mar 2026 22:06:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AFF030F927;
+	Sat, 28 Mar 2026 22:49:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774735570; cv=none; b=iJQ6HJg8Ooi/fBd040D2o28cD7IUMTeP2xSDKnZMivCFohv6oF7TgwcbL58odnJshyo8AKg/xcks/S8ZTAxvWI3B2o0GxlRhu4Fp6FEAPNzXWi6Z3yNqYFKEHzAMcuEbHorcKaxNbdbZFeXWJlOitpwvHrQigNqLVB1EBA6RNFs=
+	t=1774738157; cv=none; b=R1S3vwssuD7sQUlVtJDzuJ3kAmkg062hTf2+Sqkao0I+vjea4L+xzpWq+IQwN0Xg77U/Og01j9CICWB06NCGQHQeTt3X4nZqn39bcIaF5dHAsBFULyo/8my+rG6wyELl6JegefYZXrQgDdc1taxYQAp1W9XB/mHb/GRkZZkiLGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774735570; c=relaxed/simple;
-	bh=pzc/tpsXptWa/yPOeB/pL7zDiAuIXRW8wVhhv3EJYGc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cEoP+SWRBpb31x8aob7nvNviwLhGkG+qoW/jlxSKruNhB7J08cThffxuRCuJc8JFoPISOeI+0oN7tVyve589FFm6pbm3QQe1lDSNBYlXEIshHGoxtXn5RPQOcp4YDXvVor3Wq1gUu8Gf/AHj9VN5/7XjT8bLo7yz4Aue5BLhnnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O6yLyMe8; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774735569; x=1806271569;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=pzc/tpsXptWa/yPOeB/pL7zDiAuIXRW8wVhhv3EJYGc=;
-  b=O6yLyMe88Nhsc3aLW49+hkCqWDJzJjnGis0wr9dlRPeEjzyYLHFAN+xB
-   D/bJw3ud7WdgNMhcJV50VQKuIem66x86YG4jY+lYKMD48tP9m/VS8qArv
-   NHoTaJfD+FQDnXwob5oo4t4fm+aq55P5VKGeVpYqc0dcJRmbjTg3RlHaA
-   HZZRL/Yf5o3HbuXRiZd2Z/s4ps1MbEGP/FdlyC/XeqivGZy5oeBRDt0Nk
-   2LuZf4B/ZIvvaDilyQiN26fxYtdBVi6Yucmvc22s0vS3+/jhELLElTw+S
-   4OJzq4MOfecce/zSfSQIrz7vUxI3pAJjeZJ5kubWWSKyTJQM5qsUrMbuk
-   w==;
-X-CSE-ConnectionGUID: 4kRZ86W/ThG8ohMur93OXQ==
-X-CSE-MsgGUID: kuHdsGsaTOqkr94l7wpKWQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11742"; a="75793927"
-X-IronPort-AV: E=Sophos;i="6.23,146,1770624000"; 
-   d="scan'208";a="75793927"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Mar 2026 15:06:09 -0700
-X-CSE-ConnectionGUID: w8xu/IBFTLKr5v3SzSh+tA==
-X-CSE-MsgGUID: +GVCDlQhQuiRiai87czLpA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,146,1770624000"; 
-   d="scan'208";a="225545327"
-Received: from lkp-server01.sh.intel.com (HELO 3905d212be1b) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 28 Mar 2026 15:06:04 -0700
-Received: from kbuild by 3905d212be1b with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w6bn6-00000000BoL-0LI1;
-	Sat, 28 Mar 2026 22:06:00 +0000
-Date: Sun, 29 Mar 2026 06:05:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jay Liu <jay.liu@mediatek.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Jay Liu <jay.liu@mediatek.com>
-Subject: Re: [PATCH v4 5/6] drm/mediatek: Support multiple CCORR component
-Message-ID: <202603290611.fr83Gu7M-lkp@intel.com>
-References: <20260324125315.4715-6-jay.liu@mediatek.com>
+	s=arc-20240116; t=1774738157; c=relaxed/simple;
+	bh=Bw62XKiLztflw/Q8k1Vk0tX6CpJo4mDwtAvso2G1Je0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=c4Za4tzYK36RjkmNJqzd+PqWfRbLV+BOO+8TXIgk79EWP9oJWAJw6Q6Zp7y7Emc7eDEcYgpZsRUQPmSeeTEKxU6vu8LoIvWlXzsVhABjLaMP5hgXHq0NepcGU/HQMIgLRvGL2wr/qaR35BYV2l19COfDI5YcMWPNbe4iCwYk3ms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bCApMGdn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 147FBC4CEF7;
+	Sat, 28 Mar 2026 22:49:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774738157;
+	bh=Bw62XKiLztflw/Q8k1Vk0tX6CpJo4mDwtAvso2G1Je0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=bCApMGdnW5ea9hUCjZ4SXgzlCQhIUuy7bL811LR50ec3HT5yJ+tZw3jD9NZIxvm0X
+	 nC30lcHP6h5PKqHf/Fz0dtnaec4JeiVWKHMfQvWAbf1/UdH8aloHpq2AsQsQhWzhO6
+	 TcTDX5Y86ACWT7u43WXmYoD4l6TKyvua3ZE99jRxvEKs6Sy6DErM8/s9c7iTG1+tqO
+	 8vhzTUvGu/ul8yR6IhJ2AWJQOv+E1EDsd10dpTzbbIfUMCcKkmvv38qjTBaSzJYDa1
+	 umKaxQJH4Zfh/8EjAmKpPBIMfDx5Srk3B9Hdpm98IC4HVs4PNGmQb3CoakVcsBXbOn
+	 FW6tR7AlPnl9Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 00AAA10D148B;
+	Sat, 28 Mar 2026 22:49:16 +0000 (UTC)
+From: =?utf-8?q?Pablo_Correa_G=C3=B3mez_via_B4_Relay?= <devnull+pabloyoyoista.postmarketos.org@kernel.org>
+Subject: [PATCH 0/3] Add support and enable the debug UART in the Pixel 3a
+ and Pixel 3a XL
+Date: Sat, 28 Mar 2026 23:49:13 +0100
+Message-Id: <20260328-pabloyoyoista-debug-uart-on-rdacayan-next-v1-0-0babf584acdb@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260324125315.4715-6-jay.liu@mediatek.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAOlayGkC/32OS2rDMBCGr2K07hi9LDsmlN6jZDGSx65KLKeSX
+ BJC7l7Z6bKUWQwf/K87SxQ9JdZXdxbp2ye/hALipWLuA8NE4IfCTHJpuJIdXNCel1s5nzLCQHa
+ dYMWYYQkQB3R4wwCBrhnMQbZaNZ2jUbOSd4k0+uve9X56clrtJ7m8FfwqIn2tZUR+ypjFROCWe
+ fa5rxo9HowZjbKq3eQzpYT7wr467gOlaDmXrepqoVSjNAiY0Z99mCIOHsPbtGFdAl//DlCC8+2
+ bWhgt1H/+0+PxAyVagEM+AQAA
+X-Change-ID: 20260328-pabloyoyoista-debug-uart-on-rdacayan-next-69274358cef4
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Richard Acayan <mailingradian@gmail.com>, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ =?utf-8?q?Pablo_Correa_G=C3=B3mez?= <pabloyoyoista@postmarketos.org>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2201;
+ i=pabloyoyoista@postmarketos.org; h=from:subject:message-id;
+ bh=Bw62XKiLztflw/Q8k1Vk0tX6CpJo4mDwtAvso2G1Je0=;
+ b=kA0DAAoBejQlZf9jX3kByyZiAGnIWuugX1IvvbIoQW1giGjL1ZlcZW6vbSZrGdhg69624MCYJ
+ YkCMwQAAQoAHRYhBL0KF5RKLqj/KRMJono0JWX/Y195BQJpyFrrAAoJEHo0JWX/Y195XqYP/i+q
+ FnzgTPyS9/qV1lBbWeS24iPrmXgNZrdyBq5wHJIOUnChI9piXbg+ouoUIvVeL0hHANaKuvLILQh
+ tRYYdUFpxgkNjMOcISimpoUt7IonZr8HsArGd6TgJohu2FUPkbJXhlIIA3PqfRGl+90MKeoWRTE
+ ReHrejVLA4TYb+rz2f9io53gTfilIodZ8a25EXvLK9y0LK1O4lWrgF5nAz2pg9YhKad1GjngWga
+ 8A3NffOM2Oqv1PIF86kRamo6YznFnljTPtHvduQ7BnDtkjf0nsRp1UbSdK7JNXLA0ymLJ49hcH9
+ cWmqktyk6jZ/qEXHSa0+KQG7zdT6MrCpxBJsklg781MMo9rb8UwEBMNq4XaRwmNpc9sZz0WKYq6
+ fJTGstnH7vFU/cKEuoR6atM9o5uyT3xz7T4Sy++tYBygdKM/cIAOOisbAhQ5/XntEs7yauq36bl
+ zClXwaQ7YyG3pYbBocPw40ucTkletrWA0oLDRdX20coa+0EOtCJklvms/7dEK7HCIrCWkjxQBVK
+ xX1cxBI853zbQ2tsGxG6V4zg3L2eYAisC7VN8n625ejYZJRqliOhtM81agNwx9qKEsE7pQeBdyp
+ fFJVP6nz44mynbOd8dqYn3PRidpvu6lJNDPEhbgFGoFoJNV0e4FYFSjWnlyffswD/E4yarXRKQU
+ 2tJ48
+X-Developer-Key: i=pabloyoyoista@postmarketos.org; a=openpgp;
+ fpr=BD0A17944A2EA8FF291309A27A342565FF635F79
+X-Endpoint-Received: by B4 Relay for pabloyoyoista@postmarketos.org/default
+ with auth_id=698
+X-Original-From: =?utf-8?q?Pablo_Correa_G=C3=B3mez?= <pabloyoyoista@postmarketos.org>
+Reply-To: pabloyoyoista@postmarketos.org
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-281998-lists,devicetree=lfdr.de,pabloyoyoista.postmarketos.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,lists.sr.ht,postmarketos.org];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-281996-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[mediatek.com,kernel.org,pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,suse.de,collabora.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.996];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,git-scm.com:url]
-X-Rspamd-Queue-Id: 94BA835019E
+	RCPT_COUNT_SEVEN(0.00)[11];
+	HAS_REPLYTO(0.00)[pabloyoyoista@postmarketos.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[postmarketos.org:email,postmarketos.org:replyto,postmarketos.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7A70535025D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Jay,
+In order to get logs through the SBU pins in Google Pixel devices, it is
+necessary to add support to the devicetree, and enable the corresponding
+UART. With this code and an USB-Cereal board, I was able to get full kernel
+logs through serial.
 
-kernel test robot noticed the following build errors:
+This series depends on the patch adding a sdm670-google-common dtsi for
+dealing with both the Pixel 3a and Pixel 3a XL:
+https://lore.kernel.org/all/20260310002606.16413-5-mailingradian@gmail.com/
 
-[auto build test ERROR on drm-misc/drm-misc-next]
-[also build test ERROR on drm/drm-next pza/reset/next linus/master v7.0-rc5 next-20260327]
-[cannot apply to pza/imx-drm/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+This is my first patch sent to the kernel mailing list, so apologies ahead
+if I missed something in the documentation.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jay-Liu/dt-bindings-display-mediatek-gamma-Add-support-for-MT8196/20260328-083359
-base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
-patch link:    https://lore.kernel.org/r/20260324125315.4715-6-jay.liu%40mediatek.com
-patch subject: [PATCH v4 5/6] drm/mediatek: Support multiple CCORR component
-config: sparc64-allmodconfig (https://download.01.org/0day-ci/archive/20260329/202603290611.fr83Gu7M-lkp@intel.com/config)
-compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 054e11d1a17e5ba88bb1a8ef32fad3346e80b186)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260329/202603290611.fr83Gu7M-lkp@intel.com/reproduce)
+Signed-off-by: Pablo Correa Gómez <pabloyoyoista@postmarketos.org>
+---
+Pablo Correa Gómez (3):
+      arm64: dts: qcom: sdm670: add default uart pinctrl nodes
+      arm64: dts: qcom: sdm670: add debug uart soc node
+      arm64: dts: qcom: sdm670-google-common: enabled debug uart
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603290611.fr83Gu7M-lkp@intel.com/
+ arch/arm64/boot/dts/qcom/sdm670-google-common.dtsi |  18 +-
+ arch/arm64/boot/dts/qcom/sdm670.dtsi               | 207 +++++++++++++++++++++
+ 2 files changed, 224 insertions(+), 1 deletion(-)
+---
+base-commit: 54f966f63b379d0c62bb044b7903319776443a4a
+change-id: 20260328-pabloyoyoista-debug-uart-on-rdacayan-next-69274358cef4
+prerequisite-message-id: <20260217002738.133534-1-mailingradian@gmail.com>
+prerequisite-patch-id: aeaea0c438bff770d0c4c33d937db5706d642daf
+prerequisite-patch-id: 11ce654ef61d48fdebf1c4e1d9d184cfb7bcaa59
+prerequisite-patch-id: c6203c8a71fe103b983b6ba5fc99a22948118fb4
+prerequisite-patch-id: f9ff17c7e4b4396850f51e45249d2f6e35df3725
+prerequisite-patch-id: faab09f9fe421a6358e5512c6050dd70d3271273
+prerequisite-patch-id: adb88e3ddcbe33db1e3fc60ea4cb195dac18a8b4
+prerequisite-patch-id: 0c8f7fc0835cdda72529fcfa7b654bb97109fae4
+prerequisite-message-id: <20260310002606.16413-1-mailingradian@gmail.com>
+prerequisite-patch-id: eb2d2be6edae3d09973b49f3ff6c48fa0845e7e0
+prerequisite-patch-id: e6d9e56eaeceddee68d56e2ec8ac20997bff52c9
+prerequisite-patch-id: d5e2975adf904bf656827100df7989218ac9e963
+prerequisite-patch-id: 04478351b1304dfe1357d176c8d0c235346ca40f
+prerequisite-patch-id: a54db56ccdf1491c46158a84ac1cae70f74bb36c
 
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/mediatek/mtk_ddp_comp.c:461:3: error: use of undeclared identifier 'DDP_COMPONENT_CCORR0'; did you mean 'DDP_COMPONENT_CCORR'?
-     461 |         [DDP_COMPONENT_CCORR0]          = { MTK_DISP_CCORR,             0, &ddp_ccorr },
-         |          ^~~~~~~~~~~~~~~~~~~~
-         |          DDP_COMPONENT_CCORR
-   include/linux/soc/mediatek/mtk-mmsys.h:27:2: note: 'DDP_COMPONENT_CCORR' declared here
-      27 |         DDP_COMPONENT_CCORR,
-         |         ^
->> drivers/gpu/drm/mediatek/mtk_ddp_comp.c:462:3: error: use of undeclared identifier 'DDP_COMPONENT_CCORR1'; did you mean 'DDP_COMPONENT_CCORR'?
-     462 |         [DDP_COMPONENT_CCORR1]          = { MTK_DISP_CCORR,             1, &ddp_ccorr },
-         |          ^~~~~~~~~~~~~~~~~~~~
-         |          DDP_COMPONENT_CCORR
-   include/linux/soc/mediatek/mtk-mmsys.h:27:2: note: 'DDP_COMPONENT_CCORR' declared here
-      27 |         DDP_COMPONENT_CCORR,
-         |         ^
-   drivers/gpu/drm/mediatek/mtk_ddp_comp.c:462:28: warning: initializer overrides prior initialization of this subobject [-Winitializer-overrides]
-     462 |         [DDP_COMPONENT_CCORR1]          = { MTK_DISP_CCORR,             1, &ddp_ccorr },
-         |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/mediatek/mtk_ddp_comp.c:461:28: note: previous initialization is here
-     461 |         [DDP_COMPONENT_CCORR0]          = { MTK_DISP_CCORR,             0, &ddp_ccorr },
-         |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 warning and 2 errors generated.
+Best regards,
+--  
+Pablo Correa Gómez <pabloyoyoista@postmarketos.org>
 
 
-vim +461 drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-
-   456	
-   457	static const struct mtk_ddp_comp_match mtk_ddp_matches[DDP_COMPONENT_DRM_ID_MAX] = {
-   458		[DDP_COMPONENT_AAL0]		= { MTK_DISP_AAL,		0, &ddp_aal },
-   459		[DDP_COMPONENT_AAL1]		= { MTK_DISP_AAL,		1, &ddp_aal },
-   460		[DDP_COMPONENT_BLS]		= { MTK_DISP_BLS,		0, NULL },
- > 461		[DDP_COMPONENT_CCORR0]		= { MTK_DISP_CCORR,		0, &ddp_ccorr },
- > 462		[DDP_COMPONENT_CCORR1]		= { MTK_DISP_CCORR,		1, &ddp_ccorr },
-   463		[DDP_COMPONENT_COLOR0]		= { MTK_DISP_COLOR,		0, &ddp_color },
-   464		[DDP_COMPONENT_COLOR1]		= { MTK_DISP_COLOR,		1, &ddp_color },
-   465		[DDP_COMPONENT_DITHER0]		= { MTK_DISP_DITHER,		0, &ddp_dither },
-   466		[DDP_COMPONENT_DP_INTF0]	= { MTK_DP_INTF,		0, &ddp_dpi },
-   467		[DDP_COMPONENT_DP_INTF1]	= { MTK_DP_INTF,		1, &ddp_dpi },
-   468		[DDP_COMPONENT_DPI0]		= { MTK_DPI,			0, &ddp_dpi },
-   469		[DDP_COMPONENT_DPI1]		= { MTK_DPI,			1, &ddp_dpi },
-   470		[DDP_COMPONENT_DRM_OVL_ADAPTOR]	= { MTK_DISP_OVL_ADAPTOR,	0, &ddp_ovl_adaptor },
-   471		[DDP_COMPONENT_DSC0]		= { MTK_DISP_DSC,		0, &ddp_dsc },
-   472		[DDP_COMPONENT_DSC1]		= { MTK_DISP_DSC,		1, &ddp_dsc },
-   473		[DDP_COMPONENT_DSI0]		= { MTK_DSI,			0, &ddp_dsi },
-   474		[DDP_COMPONENT_DSI1]		= { MTK_DSI,			1, &ddp_dsi },
-   475		[DDP_COMPONENT_DSI2]		= { MTK_DSI,			2, &ddp_dsi },
-   476		[DDP_COMPONENT_DSI3]		= { MTK_DSI,			3, &ddp_dsi },
-   477		[DDP_COMPONENT_GAMMA]		= { MTK_DISP_GAMMA,		0, &ddp_gamma },
-   478		[DDP_COMPONENT_MERGE0]		= { MTK_DISP_MERGE,		0, &ddp_merge },
-   479		[DDP_COMPONENT_MERGE1]		= { MTK_DISP_MERGE,		1, &ddp_merge },
-   480		[DDP_COMPONENT_MERGE2]		= { MTK_DISP_MERGE,		2, &ddp_merge },
-   481		[DDP_COMPONENT_MERGE3]		= { MTK_DISP_MERGE,		3, &ddp_merge },
-   482		[DDP_COMPONENT_MERGE4]		= { MTK_DISP_MERGE,		4, &ddp_merge },
-   483		[DDP_COMPONENT_MERGE5]		= { MTK_DISP_MERGE,		5, &ddp_merge },
-   484		[DDP_COMPONENT_OD0]		= { MTK_DISP_OD,		0, &ddp_od },
-   485		[DDP_COMPONENT_OD1]		= { MTK_DISP_OD,		1, &ddp_od },
-   486		[DDP_COMPONENT_OVL0]		= { MTK_DISP_OVL,		0, &ddp_ovl },
-   487		[DDP_COMPONENT_OVL1]		= { MTK_DISP_OVL,		1, &ddp_ovl },
-   488		[DDP_COMPONENT_OVL_2L0]		= { MTK_DISP_OVL_2L,		0, &ddp_ovl },
-   489		[DDP_COMPONENT_OVL_2L1]		= { MTK_DISP_OVL_2L,		1, &ddp_ovl },
-   490		[DDP_COMPONENT_OVL_2L2]		= { MTK_DISP_OVL_2L,		2, &ddp_ovl },
-   491		[DDP_COMPONENT_POSTMASK0]	= { MTK_DISP_POSTMASK,		0, &ddp_postmask },
-   492		[DDP_COMPONENT_PWM0]		= { MTK_DISP_PWM,		0, NULL },
-   493		[DDP_COMPONENT_PWM1]		= { MTK_DISP_PWM,		1, NULL },
-   494		[DDP_COMPONENT_PWM2]		= { MTK_DISP_PWM,		2, NULL },
-   495		[DDP_COMPONENT_RDMA0]		= { MTK_DISP_RDMA,		0, &ddp_rdma },
-   496		[DDP_COMPONENT_RDMA1]		= { MTK_DISP_RDMA,		1, &ddp_rdma },
-   497		[DDP_COMPONENT_RDMA2]		= { MTK_DISP_RDMA,		2, &ddp_rdma },
-   498		[DDP_COMPONENT_RDMA4]		= { MTK_DISP_RDMA,		4, &ddp_rdma },
-   499		[DDP_COMPONENT_UFOE]		= { MTK_DISP_UFOE,		0, &ddp_ufoe },
-   500		[DDP_COMPONENT_WDMA0]		= { MTK_DISP_WDMA,		0, NULL },
-   501		[DDP_COMPONENT_WDMA1]		= { MTK_DISP_WDMA,		1, NULL },
-   502	};
-   503	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
