@@ -1,150 +1,153 @@
-Return-Path: <devicetree+bounces-282124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282125-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0PTzBd5TyWnrxQUAu9opvQ
-	(envelope-from <devicetree+bounces-282124-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 18:31:26 +0200
+	id SN4BI6dUyWkdxgUAu9opvQ
+	(envelope-from <devicetree+bounces-282125-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 18:34:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8014352F02
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 18:31:25 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 439AF352F50
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 18:34:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B57863004607
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 16:31:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7D6CC3005A96
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 16:34:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 711E836EA8F;
-	Sun, 29 Mar 2026 16:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AE237F74E;
+	Sun, 29 Mar 2026 16:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dOHjTPog"
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="n8X6EKHq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C7C11D6DA9;
-	Sun, 29 Mar 2026 16:31:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84253815C8;
+	Sun, 29 Mar 2026 16:34:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774801883; cv=none; b=bK2urzXs2R8ageQ8OFQkBh/fOts0tGiWEKt5W4gfBbgrYifJhjFtg/5hmh4dQeUpMUIqcHj/nYAR6vq+nlghEQL795GYd3bs3BtAcNjrw6/zSUH+m8lCzYLiGQI1ZsvYhGG7bEp+Zfbr7dQUs6wFwUnYR5Q7gXt2JiWS82U3khc=
+	t=1774802077; cv=none; b=GAEgEN1RCzfYw1dJsjz4YrkmswNObKNBMyrXXNBc/oZo0NDybXJ/j7JP+nhjbvfEjlgAhGUNqEykfA6HNohv9gODCJiDR8fXBot02LzgGM07RQTDi2rKFKELZPhbgZoTQMdqUNTTWu8OKc7CP4G/PTbn+N2RlGtCj/V8T32MDCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774801883; c=relaxed/simple;
-	bh=ZAA7JFyEPX8fZJyDBVdvdGi1nyK6h+0PqK1+/WxNirc=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=qwYb10nbCW5W05k/GG8dednF4Evn8sioD4u1NWgbmsdcB2LnkjkvfMqEXz08pRt15q+f21ZLCkjq+zw0PvZK4wVwgsR/32lbZQcElS85LDqCJchTaZvu9Wik3Dh4b2oyaOd7sKe8er1p5m3YBlKujXa/94V2D+e0JvWRgCeEoDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dOHjTPog; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC8D3C116C6;
-	Sun, 29 Mar 2026 16:31:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774801882;
-	bh=ZAA7JFyEPX8fZJyDBVdvdGi1nyK6h+0PqK1+/WxNirc=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=dOHjTPogepQX2xPxX0hSmlgs6yFDTWb04IexwKUJOV5zZC/AjlyyJpiKWhFAhchK5
-	 4Tfw/5C4kMe88U8TQf0nU2m7IlO67ALyzPF8vBKIHZ2Xf8T2VEVkIwDKITFrvI18mr
-	 VNksCc7KkQBtOhWwarHBXBYwwZr/cYKN4YwS1w5DGIOemZEoBmuUtXRxxCutqdWtcm
-	 4XR0DIpHYtovyNLpCKcY2UdmZQfe8vVLfaBBnR0gz8AC/xpK1a1N3nF1dA8Uvw3RHT
-	 Z29uR4gBQWrEVvZIaWfoYcU/1Kd/lG+XQbS7ncECd9s1iJfkPbrGMlnWA5TkE2AjGB
-	 94lANoVkB8kUw==
-Date: Sun, 29 Mar 2026 11:31:18 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1774802077; c=relaxed/simple;
+	bh=EakhYDLwrbVeeuChZm85Sn7ds6ALCpPX+l9htovldF0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=H9VI4fu8tvUtPPGt8iBx2ZSMVE7uqnqmLZijH8f72aoWIg+0qMoNJJcaHPuONQU6AdM+0/5YH6uZs8DJFWl6iknS8rEimKTn9DYmEfsvGBiA+6WxEaQRvNKDhqTQvSHsLIPATPE8Uaz+tuA23g6WglLj3IrXB01MsouBWgtJ5TQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=n8X6EKHq; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5DC403627;
+	Sun, 29 Mar 2026 09:34:27 -0700 (PDT)
+Received: from pluto.fritz.box (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BD4C43F915;
+	Sun, 29 Mar 2026 09:34:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1774802073; bh=EakhYDLwrbVeeuChZm85Sn7ds6ALCpPX+l9htovldF0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=n8X6EKHq4XQo/QrZWa89FFZyTyffgKDG99X+HsABeYMg/BXyXPIbtaxJwj3ss0pCi
+	 KOCwMlz5tirOUZHmiUOJRYQnIpzqos/xg5AyzqAliybC5SHNMVR0hggK7WCMz3b+hn
+	 CambCBIZ845nlNgIyyRDL2gYngaJ4iEyU5FJdl9s=
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Cc: sudeep.holla@kernel.org,
+	james.quinlan@broadcom.com,
+	f.fainelli@gmail.com,
+	vincent.guittot@linaro.org,
+	etienne.carriere@st.com,
+	peng.fan@oss.nxp.com,
+	michal.simek@amd.com,
+	dan.carpenter@linaro.org,
+	d-gole@ti.com,
+	jonathan.cameron@huawei.com,
+	elif.topuz@arm.com,
+	lukasz.luba@arm.com,
+	philip.radford@arm.com,
+	brauner@kernel.org,
+	souvik.chakravarty@arm.com,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3 06/24] dt-bindings: firmware: arm,scmi: Add support for telemetry protocol
+Date: Sun, 29 Mar 2026 17:33:17 +0100
+Message-ID: <20260329163337.637393-7-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260329163337.637393-1-cristian.marussi@arm.com>
+References: <20260329163337.637393-1-cristian.marussi@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: krzk+dt@kernel.org, mark.rutland@arm.com, linux-kernel@vger.kernel.org, 
- will@kernel.org, linux-perf-users@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-To: Geetha sowjanya <gakula@marvell.com>
-In-Reply-To: <20260329152439.10573-2-gakula@marvell.com>
-References: <20260329152439.10573-1-gakula@marvell.com>
- <20260329152439.10573-2-gakula@marvell.com>
-Message-Id: <177480187879.3821545.1418210029302677428.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: perf: marvell: Document CN20K DDR
- PMU
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282124-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,broadcom.com,gmail.com,linaro.org,st.com,oss.nxp.com,amd.com,ti.com,huawei.com,arm.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-282125-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cristian.marussi@arm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[arm.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A8014352F02
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,arm.com:dkim,arm.com:email,arm.com:mid,1b:email]
+X-Rspamd-Queue-Id: 439AF352F50
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Add new SCMI v4.0 Telemetry protocol bindings definitions.
 
-On Sun, 29 Mar 2026 20:54:38 +0530, Geetha sowjanya wrote:
-> Add a devicetree binding for the Marvell CN20K DDR performance
-> monitor block, including the marvell,cn20k-ddr-pmu compatible
-> string and the required MMIO reg region.
-> 
-> Signed-off-by: Geetha sowjanya <gakula@marvell.com>
-> ---
-> 
-> Changes in v1:
-> - Added a description field to the binding.
-> - Simplified the compatible property using 'const' instead of 'items/enum'.
-> - Updated the example node name to include a unit-address matching the reg base.
-> 
->  .../bindings/perf/marvell-cn20k-ddr.yaml      | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/marvell-cn20k-ddr.yaml
-> 
+Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+---
+Cc: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+---
+ Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/perf/marvell-cn20k-ddr.yaml:35:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/perf/marvell-cn20k-ddr.yaml: ignoring, error parsing file
-./Documentation/devicetree/bindings/perf/marvell-cn20k-ddr.yaml:35:1: found character '\t' that cannot start any token
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/perf/marvell-cn20k-ddr.example.dts'
-Documentation/devicetree/bindings/perf/marvell-cn20k-ddr.yaml:35:1: found character '\t' that cannot start any token
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/perf/marvell-cn20k-ddr.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1614: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260329152439.10573-2-gakula@marvell.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index be817fd9cc34..e936ae7c0fb9 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -298,6 +298,14 @@ properties:
+       reg:
+         const: 0x19
+ 
++  protocol@1B:
++    $ref: '#/$defs/protocol-node'
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        const: 0x1B
++
+     patternProperties:
+       '-pins$':
+         type: object
+-- 
+2.53.0
 
 
