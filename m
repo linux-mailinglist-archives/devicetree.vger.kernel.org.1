@@ -1,398 +1,201 @@
-Return-Path: <devicetree+bounces-282116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282112-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJ8SNRlGyWkZxAUAu9opvQ
-	(envelope-from <devicetree+bounces-282116-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 17:32:41 +0200
+	id 2DONLwNGyWkAxAUAu9opvQ
+	(envelope-from <devicetree+bounces-282112-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 17:32:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE57E3529E4
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 17:32:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 692793529B6
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 17:32:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2F1F03004432
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 15:32:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3EE95300B10A
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 15:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE71F3446C5;
-	Sun, 29 Mar 2026 15:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6149309EF9;
+	Sun, 29 Mar 2026 15:31:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=temperror (0-bit key) header.d=szelinsky.de header.i=@szelinsky.de header.b="L9G088x7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GsdCsXHx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from szelinsky.de (szelinsky.de [85.214.127.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f51.google.com (mail-dl1-f51.google.com [74.125.82.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C794936F41F;
-	Sun, 29 Mar 2026 15:32:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.127.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED31224B04
+	for <devicetree@vger.kernel.org>; Sun, 29 Mar 2026 15:31:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774798347; cv=none; b=ZcPsJwneGRu0yeuVnjEHwXD9/NQfGe3zCu2Ryk/eiH5Tbzn+VPWqzll1UQbebe/QYfXeU/6/EOqX5ma3GGx8rQyYuAe7JC6bo4yRxDaZ0mt2q9iBabjSWaOdTgYdmuiTiySIzu3WWtIP22AdlRLAgHFlBBe9xi5wXRrdQUr8IGE=
+	t=1774798309; cv=none; b=oXOFFvgJtvE2Dl6WeBU9ciUB6TgNJ74+N7Ha1FEKBLmAZ0r/fpOygrfTq4TgWoiTW/JpznxqEQapLR1xBI4nx+WS1wAAnF3vlep17OsaVF8IeZywRnKfArhf1oqjWL0G2WluRv/InJl6XanEvAsssuToCRAo6XxuPGpTYufiL5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774798347; c=relaxed/simple;
-	bh=JSYt1l/FH9k/ENetfDE+rGRX4DYHFvxYMroFChgZOMs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rfzxFOpQWLbBaZl7rXMcXK3Ha8S5BQG9kK/t7SbVCq5OE7nJviNNh977brOMf7tHaSD8+XfRXymBZlHuvHkdGmUBiU0yX7yN52YN+OXs0hAXdUCO13xGDxvCyFIFLXN6x+ydkUQAQ2Gyjm1t2YcDf2wCRKKGCqey9/UGZ23o8k4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=szelinsky.de; spf=pass smtp.mailfrom=szelinsky.de; dkim=temperror (0-bit key) header.d=szelinsky.de header.i=@szelinsky.de header.b=L9G088x7; arc=none smtp.client-ip=85.214.127.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=szelinsky.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szelinsky.de
-Received: from localhost (localhost [127.0.0.1])
-	by szelinsky.de (Postfix) with ESMTP id DFC5EE83AA3;
-	Sun, 29 Mar 2026 17:32:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=szelinsky.de;
-	s=mail; t=1774798332;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fL/bFTPsPg0+fNImxHcoDytPXvPqcGj9fLOqv6wijrc=;
-	b=L9G088x74bR9b8acx9hgiFoAGrxq6+1b5uHdt5/jLGMLVNC5ljaM36IhIS6888oNEUT5DV
-	O6pJZqtFAJXOJtDQTY1GGPYpq2DYwSPSLEIPaIpCsDKiyfUE+itBzncBgGsBKeD/hi0rjC
-	ct5GHPE9GgxZaAYa6gC/ZdXo2IYQbwivqn2UajtoJMuLPH05SYjowjbtyyP3+yExE+uIFm
-	F16DlwHR520sKjw7Kp5DcD0JzSwVyeKGZYQ6phkg4NFDbte3n/H3fOxnc5OkgBTQmTxOQT
-	2UViQMXVfNW5Myeqoui37qmG1wLNhJmo+AA37lyFmtnQRDuva9h68zGU4foTJg==
-X-Virus-Scanned: Debian amavisd-new at szelinsky.de
-Received: from szelinsky.de ([127.0.0.1])
-	by localhost (szelinsky.de [127.0.0.1]) (amavisd-new, port 10025)
-	with ESMTP id d2ftxUfkT0GS; Sun, 29 Mar 2026 17:32:12 +0200 (CEST)
-Received: from p14sgen5.fritz.box (dslb-002-205-089-102.002.205.pools.vodafone-ip.de [2.205.89.102])
-	by szelinsky.de (Postfix) with ESMTPSA;
-	Sun, 29 Mar 2026 17:32:12 +0200 (CEST)
-From: Carlo Szelinsky <github@szelinsky.de>
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Kory Maincent <kory.maincent@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	Carlo Szelinsky <github@szelinsky.de>,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH net-next v3 3/3] net: pse-pd: add LED trigger support via notification path
-Date: Sun, 29 Mar 2026 17:31:24 +0200
-Message-ID: <20260329153124.2823980-4-github@szelinsky.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260329153124.2823980-1-github@szelinsky.de>
-References: <20260329153124.2823980-1-github@szelinsky.de>
+	s=arc-20240116; t=1774798309; c=relaxed/simple;
+	bh=au2eKM8u7aYrDUz5dztDboQXIdUsEbqGrxHSvOHJykw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sU5JaBpA+M7JbzQYY3JEKgOtkQBgcPLuAy6HJCFWPsmhNLXNMHU920UTrfqE50aADgMMnoXP9EX0UVANTIPQ918Jqa3EEvHkNMcuCSKRkAbqvevPRU+2ha6QWayRAogRySGMaiT6eFsqzTLTJZRorQSR6ZylXmiy9FjvijGPzq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GsdCsXHx; arc=none smtp.client-ip=74.125.82.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f51.google.com with SMTP id a92af1059eb24-12732165d1eso5151908c88.1
+        for <devicetree@vger.kernel.org>; Sun, 29 Mar 2026 08:31:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774798308; x=1775403108; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=lbC14XtI3H5l+g6ZcwMwWY/fzzcIo7U44X14GI38NY0=;
+        b=GsdCsXHx4pwdN5Idmy/anGLDS5S12R4ZATfmUOvWtYKW0DL3tXfJ81tQm4OB8RQTvi
+         lveg4ibvK2zNWmWgkzYT/bC7Oz1d47L6xvR/khMQtYemp41uyBOUUynWqILvPDmO2ekp
+         STSf+lHLEjgmv60ffQlELBa3ljhcIhFkpFKUB4FNLUwZSOEfbBOtk+MbkwEU9HonjKCQ
+         eCl3tJNSBzztmZftGnvjbPantFqjwIouMOD7ogUZ6JERL4I3U0yX+Xanx9I9LqrQ0yd1
+         GDm0r5yOs184fB1Q68O4GPK3b0Q9l1N9HFedaWVBsKlao8TkD6ZPRBuf+MmuN/1QtVLM
+         Azhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774798308; x=1775403108;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lbC14XtI3H5l+g6ZcwMwWY/fzzcIo7U44X14GI38NY0=;
+        b=UxyWT0jmMYgwWhEZi2aZuJGD++HIxhLlYUPbeG4lVo90CHPcYiJUeH5I6bL+nkFkS2
+         JB9YrfeEm1LZcfEfpkA0awTm9MIUGkiHHT1tjI04Hh/PfYMdSQp56Po8zvZhyr9szeU9
+         uqMMleamHco3ExqphUZ70y459VtF/YWStAcIz5mMajt1aW2FMmN5ZAa08cPOA1URtHrf
+         PbTGRiZwVoKT4Wx8behwIb6EKmHdfwN9yc1rxuAczVzLx6ph9za8lJmEISCCvpPRJiFB
+         bVn8VzlYek1SfhMaQ9pjEmXh8GTdKUiGZu4LUeNQGaLTM81jJ64fLq/59G3SOcdqC+np
+         cZjg==
+X-Forwarded-Encrypted: i=1; AJvYcCXCHMggRbzQ3dYku8fp2NmZzzeGQnInUEXO7Gc78IqVhF/zg6szRbWr/nUf3jkQQv865+rI/8IKM7ib@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4mYnITnkNITE0i1fSYFWSY/cVIUQvYS+lTHs+pcnus08bE/t+
+	r12vf/xFnrO+OKWnaJKrm29QuQaGifjhIaGg/yIgRRxssUIyFPSusaVR
+X-Gm-Gg: ATEYQzxlo/P3mkPDh9GvwBsELrRV68L1Bd35qVU3LU3uRSb9ZUDAw1m20SsBSw9Pmk+
+	CvvBuaNXjMezwjFw+HCbhZNU3NFd9+kqklH6HaryueW6trlLlvti4FuPcPTdrJeHDwn+KGmdyPV
+	kh187IGufFvEqEZkg1icXuORWrvV6eN2PqE/vExnhJm7oTMnW4Dln6A452BzOewUfZ8sShaF4Id
+	eaM6i53cQFy7cC7KSX/8FgyvhKIWgvF02gOUicILDXwAVZxp4/kjlQCvScpwsXlNLYTiFS2t/Mf
+	8g/eSdGLknZ5X8SBBQQs30c4YDsVND5wGmrerjXRyohXYIpn63mToWs94r+4M8wvqN+EF3Dj/Bz
+	T6HePlkB3wZiWlm58WUClasoce4QSNEhPpOTeqBtjh2Y7n0qObnmmfl+0SVOce5VzrW45i03a/4
+	WVB3YUkblnEvnKefdaiWnTGTyf4TMs1SjzfW2MacuDJYUe1fpwptHdgnX6bPzUjYNCsuSE4Lcg
+X-Received: by 2002:a05:7022:20c:b0:119:e56b:98be with SMTP id a92af1059eb24-12ab28ff327mr4858192c88.37.1774798307626;
+        Sun, 29 Mar 2026 08:31:47 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12ab97ca83bsm4812631c88.2.2026.03.29.08.31.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Mar 2026 08:31:46 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <72b9d96c-59c7-429e-b422-ffec702342e7@roeck-us.net>
+Date: Sun, 29 Mar 2026 08:31:45 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 5/6] hwmon: add NXP MC33978/MC34978 driver
+To: Oleksij Rempel <o.rempel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Peter Rosin <peda@axentia.se>, Linus Walleij <linusw@kernel.org>
+Cc: kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-gpio@vger.kernel.org, David Jander <david@protonic.nl>
+References: <20260329090601.532477-1-o.rempel@pengutronix.de>
+ <20260329090601.532477-6-o.rempel@pengutronix.de>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20260329090601.532477-6-o.rempel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[szelinsky.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[szelinsky.de:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-282112-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[roeck-us.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282116-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[github@szelinsky.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[szelinsky.de:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,szelinsky.de:dkim,szelinsky.de:email,szelinsky.de:mid,intel.com:email]
-X-Rspamd-Queue-Id: DE57E3529E4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:email,roeck-us.net:mid,pengutronix.de:email]
+X-Rspamd-Queue-Id: 692793529B6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add per-PI "delivering" and "enabled" LED triggers to the PSE core
-subsystem. LED state is updated from the shared pse_handle_events()
-function whenever the IRQ or poll path detects a state change, as well
-as from the regulator enable/disable paths so that host-initiated
-admin state changes via ethtool are immediately reflected.
+On 3/29/26 02:06, Oleksij Rempel wrote:
+> Add hardware monitoring support for the NXP MC33978/MC34978 Multiple
+> Switch Detection Interface (MSDI).
+> 
+> The hardware utilizes a clear-on-read FAULT register, but physical
+> faults remain asserted as long as the underlying condition exists. This
+> asserts a global FAULT_STAT bit on the SPI bus. To handle this without
+> trapping the CPU in an interrupt storm, this driver implements the
+> following architecture:
+> - Requests a rising-edge nested IRQ (IRQF_TRIGGER_RISING) from the MFD
+>    core to catch the initial 0 -> 1 transition of the global fault state.
+> - Caches hwmon-specific alarm bits and calculates state edges (XOR) to
+>    isolate alarm transitions from system integrity faults.
+> - Implements a 1Hz delayed workqueue that polls the hardware as long as
+>    any alarm is active. This compensates for the edge-triggered IRQ by
+>    discovering secondary faults that occur without a rising edge, and
+>    detecting when the hardware clears.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-Both C33 and PoDL power status and admin state are checked so that LED
-triggers work for both controller types.
-
-Trigger names use dev_name(dev) (e.g. "pse-1-003c:port0:delivering")
-to ensure uniqueness when multiple PSE controllers are present on the
-same system.
-
-Initial LED state is queried at registration time so already-active
-ports are reflected immediately without waiting for a hardware event.
-
-LED trigger registration is performed before adding the controller to
-the global list, avoiding a race where an IRQ or poll event could
-invoke pse_led_update() on a partially initialized trigger.
-
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202603251254.o5PqMBRU-lkp@intel.com/
-Closes: https://lore.kernel.org/oe-kbuild-all/202603251250.cuMCk5Yv-lkp@intel.com/
-Signed-off-by: Carlo Szelinsky <github@szelinsky.de>
----
- drivers/net/pse-pd/pse_core.c | 134 +++++++++++++++++++++++++++++++++-
- include/linux/pse-pd/pse.h    |  22 ++++++
- 2 files changed, 154 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/pse-pd/pse_core.c b/drivers/net/pse-pd/pse_core.c
-index 23783bf2edf4..dd0895ca07ad 100644
---- a/drivers/net/pse-pd/pse_core.c
-+++ b/drivers/net/pse-pd/pse_core.c
-@@ -12,9 +12,10 @@
- #include <linux/phy.h>
- #include <linux/pse-pd/pse.h>
- #include <linux/regulator/driver.h>
-+#include <linux/leds.h>
-+#include <linux/workqueue.h>
- #include <linux/regulator/machine.h>
- #include <linux/rtnetlink.h>
--#include <linux/workqueue.h>
- #include <net/net_trackers.h>
- 
- #define PSE_PW_D_LIMIT INT_MAX
-@@ -670,6 +671,111 @@ static int _pse_pi_delivery_power_sw_pw_ctrl(struct pse_controller_dev *pcdev,
- 	return 0;
- }
- 
-+#if IS_ENABLED(CONFIG_LEDS_TRIGGERS)
-+/**
-+ * pse_led_update - Update LED triggers for a PI based on current state
-+ * @pcdev: PSE controller device
-+ * @id: PI index
-+ *
-+ * Queries the current power status and admin state of the PI and
-+ * fires LED trigger events on state changes. Called from the
-+ * notification path and the regulator enable/disable paths.
-+ *
-+ * Must be called with pcdev->lock held.
-+ */
-+static void pse_led_update(struct pse_controller_dev *pcdev, int id)
-+{
-+	struct pse_pi_led_triggers *trigs;
-+	struct pse_pw_status pw_status = {};
-+	struct pse_admin_state admin_state = {};
-+	bool delivering, enabled;
-+
-+	if (!pcdev->pi_led_trigs)
-+		return;
-+
-+	trigs = &pcdev->pi_led_trigs[id];
-+	if (!trigs->delivering.name)
-+		return;
-+
-+	if (pcdev->ops->pi_get_pw_status(pcdev, id, &pw_status))
-+		return;
-+	if (pcdev->ops->pi_get_admin_state(pcdev, id, &admin_state))
-+		return;
-+
-+	delivering = pw_status.c33_pw_status ==
-+		ETHTOOL_C33_PSE_PW_D_STATUS_DELIVERING ||
-+		pw_status.podl_pw_status ==
-+		ETHTOOL_PODL_PSE_PW_D_STATUS_DELIVERING;
-+	enabled = admin_state.c33_admin_state ==
-+		ETHTOOL_C33_PSE_ADMIN_STATE_ENABLED ||
-+		admin_state.podl_admin_state ==
-+		ETHTOOL_PODL_PSE_ADMIN_STATE_ENABLED;
-+
-+	if (trigs->last_delivering != delivering) {
-+		trigs->last_delivering = delivering;
-+		led_trigger_event(&trigs->delivering,
-+				  delivering ? LED_FULL : LED_OFF);
-+	}
-+
-+	if (trigs->last_enabled != enabled) {
-+		trigs->last_enabled = enabled;
-+		led_trigger_event(&trigs->enabled,
-+				  enabled ? LED_FULL : LED_OFF);
-+	}
-+}
-+
-+static int pse_led_triggers_register(struct pse_controller_dev *pcdev)
-+{
-+	struct device *dev = pcdev->dev;
-+	const char *dev_id;
-+	int i, ret;
-+
-+	dev_id = dev_name(dev);
-+
-+	pcdev->pi_led_trigs = devm_kcalloc(dev, pcdev->nr_lines,
-+					   sizeof(*pcdev->pi_led_trigs),
-+					   GFP_KERNEL);
-+	if (!pcdev->pi_led_trigs)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < pcdev->nr_lines; i++) {
-+		struct pse_pi_led_triggers *trigs = &pcdev->pi_led_trigs[i];
-+
-+		/* Skip PIs not described in device tree */
-+		if (!pcdev->no_of_pse_pi && !pcdev->pi[i].np)
-+			continue;
-+
-+		trigs->delivering.name = devm_kasprintf(dev, GFP_KERNEL,
-+							"pse-%s:port%d:delivering",
-+							dev_id, i);
-+		if (!trigs->delivering.name)
-+			return -ENOMEM;
-+
-+		ret = devm_led_trigger_register(dev, &trigs->delivering);
-+		if (ret)
-+			return ret;
-+
-+		trigs->enabled.name = devm_kasprintf(dev, GFP_KERNEL,
-+						     "pse-%s:port%d:enabled",
-+						     dev_id, i);
-+		if (!trigs->enabled.name)
-+			return -ENOMEM;
-+
-+		ret = devm_led_trigger_register(dev, &trigs->enabled);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+#else
-+static inline void pse_led_update(struct pse_controller_dev *pcdev, int id) {}
-+static int pse_led_triggers_register(struct pse_controller_dev *pcdev)
-+{
-+	return 0;
-+}
-+#endif /* CONFIG_LEDS_TRIGGERS */
-+
- static int pse_pi_enable(struct regulator_dev *rdev)
- {
- 	struct pse_controller_dev *pcdev = rdev_get_drvdata(rdev);
-@@ -695,6 +801,7 @@ static int pse_pi_enable(struct regulator_dev *rdev)
- 			pcdev->pi[id].admin_state_enabled = 1;
- 			ret = 0;
- 		}
-+		pse_led_update(pcdev, id);
- 		mutex_unlock(&pcdev->lock);
- 		return ret;
- 	}
-@@ -702,6 +809,7 @@ static int pse_pi_enable(struct regulator_dev *rdev)
- 	ret = ops->pi_enable(pcdev, id);
- 	if (!ret)
- 		pcdev->pi[id].admin_state_enabled = 1;
-+	pse_led_update(pcdev, id);
- 	mutex_unlock(&pcdev->lock);
- 
- 	return ret;
-@@ -719,6 +827,7 @@ static int pse_pi_disable(struct regulator_dev *rdev)
- 	ret = _pse_pi_disable(pcdev, id);
- 	if (!ret)
- 		pi->admin_state_enabled = 0;
-+	pse_led_update(pcdev, id);
- 
- 	mutex_unlock(&pcdev->lock);
- 	return 0;
-@@ -1108,6 +1217,20 @@ int pse_controller_register(struct pse_controller_dev *pcdev)
- 	if (ret)
- 		return ret;
- 
-+	ret = pse_led_triggers_register(pcdev);
-+	if (ret) {
-+		dev_warn(pcdev->dev, "Failed to register LED triggers: %d\n",
-+			 ret);
-+	}
-+
-+	/* Query initial LED state for all PIs so already-active ports
-+	 * are reflected immediately without waiting for a hardware event.
-+	 */
-+	for (i = 0; i < pcdev->nr_lines; i++) {
-+		if (pcdev->no_of_pse_pi || pcdev->pi[i].np)
-+			pse_led_update(pcdev, i);
-+	}
-+
- 	mutex_lock(&pse_list_mutex);
- 	list_add(&pcdev->list, &pse_controller_list);
- 	mutex_unlock(&pse_list_mutex);
-@@ -1265,7 +1388,14 @@ static void pse_handle_events(struct pse_controller_dev *pcdev,
- 		struct pse_ntf ntf = {};
- 		int ret;
- 
--		/* Do nothing PI not described */
-+		/* Update LEDs for described PIs regardless of consumer state.
-+		 * LED triggers are registered at controller init, before any
-+		 * PHY claims a PSE control, so rdev may still be NULL here.
-+		 */
-+		if (pcdev->no_of_pse_pi || pcdev->pi[i].np)
-+			pse_led_update(pcdev, i);
-+
-+		/* Skip regulator/netlink path for PIs without consumers */
- 		if (!pcdev->pi[i].rdev)
- 			continue;
- 
-diff --git a/include/linux/pse-pd/pse.h b/include/linux/pse-pd/pse.h
-index 44d5d10e239d..0058636a6299 100644
---- a/include/linux/pse-pd/pse.h
-+++ b/include/linux/pse-pd/pse.h
-@@ -10,6 +10,7 @@
- #include <linux/kfifo.h>
- #include <uapi/linux/ethtool.h>
- #include <uapi/linux/ethtool_netlink_generated.h>
-+#include <linux/leds.h>
- #include <linux/regulator/driver.h>
- 
- /* Maximum current in uA according to IEEE 802.3-2022 Table 145-1 */
-@@ -266,6 +267,23 @@ struct pse_pi {
- 	int pw_allocated_mW;
- };
- 
-+#if IS_ENABLED(CONFIG_LEDS_TRIGGERS)
-+/**
-+ * struct pse_pi_led_triggers - LED trigger state for a PSE PI
-+ *
-+ * @delivering: LED trigger for power delivering state
-+ * @enabled: LED trigger for admin enabled state
-+ * @last_delivering: cached delivering state for change detection
-+ * @last_enabled: cached enabled state for change detection
-+ */
-+struct pse_pi_led_triggers {
-+	struct led_trigger delivering;
-+	struct led_trigger enabled;
-+	bool last_delivering;
-+	bool last_enabled;
-+};
-+#endif
-+
- /**
-  * struct pse_ntf - PSE notification element
-  *
-@@ -303,6 +321,7 @@ struct pse_ntf {
-  * @ntf_work: workqueue for PSE notification management
-  * @ntf_fifo: PSE notifications FIFO
-  * @ntf_fifo_lock: protect @ntf_fifo writer
-+ * @pi_led_trigs: per-PI LED trigger state array
-  */
- struct pse_controller_dev {
- 	const struct pse_controller_ops *ops;
-@@ -327,6 +346,9 @@ struct pse_controller_dev {
- 	struct work_struct ntf_work;
- 	DECLARE_KFIFO_PTR(ntf_fifo, struct pse_ntf);
- 	spinlock_t ntf_fifo_lock; /* Protect @ntf_fifo writer */
-+#if IS_ENABLED(CONFIG_LEDS_TRIGGERS)
-+	struct pse_pi_led_triggers *pi_led_trigs;
-+#endif
- };
- 
- /**
--- 
-2.43.0
+Acked-by: Guenter Roeck <linux@roeck-us.net>
 
 
