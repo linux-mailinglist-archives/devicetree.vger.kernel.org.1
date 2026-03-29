@@ -1,248 +1,176 @@
-Return-Path: <devicetree+bounces-282133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282135-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8OrqAjRcyWnUxgUAu9opvQ
-	(envelope-from <devicetree+bounces-282133-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 19:07:00 +0200
+	id gJx9LqpdyWnvxgUAu9opvQ
+	(envelope-from <devicetree+bounces-282135-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 19:13:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70C2835337C
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 19:06:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 376AD353404
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 19:13:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EC4793019FE3
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 17:05:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A9250303C819
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 17:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 826B1382375;
-	Sun, 29 Mar 2026 17:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5179F3815D3;
+	Sun, 29 Mar 2026 17:10:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y3GhcnSL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9E2F3803CF;
-	Sun, 29 Mar 2026 17:05:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774803935; cv=none; b=nA4JfKAzOSXVfPV7a//b0kPrevJv+ZKUww1lMAF6vFbIz0bEaz6TKm1LyO6C2ARD7W3gCHAocXCc2uQiG0vzNzLOiM//66b5PMuQIG2FkISTHrBCVG5Ij6WnnLqVSsnCaEEfv1m2gvkdyDo3hOewtsGmk0rQPRNgPpmKXkj4fzg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774803935; c=relaxed/simple;
-	bh=wxvRwtn8VQr3u19wAWeRtJ30cDrZI5ec6rb60dN7vHM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VcYRAjZ3Ls5M1KNhpqSx7dqj5evCY3+1eoWIp5EuffWomVAZKcQXfepq2tyE+dA3TaXaXmRNUYzzDjaYX5oxsyH+5GB0urIYNaHItCitJq7XQ6bm7HBPk/++XxYst39GbDz1BKh0ksUHF4ep4cE7pwM12MaiUyHm/wwiAw7xTYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from localhost.localdomain (unknown [223.166.95.230])
-	by APP-01 (Coremail) with SMTP id qwCowADXfmrNW8lphN+LCw--.7316S5;
-	Mon, 30 Mar 2026 01:05:20 +0800 (CST)
-From: Han Gao <gaohan@iscas.ac.cn>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Han Gao <rabenda.cn@gmail.com>,
-	Han Gao <gaohan@iscas.ac.cn>
-Subject: [PATCH v3 3/3] riscv: dts: spacemit: Enable USB3.0/PCIe on OrangePi RV2
-Date: Mon, 30 Mar 2026 01:05:15 +0800
-Message-ID: <84f8e713ef1ee46f9be852f400f52d6c055725f8.1774803532.git.gaohan@iscas.ac.cn>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1774803532.git.gaohan@iscas.ac.cn>
-References: <cover.1774803532.git.gaohan@iscas.ac.cn>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C96133815E9
+	for <devicetree@vger.kernel.org>; Sun, 29 Mar 2026 17:10:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.171
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774804250; cv=pass; b=h4btC/p8xtiQD4H7565TGrzlEZ5A2k2keDr8mr8oRC1NX1gi2UyJyVJqtq6cBHtuDiMnNCPHKdZMlmzhhxMVU4F48NpBLVq2/oQbS7lF6/BfeYdQmICrsXTDhgTDo3mEuQBrWN0Z1B0icVVl7T2fJgxrKddBGAMUrEK0MFvaIn0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774804250; c=relaxed/simple;
+	bh=rsVeJPHdgyOCuxiECCsr2glqWzke2yPywwPZ4x83Vu0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jd26vEgrMhDghX6o5y9oxK1/d96PoEVsVXkDR7HFtS6TqC1geIvN7DYaOs75mqb5Vcnb4B5eUEhwObA9xxkFOGwhDp2syRU0wvOtWu6P52i7bLNfYYw7/K4S4toPDen9jUjYppvmHy3iEkjW0Jb2m1aOJNWg+OsO1rXXNYjDVvc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y3GhcnSL; arc=pass smtp.client-ip=209.85.167.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-46708149af2so2151076b6e.0
+        for <devicetree@vger.kernel.org>; Sun, 29 Mar 2026 10:10:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774804248; cv=none;
+        d=google.com; s=arc-20240605;
+        b=HeInzM5S4azhI+vT1ztamb+7FH01QQAvFT4JmVBvz8boSUSI13RdpDF6z2kXhdLJq4
+         Up2rLkQFJ1tUs5py9W9J4w0xQTOW95wanTazsgpkK3M0yaNaTTufdxqu5bxFc/KnZfsI
+         cIgCcp9NeNaifM6tCuq2NukT2tEcW0IFmIAO8yy3eq5mNAJdnQl7HbwIJ5WBY7dRR///
+         8s2UcV71NIWTO+jPeAw29wE90XOjJNK+z7B7hPMmoqFTXG2+e5PvaUcaUTTg1JbdiGwW
+         JiqiKou2yWX8ImfHoJlRrv840X2C4CUB2X7KK+R/Oia/7b9V3ph8ZzL31nLFP6/0HayU
+         kLTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=ZlxbdeYNKU9+jEQ+FY2jeitF0szXbRjABBRQQBT4p78=;
+        fh=ZwSXUKvGypFEzggq8tThpXvP8r0OWk+M7DXorCCyics=;
+        b=JaCbNpbIpAshCf3HOS7Ph6yUUQ0kizKxbDlwqfeb0rN3CI6+P0Q1e7l2rBCZALc1Kz
+         7MAU4S6XgaGNFYPg/bu/bnAu+6d8nsveTEOaH3zdmoDkJmoiVUYnjEdE+ammX3ZoEk1e
+         y4lLaRx0lvaesk1b0O545WG3APFkPxzDoEc5JG4J4XS0lmR4UmsCIAxlFu2Wd1oTL3iB
+         WyBN4wOU5rrZZW1figW7HD6MT6GYECiof51TYjfH4akz8PrAeKuYbucn+HYr2acaDrHJ
+         98uOVGDLEwct3EfUQ+LxH7BKpZjCBJWDTicCVDaz3YfLGd0I4fSidekKH2+jUSB5547R
+         cgkw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774804248; x=1775409048; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZlxbdeYNKU9+jEQ+FY2jeitF0szXbRjABBRQQBT4p78=;
+        b=Y3GhcnSLSJ/aDcuVKwWSSubu8zbUdIEgANQ0WCfpTrMDMfxCuPOHjYixeOMaKrHa1j
+         Gq74lsXiaRMuMBi1+9DyulDSlCiC+spSghaZDaCk7w5XoxO5Pa09a4K/YlCIFM1NgG4f
+         RTC6sZdZUXYK3PfuH0zhfMvDTD4fkcUblyTy9P4lFU+5CaAW6D0+MVcMvd2HR8Et8FIt
+         zopIBXe1yhqMiBUV2BBbgo3Y0AnX30eeg2XZM+fj5FZ0jYbNoWEFn8gA/41zbajCwX4o
+         lFBp9nBrCoFTXHHAbZyOP6D3NldxSZl7HSLQrVNLul4o7z3ZjOmqFbjA+G9EE+j8rffI
+         iIng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774804248; x=1775409048;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ZlxbdeYNKU9+jEQ+FY2jeitF0szXbRjABBRQQBT4p78=;
+        b=oKpwvcHmujfrZhR4zHj/z+Gwk/S6V1+eiXHUX2sZzWVAjTnoPWjwTk8szf0OeJwIND
+         XmPXduMGW5KJ2Cmh8EXLa2PIPKyM9QAYR0GMNMmfkHI8OHCYh2rZcDUMrVFq1YHJlCen
+         A3iIYeYnDC2OE+9y5x0vQmzneGUnFp+nZHK91wtNiAhgjEjhVpUU/Q9L3XYoXLE9ae1m
+         tgDatNFdYVijj0uJIQ2l1my58OkJz/2nQVqFP4GF1B5+FayDOvMyt4zmDHsXz7pksMiU
+         Lrir16x3hQkja8ZtJAyOJ9KmW0P28Kmo3RpKxkkBJNvqgy/iHa0jpAmX6CU4wJD1QjXQ
+         ly8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXZE+EqpVfKwzR8hc3NNNcpX8fitqtdzrmRY708FbpslTXmwfAsSe2hPNktRC26VC5StMsuk8vftMjA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2Rh6e9vMWenRT++/SXvQ/ZgCfDqq7Qbfwxd+HgJtQ0THDaa0N
+	GmXkayJ+QyMG+lJT1rBnT0GrUN76PJfQ2tOYlLlAUvWg9ZY4Vq3Uyni+TbT3qL8JrqM9j36yURp
+	JeCK+KITAj+/8k0TR7Q37pzNE5G3EmIM=
+X-Gm-Gg: ATEYQzxBlIoSRfPvJeIkULCN5EWgbtVq55cxAe3MzQ3rQALpb0hJepMllMBeuK9bUCs
+	4jqzlAKLrhg7nGaYTZ+ONVeR9od/ft7/Evnb2LTSMJaSRGTSgcEQ/A6m4hOJLu1YPEooS9Bddws
+	J0VW/6nDLd7rOJh/zsizm8OCPCeLjkHCPjZ4lqZa93vqkBiUMWdN7qeqrc18biETe83QiJ2OyZ5
+	+wXhEmqXJclBPFSDN9RzHXe0TgSQSNEZFBEaM4juahBbMAJM4sH50PXb6GYzpx6giFfyxOdtHuo
+	FQvBdMPIiCGujibcXjE=
+X-Received: by 2002:a05:6808:5296:b0:467:133f:ec2d with SMTP id
+ 5614622812f47-46a8a5ed427mr4757024b6e.42.1774804247851; Sun, 29 Mar 2026
+ 10:10:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qwCowADXfmrNW8lphN+LCw--.7316S5
-X-Coremail-Antispam: 1UD129KBjvJXoWxWF4xJr4rGF4xGF1UWw1UGFg_yoW5Xw4xpF
-	17Wrsa9a4fAryfKw43Wa4Iga13W3Wvk395Awn5Zr48JF40ga4q9rs3Ar15AF95Wr48X34a
-	yFyjyFy8KFnrKw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUm214x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JrWl82xGYIkIc2
-	x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
-	Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UM2
-	8EF7xvwVC2z280aVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1U
-	M2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjx
-	v20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1l
-	F7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2
-	IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
-	6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17
-	CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF
-	0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMI
-	IF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVF
-	xhVjvjDU0xZFpf9x0JUHWlkUUUUU=
-X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiBwoBDGnJP94irgABsM
-X-Spamd-Result: default: False [1.54 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
+References: <20260327-eliza-bindings-mailbox-ipcc-v1-1-3f1c89bdf72e@oss.qualcomm.com>
+In-Reply-To: <20260327-eliza-bindings-mailbox-ipcc-v1-1-3f1c89bdf72e@oss.qualcomm.com>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Sun, 29 Mar 2026 12:10:36 -0500
+X-Gm-Features: AQROBzALnYSR6ICZtBkS1SOfWG29206cWXGKz2mD9ry34Mbei70R0dkKaWCq6wQ
+Message-ID: <CABb+yY31SMUKrTaeu2mq341GM0v+waT4DmoakhB6FK4Kx9XC=Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mailbox: qcom-ipcc: Document the Eliza
+ Inter-Processor Communication Controller
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282133-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gaohan@iscas.ac.cn,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.2:email];
-	R_DKIM_NA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-282135-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jassisinghbrar@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.1:email]
-X-Rspamd-Queue-Id: 70C2835337C
+	RCPT_COUNT_SEVEN(0.00)[8];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,qualcomm.com:email]
+X-Rspamd-Queue-Id: 376AD353404
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable the DWC3 USB 3.0 controller and its associated usbphy2 on the
-OrangePi RV2 board.
-
-The board utilizes a Genesys Logic GL3523 hub, which requires one
-separate power supplies for hub itself.
-
-Define a 3.3v fixed voltage regulator to be used by PCIe on OPi RV2.
-
-Define PCIe and PHY-related Device Tree nodes for the OPi RV2.
-
-Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
----
- .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 79 +++++++++++++++++++
- 1 file changed, 79 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-index 1b1b27bc95d8..a53cd2e037ef 100644
---- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-@@ -23,6 +23,15 @@ chosen {
- 		stdout-path = "serial0";
- 	};
- 
-+	pcie_vcc_3v3: regulator-pcie-vcc3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "PCIE_VCC3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio K1_GPIO(116) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	reg_dc_in: regulator-vcc-in-5v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "dc_in_5v";
-@@ -42,6 +51,15 @@ reg_vcc_4v: regulator-vcc-4v {
- 		vin-supply = <&reg_dc_in>;
- 	};
- 
-+	usb3_hub_5v: regulator-usb3-hub-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_HUB_EN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -54,6 +72,10 @@ led1 {
- 	};
- };
- 
-+&combo_phy {
-+	status = "okay";
-+};
-+
- &eth0 {
- 	phy-handle = <&rgmii0>;
- 	phy-mode = "rgmii-id";
-@@ -230,8 +252,65 @@ dldo7 {
- 	};
- };
- 
-+&pcie1_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_3_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie1_port {
-+	phys = <&pcie1_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+};
-+
-+&pcie1 {
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
-+&pcie2_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_4_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie2_port {
-+	phys = <&pcie2_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+};
-+
-+&pcie2 {
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-+
-+&usbphy2 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3 {
-+	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	hub_2_0: hub@1 {
-+		compatible = "usb5e3,610";
-+		reg = <0x1>;
-+		vdd-supply = <&usb3_hub_5v>;
-+		peer-hub = <&hub_3_0>;
-+	};
-+
-+	hub_3_0: hub@2 {
-+		compatible = "usb5e3,620";
-+		reg = <0x2>;
-+		vdd-supply = <&usb3_hub_5v>;
-+		peer-hub = <&hub_2_0>;
-+	};
-+};
--- 
-2.47.3
-
+On Fri, Mar 27, 2026 at 7:36=E2=80=AFAM Abel Vesa <abel.vesa@oss.qualcomm.c=
+om> wrote:
+>
+> Document the Inter-Processor Communication Controller (IPCC) found in the
+> Qualcomm Eliza SoC. It is used to route interrupts across various
+> subsystems.
+>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml b/D=
+ocumentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> index 7c4d6170491d..f5c584cf2146 100644
+> --- a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> @@ -24,6 +24,7 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> +          - qcom,eliza-ipcc
+>            - qcom,glymur-ipcc
+>            - qcom,kaanapali-ipcc
+>            - qcom,milos-ipcc
+>
+Applied to mailbox/for-next
+Thanks
+Jassi
 
