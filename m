@@ -1,258 +1,203 @@
-Return-Path: <devicetree+bounces-282065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282061-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFobArkCyWl4tQUAu9opvQ
-	(envelope-from <devicetree+bounces-282065-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 12:45:13 +0200
+	id NAkMOzv/yGn1tAUAu9opvQ
+	(envelope-from <devicetree+bounces-282061-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 12:30:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C8A93519D2
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 12:45:12 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76016351908
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 12:30:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 09C113015890
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 10:45:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A548B3005A87
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 10:30:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5133313539;
-	Sun, 29 Mar 2026 10:45:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1396E30E827;
+	Sun, 29 Mar 2026 10:30:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KlkGVG50"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxhk.zte.com.cn (mxhk.zte.com.cn [160.30.148.34])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642551922FD;
-	Sun, 29 Mar 2026 10:45:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.30.148.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E41122FBE1F;
+	Sun, 29 Mar 2026 10:30:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774781110; cv=none; b=fi2+kZxIka21/Kw+XtOeSStENV0MzrtOss8X0zPKf2ZRjMMoGb6KS9rvH+hoMBtZnQrBPsP4lDIYnzzsdi1AhzMMbAyqN7WRIHao0so+YB4QdA3P517lvFeGyFEiaLxKQPDP71J1405k/8So/UCrHZVFt4Wwa5SBhItqIw/cByk=
+	t=1774780216; cv=none; b=u02x0W0OocaUa0vHtop51VZRXUgr2i6b0zCLdoX+RAzZraMTe+Eofmpta//vmWn+vGW3J4hBp658l27C9MiAQq3ShfFY9ulHKjpsH/dkHCmjT+KlM9BjGfbfnnnY5nh09Z+wuPopPLSecnV3qxQHqvLpmOXpI5L6iT/OOmer3sU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774781110; c=relaxed/simple;
-	bh=5UYg7ALgX1M21HjBAk1fFUnAqf7oVErtnGioVT0EgM4=;
-	h=Message-Id:In-Reply-To:References:Date:Mime-Version:From:To:Cc:
-	 Subject:Content-Type; b=q5lalYqHhSWZe0c+zpUY3s3s9htPWQxVel6pbxqa8O42/8+c0oGlBmzfAozKNLSfWoqN13PfPdg2dQi117whzCP049P2luBPq/k/3t+5N7Lzs6/ui2oRtdyKD4P6Qi4APnZ1jmKOqijopL56nM3Ok9njpBr/ZVQ2Z7eWvt7a9JQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=zte.com.cn; spf=pass smtp.mailfrom=zte.com.cn; arc=none smtp.client-ip=160.30.148.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=zte.com.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zte.com.cn
-Received: from mse-fl2.zte.com.cn (unknown [10.5.228.133])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mxhk.zte.com.cn (FangMail) with ESMTPS id 4fk9xm0pPYz5BNS0;
-	Sun, 29 Mar 2026 18:45:00 +0800 (CST)
-Received: (from root@localhost)
-	by mse-fl2.zte.com.cn id 62TAiv5H081340;
-	Sun, 29 Mar 2026 18:44:57 +0800 (+08)
-	(envelope-from guo.wenjia23@zte.com.cn)
-Message-Id: <202603291044.62TAiv5H081340@mse-fl2.zte.com.cn>
-Received: from njy2app02.zte.com.cn ([10.40.13.116])
-	by mse-fl2.zte.com.cn with SMTP id 62TARphR075539;
-	Sun, 29 Mar 2026 18:27:51 +0800 (+08)
-	(envelope-from guo.wenjia23@zte.com.cn)
-Received: from mapi (njb2app07[null])
-	by mapi (Zmail) with MAPI id mid202;
-	Sun, 29 Mar 2026 18:27:53 +0800 (CST)
-X-Zmail-TransId: 2aff69c8fea9ced-ace99
-X-Mailer: Zmail v1.0
-In-Reply-To: <20260128-ssqosid-cbqri-v2-8-dca586b091b9@kernel.org>
-References: 20260128-ssqosid-cbqri-v2-0-dca586b091b9@kernel.org,20260128-ssqosid-cbqri-v2-8-dca586b091b9@kernel.org
-Date: Sun, 29 Mar 2026 18:27:53 +0800 (CST)
+	s=arc-20240116; t=1774780216; c=relaxed/simple;
+	bh=/fukVW96SgGw6bB09c6/3nFhEVSaAYJbKOiTe7DJXgw=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=KZfR3Zp7wOCcFmwCQ71vmtBa/nniWK83cXfrBz2xc0V7V61opFN6uVnV9MAbG7nnuGBYhcaR8EZ5deXNOUZFlhCNRyAZimksVOWeOWPCtnfckc70m8Fo1F0KMPMSNi6u19fsIss9mN6BsA/JcAOMjYkUJKiJxNNwtOoevqhogjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KlkGVG50; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39A88C116C6;
+	Sun, 29 Mar 2026 10:30:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774780215;
+	bh=/fukVW96SgGw6bB09c6/3nFhEVSaAYJbKOiTe7DJXgw=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=KlkGVG50EAYk9yzfHOFYAn0207s5l9jVbpYwR0JCvVJ6aS+64TDfhU26aQrJQNO4P
+	 Bo8i3HWavK4Xdv1l28ZVESm4JOz7SIuiNSCL2B0hDzZ4GZZC66Wbk9nlgbkVfakkKl
+	 Zr7rd3QTw7CiiZbFLHWLY3n8dzlFrzsthzbXj4EnGlSpKkXfY0lUIjHjiGdBf9ztxI
+	 F4Dkvba0SMp2UsLN3o6T0wIkE/TwDZgzTcZ84tQh7MrA07CAA3gS95K56bQ6HTa2Eq
+	 nH0/Vl9UyTPN42aUk3ks5YrxQUQjJEovP/TPJelqvP3dRvrnBfJ7vuFagTiNfwvc6K
+	 NW1kZcMncnAfg==
+Date: Sun, 29 Mar 2026 05:30:11 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-From: <guo.wenjia23@zte.com.cn>
-To: <fustini@kernel.org>
-Cc: <pjw@kernel.org>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
-        <alex@ghiti.fr>, <rkrcmar@ventanamicro.com>,
-        <samuel.holland@sifive.com>, <aricciardi@baylibre.com>,
-        <npitre@baylibre.com>, <mindal@semihalf.com>, <atish.patra@linux.dev>,
-        <atishp@rivosinc.com>, <vasu@rivosinc.com>, <ved@rivosinc.com>,
-        <cuiyunhui@bytedance.com>, <cp0613@linux.alibaba.com>,
-        <zhiwei_liu@linux.alibaba.com>, <liwei1518@gmail.com>,
-        <liu.qingtao2@zte.com.cn>, <reinette.chatre@intel.com>,
-        <tony.luck@intel.com>, <babu.moger@amd.com>, <peternewman@google.com>,
-        <fenghua.yu@intel.com>, <james.morse@arm.com>, <ben.horgan@arm.com>,
-        <Dave.Martin@arm.com>, <fustini@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <x86@kernel.org>, <robh@kernel.org>, <rafael@kernel.org>,
-        <lenb@kernel.org>, <robert.moore@intel.com>,
-        <sunilvl@ventanamicro.com>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <paul.walmsley@sifive.com>,
-        <linux-acpi@vger.kernel.org>, <acpica-devel@lists.linux.dev>,
-        <devicetree@vger.kernel.org>
-Subject: =?UTF-8?B?UmU6IFtQQVRDSCBSRkMgdjIgMDgvMTddIFJJU0MtVjogUW9TOiBhZGQgcmVzY3RybCBpbnRlcmZhY2UgZm9yIENCUVJJIGNvbnRyb2xsZXJz?=
-Content-Type: text/plain;
-	charset="UTF-8"
-X-MAIL:mse-fl2.zte.com.cn 62TAiv5H081340
-X-MSS: AUDITRELEASE@mse-fl2.zte.com.cn
-X-TLS: YES
-X-SPF-DOMAIN: zte.com.cn
-X-ENVELOPE-SENDER: guo.wenjia23@zte.com.cn
-X-SPF: None
-X-SOURCE-IP: 10.5.228.133 unknown Sun, 29 Mar 2026 18:45:00 +0800
-X-Fangmail-Anti-Spam-Filtered: true
-X-Fangmail-MID-QID: 69C902AC.000/4fk9xm0pPYz5BNS0
-X-Spamd-Result: default: False [3.19 / 15.00];
-	SUBJ_EXCESS_BASE64(1.50)[];
+MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Linus Walleij <linusw@kernel.org>, linux-kernel@vger.kernel.org, 
+ kernel@pengutronix.de, Lee Jones <lee@kernel.org>, 
+ devicetree@vger.kernel.org, David Jander <david@protonic.nl>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>, 
+ Peter Rosin <peda@axentia.se>, Conor Dooley <conor+dt@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+In-Reply-To: <20260329090601.532477-2-o.rempel@pengutronix.de>
+References: <20260329090601.532477-1-o.rempel@pengutronix.de>
+ <20260329090601.532477-2-o.rempel@pengutronix.de>
+Message-Id: <177478021183.3290857.2184125740020596802.robh@kernel.org>
+Subject: Re: [PATCH v8 1/6] dt-bindings: pinctrl: add NXP MC33978/MC34978
+ MSDI
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_BAD_CTE_7BIT(1.05)[unknown,utf8];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[zte.com.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,bytedance.com,linux.alibaba.com,gmail.com,zte.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-282065-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-282061-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_NONE(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[guo.wenjia23@zte.com.cn,devicetree@vger.kernel.org];
-	FROM_NO_DN(0.00)[];
-	R_DKIM_NA(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_TWELVE(0.00)[42];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 4C8A93519D2
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 76016351908
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Drew,
 
-On Thu, Jan 29, 2026 at 4:28 AM Drew Fustini <fustini@kernel.org> wrote:>
-> Add interface for CBQRI controller drivers to make use of the resctrl
-> filesystem.
->
-> Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
-> Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
-> Signed-off-by: Drew Fustini <fustini@kernel.org>
+On Sun, 29 Mar 2026 11:05:56 +0200, Oleksij Rempel wrote:
+> Add device tree binding documentation for the NXP MC33978 and MC34978
+> Multiple Switch Detection Interface (MSDI) devices.
+> 
+> The MC33978 and MC34978 differ primarily in their operating temperature
+> ranges. While not software-detectable, providing specific compatible
+> strings allows the hwmon subsystem to correctly interpret thermal
+> thresholds and hardware faults.
+> 
+> These ICs monitor up to 22 mechanical switch contacts in automotive and
+> industrial environments. They provide configurable wetting currents to
+> break through contact oxidation and feature extensive hardware
+> protection against thermal overload and voltage transients (load
+> dumps/brown-outs).
+> 
+> The device interfaces via SPI. While it provides multiple functions, its
+> primary hardware purpose is pin/switch control. To accurately represent
+> the hardware as a single physical integrated circuit without unnecessary
+> DT overhead, all functions are flattened into a single pinctrl node:
+> - pinctrl: Exposing the 22 switch inputs (SG/SP pins) as a GPIO controller
+>   and managing their pin configurations.
+> - hwmon: Exposing critical hardware faults (OT, OV, UV) and static
+>   voltage/temperature thresholds.
+> - mux: Controlling the 24-to-1 analog multiplexer to route pin voltages,
+>   internal temperature, or battery voltage to an external SoC ADC.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Reviewed-by: Linus Walleij <linusw@kernel.org>
 > ---
-> arch/riscv/kernel/qos/qos_resctrl.c | 1192 +++++++++++++++++++++++++++++++++++
-> 1 file changed, 1192 insertions(+)
->
-> ...
->
-> +
-> +int resctrl_arch_update_one(struct rdt_resource *r, struct rdt_ctrl_domain *d,
-> + u32 closid, enum resctrl_conf_type t, u32 cfg_val)
-> +{
-> + struct cbqri_controller *ctrl;
-> + struct cbqri_resctrl_dom *dom;
-> + struct cbqri_config cfg;
-> + int err = 0;
-> +
-> + dom = container_of(d, struct cbqri_resctrl_dom, resctrl_ctrl_dom);
-> + ctrl = dom->hw_ctrl;
-> +
-> + if (!r->alloc_capable)
-> + return -EINVAL;
-> +
-> + switch (r->rid) {
-> + case RDT_RESOURCE_L2:
-> + case RDT_RESOURCE_L3:
-> + cfg.cbm = cfg_val;
-> + err = cbqri_apply_cache_config(dom, closid, t, &cfg);
-> + break;
-> + case RDT_RESOURCE_MBA:
-> + /* covert from percentage to bandwidth blocks */
-> + cfg.rbwb = cfg_val * ctrl->bc.nbwblks / 100;
+> changes v8:
+> - Update IRQ_TYPE_* macros include path reference in documentation from
+>   interrupt-controller.h to dt-bindings/interrupt-controller/irq.h.
+> - Add bias-disable, drive-open-drain, drive-open-source, and drive-strength
+>   to the list of supported pin configuration properties.
+> changes v7:
+> - no changes
+> changes v6:
+> - add Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> - add Reviewed-by: Linus Walleij <linusw@kernel.org>
+> changes v5:
+> - Commit Message: Added justification for distinct compatible strings
+>   based on temperature ranges.
+> - Restricted pins property to an explicit enum of valid hardware pins
+> changes v4:
+> - Drop the standalone mfd/nxp,mc33978.yaml schema entirely.
+> - Move the unified device binding to bindings/pinctrl/nxp,mc33978.yaml,
+> - Remove the dedicated child node compatible strings (nxp,mc33978-pinctrl).
+> - Flatten the pinctrl/gpio properties directly into the main SPI device
+>   node.
+> changes v3:
+> - Drop regular expression pattern from pinctrl child node and define
+>   it as a standard property
+> - Reorder required properties list in MFD binding
+> - Remove stray blank line from the MFD binding devicetree example
+> - Replace unevaluatedProperties with additionalProperties in the pinctrl
+>   binding
+> changes v2:
+> - Squashed MFD, pinctrl, hwmon, and mux bindings into a single patch
+> - Removed the empty hwmon child node
+> - Folded the mux-controller node into the parent MFD node
+> - Added vbatp-supply and vddq-supply to the required properties block
+> - Changed the example node name from mc33978@0 to gpio@0
+> - Removed unnecessary literal block scalars (|) from descriptions
+> - Documented SG, SP, and SB pin acronyms in the pinctrl description
+> - Added consumer polarity guidance (GPIO_ACTIVE_LOW/HIGH) for SG/SB
+>   inputs, with a note on output circuit dependency
+> - Updated commit message
+> ---
+>  .../bindings/pinctrl/nxp,mc33978.yaml         | 158 ++++++++++++++++++
+>  1 file changed, 158 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978.yaml
+> 
 
-Should use bc.mrbwb to calculate rbwb?
-I think bc.nbwblks represent the available bw blks in the controller. It should should decrease as they are allocated.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> + err = cbqri_apply_bw_config(dom, closid, t, &cfg);
-> + break;
-> + default:
-> + return -EINVAL;
-> + }
-> +
-> + return err;
-> +}
->
-> ...
->
-> +u32 resctrl_arch_get_config(struct rdt_resource *r, struct rdt_ctrl_domain *d,
-> + u32 closid, enum resctrl_conf_type type)
-> +{
-> + struct cbqri_resctrl_dom *hw_dom;
-> + struct cbqri_controller *ctrl;
-> + int reg_offset;
-> + u32 percent;
-> + u32 rbwb;
-> + u64 reg;
-> + int err;
-> +
-> + hw_dom = container_of(d, struct cbqri_resctrl_dom, resctrl_ctrl_dom);
-> +
-> + ctrl = hw_dom->hw_ctrl;
-> +
-> + if (!r->alloc_capable)
-> + return resctrl_get_default_ctrl(r);
-> +
-> + switch (r->rid) {
-> + case RDT_RESOURCE_L2:
-> + case RDT_RESOURCE_L3:
-> + /* Clear cc_block_mask before read limit operation */
-> + cbqri_set_cbm(ctrl, 0);
-> +
-> + /* Capacity read limit operation for RCID (closid) */
-> + err = cbqri_cc_alloc_op(ctrl, CBQRI_CC_ALLOC_CTL_OP_READ_LIMIT, type, closid);
-> + if (err < 0) {
-> + pr_err("%s(): operation failed: err = %d", __func__, err);
-> + return resctrl_get_default_ctrl(r);
-> + }
-> +
-> + /* Read capacity block mask for RCID (closid) */
-> + reg_offset = CBQRI_CC_BLOCK_MASK_OFF;
-> + reg = ioread64(ctrl->base + reg_offset);
-> +
-> + /* Update the config value for the closid in this domain */
-> + hw_dom->ctrl_val[closid] = reg;
-> + return hw_dom->ctrl_val[closid];
-> +
-> + case RDT_RESOURCE_MBA:
-> + /* Capacity read limit operation for RCID (closid) */
-> + err = cbqri_bc_alloc_op(ctrl, CBQRI_CC_ALLOC_CTL_OP_READ_LIMIT, closid);
-> + if (err < 0) {
-> + pr_err("%s(): operation failed: err = %d", __func__, err);
-> + return resctrl_get_default_ctrl(r);
-> + }
-> +
-> + hw_dom->ctrl_val[closid] = cbqri_get_rbwb(ctrl);
-> +
-> + /* Convert from bandwidth blocks to percent */
-> + rbwb = hw_dom->ctrl_val[closid];
-> + rbwb *= 100;
-> + percent = rbwb / ctrl->bc.nbwblks;
-> + if (rbwb % ctrl->bc.nbwblks)
+yamllint warnings/errors:
 
-Same Question.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/nxp,mc33978.example.dtb: gpio@0 (nxp,mc33978): $nodename:0: 'gpio@0' does not match '^mux-controller(@.*|-([0-9]|[1-9][0-9]+))?$'
+	from schema $id: http://devicetree.org/schemas/mux/mux-controller.yaml
 
-> + percent++;
-> + return percent;
-> +
-> + default:
-> + return resctrl_get_default_ctrl(r);
-> + }
-> +}
+doc reference errors (make refcheckdocs):
 
-Sorry for my previous reply on old patch. Please ignore it. I’m re-sending this comment on v2.
+See https://patchwork.kernel.org/project/devicetree/patch/20260329090601.532477-2-o.rempel@pengutronix.de
 
-Thank,
-Wenjia
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
+pip3 install dtschema --upgrade
 
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-
-郭文佳10158971
 
