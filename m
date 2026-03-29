@@ -1,193 +1,258 @@
-Return-Path: <devicetree+bounces-282060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282065-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WLjLAMH9yGmUtAUAu9opvQ
-	(envelope-from <devicetree+bounces-282060-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 12:24:01 +0200
+	id OFobArkCyWl4tQUAu9opvQ
+	(envelope-from <devicetree+bounces-282065-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 12:45:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F7673518E5
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 12:24:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C8A93519D2
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 12:45:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 90A17300B45C
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 10:23:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 09C113015890
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 10:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED86930DEB8;
-	Sun, 29 Mar 2026 10:23:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MrqDP9dz";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hgy9dpW5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5133313539;
+	Sun, 29 Mar 2026 10:45:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mxhk.zte.com.cn (mxhk.zte.com.cn [160.30.148.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB49D3033DF
-	for <devicetree@vger.kernel.org>; Sun, 29 Mar 2026 10:23:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642551922FD;
+	Sun, 29 Mar 2026 10:45:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.30.148.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774779801; cv=none; b=H5zyWIErJLiFLwhxujhZexeETrs4h+VOUz5C/rrYpUFMMv+vlLq6WrHKUYrADk6mO9dekudyshV0B2myW8/833FPb6BO9oWtIwCXg4ZOlQR2Ya5zOD/6hKoIFQfNEf4DHuLXnT5wBJFrXCF0dep9tDyLyBX2Dnat6ZVhcZB1KKk=
+	t=1774781110; cv=none; b=fi2+kZxIka21/Kw+XtOeSStENV0MzrtOss8X0zPKf2ZRjMMoGb6KS9rvH+hoMBtZnQrBPsP4lDIYnzzsdi1AhzMMbAyqN7WRIHao0so+YB4QdA3P517lvFeGyFEiaLxKQPDP71J1405k/8So/UCrHZVFt4Wwa5SBhItqIw/cByk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774779801; c=relaxed/simple;
-	bh=6LLYaMCidoB7CqFTQvxDu+VpiXQrRhc/XlHQWMmOBlA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mIlvePWk7SoM15lpz1k5zn+MPFgp0RwDU9Rby7qsaJu1gD+045oB7wXpBt8l+ARsVurbnHo7K3NC2Nxlh09919QSRX0o4en/HC58nxdloPr4Vi/N6MVt/E3JCuPVEKn1gYl1r9/8RrQmp2ejol8f8ISxBIIAKbfXaQy5KrASGAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MrqDP9dz; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hgy9dpW5; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62T107WX3232175
-	for <devicetree@vger.kernel.org>; Sun, 29 Mar 2026 10:23:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=mK/kfH4F5IH4Sq2t/puumD2k
-	dvUB6BnYA74BB3PmJz0=; b=MrqDP9dz6Ovx1i4/NejBwEUz9O+yK0iqBVu6qmiL
-	d1uFBxE1nJKSeV4JpbM89RuD+XFOPxPm+LCkDoxjRD2IuvKeNC4eTZ74EOb2Y6ey
-	Vw/8IwvgBB08BOQA67VFuyYRlFidtAdJXxIeHfzRHlvRR+omftAnUN+AmK2p04Qo
-	Q+pop0v90KCbdYK+uStZJWzJ0qMYK4ACPnectr8beRIY39hqwJDxAsxCN9sVEIKM
-	35I5sWUITUxG+GTeuYX2hzZLgn6/WfFtGcoH6fjLbP+jpHB5uGl86RYsx3ajxYHW
-	iUpwkTlrq17ATV2St+Dl6JE9lNegcvyqCoq8X4klffeRMg==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d66jwjnvh-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 29 Mar 2026 10:23:19 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-50b4031b86dso111893121cf.0
-        for <devicetree@vger.kernel.org>; Sun, 29 Mar 2026 03:23:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1774779799; x=1775384599; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mK/kfH4F5IH4Sq2t/puumD2kdvUB6BnYA74BB3PmJz0=;
-        b=hgy9dpW5u/06DzrjJqDSszIqlDjhlQL0J36BWqXrTbAwZ/Mw21BM+XWsXxlYIEKKUm
-         hzGUZm1uP7d7qGxgoriuxQdUYaQg0Yyq2I41NNZ1xHHjoT+PvXR9729UcKTLRKgJ9Wkp
-         OUtxWKQLlKoYOr7NhLrx7z8OMP1PipXB+pjhpGSrugY4HhgVFRtLjSr1m7gVE6fgGWLX
-         JRhTMAaPZA+c6IsyvBp0ITfRiGwx1WrVWWXbG2AoTyFcj/g2fJQlknamcVvARfalBUpe
-         q27Y8sFVw8MLCcILlSMXq4FJFVnjnaL1iWDKvVs7G7+a6tu20dAWkme0+4uwjOVt4/LW
-         cOQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774779799; x=1775384599;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mK/kfH4F5IH4Sq2t/puumD2kdvUB6BnYA74BB3PmJz0=;
-        b=Rn5KHHSa+dGOZqzDafWQT+OX62nhA6JVVaprZ3vROD6XyQ7Vsu2d3DtL+/1kbC9pgW
-         ru/8JC2wMGoCI+1sgKT525LNNF9HGLDHd47dGRHq3hH02fkWLkuauiDtOWPx70Td27p0
-         lS1OK0t5PYL2c5qURQscE/CLH+dhQbEU3aNEJcfXkwgR0Y7sLUqSDO9r1b8iiKC2yo26
-         FZW1SnhlOfBKjIng7fl7b4yxpgCfHKCczBVeE7ixwQi9CsNe2Op0lpGfdbEADlNnLCpw
-         CnLPI48TuasRjuGUibG05/pC2aoyfz+Wkpnn7nWRHvUB5syfmZKRrFXA3/NVXnOYsAZ6
-         ZErA==
-X-Forwarded-Encrypted: i=1; AJvYcCVG3pSl9cPinXPmcV+OSl7z9ustgeD9LGnTOj63iETAToSSTiyoQBK3t5p4+5xM+ZebNSrmaPC7JHU6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/XXrpAaeiZ5XaP+6cfR0k9+/w9VtYIvEOC8sEO1GXF5H/fuYl
-	F4Q5pourBh+h1Lsd06xbFIA/AGBAf9d2onsOxehEYJKctb4WJCQLJqrczJMx8QbW+niSIlUcFNw
-	4yq8xPnYs6iIWMnz4kyNtAVY7vP/t8YjHXnd85CbaO1UtlUbKfiog0c2AlL+8GfOr
-X-Gm-Gg: ATEYQzwNxxeCfnAiqtRuxuLTDw15RvVEu7cF7A243J3oeQnTelkll0fSKCY+gSi37dR
-	rOPS8xWEtIg1QgIz27VE2SAD/rN9IUht0aRTvlgC2QxJRMAT+gzTm7+iDz/MlMzjDqqEzj88XBI
-	gfhUyfndwiW69REKEP2MwqoVt3x1+SCF79mFWaOFQTDOICPLZVOzHkmxKlK3TCfwqxRrxcREu0u
-	+6Wrflf7W1IRVJN7oStMRwCMefdh8L1493R5ognskrwSQtq6mQ4nj0R7DbydEVQYb7NziNdrGrv
-	hcw7XzNvOHG7UNTohwUlcJo/fhZXCGLxhLNknbNLagYtuQRFksqoLqVzHLkFMJRbbu95UPqL6vw
-	c5ZQ12MXVpOlRsTeKS1SlRy8zmuSnie8polCK1IWF85vnpoVTaMyEoTfCBamQ8eM/EKZ28QN3Kr
-	PwVCl64bimbVoDuJQafdUpOIGOF67FLsTxHdQ=
-X-Received: by 2002:a05:622a:407:b0:50b:4522:d0a0 with SMTP id d75a77b69052e-50ba38b226cmr118374311cf.34.1774779799011;
-        Sun, 29 Mar 2026 03:23:19 -0700 (PDT)
-X-Received: by 2002:a05:622a:407:b0:50b:4522:d0a0 with SMTP id d75a77b69052e-50ba38b226cmr118374121cf.34.1774779798593;
-        Sun, 29 Mar 2026 03:23:18 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a2b145eff6sm959406e87.76.2026.03.29.03.23.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Mar 2026 03:23:17 -0700 (PDT)
-Date: Sun, 29 Mar 2026 13:23:15 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Tobias Heider <tobias.heider@canonical.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: drop redundant zap-shader
- memory-region
-Message-ID: <s7dptfslnmvngl4ocmc5vngg63tdjjspnkybmo6d43webucn4q@qstcolvexhss>
-References: <20260328-zap-v1-0-f6810b9b4930@canonical.com>
- <20260328-zap-v1-2-f6810b9b4930@canonical.com>
+	s=arc-20240116; t=1774781110; c=relaxed/simple;
+	bh=5UYg7ALgX1M21HjBAk1fFUnAqf7oVErtnGioVT0EgM4=;
+	h=Message-Id:In-Reply-To:References:Date:Mime-Version:From:To:Cc:
+	 Subject:Content-Type; b=q5lalYqHhSWZe0c+zpUY3s3s9htPWQxVel6pbxqa8O42/8+c0oGlBmzfAozKNLSfWoqN13PfPdg2dQi117whzCP049P2luBPq/k/3t+5N7Lzs6/ui2oRtdyKD4P6Qi4APnZ1jmKOqijopL56nM3Ok9njpBr/ZVQ2Z7eWvt7a9JQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=zte.com.cn; spf=pass smtp.mailfrom=zte.com.cn; arc=none smtp.client-ip=160.30.148.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=zte.com.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zte.com.cn
+Received: from mse-fl2.zte.com.cn (unknown [10.5.228.133])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mxhk.zte.com.cn (FangMail) with ESMTPS id 4fk9xm0pPYz5BNS0;
+	Sun, 29 Mar 2026 18:45:00 +0800 (CST)
+Received: (from root@localhost)
+	by mse-fl2.zte.com.cn id 62TAiv5H081340;
+	Sun, 29 Mar 2026 18:44:57 +0800 (+08)
+	(envelope-from guo.wenjia23@zte.com.cn)
+Message-Id: <202603291044.62TAiv5H081340@mse-fl2.zte.com.cn>
+Received: from njy2app02.zte.com.cn ([10.40.13.116])
+	by mse-fl2.zte.com.cn with SMTP id 62TARphR075539;
+	Sun, 29 Mar 2026 18:27:51 +0800 (+08)
+	(envelope-from guo.wenjia23@zte.com.cn)
+Received: from mapi (njb2app07[null])
+	by mapi (Zmail) with MAPI id mid202;
+	Sun, 29 Mar 2026 18:27:53 +0800 (CST)
+X-Zmail-TransId: 2aff69c8fea9ced-ace99
+X-Mailer: Zmail v1.0
+In-Reply-To: <20260128-ssqosid-cbqri-v2-8-dca586b091b9@kernel.org>
+References: 20260128-ssqosid-cbqri-v2-0-dca586b091b9@kernel.org,20260128-ssqosid-cbqri-v2-8-dca586b091b9@kernel.org
+Date: Sun, 29 Mar 2026 18:27:53 +0800 (CST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260328-zap-v1-2-f6810b9b4930@canonical.com>
-X-Authority-Analysis: v=2.4 cv=I8dohdgg c=1 sm=1 tr=0 ts=69c8fd97 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=DfNHnWVPAAAA:8
- a=EUspDBNiAAAA:8 a=5UJbzWUa9Ju5Vw7BQqEA:9 a=CjuIK1q_8ugA:10
- a=a_PwQJl-kcHnX1M80qC6:22 a=rjTVMONInIDnV1a_A2c_:22
-X-Proofpoint-GUID: LYvUH_n7vck4TsgRyUeLt7QJf_5zW3kb
-X-Proofpoint-ORIG-GUID: LYvUH_n7vck4TsgRyUeLt7QJf_5zW3kb
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI5MDA4MCBTYWx0ZWRfX5IprYm1YBrBW
- TJ05bnWvhh+ykDH81ZWqX13iKqP0Qp718E04OX/hwu+pZWEuje464ZEW9Jz0o66gjJxvNt7XYo9
- FEvGN2Z4sHrzS7qXDi3UFGgSCaFzZ6tA1ZA8rp+icCsPID0aRAvolkF3nbdo4HJX/ykzVNxUszk
- rESD4yKmpGIoCxHvBPQKpVvx7xuxEdFVXim4+AcVlBVIOwLhnB00hUcOgmru/By1602YFoKXPz7
- Okn06BUGcp2o5jOHCmXvGd/ZMPZNO6+W5q6RXCQ1srE9Ay8rFFu2TNTNzjg1t8obc9vqUC4bGqA
- xX8hOBq3Vl6VT6VEkuix1yhvgz16bxjBJcbKGKPP+6Cfqj0TSqxfhOdBCmF9sshIYlxIN5vbsbX
- t7y9MdW2vtjqEKGvSH+WtO6F2YbNoTKu/fol+KK7+JAnCvUszOCMHwwBibWJ+qY0NrZvQxgFAnM
- 1MX5AjMFWXPcc9aSScg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-29_02,2026-03-28_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 clxscore=1015 spamscore=0 adultscore=0 suspectscore=0
- malwarescore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603290080
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Mime-Version: 1.0
+From: <guo.wenjia23@zte.com.cn>
+To: <fustini@kernel.org>
+Cc: <pjw@kernel.org>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+        <alex@ghiti.fr>, <rkrcmar@ventanamicro.com>,
+        <samuel.holland@sifive.com>, <aricciardi@baylibre.com>,
+        <npitre@baylibre.com>, <mindal@semihalf.com>, <atish.patra@linux.dev>,
+        <atishp@rivosinc.com>, <vasu@rivosinc.com>, <ved@rivosinc.com>,
+        <cuiyunhui@bytedance.com>, <cp0613@linux.alibaba.com>,
+        <zhiwei_liu@linux.alibaba.com>, <liwei1518@gmail.com>,
+        <liu.qingtao2@zte.com.cn>, <reinette.chatre@intel.com>,
+        <tony.luck@intel.com>, <babu.moger@amd.com>, <peternewman@google.com>,
+        <fenghua.yu@intel.com>, <james.morse@arm.com>, <ben.horgan@arm.com>,
+        <Dave.Martin@arm.com>, <fustini@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <x86@kernel.org>, <robh@kernel.org>, <rafael@kernel.org>,
+        <lenb@kernel.org>, <robert.moore@intel.com>,
+        <sunilvl@ventanamicro.com>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <paul.walmsley@sifive.com>,
+        <linux-acpi@vger.kernel.org>, <acpica-devel@lists.linux.dev>,
+        <devicetree@vger.kernel.org>
+Subject: =?UTF-8?B?UmU6IFtQQVRDSCBSRkMgdjIgMDgvMTddIFJJU0MtVjogUW9TOiBhZGQgcmVzY3RybCBpbnRlcmZhY2UgZm9yIENCUVJJIGNvbnRyb2xsZXJz?=
+Content-Type: text/plain;
+	charset="UTF-8"
+X-MAIL:mse-fl2.zte.com.cn 62TAiv5H081340
+X-MSS: AUDITRELEASE@mse-fl2.zte.com.cn
+X-TLS: YES
+X-SPF-DOMAIN: zte.com.cn
+X-ENVELOPE-SENDER: guo.wenjia23@zte.com.cn
+X-SPF: None
+X-SOURCE-IP: 10.5.228.133 unknown Sun, 29 Mar 2026 18:45:00 +0800
+X-Fangmail-Anti-Spam-Filtered: true
+X-Fangmail-MID-QID: 69C902AC.000/4fk9xm0pPYz5BNS0
+X-Spamd-Result: default: False [3.19 / 15.00];
+	SUBJ_EXCESS_BASE64(1.50)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_BAD_CTE_7BIT(1.05)[unknown,utf8];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[zte.com.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,bytedance.com,linux.alibaba.com,gmail.com,zte.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-282065-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282060-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[canonical.com:email,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[guo.wenjia23@zte.com.cn,devicetree@vger.kernel.org];
+	FROM_NO_DN(0.00)[];
+	R_DKIM_NA(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[42];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 5F7673518E5
+X-Rspamd-Queue-Id: 4C8A93519D2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sat, Mar 28, 2026 at 04:49:22PM +0100, Tobias Heider wrote:
-> This is already defined in the gpu_zap_shader node in hamoa.dtsi,
-> there is no need to redefine it.
-> 
-> Signed-off-by: Tobias Heider <tobias.heider@canonical.com>
+Hi Drew,
+
+On Thu, Jan 29, 2026 at 4:28 AM Drew Fustini <fustini@kernel.org> wrote:>
+> Add interface for CBQRI controller drivers to make use of the resctrl
+> filesystem.
+>
+> Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
+> Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
+> Signed-off-by: Drew Fustini <fustini@kernel.org>
 > ---
->  arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi        | 1 -
->  arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi | 1 -
->  2 files changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi b/arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi
+> arch/riscv/kernel/qos/qos_resctrl.c | 1192 +++++++++++++++++++++++++++++++++++
+> 1 file changed, 1192 insertions(+)
+>
+> ...
+>
+> +
+> +int resctrl_arch_update_one(struct rdt_resource *r, struct rdt_ctrl_domain *d,
+> + u32 closid, enum resctrl_conf_type t, u32 cfg_val)
+> +{
+> + struct cbqri_controller *ctrl;
+> + struct cbqri_resctrl_dom *dom;
+> + struct cbqri_config cfg;
+> + int err = 0;
+> +
+> + dom = container_of(d, struct cbqri_resctrl_dom, resctrl_ctrl_dom);
+> + ctrl = dom->hw_ctrl;
+> +
+> + if (!r->alloc_capable)
+> + return -EINVAL;
+> +
+> + switch (r->rid) {
+> + case RDT_RESOURCE_L2:
+> + case RDT_RESOURCE_L3:
+> + cfg.cbm = cfg_val;
+> + err = cbqri_apply_cache_config(dom, closid, t, &cfg);
+> + break;
+> + case RDT_RESOURCE_MBA:
+> + /* covert from percentage to bandwidth blocks */
+> + cfg.rbwb = cfg_val * ctrl->bc.nbwblks / 100;
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Should use bc.mrbwb to calculate rbwb?
+I think bc.nbwblks represent the available bw blks in the controller. It should should decrease as they are allocated.
+
+> + err = cbqri_apply_bw_config(dom, closid, t, &cfg);
+> + break;
+> + default:
+> + return -EINVAL;
+> + }
+> +
+> + return err;
+> +}
+>
+> ...
+>
+> +u32 resctrl_arch_get_config(struct rdt_resource *r, struct rdt_ctrl_domain *d,
+> + u32 closid, enum resctrl_conf_type type)
+> +{
+> + struct cbqri_resctrl_dom *hw_dom;
+> + struct cbqri_controller *ctrl;
+> + int reg_offset;
+> + u32 percent;
+> + u32 rbwb;
+> + u64 reg;
+> + int err;
+> +
+> + hw_dom = container_of(d, struct cbqri_resctrl_dom, resctrl_ctrl_dom);
+> +
+> + ctrl = hw_dom->hw_ctrl;
+> +
+> + if (!r->alloc_capable)
+> + return resctrl_get_default_ctrl(r);
+> +
+> + switch (r->rid) {
+> + case RDT_RESOURCE_L2:
+> + case RDT_RESOURCE_L3:
+> + /* Clear cc_block_mask before read limit operation */
+> + cbqri_set_cbm(ctrl, 0);
+> +
+> + /* Capacity read limit operation for RCID (closid) */
+> + err = cbqri_cc_alloc_op(ctrl, CBQRI_CC_ALLOC_CTL_OP_READ_LIMIT, type, closid);
+> + if (err < 0) {
+> + pr_err("%s(): operation failed: err = %d", __func__, err);
+> + return resctrl_get_default_ctrl(r);
+> + }
+> +
+> + /* Read capacity block mask for RCID (closid) */
+> + reg_offset = CBQRI_CC_BLOCK_MASK_OFF;
+> + reg = ioread64(ctrl->base + reg_offset);
+> +
+> + /* Update the config value for the closid in this domain */
+> + hw_dom->ctrl_val[closid] = reg;
+> + return hw_dom->ctrl_val[closid];
+> +
+> + case RDT_RESOURCE_MBA:
+> + /* Capacity read limit operation for RCID (closid) */
+> + err = cbqri_bc_alloc_op(ctrl, CBQRI_CC_ALLOC_CTL_OP_READ_LIMIT, closid);
+> + if (err < 0) {
+> + pr_err("%s(): operation failed: err = %d", __func__, err);
+> + return resctrl_get_default_ctrl(r);
+> + }
+> +
+> + hw_dom->ctrl_val[closid] = cbqri_get_rbwb(ctrl);
+> +
+> + /* Convert from bandwidth blocks to percent */
+> + rbwb = hw_dom->ctrl_val[closid];
+> + rbwb *= 100;
+> + percent = rbwb / ctrl->bc.nbwblks;
+> + if (rbwb % ctrl->bc.nbwblks)
+
+Same Question.
+
+> + percent++;
+> + return percent;
+> +
+> + default:
+> + return resctrl_get_default_ctrl(r);
+> + }
+> +}
+
+Sorry for my previous reply on old patch. Please ignore it. I’m re-sending this comment on v2.
+
+Thank,
+Wenjia
 
 
--- 
-With best wishes
-Dmitry
+
+
+
+郭文佳10158971
 
