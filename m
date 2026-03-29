@@ -1,268 +1,211 @@
-Return-Path: <devicetree+bounces-282163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282168-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WBS8Dk+FyWndygUAu9opvQ
-	(envelope-from <devicetree+bounces-282163-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 22:02:23 +0200
+	id EJJ4K7ObyWmJzwUAu9opvQ
+	(envelope-from <devicetree+bounces-282168-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 23:37:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E056353E7C
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 22:02:22 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 231A23542EF
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 23:37:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CDADF306F39F
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 19:56:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E249E300829F
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 21:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E8B3750A8;
-	Sun, 29 Mar 2026 19:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52EF42F4A14;
+	Sun, 29 Mar 2026 21:37:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="erzw5uW1"
+	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="Oo38zP0i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from buffalo.birch.relay.mailchannels.net (buffalo.birch.relay.mailchannels.net [23.83.209.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75537386C0F;
-	Sun, 29 Mar 2026 19:56:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774814203; cv=none; b=uTRwtnyMeTAGwBZP/6uf2VmyBmeJP4hyglgS0dFM0XjwrSOa+bKAgiBIkz+hZfyjnqkOlc468/y+jzT8QKfY119R6pQN0G0TESUe89sFGrd/jdP2hb10MKvdcSMRui8tR0xf5m9z1Dl9OMOZm2c+fkwhwdeoqaxl6NBx3Z3NFE8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774814203; c=relaxed/simple;
-	bh=rzmuSdC783UdanWK5KRP7rxT8rboYecl70TfW8YAGFs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=R5bS7t4Drm+/8qRLGqK7rODsJ1Iv/uDU2X7cyXBQ4fmwrw94YepppuI5m1ETsO0D3+oRQwAFzeiUI0H21SRKaMJuHq6Y3eWXDg5HyxNq2k/j9CqbByD780VR4mFDF6wIrR/fH7OkkZDmbPFrlvE2v3l9Ed6TbuD9swD1Tlj6r7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=erzw5uW1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57CDAC2BCB1;
-	Sun, 29 Mar 2026 19:56:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774814201;
-	bh=rzmuSdC783UdanWK5KRP7rxT8rboYecl70TfW8YAGFs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=erzw5uW1zwami3pWq3vSKGV4s2VbQ2uOun4lwWhU2tPuihfwEXm7I3+ZvAIkdP7s2
-	 MdM1wePQfVw5wfZHLu0uq5ZQcy1kP03FFg8BVkDl6wlBkdWj7gKsLB+UCG4+TKXaqc
-	 FhuMULU1bWjM6Inc/pGDDnrdfo1A6zBPfO5gbfnkzxURWGsBslmvCSFB+UG9vs4zkF
-	 II0ULuuMbK+jgM/iun8uX5c2OqNjR0V21ueUsXKJ7WzEZ6WaegNLsk7yO1r1o3eSCE
-	 8MCvmOA0hoIbVfjR4BJkrG7xrF3r1E0qzm5yjL+7kHyuNbd72JcmX9UQ2GNWQwqBf0
-	 ItPWiQV7NILaQ==
-From: Jakub Kicinski <kuba@kernel.org>
-To: jensemil.schulzostergaard@microchip.com
-Cc: Jakub Kicinski <kuba@kernel.org>,
-	UNGLinuxDriver@microchip.com,
-	andrew@lunn.ch,
-	olteanv@gmail.com,
-	davem@davemloft.net,
-	edumazet@google.com,
-	pabeni@redhat.com,
-	horms@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	woojung.huh@microchip.com,
-	linux@armlinux.org.uk,
-	Steen.Hegelund@microchip.com,
-	daniel.machon@microchip.com,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 9/9] net: dsa: lan9645x: add port statistics
-Date: Sun, 29 Mar 2026 12:56:39 -0700
-Message-ID: <20260329195639.2789284-1-kuba@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260324-dsa_lan9645x_switch_driver_base-v2-9-f7504e3b0681@microchip.com>
-References: <20260324-dsa_lan9645x_switch_driver_base-v2-9-f7504e3b0681@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0CB22F12D4;
+	Sun, 29 Mar 2026 21:37:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.209.24
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774820271; cv=pass; b=UdUTsbMMfaGCFtrL5/laWXwJwX2m51J50c5jSJgCUxsJJEX+FlKKivCLQ7tLOpqZoQEqc5BFkb9W/KrJ4q9Xlb7yu8ImPVP6btKZhuapgOj2WXFDR46oZ13BS3AbbHS9VC26HkvdPMVBGbu0uqz/ptqxEGe2BKiecVRKpGSSVtE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774820271; c=relaxed/simple;
+	bh=a2KlTregbBCeGLpcEz7X+asDE9hwzE6/fbTCXrJVpkQ=;
+	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
+	 Content-Type:Date; b=oU3HbOSDplHACn8uWi9VXKfGq3F8RW7BPskjPFbctlGxckUSA7jRBYPlH+uEdwD4gHoHscLOiLZvd9qky2BURNrTRhs5WTlo4VOwc6EVVvKwa/yBa3DeO5f7fF2qfLKijTBv+nfcsxYw7NM8a6KGi6TWVYKUoiUIcFjAc1tUOqs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=Oo38zP0i; arc=pass smtp.client-ip=23.83.209.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 065928C1A10;
+	Sun, 29 Mar 2026 20:21:38 +0000 (UTC)
+Received: from de-fra-smtpout7.hostinger.io (trex-green-9.trex.outbound.svc.cluster.local [100.96.234.227])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 754D38C1D5F;
+	Sun, 29 Mar 2026 20:21:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
+	t=1774815697;
+	b=VMwkMmkWwvO97AmeG9NVxJBewLhiskg4s9qLfbfnRnktpeFK6/M9binOCm/z6c/Oc8x0ZF
+	6sMCkHe7OHs5sAQiQ9+PZHJ2T3fD09UwJWm9T6PM1o7q4/rNB6zHU8wLE2kzbVh7JUF8fd
+	JXdADRqPtp7MTQWN64bOuG4kT3j+xriapFf2iKuLGQko7JDTr2cKlqrcCuvhrtTJY3gEY0
+	12hQFKcPRBT950aaPTQgAhGraaRArVuc9OZ/czTcvc2GBYwY8fCqJ3hArPHURV9GbaPVYu
+	z45z3+oAmEiEv6/1qUtmYCASjzfIJi+uB/Ew4ejZNg9TWT6y3tvdG8Uh9RoLeg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1774815697;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=GTT+0C4RGESjWdKuh5Sp+1h0pCrJm+O+8LsKG2eiHy4=;
+	b=KpuRlvu+G+z/ihkV1vZgHlu6F1G3PIUNMIlGt820WImTuA8Y4LSfSG/zYk3InMacfM6x14
+	2+KemZ1CjJmSLXBeE6oRsAq3yXVXO6ZrmMsZo53a+f36cn+ilSmzfysxPIFq3mSSbW97Gj
+	wGS7WSGQpudUEOZxjzjwLAREvi9rTncOeIf5Ju8AOPSpHJt9EWquCkxq2OC5HFXudzXFdr
+	rmyQNbAsW9ip2ekK1gVIKgyNNigX1Y+lh8FQbCE+p1do+EGCDXcgSyUuzwlD7YsoIx8bqT
+	nZQNstLlr1wL/W4LhO8CfFyeENT9FAVEHqQJRtWf1wCT8/n7STlJm5DXdcLk3w==
+ARC-Authentication-Results: i=1;
+	rspamd-db964497c-ftdgs;
+	auth=pass smtp.auth=hostingeremail
+ smtp.mailfrom=michael.opdenacker@rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId:
+ hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Reign-Grain: 41a1945735c5026e_1774815697815_1963226876
+X-MC-Loop-Signature: 1774815697815:123364582
+X-MC-Ingress-Time: 1774815697814
+Received: from de-fra-smtpout7.hostinger.io (de-fra-smtpout7.hostinger.io
+ [148.222.55.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.96.234.227 (trex/7.1.5);
+	Sun, 29 Mar 2026 20:21:37 +0000
+Received: from [IPV6:2001:861:4450:d360:ead3:9cb3:74f3:aa3d] (unknown [IPv6:2001:861:4450:d360:ead3:9cb3:74f3:aa3d])
+	(Authenticated sender: michael.opdenacker@rootcommit.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fkQky3w0Qz3wln;
+	Sun, 29 Mar 2026 20:21:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
+	s=hostingermail-a; t=1774815691;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GTT+0C4RGESjWdKuh5Sp+1h0pCrJm+O+8LsKG2eiHy4=;
+	b=Oo38zP0iAM3Jre4Kk3fV5VwfSRkA3r4MhpQ9v3gvp+hdPPmyTGMvqRbXRo/yJkDjzYFpEG
+	G+ABbKrfDok8JBvtmX3AUjUMD/W/AmJxpg90iC/aZktENTfFSnzrQ3FD9Mb28ljC3cQy/f
+	HZURBmSnKx7ailhnJdzswpsBihGMrj7LLCmEDuxOAu6BS4VPvDf3Jv6syAXvX2XzV3hOV9
+	uLsnj4SX39O7o/1aSO4zElVE6MUmP+HqcV2QNgu15wX9jTbWvHHLStb50/8ly9x64SfVPq
+	o62iKP/M61QECvnBFlQYd4NcngkPGMI08bOW7kAL5QcPtvnrmW8S6fmj92+hLQ==
+Message-ID: <11e7fcc9-c8dd-4bf5-a600-3d130407bb82@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Cc: michael.opdenacker@rootcommit.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ sophgo@lists.linux.dev, hanguidong02@gmail.com
+Subject: Re: [PATCH v4 2/5] arm64: dts: sophgo: add initial Milk-V Duo S board
+ support
+To: Joshua Milas <josh.milas@gmail.com>, tglx@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, pjw@kernel.org,
+ samuel.holland@sifive.com, unicorn_wang@outlook.com, inochiama@gmail.com,
+ daniel.lezcano@linaro.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, liujingqi@lanxincomputing.com, alexander.sverdlin@gmail.com,
+ rabenda.cn@gmail.com, dlan@kernel.org, chao.wei@sophgo.com,
+ anup@brainfault.org
+References: <20260328173450.219664-1-josh.milas@gmail.com>
+ <20260328173450.219664-3-josh.milas@gmail.com>
+Content-Language: en-US
+From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+In-Reply-To: <20260328173450.219664-3-josh.milas@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Date: Sun, 29 Mar 2026 20:21:30 +0000 (UTC)
+X-CM-Envelope: MS4xfGWBeS4HaIIbYUVeHIpwUThPv/HDm18miWCY/sSEUY2R6jsqziGdG8060qerCh1EaXbzH+5FvijtrYgH93cSQOJiT8QF/edNygNivc587K3POZOMLZe5 Jo4jDnr8ELIErEZAhKsQgMZmLt9YcA1Du9ncDaCihPLvqLwU/9ikhGRxd3BLp1sfmo5pourlDWH2W1RQcd5H3wtb2LM8lhxF/IX2ncRk4gDUO/8LmYDOZ+8z ZXwLIudLGFY8NWcC9Siq7uigjOoUxpodbbka6r1XDqWbpDPDHgaDL2gvr6tpVS56uv6HxjSoUBz4Rljww8zJNI4cCnnUb5w4O/B4dq0s5GMixgov+ZaksS6t YEAHOUSSyAz0fwD/TJuuozxrE6UmrCW7ID3kx/tfw0iJsL9A0FQ8NdhXxzRM8u1lAIS19lznWkBHGYBp4FC3dwQwzWRyWpnjbB3wie/Uup0d+inPmBIPvlh2 NIebAlrVSkotvjjWE6HuItwmkNaYiuI+1ofZMk2YYTRR8Aoi6UnXu2u+FtwjWBfj4Pg8DAvyLgwEhjKayKFHKknOg+UFGeD5FOiKJg3MdtcBl7SMVuoZ02Bz b+k/9eYWhmZfa9t7r6fvGKcTGuw4lWz8+xmkka3must0aQJAjxQS5xEvMfUO89TvmwAk3qo4rnH0zX2KHV40kriZd9Oz/VhgYj5R8MkMuUNGiFnjnQ2U4jP1 8zamUfqnhawddvFCDSAbA3DYTIUW+D4KbRr6BoH3Jy+WyAl2Y3jRmU0t7tQxiie3DdVPJr8qjPNQMalFM4T1Lf+GG6sVG8x7w2s3l1VTsq+LnZxEAUipGfjG I/2zjfwP4exSP4F6ISbnHNeysMGWD3FKtSPb4mIUxWM7G/1p21knhYMpsLU5vdsTDooXHdbHWIedYZ2xcdNTujn30Pu5dWO/+WlSrmNAdqUlZUtlNSPxwrCY b3rDFghcXj9wCqh
+ Ov+Kg7SJWr1n7G6AocPbpdMwAu7BQbJzJ0LkCUBTAhLEc6UWN3/dDsO07LWHrH9CuAvyrbloNmS5O8LCscj/3wCIwzoyOVr/FRZ1010tw FbeOBfof1DnDRuI1M/okZhV+kyA6llCO8bHiGJmew3/vIADKZPqklb/A
+X-CM-Analysis: v=2.4 cv=etGNzZpX c=1 sm=1 tr=0 ts=69c989cb a=FriOl7xEJMI/2lIB2BrE0g==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=YzZgpwwcAAAA:8 a=d70CFdQeAAAA:8 a=pGLkceISAAAA:8 a=-n5Tolqylb7eT0ueGtgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=diELbSsDbaqdzccPbx55:22 a=NcxpMcIZDGm-g932nG_k:22
+X-AuthUser: michael.opdenacker@rootcommit.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[rootcommit.com,none];
+	R_DKIM_ALLOW(-0.20)[rootcommit.com:s=hostingermail-a];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,redhat.com,armlinux.org.uk,vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-282163-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-282168-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,sifive.com,outlook.com,linaro.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lanxincomputing.com,sophgo.com,brainfault.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[rootcommit.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,checkpatch.pl:url];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[michael.opdenacker@rootcommit.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DKIM_TRACE(0.00)[rootcommit.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8E056353E7C
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 231A23542EF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This is an AI-generated review of your patch. The human sending this
-email has considered the AI review valid, or at least plausible.
----
-net: dsa: lan9645x: add port statistics
-    
-Add statistics support for the port counters. Chip registers are 32 bit,
-so this unit is responsible maintaining a 64bit software cache, and
-updating it frequently to handle overflows in hardware.
+Hi Joshua
 
-> diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> index 24a60f40f6b8..9a46c08dad59 100644
-> --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-[ ... ]
-> @@ -262,6 +264,12 @@ static int lan9645x_setup(struct dsa_switch *ds)
->  	if (!lan9645x->owq)
->  		return -ENOMEM;
->  
-> +	err = lan9645x_stats_init(lan9645x);
-> +	if (err) {
-> +		dev_err(dev, "Failed to init stats.\n");
-> +		goto owq_destroy;
-> +	}
-> +
-[ ... ]
-> diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_stats.c b/drivers/net/dsa/microchip/lan9645x/lan9645x_stats.c
-> index 000000000000..3e82a859f173
+Thanks a lot for this new update!
+
+On 3/28/26 6:34 PM, Joshua Milas wrote:
+> Adds initial arm64 support for the Milk-V Duo S board
+> [1] making it possible to boot Linux to the command line.
+>
+> Link: https://milkv.io/duo-s [1]
+>
+> Signed-off-by: Joshua Milas <josh.milas@gmail.com>
+...
+> diff --git a/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
+> new file mode 100644
+> index 0000000000000..4ae44b40f9edb
 > --- /dev/null
-> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_stats.c
-[ ... ]
-> +static const struct lan9645x_ethtool_stat lan9645x_port_ethtool_stats[] = {
-> +	{ "rx_uc",              SCNT_RX_UC },
-> +	{ "rx_cat_drop",        SCNT_RX_CAT_DROP },
-[ ... ]
-> +	{ "tx_uc",              SCNT_TX_UC },
-> +	{ "tx_drop",            SCNT_TX_DROP },
-[ ... ]
+> +++ b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
+...
+> +
+> +&usb {
+> +       dr_mode = "host";
+> +       status = "okay";
 > +};
 
-Is it necessary to duplicate standard networking statistics in the driver
-private ethtool output?
 
-The networking subsystem guidelines state that stats possessing a standard UAPI
-representation, such as tx_dropped and rx_packets in struct rtnl_link_stats64,
-should not be duplicated in the ethtool -S output.
+You have a small checkpatch.pl issue here:
 
-Could these redundant strings be removed since the driver natively supports
-them via lan9645x_stats_get_stats64?
+./scripts/checkpatch.pl *.patch
+...
+WARNING: please, no spaces at the start of a line
+#120: FILE: arch/riscv/boot/dts/sophgo/sg2000-milkv-duo-s.dts:82:
++       dr_mode = "host";$
 
-[ ... ]
-> +static const struct lan9645x_view_stats lan9645x_view_stat_cfgs[] = {
-> +	[LAN9645X_STAT_PORTS] = {
-> +		.name = "ports",
-> +		.type = LAN9645X_STAT_PORTS,
-> +		.layout = lan9645x_port_stats_layout,
-> +		.num_cnts = ARRAY_SIZE(lan9645x_port_stats_layout),
-> +		.num_indexes = NUM_PHYS_PORTS,
-> +	},
-> +};
-[ ... ]
-> +static u64 *lan9645x_stats_view_idx_update(struct lan9645x *lan9645x,
-> +					   enum lan9645x_view_stat_type vtype,
-> +					   int idx)
-> +{
-> +	struct lan9645x_stats *s = lan9645x->stats;
-> +
-> +	mutex_lock(&s->hw_lock);
-> +	__lan9645x_stats_view_idx_update(lan9645x, vtype, idx);
-> +	mutex_unlock(&s->hw_lock);
-> +
-> +	return STAT_COUNTERS(lan9645x, vtype, idx);
-> +}
+WARNING: please, no spaces at the start of a line
+#121: FILE: arch/riscv/boot/dts/sophgo/sg2000-milkv-duo-s.dts:83:
++       status = "okay";$
 
-Does this code overflow the allocated buffer when called for the CPU port?
+Replace the spaces by a tab as in the other entries in the DTS and you 
+should be fine.
+Thanks again
+Cheers
+Michael.
 
-The stats buffer cnts is allocated using num_indexes, which is NUM_PHYS_PORTS
-(9). This covers ports 0 to 8. However, the CPU port is defined as index 9
-(CPU_PORT = 9).
+-- 
+Root Commit
+Embedded Linux Training and Consulting
+https://rootcommit.com
 
-When the DSA core invokes stat callbacks like get_ethtool_stats or get_stats64
-for the CPU port, the idx argument is 9. While the helper
-__lan9645x_stats_view_idx_update skips the hardware read for out-of-bounds
-indices, lan9645x_stats_view_idx_update ignores that failure and returns the
-result of STAT_COUNTERS(lan9645x, vtype, idx).
-
-This computes a pointer past the end of the cnts array, which the callers then
-blindly dereference, potentially leaking kernel memory or causing a crash. Can
-bounds checking be added to the callers, or should the buffer be sized to
-include the CPU port?
-
-[ ... ]
-> +void lan9645x_stats_get_ethtool_stats(struct lan9645x *lan9645x, int port,
-> +				      u64 *data)
-> +{
-> +	struct lan9645x_stats *stats = lan9645x->stats;
-> +	u64 *c;
-> +	int i;
-> +
-> +	c = lan9645x_stats_view_idx_update(lan9645x, LAN9645X_STAT_PORTS, port);
-> +
-> +	spin_lock(&stats->sw_lock);
-> +	for (i = 0; i < ARRAY_SIZE(lan9645x_port_ethtool_stats); i++)
-> +		*data++ = c[lan9645x_port_ethtool_stats[i].idx];
-> +	spin_unlock(&stats->sw_lock);
-> +}
-[ ... ]
-> +/* Called in atomic context */
-> +void lan9645x_stats_get_stats64(struct lan9645x *lan9645x, int port,
-> +				struct rtnl_link_stats64 *stats)
-> +{
-> +	struct lan9645x_stats *s = lan9645x->stats;
-> +	u64 *c;
-> +
-> +	c = STAT_COUNTERS(lan9645x, LAN9645X_STAT_PORTS, port);
-> +
-> +	spin_lock(&s->sw_lock);
-
-Can this code deadlock when a softirq interrupts a process holding the lock?
-
-The sw_lock spinlock protects the 64-bit software stats counters. In
-lan9645x_stats_get_stats64, which acts as the ndo_get_stats64 callback, this
-lock is acquired using a plain spin_lock. The code comment notes this function
-is called in atomic context (such as from NET_RX_SOFTIRQ via dev_get_stats).
-
-Concurrently, process context paths like lan9645x_stats_get_ethtool_stats and
-lan9645x_check_stats_work also acquire sw_lock using plain spin_lock. Because
-plain spin_lock does not disable softirqs, if a softirq preempts the execution
-on a CPU while process context holds sw_lock, the softirq will spin
-indefinitely waiting for the lock.
-
-Should the process-context acquisitions use spin_lock_bh instead?
-
-[ ... ]
-> +int lan9645x_stats_init(struct lan9645x *lan9645x)
-> +{
-> +	const struct lan9645x_view_stats *vs;
-> +	struct lan9645x_stats *stats;
-> +	int err, i;
-> +
-> +	lan9645x->stats = devm_kzalloc(lan9645x->dev, sizeof(*stats),
-> +				       GFP_KERNEL);
-
-Will this memory be leaked when the DSA switch unbinds and rebinds?
-
-The lan9645x_stats_init function allocates lan9645x->stats, vstat->cnts, and
-vstat->buf using devm_kzalloc and devm_kcalloc. This function is called from
-lan9645x_setup, which is the DSA .setup callback.
-
-The DSA tree lifecycle is independent of the platform device lifecycle. If the
-master netdevice is unbound and bound again, the DSA switch's .teardown and
-.setup callbacks will be invoked multiple times. Because .teardown cannot free
-devres-managed memory, the memory tied to the platform device will be leaked
-on every setup cycle until the switch's platform device itself is destroyed.
-
-Could this use standard kzalloc allocations paired with kfree in teardown?
 
