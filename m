@@ -1,196 +1,120 @@
-Return-Path: <devicetree+bounces-282071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282073-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id xStyDosQyWnktwUAu9opvQ
-	(envelope-from <devicetree+bounces-282071-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 13:44:11 +0200
+	id EEGEDFITyWkguQUAu9opvQ
+	(envelope-from <devicetree+bounces-282073-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 13:56:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D674351D33
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 13:44:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82F93351DCE
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 13:56:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 123F93011C62
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 11:43:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F2D873025708
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 11:53:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41C43128D4;
-	Sun, 29 Mar 2026 11:43:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="gmnaP2Ru"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 976E330E82E;
+	Sun, 29 Mar 2026 11:53:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
+Received: from smtp4-g21.free.fr (smtp4-g21.free.fr [212.27.42.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E83042C027C;
-	Sun, 29 Mar 2026 11:43:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3044D35F61D;
+	Sun, 29 Mar 2026 11:53:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.42.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774784637; cv=none; b=Q+7TSUTZ8IaEg9ftjTdQjPICJp2QwsMfPvubTVVtrHyVhOPZPYSHjRpglgdHb5hrkMpocgprPiDY4MSfMrnEpsKE6eykt+BB3IvIkgiSPc2wEdexO4/mSKsalK5E/XKQGqapXIaZTxyQtArBRQsFodFCehp1Z3mOzHJzNQj6jd0=
+	t=1774785236; cv=none; b=S+z7cjacYoC//kuzy51xv4YilqLEXJeTOapY0KtBYhUV7wlYab8Bm5yTELq+W1lT+NgJCYVrOKeeW/7TUr2zQ4FjpcDWQk8voWioO+Jm7iyN0fa/TMlAKi6j1I3yBGyo4bFy1mO/PcQ/jctwp+TgvoKaQf10XkxTHB5ezyNClps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774784637; c=relaxed/simple;
-	bh=/x2bgSPLjMPRtMCgOrqMlQDlUtZoPJY2aQ5+GW5XhUs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=tgIikGq8wuspsWhXDn4VsFynfArmBkRBdcpNCuMiy+XV+L3T3hWvsfGUNjpsXtjlpyo/NaKLa/UWMsdJGqFZ8+OsO4F+ERs7d2R5badv/UvCvvFQin9Jw8AmRbJ8sGRxAR+D/ogRITeepCc+jAxuwDL5VtHJFcGYZSYQDkDDh58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=gmnaP2Ru; arc=none smtp.client-ip=195.78.66.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=mmpsystems.pl; s=x; h=Cc:To:Message-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Subject:Date:From:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=NsDDl+yTVHlLP7IF4N9Zv94wAjZ2/9tT1ZDu4kPuHBo=; b=gmnaP2Ru3ijtE98GSZLZm60+Q0
-	1ytO42TKS2P8gr9TgacXNM9uO3fEsNCJx24+7HshblRxD5WM5cRFrT6VfF60rcUcbP7O5TRku6jLJ
-	fU+buNxWIW/em4KSYlHf56IG6PCbZMpKGse07p9BR+8AnIKu5L0TRZ+RKZBfouEjxjMTuugu2wrJn
-	2qx9ykfl8AXqtTM9QHm0W5wpfv/Xq3YILNbLXL3LvP97x/6Rit/wV6wleQuoOzZ1yJjHVvTLJvESj
-	Zyava6JzNEmwq5X0v78pXq8jZ29H8sn2iNWy8YRWbWFx6Z9U2+HSxoiNfgtFDmnxb3nFXjTzlidLS
-	wKMdvR7g==;
-Received: from user-5-173-16-20.play-internet.pl ([5.173.16.20] helo=localhost)
-	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <michal.piekos@mmpsystems.pl>)
-	id 1w6oYZ-0000000GCr0-2xJN;
-	Sun, 29 Mar 2026 13:43:51 +0200
-From: Michal Piekos <michal.piekos@mmpsystems.pl>
-Date: Sun, 29 Mar 2026 13:43:04 +0200
-Subject: [PATCH] arm64: dts: allwinner: enable h616 timer support
+	s=arc-20240116; t=1774785236; c=relaxed/simple;
+	bh=N+pyk1yZYmIcdFnfaEI6OThM9jG7Px+mkLTdB3oW6cE=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=LOlgziQpai7e1RWjBZr9b2PBF9CXIpGkiCzXWFd2Ajj149O8Fz3p3tMfygbRg3vwBjBsS2KWZ/uxgoKKrWCwG9VqZrIrkHEWCfusJt23NvKBSSkleZ5sBTf6TA9D3sNQQ8HQbXjGUBexQKMo/O2SJylxOyx5AT/6lLNATeEJE7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=online.fr; spf=pass smtp.mailfrom=online.fr; arc=none smtp.client-ip=212.27.42.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=online.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=online.fr
+Received: from [10.0.0.2] (unknown [82.65.243.93])
+	(Authenticated sender: legoll@free.fr)
+	by smtp4-g21.free.fr (Postfix) with ESMTPSA id 0486F19F57E;
+	Sun, 29 Mar 2026 13:53:28 +0200 (CEST)
+Message-ID: <66856fb8-3316-4231-8800-90e52de6d906@online.fr>
+Date: Sun, 29 Mar 2026 13:53:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260329-h616-timer-v1-1-5966d0420a66@mmpsystems.pl>
-X-B4-Tracking: v=1; b=H4sIAEcQyWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDYyML3QwzQzPdkszc1CJdAxOzVLPEZGNTE8tUJaCGgqLUtMwKsGHRsbW
- 1AIEalLBcAAAA
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Michal Piekos <michal.piekos@mmpsystems.pl>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774784592; l=2614;
- i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
- bh=/x2bgSPLjMPRtMCgOrqMlQDlUtZoPJY2aQ5+GW5XhUs=;
- b=spZzLnfw6iqy8vd4Ucz8b5Px8716PU/4p8eh3j3FODFnmcEIO/5YaErEhymPRcQs5tASum502
- EzC93QHzr4kBPyVseWeQXwSStYugkMDwwOxbP1esOY3pLVhLUfgdolM
-X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
- pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
-X-Authenticated-Id: michal.piekos@mmpsystems.pl
-X-Spamd-Result: default: False [1.14 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/8] mmc: sdhci-of-k1: enable essential clock,
+ infrastructure for SD operation
+From: Vincent Legoll <legoll@online.fr>
+To: Iker Pedrosa <ikerpedrosam@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ Yixun Lan <dlan@kernel.org>,
+ Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Anand Moon <linux.amoon@gmail.com>, Trevor Gamblin <tgamblin@baylibre.com>
+References: <55c580a0-61cd-435e-bff0-f5f54cbe6948@online.fr>
+Content-Language: en-US
+In-Reply-To: <55c580a0-61cd-435e-bff0-f5f54cbe6948@online.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[online.fr : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282071-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-282073-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[mmpsystems.pl:-];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,baylibre.com];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.910];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[legoll@online.fr,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.45.233.232:email]
-X-Rspamd-Queue-Id: 7D674351D33
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,online.fr:email,online.fr:mid]
+X-Rspamd-Queue-Id: 82F93351DCE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for timer by reusing existing sun4i timer driver.
+On 3/29/26 11:20, Vincent Legoll wrote:
+> I applied this series on top of 
+> cbfffcca2bf0622b601b7eaf477aa29035169184 (linux mainline from 
+> yesterday) and successfully booted the resulting kernel from an SD 
+> card on an OrangePi-RV2 (with the vendor u-boot from the SPI flash).
+>
+> So if you want, you can add my: Tested-by: Vincent Legoll 
+> <legoll@online.fr> # OrangePi-RV2 to the relevant patches from this 
+> series Thanks Regards
 
-H616 timer is compatible with earlier sunxi timer variants and provides
-both clocksource and clockevent functionality. It runs from 24 MHz
-oscillator. It can serve as broadcast clockevent for wake up from idle
-states.
 
-Tested on Orange Pi Zero 3:
-- timer is registered as clocksource:
-- switching clocksource at runtime works
-- timer operates as a broadcast clockevent device
-- no regression observed compared to arch_sys_counter
+Same for series applied on next-20260327:
 
-Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
----
-Test results:
 
-Clocksource switching:
-  cat /sys/devices/system/clocksource/clocksource0/available_clocksource
-    arch_sys_counter timer
-  echo timer > /sys/devices/system/clocksource/clocksource0/current_clocksource
-    [ 5031.105997] clocksource: Switched to clocksource timer
+Tested-by: Vincent Legoll <legoll@online.fr> # OrangePi-RV2
 
-Clockevent configuration:
-  cat /proc/timer_list
-    ...
-    Tick Device: mode:     1
-    Broadcast device
-    Clock Event Device: sun4i_tick
-     max_delta_ns:   178956969070
-     min_delta_ns:   1000
-     mult:           51539608
-     shift:          31
-     mode:           1
-     next_event:     9223372036854775807 nsecs
-     set_next_event: sun4i_clkevt_next_event
-     shutdown:       sun4i_clkevt_shutdown
-     periodic:       sun4i_clkevt_set_periodic
-     oneshot:        sun4i_clkevt_set_oneshot
-     resume:         sun4i_clkevt_shutdown
-     event_handler:  tick_handle_oneshot_broadcast
-    ...
 
-Cyclictest measurements:
-  Dominated by system scheduler latency and do not reflect clocksource
-  precision.
----
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+P.S.: Sorry for the formatting, struggling with thunderbird.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index 8d1110c14bad..bf054869e78b 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -228,6 +228,15 @@ cpu_speed_grade: cpu-speed-grade@0 {
- 			};
- 		};
- 
-+		timer0: timer@3009000 {
-+			compatible = "allwinner,sun50i-h616-timer",
-+				     "allwinner,sun8i-a23-timer";
-+			reg = <0x03009000 0xa0>;
-+			interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&osc24M>;
-+		};
-+
- 		watchdog: watchdog@30090a0 {
- 			compatible = "allwinner,sun50i-h616-wdt",
- 				     "allwinner,sun6i-a31-wdt";
-
----
-base-commit: be762d8b6dd7efacb61937d20f8475db8f207655
-change-id: 20260328-h616-timer-046e6ac3549e
-
-Best regards,
--- 
-Michal Piekos <michal.piekos@mmpsystems.pl>
 
 
