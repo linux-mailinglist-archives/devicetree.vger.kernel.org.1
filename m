@@ -1,211 +1,157 @@
-Return-Path: <devicetree+bounces-282168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282165-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJJ4K7ObyWmJzwUAu9opvQ
-	(envelope-from <devicetree+bounces-282168-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 23:37:55 +0200
+	id 0COULPyQyWmUzQUAu9opvQ
+	(envelope-from <devicetree+bounces-282165-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 22:52:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 231A23542EF
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 23:37:54 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1879F354125
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 22:52:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E249E300829F
-	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 21:37:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2EEC83011BDF
+	for <lists+devicetree@lfdr.de>; Sun, 29 Mar 2026 20:52:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52EF42F4A14;
-	Sun, 29 Mar 2026 21:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFFBB387571;
+	Sun, 29 Mar 2026 20:52:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="Oo38zP0i"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DLJ/YDd5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from buffalo.birch.relay.mailchannels.net (buffalo.birch.relay.mailchannels.net [23.83.209.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0CB22F12D4;
-	Sun, 29 Mar 2026 21:37:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.209.24
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774820271; cv=pass; b=UdUTsbMMfaGCFtrL5/laWXwJwX2m51J50c5jSJgCUxsJJEX+FlKKivCLQ7tLOpqZoQEqc5BFkb9W/KrJ4q9Xlb7yu8ImPVP6btKZhuapgOj2WXFDR46oZ13BS3AbbHS9VC26HkvdPMVBGbu0uqz/ptqxEGe2BKiecVRKpGSSVtE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774820271; c=relaxed/simple;
-	bh=a2KlTregbBCeGLpcEz7X+asDE9hwzE6/fbTCXrJVpkQ=;
-	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
-	 Content-Type:Date; b=oU3HbOSDplHACn8uWi9VXKfGq3F8RW7BPskjPFbctlGxckUSA7jRBYPlH+uEdwD4gHoHscLOiLZvd9qky2BURNrTRhs5WTlo4VOwc6EVVvKwa/yBa3DeO5f7fF2qfLKijTBv+nfcsxYw7NM8a6KGi6TWVYKUoiUIcFjAc1tUOqs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=Oo38zP0i; arc=pass smtp.client-ip=23.83.209.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 065928C1A10;
-	Sun, 29 Mar 2026 20:21:38 +0000 (UTC)
-Received: from de-fra-smtpout7.hostinger.io (trex-green-9.trex.outbound.svc.cluster.local [100.96.234.227])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 754D38C1D5F;
-	Sun, 29 Mar 2026 20:21:33 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
-	t=1774815697;
-	b=VMwkMmkWwvO97AmeG9NVxJBewLhiskg4s9qLfbfnRnktpeFK6/M9binOCm/z6c/Oc8x0ZF
-	6sMCkHe7OHs5sAQiQ9+PZHJ2T3fD09UwJWm9T6PM1o7q4/rNB6zHU8wLE2kzbVh7JUF8fd
-	JXdADRqPtp7MTQWN64bOuG4kT3j+xriapFf2iKuLGQko7JDTr2cKlqrcCuvhrtTJY3gEY0
-	12hQFKcPRBT950aaPTQgAhGraaRArVuc9OZ/czTcvc2GBYwY8fCqJ3hArPHURV9GbaPVYu
-	z45z3+oAmEiEv6/1qUtmYCASjzfIJi+uB/Ew4ejZNg9TWT6y3tvdG8Uh9RoLeg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1774815697;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=GTT+0C4RGESjWdKuh5Sp+1h0pCrJm+O+8LsKG2eiHy4=;
-	b=KpuRlvu+G+z/ihkV1vZgHlu6F1G3PIUNMIlGt820WImTuA8Y4LSfSG/zYk3InMacfM6x14
-	2+KemZ1CjJmSLXBeE6oRsAq3yXVXO6ZrmMsZo53a+f36cn+ilSmzfysxPIFq3mSSbW97Gj
-	wGS7WSGQpudUEOZxjzjwLAREvi9rTncOeIf5Ju8AOPSpHJt9EWquCkxq2OC5HFXudzXFdr
-	rmyQNbAsW9ip2ekK1gVIKgyNNigX1Y+lh8FQbCE+p1do+EGCDXcgSyUuzwlD7YsoIx8bqT
-	nZQNstLlr1wL/W4LhO8CfFyeENT9FAVEHqQJRtWf1wCT8/n7STlJm5DXdcLk3w==
-ARC-Authentication-Results: i=1;
-	rspamd-db964497c-ftdgs;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId:
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Reign-Grain: 41a1945735c5026e_1774815697815_1963226876
-X-MC-Loop-Signature: 1774815697815:123364582
-X-MC-Ingress-Time: 1774815697814
-Received: from de-fra-smtpout7.hostinger.io (de-fra-smtpout7.hostinger.io
- [148.222.55.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.96.234.227 (trex/7.1.5);
-	Sun, 29 Mar 2026 20:21:37 +0000
-Received: from [IPV6:2001:861:4450:d360:ead3:9cb3:74f3:aa3d] (unknown [IPv6:2001:861:4450:d360:ead3:9cb3:74f3:aa3d])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fkQky3w0Qz3wln;
-	Sun, 29 Mar 2026 20:21:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1774815691;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GTT+0C4RGESjWdKuh5Sp+1h0pCrJm+O+8LsKG2eiHy4=;
-	b=Oo38zP0iAM3Jre4Kk3fV5VwfSRkA3r4MhpQ9v3gvp+hdPPmyTGMvqRbXRo/yJkDjzYFpEG
-	G+ABbKrfDok8JBvtmX3AUjUMD/W/AmJxpg90iC/aZktENTfFSnzrQ3FD9Mb28ljC3cQy/f
-	HZURBmSnKx7ailhnJdzswpsBihGMrj7LLCmEDuxOAu6BS4VPvDf3Jv6syAXvX2XzV3hOV9
-	uLsnj4SX39O7o/1aSO4zElVE6MUmP+HqcV2QNgu15wX9jTbWvHHLStb50/8ly9x64SfVPq
-	o62iKP/M61QECvnBFlQYd4NcngkPGMI08bOW7kAL5QcPtvnrmW8S6fmj92+hLQ==
-Message-ID: <11e7fcc9-c8dd-4bf5-a600-3d130407bb82@rootcommit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 632D435F8C9
+	for <devicetree@vger.kernel.org>; Sun, 29 Mar 2026 20:52:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774817527; cv=none; b=cDwcvIxMC4QLQ0cc0hrbR0Cs48gRmc+mAVfSf/XG4mIiJfCaQuLuyvjU7eNZtFf9eQb+7CUTn36JvC8DmnL7ZJ+ARDMKBJ8lA9AYeU1HJD7hmgEmvgJyTuW6OdHYETxM9XBtgn4ObZ+m5HNVGV2TRRahlY+B77fmxGOz5MmwFao=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774817527; c=relaxed/simple;
+	bh=I+QmOdm+icahqXt/SdP+sydmyyzhLJFqjcZ8AWjEoAs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nXii24Wc3SSl8aiKYSc18/jqrHvfnUwNJHTGibDk5NNkw/LZ90bX62GaJgllXek3FH7Xr4bzVzosSDYSohnb7y8FkKfjtNG0OxsKN06rgpghykoqwW1V7Ao6kuIk179lM0GRxdsTJAw3NQ9ZJgBybt/iZFgpyPfqGGvKniSMqPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DLJ/YDd5; arc=none smtp.client-ip=209.85.216.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-35c124d2613so2482116a91.2
+        for <devicetree@vger.kernel.org>; Sun, 29 Mar 2026 13:52:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774817525; x=1775422325; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=agUpQ7KTBePLs54BGx3erOStKc7P9lkIakmuRg1PvGo=;
+        b=DLJ/YDd5jHKALGY2hOQM4481+YWsJJMnDz7Grh+b+7GLGpKTz0VLX/x1M46zjOrSC5
+         x6CP/w4oLnqiJ11Vkom9eWM0hEjK/KHhrbQyTIgoUhNql2IFsEkjnhsIKXktxGIDpGHy
+         iWXK22ma7tDGL8d3JYOqj12DzQCSpjTIfLOTlh62Nag9Lc9xm1RrcwcaBfJEw1iXM2L0
+         j9hByVLmXJOUVHMVItkrpq4CTDWf3D1uXECiiwYMU7bXNxrR1jlgyQNGormX2VwWZK28
+         aMsmi3z42GyaR694RdjLLcOu3dUucAcWK2eJRwr6klMontTIJg3ldlfh/4XJywYIxMXk
+         CeUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774817525; x=1775422325;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=agUpQ7KTBePLs54BGx3erOStKc7P9lkIakmuRg1PvGo=;
+        b=OnuA5jirV+2dm89CiHhYj0S0GfgCbS7Z91sSlaOE8Ag/mfNQ129ATgmNvWT87sEpZe
+         9JfJhVx7uUww7R+K3vH+iycW5oDboocg+AB8v8PmHZW192AM9I/Bp/inlC/FM2Q2IzsU
+         +/IPownXSseFsO+NVwt+vMdKMM5EjXRKtgOGk24rj41bi0NNgP2NquOZ7JF9iwypjZXt
+         SGkuVq2csLmDQoynzCBZSmn4WSmWKKQ87CQEdNu0aSHSDbZTomqGEjhU87YTGKgvDcZq
+         nekhZZ0uVgBUczMacvkU7GuYTfQ7dL5qdT3aCZedjt+GPptWq5anAVc5d3EBpthCvj60
+         OERw==
+X-Forwarded-Encrypted: i=1; AJvYcCUfQXdxhViKXcfqybpheARZ5YQ+31QLurjDbHVV9r8I+gDESompxsCR9GUtv0QuMRM76E0aN/RhSW7O@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrrH4kAvHgPxdhtOYkZn/hG0gwE67u2Rrl6zp+BVvUQZehF1o+
+	O42HWx7rsdAb/C4XYuZMLJkvqr2vvwg0fEAWXhX5QlsOQlzXquZb9Ubz
+X-Gm-Gg: ATEYQzw5vJ/iBsD/R0dVBmw1FTSbO58ABf2OxxTb9sQI0mvanlfglJ1Q0F8MJSOE5Kd
+	M/sie7F5T2iwIovAG5nrL8OZ+2AZNP78pBg2GGt/rRE70sNy0TpCBLBPODAYMjxzALvlO4WZLY4
+	qTSYp7SNJOkliIguGhr6DlRjYTrWsDWbtY5QIe6yre6hK9oU4DTJrA0S+np9St5bjXTwTzJiJp6
+	VO+K9+eT1C8sPyFJZkOu5ax5E8TJZ2oo2bl77Qt87RuJyD1RyEoy8tbdgceB22MFcflB/fUNJgv
+	lGQ39bOceaTx9blqYlLhSShXlK+xSzHNN1XOcCMx9l6fcllZa8Jmx2y7w/BJJLCT1eBitkzedru
+	zPiyuwPNhNqTxiWZWd/HUzG5gOf2ECvvodCCF03HmUXJrD74i8PRb9V4Li59mjkFBh6/ksI3+Qc
+	XGhDRFbM82yjOQsZjInQ0OIjswshuC
+X-Received: by 2002:a17:90a:649:b0:35d:95eb:8797 with SMTP id 98e67ed59e1d1-35d95eb8a74mr3497270a91.12.1774817524667;
+        Sun, 29 Mar 2026 13:52:04 -0700 (PDT)
+Received: from snowman ([2401:4900:646d:9af6:7748:701:6c70:4173])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35c22d8c500sm10423412a91.10.2026.03.29.13.51.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 29 Mar 2026 13:52:04 -0700 (PDT)
+From: Khushal Chitturi <khushalchitturi@gmail.com>
+To: sre@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	ulli.kroll@googlemail.com,
+	linusw@kernel.org
+Cc: daniel.baluta@nxp.com,
+	simona.toaca@nxp.com,
+	d-gole@ti.com,
+	m-chawdhry@ti.com,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Khushal Chitturi <khushalchitturi@gmail.com>
+Subject: [PATCH v2 0/2] dt-bindings: power: reset: cortina: Convert to DT schema and rename node
+Date: Mon, 30 Mar 2026 02:21:49 +0530
+Message-ID: <20260329205151.15161-1-khushalchitturi@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@rootcommit.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- sophgo@lists.linux.dev, hanguidong02@gmail.com
-Subject: Re: [PATCH v4 2/5] arm64: dts: sophgo: add initial Milk-V Duo S board
- support
-To: Joshua Milas <josh.milas@gmail.com>, tglx@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, pjw@kernel.org,
- samuel.holland@sifive.com, unicorn_wang@outlook.com, inochiama@gmail.com,
- daniel.lezcano@linaro.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, liujingqi@lanxincomputing.com, alexander.sverdlin@gmail.com,
- rabenda.cn@gmail.com, dlan@kernel.org, chao.wei@sophgo.com,
- anup@brainfault.org
-References: <20260328173450.219664-1-josh.milas@gmail.com>
- <20260328173450.219664-3-josh.milas@gmail.com>
-Content-Language: en-US
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-In-Reply-To: <20260328173450.219664-3-josh.milas@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Date: Sun, 29 Mar 2026 20:21:30 +0000 (UTC)
-X-CM-Envelope: MS4xfGWBeS4HaIIbYUVeHIpwUThPv/HDm18miWCY/sSEUY2R6jsqziGdG8060qerCh1EaXbzH+5FvijtrYgH93cSQOJiT8QF/edNygNivc587K3POZOMLZe5 Jo4jDnr8ELIErEZAhKsQgMZmLt9YcA1Du9ncDaCihPLvqLwU/9ikhGRxd3BLp1sfmo5pourlDWH2W1RQcd5H3wtb2LM8lhxF/IX2ncRk4gDUO/8LmYDOZ+8z ZXwLIudLGFY8NWcC9Siq7uigjOoUxpodbbka6r1XDqWbpDPDHgaDL2gvr6tpVS56uv6HxjSoUBz4Rljww8zJNI4cCnnUb5w4O/B4dq0s5GMixgov+ZaksS6t YEAHOUSSyAz0fwD/TJuuozxrE6UmrCW7ID3kx/tfw0iJsL9A0FQ8NdhXxzRM8u1lAIS19lznWkBHGYBp4FC3dwQwzWRyWpnjbB3wie/Uup0d+inPmBIPvlh2 NIebAlrVSkotvjjWE6HuItwmkNaYiuI+1ofZMk2YYTRR8Aoi6UnXu2u+FtwjWBfj4Pg8DAvyLgwEhjKayKFHKknOg+UFGeD5FOiKJg3MdtcBl7SMVuoZ02Bz b+k/9eYWhmZfa9t7r6fvGKcTGuw4lWz8+xmkka3must0aQJAjxQS5xEvMfUO89TvmwAk3qo4rnH0zX2KHV40kriZd9Oz/VhgYj5R8MkMuUNGiFnjnQ2U4jP1 8zamUfqnhawddvFCDSAbA3DYTIUW+D4KbRr6BoH3Jy+WyAl2Y3jRmU0t7tQxiie3DdVPJr8qjPNQMalFM4T1Lf+GG6sVG8x7w2s3l1VTsq+LnZxEAUipGfjG I/2zjfwP4exSP4F6ISbnHNeysMGWD3FKtSPb4mIUxWM7G/1p21knhYMpsLU5vdsTDooXHdbHWIedYZ2xcdNTujn30Pu5dWO/+WlSrmNAdqUlZUtlNSPxwrCY b3rDFghcXj9wCqh
- Ov+Kg7SJWr1n7G6AocPbpdMwAu7BQbJzJ0LkCUBTAhLEc6UWN3/dDsO07LWHrH9CuAvyrbloNmS5O8LCscj/3wCIwzoyOVr/FRZ1010tw FbeOBfof1DnDRuI1M/okZhV+kyA6llCO8bHiGJmew3/vIADKZPqklb/A
-X-CM-Analysis: v=2.4 cv=etGNzZpX c=1 sm=1 tr=0 ts=69c989cb a=FriOl7xEJMI/2lIB2BrE0g==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=YzZgpwwcAAAA:8 a=d70CFdQeAAAA:8 a=pGLkceISAAAA:8 a=-n5Tolqylb7eT0ueGtgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=diELbSsDbaqdzccPbx55:22 a=NcxpMcIZDGm-g932nG_k:22
-X-AuthUser: michael.opdenacker@rootcommit.com
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[rootcommit.com,none];
-	R_DKIM_ALLOW(-0.20)[rootcommit.com:s=hostingermail-a];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282168-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,sifive.com,outlook.com,linaro.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lanxincomputing.com,sophgo.com,brainfault.org];
+	TAGGED_FROM(0.00)[bounces-282165-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[nxp.com,ti.com,vger.kernel.org,lists.infradead.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[rootcommit.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,checkpatch.pl:url];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_TO(0.00)[kernel.org,googlemail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michael.opdenacker@rootcommit.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[rootcommit.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[khushalchitturi@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 231A23542EF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1879F354125
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Joshua
+Convert the Cortina Systems Gemini Poweroff Controller bindings to
+DT schema and update corresponding dtsi file with new node name
 
-Thanks a lot for this new update!
+---
+Khushal Chitturi (2):
+  dt-bindings: power: reset: cortina,gemini-power-controller: convert to
+    DT schema
+  ARM: dts: gemini: Rename power controller node to gemini-poweroff
 
-On 3/28/26 6:34 PM, Joshua Milas wrote:
-> Adds initial arm64 support for the Milk-V Duo S board
-> [1] making it possible to boot Linux to the command line.
->
-> Link: https://milkv.io/duo-s [1]
->
-> Signed-off-by: Joshua Milas <josh.milas@gmail.com>
-...
-> diff --git a/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
-> new file mode 100644
-> index 0000000000000..4ae44b40f9edb
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
-...
-> +
-> +&usb {
-> +       dr_mode = "host";
-> +       status = "okay";
-> +};
-
-
-You have a small checkpatch.pl issue here:
-
-./scripts/checkpatch.pl *.patch
-...
-WARNING: please, no spaces at the start of a line
-#120: FILE: arch/riscv/boot/dts/sophgo/sg2000-milkv-duo-s.dts:82:
-+       dr_mode = "host";$
-
-WARNING: please, no spaces at the start of a line
-#121: FILE: arch/riscv/boot/dts/sophgo/sg2000-milkv-duo-s.dts:83:
-+       status = "okay";$
-
-Replace the spaces by a tab as in the other entries in the DTS and you 
-should be fine.
-Thanks again
-Cheers
-Michael.
+ .../cortina,gemini-power-controller.yaml      | 42 +++++++++++++++++++
+ .../bindings/power/reset/gemini-poweroff.txt  | 17 --------
+ arch/arm/boot/dts/gemini/gemini.dtsi          |  2 +-
+ 3 files changed, 43 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/reset/cortina,gemini-power-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/power/reset/gemini-poweroff.txt
 
 -- 
-Root Commit
-Embedded Linux Training and Consulting
-https://rootcommit.com
+2.53.0
 
 
