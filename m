@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-282571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282572-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YFPgDEChymmx+gUAu9opvQ
-	(envelope-from <devicetree+bounces-282571-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 18:13:52 +0200
+	id IGIGNjWfymmg+QUAu9opvQ
+	(envelope-from <devicetree+bounces-282572-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 18:05:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BBB935E8A2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 18:13:51 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76A2935E55A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 18:05:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7EA32305BB88
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 16:02:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BA97A3038151
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 16:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B312377015;
-	Mon, 30 Mar 2026 16:01:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30C803783CA;
+	Mon, 30 Mar 2026 16:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PZXeQYRz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="peTvHo4w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3C4434572B;
-	Mon, 30 Mar 2026 16:01:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2D63783BB;
+	Mon, 30 Mar 2026 16:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774886510; cv=none; b=bl7qnks+zuHCcBRsy9+CR4RcB0/vojUDeo+j2GesJ9nzdWrLh3WHBncO94ZrwJDA+bN7l+PQILFbNjZ8tOyQu2wenT8HTVsmnlaLBWNMn1gfbiYabNrc1of+8YT4jWHBMYKGEb4EINQQwTB9CRwr64BBqU4y3Bnwk42oAPd830A=
+	t=1774886513; cv=none; b=YwchhBnPRiD7amdKASbvdRp5NqyRSloSVUoABI17a8Rdop/vv5JqmG9+BwbzZGWNeh4qwxcc98ffoT475go5/zJuJ2FloWyOwtIcz8efXIQ7AXwn36psZgvz+BQL0Zmm7Vd42ouy2kx9F2wN1BZHoFtVqqohfxiwKY08o+9+JSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774886510; c=relaxed/simple;
-	bh=xVNnI2s9hxovAWINawO8TXyNqx6KZ45Jhq/gfbXBaBA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EEDpcQJ3CmHEWCMvbjTbcpcwDVz+atTpDb6Ma5+z7cX7pKo5jw9jNa3TvivUE/McrAd62ALxdS/aZi8VtBt+1zz/BsaXj1eUhA7peb0YygRDVVxEN9kUGYwtMve/5Z8ErvSRoy29t5ncms0ZlNVIPndo+8QlkpoY5zq1f1yqHQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PZXeQYRz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6D41C4CEF7;
-	Mon, 30 Mar 2026 16:01:49 +0000 (UTC)
+	s=arc-20240116; t=1774886513; c=relaxed/simple;
+	bh=dkL6dv1UZ6tEvEkiK8k3OFHYmWohEXDgOHsN7TaAXo8=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=OUFRhMcxm3N6vRkez2dxNI9nPdOgcb+6nR597nRjX6KP/XZ1zYvfV4Ni3aZ+ztDjnCL5MMRQKYVb7uueDjTMRCFGdyUKav3FSwAR9BZf4oMsANeiXHJpIdHO2gl9I9YgRbmtEe8slJemm1BuSIvv7apPK09OZOZE/VAZi+Q2QXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=peTvHo4w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15D64C19423;
+	Mon, 30 Mar 2026 16:01:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774886510;
-	bh=xVNnI2s9hxovAWINawO8TXyNqx6KZ45Jhq/gfbXBaBA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PZXeQYRzi1Ovhyekdl6rKpPgtFCnrKHQp4t2ffezCt+u6JuVJHUAMmVECrcUjdmJ0
-	 K6e0Aj2LFXEZvxxlwyOCcD/xWvoEJdIua5ZJ+Q17Ganx4/dQIbm2ngIjtRzv0PjpMc
-	 ZwF1Eg9arvr1k2Q8/wPW5cbu0QlBSY+k8fl9HQPFAZH4Yf5OHjT1ip4ti4JiAmQ8Mx
-	 LkErrK1nO1KreQgw2KVQA3/F/S4UlH71bUm0c8Bkrce500t6AvEta8GH31FHtbUJdd
-	 WglnSJBzw4TLicJSkTHn0W87CqYkiL5sQq9ODVu4krIeIpfWGxdLufTsFlW1TBF627
-	 B5f5rq4Z/ce/w==
+	s=k20201202; t=1774886512;
+	bh=dkL6dv1UZ6tEvEkiK8k3OFHYmWohEXDgOHsN7TaAXo8=;
+	h=From:To:Subject:Date:In-Reply-To:References:From;
+	b=peTvHo4wMPfXlvDCs2e71U/I/369QNfdTRy+2ixgLbfcFE1m2O1tewtKUYet6WZ9y
+	 EdfjyyCWuYUvDA12a43gIpdl2mh8U/WT32/+5778ADO2wLEA2BWFgSLwnzcJmd0sOI
+	 Jj/AmhylDLg2bpPAjhHfJ+vTm6yhKUSddCGP6qZTEIbI2//eEQDxP5Y3cBea8c1y6D
+	 q2NFecVehN7YPdCR5ZHywBK746D6eS2i7erU1Q9+B2mNxRJ8c20CXIWZSC9q2tem6I
+	 yDRZiTRPCG8VIN88z5jsd0fycdp7JYnQBiDJE49fuSxUGH3mOECEfZWzj3SyW/dGbO
+	 KTcxbnnNSf1Rg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Thara Gopinath <thara.gopinath@linaro.org>,
-	Alexander Koskovich <AKoskovich@pm.me>
-Cc: linux-arm-msm@vger.kernel.org,
+	Luo Jie <quic_luoj@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Alexander Koskovich <akoskovich@pm.me>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8250: Add missing CPU7 3.09GHz OPP
-Date: Mon, 30 Mar 2026 11:01:09 -0500
-Message-ID: <177488647787.633011.1811372743907758191.b4-ty@kernel.org>
+	Christian Marangi <ansuelsmth@gmail.com>
+Subject: Re: [PATCH 0/4] clk: qcom: ipq-cmn-pll: Add IPQ6018/IPQ8074 SoC support
+Date: Mon, 30 Mar 2026 11:01:12 -0500
+Message-ID: <177488647778.633011.8836589484278812193.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260307-sm8250-cpu7-opp-v1-1-435f5f6628a1@pm.me>
-References: <20260307-sm8250-cpu7-opp-v1-1-435f5f6628a1@pm.me>
+In-Reply-To: <20260311183942.10134-1-ansuelsmth@gmail.com>
+References: <20260311183942.10134-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,46 +74,60 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-282572-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[baylibre.com,kernel.org,quicinc.com,vger.kernel.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282571-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6BBB935E8A2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 76A2935E55A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Sun, 08 Mar 2026 04:26:37 +0000, Alexander Koskovich wrote:
-> This resolves the following error seen on the ASUS ROG Phone 3:
+On Wed, 11 Mar 2026 19:39:37 +0100, Christian Marangi wrote:
+> Simple series that adds support for the common PLL for
+> IPQ6018/IPQ8074 SoC support.
 > 
-> cpu cpu7: Voltage update failed freq=3091200
-> cpu cpu7: failed to update OPP for freq=3091200
+> This is an initial effort to try to support the Ethernet Switch
+> present on the QualcommAX platform upstream.
 > 
+> John Crispin (4):
+>   dt-bindings: clock: qcom: Add CMN PLL support for IPQ6018
+>   clk: qcom: ipq-cmn-pll: Add IPQ6018 SoC support
+>   dt-bindings: clock: qcom: Add CMN PLL support for IPQ8074
+>   clk: qcom: ipq-cmn-pll: Add IPQ8074 SoC support
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sm8250: Add missing CPU7 3.09GHz OPP
-      commit: b683730e27ba4f91986c4c92f5cb7297f1e01a6d
+[1/4] dt-bindings: clock: qcom: Add CMN PLL support for IPQ6018
+      commit: a57666004f49fa5031d6bf388834213e6f961922
+[2/4] clk: qcom: ipq-cmn-pll: Add IPQ6018 SoC support
+      commit: 97eb2ac52726fbb702ced40d552a3f6f2683b664
+[3/4] dt-bindings: clock: qcom: Add CMN PLL support for IPQ8074
+      commit: 7156c65030006e6930dd99c5b8c5e84e69ca5f0b
+[4/4] clk: qcom: ipq-cmn-pll: Add IPQ8074 SoC support
+      commit: 4e36f8ab45c406420f2c2ce6ee3988e0d13ba1c9
 
 Best regards,
 -- 
