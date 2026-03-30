@@ -1,267 +1,285 @@
-Return-Path: <devicetree+bounces-282562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282564-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IHdsGgadymmg+QUAu9opvQ
-	(envelope-from <devicetree+bounces-282562-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 17:55:50 +0200
+	id iBI4Dyadymmg+QUAu9opvQ
+	(envelope-from <devicetree+bounces-282564-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 17:56:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A85EB35E3BA
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 17:55:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C48335E3E7
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 17:56:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 81BCD30151F9
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 15:47:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CE71D3045C19
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 15:47:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E51372663;
-	Mon, 30 Mar 2026 15:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D051374E69;
+	Mon, 30 Mar 2026 15:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="lUDYSCE9"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="xW8RPQAX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010063.outbound.protection.outlook.com [52.101.84.63])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66CD02F6170;
-	Mon, 30 Mar 2026 15:47:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.63
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774885633; cv=fail; b=rebeu6TQz+t+x+y152GDfJqlHIXrBm1dW/CVEZwvoF+E6k/VYneiGVH+2/3ULPF9TiQqQH9EekjB1U/Ju8YLsSASA7JIPNUoi4phjpCDvyJlDo/g5ZEwQkmtCloKIOyNLDn+YispKy8TdmaP6cYXBIKb/gUByENlSJai52XER3s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774885633; c=relaxed/simple;
-	bh=pto7a2QCJlp4YQ0zb12xUEQ6PNAFiDYcUvdWKv5A6TU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Tr+81mfYUnDAiI3zTz6IkDuXFn8FluCWh6vxRFXc0yoHadk0JxsqV215Miwpb9DKAtqq0wKC1+H6QjqY/RIvCTQFVsH2YUDQKVfogReh63IlNQWml63RPJT+KPvnQ8jXAtUpbqI0qZl5m4wRIxXZguJWMUuvaV0R66JUOlLFoHg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=lUDYSCE9; arc=fail smtp.client-ip=52.101.84.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Wrw/wtC4QgPPf0cXM0jcUE8hUjtYszZuZ7O5aFYbETpM7e1nrk/nERif3TJrqELkyGlYlBX+LbkdN85fmv6ukZJLxYTVET5SkXNEaHFBCW+14qxWyoLSUhOFypv4Qjr7yJlWP5PXMUiLn1xLGEtKoyJWjWwpMqyAU0XYx/U0RMAMm2kVNmn+Y2NPXpqTinluSWI9VGo6acZdR0S0Aeuz+hmxt4PWfRSFmqmuMBcv+VtmN/uUT8W3oIl8A18CKLxnsylENw90qZVQcjxvuBmyt0bUmEgf/TLWXAovyO+YiqAVtsxl8d8+E5rvwULyenLEHBJkX7N5Jnm9mYCj0bXGvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tu/cxAdOyPi5zZCG3TBGMCDpNbGuZO7erYwxGvjP6ag=;
- b=lGEHGptTfoNYu/bU7EjYUG2Ut57OfC7VOYZzoUpOtdMzqmbNVmQhj58iJAxVdIMvQKvfBWMlBccrUOYnUh4LK60pxfE49z3lc3wQh+w3CwfZ+GfLl/s3pbmDrngMNk4n/lVTfGoV/c7psOSnZQnAzRRD2rwXxfjCKWWTsy6GRc2aPFLyns+aw3pjPLgsBjMBpFs4mUJouHbpNlV5RYA5BesCUJdIi/lWnPUVZPaIYUvJjgwSpUHUg3a64ECdRmlGAFeNc/28wgb5WPGxY7LXf2UKNTmY/yveVoLfMpGBfw1yKUVBLeN6L0g1c4bb4uMkHLFWxv8vhiaERIGpwyq3EQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tu/cxAdOyPi5zZCG3TBGMCDpNbGuZO7erYwxGvjP6ag=;
- b=lUDYSCE9o7FEv/jqrTALwbPMFtI0E8vqTIJthj8wi6B8jaGE9HuNfDyxS2FVAM/sb3+f8zli5KIqBF22UWWEJys7NZt/Tkg5BZeu11mnRat46hzUppFbBjXuCg62FSIhv7kEfvUTId6hidZx94prrdt5HTKPJNY9tOqBzE1UzMxIxQgBX+WrkjMagMYJsF0VKMcMu3hCyatWKbFaik7H/1Lrw93dqwieX8mZS3muUkuVH1Agsn1rk2FHgALnOqoo25qpoeJQ0/Jh8JA8m+mcRXBy5iuJT9YEzmp2ej/Hgzz1OHuai2KO6XKC6CWKqp9R4TkgeoI+UOCoCxBOUdMXdw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by DUZPR04MB9945.eurprd04.prod.outlook.com (2603:10a6:10:4d8::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.25; Mon, 30 Mar
- 2026 15:47:08 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9745.027; Mon, 30 Mar 2026
- 15:47:08 +0000
-Date: Mon, 30 Mar 2026 11:46:58 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Srinivas Neeli <srinivas.neeli@amd.com>
-Cc: Vinod Koul <vkoul@kernel.org>, git@amd.com,
-	Frank Li <Frank.Li@kernel.org>, Michal Simek <michal.simek@amd.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Suraj Gupta <suraj.gupta2@amd.com>,
-	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-	Thomas Gessler <thomas.gessler@brueckmann-gmbh.de>,
-	Folker Schwesinger <dev@folker-schwesinger.de>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Kees Cook <kees@kernel.org>, Abin Joseph <abin.joseph@amd.com>,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 1/5] dmaengine: xilinx_dma: Fix MCDMA descriptor
- fields for MM2S vs S2MM
-Message-ID: <acqa8jj9Q-0BUc85@lizhi-Precision-Tower-5810>
-References: <20260313062533.421249-1-srinivas.neeli@amd.com>
- <20260313062533.421249-2-srinivas.neeli@amd.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260313062533.421249-2-srinivas.neeli@amd.com>
-X-ClientProxiedBy: BY3PR05CA0031.namprd05.prod.outlook.com
- (2603:10b6:a03:39b::6) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95D74373C03
+	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 15:47:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774885665; cv=none; b=DmqgkgseasHyRDJnLCgvVqRqt4psPcw5nVNp0KLm83Ms0R2xBHc+6dtLFI3VNJZ2kliZgiDRJkZrah5jhAc9cJpnbCKX+90dQbdSXs3PX8dUaC5QIO7FD0OSeQq2zaVZnG/EWWB9chxgmzd7eXKVzDtI3yIBqCp9MY96zdBAbss=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774885665; c=relaxed/simple;
+	bh=cOe0HByo+TuYk7g7P644FVqK34hh7493ag9RCpWOM0Q=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=UO+scLqsS41ocCedVBFTZYgHmgLTbytUUfRkTu5SXGWBiLfJLuINceJjZG2gpIpQwdSSr5zr1T5eAZ9uSZeoaViPm/SIsHfhinkpIRlScuJ5o6q0cICZjYc3aCOHfx4r5RjXwz3hG+7V+XLYzQ+6hsy+K7ysj8JLdvsrz5BwbcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=xW8RPQAX; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 0E4861A308E;
+	Mon, 30 Mar 2026 15:47:40 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C7EB55FFA8;
+	Mon, 30 Mar 2026 15:47:39 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D8693104505B1;
+	Mon, 30 Mar 2026 17:47:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1774885657; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=1aTpyd+0/mSU/s+c0fNfX3pIn8QwVOQZDTaD5Bg1dRU=;
+	b=xW8RPQAXdsgEPWs8JAXpw7qKfhkRJwFTssKu/pCYpXKdD0k3EpKzzFUMSC4jTPa6ha01OP
+	ell4Cyq42Pef0NFr1nkLE9wFav3TJ0wNOIBoHEnRkxxVhcpemnPRAR3tSCfpSs6Ey7VkHr
+	TOdEUjvFf5phGcGYzOoxQwf5Ifg+s7hMaf63HnEo8Q18bSj8gjgWkzMkzyG0tOVOZbgRil
+	BTTi+uv98pOhS29laOmj8YfGLErilsrSZN2gU7edGsqDRBmp9el03ejLQiHrBqbKsfFhGa
+	a0i4TpnHjLdS8Bci2iz0h3DuF34ACgZEomSMpODsX5K4HB5gv1c+LN22Cq49kw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DUZPR04MB9945:EE_
-X-MS-Office365-Filtering-Correlation-Id: e2a51125-8126-480c-91bd-08de8e7399bd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|19092799006|376014|7416014|52116014|366016|56012099003|22082099003|18002099003|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	81z+xMVjPlyCN0sLz1gAnplijP8DwzVaW3CgRSx6C/uZTf7GuX+yHIhSE3SeRYv0R1c8CmjSTMmgkdck7n4J4NrLlZK+qEfy5NcaGJCn+fkhKK0AQDO0uUOcZIWSXA44c03VK2BNVMMC048buDoZ1xXV8IHd8c3v/drgmJBTcketUIWt2UGLHD7X5omiFbCQcpXDYyoW/5hwZmV8ELK80VwPVP3sIHLXmmw0VMbUfrnVb+F17A2sx0/+mue2ReavEGH0anhW+xYJTSLL+uk0GPfC9652Cdjps49JJZNKmbQzOvPhtQLSe9IEIb76SpsIZYJOT0Zv2JjaHHIZq2VHpnOX6Pkm6iN4xU9X1PsnJ4wLzL694dE0EqK4lJ7WItyD6eWbSVwKyWV5khd/qjKJYHEXST31vtNPHqN/jabZaMxoscOXsgt3V17Jc/kuZZ8epra3DMPOJLknkigvvV4mPZtRpiNWiL1AAsaNx/yYNBKU5xKyIyXKyr/ju93oSa6OXnq4aCzkh94mFAQSIKUNOb7wVSmJvU8Yzh+cNmsyfw8K43ubqsbIcp1aDWnK9REybVEwWbg6AE2+0FN0127RbLSn6bxaSzPYU4IMM3FfgivmL03W2oE3sSuXyMOhrEr0PTOncudtyIsy+QHJjT+JzBX4lqsBP+y+KoPheLEH/xuw67JlUqktTgKceYOmOGEY80XOnmhavWNKtfQ58Y1+xe9Ov5sZ92sRcTW6F5Nb4i6KrsNqygJRBtwTed2zmkfAuyvIG4H/nPcf0Ir0Z3Ia9PfzdiY32gKAK4q0wIjzAcY=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(376014)(7416014)(52116014)(366016)(56012099003)(22082099003)(18002099003)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?uwvo7u2tufD9CHKgQEj4m1qmdmUdWh3PtoHDDXnDo++LLHcfhEF75ERxsgvZ?=
- =?us-ascii?Q?errRWxzTpNDpsa/oc0ag3Soe/Y9HTtq2yaYx+I7jSYCbrunBi1fU/xtEtk45?=
- =?us-ascii?Q?cHe6nvbHpwCkU3jOJq46inMhOssq3PZR7C66RM/pe4piJ9GSodEMHo/cQBP6?=
- =?us-ascii?Q?UDhlpK+RayXJEJfCrCHNlyuNVCe2d5yf9qDezQgx4YFyPUcNtftDTQhSszaz?=
- =?us-ascii?Q?czMPeZl3YcqX6wYu+qa05B4N72GbBb1bdQ9FUHbbIDMrW1lvP14JYwfn4+mz?=
- =?us-ascii?Q?YTJVIalyJrY4Km7sWfQ0hm5yOAmq3oX1HaCIYFTkY+26Edg8mSO1SkM2jmib?=
- =?us-ascii?Q?F1M4lzioM1OYA6DsK0P6sawcuocUgYZ6h6HBTKfJXCdMsw2N4Wj9VUebK7X3?=
- =?us-ascii?Q?bHbBrPHZC4B0XzsXDkToWzwyd77fjAJWecg7yDyIQtuAmV9meD1wv32aQ19v?=
- =?us-ascii?Q?x7/07maAVlcWEoKKaZjCU0c9mpYQqd/tF1ldnmiWy4bE+IpLYK0mY7OryO+O?=
- =?us-ascii?Q?2orxBwOJS/StjVAT2sIFXe47Y4kp50geTFvNWTn0ANS0w/gJy73TWZ43AwqU?=
- =?us-ascii?Q?Mezo0hXmw/XQ6KJsHQTX+k8Tr7x4vYStJVv5MYXHOCNJLer+hPDAHSNRumNy?=
- =?us-ascii?Q?KpPeNtPFZh8+DzNjtAY+JmgqikKeBnvV177rbRVajbThkyrVeMW1QAiwlvbk?=
- =?us-ascii?Q?jKFZfXTJHbuet4B1yGxYItaCoolo65uIB2Tus68OY2bSwcTukv0NCBQMshSr?=
- =?us-ascii?Q?Xw0Lmu4mWzVTPBYnKElEqpwM5FJfxDEYACNsGasfyf8onIhiiZtTU1cPNzil?=
- =?us-ascii?Q?AtCaqqXUIJ6f81q+l8lqjPzNDAPXiNbqWaid4SZ0+D3oIDuJkv8fUx8ReNnF?=
- =?us-ascii?Q?KXLGcLLiN7th5zJBNfytskkUOCOBFCaR3EXxOsYkViiCRGkfdRYoQ9HJ9uTk?=
- =?us-ascii?Q?x22ztK8BKvSer6/cLEYTej7uVYT5gMmL3oIegl2o2wv5pz+oI7e4RxiZDkLU?=
- =?us-ascii?Q?B9dXK9leeSG9jJ4Dazt3bpQUyRbbwMQbp/XEHiL9ri6FV/D7f1+bCk775t/n?=
- =?us-ascii?Q?0Fq+snaNENxlfs6BjnZtnz8IzS8t2SF2O13UkBAZTMLwmE0yeiZ1U/C27DCE?=
- =?us-ascii?Q?FZyhNy9dDgzSyTVyJqZYtInxVl6J5wGrJSrSSaGgJvDufpSMrE4TsLrB7Fjm?=
- =?us-ascii?Q?TCTmjVfeq6kOSiPYVBH9BrQpSgJL0r1xym6TZUYYwQY62sLdhFAnE3YSEVGK?=
- =?us-ascii?Q?IxxCnW3WdJXxjnGtxtVzkj5jrdg/kg3hJyJkiLFLkvWgOvlbs+8QUMdo5j5t?=
- =?us-ascii?Q?rkBfKWBh+3zOFXc5z44VtD1X72TK0w+ICSeg8fVjD/E3sqw8WuJ2o2W3Ufmc?=
- =?us-ascii?Q?MBX2dA8IOcmPa7GYyYQpYm/gpj/3FAdu5P4UqzScUQc5hokIMI0aEqfCj3o+?=
- =?us-ascii?Q?gE/G39o16ztBwhXmQmijWKC2tjQwarlqFe8TJpVdKBeJWlCfFZdQzC+xkbBv?=
- =?us-ascii?Q?9Jnnz7e2R5J3pBxwVEdRc4310iwL7e599mB4k9plintgb7XakD86JIv5HAxy?=
- =?us-ascii?Q?kp+O4OMHIpVvI3T5EHQUGtbHsLg7L4DR2C1K5kiWSfAwWZA3x6R/4E5SlDTz?=
- =?us-ascii?Q?Qo8QjfnYh2UzxPiAyJlyI2cwIWc14/k4Q0cT8yQom2DujOzY9q7MG888Ps59?=
- =?us-ascii?Q?1TgNJznewiUXlx8a4B77ejUyUR4TwOxed9bG7E1KRBZWfU4CJPTHizivBqGj?=
- =?us-ascii?Q?Y/9HdOtcnQ=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e2a51125-8126-480c-91bd-08de8e7399bd
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2026 15:47:08.6623
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: czMLODAAbdOrNXrYRK1fKe+vqqjPscZzis6VrnDc6whDSXXUtxlaNlkCc5CHyCCHmsjPOLk8xL09txQmg+jU7Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB9945
-X-Spamd-Result: default: False [1.84 / 15.00];
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 30 Mar 2026 17:47:23 +0200
+Message-Id: <DHG8G8FMXA6C.U6LU563OZ8NR@bootlin.com>
+To: "Liu Ying" <victor.liu@nxp.com>, "Marek Vasut" <marex@denx.de>, "Stefan
+ Agner" <stefan@agner.ch>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Frank Li"
+ <Frank.Li@nxp.com>, "Sascha Hauer" <s.hauer@pengutronix.de>, "Pengutronix
+ Kernel Team" <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>,
+ "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
+ Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
+ <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Rob
+ Herring" <robh@kernel.org>, "Saravana Kannan" <saravanak@kernel.org>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+Subject: Re: [PATCH 7/8] drm/bridge: imx8mp-hdmi-tx: add an hdmi-connector
+ when missing using a DT overlay at boot time
+Cc: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>,
+ =?utf-8?q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, "Hui Pu"
+ <Hui.Pu@gehealthcare.com>, "Ian Ray" <ian.ray@gehealthcare.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>,
+ <dri-devel@lists.freedesktop.org>, <imx@lists.linux.dev>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, "Adam Ford" <aford173@gmail.com>, "Alexander
+ Stein" <alexander.stein@ew.tq-group.com>, "Anson Huang"
+ <Anson.Huang@nxp.com>, "Christopher Obbard"
+ <christopher.obbard@linaro.org>, "Daniel Scally"
+ <dan.scally@ideasonboard.com>, "Emanuele Ghidoli"
+ <emanuele.ghidoli@toradex.com>, "Fabio Estevam" <festevam@denx.de>,
+ "Francesco Dolcini" <francesco.dolcini@toradex.com>, "Frieder Schrempf"
+ <frieder.schrempf@kontron.de>, "Gilles Talis" <gilles.talis@gmail.com>,
+ =?utf-8?q?Goran_Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>, "Heiko
+ Schocher" <hs@denx.de>, "Joao Paulo Goncalves"
+ <joao.goncalves@toradex.com>, "Josua Mayer" <josua@solid-run.com>, "Kieran
+ Bingham" <kieran.bingham@ideasonboard.com>, "Marco Felsch"
+ <m.felsch@pengutronix.de>, "Martyn Welch" <martyn.welch@collabora.com>,
+ "Oleksij Rempel" <o.rempel@pengutronix.de>, "Peng Fan" <peng.fan@nxp.com>,
+ "Philippe Schenker" <philippe.schenker@toradex.com>, "Richard Hu"
+ <richard.hu@technexion.com>, "Shengjiu Wang" <shengjiu.wang@nxp.com>,
+ "Stefan Eichenberger" <stefan.eichenberger@toradex.com>, "Vitor Soares"
+ <vitor.soares@toradex.com>
+X-Mailer: aerc 0.20.1
+References: <20260320-drm-lcdif-dbanc-v1-0-479a04133e70@bootlin.com>
+ <20260320-drm-lcdif-dbanc-v1-7-479a04133e70@bootlin.com>
+ <544112ab-8ca0-4622-b680-233457198e3e@nxp.com>
+ <DHDNA5HLQPIB.3F21G9QPBUQG8@bootlin.com>
+ <5f06ea5a-5388-440f-91d6-cebb0bee0a88@nxp.com>
+In-Reply-To: <5f06ea5a-5388-440f-91d6-cebb0bee0a88@nxp.com>
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282562-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,nxp.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,technexion.com];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-282564-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[nxp.com,denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_GT_50(0.00)[54];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amd.com:email,nxp.com:dkim]
-X-Rspamd-Queue-Id: A85EB35E3BA
+	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,bootlin.com:url,0.0.0.0:email,32fd8000:email,32c00000:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email]
+X-Rspamd-Queue-Id: 9C48335E3E7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 11:55:29AM +0530, Srinivas Neeli wrote:
-> The MCDMA BD format differs between MM2S and S2MM directions, but the
+Hello Liu,
 
-Can you use DMA_DEV_TO_MEM and DMA_MEM_TO_DEV instead of MM2S and S2MM?
-or memory to slave, at least first place need extend term MM2S(memory to
-slave).
+On Mon Mar 30, 2026 at 5:02 AM CEST, Liu Ying wrote:
+>>>> --- a/drivers/gpu/drm/bridge/imx/Kconfig
+>>>> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
+>>>> @@ -25,6 +25,23 @@ config DRM_IMX8MP_DW_HDMI_BRIDGE
+>>>>  	  Choose this to enable support for the internal HDMI encoder found
+>>>>  	  on the i.MX8MP SoC.
+>>>>
+>>>> +config DRM_IMX8MP_DW_HDMI_BRIDGE_CONNECTOR_FIXUP
+>>>> +	bool "Support device tree blobs without an hdmi-connector node"
+>>>> +	default y
+>>>
+>>> depends on DRM_IMX_LCDIF ?
+>>
+>> If the imx hdmi-tx is not enabled then HDMI won't work anyway, so users =
+are
+>> not affected and the overlay is not needed. Am I missing something?
+>
+> I meant I'm fine with "default y" and think that this could also depend o=
+n
+> DRM_IMX_LCDIF, because no display controller driver other than the LCDIF
+> driver needs the fixup.
 
-> driver was using generic 'status' and 'sideband_status' fields for both.
-> This could lead to incorrect residue calculations when the hardware
-> updates direction-specific fields.
+Ah, I see your point. OK, I'll add 'depends on DRM_IMX_LCDIF'.
 
-driver was using generic 'status' and 'sideband_status' fields for both,
-which lead ... (use Affirmative Tone)
+>>> I see build warnings(W=3D1):
+>>> drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso:25.8-37.=
+4: Warning (unit_address_vs_reg): /fragment@0/__overlay__/soc@0: node has a=
+ unit name, but no reg or ranges property
+>>> drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso:26.16-36=
+.5: Warning (unit_address_vs_reg): /fragment@0/__overlay__/soc@0/bus@32c000=
+00: node has a unit name, but no reg or ranges property
+>>> drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso:27.18-35=
+.6: Warning (unit_address_vs_reg): /fragment@0/__overlay__/soc@0/bus@32c000=
+00/hdmi@32fd8000: node has a unit name, but no reg or ranges property
+>>> drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso:29.13-33=
+.8: Warning (unit_address_vs_reg): /fragment@0/__overlay__/soc@0/bus@32c000=
+00/hdmi@32fd8000/ports/port@1: node has a unit name, but no reg or ranges p=
+roperty
+>>
+>> AFAIK the device tree checkes just can't work on overlays. The tools jus=
+t
+>> cannot know on which base tree the overlay can be applied, so they canno=
+t
+>> know the existing properties. That might change in the future, but for n=
+ow
+>> my understanding is that it is OK to have overlays which produce such
+>> harmless warnings, at least for driver-specific overlays like the tilcdc
+>> one [0] which is already in linux-next since a few weeks.
+>
+> Hmm, not sure a few weeks in linux-next is long enough ;)
+> I'd say, I saw the warnings, so simply reported along with a fix to suppr=
+ess
+> them.  TBH, build warnings make me nervous, especially this DT overlay is
+> under the "DRM DRIVERS FOR FREESCALE IMX BRIDGE" umbrella.
 
->
-> Refactor the descriptor structure to use unions with direction-specific
-> field names (mm2s_status/s2mm_status, etc.). This ensures the driver
+That's fine, I'll add the lines needed to suppress the warnings then.
 
-Ensure .. (needn't this)
+>>>> +	fixup-hdmi-connector {
+>>>> +		compatible =3D "hdmi-connector";
+>>>> +		label =3D "HDMI";
+>>>> +		type =3D "a";
+>>>
+>>> What if a board uses another type?
+>>
+>> For boards affected by this patch, currently the connector is created by
+>> dw_hdmi_connector_create() which hardcodes type A [0], so there would be=
+ no
+>> difference.
+>
+> Yes, that's from driver's PoV.  However, userspace may get the type
+> from /sys/firmware/devicetree/base/fixup-hdmi-connector/type and use it
+> to do something.
 
-Frank
-> accesses the correct hardware fields based on channel direction and
-> matches the hardware documentation.
+I'd say this is incorrect, the device tree is not an API for that. The
+connector type might be known to the driver by other means (ACPI, DP MST,
+whatever). So I think this is a non-problem.
+
+If userspace needs to know the connector type, that should come from the
+ioctl (DRM_IOCTL_MODE_GETCONNECTOR perhaps).
+
+> Maybe, that's trivial.
+
+Not sure I got what you mean here, sorry. What are you referring to?
+
+>> OTOH how can a common module know the specific connector?
 >
-> Fixes: 6ccd692bfb7f ("dmaengine: xilinx_dma: Add Xilinx AXI MCDMA Engine driver support")
-> Signed-off-by: Srinivas Neeli <srinivas.neeli@amd.com>
-> ---
->  drivers/dma/xilinx/xilinx_dma.c | 29 ++++++++++++++++++++++-------
->  1 file changed, 22 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/dma/xilinx/xilinx_dma.c b/drivers/dma/xilinx/xilinx_dma.c
-> index b53292e02448..4a83492f2435 100644
-> --- a/drivers/dma/xilinx/xilinx_dma.c
-> +++ b/drivers/dma/xilinx/xilinx_dma.c
-> @@ -275,8 +275,10 @@ struct xilinx_axidma_desc_hw {
->   * @buf_addr_msb: MSB of Buffer address @0x0C
->   * @rsvd: Reserved field @0x10
->   * @control: Control Information field @0x14
-> - * @status: Status field @0x18
-> - * @sideband_status: Status of sideband signals @0x1C
-> + * @mm2s_ctrl_sideband: Sideband control info for mm2s @0x18
-> + * @s2mm_status: Status field for s2mm @0x18
-> + * @mm2s_status: Status field for mm2s @0x1C
-> + * @s2mm_sideband_status: Sideband status for s2mm @0x1C
->   * @app: APP Fields @0x20 - 0x30
->   */
->  struct xilinx_aximcdma_desc_hw {
-> @@ -286,8 +288,14 @@ struct xilinx_aximcdma_desc_hw {
->  	u32 buf_addr_msb;
->  	u32 rsvd;
->  	u32 control;
-> -	u32 status;
-> -	u32 sideband_status;
-> +	union {
-> +		u32 mm2s_ctrl_sideband;
-> +		u32 s2mm_status;
-> +	};
-> +	union {
-> +		u32 mm2s_status;
-> +		u32 s2mm_sideband_status;
-> +	};
->  	u32 app[XILINX_DMA_NUM_APP_WORDS];
->  } __aligned(64);
->
-> @@ -1013,9 +1021,16 @@ static u32 xilinx_dma_get_residue(struct xilinx_dma_chan *chan,
->  					   struct xilinx_aximcdma_tx_segment,
->  					   node);
->  			aximcdma_hw = &aximcdma_seg->hw;
-> -			residue +=
-> -				(aximcdma_hw->control - aximcdma_hw->status) &
-> -				chan->xdev->max_buffer_len;
-> +			if (chan->direction == DMA_DEV_TO_MEM)
-> +				residue +=
-> +					(aximcdma_hw->control -
-> +					 aximcdma_hw->s2mm_status) &
-> +					chan->xdev->max_buffer_len;
-> +			else
-> +				residue +=
-> +					(aximcdma_hw->control -
-> +					 aximcdma_hw->mm2s_status) &
-> +					chan->xdev->max_buffer_len;
->  		}
->  	}
->
-> --
-> 2.43.0
->
+> Hmm, maybe add a module parameter or let users set the type through Kconf=
+ig
+
+I'm afraid none of this would work for distribution kernels, where who
+configures the distribution has no idea on how many different hardware it
+will run.
+
+> or even define an unknown type to honestly tell users that we don't know =
+it?
+
+This sounds like a potentially valid idea, even though I'm not fully
+convinced. Also I suspect it would be a pretty large change, and also
+adding "unknown type" in the device tree seems not compliant with the rule
+that DT describes the hardware (not the lack of info about the hardware).
+
+But definitely it's not needed for this specific case, because:
+
+ * with current code, every imx8mp-hdmi-tx usage adds a type-A connector [0=
+]
+ * with this patch the correct type will be created when described in DT,
+   and type-A will be used only as a fallback when the DT is lacking
+
+So after the patch we'd do sometimes better, never worse in this respect.
+
+Based on the above I'm sending v2 soon, but don't hesitate in following up
+in case I may be missing something (this topic is tricky).
+
+[0] https://elixir.bootlin.com/linux/v7.0-rc5/source/drivers/gpu/drm/bridge=
+/synopsys/dw-hdmi.c#L2601
+
+>> Boards with a different connector should describe the connector in the
+>> device tree, if they need to instantiate the exact type.
+
+I think this is the only valid solution. It's very easy to do, nothing new
+to invent.
+
+Maybe on top of that we could add a warning when the overlay is applied,
+e.g. "imx8mp-hdmi-tx used without a connector described in device tree;
+adding a type A connector as a fallback; please add a valid description to
+your device tree". Maybe pointing to a TODO entry in the documentation.
+
+What do you think about this?
+
+Thanks again for your careful review!
+
+Luca
+
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
