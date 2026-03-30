@@ -1,172 +1,176 @@
-Return-Path: <devicetree+bounces-282706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282708-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2GdJK8jxymkkBQYAu9opvQ
-	(envelope-from <devicetree+bounces-282706-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 23:57:28 +0200
+	id 8KweA57yymkkBQYAu9opvQ
+	(envelope-from <devicetree+bounces-282708-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 00:01:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 076F8361A7F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 23:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 859B9361B4C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 00:01:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A6D0030440AB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 21:52:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 565463031E8C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 21:55:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E314039B97E;
-	Mon, 30 Mar 2026 21:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABEBB3A7590;
+	Mon, 30 Mar 2026 21:55:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TZla6/Jg"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="G2QozNkI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E95743A75AB
-	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 21:52:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774907533; cv=none; b=P5j8h7sFm6/8O5kAviVbI3xD7z+7namZUdbgla7ZImKhL7jQfI5UTDo905PkjA23wfsJ19fqFWynyzxt04X5JZRE+n33Bg6hUMgR+5z2bTw/T7kRgjbvCc0g9HY2Ixu8IBM5dj/Wyc23p94NlvGyE7iklpJLOY/kPodMW1aZSLk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774907533; c=relaxed/simple;
-	bh=zXRnSa3wZNgCdun5zEFhGnhl0i/tF5ePM3IfvpJgix4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WqFW/bj1ePcsbhbdIm4gyNtOqZ+RUogQbw32lqVNFJQ8q1qN4PYejweKhJh7NvpL3NpRFxHshpz/CBSe5Cmyq+nMOotNfqIiXwRsEiWWIqvHwieVqBIMH3xPsg7Z+QyxWVPln6lYxomIO5j4FqQWdOT3Zn9u6M3Iy43Gyxfp32A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TZla6/Jg; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-483ad568d68so7121995e9.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 14:52:11 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C1A3A380D
+	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 21:54:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.171
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774907700; cv=pass; b=evDuO7MSGHBJ4hgUDnOOBu7rzLBu+IVCt8QAXEmfnrWWXEyssur6PcRzXnVuPv03RW36uagY9kKJf6YH8L5uATF9kTE2GGmacEGZe9UlDnNk9RTpBKe6EQCVBQp1vEqM1IOnG2iXx+UXYlFj6R1Fy7SpK+T6Q54Q+iKlTVmivMM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774907700; c=relaxed/simple;
+	bh=xN/QkzMYPIlbhAvsrH44ktU+4AeFHj8GPyLj9MABI9Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k+6JTNMZqI9v1zfBVc2JlGuXoquzBOIvYydeLUnRjziI7lI1TpmfZ2bF5ScnGs/frHbW8my4aZ2nx4R+MbfivLtthEDU/fufFkz9urfab2U3UKvpy3g+ldMvLciSOFQNNsSHA203XYgjHBU096oz3aePtMGywua/oLG5wx74wog=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=G2QozNkI; arc=pass smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2b2503753efso13421995ad.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 14:54:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774907699; cv=none;
+        d=google.com; s=arc-20240605;
+        b=YNBhZdTD9lrYjwzZ2Vtm1ZkO28LNyxZBmADso755VwjEVuI0cMQud+yuV/A5k6g9D8
+         ezXIBWaSvWHOxThwmh1GepGnE67wMwFNb1TfXFUDKB8iIZerk4s34N6/cL1g0xi8U1+v
+         NlDlRmwJHh4BVY5c7t9Z/oJiZ7P37KkrjzZMlJkEZnsCs0VqFR2YDCiPdOByo/5CoCD+
+         lQR9Vn/DDhCUe8K6sSoyXhrAHdDrPWgdp3ls19eps/ugdWhFqU/kWNegyFTbFtU4q0b7
+         sk2G/yd6EavNgAlVcxhwtdf6410Uqq49QQIDAWR8V3k2bNoVJuzGAZFBeLBeD44B4OKB
+         NrWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=xN/QkzMYPIlbhAvsrH44ktU+4AeFHj8GPyLj9MABI9Q=;
+        fh=XMbeoZCXMRBSoI6hjq+odG/QLxLIp99yTMhudfvTmQ4=;
+        b=c+dBNdCtUs4EjnoWj9PtArePKi4T0jm2qqlbu1U7XGdMWAFvu6PIVDa1W4F00DlPjY
+         bQxQ3fnLgd9zi0o0Q5xHmafLTlZhs4C6R7XyYpO5n3pomzfWfS60ukfQVuO6/IwpFOOz
+         Ee59lGCSZUWMRhVwjvkj4ukxAuDilYtni2hghjQd4VhYVBjPgq3eNv44AqPFqtglkHYx
+         lwbPomMFGYe8Y6wdbp8dy3PBgVuuFh+6ExasT+nhtPbnIx0K3+xVtq1zTpxDUyP8NtIF
+         bzrnsUi/JevRmR8edJSV8umFvokp8AqWCA8a3wo6vtu05v2kmL9L7in9U07KCLaokotb
+         Ezcw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774907530; x=1775512330; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=i9VtVxRJozztTdXG3B3HhY7EDhQNxzzr8H6rdGSXE0o=;
-        b=TZla6/JgnwAYvc8u1HrMNZXmiIwlfgmUib2ABSaYcDzWjsbBVeMLTCRGs12TYJr8O2
-         4owFmphj41QggvLaKIhb2oqxSdqAUuH/SDyO3GQPICvq+oDFAo2zcQGHwMNW548ykWrq
-         FLNC954pcjUECYFf/J+IIEAhiuavfIIWrbdrVkcKxkmfAdEiyPVio1o3wQwugsHl8nSI
-         p0NZSXyu0agDesLr6bT/Cs7H3HBIVGrl2z+1N4mKXj3tHhYwnmwBBDH/rajly6UrUo9K
-         JX5qIy9LWd2Xjp7L3la3vYZfwxzDGkpe33T4A0G103beRwjDGdFqO0FpBBEA6jHdeEC8
-         Z9Lw==
+        d=googlemail.com; s=20251104; t=1774907699; x=1775512499; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xN/QkzMYPIlbhAvsrH44ktU+4AeFHj8GPyLj9MABI9Q=;
+        b=G2QozNkIg4zrjrvYO2TT9ExjgSfTjtuK0Qa3IXbWjX3/e9CDFEMbYRSb8TAcLUlaNR
+         qAfcSsA8JMl1DgRhJXVKG0ri5D7QTgOM+CA3OSxbWzHScT1ioDLdVxoO5SXuyvpC5ymX
+         p8lt19k8rZdGzZEiUQLf2UO0qaKHN/+h9u6bPBUos/bP8Eyl1n0egE+LomzSb5Ls+Gct
+         7PazMxxxArwfUdj9VAA7WihLdBZvGb7l9h16sqDeBRirT9EmTjxZH1q68l38mzZn5806
+         yElO/ET8Vy8ojtQkyN0EaDxpTfjACoeYmZqzgWpMlAWTnTuady8PnJ5BFaPKJp5PqrOJ
+         ZIKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774907530; x=1775512330;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i9VtVxRJozztTdXG3B3HhY7EDhQNxzzr8H6rdGSXE0o=;
-        b=HmmF3qwxhXcNyPILaAj5pgta/DjUyOeQWU0rCgW6Uravsd85K2gKYsG20LkUj62ilO
-         qmKOwZBrP7DgveIgQGCyWuBXlOb2ppBTBlxumFe/ZHHwwDa5XDT7seatkZnQi+pltMZV
-         n8mLurF6xbRBku536Q/8vIhobPlAnRlOhJce0pKZ8eO006TJMmyV1cPH5mC3ActiMIYT
-         jK5AxnKLXf9k04fozLLvu5AObcGeAGU5as+5afkbmEpVpCERZ+K/V2dSy/JpyHBxRXwH
-         fh7MN3MRGwm98rpz3e5XTpyLLODO0AbSFNnfkBk4cDEZAIgIopYH71k46S3se6GzVhrJ
-         hYHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUNzoay+v7ImWFLjBbauuSS7pIJtP7tav9Nltu9u+IMS7+toQftxQbD+oYVU5lbHdBGNWWiglluAGYT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1RsPhqd1E0CTmfpY+Gs7Nu8MJIvnaShd9KyK9LB3r/6InsgzL
-	NPQueyfutS/cbwVBAzC1CqVha4lpgvYKYV6bJWln/iufMYnOTHo7teIE
-X-Gm-Gg: ATEYQzyhvtYVcDFmh+7wxH2gk1OWsyoeFFKrbxEqOrB6qm77ZscxNdcqdar1FF8GEfD
-	TGFIbHDGUmTrFB05gpCcN9a6v+BJ6Ts7a7ai132mWYHzGrFXGuAAqbqDFXbe3DCO55qJ/DT8GY0
-	ElxDtwO7D8TU885R3NqIPzSs2Y+wWXT2YsCqjlzQM9qvAAxlxDjTOPdzjpyzShsOBWk83ZtXXfS
-	CRoGpkL5LWMJXOx/Un2ZpUO4zLWm4oOUEHNXuu8+RMm/m0yQsSkgA0GgYqfObf++JQFZprlu6KE
-	c41aKg90YzBXNgAvbYvpALl8DeIIXK23FPVXJVGq3NtHmyuP5brklVeoMj6JCANemzsg5epI6wN
-	3UP5E+LHw7sJy7fhy9yUe06/+C+FYQXPh20ylHrB+cPY1QnRSKhlQRxetL230HqzafgClczUy4S
-	g+X2iNYNI+WKo1getugn3vDoRauQ==
-X-Received: by 2002:a05:600c:1d1e:b0:485:385f:674d with SMTP id 5b1f17b1804b1-48727f0e5acmr122902805e9.8.1774907529964;
-        Mon, 30 Mar 2026 14:52:09 -0700 (PDT)
-Received: from skbuf ([2a02:2f04:d50a:b400:fc92:d05b:3301:b722])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4887ad2b379sm3209085e9.4.2026.03.30.14.52.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Mar 2026 14:52:09 -0700 (PDT)
-Date: Tue, 31 Mar 2026 00:52:07 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Rustam Adilov <adilov@disroot.org>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Stanley Chang <stanley_chang@realtek.com>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] phy: realtek: usb2: Make configs available for
- MACH_REALTEK_RTL
-Message-ID: <20260330215207.stx6qbjr7kctm4xt@skbuf>
-References: <20260327160638.15134-1-adilov@disroot.org>
- <20260327160638.15134-7-adilov@disroot.org>
+        d=1e100.net; s=20251104; t=1774907699; x=1775512499;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=xN/QkzMYPIlbhAvsrH44ktU+4AeFHj8GPyLj9MABI9Q=;
+        b=K67q/cup8gBv1mrOF2wSmRdZFe2FN0hC+20EcJtGE0OMLd9ldxCt8aWzd0XC18pRvg
+         OuikYs4lYkIvGDYoAGh6ANe13r0VQDpO0ZGBtuO/L5oLhSvOl+rCTdE8YZmSe+ryVHrH
+         /tUzcyc/Wg8xZf2vzYduP/ijuvThmG92Lerkvlcw6fJsCqez7m/3PGzrtyyboda6ELO0
+         1qDCbBiu0G/mv1hthSaF1Bhlq6PC/ZqIEiWhh9eIp/ONctLikwj5gAG2RYSjxQfvord5
+         Y8emzmWDN9O4E7oV+z9VWpJhE1iYViL/1gk9y1vtthcUL+qKHDwkh5Y4jN/eYVzRGao3
+         IrzA==
+X-Forwarded-Encrypted: i=1; AJvYcCUWuYCap6x8CDT6+CrpFX+tOvhpUFxHc/5KLdnbNfC/GiNcjd8H6h6/y5efL1ADOoVQGegCGclS0aqe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAh+lHMytc5s10yD/HSk2WOuQMi+S1uLA1jnD91cgYFJ7O/I89
+	5WtFTzRQURRlNJ3QAu6hroYF8+iI277kT8xn+UdHBlseBeCEeIIwStyxWWqDcR9rtaLcgm2+V0D
+	q6a9sb3T6LsihKPg4TqUq6tCWl8WMG40=
+X-Gm-Gg: ATEYQzyhynR63dK8+FZ2jwC1hTbhWrHTALmNiZ+GNha7/CzId/9yJye7SxzNgjOcvwJ
+	Vk0Mqgq6lgOofG/0mCrGepmFb3ElPCEbwxX4YdF/l+MbGBAUJlRwWPKH/FK/aHEfZab2wpv6cIo
+	di7b14qJ0F2rKMfAnB3hu5JaYOKDvhQhzghtq2KIC4LA4VzOuXEjA5FFxbk4QfaTC4PtW5F6Ntb
+	vTvrJg+CONGjJUzndD/rCgqJK7a9hF+zHv7RjxtwL1yxOkmeEtdRWb00hdG9tHvi2kUh4xEOdRx
+	CAOnfO2NzU2M+BxJFqbHdct3qidmm5r3zApBxTMk2VVzPoEyHuw=
+X-Received: by 2002:a17:903:98d:b0:2b0:60f1:de58 with SMTP id
+ d9443c01a7336-2b0cdcfae43mr147607145ad.45.1774907698891; Mon, 30 Mar 2026
+ 14:54:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260327160638.15134-7-adilov@disroot.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+References: <20260326-s6-s7-pwm-v1-0-67e2f72b98bc@amlogic.com>
+In-Reply-To: <20260326-s6-s7-pwm-v1-0-67e2f72b98bc@amlogic.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 30 Mar 2026 23:54:47 +0200
+X-Gm-Features: AQROBzC2-9WP_iYu993gr4kZhNfXgWBsXWt6220pBOvgiFbgiwhI3kcyG0LtR-E
+Message-ID: <CAFBinCD1GPP82MEBDHg3BwCJg6JY5k2HksEt+kCB=YjnYTO7Tw@mail.gmail.com>
+Subject: Re: [PATCH 0/2] Add PWM support Amlogic S7 S7D S6
+To: xianwei.zhao@amlogic.com
+Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	Junyi Zhao <junyi.zhao@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.06 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	R_DKIM_ALLOW(-0.20)[googlemail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282706-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-282708-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[googlemail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[googlemail.com:+];
+	NEURAL_HAM(-0.00)[-0.967];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[martinblumenstingl@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,baylibre.com,vger.kernel.org,lists.infradead.org,amlogic.com];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 076F8361A7F
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,googlemail.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 859B9361B4C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 27, 2026 at 09:06:38PM +0500, Rustam Adilov wrote:
-> Add the MACH_REALTEK_RTL to the if statement to make the config
-> options available for Realtek RTL SoCs as well.
-> 
-> Signed-off-by: Rustam Adilov <adilov@disroot.org>
-> ---
->  drivers/phy/realtek/Kconfig | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/phy/realtek/Kconfig b/drivers/phy/realtek/Kconfig
-> index 75ac7e7c31ae..f9eadffacd18 100644
-> --- a/drivers/phy/realtek/Kconfig
-> +++ b/drivers/phy/realtek/Kconfig
-> @@ -3,7 +3,7 @@
->  # Phy drivers for Realtek platforms
->  #
->  
-> -if ARCH_REALTEK || COMPILE_TEST
-> +if ARCH_REALTEK || MACH_REALTEK_RTL || COMPILE_TEST
->  
->  config PHY_RTK_RTD_USB2PHY
->  	tristate "Realtek RTD USB2 PHY Transceiver Driver"
-> -- 
-> 2.53.0
-> 
-> 
+Hi Xianwei Zhao,
 
-The file now reads:
+thanks for your contribution!
 
-if ARCH_REALTEK || MACH_REALTEK_RTL || COMPILE_TEST
+On Thu, Mar 26, 2026 at 7:35=E2=80=AFAM Xianwei Zhao via B4 Relay
+<devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
+>
+> Add bindings and driver support Amlogic S7/S7D/S6 SoCs.
+There is an old report that got lost, stating that the current
+pwm-meson driver has an off-by-one error with the hi and lo fields:
+[0]
+Since you are working on bringing up a new platform: is this something
+you can verify in your lab?
+To be clear: I'm not expecting you to work on this ad-hoc or bring a
+patch into this series. However, it would be great if you could verify
+if the findings from [0] are correct and send an updated patch in
+future.
 
-...
+Thank you and best regards
+Martin
 
-endif # ARCH_REALTEK || COMPILE_TEST
 
-Please update the end comment as well.
+[0] https://lore.kernel.org/all/20241225105639.1787237-3-gnstark@salutedevi=
+ces.com/
 
