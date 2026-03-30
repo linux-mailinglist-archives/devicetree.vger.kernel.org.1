@@ -1,161 +1,175 @@
-Return-Path: <devicetree+bounces-282328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282336-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iNL5KNE/ymn46wUAu9opvQ
-	(envelope-from <devicetree+bounces-282328-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:18:09 +0200
+	id MIAjJ2lAymn46wUAu9opvQ
+	(envelope-from <devicetree+bounces-282336-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:20:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 048FB358009
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:18:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 477D13580A5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:20:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AC38A300E714
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:07:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D675B309BE8B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FB973B2FC2;
-	Mon, 30 Mar 2026 09:07:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1C613B27D3;
+	Mon, 30 Mar 2026 09:08:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="WAqNAn+d"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="EAV1f4c4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
+Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6E132D2397;
-	Mon, 30 Mar 2026 09:07:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D1D83ACEE1
+	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 09:08:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774861658; cv=none; b=Hq7oK9xVDjrTx7f6hAyZIFJjWnbmeBYy5JTNX4zwEQ9THFa7wHJyb9tJ7sLpdZuTi61QjsSVNIKt37vhRaDtkoEz1u6F0IeZ5txdK2qX02hljo5Csz3nAw55NU01pBl40d3uCJ2l1ORf3h1XdEVBqnt1bfxKnYhyOCk1f5sivyk=
+	t=1774861739; cv=none; b=KbtcWLmmrzLiA3derlmlL2T0BAVy6Gx+K+lEs/8DDI+N2NdpxuCZXoVKaNbaNRoGO1lPK5Tv0+6oMCJDvRBp89ojCoKikGipkV7Wc+dxwCWdEnz2LIoEBBJPtqAyvNHJBK7PtUz+PxbNSPoNrM0Ot8AIVGUsm9dvSMzuvZlKmQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774861658; c=relaxed/simple;
-	bh=TNKQcUOxp3IEx4/KXd1OG59UNOtH64WRIf6g/vY5agA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:Cc; b=Ld0TwtTVuazsqGqYwYDEU2ccoWhecf9TJPkpOwJ4WnyMR4aQecbj9uEGNL/U1CPImpnm/BrckFzLAiyKVOHNm/vdr84FrRcouP+RFWnqs3pjLW91pHuYzUENA0p+HOgUi/fEakiaO/khqlliX2ZQ8gglJY3NdKIXVbcmrmP+BEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=WAqNAn+d; arc=none smtp.client-ip=194.37.255.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
-Received: from [194.37.255.9] (helo=mxout.expurgate.net)
-	by relay.expurgate.net with smtp (Exim 4.92)
-	(envelope-from <prvs=65635f912b=fe@dev.tdt.de>)
-	id 1w78aq-008YfB-Ld; Mon, 30 Mar 2026 11:07:32 +0200
-Received: from [195.243.126.94] (helo=securemail.tdt.de)
-	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <fe@dev.tdt.de>)
-	id 1w78aq-00GTFS-43; Mon, 30 Mar 2026 11:07:32 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dev.tdt.de;
-	s=z1-selector1; t=1774861651;
-	bh=E2ZTfUj86mp0drWTHwRl8zkHJBvXCjXQAwVjq3aAu94=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=WAqNAn+dFmHdlv6/Kbl2yXL1/PrYLN5oyTdyjMklTNMpY6iwJJWyHFfpiJwkxH9QN
-	 A2tEQBq/KpBhDz1fuWNqxED7OWse2qRVR8l9wFnFHKb+typoioVdpn7ijpMFm1cn5i
-	 9R6NUVCQEx6TGS3lHoztVu+TxQazshswGmqc/amoNbm9g0Q4ulxZlm7uixyIMlM3rG
-	 DE7dikMKpCPKfbC39kK8qwvLYXEQ4ZCChT3L1FuZifHQ/gkkKo6J3cfHorlsnGsz1k
-	 QC3ZB0n8OPbWIcpkMY0NQs08Ps+I6E/yo2pvB9/CYI60pb9v3NZlv0jbc4XCXwHNvS
-	 7N5MUB8K4+Dqw==
-Received: from securemail.tdt.de (localhost [127.0.0.1])
-	by securemail.tdt.de (Postfix) with ESMTP id B2E6E240046;
-	Mon, 30 Mar 2026 11:07:31 +0200 (CEST)
-Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-	by securemail.tdt.de (Postfix) with ESMTP id AA9F7240045;
-	Mon, 30 Mar 2026 11:07:31 +0200 (CEST)
-Received: from [10.2.3.40] (unknown [10.2.3.40])
-	by mail.dev.tdt.de (Postfix) with ESMTPSA id 7F72020E49;
-	Mon, 30 Mar 2026 11:07:31 +0200 (CEST)
-From: Florian Eckert <fe@dev.tdt.de>
-Date: Mon, 30 Mar 2026 11:07:17 +0200
-Subject: [PATCH v2 7/7] MAINTAINERS: Remove bouncing intel-gw maintainer
+	s=arc-20240116; t=1774861739; c=relaxed/simple;
+	bh=YRILLOG+HUnggAnjYrM44vQ4NLjLLdfIDUkl0o+Cm1g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lhoSxqkIY5ETu/3TxfzB/1Lzh3EgRm521I/lxS3OeR4TFeDrL6mcqooulEqRzp+rvY0hwrklJEJrBwLhih/dC6zr+XLpyFLRvnmtI5lsn1STOj24BsTBse9htYd0pfFK3F4fu4h+4JgL15JYnpCGqnhxzxHSshyZnKqXnhEjZW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=EAV1f4c4; arc=none smtp.client-ip=91.218.175.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Mon, 30 Mar 2026 17:08:48 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1774861735;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+Jvy42babhOLsHiEQ6usNzQ70aeU07GAe8AZCgZgAp8=;
+	b=EAV1f4c4rRJWfcl66mXI8RIvG/+1PnohQ+N3Fx6jEMv01wFPvtDOsKPATMBafNwdrjPmpA
+	e2jyI6OCvpHWkEwrwJ23WJwDsKzU11dkXc+pjZnCVfED5pLIZZrs7eLTrl6Bttex14rseG
+	k6ClXdR3bPy2XILQhP1XJHwYHuu6lKs=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Troy Mitchell <troy.mitchell@linux.dev>
+To: Iker Pedrosa <ikerpedrosam@gmail.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@kernel.org>
+Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>,
+	Trevor Gamblin <tgamblin@baylibre.com>,
+	Troy Mitchell <troy.mitchell@linux.dev>
+Subject: Re: [PATCH v5 5/9] riscv: dts: spacemit: k1: add SD card controller
+ and pinctrl support
+Message-ID: <aco9oLumPh4OZtIo@kernel.org>
+References: <20260330-orangepi-sd-card-uhs-v5-0-bd853604322d@gmail.com>
+ <20260330-orangepi-sd-card-uhs-v5-5-bd853604322d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260330-pcie-intel-gw-v2-7-8bd07367a298@dev.tdt.de>
-References: <20260330-pcie-intel-gw-v2-0-8bd07367a298@dev.tdt.de>
-In-Reply-To: <20260330-pcie-intel-gw-v2-0-8bd07367a298@dev.tdt.de>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?utf-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Sajid Dalvi <sdalvi@google.com>,
-	Ajay Agarwal <ajayagarwal@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rahul Tanwar <rtanwar@maxlinear.com>
-Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Florian Eckert <fe@dev.tdt.de>,
-	Eckert.Florian@googlemail.com, ms@dev.tdt.de
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774861650; l=809;
- i=fe@dev.tdt.de; s=20260205; h=from:subject:message-id;
- bh=TNKQcUOxp3IEx4/KXd1OG59UNOtH64WRIf6g/vY5agA=;
- b=Ai4EcdTuvfoadf2/5hKFXz45gpxWf53pA0vgteDN6C0heygXcZD4+D9vlqn+/XioMS5vdF9sV
- 0OSYzHuStAmDC4gjuvVpYRpVHz5KKPyGrnqF8ITjr0+8i5l46wqOSjz
-X-Developer-Key: i=fe@dev.tdt.de; a=ed25519;
- pk=q7Pvv3Au2sAVRhBz5UF7ZqUPNxUwXQ78Jdqu8E6Negk=
-X-purgate-type: clean
-X-purgate: clean
-X-purgate-ID: 151534::1774861652-06AC7842-4ED56781/0/0
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260330-orangepi-sd-card-uhs-v5-5-bd853604322d@gmail.com>
+X-Migadu-Flow: FLOW_OUT
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[tdt.de,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[dev.tdt.de:s=z1-selector1];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[vger.kernel.org,dev.tdt.de,googlemail.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-282328-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-282336-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[gmail.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[dev.tdt.de:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dev.tdt.de:dkim,dev.tdt.de:mid,tdt.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,maxlinear.com:email];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fe@dev.tdt.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,linaro,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 048FB358009
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.dev,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,baylibre.com,linux.dev];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email]
+X-Rspamd-Queue-Id: 477D13580A5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The maintainer's email address has been bouncing for months. Mark the PCI
-intel-gw driver as orphaned.
+On Mon, Mar 30, 2026 at 16:38:06 CST, Iker Pedrosa wrote:
+> Add SD card controller infrastructure for SpacemiT K1 SoC with complete
+> pinctrl support for both standard and UHS modes.
+> 
+> - Add sdhci0 controller definition with clocks, resets and interrupts
+> - Add mmc1_cfg pinctrl for 3.3V standard SD operation
+> - Add mmc1_uhs_cfg pinctrl for 1.8V UHS high-speed operation
+> - Configure appropriate drive strength and power-source properties
+> 
+> This provides complete SD card infrastructure that K1-based boards can
+> enable.
+> 
+> Tested-by: Anand Moon <linux.amoon@gmail.com>
+> Tested-by: Trevor Gamblin <tgamblin@baylibre.com>
+> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> ---
+>  arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi | 40 ++++++++++++++++++++++++++++
+>  arch/riscv/boot/dts/spacemit/k1.dtsi         | 13 +++++++++
+>  2 files changed, 53 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> index b13dcb10f4d66022d27307de73a6ea3287e97441..8d82011f1af666fb78c282a2abcc0cb88f962053 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> @@ -570,4 +570,44 @@ pwm14-1-pins {
+>  			drive-strength = <32>;
+>  		};
+>  	};
+> +
+> +	mmc1_cfg: mmc1-cfg {
+> +		mmc1-data-cmd-pins {
+> +			pinmux = <K1_PADCONF(104, 0)>,   /* mmc1_d3 */
+> +				 <K1_PADCONF(105, 0)>,   /* mmc1_d2 */
+> +				 <K1_PADCONF(106, 0)>,   /* mmc1_d1 */
+> +				 <K1_PADCONF(107, 0)>,   /* mmc1_d0 */
+> +				 <K1_PADCONF(108, 0)>;   /* mmc1_cmd */
+> +			bias-pull-up = <1>;
+> +			drive-strength = <7>;
+I'm a bit concerned about this value. Looking at the downstream 6.6 code, 3.3V uses DS4,
+which equals 13mA. Since 7mA maps to DS0, what's the reasoning for using it here?
+Do we have any documentation or measurement to back this up?
+> +			power-source = <3300>;
+> +		};
+> +
+> +		mmc1-clk-pins {
+> +			pinmux = <K1_PADCONF(109, 0)>;   /* mmc1_clk */
+> +			bias-pull-down = <1>;
+> +			drive-strength = <7>;
+> +			power-source = <3300>;
+> +		};
+> +	};
+> +
+> +	mmc1_uhs_cfg: mmc1-uhs-cfg {
+> +		mmc1-data-cmd-pins {
+> +			pinmux = <K1_PADCONF(104, 0)>,   /* mmc1_d3 */
+> +				 <K1_PADCONF(105, 0)>,   /* mmc1_d2 */
+> +				 <K1_PADCONF(106, 0)>,   /* mmc1_d1 */
+> +				 <K1_PADCONF(107, 0)>,   /* mmc1_d0 */
+> +				 <K1_PADCONF(108, 0)>;   /* mmc1_cmd */
+> +			bias-pull-up = <1>;
+> +			drive-strength = <13>;
+See above.
 
-Signed-off-by: Florian Eckert <fe@dev.tdt.de>
----
- MAINTAINERS | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 96ea84948d76aff5e07579911d0f370ae13f481b..26f3b2e192fa9ef2e1c89d2310bebaa0a67dff00 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20505,9 +20505,8 @@ F:	Documentation/devicetree/bindings/pci/intel,keembay-pcie*
- F:	drivers/pci/controller/dwc/pcie-keembay.c
- 
- PCIE DRIVER FOR INTEL LGM GW SOC
--M:	Chuanhua Lei <lchuanhua@maxlinear.com>
- L:	linux-pci@vger.kernel.org
--S:	Maintained
-+S:	Orphan
- F:	Documentation/devicetree/bindings/pci/intel-gw-pcie.yaml
- F:	drivers/pci/controller/dwc/pcie-intel-gw.c
- 
-
--- 
-2.47.3
-
+                                      - Troy
 
