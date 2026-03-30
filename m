@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-282663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282664-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yPzSCNLOyml3AAYAu9opvQ
-	(envelope-from <devicetree+bounces-282663-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 21:28:18 +0200
+	id qHBxDPrOyml3AAYAu9opvQ
+	(envelope-from <devicetree+bounces-282664-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 21:28:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 233BA3605CF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 21:28:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D97D36063F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 21:28:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 99F313010906
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 19:27:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F069C300C7DC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 19:27:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5038739891C;
-	Mon, 30 Mar 2026 19:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21499399340;
+	Mon, 30 Mar 2026 19:27:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="0PHcwA9M"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="l+5hED3E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7269D3988F1;
-	Mon, 30 Mar 2026 19:27:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B08A398905
+	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 19:27:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774898861; cv=none; b=m+xyb/BY7LGgA5RQfYOtwLroTywXgH7FUhlYF8UTyFggoOc3siUPbkGcmpvOsof85zK/NnTK1gtEZksXHy9OtGdma6nTGMkGtBbvhZbXxicFyxBDApJ6MJF0theY39RhnqtWHNkRV/Ejgc0fs8zElpJGlxKOUumiKlznZQ2621Y=
+	t=1774898871; cv=none; b=ZxdEF/+3jAYGMygSZO2svhncmVmHGlgW+208DOmAizaEitCj8XHkXXpy8u8JDZRrUagDfTFimrQe7gHpRv20/+fEuyYinpxYDzvXTEN14321WJAqyZK2yvGCXEQSz83mtYh6l2UNh837791TRQf+HUUImBoyB2iizsdNh4cfW5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774898861; c=relaxed/simple;
-	bh=Jt9K1sF+2992vS0R60lkewDb/SpPcd+jIzSohZ+ZTbc=;
+	s=arc-20240116; t=1774898871; c=relaxed/simple;
+	bh=JdEfXb9NrA6KhHIuMprHKeXAUoVs6GT6tDt6whZSyIA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AykKJKI4KtC2qENWvhzfQU8iy6B41u6a6vr2UXivYGmplinw8GkQMggFhgHJbW2JAOUik6utGESf/O/ZihLbOS4budcTHIHvzsupDj6SVwYU98HG1ETTKqF1kDQ131incaK+NZA4PN9qV1ZX83iz7R1l8koJx6BG24sdOraXbko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=0PHcwA9M; arc=none smtp.client-ip=185.246.85.4
+	 In-Reply-To:To:Cc; b=UDK6oVZcOullcGUQGguxcsZkjsZecTiFmqmwOyL6LoxoVaOjZPRu34bBzo2ppG74+EogWZi+Bf0P0SCgVUOXtYFnxZcAyi1/F7U4pfsGIB1BdkaJAuc0H2ii0XKNEPBmzGKmcCqVyompxlFKQ2igxNvyrtlF448TsvkxTR2RtgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=l+5hED3E; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 2DCE04E4286D;
-	Mon, 30 Mar 2026 19:27:37 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 38FF04E4286D;
+	Mon, 30 Mar 2026 19:27:48 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id F26E05FFA8;
-	Mon, 30 Mar 2026 19:27:36 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 787B710450A1D;
-	Mon, 30 Mar 2026 21:27:23 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0B0955FFA8;
+	Mon, 30 Mar 2026 19:27:48 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8DEF310450B50;
+	Mon, 30 Mar 2026 21:27:34 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774898853; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1774898864; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=ZQCvJ0TS+BQKrCcbzDTIhBi7S7lbQ8/4UUzm3mUzHd0=;
-	b=0PHcwA9MH+BPxLX1X1X76wr4T/ZiDnYRrsgGd5aSJttwZn06EPMbR9TRdzEGTyxXvGvdAa
-	NUKsDs2NCD6QwZzAzOYzUN9LSbv/c/WVciVEY1hHkzS5d0YNiDesYS3YsEMeVij1GcoL3E
-	mSoHHJzbnotYkv+Vo0TwRvnKjf+9qPy0mLYKi37AlnTsgA7Pd2S4Z9Znm8bMn4CfD1cgsj
-	lQ15GaDEBTur2T1xGQTkxCZd6n9FJ/q27uBqoA7fgyLM+UZuYU/gGYsY1LO+Ni27o419Mb
-	5TgvctnpmMSscCzCMhvlKhvqOvvwBVWiaqB/L5DotE0u5hbBS8nU1FEUCHyACg==
+	bh=lrdbrqCZ+MOt91LtVIxLd++8IerWKhbESpGKP1DQo4I=;
+	b=l+5hED3EknXVdL+oNd73oCY+UvDuRcN5WKwjze/10Azi+AoCJn35KmensStnHixWUdHUKL
+	u1/JJDDv0Bz1LNiXm1cIdmEwdcfAHqKeNysW7cG7eK7T9YhURoVK3koNC6qGIIA/JRLkgh
+	OeMpvcOyp93ajzdgZe3JUxTjJBIRyHp69LUhaWySQDnXRLrA5IwZaBdraFjMoqKtfp48g5
+	fLKlwAfSnRKWkvfw/6NboniMzZQugJPphl/iIzGMqXzrTAxqSGJS9BgAlFjftET4dTv37a
+	tUNR8cu9bLv/lmjy7J1CLAgOon79CWZ+md9cjv5ulGcVmWy+UM7m33+vFiVK8g==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Mon, 30 Mar 2026 21:25:47 +0200
-Subject: [PATCH v2 06/10] drm/bridge: dw-hdmi: warn on unsupported attach
- combination
+Date: Mon, 30 Mar 2026 21:25:48 +0200
+Subject: [PATCH v2 07/10] drm/bridge: dw-hdmi: move next_bridge lookup to
+ attach time
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260330-drm-lcdif-dbanc-v2-6-c7f2af536a24@bootlin.com>
+Message-Id: <20260330-drm-lcdif-dbanc-v2-7-c7f2af536a24@bootlin.com>
 References: <20260330-drm-lcdif-dbanc-v2-0-c7f2af536a24@bootlin.com>
 In-Reply-To: <20260330-drm-lcdif-dbanc-v2-0-c7f2af536a24@bootlin.com>
 To: Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>, 
@@ -117,72 +117,146 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[rock-chips.com,bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,nxp.com,technexion.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nxp.com,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282663-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-282664-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nxp.com,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_GT_50(0.00)[53];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.991];
+	NEURAL_HAM(-0.00)[-0.520];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,collabora.com:email,tq-group.com:email,nxp.com:email]
-X-Rspamd-Queue-Id: 233BA3605CF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,collabora.com:email,i.mx:url,tq-group.com:email,gmx.de:email]
+X-Rspamd-Queue-Id: 4D97D36063F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-dw-hdmi can operate in two different modes, depending on the platform data
-as set by the driver:
+This driver looks up the next_bridge at probe time and stores it in
+hdmi->bridge.next_bridge, but only uses the stored value when attaching,
+and only in the DRM_BRIDGE_ATTACH_NO_CONNECTOR case.
 
- A. hdmi->plat_data->output_port = 0:
-    the HDMI output (port@1) in device tree is not used
+This will be problematic with an upcoming change, adding an hdmi-connector
+using a device tree overlay when not present. That change is in turn
+necessary to migrate the i.MX LCDIF driver to the bridge-connector.
 
- B. hdmi->plat_data->output_port = 1:
-    the HDMI output (port@1) is parsed to find the next bridge
+The problem is that, adding the hdmi-connector via an overlay, devlink
+considers hdmi-connector a consumer of the dw-hdmi device, generating a
+chicken-egg problem:
 
-Only case B is supported when the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag is
-passed to the attach callback. Emit a warning when this is violated. Also
-return -EINVAL which would be returned by drm_bridge_attach() right after
-anyway.
+ * hdmi-connector probe won't be tried until dw-hdmi is probed (devlink)
+ * dw-hdmi probe will defer until it finds the next_bridge (the
+   hdmi-connector wrapper bridge)
 
-Reviewed-by: Liu Ying <victor.liu@nxp.com>
+In preparation for those changes, move the next_bridge lookup from probe to
+attach, when it is actually used. This allows dw-hdmi to probe, so that the
+hdmi-connector can probe as well.
+
+Also avoid storing the pointer in hdmi->bridge.next_bridge: the value is
+computed when needed, thus a local variable is enough.
+
+Finally, this also allows to slightly improve the code by not doing any DT
+lookup in the !DRM_BRIDGE_ATTACH_NO_CONNECTOR case.
+
 Tested-by: Martyn Welch <martyn.welch@collabora.com>
 Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com> # TQMa8MPxL/MBa8MPxL
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+
 ---
-Note: Returning when the warning triggers does not change the functional
-behaviour of this function. It is not strictly necessary in this patch but
-it will have to be done anyway in the following patch.
+
+Changes in v2:
+- Fix returned error codes
+- Added missing cleanup.h include
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 45 +++++++++++--------------------
+ 1 file changed, 16 insertions(+), 29 deletions(-)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index 0296e110ce65..ab1a6a8783cd 100644
+index ab1a6a8783cd..f4a1ebb79716 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -2910,6 +2910,10 @@ static int dw_hdmi_bridge_attach(struct drm_bridge *bridge,
- {
- 	struct dw_hdmi *hdmi = bridge->driver_private;
- 
-+	/* DRM_BRIDGE_ATTACH_NO_CONNECTOR requires a remote-endpoint to the next bridge */
-+	if (WARN_ON((flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR) && !hdmi->plat_data->output_port))
-+		return -EINVAL;
+@@ -6,6 +6,8 @@
+  * Copyright (C) 2011-2013 Freescale Semiconductor, Inc.
+  * Copyright (C) 2010, Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+  */
 +
- 	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)
- 		return drm_bridge_attach(encoder, hdmi->bridge.next_bridge,
- 					 bridge, flags);
++#include <linux/cleanup.h>
+ #include <linux/clk.h>
+ #include <linux/delay.h>
+ #include <linux/err.h>
+@@ -2914,9 +2916,20 @@ static int dw_hdmi_bridge_attach(struct drm_bridge *bridge,
+ 	if (WARN_ON((flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR) && !hdmi->plat_data->output_port))
+ 		return -EINVAL;
+ 
+-	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)
+-		return drm_bridge_attach(encoder, hdmi->bridge.next_bridge,
+-					 bridge, flags);
++	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR) {
++		struct device_node *remote __free(device_node) =
++			of_graph_get_remote_node(hdmi->dev->of_node,
++						 hdmi->plat_data->output_port, -1);
++		if (!remote)
++			return -ENODEV;
++
++		struct drm_bridge *next_bridge __free(drm_bridge_put) =
++			of_drm_find_and_get_bridge(remote);
++		if (!next_bridge)
++			return -EPROBE_DEFER;
++
++		return drm_bridge_attach(encoder, next_bridge, bridge, flags);
++	}
+ 
+ 	return dw_hdmi_connector_create(hdmi);
+ }
+@@ -3307,28 +3320,6 @@ static void dw_hdmi_init_hw(struct dw_hdmi *hdmi)
+  * Probe/remove API, used from platforms based on the DRM bridge API.
+  */
+ 
+-static int dw_hdmi_parse_dt(struct dw_hdmi *hdmi)
+-{
+-	struct device_node *remote;
+-
+-	if (!hdmi->plat_data->output_port)
+-		return 0;
+-
+-
+-	remote = of_graph_get_remote_node(hdmi->dev->of_node,
+-					  hdmi->plat_data->output_port,
+-					  -1);
+-	if (!remote)
+-		return -ENODEV;
+-
+-	hdmi->bridge.next_bridge = of_drm_find_and_get_bridge(remote);
+-	of_node_put(remote);
+-	if (!hdmi->bridge.next_bridge)
+-		return -EPROBE_DEFER;
+-
+-	return 0;
+-}
+-
+ bool dw_hdmi_bus_fmt_is_420(struct dw_hdmi *hdmi)
+ {
+ 	return hdmi_bus_fmt_is_yuv420(hdmi->hdmi_data.enc_out_bus_format);
+@@ -3373,10 +3364,6 @@ struct dw_hdmi *dw_hdmi_probe(struct platform_device *pdev,
+ 	mutex_init(&hdmi->cec_notifier_mutex);
+ 	spin_lock_init(&hdmi->audio_lock);
+ 
+-	ret = dw_hdmi_parse_dt(hdmi);
+-	if (ret < 0)
+-		return ERR_PTR(ret);
+-
+ 	ddc_node = of_parse_phandle(np, "ddc-i2c-bus", 0);
+ 	if (ddc_node) {
+ 		hdmi->ddc = of_get_i2c_adapter_by_node(ddc_node);
 
 -- 
 2.53.0
