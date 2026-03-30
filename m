@@ -1,265 +1,148 @@
-Return-Path: <devicetree+bounces-282204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282206-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mJD8IOMOymmL4gUAu9opvQ
-	(envelope-from <devicetree+bounces-282204-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 07:49:23 +0200
+	id CEQgArcYyml85AUAu9opvQ
+	(envelope-from <devicetree+bounces-282206-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 08:31:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9491355B5B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 07:49:22 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B209355F1A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 08:31:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 61162300516D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 05:49:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8AA82301BEE8
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 06:30:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D1A3822B7;
-	Mon, 30 Mar 2026 05:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECF7D393DFD;
+	Mon, 30 Mar 2026 06:30:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="rajCxUAN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sAap5ILN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F84818BBAE
-	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 05:49:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C714B3939BD;
+	Mon, 30 Mar 2026 06:30:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774849760; cv=none; b=gCXk0gm1Fw5V0fkDfeUan2HpCJS+i9rHKpXtfc4JycpXvu0JCdr2uHeVd2gUjWttIdO9EvU7OdpI/KtDuiHNZ9G38KH7ZbNITzWOxPyfVHTa8Ce5ag5q8+Dnj4AUAt7jBzQldLTr5GuMUl1mJgKxoM+0FE7P8h/nWYCV+AEmvCc=
+	t=1774852200; cv=none; b=ZE8+zWOH/xFU4y0/V7Av4QvE3iF1mXtb2BRrU6M3nnuahze+9aoxdV/qYsh2QdxieB1f45IMcMLlFhpRiNJ+SP/OCjwyH2ORc5Tj3uGCH3q8+Jb/N2hOmgdmuyc7/aTWSVl36rnqXlksnuedHEXcnlcriLHhYR1P003ngQJ9wwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774849760; c=relaxed/simple;
-	bh=JJib5epLYRuHjuMYrMXAq2Xdaf1Jvt5BuxzmyXeLSNY=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=qXnOIaYldUMkavPKBo4owNGbqZsW1Zk97N5QZ7DIv9OjLn2mB8XzmyrRSgoqozEPhO6vza+9WC6h0ipu3UnmYHd3Io0YSdsEMXgAp0KGRNbFS65GZi2mh4P8oSsYOVp8RSdaoIGq7uka2LxwQ2UVbX1KqYnrQ6PYDf7bkey+Elo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=rajCxUAN; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-48700b1ba53so35504105e9.1
-        for <devicetree@vger.kernel.org>; Sun, 29 Mar 2026 22:49:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774849757; x=1775454557; darn=vger.kernel.org;
-        h=content-language:content-transfer-encoding:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fetVgXx6p5dzBWcp057ayPs90uOGBSYCCwrgacNo9LI=;
-        b=rajCxUANsKeOuyf3QqU+UqiPuicCC6MsP6RB7l+SonZU3lIGiPVHXpq6AguCcDVTVF
-         WpLQPFGfz8Cpr5qhnn3NtkWh7aR59wKr6uxfjCxk9ugXi1Ulssh/eBShAi7mgn0QaIEX
-         v0+sANzUeB2HvWAUbDVjyV/UPkV3CoiRG66qs32vV2L3mmWW8uSNbQOmLLZcgJ6j90st
-         K5Xf2nftC9kc33Lh0QfQvBLJBXMKIXQwc7EDz2DDCU9Tly62Hqv7UZZ4xMuQB+mcwyCO
-         TIMApIRJojls/at7DtzWNn2RVifle/uUanHK42ifbLZq5gQCovB9UWhBNUos+xVbYGoi
-         B9Bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774849757; x=1775454557;
-        h=content-language:content-transfer-encoding:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fetVgXx6p5dzBWcp057ayPs90uOGBSYCCwrgacNo9LI=;
-        b=ahF+XU6bPuK4UAckI4JQW7YiwJYNEUsrlh1jDGsmgZp6WrUPKqMytO4nrkNBJKP/1C
-         7QRuy0k6oIXJFGG1L1qKPOKP1thOdUeFlGozD1USoUevn8kQc8ahTerNlokyE0bYDC6J
-         6fTBA9yy5CkfwPD8B/AKcI81sQJNKU9qfyV5pr9y+B/f4LESYq5wSz8b6Rp2FBp1Yyhb
-         SlfsyIAGNso7YSuAdCHL1DEslAmNfDyuH3OGfpPptj9kIZw2DRKHWgNgac+URiQKWMRx
-         ed9bLay8faAtk/Um2OfAmG8IC0n2l8y/ATcroiXik5Yw7EOGB0QEaLE3iQRgSUjqmGfU
-         kx7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVdpSk+hpSuhR1NRKO+xJH2KL/hY9DCioDG/xK1PZzu2auXx+ocRBO5AsUE6SrI6JuaOI+nQK1QgOm7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwasmFzOLKj5WG7jafO8Vs/KgadiZvYIa9f3NqGI5KW6TYDJZXj
-	ScBkYmD/6p+JD+RHeyBqRpHN9EmfKE2IVsCv9zTwdwiiD0JwYL2Rl3+w
-X-Gm-Gg: ATEYQzyqWGrax8fdO8vSzXNcYRxDy73oJ6zuXEZvb/DNahhhfm3NQP9IdaFv1Un6yTi
-	VY92OUyjv+swnC5+/QR3AskYfviQq2J0hoPCVdBMSEhkqRxXz4OjhPLP42P3fhf/wvNVLJ9W4kd
-	iTjrRrsIqthrHAT4xEEsk6F7TWCIkkw74lvjPeqUe4mK/j2l0bogg23otOIXMtCO7mLrONzugN/
-	6AsJJFN9krOu5VX8keN7pUYjcE5WoMjr2PTzVB5p5+U6YAoKQbxRD/kbcKOy8hvcSjyKk/gKZnw
-	D+VCrq33QZ5bOCYuBUYmIl7CgKxKGdNrtulElQ04XP9gt4W4XfJpPaD7h5FpFq0islWFkEFYGog
-	ZxS5ULHvF1T/cM9NloIqaUPTSxyacFMGqoRnGCuTunxof5qZ64X2YRBufVC871Ky1LGSW/U2eFS
-	Ow3/+lUQ3az0M4FeevFIqZyM/Z742cikeqVnkuYTadVb5xEHhKDWZr2mOUk/3+vYweXTAet5AGn
-	8KAGFhBKkcGUQai/0jTw/U5bD6RwoehOjasNg9/kFwjcplnEGeNF7LLEw==
-X-Received: by 2002:a05:600c:8b03:b0:483:8062:b2f with SMTP id 5b1f17b1804b1-48727ef16aemr221406975e9.6.1774849757233;
-        Sun, 29 Mar 2026 22:49:17 -0700 (PDT)
-Received: from localhost.localdomain (dynamic-2a02-3102-4c14-1900-f233-a94f-4a5a-3424.310.pool.telefonica.de. [2a02:3102:4c14:1900:f233:a94f:4a5a:3424])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48725fc4827sm70514355e9.11.2026.03.29.22.49.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Mar 2026 22:49:16 -0700 (PDT)
-Subject: Re: [PATCH v3] dt-bindings: sound: Convert pcm3060 to DT Schema
-To: Padmashree S S <padmashreess2006@gmail.com>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, lgirdwood@gmail.com
-References: <20260327121919.603768-1-padmashreess2006@gmail.com>
-From: Kirill Marinushkin <k.marinushkin@gmail.com>
-Message-ID: <b8ca83e9-5a48-032a-96bc-a62990cb61f6@gmail.com>
-Date: Mon, 30 Mar 2026 07:49:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+	s=arc-20240116; t=1774852200; c=relaxed/simple;
+	bh=035aYXpJRW2cnLWGbph4ptLu8VVBvXeKIlejv+8hpVw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rKUB/HvM8idLE+VChDpRclsygw3OWSUrmo1TIejpatG0W/ADcsIyvc6h+ZF/sAIhlToychHSLMzLTFp6iCKD+Ks0Q7RYYQiV/FFpMzAmgeSFdNxeiZjCfimqeyjuJ3bhywmWeYDpF3vIXajMQhUNbuDd/ZV7ie5vlrtYCNUAZKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sAap5ILN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0708CC4CEF7;
+	Mon, 30 Mar 2026 06:29:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774852200;
+	bh=035aYXpJRW2cnLWGbph4ptLu8VVBvXeKIlejv+8hpVw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sAap5ILNduf99Z2ehiqgpjwUfo5MqIvhYLE72v04gGyFNT1vPdmm2znMIBN/1WPxv
+	 KFsmu4d/uEKwe4XwHGphBp0Vw7GsXJYYR6ENvjTAL0kG+11TPgBF7lAskT6NKaKXv3
+	 SqpRuekj2IYI74IFT03P/UKrpKruyJc/fJrbTlvXFEZhcfnBYmP2r3QBNjMbvr6xs6
+	 X0Rgga6H6yaX5JaJ96l+QcsN4bSAW7HOePJIybS6egOCDftuDv/k3vMpPAGFTMgv5p
+	 zdmnBwa7Ysw4rlo8bnuuyuRkb457dCwRAwGl8aiZEoem/hIHfd217rZEav/6X6pLnq
+	 CcrmVuNPPxuXw==
+Date: Mon, 30 Mar 2026 11:59:41 +0530
+From: Sumit Garg <sumit.garg@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+	linux-media@vger.kernel.org, netdev@vger.kernel.org,
+	linux-wireless@vger.kernel.org, ath12k@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, robin.clark@oss.qualcomm.com, sean@poorly.run,
+	akhilpo@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
+	jesszhan0024@gmail.com, marijn.suijten@somainline.org,
+	airlied@gmail.com, simona@ffwll.ch, vikash.garodia@oss.qualcomm.com,
+	dikshita.agarwal@oss.qualcomm.com, bod@kernel.org,
+	mchehab@kernel.org, elder@kernel.org, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, jjohnson@kernel.org, mathieu.poirier@linaro.org,
+	trilokkumar.soni@oss.qualcomm.com, pavan.kondeti@oss.qualcomm.com,
+	jorge.ramirez@oss.qualcomm.com, tonyh@qti.qualcomm.com,
+	vignesh.viswanathan@oss.qualcomm.com,
+	srinivas.kandagatla@oss.qualcomm.com,
+	amirreza.zarrabi@oss.qualcomm.com, jens.wiklander@linaro.org,
+	op-tee@lists.trustedfirmware.org, apurupa@qti.qualcomm.com,
+	skare@qti.qualcomm.com, linux-kernel@vger.kernel.org,
+	Sumit Garg <sumit.garg@oss.qualcomm.com>
+Subject: Re: [PATCH v2 02/15] firmware: qcom: Add a generic PAS service
+Message-ID: <acoYVdr4wBEqwFoM@sumit-xelite>
+References: <20260312062756.694390-1-sumit.garg@kernel.org>
+ <20260312062756.694390-3-sumit.garg@kernel.org>
+ <20260313072450.sx7vqtvh62nflhff@hu-mojha-hyd.qualcomm.com>
+ <acE3MR4SVCPUzcgR@sumit-xelite>
+ <2da6cbcc-677d-4ba8-9762-ecb47b157f21@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20260327121919.603768-1-padmashreess2006@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2da6cbcc-677d-4ba8-9762-ecb47b157f21@kernel.org>
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-282206-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-282204-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,kernel.org,poorly.run,linux.dev,gmail.com,somainline.org,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,linaro.org,qti.qualcomm.com,lists.trustedfirmware.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[50];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kmarinushkin@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com]
-X-Rspamd-Queue-Id: D9491355B5B
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7B209355F1A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Padmashree,
+On Fri, Mar 27, 2026 at 02:39:24PM +0100, Krzysztof Kozlowski wrote:
+> On 23/03/2026 13:50, Sumit Garg wrote:
+> >>> +
+> >>> +#include <linux/device/devres.h>
+> >>> +#include <linux/firmware/qcom/qcom_pas.h>
+> >>> +#include <linux/kernel.h>
+> >>> +#include <linux/module.h>
+> >>> +
+> >>> +#include "qcom_pas.h"
+> >>> +
+> >>> +struct qcom_pas_ops *ops_ptr;
+> >>
+> >> Should this be static ?
+> > 
+> > It was static earlier in v1. I dropped it based on earlier v1 discussion
+> > with Krzysztof. Let me conclude that discussion on the other thread
+> > again.
+> 
+> The discussion was whether this should be singleton in the first place,
+> not making it a global singleton.
+> 
+> Of course it cannot be anything else than static - nothing should poke here.
 
+Sure, I have put the static back for v3.
 
-overall, your proposed changes look good to me, thank you for taking care of
-
-the DT schema for the pcm3060 driver!
-
-I left a few minor comments below, but i am open for a discussion, if 
-you think
-
-they are not relevant
-
-
-On 3/27/26 1:19 PM, Padmashree S S wrote:
-> Convert pcm3060 to DT Schema
->
-> Signed-off-by: Padmashree S S <padmashreess2006@gmail.com>
-> ---
->   .../devicetree/bindings/sound/pcm3060.txt     | 23 ----------
->   .../devicetree/bindings/sound/pcm3060.yaml    | 42 +++++++++++++++++++
->   2 files changed, 42 insertions(+), 23 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/sound/pcm3060.txt
->   create mode 100644 Documentation/devicetree/bindings/sound/pcm3060.yaml
->
-> diff --git a/Documentation/devicetree/bindings/sound/pcm3060.txt b/Documentation/devicetree/bindings/sound/pcm3060.txt
-> deleted file mode 100644
-> index 97de66932d44..000000000000
-> --- a/Documentation/devicetree/bindings/sound/pcm3060.txt
-> +++ /dev/null
-> @@ -1,23 +0,0 @@
-> -PCM3060 audio CODEC
-> -
-> -This driver supports both I2C and SPI.
-> -
-> -Required properties:
-> -
-> -- compatible: "ti,pcm3060"
-> -
-> -- reg : the I2C address of the device for I2C, the chip select
-> -        number for SPI.
-> -
-> -Optional properties:
-> -
-> -- ti,out-single-ended: "true" if output is single-ended;
-> -                       "false" or not specified if output is differential.
-> -
-> -Examples:
-> -
-> -	pcm3060: pcm3060@46 {
-> -		 compatible = "ti,pcm3060";
-> -		 reg = <0x46>;
-> -		 ti,out-single-ended = "true";
-> -	};
-> diff --git a/Documentation/devicetree/bindings/sound/pcm3060.yaml b/Documentation/devicetree/bindings/sound/pcm3060.yaml
-> new file mode 100644
-> index 000000000000..2d920a70bced
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/pcm3060.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/pcm3060.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: PCM3060 audio CODEC
-
-
-Here, we seem to drop a short description, that this driver supports
-
-I2C and SPI. It's maybe not a big deal, but maybe we could return these 
-details,
-
-as a `description` property? Let me know what you think
-
-
-> +
-> +maintainers:
-> +  - Kirill Marinushkin <k.marinushkin@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,pcm3060
-> +
-> +  reg:
-> +    maxItems: 1
-
-
-Here, i notice, that we remove the description of the `reg` property.
-
-It was there originally, and in the 1st version of your patch, but not 
-in v3.
-
-The description here seems important to me - being a documentation, this
-
-yaml could be more helpful, when it describes the meaning of the properties.
-
-Do you think it would be possible to bring the description back?
-
-
-> +
-> +  ti,out-single-ended:
-> +    type: boolean
-> +    description: |
-> +      If present, the output is single-ended.
-> +      If absent, the output is differential.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      pcm3060: audio-codec@46 {
-> +        compatible = "ti,pcm3060";
-> +        reg = <0x46>;
-> +        ti,out-single-ended;
-> +      };
-> +    };
-
-
-Best regards,
-
-Kirill
-
-
+-Sumit
 
