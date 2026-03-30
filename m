@@ -1,146 +1,139 @@
-Return-Path: <devicetree+bounces-282511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282512-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0MdFBIiGymnd9gUAu9opvQ
-	(envelope-from <devicetree+bounces-282511-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 16:19:52 +0200
+	id eLOmBT+Hymn09gUAu9opvQ
+	(envelope-from <devicetree+bounces-282512-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 16:22:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59AFF35CB4C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 16:19:51 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B540435CBD5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 16:22:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4E8A6308F541
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 14:12:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5355B303098F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 14:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B7FF3D6481;
-	Mon, 30 Mar 2026 14:12:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F28043D88F5;
+	Mon, 30 Mar 2026 14:16:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aZRjqt/C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AnzLTqSW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB64C3A3819;
-	Mon, 30 Mar 2026 14:12:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDB403D88F4;
+	Mon, 30 Mar 2026 14:16:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774879923; cv=none; b=s1Wt+K/SOrhv+YU+cgrZkDPSZxDZbO4qxm4kj7ublZuaj/jWLvU5jvs9i1wRCCk8DjqJpgstX62OPd16JpmKpEVj9B6upiZ23x+PNHSxcxgFZnLdcRPnlZNZxTCFDt8/1Ki/t+qyy85kJcbrQhptralkZCtYTOo/q9/BB00jV3w=
+	t=1774880186; cv=none; b=MRDX0/2usAiHul21RKnhCMZZ5wieeYjg8nGAb9Dn+7rIp0fokCF6HW3a/bh3S79sUHKC0HnDZNZKVYYmEG3C1vLOG+yDjJFKtXp6AnwfIkH1/OEXtw13Kac2wZczX7n7dsIN1IsYp2quZuyo2RVflyeZhH3ub2Ysqt6+VE6+ZVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774879923; c=relaxed/simple;
-	bh=fv7u2PJPLBHp3kxSG+S/aLopXh7onyeyM+OxnvrlMPo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SAIn9KbyqUGAbWqD1j1odX0EX3GM4e8I08u7FFmRulOqQBTUXjWIY0kGJqP9gqGxzyvTSRMbd8Qy0JFDV0Yjf0TjxxrmwD492vPer0lttusLVbxd0YxzwS+OS5YsCy7ZbNU5bkja6iVSmVKQk53yqEdlRfpFhAto3N9pNiTjOzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aZRjqt/C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C685C4CEF7;
-	Mon, 30 Mar 2026 14:12:00 +0000 (UTC)
+	s=arc-20240116; t=1774880186; c=relaxed/simple;
+	bh=OZwA9LX64oU0rjcQ/xGojr0ysWNIRLqBgjf2L9V8WS8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bqCxzIln29ZdVRNdXNCFGHC9Dqlmp45a6mr91DZreIPzxcLyLvob8UnEoRfBP4tpLbyR3xt3Gx6FJFann/ZlGxwiYPr3F6iVbpU/2fjhy0OMurqLD/k7HjRCIVVSgrjEqlPnVgHE8KAON7yUgL9u11Heq5SN0jfaTc+Bsy7vW+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AnzLTqSW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85151C4CEF7;
+	Mon, 30 Mar 2026 14:16:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774879923;
-	bh=fv7u2PJPLBHp3kxSG+S/aLopXh7onyeyM+OxnvrlMPo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aZRjqt/Ch214ay3BxdslOxCzad2Y3vxAEBkiPeN9TZr0EIqjzx/EE5y+1FP1Q0oO+
-	 Sb0c7B8hx7foRfu/lehZyeKH2mCbuUkW4v3eblWtCMYX2p3OZQ4ddr229wzNjXjkBT
-	 ZSLn18qhOtBDu5l8TKV9I9dGFI1udtbtVkBqIm3eK4lBlGxVcXSAHO3y74UbFmAynl
-	 dYm9FY33TV2EA1sKJSYepXEIkY7hp308LHDu9q0T/Lcv9yevzIM+OTb8tlBc1mxMpR
-	 B351kRNLzgSGIdzTSeoB5v//cAW1ACxrpN2s1il3cQVbigmfg0PyJkEhs5DZcg6HF2
-	 autR+TW3FV0LQ==
-Message-ID: <0879e4c1-5381-4a70-9fb3-4af9b3bf6e48@kernel.org>
-Date: Mon, 30 Mar 2026 15:11:58 +0100
+	s=k20201202; t=1774880186;
+	bh=OZwA9LX64oU0rjcQ/xGojr0ysWNIRLqBgjf2L9V8WS8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AnzLTqSW3JI4wm0Gcq8Shu/IGh0tUhJLNhnPe/4fMS1BQvFXwLkqaFavjRkMTg+ke
+	 35GfCFAZzvJVdPppri8AkN54iXVQybARLeaZU3XtOzFYGGeQcJsFcdKLCWHylHTggF
+	 2o9PG2Qe+35r+OzCRD17BB6yZ4zgqp4t7+rZIv2f/1Z88jYu1xxAveqnKYu8pwJBbK
+	 KrWMwPXEJ8SLXIe5Da4Wvbozat4m6eZQHT2DSKLXaVq/0AqkESQ6cylwCNQsRV8TXw
+	 Qwv7cajU/bVi6RqCmse5cHQDJVFwZI7/D8410l65KmIC9kwa88S/xFl9cRRRTOgY2k
+	 drY3J7QcDRXsw==
+Date: Mon, 30 Mar 2026 16:16:21 +0200
+From: Nathan Chancellor <nathan@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@kernel.org>,
+	Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+	stable@vger.kernel.org
+Subject: Re: [PATCH] scripts/dtc: Remove unused dts_version in dtc-lexer.l
+Message-ID: <20260330141621.GB1990358@ax162>
+References: <20260327-dtc-drop-dts_version-v1-1-41066690aefd@kernel.org>
+ <CAL_Jsq+r6DvXMoJ+qPOLJvosrgbyOVjw8nn453wUi7bXQOZNog@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/3] media: qcom: camss: Add CAMSS Offline Processing
- Engine driver
-To: johannes.goede@oss.qualcomm.com,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
- vladimir.zapolskiy@linaro.org, laurent.pinchart@ideasonboard.com,
- kieran.bingham@ideasonboard.com, robh@kernel.org, krzk+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, mchehab@kernel.org
-References: <20260323125824.211615-1-loic.poulain@oss.qualcomm.com>
- <m61yNNvSrw6AIq7_-g2h7VQLmGJ_5iCLg5JTlfQDcL5LlBq37ifAeXw-K3AlRBck5Mb4uVQq0pzeBNAybQNk4w==@protonmail.internalid>
- <20260323125824.211615-3-loic.poulain@oss.qualcomm.com>
- <1ba54ec0-be51-4694-a79b-f272e76303d2@kernel.org>
- <X-Lw_zi1o015-V1Cv4dY_ik6SfTB8TTcLmn1l-Ta7UviYTJ6gwMBn4B4ulYwjd_Aetul5xUt0T6ln9E-Hl5h4g==@protonmail.internalid>
- <CAFEp6-3ziXJTYADOFj--rZL5TumroXuW+=SnUQ9XakRxHT-ypg@mail.gmail.com>
- <12194cc0-0960-486c-be7e-1a22d95de340@kernel.org>
- <rj2vb725he4yzfvjifzyxqpbqk5oztfaafp7sg2qes4qz3mlaz@z5dyoqod56d7>
- <7fc31426-3157-49c7-a30d-dcd7b181fcc6@oss.qualcomm.com>
- <qq43xl3lsv2nq4ngn2hojleddxjmkgwclb2ajek5gvdtgyjltl@3tqg5ydhsxia>
- <8DTHyPLaUjGKd83PvBsisjn_SnpUnvkateTtwz9P6CChP9VGfDyQmJa4Rfd5KwOBOLhtGFJPDzfHrXC4zvV-Fg==@protonmail.internalid>
- <0330f63f-7137-4484-954a-fc0776a9b052@oss.qualcomm.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <0330f63f-7137-4484-954a-fc0776a9b052@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+r6DvXMoJ+qPOLJvosrgbyOVjw8nn453wUi7bXQOZNog@mail.gmail.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,google.com,vger.kernel.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-282512-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282511-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nathan@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 59AFF35CB4C
+	TAGGED_RCPT(0.00)[devicetree,lkml];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B540435CBD5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 30/03/2026 14:46, johannes.goede@oss.qualcomm.com wrote:
->>> And then your CCMv1 or CCMv2 helper will get called with
->>> the matching parameter-data.
->> This leads to userspace having to know exact format for each hardware
->> version, which is not nice. At the very least it should be possible to
->> accept CCMv1 buffers and covert them to CCMv2 when required.
-> Yes, but a new ISP may also have a different pipeline altogether
-> with e.g. more then one preview/viewfinder output vs one viewfinder
-> output for current hw, etc.
+On Mon, Mar 30, 2026 at 07:19:16AM -0500, Rob Herring wrote:
+> On Fri, Mar 27, 2026 at 4:39 PM Nathan Chancellor <nathan@kernel.org> wrote:
+> >
+> > A recent strengthening of -Wunused-but-set-variable (enabled with -Wall)
+> > in clang under a new subwarning, -Wunused-but-set-global, points out an
+> > unused static global variable in dtc-lexer.lex.c (compiled from
+> > dtc-lexer.l):
+> >
+> >   scripts/dtc/dtc-lexer.lex.c:641:12: warning: variable 'dts_version' set but not used [-Wunused-but-set-global]
+> >     641 | static int dts_version = 1;
+> >         |            ^
+> >
+> > This variable has been unused since commit 658f29a51e98 ("of/flattree:
+> > Update dtc to current mainline."). Remove it to clear up the warning.
+> >
+> > Cc: stable@vger.kernel.org
+> > Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+> > ---
+> > This is commit 53373d1 ("dtc: Remove unused dts_version in dtc-lexer.l")
+> > in upstream dtc. I sent it separately to make it easier to backport to
+> > stable, along with updating the warning and hash to match the kernel's
+> > version.
+> > ---
+> >  scripts/dtc/dtc-lexer.l | 3 ---
+> >  1 file changed, 3 deletions(-)
+> 
+> We don't take changes to dtc as we just sync with the upstream copy. I
+> saw you already submitted this upstream, so I will do a sync to pull
+> this in.
 
-My scoping on HFI shows that the IQ structures between Kona and later 
-versions have pretty stable data-structures.
+Fair enough. As I mentioned in the fold, I will need this in stable so I
+figured having a separate patch would make that easier while not
+impacting a future sync (since it is already there). I can just wait to
+send this to stable directly until the sync lands in Linus's tree.
 
-It might be worthwhile for the non-HFI version to implement those 
-structures.
-
-I keep mentioning CDM. Its also possible to construct the buffer in the 
-format the CDM would require and hand that from user-space into the kernel.
-
-That would save alot of overhead translating from one format to another.
-
-That's another reason I bring up CDM again and again. We probably don't 
-want to fix to the wrong format for OPE, introduce the CDM and then find 
-we have to map from one format to another for large and complex data 
-over and over again for each frame or every N frames.
-
-TBH I think the CDM should happen for this system and in that vein is 
-there any reason not to pack the data in the order the CDM will want ?
-
-So probably in fact IQ structs are not the right thing for OPE+IFE.
-
----
-bod
+Cheers,
+Nathan
 
