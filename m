@@ -1,143 +1,247 @@
-Return-Path: <devicetree+bounces-282252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282254-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6K8kEVAqymnX5gUAu9opvQ
-	(envelope-from <devicetree+bounces-282252-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:46:24 +0200
+	id yIukOQArymmQ5wUAu9opvQ
+	(envelope-from <devicetree+bounces-282254-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:49:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B24353569A2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:46:23 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7D98356A35
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:49:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F2A83010DA3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 07:45:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6510F3002936
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 07:49:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E34339E18F;
-	Mon, 30 Mar 2026 07:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 133623A2569;
+	Mon, 30 Mar 2026 07:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ee8A+YDq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s9im0yTG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE91D3A7583;
-	Mon, 30 Mar 2026 07:45:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82D2423183B
+	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 07:49:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774856746; cv=none; b=UBzgOeK7NC1EUi1sMyUHmFhTFSFjNGfvhxVJBh0UMNi0U780ktUxhU6GK3684pazvfv6lKhB+wk7kncq7W5u4tl8OJY6vz4hk4ViE7f0zmL2qw2Hnz6BCGl+1jLl/aYuACFufk819WylpgthDVSDrSFUa4hqBm4iT+iVJzyxFl8=
+	t=1774856953; cv=none; b=mkPRccayrI1ON9yPA8s+Ba0RQP5hux/tuNHT+v//cAat3fKeHD1+mY3uTqNHhmPuKVCQlqvHpvCSv7yJY182HTK2c+6Tsv+VhoFSEaS66qFO0iDFYK+wkhQrGRIE8HlGSAusniZq33XWJ/FQr+mqgYHdlkoJcCEUxmX9GZBVcLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774856746; c=relaxed/simple;
-	bh=lt96IhTtq+x/LAZoJN9Ko+HMV2ZVELDDXrMBeSvwCho=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=H8o6NT477evYdJdGgw1oMqfpBLi63llBYZ8hzEIww6Q6L9HXrwdqzySA2MqR4qT9espFWUmQbuDICJzWtLLz+M7TIu/fhz28RyDiEZuJcRdpXXU85k5l3bYnx6ycrV1ry9jFTDroudMHU+/XBIJpITnlmBhh5aSckFF7bjGuAeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ee8A+YDq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6682BC2BCB4;
-	Mon, 30 Mar 2026 07:45:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774856745;
-	bh=lt96IhTtq+x/LAZoJN9Ko+HMV2ZVELDDXrMBeSvwCho=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Ee8A+YDqr4SrtuIg2YyisdjH/6vXenu/saC1WGCcwoNKhwCNneE9ceweAambTSQZc
-	 2OdssyfUQqhQSkCkj5SqrwCdhMhEOewXe6Ry6sje3XQFx9e9FmRNZL/29CnK/uuK6x
-	 ODA77CGy1ZGs/rv73tkK7l7137NQXwfMatUVV9IRBX5414EVL0l5C9Si7S25y1ViZo
-	 grc6t5MYFxk28X4vmzy6GO1Y+KpH/whUr2/6AsUuypLTgjG9m/kRcu4hlH/OBcRQKT
-	 dAwE3velIDPfzrXDm2w3EXiF43Hgm/6JneB1VA/7F9kbQZyQtzcEU0Nj9+QEq8C3rD
-	 GHegUyXE4N1gQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 57ADDFF495F;
-	Mon, 30 Mar 2026 07:45:45 +0000 (UTC)
-From: Ben Zong-You Xie via B4 Relay <devnull+ben717.andestech.com@kernel.org>
-Date: Mon, 30 Mar 2026 15:45:45 +0800
-Subject: [PATCH v5 3/3] MAINTAINERS: add an entry for Andes PWM driver
+	s=arc-20240116; t=1774856953; c=relaxed/simple;
+	bh=o622oh54cTsU+KKUTxCLpNHU169i/iVq4YO8czMNyw0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=kCJMRx4SPhSGTr2IeXA0bPamGS5wp/Ns6Z69luJxAE40JPj6rnQk+24SI0VFdIgh26nDBpNPI/nkrJYmYurgH+9ny6n247ese7yCvE4iCezizLsUjSNY4Pwwz5td8Lpm6ovzxOZHt5GBJQXopeBZbyjju+lpWx58VpyGKNS+d5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s9im0yTG; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-486507134e4so48225395e9.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 00:49:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1774856950; x=1775461750; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l/nFmeNNFWPp+7jec/T1A0Kyh+DGfRIv+rs3nkdXw+U=;
+        b=s9im0yTG6+qrtiG1MwP/0px8LTVk+D/844FhT8O2dG57xgC6GKZyLCkkt0/gdWA5z4
+         yE/nSLNp1VRO89RgGzj793QjMauERltq6EIMbHzGoFCeqWNYd0q1/AGflm7li1GcL3Rz
+         hLcvI/YwO6iPS8i8kZvqBvuqfgQG7XbDHsHSVA9t3IcgkwnUgwsYLLKS3LAvN7hau1ed
+         tmebh8iFJ4EDv3PGk5GSnndakw65ZkylArrlRBWci2ur6r1grWfe8iB9zROxJaccH3mk
+         GcHv6O9P0k+8xoWqD4oXbBqxp4Cbi5cZaLn4AsN802c1RONRkznBNmD/Z7kteIAHCD9y
+         /hTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774856950; x=1775461750;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l/nFmeNNFWPp+7jec/T1A0Kyh+DGfRIv+rs3nkdXw+U=;
+        b=Y469UDnEGlvQ63swpxsRLYFbsw3oWUGaNHgRfrsvnHlSQYIqOp7uQiPbhMqRwNuYpJ
+         PMfRo38oW6AfQ2vqThqVAx4hOHca+jQrheQTMid/AJHA2H0OXy/b5ENidzD/Vq7iJBt+
+         EHD9/+XYecqqh2sl83ZWcw5Z5X7pdSgqqqccQRa2IZ/gpGZSr53IghpKR8LA2yNsTQT/
+         8wd7QshxV3vUXCcfB0Y8xRrdylzUdAlQf9Iu5TTb0T5gQIALfY9oVrGs9Lkef04uVXSL
+         OiMgRY9UxS8p5FhGp35vQOnNXey3Lpq32UKQmIFfBKCW7jeCKqG5k0MrVwlgyTfFw7hh
+         rwsg==
+X-Forwarded-Encrypted: i=1; AJvYcCV59bnf539XPiYGOA0GChyUQ7L+otGK+3WvzGGRKvBj/HQOmx3LTJa5fQ687Xhw7bQ6x5nY3Qx+HQU3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxd6I706RlEnqkwDRDF2YEmrlEoCObluGnqnzvSSuX/S+/l94qi
+	r9/Wuo5TeOsPaOX7r5eaqcg4jsiqId0HiIX/KjKu7F2ISRn0mphwyP8YU4DxDFIOzUY=
+X-Gm-Gg: ATEYQzwo8+B5ZQELTa2kTI295HWn78AG1TlIesSj+2YU42hh+FsOEW/lLaXBQkW4EPQ
+	4ldnPaHYJvGmbOth3mQb7Pm6Jqyjqn63vrBYkgk6VVoI9bXYS85J5bExS8YGjocZUFOaWtcfRBW
+	YWUDKJHnlHnIjlHWGzQt+aupDzd/gz3qB3Z59gcj3DRVd3KBSxQGfq58UxfMgio7y4Pt9kXilwh
+	Bj6VVClqHbu41qgBsrKarT8MuF1+tWPkEsjFB043k0qk6V6Cu7adp0t3E0aEh3O64xQPAPYR6LI
+	rDnyOeJnyXCrWDGe5ey8ph+56X1/JJMjnYrC2JbsVBo0Y81UNneOItBhA0QnT1iux49Ti/TCcez
+	aZY7fL97cSGHpMdY+YuZez1Os3j9QznzGE2bs4usSgj63m0mdmzJIBDFm/ym8ijynKROl7+n9Nd
+	CP2SKe0j3wLp46+tHoLqDzoxY7yfzZDXEzv8ivoNJ1KoUuM1GbEfXMEAee0+bjMhrjeSnLmC4LY
+	OoF6ro=
+X-Received: by 2002:a05:600c:1d08:b0:486:fab9:a578 with SMTP id 5b1f17b1804b1-48727e95417mr189631935e9.11.1774856949649;
+        Mon, 30 Mar 2026 00:49:09 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:106d:1080:cb3c:d0d2:870b:6ad0? ([2a01:e0a:106d:1080:cb3c:d0d2:870b:6ad0])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48722c9506dsm251920295e9.7.2026.03.30.00.49.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Mar 2026 00:49:09 -0700 (PDT)
+Message-ID: <016c03b8-27c3-41dc-a630-8e7095db1f88@linaro.org>
+Date: Mon, 30 Mar 2026 09:49:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260330-andes-pwm-v5-3-01c59a659d2c@andestech.com>
-References: <20260330-andes-pwm-v5-0-01c59a659d2c@andestech.com>
-In-Reply-To: <20260330-andes-pwm-v5-0-01c59a659d2c@andestech.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Vinod Koul
+ <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Ben Zong-You Xie <ben717@andestech.com>
-X-Mailer: b4 0.15-dev-47773
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774856744; l=754;
- i=ben717@andestech.com; s=20260120; h=from:subject:message-id;
- bh=4pQDhCOlbkeQYIXwYzI13PZU9Hd+HgUg5c/mefmug2c=;
- b=W26hICo/KQMKfVCpTw1YTKEYdxDGxq6ScDubFHGD87BQorxWX4sZieYIB4K3lHSV2IqPBzdum
- st9P2xgQoPFA3PdYtfgRy1vFsNmaGRaZdHb1oUDR8Q6AR/FML8NLnuI
-X-Developer-Key: i=ben717@andestech.com; a=ed25519;
- pk=nb8L7zQKGJpYk0yvrYKjViOZ34A36g1ZIsCmCsP518s=
-X-Endpoint-Received: by B4 Relay for ben717@andestech.com/20260120 with
- auth_id=610
-X-Original-From: Ben Zong-You Xie <ben717@andestech.com>
-Reply-To: ben717@andestech.com
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Cc: Bryan O'Donoghue <bod@kernel.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260326-x1e-csi2-phy-v5-0-0c0fc7f5c01b@linaro.org>
+ <20260326-x1e-csi2-phy-v5-1-0c0fc7f5c01b@linaro.org>
+ <7712fbdd-a225-49f0-aeb9-ebcbb9d5abac@oss.qualcomm.com>
+ <da3ed78d-fb5e-4820-95d6-527d540cf03e@linaro.org>
+ <1f38187a-9464-4aa9-b70a-03b767349d56@linaro.org>
+ <c5278028-dfe9-4d09-970a-a25977967bdd@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <c5278028-dfe9-4d09-970a-a25977967bdd@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282252-lists,devicetree=lfdr.de,ben717.andestech.com];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-282254-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:replyto,linaro.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	HAS_REPLYTO(0.00)[ben717@andestech.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linuxfoundation.org:email,android.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,andestech.com:email,andestech.com:replyto,andestech.com:mid]
-X-Rspamd-Queue-Id: B24353569A2
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_EQ_FROM(0.00)[]
+X-Rspamd-Queue-Id: E7D98356A35
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Ben Zong-You Xie <ben717@andestech.com>
+On 3/27/26 18:42, Bryan O'Donoghue wrote:
+> On 27/03/2026 15:28, Neil Armstrong wrote:
+>>> To be frankly honest you can make an argument for it either way. However my honestly held position is analysing other upstream implementations connecting to the PHY means we can't make the PHY device a drivers/phy device - it would have to be a V4L2 device and then for me the question is why is that even required ?
+>>
+>> This is plain wrong, DT definition is different from software implementation, you can do whatever you want if you describe HW accurately.
+> 
+> I'm not sure what point it is you are trying to make here. Are you trying to say drivers/phy is OK with you but you want an endpoint ? If so, please just say so.
 
-Add an entry for the Andes PWM driver to the MAINTAINERS file.
+I'm against using the "phys = <>" property in the CAMSS to reference the PHYs, a "PHY" in the classic terminology is tied to a single consumer, and if it can be shared to multiple consumer you must model a mux or whatever in the middle.
 
-Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+The PHY API as an internal software implementation is probably fine, even if it makes implementation of split mode much much harder and doesn't really solve anything, you can just call init()/poweron()/poweroff()/exit() directly from the CSIPHY media callbacks.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 708c050ac397..72eedd1a3428 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1866,6 +1866,12 @@ S:	Supported
- F:	Documentation/devicetree/bindings/spi/andestech,ae350-spi.yaml
- F:	drivers/spi/spi-atcspi200.c
- 
-+ANDES PWM DRIVER
-+M:	Ben Zong-You Xie <ben717@andestech.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/pwm/andestech,ae350-pwm.yaml
-+F:	drivers/pwm/pwm-andes.c
-+
- ANDROID DRIVERS
- M:	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
- M:	Arve Hjønnevåg <arve@android.com>
+> 
+> I can see an argument for that hence my response to Konrad, I just don't see why its a Qualcomm specific argument and of course understood stuff bubbles up in review, we have a public debate and come to a consensus - that's a good thing.
+> 
+> However, I'd want wider buy-in and understanding that endpoints in the PHYs is a more accurate description of the data-flow.
 
--- 
-2.34.1
+It is, and it was designed for that, and extensively used in the media DT representation, so I wonder here you would not use it...
+In an ideal world, you would add nodes for each CAMSS hw elements and adds port/endpoints links between all nodes to describe the data graph, this would be used to construct the media controller graph, and make it much easier supporting new hardware.
 
+> 
+> We've been applying DT bindings aplenty without that so far. So we would establish new CSI2 PHY bindings should represent the sensor endpoints.
+
+We've been using a dummy representation of CAMM in a single node with only endpoints connecting to the sensors and hiding all the hardware layout in code, it doesn't scale and makes supporting new HW hard.
+I mean this is common sense, why would we continue to stick to the current CAMSS bindings ???
+
+> 
+> Is that what you want ?
+> 
+>> The CSIPHYs are not tied to a single "consumer" block, they can be connected to different consumers at runtime, which is not something classic PHY devices are designed for. So they are de facto a media element in the dynamic camera pipeline.
+> 
+> The existing CAMSS binding and media graph are not changed by this series.
+
+This is not my point, I don't care about the software implementation at all, I care about accurate hardware representation. Using the "phys = <>" property does not describe hardware accurately.
+
+In other words: The CSIPHY are not connected to CAMSS. This is _not_ true, tying the CSIPHYs to the CAMSS block hides the real data muxing in software.
+
+Please remind DT is used by multiple operating systems, and properly describing hardware in DT will help have good software support over all OSes, not just Linux.
+
+> 
+>> And actually Rob Herring asked use to define the complete data flow, it was a strong requirement. I don't see why we wouldn't here.
+> 
+> I'm implementing feedback from Rob.
+> 
+> https://lore.kernel.org/linux-media/20250710230846.GA44483-robh@kernel.org/
+
+Where did he ask using the PHY DT bindings ? Is he aware those CSIPHYs are muxed to multiple consumers which are burried in the CAMSS code ?
+
+> 
+> To me, here is where we stand:
+> 
+> - Individual nodes - we all agree that
+> - As sub-nodes - I think the majority agrees this Krzsztof, Dmitry
+>    I'm fine with it too.
+> - drivers/phy - I think we are accepting this is also fine ?
+
+Like I said this adds a supplementary API layer for no reason and will make life harder, but I don't care personally.
+
+> - endpoints should flow into the PHY and then back to the controller
+> 
+> I get that argument. In fact I _like_ that argument at least I like my conception of that argument.
+> 
+> I'll stipulate to that argument meaning then that, new CSI2 PHYs shall include endpoints for this purpose globally.
+> 
+> As I've said before, there's nothing Qualcomm specific about this discussion, really.
+
+There is, because the current Qualcomm CAMSS bindings are insufficient and should be entirely redesigned from the ground up to properly describe the HW.
+
+Neil
+
+> 
+> ---
+> bod
 
 
