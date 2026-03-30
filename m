@@ -1,168 +1,222 @@
-Return-Path: <devicetree+bounces-282207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282211-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AM47KGkZyml85AUAu9opvQ
-	(envelope-from <devicetree+bounces-282207-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 08:34:17 +0200
+	id eDw/FtsaymlR5QUAu9opvQ
+	(envelope-from <devicetree+bounces-282211-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 08:40:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B7A5355FC1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 08:34:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DE9C35604B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 08:40:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BD498300953E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 06:30:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1A84B303A92A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 06:37:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C7833947AB;
-	Mon, 30 Mar 2026 06:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84064390CA6;
+	Mon, 30 Mar 2026 06:37:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D48F39524B
-	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 06:30:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E39638423C;
+	Mon, 30 Mar 2026 06:37:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774852247; cv=none; b=h889Y8JgyI5loKHoEAjS9cmIsxmkfd4XoJF1vLzYAjXPxsHpWemPmv1zjpb4Mh/oPU4+gQwKVpdNx1srym/GXL2QOHYxz8/1Pkv+K5DA1qKyuN3EysmQuDdS1xk/UiCRcNH4QG+1axePqvSNC7CP2vQzFKclTUf1zo1NeBeJ0GM=
+	t=1774852643; cv=none; b=Cm5X820dimocWwwdM4KD07BnS0NcB+fr2okb5F870folmU1RU+jnvDQlcJmweYe2o82mFWhWsbH6hb1ci/E6GvZZjZ/NaqkorQzY8mJP+T1orGTUDr7NSxWlxOj+E4V27402br1fPSfWuBA9zKe4xRiWK746QVMWIC6T+1NOm7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774852247; c=relaxed/simple;
-	bh=+QnlXHDNzy8aYo8XVbimYnZy3ZEaJZAkWiDSIAkNnNQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=skvMAmf/SOUa7ghpgVgjO1lFZetOdKYAr/mFyWT1s8R53jS1VylfmBj9xEor7zVPiv7Ujgncetyfspvc4VWpoGxxRgkNDNv9DUkEyC1UT3gJZLcM9Wq8AXHChzTm90urvTBbYUBxl1itQBFoWLfy70MdrULOewZt4zm29+s/dpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1w768N-00072F-BQ; Mon, 30 Mar 2026 08:29:59 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1w768L-002pX0-1b;
-	Mon, 30 Mar 2026 08:29:57 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1w768L-0000000ENW4-1W0m;
-	Mon, 30 Mar 2026 08:29:57 +0200
-Date: Mon, 30 Mar 2026 08:29:57 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Marek Vasut <marex@nabladev.com>
-Cc: Liu Ying <victor.liu@nxp.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
-	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: bridge: ldb: Require reg property
- only for i.MX6SX/8MP LDBs
-Message-ID: <excxf6kxwx44kepc22smvvnirptc4kxpubioxoto7nqleqhoiq@ymch4y6dd5n5>
-References: <20260329-fsl_ldb_schema_fix-v1-1-351372754bc0@nxp.com>
- <crqzju5cqhvmy5msxvuquydmnpb2ft2t3gsyr6qsre6ccqjvzz@46gfcrelczsr>
- <0d7c7403-4b77-42f3-82d6-eaf2be8e5b1e@nabladev.com>
+	s=arc-20240116; t=1774852643; c=relaxed/simple;
+	bh=2YRtrcIEpOWrAdhNl8A+m416MZj9b+AOfhV4PMTCzGI=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=FS6ay3rI+Ti4XWrOY/KL3fk7rK6Xt28N+kaAk2E9hiI0t5aM/LtwFteOQVo1UJytENL/W81+IcAy8padCM234v+GeT4kcImKMzUH31E4Fj/rJD37YVVKjczbYuFLLsd5PeWTw8BjqvoO5BAaGSjCNGlsHN0ZOcTBHZxtnjFJVhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 30 Mar
+ 2026 14:32:10 +0800
+Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Mon, 30 Mar 2026 14:32:10 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+Subject: [PATCH v4 0/4] AST2700-A2 interrupt controller hierarchy and route
+ support
+Date: Mon, 30 Mar 2026 14:32:09 +0800
+Message-ID: <20260330-irqchip-v4-0-3c0f1620cc06@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0d7c7403-4b77-42f3-82d6-eaf2be8e5b1e@nabladev.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [0.54 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOkYymkC/23MQQ6DIBCF4as0rEszgIJ21Xs0XSAOhUXVgiFtj
+ HcvutHELt9kvn8iEYPHSK6niQRMPvq+y6M4n4hxunsi9W3ehAOXwKGkPryN8wNVqNEKqYoWa5K
+ /h4DWf9bS/ZG383Hsw3cNJ7Zcj43EKNAGBAMEaaBSNx0HxHZE4y6mf5EllPiGBcgN84xtVTJuo
+ G5Qir9Y7DDfYZGxkFKJ2pZKG3vA8zz/AChwD+EdAQAA
+X-Change-ID: 20260205-irqchip-7eaef3674de9
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, "Andrew
+ Jeffery" <andrew@codeconstruct.com.au>, Paul Walmsley <pjw@kernel.org>,
+	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	"Alexandre Ghiti" <alex@ghiti.fr>, Thomas Gleixner <tglx@kernel.org>, Thomas
+ Gleixner <tglx@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-riscv@lists.infradead.org>, Ryan Chen <ryan_chen@aspeedtech.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774852330; l=5545;
+ i=ryan_chen@aspeedtech.com; s=20251126; h=from:subject:message-id;
+ bh=2YRtrcIEpOWrAdhNl8A+m416MZj9b+AOfhV4PMTCzGI=;
+ b=leRN0msFH+xIpM4fUICSbtFYte3oLzDxzhAtPEcwoTq4GYx9ofeYmNq1hqsiK8ncZKawLKdXR
+ PO4jDW9dHmlAR3HstgEdBKZWeixlFBiNRPhzwAzRydugWrpCWAniR8O
+X-Developer-Key: i=ryan_chen@aspeedtech.com; a=ed25519;
+ pk=Xe73xY6tcnkuRjjbVAB/oU30KdB3FvG4nuJuILj7ZVc=
+X-Spamd-Result: default: False [1.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282207-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[nxp.com,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,denx.de,oss.nxp.com,lists.freedesktop.org,vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.977];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-282211-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0B7A5355FC1
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aspeedtech.com:email,aspeedtech.com:mid]
+X-Rspamd-Queue-Id: 7DE9C35604B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Marek,
+The AST2700 SoC has undergone multiple silicon revisions (A0, A1, A2)
+prior to mass production.
 
-On 26-03-29, Marek Vasut wrote:
-> On 3/29/26 7:42 PM, Marco Felsch wrote:
-> 
-> Hello Marco,
-> 
-> > sorry for not writting back earlier, the last weeks were quite busy.
-> 
-> Tell me about it ...
+A0 laid the ground-work with a split controller design (INTC0 and
+INTC1) used for early development and bring-up. The interrupt
+architecture was substantially reworked in the A1 to introduce an
+explicit routing model and clearer hierarchy, though the split
+controllers remained. The A1 interrupt architecture is unchanged in A2.
 
-^^
+A2 is the production design. A0 and A1 are pre-production silicon and
+are no longer intended for deployment outside of ASPEED.
 
-> > On 26-03-29, Liu Ying wrote:
-> > > LDB's parent device could be a syscon which doesn't allow a reg property
-> > > to be present in it's child devices, e.g., NXP i.MX93 Media blk-ctrl
-> > > has a child device NXP i.MX93 Parallel Display Format Configuration(PDFC)
-> > > without a reg property(LDB is also a child device of the Media blk-ctrl).
-> > > To make the LDB schema be able to describe LDBs without the reg property
-> > > like i.MX93 LDB, require the reg property only for i.MX6SX/8MP LDBs.
-> > 
-> > NACK, we want to describe the HW and from HW PoV the LDB is and was
-> > always part of a syscon. This is the case for all SoCs i.MX6SX/8MP/93.
-> > 
-> > > Fixes: 8aa2f0ac08d3 ("dt-bindings: display: bridge: ldb: Add check for reg and reg-names")
-> > 
-> > Therefore I would just revert this patch completely.
-> Last time, I pointed out the hardware is part of syscon, but as a subnode
-> and therefore with reg properties. What is the problem there ?
+The existing binding and driver were written against A0 prior to the A1
+rework. The A0 design directly wired INTC1 instances to INTC0, and
+INTC0 to the GIC of the Primary Service Processor (PSP, a Cortex-A35).
+The A0 binding and driver therefore do not account for the alternative
+destinations of the Secondary and Tertiary Service Processors (SSP,
+TSP) and BootMCU, or the necessary route selection logic present in the
+production design.
 
-To quote the DT spec here:
+With the above context, this series replaces the existing binding and
+driver.
 
-"""
-The reg property describes the address of the device’s resources within
-the address space defined by its parent bus.
-"""
+It is not necessary for projects to maintain support for A0 due to its
+pre-production nature, and between Linux, U-Boot and Zephyr there are
+no upstream devicetree users of the current binding.
 
-The parent bus is not the parent iomuxc (i.MX6X) nor the blk-ctrl
-(i.MX8MP/93) device. Therefore this is wrong IMHO and should be dropped.
+The new binding uses localised interrupt numbers and models the
+hardware connectivity between interrupt controllers using the
+aspeed,interrupt-ranges property. It is introduced in a new file before
+the existing binding is removed in order to keep the diff readable.
 
-There will be no regression from driver POV since your patchset which
-would add the support to parse the reg is not merged yet.
+The INTC0 driver creates a hierarchical irqdomain under the selected
+upstream interrupt controller and implements route resolution logic.
+INTC1 driver instances defer route selection to INTC0 and expose a
+linear interrupt namespace to their parent.
 
-Regards,
-  Marco
+A brief history of related submissions
+--------------------------------------
 
+Some modifications to the existing binding were sent to the lists in
+the past. Due to process choices the revisions were difficult to track.
+They are listed below.
+
+The approaches took several forms but ended in the minor adjustment in
+v6 being applied. This enabled use of the A1 design but requires
+assumptions about platform route configuration defined in firmware.
+These assumptions are removed by this current series.
+
+* [PATCH] dt-bindings: interrupt-controller: aspeed: Refine AST2700 binding description and example
+  https://lore.kernel.org/all/20250714071753.2653620-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v2] dt-bindings: interrupt-controller: aspeed: Add parent node compatibles and refine documentation
+  https://lore.kernel.org/all/20250715024258.2304665-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v3 0/2] irqchip: aspeed: Add AST2700 INTC debugfs support and yaml update
+  https://lore.kernel.org/all/20250722095156.1672873-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v4 0/2] irqchip/ast2700-intc: Add AST2700 INTC debugfs support and yaml update
+  https://lore.kernel.org/all/20250812100830.145578-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v5 0/3] AST2700 interrupt controller hierarchy support
+  https://lore.kernel.org/all/20251022065507.1152071-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v6 0/1] Update correct AST2700 interrupt controller binding
+  https://lore.kernel.org/all/20251030060155.2342604-1-ryan_chen@aspeedtech.com/
+
+Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+---
+Changes in v4:
+- 3/4 fix warning: the frame size of 1296 bytes is larger than 1280 bytes
+- Link to v3: https://lore.kernel.org/r/20260326-irqchip-v3-0-366739f57acf@aspeedtech.com
+
+Changes in v3:
+- 1/4 Squash patch 5/5 and 1/5.
+- 1/4 modify wrap lines at 80 char.
+- 1/4 modify maintainers name and email.
+- 1/4 modify typo Sevice-> Service
+- Link to v2: https://lore.kernel.org/r/20260306-irqchip-v2-0-f8512c09be63@aspeedtech.com
+
+Changes in v2:
+- Change suject to "AST2700-A2 interrupt controller hierarchy and route
+  support".
+- Describe timeline for (pre-)production design evolution and
+  binding development to support the break in compatibility.
+- fix "make dt_binding_check" compatible string consistance with
+  example.
+- Split KUnit coverage out of the main driver patch.
+- Link to v1: https://lore.kernel.org/r/20260205-irqchip-v1-0-b0310e06c087@aspeedtech.com
+
+---
+Ryan Chen (4):
+      dt-bindings: interrupt-controller: Describe AST2700-A2 hardware instead of A0
+      irqchip/ast2700-intc: Add AST2700-A2 support
+      irqchip/ast2700-intc: Add KUnit tests for route resolution
+      irqchip/aspeed-intc: Remove AST2700-A0 support
+
+ .../interrupt-controller/aspeed,ast2700-intc.yaml  |  90 ----
+ .../aspeed,ast2700-interrupt.yaml                  | 188 +++++++
+ drivers/irqchip/.kunitconfig                       |   5 +
+ drivers/irqchip/Kconfig                            |  23 +
+ drivers/irqchip/Makefile                           |   3 +-
+ drivers/irqchip/irq-aspeed-intc.c                  | 139 -----
+ drivers/irqchip/irq-ast2700-intc0-test.c           | 473 +++++++++++++++++
+ drivers/irqchip/irq-ast2700-intc0.c                | 584 +++++++++++++++++++++
+ drivers/irqchip/irq-ast2700-intc1.c                | 282 ++++++++++
+ drivers/irqchip/irq-ast2700.c                      | 106 ++++
+ drivers/irqchip/irq-ast2700.h                      |  47 ++
+ 11 files changed, 1710 insertions(+), 230 deletions(-)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260205-irqchip-7eaef3674de9
+
+Best regards,
 -- 
-#gernperDu 
-#CallMeByMyFirstName
+Ryan Chen <ryan_chen@aspeedtech.com>
 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
