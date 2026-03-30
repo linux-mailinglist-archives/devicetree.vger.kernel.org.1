@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-282243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282245-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8H5JC58mymnX5gUAu9opvQ
-	(envelope-from <devicetree+bounces-282243-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:30:39 +0200
+	id oIZeL6ImymnX5gUAu9opvQ
+	(envelope-from <devicetree+bounces-282245-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:30:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C82EB35674B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:30:38 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C659B356752
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:30:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 10B20300398A
+	by sin.lore.kernel.org (Postfix) with ESMTP id CA5663003805
 	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 07:30:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FB15395242;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5513E39F185;
 	Mon, 30 Mar 2026 07:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IGWKGfkq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H4chgCCL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AEF8286D73;
-	Mon, 30 Mar 2026 07:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2810F3859C5;
+	Mon, 30 Mar 2026 07:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774855836; cv=none; b=FYzLeZ2o9LG6Bc+FT+rJpZzb8uN/IgT50iJ+kRuUl+rRXB/f1wkjTDSMARgAlOBql8Omc4K1YD6huaetoU+2/8L7kgbK/fRmfhkaE1Op2uEbzAuZxEScUo8CeIpeaikNeDblaxm07cA7u4xKn3EfNHERXtxLQJAheIFO1aS9Yas=
+	t=1774855836; cv=none; b=o6BXVud0aTjHoOGaSTmoM7w5NqJEcZpctDS+g4htBFtMSQ7wXhmLwfscNJ9x5t36TEhfQiV9A862pwKt8+rQkgqpY6T1S1dJaSkeeVQaF71o78PDYtYBZwuzF808UpE6lrmJ9LFoCbnbbGTQQoeoa8TB+9f1935xRqBh+vPJBoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1774855836; c=relaxed/simple;
-	bh=8txCKy0cIY/YJ5xHReKfEq7kDm9ITShL2ROCT8dUI9U=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=l0LEKBLPf55chSfOOecEcUC7yFHBzIYjpGOFJ9sj8fT/8uw6D2FLU86yez/3xqQj2E+rp76RQL809bQM66jxqerJxBYQ9Noz0HFYFu0iqySVAJbglvm3DB2VczNvT0B15gS/4LuwflBexpaZiKV8xyuOmB8yfsNPCEBDThp0NLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IGWKGfkq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C0537C19423;
+	bh=jeJK/0eq1Juwssxo5nwTiMxxOoLDoi/bwnaw/cpSUuQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Idt1fZyZN3Pc7xRG7c1ZVfaq2jWs03Ny6pR2mV8UWrCJ8jJtB/ZgmnP72m1QkSM3QncL6ODwTL7o+T2g+koR8itvbfEXeFNQxjfEauDPczwDt7k9K9UK6CPv0/pykmFnl4hPnv9Mw5Ga1ZymfOmu2uPrY4AW6QhQd+XDSH/CtpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H4chgCCL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D3BB5C4CEF7;
 	Mon, 30 Mar 2026 07:30:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1774855835;
-	bh=8txCKy0cIY/YJ5xHReKfEq7kDm9ITShL2ROCT8dUI9U=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=IGWKGfkqwh54Td5GMvd9U1Ycv1Dfnz5zcr/+jY97l23kYmfvOYsaO9N7piDwRt7BB
-	 CGNMoCODz7xvJ+rgyBJiO7ULzo8+g4+N58OVQ3xztUaW6oZhwk6AEIbBUwqE2OXrLu
-	 zIXl/5QsovpaPIC6b3Y5fFOFixRFxibQAuTsFmDbG7eIeN/KMxS6da3IpC3YMV+G6Z
-	 CaNZp6yMpkRQ3iBw/C9Lau3FgkN8ZP89R2EXRa4jrjAYCfiP61+dr4+mFSIv1yYMCG
-	 qRX/q7Z9CutqbmWOsVO46CSQP3q7PMDx2v2VIDepunteVcBrDR9r2PMFvH/3+9ETny
-	 PO9pVKuYykHgQ==
+	bh=jeJK/0eq1Juwssxo5nwTiMxxOoLDoi/bwnaw/cpSUuQ=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=H4chgCCLXKFNvFgh7JzxWjeoTUzf8/hdOicdhlvxRLrZ8y0R1pGs+9eKg07poylYO
+	 i8jzveeWw/EJAajv//5MaGBrDXGnwq/yPwQ8kpkhyvIXp9ZsilGF8dXrX9xMb/kT9v
+	 PKXV0qpNkrsq5MnhRugCpmwdw+UY/hGZs8tRZrf9q1d7JuE/j6VsCnDzBKtKs+vkvx
+	 wp+3woz9D2cvMJeSAAUc/cSJVb/NwW+9fOsCC/hOJDWGY5xmOwc7gcSY/hcnoZgcdU
+	 hrW2OQL+6zKmEqu/cOyWHgwMULHWchVUu9DZsdHtg+7fDf6omdpPGJKQ2Llx2OClas
+	 +d16kZVtTOYfg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AF6D5FF492F;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C37C8FF4958;
 	Mon, 30 Mar 2026 07:30:35 +0000 (UTC)
 From: Ben Zong-You Xie via B4 Relay <devnull+ben717.andestech.com@kernel.org>
-Subject: [PATCH v4 0/4] i2c: add support for Andes platform
-Date: Mon, 30 Mar 2026 15:30:30 +0800
-Message-Id: <20260330-atciic100-v4-0-d40822f63e4e@andestech.com>
+Date: Mon, 30 Mar 2026 15:30:31 +0800
+Subject: [PATCH v4 1/4] dt-bindings: i2c: add support for AE350 I2C
+ controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,11 +59,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJYmymkC/22PQQ6CMBBFr2K6tmQ6BQquvIdxAcMgNRFMi0RDu
- LstxoQYlz/5782fWXh2lr047GbheLLeDn0I6X4nqKv6C0vbhCwQMAeFIKuRrCUFIJtKM+VFa+o
- 6FaF/d9za5+o6nT/ZP+or0xgFsdFZPw7utR6bVOxFbwYIBlCVqBMsFWqjpZI190aZY9U37EemL
- qHhJqJ2wi8YB+Fm0IQSpMmyUum8AUPtP1pv6WJL60AXBIAtEYaffullWd4E3EHwLwEAAA==
-X-Change-ID: 20260120-atciic100-da3ec68f7bb4
+Message-Id: <20260330-atciic100-v4-1-d40822f63e4e@andestech.com>
+References: <20260330-atciic100-v4-0-d40822f63e4e@andestech.com>
+In-Reply-To: <20260330-atciic100-v4-0-d40822f63e4e@andestech.com>
 To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
@@ -73,11 +72,11 @@ Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
  Ben Zong-You Xie <ben717@andestech.com>, 
  Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.15-dev-47773
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774855834; l=2820;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774855834; l=2147;
  i=ben717@andestech.com; s=20260120; h=from:subject:message-id;
- bh=8txCKy0cIY/YJ5xHReKfEq7kDm9ITShL2ROCT8dUI9U=;
- b=IFTl0zwTqspv0YWzjnUCFXSpskVBqNcKD1vyxDFvZtJeA++FI5JhnxuKqOJgltge55RQVodOa
- Oknphz5Lj2dC10c9UTfvpN+cDkSEidymTOyj2WQwwsFP4igV6SkFQGK
+ bh=QY1WQtlgEcHyWij1EoGxUJsa8Gq3KZczgBDeH8ReATU=;
+ b=aHryHMU39d3nmQBj2v/ecoPILsTHhtNBnf2NaJeaHpgWmMN4mWwlO7BjgIc2PiMrQS1qMdSQz
+ wPlUIdPFk0jB10HmN/v0kh3YrevU0Xe1sxNUcUYN1f1zHBHHq3cApl+
 X-Developer-Key: i=ben717@andestech.com; a=ed25519;
  pk=nb8L7zQKGJpYk0yvrYKjViOZ34A36g1ZIsCmCsP518s=
 X-Endpoint-Received: by B4 Relay for ben717@andestech.com/20260120 with
@@ -89,12 +88,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282243-lists,devicetree=lfdr.de,ben717.andestech.com];
+	TAGGED_FROM(0.00)[bounces-282245-lists,devicetree=lfdr.de,ben717.andestech.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
@@ -108,83 +107,90 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,msgid.link:url,andestech.com:email,andestech.com:replyto,andestech.com:mid]
-X-Rspamd-Queue-Id: C82EB35674B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,andestech.com:email,andestech.com:replyto,andestech.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: C659B356752
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This patch series adds I2C support to Andes platform, such as AE350 and
-QiLai SoC.
+From: Ben Zong-You Xie <ben717@andestech.com>
 
+Document device tree bindings for the I2C controller on Andes AE350
+platform.
+
+The ATCIIC100 is a dedicated I2C controller IP developed by
+Andes Technology. This IP block is a core component of the Andes
+AE350 platform, which serves as a reference architecture for SoC
+designs. The QiLai SoC also integrates this I2C controller.
+
+The binding introduces the following compatible strings:
+- "andestech,qilai-i2c": For the implementation integrated into the
+  Andes QiLai SoC.
+- "andestech,ae350-i2c": As a fallback compatible string representing
+  the base IP design used across the AE350 platform architecture.
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
 ---
-Changes in v4:
-- Rebased on andi.shyti/i2c/i2c-host-next.
-- (1/4)
-  - Added Conor's acked by tag.
+ .../bindings/i2c/andestech,ae350-i2c.yaml          | 45 ++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
-- Link to v3: https://patch.msgid.link/20260128-atciic100-v3-0-8c002fcc2bb4@andestech.com
+diff --git a/Documentation/devicetree/bindings/i2c/andestech,ae350-i2c.yaml b/Documentation/devicetree/bindings/i2c/andestech,ae350-i2c.yaml
+new file mode 100644
+index 000000000000..59a521fb249b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/andestech,ae350-i2c.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/andestech,ae350-i2c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Andes I2C controller on AE350 platform
++
++maintainers:
++  - Ben Zong-You Xie <ben717@andestech.com>
++
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - andestech,qilai-i2c
++          - const: andestech,ae350-i2c
++      - const: andestech,ae350-i2c
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c@f0a00000 {
++        compatible = "andestech,ae350-i2c";
++        reg = <0xf0a00000 0x100000>;
++        interrupts = <6 IRQ_TYPE_LEVEL_HIGH>;
++    };
 
-Changes in v3:
-- (1/4)
-  - Rewrote the commit message to provide a detailed hardware
-    description and explain the relationship between the ATCIIC100 IP,
-    the AE350 platform, and the QiLai SoC. (Krzysztof)
-
-- Link to v2: https://patch.msgid.link/20260122-atciic100-v2-0-7559136d07cf@andestech.com
-
-Changes in v2:
-- ATCIIC100 is the hardware name for the Andes I2C controller and was used
-  throughout v1. However, since Device Tree bindings should reflect the hardware
-  identity and driver/config naming typically follows the i2c-<soc/platform>
-  convention, this version replaces occurrences of "atciic100" with more
-  appropriate names, such as "i2c-andes" or "andes_i2c," to align with upstream
-  standards.
-- Updated cover letter title and the description.
-- Rebased on andi.shyti/i2c/i2c-host-next.
-- (1/4)
-  - Updated the title and the description of the patch.
-  - Specified what the hardware is, and modify the title and compatibles. (Krzysztof)
-  - Corrected device register size.
-- (2/4)
-  - Updated the title and the description of the patch.
-  - Replaced the readl/writel operations with regmap APIs.
-  - Replaced all occurrences of atciic100 with proper names.
-  - Used module_platform_driver() to initialize. (Andi)
-  - Moved CONFIG_I2C_ANDES (CONFIG_I2C_ATCIIC100 in v1) to the
-    "Embedded system I2C/SMBus host controller drivers" section.
-  - Made CONFIG_I2C_ANDES depend on ARCH_ANDES
-- (3/4) (new)
-  - Added an entry to the MAINTAINERS file.
-- (4/4) (new)
-  - Added the I2C node to QiLai DTS.
-
-- Link to v1: https://patch.msgid.link/20250207021923.2912373-1-ben717@andestech.com
-
----
-Ben Zong-You Xie (4):
-      dt-bindings: i2c: add support for AE350 I2C controller
-      i2c: add Andes I2C driver support
-      MAINTAINERS: add an entry for Andes I2C driver
-      riscv: dts: andes: qilai: add I2C controller
-
- .../bindings/i2c/andestech,ae350-i2c.yaml          |  45 +++
- MAINTAINERS                                        |   6 +
- arch/riscv/boot/dts/andes/qilai.dtsi               |   7 +
- drivers/i2c/busses/Kconfig                         |  10 +
- drivers/i2c/busses/Makefile                        |   1 +
- drivers/i2c/busses/i2c-andes.c                     | 341 +++++++++++++++++++++
- 6 files changed, 410 insertions(+)
----
-base-commit: 46ec065d8610c5e8d11a8b205a6b7bd3c40d46b8
-change-id: 20260120-atciic100-da3ec68f7bb4
-
-Best regards,
---  
-Ben Zong-You Xie <ben717@andestech.com>
+-- 
+2.34.1
 
 
 
