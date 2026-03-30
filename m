@@ -1,71 +1,70 @@
-Return-Path: <devicetree+bounces-282333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282329-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cIFYH4c+ymnD6gUAu9opvQ
-	(envelope-from <devicetree+bounces-282333-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:12:39 +0200
+	id SFjpB3k+ymnD6gUAu9opvQ
+	(envelope-from <devicetree+bounces-282329-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:12:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2670B357EEF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:12:39 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89E3D357ED2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:12:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C5D2B3027DA7
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:07:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DF7B3301CC5F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:07:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0683B38B2;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82CA837F736;
 	Mon, 30 Mar 2026 09:07:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="kc7dYnMD"
+	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="SFLHwWLi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4A563B27CA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44B73A783B;
 	Mon, 30 Mar 2026 09:07:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774861658; cv=none; b=t6jDzjNK/Hm0faHPOvVqajhAG/VgZUYNRnGz3lABIsCL048gYAXeZqvk2edu8VBmzKoJs9RcdSSlwIY9NGxwMBky99Kf64XR+AONnq0nNIgcjqK1KRaE55HP/3iqPzsqLk3SicojgJmRgdy1LS8uVr5XcjvbjOQT+ZQvbE0aUuM=
+	t=1774861658; cv=none; b=Y1ldEwUBxTickOlaQvnMkKNgjclrNo/vftzmNBcd6X60xWcOPmbcwRLK3jJ0s1gYoMcDmhjAHrGuUfkx8Un4DE+PJB+EB9AlaU34Z+L3vsuirqDusXeiuJ4t4NzNek7+HlW8hr8Rmj5drCTbvUHxDdzFaYPV0SEAjTrRM0Eqq9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1774861658; c=relaxed/simple;
-	bh=kV1x/p8n2gNW/1XlpGwWYQrKNSFJXbcxq7jcYJjHsbQ=;
-	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:Cc; b=nvx67Xh5ACyrhLMqB6Wtax3QmSHXCFu0XLZhFBHFmXVAXSwOburBYhuOsMcCRgNT7JGbrMqQjaqu9BpBrSFi8C0Y2SEJEn6Vq4wxLqtWArbaSFYVgP2R1+nzbwpqw8IyWdZPKdezuqlALd7NFTn60SspdlDYLu7B17oIxdY24hg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=kc7dYnMD; arc=none smtp.client-ip=194.37.255.70
+	bh=xn9R5Y4c2FVuxWGJ+XDVZ0hhgrzdWZnr3TAJrrkBg1E=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:Cc; b=RsKZ4bAaY8L7srHA9Ksqt3f+jnLVk9Q0wKsnhVYR2TpiqDOxTMwFMY4osttKf/Q+9ChEBtzmUloDkzLm7sMMRHED+zW9/O79T3A3UCxn+6QU4olnn4M8g7KLsPfw7DLTZPVjkUhkL3LOT2DkrN7OMtARaqt+hhJbgmHNfNsEpVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=SFLHwWLi; arc=none smtp.client-ip=194.37.255.70
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
 Received: from [194.37.255.9] (helo=mxout.expurgate.net)
 	by relay.expurgate.net with smtp (Exim 4.92)
 	(envelope-from <prvs=65635f912b=fe@dev.tdt.de>)
-	id 1w78ap-008YcU-QI; Mon, 30 Mar 2026 11:07:31 +0200
+	id 1w78ap-008YcW-QT; Mon, 30 Mar 2026 11:07:31 +0200
 Received: from [195.243.126.94] (helo=securemail.tdt.de)
 	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <fe@dev.tdt.de>)
-	id 1w78ap-00Axko-6T; Mon, 30 Mar 2026 11:07:31 +0200
+	id 1w78ap-001zkS-8Z; Mon, 30 Mar 2026 11:07:31 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dev.tdt.de;
 	s=z1-selector1; t=1774861650;
-	bh=7pM4hlhtYfXww5JQG6DsXa/+dbsmLcxeWYuej1fsOP8=;
-	h=From:Subject:Date:To:Cc:From;
-	b=kc7dYnMD3WSxhWU2qdkzSnqx1XMVbUU/8qgXmOz6HXZ+ZxuJTV19S/gB/CZTEreSE
-	 ucYrgEgNjwgvsF5Sm30Wv3DU8mAc+sZ1c5HoZVPAtGbgH1VrIoNqWbmUZnZM6qjlo/
-	 rrBKGcsTI6l0YkBQ0/FElz0W8Zgqbk06gUt82ft1nRzNhqjJMDfXkoKwtEXyZpOYn0
-	 OrfFJAxL3eJYu/6X6ukOhxkCc7EdOwWR7BHuOVnRbRdLzdclVMVWv0ngRkVQVzQlao
-	 +LRlZ+SjJblKUYnIttGmYH7B1I6iqdvaVmqlHVcyN24Wejv42KkQCOMJm+Sp8f0zLw
-	 0mXkGknv7kVuw==
+	bh=dqCPK//hWZVdcc5L/u7Ya15VIfulvFBTzBi5FMRGLF0=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=SFLHwWLiFRB5SJLzUdu0l+RzPao/+783rGqSJYfjkXXfJgrRnaul+Q8aF+cfECPZY
+	 iaTgD6vwepPo/v345Gs1HPwizgpy7BkdMgme51VcuTAHBTlrMhrpAY8SDyKDWBJgC8
+	 znWsNKe7C0Db8r0O1E1Roi+kRJ7oZ4t3UGRVS4+Xxgd5X2oQvJp2omk7R3zee5oQgF
+	 0VWNDESlRP8nrWkzFnYi1DUQhBED/r87/aZSW6g1pz7r/lhsgVt5xctFZ25fhyxjBH
+	 gRqkUXZLF3xV3t7xBxMnOA3GBupznnuKg6EsTaTx7FU++6MlH3RdQTfvp7NV3tM9NG
+	 K0Fvd0i1Af+3g==
 Received: from securemail.tdt.de (localhost [127.0.0.1])
-	by securemail.tdt.de (Postfix) with ESMTP id B02F6240041;
+	by securemail.tdt.de (Postfix) with ESMTP id CF68D240036;
 	Mon, 30 Mar 2026 11:07:30 +0200 (CEST)
 Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-	by securemail.tdt.de (Postfix) with ESMTP id 9D1A5240036;
+	by securemail.tdt.de (Postfix) with ESMTP id B656F240042;
 	Mon, 30 Mar 2026 11:07:30 +0200 (CEST)
 Received: from [10.2.3.40] (unknown [10.2.3.40])
-	by mail.dev.tdt.de (Postfix) with ESMTPSA id 565362040A;
+	by mail.dev.tdt.de (Postfix) with ESMTPSA id 9A07720E49;
 	Mon, 30 Mar 2026 11:07:30 +0200 (CEST)
 From: Florian Eckert <fe@dev.tdt.de>
-Subject: [PATCH v2 0/7] PCI: intel-gw: Fixes to make the driver working
- again
-Date: Mon, 30 Mar 2026 11:07:10 +0200
-Message-ID: <20260330-pcie-intel-gw-v2-0-8bd07367a298@dev.tdt.de>
+Date: Mon, 30 Mar 2026 11:07:11 +0200
+Subject: [PATCH v2 1/7] PCI: intel-gw: Remove unused define
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,10 +73,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAD49ymkC/3WMQQrDIBAAvxL2XIOrbSQ95R8lhxDXZKGYoGJbg
- n+vzb3HGZg5IFJginBvDgiUOfLmK6hLA/M6+YUE28qgpOqkRiP2mavziZ5ieYmb7KVC1K4nhNr
- sgRy/z99jrLxyTFv4nPuMP/vvlFFIYRyhNqqb7NUNlnKbbGotwVhK+QK+QSlgqwAAAA==
-X-Change-ID: 20260317-pcie-intel-gw-50902113f9e1
+Message-ID: <20260330-pcie-intel-gw-v2-1-8bd07367a298@dev.tdt.de>
+References: <20260330-pcie-intel-gw-v2-0-8bd07367a298@dev.tdt.de>
+In-Reply-To: <20260330-pcie-intel-gw-v2-0-8bd07367a298@dev.tdt.de>
 To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	=?utf-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
 	Manivannan Sadhasivam <mani@kernel.org>,
@@ -92,20 +90,20 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org, Florian Eckert <fe@dev.tdt.de>,
 	Eckert.Florian@googlemail.com, ms@dev.tdt.de
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774861650; l=1997;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774861650; l=814;
  i=fe@dev.tdt.de; s=20260205; h=from:subject:message-id;
- bh=kV1x/p8n2gNW/1XlpGwWYQrKNSFJXbcxq7jcYJjHsbQ=;
- b=BRDgttkR6UdS5jPjRXbvxOwTYIFgn3p5D7/HCL3fsZWg1av9vvPRQcOT+kZhKlUV/TZbvMUuX
- VL5GF/NONAOAxrUmvEbz7hmDNwRpAQZvm7zeu0KsJO2SJwfw5Zh3RCQ
+ bh=xn9R5Y4c2FVuxWGJ+XDVZ0hhgrzdWZnr3TAJrrkBg1E=;
+ b=FHddLPDNO+kJIcVaelMDMt8m27z+6YGeOf3wn7zLgtR9c5k4XKhiMqOYgmPfXUqzmeH4AOIrI
+ YRmjB13eGmaBJoKsyGgmgp3mTz3UKZ9E/CCTrlq6TASdbJ280mgBhFy
 X-Developer-Key: i=fe@dev.tdt.de; a=ed25519;
  pk=q7Pvv3Au2sAVRhBz5UF7ZqUPNxUwXQ78Jdqu8E6Negk=
 X-purgate: clean
-X-purgate-ID: 151534::1774861651-052C8842-63FB2240/0/0
+X-purgate-ID: 151534::1774861651-EE6CD842-A28411D9/0/0
 X-purgate-type: clean
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[tdt.de,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[dev.tdt.de:s=z1-selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -113,73 +111,48 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	FREEMAIL_CC(0.00)[vger.kernel.org,dev.tdt.de,googlemail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-282333-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-282329-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[dev.tdt.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dev.tdt.de:dkim,dev.tdt.de:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,dev.tdt.de:dkim,dev.tdt.de:mid];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[fe@dev.tdt.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,linaro,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 2670B357EEF
+X-Rspamd-Queue-Id: 89E3D357ED2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This patch series fixes the 'intel-gw' driver to work again with the
-current pcie framework. The following changes are:
-
-* Move interrupt 'enable' to its own function to improve readability,
-  and add additinal register writes just as the Maxlinear kernel does in
-  their SDK.
-* Enable clock for the PHY before PHY init call.
-* Add missing 'start_link' callback that was added to the PCIe dwc
-  framework.
-* Read ATU base assignment from the DTS rather than specifying it in the
-  source of the driver.
-* Remove unused preprocessor define.
-* Mark driver as orphaned as the maitainer's email no longer works
+The C preprocessor define 'PCIE_APP_INTX_OFST' is not used in the sources
+and can therefore be deleted.
 
 Signed-off-by: Florian Eckert <fe@dev.tdt.de>
 ---
-Changes in v2:
-- Added additional information to the commit descriptions
-- Add additional patch to mark driver as orphaned as the maintainer's
-  email no longer works.
-- Fix wrong error path for enable clock before phy init.
-- Add new patch to update the devicetree documentation for the 'atu'
-  resource
-- Add additional recipients responsible for documenting the dervicetree
-  bindings.
-- Link to v1: https://lore.kernel.org/r/20260317-pcie-intel-gw-v1-0-7fe13726ad4f@dev.tdt.de
+ drivers/pci/controller/dwc/pcie-intel-gw.c | 1 -
+ 1 file changed, 1 deletion(-)
 
----
-Florian Eckert (7):
-      PCI: intel-gw: Remove unused define
-      PCI: intel-gw: Move interrupt enable to own function
-      PCI: intel-gw: Enable clock before phy init
-      PCI: intel-gw: Add start_link callback function
-      PCI: intel-gw: Remove atu base assignment
-      dt-bindings: PCI: intel,lgm-pcie: Make atu resource mandatory
-      MAINTAINERS: Remove bouncing intel-gw maintainer
+diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/controller/dwc/pcie-intel-gw.c
+index c21906eced61896c8a8307dbd6b72d229f9a5c5f..80d1607c46cbbb1e274b37a0bb9377a877678f5d 100644
+--- a/drivers/pci/controller/dwc/pcie-intel-gw.c
++++ b/drivers/pci/controller/dwc/pcie-intel-gw.c
+@@ -47,7 +47,6 @@
+ #define PCIE_APP_IRN_INTD		BIT(16)
+ #define PCIE_APP_IRN_MSG_LTR		BIT(18)
+ #define PCIE_APP_IRN_SYS_ERR_RC		BIT(29)
+-#define PCIE_APP_INTX_OFST		12
+ 
+ #define PCIE_APP_IRN_INT \
+ 	(PCIE_APP_IRN_AER_REPORT | PCIE_APP_IRN_PME | \
 
- .../devicetree/bindings/pci/intel-gw-pcie.yaml     |  5 ++-
- MAINTAINERS                                        |  3 +-
- drivers/pci/controller/dwc/pcie-intel-gw.c         | 49 ++++++++++++----------
- 3 files changed, 31 insertions(+), 26 deletions(-)
----
-base-commit: f338e77383789c0cae23ca3d48adcc5e9e137e3c
-change-id: 20260317-pcie-intel-gw-50902113f9e1
-
-Best regards,
 -- 
-Florian Eckert <fe@dev.tdt.de>
+2.47.3
 
 
