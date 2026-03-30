@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-282432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282435-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kIYUGxVaymn27gUAu9opvQ
-	(envelope-from <devicetree+bounces-282432-lists+devicetree=lfdr.de@vger.kernel.org>)
+	id MOw1IRVaymn27gUAu9opvQ
+	(envelope-from <devicetree+bounces-282435-lists+devicetree=lfdr.de@vger.kernel.org>)
 	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:10:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03CD6359FB9
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:10:12 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A3C1359FBA
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:10:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B65B630C6CFB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:02:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CF7A430255E5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD9243C6A55;
-	Mon, 30 Mar 2026 11:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A16C26AE5;
+	Mon, 30 Mar 2026 11:03:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jJpiYeHq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gGVYWM7k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075263C6A38;
-	Mon, 30 Mar 2026 11:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2DB93BD242;
+	Mon, 30 Mar 2026 11:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774868524; cv=none; b=MpS9HQbtHn1LugWUQHwpoy1lOScz6LDrmwZAsJp/O+IR9bTAarnqa2wyfgRwZtullD/kMCTf+4iU2RZ40/2vHP86B41PyZMIsG79FN6GyxUb5Z+b88Mlw2a1LUP3NJC/xPAwytHocDsVl23PYuqYxk4860AVsVRQOYotk8nsY+E=
+	t=1774868626; cv=none; b=giO73WUUyU+wDFa0/Dt0R6DtV2fgPK5ljxiC7k1IEkGSALZVdwnPKKrVvDEGb9mSFLLgFqDjKNj9N+T1eBvG91GFTX7w6JlMAf1UihmZE0nYH5U42UxgSVswyB/dY6ZkvnnT+Y5nY2faSAUCos/QEOa2co+aiSPciisdpZTc+Qg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774868524; c=relaxed/simple;
-	bh=7u3ZshMsgOVHfmnHl8vLzFXAwHe+uEKAr7jvGx9ncsk=;
+	s=arc-20240116; t=1774868626; c=relaxed/simple;
+	bh=5lKM5SSrSGTsRvZYw5eh+ZRs2MIRklPVcXrX35ocOik=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G2axJYHFOUs2cC5tU9rd1+8cKnX7CHgzXbNhOxQqcpecYRA/KeGPCvrCf/hPE1uiGQU2WFuPxrlk7wxEmnQEe2ERRXll0AA3h9aZ7b1G1xaMC9gWCyOlD6v6CCw6CKl2pU5CrEfkEDKjpxzsz+yCWCLdciMAQrkgnyFt4WlncSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jJpiYeHq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8539C2BCB1;
-	Mon, 30 Mar 2026 11:02:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jph1+adPl2iIGtORDyXq16sN24rbVB3DGlRNp37JQATIbL3TvrLJgyHKMxKs7KfRKj4ssVy2sicWfj00ISWi4CPfDp7ad6qWkInHyDvoOforPOYUH1ignbFpMln8Fizq3rEw+GwVOC+53FwX0ilm7pGaaMJaxXPZMQyXyXszcsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gGVYWM7k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FD63C4CEF7;
+	Mon, 30 Mar 2026 11:03:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774868523;
-	bh=7u3ZshMsgOVHfmnHl8vLzFXAwHe+uEKAr7jvGx9ncsk=;
+	s=k20201202; t=1774868626;
+	bh=5lKM5SSrSGTsRvZYw5eh+ZRs2MIRklPVcXrX35ocOik=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jJpiYeHq4NZniUdyJDh4w9OozKH4nLg+gbJbhtUoaCnHjJeaK9PThucOwYlv1xKRA
-	 UimWgQ/MWr/3DYmcsd6oiSJ5YNKNpFQDu1NiOyQ9yClopkXJ2kHvvyiCMntE2ChxEg
-	 6X8wv7M8DMJsgt4JbOqs6uv9XPTXYwp3MGQ9B+U/dqsPM9ysojHEEWWEDtbJYuVVvK
-	 bi+DOSVTUUWEgAt49qILUZUdLQf8HRYAzQ4GIi8KBtLXfkq/7dt+J3kv8Jfdvw+c+S
-	 nofUOapo5grP+nRXYQT4nMI9xaVnczaVQPVvbDYmsPdt+2kM8CZqxNCcaxSsAIaSDL
-	 5ogBxRvZd8umw==
-Message-ID: <fa95e66b-a60a-470b-a2aa-c78768df27f4@kernel.org>
-Date: Mon, 30 Mar 2026 13:01:58 +0200
+	b=gGVYWM7klos1gWC/kA6Sahgfsvagl5DCQRaTKdru+m8KUoq+swsPDmo2NXrL9zl9Z
+	 TKj8UrgM+0li+WlDOoz4SkVhLQQS1yLG1H9y0c4QDvchM7ax6JO7TFd0cGhFvFD9MU
+	 Iu728fdQK4zdA3iGXXm0NyaS0hb0pQr2CuBfjC+7808tYAF0RoBnz9nTVZe1sGmKHV
+	 xf03m3/ywJcOz0qLfgrF2Ey42tNyBo8q9O55333XsI0oJmpz3zXfpPYqV5Bz9ud4Bw
+	 /gWHAxFzDsTMI27/ZkX9W8Z8WL2wgL2X6m5Oy8Xn4HTZihHEZFy/7ej6QkPfiPDE2Q
+	 lnIhMfKGqWfWQ==
+Message-ID: <a47d48c8-090b-4001-ab27-756d8b76c8ec@kernel.org>
+Date: Mon, 30 Mar 2026 13:03:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,20 +53,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: amlogic: t7: khadas-vim4: Remove invalid
- property
-To: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+Subject: Re: [PATCH v8 02/10] dt-bindings: power: samsung: add google,gs101-pd
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>,
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel test robot <lkp@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20260330-fix-invalid-property-v1-1-e829c4d806cb@aliel.fr>
- <36822ad1-c73d-4903-bd39-091874558f10@kernel.org>
- <02927f87-fa91-457d-af2b-a7610ef481e8@aliel.fr>
+ linux-pm@vger.kernel.org
+References: <20260318-gs101-pd-v8-0-241523460b10@linaro.org>
+ <20260318-gs101-pd-v8-2-241523460b10@linaro.org>
+ <177409897339.266364.69715997034739052.b4-review@b4>
+ <6f0be0a71c74e7a7959e9ad02e93aff1cb8ef712.camel@linaro.org>
+ <b66d7230-a495-40a4-ac75-378d0727afed@kernel.org>
+ <abeff7983dc08c3aeee8b504f34b71b1a2fcdb78.camel@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,24 +116,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <02927f87-fa91-457d-af2b-a7610ef481e8@aliel.fr>
+In-Reply-To: <abeff7983dc08c3aeee8b504f34b71b1a2fcdb78.camel@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282432-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-282435-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,intel.com,linaro.org,baylibre.com,googlemail.com,kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[samsung.com,kernel.org,linaro.org,gmail.com,google.com,android.com,lists.infradead.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -141,36 +145,33 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 03CD6359FB9
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2A3C1359FBA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 30/03/2026 13:01, Ronald Claveau wrote:
-> On 3/30/26 12:38 PM, Krzysztof Kozlowski wrote:
->> On 30/03/2026 12:21, Ronald Claveau wrote:
->>> Fix introduced invalid property for Khadas VIM4 sdcard regulator.
+On 30/03/2026 12:59, André Draszik wrote:
+> On Mon, 2026-03-30 at 12:55 +0200, Krzysztof Kozlowski wrote:
+>> On 30/03/2026 12:52, André Draszik wrote:
+>>>> Your patchset is organized in odd way - first patch for me, then not for
+>>>> me, then again two patches for me. Please keep it consistent. Or better,
+>>>> decouple since there are no dependencies according to cover letter.
 >>>
->>> arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dtb: regulator-sdcard-3v3 (regulator-fixed): Unevaluated properties are not allowed ('enable-active-low' was unexpected)
->>>
+>>> I'll update the cover letter to describe the dependencies. 4 depends on 2,
 >>
->> Fixes commit?
 >>
+>> How 4 (soc) patch depends on 2 (pm domains)? What is exactly the dependency?
 > 
-> Thanks for your review I will add a Fixes tag like that:
-> Fixes: 60eff75ac67b ("arm64: dts: amlogic: t7: khadas-vim4: Add power
-> regulators")
+> 4 updates the soc-level pmu binding of gs101 to have gs101-power-domain
+> child-nodes, which are introduced in 2
 > 
->> Why there is no such change in recent next? Was it just merged?
->>
-> 
-> Yes it is in next-20260327
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts?h=next-20260327&id=60eff75ac67bbf5445bdbd2842b0109ac591441c
 
-Thanks, With fixes tag added:
+You described what the patch is doing, but that was not my question.
+What is the dependency exactly.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+This is ping pong, so I finish discussions here, but to be clear -
+entire patchset cannot be merged.
 
 Best regards,
 Krzysztof
