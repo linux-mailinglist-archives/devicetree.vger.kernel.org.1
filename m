@@ -1,312 +1,213 @@
-Return-Path: <devicetree+bounces-282324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282326-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2JU9Ces9ymnD6gUAu9opvQ
-	(envelope-from <devicetree+bounces-282324-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:10:03 +0200
+	id WA1OJAM+ymnD6gUAu9opvQ
+	(envelope-from <devicetree+bounces-282326-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:10:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE7E6357E07
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:10:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00879357E15
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:10:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1B8F730770BC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:02:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 33B2D3006177
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:03:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F8D3AF666;
-	Mon, 30 Mar 2026 09:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8884C3ACEF3;
+	Mon, 30 Mar 2026 09:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dgg3NII/"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="HHEURsVK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BN8PR05CU002.outbound.protection.outlook.com (mail-eastus2azon11011046.outbound.protection.outlook.com [52.101.57.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0AA386C3E
-	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 09:02:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774861358; cv=none; b=JSe4A4jbeAWrUlYTG326dDjB9F27S+BGnbuopApDpn82SwyvQpJVvK3iafRndPKIZ5U1yknJ3PjREIbi4FfnMl6Tily46uHVjuwwkI1mT9GrmSfkHfjFJorglL70tsewrzMWUw7vqKIHNKQERBbV3ND6gfCm0bswHuz+DP9c+mk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774861358; c=relaxed/simple;
-	bh=ZZT+BdvWtv0IGu5tZFso5VNXIsNQv33LmBSHM/iliNs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u1wFH+C5AOEM9sv7GLETTT4E23vAX9NWYSlH/UVJaVWjzx9DVxfyjYRiaS6effmArHi4SvWcDSUBlgeEDk7ytBEKh2ZxdqGprE7ZJnzaQ39Q9FK4lST9I8SnBcyq/rKrjVJV9ayahuEJLs7gcoffaI+tCBppj6ahk1I5CQSLTZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dgg3NII/; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b980785a0bfso574494366b.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 02:02:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1774861355; x=1775466155; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ta07eiLe/pVnHnMt5yIA7myVk76JrlK9RRotd9Crmig=;
-        b=dgg3NII/WftjIMiHgwgNlRq2c4WGVfY1c93P8OIuqqVIsg/eXLT0+Fkrl2abzU8g4S
-         /DlzGLXyYmlQF31QzMmfzsA558YX9LemKFj/Kv5VjcoJVloLQ2cZHIdFAP1OVxMqCozI
-         Lpw1YoZDeXLggOKjINlEyoXltr7tPVvka6ivHdfNB10fe/QtFhsAuLEWQE8HPs8u8euC
-         ceVmYqS1gMpiVnxx8Wgai6WKWvzt8KI7I4G0jqHTOpdQyrq1cAZbES1I6JTSP0GwkMzY
-         mKVQIuoSn2Z4LZBNE0OIolpZJnJueLo2/py6fD+dEXDAOdGe073jBEh7naPbGvAqDLxo
-         eZzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774861355; x=1775466155;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ta07eiLe/pVnHnMt5yIA7myVk76JrlK9RRotd9Crmig=;
-        b=sWDiYyJcOBzyIc/0yNb4VfvwnG0bCKKMMqpwM7mfw57ts3QzZMyF+sh49sSXDRlxlC
-         vNTfHTrKS8tgDoZUo/n+q2lpt+/aJ2MrqGpWe5prFaI3MlOFrFqJXyrcyVoMEE9dQSL2
-         wUIMQ23ahfeijol25mzAZYsF4k9ZOUS71YVT0apIYsQ9XxmHLau/duFuPpxZs4b70i8n
-         9SE6qmhj6EJo0MjfYMF++AW/LGcPRg8VJH8Ah8oiYLtLocWBM3iTX8SH6CyiaYPuypnE
-         pmzO0+yD0mqNm24M9ESu0RK5jZloO3azhnOMP28SSLNZYpyBHhZyY8DbBMqkOTlnNu0o
-         5QDw==
-X-Forwarded-Encrypted: i=1; AJvYcCWbYUj3iz+nOhavH1eLqrPB2FlotctNDpZekOcCLwZJ109McMEiFHP7toaaRG5PMnPIEgfzdkvL73A+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4TKlTjMQenmbYIyCuRX3+pvuljV5H27B30O1ydGaBvpGi2Hui
-	kkjYg/vHgJWVgUDusBgH0ERzTMVnCWnQLPoYcJR6apwpoIxve012JHmlAy0f47BV8s+dAKjbrzC
-	n2oti
-X-Gm-Gg: ATEYQzwxjAeoesil+TI4n+at9SmU/K8AhqaEmMdPvnU954daPDDi/Gz0lejnl2Te/ik
-	tzBJpu+UvPMYATtXHHDOjfiX2lZzJcfwS1rKDcvj9bjgMJdiY32AxNC0itaAinjDtXD6SeFt2om
-	2OJN7aF/MnqePfqLJBszWTf+1TpbVYt8JRhRkMoLzKM9Z4xYyOiS1BCZfPnEJyithn7YbDiRZWf
-	x/7FKHQo/DcEKkJs1Eg3Ye6F6Az7kwWT8I/tQTFxyWIKBvLZwQaLKm04yzzAizXmYtKz3f2OkWW
-	rS8KedYY/JWOMocMs7I85BoKNonkHLLO+ouq1nxND2kkzttii1KJ2QwzqytENrTppcbroLoIffV
-	L+vjFT6WT7nlZCttutZqLgspc/+FpJmJJ3VXR760ImbGFsMcW7Cg13Qn14RIJL3hqvKHE9GRrp5
-	5QIKmMlxpyKkiYNud/Gghl/y7+m3iQ6BlDRrrA
-X-Received: by 2002:a17:907:7b9f:b0:b98:33c5:1bb2 with SMTP id a640c23a62f3a-b9b503b6f2dmr693893066b.25.1774861354146;
-        Mon, 30 Mar 2026 02:02:34 -0700 (PDT)
-Received: from [192.168.0.167] ([109.76.241.179])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9b7b1a5924sm263387066b.32.2026.03.30.02.02.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Mar 2026 02:02:33 -0700 (PDT)
-Message-ID: <456ded59-d13e-4b61-975b-97ca48b5e771@linaro.org>
-Date: Mon, 30 Mar 2026 10:02:32 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367E82D6E7B;
+	Mon, 30 Mar 2026 09:03:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.57.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774861435; cv=fail; b=UuDwePAQ1qjTnkcwwJH0NDiLqFqJa9gfchkx3EeNRZgQDu3OCj3NRxK97JISEEUcuN+qDwqe9QdyMnTinWLkEF0xclVnE3+4YDZLTjrIR4LHqLVVqQtXB9LI5enBe+O2JER29yn1XIiqyvreUZC60lR2C9PAOJsCsRrhtXihNz0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774861435; c=relaxed/simple;
+	bh=ILsytof+OjAQD6pOdQT69cd6dJtjwaqV5Cy8b5ugTr8=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mG24TABN3uHh6ISnG/CQD665ZjTU6wWS2IjUaYsFkAm9b1PEh5OHpMdISYmIjAP2Y5rMb/NOC/QirWc5u7LkSTqAGXSxQ8IiS7Y4y7u5ERoAEjI8dfzc/1mAMoGAkCyUfcDA3eNThdi7tfJcW40Bj+Fq7X3e4Pgyg2m6Y5N22gc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=HHEURsVK; arc=fail smtp.client-ip=52.101.57.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VPtWQv95ROawkTkyAXI70uZTv6PU06K9fsjktqCOEQmoohFJCb2JZPiWv0Ilc/GN0Rbhtq/nBaz7P68mOpWaT0pWY07FK1hhXvB1dKsZ4S92Zv0UErHcJjAdfiiLZPGnFKtQ77qybU8ZGvk3URFSydctaART0mo1+vpfhrph+cTOGxUVZpk52snfY05Gcmqr8K87XgBkqr9CvoDLWxpk8xAKNR4D2xL2EWKnnOoiTqo7pnUDwE9S9+JLrQYvxGaEI0QLdWlePNXloHZ9k0LURhbpQr3/r7MDcwKuAnpwxNXlSwGZqr3qDH9C1jcOOAP7UKXIj6pYgTmP0JrNZ+5FiQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AlSLTfBvPxWLnftxdGDo5FDZWjJli6shCTRATo4jx2Y=;
+ b=n1ClSKPmr/2chJpXNU8usXADQiYGGx82kYgZ0beXsaevsbldUypAgPACY2GB3fH2uv940Re5HwTyTNabL1T2blL6mPUh3bSgROaM430UwqypDRm2ros7vDX0aoolteffYQzsqQlnAbQ51NZHc55DU+OQxvj+5qYukS0oQaidq1OA1DKH3HS+9He+HNLX4vpds+wXl05dYKmfiCgI6ltKpgCrgCPMmD+xDW7BNulTRIFrMXHDpEjoe8j+jI+iW2O5BYYSeOeNuVWvm360PHUh4VYrkjlmSVSKDYVd/2e6wpGIRFicNVt7EEhdIwvdqU1cD4e97rrN0Q/RqPoUXglYbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=nxp.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AlSLTfBvPxWLnftxdGDo5FDZWjJli6shCTRATo4jx2Y=;
+ b=HHEURsVKuorm0pPTdzzQpSi7Ml/wSyYzYfNkltsczfKU8l5cFEUPboh0JvZ9tCRNOQygu3BNpI28I4qMBfVmMKNwiiIKKTz7CFseJ+e5vRXAlS8perncOEjI3aQnW7dopwtufBiPJFGec85X1aXm0q42zL3WjU2plRp3h10Xl16d+N8yb7zt7Y+HF8JHLMT2CuBxga0pOxV4VuGi+r+6wh6fGXwovhtjP9CfATIrCuXf+De+CkWYjXMJ4d1GUflWTFDZ4YDnncGRCQx/Colw2iPn9JXALfvCo1WSzmtecvV6WXZWL/CFrQK1cyXQyaRLWu4jpP24FCnehrlDuqAgng==
+Received: from CH0PR03CA0340.namprd03.prod.outlook.com (2603:10b6:610:11a::28)
+ by SJ1PR12MB6146.namprd12.prod.outlook.com (2603:10b6:a03:45b::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Mon, 30 Mar
+ 2026 09:03:47 +0000
+Received: from CH3PEPF00000011.namprd21.prod.outlook.com
+ (2603:10b6:610:11a:cafe::c9) by CH0PR03CA0340.outlook.office365.com
+ (2603:10b6:610:11a::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.28 via Frontend Transport; Mon,
+ 30 Mar 2026 09:03:46 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ CH3PEPF00000011.mail.protection.outlook.com (10.167.244.116) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9791.0 via Frontend Transport; Mon, 30 Mar 2026 09:03:46 +0000
+Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 30 Mar
+ 2026 02:03:35 -0700
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.20; Mon, 30 Mar 2026 02:03:35 -0700
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.126.190.182) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
+ Transport; Mon, 30 Mar 2026 02:03:31 -0700
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <frank.li@nxp.com>
+CC: <Frank.Li@kernel.org>, <akhilrajeev@nvidia.com>, <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+	<jonathanh@nvidia.com>, <krzk+dt@kernel.org>, <ldewangan@nvidia.com>,
+	<linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+	<p.zabel@pengutronix.de>, <robh@kernel.org>, <thierry.reding@gmail.com>,
+	<vkoul@kernel.org>
+Subject: Re: [PATCH v4 08/10] dmaengine: tegra: Use iommu-map for stream ID
+Date: Mon, 30 Mar 2026 14:33:30 +0530
+Message-ID: <20260330090330.52081-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <acWWW6r5gZ2nGerQ@lizhi-Precision-Tower-5810>
+References: <acWWW6r5gZ2nGerQ@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Vinod Koul
- <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Bryan O'Donoghue <bod@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260326-x1e-csi2-phy-v5-0-0c0fc7f5c01b@linaro.org>
- <20260326-x1e-csi2-phy-v5-1-0c0fc7f5c01b@linaro.org>
- <7712fbdd-a225-49f0-aeb9-ebcbb9d5abac@oss.qualcomm.com>
- <da3ed78d-fb5e-4820-95d6-527d540cf03e@linaro.org>
- <1f38187a-9464-4aa9-b70a-03b767349d56@linaro.org>
- <c5278028-dfe9-4d09-970a-a25977967bdd@linaro.org>
- <016c03b8-27c3-41dc-a630-8e7095db1f88@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <016c03b8-27c3-41dc-a630-8e7095db1f88@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF00000011:EE_|SJ1PR12MB6146:EE_
+X-MS-Office365-Filtering-Correlation-Id: 51c52a66-e4f3-47fd-09a6-08de8e3b406f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|7416014|376014|82310400026|1800799024|22082099003|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	UwL2Znog9dMRL6oE86wY2C/Hrmw1jq5obQzN4Si3iqv6HjI8s8Gx0CFmoxUouQ10fQuu5JyHM7AFpi8l7isswJz9CA+Oy4NFgMtBkPy1VDCUkYp55a5cGpyEL4XfvvJ5jD1bQ99INwfMIrDsL6d2sfFC1CavHwh+FgK1Rr5vvyxQWZWXdBg4hd0DKVTRB9HYAR+YUu3vjCHICkxhTyace8EiuLBVBsiO5pRR1seyX82kCsUGt8fKTYpLwv5KDuTOg4LmpLNX0c5YHuGAZxNT+jF21SZ2vIew02vIM1mCglN25mLVgzEMbmJJ0de67y1LPYCZINjVCEVhqLVFeJgOgxrv/Dx8lng02qxJc8AsZZeSBE4/Tdc83gCCc9p0YzCYUeMgV6XFGWNyQbljOETy71kGmSkPpfuRQnx4GnPzsb7mIg+POpeANyzvIGIDzATv1RLczGFauSKVUTSgUjDGohgLppf1ouj9ROo5S4ckVuEh5apWfH8d34rkNJhq85oArXbrk0JgPLT5vA4Oymhn1cPTqDmTsIOJmcuAf6vHTQ7CAQubLbZexvqJggbrzbg2Wnrb7FJob71WOsofWJ5TNEItsLxJAe8dFk2aCHYjZdX1BTdL7Eln2/nKWrpwAbRdvs2+BSejUAIqzfFx23dKozecUwvHkW+A1hhN35keBNVxLjoVh4qT+5C/NX3WhDg4SZTExNts4QVOK9aE6ihFGvT/2NOVstaT+orLf2+YLUgqMz/rZTeScXOGd2gm1E4FBsefrW0aohTqupe89ITNZw==
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(36860700016)(7416014)(376014)(82310400026)(1800799024)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	MTbLH2CJ540wfK3pDCmVlC8F7ZRpwsluLD6T++hCxJ0/XP7f7WvmMqYeYG2s6KrkQdTMn8SkuXJK8Av+skJXK/y2zbT+Sqp7IKBVBg7fGfQdF4xaooatqJZhI858KZ7yIX5ZycMqBp0Op0JyrrbNg+fTz6ZLWEojRLzPQHuDoYarFwoIkG/5mVTmGGFXQ/n/2eDsMl78ZnqogRDF3o6nHRK7iZ/T83gGx4ivqQA90jslACSyTgmchmJzrJ7Owh8966hl+ieI3cVIUTDSFmJ/8wGvG3/9emEyhKaEZcr0v4ViuaIhREYM9XxBdUmcCZiuVRHedLQV8z2FXvMZmWpK98ROmkc6UvyHU/kr7biE/jwwmHAjl9ivyv/phmJn1+MjHt+PYdtjormPSHHhQSliKKP99TVZkkrCXcpmPrtI9wdjVSpUSyM+2yMvFv3eyAJG
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2026 09:03:46.6942
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51c52a66-e4f3-47fd-09a6-08de8e3b406f
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH3PEPF00000011.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6146
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282324-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,vger.kernel.org,pengutronix.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-282326-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	TO_DN_NONE(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,nvidia.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,Nvidia.com:dkim];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:dkim,linaro.org:mid]
-X-Rspamd-Queue-Id: CE7E6357E07
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 00879357E15
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 30/03/2026 08:49, Neil Armstrong wrote:
-> On 3/27/26 18:42, Bryan O'Donoghue wrote:
->> On 27/03/2026 15:28, Neil Armstrong wrote:
->>>> To be frankly honest you can make an argument for it either way. 
->>>> However my honestly held position is analysing other upstream 
->>>> implementations connecting to the PHY means we can't make the PHY 
->>>> device a drivers/phy device - it would have to be a V4L2 device and 
->>>> then for me the question is why is that even required ?
->>>
->>> This is plain wrong, DT definition is different from software 
->>> implementation, you can do whatever you want if you describe HW 
->>> accurately.
+On Thu, 26 Mar 2026 16:26:03 -0400, Frank Li wrote:
+> On Thu, Mar 26, 2026 at 04:39:45PM +0530, Akhil R wrote:
+>> Use 'iommu-map', when provided, to get the stream ID to be programmed
+>> for each channel. Iterate over the channels registered and configure
+>> each channel device separately using of_dma_configure_id() to allow
+>> it to use a separate IOMMU domain for the transfer. But do this
+>> in a second loop since the first loop populates the DMA device channels
+>> list and async_device_register() registers the channels. Both are
+>> prerequisites for using the channel device in the next loop.
 >>
->> I'm not sure what point it is you are trying to make here. Are you 
->> trying to say drivers/phy is OK with you but you want an endpoint ? If 
->> so, please just say so.
+>> Channels will continue to use the same global stream ID if the
+>> 'iommu-map' property is not present in the device tree.
+>>
+>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+>> ---
+> ...
+>> @@ -1490,6 +1496,41 @@ static int tegra_dma_probe(struct platform_device *pdev)
+>>  		return ret;
+>>  	}
+>>
+>> +	/*
+>> +	 * Configure stream ID for each channel from the channels registered
+>> +	 * above. This is done in a separate iteration to ensure that only
+>> +	 * the channels available and registered for the DMA device are used.
+>> +	 */
+>> +	list_for_each_entry(chan, &tdma->dma_dev.channels, device_node) {
+>> +		chdev = &chan->dev->device;
+>> +		tdc = to_tegra_dma_chan(chan);
+>> +
+>> +		if (use_iommu_map) {
+>> +			chdev->bus = pdev->dev.bus;
+>> +			dma_coerce_mask_and_coherent(chdev, DMA_BIT_MASK(cdata->addr_bits));
+>> +
+>> +			ret = of_dma_configure_id(chdev, pdev->dev.of_node,
+>> +						  true, &tdc->id);
+>> +			if (ret) {
+>> +				dev_err(chdev, "Failed to configure IOMMU for channel %d: %d\n",
+>> +					tdc->id, ret);
+>> +				return ret;
 > 
-> I'm against using the "phys = <>" property in the CAMSS to reference the 
-> PHYs, a "PHY" in the classic terminology is tied to a single consumer, 
-> and if it can be shared to multiple consumer you must model a mux or 
-> whatever in the middle.
-
-The CSIPHY-to-CSID routing is runtime-configurable and is already 
-managed by the media controller framework.
-
-DT describes static hardware connections. The dynamic mux is a software 
-concern, not a hardware description concern.
-
-
-> The PHY API as an internal software implementation is probably fine, 
-> even if it makes implementation of split mode much much harder and 
-> doesn't really solve anything, you can just call init()/poweron()/ 
-> poweroff()/exit() directly from the CSIPHY media callbacks.
-
-Great.
-
->> I can see an argument for that hence my response to Konrad, I just 
->> don't see why its a Qualcomm specific argument and of course 
->> understood stuff bubbles up in review, we have a public debate and 
->> come to a consensus - that's a good thing.
->>
->> However, I'd want wider buy-in and understanding that endpoints in the 
->> PHYs is a more accurate description of the data-flow.
+> This is in probe funciton
 > 
-> It is, and it was designed for that, and extensively used in the media 
-> DT representation, so I wonder here you would not use it...
-> In an ideal world, you would add nodes for each CAMSS hw elements and 
-> adds port/endpoints links between all nodes to describe the data graph, 
-> this would be used to construct the media controller graph, and make it 
-> much easier supporting new hardware.
+> 	return dev_err_probe();
 
-Yes but be pragmatic Neil. The first step in making the monolith into 
-sub-nodes is the CSIPHY.
+Ack. I will update.
 
-Once the CSIPHY is in, we can follow on with adding new nodes that way 
-IPE, BPS, ICP, JPEG whatever and also work on implementing the old stuff 
-in that new way.
-
-
-> 
->>
->> We've been applying DT bindings aplenty without that so far. So we 
->> would establish new CSI2 PHY bindings should represent the sensor 
->> endpoints.
-> 
-> We've been using a dummy representation of CAMM in a single node with 
-> only endpoints connecting to the sensors and hiding all the hardware 
-> layout in code, it doesn't scale and makes supporting new HW hard.
-> I mean this is common sense, why would we continue to stick to the 
-> current CAMSS bindings ???
-
-We _won't_ I just don't support a big bang integration. Progressive 
-changes over a longer timeline make the transition manageable, without 
-accepting endless sub-standard stuff in the meantime or holding up all 
-new SoC submission unless/until.
-
-I mean there is a CAMSS meeting which I've been running for nearly a 
-year now that both you and Vlad are invited to where we have been 
-discussing this for months...
-
-Anyway one conclusion of that is we want to transition to individual 
-nodes for everything.
-
-PHY is the first step which I'm taking because its easier for me as 
-CAMSS maintainer to convince the CAMSS maintainer to take the relevant 
-patches.
-
-drivers/phy notwithstanding.
-
->>
->> Is that what you want ?
->>
->>> The CSIPHYs are not tied to a single "consumer" block, they can be 
->>> connected to different consumers at runtime, which is not something 
->>> classic PHY devices are designed for. So they are de facto a media 
->>> element in the dynamic camera pipeline.
->>
->> The existing CAMSS binding and media graph are not changed by this 
->> series.
-> 
-> This is not my point, I don't care about the software implementation at 
-> all, I care about accurate hardware representation. Using the "phys = 
-> <>" property does not describe hardware accurately.
-> 
-> In other words: The CSIPHY are not connected to CAMSS. This is _not_ 
-> true, tying the CSIPHYs to the CAMSS block hides the real data muxing in 
-> software.
-> 
-> Please remind DT is used by multiple operating systems, and properly 
-> describing hardware in DT will help have good software support over all 
-> OSes, not just Linux.
-> 
->>
->>> And actually Rob Herring asked use to define the complete data flow, 
->>> it was a strong requirement. I don't see why we wouldn't here.
->>
->> I'm implementing feedback from Rob.
->>
->> https://lore.kernel.org/linux-media/20250710230846.GA44483- 
->> robh@kernel.org/
-> 
-> Where did he ask using the PHY DT bindings ? Is he aware those CSIPHYs 
-> are muxed to multiple consumers which are burried in the CAMSS code ?
-
-I freely admit to taking the initiative of phys = <> but Neil there is 
-_no_change_ to the media graph and the "mux" is a runtime configuration 
-that is one register in the CSID.
-
-You seriously want a mux device in the kernel to model one bit in a 
-register ?
-
-No.
-
->>
->> To me, here is where we stand:
->>
->> - Individual nodes - we all agree that
->> - As sub-nodes - I think the majority agrees this Krzsztof, Dmitry
->>    I'm fine with it too.
->> - drivers/phy - I think we are accepting this is also fine ?
-> 
-> Like I said this adds a supplementary API layer for no reason and will 
-> make life harder, but I don't care personally.
-> 
->> - endpoints should flow into the PHY and then back to the controller
->>
->> I get that argument. In fact I _like_ that argument at least I like my 
->> conception of that argument.
->>
->> I'll stipulate to that argument meaning then that, new CSI2 PHYs shall 
->> include endpoints for this purpose globally.
->>
->> As I've said before, there's nothing Qualcomm specific about this 
->> discussion, really.
-> 
-> There is, because the current Qualcomm CAMSS bindings are insufficient 
-> and should be entirely redesigned from the ground up to properly 
-> describe the HW.
-
-The long term plan is to do that. Discussed extensively with the Qcom 
-teams delivering CAMSS, even invited community members along.
-
-Here are the meeting notes - its all in the public domain
-
-https://docs.google.com/document/d/1yUwWHaKLuovKVgGTzvKm68K1zS6xBONVzjOsRjDl03U/edit?tab=t.0#heading=h.mtbm7qfohwfs
-
----
-bod
+Best Regards,
+Akhil
 
