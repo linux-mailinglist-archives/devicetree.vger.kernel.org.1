@@ -1,156 +1,235 @@
-Return-Path: <devicetree+bounces-282713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282536-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +EBfNXj8ymmlBwYAu9opvQ
-	(envelope-from <devicetree+bounces-282713-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 00:43:04 +0200
+	id GDRaJ0ePymlC+AUAu9opvQ
+	(envelope-from <devicetree+bounces-282536-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 16:57:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F10E3620D0
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 00:43:04 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F0F35D476
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 16:57:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B6D273011175
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 22:43:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B4EC73201F67
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 14:48:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09A293E9F61;
-	Mon, 30 Mar 2026 22:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E575932470F;
+	Mon, 30 Mar 2026 14:48:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dJnLxUBU"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="byu97nM0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 897193EBF13;
-	Mon, 30 Mar 2026 22:42:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 536343242BD;
+	Mon, 30 Mar 2026 14:48:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774910543; cv=none; b=LMd1lery/p5aUNb23L/Oy7da3zelE+LG/RVXUGge2hSwFUpAEDLZYwa0vR5BSEL2BnP2IK2H+jZFzW5iJ2CcU96WRN+jC+AqOzDaVKLdNx1DHY0eQOKdaK+ARSHBL6UK7BirOfdSX/ApBmWRLi2iWqJC+lqxqlhaiO2PAJ5WH5c=
+	t=1774882102; cv=none; b=hOPyN/o7zcFOyY2Z4Mcs0ncWb01Pqu+sd3tEKKdZo0pUUPNxgc6k0HlgKbxbzJ9QKwN/CmG46GJVYzpEPjp4LBAcOnHFx8X0hryT2xTgO3oZryPRl4shYvir1LlsLJVT9u+1yIaXA1881DuC7IsxQZE2jXiE2q0SDDJ18ugccRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774910543; c=relaxed/simple;
-	bh=KEFQLZc20GWW8sgN2/76iip+g3PEt4uQ0FT8+1KvwXQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=TPGl5Typpsx+RQ9eoOOrmwTyd88TrVVOcz0nzGVne+u4ROdgaP5q0FGlinQjTSQN96ZocKns0ZU71EuFEjAU88a+bqB7TlO4lCL48WPkxmvsYyAxwSYDMq/zwvHYfU5CWyv4RxgXFqtug4B3FS8kJ4BINu/YDEZocQGFXdf/vZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dJnLxUBU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 482C9C4CEF7;
-	Mon, 30 Mar 2026 22:42:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774910543;
-	bh=KEFQLZc20GWW8sgN2/76iip+g3PEt4uQ0FT8+1KvwXQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=dJnLxUBU5LnSUHF1d1WPIyOzKVijcgeaimKRu14Cf4v/aA1HMdZhuu5gSsYU6NALA
-	 5+cIDn0blVJBbe87OIwjOAxMUFACHt1Zm55YRn4pWl0EtUmG1ncOPgQBippmBkvcLm
-	 0DHcCIwoZd20JaJimS+0tfuAiTIcsDYD3BcFLNOeMofld5ZL+7TxgUGojmE8MNLWHX
-	 PM7/hDtUf0esLdcycLnyMtzS/yJyEKf09FszjvYvZbWCC14ngLTZvswolbRcFibFCK
-	 2409zxujVFUvq9OjpOMoT+lGs4jHEmjJgwlkqUo5NbWk+bGjvHyzey87GhqFPp096V
-	 sU+BypcC13RuA==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-In-Reply-To: <20260326081050.1115201-1-wenst@chromium.org>
-References: <20260326081050.1115201-1-wenst@chromium.org>
-Subject: Re: [PATCH v2 0/2] regulator: mt6315: add regulator supplies
-Message-Id: <177488194606.167050.13383296010943273438.b4-ty@b4>
-Date: Mon, 30 Mar 2026 15:45:46 +0100
+	s=arc-20240116; t=1774882102; c=relaxed/simple;
+	bh=xpBPUcul1mxy76GdOsZONkg8Sx2okkRC6m5zBbw2K2U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bCxVOK5gjduDy4+muLIKiqt2uUZJWntcAkhXGYGiybs/xMJTETLZWHi0jP5Kso9hastE1dD25DYl5s5bzpKzdsUHoltrdBtKAzBSIwu4gjyyxAWYMC8faHFrHuJopVuAeKGKSACCneQmMaT2bC3pTJTFbEBMm4i7rQpslpqZd1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=byu97nM0; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1774882101; x=1806418101;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xpBPUcul1mxy76GdOsZONkg8Sx2okkRC6m5zBbw2K2U=;
+  b=byu97nM0kVK6sXPi2Ars2jrEyZxmWIFEbIssuepZBxVJKiQO8OCfzkUh
+   Li17a95Y7r6c9HQ3LHnG4UKtGmWoa9txE43VXKHGfPCZeM3PO2FlnxcZS
+   DB2OPSxpz6J+aj3tgizdWB8QZn5gzI1lN9TO2VI1vVAPPvR0nzPRN+Q9W
+   UvIqpUA0E/tcHsD2pPvdjGJcoNOy+kuy99yQtYIhIS9zrCR5KsPLRxCM8
+   9ZhJwhVJWhXPqUbvh8oGkUon3UVgIGlS8c7gJEQxGpEUtxE6OCN0mreUm
+   PoDpYKpZ2ebRWdjfu2Qhtbj1OKgDae3mjDYsTbzMKkI2IVnYFrtTCCC6V
+   g==;
+X-CSE-ConnectionGUID: 5gdJG16QS9+WFOPeUskbCQ==
+X-CSE-MsgGUID: MmyPapJrSK2AbhJZvZNL7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="79779133"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; 
+   d="scan'208";a="79779133"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2026 07:48:20 -0700
+X-CSE-ConnectionGUID: GeCJocUATueDNdJ/3Bzb9Q==
+X-CSE-MsgGUID: Uwruj5+6QpuBx/L3s5F1+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; 
+   d="scan'208";a="222767787"
+Received: from lkp-server01.sh.intel.com (HELO 283bf2e1b94a) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 30 Mar 2026 07:48:17 -0700
+Received: from kbuild by 283bf2e1b94a with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w7DuY-000000001E5-1RHg;
+	Mon, 30 Mar 2026 14:48:14 +0000
+Date: Mon, 30 Mar 2026 22:47:32 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mikko Perttunen <mperttunen@nvidia.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-pwm@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Yi-Wei Wang <yiweiw@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>
+Subject: Re: [PATCH v2 2/7] pwm: tegra: Avoid hard-coded max clock frequency
+Message-ID: <202603302251.AFXspVqF-lkp@intel.com>
+References: <20260325-t264-pwm-v2-2-998d885984b3@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev-3ac6c
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1511; i=broonie@kernel.org;
- h=from:subject:message-id; bh=KEFQLZc20GWW8sgN2/76iip+g3PEt4uQ0FT8+1KvwXQ=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBpyvxMA3ShhadjMJFm+yMuBgo1epnMA7LXIqnTb
- TaKpUtyeuKJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCacr8TAAKCRAk1otyXVSH
- 0I5PB/9S8zgjJrYgaMUtuHun1Hsk1sZ5p3dpGcZqX8Xo24uvgAYM+mudCYj3OzvEhU4hDQXF9In
- HWmR+w098C190BNhR+dtPdBNP/SlSyLFxSuqaC3jZY9jlryM7d8uedsO14MGwnXhOZddk8Yi53d
- 7J7bXsTk4icZTaA6ABms4xsL4Y8OKSS5HqJ1WzLxR9J9AghNHDfLDNLlaN9rnDfbtnT5p4q8GGG
- Gs+6BZMoJbWoK0/RVf5n7lBRQHIfwlUTEv5HxNh4nMuL/MwWGJnzsAittPyQbcY8mYBAaaQsKHd
- msOE9yKHKNFSI6SD9ZU/SO7tsyZvN82gzHm2YzTogAv8R0ES
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260325-t264-pwm-v2-2-998d885984b3@nvidia.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282713-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,collabora.com,chromium.org];
+	TAGGED_FROM(0.00)[bounces-282536-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[nvidia.com,gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7F10E3620D0
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,intel.com:dkim,intel.com:email,intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 49F0F35D476
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 26 Mar 2026 16:10:47 +0800, Chen-Yu Tsai wrote:
-> regulator: mt6315: add regulator supplies
-> 
-> Hi,
-> 
-> This is v2 of the "Add MT6315 regulator supplies" series.
-> 
-> Changes since v1:
-> - Link to v1: https://lore.kernel.org/all/20260324053030.4077453-1-wenst@chromium.org/
-> - Move supplies to top level node, at the same level as the compatible
-> 
-> [...]
+Hi Mikko,
 
-Applied to
+kernel test robot noticed the following build warnings:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.1
+[auto build test WARNING on 11439c4635edd669ae435eec308f4ab8a0804808]
 
-Thanks!
+url:    https://github.com/intel-lab-lkp/linux/commits/Mikko-Perttunen/dt-bindings-pwm-Document-Tegra194-and-Tegra264-controllers/20260329-233356
+base:   11439c4635edd669ae435eec308f4ab8a0804808
+patch link:    https://lore.kernel.org/r/20260325-t264-pwm-v2-2-998d885984b3%40nvidia.com
+patch subject: [PATCH v2 2/7] pwm: tegra: Avoid hard-coded max clock frequency
+config: hexagon-randconfig-r113-20260330 (https://download.01.org/0day-ci/archive/20260330/202603302251.AFXspVqF-lkp@intel.com/config)
+compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 2cd67b8b69f78e3f95918204320c3075a74ba16c)
+sparse: v0.6.5-rc1
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260330/202603302251.AFXspVqF-lkp@intel.com/reproduce)
 
-[1/2] regulator: dt-bindings: mt6315: Add regulator supplies
-      https://git.kernel.org/broonie/regulator/c/d15d0f1a27b2
-[2/2] regulator: mt6315: Add regulator supplies
-      https://git.kernel.org/broonie/regulator/c/292d64fb98a2
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603302251.AFXspVqF-lkp@intel.com/
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+sparse warnings: (new ones prefixed by >>)
+>> drivers/pwm/pwm-tegra.c:303:47: sparse: sparse: cast truncates bits from constant value (7fffffffffffffff becomes ffffffff)
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+vim +303 drivers/pwm/pwm-tegra.c
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+   266	
+   267	static int tegra_pwm_probe(struct platform_device *pdev)
+   268	{
+   269		struct pwm_chip *chip;
+   270		struct tegra_pwm_chip *pc;
+   271		const struct tegra_pwm_soc *soc;
+   272		int ret;
+   273	
+   274		soc = of_device_get_match_data(&pdev->dev);
+   275	
+   276		chip = devm_pwmchip_alloc(&pdev->dev, soc->num_channels, sizeof(*pc));
+   277		if (IS_ERR(chip))
+   278			return PTR_ERR(chip);
+   279		pc = to_tegra_pwm_chip(chip);
+   280	
+   281		pc->soc = soc;
+   282	
+   283		pc->regs = devm_platform_ioremap_resource(pdev, 0);
+   284		if (IS_ERR(pc->regs))
+   285			return PTR_ERR(pc->regs);
+   286	
+   287		platform_set_drvdata(pdev, chip);
+   288	
+   289		pc->clk = devm_clk_get(&pdev->dev, NULL);
+   290		if (IS_ERR(pc->clk))
+   291			return PTR_ERR(pc->clk);
+   292	
+   293		ret = devm_tegra_core_dev_init_opp_table_common(&pdev->dev);
+   294		if (ret)
+   295			return ret;
+   296	
+   297		pm_runtime_enable(&pdev->dev);
+   298		ret = pm_runtime_resume_and_get(&pdev->dev);
+   299		if (ret)
+   300			return ret;
+   301	
+   302		/* Set maximum frequency of the IP */
+ > 303		ret = dev_pm_opp_set_rate(&pdev->dev, S64_MAX);
+   304		if (ret < 0) {
+   305			dev_err(&pdev->dev, "Failed to set max frequency: %d\n", ret);
+   306			goto put_pm;
+   307		}
+   308	
+   309		/*
+   310		 * The requested and configured frequency may differ due to
+   311		 * clock register resolutions. Get the configured frequency
+   312		 * so that PWM period can be calculated more accurately.
+   313		 */
+   314		pc->clk_rate = clk_get_rate(pc->clk);
+   315	
+   316		/* Set minimum limit of PWM period for the IP */
+   317		pc->min_period_ns =
+   318		    (NSEC_PER_SEC / (pc->clk_rate >> PWM_DUTY_WIDTH)) + 1;
+   319	
+   320		pc->rst = devm_reset_control_get_exclusive(&pdev->dev, "pwm");
+   321		if (IS_ERR(pc->rst)) {
+   322			ret = PTR_ERR(pc->rst);
+   323			dev_err(&pdev->dev, "Reset control is not found: %d\n", ret);
+   324			goto put_pm;
+   325		}
+   326	
+   327		reset_control_deassert(pc->rst);
+   328	
+   329		chip->ops = &tegra_pwm_ops;
+   330	
+   331		ret = pwmchip_add(chip);
+   332		if (ret < 0) {
+   333			dev_err(&pdev->dev, "pwmchip_add() failed: %d\n", ret);
+   334			reset_control_assert(pc->rst);
+   335			goto put_pm;
+   336		}
+   337	
+   338		pm_runtime_put(&pdev->dev);
+   339	
+   340		return 0;
+   341	put_pm:
+   342		pm_runtime_put_sync_suspend(&pdev->dev);
+   343		pm_runtime_force_suspend(&pdev->dev);
+   344		return ret;
+   345	}
+   346	
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
