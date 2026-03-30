@@ -1,266 +1,184 @@
-Return-Path: <devicetree+bounces-282450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282452-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yA7oBDZkymn27gUAu9opvQ
-	(envelope-from <devicetree+bounces-282450-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:53:26 +0200
+	id OARAGvNjymkj8gUAu9opvQ
+	(envelope-from <devicetree+bounces-282452-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:52:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 062B435AA19
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:53:24 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB0A635A991
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:52:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 60EE63009F3C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:49:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5B16D301DDBA
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548293C344D;
-	Mon, 30 Mar 2026 11:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8D63C9437;
+	Mon, 30 Mar 2026 11:51:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PDM0g9Xy";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gRIG9Sdf"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="bAXQbXc3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11D163803EB
-	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 11:49:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774871360; cv=none; b=XyjtGgQMa56M+xe3fIQ4YlVbOS1aHkQTLoulCDNmuqp5nX1QCcmXQe6fWEpIedQ8jNTODYcdxj+3dlIsuD8ZVZSCgKusO5YqNCxaqucI+B0HCCSX1rwMoYOpqN2apOqmVIwKWDovCUcvp4UVxbTCfR8raVZaXEmKHHkS58KPdVs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774871360; c=relaxed/simple;
-	bh=IH6bsJ2fHIG5hc26HpCXbHj+oKQF1cN53dsvQV6EUv8=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92313C873A;
+	Mon, 30 Mar 2026 11:51:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774871495; cv=pass; b=hJhAWWYDxjGqiqAh9c9MN6krNxLLJGf5bHoaIy195WwsJr5lOJCbk/KEX/boL2yNI7rozu+fDJE1MAbFkgwqUeweitjOZt5+tPbggnPJZPvAWiwG/D5Fcb9iBnJ3V5MhRpWUOaGmD93sj2QYFSF3GXoXee9pThr5JGmzK8r6RtM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774871495; c=relaxed/simple;
+	bh=edj6f/TGYgZWe9QLCIBypkC/NvLm36CSsmAWCnvVAbk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tHdbWelHRuuebjWSQtXhx8AYeX1fIUAhD+ke1lgGN7LgHdPWmaqGSUJMAOHEo6hGXV3gjOTSYY0fIOYoFgqZAw5p37ZBsP3W2CGm3FeI7853e/XKwvjoML6JYyjorm/Qj/+clqhjXzEnYJr553uukeWGm6Jd+yZgOF2lmpx/YNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PDM0g9Xy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gRIG9Sdf; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62UBZb3P4013544
-	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 11:49:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=hebXS8dFlHSczLktf6Y+/HKY
-	041XZ7QQsM+NHoi8IeA=; b=PDM0g9Xys8JS9E0kCWkQkTc700SzDc1JTkxu5Qpz
-	9ekcybnN9tccvtsIO8d0ZPQ88RvcHbMQD5T/H0GaX1VQ1i33spid+sGOqNbiG/5Z
-	y8fvrTNtkORjQBKbOD0vuReX3mNc+mmsARDRAAz9SSt+jvkgfeIt6qwnLhkUBS+i
-	LnXURhZi3291MV50+VsM7acoEohDXa7VO9N7WCGlev8exGag1jF5l4b9xN/9MQ0/
-	J1U9+uyKDYk+cvHpRzMdfFsFubnLFfhJBA1iXDtJG3U96CrdyB6OZM3HiGxVvqRm
-	4l4o+9TBVVAlAF0PuBBS82YU58tb7z+XPYQI+zFOMFdMpQ==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d7regr17n-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 11:49:18 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-50b4076dc16so86458681cf.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 04:49:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1774871357; x=1775476157; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hebXS8dFlHSczLktf6Y+/HKY041XZ7QQsM+NHoi8IeA=;
-        b=gRIG9Sdf05Hrec6jxRaSNJrxosgdhyQHA1I8UojQxarPsbw8PS4eGpdycLUFiIm/ue
-         mBqP+M6lAcdr6sptpYjGPA2jE+vXsfhCQiFgefshd7uuwxTLJyttywLgnwPQGDHrksse
-         B5rWbQILvSJwDwqrAV89ANHvqK6ZosBuwg14bEVwBdWcmeQvLov9GUmo6lvds8HIgoFc
-         /g0fTQ4MX1M6Ero8xe2TMvVnZlV5ayxHdP2XH8PKyh8hYvPHZsF03Tni+dgblsRk+Dau
-         ZlwXLNRKo0pSFaP/MTturSw8Go1KUBMXFvAu90UVZTBqwbjA02L7c9g5KgsdWvWzGKTW
-         eM7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774871357; x=1775476157;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hebXS8dFlHSczLktf6Y+/HKY041XZ7QQsM+NHoi8IeA=;
-        b=sRonqJ17cB4z0Ucr75JqMT3LeMr9wdNL5a93XlQlkPhiS9ABXTFAaP6JFeGxL+cvkY
-         6Y+Iv14KDUFIbt9AZCSPmFedPoVE5TzzPPR5TSAsYwrvyK7VYY15h9mWo3QdDz3ldNqI
-         Bne4BXzlgiB5bo5nQMEgnwVHnlAciZkN5v+J8O/uVVwsErokz9tSyf1C7FBH2tHYkogl
-         xxrjFr9kaWhR6IcY+SAH3Fg4M+/or45xFiHsp6+e9nkMR+9EjIj0qQ56GWtY+uMapjIt
-         umuXSKSBlnjiWDp4DtZZWr/xwOHIXLfCj3Mc0Yz+FJWIjqB25FdMzyXCzLWvMrG7/LPm
-         oWKg==
-X-Forwarded-Encrypted: i=1; AJvYcCXV4q2HrxVlYrj70kpruiEz6YtWupyBYYdcFTmi5qiTAVfF3NXwqjoDlLDzkddiRL0RufTMSpuIVv6J@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIPNk30JDHwgs2vW2kq0X8dXybTcDra0uEg46mazqCKrMxOECO
-	CstyR49txfvjdNtt0F8vnevg8zeJwTrBfp1i8AAcvdi84eVO0ireXHNiM5+snanJOG9UJ+u7mDc
-	rZMz4jrVSxkFOX35gXAluXDjnAL/zHJ/DuetUEmly4Mi8ImrUd3swXaN4saWPfPHY
-X-Gm-Gg: ATEYQzyRkw6jFgfDPWZyrziFQcdnIh5QvudWb5phSOx9MLSvEnkmqop2srG1qykcSau
-	C3Hf7Tih8aU+eUlfVNnzwRsdQlA0jS3HwxrFI4hC5BGT9BAqI7Ck1lBmaljiy5VQ61jY0JfJjLN
-	MQ9+9tLHwZJdBhpvStrGm8DwFlnzDRflf1tzxX58+GyRuF/XB3sIrN4zDylV4Teej6j7EROldmV
-	b0/pg0ZsL6znZ/LTQOxhz8/E6gGZ8Ef0KK6inTXMRDP2IIugHekxLYYHvCuaGUWvo0w63UkPsQT
-	1oZV74QWxx81B3KS+MdTnwUitO3aQbPIhbOMBe4AL+Lv7kFEp1qw9cXKyVFHHBwfmUNxISW80Tg
-	zLYSuL6qR/AWRc7QhndnCyMg0wnP1lwASYd4VyEq7h6WK/NQsR24l1AiXBOG1xQXO/KNlKqNqT5
-	xIFxOOB4oy9xF6n28jFU+rpB216cuZ9DqwYH0=
-X-Received: by 2002:a05:622a:295:b0:50b:4e65:95d3 with SMTP id d75a77b69052e-50ba398eabfmr172138741cf.65.1774871357292;
-        Mon, 30 Mar 2026 04:49:17 -0700 (PDT)
-X-Received: by 2002:a05:622a:295:b0:50b:4e65:95d3 with SMTP id d75a77b69052e-50ba398eabfmr172138191cf.65.1774871356694;
-        Mon, 30 Mar 2026 04:49:16 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a2b145642dsm1615209e87.65.2026.03.30.04.49.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Mar 2026 04:49:15 -0700 (PDT)
-Date: Mon, 30 Mar 2026 14:49:13 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bryan O'Donoghue <bod@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
-Message-ID: <gcu6qzsoff2fox3nbytegyikajn65ae4ekowcn7bs4x2k53vao@rykmxndzzhlu>
-References: <7712fbdd-a225-49f0-aeb9-ebcbb9d5abac@oss.qualcomm.com>
- <da3ed78d-fb5e-4820-95d6-527d540cf03e@linaro.org>
- <1f38187a-9464-4aa9-b70a-03b767349d56@linaro.org>
- <c5278028-dfe9-4d09-970a-a25977967bdd@linaro.org>
- <016c03b8-27c3-41dc-a630-8e7095db1f88@linaro.org>
- <456ded59-d13e-4b61-975b-97ca48b5e771@linaro.org>
- <RAPaPhpxA39W0ykm-Cr1KaDiJKpRqdQTXUeEmt5mQn4lJBHEGaIS010ejjmhUYEBsHjzrTX41Ek9zLU2bae_YA==@protonmail.internalid>
- <76ea03d0-d41b-4880-a48c-06570eb089ed@linaro.org>
- <0101d8bc-1ae8-475e-bb9e-cc1e16db87ec@kernel.org>
- <6d5ebab6-3c4e-4a1c-9578-6e926cbd96de@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=O0kzDHEJjssuEKtvrcePfvw7KvHM7KducRuWwpca+logo6+vaJItkMqepUo9ewdbSVwPev6SsdzOxpZUhSHd7q6SCu1iXed3Pw/gzjs8cB1WyNoIrjLZIlWIedzq9TBWevdpE6arKrp1zCpf9+/3t6Aw7JQgB39lNyMgBd9GZCE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=bAXQbXc3; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1774871452; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=j1Hk0CJjKXW9sdMYJFRvns9c4GgmWAHXiggeVrANYvF1e1WO5eno+KkVL6B3B1XSTfyss1tCOavcuBwFIA39wg2XoZLFeMOQ6R2yDX7HYiNuWpylmiTAgzRH4D8+fgYBr/8ObKoPMMmWx4+z6QrCHts093ivdZnRJbkEo+KAVhU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1774871452; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=15SW2UZmj9L14ZbmYWu+YmNSkGcYxzsZ3KRbJg87q3I=; 
+	b=ltr1S2zrc13lTBv79d17gVoPxYOG6eJXRBaiLa1zWFHbAnGVcQEmQ4p3QKG+rGmdUQni931HC3MDEKPrf0zJRqITZWb78MdG5j3/VHL+UCqU9lR5uKiA4GzDojCdTddugbLRVv9Xi/GXFHhPvv3DdtNI/q1ICckzOeJ+b7FR2gk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774871452;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=15SW2UZmj9L14ZbmYWu+YmNSkGcYxzsZ3KRbJg87q3I=;
+	b=bAXQbXc3kLCDPaMQ3hzqjOzdOkJZb9WfT560GF++gIgBEHo3aq1lRXSRAUiqxx9D
+	iq2LwXzZa7mcVfod2M2LkAVYifPtpmFB45xa48FhAizJ/wxDiuTmBgg+sdjYx5EtGKI
+	wPDruAutV0u+McDWdI4kKzSyXoZtK8gR45M/DTDU=
+Received: by mx.zohomail.com with SMTPS id 177487144983591.88336926880925;
+	Mon, 30 Mar 2026 04:50:49 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id B8AC91804F1; Mon, 30 Mar 2026 13:50:43 +0200 (CEST)
+Date: Mon, 30 Mar 2026 13:50:43 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Chaoyi Chen <kernel@airkyi.com>
+Cc: Sandy Huang <hjc@rock-chips.com>, 
+	Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Damon Ding <damon.ding@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+	Alexey Charkov <alchark@gmail.com>, dri-devel@lists.freedesktop.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	kernel@collabora.com
+Subject: Re: [PATCH 00/10] Synopsys DisplayPort Controller improvements for
+ Rockchip platforms
+Message-ID: <acphlgK6ZmBitGJL@venus>
+References: <20260326-synopsys-dw-dp-improvements-v1-0-501849162290@collabora.com>
+ <FE1BFB774BE13241+54b8a8ce-5a8c-495d-a53f-65a2440924fb@airkyi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ez6uvywry5y7oix6"
 Content-Disposition: inline
-In-Reply-To: <6d5ebab6-3c4e-4a1c-9578-6e926cbd96de@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=G6wR0tk5 c=1 sm=1 tr=0 ts=69ca633e cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=f9JiygmAj-6OnV0y8IgA:9
- a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzMwMDA5MiBTYWx0ZWRfXyumoL70xSQj6
- UgE3lBZtvjLFDRoZqbXbkI94TKFQQPUS6woehjb+mAY3XZhLLQNkrk6XsNwNU8hdBipHPGtrIis
- 9erW9HQC6eAiM9bmc0LODV15DOiMFZI16tFmTQXCJAQ3bnohZfBLhESweW53gLNKH8wW81qRYjK
- 4genAUPOmYP2wq0A+cYsKKvzEflyVOP/JKNDbboz6+lzjw9AuBONlxMCq6O9ISNELgr84uV0TsY
- xdP5ufJXNk09ZKXEeub3edkr9PTCXT3Pp8YL2NgN61JFfpz3ZHxiEpYMFqvECzWoIIJ9eIOcXkt
- rULB0R6tOnalV6RFHvODHw1lBE9G2yo8oxufpvycjT2DdShbrVNZYQgYwpzRWIR231e1++8Zhq3
- J1PMuBXSyFAHkZY5f/V7YBNB0AoLhYJkdRdcJY9Rq55z3b/FgqBTpDxsj5rUAkxAWX88CNyyYvU
- K1BAvXDlaUBj4DFVS7w==
-X-Proofpoint-ORIG-GUID: TymYGceKmZ5U-PRv67KtUxIGZyYXVeZb
-X-Proofpoint-GUID: TymYGceKmZ5U-PRv67KtUxIGZyYXVeZb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-29_05,2026-03-28_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 clxscore=1015 suspectscore=0 bulkscore=0
- malwarescore=0 adultscore=0 spamscore=0 priorityscore=1501 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603300092
-X-Spamd-Result: default: False [-0.16 / 15.00];
+In-Reply-To: <FE1BFB774BE13241+54b8a8ce-5a8c-495d-a53f-65a2440924fb@airkyi.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-0.2.2.1.5.2/274.861.95
+X-ZohoMailClient: External
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282450-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-282452-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,collabora.com];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,0.15.66.64:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:dkim,0.0.3.232:email,0.152.150.128:email];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 062B435AA19
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:dkim]
+X-Rspamd-Queue-Id: DB0A635A991
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 30, 2026 at 01:34:57PM +0200, Konrad Dybcio wrote:
-> On 3/30/26 11:25 AM, Bryan O'Donoghue wrote:
-> > On 30/03/2026 10:17, Neil Armstrong wrote:
-> >> On 3/30/26 11:02, Bryan O'Donoghue wrote:
-> >>> On 30/03/2026 08:49, Neil Armstrong wrote:
-> >>>> On 3/27/26 18:42, Bryan O'Donoghue wrote:
-> >>>>> On 27/03/2026 15:28, Neil Armstrong wrote:
-> >>>>>>> To be frankly honest you can make an argument for it either way. However my honestly held position is analysing other upstream implementations connecting to the PHY means we can't make the PHY device a drivers/phy device - it would have to be a V4L2 device and then for me the question is why is that even required ?
-> >>>>>>
-> >>>>>> This is plain wrong, DT definition is different from software implementation, you can do whatever you want if you describe HW accurately.
-> >>>>>
-> >>>>> I'm not sure what point it is you are trying to make here. Are you trying to say drivers/phy is OK with you but you want an endpoint ? If so, please just say so.
-> >>>>
-> >>>> I'm against using the "phys = <>" property in the CAMSS to reference the PHYs, a "PHY" in the classic terminology is tied to a single consumer, and if it can be shared to multiple consumer you must model a mux or whatever in the middle.
-> >>>
-> >>> The CSIPHY-to-CSID routing is runtime-configurable and is already managed by the media controller framework.
-> >>
-> >> This is not compatible with the PHY bindings if you don't have a defined MUX device in the middle, it's wrong. You're hiding the muxing details in the CAMSS blob node.
-> >>
-> >>>
-> >>> DT describes static hardware connections. The dynamic mux is a software concern, not a hardware description concern.
-> >>
-> >> DT must describe the possible interconnections between the nodes, if a PHY can be used by multiple hardware components, it must be described.
-> > 
-> > But right now the CAMSS block is described as a single block. There is no CSID device in the kernel _yet_.
-> > 
-> > When we break CSID into its own block then fine, lets have a debate about a mux then but right now the "nodes" are CAMSS[MONOLITH] <=> CSIPHY there is no DT CSID device to model this to.
-> 
-> Let's take a step back - since any CSIPHY can feed into any CSID (at runtime),
-> the resulting nodes would either look like:
-> 
-> // hardcoded, m may != n
-> csid_n: csid@1000000 {
-> 	phys = <&csiphy_m>;
-> };
-> 
-> or
-> 
-> // determined at runtime
-> csid_n: csid@1000000 {
-> 	phys = <&csiphy_0>,
-> 	       [...]
-> 	       <&csiphy_n-1>;
-> };
 
-I think the bigger problem is:
+--ez6uvywry5y7oix6
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 00/10] Synopsys DisplayPort Controller improvements for
+ Rockchip platforms
+MIME-Version: 1.0
 
-&csid_L: {
-	phys = <&csiphy_M>;
-};
+Hello Chaoyi,
 
-&csid_N: {
-	phys = <&csiphy_M>;
-};
+On Mon, Mar 30, 2026 at 09:34:15AM +0800, Chaoyi Chen wrote:
+> > There are two parts, which possibly need some discussion:
+> >=20
+> >  1. I added a dedicated bridge callback for out-of-band hotplug events,
+> >     which is separate from the hotplug_notify. I have a feeling, that
+> >     there might be a better solution, but haven't found it.
+>=20
+> Could you explain what an out-of-band hotplug event is?
+>=20
+> Can't the drivers/usb/typec/altmodes/displayport.c respond to these
+> hot-plug events? Thank you.
 
-aka split mode.
+That is what generates the out-of-band hotplug event in the first
+place via drm_connector_oob_hotplug_event(). The oob in that call
+means out of band.
 
-> 
-> or we could store them once, centrally, in the "CAMSS_TOP" node and
-> pass handles around as necessary:
-> 
-> // camss "catalog/manager" driver/library provides CSIDn with PHYm
-> camss: camss@10000000 {
-> 	phys = <&csiphy_0>,
-> 	       [...]
-> 	       <&csiphy_n-1>;
-> 
-> 	csid_n: csid@1000 {
-> 		// no PHY references
-> 	};
-> };
-> 
-> Konrad
+If you look at that function it calls oob_hotplug_event() callback
+on the DRM connector, which is then implemented by
+drm_bridge_connector_oob_hotplug_event(). This function calls uses
+the normal hpd handling (shared by in-band and out-of-band) and I'm
+patching it, so that the bridges are aware of hpd explicitly being
+provided out-of-band.
 
--- 
-With best wishes
-Dmitry
+Greetings,
+
+-- Sebastian
+
+--ez6uvywry5y7oix6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmnKY5AACgkQ2O7X88g7
++ppCWQ/9FPgpYzVbuIaK1W4l+x0qPYHV6vLjMwbbsc0KleVql8OJlXxjkvOCyN/f
+l1VW8NiYtCsRcwffTey5PgDjwPCscQT9y9L4w2kRbJhGsCe/zwaYIvuQfp6hPrkY
+OLDnBG3FoxxDxwR0wSK1buk+joq6UcLX8ZvB96C99j4MifkarRROr6UEzU6f7rIO
+47KouuDZLCCd2hujJ2dVOmAhWoZrI9tGworvDdQYFWrpEkehDubrg15cbNJ3ob7W
+KuagSE2REZF2KDM1wgzEcA3VzrYVvz1p4vpsffgR1uqZ4ds7F8+0TB61EURI1rJV
+wXR7En0dBIRgRjebfw5gRq6kt+MCZLAuPn0LBCtRAotK0JsdGlhuM3MMJKay5Bx5
+NUZ4obzJob04VqWMrlcN1PoTs/la+1ZMg32TO3vhyhAdpGIBDXS3mfyXKNzcDcsy
+i41OK3i7GwRlpeqv7XiGCLTVGjkqf3D+qxzkuS6yejaP4AuMyFwgUfL1ePfEHU1X
++7spbpwiVijXY3Fb7gyTU3KggqStX43D7wHkXNTIRKtrWAXXJ3FrKT+RTzjDUPYm
+MLwfdEzLxXpC0kJ/7O+D128J5BIRLzM1kaN8RD+UtMSEjyA0lYfP6tGXfjMEQrxP
+xMfJpD5qcTvl2ktQYOa8+V6NJzVOyo6BWxH73GQpe3t9w+0zU0I=
+=wqPq
+-----END PGP SIGNATURE-----
+
+--ez6uvywry5y7oix6--
 
