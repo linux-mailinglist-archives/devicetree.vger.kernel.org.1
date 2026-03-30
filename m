@@ -1,122 +1,127 @@
-Return-Path: <devicetree+bounces-282400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282425-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aHBnMzlUymn27gUAu9opvQ
-	(envelope-from <devicetree+bounces-282400-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 12:45:13 +0200
+	id SC80Dh5Zymn27gUAu9opvQ
+	(envelope-from <devicetree+bounces-282425-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:06:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33CD93599C7
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 12:45:13 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4863359E8E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:06:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3AE8030B4065
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 10:38:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9E20B303FD95
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 10:59:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABEA93BE15C;
-	Mon, 30 Mar 2026 10:38:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E98013C141F;
+	Mon, 30 Mar 2026 10:59:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LAsYXpaP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nu2yKKMU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429893BD255;
-	Mon, 30 Mar 2026 10:38:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0D2391848;
+	Mon, 30 Mar 2026 10:59:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774867127; cv=none; b=soo18LMsSmN6SQAxYzzrakgWCn+6iI+KkJXF7QmGjXGtXj7Hp+4NAOA2S4E7c8/8GC3PKpV2WjfNo9SlNICIsHq6ecXvMfRPfCL3fbPSGopT2FygPj++bmGDTWqk/YGKcKUvjJnZm6rNIUK37JjklgcTdAGuf/Tpot5yV/x0FtA=
+	t=1774868394; cv=none; b=mikBGaHhXiLoaN/8vsp9nzgI8O7DqPE6s8OnR3e5zmlQRpS7BcOEHE7jinaHtywpx4owwgE69lWW4YfxKkwvNTcHCpWS0EdjBhOrOAU/FEN5SDweQCzew9/4M3TlM9NWAxrJwOH2Cch8lBKqbf1Q2XDcV2MFQ5WbpA0pedMi7as=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774867127; c=relaxed/simple;
-	bh=Up2jSL42UaI/x/7sZuYAASmrStypwv5klvrtpgOj6Tc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bz2rIrKY/6Z8pqyWcFuwq9PfCDtyxh0fnM5GlUAsbcDielyqy6hexQuUVWkegLgrcSeiVl2c4l76/d5tYo5dZS13E7F+ZExCHNC8dykgQ/ePtqZjTNqS/xcM4o1yY7r8hdgQ1pCWGpPUz1tDPXr4pN8jPjmXau2R5F7cxp2CmO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LAsYXpaP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78123C2BCB1;
-	Mon, 30 Mar 2026 10:38:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774867126;
-	bh=Up2jSL42UaI/x/7sZuYAASmrStypwv5klvrtpgOj6Tc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=LAsYXpaPQU8s0/0/r5BVU1VyflN60Ib28AvHL7Z0UP1tsU7+y7TXWL0S+cyhKLIV5
-	 bcLKML+0309w5N1OVqszb4td+g5E/RLBzulS0opvYqP7iTwequom5MTuH4jl8w2dFY
-	 4qtvLDpJs1hJFAf7q6zliGdOfrqM8nXEpUop653D4Yj3N4UzrxL17ncsBqfQrPwZiU
-	 NDNSRy1KHVnMLTNtGXILkb/CNPDhsQfabqHBKM+sFHHw0zvsgwWVfr/8u938t7xzCb
-	 bEtJACkZoPqCwhmchB1LtLSGQNft4cW/OnEcJhijk1xqci6y8xCny/atBBzBbrWU1z
-	 dVtEm2x+dr9oA==
-From: Yixun Lan <dlan@kernel.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>
-Cc: spacemit@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dts: riscv: spacemit: k3: Add i2c nodes
-Date: Mon, 30 Mar 2026 10:38:40 +0000
-Message-ID: <177486686484.1895179.11451358903582402960.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260327-02-k3-i2c-v2-1-2119c0918868@kernel.org>
-References: <20260327-02-k3-i2c-v2-1-2119c0918868@kernel.org>
+	s=arc-20240116; t=1774868394; c=relaxed/simple;
+	bh=TP/ijlT8VPaNoReM01g+AkVQTYxK9b6XLtwbT0XD5gs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y5hG7hqo/VVRNwDA8E7jbOhYeiH5Nj4MDyipwggurYWsaNhPrdRGdgG6Nh4p8YiI4ZDg5ULO8LAUoiw6kIMF8tyFRIVsHYg/aXJxdsH8phMeLENj+poo51XXtxg6woxYVunkfyNJYjewBlcEYiESkM0ZmQkE2u+9O51J39rMHXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nu2yKKMU; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1774868392; x=1806404392;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TP/ijlT8VPaNoReM01g+AkVQTYxK9b6XLtwbT0XD5gs=;
+  b=nu2yKKMUdqzmtR5u3YZqbMfceb+M/jbWVHuFxBEf01bYdyNgSPw27Gvi
+   IOLNkUwMFLfEBOeMhSTz0lHbxBK7DuGDhiViOW12+Qa+LfobQ/8m5fxPZ
+   SvXRNVlaykzErOp/wLXldrMl8Q0zLEGdG49ItY7ZkM2t5OM6YylVSy20I
+   GVLpnS73KdN9vuK8+K7JBJS+gjndQJ41cx9L2Hg/N4IiTWqcIr0VCReUq
+   XtymbZUny4Zyjvv+R7/RkNdWHSP/ta4d1XQqsosaP5k7oHuvIP/jyPosb
+   fBJty05G7p05JtD/5G2lT63dJ2YdEcY5QsCv/YXuB5EdruMeDr+LKxR1d
+   A==;
+X-CSE-ConnectionGUID: 94yMWFnVT4y+hwt+w/Bzng==
+X-CSE-MsgGUID: NpwBV17DQbafTMOW+xuvdg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="76048859"
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; 
+   d="scan'208";a="76048859"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2026 03:59:50 -0700
+X-CSE-ConnectionGUID: E5vAM/GSTPu25opRSjP9HA==
+X-CSE-MsgGUID: kT/JKLwZT+KiWFjsn0SOCQ==
+X-ExtLoop1: 1
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmviesa003.fm.intel.com with ESMTP; 30 Mar 2026 03:59:47 -0700
+Date: Mon, 30 Mar 2026 18:38:40 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: iansdannapel@gmail.com
+Cc: linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, mdf@kernel.org, yilun.xu@intel.com,
+	trix@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, neil.armstrong@linaro.org, heiko@sntech.de,
+	marex@nabladev.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
+	dev@kael-k.io
+Subject: Re: [PATCH v6 0/3] Add Efinix FPGA configuration support
+Message-ID: <acpSsCQtCPvLlXsL@yilunxu-OptiPlex-7050>
+References: <20260327114842.1300284-1-iansdannapel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260327114842.1300284-1-iansdannapel@gmail.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-282425-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282400-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[yilun.xu@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 33CD93599C7
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim]
+X-Rspamd-Queue-Id: C4863359E8E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-On Fri, 27 Mar 2026 11:40:40 +0000, Yixun Lan wrote:
-> Populate all I2C devicetree nodes for SpacemiT K3 SoC. The controller of
-> i2c3 is reserved for secure domain, and not available from Linux. The
-> controller of i2c7 simply doesn't exist from hardware perspective, as
-> vendor directly name the i2c controller used for PMIC as i2c8.
+On Fri, Mar 27, 2026 at 12:48:38PM +0100, iansdannapel@gmail.com wrote:
+> From: Ian Dannapel <iansdannapel@gmail.com>
 > 
+> Hi all,
 > 
+> This is v6 of the series adding support for programming Efinix FPGAs
+> over SPI using the fpga-mgr subsystem.
 
-Applied, thanks!
+Sorry, I'm on vacation and cannot make it in v7.0-rc, though I assume it
+should be neat as a v6.
 
-[1/1] dts: riscv: spacemit: k3: Add i2c nodes
-      https://github.com/spacemit-com/linux/commit/cb322cbffb1e70b4ca1be7955ed19fe486de8295
-
-Best regards,
--- 
-Yixun Lan <dlan@kernel.org>
+Will try to merge it in v7.1-rc, thanks.
 
