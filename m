@@ -1,158 +1,241 @@
-Return-Path: <devicetree+bounces-282285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282287-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNSwHVY1ymnn6QUAu9opvQ
-	(envelope-from <devicetree+bounces-282285-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 10:33:26 +0200
+	id kG2LNak1ymnn6QUAu9opvQ
+	(envelope-from <devicetree+bounces-282287-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 10:34:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E912357373
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 10:33:26 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8735F3573B5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 10:34:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AFE1D300D9F6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 08:28:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C73583006176
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 08:34:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 150723AB29D;
-	Mon, 30 Mar 2026 08:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E793AD51B;
+	Mon, 30 Mar 2026 08:34:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="PwF6o3Bu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="pJLHg8Ru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B90D382F01;
-	Mon, 30 Mar 2026 08:28:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 681C239E191
+	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 08:34:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774859297; cv=none; b=BbntPzIDorHZGKp3qXClhACraRa46v2dhQphtpnMfHgwkwXrIkcc+a1qjN2YWsi27I/yaqGVTjaGn7c73y2+x2FB9lcSdZqQxZd2qrImAOqEG2btwF5D4WU95P30KHUAkOF9vvWx/OaaS0phoA+HnU540bveDJsCiUk687iUnyg=
+	t=1774859687; cv=none; b=oTOy06KLybWdoDmBB4WHnNKczXD9MEs1Cq8VqPW74LiuDDHsI/sXnqmLV54ezsB+F24DjMxMmD4wXSiW74uT9lnHX4OflNjdqGLJbTCqvKmQDHEVYx2hwgMYJSMaoDphqr55QEa2duSulNer5H2Rr1qQDbDayTMQVpdLe3Xtv5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774859297; c=relaxed/simple;
-	bh=/+3Ho70scmMY0l1174Jc0V5ZPFuRAeYgT9Dg8UWlO+o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=R7lWVCrHDL+RWAEQmE/V9zkJ5OllmJHJ/A3AGB1QZItyT+pOmW5GpG5pAd/4kfxxSQKw1FLLLAFt3UKy7sBESGw0H1APBJaPq/FrRIbFw0Rz9pWmbrCuDvBtB8mWl8HpxVnIEbLJGcXi98XkOQ0b2beDd2JbWXLz36yKDfPhKgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=PwF6o3Bu; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=IWDxnURTi+IF8/iD9M37ASLzznD8KgRMZxGLGGi0MIw=; b=PwF6o3Bus4nqDZmEr/pMzIT22J
-	cHfd1EIWui1UH5vO2QOorMssuZJ2Dd+kF8s0DHsXcOXkSM7RbdTalDnd735//E5P1Yti+6YjnhZv/
-	5zPB7X25VbAw/OQzLPETrJDw9kkSjgmnL1k9CjnCgOT5oQEf7eSEN+WyhAofuwnplR7+h2Js/6Ahc
-	BJREJ6pAUjAXqVJgMDKgw2c0gys1jAUwcrmMynoqJbsYzhrRn12lJzzagV+d7zqrs6QX60wfMl3v3
-	GrnLKJnas26fbqcy6YestrjuvOi5Lxdsq8bK6gn8W1HWeHXLmReGzbnzqUZUJNgxn/FaK8jle9kav
-	4wAoCBYA==;
-From: Heiko Stuebner <heiko@sntech.de>
-To: =?UTF-8?B?6LCi6Ie06YKmIChYSUUgWmhpYmFuZyk=?= <Yeking@red54.com>,
- linux-rockchip@lists.infradead.org, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kever Yang <kever.yang@rock-chips.com>,
- Finley Xiao <finley.xiao@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Add RK3562 serial aliases
-Date: Mon, 30 Mar 2026 10:27:52 +0200
-Message-ID: <1954782.CQOukoFCf9@phil>
-In-Reply-To: <9b3ee9e9-d44d-49b1-81ac-9c3806dc0efb@kernel.org>
-References:
- <tencent_4BED6C3FFB8102B4BB3D08D6F47F2CCFC908@qq.com>
- <9b3ee9e9-d44d-49b1-81ac-9c3806dc0efb@kernel.org>
+	s=arc-20240116; t=1774859687; c=relaxed/simple;
+	bh=S/riY656uNQaeNQIky9DTnq91bWvKnSdxYdiKTr3GZQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=S4oFAqFQmLkyyPOsOXLDfha0WhOSSNooCm8U0GfPm8REnrTIKIn0jCGonHXuY6Gx20/jv156MdqTHxvFB60Ml220PFETkmmyJc21GQp59ye4ikpA9283jRgqoGgAAfZEP01K9AsgOmgwpiFh8iWwrmONfkCke2Eg0IMIXsx9FUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pJLHg8Ru; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-487035181a7so27401685e9.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 01:34:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774859685; x=1775464485; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/ffjqD22wwfmhO+ld9/luMon3GDz24nlqdVKsWtkc/0=;
+        b=pJLHg8RuVw6tBdC1BFRqcf+pLBJ06iKWnzRW+K61Cz9uvmpI5VXT2FrXFZtB0JPhHC
+         P6svvq/BvO6JKr56uFBtV0+T+4IrH9KMuxxbjMqtGXZ1sjZUodGSrbp9aMjlO69up1Et
+         SUKVWZf8qaFcYSWDfjGH8OQSVUQN7vDLoGfCbqK0jTbI5SNrr0zIGx7cYH0uIktY0EBa
+         Ao8E+8gd2tmjtxecJ0qAQWv24dI3oiLMmVWp8RHkLgw5qy7jjk5KAQwsB2m6DVeGyacP
+         Eejnz/mzMhjCIm9yeKjGQ0e5jILrj9bv+jdnCkUuBTkMTlrkM7ODJJ60GdYrXv7f0AwU
+         vlAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774859685; x=1775464485;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/ffjqD22wwfmhO+ld9/luMon3GDz24nlqdVKsWtkc/0=;
+        b=S7H6UhHN26F31Wp/5r3bE+nP8Qh5icNLEGmq/1pfTFMs1yKCvXHFLl2akzD1ZjDCm+
+         E8G4mRXkNzLvUFF02ZxEM21cycYpZF/pVV+12oNT3VdslLVLhEp6+0ps86JeY6vKjjIa
+         Q8xetJH8FYNPIUMdHBhfEU2xvCXu7W9dBQvPsNiUCBKZlQ1KmzNtE8Ehv56I0KqPsgs/
+         7DfwekNeCxH7HmgVg7Y0meP2fDiGoEjI8j/t7hLrrVexSmmiAob+5LregYPNnpsRfF3M
+         3xurUsVNQ7s+ZUv5ZTKtWnVRJZCRx4dCEcyHserQZcO4b5vG/j0466SePWGrAUrE43Yz
+         Kqtg==
+X-Forwarded-Encrypted: i=1; AJvYcCUeFi2TIYmln2l2p0nM6NQMC8zDI3XiH7YqfY9iuq6m2i4BDZWmygfoL2tI1wyuAJwRxIhYBUXaHrm/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxX5clmAB3M5utEV0z3nSHLSOTGaqLhY011HrqHwhZ1TxKkKcEY
+	gEmu33ZzYxjbAW3rr3bsfu7GAMCOh2IW+BCm6fAYwCtoWUXa+ggqiqZY
+X-Gm-Gg: ATEYQzxU29T1uYcGhJTFcYqnw5o9/scTPByZcAyV0iTR+KR+u6vzJM+cJA3BFoU9hdQ
+	KgDi1WB23PIbG2LbGMJVMyWtno8Zy1td9KdJwqr+u+sBcyci1hAQg06i6h4m/GqAjnQ64NV9IdB
+	OcSx74zbgh18NIhb5510yuzP15wcU1cIVN6dKF6ui1pO4D43cwB3uoSNJeUO/hetHmGvbjSvvz6
+	d32f7ml0n3AFXTIChFg/lSA50SjH9h6wQzIaGoLZ6mPaEYz7gjSrl4gIWtP50GSsvuwEfqwm4fa
+	mL2C6NX4ed5ObjetmgFcADE8tqTT67O+4Qhe2arIpvtlEgx9wupaVMG6Oo6gQy816qHhBDgHcC1
+	LeJ6NXIiMFP/kuipSOKh7Dkc5xdiAjtw3tG3ewKcXxDUso8N9/8sTxBnhCmozxykLdo0371SPrh
+	q48iNLvST/j7uiRiK9mp0=
+X-Received: by 2002:a05:600c:6287:b0:485:3b5b:eb8 with SMTP id 5b1f17b1804b1-48727ef6617mr197260045e9.26.1774859684663;
+        Mon, 30 Mar 2026 01:34:44 -0700 (PDT)
+Received: from luca-vm.lan ([154.61.61.58])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48722c6b495sm508329995e9.2.2026.03.30.01.34.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Mar 2026 01:34:44 -0700 (PDT)
+From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+To: linux-mediatek@lists.infradead.org
+Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sen Chu <sen.chu@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Lee Jones <lee@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Gary Bisson <bisson.gary@gmail.com>,
+	Val Packett <val@packett.cool>,
+	Julien Massot <julien.massot@collabora.com>,
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+	Fabien Parent <parent.f@gmail.com>,
+	Chen Zhong <chen.zhong@mediatek.com>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org
+Subject: [PATCH v4 0/9] Add support for mt6392 PMIC
+Date: Mon, 30 Mar 2026 09:29:34 +0100
+Message-ID: <20260330083429.359819-1-l.scorcia@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-282287-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282285-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[sntech.de:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,mediatek.com,collabora.com,packett.cool,vger.kernel.org,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,red54.com:email]
-X-Rspamd-Queue-Id: 0E912357373
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8735F3573B5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Am Samstag, 28. M=C3=A4rz 2026, 16:08:57 Mitteleurop=C3=A4ische Sommerzeit =
-schrieb Krzysztof Kozlowski:
-> On 28/03/2026 14:05, =E8=B0=A2=E8=87=B4=E9=82=A6 (XIE Zhibang) wrote:
-> > This fixes the stdout-path in rk3562-evb2-v10.dts.
-> >=20
-> > Fixes: ceb6ef1ea900 ("arm64: dts: rockchip: Add RK3562 evb2 devicetree")
-> > Signed-off-by: =E8=B0=A2=E8=87=B4=E9=82=A6 (XIE Zhibang) <Yeking@Red54.=
-com>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3562.dtsi | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3562.dtsi b/arch/arm64/boot=
-/dts/rockchip/rk3562.dtsi
-> > index e4816aa3dae0..14e74e8ac7df 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3562.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3562.dtsi
-> > @@ -26,6 +26,16 @@ aliases {
-> >  		gpio2 =3D &gpio2;
-> >  		gpio3 =3D &gpio3;
-> >  		gpio4 =3D &gpio4;
-> > +		serial0 =3D &uart0;
-> > +		serial1 =3D &uart1;
-> > +		serial2 =3D &uart2;
-> > +		serial3 =3D &uart3;
-> > +		serial4 =3D &uart4;
-> > +		serial5 =3D &uart5;
-> > +		serial6 =3D &uart6;
-> > +		serial7 =3D &uart7;
-> > +		serial8 =3D &uart8;
-> > +		serial9 =3D &uart9;
->=20
-> UART aliases are properties of the boards, not SoC.
+The MediaTek mt6392 PMIC is usually found on devices powered by
+the mt8516/mt8167 SoC and is yet another mt6323/mt6397 variant.
 
-We had this argument a lot of times for those numbered aliases
-where everything on all soc documentation, schematics and also
-user documentation for individual boards, generally references
-exactly those numbers :-)
+This series is mostly based around patches submitted a couple
+years ago by Fabien Parent and not merged and from Val Packett's
+submission from Jan 2025 that included extra cleanups, fixes, and a
+new dtsi file similar to ones that exist for other PMICs. Some
+comments weren't addressed and the series was ultimately not merged.
 
-But fiiiiiine, if it comes up all the time ...
+This series only enables four functions: regulators, keys, pinctrl
+and RTC.
 
-I really hope, you're okay with intermitend ordering though:
+I added a handful of device tree improvements to fix some dtbs_check
+errors, added support for the pinctrl device and addressed the comments
+from last year's reviews.
 
-	serial0 =3D &uart0;
-	serial2 =3D &uart2;
-	serial5 =3D &uart5;
+The series has been tested on Xiaomi Mi Smart Clock x04g. In order for
+pinctrl to probe successfully patch [1] has to be merged too, but
+each patch set is independent from the other.
 
-because otherwise, this would cause pure chaos everywhere.
+Changes in v4:
+- Dropped usage of the regulator compatible
+- Fixed commit messages text to properly reference the target subsystem
+- Added supply rails to the regulator
+- Reworked the regulator schema and PMIC dtsi. Now all supplies are
+  documented and the schema no longer includes voltage information
+- Removed redundant ldo- / buck- prefixes
+- Renamed the pinfunc header to mediatek,mt6392-pinfunc.h
+- Modified the MFD driver to use a simple identifier in the of_match
+  data properties
 
-Because as I said this serial number is used on board-schematics,
-board-user-level documentation, SoC documentation, even silcscreen
-on boards ... so everywhere.
+Changes in v3 [2]:
+- Added pinctrl device
+- Changed mt6397-rtc fallback to mt6323-rtc
+- Added schema for regulators
+- Fixed checkpatch issues
 
-Similar for all the numbered busses ofthe SoCs.
+Changes in v2 [3]:
+- Replaced explicit compatibles with fallbacks
 
+[1] https://lore.kernel.org/linux-mediatek/20260317110249.391552-1-l.scorcia@gmail.com/
+[2] https://lore.kernel.org/linux-mediatek/20260317184507.523060-1-l.scorcia@gmail.com/
+[3] https://lore.kernel.org/linux-mediatek/20260306120521.163654-1-l.scorcia@gmail.com/
 
-Heiko
+Fabien Parent (4):
+  dt-bindings: mfd: mt6397: Add MT6392 PMIC
+  dt-bindings: input: mtk-pmic-keys: Add MT6392 PMIC keys
+  mfd: mt6397: Add support for MT6392 PMIC
+  regulator: Add MediaTek MT6392 regulator
 
+Luca Leonardo Scorcia (3):
+  regulator: dt-bindings: Add MediaTek MT6392 PMIC
+  dt-bindings: pinctrl: mediatek,mt65xx: Add MT6392 pinctrl
+  pinctrl: mediatek: mt6397: Add MediaTek MT6392
 
+Val Packett (2):
+  input: keyboard: mtk-pmic-keys: Add MT6392 support
+  arm64: dts: mediatek: Add MediaTek MT6392 PMIC dtsi
+
+ .../bindings/input/mediatek,pmic-keys.yaml    |   1 +
+ .../bindings/mfd/mediatek,mt6397.yaml         |  11 +-
+ .../pinctrl/mediatek,mt65xx-pinctrl.yaml      |   1 +
+ .../regulator/mediatek,mt6392-regulator.yaml  |  74 +++
+ arch/arm64/boot/dts/mediatek/mt6392.dtsi      |  73 +++
+ drivers/input/keyboard/mtk-pmic-keys.c        |  17 +
+ drivers/mfd/mt6397-core.c                     | 118 +++-
+ drivers/mfd/mt6397-irq.c                      |   8 +
+ drivers/pinctrl/mediatek/pinctrl-mt6397.c     |  37 +-
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt6392.h |  64 +++
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/mt6392-regulator.c          | 509 ++++++++++++++++++
+ .../pinctrl/mediatek,mt6392-pinfunc.h         |  39 ++
+ .../regulator/mediatek,mt6392-regulator.h     |  24 +
+ include/linux/mfd/mt6392/core.h               |  42 ++
+ include/linux/mfd/mt6392/registers.h          | 487 +++++++++++++++++
+ include/linux/mfd/mt6397/core.h               |   1 +
+ include/linux/regulator/mt6392-regulator.h    |  42 ++
+ 19 files changed, 1527 insertions(+), 31 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6392-regulator.yaml
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt6392.dtsi
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt6392.h
+ create mode 100644 drivers/regulator/mt6392-regulator.c
+ create mode 100644 include/dt-bindings/pinctrl/mediatek,mt6392-pinfunc.h
+ create mode 100644 include/dt-bindings/regulator/mediatek,mt6392-regulator.h
+ create mode 100644 include/linux/mfd/mt6392/core.h
+ create mode 100644 include/linux/mfd/mt6392/registers.h
+ create mode 100644 include/linux/regulator/mt6392-regulator.h
+
+-- 
+2.43.0
 
 
