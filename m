@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-282210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282215-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sAfhAv8ZymlR5QUAu9opvQ
-	(envelope-from <devicetree+bounces-282210-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 08:36:47 +0200
+	id aCVyFJQbymlR5QUAu9opvQ
+	(envelope-from <devicetree+bounces-282215-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 08:43:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C8D8355FF2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 08:36:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A393F356092
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 08:43:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C607D3001FFF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 06:36:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5667930086EF
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 06:38:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF6B0391505;
-	Mon, 30 Mar 2026 06:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71537394492;
+	Mon, 30 Mar 2026 06:38:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YHf9AyVi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LP9rn1D/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF6237E2EE;
-	Mon, 30 Mar 2026 06:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 441E6394477;
+	Mon, 30 Mar 2026 06:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774852603; cv=none; b=fetyISpDr/MR8YgREeqS5VfjhFFJlUyw4MJ4hYtpr0GjDp+mCx3Oi7PnGJlWxK1sRC4NPBbkhq9z/waQSeNdkuuAEUBIdO56WMdUn/oAuwzgqt+F+XkbxidtACi4PE7AS7JgB+I7xFMA/o0YIR7pdK27Ob7LfUHYn5MWE+heh/U=
+	t=1774852703; cv=none; b=hGIkghdEOJNrcAszZOBSw9V9AZWgmRk4066TIuj+h/sGjDB9W1jG8RMRMhBsivVMdFYRbPfu8DhBUfl+/I/Bac8Wczp++PQ8S7ZYcHofoxePi85/WiX8TWc3cMGN+OjfQmhwJi+sdI2kzLnCuGi7eIvSS07+ntFfLCSXTCR/u1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774852603; c=relaxed/simple;
-	bh=WQGozcPVOmHXsmy0M+0Xqiud1Yr5AI2xCXzTxu9+5FU=;
+	s=arc-20240116; t=1774852703; c=relaxed/simple;
+	bh=9wwEgOO947YoL6NmDNh8zySgqO8VzbsFyNHuMG5Rc/A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NoaJu2nlKvISI2sYPsVMuiQQDwzHZFXXoWnFUrwKTetRjxbmrnFEw5Jv54OFRQ/UU2FaUgbhs1LrhNe9+4ZmFyQW/yOSvdA8UW6ZebZ0QHdndu07RK8ylKI86AIRCTW0mL41ZXJJCs+VmfNTQnlphIWKqEodd0BZK+Xj8iNC9ZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YHf9AyVi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D23CC4CEF7;
-	Mon, 30 Mar 2026 06:36:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=iMbFcnIvXIhwlFBQ3nWC9UqvNjPAOIvGoN/b3jDWKZvsLcCuDSxGTHOwoFl1+KDEUwmhpjtMOZoaunt1Dvb2rP5+k4e+8Z2asdZCh/r+TaI40b5Whqh/5pw+mFzcoOzHOODDTRm+nvsgwfnmRs+14Ehtom5u/9lhoyIp2+ENMQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LP9rn1D/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84DBCC4CEF7;
+	Mon, 30 Mar 2026 06:38:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774852603;
-	bh=WQGozcPVOmHXsmy0M+0Xqiud1Yr5AI2xCXzTxu9+5FU=;
+	s=k20201202; t=1774852702;
+	bh=9wwEgOO947YoL6NmDNh8zySgqO8VzbsFyNHuMG5Rc/A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YHf9AyVi0iNmhS4tQMpiqSgzT1L0tgFDq61lZFQlrL/SUDW8X9YyuQhC2xY60wgxX
-	 2fgz8NNZTTuE3mxTPT/h2OqmhSwFx46Zv6Tq8Uu6aOa4sxqDQUtae8zgdbMoFCe4lo
-	 0d/+N9K/vFr8WG2K20k+g11xzqnQUTRsoix5y2VpEIO5evMsokcpe9gIrgTwJYmjCb
-	 5lo4UektVPQ9bfLvkQg1mRmZHhQusSBWGrnB1apeMHw2tFbYy1sKc15cSPCDe1FRFO
-	 31jWrebbZYq3+Axx0btNLDTi4rQVOGSK8pCwO5C5o+p1Erk2g3iJ3Ip+y6DGKZzX2t
-	 En4Mye+7d4pxQ==
-Message-ID: <e397d9e0-2dfb-4e6b-8c00-03e1b0a53be5@kernel.org>
-Date: Mon, 30 Mar 2026 08:36:39 +0200
+	b=LP9rn1D/lhx/7/4NKnxiFFzJ+t9VxqWFdEFO12Drajz6iDCXCGBwrDed+ugdaS6vg
+	 JaiDaaReraE3A6gaO2PKQADiup/1bn1h9IKYgadhUFSjXiyuF1PQFwE3sWre7jF2qx
+	 STRJ4kjyE+rOOpLiUkgw7dan2KUCuDm9i6yT7siPUnUZXdBE7V7BR4Ow8/TZ6yNkQp
+	 jaaCwR3EwERMUxyU/r/WZ9BUURrEeSXn/0OstKYA9fgzh0HGxq7d5EBE0PYVeEnorE
+	 JODN+pNUHvUjZHIzw3Sz1PTK2IXGikU6v1OiZOzCDVMcoSEWeX/ritqQaG/lCSlK+j
+	 qyeEKSIDBySVA==
+Message-ID: <85415166-4d3e-4905-8122-de8ae66b8da1@kernel.org>
+Date: Mon, 30 Mar 2026 08:38:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,20 +53,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: power: reset:
- cortina,gemini-power-controller: convert to DT schema
-To: Linus Walleij <linusw@kernel.org>, Sebastian Reichel <sre@kernel.org>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>,
- Khushal Chitturi <khushalchitturi@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20260328124707.141209-1-khushalchitturi@gmail.com>
- <177470797266.1536342.6967120656934552033.robh@kernel.org>
- <CAD++jL=_rCmW=eSV0kvck50sC2xaQnGQoEOy=DNcwkFvvWYUUw@mail.gmail.com>
- <3fa4fad0-d918-4de0-ad80-dad2141d2617@kernel.org>
- <CAD++jLnxoS-OGBSAXxgGPaME7eMTwCQ-C+uzub6m0o9ZgXL_aA@mail.gmail.com>
- <aciItMCdBbrVvMKB@venus>
- <CAD++jLn5qQqx5nAOWNifJcNPb00B_CtM=xF16qjB4qXGENmL9Q@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: add IPQ5210 pinctrl
+To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Linus Walleij
+ <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260325-ipq5210_tlmm-v3-0-3a4b9bb6b1fc@oss.qualcomm.com>
+ <20260325-ipq5210_tlmm-v3-1-3a4b9bb6b1fc@oss.qualcomm.com>
+ <20260326-marvellous-premium-grouse-d1d1ad@quoll>
+ <095ba19f-90c9-4410-9b65-607d29413bb1@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,52 +110,66 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAD++jLn5qQqx5nAOWNifJcNPb00B_CtM=xF16qjB4qXGENmL9Q@mail.gmail.com>
+In-Reply-To: <095ba19f-90c9-4410-9b65-607d29413bb1@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-282210-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-282215-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,4b000000:email]
-X-Rspamd-Queue-Id: 8C8D8355FF2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: A393F356092
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 29/03/2026 20:57, Linus Walleij wrote:
-> On Sun, Mar 29, 2026 at 4:09 AM Sebastian Reichel <sre@kernel.org> wrote:
+On 30/03/2026 06:56, Kathiravan Thirumoorthy wrote:
 > 
->> The problem is the node name (power-controller@4b000000), which is
->> reserved for power domains. You can keep the compatible.
+> On 3/26/2026 1:55 PM, Krzysztof Kozlowski wrote:
+>> On Wed, Mar 25, 2026 at 01:05:15PM +0530, Kathiravan Thirumoorthy wrote:
+>>> Add device tree bindings for IPQ5210 TLMM block.
+>>>
+>>> Signed-off-by: Kathiravan Thirumoorthy<kathiravan.thirumoorthy@oss.qualcomm.com>
+>> I don't see any differences here and cover letter does not explain that.
 > 
-> Ah, sweet, Khushal can you change this?
+> Pin control function names are made generic for some of the functions, 
+> so I thought I should drop it and mentioned it in the cover letter as below.
 > 
-> I think you can use gemini-poweroff@4b000000 because
-> this is pretty much a poweroff thingie.
+> Changes in v3:
+> - Grouped the QUP SE pins instead of mentioning by function wise
+> - Splitted the PWM functions which I messed up in V2
+> - Audio primary and secondary mclk function names are expanded to avoid the
+>    confusion
+> - Dropped the R-b tags due to the above changes
+> 
+> Based on your comment, I understand that since there is no schematic 
+> changes to the binding, there is no need to drop the tag. So I have 
+> picked up the tags in V4.
 
-So as I said - poweroff.
+So you dropped the tags because something changed in the "function"
+property? Why would that matter for review?
+
+I am not looking at this again.
 
 Best regards,
 Krzysztof
