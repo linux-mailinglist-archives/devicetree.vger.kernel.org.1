@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-282500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282501-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qIeqLwd/ymmR9QUAu9opvQ
-	(envelope-from <devicetree+bounces-282500-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 15:47:51 +0200
+	id cOsRGsuAymnX9QUAu9opvQ
+	(envelope-from <devicetree+bounces-282501-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 15:55:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AF8B35C426
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 15:47:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5CA235C65A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 15:55:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6E037301E5F4
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:46:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B908A30DD4D2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:46:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75A853D9DD3;
-	Mon, 30 Mar 2026 13:44:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7483D9044;
+	Mon, 30 Mar 2026 13:44:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="D8hvphWD"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="rzSDKMu+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2AD3D9044
-	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 13:44:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7E193DA5B3;
+	Mon, 30 Mar 2026 13:44:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774878277; cv=none; b=WwsP0xAaOKzJkA85se5uXc4sIaudppRajnLDTBSrerp4KjhOmI7zs/96cHej+CQ1vdejulnn4LjyfVe5sA1ctyMlpesi+NRWtZvBttnLzzCydQW6MGn/7t2jb6TjREdUJyc+hMzya7fL6/1875pc8qRKtENZLLLkaUva5XdExFQ=
+	t=1774878279; cv=none; b=iBSztiBqcl1ivVO4LcECFlIU9PK0k8xjP+Rph5jgR5NYrn5tZOqXyGa+X7Cn8OfH4nWPhIIVW1hZfjvyXRx6KINvjt3cVTT04A3b9dhkQMvk2M//GHLQCay9skSWOqS1fP2meEDDD7T9tESryrX2KjmWPgVNcjckax9qdTY6DJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774878277; c=relaxed/simple;
-	bh=S3HZghcHxR8VTHdT4bKr6owjthUCOnQ0Mt38RYLJ8Mk=;
+	s=arc-20240116; t=1774878279; c=relaxed/simple;
+	bh=S+9pZnIR4Ii2mrRay+00UvKlRFHb53jV5wYXLigv92Y=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KY8/9nOzWmuMdz8R72sHo1EiUDYvuUAhnApoLfL+by2u2Qbso6EUN60tyiDbo6HIX3/R3p+Bou7RrzAJlzevDfusapCX0yZJKYlYDymlmhsWFmfV7kMp9XkBby2NdveUaOeqQKcOmyTiFiCvD1eWqKQer9e17Hmw5CgxPXhqslQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=D8hvphWD; arc=none smtp.client-ip=185.246.84.56
+	 In-Reply-To:To:Cc; b=gTUVm6Z3efVf+XZoz/psPBDuQviwHjAH82BVHR/3Ym9k0meHOOkYBTR6m+PkBSaQoZKZRrqSvlpHz7rAQYxNZKH+HI4HpffltCG8kptiVtgBiBdW+UE80jQnwOrdUGE2d0TcKTwHuC+3pxePWW73YN803YjdQXT5AMtU4aCzIRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=rzSDKMu+; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id EC9EE1A3037;
-	Mon, 30 Mar 2026 13:44:34 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id A825F4E42868;
+	Mon, 30 Mar 2026 13:44:36 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C28EC5FFA8;
-	Mon, 30 Mar 2026 13:44:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B11C610450627;
-	Mon, 30 Mar 2026 15:44:32 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 7E40F5FFA8;
+	Mon, 30 Mar 2026 13:44:36 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 37E1E104505F2;
+	Mon, 30 Mar 2026 15:44:34 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774878273; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1774878275; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=JxnHNmFgDEfC8ZkI4lufUhDnXylRO/9U59fNo706pDI=;
-	b=D8hvphWDyZ/PgK6Sbj9zkalHlpyJ8ULGe/rFKUn1DHslWBqfvoqiOTQDF1t0AP9OtpoSoz
-	UoeGu6PlsCsbmE5xDOW6KJhjhghw6zf44ElPWPYS9HuvVF9Z2zwXliPuXKhL5EwK0W+Bxf
-	JKwUQNRhpRc1T4chk6n2u5s3Yj9xlMu3fP4xP3jQUGgFbOawD/NKUp0DrarjB8haEA3HlB
-	O/mbugN3mhzUrw+QprobWKjRFcYsgZEv9UXgkPo/H4Ib1luiEVSHUcKsOlockB2QrnrCGV
-	S7Lr1j95IfiDkDwxgMcpGvgvf0zw87cM8C98VCQ6X9rAF5RyapgzQXNb+91vKg==
+	bh=+LBatK0e2tx9BdeCCJcMioLXnURJiMafU/RyqrJOQxo=;
+	b=rzSDKMu+Xjq51PHLzGbLDefJ3u9lP54GkkfzPTPl7gCixCnE6+M/f0dZhEe62jutxt1jxp
+	VI7DxfUoBkra0+5SxG+Ta1eDJCxBgrXoKiKtmo0Qdt7B1fYFL7XoB0n8XlPjmX1ycRfXWh
+	IPZ1oLfBuGubkZH2x8WBPC+4J829F++Wgo0Vk0N2sDa8cbqdaRjQWI/LdmjJEvjvejGAQW
+	S7e4RvbdbKpUlUpuMNekbnkyO0RuRjB7STTEuwpUbF9c2d+C2opSvb5UUkznnW6TJrFIAP
+	fEWSpuPShlf1yFZfVzr0qt2XzqurdTyCLFuB3uP8lUv29Cxjf3TVRQBTjkYgQA==
 From: Thomas Richard <thomas.richard@bootlin.com>
-Date: Mon, 30 Mar 2026 15:44:07 +0200
-Subject: [PATCH v2 10/11] mfd: omap-usb-host: Add pbias regulator support
+Date: Mon, 30 Mar 2026 15:44:08 +0200
+Subject: [PATCH v2 11/11] ARM: dts: ti: omap4: Add pbias regulator to the
+ HS USB Host
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260330-omap4-fix-usb-support-v2-10-1c1e11b190dc@bootlin.com>
+Message-Id: <20260330-omap4-fix-usb-support-v2-11-1c1e11b190dc@bootlin.com>
 References: <20260330-omap4-fix-usb-support-v2-0-1c1e11b190dc@bootlin.com>
 In-Reply-To: <20260330-omap4-fix-usb-support-v2-0-1c1e11b190dc@bootlin.com>
 To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
@@ -80,165 +81,55 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-282501-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282500-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[iki.fi,kemnade.info,baylibre.com,kernel.org,atomide.com,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[iki.fi,kemnade.info,baylibre.com,kernel.org,atomide.com,gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[thomas.richard@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.3.32:email];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6AF8B35C426
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A5CA235C65A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add pbias regulator support to enable SIM_VDDS supply and unlock USB I/O
-cell. Previously, this was handled by the bootloader, now the kernel can
-take responsibility for managing the PBIAS regulator, ensuring correct
-operation regardless of the bootloader.
+On OMAP4 add the pbias SIM regulator to the OMAP HS USB Host.
 
 Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
 ---
- drivers/mfd/omap-usb-host.c | 55 ++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 54 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/ti/omap/omap4-l4.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/mfd/omap-usb-host.c b/drivers/mfd/omap-usb-host.c
-index 17a54f0087c3..907fb614d464 100644
---- a/drivers/mfd/omap-usb-host.c
-+++ b/drivers/mfd/omap-usb-host.c
-@@ -15,6 +15,8 @@
- #include <linux/pm_runtime.h>
- #include <linux/of.h>
- #include <linux/of_platform.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/string_choices.h>
+diff --git a/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi b/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi
+index 6904a84a1700..c5e097f9cd17 100644
+--- a/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi
+@@ -301,6 +301,7 @@ usbhshost: usbhshost@0 {
+ 				clock-names = "refclk_60m_int",
+ 					      "refclk_60m_ext_p1",
+ 					      "refclk_60m_ext_p2";
++				pbias-supply = <&pbias_sim_reg>;
  
- #include "omap-usb.h"
- 
-@@ -95,6 +97,8 @@ struct usbhs_hcd_omap {
- 	struct usbhs_omap_platform_data	*pdata;
- 
- 	u32				usbhs_rev;
-+
-+	struct regulator		*pbias;
- };
- /*-------------------------------------------------------------------------*/
- 
-@@ -334,26 +338,60 @@ static int usbhs_clocks_enable(struct device *dev, bool enable)
- 	return r;
- }
- 
-+static int omap_usbhs_set_pbias(struct device *dev, bool power_on)
-+{
-+	struct usbhs_hcd_omap *omap = dev_get_drvdata(dev);
-+	int ret;
-+
-+	if (!omap->pbias)
-+		return 0;
-+
-+	if (power_on)
-+		ret = regulator_enable(omap->pbias);
-+	else
-+		ret = regulator_disable(omap->pbias);
-+
-+	if (ret)
-+		dev_err(dev, "pbias reg %s failed\n", str_enable_disable(power_on));
-+
-+	return ret;
-+}
-+
- static int usbhs_runtime_resume(struct device *dev)
- {
- 	struct usbhs_hcd_omap		*omap = dev_get_drvdata(dev);
- 	struct usbhs_omap_platform_data	*pdata = omap->pdata;
-+	int ret;
- 
- 	omap_tll_enable(pdata);
- 
--	return usbhs_clocks_enable(dev, true);
-+	ret = usbhs_clocks_enable(dev, true);
-+	if (ret)
-+		return ret;
-+
-+	return omap_usbhs_set_pbias(dev, true);
- }
- 
- static int usbhs_runtime_suspend(struct device *dev)
- {
- 	struct usbhs_hcd_omap		*omap = dev_get_drvdata(dev);
- 	struct usbhs_omap_platform_data	*pdata = omap->pdata;
-+	int ret;
- 
- 	usbhs_clocks_enable(dev, false);
- 
- 	omap_tll_disable(pdata);
- 
-+	ret = omap_usbhs_set_pbias(dev, false);
-+	if (ret)
-+		goto err;
-+
- 	return 0;
-+
-+err:
-+	omap_tll_enable(pdata);
-+	usbhs_clocks_enable(dev, true);
-+	return ret;
- }
- 
- static unsigned omap_usbhs_rev1_hostconfig(struct usbhs_hcd_omap *omap,
-@@ -562,6 +600,15 @@ static int usbhs_omap_probe(struct platform_device *pdev)
- 
- 	omap->pdata = pdata;
- 
-+	omap->pbias = devm_regulator_get_optional(dev, "pbias");
-+	if (IS_ERR(omap->pbias)) {
-+		if (PTR_ERR(omap->pbias) == -ENODEV)
-+			omap->pbias = NULL;
-+		else
-+			return dev_err_probe(dev, PTR_ERR(omap->pbias),
-+					     "unable to get pbias regulator\n");
-+	}
-+
- 	/* Initialize the TLL subsystem */
- 	omap_tll_init(pdata);
- 
-@@ -757,6 +804,10 @@ static int usbhs_omap_probe(struct platform_device *pdev)
- 	}
- 
- initialize:
-+	ret = omap_usbhs_set_pbias(dev, true);
-+	if (ret)
-+		goto err_mem;
-+
- 	omap_usbhs_init(dev);
- 
- 	if (dev->of_node) {
-@@ -804,6 +855,8 @@ static void usbhs_omap_remove(struct platform_device *pdev)
- 		of_platform_depopulate(&pdev->dev);
- 	else
- 		device_for_each_child(&pdev->dev, NULL, usbhs_omap_remove_child);
-+
-+	omap_usbhs_set_pbias(&pdev->dev, false);
- }
- 
- static const struct dev_pm_ops usbhsomap_dev_pm_ops = {
+ 				usbhsohci: usb@800 {
+ 					compatible = "ti,ohci-omap3";
 
 -- 
 2.53.0
