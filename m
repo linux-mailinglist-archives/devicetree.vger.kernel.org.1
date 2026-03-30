@@ -1,71 +1,70 @@
-Return-Path: <devicetree+bounces-282331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282330-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0P/+MH0+ymnD6gUAu9opvQ
-	(envelope-from <devicetree+bounces-282331-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:12:29 +0200
+	id qGqPHHo+ymnD6gUAu9opvQ
+	(envelope-from <devicetree+bounces-282330-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:12:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82F18357EE8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:12:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30178357EE0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:12:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 49031301F487
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:07:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 63249301D4E0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:07:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9530D3B2FF3;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8916F3AE709;
 	Mon, 30 Mar 2026 09:07:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="edQ2oG6K"
+	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="kQfNrtS3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3A843B27C9;
-	Mon, 30 Mar 2026 09:07:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35E0A3AD531;
+	Mon, 30 Mar 2026 09:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774861658; cv=none; b=hbxmzuKoj6oHFJw93zF+ERgdwJ0X9NQshRVyd1FUd5MXg3CzlNEsbKp1dfaa9Rnn9rP1pIXXhulMW/yFBft+vVuTRAR+oEfTN2+g7bNFVXdGmfE/HXbmlSDMXe4XdxhD2c9aRw+MKz26aKNBi48Ck/Xns2TI6KgaEkJYs2BNVDw=
+	t=1774861658; cv=none; b=UAFKVrZ+1KwA7Nc4zeJ4bzWyGDlLnMludrG+nf8O7QTjyuKCwK2OJhlA7YxP+hlD7C1WcX6Syn/Gm5TwOO/dmaJChwlHqrO08NC2cReBMe0581PTZ/meH4b40Fl1vHrXg3mpS3+Fo82+LVgbCeYinsbfMNvZ1/lwUaLw6OWBLt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1774861658; c=relaxed/simple;
-	bh=agN87K+CDzqSq8A3CtdiM5qsSgnm7chk8ZFt0OrwmeU=;
+	bh=coHmsdtqcsW+dKyhuAd7vn7jGgDFbg9jYRqHLyenC9w=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:Cc; b=kbjzRHyrZxIzXWHzLzEvwbfbpgN/AVk+b+FebPIkqc7GwISmIzPSc9jEHS1l/+eV9Ylkcm0DhNymY0Vv6oA6kkBOk93hsDYHKAFB8xc02hXzH88oz1BAUEPOjFxljkuPoq8ShHUOkmf8MiYCdP9EY//SFzhe62n1x81mZYd7h1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=edQ2oG6K; arc=none smtp.client-ip=194.37.255.70
+	 In-Reply-To:To:Cc; b=GIgT4xWE0Bit0BJxydHm2rQCqihghZ8pXI2lD486lhGeCDAPrdX2btuk4OLRc82p0VhAJT3V3TOq6MRhPt3u3WCzIEx3P4e8Jqj2DC9x1zytw+2iZ65dpKh28GgcHyVt+fhZgs3Jdm5UjaJVXRK8vg1NV5242vBJegZ+HtBrkHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=kQfNrtS3; arc=none smtp.client-ip=194.37.255.70
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
 Received: from [194.37.255.9] (helo=mxout.expurgate.net)
 	by relay.expurgate.net with smtp (Exim 4.92)
 	(envelope-from <prvs=65635f912b=fe@dev.tdt.de>)
-	id 1w78ap-008Ycu-Ul; Mon, 30 Mar 2026 11:07:32 +0200
+	id 1w78aq-008Ydf-6D; Mon, 30 Mar 2026 11:07:32 +0200
 Received: from [195.243.126.94] (helo=securemail.tdt.de)
 	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <fe@dev.tdt.de>)
-	id 1w78ap-008YbP-Cp; Mon, 30 Mar 2026 11:07:31 +0200
+	id 1w78ap-00GTFL-KD; Mon, 30 Mar 2026 11:07:31 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dev.tdt.de;
-	s=z1-selector1; t=1774861650;
-	bh=lMn3lFGeOL2LbKYJ5BgVNUmk+cjNqBsZKKuwLQ+o6aA=;
+	s=z1-selector1; t=1774861651;
+	bh=eTw8E3ezVzDUqc+dP4JdW7vl/OP8CGUQKxaL+SejZ2g=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=edQ2oG6K66GfAqJd0kgsfIGvAxxbeJ6DEyt+5Bgy+bgnQFenimYRilAADUh5RbGMQ
-	 Q0RicTNqpHcpobDeh+HbIUWsy18osA6NtvKdKkL8iPHf7ByRfUYo2SHv784G+8jOIA
-	 ICArCQDj/oo6GFpUe78VW0qnnq9piU/Ee72S+qjhvaWmjzk2rZkrsLLXLc+b4m4TWM
-	 3K+Q9EFjoVSa/m2AFL3BZ0gjOBVlA2iGPn3BK+k0dLC7R4wNuz3CN0yXYUc0oUJ5+9
-	 uI+mcof7fuQsnIvNI5DmaUQl07ED1A5lbtF8chk8QXyFCGgUelVa9lsEdepQ24+iVS
-	 NHdH1OgRbk3ZA==
+	b=kQfNrtS3U/b1N3yvK+ooX+3QBH1QVBrgc36X6tdWU1UM9H5za5gSHr4oUIPYS0VMt
+	 jC/xgoN0TpBR0RQqVnYDpnpCY+aGHRNXxVzuL3j9FugVfJrFbOsaPYscu2clrZEgAw
+	 vmh4mgFKhdMmEMKQaGJMDUe5YY8SKauzwDYrbp5q8wOklS2Z2fnDD4G8j2MNUltb2o
+	 UaNOzK2+/evR6AaQ3EpcNk4Fya89XbtlF00fi9kCThAVm0BHGXzHuyvjkFzKUf3eV6
+	 nyRaAhkYXGXQ5NbYIbS+6770JoPgcfcEIVjagVv5wAqwxz1S4huT4iEWzq5dW1/il3
+	 Gqn+au3KwRwcw==
 Received: from securemail.tdt.de (localhost [127.0.0.1])
-	by securemail.tdt.de (Postfix) with ESMTP id E5F25240047;
-	Mon, 30 Mar 2026 11:07:30 +0200 (CEST)
+	by securemail.tdt.de (Postfix) with ESMTP id 143FA240046;
+	Mon, 30 Mar 2026 11:07:31 +0200 (CEST)
 Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-	by securemail.tdt.de (Postfix) with ESMTP id D6BDC240046;
-	Mon, 30 Mar 2026 11:07:30 +0200 (CEST)
+	by securemail.tdt.de (Postfix) with ESMTP id 07392240042;
+	Mon, 30 Mar 2026 11:07:31 +0200 (CEST)
 Received: from [10.2.3.40] (unknown [10.2.3.40])
-	by mail.dev.tdt.de (Postfix) with ESMTPSA id B50B62040A;
+	by mail.dev.tdt.de (Postfix) with ESMTPSA id D579F20E49;
 	Mon, 30 Mar 2026 11:07:30 +0200 (CEST)
 From: Florian Eckert <fe@dev.tdt.de>
-Date: Mon, 30 Mar 2026 11:07:12 +0200
-Subject: [PATCH v2 2/7] PCI: intel-gw: Move interrupt enable to own
- function
+Date: Mon, 30 Mar 2026 11:07:13 +0200
+Subject: [PATCH v2 3/7] PCI: intel-gw: Enable clock before phy init
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,7 +72,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-ID: <20260330-pcie-intel-gw-v2-2-8bd07367a298@dev.tdt.de>
+Content-Transfer-Encoding: 7bit
+Message-ID: <20260330-pcie-intel-gw-v2-3-8bd07367a298@dev.tdt.de>
 References: <20260330-pcie-intel-gw-v2-0-8bd07367a298@dev.tdt.de>
 In-Reply-To: <20260330-pcie-intel-gw-v2-0-8bd07367a298@dev.tdt.de>
 To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
@@ -90,15 +90,14 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org, Florian Eckert <fe@dev.tdt.de>,
 	Eckert.Florian@googlemail.com, ms@dev.tdt.de
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774861650; l=2285;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774861650; l=2080;
  i=fe@dev.tdt.de; s=20260205; h=from:subject:message-id;
- bh=lb6QCw9gymNGaU3gwgLeUyGUNWDhF66pmRRGTrBntko=;
- b=sNI2x29ee8uZAAOa7uvLnjH0hd/tlcDXapNwhd+w/Lxe6TI2ELK+oSHLImAoSEYbbPr2pI5UM
- h6JCo6beY/zAk1YwVMLUenjAct7orP8Fysn3R/7pAmn9P4yV/lhKKmZ
+ bh=coHmsdtqcsW+dKyhuAd7vn7jGgDFbg9jYRqHLyenC9w=;
+ b=T7awTZDD/b7+5jEOtcR4CkLqqj61lqSA8enPoRPazwosA0itEgbgpwu+gglvzKCRpTT1so2Uw
+ SdhHrH9PH9ZAcddIOzuilxpL6qU4agJRCrQ+7qoKyempnq7wdfaMzp2
 X-Developer-Key: i=fe@dev.tdt.de; a=ed25519;
  pk=q7Pvv3Au2sAVRhBz5UF7ZqUPNxUwXQ78Jdqu8E6Negk=
-Content-Transfer-Encoding: quoted-printable
-X-purgate-ID: 151534::1774861651-EEC25842-DDEDDA82/0/0
+X-purgate-ID: 151534::1774861652-EF422842-845B70A9/0/0
 X-purgate: clean
 X-purgate-type: clean
 X-Spamd-Result: default: False [-2.16 / 15.00];
@@ -112,7 +111,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	FREEMAIL_CC(0.00)[vger.kernel.org,dev.tdt.de,googlemail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-282331-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-282330-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[dev.tdt.de:+];
@@ -128,72 +127,83 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 82F18357EE8
+X-Rspamd-Queue-Id: 30178357EE0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-To improve the readability of the code, move the interrupt enable
-instructions to a separate function. That is already done for the disable
-interrupt instruction.
+To ensure that the boot sequence is correct, the dwc pcie core clock must
+be switched on before phy init call [1]. This changes are based on patched
+kernel sources of the MaxLinear SDK.
 
-In addtion, all pending interrupts are cleared and disabled, just as this
-is done in the disable function 'intel_pcie_core_irq_disable()'. After
-that, all relevant interrupts are enabled again. The 'PCIE_APP_IRNEN'
-definition contains all the relevant interrupts that are of interest.
-
-This change is also done in the Maxlinear SDK [1]. As I unfortunately
-don=E2=80=99t have any documentation for this IP core, I suspect that the
-intention is to set the IP core for interrupt handling to a specific
-state. Perhaps the problem was that the IP core did not reinitialize the
-interrupt register properly after a power cycle.
-
-In my view, it can=E2=80=99t do any harm to switch the interrupt off and =
-then on
-again to set them to a specific state.
-
-[1] https://github.com/maxlinear/linux/blob/updk_9.1.90/drivers/pci/contr=
-oller/dwc/pcie-intel-gw.c#L431
+[1] https://github.com/maxlinear/linux/blob/updk_9.1.90/drivers/pci/controller/dwc/pcie-intel-gw.c#L544
 
 Signed-off-by: Florian Eckert <fe@dev.tdt.de>
 ---
- drivers/pci/controller/dwc/pcie-intel-gw.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ drivers/pci/controller/dwc/pcie-intel-gw.c | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/con=
-troller/dwc/pcie-intel-gw.c
-index 80d1607c46cbbb1e274b37a0bb9377a877678f5d..e88b8243cc41c607c39e4d58c=
-4dcd8c8c082e8b0 100644
+diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/controller/dwc/pcie-intel-gw.c
+index e88b8243cc41c607c39e4d58c4dcd8c8c082e8b0..6d9499d954674a26a74bff56b7fb5759767424c0 100644
 --- a/drivers/pci/controller/dwc/pcie-intel-gw.c
 +++ b/drivers/pci/controller/dwc/pcie-intel-gw.c
-@@ -195,6 +195,13 @@ static void intel_pcie_device_rst_deassert(struct in=
-tel_pcie *pcie)
- 	gpiod_set_value_cansleep(pcie->reset_gpio, 0);
- }
-=20
-+static void intel_pcie_core_irq_enable(struct intel_pcie *pcie)
-+{
-+	pcie_app_wr(pcie, PCIE_APP_IRNEN, 0);
-+	pcie_app_wr(pcie, PCIE_APP_IRNCR, PCIE_APP_IRN_INT);
-+	pcie_app_wr(pcie, PCIE_APP_IRNEN, PCIE_APP_IRN_INT);
-+}
+@@ -291,13 +291,9 @@ static int intel_pcie_host_setup(struct intel_pcie *pcie)
+ 
+ 	intel_pcie_core_rst_assert(pcie);
+ 	intel_pcie_device_rst_assert(pcie);
+-
+-	ret = phy_init(pcie->phy);
+-	if (ret)
+-		return ret;
+-
+ 	intel_pcie_core_rst_deassert(pcie);
+ 
++	/* Controller clock must be provided earlier than PHY */
+ 	ret = clk_prepare_enable(pcie->core_clk);
+ 	if (ret) {
+ 		dev_err(pcie->pci.dev, "Core clock enable failed: %d\n", ret);
+@@ -306,13 +302,17 @@ static int intel_pcie_host_setup(struct intel_pcie *pcie)
+ 
+ 	pci->atu_base = pci->dbi_base + 0xC0000;
+ 
++	ret = phy_init(pcie->phy);
++	if (ret)
++		goto phy_err;
 +
- static void intel_pcie_core_irq_disable(struct intel_pcie *pcie)
- {
- 	pcie_app_wr(pcie, PCIE_APP_IRNEN, 0);
-@@ -316,9 +323,7 @@ static int intel_pcie_host_setup(struct intel_pcie *p=
-cie)
+ 	intel_pcie_ltssm_disable(pcie);
+ 	intel_pcie_link_setup(pcie);
+ 	intel_pcie_init_n_fts(pci);
+ 
+ 	ret = dw_pcie_setup_rc(&pci->pp);
  	if (ret)
- 		goto app_init_err;
-=20
--	/* Enable integrated interrupts */
--	pcie_app_wr_mask(pcie, PCIE_APP_IRNEN, PCIE_APP_IRN_INT,
--			 PCIE_APP_IRN_INT);
-+	intel_pcie_core_irq_enable(pcie);
-=20
+-		goto app_init_err;
++		goto err;
+ 
+ 	dw_pcie_upconfig_setup(pci);
+ 
+@@ -321,17 +321,18 @@ static int intel_pcie_host_setup(struct intel_pcie *pcie)
+ 
+ 	ret = dw_pcie_wait_for_link(pci);
+ 	if (ret)
+-		goto app_init_err;
++		goto err;
+ 
+ 	intel_pcie_core_irq_enable(pcie);
+ 
  	return 0;
-=20
+ 
+-app_init_err:
++err:
++	phy_exit(pcie->phy);
++phy_err:
+ 	clk_disable_unprepare(pcie->core_clk);
+ clk_err:
+ 	intel_pcie_core_rst_assert(pcie);
+-	phy_exit(pcie->phy);
+ 
+ 	return ret;
+ }
 
---=20
+-- 
 2.47.3
 
 
