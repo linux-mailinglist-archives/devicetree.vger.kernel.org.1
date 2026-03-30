@@ -1,204 +1,150 @@
-Return-Path: <devicetree+bounces-282379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282381-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KOvLJc1Pymmb7QUAu9opvQ
-	(envelope-from <devicetree+bounces-282379-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 12:26:21 +0200
+	id aH8JI/FPymmb7QUAu9opvQ
+	(envelope-from <devicetree+bounces-282381-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 12:26:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E4DE35934C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 12:26:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 097D4359391
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 12:26:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 84C11308BD6C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 10:19:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9A0423042957
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 10:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496553BBA1A;
-	Mon, 30 Mar 2026 10:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A8BE3BD224;
+	Mon, 30 Mar 2026 10:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Sv0tyoy6"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PXog3ORw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1E2E3CBE9A
-	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 10:15:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8044A3BA22E;
+	Mon, 30 Mar 2026 10:16:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774865711; cv=none; b=Qbh+sNMZbP83VXpExfi3iHFz+X8BhdHli54L1ULXzMfYpeGaGD0GI7Hlbx/ubLiDnZfZ7fBahqFRZHOI/UMtKoa5soDwtjuApHoolLLp8R6A4dN2500tUDknXjtkV36t/sgXzV7az+RttcLyw7kgFyJLjo8TK3QSKu4xloGGO0A=
+	t=1774865784; cv=none; b=uJf0tFa4fgei2PAQKlAeCZ9LIK8ZlNUAYo1QLw+P2tOAKNpoY9D2tTnkpHtzz8mVHdMHmYimiJznnoNRS3zWY4/v/3xF8bSVkGOxlPAnbF+xGHeFIUU36z6A2xwt2fgNyZPGv9PjxTn4nDdFr8F6Z60XKF+iEiDhJUENM3ZMExY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774865711; c=relaxed/simple;
-	bh=pGKPix7XiEt441lKBW8Y9b0Y9EmW4lxtf6JcRfDKsWo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ay12rf99lfkzWw8qfsZWic3YfBGu0YoP5poLM8LkL4Z9QrSu14UoJ4K2PpkvAhAKvw6avDA0LuHWnXNIuDCv6PP7eIVUM8MkK7r6Ou/CrmjpRX05VQR6q9+lfrwHPvgZ+irNWLjLEUaCbhZXOMHyEIir1LMVPVg0s3OceEpzt8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Sv0tyoy6; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-82418b0178cso2049317b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 03:15:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774865707; x=1775470507; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sH1ZtNzw7ASBY+TGObLJ+aQIZVnb+gkilqaMw0lmvhQ=;
-        b=Sv0tyoy6y1m8vamSJhw4Y1e3YgyRjEkT6aEqjtIupF1eRncGJ1m4CAfs6wnFyn9Gww
-         OtOmh+loTqGPp6Uf2BY3mAmt2v7yqyLub0xT6URbcQhv9szKZ6NwppSUMFpn1Q/gccHM
-         36d2QdPbD0ljFLRAr8gQI/Nx68y8i9t7o4OrXNT0y4G7t3C35dW+ago9axHC9s61O5cg
-         HhWqjl2uamszvzw1XKV/aTTsoPY95emUcJlXjBuZsAcJnOpw2A4bbVPAZ5whS429W5dl
-         Z44tq/I6ELer9qPZDLqwAXH0siYqdx9aaNImzamOiweT++lvXGxwysmbf9VqQ7zKPaCc
-         JlzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774865707; x=1775470507;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sH1ZtNzw7ASBY+TGObLJ+aQIZVnb+gkilqaMw0lmvhQ=;
-        b=TIHHHecLtEmSOvQK32BOFtDk8/rrCy3tODLR6a/lspDA8YchdkBQY5JZWxj4Jozb2N
-         cIHwpwcdzSIxhdCIxzTb+fQxi+t9qj6IIc6L0FbcXHJN1zS1BRB9NiFsvqqcVWUIh0G1
-         5bggw2AjbIPxA4gYFjUSfmCYWvllIbkpviBGtJ39EcH81xrr2sWfvK0hmTU60F9fB3BP
-         Eq9C3a4JRkL1c9hbG7LaxKJQNqyGeYhbGJMV1IybMzeduhbNmhd7xH+oNpcipwDmrxCr
-         rE44oMvExxm/X45i88MYk58mFn4cnrzfz/j+afclQQF9BzYzA86kfR/kKkpUijgqJGlu
-         fhHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXEcJbNbM6/mupu1L4rQ6FkoNNxSdVQjBgjbFWXv2pcrlvhLLHsqMbrKamgZYvFASyDcFqcUlFRN7k+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNi5JoTX9NlOxDs2DBA7lVIDPag8KR9tU7mDuIMO5zns1MKzJ3
-	oWTdl7uxvuojy1mH3LrykmughBu7/KI41TZgGmg3wecZIFKKBMLwGxTF
-X-Gm-Gg: ATEYQzydinwK998QqXviRobuXmCT46/NL2+iLPzo4dlnDvz7F7Wp4HdVal+QVQeHGpl
-	Ayja5HOkkwQ5uxgtZ1q8P/E4bMlEyTXMisG0/lgZvkIwdy96140KXqz0FWRX3YRFuHgZk1pKj0v
-	KSd8PO/Ev2XuBkGhRLiXWX02Pu/C3VjH8nNglK03CjcYsA2+GQSY/BlI0K05WtWmf3FdqoGPyVK
-	f+FezUfOmSq5xlZnORq8AaDCSklKgrJwReSdLGlAXqeZ9i6USY1kQZTJY9JhyeYAw2zHG3Qoh6w
-	8aBmCGyHOdQGNoqIQ/w77oS4opKmS2xv3czZB8XoQmZYPWOhwqs8AKPnVr4VJIrSurTl4pqZb7s
-	zpGTcQI8dnahszBTZJaEcIp468iEXsZMa+6rNzWaHxYjzTvrJypSIp8ruqolm34QQPekjdbIuOU
-	7MOIu6uBt5ibrRUxjRxdn2SRT5kxla
-X-Received: by 2002:a05:6a00:815:b0:82c:24d5:63e6 with SMTP id d2e1a72fcca58-82c95c23e4bmr11933168b3a.15.1774865707088;
-        Mon, 30 Mar 2026 03:15:07 -0700 (PDT)
-Received: from [192.168.0.101] ([43.226.29.240])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-82ca843d8e5sm8286080b3a.5.2026.03.30.03.15.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Mar 2026 03:15:06 -0700 (PDT)
-From: Biswapriyo Nath <nathbappai@gmail.com>
-Date: Mon, 30 Mar 2026 10:13:54 +0000
-Subject: [PATCH v3 7/7] arm64: dts: qcom: sm6125-xiaomi-ginkgo: Add IR
- transmitter
+	s=arc-20240116; t=1774865784; c=relaxed/simple;
+	bh=XVaA58YR00VZ/8ZgNILvjnA8ILVF9O0EbY9bxCrPW78=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rHGQW9yCBxMkOAFvPlLTVGXbyJ5IhxIiLTdMiaZhmEd2dn9rLJIEEoELxA6y6shppEzRMUE6lgE95Iv6xmHeTuLBthn3KiUD1wa3+oY/FxjzzyFxwNLYqd8mZYEwkVD+mC2IbxdttfAF9aPK3yDgilNP6pr39Cd8etT+39n4Gi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=PXog3ORw; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id C2BABC40683;
+	Mon, 30 Mar 2026 10:16:49 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 85FA95FFA8;
+	Mon, 30 Mar 2026 10:16:19 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9C321104507FB;
+	Mon, 30 Mar 2026 12:16:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1774865778; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=OmaaNGH6kWgk6vo0uEtus2Jv2VBl+BQVGOxRO91Lrx4=;
+	b=PXog3ORwUZBI3LUsSIWJVfmRofPhfUS8a3/UMTDiLAor7QfYVAvaraKlpCYY8WlUBA+bYN
+	55jU0S7aL0WNtrdO5j78hMGTsP+nzNKBOsbJTWPUs0zYblmhvFmatdR0pLfxRmMJda8oZB
+	HIvquxYuCQ2KRp/cyYWpLdsR6ZkZ6/89PrcxLe9Oemu3fjOFj9Xs4haN2VMT8GECX/H5aT
+	GFqk7cX/FfO+h6YKqGSjkGVxXRmoruXMA0HqVY4eXZdx33e69jGX1ZVCaTijZ9Nn/KHl+c
+	LxoWNdLZWV6+egqBJGST9fIHnPX0Bkv3yVbQFB3mokqUKKKHm6Sv68pvejHWNw==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Herve Codina <herve.codina@bootlin.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Saravana Kannan <saravanak@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>
+Cc: linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH 0/4] ASoC: Add support for GPIOs driven amplifiers
+Date: Mon, 30 Mar 2026 12:16:04 +0200
+Message-ID: <20260330101610.57942-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260330-ginkgo-add-usb-ir-vib-v3-7-c4b778b0d7f8@gmail.com>
-References: <20260330-ginkgo-add-usb-ir-vib-v3-0-c4b778b0d7f8@gmail.com>
-In-Reply-To: <20260330-ginkgo-add-usb-ir-vib-v3-0-c4b778b0d7f8@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
- Pavel Machek <pavel@kernel.org>, Sean Young <sean@mess.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Martin Botka <martin.botka@somainline.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, 
- linux-clk@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, Biswapriyo Nath <nathbappai@gmail.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774865654; l=1301;
- i=nathbappai@gmail.com; s=20260118; h=from:subject:message-id;
- bh=pGKPix7XiEt441lKBW8Y9b0Y9EmW4lxtf6JcRfDKsWo=;
- b=BedMsNwgLsE+aubdatQlTumTqlUwwOUjk7wfR9tZkRnU146OE2yO8K9gEHsRM59RMMzWQu8Bj
- xCT//XetsUpBloRKCMDWFBx1AzBe6tLOnxEoko2HAI/0xT5MzpYD7eZ
-X-Developer-Key: i=nathbappai@gmail.com; a=ed25519;
- pk=slmb/9yXbet+KTiT3EYLCp0p0MEOYa3EdjUXP+HXfjg=
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com,oss.qualcomm.com];
-	TAGGED_FROM(0.00)[bounces-282379-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-282381-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[bootlin.com,gmail.com,kernel.org,perex.cz,suse.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nathbappai@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mess.org:email]
-X-Rspamd-Queue-Id: 4E4DE35934C
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:mid]
+X-Rspamd-Queue-Id: 097D4359391
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The IR transmitting LED is connected to SPI8 controller.
+On some embedded system boards, audio amplifiers are designed using
+discrete components such as op-amp, several resistors and switches to
+either adjust the gain (switching resistors) or fully switch the
+audio signal path (mute and/or bypass features).
 
-Reviewed-by: Sean Young <sean@mess.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Biswapriyo Nath <nathbappai@gmail.com>
----
- .../boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi   | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Those switches are usually driven by simple GPIOs.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi
-index f66ff5f7693b..7d8481173171 100644
---- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi
-@@ -99,6 +99,10 @@ key-volume-up {
- 	};
- };
- 
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
- &pm6125_gpios {
- 	vol_up_n: vol-up-n-state {
- 		pins = "gpio5";
-@@ -160,6 +164,10 @@ &qupv3_id_0 {
- 	status = "okay";
- };
- 
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
- &rpm_requests {
- 	regulators-0 {
- 		compatible = "qcom,rpm-pm6125-regulators";
-@@ -332,6 +340,18 @@ &sdhc_2 {
- 	status = "okay";
- };
- 
-+&spi8 {
-+	status = "okay";
-+
-+	irled@1 {
-+		compatible = "ir-spi-led";
-+		reg = <1>;
-+
-+		duty-cycle = /bits/ 8 <30>;
-+		spi-max-frequency = <1000000>;
-+	};
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <0 4>, <30 4>;
- };
+This kind of amplifiers are not handled in ASoC and the fallback is to
+let the user-space handle those GPIOs out of the ALSA world.
+
+In order to have those kind of amplifiers fully integrated in the audio
+stack, this series introduces the audio-gpio-amp to handle them.
+
+This new ASoC component allows to have the amplifiers seen as ASoC
+auxiliarty devices and so it allows to control them through audio mixer
+controls.
+
+Best regards,
+Hervé
+
+Herve Codina (4):
+  of: Introduce of_property_read_s32_index()
+  ASoC: dt-bindings: Add support for the GPIOs driven amplifier
+  ASoC: codecs: Add support for the GPIOs driven amplifier
+  MAINTAINERS: Add the ASoC gpio amplifier entry
+
+ .../bindings/sound/audio-gpio-amp.yaml        | 309 +++++++
+ MAINTAINERS                                   |   7 +
+ include/linux/of.h                            |   7 +
+ sound/soc/codecs/Kconfig                      |  12 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/audio-gpio-amp.c             | 765 ++++++++++++++++++
+ 6 files changed, 1102 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/audio-gpio-amp.yaml
+ create mode 100644 sound/soc/codecs/audio-gpio-amp.c
 
 -- 
 2.53.0
