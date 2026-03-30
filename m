@@ -1,64 +1,69 @@
-Return-Path: <devicetree+bounces-282592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282593-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ECJoFV2hymmx+gUAu9opvQ
-	(envelope-from <devicetree+bounces-282592-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 18:14:21 +0200
+	id gEmJFhCjymnj+gUAu9opvQ
+	(envelope-from <devicetree+bounces-282593-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 18:21:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2835B35E8E4
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 18:14:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0760735EAF2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 18:21:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7CB44304CE57
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 16:06:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CFAAB305E178
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 16:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A8D3D75C4;
-	Mon, 30 Mar 2026 16:02:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B073DA5A1;
+	Mon, 30 Mar 2026 16:02:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kVbxPUy+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CE5Qgeuy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B06D3D6698;
-	Mon, 30 Mar 2026 16:02:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DAF23D9DC8;
+	Mon, 30 Mar 2026 16:02:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774886537; cv=none; b=pGh83Dpxz6zdc2m8h2t6Hmf/jwzqg8rKb7BMzKUU4IvRNGKViHNu/CPhfbOV86Vy/W8IHRtKTY6AVQzEZ4MHNM4vtHw1iQPRVfPB+44ddLUcVk3zyIagJWEgMTCahUX4N3LpsLfpL+hvxXlWc/r8XfvI3sPlChdP/8k8O8F1Sso=
+	t=1774886539; cv=none; b=eOOTWtLIYjrlhwjNOKaSXr7azyHCQ7prARuJTFIf+RDql6mOn4AIqc8DpqgWg36XmaJwxfd7mzk4Cz1pKSZ+xTHe+JfJXeKI1x9uRwTQIyDx81gFA3z0ApXMsmeHVhvEJ48LQ8mUcvJCxoGrHWSHzVVervEi2lYc4IHh4dKzwfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774886537; c=relaxed/simple;
-	bh=GlSiu9vnD5xVU3rLY+DmcoRndhWKp5vb5kW7kxkFU4Q=;
+	s=arc-20240116; t=1774886539; c=relaxed/simple;
+	bh=xKRk+5z07NNFWqSLPTnCI8pn6XqNUxPH+058mZEVQF8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qp7ezoUM8LDZw3a7gE0dyO+X2nSIVddwwm0HIHsL4K45QmZeLDqD1+FGWSqN6oJZYaTBl8p7CtE5/8UdCV7d9e8nk6HftcYSLakYFILOPL3HH+o004uiqEpPPFYkpX7CZC6AJVh6nOuW7d8jAm/jEQfLATL6J6tw0woau9N1U6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kVbxPUy+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6387EC4CEF7;
-	Mon, 30 Mar 2026 16:02:16 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Xu9Ik8Ui+fL5+4VdEWqH2GF4k5jFGup4PGq4fT5ieDD6cdRHqFP0mmIJs095INiwsAU/J9nwVOwHVaYrsZb0XDP9KKzozwVwO5Y2dsv16j0oKVntebwA5t7AaNvulHki2uUpXtG+7IK8XFfynLd2wGMQmfS9yIgHam4YL9qZR0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CE5Qgeuy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 034F9C19423;
+	Mon, 30 Mar 2026 16:02:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774886537;
-	bh=GlSiu9vnD5xVU3rLY+DmcoRndhWKp5vb5kW7kxkFU4Q=;
+	s=k20201202; t=1774886538;
+	bh=xKRk+5z07NNFWqSLPTnCI8pn6XqNUxPH+058mZEVQF8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=kVbxPUy+xFffddR1BC/jCvFau4K8BjAV40UMvUbxLsGK2gsni3SpfP0jYyyZ5B3XC
-	 Jki7eQitC7lHXYtkO3vrQ7AYVaPKo0L7i2D5p9tSCZhIT+34raGeoSvi/6mhS+iBYu
-	 FepCrE0siRHgDttj7VtAHLaEVOlBAsBWVXmR8NU2f5cN8FJauhIqlbK8hUPVgIs3UP
-	 1oSSDgzL6l+nxtKG2e+sToUPlXe4V5x77mODCNFPCBdT1i4r9B2wh/xjUflVwoxTaE
-	 BiiFpiuhFXCWYVIRwcq8ISvEy2d20Yum6JmNcgx2VkHSuS1UF7VdZBf3QmbEn3zKjH
-	 76GNGHcLXuGcA==
+	b=CE5Qgeuy4eliuvLT3EqzrnM/Db1Ff6HXj+LLTMsuc1eL/XebAgYvXTHsT4kUvrbNE
+	 5EuFGZPmDDKuV1ymmSGeCTuJ5QiauoE15vErXQC2QhlKrB+I+QaYbI1a6UqBmRHT3s
+	 KD7UDOQlMqrYQm7ZN7sQcRurgTznIamBj/JfeMjc6PWpiKHJZML28Fbk0S7eyw78QM
+	 ofGCVtnjBxosnpk1TM/+dvda7LNdLytrmEKugHbqDcWkKEOYlUAN2nnwycyVXdZldB
+	 HdSIIuyJ4SqFna/k+cDrN1qfiAeIqZ547XKl8bgAvV6ITAF2+bWbbkuKM/OGO93HMJ
+	 i1Ydt3mQQKVyg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Rob Herring <robh@kernel.org>,
+To: linux-kernel@vger.kernel.org,
+	Raymond Hackley <wonderfulshrinemaidenofparadise@postmarketos.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: sm8550-hdk: add support for the Display Card overlay
-Date: Mon, 30 Mar 2026 11:01:35 -0500
-Message-ID: <177488647785.633011.16629060421078089420.b4-ty@kernel.org>
+	devicetree@vger.kernel.org,
+	phone-devel@vger.kernel.org,
+	Max McNamee <maxmcnamee@proton.me>,
+	Stephan Gerhold <stephan@gerhold.net>,
+	Nikita Travkin <nikita@trvn.ru>,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: msm8916-samsung-coreprimeltevzw: add device tree
+Date: Mon, 30 Mar 2026 11:01:37 -0500
+Message-ID: <177488647780.633011.3942997076237860691.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260311001238.4191034-1-vladimir.zapolskiy@linaro.org>
-References: <20260311001238.4191034-1-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20260223220514.2556033-1-wonderfulshrinemaidenofparadise@postmarketos.org>
+References: <20260223220514.2556033-1-wonderfulshrinemaidenofparadise@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,53 +72,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282592-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-282593-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2835B35E8E4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0760735EAF2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Wed, 11 Mar 2026 02:12:38 +0200, Vladimir Zapolskiy wrote:
-> The SM8550-HDK board may be connected to a Display Card external PCB,
-> which is identical to the already supported SM8650-HDK Display Card,
-> it provides a VTDR6130 display with Goodix Berlin Touch controller, see
-> also commit bc90f56a1699 ("arm64: dts: sm8650-hdk: add support for the
-> Display Card overlay") for additional details.
+On Mon, 23 Feb 2026 22:05:11 +0000, Raymond Hackley wrote:
+> Samsung Galaxy Core Prime Verizon Wireless is a phone based on MSM8916.
+> They are similar to the other Samsung devices based on MSM8916 with only a
+> few minor differences.
 > 
-> Two overlays are added to support SM8550-HDK plus Display Card and
-> SM8550-HDK plus Display Card plus Rear Camera Card setups.
+> The device trees contain initial support with:
+>  - GPIO keys
+>  - Regulator haptic
+>  - SDHCI (internal and external storage)
+>  - USB Device Mode
+>  - UART (on USB connector via the SM5502 MUIC)
+>  - WCNSS (WiFi/BT)
+>  - Regulators
+>  - QDSP6 audio
+>  - Speaker/earpiece/headphones/microphones via digital/analog codec in
+>    MSM8916/PM8916
+>  - WWAN Internet via BAM-DMUX
+>  - PMIC and charger
+>  - Touchscreen
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: sm8550-hdk: add support for the Display Card overlay
-      commit: 40c15162c873a481cb0e57f8aaa743a4bc66432f
+[1/3] arm64: dts: qcom: msm8916-samsung-fortuna: Move SM5504 from rossa and refactor MUIC
+      commit: 21450547506ece7e36bef75681479a52e518c53b
+[2/3] dt-bindings: qcom: Document samsung,coreprimeltevzw
+      commit: bb0a09a4fa4821a5a1da1b707e0e169d6a4e8cd2
+[3/3] arm64: dts: qcom: msm8916-samsung-coreprimeltevzw: add device tree
+      commit: 2ce450f77f1de5eb7b489fcd829a7f494952e1bf
 
 Best regards,
 -- 
