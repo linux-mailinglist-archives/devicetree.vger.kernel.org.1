@@ -1,525 +1,204 @@
-Return-Path: <devicetree+bounces-282175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282177-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2HWILoTbyWlm3AUAu9opvQ
-	(envelope-from <devicetree+bounces-282175-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 04:10:12 +0200
+	id KM4OLUTdyWmz3AUAu9opvQ
+	(envelope-from <devicetree+bounces-282177-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 04:17:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2859D354B1A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 04:10:12 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02B00354BAC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 04:17:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 073593005E97
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 02:10:11 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0F3E23001CF9
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 02:17:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59A0C33CE86;
-	Mon, 30 Mar 2026 02:10:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F2FC391831;
+	Mon, 30 Mar 2026 02:17:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mOHtsRE/"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Iwz4b8sL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011062.outbound.protection.outlook.com [52.101.62.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A762C2F3614;
-	Mon, 30 Mar 2026 02:10:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774836610; cv=none; b=Lu6TRzY0BaZXDkMmapx9dc5+5pJUmcNTaPKYlquVehEdsMqp5tJigw+XTAZmEMshiqFnogPEeRBguk+pe1B4LuRr97VlpVWLtzK47prYaNTj0nPRJed62bFs92ngeubjr6LP3Zu1lnzAEYv8m05S/mcZDEo9egu1RdJGjftj5bE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774836610; c=relaxed/simple;
-	bh=GI737mK+fQJRTF+iOx/VN6jHzSB3/LDwkLILmjxiMC8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DCy2gq3GEY3JuBakPdVSuvUzD+rlDZ7j1a2tlLRqLDPAmoEDeMcF34Ab1DCHXByhFc55Iv0a1q+tIS7hODuTxuFJ9kkJnfAL1wBz6as2b+dNqpfHzGA2g1mUA93pAWlrE8j0G3nXRPHxgsEdkNlDoWd08vKg57KYKfkt6ZFRRoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mOHtsRE/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62TAhZG1201416;
-	Mon, 30 Mar 2026 02:09:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=U20/O7FgYWbVX6Icc/eYMwWZH+0hpW+d8RW
-	7/eBPhSo=; b=mOHtsRE/3huQwSVPdvMm1CNAh5Sjo/MaBeXffrHLK4AZrHX5wOT
-	S78E/qLg76usHnyu7SMrCXAo4hvi0cP/21FuBu3gXxBddDhayi+J6aT/gVcQg3V2
-	xhPHXgVyiQSftdJtTZNgX5LHZpBW22ck3wgX8Q4yAiYDhdEpRqwg8uw8IEaHdbfI
-	JAPoTkfIiYIsVQRA2usoIjsREIWXNTUSAs6jkZhu6v8BA9CWSW50FfLSE6YgXBNf
-	6aZq3NfAArQ3mMHYZ5gUBAebwO9q/iGfzIwxlcaQKBILNPzIMbapQ3+VSuWGFCSS
-	t1jMrfiFS3tERuwuuhKe62pmQWOqUcKE1TQ==
-Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d66jwm47w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Mar 2026 02:09:49 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 62U29kXE011957;
-	Mon, 30 Mar 2026 02:09:46 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 4d6qk1tkdf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Mar 2026 02:09:46 +0000 (GMT)
-Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 62U29ksa011951;
-	Mon, 30 Mar 2026 02:09:46 GMT
-Received: from cse-cd02-lnx.qualcomm.com (smtphost-taiwan.qualcomm.com [10.249.136.33])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 62U29jJU011946
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Mar 2026 02:09:46 +0000 (GMT)
-Received: by cse-cd02-lnx.qualcomm.com (Postfix, from userid 4438065)
-	id 7BACE417E1; Mon, 30 Mar 2026 10:09:44 +0800 (CST)
-From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, ziyue.zhang@oss.qualcomm.com,
-        jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org,
-        kwilczynski@kernel.org, bhelgaas@google.com, johan+linaro@kernel.org,
-        vkoul@kernel.org, kishon@kernel.org, neil.armstrong@linaro.org,
-        abel.vesa@linaro.org, kw@linux.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
-Subject: [PATCH v2 1/1] arm64: dts: qcom: hamoa: Fix incomplete Root Port property migration
-Date: Mon, 30 Mar 2026 10:09:34 +0800
-Message-ID: <20260330020934.3501247-1-ziyue.zhang@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D81C21EFFB7;
+	Mon, 30 Mar 2026 02:17:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.62
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774837055; cv=fail; b=FwOUW4NsIcHETjMtz8W6/rqEjVlcZ+7q9bDUgJH5M69pZRAYPEMUHpMln6dcUmCl8LauP+4lM0P6qZokTHV3uhcMR8rSaBsFY9zm3qJ98X0jibRRWDbFL+xwPTood2uwxiE6D15Gq+O/NcfFkf6zxciehRrRrgVCE7uM8n3010E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774837055; c=relaxed/simple;
+	bh=1+44ff3QvcWaZ1TSmUuTDUuy1XtVV9sFpz8Whrjz6XE=;
+	h=Content-Type:Subject:From:To:Cc:In-Reply-To:References:Date:
+	 Message-Id:MIME-Version; b=KsOJ5dD9Ot7GvRPX8lRclLKVznGZQEhe0qt5oXjp5BUB8KmEZAy+WStP6T9F03+/Ug8jfFVKWvqkjDuseTeZYIplU/teKHrTFZ3QpFq8gHjZuUEsG7xyuML/NCL1HrjnEfyKk3VnYPtY757RjiLHNSLUoLl8zSdOG9YsKIrvpLI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Iwz4b8sL; arc=fail smtp.client-ip=52.101.62.62
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mlDhBr+Dq+eQpjYKeLuSwWNnJPdsijeESspe20qQSzrepC4E+0GIT4s8nH0FQhgkld1vzvcU5uMaL1ZKc8aVrDCrhjWLPNauYoiB1c7/1q3QH5DSDAiWCgxccVGLpYDQnUkFDSHJ1pWolfnWJRoTpi37iy8ec3DuGZXYjSaTuV1Nz48Cwo+hxWdsLofnZHzsnGk59dx+fDfeFwFP8C6V+gNqcI0C5VFHHGNzSH2Wg93kuJQbvhuAy1g5AXOfcY2h8FpPU9s9BtcsK0I2hjrVOqbQkaunnS+e/79L9t1DSMWtH6imNsMveyZGOIIoTzhbqXwQz9NU4TpJSUpJwxPM0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=T6qG3+YCcpM4p/0C0hnFmBoJ6Ec70A3ITd8yema5bo4=;
+ b=xUNsFY/q7t5IuZGamzazVRsP35S8tADRaJVhY5eF+6eCj5qVd5XJyy90kwnTd4X8uqNdFg9FiMBFKxm+l99aim0tK4FOpujGk94seCnnjnJIKxj8ymo6VfP07XFtsZI8Mfb9GDfW7NcHuisetg+jHBCQZib0NV+ajEajDUYhnByj+4eZenp/AvzYpmY0IOXX/3avY9TWvRPhzUKkwjNP1PYayzUljSoli1/Gfd3F+jqDmxmwWx+zXup/4tD6Shjfi4lukhxGcEqqgCCBxExa4uLOQRhCh2yvtp7kOsZrjbYDhkE1fwokKNDankY4pXoaRA1r1EyO+YmQRNVi6sPbpw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T6qG3+YCcpM4p/0C0hnFmBoJ6Ec70A3ITd8yema5bo4=;
+ b=Iwz4b8sLPWctqFhGQ3GhNrEIPObfx9ov3hxGlTl//i2OOOUxLjhxOdZmBSjdWxK/SlsGkh/3UXqhQOpvnv/HYL2IB8GKT1KfzTX3XtV5Q75muS+4RrfqLhevgC7rESYhFlIUIZ5n0PSzq3vN7fMlEXFMS19ADiRn/flqel4gxw8i0wbPh2IOqtdU4IWXGeZoffrAX8tqoJCs0elY+5Bz4Y8607CF7Y99eI1uNh5xsOBP6BZhdjceDpJQHEJ8oWUrbxwFs0oSszT7NADoX6aPKpy7p2GyKX1zxqm0C6FL6nQwawpVI0egGUuZBgxSvrwq4i0Le0YeHb1CB0xDTKQ/7A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from SJ2PR12MB9161.namprd12.prod.outlook.com (2603:10b6:a03:566::20)
+ by BL1PR12MB5996.namprd12.prod.outlook.com (2603:10b6:208:39c::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Mon, 30 Mar
+ 2026 02:17:30 +0000
+Received: from SJ2PR12MB9161.namprd12.prod.outlook.com
+ ([fe80::d9d1:8c49:a703:b017]) by SJ2PR12MB9161.namprd12.prod.outlook.com
+ ([fe80::d9d1:8c49:a703:b017%4]) with mapi id 15.20.9769.006; Mon, 30 Mar 2026
+ 02:17:30 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v3 5/6] PCI: tegra: Add Tegra264 support
+From: Mikko Perttunen <mperttunen@nvidia.com>
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>, 
+ Mikko Perttunen <mperttunen@nvidia.com>, linux-pci@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+In-Reply-To: <20260326135855.2795149-6-thierry.reding@kernel.org>
+References: <20260326135855.2795149-1-thierry.reding@kernel.org>
+ <20260326135855.2795149-6-thierry.reding@kernel.org>
+Date: Mon, 30 Mar 2026 11:17:16 +0900
+Message-Id: <177483703695.914339.17915071896858286824.b4-review@b4>
+X-Mailer: b4 0.16-dev-ad80c
+X-ClientProxiedBy: TYWP286CA0015.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:178::13) To SJ2PR12MB9161.namprd12.prod.outlook.com
+ (2603:10b6:a03:566::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Authority-Analysis: v=2.4 cv=I8dohdgg c=1 sm=1 tr=0 ts=69c9db6d cx=c_pps
- a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8 a=7D783TuBx9djJqFGgd4A:9
-X-Proofpoint-GUID: xSGPe6w8x8W8ck63q69wFA7nWFHBUdC2
-X-Proofpoint-ORIG-GUID: xSGPe6w8x8W8ck63q69wFA7nWFHBUdC2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzMwMDAxNCBTYWx0ZWRfXzBMN4ssi8hbZ
- S14UIsbpTMcnUjj23Em0QjUW37g5lxrc2+SfMiasauqLSRKA9BCSmeZLUiiKlsnvYaxvgaPX9iK
- xyN2bqtsy9QVNBPR1HcHhK64Ey2pTN6Ajc7h9J1PEHQAfJO2T0f0PhNkUqrIGGSjyFwMcB4qImg
- 212tgGwG7iXmj5FG1AlKc9Ozdh4x/CdFRGP0mAM4ikms1NDxDBkH5ysZrGMeA2sOFbsmPYHvKw3
- gkXJhuUS9jYCBQ4NWLYEohsa9yc8vpqa/PDGVPo2Sm1obvl5raFIhVl/x47k2lr0GEhZr+KhBos
- QYsPSXKH4Mv71yNi5kkAg5ASxuAwYdfeheKEfdAm0gFOSIe+g9FzTBZBg8zWgS9Vi8NjDtwygOf
- mx+p7Deeroif4+1pH4xVjKis1+ETLUFYrmibHOqNvKP1WXBbbEVJ5/4myL0K0JGCiyW6HTom4fH
- 5w/fpaSgF6U0icPmzlQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-29_05,2026-03-28_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 clxscore=1015 spamscore=0 adultscore=0 suspectscore=0
- malwarescore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603300014
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB9161:EE_|BL1PR12MB5996:EE_
+X-MS-Office365-Filtering-Correlation-Id: 70f6c2b6-b6b2-48b4-6118-08de8e027f0f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|10070799003|366016|56012099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	bm86FC06TAZCU7AblKEnnxh/sy3lPWRgKsXl0LJlQKE1G0+Bp1EDWR+tOltXkNsXhpjVpQUeznCmyIEkA6r9CDBkEnaEzTbm/SH8P9OHVtNea16ny9dYvrjLn6hPDjdYhmJeMjbmL+yVcY1Dwz1K4M6dno/3Oa9S3XSMrozMlKoWwJY8IvS+kFcerUHp0HTubkY10mxxllskik9pyThNNZIPJtrS1vynDWwWzProTkbjJMNx8URXzqcL/tDlI4lMx6L3ZsDDih+Om+zI5d2OKRQREnCTtKaMclivUhoXzZ7Er6WrDCLH+4y+765Wezjc3vbX7Q9IH2+LiHhmOVaPceUo0+cwGiNUhrTqA1I+on3EuB+NeCpa5m6XCU4elFNoqJ0QFJeaQKctY5Vgl78vWn6/L5NS7qNte8erM24O7m7nLyZF73CmMwaxkWcJhaq1RXQ3KkkqY+ERakbXutW/JxvM3tf3vLm1ZUJc0wWLR4zgy1JI0xdgUgc/Sz7j0s7cXkgWX7SlRI2oS9HvWYx3hxl0K6vmcIPmlj9Q32G8s3AtYH4gsVZ0yNw/0PhqpWwmIiobX7h1OrDJdesRyNKFrCo8NtIqXA5UOoH1X2O09ohudRsQNfTFoN8P3xc9H/ermjWlMWBNmZiGpLrSmFXeQj91+q/CLjfvYIs2z/GWFjv6cmEc02bFMArVyTWrBNeEqj9ekOPdFmCUfjcAZzRTpMXdOpVRK+b51W9ugpg8sZA=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB9161.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(10070799003)(366016)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RXNzL1JmSzJPY3Z4WklxNExYV0RIVUxmVHUxeXIxSmp3ME1ac2lLZXlMSUxL?=
+ =?utf-8?B?S0V2Wmo4RnB5dXBOVExDQVhTZUlkdjNDaU5FZnRveVhNQkdOUU5qMEVPOUtn?=
+ =?utf-8?B?RUowZUQ0OGxjMUo5NXp6QXI5UzFJY255bitqRlRKaUpqOHU5RyttTE16OGJJ?=
+ =?utf-8?B?VStxUm1Qb1pVSmMxdHZWZ0pxR0loYWJNQVEzSFRiTng1cnBYc1B6Vll5VXBR?=
+ =?utf-8?B?TXFaZklHb2pKRkxiVFV5SCszbG95bzgwQWh6b2JsMlNxdStUd1BXUlduT0ph?=
+ =?utf-8?B?cXRaSnlIVGdDeUs4amFzdndZWkNBcGp3Tm1qek5acHpOYlNNdGVLUUVFUnJX?=
+ =?utf-8?B?RHJWV0xabEgwU1ZXVC9TNVkxMGFyMzgydU9Vbm95SVkxenRDajJSMDA5Vitn?=
+ =?utf-8?B?QjRLcXNPY3BGdXl0Z1RLTEQ3eStYd1J3UzNYNmpVU0lDWEJ2V0lwRjcraXRq?=
+ =?utf-8?B?YU00bS9SeUVoaWxOSFA0cWNWRU9kMkxUUUFWUC9pclFMSnVwajlxR21vZnYy?=
+ =?utf-8?B?dGp6d0VsUDAwUzB1NGVCNXk3T3lNc2h2TFpQVktJbSsrYW1oNzMvdE1ZbnI1?=
+ =?utf-8?B?K0VhTTVSU2hiOFlraHovRlZGdXNHQWtZU1JnY3VPYlVtYVhlR0FoZ0xsZ0hl?=
+ =?utf-8?B?aDI3NC9mRTdBaTFiL3crdmFyQ0wrV2k5UWZSSi9nT2o0Ynpqc3p2NW9YMStG?=
+ =?utf-8?B?QlJaRG1MM0F6TkREVE16N0ZNTjY3SDRIaDBxMFdDVFdSUnBUNTZEUmxUTTF1?=
+ =?utf-8?B?QmR4UEdBdXo4ZVB4MmtIOWl5cnY3TWh6UW53by9lYTZMRG9ocFdBd3hyU1J6?=
+ =?utf-8?B?Y3NkSFF3WVJjc2pZRHpsMnlyck5TS0grUlVKZE5aUjNSWWJ3OTVaS0RJRTFq?=
+ =?utf-8?B?ZXhaa0RHRDFHTjRqT1EwM0NqM0xRTGhmZlFCSXdCTW0zY1U4bXJXZVVTZmFr?=
+ =?utf-8?B?c254VG9tUW5YZWcvK0trRytTWU4rNnRsYVJZVlJ3bDdpU2hYZXpId0o5TmFt?=
+ =?utf-8?B?ZDlyR1RXeTBzL1FCVzBnNThkcnllR2ZTelZ6cXJHc0lhMHFNbnh1NTZuWUE0?=
+ =?utf-8?B?TmtBTHd0RCtyeUlUbE9IdmFJWjhTMUFzSEExWEQvczBNNzhpcVYyNEtTaFhF?=
+ =?utf-8?B?c29MTnVCTkFuS3pjdFpFS05vVXRiOUdZVVZ0UU5kaEg0VTRXT1RCSkJTZlhE?=
+ =?utf-8?B?YnRmNHpRVmRObXBmaURwdUsvZmFLSElad1ZrMEttNGx5ck5WajZoL3pScDZN?=
+ =?utf-8?B?K1A5ekNyZDlZNWxYMWRmb3FoTEgvTlRPTWFCczV2cjh3U3QzVHUrSFNJUk9V?=
+ =?utf-8?B?M2ZRQ21XOU5RR05wblRLVXJKWkxCMmJQeDZyNlVMSXV0UERLekQ5WU5RaWdC?=
+ =?utf-8?B?TGVCSENGZi9zeHdXODQrZXFua21OWVZjRDBoRjV6TjRwVFd3aHV5QTBqQ1NX?=
+ =?utf-8?B?UVNpWlJkTG1odGMvY1hBaHJVRXhnc1g0WUxKMkwybXpZdm9XRGQvejlvbHR4?=
+ =?utf-8?B?QzRNb1I2YlA3blpIb2tSdjNmQUdZdGh2TUVWRk5heFlXa1Z3RXl3SDNIUkVS?=
+ =?utf-8?B?WDVBSVF4ZmVWZmNnRzRLczlBeFJjVEZlVzFLdXJUNThBdG5RbzNxQ0I3ZWQ2?=
+ =?utf-8?B?cWpZYmpINE1jbTV0V3RaTXFTNGZMY2VLcVVpTmpCWUR4YldFR2kyU0tZenJv?=
+ =?utf-8?B?a2FwcGRhRVJWWnp4MU9malpuT2p6N0ZoanZYUU80T0s4dnNmL0QzVzZFbzFW?=
+ =?utf-8?B?b2pkOVFoWXlUR2NwaWhyYkw4Q3RJNVQrS3RUcFNiUm1vOThCWkRjUmdFME5X?=
+ =?utf-8?B?N0o0OHZKbWNOMlpUb0l5MXpsaGNrUkt0QzMxTEpySkpZLytkMVYwc3dORE5T?=
+ =?utf-8?B?eEFJYk5MTHJ3KzVnQThjaTFLVkJNb0lFYnlFTlJGakFJcHgwRmNLRGFZRnZs?=
+ =?utf-8?B?SzZVZnlNNFExNDArT21jZUdteURWeDAvcU5RM2w4S0djcHpOTW9PcTZLMzNs?=
+ =?utf-8?B?eGxyUUY4cEs5cEtVR0lzRHVMVDFoVEZKUjVFSzYyVmhHRE11L0dFZGxQcDYz?=
+ =?utf-8?B?cGlnWks2WnplVTM4bWxQbkpNZlJNVzdseVBTTTJOODhMemQxeDM0VlQxYWJt?=
+ =?utf-8?B?eURkbEhYRFNUYXYvNDNhR1pTN1ZXTWkxQzhMYk44emErc2FKSGdNM3d6RHFM?=
+ =?utf-8?B?TXZRTzMvN1V0V2sySWNqUEdwVEoxSVdRc0NJalBlVWpTb3BSY2QwLzd3ODBz?=
+ =?utf-8?B?dTYxdEVSaWwvUWxDc2kycVJVV3BrcnhTNWhwRDhVSStpaCs3N1oxbi9LNEt2?=
+ =?utf-8?B?ZytQZmFBZi82a1lybTV5NkZieGpicDAraDNMTjVNYm1oaU5iaGhCMHpiYmFJ?=
+ =?utf-8?Q?oaghEo6IqxaJo8veXqmKLuuvJhbQRvsGDp2lyzCh+M3Eu?=
+X-MS-Exchange-AntiSpam-MessageData-1: aNdPrSxJpZOqNQ==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 70f6c2b6-b6b2-48b4-6118-08de8e027f0f
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB9161.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2026 02:17:30.7062
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3u+9rKx0NzKEsuz3yDontvKTH/e7zqR6cZX01hRKGCB9yu+cBvTzT+1S0tL97de7I34fHfQ8rRuxiT40v339SQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5996
+X-Spamd-Result: default: False [0.34 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-282175-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-282177-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,oss.qualcomm.com,gmail.com,google.com,linaro.org,linux.com];
-	DKIM_TRACE(0.00)[qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ziyue.zhang@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mperttunen@nvidia.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:mid,0.0.0.0:email];
-	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 2859D354B1A
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim]
+X-Rspamd-Queue-Id: 02B00354BAC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Historically, the Qualcomm PCIe controller node (Host bridge) described
-all Root Port properties, such as PHY, PERST#, and WAKE#. But to provide
-a more accurate hardware description and to support future multi-Root Port
-controllers, these properties were moved to the Root Port node in the
-devicetree bindings.
+On Thu, 26 Mar 2026 14:58:52 +0100, Thierry Reding <thierry.reding@kernel.org> wrote:
+> diff --git a/drivers/pci/controller/pcie-tegra264.c b/drivers/pci/controller/pcie-tegra264.c
+> new file mode 100644
+> index 000000000000..21872797e41a
+> --- /dev/null
+> +++ b/drivers/pci/controller/pcie-tegra264.c
+> @@ -0,0 +1,522 @@
+> [ ... skip 137 lines ... ]
+> +
+> +	value = readw(pcie->ecam + XTL_RC_PCIE_CFG_LINK_STATUS);
+> +	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, value);
+> +	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, value);
+> +
+> +	bw = width * (PCIE_SPEED2MBS_ENC(pcie_link_speed[speed]));
 
-Commit 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERST, and Wake
-GPIOs to PCIe port nodes and add port Nodes for all PCIe ports")
-initiated this transition for the Hamoa platform by moving the PHY
-property to the Root Port node in hamoa.dtsi. However, it only updated
-some platform specific DTS files for PERST# and WAKE#, leaving others in
-a "mixed" binding state.
+Nit: this now has unnecessary double parentheses.
 
-While the PCIe controller driver supports both legacy and Root Port
-bindings, It cannot correctly handle a mix of both. In these cases, the
-driver parses the PHY from the Root Port node, but fails to find the
-PERST# property (which it then assumes is not present, as it is optional).
-Consequently, the controller probe succeeds, but PERST# remains
-uncontrolled, preventing PCIe endpoints from functioning.
-
-So, fix the incomplete migration by moving the PERST# and WAKE# properties
-from the controller node to the Root Port node in all remaining Hamoa
-platform DTS files.
-
-Fixes: 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERST, and Wake GPIOs to PCIe port nodes and add port Nodes for all PCIe ports")
-Signed-off-by: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
----
- .../boot/dts/qcom/x1-asus-zenbook-a14.dtsi    | 16 ++++++++-----
- arch/arm64/boot/dts/qcom/x1-crd.dtsi          | 24 ++++++++++++-------
- arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi   | 14 ++++++-----
- .../boot/dts/qcom/x1-hp-omnibook-x14.dtsi     | 14 ++++++-----
- .../boot/dts/qcom/x1-microsoft-denali.dtsi    |  8 ++++---
- .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  |  6 ++---
- .../qcom/x1e80100-medion-sprchrgd-14-s1.dts   | 14 +++++------
- .../dts/qcom/x1p42100-lenovo-thinkbook-16.dts | 14 ++++++-----
- 8 files changed, 64 insertions(+), 46 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi b/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
-index cd062f844b2d..66d566808f58 100644
---- a/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
-@@ -1079,9 +1079,6 @@ &mdss_dp3_phy {
- };
- 
- &pcie4 {
--	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
--
- 	pinctrl-0 = <&pcie4_default>;
- 	pinctrl-names = "default";
- 
-@@ -1095,10 +1092,12 @@ &pcie4_phy {
- 	status = "okay";
- };
- 
--&pcie6a {
--	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+&pcie4_port0 {
-+	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-+};
- 
-+&pcie6a {
- 	vddpe-3v3-supply = <&vreg_nvme>;
- 
- 	pinctrl-0 = <&pcie6a_default>;
-@@ -1114,6 +1113,11 @@ &pcie6a_phy {
- 	status = "okay";
- };
- 
-+&pcie6a_port0 {
-+	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+};
-+
- &pm8550_gpios {
- 	rtmr0_default: rtmr0-reset-n-active-state {
- 		pins = "gpio10";
-diff --git a/arch/arm64/boot/dts/qcom/x1-crd.dtsi b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-index 485dcd946757..a9c5c523575e 100644
---- a/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-@@ -1248,15 +1248,17 @@ &mdss_dp3_phy {
- };
- 
- &pcie4 {
--	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
--
- 	pinctrl-0 = <&pcie4_default>;
- 	pinctrl-names = "default";
- 
- 	status = "okay";
- };
- 
-+&pcie4_port0 {
-+	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-+};
-+
- &pcie4_phy {
- 	vdda-phy-supply = <&vreg_l3i_0p8>;
- 	vdda-pll-supply = <&vreg_l3e_1p2>;
-@@ -1265,9 +1267,6 @@ &pcie4_phy {
- };
- 
- &pcie5 {
--	perst-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
--
- 	vddpe-3v3-supply = <&vreg_wwan>;
- 
- 	pinctrl-0 = <&pcie5_default>;
-@@ -1283,10 +1282,12 @@ &pcie5_phy {
- 	status = "okay";
- };
- 
--&pcie6a {
--	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+&pcie5_port0 {
-+	reset-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
-+};
- 
-+&pcie6a {
- 	vddpe-3v3-supply = <&vreg_nvme>;
- 
- 	pinctrl-names = "default";
-@@ -1302,6 +1303,11 @@ &pcie6a_phy {
- 	status = "okay";
- };
- 
-+&pcie6a_port0 {
-+	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+};
-+
- &pm8550_gpios {
- 	kypd_vol_up_n: kypd-vol-up-n-state {
- 		pins = "gpio6";
-diff --git a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-index 343844cc62f2..0d9a324cc6cc 100644
---- a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-@@ -1081,9 +1081,6 @@ &mdss_dp3_phy {
- };
- 
- &pcie4 {
--	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
--
- 	pinctrl-0 = <&pcie4_default>;
- 	pinctrl-names = "default";
- 
-@@ -1098,6 +1095,9 @@ &pcie4_phy {
- };
- 
- &pcie4_port0 {
-+	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-+
- 	wifi@0 {
- 		compatible = "pci17cb,1107";
- 		reg = <0x10000 0x0 0x0 0x0 0x0>;
-@@ -1115,9 +1115,6 @@ wifi@0 {
- };
- 
- &pcie6a {
--	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
--
- 	vddpe-3v3-supply = <&vreg_nvme>;
- 
- 	pinctrl-0 = <&pcie6a_default>;
-@@ -1126,6 +1123,11 @@ &pcie6a {
- 	status = "okay";
- };
- 
-+&pcie6a_port0 {
-+	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+};
-+
- &pcie6a_phy {
- 	vdda-phy-supply = <&vreg_l1d_0p8>;
- 	vdda-pll-supply = <&vreg_l2j_1p2>;
-diff --git a/arch/arm64/boot/dts/qcom/x1-hp-omnibook-x14.dtsi b/arch/arm64/boot/dts/qcom/x1-hp-omnibook-x14.dtsi
-index 16437139d336..b773a4976d1b 100644
---- a/arch/arm64/boot/dts/qcom/x1-hp-omnibook-x14.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1-hp-omnibook-x14.dtsi
-@@ -1065,9 +1065,6 @@ &mdss_dp3_phy {
- };
- 
- &pcie4 {
--	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
--
- 	pinctrl-0 = <&pcie4_default>;
- 	pinctrl-names = "default";
- 
-@@ -1082,6 +1079,9 @@ &pcie4_phy {
- };
- 
- &pcie4_port0 {
-+	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-+
- 	wifi@0 {
- 		compatible = "pci17cb,1107";
- 		reg = <0x10000 0x0 0x0 0x0 0x0>;
-@@ -1099,9 +1099,6 @@ wifi@0 {
- };
- 
- &pcie6a {
--	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
--
- 	vddpe-3v3-supply = <&vreg_nvme>;
- 
- 	pinctrl-0 = <&pcie6a_default>;
-@@ -1110,6 +1107,11 @@ &pcie6a {
- 	status = "okay";
- };
- 
-+&pcie6a_port0 {
-+	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+};
-+
- &pcie6a_phy {
- 	vdda-phy-supply = <&vreg_l1d_0p8>;
- 	vdda-pll-supply = <&vreg_l2j_1p2>;
-diff --git a/arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi b/arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi
-index 6ab595b6ea30..dd2de1f723b0 100644
---- a/arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi
-@@ -964,9 +964,6 @@ wifi@0 {
- };
- 
- &pcie6a {
--	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
--
- 	vddpe-3v3-supply = <&vreg_nvme>;
- 
- 	pinctrl-0 = <&pcie6a_default>;
-@@ -982,6 +979,11 @@ &pcie6a_phy {
- 	status = "okay";
- };
- 
-+&pcie6a_port0 {
-+	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+};
-+
- &pm8550_gpios {
- 	rtmr0_default: rtmr0-reset-n-active-state {
- 		pins = "gpio10";
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-index bd0e3009fb41..beb1475d7fa0 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-@@ -1126,9 +1126,6 @@ &mdss_dp3_phy {
- };
- 
- &pcie4 {
--	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
--
- 	pinctrl-0 = <&pcie4_default>;
- 	pinctrl-names = "default";
- 
-@@ -1143,6 +1140,9 @@ &pcie4_phy {
- };
- 
- &pcie4_port0 {
-+	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-+
- 	wifi@0 {
- 		compatible = "pci17cb,1107";
- 		reg = <0x10000 0x0 0x0 0x0 0x0>;
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-medion-sprchrgd-14-s1.dts b/arch/arm64/boot/dts/qcom/x1e80100-medion-sprchrgd-14-s1.dts
-index 763efb9e070d..23a298248a29 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-medion-sprchrgd-14-s1.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-medion-sprchrgd-14-s1.dts
-@@ -1033,9 +1033,6 @@ &mdss_dp3_phy {
- };
- 
- &pcie4 {
--	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
--
- 	pinctrl-0 = <&pcie4_default>;
- 	pinctrl-names = "default";
- 
-@@ -1050,6 +1047,8 @@ &pcie4_phy {
- };
- 
- &pcie4_port0 {
-+	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
- 	wifi@0 {
- 		compatible = "pci17cb,1107";
- 		reg = <0x10000 0x0 0x0 0x0 0x0>;
-@@ -1067,10 +1066,6 @@ wifi@0 {
- };
- 
- &pcie6a {
--	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
--
--	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
--
- 	vddpe-3v3-supply = <&vreg_nvme>;
- 
- 	pinctrl-0 = <&pcie6a_default>;
-@@ -1086,6 +1081,11 @@ &pcie6a_phy {
- 	status = "okay";
- };
- 
-+&pcie6a_port0 {
-+	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+};
-+
- &pm8550_gpios {
- 	rtmr0_default: rtmr0-reset-n-active-state {
- 		pins = "gpio10";
-diff --git a/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts b/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
-index ab309d547ed5..500809772097 100644
---- a/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
-+++ b/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
-@@ -1131,9 +1131,6 @@ &mdss_dp3_phy {
- };
- 
- &pcie4 {
--	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
--
- 	pinctrl-0 = <&pcie4_default>;
- 	pinctrl-names = "default";
- 
-@@ -1148,6 +1145,9 @@ &pcie4_phy {
- };
- 
- &pcie4_port0 {
-+	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-+
- 	wifi@0 {
- 		compatible = "pci17cb,1107";
- 		reg = <0x10000 0x0 0x0 0x0 0x0>;
-@@ -1165,9 +1165,6 @@ wifi@0 {
- };
- 
- &pcie6a {
--	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
--
- 	vddpe-3v3-supply = <&vreg_nvme>;
- 
- 	pinctrl-0 = <&pcie6a_default>;
-@@ -1183,6 +1180,11 @@ &pcie6a_phy {
- 	status = "okay";
- };
- 
-+&pcie6a_port0 {
-+	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+};
-+
- &pm8550_pwm {
- 	status = "okay";
- };
 -- 
-2.43.0
 
 
