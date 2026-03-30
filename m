@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-282380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282382-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cAboANpPymmb7QUAu9opvQ
-	(envelope-from <devicetree+bounces-282380-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 12:26:34 +0200
+	id wCdzGFZRymmb7QUAu9opvQ
+	(envelope-from <devicetree+bounces-282382-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 12:32:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D090359372
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 12:26:33 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC3B03595B0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 12:32:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 11601301D6DE
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 10:20:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3BE1330A9440
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 10:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E7F23BC67D;
-	Mon, 30 Mar 2026 10:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B860E3C73FC;
+	Mon, 30 Mar 2026 10:16:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="qkEs735Z"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QOxdP1sg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18653B8D48;
-	Mon, 30 Mar 2026 10:16:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E529E3BED0F;
+	Mon, 30 Mar 2026 10:16:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774865784; cv=none; b=VeZYJhdWItUH7keDKpe9OIDt959pPEc2u2z/6hWADDA2Ove4CrCp34ldaVIj1Lwr5JVa09lc5MtuJN3UWj2fXr1/l9YDmSkcLtvF+Ipg1kW0jMtbNaJKlyEb3+n9KpGq4Y1uy2fOx22VDlG0hiKT+z3xUXTw7irm8o3K4UhBArM=
+	t=1774865786; cv=none; b=Llkm94cqrdoOIIUlTR0NdcyRikxiwHE37M/MItk9mV0pFSLRqJo+pDlCfiXrNTBED5K7Wv9fryUf4dEpYDLpKAFfpafyx49z8bJcsUQ5bI+AAhlD4SRCRdpUg0x41cU2wlztSWO6TaL1O71d3YyfHCoS5aE//l5Cj6hAq+H9MnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774865784; c=relaxed/simple;
-	bh=7KKTvcZcMV/A1vHfqktVWzypo7vSvF011WDH/qo4T/k=;
+	s=arc-20240116; t=1774865786; c=relaxed/simple;
+	bh=TCwNmfCeTrlUtEXUeP7bfZ+xD1LwsS5HE+OE+Ze37Js=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AG74nuelfVTgE+RkPeQIirS726mLRG2CAmtgcZZtZtg9WG2Bmqbv5gVDh5wWOMdwiYfK2jJmagU4FDlZ5tpizzdLpFmVWGaQeAAKCyqLO44MZsAIduqSkSEnXOM3wx0ZjPVTD4MpWqijpsB2KGdSC4zY6WkOxEZoS03rgyP6Eik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=qkEs735Z; arc=none smtp.client-ip=185.246.85.4
+	 MIME-Version; b=d3rLxFLbZU8HKIk9KAHAMGfTbtLgeRVaj8NsW0oPNKqIcqpBtN9M0zX3p1cGaWeMV8YqQ4nhwlPzP0MUztILjen+y9GPGxDoTD0POCyGL9NM7w9uaxLv79ISW1AufFDkDJXGKTEYAmir8755N96Yx57foVP1ytnIQROcOdS9+yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QOxdP1sg; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 74AB54E42869;
-	Mon, 30 Mar 2026 10:16:21 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 990C21A3093;
+	Mon, 30 Mar 2026 10:16:23 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3E9AE5FFA8;
-	Mon, 30 Mar 2026 10:16:21 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CC3F110450F14;
-	Mon, 30 Mar 2026 12:16:18 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6F84E5FFA8;
+	Mon, 30 Mar 2026 10:16:23 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 01F4310450EE3;
+	Mon, 30 Mar 2026 12:16:20 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774865780; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1774865782; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=jSr+qiZSp3u5YVngTgqtKy54G7uJpnLiCgqcSG9ifqI=;
-	b=qkEs735Z4mx4toJSZEIhr4Cm2syqUpXUZlnjV2Hsd65IKdq9eiPODCLeaESxv1yqrD6tNk
-	7likJAxIQpACSkhP8uIDabDowbGxD4ZckUs0CM7On9EqIaal7VykrTi0q5xRXebG7OvaJi
-	WVeINT4k/kbtYr0rQ4/Skt8qDpE8y4dBDZsn5uIC0kdYkuGcL/o5MT4pP2lR35SaDXOW5c
-	YuHWlekWm0zRij9AGf3PqtDpmkzVr5UL+tes700qNHUpzCcdk/rnisK06P1dzup5zY3oFm
-	wMyGtMSG2X8Zla4JS/1bkSPOnm1FV5mRy0rMNIqcSCq0vPibUOZAhEAM6lTQuw==
+	bh=Rpc/cRF17z80LJZfxbko/BL1lznxbHYgAYR6pqtDvvU=;
+	b=QOxdP1sgmdKs9m2HxApDP8fUtni3pDUHYqx/qjjkKNcagdnyDq3llCsDeZlKQh6ixppMeb
+	hUin5j9EuurdyXKnuiOnRC7grXb43N5SvkLGfXto4zOQOT4ml21orSPmd9/nMSRGEgPKFk
+	zcKgIqmqEBD0jx+9gn7ZL59LJ7w/ZWPPIGlKzRI9u8AZ+oi60yvtNNSG8r+JJMA0jtEBXI
+	BXrpbrnNtUqa6GBwqdBgbZW+TNpSig1t4Au+OjtKjXgdz4t61VXe1pycaw8ZujPjAyKwtG
+	tpjl0qpGU0hW0JhybKb4QfIcgesMGRNmfLQB7vzOaioBNGPo5/d8Pn7CmTwfFA==
 From: Herve Codina <herve.codina@bootlin.com>
 To: Herve Codina <herve.codina@bootlin.com>,
 	Liam Girdwood <lgirdwood@gmail.com>,
@@ -66,9 +66,9 @@ Cc: linux-sound@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Christophe Leroy <christophe.leroy@csgroup.eu>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH 1/4] of: Introduce of_property_read_s32_index()
-Date: Mon, 30 Mar 2026 12:16:05 +0200
-Message-ID: <20260330101610.57942-2-herve.codina@bootlin.com>
+Subject: [PATCH 2/4] ASoC: dt-bindings: Add support for the GPIOs driven amplifier
+Date: Mon, 30 Mar 2026 12:16:06 +0200
+Message-ID: <20260330101610.57942-3-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260330101610.57942-1-herve.codina@bootlin.com>
 References: <20260330101610.57942-1-herve.codina@bootlin.com>
@@ -86,7 +86,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -94,7 +94,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_TO(0.00)[bootlin.com,gmail.com,kernel.org,perex.cz,suse.com];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282380-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-282382-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
@@ -107,42 +107,344 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid]
-X-Rspamd-Queue-Id: 9D090359372
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid]
+X-Rspamd-Queue-Id: DC3B03595B0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Signed integers can be read from single value properties using
-of_property_read_s32() but nothing exist to read signed integers
-from multi-value properties.
+Some amplifiers based on analog switches and op-amps can be present in
+the audio path and can be driven by GPIOs in order to control their gain
+value, their mute and/or bypass functions.
 
-Fix this lack adding of_property_read_s32_index().
+Those components needs to be viewed as audio components in order to be
+fully integrated in the audio path.
+
+audio-gpio-amplifier allows to consider these GPIO driven amplifiers as
+auxiliary audio devices.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- include/linux/of.h | 7 +++++++
- 1 file changed, 7 insertions(+)
+ .../bindings/sound/audio-gpio-amp.yaml        | 309 ++++++++++++++++++
+ 1 file changed, 309 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/audio-gpio-amp.yaml
 
-diff --git a/include/linux/of.h b/include/linux/of.h
-index be6ec4916adf..526c1ee819cd 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -1457,6 +1457,13 @@ static inline int of_property_read_s32(const struct device_node *np,
- 	return of_property_read_u32(np, propname, (u32*) out_value);
- }
- 
-+static inline int of_property_read_s32_index(const struct device_node *np,
-+					     const char *propname, u32 index,
-+					     s32 *out_value)
-+{
-+	return of_property_read_u32_index(np, propname, index, (u32 *)out_value);
-+}
+diff --git a/Documentation/devicetree/bindings/sound/audio-gpio-amp.yaml b/Documentation/devicetree/bindings/sound/audio-gpio-amp.yaml
+new file mode 100644
+index 000000000000..15dc898f8574
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/audio-gpio-amp.yaml
+@@ -0,0 +1,309 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/audio-gpio-amp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- #define of_for_each_phandle(it, err, np, ln, cn, cc)			\
- 	for (of_phandle_iterator_init((it), (np), (ln), (cn), (cc)),	\
- 	     err = of_phandle_iterator_next(it);			\
++title: Audio amplifier driven by GPIOs
++
++maintainers:
++  - Herve Codina <herve.codina@bootlin.com>
++
++description: |
++  Audio GPIO amplifiers are driven by GPIO in order to control the gain value
++  of the amplifier, its mute function and/or its bypass function.
++
++  Those amplifiers are based on discrete components (analog switches, op-amps
++  and more) where some of them, mostly analog switches, are controlled by GPIOs
++  to adjust the gain value of the whole amplifier and/or to control
++  the mute and/or bypass function.
++
++  For instance, the following piece of hardware is a GPIO amplifier
++
++                                         +5VA
++                                           ^
++                                        |\ |
++                                        | \
++        Vin >---------------------------|+ \
++                                        |   +-------+-----> Vout
++                .--\/\/\/--+------------|- /        |
++                |          |            | /         |
++                v          |            |/ |        |
++               GND         o               v        |
++                            \             GND       |
++       gpio >----------->    \                      |
++                         o    o                     |
++                         |    |                     |
++                         |    '--\/\/\/--.          |
++                         |               +--\/\/\/--'
++                         '---------------'
++
++  A GPIO driven amplifier can work in several mode depending on the electronic
++  design.
++    - points defined:
++        The values of GPIOs used to control gain set a specific gain value
++        without any specific relationship between each value. For instance,
++        using 2 GPIOS:
++          0b00 <-> -10.0 dB
++          0b01 <-> +3.0 dB
++          0b10 <-> 0 dB
++          0b11 <-> +6.0 dB
++
++        This can be described using the gain-points property.
++
++    - range defined:
++        The values of GPIOs used to control gain set a specific gain value
++        following a linear dB range from a minimum dB value to a maximum dB
++        value. For instance, using 2 GPIOS:
++          0b00 <-> -3.0 dB
++          0b01 <-> 0 db
++          0b10 <-> +3.0 dB
++          0b11 <-> +6.0 dB
++
++        This can be described using the gain-range property.
++
++    - labels defined:
++        Some electronic design are not meant to a specific dB gain value. In
++        that case it is relevant to use labels to describe them. For instance,
++        using 2 GPIOS:
++          0b00 <-> Low boost
++          0b01 <-> Middle boost
++          0b10 <-> High boost
++          0b11 <-> Max boost
++
++        This can be described using the gain-labels property
++
++properties:
++  compatible:
++    const: audio-gpio-amp
++
++  vdd-supply:
++    description: Main power supply of the amplifier
++
++  vddio-supply:
++    description: Power supply related to the control path
++
++  vdda1-supply:
++    description: Analog power supply
++
++  vdda2-supply:
++    description: Additional analog power supply
++
++  mute-gpios:
++    description: GPIO to control the mute function
++    maxItems: 1
++
++  bypass-gpios:
++    description: GPIO to control the bypass function
++    maxItems: 1
++
++  gain-gpios:
++    description: |
++      GPIOs to control the amplifier gain
++
++      The gain value is computed from GPIOs value from 0 to 2^N-1 with N the
++      number of GPIO described. The first GPIO described is the lsb of the gain
++      value.
++
++      For instance assuming 2 gpios
++         gain-gpios = <&gpio1 GPIO_ACTIVE_HIGH> <&gpio2 GPIO_ACTIVE_HIGH>;
++      The gain value will be the following:
++
++          gpio1 | gpio2 | gain
++          ------+-------+-----
++            0   |    0  | 0b00 -> 0
++            1   |    0  | 0b01 -> 1
++            0   |    1  | 0b10 -> 2
++            1   |    1  | 0b11 -> 3
++          ------+-------+-----
++
++      Note: The gain value, bits set to 1 or 0, indicate the state active (bit
++            set) or the state inactive (bit unset) of the related GPIO. The
++            physical voltage corresponding to this active/inactive state is
++            given by the GPIO_ACTIVE_HIGH and GPIO_ACTIVE_LOW flags.
++
++    minItems: 1
++    maxItems: 32
++
++  gain-points:
++    $ref: /schemas/types.yaml#/definitions/int32-matrix
++    items:
++      items:
++        - description: The GPIOs value
++        - description: The related amplifier gain in 0.01 dB unit
++    minItems: 2
++    description: |
++      List of the GPIOs value / Gain value in dB pair defining the gain
++      set on each GPIOs value.
++
++      With 2 GPIOs controlling the gain, GPIOs value can be 0, 1, 2 and 3.
++      Assuming that GPIOs values set the hardware gains according to the
++      following table:
++
++         GPIOs | Hardware
++         value | amplification
++         ------+--------------
++           0   | -10.0 dB
++           1   | +3.0 dB
++           2   | 0 dB
++           3   | +6.0 dB
++         ------+--------------
++
++      The description using gain points can be:
++        gain-points = <0 (-1000)>, <1 300>, <2 0>, <3 600>;
++
++  gain-range:
++    $ref: /schemas/types.yaml#/definitions/int32-array
++    items:
++      - description: Gain in 0.01 dB unit when all GPIOs are inactive
++      - description: Gain in 0.01 dB unit when all GPIOs are active
++    description: |
++      Gains (in 0.01 dB unit) set by the extremum (minimal and maximum) value
++      of GPIOs. The following formula must be satisfied.
++
++               gain-range[1] - gain-range[0]
++      Gain  = ------------------------------- x GPIO_value + gain-range[0]
++                        2^N - 1
++
++      With N, the number of GPIOs used to control the gain and Gain computed in
++      0.01 dB unit.
++
++      With 2 GPIOs controlling the gain, GPIOs value can be 0, 1, 2 and 3.
++      Assuming that gain value set the hardware according to the following
++      table:
++
++         GPIOs | Hardware 1    | Hardware 2
++         value | amplification | amplification
++         ------+---------------+---------------
++           0   | -3.0 dB       |  +10.0 dB
++           1   | 0 dB          |  +5.0 dB
++           2   | +3.0 dB       |  0 dB
++           3   | +6.0 dB       |  -5.0 dB
++         ------+---------------+---------------
++
++      The description for hardware 1 using a gain range can be:
++        gain-range = <(-300) 600>;
++
++      The description for hardware 2 using a gain range can be:
++        gain-range = <1000 (-500)>;
++
++  gain-labels:
++    $ref: /schemas/types.yaml#/definitions/string-array
++    description: |
++      List of the gain labels attached to the combination of GPIOs controlling
++      the gain. The first label is related to the gain value 0, the second label
++      is related to the gain value 1 and so on.
++
++      With 2 GPIOs controlling the gain, GPIOs value can be 0, 1, 2 and 3.
++      Assuming that gain value set the hardware according to the following
++      table:
++
++         GPIOs | Hardware
++         value | amplification
++         ------+--------------
++           0   | Low
++           1   | Middle
++           2   | High
++           3   | Max
++         ------+--------------
++
++      The description using gain labels can be:
++        gain-labels = "Low", "Middle", "High", "Max";
++
++dependencies:
++  gain-points: [ gain-gpios ]
++  gain-range: [ gain-gpios ]
++  gain-labels: [ gain-gpios ]
++
++required:
++  - compatible
++  - vdd-supply
++
++anyOf:
++  - required:
++      - gain-gpios
++  - required:
++      - mute-gpios
++  - required:
++      - bypass-gpios
++
++allOf:
++  - $ref: dai-common.yaml#
++  - if:
++      required:
++        - gain-points
++    then:
++      properties:
++        gain-range: false
++        gain-labels: false
++  - if:
++      required:
++        - gain-range
++    then:
++      properties:
++        gain-points: false
++        gain-labels: false
++  - if:
++      required:
++        - gain-labels
++    then:
++      properties:
++        gain-points: false
++        gain-range: false
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    /* Gain controlled by gpios */
++    amplifier0 {
++        compatible = "audio-gpio-amp";
++        vdd-supply = <&regulator>;
++        gain-gpios = <&gpio 0 GPIO_ACTIVE_HIGH>, <&gpio 1 GPIO_ACTIVE_HIGH>;
++    };
++
++    /* Gain controlled by gpio using range */
++    amplifier1 {
++        compatible = "audio-gpio-amp";
++        vdd-supply = <&regulator>;
++        gain-gpios = <&gpio 0 GPIO_ACTIVE_HIGH>, <&gpio 1 GPIO_ACTIVE_HIGH>;
++        gain-range = <(-300) 600>;
++    };
++
++    /* Gain controlled by gpio using points */
++    amplifier2 {
++        compatible = "audio-gpio-amp";
++        vdd-supply = <&regulator>;
++        gain-gpios = <&gpio 0 GPIO_ACTIVE_HIGH>, <&gpio 1 GPIO_ACTIVE_HIGH>;
++        gain-points = <0 (-1000)>, <1 300>, <2 0>, <3 600>;
++    };
++
++    /* Gain controlled by gpio with labels */
++    amplifier3 {
++        compatible = "audio-gpio-amp";
++        vdd-supply = <&regulator>;
++        gain-gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
++        gain-labels = "Low", "High";
++    };
++
++    /* A mutable amplifier without any gain control */
++    amplifier4 {
++        compatible = "audio-gpio-amp";
++        vdd-supply = <&regulator>;
++        mute-gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
++    };
++
++    /*  Several supplies, gain controlled using range, mute and bypass */
++    amplifier5 {
++        compatible = "audio-gpio-amp";
++        vdd-supply = <&regulator>;
++        vddio-supply = <&regulator1>;
++        vdda1-supply = <&regulator2>;
++        gain-gpios = <&gpio 0 GPIO_ACTIVE_HIGH>, <&gpio 1 GPIO_ACTIVE_HIGH>;
++        gain-range = <(-300) 600>;
++        mute-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
++        bypass-gpios = <&gpio 3 GPIO_ACTIVE_HIGH>;
++    };
++...
 -- 
 2.53.0
 
