@@ -1,130 +1,159 @@
-Return-Path: <devicetree+bounces-282337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282338-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kKNeO8M/ymn46wUAu9opvQ
-	(envelope-from <devicetree+bounces-282337-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:17:55 +0200
+	id qEUhHilBymky7AUAu9opvQ
+	(envelope-from <devicetree+bounces-282338-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:23:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6854B358002
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:17:55 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9130B3581B1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:23:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C38A530451C7
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:11:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D0A713029F68
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B05E3B2FC9;
-	Mon, 30 Mar 2026 09:11:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB5A3AC0F7;
+	Mon, 30 Mar 2026 09:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="LqTHpS3O"
+	dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b="IjoUdYg7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com [95.215.58.178])
+Received: from stravinsky.debian.org (stravinsky.debian.org [82.195.75.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FFDA3B19A8
-	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 09:11:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAC713815C0;
+	Mon, 30 Mar 2026 09:15:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=82.195.75.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774861885; cv=none; b=GQqdiUF3enCDVnIqzDJMbPF34DjfruG/2xYEn8qDFcfNOq4RReKmUUKPItH2WeixW2/6aQsR658EqyL8u+s46y9fswJsrr37tdziqRtaqLr8HN3aBsXUkUDohNcA9CEHPbcL/VPtxzlzGtw7TFNMWzU7mtgAcsyqzAe0M86i5MQ=
+	t=1774862152; cv=none; b=PLTk+PFgh2ybrS9A3jIttQmNewOOqxxKDZflY2R8zjUuYn41iZxZghv7492poZT7of7SjlaRPLgDxHU6H743wp2NLL0//kg8WIUg3IgoHXvjRVlULyPG3xRNmUBZAxzaQ7kMdUnTPOn2YUqFCMFUu9aWjuCPROd3/5Bq4OIli0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774861885; c=relaxed/simple;
-	bh=6zmpLy0QOmVh5AXq4LxSNCRv2qdkcVSDutpQ27Vq4ug=;
+	s=arc-20240116; t=1774862152; c=relaxed/simple;
+	bh=nSAMhAy2NHmQUPSXPLIcBAWN1McDpN+/e2HfgQZTDIE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jWzssmOfrFdSYTLha9OgqdQyxy10pHhHGyQq2OFzLIeO8uNlogqpuHk2GOE95Io9yZ1a6IOGTXRq9Qyp1+5OmfAX1dirtFD+znVlSBuiZmAJJfR93tnqBApZxQfMJEOtdJmC+a+B4lC0zyAPumbJIVDO5G5y9vYLyRO4jiJ5E04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=LqTHpS3O; arc=none smtp.client-ip=95.215.58.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Mon, 30 Mar 2026 17:11:09 +0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1774861881;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RWLL1ngJTwQYwWnnu+CvoNT76JVvFYBiVINVvbGMfIs=;
-	b=LqTHpS3Oy8BE0FVueb0+OHKZbGIzEIAXz/ujG5sEIXVN1V7nvBUViVznOfte/SHGMNMtiW
-	+F2FkUKLqtfkLudR9xNPOI/J2hEeDfEMZB64Ef0LSBUjhLFoylMdCt9B93lqr7U62ffDuf
-	lPpbhVfPpXC1GUl9MYoC2/zkjR+brJw=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Troy Mitchell <troy.mitchell@linux.dev>
-To: Iker Pedrosa <ikerpedrosam@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>
-Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Troy Mitchell <troy.mitchell@linux.dev>
-Subject: Re: [PATCH v5 2/9] mmc: sdhci-of-k1: enable essential clock
- infrastructure for SD operation
-Message-ID: <aco-LZmy7iTTFG9v@kernel.org>
-References: <20260330-orangepi-sd-card-uhs-v5-0-bd853604322d@gmail.com>
- <20260330-orangepi-sd-card-uhs-v5-2-bd853604322d@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lDsyslaMDVAkgZhZMCA/zgu/F/nXgiNLh/6SrqYxAvkPjXfL1rKVdqEvQRbvHcEI4zTSyAJHx9UqHewG1HjANEDNNJu1dA9cITtofRWcY9wO0TNMUmmlS6l1Bp7Iwc6ze+ObGYSQguVd7d/oEVw+gjjUNcQMcRO45yzsvU+Zips=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=none smtp.mailfrom=debian.org; dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b=IjoUdYg7; arc=none smtp.client-ip=82.195.75.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=debian.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
+	s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-ID:Content-Description;
+	bh=WO1vn6Tln5KFquM2TJaKxzbEqp7cPSRmlLOOnQm4DBk=; b=IjoUdYg7H5HjzhmD9Ya8KzCZED
+	MOdt/f/iybG0j7ZLGmiC7aJOgf9EGEZ5AT6v30A7lr8C+eX+qUGhl5lLwhUy7Ag2vW87+rI4cKgR0
+	IreKmv/ogatlCLSyoDgJQL/Bm0oZPTC3Ph6N6bEB8K2FbqIE9a2RJzwF5rC3QyiVtqaFsRExlbFnq
+	w6kBr9fPUeAdfZ2RsOnmOj6jLS7FgdEY+TwNyaPu3c4DAiLI7ICVb5EP/dox4qH2GHtCEzV9jz6MU
+	LmEcDrV31BMlEKYMm8KfrbhCwKfgUBdd6N399NiMCtz+aDHCvorriy5EW4hCaA9xT6qUKgk0TT0qt
+	Qm7u5jxA==;
+Received: from authenticated user
+	by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.96)
+	(envelope-from <leitao@debian.org>)
+	id 1w78hH-001L8R-10;
+	Mon, 30 Mar 2026 09:14:10 +0000
+Date: Mon, 30 Mar 2026 02:13:57 -0700
+From: Breno Leitao <leitao@debian.org>
+To: Jinjie Ruan <ruanjinjie@huawei.com>
+Cc: corbet@lwn.net, skhan@linuxfoundation.org, catalin.marinas@arm.com, 
+	will@kernel.org, chenhuacai@kernel.org, kernel@xen0n.name, maddy@linux.ibm.com, 
+	mpe@ellerman.id.au, npiggin@gmail.com, chleroy@kernel.org, pjw@kernel.org, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, tglx@kernel.org, 
+	mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com, hpa@zytor.com, 
+	robh@kernel.org, saravanak@kernel.org, akpm@linux-foundation.org, bhe@redhat.com, 
+	vgoyal@redhat.com, dyoung@redhat.com, rdunlap@infradead.org, peterz@infradead.org, 
+	feng.tang@linux.alibaba.com, pawan.kumar.gupta@linux.intel.com, dapeng1.mi@linux.intel.com, 
+	kees@kernel.org, elver@google.com, paulmck@kernel.org, lirongqing@baidu.com, 
+	rppt@kernel.org, ardb@kernel.org, cfsworks@gmail.com, osandov@fb.com, 
+	jbohac@suse.cz, tangyouling@kylinos.cn, sourabhjain@linux.ibm.com, 
+	ritesh.list@gmail.com, eajames@linux.ibm.com, songshuaishuai@tinylab.org, 
+	kevin.brodsky@arm.com, vishal.moola@gmail.com, junhui.liu@pigmoral.tech, 
+	coxu@redhat.com, fuqiang.wang@easystack.cn, liaoyuanhong@vivo.com, 
+	guoren@kernel.org, chenjiahao16@huawei.com, hbathini@linux.ibm.com, 
+	takahiro.akashi@linaro.org, james.morse@arm.com, lizhengyu3@huawei.com, x86@kernel.org, 
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev, linuxppc-dev@lists.ozlabs.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, kexec@lists.infradead.org
+Subject: Re: [PATCH v11 10/11] arm64: kexec: Add support for crashkernel CMA
+ reservation
+Message-ID: <aco-v4BuRSiZx7yy@gmail.com>
+References: <20260328074013.3589544-1-ruanjinjie@huawei.com>
+ <20260328074013.3589544-11-ruanjinjie@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260330-orangepi-sd-card-uhs-v5-2-bd853604322d@gmail.com>
-X-Migadu-Flow: FLOW_OUT
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260328074013.3589544-11-ruanjinjie@huawei.com>
+X-Debian-User: leitao
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+	R_DKIM_ALLOW(-0.20)[debian.org:s=smtpauto.stravinsky];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282337-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-282338-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[gmail.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.dev,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,baylibre.com,linux.dev];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[debian.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,infradead.org,linux.alibaba.com,google.com,baidu.com,fb.com,suse.cz,kylinos.cn,tinylab.org,pigmoral.tech,easystack.cn,vivo.com,huawei.com,linaro.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux.dev:dkim,linux.dev:email]
-X-Rspamd-Queue-Id: 6854B358002
+	RCPT_COUNT_GT_50(0.00)[66];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[leitao@debian.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[debian.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,arm.com:email,huawei.com:email]
+X-Rspamd-Queue-Id: 9130B3581B1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 30, 2026 at 16:38:03 CST, Iker Pedrosa wrote:
-> Ensure SD card pins receive clock signals by enabling pad clock
-> generation and overriding automatic clock gating. Required for all SD
-> operation modes.
+On Sat, Mar 28, 2026 at 03:40:12PM +0800, Jinjie Ruan wrote:
+> Commit 35c18f2933c5 ("Add a new optional ",cma" suffix to the
+> crashkernel= command line option") and commit ab475510e042 ("kdump:
+> implement reserve_crashkernel_cma") added CMA support for kdump
+> crashkernel reservation.
 > 
-> The SDHC_GEN_PAD_CLK_ON setting in LEGACY_CTRL_REG is safe for both SD
-> and eMMC operation as both protocols use the same physical MMC interface
-> pins and require proper clock signal generation at the hardware level
-> for signal integrity and timing.
+> Crash kernel memory reservation wastes production resources if too
+> large, risks kdump failure if too small, and faces allocation difficulties
+> on fragmented systems due to contiguous block constraints. The new
+> CMA-based crashkernel reservation scheme splits the "large fixed
+> reservation" into a "small fixed region + large CMA dynamic region": the
+> CMA memory is available to userspace during normal operation to avoid
+> waste, and is reclaimed for kdump upon crash—saving memory while
+> improving reliability.
 > 
-> Additional SD-specific clock overrides (SDHC_OVRRD_CLK_OEN and
-> SDHC_FORCE_CLK_ON) are conditionally applied only for SD-only
-> controllers to handle removable card scenarios.
+> So extend crashkernel CMA reservation support to arm64. The following
+> changes are made to enable CMA reservation:
 > 
-> Tested-by: Anand Moon <linux.amoon@gmail.com>
-> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-> Tested-by: Trevor Gamblin <tgamblin@baylibre.com>
-> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
-Reviewed-by: Troy Mitchell <troy.mitchell@linux.dev>
+> - Parse and obtain the CMA reservation size along with other crashkernel
+>   parameters.
+> - Call reserve_crashkernel_cma() to allocate the CMA region for kdump.
+> - Include the CMA-reserved ranges for kdump kernel to use.
+> - Exclude the CMA-reserved ranges from the crash kernel memory to
+>   prevent them from being exported through /proc/vmcore, which is already
+>   done in the crash core.
+> 
+> Update kernel-parameters.txt to document CMA support for crashkernel on
+> arm64 architecture.
+> 
+> Acked-by: Catalin Marinas <catalin.marinas@arm.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Acked-by: Baoquan He <bhe@redhat.com>
+> Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> Acked-by: Ard Biesheuvel <ardb@kernel.org>
+> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+
+Tested-by: Breno Leitao <leitao@debian.org>
 
