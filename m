@@ -1,138 +1,254 @@
-Return-Path: <devicetree+bounces-282412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282393-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cMkQKVZZymn27gUAu9opvQ
-	(envelope-from <devicetree+bounces-282412-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:07:02 +0200
+	id YPTMOP9Tymn27gUAu9opvQ
+	(envelope-from <devicetree+bounces-282393-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 12:44:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3657359EE5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 13:07:01 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37548359987
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 12:44:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BA86930AC04A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 10:49:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C872F301A1ED
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 10:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 883AE26F2B9;
-	Mon, 30 Mar 2026 10:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50BF33BC667;
+	Mon, 30 Mar 2026 10:28:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (unknown [60.248.187.195])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1A103C5531;
-	Mon, 30 Mar 2026 10:48:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.187.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248F63ACA5D
+	for <devicetree@vger.kernel.org>; Mon, 30 Mar 2026 10:28:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774867708; cv=none; b=RFfic8xzoVLCv780yZwIVzsuaTOX0GpN0Jdyv3WmVrfTWrOD8g+802esZVgsk3DfrgNCEhPJUbbRwseu+xOXc9X9q9RrPF+ITjn/YGOA0L3NlxXs+uduQ7xuj8qFL8OV1zV6Ibx54HYQCr7emZ+rddubtgDdSOqp4SPq0l4v2Io=
+	t=1774866511; cv=none; b=J2Q2vQkt2sJXZv30wj/Y3A3pXIshy2/zEmt20ZiTOKIXM9AmrSkGzrJ/GdOWUR7M+HlJ+W4UVB2+Zw8kof9dW1HSMquboGdHXA2oWFUyIeCmWI7b6LJernrbaKzbxoUNK8U/5UCt6Qo5BABX2pQ9OdYbF5+Gs1/YfawFMONLPto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774867708; c=relaxed/simple;
-	bh=VbCZEiqH70J7vlJW75wZQYTsamVjQ6zwAHkOmcwBm1U=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EHA1VMzTvxaJ7KTpwS8xKzh/TXTagbnNG5/Dj9+rYzMqud0SLLX0Juf74/UjeN6/8Dp9lrfpaNWZE0IpJIipU1SfPL0VbgT/xpw/x2e8Q/US1/Vy63a8mwIaZXPxq0UqX+5KpCeqJpVohhmkVfhGVB4rcH9mf4V18Gfda/d2KVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.187.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from Atcsqr.andestech.com (localhost [127.0.0.2] (may be forged))
-	by Atcsqr.andestech.com with ESMTP id 62UATOXY040303;
-	Mon, 30 Mar 2026 18:29:24 +0800 (+08)
-	(envelope-from minachou@andestech.com)
-Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
-	by Atcsqr.andestech.com with ESMTP id 62UASKjA038311;
-	Mon, 30 Mar 2026 18:28:20 +0800 (+08)
-	(envelope-from minachou@andestech.com)
-Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
- (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 30 Mar
- 2026 18:28:20 +0800
-From: Hui Min Mina Chou <minachou@andestech.com>
-To: <pjw@kernel.org>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
-        <alex@ghiti.fr>, <geert+renesas@glider.be>,
-        <prabhakar.mahadev-lad.rj@bp.renesas.com>, <magnus.damm@gmail.com>,
-        <ben717@andestech.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <jonathan.cameron@huawei.com>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>
-CC: <tim609@andestech.com>, <alex749@andestech.com>, <az70021@gmail.com>,
-        "Hui
- Min Mina Chou" <minachou@andestech.com>
-Subject: [PATCH 7/7] MAINTAINERS: Add maintainers for Andes cache driver
-Date: Mon, 30 Mar 2026 18:27:24 +0800
-Message-ID: <20260330102724.1012470-8-minachou@andestech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260330102724.1012470-1-minachou@andestech.com>
-References: <20260330102724.1012470-1-minachou@andestech.com>
+	s=arc-20240116; t=1774866511; c=relaxed/simple;
+	bh=QcgDmtp6qELhkSs9OIigLdhyLZkq8vZpH4Nl1UEWrw0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r1ktLuHc7RCIwFieRAIkO4clHe0auYoavUeEvuzoqrvsn8/8r5EJ7koTtV2qQHoT2LUulEouwTcVtTxZsObbnB9NRb04VCqeq4wGDYE63kSo4U/VFind+2eNtBIIxXlRMaYXIq1f/rC/ANpe+aOkKyHPbD6/ugRAI2vI67ENYsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1w79qj-0000CQ-RV; Mon, 30 Mar 2026 12:28:01 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1w79qi-002rMd-1h;
+	Mon, 30 Mar 2026 12:28:00 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1w79qi-0000000EQ4g-1fiC;
+	Mon, 30 Mar 2026 12:28:00 +0200
+Date: Mon, 30 Mar 2026 12:28:00 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
+	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display: bridge: ldb: Require reg property
+ only for i.MX6SX/8MP LDBs
+Message-ID: <oyietcoxdawgjmpdc3kkmru2azuuqrkmn3onm37wpu6f3t2pqg@g7aswu7zsfrq>
+References: <20260329-fsl_ldb_schema_fix-v1-1-351372754bc0@nxp.com>
+ <crqzju5cqhvmy5msxvuquydmnpb2ft2t3gsyr6qsre6ccqjvzz@46gfcrelczsr>
+ <aabe88e5-70f9-4ea1-b750-e425970a2761@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="y"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
- ATCPCS34.andestech.com (10.0.1.134)
-X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 62UATOXY040303
-X-Spamd-Result: default: False [3.04 / 15.00];
-	DMARC_POLICY_REJECT(2.00)[andestech.com : SPF not aligned (relaxed), No valid DKIM,reject];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aabe88e5-70f9-4ea1-b750-e425970a2761@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282412-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,glider.be,bp.renesas.com,gmail.com,andestech.com,huawei.com,vger.kernel.org,lists.infradead.org];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-282393-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[andestech.com,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,denx.de,oss.nxp.com,lists.freedesktop.org,vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.973];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[minachou@andestech.com,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,andestech.com:email,andestech.com:mid,android.com:email,linuxfoundation.org:email]
-X-Rspamd-Queue-Id: C3657359EE5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,0.0.0.2:email,pengutronix.de:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 37548359987
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Here add maintainer information for Andes cache driver.
+On 26-03-30, Liu Ying wrote:
+> On Sun, Mar 29, 2026 at 07:42:23PM +0200, Marco Felsch wrote:
+> > Hi Liu,
+> 
+> Hi Marco,
+> 
+> > 
+> > sorry for not writting back earlier, the last weeks were quite busy.
+> > 
+> > On 26-03-29, Liu Ying wrote:
+> >> LDB's parent device could be a syscon which doesn't allow a reg property
+> >> to be present in it's child devices, e.g., NXP i.MX93 Media blk-ctrl
+> >> has a child device NXP i.MX93 Parallel Display Format Configuration(PDFC)
+> >> without a reg property(LDB is also a child device of the Media blk-ctrl).
+> >> To make the LDB schema be able to describe LDBs without the reg property
+> >> like i.MX93 LDB, require the reg property only for i.MX6SX/8MP LDBs.
+> > 
+> > NACK, we want to describe the HW and from HW PoV the LDB is and was
+> > always part of a syscon. This is the case for all SoCs i.MX6SX/8MP/93.
+> 
+> The reality is that i.MX6SX and i.MX8MP LDB DT nodes are already in-tree.
 
-Signed-off-by: Hui Min Mina Chou <minachou@andestech.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+What do you mean by 'already in-tee'?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 23d88c825175..e95efbcd6d39 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1863,6 +1863,14 @@ S:	Supported
- F:	Documentation/devicetree/bindings/spi/andestech,ae350-spi.yaml
- F:	drivers/spi/spi-atcspi200.c
- 
-+ANDES CACHE DRIVER
-+M:	Alex Chun-Ju Lin <alex749@andestech.com>
-+M:	Leo Yu-Chi Liang <ycliang@andestech.com>
-+M:	Mina Hui Min Chou <minachou@andestech.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/cache/andestech,andes-llcache.yaml
-+F:	drivers/cache/andes_llcache.c
-+
- ANDROID DRIVERS
- M:	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
- M:	Arve Hjønnevåg <arve@android.com>
+> People may take them as ABI(not only for Linux, but also for other
+> potential projects which use the LDB schema and/or the DT nodes).
+
+Not sure about this. The DT sould be backward compatible, meaning an old
+DT shouldn't break new users e.g. old DT with 'reg' property present
+shouldn't break new u-boot/barebox/linux/... drivers. But a new DT could
+fix/change the behavior for new u-boot/barebox/linux/... drivers.
+
+So no, I don't see a problem here.
+
+> >> Fixes: 8aa2f0ac08d3 ("dt-bindings: display: bridge: ldb: Add check for reg and reg-names")
+> > 
+> > Therefore I would just revert this patch completely.
+> 
+> IMHO, it doesn't make too much difference between my patch and reverting
+> this offending patch, because of the ABI, i.e., the reg properties in
+> i.MX6SX and i.MX8MP LDB DT nodes are supposed to be stable.
+
+Please see above. If that would be the case, your DT must be rock-solid
+bug-free from day one, which is highly unlikely.
+
+> I feel that what you are asking for is even more than simply reverting
+> this offending patch, that is to say, completely disallowing the reg and
+> reg-names properties for LDBs across all SoCs.  But again, that would
+> break the ABI.
+
+Please see above. IMHO it's more confusing if the same "IP" requires the
+'reg' for i.MX6SX/8MP but doesn't require it for the i.MX93. Therefore I
+would like to keep it consistent.
+
+Regards,
+  Marco
+
+> 
+> > 
+> > Regards,
+> >   Marco
+> > 
+> >> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> >> ---
+> >>  .../bindings/display/bridge/fsl,ldb.yaml           | 23 ++++++++++++++++------
+> >>  1 file changed, 17 insertions(+), 6 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+> >> index 7f380879fffd..5f6dc2b11d7b 100644
+> >> --- a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+> >> +++ b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+> >> @@ -28,6 +28,7 @@ properties:
+> >>      const: ldb
+> >>  
+> >>    reg:
+> >> +    minItems: 1
+> >>      maxItems: 2
+> >>  
+> >>    reg-names:
+> >> @@ -68,7 +69,6 @@ required:
+> >>    - compatible
+> >>    - clocks
+> >>    - ports
+> >> -  - reg
+> >>  
+> >>  allOf:
+> >>    - if:
+> >> @@ -83,12 +83,23 @@ allOf:
+> >>          ports:
+> >>            properties:
+> >>              port@2: false
+> >> +
+> >>    - if:
+> >> -      not:
+> >> -        properties:
+> >> -          compatible:
+> >> -            contains:
+> >> -              const: fsl,imx6sx-ldb
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            enum:
+> >> +              - fsl,imx6sx-ldb
+> >> +              - fsl,imx8mp-ldb
+> >> +    then:
+> >> +      required:
+> >> +        - reg
+> >> +
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            const: fsl,imx8mp-ldb
+> >>      then:
+> >>        required:
+> >>          - reg-names
+> >>
+> >> ---
+> >> base-commit: 3b058d1aeeeff27a7289529c4944291613b364e9
+> >> change-id: 20260329-fsl_ldb_schema_fix-4fe01c42bff3
+> >>
+> >> Best regards,
+> >> -- 
+> >> Liu Ying <victor.liu@nxp.com>
+> >>
+> >>
+> > 
+> 
+> -- 
+> Regards,
+> Liu Ying
+> 
+
 -- 
-2.34.1
+#gernperDu 
+#CallMeByMyFirstName
 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
