@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-282335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282332-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CPztNaw+ymn46wUAu9opvQ
-	(envelope-from <devicetree+bounces-282335-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:13:16 +0200
+	id IDuaFLs/ymn46wUAu9opvQ
+	(envelope-from <devicetree+bounces-282332-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:17:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 900A5357F15
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:13:16 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B5A3357FF9
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 11:17:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D13953034A1C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:07:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EB4ED300B9C0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Mar 2026 09:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9013B4E81;
-	Mon, 30 Mar 2026 09:07:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BDD13B2FF8;
+	Mon, 30 Mar 2026 09:07:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="axZyibhz"
+	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="kTaggtKJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 364693B27D3;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C3C3B27E2;
 	Mon, 30 Mar 2026 09:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774861659; cv=none; b=bKdvvczLtC3vr3N36zizLGwETO6Bb5pFBBq30YxU5I6fhsPZFS1+V3lHuOVZSP7EzPMWpenoZECQvA42rZtZaR6F3gFvIx/jMLU8hviagTd+zsupqac6F2sxFanFfkbxi2HX1fdzc5nJSgWsLna+MF4krbgORAJap/aJyjJLMxg=
+	t=1774861658; cv=none; b=Ya95axyUmtLN7e/Z7j/Q7IFQ6iJ8Xywo4XRQ7nSPeUWt3aQBBv8W4+UpWx6m5d2bcReTuyGWf9nZrVI8N0kwpXu2yWs2/kdHOmu3oyiSiLWYfe5DYxnb7KZGYeYDA+lWfje9BEYGxExMRynn4/b+dc2QTXuIuOjVPMgYWYDDFT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774861659; c=relaxed/simple;
-	bh=e55VB0sOSl+JSPzr6ZYodo7iAcDR8KlkDnHRQ4PcMVk=;
+	s=arc-20240116; t=1774861658; c=relaxed/simple;
+	bh=Ati0WQXsi/BbMty7w9zy15si5sKm0IPY4TkcmlS7Z9Y=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:Cc; b=jsKw0FAWPR+z71ikxJNr3O0rxMl2wb9heXWlem43tHkIdglTO/gfySPf5qLZRsgmDuVs8bY8/+p+XmtgMUFkLDgXBp6YAmCp9cvnjatugTB4SQGfb3Gd313bpaWYeWLk9cJPPSrFA8HJOuy9QrOe0i3/t1bYKARkkO1aD+F4ILI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=axZyibhz; arc=none smtp.client-ip=194.37.255.70
+	 In-Reply-To:To:Cc; b=TwiSOULND/gigdDtBC1biJ6yA5nqb+iL4zhm4D6fRIlu7ueDADawFDI1vVnCe60/ng8g333k3/JlbFITO5O89hmiNV1Tcf1m8T2gBAgUY94RS5Qg66QLeXM/r1gjWMHVexq1iLPOH2z4tsdhO0RI6iTs5sQHGKhNZ0fkApsU1J4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=kTaggtKJ; arc=none smtp.client-ip=194.37.255.70
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
 Received: from [194.37.255.9] (helo=mxout.expurgate.net)
 	by relay.expurgate.net with smtp (Exim 4.92)
 	(envelope-from <prvs=65635f912b=fe@dev.tdt.de>)
-	id 1w78aq-008YdX-5D; Mon, 30 Mar 2026 11:07:32 +0200
+	id 1w78aq-008YeN-Fd; Mon, 30 Mar 2026 11:07:32 +0200
 Received: from [195.243.126.94] (helo=securemail.tdt.de)
 	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <fe@dev.tdt.de>)
-	id 1w78ap-009iaI-Jq; Mon, 30 Mar 2026 11:07:31 +0200
+	id 1w78ap-008YcB-Rg; Mon, 30 Mar 2026 11:07:31 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dev.tdt.de;
 	s=z1-selector1; t=1774861651;
-	bh=m+/djrkgilb4aSqNgXkCDE4sf4r1b8wwgRVEYUv5Q00=;
+	bh=BofokuiPDJZU4b3Xyu05PlOTjPGWqOiC0E9vOzhVtD4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=axZyibhznQD0z1wIFU65AWimUJ1U3QbLt5GxJ/ENDBbTuMEqB5CbPvQl7o0oNO9ks
-	 U0plnpdOLKXyJId1P71aMSHMUn6JrPKUMtGBaIPAOoXlWSMDxTiMZNUUOhyvph1M7p
-	 8WaT6drBoU+pv1sMGFHfqqBBdgwyWqgE95ro/JsFmzlxFvbszM/Dh2hTsbgm/WUk1b
-	 Nkje//32iLyA+LPQ4fAJyFnAGXYPQRDQtu52qc8QrjtKaAvBdvUGvWFv+k1R8HnMvK
-	 EgxrwThE5hGnFhqNJpQnLPaZZjGL+PGbD0TORnvPzqv+pBc3xJzXX3HU01XmqW8ixb
-	 mtrduscsCao3A==
+	b=kTaggtKJHvwlPslYA1urj+6xWZcviq4exu8SP6+kYfFe8W7Lnn3O8m5f7WBpJeRGa
+	 eqgrQsl+4wpN25EytML4Pkd00CRU/rNxN9xd1z1ij5BFIpea85IP30DaPpOHXg1gdC
+	 eIeeuBpMy5dybdI/Ydp/GkNjCr1+hkCnBy3NQBgaxSSMa91IFdQeTZQqrylkg3OE7Q
+	 owt/a3tEdGKA/QFdkdw0REyFthVPNwCzmcHE8Nn2DZA9hEpeeU3wx/FtripEchd24J
+	 ejKtzTD2JOblmg+DbpWDGCMYATiRj590vneD4ZCKqCB90A8dQYyqYhC/DB7omAkrBi
+	 gC+zaKAUVG4+A==
 Received: from securemail.tdt.de (localhost [127.0.0.1])
-	by securemail.tdt.de (Postfix) with ESMTP id 3462F240051;
+	by securemail.tdt.de (Postfix) with ESMTP id 67C15240040;
 	Mon, 30 Mar 2026 11:07:31 +0200 (CEST)
 Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-	by securemail.tdt.de (Postfix) with ESMTP id 2B60A240050;
+	by securemail.tdt.de (Postfix) with ESMTP id 5F04C240036;
 	Mon, 30 Mar 2026 11:07:31 +0200 (CEST)
 Received: from [10.2.3.40] (unknown [10.2.3.40])
-	by mail.dev.tdt.de (Postfix) with ESMTPSA id 05A3B2040A;
+	by mail.dev.tdt.de (Postfix) with ESMTPSA id 29A7B20E49;
 	Mon, 30 Mar 2026 11:07:31 +0200 (CEST)
 From: Florian Eckert <fe@dev.tdt.de>
-Date: Mon, 30 Mar 2026 11:07:14 +0200
-Subject: [PATCH v2 4/7] PCI: intel-gw: Add start_link callback function
+Date: Mon, 30 Mar 2026 11:07:15 +0200
+Subject: [PATCH v2 5/7] PCI: intel-gw: Remove atu base assignment
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,7 +73,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20260330-pcie-intel-gw-v2-4-8bd07367a298@dev.tdt.de>
+Message-ID: <20260330-pcie-intel-gw-v2-5-8bd07367a298@dev.tdt.de>
 References: <20260330-pcie-intel-gw-v2-0-8bd07367a298@dev.tdt.de>
 In-Reply-To: <20260330-pcie-intel-gw-v2-0-8bd07367a298@dev.tdt.de>
 To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
@@ -90,20 +90,20 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org, Florian Eckert <fe@dev.tdt.de>,
 	Eckert.Florian@googlemail.com, ms@dev.tdt.de
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774861650; l=3052;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774861650; l=2173;
  i=fe@dev.tdt.de; s=20260205; h=from:subject:message-id;
- bh=e55VB0sOSl+JSPzr6ZYodo7iAcDR8KlkDnHRQ4PcMVk=;
- b=VkjBonXUhPvt5S5XDvblpL/gtoaP1nwAGJeUlXaTe9uYErZGn5MRGJ6P0XwSJfTh6fTkOm2bh
- W+BlfVSHfolBvSPpaqUk9bwYzMSvJxxuXgkayOe2nSCzRq/+QlGgWLi
+ bh=Ati0WQXsi/BbMty7w9zy15si5sKm0IPY4TkcmlS7Z9Y=;
+ b=kTeDwbb87ZDCFjB4oRXDikxEf8css8e5gSMQkHoRoDrxSAMvbLkmSNkFHdR3WQ72AuM5xJRUV
+ foMvxU2nXl3DDPapCb6sGOvsz+EbdiHd4qDMd3eo6wgBb+hx/rdO18j
 X-Developer-Key: i=fe@dev.tdt.de; a=ed25519;
  pk=q7Pvv3Au2sAVRhBz5UF7ZqUPNxUwXQ78Jdqu8E6Negk=
-X-purgate: clean
-X-purgate-ID: 151534::1774861652-C7C23842-48C85DE9/0/0
 X-purgate-type: clean
+X-purgate: clean
+X-purgate-ID: 151534::1774861652-C6C25842-7B2AD83F/0/0
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[tdt.de,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[dev.tdt.de:s=z1-selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -111,99 +111,71 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	FREEMAIL_CC(0.00)[vger.kernel.org,dev.tdt.de,googlemail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-282335-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-282332-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[dev.tdt.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tdt.de:email,c1100000:email,dev.tdt.de:dkim,dev.tdt.de:mid,d1000000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,tdt.de:email,dev.tdt.de:dkim,dev.tdt.de:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[fe@dev.tdt.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,linaro,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 900A5357F15
+X-Rspamd-Queue-Id: 6B5A3357FF9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The pcie-intel-gw driver has no start_link callback function. This commit
-adds the missing callback function so that the driver works again and does
-not abort with the following error messages during probing.
+If no ATU resource is defined in the DTS, the default value is 0x300000[1].
+This is set during probing in the function 'dw_pcie_get_resources()'[2].
+The driver overwrites this again when its init callback is called in its
+'intel_pcie_host_setup()' [3] function. This is because the value here is
+'0xC0000' rather than '0x300000'. This callback is called by the dwc core
+via 'pp->ops->init' [4].
 
-[    2.512015] intel-gw-pcie d1000000.pcie: host bridge /soc/pcie@d1000000 ranges:
-[    2.517868] intel-gw-pcie d1000000.pcie:      MEM 0x00dc000000..0x00ddffffff -> 0x00dc000000
-[    2.528450] intel-combo-phy d0c00000.combo-phy: Set combo mode: combophy[1]: mode: PCIe single lane mode
-[    2.551619] intel-gw-pcie d1000000.pcie: No outbound iATU found
-[    2.556060] intel-gw-pcie d1000000.pcie: Cannot initialize host
-[    2.561901] intel-gw-pcie d1000000.pcie: probe with driver intel-gw-pcie failed with error -22
-[    2.571041] intel-gw-pcie c1100000.pcie: host bridge /soc/pcie@c1100000 ranges:
-[    2.577736] intel-gw-pcie c1100000.pcie:      MEM 0x00ce000000..0x00cfffffff -> 0x00ce000000
-[    2.588299] intel-combo-phy c0c00000.combo-phy: Set combo mode: combophy[3]: mode: PCIe single lane mode
-[    2.611471] intel-gw-pcie c1100000.pcie: No outbound iATU found
-[    2.615934] intel-gw-pcie c1100000.pcie: Cannot initialize host
-[    2.621759] intel-gw-pcie c1100000.pcie: probe with driver intel-gw-pcie failed with error -22
+function callstack:
+intel_pcie_probe()
+  dw_pcie_host_init()
+    dw_pcie_host_get_resources()
+      dw_pcie_get_resources() [2]
+    pp->ops->init = intel_pcie_rc_init()
+                      intel_pcie_host_setup() [3]
 
-Fixes: c5097b9869a1 ("Revert "PCI: dwc: Wait for link up only if link is started"")
-Fixes: da56a1bfbab5 ("PCI: dwc: Wait for link up only if link is started")
+As backwards compatibility is not an issue here [5], the value for the ATU
+resource is moved to the DTS and is therefore loaded by the dwc core. It
+is therefore no longer necessary to overwrite the pci->atu_base address in
+the init callback. The DTS must be modified so that the additional resource
+is loaded correctly by the DWC core.
+
+[1] https://elixir.bootlin.com/linux/v6.19.10/source/drivers/pci/controller/dwc/pcie-designware.h#L292
+[2] https://elixir.bootlin.com/linux/v6.19.10/source/drivers/pci/controller/dwc/pcie-designware.c#L150
+[3] https://elixir.bootlin.com/linux/v6.19.10/source/drivers/pci/controller/dwc/pcie-intel-gw.c#L301
+[4] https://elixir.bootlin.com/linux/v6.19.10/source/drivers/pci/controller/dwc/pcie-designware-host.c#L589
+[5] https://lore.kernel.org/all/BY3PR19MB507667CE7531D863E1E5F8AEBDD82@BY3PR19MB5076.namprd19.prod.outlook.com/
+
 Signed-off-by: Florian Eckert <fe@dev.tdt.de>
 ---
- drivers/pci/controller/dwc/pcie-intel-gw.c | 22 +++++++++++-----------
- 1 file changed, 11 insertions(+), 11 deletions(-)
+ drivers/pci/controller/dwc/pcie-intel-gw.c | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/controller/dwc/pcie-intel-gw.c
-index 6d9499d954674a26a74bff56b7fb5759767424c0..24c463781f1e31d5617a5ff81bdbce563ed5a1d0 100644
+index 24c463781f1e31d5617a5ff81bdbce563ed5a1d0..f41b64ac48d5c05e6b0e5b14c3e0cd7a4c407d16 100644
 --- a/drivers/pci/controller/dwc/pcie-intel-gw.c
 +++ b/drivers/pci/controller/dwc/pcie-intel-gw.c
-@@ -284,6 +284,16 @@ static void intel_pcie_turn_off(struct intel_pcie *pcie)
- 	pcie_rc_cfg_wr_mask(pcie, PCI_COMMAND, PCI_COMMAND_MEMORY, 0);
- }
+@@ -310,8 +310,6 @@ static int intel_pcie_host_setup(struct intel_pcie *pcie)
+ 		goto clk_err;
+ 	}
  
-+static int intel_pcie_start_link(struct dw_pcie *pci)
-+{
-+	struct intel_pcie *pcie = dev_get_drvdata(pci->dev);
-+
-+	intel_pcie_device_rst_deassert(pcie);
-+	intel_pcie_ltssm_enable(pcie);
-+
-+	return 0;
-+}
-+
- static int intel_pcie_host_setup(struct intel_pcie *pcie)
- {
- 	int ret;
-@@ -310,19 +320,8 @@ static int intel_pcie_host_setup(struct intel_pcie *pcie)
- 	intel_pcie_link_setup(pcie);
- 	intel_pcie_init_n_fts(pci);
- 
--	ret = dw_pcie_setup_rc(&pci->pp);
--	if (ret)
--		goto err;
+-	pci->atu_base = pci->dbi_base + 0xC0000;
 -
- 	dw_pcie_upconfig_setup(pci);
- 
--	intel_pcie_device_rst_deassert(pcie);
--	intel_pcie_ltssm_enable(pcie);
--
--	ret = dw_pcie_wait_for_link(pci);
--	if (ret)
--		goto err;
--
- 	intel_pcie_core_irq_enable(pcie);
- 
- 	return 0;
-@@ -386,6 +385,7 @@ static int intel_pcie_rc_init(struct dw_pcie_rp *pp)
- }
- 
- static const struct dw_pcie_ops intel_pcie_ops = {
-+	.start_link = intel_pcie_start_link,
- };
- 
- static const struct dw_pcie_host_ops intel_pcie_dw_ops = {
+ 	ret = phy_init(pcie->phy);
+ 	if (ret)
+ 		goto phy_err;
 
 -- 
 2.47.3
