@@ -1,121 +1,202 @@
-Return-Path: <devicetree+bounces-283043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283044-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aBi4Iajgy2n0MAYAu9opvQ
-	(envelope-from <devicetree+bounces-283043-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:56:40 +0200
+	id AD2LN0Phy2kNMQYAu9opvQ
+	(envelope-from <devicetree+bounces-283044-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:59:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2E1B36B3DF
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:56:39 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EA2D36B497
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:59:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2962A3090E8C
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 14:54:37 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 444E33037C68
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 14:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F7DB3FE347;
-	Tue, 31 Mar 2026 14:54:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DFF03FA5EF;
+	Tue, 31 Mar 2026 14:58:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=riposetti.com header.i=@riposetti.com header.b="PUMdMtVL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mail-106100.protonmail.ch (mail-106100.protonmail.ch [79.135.106.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A67B6282F00
-	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 14:54:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912553FF8BE;
+	Tue, 31 Mar 2026 14:58:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.100
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774968876; cv=none; b=OCQ3t7eVjzTuVMifKmN4PGSFrkLyfOe7k93VvFp/uIiVGFPEojDm4JXECUsEe+oc3cNPWkVaNxTw1TXI2loCn6VwtYkYGdbKyrJ71V/DPuUtnjBAqzthIioMyN2hnemVM+nJFqG6tDVyTRJ9Gsv0TT8N+RJenej7nBu35fUcXAM=
+	t=1774969135; cv=none; b=FHa3y8rgyM5sr/Mx+OYyTGXbAbUNGkuP5HiJWUVsDiuQfvYtewvYfykbD7iHh6zLPmdp70BKbm5IiUSZ8ZLwgKGSCP+Zt+rg49m0m7P1cZloe2pVw01AkCfhVn5NH234hP0BVO/BS/AB7Ayu6pgzX/+2nBtkIq96QNrZvxaCCP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774968876; c=relaxed/simple;
-	bh=QZUmskpqTfwUMpcdgTZGr60QdNV0PueYE/vUJGjtZng=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LjnMfAcqo0FgzKTxDX1lygZbcaF6e+S1bZNQMUk4p75v1O7s/fn4RaczHBXWnVXRu1duftl2vehmyly+1JGF+KK8L6DvA8jWGd/KoO1z1gbuqnYdizJKxUKbcx/bsFl0BJwhn14wFetplej3LVEhQHkApHox1vqQUyx/bWQXb8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1w7aTx-0003ct-Bk; Tue, 31 Mar 2026 16:54:17 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1w7aTw-0033bt-2n;
-	Tue, 31 Mar 2026 16:54:16 +0200
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1w7aTw-00000000E4T-3H1f;
-	Tue, 31 Mar 2026 16:54:16 +0200
-Message-ID: <af67757b7c49d695ff48a0898513afd24d2c0be7.camel@pengutronix.de>
-Subject: Re: [PATCH 1/2] reset: amlogic: t7: Fix null reset ops
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Ronald Claveau <linux-kernel-dev@aliel.fr>, Neil Armstrong	
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet	 <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- 	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Date: Tue, 31 Mar 2026 16:54:16 +0200
-In-Reply-To: <20260331-fix-aml-t7-null-reset-v1-1-eb95b625234c@aliel.fr>
-References: <20260331-fix-aml-t7-null-reset-v1-0-eb95b625234c@aliel.fr>
-	 <20260331-fix-aml-t7-null-reset-v1-1-eb95b625234c@aliel.fr>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1774969135; c=relaxed/simple;
+	bh=HANM5EJt4ju45nUxNxvL4TYnkJHnEzlv0DmMsyHPNtg=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=ZRM55RGeBvQ332u/qtUDNgesTAaAhyM+YGX5mlea9gfIjQXzepB3Q0E1ZnPVsXWxoyDDcOEBi8Za7XixTnRH4M7eR3F+fnvphxblHEp9VMk7hg7sF78KYIUnRJAPj4PaHVrib9hGL6k4Zu82bUzsm+iWUT+PXTBWx7+HQdV3R+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=riposetti.com; spf=pass smtp.mailfrom=riposetti.com; dkim=pass (2048-bit key) header.d=riposetti.com header.i=@riposetti.com header.b=PUMdMtVL; arc=none smtp.client-ip=79.135.106.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=riposetti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riposetti.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=riposetti.com;
+	s=protonmail; t=1774969122; x=1775228322;
+	bh=ZZNQD3G9J3JdUO6QCht2m2AihxeJ0DQQI8Ah1eY0QVE=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=PUMdMtVLvSINHFjgqmCz+ixCeGZWD3m+U0BGM1jZyhPvYijU9gJ4fyM4fxcPzBnQx
+	 2ya2xh6oEFofDKYMP9by00cXkrh/GORzzeTubyFhQ5aOf989B2uzSFrAC+s2UAd7eI
+	 H9Nm15kt1x0DIDKLCYInys2ot2kHH2ZD6+jLWBSGEGPWxqeMLfRZrAaxlt/Gr+LgkU
+	 jkX4/pT3n+PZ+7Cl7KRpuE1CBOdOkW87y69SLVMFT8VKSxI1ZfhEoHI25JESDuKjHy
+	 92TDtlBzR4NtKKAH+TtjbbehzXuuKs/iYwNxVyjNyd/2/jvuWA9+p7wvgSu4wsbWSm
+	 0ha4ZXLOHFnIg==
+Date: Tue, 31 Mar 2026 14:58:35 +0000
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, Shawn Guo <shawn.guo@linaro.org>
+From: Andrea Poldi <andrea@riposetti.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Andrea Poldi <andrea@riposetti.com>
+Subject: [PATCH] dt-bindings: media: hisilicon,hix5hd2-ir: convert to YAML
+Message-ID: <20260331145748.39349-1-andrea@riposetti.com>
+Feedback-ID: 120562977:user:proton
+X-Pm-Message-ID: 6e82684393a329d96b689ad0192e691e49dba100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [0.04 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[riposetti.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[riposetti.com:s=protonmail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-283043-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FREEMAIL_TO(0.00)[aliel.fr,linaro.org,baylibre.com,googlemail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283044-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.623];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrea@riposetti.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[riposetti.com:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aliel.fr:email,pengutronix.de:email,pengutronix.de:mid]
-X-Rspamd-Queue-Id: F2E1B36B3DF
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8EA2D36B497
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Di, 2026-03-31 at 16:24 +0200, Ronald Claveau wrote:
-> Fix missing reset ops causing kernel null pointer dereference.
-> This SOC's reset is currently not used yet.
->=20
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Convert the HiSilicon Hix5hd2 IR bindings to DT schema.
 
-This is
+Signed-off-by: Andrea Poldi <andrea@riposetti.com>
+---
+ .../bindings/media/hisilicon,hix5hd2-ir.yaml  | 53 +++++++++++++++++++
+ .../devicetree/bindings/media/hix5hd2-ir.txt  | 26 ---------
+ 2 files changed, 53 insertions(+), 26 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/hisilicon,hix5h=
+d2-ir.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/hix5hd2-ir.txt
 
-Fixes: fb4c31587adf ("reset: amlogic: add auxiliary reset driver support")
+diff --git a/Documentation/devicetree/bindings/media/hisilicon,hix5hd2-ir.y=
+aml b/Documentation/devicetree/bindings/media/hisilicon,hix5hd2-ir.yaml
+new file mode 100644
+index 000000000000..f5c28603ed0a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/hisilicon,hix5hd2-ir.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/hisilicon,hix5hd2-ir.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: HiSilicon Hix5hd2 Infrared Receiver
++
++maintainers:
++  - Shawn Guo <shawn.guo@linaro.org>
++
++allOf:
++  - $ref: rc.yaml#
++
++properties:
++  compatible:
++    enum:
++      - hisilicon,hix5hd2-ir
++      - hisilicon,hi3796cv300-ir
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  hisilicon,power-syscon:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: phandle of syscon used to control power.
++    deprecated: true
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    ir@f8001000 {
++        compatible =3D "hisilicon,hix5hd2-ir";
++        reg =3D <0xf8001000 0x1000>;
++        interrupts =3D <0 47 4>;
++        clocks =3D <&clock 0>;
++        linux,rc-map-name =3D "rc-tivo";
++    };
+diff --git a/Documentation/devicetree/bindings/media/hix5hd2-ir.txt b/Docum=
+entation/devicetree/bindings/media/hix5hd2-ir.txt
+deleted file mode 100644
+index ca4cf774662e..000000000000
+--- a/Documentation/devicetree/bindings/media/hix5hd2-ir.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-Device-Tree bindings for hix5hd2 ir IP
+-
+-Required properties:
+-=09- compatible: Should contain "hisilicon,hix5hd2-ir", or:
+-=09=09- "hisilicon,hi3796cv300-ir" for Hi3796CV300 IR device.
+-=09- reg: Base physical address of the controller and length of memory
+-=09  mapped region.
+-=09- interrupts: interrupt-specifier for the sole interrupt generated by
+-=09  the device. The interrupt specifier format depends on the interrupt
+-=09  controller parent.
+-=09- clocks: clock phandle and specifier pair.
+-
+-Optional properties:
+-=09- linux,rc-map-name: see rc.txt file in the same directory.
+-=09- hisilicon,power-syscon: DEPRECATED. Don't use this in new dts files.
+-=09=09Provide correct clocks instead.
+-
+-Example node:
+-
+-=09ir: ir@f8001000 {
+-=09=09compatible =3D "hisilicon,hix5hd2-ir";
+-=09=09reg =3D <0xf8001000 0x1000>;
+-=09=09interrupts =3D <0 47 4>;
+-=09=09clocks =3D <&clock HIX5HD2_IR_CLOCK>;
+-=09=09linux,rc-map-name =3D "rc-tivo";
+-=09};
+--=20
+2.50.1 (Apple Git-155)
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-regards
-Philipp
 
