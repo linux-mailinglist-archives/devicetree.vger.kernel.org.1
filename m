@@ -1,176 +1,160 @@
-Return-Path: <devicetree+bounces-282807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282809-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qLJkNh92y2k3HwYAu9opvQ
-	(envelope-from <devicetree+bounces-282807-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:22:07 +0200
+	id eIPdEiJ1y2k3HwYAu9opvQ
+	(envelope-from <devicetree+bounces-282809-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:17:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D962F3650A4
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:22:06 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD8EB364F6C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:17:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 075B1301EA27
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 07:14:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 622583064EAC
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 07:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D98F53BADBD;
-	Tue, 31 Mar 2026 07:14:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E626394496;
+	Tue, 31 Mar 2026 07:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D/BV0iL3"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="kkbKps3Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5CF63B19A6;
-	Tue, 31 Mar 2026 07:14:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFB0A391E41;
+	Tue, 31 Mar 2026 07:16:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774941280; cv=none; b=ccF0RYjfoLQ8E2Rp+aJedhFQDbC4FItjGHGmQMTBs+aoall6735hq39yZsb7ylR5QSPFWtTUgnHQoVh8TrpNhCpD9OgOKu5b6bXpLbVV3PvOkR/RCaH8uQ6AwMFgAEJ/i5Cf5ohQomnu5doa1S9bpEclv5PTcT0p7yzxM/DeVzk=
+	t=1774941384; cv=none; b=mQiuHPXilUCkLNBu0JbwjVmr+ovx61eom5mowwPVRMK84PBzmpBFcGW2XSAskLiGRiou/co5QlftRWVrpx8YyYmt0fNqb9snHWZ9moKCzuNmwt7jmsSEpxOQ0VJJYx6rql71n2Kdv+DZ6NLqMXxnipdX88WsGilpfYVKr/s9NPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774941280; c=relaxed/simple;
-	bh=XshKU2cWKuZ3/gbCGm+5Y0/UDeASirnHNujrll7lMCM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dcmyrzlEjdax6AqSA51QuJQfk0BBnmHfJBPBRudrQsbjUZ2F58vxTNqdufHKYJ5KVQ361pHOZfaGbC/E5+XbMZxYuqgnJPp/Gh2e48EfbP1Puh2G+vzfaVhMOGuI2buUtCCsXseMhU179d4o2wKlPW8bp2igKt97z42d9i78fu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D/BV0iL3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF088C19423;
-	Tue, 31 Mar 2026 07:14:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774941280;
-	bh=XshKU2cWKuZ3/gbCGm+5Y0/UDeASirnHNujrll7lMCM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=D/BV0iL3u/9475WIhZXRltjQvKjIccMVlCpX3f6oxhMwHfbda2TaxoUHJw4d5+9eK
-	 0kf8DnuWTtySASclQGvHZGQ3i+6UkXvrKCpmTJibmxzP7NbI3wCcKxelR2xs/SW+ws
-	 A+M3i6omrmfovda3Zldrr7Qm2c/ytAmOsZ/yo/HTbH+71dpUti5qPBFHkIrFV3XmBi
-	 h232FxiwJGYd6x8YUfb9/hk1PP5IxJTCRUrryPnB7XtU1xaHC1AUMYoW50rfjCfq5y
-	 PByB05e4bR6aTsyJC2H04rzr/KjuiE/uFNS+69xgIvNvtYBvLvGxm8AhQDoK02maVJ
-	 AGGq4afS8UIBw==
-Message-ID: <8988012f-b006-4aa8-bb8f-571b8526a15c@kernel.org>
-Date: Tue, 31 Mar 2026 09:14:36 +0200
+	s=arc-20240116; t=1774941384; c=relaxed/simple;
+	bh=Q+Sh5dKsSASh5LsFmljR8zZTQU8zGlCs0Fs1daWA7vA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=aOy+Nd7BuwGLnD3s/H0D3FpDDefmT+QywbZs3iJ2tUQwCfOsL0vDRaoT8mc9TiRf4N5Cs4VC7rlNpDCyqqZqyjYlkBj3hsLZd0I+Dnv7IHlNQl1BOZqGJ7VIqeMaU0HvPe2lWuEpd6tMcTtBrdbMaoZ4d3bpaXirUZrRC08TSLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=kkbKps3Q; arc=none smtp.client-ip=54.207.19.206
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1774941328;
+	bh=FMUkMUxgtezj8otmGMF92Nid+Gsbj62Jf5IU2WL2R/w=;
+	h=Mime-Version:Date:Message-Id:Subject:From:To;
+	b=kkbKps3Qoh3s1fR4xyEgZwnUnTGH7mXhT59kPp7JVxRzHMTXfceDidZ4huJI3zE7A
+	 iWRu5PRFerGdngsw72YJ5x408nYZSICeNm2Vk1EWbGw6yjSOOpaCgHz6rei6XcEVbP
+	 u7+WaYLaGCyTjSl1vsf55HygvBxEWpZr9DUds/Bw=
+X-QQ-mid: esmtpsz16t1774941326tf5a2ee7d
+X-QQ-Originating-IP: Cm+r6MKhV4qTjGje/QFxDUQM2Xm3nEaCpKy58BmZF+c=
+Received: from = ( [120.237.158.181])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 31 Mar 2026 15:15:23 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 16497226984384082408
+EX-QQ-RecipientCnt: 19
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: soc: renesas: add MFIS binding
- documentation
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
- linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- Jassi Brar <jassisinghbrar@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20260317130638.2804-1-wsa+renesas@sang-engineering.com>
- <20260317130638.2804-2-wsa+renesas@sang-engineering.com>
- <20260318-camouflaged-umber-oxpecker-b2b29e@quoll>
- <CAMuHMdX=DRnFWG1ky8wT7mK=LHeJ6LduL28nYd19QpASrn6mew@mail.gmail.com>
- <c46357c9-8cf4-45ec-8b48-8cf979de2e98@kernel.org> <actzUSIKKzcDmBCT@shikoro>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <actzUSIKKzcDmBCT@shikoro>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Date: Tue, 31 Mar 2026 15:15:23 +0800
+Message-Id: <DHGS6RDFCOIN.14KI92Y8TSNRS@linux.spacemit.com>
+Cc: "Emil Renner Berthing" <kernel@esmil.dk>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Yixun Lan"
+ <dlan@kernel.org>, "Paul Walmsley" <paul.walmsley@sifive.com>, "Palmer
+ Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
+ "Heinrich Schuchardt" <heinrich.schuchardt@canonical.com>, "Troy Mitchell"
+ <troy.mitchell@linux.spacemit.com>, "Michael Opdenacker"
+ <michael.opdenacker@rootcommit.com>, "Guodong Xu" <guodong@riscstar.com>,
+ "Hendrik Hamerlinck" <hendrik.hamerlinck@hammernet.be>, "Yangyu Chen"
+ <cyy@cyyself.name>, <spacemit@lists.linux.dev>,
+ <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/2] Add DeepComputing FML13V05 board dts
+From: "Troy Mitchell" <troy.mitchell@linux.spacemit.com>
+To: "Sandie Cao" <sandie.cao@deepcomputing.io>, "Conor Dooley"
+ <conor+dt@kernel.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260331071110.68321-1-sandie.cao@deepcomputing.io>
+In-Reply-To: <20260331071110.68321-1-sandie.cao@deepcomputing.io>
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: OAOHw7tUGLQOt5OdeXFS36/JWlPRfV0AsJveg/cdPrg5TFXt31c0pDJU
+	ht0Ryk1UI8/EQV4WBVVkQVxzfRJC8vFM2GVzn89SkVIruTRdmfHleA7pX9omBU/8uSVJHM2
+	MHuxzKV3snPEb9RUrKptqmLjeYtcHeJvTnOqHjyvz+/rOK7R/joqWChsoc1at/5STsWnMss
+	BuxF3u8eGPsSvznA5eoyIqOnK+ldnBk1E0clihK7MLToRZJqslfr5uBWchE5xKjl+EIvrFt
+	uq99M6mzsH9hC1iv2csl4VDEd4Of4PViluyVZmKJPxtmMmP/6GiK+T8D6nlQh5lWkCroWY4
+	QcFHxbWVRcozAvXgO9M7265WA7VklyLoKKAonGCsbuXDtWnciNCeSihfxGb6SRRZqUsF/nS
+	WcNUjtWhNQZzg7bToqSnpqnkbCt35PxbbUHK9wcv/HAFC3boIhzhAs8p4QgCgn7qWSyfqQF
+	XQ+LDPwNuojk38IyYLtAnuglihmDQYeYT00b/m7Wagze2pHtYQVFVUxTf4E0HiPf+ZOcfMB
+	1/DDz5u/QCGWis+3/rY3KFGxpe70+sIqV1PBBvxEcXRaYbBaE0/roYiplzBYUm3q8JJHsfY
+	g86HomeynstL2NhwHTWAmunpWj343m6rXtE/EdxlP07v0qfNC9Qq0kyyhYi4pdoPPEUc9cX
+	xiSJaqjfuwg4t+ivU/IxFOdjZW6sl4k9Y9VE7ThjuWY/XrYoeT7wJo85OEMjiGGaBJhVULd
+	FsRYwsm42FHCXiDU8cfI/YZ8UjH0j29+r3pDqpCMy7bG5jHlpoqJZM4GxV1TwAntCpA1L7K
+	bwfG6YHLpRKTAPOvbqZp4WFeun+V6GSdMWR4tDe7HERTvx7U7nymN1prvMZlllb++b28Oxz
+	5Y+XVdreat1jURvGTgsCcpHVUoPkYwRnBkYdf6ikLYfImbsJIIcp5V4SlV6M+N1PkvgokT0
+	j3hEjXOAWZyhvyutAloGZqKheig/B1L7gME6AzG01UGKapPui+KwZRCpYPV2a+zNzNHXKL2
+	IAfAgCAPKoHz+jR5N3PCVasyuO7ESxbAo/ho2Sdays36kFSBw9G9AKSh3NEYldig09yeck3
+	cwu6/XUxU9II2rXLAbGmEQ=
+X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
+X-QQ-RECHKSPAM: 0
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[linux-m68k.org,vger.kernel.org,gmail.com,glider.be,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-282807-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-282809-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[spacemit.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.spacemit.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.spacemit.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D962F3650A4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DD8EB364F6C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 31/03/2026 09:10, Wolfram Sang wrote:
-> 
->> I did not get the driver so I cannot verify that. What sort of Linux ABI
->> does this bind?
-> 
-> In case you mean this as unanswered questions to v1: This describes the
-> device specific second mbox cell. Like Tegra does it here (even with
+Hi Sandie,
 
-I asked Linux ABI. Device specific numbers is not Linux ABI, because
-Linux is not device.
+On Tue Mar 31, 2026 at 3:11 PM CST, Sandie Cao wrote:
+> This series updates Device Tree related files to introduce the
+> FML13V05 board from DeepComputing, which incorporates a Spacemit
+> K3 SoC.  This board is designed for use on the Framework Laptop 13
+> Chassis, which has (Framework) SKU FRANHQ0001.
+>
+> The series is based on riscv-dt-for-next.
+>
+> v2:
+> - Patch 1:
+>    Use formal format user name.
+> - Patch 2:
+>    Use formal format user name.
+>    Add Reviewed-by from Troy Mitchell.
+>
+> Link to v1: https://lore.kernel.org/all/20260331034423.67142-1-sandie.cao=
+@deepcomputing.io/
+Please slow down a bit. Sending a v2 immediately after a single review does=
+n't
+give others (especially those in different time zones) a chance to look at =
+v1.
+It's better to wait a day or two to collect more feedback before sending a =
+new iteration
 
-> shifts instead of plain numbers):
-> 
-> include/dt-bindings/mailbox/tegra186-hsp.h
-> 
-> But all this has been said before and you got the driver as well in v2.
-
-What do you mean by v2? This is v1, there cannot have been a v2. No
-changelog in cover letter, no references.
-
-> I really have no idea what is still missing?
-
-It's not a binding, drop the header from the bindings.
-
-Best regards,
-Krzysztof
+                        - Troy
 
