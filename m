@@ -1,149 +1,240 @@
-Return-Path: <devicetree+bounces-283103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283105-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QFlDD8n9y2nqNAYAu9opvQ
-	(envelope-from <devicetree+bounces-283103-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 19:00:57 +0200
+	id uLJjGOMEzGljNQYAu9opvQ
+	(envelope-from <devicetree+bounces-283105-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 19:31:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B7036DA58
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 19:00:56 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E690836EDB6
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 19:31:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 072B13134314
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:48:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1AEA8329CEBD
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:55:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49F8B423A8E;
-	Tue, 31 Mar 2026 16:48:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D99CA423149;
+	Tue, 31 Mar 2026 16:55:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="f74sWmNA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jS6jyNFh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB4C7413225;
-	Tue, 31 Mar 2026 16:48:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B672E3E4C6C;
+	Tue, 31 Mar 2026 16:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774975723; cv=none; b=hjhsm3bpY6SZfhEDCPaZuf/LVZy/PovYn0b+pwGMM8DBc1BuprygXeyXg0joEXkCRBRpS/KgQlFCGs2Wr6U0jre4nuEMDRtVJIcv8odlc/LKGt9jUBz2I+kA6W1it1nqgxvXo+tLC9KNsriH+x6stnxuppTnyMEB+UcR3VYK0G8=
+	t=1774976143; cv=none; b=qUCvGm/NyGDaBQmDZtuAwbbMZ1bw9nmfDLLKA3I1SjKU6o2jzPFB7/teuNBefYpFTZc99AIBUCaltGZg06EG8csnxUOqX8YV3WAFh29bc89dMd4M19O0SdXT0N1HTCalNtcwqx/tv96mHXN5P+RQGFkg/w2WlyiR6Dg51lp+hW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774975723; c=relaxed/simple;
-	bh=E6JwAt4pAUiInSPP+d17jCzhh33dDx3RElmAhqz3dks=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=lIjydMcUNIi0lMXJtKOGF1aBJELcts/uCe/gJFJByyYt2a9CDcPfe+5YSpSB6H91PeKPMKMulZZ/U2D3ONepejIS1Mkwdp6HVkNitPR76dKQhS60FC4szWmzEx927tFhl13XFYugkbQvhYXbsZZ16FEP4/6ZwMeNp7mIbeGPZUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=f74sWmNA; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 5051A25F0B;
-	Tue, 31 Mar 2026 18:48:40 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id nIGKYODwd-YB; Tue, 31 Mar 2026 18:48:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1774975719; bh=E6JwAt4pAUiInSPP+d17jCzhh33dDx3RElmAhqz3dks=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=f74sWmNAo5/OgPyomIPzVopv3r9edQPc/VePoGMEuqhw9A9BAUhGF4uveznpxjRe4
-	 yoj3vnpP9I7MSTRHKgMEjoEs7ccYeku7gK9/DbrWER+jaNSjiSXWL+qHMkzzZIg8p0
-	 RVpnI/yUziu3HuQ5h32RlTRQnsEfmTsKhrsK8uIhgkRgsXBsoZOU8nLxtzlr3oRE/4
-	 qcEZMK4B0dwCWrD3GNLHZ/mwmsKiqju4gOXEVTPw5WClwMpP4YG0rHBc3oEJP4GEAu
-	 z5iwZeeGFYA4RS71075qCBX6ll0kdilKpxu7s+dXb+vScCkWFeEzXulXzOmHuitIlC
-	 9HiISAiZCsnZA==
+	s=arc-20240116; t=1774976143; c=relaxed/simple;
+	bh=TXgnhjxpO2HR++8xpxW1ouNg5LDZYEZ5+mSZghxn69Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qqwl7hGIT7B/ITPa9kxn28fc+3hkaJHHUYthTHlFnAqdBdBd8Gnl22EvReVokm7gF5z8EP57+wCn+v/eOctJK5tJWjqhv4R0BcNDxsncWoZKYiq4Cyz/ypbXbZbfffl30A/F7Emkgte0BoWD/FEVc1C/09mTsv63zQzYAi2q/ek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jS6jyNFh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DB58C2BCB2;
+	Tue, 31 Mar 2026 16:55:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774976143;
+	bh=TXgnhjxpO2HR++8xpxW1ouNg5LDZYEZ5+mSZghxn69Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jS6jyNFhDuJU1B3wxNwrFRZpCxmsLytEE2YMNKa2Gu2JYTedOUfiYZ61xXhouo15n
+	 ErVH5jDUSjtI0IP6nT+x8zU2nuMMIVRJLbqdeHRZw9Y0YdEvmxOCgCDQKyE57UO2vt
+	 oIrbHd1HFWcBQmjXeBu9LPzs+CPMnMozwV4qoNEUOEZ9BnzjJHuyRPBDK591hs2cSP
+	 FoQw8tb8lsWr9DPmguCKMXZ57l7T3nEhd+2IZjhMEGRzAQp8TvNuKZBNLkjSVJeLMF
+	 3eJ2I58hExSPnQRm+hCRfUutvWo/t5zgUtE5F5NLOdXhycYsgLER0BkSBWV8JZQxmG
+	 FICAKmEP7bvgw==
+Date: Tue, 31 Mar 2026 17:55:37 +0100
+From: Lee Jones <lee@kernel.org>
+To: Thomas Richard <thomas.richard@bootlin.com>
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 7/8] mfd: omap-usb-host: Add pbias regulator support
+Message-ID: <20260331165537.GJ3795166@google.com>
+References: <20260323-omap4-fix-usb-support-v1-0-b668132124ac@bootlin.com>
+ <20260323-omap4-fix-usb-support-v1-7-b668132124ac@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 31 Mar 2026 16:48:39 +0000
-From: Rustam Adilov <adilov@disroot.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stanley
- Chang <stanley_chang@realtek.com>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] phy: realtek: usb2: Make configs available for
- MACH_REALTEK_RTL
-In-Reply-To: <20260330215207.stx6qbjr7kctm4xt@skbuf>
-References: <20260327160638.15134-1-adilov@disroot.org>
- <20260327160638.15134-7-adilov@disroot.org>
- <20260330215207.stx6qbjr7kctm4xt@skbuf>
-Message-ID: <41ebd8edfe58ca8b9e9be4954be38c56@disroot.org>
-X-Sender: adilov@disroot.org
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260323-omap4-fix-usb-support-v1-7-b668132124ac@bootlin.com>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-283103-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-283105-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[iki.fi,kemnade.info,baylibre.com,kernel.org,atomide.com,gmail.com,bootlin.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,disroot.org:dkim,disroot.org:email,disroot.org:mid]
-X-Rspamd-Queue-Id: B4B7036DA58
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E690836EDB6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-30 21:52, Vladimir Oltean wrote:
-> On Fri, Mar 27, 2026 at 09:06:38PM +0500, Rustam Adilov wrote:
->> Add the MACH_REALTEK_RTL to the if statement to make the config
->> options available for Realtek RTL SoCs as well.
->> 
->> Signed-off-by: Rustam Adilov <adilov@disroot.org>
->> ---
->>  drivers/phy/realtek/Kconfig | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->> 
->> diff --git a/drivers/phy/realtek/Kconfig b/drivers/phy/realtek/Kconfig
->> index 75ac7e7c31ae..f9eadffacd18 100644
->> --- a/drivers/phy/realtek/Kconfig
->> +++ b/drivers/phy/realtek/Kconfig
->> @@ -3,7 +3,7 @@
->>  # Phy drivers for Realtek platforms
->>  #
->>  
->> -if ARCH_REALTEK || COMPILE_TEST
->> +if ARCH_REALTEK || MACH_REALTEK_RTL || COMPILE_TEST
->>  
->>  config PHY_RTK_RTD_USB2PHY
->>  	tristate "Realtek RTD USB2 PHY Transceiver Driver"
->> -- 
->> 2.53.0
->> 
->> 
-> 
-> The file now reads:
-> 
-> if ARCH_REALTEK || MACH_REALTEK_RTL || COMPILE_TEST
-> 
-> ...
-> 
-> endif # ARCH_REALTEK || COMPILE_TEST
-> 
-> Please update the end comment as well.
+On Mon, 23 Mar 2026, Thomas Richard wrote:
 
-Good notice, will change it.
+> Add pbias regulator support to enable SIM_VDDS supply and unlock USB I/O
+> cell. Previously, this was handled by the bootloader, now the kernel can
+> take responsibility for managing the PBIAS regulator, ensuring correct
+> operation regardless of the bootloader.
+> 
+> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
+> ---
+>  drivers/mfd/omap-usb-host.c | 41 ++++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 40 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mfd/omap-usb-host.c b/drivers/mfd/omap-usb-host.c
+> index ac974285be341fa579ef198d1893b77af428b5f8..9e254e00183e940b775d5bde6e891f0d26af27b0 100644
+> --- a/drivers/mfd/omap-usb-host.c
+> +++ b/drivers/mfd/omap-usb-host.c
+> @@ -15,6 +15,9 @@
+>  #include <linux/pm_runtime.h>
+>  #include <linux/of.h>
+>  #include <linux/of_platform.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/string_choices.h>
+> +
+
+?
+
+>  
+>  #include "omap-usb.h"
+>  
+> @@ -95,6 +98,8 @@ struct usbhs_hcd_omap {
+>  	struct usbhs_omap_platform_data	*pdata;
+>  
+>  	u32				usbhs_rev;
+> +
+> +	struct regulator		*pbias;
+>  };
+>  /*-------------------------------------------------------------------------*/
+>  
+> @@ -270,6 +275,25 @@ static bool is_ohci_port(enum usbhs_omap_port_mode pmode)
+>  	}
+>  }
+>  
+> +static int omap_usbhs_set_pbias(struct device *dev, bool power_on)
+> +{
+> +	struct usbhs_hcd_omap *omap = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	if (!omap->pbias)
+> +		return 0;
+> +
+> +	if (power_on)
+> +		ret = regulator_enable(omap->pbias);
+> +	else
+> +		ret = regulator_disable(omap->pbias);
+> +
+> +	if (ret)
+> +		dev_err(dev, "pbias reg %s failed\n", str_enable_disable(power_on));
+> +
+> +	return ret;
+> +}
+> +
+>  static int usbhs_runtime_resume(struct device *dev)
+>  {
+>  	struct usbhs_hcd_omap		*omap = dev_get_drvdata(dev);
+> @@ -278,6 +302,10 @@ static int usbhs_runtime_resume(struct device *dev)
+>  
+>  	dev_dbg(dev, "usbhs_runtime_resume\n");
+>  
+> +	r = omap_usbhs_set_pbias(dev, true);
+> +	if (r)
+> +		return r;
+> +
+>  	omap_tll_enable(pdata);
+>  
+>  	if (!IS_ERR(omap->ehci_logic_fck))
+> @@ -355,7 +383,7 @@ static int usbhs_runtime_suspend(struct device *dev)
+>  
+>  	omap_tll_disable(pdata);
+>  
+> -	return 0;
+> +	return omap_usbhs_set_pbias(dev, false);
+>  }
+>  
+>  static unsigned omap_usbhs_rev1_hostconfig(struct usbhs_hcd_omap *omap,
+> @@ -564,6 +592,11 @@ static int usbhs_omap_probe(struct platform_device *pdev)
+>  
+>  	omap->pdata = pdata;
+>  
+> +	omap->pbias = devm_regulator_get_optional(dev, "pbias");
+> +	if (IS_ERR(omap->pbias))
+> +		return dev_err_probe(dev, PTR_ERR(omap->pbias),
+> +				     "unable to get pbias regulator\n");
+
+You need to check for '-ENODEV' here or you are ignoring the optional part.
+
+> +
+>  	/* Initialize the TLL subsystem */
+>  	omap_tll_init(pdata);
+>  
+> @@ -759,6 +792,10 @@ static int usbhs_omap_probe(struct platform_device *pdev)
+>  	}
+>  
+>  initialize:
+> +	ret = omap_usbhs_set_pbias(dev, true);
+> +	if (ret)
+> +		goto err_mem;
+
+Since this regulator is also managed by 'usbhs_runtime_resume' and
+'usbhs_runtime_suspend', could manually enabling it here in probe and
+disabling it in remove interfere with the reference counting during runtime
+PM transitions? Should we consider relying entirely on runtime PM to manage
+its state?
+
+> +
+>  	omap_usbhs_init(dev);
+>  
+>  	if (dev->of_node) {
+> @@ -806,6 +843,8 @@ static void usbhs_omap_remove(struct platform_device *pdev)
+>  		of_platform_depopulate(&pdev->dev);
+>  	else
+>  		device_for_each_child(&pdev->dev, NULL, usbhs_omap_remove_child);
+> +
+> +	omap_usbhs_set_pbias(&pdev->dev, false);
+>  }
+>  
+>  static const struct dev_pm_ops usbhsomap_dev_pm_ops = {
+> 
+> -- 
+> 2.53.0
+> 
+
+-- 
+Lee Jones [李琼斯]
 
