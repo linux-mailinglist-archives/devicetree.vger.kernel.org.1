@@ -1,160 +1,200 @@
-Return-Path: <devicetree+bounces-282809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282812-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eIPdEiJ1y2k3HwYAu9opvQ
-	(envelope-from <devicetree+bounces-282809-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:17:54 +0200
+	id mMqMODd2y2k3HwYAu9opvQ
+	(envelope-from <devicetree+bounces-282812-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:22:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8EB364F6C
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:17:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 585CC3650C9
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:22:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 622583064EAC
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 07:16:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A8F983020FEC
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 07:21:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E626394496;
-	Tue, 31 Mar 2026 07:16:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="kkbKps3Q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B086F3A9631;
+	Tue, 31 Mar 2026 07:21:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFB0A391E41;
-	Tue, 31 Mar 2026 07:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2973B395247
+	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 07:21:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774941384; cv=none; b=mQiuHPXilUCkLNBu0JbwjVmr+ovx61eom5mowwPVRMK84PBzmpBFcGW2XSAskLiGRiou/co5QlftRWVrpx8YyYmt0fNqb9snHWZ9moKCzuNmwt7jmsSEpxOQ0VJJYx6rql71n2Kdv+DZ6NLqMXxnipdX88WsGilpfYVKr/s9NPI=
+	t=1774941668; cv=none; b=ezV5nj0hqyHD41aRv7HoV6Z3kyVr/PeU66mZEP96lCY3vWCzneRgDi7GrorlgOpN32sKpDr910o7ct+cKAVj3fHuf5aClLBxqUGr952LmDv3mvD84uNwyOfRymRT99in6/DwwGSYZ+IQQ7jCLxZFpQYTQNrp7KvTg8rGKu6R9uE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774941384; c=relaxed/simple;
-	bh=Q+Sh5dKsSASh5LsFmljR8zZTQU8zGlCs0Fs1daWA7vA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=aOy+Nd7BuwGLnD3s/H0D3FpDDefmT+QywbZs3iJ2tUQwCfOsL0vDRaoT8mc9TiRf4N5Cs4VC7rlNpDCyqqZqyjYlkBj3hsLZd0I+Dnv7IHlNQl1BOZqGJ7VIqeMaU0HvPe2lWuEpd6tMcTtBrdbMaoZ4d3bpaXirUZrRC08TSLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=kkbKps3Q; arc=none smtp.client-ip=54.207.19.206
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1774941328;
-	bh=FMUkMUxgtezj8otmGMF92Nid+Gsbj62Jf5IU2WL2R/w=;
-	h=Mime-Version:Date:Message-Id:Subject:From:To;
-	b=kkbKps3Qoh3s1fR4xyEgZwnUnTGH7mXhT59kPp7JVxRzHMTXfceDidZ4huJI3zE7A
-	 iWRu5PRFerGdngsw72YJ5x408nYZSICeNm2Vk1EWbGw6yjSOOpaCgHz6rei6XcEVbP
-	 u7+WaYLaGCyTjSl1vsf55HygvBxEWpZr9DUds/Bw=
-X-QQ-mid: esmtpsz16t1774941326tf5a2ee7d
-X-QQ-Originating-IP: Cm+r6MKhV4qTjGje/QFxDUQM2Xm3nEaCpKy58BmZF+c=
-Received: from = ( [120.237.158.181])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 31 Mar 2026 15:15:23 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 16497226984384082408
-EX-QQ-RecipientCnt: 19
+	s=arc-20240116; t=1774941668; c=relaxed/simple;
+	bh=q5OHA3ZdesVxiReV2n5KKI02Ui/pzuS+2M91K/dmVh0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TbKwQ8X9QHVZB8BK/gEXBmMaZeZathZIQS4/AfE9peq15Y8d1AzWqQg9iVFcNGOIM6iS2muHnRdIpnFwLXWJCv0Y2nXJUMIOAzdQT7H96Fa3YYeYRBXVAvO3VW98YC2gc4g2CM2gz8A6/j5a9Q/Krj7brIuhTMbVLHZw8wVSJsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-8cd90401034so541270385a.0
+        for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 00:21:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774941666; x=1775546466;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=GybSjq2nLK8ss9TDbgAYO/BHTfGcuQ5m8BL/6DmiVDM=;
+        b=Fi3Ev7eMVj73ryrCl5VRZioaI5HBwsysuPH8kuZ5RrFAhbKt5/PenlzpF6N5c8w3M5
+         hDyA2j3i+sBY8yU4mcn2h7FguLtox+7RgsX+C6GwYSobjkc8J5uIPfeD6PJhv6c1r37N
+         ruASRtpqBQHKZVUFL9NEeUuaKhGPhshws48QWhKZiW7ESR7TYoDqyPgX9iSM9ixCO39Z
+         G4CsPBBmDJP3G2MyyNfqxh3T19aWD2DQhkXvMFKaNTQ8gbW6h13vh0ew5k8g4RyCKAre
+         cLHAH280FhpEGpK/mixsxCYYLeU2imbVaDENQag0dmYExBGwe2tx7fpw1f+u9RvylNzi
+         FtjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUOgiHYl/c2ujah1AyxrrY886u7yBUb/FcfyMZWymO4m8Qu2xC0yEMidPU/Tb1MKofGS1xQCrMGNZGb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIhkAi2WEuFOu4z/o1skMZ/norNr0HCHu80QO6GpWt4tBpR1ST
+	teZVMywg5e8gDRK7fKIlmbPYmXfIFQUD8676vWLvwiweND8uGyYuJbIjAJdyY+aS
+X-Gm-Gg: ATEYQzwb9T0aE6o8hZaT4/xXvddy6cxVwX11WDNHIXJrINoWfo4cekLUz7Aqf/zqg43
+	qMuf4zdtTGDPerRpRVucBkL1VqTkNp1dsjTRpkHvdEmESWAFi42TZQw0DFxgh8sVkS0k1a8efkN
+	5uD2gi+VMm0pLS4a43d6fN2K1XIFSy1XcmjMmZiBlsIv+rZeus8tmUaYmGZMfI8IHvc2z9RvODn
+	p9/psS3TnGouvvUZNOeFPIXbmtDYHkvgitB6Vcu5XA/LV+VjD4J8IGcv7yDGMmxlKRcI2bQrhJO
+	EzgyHmz+kblZpeTat7zeARcGU2DTaOhqLCM2d3ubdqIJHBhsCKeYuASQ3oTSZ/bDCzcMsNqnHVS
+	eZ/keIRhPkVyTUcuoYaFi8OtdkJGQ9ZM3t7VwArgTUqDWG7FqovRBYz2dDJaLXKQKOnpZt0IhMl
+	LnX5nrgtGmN9Gf3c8pQUTzXVyuYZc42qJ6p4iqLtn+N/qhdpJfoJmJhPYrlfhzjHtd
+X-Received: by 2002:a05:620a:2587:b0:8cd:972d:2fc with SMTP id af79cd13be357-8d01c8437c0mr2132046285a.63.1774941665968;
+        Tue, 31 Mar 2026 00:21:05 -0700 (PDT)
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com. [209.85.222.173])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8d027f06ee8sm971390685a.14.2026.03.31.00.21.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Mar 2026 00:21:05 -0700 (PDT)
+Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-8cfc40e4158so634747685a.1
+        for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 00:21:05 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX5zkXdMwWY6tZ35ZTE1ENsuB6n7aZtfKym+C4nTdXk6Zn9yysJAivGaWPlIgF/fpOJtPxnShZDCr+V@vger.kernel.org
+X-Received: by 2002:a05:6102:32c9:b0:600:a2:138c with SMTP id
+ ada2fe7eead31-604f9207584mr5893673137.23.1774941362400; Tue, 31 Mar 2026
+ 00:16:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20250527171504.346696-2-u.kleine-koenig@baylibre.com>
+ <a14be34c-de2a-4bea-9282-1fac7780b9a4@kernel.org> <crk42dsypmbyqk7avldghjq32vslmalfmmouwxzgtdci4agfhz@rkbmxj5z22fx>
+ <20250606141324.GA1383279-robh@kernel.org> <erst43cabswj3cwnszssolgyoh4dsgrlnjjxhb7luk3qkqhyay@6zyoixljvwwg>
+ <CAMuHMdXDZD6QAbKgny1utfYhagUEZ5pcgiDCTTfJKNVVZLOUYg@mail.gmail.com> <actvzQTb-a7O7sbP@monoceros>
+In-Reply-To: <actvzQTb-a7O7sbP@monoceros>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 31 Mar 2026 09:15:50 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWMuveJb0ntTA_VvgQ5UCSE2A3WtdcZyKus9hmHnmy-rA@mail.gmail.com>
+X-Gm-Features: AQROBzC5O7y3QvMpcokNbpWXfoeDXMF1WE-YznyR1FbIsYafuG2hHGsIakeoqfI
+Message-ID: <CAMuHMdWMuveJb0ntTA_VvgQ5UCSE2A3WtdcZyKus9hmHnmy-rA@mail.gmail.com>
+Subject: Re: New default binding for PWM devices? [Was: Re: [PATCH]
+ dt-bindings: timer: xlnx,xps-timer: Make PWM in example usable]
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Sean Anderson <sean.anderson@seco.com>, 
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, Chris Packham <Chris.Packham@alliedtelesis.co.nz>, 
+	Marek Vasut <marek.vasut+renesas@mailbox.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 31 Mar 2026 15:15:23 +0800
-Message-Id: <DHGS6RDFCOIN.14KI92Y8TSNRS@linux.spacemit.com>
-Cc: "Emil Renner Berthing" <kernel@esmil.dk>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Yixun Lan"
- <dlan@kernel.org>, "Paul Walmsley" <paul.walmsley@sifive.com>, "Palmer
- Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
- "Heinrich Schuchardt" <heinrich.schuchardt@canonical.com>, "Troy Mitchell"
- <troy.mitchell@linux.spacemit.com>, "Michael Opdenacker"
- <michael.opdenacker@rootcommit.com>, "Guodong Xu" <guodong@riscstar.com>,
- "Hendrik Hamerlinck" <hendrik.hamerlinck@hammernet.be>, "Yangyu Chen"
- <cyy@cyyself.name>, <spacemit@lists.linux.dev>,
- <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] Add DeepComputing FML13V05 board dts
-From: "Troy Mitchell" <troy.mitchell@linux.spacemit.com>
-To: "Sandie Cao" <sandie.cao@deepcomputing.io>, "Conor Dooley"
- <conor+dt@kernel.org>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260331071110.68321-1-sandie.cao@deepcomputing.io>
-In-Reply-To: <20260331071110.68321-1-sandie.cao@deepcomputing.io>
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpsz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: OAOHw7tUGLQOt5OdeXFS36/JWlPRfV0AsJveg/cdPrg5TFXt31c0pDJU
-	ht0Ryk1UI8/EQV4WBVVkQVxzfRJC8vFM2GVzn89SkVIruTRdmfHleA7pX9omBU/8uSVJHM2
-	MHuxzKV3snPEb9RUrKptqmLjeYtcHeJvTnOqHjyvz+/rOK7R/joqWChsoc1at/5STsWnMss
-	BuxF3u8eGPsSvznA5eoyIqOnK+ldnBk1E0clihK7MLToRZJqslfr5uBWchE5xKjl+EIvrFt
-	uq99M6mzsH9hC1iv2csl4VDEd4Of4PViluyVZmKJPxtmMmP/6GiK+T8D6nlQh5lWkCroWY4
-	QcFHxbWVRcozAvXgO9M7265WA7VklyLoKKAonGCsbuXDtWnciNCeSihfxGb6SRRZqUsF/nS
-	WcNUjtWhNQZzg7bToqSnpqnkbCt35PxbbUHK9wcv/HAFC3boIhzhAs8p4QgCgn7qWSyfqQF
-	XQ+LDPwNuojk38IyYLtAnuglihmDQYeYT00b/m7Wagze2pHtYQVFVUxTf4E0HiPf+ZOcfMB
-	1/DDz5u/QCGWis+3/rY3KFGxpe70+sIqV1PBBvxEcXRaYbBaE0/roYiplzBYUm3q8JJHsfY
-	g86HomeynstL2NhwHTWAmunpWj343m6rXtE/EdxlP07v0qfNC9Qq0kyyhYi4pdoPPEUc9cX
-	xiSJaqjfuwg4t+ivU/IxFOdjZW6sl4k9Y9VE7ThjuWY/XrYoeT7wJo85OEMjiGGaBJhVULd
-	FsRYwsm42FHCXiDU8cfI/YZ8UjH0j29+r3pDqpCMy7bG5jHlpoqJZM4GxV1TwAntCpA1L7K
-	bwfG6YHLpRKTAPOvbqZp4WFeun+V6GSdMWR4tDe7HERTvx7U7nymN1prvMZlllb++b28Oxz
-	5Y+XVdreat1jURvGTgsCcpHVUoPkYwRnBkYdf6ikLYfImbsJIIcp5V4SlV6M+N1PkvgokT0
-	j3hEjXOAWZyhvyutAloGZqKheig/B1L7gME6AzG01UGKapPui+KwZRCpYPV2a+zNzNHXKL2
-	IAfAgCAPKoHz+jR5N3PCVasyuO7ESxbAo/ho2Sdays36kFSBw9G9AKSh3NEYldig09yeck3
-	cwu6/XUxU9II2rXLAbGmEQ=
-X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
-X-QQ-RECHKSPAM: 0
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-282812-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	SUBJECT_HAS_QUESTION(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282809-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[spacemit.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	DMARC_NA(0.00)[linux-m68k.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.spacemit.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.spacemit.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DD8EB364F6C
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.989];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,800f0000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,baylibre.com:email]
+X-Rspamd-Queue-Id: 585CC3650C9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Sandie,
+Hi Uwe,
 
-On Tue Mar 31, 2026 at 3:11 PM CST, Sandie Cao wrote:
-> This series updates Device Tree related files to introduce the
-> FML13V05 board from DeepComputing, which incorporates a Spacemit
-> K3 SoC.  This board is designed for use on the Framework Laptop 13
-> Chassis, which has (Framework) SKU FRANHQ0001.
+On Tue, 31 Mar 2026 at 09:03, Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@baylibre.com> wrote:
+> On Mon, Mar 30, 2026 at 02:12:47PM +0200, Geert Uytterhoeven wrote:
+> > On Sat, 7 Jun 2025 at 09:23, Uwe Kleine-K=C3=B6nig
+> > <u.kleine-koenig@baylibre.com> wrote:
+> > > On Fri, Jun 06, 2025 at 09:13:24AM -0500, Rob Herring wrote:
+> > > >    reg:
+> > > > >      maxItems: 1
+> > > > >
+> > > > > -  '#pwm-cells': true
+> > > > > +  '#pwm-cells':
+> > > > > +    const: 3
+> > > > >
+> > > > >    xlnx,count-width:
+> > > > >      $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > @@ -82,7 +83,7 @@ examples:
+> > > > >      };
+> > > > >
+> > > > >      timer@800f0000 {
+> > > > > -        #pwm-cells =3D <0>;
+> > > > > +        #pwm-cells =3D <3>;
+> > > > >          clock-names =3D "s_axi_aclk";
+> > > > >          clocks =3D <&zynqmp_clk 71>;
+> > > > >          compatible =3D "xlnx,xps-timer-1.00.a";
+> > > > >
+> > > > > There is however one concern that I want to get resolved first to
+> > > > > prevent churn:
+> > > > >
+> > > > > In principle I think it's bad that a phandle to a PWM must contai=
+n a
+> > > > > period and flags specifying the polarity. For some use cases the =
+period
+> > > > > might not matter or is implicitly given or more than one period l=
+ength
+> > > > > is relevant.
+> > > >
+> > > > Why can't the period be 0 and no flags set if they aren't needed?
+> > >
+> > > I don't say they cannot, and probably that's the most sane option if
+> > > there is no fixed default period and flags and we're sticking to 3
+> > > cells.
+> >
+> > So zero should have been used for drivers/pwm/pwm-argon-fan-hat.c?
 >
-> The series is based on riscv-dt-for-next.
->
-> v2:
-> - Patch 1:
->    Use formal format user name.
-> - Patch 2:
->    Use formal format user name.
->    Add Reviewed-by from Troy Mitchell.
->
-> Link to v1: https://lore.kernel.org/all/20260331034423.67142-1-sandie.cao=
-@deepcomputing.io/
-Please slow down a bit. Sending a v2 immediately after a single review does=
-n't
-give others (especially those in different time zones) a chance to look at =
-v1.
-It's better to wait a day or two to collect more feedback before sending a =
-new iteration
+> Do you mean #pwm-cells =3D <0>? Or period =3D flags =3D 0?
 
-                        - Troy
+#pwm-cells =3D <0>
+
+> If the phandle wouldn't contain period and flags and so it would only be
+> used to identify the PWM to use and say nothing about how it is used,
+> then using #pwm-cells =3D <0> for PWM chips that only have a single PWM
+> would work fine.
+
+Exactly what pwm-argon-fan-hat needs!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
