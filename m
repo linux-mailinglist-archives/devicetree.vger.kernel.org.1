@@ -1,368 +1,406 @@
-Return-Path: <devicetree+bounces-283197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283200-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MEkNBo5WzGn/SQYAu9opvQ
-	(envelope-from <devicetree+bounces-283197-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 01:19:42 +0200
+	id GLaeHz5XzGn/SQYAu9opvQ
+	(envelope-from <devicetree+bounces-283200-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 01:22:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EEF0372ABD
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 01:19:41 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 147F6372B12
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 01:22:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EFE1130162AD
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 23:19:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 28FA43026D2A
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 23:22:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F9A46AEE2;
-	Tue, 31 Mar 2026 23:19:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC6946AF19;
+	Tue, 31 Mar 2026 23:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="RZk2oEJ0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YXQFXAH/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C8AB3A782B
-	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 23:19:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 353253E959A;
+	Tue, 31 Mar 2026 23:22:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774999171; cv=none; b=Wshx/ycYC4EeMn911lxA6Gx8oogixLapR9PrmIc4p8aYC8MEGcUZE5MP5ZcwM8ikzOn0tX6jsv+4C2prFaTSwSr8YYpmCz39fSmCMdz3/XB1ucByBBzEXIjtwXOR1ZAM7lyDdmPQETKDKC6+i6m54a06DuHnvHBQTi1aRMe5/HM=
+	t=1774999354; cv=none; b=rwuUVm0LKobotpDEXD32pqj2k8z5OHIz0sRz4SYfpFVag41y0rOvwUgfrpFG7554jQfLdwoKEM+Iz+bAi0F8fMRPGQl+NyEEcPTXaf/RKZw9C02Qb7c158VmtIdX0voOdTLjA75iksc4NDUITZpgBkR9+ZHH2OREpM7cGvvlFCk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774999171; c=relaxed/simple;
-	bh=GgqPIYVqyQe9+Kc37wwDhF1EL0bB4cr0mHKkcc56rmg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=C7tIVnLRX8U3Ldj4C1lUTQhPEn2ZZ3SzwKvIg7IDTL6Q2DLqGJSvqdcDHHuiaxLEAIzwwjGhkUR3p4ZowoSK4DcMBhXOPa33oSDyAOK1mpfo+H+CobtoA17rTNuoxB0VU/OVf/qi7DB3OaLZFoiBHz0CbGB/p++2F+nbH21lEFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=RZk2oEJ0; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id D91322C02FF;
-	Wed,  1 Apr 2026 12:19:25 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1774999165;
-	bh=lsLNWw0B00QtyDUa/41kW3siVH8hjuamx6nZ83CO1QY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=RZk2oEJ0NgAX70rc0hpAHYkBXm4yFt2JKtjIfnimPkjeJydCsq6Q5HTG5SWqswu/F
-	 DY4MIALA302kV2WkfhGo0HIEXctECwdw231k2P4ICf0SDmmgYx0P4Pfnz988FE3BXC
-	 s3rtXkTkSCtbi4katEdVogH+YLgi06ZJ8JKI1HrlPAcHgIUTNkgv+Zwk0da8U0RYcW
-	 /EmD157dvkUb4rpvWItGbPrEKSCCjroBG7cH9yaBV97ngfabrxDJlAkhIer9KhWD1H
-	 fUpCBhNBeF086LntGzW9PIEMxwhbuS9/f3WK7hqNDs6lHcGHh+Rauh5FYDKO/+3rRx
-	 7ptI/fL90Ygvg==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B69cc567d0002>; Wed, 01 Apr 2026 12:19:25 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.12])
-	by pat.atlnz.lc (Postfix) with ESMTP id 8C14213EE7A;
-	Wed,  1 Apr 2026 12:19:25 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 861DC280990; Wed,  1 Apr 2026 12:19:25 +1300 (NZDT)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux@roeck-us.net
-Cc: devicetree@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH 2/2] hwmon: pmbus: Add support for Sony APS-379
-Date: Wed,  1 Apr 2026 12:19:13 +1300
-Message-ID: <20260331231916.94662-3-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260331231916.94662-1-chris.packham@alliedtelesis.co.nz>
-References: <20260331231916.94662-1-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1774999354; c=relaxed/simple;
+	bh=xrHMl7PzQE+M0LSv6NXEKGHOeSB6YtsB/EXUXuyzHIU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=uMeFUYoerPeyFzER6TimMoQZUtjvbCaICqqe022+Z9SuZUMFvTKLrxVHx4zrBc33NRRQb1jyKXU5oLOiZlSb7DnnU/zllIbc6bEbresyQCsi5Zbf87M/hZyMrFPZYvCdQbj1cVUtuJM+0q4T477YrJlIwCao7dT/KvOJTRB0FUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YXQFXAH/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C6AB1C19423;
+	Tue, 31 Mar 2026 23:22:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774999353;
+	bh=xrHMl7PzQE+M0LSv6NXEKGHOeSB6YtsB/EXUXuyzHIU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=YXQFXAH/ApLwj/3rujZ7fzwAWKiYhiDRSuPARWgNv3GsWUKX/jysoeOhoxyDDSgnc
+	 MolkPnotBuk5ogbgEmR1j+jsJRvwhOGBcPCAZlxYjU03O0LwG/UgaCWnsU3J7H3Jk3
+	 n4DoAuIaBsL5785vNPtOysiqznFrbJqio2kPgOOnlLGPTkSxJPJcbwSLa2Ct69/3Yc
+	 uHb58wLtxEZfHonTrpjcecwFcIRTbcnxmCcGxndcGwJmZG3IEhnt0Rq8wVleaDS1p5
+	 T+GZmxWrDeuyVXHe9u5+6tUAcFgseMbX49TOjZOoFR6t5BpWVGSKu/wSbD3epi5p1h
+	 hCulDUk9pVSbw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B023710F92E3;
+	Tue, 31 Mar 2026 23:22:33 +0000 (UTC)
+From: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>
+Subject: [PATCH v10 0/6] Introduce MAX77759 charger driver
+Date: Tue, 31 Mar 2026 23:22:15 +0000
+Message-Id: <20260331-max77759-charger-v10-0-76f59233c369@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=EcprQ+mC c=1 sm=1 tr=0 ts=69cc567d a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=nAkT6b51qpQmUpSyBroA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAChXzGkC/3XSS27DIBAA0KtErOMKBmaArnqPKgt+diw1cWVXV
+ qrIdy9OW9kVdMmgefOBO5vS2KeJPR/ubExzP/XDNR8EPx5YOLtrl5o+5gADDigEx+biblprtE2
+ +Hrs0NgbBE1AkEo7ltPcxtf3tYb6e8vncTx/D+PkoMYs1+oOBLLFZNLwhD0l50+oW1Us3DN1be
+ grDha3aDJsAwlQEyAJ4QGsNd2SoEOROAF0RZBZQJSLVYnAWCkH9CsRzExVBrVNYBVIFE1MUhYC
+ bALy2B8yCRy4tSk0O20KgnSBURaB1DyZw66PTypeb1HuhtkmdhWSi5ToksgELwewEqPVgVsEb8
+ hE1TzbshePhO1OK/zIBKOTRTdCxfAO71ZZQ+ZazzYJShmIEq138U/u0LMsXmnMe1fwCAAA=
+X-Change-ID: 20251105-max77759-charger-852b626d661a
+To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jagan Sridharan <badhri@google.com>, Mark Brown <broonie@kernel.org>, 
+ Matti Vaittinen <mazziesaccount@gmail.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Sebastian Reichel <sre@kernel.org>, Amit Sunil Dhamne <amitsd@google.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-usb@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774999352; l=10670;
+ i=amitsd@google.com; s=20241031; h=from:subject:message-id;
+ bh=xrHMl7PzQE+M0LSv6NXEKGHOeSB6YtsB/EXUXuyzHIU=;
+ b=VQ4+ZDAPkr2wBthukXkfOAKgEk8Wz0q0nZkxms2VgtYIjdLqkBrjYo2bZg0AmZhR9UuHeUyi6
+ G+DDj3x/SMIDz05MjMD5sGw9Io/N2GqLHifgz/TRxMaondK9uWLkPes
+X-Developer-Key: i=amitsd@google.com; a=ed25519;
+ pk=wD+XZSST4dmnNZf62/lqJpLm7fiyT8iv462zmQ3H6bI=
+X-Endpoint-Received: by B4 Relay for amitsd@google.com/20241031 with
+ auth_id=262
+X-Original-From: Amit Sunil Dhamne <amitsd@google.com>
+Reply-To: amitsd@google.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[alliedtelesis.co.nz,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[alliedtelesis.co.nz:s=mail181024];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[alliedtelesis.co.nz:dkim,alliedtelesis.co.nz:email,alliedtelesis.co.nz:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283200-lists,devicetree=lfdr.de,amitsd.google.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283197-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[alliedtelesis.co.nz:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,linuxfoundation.org,google.com,gmail.com,linux-foundation.org,linux.intel.com,samsung.com];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chris.packham@alliedtelesis.co.nz,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 7EEF0372ABD
+	HAS_REPLYTO(0.00)[amitsd@google.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 147F6372B12
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add pmbus support for Sony APS-379 power supplies. There are a few PMBUS
-commands that return data that is undocumented/invalid so these need to
-be rejected with -ENXIO. The READ_VOUT command returns data in linear11
-format instead of linear16 so we need to workaround this.
+MAX77759 PMIC is used in Pixel 6 and 6 Pro (Oriole/Raven) boards.
+One of the functions of the MAX77759 PMIC is a battery charger. This
+patchset introduces a driver for this function. One of the unique
+features of this charger driver is that it works with a USB input where
+the Type-C controller is TCPCI based.
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Changes to the board files will follow soon once this patchset is reviewed.
+
+For reference to the MAX77759 MFD based patchset (present in upstream):
+https://lore.kernel.org/all/20250509-max77759-mfd-v10-0-962ac15ee3ef@linaro.org/
+
+Dependency list for patches (directionality indicates depends on):
+[6] -> [5] -> [4] & [3]
+
+The changes need to be applied in order. In this case this probably
+would be the USB subsystem as that's the leaf in the dependency list.
+
 ---
- drivers/hwmon/pmbus/Kconfig   |   6 ++
- drivers/hwmon/pmbus/Makefile  |   1 +
- drivers/hwmon/pmbus/aps-379.c | 196 ++++++++++++++++++++++++++++++++++
- 3 files changed, 203 insertions(+)
- create mode 100644 drivers/hwmon/pmbus/aps-379.c
+Kernel-doc output for include/linux/mfd/max77759.h (partial and only for
+the changes introduced by me:
 
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index fc1273abe357..29076921e330 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -77,6 +77,12 @@ config SENSORS_ADP1050_REGULATOR
- 	  =C2=B5Module regulators that can provide microprocessor power from 54=
-V
- 	  power distribution architecture.
-=20
-+config SENSORS_APS_379
-+	tristate "Sony APS-379 Power Supplies"
-+	help
-+	  If you say yes here you get hardware monitoring support for Sony
-+	  APS-379 Power Supplies.
-+
- config SENSORS_BEL_PFE
- 	tristate "Bel PFE Compatible Power Supplies"
- 	help
-diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-index d6c86924f887..94f36c7069ec 100644
---- a/drivers/hwmon/pmbus/Makefile
-+++ b/drivers/hwmon/pmbus/Makefile
-@@ -9,6 +9,7 @@ obj-$(CONFIG_SENSORS_ACBEL_FSG032) +=3D acbel-fsg032.o
- obj-$(CONFIG_SENSORS_ADM1266)	+=3D adm1266.o
- obj-$(CONFIG_SENSORS_ADM1275)	+=3D adm1275.o
- obj-$(CONFIG_SENSORS_ADP1050)	+=3D adp1050.o
-+obj-$(CONFIG_SENSORS_APS_379)	+=3D aps-379.o
- obj-$(CONFIG_SENSORS_BEL_PFE)	+=3D bel-pfe.o
- obj-$(CONFIG_SENSORS_BPA_RS600)	+=3D bpa-rs600.o
- obj-$(CONFIG_SENSORS_DELTA_AHE50DC_FAN) +=3D delta-ahe50dc-fan.o
-diff --git a/drivers/hwmon/pmbus/aps-379.c b/drivers/hwmon/pmbus/aps-379.=
-c
-new file mode 100644
-index 000000000000..e4c4c2d12bc9
---- /dev/null
-+++ b/drivers/hwmon/pmbus/aps-379.c
-@@ -0,0 +1,196 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Hardware monitoring driver for Sony APS-379 Power Supplies
-+ *
-+ * Copyright 2026 Allied Telesis Labs
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/pmbus.h>
-+#include "pmbus.h"
-+
-+struct aps_379_data {
-+	struct pmbus_driver_info info;
-+	u8 vout_linear_exponent;
-+};
-+
-+#define to_aps_379_data(x) container_of(x, struct aps_379_data, info)
-+
-+static const struct i2c_device_id aps_379_id[] =3D {
-+	{ "aps-379", 0 },
-+	{},
-+};
-+
-+static int aps_379_read_byte_data(struct i2c_client *client, int page, i=
-nt reg)
-+{
-+	const struct pmbus_driver_info *info =3D pmbus_get_driver_info(client);
-+	struct aps_379_data *data =3D to_aps_379_data(info);
-+	int ret;
-+
-+	if (page > 0)
-+		return -ENXIO;
-+
-+	switch (reg) {
-+	case PMBUS_VOUT_MODE:
-+		/*
-+		 * The VOUT format used by the chip is linear11,
-+		 * not linear16. Report that VOUT is in linear mode
-+		 * and return exponent value extracted while probing
-+		 * the chip.
-+		 */
-+		ret =3D data->vout_linear_exponent;
-+		break;
-+	default:
-+		ret =3D -ENODATA;
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
-+/*
-+ * The APS-379 uses linear11 format instead of linear16. We've reported =
-the exponent
-+ * via the PMBUS_VOUT_MODE so we just return the mantissa here.
-+ */
-+static int aps_379_read_vout(struct i2c_client *client)
-+{
-+	int ret;
-+	s32 mantissa;
-+
-+	ret =3D pmbus_read_word_data(client, 0, 0xff, PMBUS_READ_VOUT);
-+	if (ret < 0)
-+		return ret;
-+
-+	mantissa =3D ((s16)((ret & 0x7ff) << 5)) >> 5;
-+	ret =3D mantissa;
-+
-+	return ret;
-+}
-+
-+static int aps_379_read_word_data(struct i2c_client *client, int page, i=
-nt phase, int reg)
-+{
-+	int ret;
-+
-+	if (page > 0)
-+		return -ENXIO;
-+
-+	switch (reg) {
-+	case PMBUS_VOUT_UV_WARN_LIMIT:
-+	case PMBUS_VOUT_OV_WARN_LIMIT:
-+	case PMBUS_VOUT_UV_FAULT_LIMIT:
-+	case PMBUS_VOUT_OV_FAULT_LIMIT:
-+	case PMBUS_PIN_OP_WARN_LIMIT:
-+	case PMBUS_POUT_OP_WARN_LIMIT:
-+	case PMBUS_MFR_IIN_MAX:
-+	case PMBUS_MFR_PIN_MAX:
-+	case PMBUS_MFR_VOUT_MIN:
-+	case PMBUS_MFR_VOUT_MAX:
-+	case PMBUS_MFR_IOUT_MAX:
-+	case PMBUS_MFR_POUT_MAX:
-+	case PMBUS_MFR_MAX_TEMP_1:
-+		/* These commands return data but it is invalid/un-documented */
-+		ret =3D -ENXIO;
-+		break;
-+	case PMBUS_READ_VOUT:
-+		ret =3D aps_379_read_vout(client);
-+		break;
-+	default:
-+		if (reg >=3D PMBUS_VIRT_BASE)
-+			ret =3D -ENXIO;
-+		else
-+			ret =3D -ENODATA;
-+		break;
-+	}
-+
-+	return ret;
-+
-+}
-+
-+static struct pmbus_driver_info aps_379_info =3D {
-+	.pages =3D 1,
-+	.format[PSC_VOLTAGE_OUT] =3D linear,
-+	.format[PSC_CURRENT_OUT] =3D linear,
-+	.format[PSC_POWER] =3D linear,
-+	.format[PSC_TEMPERATURE] =3D linear,
-+	.format[PSC_FAN] =3D linear,
-+	.func[0] =3D PMBUS_HAVE_VOUT |
-+		PMBUS_HAVE_IOUT |
-+		PMBUS_HAVE_PIN | PMBUS_HAVE_POUT |
-+		PMBUS_HAVE_TEMP |
-+		PMBUS_HAVE_FAN12,
-+	.read_byte_data =3D aps_379_read_byte_data,
-+	.read_word_data =3D aps_379_read_word_data,
-+};
-+
-+static int aps_379_probe(struct i2c_client *client)
-+{
-+	struct device *dev =3D &client->dev;
-+	const struct i2c_device_id *mid;
-+	struct pmbus_driver_info *info;
-+	struct aps_379_data *data;
-+	u8 buf[I2C_SMBUS_BLOCK_MAX + 1];
-+	int ret;
-+
-+	data =3D devm_kzalloc(&client->dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	memcpy(&data->info, &aps_379_info, sizeof(*info));
-+	info =3D &data->info;
-+
-+	if (!i2c_check_functionality(client->adapter,
-+				     I2C_FUNC_SMBUS_READ_BYTE_DATA
-+				     | I2C_FUNC_SMBUS_READ_WORD_DATA
-+				     | I2C_FUNC_SMBUS_READ_BLOCK_DATA))
-+		return -ENODEV;
-+
-+	ret =3D i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, buf);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to read Manufacturer Model\n");
-+		return ret;
-+	}
-+
-+	for (mid =3D aps_379_id; mid->name[0]; mid++) {
-+		if (!strncasecmp(buf, mid->name, strlen(mid->name)))
-+			break;
-+	}
-+	if (!mid->name[0]) {
-+		buf[ret] =3D '\0';
-+		dev_err(dev, "Unsupported Manufacturer Model '%s'\n", buf);
-+		return -ENODEV;
-+	}
-+
-+	ret =3D i2c_smbus_read_word_data(client, PMBUS_READ_VOUT);
-+	if (ret < 0) {
-+		dev_err(dev, "Can't get vout exponent.\n");
-+		return ret;
-+	}
-+	data->vout_linear_exponent =3D (u8)((ret >> 11) & 0x1f);
-+
-+	return pmbus_do_probe(client, info);
-+}
-+
-+static const struct of_device_id __maybe_unused aps_379_of_match[] =3D {
-+	{ .compatible =3D "sony,aps-379" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, aps_379_of_match);
-+
-+static struct i2c_driver aps_379_driver =3D {
-+	.driver =3D {
-+		.name =3D "aps-379",
-+		.of_match_table =3D of_match_ptr(aps_379_of_match),
-+	},
-+	.probe =3D aps_379_probe,
-+	.id_table =3D aps_379_id,
-+};
-+
-+module_i2c_driver(aps_379_driver);
-+
-+MODULE_AUTHOR("Chris Packham");
-+MODULE_DESCRIPTION("PMBus driver for Sony APS-379");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("PMBUS");
---=20
-2.53.0
+.. c:enum:: max77759_chgr_chgin_dtls_status
+
+  Charger Input Status
+
+.. container:: kernelindent
+
+    **Constants**
+
+    ``MAX77759_CHGR_CHGIN_DTLS_VBUS_UNDERVOLTAGE``
+      Charger input voltage (Vchgin) < Under Voltage Threshold (Vuvlo)
+
+    ``MAX77759_CHGR_CHGIN_DTLS_VBUS_MARGINAL_VOLTAGE``
+      Vchgin > Vuvlo and Vchgin < (Battery Voltage (Vbatt) + system voltage (Vsys))
+
+    ``MAX77759_CHGR_CHGIN_DTLS_VBUS_OVERVOLTAGE``
+      Vchgin > Over Voltage threshold (Vovlo)
+
+    ``MAX77759_CHGR_CHGIN_DTLS_VBUS_VALID``
+      Vchgin > Vuvlo, Vchgin < Vovlo and Vchgin > (Vsys + Vbatt)
+
+.. c:enum:: max77759_chgr_bat_dtls_states
+
+  Battery Details
+
+.. container:: kernelindent
+
+    **Constants**
+
+    ``MAX77759_CHGR_BAT_DTLS_NO_BATT_CHG_SUSP``
+      No battery and the charger suspended
+
+    ``MAX77759_CHGR_BAT_DTLS_DEAD_BATTERY``
+      Vbatt < Vtrickle
+
+    ``MAX77759_CHGR_BAT_DTLS_BAT_CHG_TIMER_FAULT``
+      Charging suspended due to timer fault
+
+    ``MAX77759_CHGR_BAT_DTLS_BAT_OKAY``
+      Battery okay and Vbatt > Min Sys Voltage (Vsysmin)
+
+    ``MAX77759_CHGR_BAT_DTLS_BAT_UNDERVOLTAGE``
+      Battery is okay. Vtrickle < Vbatt < Vsysmin
+
+    ``MAX77759_CHGR_BAT_DTLS_BAT_OVERVOLTAGE``
+      Battery voltage > Overvoltage threshold
+
+    ``MAX77759_CHGR_BAT_DTLS_BAT_OVERCURRENT``
+      Battery current exceeds overcurrent threshold
+
+    ``MAX77759_CHGR_BAT_DTLS_BAT_ONLY_MODE``
+      Battery only mode and battery level not available
+
+.. c:enum:: max77759_chgr_chg_dtls_states
+
+  Charger Details
+
+.. container:: kernelindent
+
+    **Constants**
+
+    ``MAX77759_CHGR_CHG_DTLS_PREQUAL``
+      Charger in prequalification mode
+
+    ``MAX77759_CHGR_CHG_DTLS_CC``
+      Charger in fast charge const curr mode
+
+    ``MAX77759_CHGR_CHG_DTLS_CV``
+      Charger in fast charge const voltage mode
+
+    ``MAX77759_CHGR_CHG_DTLS_TO``
+      Charger is in top off mode
+
+    ``MAX77759_CHGR_CHG_DTLS_DONE``
+      Charger is done
+
+    ``MAX77759_CHGR_CHG_DTLS_RSVD_1``
+      Reserved
+
+    ``MAX77759_CHGR_CHG_DTLS_TIMER_FAULT``
+      Charger is in timer fault mode
+
+    ``MAX77759_CHGR_CHG_DTLS_SUSP_BATT_THM``
+      Charger is suspended as battery removal detected
+
+    ``MAX77759_CHGR_CHG_DTLS_OFF``
+      Charger is off. Input invalid or charger disabled
+
+    ``MAX77759_CHGR_CHG_DTLS_RSVD_2``
+      Reserved
+
+    ``MAX77759_CHGR_CHG_DTLS_RSVD_3``
+      Reserved
+
+    ``MAX77759_CHGR_CHG_DTLS_OFF_WDOG_TIMER``
+      Charger is off as watchdog timer expired
+
+    ``MAX77759_CHGR_CHG_DTLS_SUSP_JEITA``
+      Charger is in JEITA control mode
+---
+
+To: Sebastian Reichel <sre@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: André Draszik <andre.draszik@linaro.org>
+To: Lee Jones <lee@kernel.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Badhri Jagan Sridharan <badhri@google.com>
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Peter Griffin <peter.griffin@linaro.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: Alim Akhtar <alim.akhtar@samsung.com>
+To: Mark Brown <broonie@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-pm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-usb@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-samsung-soc@vger.kernel.org
+Cc: RD Babiera <rdbabiera@google.com>
+Cc: Kyle Tso <kyletso@google.com>
+Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+---
+Changes in v10:
+- Fixed comment style (/* -> /**) to make it a kernel-doc comment. (Lee
+  Jones)
+- Link to v9: https://lore.kernel.org/r/20260325-max77759-charger-v9-0-4486dd297adc@google.com
+
+Changes in v9:
+- Fixed nits in mfd/max77759.* (Lee Jones)
+  - s/max77759_chrg_irq_chip/max77759_chgr_irq_chip
+  - s/bettery/battery
+  - Fix alignment in descriptions in kerneldoc comments
+- Link to v8 resend: https://lore.kernel.org/r/20260314-max77759-charger-v8-0-226ca5f8c7d2@google.com
+- Link to v8: https://lore.kernel.org/all/20260224-max77759-charger-v8-0-eb86bd570e9c@google.com/
+
+Changes in v8:
+- Add an newline char at the end of dev_* prints. (André Draszik)
+- Return PTR_ERR() instead of -EPROBE_DEFER when devm_power_supply_register()
+  fails in max77759 charger probe. (André Draszik)
+- Link to v7: https://lore.kernel.org/r/20260218-max77759-charger-v7-0-e8d907ce69c5@google.com
+
+Changes in v7:
+- Add register relock for protected registers in fail path. (André Draszik)
+- Switch to usage of scoped_guard instead of guard. (LKP test bot)
+- Link to v6: https://lore.kernel.org/r/20260214-max77759-charger-v6-0-28c09bda74b4@google.com
+
+Changes in v6:
+-  Linear Range usage (André Draszik):
+  - Dedicate individual arrays for inlim, chgcc & chg_cv_prm to simplify
+    code.
+  - Use numerical values instead of macros for linear_range array init.
+  - Remove macros defining current and voltage limits due to above.
+  - Didn't use Reviewed-by tag for Patch 3 due to the above.
+  - Add new linear_ranges api to leverage it for obtaining selector
+    values.
+  - Improve voltage and current getters and setters functions by leveraging
+    existing and new linear_ranges API.
+- IRQ related changes (André Draszik)
+  - Dedicated names for individual irqs.
+  - Refactor irq handlers.
+  - Ratelimit prints
+- Retry mechanism (André Draszik):
+  - Initialize error retry counter to 0 when psy work is scheduled on a
+    new notifier event.
+  - Protect the counter using a lock.
+  - Add appropriate prints.
+- Link to v5: https://lore.kernel.org/r/20260203-max77759-charger-v5-0-b50395376a5f@google.com
+
+Changes in v5:
+- Use linear_range library instead of reinventing it. (André Draszik)
+  - This requires a selector_max value so modified mfd/max77759.h to
+    include it for CHGCC and CHG_ILIM.
+  - Removed "reviewed-by" for Patch 3 (mfd) due to above
+- Use asnyc probe type. (André Draszik)
+- Retry mechanism for psy_work. (André Draszik)
+- Minor nits (André Draszik):
+  - Use named initializers for instantiating structs.
+  - Use static qualifier for `psy_name` variable.
+  - Refactor if-else ladder to remove else handling if return in prior
+    "if" loop.
+  - Remove redundant `unlikely`.
+- Link to v4: https://lore.kernel.org/r/20260121-max77759-charger-v4-0-694234c8ded1@google.com
+
+Changes in v4:
+- Removed a stray tabspace in mfd/max77759.h. (André Draszik)
+- Fixed the following issues in Patch 4/5 (André Draszik):
+  - Re-order Kconfig entry
+  - Refactored to not use global variable
+  - Use of clamp() to clamp values instead of duplicating logic
+  - Return IRQ_NONE for unhandled irqs or error conditions
+  - Remove debug messages in irq handler
+  - Refactor code to use dev_err_probe in *_init_irqhandler()
+  - Remove unneeded irq_flags
+  - Check return values of regmap ops
+  - Other nits like newlines, not using greedy init, using print stmnts
+- Link to v3: https://lore.kernel.org/r/20251227-max77759-charger-v3-0-54e664f5ca92@google.com
+
+Changes in v3:
+- Had incorrectly folded the charger sub-device with the pmic parent.
+  Corrected it. (Krzysztof Kozlowski)
+- Link to v2: https://lore.kernel.org/r/20251218-max77759-charger-v2-0-2b259980a686@google.com
+
+Changes in v2:
+- Fold charger binding in maxim,max77759-charger.yaml to its parent
+  node. (Krzysztof Kozlowski)
+- Renamed regulator supplier & consumer. (Krzysztof Kozlowski & Heikki
+  Krogerus)
+- Removed explicit setting of irq trigger types in max77759 driver.
+  (André Draszik & Krzysztof Kozlowski)
+- Complete bit definitions for IRQ registers. (André Draszik)
+- Consolidate all bit definitions for charger IP in mfd/max77759.h.
+  (André Draszik)
+- Modify the handling of charger IRQs such that regmap IRQ chip handles
+  masking, de-mux and acking of interrupts. (André Draszik)
+- Remove unused macro definitions relating to Charger modes in tcpci
+  maxim driver (André Draszik)
+- Add dependency on Regulator class in Kconfig definition for max77759
+  chg. (Kernel Test Robot)
+- Link to v1: https://lore.kernel.org/r/20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com
+
+---
+Amit Sunil Dhamne (6):
+      dt-bindings: mfd: maxim,max77759: reference power-supply schema and add regulator property
+      dt-bindings: usb: maxim,max33359: Add supply property for vbus
+      mfd: max77759: add register bitmasks and modify irq configs for charger
+      lib/linear_ranges: Add linear_range_get_selector_high_array
+      power: supply: max77759: add charger driver
+      usb: typec: tcpm/tcpci_maxim: deprecate WAR for setting charger mode
+
+ .../devicetree/bindings/mfd/maxim,max77759.yaml    |  16 +-
+ .../devicetree/bindings/usb/maxim,max33359.yaml    |   4 +
+ MAINTAINERS                                        |   6 +
+ drivers/mfd/max77759.c                             |  95 ++-
+ drivers/power/supply/Kconfig                       |  11 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/max77759_charger.c            | 774 +++++++++++++++++++++
+ drivers/usb/typec/tcpm/tcpci_maxim.h               |   1 +
+ drivers/usb/typec/tcpm/tcpci_maxim_core.c          |  54 +-
+ include/linux/linear_range.h                       |   3 +
+ include/linux/mfd/max77759.h                       | 166 ++++-
+ lib/linear_ranges.c                                |  36 +
+ 12 files changed, 1106 insertions(+), 61 deletions(-)
+---
+base-commit: ecc64d2dc9ff9738d2a896beb68e02c2feaf9a02
+change-id: 20251105-max77759-charger-852b626d661a
+
+Best regards,
+-- 
+Amit Sunil Dhamne <amitsd@google.com>
+
 
 
