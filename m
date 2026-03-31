@@ -1,388 +1,300 @@
-Return-Path: <devicetree+bounces-283007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283009-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SEdBIP3Ny2luLwYAu9opvQ
-	(envelope-from <devicetree+bounces-283007-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 15:37:01 +0200
+	id mNmOGBzPy2mILwYAu9opvQ
+	(envelope-from <devicetree+bounces-283009-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 15:41:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCA3C36A59C
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 15:37:00 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FF2636A683
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 15:41:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 501BF3093E29
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 13:32:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2961130CBCD4
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 13:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1DE1342535;
-	Tue, 31 Mar 2026 13:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE04A3E715F;
+	Tue, 31 Mar 2026 13:37:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JlqVHIAO"
+	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="FzPpq9pH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-07.mail-europe.com (mail-0701.mail-europe.com [51.83.17.38])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2528631F9B4
-	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 13:32:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B1123E316C;
+	Tue, 31 Mar 2026 13:37:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.83.17.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774963924; cv=none; b=joQSKYviwshAVJuS39RBTHMKsYVAVPbZy+fqJFOAvbKaREl96gBmYk8F2DbUqLcs7siAg63IaXwcMWSNYD0PP6AwnaG642y8+KS2qvTdHNVuPbIt102TokRQ52h69L+Na5pVzReeLjJYBAASWU0IGVJLrFHrOZBT/+GmGe+umnw=
+	t=1774964242; cv=none; b=fXtdQ+4eJ1wKmoECHtS9C7uRmc8Uqbw6UgNOAc570ECYtdY8+QplPRUgYFswr4aIQD5/S7AvE4r3YeDqokTNo5uXwqOcf8khdK+RJO0o12NAXpMHke2we95t6M2yX5B29Co3fookYcqy53UyPunehDXxaSJC4pNHyh0ozliGzyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774963924; c=relaxed/simple;
-	bh=dkwJd/RXway5nEOu9TRrDtfrsVoJlFdieW2eF9hmTPM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W+1PnvqQI5yYNB/9svHLGCJOp1RDgEYMUKEY1wV8Oh1fk/uLdZ6nJw4Cf0nbzXeaQauAsrpBDenUF8LnR358mrHNB3/PL/qR7mzViN3eLEZKz+C1iToyLtRUr2WPzcvBVE7dzkJgcZT3mwNtMWM8ydS/xhM6WPiVxa4xOQt6Za4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JlqVHIAO; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2a9296b3926so37055525ad.1
-        for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 06:32:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774963922; x=1775568722; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=HsQ7tsEX1bMlsKuZvXvkHSxJKbLz0c4rqG2pBfziwfs=;
-        b=JlqVHIAObt9W5ugR3cNZsyxGmc8Y/rV6cJy0W4a7ii8mKLS93mWq+d8C+I3kOUp7lm
-         aoPLcGSkXSmvIolSoyNN/OQ9mtGciJOvG5h34a4z5hwM1DoCZfiM6R36QkQblS5mynaL
-         aev+JkwE1Nv5AebjkSrjubeF73XIjI1ZEo3AvL308oEHKtWcZvgLkv2ZBGoA8GEucbG4
-         VLMdCfrIzxpToC3jRF9Gn0nusI55bklA0owpvBnrcL3adt0jek2+E+lCkaRrtfP7674T
-         znHyNEl0GDjhFfdEy58XE3FmiPqivu07/m7GnkKWrF+Srje15FmbahsbJaAB3x5RzcgC
-         WvRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774963922; x=1775568722;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HsQ7tsEX1bMlsKuZvXvkHSxJKbLz0c4rqG2pBfziwfs=;
-        b=sRTmkcVaZq9Y0QLh2Lwp28k3Zgl7hQUZ7IDzrNreQjeYAIi+yJd7dnjetY4jDVNhNG
-         jJstta4r1E7Z1MWLOvkSsjIn6TUcWmcCQ4aqt3lw4F3TETOCdvIgamn5VF4YNqyJ/hJT
-         f+GVXEYd3l1pEi8M5lyGrBJpzkvyWhD92gWOKbZASnFQgqKte6yTWuz1ILp39tGWIYr5
-         /qca+nI+AQZcgOgbLxa3rb0n2sCX/4qSx5b5EaZgvcCSxSnf3o/bG9kvIBiZBcNgZMQn
-         AmsbnxzVt6XdjLVlWJjYovASZ5cHFzslMhsJaxE3wiW6Iavpi9C2T7/L1QDbsASB+z1O
-         XdJw==
-X-Forwarded-Encrypted: i=1; AJvYcCVnliwlTh2tUkdgHrXN5GACffMiG+jbYivqtoaB92OzP83SWg8ix7Yp+sOr+wlkWKCJXCZ7M7ZpvdAs@vger.kernel.org
-X-Gm-Message-State: AOJu0YzG+Cs2BfM8/lwAX1bAsC+mtaHptHTByBgnD9DdY2dq9olz6Rkd
-	jO8N5SiQk/iM6A6Bni5kryAuAEVlMpIhmZ0bx7LUxW8M89Djbhndpk1pd8MzNA==
-X-Gm-Gg: ATEYQzwo6nJMSImEKS4B3MiE/osed985FE0nIVeVrUHVvlB15VbEFx/Fqb24eJcDfXX
-	dSsibtfQETbTrJFmrBkCo+ngdedQoZ8XXjzbaEenRi5odb4jO3MKFv0XYYKL2lbQpdlv1PR4a1I
-	rUXaTGcP3R7H5rEh2cqbHdwuJATACBGr+PvOPj3Q5UQpvUYrtTjV5dkox8VIV0cJK/MBT7OgZQq
-	8bRInKP+4aa8dMlu0fStnASyM0nhOahfuINB5j+wszJXi7HAyIT8U/2w3zSHBFR2zxENFqKe3mi
-	pYG5kp4esRAIQF1GmH52pAWes07m7qpvaIS801ETojj9pBffw3TmzEDx9Phszm4s+cJmetSnKTo
-	YmBqUO6i8bYP9c2KgS99A+WCTRwYYyyv0fWScUGF38X9kYWrnPIb4xtZAj9VvEPuPikQf691KZ8
-	88m7+m0Gby63jPWb7fFVKVhdrgCNNQpu4vcJ0cYCEvjP+M6uzkrlihJduXHFzVJK0IQwyuPNxM
-X-Received: by 2002:a17:902:ef4c:b0:2b0:6b98:59ec with SMTP id d9443c01a7336-2b0cdd3ed8emr167424765ad.34.1774963922192;
-        Tue, 31 Mar 2026 06:32:02 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b24264292asm117475855ad.4.2026.03.31.06.32.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Mar 2026 06:32:01 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <32c4c4dc-91db-4286-82e5-1d3269c76a74@roeck-us.net>
-Date: Tue, 31 Mar 2026 06:31:59 -0700
+	s=arc-20240116; t=1774964242; c=relaxed/simple;
+	bh=Un1v5rWA//tbvwUD80Fv5DGWNJ0jHt2mPAC5ctO6d4c=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=AVmoiHONMp/4qC8YxJMz9uhnC8PnPNLwBwwdArXalHXe9vcPbFooqQExqPXtdqAOHnuFQnxdlf02y0aWIWO9wWqMK8YYCwa9wLgWL92IdBwFZ8e+pUdLeEHFAz2LowXzPF811Wa+MakngqQa0+z5sQuyNHKa8LICrWuAJU4Y9hU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=fail smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=FzPpq9pH; arc=none smtp.client-ip=51.83.17.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=vinarskis.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
+	s=protonmail2; t=1774964226; x=1775223426;
+	bh=9DtaIFhbuYTF9VFfi0fZ9WHrgUOPll3EiGLAWOmlMtE=;
+	h=From:Date:Subject:Message-Id:To:Cc:From:To:Cc:Date:Subject:
+	 Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=FzPpq9pHjnPIfQFP0hbOKeQJcV04HY4LK/COmCOjFsww/1/RP1Eibu0rSWtL0sjOp
+	 WcHdNJe4/UmZQPVa3m66tc0oE7MeGPmRYE8NRBQ1p7LMaTpOlGZt4riKSUBjCSCsKg
+	 WLNRA1BN0xAzroGqe1ZEJ+/jioFJjXK0v3nFtPlmhvOU39iv4UDAq9EeEF46mllK+u
+	 2037JwGHzYiENRfXyskzAg1kVJPbFTIE3vui7wE/PzTEAPX2Pt0Hh5lUiiPfeh2lSE
+	 GXrKkzgQFfwmEDDLBhMVpTUIRpEJnf/CnTgmpnyU1xz8i70pNqiMtRa8iHVZK+tB7Z
+	 qtboyQoGYwzcg==
+X-Pm-Submission-Id: 4flTgP2b78z2ScXV
+gpg: Signature made Tue 31 Mar 2026 03:29:26 PM CEST
+gpg: using EDDSA key 8BFCF5668AA29DAD00D728F6EDAE71A20F500310
+gpg: Good signature from "Aleksandrs Vinarskis <alex@vinarskis.com>"
+ [ultimate]
+gpg: aka "Aleksandrs Vinarskis <alex.vinarskis@gmail.com>" [ultimate]
+From: Aleksandrs Vinarskis <alex@vinarskis.com>
+Date: Tue, 31 Mar 2026 15:36:47 +0200
+Subject: [PATCH v2] arm64: dts: qcom: x1e80100-dell-xps13-9345: enable
+ onboard accelerometers
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
- Controller
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
-Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
-References: <20260327-ltc4283-support-v8-0-471de255d728@analog.com>
- <20260327-ltc4283-support-v8-2-471de255d728@analog.com>
- <aco5L_6SZIB2DdpF@nsa> <e0c96f38-6742-4b86-8938-64e4e6063119@roeck-us.net>
- <acuLynb1hRFJRcEf@nsa>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <acuLynb1hRFJRcEf@nsa>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260331-dell-xps-9345-accel-v2-1-7dacbd24b43d@vinarskis.com>
+X-B4-Tracking: v=1; b=H4sIAO7Ny2kC/32NSw6CQBAFr0J6bRsYQIGV9zAs5tNIRxzItJlgC
+ Hd35AAuq5JXbwOhwCTQZRsEiiw8+wTqlIEdtX8QsksMKleXXKkGHU0TrotgW1Y1amtpwkqbKif
+ X2kZdIS2XQAOvR/XeJx5Z3nP4HCex+Nn/vVhggU4PLZWmNDXRLbLXQZ4sZzu/oN/3/Qv42Gddu
+ gAAAA==
+X-Change-ID: 20260228-dell-xps-9345-accel-4ab40ed9c827
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: laurentiu.tudor1@dell.com, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5862; i=alex@vinarskis.com;
+ h=from:subject:message-id; bh=Un1v5rWA//tbvwUD80Fv5DGWNJ0jHt2mPAC5ctO6d4c=;
+ b=owGbwMvMwCX2dl3hIv4AZgHG02pJDJmnz/5b/mljSqGq9pv+oJg3QYc5buwVStMv42G99fMrI
+ zf7/miVjlIWBjEuBlkxRZbuP1/TuhbNXctwXeMbzBxWJpAhDFycAjCRel5GhqmbC/OeTedSmy76
+ NTzPKMu8Q2SF/l+zmb5LJI///sN7LouR4Ytrd3OVUY5Y1EqPiAixeWzSi5hSVjEtrOT6W5TJGa7
+ BDgA=
+X-Developer-Key: i=alex@vinarskis.com; a=openpgp;
+ fpr=8E21FAE2D2967BB123303E8C684FD4BA28133815
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[vinarskis.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[vinarskis.com:s=protonmail2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-283007-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283009-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[vinarskis.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[alex@vinarskis.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email]
-X-Rspamd-Queue-Id: DCA3C36A59C
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ams-osram.com:url,0.0.0.18:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vinarskis.com:dkim,vinarskis.com:email,vinarskis.com:mid,gnome.org:url]
+X-Rspamd-Queue-Id: 2FF2636A683
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/31/26 02:48, Nuno Sá wrote:
-> On Mon, Mar 30, 2026 at 08:47:32AM -0700, Guenter Roeck wrote:
->> On 3/30/26 02:28, Nuno Sá wrote:
->>> Hi Guenter, Regarding AI review, I think most of the points were
->>> discussed in previous revisions, but there are two valid.
->>>
->>> On Fri, Mar 27, 2026 at 05:26:15PM +0000, Nuno Sá wrote:
->>>> Support the LTC4283 Hot Swap Controller. The device features programmable
->>>> current limit with foldback and independently adjustable inrush current to
->>>> optimize the MOSFET safe operating area (SOA). The SOA timer limits MOSFET
->>>> temperature rise for reliable protection against overstresses.
->>>>
->>>> An I2C interface and onboard ADC allow monitoring of board current,
->>>> voltage, power, energy, and fault status.
->>>>
->>>> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
->>>> ---
->>>>    Documentation/hwmon/index.rst   |    1 +
->>>>    Documentation/hwmon/ltc4283.rst |  266 ++++++
->>>>    MAINTAINERS                     |    1 +
->>>>    drivers/hwmon/Kconfig           |   12 +
->>>>    drivers/hwmon/Makefile          |    1 +
->>>>    drivers/hwmon/ltc4283.c         | 1796 +++++++++++++++++++++++++++++++++++++++
->>>>    6 files changed, 2077 insertions(+)
->>>>
->>>
->>> ...
->>>
->>>> +static int ltc4283_read_in_alarm(struct ltc4283_hwmon *st, u32 channel,
->>>> +				 bool max_alm, long *val)
->>>> +{
->>>> +	if (channel == LTC4283_VPWR)
->>>> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_1,
->>>> +					  BIT(2 + max_alm), val);
->>>> +
->>>> +	if (channel >= LTC4283_CHAN_ADI_1 && channel <= LTC4283_CHAN_ADI_4) {
->>>> +		u32 bit = (channel - LTC4283_CHAN_ADI_1) * 2;
->>>> +		/*
->>>> +		 * Lower channels go to higher bits. We also want to go +1 down
->>>> +		 * in the min_alarm case.
->>>> +		 */
->>>> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_2,
->>>> +					  BIT(7 - bit - !max_alm), val);
->>>> +	}
->>>> +
->>>> +	if (channel >= LTC4283_CHAN_ADIO_1 && channel <= LTC4283_CHAN_ADIO_4) {
->>>> +		u32 bit = (channel - LTC4283_CHAN_ADIO_1) * 2;
->>>> +
->>>> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_3,
->>>> +					  BIT(7 - bit - !max_alm), val);
->>>> +	}
->>>> +
->>>> +	if (channel >= LTC4283_CHAN_ADIN12 && channel <= LTC4283_CHAN_ADIN34) {
->>>> +		u32 bit = (channel - LTC4283_CHAN_ADIN12) * 2;
->>>> +
->>>> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_5,
->>>> +					  BIT(7 - bit - !max_alm), val);
->>>> +	}
->>>
->>> "Will this condition handle the ADIO12 and ADIO34 differential channels?
->>> It looks like channels 14 and 15 fall through to the default return intended
->>> for the DRAIN channel. Since reading the alarm implicitly clears the register
->>> bits, could reading these ADIO alarms unintentionally clear actual DRAIN
->>> alarms? Should the upper bound be LTC4283_CHAN_ADIO34?"
->>>
->>> Good catch and should be:
->>>
->>> -       if (channel >= LTC4283_CHAN_ADIN12 && channel <= LTC4283_CHAN_ADIN34) {
->>> +       if (channel >= LTC4283_CHAN_ADIN12 && channel <= LTC4283_CHAN_ADIO34) {
->>>
->>>> +
->>>> +	if (channel == LTC4283_CHAN_DRNS)
->>>> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_4,
->>>> +					  BIT(6 + max_alm), val);
->>>> +
->>>> +	return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_4, BIT(4 + max_alm),
->>>> +				  val);
->>>> +}
->>>
->>> ...
->>>
->>>> +
->>>> +static int ltc4283_probe(struct i2c_client *client)
->>>> +{
->>>> +	struct device *dev = &client->dev, *hwmon;
->>>> +	struct auxiliary_device *adev;
->>>> +	struct ltc4283_hwmon *st;
->>>> +	int ret;
->>>> +
->>>> +	st = devm_kzalloc(dev, sizeof(*st), GFP_KERNEL);
->>>> +	if (!st)
->>>> +		return -ENOMEM;
->>>> +
->>>> +	if (!i2c_check_functionality(client->adapter,
->>>> +				     I2C_FUNC_SMBUS_BYTE_DATA |
->>>> +				     I2C_FUNC_SMBUS_WORD_DATA |
->>>> +				     I2C_FUNC_SMBUS_READ_I2C_BLOCK))
->>>> +		return -EOPNOTSUPP;
->>>> +
->>>> +	st->client = client;
->>>> +	st->map = devm_regmap_init(dev, &ltc4283_regmap_bus, client,
->>>> +				   &ltc4283_regmap_config);
->>>> +	if (IS_ERR(st->map))
->>>> +		return dev_err_probe(dev, PTR_ERR(st->map),
->>>> +				     "Failed to create regmap\n");
->>>> +
->>>> +	ret = ltc4283_setup(st, dev);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	hwmon = devm_hwmon_device_register_with_info(dev, "ltc4283", st,
->>>> +						     &ltc4283_chip_info, NULL);
->>>> +
->>>> +	if (IS_ERR(hwmon))
->>>> +		return PTR_ERR(hwmon);
->>>> +
->>>> +	ltc4283_debugfs_init(st, client);
->>>> +
->>>> +	if (!st->gpio_mask)
->>>> +		return 0;
->>>> +
->>>> +	adev = devm_auxiliary_device_create(dev, "gpio", &st->gpio_mask);
->>>> +	if (!adev)
->>>> +		return dev_err_probe(dev, -ENODEV, "Failed to add GPIO device\n");
->>>
->>> "Does this allow multiple LTC4283 chips to probe successfully?
->>> Without allocating a unique ID per I2C instance, it seems the first probed
->>> chip takes the generic name. If a second chip is present, it might attempt
->>> to register with the exact same name, resulting in a failure in device_add()
->>> and aborting the probe."
->>>
->>> Also looks valid and I suspect is one of those that a quick look will
->>> find more "offenders". I would purpose:
->>>
->>> -       adev = devm_auxiliary_device_create(dev, "gpio", &st->gpio_mask);
->>> +       adev = __devm_auxiliary_device_create(dev, KBUILD_MODNAME, "gpio",
->>> +                                             &st->gpio_mask, client->addr);
->>>
->>
->> That would still fail if there are multiple chips at the same I2C address
->> on multiple I2C busses. Check drivers/gpu/drm/bridge/ti-sn65dsi86.c which has
->> the same problem.
-> 
-> I did looked at that one but totally forgot the multiple busses
-> scenario.
-> 
->>
->>> If there's nothing else and you agree with the above, is this something
->>> you can tweak while applying or should I spin a new version?
->>>
->>
->> Please respin. Also, regarding the other concerns:
->>
->>    Can BIT(8) * st->rsense wrap to zero on 32-bit architectures?
->>    BIT(8) is a 32-bit unsigned long and st->rsense is a u32. If a user sets a
->>    very large sense resistor value via the device tree, the multiplication could
->>    wrap to 0, causing a division-by-zero kernel panic. Should the divisor use
->>    BIT_ULL(8)?
->>
->> Unless I am missing something, this _can_ overflow. Try to provide a sense
->> resistor value of 1677721600. Yes, it is unreasonable to specify such large
->> rsense values, but why not just limit it such that it does not overflow ?
-> 
-> Yes, that's pretty much my reasoning (regarding the unreasonable
-> rsense). I could just make BIT_ULL() and be done with it. I can also
-> also cap rsense to a max value but i'm not 100% what that value would
-> be. Maybe 1 ohm is already more than reasonable. I can also ask internally. Any
-> preference on this one?
-> 
+Particular laptop comes with two sets of sensors:
+1. Motherboard: accelerometer
+2. Display/Camera module: accelerometer, ambient ligth (and more)
+   sensor
 
-I'd suggest to reject large (unreasonable) values. In this case, rejecting rsense
-values >= 1677721600 should solve the problem.
+Both i2c busses are bound to Snapdragon Sensor Core (SSC) and are
+typically controlled by (A)DSP thus allowing for great power
+efficiency. This however requires DSP libraries matching ADSP firmware,
+sensors descriptions (must be extracted from Windows) and other
+potentially closed-source libraries. Opensource tooling includes
+`libssc` and `hexagonrpcd`, but they were not verified to be working.
 
->>
->> Also, for the overflow concerns, if you are sure they can not happen, I'll
->> really need to write the unit test code to make sure that this is indeed
->> the case.
->>
-> 
-> Hmm, for the val * MILLI case, well it should not happen but given it
-> depends on user input, better if I clamp it before passing the
-> value to ltc4283_write_in_byte(). Yes, we clamp again inside the
-> write_bytes() API but not a big deal.
-> 
-> For the st->power_max is again one of those cases where the values would
-> not make sense (I think - the combination of vsense_max and rsense). Just looking
-> at the code, it can overflow but this one I'm not really sure how we could handle it.
-> Maybe clamp power_max to U8_MAX and have a warning message in ltc4283_read_power_byte() if
-> we overflow long in which case we need a power64 attr?
-> 
-> But even clamping does not make much sense here. The power limit register
-> is 8 bits, so if our design (rsense + vsense_max) overflows that,
-> there's nothing we can do other that erroring out.
-> 
+Until SSC support for X1E lands, bitbang both i2c busses to enable
+accelerometer functionality. In the future if/when sensors on this
+platform can be used from DSP directly, this commit can be reverted.
 
-Again, why not just reject unreasonable values such that calculations
-can not overflow ?
+Both accelerometers were tested individually via `monitor-sensor`.
+Display accelerometer is defined first, as it appears automatic
+screen rotation tools simply pick the 1st iio device.
 
-In other drivers, the common approach is to reject unreeasonable values if
-provided through devicetree and to clamp them if provided through sysfs.
-I don't see why that would not work here.
+Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+---
+Enable two accelerometers, one on the motherboard, one in display.
+In combination with userland screen rotation tools such as Gnome's
+'screen rotate' [1] this allows for automatic screen rotation depending
+on device orientation.
 
-Thanks,
-Guenter
+There appears to be an ALS, a "True Color Sensor with Flicker Detection"
+AMS TCS3530 at 0x39. Out-of-tree driver from OSRAM is available [2].
+Document bus, address, IRQ such that it could be added in the future.
+
+There is an issue with st_sensors which prevents initializing two
+sensors at the time, fix submitted [3]. It is not blocking this series,
+as without it, 2nd currently unused accelerometer on the motherboard
+will simply fail to probe.
+
+[1] https://extensions.gnome.org/extension/5389/screen-rotate
+[2] https://ams-osram.com/support/download-center?search=TCS3530&type=software&subtype=driver
+[3] https://lore.kernel.org/all/20260228-st-iio-trigger-v1-1-abf5909e547f@vinarskis.com/
+---
+Changes in v2:
+- Fixed i2c node names to pass dtbs_check
+- Updated commit description to reflect discussions of v1
+- Link to v1: https://lore.kernel.org/r/20260228-dell-xps-9345-accel-v1-1-daf9e3b3b5ee@vinarskis.com
+---
+ .../boot/dts/qcom/x1e80100-dell-xps13-9345.dts     | 94 ++++++++++++++++++++++
+ 1 file changed, 94 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+index ce7b10ea89b6dcb2a4a65c114037f4c90a4b0c6d..bde88655c36889cc4865a109370a9d2cd0166a00 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+@@ -40,6 +40,67 @@ switch-lid {
+ 		};
+ 	};
+ 
++	/* Display-mounted sensors */
++	i2c-sensors1 {
++		compatible = "i2c-gpio";
++		i2c-gpio,delay-us = <2>;
++
++		scl-gpios = <&tlmm 232 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++		sda-gpios = <&tlmm 231 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++
++		pinctrl-0 = <&sensors_i2c_display_default>;
++		pinctrl-names = "default";
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		accelerometer@18 {
++			compatible = "st,lis2dw12";
++			reg = <0x18>;
++
++			interrupts-extended = <&tlmm 29 IRQ_TYPE_LEVEL_LOW>;
++			pinctrl-0 = <&acc_display_int_n_default>;
++			pinctrl-names = "default";
++
++			mount-matrix = "-1", "0", "0",
++				       "0", "1", "0",
++				       "0", "0", "-1";
++		};
++
++		/* AMS TCS3530 @ 0x39, IRQ 93 */
++	};
++
++	/* Motherboard-mounted sensors */
++	i2c-sensors2 {
++		compatible = "i2c-gpio";
++		i2c-gpio,delay-us = <2>;
++
++		scl-gpios = <&tlmm 216 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++		sda-gpios = <&tlmm 215 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++
++		pinctrl-0 = <&sensors_i2c_mobo_default>;
++		pinctrl-names = "default";
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		accelerometer@18 {
++			compatible = "st,lis2dw12";
++			reg = <0x18>;
++
++			interrupts-extended = <&tlmm 28 IRQ_TYPE_LEVEL_LOW>;
++			pinctrl-0 = <&acc_mobo_int_n_default>;
++			pinctrl-names = "default";
++
++			vdd-supply = <&vreg_l10b_1p8>;
++			vddio-supply = <&vreg_l10b_1p8>;
++
++			mount-matrix = "0", "1", "0",
++				       "0", "0", "1",
++				       "1", "0", "0";
++		};
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -450,6 +511,13 @@ vreg_l9b_2p9: ldo9 {
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
++		vreg_l10b_1p8: ldo10 {
++			regulator-name = "vreg_l10b_1p8";
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1800000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
+ 		vreg_l12b_1p2: ldo12 {
+ 			regulator-name = "vreg_l12b_1p2";
+ 			regulator-min-microvolt = <1200000>;
+@@ -1074,6 +1142,18 @@ &tlmm {
+ 			       <76 4>,  /* SPI19 (TZ Protected) */
+ 			       <238 1>; /* UFS Reset */
+ 
++	acc_display_int_n_default: acc-display-int-n-state {
++		pins = "gpio29";
++		function = "gpio";
++		bias-pull-up;
++	};
++
++	acc_mobo_int_n_default: acc-mobo-int-n-state {
++		pins = "gpio28";
++		function = "gpio";
++		bias-pull-up;
++	};
++
+ 	cam_indicator_en: cam-indicator-en-state {
+ 		pins = "gpio110";
+ 		function = "gpio";
+@@ -1197,6 +1277,20 @@ rtmr1_default: rtmr1-reset-n-active-state {
+ 		bias-disable;
+ 	};
+ 
++	sensors_i2c_display_default: sensors-i2c-display-state {
++		pins = "gpio231", "gpio232";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
++	sensors_i2c_mobo_default: sensors-i2c-mobo-state {
++		pins = "gpio215", "gpio216";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
+ 	tpad_default: tpad-default-state {
+ 		disable-pins {
+ 			pins = "gpio38";
+
+---
+base-commit: 3b058d1aeeeff27a7289529c4944291613b364e9
+change-id: 20260228-dell-xps-9345-accel-4ab40ed9c827
+
+Best regards,
+-- 
+Aleksandrs Vinarskis <alex@vinarskis.com>
 
 
