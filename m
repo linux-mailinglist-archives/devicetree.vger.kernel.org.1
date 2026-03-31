@@ -1,307 +1,162 @@
-Return-Path: <devicetree+bounces-282948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282950-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yBR1F8Ovy2kpKAYAu9opvQ
-	(envelope-from <devicetree+bounces-282948-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 13:28:03 +0200
+	id uOMKIu6wy2kpKAYAu9opvQ
+	(envelope-from <devicetree+bounces-282950-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 13:33:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3AEC368B9C
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 13:28:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2AB2368D2D
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 13:33:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2E3883094D2F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 11:24:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 52FA4302979C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 11:26:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93ADB3B8945;
-	Tue, 31 Mar 2026 11:24:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8347B3C3444;
+	Tue, 31 Mar 2026 11:26:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="CZEbcX+m"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iKjbtmdr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012053.outbound.protection.outlook.com [52.101.53.53])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20ABA3A5E61;
-	Tue, 31 Mar 2026 11:24:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774956260; cv=fail; b=VVECxtNiint0LSx0JHTp8nYj2fKS8XsZ5hTienHt0jDErRdjALnLyF2vQ5jVmDysmKvXjZAE4wO07nRbHmT+wka/2FTJMhg+6xxPPbM3FnthlNYwy/ak6TYx20Co11uvB1lEdxW6FCniJYIDvzeH9OhDBSudrqQKPdUX2BPzs4U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774956260; c=relaxed/simple;
-	bh=B20rldJrHnDxwH/DOOKMAlL/Ct9rX2LCTvKlDx6zQ2Y=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=F5s6etzWONFZm65ypZInSJ1jVEVxopbZSGOfOoTE8Ew9FgR3Cx93azOUQME4OhoiQGNWUqQWCH5S1y7GsZgAE0ijk/Ip4jalAZibU0a/8bZnmA+EbIu2PsT/ZXEILWMP4ptN0MkCsb2Iy4pHzO2iueDSrl56bPt6LeVE2RJ9yyY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=CZEbcX+m; arc=fail smtp.client-ip=52.101.53.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FSzvpnoH6KlPv1+E+iJst9D8u1aveSMBPHc10GWMl34WhtavMiOZjrNOqT6lw0fvNKwlGmESUyqWxjXUR7mbWKZYqgtLi9ZiPdAen+SWE6RviG0hcO26OEP5HBE52D/whEWKmGqzTI1MlH2Bo3vb7h8Eo6E1z72B3btFIfYXDZl57j6He9cJe1He/kFOIROwL1qMg8NNvuPGkr78E/zPPA1FxXk76KpRxeEuF+c6QrDCD0ZazPCcbFZWXMxEj+ujUCL/srTdaNywJjQtgglpMItSBcTqoSyDyHDJTlIu2QvS0e4JrLrB/+6tMYel3nAI6e8arLMMveCn7mG+fAhsnQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9+VXDrw9C3kAi4qtY/MzuHfj/N/7Anss9Qi6PFri9pc=;
- b=OgR2E3/0QG5C57AM1x+FjXMxLtImJt3pPa2ANQjUHeDnGkJ89zcYu8UFzBp6LvjKqvegdr1/khbD+jErAlaxo/8esJX01AfsOO6oVtrLKN6etuF5WNU5UrAbzW6gN5A8p6v6IFRsvCvW58ZQMg6KAosy74a1M120zhdv6cMA9vvfRPIPacMPSuqiAhZGp+Tf3Fzst27TTXztX32QQPsRGXUjNuzJdxaUH3hAQVXtzGtUbglmFBiolptfciUyIuPWCZfH9yFaB1TiL6PVBXWwmYUrKMLe8+IXRTCpFF3HRacMhYdtW7COanuWDblIPwZcsQdpCBIkBQaS5t54HygEwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9+VXDrw9C3kAi4qtY/MzuHfj/N/7Anss9Qi6PFri9pc=;
- b=CZEbcX+mES8/pP/XfogiUg6F0YIM47mZcFkBrXCvHA+lMbaDgSWM94hy7OS9PjREwmLW8RxR7MmXBVPvFpM3bsUYug297bYRk9EwQptc/Jd2Cj/EQV3chH6T0FF5OLn9Z9564nBoNUylrNQSdGuqcckPEBETH7I1qrXvvP4EMwYQA07oU5pTGaIfXqhPesb7OQopjyfnzsiGHbUafuTNP98jynAuHO0T/nrXYVVc1fWmXI7h4a8L5OnkNwu3jKULwbnATlOLhA5DOZB0km+47hq3rGaNpnjZvrDzbK1HmzYQ4u+0NwcOgMRTsZXEUTt8Nfhx7T+LI/00CMWXcMyeog==
-Received: from BL0PR02CA0055.namprd02.prod.outlook.com (2603:10b6:207:3d::32)
- by CH2PR12MB4120.namprd12.prod.outlook.com (2603:10b6:610:7b::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Tue, 31 Mar
- 2026 11:24:11 +0000
-Received: from BL6PEPF0001AB4C.namprd04.prod.outlook.com
- (2603:10b6:207:3d:cafe::9a) by BL0PR02CA0055.outlook.office365.com
- (2603:10b6:207:3d::32) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.29 via Frontend Transport; Tue,
- 31 Mar 2026 11:24:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- BL6PEPF0001AB4C.mail.protection.outlook.com (10.167.242.70) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9745.21 via Frontend Transport; Tue, 31 Mar 2026 11:24:11 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 31 Mar
- 2026 04:23:58 -0700
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.20; Tue, 31 Mar 2026 04:23:58 -0700
-Received: from build-amhetre-focal-20250829.internal (10.127.8.12) by
- mail.nvidia.com (10.126.190.180) with Microsoft SMTP Server id 15.2.2562.20
- via Frontend Transport; Tue, 31 Mar 2026 04:23:58 -0700
-From: Ashish Mhetre <amhetre@nvidia.com>
-To: <krzk@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-	<=thierry.reding@kernel.org>, <jonathanh@nvidia.com>, <sumitg@nvidia.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>, Ashish Mhetre <amhetre@nvidia.com>
-Subject: [PATCH 2/2] dt-bindings: memory: tegra: Add nvidia,tegra238-mc compatible
-Date: Tue, 31 Mar 2026 11:23:40 +0000
-Message-ID: <20260331112347.3897841-3-amhetre@nvidia.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260331112347.3897841-1-amhetre@nvidia.com>
-References: <20260331112347.3897841-1-amhetre@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F923C2E;
+	Tue, 31 Mar 2026 11:26:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774956364; cv=none; b=ZfCQEk/BBtAl1gKqqPGa11KvD3eVXjH7RULZh0n0sqHMuLht40Bzl2UMZgV0XAbALAgJMNTGNPPDzy/MzJeS0gw88F3CW8/w6xHKqRGrYUC5QRnDOIKiE02Q9IzLjB44dcoQEqOJ6h3KZI66Xk4RDFYmluZga8oecX3+4vCYuv0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774956364; c=relaxed/simple;
+	bh=NOTrhUUVowhwGx0t0rPG4rtZ1Nb6tAXMXdZrcPv++EE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ggnH7m7j0AwtuIPOWQP5rIKMvj5mR0VqsTcKgUDk5uQYaroUgeMwy4OnG3Fn6eOS2r5G1zp6i825HpdcB03IoTduB+OifukcFZGjsL9MXFl7jKj7RUI5Qt9C0KSirgZzrMoexp+9L/TNAONTFCuhRJw8NtzryJMR/9px6/JXvk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iKjbtmdr; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1774956362; x=1806492362;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NOTrhUUVowhwGx0t0rPG4rtZ1Nb6tAXMXdZrcPv++EE=;
+  b=iKjbtmdrVrEPaZoWBlgLi/8BMGCssY5fQGYIq1chaIx8A4XYDoVt//Jd
+   bLiS8TqdWU99flLvWFrw/KVHbLNUXIjiUKqgdGZ+FYsCpHSOZPTIejhol
+   UfFlUZmsC//KWOnxnqTfCyXccO3ia35AGKZ/0z1rUeVLIWTJvb965cL8b
+   wBLHyKk2INgaBQlx/cA+mzrxj4zDa/RmWBkAX1nXVY3BcoBO7U/mOHDsy
+   9kgCfk9wGyV7YkPLZqf79jBBgc3HIotV0KjAK1qPOl4KSfiE90PygwKCC
+   75z88+0WXBdvvXHnfbHW15DQ7YboLzRniE+c/G/2K5hmNIm69pdS5UAY8
+   g==;
+X-CSE-ConnectionGUID: BF8MhGQhT1SnKqIE0Qq/bg==
+X-CSE-MsgGUID: jNu5rpLtSraN6G/1ecKTYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="76157924"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; 
+   d="scan'208";a="76157924"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2026 04:26:00 -0700
+X-CSE-ConnectionGUID: uDPvsGmPQi2c20CLpwjzrw==
+X-CSE-MsgGUID: Cd0Rxs2LQDe1SfgUw835JA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; 
+   d="scan'208";a="225333852"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.209])
+  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2026 04:25:57 -0700
+Date: Tue, 31 Mar 2026 14:25:54 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+	dlechner@baylibre.com, jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V3 0/9] Add Invensense ICM42607
+Message-ID: <acuvQr0UVyGIQ7fo@ashevche-desk.local>
+References: <20260330195853.392877-1-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB4C:EE_|CH2PR12MB4120:EE_
-X-MS-Office365-Filtering-Correlation-Id: d79b9700-e949-4525-b054-08de8f180865
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|36860700016|1800799024|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	jYAInSMIFeqgxgTJOyB8mn8/BLTWoOE06ecfM2MK+geiEP1va8dDW5olZgcTbCUUQ1+iUQeh4Rv3ajoSPf+pJ2buNU3tMe3eI8gHg2LZa3r2TUehwDqdO1IzLLE9i2WORQ6bB6Z/3uSLpDEqsQQXvsql65igGqNxm3KuzzCDo+MtIZDwVt/gSz2/rj+J7qmNwVLLqllNgly/sTC5bn1ob49BzgysmEMbdWamHzx87a63eT2TAmEXpKHoA3cY1/DdGNK0eGth+CkyzqcqmTlspueQZOpKXf3U0mWyTs2A+NgiRTundBKFT0uhCLVsIEA+fzSPq4E9eX07iHlfcEtEQaFtQyV+Ww017+kKsPc1xGtegu5dPOob1KFuaZvfEiVjcwqIhsEnByrDoxW8dIHmlbfKGy8H+RIMq3EfHxqlx9CnPG/h0I8b4ENynSpDNrjTCvYg0JxmPUcezhJzTlBH7tFSAjrpoW9mGVjDjHFYM8oyFjeFds9UyswpfsL3nXOgoTeXRyHZGQ0eLj13EgExPOzKR+DH03+jeBbK6ohvHBypvkrRvO45Tgw+W+nPROhWZLlgdtPEHG/m0IA2TxL+kLUqKCDT1YrGNU0dthACXG8TJkdeF+EwgdHOfmBcHT61l1UO+Kh6pGksD09HNcqX2oIZ8g5Q9zboc54aQM9f8utNC8xNTkjbu6Ek6p6wYcBhOX6pG/As5LYgCIZPAodWD6Px9IN60HOSWQoeXKBxN14eZJM6uoAsbhIzEk/E5tzOMyAZ+xzzEeDiALENO3B2OA==
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700016)(1800799024)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	0HlP44UTQEc2+VurwnlxR1n5LsP11MzBse8ivgiRVcaiJFlSfseam+Yy86wbQVvv/eSDQPBDgTeaMg4y20uhjcma3He6fCWO8IaYD/cpwIsYyuM/e52E3RAww+Dcsq+EcqW2i4v7X9e6xWjas5vINX7Kwc9fFTmQ9wo47ZuwdKeAr7jKByszONH4dQI8kPnFXpYiT9U1MLJrzdicR0zYTihjOsqjAY64oofdEPO2hfYH6J3/aqfUJhWmeNDoArhJdVoPO3go1G3loeM0HGr8Yb+dHBiW/I1UEpw4EeQzxCzGMVV7e04bI0G7T4t0LgvlchrheOLim7qMdVFyfVHrJAqJ0FKCTgMpsdcAt4bc32oJOXHaMUZwEb34vPyUZRH22aU7kpfbuMpsEyr627cLiyPS3Oz1c0g/Wj+ybdJx/m2ouK4/OAaBA8za3t5IYr+g
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2026 11:24:11.4104
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d79b9700-e949-4525-b054-08de8f180865
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF0001AB4C.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4120
-X-Spamd-Result: default: False [1.34 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260330195853.392877-1-macroalpha82@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282948-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,nvidia.com:mid,Nvidia.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[amhetre@nvidia.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-282950-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,hotmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: F3AEC368B9C
+	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
+X-Rspamd-Queue-Id: E2AB2368D2D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Document the device tree binding for the Tegra238 memory controller.
-Tegra238 has 8 memory controller channels plus broadcast and stream-id
-registers.
+On Mon, Mar 30, 2026 at 02:58:44PM -0500, Chris Morgan wrote:
 
-Add the stream ID header (nvidia,tegra238-mc.h) defining ISO and NISO
-stream IDs for SMMU configuration.
+> Add support for the ICM42607 IMU. This sensor shares the same
+> functionality but a different register layout with the existing
+> ICM42600.
+> 
+> This driver should work with the ICM42607 and ICM42607P over both I2C
+> and SPI, however only the ICM42607P over I2C could be tested.
+> 
+> Changes Since V1:
+>  - Instead of creating a new driver, merged with the existing inv_icm42600
+>    driver. This necessitated adding some code to the existing driver to
+>    permit using a different register layout for the same functionality.
+>  - Split changes up a bit more to decrease the size of the individual
+>    patches. Note that patch 0004 is still pretty hefty; if I need to split
+>    further I may need to create some temporary stub functions.
+>  - Used guard() and PM_RUNTIME_ACQUIRE_AUTOSUSPEND() on the new functions
+>    per Jonathan's recommendations.
+> 
+> Changes Since V2:
+>  - Went back to using a new driver on advice from Invensense engineer.
 
-Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
----
- .../nvidia,tegra186-mc.yaml                   | 31 ++++++++
- .../dt-bindings/memory/nvidia,tegra238-mc.h   | 74 +++++++++++++++++++
- 2 files changed, 105 insertions(+)
- create mode 100644 include/dt-bindings/memory/nvidia,tegra238-mc.h
+Okay, but this should be elaborated in the cover letter. If I followed
+previous discussion correctly, the problem is the indirect subset of
+registers that are absent on the 42600 series. But would be nice to have
+the summary of what vendor engineers told you.
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
-index 7b03b589168b..e008cb1ccd28 100644
---- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
-@@ -32,6 +32,7 @@ properties:
-           - nvidia,tegra186-mc
-           - nvidia,tegra194-mc
-           - nvidia,tegra234-mc
-+          - nvidia,tegra238-mc
-           - nvidia,tegra264-mc
- 
-   reg:
-@@ -266,6 +267,36 @@ allOf:
- 
-         interrupt-names: false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          const: nvidia,tegra238-mc
-+    then:
-+      properties:
-+        reg:
-+          minItems: 10
-+          maxItems: 10
-+          description: 8 memory controller channels, 1 broadcast, and 1 for stream-id registers
-+
-+        reg-names:
-+          items:
-+            - const: sid
-+            - const: broadcast
-+            - const: ch0
-+            - const: ch1
-+            - const: ch2
-+            - const: ch3
-+            - const: ch4
-+            - const: ch5
-+            - const: ch6
-+            - const: ch7
-+
-+        interrupts:
-+          items:
-+            - description: MC general interrupt
-+
-+        interrupt-names: false
-+
-   - if:
-       properties:
-         compatible:
-diff --git a/include/dt-bindings/memory/nvidia,tegra238-mc.h b/include/dt-bindings/memory/nvidia,tegra238-mc.h
-new file mode 100644
-index 000000000000..be24c0eb3f15
---- /dev/null
-+++ b/include/dt-bindings/memory/nvidia,tegra238-mc.h
-@@ -0,0 +1,74 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/* Copyright (c) 2026, NVIDIA CORPORATION. All rights reserved. */
-+
-+#ifndef DT_BINDINGS_MEMORY_TEGRA238_MC_H
-+#define DT_BINDINGS_MEMORY_TEGRA238_MC_H
-+
-+/* special clients */
-+#define TEGRA238_SID_INVALID		0x0
-+#define TEGRA238_SID_PASSTHROUGH	0x7f
-+
-+/* ISO stream IDs */
-+#define TEGRA238_SID_ISO_NVDISPLAY	0x1
-+#define TEGRA238_SID_ISO_APE0		0x2
-+#define TEGRA238_SID_ISO_APE1		0x3
-+
-+/* NISO stream IDs */
-+#define TEGRA238_SID_AON		0x1
-+#define TEGRA238_SID_BPMP		0x2
-+#define TEGRA238_SID_ETR		0x3
-+#define TEGRA238_SID_FDE		0x4
-+#define TEGRA238_SID_HC		0x5
-+#define TEGRA238_SID_HDA		0x6
-+#define TEGRA238_SID_NVDEC		0x7
-+#define TEGRA238_SID_NVDISPLAY		0x8
-+#define TEGRA238_SID_NVENC		0x9
-+#define TEGRA238_SID_OFA		0xa
-+#define TEGRA238_SID_PCIE0		0xb
-+#define TEGRA238_SID_PCIE1		0xc
-+#define TEGRA238_SID_PCIE2		0xd
-+#define TEGRA238_SID_PCIE3		0xe
-+#define TEGRA238_SID_HWMP_PMA		0xf
-+#define TEGRA238_SID_PSC		0x10
-+#define TEGRA238_SID_SDMMC1A		0x11
-+#define TEGRA238_SID_SDMMC4A		0x12
-+#define TEGRA238_SID_SES_SE0		0x13
-+#define TEGRA238_SID_SES_SE1		0x14
-+#define TEGRA238_SID_SES_SE2		0x15
-+#define TEGRA238_SID_SEU1_SE0		0x16
-+#define TEGRA238_SID_SEU1_SE1		0x17
-+#define TEGRA238_SID_SEU1_SE2		0x18
-+#define TEGRA238_SID_TSEC		0x19
-+#define TEGRA238_SID_UFSHC		0x1a
-+#define TEGRA238_SID_VIC		0x1b
-+#define TEGRA238_SID_XUSB_HOST		0x1c
-+#define TEGRA238_SID_XUSB_DEV		0x1d
-+#define TEGRA238_SID_GPCDMA_0		0x1e
-+#define TEGRA238_SID_SMMU_TEST		0x1f
-+
-+/* Host1x virtualization clients. */
-+#define TEGRA238_SID_HOST1X_CTX0	0x20
-+#define TEGRA238_SID_HOST1X_CTX1	0x21
-+#define TEGRA238_SID_HOST1X_CTX2	0x22
-+#define TEGRA238_SID_HOST1X_CTX3	0x23
-+#define TEGRA238_SID_HOST1X_CTX4	0x24
-+#define TEGRA238_SID_HOST1X_CTX5	0x25
-+#define TEGRA238_SID_HOST1X_CTX6	0x26
-+#define TEGRA238_SID_HOST1X_CTX7	0x27
-+
-+#define TEGRA238_SID_XUSB_VF0		0x28
-+#define TEGRA238_SID_XUSB_VF1		0x29
-+#define TEGRA238_SID_XUSB_VF2		0x2a
-+#define TEGRA238_SID_XUSB_VF3		0x2b
-+
-+/* Host1x command buffers */
-+#define TEGRA238_SID_HC_VM0		0x2c
-+#define TEGRA238_SID_HC_VM1		0x2d
-+#define TEGRA238_SID_HC_VM2		0x2e
-+#define TEGRA238_SID_HC_VM3		0x2f
-+#define TEGRA238_SID_HC_VM4		0x30
-+#define TEGRA238_SID_HC_VM5		0x31
-+#define TEGRA238_SID_HC_VM6		0x32
-+#define TEGRA238_SID_HC_VM7		0x33
-+
-+#endif
+>  - Further split changes up into smaller chunks of functionality. Note
+>    still that the largest patch is approximately 900 lines, and that while
+>    the driver compiles cleanly at each commit it is not able to drive the
+>    hardware until the commit that adds the Interrupt (as it also adds the
+>    Makefile).
+>  - Change the error to a warning when the devicetree binding does not match
+>    the hardware ID.
+>  - Dropped the ack on the devicetree bindings, as I am creating a new file
+>    (for a new driver) instead of modifying the existing one.
+
 -- 
-2.50.1
+With Best Regards,
+Andy Shevchenko
+
 
 
