@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-283027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283031-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0A4SI0DZy2kaMAYAu9opvQ
-	(envelope-from <devicetree+bounces-283027-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:25:04 +0200
+	id IIz7DDfZy2kaMAYAu9opvQ
+	(envelope-from <devicetree+bounces-283031-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:24:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E557936AE60
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:25:03 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2CAC36AE42
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:24:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DC5953005D33
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 14:19:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9DB6E30A294F
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 14:19:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 505C73F9F44;
-	Tue, 31 Mar 2026 14:19:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CD933FB06C;
+	Tue, 31 Mar 2026 14:19:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="mapNTqhO"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Rlj+TE5k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1BFA3E3D80;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53953DFC76;
 	Tue, 31 Mar 2026 14:19:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774966768; cv=none; b=mMFG2n6Ge+oI1T1Dj2p/l/Uzi4o8Oe5CplG64+y5LRoUN874clUHG0a6qOMtcjVInVxtxPBDkzseQtlkJnoOVE5QNMmZ6WwmBG5FC1aloLfdqvGD/FNvp0i7N5KYrF1EfZbyIEj3pVvy2Ul87fU+0GelH70tAF+jO6Es6Bvg0Cc=
+	t=1774966769; cv=none; b=TeNapjWDSLnpfmDDTsHcC7DIkHPKMXumVC5tlUqK6WmrsWeCyUQ0Kl7g0LYZu7b4rrjYYMdZMzYG7s2ZGUA5u8ENnH/caB7J9+ZMPnQvplvH1ZqXZu+GKd3WPugUqI6RpD4teHErySkkcc5cJJHG+nheuM5mKWRX2kgezRFuSuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774966768; c=relaxed/simple;
-	bh=x57Rt/uirDtZJjGeDQoVEvv/mYls3svAvYRpPbPfLiY=;
+	s=arc-20240116; t=1774966769; c=relaxed/simple;
+	bh=4jmcL8gCONunNLHDHdfmh7a7/2x982zasyfK1laUBW8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Spi4OkivG6YypKp/gHD3R9By93Cwb+Fkfuwa1fPk2tT7pkw4cKAHzP12Olm81lzHg2u5PFCGatvgH/FLMeUpBfS6WPQZd5dmbllqGg3aPC2SQi9kH9GcQ4JkZ7RVkNzvePFMDsib91U33c1rdSeFjzujIa4XNpEMdFPw2W9bOKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=mapNTqhO; arc=none smtp.client-ip=188.40.3.216
+	 MIME-Version; b=oNsMqRM2okc/tar5c46UayuaDaKifFU7wzRHfnTwLId6+514W/csx4h1EV1OCovJfPx3DAeD+3Hwzr9YFlEEeJ9uUO/icJ2LmG2fjUnpln0BHRi6BgrCzk4TiWST65Tu3//NejgptLKsNInR4LHttXKUCa5/xtiTjKauIro9yhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Rlj+TE5k; arc=none smtp.client-ip=188.40.3.216
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -39,23 +39,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=vUvf/YUOB4AwlFTFHGNktNzrfp9dJgm/1DL3JSVn+fg=; b=mapNTqhOtiTJbE+5kJqUHByDgi
-	1+mHPax+I/MvzywUcHl8nIcbkxzPKWkRSXgHbpEzENzmpg/sseT00UW6SOsEiX1Y+KDMx/NU037OL
-	YGzGaHgGPLzgu9I1pJIRnP0EybJ0sN5hGgA+VmhXsxxUSXWTXCAovEMQViXcHxRsNlGGZj2P2+3FS
-	byY5jWqh51LWAaG8uXF6zwgO9NHu6qpbDNXlKmazN6FcdiWw8rU2ETkLKg5XtcG74/XT+s/H6N5Mm
-	/wVFLK85n4TmAefsiOO29xOI7snFhbACxqWwWY89JOD67gxzSL3OkoWVdD4jVS2F0GOHYe8N3+zJl
-	KMJT3DIg==;
+	bh=yin7QTODeLEANEuaKfncPGh4+OMZRlDs+DysIl//GIU=; b=Rlj+TE5kKpuS0AZr04/VJXkhAa
+	WQDSWU1MO6+jcftNj7ERkP5dp3+cWQDZD/K0lTezgS2zW+Bqdgm6tDk63c/oTr7ZjJbPSIPqGXKu7
+	ij5+47Fx+hNImV6vbicUdhn7sdq8u2AlFsJqLaxvskGbc171t2Qt+L01qmzC4d855hIhE4oKyXwpF
+	Oko+sJrzocvS0V0XIBcPOOhBZc/UXQ1tv84xOJ9EG4vPyxAo8P5eCOkglOE/fmnimSv7tNkPSiuly
+	R1h9+QN8ZWREdQDYTwtHFz7TosSAb62B1V7SiM0GXdjQojzvP+PHR59HOazpnde8b5+5qu8S4Kpca
+	a2XGnwXg==;
 Received: from sslproxy02.your-server.de ([78.47.166.47])
 	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96.2)
 	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w7ZwD-000Js2-04;
+	id 1w7ZwD-000JsJ-15;
 	Tue, 31 Mar 2026 16:19:25 +0200
 Received: from localhost ([127.0.0.1])
 	by sslproxy02.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w7ZwC-000Mdz-10;
+	id 1w7ZwC-000Mdz-25;
 	Tue, 31 Mar 2026 16:19:24 +0200
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Frank Li <Frank.Li@nxp.com>,
@@ -69,9 +69,9 @@ Cc: Nora Schiffer <nora.schiffer@ew.tq-group.com>,
 	linux@ew.tq-group.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/7] arm64: dts: fsl-lx2160a-tqmlx2160a-mblx2160a: use DPMAC 17 and 18 for SGMII in SERDES2 configs 7 and 11
-Date: Tue, 31 Mar 2026 16:19:03 +0200
-Message-ID: <20260331141915.2918927-3-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 3/7] arm64: dts: fsl-lx2160a-tqmlx2160a: add aliases for all 18 DPMAC instances
+Date: Tue, 31 Mar 2026 16:19:04 +0200
+Message-ID: <20260331141915.2918927-4-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260331141915.2918927-1-alexander.stein@ew.tq-group.com>
 References: <20260331141915.2918927-1-alexander.stein@ew.tq-group.com>
@@ -89,13 +89,13 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283027-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283031-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -110,75 +110,58 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ew.tq-group.com:dkim,ew.tq-group.com:mid,tq-group.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E557936AE60
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ew.tq-group.com:dkim,ew.tq-group.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,tq-group.com:email]
+X-Rspamd-Queue-Id: A2CAC36AE42
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Nora Schiffer <nora.schiffer@ew.tq-group.com>
 
-We have been informed that using DPMAC 17 and 18 for RGMII when SERDES2
-is configured to provide SGMII lanes for these MACs is unsupported and
-will cause errors in certain DPAA2 configurations. Update these
-configurations to use SGMII instead.
+Each TQMX2160A comes with a block of 18 MAC addresses. Define aliases
+to allow firmware to statically assign these addresses to the Ethernet
+interfaces.
 
-The total number of available Gbit Ethernet ports does not change, but
-the PHYs and physical ports corresponding to DPMAC 17 and 18 do.
+In addition, udev can use these aliases for predicable interface names.
 
 Signed-off-by: Nora Schiffer <nora.schiffer@ew.tq-group.com>
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- .../fsl-lx2160a-tqmlx2160a-mblx2160a_x_11_x.dtso     | 12 ++++++++++++
- .../fsl-lx2160a-tqmlx2160a-mblx2160a_x_7_x.dtso      | 12 ++++++++++++
- 2 files changed, 24 insertions(+)
+ .../dts/freescale/fsl-lx2160a-tqmlx2160a.dtsi | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_11_x.dtso b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_11_x.dtso
-index 6d0c808cd840f..0847c786dc1ca 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_11_x.dtso
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_11_x.dtso
-@@ -32,6 +32,18 @@ &dpmac16 {
- 	managed = "in-band-status";
- };
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a.dtsi
+index 89a4765737b4f..5ca950ff908e7 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a.dtsi
+@@ -8,6 +8,27 @@
+ #include "fsl-lx2160a.dtsi"
  
-+&dpmac17 {
-+	phy-handle = <&dp83867_1_2>;
-+	phy-connection-type = "sgmii";
-+	managed = "in-band-status";
-+};
+ / {
++	aliases {
++		ethernet0 = &dpmac1;
++		ethernet1 = &dpmac2;
++		ethernet2 = &dpmac3;
++		ethernet3 = &dpmac4;
++		ethernet4 = &dpmac5;
++		ethernet5 = &dpmac6;
++		ethernet6 = &dpmac7;
++		ethernet7 = &dpmac8;
++		ethernet8 = &dpmac9;
++		ethernet9 = &dpmac10;
++		ethernet10 = &dpmac11;
++		ethernet11 = &dpmac12;
++		ethernet12 = &dpmac13;
++		ethernet13 = &dpmac14;
++		ethernet14 = &dpmac15;
++		ethernet15 = &dpmac16;
++		ethernet16 = &dpmac17;
++		ethernet17 = &dpmac18;
++	};
 +
-+&dpmac18 {
-+	phy-handle = <&dp83867_1_3>;
-+	phy-connection-type = "sgmii";
-+	managed = "in-band-status";
-+};
-+
- &pcs_mdio12 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_7_x.dtso b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_7_x.dtso
-index db88a86ff69cd..7520f105d5d8c 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_7_x.dtso
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_7_x.dtso
-@@ -30,6 +30,18 @@ &dpmac16 {
- 	managed = "in-band-status";
- };
- 
-+&dpmac17 {
-+	phy-handle = <&dp83867_1_2>;
-+	phy-connection-type = "sgmii";
-+	managed = "in-band-status";
-+};
-+
-+&dpmac18 {
-+	phy-handle = <&dp83867_1_3>;
-+	phy-connection-type = "sgmii";
-+	managed = "in-band-status";
-+};
-+
- &pcs_mdio12 {
- 	status = "okay";
- };
+ 	reg_vcc3v3: regulator-vcc3v3 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VCC3V3";
 -- 
 2.43.0
 
