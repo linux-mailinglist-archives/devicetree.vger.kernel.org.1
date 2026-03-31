@@ -1,202 +1,180 @@
-Return-Path: <devicetree+bounces-283151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283610-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aJMdLW8bzGnHPgYAu9opvQ
-	(envelope-from <devicetree+bounces-283151-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 21:07:27 +0200
+	id kMyYCptTzWkMcAYAu9opvQ
+	(envelope-from <devicetree+bounces-283610-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 19:19:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F78F3705E1
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 21:07:27 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06B7A37E8C6
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 19:19:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8AA97301ABB3
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 19:04:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 389263013DCD
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 17:19:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C017C3A3828;
-	Tue, 31 Mar 2026 19:04:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A4747CC87;
+	Wed,  1 Apr 2026 17:19:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dPSUDz8g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kn6aGhbV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A17E938CFE7;
-	Tue, 31 Mar 2026 19:04:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 403D6472777;
+	Wed,  1 Apr 2026 17:19:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774983861; cv=none; b=MsRkhcNZjPqBsWfpNjwDwZ6uklk5GjxmxJSOgmp8c6v8t7HrhoKuHKabA+oalrGoG330QPHAT+M5n+O+/2YoCvpQjSyMM7/rsM7tEF7/EED7vtRQ5u0MoIZBLuoiGYa8lubFIqnaF2eq3UZyrGCiUKomq5I4fUXMNRRldhnhxT8=
+	t=1775063959; cv=none; b=ZncrQ4yhLIjgCZa20qcEWdlSTzJpBvWgNAv7vXcp0Jj1YFwoZcZ/Q3Maw4FHSHvfkYYrjiJsz8kH/yE8E+/cB/EFxVbQOoAnyw1RzD/v8Hs3EE43lyIY3XSZ5855Q5SbzpjYgaeYYUi7Iiswr7P3JNVcuUJ7Zgy7EvZ7y9wfeK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774983861; c=relaxed/simple;
-	bh=vl9bPdAnhZOB7e2rN8a7bQ/OUcqdayO0Mnx+F9C5UVE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jBpzkgmAEKMZagl0ZYb4ge7spSPVf6jNM46IB9B/8Pd989XxngGVqow2w1yXkvhgAAcq4uNldgKKnoisWeqfAcUkkpiAk5YJXxLPOY6bMsd3o86sXPnX8Rd8FioPEKgpu5qhwEYArcifK/s85ooHXjaE5P3mY+/4iV44zJcS9Xs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dPSUDz8g; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774983860; x=1806519860;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vl9bPdAnhZOB7e2rN8a7bQ/OUcqdayO0Mnx+F9C5UVE=;
-  b=dPSUDz8gpbUl+njiYFq4wKJ7wPhxShlp9VvqUunMYPWlm98R+X2vk/rL
-   ZZPYlUDPDbJ2t9LAys5Nu1fwn5DoB4PXY0zd+QJ/3dexulNZdsQdflZ1J
-   5mBsmLHPa5/cGwjV0xHEpkqF2tHa/CEdkmEkvvZC9d2zBCWrzayX6up/g
-   /16yJeROZoUHkArocQXQ3qu3xfRMasVW/xR7PnOBo2Y9YHLX/9UC63+Zj
-   wZ6HJr0fzu8T26oszLfzbFsS27F8FuQUV0aRbGgWjbEbublhdvkFfIjNR
-   ykT2Xw/HUtPrzBYHQU5qo/scuK82uiHJDwSn3SVz0cOPQypt1LX4PBooL
-   Q==;
-X-CSE-ConnectionGUID: xQePCVYPTq6wEnDy8w9jrg==
-X-CSE-MsgGUID: LRz1/7uSQ5abtNZLfho0sw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76070831"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; 
-   d="scan'208";a="76070831"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2026 12:04:19 -0700
-X-CSE-ConnectionGUID: wSpzeWmCTYC99op37aHAhA==
-X-CSE-MsgGUID: SCK12xPFRo2r1F1cB/xtbw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; 
-   d="scan'208";a="225626681"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.209])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2026 12:04:13 -0700
-Date: Tue, 31 Mar 2026 22:04:10 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: "Sabau, Radu bogdan" <Radu.Sabau@analog.com>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	"Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v5 2/4] iio: adc: ad4691: add initial driver for AD4691
- family
-Message-ID: <acwaqrSMXR36KqVR@ashevche-desk.local>
-References: <20260327-ad4692-multichannel-sar-adc-driver-v5-0-11f789de47b8@analog.com>
- <20260327-ad4692-multichannel-sar-adc-driver-v5-2-11f789de47b8@analog.com>
- <acZrthJYQX-h_9p5@ashevche-desk.local>
- <LV9PR03MB84143540CE505514E1CD84B4F752A@LV9PR03MB8414.namprd03.prod.outlook.com>
- <CAHp75VcUCM8aeUpNaFEXnS+Cm08Mq5j+Qp2gYqWP9vCO+9CtQA@mail.gmail.com>
- <LV9PR03MB8414CB05EB794F6974584C2AF753A@LV9PR03MB8414.namprd03.prod.outlook.com>
- <acuMxjX_rsfsJvMp@ashevche-desk.local>
- <LV9PR03MB841477521DF5AB809D0184FAF753A@LV9PR03MB8414.namprd03.prod.outlook.com>
+	s=arc-20240116; t=1775063959; c=relaxed/simple;
+	bh=0t1qiOT2TkAHTnIXYBg0hCbmcpZmO03o+RmNg0lRSM4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=RDFVGtj9x65BexKxXnmsWv33Pn3VqTC5zrQ7omDbNBBE60jrjkvH+ryxrl8uryZimL+NmblIO1ocjtVn+2ppheVsnXwbLQot8psfLF9l8sPEvg81XYsFZYZ1UKmorwuXJ0OpvFkjPNIPbE78fCevVGHv40zsuLSqyIyXOa7JU1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kn6aGhbV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE168C4CEF7;
+	Wed,  1 Apr 2026 17:19:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775063959;
+	bh=0t1qiOT2TkAHTnIXYBg0hCbmcpZmO03o+RmNg0lRSM4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Kn6aGhbVpkCvOBVAh+SBNp2CXHHvrdBvyGduFCUxQDiR7qJe8WqoQaVr7DqqvqgS8
+	 WAcunvO+lt/tUvspqhbvEW0XNNsLGEsNSoa9fg0A2oirbdRvQH+hqXfQDK3KXLTK9E
+	 Iv9/NfeUtRxn/RgGuz+QYM3AHCFdnaFlvveEDVB8atfAPpvi+yLcoY346n+6m/oLA6
+	 0/6PCbpX7tnLEKriTVpTjM4SBfK8Zg2hikUMd1QlUvjSgxk2B6AKdMgtANqxosKIM/
+	 PeGTIuN8VVVItBNdBlx9EitcCVzrNTf+BWwEHfhXrSKABfZwNbYSaP60QdPureyXot
+	 mNcbswJ7x5TAw==
+From: Mark Brown <broonie@kernel.org>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: mohammad.rafi.shaik@oss.qualcomm.com, linux-sound@vger.kernel.org, 
+ lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com, johan@kernel.org, 
+ dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, srini@kernel.org, val@packett.cool, 
+ mailingradian@gmail.com
+In-Reply-To: <20260330082105.278055-1-srinivas.kandagatla@oss.qualcomm.com>
+References: <20260330082105.278055-1-srinivas.kandagatla@oss.qualcomm.com>
+Subject: Re: [PATCH v8 00/13] ASoC: qcom: q6dsp: few fixes and enhancements
+Message-Id: <177498454736.825035.17158629527064214797.b4-ty@b4>
+Date: Tue, 31 Mar 2026 20:15:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <LV9PR03MB841477521DF5AB809D0184FAF753A@LV9PR03MB8414.namprd03.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev-7777e
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3225; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=0t1qiOT2TkAHTnIXYBg0hCbmcpZmO03o+RmNg0lRSM4=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBpzVOSIVdmH+wSNvp/okTncJiMCIH2sFZN1OGMI
+ oQu9duWOdiJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCac1TkgAKCRAk1otyXVSH
+ 0CuxCACC9KKzA/fAdPwwiJumNjSTCJm8Oyl6YqXD/dZgVMqclE+DBVH8Vf05YtOXTD0b8Pjnfnx
+ b01IWU3HhvUFGxnwkdP2nWiaTqsjSsfBEV8wSJ4P5gGNs7QN8WrEtQ0UlDlvUh9dNWYHEz85mJm
+ YfpgaOawIy38h3vrNUWDUW769SSSWRw/hVipmfsXeq1cjZ6H58HJaafeUEfIC8P7L2mHGNNlMXB
+ +pnNokNut4jcVy4ud76KTI4slp1xCwcOHQAp14ZTXOTnJd8Ope/pkJakmHXNZuruE4R7I5NveB9
+ keORpL0mZWOOvApxHyoHttDbwa38FYAx6IugNIEL+ijc3t+w
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	TAGGED_FROM(0.00)[bounces-283151-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283610-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,metafoo.de,analog.com,kernel.org,baylibre.com,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,intel.com:email,ashevche-desk.local:mid]
-X-Rspamd-Queue-Id: 5F78F3705E1
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,vger.kernel.org,gmail.com,perex.cz,suse.com,kernel.org,packett.cool];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 06B7A37E8C6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 31, 2026 at 05:05:32PM +0000, Sabau, Radu bogdan wrote:
-> > -----Original Message-----
-> > From: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > Sent: Tuesday, March 31, 2026 11:59 AM
-> > On Tue, Mar 31, 2026 at 08:36:42AM +0000, Sabau, Radu bogdan wrote:
-> > > > -----Original Message-----
-> > > > From: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > > > Sent: Monday, March 30, 2026 8:24 PM
-
-...
-
-> > > > > > > +#include <linux/bitfield.h>
-> > > > > > > +#include <linux/bitops.h>
-> > > > > > > +#include <linux/cleanup.h>
-> > > > > > > +#include <linux/delay.h>
-> > > > > > > +#include <linux/device.h>
-> > > > > >
-> > > > > > Hmm... Is it used? Or perhaps you need only
-> > > > > > dev_printk.h
-> > > > > > device/devres.h
-> > > > > > ?
-> > > >
-> > > > > I have checked this out and it seems device.h doesn't actually need
-> > > > > to be included anyway since spi.h directly includes device.h, and since
-> > > > > this is a SPI driver that's never going away, it's covered. Will drop it!
-> > > >
-> > > > No, this is the wrong justification. IWYU principle is about exact
-> > > > match between what is used and included in a file (module). spi.h is
-> > > > not dev_*() provider and may not be considered for that.
-> > > >
-> > >
-> > > You are right, my justification was incorrect. Under IWYU, relying on
-> > > spi.h's transitive pull of device.h is not valid. However, I think device.h
-> > > is still needed in this case since struct device is used directly in the code
-> > > both as local variables and in the regmap callbacks.
-> > 
-> > Really? I can't see that.
-> > (Hint: use of the data type and use of its pointer is a huge difference.)
-> > 
-> > > Also dev_err_probe() is called directly and lives in device.h.
-> > 
-> > No, as I started with my replies. The proper header that provides it is
-> > dev_printk.h.
+On Mon, 30 Mar 2026 08:20:52 +0000, Srinivas Kandagatla wrote:
+> ASoC: qcom: q6dsp: few fixes and enhancements
 > 
-> Yep, my bad... device.h can be removed and devres and dev_printk be
-> used instead. Sorry for the confusion from my end, I thought I was
-> looking at device.h, but was instead looking at dev_printk.h.
+> This patchset contains few fixes for the bugs hit during testing with
+> Monza EVK platform
+> - around array out of bounds access on dai ids which keep extending but
+>   the drivers seems to have hardcoded some numbers, fix this and clean
+> the mess up
+> - fix few issues discovered while trying to shut down dsp.
+> - flooding rpmsg with write requests due to not resetting queue pointer,
+>   fix this resetting the pointer in trigger stop.
+> - possible multiple graph opens which can result in open failures.
+> 
+> [...]
 
-No problem. Headers in Linux kernel is a mess. Mostly historically,
-maintainers' preferences and neglecting the foreseeing the future of
-the dependency hell.
+Applied to
 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.1
 
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks!
 
+[01/13] ASoC: qcom: q6apm: move component registration to unmanaged version
+        https://git.kernel.org/broonie/sound/c/b918fa0009c5
+[02/13] ASoC: qcom: q6apm: remove child devices when apm is removed
+        https://git.kernel.org/broonie/sound/c/53c1971fee3e
+[03/13] ASoC: qcom: qdsp6: topology: check widget type before accessing data
+        https://git.kernel.org/broonie/sound/c/4acb0d8ae805
+[04/13] ASoC: qcom: q6apm-lpass-dai: Fix multiple graph opens
+        https://git.kernel.org/broonie/sound/c/08798200d790
+[05/13] ASoC: qcom: q6apm-dai: reset queue ptr on trigger stop
+        https://git.kernel.org/broonie/sound/c/05e5370b04c3
+[06/13] ASoC: dt-bindings: qcom: add LPASS LPI MI2S dai ids
+        https://git.kernel.org/broonie/sound/c/c6e2c74a1999
+[07/13] ASoC: qcom: qdsp6: lpass-ports: add support for LPASS LPI MI2S dais
+        https://git.kernel.org/broonie/sound/c/2d99c2869c35
+[08/13] ASoC: qcom: q6dsp: Add Senary MI2S audio interface support
+        https://git.kernel.org/broonie/sound/c/cd1716423637
+[09/13] ASoC: qcom: common: validate cpu dai id during parsing
+        https://git.kernel.org/broonie/sound/c/4847eb57fcf1
+[10/13] ASoC: qcom: qdapm-lpass-dai: correct the error message
+        https://git.kernel.org/broonie/sound/c/c4c6e17a3bd5
+[11/13] ASoC: qcom: q6apm-lpass-dai: move graph start to trigger
+        https://git.kernel.org/broonie/sound/c/dce7c38257ad
+[12/13] ASoC: qcom: qdsp6: remove search for module iid in hot path
+        https://git.kernel.org/broonie/sound/c/aeb8c96748af
+[13/13] ASoC: qcom: q6apm: Add support for early buffer mapping on DSP
+        https://git.kernel.org/broonie/sound/c/7cc1926fcd8d
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
