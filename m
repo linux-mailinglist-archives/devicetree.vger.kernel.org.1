@@ -1,151 +1,143 @@
-Return-Path: <devicetree+bounces-282796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282798-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MPwEBi51y2k3HwYAu9opvQ
-	(envelope-from <devicetree+bounces-282796-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:18:06 +0200
+	id 2DPDJqd1y2k3HwYAu9opvQ
+	(envelope-from <devicetree+bounces-282798-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:20:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA124364F82
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:18:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F17E0365013
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:20:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C6A3430A3A6C
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 07:10:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B61943133181
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 07:10:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99EDA372664;
-	Tue, 31 Mar 2026 07:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D33C03BED1B;
+	Tue, 31 Mar 2026 07:10:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="FMufHHwc"
+	dkim=pass (2048-bit key) header.d=deepcomputing-io.20200927.dkim.feishu.cn header.i=@deepcomputing-io.20200927.dkim.feishu.cn header.b="oDQffpFU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from va-2-29.ptr.blmpb.com (va-2-29.ptr.blmpb.com [209.127.231.29])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D939E3B8BC7
-	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 07:10:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6A373BE17C
+	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 07:10:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.127.231.29
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774941016; cv=none; b=PuZamAgNisNv+rzJchK3h7G6Yz1Sc0SkJhTxhW3LK2ISfwq7VZnC9IPSfjmufaOYnT2gfzQSaOJLy0q/LemET8XDFOuxHNqpej38HcpLEysEHhbtHy24yhHvJnvm61j+BD9Ib5SPUswHnyQ5Q+cW7IcPv6btUt2BiEefJJ/JFeU=
+	t=1774941040; cv=none; b=V0NeyBl2bzETJ1I1h9MZN+J3NAiyimfjOJcEt/Hn4p3TvWdxQAl58hJEoJJaAh0WoIYzc6IWe0H+SCIyfIXwhp2A+YSIwDlgYoBQHYd65Wh/YHoTnIiQOPCgXRrruq/iVrxsh4kOs7NSPxWFnrdB8mfQ6WjoSQUUTqu6wz0tTdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774941016; c=relaxed/simple;
-	bh=hZfnLbBHSdjmQXLsaISPFrjvepFdi9IT5UTmD3M4Y+Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tvPT0k/03Te+/L+jmekI2SI6WHL/zssKF90K4NzQTKxMnMZUOWeK5BMlxss19sR/W3Whm3QbCTDEuvPp8xNZiqFVhzPc/85rp/XY/7LG2HeZuWk6YKb4DHHkuFWsIOfFJo4CQzyEjEI/PiMh+j/VyG/unrzlZQxiBK/g1r3dUxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=FMufHHwc; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=hZfn
-	LbBHSdjmQXLsaISPFrjvepFdi9IT5UTmD3M4Y+Y=; b=FMufHHwcnz1PN0AVrC6u
-	BALvSnXAAca9pyzO3jQZ4Iz3du9N4zUpxrBXnEd6w+LHVOgKPBotkdrHyGF/fNMU
-	ttyc2Ej9R20v5oIhtQk8/vT7CJoOj8sEwe/U7mzr4S/wZUjRbwe+8LjxuMNNf9e4
-	Onb0lFZkbjkzZG4cUP0OJ/QgSK1pSp3vuwU7XxLCti/Re5vDlF9sUpa225ULaeOx
-	xPTKr+i+ZNkKsFsDahvXU0G26pVCAgXR/X8BKC6j/bd0bwM1+VTityjAHe9wp4DC
-	D6zOK5pRKFW1AAYxxC6VM122ImObhSdjt7FmmA76n9PWaqSZzn5Gy6rf4N4jBx6i
-	cQ==
-Received: (qmail 1577447 invoked from network); 31 Mar 2026 09:10:10 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 31 Mar 2026 09:10:10 +0200
-X-UD-Smtp-Session: l3s3148p1@B7tkqExOpNEujnu8
-Date: Tue, 31 Mar 2026 09:10:09 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: soc: renesas: add MFIS binding
- documentation
-Message-ID: <actzUSIKKzcDmBCT@shikoro>
-References: <20260317130638.2804-1-wsa+renesas@sang-engineering.com>
- <20260317130638.2804-2-wsa+renesas@sang-engineering.com>
- <20260318-camouflaged-umber-oxpecker-b2b29e@quoll>
- <CAMuHMdX=DRnFWG1ky8wT7mK=LHeJ6LduL28nYd19QpASrn6mew@mail.gmail.com>
- <c46357c9-8cf4-45ec-8b48-8cf979de2e98@kernel.org>
+	s=arc-20240116; t=1774941040; c=relaxed/simple;
+	bh=6LR+ts3dLqGyJz6RILMKXd4KXrMxxbWpZdEepXjEeDI=;
+	h=To:Content-Type:References:Cc:Message-Id:Subject:Mime-Version:
+	 From:Date:In-Reply-To; b=Fk9ee577duFCbhEP1psjOScV/9dcDambF99sK/XgMrOPaV+TdfoEx6MWIAP52/3GhnCvob/n+s13SQS3nEzWf+BDxJjXpDdniSLZILook1N1GJXT3UqnPlYn0HCh7hdoyvEyc9msonbgCkVm8AsWi+g8Tvr1EjIZ8/jWBI2tk/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=deepcomputing.io; spf=pass smtp.mailfrom=deepcomputing.io; dkim=pass (2048-bit key) header.d=deepcomputing-io.20200927.dkim.feishu.cn header.i=@deepcomputing-io.20200927.dkim.feishu.cn header.b=oDQffpFU; arc=none smtp.client-ip=209.127.231.29
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=deepcomputing.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=deepcomputing.io
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=s1; d=deepcomputing-io.20200927.dkim.feishu.cn; t=1774941033;
+  h=from:subject:mime-version:from:date:message-id:subject:to:cc:
+ reply-to:content-type:mime-version:in-reply-to:message-id;
+ bh=8LvtcAgNW72TvNFdsfpCUs8GSOu6QxdCwl9yWGk2NyA=;
+ b=oDQffpFUGnOngJv/4KXnCAh6KjQ34ioDZu82LIaqnT1mXOuaTmbBe7wl4ZCOSw4y1j9h0T
+ ihU8w4wbkP7WkCTkXNpHhXsAWRnKUll12m4j7418aCuwvnDS0wT3XUhsbD3tmj83Txnd/v
+ dX7ku8naXOEXPn4FEXkmm173NRh6wsgYKptmOVEbJW4nkwhTOdGV3axYpfc0jxRFDbE+gr
+ f5VURMiSVmahshGcddEk/hk7D1XNcHYTnz1TO9Zkkn7omB3dD5S1X+2p0YnyKsJYaF0swg
+ S1uoqxcBF3PhNbvoPNNj9I7TN7IzmzuzOFqXQyu47xNlTOnBsOP2Su/FYUasfQ==
+To: "Conor Dooley" <conor+dt@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+References: <20260331034423.67142-1-sandie.cao@deepcomputing.io>
+Cc: "Emil Renner Berthing" <kernel@esmil.dk>, 
+	"Rob Herring" <robh@kernel.org>, 
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
+	"Yixun Lan" <dlan@kernel.org>, 
+	"Paul Walmsley" <paul.walmsley@sifive.com>, 
+	"Palmer Dabbelt" <palmer@dabbelt.com>, 
+	"Albert Ou" <aou@eecs.berkeley.edu>, 
+	"Heinrich Schuchardt" <heinrich.schuchardt@canonical.com>, 
+	"Troy Mitchell" <troy.mitchell@linux.spacemit.com>, 
+	"Michael Opdenacker" <michael.opdenacker@rootcommit.com>, 
+	"Guodong Xu" <guodong@riscstar.com>, 
+	"Hendrik Hamerlinck" <hendrik.hamerlinck@hammernet.be>, 
+	"Yangyu Chen" <cyy@cyyself.name>, <spacemit@lists.linux.dev>, 
+	<linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>, 
+	<linux-kernel@vger.kernel.org>, 
+	"Sandie Cao" <sandie.cao@deepcomputing.io>
+Message-Id: <20260331071016.68302-1-sandie.cao@deepcomputing.io>
+X-Lms-Return-Path: <lba+269cb7367+9086ab+vger.kernel.org+sandie.cao@deepcomputing.io>
+Received: from roma-Laptop-12th-Gen-Intel-Core.. ([121.34.226.213]) by smtp.feishu.cn with ESMTPS; Tue, 31 Mar 2026 15:10:30 +0800
+X-Mailer: git-send-email 2.43.0
+Subject: [PATCH v2 0/2] Add DeepComputing FML13V05 board dts
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="GMfuA1kXE6RB/nfQ"
-Content-Disposition: inline
-In-Reply-To: <c46357c9-8cf4-45ec-8b48-8cf979de2e98@kernel.org>
-X-Spamd-Result: default: False [-3.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Original-From: Sandie Cao <sandie.cao@deepcomputing.io>
+From: "Sandie Cao" <sandie.cao@deepcomputing.io>
+Date: Tue, 31 Mar 2026 15:10:16 +0800
+In-Reply-To: <20260331034423.67142-1-sandie.cao@deepcomputing.io>
+X-Spamd-Result: default: False [1.44 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[deepcomputing-io.20200927.dkim.feishu.cn:s=s1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[deepcomputing.io : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282796-lists,devicetree=lfdr.de,renesas];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[sang-engineering.com];
-	FREEMAIL_CC(0.00)[linux-m68k.org,vger.kernel.org,gmail.com,glider.be,kernel.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-282798-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: AA124364F82
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sandie.cao@deepcomputing.io,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[deepcomputing-io.20200927.dkim.feishu.cn:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,deepcomputing-io.20200927.dkim.feishu.cn:dkim]
+X-Rspamd-Queue-Id: F17E0365013
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This series updates Device Tree related files to introduce the
+FML13V05 board from DeepComputing, which incorporates a Spacemit
+K3 SoC.  This board is designed for use on the Framework Laptop 13
+Chassis, which has (Framework) SKU FRANHQ0001.
 
---GMfuA1kXE6RB/nfQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The series is based on riscv-dt-for-next.
+
+v2:
+- Patch 1:
+   Use formal format user name.
+- Patch 2:
+   Use formal format user name.
+   Add Reviewed-by from Troy Mitchell.
+
+Link to v1: https://lore.kernel.org/all/20260331034423.67142-1-sandie.cao@deepcomputing.io/
+
+Sandie Cao (2):
+  dt-bindings: riscv: spacemit: add deepcomputing,fml13v05
+  riscv: dts: spacemit: add DeepComputing FML13V05 board device tree
+
+ .../devicetree/bindings/riscv/spacemit.yaml   |  1 +
+ arch/riscv/boot/dts/spacemit/Makefile         |  1 +
+ .../spacemit/k3-deepcomputing-fml13v05.dts    | 28 +++++++++++++++++++
+ 3 files changed, 30 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/spacemit/k3-deepcomputing-fml13v05.dts
 
 
-> I did not get the driver so I cannot verify that. What sort of Linux ABI
-> does this bind?
-
-In case you mean this as unanswered questions to v1: This describes the
-device specific second mbox cell. Like Tegra does it here (even with
-shifts instead of plain numbers):
-
-include/dt-bindings/mailbox/tegra186-hsp.h
-
-But all this has been said before and you got the driver as well in v2.
-I really have no idea what is still missing?
-
-
---GMfuA1kXE6RB/nfQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmnLc00ACgkQFA3kzBSg
-KbaC4Q/+N/kr6/k94EMenN/lZzbiQZ5xuvHCBrTKXl0WPC1u+xwWASaVr036h1V4
-BbLXDwHIREXC4EJod+RFIJNmTFxe2xvMQuXMDrPojnykUP58S9usigPQCuBc0qph
-Y+F0Z+rFXShPyl8jl/ZBTkMFG6YT1B0BCiSG0mYloX1xMwD+LX061P+qy4ly3C3c
-G3qlctU4XhjdCOozfl4NI6lnl9vnuipavWE2CaZdhWPH8rkNDKzNSC182MR3bYgB
-7dfPPfJZ1J9Yi+vGE94OZpr9aoH8gXNHUJKAzv8TrguMQ1YyizcI8TnPsWqaoo2F
-0+Y+13bcqpq6vdw6jtYgROAF/W1GijkFm7OoIdKJWCTY2zTorGuOKtvGPRc0oigs
-22gTlVZUdNj6ZPY1NjOxla/QbPPfBu59V5gCWXx6fHdEO6dxMt2QTWosjwAjxs3r
-TOcmgtCutMwqAiODZ8FL4os0sh32dkp5e8KL72I8s0lI6KixLGm7+L2MFwLIs/r8
-Ij7itOBaFhdLF2G+Y5lF+t6sRSXsgLWgRNs1Fs9sLDgdkbmuEH/X7AjOSujyuTEn
-blDhYIiGjHovdPaY6PT14sQQkxlUI3g7vGd4UDpoX5xH07EXibHvNI7rwk0nfkzT
-lUYAz2MkUDWseTf8y5/s+FqvdKNXAKSjHqLU7DvVtfphPqik5js=
-=QDCi
------END PGP SIGNATURE-----
-
---GMfuA1kXE6RB/nfQ--
+base-commit: 4a1739c30fc66a59450c1f78923f94607e786882
+-- 
+2.43.0
 
