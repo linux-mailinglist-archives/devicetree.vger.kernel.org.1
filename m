@@ -1,319 +1,238 @@
-Return-Path: <devicetree+bounces-282899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282869-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oA9xAlaXy2mYJQYAu9opvQ
-	(envelope-from <devicetree+bounces-282899-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 11:43:50 +0200
+	id kPmwJJmLy2kuIwYAu9opvQ
+	(envelope-from <devicetree+bounces-282869-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 10:53:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74087367405
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 11:43:49 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E59493667CE
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 10:53:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B5ADC3099B04
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:40:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6BA4D3090DC1
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 08:46:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36E43ED5DC;
-	Tue, 31 Mar 2026 09:40:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E8343EAC81;
+	Tue, 31 Mar 2026 08:46:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="labxpXx4";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OdzHmQgO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f60BSIWf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 847993EDACC
-	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 09:40:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A7BD3E9F9A;
+	Tue, 31 Mar 2026 08:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774950041; cv=none; b=VVaXk1G68yJJyVrYfnVIl9bdq1140ZKXk8DGCSlu+DGencsT2OEy1+w8pvnNPlwyPejQCUi9pv4PrMauxEQMW5a6wZsrminOAiDcNFFmDpC3u9RDHmW7KCqxFrIocODqRAiHIxHZqm1OZnNHxlh5phVJS+4bmCB8P8GZXzJ/sgw=
+	t=1774946808; cv=none; b=mxp6llX34AdqUgkphlzbeCjU9wrDFnRjugtTudw89UZwXt5Dpa2bklZhRfo69gw8sReOqI206hEH7OKq4HQ6zAmB/cxz7PxLnZbfqNSdneLTV/FaZwLKkf5ZnBuBMQqsJCxD4js96YcTi2w8npLVGz7FZLKXOfK7vG8ulycijUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774950041; c=relaxed/simple;
-	bh=6TtXtGHuwbeOGc43RV1ox/wCKy7dGy+cBU/v5F7GGuY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XwoaQPE8O0wTnOhuxXzRcW4/oyDc2JcbPJsX4nYcPtsuB7Eo37W/CyD9xjAoc+C8uwBj6wk6cWNrtVBhQ63pOVtlCXl4Ab9862CRs4uvE22GxbR13W9vfYi2MC66FA74MGMwBdEK4+kwWe8PGxdNnelZhzUibE5IntKNmide7YU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=labxpXx4; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OdzHmQgO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62V6A6JM1090724
-	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 09:40:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oO9fj8VnemesVNw4Kd4kvPTyxIt0YprBH9NBYs6VYwU=; b=labxpXx4emFwd9Yw
-	YA7lhLzAwsnly1/7QCm/HoKB4VvxJk5Kd+9ioBAV7C+Q1bSWsvFm8NGPdb7IPM1F
-	s7gYkJu+AJTSPV6gPZlURLmaRK5BoJJDFI7oXaAfVBQqNTYiuppLjohFJwODGIcQ
-	JM3rfwvQRshKKTeUV06sbxM89gBJLxVaJL9KIM1GqT6DvH+/iNUNsgCV8PS5Hud8
-	nugOPtJl3acxB4J+FYMqejbVL235iFwAi561ZOq2YfL6GWECeWw+YunfjAMccSUr
-	ktG+r/tV2m7yVXFNV92+i7eHQooqF8TLpLOhMBQsHDRrhMjEtlp/uHfvSPwfJV3/
-	vcri9g==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d7trd42tf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 09:40:34 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2b0c30b51bfso146920915ad.0
-        for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 02:40:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1774950033; x=1775554833; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oO9fj8VnemesVNw4Kd4kvPTyxIt0YprBH9NBYs6VYwU=;
-        b=OdzHmQgOyB4myKofD7Sd+W3RDBvUMbFZX2FQWPlSNdapC6RPoXxzBswgb75zxyMlpi
-         cmKlJVCd81eO7hrciagYFaIACfE92SZYoB8O+C0TSfbFZych+b3nISFtERp3ZteiXbF/
-         NPJWLfZKNTcNo+1qhmm2ee67NOxLRbjRlgVCtRLTqFwJrNLSnkNZ+KyFcbCCDBG/NDqZ
-         yAYMCXBLSoroO6e0UwP2vSeyyi2+tgU5omRXzIRFIdA8W+GqcM6qfLq+nuqOtVX8nsOn
-         2ZPj2MYXyOZsxKKEqoh2CXaHE/Tm1dIL7rWMk0atSOGJXYoupolVXKVuWGzUZIyTZZRN
-         Aauw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774950033; x=1775554833;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oO9fj8VnemesVNw4Kd4kvPTyxIt0YprBH9NBYs6VYwU=;
-        b=cJ4GnKq6w01Iwv7ajRZhKku616KmwO92Hl+e40v5h/pNMUdoPyh/x6jsD+XEa4eri4
-         +QNd+V5cgaFypkY7nG3/fAl21cpxUSyZ4fPnlq1tnS0cAHHDwZzvZSh7GcBiE/K61Ftj
-         YSRYs4b8vz94gZ2qexRr46UJLTM16JwSVLiNpQ+DjkinIUK3Vl7tBBijZp2FUNxuXLZ/
-         73VvT5R2MrQm6J/AO0B89zhBlmS0Xy+/gksWnT7xHEOIpse/V0gASnfXRBhJX9vkhz37
-         9glUsOxGQOcPhKLM9GzePUQk/hoQPjERt2n3QlWxxdA+R9JB5qulmPcCR5Sppu30C3YP
-         uc1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW5j8VLk5LOFjaJh6wNoNbczvdqkfqImktloAvGCs8q4PswH6XFVvgJhnYJCNP+dXKlAnAHPkxK4DDZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwL7WyncummoWn9N7AIlhdGhZxa0lnDDLpPFi98hyAGCWNMqBid
-	XPyc68/BRHgKAv2pYKe0u94wCMstZceJqGOnmSY/RTeyXHQpBiVbxr60Wh1SbH6P9VUhrkfCyKS
-	/js9l47ScUvykZwSOXKS+woTfx2gH7JmuvmAyenn7EDn5qkRj0vW+5jjSu+0MxNQv
-X-Gm-Gg: ATEYQzxH99QiN33Ct8ZnHt8DAkwkrOdwXgtwByQRTtQQJZz+Wjg78QJeYpFWnWKjeWs
-	artN7K+ZDgHRiS88FbXMmimUzJZQn+dX00ZnhAvynRnv2/hJcKQFwawQ3JdPhFPmNAmQjqSHMV+
-	4vVwmQwViOJJzDHKXV7QywlREw/Pj9DJhJteZidmTASDedmuD7btr08vUJLsz8/VSRJwGaEwlmz
-	s3Kgr9kGcK8AUJ9eKteEiALGurhpMnc8ZHFI1UQQ4UKiibJGO9h1R81rRuDyhh+/ADJZZGjv6pO
-	6fdbKgmQRHpLl5v68M91eyDeBQSYTggEVLWvAwL+3JOQlWCHJL0MhmWUAT+2AkrpBUgGFEXT+2n
-	DiOWAJ30kCyEeplxy+whgIjQ429BnEU0oVS7tuIh6gz6ZJidhjt4=
-X-Received: by 2002:a17:902:ef4f:b0:2b0:b1e7:8841 with SMTP id d9443c01a7336-2b0cdcb0990mr168484655ad.32.1774950033392;
-        Tue, 31 Mar 2026 02:40:33 -0700 (PDT)
-X-Received: by 2002:a17:902:ef4f:b0:2b0:b1e7:8841 with SMTP id d9443c01a7336-2b0cdcb0990mr168484325ad.32.1774950032814;
-        Tue, 31 Mar 2026 02:40:32 -0700 (PDT)
-Received: from [10.217.223.121] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b2427660c7sm106046705ad.44.2026.03.31.02.40.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Mar 2026 02:40:32 -0700 (PDT)
-Message-ID: <2b71dd68-ff35-411e-905d-3ffa2ea3efe4@oss.qualcomm.com>
-Date: Tue, 31 Mar 2026 15:10:22 +0530
+	s=arc-20240116; t=1774946808; c=relaxed/simple;
+	bh=rxYHgzXy8uW1RXLEMgmea9X6qQkdnDq9ItPer1Acm+Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SPnUVdjwXG1Ws0uW6dpX4Z6UXOVnl70i+x4RwbRYdYB9sMXkMhBuNao6Mf8Dvef81XHSzNNumpF9OPFNEoJIoVjj0Ggxyvtv07K5uh1nUfYDZRoTI9NC1+52rK1LhCOLb7Q2i8iJnctyiMz3jc8nOG9A//0J0RmbKrOwvuvRtmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f60BSIWf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2AA8EC19423;
+	Tue, 31 Mar 2026 08:46:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774946808;
+	bh=rxYHgzXy8uW1RXLEMgmea9X6qQkdnDq9ItPer1Acm+Y=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=f60BSIWfWX1a8nz3oUKYl4FHOqAO0i27QVF0U0fZ4WGC1Vodlyq7hh49LHu0Lkar0
+	 buPNfNeHjxpzHRG0wjAUpalo4CduojRU/n6h593q8ZG5/c6CwAFKyiF0cH04tP2nuF
+	 JFQiddoNXVwt5i/LKvTkkDE7STbqO6zdg6K6r5f2xqRKTlKcgOYWKjBhmNOAFh26a+
+	 dv0cK9kavWUD9viaxLRG8+FODIb5/TmA6++QqQ4uMBbgnzrUasHYUuO5G4wNf70rCe
+	 U8k2zHwuwasgVLwCw2zupASN55m0uR9WlJsQeb4Ozv7JnvKRFwI5PTDmaC8c+isinj
+	 wQp+772ppw+bA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 17ACFFF60D0;
+	Tue, 31 Mar 2026 08:46:48 +0000 (UTC)
+From: Cristian Cozzolino via B4 Relay <devnull+cristian_ci.protonmail.com@kernel.org>
+Subject: [PATCH v5 0/6] Enable new features for flipkart-rimob
+Date: Tue, 31 Mar 2026 11:47:08 +0200
+Message-Id: <20260331-rimob-new-features-v5-0-5fcf42a29c12@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 01/11] dt-bindings: crypto: qcom,ice: Fix missing
- power-domain and iface clk
-To: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abel Vesa <abel.vesa@oss.qualcomm.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
-        cros-qcom-dts-watchers@chromium.org,
-        Eric Biggers <ebiggers@google.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
-        Bartosz Golaszewski <brgl@kernel.org>,
-        David Wronek <davidwronek@gmail.com>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Alexander Koskovich <akoskovich@pm.me>
-Cc: Brian Masney <bmasney@redhat.com>,
-        Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
-        Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260323-qcom_ice_power_and_clk_vote-v4-0-e36044bbdfe9@oss.qualcomm.com>
- <20260323-qcom_ice_power_and_clk_vote-v4-1-e36044bbdfe9@oss.qualcomm.com>
- <873e8ad2-50cd-4c09-9a51-20ad745fe8dc@oss.qualcomm.com>
-Content-Language: en-US
-From: Harshal Dev <harshal.dev@oss.qualcomm.com>
-In-Reply-To: <873e8ad2-50cd-4c09-9a51-20ad745fe8dc@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 6QQjCmbdVcypRKZdXdI72ZImPACStuv_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzMxMDA5MiBTYWx0ZWRfX3aRdcKWzG8zb
- 4hM9z2RdvV8UoX4hhQmNIpx8fSCBsdBXL1uq88SkmddOgzt2BUq6BZ9fvwCd3ff7GJhyl9JMonx
- mtcuxaSi7smpGcZt9mb+0qIoANcAKKTRyLjmwTp66TEjf7b8IFVFDsMH5lNDVGFReRQPZbeW+LR
- l0H964u4c3ochLMg9GoALM1iJdO21qyyXt936c+qaRdN+uDC8ZVwDDO46gT6gZ58sgwSE+IaRNs
- bYcvShyJLxY2xjR0xOgBjw9qcEp8dx9eu10FlgasKlLkfB6DL2Wf2Q47leZmy1p2kxI+sUTeUlV
- wLPMJE4t+6x+gZ3Ph1qYfyOYdpV22frAixzJ4EZAhyCpafMx3Vzr9s/aNFSteaznZ6fYlY6Ei/4
- 64PnRc4QIO2a1U74QW28m/gsdrsUY/aN6Cy0y3zJHobMdXxdCFZyp/UsR317ebiH4YZuSGLUm7w
- E1qnhm0NlwnY/oyZ8Ug==
-X-Proofpoint-ORIG-GUID: 6QQjCmbdVcypRKZdXdI72ZImPACStuv_
-X-Authority-Analysis: v=2.4 cv=H8/WAuYi c=1 sm=1 tr=0 ts=69cb9692 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=P-IC7800AAAA:8 a=EUspDBNiAAAA:8 a=11eJxmzFO3uqpiRjfBAA:9 a=QEXdDO2ut3YA:10
- a=324X-CrmTo6CU4MGRt3R:22 a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-31_02,2026-03-28_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 bulkscore=0 spamscore=0 lowpriorityscore=0
- clxscore=1015 impostorscore=0 phishscore=0 suspectscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603310092
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/23NTQrCMBCG4atI1kYmP20aV95DXKTpRAO2KUmti
+ vTuRkEomOX7wTzzIgmjx0T2mxeJOPvkw5Cj2m6IvZjhjNR3uQkHXoMAQaPvQ0sHvFOHZrpFTBS
+ E0lK2wtQcSD4cIzr/+KLHU+6LT1OIz++PmX3WH9eUuJlRoMZwKwRUils4jDFMYeiNv+5s6MnHn
+ PnKYWWHZ8ey1jWaKSk1Fh2xcjgrOiI7nWwbxKZWHaqiI9eOKjoyO1Bj55y2sgL95yzL8gagDAK
+ ckQEAAA==
+X-Change-ID: 20260303-rimob-new-features-037944b3a620
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Cristian Cozzolino <cristian_ci@protonmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774950461; l=4821;
+ i=cristian_ci@protonmail.com; s=20250620; h=from:subject:message-id;
+ bh=rxYHgzXy8uW1RXLEMgmea9X6qQkdnDq9ItPer1Acm+Y=;
+ b=d7Lq8wGdX+64IMGaph/XLrXfLgToUvUUf1bzlo598wqGedfh8h8Qw4OU+LBdFKrjw/ZsJDPrN
+ cimBusF3qDzA3SUwme0Bda19xbOST5TJgl54S0833T/d6Z8YTac0t/4
+X-Developer-Key: i=cristian_ci@protonmail.com; a=ed25519;
+ pk=xH5IvIPUNHV1Q8R0/pq2CfuVFR/wTiAyuyi6IwedjZY=
+X-Endpoint-Received: by B4 Relay for cristian_ci@protonmail.com/20250620
+ with auth_id=438
+X-Original-From: Cristian Cozzolino <cristian_ci@protonmail.com>
+Reply-To: cristian_ci@protonmail.com
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282899-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,gondor.apana.org.au,davemloft.net,kernel.org,chromium.org,google.com,gmail.com,fairphone.com,linaro.org,quicinc.com,pm.me];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
+	TAGGED_FROM(0.00)[bounces-282869-lists,devicetree=lfdr.de,cristian_ci.protonmail.com];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[harshal.dev@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_REPLYTO(0.00)[protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.934];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[cristian_ci@protonmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.982];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,lists.sr.ht,protonmail.com,oss.qualcomm.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 74087367405
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E59493667CE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Kuldeep,
+This series enables a set of miscellaneous features for Billion Capture+ 
+(a handset using the MSM8953 SoC released in 2017):
+- Panel and GPU
+- Touchscreen
+- WiFi + Bluetooth
+- Hall sensor 
 
-On 3/24/2026 4:16 PM, Kuldeep Singh wrote:
-> 
-> On 3/23/2026 2:47 PM, Harshal Dev wrote:
->> The DT bindings for inline-crypto engine do not specify the UFS_PHY_GDSC
->> power-domain and iface clock. Without enabling the iface clock and the
->> associated power-domain the ICE hardware cannot function correctly and
->> leads to unclocked hardware accesses being observed during probe.
->>
->> Fix the DT bindings for inline-crypto engine to require the UFS_PHY_GDSC
->> power-domain and iface clock for new devices (Eliza and Milos) introduced
->> in the current release (7.0) with yet-to-stabilize ABI, while preserving
->> backward compatibility for older devices.
->>
->> Fixes: 618195a7ac3df ("dt-bindings: crypto: qcom,inline-crypto-engine: Document the Eliza ICE")
->> Fixes: 85faec1e85555 ("dt-bindings: crypto: qcom,inline-crypto-engine: document the Milos ICE")
->> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
->> ---
->>  .../bindings/crypto/qcom,inline-crypto-engine.yaml | 35 +++++++++++++++++++++-
->>  1 file changed, 34 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
->> index 876bf90ed96e..ccb6b8dd8e11 100644
->> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
->> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
->> @@ -30,6 +30,16 @@ properties:
->>      maxItems: 1
->>  
->>    clocks:
->> +    minItems: 1
->> +    maxItems: 2
->> +
->> +  clock-names:
->> +    minItems: 1
->> +    items:
->> +      - const: core
->> +      - const: iface
->> +
->> +  power-domains:
->>      maxItems: 1
->>  
->>    operating-points-v2: true
->> @@ -44,6 +54,25 @@ required:
->>  
->>  additionalProperties: false
->>  
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,eliza-inline-crypto-engine
->> +              - qcom,milos-inline-crypto-engine
->> +
->> +    then:
->> +      required:
->> +        - power-domains
->> +        - clock-names
->> +      properties:
->> +        clocks:
->> +          minItems: 2
->> +        clock-names:
->> +          minItems: 2
->> +
-> 
-> Hi Krzysztof,
-> 
-> As motive here is to enforce 2 clocks for upcoming targets and keep
-> minItems as 1 for already merged ones for ensuring backward
-> compatibility. Can we do like below?
-> 
-> allOf:
->   - if:
->       not:
->         properties:
->           compatible:
->             contains:
->               enum:
->                 - qcom,kaanapali-inline-crypto-engine
->                 - qcom,qcs8300-inline-crypto-engine
->                 - qcom,sa8775p-inline-crypto-engine
->                 - qcom,sc7180-inline-crypto-engine
->                 - qcom,sc7280-inline-crypto-engine
->                 - qcom,sm8450-inline-crypto-engine
->                 - qcom,sm8550-inline-crypto-engine
->                 - qcom,sm8650-inline-crypto-engine
->                 - qcom,sm8750-inline-crypto-engine
-> 
->     then:
->       required:
->         - power-domains
->         - clock-names
->       properties:
->         clocks:
->           minItems: 2
->         clock-names:
->           minItems: 2
-> 
-> This will ensure for every new target addition, default clock count is
-> enforced as 2 default.
-> Please share your thoughts as well.
-> 
+Patches 1 and 2 provide a driver for Novatek NT35532 and its corresponding
+devicetree bindings, required for enabling panel in DTS. The remaining 
+patches are all DTS changes, aimed to enable the features listed above.
 
-I don't really have any particular objections to this proposal, but I can
-see that other bindings where the need for an additional clock was realized
-later on use a similar pattern as this patchset does:
-https://elixir.bootlin.com/linux/v7.0-rc2/source/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Jessica Zhang <jesszhan0024@gmail.com>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+Cc: phone-devel@vger.kernel.org 
 
-I'll wait for Krzysztof to take a final call on this.
+Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
+---
+Changes in v5:
+- Based on dts-coding-style.html ("Nodes without unit addresses shall be
+  ordered alpha-numerically by the node name. For a few node types, they 
+  can be ordered by the main property, e.g. pin configuration states
+  ordered by value of “pins” property."), sort pinctrl states by GPIO 
+  index (Konrad);
+- Pick up tags;
+- Link to v4: https://lore.kernel.org/r/20260327-rimob-new-features-v4-0-06edff9c4509@protonmail.com
 
-Regards,
-Harshal
+Changes in v4:
+- (patch 1/6): added a new compatible (since it's not possible to
+  identify panel vendor/id), matching user of this device and leaving
+  novatek,nt35532 as fallback (Dmitry);
+- (patch 2/6):
+  - according to bindings changes, make panel driver handling multiple
+    panels paired with NT35532 and use specific compatible/data;
+  - due to changes applied to panel code, remove tag received previously
+    by Dmitry.
+- (patch 3/6): 
+  - use a specific panel compatible, according to bindings changes;
+  - remove 'output-high' property from panel pinctrl, since panel is not
+    reset.
+- Link to v3: https://lore.kernel.org/r/20260321-rimob-new-features-v3-0-d4b8ee867de7@protonmail.com
+
+Changes in v3:
+- (patch 1/6): removed avdd, avee and vci supplies from 'required' properties;
+- (patch 2/6):
+  - removed "select VIDEOMODE_HELPERS" from nt35532 Kconfig entry, since 
+    its functions are not used (but this option is enabled and its code 
+    compiled anyway) by nt35532 panel driver;
+  - pick up tags (Dmitry).
+- (patch 3/6): replaced a506_zap.mdt with a506_zap.mbn firmware name
+  in gpu_zap_shader (Dmitry); 
+- (patch 5/6): pick up tags (Konrad);
+- (patch 6/6): pick up tags (Konrad);
+- Link to v2: https://lore.kernel.org/r/20260318-rimob-new-features-v2-0-c1bf8917449e@protonmail.com
+
+Changes in v2:
+- (patch 1/6): define power supplies in the bindings as per datasheet  
+  and update example;
+- (patch 2/6): add blank lines where required between mipi dsi write
+  sequences in nt35532_on() function and make use of names for mipi dcs
+  commands, instead of hex numbers, to improve readibility (Dmitry); 
+- (patch 3/6): move pinctrl lines ibto panel node and get rid of
+  sleep/reset state, since panel just uses one pinctrl state for
+  default/sleep (Dmitry). Also, update power supplies according to
+  bindings; 
+- (patch 4/6): pick up tags (Konrad,Dmitry);
+- (patch 6/6): squash hall sensor node into gpio-keys (Dmitry);
+- Link to v1: https://lore.kernel.org/r/20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com
+
+---
+Cristian Cozzolino (6):
+      dt-bindings: display: panel: Add Novatek NT35532 LCD DSI
+      drm/panel: Add driver for Novatek NT35532
+      arm64: dts: qcom: msm8953-flipkart-rimob: Enable display and GPU
+      arm64: dts: qcom: msm8953-flipkart-rimob: Enable WiFi/Bluetooth
+      arm64: dts: qcom: msm8953-flipkart-rimob: Enable touchscreen
+      arm64: dts: qcom: msm8953-flipkart-rimob: Enable Hall sensor
+
+ .../bindings/display/panel/novatek,nt35532.yaml    |  80 +++
+ MAINTAINERS                                        |   6 +
+ .../arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts | 138 +++-
+ drivers/gpu/drm/panel/Kconfig                      |  10 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-novatek-nt35532.c      | 796 +++++++++++++++++++++
+ 6 files changed, 1030 insertions(+), 1 deletion(-)
+---
+base-commit: cf7c3c02fdd0dfccf4d6611714273dcb538af2cb
+change-id: 20260303-rimob-new-features-037944b3a620
+
+Best regards,
+-- 
+Cristian Cozzolino <cristian_ci@protonmail.com>
+
 
 
