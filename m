@@ -1,218 +1,254 @@
-Return-Path: <devicetree+bounces-283034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283036-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GIMCMH7ay2k2MAYAu9opvQ
-	(envelope-from <devicetree+bounces-283034-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:30:22 +0200
+	id CKWEABLby2lHMAYAu9opvQ
+	(envelope-from <devicetree+bounces-283036-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:32:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0084F36AFAE
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:30:21 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61B4C36B02D
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:32:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DCD6D3007C96
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 14:23:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4C9D0308D44E
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 14:25:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 619333EE1DA;
-	Tue, 31 Mar 2026 14:23:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896913FA5F4;
+	Tue, 31 Mar 2026 14:25:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cS/61qha";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TH7ddWZz"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="Y/A6lsMR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C8F3DE424
-	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 14:23:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25A2933B6E0;
+	Tue, 31 Mar 2026 14:25:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774967018; cv=none; b=WktJArmFL8TDDeo5k6tELjx8TstoyyApecpkYPSlSF/PbYxeb/AdtPGWdJN2Go27uHUf16Q9d69oiw2xtlPqQV76k+8qtZvKdMGCgN3fSVF9DANn21/1aNEplgH3azpgbb/MUANrVGQk5U5J3NQqswl98DIF+LJRbmapbfaJ7e4=
+	t=1774967104; cv=none; b=lv+pj2DVkBiAx5xNLzavL/VKid2Ts+YCGhBrbL7U7T82cuvs1KdkNsfFt2YbbPtjAWerw+jF144gqu0LmXlpw8HCNhfhi/I82y5tehKjOSW8nTPP1qu/PwrZjdWZWkPfV/HWeencc3SxcZxTccebhvCCiS8NqdsvJiHtr2gWXKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774967018; c=relaxed/simple;
-	bh=KpnDzCGoxSMFjiulsyeuRWkhHv9HD5upRYyXs87ckes=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M2nYDXoedAWZErD528LDEKEh28YtUTZ8EE4kId9+UYz8fUhyCjWHsXQFLpu3aAW3Vx4zQKELJYL9MQQ20vDJRFJhpEPcvcVFE1rnUklrdpJJoPO0sWJqVSUwo+0XhLgOYhDTQ3y3Ivjai0daUvAGkQbjI4mjiSZr6DRWQKF3QCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cS/61qha; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TH7ddWZz; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62VBEeFW1090724
-	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 14:23:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	duNzVU+fWIW2eMrS9MZLuIgJmindhQKIlaRaLKEtYgw=; b=cS/61qhahBpznw2w
-	0QHmxgVs99T5WU2CuzhFGCrnNcNvaS7cT7So0ybDqiStJ6ilogttCY780kzWCN7l
-	30AxAHT0nSbZlf9VI1MZM83tg7BqPr4/gU6GB4xUq1b9KKCvqYdKR+pbzbCdg3sA
-	yFlmfdPGzkA5el7lKvIsGXEeASWCeie/PNGtKiBtMEjWd+WQng9QdPl19+uh9q7t
-	IQZr77MbHtssTUfi9fqkis9Uywiy3Hm2MS6561J2gt/YGNGHrBdFyvs3J9BoWJ4G
-	0fz0Zft9J0dTkn8t6dsY+G9W7LZ2bGuteb+AnatJiOBb3A2Guo1lkFn1J6ZGlgNh
-	krV5tA==
-Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d7trd5b08-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 14:23:36 +0000 (GMT)
-Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-2c7130f88e3so13948435eec.0
-        for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 07:23:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1774967016; x=1775571816; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=duNzVU+fWIW2eMrS9MZLuIgJmindhQKIlaRaLKEtYgw=;
-        b=TH7ddWZzZmfM1gJF5llXg7yO2YZH31bsviQOc3aodO+PWkfKQR2HL/EUMUJptMK4B7
-         /BDqj0Ty1sAxVVrSoZ3XUHBrg+FsAi03tuEx+VP9KIuL5kpYJ6bhWvOTnvRGxJ7X+mhB
-         JRETPvRElE6OB2ktzkgT+Yq5nzYeW8HNClV+CswfOnAYgn3VM3skzBHRrVKjbJfKI8AM
-         6qKd8daNin9TzYZq8pSP4fS+kH20wBRHwrMp9g2EBsPdXTqfOwj8av7TouhfcCQV7H4s
-         nPAbv/FV8W2MEx2GTQ1eeXkK8JnhWlM0dGOIVSyMH8v69fubAvL/goE7cCCmDAfl0Sb1
-         lwbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774967016; x=1775571816;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=duNzVU+fWIW2eMrS9MZLuIgJmindhQKIlaRaLKEtYgw=;
-        b=p1JYYbDhNb0GdS5sPhHYf01AYR+TgTAR3FDYEBA726O1lPmZ1qXAtHY/B5oke8RU2u
-         z9lONjfJ6UaVeZ5djg04RdGFo/PS7ho46qYfmO7gnIx5xG+ER/EiKJVJM75H3TcB0iSd
-         vWhH5drRMEnPby6vNiJ1POBdjuczZrM3ubzypGrjf1fM9d40GPHQbibru9VWOmxcsKa9
-         A+SB4okdZBdbisHHSrGVFZ7cSew3q9GoO37/5xVMyS+pJyZ0GBUBsxt9qyG/92dIiUom
-         D3FNZT7rAkSny0XB8yjicjMeaAI9f1lV5fIp3MYVDB6C2+gZRyOEw0QlWq7+2PBBXKAc
-         s+7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCViDozTqHJOG5uOrodV3zfc0G51/EJO5ddN6c8xMwG/W1KErVs4IgEtE+Z/G8p2DzFY4zBi8q5QXdIA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxlb0J9dcgVNFZJ6ZGel3hTIR2YeefneHmV3Iv5ohi1uTVbbeTG
-	3ggd3V/lcnGJ01wlOb1iUTiQB0YY7i6SW7Bi39XF1GNTbg+ccJmbn1I17uosC/fWHlqpWq+QsIj
-	vtGbPSUW/932v5RQnGckcqrY1/0KCSHNXolGkZXQJGgaXVL+coTkYkhQAa61TalIs
-X-Gm-Gg: ATEYQzzkNGSkhMqgQOww6M01gDSmZFG0LQ1VDKPWpWWV0M9ely2vTOsqcfBmYiLCnT7
-	25EopXdLsblEqPIeFlimyRKCcf5/z+HtUzmT+JA8u/bOVYYsOAnnzBwADWkoQ0QAN7tFwo0stlH
-	km884La7+6dxbdr1XnokU80Iu8HplEvZWTFM8LREmlrGH0CWysiDzh6XT8KaAJHN1iyUNp+EBj3
-	N1hd2xyLG7V2un15pmRf/kveF02dLWgL8DZBA8ZDQtG93ShdeLASXoEPOpso7iPATs2WnDtL6+P
-	Z3pstJBIyvPgXlX9/JiDEEreTyVI3WMu6wZcazd2uo/WMRuNJ93CM8cMWyWfxl9rJmBf2JZZpl1
-	gGbIHCx6niWDzAmg/YgA5XwY0Xm9HFEZEwLJzFCirJ0EcStl0dqN5cdGKwyx6bLx3v6azs1CNHM
-	dSTEYmNw==
-X-Received: by 2002:a05:7022:6884:b0:11b:88a7:e1b0 with SMTP id a92af1059eb24-12ab291304amr10304082c88.26.1774967015760;
-        Tue, 31 Mar 2026 07:23:35 -0700 (PDT)
-X-Received: by 2002:a05:7022:6884:b0:11b:88a7:e1b0 with SMTP id a92af1059eb24-12ab291304amr10304043c88.26.1774967015009;
-        Tue, 31 Mar 2026 07:23:35 -0700 (PDT)
-Received: from [10.227.110.203] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c3c68b399bsm9941111eec.17.2026.03.31.07.23.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Mar 2026 07:23:34 -0700 (PDT)
-Message-ID: <b1194bdb-75fa-4f2e-b4a3-9565b11bb3e9@oss.qualcomm.com>
-Date: Tue, 31 Mar 2026 07:23:33 -0700
+	s=arc-20240116; t=1774967104; c=relaxed/simple;
+	bh=CgynXGu1MO6wxG8waJ3sxLw9l+fEjVnPCF909MJkxmM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=P5oTD8Sqh7SyLi2v1Dl5A0TsoSK/Tp0MdBrBvbbXjquVddBJCaqMN2Bxh2cP6danLBsJJ1eHLV40vZ4q+kupZLnoXBby1V/2LrujyPb5bvmji+ztMtv+UmYqrZNHK0WG3jaRUUErxeXP1CzHkWkjgaBz+R7baUauXIgKcw2AqQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=Y/A6lsMR; arc=none smtp.client-ip=65.21.61.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1774967094;
+	bh=CgynXGu1MO6wxG8waJ3sxLw9l+fEjVnPCF909MJkxmM=;
+	h=From:Subject:Date:To:Cc;
+	b=Y/A6lsMRMNCQiG6NSbXIKBnhNkE+2K7BYEgMqvsK6PUjApr6TPKC+LBQpADMq+EE6
+	 NEqJgY8B4I/WCWTmoe7Mnc/lXCtOU1VAgHNV24csuOCZxjkYe4EQc8rDH+1zzJ8UcY
+	 MpcCA09nWoLdWlCK4khdAJz8iW8N60OT5fcMs9MA=
+Subject: [PATCH 0/2] Fix Amlogic T7 null reset ops and DT required property
+Date: Tue, 31 Mar 2026 16:24:03 +0200
+Message-Id: <20260331-fix-aml-t7-null-reset-v1-0-eb95b625234c@aliel.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH ath-next v3 1/6] dt-bindings: net: wireless: add ath12k
- wifi device IPQ5424
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>
-Cc: Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ath12k@lists.infradead.org
-References: <20260331-ath12k-ipq5424-v3-0-1455b9cae29c@oss.qualcomm.com>
- <20260331-ath12k-ipq5424-v3-1-1455b9cae29c@oss.qualcomm.com>
- <20260331-fanatic-elegant-wallaby-913e35@quoll>
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <20260331-fanatic-elegant-wallaby-913e35@quoll>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: X4p1LAZ40UBkCS3bS8X4R191lq1imEh8
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzMxMDEzOSBTYWx0ZWRfX3oWAfmz39cHw
- lImfI0F1GMAuyGOOps/qszoovLFGP+M+uw0Yv+KDuHyaY3z8RlkBKluYHnFD5GcD3J36AEtHLeZ
- 8q04ZmJyNtDChfJMrFB1GLQAfJ7yWVRLDnoKsi2e91t9vkm19udUswYywleLgJWB/XXukRyWQw7
- u0ZMutlWqFNEZE5Nm4/fgRUKgDPUesyBU8VqvIOmV0+T7fZY1oJ+kkgR4hmWkbUrAkgOO28p3CN
- eG7hIRI6o1Fyj7+Gm3b3oEmg1JVcEgQByJDDHC3HgDYsikoklviFWa61yxxlq3siWqzQj0+A3xl
- t2X5hpAn5FppqRHy6R7TzdlU8PQSNHbXd6K5DHmx4NTJih/r4K/FgpFugUpnq0a6K1QHdNnOKtH
- zqWwjk0nP1dxOeezubdJx2yQC1QIqi/C2zXX9v0bqfrioiDoZuLWOjPnn8Qb2/7BjGXNO7IzglW
- weNRLCLVCZyhSKrRzkg==
-X-Proofpoint-ORIG-GUID: X4p1LAZ40UBkCS3bS8X4R191lq1imEh8
-X-Authority-Analysis: v=2.4 cv=H8/WAuYi c=1 sm=1 tr=0 ts=69cbd8e8 cx=c_pps
- a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=gEfo2CItAAAA:8 a=fnTOxYT96DSTlMw0mmMA:9 a=QEXdDO2ut3YA:10
- a=bBxd6f-gb0O0v-kibOvt:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-31_03,2026-03-31_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 bulkscore=0 spamscore=0 lowpriorityscore=0
- clxscore=1015 impostorscore=0 phishscore=0 suspectscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603310139
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/0XNQQ6DIBAF0KsQ1p0EkNLKVRoXKGNLIlgBjYnx7
+ kVddPl/5r/ZaMLoMFFNNhpxccmNoQR+I7T7mPBGcLZkKphQrKo49G4F4wfIDwjzMEDEhBlEq9g
+ T2762RtKy/UYsh6f7aq4ccZoLn6/yr2ty2YKBsRbQ++7AF+clKGO5wloqLnu93A+5NQmhG713W
+ ZOAa/l9znlNm33/AcXk+/fQAAAA
+X-Change-ID: 20260331-fix-aml-t7-null-reset-2b608ebf9da4
+To: Philipp Zabel <p.zabel@pengutronix.de>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openssh-sha256; t=1774967092; l=8028;
+ i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
+ bh=CgynXGu1MO6wxG8waJ3sxLw9l+fEjVnPCF909MJkxmM=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
+ BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QLxdeo6b54SKxMMt5VY3wmc7Ec7YHPexa6Xb6P57x3znYj0neoi0bDX3LXjeH/EmyZ53Amjz/IQ
+ FBCma+nS3+AE=
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
+ fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[pengutronix.de,linaro.org,baylibre.com,googlemail.com,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283034-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[aliel.fr];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-283036-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jeff.johnson@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[aliel.fr:+];
 	NEURAL_HAM(-0.00)[-0.993];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 0084F36AFAE
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid,8c000:email,0.1.87.192:email]
+X-Rspamd-Queue-Id: 61B4C36B02D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/31/2026 12:24 AM, Krzysztof Kozlowski wrote:
-> On Tue, Mar 31, 2026 at 02:09:06AM +0530, Raj Kumar Bhagat wrote:
->>  $id: http://devicetree.org/schemas/net/wireless/qcom,ipq5332-wifi.yaml#
->> @@ -17,6 +17,7 @@ properties:
->>    compatible:
->>      enum:
->>        - qcom,ipq5332-wifi
->> +      - qcom,ipq5424-wifi
-> 
-> No, use previous patch.
-> 
-> I am annoyed that you keep making changes even for such trivialities and
-> require re-review from the community.  Previous patch was correct. This
-> one doing whatever you want to do in copyrights is too much. You don't
-> change copyrights just because you wrote one device model.
+1. As reset is required for MMC DT, this patch series aims to add the currently missing required driver ops.
 
-Krzysztof,
+Whithout this patch the following kernel null error appears:
 
-FYI here is the guidance I received from Qualcomm legal (links to internal
-documentation, removed -- I've forwarded the entire e-mail to your Qualcomm
-mailbox):
+[    0.459197] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
+[    0.459978] Mem abort info:
+[    0.460324]   ESR = 0x0000000096000004
+[    0.460791]   EC = 0x25: DABT (current EL), IL = 32 bits
+[    0.461471]   SET = 0, FnV = 0
+[    0.461830]   EA = 0, S1PTW = 0
+[    0.462220]   FSC = 0x04: level 0 translation fault
+[    0.462722] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
+[    0.462826] Data abort info:
+[    0.462829]   ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
+[    0.462842] Mem abort info:
+[    0.462849]   CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+[    0.462859]   ESR = 0x0000000096000004
+[    0.462865]   GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+[    0.462874]   EC = 0x25: DABT (current EL), IL = 32 bits
+[    0.462882] [0000000000000000] user address but active_mm is swapper
+[    0.462890]   SET = 0, FnV = 0
+[    0.462901] Internal error: Oops: 0000000096000004 [#1]  SMP
+[    0.462909]   EA = 0, S1PTW = 0
+[    0.462917] Modules linked in:
+[    0.462925]   FSC = 0x04: level 0 translation fault
+[    0.462932] 
+[    0.462939] Data abort info:
+[    0.462951] CPU: 4 UID: 0 PID: 90 Comm: kworker/u34:3 Not tainted 7.0.0-rc4-next-20260319 #41 PREEMPT 
+[    0.463920]   ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
+[    0.463927] Hardware name: Khadas VIM4 (DT)
+[    0.463940]   CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+[    0.463951] Workqueue: async async_run_entry_fn
+[    0.464277]   GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+[    0.464286] 
+[    0.464294] [0000000000000000] user address but active_mm is swapper
+[    0.464304] pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[    0.465935] pc : reset_control_reset+0x48/0x1d0
+[    0.466409] lr : reset_control_reset+0x38/0x1d0
+[    0.479907] sp : ffff800083943b60
+[    0.479911] x29: ffff800083943b60 x28: 0000000000000000 x27: 0000000000000000
+[    0.479926] x26: ffff80008310a9c0 x25: 0000000000000000 x24: ffff000100372005
+[    0.481212] x23: ffff0001003a4000 x22: ffff000100fee988 x21: 0000000000000000
+[    0.482976] x20: ffff00023f00a788 x19: ffff000100fee980 x18: 0000000000000006
+[    0.483865] x17: 64656c62616e655f x16: 7469647561206465 x15: ffff800083943530
+[    0.484753] x14: 0000000000000000 x13: 000000000000022d x12: 0000000000002000
+[    0.485642] x11: ffff00023efdc754 x10: ffff00023efdc740 x9 : 0000000000000000
+[    0.486530] x8 : ffff00023efd8a40 x7 : fffffffffffffe70 x6 : ffff00023efd89e0
+[    0.487418] x5 : 0000000000000001 x4 : 0000000000000000 x3 : 0000000000000001
+[    0.488307] x2 : ffff000102002488 x1 : ffff8000822248c0 x0 : 0000000000000000
+[    0.489196] Call trace:
+[    0.489500]  reset_control_reset+0x48/0x1d0 (P)
+[    0.490062]  __device_reset+0xc8/0xfc
+[    0.490517]  meson_mmc_probe+0xe8/0x3d4
+[    0.490994]  platform_probe+0x5c/0x98
+[    0.491448]  really_probe+0xbc/0x298
+[    0.491892]  __driver_probe_device+0x78/0x12c
+[    0.492434]  driver_probe_device+0xd4/0x164
+[    0.492954]  __device_attach_driver+0xb8/0x140
+[    0.493507]  bus_for_each_drv+0x84/0xe0
+[    0.493983]  __device_attach_async_helper+0xac/0xd0
+[    0.494590]  async_run_entry_fn+0x34/0xe0
+[    0.495089]  process_one_work+0x158/0x29c
+[    0.495587]  worker_thread+0x18c/0x308
+[    0.496053]  kthread+0x11c/0x128
+[    0.496453]  ret_from_fork+0x10/0x20
+[    0.496904] Code: f9400262 2a0003f5 b4000902 f9400040 (f9400003) 
+[    0.497661] ---[ end trace 0000000000000000 ]---
+[    0.498234] Internal error: Oops: 0000000096000004 [#2]  SMP
+[    0.498935] Modules linked in:
+[    0.499319] CPU: 1 UID: 0 PID: 88 Comm: kworker/u34:1 Tainted: G      D             7.0.0-rc4-next-20260319 #41 PREEMPT 
+[    0.500669] Tainted: [D]=DIE
+[    0.501025] Hardware name: Khadas VIM4 (DT)
+[    0.501547] Workqueue: async async_run_entry_fn
+[    0.502109] pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[    0.502975] pc : reset_control_reset+0x48/0x1d0
+[    0.503538] lr : reset_control_reset+0x38/0x1d0
+[    0.504102] sp : ffff800083903b60
+[    0.504513] x29: ffff800083903b60 x28: 0000000000000000 x27: 0000000000000000
+[    0.505402] x26: ffff000100059028 x25: 0000000000000000 x24: ffff000100372005
+[    0.506290] x23: ffff000100ec9400 x22: ffff0001003f6e08 x21: 0000000000000000
+[    0.507178] x20: ffff00023f00b440 x19: ffff0001003f6e00 x18: 00000000ffffffff
+[    0.508067] x17: 0000000000000000 x16: 0000000000000000 x15: ffff8000839037e0
+[    0.508955] x14: 0000000000000000 x13: 0000000000000290 x12: 0000000000002000
+[    0.509843] x11: ffff00023efdc754 x10: ffff00023efdc740 x9 : 0000000000000000
+[    0.510732] x8 : ffff00023efd8bc0 x7 : fffffffffffffe70 x6 : ffff00023efd8b60
+[    0.511620] x5 : 0000000000000001 x4 : 0000000000000000 x3 : 0000000000000001
+[    0.512508] x2 : ffff000102002488 x1 : ffff800082224a40 x0 : 0000000000000000
+[    0.513397] Call trace:
+[    0.513700]  reset_control_reset+0x48/0x1d0 (P)
+[    0.514263]  __device_reset+0xc8/0xfc
+[    0.514718]  meson_mmc_probe+0xe8/0x3d4
+[    0.515195]  platform_probe+0x5c/0x98
+[    0.515650]  really_probe+0xbc/0x298
+[    0.516094]  __driver_probe_device+0x78/0x12c
+[    0.516636]  driver_probe_device+0xd4/0x164
+[    0.517156]  __device_attach_driver+0xb8/0x140
+[    0.517709]  bus_for_each_drv+0x84/0xe0
+[    0.518185]  __device_attach_async_helper+0xac/0xd0
+[    0.518792]  async_run_entry_fn+0x34/0xe0
+[    0.519290]  process_one_work+0x158/0x29c
+[    0.519788]  worker_thread+0x18c/0x308
+[    0.520254]  kthread+0x11c/0x128
+[    0.520655]  ret_from_fork+0x10/0x20
+[    0.521103] Code: f9400262 2a0003f5 b4000902 f9400040 (f9400003) 
+[    0.521860] ---[ end trace 0000000000000000 ]---
 
-... Repos under copyleft license [...] QTI copyright must be added when we
-make significant changes.
+2. The following patch yet to merge reports a missing required property with CHECK_DTBS=y
 
-... Repos under friendly license (BSD, Apache, MIT, ...) [...] QTI copyright
-must be added for any changes, not just significant ones.
+https://lore.kernel.org/r/20260326-add-emmc-t7-vim4-v5-3-d3f182b48e9d@aliel.fr/
 
-... under the regular QUIC to QTI open-source copyright transitioning [...]
-all QUIC Copyright instances should be replaced with year-less QTI OSS Copyright.
+/home/rony/project/khadas/fenix/build/linux/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dtb: mmc@88000 (amlogic,t7-mmc): 'resets' is a required property
+	from schema $id: http://devicetree.org/schemas/mmc/amlogic,meson-gx-mmc.yaml
+/home/rony/project/khadas/fenix/build/linux/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dtb: mmc@8a000 (amlogic,t7-mmc): 'resets' is a required property
+	from schema $id: http://devicetree.org/schemas/mmc/amlogic,meson-gx-mmc.yaml
+/home/rony/project/khadas/fenix/build/linux/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dtb: mmc@8c000 (amlogic,t7-mmc): 'resets' is a required property
+	from schema $id: http://devicetree.org/schemas/mmc/amlogic,meson-gx-mmc.yaml
 
-I'll follow up with them on this case where there is a dual-license file.
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+Ronald Claveau (2):
+      reset: amlogic: t7: Fix null reset ops
+      arm64: dts: amlogic: t7: Fix missing required reset property
 
-/jeff
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 3 +++
+ drivers/reset/amlogic/reset-meson.c         | 1 +
+ 2 files changed, 4 insertions(+)
+---
+base-commit: f6eb9ae8b9fc13c3971e4a6d1e8442f253001f36
+change-id: 20260331-fix-aml-t7-null-reset-2b608ebf9da4
+prerequisite-change-id: 20260320-add-emmc-t7-vim4-6ad16e94614f:v5
+prerequisite-patch-id: 5b5de77af11747ce964404fb827d2ee2bff47ea5
+prerequisite-patch-id: 1e37fc75fed1e533adee0f3e7e6ead1f8ff3c55c
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 2daf583fb5e7449a02bd217d8aca330171b598aa
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: d1ddf9b7710e91f8062de83bd7ba55afb2c4c112
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+
+Best regards,
+-- 
+Ronald Claveau <linux-kernel-dev@aliel.fr>
+
 
