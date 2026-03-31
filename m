@@ -1,168 +1,178 @@
-Return-Path: <devicetree+bounces-282828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282832-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kNbGCQF8y2lPIQYAu9opvQ
-	(envelope-from <devicetree+bounces-282828-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:47:13 +0200
+	id eO1lKlZ7y2lPIQYAu9opvQ
+	(envelope-from <devicetree+bounces-282832-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:44:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36A7336571B
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:47:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 169CC36568C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:44:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5BCC73038407
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 07:33:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3B50E304F20F
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 07:43:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 880C13C2798;
-	Tue, 31 Mar 2026 07:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 317C13CA4A2;
+	Tue, 31 Mar 2026 07:43:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="aeXZS/6C"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="Vqbye4/g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mx5.sberdevices.ru (mx5.sberdevices.ru [95.181.183.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E55BF3C3BF6
-	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 07:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AF633C196A;
+	Tue, 31 Mar 2026 07:43:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.181.183.35
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774942430; cv=none; b=W7E9fQk1DJLOrC2EoXymvcHb6ieCHi8OrFautNxrPtNHGkM2oj+iSkVaRNM3dprBCP8hb5FU5gb9yXcszAorYVZBCedeW1Ps8oF4BB/29Z5G68cY4NonzBp2Z4oaIA5/jv5AJgwvSN516DxtSj06kgD/Ced5YOusa7tyI6L7lK8=
+	t=1774942989; cv=none; b=r/QEK8wsCwMnpkhbuZp1YfqcR2li0Jwnr2BBwWzjr1P3+MRUOVgXoQrPdJMaJlJRVXdDlkprw6H7j/x5eyIPu102JpqKJzouy83a/E+SWsGy1evBGZPlmODC+X6hWwNwPZv0HXnpLrnM0i8UTyFrlu1lJ19S4p414nfZDNREpgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774942430; c=relaxed/simple;
-	bh=xGO9cJCF9yFsZpN1UnzEF0N+yYGVMT7/dqkAnyOaLBU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=spiJEplJljEFpzCzY+hPxIGCERwZymUZtjMs1+rg/C3roWdYa6BpuHBkm5Bk9HFeWnR1CKd8diXF68B/r0jIF6KNbpfwCz+hogqSaG01RuwaUMU/u92/xkeVxLt6xtyvWVTGlVFlK+Yn+jeDi2LLzU3+nndUkkusVNRvFRCNfE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=aeXZS/6C; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=xGO9
-	cJCF9yFsZpN1UnzEF0N+yYGVMT7/dqkAnyOaLBU=; b=aeXZS/6CH178XYZzMgey
-	PLzGDK9/+CyaCEkuHsYPbtXzjxoJR/GssWtw9wIowt2mIkNHsSQOGWPrW31nGHt7
-	1N/oMDlXPCR2p5CLhUDuaS+XXBo3Yc6DRqD4wZ/orhIJ1gO5yHryC4IOEWhKM8gf
-	9FQ726vkoC+AXGZcC9vmxfKVA8OFaz6oXKzaf+bujgDjD7IVWD6Svtbxz1NWO8IC
-	w96ygeJTbRAQNrFFjoqkt2OuDdpcXo9UZeCjLoIOIBSsWg7bszz7JPq+3ipBETDW
-	r/Xg2D/xZiEfRagGPpcdYTpoHg/GCgB2R4JvovJ0VY2UsWJDuJ0dp77jxmTHrmfV
-	RA==
-Received: (qmail 1587397 invoked from network); 31 Mar 2026 09:33:41 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 31 Mar 2026 09:33:41 +0200
-X-UD-Smtp-Session: l3s3148p1@RsKG/ExO0Jcujnu8
-Date: Tue, 31 Mar 2026 09:33:41 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: soc: renesas: add MFIS binding
- documentation
-Message-ID: <act41fVsL1F17bHa@shikoro>
-References: <20260317130638.2804-1-wsa+renesas@sang-engineering.com>
- <20260317130638.2804-2-wsa+renesas@sang-engineering.com>
- <20260318-camouflaged-umber-oxpecker-b2b29e@quoll>
- <CAMuHMdX=DRnFWG1ky8wT7mK=LHeJ6LduL28nYd19QpASrn6mew@mail.gmail.com>
- <c46357c9-8cf4-45ec-8b48-8cf979de2e98@kernel.org>
- <actzUSIKKzcDmBCT@shikoro>
- <28396df7-bb9f-4a6a-963c-0b56c66fb3cd@kernel.org>
+	s=arc-20240116; t=1774942989; c=relaxed/simple;
+	bh=vFRhdAeUjt7gLU7Xzz2MxFnVkJR6y70K37uER2LcHcM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=jYEOovqJkW6eBeCjzjybJrEjeLIF9NRRtk710GzRALxsvpxEpLzcJTSPRz74NLIcNQJ2bxLDuI5QOV3NgAUlZ3EhMwLrwkPAJwrzrhMT835rad0Ckz1b3e4co0BXoTW5old90k2waxmUgYusHusKowOhaBhhEEQqonjLADJpLCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=Vqbye4/g; arc=none smtp.client-ip=95.181.183.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-antispam-ksmg-gc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx5.sberdevices.ru (Postfix) with ESMTP id 2EBE9240009;
+	Tue, 31 Mar 2026 10:33:59 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx5.sberdevices.ru 2EBE9240009
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=post; t=1774942439;
+	bh=pqy2ZQ2K4gQV5vy8fXRZ04Ksn+hbGqCwiDElTb+KLWM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=Vqbye4/gxEkN5y6SkrGeFFYraxQHst5BP5gymx/wE6420SwJHr3YNYA2U1nz+y/kG
+	 LNbOv6RIwAvd0hJg/1DnZbvjH1qVZlhvtykhSQMmbXgDtSUwr6SzTgJbK8VuIBluia
+	 ly3rPuZJW/xaBVtrLBWmsR6qCcI/pZ63sWIO5jXhNrBcfbiIa1tC+7cPv/RnqqnZXc
+	 3F6qwy7WlwbvEAXsDQuKdL4bwwFG/1gXYyofGINJ6uknXgzTSEromqeImnrk7QXmrE
+	 8zfZzParopCAq48OKIv7NCK5AikhalzdwH1IkT4OJa1FRsU9WfigWgQxqSd3Z83B/w
+	 mH3hVWsaC4+Gw==
+Received: from smtp.sberdevices.ru (p-exch-cas-s-m1.sberdevices.ru [172.16.210.2])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(Client CN "sberdevices.ru", Issuer "R12" (not verified))
+	by mx5.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 31 Mar 2026 10:33:58 +0300 (MSK)
+Message-ID: <4a9c726a-d580-4b0b-9530-228b58389c80@salutedevices.com>
+Date: Tue, 31 Mar 2026 10:33:57 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qw9sYZXXv/5ffU+l"
-Content-Disposition: inline
-In-Reply-To: <28396df7-bb9f-4a6a-963c-0b56c66fb3cd@kernel.org>
-X-Spamd-Result: default: False [-3.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [DMARC error]Re: [PATCH 0/2] Add PWM support Amlogic S7 S7D S6
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>
+CC: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, <linux-pwm@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	Junyi Zhao <junyi.zhao@amlogic.com>
+References: <20260326-s6-s7-pwm-v1-0-67e2f72b98bc@amlogic.com>
+ <CAFBinCD1GPP82MEBDHg3BwCJg6JY5k2HksEt+kCB=YjnYTO7Tw@mail.gmail.com>
+ <70a637b1-a76a-470c-9a97-0b4599a40a1c@amlogic.com>
+Content-Language: en-US
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <70a637b1-a76a-470c-9a97-0b4599a40a1c@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: p-exch-cas-a-m1.sberdevices.ru (172.24.201.216) To
+ p-exch-cas-s-m1.sberdevices.ru (172.16.210.2)
+X-KSMG-AntiPhishing: NotDetected, bases: 2026/03/31 06:48:00
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Info: LuaCore: 95 0.3.95 0e4b6d4f1992c354ebd6a5cc3c5624a3b0aa8cbc, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lists.infradead.org:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiSpam-Lua-Profiles: 201803 [Mar 31 2026]
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Version: 6.1.1.22
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.1.1.8310, bases: 2026/03/30 22:26:00 #28356219
+X-KSMG-AntiVirus-Status: NotDetected, skipped
+X-KSMG-KATA-Status: Not Scanned
+X-KSMG-LinksScanning: NotDetected, bases: 2026/03/31 06:48:00
+X-KSMG-Message-Action: skipped
+X-KSMG-Rule-ID: 5
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[salutedevices.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[salutedevices.com:s=post];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282828-lists,devicetree=lfdr.de,renesas];
+	TAGGED_FROM(0.00)[bounces-282832-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[sang-engineering.com];
-	FREEMAIL_CC(0.00)[linux-m68k.org,vger.kernel.org,gmail.com,glider.be,kernel.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_TO(0.00)[amlogic.com,googlemail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,baylibre.com,vger.kernel.org,lists.infradead.org,amlogic.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gnstark@salutedevices.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[salutedevices.com:+];
+	NEURAL_HAM(-0.00)[-0.880];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 36A7336571B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,infradead.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,salutedevices.com:dkim,salutedevices.com:mid]
+X-Rspamd-Queue-Id: 169CC36568C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
---qw9sYZXXv/5ffU+l
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello Martin, Xianwei
 
 
-> And look when my question was asked:
-> 19th of Match:
-> "I did not get the driver so I cannot verify that. What sort of Linux
-> ABI does this bind?"
->=20
-> You ignore it and on 23rd of Match you send v2.
+On 3/31/26 10:10, Xianwei Zhao wrote:
+> Hi Martin,
+>      I confirmed with Junyi Zhao that the current implementation counts 
+> from zero, so this submission is correct.
+> We agree this should be fixed and will address it in a follow-up patch.
+> Thanks for pointing it out.
+> 
+> On 2026/3/31 05:54, Martin Blumenstingl wrote:
+>> Hi Xianwei Zhao,
+>>
+>> thanks for your contribution!
+>>
+>> On Thu, Mar 26, 2026 at 7:35 AM Xianwei Zhao via B4 Relay
+>> <devnull+xianwei.zhao.amlogic.com@kernel.org>  wrote:
+>>> Add bindings and driver support Amlogic S7/S7D/S6 SoCs.
+>> There is an old report that got lost, stating that the current
 
-The opposite is true. I saw it as a short-coming of v1 that you didn't
-get the driver to properly review it. So, like many other short-comings
-of v1, I addressed it in v2. I explicitly paid attention to send the
-driver in v2 to you and explain more of my reasoning to continue the
-discussion then on a better ground. This is exactly *not ignoring*!
+Xianwei Zhao thanks for the confirmation.
+I am the author of the old report and the corresponding patch and it's 
+not lost. So if the patch is correct I'll be glad to add relevant 
+tested-by tags.
 
-> And now you reply that "you got driver as well in v2". Seriously? How
-> can I move from 19th Match into the future of 23rd to get the email from
-> the future? And some answers from the future?
+>> pwm-meson driver has an off-by-one error with the hi and lo fields:
+>> [0]
+>> Since you are working on bringing up a new platform: is this something
+>> you can verify in your lab?
+>> To be clear: I'm not expecting you to work on this ad-hoc or bring a
+>> patch into this series. However, it would be great if you could verify
+>> if the findings from [0] are correct and send an updated patch in
+>> future.
+>>
+>> Thank you and best regards
+>> Martin
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
-You can't. But why can't we move the discussion to v2 instead? There is
-more context. This seems like absolutely normal development to me.
-
-> Respond to review instead of ignoring it and sending v2.
-
-Again, it was not ignoring. I even explained in v2 why I kept some
-choices as in v1. Might still be wrong, could be. But I tried to address
-the comments as best as I could.
-
-
---qw9sYZXXv/5ffU+l
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmnLeNUACgkQFA3kzBSg
-KbaZFBAAhEP1X9PgPI+kS+jBDbO8qwkVYf6ffuXOQ8w1kcrpfkr5XKN40g2Jg/jq
-WdGl2adoex217URbXXvTj+DWU7KBS8BLK0SKdvFeiNlgRHcitgwvz6HpALz9XiLn
-s8sCYxVUG1YugbF2kgEDhqKtOdLA6HTqnWrOLiCx46SA/ybkY1KEPehO9c6kSLxx
-LarfQwIjxL4e80EK8+OfEKIFY5xLZ+BGGmwOQFqQc1idaEAbfEKiKsOfLKJfrfEk
-rRhmmAPK2d0sojqO9/nfI60HTFHN6KuXxh0eQqnoedkxeNcIM6+sYYOtOHAzQQ80
-7mfqMkv/N4lKvy6RNyG7l+EnvOeC86UG1vZqX2gbDYgJnnqlyidY1EEgaGbPb7ni
-s8TBDjKjILTtnrohMkv75RgTbrGaUqfjALaz/jQ/qaEhZvRN9OToRKib6PNyAONC
-jWIwrmYKYWj/9jYkh2adsklVbEZC4tifl5svrjsRRl+v2oydJ5k19Q8AXqNpcBNG
-HTq8FjUaMJIWwnVLMlVel7R/64/DDvp1TQDBOJJFVvDJ4uwUA9ueyXXLdwaH5d7i
-RDq4W7Cqlazeej5HwMZ0CfXHCHV18kbfl0538kX0vykrRVf62UqMzkTousO3z3n6
-4Qbo+LNtuyOfmU5f5zpin2tTj29gPg81fD5LIj/6NLWRwX11rTU=
-=H6YP
------END PGP SIGNATURE-----
-
---qw9sYZXXv/5ffU+l--
+-- 
+Best regards
+George
 
