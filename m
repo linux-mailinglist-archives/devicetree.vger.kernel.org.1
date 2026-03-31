@@ -1,240 +1,156 @@
-Return-Path: <devicetree+bounces-283092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283094-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uEFQBgj3y2kXNAYAu9opvQ
-	(envelope-from <devicetree+bounces-283092-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 18:32:08 +0200
+	id sHUnF3n+y2mcNAYAu9opvQ
+	(envelope-from <devicetree+bounces-283094-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 19:03:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AFEC36CB96
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 18:32:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1E0F36DC4C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 19:03:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C097930FBF0F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:26:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2A7393136AF6
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:28:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E30873FF8A7;
-	Tue, 31 Mar 2026 16:26:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="mkl841Yf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C01423149;
+	Tue, 31 Mar 2026 16:28:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D372C30C345;
-	Tue, 31 Mar 2026 16:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D442D41B373;
+	Tue, 31 Mar 2026 16:28:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774974413; cv=none; b=CVBBaXvWz4MXX/ZzFGRtOzQnMvDGPvG/iruj7vGtA7VxwATe0fYLTHIWXFhLUSVOmGh+Yo21iibnvoa/juiKSECR11k07ts0mYNl7XMNmTdojg+QD93K2+D/Iy3eyD2uDHLX+5BFeZ0bsCp/OOyWn8JILvrqFEJjHRCBZ1J368g=
+	t=1774974496; cv=none; b=jg5gickJsk7tGacKUd1CngT/tUUsIMwfIYH3B7ST1e+CcCDbIFVItEzi6KhmA/Q0MtNtf9NlRrUHPsEZoeLpu/SpXtexBaZpVv3AIk8frYu9x/aq68dpjZqNAPyCE+Y9QLvdA4KsE/XUWwl5aFZ/uiuzeB9ny6oXm6nP+QIYcXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774974413; c=relaxed/simple;
-	bh=4/KOV5r9948VYhuiUcfo+u6YJ2ubFSTwMYYsK55YSNI=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=aUGQc+ewONc9NcuPa7p0SsfNlIeyjjroatykAbx48kOJq6WjVfyJuz2sXRSAcxcG8sHKhOl2EGrA25MckVMbDH4Ifc5dfZ+M/KqQvfOlfVa/s0yfo05H9GssQyTtuNSiM0QYhtfUnc8rC08jyWGJo21tP70HyztA2j21hv5zl3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=mkl841Yf; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 0546225F3F;
-	Tue, 31 Mar 2026 18:26:50 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id yEFNASaRFbob; Tue, 31 Mar 2026 18:26:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1774974409; bh=4/KOV5r9948VYhuiUcfo+u6YJ2ubFSTwMYYsK55YSNI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=mkl841Yf5Uzpm0YCBamFprdHBM9aPwhUAhzqkP7JGPqLeP92X4/qMAoRmqvZEIZQZ
-	 n7LMpw6OHGQN5JV/Uw2qDbfoE+q1deCWNtflgVJJ5SlkUVA5LnkC0oFpn8rFMfGrla
-	 sDGyhyO3NJ4JGc/IR5A/7Niw6Fdr7pLn/nZEQngg9z4dvpYoSs7B42Pg8Zp5laeliz
-	 lIPdM8bx5T5UWBlTB4aURf3JhBrZQGberYWaQ49ZSrqyF1kxqnvgfE+b7Z3992bnug
-	 AGtF2QhvGQXxAY/broksmc+3uG6Uk0jxTqdakr3/7F+jOe8NSZWwdwMqRFiKfxS4Zr
-	 ffLn2fZyAvstw==
+	s=arc-20240116; t=1774974496; c=relaxed/simple;
+	bh=si4UrFoSQ/fDfn1c15vSAzTg5zy9GQ8SHB8w7nL6P7I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NT+98UWFS/H0wtDTeLJt872Lgy33dJ+vzCNpOo6ds5sFdta/HVy7NBsWJBFHjEt1KFkrTlw+uexKOoDerF9koiyfWx0fCgH90Rtguhj0ZaVLZb0D/ynqmmbfnbDZoa+0ds3hb6Cdn4Tp7dEVUAmxbXJLXkw+6jdarbJKISJ2XaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from localhost.localdomain (unknown [223.166.95.230])
+	by APP-05 (Coremail) with SMTP id zQCowAC3TBAO9stphZUSDA--.56709S2;
+	Wed, 01 Apr 2026 00:27:58 +0800 (CST)
+From: Han Gao <gaohan@iscas.ac.cn>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@kernel.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Cc: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Han Gao <rabenda.cn@gmail.com>,
+	Han Gao <gaohan@iscas.ac.cn>
+Subject: [PATCH v4 0/3] riscv: dts: spacemit: Add PMIC regulators usb pcie
+Date: Wed,  1 Apr 2026 00:27:53 +0800
+Message-ID: <cover.1774974017.git.gaohan@iscas.ac.cn>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 31 Mar 2026 16:26:48 +0000
-From: Rustam Adilov <adilov@disroot.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stanley
- Chang <stanley_chang@realtek.com>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Michael Zavertkin
- <misha.zavertkin@mail.ru>
-Subject: Re: [PATCH v2 2/6] phy: realtek: usb2: introduce read and write
- functions to driver data
-In-Reply-To: <20260330213227.zujvcvsxdfknzltz@skbuf>
-References: <20260327160638.15134-1-adilov@disroot.org>
- <20260327160638.15134-3-adilov@disroot.org>
- <20260330211918.y7su36j47e3uelcv@skbuf>
- <20260330213227.zujvcvsxdfknzltz@skbuf>
-Message-ID: <4663266d3a7d428d9d28edb96227cb8c@disroot.org>
-X-Sender: adilov@disroot.org
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:zQCowAC3TBAO9stphZUSDA--.56709S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7tw1kKFy3XFyUuFyftw1kKrg_yoW8KF1rpF
+	y29r45uw45Xr12y393u39xJr15K3W8Ar9xWr1UKw48ArnFgay7Xa1xtr4avF9xur45tFnx
+	trs7Aw4xur4xAF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+	67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiCQ4DDGnLnsOVcgABsR
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,realtek.com,lists.infradead.org,vger.kernel.org,mail.ru];
-	TAGGED_FROM(0.00)[bounces-283092-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-283094-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	MISSING_XM_UA(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[gaohan@iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.930];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.622];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,disroot.org:dkim,disroot.org:mid]
-X-Rspamd-Queue-Id: 7AFEC36CB96
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:mid]
+X-Rspamd-Queue-Id: C1E0F36DC4C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-30 21:32, Vladimir Oltean wrote:
-> On Tue, Mar 31, 2026 at 12:19:18AM +0300, Vladimir Oltean wrote:
->> On Fri, Mar 27, 2026 at 09:06:34PM +0500, Rustam Adilov wrote:
->> > +static inline u32 phy_read(void __iomem *reg)
->> > +{
->> > +	return readl(reg);
->> > +}
->> > +
->> > +static inline u32 phy_read_le(void __iomem *reg)
->> > +{
->> > +	return le32_to_cpu(readl(reg));
->> > +}
->> > +
->> > +static inline void phy_write(u32 val, void __iomem *reg)
->> > +{
->> > +	writel(val, reg);
->> > +}
->> > +
->> > +static inline void phy_write_le(u32 val, void __iomem *reg)
->> > +{
->> > +	writel(cpu_to_le32(val), reg);
->> > +}
->> 
->> Please don't name driver-level functions phy_read() and phy_write().
->> That will collide with networking API functions of the same name and
->> will make grep-based code searching more difficult.
->> 
->> Also, have you looked at regmap? It has native support for endianness;
->> it supports regmap_field_read()/regmap_field_write() for abstracting
->> registers which may be found at different places for different HW;
->> it offers regmap_read_poll_timeout() so you don't have to pass the
->> function pointer to utmi_wait_register(). It seems the result would be a
->> bit more elegant.
-> 
-> Even if you decide not to use regmap. I thought I should let you know
-> that LLM review says:
-> 
->   Are these double byte-swaps intentional?
-> 
->   Since readl() and writel() inherently perform little-endian memory accesses
->   and handle byte-swapping on big-endian architectures automatically, won't
->   wrapping them in le32_to_cpu() and cpu_to_le32() apply a second, redundant
->   byte-swap?
+Changes in v4:
+ - Drop reg_dc_in
+ - Drop vin-supply from reg_vcc_4v
+ - Rename regulator-name to match schematic net names: vcc4v0, pcie_vcc3v3
+ - Remove aldo2, aldo3, aldo4, dldo2, dldo3, dldo7 nodes
+ - Drop usb3_hub_5v, no device consumer
+ - Drop vdd-supply from USB hub nodes, hub is powered by always-on VCC_5V0
+ - Drop "identical to BPI-F3" claim from commit message
+ - Link to v3: https://lore.kernel.org/all/cover.1774803532.git.gaohan@iscas.ac.cn/
 
-From my experience (and also understanding), readl returns value in native endian
-and doesn't do byte swapping. The same goes writel.
-Thus wrapping le32_to_cpu() and cpu_to_le32() around them correctly swaps the
-bytes from big endian to little endian, without the double byte-swaps.
+Han Gao (3):
+  riscv: dts: spacemit: Enable i2c8 adapter for OrangePi RV2
+  riscv: dts: spacemit: Define the P1 PMIC regulators for OrangePi RV2
+  riscv: dts: spacemit: Enable USB3.0/PCIe on OrangePi RV2
 
-The comment even mentions it "{read,write}{b,w,l,q}() access little endian memory
-and return result in native endianness." which was provided for reference later on.
+ .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 171 ++++++++++++++++++
+ 1 file changed, 171 insertions(+)
 
->   On big-endian systems, wouldn't these double swaps cancel each other out
->   and result in a native big-endian access instead of the intended
->   little-endian access? If the SoC bus bridge implicitly swaps and requires
->   a native access, should __raw_readl() and __raw_writel() (or ioread32be /
->   iowrite32be) be used instead to avoid obfuscating it with double-swaps?
 
-The __raw_readl() and __raw_writel() are indeed in native endian, and for
-RTL9607C SoC it is in big endian.
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+prerequisite-patch-id: ef6e9c7b5854d0c08066b72f9a7868db8c2140eb
+prerequisite-patch-id: cfe3800f8c791ec4c63e070af9628e88e0fc31b9
+prerequisite-patch-id: b76493e625ae257c8adcd67874178458420e4d47
+prerequisite-patch-id: 88e01dc92c83bd88ddeb78891d3088209fed8d6b
+prerequisite-patch-id: 60336d10ab8322c70596d0f046b6b5c54bb24b54
+prerequisite-patch-id: 68c4d869548687dc115dd91e2ffb8f4c11482d86
+prerequisite-patch-id: fdadcf964c2cb3406160edb579d99a8d5695f8e6
+prerequisite-patch-id: 73b9e745338b0499b849fa4f7f9508987ab39a59
+prerequisite-patch-id: cd26770c2160c3c31a406bd8a6b01ab666180ae0
+prerequisite-patch-id: e5dfddc32cefae195692da8b80e19adf086e4ad7
+prerequisite-patch-id: 7fd53cbe4977598f26148a4bb1cf692bbdb79a09
+prerequisite-patch-id: 96ebac57bb29619b97fe95422206a685825618e9
+prerequisite-patch-id: 00fac16b52f60383db3140e2885f3f7f8d14dd1a
+prerequisite-patch-id: 3b7a60047b922c48e93599f621cb738856f42354
+prerequisite-patch-id: 275c030b963be05dd1041451f539a130ce614277
+prerequisite-patch-id: 93963424b0871e64276af0e0b2199b52e29b4603
+prerequisite-patch-id: 8383188b1c01ed6280629faaa29c37d699ade241
+prerequisite-patch-id: 5f8126b912b924d63d4a1e0c5eb42d212eb0d369
+prerequisite-patch-id: e80af628a2e0b5f2eeb3cb1b5e7133d08bdd2c4e
+prerequisite-patch-id: 0234a6dca15eb91f98a45a46604ce5b4935048a5
+-- 
+2.47.3
 
-The way Realtek did it is by using the volatile and wrapping them around
-le32_to_cpu() and cpu_to_le32() respectively, which is certainly hacky.
-
- static inline unsigned int ehci_readl(const struct ehci_hcd *ehci,
- 		__u32 __iomem *regs)
- {
-+#if defined(CONFIG_RTK_MIPS_SOC)
-+	return (le32_to_cpu((*(volatile unsigned long *)(regs))));
-+#else
-[...]
-
- static inline void ehci_writel(const struct ehci_hcd *ehci,
- 		const unsigned int val, __u32 __iomem *regs)
- {
-+#if defined(CONFIG_RTK_MIPS_SOC)
-+	((*(volatile unsigned long *)(regs))=cpu_to_le32(val));
-+#else
-
-We did a bit of debugging with usb some time ago and and printed the value
-of the readl result from the base usb address and got this
-[    1.327473] ehci_setup:694 ehci caps: 0xb8021000, value: 0x10000001
-[    1.334478] ehci_setup:695 ehci regs: 0xb8021001
-[    1.339706] ehci_halt:187 ehci regs: 0xb8021001
-
-"0x10000001" is supposed to be "0x01000010". Otherwise, it would take 0x01
-for the cap length and result in immediate halt from timeout.
-
-Even though it is for linux-usb and not the phy subsystem, it was worth
-mentioning as it is very much related to this issue.
-
-What is surprising, the ioread32be and iowrite32be functions actually do
-swap bytes, thus resulting in little endian (ironic). But using it here
-would be just incorrect as it is intended for accessing big endian mmio, 
-not for big endian CPU and its little endian USB phy/host.
-
-So, that is a conundrum we have here. Let me know if what you think of it
-and maybe even how to better solve it.
-
-Will hold on posting v3 until this hopefully is more or less solved..
-
->   Also, does passing the __le32 restricted type returned by cpu_to_le32()
->   into writel() (which expects a native u32) trigger Sparse static analysis
->   warnings for an incorrect type in argument?
-> 
-> For reference:
-> https://elixir.bootlin.com/linux/v6.19.10/source/include/asm-generic/io.h#L184
-> /*
->  * {read,write}{b,w,l,q}() access little endian memory and return result in
->  * native endianness.
->  */
-> 
-> and yes, your patch does trigger sparse warnings:
-> ../drivers/phy/realtek/phy-rtk-usb2.c:153:16: warning: cast to restricted __le32
-> ../drivers/phy/realtek/phy-rtk-usb2.c:163:16: warning: incorrect type in argument 1 (different base types)
-> ../drivers/phy/realtek/phy-rtk-usb2.c:163:16:    expected unsigned int val
-> ../drivers/phy/realtek/phy-rtk-usb2.c:163:16:    got restricted __le32 [usertype]
-
-I can alleviate it by creating a temp u32 variable to hold the cpu_to_le32() and then
-using that temp variable for writel.
-
-> Furthermore, please drop the 'inline' keyword from C files and let the
-> compiler decide. Your use of this keyword has no value - you declare
-> phy_read(), phy_read_le() etc as inline but then assign function
-> pointers to them. How can the compiler inline the indirect calls?
-
-Will drop these.
 
