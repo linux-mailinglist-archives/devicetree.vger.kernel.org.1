@@ -1,147 +1,152 @@
-Return-Path: <devicetree+bounces-283083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283084-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kH9yDzryy2m5MgYAu9opvQ
-	(envelope-from <devicetree+bounces-283083-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 18:11:38 +0200
+	id iG6AOLPxy2m5MgYAu9opvQ
+	(envelope-from <devicetree+bounces-283084-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 18:09:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 470D436C665
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 18:11:37 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF44436C62A
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 18:09:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 483A130AD7D2
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 15:48:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 92BCE30B38CC
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 15:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7504423173;
-	Tue, 31 Mar 2026 15:45:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 834F841B349;
+	Tue, 31 Mar 2026 15:46:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k+pDR2Ga"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Qd8GLtIn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D90423149;
-	Tue, 31 Mar 2026 15:45:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C748D3FA5EF;
+	Tue, 31 Mar 2026 15:45:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774971936; cv=none; b=heAAzr5ODfxTc4ffxY/FORe8DANszwc8wOt+VG5sDZtHwbvRmaYobYOjXnCDLR9zrNK4EbXDr43DthiK/JS5DguN+Tr98kQ/aNNnF6zyg/jExd45103soi28d7CtHRrWozSSBaGKKU8Z+pZtvw8WnWxbGgUZk+2+LN1WnbNP2Zo=
+	t=1774971962; cv=none; b=knOdkbCSntZnHQiwlTvyDJ7QOzW00O0MY0y06ZuwON2SUDFcSluOZAOENDJOXeFDTrVDCmVLC3+iavRJFJ/YZC+zby4/5KTCovycKnIQBXTUaOm9poLU6vSEPdJsV9OHqKca7iyy0D0muM4x2A4SJKy7oMkQU5E/k3VXkj0x1cQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774971936; c=relaxed/simple;
-	bh=qWqxYpitkGCEhcXR+MrXrCnZ1sb/umrdZxHmYDov3HY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kBTGOQMk1NlVfFaVVpwZZoPy9oCSck3J7DZI3y3QZ2Ocs4+049+SRLEaVk26/2roGknV9jDEesILoVcD4I9bo0PC14BJlZZEgK3UjyHK4HHaXXJ9V6euelM3JKYeR4B+dcwsD0QLZCNwgiBYXsXzUj+GGxgILmgiaptdonpUzC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k+pDR2Ga; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14124C19423;
-	Tue, 31 Mar 2026 15:45:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774971936;
-	bh=qWqxYpitkGCEhcXR+MrXrCnZ1sb/umrdZxHmYDov3HY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k+pDR2GaMcYsl5zX+Qppedsw7Oj9KeuLWw/Vkspbz4lSRI6gW7SfZnQHyo+Ac4tyd
-	 ihUBGkxCMji3IWBovxkWyM4KRgtDfj5ndQoJ+IMvKbvNky6tOBgctPm0/+rV9FnFj2
-	 w6C6wlTTe5ZYQUZJ3xjLvV6ya3dvx6VWdN9CEk7aatX5cUuwdsSAUAJ2oNvZNT5zlX
-	 +R6BYg3LGLIFxFZls6PSYnw3MDy7Zh80qvVv8rWL5XeY53hB7G2u73H2ISRVN/f2at
-	 CDgF3J1OBp166dL+oLYmbQc6YgpnR0BhMKVeI62JVsAO2lb39vPE0SaRORWMwZhztq
-	 J0QQZxgGIxRLA==
-Date: Tue, 31 Mar 2026 16:45:30 +0100
-From: Lee Jones <lee@kernel.org>
-To: Thomas Richard <thomas.richard@bootlin.com>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/8] mfd: omap-usb-host: Cleanup header includes
-Message-ID: <20260331154530.GI3795166@google.com>
-References: <20260323-omap4-fix-usb-support-v1-0-b668132124ac@bootlin.com>
- <20260323-omap4-fix-usb-support-v1-3-b668132124ac@bootlin.com>
+	s=arc-20240116; t=1774971962; c=relaxed/simple;
+	bh=ZDCn/arx4W/a11XMkqZDI4Vf4ZYts8W1le/qsfEE6Ps=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=o0GRQYtBkhacj7TRemaeOzako+BVpCjr90eJJaV1x5I8piV80FT1pI01DLDFy0+drRI8fbuGLxhXAppy+hULEz3DcJ43oPdi/eO3BWcqRjJtMK1t+GjVw2bk1WWY4pdWbqd2L1u6envD3OMIY4qhkpjK/BlEwPHvNHamDE2zWdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Qd8GLtIn; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id C976425D82;
+	Tue, 31 Mar 2026 17:45:50 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id SELuN0x1nHuE; Tue, 31 Mar 2026 17:45:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1774971950; bh=ZDCn/arx4W/a11XMkqZDI4Vf4ZYts8W1le/qsfEE6Ps=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=Qd8GLtInbREtHipVmG7gb0Qlni7/NYrdRvdJhyi0Z4j5wFO/tQPwrdeGnxDt8yLfc
+	 dwpf1ln+1bblry1/92LiX/f335TrQ4OLEE9jkDduCn1xGF/P1SYC8Rfpz1pkoE7b5O
+	 PEoAec3U2upWvdm17a7u/qK8phqzNEQ+lkBIk+5zAT76lFV/11DaxyTJXTqengfniS
+	 hC0yvQN4vJbLLm7jfAmLjM7RdcmiBAnYl5itjyaDfIJK6EVmrG53k6Z7gqxMeINonp
+	 0VKy9QwSb3BkJ9gRcC4FnSsmQNzEuA4ky9YrKa7oFu4I0iWRDRcYh79sAmv+CMT1xX
+	 2oIZyKFeD31wg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260323-omap4-fix-usb-support-v1-3-b668132124ac@bootlin.com>
+Date: Tue, 31 Mar 2026 15:45:49 +0000
+From: Rustam Adilov <adilov@disroot.org>
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stanley
+ Chang <stanley_chang@realtek.com>, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Michael Zavertkin
+ <misha.zavertkin@mail.ru>
+Subject: Re: [PATCH v2 2/6] phy: realtek: usb2: introduce read and write
+ functions to driver data
+In-Reply-To: <20260330211918.y7su36j47e3uelcv@skbuf>
+References: <20260327160638.15134-1-adilov@disroot.org>
+ <20260327160638.15134-3-adilov@disroot.org>
+ <20260330211918.y7su36j47e3uelcv@skbuf>
+Message-ID: <bd7475a1702711073b7fa7e8034eb8d3@disroot.org>
+X-Sender: adilov@disroot.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283083-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[iki.fi,kemnade.info,baylibre.com,kernel.org,atomide.com,gmail.com,bootlin.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,realtek.com,lists.infradead.org,vger.kernel.org,mail.ru];
+	TAGGED_FROM(0.00)[bounces-283084-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[disroot.org:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,ti.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 470D436C665
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,disroot.org:dkim,disroot.org:mid]
+X-Rspamd-Queue-Id: DF44436C62A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 23 Mar 2026, Thomas Richard wrote:
-
-> Remove unused includes (linux/kernel.h, linux/types.h and linux/delay.h).
-> Sort the remaining ones alphabetically.
-
-What about 'linux/slab.h'?
-
-> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
-> ---
->  drivers/mfd/omap-usb-host.c | 10 +++-------
->  1 file changed, 3 insertions(+), 7 deletions(-)
+Hello,
+On 2026-03-30 21:19, Vladimir Oltean wrote:
+> On Fri, Mar 27, 2026 at 09:06:34PM +0500, Rustam Adilov wrote:
+>> +static inline u32 phy_read(void __iomem *reg)
+>> +{
+>> +	return readl(reg);
+>> +}
+>> +
+>> +static inline u32 phy_read_le(void __iomem *reg)
+>> +{
+>> +	return le32_to_cpu(readl(reg));
+>> +}
+>> +
+>> +static inline void phy_write(u32 val, void __iomem *reg)
+>> +{
+>> +	writel(val, reg);
+>> +}
+>> +
+>> +static inline void phy_write_le(u32 val, void __iomem *reg)
+>> +{
+>> +	writel(cpu_to_le32(val), reg);
+>> +}
 > 
-> diff --git a/drivers/mfd/omap-usb-host.c b/drivers/mfd/omap-usb-host.c
-> index 4d29a6e2ed87abf2a0f6d5a704525baaa6f0cbcb..4e066a17cef0400edbfcb3012a16ceee06e52140 100644
-> --- a/drivers/mfd/omap-usb-host.c
-> +++ b/drivers/mfd/omap-usb-host.c
-> @@ -6,19 +6,15 @@
->   * Author: Keshava Munegowda <keshava_mgowda@ti.com>
->   * Author: Roger Quadros <rogerq@ti.com>
->   */
-> -#include <linux/kernel.h>
-> -#include <linux/module.h>
-> -#include <linux/types.h>
-> -#include <linux/slab.h>
-> -#include <linux/delay.h>
->  #include <linux/clk.h>
->  #include <linux/dma-mapping.h>
-> -#include <linux/platform_device.h>
-> +#include <linux/err.h>
-> +#include <linux/module.h>
->  #include <linux/platform_data/usb-omap.h>
-> +#include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/of.h>
->  #include <linux/of_platform.h>
+> Please don't name driver-level functions phy_read() and phy_write().
+> That will collide with networking API functions of the same name and
+> will make grep-based code searching more difficult.
 
-This is still not alphabetical.
+I can change it to something like "rtk_phy_read" or "usb2phy_read" then.
 
--- 
-Lee Jones [李琼斯]
+> Also, have you looked at regmap? It has native support for endianness;
+> it supports regmap_field_read()/regmap_field_write() for abstracting
+> registers which may be found at different places for different HW;
+> it offers regmap_read_poll_timeout() so you don't have to pass the
+> function pointer to utmi_wait_register(). It seems the result would be a
+> bit more elegant.
+
+In fact, I did not because it would involve in way more refactoring for patch 
+series that is supposed to simply add RTL9607C support. And unfortunately, 
+the regmap is not going to the solve the issue, which i will explain in the
+later email to your LLM review on readl/writel.
 
