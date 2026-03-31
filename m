@@ -1,149 +1,156 @@
-Return-Path: <devicetree+bounces-283037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283038-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CCDKOhjby2lHMAYAu9opvQ
-	(envelope-from <devicetree+bounces-283037-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:32:56 +0200
+	id 6NsbNG3cy2lHMAYAu9opvQ
+	(envelope-from <devicetree+bounces-283038-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:38:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8A436B034
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:32:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5164436B0F7
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:38:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E0194309D72A
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 14:25:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 39CC9304EEB0
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 14:32:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A75B63FB07E;
-	Tue, 31 Mar 2026 14:25:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C36D33FB7F0;
+	Tue, 31 Mar 2026 14:32:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="a0bZEJnp"
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="GP9+xnAv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 400013FB055;
-	Tue, 31 Mar 2026 14:25:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3723FB7DA
+	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 14:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774967105; cv=none; b=p73keSCY9BzJmrVafpSf8VW+zW3iTOig0SBixpuYYfGUdbl9i92B+HFHleO1gImi4SqsSWYqUgX9jdbx+t2Rv15KusMdj6CYRTLJbTFxMh56w2hMRYD1lf7vlk0wErXmNC2LermUYHPOZxA0IC53BscJc7aC0OcDwswNFoXZ8R8=
+	t=1774967532; cv=none; b=dRiKjKLKGoF3NWIzWalo5dEl3KlgspBiC58IQIQJb00jykjDv911sQlDaXc/jSNj2YAi0E1rI64GbNnXV2UBXwiomeFB9jwjof0jDeZ6GNoLcihKSUYa2LtsIeoogkS9T6Dg1GGoR+nVbGwSqIXyxY7exq/HtopssdFzSRCmle0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774967105; c=relaxed/simple;
-	bh=qxFJoJrGjwGTRee41XbDZD3ZEy53tTIFlBC7/ii6Ca4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=or7j/pgoDu+JFNzMXjZGhdXtdsCaUEdToFuVyiyvDRYdLy2NMpQhzv6nRFkB2tIuKeZaIMAW3yQ079tEnjktd1UFNwq9nz3u/R+xX5V5iSq7RPenxYfJrt6xJEdRjcZOGTyZKB/9GQAqtDELTeQ9qNDuLgBdqD5snstuXaaIIq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=a0bZEJnp; arc=none smtp.client-ip=65.21.61.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774967095;
-	bh=qxFJoJrGjwGTRee41XbDZD3ZEy53tTIFlBC7/ii6Ca4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=a0bZEJnpqeyKwOWOkSPeSi4pxe5mTrY6EpukajDGCWdWkauJy8OSI4v+YdYIXvEtQ
-	 feBpiHZPWWNP2FO6XJYZINfn99xKEa1dF3BRDut9OPHd2aOWarrujIP5UZZg9cplVx
-	 PLcUpscbF0nSC8MiFyR2DEGphqBmk8TUi1OZ0btU=
-Date: Tue, 31 Mar 2026 16:24:05 +0200
-Subject: [PATCH 2/2] arm64: dts: amlogic: t7: Fix missing required reset
- property
+	s=arc-20240116; t=1774967532; c=relaxed/simple;
+	bh=iNxOjW15bAhGECqyOpje5IdokDrygM3OjbtlLkrF2ss=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bXlIrVgwmMzwHErzyvnp2xxbcjt9MWOHLyLEmkyrrPLlc3osaeAXRS8Bhkuo/GQQAU6R6AglJ27CSqSfoUYpI7vmeMdMMm/BgqH4I9RkLYl+ObL+1gerzRopjFkUVUWdX7vRK0CnFpTCZ/426NvP/yPWnlPHee6XL5n69yf4L0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=GP9+xnAv; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 81D4D497F
+	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 07:32:04 -0700 (PDT)
+Received: from [192.168.0.1] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 22B813F641
+	for <devicetree@vger.kernel.org>; Tue, 31 Mar 2026 07:32:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1774967530; bh=iNxOjW15bAhGECqyOpje5IdokDrygM3OjbtlLkrF2ss=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GP9+xnAvW7nrFk38SoWC6uHBt8+HZKxwqiuYKAW1tbkOjtKroRRi9pDIwE8vaEfnS
+	 2vJLGsTInQoI1x+QVfPS43WXBZBeeH2ETxw3yU8/GYVNMsK0861rWtX7q9deZQAHzt
+	 rapqdzbowTeIB9MwZzJDXODd+sj91Lr7X5TwE2yQ=
+Date: Tue, 31 Mar 2026 15:31:49 +0100
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Guangliu Ding <guangliu.ding@nxp.com>
+Cc: Daniel Almeida <daniel.almeida@collabora.com>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Steven Price <steven.price@arm.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Jiyu Yang <jiyu.yang@nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: gpu: mali-valhall-csf: Document i.MX952
+ support
+Message-ID: <acva1Xt8V4k9-uG8@e142607>
+References: <20260331-master-v1-0-65c8e318d462@nxp.com>
+ <20260331-master-v1-1-65c8e318d462@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260331-fix-aml-t7-null-reset-v1-2-eb95b625234c@aliel.fr>
-References: <20260331-fix-aml-t7-null-reset-v1-0-eb95b625234c@aliel.fr>
-In-Reply-To: <20260331-fix-aml-t7-null-reset-v1-0-eb95b625234c@aliel.fr>
-To: Philipp Zabel <p.zabel@pengutronix.de>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1774967093; l=1561;
- i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=qxFJoJrGjwGTRee41XbDZD3ZEy53tTIFlBC7/ii6Ca4=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
- BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QCU4/Wz8ZteqVRTInB1DatMXwUnzpYxTf+Mh7GPkDkaMVHRrsViO/qJt3PtEoSYeXtPCurOZydp
- xH1XiXwnXfAo=
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
- fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260331-master-v1-1-65c8e318d462@nxp.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
+	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[pengutronix.de,linaro.org,baylibre.com,googlemail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[aliel.fr];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-283038-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-283037-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[collabora.com,google.com,arm.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,nxp.com,pengutronix.de,lists.freedesktop.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[aliel.fr:+];
-	NEURAL_HAM(-0.00)[-0.997];
+	FROM_NEQ_ENVFROM(0.00)[liviu.dudau@arm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[arm.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.1.87.192:email,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid,8c000:email]
-X-Rspamd-Queue-Id: 5C8A436B034
+	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email]
+X-Rspamd-Queue-Id: 5164436B0F7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-CHECK_DTBS shows missing reset required property in T7 DTBS.
-A new CHECK_DTBS with this patch does not show this anymore.
+On Tue, Mar 31, 2026 at 06:12:38PM +0800, Guangliu Ding wrote:
+> Add compatible string of Mali G310 GPU on i.MX952 board.
+> 
+> Signed-off-by: Guangliu Ding <guangliu.ding@nxp.com>
+> Reviewed-by: Jiyu Yang <jiyu.yang@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> index 8eccd4338a2b..6a10843a26e2 100644
+> --- a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> @@ -20,6 +20,7 @@ properties:
+>            - enum:
+>                - mediatek,mt8196-mali
+>                - nxp,imx95-mali            # G310
+> +              - nxp,imx952-mali           # G310
 
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+Can you explain why this is needed? Can it not be covered by the existing compatible?
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 02a303d4ec39d..5069f29d2fbb7 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -582,6 +582,7 @@ sd_emmc_a: mmc@88000 {
- 					 <&clkc_periphs CLKID_SD_EMMC_A>,
- 					 <&scmi_clk CLKID_FCLK_DIV2>;
- 				clock-names = "core", "clkin0", "clkin1";
-+				resets = <&reset RESET_SD_EMMC_A>;
- 				assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_A_SEL>;
- 				assigned-clock-parents = <&xtal>;
- 				status = "disabled";
-@@ -595,6 +596,7 @@ sd_emmc_b: mmc@8a000 {
- 					 <&clkc_periphs CLKID_SD_EMMC_B>,
- 					 <&scmi_clk CLKID_FCLK_DIV2>;
- 				clock-names = "core", "clkin0", "clkin1";
-+				resets = <&reset RESET_SD_EMMC_B>;
- 				assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_B_SEL>;
- 				assigned-clock-parents = <&xtal>;
- 				status = "disabled";
-@@ -608,6 +610,7 @@ sd_emmc_c: mmc@8c000 {
- 					 <&clkc_periphs CLKID_SD_EMMC_C>,
- 					 <&scmi_clk CLKID_FCLK_DIV2>;
- 				clock-names = "core", "clkin0", "clkin1";
-+				resets = <&reset RESET_SD_EMMC_C>;
- 				assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_C_SEL>;
- 				assigned-clock-parents = <&xtal>;
- 				status = "disabled";
+Best regards,
+Liviu
+
+>                - rockchip,rk3588-mali
+>            - const: arm,mali-valhall-csf   # Mali Valhall GPU model/revision is fully discoverable
+>  
+> 
+> -- 
+> 2.34.1
+> 
 
 -- 
-2.49.0
-
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
 
