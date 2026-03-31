@@ -1,39 +1,40 @@
-Return-Path: <devicetree+bounces-283094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283096-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sHUnF3n+y2mcNAYAu9opvQ
-	(envelope-from <devicetree+bounces-283094-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 19:03:53 +0200
+	id oLYDKNv3y2kXNAYAu9opvQ
+	(envelope-from <devicetree+bounces-283096-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 18:35:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1E0F36DC4C
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 19:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0E736CCF1
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 18:35:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2A7393136AF6
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:28:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8AA9F313CBAD
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 16:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C01423149;
-	Tue, 31 Mar 2026 16:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39002423A76;
+	Tue, 31 Mar 2026 16:28:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D442D41B373;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFFCB3E3174;
 	Tue, 31 Mar 2026 16:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774974496; cv=none; b=jg5gickJsk7tGacKUd1CngT/tUUsIMwfIYH3B7ST1e+CcCDbIFVItEzi6KhmA/Q0MtNtf9NlRrUHPsEZoeLpu/SpXtexBaZpVv3AIk8frYu9x/aq68dpjZqNAPyCE+Y9QLvdA4KsE/XUWwl5aFZ/uiuzeB9ny6oXm6nP+QIYcXI=
+	t=1774974497; cv=none; b=CyEnKU6SZLAeffJdmyKYmZiicElEXi1b++MBahKJDXeSUJTvDGxo+7XH6QPLnn/xY9GVUEFgLeNyGoy1uGn8di9lJhdJ/e/7SHNwQMKkuXiUBM0JeCBMQJ1h8Z3gjHFWnhmnztWze33/MifYlVzVnacmUFUZ9lSt1Wl3L7lOTts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774974496; c=relaxed/simple;
-	bh=si4UrFoSQ/fDfn1c15vSAzTg5zy9GQ8SHB8w7nL6P7I=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NT+98UWFS/H0wtDTeLJt872Lgy33dJ+vzCNpOo6ds5sFdta/HVy7NBsWJBFHjEt1KFkrTlw+uexKOoDerF9koiyfWx0fCgH90Rtguhj0ZaVLZb0D/ynqmmbfnbDZoa+0ds3hb6Cdn4Tp7dEVUAmxbXJLXkw+6jdarbJKISJ2XaA=
+	s=arc-20240116; t=1774974497; c=relaxed/simple;
+	bh=jpwxRVLKPoVZv9Fo4wEaj2y+VUHAF/4aKGEQRzoJzpY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=p3O4cIi9tL5fbNfgnz53rFtfO3p4H2ep0gM2lysIEjGnxasTi3qZdNE4xwHfuo2DWHU/QCbDeP6aDgG4WDquLT/9oxOlQWMNgbZvax1OkaYdnVl9KW498ZjfHpYqH+fHaA2fsyMGsaD+P0TI1W26zYolZnwFpdreT8gMAVgIxCw=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
 Received: from localhost.localdomain (unknown [223.166.95.230])
-	by APP-05 (Coremail) with SMTP id zQCowAC3TBAO9stphZUSDA--.56709S2;
-	Wed, 01 Apr 2026 00:27:58 +0800 (CST)
+	by APP-05 (Coremail) with SMTP id zQCowAC3TBAO9stphZUSDA--.56709S3;
+	Wed, 01 Apr 2026 00:27:59 +0800 (CST)
 From: Han Gao <gaohan@iscas.ac.cn>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -50,10 +51,12 @@ Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Han Gao <rabenda.cn@gmail.com>,
 	Han Gao <gaohan@iscas.ac.cn>
-Subject: [PATCH v4 0/3] riscv: dts: spacemit: Add PMIC regulators usb pcie
-Date: Wed,  1 Apr 2026 00:27:53 +0800
-Message-ID: <cover.1774974017.git.gaohan@iscas.ac.cn>
+Subject: [PATCH v4 1/3] riscv: dts: spacemit: Enable i2c8 adapter for OrangePi RV2
+Date: Wed,  1 Apr 2026 00:27:54 +0800
+Message-ID: <894c94e9d087c6a924146bda9a5649c424de320b.1774974017.git.gaohan@iscas.ac.cn>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1774974017.git.gaohan@iscas.ac.cn>
+References: <cover.1774974017.git.gaohan@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,24 +64,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowAC3TBAO9stphZUSDA--.56709S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7tw1kKFy3XFyUuFyftw1kKrg_yoW8KF1rpF
-	y29r45uw45Xr12y393u39xJr15K3W8Ar9xWr1UKw48ArnFgay7Xa1xtr4avF9xur45tFnx
-	trs7Aw4xur4xAF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
-	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
-	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
-	n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
-	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
-	67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
-	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
-	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
-	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
-X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiCQ4DDGnLnsOVcgABsR
+X-CM-TRANSID:zQCowAC3TBAO9stphZUSDA--.56709S3
+X-Coremail-Antispam: 1UD129KBjvdXoW7Xry5AF4DWFyxCFyDZFyxZrb_yoW3GrX_CF
+	13Gay0vFyUGFWvkFnrXr1rtayxu3y5KrWSywnaqr1UGasYgrWrKFWUKF4kJw1rurWYvrW3
+	Jw48tFyxJwnIkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbk8FF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUGwA2048vs2IY02
+	0Ec7CjxVAFwI0_Gr0_Xr1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+	wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
+	x0Y4vEx4A2jsIE14v26r4j6F4UM28EF7xvwVC2z280aVCY1x0267AKxVW8JVW8Jr1le2I2
+	62IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcV
+	AFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG
+	0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI
+	1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_
+	Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17
+	CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0
+	I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I
+	8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73
+	UjIFyTuYvjfU8XdbUUUUU
+X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiDAgDDGnL4tU3VwAAs+
 X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
@@ -88,7 +92,7 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-283094-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283096-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -103,53 +107,37 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.622];
+	NEURAL_HAM(-0.00)[-0.970];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:mid]
-X-Rspamd-Queue-Id: C1E0F36DC4C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:email,iscas.ac.cn:mid]
+X-Rspamd-Queue-Id: 4B0E736CCF1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Changes in v4:
- - Drop reg_dc_in
- - Drop vin-supply from reg_vcc_4v
- - Rename regulator-name to match schematic net names: vcc4v0, pcie_vcc3v3
- - Remove aldo2, aldo3, aldo4, dldo2, dldo3, dldo7 nodes
- - Drop usb3_hub_5v, no device consumer
- - Drop vdd-supply from USB hub nodes, hub is powered by always-on VCC_5V0
- - Drop "identical to BPI-F3" claim from commit message
- - Link to v3: https://lore.kernel.org/all/cover.1774803532.git.gaohan@iscas.ac.cn/
+The adapter is used to access the SpacemiT P1 PMIC present in this board.
 
-Han Gao (3):
-  riscv: dts: spacemit: Enable i2c8 adapter for OrangePi RV2
-  riscv: dts: spacemit: Define the P1 PMIC regulators for OrangePi RV2
-  riscv: dts: spacemit: Enable USB3.0/PCIe on OrangePi RV2
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+---
+ arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
- .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 171 ++++++++++++++++++
- 1 file changed, 171 insertions(+)
-
-
-base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
-prerequisite-patch-id: ef6e9c7b5854d0c08066b72f9a7868db8c2140eb
-prerequisite-patch-id: cfe3800f8c791ec4c63e070af9628e88e0fc31b9
-prerequisite-patch-id: b76493e625ae257c8adcd67874178458420e4d47
-prerequisite-patch-id: 88e01dc92c83bd88ddeb78891d3088209fed8d6b
-prerequisite-patch-id: 60336d10ab8322c70596d0f046b6b5c54bb24b54
-prerequisite-patch-id: 68c4d869548687dc115dd91e2ffb8f4c11482d86
-prerequisite-patch-id: fdadcf964c2cb3406160edb579d99a8d5695f8e6
-prerequisite-patch-id: 73b9e745338b0499b849fa4f7f9508987ab39a59
-prerequisite-patch-id: cd26770c2160c3c31a406bd8a6b01ab666180ae0
-prerequisite-patch-id: e5dfddc32cefae195692da8b80e19adf086e4ad7
-prerequisite-patch-id: 7fd53cbe4977598f26148a4bb1cf692bbdb79a09
-prerequisite-patch-id: 96ebac57bb29619b97fe95422206a685825618e9
-prerequisite-patch-id: 00fac16b52f60383db3140e2885f3f7f8d14dd1a
-prerequisite-patch-id: 3b7a60047b922c48e93599f621cb738856f42354
-prerequisite-patch-id: 275c030b963be05dd1041451f539a130ce614277
-prerequisite-patch-id: 93963424b0871e64276af0e0b2199b52e29b4603
-prerequisite-patch-id: 8383188b1c01ed6280629faaa29c37d699ade241
-prerequisite-patch-id: 5f8126b912b924d63d4a1e0c5eb42d212eb0d369
-prerequisite-patch-id: e80af628a2e0b5f2eeb3cb1b5e7133d08bdd2c4e
-prerequisite-patch-id: 0234a6dca15eb91f98a45a46604ce5b4935048a5
+diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+index 7b7331cb3c72..93880ba7bdfe 100644
+--- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
++++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+@@ -87,6 +87,12 @@ &pdma {
+ 	status = "okay";
+ };
+ 
++&i2c8 {
++	pinctrl-0 = <&i2c8_cfg>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_2_cfg>;
 -- 
 2.47.3
 
