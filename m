@@ -1,179 +1,191 @@
-Return-Path: <devicetree+bounces-283132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283133-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +GDeGJ4LzGnGNgYAu9opvQ
-	(envelope-from <devicetree+bounces-283132-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 19:59:58 +0200
+	id cNSaKh0NzGnGNgYAu9opvQ
+	(envelope-from <devicetree+bounces-283133-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 20:06:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FAE436F9A9
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 19:59:58 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AEFE36FB06
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 20:06:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6D1B8303760F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 17:56:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 65C51315AC4B
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 17:58:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E1644A723;
-	Tue, 31 Mar 2026 17:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D43A944B662;
+	Tue, 31 Mar 2026 17:57:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="G1Rr/TMQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pRSW3mjQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFFE53D5227;
-	Tue, 31 Mar 2026 17:56:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD9211448D5;
+	Tue, 31 Mar 2026 17:57:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774979804; cv=none; b=aJyH9WAUebfRLSzCwlIqga1cXxnCbFGBCpno/u+LKRMgtvLveas6OOd1Ozn73cVgxUFBtPaxIu6DqEjl2obFOAGzbYXlDzWzDtwP4+4IoKSwk9YTaOR3feVNgx5n0JPwl8SVxOZ7Cp5+Pb/u06tzjkSlf8mbCZKuc4gIRwUJ3NE=
+	t=1774979863; cv=none; b=QwTYj52ZkvZ3pHarR3z9mp6ucR8Yes2Yf1SqpcTYRrEANXLt8Uopg/5nkJTWAPHVTnbciQMNJb2jVnsLmnM0sYifiOD2fY6jGGccabEcp/lkH5D298b/kiAbtpTnWe4H+IOMVK5CF/zuNNLJcQb8sYzDwcWsGH8g6dqlWIMi2bQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774979804; c=relaxed/simple;
-	bh=TcZWBzzpqTS7aPD+ZnOCeM/2iUYCY9wQrFL9paJkYx8=;
+	s=arc-20240116; t=1774979863; c=relaxed/simple;
+	bh=jRshRvrfE1K59jC2hI9BuHoXj8it76oESI+BdTN4Kgc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=clTbBrUZYfSrYpQ/9AoKe/DAJZ4nqHL2ityCDLlLzvZ+bQ0Yq1mXxL85pSKBRwX9ODqs5kGmgPafJbESAS7RH/HcszB7Nxw3bNtjTil1SEs70A6BZf0YSZxQuuXUL7daX0b7m7jXxL6hQeYY/GPyOiTQjDORmKcOltP72OAeEYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=G1Rr/TMQ; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774979802; x=1806515802;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=TcZWBzzpqTS7aPD+ZnOCeM/2iUYCY9wQrFL9paJkYx8=;
-  b=G1Rr/TMQKqk7w9CtAWxbppxiam0oLIIMi1Ytb1yq9KfvYmRI+TOyoAo/
-   uKlP5x/hx2Z5F4TB192TKzb3MzV2CV3DdFLmCpnV0WrCMtYj1h2yL+a8+
-   UJz4aJjBKZ5HXWSwiVLmsrLn3uYrz8UqAvL0L5mLWux1t+LUCPAr18Pat
-   7TEAiHidZTvf4ZiGd9U/wSD8/wzH/qi5+kxHEFZgyUp9RptoTu24TZN14
-   4ezlrxe+TX+D2ZWLmDbPUVTWD0ahVbMeBw/Jsnt58UyQD2MeHvoQFD+u4
-   MwWOj6nOsVHHVglpigWRYo/NqMYwSyIObLXrl6LcCB1GtpAFJ2cEh49DI
-   Q==;
-X-CSE-ConnectionGUID: cJX5dCRjSS69CDlzJEqUKg==
-X-CSE-MsgGUID: 7b6FKjxjR7KZvhtjZDR7rg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="87078491"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; 
-   d="scan'208";a="87078491"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2026 10:56:40 -0700
-X-CSE-ConnectionGUID: vgGp7BthSbC+6Z49GyWWcA==
-X-CSE-MsgGUID: z3szsMWpQeymP90If8fszQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; 
-   d="scan'208";a="230501581"
-Received: from lkp-server01.sh.intel.com (HELO 283bf2e1b94a) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 31 Mar 2026 10:56:33 -0700
-Received: from kbuild by 283bf2e1b94a with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w7dKI-00000000463-3PEk;
-	Tue, 31 Mar 2026 17:56:30 +0000
-Date: Wed, 1 Apr 2026 01:55:46 +0800
-From: kernel test robot <lkp@intel.com>
-To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
-	linux-mediatek@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, Fabien Parent <parent.f@gmail.com>,
-	Val Packett <val@packett.cool>,
-	Luca Leonardo Scorcia <l.scorcia@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=OqIUjx+Qii8JXHm4KmXSVhP7Yd5i/B6lP0R4NZqWPRhEJF98tow2tczNiPzzRXkkh4IuhY1MDRoeYeKvWraoHniig6I96nZiX6lTX4CRb4MMJNXfphmiveirigyE0I08d+45+B4TqbZOgiF7tlJGFMXA2N4XDBZoQCPXuxoZvZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pRSW3mjQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F3D1C19423;
+	Tue, 31 Mar 2026 17:57:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774979863;
+	bh=jRshRvrfE1K59jC2hI9BuHoXj8it76oESI+BdTN4Kgc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pRSW3mjQ48Dt/YlOJZnRKmYJu7Y2M4fgwblouezDaGCDM0um5+fik1vNIg59W0cXj
+	 0cZvXUClUM4+UNePXX4WB0SJFTDN8iEHo9f56aJmOlDiOql3qGRKcRcMvN/mAiQOBZ
+	 VaeXT05O0+C63Whi7bzNO0ZHVmRr2euuM7MUrrStZPJd64SaT0OxUec/z+YugZWkVA
+	 77YgXyRYuSHmOf3M/WdQjfZG3fc0voAk9b1MBaMWAHYYMx8EFUO+P7800CuoUx7bkj
+	 JJ7anQ/lJlIEO6+6J8f9y9IQfLGjiF7jGcUDogoN0t6y8G+pDwaohQ0l7Xw8PAiFt6
+	 LvER2PUbeI4ug==
+Date: Tue, 31 Mar 2026 18:57:37 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Han Gao <gaohan@iscas.ac.cn>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Julien Massot <julien.massot@collabora.com>,
-	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
-	Gary Bisson <bisson.gary@gmail.com>,
-	Chen Zhong <chen.zhong@mediatek.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v4 7/9] regulator: Add MediaTek MT6392 regulator
-Message-ID: <202604010103.FzAGRPye-lkp@intel.com>
-References: <20260330083429.359819-8-l.scorcia@gmail.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Zixian Zeng <sycamoremoon376@gmail.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Han Gao <rabenda.cn@gmail.com>, stable@vger.kernel.org
+Subject: Re: [PATCH 2/2] riscv: dts: sophgo: Add dma-coherent to SG2042 PCIe
+ controllers
+Message-ID: <20260331-outlet-molehill-939c0daacd06@spud>
+References: <20260331171248.973014-1-gaohan@iscas.ac.cn>
+ <20260331171248.973014-3-gaohan@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="m8oXAjQqyBqcuv3C"
 Content-Disposition: inline
-In-Reply-To: <20260330083429.359819-8-l.scorcia@gmail.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+In-Reply-To: <20260331171248.973014-3-gaohan@iscas.ac.cn>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,gmail.com,packett.cool,collabora.com,kernel.org,mediatek.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	TAGGED_FROM(0.00)[bounces-283132-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283133-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,lists.infradead.org];
+	FREEMAIL_CC(0.00)[google.com,kernel.org,outlook.com,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,01.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3FAE436F9A9
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[164.237.145.128:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,iscas.ac.cn:email,164.249.198.128:email,164.219.66.0:email,164.207.13.0:email]
+X-Rspamd-Queue-Id: 1AEFE36FB06
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Luca,
 
-kernel test robot noticed the following build warnings:
+--m8oXAjQqyBqcuv3C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on lee-mfd/for-mfd-next]
-[also build test WARNING on broonie-regulator/for-next linusw-pinctrl/devel linusw-pinctrl/for-next lee-mfd/for-mfd-fixes linus/master v7.0-rc6 next-20260330]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Wed, Apr 01, 2026 at 01:12:48AM +0800, Han Gao wrote:
+> SG2042's PCIe root complexes are cache-coherent with the CPU. Mark all
+> four PCIe controller nodes (pcie_rc0 through pcie_rc3) as dma-coherent
+> so the kernel uses coherent DMA mappings instead of non-coherent bounce
+> buffering.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Luca-Leonardo-Scorcia/dt-bindings-mfd-mt6397-Add-MT6392-PMIC/20260331-081127
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-patch link:    https://lore.kernel.org/r/20260330083429.359819-8-l.scorcia%40gmail.com
-patch subject: [PATCH v4 7/9] regulator: Add MediaTek MT6392 regulator
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20260401/202604010103.FzAGRPye-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260401/202604010103.FzAGRPye-lkp@intel.com/reproduce)
+Worth pointing out I guess that this property is needed, despite riscv
+being coherent by default, because the whole bus is marked
+dma-noncoherent.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202604010103.FzAGRPye-lkp@intel.com/
+>=20
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+> ---
+>  arch/riscv/boot/dts/sophgo/sg2042.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts=
+/sophgo/sg2042.dtsi
+> index 9fddf3f0b3b9..3af770549742 100644
+> --- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
+> @@ -417,6 +417,7 @@ pcie_rc0: pcie@7060000000 {
+>  			vendor-id =3D <0x1f1c>;
+>  			device-id =3D <0x2042>;
+>  			cdns,no-bar-match-nbits =3D <48>;
+> +			dma-coherent;
+>  			msi-parent =3D <&msi>;
+>  			status =3D "disabled";
+>  		};
+> @@ -439,6 +440,7 @@ pcie_rc1: pcie@7060800000 {
+>  			vendor-id =3D <0x1f1c>;
+>  			device-id =3D <0x2042>;
+>  			cdns,no-bar-match-nbits =3D <48>;
+> +			dma-coherent;
+>  			msi-parent =3D <&msi>;
+>  			status =3D "disabled";
+>  		};
+> @@ -461,6 +463,7 @@ pcie_rc2: pcie@7062000000 {
+>  			vendor-id =3D <0x1f1c>;
+>  			device-id =3D <0x2042>;
+>  			cdns,no-bar-match-nbits =3D <48>;
+> +			dma-coherent;
+>  			msi-parent =3D <&msi>;
+>  			status =3D "disabled";
+>  		};
+> @@ -483,6 +486,7 @@ pcie_rc3: pcie@7062800000 {
+>  			vendor-id =3D <0x1f1c>;
+>  			device-id =3D <0x2042>;
+>  			cdns,no-bar-match-nbits =3D <48>;
+> +			dma-coherent;
+>  			msi-parent =3D <&msi>;
+>  			status =3D "disabled";
+>  		};
+> --=20
+> 2.47.3
+>=20
 
-All warnings (new ones prefixed by >>):
+--m8oXAjQqyBqcuv3C
+Content-Type: application/pgp-signature; name="signature.asc"
 
->> drivers/regulator/mt6392-regulator.c:181:18: warning: 'ldo_volt_table1b' defined but not used [-Wunused-const-variable=]
-     181 | static const u32 ldo_volt_table1b[] = {
-         |                  ^~~~~~~~~~~~~~~~
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCacwLDgAKCRB4tDGHoIJi
+0rArAP4jBTmKxYWxfFJLKueDpo+mSl4SPqf6k8s8stuypnj0hgD+KEB3KaSC2+G8
+0eWLoouJWr9QngLJgCKU1PJoXs9bvA8=
+=eHvS
+-----END PGP SIGNATURE-----
 
-vim +/ldo_volt_table1b +181 drivers/regulator/mt6392-regulator.c
-
-   180	
- > 181	static const u32 ldo_volt_table1b[] = {
-   182		1500000, 1800000, 2500000, 2800000,
-   183	};
-   184	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--m8oXAjQqyBqcuv3C--
 
