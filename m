@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-282986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282987-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wNQ8CzS+y2kiLgYAu9opvQ
-	(envelope-from <devicetree+bounces-282986-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 14:29:40 +0200
+	id EK7sCWS+y2kiLgYAu9opvQ
+	(envelope-from <devicetree+bounces-282987-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 14:30:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 868C136979F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 14:29:39 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 196773697CC
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 14:30:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B4F15308286F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 12:23:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0FCBA301BD7E
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 12:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D4BB3E1CE4;
-	Tue, 31 Mar 2026 12:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAEAF3E2769;
+	Tue, 31 Mar 2026 12:30:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="bLomtK/b"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="a2u0lPA6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61393E1D03;
-	Tue, 31 Mar 2026 12:23:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544FE3B0AD0;
+	Tue, 31 Mar 2026 12:30:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774959837; cv=none; b=GaLCmKeCys2W1SFNKIr/p6GDuR2fQ2F1HWxEIQ4YXDQ8TUEwwc/j5VNsgKVliqAH93jNyADt0TECk9mXpGom0vjHvucG6XnzLwYuTi+II19Btc7JR/9ohm1/JnifBBskWGPJCoJgCraqz3cfLPUjbjKUUrDttBt743XHDbiaksU=
+	t=1774960214; cv=none; b=Ac7HaKtHkWktCax6/FdPSNQ/xwowKCPAxNH+lS/rDDcb9zs+HMZ6a3wG8PNm1uZaO25UQmcr8Jl/yrTQVxKxdw/3SVMA0LVqwG/6pPMFtis8ZBIra4Gz0LVfI1givM+EmotD/RFoIZ6qffTFbkpp89lZgHTIkuUF2qO6fwUxL7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774959837; c=relaxed/simple;
-	bh=6EHU6i3Kxk1PsCup6AbdyOQktdihYokChOMhMY1WDMY=;
+	s=arc-20240116; t=1774960214; c=relaxed/simple;
+	bh=OQJlvwNf/qiW+LpcSodHYUethJ5VunVzGgHagnXmiXI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aGNmofD5NmHQjgIq5TPNww/x/NpW9MMAnNi5KNbXCOVCyxRIm9kUxtRdZGr6DWvPNXFyy/0ywJbaQdgpQkMaX8C5XvWoMd8IivM/IV0xUsQRURmBJdBpI7Sqt7rJbnznpArBDsj9xZCTQYhG8odZdE9lgAYerRZccmrFDR360mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=bLomtK/b; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=jPWN+uEv0QDUjGP/ihhzEVhBm1ulh7hJqQ0H8SCyFf6sLk7p5jw0onaxyRrUZVGv6z0df7+t9Q2adbMmOIR1HpUpN2ij95HVQkr6Qg+xDLcAi0RQ1e1Gd3PiICIcE4EneUoyKw5iTwCAkCdPuqNXRKdx8CJjai+vr/KhfljFVik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=a2u0lPA6; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -39,13 +39,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=dksMoYQmNn4rvPd11eAqblukoSAKuwPHp8JrhoOdYjk=; b=bLomtK/b0H07CzFlV5YH8R3djV
-	pdef76doN/DTo8CfsgGdBR6wIQik44SLikp9HhSGATx5w5ldmp48wltGiioRfdSj8t0ZFSAmX86Gc
-	OIXQIvoKgk7Cr1e+4HjapmJZL3AJA3RbjLvKxhUUmH033agnB+vgS0yCgGwGV1GG1pvs=;
+	bh=F79QCtXzXa5tHU8nSoJsDLLtDJfEeAlFOGFuiWskg7s=; b=a2u0lPA6a1owXhY222XCmt5PRQ
+	HyNtmWXoyPCyg0saKK1ARbzhPtBk6HS9rJI7aw82QyycL5iIkfJf/1f436p3si7Ove07SdyngQjsP
+	PflxpIrG6Ms6QGWUx9rSATQIWgXDvJ24472/z6ZKZP5oF6WPcr2h6dZ3d+2kUTc/P/ZU=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1w7Y8J-00EC3H-SQ; Tue, 31 Mar 2026 14:23:47 +0200
-Date: Tue, 31 Mar 2026 14:23:47 +0200
+	id 1w7YEK-00EC60-PP; Tue, 31 Mar 2026 14:30:00 +0200
+Date: Tue, 31 Mar 2026 14:30:00 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: Joris Vaisvila <joey@tinyisr.com>
 Cc: netdev@vger.kernel.org, horms@kernel.org, pabeni@redhat.com,
@@ -54,10 +54,11 @@ Cc: netdev@vger.kernel.org, horms@kernel.org, pabeni@redhat.com,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH net-next v2 3/4] net: dsa: initial MT7628 tagging driver
-Message-ID: <60abbf88-e97a-4c2d-acc3-ecf3dd338a80@lunn.ch>
+Subject: Re: [PATCH net-next v2 4/4] net: dsa: initial support for MT7628
+ embedded switch
+Message-ID: <d4f7ac51-5c46-4104-b657-23e5c4a375f8@lunn.ch>
 References: <20260330184017.766200-1-joey@tinyisr.com>
- <20260330184017.766200-4-joey@tinyisr.com>
+ <20260330184017.766200-5-joey@tinyisr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,18 +67,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260330184017.766200-4-joey@tinyisr.com>
+In-Reply-To: <20260330184017.766200-5-joey@tinyisr.com>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
 	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-282986-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-282987-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,redhat.com,google.com,davemloft.net,gmail.com];
@@ -91,30 +92,27 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[lunn.ch:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,tinyisr.com:email,lunn.ch:dkim,lunn.ch:email,lunn.ch:mid]
-X-Rspamd-Queue-Id: 868C136979F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tinyisr.com:email,lunn.ch:dkim,lunn.ch:email,lunn.ch:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 196773697CC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 30, 2026 at 09:40:16PM +0300, Joris Vaisvila wrote:
-> Add support for the MT7628 embedded switch's tag.
+On Mon, Mar 30, 2026 at 09:40:17PM +0300, Joris Vaisvila wrote:
+> Add support for the MT7628 embedded switch.
 > 
-> The MT7628 tag is merged with the VLAN TPID field when a VLAN is
-> appended by the switch hardware. It is not installed if the VLAN tag is
-> already there on ingress. Due to this hardware quirk the tag cannot be
-> trusted for port 0 if we don't know that the VLAN was added by the
-> hardware. As a workaround for this the switch is configured to always
-> append the port PVID tag even if the incoming packet is already tagged.
-> The tagging driver can then trust that the tag is always accurate and
-> the whole VLAN tag can be removed on ingress as it's only metadata for
-> the tagger.
+> The switch has 5 built-in 100Mbps user ports (ports 0-4) and one 1Gbps
+> port that is internally attached to the SoCs CPU MAC and serves as the
+> CPU port.
 > 
-> On egress the MT7628 tag allows precise TX, but the correct VLAN tag
-> from tag_8021q is still appended or the switch will not forward the
-> packet.
+> The switch hardware has a very limited 16 entry VLAN table. Configuring
+> VLANs is the only way to control switch forwarding. Currently 6 entries
+> are used by tag_8021q to isolate the ports. Double tag feature is
+> enabled to force the switch to append the VLAN tag even if the incoming
+> packet is already tagged, this simulates VLAN-unaware functionality and
+> simplifies the tagger implementation.
 > 
 > Signed-off-by: Joris Vaisvila <joey@tinyisr.com>
 
