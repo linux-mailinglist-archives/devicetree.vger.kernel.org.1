@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-282792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-282793-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eDF6CS9zy2k3HwYAu9opvQ
-	(envelope-from <devicetree+bounces-282792-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:09:35 +0200
+	id WPnZKexzy2k3HwYAu9opvQ
+	(envelope-from <devicetree+bounces-282793-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:12:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86139364CEC
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:09:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FBA0364E05
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 09:12:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 955993078C37
-	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 07:05:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 305AD304503F
+	for <lists+devicetree@lfdr.de>; Tue, 31 Mar 2026 07:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A803B7767;
-	Tue, 31 Mar 2026 07:05:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5491D3B6379;
+	Tue, 31 Mar 2026 07:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GUA6qHvD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CxRRxED9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D503B6C11;
-	Tue, 31 Mar 2026 07:05:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F32038F64F;
+	Tue, 31 Mar 2026 07:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774940753; cv=none; b=iQsvj3edFlgeQWykvIEOFvR4ZQ+sWIO9ZUPo/jMS9Dze2rWUyn4AOAGxeD7l4i+lflWc05hQj+M1N61Iq0Ld5vDn7NYsHBEGFvEv7vFyz2wdpauK+g82BQJ1ZYB3EX5L2mGx+hQ+y9hGCtwlo8E6+pleyxU6vyQhqJj6tPKY3TQ=
+	t=1774940833; cv=none; b=qK/DC0BKrepLBMOvZkNz99iUlRLllBgS9L7RipMiuZJ+aPIxpawJUI9/+N0io1jUxH/CSOxUCRu/V6+QcsZWnSF6UPdBlfcxUVY84msTo0y1r4tskWCNeVEWP9Kjnbt+F1sytMP4lH22Ms1s0VUy+rCoOXFdu0EzidX0eNuEsDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774940753; c=relaxed/simple;
-	bh=KFUGUbZlt5y+7LRJYgMDfqipV4WSv3ujjJvVX13vUJU=;
+	s=arc-20240116; t=1774940833; c=relaxed/simple;
+	bh=WJMm/nvo7FEQhOodLq5J4+rqkrG//GrGouln67Ry4Ms=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DhNeWrq+MAtfRVCrCMqcAXyhJINfqD/ke/AH09WhiYD301r2LCAvf3ilZQCLhEo5R6BXvKlemZE7kHG4VaJHgL28h1p911atEti/7m91Bq73/xLkInsWZpAMdZO2xtYvAGj3B/NeTDXSN1iww9j5+lbF2HlsHWUO9b1z54c1Y7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GUA6qHvD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D92AC19424;
-	Tue, 31 Mar 2026 07:05:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tfp1aRYPWxL7mv8HEo5HGJFXaKDihtbIS3WjQN60n/V8qNnOwJJhtaS3yt0jMGc6auHFZ104OVtmVv3VEGKzS2YpKHYt5hyAF/3UIY0DYDO+BLX796N4PT6dbJ4lhncc5ctg8gzbwt02m0LpENqKo814D8P8Tc2YwLxEo0os5Oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CxRRxED9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40B5AC19423;
+	Tue, 31 Mar 2026 07:07:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774940753;
-	bh=KFUGUbZlt5y+7LRJYgMDfqipV4WSv3ujjJvVX13vUJU=;
+	s=k20201202; t=1774940832;
+	bh=WJMm/nvo7FEQhOodLq5J4+rqkrG//GrGouln67Ry4Ms=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GUA6qHvDM2laEodb0eD4IOrmcC3rZGCMCM+flk+jlLkIo2VcLP64tcx3DMHoHWtmJ
-	 CC1bkoskwUw1Cm0ybVon5qZ5tfIncaSAThvmvHVEjnnb/X4aGqEJKGT1545OcdBLEG
-	 LKM8yAtGiBzfhbRZNJ85XRdPRiv2y7KC/GHcbldSppKo6CucsuCECVUU0zp9zG314Y
-	 43CLIl7g4FQ07ksYyhk/Hs06lBZ2k2bJsNlqowS6IKIpUeWFHpZPhdrROYeqGI3/Ji
-	 s8C/dH9e+Z8RPiwXetH7vb0vYu0/M+3EobUMONuVVG4jjxNdW1Tq/vyHy3Gx/l9Z62
-	 pAKhM3o8jw/rQ==
-Date: Tue, 31 Mar 2026 09:05:50 +0200
+	b=CxRRxED99NPCotdPXJIDyWH5414lBo5Rteagf6606fzViKRDxRTk7QYmxWbsZktt6
+	 fWfYEaUKIwxfYYZFoLQ6//+NQn4BqSfV/A5+N0lo27npVvXoMhnO/LGuzB2zVw2F2H
+	 O7wYyHJGAfZDPig57GBJ39VR+a8yXc2lTveN53Nv5JQVofWLJ2TIg+NourKHsIykXK
+	 QKoNxNTGAjeHIxcHTGDAKNLYBSfVh6UMP5Nh+325uV8QkyP/bwnBZBbWchTJLOLweM
+	 0vPZ8QhI17Ss1GqhLcyTmIIsLaU4QzZHbLoM+UBr78WpoR12P0xIQM4zDmJJV1x29e
+	 2HkwwMEjKnbrw==
+Date: Tue, 31 Mar 2026 09:07:10 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chancel Liu <chancel.liu@nxp.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, Frank.Li@nxp.com, shengjiu.wang@gmail.com, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] ASoC: dt-bindings: imx-card: Complete the full list
- of supported DAI formats
-Message-ID: <20260331-notorious-messy-salmon-1acc76@quoll>
-References: <20260331012450.1298115-1-chancel.liu@nxp.com>
+To: Shi Hao <i.shihao.999@gmail.com>
+Cc: andi.shyti@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	krzk+dt@kernel.org, linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	robh@kernel.org
+Subject: Re: [PATCH v3] dt-bindings: i2c: intel,ixp4xx-i2c: Convert to DT
+ schema
+Message-ID: <20260331-stoic-offbeat-pheasant-c90cfe@quoll>
+References: <20260330054439.9545-1-i.shihao.999@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,63 +62,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260331012450.1298115-1-chancel.liu@nxp.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <20260330054439.9545-1-i.shihao.999@gmail.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-282792-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-282793-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nxp.com,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,i.mx:url,nxp.com:email]
-X-Rspamd-Queue-Id: 86139364CEC
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2FBA0364E05
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 31, 2026 at 10:24:50AM +0900, Chancel Liu wrote:
-> Currently this binding only lists i2s and dsp_b formats that are used
-> by existing sound cards. However, DT bindings should describe the full
-> hardware capabilities rather than only the formats of current usage.
+On Mon, Mar 30, 2026 at 11:14:39AM +0530, Shi Hao wrote:
+> Convert the IOP3xx and IXP4xx XScale bindings to DT schema. This
+> conversion also adds the interrupts property, as it is used by the driver
+> and existing DTS files but was not documented in the original binding.
 > 
-> The SAI audio controller of i.MX audio sound card supports multiple DAI
-> formats, including:
->   - i2s
->   - left_j
->   - right_j
->   - dsp_a
->   - dsp_b
->   - pdm
->   - msb
->   - lsb
-> 
-> Complete the full list of formats supported by i.MX audio sound card to
-> ensure the binding correctly describes hardware.
-> 
-> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+> Signed-off-by: Shi Hao <i.shihao.999@gmail.com>
 > ---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
