@@ -1,179 +1,340 @@
-Return-Path: <devicetree+bounces-283557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283559-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iDsiFZ0zzWlwawYAu9opvQ
-	(envelope-from <devicetree+bounces-283557-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 17:02:53 +0200
+	id sJglBf82zWlwawYAu9opvQ
+	(envelope-from <devicetree+bounces-283559-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 17:17:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 500C937CA22
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 17:02:51 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375F237CE01
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 17:17:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DD9B93165C5C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 14:42:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CD9D1311ECC8
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 14:47:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE77F477E4C;
-	Wed,  1 Apr 2026 14:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 593D1477E2E;
+	Wed,  1 Apr 2026 14:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WsX83Rib"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="HQNj5fq1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6DA472789;
-	Wed,  1 Apr 2026 14:41:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83FF944B687;
+	Wed,  1 Apr 2026 14:45:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775054467; cv=none; b=Zqzofm7sk5PbCKa9A2yPvTIrsYcw9lPqqLMd6sKX0Yk97qI3dD+yDXZ74hBvFNymrDysvTIpAbssW2LRujDmBiZpvQsRC1kt9NDIlzzycJDmmMT2zds5TgZzQy357EMg1Y0gwbiJoyBO13RXgRNjEA4svYuv/3unJpyHTR1Edao=
+	t=1775054721; cv=none; b=blDAytQvqkj0dOJtOS4mNbbmTgoDk1F92Qu0Fvf2xFcr3gsMH9LBXaAPGGfamkaPxPWbb3st4tPPBheZvzBx8NJw1DbKiUyRINzuhelD+LJZXQDKlC/Zx0B/g2PkvV0NTGUdzYeQgRReRQZ71Q+I0UakZZZmzNaFA5RuGWctYJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775054467; c=relaxed/simple;
-	bh=TgjfJ9DwxAIF8WY3udzvv+dr98Azs03jjfDQs703n+k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m0T3m5XaO7qQkUcuHKT3iGMU2uE50NdZ0XyC5xsyOQF4sfuQA9uYmUjEUl8ZAZeC7069lEtwUN4/VvWopa0f6nhu/QP6jdWkG8RG3aEt/knNWDZhthUqNzWz7+Mpuqhso7f/yq/OC8mXPfT2r5J7bIPAf1TR/0VFRggUWKOPaKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WsX83Rib; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6581AC19423;
-	Wed,  1 Apr 2026 14:41:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775054467;
-	bh=TgjfJ9DwxAIF8WY3udzvv+dr98Azs03jjfDQs703n+k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WsX83Ribv38zaI3V2htPkFLab4N/Sjjucxt8ccy274mnMKq9dKvywOvb2Hs1SROrW
-	 xL3+P+Gyw2Q2qA5JzyhaEhCm6p+VIjVNqXAdOsRCjS5/IvDQ71PdMZGtNvNctnmyU1
-	 OKTeGIUehPf4V2S8bdo7aHepS9EfD36cBofs75fVJdywXXGFuPf74qJ6GWz+Ui3vQK
-	 UyMYELBU70577ZABGHU19vg69mFNjeN4gk30F1Lh1qD8wLqJ0AzpzrR/v+404ncu1v
-	 zeHzj0oFEsxAf6bdb+SgPAEyUuryvSD61jULa1p6Syew/83lfILSLrOGdPzhwpB1VD
-	 GN3G2ZlHxlBZw==
-Date: Wed, 1 Apr 2026 09:41:03 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Qiang Yu <qiang.yu@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] phy: qcom: qmp-pcie: Add Gen5 8-lanes mode for
- Glymur
-Message-ID: <ac0ubhTTsUNKHD__@baldur>
-References: <20260323-glymur_gen5x8_phy_0323-v2-0-ce0fc07f0e52@oss.qualcomm.com>
- <20260323-glymur_gen5x8_phy_0323-v2-4-ce0fc07f0e52@oss.qualcomm.com>
- <x3ts7to7c4qnorloahe7cgup3uekn4wolmmorqa3b3bjfslqfn@eijnzdp2ops3>
- <acua8Me0zo3v/CBi@hu-qianyu-lv.qualcomm.com>
+	s=arc-20240116; t=1775054721; c=relaxed/simple;
+	bh=rddPStbzk+Do50n9A1ISbAAfQVSDvDOgkiUirreABp4=;
+	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=VegVHbTE/4RK++/MpaV/+grrWusfpy4LgChGdtMN4d8Bv/NbEKYqmb7DVknx+CiAbksEHV/Y1n0bYmbQ/yFkr+h6eCRRRifQuFyTU3JPbXQjd2lrsZEShA66z9weZw/XmXxWGqCkV74mpwz4ftxzDziZcne+yBEaJN+ynf+NNNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=HQNj5fq1; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1775054719; x=1806590719;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=rddPStbzk+Do50n9A1ISbAAfQVSDvDOgkiUirreABp4=;
+  b=HQNj5fq16qmUSAaiVZTTN1P8j1wVZJmjgkJHLThnkneUMnNOzpVn5f0P
+   QK15FIXpabJShbfs2LlR2VOKW2zt2G9cTlKZPUdpSolOyF5CE86xuaqv4
+   BsrlVpRJ6MDwqKmp0rmPuRpNBAgzc3QFr4zcLLx+dqmNUv5xLg/UEsWE3
+   6WComMKzZh0yq0f5Ac6M1FDUdDYUrVbHy/vWyecrK7wSEprwg2+RZE3oM
+   5GyI9IZF5/pZBO172Q712v6lQiaYI9MVEhymdIeutXCgrN/d1DALOap44
+   rbH8YXME3mtiutNJQsua0Vt16KlrkFuuHxc3JXWePnswP516c6Z117KBv
+   Q==;
+X-CSE-ConnectionGUID: eZBMvTqiS9GvfE6aojStTQ==
+X-CSE-MsgGUID: tctTgIebRcqhT1fg1N2Jzg==
+X-IronPort-AV: E=Sophos;i="6.23,153,1770620400"; 
+   d="scan'208";a="222802746"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2026 07:45:13 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.35; Wed, 1 Apr 2026 07:44:39 -0700
+Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Wed, 1 Apr 2026 07:44:36 -0700
+Message-ID: <7cbf6ce794fa4a3831308f607b19d325572370bf.camel@microchip.com>
+Subject: Re: [PATCH net-next v2 6/9] net: dsa: lan9645x: add vlan support
+From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
+To: Jakub Kicinski <kuba@kernel.org>
+CC: <UNGLinuxDriver@microchip.com>, <andrew@lunn.ch>, <olteanv@gmail.com>,
+	<davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
+	<horms@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <woojung.huh@microchip.com>, <linux@armlinux.org.uk>,
+	<Steen.Hegelund@microchip.com>, <daniel.machon@microchip.com>,
+	<linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Date: Wed, 1 Apr 2026 16:44:35 +0200
+In-Reply-To: <20260329195633.2789187-1-kuba@kernel.org>
+References: <20260324-dsa_lan9645x_switch_driver_base-v2-6-f7504e3b0681@microchip.com>
+	 <20260329195633.2789187-1-kuba@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu2.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <acua8Me0zo3v/CBi@hu-qianyu-lv.qualcomm.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-283557-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283559-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,redhat.com,kernel.org,armlinux.org.uk,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 500C937CA22
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,microchip.com:dkim,microchip.com:mid]
+X-Rspamd-Queue-Id: 375F237CE01
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 31, 2026 at 02:59:12AM -0700, Qiang Yu wrote:
-> On Tue, Mar 24, 2026 at 11:23:19PM +0200, Dmitry Baryshkov wrote:
-> > On Mon, Mar 23, 2026 at 12:15:31AM -0700, Qiang Yu wrote:
-> > > The third PCIe controller on Glymur SoC supports 8-lane operation via
-> > > bifurcation of two PHYs (each requires separate power domian, resets and
-> > > aux clk).
-> > > 
-> > > Add dedicated reset/no_csr reset list ("phy_b", "phy_b_nocsr") and
-> > > clock ("phy_b_aux") required for 8-lane operation. Introduce new
-> > > glymur_qmp_gen5x8_pciephy_cfg configuration to enable PCIe Gen5 x8 mode.
-> > > 
-> > > Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> > > ---
-> > >  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 30 +++++++++++++++++++++++++++++-
-> > >  1 file changed, 29 insertions(+), 1 deletion(-)
-> > > 
-> > > @@ -4705,6 +4713,23 @@ static const struct qmp_phy_cfg glymur_qmp_gen4x2_pciephy_cfg = {
-> > >  	.phy_status		= PHYSTATUS_4_20,
-> > >  };
-> > >  
-> > > +static const struct qmp_phy_cfg glymur_qmp_gen5x8_pciephy_cfg = {
-> > > +	.lanes = 8,
-> > > +
-> > > +	.offsets		= &qmp_pcie_offsets_v8_50,
-> > > +
-> > > +	.reset_list		= glymur_pciephy_reset_l,
-> > > +	.num_resets		= ARRAY_SIZE(glymur_pciephy_reset_l),
-> > > +	.nocsr_reset_list	= glymur_pciephy_nocsr_reset_l,
-> > > +	.num_nocsr_resets	= ARRAY_SIZE(glymur_pciephy_nocsr_reset_l),
-> > 
-> > Just for my understanding. If it was not the NOCSR case and had to
-> > program the registers, would we have needed to program anything in the
-> > PCIe3B space?
-> 
-> The PCIe3B PHY registers need to be programmed.
+On Sun, 2026-03-29 at 12:56 -0700, Jakub Kicinski wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
+e content is safe
+>=20
+> This is an AI-generated review of your patch. The human sending this
+> email has considered the AI review valid, or at least plausible.
+> ---
+> net: dsa: lan9645x: add vlan support
+>=20
+> Add support for vlanaware bridge. We reserve vid 4095 for standalone
+> mode, to implement fdb-isolation. A vlan-unaware bridge uses vid 0.
+>=20
+> > diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c b/drive=
+rs/net/dsa/microchip/lan9645x/lan9645x_main.c
+> > index 599e589c4ec3..046c95a72242 100644
+> > --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
+> > +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
+> [ ... ]
+> > @@ -535,11 +536,54 @@ static void lan9645x_port_bridge_leave(struct dsa=
+_switch *ds, int port,
+> [ ... ]
+> > +static int lan9645x_port_vlan_filtering(struct dsa_switch *ds, int por=
+t,
+> > +                                     bool enabled,
+> > +                                     struct netlink_ext_ack *extack)
+> > +{
+> > +     struct lan9645x *lan9645x =3D ds->priv;
+> > +     struct lan9645x_port *p;
+> > +
+> > +     p =3D lan9645x_to_port(lan9645x, port);
+> > +     p->vlan_aware =3D enabled;
+> > +     lan9645x_vlan_port_apply(p);
+>=20
+> In other places, the driver avoids calling egress functions on the npi
+> port because it conflicts with cpu port header extraction. Since this
+> unconditionally applies the vlan configuration to both ingress and egress=
+,
+> could this overwrite the npi port's configuration when the state is
+> synchronized?
+>=20
 
-Why?
+It is true we avoid this, but the vlan_filtering is not called by DSA core =
+for
+the cpu port, only user ports.
 
-Regards,
-Bjorn
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int lan9645x_port_vlan_add(struct dsa_switch *ds, int port,
+> [ ... ]
+> > diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_vlan.c b/drive=
+rs/net/dsa/microchip/lan9645x/lan9645x_vlan.c
+> > new file mode 100644
+> > index 000000000000..0459932a626c
+> > --- /dev/null
+> > +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_vlan.c
+> [ ... ]
+> > +static void lan9645x_vlan_hw_wr(struct lan9645x *lan9645x, u16 vid)
+> > +{
+> > +     struct lan9645x_vlan *v =3D &lan9645x->vlans[vid];
+> > +     bool cpu_dis =3D !(v->portmask & BIT(CPU_PORT));
+> > +     u32 val;
+> > +
+> > +     val =3D ANA_VLANTIDX_VLAN_PGID_CPU_DIS_SET(cpu_dis) |
+> > +           ANA_VLANTIDX_V_INDEX_SET(vid) |
+> > +           ANA_VLANTIDX_VLAN_SEC_FWD_ENA_SET(v->s_fwd_ena) |
+> > +           ANA_VLANTIDX_VLAN_FLOOD_DIS_SET(v->fld_dis) |
+> > +           ANA_VLANTIDX_VLAN_PRIV_VLAN_SET(v->prv_vlan) |
+> > +           ANA_VLANTIDX_VLAN_LEARN_DISABLED_SET(v->lrn_dis) |
+> > +           ANA_VLANTIDX_VLAN_MIRROR_SET(v->mir) |
+> > +           ANA_VLANTIDX_VLAN_SRC_CHK_SET(v->src_chk);
+> > +
+> > +     lan_wr(val, lan9645x, ANA_VLANTIDX);
+> > +     lan_wr(v->portmask, lan9645x, ANA_VLAN_PORT_MASK);
+> > +     lan_wr(VLANACCESS_CMD_WRITE, lan9645x, ANA_VLANACCESS);
+>=20
+> Are these registers written with raw values rather than using their respe=
+ctive
+> set macros? This circumvents the register abstraction and might risk fail=
+ures
+> if the hardware layout changes.
+>=20
 
-> But we don't need to do it explicitly because there are also broadcast
-> registers: writing to these registers will automatically write the same
-> offset and value to both PHY ports simultaneously.
-> 
-> - Qiang Yu
-> > 
-> > > +	.vreg_list		= qmp_phy_vreg_l,
-> > > +	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-> > > +
-> > > +	.regs			= pciephy_v8_50_regs_layout,
-> > > +
-> > > +	.phy_status		= PHYSTATUS_4_20,
-> > > +};
-> > > +
-> > >  static void qmp_pcie_init_port_b(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tbls *tbls)
-> > >  {
-> > >  	const struct qmp_phy_cfg *cfg = qmp->cfg;
-> > > @@ -5483,6 +5508,9 @@ static const struct of_device_id qmp_pcie_of_match_table[] = {
-> > >  	}, {
-> > >  		.compatible = "qcom,glymur-qmp-gen5x4-pcie-phy",
-> > >  		.data = &glymur_qmp_gen5x4_pciephy_cfg,
-> > > +	}, {
-> > > +		.compatible = "qcom,glymur-qmp-gen5x8-pcie-phy",
-> > > +		.data = &glymur_qmp_gen5x8_pciephy_cfg,
-> > >  	}, {
-> > >  		.compatible = "qcom,ipq6018-qmp-pcie-phy",
-> > >  		.data = &ipq6018_pciephy_cfg,
-> > > 
-> > > -- 
-> > > 2.34.1
-> > > 
-> > 
-> > -- 
-> > With best wishes
-> > Dmitry
+Yes, they are single field registers. I can add the macro.
+
+> > +
+> > +     if (lan9645x_vlan_wait_for_completion(lan9645x))
+> > +             dev_err(lan9645x->dev, "Vlan set mask failed\n");
+> > +}
+> [ ... ]
+> > +static void
+> > +lan9645x_vlan_port_apply_egress(struct lan9645x_port *p,
+> > +                             struct lan9645x_vlan_port_info *info)
+> > +{
+> [ ... ]
+> > +     lan_rmw(REW_TAG_CFG_TAG_TPID_CFG_SET(3) |
+> > +             REW_TAG_CFG_TAG_CFG_SET(tag_cfg),
+> > +             REW_TAG_CFG_TAG_TPID_CFG |
+> > +             REW_TAG_CFG_TAG_CFG,
+> > +             lan9645x, REW_TAG_CFG(p->chip_port));
+> > +
+> > +     lan_rmw(REW_PORT_VLAN_CFG_PORT_TPID_SET(ETH_P_8021AD) |
+> > +             REW_PORT_VLAN_CFG_PORT_VID_SET(port_vid),
+> > +             REW_PORT_VLAN_CFG_PORT_TPID |
+> > +             REW_PORT_VLAN_CFG_PORT_VID,
+> > +             lan9645x, REW_PORT_VLAN_CFG(p->chip_port));
+> > +}
+>=20
+> Setting the port tpid to 0x88a8 causes untagged ingress frames to egress =
+trunk
+> ports with 802.1ad tags. Could this break interoperability with standard
+> networks that expect 0x8100 tags?
+>=20
+
+No that is not how it works. I think the comment which is left out explains=
+ this
+clearly. 0x8100 tags are unaffected by this, but it means an stag is not re=
+written
+to a ctag.
+
+> > +static void lan9645x_vlan_port_apply_ingress(struct lan9645x_port *p)
+> > +{
+> [ ... ]
+> > +     /* Drop frames with multicast source address */
+> > +     val =3D ANA_DROP_CFG_DROP_MC_SMAC_ENA_SET(1);
+> > +     if (p->vlan_aware && !pvid)
+> > +             /* If port is vlan-aware and tagged, drop untagged and pr=
+iority
+> > +              * tagged frames.
+> > +              */
+> > +             val |=3D ANA_DROP_CFG_DROP_UNTAGGED_ENA_SET(1) |
+> > +                    ANA_DROP_CFG_DROP_PRIO_S_TAGGED_ENA_SET(1) |
+> > +                    ANA_DROP_CFG_DROP_PRIO_C_TAGGED_ENA_SET(1);
+> > +
+> > +     lan_wr(val, lan9645x, ANA_DROP_CFG(p->chip_port));
+> > +}
+>=20
+> Does this overwrite the entire 32-bit register and silently clear other
+> initialized bitfields? Would it be safer to use a read-modify-write here
+> instead?
+>=20
+
+Yes this is intentional. I prefer this over writing all fields with rmw whi=
+ch is
+slower.
+
+> [ ... ]
+> > +static int lan9645x_vlan_cpu_add(struct lan9645x_port *p, u16 vid, boo=
+l pvid,
+> > +                              bool untagged)
+> > +{
+> > +     struct lan9645x_vlan *v;
+> > +
+> > +     v =3D lan9645x_vlan_port_modify(p, vid, pvid, untagged);
+>=20
+> Is it intentional that this bypasses the bounds check on the vlan id?
+>=20
+
+No, I will move the cpu action below the bounds check.
+
+> > +     v->portmask |=3D BIT(CPU_PORT) | BIT(p->chip_port);
+> > +     lan9645x_vlan_hw_wr(p->lan9645x, vid);
+> > +     lan9645x_vlan_port_apply_ingress(p);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +int lan9645x_vlan_port_add_vlan(struct lan9645x_port *p, u16 vid, bool=
+ pvid,
+> > +                             bool untagged, struct netlink_ext_ack *ex=
+tack)
+> > +{
+> [ ... ]
+> > +void lan9645x_vlan_port_del_vlan(struct lan9645x_port *p, u16 vid)
+> > +{
+> > +     struct lan9645x *lan9645x =3D p->lan9645x;
+> > +     struct lan9645x_vlan *v;
+> > +
+> > +     if (!vid)
+> > +             return;
+> > +
+> > +     v =3D lan9645x_vlan_port_modify(p, vid, false, false);
+>=20
+> There is a check for the maximum vlan id when adding a vlan, but no bound=
+s
+> check when deleting one. Could userspace use this to delete the reserved
+> vid 4095 and break standalone forwarding?
+>=20
+
+I will add the bounds check for delete.
+
+> > +     v->portmask &=3D ~BIT(p->chip_port);
+> > +
+> > +     if (p->chip_port =3D=3D lan9645x->npi)
+> > +             v->portmask &=3D ~BIT(CPU_PORT);
+> > +
+> > +     lan9645x_vlan_hw_wr(lan9645x, vid);
+> [ ... ]
+> > +void lan9645x_vlan_init(struct lan9645x *lan9645x)
+> > +{
+> [ ... ]
+> > +     for (vid =3D 1; vid < VLAN_N_VID; vid++)
+> > +             lan9645x_vlan_hw_wr(lan9645x, vid);
+>=20
+> If the indirect table access times out, the write function prints an erro=
+r
+> but does not return a status code. Will this cause the initialization loo=
+p
+> to stall for the full timeout duration 4095 consecutive times if the
+> hardware is unresponsive?
+>=20
+
+Yes, I can return the err from vlan_hw_wr and return it early from vlan_ini=
+t.
+
+> > +
+> > +     /* Set all the ports + cpu to be part of HOST_PVID and UNAWARE_PV=
+ID */
+> > +     lan9645x->vlans[HOST_PVID].portmask =3D all_ports;
+
 
