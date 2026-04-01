@@ -1,321 +1,266 @@
-Return-Path: <devicetree+bounces-283447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283443-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gK2pABX6zGnRYgYAu9opvQ
-	(envelope-from <devicetree+bounces-283447-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 12:57:25 +0200
+	id kMG6Fgf5zGnRYgYAu9opvQ
+	(envelope-from <devicetree+bounces-283443-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 12:52:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A05B378EFC
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 12:57:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA914378D2C
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 12:52:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6D06F30191A2
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 10:48:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D4AC8303A8F3
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 10:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1AD1372B59;
-	Wed,  1 Apr 2026 10:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244B33F2119;
+	Wed,  1 Apr 2026 10:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IPVHYpTC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="focpdnG0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F7AC3F65E8
-	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 10:48:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775040512; cv=none; b=rxf9H5FS54Y+XUDMNBZFJWUxYnB4wmhJQqhzhm2tOa3GwgfPd8G9D5zNVD1dpKwBHu+swUMrJDNzFioNKJmKXi33XvA6ws/gIpm6gdk+TtxEntX17GQoUJuJa3+nh2bfKttNarB1I/b9k5WlX8u0o3AAE0T5SMlJVy5pBiAAAM0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775040512; c=relaxed/simple;
-	bh=WnmubwbV6TBKf+05v/YU+a5eIg/UTf1BQTB4xnDaMwo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=EGxOJCy9+iBnXbZUag6tdB78ZLrLrtbjZg4FBx1Ph92kMX/oFXdSr52L/bFKdO1PxiwBpAjGmv1/1nGb04RXDXeitx1TWqkO2ItG4dRhny8eJrKc/NW8TmHor29B9BlmF3a/ywbxVygbHBqeTVuboCffaGqGM1eRDqs3OmstkmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IPVHYpTC; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-82cd6614a90so973024b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 03:48:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59E6A3CBE65
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 10:46:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775040403; cv=pass; b=IlqV2G+Gyx5/Q6CH46FXJt5+7syFVV78goWlNWDVGWS//JOpv+f4jc+HkgX++mNOtAEKoQBHli9v1SejVrDk2Abw2wpg99MLOLc53jpclvavTZIT9ciO3ZLckvHaN5rpRBfLJeo2ReEmeeDECgi2LdEHxjlSGmQRNt5W+VP+QyI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775040403; c=relaxed/simple;
+	bh=40aqi1I55Vmq2m60iYFNVNuV+Shkhm9O7nHBPNLlR0s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=grjTIGS6uhaRXMCRXLv3OlcBmGP/jXZl5osiagxnM36mNvH/UL6Jt56RzE6TIaY3xM7e/Hmod8NyECE3jfvxdqKE87vq0Gz69CmLoaYiQT0d9t3e6ewiad7ZfIcSTJnAJ6n1KWrWu6Ze33z8KKOd03S2LdXroZiG1oP9CRcBM1Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=focpdnG0; arc=pass smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5a0faa0d15cso7171422e87.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 03:46:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1775040400; cv=none;
+        d=google.com; s=arc-20240605;
+        b=VvPO5VAtZlGD/H4pM7NJvpNxofCzVTLl0tqUz9f+9l5E6rAPYfVWxETx4W/v7uL39h
+         q5J1FZn/LvlNT5kvuaZCW+kDxFMdJMLxuc3MOa8a7kKjW3Edd7S1QTM+UX3MvBPvj9no
+         pomMbrG5tDaop+nTfqGRJkzJiBqAPUIDr0LE9N/wvy35QdFhoKwm8LKjdNU6ppMYq/KR
+         Mcd2aIJgdW5JawWW11gwly3YaGoDxH02GXIPcCfaKdgFx3rZE8+32c+lYaHV4vFLG5HQ
+         3XLEiXQ9tC9BoPwPtlMkBGzGTIFouzIL8F1KmEE7w1GyoAUuVKPgP3MhfWfEcgaUgPuA
+         xdOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=gSozclW0x9vuMSqSBfuRXxbpTpkomr2e0lWVw9uMgPE=;
+        fh=koP+M2aDSmA+YuA3f+NSe2gI8tTBYlc+c7IwKy8Ai1g=;
+        b=Ru5rgZUto/JG68fPElNLLOc0fBhqV8HQUC5D8apoZUwS2/IXDR6xb95qN4cCESag18
+         mqlh5ybstgGvK++0qs7t6fFr+mmLDfs6fSOBdH4UcGpOY8HN+xVum9CkOZGuSonutIFA
+         gQWgOyG9txvgjFy1hB7czSQKr942fYtKFvUK+WKWL15Sa5MAbzcIHf71J4Mw99XPXIFB
+         Jts9M7GjGz1HHRH76nEHvTrvZCGDVjK4t5oeudJBro55PZ+E3ZwNdcXE9YRJAxPwoUKp
+         G918Z1w7DxXgPuqjVxXwoavsSJXVmGY0WSSxV1mAPob1hjUK3VAFOVA3uV2Sko7azZfc
+         99ww==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775040510; x=1775645310; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1775040400; x=1775645200; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sgoUalx4qhZodxeYtn1WwXp1uA0k+Poskn9y/TOSsZs=;
-        b=IPVHYpTCXyydt9m5wywhkUx7avJTfoya0p9wFviKFNdWMydjpFpnSNVFVdp625L7tC
-         IIyg8y0/PHYKHwsPCzqaBU/QSQFfCvkic2RFX8jn/tLjFjVi2KT3BFLzc85Mrf0t/K8A
-         D1vzYTvUEPzfbK2mOz48r26SY1TzQDJ0KmZyH3ZX/LXcEHl6cirPM0nLwn12nMGS4mGm
-         LujhqfkMKe96PtTCoynL3p2uwfV9rJPSQ8qLfgQJqzUHndPf9+GqOWv8GS2Yvdd+Mg6l
-         vEOYNz8/Srr/LJnkRc49CjW9XrfNCTDtZtIeYWsUqPwuiVKwyU2P6FtIDrjlqv78t/xp
-         bJZw==
+        bh=gSozclW0x9vuMSqSBfuRXxbpTpkomr2e0lWVw9uMgPE=;
+        b=focpdnG0GNhSC5kPZtsCRM+qqdNyOoozw55topTHlqkT64idlswtImyxxhINAityZZ
+         bcEtkg/HPSTytTw7A7MPNY4KkVmXLrzLkLNNTKPj37Twvjaz0onaXbAptuv2B9tBXsAm
+         2WmpmwS0pSogb9M4YXD79tOwcd2o4l3CaB+9FpQ6EEUXLJpEW1fTksCZp8+MxDx6LzWn
+         /DvY6EnxnogHltjx+1SbFhTNABu/66GEItPQ49kbEvm7oKb30fBNNsEW4HE5wkNotULc
+         FLaFedn5Z7OazQsO17FVTAh0EzOKMFAMPfBNzn7W+Usd+sa5n4vjcA/biSE5Ua6XReIz
+         Q5RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775040510; x=1775645310;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20251104; t=1775040400; x=1775645200;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=sgoUalx4qhZodxeYtn1WwXp1uA0k+Poskn9y/TOSsZs=;
-        b=TzSHCc7Gvfamb/KaXnu934yQAiKywmfaJcnqrUkZwqKrz+doj+Cp8vaFOXx0eSKPuI
-         mWt5e3Ay9sQgYqncgZ3+2M/PNpBglGKfwtyIXFhjgbt/GzJ8bHE9EIybP7HQ2aAnUGlJ
-         ziLpUKqrr57PoBdgPd56CxIOxRNbFmK8ADjJ85vMzmWlDrrltIT5RBc5Ef03lAKQPZEn
-         7DZMvfmwZ6w9awZbfgw8HZ+qi/5Rgf/MDVSnA2Qsq/0GKR/6uN5DH5xLkKHQsUgkVJ3x
-         j1oEre+cTo0UsZKTlzMEPyAbprWbnWV1AUlR7WbKqFjxoLwOkKW8FPec17NtaiKZYiuo
-         XA2A==
-X-Forwarded-Encrypted: i=1; AJvYcCXn02fDPNoAMsgLiFuWyzt7CX3/roP28CO+4V0px/ZDmssx+GXoFue7vRYiUJ5M+9CecEse8SvMjLxb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGU6IZ6kZnWlcDacuYDl1wsw1cvIO5CCqeD2HzP0cxrkvdMant
-	l69x2xL4VEqdjwQDac20tyKHwLuhku87Uyr5JNrEV6s/ZOp0lU/FVhit
-X-Gm-Gg: ATEYQzyWhLfANGHQuk9mAXqcfBDTLvMMtrAVtgSBPsBAKaLsSptIBTi4Edi7nmTlsdV
-	4MVmH94ySfhshR6dJZeh3UkIbKxAOtIn1YC8ogWFQ52Bb7AznjkYxHAUGK4bQj3nTcoDwlC1gTr
-	Q9/gLhNQdSmq1rvLll2r1liCHVW8inOxd370cOzEpCEYrZBUziRM1E2C9cd3MdBToFIAdQORXbU
-	g1oThxCviDGrdLxvnPLTz+e4zMJQuOpsCPI9F42P3gPIDPPzdffiI/ub1OaE/vwuwagZy5s4cJz
-	hip146m52dJRC10DswSQrZAEpR3QBDku071nqm2QSIGh+SlEXGDrnB+VcaWyCSz3ihx7nv0P2Sa
-	e8+Ejhjy0HMxk2IUnIhrIT2XeLm4zTHFU5cksH6uM2KGkLuZ7063oQs7Y0TNy6Uj6JmTdiEqhEv
-	/RWQY+VRn/miIscAZJwSAOZV4CimypG6F9j8nHYiOo
-X-Received: by 2002:a05:6a00:4fce:b0:827:3e27:161f with SMTP id d2e1a72fcca58-82ce8943bbamr3330711b3a.2.1775040509555;
-        Wed, 01 Apr 2026 03:48:29 -0700 (PDT)
-Received: from localhost.localdomain ([27.61.46.230])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82ca843b818sm17010259b3a.6.2026.04.01.03.48.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Apr 2026 03:48:29 -0700 (PDT)
-From: ASHISH YADAV <ashishyadav78@gmail.com>
-X-Google-Original-From: ASHISH YADAV <Ashish.Yadav@infineon.com>
-To: Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Ashish Yadav <ashish.yadav@infineon.com>
-Subject: [PATCH v2 2/2] hwmon:(pmbus/xdp720) Add support for efuse xdp720
-Date: Wed,  1 Apr 2026 16:15:50 +0530
-Message-Id: <20260401104550.115715-3-Ashish.Yadav@infineon.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20260401104550.115715-1-Ashish.Yadav@infineon.com>
-References: <20260401104550.115715-1-Ashish.Yadav@infineon.com>
+        bh=gSozclW0x9vuMSqSBfuRXxbpTpkomr2e0lWVw9uMgPE=;
+        b=QDSlLn5V65yEn/AjSnkrp9CPX1GPegWOxFpgHnCrpIHbTBnzEGsV47XOGpNNd1jPKF
+         ALN/QjrGI4yjOoToNuOL2f1qNPh+byvlhJMWaU1itqQdxt2nXbj2PbPQlU3FC/IbnFkR
+         6W5BDkngplUlCuiNfUe1Ow8VRfZJ0D4P3sydq7mrc+6Guj+pB6XOMu5oOhu1HAUY4+wt
+         YQTFHOlDExdGldCqtDne+bfhdef8O65wc/iPwV/UFajgwsemS0ApmsJ38QjnqqQTpPCR
+         hcsIwPAxkx7b/r2TtrvTDyWX4haTbV1NJGkt8VQJyvP243erVf3lMIxlmkxaRz7xBOIb
+         MeJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUvWJaP9duhulG5pGTuIQp271890ynmfmQIV7NBpNZFshjDdkD6r1HK23kuM1i/hOHYuHLRFlKnh1qG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8r4wHLHA6JysERIp+giwRdDyzHty03AFzEg0bFt5St8RQWbEL
+	lcDHD9sTXnN3OFlaMrKJzJOyFIRDKBc7pG4gViAlhyuI0EGwn1tJy/emC2F2tftXxwLaxh+5H0V
+	EFEdAD7/1FrIgvLtPp48p0UW5b1C1FlJEPn4olIVh8Q==
+X-Gm-Gg: ATEYQzx3pesPUExswsjWsJQXNbcr8cDQhRCFdEK+zvbJlgB3WnRVo2ABNLXjuHSkeoy
+	0rAQuJv5+aQjdRxYSgA5XcbCgy0lmsRKl7Lhd9X6TO5EqRF8ePg7KS9/1XFUdiAhRaPsDK/jJOP
+	GgZEgvw5GdJQTWfiARDCj4jWPndIjMo6GGkSFLwWGvRSD3ryTKXYhyMU9YQLz7eOc9Tul55SyV9
+	JAZ5CO72gX4jnzd6nFGM85BWwm6Do5GZCWhiUYjTwMpOyhr/KU7HxSexhwmTju7tnGbMvn1uTFq
+	SKsp5kUx
+X-Received: by 2002:a05:6512:1254:b0:5a2:c0b6:729e with SMTP id
+ 2adb3069b0e04-5a2c1ee82b3mr1132629e87.4.1775040399387; Wed, 01 Apr 2026
+ 03:46:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+References: <20260209-iris-venus-fix-sm8250-v5-0-0a22365d3585@oss.qualcomm.com>
+ <20260209-iris-venus-fix-sm8250-v5-2-0a22365d3585@oss.qualcomm.com>
+ <5e2635ac-35de-645b-b5e7-235923f844ce@oss.qualcomm.com> <x5gv6dxdum5klzfjyo7xjqull6o43okkmkn7avssg26epbvrz6@z2brpssbk7iv>
+ <0b41ee7c-83fe-d604-b750-8a5a0bd62bf8@oss.qualcomm.com> <CAPDyKFrO3DzfG0aW4z4w87j_iWM=3dpvp=2Wgr4MX1Bin5-6ZA@mail.gmail.com>
+ <6yfn6ux3gbin2dtopdxxv4okinspueryuey5vfdq633gsewc6r@ttp56brnpgvr>
+In-Reply-To: <6yfn6ux3gbin2dtopdxxv4okinspueryuey5vfdq633gsewc6r@ttp56brnpgvr>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 1 Apr 2026 12:46:01 +0200
+X-Gm-Features: AQROBzANxupbHHkAqu8GJiUFFGG603SVUVTYVg4H2FBCM1h61nXzlIOx_SK4W6w
+Message-ID: <CAPDyKFpm7ujNw51dVpPaHCwssjgYe1JVBEyrQ_1CsPbDJuW0Ww@mail.gmail.com>
+Subject: Re: [PATCH v5 2/5] media: iris: scale MMCX power domain on SM8250
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Taniya Das <quic_tdas@quicinc.com>, Jonathan Marek <jonathan@marek.ca>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, "Bryan O'Donoghue" <bod@kernel.org>, 
+	Vikash Garodia <vikash.garodia@oss.qualcomm.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Stanimir Varbanov <stanimir.varbanov@linaro.org>, 
+	Abhinav Kumar <abhinav.kumar@linux.dev>, Hans Verkuil <hverkuil@kernel.org>, 
+	Stefan Schmidt <stefan.schmidt@linaro.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Dikshita Agarwal <dikshita@qti.qualcomm.com>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-media@vger.kernel.org, 
+	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283447-lists,devicetree=lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283443-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[28];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ashishyadav78@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,infineon.com:email,infineon.com:mid,infineon.com:url]
-X-Rspamd-Queue-Id: 4A05B378EFC
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,mail.gmail.com:mid,linaro.org:dkim]
+X-Rspamd-Queue-Id: AA914378D2C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Ashish Yadav <ashish.yadav@infineon.com>
+On Tue, 31 Mar 2026 at 20:46, Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
+>
+> On Tue, Mar 31, 2026 at 01:33:35PM +0200, Ulf Hansson wrote:
+> > On Mon, 30 Mar 2026 at 15:06, Dikshita Agarwal
+> > <dikshita.agarwal@oss.qualcomm.com> wrote:
+> > >
+> > >
+> > >
+> > > On 3/30/2026 4:45 PM, Dmitry Baryshkov wrote:
+> > > > On Mon, Mar 30, 2026 at 10:55:02AM +0530, Dikshita Agarwal wrote:
+> > > >>
+> > > >>
+> > > >> On 2/9/2026 7:02 AM, Dmitry Baryshkov wrote:
+> > > >>> On SM8250 most of the video clocks are powered by the MMCX domain=
+, while
+> > > >>> the PLL is powered on by the MX domain. Extend the driver to supp=
+ort
+> > > >>> scaling both power domains, while keeping compatibility with the
+> > > >>> existing DTs, which define only the MX domain.
+> > > >>>
+> > > >>> Fixes: 79865252acb6 ("media: iris: enable video driver probe of S=
+M8250 SoC")
+> > > >>> Reviewed-by: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
+> > > >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.co=
+m>
+> > > >>> ---
+> > > >>>  drivers/media/platform/qcom/iris/iris_platform_gen1.c | 2 +-
+> > > >>>  drivers/media/platform/qcom/iris/iris_probe.c         | 7 ++++++=
++
+> > > >>>  2 files changed, 8 insertions(+), 1 deletion(-)
+> > > >>>
+> > > >>> diff --git a/drivers/media/platform/qcom/iris/iris_platform_gen1.=
+c b/drivers/media/platform/qcom/iris/iris_platform_gen1.c
+> > > >>> index df8e6bf9430e..aa71f7f53ee3 100644
+> > > >>> --- a/drivers/media/platform/qcom/iris/iris_platform_gen1.c
+> > > >>> +++ b/drivers/media/platform/qcom/iris/iris_platform_gen1.c
+> > > >>> @@ -281,7 +281,7 @@ static const struct bw_info sm8250_bw_table_d=
+ec[] =3D {
+> > > >>>
+> > > >>>  static const char * const sm8250_pmdomain_table[] =3D { "venus",=
+ "vcodec0" };
+> > > >>>
+> > > >>> -static const char * const sm8250_opp_pd_table[] =3D { "mx" };
+> > > >>> +static const char * const sm8250_opp_pd_table[] =3D { "mx", "mmc=
+x" };
+> > > >>>
+> > > >>>  static const struct platform_clk_data sm8250_clk_table[] =3D {
+> > > >>>     {IRIS_AXI_CLK,  "iface"        },
+> > > >>> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/driv=
+ers/media/platform/qcom/iris/iris_probe.c
+> > > >>> index 7b612ad37e4f..74ec81e3d622 100644
+> > > >>> --- a/drivers/media/platform/qcom/iris/iris_probe.c
+> > > >>> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
+> > > >>> @@ -64,6 +64,13 @@ static int iris_init_power_domains(struct iris=
+_core *core)
+> > > >>>             return ret;
+> > > >>>
+> > > >>>     ret =3D  devm_pm_domain_attach_list(core->dev, &iris_opp_pd_d=
+ata, &core->opp_pmdomain_tbl);
+> > > >>> +   /* backwards compatibility for incomplete ABI SM8250 */
+> > > >>> +   if (ret =3D=3D -ENODEV &&
+> > > >>> +       of_device_is_compatible(core->dev->of_node, "qcom,sm8250-=
+venus")) {
+> > > >>> +           iris_opp_pd_data.num_pd_names--;
+> > > >>> +           ret =3D devm_pm_domain_attach_list(core->dev, &iris_o=
+pp_pd_data,
+> > > >>> +                                            &core->opp_pmdomain_=
+tbl);
+> > > >>> +   }
+> > > >>>     if (ret < 0)
+> > > >>>             return ret;
+> > > >>>
+> > > >>>
+> > > >>
+> > > >> Hitting below compilation error on latest kernel
+> > > >>
+> > > >> drivers/media/platform/qcom/iris/iris_probe.c: In function
+> > > >> =E2=80=98iris_init_power_domains=E2=80=99:
+> > > >> drivers/media/platform/qcom/iris/iris_probe.c:71:46: error: decrem=
+ent of
+> > > >> read-only member =E2=80=98num_pd_names=E2=80=99
+> > > >>    71 |                 iris_opp_pd_data.num_pd_names--;
+> > > >
+> > > > See commit 7ad7f43e568b ("pmdomain: de-constify fields struct
+> > > > dev_pm_domain_attach_data")
+> >
+> > The intent was for this patch to be part of v7.0-rc1, but I failed
+> > with my pull-request to Linus.
+> >
+> > Instead this will be part of v7.1-rc1, assuming everything goes as expe=
+cted.
+> >
+> > Is it possible to drop/defer these changes until v7.2?
+>
+> It would be very sad.
 
-Add the pmbus driver for Infineon XDP720 Digital eFuse Controller.
+Right.
 
-Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
----
-XDP720 Digital eFuse Controller provides accurate system telemetry
-(V, I, P, T) and reports analog current at the IMON pin for post-processing.
+Since it's my mistake, let me reconsider. If I rebase my branch and
+share the necessary commit through an immutable branch that you can
+pull in. Would that work for you?
 
-The Current and Power measurement depends on the RIMON and GIMON values.
-Please look into data sheet sections 5.4.2 and 5.4.4 for more details:
-https://www.infineon.com/assets/row/public/documents/24/49/infineon-xdp720-001-datasheet-en.pdf
-
-The GIMON (microA/A) depends on the 10th bit of TELEMETRY_AVG PMBUS Register.
-The value of RIMON (kohm) can be provided by the user through device tree using
-infineon,rimon-micro-ohms  property.
----
- drivers/hwmon/pmbus/Kconfig  |   9 +++
- drivers/hwmon/pmbus/Makefile |   1 +
- drivers/hwmon/pmbus/xdp720.c | 123 +++++++++++++++++++++++++++++++++++
- 3 files changed, 133 insertions(+)
- create mode 100644 drivers/hwmon/pmbus/xdp720.c
-
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index fc1273abe357..c419e3ecce90 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -702,6 +702,15 @@ config SENSORS_XDP710
- 	  This driver can also be built as a module. If so, the module will
- 	  be called xdp710.
- 
-+config SENSORS_XDP720
-+	tristate "Infineon XDP720 family"
-+	help
-+	  If you say yes here you get hardware monitoring support for Infineon
-+	  XDP720.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called xdp720.
-+
- config SENSORS_XDPE152
- 	tristate "Infineon XDPE152 family"
- 	help
-diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-index d6c86924f887..1cac7ccae79f 100644
---- a/drivers/hwmon/pmbus/Makefile
-+++ b/drivers/hwmon/pmbus/Makefile
-@@ -68,6 +68,7 @@ obj-$(CONFIG_SENSORS_TPS546D24)	+= tps546d24.o
- obj-$(CONFIG_SENSORS_UCD9000)	+= ucd9000.o
- obj-$(CONFIG_SENSORS_UCD9200)	+= ucd9200.o
- obj-$(CONFIG_SENSORS_XDP710)	+= xdp710.o
-+obj-$(CONFIG_SENSORS_XDP720)	+= xdp720.o
- obj-$(CONFIG_SENSORS_XDPE122)	+= xdpe12284.o
- obj-$(CONFIG_SENSORS_XDPE152)	+= xdpe152c4.o
- obj-$(CONFIG_SENSORS_ZL6100)	+= zl6100.o
-diff --git a/drivers/hwmon/pmbus/xdp720.c b/drivers/hwmon/pmbus/xdp720.c
-new file mode 100644
-index 000000000000..382dc3f9ce80
---- /dev/null
-+++ b/drivers/hwmon/pmbus/xdp720.c
-@@ -0,0 +1,123 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Hardware monitoring driver for Infineon XDP720 Digital eFuse Controller
-+ *
-+ * Copyright (c) 2026 Infineon Technologies. All rights reserved.
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/of_device.h>
-+#include <linux/bitops.h>
-+#include <linux/math64.h>
-+#include "pmbus.h"
-+
-+/*
-+ * The IMON resistor required to generate the system overcurrent protection.
-+ * Arbitrary default Rimon value: 2k Ohm
-+ */
-+#define XDP720_DEFAULT_RIMON 2000000000 /* 2k ohm */
-+#define XDP720_TELEMETRY_AVG 0xE9
-+
-+static struct pmbus_driver_info xdp720_info = {
-+	.pages = 1,
-+	.format[PSC_VOLTAGE_IN] = direct,
-+	.format[PSC_VOLTAGE_OUT] = direct,
-+	.format[PSC_CURRENT_OUT] = direct,
-+	.format[PSC_POWER] = direct,
-+	.format[PSC_TEMPERATURE] = direct,
-+
-+	.m[PSC_VOLTAGE_IN] = 4653,
-+	.b[PSC_VOLTAGE_IN] = 0,
-+	.R[PSC_VOLTAGE_IN] = -2,
-+	.m[PSC_VOLTAGE_OUT] = 4653,
-+	.b[PSC_VOLTAGE_OUT] = 0,
-+	.R[PSC_VOLTAGE_OUT] = -2,
-+	/*
-+	 * Current and Power measurement depends on the RIMON (kOhm) and
-+	 * GIMON(microA/A) values.
-+	 */
-+	.m[PSC_CURRENT_OUT] = 24668,
-+	.b[PSC_CURRENT_OUT] = 0,
-+	.R[PSC_CURRENT_OUT] = -4,
-+	.m[PSC_POWER] = 4486,
-+	.b[PSC_POWER] = 0,
-+	.R[PSC_POWER] = -1,
-+	.m[PSC_TEMPERATURE] = 54,
-+	.b[PSC_TEMPERATURE] = 22521,
-+	.R[PSC_TEMPERATURE] = -1,
-+
-+	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_PIN |
-+		   PMBUS_HAVE_TEMP | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_INPUT |
-+		   PMBUS_HAVE_STATUS_TEMP,
-+};
-+
-+static int xdp720_probe(struct i2c_client *client)
-+{
-+	struct pmbus_driver_info *info;
-+	int ret;
-+	u32 rimon;
-+	int gimon;
-+
-+	info = devm_kmemdup(&client->dev, &xdp720_info, sizeof(*info),
-+			    GFP_KERNEL);
-+	if (!info)
-+		return -ENOMEM;
-+
-+	ret = i2c_smbus_read_word_data(client, XDP720_TELEMETRY_AVG);
-+	if (ret < 0) {
-+		dev_err(&client->dev, "Can't get TELEMETRY_AVG\n");
-+		return ret;
-+	}
-+
-+	ret >>= 10; /* 10th bit of TELEMETRY_AVG REG for GIMON Value */
-+	ret &= GENMASK(0, 0);
-+	if (ret == 1)
-+		gimon = 18200; /* output gain 18.2 microA/A */
-+	else
-+		gimon = 9100; /* output gain 9.1 microA/A */
-+
-+	if (of_property_read_u32(client->dev.of_node,
-+				 "infineon,rimon-micro-ohms", &rimon))
-+		rimon = XDP720_DEFAULT_RIMON; /* Default if not set via DT */
-+	if (rimon == 0)
-+		return -EINVAL;
-+
-+	/* Adapt the current and power scale for each instance */
-+	info->m[PSC_CURRENT_OUT] = DIV64_U64_ROUND_CLOSEST((u64)
-+		info->m[PSC_CURRENT_OUT] * rimon * gimon, 1000000000000);
-+	info->m[PSC_POWER] = DIV64_U64_ROUND_CLOSEST((u64)
-+		info->m[PSC_POWER] * rimon * gimon, 1000000000000);
-+
-+	return pmbus_do_probe(client, info);
-+}
-+
-+static const struct of_device_id xdp720_of_match[] = {
-+	{ .compatible = "infineon,xdp720" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, xdp720_of_match);
-+
-+static const struct i2c_device_id xdp720_id[] = {
-+	{ "xdp720" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, xdp720_id);
-+
-+static struct i2c_driver xdp720_driver = {
-+	.driver = {
-+		   .name = "xdp720",
-+		   .of_match_table = xdp720_of_match,
-+	},
-+	.probe = xdp720_probe,
-+	.id_table = xdp720_id,
-+};
-+
-+module_i2c_driver(xdp720_driver);
-+
-+MODULE_AUTHOR("Ashish Yadav <ashish.yadav@infineon.com>");
-+MODULE_DESCRIPTION("PMBus driver for Infineon XDP720 Digital eFuse Controller");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("PMBUS");
--- 
-2.39.5
-
+Kind regards
+Uffe
 
