@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-283238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283239-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id lKwrJiWIzGkFTwYAu9opvQ
-	(envelope-from <devicetree+bounces-283238-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 04:51:17 +0200
+	id uJauLxCIzGlXTgYAu9opvQ
+	(envelope-from <devicetree+bounces-283239-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 04:50:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23E35374063
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 04:51:16 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F407B374053
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 04:50:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 41CF83091D34
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 02:43:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B777F30D99C9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 02:44:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC51D370D47;
-	Wed,  1 Apr 2026 02:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731F727E05F;
+	Wed,  1 Apr 2026 02:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="p8GbZq1P"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="PWeiTiQE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230DF344D88
-	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 02:43:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92D3136EAAB
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 02:43:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775011396; cv=none; b=qbtjJBxfUwc6VJvBnjo/8yhcPpYrXa86Qcr0Qusnj54eFFhqB5X1AQkCEB0dTiazAaGVroAp8jQtooedwrwnFvCFBdEfKf2P1sPsjCCZDUUqR0t5+6YJ7DODyL+U266be3jyqkp1VgC+tnnDLxSOC07oVUDQ1tuDWXSfzBzYCPg=
+	t=1775011399; cv=none; b=RwuRQcchW1nXKMf9+/mPDWgvnhs0TLONmhd+LxWBDkTpOMWPmjdl8qVSFk+3kZtUTZNj8ba7/yVBkCKrbxU2LbFkJx/G3cBN8c8B097jivuvL75jDmNAHA+R1zF3aI01NbSX5U8TvUX4o3QHphwBxBxkPHVrfWpQrwE5HJShAE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775011396; c=relaxed/simple;
-	bh=mN6SvbDYuiOAIeaTMLAJHjaUWvsWZZyU3ehOwvK9whU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=txJBtk842MrG21gqzIryacuM4l9REB0lxCyxGvcEf6MEQ+LAjpNoq9a8mLVpiv/LaoOM4/aRI7Bq6GJAwDchwv2KmniEgvOSNRkh1wUAxsSILZ4o4A6a14y/7aS9HMiXccSoBD+TaUYktza1zeyswMM4tgfWSmZrPGV8zrVBGjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=p8GbZq1P; arc=none smtp.client-ip=202.36.163.20
+	s=arc-20240116; t=1775011399; c=relaxed/simple;
+	bh=fGwz0GHXzRDxEnfbge/u5CFlJKG/w9TUvuItYHvn7GU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=EBVa9ehrI1aQpqlumFBA1H0XEn4YHk0xfyIW+unZQazZrn3FpdeLHPXrVxcxabYddqW2etJRNLrFlHhQi70O7eeANLKOut1AEX0/XDrpqYzgI16I/Aeeu+IwyLWuq51q5Xmyr5nFSR3IaQIEDgraRJdDS2XuRhgPJ0rCZdb6PdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=PWeiTiQE; arc=none smtp.client-ip=202.36.163.20
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
 Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 2D18A2C02FF;
-	Wed,  1 Apr 2026 15:42:54 +1300 (NZDT)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id CCBB22C046F;
+	Wed,  1 Apr 2026 15:42:56 +1300 (NZDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1775011374;
-	bh=rYqtXifKa6DbawZqCwZ1hU7Qv8dt4KZY90gl9wzLlVM=;
-	h=From:To:Cc:Subject:Date:From;
-	b=p8GbZq1PCynVHN/tcJM0zmsgSd6X6VPIxQ64uAFbMhwQgh0O9S/1DZjdlvxP5PNsR
-	 86M0IOCjlCOzXlbZVGYajd8WAHiVE6Tu0bFOjyFAIywA3twksqG7CAxMK9pmsNQudl
-	 Pql4+3ljOPfNIMovI1bS5j/yYeTAeEFnk8crgfrIXjC5sLgQZuhLPig3AzWx7NTg4n
-	 3XD7BeWeTjfkf/a5+vQrODOaqj6G6MItOI0t08NsJmkrSuLaVuf1iuM8oCctIhDJ4w
-	 d+fJ7SF35tBFtTztgT7wpAEOrK29NuIK6zDq7p62SZpCTIzzQ2YatkxTbMcs+SJJk+
-	 A7qYS4v82xATw==
+	s=mail181024; t=1775011376;
+	bh=YFHnOpD3OIp6daU6D2uz3JcBHiWAJCFU8QhF6kEpoWE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=PWeiTiQEo5yCKk4Tdsno/NNUObfMsX2R0/Jvwql/oAeqLngLyGSQkT9P+FkVgFFk0
+	 38OhXYN2yVfpFPrWN9Mx2tXdvjHVvXGLlpHILDL88oqIsZ6h88VNHhM32oKs+nOp46
+	 rv1BqDs2CM3rvEpBlw8RIqANmHVVTPs1kGECXHEkCOJrQEaa2SDEawpQQdmkIIKZso
+	 ugDXgeHqiqSnI4taGUZimpfs3yFzt6rI9HleDgyseXVTq090PWDmSyEGRF5erJo1WR
+	 7PgmsvKE2xPVAA/+n5gxOdAqfhk2MeLKynVrON70G/IzufYtWDZ2PwR21zzVmJTnQM
+	 BQMX9cknQA2Dw==
 Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B69cc862e0000>; Wed, 01 Apr 2026 15:42:54 +1300
+	id <B69cc86300000>; Wed, 01 Apr 2026 15:42:56 +1300
 Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.12])
-	by pat.atlnz.lc (Postfix) with ESMTP id 012CA13EE36;
-	Wed,  1 Apr 2026 15:42:54 +1300 (NZDT)
+	by pat.atlnz.lc (Postfix) with ESMTP id A134213EE36;
+	Wed,  1 Apr 2026 15:42:56 +1300 (NZDT)
 Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id F143828153E; Wed,  1 Apr 2026 15:42:53 +1300 (NZDT)
+	id 9E6C628153E; Wed,  1 Apr 2026 15:42:56 +1300 (NZDT)
 From: Chris Packham <chris.packham@alliedtelesis.co.nz>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -65,10 +66,12 @@ Cc: devicetree@vger.kernel.org,
 	linux-hwmon@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v2 0/2] hwmon: pmbus: Sony APS-379
-Date: Wed,  1 Apr 2026 15:42:10 +1300
-Message-ID: <20260401024214.804237-1-chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v2 1/2] dt-bindings: trivial-devices: Add sony,aps-379
+Date: Wed,  1 Apr 2026 15:42:11 +1300
+Message-ID: <20260401024214.804237-2-chris.packham@alliedtelesis.co.nz>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260401024214.804237-1-chris.packham@alliedtelesis.co.nz>
+References: <20260401024214.804237-1-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,7 +79,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=EcprQ+mC c=1 sm=1 tr=0 ts=69cc862e a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=A5OVakUREuEA:10 a=RPtVrnf-bw8RX5avTx0A:9 a=3ZKOabzyN94A:10
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=EcprQ+mC c=1 sm=1 tr=0 ts=69cc8630 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=A5OVakUREuEA:10 a=jfe4B9wozX6hrU8P5YcA:9 a=3ZKOabzyN94A:10
 X-SEG-SpamProfiler-Score: 0
 x-atlnz-ls: pat
 X-Spamd-Result: default: False [0.84 / 15.00];
@@ -86,14 +89,14 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[alliedtelesis.co.nz,quarantine];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[alliedtelesis.co.nz:s=mail181024];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_NEQ_ENVFROM(0.00)[chris.packham@alliedtelesis.co.nz,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283238-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283239-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -101,33 +104,37 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,alliedtelesis.co.nz:dkim,alliedtelesis.co.nz:mid];
+	RCVD_COUNT_SEVEN(0.00)[7];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 23E35374063
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,alliedtelesis.co.nz:dkim,alliedtelesis.co.nz:email,alliedtelesis.co.nz:mid]
+X-Rspamd-Queue-Id: F407B374053
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This series add support for the PMBus hwmon on the Sony
-APS-379 power supply module. There's some deviations from
-the PMBus specification that need to be dealt with.
+Add the compatible string for the sony,aps-379. This is a simple PMBus
+(I2C) device that requires no additional attributes.
 
-Chris Packham (2):
-  dt-bindings: trivial-devices: Add sony,aps-379
-  hwmon: pmbus: Add support for Sony APS-379
+Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../devicetree/bindings/trivial-devices.yaml  |   2 +
- Documentation/hwmon/aps-379.rst               |  58 ++++++
- Documentation/hwmon/index.rst                 |   1 +
- drivers/hwmon/pmbus/Kconfig                   |   6 +
- drivers/hwmon/pmbus/Makefile                  |   1 +
- drivers/hwmon/pmbus/aps-379.c                 | 168 ++++++++++++++++++
- 6 files changed, 236 insertions(+)
- create mode 100644 Documentation/hwmon/aps-379.rst
- create mode 100644 drivers/hwmon/pmbus/aps-379.c
-
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Doc=
+umentation/devicetree/bindings/trivial-devices.yaml
+index a482aeadcd44..0a559beff878 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -430,6 +430,8 @@ properties:
+           - smsc,emc6d103s
+             # Socionext Uniphier SMP control registers
+           - socionext,uniphier-smpctrl
++            # Sony APS-379 Power Supply
++          - sony,aps-379
+             # SparkFun Qwiic Joystick (COM-15168) with i2c interface
+           - sparkfun,qwiic-joystick
+             # STMicroelectronics Hot-swap controller stef48h28
 --=20
 2.53.0
 
