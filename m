@@ -1,189 +1,110 @@
-Return-Path: <devicetree+bounces-283456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283449-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wF2+Cjr7zGnRYgYAu9opvQ
-	(envelope-from <devicetree+bounces-283456-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 13:02:18 +0200
+	id EJoZCkf6zGnRYgYAu9opvQ
+	(envelope-from <devicetree+bounces-283449-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 12:58:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFA74379031
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 13:02:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B05DF378F19
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 12:58:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BC4E8309FC23
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 10:55:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6F2693074AF4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 10:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7EAF3F8809;
-	Wed,  1 Apr 2026 10:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4E44361DCA;
+	Wed,  1 Apr 2026 10:54:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qy1FcAZz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j5Usy8QC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010062.outbound.protection.outlook.com [52.101.193.62])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A03753F87F4;
-	Wed,  1 Apr 2026 10:55:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.62
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775040905; cv=fail; b=Mpo8AqSmrO66F0WtU2xn81JjeDK5M8ZvraxYzabefpLJrnCyY8wCQv3/jR8sjdZB5l5hvGvDaQjt6Q5o1VsAKTR+s7wuT6Lwm/BcEpXcKjiBHYQvwKr49vDYvUlE032jBcSmJwSrxJIqY7//qZzY5epMp+gpen0dUh68F0yMyxo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775040905; c=relaxed/simple;
-	bh=3zA84vPKf/InH9f6Pa1tIm5zn/54v5wJ+NyIBLHjAXk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lrBtgaqGlmVfqv1SwjHtYP6CjLmzmVev6nZq0+KfD6dnWAfl3TBWt6rdbcvHJPr4Ve2sBICJB3xK0OXvwJQpWfELzaFxtiyFQlyM7ZV3eoyBLsg+8nDTgXNwkxgxhTqHiAdkVhHjegTjdZOMzS8/npVxHK0X5KaFh9jevmXL+XM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qy1FcAZz; arc=fail smtp.client-ip=52.101.193.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Dj39p7RPF8avdfIQkteSgd5H6QJ4PrP7gEprZLzSFn0k7xtjsyPhGAJS2J/1KFT+RRJ1vnY3zeKeUydaL2A8Sr+SiWPNHkH8gh/v69CICRutD4J6CIZvaTUVOsxSjNpfQJNe+tlLursP8zyW+W9pmZ+N8toELtNsZ6Kqgw9AnU/Z+6rmYwVH/iTo1XX4vNfXMe8coaRK8cTjyho04kBFyP80GtVlkKYQTef1O3liiowUyGlYA0BjPOkS39NmIuCgUY96SdRM1+QRJWYRLStezp7iYrd1DPzdLoVknqBAS6RQhkiCApnPbb0NlZVdVg3+IcaanS/jKXvGsERWHih8cQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SU298OAIE11ocQTjhKba/yP+OoZH3h1N6NJC0Fscw3o=;
- b=kxipSFvPEqWoUOjkm/M9PwctnNFQxHGYWAtjbhrb44U9yEym5G9/qwqnN3K0rrIQYDb0yZ1RUmO+5ilXmUDAOw5pbq3SqMlmsLcfuT+aWDXTN4DWY/DCqonir5dXAishm4nX5L0Y9mE6RFTW+Y2xlLnIS6G6gCiacVlBZNH3PvrA3mYX+C0zfqQVZOouqwJ8iCLy/lW0TUGCiO2s0HgT1Rje1vQucf88fgaUM82QKSOOPD3ga/7qhW84k4ebV3CoLgOfnbIvMBgtu7W9vsKvkyJ7WHrx/YJ0xQg/8Ul0dnp0yKYSYxiLIBDCjBPy+oRCQuNiSB5CGrm2EdQ6IEVr2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SU298OAIE11ocQTjhKba/yP+OoZH3h1N6NJC0Fscw3o=;
- b=qy1FcAZzL6UGx+H7ctW07P9FKlpNNYXTPQQxRCjyaT9f+00CXHYj86ZDxKpTitVeyJHQEEVNa2NDmYRQUBBflgAsMShKKq6tOWV2lOR5FZ3RdMYA8Zlq5JSiYce48QCsXiJqVWU38AYq3kXqMSAihAow1/B407LIqpsCdP2qkl8=
-Received: from CH2PR14CA0053.namprd14.prod.outlook.com (2603:10b6:610:56::33)
- by CO1PR10MB4786.namprd10.prod.outlook.com (2603:10b6:303:6d::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Wed, 1 Apr
- 2026 10:54:58 +0000
-Received: from DS2PEPF00003444.namprd04.prod.outlook.com
- (2603:10b6:610:56:cafe::97) by CH2PR14CA0053.outlook.office365.com
- (2603:10b6:610:56::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.29 via Frontend Transport; Wed,
- 1 Apr 2026 10:54:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- DS2PEPF00003444.mail.protection.outlook.com (10.167.17.71) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17 via Frontend Transport; Wed, 1 Apr 2026 10:54:57 +0000
-Received: from DFLE200.ent.ti.com (10.64.6.58) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 1 Apr
- 2026 05:54:55 -0500
-Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE200.ent.ti.com
- (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 1 Apr
- 2026 05:54:54 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE213.ent.ti.com
- (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 1 Apr 2026 05:54:54 -0500
-Received: from akashdeep-HP-Z2-Tower-G5-Workstation.dhcp.ti.com (akashdeep-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.91])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 631As6KS4132409;
-	Wed, 1 Apr 2026 05:54:49 -0500
-From: Akashdeep Kaur <a-kaur@ti.com>
-To: <krzk@kernel.org>, <praneeth@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-	<kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <rafael@kernel.org>, <viresh.kumar@linaro.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>, <d-gole@ti.com>
-CC: <vishalm@ti.com>, <sebin.francis@ti.com>, <k-willis@ti.com>,
-	<a-kaur@ti.com>
-Subject: [PATCH v2 6/6] arm64: dts: ti: k3-am62p5: Add ti,soc-info to OPP table
-Date: Wed, 1 Apr 2026 16:24:04 +0530
-Message-ID: <20260401105404.1194717-7-a-kaur@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260401105404.1194717-1-a-kaur@ti.com>
-References: <20260401105404.1194717-1-a-kaur@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70E673F54C6;
+	Wed,  1 Apr 2026 10:54:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775040859; cv=none; b=gNcGtnMBPOHCD/CjhSSRCx0JEPr+HAsT8G7/pUrr7vMriIUBCEPw4TSBHAYHepsr3wkcx1yMNO77ZMNK9ScdIE6V7RCy9YZqqh2pPPYYSezU2sjnqWG+2+pjSTNYLs2CdlO4Djdw5dDEx6uiPX3qsQUJ8KbuGs4cNN+uGfUqWOQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775040859; c=relaxed/simple;
+	bh=c/LwPMidMXeGEgBeIhcANAS95jIz+lAK2IfRQE/D1Ao=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q9MhKd2p9/ZoaRNl8f4+4qc6GKhcIbafSV89r1FwTGXPSG6qLW5VEx2AnLnbkXpXva3bN3LMSIUJZrSNimI/efG71MRjTxabXr9LENpOY9WSxUVbYhbt68IntfKtrpQ0+RoEHcGwvJkRivBlcXe++quth+qyFWnS00fUAXreqK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j5Usy8QC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93B2BC4CEF7;
+	Wed,  1 Apr 2026 10:54:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775040859;
+	bh=c/LwPMidMXeGEgBeIhcANAS95jIz+lAK2IfRQE/D1Ao=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=j5Usy8QCOvsTwa9tnSOE71kUJJvTwCL0PV93foukgmCWeYAKj8KeLuXRAgM5DdIrZ
+	 Hc4yZ3LWbCs6TYLUsa0iDXKMUW/mrE+KK+jUueZP/d7mel0sP4b/w95/AqqxwHmfUY
+	 ImVm0zQ9UBet+ZGEICa4+Opd43FC7hZgSlImoxXS95gcaITnV1D0hlorTjfUvcL9Hf
+	 dfDstJTCQqU1j7ONexbGbl4JV2SK3fVAtmwByjy1eFsMocHsfYDebypYMpSpBC8F+E
+	 Zf2Zj22Va9Cc6uIh50PTAu9dOBx3+Yu8hUhH4cvjVsCOT4bYO7PFDVw4ETel1GImZ5
+	 oob/6SFK0/qxg==
+Date: Wed, 1 Apr 2026 12:54:16 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Daniel Palmer <daniel@thingy.jp>
+Cc: robh@kernel.org, saravanak@kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of/platform: Don't include reserved memory compatibles
+ that aren't needed
+Message-ID: <20260401-rousing-stylish-toucan-44bddf@quoll>
+References: <20260331215735.2783770-1-daniel@thingy.jp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003444:EE_|CO1PR10MB4786:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7fc300d5-a18a-4549-a516-08de8fdd1d4a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|376014|7416014|36860700016|921020|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	GWjq4oqXVnnlNKSlhJGojanM2Ok0u5OeAMSM0j318BNmwt4VjS6CMjFv8/+9Z2mF9R+lEZUFUyEuaLsWd6xlW4OnYWOS2k2UlMDkWleGTW3+HEODjxG5Rom8c79A4HRXVJOQlhI6/i48GmLYSf1dtvBtzG61Y0FjFCyYxEyDLgoPiaEbT6yVwDcH43tWFH48kQfjKCDdWtGC/rIuWj88psW/dMS1RFHOJAgLpsTu+VShCuH1Ue0n/EShjeQoWgRabTJH7DB+3X1GAvQzzO6h6fNzexDGmxdpF/Xg6WE5JqJi/kIzrWSKmCiwoK8Ot6xpuxmvVbDPylu07JJ1IL3QEcT4rX4pWyPQxKuml2mvoEsaFWuD+JYGPzrO8LrfLUjOUNTn0ir4ytF8GHfx7M6nS79gyA+eTZkK7aRii+JTKkwMTr5txeeem6jXMDG7L7qAvNAE8rg86KLFdmY9NtDgG9R+KxrSueeT1Ywu5HIpp+9UqYlpDIWFf77vNdtfe5FFz6hjmccVYnOv/h7lzxvwds1JasE2MxNUFkut+SHprwz18DiYXivz+tgmM+3R/ZWP4zb3+JbCl1vrZBYlX1eDBHXB3qqS3Koyelev4GeejagMbkr/A0L0tMo0nIVmt3BLjRa/2QyusG6+D0+o1M4vU9vGoJamR0WEWiSSTwZd9njdE7Fr8I2uMTtLOMTGZvrMTW+yHzWz0XqZL2308Bl5bQMPVkkkhDRVGQ2+RXqCdahgqLw//UqFejpDBOuQHV3jOxhZu4xliBRLqPOM1fPSEDRtIYLgUpGzpYdi7WqaKP0qXVeCyojodHj06j90yubx
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(7416014)(36860700016)(921020)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	VpU5nHyn8pcBhGi9lxt1uaNFEOGZ7UXsjZHquWZ7IoGULJ5TDR04rOk+0ELohX3BqOPpmYtD3a+PIuetK8QxBUbAngXUaxb5AGzVSzU7dw582voG751NlMnx+T48UKgBgfzGjk+4k/IfRwYZYUeHDXsmaT3zKmcErTHzKXOcRaMuEDbJLvcSojsbrapHWFvLgcEDFLBIMI/NUx1zCdgRXCE5uUUbjuEoFURURY1NLVP8IaCh4aZ6UK8bSvINMeiyHaDLF6Z++8iNLIJo1IrrewD5w5VUOP3clVwOLnxlOf4YuZP7pj+kkbC5aNh61XK71Gr+La3+BvspKl31H2eWfTt1iGpx132Xp10ukeRXgoTMLUk4tLuOf6xNe8jpORclv2NLEP+/yu3AGIIvwviebIAI5zo1MhNcSe5bCSodIhsXiFL5oJUHOykvhHk2rZuS
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2026 10:54:57.4170
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7fc300d5-a18a-4549-a516-08de8fdd1d4a
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS2PEPF00003444.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR10MB4786
-X-Spamd-Result: default: False [2.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260331215735.2783770-1-daniel@thingy.jp>
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-283456-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[a-kaur@ti.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283449-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:dkim,ti.com:email,ti.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: AFA74379031
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B05DF378F19
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Link CPU OPP table to k3-socinfo driver for dependency tracking.
+On Wed, Apr 01, 2026 at 06:57:35AM +0900, Daniel Palmer wrote:
+> There are a number of very platform specific compatibles for reserved
+> memory that the vast majority of people don't need and they waste
+> 196/200 bytes each.
 
-Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62p5.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+We don't want #ifdefs in the code because they are more difficult to
+maintain and review. Following your approach we would need to add such
+ifdefs in multiple other places, so I am not convinced it is worth.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5.dtsi b/arch/arm64/boot/dts/ti/k3-am62p5.dtsi
-index 8982a7b9f1a6..1a498c5eb3d1 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5.dtsi
-@@ -108,6 +108,7 @@ a53_opp_table: opp-table {
- 		compatible = "operating-points-v2-ti-cpu";
- 		opp-shared;
- 		syscon = <&opp_efuse_table>;
-+		ti,soc-info = <&chipid>;
- 
- 		opp-200000000 {
- 			opp-hz = /bits/ 64 <200000000>;
--- 
-2.34.1
+And this file should not be having different rules than rest of drivers.
+
+Best regards,
+Krzysztof
 
 
