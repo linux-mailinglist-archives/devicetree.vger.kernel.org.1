@@ -1,250 +1,171 @@
-Return-Path: <devicetree+bounces-283355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283357-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGBZGvPZzGnnWwYAu9opvQ
-	(envelope-from <devicetree+bounces-283355-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 10:40:19 +0200
+	id QBKALdzYzGnnWwYAu9opvQ
+	(envelope-from <devicetree+bounces-283357-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 10:35:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60099376F6E
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 10:40:18 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 328C8376E74
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 10:35:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8A2E2304B9BA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 08:28:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6F906317A053
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 08:29:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C39B03AA4EA;
-	Wed,  1 Apr 2026 08:28:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B51C03AF66D;
+	Wed,  1 Apr 2026 08:28:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kontron.de header.i=@kontron.de header.b="j27EHHY9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JvAf8aB1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11020106.outbound.protection.outlook.com [52.101.69.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F22D23AC0C1;
-	Wed,  1 Apr 2026 08:28:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.106
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775032126; cv=fail; b=jE91d23MHkFQ5ZnhVLTKW6YTm8NFsirmuRNMup16yBxzkHPT3aGU84f7CCW/Vi9e27q0kgOlu3sNznageGv2fTtXcNGixc9LrnSfvMih28tSjmlJpxOX1hPnZub2WkXXbT86lZwpjexnHCqHV54DqGk9nifjIYf2txvojXRmNNc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775032126; c=relaxed/simple;
-	bh=rq+kLm/Ma1o/ZcwqsuPRaHuQjAuFipqNlxobGIEG5/M=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=s86NZRmKQ/Sq+OZBe+fIrkXz2DWf2HJfrU2wcIa+rTQkMVTYpgWoHO42e8CbGQrluEUVebpSVSZXFBRD6vTpwln31+zWeqstiDJg+TlWWTnr5tthz4W5/6T2DUmQmzoIbBKJIHzlvdsyDM3b6hRZYMYMO3xo7CwqCMO/5l0RWgQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de; spf=pass smtp.mailfrom=kontron.de; dkim=pass (2048-bit key) header.d=kontron.de header.i=@kontron.de header.b=j27EHHY9; arc=fail smtp.client-ip=52.101.69.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kontron.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QTnCJvvO6EdkNCviO5balrc29/e8ESOdepUodPKGU/MTWy8jh2TSFQWPSfUQm6VsJa3N/N2Js7psm7GUJcx8CgX0s04dn1j1ANdyiF0zqrj2RlkHAQh5jf9J4W3Aa+/p3lPi+IiwFX2gkEZ+qQNkjYlQLAq/ic1+ZrvQ/MuDB4fBwBoRCxPZSwpMHULdH6d69yeAvVt4Fq15caEata7p7047JtHA17w0Ent+MCZqNOmqhSBMjqoD2BklBCfe1H72iSaWVUFMbMe1SyysImCDKQLVB6k4atmyRVKPAt4IQUvt4mjQgcCsK34qFHRYr3vgGFoRI7ZEI9rMxGjM5DcF8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JqH9sKLfHhmcoANcuySDjn5w/Mvt+c/3TgdLER1ogH8=;
- b=qE/FjnLLPNPRCMk3V6+VSXtCFPMioM0zsYQN9svemfZPuXrFXCyL3NCZBOirrf1ZGyQbn8ZHyDkJlWhcg5+561CevZyazbj6q5Y8zatHQb8M7AjYg0l6f+XsW7YLbMSNghsGE5MTkumqafcjbMU+znfhrnCk00DabTIn5gyQDYrUEU76ShW6miZOylZsKdYuSGs3suYQ7NVASFSi9fqoc1FRKFkGtP+Rb9rzuXIHYxhwDv66JDobSN2nU5GcHj17RlWabijnQhtoa/b3bbUUaeYh1CnWKfzbe0lqcypOm/aL3wFfSjbRURxkfc1qiOEmJgMBBYVkqxG6hzd3Tx9p/w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kontron.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JqH9sKLfHhmcoANcuySDjn5w/Mvt+c/3TgdLER1ogH8=;
- b=j27EHHY9yt4RSfWyEgkDY6WelEEHdgGgSDvS4k3mBwlMMNt7c1l30eJl7FiFI7/HMazY16JaIxo/ULE5ErQ3HLoi+g7YAsFCiHyIYJRiWnAff9wj2H7euvkJAWGwDvHNpwE4DiFCDH09H397nZAizcRD+zMfTOodfXPm+PgOI8WVa8njbcnv4/liwkuNSEc027sY5dI7G7dARQ8vVkZpmfRhZcSN1GXcuMF8d+oJVvJzts13oNCLasyHmqbMmm9NEYsaWfs3WFe/gC71u2TtfiY9y0UcXd30/RnkgWACltx4ahZFzgpXG8Sfyq9WqW83VVPyUaGu2J5BwTY0VAQlog==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kontron.de;
-Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1fb::23)
- by AS2PR10MB7108.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:60f::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Wed, 1 Apr
- 2026 08:28:37 +0000
-Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a276:4ad7:962:da22]) by AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a276:4ad7:962:da22%3]) with mapi id 15.20.9769.016; Wed, 1 Apr 2026
- 08:28:37 +0000
-Message-ID: <5fa79355-9dfe-4f8b-9eee-e3cd8aed932d@kontron.de>
-Date: Wed, 1 Apr 2026 10:28:36 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] arm64: dts: imx8m-kontron: Revert reading SD_VSEL
- signal
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Peng Fan <peng.fan@nxp.com>
-References: <20260401-imx8m-ldo5-v1-0-1b1c1381babd@nxp.com>
-Content-Language: en-US, de-DE
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <20260401-imx8m-ldo5-v1-0-1b1c1381babd@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0232.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e9::13) To AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:1fb::23)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F22A3AE184;
+	Wed,  1 Apr 2026 08:28:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775032129; cv=none; b=JE+jswV49QD0kf1U1EaeEdVq9wvsdLwDKeGctfAb4s4BtVDfao6jo54ov6DUifMIixzAjr9xe9WNaRqyXF6wXK9A26gbW27ecOz313NJganMMoOmnJCmBNoNXNtvurVysvaZZAJiXyOrr9i/vQg1mCebK6U8vtak9oiFolh3aBo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775032129; c=relaxed/simple;
+	bh=ijyWGc7cgC5C8+2EsFh8eAzQCX0rxyLF1iEbqDPqQQo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pX3/IrDwHcs5oKBZhOqT0k+goNCqwUjzwFyudJaNUb2HaRrkmj2tD1RKpjbu6y2sFt8idfQFUxRiqfhxLo463uU1DCm6NpmYY2lc3uoa9q96+mKIFSHRmovUPy+nJ2xLtcXoh26u4Uh6NiOe/bl3jR+ki6oYEH0CAZrLA6zxbGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JvAf8aB1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 332ABC2BCB2;
+	Wed,  1 Apr 2026 08:28:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775032129;
+	bh=ijyWGc7cgC5C8+2EsFh8eAzQCX0rxyLF1iEbqDPqQQo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=JvAf8aB11iYfWtQKqXurNWxSAh+0em4CBKRYdqWAG5UJIqnVGFLbPomJ9NwjuCAI0
+	 dylUHgCUiEELvkRWHwcl+N2giRtw2+fc8yTFPGduJAZ85Y/4TJPaVL5ATd80BXJO87
+	 uyTKTRWG1H1eDLmFY5viXyhM1vYjk4l0qcOwD+I83dMWNwqGU80+DvBDwqY75WzSVD
+	 2WfgfCCPhvp3sEqe1WMbLTCnTYtPKVvdXf1IGCyrAN6vx6OJ/944e8N73wcBLm8EpY
+	 MCP/2YXM0L2T6QnfDfoj+dSVtARSmSXiA7M881E4dTw1T84Yl4Wve+aIq+iFj4MohP
+	 OeBb75q+02AfA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 28134D35151;
+	Wed,  1 Apr 2026 08:28:49 +0000 (UTC)
+From: Rudraksha Gupta via B4 Relay <devnull+guptarud.gmail.com@kernel.org>
+Subject: [PATCH v2 0/3] Reorganize DTS and add fuel-gauge to
+ samsung-expressatt
+Date: Wed, 01 Apr 2026 01:28:47 -0700
+Message-Id: <20260401-expressatt_fuel_guage-v2-0-947922834df1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR10MB4277:EE_|AS2PR10MB7108:EE_
-X-MS-Office365-Filtering-Correlation-Id: c9f410a4-5781-459c-267d-08de8fc8ac08
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|7416014|366016|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	7FhE819JAq5otNkjB5wemj0DIE/qgqLuLiW9FjdBk3cuhVUDI/+iIrw+kLhhyVMCOloFkqf7hpJ0bvllsHO1F+3ecuCDd45qHv/vT3r0aAL8AgGAMXaaqO1s+ZfRG306re3n7fJUW5MAUwpQCZ575rieeyA8DWKmA9Leh9P2GfhePmAlN+oHCKvxew386uFYr6hzoemoiRj8rvM/p0qcEWw7VqSS1r/qhO9W2X+DQY1AS49wAL4/yWDSPMHmzFYJEGR82xWieqnv65HX8ceRwqhx9uC9sfnWzhr4Q3wvVnVvA0w5qfKoiAMl5vRAGPZ9zxZsPedwNzjxzWuvcdj45Y8Qn0Cf2w5Ke3I00oCB0cTe+d1HcyKclI+Qbj7KFhkanzxZ3FpJPTbvJvE+VVBTM3hi7/juq8zUdMI9R0zr3Hc7pvRKOgxxQLkKu53EUkYcXViOcT9ATadwMgt8mTadr2zjPGBnw4ByIaBzNdIILK8ll4n4LFpvFR4CsFfzXjLINxYzBcbQfAg6Fs8rhoSRUMMukdcOl5vCNhaQUmPF9P0Hg3+2dODjfm+Cr5poAzB0s+SYy/GwrH43tB/YogrpCMVfsUG0/KOjx35k63hZX1LqX2qLxzeWlRMTF5QdgYbEFJ3EIShlPbUu2b3bnUsJaRumvZ/mJQBVytu51fmPFI78ZXzl32ERAG25SzZSib7re6Q6KSgYMPFJl80Si0Tm1JHNWUGM7xvrSliPXUfAS6o=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?QkRBcW1ZVTBkRDIrR2pzZkwrYjFBc0ZsUy80SE94YnZLWjZnbEJyNWJPYlFX?=
- =?utf-8?B?Um9mZXliTVRFSDg1enQwb2dla3A0eXF5M0E5OGF1YkduTW4xc3h3OFFIQmxk?=
- =?utf-8?B?c3c1ZGwrM1Y5S3psYldMbTNSK2l4anFzMUxtclhiNkhJa3VDUVYzcWRRNldm?=
- =?utf-8?B?YlJEaFEyVnV6NDJZOE52bmUvYytGQzl5eEIwVHRHaFJJaWRKZDFKZXdpTmtG?=
- =?utf-8?B?WkdTYm90TUg1N3dKTTllcDdDbUE5MWU4VXJFUmhUbFNrZkNsZ0IvUDkwZTBR?=
- =?utf-8?B?bG1pWEU0N2tFK1MvUWFzRDFwNXk3WWI0U2c5Y2M3ZU9wNmVUYTNKenNGR2ly?=
- =?utf-8?B?anV3SGFaMm4xNFVyalAwK2hzUFFTWFFER3FhK2RNRGtuWXVrb3hnRFJmNEJD?=
- =?utf-8?B?WG04LzhZNXg5OUdJQjVqRDJrK0E0dDBNZEdsOVd2cXhSeG9hZDZuVlBiYitS?=
- =?utf-8?B?RndqVGVFK0lZNFROTnNRbGNlajhYa0Rucy9VRFlvT0dLSHRuZ0ZSUUxNdmNx?=
- =?utf-8?B?T05hbWthbXViVjhwcmdrZllUcEVDOGJiQTRaUklIS3VaRkxIN2NHNStLMFNx?=
- =?utf-8?B?UEVWZGpMSGNBbEpuOTBETTJlaE9ZdVpGNGorT0U2ZkVPSDlOemp5TjN4RHJa?=
- =?utf-8?B?cVFhMmNac2FHcXJkVUVMNGFwVjFzQ2Z1T3EvS1MvMjZwRTJLNXlPeTdoaE83?=
- =?utf-8?B?K2pEaHplR0hhV1JHdVQ2eENxWmg1VDVYZ0RhL2hGQmQxdGc4dk5raEVaaEFI?=
- =?utf-8?B?bGVoWXlpSHBJdndQRUNzKzhULzhYTGpkbXgrM3hibkVnS1ZMUUdYZTVEREdI?=
- =?utf-8?B?VzVIbTdUWFlEQStmTE5abTVrb0lDWDB6TWtJYjdmRGQrM2FNbWh5OVl6SEdM?=
- =?utf-8?B?cXRHUnN6ckxnMmFPMHZYNE1hWHNuajkwbWwzMGtNdC9FTmFjN3pSRlI0TWVp?=
- =?utf-8?B?eE1PVFFoUDN5dXdOeDNKQUVkVjhZc1F0TEM0NUhOaG5sZjkzTUhUTnl2KzFC?=
- =?utf-8?B?UEppdmZJQVdyY3p0NkJtb3NSUEFhbUx6WW4yVWgwUWZRVXhOK1ZEcTJ4S1N2?=
- =?utf-8?B?dWpyaTJ5dXp6YU0yWCtlM3hUbmxOSUhHUC8yb0N3Lzk3Vm5jTDJsb3B3Q3Zm?=
- =?utf-8?B?QytFRFAyVWkxN2FpUlpDMWVneHd3WkNQcE5KSTFIQVhncUdObG4vRVBBY2ZZ?=
- =?utf-8?B?QjNQaGN5Wkk0N3BZdHp4WlZtRjFNUUM3dGtVM2pvd2tyMXVUWWVBOXVqSFl5?=
- =?utf-8?B?VHpTZ2F1MlVURkg4NW9ya2hGeWZjbjlXTEViZ3Q5T25UaUpqTmVkWGZRdTl6?=
- =?utf-8?B?cnhHZ2dqZU5rYVQ1VTJsMW5oTnhXc0ErV0JFT2hLN1g5WDJYeDJkbjIra3g0?=
- =?utf-8?B?OU4xNExySzZMU01IZzhNVkJUVEU3dHF5aVJCMDVjaUd0K2RCUGFBOTlkMXlm?=
- =?utf-8?B?WHgvUjBSWktzelQveDJ0T2JDUzN3dWhCL21JM0xmMTdJUS9YL0xEZUlqTWgw?=
- =?utf-8?B?Q3dVbFRnY1ZPZHBiazBJaWtVN1hYR1pYbnRBZE9TUnJRbGZPY2RNUTZmc1Jn?=
- =?utf-8?B?Q1k1TnBGcGY2MVNWQjVkeDJLRDRGMHRQa1JpQXdkZDFlU0NWMFRZTGRJOUYy?=
- =?utf-8?B?cW1FcDVVZGg2cVF6Sko2MGVuK1hGOVZmK0RPQWNGQ3orMnRwUnBSM2dTYTlT?=
- =?utf-8?B?Rm1SQlhOZHNRSDk2M1Z4YzF6WTBnem1Xdnl1aFdxbWVvazkvVGxpR3VVa1lx?=
- =?utf-8?B?eTVNNVVkRElXRWM4V0hjTkc0NVBDaTJqcHNQVy9TV0xzU3hLMnRRa3pSZGtZ?=
- =?utf-8?B?UzhiL29aMzZHTmNNN3l4THdLWnM4YWNEdFFCRmFkZlRhMEYzb3Q1UklMczZ3?=
- =?utf-8?B?aFlsRFkrVjBRdlVwWE94RXRwcTNKWS9KNDMwTElZS3JyMThiVDZWc2pwRHor?=
- =?utf-8?B?eFNrSXk5T1lOM0lUdHFEVWxXL2xuaGs1b2xOU0w4c0I4TnJBU0tOb2EyQ2M5?=
- =?utf-8?B?TTBPSVY3OE05MmlpQ2VnSWdBVTlmd2VQcTNFUTdmcitSUE5rZzByUWtscHo1?=
- =?utf-8?B?SjRzWjFsdERidGJmTWdqNXgzVWRPUStXRDRPTVhTak5rdmJiZmZhdkxFNlNJ?=
- =?utf-8?B?a29pOHNKQ1lMNUN1ZFJzcWdlbkdSbnNPV2ZHbndlRjQ0NXB6SUFjR2hnWHdX?=
- =?utf-8?B?ckhKZlFPVUdHTDNCVjJyRlpZUkM1emRqd2N6LzdLNUVGNmFMSU0rYythVjUy?=
- =?utf-8?B?K1Yxd1JqaTBZejdqeUt2SG5VcVJjQllmUS9lT25yaU9Lek4rVHByVi9HeFNQ?=
- =?utf-8?B?L3RRTWhwOVZyd2RqbmhmRFNrSW9RdklYMHBhNGlWL0o4UmFvOStLL0xKSVQr?=
- =?utf-8?Q?ltLoNsG74NVDvykI=3D?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9f410a4-5781-459c-267d-08de8fc8ac08
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2026 08:28:37.6705
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Zy4u5zu+dNKDr6/ZxI9ueoZiwB1S2nlUelzqJrRiQZoAtGYY0u7QiHCt1YETe15SqyKFzeOF/0Z7W0zOVBcAxPNrhPYAec5LG9DWltWPFGA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR10MB7108
-X-Spamd-Result: default: False [1.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kontron.de:s=selector1];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WS6WocMRCEX2WY35GRWq1rCcHvkZhFR/fO4B2vP
+ Rc2Zt/d2llM4gOCfpWo+tRU67WdaOxpanfNazvS2k/96aEK+NG0uYsPBxJ9qboFCVZqrQQ9P44
+ 0TXGe97zQcX9YYjWhNYWTZu9iamu2erh/3ri/7656pKel4ufrZfsY59xV+O7PArLCuRRJHA2Va
+ BQkREjeV6iXzmFR0UntCrsN/h5tFBQIlr3OOalUJ/BF2uiA0NnERkUyjGTzx1QMTsbMIL1UqBm
+ rTQZtSoFsXEpOsUmstf+Quo7JBQwTG2+kzoZMZodALiQFGNBnxzYFX8I3UetrgdF6maoVlDMBK
+ yuDD2QVZ0R94eVyiQ6Xhrfud83PWn1tRJp/qhfzacndPb2IVYl6EDEFcDmwvj0MsT/e5NPw6zv
+ SlyXmONAY93yMUydWFFKwohAYHRr1mZbiRKKKoZ93zWpvVGgv2+36aT6NL9snWtW23v/8l21s0
+ EUVb8AmG/4+1N6dz+c3SoA/0ZgCAAA=
+X-Change-ID: 20260331-expressatt_fuel_guage-465dfb3f87ab
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Rudraksha Gupta <guptarud@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775032128; l=2193;
+ i=guptarud@gmail.com; s=20240916; h=from:subject:message-id;
+ bh=ijyWGc7cgC5C8+2EsFh8eAzQCX0rxyLF1iEbqDPqQQo=;
+ b=MmgwvXuLziahm10UT8nqenr/+BUb7r8SSOxtPl16o+nfZOWv8d7ZJ2FHHUV5zKZeAnhDtnlwG
+ UsQEACoEga3C90WXtCwQoAqnRhloxGewGyMajyXy0ijRXz5bBPNFOM4
+X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
+ pk=ETrudRugWAtOpr0OhRiheQ1lXM4Kk4KGFnBySlKDi2I=
+X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
+ auth_id=211
+X-Original-From: Rudraksha Gupta <guptarud@gmail.com>
+Reply-To: guptarud@gmail.com
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283355-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[oss.nxp.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[kontron.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-283357-lists,devicetree=lfdr.de,guptarud.gmail.com];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[guptarud@gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[frieder.schrempf@kontron.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kontron.de:+];
-	NEURAL_HAM(-0.00)[-0.940];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.849];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,kontron.de:dkim,kontron.de:email,kontron.de:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 60099376F6E
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 328C8376E74
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 01.04.26 04:05, Peng Fan (OSS) wrote:
-> When MUX is configured as SDHC VSELECT, enabling SION is not able
-> to read back the SD_VSEL value. SION is used for force input path,
-> not to redirect the PAD value to GPIO(the other mux).
-> 
-> This has been confirmed by reading i.MX8MP RTL. we have not check
-> i.MX8MM RTL, but it should be same.
+Reorganized the samsung-expressatt DTS to be more in line with mainline
+standards.
 
-It seems like you are right and I misinterpreted the documentation and
-also misinterpreted my test results. So I was probably basing my work on
-wrong assumptions.
+Tested battery by doing `cat /sys/class/power_supply/battery/capacity`
+in upstream Linux and comparing the value with downstream Linux. Booted
+on upstream Linux first, as the upstream Linux seems to use a lot
+more battery than downstream, and then put the battery into another
+expressatt running downstream Android to compare values. There are
+some slight differences, but overall seems to line up pretty well with
+downstream.
 
-> 
-> Not sure whether need to add Fixes commit for the patches, just revert
-> patches.
+Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+---
+Changes in v2:
+- Previous changes were based on some outdated dependencies. Update them
+- Reorganized expressatt DTS
+- Switch to GSBI5
+- Link to v1: https://lore.kernel.org/r/20260331-expressatt_fuel_guage-v1-1-23d1d8526b69@gmail.com
 
-This was introduced in 6.15. I would like to add Fixes tags for the
-reverts. And can we add patches in this series that switch to GPIO
-control as done in [1] and also tag them as fixes? This should allow to
-read back the correct voltage from the regulator.
+---
+Rudraksha Gupta (3):
+      ARM: dts: qcom: msm8960: expressatt: Sort node references and includes
+      ARM: dts: qcom: msm8960: Add GSBI5 I2C controller
+      ARM: dts: qcom: msm8960: expressatt: Add MAX17048 fuel gauge
 
-> 
-> For the U-Boot support, either drop vqmmc-supply or switch to use gpio
-> control to replace vselect control.
-> 
-> And below patch should also be revisited.
+ .../dts/qcom/qcom-msm8960-samsung-expressatt.dts   | 420 +++++++++++----------
+ arch/arm/boot/dts/qcom/qcom-msm8960.dtsi           |  35 ++
+ 2 files changed, 257 insertions(+), 198 deletions(-)
+---
+base-commit: e9ec05addd1a067fc7cb218f20ecdc1b1b0898c0
+change-id: 20260331-expressatt_fuel_guage-465dfb3f87ab
+prerequisite-patch-id: 6fdd0efa5eda512b442b885df80774d1a7037df7
+prerequisite-patch-id: 12d296f83ccb1bdfb8d06a72e476bf51ae5f4e6c
+prerequisite-patch-id: a970acf2080143f41ae0935dd2c57bb71f5bf338
+prerequisite-patch-id: fd25fef58503c5e5cf742e79b124948c7f6b98d9
+prerequisite-patch-id: 68603a680b24921759425fc289e61fc4435e5ccd
+prerequisite-message-id: <20251205-expressatt-touchkey-v1-1-1444b927c9f3@gmail.com>
+prerequisite-patch-id: 8de4de7909722ccaf385c4224f25a623eaa72c28
+prerequisite-message-id: <20260331-expressatt_camera_flash-v4-0-f1e99f474513@gmail.com>
+prerequisite-patch-id: ab8b8d87fd2d518c4c5b5dace3f22238d1abbe49
+prerequisite-patch-id: 47e32e653e520a27770bb05d99135694b0128ba0
+prerequisite-patch-id: 7ef7df61e7ef6476a35811d765f522f793d9ecc7
 
-I think we can revert this, too.
+Best regards,
+-- 
+Rudraksha Gupta <guptarud@gmail.com>
 
-> commit 3ce6f4f943ddd9edc03e450a2a0d89cb025b165b
-> Author: Frieder Schrempf <frieder.schrempf@kontron.de>
-> Date:   Wed Dec 18 16:27:27 2024 +0100
-> 
->     regulator: pca9450: Fix control register for LDO5
-> 
-> To supporting read back signal, need the MUX set as GPIO and support
-> in/out, not set mux as VSELECT.
-> 
-> TBH: I have not test setting MUX as GPIO, anyway we need to fix DT.
-
-If we mux as GPIO, then we don't need to read back. I think in this case
-the best solution is the one used in [1].
-
-[1]
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit?id=5245dc5
-
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
-> Peng Fan (2):
->       Revert "arm64: dts: imx8mm-kontron: Add support for reading SD_VSEL signal"
->       Revert "arm64: dts: imx8mp-kontron: Add support for reading SD_VSEL signal"
-> 
->  arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts     | 10 +++-------
->  arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi |  7 +++----
->  arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi |  7 +++----
->  3 files changed, 9 insertions(+), 15 deletions(-)
-> ---
-> base-commit: 3b058d1aeeeff27a7289529c4944291613b364e9
-> change-id: 20260329-imx8m-ldo5-90e369066213
-> 
-> Best regards,
 
 
