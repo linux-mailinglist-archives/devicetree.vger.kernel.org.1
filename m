@@ -1,104 +1,70 @@
-Return-Path: <devicetree+bounces-283602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283593-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OEx0OT9OzWkWbwYAu9opvQ
-	(envelope-from <devicetree+bounces-283602-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:56:31 +0200
+	id MKj4MwlKzWn4bQYAu9opvQ
+	(envelope-from <devicetree+bounces-283593-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:38:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8C3E37E41C
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:56:30 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3084C37E048
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:38:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E5EFF300C6E6
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 16:27:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6016E3082866
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 16:25:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A250F47D925;
-	Wed,  1 Apr 2026 16:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mirrorstack-ai.20230601.gappssmtp.com header.i=@mirrorstack-ai.20230601.gappssmtp.com header.b="ATBneXj3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F0247276D;
+	Wed,  1 Apr 2026 16:25:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442ED3644D5
-	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 16:25:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555024611FC
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 16:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775060758; cv=none; b=Afv0mCdTMY8L5+jn9xhe9I/F3MEjYcrysneeYzNYBxcOaWzbbbsIVy4g1itjlfHv2wAskf8I2yeZS3AKENYW/4XwXd4Pj7S3derh7xj6OllWrV3aaGNRAO2XJFb4GeNW1Q1yMW1keT5Og+Hna1ZOnrG/AjQGR3uJoUwA63lnsDM=
+	t=1775060740; cv=none; b=oHd0YFDw0BKk+EWOjQSbE+Wu3/YMHv9NzTJuylpYEOUp1QxIW6zZvGxhjoS4V5jog/uiJkKQPCOFGbSm77GM1rV3lozILlDR+vHnZFlGydqCzXwM6OmwNhhoJbgAMkrDt66NIDJF4gmWHVKganqhjV62w6K5wIOPcwUIqtzQfY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775060758; c=relaxed/simple;
-	bh=/qWO8KI3tIBC0cjksLyab/irCOuK5UlJOac1HvRs0AA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Gl8zTtvYzudTYNTN1b1UljXv+sAN1JUgcRWWSf7Ox7IXrOqbpQdvGSM2Q5voua593zlFZHNNTHoq3DVvbtI2iCZnMs1XAoIPPbgrS80Lswt+CtOZSIWeiRfR5sCnjs+X+DyA72sdZeqqna43dUWafDWywtV1fq22492yaPuiq+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mirrorstack.ai; spf=none smtp.mailfrom=mirrorstack.ai; dkim=pass (2048-bit key) header.d=mirrorstack-ai.20230601.gappssmtp.com header.i=@mirrorstack-ai.20230601.gappssmtp.com header.b=ATBneXj3; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mirrorstack.ai
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mirrorstack.ai
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-35691a231a7so4340862a91.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 09:25:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mirrorstack-ai.20230601.gappssmtp.com; s=20230601; t=1775060749; x=1775665549; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SmuFDt4ssXwo5Kn+8E+MCnCyQLezwxIlCE02tQ8Pv3k=;
-        b=ATBneXj3E3SGVicK5Q1/mXuKr3nxxMbcAUDFKV3l2XAw09+MfkQ08kdCr6S0XkWPN1
-         YJMyWq/P73TKvyq7o0qfwKkr7bQbF0FfpfJpU7u/jC7Wa5yXrQPSnNq3xsXMdRkuyYPj
-         xR2b+zDfkbFlhtZPf0sPTVS5oL/PWAWTX6rOWkNJ8ZgTtWiEy90IJz/SZczCV6whgWbV
-         CNeO/3ZbyZKzUQzbvxrSbxl0JgbAoVxMEeh8AKYbylSvR8pUDa4+JSuR2gohK2aF7wLn
-         D050nUCLjJjz+ufi+uGXYKdUn9AJ/FNjlrXFxcbgRQwtTGdxcjJj69+iSWT16Io+GnGC
-         WUUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775060749; x=1775665549;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=SmuFDt4ssXwo5Kn+8E+MCnCyQLezwxIlCE02tQ8Pv3k=;
-        b=Aq4eMReAs+MeBXvtfQSGJH/PbaNpr0rFBSIKZuOitB6CkGKOIOgr0dREAUclbkWrAl
-         XwSmo3Bu2tdFLiQ9pzaLv5UDLoWRKzY86qJ1w5z7t2shzIrwWdrwFm/MHfL7MaRPucC/
-         HzgUrkRERf3jVcgWs6/9XpPC9Reu7fzsrRM4MyYe3FMvnMqtbAw2UHZtc29S+n5NpCut
-         NupOuaDR0zmuMt9gE1Y4tWz59VUHZ/ctHuEWLOrbysru0bp9sgi9HkY62/zzxKN9Npsn
-         sQsHco1dWzRtDYQ3aYdWVOHiPpOBStmrADx9xRUxX5Zbu12VXm9abWvqXd6TMUKChu3P
-         P0ag==
-X-Forwarded-Encrypted: i=1; AJvYcCX1VaRP9vT5Ydxoj//8HeAGqWD0siubaf1WuuFR7pn+a47HhOEa9HAKCu/rurFYXvXp4OVrLvQMxMln@vger.kernel.org
-X-Gm-Message-State: AOJu0YwsjvO4Fzd853xoJF0NsfBuaNuOc8HIiRfaNR1Q9MZ03yb+Mx7X
-	ccORX4HfhV4MzGoOyG9ewlfb3xnn4IpKNgsZH8n2M0UKiNXp04oH5otLhjDNekZnwR8M
-X-Gm-Gg: ATEYQzz33Zzn02ffVoRHUaf6bQOvg9N/fwE8IEzUwzUS59Y/gasb48XVx8CN4mxMQdo
-	D0nNtqywf1qksgBcUzD0eS4LNMHOy5Er8JRty58ZUsCkVUTQet2DYOrI2pk80GRXk2ulfo8d0sk
-	06YxrK0Y4VEk3cMzy8vkjT9gpGfNOhjwekoITHkA1l6OZS5mM9szDCqPOAuhC/QWg07Dcz+sBqL
-	F2R935tV6WrPCCQfU1vhVVnXxk3D/NXG/qv/fD0hdpQjYcpFiy/2SKLyBerBhLEqQLshRP02upC
-	48TlIQE625m+tHLSLcM2qodNHeoOI6XanNyrWuSE3vs8lWE0iHfcbgYtuAOjBqyUzaU2ex3OqF/
-	4d7uVvbB96ufR5qjpyKCeRRk7GPHoOi2IWNCKLa9I+rHpfBn3hOkHejWM0xKPFQPSnYwhWZSj0E
-	141N9ooT4kwmX3jMoKrh/kLcFCZLYOIWiM9LSMTeZ3qMHSbe4gKATTaurIiIBSPGfEs1RoY71UZ
-	6I/pgwJNOP8UL63gAJizRB3ID8yco/o6muZxKwXFw==
-X-Received: by 2002:a17:90b:3f44:b0:354:a57c:65db with SMTP id 98e67ed59e1d1-35dc6f0128amr3633041a91.20.1775060749484;
-        Wed, 01 Apr 2026 09:25:49 -0700 (PDT)
-Received: from ip-172-26-8-186.ap-northeast-1.compute.internal ([2406:da14:e8:bc00:e546:17ee:7142:6d05])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35dd35e34eesm281813a91.2.2026.04.01.09.25.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Apr 2026 09:25:48 -0700 (PDT)
-From: Sheng Kun Chang <nothingchang@mirrorstack.ai>
-To: jic23@kernel.org
-Cc: lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	gregkh@linuxfoundation.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-staging@lists.linux.dev,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1775060740; c=relaxed/simple;
+	bh=Jpv6RTniVBvt70szPgYAv0JGed4nVUgLqx8NINTIpxI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=etCPLzsHzCA5fcMOqD+2vbxkiodOIHDr9LmNgb6FThdcy0rGUVV7Bm+RzWy/s7ckD7DZyiILBTAraO8Y9shNtdskZe3qezu+1SbS0gjyqsY0WdSSAXNufgMWTgiVk3mbNI4fR8YjWIjTGxPKFvvhRwgz8parY54NgxhmyqCRsgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w7yNV-00088f-RJ; Wed, 01 Apr 2026 18:25:13 +0200
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w7yNV-003EjC-0X;
+	Wed, 01 Apr 2026 18:25:13 +0200
+Received: from ore by dude04 with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w7yNV-000000079qc-0OLq;
+	Wed, 01 Apr 2026 18:25:13 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Peter Rosin <peda@axentia.se>,
+	Linus Walleij <linusw@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	kernel@pengutronix.de,
 	linux-kernel@vger.kernel.org,
-	Sheng Kun Chang <nothingchang@mirrorstack.ai>
-Subject: [PATCH 3/3] iio: accel: move adis16203 out of staging
-Date: Wed,  1 Apr 2026 16:24:57 +0000
-Message-ID: <20260401162458.88110-4-nothingchang@mirrorstack.ai>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260401162458.88110-1-nothingchang@mirrorstack.ai>
-References: <20260401162458.88110-1-nothingchang@mirrorstack.ai>
+	devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	David Jander <david@protonic.nl>
+Subject: [PATCH v10 0/6] mfd: Add support for NXP MC33978/MC34978 MSDI
+Date: Wed,  1 Apr 2026 18:25:04 +0200
+Message-ID: <20260401162510.1706073-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,157 +72,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[mirrorstack-ai.20230601.gappssmtp.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283602-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[mirrorstack.ai];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-283593-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.984];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nothingchang@mirrorstack.ai,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mirrorstack-ai.20230601.gappssmtp.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: E8C3E37E41C
+X-Rspamd-Queue-Id: 3084C37E048
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The adis16203 driver uses standard IIO channel interfaces, devm
-managed APIs, and has no remaining code quality issues. Move it
-from drivers/staging/iio/accel/ to drivers/iio/accel/ and remove
-the now-empty staging accel directory.
+changes v7:
+- drop gpiolib irq fix and make pinctrl more robust against NULL point
+  dereference.
 
-Signed-off-by: Sheng Kun Chang <nothingchang@mirrorstack.ai>
----
- drivers/iio/accel/Kconfig                   | 12 ++++++++++++
- drivers/iio/accel/Makefile                  |  1 +
- drivers/{staging => }/iio/accel/adis16203.c |  0
- drivers/staging/iio/Kconfig                 |  1 -
- drivers/staging/iio/Makefile                |  1 -
- drivers/staging/iio/accel/Kconfig           | 19 -------------------
- drivers/staging/iio/accel/Makefile          |  6 ------
- 7 files changed, 13 insertions(+), 27 deletions(-)
- rename drivers/{staging => }/iio/accel/adis16203.c (100%)
- delete mode 100644 drivers/staging/iio/accel/Kconfig
- delete mode 100644 drivers/staging/iio/accel/Makefile
+This series adds support for the NXP MC33978/MC34978 Multiple Switch Detection
+Interface (MSDI) via the MFD framework.
 
-diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
-index 3d3f8d867..2d8abec49 100644
---- a/drivers/iio/accel/Kconfig
-+++ b/drivers/iio/accel/Kconfig
-@@ -18,6 +18,18 @@ config ADIS16201
- 	  To compile this driver as a module, say M here: the module will
- 	  be called adis16201.
- 
-+config ADIS16203
-+	tristate "Analog Devices ADIS16203 Programmable 360 Degrees Inclinometer"
-+	depends on SPI
-+	select IIO_ADIS_LIB
-+	select IIO_ADIS_LIB_BUFFER if IIO_BUFFER
-+	help
-+	  Say Y here to build support for Analog Devices adis16203 Programmable
-+	  360 Degrees Inclinometer.
-+
-+	  To compile this driver as a module, say M here: the module will
-+	  be called adis16203.
-+
- config ADIS16209
- 	tristate "Analog Devices ADIS16209 Dual-Axis Digital Inclinometer and Accelerometer"
- 	depends on SPI
-diff --git a/drivers/iio/accel/Makefile b/drivers/iio/accel/Makefile
-index fa440a859..eaf8ce443 100644
---- a/drivers/iio/accel/Makefile
-+++ b/drivers/iio/accel/Makefile
-@@ -5,6 +5,7 @@
- 
- # When adding new entries keep the list in alphabetical order
- obj-$(CONFIG_ADIS16201) += adis16201.o
-+obj-$(CONFIG_ADIS16203) += adis16203.o
- obj-$(CONFIG_ADIS16209) += adis16209.o
- obj-$(CONFIG_ADXL313) += adxl313_core.o
- obj-$(CONFIG_ADXL313_I2C) += adxl313_i2c.o
-diff --git a/drivers/staging/iio/accel/adis16203.c b/drivers/iio/accel/adis16203.c
-similarity index 100%
-rename from drivers/staging/iio/accel/adis16203.c
-rename to drivers/iio/accel/adis16203.c
-diff --git a/drivers/staging/iio/Kconfig b/drivers/staging/iio/Kconfig
-index a60631c1f..bf6addf29 100644
---- a/drivers/staging/iio/Kconfig
-+++ b/drivers/staging/iio/Kconfig
-@@ -5,7 +5,6 @@
- menu "IIO staging drivers"
- 	depends on IIO
- 
--source "drivers/staging/iio/accel/Kconfig"
- source "drivers/staging/iio/adc/Kconfig"
- source "drivers/staging/iio/addac/Kconfig"
- source "drivers/staging/iio/frequency/Kconfig"
-diff --git a/drivers/staging/iio/Makefile b/drivers/staging/iio/Makefile
-index 628583535..739e4cbf9 100644
---- a/drivers/staging/iio/Makefile
-+++ b/drivers/staging/iio/Makefile
-@@ -3,7 +3,6 @@
- # Makefile for the industrial I/O core.
- #
- 
--obj-y += accel/
- obj-y += adc/
- obj-y += addac/
- obj-y += frequency/
-diff --git a/drivers/staging/iio/accel/Kconfig b/drivers/staging/iio/accel/Kconfig
-deleted file mode 100644
-index cee51f64b..000000000
---- a/drivers/staging/iio/accel/Kconfig
-+++ /dev/null
-@@ -1,19 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--#
--# Accelerometer drivers
--#
--menu "Accelerometers"
--
--config ADIS16203
--	tristate "Analog Devices ADIS16203 Programmable 360 Degrees Inclinometer"
--	depends on SPI
--	select IIO_ADIS_LIB
--	select IIO_ADIS_LIB_BUFFER if IIO_BUFFER
--	help
--	  Say Y here to build support for Analog Devices adis16203 Programmable
--	  360 Degrees Inclinometer.
--
--	  To compile this driver as a module, say M here: the module will be
--	  called adis16203.
--
--endmenu
-diff --git a/drivers/staging/iio/accel/Makefile b/drivers/staging/iio/accel/Makefile
-deleted file mode 100644
-index acac7bc9b..000000000
---- a/drivers/staging/iio/accel/Makefile
-+++ /dev/null
-@@ -1,6 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--#
--# Makefile for industrial I/O accelerometer drivers
--#
--
--obj-$(CONFIG_ADIS16203) += adis16203.o
--- 
-2.43.0
+Architecture overview:
+* mfd: Core driver handling 2-frame pipelined SPI, regulator sequencing, and
+  linear irq_domain. Harvests status bits from SPI MISO MSB.
+* pinctrl: Exposes 22 physical switch inputs as standard GPIOs. Proxies IRQs to
+  the MFD domain.
+* hwmon: Exposes thermal limits, VBATP/VDDQ voltage boundaries, and dynamic
+  fault alarms.
+* mux: Controls the 24-to-1 AMUX routing analog signals (switch voltages,
+  temperature, VBATP) to an external ADC.
+
+Initial pinctrl implementation by David Jander, reworked into this MFD
+architecture.
+
+Best regards,
+Oleksij
+
+David Jander (1):
+  pinctrl: add NXP MC33978/MC34978 pinctrl driver
+
+Oleksij Rempel (5):
+  dt-bindings: pinctrl: add NXP MC33978/MC34978 MSDI
+  mfd: add NXP MC33978/MC34978 core driver
+  pinctrl: core: Make pin group callbacks optional for pin-only drivers
+  hwmon: add NXP MC33978/MC34978 driver
+  mux: add NXP MC33978/MC34978 AMUX driver
+
+ .../bindings/pinctrl/nxp,mc33978.yaml         |  158 +++
+ drivers/hwmon/Kconfig                         |   10 +
+ drivers/hwmon/Makefile                        |    1 +
+ drivers/hwmon/mc33978-hwmon.c                 |  549 +++++++++
+ drivers/mfd/Kconfig                           |   15 +
+ drivers/mfd/Makefile                          |    2 +
+ drivers/mfd/mc33978.c                         | 1079 +++++++++++++++++
+ drivers/mux/Kconfig                           |   14 +
+ drivers/mux/Makefile                          |    2 +
+ drivers/mux/mc33978-mux.c                     |  141 +++
+ drivers/pinctrl/Kconfig                       |   16 +
+ drivers/pinctrl/Makefile                      |    1 +
+ drivers/pinctrl/core.c                        |   41 +-
+ drivers/pinctrl/pinconf.c                     |    9 +-
+ drivers/pinctrl/pinctrl-mc33978.c             | 1008 +++++++++++++++
+ include/linux/mfd/mc33978.h                   |   95 ++
+ 16 files changed, 3134 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978.yaml
+ create mode 100644 drivers/hwmon/mc33978-hwmon.c
+ create mode 100644 drivers/mfd/mc33978.c
+ create mode 100644 drivers/mux/mc33978-mux.c
+ create mode 100644 drivers/pinctrl/pinctrl-mc33978.c
+ create mode 100644 include/linux/mfd/mc33978.h
+
+--
+2.47.3
 
 
