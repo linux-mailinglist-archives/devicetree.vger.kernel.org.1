@@ -1,220 +1,222 @@
-Return-Path: <devicetree+bounces-283474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283476-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kEFFNM4DzWnhZQYAu9opvQ
-	(envelope-from <devicetree+bounces-283474-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 13:38:54 +0200
+	id kIG9OnEBzWmSZQYAu9opvQ
+	(envelope-from <devicetree+bounces-283476-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 13:28:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D968D3799BA
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 13:38:53 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADC863796E1
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 13:28:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C573D30D7EBA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 11:23:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BE1A7306FEAF
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 11:23:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E483E0C44;
-	Wed,  1 Apr 2026 11:23:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A454F3F9F55;
+	Wed,  1 Apr 2026 11:23:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="SlLRU6Ar"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oBvUBX74"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (mail-southcentralusazon11011014.outbound.protection.outlook.com [40.93.194.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EDF73BBA0F;
-	Wed,  1 Apr 2026 11:22:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775042580; cv=none; b=k+l3Btm90V/7BTGlpF5sNMJdfreCogGLrIODSR5Zm1X0JmYexwM8fpQ3HyumlE4V58jYIYrzJE4pIW3eTicJOl0ZCRPg+ZJwYSm7qhS7Xdws2oTn08D/tmNVMdJStdmqYYI8D7h/qFPljDD/bbLpAcFjPxohLA0NXzLPA44eC6c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775042580; c=relaxed/simple;
-	bh=ygah+m5Zp32+qXHXM/HvjkFczdQdJLlsh5/qt+Mi8Lw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gwhq8QhjwDm/nc/Ilg7xBNcr4uxUt1S9GD5McII7eN6SsL3ZRE78Lf+8jRlRfe5TnVN3jWkNabOX3EiaEN2CvqgbPTHGPWR+uzcOyaP63A6h7o0wOQlsgxA5ivQw+fdbtg/ik1ybgDvvqgzclMSqbef+4qTSqU4Ncr2o/+qk0u0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=SlLRU6Ar; arc=none smtp.client-ip=188.40.3.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=XV/XQrnPKsdZ45NNgsrK3n7v8TXq7shL8pgsC2bU8IM=; b=SlLRU6Ar8ftyOpmtaUHioFJByQ
-	BDc63ICNTUXEg7HHqGDFuJ/h1cvJBbOL1lMYW50+rZ8gZ/+G2PYqD0Swya9dCSsgL1ACgi95lop5y
-	klI9fbByaQx8YN1yPQDlQwcQBm78FDT/o4ACnwqivC0S2xuJ2HRfGptV0H2WaIFJKguBdcdCydeWR
-	7G6uqotFeExEF5xbozhAFIE+wl2E6wmgoTDm7p8eUOSFhWx1US+qQQt1XOTZRrOuNz/PMP5mGr21b
-	BdFv0aanfDbzo0cuzg5LHk591ccd7XWaOvFIBeirnCRND6wKtNfogZmsgpQUSGwz2OtE0lR/8MZBz
-	gBdIM4vQ==;
-Received: from sslproxy06.your-server.de ([78.46.172.3])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <nora.schiffer@ew.tq-group.com>)
-	id 1w7tew-0008Tt-0q;
-	Wed, 01 Apr 2026 13:22:54 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy06.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <nora.schiffer@ew.tq-group.com>)
-	id 1w7teO-000CHU-1m;
-	Wed, 01 Apr 2026 13:22:53 +0200
-Message-ID: <0bcf160f0ebcf0904d3fc60853fddf1103da8f0e.camel@ew.tq-group.com>
-Subject: Re: [PATCH v6 0/2] TQ-Systems TQMa62xx SoM and MBa62xx board
-From: Nora Schiffer <nora.schiffer@ew.tq-group.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, Tony Luck
- <tony.luck@intel.com>,  "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
- linux-arm-kernel@lists.infradead.org,  devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux@ew.tq-group.com
-Date: Wed, 01 Apr 2026 13:22:53 +0200
-In-Reply-To: <6e34ecefae8e2f187c5ecfdfd343fb717711c21d.camel@ew.tq-group.com>
-References: <cover.1772443991.git.nora.schiffer@ew.tq-group.com>
-	 <6e34ecefae8e2f187c5ecfdfd343fb717711c21d.camel@ew.tq-group.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3-0ubuntu1.1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 250E33F99FE;
+	Wed,  1 Apr 2026 11:23:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.194.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775042591; cv=fail; b=YBSBn0F/POkyFPe+joDOzxjPHZGIgGGjUJ3MQRX4iFdC7vPnZhmE6IqsCvoINLdxidaWS6hSuDVSYHGe6Vg/uJ9zuWVgBbF1fiy1SqQTZRV+olEysPSmgouhx3OD4VElv8KkAJC081QVd7BWeXDWR9CDjZX8VYIWnGYCj+fI0w4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775042591; c=relaxed/simple;
+	bh=C/muQq1IipJK0j3hr16HR5eNEkjCACqfsZrZ6R0WhZM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VpyWvGaAN9LrMeW3EjjYaC9G1gCZqVntructqloFdSgiGh/FGhi6lXGMTFDJ3CI3HqiS9aRBbI5hf0it1Ld8kyHOdrGFRfpOzHRu1+CmJQjkApbjZ7ljXvs712MBKx7PdpEGo/uZ0wAVm3CdXLvFCfU4j8cR8P25sw5WdyJiPgY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oBvUBX74; arc=fail smtp.client-ip=40.93.194.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rD5PTlnZ9xz/X88Kf2hdK3hE/eUivI17zGbl4EnULcVIGTb/zwqJqACV/HuJJuqIFL1iJS75PnJoIA2hJE6klLhrdwBcvlwf5sQfDZ0OIHOKGZKD+c5VVKduZEz0DRScBeZE/IEj+prDXbBvZ1QVPWdc9wzZhdmOgnI16UtXpXil6xi862kWiA0+i+Zli+w0oVul/fYqmIjyPumzmva4fzg79WLUIsi+s2s7Wvjtey0nVN/zsqUpSIyObU2REZRbtOAL8lvLWRiZB6sBGlqfbEi2dQnQbNsJJ6d22+j4KA+2WGJybMDdAmo/w2HwcwknKUfPlP+gQ93Xe6WcATRnew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Km5i2wtNc8TsgFAg/Vbz98+rxNsuFNhnc1JeB67kh4M=;
+ b=jyAzSxUk5tP6KyzoooVai+2tt0QdmzYZO93qOXkmrq+dFBzWEWOcsNtyPbfC3/taX55Rs8uslxWyHQb6vIoohJe3O+paXucqRLHy4S2cpq580gEepXGzM9dIlmhM4yuWc/oiKraFyfMb3ME7A1oZDBmoXlhIl5d9pddfOe68O1qQiPoEVyxa39/OmGgZctfpXjRbWr9SWCXqVKDlC9jLdqsnLS39n/NICKoO+O87Ia2BmMwb2R222iCNv4eeKX87rKOowdRGyBapbBMVjkGxgQFPABXkkbTir+54Je1NKci8jOZUqUWtIB1tvEof0ScfS0V299el7rw64hrfJTosKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Km5i2wtNc8TsgFAg/Vbz98+rxNsuFNhnc1JeB67kh4M=;
+ b=oBvUBX74k+raqChC33NLq1EAWhhg8u22jnZ69q2X06pLf4yl5KCQQ0W6e3dpN9y3h8JofxeROsNxYwMPAqMr5VKwbHNN44k0t9sC1SBD088xTK/QCs9MGhBXdxbHKfTdktQIHougO/A1nY0WsAdT6kOW26AasaMsYMIKUJ8phzI=
+Received: from CH2PR15CA0024.namprd15.prod.outlook.com (2603:10b6:610:51::34)
+ by IA0PR10MB7644.namprd10.prod.outlook.com (2603:10b6:208:492::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Wed, 1 Apr
+ 2026 11:23:07 +0000
+Received: from DS2PEPF00003441.namprd04.prod.outlook.com
+ (2603:10b6:610:51:cafe::34) by CH2PR15CA0024.outlook.office365.com
+ (2603:10b6:610:51::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.29 via Frontend Transport; Wed,
+ 1 Apr 2026 11:22:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ DS2PEPF00003441.mail.protection.outlook.com (10.167.17.68) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17 via Frontend Transport; Wed, 1 Apr 2026 11:23:07 +0000
+Received: from DLEE200.ent.ti.com (157.170.170.75) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 1 Apr
+ 2026 06:23:06 -0500
+Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE200.ent.ti.com
+ (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 1 Apr
+ 2026 06:23:06 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE202.ent.ti.com
+ (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 1 Apr 2026 06:23:06 -0500
+Received: from akashdeep-HP-Z2-Tower-G5-Workstation.dhcp.ti.com (akashdeep-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.91])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 631BMxFE4170925;
+	Wed, 1 Apr 2026 06:23:00 -0500
+From: Akashdeep Kaur <a-kaur@ti.com>
+To: <lee@kernel.org>, <praneeth@ti.com>, <nm@ti.com>, <afd@ti.com>,
+	<vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <aaro.koskinen@iki.fi>,
+	<andreas@kemnade.info>, <khilman@baylibre.com>, <rogerq@kernel.org>,
+	<tony@atomide.com>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-omap@vger.kernel.org>, <s-ramamoorthy@ti.com>
+CC: <vishalm@ti.com>, <sebin.francis@ti.com>, <d-gole@ti.com>,
+	<k-willis@ti.com>, <a-kaur@ti.com>
+Subject: [PATCH v3 0/2] Make TPS65219 poweroff handler conditional
+Date: Wed, 1 Apr 2026 16:52:55 +0530
+Message-ID: <20260401112257.1248437-1-a-kaur@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Virus-Scanned: Clear (ClamAV 1.4.3/27958/Wed Apr  1 08:24:34 2026)
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003441:EE_|IA0PR10MB7644:EE_
+X-MS-Office365-Filtering-Correlation-Id: e591561f-60dc-4a53-be46-08de8fe10c65
+X-LD-Processed: e5b49634-450b-4709-8abb-1e2b19b982b7,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|376014|7416014|36860700016|921020|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	6cJ8+9RTKvsnd/i1R6LTJ8VEfFar4/QovOeNp0q3+IbtdUuUxTVNTZezrCs2Z734W1sXNGs5E5jhmyXiz+aqESDirgK/HCRB6GDoChhH7uElv4vPRE6TuUZ5xb4/QAiE7HOjZnDKCvHP0Z6+GgTs0MhVv6ze4UjD7A2vHQkBdFGV3l3eHvpqP2xCC94ZZevPskgwthVh7W2eU4eT8SAJheJg2YoB8sx2n9m+E3iikkjHX+5W8jDt5dl9VoIuicKg1yqZikLdGmi6qKw7ojs7wuNmlPU8oT2I2rDq4Qa+YPbhJ50ppwRLhu5l56sexb6zwr5+h1oL1LkiYnW3jDJmu6/RN4QNxkAOV5bkWvzenI4DkFxRNxC2AjxszOZS3hc3xrdzR7ZJ2p2zP9x31L3TzEFUIVIeCGH94FzmdL3Kt+fUVtY0O1pybi+Q/mgCZFuyhme2jyLKRg3ncLhDMdkY7fkvha6We/S8vxFnoTzQnjmeXxhCLIi9m26BsS83a1/YjLtSrjvBFvSd7kZPiHKHq5rGRQiNeoQn9rxBJEIOQ969UP/pxs/S5iITCg/vzLJvkeb1MdHQQJRX6g627w46vCHLbGCqjfzIeOR9JSxndafZgWXyxNt2l/rqfvmaPCKAG2OCqACzXLZZ9y9Cd4OxSy/y9oFO1yv7DCj9dTc8IgMXizEj3OMxreZ/20w4z2wOFViLxGT9QULgOKN6tcZhZgZp67ft7aGBT8MtLei6fCZtCpcAXJ0dqHgNOOSteOjYrEHY41EU0a1m4vEztuBruWgcqRi7OSBSRCc7PmErYMN3/VG8eSpVtZjV2m03HzAXYZzOTsmYpHZZ5r4088ayVQ==
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(7416014)(36860700016)(921020)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	k9zLuA42xtfbf1tHG6LqKyhxf6q7Uo97ZdcR5qXol+jnKzjLt0/s4witxkCSCnigmMZQOqEelERxAb97r2MW67j7uB62lon/GxghS9S9MJsOn3HaAhUKBRVtEGSdedKd6zUHgJb+U85eNx48nVC1DsRYTrtusfBKCCAKKnkNgVIuS923TpR8MtS/5dEx4w6zEx2T5gkimgmgP2Y/5PhX6N/Com5goxFT75qQcWBfw1Lum/VDsqAGpHmZMIFXC0aAgFTQi7Psc8ape/UpJorLDKEsJ//nFLvZ+8ycP1NQx3HurHgef/gdvOMWL+odyMRx1Saowq4h1+ESxKziPAzTmztEEBa34wVOAubHAHnVsI9d3uEAdMUfD7YJKqPPQwkMH13FNVhzSM6A7jqitQ/Z3tVjgQKuY3ZMPM1aqQijLJDilzir5BdzlTGx5WfvZ6yD
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2026 11:23:07.0528
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e591561f-60dc-4a53-be46-08de8fe10c65
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS2PEPF00003441.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR10MB7644
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-283474-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-283476-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[ti.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nora.schiffer@ew.tq-group.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[a-kaur@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.967];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ti.com:dkim,ti.com:email,ti.com:mid];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,tq-group.com:url,ew.tq-group.com:dkim,ew.tq-group.com:mid]
-X-Rspamd-Queue-Id: D968D3799BA
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: ADC863796E1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 2026-03-17 at 10:08 +0100, Nora Schiffer wrote:
-> On Mon, 2026-03-02 at 11:14 +0100, Nora Schiffer wrote:
-> > This adds Device Trees for our AM62x-based SoM TQMa62xx and its
-> > reference carrier board MBa62xx.
-> >=20
-> > Not yet included are overlays to enable LVDS display output and MIPI-CS=
-I
-> > camera input.
->=20
-> Hi Nishanth,
->=20
-> do you have any further comments on these patches? Can we get the series =
-into
-> v7.1?
->=20
-> Best,
-> Nora
+This series makes the TPS65219 PMIC poweroff handler registration
+conditional based on device tree configuration, following standard
+kernel patterns.
 
-Hi Vignesh,
+Currently, the TPS65219 driver unconditionally registers as the system
+poweroff handler. This creates conflicts on platforms where alternative
+poweroff mechanisms (such as TF-A firmware or other power controllers)
+should handle system shutdown instead.
 
-ti-k3-dt-for-v7.1 is tagged now, does that mean we missed the window to get=
- this
-series applied again? If there are still any issues, I'll gladly fix them u=
-p,
-but we have not received any review comments on this last revision of the
-patches.
+The standard kernel approach is to use the "system-power-controller"
+device tree property to explicitly designate which component is
+responsible for system poweroff operations.
 
-Best,
-Nora
+Patch 1: Add "system-power-controller" property to AM62-LP-SK device
+         tree, explicitly designating the TPS65219 PMIC as the system
+         power controller for this platform. This property was missing
+         only on AM62-LP-SK among all in-tree TPS65219-based devices.
 
+Patch 2: Update TPS65219 driver to only register poweroff handler when
+         "system-power-controller" property is present. This allows
+         other systems using this PMIC to use alternative poweroff
+         mechanisms.
 
+Impact:
+- AM62-LP-SK: No functional change (property added, handler still
+  registers)
+- Other TPS65219-based systems: Poweroff handler registration becomes
+  opt-in via DT property
 
->=20
->=20
->=20
->=20
-> >=20
-> > Changed in v6:
-> > - Update author information following name change
-> > - Rebase onto latest ti-k3-dts-next
-> > - Disable incomplete panel node
-> > - Add various comments to explain why nodes are disabled
-> > - Extend comment explaining disabled 1400MHz OPP
-> > - Use consistent comment style for pinmux
-> >=20
-> > Changes in v5:
-> > - Rebase onto latest ti-k3-dts-next
-> >=20
-> > Changes in v4:
-> > - Rebase onto latest ti-k3-dts-next
-> > - Reorder boot phase tags after other standard DT properties
-> > - Add missing supply regulators in SPI-NOR flash and USB hub
-> > - Set status =3D "okay" in &cpsw3g, as it is disabled in k3-am62-main.d=
-tsi
-> >   now
-> > - Add disabled 1400MHz OPP entry (will be enabled by bootloader if
-> >   supported by PMIC configuration)
-> > - Update copyright years in new files
-> >=20
-> > Changes in v3:
-> > - Rebased onto ti-k3-dt-for-v6.18
-> > - 3 of the 5 patches in v2 have been applied already and are dropped
-> > - Include k3-am62-ti-ipc-firmware.dtsi, drop now redundant configuratio=
-n
-> > - Change node name for MCU reserved memory to 'memory'
-> > - Use rgmii-id PHY mode
-> > - Drop now redundant ti,rx-internal-delay
-> > - Update simple-audio-card,name to match other TQ SOMs with compatible
-> >   configuration
-> > - Reference dss_pins in dss node (actual display support will be added
-> >   in a follow-up patch series)
-> > - Consistently use GPIO_ACTIVE_HIGH define
-> > - Drop unneeded usb0 quirk flags
-> > - Add boot phase tags
-> >=20
-> > Changes in v2:
-> > - Collected acks and reviews
-> > - Rebased onto v6.13-rc1
-> >=20
-> >=20
-> > Nora Schiffer (2):
-> >   dt-bindings: arm: ti: Add compatible for AM625-based TQMa62xx SOM
-> >     family and carrier board
-> >   arm64: dts: ti: Add TQ-Systems TQMa62xx SoM and MBa62xx carrier board
-> >     Device Trees
-> >=20
-> >  .../devicetree/bindings/arm/ti/k3.yaml        |    7 +
-> >  arch/arm64/boot/dts/ti/Makefile               |    1 +
-> >  .../boot/dts/ti/k3-am625-tqma62xx-mba62xx.dts | 1034 +++++++++++++++++
-> >  arch/arm64/boot/dts/ti/k3-am625-tqma62xx.dtsi |  360 ++++++
-> >  4 files changed, 1402 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/ti/k3-am625-tqma62xx-mba62xx.dt=
-s
-> >  create mode 100644 arch/arm64/boot/dts/ti/k3-am625-tqma62xx.dtsi
-> >=20
->=20
+Tested on AM62-LP-SK - system poweroff works correctly.
 
---=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-https://www.tq-group.com/
+Changes in v3:
+- Fixed minor formatting issues in PMIC driver
+- Link to v2: https://lore.kernel.org/all/20260324101419.95616-1-a-kaur@ti.com/
+
+Changes in v2:
+- Addressed review feedback by removing comment on self explanatory code
+- Link to v1: https://lore.kernel.org/all/20260310111846.1084623-1-a-kaur@ti.com/
+
+Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
+
+---
+
+Akashdeep Kaur (2):
+  arm64: dts: ti: k3-am62-lp-sk: Add system-power-controller
+  mfd: tps65219: Make poweroff handler conditional on
+    system-power-controller
+
+ arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts |  1 +
+ drivers/mfd/tps65219.c                   | 14 ++++++++------
+ 2 files changed, 9 insertions(+), 6 deletions(-)
+
+-- 
+2.34.1
+
 
