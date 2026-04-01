@@ -1,208 +1,245 @@
-Return-Path: <devicetree+bounces-283241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283244-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yC3lFQqKzGlXTgYAu9opvQ
-	(envelope-from <devicetree+bounces-283241-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 04:59:22 +0200
+	id 4DsGEPKOzGnXTwYAu9opvQ
+	(envelope-from <devicetree+bounces-283244-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 05:20:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECFC8374161
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 04:59:21 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9FD9374332
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 05:20:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2DC5C30D7CEF
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 02:55:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DCF06306F62C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 03:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0773436492E;
-	Wed,  1 Apr 2026 02:55:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1711A3806AC;
+	Wed,  1 Apr 2026 03:16:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="b3zRXW59"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="lFv8scxc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010053.outbound.protection.outlook.com [52.101.85.53])
+Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com [91.218.175.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCFD733A713;
-	Wed,  1 Apr 2026 02:54:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775012102; cv=fail; b=EBsNaRaK7xy5uAJP3GD6aN/sPs+qmFkMey5nNEiPgnWaBG0wZamWB6bj/3RA/6JW2w75Nz7N+PeH3KzMpECTJEG7jq0n4U3ANJDwjMxg5FrZhPAhGKG3oGWQ47JPYw35k/8S7HsqneiMSveeM7PDGQbvcLVpl6fZuRrAva54ubM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775012102; c=relaxed/simple;
-	bh=aGa0AgVq6wIYIY3Rm5wQ3p4BrYDZjlhH8qYhP5zZDIc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ddQYFZ/G5E+rfX8qXtjQYKDgBiCndMXnfvmLCw/TvQ16B6fBNaCMht0qmejfDk10BoN0oxHS9aoKWxiGNOD1vYUpTfw3A/wxW8XA7Y0vIeYRApFYiKMN2YQmn1Ij0bWC2mc5a89p+hHZcX/6u312WhiCcgT3AFmlQjpUpJ3x7QE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=b3zRXW59; arc=fail smtp.client-ip=52.101.85.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AUcjQsR2xQXm8t8tf7DBYYTN/G9Dp7wC69ZitJsWEPIHpn1SZf7d7dXoHyEkQc8viCsJsXsN7xUAxBS1v6KSKL3TGIZfkSBOqN11Q9DD6QOrIBmsDU2Lce7RqWg61LtRpZQsA3PEls6jfDJeSlUBhFPGP4t69vm1zWK9RQhJDe7hh5zK8zIRX7v2VgWmJJDIBfQZon5qX8VZcmta4YYVYseSTpaeHEeS2Ik/SjfvjU/bo+FGNEkVodYsj5qBufP+xXTavzlMAlq53/E8TDk0z5OIVMGxX3c5efDmpiifYwUsE4CeGur5FaQZURUZknpwROcbPhod70oFNQ1Z8l1X0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J+X0iTT1fLeRZpIRgZoenpqpcK8Wg3XJFoztsWH2/qg=;
- b=W4yuCbti2mgxth7J6DuYHXRioMWzDLHSX0Y+5iwJKdqUJ5wdqdMda8AqscXDVcDNrx1GI3dVSEZ1E7NabH/TiSaX/XJ4ch093a83Mo8+UI3k8ujqoKerxIw3mSGhmY9pIJRWm05yM4olbKFWC0cKvWf4lSCo6iF2bQDBddb6dUIJFPBqSoi8cc6KgdX2mriDBR4EOiUW/ej8oYrHe1J1R2J0HJ8LEvyLL73jRiBjVFXGnII26q19LA+dRXEtXSMOPDi5r17IEJP10baLLT5RfZZGKYUJkyqY1jPDX6G3aq2DbTIhzES0lqxqmSZi9hBNC6IPZu7lk9T325q60ngjtg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=J+X0iTT1fLeRZpIRgZoenpqpcK8Wg3XJFoztsWH2/qg=;
- b=b3zRXW59YFKeiUQgS2jh3CbMtTQeG9N6EAXV0EJFDQSrAj/kMc+YJqGLzYss9RB8RtxlMmytJXi9FvTOhUDr1gS+TUJ2kgJ1STU6XbplBmxERSuWIxmRpmt4xC6jMB5BuI/pTddgDnO7SjqpIyrf2Agvh8jJRreRdcWdLXNkwNw=
-Received: from BL1P222CA0013.NAMP222.PROD.OUTLOOK.COM (2603:10b6:208:2c7::18)
- by SJ0PR10MB6351.namprd10.prod.outlook.com (2603:10b6:a03:479::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.28; Wed, 1 Apr
- 2026 02:53:38 +0000
-Received: from MN1PEPF0000ECDB.namprd02.prod.outlook.com
- (2603:10b6:208:2c7:cafe::61) by BL1P222CA0013.outlook.office365.com
- (2603:10b6:208:2c7::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.29 via Frontend Transport; Wed,
- 1 Apr 2026 02:53:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- MN1PEPF0000ECDB.mail.protection.outlook.com (10.167.242.139) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17 via Frontend Transport; Wed, 1 Apr 2026 02:53:37 +0000
-Received: from DFLE206.ent.ti.com (10.64.6.64) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 31 Mar
- 2026 21:53:36 -0500
-Received: from DFLE208.ent.ti.com (10.64.6.66) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 31 Mar
- 2026 21:53:36 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE208.ent.ti.com
- (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 31 Mar 2026 21:53:36 -0500
-Received: from [128.247.81.246] (mz02jj9v.dhcp.ti.com [128.247.81.246])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6312raV33441292;
-	Tue, 31 Mar 2026 21:53:36 -0500
-Message-ID: <2ad3a6a4-34a1-4ef8-8308-77d023127783@ti.com>
-Date: Tue, 31 Mar 2026 21:53:36 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD5637FF63
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 03:16:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.180
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775013365; cv=none; b=Ayxt/6nk7722DuK4aPKA8zOkCyq4JNf85gvQmkrIA6qdKYzjj7pN7TBh1uiIwBACFWofgDs6j1MIERWLgQoItLD5feV1aq2ooih6HjU5WhAjLsRIMVXyZUQWnVKba0DDaDmhW7pXEhIi1jyDy2TazvV0AN2585/YLIdlC83VuOs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775013365; c=relaxed/simple;
+	bh=3Cg+LNqweQ6c1bsyjxzyjVlWx4GC5+id9Gc5bYkRg2U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=A66gjEvnJFhZhW0WsZpsHkwiI/5uEB36afqWxo7zsQJTyFIbXCh+7mYEnuAOWn3PAal9uiOqS84oMJ35dYz+rcD+9e6EDwiGGWOxG1ivgD0o6m15rgskXoqqZYSEmAd9y8Vx5PU63pvTbPAgFmq4KgDgVUw4kVwegf/PUSVeUZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=lFv8scxc; arc=none smtp.client-ip=91.218.175.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1775013351;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=jT1Ep2dNDtPyO+bNApnNtdUbbiWrC7hl5nQUJtP/iqo=;
+	b=lFv8scxcK11ddki7+05AhL9tJYA0ycEFjAducqb3KRG0Rflzdzd0XX6qxVd8q0GiLT3SYa
+	huWEsKhv1urPq9jqxtf6aTZ9p+wz9wbVj7FLfcn6Bhbvqf+PL14JSRSShOmneHESwhn3hK
+	PQdSe9fRyItRoeo632tIFhfN6Yg9+YcJMGjlqd1tqD5DbQDE9ZjkdjsivjSeme8aRLQFGx
+	gFHF8ZNmPYQw5rFXpc2JdsJ5zVNLLwiru/wXKFk5oVRW4IngRVLH3oL4Ly3Z4OQ3ee/Pbb
+	yFBm1i4ko4IlhDnGYUl6f9MKnW+gk5dIEZL+b4IL1FpXRK3u3CLNyepJ2CibYw==
+From: Paul Sajna <sajattack@postmarketos.org>
+Subject: [PATCH v7 00/15] arm64: dts: qcom: sdm845-lg: Improve hardware
+ support in devicetree
+Date: Tue, 31 Mar 2026 20:15:05 -0700
+Message-Id: <20260331-judyln-dts-v7-0-87217b15fefb@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 0/4] ASoC: Add TAS675x quad-channel Class-D amplifier
- driver
-To: <linux-sound@vger.kernel.org>
-CC: <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<perex@perex.cz>, <tiwai@suse.com>, <shenghao-ding@ti.com>,
-	<kevin-lu@ti.com>, <baojun.xu@ti.com>, <niranjan.hy@ti.com>,
-	<l-badrinarayanan@ti.com>, <devarsht@ti.com>, <v-singh1@ti.com>,
-	<linux-kernel@vger.kernel.org>
-References: <20260401024210.28542-1-sen@ti.com>
-Content-Language: en-US
-From: Sen Wang <sen@ti.com>
-In-Reply-To: <20260401024210.28542-1-sen@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECDB:EE_|SJ0PR10MB6351:EE_
-X-MS-Office365-Filtering-Correlation-Id: bc13dcc0-aa48-48a7-2f75-08de8f99df77
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700016|7416014|376014|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	XCqfBm5C63scSlsMyot9h7kI5zYRaaXosFj7VycrjbyEHLcArsyVldqr9llMQn+OeV8ZphT7P/w8bCsdzedU5RLC0zOC2ZsWTbwaAsb99coyQ8/IxrXSp4POr2KxirCnwBojvDbt3U83rFquJC8enlguwRrKYGVm/A7OhCN3el8B2fNL7cp6Y8m/VZkDdhR7s261FTWp1dTBCOWZFYPBk6AnglnBjkCoNrMEwcSKeGQLY+RbN3mxBqBS6DO8QVBqRDdrS5PvqWLTPUvL8vSemP6kC1syx2+XTmPPBCQOm4u1j2r9sjLoRRu8c74k0AL/1MqanMMUxs+CySP1YlY/iTqMc/UJUaerda7ZMoUxqpxuoJQnKMNdX7l/yjwNcdnqB52DthygUIuW0vJmL8pFbwD+T7KAwZ3CiD0rEZy4kemIcUimdsd5OFtdn+SGJ2nu5fBlUO07/UOmGo9wNmt4tApXVK2gmPhLv9WTKbQ3+vu1jSFjqTxKrM6FtZqI6i5ujUXBH8D4UtaU+EdRIUzajb/4m6CwnRfIHRDOU3oWVOt65AkS8WGtmDo6DxtkSDlB5HZDAY2iHidi4f9Q4rS4tzk+DZSl+Q0B3e1D6BjuPX1csc+qrlEcnD3flb0b9xB3E+FvJIF4pJaxPTqOWFUXJ614l3HZUI+RNlTJWSmAGtsk6ZMOuV6LPacdVLHM3oe5k3h8Yp61M2Nz1BiRP+VI4xlEbl+n8c5QV8xv1Z+73hzkrORvppoTkey/8C5yAlG+0ZCgVj5RPOueFgIyHWMX/Q==
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700016)(7416014)(376014)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	gsYTpYY26zfGK0ca4lHrRoAXNffOFJjwwLUsWbtxkh3XYLnTuNJQC+90zllN10fF6QfllirVXDR1+/oIH0m05cXkq6EwaPC8Fqp22qbMvfJPu6Tn3elAh1MbjBVQbTR1OZR4hWsFsHYcrbsiEcCpnV1gDGaWX34pQwcH3HYHdJSEWlccG2Tr51uqpb6daWJO9MDXWtMQkkzIE3LkMjv0239qSTCCY4oj+dRu6RPJhEVSb/vime38rIpHHMRYwuyvSEPKJjHFb0v3drD1bYBy7gmKkBI+VG1T8j5CX38vaEvDmjUHfwr5n/evUepHmzPxdAe8KE26DYSGi05lwhR9rA2MRhf8b8viZyDknj+B4QjbcVu4VaCiArJT1ldgFOisLpYzzeNsGokRTTZZlCSmmmSeM3+Af5BNiDj1JwqspUaSdkvIMa83gVfoDPZt58vc
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2026 02:53:37.3890
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc13dcc0-aa48-48a7-2f75-08de8f99df77
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MN1PEPF0000ECDB.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB6351
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XQ3U7DMAwF4FeZck2Qnd92Qoj3QFwkqbsVtnYkX
+ cU07d3Jug1WQS+PLX+yzpElig0ltlwcWaShSU3X5mAfFiysXbsi3lQ5MwFCQ4nI3/fVYdPyqk8
+ cbVBIuqwC1Cwf7CLVzdeIvb5dcqTPfTb7y5BtKSU3msvF05WEG7lzLW34gBx5IXSwSoH03r/su
+ tRvXfygvkuPXVw9szO+blLfxcP4+ICjfgXl/Y+ZAy6kV97aEqpAf7hRG8S9YCaCyIImNGRAGOn
+ qGUHeCaKYCDILHlWoSypdXs4I6kdAFHoiqCw47QxoAC+MnRH0ryBg2oPOQgEB6zq4QhVzgrkJB
+ qSYCubcZFlZCA6NxvCPcDqdvgG6VnFRUgIAAA==
+X-Change-ID: 20250911-judyln-dts-17c41e59dc0f
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, Amir Dahan <system64fumo@tuta.io>, 
+ Christopher Brown <crispybrown@gmail.com>, 
+ Paul Sajna <sajattack@postmarketos.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Pavel Machek <pavel@ucw.cz>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775013347; l=5079;
+ i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
+ bh=3Cg+LNqweQ6c1bsyjxzyjVlWx4GC5+id9Gc5bYkRg2U=;
+ b=LffKWDeRCXRS3cGke62M5mJhKqYPYnDFkRK0sAIcvxg6R4g3tfyv2gOcGS/Hw8reN+FjNQnur
+ VpGGWEXZYz2CePmbZHWLiTk2SGJT0ZU5bTMnMd7MpbOfLXfmSuIWbDW
+X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
+ pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
+X-Migadu-Flow: FLOW_OUT
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[postmarketos.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[postmarketos.org:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,perex.cz,suse.com,ti.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ti.com:dkim,ti.com:mid];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283241-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-283244-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,tuta.io,gmail.com,postmarketos.org,oss.qualcomm.com,ucw.cz];
 	RCPT_COUNT_TWELVE(0.00)[17];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sen@ti.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sajattack@postmarketos.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[postmarketos.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.982];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: ECFC8374161
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,postmarketos.org:dkim,postmarketos.org:email,postmarketos.org:mid,tuta.io:email]
+X-Rspamd-Queue-Id: D9FD9374332
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/31/26 21:42, Sen Wang wrote:
+Rollup of improved hardware support via devicetree for LG G7 ThinQ
+(judyln) from sdm845-mainline kernel fork
 
-Apologies, the RFC tag was included by mistake. This is a proper 
-upstream submission, please kindly ignore the RFC tag.
+Notably, this patch-series enables full DRM acceleration and wifi,
+among other small improvements in individual commits
 
-> This series adds support for the TI TAS675x (TAS6754, TAS67524)
-> quad-channel automotive Class-D amplifiers. The devices have an
-> integrated DSP and load diagnostics, and are controlled over I2C.
-> 
-> Patch 1 adds the dt-binding, patch 2 the codec driver, patch 3 the
-> ALSA mixer controls documentation, and patch 4 adds the MAINTAINERS
-> entry.
-> 
-> Tested on AM62D-EVM with a TAS67CD-AEC daughter card, on setups &
-> test procedures, refer to the Github repository.
-> 
-> GitHub: https://github.com/SenWang125/tas67-linux
-> 
-> Sen Wang (4):
->    dt-bindings: sound: Add ti,tas675x
->    ASoC: codecs: Add TAS675x quad-channel audio amplifier driver
->    Documentation: sound: Add TAS675x codec mixer controls documentation
->    MAINTAINERS: add entry for TAS675x audio amplifier
-> 
->   .../devicetree/bindings/sound/ti,tas675x.yaml |  278 +++
->   Documentation/sound/codecs/index.rst          |    1 +
->   Documentation/sound/codecs/tas675x.rst        |  618 +++++
->   MAINTAINERS                                   |    4 +
->   sound/soc/codecs/Kconfig                      |   12 +
->   sound/soc/codecs/Makefile                     |    2 +
->   sound/soc/codecs/tas675x.c                    | 2172 +++++++++++++++++
->   sound/soc/codecs/tas675x.h                    |  367 +++
->   8 files changed, 3454 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/sound/ti,tas675x.yaml
->   create mode 100644 Documentation/sound/codecs/tas675x.rst
->   create mode 100644 sound/soc/codecs/tas675x.c
->   create mode 100644 sound/soc/codecs/tas675x.h
-> 
+after this patch-series the main things that remain to be worked
+on include touchscreen, audio, and modem.
+
+Depends upon panel driver patch-series https://lore.kernel.org/all/20250910-judyln-panel-v1-1-825c74403bbb@postmarketos.org/T/#r9a976ca01e309b6c03100e984a26a0ffc2fe2002
+
+Co-developed-by: Amir Dahan <system64fumo@tuta.io>
+Co-developed-by: Christopher Brown <crispybrown@gmail.com>
+Signed-off-by: Amir Dahan <system64fumo@tuta.io>
+Signed-off-by: Christopher Brown <crispybrown@gmail.com>
+Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
+---
+Changes in v7:
+- Reorganize commits
+- Add firmware-paths for judyp
+- Reword framebuffer reference commit message
+- Squash qups and dma-controllers commits
+- Link to v6: https://lore.kernel.org/r/20260323-judyln-dts-v6-0-29d70ca1651c@postmarketos.org
+
+Changes in v6:
+- Mistakes were made with b4 and branch was rebuilt, hopefully correctly
+- Split more things that got mixed into the sort commit (qups and venus)
+- Added more backlight properties from downstream
+- Framebuffer added back in
+- Update compatible for panel
+- Add qcom,te-source
+- Reference memory region in framebuffer instead of reg
+- Correction to rmtfs_mem
+- Set lab/ibb to 5.5V
+- Fixed flashlight/torch
+- Update commit message for gsi-loader=self
+- Update LG to capitalized in firmware paths
+- Remove qcom,snoc-host-cap-skip-quirk dependency (break wifi)
+- Enable dma controllers
+- Link to v5: https://lore.kernel.org/r/20251203-judyln-dts-v5-0-80c1ffca8487@postmarketos.org
+
+Changes in v5:
+- update system64's email
+- reduce lab/ibb voltage range
+- status should go last
+- remove rebase leftovers
+- fix flashlight
+- Link to v4: https://lore.kernel.org/r/20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org
+
+Changes in v4:
+- add panel identifier in addition to ddic
+- make sde_te pull-down
+- fixup flash current
+- remove framebuffer reserved-mem
+- remove manual lower guard
+- depend upon https://lore.kernel.org/all/20251110-skip-host-cam-qmi-req-v2-0-0daf485a987a@ixit.cz/T
+- reword commits
+- Link to v3: https://lore.kernel.org/r/20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org
+
+Changes in v3:
+- change firmware paths to lowercase 'lg' (matching dt-bindings)
+- fix signoffs
+- add wifi dmesg to commit message
+- remove regulator-always-on from ibb
+- remove framebuffer
+- remove msm ids
+- don't continue commit subject into commit messages
+- split bluetooth node
+- add sbu uart details to commit message
+- change ipa gsi-loader to self
+- Link to v2: https://lore.kernel.org/r/20250916-judyln-dts-v2-0-5e16e60263af@postmarketos.org
+
+Changes in v2:
+- sort at the start
+- drop unnecessary labels
+- drop unnecessary gmu
+- multi-led
+- split fb-panel changes
+- expand upon firmware commit message
+- use qcom,calibration-variant instead of
+  qcom,ath10k-calibration-variant
+- change firmware paths to include "LG"
+- remove framebuffer reservation
+- add lab/ibb
+
+- Link to v1: https://lore.kernel.org/r/20250913-judyln-dts-v1-0-23b4b7790dce@postmarketos.org
+
+---
+Amir Dahan (1):
+      arm64: dts: qcom: sdm845-lg-common: Add LEDs
+
+Christopher Brown (1):
+      arm64: dts: qcom: sdm845-lg-judyln: Add battery and charger
+
+Paul Sajna (13):
+      arm64: dts: qcom: sdm845-lg-common: Sort nodes and properties
+      arm64: dts: qcom: sdm845-lg-judyln: Add firmware nodes, change path
+      arm64: dts: qcom: sdm845-lg-judyp: Define firmware paths for judyp
+      arm64: dts: qcom: sdm845-lg-common: Enable venus
+      arm64: dts: qcom: sdm845-lg-common: Enable qups and their dma controllers
+      arm64: dts: qcom: sdm845-lg: Add uarts and Bluetooth
+      arm64: dts: qcom: sdm845-lg-judyln: Add lab/ibb
+      arm64: dts: qcom: sdm845-lg-judyln: Add display panel
+      arm64: dts: qcom: sdm845-lg: Add wifi nodes
+      arm64: dts: qcom: sdm845-lg-common: Add chassis-type
+      arm64: dts: qcom: sdm845-lg-common: Add camera flash
+      arm64: dts: qcom: sdm845-lg-common: Change ipa gsi-loader to 'self', add memory-region
+      arm64: dts: qcom: sdm845-lg-{judyln, judyp}: Reference memory region in fb
+
+ arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 228 +++++++++++++++++++------
+ arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts  | 129 +++++++++++++-
+ arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts   |  30 +++-
+ 3 files changed, 319 insertions(+), 68 deletions(-)
+---
+base-commit: 674feabdc26e80c4dbc884d7b6e2d2a4b93919e6
+change-id: 20250911-judyln-dts-17c41e59dc0f
+prerequisite-message-id: <20250910-judyln-panel-v1-1-825c74403bbb@postmarketos.org>
+prerequisite-patch-id: e51151ea7f8fdad6ad7d90713febc5c6b6fc4f9c
+prerequisite-patch-id: b3dd44250da9cd12bc5b2d0d7e865dbe19ceed92
+prerequisite-patch-id: fd6c8077806cb03fcf37d0e0d730314c2760e334
+
+Best regards,
+-- 
+Paul Sajna <sajattack@postmarketos.org>
 
 
