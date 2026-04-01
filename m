@@ -1,235 +1,296 @@
-Return-Path: <devicetree+bounces-283503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283506-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WKZuEAUOzWnhZgYAu9opvQ
-	(envelope-from <devicetree+bounces-283503-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 14:22:29 +0200
+	id iAqpLQwYzWnOaAYAu9opvQ
+	(envelope-from <devicetree+bounces-283506-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 15:05:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB94137A5F9
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 14:22:28 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D47E37AEC3
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 15:05:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9A4DA30D18E9
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 12:06:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1330830C5B65
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 12:22:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41EC43F54CB;
-	Wed,  1 Apr 2026 12:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D543FFADD;
+	Wed,  1 Apr 2026 12:22:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="ScAI4O0A"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="S+7GNyvM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11023142.outbound.protection.outlook.com [40.107.159.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 139923F7E98;
-	Wed,  1 Apr 2026 12:06:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.142
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775045196; cv=fail; b=mej87ADZGt6NCZTAefiNbMTVXJXt8qAB1jBuO5n2jNxEE90FLBQzOlvsbA6poRlmom0VRsKLnL6TP34IDoIgM+k8F5GrZt7L7huk+VjQgjb3nrjLGb8kC6hTSxXxOR2PBA09uRfWpJ2B5ydGKT3Wgqe87v5Psm0A6mqILzL+lXo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775045196; c=relaxed/simple;
-	bh=ZGYjupyRw1XvVLoTqpWpKMuttQOc321AZGuoF5gHCMc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=IPS/3IOjpiVUZYodcChNE8EhOZYq8UuyujgAHe7BcK/xJCbmIicgNNklv8rLn4gXvwa4uS9tYHYYbg8pKV80b1sezB2YWQmqmmSEN6pSkV/bGwgR/ARu5YWOP7UVsMGxxuvzUopQJ2PhBx/T3XUauaC7PQlZ43B2RpVoCbjUgZs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=ScAI4O0A; arc=fail smtp.client-ip=40.107.159.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n+kBov7KZ7p811A1UHehluQ6Z+7XfjmIr3x5eJH9c0LcKB8MHio4FyfUG2bsUdzkSiuixZFG7iqQu0qvVSMo+uHlUvbZJbQPQRdzbKgkFsW3ksPs5K9WPAFLTRuJXqRieXTj8ty0xtbj87AynC7fsQ/Vk9hlyq/AQm69cMxvpjNoiwZ5QJ5rohzGYzxYCFOmUGkT0oDpNxjgpDQ3mWa6C6Vav3oazJatYInbhLtC8eIqA1L8DKScRgf8F2t0T4XmOiQfI48/PN0g7d53s8RaSyWX/LIypThw+3Ug47lxzrjJOB+ziL4D6tJGlL9H/zntfzn+PyjDgE78oHxuAcygbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZGYjupyRw1XvVLoTqpWpKMuttQOc321AZGuoF5gHCMc=;
- b=rLrKMEuAuB0xCIVtRzCbo3e6gblfP7XJ/OIaxnoSJ17tp9w6gF2etADopCyn5hOd0UAFd0o/UGnjZgVsKJxPhr2ELGKUbPNRIg9A94AVhFbBiifX4tDdYeBrmjzOZWIjswjBe4yoM3RyqU4TOLTuOEXbfYOzyd9xfvnX2ARRbNPYkEYNUdXfQfb6Ht0J5fzFFJo5OdZNe/JN6x2rQnTm2AK5A/hDjZbDsYPNFp5PNnsGhFV4J9rQi9IKWvot/o7yiuxrvf43oLuzJeC9TfIpV4Gq202AQecfU7cJsi/SWSonYQ/fssrqnyip3lsaH9QU3wDSMi1Dv609S9uJFlAOyQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=phytec.de; dmarc=pass action=none header.from=phytec.de;
- dkim=pass header.d=phytec.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZGYjupyRw1XvVLoTqpWpKMuttQOc321AZGuoF5gHCMc=;
- b=ScAI4O0ARhJwhshVlT6Auq7vQJsZdFAjdhixhVhtpSoax8eLWyr6Dm5hRkcUQYMzrZ0TQNRqyYK+PFEL+jRoMCEqMPDnckCxQWECwbiFmm7gf2c4u781v+DlGngOleaOriMFaMSCQLhN9wCbJ4optSoy+TSVw9kTFmw9JBn5KaA54cRsUabAT205czotHWteHkgAu32l5IVVOZiICtLi4l/vrrkNAr7/H4CtfjBK/9o6mqZKBVdhQ/pIs6m2cKwpitP5FJYAj561bjca/WVD6RgeCbSjg+QqE7JuKrG0qHOUAGTJnYugTEnImA/abCTGRqh5+O9y0Zm2sg/6IBFlPA==
-Received: from GV1P195MB2476.EURP195.PROD.OUTLOOK.COM (2603:10a6:150:1a0::7)
- by PA1P195MB2536.EURP195.PROD.OUTLOOK.COM (2603:10a6:102:467::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Wed, 1 Apr
- 2026 12:06:29 +0000
-Received: from GV1P195MB2476.EURP195.PROD.OUTLOOK.COM
- ([fe80::9b46:2d4d:cf51:47d8]) by GV1P195MB2476.EURP195.PROD.OUTLOOK.COM
- ([fe80::9b46:2d4d:cf51:47d8%6]) with mapi id 15.20.9769.014; Wed, 1 Apr 2026
- 12:06:29 +0000
-From: Yannic Moog <Y.Moog@phytec.de>
-To: Paul Kocialkowski <paulk@sys-base.io>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-phyboard-pollux: Add HDMI support
-Thread-Topic: [PATCH] arm64: dts: imx8mp-phyboard-pollux: Add HDMI support
-Thread-Index: AQHcwJXfsp4GMeiLfkGFaPSnas1AJrXKHsQA
-Date: Wed, 1 Apr 2026 12:06:29 +0000
-Message-ID: <573e4ebd9679517086a6b4acb162d72463429f35.camel@phytec.de>
-References: <20260330223712.2615273-1-paulk@sys-base.io>
-In-Reply-To: <20260330223712.2615273-1-paulk@sys-base.io>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.de;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: GV1P195MB2476:EE_|PA1P195MB2536:EE_
-x-ms-office365-filtering-correlation-id: 348d571f-6e65-4208-c6a3-08de8fe71b53
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|56012099003|22082099003|18002099003|38070700021;
-x-microsoft-antispam-message-info:
- +NfxZLU4L4vcz40VhQ8STHKMl7NdyDi6t397Tqr8Q82kTEnO81vNIKMm3DVXu6JJhQdMu4slM2bqdYvnFkRFroGxCY8q5pAbpqFXjzec3mcJzM06o7d37fbLdTbOzcAh0VD54XgnQZnEUSLLDF50Nc9Qsv3RzIGeqPLEGhjMXO2pwNmbO7oUnnIXQ0H6uu4HwaOGjaaS0J3JDJ9gl1Ys2pL6skqXw+M63kWjH1Iu/EBeQlSrlbayM5YBLwuEpSVbxv2AEv0VnpZv6x5JLce/QTAfx8JOMY3fFATAVcQyq7eLC0uvso2Hb9cPBqgRNJyUKYSiY2ZReBVqHJwkhQubi9og4Jhh0hXwVGfh8MH1FjJm3wxtC3DW73ueiMhOD6ZmFn75diidsLWs5MezkIJHUO2xEvfJB076p2VJ4lobIw2oMbhAAtIChid713gVxWFEqqjexRkeH18VWCPH98QPB9DY9zeg6gS7EbhMVpe/6OQOozKFU5vbTQoNLAHeCOF9FWyBHZrOVSYXfbihVAsS1ch09gxKr8NtOM3PovXNZtJrky1/U1Ss2+oHsxW5YVxhw7wh1ScPXwXQJWNugLGbQKtq8jUUobKNxtwNAyzj9OkjnBhy3Q1KjCWHH5mzLF/UNCwNxigODnr0t5DPGfEITryzeXT9Qcvc5dRmbMOb1sDvqeUbdgOsGO4AqX7qmE9v+oJ1IrBMSCsEWEiPhXF9oXP19jIbfZBPnD9pguX7H3SaAH9sXuYuUmkg5W7d8WCuJcsoAHvk3NnxV8oRHfRQ5y1FmqQE5Btoc4BLnqIEA4U=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1P195MB2476.EURP195.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(56012099003)(22082099003)(18002099003)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?bXF6RlBuRDNMUWRzbHhQVzM5OVJrUUpvTk9aUUNhZWRTTENvQ2hMK1RjeWFB?=
- =?utf-8?B?bllPdGUvTVNIaW52LzBEMzNWRkZPYzZZRlFiVWJDZUdxbFBhZk9jVm9hb1FW?=
- =?utf-8?B?U2FZMnEvUUdabWlDK1kxNE5tOEFhbFd4Y3c3UVBEbUxaSnhLT04rZm4xTEJM?=
- =?utf-8?B?UURHaFNTa012TEMzemZoYjY5RXBPNjZvbGhCVFREYklZTEx0dXgyL08xT1U2?=
- =?utf-8?B?Y0ZZTWV2S0MyVUNLV1FPVVZMVzBIMlNMQmpZNmc1RW9YSTc4VUx6bFBZdGk4?=
- =?utf-8?B?bDRNME1pNzVuVjVmS0h2Y29rZW5GZUwxRUxiUXVXWjhjelJScGUwd1VNSFIy?=
- =?utf-8?B?QkhGOW8wam1GbU16NTZFRDFhNXpkcEpjcGxkc2dtTTUxbkdXQ0VJb29Idytt?=
- =?utf-8?B?ZXlLMEFyMFJIckMwYy8zMnM3QS85STZqMHcvQ1pmVnF6Vm94MDU4VjgxTUhQ?=
- =?utf-8?B?cWo5NjVXay81a2hvdVBlNEpiY2d0aXVGQkdxdGhLOUl1SHFPYTA0VnZpYkdN?=
- =?utf-8?B?T1IvNWpzZXJlL3Y3VHgzZVh5TGZrcWFRcjhJNmQwenV4NHE3RHdKZ09QK0lk?=
- =?utf-8?B?UnRrU0M5bVREbStwVEJjOTJGcHNIN2NEQ1EzejFYcUMrb09KU0pQZVhwZjFz?=
- =?utf-8?B?OTROMVdjTkg3ODBYR245QzBKa2F3aTFsem8wV0haSktleXVtbDF4Q1l2MzBh?=
- =?utf-8?B?M3h6ZkZwSVMvbU5jS1dvcThMTzd5bWlFdW5mbTB1OW5KUUdOT093MG5abEpa?=
- =?utf-8?B?ZnRZTFduYUsxSHFTMk9NQ3JMU3B4clRuY3ZPaHl1VStHcDI5YmdqbHA4VG44?=
- =?utf-8?B?YUJZL2V3QS92ZUV2WitoZTRJakxodTM2M2dRS1FkRmE2QkkrN3NuQklNVkpt?=
- =?utf-8?B?V1VHbDNvdlQyR2J0d3pVRWJkdEp4ck56UXdLWWdZR1dWd1NqQmpIakM5OFNa?=
- =?utf-8?B?Ujc0bkd4ZDY0aCs0bUxyWUdzVTFTYnNXOGhKcWpCL3hPZjZhOFVsRTNrMndx?=
- =?utf-8?B?WDhyb3Z3OGF2UXBmSjlOVW93QkcvNXhmamxyRjJBWG13Y1BKNmpJWDQ4K05I?=
- =?utf-8?B?bk96dVUvR2M3cEU0em1XeVVuYisxV2QrZVVvVWZIOVdRU0I5bWx3eXZsdmpT?=
- =?utf-8?B?emhBbE03TUp4OFg1THhXZDJSUG10cnpIZnFBOEtFbHFIM1ZMMDVYaUVtTEFS?=
- =?utf-8?B?dTU0aGxEb3RIQmxiZENNcnQ3OWlSazlpM05MTFVOaUcxdHhJeWt5TWU0d05P?=
- =?utf-8?B?TjN4Vy9EUitqWFhZNitkVEltZVI5UkhzUEpYVC9jT3BzdUdueGNmNnF6REU2?=
- =?utf-8?B?U0gzdGpHR29KMk5PV0c2ZXB0TXJQdUhLS05UQWdMckR6YkFRODhpaklxRUlY?=
- =?utf-8?B?VDU4Y2VVM1lUeks3VzZ0ak45eWo4WFVSWFl4dUN1eTM3S0w1c1J0dlgxNnUr?=
- =?utf-8?B?ZTh1Vk1RNEZXK2ZoTW1hYkRJa1BpTVZXNUhLUHpKcWR2UnYxZzNkVy9Gell6?=
- =?utf-8?B?SVZQS01RQ3ZuTkJPNUlzQkdPYXJoS0NPWkVNcHdUZFJCRUd5UVFIdDlVSTNr?=
- =?utf-8?B?OFd4L0p5VW5oRGg5M1dpeG80d1d5V0NOaEozUC9SOTY1R0xiblZQTmQ0ODI4?=
- =?utf-8?B?b0tzWTlmelVmVlRTaWxuSFI0SmZoeWJjUmxEbEZYOVRSMFp5VUFDSGxtMHVj?=
- =?utf-8?B?cjBmMHV0ajI2eFk0dkxSN3dxcm9ieU1IM2M5SUdUbnhHWDQ4V21YNEhiQ1FR?=
- =?utf-8?B?MERDblZUcWZDd3pqRE0yeW5sVEZEczZvcDd0UzF6dmxieVZ2YmRCOVlMa2VN?=
- =?utf-8?B?S1BYQzdMOTdvcmJoczVtZTdHcE5TUHdZaURXVWltYTQrc1VHNzZMUVZKSFZX?=
- =?utf-8?B?V0VYd2JOVEhTczIxQ0E3TGdHODB0ODNaejJlSUdPbzJSOC9kZm1icXVaaDRs?=
- =?utf-8?B?OTA1ZlU4TjZGSWVpUVM2c0NFSnA1YWcrMTZFdjhkSGNPcXduWmNjWnhJclI5?=
- =?utf-8?B?NmJmT3B1Q1ZxV1R5Z2QzbzgzVHNjTXAxZHVVVkY5MnVuRU8rcHVYY3hPMzZT?=
- =?utf-8?B?cmMvVENLQUF1c0x1Sk1CYWsrbms1L3owNk1YcXRTRU1RcXNnL1BFZkdtdmJ5?=
- =?utf-8?B?aHdzdktrMjdXa2tYVXMzQUVtRThRc1lFdkdWc3Q4VStwVXM4RFlOMk9JNjJJ?=
- =?utf-8?B?VFRuTGM0ZGoyRUhtRHV2L0puM3NndVZXRzZhMGJucGs2UWo0b1l1WUxWeDhm?=
- =?utf-8?B?RHZyVGZUamtqbC9YRmZ1QUFhT3FXUlNqRTFLVTJNdHhSWGhHRmIzRWd3OWJv?=
- =?utf-8?Q?eCwo8QKd2FXESk3V2i?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <0AD5501E15D8114FA49B61761F1F660D@EURP195.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EF273DBD77
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 12:22:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775046142; cv=none; b=s66jXqkzdk/7PfSjU/NbNNRIbF7Pq+scrSYFmP1wOgwnDhnlEYSx9gTjKLZe1KvN23IxBAkfnHqA5UkBfvrsEUXTQrayBQmxTfnVBi9NSNBn9o7L9QFOusZu5pzYgPawFa3KxbzcRJrW2YOPxcn2aSYylkeqCETjRUdAUg5CZuU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775046142; c=relaxed/simple;
+	bh=YsuTa5lww5YDewP07S+OGZgDQWwFL2bTgBarz21FTJY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VUsemNu0Tp9jdl6RIfx4QUkxCXs10LBpiMVQyE2kly//P0PyzO/6XT+1Bc2RNR1Wy+LBUlll4BGymJEQzY8GW3T2KapqFY+8pQMEMhW0707aQtleaWK/+ogVpLrBziiUI+cV1pNdK6uNcR4GwUAYhxD7kvMoRDwkj6LbBo9oKsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=S+7GNyvM; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-486fe655187so89324195e9.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 05:22:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1775046139; x=1775650939; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2JvmNkijtfkleZl4AVh3d/5C7ipYcZLtHwRqCUWikPo=;
+        b=S+7GNyvMsbCFemCcYYP5Rfttkomv+zAQzRl4khfCO9ATuTwRMAlTgPJMK81oCybmQv
+         pDsbTX92Zr+zEBhe9+O1/VPFlxuxpqA6ygxd8DI2zcc/g4v0CznQ0SraWIs/0ZbyVkdN
+         zSB4mC0jmuvzLffHHIZ2vVBilLyNGqU+Z8mkizsqGXSKveq33FFdeatNAL3nh65Y01+Y
+         v/1GLud0A/xKO4VftC9qAc1r3Ujprg1saJ6p98I7bLAAXBj0o+BAW83XgWQOzsTIP2Uh
+         cHQBsP61+MaCr7aDH0SuLo63Pvj1XUMvqY3T4HdJ+w/m+To0R/4ctPzHoEbDNUh1bshz
+         tZ4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775046139; x=1775650939;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2JvmNkijtfkleZl4AVh3d/5C7ipYcZLtHwRqCUWikPo=;
+        b=dymaIpryAdM2OvwAGkbponRm9urxwUl2IDwIm5djKP/zGEFdvI+iOL8cIri/4YT0Y5
+         lq2EUGTBUX9Rk9E+6+osaHYtIDhS2nQj/7TwFOuB0zw+h8hNaNjRSgpE7QSzIrLt3zdm
+         MfFpsrPCcd4aeVyID5HUOMvEfqE3dsFBx2aX5xH1ddFE/EvbgYpncdzuMcikYZ99+rVi
+         +Z241vDuOb2eKjMLSbzkzQ6CdNX0D8ut7U2X3UjtxlPs6e1esLvxv201jZRqPrakME7j
+         EwdEMwR2O8Z/Qlla0koYwZ75Ucy5ZZonK5D1Z7NpQRsRq4bAnvp4ZSuMZZlJuJfT9CZ6
+         12Ow==
+X-Forwarded-Encrypted: i=1; AJvYcCVF5Uf+IxJ1uUZ2b3QEPKPuLq3hvPFSVwGmWQbOjJUzgyyC4YYRam2nD532gGerjErjvi2SN5sMWxxS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZ9LOWymBEmL89yBpXKsEKQskCya9oDD/SnCXtKhab9C6+62u7
+	w8wemh3K0Vs0TGDtKyXr+35qqMQM8+GTpHfl11MWAdOqbEkWQ+u1mxIFcDxH66lZ3hw=
+X-Gm-Gg: ATEYQzx7H6ohq8nIXF838v6RIh+/99OOqWl3MbKDAliuIPr1KmGzodpo68yGzn5uXoW
+	ruFZN/2O/5aIionBdpdbVLHuFao4fWcQWGQ5VMMbrT3n9wC4/zjW6esDIHcY02Cp7vwAyNucpjE
+	VPxn2WBIg6kd5dwj3cx7JQ52E847/chaJaJw6ygrnCThRHr/GTkTODPBgpAd2UaXYUoG2R3YHXt
+	neUzW0P3yy/kiFQmsjO+ZtpIcSTnxLa1xSXVA9rRWf06szkp9FBeQpQgVHkQAMeLMkljSDlasf0
+	s36RwCdxLKsj9ndyxdbKDXv7i28Zpt3yaUudvNsiqcgELNV/shwsJ7n0ij0lknxNqoahfVpSgGp
+	hwXQus2YLVOC9f038IlHgOuMTX3rsEvbca9dEjb9tFQ4WdqMpDL71XOwwQJl3Jm8sJspHXKV1yM
+	ZFLr+VuheAwYqj5bhWRKiPTH1SgA==
+X-Received: by 2002:a05:600c:a4a:b0:487:21c7:2885 with SMTP id 5b1f17b1804b1-4888355e52cmr57407695e9.5.1775046138735;
+        Wed, 01 Apr 2026 05:22:18 -0700 (PDT)
+Received: from pathway.suse.cz ([176.114.240.130])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4887e884dacsm160908025e9.15.2026.04.01.05.22.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Apr 2026 05:22:17 -0700 (PDT)
+Date: Wed, 1 Apr 2026 14:22:11 +0200
+From: Petr Mladek <pmladek@suse.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Sergey Senozhatsky <senozhatsky@chromium.org>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v9 2/9] lib: vsprintf: export simple_strntoull() in a
+ safe prototype
+Message-ID: <ac0N89sNYcKAJkAP@pathway.suse.cz>
+References: <20260320-adf41513-iio-driver-v9-0-132f0d076374@analog.com>
+ <20260320-adf41513-iio-driver-v9-2-132f0d076374@analog.com>
+ <acZDneLrIPOmU5ci@pathway.suse.cz>
+ <acZLHAT5qJyjKTsp@ashevche-desk.local>
+ <4uijfg4efzaapu3esobez55hfwqzszwagpeb4lxej2ybmifu76@s3c57fmnsme6>
+ <acZaGUV0MwuHNDru@ashevche-desk.local>
+ <x34d7jz7be4ommjh6efx5mcq5pbpellykwuyrqayr4ske3lywf@wh46mu3anmcz>
+ <qnb3ozrhrq5n4zkh2luitkpwr5oj4omgcuo5vnvy2gatdfdqlg@cgsgux7etcql>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: GV1P195MB2476.EURP195.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 348d571f-6e65-4208-c6a3-08de8fe71b53
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Apr 2026 12:06:29.1443
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YIxhdniMwkm9uB7TrMdZNNcEX+sz3FywmQi6TSV0vjNywpiD6fqCLxXDhrFkJGLN+hwVlZREVdV3Ys8fxkNVHA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1P195MB2536
-X-Spamd-Result: default: False [1.44 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <qnb3ozrhrq5n4zkh2luitkpwr5oj4omgcuo5vnvy2gatdfdqlg@cgsgux7etcql>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[phytec.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[phytec.de:s=selector2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283503-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[Y.Moog@phytec.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[phytec.de:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283506-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	DKIM_TRACE(0.00)[suse.com:+];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sys-base.io:email,phytec.de:dkim,phytec.de:email,phytec.de:mid,0.0.0.1:email]
-X-Rspamd-Queue-Id: AB94137A5F9
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pmladek@suse.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,suse.com:dkim,pathway.suse.cz:mid]
+X-Rspamd-Queue-Id: 1D47E37AEC3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-T24gVHVlLCAyMDI2LTAzLTMxIGF0IDAwOjM3ICswMjAwLCBQYXVsIEtvY2lhbGtvd3NraSB3cm90
-ZToKPiBUaGUgUEhZVEVDIHBoeUJPQVJEIFBvbGx1eCBjb21lcyB3aXRoIGEgSERNSSBwb3J0IG9u
-IHRoZSBiYXNlIGJvYXJkLgo+IEFkZCB0aGUgcmVxdWlyZWQgZGV2aWNlLXRyZWUgbm9kZXMgdG8g
-ZW5hYmxlIHN1cHBvcnQgZm9yIGl0LgoKIk9ubHkiIHZpZGVvIGlzIHN1cHBvcnRlZCwgYnV0IGl0
-IGRvZXMgd29yay4gWW91IGNvdWxkIGFkZCB0aGF0IHRvIHRoZSBkZXNjcmlwdGlvbiBzaW5jZSBh
-dWRpbyBpcwphbHNvIHN1cHBvcnRlZCB1cHN0cmVhbSBhbmQgcGFydCBvZiBIRE1JLgoKWWFubmlj
-Cgo+IAo+IFNpZ25lZC1vZmYtYnk6IFBhdWwgS29jaWFsa293c2tpIDxwYXVsa0BzeXMtYmFzZS5p
-bz4KClJldmlld2VkLWJ5OiBZYW5uaWMgTW9vZyA8eS5tb29nQHBoeXRlYy5kZT4KVGVzdGVkLWJ5
-OiBZYW5uaWMgTW9vZyA8eS5tb29nQHBoeXRlYy5kZT4KCj4gLS0tCj4gwqAuLi4vZnJlZXNjYWxl
-L2lteDhtcC1waHlib2FyZC1wb2xsdXgtcmRrLmR0c8KgIHwgNDcgKysrKysrKysrKysrKysrKysr
-Kwo+IMKgMSBmaWxlIGNoYW5nZWQsIDQ3IGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEv
-YXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXBoeWJvYXJkLXBvbGx1eC1yZGsu
-ZHRzCj4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtcGh5Ym9hcmQtcG9s
-bHV4LXJkay5kdHMKPiBpbmRleCAwZmU1MmM3M2ZjOGYuLjBkNTJmMjk4MTNmMSAxMDA2NDQKPiAt
-LS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtcGh5Ym9hcmQtcG9sbHV4
-LXJkay5kdHMKPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtcGh5
-Ym9hcmQtcG9sbHV4LXJkay5kdHMKPiBAQCAtMzgsNiArMzgsMTggQEAgZmFuMDogZmFuIHsKPiDC
-oAkJI2Nvb2xpbmctY2VsbHMgPSA8Mj47Cj4gwqAJfTsKPiDCoAo+ICsJaGRtaS1jb25uZWN0b3Ig
-ewo+ICsJCWNvbXBhdGlibGUgPSAiaGRtaS1jb25uZWN0b3IiOwo+ICsJCWxhYmVsID0gImhkbWki
-Owo+ICsJCXR5cGUgPSAiYSI7Cj4gKwo+ICsJCXBvcnQgewo+ICsJCQloZG1pX2Nvbm5lY3Rvcl9p
-bjogZW5kcG9pbnQgewo+ICsJCQkJcmVtb3RlLWVuZHBvaW50ID0gPCZoZG1pX3R4X291dD47Cj4g
-KwkJCX07Cj4gKwkJfTsKPiArCX07Cj4gKwo+IMKgCXBhbmVsX2x2ZHMxOiBwYW5lbC1sdmRzMSB7
-Cj4gwqAJCS8qIGNvbXBhdGlibGUgcGFuZWwgaW4gb3ZlcmxheSAqLwo+IMKgCQliYWNrbGlnaHQg
-PSA8JmJhY2tsaWdodF9sdmRzMT47Cj4gQEAgLTIwMSw2ICsyMTMsMjggQEAgJmZsZXhjYW4yIHsK
-PiDCoAlzdGF0dXMgPSAib2theSI7Cj4gwqB9Owo+IMKgCj4gKyZoZG1pX3B2aSB7Cj4gKwlzdGF0
-dXMgPSAib2theSI7Cj4gK307Cj4gKwo+ICsmaGRtaV90eCB7Cj4gKwlwaW5jdHJsLW5hbWVzID0g
-ImRlZmF1bHQiOwo+ICsJcGluY3RybC0wID0gPCZwaW5jdHJsX2hkbWk+Owo+ICsJc3RhdHVzID0g
-Im9rYXkiOwo+ICsKPiArCXBvcnRzIHsKPiArCQlwb3J0QDEgewo+ICsJCQloZG1pX3R4X291dDog
-ZW5kcG9pbnQgewo+ICsJCQkJcmVtb3RlLWVuZHBvaW50ID0gPCZoZG1pX2Nvbm5lY3Rvcl9pbj47
-Cj4gKwkJCX07Cj4gKwkJfTsKPiArCX07Cj4gK307Cj4gKwo+ICsmaGRtaV90eF9waHkgewo+ICsJ
-c3RhdHVzID0gIm9rYXkiOwo+ICt9Owo+ICsKPiDCoCZpMmMyIHsKPiDCoAljbG9jay1mcmVxdWVu
-Y3kgPSA8NDAwMDAwPjsKPiDCoAlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiLCAiZ3BpbyI7Cj4g
-QEAgLTI0NCw2ICsyNzgsMTAgQEAgJmkyYzMgewo+IMKgCXNjbC1ncGlvcyA9IDwmZ3BpbzUgMTkg
-KEdQSU9fQUNUSVZFX0hJR0ggfCBHUElPX09QRU5fRFJBSU4pPjsKPiDCoH07Cj4gwqAKPiArJmxj
-ZGlmMyB7Cj4gKwlzdGF0dXMgPSAib2theSI7Cj4gK307Cj4gKwo+IMKgJmxkYl9sdmRzX2NoMSB7
-Cj4gwqAJcmVtb3RlLWVuZHBvaW50ID0gPCZwYW5lbDFfaW4+Owo+IMKgfTsKPiBAQCAtNDQ0LDYg
-KzQ4MiwxNSBAQCBNWDhNUF9JT01VWENfU0FJNV9SWEQwX19HUElPM19JTzIxCTB4MTU0Cj4gwqAJ
-CT47Cj4gwqAJfTsKPiDCoAo+ICsJcGluY3RybF9oZG1pOiBoZG1pZ3JwIHsKPiArCQlmc2wscGlu
-cyA9IDwKPiArCQkJTVg4TVBfSU9NVVhDX0hETUlfRERDX1NDTF9fSERNSU1JWF9IRE1JX1NDTAkJ
-CTB4MWMzCj4gKwkJCU1YOE1QX0lPTVVYQ19IRE1JX0REQ19TREFfX0hETUlNSVhfSERNSV9TREEJ
-CQkweDFjMwo+ICsJCQlNWDhNUF9JT01VWENfSERNSV9IUERfX0hETUlNSVhfSERNSV9IUEQJCQkJ
-MAo+IHgxOQo+ICsJCQlNWDhNUF9JT01VWENfSERNSV9DRUNfX0hETUlNSVhfSERNSV9DRUMJCQkJ
-MAo+IHgxOQo+ICsJCT47Cj4gKwl9Owo+ICsKPiDCoAlwaW5jdHJsX2kyYzI6IGkyYzJncnAgewo+
-IMKgCQlmc2wscGlucyA9IDwKPiDCoAkJCU1YOE1QX0lPTVVYQ19JMkMyX1NDTF9fSTJDMl9TQ0wJ
-CTB4NDAwMDAxYzIK
+On Mon 2026-03-30 13:49:48, Rodrigo Alencar wrote:
+> On 26/03/27 03:17PM, Rodrigo Alencar wrote:
+> > On 26/03/27 12:21PM, Andy Shevchenko wrote:
+> > > On Fri, Mar 27, 2026 at 10:11:56AM +0000, Rodrigo Alencar wrote:
+> > > > On 26/03/27 11:17AM, Andy Shevchenko wrote:
+> > > > > On Fri, Mar 27, 2026 at 09:45:17AM +0100, Petr Mladek wrote:
+> > > > > > On Fri 2026-03-20 16:27:27, Rodrigo Alencar via B4 Relay wrote:
+> 
+> ...
+> 
+> > > > > Maybe we want to have kstrtof32() and kstrtof64() for these two cases?
+> > > > > 
+> > > > > With that we will always consider the fraction part as 32- or 64-bit,
+> > > > > imply floor() on the fraction for the sake of simplicity and require
+> > > > > it to be NUL-terminated with possible trailing '\n'.
+> > > > 
+> > > > I think this is a good idea, but calling it float or fixed point itself
+> > > > is a bit confusing as float often refers to the IEEE 754 standard and
+> > > > fixed point types is often expressed in Q-format.
+> > > 
+> > > Yeah... I am lack of better naming.
+> > 
+> > decimals is the name, but they are often represented as:
+> > 
+> > 	DECIMAL = INT * 10^X + FRAC
+> > 
+> > in a single 64-bit number, which would be fine for my end use case.
+> > However IIO decimal fixed point parsing is out there for quite some time a
+> > lot of drivers use that. The interface often relies on breaking parsed values
+> > into an integer array (for standard attributes int val and int val2 are expected).
+> 
+> Thinking about this again and in IIO drivers we end up doing something like:
+> 
+> val64 = (u64)val * MICRO + val2;
+> 
+> so that drivers often work with scaled versions of the decimal value.
+> then, would it make sense to have a function that already outputs such value?
+> That would allow to have more freedom over the 64-bit split between integer
+> and fractional parts.
+> As a draft:
+
+My understanding is that you want to allow parsing frequencies
+in the range from microHz to GHz.
+
+So, you might want to support input in simple float numbers
+with some precision, for example, 1.2GHz, 0.345Hz, ...
+
+By simple, I mean that there is no x10^3 or so.
+
+> static int _kstrtodec64(const char *s, unsigned int scale, u64 *res)
+
+I would personally change this to something like:
+
+  static int _unit_float_ktstrtodec64(const char *s, unsigned int precision, u64 *res, char **unit)
+
+It would allow to read float number in the the format XXXX.YYYYunit,
+for example 1.2Ghz
+
+, where:
+
+  + _unit_ means that it might set @unit pointer which point to the unit
+    string right after the number part.
+
+  + _float_ means that it will be able to read float numbers
+
+  + @precisions parameter defines the number of digits accepted
+    after the radix point. It is also used as multiplier for scaling
+    the output number.
+
+  + @res is pointer to the read number multiplied by the given
+    @precision
+
+  + @unit will be set to string after the number
+
+For example:
+
+  + s="1.2GHz", precision=3 will result in *res=1200, *unit="GHz"
+  + s="0.0100004", precision=3 will result in *res=10, *unit=""
+  + s=1.234567GHz, precision=3 will result in *res=1235, *unit="GHz"
+
+Note that the result is rounded in the last example.
+
+The function might be used like simple_strtoull() in memparse(),
+see lib/cmdline.c. Which is able to read the given size in B
+and handle various units like kB, GB, ...
+
+> {
+> 	u64 _res = 0, _frac = 0;
+> 	unsigned int rv;
+> 
+> 	if (*s != '.') {
+> 		rv = _parse_integer(s, 10, &_res);
+> 		if (rv & KSTRTOX_OVERFLOW)
+> 			return -ERANGE;
+> 		if (rv == 0)
+> 			return -EINVAL;
+> 		s += rv;
+> 	}
+> 
+> 	if (*s == '.') {
+> 		s++;
+> 		rv = _parse_integer_limit(s, 10, &_frac, scale);
+> 		if (rv & KSTRTOX_OVERFLOW)
+> 			return -ERANGE;
+> 		if (rv == 0)
+> 			return -EINVAL;
+> 		s += rv;
+> 		if (rv < scale)
+> 			_frac *= int_pow(10, scale - rv);
+> 		while (isdigit(*s)) /* truncate */
+> 			s++;
+
+We might/should use the first digit to round the _frac.
+
+> 	}
+> 
+> 	if (*s == '\n')
+> 		s++;
+> 	if (*s)
+> 		return -EINVAL;
+
+I would omit this. Instead I would set @unit pointer so that the
+caller might handle units defined after the number.
+
+> 	if (check_mul_overflow(_res, int_pow(10, scale), &_res) ||
+> 	    check_add_overflow(_res, _frac, &_res))
+> 		return -ERANGE;
+> 
+> 	*res = _res;
+> 	return 0;
+> }
+
+Otherwise, this approach looks sensible to me. IMHO, some generic
+API for reading numbers with misc units should be usable in more
+situations. And it would make the kernel interface more user
+friendly.
+
+Of course, we must not over-engineer it. But the above does not
+look much more complex than we already have.
+
+Best Regards,
+Petr
+
+PS: I am sorry if I used some mathematical terms a wrong way.
+    I am not a native speaker. And it is a long time since
+    I worked with float numbers.
 
