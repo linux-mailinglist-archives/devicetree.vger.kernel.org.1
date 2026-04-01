@@ -1,160 +1,173 @@
-Return-Path: <devicetree+bounces-283442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283445-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sBVbEZz4zGnRYgYAu9opvQ
-	(envelope-from <devicetree+bounces-283442-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 12:51:08 +0200
+	id MKIXLyH7zGnRYgYAu9opvQ
+	(envelope-from <devicetree+bounces-283445-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 13:01:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0A10378CC3
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 12:51:07 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09BE137900C
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 13:01:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0D792301E7C3
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 10:44:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 05835304315D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 10:48:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3A043F1665;
-	Wed,  1 Apr 2026 10:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5ED63CBE65;
+	Wed,  1 Apr 2026 10:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eL7S8Tal"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vr/vvoS6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCA237998A;
-	Wed,  1 Apr 2026 10:44:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 831003F54D0
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 10:48:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775040278; cv=none; b=Toj0FrEUO+IAmTM5+eIZM6sYbTk/tJ6a9N0gBD2pe6F/cb7y3h3x76TjovO7YxZDYbCt0TumrOMoeWdLVRHiRbHzBJ/jud66qwh3hKePRM1RHFHVbrNf64fw1rF/kV2Hc78XUgoj5wzHnCysNb+LFiKoHx6a+SPFGsDOssZb2e4=
+	t=1775040493; cv=none; b=oslXfx72TWpmc1Upis8yoY5Xh0UoaJzbmMNmymn+5DSDCf86c3JDMloSVvtVJn5n2SMabw4+9OgeWOIglt6T2p8s/G53duvu1NPVzo84flO4aoAe4FdcRBX8w/+G3l7849AQ3VvwBFbPeluidcnkSt36VJY41ul6LnGBFBQqotc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775040278; c=relaxed/simple;
-	bh=Od6Yjql3wyUH4LEOy4mFj4V5RTrmkvJWBdk8k3pqDYQ=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=fXhhTlvTnQrA03MVOvMS+DZy45YT3s4ggbHE/GnnlRtCPmAFA7sr+v0YAuxc9P/quq+rT3EsvV5yESWlqOUK33rf6FVtWGYCim01xA9X8RLaEBS0WkwMm5XN4+gIbWCSwdH43hef5bs4x6Yvg0kAnAbDoRHJ09It1IirdlhmivE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eL7S8Tal; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1775040276; x=1806576276;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=Od6Yjql3wyUH4LEOy4mFj4V5RTrmkvJWBdk8k3pqDYQ=;
-  b=eL7S8TalmTynxdofWC7+9hDT//pnS/FUr7PDkCegBtY5fdFIDKsHdNLW
-   /5tfTaZfdIaIZS/ORwiEI2xaIwwSwr4y9AKbgLQ9hldQoSeyznJHPat4f
-   bpF26bjO9Y2e2NUhT0JXf3IrVBjWaEpv6c0iHOXpioWesITex8HKCHypL
-   8kqrOHWHasNotup/NiF0Zk/KSaq37zKGZcEr1q50B4B6sCU18nTg7Hho1
-   g5u1q4AprZDzl0fmt6ImST08wtII1+N8Ks4youVrRqpCGSTrEtrY0dJTu
-   jtYDtxUU1MemZoBwCiuQ5crRYGLAFijFgS9NvSwQgPwA6maAPx65TlfeF
-   A==;
-X-CSE-ConnectionGUID: aEdiqP5NTwyMBJzeLaUybA==
-X-CSE-MsgGUID: t219rT3YTaS2DTPe/CCshA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76189251"
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; 
-   d="scan'208";a="76189251"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2026 03:44:35 -0700
-X-CSE-ConnectionGUID: wa+v4mGeS7WF3NunK+EhYA==
-X-CSE-MsgGUID: tIwWRzupSrC32i6s4jL2pA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; 
-   d="scan'208";a="231436451"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.192])
-  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2026 03:44:29 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 1 Apr 2026 13:44:26 +0300 (EEST)
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-cc: Aleksandrs Vinarskis <alex@vinarskis.com>, 
-    Bjorn Andersson <andersson@kernel.org>, 
-    Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>, 
-    Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-    linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-    LKML <linux-kernel@vger.kernel.org>, platform-driver-x86@vger.kernel.org, 
-    laurentiu.tudor1@dell.com, Abel Vesa <abel.vesa@oss.qualcomm.com>, 
-    Tobias Heider <tobias.heider@canonical.com>, 
-    Val Packett <val@packett.cool>
-Subject: Re: [PATCH 2/4] platform: arm64: dell-xps-ec: new driver
-In-Reply-To: <328acf2d-988e-45b6-9553-240108caa91b@oss.qualcomm.com>
-Message-ID: <94180bf7-71a2-05c8-823a-ec25b5802650@linux.intel.com>
-References: <20260401-dell-xps-9345-ec-v1-0-afa5cacd49be@vinarskis.com> <20260401-dell-xps-9345-ec-v1-2-afa5cacd49be@vinarskis.com> <328acf2d-988e-45b6-9553-240108caa91b@oss.qualcomm.com>
+	s=arc-20240116; t=1775040493; c=relaxed/simple;
+	bh=WGxuJXdFlNYALBBSVHxIE/AXgxbS68Cj5o2toGqAAFg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kXUsZyNNV1k8hWdSBnbwsX5jKwooBAm0NKuEHkS/u1cHKiRvhoJciiOm56F+UbS+fikOwGNwUmbAcP6zAulSWtc0J4QUGSFHEs79qoYqY2IBsVBaAhEIaC8kdFe7dWiQI60zZsjaXirfg6djmK4tE21hMcniLOgJUVbydPoZT88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vr/vvoS6; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-82c28f0a4ecso4712033b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 03:48:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1775040492; x=1775645292; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wboQhrUsNBQxiV1hHptr4Nye21JcWW6sONOZDweDysw=;
+        b=Vr/vvoS6ix2Az6K35dOCbM7PmEPYRA/VWhvopV8abQrCz9N5PSmGF2EtrTVMxGaJt+
+         peJJvXrFl7E3BdPg3MfqoZlP7666by2RkcNoVtRPtYfklOghWJpL+p5IH/k8mvxZRR9q
+         2jDoEyLL8fSBaOoeULOTXiy34zS9+AmMqLkbXm9xKyz60x4MAOeOUwB/84Oa3zHojjkx
+         B+CAuy1vKGTRnnp93AmVTDJoqFtRJTmnggudXrCvYt5HTR3u+qngSI0YbXiEMb2kDhx6
+         AYTYKVD4e+j4gw+nxj/ah9VUab/Me9KlyxhueDX4VQVy63WVPBtOEWVmjC+RvupIJ6+t
+         xKPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775040492; x=1775645292;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wboQhrUsNBQxiV1hHptr4Nye21JcWW6sONOZDweDysw=;
+        b=Jw38GgghskeBg/hFb+Tsq/jJz0NceNqDvlF0BUq4pXJxy5KKsoSkjzIe26JqiKgvDa
+         CNQtx/E3OhhUnQVTU613F/NdgTlg57MFtSvZv116oR+hVz4LGOrm5GYOGmdC34A6EcW4
+         SNKIH5qD0VZf6MO6R/stIuoolNVrSi91iA5jxgZDHFTbIUgGie8gy84y0BITdsPIdt6R
+         wUWzLewSM4anWGeQoRpWlH0cUMEq1R8PzOZ7kuEGMQUKQNUfyNrMx5hSqgNxMeI8YnJk
+         dxIBJSlTOU7ARtsTPv0NnIysp+YfIGGRRdAylBrW5+O0qGRUDTPR6RWzq4jaTJ2Plhm8
+         Qhgg==
+X-Forwarded-Encrypted: i=1; AJvYcCXW5uFztLJldphylQ40CmvrjdMSIm17pKXoeNAnFwqECf70DEDQ22CKAEoJjS+oq6HS48rzwc26JigU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7tXj3pg4bPfz3oFp4Ha6fFF/4YCBp+RkJMQjwaxF4M8csubKb
+	TyPpADUpSTHsXdT8EVOw96mn773ef57/QBFD13IcnahSa6d1++YjZn9G
+X-Gm-Gg: ATEYQzxeX2Km6QkNayCc/cVrZ1MDa8nhFUWcMaYyJtkH3KlhsACnUPuERv2o+HRMHkG
+	dL2aix4T/OH/gOqA9k403X6t1o/WSbUi07yOvqnOEDgN/rx/u/lXJoj/IMAvE08zzunLUqT7BJB
+	SZte/dNly2Xyi1CDJ9aaoz6YgUXwJBsBdi4RItHZ/tKoAxzqfIg33wL5Sxxc3uugrj5W2zl8Xea
+	hWTpjHZSyoSdDse69eEUXzOP1c+iR01pQ/7YvBo1pOrcUXqNuEnt+aNi5GA2MYPwAcAdsiKjIBi
+	eqbtTk8FWEA84SjiJDSPyB+7vFUsKaF9hWX8omUacVbkOT58gv1QMHQZbeTU8Ql8HkhRtBPkSRY
+	8D4f3HXnAUyZbpCzS0v9hJkKuEDsKn9PMEEP8mdPGT3SmIuDu8h6YdPO/q5Rjq8AsSHaPdx2rCZ
+	9Szr5aa8Zi34kstcPaiwdYxBwBq9xzZB++c0lX9Tt3
+X-Received: by 2002:a05:6a00:451b:b0:824:93e4:2ddf with SMTP id d2e1a72fcca58-82ce88f5ebemr3756034b3a.13.1775040491867;
+        Wed, 01 Apr 2026 03:48:11 -0700 (PDT)
+Received: from localhost.localdomain ([27.61.46.230])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82ca843b818sm17010259b3a.6.2026.04.01.03.48.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Apr 2026 03:48:11 -0700 (PDT)
+From: ASHISH YADAV <ashishyadav78@gmail.com>
+X-Google-Original-From: ASHISH YADAV <Ashish.Yadav@infineon.com>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ashish Yadav <ashish.yadav@infineon.com>
+Subject: [PATCH v2 0/2] Add support for Infineon Digital eFuse XDP720
+Date: Wed,  1 Apr 2026 16:15:48 +0530
+Message-Id: <20260401104550.115715-1-Ashish.Yadav@infineon.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-283442-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283445-lists,devicetree=lfdr.de];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ilpo.jarvinen@linux.intel.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,linux.intel.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B0A10378CC3
+	FROM_NEQ_ENVFROM(0.00)[ashishyadav78@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infineon.com:email,infineon.com:mid,infineon.com:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url]
+X-Rspamd-Queue-Id: 09BE137900C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 1 Apr 2026, Konrad Dybcio wrote:
+From: Ashish Yadav <ashish.yadav@infineon.com>
 
-> On 4/1/26 9:33 AM, Aleksandrs Vinarskis wrote:
-> > Introduce EC driver for Dell XPS 13 9345 (codename 'tributo') which may
-> > partially of fully compatible with Snapdragon-based Dell Latitude,
-> > Inspiron ('thena'). Primary function of this driver is unblock EC's
-> > thermal management, specifically to provide it with necessary
-> > information to control device fans, peripherals power.
-> 
-> [...]
-> 
-> > +/*
-> > + * Format:
-> > + * - header/unknown (2 bytes)
-> > + * - per-thermistor entries (3 bytes): thermistor_id, param1, param2
-> > + */
-> > +static const u8 dell_xps_ec_thermistor_profile[] = {
-> > +	0xff, 0x54,
-> 
-> This is super wishful thinking, but 0x54 is ASCII 'T', perhaps for
-> "Thermistor" or "Temp"?
-> 
-> > +static int dell_xps_ec_suspend_cmd(struct dell_xps_ec *ec, bool suspend)
-> > +{
-> > +	u8 buf[DELL_XPS_EC_SUSPEND_MSG_LEN] = {};
-> > +	int ret;
-> > +
-> > +	buf[0] = DELL_XPS_EC_SUSPEND_CMD;
-> > +	buf[1] = suspend ? 0x01 : 0x00;
-> > +	/* bytes 2..63 remain zero */
-> 
-> buf[1] = suspend
-> 
-> (since it's a boolean argument)
+Hi,
 
-I'd prefer boolean -> binary conversion is done explicitly.
+These patches add support for Infineon Digital eFuse XDP720.
+XDP720 provides accurate system telemetry (V, I, P, T) and
+reports analog current at the IMON pin for post-processing.
+
+The Current and Power measurement depends on the RIMON and GIMON values.
+Please look into data sheet sections 5.4.2 and 5.4.4 for more details:
+https://www.infineon.com/assets/row/public/documents/24/49/infineon-xdp720-001-datasheet-en.pdf
+
+With Best Regards,
+ Ashish Yadav
+---
+Changes in v2:
+- Link to v1:
+https://lore.kernel.org/all/20260330102345.37065-1-Ashish.Yadav@infineon.com/
+- Fix make dt_binding_check issue:
+https://patchwork.kernel.org/project/devicetree/patch/20260330102345.37065-2-Ashish.Yadav@infineon.com/
+- Address reviews comments for infineon,xdp720.yaml, Kconfig, Makefile and xpe720.c:
+https://sashiko.dev/#/patchset/20260330102345.37065-1-Ashish.Yadav%40infineon.com
+  It includes fixing of extra space, non-ASCII characters and use spaces
+  instead of tabs.
+  The xpe720.c driver file update with DIV64_U64_ROUND_CLOSEST() and 
+  MODULE_DEVICE_TABLE() as suggested in review comments.
+  
+
+Ashish Yadav (2):
+  dt-bindings: hwmon/pmbus: Add Infineon XDP720
+  hwmon:(pmbus/xdp720) Add support for efuse xdp720
+
+ .../bindings/hwmon/pmbus/infineon,xdp720.yaml |  51 ++++++++
+ drivers/hwmon/pmbus/Kconfig                   |   9 ++
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/xdp720.c                  | 123 ++++++++++++++++++
+ 4 files changed, 184 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,xdp720.yaml
+ create mode 100644 drivers/hwmon/pmbus/xdp720.c
 
 -- 
- i.
+2.39.5
 
 
