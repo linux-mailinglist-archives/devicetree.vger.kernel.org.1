@@ -1,194 +1,193 @@
-Return-Path: <devicetree+bounces-283581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283564-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SKXYIFw/zWkkbAYAu9opvQ
-	(envelope-from <devicetree+bounces-283581-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 17:53:00 +0200
+	id iNv6MqM9zWn5awYAu9opvQ
+	(envelope-from <devicetree+bounces-283564-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 17:45:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4BA837D7FA
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 17:52:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D03D37D654
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 17:45:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2A7B83146119
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 15:25:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 04737308011E
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 15:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B913822A8;
-	Wed,  1 Apr 2026 15:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B652EC083;
+	Wed,  1 Apr 2026 15:11:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="dTapjwhl"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="s9UNwnSG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from s2.avantea.pl (s2.avantea.pl [46.242.128.95])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4948F337688;
-	Wed,  1 Apr 2026 15:25:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.242.128.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C43BF361DDA;
+	Wed,  1 Apr 2026 15:11:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775057151; cv=none; b=od6tHDzfAMCe0Ft+gwwKEodZ3A1My1r5UPGqGJZVNOuJGQGWMnaQPHos2GQCkf9oE82MKYstdSVxQYxm/i8LHJKafGrdO+dfIeZGYE6HYXLlHFYineHNbUtEJ4V5naxuEhkgv17qomyQAESq8iZXa8zrM1TkNb2GCjtQ3Sq9JYA=
+	t=1775056286; cv=none; b=ry0hr+uBLDLrtPVKMoWfWgDj1GXGX0g9ZedV610Z6d29eqGV6L9y/3SPYcke/o8Ihe7dD4T0byIQm0eG7o9WxoW3wn718nknEvlB9CCw90y+6yWsAFHjChcIZ0usFc/p6MUIOrRP8enfM5ZxdfwdCxcg3Ch2QAnU5ksMfXKSqtw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775057151; c=relaxed/simple;
-	bh=Ii/eJ5h1USlct5eSHcumUHTZoUYSvDC7KyxJIGIed04=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bIOEqdePJWLcbHmXNEipTpeJxazmBjPsf22lUsmNA5x/bWBW6EIh3/WwSS798vUPtfTGHViU61cISTXznJJnLFU37I+WrCmsNOLn3ii4FbUremKbbXThOSuBNKAPcZvEOVFVH4H9LV87AxxbuyQwaOIHKu+JXocYdh+t99C7NcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=dTapjwhl; arc=none smtp.client-ip=46.242.128.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczodrzynski.pl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=szczodrzynski.pl; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To
-	:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Yfl/w1ij3MgpyEqu5acDmeSHKzp1JdcGMEvJsVUioeI=; b=dTapjwhlsakHuG9/ro3lz63N01
-	XdRqX6PAtHDsv/Hqx89CpF904TiwsjZnD8ckUY/929k3Kqh6zJWEV/bZwHUToTvKGf9yVJ6uGH3ls
-	8Kwrz9WhU0B/zKeitP6JlW0f7htpsvS6bhNBxQXHc1qf9f77rtkXHumMFFi0polKAmpE1zRkNzspa
-	fHCxnwx+tD75qpHwxRukvdgbcqzqhSja9xlzKE8/AnrpaVpvoBqytXXymP5r5Ao7xRd6gc1mYVTR8
-	2QTy+ybeTSBCzaSl9bns7x65+O5sMF5eXEPOAWZiSq47yrUdD32xbkhLxziC+Rkra+/azUmpQMB6A
-	ZJ/I/QVg==;
-Received: from d100-78.icpnet.pl ([77.65.100.78] helo=[192.168.0.120])
-	by s2.avantea.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <kuba@szczodrzynski.pl>)
-	id 1w7x8q-0000000Ajrx-2VZg;
-	Wed, 01 Apr 2026 17:06:00 +0200
-Message-ID: <5e9f5f0c-1ff0-4b6c-ad2d-ccf6fafbef30@szczodrzynski.pl>
-Date: Wed, 1 Apr 2026 17:04:48 +0200
+	s=arc-20240116; t=1775056286; c=relaxed/simple;
+	bh=c6Se/yYbHBZsvwakaZNhizmcpD4B8V48Ac0wvBVu4+w=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=UlfqVIsIhIs2hw8+n6saGv6it5JhgBMOg8BLY0FW1f2VsrUE7lQ14vopyDbR8cWV6aKsjyxsF6+XxJphZMqFbcyakyMiXzVSFZ1aCLsqNsLKZc4hMjizJ4Wq7O4t8Dqq1k/7vlMexqp8yU4jhc4U9zq6Ogu00mVGp8XMayUg3eU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=s9UNwnSG; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 44EE81A309F;
+	Wed,  1 Apr 2026 15:11:21 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 1A07D602BF;
+	Wed,  1 Apr 2026 15:11:21 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0FA6E1045030B;
+	Wed,  1 Apr 2026 17:11:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1775056280; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=bDPpplOnDmxTVEYqaELJ5CrTokGdiyxDMOnoJTUXxU4=;
+	b=s9UNwnSGmYKIqhkUCmxEaaChwfT8MGAb8YIfQe30KdIxUZxz7Zn1DnT3BAV1tuO/bBs9Xk
+	tcwwVRe57aWJw9Jb2JNmcTNUOURpBkqaVvFntSeN0e+ZEMsVu9+5ZFlsDGPVyFlG07i1xm
+	GR2cZcpFknAM6Ae00xpg0wejfMKnmL9KmOwYwHu3V0b3llC7k6PO6tlsc0+Ns0Zg6EAccb
+	JKIU8kunLWyGn9igHieguTzRgfyqI3uNGcbX5WJbAu5B/laLyvm6Rnkap9hkClPNGPsq7T
+	Zs1Cd8COPhxbt/DZTY3RZT8sjCV9YRDntYJT7IlXqcNsxyPgzPsJ3B5H/0J9ig==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] drm/sun4i: Support LVDS on D1s/T113 combo D-PHY
-To: Parthiban <parthiban@linumiz.com>, Maxime Ripard <mripard@kernel.org>,
- Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, paulk@sys-base.io
-References: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
- <20251116134609.447043-1-kuba@szczodrzynski.pl>
- <a5f6aeb1-b038-462e-8989-c4da65966134@linumiz.com>
- <1027afd7-dec6-4ff3-85eb-2d9a1646ada6@linumiz.com>
-Content-Language: pl
-From: =?UTF-8?Q?Kuba_Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
-Autocrypt: addr=kuba@szczodrzynski.pl; keydata=
- xsFNBGP/IeYBEACQ4t0Jxme3IIuQ94IP4xWSl2JEH/4MZYQEOCHiJ5iKAn+V6nESbnWAU50d
- f/8uI84s2i1OUqbq5W1sZQEITpkO/CNqMPY+Q2WUxa0ezYvGOfN0o6Ig0YECn8XFR0rIvFpj
- MS3IvH56bi+3aiX8ArDOzJ5U5yZfj6TJvX8kQRDAqNPDjdboB7ZggFVvd3OJLZwkwW9oSHSh
- s9z662E152GSrBW9YUxWVPJW6QDqKuD8I52uV+HkvJmJblSm+BQbtfE/xTVWXKh1hRVQx5r4
- YjjqT/z2uPJZ3eJWmOBEGMG4dj2mTQ3zxuHuyAWoY5cFFLUipUiTeIRHW0vUQpGYRKra7qic
- nsIo3nph/Q3m/f1E3Yb0GLYlX6fk0OwHwoucHvXr+zptG54FswVZZZ1fdqDAdA86raQLrb44
- rfYqw6CbeXyGe6Bm6/CUDRugbjdJShSILuyTudos3tiKGYs3uL7Hc54FIfOHOq7aCgu23VzW
- cj8n0VmMFtHCUdPaL0qPs1un/hBXjKRwuMZ0PSQ5QpyvyUuSP7w/8pe33B2vGpTkDqhjEGam
- OYWw81ztQl2UE0sFz8vZo6Z26c7eXNNSpHKfGr2MURmPoxF4NMTuKJ1OHBqHMZ8qOGcnkZjE
- uwc9SXoXvP1SX0g1p6Q3cbu2ECJjqsqzjMfml6D7HFblCKuPnwARAQABzStLdWJhIFN6Y3pv
- ZHJ6ecWEc2tpIDxrdWJhQHN6Y3pvZHJ6eW5za2kucGw+wsGRBBMBCAA7AhsDBQsJCAcCBhUK
- CQgLAgQWAgMBAh4BAheAFiEEqHS2JG0jlU9QbMYMQwN6xipgBWIFAmXE7R4CGQEACgkQQwN6
- xipgBWLWpw//dK4WQUGpOAQyGPpqzIfZ+krCh4hzqWnjwEJNEi2F75f0tDIluotJEYSVhheR
- nhqoZsxQ/En7SegfzN0RLsdxs9ZQQ8ZYVjhrOrVU8M1j6TvbMbLtqAGgnPuiuY0B/GMdGpme
- u7BGBvN8Y87yPyRXBKGPWhSPWlKgZKzjE+Eo6e6kPQpgen27h9wv+ICspbARZQdiTNIi7WsW
- CJDtuMfLksnC5kJQ2hrt+WV2l4iLW4L0X2L0pjWzwCyd/TEA2dcfujhjf3RaXINydMLgjjuD
- J/97GkCPGRNIfh2b+guAyul7NlidqSYgGCZNZfjoj1F6nuzoQML31A2VwGUK8iAFCj5OZBDg
- YdlYHDobZMxxmyV32qgWDBHlhytvLi6zBS28CWxfb7NvLNBHGz61ih5s/dmg1HtloLgfoy7S
- zp02sl4Pu0/UOn3AydZHXHRrANwagXI/RvWRsvE7bdV2nTxpLBvDebQZ+vh+LvQT8NeSy7qF
- oTfDBiPHcAKBciC2aPJ6HLSXiPbri57Ory/NGe3H2aUsvMcLPTbpiNO5wTMBCK7peiBbe4S4
- 947ND9rH2S2ScUeqtg18rEzpyLopieZuzRPYWWmn09m/1uwiMYTNvqOnzzqDiWNK3yT9jGSt
- wPNTIso+r+JXa0jX1R3An5k+QKzoKPRUoFacLqkpp1j4aYfOwU0EY/8h5gEQAL2vqV4Psasp
- NbkCdbaA9MPUGpRNEMExfNR3dDc67/ORzaTJ8BLikYDIW/xO1qpXhZLFOcEvVvxKW79Vc8Rf
- fAprxdK3sXqH6SWlwM1o01j2ndQVspdyr3b79qgakXQBYNG+ThJ8HWiGEADWxtVDKfua1HX7
- B8y3f1yiK7i1QcmbOWjQ5rxwLV2lWE5cL1fxRQKoLl6tSXs593EX1MzTO7MVmqSjrMm3ZNmm
- xBbtXANBPfwaBo3adsmz233aV4SqazUxlLLzfSGrLA6tK9idriu4V4Xdb8qycyYjXZO186uv
- 0uyxmkrQCnLA9RqRFPpGQGKorlxlg9t62h9N445euJN6guqsHXrh7YvGF/PDfh43FP0Ja4eN
- 1Hem9dvc/ucE6qCOWb+dVqtspJAhveiRuPyXq6VyuNHTDeGhSUvj6Q+p5irft+E3+MwxCV0w
- W6mflIOCC0yiq8FTyNsKTytwVN9wNcIWbq6dIGPvYJ94hN7c0+sMpWtEjrBtMU684lDoFHUs
- Z5zgbgwhYCEe2c32phCNxqTpdKy1PhQ0sxsmJ52P043BfgsGkxxzGaL0Jo+QRCK9FanfAS92
- yhDc//4UdwsvYp4DdauznyQO9NclHlAbvWS6pXMRkWRbx2mcM5g8ctYtwI1leHTBqM3kbfil
- tq29p5V9hzC6pWSuS2PADbN3ABEBAAHCwXYEGAEIACAWIQSodLYkbSOVT1BsxgxDA3rGKmAF
- YgUCY/8h5gIbDAAKCRBDA3rGKmAFYr8ND/9bCpOQezRNxquNK3R5aielQlzotM8xAf5Bq2V4
- OsnDac/umwXynI8pfblPhswd8/in80hgRWgqpbjRelLz54efnB2lpyf1CmXhDQAHwdfy0pVs
- IALLQ6bW0ehZ6VIqps3lgGORurHFSCU18tojWz/w2X/tyZ9QKuR8YoW6NsGJiWy8gn56NQC/
- w+Kjl1+hQum284+fyWbEmkDMbsgP+bffEdrP0VVltfKGpd1WP9IinGzdsyCU/wzdYywrqdvd
- 5BSxtfOesHJpyDCEAxQ4VMbjEXfEmK4ePmbT8VIJxFFS5odTTlagesXykKxQcbuiFap+wxHD
- XZ1xNm/GJR/Z0mMt1km+s4JDAVhFnZNWVHvKCp0+lSaKj0DPaPZXWnaoQ8u69Hsih/0m2pP4
- mnZ4NvAqo14vzJZYJP8ZWN+24OV5mILZRu4mxkdwUIg2lQxwtMT7rQA4vIZf8hbXK9vFyY9L
- uN5FC6oWjckq32glQpT73Eh7VV5pjcmJUZxFQkd7IO+E6sGryuC8rF2+X3pkFI8G+N+Otqy8
- YupG5oOThTzwcFRAYQ97Pi/hcbVP6nUyqVZyHP9rFoT+rRCZ51iUIKnRO96mgj0ipANzmcbR
- vg8LAbAHCFI3ZiKYB9fvIwuPhaamu0rewMtVbZiGqVNHTs0ly+Bk8Vj+3Tc5jF7xTh5MCQ==
-In-Reply-To: <1027afd7-dec6-4ff3-85eb-2d9a1646ada6@linumiz.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Authenticated-Id: kuba@szczodrzynski.pl
-X-Spamd-Result: default: False [1.14 / 15.00];
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 01 Apr 2026 17:11:15 +0200
+Message-Id: <DHHWXNCDAWG9.2LYVXAWG8RBTY@bootlin.com>
+Subject: Re: [RFC PATCH 05/15] libfdt: Introduce fdt_first_node()
+Cc: "Ayush Singh" <ayush@beagleboard.org>, "Geert Uytterhoeven"
+ <geert@linux-m68k.org>, <devicetree-compiler@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree-spec@vger.kernel.org>, "Hui Pu" <hui.pu@gehealthcare.com>, "Ian
+ Ray" <ian.ray@gehealthcare.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+To: "Herve Codina" <herve.codina@bootlin.com>, "David Gibson"
+ <david@gibson.dropbear.id.au>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+X-Mailer: aerc 0.20.1
+References: <20260210173349.636766-1-herve.codina@bootlin.com>
+ <20260210173349.636766-6-herve.codina@bootlin.com>
+In-Reply-To: <20260210173349.636766-6-herve.codina@bootlin.com>
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[szczodrzynski.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[szczodrzynski.pl : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283581-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[linumiz.com,kernel.org,sholland.org,csie.org,gmail.com,linux.intel.com,suse.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283564-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[szczodrzynski.pl:-];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@szczodrzynski.pl,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.infradead.org,lists.linux.dev,vger.kernel.org,lists.freedesktop.org,sys-base.io];
+	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	TO_DN_SOME(0.00)[];
-	NEURAL_SPAM(0.00)[0.937];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,szczodrzynski.pl:mid,linumiz.com:url,linkedin.com:url]
-X-Rspamd-Queue-Id: D4BA837D7FA
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:mid,bootlin.com:email,bootlin.com:url]
+X-Rspamd-Queue-Id: 4D03D37D654
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+Hi Herv=C3=A9, David,
 
-W dniu 2026-04-01 o 10:39:42, Parthiban pisze:
+I'm trying to review the patches that have no feedback so far.
 
-> Dear Kuba,
+Being new to the dtc codebase I'm mostly pointing out things that are not
+clear from a newcomer point of view. I hope this helps anyway.
+
+On Tue Feb 10, 2026 at 6:33 PM CET, Herve Codina wrote:
+> In several places, libfdt assumes that a FDT_BEGIN_NODE tag is present
+> at the offset 0 of the structure block.
 >
-> On 2/7/26 2:34 PM, Parthiban wrote:
->> On 11/16/25 2:46 PM, Kuba Szczodrzyński wrote:
->>> Some Allwinner chips (notably the D1s/T113 and the A100) have a "combo
->>> MIPI DSI D-PHY" which is required when using single-link LVDS0. The same
->>> PD0..PD9 pins are used for either DSI or LVDS.
->>>
->>> Other than having to use the combo D-PHY, LVDS output is configured in
->>> the same way as on older chips.
->>>
->>> This series enables the sun6i MIPI D-PHY to also work in LVDS mode. It
->>> is then configured by the LCD TCON, which allows connecting a
->>> single-link LVDS display panel.
-> Now I also have the MIPI and LVDS working together on A133. Can I pick your
-> changes and post a combined series for the display support for A133? This will
-> also address D1s/T114 as well.
+> This assumption is not correct. Indeed, a FDT_NOP can be present at the
+> offset 0 and this is a legit case.
 
-I guess it's been waiting for too long anyway - so yes, if you know how 
-to push it further, then please do so.
+I wonder whether this can be proven by showing an example, or the specs, or
+whatever use case that makes sense.
 
-Regards Kuba
+> Introduce fdt_first_node() in order to get the offset of the first node
+> (first FDT_BEGIN_NODE tag) available in a fdt blob.
+>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  libfdt/fdt.c             | 25 +++++++++++++++++++++++++
+>  libfdt/libfdt_internal.h |  1 +
+>  2 files changed, 26 insertions(+)
+>
+> diff --git a/libfdt/fdt.c b/libfdt/fdt.c
+> index 56d4dcb..676c7d7 100644
+> --- a/libfdt/fdt.c
+> +++ b/libfdt/fdt.c
+> @@ -252,6 +252,31 @@ int fdt_check_prop_offset_(const void *fdt, int offs=
+et)
+>  	return offset;
+>  }
+>
 
-> --
-> Thanks,
-> Parthiban
-> https://linumiz.com
-> https://www.linkedin.com/company/linumiz
+Even though this seems to be quite uncommon in this repository, I think
+documenting new functions would be helpful, especially preconditions,
+postconditions and parameter values when not obvious.
+
+What about:
+
+  Find the initial node with content (FDT_BEGIN_NODE) in a fdt, skipping
+  FDT_NOP [and <other tags> is applicable].
+
+  *return: pointer to the first node into the fdt or e negative error value
+
+> +int fdt_first_node(const void *fdt)
+> +{
+> +	int nextoffset =3D 0;
+> +	int offset;
+> +	uint32_t tag;
+> +
+> +	do {
+> +		offset =3D nextoffset;
+> +		tag =3D fdt_next_tag(fdt, offset, &nextoffset);
+> +		switch (tag) {
+> +		case FDT_END_NODE:
+> +		case FDT_PROP:
+> +			return -FDT_ERR_BADSTRUCTURE;
+> +
+> +		case FDT_BEGIN_NODE:
+> +			return offset;
+> +
+> +		default:
+> +			break;
+> +		}
+> +	} while (tag !=3D FDT_END);
+> +
+> +	return (nextoffset < 0) ? nextoffset : -FDT_ERR_NOTFOUND;
+> +}
+> +
+
+Luca
+
+
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
