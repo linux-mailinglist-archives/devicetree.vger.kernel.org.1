@@ -1,140 +1,276 @@
-Return-Path: <devicetree+bounces-283609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283611-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6GOEEQVPzWkWbwYAu9opvQ
-	(envelope-from <devicetree+bounces-283609-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:59:49 +0200
+	id cCJNIGtUzWk5cAYAu9opvQ
+	(envelope-from <devicetree+bounces-283611-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 19:22:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A91F537E4DB
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:59:48 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1689437E9A9
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 19:22:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 33D7B30088A1
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 16:56:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 02280303AB20
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 17:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87D647A0DA;
-	Wed,  1 Apr 2026 16:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E930747AF56;
+	Wed,  1 Apr 2026 17:20:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jEOFVcEm"
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="Rj5rfhOM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80C584779BF;
-	Wed,  1 Apr 2026 16:56:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E7C33C518
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 17:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775062589; cv=none; b=a5bMbrTwpywRnmEG5XQ58J/J4+WmGJOOs0i6RvPVacPiKnSmF64mV4CK1OWGfJoKabhBfuJ7afFDDSDxiAezI/FkpeC17HES+TXDa2ClggYAIanvvbcPnJfFNDw1renHmoqq4mjTd2bFcuNl6I6HObvR32BYah/gHgbC53AJmck=
+	t=1775064052; cv=none; b=OeD2jLw1o0Vg86vMTA2xBGKmXtsLTpqdA2SJZ/FBWo4nonK9CxUdi8pOHPMrIiAINtFT9NoJCPaAlfMRZs62FRmBGuUoYiCQWUAbomGtk3UUiZaZX4Yw82ZIubmsLzpRvARAtgGHClSwQ9SdTzb9O5EskBpdzqytpWzzg1N/VlU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775062589; c=relaxed/simple;
-	bh=JtuP7vPnFffiZdmEnggWNONBs26JwGvGwJ7IAIpurQs=;
+	s=arc-20240116; t=1775064052; c=relaxed/simple;
+	bh=jso9ol/BwsazpOhcwBaDQGk6Irh//4G6BIQJqtlE/t4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hajwmL3DPhHoX5TZA3yQFSUk2uh8AwmTbxw8+WH8cG029dnueVj9TIPxrPzGgf4qb7QRdz7VTPELlAm+b3HMXfnm7IVl8Up3mtmWSVqBjRN8oQBrNw6EXy4lVj5aVs8Hw+AaWT6N8RJbaP7gbbaWaVTjzUUfTwX3v/FunFxupZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jEOFVcEm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00A54C4CEF7;
-	Wed,  1 Apr 2026 16:56:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775062589;
-	bh=JtuP7vPnFffiZdmEnggWNONBs26JwGvGwJ7IAIpurQs=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=F9qrIuSreVUGFV5PgZ5v6EYa6+tT/PjOxogCDGfjxUx3sw2KMJRBZRImuE+WmJnUHb++3VKMzAxo7Mp/VqQnbw25iEoi8OCr7jw6eMJSstoZeqj2jKDToSGjYj4QrDpQGZUdJGG6zeU+tblTR65nS7wAppfR6YwOJ9GkYgK5Luo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=Rj5rfhOM; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7318331DB
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 10:20:43 -0700 (PDT)
+Received: from [192.168.0.1] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 1E85F3F641
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 10:20:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1775064049; bh=jso9ol/BwsazpOhcwBaDQGk6Irh//4G6BIQJqtlE/t4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jEOFVcEmkejqemYu9gD1QVBBnGGdJ6a5183yyH7vg94RAvsTzp/3hIIZlQctGkcs7
-	 MHQssxvOFXFUGX6IAa79WgQBtLqlItM2F0SBu054JQuNmuAQNxNth8RC1KFpwDVUCj
-	 nvbK52HUEAV57Xw45y+qqwCuRfmYrJiNMUo/pvrqFGDDC6Gok5uSw62IL4XO9oFsAI
-	 4nYfR39/sqtCO5MbVCBGluuFSyBiw3KH03tFpAHivrWtF+TUUEk8KZT6euRf4F5Knz
-	 35U0yhUEGLClRV9IiuEbZdM++sdU5KGGhYam2zSlU1KaDF7Fif6TvL0E3gXOm7wuX/
-	 Wn6tV6B7hUM7Q==
-Date: Wed, 1 Apr 2026 17:56:23 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	mohammad.rafi.shaik@oss.qualcomm.com, linux-sound@vger.kernel.org,
-	lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-	johan@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
-	konrad.dybcio@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	srini@kernel.org, val@packett.cool, mailingradian@gmail.com
-Subject: Re: [PATCH v8 08/13] ASoC: qcom: q6dsp: Add Senary MI2S audio
- interface support
-Message-ID: <f226a03d-f2d2-4a85-9a63-5ac93b665740@sirena.org.uk>
-References: <20260330082105.278055-1-srinivas.kandagatla@oss.qualcomm.com>
- <20260330082105.278055-9-srinivas.kandagatla@oss.qualcomm.com>
- <38eb807e-8467-4d7b-9094-3007d0ba9c89@sirena.org.uk>
- <6be87f21-1da0-412a-8662-ef05ca32f3c4@oss.qualcomm.com>
+	b=Rj5rfhOMii5/eXubnifzHmQ5LYo1ZgzXl0786M+ITTywa3oyQHQf+U5zqpCE6tGFL
+	 rF4VHDpZ1QNXoPrLFe6SRkEksboUEBjvaskDXGdTPxVvW0SiU3x9mtAhAbtBpOkMUl
+	 h3FtGU7yNAn56qRY6LKPZm9vl5fXGp5FpS4ag0oE=
+Date: Wed, 1 Apr 2026 18:20:27 +0100
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Guangliu Ding <guangliu.ding@nxp.com>
+Cc: "Daniel Baluta (OSS)" <daniel.baluta@oss.nxp.com>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Steven Price <steven.price@arm.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	Jiyu Yang <jiyu.yang@nxp.com>
+Subject: Re: Re: Re: Re: [PATCH 1/2] dt-bindings: gpu: mali-valhall-csf:
+ Document i.MX952 support
+Message-ID: <ac1T282yvpdAp_TP@e142607>
+References: <20260331-master-v1-0-65c8e318d462@nxp.com>
+ <20260331-master-v1-1-65c8e318d462@nxp.com>
+ <acva1Xt8V4k9-uG8@e142607>
+ <AM0PR04MB47073E9E8B5C704BCF5D9F72F350A@AM0PR04MB4707.eurprd04.prod.outlook.com>
+ <99a1da55-d6e5-4d11-abaa-8c85283ab5f2@oss.nxp.com>
+ <AM0PR04MB4707B3E37DFE7AEE587DBA2AF350A@AM0PR04MB4707.eurprd04.prod.outlook.com>
+ <aczv0R0aQRmHKdvt@e142607>
+ <AM0PR04MB4707335CC7035232D44E6ED9F350A@AM0PR04MB4707.eurprd04.prod.outlook.com>
+ <ac05OpEMjKMd8CXy@e142607>
+ <AM0PR04MB4707604AF2C445971C7474EFF350A@AM0PR04MB4707.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xUit4U/rWLaTNSx6"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <6be87f21-1da0-412a-8662-ef05ca32f3c4@oss.qualcomm.com>
-X-Cookie: "Yo baby yo baby yo."
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <AM0PR04MB4707604AF2C445971C7474EFF350A@AM0PR04MB4707.eurprd04.prod.outlook.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
+	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283609-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[oss.nxp.com,collabora.com,google.com,arm.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,nxp.com,pengutronix.de,lists.freedesktop.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-283611-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,vger.kernel.org,gmail.com,perex.cz,suse.com,packett.cool];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[arm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[liviu.dudau@arm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	REDIRECTOR_URL(0.00)[aka.ms];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A91F537E4DB
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email,aka.ms:url]
+X-Rspamd-Queue-Id: 1689437E9A9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Wed, Apr 01, 2026 at 03:59:23PM +0000, Guangliu Ding wrote:
+> Hi Liviu
+> 
+> > On Wed, Apr 01, 2026 at 10:31:01AM +0000, Guangliu Ding wrote:
+> > > Hi Liviu
+> > >
+> > > > On Wed, Apr 01, 2026 at 09:43:12AM +0000, Guangliu Ding wrote:
+> > > > > Hi Daniel
+> > > > >
+> > > > > > On 4/1/26 11:48, Guangliu Ding wrote:
+> > > > > > > [You don't often get email from guangliu.ding@nxp.com. Learn
+> > > > > > > why this is important at
+> > > > > > > https://aka.ms/LearnAboutSenderIdentification
+> > > > > > > ]
+> > > > > > >
+> > > > > > > Hi Liviu
+> > > > > > >
+> > > > > > > Thanks for your review. Please refer to my comments below:
+> > > > > > >
+> > > > > > >> On Tue, Mar 31, 2026 at 06:12:38PM +0800, Guangliu Ding wrote:
+> > > > > > >>> Add compatible string of Mali G310 GPU on i.MX952 board.
+> > > > > > >>>
+> > > > > > >>> Signed-off-by: Guangliu Ding <guangliu.ding@nxp.com>
+> > > > > > >>> Reviewed-by: Jiyu Yang <jiyu.yang@nxp.com>
+> > > > > > >>> ---
+> > > > > > >>>
+> > > > > > >>> Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.y
+> > > > > > >>> aml
+> > > > > > >>> | 1
+> > > > > > >>> +
+> > > > > > >>>  1 file changed, 1 insertion(+)
+> > > > > > >>>
+> > > > > > >>> diff --git
+> > > > > > >>> a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf
+> > > > > > >>> .yam
+> > > > > > >>> l
+> > > > > > >> b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.
+> > > > > > >> yaml
+> > > > > > >>> index 8eccd4338a2b..6a10843a26e2 100644
+> > > > > > >>> ---
+> > > > > > >>> a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf
+> > > > > > >>> .yam
+> > > > > > >>> l
+> > > > > > >>> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall
+> > > > > > >>> +++ -csf
+> > > > > > >>> +++ .yam
+> > > > > > >>> +++ l
+> > > > > > >>> @@ -20,6 +20,7 @@ properties:
+> > > > > > >>>            - enum:
+> > > > > > >>>                - mediatek,mt8196-mali
+> > > > > > >>>                - nxp,imx95-mali            # G310
+> > > > > > >>> +              - nxp,imx952-mali           # G310
+> > > > > > >> Can you explain why this is needed? Can it not be covered by
+> > > > > > >> the existing compatible?
+> > > > > > > There are functional differences in GPU module (GPUMIX)
+> > > > > > > between
+> > > > > > > i.MX95 and i.MX952. So they cannot be fully covered by a
+> > > > > > > single existing
+> > > > compatible.
+> > > > > > > On i.MX952, The GPU clock is controlled by hardware GPU auto
+> > > > > > > clock-gating mechanism, while the GPU clock is managed
+> > > > > > > explicitly by the
+> > > > > > driver on i.MX95.
+> > > > > > > Because of these behavioral differences, separate compatible
+> > > > > > > strings "nxp,imx95-mali" and "nxp,imx952-mali" are needed to
+> > > > > > > allow the driver to handle the two variants independently and
+> > > > > > > to keep room for future
+> > > > > > divergence.
+> > > > > >
+> > > > > >
+> > > > > > This information should be added in the commit message
+> > > > > > explaining why
+> > > > > >
+> > > > > > the change is needed.
+> > > > > >
+> > > > > >
+> > > > > > But then where is the driver code taking care of these diferences?
+> > > > > >
+> > > > >
+> > > > > Yes. Currently the driver does not require "nxp,imx952-mali" string.
+> > > > > However, when GPU ipa_counters are enabled to calculate the GPU
+> > > > > busy_time/idle_time for GPU DVFS feature, they will conflict with
+> > > > > the hardware GPU auto clock‑gating mechanism, causing GPU clock to
+> > > > > remain
+> > > > always on.
+> > > > > In such cases, ipa_counters need to be disabled so that the GPU
+> > > > > auto clock‑gating mechanism can operate normally, using
+> > "nxp,imx952-mali"
+> > > > string.
+> > > >
+> > > > OK, I understand that you're following guidance from some other
+> > > > senior people on how to upstream patches so you've tried to create
+> > > > the smallest patchset to ensure that it gets reviewed and accepted,
+> > > > but in this case we need to see the other patches as well to decide
+> > > > if your approach is the right one and we do need a separate compatible
+> > string.
+> > > >
+> > > > If enabling GPU ipa_counters causes the clocks to get stuck active,
+> > > > that feels like a hardware bug, so figuring out how to handle that
+> > > > is more important than adding a compatible string.
+> > > >
+> > > > Either add the patch(es) that use the compatible to this series in
+> > > > v2, or put a comment in the commit message on where we can see the
+> > driver changes.
+> > > >
+> > >
+> > > According to discussions with the GPU vendor, this is a hardware
+> > > limitation of Mali-G310 rather than a hardware bug, and it has been
+> > > addressed in newer Mali GPU families.
+> > 
+> > I represent the said GPU vendor and I think I know what you're talking about,
+> > but you're taking the wrong approach. All G310s have a problem where in
+> > order to enable access to the ipa_counters the automatic clock gating gets
+> > disabled. So the solution that needs to be implemented when we add support
+> > for IPA_COUNTERs will apply to all GPUs, not just MX952.
+> 
+> Yes. We have bring-up G310 (V2) GPU on both i.MX95 and i.MX952. And auto clock 
+> gating mechanism is firstly introduced in i.MX952 (not supported on i.MX95).
+> According to your update, solution needs to be implemented to all GPUs which support 
+> auto clock gating mechanism after IPA_COUNTERs are supported in the driver, right?
 
---xUit4U/rWLaTNSx6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+A solution is needed, yes.
 
-On Wed, Apr 01, 2026 at 04:54:00PM +0000, Srinivas Kandagatla wrote:
-> On 4/1/26 11:25 AM, Mark Brown wrote:
+> What's your suggestions for 952 gpu dtb node?
 
-> [PATCH v8 09/13] ASoC: qcom: common: validate cpu dai id during parsing
+There is no IPA_COUNTER use in Panthor at the moment. Unless your DVFS controller uses
+that, I would suggest that we don't introduce a compatible for 952 until the time we
+add support for reading the counters.
 
-> re-ordering these two patches, should fix the issue.
+It helps if you think in terms of what is already in upstream, rather than mixing with
+the tests that uses kbase code. Does your hardware need extra code in upstream in order
+to function? If so, where is that code? If not, then let's not introduce the compatible
+until we are absolutely sure we need it because we have code specific to that SoC. For
+everything else we will implement an architecture fix if needed.
 
-> Sorry about this, Is it fine if I send this reorder in v9?
+Best regards,
+Liviu
 
-Yes, it was otherwise fine.
-
---xUit4U/rWLaTNSx6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnNTjYACgkQJNaLcl1U
-h9BCSgf+LQqr/13SpqYuSRvPKSn7plrzehU/l1FCowf22rsrd115KRv6RPjbTO9z
-GzlmlOzhfNRXdqzum8D0NE0puZB++7IB8+jeMiI8UgPcT7nhVX2uZmgWg208S706
-MdyE4m5i0rfatTJziLap2Npd6YOotbiey8W/JGdrKclg4ffn36CmyOiBO4deQPzD
-/ogS+YwAfxM4pK3kQj+7bashffpssNRxhz3NhvDGnAkSlSpAMs9QMiuW43Wvo5ag
-itW43O2iv4c+0y9WsHguPVlZlDtj5m6npTjkKEEMVVnmdXeTLtzdlFJYhRtWVDpF
-RHNQHx2UFnHA9+B7+ls1QFr48rmoVA==
-=kifs
------END PGP SIGNATURE-----
-
---xUit4U/rWLaTNSx6--
+-- 
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
 
