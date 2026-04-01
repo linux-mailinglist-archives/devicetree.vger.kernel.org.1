@@ -1,248 +1,181 @@
-Return-Path: <devicetree+bounces-283328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283330-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GEo5HrrLzGlFWwYAu9opvQ
-	(envelope-from <devicetree+bounces-283328-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 09:39:38 +0200
+	id YHIrERbPzGlFWwYAu9opvQ
+	(envelope-from <devicetree+bounces-283330-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 09:53:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45EF837616B
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 09:39:38 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B22C376536
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 09:53:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 771573065AAE
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 07:32:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 999F53080905
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 07:34:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 807C2386450;
-	Wed,  1 Apr 2026 07:32:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6076938C2AE;
+	Wed,  1 Apr 2026 07:34:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="c9nnB7Jd"
+	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="VEwKhf4/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mail-08.mail-europe.com (mail-08.mail-europe.com [57.129.93.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5A28381AE9;
-	Wed,  1 Apr 2026 07:32:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A3BD37FF61
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 07:34:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=57.129.93.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775028758; cv=none; b=aRPOtm3cvfKa7GACOeLdraxE5U6Kkm0GSYfooHmskuAQQlVzt9EvQHXVeMYm6uxJDeNb5vd60dF7eUalREzV/6wWCsEGBeWol79FJsMPBqG61RZHliYNVEGp8cXmVlmmxSow5i0ai74OZwtkNcf7fgEVPYc3zOZllofTkkM5ZnE=
+	t=1775028847; cv=none; b=H2nlmJexNyciHj2jLnSHdPReXsNxYthoQM0HKNoinpomtwD2kJyM/5yQKDmhS03ztHPRCou2nlV770Lz33nA887DpRtyRU7aaT2WVobkOjihHMu9m7AMsxRJmaGD1Yvk9L9ETUIxpRLf4partccQyJgCGlMCeuEbL4Qjf+5rODI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775028758; c=relaxed/simple;
-	bh=lAkJjjHd7gHpaqpH3Cr1BqQoEkk7qoY8Ml90OwFuqBI=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CnbB5Gv9rxFpyklDeIZKmByjF7sbj6grxCfLFT4SVlOsvWbu2UNQqg9Ps67QYBwdTPb8M3PO3DWkYkxDZl8IMCX71fDKZwcQtvWQglBCWyUhDWb1teIabUHo0nu/Gvml5+LUoO2QDfGfJtD/BEakhnSYUDzAgFTDcNMsbnkFS40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=c9nnB7Jd; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1775028754; x=1806564754;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=lAkJjjHd7gHpaqpH3Cr1BqQoEkk7qoY8Ml90OwFuqBI=;
-  b=c9nnB7Jd5ywjwzWUlkWOs8ceEDu7hv82rNHBapu+daxXLCt3+7NJ/Xdd
-   i/6jKJ90Bo3I7/MAu2bRRii86MALvP/RdId3RSaO1CHaTflBJBIAAviKI
-   uDmK9PjTVIAR1JSOWGk0BMx0WH+8fhh/BfLIRfFn83MMBzo9s3z20abLB
-   emQQX2jbe5Twy7cWTakZjRPPCXWU5aIjgTrF3VmwJasc67VTdyn0OuVz9
-   +EoJCte2YWp+rjlGgasLXp77v4GyMwS+TPlRKis5wwkcit3X6aMgCtDDO
-   ul/MMBrqsUUPn1xfuYuBNjk9wVFLeT24Y3QeRmjzE7hjVIiYM9kilZVGr
-   w==;
-X-CSE-ConnectionGUID: UB3oepBeSxy1sJkvz5/npA==
-X-CSE-MsgGUID: 43Y3VxG0T1i7Bt7g4RF5DA==
-X-IronPort-AV: E=Sophos;i="6.23,153,1770620400"; 
-   d="scan'208";a="54768591"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2026 00:32:33 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
- chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.35; Wed, 1 Apr 2026 00:31:52 -0700
-Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Wed, 1 Apr 2026 00:31:49 -0700
-Message-ID: <5b731463a01dc4dbeaf98fe914fede8719786560.camel@microchip.com>
-Subject: Re: [PATCH net-next v2 1/9] net: dsa: add tag driver for LAN9645X
-From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-To: Jakub Kicinski <kuba@kernel.org>
-CC: <UNGLinuxDriver@microchip.com>, <andrew@lunn.ch>, <olteanv@gmail.com>,
-	<davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
-	<horms@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <woojung.huh@microchip.com>, <linux@armlinux.org.uk>,
-	<Steen.Hegelund@microchip.com>, <daniel.machon@microchip.com>,
-	<linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Date: Wed, 1 Apr 2026 09:31:49 +0200
-In-Reply-To: <20260329195620.2789042-1-kuba@kernel.org>
-References: <20260324-dsa_lan9645x_switch_driver_base-v2-1-f7504e3b0681@microchip.com>
-	 <20260329195620.2789042-1-kuba@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2.1 
+	s=arc-20240116; t=1775028847; c=relaxed/simple;
+	bh=2GcFOJjX1AnO7H5r0kjFzXIVQGMcfOJjJ+MW/bueJ0s=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UPRAApnw0zjk1qIgGn3Z19UAZkFEPRs+/04LJ4m9MO6mR+RjOEXElY+GNTPlyOqaKThUkF/MBQe98QYrDFUaHtvrRV0JkvPGG5li7Cwx38L+lWRlEoYpnkZ4EOZj4o/P7aA5w6JI8xr3inxSN0bNT5zXT4ef3Huc2JT25xvg6mM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=VEwKhf4/; arc=none smtp.client-ip=57.129.93.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
+	s=protonmail2; t=1775028829; x=1775288029;
+	bh=Rde7q74qxf8lDFPD+wE2Tm30AFRT8y1GKoT/Zc7Ga+w=;
+	h=From:Subject:Date:Message-Id:To:Cc:From:To:Cc:Date:Subject:
+	 Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=VEwKhf4/WxgZmwwqxnLDZm6gcP8R4GM0VESMjGjOMLgmyn3ktyLUzMKjQLPodhq9L
+	 kAhhDQ1buJA/fs/8Q6mAli2nAURhOA7mDoBJOp7ILN8YzwolmC06EFu4asi/GV6CRf
+	 WJJ9gwJTS/vw+WAgWHGwzrfRCn1IXnVkZES83jeagIZCSNpTPp0FN5gCb+ziw4xmnO
+	 GAQHVYz3FD33Cth6BoNisWfykC96Wa2Xbk8V6uVtVhJP/r0kJPuK+EsrGYg+nvn6dD
+	 tTksFL9KQ1XusvaWn7jiP/VAxLp47aIavAUup92uvQf2f2pC3RJKr8c8dbRYUY01R+
+	 oPmHQLaHQc73g==
+X-Pm-Submission-Id: 4flxYl60t2z1DDLK
+From: Aleksandrs Vinarskis <alex@vinarskis.com>
+Subject: [PATCH 0/4] Introduce EC driver for Snapdragon X1E based Dell XPS
+ 13 9345
+Date: Wed, 01 Apr 2026 09:33:09 +0200
+Message-Id: <20260401-dell-xps-9345-ec-v1-0-afa5cacd49be@vinarskis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADXKzGkC/x3MQQqAIBBG4avErBvILMGuEi0qf2tAKhRCiO6et
+ PwW7z2UEAWJhuqhiFuSnEeBqita9/nYwOKKqW1a02it2CEEzldiq7uesTJ631mnFnijqGRXhJf
+ 8L8fpfT/H4+39YgAAAA==
+X-Change-ID: 20260331-dell-xps-9345-ec-e5f49d1bef61
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>, 
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+ laurentiu.tudor1@dell.com, Abel Vesa <abel.vesa@oss.qualcomm.com>, 
+ Tobias Heider <tobias.heider@canonical.com>, Val Packett <val@packett.cool>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3414; i=alex@vinarskis.com;
+ h=from:subject:message-id; bh=2GcFOJjX1AnO7H5r0kjFzXIVQGMcfOJjJ+MW/bueJ0s=;
+ b=owGbwMvMwCX2dl3hIv4AZgHG02pJDJlnTkX/vKG0N2LXikPmTF92dWZVNFenHGQJU8hLnGBnw
+ nbrcubfjlIWBjEuBlkxRZbuP1/TuhbNXctwXeMbzBxWJpAhDFycAjAR33mMDK84mXdMm6W+40MR
+ 7xWb4w4r838IJMlxRE6ap2FcUR+39AHDX1mDzdIcBqyLXW84B0qe/H7+8PPDhW1Tr3c8L7gtfrb
+ 3ERsA
+X-Developer-Key: i=alex@vinarskis.com; a=openpgp;
+ fpr=8E21FAE2D2967BB123303E8C684FD4BA28133815
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	DMARC_POLICY_ALLOW(-0.50)[vinarskis.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[vinarskis.com:s=protonmail2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283328-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,redhat.com,kernel.org,armlinux.org.uk,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283330-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[alex@vinarskis.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[vinarskis.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 45EF837616B
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vinarskis.com:dkim,vinarskis.com:email,vinarskis.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4B22C376536
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, 2026-03-29 at 12:56 -0700, Jakub Kicinski wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e content is safe
->=20
-> This is an AI-generated review of your patch. The human sending this
-> email has considered the AI review valid, or at least plausible.
-> ---
-> net: dsa: add tag driver for LAN9645X
->=20
-> Add a tag driver for LAN9645x switches using a front port as the CPU port
-> (NPI port). The driver configures a long prefix for extraction and no
-> prefix for injection to handle the internal frame header (IFH).
->=20
-> > diff --git a/net/dsa/tag_lan9645x.c b/net/dsa/tag_lan9645x.c
-> > new file mode 100644
-> > index 000000000000..9130fb0d61be
-> > --- /dev/null
-> > +++ b/net/dsa/tag_lan9645x.c
->=20
-> [ ... ]
->=20
-> > +static void lan9645x_xmit_get_vlan_info(struct sk_buff *skb,
-> > +                                     struct net_device *br,
-> > +                                     u32 *vlan_tci, u32 *tag_type)
-> > +{
-> > +     struct vlan_ethhdr *hdr;
-> > +     u16 proto, tci;
-> > +
-> > +     if (!br || !br_vlan_enabled(br)) {
-> > +             *vlan_tci =3D 0;
-> > +             *tag_type =3D LAN9645X_IFH_TAG_TYPE_C;
-> > +             return;
-> > +     }
-> > +
-> > +     hdr =3D (struct vlan_ethhdr *)skb_mac_header(skb);
-> > +     br_vlan_get_proto(br, &proto);
-> > +
-> > +     if (ntohs(hdr->h_vlan_proto) =3D=3D proto) {
-> > +             vlan_remove_tag(skb, &tci);
->=20
-> Is it possible for a maliciously crafted packet (e.g., via AF_PACKET) to =
-have a
-> length of 14 bytes with h_vlan_proto set to ETH_P_8021Q?
->=20
-> If so, vlan_remove_tag() would read vhdr->h_vlan_TCI at offset 14, causin=
-g an
-> out-of-bounds read.
->=20
-> Furthermore, if the packet contains fragments and the VLAN header is not =
-in the
-> linear data area, vlan_remove_tag() could corrupt the SKB when shifting t=
-he MAC
-> header.
->=20
-> Would it be safer to use skb_vlan_untag() instead?
->=20
+This series adds Embedded Controller (EC) driver for Dell XPS 13 9345.
+While EC appears to control most of device's peripherals, particular
+driver addresses power and thermal managment issues. Key operational
+principle involves initial thermistor constants configuration followed
+by a periodic reporting of these onboard thermistor values from across
+the motherboard to the EC. The latter then handles fan ramp-up/
+ramp-down internally. Suspend/Resume must be likewise propagated to EC
+for power management.
 
-I think skb_vlan_untag is for the rx path, and will not make sense here. Bu=
-t I
-can add a check like
+The driver was developed primarily by analyzing ACPI DSDT's _DSM and
+i2c dumps of communication between SoC and EC during various stages of
+operation (bootup, suspend, resume).
 
-	if (skb_headlen(skb) >=3D VLAN_ETH_HLEN &&
-	    ntohs(hdr->h_vlan_proto) =3D=3D proto) {
-		vlan_remove_tag(skb, &tci);
-		*vlan_tci =3D tci;
-	} else {
+With EC driver in place, the following issues are addressed:
+1. Fans were not properly cooling the laptop, would kick in late and
+   spin lazily, resulting in heavy throttling. With EC driver fans
+   start sooner and hit high RPM under heavy load.
+2. Fans were not stopping once SoC temperature dropped, they would keep
+   slowly spinning irrespective of suspend and/or closed lid until the
+   next powercycle. With EC driver shortly after SoC temperature drops,
+   thermistors temperature drops, and fans ramp-down.
+3. Keyboard and touch row backlight were not turning off during
+   suspend - only lid close would power off the touch row. With EC
+   driver behavior matches that of Windows, suspending device with lid
+   open powers off the peripherals.
 
-so we know the linear data area has the bytes.
+As thermistor readout depends on pmic's ADCs, this series introduces
+EC driver and its schema, adds missing ADC to hamoa-pmics, and finally
+adds thermistor and EC nodes to x1e80100-dell-xps13-9345.dts.
 
-> > +             *vlan_tci =3D tci;
-> > +     } else {
-> > +             rcu_read_lock();
-> > +             br_vlan_get_pvid_rcu(br, &tci);
-> > +             rcu_read_unlock();
-> > +             *vlan_tci =3D tci;
-> > +     }
-> > +
-> > +     *tag_type =3D (proto !=3D ETH_P_8021Q) ? LAN9645X_IFH_TAG_TYPE_S =
-:
-> > +                                          LAN9645X_IFH_TAG_TYPE_C;
-> > +}
->=20
-> [ ... ]
->=20
-> > +static struct sk_buff *lan9645x_rcv(struct sk_buff *skb,
-> > +                                 struct net_device *ndev)
-> > +{
-> > +     u32 src_port, qos_class, vlan_tci, tag_type, popcnt, etype_ofs;
-> > +     u8 *orig_skb_data =3D skb->data;
-> > +     struct dsa_port *dp;
-> > +     u32 ifh_gap_len =3D 0;
-> > +     u16 vlan_tpid;
-> > +     u8 *ifh;
-> > +
-> > +     /* DSA master already consumed DMAC,SMAC,ETYPE from long prefix. =
-Go back
-> > +      * to beginning of frame.
-> > +      */
-> > +     skb_push(skb, ETH_HLEN);
-> > +     /* IFH starts after our long prefix */
-> > +     ifh =3D skb_pull(skb, LAN9645X_LONG_PREFIX_LEN);
->=20
-> Could skb_pull() return NULL here if skb->len is less than 16 bytes?
->=20
-> If it returns NULL, the blind dereference of ifh in the subsequent
-> lan9645x_ifh_get() calls would cause a NULL pointer dereference.
->=20
-> Additionally, is the 44-byte tag (16-byte prefix + 28-byte IFH) guarantee=
-d to
-> be in the linear data buffer (skb->data)?
->=20
-> Without calling pskb_may_pull(skb, LAN9645X_TOTAL_TAG_LEN) first, accessi=
-ng it
-> via the ifh pointer might result in out-of-bounds reads if the packet pay=
-load
-> is in paged fragments.
->=20
+Additional findings:
+- Max fan speed depends on Dell's power mode settings, configurable in
+  BIOS or using Windows app (relies on ACPI-WMI). It appears best
+  cooling performance is achieved under 'Ultra Performance' profile.
+- When the said power mode is changed using Windows app, EC IRQ is
+  triggered. Windows performs what appears to be thermistor contants
+  readout, though its not obvious what it is used for.
+- Given similarities between Dell XPS 13 series (codename 'tributo')
+  and Snapdragon-based Latitude, Inspiron ('thena'), including matching
+  EC address and response to suspend/resume command the EC driver can
+  be likely used for both, though in-depth testing on 'thena' is
+  required.
 
+Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+---
+Aleksandrs Vinarskis (4):
+      dt-bindings: platform: introduce EC for Dell XPS 13 9345
+      platform: arm64: dell-xps-ec: new driver
+      arm64: dts: qcom: hamoa-pmics: define VADC for pmk8550
+      arm64: dts: qcom: x1e80100-dell-xps13-9345: introduce EC
 
-I can add pskb_may_pull calls to ensure skb->data is availble.
+ .../embedded-controller/dell,xps13-9345-ec.yaml    |  86 +++++++
+ MAINTAINERS                                        |   6 +
+ arch/arm64/boot/dts/qcom/hamoa-pmics.dtsi          |  11 +
+ .../boot/dts/qcom/x1e80100-dell-xps13-9345.dts     |  91 ++++++-
+ drivers/platform/arm64/Kconfig                     |  12 +
+ drivers/platform/arm64/Makefile                    |   1 +
+ drivers/platform/arm64/dell-xps-ec.c               | 269 +++++++++++++++++++++
+ 7 files changed, 474 insertions(+), 2 deletions(-)
+---
+base-commit: 3b058d1aeeeff27a7289529c4944291613b364e9
+change-id: 20260331-dell-xps-9345-ec-e5f49d1bef61
 
-> > +
-> > +     popcnt =3D lan9645x_ifh_get(ifh, IFH_POP_CNT, IFH_POP_CNT_SZ);
-> > +     etype_ofs =3D lan9645x_ifh_get(ifh, IFH_ETYPE_OFS, IFH_ETYPE_OFS_=
-SZ);
-> > +     src_port =3D lan9645x_ifh_get(ifh, IFH_SRCPORT, IFH_SRCPORT_SZ);
-> --
-> pw-bot: cr
+Best regards,
+-- 
+Aleksandrs Vinarskis <alex@vinarskis.com>
 
 
