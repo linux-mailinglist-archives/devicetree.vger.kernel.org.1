@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-283616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283617-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +IapBBBezWkRcQYAu9opvQ
-	(envelope-from <devicetree+bounces-283616-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:04:00 +0200
+	id uEF0ADVezWkRcQYAu9opvQ
+	(envelope-from <devicetree+bounces-283617-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:04:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A249637EFDF
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87BE137F00E
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:04:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5C0503040309
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 18:03:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 42E7230068FA
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 18:04:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D43CB2FD66D;
-	Wed,  1 Apr 2026 18:03:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B8642FF657;
+	Wed,  1 Apr 2026 18:04:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jN1BAAD/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FuUEU9AU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B07562E1F06;
-	Wed,  1 Apr 2026 18:03:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79742FE071;
+	Wed,  1 Apr 2026 18:04:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775066621; cv=none; b=MGaYJYNIwgdDvFiYL0LTwgCAfw5k+brzQuDibdx9Zb8aE8P0sdEjNsogR2z3BrOi8rubdI0DvIh2berOUTw1r8HXxAcy8k3N7mFXyjn6NApwLO+8fPiyLENpyfdKf1ru6krB0RTt52OEk+Qz2lXPWe1NfbSL8IBYEnOn8/Q1BMM=
+	t=1775066661; cv=none; b=ifgFn3+KpD5LVXNY/btOKdsyHNT2Uf/JVBmKYoS8vda4ZjPZFnElknHevt33Ta3zyoMrDldGzbs5ZBQgk247Qpkub7E+s2SUs6BI22LCqfz5oJqhR+/5pXzRpJhnGnKnAy9oTS2zNc+RK7/YVo+/addjZPMntTzmwkrwyqCijqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775066621; c=relaxed/simple;
-	bh=fYOo4eQcjiTXlIROlhPMf99ZB4FND5sOdhVUwo8hMGU=;
+	s=arc-20240116; t=1775066661; c=relaxed/simple;
+	bh=VpPE2BJUg6MYw76TvdVtCeUAkVtAPB+DcRHdaW3Q3Sc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p0dPhjPVpiRPwew6Y4Z0Vs9jfk5wICsPllxQamhrHO3k5gKVXl42pvv309SGSPNwCYEZQgq2vZmVAJ22qzqlWbhG7ZiKMdsQXCitdoJ1sdxRBqQ4p1jkc4wB46ugtmsBL0n1RWMZy0r8MlzXj2qmw2VVCawj7fMQOTRQ7BCngXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jN1BAAD/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35379C4CEF7;
-	Wed,  1 Apr 2026 18:03:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Mect/1+Pmr19n3l00kFWTIhCgZbbnlDzJ6yFbdDW0lS0fnTbzBVjdg0iPRMFOFOM7y8vRZ1RhZ6dZRrQXQnKUyIon+6jeJUMryoBQQGp2CyzZHO2Kq8YGGhVPZdiGD7egU2GdzdxXqEvZrGS3dsCwmLV0WuhziaRKTEOrd1FJLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FuUEU9AU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B18BBC4CEF7;
+	Wed,  1 Apr 2026 18:04:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775066621;
-	bh=fYOo4eQcjiTXlIROlhPMf99ZB4FND5sOdhVUwo8hMGU=;
+	s=k20201202; t=1775066661;
+	bh=VpPE2BJUg6MYw76TvdVtCeUAkVtAPB+DcRHdaW3Q3Sc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jN1BAAD/00oIUMUN6/WJ+XL7FsLsbuoToY+T5SNsnGdgcbCmWDSLKo0AR9+LSJwpY
-	 utKcX1YS+Kum1wmFSdM3VecDZzOZM/XEfMRZDebICk0vS3vxNbFIRhdytlY8eyCfqa
-	 ggA0c4SlPR6jKyxIL7Wec0iCzODa7zuvamZaWNl0fkdG6yK8u+9f+cX4n3E29Ff2aP
-	 VwG/8iGfrSc9Z5lVPlH4D0zwnvKz4cWJnatuOYKMEPmWVOZ3M1kDK5Wbl/KMqMBakZ
-	 X+cMh/qtqc1S0KU9/GYIiNT3oJH2e8N7tPLLSrF9Ph0q8vsTox0EdKMbWyc2bqzSw2
-	 3g3lkv3tUlMjA==
-Message-ID: <a7f8048f-eb35-4ffc-aad9-a5275e830952@kernel.org>
-Date: Wed, 1 Apr 2026 20:03:37 +0200
+	b=FuUEU9AUvCyXlcTP3L3iM/KWTsISz6/NY2866tIwlsNPinE+zzoiJaRjlko4lHA9k
+	 aIGGqeNhb9XKWAkg5qc89Eo3eMjD+4uyKzCWj4O+i1qI59HLKl2l4IZzpr9fNqIIJk
+	 akZc818Axa5tCTCg2o7DxRlxFZZTSu7Bbrb+tf2A5/obDsOCnaHBtwaHy/B9/J0A7B
+	 b9lQn7nHOFiagMbxovRZDl8lij6njzftmJDTysduKzuhDMRhMQKMOUWLr3ntqmZ3tu
+	 p2+HPu4PWfM+CT8497daD3s5+vW/cBC+rdLil1aLT562R977mIm/sIIYwE6CaZ4nAP
+	 kdowHcPH24CLA==
+Message-ID: <70ba9b2a-5028-450c-8492-c4c16dbb2859@kernel.org>
+Date: Wed, 1 Apr 2026 20:04:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,12 +53,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: mfd: twl: Reference converted schemas for
- subnodes
-To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>, andreas@kemnade.info
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260327082350.20573-1-jihed.chaibi.dev@gmail.com>
+Subject: Re: [PATCH] dt-bindings: mfd: twl: Reference converted YAML schemas
+ for subnodes
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: lee@kernel.org, andreas@kemnade.info, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260325095016.48752-1-jihed.chaibi.dev@gmail.com>
+ <20260327-orthodox-brainy-poodle-738eac@quoll>
+ <CANBuOYrPuLKnxqOLOZUEvBSG-4ceeOWMhQKPZhEctzcjBUnbqA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,9 +107,9 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260327082350.20573-1-jihed.chaibi.dev@gmail.com>
+In-Reply-To: <CANBuOYrPuLKnxqOLOZUEvBSG-4ceeOWMhQKPZhEctzcjBUnbqA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
@@ -115,17 +118,17 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-283616-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283617-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,kemnade.info];
+	FREEMAIL_TO(0.00)[gmail.com];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
@@ -134,22 +137,25 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A249637EFDF
+X-Rspamd-Queue-Id: 87BE137F00E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 27/03/2026 09:23, Jihed Chaibi wrote:
-> Now that all TWL subnode bindings (audio, keypad, twl4030-usb, gpio,
-> usb-comparator) have been converted and merged into mainline, update the
-> parent ti,twl.yaml to properly reference them via $ref.
+On 01/04/2026 19:57, Jihed Chaibi wrote:
+> On Fri, Mar 27, 2026 at 8:37 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> No, they were validated by their child device schemas. Everything was
+>> correct and expected.
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> Replace the inline compatible definitions with $ref to the appropriate
-> schemas and unevaluatedProperties: false, matching the pattern already
-> used by the madc, gpadc, and charger subnodes.
+> Thanks for the feedback Krzysztof, I have sent a v2 of this patch,
+> please let me know if anything else needs to be done.
 
-I told you: no.
+Really? On 27th of Match, 40 minutes after I told you NO, you send the same?
 
-Why do you replace correct code?
 
 Best regards,
 Krzysztof
