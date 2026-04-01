@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-283619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283621-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CBFaGfFezWlncgYAu9opvQ
-	(envelope-from <devicetree+bounces-283619-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:07:45 +0200
+	id YKHNDR1fzWlncgYAu9opvQ
+	(envelope-from <devicetree+bounces-283621-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:08:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5B2437F06F
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:07:44 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBCC537F087
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:08:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 67B8E302DE09
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 18:07:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B1026305D4D0
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 18:07:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FF6A3101A7;
-	Wed,  1 Apr 2026 18:07:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFCEF314A8E;
+	Wed,  1 Apr 2026 18:07:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="IjEUXC3r"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="fDD1/e16"
 X-Original-To: devicetree@vger.kernel.org
 Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F9E630E0FC;
-	Wed,  1 Apr 2026 18:07:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3149230E83A;
+	Wed,  1 Apr 2026 18:07:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775066844; cv=none; b=SSMBgDF1kK69S6lpbjKvXaPJhTOUHjkkLlnsjM7D4uJG9j9SMChFBwYPPN3jreSrbE/tU8OKEezuhYKjVqV7KJtSmlwHnxPZm7GRecH+JsCy6+835K+qR8q5sDoyanFxZ+VlYzRU6TUQ0Y1alBD98NwiyJHbtb9BNOUvhot9lUI=
+	t=1775066845; cv=none; b=oOtqr3r+UqGze5BoRuh0IGAGZymp3ESZCyuf29d6YsT8sPqBdPdEhYiRdx5s0Za0+feRrMjV/cv3DMl1Y27WQRKiU/8eO2MkiOIH7s5M5Pzy5EWUkHsTwSBlTRFBt4JxyWqHeZLevgtYuAcGULBUnT9dcTfJeYbaadgjNRIwiIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775066844; c=relaxed/simple;
-	bh=gLVZnYH8RyztHWedBiBheyvBydAbsVMkC5d77hHYZlI=;
+	s=arc-20240116; t=1775066845; c=relaxed/simple;
+	bh=78qH5nIWIELIDV6PJGBxhJTVaTi35H4kfKGiY4tduC4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aH9WBzBWl/kdQijCnaE48Lma8Gxq+Mw5I1FiwktcLd49dLdaITrVbOJgZ4HZjCxY7u3Hspc+uZz8AOGo2Hz51wpacxeEeAIVin1EfAMBp72WwWPNFp5clhBNTPE/U5mqR6P2qZzOTiP3IRAlkRTMxFbueiLPdikBcpwczd1gYek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=IjEUXC3r; arc=none smtp.client-ip=178.21.23.139
+	 MIME-Version; b=VpBcAVjsYtTgqG7/8jpFxsVY815j0G2GF3hMgKmyOztNCuPljKn20TdstcWhqrOXuiFMaJEsWBDyY0xyuT8wVMAqN7eQDNHmLRgMvU30xh6oZQBvaIHrBuX03BZbQxM6QTKPgA6+eIoNX4F3VnZDH3vkLWdzzqfHiFB+lO8TZDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=fDD1/e16; arc=none smtp.client-ip=178.21.23.139
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
 Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 824F025F7C;
-	Wed,  1 Apr 2026 20:07:14 +0200 (CEST)
+	by disroot.org (Postfix) with ESMTP id 186A025D79;
+	Wed,  1 Apr 2026 20:07:17 +0200 (CEST)
 X-Virus-Scanned: SPAM Filter at disroot.org
 Received: from layka.disroot.org ([127.0.0.1])
  by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id TMjY3Xwy1Ac4; Wed,  1 Apr 2026 20:07:13 +0200 (CEST)
+ id h3Il5tcyWnwO; Wed,  1 Apr 2026 20:07:16 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1775066833; bh=gLVZnYH8RyztHWedBiBheyvBydAbsVMkC5d77hHYZlI=;
+	t=1775066836; bh=78qH5nIWIELIDV6PJGBxhJTVaTi35H4kfKGiY4tduC4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=IjEUXC3rCvU9RlvjHBAGk6Ok/3O6NJPUghKfsq1fQqosjahU7BzqEc+ayCpdJNRFj
-	 T+ALt74drOH+hqy6kxtg54qOtQh3l7ZnN2Uo48WAygRvTJXkdJoD1MhAzsQvoDY8EC
-	 mWnFLxSkgZPHPoDbHUlJcI7KVQB8kuYFxs0iu3RyR+Fk3Yl862giNK2zl8G3cBjdZh
-	 AkFeiGv93c2v/mRnpji9Mlxgm5eA2H8SOls+yPGtzAN+bUqFjvlvXMHf08Ipv5LISk
-	 Cq7Epi6gMLZcPbDxRH2uyDXKCK+jhDzitN5UfIbhL/JL/Yom+9D2/BrfRwPfcKNiCY
-	 f8Gkn7n64hX3g==
+	b=fDD1/e16erxOrH2KgadQJJKaCcQ0WuJmfALmxZCZ2z0HBYagz50+La+mhE8sMQTuq
+	 VCsF4bOtf2Ge6KHoqNgDXUYTKeV5meOdfHOTkCOYSmLR8/LoINSIdFHyZh7mZAE9tl
+	 AaWFFx3yTKpondtVc+UWArHeEt0la3Ir00yUKzDvxYvLh+5ZFMcz/QU+VLscM6tP7i
+	 E3oIM7jbXCv9UGVstP99CDZd74clpC5yplZoGV9XNZyDOwAba9LDgOJNZrkM5YubSD
+	 0JoPIb44ybuPoagmgj9Pi8atct8A6oHG+Fmnr5O0jOLl8Sl1jeMeFssVAQR9mbC0Dj
+	 fszyFpPoof00A==
 From: Rustam Adilov <adilov@disroot.org>
 To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	Andi Shyti <andi.shyti@kernel.org>,
@@ -60,9 +60,9 @@ To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Rustam Adilov <adilov@disroot.org>
-Subject: [PATCH v6 1/8] i2c: rtl9300: split data_reg into read and write reg
-Date: Wed,  1 Apr 2026 23:06:41 +0500
-Message-ID: <20260401180648.337834-2-adilov@disroot.org>
+Subject: [PATCH v6 2/8] i2c: rtl9300: introduce max length property to driver data
+Date: Wed,  1 Apr 2026 23:06:42 +0500
+Message-ID: <20260401180648.337834-3-adilov@disroot.org>
 In-Reply-To: <20260401180648.337834-1-adilov@disroot.org>
 References: <20260401180648.337834-1-adilov@disroot.org>
 Precedence: bulk
@@ -79,7 +79,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
 	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -87,9 +87,9 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283619-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283621-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[disroot.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
@@ -100,118 +100,72 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:dkim,disroot.org:email,disroot.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,alliedtelesis.co.nz:email]
-X-Rspamd-Queue-Id: D5B2437F06F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:dkim,disroot.org:email,disroot.org:mid,alliedtelesis.co.nz:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BBCC537F087
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-In RTL9607C i2c controller, there are 2 separate registers for reads
-and writes as opposed the combined 1 on rtl9300 and rtl9310.
+In RTL9607C i2c controller, theoretical maximum the data length
+can be is 4 bytes as opposed to 16 bytes on rtl9300 and rtl9310.
 
-In preparation for RTL9607C support, split it up into rd_reg and wd_reg
-properties and change the i2c read and write functions accordingly.
+Introduce a new property to the driver data struct for that.
+Adjust if statement in prepare_xfer function to follow that new
+property instead of the hardcoded value.
 
 Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 Signed-off-by: Rustam Adilov <adilov@disroot.org>
 ---
- drivers/i2c/busses/i2c-rtl9300.c | 25 +++++++++++++++----------
- 1 file changed, 15 insertions(+), 10 deletions(-)
+ drivers/i2c/busses/i2c-rtl9300.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/i2c/busses/i2c-rtl9300.c b/drivers/i2c/busses/i2c-rtl9300.c
-index 67a5c4228fc9..9bf4c6b08e05 100644
+index 9bf4c6b08e05..2cada6038b44 100644
 --- a/drivers/i2c/busses/i2c-rtl9300.c
 +++ b/drivers/i2c/busses/i2c-rtl9300.c
-@@ -61,7 +61,8 @@ enum rtl9300_i2c_reg_fields {
- struct rtl9300_i2c_drv_data {
- 	struct rtl9300_i2c_reg_field field_desc[F_NUM_FIELDS];
- 	int (*select_scl)(struct rtl9300_i2c *i2c, u8 scl);
--	u32 data_reg;
-+	u32 rd_reg;
-+	u32 wd_reg;
+@@ -64,11 +64,14 @@ struct rtl9300_i2c_drv_data {
+ 	u32 rd_reg;
+ 	u32 wd_reg;
  	u8 max_nchan;
++	u8 max_data_len;
  };
  
-@@ -74,7 +75,8 @@ struct rtl9300_i2c {
- 	struct rtl9300_i2c_chan chans[RTL9310_I2C_MUX_NCHAN];
- 	struct regmap_field *fields[F_NUM_FIELDS];
- 	u32 reg_base;
--	u32 data_reg;
-+	u32 rd_reg;
-+	u32 wd_reg;
- 	u8 scl_num;
- 	u8 sda_num;
- 	struct mutex lock;
-@@ -171,7 +173,7 @@ static int rtl9300_i2c_read(struct rtl9300_i2c *i2c, u8 *buf, u8 len)
- 	if (len > 16)
- 		return -EIO;
+ #define RTL9300_I2C_MUX_NCHAN	8
+ #define RTL9310_I2C_MUX_NCHAN	12
  
--	ret = regmap_bulk_read(i2c->regmap, i2c->data_reg, vals, ARRAY_SIZE(vals));
-+	ret = regmap_bulk_read(i2c->regmap, i2c->rd_reg, vals, ARRAY_SIZE(vals));
- 	if (ret)
- 		return ret;
- 
-@@ -198,12 +200,12 @@ static int rtl9300_i2c_write(struct rtl9300_i2c *i2c, u8 *buf, u8 len)
- 		vals[reg] |= buf[i] << shift;
- 	}
- 
--	return regmap_bulk_write(i2c->regmap, i2c->data_reg, vals, ARRAY_SIZE(vals));
-+	return regmap_bulk_write(i2c->regmap, i2c->wd_reg, vals, ARRAY_SIZE(vals));
- }
- 
- static int rtl9300_i2c_writel(struct rtl9300_i2c *i2c, u32 data)
- {
--	return regmap_write(i2c->regmap, i2c->data_reg, data);
-+	return regmap_write(i2c->regmap, i2c->wd_reg, data);
- }
++#define RTL9300_I2C_MAX_DATA_LEN	16
++
+ struct rtl9300_i2c {
+ 	struct regmap *regmap;
+ 	struct device *dev;
+@@ -210,9 +213,11 @@ static int rtl9300_i2c_writel(struct rtl9300_i2c *i2c, u32 data)
  
  static int rtl9300_i2c_prepare_xfer(struct rtl9300_i2c *i2c, struct rtl9300_i2c_xfer *xfer)
-@@ -268,14 +270,14 @@ static int rtl9300_i2c_do_xfer(struct rtl9300_i2c *i2c, struct rtl9300_i2c_xfer
- 	if (!xfer->write) {
- 		switch (xfer->type) {
- 		case RTL9300_I2C_XFER_BYTE:
--			ret = regmap_read(i2c->regmap, i2c->data_reg, &val);
-+			ret = regmap_read(i2c->regmap, i2c->rd_reg, &val);
- 			if (ret)
- 				return ret;
+ {
++	const struct rtl9300_i2c_drv_data *drv_data;
+ 	int ret;
  
- 			*xfer->data = val & 0xff;
- 			break;
- 		case RTL9300_I2C_XFER_WORD:
--			ret = regmap_read(i2c->regmap, i2c->data_reg, &val);
-+			ret = regmap_read(i2c->regmap, i2c->rd_reg, &val);
- 			if (ret)
- 				return ret;
+-	if (xfer->data_len < 1 || xfer->data_len > 16)
++	drv_data = device_get_match_data(i2c->dev);
++	if (xfer->data_len < 1 || xfer->data_len > drv_data->max_data_len)
+ 		return -EINVAL;
  
-@@ -408,7 +410,8 @@ static int rtl9300_i2c_probe(struct platform_device *pdev)
- 	if (device_get_child_node_count(dev) > drv_data->max_nchan)
- 		return dev_err_probe(dev, -EINVAL, "Too many channels\n");
- 
--	i2c->data_reg = i2c->reg_base + drv_data->data_reg;
-+	i2c->rd_reg = i2c->reg_base + drv_data->rd_reg;
-+	i2c->wd_reg = i2c->reg_base + drv_data->wd_reg;
- 	for (i = 0; i < F_NUM_FIELDS; i++) {
- 		fields[i] = drv_data->field_desc[i].field;
- 		if (drv_data->field_desc[i].scope == REG_SCOPE_MASTER)
-@@ -499,7 +502,8 @@ static const struct rtl9300_i2c_drv_data rtl9300_i2c_drv_data = {
- 		[F_SDA_SEL]		= GLB_REG_FIELD(RTL9300_I2C_MST_GLB_CTRL, 0, 7),
- 	},
- 	.select_scl = rtl9300_i2c_select_scl,
--	.data_reg = RTL9300_I2C_MST_DATA_WORD0,
-+	.rd_reg = RTL9300_I2C_MST_DATA_WORD0,
-+	.wd_reg = RTL9300_I2C_MST_DATA_WORD0,
+ 	ret = regmap_field_write(i2c->fields[F_DEV_ADDR], xfer->dev_addr);
+@@ -505,6 +510,7 @@ static const struct rtl9300_i2c_drv_data rtl9300_i2c_drv_data = {
+ 	.rd_reg = RTL9300_I2C_MST_DATA_WORD0,
+ 	.wd_reg = RTL9300_I2C_MST_DATA_WORD0,
  	.max_nchan = RTL9300_I2C_MUX_NCHAN,
++	.max_data_len = RTL9300_I2C_MAX_DATA_LEN,
  };
  
-@@ -519,7 +523,8 @@ static const struct rtl9300_i2c_drv_data rtl9310_i2c_drv_data = {
- 		[F_MEM_ADDR]		= MST_REG_FIELD(RTL9310_I2C_MST_MEMADDR_CTRL, 0, 23),
- 	},
- 	.select_scl = rtl9310_i2c_select_scl,
--	.data_reg = RTL9310_I2C_MST_DATA_CTRL,
-+	.rd_reg = RTL9310_I2C_MST_DATA_CTRL,
-+	.wd_reg = RTL9310_I2C_MST_DATA_CTRL,
+ static const struct rtl9300_i2c_drv_data rtl9310_i2c_drv_data = {
+@@ -526,6 +532,7 @@ static const struct rtl9300_i2c_drv_data rtl9310_i2c_drv_data = {
+ 	.rd_reg = RTL9310_I2C_MST_DATA_CTRL,
+ 	.wd_reg = RTL9310_I2C_MST_DATA_CTRL,
  	.max_nchan = RTL9310_I2C_MUX_NCHAN,
++	.max_data_len = RTL9300_I2C_MAX_DATA_LEN,
  };
  
+ static const struct of_device_id i2c_rtl9300_dt_ids[] = {
 -- 
 2.53.0
 
