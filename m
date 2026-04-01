@@ -1,190 +1,169 @@
-Return-Path: <devicetree+bounces-283591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283596-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iBtoJhVJzWn4bQYAu9opvQ
-	(envelope-from <devicetree+bounces-283591-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:34:29 +0200
+	id MKj6CWlKzWn4bQYAu9opvQ
+	(envelope-from <devicetree+bounces-283596-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:40:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 101B337DF3E
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:34:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E00737E07E
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:40:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A4154306CF54
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 16:19:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B115B3050D5A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 16:26:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 750BD3C1971;
-	Wed,  1 Apr 2026 16:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0209477E4A;
+	Wed,  1 Apr 2026 16:25:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IjpvaFkm"
+	dkim=pass (2048-bit key) header.d=mirrorstack-ai.20230601.gappssmtp.com header.i=@mirrorstack-ai.20230601.gappssmtp.com header.b="DiZrhrB2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com [74.125.224.50])
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DE42E1746
-	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 16:16:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775060221; cv=pass; b=bFiNIa1KIhN8AAUZvF1nyIxto2h9UYrJCq5cL+N+h3KThAaUL5uQ7BmorvPFCHx/crv2yZ/9RR2SUucv8tfvn/b5K0PuFD9byJaSNjSylKLEBjcEcTtd30gMS5XYLRLryfu8jkC+VXcONRgbjIATEoXTxjd74wW2eGjlUFzLbh4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775060221; c=relaxed/simple;
-	bh=a/No3osBtbawF2T+IZ92AuftGjU7MOdhwCol+iFX+ig=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ckRmEVRzQ7gkOhvohMJQ4AFpLmZ7t4Ve2o4toY1+wxV1t3HWqA2J7pA2bmb4czMuCuUCrgDOYxq6Qi3bVrU8lmnxURD0rjvzzdb0bl3S1DMqkmlfCgWH56r7IYqOeyOfS5EU3AEm+Bf5KUeux+xi0ppUwyYSLIRRwCMcuq6VhgM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IjpvaFkm; arc=pass smtp.client-ip=74.125.224.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-64937edbc9eso8992679d50.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 09:16:59 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775060218; cv=none;
-        d=google.com; s=arc-20240605;
-        b=VG+WHrUZf2iifUibzFRRH5zuz+pN/0ubCmjOfS/VhSvDC5kb88c4N4LtsUirE7GyzS
-         MimOCgqWq1AA6PJZnoj2/X28E6gt8KBS39rgGf17I/d1nOvA+OZEaAAEjEWK8z6GAxk2
-         B7ywM/jWvgUyZC4pQjxBVCAyuWsztbQEQoTMiEb63gArQKUfD4CDcTW0rDEuY/zkZIue
-         AR5GO+Jb6Yt9uFf88WjqBxYnh/v7oYjoizFJN2+oSkfFhFJ9Q/8DjVS/zrfth/1hWBPi
-         A4Z0cO2Mc749kQhEi4/dvzaHu/VpUv24+wHvcCKFEe/cKz8doAlgjiKE5tl/8SJPtsdw
-         ZOAQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=0avH1+SOLHp/H4tdAtDn9dqoZRCCz/pmxrxGL/52XWY=;
-        fh=SO92DSd/JbKBx6bZBzA6Mjx45n3PS9tYjc8ubDfZm0o=;
-        b=OIB40H5JBk08ooO/zy2o5y9xJWVFuWJJaQB37e4r+p4z+WxrrNwOaxmU8iTec6uE8f
-         p0choqNLTEbU9wOVX7cyKlORBZSgLYy/Za3YDF/+t0N9dV0Z+satl618rm6cEMzAa557
-         nNt9GqWQEB+GiwqBtJmolUij3nFPDiAUy7+AYLf34lFSkbL5dGNczXrzI+MYyTWIGmRZ
-         6ji1KOzeIPXzws3KPgqTlz4eAb4G7JpWJR9X+cnGqR4kUqUwSoBgbYBT35Psw8OG48bW
-         bLUTSqOnkDOqaJqUgSIdg99wYwgExxbu2rYU1I9nk9k5oXDtJRU0hzbodBedJBb60NkQ
-         4Ypg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7081C43E48D
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 16:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775060746; cv=none; b=H+24uy/D+O5AAiBq+T8du8Md/+U5VY/WbwTia+edDPF7yLSlZl7kdFQR0fZNYV1UehtgkaL5k+dbnc/Pdvau/Ghw1LiNr6Lu2L7aGnMCd49ujbyrKlVU5EdQb0Z6lB+7UktYmiajr38+WeozaDUaB5wtYLxNVJWQ3IMSw+NQ4SY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775060746; c=relaxed/simple;
+	bh=JHZaomVmYY2I/XkWsxtkjS8/76dzEdRMGcPYxXG9t6s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QPvOw8OW4a8FFqWREIlrbirVuttJuiOV2e8bUhSvQiPQxRWNST6a3GYt2o00D++FW8CqfM0YGjs5CHh84+rmasmOtdvDq7d7CTpXvDvQYhwbSTN89ijEp6ivQc2K3e58AYq/3ZvgbQIuWQC01q8gWDOmZVLwrWR+3BU5db4i/XQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mirrorstack.ai; spf=none smtp.mailfrom=mirrorstack.ai; dkim=pass (2048-bit key) header.d=mirrorstack-ai.20230601.gappssmtp.com header.i=@mirrorstack-ai.20230601.gappssmtp.com header.b=DiZrhrB2; arc=none smtp.client-ip=209.85.216.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mirrorstack.ai
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mirrorstack.ai
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-35c1d101355so3044342a91.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 09:25:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1775060218; x=1775665018; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0avH1+SOLHp/H4tdAtDn9dqoZRCCz/pmxrxGL/52XWY=;
-        b=IjpvaFkmeMl/HsUTgxMHafFnnYEnoKxrnwhKd4HaHm+pUXM8mmbg/aJJWYfbaJN8M0
-         jIDzT2c6/OKxFb0jVfwxF9S4kMxo2fw5mJ2W2sR3MtL9nvF1nJaWZutdDavCnmceACBu
-         VVpFCnrKh5NgI93QGFegvKsgMCUgaNKjy16+9jwJiyA9UMQi+NXYNguVRPGfXcu9Uafn
-         VENWmmvwkhoBMHbKBgQ1hhj2x9RNdppgTQQzyk1CgD74LGR/kszWC5qVb5nVGYAmIkRV
-         spXbIf2izDbaQaxRV0cvrOiFP7s9rr3w04oOQTOGb6dSYtBb05S0HY0lnBPxukjS8+w7
-         CYpA==
+        d=mirrorstack-ai.20230601.gappssmtp.com; s=20230601; t=1775060739; x=1775665539; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CdKWlJC7fiD6nBYqrx/pcO9OeCyCqC2Lwr6JIyiolS0=;
+        b=DiZrhrB2ih/LEIgnkmZxmi/LCjauEYWqooDiH/Y/5zfiPVvAYtKKm29SDwSNxTI9OR
+         7ctDUImxINWOws5/VciluwBgjIq6k7TqFAUzhOxhAAZ7BhzDMq/oVSE43e7ciqtRMpRo
+         GORye2kcBhzdgrKoTqgtyfhXEcGPp4kQ1NTQ4bYMqp4AR7dZZtJEY6UX4W9xAh91Xrvb
+         /ysrjWmV7T1RUHgx436MbwCIX2ml/Q7ph8hbYHdyohnFfa9Ewbp5YWkQqImC/RbsiQ83
+         bVapC95rAUwB+n6/opGyaGVXjsCMS693H9GoSGhB8Kg8xHs/UCUTi7u2oSMAiDba0Ebs
+         DgKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775060218; x=1775665018;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=0avH1+SOLHp/H4tdAtDn9dqoZRCCz/pmxrxGL/52XWY=;
-        b=tGbOSOCY6hCC3jQQUpuDWUrznAVNY2AruBqP/gutb04qv6U1zxD1PGdDbLgen2fQQX
-         QqJtbMifcABNroH+QQfpEay0CR3ttEp2seKYmrMv1Fmmwt7MDOG9cvbeza57F7eN36X/
-         Z7TWQAdIJd4I3fL1qq0C0D/Jka/AaK5QkT4U9/nAXNlYJFesdPTT0JBvqCOtxIcEIUUt
-         PEcuaZTtkrwJCOjJaVFw4BBf5fNBpAM5va3Tgm2Y5WDPbBcySdYHD3W5rCwph1eorbhk
-         biETNxG7PybHgJvB06ycFCFtOuH9OJr9bABGNd9LCnWuj7mhRU0yjQ+7CzjeVY8T+efS
-         q3dw==
-X-Forwarded-Encrypted: i=1; AJvYcCXPQPeaFR8RmwZojLVe/hVrm8MskqxanFm0eK6TNIk6BHAlRvPAxiFwwS+BinOZk9sOOt97agSgQwmB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrnMfaJo6M70F6+qhDVC1MQetM+e3UNsRo3OsdLzDsK6mLQtyO
-	7mZDFJ2eSVp7pIRK8A43fTe8OEcsIBaBWGbQNfYOMsrdLhHm/rEyRT0iP2G7azxQfXnL2ISJlQ9
-	l4VS7f9YUwY7U8BBaITvkSZVs/HOoOSg4ADFwMREmSQ==
-X-Gm-Gg: ATEYQzzjmm3uvXyoJlAlcPR9dKHJS5sIitj5rlFQo9M/kMLmLKDojWbBCg2eHoNrInc
-	I6mfhgTp09X5nCXnR9k9E35m6dnHuuaXmMn4zo6/WI1rJDbmJv/MqVq5Bp2jjIykOXxYJDczkS+
-	WcdUbRLXZuWGwBJB2+jUsFAQ3e1xXDMpnqsxikNy9JTUcjVfiPopH1eWOsGHwcyCA1I8BkVrJJd
-	LpC81EoHXh/Hfv5AVkfFuFA0m/8qGqTs4h1V/8GgL0GMiqYt0F1CubtuqI6TPMPkRDpLG5fXAEL
-	t2IUs5FcPaNBi9E2oU7ajzKAx3nE/UQix1/c5pADlQ==
-X-Received: by 2002:a53:c608:0:b0:650:1247:fe35 with SMTP id
- 956f58d0204a3-6502fe7c6famr3104408d50.58.1775060218141; Wed, 01 Apr 2026
- 09:16:58 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1775060739; x=1775665539;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CdKWlJC7fiD6nBYqrx/pcO9OeCyCqC2Lwr6JIyiolS0=;
+        b=feZCp0Kxa8cptA7oJJPtDAEqQIj6iaRA6vQw4Dt1aKqOeKZfmG6Yo73+fVeRccHMTN
+         J4huWBEk6IBeVbpWCtVCdojZ+QPe4/Qe2EJ8DY+a8zmCjrM0pf+SX3Re+vpDkakt6a39
+         yJNDD4C6eWVEXhTan25cCWrtihRqW98tTCsuHU2DKSIJJMheLDCw92Vzx2bqs4AbGGQV
+         p8qS6wWpPdxEZP1966W4KWSIAABnmosngJet5Db/7UvBSHjSXmWamHB1XT5cN0JglHca
+         k8jF8sgBASeuB5SuXmfL9xIkQ0kVcY8ZlE5qjDbUrkvMuLw2d9A+vkAtap3E2yX5xx1u
+         sIOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVu7f5t4M+FLlnUk8wQ/um+RJgIHtZtwJcFfrVywgJ9eP4aQTE9fRDXxRWfP5wdchGLlE+NlKGMsKTE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxp1LMokb//3fwWnVGw6zBF1IUH+oHrUAvIFFvhtBVCqqebsrdb
+	Z2CwHqL8Dp4pG2RL3wbdvmTuINBrUcqg/um51RKW6RUdpJizVFT2/A8LIlcJleFpymd5
+X-Gm-Gg: ATEYQzweiKvgTzeUH/sNiRcc+KZRQn9/fc6ofxhBqLQuAWqFp6FZU3+sY9IemkvQ261
+	fHbUXwZkbuXMMiwOc5xl9pkGDIzQAT6NThQ7zl445EjDbqW/uJ+GtPbC0cKLevciidcc46OgN1P
+	g5VwuuHhw7zxuXmWGYIZUurH0cQZZn7Z++49FtaoqdlSKoYqeYkBdUnRwXFPTA/mG0TfvcibJga
+	bqsy90TvOtn8VylQ8ZqTyJVA0dwBHswThsg+B4eyhlfjft1xSYfhTqp4ZZVeWwPC4l4clU83DyT
+	wAxZZVGvGLowDCXuLMPQarVrHfht6pK5iNWOXwRNlpUp4q9IypHckTEXCkF5C0UjkC5WeFj8Ix3
+	aZ0pn6d4K+YWd+Zh2iKDAdBWopdWtWTKWE2ikBmqusllAlnrrJjZQzg6wUAbHaQxTDCz6j8usvn
+	Aw3yLpxA1nBMzfkLjrV0/zbttu+ECCNBwYOK6BysG4TvCDvh+GObBvdideGT9k37yiXWAtVrJt8
+	B8YGAp0XjYafNmGAVDJFCxNuOkhoX0FWE5NNWY3G8+LwerA6H82
+X-Received: by 2002:a17:90b:3f4c:b0:35d:8ea1:62c3 with SMTP id 98e67ed59e1d1-35dc6e43b1dmr4400337a91.3.1775060739077;
+        Wed, 01 Apr 2026 09:25:39 -0700 (PDT)
+Received: from ip-172-26-8-186.ap-northeast-1.compute.internal ([2406:da14:e8:bc00:e546:17ee:7142:6d05])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35dd35e34eesm281813a91.2.2026.04.01.09.25.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Apr 2026 09:25:38 -0700 (PDT)
+From: Sheng Kun Chang <nothingchang@mirrorstack.ai>
+To: jic23@kernel.org
+Cc: lars@metafoo.de,
+	Michael.Hennerich@analog.com,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	gregkh@linuxfoundation.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-staging@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sheng Kun Chang <nothingchang@mirrorstack.ai>
+Subject: [PATCH 0/3] Move adis16203 inclinometer driver out of staging
+Date: Wed,  1 Apr 2026 16:24:54 +0000
+Message-ID: <20260401162458.88110-1-nothingchang@mirrorstack.ai>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260401-exynos850-cpuhotplug-v2-0-c5a760a3e259@linaro.org>
- <20260401-exynos850-cpuhotplug-v2-6-c5a760a3e259@linaro.org> <f73173b4-f44a-4d01-abec-3366b6561332@kernel.org>
-In-Reply-To: <f73173b4-f44a-4d01-abec-3366b6561332@kernel.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Wed, 1 Apr 2026 11:16:40 -0500
-X-Gm-Features: AQROBzDBnBQJcHuyu8ZHm384f9vOKocl3AGoLecw69PFxAPUA79-AuH9D6PxvHg
-Message-ID: <CAPLW+4=H_UkjwY2RJFPD9ekJh05MyuhKrymeuUYC4dX1WzF0wg@mail.gmail.com>
-Subject: Re: [PATCH v2 6/7] MAINTAINERS: add exynos850-pmu.c to Exynos850 entry
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Alexey Klimov <alexey.klimov@linaro.org>, linux-samsung-soc@vger.kernel.org, 
-	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[mirrorstack-ai.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283591-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283596-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[mirrorstack.ai];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[semen.protsenko@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FROM_NEQ_ENVFROM(0.00)[nothingchang@mirrorstack.ai,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mirrorstack-ai.20230601.gappssmtp.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 101B337DF3E
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 8E00737E07E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Krzysztof,
+This series moves the ADIS16203 Programmable 360 Degrees Inclinometer
+driver out of staging and into drivers/iio/accel/.
 
-On Wed, Apr 1, 2026 at 9:28=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 01/04/2026 06:51, Alexey Klimov wrote:
-> > Update Exynos850 entry to include new file
-> > drivers/soc/samsung/exynos850-pmu.c. Add myself as M
-> > there.
-> >
-> > Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> > ---
-> >  MAINTAINERS | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index e14e6f874e05..4b28e92b4d9b 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -23601,6 +23601,7 @@ F:    include/dt-bindings/clock/samsung,exynos2=
-200-cmu.h
-> >
-> >  SAMSUNG EXYNOS850 SoC SUPPORT
-> >  M:   Sam Protsenko <semen.protsenko@linaro.org>
-> > +M:   Alexey Klimov <alexey.klimov@linaro.org>
->
-> I am surprised to see this because I did not find many reviews from your
-> side before.
->
+The driver already uses standard IIO channel interfaces and devm
+managed APIs. The only missing piece was devicetree binding
+documentation, which is added in patch 1.
 
-It was me who advised Alexey to add himself on the list, as he's doing
-a lot of Exynos850 related work nowadays, and we expect him to
-continue doing that. If you think it's too early, let's get back to
-this once there are more patches submitted under his name.
+Patch 1: Add devicetree binding documentation
+Patch 2: Fix MODULE_LICENSE to match SPDX identifier
+Patch 3: Move the driver from staging to drivers/iio/accel/
 
-Thanks!
+Sheng Kun Chang (3):
+  dt-bindings: iio: accel: add binding for adi,adis16203
+  staging: iio: adis16203: align MODULE_LICENSE with SPDX identifier
+  iio: accel: move adis16203 out of staging
 
-> Please first engage in reviewing of this platform, before assigning
-> yourself as a maintainer.
->
-> Best regards,
-> Krzysztof
+ .../bindings/iio/accel/adi,adis16203.yaml     | 52 +++++++++++++++++++
+ drivers/iio/accel/Kconfig                     | 12 +++++
+ drivers/iio/accel/Makefile                    |  1 +
+ drivers/{staging => }/iio/accel/adis16203.c   |  2 +-
+ drivers/staging/iio/Kconfig                   |  1 -
+ drivers/staging/iio/Makefile                  |  1 -
+ drivers/staging/iio/accel/Kconfig             | 19 -------
+ drivers/staging/iio/accel/Makefile            |  6 ---
+ 8 files changed, 66 insertions(+), 28 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
+ rename drivers/{staging => }/iio/accel/adis16203.c (99%)
+ delete mode 100644 drivers/staging/iio/accel/Kconfig
+ delete mode 100644 drivers/staging/iio/accel/Makefile
+
+-- 
+2.43.0
+
 
