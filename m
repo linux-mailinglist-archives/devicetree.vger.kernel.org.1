@@ -1,162 +1,177 @@
-Return-Path: <devicetree+bounces-283617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283620-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uEF0ADVezWkRcQYAu9opvQ
-	(envelope-from <devicetree+bounces-283617-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:04:37 +0200
+	id 4AqOE/tezWlncgYAu9opvQ
+	(envelope-from <devicetree+bounces-283620-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:07:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87BE137F00E
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0272337F080
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:07:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 42E7230068FA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 18:04:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8398E3046F26
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 18:07:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B8642FF657;
-	Wed,  1 Apr 2026 18:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979653112D0;
+	Wed,  1 Apr 2026 18:07:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FuUEU9AU"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="OUs7Zx68"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79742FE071;
-	Wed,  1 Apr 2026 18:04:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87AC530E0FB;
+	Wed,  1 Apr 2026 18:07:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775066661; cv=none; b=ifgFn3+KpD5LVXNY/btOKdsyHNT2Uf/JVBmKYoS8vda4ZjPZFnElknHevt33Ta3zyoMrDldGzbs5ZBQgk247Qpkub7E+s2SUs6BI22LCqfz5oJqhR+/5pXzRpJhnGnKnAy9oTS2zNc+RK7/YVo+/addjZPMntTzmwkrwyqCijqU=
+	t=1775066844; cv=none; b=lXjoZCbYYi9IRu3Ra4v5y6XIxVL7rM9sf9QI4GsTo6uLK/ityXAk8NoJkJqHHocIxFQWJRvgxHQ4l8hs471DwFHVYlyFoxX8H487VsaCHCsPzgrVm86gKWYqCBFRHJmJoayNUtXu1NNrTiHUASl9QMDT/siLqBUFsHK2KMQPgcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775066661; c=relaxed/simple;
-	bh=VpPE2BJUg6MYw76TvdVtCeUAkVtAPB+DcRHdaW3Q3Sc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Mect/1+Pmr19n3l00kFWTIhCgZbbnlDzJ6yFbdDW0lS0fnTbzBVjdg0iPRMFOFOM7y8vRZ1RhZ6dZRrQXQnKUyIon+6jeJUMryoBQQGp2CyzZHO2Kq8YGGhVPZdiGD7egU2GdzdxXqEvZrGS3dsCwmLV0WuhziaRKTEOrd1FJLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FuUEU9AU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B18BBC4CEF7;
-	Wed,  1 Apr 2026 18:04:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775066661;
-	bh=VpPE2BJUg6MYw76TvdVtCeUAkVtAPB+DcRHdaW3Q3Sc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FuUEU9AUvCyXlcTP3L3iM/KWTsISz6/NY2866tIwlsNPinE+zzoiJaRjlko4lHA9k
-	 aIGGqeNhb9XKWAkg5qc89Eo3eMjD+4uyKzCWj4O+i1qI59HLKl2l4IZzpr9fNqIIJk
-	 akZc818Axa5tCTCg2o7DxRlxFZZTSu7Bbrb+tf2A5/obDsOCnaHBtwaHy/B9/J0A7B
-	 b9lQn7nHOFiagMbxovRZDl8lij6njzftmJDTysduKzuhDMRhMQKMOUWLr3ntqmZ3tu
-	 p2+HPu4PWfM+CT8497daD3s5+vW/cBC+rdLil1aLT562R977mIm/sIIYwE6CaZ4nAP
-	 kdowHcPH24CLA==
-Message-ID: <70ba9b2a-5028-450c-8492-c4c16dbb2859@kernel.org>
-Date: Wed, 1 Apr 2026 20:04:18 +0200
+	s=arc-20240116; t=1775066844; c=relaxed/simple;
+	bh=P6J/pDQtdzKb099VvUqh3kUI/mTGY3Jovzx7TNHMv1w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JK899W1XJFWfAB7bAeo1Zy7Q97/9UlAwhJ5COJL2z5lj2Ua7glo0tXCYvya798nCSZsaEJx4Q+QdDQNgdApiPKQp7Vn2L2Ng3c1dJD80JXVqn/sxXMHqZl0gwD/RK/PjumWeDvYOSpupttArBZXMLfwl3AYosvQONzRIRyeUAfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=OUs7Zx68; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 45A4D267E0;
+	Wed,  1 Apr 2026 20:07:12 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id oDo7rCWxQaSS; Wed,  1 Apr 2026 20:07:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1775066831; bh=P6J/pDQtdzKb099VvUqh3kUI/mTGY3Jovzx7TNHMv1w=;
+	h=From:To:Cc:Subject:Date;
+	b=OUs7Zx68G6pSPzLS4LoABlf6N7i/XMMz3FGhQ3yY/xju4VGaWFj+RO8Se8YqcNbZV
+	 cpOHDTL9WMuePN+E15KjWLY6d28gub3qyF/gGCIrOM21OCjitn5mR8h/BHW3wNOM07
+	 RhwguO1emDqcRfIuAkAs6ag6fiH8SmWBbLeI5Jq2BWrjs7x2MArAK7mgxpxTr6gjUC
+	 EwsDUNP88f/dueFJd75M75A7LqyenSt8U0br2AK5eEbV6phIPgGk6sDkbAeRYtyiBT
+	 6ILqD63Kxj406lIlsKNqjwyIISQJm+ITFj91AjGVhyXvrLXI+GOXZhsaT3LnD9FmiK
+	 xGE2rXD5CMg3w==
+From: Rustam Adilov <adilov@disroot.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Rustam Adilov <adilov@disroot.org>
+Subject: [PATCH v6 0/8] i2c: rtl9300: support for RTL9607C I2C controller
+Date: Wed,  1 Apr 2026 23:06:40 +0500
+Message-ID: <20260401180648.337834-1-adilov@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mfd: twl: Reference converted YAML schemas
- for subnodes
-To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Cc: lee@kernel.org, andreas@kemnade.info, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260325095016.48752-1-jihed.chaibi.dev@gmail.com>
- <20260327-orthodox-brainy-poodle-738eac@quoll>
- <CANBuOYrPuLKnxqOLOZUEvBSG-4ceeOWMhQKPZhEctzcjBUnbqA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CANBuOYrPuLKnxqOLOZUEvBSG-4ceeOWMhQKPZhEctzcjBUnbqA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-283617-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283620-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[disroot.org:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 87BE137F00E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:dkim,disroot.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0272337F080
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 01/04/2026 19:57, Jihed Chaibi wrote:
-> On Fri, Mar 27, 2026 at 8:37 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> No, they were validated by their child device schemas. Everything was
->> correct and expected.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Thanks for the feedback Krzysztof, I have sent a v2 of this patch,
-> please let me know if anything else needs to be done.
+This patch series for the RTL9300 I2C driver adds i2c support for
+RTL9607C SoC. They are somewhat different to the RTL9300 and
+RTL9310 but not enough to warrant a new whole driver.
 
-Really? On 27th of Match, 40 minutes after I told you NO, you send the same?
+The patch series was split into patches that add/change something in the
+driver to smooth out the RTL9607C support addition in the end and for
+ease of review. Because of that, the patch 8 depends on all the prior
+patches before it.
 
+RTL9607C primarly uses the i2c controller for communication with laser
+driver over on i2c interface 1 or 2.
 
-Best regards,
-Krzysztof
+I have successfully tested the byte read operations on my RTL9607C board
+which has GN25L95 laser driver in OpenWrt.
+
+This patch series depends on the patch [1] from Jan Kantert to be applied
+first before applying my patch series.
+
+[1] -
+https://lore.kernel.org/all/20260227111134.2163701-1-jan-kernel@kantert.net/
+
+---
+Changelog in v6
+- fixed a typo in the commit subject of Patch 7 "intoduce -> introduce".
+- added "Acked-by Conor Dooley" to Patch 5.
+- Link to v5: https://lore.kernel.org/linux-i2c/20260326152656.14030-1-adilov@disroot.org/
+
+Changelog in v5
+- reworded the commit message in Patch 5 to make it clear that the existing
+  devices also have i2c master controller clocks.
+- Link to v4: https://lore.kernel.org/linux-i2c/20260323071337.15410-1-adilov@disroot.org/
+
+Changelog in v4
+- moved the patch 7 that changes bindings to be before patch 5 where clk
+  is introduced in the driver.
+- changed the "realtek,rtl9607-i2c" compatible to require the "clocks" to
+  be specified and with it moved it out of "realtek,rtl9310-i2c" check to its
+  own place for cleanliness (how it was originally in v1).
+- Link to v3: https://lore.kernel.org/linux-i2c/20260322123411.32102-1-adilov@disroot.org/
+
+Changelog in v3
+- Patch 7
+  - reworded the commit message to better describe i2c clock.
+  - make clocks property available for all compatibles.
+  - change "realtek,rtl9607-i2c" compatible to be under the same if statement
+    as "realtek,rtl9310-i2c" for "realtek,scl".
+- Link to v2: https://lore.kernel.org/linux-i2c/20260319175753.32338-1-adilov@disroot.org/
+
+Changelog in v2
+- rebased on top of the patch from Jan Kantert.
+- Patch 7 (to my best understanding of Krzysztof's request):
+ - added the "clocks: false" for compatibles that are not realtek,rtl9607-i2c.
+- Link to v1: https://lore.kernel.org/linux-i2c/20260314082628.25206-1-adilov@disroot.org/
+
+Rustam Adilov (8):
+  i2c: rtl9300: split data_reg into read and write reg
+  i2c: rtl9300: introduce max length property to driver data
+  i2c: rtl9300: introduce F_BUSY to the reg_fields struct
+  i2c: rtl9300: introduce a property for 8 bit width reg address
+  dt-bindings: i2c: realtek,rtl9301-i2c: extend for clocks and RTL9607C
+    support
+  i2c: rtl9300: introduce clk struct for upcoming rtl9607 support
+  i2c: rtl9300: introduce new function properties to driver data
+  i2c: rtl9300: add RTL9607C i2c controller support
+
+ .../bindings/i2c/realtek,rtl9301-i2c.yaml     |  15 ++
+ drivers/i2c/busses/i2c-rtl9300.c              | 191 ++++++++++++++----
+ 2 files changed, 171 insertions(+), 35 deletions(-)
+
+-- 
+2.53.0
+
 
