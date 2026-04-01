@@ -1,56 +1,55 @@
-Return-Path: <devicetree+bounces-283343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283345-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oIdpAJ3OzGlFWwYAu9opvQ
-	(envelope-from <devicetree+bounces-283343-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 09:51:57 +0200
+	id MPxQIzjUzGlFWwYAu9opvQ
+	(envelope-from <devicetree+bounces-283345-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 10:15:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F53A376496
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 09:51:56 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1E18376937
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 10:15:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4644D3037486
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 07:51:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A427D3004C96
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 07:56:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6F081EF39E;
-	Wed,  1 Apr 2026 07:51:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8EEB384249;
+	Wed,  1 Apr 2026 07:56:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jWk6Fnxj"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="y4zzWAMw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E759936BCC2
-	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 07:51:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7DF3803E0;
+	Wed,  1 Apr 2026 07:56:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775029913; cv=none; b=Vfy4qd6zqUhnP+XAN0n5jqXTPrWGhWOcTXQ5QZ6YeLok9IUUaRcFzQOLeQHQeBKv1VB3HBRKu61FM4Bi30ioDUfhKZky88oFJqIlSvEn69YWsV61qwAEPQYwdaF9QApFMXWBqi23gckZ97NzM/S5CYkkmZGZzcRAE1Ba2fkd9Bc=
+	t=1775030183; cv=none; b=F92Q9LWeySeNlUh8ARMVQ6sWDmDIbt038qqqdp9J+NLcnZ/Mu6hDrVt6QR5MY8BEuIBldd/wqoR9wtWCaapUNq1Y87WJZOUCCYRFyrdhmicda33o5tU6jYEd9MOGab9kBxH03NLnA55XG+UwQB+Xit3yJ1qDZZ45K0QvCY5CN0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775029913; c=relaxed/simple;
-	bh=nGkaXP9XPQ+gkqH3UjHw265YM7bUq5L6id6igkjNKAU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=NzNEPb+lxqRoVGD/R7S6unuED8ovmqT9y4U0WHyHPzkZGyS6C2ArHBkxdJVnX9a1KFU9bEPjzC8FND8yD0pFCsrgSiR5Ta0fxzArx+SpYcXc8t4gK5eHLdlPrsqsWq85Gyz9sAeCQagCSh/hKtGYOnWL3ESlqTDOXKSpj1yYt0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jWk6Fnxj; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 15C8A4E42894;
-	Wed,  1 Apr 2026 07:51:49 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D6800602BF;
-	Wed,  1 Apr 2026 07:51:48 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 48FAD104512AE;
-	Wed,  1 Apr 2026 09:51:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1775029906; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=uT7sfHLuVPP3pEA5gLyzkA2Moxay1BQG8R6pq63tpdQ=;
-	b=jWk6FnxjhGu2HcFc6zGL1OGj6IL5Zs7/Fl2Q686nDDtC28o/cBxZ0B5lnUgMb37DGCL/Uk
-	rAjgfnUYQptI93q8MJ004w4xbAb0+iSNuMQn9BXWLFmJ0E+TwO5ks3CpK3aS4oCSxnCKRU
-	QXYU3b5/LY3B0NwZS5vOTSmfYsZ2wWNaStVw9fQjBhfWXkjntmhhB5fsLoGxV9ESHBvuX4
-	CJxuDmkRLmRKssspV9E+L5j8UlAdYdS0YRJjLFpjzXOjdxfqUwFKGxr09Kpv1Y0sAvTKxM
-	aadA789/nx2gmTp7hmC5i/xOnlgXKhPoYHWGW6hvDd7p6XHfczcQNgIyNyDbzg==
+	s=arc-20240116; t=1775030183; c=relaxed/simple;
+	bh=CT50A4xwutwJ+vI/0EwKf8DQidgJMRHoghgAruhctko=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=IlWxB4M/evVO2fWin2g6lNhmDMlxWFiMm5KMpt7yL8vZMjdsVk1T94M5Erf7PsXwQVbIZP+fIQIXCIPjRDxwwcA6u/4sMEhBqK7JRFZXETR8yu7h1h8nZq8b9VzLqPHRbc9n3jo5xxqP8Fn0B3d/8Dm84EfFp2YDT4NlR/lMOeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=y4zzWAMw; arc=none smtp.client-ip=52.59.177.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1775030141;
+	bh=pWzJr5sN+/hj9UGTGfh32k1ECCerwnrLHHRDyRKuunw=;
+	h=Mime-Version:Date:Message-Id:From:To:Subject;
+	b=y4zzWAMwMy88ihF1CmXxJnrUq+Nn/kjPle7WAmyTbFB77V2C4pDQSVtbsT+RD6Q1D
+	 QVJpUHUr7tolUBO3MhuqozT+8c+9zlX/IKtyyib/GVuMhxfSa8m/bBe1VQ6cbMUoZ6
+	 VrZ2ZW2wknaZ4J4U1vDX3KOMcYMeNP9xADOt9AGM=
+X-QQ-mid: zesmtpgz7t1775030139t3da3fef7
+X-QQ-Originating-IP: jHB4dQ90D0UyoRXCU+PAjdnY1rkum7sDxOJO5sDA4Q8=
+Received: from = ( [183.48.246.31])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 01 Apr 2026 15:55:37 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 13337976862729012487
+EX-QQ-RecipientCnt: 19
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,165 +58,190 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 01 Apr 2026 09:51:32 +0200
-Message-Id: <DHHNKZK3NYI0.34BT204KH2VLS@bootlin.com>
-Subject: Re: [PATCH 7/8] drm/bridge: imx8mp-hdmi-tx: add an hdmi-connector
- when missing using a DT overlay at boot time
-Cc: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>,
- =?utf-8?q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, "Hui Pu"
- <Hui.Pu@gehealthcare.com>, "Ian Ray" <ian.ray@gehealthcare.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>,
- <dri-devel@lists.freedesktop.org>, <imx@lists.linux.dev>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, "Adam Ford" <aford173@gmail.com>, "Alexander
- Stein" <alexander.stein@ew.tq-group.com>, "Anson Huang"
- <Anson.Huang@nxp.com>, "Christopher Obbard"
- <christopher.obbard@linaro.org>, "Daniel Scally"
- <dan.scally@ideasonboard.com>, "Emanuele Ghidoli"
- <emanuele.ghidoli@toradex.com>, "Fabio Estevam" <festevam@denx.de>,
- "Francesco Dolcini" <francesco.dolcini@toradex.com>, "Frieder Schrempf"
- <frieder.schrempf@kontron.de>, "Gilles Talis" <gilles.talis@gmail.com>,
- =?utf-8?q?Goran_Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>, "Heiko
- Schocher" <hs@denx.de>, "Joao Paulo Goncalves"
- <joao.goncalves@toradex.com>, "Josua Mayer" <josua@solid-run.com>, "Kieran
- Bingham" <kieran.bingham@ideasonboard.com>, "Marco Felsch"
- <m.felsch@pengutronix.de>, "Martyn Welch" <martyn.welch@collabora.com>,
- "Oleksij Rempel" <o.rempel@pengutronix.de>, "Peng Fan" <peng.fan@nxp.com>,
- "Philippe Schenker" <philippe.schenker@toradex.com>, "Richard Hu"
- <richard.hu@technexion.com>, "Shengjiu Wang" <shengjiu.wang@nxp.com>,
- "Stefan Eichenberger" <stefan.eichenberger@toradex.com>, "Vitor Soares"
- <vitor.soares@toradex.com>
-To: "Liu Ying" <victor.liu@nxp.com>, "Marek Vasut" <marex@denx.de>, "Stefan
- Agner" <stefan@agner.ch>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Frank Li"
- <Frank.Li@nxp.com>, "Sascha Hauer" <s.hauer@pengutronix.de>, "Pengutronix
- Kernel Team" <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>,
- "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
- Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
- <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Rob
- Herring" <robh@kernel.org>, "Saravana Kannan" <saravanak@kernel.org>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20260320-drm-lcdif-dbanc-v1-0-479a04133e70@bootlin.com>
- <20260320-drm-lcdif-dbanc-v1-7-479a04133e70@bootlin.com>
- <544112ab-8ca0-4622-b680-233457198e3e@nxp.com>
- <DHDNA5HLQPIB.3F21G9QPBUQG8@bootlin.com>
- <5f06ea5a-5388-440f-91d6-cebb0bee0a88@nxp.com>
- <DHG8G8FMXA6C.U6LU563OZ8NR@bootlin.com>
- <9a6e74ed-d4ab-4f11-ab17-25e1a2b64b2d@nxp.com>
- <DHGWUIUIKETI.1F1636GUBB3VI@bootlin.com>
- <246ca728-1be6-4dd9-b228-7d99f28e1abe@nxp.com>
-In-Reply-To: <246ca728-1be6-4dd9-b228-7d99f28e1abe@nxp.com>
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Date: Wed, 01 Apr 2026 15:55:36 +0800
+Message-Id: <DHHNO3MKPLX6.10BU0B83KT0GV@linux.spacemit.com>
+From: "Troy Mitchell" <troy.mitchell@linux.spacemit.com>
+To: =?utf-8?q?=E6=9B=B9=E7=8F=8A=E7=8F=8A?= <sandie.cao@deepcomputing.io>,
+ "Troy Mitchell" <troy.mitchell@linux.spacemit.com>
+Cc: "Yixun Lan" <dlan@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Emil Renner Berthing" <kernel@esmil.dk>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Paul Walmsley"
+ <paul.walmsley@sifive.com>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
+ Ou" <aou@eecs.berkeley.edu>, "Heinrich Schuchardt"
+ <heinrich.schuchardt@canonical.com>, "Michael Opdenacker"
+ <michael.opdenacker@rootcommit.com>, "Guodong Xu" <guodong@riscstar.com>,
+ "Hendrik Hamerlinck" <hendrik.hamerlinck@hammernet.be>, "Yangyu Chen"
+ <cyy@cyyself.name>, <spacemit@lists.linux.dev>,
+ <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 2/2] riscv: dts: spacemit: add DeepComputing FML13V05
+ board device tree
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260331034423.67142-1-sandie.cao@deepcomputing.io>
+ <20260331034616.67183-1-sandie.cao@deepcomputing.io>
+ <20260331085925-GKB976850@kernel.org>
+ <407ce3d77416bb2522b7906b0df3d5adf02c27ee.4c756029.b64e.488e.905e.99baaf78d6a1@feishu.cn> <DHHM43F6TE9I.1F5A3O0VOS6ND@linux.spacemit.com> <407ce3d77416bb2522b7906b0df3d5adf02c27ee.20e9d5ae.574e.4942.b529.0e22091ba551@feishu.cn>
+In-Reply-To: <407ce3d77416bb2522b7906b0df3d5adf02c27ee.20e9d5ae.574e.4942.b529.0e22091ba551@feishu.cn>
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: NUnqcaL5M9AOaNd/If2rOnCdZtRZKgRdWz9zQcjOTS6HulsSJuU36Nxl
+	PP2iOq1sq5qwuCyJ18U2xlEjL1bqRzM/epHlZLbjbKLHeq6sfb02rIXrBswqM0tpDkovnuR
+	rDmLuDwqjEwHnt2gj3t/4nIv38DSZJBn43LfeFfoEwwB+GfovnmMKxDghxUFAJSpzdOSt3e
+	XiNZS4/Vn7bKckTOCPkLwUd+84TRdYetUb7VWL4AHDR837qBlTEMiXMWY8bDtJk8GLZqd7U
+	xonNqpAKZB8YiLxmel5xLSNkbm3zhsU07C9stzrjt33kRE8K0CNbtBfVhrpF1fLklscFbbx
+	NV2B2Tfy7EO4V/+cRxKcwaSpmy7EFpmzT7QcNFZrgXhAjoBmh8nsHXn4PwbhDU7qC8HVJsD
+	8l7A3OMLhqModI9dfdkjJzpbEvvVohv2M7ybGMTcF3s6xQBqEMehuBoftbGLqLaDbQCzHEs
+	IcGr7WqAud+3ny2zlG8aSZpqFUOQAlMuY7+ZTgExlcqeTP0GQIdxS2Zd7/xPBHeLcbjhmqk
+	hATjc9wZpT2k/u+KOAk8sGEsd1TSHO05Ifz1gh1NVXxBnmWYyaK8d6/QwEHKhVTjjeGfk1C
+	597zOMFBQPHbuaF7qUs+bUycgDqmWOPco0jwe/goxKXpazX4+pTY1hDINGotxayTtC9z4s+
+	uS5p7RR01Fcft2OuhyFgHoAPXnhKN/vx7UbVMGBrnkjIsXENKjpdbWCe+L8FjU9VKCdeQK3
+	TXHsYAF6VwkbBkv1WbRHP5nv0nqUKcdixIPYRT2abSInKJbk1iDzdGY4Y0ofaFDCrwFUm1g
+	dUN1t2s6IO6ejd78XPlLfTxfNBYoToLMXu6xIQxJt11DVohsbWOYc0g9AXn26Qcgs4QRRVz
+	Cc+LXqOD1KLaS1zRna18YOVMv+DW7HOtroy6bPXP47O+1qOimEmmAfyBYX4rWii8jZl3oEv
+	U18ChHACiD+B57G5VBxZPgz30tX/+hGQDgEYSWSZuGYIwux1RkJZyofAI3rRAhXC63H4JKP
+	aZgm3zcAi8Z8AHWQOc3x0vd1ufiNxQ1u51e3vmoe2h8xVkMGo4CsFRswQYWO43g0EqwLVYb
+	wRLEL7PUWAxG6LONNq4m7UdI3mHvGIAKDZmd9dEasGhWeTXB1xalSVaFnW4fqKLe1048oAx
+	IabkfAT31pSXS0k=
+X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
+X-QQ-RECHKSPAM: 0
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,nxp.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,technexion.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-283343-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[nxp.com,denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	TAGGED_FROM(0.00)[bounces-283345-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[spacemit.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	RCPT_COUNT_GT_50(0.00)[54];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.spacemit.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.spacemit.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	NEURAL_HAM(-0.00)[-0.966];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.1:email]
-X-Rspamd-Queue-Id: 6F53A376496
+	DBL_BLOCKED_OPENRESOLVER(0.00)[60hz:email,deepcomputing.io:email,soc.it:url,canonical.com:email,spacemit.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linux.spacemit.com:dkim,linux.spacemit.com:mid]
+X-Rspamd-Queue-Id: D1E18376937
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Liu,
+On Wed Apr 1, 2026 at 3:38 PM CST, =E6=9B=B9=E7=8F=8A=E7=8F=8A wrote:
+> Hi Troy,
+>
+>> From: "Troy Mitchell"<troy.mitchell@linux.spacemit.com>
+>> Date:=C2=A0 Wed, Apr 1, 2026, 14:42
+>
+>> On Wed Apr 1, 2026 at 2:10 PM CST, =E6=9B=B9=E7=8F=8A=E7=8F=8A wrote:
+>> > Hi Lan,
+>> >
+>> >> From: "Yixun Lan"<dlan@kernel.org>
+>> >> Hi Sandie,=C2=A0
+>> >>=C2=A0
+>> >> On 11:46 Tue 31 Mar =C2=A0 =C2=A0 , Sandie Cao wrote:
+>> >> > From: sandiecao <sandie.cao@deepcomputing.io>
+>> >> >=C2=A0
+>> >> > The FML13V05 board from DeepComputing incorporates a SpacemiT K3 RI=
+SC-V
+>> >> > SoC.It is a mainboard designed for the Framework Laptop 13 Chassis,
+>> >> > which has (Framework) SKU FRANHQ0001.
+>> >> >=C2=A0
+>> >> > The FML13V05 board features:
+>> >> > - SpacemiT K3 RISC-V SoC
+>> >> > - LPDDR5 16GB or 32GB
+>> >> > - eMMC 32GB ~128GB (Optional)
+>> >> > - UFS 3.1 256G (Optional)
+>> >> > - QSPI Flash
+>> >> > - MicroSD Slot
+>> >> > - PCIe-based Wi-Fi
+>> >> > - 4 USB-C Ports
+>> >> > =C2=A0- Port 1: PD 3.0 (65W Max), USB 3.2 Gen 1
+>> >> > =C2=A0- Port 2: PD 3.0 (65W Max), USB 3.2 Gen 1, DP 1.4 (4K@60Hz)
+>> >> > =C2=A0- Port 3 & 4: USB 3.2 Gen 1
+>> >> >=C2=A0
+>> >> > This minimal device tree enables booting into a serial console with=
+ UART
+>> >> > output.
+>> >> >=C2=A0
+>> >> > Signed-off-by: sandiecao <sandie.cao@deepcomputing.io>
+>> >> > Reviewed-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com=
+>
+>> >> > +&uart0 {
+>> >> Can you also add pinctrl data explicitly?
+>> >
+>> > To avoid conflict,=C2=A0 the common pinctrl table "k3-pinctrl.dtsi" sh=
+ould be uploaded by spacemit.=C2=A0
+>> > Then we will add the pinctrl data after k3-pico-itx.dts. That should b=
+e another patch.=C2=A0
+>> > Sandie
+>> I think you don't understand what Yixun said.
+>> You should add pinctrl properties here like:
+>> pinctrl-0 =3D xxx;
+>> pinctrl-names =3D "default";
+>>=C2=A0
+>> While the bootloader is expected to initialize the UART pins, explicitly=
+ adding the pinctrl properties
+>> ensures hardware state consistency.
+>>=C2=A0
+>> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 - Troy
+>>=C2=A0
+>
+> Yes, I know this.
+> If I add=C2=A0
+> =C2=A0=C2=A0 =C2=A0 =C2=A0=C2=A0 pinctrl-names =3D "default";
+> =C2=A0=C2=A0 =C2=A0 =C2=A0=C2=A0 pinctrl-0 =3D <&uart0_0_cfg>;
+> Then also need to add
+> &pinctrl {
+> =C2=A0=C2=A0 =C2=A0 =C2=A0=C2=A0 uart0_0_cfg: uart0-0-cfg {
+> =C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 uart0-0-pins=
+ {
+> =C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0=C2=A0 pinmux =3D <K3_PADCONF(149, 2)>, =C2=A0 =C2=A0 =C2=A0=C2=
+=A0 /* uart0 tx */
+> =C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <K3_PADCONF(150, 2)>; =C2=A0 =
+=C2=A0 =C2=A0=C2=A0 /* uart0 rx */
+>
+> =C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0=C2=A0 bias-pull-up; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 /* normal pull-up */
+> =C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0=C2=A0 drive-strength =3D <25>; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0=C2=A0 /* DS8 */
+> =C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 };
+> =C2=A0=C2=A0 =C2=A0 =C2=A0=C2=A0 };
+> };
+> But this part is common, it should be defined in common pinctrl table "k3=
+-pinctrl.dtsi". And this part hasn't comed to Upstream.
+This line exceeds 100 characters
 
-On Wed Apr 1, 2026 at 8:45 AM CEST, Liu Ying wrote:
->>>>>> Boards with a different connector should describe the connector in t=
-he
->>>>>> device tree, if they need to instantiate the exact type.
->>>>
->>>> I think this is the only valid solution. It's very easy to do, nothing=
- new
->>>> to invent.
->>>>
->>>> Maybe on top of that we could add a warning when the overlay is applie=
-d,
->>>> e.g. "imx8mp-hdmi-tx used without a connector described in device tree=
-;
->>>> adding a type A connector as a fallback; please add a valid descriptio=
-n to
->>>> your device tree".
->>>
->>> I'd say this doesn't sound a bad idea but I hope the message is clear a=
-nd
->>> short.
->>
->> What about:
->>
->>   Connector description not found in device tree, please add one. Fallin=
-g back to Type A.
->
-> Maybe:
-> Please add a hdmi-connector DT node for imx8mp-hdmi-tx. A fixup node in t=
-ype a is added for now.
->
->>
->>>> Maybe pointing to a TODO entry in the documentation.
->>>
->>> To parameterize the HDMI connector type?  If so, I'm okay with that.
->>
->> I was meaning a TODO entry to suggest people to add a connector descript=
-ion
->> to the dts. E.g., expanding on the above suggested warning:
->>
->>   Connector description not found in device tree, please add one. See ht=
-tps://docs.kernel.org/gpu/todo.html#<...>
->>
->> And of course adding a TODO entry describing what one needs to do (add a=
-n
->> hdmi-connector node and link it to port@1 of the hdmi-tx).
->>
->> The drawback of the TODO is that items in todo.rst are supposed to be
->> removed eventually when done in the code, but this one cannot be removed
->> until some kernels printing the above logging message will be around,
->> i.e. potentially for decades.
->
-> Not a big fan of adding a TODO entry, because those DT blobs without a
-> hdmi-connector node could be out there forever, meaning the added TODO
-> entry can never be removed.
->
->>
->> So maybe the simplest solution is just the first warning message + a
->> comment in the code right before the warning line, so it easily found wi=
-th
->> grep or a web search by who sees the warning.
->
-> +1.
+> If I add it currently,=C2=A0 When k3-pinctrl.dtsi is accepted by Upstream=
+, we need to remove it again.
+> So we just empty it for simple.
+No, It looks like your base commit is wrong.
+It has been merged here [1] that what you said.
 
-Agreed. I've already sent v2, so I'll queue this for v3.
+By the way, I noticed that the name in your 'From' header for this reply do=
+esn't match the one in
+your patch submission. It would be better to keep them consistent to avoid =
+any confusion for the
+maintainers/reviewers regarding the authorship of the response.
 
-Luca
+Link:
+https://lore.kernel.org/all/177340832523.17050.323606076175943251.b4-ty@ker=
+nel.org/ [1]
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+
+                                    - Troy
+
 
