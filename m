@@ -1,376 +1,194 @@
-Return-Path: <devicetree+bounces-283563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283581-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oJ/tE5Y0zWlwawYAu9opvQ
-	(envelope-from <devicetree+bounces-283563-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 17:07:02 +0200
+	id SKXYIFw/zWkkbAYAu9opvQ
+	(envelope-from <devicetree+bounces-283581-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 17:53:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3830637CB09
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 17:06:57 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4BA837D7FA
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 17:52:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CDBA73053DAF
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 15:01:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2A7B83146119
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 15:25:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1689E35F169;
-	Wed,  1 Apr 2026 15:01:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B913822A8;
+	Wed,  1 Apr 2026 15:25:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="jIw0Pu7f"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="dTapjwhl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from s2.avantea.pl (s2.avantea.pl [46.242.128.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AEA435DA4F;
-	Wed,  1 Apr 2026 15:01:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4948F337688;
+	Wed,  1 Apr 2026 15:25:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.242.128.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775055671; cv=none; b=kkSSNQGw+syEw/Qrv4Jiu4JPGyr0MO4bJg9ILLsd94Tvgn0WeqFnt/fpI7HpQuIEAFUZAh84FZFgRVk3RAEPK0Ege9DveqGG89TCjrrZJM9k8PGjsnbrMxpMHXdQbS8sJwYV2Q0/XaU3+brHob93XdpjhS/GMHpO2ZqY2b9iQlE=
+	t=1775057151; cv=none; b=od6tHDzfAMCe0Ft+gwwKEodZ3A1My1r5UPGqGJZVNOuJGQGWMnaQPHos2GQCkf9oE82MKYstdSVxQYxm/i8LHJKafGrdO+dfIeZGYE6HYXLlHFYineHNbUtEJ4V5naxuEhkgv17qomyQAESq8iZXa8zrM1TkNb2GCjtQ3Sq9JYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775055671; c=relaxed/simple;
-	bh=RUwWxvVuCmARZw9VXFz52L6j5M88zNRl5Tjw3fQMR58=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HLgM9Fzs1FlYFT2fbUCJ9amaDDwkXMQjr2mIKA2utx4WxEZ/WLTR3MnvbyMO67x5hOF2H2UNt5ncMyJiIfG2HBDC2BJ5ESfJHtfQR+D8/LjgLJdSJwrhkqRSSvnv40UW69JTEIYNdl3C9bnEnu2hXompbgkWg08/3Z/5hW018NM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=jIw0Pu7f; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1775055668; x=1806591668;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=RUwWxvVuCmARZw9VXFz52L6j5M88zNRl5Tjw3fQMR58=;
-  b=jIw0Pu7fOOuTpqAIqJe/BoG0ZrhT7Y9T3miuC1DbqeMGFywtItZ2pyFF
-   nDtf0KJQdqX+hIljzr7rKVHyOF5fawIQD1nCRZqb/7FPlOEOXraOBf+tn
-   SFAiEdrY17qK20x89HMT9RtjVSUrIDLHwedix/9iyZB+XURismRnoau4N
-   8Wk5fG7vsLQgc3lgj0c8AUlK0zUHW/t4M56zYsBXmbHf9CrZtNkPZTWq8
-   iQXKaw/hXsu2964bvzX8NRpyhCFw7iF97xqUO/W/SNURRbHcICTPZLmYW
-   IuQ68fQVNGjdy2I5bG7UWY9j16Cry6wURYjlcLhqsf9TAQvTzBnzEzn2E
-   g==;
-X-CSE-ConnectionGUID: 3S/Mh0nqQ56XSMJ1idUGjw==
-X-CSE-MsgGUID: Nl7rFw0pRhC0Et4Ko62vXg==
-X-IronPort-AV: E=Sophos;i="6.23,153,1770620400"; 
-   d="scan'208";a="286909498"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 01 Apr 2026 08:01:07 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Wed, 1 Apr 2026 08:01:01 -0700
-Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Wed, 1 Apr 2026 08:00:58 -0700
-Message-ID: <0d589c193992bb71d31689999cb027b748d69c5c.camel@microchip.com>
-Subject: Re: [PATCH net-next v2 7/9] net: dsa: lan9645x: add mac table
- integration
-From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-To: Jakub Kicinski <kuba@kernel.org>
-CC: <UNGLinuxDriver@microchip.com>, <andrew@lunn.ch>, <olteanv@gmail.com>,
-	<davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
-	<horms@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <woojung.huh@microchip.com>, <linux@armlinux.org.uk>,
-	<Steen.Hegelund@microchip.com>, <daniel.machon@microchip.com>,
-	<linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Date: Wed, 1 Apr 2026 17:00:58 +0200
-In-Reply-To: <20260329195635.2789227-1-kuba@kernel.org>
-References: <20260324-dsa_lan9645x_switch_driver_base-v2-7-f7504e3b0681@microchip.com>
-	 <20260329195635.2789227-1-kuba@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2.1 
+	s=arc-20240116; t=1775057151; c=relaxed/simple;
+	bh=Ii/eJ5h1USlct5eSHcumUHTZoUYSvDC7KyxJIGIed04=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bIOEqdePJWLcbHmXNEipTpeJxazmBjPsf22lUsmNA5x/bWBW6EIh3/WwSS798vUPtfTGHViU61cISTXznJJnLFU37I+WrCmsNOLn3ii4FbUremKbbXThOSuBNKAPcZvEOVFVH4H9LV87AxxbuyQwaOIHKu+JXocYdh+t99C7NcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=dTapjwhl; arc=none smtp.client-ip=46.242.128.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczodrzynski.pl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=szczodrzynski.pl; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To
+	:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Yfl/w1ij3MgpyEqu5acDmeSHKzp1JdcGMEvJsVUioeI=; b=dTapjwhlsakHuG9/ro3lz63N01
+	XdRqX6PAtHDsv/Hqx89CpF904TiwsjZnD8ckUY/929k3Kqh6zJWEV/bZwHUToTvKGf9yVJ6uGH3ls
+	8Kwrz9WhU0B/zKeitP6JlW0f7htpsvS6bhNBxQXHc1qf9f77rtkXHumMFFi0polKAmpE1zRkNzspa
+	fHCxnwx+tD75qpHwxRukvdgbcqzqhSja9xlzKE8/AnrpaVpvoBqytXXymP5r5Ao7xRd6gc1mYVTR8
+	2QTy+ybeTSBCzaSl9bns7x65+O5sMF5eXEPOAWZiSq47yrUdD32xbkhLxziC+Rkra+/azUmpQMB6A
+	ZJ/I/QVg==;
+Received: from d100-78.icpnet.pl ([77.65.100.78] helo=[192.168.0.120])
+	by s2.avantea.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <kuba@szczodrzynski.pl>)
+	id 1w7x8q-0000000Ajrx-2VZg;
+	Wed, 01 Apr 2026 17:06:00 +0200
+Message-ID: <5e9f5f0c-1ff0-4b6c-ad2d-ccf6fafbef30@szczodrzynski.pl>
+Date: Wed, 1 Apr 2026 17:04:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spamd-Result: default: False [-0.66 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] drm/sun4i: Support LVDS on D1s/T113 combo D-PHY
+To: Parthiban <parthiban@linumiz.com>, Maxime Ripard <mripard@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, paulk@sys-base.io
+References: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
+ <20251116134609.447043-1-kuba@szczodrzynski.pl>
+ <a5f6aeb1-b038-462e-8989-c4da65966134@linumiz.com>
+ <1027afd7-dec6-4ff3-85eb-2d9a1646ada6@linumiz.com>
+Content-Language: pl
+From: =?UTF-8?Q?Kuba_Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
+Autocrypt: addr=kuba@szczodrzynski.pl; keydata=
+ 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
+In-Reply-To: <1027afd7-dec6-4ff3-85eb-2d9a1646ada6@linumiz.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Id: kuba@szczodrzynski.pl
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[szczodrzynski.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[szczodrzynski.pl : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RSPAMD_URIBL_FAIL(0.00)[microchip.com:query timed out];
-	TAGGED_FROM(0.00)[bounces-283563-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,redhat.com,kernel.org,armlinux.org.uk,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283581-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[linumiz.com,kernel.org,sholland.org,csie.org,gmail.com,linux.intel.com,suse.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[szczodrzynski.pl:-];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 3830637CB09
+	FROM_NEQ_ENVFROM(0.00)[kuba@szczodrzynski.pl,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.infradead.org,lists.linux.dev,vger.kernel.org,lists.freedesktop.org,sys-base.io];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_SPAM(0.00)[0.937];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,szczodrzynski.pl:mid,linumiz.com:url,linkedin.com:url]
+X-Rspamd-Queue-Id: D4BA837D7FA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, 2026-03-29 at 12:56 -0700, Jakub Kicinski wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e content is safe
->=20
-> This is an AI-generated review of your patch. The human sending this
-> email has considered the AI review valid, or at least plausible.
-> ---
-> net: dsa: lan9645x: add mac table integration
->=20
-> Add MAC table support, and dsa fdb callback integration. The mactable is
-> keyed on (vid,mac) and each bucket has 4 slots. A mac table entry typical=
-ly
-> points to a PGID index, the first 9 of which represent a front port.
->=20
-> > diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c b/driver=
-s/net/dsa/microchip/lan9645x/lan9645x_mac.c
-> > index 000000000000..6335714dca21
-> > --- /dev/null
-> > +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c
-> [ ... ]
-> > +int lan9645x_mact_entry_add(struct lan9645x *lan9645x, int pgid,
-> > +                         const unsigned char *mac, u16 vid)
-> > +{
-> > +     struct lan9645x_mact_entry *entry;
-> > +     int err;
-> > +
-> > +     mutex_lock(&lan9645x->mact_lock);
-> > +
-> > +     /* Users can not move (vid,mac) to a different port, without remo=
-ving
-> > +      * the original entry first. But we overwrite entry in HW, and up=
-date
-> > +      * software pgid for good measure.
-> > +      */
-> > +     entry =3D lan9645x_mact_entry_find(lan9645x, mac, vid);
-> > +     if (entry) {
-> > +             entry->common.pgid =3D pgid;
-> > +             goto mac_learn;
-> > +     }
-> > +
-> > +     entry =3D lan9645x_mact_entry_alloc(lan9645x, mac, vid, pgid,
-> > +                                       ENTRYTYPE_LOCKED);
-> > +     if (!entry) {
-> > +             mutex_unlock(&lan9645x->mact_lock);
-> > +             return -ENOMEM;
-> > +     }
-> > +
-> > +     list_add_tail(&entry->list, &lan9645x->mac_entries);
-> > +
-> > +mac_learn:
-> > +     err =3D __lan9645x_mact_learn(lan9645x, pgid, mac, vid, ENTRYTYPE=
-_LOCKED);
-> > +     if (err)
-> > +             lan9645x_mact_entry_dealloc(lan9645x, entry);
->=20
-> If a pre-existing entry is updated but the hardware learning command fail=
-s,
-> will this inadvertently delete the valid software entry and cause the har=
-dware
-> and software tracking to become desynchronized?
->=20
+Hi,
 
-I will rearrange so they stay synced.
+W dniu 2026-04-01 o 10:39:42, Parthiban pisze:
 
-> > +
-> > +     mutex_unlock(&lan9645x->mact_lock);
-> > +     return err;
-> > +}
-> > +
-> > +int lan9645x_mact_entry_del(struct lan9645x *lan9645x, int pgid,
-> > +                         const unsigned char *mac, u16 vid)
-> > +{
-> > +     struct lan9645x_mact_entry *entry;
-> > +     int err;
-> > +
-> > +     mutex_lock(&lan9645x->mact_lock);
-> > +
-> > +     entry =3D lan9645x_mact_entry_find(lan9645x, mac, vid);
-> > +     if (!entry) {
-> > +             mutex_unlock(&lan9645x->mact_lock);
-> > +             return -ENOENT;
-> > +     }
-> > +
-> > +     WARN_ON(entry->common.pgid !=3D pgid);
-> > +     lan9645x_mact_entry_dealloc(lan9645x, entry);
-> > +     err =3D __lan9645x_mact_forget(lan9645x, mac, vid, ENTRYTYPE_LOCK=
-ED);
->=20
-> Does this permanently remove the software entry even if the hardware
-> command to forget the entry fails?
->=20
+> Dear Kuba,
+>
+> On 2/7/26 2:34 PM, Parthiban wrote:
+>> On 11/16/25 2:46 PM, Kuba Szczodrzyński wrote:
+>>> Some Allwinner chips (notably the D1s/T113 and the A100) have a "combo
+>>> MIPI DSI D-PHY" which is required when using single-link LVDS0. The same
+>>> PD0..PD9 pins are used for either DSI or LVDS.
+>>>
+>>> Other than having to use the combo D-PHY, LVDS output is configured in
+>>> the same way as on older chips.
+>>>
+>>> This series enables the sun6i MIPI D-PHY to also work in LVDS mode. It
+>>> is then configured by the LCD TCON, which allows connecting a
+>>> single-link LVDS display panel.
+> Now I also have the MIPI and LVDS working together on A133. Can I pick your
+> changes and post a combined series for the display support for A133? This will
+> also address D1s/T114 as well.
 
-Same here, I can rearrange so they stay synced.
+I guess it's been waiting for too long anyway - so yes, if you know how 
+to push it further, then please do so.
 
-> > +
-> > +     mutex_unlock(&lan9645x->mact_lock);
-> > +     return err;
-> > +}
-> [ ... ]
-> > +void lan9645x_mac_deinit(struct lan9645x *lan9645x)
-> > +{
-> > +     mutex_destroy(&lan9645x->mact_lock);
-> > +}
->=20
-> Are the static MAC entries in the mac_entries list leaked here during dri=
-ver
-> teardown, or are they freed elsewhere?
->=20
+Regards Kuba
 
-I thought DSA core would have removed them for me, but it looks like that m=
-ay not be
-the case. I will add dealloc during deinit.
-
-> > +
-> > +int lan9645x_mact_dsa_dump(struct lan9645x *lan9645x, int port,
-> > +                        dsa_fdb_dump_cb_t *cb, void *data)
-> > +{
-> > +     struct lan9645x_mact_entry entry =3D {};
-> > +     u32 mach, macl, maca;
-> > +     int err =3D 0;
-> > +     u32 autoage;
-> [ ... ]
-> > +     while (1) {
-> > +             /* NOTE: we rely on mach, macl and type being set correct=
-ly in
-> > +              * the registers from previous round, vis a vis the GET_N=
-EXT
-> > +              * semantics, so locking entire loop is important.
-> > +              */
-> > +             lan_wr(ANA_MACACCESS_MAC_TABLE_CMD_SET(CMD_GET_NEXT) |
-> > +                    ANA_MACACCESS_ENTRYTYPE_SET(entry.common.type),
-> > +                    lan9645x, ANA_MACACCESS);
-> > +
-> > +             if (lan9645x_mac_wait_for_completion(lan9645x, &maca))
-> > +                     break;
->=20
-> If the hardware completion times out, the loop breaks out and returns the
-> local err variable which is initialized to 0. Will this suppress the hard=
-ware
-> timeout error code and incorrectly report a successful dump?
->=20
-
-Yes, I will return the error.
-
-> > +
-> > +             if (ANA_MACACCESS_VALID_GET(maca) =3D=3D 0)
-> > +                     break;
-> > +
-> > +             mach =3D lan_rd(lan9645x, ANA_MACHDATA);
-> > +             macl =3D lan_rd(lan9645x, ANA_MACLDATA);
-> > +
-> > +             lan9645x_mact_parse(mach, macl, maca, &entry.common);
-> > +
-> > +             if (ANA_MACACCESS_DEST_IDX_GET(maca) =3D=3D port &&
-> > +                 entry.common.type =3D=3D ENTRYTYPE_NORMAL) {
->=20
-> Since static FDB entries are programmed with ENTRYTYPE_LOCKED, will this
-> condition exclude them from the FDB dump, preventing them from showing up
-> during bridge FDB queries?
->=20
-
-Yes that is intentional. This is for the dynamic entries which the bridge c=
-ore does not
-know about.
-
-> > +                     if (entry.common.key.vid > VLAN_MAX)
-> > +                             entry.common.key.vid =3D 0;
-> > +
-> > +                     err =3D cb(entry.common.key.mac, entry.common.key=
-.vid,
-> > +                              false, data);
-> > +                     if (err)
-> > +                             break;
-> > +             }
-> > +     }
-> > +
-> > +     /* Remove aging filters and restore aging */
-> > +     lan_wr(0, lan9645x, ANA_ANAGEFIL);
-> > +     lan_rmw(ANA_AUTOAGE_AGE_PERIOD_SET(ANA_AUTOAGE_AGE_PERIOD_GET(aut=
-oage)),
-> > +             ANA_AUTOAGE_AGE_PERIOD,
-> > +             lan9645x, ANA_AUTOAGE);
->=20
-> Does restoring the ANA_AUTOAGE register using the autoage value saved at =
-the
-> start of the function race with other operations setting the aging time?
->=20
-> If the aging time is updated concurrently without taking mact_lock, its n=
-ewly
-> configured aging period might be overwritten here.
->=20
-
-AFAIK both run under rtnl so we do not have a race. But I will take the mac=
-t_lock during
-set_ageing_time.
-
-> > +
-> > +     mutex_unlock(&lan9645x->mact_lock);
-> > +
-> > +     return err;
-> > +}
-> > diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c b/drive=
-rs/net/dsa/microchip/lan9645x/lan9645x_main.c
-> > index 046c95a72242..32c0301030a4 100644
-> > --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> > +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> [ ... ]
-> > +static int lan9645x_fdb_del(struct dsa_switch *ds, int port,
-> > +                         const unsigned char *addr, u16 vid,
-> > +                         struct dsa_db db)
-> > +{
-> > +     struct net_device *br =3D lan9645x_db2bridge(db);
-> > +     struct dsa_port *dp =3D dsa_to_port(ds, port);
-> > +     struct lan9645x *lan9645x =3D ds->priv;
-> > +     int err;
-> > +
-> > +     if (IS_ERR(br))
-> > +             return PTR_ERR(br);
-> > +
-> > +     if (dsa_port_is_cpu(dp) && !br &&
-> > +         dsa_fdb_present_in_other_db(ds, port, addr, vid, db))
-> > +             return 0;
-> > +
-> > +     if (!vid)
-> > +             vid =3D lan9645x_vlan_unaware_pvid(!!br);
-> > +
-> > +     if (dsa_port_is_cpu(dp))
-> > +             return lan9645x_mact_forget(lan9645x, addr, vid,
-> > +                                         ENTRYTYPE_LOCKED);
-> > +
-> > +     err =3D lan9645x_mact_entry_del(lan9645x, port, addr, vid);
-> > +     if (err =3D=3D -ENOENT) {
-> > +             dev_dbg(lan9645x->dev,
-> > +                     "fdb not found port=3D%d addr=3D%pM vid=3D%u\n", =
-port, addr,
-> > +                     vid);
-> > +             return 0;
-> > +     }
-> > +
-> > +     return err;
-> > +}
->=20
-> Since lan9645x_mact_entry_del returns -ENOENT when a MAC address is not f=
-ound
-> in the software tracking list, and the software list only contains static=
-ally
-> added entries, won't this intercept attempts to manually delete dynamical=
-ly
-> learned MAC addresses and return success without actually removing them f=
-rom
-> the hardware table?
-
-No I do not think this is how it works. Dynamic entries are flushed with=C2=
-=A0
-.port_fast_age, and port_fdb_del is for static entries. We handle -ENOENT
-because DSA core does not refcount fdbs for userports.
+> --
+> Thanks,
+> Parthiban
+> https://linumiz.com
+> https://www.linkedin.com/company/linumiz
 
