@@ -1,214 +1,177 @@
-Return-Path: <devicetree+bounces-283653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283657-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gHwZCEmdzWm9fQYAu9opvQ
-	(envelope-from <devicetree+bounces-283653-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 00:33:45 +0200
+	id eCjEMRKfzWnwfQYAu9opvQ
+	(envelope-from <devicetree+bounces-283657-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 00:41:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B71C2380FD3
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 00:33:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69045381112
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 00:41:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 862A5304A434
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 22:33:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7FE1C30151D9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 22:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E24C3C2787;
-	Wed,  1 Apr 2026 22:33:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DDDE3EF651;
+	Wed,  1 Apr 2026 22:39:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FO0ZrJVW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lMbgnNvK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com (mail-eastus2azon11011001.outbound.protection.outlook.com [52.101.57.1])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38573CEB93;
-	Wed,  1 Apr 2026 22:32:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.57.1
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775082784; cv=fail; b=STHMge9A1Te2xiAjC8xFHvsx3KVrJec+p+I6qvlfCu1QvfWHQdWadNIKxFeYOHuklVgAqgFwkhNd3gleCPDCk8FXS0ALRoeB02p/+/L+ziyBLzehm+5YgKatUYm6sVltB9Wgb5G2shAxUTg95zs81fvnIxsbfD0OJW8EGGi/OCM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775082784; c=relaxed/simple;
-	bh=rc7WOsvlMTx/Xz4R+vH9nwj1BrfsJ9tT4FSLHmpHY5c=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tbN5ozJSPFAhPny4qFiiMfZ1Jzw3DMzPKGDtMIVdpEIWslFNDWCAHv1Rvn54Hc7YNUvWYdfvJEtfxC67wK6r3rAmr+gEURhUi/OpJsZmHaK48jtg8vxAH9QFdd6syAAr7kxDscn7X/kNaK8yNZ1EEB2fgZ6lZC1h+Hl7xodlxv8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FO0ZrJVW; arc=fail smtp.client-ip=52.101.57.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GRwL7pYDeHjPHImX/vpinslZYaLIbIQyUz9SS4B7iZi6hMdz7Bg2rFuErTGB13P1uPmxfi2dvsBL5j172fI70w4SGQ5n4g5fj1gkOkKSykokuy8MXvtYlzF0yhAN6ScWXHnGywloG7uL9UeTIasvDrBqNVdrkNrHTytwYEeMrihCOca1nmwnLsH0a86LXfBoWTYhCfMiAvceZOLN3veeqa1m8nk1w/t3jPbtO17AKCYOjFkMxKj8eiVrczd6i/w10+bMT0iYMDlclObK6i/2OdL4h2mSM6oQWS0hjT3xUyVxxKYcEJFP+Kw1AHuQ97YYwiS7b/7B7+0sVfRZqSuxpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7G4Bq7eGoPEmFv6nBU5TZN96ky7FW5IWX8m0IhRXDOQ=;
- b=Bjo3+YQuEwdqgq1BUWpubDwjCcCGqa5ltmNi25qC7Y98WsPwVF0wykl5Hv2DRtFoZ5cL/sWa3aVJAuWq3iOLlTnrHNPtFv1LS8oUsrPsDQm4adzNQXqYcj+DNhtkJtHLFscMTkzxQunnRM8UUYtDCBh05/FkhQ7cctUbAJBPcV0hVpIUcjNIQFiUbYzGTmbFt//TZ30vEySAd0p/s0bZPsmGT1sjdLkQCIzN18fUnqd5WvOJZF+xxawJuOyTu6xQIrkWiCPFElzyOK4cBZ3EupuM+AgoX7hI0BtUeXQBjpYt7Baa3YNilTe1x8cfCfQarPH8bzoYqHNUWTKiD257uA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7G4Bq7eGoPEmFv6nBU5TZN96ky7FW5IWX8m0IhRXDOQ=;
- b=FO0ZrJVWg0bZ4EZlyRQKA4qDQmLxZzwB2Ftgc2gYESrK4yqOJSDJ0J9C+XeYoBNFVkQDQlvVmDzn7q4lM3bJsS2LhgEvcdk3ghhii+F/FhgPpp0IJxsa/AuvUbBodIzCWk8wI/LXqTJQ0aE+u1X/dkocmwg8RSTAOqONfIAhU18=
-Received: from CH0PR13CA0033.namprd13.prod.outlook.com (2603:10b6:610:b2::8)
- by IA1PR10MB6736.namprd10.prod.outlook.com (2603:10b6:208:42c::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Wed, 1 Apr
- 2026 22:32:54 +0000
-Received: from CH2PEPF00000148.namprd02.prod.outlook.com
- (2603:10b6:610:b2:cafe::57) by CH0PR13CA0033.outlook.office365.com
- (2603:10b6:610:b2::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.17 via Frontend Transport; Wed,
- 1 Apr 2026 22:32:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CH2PEPF00000148.mail.protection.outlook.com (10.167.244.105) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9745.21 via Frontend Transport; Wed, 1 Apr 2026 22:32:53 +0000
-Received: from DLEE200.ent.ti.com (157.170.170.75) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 1 Apr
- 2026 17:32:52 -0500
-Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE200.ent.ti.com
- (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 1 Apr
- 2026 17:32:52 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 1 Apr 2026 17:32:52 -0500
-Received: from localhost (mz02jj9v.dhcp.ti.com [128.247.81.246])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 631MWqTb887172;
-	Wed, 1 Apr 2026 17:32:52 -0500
-From: Sen Wang <sen@ti.com>
-To: <linux-sound@vger.kernel.org>
-CC: <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<perex@perex.cz>, <tiwai@suse.com>, <shenghao-ding@ti.com>,
-	<kevin-lu@ti.com>, <baojun.xu@ti.com>, <niranjan.hy@ti.com>,
-	<l-badrinarayanan@ti.com>, <devarsht@ti.com>, <v-singh1@ti.com>,
-	<linux-kernel@vger.kernel.org>, Sen Wang <sen@ti.com>
-Subject: [PATCH v2 4/4] MAINTAINERS: add entry for TAS675x audio amplifier
-Date: Wed, 1 Apr 2026 17:28:45 -0500
-Message-ID: <20260401223239.1638881-5-sen@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260401223239.1638881-1-sen@ti.com>
-References: <message-id-of-your-RFC-cover-letter>
- <20260401223239.1638881-1-sen@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C5EA3EF0BF;
+	Wed,  1 Apr 2026 22:39:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775083180; cv=none; b=P7XeyNMHit2njTezOKj7GJZBEqfvOBNHYnzf2yMfGy7KbTt7fZ4ugRgm0ayTQ9fXN5VcNNuCpVZNyfu555ZOxCzIKLCW8qGC7Uiw7ztG7plxkEtkGBj5UqBPsEUHKffRMDucbTg1IGp6EJIfNsodvNyG99motNC+7cTAIRMfpjQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775083180; c=relaxed/simple;
+	bh=biZ7mTjsG56f0OApK0tI4n92r/opIl7/ocWbNT26owc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fir4UqqUnmhZtn0ljHac/oKv3lTmwaqPQkcq57q2jzAtL0ssr0zPc5w4P3WdmeXWxRURUIWwr4Nzn/c/+moDQipUrxpy9/nwEkx31dkwdW4cG9EqmKtm2dv2s3ssWRgirmAG8AcuuT+ZNU2nMBp9ynPvTsESpc4+YkR6WkNZJNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lMbgnNvK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 25895C4CEF7;
+	Wed,  1 Apr 2026 22:39:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775083179;
+	bh=biZ7mTjsG56f0OApK0tI4n92r/opIl7/ocWbNT26owc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=lMbgnNvK+B+KUK3rxigJj3YHNopPbEM5oV5mhrhocWSSAbqy29ZW/QKwOAY/WEz1k
+	 gG5T8+zl1LoysqCJOCtgWQDwYLnqFuVcMevCzRiFIwHw9VYJVXI/5jqCz+vGJ1TBqe
+	 L7wtsZDz1JUjlC2VM6rZ+A+8u0oofVyvwjVs03IxKb3wkAG4xUlAtwcxlZck/2DAII
+	 q8E9OQgCgXL0hZalY0WF7ohAIRF9DsYQgl1zd1jjcV5bAxM2pm+SrpZIFKrJ19M2AM
+	 CoI/lEI7EZCiwmr4qlD/IWMcnGHcequyyO5E4GqAS5G3FuUrVvJPbvGvDixr8q6W99
+	 FjJBkcbU1l/Gw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 13EE810FCAD2;
+	Wed,  1 Apr 2026 22:39:39 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH v4 0/4] Add framebuffer on Xiaomi Poco F1 and disable the
+ MDSS on tianma panel variant
+Date: Thu, 02 Apr 2026 00:39:34 +0200
+Message-Id: <20260402-beryllium-fb-v4-0-46170004da28@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF00000148:EE_|IA1PR10MB6736:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9298f095-9c09-4d0f-7433-08de903e9d97
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|7416014|82310400026|36860700016|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	kSdrNzbdqPRfzOSRTJlhG3ZERrIIsceRB8zA11UI+IWz8ncpebsKlqARU0QGWP740I3F70SmyCwBsLS0p/6jVZTSyOHvS4BnSXmB1xh5BjUsfYHLahqZPr6tkKjdLw9XVddOQk+f5QKzKCEGFlQdmTvVcFctKIqJH3+cPNV55hgSPOQBje06WKym0gsR06OVOUarmefcvbk73OFY9iK/4fLkNiegnwR8eQBkI4IG9QUoVgrbcStpEqB6IaraToFw83VN9B0X4VjEnqSXpYjGqcUAJEg7hI1I8sCChmj7G8ZTXAMpQ8/QPjDODp9+wc5kikuLZZ6Ut4kVTcDeLrt+we9POQYxp42C/n9bDaFd4oCykAdMzfEnQao+POxnnj/W2FTmlSGUfgolsk44HRrGnlVJGQo7xyDrcboYbaNGSPYmpHi5SwX5WNvk8wsvDU6CZlbJhS5gfm5e6RKk5OD1NeBB6afy1XlMTq+Pfyzv2Q447pFvtC0GJ6758MokNehkJ5jU5SOz105BvlJ6mfJsgWPLektqQIvF8ciGP8M65o5AQdiQGXgxRIj7WRhpZlXq7ad1P84UBhCSFV5deW0sg5CBXjnxX+nxFgkxkUGfhGKTHaIklsF4QX98QxFNrZi+4u5zw4MyRcfrFq6kSg4AerzqyyzSSL2kfXCT0h26vxgKX+4+dsWGYm3kIBg7PadMEXL3OVdHvwG12n1kiqZ/zjuPcjLMwy5HQJkct3jGflBsLmZCmzJi0+2e3oHhZHYWfDNESzgRHFvoYT7lDevKqg==
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(82310400026)(36860700016)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	oCG4jYW1dFuGq4Jtn/q1EWPXPkkq+8ZoQPsUs/OkA7Ki2sUIcClCxONDCiVGFhRHuYt/qE7kb4ZrG6o4Gg+KtEwnY/32F033R/Y2EFqlN13EZzezpPoBFNWfNlZidRsn75ObISOKIjl/MUy42ji22B7gdz9gUrl3S33FuMI/e4rtg+fJq4CiV6YNpRjg4xc+clgHKHv/ojXFcDZyDFCtqWPoLIjX5MHabu+PRWPtATRRuuj8UJbWszq52RvIEu6OUh7rf9RvdF2j14LFNm6KiTHqNzhYeXB6Wd1WGfQx8oevuTGEBnjouH6EvixuDl9aXX2vfZa0Ur0Y/hKqHk50VlToeNAR63BPANXadKdvKJjyF11ots/CBVoV2/rz0xYAcePFIsW1UQ6rUkL88f008zCq2err9lr4hh8mqs8m/5NF3Hw7YcE7sifQSmi2vm5b
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2026 22:32:53.8606
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9298f095-9c09-4d0f-7433-08de903e9d97
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH2PEPF00000148.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR10MB6736
-X-Spamd-Result: default: False [2.84 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKaezWkC/13Oyw6CMBCF4VcxXVszvdiiK9/DuKDtIJMgmqKNl
+ /DuFlwgLE+T759+WIeRsGP71YdFTNTRtc1Dr1fM12V7Rk4hbyZBGhBgucP4ahp6XHjleFBYWOc
+ lOASWyS1iRc8xdzzlXVN3v8bXWE9ieP2FlBDzUBIcuIai3BYQhNzigZ503/g3GzJJ/tPFH5LMV
+ BlndqFy1oCfUzVRDcurKlP0NmitNMjSTbTv+y+9ezesHAEAAA==
+X-Change-ID: 20260107-beryllium-fb-d3e87bc20be0
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>, 
+ Sam Day <me@samcday.com>, Dzmitry Sankouski <dsankouski@gmail.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ Petr Hodina <petr.hodina@protonmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1771; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=biZ7mTjsG56f0OApK0tI4n92r/opIl7/ocWbNT26owc=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpzZ6pZjk2323McF5sFbwKWL7BkYDzm1It3+tEH
+ u6LNfxzv1mJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCac2eqQAKCRBgAj/E00kg
+ cl52D/9t/R1++EPMjpK3Sc8864pED+qlGJUEum1udwAwdDqW4L2R3QYMooKM4oZEpoRuNFcrjMx
+ OfyYDAnBa8Au7OciWoLyHfC3x4GQUFAlrMWxlOjJ7fbHVqPRo2bYs28Kv7uuaTLMHQegqCWtry0
+ 4pD3XAmlHPOjNK9DT6O/y9+nGRTwNtQajsOkFhwBVjT9MwMVpVEOv0D8wCCDIDsUy4/Xkodq4Pn
+ zvcSAM/JNuGEze2yks9dAMi7zyMlDJ1tJLnX9Rhjf3j+K8W+dDfCUsCiOsbzJAnsDbKxOxMCYg0
+ cN/yQnWfc4TMbGgYddq/hSH+fmFgsn9xDP7Pn6hF4eUDLGAu8N7JQfi5EoSO4uer0DFZMYsiu3Y
+ eVea1JGl2rdGGcpJN31R9yqPujDWghwFC+AHEaCnzv/FeTyvNIOoKz/Um+R+2wNz3dwE4rPgmDA
+ TmthgH20MaVkiOOUQFEuWqW+Bv6v6dVX8N+yhB/N4Tni9t0wD8MTD419srJw6nLuQJqsalR8RC8
+ cju0AgyVxjeAjLFwd9Q7K85LB0jyfjMyLK8DWdwrQzrFWeUzjrLPO4kOXVJRFldl4kr5Bp2n712
+ fXyHKWVfTWkG5U/66AJicgNik36wqehpFZCCyOqyjPHj2GCnbM/7R440OC5hwdRQZP4lUUlLj3V
+ /MI2hVlSO0TICUQ==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283653-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,perex.cz,suse.com,ti.com];
-	DKIM_TRACE(0.00)[ti.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sen@ti.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-283657-lists,devicetree=lfdr.de,david.ixit.cz];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,ixit.cz,samcday.com,gmail.com,oss.qualcomm.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ti.com:dkim,ti.com:email,ti.com:mid];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[vger.kernel.org,protonmail.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[david@ixit.cz];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.984];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: B71C2380FD3
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,protonmail.com:email,ixit.cz:email,ixit.cz:replyto,ixit.cz:mid]
+X-Rspamd-Queue-Id: 69045381112
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add Sen Wang as maintainer and register file patterns for the newly
-added TAS675x quad-channel amplifier driver.
+Enable framebuffer for early console output.
 
-Signed-off-by: Sen Wang <sen@ti.com>
+Due to broken panel driver on tianma and no visual output it's better
+to disable the MDSS so the framebuffer stays on. 
+
+In case second patch gets rejected, please apply the first one standalone
+
+Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
 ---
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
+Changes in v4:
+- Stripped too many labels, OnePlus 6 does use the label in the OP6/OP6T
+  variants. Re-add.
+- Link to v3: https://lore.kernel.org/r/20260401-beryllium-fb-v3-0-ec7d443402ab@ixit.cz
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a626dee5c106..ea61bb439652 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -26191,17 +26191,20 @@ TEXAS INSTRUMENTS AUDIO (ASoC/HDA) DRIVERS
- M:	Shenghao Ding <shenghao-ding@ti.com>
- M:	Kevin Lu <kevin-lu@ti.com>
- M:	Baojun Xu <baojun.xu@ti.com>
-+M:	Sen Wang <sen@ti.com>
- L:	linux-sound@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/sound/ti,tas2552.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tas2562.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tas2770.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tas27xx.yaml
-+F:	Documentation/devicetree/bindings/sound/ti,tas675x.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tpa6130a2.yaml
- F:	Documentation/devicetree/bindings/sound/ti,pcm1681.yaml
- F:	Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tlv320*.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml
-+F:	Documentation/sound/codecs/tas675*
- F:	include/sound/tas2*.h
- F:	include/sound/tlv320*.h
- F:	sound/hda/codecs/side-codecs/tas2781_hda_i2c.c
-@@ -26215,6 +26218,7 @@ F:	sound/soc/codecs/pcm3168a*.*
- F:	sound/soc/codecs/pcm5102a.c
- F:	sound/soc/codecs/pcm512x*.*
- F:	sound/soc/codecs/tas2*.*
-+F:	sound/soc/codecs/tas675*.*
- F:	sound/soc/codecs/tlv320*.*
- F:	sound/soc/codecs/tpa6130a2.*
- 
+Changes in v3:
+- Strip label from framebuffer nodes where unused and remove -0 postfix. (Konrad)
+- Link to v2: https://lore.kernel.org/r/20260317-beryllium-fb-v2-0-36b69dfb760c@ixit.cz
+
+Changes in v2:
+- Added few conversion to use memory-region.
+- Corrected framebuffer node name. (Konrad)
+- Link to v1: https://lore.kernel.org/r/20260311-beryllium-fb-v1-0-408a580d125e@ixit.cz
+
+---
+David Heidelberg (3):
+      arm64: dts: qcom: sdm845-oneplus: Drop address from framebuffer node
+      arm64: dts: qcom: sdm845-shift-axolotl: Convert fb to use memory-region
+      arm64: dts: qcom: sdm845-samsung-starqltechn: Convert fb to use memory-region
+
+Petr Hodina (1):
+      arm64: dts: qcom: sdm845-xiaomi-beryllium: Introduce framebuffer
+
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi      |  2 +-
+ arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts  |  7 ++++---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts        |  8 ++++----
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi    | 16 ++++++++++++++++
+ 4 files changed, 25 insertions(+), 8 deletions(-)
+---
+base-commit: bd0f139e5fc11182777b81cefc3893ea508544ec
+change-id: 20260107-beryllium-fb-d3e87bc20be0
+
+Best regards,
 -- 
-2.43.0
+David Heidelberg <david@ixit.cz>
+
 
 
