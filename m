@@ -1,260 +1,161 @@
-Return-Path: <devicetree+bounces-283625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283627-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +M70NCphzWlncgYAu9opvQ
-	(envelope-from <devicetree+bounces-283625-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:17:14 +0200
+	id wDV9D8dhzWmncwYAu9opvQ
+	(envelope-from <devicetree+bounces-283627-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:19:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3850637F1A9
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:17:14 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6CDF37F2DA
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 20:19:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A48603032052
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 18:08:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2C5C6301F31A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 18:19:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A9AB31E82B;
-	Wed,  1 Apr 2026 18:07:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C965B31F9B8;
+	Wed,  1 Apr 2026 18:19:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="D323TBZ5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E2c7aOie"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFCCC30F92D;
-	Wed,  1 Apr 2026 18:07:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775066855; cv=none; b=gsCvx79AFKyt9zEz80ddo6G/P4uX8t7j0hU7fkLiSGSYev5AaVzhFIH+OGiDGTEUayaUInfZkKZaJYYfW7er8qApjUuc3HQ/nWEHtjb703B2bkdquPYdNf+yJ2kGFFuHuJg3a4UOcX52g70hmA5tfzY8pX69w31VNmHBTesLSLA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775066855; c=relaxed/simple;
-	bh=oxOd6xrPkNkZz6QA/SUlqhCBJiX5nvMMbOMTlIgZTp8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Or652IZdu2PgafbHS8H0PTaGmKDiZsJUwlhGOuGZQ+AWOTYnqPwmFZG7jaG5yikSVZybUtqiTgIdChe3FsHvBpp0EQmNf0cL+i/dWw2N0fgz2VAmxfnXkcHSHpOh7XF3xUORO1IjebjnjzaroylmtsC7F/y/yvd8D5ZPaoLSpzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=D323TBZ5; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 80E7B25F7C;
-	Wed,  1 Apr 2026 20:07:32 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 1uw4Pi3h4KKk; Wed,  1 Apr 2026 20:07:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1775066851; bh=oxOd6xrPkNkZz6QA/SUlqhCBJiX5nvMMbOMTlIgZTp8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=D323TBZ5KzGxFZEmS8h6lZszjpKIy/UZnvIudXDVQMLVixEcib5y3k8OwrNTPecNU
-	 4j0E2sGDOnbwVEfdo4UQUW3A8yPi7R8Hp38AB4ZKD8rP6tNgnnrkm+OAVP7Ezv4ZEO
-	 7wbptwH73rWsNQeApaD+CXeR8vT36zirxXSsIHgcD5vDhvq1z3jWkYlm1pROIbWByR
-	 JHsqS5M42kiZpJa7LCz3qksq/1hu5PdLfAjSBF6Zizr0CeWBcQO7hY16g6kjPs+Sll
-	 uTn1inmO/yB+IuOYzO2xKt/o2nRXjf2EnyjOi6vnrAaK9aXb7reThsZOpVOtdz3qLj
-	 cDzEUOtOopL+Q==
-From: Rustam Adilov <adilov@disroot.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Rustam Adilov <adilov@disroot.org>
-Subject: [PATCH v6 8/8] i2c: rtl9300: add RTL9607C i2c controller support
-Date: Wed,  1 Apr 2026 23:06:48 +0500
-Message-ID: <20260401180648.337834-9-adilov@disroot.org>
-In-Reply-To: <20260401180648.337834-1-adilov@disroot.org>
-References: <20260401180648.337834-1-adilov@disroot.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA8731E84D
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 18:19:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.180
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775067588; cv=pass; b=tX7gDFqEyxutj7MbL46fGLJYwe/66GiraLy+2mt1lVWq0/SNQXXdlLWUWsGlTw/1DHQHj6TfObrnLrKax5bIC4XOJRnV8GrS74uNL4Rz+lVWQ0ViJigcWR7HFG2rXdUqcQLYpsapIT7vB/ffM3ToIZ2AKHhcDvrt8KiNDSSNjsA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775067588; c=relaxed/simple;
+	bh=0h/ZLXlyAiiqkavyYvYUO5EzqyuCCt8oYTMVBap/wqE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IHotuGH+wBlWdZ5QXHNEwPKPoM4NxEyyn5P/BFZlcv7r/Sl5OHoFklCavqkeLRc8/keoP06qQs3xLUJkmssqLiTL0pXVLAsRJn/WElr28dDyYgqbEdhPwZQazszrbwDVUa9Ays9RviwcsYjkUJXqpdDgFX9hEmr54VRdZVqK+aQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E2c7aOie; arc=pass smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2b23fcf90b2so47749695ad.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 11:19:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1775067587; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BG1p3bW6oXc2oMXxRHUSxJdaDi2iik25tvNj6k+BUBzoDtvEToH6dFdl8c61FAIJid
+         YdDFg3/3N1jJ8cqmgiKijAzG019QwQ351rERx5nF/wx00NaisaXs1cWqqZPNC49Efyvs
+         5q5sf52gWG0DocVkn2pnYohWP978W4uXPomEcYFCane4M+skZ8/22A0iQTOT7A8gx76b
+         qYXA4ifpp5i+3s4aWwActqaAQhbXXZiraS3P1oUenJd2ursGDhcNHChcuQYdFUaXujQ6
+         baLju4EUVXaztu+K/HgfNJO6IXF01mMXzR/IFqRbEHaSjTq+cxm9sfMKGwmenjCZQtnp
+         JO+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=0h/ZLXlyAiiqkavyYvYUO5EzqyuCCt8oYTMVBap/wqE=;
+        fh=qIXMybltcV+XFpE8RZXPn2P5qFj8CWV/QnucYaJn25w=;
+        b=UNRV6QFOay8uJbDyJgdkqL22hkXonUfpcu8VfA8N2FsGQs8SkZHja6TLMxFb+ufgdW
+         slsQOQQbZhZQMYK35ro78T/hlDaiAchreTtKMa8Fw/HfuDsZafT4lvZLLLD+Qv4raQ6E
+         4hgZIe+00FkcAYkXrElXmmtXJGIepPuqy29UkXCFLQApbMs+NNa5SxuFvFy/5LhMH/EN
+         gH93qW2/vbogBJ8nCykZZmsWdyzWJf6xFK8wC5sYDOj5aN+N7Dx3IB7kWyzmJvq8unXm
+         HumbChcUJc4GUy3mRTidVoJJGRCZhZBQSK/BD4EL8NakPQcfQ5eqwpafSma8oqZWKoRD
+         Rx+Q==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1775067587; x=1775672387; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0h/ZLXlyAiiqkavyYvYUO5EzqyuCCt8oYTMVBap/wqE=;
+        b=E2c7aOie1QM3H6RNen8hxQ8iycidMIx0xhhX59VpG+PEgqKksbQtnIJuD7JVhhKxqj
+         Pw5AGr+50d/4lCpsrFBkb2Go3wMcwfS6KtVszYdvy49j0wuDlZ1LkOgIQnmBYfNMcuWU
+         jc80UYFeeH/lzTHROhhT6PM/Mks5onqIP9qgr8ofcpChYLaBNG1LH0j4ORHnNZwJIx/y
+         SrQJhJbhUfJ4/6FCGftrZ3Cxq7awTFwnkjY9FExQo4KP+poz4t/RQQKHVLo0y88Hc2sI
+         mxlH47esPL7kusk3IB4CXmk+x1waB7MtOlGBTPuEL35i9N3yxVc4wm3o+TO8I4CEvoAE
+         mVXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775067587; x=1775672387;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=0h/ZLXlyAiiqkavyYvYUO5EzqyuCCt8oYTMVBap/wqE=;
+        b=RNsTNUP/hgUKLSfc7XH8hEaL14OKJPynReCfNBsMa/h/88XPSAyvgLiddOTXpxzbB+
+         IUgJ/2md6xQlwwfAVvj6+VD2FVddYGZjqNU7xlhXqMFGVFRdX2aEfFNsHJTzcR4P4wLu
+         rHGkshzNltf57RGNzcujZTgfd10StzwryL/Fg/S+zV8wY/KVuCky59/L3XleSqs9Bz92
+         FzTIVONHvfRvIbXN1CXIlfzHdvXg6EhBy2jjZbFThO8g1VQmBOc4OGG3vmBx3cs9xy4I
+         6EGohkDkcBa0wHiSueAirWXiqIWHzC5K9JBe6jtFHO+JA8CPEkXFmUQtRik62ehxlWlT
+         jG+w==
+X-Forwarded-Encrypted: i=1; AJvYcCXyAqZiiMUG0x+TBuOCqG9zORtuazzyOGDmlhAhg/+pQVb1SbKzBm5CSxZOtarLcTOqKUQrA6txTPPc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2uVc4RtV07kWn7tAO5lxz5YG9wZXUjsb9Iwx4GYhv3t6kFG+k
+	JJNEA5EBRhY+FsftlEIDzWSAo+6wmXvwcqEzqreT0i+jNYMeBxVhP9pqTNYQ6uyUgsCHj2kgLp2
+	bcuaHYYPCsQLw3v/uAmWWEwymf0IRNA==
+X-Gm-Gg: ATEYQzymX9H9m15qQIwt0xTO7KmNP8OKL/rnu5bXgyJP7ocdnAeh+movriNhlskjgJT
+	+V8dBZWtDZ7hp25o0OlvxzHwEEE7agr5juCzVKb6hgYbgpuJRyz6nfG2ZIFTwE5Nny3pZ5k/p+3
+	G4A8cXQnVR7PkKmBPm6uQxiwf+yyvSI1H5+jCQ5KMvrACnm13xBj3hB/zsYqgMzgUtj0XVnNgBp
+	qPKHhf1NLMXUoywAozCg/6CpcPBHR6IzZmA12jqveEX7dHnEaTdzYA4/njmQ0lMA88sFnqUGvwi
+	2gHgeTE=
+X-Received: by 2002:a17:903:946:b0:2b2:58c7:2cd2 with SMTP id
+ d9443c01a7336-2b269c8bdc5mr44577745ad.36.1775067586674; Wed, 01 Apr 2026
+ 11:19:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+References: <20260327082350.20573-1-jihed.chaibi.dev@gmail.com> <a7f8048f-eb35-4ffc-aad9-a5275e830952@kernel.org>
+In-Reply-To: <a7f8048f-eb35-4ffc-aad9-a5275e830952@kernel.org>
+From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Date: Wed, 1 Apr 2026 20:19:35 +0200
+X-Gm-Features: AQROBzBTg2eMwme9vObgMyOhUJSF_7jbcgLgDPfxONxmwyyBU4F3rhi_IvTT-eE
+Message-ID: <CANBuOYq=XAUpoC80oZm0oPT=Gq7TYrxT=kJGxKuYf4FO477WZg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: mfd: twl: Reference converted schemas for subnodes
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: andreas@kemnade.info, lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283627-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283625-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jihedchaibidev@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:dkim,disroot.org:email,disroot.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,alliedtelesis.co.nz:email]
-X-Rspamd-Queue-Id: 3850637F1A9
+	RCPT_COUNT_SEVEN(0.00)[8];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C6CDF37F2DA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the internal I2C controllers of RTL9607C series based
-SoCs. Add register definitions, chip-specific functions and macros too.
+On Wed, Apr 1, 2026 at 8:03=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> > Replace the inline compatible definitions with $ref to the appropriate
+> > schemas and unevaluatedProperties: false, matching the pattern already
+> > used by the madc, gpadc, and charger subnodes.
+>
+> I told you: no.
+>
+> Why do you replace correct code?
+>
+> Best regards,
+> Krzysztof
 
-Make use of the clk introduced from the previous patch to get the clk_div
-value and use it during the rtl9607c channel configuration.
-
-Introduce a new EXT_SCK_5MS field to the reg fields struct which is going
-to be initialized by rtl9607c init function at the end of the probe.
-
-This patch depends on all the previous patches in this patch series.
-
-Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Signed-off-by: Rustam Adilov <adilov@disroot.org>
----
- drivers/i2c/busses/i2c-rtl9300.c | 70 ++++++++++++++++++++++++++++++++
- 1 file changed, 70 insertions(+)
-
-diff --git a/drivers/i2c/busses/i2c-rtl9300.c b/drivers/i2c/busses/i2c-rtl9300.c
-index b718b74afe0d..8cedffbb2964 100644
---- a/drivers/i2c/busses/i2c-rtl9300.c
-+++ b/drivers/i2c/busses/i2c-rtl9300.c
-@@ -57,6 +57,7 @@ enum rtl9300_i2c_reg_fields {
- 	F_SDA_SEL,
- 	F_BUSY,
- 	F_CLK_DIV,
-+	F_EXT_SCK_5MS,
- 
- 	/* keep last */
- 	F_NUM_FIELDS
-@@ -77,8 +78,10 @@ struct rtl9300_i2c_drv_data {
- 
- #define RTL9300_I2C_MUX_NCHAN	8
- #define RTL9310_I2C_MUX_NCHAN	12
-+#define RTL9607_I2C_MUX_NCHAN	1
- 
- #define RTL9300_I2C_MAX_DATA_LEN	16
-+#define RTL9607_I2C_MAX_DATA_LEN	4
- 
- struct rtl9300_i2c {
- 	struct regmap *regmap;
-@@ -127,6 +130,14 @@ struct rtl9300_i2c_xfer {
- #define RTL9310_I2C_MST_MEMADDR_CTRL			0x4
- #define RTL9310_I2C_MST_DATA_CTRL			0x8
- 
-+#define RTL9607_I2C_CONFIG				0x22f50
-+#define RTL9607_IO_MODE_EN				0x23014
-+#define RTL9607_I2C_IND_WD				0x0
-+#define RTL9607_I2C_IND_ADR				0x8
-+#define RTL9607_I2C_IND_CMD				0x10
-+#define RTL9607_I2C_IND_RD				0x18
-+#define RTL9607_REG_ADDR_8BIT_LEN			0
-+
- static int rtl9300_i2c_reg_addr_set(struct rtl9300_i2c *i2c, u32 reg, u16 len)
- {
- 	int ret;
-@@ -178,6 +189,27 @@ static int rtl9300_i2c_config_chan(struct rtl9300_i2c *i2c, struct rtl9300_i2c_c
- 	return 0;
- }
- 
-+static int rtl9607_i2c_config_chan(struct rtl9300_i2c *i2c, struct rtl9300_i2c_chan *chan)
-+{
-+	const struct rtl9300_i2c_drv_data *drv_data;
-+	int ret;
-+
-+	if (i2c->sda_num == chan->sda_num)
-+		return 0;
-+
-+	ret = regmap_field_write(i2c->fields[F_CLK_DIV], chan->clk_div);
-+	if (ret)
-+		return ret;
-+
-+	drv_data = device_get_match_data(i2c->dev);
-+	ret = drv_data->select_scl(i2c, i2c->scl_num);
-+	if (ret)
-+		return ret;
-+
-+	i2c->sda_num = chan->sda_num;
-+	return 0;
-+}
-+
- static void rtl9300_i2c_config_clock(u32 clock_freq, struct rtl9300_i2c_chan *chan)
- {
- 	struct rtl9300_i2c *i2c = chan->i2c;
-@@ -202,6 +234,13 @@ static void rtl9300_i2c_config_clock(u32 clock_freq, struct rtl9300_i2c_chan *ch
- 	}
- }
- 
-+static void rtl9607_i2c_config_clock(u32 clock_freq, struct rtl9300_i2c_chan *chan)
-+{
-+	struct rtl9300_i2c *i2c = chan->i2c;
-+
-+	chan->clk_div = clk_get_rate(i2c->clk) / clock_freq - 1;
-+}
-+
- static int rtl9300_i2c_read(struct rtl9300_i2c *i2c, u8 *buf, u8 len)
- {
- 	u32 vals[4] = {};
-@@ -422,6 +461,11 @@ static int rtl9300_i2c_init(struct rtl9300_i2c *i2c)
- 	return regmap_field_write(i2c->fields[F_RD_MODE], 0);
- }
- 
-+static int rtl9607_i2c_init(struct rtl9300_i2c *i2c)
-+{
-+	return regmap_field_write(i2c->fields[F_EXT_SCK_5MS], 1);
-+}
-+
- static int rtl9300_i2c_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -574,6 +618,31 @@ static const struct rtl9300_i2c_drv_data rtl9310_i2c_drv_data = {
- 	.reg_addr_8bit_len = RTL9300_REG_ADDR_8BIT_LEN,
- };
- 
-+static const struct rtl9300_i2c_drv_data rtl9607_i2c_drv_data = {
-+	.field_desc = {
-+		[F_SCL_SEL]		= GLB_REG_FIELD(RTL9607_IO_MODE_EN, 13, 14),
-+		[F_EXT_SCK_5MS]		= MST_REG_FIELD(RTL9607_I2C_CONFIG, 26, 26),
-+		[F_DEV_ADDR]		= MST_REG_FIELD(RTL9607_I2C_CONFIG, 14, 20),
-+		[F_MEM_ADDR_WIDTH]	= MST_REG_FIELD(RTL9607_I2C_CONFIG, 12, 13),
-+		[F_DATA_WIDTH]		= MST_REG_FIELD(RTL9607_I2C_CONFIG, 10, 11),
-+		[F_CLK_DIV]		= MST_REG_FIELD(RTL9607_I2C_CONFIG, 0, 9),
-+		[F_I2C_FAIL]		= MST_REG_FIELD(RTL9607_I2C_IND_CMD, 3, 3),
-+		[F_BUSY]		= MST_REG_FIELD(RTL9607_I2C_IND_CMD, 2, 2),
-+		[F_RWOP]		= MST_REG_FIELD(RTL9607_I2C_IND_CMD, 1, 1),
-+		[F_I2C_TRIG]		= MST_REG_FIELD(RTL9607_I2C_IND_CMD, 0, 0),
-+		[F_MEM_ADDR]		= MST_REG_FIELD(RTL9607_I2C_IND_ADR, 0, 31),
-+	},
-+	.select_scl = rtl9310_i2c_select_scl,
-+	.config_chan = rtl9607_i2c_config_chan,
-+	.config_clock = rtl9607_i2c_config_clock,
-+	.misc_init = rtl9607_i2c_init,
-+	.rd_reg = RTL9607_I2C_IND_RD,
-+	.wd_reg = RTL9607_I2C_IND_WD,
-+	.max_nchan = RTL9607_I2C_MUX_NCHAN,
-+	.max_data_len = RTL9607_I2C_MAX_DATA_LEN,
-+	.reg_addr_8bit_len = RTL9607_REG_ADDR_8BIT_LEN,
-+};
-+
- static const struct of_device_id i2c_rtl9300_dt_ids[] = {
- 	{ .compatible = "realtek,rtl9301-i2c", .data = (void *) &rtl9300_i2c_drv_data },
- 	{ .compatible = "realtek,rtl9302b-i2c", .data = (void *) &rtl9300_i2c_drv_data },
-@@ -583,6 +652,7 @@ static const struct of_device_id i2c_rtl9300_dt_ids[] = {
- 	{ .compatible = "realtek,rtl9311-i2c", .data = (void *) &rtl9310_i2c_drv_data },
- 	{ .compatible = "realtek,rtl9312-i2c", .data = (void *) &rtl9310_i2c_drv_data },
- 	{ .compatible = "realtek,rtl9313-i2c", .data = (void *) &rtl9310_i2c_drv_data },
-+	{ .compatible = "realtek,rtl9607-i2c", .data = (void *) &rtl9607_i2c_drv_data },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, i2c_rtl9300_dt_ids);
--- 
-2.53.0
-
+Got it. Dropping this patch.
+Best regards,
 
