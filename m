@@ -1,296 +1,175 @@
-Return-Path: <devicetree+bounces-283506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283511-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iAqpLQwYzWnOaAYAu9opvQ
-	(envelope-from <devicetree+bounces-283506-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 15:05:16 +0200
+	id yFI7GA4RzWmMZwYAu9opvQ
+	(envelope-from <devicetree+bounces-283511-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 14:35:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D47E37AEC3
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 15:05:16 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D717137A82E
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 14:35:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1330830C5B65
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 12:22:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5D7973078128
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 12:26:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D543FFADD;
-	Wed,  1 Apr 2026 12:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF1AC40711C;
+	Wed,  1 Apr 2026 12:26:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="S+7GNyvM"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Voah0Pii"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EF273DBD77
-	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 12:22:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A87572E8DEC;
+	Wed,  1 Apr 2026 12:26:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775046142; cv=none; b=s66jXqkzdk/7PfSjU/NbNNRIbF7Pq+scrSYFmP1wOgwnDhnlEYSx9gTjKLZe1KvN23IxBAkfnHqA5UkBfvrsEUXTQrayBQmxTfnVBi9NSNBn9o7L9QFOusZu5pzYgPawFa3KxbzcRJrW2YOPxcn2aSYylkeqCETjRUdAUg5CZuU=
+	t=1775046369; cv=none; b=FgN5trwouadk6Lmrb7LIg5f4v1v/10ACqekfPeCtLu80nNBE+icam8LrzXrxPUkh8HfwvCGkbuIqWG6kq8ySpqrphg5yeTiJ7o/DWw1MeujZwnsuLDI6ozgHCvWOZ5BPW7+2THThusmUBGTDLZ7C7afxQXa2/GmM+bXg/nSKYo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775046142; c=relaxed/simple;
-	bh=YsuTa5lww5YDewP07S+OGZgDQWwFL2bTgBarz21FTJY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VUsemNu0Tp9jdl6RIfx4QUkxCXs10LBpiMVQyE2kly//P0PyzO/6XT+1Bc2RNR1Wy+LBUlll4BGymJEQzY8GW3T2KapqFY+8pQMEMhW0707aQtleaWK/+ogVpLrBziiUI+cV1pNdK6uNcR4GwUAYhxD7kvMoRDwkj6LbBo9oKsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=S+7GNyvM; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-486fe655187so89324195e9.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 05:22:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1775046139; x=1775650939; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2JvmNkijtfkleZl4AVh3d/5C7ipYcZLtHwRqCUWikPo=;
-        b=S+7GNyvMsbCFemCcYYP5Rfttkomv+zAQzRl4khfCO9ATuTwRMAlTgPJMK81oCybmQv
-         pDsbTX92Zr+zEBhe9+O1/VPFlxuxpqA6ygxd8DI2zcc/g4v0CznQ0SraWIs/0ZbyVkdN
-         zSB4mC0jmuvzLffHHIZ2vVBilLyNGqU+Z8mkizsqGXSKveq33FFdeatNAL3nh65Y01+Y
-         v/1GLud0A/xKO4VftC9qAc1r3Ujprg1saJ6p98I7bLAAXBj0o+BAW83XgWQOzsTIP2Uh
-         cHQBsP61+MaCr7aDH0SuLo63Pvj1XUMvqY3T4HdJ+w/m+To0R/4ctPzHoEbDNUh1bshz
-         tZ4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775046139; x=1775650939;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2JvmNkijtfkleZl4AVh3d/5C7ipYcZLtHwRqCUWikPo=;
-        b=dymaIpryAdM2OvwAGkbponRm9urxwUl2IDwIm5djKP/zGEFdvI+iOL8cIri/4YT0Y5
-         lq2EUGTBUX9Rk9E+6+osaHYtIDhS2nQj/7TwFOuB0zw+h8hNaNjRSgpE7QSzIrLt3zdm
-         MfFpsrPCcd4aeVyID5HUOMvEfqE3dsFBx2aX5xH1ddFE/EvbgYpncdzuMcikYZ99+rVi
-         +Z241vDuOb2eKjMLSbzkzQ6CdNX0D8ut7U2X3UjtxlPs6e1esLvxv201jZRqPrakME7j
-         EwdEMwR2O8Z/Qlla0koYwZ75Ucy5ZZonK5D1Z7NpQRsRq4bAnvp4ZSuMZZlJuJfT9CZ6
-         12Ow==
-X-Forwarded-Encrypted: i=1; AJvYcCVF5Uf+IxJ1uUZ2b3QEPKPuLq3hvPFSVwGmWQbOjJUzgyyC4YYRam2nD532gGerjErjvi2SN5sMWxxS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZ9LOWymBEmL89yBpXKsEKQskCya9oDD/SnCXtKhab9C6+62u7
-	w8wemh3K0Vs0TGDtKyXr+35qqMQM8+GTpHfl11MWAdOqbEkWQ+u1mxIFcDxH66lZ3hw=
-X-Gm-Gg: ATEYQzx7H6ohq8nIXF838v6RIh+/99OOqWl3MbKDAliuIPr1KmGzodpo68yGzn5uXoW
-	ruFZN/2O/5aIionBdpdbVLHuFao4fWcQWGQ5VMMbrT3n9wC4/zjW6esDIHcY02Cp7vwAyNucpjE
-	VPxn2WBIg6kd5dwj3cx7JQ52E847/chaJaJw6ygrnCThRHr/GTkTODPBgpAd2UaXYUoG2R3YHXt
-	neUzW0P3yy/kiFQmsjO+ZtpIcSTnxLa1xSXVA9rRWf06szkp9FBeQpQgVHkQAMeLMkljSDlasf0
-	s36RwCdxLKsj9ndyxdbKDXv7i28Zpt3yaUudvNsiqcgELNV/shwsJ7n0ij0lknxNqoahfVpSgGp
-	hwXQus2YLVOC9f038IlHgOuMTX3rsEvbca9dEjb9tFQ4WdqMpDL71XOwwQJl3Jm8sJspHXKV1yM
-	ZFLr+VuheAwYqj5bhWRKiPTH1SgA==
-X-Received: by 2002:a05:600c:a4a:b0:487:21c7:2885 with SMTP id 5b1f17b1804b1-4888355e52cmr57407695e9.5.1775046138735;
-        Wed, 01 Apr 2026 05:22:18 -0700 (PDT)
-Received: from pathway.suse.cz ([176.114.240.130])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4887e884dacsm160908025e9.15.2026.04.01.05.22.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Apr 2026 05:22:17 -0700 (PDT)
-Date: Wed, 1 Apr 2026 14:22:11 +0200
-From: Petr Mladek <pmladek@suse.com>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
+	s=arc-20240116; t=1775046369; c=relaxed/simple;
+	bh=U/vmET87/7jfdbNUxMDjD8n3bscYZ1KZ5mcNwJJFrp8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WrrNyU9oOF/7rU3FxMHzoPXUvudOWj8TGIYsv2VNGiuhu5Tv2KBNBD9z8bIRMqHyU2qyJl+Xcrr5ApBRIg/TNX0I6fpcmmFjMa/eEqxCDWRn4nVZUlYG1WhYbKym3o2aBqSu/0WlyZsvyniLR8lYDXoxx6gH/TF5zYqykylR9NE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Voah0Pii; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=l0q4mDPNZn9d2zngjDTeDMoVQBeBADZn5IY9XJjSkRU=; b=Voah0Piiz36h8FePLR/6Apla9L
+	94vZXyylBhu3oMrpPw+a+M6YSjVWi7/ls26IleNSIgkTg0Jt821RJg9voO/mWuj8z5ZEjrKr+WsLp
+	/qieh7YXXxuCbBrhWDrAWJM+Wj2mMiCxFC3PzciBOF6iFhzAGjXDkgT9jOFgB+Zwf9tFKv/dAEJLV
+	oQ12t9MB6tJZBUMUb6MTlJVxzbayjES0Yx1d/by0nrpU+OUxe+mEEQtbq/4+elbj9nP+H8V/ftVTh
+	eUz8zzrGRBgg2/VY5eDFYvUo9sr9+vkXdv6iOpE34p38j/PrTFTAlNQYKQ+ZXvMNYBpL43xmy68cb
+	FKmJOEpw==;
+Received: from sslproxy07.your-server.de ([78.47.199.104])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <nora.schiffer@ew.tq-group.com>)
+	id 1w7ue2-000IQS-1Z;
+	Wed, 01 Apr 2026 14:26:02 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy07.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <nora.schiffer@ew.tq-group.com>)
+	id 1w7ue1-00089b-38;
+	Wed, 01 Apr 2026 14:26:01 +0200
+From: Nora Schiffer <nora.schiffer@ew.tq-group.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Roger Quadros <rogerq@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-	Sergey Senozhatsky <senozhatsky@chromium.org>,
-	Shuah Khan <skhan@linuxfoundation.org>
-Subject: Re: [PATCH v9 2/9] lib: vsprintf: export simple_strntoull() in a
- safe prototype
-Message-ID: <ac0N89sNYcKAJkAP@pathway.suse.cz>
-References: <20260320-adf41513-iio-driver-v9-0-132f0d076374@analog.com>
- <20260320-adf41513-iio-driver-v9-2-132f0d076374@analog.com>
- <acZDneLrIPOmU5ci@pathway.suse.cz>
- <acZLHAT5qJyjKTsp@ashevche-desk.local>
- <4uijfg4efzaapu3esobez55hfwqzszwagpeb4lxej2ybmifu76@s3c57fmnsme6>
- <acZaGUV0MwuHNDru@ashevche-desk.local>
- <x34d7jz7be4ommjh6efx5mcq5pbpellykwuyrqayr4ske3lywf@wh46mu3anmcz>
- <qnb3ozrhrq5n4zkh2luitkpwr5oj4omgcuo5vnvy2gatdfdqlg@cgsgux7etcql>
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	Nora Schiffer <nora.schiffer@ew.tq-group.com>
+Subject: [PATCH v3 0/5] J722S SGMII support
+Date: Wed,  1 Apr 2026 14:25:20 +0200
+Message-ID: <cover.1775045279.git.nora.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <qnb3ozrhrq5n4zkh2luitkpwr5oj4omgcuo5vnvy2gatdfdqlg@cgsgux7etcql>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: Clear (ClamAV 1.4.3/27958/Wed Apr  1 08:24:34 2026)
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283506-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283511-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	DKIM_TRACE(0.00)[suse.com:+];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pmladek@suse.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[nora.schiffer@ew.tq-group.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	NEURAL_HAM(-0.00)[-0.994];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,suse.com:dkim,pathway.suse.cz:mid]
-X-Rspamd-Queue-Id: 1D47E37AEC3
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tq-group.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ew.tq-group.com:dkim,ew.tq-group.com:mid]
+X-Rspamd-Queue-Id: D717137A82E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon 2026-03-30 13:49:48, Rodrigo Alencar wrote:
-> On 26/03/27 03:17PM, Rodrigo Alencar wrote:
-> > On 26/03/27 12:21PM, Andy Shevchenko wrote:
-> > > On Fri, Mar 27, 2026 at 10:11:56AM +0000, Rodrigo Alencar wrote:
-> > > > On 26/03/27 11:17AM, Andy Shevchenko wrote:
-> > > > > On Fri, Mar 27, 2026 at 09:45:17AM +0100, Petr Mladek wrote:
-> > > > > > On Fri 2026-03-20 16:27:27, Rodrigo Alencar via B4 Relay wrote:
-> 
-> ...
-> 
-> > > > > Maybe we want to have kstrtof32() and kstrtof64() for these two cases?
-> > > > > 
-> > > > > With that we will always consider the fraction part as 32- or 64-bit,
-> > > > > imply floor() on the fraction for the sake of simplicity and require
-> > > > > it to be NUL-terminated with possible trailing '\n'.
-> > > > 
-> > > > I think this is a good idea, but calling it float or fixed point itself
-> > > > is a bit confusing as float often refers to the IEEE 754 standard and
-> > > > fixed point types is often expressed in Q-format.
-> > > 
-> > > Yeah... I am lack of better naming.
-> > 
-> > decimals is the name, but they are often represented as:
-> > 
-> > 	DECIMAL = INT * 10^X + FRAC
-> > 
-> > in a single 64-bit number, which would be fine for my end use case.
-> > However IIO decimal fixed point parsing is out there for quite some time a
-> > lot of drivers use that. The interface often relies on breaking parsed values
-> > into an integer array (for standard attributes int val and int val2 are expected).
-> 
-> Thinking about this again and in IIO drivers we end up doing something like:
-> 
-> val64 = (u64)val * MICRO + val2;
-> 
-> so that drivers often work with scaled versions of the decimal value.
-> then, would it make sense to have a function that already outputs such value?
-> That would allow to have more freedom over the 64-bit split between integer
-> and fractional parts.
-> As a draft:
+The J722S CPSW and SERDES are very similar to the variants found on the
+AM64, but they additionally support SGMII. Introduce new compatible
+strings for the J722S to add this support to the drivers.
 
-My understanding is that you want to allow parsing frequencies
-in the range from microHz to GHz.
+This is a prerequisite for the Single-Pair Ethernet interface of the
+TQ-Systems MBa67xx baseboard for the TQMa67xx SoM, which will be
+submitted separately.
 
-So, you might want to support input in simple float numbers
-with some precision, for example, 1.2GHz, 0.345Hz, ...
+For SGMII to actually work on the J722S, the am65-cpsw needs to be extended
+as well, which has been submitted for net-next:
+https://patchwork.kernel.org/project/netdevbpf/list/?series=1075806
 
-By simple, I mean that there is no x10^3 or so.
+Fallback compatible strings allow for the patches to be applied in any
+order and to go through different trees without breaking existing
+functionality.
 
-> static int _kstrtodec64(const char *s, unsigned int scale, u64 *res)
+v3:
+- Drop am65-cpsw changes from this series, they need to go through net-next
+- Fix missing PHY_GMII_SEL_RGMII_ID_MODE and PHY_GMII_SEL_FIXED_TX_DELAY in
+  gmii-sel driver for RGMII delay mode configuration
 
-I would personally change this to something like:
+v2:
+- Keep support for the AM64 compatible strings as a fallback, adjust commit
+  messages
+- Drop reference to AM64_CPSW_QUIRK_CUT_THRU flag, which only exists in the
+  TI vendor kernel
 
-  static int _unit_float_ktstrtodec64(const char *s, unsigned int precision, u64 *res, char **unit)
+Nora Schiffer (5):
+  dt-bindings: phy: ti: phy-j721e-wiz: Add ti,j722s-wiz-10g compatible
+  dt-bindings: phy: ti: phy-gmii-sel: Add ti,j722s-phy-gmii-sel
+    compatible
+  phy: ti: phy-j721e-wiz: add support for J722S SoC family
+  phy: ti: gmii-sel: add support for J722S SoC family
+  arm64: dts: ti: k3-j722s-main: use J722S compatibles for WIZ, gmii-sel
+    and CPSW3G
 
-It would allow to read float number in the the format XXXX.YYYYunit,
-for example 1.2Ghz
+ .../bindings/phy/ti,phy-gmii-sel.yaml         | 24 ++++++++++++-------
+ .../bindings/phy/ti,phy-j721e-wiz.yaml        | 20 ++++++++++------
+ arch/arm64/boot/dts/ti/k3-j722s-main.dtsi     | 12 ++++++++--
+ drivers/phy/ti/phy-gmii-sel.c                 | 13 ++++++++++
+ drivers/phy/ti/phy-j721e-wiz.c                | 24 +++++++++++++++++++
+ 5 files changed, 75 insertions(+), 18 deletions(-)
 
-, where:
-
-  + _unit_ means that it might set @unit pointer which point to the unit
-    string right after the number part.
-
-  + _float_ means that it will be able to read float numbers
-
-  + @precisions parameter defines the number of digits accepted
-    after the radix point. It is also used as multiplier for scaling
-    the output number.
-
-  + @res is pointer to the read number multiplied by the given
-    @precision
-
-  + @unit will be set to string after the number
-
-For example:
-
-  + s="1.2GHz", precision=3 will result in *res=1200, *unit="GHz"
-  + s="0.0100004", precision=3 will result in *res=10, *unit=""
-  + s=1.234567GHz, precision=3 will result in *res=1235, *unit="GHz"
-
-Note that the result is rounded in the last example.
-
-The function might be used like simple_strtoull() in memparse(),
-see lib/cmdline.c. Which is able to read the given size in B
-and handle various units like kB, GB, ...
-
-> {
-> 	u64 _res = 0, _frac = 0;
-> 	unsigned int rv;
-> 
-> 	if (*s != '.') {
-> 		rv = _parse_integer(s, 10, &_res);
-> 		if (rv & KSTRTOX_OVERFLOW)
-> 			return -ERANGE;
-> 		if (rv == 0)
-> 			return -EINVAL;
-> 		s += rv;
-> 	}
-> 
-> 	if (*s == '.') {
-> 		s++;
-> 		rv = _parse_integer_limit(s, 10, &_frac, scale);
-> 		if (rv & KSTRTOX_OVERFLOW)
-> 			return -ERANGE;
-> 		if (rv == 0)
-> 			return -EINVAL;
-> 		s += rv;
-> 		if (rv < scale)
-> 			_frac *= int_pow(10, scale - rv);
-> 		while (isdigit(*s)) /* truncate */
-> 			s++;
-
-We might/should use the first digit to round the _frac.
-
-> 	}
-> 
-> 	if (*s == '\n')
-> 		s++;
-> 	if (*s)
-> 		return -EINVAL;
-
-I would omit this. Instead I would set @unit pointer so that the
-caller might handle units defined after the number.
-
-> 	if (check_mul_overflow(_res, int_pow(10, scale), &_res) ||
-> 	    check_add_overflow(_res, _frac, &_res))
-> 		return -ERANGE;
-> 
-> 	*res = _res;
-> 	return 0;
-> }
-
-Otherwise, this approach looks sensible to me. IMHO, some generic
-API for reading numbers with misc units should be usable in more
-situations. And it would make the kernel interface more user
-friendly.
-
-Of course, we must not over-engineer it. But the above does not
-look much more complex than we already have.
-
-Best Regards,
-Petr
-
-PS: I am sorry if I used some mathematical terms a wrong way.
-    I am not a native speaker. And it is a long time since
-    I worked with float numbers.
+-- 
+TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht München, HRB 105018
+Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+https://www.tq-group.com/
 
