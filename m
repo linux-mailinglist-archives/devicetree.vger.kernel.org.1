@@ -1,50 +1,52 @@
-Return-Path: <devicetree+bounces-283532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283530-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IEPIGrQdzWnOaAYAu9opvQ
-	(envelope-from <devicetree+bounces-283532-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 15:29:24 +0200
+	id 6IXADa0fzWnOaAYAu9opvQ
+	(envelope-from <devicetree+bounces-283530-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 15:37:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A5B37B3D7
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 15:29:23 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B76137B57D
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 15:37:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 91F7B3093F9D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 13:16:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CEBAB31636A9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 13:16:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1AEA39FCB1;
-	Wed,  1 Apr 2026 13:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BDDB394787;
+	Wed,  1 Apr 2026 13:16:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="Q9CwM/oX"
+	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="dhJO1h+W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
+Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com [95.215.58.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A722248AF
-	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 13:16:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 355C633261F
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 13:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775049390; cv=none; b=eNLHTA2TajncJuenlcUNHnkdG1Qe86UdmVl26qmtIqKInKoGaEhuKypRcZcp1V/bmWlZooa8jYHDknjtaNtwouysbQUJV/QTjgwwrxARnYMHL58aJGgM2fhJplTBf27cD2XvE3be+d75cAJgwoSmYInX6KE1h5F5z73U53w/rto=
+	t=1775049388; cv=none; b=rH9G7wC/28oRmE2yG/RooxYvIXeDtYat+v+JjzLbwW3K+ZfVEmfEoofRZ61Esv+vflAYFc8/S+q3D3qy3n1eJKvrQzg6UOOFSlf2xb4E/KoLGKymGM0QPI6zUcjhs9QvhR4kuwC5m7/MwrkOqwBB6SU2+BHWb6Ea7TtzEuSHAnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775049390; c=relaxed/simple;
-	bh=LoHydvQkEtU2MKwAGqk1UlhONrINhmFCEE7KdZ5sTRo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FzDFXrGQ5jULykqEZ78a/ItYG1kQOpcBIpj35N7ACttsh6rLUMVsnzP9r4DSkEatr5sf+HVmKFu1Z+qBVnNAv1Fmr2B75w5Kl9RCEwWSfPtUaqH6JTOYsrwLinaL9eiNj1ggXw2lNwFHyGgR3QC71hrpYrE6FUCC25x7uD0Rp6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=Q9CwM/oX; arc=none smtp.client-ip=95.215.58.174
+	s=arc-20240116; t=1775049388; c=relaxed/simple;
+	bh=CGNQRMlk34XHqzvGHCMuqAN6f7M5pIDq3xpMr85kpk4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=VS+o9y8cEMI5fSlrdH234LX2HbcXYz3Ttnwu/+SwoCd527VwBn5G6B9xUl76RtdXFK6USLuiMoJyhalrU0FPE6wifA7G91CzHjvUFmovYxwlyPzwxfyV+EZElFNL0fIzTvNgqiV6pEDY+QY9A2ve8Ux1qMgHQwMD0/g6nKH0JXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=dhJO1h+W; arc=none smtp.client-ip=95.215.58.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1775049383;
+	s=key1; t=1775049384;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=hA1ON1KrKFmuynktbmS/7CrrbUp1WQrtm6ccdkoVF2w=;
-	b=Q9CwM/oXd6o2d1UrsrE7d/ftoEoJyQ4aMNUcnz7xLhhBfmtcDo2DN/htknOV8YYkKqhPpf
-	Q3o4cAzlep6DIyDGiAq/ccNM8wcr75OpxVzsOYNOC4Z3q33eB1nqngcl2rROIJlEkXn1gs
-	ZCXBNL5ByXU5FvhbQ8/8iXmiJhSDJxvTFCxTXOgCtSg06Z6t6OGMbPdP8Ovzov4sJLc73b
-	82luSB3MmQK5mJQJD0ObpGfWASDAYM3/aHFBg0I09K3tsNMJ0K33Ez8v5Os2RypNDBMj0G
-	x0KScUtfaBYy6Liio8bs14Ie5Z9prC7aFxXn7iLXA1NNM5O5Qm51Dbh2i1fQQg==
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=g9ydFqbwdCGJ7LRZTrnA9AUz17TQxDwNxo5bRSg0N6o=;
+	b=dhJO1h+Ww8MQKzUtbpNaLyCXn73u3UbmH5Tl74THeoTvoSR0HGHXD3AnR3AVAeS8jq1RXl
+	Obgk9v2DuAQOoI88zttsNkO5HNt/M4Qta4fBOWA4ik2lS2sCZBCYlFIY3HYNnHqbvNN0r8
+	Slh8ksHgkVJhkK1gQGRhtkRtglLvyQVayXovep6Ge5VoOHb67WfG9WdF9Qiqs2+Od7i4lY
+	D6wuEyBjxg7QdGX9JwB9SFW4P/XKjLosWz18iJ6Y1FUMsQrnZtVXueppuovRXdSfi+G2s2
+	BJrzdqMNfHybzgeRnXwBojP/hsyO1SOwYSEI+2W673rdvufpQy8cdAfk4TDewA==
 From: Diederik de Haas <diederik@cknow-tech.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -56,9 +58,11 @@ Cc: Diederik de Haas <diederik@cknow-tech.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 0/2] Improve gmac0 DT config for NanoPi R5S
-Date: Wed,  1 Apr 2026 15:11:37 +0200
-Message-ID: <20260401131551.734456-1-diederik@cknow-tech.com>
+Subject: [PATCH 1/2] arm64: dts: rockchip: Fix gmac0 reset pin for NanoPi R5S
+Date: Wed,  1 Apr 2026 15:11:38 +0200
+Message-ID: <20260401131551.734456-2-diederik@cknow-tech.com>
+In-Reply-To: <20260401131551.734456-1-diederik@cknow-tech.com>
+References: <20260401131551.734456-1-diederik@cknow-tech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,7 +77,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[cknow-tech.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[cknow-tech.com:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -82,7 +86,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283532-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283530-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[cknow-tech.com:+];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -93,23 +97,50 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,cknow-tech.com:dkim,cknow-tech.com:mid]
-X-Rspamd-Queue-Id: 88A5B37B3D7
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email,cknow-tech.com:dkim,cknow-tech.com:email,cknow-tech.com:mid]
+X-Rspamd-Queue-Id: 8B76137B57D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-These 2 patches contain a fix for an incorrect pinctlr definition and
-replaces several deprecated snps,reset* properties with their
-non-deprecated replacements.
+According to the NanoPi R5S 2204 schematic on page 6, GPIO0_C4 is for
+GMAC0_INT/PMEB_GPIO0_C4, while GPIO0_C5 is for GMAC0_RSTn_GPIO0_C5.
+While the 'reset-gpios' property was set correctly, the corresponding
+pinctrl didn't match that.
 
-Diederik de Haas (2):
-  arm64: dts: rockchip: Fix gmac0 reset pin for NanoPi R5S
-  arm64: dts: rockchip: Replace deprecated snps,* props for NanoPi R5S
+Next to fixing the pinctrl definition, also change the node name and
+phandle to match what is used in the schematic.
 
- arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
+Fixes: c6629b9a6738 ("arm64: dts: rockchip: Add FriendlyElec Nanopi R5S")
+Signed-off-by: Diederik de Haas <diederik@cknow-tech.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
+index 718d1a2da8e5..90ce6f0e1dcf 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
+@@ -98,7 +98,7 @@ &mdio0 {
+ 	rgmii_phy0: ethernet-phy@1 {
+ 		compatible = "ethernet-phy-ieee802.3-c22";
+ 		reg = <1>;
+-		pinctrl-0 = <&eth_phy0_reset_pin>;
++		pinctrl-0 = <&gmac0_rstn_gpio0_c5_pin>;
+ 		pinctrl-names = "default";
+ 	};
+ };
+@@ -132,8 +132,8 @@ &pcie3x2 {
+ 
+ &pinctrl {
+ 	gmac0 {
+-		eth_phy0_reset_pin: eth-phy0-reset-pin {
+-			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_up>;
++		gmac0_rstn_gpio0_c5_pin: gmac0-rstn-gpio0-c5-pin {
++			rockchip,pins = <0 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
+ 		};
+ 	};
+ 
 -- 
 2.53.0
 
