@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-283599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283601-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eExbA51KzWn4bQYAu9opvQ
-	(envelope-from <devicetree+bounces-283599-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:41:01 +0200
+	id OByaNPZNzWkWbwYAu9opvQ
+	(envelope-from <devicetree+bounces-283601-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:55:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E7E37E0B9
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:41:00 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D75B037E3E2
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:55:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 381AA30CC918
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 16:26:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1DFBD30CBA05
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 16:27:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46102402448;
-	Wed,  1 Apr 2026 16:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B77EC478E55;
+	Wed,  1 Apr 2026 16:25:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mirrorstack-ai.20230601.gappssmtp.com header.i=@mirrorstack-ai.20230601.gappssmtp.com header.b="uIT+dRHa"
+	dkim=pass (2048-bit key) header.d=mirrorstack-ai.20230601.gappssmtp.com header.i=@mirrorstack-ai.20230601.gappssmtp.com header.b="qD7jEojr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0220346AF2E
-	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 16:25:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E75047279C
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 16:25:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775060749; cv=none; b=EiH2D6O0tVmDOHULz0xgLP1GnA+xaGWxxuwWPIqnE1g1FrbSd2JJfg8JY6v7fYRgfwDQJjKPH1UDvHbyLCt/YHl/XKp4E64daENjky+V223KTO22DCzbmdrGuF2xDXMMB3eXVVUWe+Nmklh5D+PIkPBK2W3e2j83zh5loWWnPLs=
+	t=1775060753; cv=none; b=SodZ2DC6YM0wwKAcusZf327UdWd6fFbXoHFKBXbGl9G8Ta8Woac6ItHDo33bjnHG0hLUhDx0ixc+HM6N+bik8ZDbnfx11ngVOAd4QoOGlNZGVwRpldXTmRw1lti0Ot7c26FlSzaNobFMR3lFZVk6F1sHu82uzYo7JbVguCcSNOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775060749; c=relaxed/simple;
-	bh=y1smEGww2o/rd+W8nS0LWLrCoTwSm+mdCkNguHQRh2c=;
+	s=arc-20240116; t=1775060753; c=relaxed/simple;
+	bh=8dXLQMW8sVIcuzDqL6BA+V3ONKfbGvxIejWx1vqWCqE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=m+/3itM/G+1hWbw7UQjy+6bouJxc3R/CtYmpiUJkKbqNAAJx/n10uMRljQTKGSm/+/b97B+E1laRT0Qz0Qk6lhPdzdeuhayHFLdeFFMA0hGyDV2svqKktdYa+izF8WWTLozlGtZCapLcydKAV5zU4KuZATCuW+jlPI3Pvrr1OFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mirrorstack.ai; spf=none smtp.mailfrom=mirrorstack.ai; dkim=pass (2048-bit key) header.d=mirrorstack-ai.20230601.gappssmtp.com header.i=@mirrorstack-ai.20230601.gappssmtp.com header.b=uIT+dRHa; arc=none smtp.client-ip=209.85.216.47
+	 MIME-Version; b=Ebmsk6e0uNTqglpH9/I5mJHx+ZtxLSzUtNKsM4sgCKIvpvf6J8RjUuFZeJ+kVdIX/JE4QoBK50ie+CUEeTqp9Q80S1cSrwkc+jraHdJFAhuXNe3HNYH4AVQKfcmJ1EheaW4HXcS6ctlroXgNXeKwvfkCL+2yHHZvNalSTk2VGQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mirrorstack.ai; spf=none smtp.mailfrom=mirrorstack.ai; dkim=pass (2048-bit key) header.d=mirrorstack-ai.20230601.gappssmtp.com header.i=@mirrorstack-ai.20230601.gappssmtp.com header.b=qD7jEojr; arc=none smtp.client-ip=209.85.216.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mirrorstack.ai
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mirrorstack.ai
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-35d94f4ee36so2746959a91.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 09:25:44 -0700 (PDT)
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-35da9692ec3so3063844a91.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 09:25:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mirrorstack-ai.20230601.gappssmtp.com; s=20230601; t=1775060743; x=1775665543; darn=vger.kernel.org;
+        d=mirrorstack-ai.20230601.gappssmtp.com; s=20230601; t=1775060746; x=1775665546; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LScsGFwS6nIpkAboe0X19u7lqZkR6eLlyKmDNKTD1Lk=;
-        b=uIT+dRHazz7YL1Wru9T9TfYPikCqMhwBef+Dtch6msm/6wd4dcAwxAL0ox1IJc4znk
-         V8r5IXceynT8oUthS+AT+/ZyYm0h+r45QSQ+g5KzT8cTvJ3i08c8nn3dWr6v3dtt8K+7
-         Q4F9Yyx3YPxHes5pH8xsxdgCRxIbhSJd2ZU117XeJnce2FC0ToY7qoJps5VvGwupYQE+
-         l7nQyIhGfcNlbt4q9WEvkixJ0jb3wtWf7Zmfo4fioBguzFYaci1PeluJYnSWQ2Z0okCm
-         WbkJAtOUt1L1zXmK7kJa+la5ctoSiNg2euYeyD8KGI5yDkWN/34a31WYsz5sOJds9eGy
-         /+ZQ==
+        bh=WYbjRDMYvPXm7PwKTidWBLBGSVwyNzNOx/MgyeEmpgE=;
+        b=qD7jEojremObzSB6ufDiJ2ljuL1Am72xsEl5c20ThlHvZ17AuVapEEzS5FH9TZU783
+         h3HmDUl9OJfvvsQ8ydUgKGlfbjYTHiJ1TizYvq+LwOq/7aIUUq3MSNrfAkyVz8L/Kp27
+         nEDUQ+7Ztdauc6aLIHJO0F5r7TB59r9JXr9fr0jmZulJilEQ8dpIOsFVhYkfsmVEB6oj
+         cWBSNXpSkiuJZ0AxX/y7Mba1MlWMbkmBDYAICEc69hL5Eu8X1uNAyI221fUJ1vffvBwe
+         zPynoWFF5dvPn168ucoPEFsFiZVgoUOHBKLdDbFmVSdqi8TntL3FX3yFOyGyTG7ZxcVl
+         Tetw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775060743; x=1775665543;
+        d=1e100.net; s=20251104; t=1775060746; x=1775665546;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=LScsGFwS6nIpkAboe0X19u7lqZkR6eLlyKmDNKTD1Lk=;
-        b=BoqyVo9YjRFVW+c3evcbfOWgQz3F4mwzh2gmwRPuAbp85cS1foNIBEVngdBf6p6vjZ
-         zQ25s0cAlRCcXiuI4mi7VUc2fPyLWhIKIQdyh7RrPsYUjf52JLbshKHRgQlN3+dHKodq
-         i044opMZOnS2gGa2Qt5ZyO5YA1xhqUtvQbSm/iYGAZgvuZeG6UErJE4dUzwAsbKYoyao
-         GaYgMXLG3APpkWCjTNXiXv+g/guRYjMg2RLoM1TvybzHoTwpjJcpZckj89BWyPe/Fx0Z
-         82XVpCOw3Vph4ZNEtnHKkLWOyLRkTorSkFjKQ66McmbtwdQZKEjLYpHeuYWv+MOLLCWJ
-         wWbA==
-X-Forwarded-Encrypted: i=1; AJvYcCWGjINF/XRrmZfZCePkSRy4HCSm0kRcdt7SZ0ZMqEWzEk1PHoSfuEKOy8GsQ2wdXrvvHUboA12dfqXz@vger.kernel.org
-X-Gm-Message-State: AOJu0YycSEK3oGxrZypVO9ayjVOAL9elEZ2R/d5ZYJk0dM4pti/m5dez
-	fymSqsksKH1RQPRe0gPapdxJA8Mk+QnqzAGjGlAktFBGaUNu4NhJH552ah+S4tuDeKbw
-X-Gm-Gg: ATEYQzyQQweKxaNebqdDTChS0yAjMluGfR230+O5VYgE3Pn150+V4a8GbqT2FZLeY+K
-	itxhkjfXge3RshvhcI6dwGpFzMpjlahj0nrP8iIYwYjeDNv8hWKskxSTqZSACe8W5BZ1WD3M8KY
-	I8ZV1+STjaiIBxQ4te+gRdARI9NAXNt39OR4RVesF1JFGffkNYTG0sv5vcT+gr2Pn/jODdDC+JY
-	aTeRBMxJClDKHRk9Q8Rq1GsClIRX31KbyBzhmBB0uI1BwI12yfOqGj/ke7sC2x6K/RZcSxbZXY2
-	UtmkEfVn/0grPFdpkYTKMdx8+IGeLrTWy8F6QJ0WuWXw7+3W+YCilmKgABh5X6ITnk/jwWoix3d
-	G38hbJvJ/pheFaD9W+X7Wh0Y57hUhTCp9sRbNIVKaO4RwgZMmxfhH9rtWmGwUSTvQ9gCd7Og8t7
-	JD3fLsDUlAaSt+Z6fwEKs6MekVUOjLtLpgALesKyL9obeYvucd024gneiuaPwMQer5YZpq71//P
-	UnfU9PgNJjlSDrmJfyzdhdkAMy2Mxk/QNt6AHmUdA==
-X-Received: by 2002:a17:90a:e710:b0:35d:a87b:ef69 with SMTP id 98e67ed59e1d1-35dc7070b31mr3944977a91.28.1775060742902;
-        Wed, 01 Apr 2026 09:25:42 -0700 (PDT)
+        bh=WYbjRDMYvPXm7PwKTidWBLBGSVwyNzNOx/MgyeEmpgE=;
+        b=KceqNqUbPLdmiMocim6xLTKUeD5LgJH85+Tn3/29mQmFBrb5qPuK8Q97ErELh3xVsp
+         AP8q4bRF2duSzdNVlSvFrYq5MzxONlttMT1cU1kiiGmpKVFC0zJz+EUcMOwA/owv/Pm2
+         XAGplcXZkqlxvEQ9tpw4gJR95GQ6zAzzuWq9U1xQvVcNfbANXbrB2ba/bfdW1Vjf2Sdw
+         4k5CU3QHdsnvJ9szwVa6pHe98HRjss6nFz1uHIc/yqBve+JMDk96WyTi66mJT7WH88L9
+         UMn/0+5OEwgE8YQCs5G2PDcaXIlUy7CMjbzzXfpjcGS7PFrfNA+bCejw2ejBZycaNQe7
+         NYxA==
+X-Forwarded-Encrypted: i=1; AJvYcCWaAyOMjsCu3xhE/qRKKOL/6+K3fnKjNAOBPLIypPI5vaSWRGhgnZKXFEltA3BhdN/v1uUW9WpHgPti@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNWnAFuXsk4+awYxJiY94BUJZubW5Xjgv9dbH6d2w18+9kFqQT
+	0LJzxIItVSaMuZ2ez95Zj062Ys1bEbno1IWPwWjUtNzMYkkTsIEy/r6rP1EnubZmOUMDmxCZ81T
+	lHGBBUJSHMQw=
+X-Gm-Gg: ATEYQzxq6csoRcTFc6CuYooAFQFV9OxBRJvkPbKo3CkBol/Of6yRgfc8dEBTzf3z2hz
+	I484BJvRsZwq9OO2Di5QzmSaH6ycbjSL//xdidc3x5YnYvlrmJYJK+x9atJZcdicCSx/MK1jZqR
+	EO6NyzHiflB4rwzrnhz0ieP57S9iD5+Vz01kpO5ieTpBw4m1z0Wf1w/pywcpXhqRQj7uABf8syj
+	HK3Vf0wpIwULmVhZehoPWiploJk6X7nvdfpfWrK7sr3snLcx/biBhLfPTfkjEJvfOzcY3TbZImT
+	BVU/BavMkKQW0uhCTkeexnFZcyVpCWKKE1GE2fIl/FpXWtJUFQk5rG0NjFQdNR+WCV1hzFUzn8X
+	AnW/+EahCTDSh6CKr6TUghzg8h/A9n459OFBSfZqfyap4D7P/T7JLXKNVpMJIBMANpbx0q4hVfD
+	0GCH62N9jb7EXtPd73f3KgEnYwbUW7lrgk+znNy8UIVJRi0yBYEWEPVZV3a4BAAjUqds1xyuv3/
+	G75HfPVlW6lRYHjB22h42i11darE7XhgdKXZPbM+Q==
+X-Received: by 2002:a17:90b:5107:b0:359:f3b1:6811 with SMTP id 98e67ed59e1d1-35dc6e77e5dmr3618101a91.1.1775060746179;
+        Wed, 01 Apr 2026 09:25:46 -0700 (PDT)
 Received: from ip-172-26-8-186.ap-northeast-1.compute.internal ([2406:da14:e8:bc00:e546:17ee:7142:6d05])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35dd35e34eesm281813a91.2.2026.04.01.09.25.39
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35dd35e34eesm281813a91.2.2026.04.01.09.25.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Apr 2026 09:25:42 -0700 (PDT)
+        Wed, 01 Apr 2026 09:25:45 -0700 (PDT)
 From: Sheng Kun Chang <nothingchang@mirrorstack.ai>
 To: jic23@kernel.org
 Cc: lars@metafoo.de,
@@ -93,9 +94,9 @@ Cc: lars@metafoo.de,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Sheng Kun Chang <nothingchang@mirrorstack.ai>
-Subject: [PATCH 1/3] dt-bindings: iio: accel: add binding for adi,adis16203
-Date: Wed,  1 Apr 2026 16:24:55 +0000
-Message-ID: <20260401162458.88110-2-nothingchang@mirrorstack.ai>
+Subject: [PATCH 2/3] staging: iio: adis16203: align MODULE_LICENSE with SPDX identifier
+Date: Wed,  1 Apr 2026 16:24:56 +0000
+Message-ID: <20260401162458.88110-3-nothingchang@mirrorstack.ai>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260401162458.88110-1-nothingchang@mirrorstack.ai>
 References: <20260401162458.88110-1-nothingchang@mirrorstack.ai>
@@ -111,18 +112,18 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[mirrorstack-ai.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283599-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283601-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[mirrorstack.ai];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -133,78 +134,32 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 77E7E37E0B9
+X-Rspamd-Queue-Id: D75B037E3E2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add devicetree binding documentation for the Analog Devices
-ADIS16203 Programmable 360 Degrees Inclinometer, in preparation
-for moving the driver out of staging.
+The SPDX license identifier is GPL-2.0+ (GPL v2 or later) but
+MODULE_LICENSE was set to "GPL v2" which indicates GPL v2 only.
+Change to "GPL" which means GPL v2 or later, matching the SPDX
+header.
 
 Signed-off-by: Sheng Kun Chang <nothingchang@mirrorstack.ai>
 ---
- .../bindings/iio/accel/adi,adis16203.yaml     | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
+ drivers/staging/iio/accel/adis16203.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
-new file mode 100644
-index 000000000..6c5e2833c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/accel/adi,adis16203.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/accel/adi,adis16203.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ADIS16203 Programmable 360 Degrees Inclinometer
-+
-+maintainers:
-+  - Jonathan Cameron <jic23@kernel.org>
-+
-+description: |
-+  Programmable 360 degrees inclinometer with SPI interface.
-+    https://www.analog.com/en/products/adis16203.html
-+
-+properties:
-+  compatible:
-+    const: adi,adis16203
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        inclinometer@0 {
-+            compatible = "adi,adis16203";
-+            reg = <0>;
-+            spi-max-frequency = <2500000>;
-+            interrupt-parent = <&gpio0>;
-+            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+    };
-+...
+diff --git a/drivers/staging/iio/accel/adis16203.c b/drivers/staging/iio/accel/adis16203.c
+index 830ff38fd..0ea127c9c 100644
+--- a/drivers/staging/iio/accel/adis16203.c
++++ b/drivers/staging/iio/accel/adis16203.c
+@@ -310,6 +310,6 @@ module_spi_driver(adis16203_driver);
+ 
+ MODULE_AUTHOR("Barry Song <21cnbao@gmail.com>");
+ MODULE_DESCRIPTION("Analog Devices ADIS16203 Programmable 360 Degrees Inclinometer");
+-MODULE_LICENSE("GPL v2");
++MODULE_LICENSE("GPL");
+ MODULE_ALIAS("spi:adis16203");
+ MODULE_IMPORT_NS("IIO_ADISLIB");
 -- 
 2.43.0
 
