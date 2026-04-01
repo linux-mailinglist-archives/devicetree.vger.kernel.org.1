@@ -1,346 +1,301 @@
-Return-Path: <devicetree+bounces-283595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283603-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AKjGBMtMzWl6bgYAu9opvQ
-	(envelope-from <devicetree+bounces-283595-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:50:19 +0200
+	id AFbBFT5KzWn4bQYAu9opvQ
+	(envelope-from <devicetree+bounces-283603-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:39:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4377437E2B3
-	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:50:18 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFC6337E067
+	for <lists+devicetree@lfdr.de>; Wed, 01 Apr 2026 18:39:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5E0F230C1F20
-	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 16:26:12 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A1AEC308B1E9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Apr 2026 16:35:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9AC93115A5;
-	Wed,  1 Apr 2026 16:25:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D4DC4657DC;
+	Wed,  1 Apr 2026 16:35:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pt6gn+Yl";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FVJaNKI9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E77CE43DA55
-	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 16:25:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBA363BF669
+	for <devicetree@vger.kernel.org>; Wed,  1 Apr 2026 16:35:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775060745; cv=none; b=QDashTUaXFZjsHLfnTXqr9R5H87ZXMSHpp0YS6mcFhsMWJB7o+FRCgJOicpbRXfduIe10yJMzGZWxX+YRuuo86CloRCjL8Eqy7hgku59pz7SGOMqyVafjk7WDUWXHEUJnoRXZdFUGqC6qoqnuFDVW0PFTUn+oy0wSfRibjHlePY=
+	t=1775061325; cv=none; b=gFsGTZpuakyr94XmkQ9OptC+EuP+E4JsPFsBQHgibMXCm0/RMMA/eWIZNK8p+mERZRWmbJpoC7DX+dfWC6MzWoCwfEqAMVDps70TBpimvh6uXXbsB16AH79DXm6+EK5/BW8lmryDHqFphChdKHT7nyehyPG5+pQgLH4J70H65fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775060745; c=relaxed/simple;
-	bh=WfLdliuubO9b+njcPRfmEVQokukn5/xZH8QylNlNLFU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FRSgbuA24xTxtXRDl09R0K5kGE8AHB1F4IorV7Ta2fiT19BvXRB77v8cvbOeRZOgfC2kUaOk/ZRlSwXW2g7pbrp4c87/px7CoMPOz2kNNm3dgdZpoisFChLx0gJOSWGgyAVobaIGSrRI2XRCEMjdyLQh4mgqeQAY8mWfDt3IccE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1w7yNV-00088k-RK; Wed, 01 Apr 2026 18:25:13 +0200
-Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1w7yNV-003EjM-15;
-	Wed, 01 Apr 2026 18:25:13 +0200
-Received: from ore by dude04 with local (Exim 4.98.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1w7yNV-000000079rb-11QM;
-	Wed, 01 Apr 2026 18:25:13 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Peter Rosin <peda@axentia.se>,
-	Linus Walleij <linusw@kernel.org>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	David Jander <david@protonic.nl>
-Subject: [PATCH v10 6/6] mux: add NXP MC33978/MC34978 AMUX driver
-Date: Wed,  1 Apr 2026 18:25:10 +0200
-Message-ID: <20260401162510.1706073-7-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260401162510.1706073-1-o.rempel@pengutronix.de>
-References: <20260401162510.1706073-1-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1775061325; c=relaxed/simple;
+	bh=7N701LTx9bJ0sc4tJYW2zwmhMyTG1gcsh4UxcNggmXg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CXFNLtEZ3ZPbCLYUFJq2RSdl2VYTD9GSKpk1Y4oAwVwjPqQmI/oZWdNBNpI6CHXtBXWVgOVc7UkfyrfT2Z86qd84pJjbJ2VbPT27PbHnz852dcF9O0AIXwG30JEq5+Dwd2o4hnkdU6hZxPpzGA2SjRhB/mYOstsXnnnXclunlHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pt6gn+Yl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FVJaNKI9; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 631EPt2R1881827
+	for <devicetree@vger.kernel.org>; Wed, 1 Apr 2026 16:35:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oOH6Gjls3CqWEpA9mqTKUhqgpzoClPrvgbLT+iZ4b6Y=; b=pt6gn+YlNCcP80au
+	cWyjxIZ6zwykIJftcfntN/LeviWS/FMUn63ziH+UDapF9hwYZjD4Rpqo/JTmUn0h
+	tCp/9zyR/IUUkni7/agAr4cKUp19VlOdmOm3mZq/VuMLFvejE5U5niqX6QOOPccP
+	DGw8slxEXiaNQQoo3bMNJX8joAPf3BokVC1/NFWl5VZSzm3WlS1mc8jGA+rOib/Z
+	8PPsH4sH8JDJoYL/hYfSpPKse1LVOCilcWaNLY22PI4bZ33JSymEdBiWleJvY2uL
+	Tp9zP4tu/YqKkwEJJdK8cVBWuiLs9R+sfJ8wFpsHlaPi0NGiry4oUV1pc+vcX+ZQ
+	IQGUPQ==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d954c8njt-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 16:35:23 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2b241be0126so157659375ad.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 09:35:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1775061322; x=1775666122; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oOH6Gjls3CqWEpA9mqTKUhqgpzoClPrvgbLT+iZ4b6Y=;
+        b=FVJaNKI9L5BBC1HJ9d16dCrEKZQYpR7MUtSojW/TgzbkaxH2AO4kvrGw2+0hs5J1DK
+         HFMur7WCkvjzrRVYtWz42rmLA4B6XvSlw/Gq3w820CpUqD+NftYTvT/zAWcyd56GAT0K
+         NkV/L4p61ZrSLMD5MW8ceqaCmDWVRpom/0a4ldRTwCaq1Xt8JcPZXVyPKaXtNbtY0yI7
+         5ZgUKRv0Nw1HMxiWAgM77Jp6kJjR06bRvdOZLUjNNUykNzroImQ6lWC6Bx2bnZUQyEjp
+         rnJer4xa+8sk7tTDYaWoTDO35ZDXdQoqX9wub9m5Y6NN/Y/A/WPSPKHOKUlR15OPAeJe
+         0uNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775061322; x=1775666122;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oOH6Gjls3CqWEpA9mqTKUhqgpzoClPrvgbLT+iZ4b6Y=;
+        b=doQQaRz3KGJxs0wWE/E/0Y5G1J1nuStsKYoE8OeBDxyfBRUCpUzrbeerFbUqtw8EBH
+         LHkGYmJj9me5BntNG18Sz/xT/ypLcEO+s8niY5s33js2cbZtn4i4+LkRVw9Uc7HImQtN
+         pDNZg3iRHp4jcem7X4uEz1K7X1l6Ok36fGLDtrYW0s63lRRIR+eC1V7i4JxAVMZaMHjK
+         oKKyL2HsJNjkbOIWT5uU9u/I/BqH1AXUWhec1knsHCHqzCilE8tUOfrkCdXTgdDdj7wC
+         NcuonntJoxcphTACgCYyG9f2ahlH0x0q6Q3eum+JFudGvSh6G84W7c/MWRDk0mez3Hn2
+         5DBg==
+X-Forwarded-Encrypted: i=1; AJvYcCX46imX+yzyz41NEfApk4jEeDjqa/11+1KcII94GObeCGUdnbWSIWKbcdX8mE6dUYIhrILK9Nc6TdWH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTlJj4rQm8HwZDFgl4jYDKYoumZ2gqxZbh5gGltyyhR062tVuY
+	AInSX1LK35Eq6qWokulfTPT7Zt1ibJ8clRPIA2zkpB1xjvVm2o/v6zMTV1NEpO0eOrxYQ8WuPxS
+	R6GQr1PYPi/9TmxVgXUIFYAGhZ+/FYQqEmKJrXg85ed3VE09cQslelUvjdeAb7gbH
+X-Gm-Gg: ATEYQzzsBePlYaMPPQ0cF7F5RuozLxsXHrW+sv+Zg0CN+VakN1x8FR9Oz1X+fVbFZLg
+	S7s/vMkvENVQ7TmgWMteweqpboCe4G3/qYwZcjYZFpDGCmzLZPI33PL3iYeMuCa/7P7pCQ3bcp4
+	Z4+zD38RhYymu2K8nK2ajfwJJk3yKVZrK1wcgpsMzCLKWh0ltWQfnb1jMIcD2StiSh3GNK0YZNA
+	gLYyokM9qEaRL9Wf4Y+OrLUR+x5fGal/a2afpZUgle89feb4e87YOQ2bE6ryILtYcEVvtYY0a13
+	iO5a+6sYaVuDOmO1DLEjj1GFyMIIjpbKO04VlV1E4389GEhE9PythjxkeWgWzYb1Xnp3j6iM5Nb
+	lIp07CgAV14pRZffvU1yfx/lBiWz+Ikv5sMqSLz/jnVuNzp3o2Q==
+X-Received: by 2002:a17:903:2b0c:b0:2b0:ac1e:9720 with SMTP id d9443c01a7336-2b269cffdefmr43544525ad.23.1775061322250;
+        Wed, 01 Apr 2026 09:35:22 -0700 (PDT)
+X-Received: by 2002:a17:903:2b0c:b0:2b0:ac1e:9720 with SMTP id d9443c01a7336-2b269cffdefmr43544125ad.23.1775061321745;
+        Wed, 01 Apr 2026 09:35:21 -0700 (PDT)
+Received: from [192.168.0.195] ([49.204.30.146])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b27478b658sm2609885ad.31.2026.04.01.09.35.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Apr 2026 09:35:21 -0700 (PDT)
+Message-ID: <ebce5979-0ab5-47ff-963e-68e27216821d@oss.qualcomm.com>
+Date: Wed, 1 Apr 2026 22:05:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [1.54 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 3/4] clk: qcom: tcsrcc-glymur: Migrate
+ tcsr_pcie_N_clkref_en to clk_ref common helper
+To: Qiang Yu <qiang.yu@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, johan@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260331-qref_vote-v1-0-3fd7fbf87864@oss.qualcomm.com>
+ <20260331-qref_vote-v1-3-3fd7fbf87864@oss.qualcomm.com>
+Content-Language: en-US
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+In-Reply-To: <20260331-qref_vote-v1-3-3fd7fbf87864@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=WMlyn3sR c=1 sm=1 tr=0 ts=69cd494b cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=UX8sLPG5SLFWA/DeEh7vkg==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=EUspDBNiAAAA:8 a=1wW_Jg1dmpZ7RQPaF88A:9 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-GUID: _UWOH0pBlavwiisU4jeD0emKoLWN4Jzc
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDAxMDE1NSBTYWx0ZWRfX3hr3rATsxs00
+ CnPnmaf93AOae4MmA8lZmBWwuxe3Ke+ZacX0tqINreHnclmiOYy8i51CTWA5+v4PUl6NTR26P6J
+ ukEGkoXfNNTdQDJUjsPkC4ABh24f8L8HnqLs/E2XPbxiIVWqMRs8WHgRND0pKL4mU+Utw8t8s5+
+ RjZdusVyA+EQe6G7MkeIDszvcP6jUuH5icJV5gdqhPE+qtQ1x/Sdt9I8270FRvDOKYVa2N6hiZq
+ znQp5LEDJjeBzZ3B988c8i17tjtLSULHZhxqMkjV9jkkVgZabDvJhUOna6T6FL4EHS1fcTPMAMt
+ 5SjbontAMtTE5xMTmQF943Q1OGB0BoRnQKDxyxozGEwfHgOHtZRohw3OMtqMPusp7vzNCYv1slm
+ aSD29brnD5DLvGGFlqV1NEutFgnKWCfyvL4Axo9Q1I3trB5WuQ80olW1qIs3scC4MDVU1lEJL0M
+ cQfxJ2vY5ERtg++uL0Q==
+X-Proofpoint-ORIG-GUID: _UWOH0pBlavwiisU4jeD0emKoLWN4Jzc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-01_04,2026-04-01_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 adultscore=0 priorityscore=1501 phishscore=0 suspectscore=0
+ clxscore=1015 malwarescore=0 lowpriorityscore=0 spamscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2604010155
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	RCVD_COUNT_FIVE(0.00)[6];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-283595-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-283603-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.981];
-	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,pengutronix.de:email,pengutronix.de:mid]
-X-Rspamd-Queue-Id: 4377437E2B3
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[taniya.das@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: EFC6337E067
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add a mux-control driver for the 24-to-1 analog multiplexer (AMUX)
-embedded in the NXP MC33978/MC34978 Multiple Switch Detection
-Interface (MSDI) devices.
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
-changes v10:
-- no chnages
-changes v9:
-- rename mc33978-mux to mux-mc33978 in the Kconfig help
-- fail if fwnode is NULL
-changes v8:
-- no chnages
-changes v7:
-- Simplify the return path and local variable assignment in
-  mc33978_mux_set().
-- Change idle_state to a signed integer to properly handle negative MUX
-  subsystem constants.
-- Default to MUX_IDLE_AS_IS when the "idle-state" device tree property
-  is missing.
-- Explicitly reject MUX_IDLE_DISCONNECT since the hardware does not
-  support disconnecting the multiplexer.
-changes v6:
-- parse optional idle-state property
-- validate idle-state against available AMUX channels
-- lower-case probe error messages
-changes v5:
-- no changes
-changes v4:
-- no changes
-changes v3:
-- no changes
-changes v2:
-- Add missing <linux/err.h> include.
-- Add platform_device_id table
----
- drivers/mux/Kconfig       |  14 ++++
- drivers/mux/Makefile      |   2 +
- drivers/mux/mc33978-mux.c | 141 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 157 insertions(+)
- create mode 100644 drivers/mux/mc33978-mux.c
 
-diff --git a/drivers/mux/Kconfig b/drivers/mux/Kconfig
-index c68132e38138..ffe92a714096 100644
---- a/drivers/mux/Kconfig
-+++ b/drivers/mux/Kconfig
-@@ -45,6 +45,20 @@ config MUX_GPIO
- 	  To compile the driver as a module, choose M here: the module will
- 	  be called mux-gpio.
- 
-+config MUX_MC33978
-+	tristate "NXP MC33978/MC34978 Analog Multiplexer"
-+	depends on MFD_MC33978
-+	help
-+	  MC33978/MC34978 24-to-1 analog multiplexer (AMUX) driver.
-+
-+	  This driver provides mux-control for the analog multiplexer,
-+	  which can route switch voltages, temperature, and battery voltage
-+	  to an external ADC. Typically used with IIO ADC drivers to measure
-+	  analog values from the 22 switch inputs plus temperature and VBATP.
-+
-+	  To compile the driver as a module, choose M here: the module will
-+	  be called mux-mc33978.
-+
- config MUX_MMIO
- 	tristate "MMIO/Regmap register bitfield-controlled Multiplexer"
- 	depends on OF
-diff --git a/drivers/mux/Makefile b/drivers/mux/Makefile
-index 6e9fa47daf56..339c44b4d4f4 100644
---- a/drivers/mux/Makefile
-+++ b/drivers/mux/Makefile
-@@ -7,10 +7,12 @@ mux-core-objs			:= core.o
- mux-adg792a-objs		:= adg792a.o
- mux-adgs1408-objs		:= adgs1408.o
- mux-gpio-objs			:= gpio.o
-+mux-mc33978-objs		:= mc33978-mux.o
- mux-mmio-objs			:= mmio.o
- 
- obj-$(CONFIG_MULTIPLEXER)	+= mux-core.o
- obj-$(CONFIG_MUX_ADG792A)	+= mux-adg792a.o
- obj-$(CONFIG_MUX_ADGS1408)	+= mux-adgs1408.o
- obj-$(CONFIG_MUX_GPIO)		+= mux-gpio.o
-+obj-$(CONFIG_MUX_MC33978)	+= mux-mc33978.o
- obj-$(CONFIG_MUX_MMIO)		+= mux-mmio.o
-diff --git a/drivers/mux/mc33978-mux.c b/drivers/mux/mc33978-mux.c
-new file mode 100644
-index 000000000000..b44c862f0dbe
---- /dev/null
-+++ b/drivers/mux/mc33978-mux.c
-@@ -0,0 +1,141 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (c) 2026 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
-+/*
-+ * MC33978/MC34978 Analog Multiplexer (AMUX) Driver
-+ *
-+ * This driver provides mux-control for the 24-to-1 analog multiplexer.
-+ * The AMUX routes one of the following signals to the external AMUX pin:
-+ * - Channels 0-13: SG0-SG13 switch voltages
-+ * - Channels 14-21: SP0-SP7 switch voltages
-+ * - Channel 22: Internal temperature diode
-+ * - Channel 23: Battery voltage (VBATP)
-+ *
-+ * Consumer drivers (typically IIO ADC drivers) use the mux-control
-+ * subsystem to select which signal to measure.
-+ *
-+ * Architecture:
-+ * The MC33978 does not have an internal ADC. Instead, it routes analog
-+ * signals to an external AMUX pin that must be connected to an external
-+ * ADC (such as the SoC's internal ADC). The IIO subsystem is responsible
-+ * for coordinating the mux selection and ADC sampling.
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/mux/driver.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+#include <linux/mfd/mc33978.h>
-+
-+/* AMUX_CTRL register field definitions */
-+#define MC33978_AMUX_CTRL_MASK	GENMASK(5, 0)	/* 6-bit channel select */
-+
-+struct mc33978_mux_priv {
-+	struct device *dev;
-+	struct regmap *map;
-+};
-+
-+static int mc33978_mux_set(struct mux_control *mux, int state)
-+{
-+	struct mux_chip *mux_chip = mux->chip;
-+	struct mc33978_mux_priv *priv = mux_chip_priv(mux_chip);
-+	int ret;
-+
-+	if (state < 0 || state >= MC33978_NUM_AMUX_CH)
-+		return -EINVAL;
-+
-+	ret = regmap_update_bits(priv->map, MC33978_REG_AMUX_CTRL,
-+				 MC33978_AMUX_CTRL_MASK, state);
-+	if (ret)
-+		dev_err(priv->dev, "failed to set AMUX channel %d: %d\n",
-+			state, ret);
-+
-+	return ret;
-+}
-+
-+static const struct mux_control_ops mc33978_mux_ops = {
-+	.set = mc33978_mux_set,
-+};
-+
-+static int mc33978_mux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mc33978_mux_priv *priv;
-+	struct fwnode_handle *fwnode;
-+	struct mux_chip *mux_chip;
-+	struct mux_control *mux;
-+	s32 idle_state;
-+	int ret;
-+
-+	mux_chip = devm_mux_chip_alloc(dev, 1, sizeof(*priv));
-+	if (IS_ERR(mux_chip))
-+		return dev_err_probe(dev, PTR_ERR(mux_chip), "failed to allocate mux chip\n");
-+
-+	fwnode = dev_fwnode(dev->parent);
-+	if (!fwnode)
-+		return dev_err_probe(dev, -ENODEV, "missing parent firmware node\n");
-+
-+	/* Borrow the parent's firmware node so consumers can find this mux chip */
-+	device_set_node(&mux_chip->dev, fwnode);
-+
-+	priv = mux_chip_priv(mux_chip);
-+	priv->dev = dev;
-+
-+	priv->map = dev_get_regmap(dev->parent, NULL);
-+	if (!priv->map)
-+		return dev_err_probe(dev, -ENODEV, "failed to get parent regmap\n");
-+
-+	mux_chip->ops = &mc33978_mux_ops;
-+
-+	mux = &mux_chip->mux[0];
-+	mux->states = MC33978_NUM_AMUX_CH;
-+
-+	ret = device_property_read_u32(&mux_chip->dev, "idle-state",
-+				       (u32 *)&idle_state);
-+	if (ret < 0 && ret != -EINVAL) {
-+		return dev_err_probe(dev, ret, "failed to parse idle-state\n");
-+	} else if (ret == -EINVAL) {
-+		mux->idle_state = MUX_IDLE_AS_IS;
-+	} else {
-+		if (idle_state == MUX_IDLE_DISCONNECT)
-+			return dev_err_probe(dev, -EINVAL,
-+					     "idle-disconnect not supported by hardware\n");
-+		if (idle_state != MUX_IDLE_AS_IS &&
-+		    (idle_state < 0 || idle_state >= MC33978_NUM_AMUX_CH))
-+			return dev_err_probe(dev, -EINVAL, "invalid idle-state %d\n",
-+					     idle_state);
-+		mux->idle_state = idle_state;
-+	}
-+
-+	ret = devm_mux_chip_register(dev, mux_chip);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to register mux chip\n");
-+
-+	platform_set_drvdata(pdev, mux_chip);
-+
-+	return 0;
-+}
-+
-+static const struct platform_device_id mc33978_mux_id[] = {
-+	{ "mc33978-mux", },
-+	{ "mc34978-mux", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(platform, mc33978_mux_id);
-+
-+static struct platform_driver mc33978_mux_driver = {
-+	.driver = {
-+		.name = "mc33978-mux",
-+	},
-+	.probe = mc33978_mux_probe,
-+	.id_table = mc33978_mux_id,
-+};
-+module_platform_driver(mc33978_mux_driver);
-+
-+MODULE_AUTHOR("Oleksij Rempel <kernel@pengutronix.de>");
-+MODULE_DESCRIPTION("NXP MC33978/MC34978 Analog Multiplexer Driver");
-+MODULE_LICENSE("GPL");
+On 4/1/2026 12:05 PM, Qiang Yu wrote:
+> Replace local clk_branch-based clkref definitions with descriptor-based
+> registration via qcom_clk_ref_probe().
+> 
+> This keeps the glymur driver focused on clock metadata and reuses common
+> runtime logic for regulator handling, enable/disable sequencing, and OF
+> provider wiring.
+> 
+> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> ---
+>  drivers/clk/qcom/tcsrcc-glymur.c | 340 +++++++++++----------------------------
+>  1 file changed, 93 insertions(+), 247 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/tcsrcc-glymur.c b/drivers/clk/qcom/tcsrcc-glymur.c
+> index 9c0edebcdbb12816d1be5249e4f04bcaf02048aa..585f87b23af2d92daef1787b2f38911681c0d8ee 100644
+> --- a/drivers/clk/qcom/tcsrcc-glymur.c
+> +++ b/drivers/clk/qcom/tcsrcc-glymur.c
+> @@ -4,265 +4,115 @@
+>   */
+>  
+>  #include <linux/clk-provider.h>
+> +#include <linux/clk/qcom.h>
+>  #include <linux/mod_devicetable.h>
+>  #include <linux/module.h>
+> +#include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+>  
+>  #include <dt-bindings/clock/qcom,glymur-tcsr.h>
+>  
+> -#include "clk-alpha-pll.h"
+> -#include "clk-branch.h"
+> -#include "clk-pll.h"
+> -#include "clk-rcg.h"
+> -#include "clk-regmap.h"
+> -#include "clk-regmap-divider.h"
+> -#include "clk-regmap-mux.h"
+> -#include "common.h"
+> -#include "gdsc.h"
+> -#include "reset.h"
+> -
+> -enum {
+> -	DT_BI_TCXO_PAD,
+> -};
+> -
+> -static struct clk_branch tcsr_edp_clkref_en = {
+> -	.halt_reg = 0x60,
+> -	.halt_check = BRANCH_HALT_DELAY,
+> -	.clkr = {
+> -		.enable_reg = 0x60,
+> -		.enable_mask = BIT(0),
+> -		.hw.init = &(const struct clk_init_data) {
+> -			.name = "tcsr_edp_clkref_en",
+> -			.parent_data = &(const struct clk_parent_data){
+> -				.index = DT_BI_TCXO_PAD,
+> -			},
+> -			.num_parents = 1,
+> -			.ops = &clk_branch2_ops,
+> -		},
+> +static const char * const tcsr_pcie_1_regulators[] = {
+> +	"vdda-refgen-0p9",
+> +	"vdda-refgen-1p2",
+> +	"vdda-qrefrx5-0p9",
+> +	"vdda-qreftx0-0p9",
+> +	"vdda-qreftx0-1p2",
+> +};
+> +
+> +static const char * const tcsr_pcie_2_regulators[] = {
+> +	"vdda-refgen-0p9",
+> +	"vdda-refgen-1p2",
+> +	"vdda-qreftx1-0p9",
+> +	"vdda-qrefrpt0-0p9",
+> +	"vdda-qrefrpt1-0p9",
+> +	"vdda-qrefrpt2-0p9",
+> +	"vdda-qrefrx2-0p9",
+> +};
+> +
+> +static const char * const tcsr_pcie_3_regulators[] = {
+> +	"vdda-refgen-0p9",
+> +	"vdda-refgen-1p2",
+> +	"vdda-qreftx1-0p9",
+> +	"vdda-qrefrpt0-0p9",
+> +	"vdda-qrefrpt1-0p9",
+> +	"vdda-qrefrx1-0p9",
+> +};
+> +
+> +static const char * const tcsr_pcie_4_regulators[] = {
+> +	"vdda-refgen-0p9",
+> +	"vdda-refgen-1p2",
+> +	"vdda-qreftx1-0p9",
+> +	"vdda-qrefrpt0-0p9",
+> +	"vdda-qrefrpt1-0p9",
+> +	"vdda-qrefrpt2-0p9",
+> +	"vdda-qrefrx2-0p9",
+> +};
+> +
+
+TCSR clock refs are just not for PCIe alone, they would have supplies
+for all the ref clocks. These supplies can also be shared across other
+clock refs. I think it is not the correct way to handle the supplies, as
+TCSR does not have the complete supplies map.
+
+
+> +static const struct qcom_clk_ref_desc tcsr_cc_glymur_clk_descs[] = {
+> +	[TCSR_EDP_CLKREF_EN] = {
+> +		.name = "tcsr_edp_clkref_en",
+> +		.offset = 0x60,
+>  	},
+> -};
+>
+
+
 -- 
-2.47.3
+Thanks,
+Taniya Das
 
 
