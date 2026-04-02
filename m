@@ -1,188 +1,220 @@
-Return-Path: <devicetree+bounces-283800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283804-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WJL1AQUdzml7lAYAu9opvQ
-	(envelope-from <devicetree+bounces-283800-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 09:38:45 +0200
+	id cHfpFcMezml7lAYAu9opvQ
+	(envelope-from <devicetree+bounces-283804-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 09:46:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 006B83854C3
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 09:38:43 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A97E73855E0
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 09:46:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9C14F3043A47
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 07:31:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B1F03035D7D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 07:39:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71F935F16E;
-	Thu,  2 Apr 2026 07:31:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACC9388E79;
+	Thu,  2 Apr 2026 07:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lOIces2p"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="ygx/P6W8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from server.couthit.com (server.couthit.com [162.240.164.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9749342C80
-	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 07:31:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D723D319617;
+	Thu,  2 Apr 2026 07:39:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775115062; cv=none; b=c/qYgR5P+qxwrfUy4ul8qv3DlgIA2P3UQP7IXWE2lmHY0JznlmHQ1353BYzVlfK6sU1V7ouF6KlaugtNzVRS7sJUQ/EwMuihB59vz0bT3gh0ZAl593gmnuRpwBAEAzR0xf7OQXS2nsUEX2nONLutNKqJ6ojVbmZJEp1UYDE2Oxw=
+	t=1775115579; cv=none; b=PEzMWVandaiZ0rwKGseeMJve3Te/fTwk0efHyTtOCHqH/WoLu9AVIwh7FJFGdK0nfQ+5eR33RW37RcKg39yTb99c+OeQ+XNgUVsW+CATmQaPVdQsiaaSVqWkYGbHgCTWr6G/rLEXOKgpViYxVW+4JCHAWte2WWNv9EuflqqRqpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775115062; c=relaxed/simple;
-	bh=Vv0bM/0wobSQl6a7mqsQiVnAnKdoPJxPdWNB9DGJtXI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=tk+AHaCq6XE+MtDcrolYvvKV4fn48dm+u4A3zTY/CnBv0e9wru835F9SEEYP4dAO8zkwRNC1TZsZxQA8lltISLTr6MkAm8SSZt8MuaBqAHwTFgBsL+JCU+RL1jeNwQOgQi3BCWWmr+z7IpIqFFywiiyL99AawCCAjwWyE0mLr5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lOIces2p; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 22F341A30E5;
-	Thu,  2 Apr 2026 07:30:59 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D49CD5FDEB;
-	Thu,  2 Apr 2026 07:30:58 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C2188104502A6;
-	Thu,  2 Apr 2026 09:30:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1775115056; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=mg5DRpO1I9IqFL1uCpjacL1h8jGxnPseFHkiTvt8JGg=;
-	b=lOIces2p65XZz1GzTxchohBGLhitrJz1Myv8zRLJM1v6cIfed1WNrgMEJXqF3MbP88hDoR
-	KqtNcnSwaaCUoEoZGF30CL7bUv9jXEd2fMK0phlo4H2vZBGYVQ/bpHjHui3GWkBWQyYG68
-	ijXqB2tMRuBEsnMuY5MJUchw90gufWormGbWF+EoyqaqrM20LefjoVMUjOjyh6wU63XWzv
-	aaVEv8xLr7LctY2kG0TGdzhYkCmen7GK5U2FK0TjXTPnShz4J0aErMdVBVuzSPmlwBMGHw
-	ybAIQv531K0SvBsw2H0oOPPVUtEpHZ2jgUKFAXil/tYBte54Dru/mRMZba4m2w==
+	s=arc-20240116; t=1775115579; c=relaxed/simple;
+	bh=gnvpVfDftXsB3RJD3NVskRhFgm1HMxcHfQQzF6NBK0s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nz9wW7eUEhkedYJ800YiZbxV54ztTBF6oTYCJ4YnCRi6EVQNCxuLiHRRxZrOZyFAbOCQecHttgkUIgoe+gbmdXx7UN/qXQkTp4UA/1APf2qpNKJyWMW9xLQCVgAjVmjx0puISQab2gC1vqEIkkJLM0amKEpshqjwXU9lSh2EDVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=ygx/P6W8; arc=none smtp.client-ip=162.240.164.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject
+	:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=r3tdzkWJahXLy+LSWRvKEXHEAOI6oc2062GByuofHNo=; b=ygx/P6W8Owm60eaZ5CRaN8imYa
+	zTJmeabhw7A00BTwXae2bCtNX+vHgxkgXTkyGqfsTQ5L4e1fuXOGpZwHTTYxh2ZAxtQkn04PDJ+7O
+	eilNEEF8nyGCmSZXdEmDdzQhN9k+GHC4T2i38jix5JcdklDwE23bIGOUBhn8hOd3zxAM1y8iRyWIY
+	Va4RPvZVHpVzqhOhDETBS/qIARLuetdr/7B2lOSwfJBEsOxQPUvz7crK+p+1bRfI68wotjRWhIgkK
+	TmhW+RSiSt19TuPX7nMakMiXRv8lgFg5our+gqbF5J5WSUcFQgzGTsStKvKsX4xjt3okbauzpAiHB
+	AaqigIeA==;
+Received: from [115.246.246.98] (port=16281 helo=cypher.couthit.local)
+	by server.couthit.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1w8CeG-00000008LE4-1RTM;
+	Thu, 02 Apr 2026 03:39:28 -0400
+From: Parvathi Pudi <parvathi@couthit.com>
+To: nm@ti.com,
+	vigneshr@ti.com,
+	afd@ti.com,
+	khilman@baylibre.com,
+	rogerq@kernel.org,
+	tony@atomide.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	richardcochran@gmail.com,
+	aaro.koskinen@iki.fi,
+	andreas@kemnade.info
+Cc: andrew@lunn.ch,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	danishanwar@ti.com,
+	pratheesh@ti.com,
+	j-rameshbabu@ti.com,
+	praneeth@ti.com,
+	srk@ti.com,
+	rogerq@ti.com,
+	krishna@couthit.com,
+	mohan@couthit.com,
+	pmohan@couthit.com,
+	basharath@couthit.com,
+	parvathi@couthit.com
+Subject: [PATCH v6 0/3] Add support for ICSSM Ethernet on AM57x, AM437x, and AM335x
+Date: Thu,  2 Apr 2026 13:06:38 +0530
+Message-ID: <20260402073853.2170099-1-parvathi@couthit.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 02 Apr 2026 09:30:38 +0200
-Message-Id: <DHIHRIPV0BD1.1117AH7B5HKKL@bootlin.com>
-Subject: Re: [PATCH v2 08/10] drm/bridge: imx8mp-hdmi-tx: add an
- hdmi-connector when missing using a DT overlay at boot time
-Cc: "Damon Ding" <damon.ding@rock-chips.com>, "Kory Maincent (TI.com)"
- <kory.maincent@bootlin.com>, =?utf-8?q?Herv=C3=A9_Codina?=
- <herve.codina@bootlin.com>, "Hui Pu" <Hui.Pu@gehealthcare.com>, "Ian Ray"
- <ian.ray@gehealthcare.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, <dri-devel@lists.freedesktop.org>,
- <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, "Adam Ford"
- <aford173@gmail.com>, "Alexander Stein" <alexander.stein@ew.tq-group.com>,
- "Christopher Obbard" <christopher.obbard@linaro.org>, "Daniel Scally"
- <dan.scally@ideasonboard.com>, "Emanuele Ghidoli"
- <emanuele.ghidoli@toradex.com>, "Fabio Estevam" <festevam@denx.de>,
- "Francesco Dolcini" <francesco.dolcini@toradex.com>, "Frieder Schrempf"
- <frieder.schrempf@kontron.de>, "Gilles Talis" <gilles.talis@gmail.com>,
- =?utf-8?q?Goran_Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>, "Heiko
- Schocher" <hs@denx.de>, "Josua Mayer" <josua@solid-run.com>, "Kieran
- Bingham" <kieran.bingham@ideasonboard.com>, "Marco Felsch"
- <m.felsch@pengutronix.de>, "Martyn Welch" <martyn.welch@collabora.com>,
- "Oleksij Rempel" <o.rempel@pengutronix.de>, "Peng Fan" <peng.fan@nxp.com>,
- "Richard Hu" <richard.hu@technexion.com>, "Shengjiu Wang"
- <shengjiu.wang@nxp.com>, "Stefan Eichenberger"
- <stefan.eichenberger@toradex.com>, "Vitor Soares"
- <vitor.soares@toradex.com>
-To: "Liu Ying" <victor.liu@nxp.com>, "Marek Vasut" <marex@denx.de>, "Stefan
- Agner" <stefan@agner.ch>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Frank Li"
- <Frank.Li@nxp.com>, "Sascha Hauer" <s.hauer@pengutronix.de>, "Pengutronix
- Kernel Team" <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>,
- "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
- Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
- <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Rob
- Herring" <robh@kernel.org>, "Saravana Kannan" <saravanak@kernel.org>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20260330-drm-lcdif-dbanc-v2-0-c7f2af536a24@bootlin.com>
- <20260330-drm-lcdif-dbanc-v2-8-c7f2af536a24@bootlin.com>
- <167408cb-2ae8-4863-b8aa-6af7961dd133@nxp.com>
-In-Reply-To: <167408cb-2ae8-4863-b8aa-6af7961dd133@nxp.com>
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.16 / 15.00];
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.couthit.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: parvathi@couthit.com
+X-Authenticated-Sender: server.couthit.com: parvathi@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Spamd-Result: default: False [2.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_REJECT(1.00)[couthit.com:s=default];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[couthit.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[rock-chips.com,bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,nxp.com,technexion.com];
+	HAS_X_AS(0.00)[parvathi@couthit.com];
+	TAGGED_FROM(0.00)[bounces-283804-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-283800-lists,devicetree=lfdr.de];
+	HAS_X_GMSV(0.00)[parvathi@couthit.com];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[nxp.com,denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	RCPT_COUNT_GT_50(0.00)[52];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	NEURAL_HAM(-0.00)[-0.966];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[ti.com,baylibre.com,kernel.org,atomide.com,gmail.com,iki.fi,kemnade.info];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[couthit.com:-];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	FROM_NEQ_ENVFROM(0.00)[parvathi@couthit.com,devicetree@vger.kernel.org];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	HAS_X_SOURCE(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:mid,bootlin.com:url]
-X-Rspamd-Queue-Id: 006B83854C3
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_X_ANTIABUSE(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,couthit.com:mid]
+X-Rspamd-Queue-Id: A97E73855E0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Liu,
+Hi,
 
-On Thu Apr 2, 2026 at 6:05 AM CEST, Liu Ying wrote:
-> Hi Luca,
->
-> On Mon, Mar 30, 2026 at 09:25:49PM +0200, Luca Ceresoli wrote:
->
-> [...]
->
->> Changes in v2:
->> - don't apply the overlay if the SoC is not i.MX8MP
->> - build unconditionally, but depend on DRM_IMX_LCDIF
->> - remove useless error check
->> - add missing cleanup.h and init.h includes, remove unneeded includes
->> - avoid dtc warnings on overlay
->> - fix typo in Kconfig help text
->> - not added the Tested-bys because the code has changed
->> - split the 'plat_data->output_port =3D 1' line to a separate patch
->
-> v2 also changes commit mesg.
+This series adds support for ICSSM Ethernet on Texas Instruments AM57x,
+AM437x and AM335x platforms.
 
-Good to see someone looks at the changelog! :)
+The AM57x and AM437x IDKs support two PRU-ICSS instances, each consisting
+of two PRU cores, with each PRU-ICSS instance capable of handling two
+Ethernet ports. For the AM57x platforms, the PRU-ICSS2 node has been added
+to the am57xx-idk-common.dtsi, while for the AM437x platform, the PRU-ICSS1
+node has been added to the am437x-idk-evm.dts.
 
-Im updating the v2 changelog in v3 to mention this.
+The AM335x ICE features a single PRU-ICSS instance. A new device tree overlay
+source file, am335x-icev2-prueth-overlay.dtso, has been introduced to define the
+PRU-ICSS node for the AM335x platform.
 
->> +	return of_overlay_fdt_apply(dtbo_start, dtbo_size, &ovcs_id, NULL);
->
-> Kernel doc of of_overlay_fdt_apply() says:
->
->  * On error return, the changeset may be partially applied.  This is espe=
-cially
->  * likely if an OF_OVERLAY_POST_APPLY notifier returns an error.  In this=
- case
->  * the caller should call of_overlay_remove() with the value in *@ret_ovc=
-s_id.
->
-> Need a bailout?
+This is v6 of the patch series [v1].  It addresses comments made on [v5].
+This series is based on the latest next-20260401 linux-next.
 
-Indeed! I mistakenly removed it in v2, re-adding it in v3.
+Changes from v5 to v6 :
 
-Luca
+*) Addressed Kevin Hilman, Krzysztof and Andrew lunn comments on patch 3 of
+the series.
+*) Fixed an issue with overlaying "output-low" property in "mux-mii-hog"
+sub-node under "gpio3" node.
+*) Rebased the series on latest linux-next.
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Changes from v4 to v5 :
+
+*) Addressed Andrew Davis's comments on patch 2 of the series.
+*) Addressed Andrew Lunn and Nikolaus Schaller comments on patch 2 of the series.
+*) Rebased the series on latest linux-next.
+
+Changes from v3 to v4 :
+
+*) No code changes were made, only the version was updated.
+*) Rebased the series on latest linux-next.
+
+Changes from v2 to v3 :
+
+*) Addressed Andrew Davis's comment by placing PRUETH nodes in a new overlay file
+am335x-icev2-prueth-overlay.dtso.
+*) Rebased the series on latest linux-next.
+
+Changes from v1 to v2 :
+
+*) Addressed Andrew Lunn's comment on patch 1 of the series.
+*) Addressed MD Danish Anwar comment on patch 1 of the series.
+*) Rebased the series on latest linux-next.
+
+[v1] https://lore.kernel.org/all/20251013125401.1435486-1-parvathi@couthit.com/
+[v2] https://lore.kernel.org/all/20251103124820.1679167-1-parvathi@couthit.com/
+[v3] https://lore.kernel.org/all/20251217130715.1327138-1-parvathi@couthit.com/
+[v4] https://lore.kernel.org/all/20260105162546.1809714-1-parvathi@couthit.com/
+[v5] https://lore.kernel.org/all/20260307122641.738450-1-parvathi@couthit.com/
+
+Thanks and Regards,
+Parvathi
+
+Roger Quadros (3):
+  arm: dts: ti: Add device tree support for PRU-ICSS on AM57xx
+  arm: dts: ti: Add device tree support for PRU-ICSS on AM437x
+  arm: dts: ti: Add device tree support for PRU-ICSS on AM335x
+
+ arch/arm/boot/dts/ti/omap/Makefile            |   4 +
+ .../ti/omap/am335x-icev2-prueth-overlay.dtso  | 156 ++++++++++++++++++
+ arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi      |  11 ++
+ arch/arm/boot/dts/ti/omap/am4372.dtsi         |  11 ++
+ arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts  | 103 +++++++++++-
+ arch/arm/boot/dts/ti/omap/am57-pruss.dtsi     |  11 ++
+ arch/arm/boot/dts/ti/omap/am571x-idk.dts      |   8 +-
+ arch/arm/boot/dts/ti/omap/am572x-idk.dts      |  10 +-
+ arch/arm/boot/dts/ti/omap/am574x-idk.dts      |  10 +-
+ .../boot/dts/ti/omap/am57xx-idk-common.dtsi   |  61 +++++++
+ 10 files changed, 375 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm/boot/dts/ti/omap/am335x-icev2-prueth-overlay.dtso
+
+-- 
+2.43.0
+
 
