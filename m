@@ -1,303 +1,197 @@
-Return-Path: <devicetree+bounces-283885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283877-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uMXBLlgyzmnIlQYAu9opvQ
-	(envelope-from <devicetree+bounces-283885-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 11:09:44 +0200
+	id 2GYiNaAxzmnIlQYAu9opvQ
+	(envelope-from <devicetree+bounces-283877-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 11:06:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F5A338683A
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 11:09:44 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9F6B386761
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 11:06:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2292B30B064E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 09:08:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4E152302AAE4
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 09:05:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7808236DA04;
-	Thu,  2 Apr 2026 09:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4437130E0DC;
+	Thu,  2 Apr 2026 09:05:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="V7uC7gz5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BF0A362139;
-	Thu,  2 Apr 2026 09:07:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from mail-m19731117.qiye.163.com (mail-m19731117.qiye.163.com [220.197.31.117])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6C8B1B4F1F;
+	Thu,  2 Apr 2026 09:05:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.117
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775120865; cv=none; b=ZXWSDUl0Ql7yG6oyiXKMnaNNamz8Lokfr12gpeau9p/k+Ro1iq4v8zNBEsFVbFb7NsYtt+ZsyQ0tX4Rw6XvsivekHQkmQnT6Jds6318bGzXxUdF3PeVmOAQ0V7pmrY1pWNs4zfnRScmNRhpi2J5DZRi85kNYnOEBNmF1CLJcgSw=
+	t=1775120719; cv=none; b=QuLKuQpBgok70sKWS7ZjNfiRls1Ls4SGmFfCOey3dSIg74h5BspojvFwhfhfgbxYcSIwec62cCXqUXaf5uGp+LzWCTBmu2mU1KtKcVK7/rMME3378hm6mdlvgAI11JZisxX/PUHPFJwGWYfsfolkP8sqgpYXQzTL6DTrgPTwXro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775120865; c=relaxed/simple;
-	bh=M0CU3Uc0tfBSlS7ZxZSKYahJQFVM8+/qyc0NSNfXOBg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bCEHw5YZzVHt8KnFkP+FbAy+fngpqPuty9o0hz4uoWLkrXn46dugV/FHq2Jn5Korh08HY76YtUVT01069mLMH9g/1pePCIgsBxSzAGRbjt0upEyYAMDJgVVMUyL+PrVulASbF57BXqSrA7rU7MGy40/1OUADpJWOBMauaQpbhb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: So1UC1bGRyWi4euwVPLevA==
-X-CSE-MsgGUID: cpHxI3LuRTeMzMa+86AnvA==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 02 Apr 2026 18:07:41 +0900
-Received: from ubuntu.adwin.renesas.com (unknown [10.226.92.136])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id A8E7F413EA85;
-	Thu,  2 Apr 2026 18:07:33 +0900 (JST)
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	John Madieu <john.madieu@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	dmaengine@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	John Madieu <john.madieu.xa@bp.renesas.com>
-Subject: [PATCH v2 04/24] dma: sh: rz-dmac: Add DMA ACK signal routing support
-Date: Thu,  2 Apr 2026 11:05:03 +0200
-Message-ID: <20260402090524.9137-5-john.madieu.xa@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260402090524.9137-1-john.madieu.xa@bp.renesas.com>
-References: <20260402090524.9137-1-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1775120719; c=relaxed/simple;
+	bh=DRAt05Tni72blWzMPGF3tYHdlvNy9axAB6o1IFmDA74=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lA1XVzTch+dmFTTOFsZS0Lko21T31EFS2zd6FN77c2Zx+PAuSdbVC1tIWfSc1kfExgZsrYg05FwrDVQobDuCv+udHY0yYtogjdQbBKGqzOxKjSUOB9yNFI+bPNc8hV90kE0fb75HxPAojT1r6meWelZ1FoRZYfjkGBvLjTTL4qo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=V7uC7gz5; arc=none smtp.client-ip=220.197.31.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.43] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 394c16600;
+	Thu, 2 Apr 2026 17:05:03 +0800 (GMT+08:00)
+Message-ID: <571cc85a-3310-4b56-a3ef-3aab698192f6@rock-chips.com>
+Date: Thu, 2 Apr 2026 17:05:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.64 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 05/10] drm/bridge: dw-hdmi: document the output_port
+ field
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>, Marek Vasut <marex@denx.de>,
+ Stefan Agner <stefan@agner.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Liu Ying <victor.liu@nxp.com>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@kernel.org>
+Cc: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>,
+ =?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>,
+ Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Adam Ford <aford173@gmail.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Christopher Obbard <christopher.obbard@linaro.org>,
+ Daniel Scally <dan.scally@ideasonboard.com>,
+ Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+ Fabio Estevam <festevam@denx.de>,
+ Francesco Dolcini <francesco.dolcini@toradex.com>,
+ Frieder Schrempf <frieder.schrempf@kontron.de>,
+ Gilles Talis <gilles.talis@gmail.com>,
+ =?UTF-8?B?R29yYW4gUmHEkWVub3ZpxIc=?= <goran.radni@gmail.com>,
+ Heiko Schocher <hs@denx.de>, Josua Mayer <josua@solid-run.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Marco Felsch <m.felsch@pengutronix.de>,
+ Martyn Welch <martyn.welch@collabora.com>,
+ Oleksij Rempel <o.rempel@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
+ Richard Hu <richard.hu@technexion.com>, Shengjiu Wang
+ <shengjiu.wang@nxp.com>,
+ Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+ Vitor Soares <vitor.soares@toradex.com>
+References: <20260330-drm-lcdif-dbanc-v2-0-c7f2af536a24@bootlin.com>
+ <20260330-drm-lcdif-dbanc-v2-5-c7f2af536a24@bootlin.com>
+ <cd0acf08-de24-4fec-a4de-0cd5b1eeeb28@rock-chips.com>
+ <DHII3VS5NVEC.179WKXX8C8SOO@bootlin.com>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <DHII3VS5NVEC.179WKXX8C8SOO@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9d4d705f9803a3kunm9716d1d893077
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUwdTFYaQxgYSRgYTE4fGUhWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUJNS0
+	pVSktLVUtZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=V7uC7gz5vuVdP8g6TaJjdkO1IMcNDZzxPxF5ZB9843pwJZFzjHlo989JUzBxE48S8cBkykbaMpElWfSZ4w0Z75NrpDPGLCY2530ZMDwiMr7NFEcRXXbBqhmoJ8MSxQIhmOxYwmJk+bYA+fEPPpeM7coiYumKjpFHrZIqrDJkBsU=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=3r+EdcEZhhq3RLdMIkHrVztelasB3cEPklRvu3iRcJY=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
+	TAGGED_FROM(0.00)[bounces-283877-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[bootlin.com,denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nxp.com,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
+	FREEMAIL_CC(0.00)[bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,nxp.com,technexion.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,perex.cz,suse.com,pengutronix.de,tuxon.dev,bp.renesas.com,renesas.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-283885-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.977];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 5F5A338683A
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[52];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	NEURAL_HAM(-0.00)[-0.974];
+	TAGGED_RCPT(0.00)[devicetree];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bootlin.com:email,collabora.com:email]
+X-Rspamd-Queue-Id: D9F6B386761
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Some peripherals on RZ/G3E SoCs (SSIU, SPDIF, SCU/SRC, DVC, PFC) require
-explicit ACK signal routing through the ICU for level-based DMA handshaking.
+Hi Luca,
 
-Rather than extending the DT binding with an optional second #dma-cells
-(which would require all DMA consumers to supply two cells even when ACK
-routing is not needed), derive the ACK signal number directly from the
-MID/RID request number using the linear mapping defined in RZ/G3E hardware
-manual Table 4.6-28:
+On 4/2/2026 3:46 PM, Luca Ceresoli wrote:
+> Hello Damon,
+> 
+> On Tue Mar 31, 2026 at 9:21 AM CEST, Damon Ding wrote:
+>> On 3/31/2026 3:25 AM, Luca Ceresoli wrote:
+>>> The meaning of this flag may not be obvious at first sight.
+>>>
+>>> Reviewed-by: Liu Ying <victor.liu@nxp.com>
+>>> Tested-by: Martyn Welch <martyn.welch@collabora.com>
+>>> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com> # TQMa8MPxL/MBa8MPxL
+>>> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> 
+> Thanks for looking at this series!
+> 
+>>> @@ -126,6 +126,12 @@ struct dw_hdmi_phy_ops {
+>>>    struct dw_hdmi_plat_data {
+>>>    	struct regmap *regm;
+>>>
+>>> +	/*
+>>> +	 * The HDMI output port number must be 1 if the port is described
+>>> +	 * in the device tree. 0 if the device tree does not describe the
+>>> +	 * next component (legacy mode, i.e. without
+>>> +	 * DRM_BRIDGE_ATTACH_NO_CONNECTOR flag when attaching bridge).
+>>> +	 */
+>>>    	unsigned int output_port;
+>>>
+>>>    	unsigned long input_bus_encoding;
+>>>
+>>
+>> Tested-by: Damon Ding <damon.ding@rock-chips.com> (on rk3399)
+> 
+> Uhm, I'm not sure what can be tested in a patch only adding a comment. Did
+> you mean 'Reviewed-by' maybe?
+> 
+> Also, I _think_ the best syntax for a comment would be using a '#', not
+> parentheses, so that would be
+> 
+> | Tested-by: Damon Ding <damon.ding@rock-chips.com> # on rk3399
+> 
+> This is the recommended syntax for the 'Cc: stable' lines [0], at
+> least. Additionally b4 keeps comments with the '#' as those in [1], while
+> is discards the ones in parentheses.
+> 
+> [0] https://docs.kernel.org/process/stable-kernel-rules.html
+> [1] https://lore.kernel.org/all/2948177.mvXUDI8C0e@steina-w/
+> 
 
-  PFC external DMA pins (DREQ0..DREQ4):
-    req_no 0x000-0x004 -> ACK No. 84-88
+Indeed, '#' is much better.
 
-  SSIU BUSIFs (ssip00..ssip93):
-    req_no 0x161-0x198 -> ACK No. 28-83
+I think we still need to further discuss the various cases around 
+DRM_BRIDGE_ATTACH_NO_CONNECTOR in [PATCH v2 06/10].
 
-  SPDIF (CH0..CH2) + SCU SRC (sr0..sr9) + DVC (cmd0..cmd1):
-    req_no 0x199-0x1b4 -> ACK No. 0-27
-
-ACK routing is programmed when a channel is prepared for transfer and
-cleared when the channel is released or the transfer times out, following
-the same pattern as MID/RID request routing.
-
-Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
----
-
-Changes:
-
-v2:
- - Drop DMA ACK second cell from DT specifier
- - Derive ACK signal number in-driver from MID/RID using arithmetic formulas
-   per ICU Table 4.6-28 (3 linear peripheral groups)
-
- drivers/dma/sh/rz-dmac.c | 72 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
-
-diff --git a/drivers/dma/sh/rz-dmac.c b/drivers/dma/sh/rz-dmac.c
-index 95a89c9d2925..bde3da96b37e 100644
---- a/drivers/dma/sh/rz-dmac.c
-+++ b/drivers/dma/sh/rz-dmac.c
-@@ -97,6 +97,7 @@ struct rz_dmac_chan {
- 	u32 chcfg;
- 	u32 chctrl;
- 	int mid_rid;
-+	int dmac_ack;
- 
- 	struct {
- 		u32 nxla;
-@@ -124,6 +125,9 @@ struct rz_dmac_icu {
- struct rz_dmac_info {
- 	void (*icu_register_dma_req)(struct platform_device *icu_dev,
- 				     u8 dmac_index, u8 dmac_channel, u16 req_no);
-+	void (*icu_register_dma_ack)(struct platform_device *icu_dev,
-+				     u8 dmac_index, u8 dmac_channel, u16 ack_no);
-+	u16 default_dma_ack_no;
- 	u16 default_dma_req_no;
- };
- 
-@@ -362,6 +366,60 @@ static void rz_dmac_set_dma_req_no(struct rz_dmac *dmac, unsigned int index,
- 		rz_dmac_set_dmars_register(dmac, index, req_no);
- }
- 
-+/*
-+ * Map MID/RID request number (bits[0:9] of DMA specifier) to the ICU
-+ * DMA ACK signal number, per RZ/G3E hardware manual Table 4.6-28.
-+ *
-+ * Three peripheral groups cover all ACK-capable peripherals:
-+ *
-+ *   PFC external DMA pins (DREQ0..DREQ4):
-+ *     req_no 0x000-0x004 -> ACK No. 84-88  (ack = req_no + 84)
-+ *
-+ *   SSIU BUSIFs (ssip00..ssip93):
-+ *     req_no 0x161-0x198 -> ACK No. 28-83  (ack = req_no - 0x145)
-+ *
-+ *   SPDIF (CH0..CH2) + SCU SRC (sr0..sr9) + DVC (cmd0..cmd1):
-+ *     req_no 0x199-0x1b4 -> ACK No. 0-27   (ack = req_no - 0x199)
-+ */
-+static int rz_dmac_get_ack_no(const struct rz_dmac_info *info, u16 req_no)
-+{
-+	if (!info->icu_register_dma_ack)
-+		return -EINVAL;
-+
-+	switch (req_no) {
-+	case 0x000 ... 0x004:
-+		/* PFC external DMA pins: ACK No. 84-88 */
-+		return req_no + 84;
-+	case 0x161 ... 0x198:
-+		/* SSIU BUSIFs: ACK No. 28-83 */
-+		return req_no - 0x145;
-+	case 0x199 ... 0x1b4:
-+		/* SPDIF + SCU SRC + DVC: ACK No. 0-27 */
-+		return req_no - 0x199;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static void rz_dmac_set_dma_ack_no(struct rz_dmac *dmac, unsigned int index,
-+				   int ack_no)
-+{
-+	if (ack_no < 0 || !dmac->info->icu_register_dma_ack)
-+		return;
-+
-+	dmac->info->icu_register_dma_ack(dmac->icu.pdev, dmac->icu.dmac_index,
-+					 index, ack_no);
-+}
-+
-+static void rz_dmac_reset_dma_ack_no(struct rz_dmac *dmac, int ack_no)
-+{
-+	if (ack_no < 0 || !dmac->info->icu_register_dma_ack)
-+		return;
-+
-+	dmac->info->icu_register_dma_ack(dmac->icu.pdev, dmac->icu.dmac_index,
-+					 dmac->info->default_dma_ack_no, ack_no);
-+}
-+
- static void rz_dmac_prepare_desc_for_memcpy(struct rz_dmac_chan *channel)
- {
- 	struct dma_chan *chan = &channel->vc.chan;
-@@ -431,6 +489,7 @@ static void rz_dmac_prepare_descs_for_slave_sg(struct rz_dmac_chan *channel)
- 	channel->lmdesc.tail = lmdesc;
- 
- 	rz_dmac_set_dma_req_no(dmac, channel->index, channel->mid_rid);
-+	rz_dmac_set_dma_ack_no(dmac, channel->index, channel->dmac_ack);
- }
- 
- static void rz_dmac_prepare_descs_for_cyclic(struct rz_dmac_chan *channel)
-@@ -485,6 +544,7 @@ static void rz_dmac_prepare_descs_for_cyclic(struct rz_dmac_chan *channel)
- 	channel->lmdesc.tail = lmdesc;
- 
- 	rz_dmac_set_dma_req_no(dmac, channel->index, channel->mid_rid);
-+	rz_dmac_set_dma_ack_no(dmac, channel->index, channel->dmac_ack);
- }
- 
- static int rz_dmac_xfer_desc(struct rz_dmac_chan *chan)
-@@ -567,6 +627,9 @@ static void rz_dmac_free_chan_resources(struct dma_chan *chan)
- 		channel->mid_rid = -EINVAL;
- 	}
- 
-+	rz_dmac_reset_dma_ack_no(dmac, channel->dmac_ack);
-+	channel->dmac_ack = -EINVAL;
-+
- 	spin_unlock_irqrestore(&channel->vc.lock, flags);
- 
- 	list_for_each_entry_safe(desc, _desc, &channel->ld_free, node) {
-@@ -814,6 +877,7 @@ static void rz_dmac_device_synchronize(struct dma_chan *chan)
- 		dev_warn(dmac->dev, "DMA Timeout");
- 
- 	rz_dmac_set_dma_req_no(dmac, channel->index, dmac->info->default_dma_req_no);
-+	rz_dmac_reset_dma_ack_no(dmac, channel->dmac_ack);
- }
- 
- static struct rz_lmdesc *
-@@ -1164,6 +1228,8 @@ static bool rz_dmac_chan_filter(struct dma_chan *chan, void *arg)
- 	channel->chcfg = CHCFG_FILL_TM(ch_cfg) | CHCFG_FILL_AM(ch_cfg) |
- 			 CHCFG_FILL_LVL(ch_cfg) | CHCFG_FILL_HIEN(ch_cfg);
- 
-+	channel->dmac_ack = rz_dmac_get_ack_no(dmac->info, channel->mid_rid);
-+
- 	return !test_and_set_bit(channel->mid_rid, dmac->modules);
- }
- 
-@@ -1200,6 +1266,7 @@ static int rz_dmac_chan_probe(struct rz_dmac *dmac,
- 
- 	channel->index = index;
- 	channel->mid_rid = -EINVAL;
-+	channel->dmac_ack = -EINVAL;
- 
- 	/* Request the channel interrupt. */
- 	scnprintf(pdev_irqname, sizeof(pdev_irqname), "ch%u", index);
-@@ -1569,6 +1636,9 @@ static int rz_dmac_resume(struct device *dev)
- 
- 		guard(spinlock_irqsave)(&channel->vc.lock);
- 
-+		rz_dmac_set_dma_req_no(dmac, channel->index, channel->mid_rid);
-+		rz_dmac_set_dma_ack_no(dmac, channel->index, channel->dmac_ack);
-+
- 		if (!(channel->status & BIT(RZ_DMAC_CHAN_STATUS_CYCLIC))) {
- 			rz_dmac_ch_writel(&dmac->channels[i], CHCTRL_DEFAULT, CHCTRL, 1);
- 			continue;
-@@ -1601,6 +1671,8 @@ static const struct dev_pm_ops rz_dmac_pm_ops = {
- 
- static const struct rz_dmac_info rz_dmac_v2h_info = {
- 	.icu_register_dma_req = rzv2h_icu_register_dma_req,
-+	.icu_register_dma_ack = rzv2h_icu_register_dma_ack,
-+	.default_dma_ack_no = RZV2H_ICU_DMAC_ACK_NO_DEFAULT,
- 	.default_dma_req_no = RZV2H_ICU_DMAC_REQ_NO_DEFAULT,
- };
- 
--- 
-2.25.1
+Best regards,
+Damon
 
 
