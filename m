@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-283918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283919-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sL1WItY6zmmAmAYAu9opvQ
-	(envelope-from <devicetree+bounces-283918-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 11:45:58 +0200
+	id GJFaGus4zmmAmAYAu9opvQ
+	(envelope-from <devicetree+bounces-283919-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 11:37:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87EA638724E
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 11:45:57 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9CD138708C
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 11:37:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 01BE1305BDDD
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 09:29:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2D6B1318B45E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 09:30:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A63EA3A63E1;
-	Thu,  2 Apr 2026 09:28:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ECCF3AA1A2;
+	Thu,  2 Apr 2026 09:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ybESKDBF"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="zzi2g1uS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F37639B96D;
-	Thu,  2 Apr 2026 09:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B516B39B491
+	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 09:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775122111; cv=none; b=GM+ntg5vOsmLOSrZBvFKKpgweWcHWGJQz2VXXDd/Ay8tR8z+kCuK8Z/xKEqmRM//xC7jAOLMNmlT9YPpeeRuUagaMiBHOtgnrdVYkMFMJAZ7Club/INL7NyLscf+N0POcrEbHlZ/etlw2SVWsUr1zWOfoQWr7EaHCp859l7GkE8=
+	t=1775122121; cv=none; b=LF23UG6UvLqL1n6pYplADRynR1xQM8p115UrsFGqyyuihDRWtw/ZOkZPJvA5igQMbBnzBK98eFlT9QLZ2n2kIuZFo48VuEgbmkf5Z/Z66dTioYB34dwCueB7J2uOwQipL1I9sBL30UW4GSBhbIHKKwyZ/Vf8hHH2Fld7rb3bNwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775122111; c=relaxed/simple;
-	bh=Z7kb2aE54+QuKt5gSLGA3OdsRlW+0ZynW14bsb2t4H4=;
+	s=arc-20240116; t=1775122121; c=relaxed/simple;
+	bh=UJYUBA6ET+yM37aBgW281u33EpVs8seVEJrplzB74GI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VXVUeDE5OOttnsCUD7a53q4+aMOYwatDFVRP3oUgLTNgQEYrrjExbOnpP1wi/whpJh25s42SMppNb5lisKi5zEq+WLHy3eYLin+HOidll7B6364sY0EpxEUdA0ytpz5wS0cKYX0UtMgJ2atMm5OFUq/mGoZOh4JUru/cCG6iJuw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ybESKDBF; arc=none smtp.client-ip=185.171.202.116
+	 In-Reply-To:To:Cc; b=ZWMHlh4XYDKlUlonQ+QiEOngalcIfcnu3bt3oXcNpqFJv1ptXABUdmqgYUGJI+wIC2UrUi8jsbcQ7s68wCtGuVc+NzqrZYgK+y/HQl3wd6tfrGWRTC/W/Ro4DizYsOGfSKydOyLI8YanzHZeTWFrrjudP7ItUgmSTwCzwK35d7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=zzi2g1uS; arc=none smtp.client-ip=185.171.202.116
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 8F625C5997C;
-	Thu,  2 Apr 2026 09:28:52 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id E2BE9C5997A;
+	Thu,  2 Apr 2026 09:29:01 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2B5795FDEB;
-	Thu,  2 Apr 2026 09:28:21 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BFCE91045124B;
-	Thu,  2 Apr 2026 11:28:09 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 8036D5FDEB;
+	Thu,  2 Apr 2026 09:28:30 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EFFDD10450A10;
+	Thu,  2 Apr 2026 11:28:18 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1775122098; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1775122108; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=tOjdeuEJSWPxj3Fs9X+nTEnL9KUNbNsb5gEjP8lRQd4=;
-	b=ybESKDBFka9/Qsny5X1t28Lfl4WST2SPefv5383qr6vzDmDDd3dcOUUb5sgKbZnoAy39Qh
-	9BHkHHOiM5Tr7pDFWrF5YjmAw2ekft+WeR29rwxMwtFnntq4FjgfwXaRGhmZSm9dPCzaNR
-	Gt2vbXCurP4heshfbWhIA8h4k4iZbnnlWso8pZM5v/wff6IB1HXLb/Bmsuo384Z4FOglGn
-	k0Emj7dPOAp8dmMM3tHEF90LCa70gnGu94KvWES26kfwhunV3S1i2DohgFETPA0Ire4XR8
-	hhoyw2ppddALO8aHCsVMVALU7Jyxe9LsoL968zSBcqu6p37NieU4OZfCGUHhQg==
+	bh=oXPHqei+U7ksW/Xw4NWOUrsKnnTyyMwWEG+TcIgOTII=;
+	b=zzi2g1uSnI45czqCylTxib+o2mbRy+v8D8cyGtklGrM4d72mxCrcRTxZCIwhneYOZEaWDw
+	z6r+JMrO77WSoo697t8Yu2JLyBzl2RauHfMYOePvpWv/3YQtxT6Hz2gEWyvjYbknJOAkbj
+	WtV0umn22Q9nsOuMUvsSV3x7dIUhw5UH5IKaDfpLujzhxuVdQgsQl/ErePsokovuWSxhf4
+	H6lwGwa7jLAlcuG3xk6SfFq8GqGJM4ysg7Jk+6dxhiat11xCQ29te9nQf9QmyVQH5kx688
+	DAd2vqogMlmIXzSHEBuL4pBbUcL45ESzMIzb0zMz1HG02UHfbrR1himnB/F3CQ==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Thu, 02 Apr 2026 11:25:58 +0200
-Subject: [PATCH v3 03/11] drm/mxsfb/lcdif: use dev_err_probe() consistently
- in lcdif_attach_bridge
+Date: Thu, 02 Apr 2026 11:25:59 +0200
+Subject: [PATCH v3 04/11] drm/mxsfb/lcdif: move iteration-specific
+ variables declaration inside loop in lcdif_attach_bridge
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260402-drm-lcdif-dbanc-v3-3-27cd247a0847@bootlin.com>
+Message-Id: <20260402-drm-lcdif-dbanc-v3-4-27cd247a0847@bootlin.com>
 References: <20260402-drm-lcdif-dbanc-v3-0-27cd247a0847@bootlin.com>
 In-Reply-To: <20260402-drm-lcdif-dbanc-v3-0-27cd247a0847@bootlin.com>
 To: Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>, 
@@ -111,96 +111,69 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[rock-chips.com,bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,nxp.com,technexion.com];
-	TAGGED_FROM(0.00)[bounces-283918-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nxp.com,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[rock-chips.com,bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,nxp.com,technexion.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283919-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCPT_COUNT_GT_50(0.00)[53];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.517];
+	NEURAL_HAM(-0.00)[-0.978];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,nxp.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,of_ep.id:url]
-X-Rspamd-Queue-Id: 87EA638724E
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: E9CD138708C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-lcdif_attach_bridge() uses dev_err_probe() in some error paths, dev_err() +
-return in others. Use dev_err_probe() for all of them to make code
-consistent, simpler and with better error reporting.
+The bridge and ret variables are per-iteration variables, whose values
+don't have to be carried to the next iteration or be used after the loop
+end. Move their declaration inside the loop scope as a cleanup and to make
+code clearer.
 
 Reviewed-by: Liu Ying <victor.liu@nxp.com>
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
-Changes in v2:
-- rewrote after removal of previous patch removing loop
-- not added review/test trailers as the code is a bit different
+This patch is new in v2
 ---
- drivers/gpu/drm/mxsfb/lcdif_drv.c | 24 ++++++++++--------------
- 1 file changed, 10 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/mxsfb/lcdif_drv.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c b/drivers/gpu/drm/mxsfb/lcdif_drv.c
-index 8da8a265c05c..1c76709c4d94 100644
+index 1c76709c4d94..c8ba8f9b1da8 100644
 --- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
 +++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
-@@ -63,10 +63,8 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
+@@ -50,14 +50,14 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
+ {
+ 	struct device *dev = lcdif->drm->dev;
+ 	struct device_node *ep __free(device_node) = NULL;
+-	struct drm_bridge *bridge;
+-	int ret;
+ 
+ 	for_each_endpoint_of_node(dev->of_node, ep) {
+ 		struct device_node *remote __free(device_node) =
+ 			of_graph_get_remote_port_parent(ep);
+ 		struct of_endpoint of_ep;
++		struct drm_bridge *bridge;
+ 		struct drm_encoder *encoder;
++		int ret;
+ 
+ 		if (!of_device_is_available(remote))
  			continue;
- 
- 		ret = of_graph_parse_endpoint(ep, &of_ep);
--		if (ret < 0) {
--			dev_err(dev, "Failed to parse endpoint %pOF\n", ep);
--			return ret;
--		}
-+		if (ret < 0)
-+			return dev_err_probe(dev, ret, "Failed to parse endpoint %pOF\n", ep);
- 
- 		bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, of_ep.id);
- 		if (IS_ERR(bridge))
-@@ -75,20 +73,18 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
- 					     of_ep.id);
- 
- 		encoder = devm_kzalloc(dev, sizeof(*encoder), GFP_KERNEL);
--		if (!encoder) {
--			dev_err(dev, "Failed to allocate encoder for endpoint%u\n",
--				of_ep.id);
--			return -ENOMEM;
--		}
-+		if (!encoder)
-+			return dev_err_probe(dev, -ENOMEM,
-+					     "Failed to allocate encoder for endpoint%u\n",
-+					     of_ep.id);
- 
- 		encoder->possible_crtcs = drm_crtc_mask(&lcdif->crtc);
- 		ret = drm_encoder_init(lcdif->drm, encoder, &lcdif_encoder_funcs,
- 				       DRM_MODE_ENCODER_NONE, NULL);
--		if (ret) {
--			dev_err(dev, "Failed to initialize encoder for endpoint%u: %d\n",
--				of_ep.id, ret);
--			return ret;
--		}
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Failed to initialize encoder for endpoint%u\n",
-+					     of_ep.id);
- 
- 		ret = drm_bridge_attach(encoder, bridge, NULL, 0);
- 		if (ret)
 
 -- 
 2.53.0
