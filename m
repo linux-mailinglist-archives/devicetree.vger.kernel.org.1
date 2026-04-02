@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-283679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283681-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8EswG5fNzWmthgYAu9opvQ
-	(envelope-from <devicetree+bounces-283679-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 03:59:51 +0200
+	id IHCfKrXNzWmthgYAu9opvQ
+	(envelope-from <devicetree+bounces-283681-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 04:00:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24C6E3826AA
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 03:59:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B4FA3826F7
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 04:00:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 24AF0301AA9A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 01:59:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9D191301A923
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 01:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB5C3264F5;
-	Thu,  2 Apr 2026 01:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9CCC33B949;
+	Thu,  2 Apr 2026 01:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="JyUMCfsE"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="l9wyNuW/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4466131715F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1EE232571D
 	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 01:59:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775095183; cv=none; b=KIrQIdwiAs7dxPBrFoBsIY9PIavMXdOu18HK8Se2oMa+oT1B63OQ0UBlyMxxBzuHfd7/hdUtDZGdWLnjz/w7Vn/Tv9UJYsX83nt/cLXeW4HetgfEQDBzffjEj3OECH+CM1+nIHnRiNR6prAld5X6XtAwKoSZ/Cey9WDB+UKoN2s=
+	t=1775095184; cv=none; b=T8prJckzx4tlpC2psIS+HDzdnYbCJKVW54hjetGj6EaCzYHSYq2TVrxVSn3iY/RcByYaU9qrzdONEuF1BKPP5BVWY0jM/udwGtFWmJrUVfne2tu3P1SdJLpp8E2kAT6IpG/x2W/G/J8f/Yfl7JuoCVPnZSrHASxt4W61Ef6Bu78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775095183; c=relaxed/simple;
-	bh=BDcoGzUEgpCGDfndnWpejoVBe/vKuqQ4SnpVtpHMd0E=;
+	s=arc-20240116; t=1775095184; c=relaxed/simple;
+	bh=Tpi0yK/iaLtS44lW6KsA/vacKkKe39WvD034jzj5Q1k=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NmFpaKvRSh/k5FMoKooCobSDwhtbOU0rsk5YFwFr/1JCWdY2T4gaSx2O4MAtO7Yb95WhCVB1j0tzsKuTO3/wGNkGJp1+Ez1b+WgTMfJp1JbYtU/JXkcLXwfpunPc5OKjIJkwQsZo3zUU0mi7k3rY2ys2/fbJDQw3kRS7qmA41Yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=JyUMCfsE; arc=none smtp.client-ip=209.85.214.172
+	 In-Reply-To:To:Cc; b=Fr/4bFYSbF3tlq2Fc3sq/VpSKW73BeVoFMG9i79u5jtcodbB9oUwyElAQDs78K8b2JBViFgzDg6ThiA4KHkyFre6LPO2Xo4rdqjwsIUT/R6Jdk5gkfxrOT95YTs3qY6o3okp427J1IdRJN1p4oydi4K9ItvGxhMZWWdNCvoZKG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=l9wyNuW/; arc=none smtp.client-ip=209.85.214.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2b2429f98d0so1936675ad.2
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2ab46931cf1so10497465ad.0
         for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 18:59:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google; t=1775095182; x=1775699982; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fzHrAn4/x3CwheBfg3e0ZTKZNKx+9iUkLN9KNaFrA10=;
-        b=JyUMCfsEzJUvnAMUaH8pFk7JOJz5S6j4yc2RPRMEDvcR7+AHkR2RcjSaIaWqcS1bk1
-         pYXgyC2RR8ANzfyWQI2dZu03PBe2k9eQDah7UHIYUoXK+HKo+CrxeS0+HybIbbmEtud1
-         M3Tr2cQDeNwYp6bFGqBDUUyAFrSsM5AQoXgXo=
+        bh=uaSym8CXCOjXII696jSRn6vHWWlOmeUfwp714NDMznM=;
+        b=l9wyNuW/X8GoaB8VBjCO8tdBYvh9Vd24nXum3SRwu6fQJxDlm/CtMGE4ey/u9w4gC2
+         lyhdGhqTpfrcZDtYcsz0v2C/zRcmt+KuCg3lOlEuMN+KSh1jnbq9M/JTPr89FuhnHFvP
+         +ndaRXJ/LQIDNlyR1IsjvnKRHp8RLbNI1ahoI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20251104; t=1775095182; x=1775699982;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=fzHrAn4/x3CwheBfg3e0ZTKZNKx+9iUkLN9KNaFrA10=;
-        b=nDz0N8m6f+AMxcEjy9DUjJjKSNGJvKTq9pYZxJL++Dwz76DIOrYUd1E6GhLnLq2BX5
-         ZFj5KrEs0UlOzXBnr7WqZ3xB2iv2y0jFptC4fOWjUCUNI6VVYenIjdKOS+Gq/O9juJhA
-         Z0uH+Z8HZC5hG0Havsfw/Y5sVmxv48oAt3J9DLt7FpI3gaCgS5bnJsgZhqf0R/rEC6ZX
-         m3rEOyzAUbbV1KCqAAzKKx4t8hE21nf+X0yIEgEf8wIrrqPHAi4Rki147/QAW50QdSJ5
-         2/30fUsd3Nyej7xnKP6OPGmHrI/4wqmqzhF+j0PKdlkhC9OmVi1msMk2YliLfJGkcATv
-         I1UA==
-X-Forwarded-Encrypted: i=1; AJvYcCWYp/GDwwqe3Mie16LstwM06Ygubz3lRIekEE057BWW2H4WBS4aSvFR7SOi4hhpNIdmETc4T3pxBN4k@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEUhtGDAUtS49p9EIuIk1RpmXXeEojEyk1w5I2kyGRt2c04SDw
-	9eryuQ24ye4aCnT88byOjyPatT+vfY2NW9CjIEOiJgeynNIA1fRJC84isMS0F4Zmsg==
-X-Gm-Gg: ATEYQzwwzIoXQ5hFrUyFrAsH5F/Atbk7twY9Yr2aNnkZ/GXrki7wKTwEUacsvtwNVDs
-	m1ME1QaT++zCvvWbbeu5EUJ6GwZST2sECiqSDsLwmXdbzLhpfn92HZtyP2bKPIqYa6ToiQziYlL
-	iK9PAxGTO7cX39a2HaKsutEWPv9k/hiRUVON3OFh2jH/sLHQgIMOXWXk/wPjlZXyCGGedjeSzxu
-	ZyUHNx7lw7tQGuoGarylo1jwchn9FzJmaFz/VaWxovt10YxILr2Nf+RfbtxujaxjnFn6kCM+cRL
-	abK2B37AhZUHeYFQrEu5UKMg+XAN0WxhHJ3X2CA7Cgbf8mOzuQgY0snn06URyxZDlrbD9mWzLA1
-	4NZRrc7lx53FhJnZmDDIL6zQdM0zr7egTmGOLytbsPQGjPml3b4crMWCrvC3WvwpLjSXvLgRKSp
-	Oh0bMUjt16gbyHm1fjTKp+OolOLvtDVd4vT7oZFYtbqjOYfZP9TSDT/X5RRxSjZHggC5tdz2yd6
-	NrsBVPKfIYos+zlwf2HBzj4Qx4Ifa9oDw==
-X-Received: by 2002:a17:903:b8d:b0:2b2:65db:8c5f with SMTP id d9443c01a7336-2b269c9b80fmr50932815ad.27.1775095181703;
-        Wed, 01 Apr 2026 18:59:41 -0700 (PDT)
+        bh=uaSym8CXCOjXII696jSRn6vHWWlOmeUfwp714NDMznM=;
+        b=V89qwDjm2KEFzAI+LFWBc2TmGdgzOcyB6grfHFAMLHFTgiBQR8p0nb5djiGgkzR5B+
+         iJbL8VQ/fasMAi+ly0D5AtSpGGDfozirN03G3KOzN5eu1kSbZU515/nx3t79Mlp9rGSb
+         Hm5uSeVsVyymRlgL+rV22Ivrj58DqHoYxaluVR/UXZ7eulp6+Tbe7uJ7S0q6Up7DV9tC
+         pNXTVsyCe35/nAmqj6UtyY7RLEJQqriPtlrQEvtJYGZu4gl/r5gp4xkvw07rDiqGFcvH
+         +4MkgBACfLjX0uNApC5vq5OdDm6K/f4FjvPcKIOBcRWNbf2JnW8SGHZA00nWh6k35/xE
+         lAOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUhTZ3RRYNm6mxbshfuT/ccPReyFUmau8JV7qYPBvTUVjsPbHkQLovcqwTTJSSmRa0ixpa/fUDBe/4G@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZRn+Of4IyokgykRgN3fOBkRzaRotfVYVNL2ErDTQi3hUZ714o
+	7LrBgHrYOlzyhV7UMkuEd6Ju/Ic9NVHEPKXimucD2/R2dSmyh2iYgTh+DPx6VAKi0A==
+X-Gm-Gg: ATEYQzzcUhguDzaRMqxf33YDZyUCJgkXsH/Zjms2EySfh4MPhZo1j4f8MTHyK/Yyzrd
+	K7BwJuT5EnJbtiTdCFivE0VywzZcKyiEGxR9Z2PlLDgymqR6XjNBC3ibXdpOtJdzwXCBI3Yutt6
+	cC1U9+VD61dqsNbEnsBV8pgaSWNwjpshbB36ooRZZTxzDZ0hZIv7ZdcUrB+i+BraZQ60pLM06Fn
+	EqX7cMQio3KC1RVBAcWcQAcjyu68gtRQNTgDZieVlkm/66qMUEhZOx9QsoK+zFZhpJLH33R6L0T
+	xeeA6F15m9NVMfGlwA90ywsehXtc6XclbkB2EOdChKAnRhKvP4mjeqxwUF7/nyelwOx3xvsRnJ5
+	yF4k3gCl8SL+hQWPkGD0nTdpsjJjZ4xFTukrs790M7Yui/VUEbTkQ10ZXwQtnyaCf3Xt+wrAX7R
+	d03mYuMpnIQKtqRbd14+k6n5Rde8uGQxAujGBzwb/G0yL4aZEZJWD+Zzo0e1hcLQqJZkReIZI/0
+	gyxJJEhvdZb+ceOCKeiV6gfNzPX6xIYIA==
+X-Received: by 2002:a17:903:946:b0:2b2:5293:f415 with SMTP id d9443c01a7336-2b277d8ba21mr5711705ad.7.1775095182367;
+        Wed, 01 Apr 2026 18:59:42 -0700 (PDT)
 Received: from jingyliang-input-linux.c.googlers.com (111.169.168.34.bc.googleusercontent.com. [34.168.169.111])
         by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b27478cb4fsm11187535ad.29.2026.04.01.18.59.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Wed, 01 Apr 2026 18:59:41 -0700 (PDT)
 From: Jingyuan Liang <jingyliang@chromium.org>
-Date: Thu, 02 Apr 2026 01:59:38 +0000
-Subject: [PATCH v3 01/11] Documentation: Correction in HID output_report
- callback description.
+Date: Thu, 02 Apr 2026 01:59:39 +0000
+Subject: [PATCH v3 02/11] HID: Add BUS_SPI support and define
+ HID_SPI_DEVICE macro
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260402-send-upstream-v3-1-6091c458d357@chromium.org>
+Message-Id: <20260402-send-upstream-v3-2-6091c458d357@chromium.org>
 References: <20260402-send-upstream-v3-0-6091c458d357@chromium.org>
 In-Reply-To: <20260402-send-upstream-v3-0-6091c458d357@chromium.org>
 To: Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires <bentiss@kernel.org>, 
@@ -105,11 +105,11 @@ Cc: linux-input@vger.kernel.org, linux-doc@vger.kernel.org,
  Jarrett Schultz <jaschultz@microsoft.com>, 
  Dmitry Antipov <dmanti@microsoft.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775095180; l=1213;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775095180; l=1402;
  i=jingyliang@chromium.org; s=20260213; h=from:subject:message-id;
- bh=sHkk34xkCVNuYNvgvLM4yfgwiPvB0kDmMlwDb9gzQSI=;
- b=sWAbum2KtSMvIZHpotQFRl3qPX0w5lDPo0wVXGjdcQZ4Iy/Q1lBj1M1z1kObb2Say/DR3abDE
- qMXRcGAYSZjCwmC4SoKf0troiioLGh8ZBZYI6TTyyS5zWbVHFTQHQ7k
+ bh=FjzRhH7/ErE4TnsMI+7AvjihWBkT/xpCI98HMGNLH6s=;
+ b=u4Lc+txBMvZJgNMm1YnjIU7DFBygkIoEJquBuEPB6zFCxqo5mXw0HAIQJAzTByC+gO06+zlwJ
+ t0bqPyaLh0nD1I0sai05bo1y2ot0KK93bqPfmYAxaNKepG3FQdXBoLt
 X-Developer-Key: i=jingyliang@chromium.org; a=ed25519;
  pk=VTYSdqslTtYOjWWoIGgYoWupGWqNSidrggReKMgfPo4=
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -117,11 +117,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
 	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-283679-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283681-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,lwn.net,goodmis.org,efficios.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -129,7 +129,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[chromium.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -139,39 +139,54 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:dkim,chromium.org:email,chromium.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 24C6E3826AA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:dkim,chromium.org:email,chromium.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4B4FA3826F7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Jarrett Schultz <jaschultz@microsoft.com>
 
-Originally output_report callback was described as must-be asynchronous,
-but that is not the case in some implementations, namely i2c-hid.
-Correct the documentation to say that it may be asynchronous.
+If connecting a hid_device with bus field indicating BUS_SPI print out
+"SPI" in the debug print.
+
+Macro sets the bus field to BUS_SPI and uses arguments to set vendor
+product fields.
 
 Signed-off-by: Dmitry Antipov <dmanti@microsoft.com>
 Reviewed-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 Signed-off-by: Jingyuan Liang <jingyliang@chromium.org>
 ---
- Documentation/hid/hid-transport.rst | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/hid/hid-core.c | 3 +++
+ include/linux/hid.h    | 2 ++
+ 2 files changed, 5 insertions(+)
 
-diff --git a/Documentation/hid/hid-transport.rst b/Documentation/hid/hid-transport.rst
-index 6f1692da296c..2008cf432af1 100644
---- a/Documentation/hid/hid-transport.rst
-+++ b/Documentation/hid/hid-transport.rst
-@@ -327,8 +327,8 @@ The available HID callbacks are:
+diff --git a/drivers/hid/hid-core.c b/drivers/hid/hid-core.c
+index a5b3a8ca2fcb..813c9c743ccd 100644
+--- a/drivers/hid/hid-core.c
++++ b/drivers/hid/hid-core.c
+@@ -2316,6 +2316,9 @@ int hid_connect(struct hid_device *hdev, unsigned int connect_mask)
+ 	case BUS_I2C:
+ 		bus = "I2C";
+ 		break;
++	case BUS_SPI:
++		bus = "SPI";
++		break;
+ 	case BUS_SDW:
+ 		bus = "SOUNDWIRE";
+ 		break;
+diff --git a/include/linux/hid.h b/include/linux/hid.h
+index dce862cafbbd..957f322a0ebd 100644
+--- a/include/linux/hid.h
++++ b/include/linux/hid.h
+@@ -786,6 +786,8 @@ struct hid_descriptor {
+ 	.bus = BUS_BLUETOOTH, .vendor = (ven), .product = (prod)
+ #define HID_I2C_DEVICE(ven, prod)				\
+ 	.bus = BUS_I2C, .vendor = (ven), .product = (prod)
++#define HID_SPI_DEVICE(ven, prod)				\
++	.bus = BUS_SPI, .vendor = (ven), .product = (prod)
  
-    Send raw output report via intr channel. Used by some HID device drivers
-    which require high throughput for outgoing requests on the intr channel. This
--   must not cause SET_REPORT calls! This must be implemented as asynchronous
--   output report on the intr channel!
-+   must not cause SET_REPORT calls! This call might be asynchronous, so the
-+   caller should not expect an immediate response!
- 
-    ::
- 
+ #define HID_REPORT_ID(rep) \
+ 	.report_type = (rep)
 
 -- 
 2.53.0.1185.g05d4b7b318-goog
