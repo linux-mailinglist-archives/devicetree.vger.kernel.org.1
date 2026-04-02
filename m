@@ -1,351 +1,312 @@
-Return-Path: <devicetree+bounces-283995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284022-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2EJ2KCVLzmmjmgYAu9opvQ
-	(envelope-from <devicetree+bounces-283995-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 12:55:33 +0200
+	id ADYNJu5YzmkxnAYAu9opvQ
+	(envelope-from <devicetree+bounces-284022-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 13:54:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB5D387FA1
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 12:55:33 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D412388A0F
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 13:54:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CA4AA302DB66
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 10:54:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 75DF83144E96
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 11:29:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BD53392802;
-	Thu,  2 Apr 2026 10:54:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="a/t6YWte"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A5239B969;
+	Thu,  2 Apr 2026 11:29:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2122.outbound.protection.partner.outlook.cn [139.219.17.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7F13909B5;
-	Thu,  2 Apr 2026 10:54:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775127294; cv=none; b=EU9fPgenbwPCRBDa94pVr6HLWIX2MaQZeavhxvo34icRC2UOXpqF3YzSD7LEhUClk8W4PtADiMmQh4nmKGZl2TJYEDljAmBE1EEdsPr19QU7QG5tUKFg26Z4EERmRxLvpZ+d4pb4ABj1lMbNzXxZFeF37Id8VA72TZLV9vFqq0Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775127294; c=relaxed/simple;
-	bh=yu+8oG5/vysrBcPtnEEY6FRRgmxHcASnTPWwE6Flr78=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d5AC4VD4g1BBfzOPCnejBvYsxocIjt5q5O6AOcRNT1Pm6ZjiwjW4946YVDKgwer4TYnuJg3saGsGXsbLqSHlVM8kLtJt8uvGYOWXmY4hG4Vz/C1QEbv6/W881b8e7O8pIes+JbKNEI/mMo0Oc6LuIJKiPwtV/bwYTI3oaDt1Oks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=a/t6YWte; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 631M9oxR115373;
-	Thu, 2 Apr 2026 10:54:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=0RVIWJ
-	4ylqtORZ1L+Mwi1bTJovcNPY/rDERTjKhDyF4=; b=a/t6YWtepXkgy3HnC1LPNl
-	NR+Sa0T2m4F5OUreTADI9RhCPsGdkaq2wKrdARBIMfuSA4P3rIph73h5RWyUHcy0
-	vYl6+ty77D+/tt99X7WPZDxLhObX+/xdhalR/HkVr2Y2FlQXpP9MXCCy6F4Xe/1t
-	QiF3hzYQqahWCGn7Qjlm2QEhZbi4N8E2Fdn+H4BRg2qwa2cvFUdcL+JWnNTe6Nlf
-	XVNv7IZjqcNrzu9yObzkou48pXnS8lfA6b5Cy/0MtNlQWh5RWesV3xnFTUTXDzDX
-	OoyGhs/Hq0hNeXpVtXUV5h0JJQopD2GLU818VVJ8mI/3VIaPgFokCSoEYCp4QRUw
-	==
-Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4d66q3ccfd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 Apr 2026 10:54:25 +0000 (GMT)
-Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma11.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 6327koKJ008685;
-	Thu, 2 Apr 2026 10:54:24 GMT
-Received: from smtprelay01.fra02v.mail.ibm.com ([9.218.2.227])
-	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 4d6v11sfrv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 Apr 2026 10:54:24 +0000
-Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
-	by smtprelay01.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 632AsKD952298136
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 2 Apr 2026 10:54:20 GMT
-Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 4C46B2004E;
-	Thu,  2 Apr 2026 10:54:20 +0000 (GMT)
-Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 789E220040;
-	Thu,  2 Apr 2026 10:54:15 +0000 (GMT)
-Received: from [9.123.14.142] (unknown [9.123.14.142])
-	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Thu,  2 Apr 2026 10:54:15 +0000 (GMT)
-Message-ID: <51761fcf-955f-45e2-97a5-2b49d8e79d04@linux.ibm.com>
-Date: Thu, 2 Apr 2026 16:24:14 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A1FA3644BE;
+	Thu,  2 Apr 2026 11:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.122
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775129352; cv=fail; b=bKcs2xYihfu58MPNCXxnfgZGdHofGBcyDqDn6cCGhdeRy+6LPB91IeJr0tfOqvDbVc4/ADQkbCo6Z/SK9hOTmCXj34uc7E56rWxaXXIwaZLW6mCCd8KBTKBdYFkKDa7IhElXXkcrZmdlExZdC9CL38Rdv3CIjcAulIHUjP2XiLs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775129352; c=relaxed/simple;
+	bh=F2w6AaEeDfM5qrGmBHrZMXm6E2vLlO5hX8jfna+hzyg=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=OaH85KpM6k+Yu6QbDqaveQJsVjTfmd6RhvAybUKjMYaP0RWOy4NP7/RexfsvYyV/TLz4Bg+MZkQyO39wTRnrtOEXn14Ai95ddjBHqDr2XUsqrttzjEU9Xz6oJk/iv372t12U9DbtJxCv7i0+sUrFMRqM3DT+jns9z0+oHRCb6+4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aoComGZrNUn3zGAFrPzJVZp9V3/p+1XLq3O0tXq2wCiXvUXziY4Q7O2vVES/bEkvQ7EYSAOWf5ivybml8hra58N6a2n0ywpTbhhMDsvIn2SCDeFnM0AQHvZ7+t5Cqa9Wcr2ueDS+KedG+zwkeUZf8iC7Dffvgz4vkxJjqoSPNlY8PVSopEuw8BpZpygwAFZzOlc8oTYXqjVJnO2YA2csOSH8kzzGxiWrtDfh/xcI4TRECT+N3uoq9OcG32mO1jKxassLq4juwEi/aYvuw+dBIllrxs5SzDgrqOeCdGJlVJdPUe87gj0N40HS0p0ITsJzBWYkS72KpPYu4EYhDQ6RYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sJE1ABfb5cyrtTvicjaSy3p5OpjlzEMQsa6LXqul4q0=;
+ b=n46TaQaXJDYxXRww3nTwai8Q3y99bWlQkciL1lJwRId5CKvE74tYtRbZZ/OURUr5nZdVLAQMkajX1KCMgACaj8hoWBVY7vKeTATKz7xA+EpG3vAt5/esHhqjkuuaqluf9TjKEVClAdOI9hQBGs+CK9yCiK/IZodWe3DuaD+PmBp+lOnusv7ReZyEYQLjuLgfXPJ2DhIETCqccw6uaLzH59xI0WrKPUk9Mh3bRLNUFZMRah6apz91e7aEKhKuokJb8TfkvBrpVG5whLE7nbaq90UBMBhFyYuAO956TuO7apqh5Gu6tjWCTTBNmvR+mIOTfG1rOBpcVBNfolrrVclIEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from ZQ0PR01MB1208.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:19::5) by ZQ0PR01MB0951.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:e::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.19; Thu, 2 Apr
+ 2026 10:55:36 +0000
+Received: from ZQ0PR01MB1208.CHNPR01.prod.partner.outlook.cn
+ ([fe80::63d1:b688:cab7:50cb]) by
+ ZQ0PR01MB1208.CHNPR01.prod.partner.outlook.cn ([fe80::63d1:b688:cab7:50cb%7])
+ with mapi id 15.20.9769.017; Thu, 2 Apr 2026 10:55:36 +0000
+From: Changhuang Liang <changhuang.liang@starfivetech.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Kees Cook <kees@kernel.org>,
+	"Gustavo A . R . Silva" <gustavoars@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>
+Cc: linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-hardening@vger.kernel.org,
+	netdev@vger.kernel.org,
+	Sia Jee Heng <jeeheng.sia@starfivetech.com>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	Changhuang Liang <changhuang.liang@starfivetech.com>
+Subject: [PATCH v1 00/22] Add basic clocks and resets for JHB100 SoC
+Date: Thu,  2 Apr 2026 03:55:01 -0700
+Message-Id: <20260402105523.447523-1-changhuang.liang@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ZQ0PR01CA0028.CHNPR01.prod.partner.outlook.cn (10.2.0.210)
+ To ZQ0PR01MB1208.CHNPR01.prod.partner.outlook.cn (10.2.3.165)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] arm64,ppc64le/kdump: pass dm-crypt keys to kdump
- kernel
-To: Coiby Xu <coxu@redhat.com>, kexec@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
-        devicetree@vger.kernel.org
-Cc: Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>,
-        Baoquan he <bhe@redhat.com>, Dave Young <dyoung@redhat.com>,
-        Kairui Song <ryncsn@gmail.com>, Pingfan Liu <kernelfans@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-        Thomas Staudt <tstaudt@de.ibm.com>, Will Deacon <will@kernel.org>,
-        "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Madhavan Srinivasan <maddy@linux.ibm.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Saravana Kannan <saravanak@kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20260225060347.718905-1-coxu@redhat.com>
- <20260225060347.718905-4-coxu@redhat.com>
-Content-Language: en-US
-From: Sourabh Jain <sourabhjain@linux.ibm.com>
-In-Reply-To: <20260225060347.718905-4-coxu@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-GUID: 1IJpf8nhQkcVXt5GniLlCr3XWgW66IQM
-X-Authority-Analysis: v=2.4 cv=frzRpV4f c=1 sm=1 tr=0 ts=69ce4ae1 cx=c_pps
- a=aDMHemPKRhS1OARIsFnwRA==:117 a=aDMHemPKRhS1OARIsFnwRA==:17
- a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=U7nrCbtTmkRpXpFmAIza:22 a=VwQbUJbxAAAA:8
- a=20KFwNOVAAAA:8 a=NEAV23lmAAAA:8 a=b2T7Ds_qAAAA:8 a=pGLkceISAAAA:8
- a=Z4Rwk6OoAAAA:8 a=VnNF1IyMAAAA:8 a=CgUfrdhd2qi-7wTTnboA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=thWvoDmNLqknv6kuXhLH:22 a=HkZW87K1Qel5hWWM3VKY:22
-X-Proofpoint-ORIG-GUID: x_IWhrErDeETCiTEFlITfxiDIXysEuLj
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDAyMDA5NyBTYWx0ZWRfX4FDLit6NpI3L
- shC2rKHIH4E6HToakFkgZdHxWXdbkbPhbeADWr0jBlBnA5PNnlA7MfMtUl8VyQk5+vLGbLfZ82Z
- fMEhRxMXapCTYXQUzQw8z3uBrDVdmEOeYrDLjR3ZDkkAlgpJ/EpseC2rxJCCw4T4MALgUtFvSpi
- rkpL2TCWdgvkaOZUWdQABxYoXOvIirYnjQBDxcjrjT3bCxWtrdT4AgGSi0bpn1h32jQCkeRMNkO
- 8ycQMVRnS4Kz8Nx8XDtY1QdhUQ9eO4RePsUBiNd0hVeH1x5UepoLHv/YZQPm40io7TiKUjOLBkf
- 7rDk2GXzJhphRwRJzGScyjFo0rg+fHeriBkLeXUw7wpJ5L7G7PfND2ADZKSaaYZIW9U9MzXzKEg
- rhoSnAlIKyZOEE94DL3ZLYiXUkRjpIzLFxvXh6Osg/59lN6LpVl8yTLgny/Vnj/oQyvpbSxi+c0
- bkZ0+M4Dq/Uk/a8tQqA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-02_01,2026-04-02_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0 clxscore=1011
- lowpriorityscore=0 bulkscore=0 adultscore=0 suspectscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2604020097
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZQ0PR01MB1208:EE_|ZQ0PR01MB0951:EE_
+X-MS-Office365-Filtering-Correlation-Id: 506c8915-e4da-4a1d-20cc-08de90a65d5d
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|7416014|38350700014|921020|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	DQ6bZF2zXaYsEAGOU00bSw/N1EJtwuMdWoYmspFDc88X0MoiptUgHYc4smGnXzVz8uKafsiswHSjbfiECJbH4A+nLIqTEMERRb+wKOvEn/6Yo0yZqZPiIG0BWnMjNI7u8eGq45THTTz/dQRgSMtY9JCC+wJXu3mfuPzi2FUCyTRKSZ4Ta9z7LNDFR7JgCOO+urJO3eQnQJWEfyc1WIaxEdQFqrRe/fB1aDpALrrG0GAs2DTSRzFx6vkvfAwYtRGQSfokIJ9bdT6cQVhehEX2PFfK89NDZ1IMLoMjVXY2KcQL7r9DSXiIqhwjK89M0JGbboDlg9ekyAa/PULqsKzaS4hzyLyLAYf0A26VGf+FAacUb+YKNgKDqQwxN0zrvPcykn58wq86Q4JGvnrk8N6Qf4rMZeWHgPUhLPMQI4p78UnLL+W6uetj/OJ/8efggpKRkr4mV44ywwhEdCWCtHMVbViuvDCpaU4BjGo2hu2OHBPcIHEuJ0gMCb5aT7nDRIPSqJHUxe8sjRDl9FBp0SQvbiqGmqRddZ6rrYhv725bbFoGatKdfQ1Zscpgqan9dlkXMujsyhQ35jdufyeUxMEVFABvYDZ+kfVLntI+fB2NSck=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB1208.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(7416014)(38350700014)(921020)(18002099003)(56012099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ToFs8walwRCwV+ZhQQqt7fwBr6tVa/Zoyddyy92SW2FDNwRDFkwWDOGOWFk3?=
+ =?us-ascii?Q?QRC2c3tZ6dzgmHGdvM6A+hCk7dpjOyO0EKzNuX6wfzxtycdRzKpGQIcxV9Rd?=
+ =?us-ascii?Q?ebVe0WXJ90uoSv7oCjAABLTb5BG3ciGQ3dxJgbgWsEaKbX9YiBXOo1onhCZS?=
+ =?us-ascii?Q?7zAVA27UzqFdj/VvAaW0y/07m+2P6XSjgzchaDCbb+3ucph06PlPIgOGR6pV?=
+ =?us-ascii?Q?M1aklSnSTlF8NomNjsZ6IRlw2cWXqak09F2MxV5k29HMsgcorYdwpB4C4AMQ?=
+ =?us-ascii?Q?DcE/uj9+v1/xOBcqe9TrJBZZSjbub318xdWcfDHwy2IbULsAZQYFMnjX3cmM?=
+ =?us-ascii?Q?+3+At3LKhgj9xfKZhiZIeFhM9Q+lMGwa+3wBChbztNaWiOBtQYrbI9i5vUVL?=
+ =?us-ascii?Q?WN4/7pSWg87ueXhTWP/iF0Foc0u9AUZU1zQogyCSAr9nKMxviKvMH2PXgRgH?=
+ =?us-ascii?Q?rT6sWADNBt+wV0scd4upWRvdnrwp97vbgIp1T8ZKL/hvv9lqz4jsaU9w/VBO?=
+ =?us-ascii?Q?k9EQP4nZcZM1Zand2LtZ63nv7H3WW0RxuWDlLgC+cm0JwPNslIY5YDwXJ8K+?=
+ =?us-ascii?Q?pIp4OvDWpCoEaxucKh+PJH1UjXFDX27iihO/lOHOFCad9XQdWboHSpsidtgz?=
+ =?us-ascii?Q?dZW/NuoKiu0edaJzj0kikljRZQ73izowNyQbpNPgk30J/9yoER1FwdWzIRJs?=
+ =?us-ascii?Q?hRrz2baxjymqkX5ECCGEsBxxjyoMyJl5O6kyc1NVGVRm92XL3y4Wk/cyPDJO?=
+ =?us-ascii?Q?4tN1bMV5nzLihR8zgDJ87t5q9um1r0HFrJ7XSfufmyTBgSGkzN8dPqD2Ap3x?=
+ =?us-ascii?Q?qd2BlEX1rLSmH4RVHx3/p2Ep7ZHAC6XER7/D17qooZZ/qzkXCgKQ1VgjlRaX?=
+ =?us-ascii?Q?OJQQXxpiNV2Jar2n1XES+KAgq9qXyuSKB7rBrwsTwZCjdDdoqRlRpXGltl8a?=
+ =?us-ascii?Q?KEyW2TUoUtuOP3yS3vrtlcgJDMCGl10X21dwjZymq35Cq+LK4XJoXLASvQPR?=
+ =?us-ascii?Q?rYHEozaFqpjvmR6mqSO2iam9Lw8u57Yx2JYommvp13RdtQ7kOwcfVF+QPQiN?=
+ =?us-ascii?Q?10dhxsESSu5WiIDNBYWl0eqYLCfKdsvcN1xfqMcwDVU1cQFhJckNIQTsQIwA?=
+ =?us-ascii?Q?BXLWvLFUIyYNNF3Pbxvldqh3gQQctuLZ6kmdbpu2Z9hOKbEDqLGXa2kwmDZD?=
+ =?us-ascii?Q?yeTR4/4H8dkWHdUJP1J+VbIonynPVw3djximk5IUxwm9C/m/xFDCDMqe6yh5?=
+ =?us-ascii?Q?i8fEMdrni6RqNcfMRimKefOv7CnhGizXdq7bVPMTk3eLmlSpE4S9DzFnk+RC?=
+ =?us-ascii?Q?hwoMwr3aBsB9YjijfvADR4zq1zdTuN6BSwsEh/gzqDAZEEBFLD1xwlIa/dEG?=
+ =?us-ascii?Q?4fFYW/cBpnjsDMPiWkJk7FCAj4lsF0EPXcASUD+vEfSdAUJYrI/XISg8GmZO?=
+ =?us-ascii?Q?GaTmh/t7DYk+p0iKUSeW6/yJabToexVfmnpJBC/fXIbVxC2PjIh5ORqcgnq3?=
+ =?us-ascii?Q?IAanMiwsBZZBIPm1UKWdV4fA/tkboVN08t+ngrOuWWmdSaccAbgwh2ojzM8s?=
+ =?us-ascii?Q?nCEL0YPWUeU/dstiEyX1VEBBYnzh+jr6S9pFnMrAKmFfpFYnECASooonoOjv?=
+ =?us-ascii?Q?npj+RmLq3JBnRJRlqRPBIuqQgiLcqsBtpJgey4U44bpN4j8qYwdBJdNX8rM6?=
+ =?us-ascii?Q?AG2WFujDBMbPQnnq18tcAlt9OxkLNNVtxnbssC6g6xJNfSeNVhHA+hwg24kZ?=
+ =?us-ascii?Q?Jg+NlaqpxYumIdwv1VCn1y+p73ZGmuiANqXxaV9RxzOecDPIc4rt?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 506c8915-e4da-4a1d-20cc-08de90a65d5d
+X-MS-Exchange-CrossTenant-AuthSource: ZQ0PR01MB1208.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2026 10:55:36.0616
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JBop3ISQ1pwy/ijTuc7ScRyAXuo0yeUJnBWjujd0Z3bWkj5afBolsSAq+ZKV3Sy8a7Urt9rOFDWtXx6hlIgpJFzIsTJMyldliUxaERbTAlzXljV4X5U+CXLy7ie8i8ao
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB0951
+X-Spamd-Result: default: False [5.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[clever-cloud.com,redhat.com,gmail.com,linux-foundation.org,kernel.org,de.ibm.com,arm.com,linux.ibm.com,ellerman.id.au,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-283995-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-foundation.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,clever-cloud.com:email,linux.ibm.com:mid];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	TAGGED_FROM(0.00)[bounces-284022-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[ibm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[baylibre.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,pengutronix.de,esmil.dk,gmail.com];
+	GREYLIST(0.00)[pass,body];
+	NEURAL_SPAM(0.00)[0.061];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sourabhjain@linux.ibm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCVD_COUNT_SEVEN(0.00)[11]
-X-Rspamd-Queue-Id: 2EB5D387FA1
+	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 5D412388A0F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+The JHB100 SoC includes CRG (Clock and Reset Generator) for multiple
+subsystems:
 
+The JHB100 SoC is divided into multiple subsystems, and basically
+each subsystem includes a CRG(Clock and Reset Generator):
+ - sys0crg/sys1crg/sys2crg/
+ - per0crg/per1crg/per2crg/per3crg/
+ - voutcrg
+ - vcecrg
+ - gpu0crg/gpu1crg
+ - cpucrg
+ - usbcrg
+ - host0crg/host1crg
+ - pcierpcrg
+ - husb0crg/husb1crg
+ - husbcmncrg
+ - husbd0crg/husbd1crg
+ - npucrg
 
-On 25/02/26 11:33, Coiby Xu wrote:
-> CONFIG_CRASH_DM_CRYPT has been introduced to support LUKS-encrypted
-> device dump target by addressing two challenges [1],
->   - Kdump kernel may not be able to decrypt the LUKS partition. For some
->     machines, a system administrator may not have a chance to enter the
->     password to decrypt the device in kdump initramfs after the 1st kernel
->     crashes
->
->   - LUKS2 by default use the memory-hard Argon2 key derivation function
->     which is quite memory-consuming compared to the limited memory reserved
->     for kdump.
->
-> To also enable this feature for ARM64 and PowerPC, the missing piece is
-> to let the kdump kernel know where to find the dm-crypt keys which are
-> randomly stored in memory reserved for kdump. Introduce a new device
-> tree property dmcryptkeys [2] as similar to elfcorehdr to pass the
-> memory address of the stored info of dm-crypt keys to the kdump kernel.
-> Since this property is only needed by the kdump kernel, it won't be
-> exposed to user space.
->
-> [1] https://lore.kernel.org/all/20250502011246.99238-1-coxu@redhat.com/
-> [2] https://github.com/devicetree-org/dt-schema/pull/181
->
-> Cc: Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>
-> Cc: Baoquan he <bhe@redhat.com>
-> Cc: Dave Young <dyoung@redhat.com>
-> Cc: Kairui Song <ryncsn@gmail.com>
-> Cc: Pingfan Liu <kernelfans@gmail.com>
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: Krzysztof Kozlowski <krzk@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Thomas Staudt <tstaudt@de.ibm.com>
-> Cc: Sourabh Jain <sourabhjain@linux.ibm.com>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
-> Signed-off-by: Coiby Xu <coxu@redhat.com>
-> ---
->   arch/arm64/kernel/machine_kexec_file.c |  4 ++++
->   arch/powerpc/kexec/elf_64.c            |  4 ++++
->   drivers/of/fdt.c                       | 21 +++++++++++++++++++++
->   drivers/of/kexec.c                     | 19 +++++++++++++++++++
->   4 files changed, 48 insertions(+)
->
-> diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
-> index fba260ad87a9..e31fabed378a 100644
-> --- a/arch/arm64/kernel/machine_kexec_file.c
-> +++ b/arch/arm64/kernel/machine_kexec_file.c
-> @@ -134,6 +134,10 @@ int load_other_segments(struct kimage *image,
->   
->   		kexec_dprintk("Loaded elf core header at 0x%lx bufsz=0x%lx memsz=0x%lx\n",
->   			      image->elf_load_addr, kbuf.bufsz, kbuf.memsz);
-> +
-> +		ret = crash_load_dm_crypt_keys(image);
-> +		if (ret)
-> +			goto out_err;
->   	}
->   #endif
->   
-> diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
-> index 5d6d616404cf..ea50a072debf 100644
-> --- a/arch/powerpc/kexec/elf_64.c
-> +++ b/arch/powerpc/kexec/elf_64.c
-> @@ -79,6 +79,10 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
->   			goto out;
->   		}
->   
-> +		ret = crash_load_dm_crypt_keys(image);
-> +		if (ret)
-> +			goto out;
-> +
->   		/* Setup cmdline for kdump kernel case */
->   		modified_cmdline = setup_kdump_cmdline(image, cmdline,
->   						       cmdline_len);
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index 331646d667b9..2967e4aff807 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -866,6 +866,26 @@ static void __init early_init_dt_check_for_elfcorehdr(unsigned long node)
->   		 elfcorehdr_addr, elfcorehdr_size);
->   }
->   
-> +static void __init early_init_dt_check_for_dmcryptkeys(unsigned long node)
-> +{
-> +	const char *prop_name = "linux,dmcryptkeys";
-> +	const __be32 *prop;
-> +
-> +	if (!IS_ENABLED(CONFIG_CRASH_DM_CRYPT))
-> +		return;
-> +
-> +	pr_debug("Looking for dmcryptkeys property... ");
-> +
-> +	prop = of_get_flat_dt_prop(node, prop_name, NULL);
-> +	if (!prop)
-> +		return;
-> +
-> +	dm_crypt_keys_addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
-> +
-> +	/* Property only accessible to crash dump kernel */
-> +	fdt_delprop(initial_boot_params, node, prop_name);
-> +}
-> +
->   static unsigned long chosen_node_offset = -FDT_ERR_NOTFOUND;
->   
->   /*
-> @@ -1097,6 +1117,7 @@ int __init early_init_dt_scan_chosen(char *cmdline)
->   
->   	early_init_dt_check_for_initrd(node);
->   	early_init_dt_check_for_elfcorehdr(node);
-> +	early_init_dt_check_for_dmcryptkeys(node);
->   
->   	rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
->   	if (rng_seed && l > 0) {
-> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-> index c4cf3552c018..fbd253f0d3c5 100644
-> --- a/drivers/of/kexec.c
-> +++ b/drivers/of/kexec.c
-> @@ -423,6 +423,25 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
->   		if (ret)
->   			goto out;
->   
-> +		if (image->dm_crypt_keys_addr != 0) {
-> +			ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
-> +						       "linux,dmcryptkeys",
-> +						       image->dm_crypt_keys_addr,
-> +						       image->dm_crypt_keys_sz);
-> +
-> +			if (ret)
-> +				goto out;
-> +
-> +			/*
-> +			 * Avoid dmcryptkeys from being stomped on in kdump kernel by
-> +			 * setting up memory reserve map.
-> +			 */
-> +			ret = fdt_add_mem_rsv(fdt, image->dm_crypt_keys_addr,
-> +					      image->dm_crypt_keys_sz);
-> +			if (ret)
-> +				goto out;
-> +		}
-> +
->   #ifdef CONFIG_CRASH_DUMP
->   		/* add linux,usable-memory-range */
->   		ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
+In the current series, we will only add the following CRG:
+ - sys0crg/sys1crg/sys2crg/
+ - per0crg/per1crg/per2crg/per3crg/
 
-The above changes look good to me.
+The remaining CRG will be implemented in future series.
 
-Feel free to add:
-Reviewed-by: Sourabh Jain <sourabhjain@linux.ibm.com>
+This series depends on the series:
+https://lore.kernel.org/all/20260402084019.440708-1-changhuang.liang@starfivetech.com/
+and it has been tested on the StarFive JHB100 EVB-1.
 
-But while reading crash_load_dm_crypt_keys() I noticed a possibility of a
-double free at the address pointed by `keys_header`:
+Changhuang Liang (18):
+  dt-bindings: clock: Add StarFive JHB100 System-0 clock and reset
+    generator
+  clk: starfive: Add JHB100 System-0 clock generator driver
+  dt-bindings: clock: Add StarFive JHB100 System-1 clock and reset
+    generator
+  clk: starfive: Add JHB100 System-1 clock generator driver
+  dt-bindings: clock: Add StarFive JHB100 System-2 clock and reset
+    generator
+  clk: starfive: Add JHB100 System-2 clock generator driver
+  dt-bindings: clock: Add StarFive JHB100 Peripheral-0 clock and reset
+    generator
+  clk: starfive: Introduce inverter and divider
+  clk: starfive: Expand the storage of clock parent index
+  clk: starfive: Add StarFive JHB100 Peripheral-0 clock driver
+  dt-bindings: clock: Add StarFive JHB100 Peripheral-1 clock and reset
+    generator
+  clk: starfive: Add StarFive JHB100 Peripheral-1 clock driver
+  dt-bindings: clock: Add StarFive JHB100 Peripheral-2 clock and reset
+    generator
+  clk: starfive: Add StarFive JHB100 Peripheral-2 clock driver
+  dt-bindings: clock: Add StarFive JHB100 Peripheral-3 clock and reset
+    generator
+  clk: starfive: Add StarFive JHB100 Peripheral-3 clock driver
+  reset: starfive: Add StarFive JHB100 reset driver
+  riscv: dts: starfive: jhb100: Add clocks and resets nodes
 
-In crash_load_dm_crypt_keys()/crash_dump_dm_crypt.c
-     snip...
+Sia Jee Heng (4):
+  reset: starfive: Rename file name "jh71x0" to "common"
+  reset: starfive: Convert the word "jh71x0" to "starfive"
+  clk: starfive: Rename file name "jh71x0" to "common"
+  clk: starfive: Convert the word "jh71x0" to "starfive"
 
-     kbuf.buffer = keys_header;
+ .../clock/starfive,jhb100-per0crg.yaml        |  70 ++
+ .../clock/starfive,jhb100-per1crg.yaml        |  70 ++
+ .../clock/starfive,jhb100-per2crg.yaml        |  79 +++
+ .../clock/starfive,jhb100-per3crg.yaml        |  78 +++
+ .../clock/starfive,jhb100-sys0crg.yaml        |  63 ++
+ .../clock/starfive,jhb100-sys1crg.yaml        |  71 ++
+ .../clock/starfive,jhb100-sys2crg.yaml        |  64 ++
+ MAINTAINERS                                   |  13 +
+ arch/riscv/boot/dts/starfive/jhb100.dtsi      | 198 +++++-
+ drivers/clk/starfive/Kconfig                  |  67 +-
+ drivers/clk/starfive/Makefile                 |  10 +-
+ drivers/clk/starfive/clk-starfive-common.c    | 351 ++++++++++
+ drivers/clk/starfive/clk-starfive-common.h    | 135 ++++
+ .../clk/starfive/clk-starfive-jh7100-audio.c  | 127 ++--
+ drivers/clk/starfive/clk-starfive-jh7100.c    | 503 +++++++-------
+ .../clk/starfive/clk-starfive-jh7110-aon.c    |  62 +-
+ .../clk/starfive/clk-starfive-jh7110-isp.c    |  72 +-
+ .../clk/starfive/clk-starfive-jh7110-stg.c    |  94 +--
+ .../clk/starfive/clk-starfive-jh7110-sys.c    | 525 +++++++-------
+ .../clk/starfive/clk-starfive-jh7110-vout.c   |  74 +-
+ drivers/clk/starfive/clk-starfive-jh7110.h    |   4 +-
+ drivers/clk/starfive/clk-starfive-jh71x0.c    | 339 ---------
+ drivers/clk/starfive/clk-starfive-jh71x0.h    | 127 ----
+ .../clk/starfive/clk-starfive-jhb100-per0.c   | 655 ++++++++++++++++++
+ .../clk/starfive/clk-starfive-jhb100-per1.c   | 204 ++++++
+ .../clk/starfive/clk-starfive-jhb100-per2.c   | 232 +++++++
+ .../clk/starfive/clk-starfive-jhb100-per3.c   | 189 +++++
+ .../clk/starfive/clk-starfive-jhb100-sys0.c   | 253 +++++++
+ .../clk/starfive/clk-starfive-jhb100-sys1.c   | 157 +++++
+ .../clk/starfive/clk-starfive-jhb100-sys2.c   | 178 +++++
+ drivers/clk/starfive/clk-starfive-jhb100.h    |  11 +
+ drivers/reset/starfive/Kconfig                |  15 +-
+ drivers/reset/starfive/Makefile               |   3 +-
+ ...rfive-jh71x0.c => reset-starfive-common.c} |  68 +-
+ .../reset/starfive/reset-starfive-common.h    |  14 +
+ .../reset/starfive/reset-starfive-jh7100.c    |   4 +-
+ .../reset/starfive/reset-starfive-jh7110.c    |   8 +-
+ .../reset/starfive/reset-starfive-jh71x0.h    |  14 -
+ .../reset/starfive/reset-starfive-jhb100.c    | 121 ++++
+ .../dt-bindings/clock/starfive,jhb100-crg.h   | 542 +++++++++++++++
+ .../dt-bindings/reset/starfive,jhb100-crg.h   | 193 ++++++
+ ...rfive-jh71x0.h => reset-starfive-common.h} |  10 +-
+ 42 files changed, 4805 insertions(+), 1262 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jhb100-per0crg.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jhb100-per1crg.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jhb100-per2crg.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jhb100-per3crg.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jhb100-sys0crg.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jhb100-sys1crg.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jhb100-sys2crg.yaml
+ create mode 100644 drivers/clk/starfive/clk-starfive-common.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-common.h
+ delete mode 100644 drivers/clk/starfive/clk-starfive-jh71x0.c
+ delete mode 100644 drivers/clk/starfive/clk-starfive-jh71x0.h
+ create mode 100644 drivers/clk/starfive/clk-starfive-jhb100-per0.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jhb100-per1.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jhb100-per2.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jhb100-per3.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jhb100-sys0.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jhb100-sys1.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jhb100-sys2.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jhb100.h
+ rename drivers/reset/starfive/{reset-starfive-jh71x0.c => reset-starfive-common.c} (55%)
+ create mode 100644 drivers/reset/starfive/reset-starfive-common.h
+ delete mode 100644 drivers/reset/starfive/reset-starfive-jh71x0.h
+ create mode 100644 drivers/reset/starfive/reset-starfive-jhb100.c
+ create mode 100644 include/dt-bindings/clock/starfive,jhb100-crg.h
+ create mode 100644 include/dt-bindings/reset/starfive,jhb100-crg.h
+ rename include/soc/starfive/{reset-starfive-jh71x0.h => reset-starfive-common.h} (50%)
 
-     snip....
-
-     r = kexec_add_buffer(&kbuf);
-     if (r) {
-         pr_err("Failed to call kexec_add_buffer, ret=%d\n", r);
-         kvfree((void *)kbuf.buffer);                           <--- 
-First Free
-         return r;
-     }
-
-Since `keys_header` is not reset, the next call to build_keys_header()
-will cause a double free at `keys_header`.
-
-static int build_keys_header(void)
-{
-
-     snip...
-
-     if (keys_header != NULL)
-         kvfree(keys_header);
-
-     snip...
-}
-
-What do you think?
-
-- Sourabh Jain
-
+--
+2.25.1
 
