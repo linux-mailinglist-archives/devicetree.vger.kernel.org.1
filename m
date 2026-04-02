@@ -1,229 +1,193 @@
-Return-Path: <devicetree+bounces-284094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284097-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EfagKyd9zmn0nwYAu9opvQ
-	(envelope-from <devicetree+bounces-284094-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 16:28:55 +0200
+	id QOOcJj1+zmnBnwYAu9opvQ
+	(envelope-from <devicetree+bounces-284097-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 16:33:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F133838A85C
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 16:28:54 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A5B338A967
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 16:33:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8AE49302EEE5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 14:25:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D238930B2C0C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 14:27:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 736F83E8681;
-	Thu,  2 Apr 2026 14:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBDE83EE1C4;
+	Thu,  2 Apr 2026 14:27:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="q4KTQIfy"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="hv/0fkok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from crab.ash.relay.mailchannels.net (crab.ash.relay.mailchannels.net [23.83.222.42])
+Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23A533E4C6E;
-	Thu,  2 Apr 2026 14:25:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.222.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775139912; cv=pass; b=jTAUALYZJSYuojL3iek73fHt4Ov2kLSFbpfRFI+kt8U873y/NKJ//OFvr7ytpiu4LS6bToteOdhyn9k/rwOFMhnEIK1q0slpASWrn2trgXNTbj4FROdf6f8O23OKXYDYWU2Krz7BuFm/aZdpUAKLUz7KFg/caRWgXv9cBeJKuuM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775139912; c=relaxed/simple;
-	bh=zNuuXrkfz3JvVz0uQDp9DtTSygXzdrle98D98LD+psM=;
-	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
-	 Content-Type:Date; b=LB9VgQKXAcgLxmfImvlg14U75SYwPvVfcy8b8RrnOrcYVHuCX2cJ8rDNaciB7gYtdXSPfTPvMJAVi7rdZZEDMoY7DjiVhgJWEV/t7hI0KsY9GTlupFQTaMjhPNWornrEI5ZAWP6g0U4Mi85YMhhMt+E76ec1JoZBNlKdHf4C43Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=q4KTQIfy; arc=pass smtp.client-ip=23.83.222.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 789127E25A2;
-	Thu, 02 Apr 2026 14:25:06 +0000 (UTC)
-Received: from fr-int-smtpout17.hostinger.io (trex-valgrind-0.trex.outbound.svc.cluster.local [100.118.167.158])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 464F17E2DA3;
-	Thu, 02 Apr 2026 14:25:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
-	t=1775139906;
-	b=RWqIoB6+6ZEG4sfij5TSKrx9k+g72G6AbqTorKbpUbgRhzlKAmBZq+yggRytt+S/zGTttI
-	mU1k1Klj3lBhDpQXPyUhFGf4kf1C68ZBMeQH7I0u0ztFKvuAZ+iX4Jz+hP+CCNNanGzbq1
-	Xl/ZBC8C/kj6qJg471nIWmMtRPyPUKxSFBg8EwPb5uSLCfVeA/HofcxK4kQNH+/OIBny/J
-	SaYOLVI8qFwe+s7dMUB1kCcRiWZWIpmzCqQLy1VijlXseoa8U94kuyIXLC/q1kPRSXL6fy
-	jyuQy2bV63Dh1aqRlxnnl34XPC5b+HT+lPI+8bltnJtKUTgeVnKYz7DoF8FkiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1775139906;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=iRsEpdPW7+SIeBtY9Lplguj5RbobZmydSNjJFOfI+O4=;
-	b=MUFVqgYpVXEE53t9Ue515uIDlxhIt0CqqbqkPw8SaMc2z056wtRwSRs4kr/L6KywtzF75+
-	lgXuJygnhVRyA3Tf7mh6HchsE/T9fB/IFKuKBrUd/ZTAkIiEjo0Wx7ls9MmFXlmgdt5kAU
-	ZG6C+UBwAj4yhaF1IjolDrfxiEx//Q/gNeACwLLFznyLkVdHDjrgyjpexNTWwbpDN733Vk
-	eEzXzbJecAp5VT9zxnCNWliOPXEikERBujIcFS6bvhkUJ4H8e345e/o38TX0aiytinRuYg
-	5jj+CrKda20+boD70YFhqjItJMFbJi4S4T92+/GM/RtrmexLIeO0EstIh3oNuA==
-ARC-Authentication-Results: i=1;
-	rspamd-7d86dcc447-5m55v;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId:
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Obese-Bitter: 5647d20a77c26db9_1775139906302_1133818014
-X-MC-Loop-Signature: 1775139906302:1529237009
-X-MC-Ingress-Time: 1775139906301
-Received: from fr-int-smtpout17.hostinger.io (fr-int-smtpout17.hostinger.io
- [148.222.54.37])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.118.167.158 (trex/7.1.3);
-	Thu, 02 Apr 2026 14:25:06 +0000
-Received: from [IPV6:2001:861:4450:d360:ab76:cd75:446d:1407] (unknown [IPv6:2001:861:4450:d360:ab76:cd75:446d:1407])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fmkdc4GyNz1xy6;
-	Thu,  2 Apr 2026 14:24:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1775139893;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iRsEpdPW7+SIeBtY9Lplguj5RbobZmydSNjJFOfI+O4=;
-	b=q4KTQIfyV6mUv2D/mHBqapOxdrsBRCkQQAiVGGhq8sXnNutVACh6xkk3wtFjk3sBF1Bgr0
-	vy5HAWzmIg35efgKzMrS4m7KjA+1hS6QYujMmVgo3oNaKUKdd/s60N2w+PWvxKhIMHyJYC
-	5n/VFNFGIS6wt45syfV1epnOh6aNtejwa/2RvtHoUKiC/2f2gqYiKY+Wrukd4dU0DBZ7SH
-	MwxhgfzGkmaQ5jvTwFaz4jEZzfxy67QZ/p+4fc0meYWh4ea+s2QyZdTE3REzsm8HAU6tT2
-	xLqg9Ott98cdQygJZ7MkkIENEQ4uVq8CzFjRLIFggmiSCV0VjI1xYAyB1jF9CA==
-Message-ID: <46e715a4-0fd7-4692-9a25-a44d469b17b0@rootcommit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04CA72E0B58;
+	Thu,  2 Apr 2026 14:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775140063; cv=none; b=Scrv+u0dFFd7umcSqOX3F4vMSJsS7uYg5WVS5AnmPpeXs/jkBe9m8rUtdUR7pmo+IIIT/KbqENqJ6STUEhRPoKfMZ4D0MpMZGtW3vN0I9U2CZbcjTrKpnyanQ7LswWM9CzeHdyhBCv/Tc8bXe0JztBFQJYUZC4jhgskoB0m2wB4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775140063; c=relaxed/simple;
+	bh=jtFDzNTESkvMwz+pOZUUTieD6Qiq+MAcYIEdMuIWcKY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=R57aZdJw1C6AHRcf3J0uIqXWvL5uSPxmQCLTzMHuP5ntyxxldz8pF2266Z4nEWjeOkFo6006YXcgeQI3r0w97g7b3hEKDlJvXHgwwDBJup4bxoXSBnVN5C1ojzNEmcSiV/1zYC2t3EGb/oRjoYUBjQhLym8KjVaQ9LKO4Nf0QAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=hv/0fkok; arc=none smtp.client-ip=65.21.61.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1775140052;
+	bh=jtFDzNTESkvMwz+pOZUUTieD6Qiq+MAcYIEdMuIWcKY=;
+	h=From:Subject:Date:To:Cc;
+	b=hv/0fkokS0N5Iq7GrMrzENCE9ejCYujOWJ/4QJLab+j5/+2KfG8BgMH+3iF8zZqIo
+	 EoacrE/qQYxgDQGoe9rK6iQdVx6W0/8QacsR5RYrgbNq1eRhqklCnzGy+wM6Wtv2fE
+	 dZoZfEMrimONiKz1nyXJ1zUUMosNTjJ8qwarG74k=
+Subject: [PATCH 0/8] Add VIM4 MCU/FAN support
+Date: Thu, 02 Apr 2026 16:27:00 +0200
+Message-Id: <20260402-add-mcu-fan-khadas-vim4-v1-0-2b12eb4ac7b0@aliel.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@rootcommit.com, Rob Herring <robh@kernel.org>,
- Paul Walmsley <pjw@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
- Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor+dt@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- spacemit@lists.linux.dev
-Subject: Re: [PATCH v2 2/3] riscv: dts: spacemit: enable USB3 on OrangePi R2S
-To: Chukun Pan <amadeus@jmu.edu.cn>, Yixun Lan <dlan@kernel.org>
-References: <20260402100007.110201-1-amadeus@jmu.edu.cn>
- <20260402100007.110201-3-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-In-Reply-To: <20260402100007.110201-3-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Date: Thu,  2 Apr 2026 14:24:52 +0000 (UTC)
-X-CM-Envelope: MS4xfPDXEePllkhuoeqIL+DyxWKIqpegzAhCFxiofxIqzjZ6A0uiNW1WQtYkvmLegmBzTWvino8TuCvKMsrdzpihyWjP6c6/PplqLSIVnFpqPdYabSbnWP1a yMBkLSCR3ES3xmlhYHtYGDa4jKEB3lTpkCSKWyemIZYWBW/+xeCDaZyU5g1jdUlq34jYt318xdRZranLSIcqsGMvETt8VGWTlBdUEfUctWdsuOTea5tQIVZ2 8RDpWIY0VM3b6Sw93QIlsrwyJMl6fr3Oi/Y1oXCEUsczGV33Y3pHuKLVfO5tY1PVaNLKba+TcaKpNJV3DSFbpi0sc+WI75BxZWN3Q5gilAwke9AHjRhbQ2ic cxebfG1+lyBMXMRZly9TQ0OT7T4qu8qqOLw/CP+9Uh7ANLyMF6mxexJIpci4ZRuln2wbbJT9M1A5SqKCppH9YfhmsL+ApJk1+60MV8HBZ8uH0ga6/QOqqHqc ppjRQ3wuX89LFRABo/gAlnvX66y6+aWJnbu16f3702xcigjnAcWLLxkG/z5NDBYzOJWln2q7xA6CmAX76hDxWY1oOuNT3zwndHxFiiW3CEo7OirSj3Bi/4sR Wbm029XthwTpHNFsj2m3jtBbB20fw5E3UpQHTFv+qTS/yUiQzqGwDEDsRRsXwlqi6TlIYymVzoWRe7zDxr2vzpn3RK7QQGYYyk/JB9Nd5OmkazhqOU6pV2Me GMvI5FlKJxEq8Jl5kgBi/xsqHqNuHxup
-X-CM-Analysis: v=2.4 cv=Gq4Q+V1C c=1 sm=1 tr=0 ts=69ce7c35 a=KpaUJEZuatzsP5AJPIWeNw==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=d70CFdQeAAAA:8 a=uwRAlWvI_YLGMtlX8kEA:9 a=QEXdDO2ut3YA:10 a=QaCz1EEGLN5M2vlY9-U9:22 a=NcxpMcIZDGm-g932nG_k:22
-X-AuthUser: michael.opdenacker@rootcommit.com
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22RzW7bMBCEX8XQuWvwn6JQFH2PIodd7jJmI8muJ
+ Bspgrx7GcWHGu1xlpj5uLNv3SpLlbUbDm/dIre61vPchP5y6PIJ52eByk13RpmgnDKAzDDlKxS
+ c4eWEjCvc6uQAs84k3tucqGvuyyKlvu7JP54+9SK/rg2wfQ47wlUgn6epbsNhltcNdog18cM/y
+ brijh8OX+8PQSUTnD9q5ZvQoOFnxfl4un7HaTw/13xscd92Om75tHuDR88xlMLUfmYRydreEwW
+ fSZmolMtWSZRHl7HRhNQr3ZvAbJFjIR2EHEcO7ATJK2di/+jyURKpHlPoUbh4Z9myYh9y0Rkdk
+ 1FkUIfu73Yb7L7d3i3lydnozUczLbnSKCBta3QlpmhxuJlHKEWrihdnSDT3iXWyEiy2TO+Sz0z
+ F5MiR/gu1CtqVoM43HCvDZTlfZNl+A7VTOk7WlqjvxH+9eve26mGLMF/HERZZpZ2RguqFSmJ0w
+ 013T+/vfwBtlS6VaAIAAA==
+X-Change-ID: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b
+To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Beniamino Galvani <b.galvani@gmail.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openssh-sha256; t=1775140049; l=3865;
+ i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
+ bh=jtFDzNTESkvMwz+pOZUUTieD6Qiq+MAcYIEdMuIWcKY=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
+ BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QHhQfM84O7Qdhtmr/i231zPtmXx+1HTy2L1MbrbpFpoeFBPywqt1V/u8ZJWsYDro/fWIbYmgZUV
+ /QFyEKCBPUwk=
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
+ fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[rootcommit.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[rootcommit.com:s=hostingermail-a];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284094-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[rootcommit.com:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[aliel.fr];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-284097-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rootcommit.com:dkim,rootcommit.com:mid,rootcommit.com:url,jmu.edu.cn:email];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michael.opdenacker@rootcommit.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.990];
+	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[aliel.fr:+];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: F133838A85C
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid]
+X-Rspamd-Queue-Id: 2A5B338A967
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Chukun
+The Khadas VIM4 board features a different MCU variant compared to
+previous VIM boards.
+While it shares the same I2C-based communication model,
+it differs in some ways:
 
-On 4/2/26 12:00 PM, Chukun Pan wrote:
-> Enable the DWC3 USB3.0 controller and its associated PHY on the
-> OrangePi R2S. The USB regulator provides VBUS for USB2 and USB3
-> ports, but the USB2 ports are handled by a separate controller.
->
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->   .../boot/dts/spacemit/k1-orangepi-r2s.dts     | 24 +++++++++++++++++++
->   1 file changed, 24 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-> index 409a6db269ae..bc68721e6263 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-> @@ -40,6 +40,20 @@ vcc4v0: regulator-vcc4v0 {
->   		regulator-max-microvolt = <4000000>;
->   		vin-supply = <&vcc_5v0>;
->   	};
-> +
-> +	vcc5v0_usb: regulator-vcc5v0-usb {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpios = <&gpio K1_GPIO(126) GPIO_ACTIVE_HIGH>;
-> +		regulator-name = "vcc5v0_usb";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&vcc_5v0>;
-> +	};
-> +};
-> +
-> +&combo_phy {
-> +	status = "okay";
->   };
->   
->   &emmc {
-> @@ -109,3 +123,13 @@ &uart0 {
->   	pinctrl-0 = <&uart0_2_cfg>;
->   	status = "okay";
->   };
-> +
-> +&usbphy2 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_dwc3 {
-> +	dr_mode = "host";
-> +	vbus-supply = <&vcc5v0_usb>;
-> +	status = "okay";
-> +};
+  - A distinct register map with its own volatile/writeable register set
+  - A fan control with 0–100 levels instead of the 0–3 levels previously
+  - A fan power supply gated through a regulator
 
+This series adds support for this new variant by:
 
-Thanks a lot for the patch!
-Would you mind sharing your configuration with me (in PM?).
+  1. Refactoring the khadas-mcu MFD driver to use per-variant data
+     structures (regmap config, cells, fan platform data),
+     and adding the khadas,vim4-mcu compatible string.
 
-I can list the USB 3 hub, but I can't see the USB mass storage device 
-plugged in the USB3 port.
+  2. Extending the fan thermal driver to retrieve the fan register
+     and maximum level from platform_data,
+     and to optionally manage a power regulator for the fan supply.
 
-# lsusb
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+  3. Adding the corresponding DTS node for the VIM4, wiring the MCU to
+     the I2C AO_A bus and exposing it as a thermal cooling device.
 
-Thanks in advance
-Cheers
-Michael.
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+Ronald Claveau (8):
+      dt-bindings: mfd: khadas: Add new compatible for Khadas VIM4 MCU
+      dt-bindings: i2c: amlogic: Add compatible for T7 SOC
+      mfd: khadas-mcu: Add per-variant configuration infrastructure and VIM4 support
+      mfd: khadas-mcu: Add support for VIM4 MCU variant
+      thermal: khadas-mcu-fan: Add fan config from platform data Add regulator support
+      arm64: dts: amlogic: t7: Add i2c pinctrl node
+      arm64: dts: amlogic: t7: Add i2c controller node
+      arm64: dts: amlogic: t7: khadas-vim4: Add i2c MCU fan node
 
+ .../bindings/i2c/amlogic,meson6-i2c.yaml           |  13 ++-
+ .../devicetree/bindings/mfd/khadas,mcu.yaml        |   5 +
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  |  13 +++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        |  20 ++++
+ drivers/mfd/khadas-mcu.c                           | 106 ++++++++++++++++++---
+ drivers/thermal/khadas_mcu_fan.c                   |  43 +++++++--
+ include/linux/mfd/khadas-mcu.h                     |  39 +++++++-
+ 7 files changed, 216 insertions(+), 23 deletions(-)
+---
+base-commit: f7b64ed948718290209074a50bb0df17e5944873
+change-id: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b
+prerequisite-message-id: <20260326092645.1053261-1-jian.hu@amlogic.com>
+prerequisite-patch-id: f03a086b4137158412b2d47b3de793b858de8dde
+prerequisite-patch-id: 123970c9b29c2090440f2fd71c85d3c6fd8e36de
+prerequisite-patch-id: 3e2e56b0926ba327b520f935df4ced5089bbe503
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-change-id: 20260326-add-bcm43752-compatible-e264a4f7973a:v2
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-change-id: 20260330-fix-invalid-property-bbe54d933f71:v2
+prerequisite-patch-id: 8d675e7a239985c762843515b241f0a2f45f9c92
+prerequisite-change-id: 20260331-fix-aml-t7-null-reset-2b608ebf9da4:v1
+prerequisite-patch-id: 5b5de77af11747ce964404fb827d2ee2bff47ea5
+prerequisite-patch-id: 1e37fc75fed1e533adee0f3e7e6ead1f8ff3c55c
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 2daf583fb5e7449a02bd217d8aca330171b598aa
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: d1ddf9b7710e91f8062de83bd7ba55afb2c4c112
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-patch-id: 9debd88fa60febed9cd7208f86603b4c2d270520
+prerequisite-patch-id: 314ef9ff0c4d1d15dab1dea9d92aa065f1eac3e9
+
+Best regards,
 -- 
-Root Commit
-Embedded Linux Training and Consulting
-https://rootcommit.com
+Ronald Claveau <linux-kernel-dev@aliel.fr>
 
 
