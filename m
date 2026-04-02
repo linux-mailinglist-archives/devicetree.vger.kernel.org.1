@@ -1,501 +1,541 @@
-Return-Path: <devicetree+bounces-283690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284304-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ULYXALTOzWnghgYAu9opvQ
-	(envelope-from <devicetree+bounces-283690-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 04:04:36 +0200
+	id SNTlIMJ3z2kewgYAu9opvQ
+	(envelope-from <devicetree+bounces-284304-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 10:18:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998B9382867
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 04:04:35 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA4B839201C
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 10:18:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D36EB309EA35
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 02:00:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AA9B13015A4A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 08:18:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AC1D3537EE;
-	Thu,  2 Apr 2026 01:59:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8987370D4B;
+	Fri,  3 Apr 2026 08:18:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="TifoRlnx"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="P5FrFHlM";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EvsgAK7b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE3803346A8
-	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 01:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F01D2E62B3
+	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 08:18:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775095195; cv=none; b=CZjO2P5NEyZfMkUJcRd0TR23o3/BV2HRYukzMnacH1BjoT10rLyOlE7Q2E5/Pho4u4XOIRpHWcdPrqifztsZCef/l8hB2jpR0I7iCrf7KUlgLUCQp4Qrvv4z+FnP+seVfhfETMeSQ5SgHWGt+wFbxHLPQfFnKfribAz+03BVi/I=
+	t=1775204285; cv=none; b=jMB83Pj1YC8cnWuNX2ZdH45NU9iXUotq/4N5PiZ/NxlQ71Njvx/yiDYCA+6HXrLM1OyflG1LrM00S1Otto3u5vx5oe/78pD6Fkb7jw4jajDcbtQZELzJGGq6PSo7+QmAXg/FuhcCoJ/7OmFaCgZQpJHufiG9MaNoKTG91QbmDhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775095195; c=relaxed/simple;
-	bh=GBCgfFdmNxX9+OgrVg4WaE5DIA07uRQnuGXMjbga6H4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SHFUg3wvDjzWmir2yvY4dtve01huyaPkNJ0IPLnclylGMaKXPSyWgSs3BEk3MDHs+aPkpWjC8zM9NMCLXMsHa1yt2HP+MmWF3C8/LRrzgoYR9edlzEfUpk4i+zYORHtiwUG8+Qh2xPUoSY2eEn89J2DrWVuVzQl2X1tIhFFjQEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=TifoRlnx; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-35c1a131946so944346a91.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Apr 2026 18:59:51 -0700 (PDT)
+	s=arc-20240116; t=1775204285; c=relaxed/simple;
+	bh=5qe/yg7HOvLohQOJF1J5Wy1REIdwfIbQmAkIe5REXV8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NBNWFql7Vr5APGk5v6jM9wSVfvim6Mx47gurRGA9Vjqwwq4htxkPyFpQLnfj7I8eW9/PUWQHdplNeNLE/UDaT4PItvk6f6Pjrad0ULTRUjeIqTsO1G/wSfA6Hw6WdZUVJlrvNxcQ7aTu6srDtwx0tvEgHrwocviKTkxXd5Rq0LQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=P5FrFHlM; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EvsgAK7b; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63331Aoc1562147
+	for <devicetree@vger.kernel.org>; Fri, 3 Apr 2026 08:18:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	BV7K1/0Zkpogt2mGKr6CARDe+OrkUhExaNsYM3POsvM=; b=P5FrFHlMLQOvsXrn
+	2s5p0COIyKk//1d2qliScPXGzKNF43W+eu+Pxk1LzOijWW3S7X+WXWjs11t8siQR
+	daD+V9gqYopKuFvcTa00ssMq8tFXA3ixQYA3YnrH4lmnCDoyHKuKnArhNHlnqaAL
+	bjSYKQrRs6QHRc6KP6RJzc1B5KoxCWOJ4GZ5J3JQCJpcCXpJVCE1jUXgAvb+kzz8
+	RKOyZiN54ht/FEqsb/y8U1KQfxp77zNJJGL8zSupVBkmaop3B17u3ZSxoOvu9OLr
+	RMm/uMbbaD+eOeham8bnfu5T1TKPKR+61PnyyzJXfaQS1dARZ+RIq7NwdayhWvLW
+	UIpfWQ==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d9um72pka-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 08:18:03 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-c76b6d4337bso892620a12.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 01:18:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1775095191; x=1775699991; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NWRl/pdZN5I8n4vNv9o2RQjMPPH8QcZcS//VFK8KffE=;
-        b=TifoRlnxA41757qDVJz0Fu17MMURDBQC0VPBin9YmQBqx1UiFSC7SnyicRqxDQUqKp
-         C+5Zrypg4XA2ImPWVHdf4kPWYzQvNQdOBGK7f28vNhzv6idpbwlga7xIhgwC+C1y6g1E
-         OGXrAeBMZl782vFqnUZLNWfxBYSj1Bhiwfj5Q=
+        d=oss.qualcomm.com; s=google; t=1775204282; x=1775809082; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BV7K1/0Zkpogt2mGKr6CARDe+OrkUhExaNsYM3POsvM=;
+        b=EvsgAK7b/qif85Fg73HZEq2NYC8Y9ZnNj4hcx96WdVO62Nck67Gtk0mdd6Ka8O7kf8
+         I1MJQuvcbF04WtLCfd5xDVfPQ6L6OD+qHxjBs6+mCnZ1odpLuLtYjP4wDeBlCb4fd7r/
+         LXJhRPYjZGHG/sfRcQ/8DLe7vuWgG/r6NwbunrFHbUQq75Hlk5PQlEH8lqn2t96T+zLB
+         Q0xsQHt746djJzAKR0C+fdCAdFq/phTv87m4DbXXfFU8YPaRZqtN2LurVhzNbATdG8u6
+         /nZa3mauFTGnv7qDWLu8iW79OIkljJVacAiDTmbH/g99YuXjwWnUsQBY4aDZwsZ33Z01
+         forQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775095191; x=1775699991;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NWRl/pdZN5I8n4vNv9o2RQjMPPH8QcZcS//VFK8KffE=;
-        b=ZaaZeBpDCHABB/h+Or8wuV+ghochMJI0MIssx8sLrWtoLztcxCb06NBwzkJYW3n5eP
-         X7m3NlSjHNmIa+zwTyOWGcZXJW6FuiZrOcbCO1rKGSEatHkFKNmZKAMWBVNZGzhY3wmX
-         ZbHypZJZSwRjcviXHgipEDUFdrAb/XrWZR+/4jShOOcjWAGFVzd3wtFpjI6XBvQDRtzY
-         13zHNtCEc3vHAdOOigZLGAukMxQo73uBQfe0nTfvQTRZhE33BbRb1BP+6oGH4HYwlQCZ
-         ytpzH1m1RhaDGCSLZ2cqvE5qSRjjtdWSkFo4IOo81zgWF5G9Uebgtwo1RPnJANd0dZBk
-         PiyA==
-X-Forwarded-Encrypted: i=1; AJvYcCWheOdAJdWY6T7WBCm7164KdEZ0mQobtciTANutEhwFo5QWBF2Hl4XP7ZG2AmZKJDT2WrnyIPDwnBbr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+6HAL6CmS7v5i/l77aSwcsbisyj2kUb+b4tW7Z4hU/lGT4GYB
-	3+St55hJZzUC1YPABU+bCpeO841ZkaHVxEWCEef/9zk8gmUaYzRMqaFx2+wNY+iZVA==
-X-Gm-Gg: ATEYQzx5pYOQ7Eok/k0ufBjQGrT/kL8zy+w895p6aj2sRSbPT4HOgL9gbVWcSPH79oR
-	PXGYwGW9QCkaDaxX4Ba2MGO1Z+3zzxxDoQmYUqNNgs7XkH8ybw4l4bqrw8WwTAzVIxilmseqr5N
-	mD26kOVng9r9HiB2J5VOYqGc3WKZbZwqS6ybf6+6WdNqrg2wVbdAwAlKId2+jSJqK0tozlq2VoG
-	B9rKQwL2iiqWlBRy2yDzzTtXH5eyB7EKndGPOKikkMgPXJu5b7rt6ru13f6pvTgIJQSjonUYkTj
-	0Wc8RWLFtrq95ENhHah7YqYkgCYegC7QT1whFDcRu1TBx67o36+j39ZjWiusmKhB5/MGG4qqHvw
-	a+FNozEwzpHxCkKCEp1dTcK3KHIYuaM8WtDzDPlNWlhiPgrOIHZCpVVLPI9/og8o2vaM7YKXyzW
-	v63MdsNlOSTSrb+O2EsNdSfiZr3EurNhyU8U4FNDWk3cW1N9Cuz0b8c++/fHfpcO6lgVnRcYbpM
-	QJop7Br36BPaAvTCuXQRGh0CNI839n2eQ==
-X-Received: by 2002:a17:903:1aee:b0:24b:1585:6350 with SMTP id d9443c01a7336-2b277df754bmr5416395ad.11.1775095190960;
-        Wed, 01 Apr 2026 18:59:50 -0700 (PDT)
-Received: from jingyliang-input-linux.c.googlers.com (111.169.168.34.bc.googleusercontent.com. [34.168.169.111])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b27478cb4fsm11187535ad.29.2026.04.01.18.59.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Apr 2026 18:59:50 -0700 (PDT)
-From: Jingyuan Liang <jingyliang@chromium.org>
-Date: Thu, 02 Apr 2026 01:59:48 +0000
-Subject: [PATCH v3 11/11] HID: spi-hid: add panel follower support
+        d=1e100.net; s=20251104; t=1775204282; x=1775809082;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BV7K1/0Zkpogt2mGKr6CARDe+OrkUhExaNsYM3POsvM=;
+        b=FnsIZ6HXvMXxmjuVhZbHJdn3uXfE/UgJPdvCMbqz+BvZ+j9rPJXXgVMqB57kcFZggT
+         gaZxYS6Ji2y9bQ7M9OPf2BQGuJWNZ6QuKxkzvUSWPjTOUqjmF+rjOl7C3YV/wV+ey6E+
+         pcrzRIKuH4lBgQ/6/3//BAu+9TULAiarzSNJ9nq4+hhsGn2ixKMNz2tjV+U5ez9+Ny3r
+         mysw38yhSod1CD4z2Uk296OvPPjQG/JJXUsnxayNx/XHy68kamP/a9X1nit6HZl3oqXE
+         r79cbdoZfDPMKFeh8AZcRxs4CaDjjPSOqoZeBIz5IgQBGWgbLjJKdPB3TKVxy+DJ8Y3b
+         5F6g==
+X-Forwarded-Encrypted: i=1; AJvYcCUyXtbNg0lePrf7a0TTnztAAL6a+SYrYQwTD9zHMT9DcH/aHl1N4aDXhclPefSkX7KFm7p27D+od1hJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6b7CXehGYabkWQSUPz/1T3TJ4UTUfOtx+y3XGlXCgUVQmEH0b
+	zI+7UeGwDkrA6iaQJ7TNO8uSmXyX9gilnqNH4WcCa9iP00C25ycI5YkzSE9aSEpMYVlauJPLTUZ
+	BCreOA5Ux432fJFErK58IHZ2TmrXzdliIHNPVZ1qUNnBByFBrMvZBp0wk8fOllZI8
+X-Gm-Gg: AeBDievsboLRU2WoNXdjYyxtwXKvPBwfhaWjpg7bLXiQ2IUalsZcnYCZB/pwUd7kpWS
+	ytMwHRrEiFeSt3B+9eu9N5iE4tcTkoDe/XEqwIgf82259GpKyjPek37z6EXy+wlCM43PsG3c2CF
+	Whx3dkFUEvDMWQOvZ+WEPA/bV7dydHnnuHqwyV4hHXRCEET2K9P53UYn4bB9nyqRfqTdWBd0lUw
+	Fg/agj6f1e8Bz3WoOh6fUZbQVnMZu+DHlAZT48j44BOvipBkU5tMR2BDC1uyGhfyrsR1IysFan1
+	AIEc64Jf//blAfq1mMmeuIdr0cgVedhrSe1YInaLnv3pLA5pTlZA2lXtSBujXn15j64hVY2d86Y
+	iYV3CeHZyxiSzJjoa5Y5wy4b1D3pDPrmxrSM8LE+/U9b9F5gh2XEXVVuu19UF55MZ1vzOhlqsGP
+	YmpMCplE8OprWjvTTlfQ==
+X-Received: by 2002:a05:6a00:3902:b0:82c:9fe1:aa4d with SMTP id d2e1a72fcca58-82d0da6d649mr2273780b3a.13.1775204282440;
+        Fri, 03 Apr 2026 01:18:02 -0700 (PDT)
+X-Received: by 2002:a05:6a00:3902:b0:82c:9fe1:aa4d with SMTP id d2e1a72fcca58-82d0da6d649mr2273747b3a.13.1775204281873;
+        Fri, 03 Apr 2026 01:18:01 -0700 (PDT)
+Received: from [10.133.33.157] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82cf9a24039sm5313994b3a.0.2026.04.03.01.17.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Apr 2026 01:18:01 -0700 (PDT)
+Message-ID: <02fcb6a0-570c-48c8-814a-85e414659f4d@oss.qualcomm.com>
+Date: Thu, 2 Apr 2026 10:03:06 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260402-send-upstream-v3-11-6091c458d357@chromium.org>
-References: <20260402-send-upstream-v3-0-6091c458d357@chromium.org>
-In-Reply-To: <20260402-send-upstream-v3-0-6091c458d357@chromium.org>
-To: Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires <bentiss@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Mark Brown <broonie@kernel.org>, 
- Steven Rostedt <rostedt@goodmis.org>, 
- Masami Hiramatsu <mhiramat@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-input@vger.kernel.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org, 
- linux-trace-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- hbarnor@chromium.org, tfiga@chromium.org, 
- Jingyuan Liang <jingyliang@chromium.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775095180; l=10416;
- i=jingyliang@chromium.org; s=20260213; h=from:subject:message-id;
- bh=GBCgfFdmNxX9+OgrVg4WaE5DIA07uRQnuGXMjbga6H4=;
- b=7f4b91lHmlf5TYFEkbbrgzi8PSgBr3/69XLfgY8PZh2sAcrCKQdt4dNTBD2zvy7mxEXouf84t
- zT2LB5hJEr2AJxS5Z1czURg1AYqDDJWcLBcQsD+NO2kypaT1TQEg8qG
-X-Developer-Key: i=jingyliang@chromium.org; a=ed25519;
- pk=VTYSdqslTtYOjWWoIGgYoWupGWqNSidrggReKMgfPo4=
-X-Spamd-Result: default: False [-0.66 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 2/7] qcom-tgu: Add TGU driver
+To: Jie Gan <jie.gan@oss.qualcomm.com>, andersson@kernel.org,
+        alexander.shishkin@linux.intel.com, mike.leach@linaro.org,
+        konrad.dybcio@oss.qualcomm.com, suzuki.poulose@arm.com,
+        james.clark@arm.com, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
+        devicetree@vger.kernel.org, gregkh@linuxfoundation.org
+References: <20260317032639.2393221-1-songwei.chai@oss.qualcomm.com>
+ <20260317032639.2393221-3-songwei.chai@oss.qualcomm.com>
+ <2ff7aed6-72c0-492e-96d7-f8c30f331a01@oss.qualcomm.com>
+Content-Language: en-US
+From: "Songwei.Chai" <songwei.chai@oss.qualcomm.com>
+In-Reply-To: <2ff7aed6-72c0-492e-96d7-f8c30f331a01@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=U/WfzOru c=1 sm=1 tr=0 ts=69cf77bb cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
+ a=EUspDBNiAAAA:8 a=MSq3_QDDgX4y9XyO_xYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-GUID: 2wCP8iZqIDH58QniWn86w1lBDY78mfhh
+X-Proofpoint-ORIG-GUID: 2wCP8iZqIDH58QniWn86w1lBDY78mfhh
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDAzMDA3MiBTYWx0ZWRfX2jVC6PgN3STZ
+ JJiMduJUBItYvnPFXfXhvVsw7a//UivZxHTNUzHMTahJ/OkuQTUqS4cZi9+9khJt2il7hddl7Oa
+ IIU4ISCBr+5UPYecsMj7ncrqETIzyna50b5uPtewMYJXFuNf2hHeY5HstazGe0URXFVKf9EDjUd
+ Nh+pgBdnl0TQENuz1GLpKmF5CRxEqLomurRX2c2TL2aMhOsZMZtK0CdxtfNph559JJkfshFSbgS
+ yXfItr1bRElwM1vZce+gY+8eNI3y2crfxOduu0tkEXDuE8gvx/hLe73AKne70FEd3hY44SAgHFy
+ HxpFzVvf/uy3uNralTIxv1ahC7StxKkrMAf/xStLNm4UUAzfGUPiwS/cXBgxEgS6fRX5fvqgka6
+ 7xwUuso1URvtLA1a4+aorOiEhnZid1B+SEhEnee3GYHcDV7wFfw7uNjqHNB++kykYjZ0VaovWPt
+ W2oXoTWmOT0UZtdxPRQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-03_02,2026-04-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 priorityscore=1501 bulkscore=0 clxscore=1015
+ phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2604030072
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DATE_IN_PAST(1.00)[30];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-283690-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,lwn.net,goodmis.org,efficios.com,gmail.com];
+	TAGGED_FROM(0.00)[bounces-284304-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jingyliang@chromium.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[songwei.chai@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:dkim,chromium.org:email,chromium.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 998B9382867
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: EA4B839201C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support to spi-hid to be a panel follower.
 
-Signed-off-by: Jingyuan Liang <jingyliang@chromium.org>
----
- drivers/hid/spi-hid/spi-hid-core.c | 199 +++++++++++++++++++++++++++++--------
- drivers/hid/spi-hid/spi-hid-core.h |   7 ++
- 2 files changed, 163 insertions(+), 43 deletions(-)
-
-diff --git a/drivers/hid/spi-hid/spi-hid-core.c b/drivers/hid/spi-hid/spi-hid-core.c
-index 5f7a5bb692d9..9eedd4f1cba7 100644
---- a/drivers/hid/spi-hid/spi-hid-core.c
-+++ b/drivers/hid/spi-hid/spi-hid-core.c
-@@ -246,21 +246,21 @@ static const char *spi_hid_power_mode_string(enum hidspi_power_state power_state
- 	}
- }
- 
--static void spi_hid_suspend(struct spi_hid *shid)
-+static int spi_hid_suspend(struct spi_hid *shid)
- {
- 	int error;
- 	struct device *dev = &shid->spi->dev;
- 
- 	guard(mutex)(&shid->power_lock);
- 	if (shid->power_state == HIDSPI_OFF)
--		return;
-+		return 0;
- 
- 	if (shid->hid) {
- 		error = hid_driver_suspend(shid->hid, PMSG_SUSPEND);
- 		if (error) {
- 			dev_err(dev, "%s failed to suspend hid driver: %d",
- 				__func__, error);
--			return;
-+			return error;
- 		}
- 	}
- 
-@@ -278,21 +278,22 @@ static void spi_hid_suspend(struct spi_hid *shid)
- 			dev_err(dev, "%s: could not power down.", __func__);
- 			shid->regulator_error_count++;
- 			shid->regulator_last_error = error;
--			return;
-+			return error;
- 		}
- 
- 		shid->power_state = HIDSPI_OFF;
- 	}
-+	return 0;
- }
- 
--static void spi_hid_resume(struct spi_hid *shid)
-+static int spi_hid_resume(struct spi_hid *shid)
- {
- 	int error;
- 	struct device *dev = &shid->spi->dev;
- 
- 	guard(mutex)(&shid->power_lock);
- 	if (shid->power_state == HIDSPI_ON)
--		return;
-+		return 0;
- 
- 	enable_irq(shid->spi->irq);
- 
-@@ -306,7 +307,7 @@ static void spi_hid_resume(struct spi_hid *shid)
- 			dev_err(dev, "%s: could not power up.", __func__);
- 			shid->regulator_error_count++;
- 			shid->regulator_last_error = error;
--			return;
-+			return error;
- 		}
- 		shid->power_state = HIDSPI_ON;
- 
-@@ -315,10 +316,13 @@ static void spi_hid_resume(struct spi_hid *shid)
- 
- 	if (shid->hid) {
- 		error = hid_driver_reset_resume(shid->hid);
--		if (error)
-+		if (error) {
- 			dev_err(dev, "%s: failed to reset resume hid driver: %d.",
- 				__func__, error);
-+			return error;
-+		}
- 	}
-+	return 0;
- }
- 
- static void spi_hid_stop_hid(struct spi_hid *shid)
-@@ -1215,6 +1219,132 @@ const struct attribute_group *spi_hid_groups[] = {
- };
- EXPORT_SYMBOL_GPL(spi_hid_groups);
- 
-+/*
-+ * At the end of probe we initialize the device:
-+ *   0) assert reset, bias the interrupt line
-+ *   1) sleep minimal reset delay
-+ *   2) request IRQ
-+ *   3) power up the device
-+ *   4) deassert reset (high)
-+ * After this we expect an IRQ with a reset response.
-+ */
-+static int spi_hid_dev_init(struct spi_hid *shid)
-+{
-+	struct spi_device *spi = shid->spi;
-+	struct device *dev = &spi->dev;
-+	int error;
-+
-+	shid->ops->assert_reset(shid->ops);
-+
-+	shid->ops->sleep_minimal_reset_delay(shid->ops);
-+
-+	error = devm_request_threaded_irq(dev, spi->irq, NULL, spi_hid_dev_irq,
-+					  IRQF_ONESHOT, dev_name(&spi->dev), shid);
-+	if (error) {
-+		dev_err(dev, "%s: unable to request threaded IRQ.", __func__);
-+		return error;
-+	}
-+	if (device_may_wakeup(dev)) {
-+		error = dev_pm_set_wake_irq(dev, spi->irq);
-+		if (error) {
-+			dev_err(dev, "%s: failed to set wake IRQ.", __func__);
-+			return error;
-+		}
-+	}
-+
-+	error = shid->ops->power_up(shid->ops);
-+	if (error) {
-+		dev_err(dev, "%s: could not power up.", __func__);
-+		shid->regulator_error_count++;
-+		shid->regulator_last_error = error;
-+		return error;
-+	}
-+
-+	shid->ops->deassert_reset(shid->ops);
-+
-+	return 0;
-+}
-+
-+static void spi_hid_panel_follower_work(struct work_struct *work)
-+{
-+	struct spi_hid *shid = container_of(work, struct spi_hid,
-+					    panel_follower_work);
-+	int error;
-+
-+	if (!shid->desc.hid_version)
-+		error = spi_hid_dev_init(shid);
-+	else
-+		error = spi_hid_resume(shid);
-+	if (error)
-+		dev_warn(&shid->spi->dev, "Power on failed: %d", error);
-+	else
-+		WRITE_ONCE(shid->panel_follower_work_finished, true);
-+
-+	/*
-+	 * The work APIs provide a number of memory ordering guarantees
-+	 * including one that says that memory writes before schedule_work()
-+	 * are always visible to the work function, but they don't appear to
-+	 * guarantee that a write that happened in the work is visible after
-+	 * cancel_work_sync(). We'll add a write memory barrier here to match
-+	 * with spi_hid_panel_unpreparing() to ensure that our write to
-+	 * panel_follower_work_finished is visible there.
-+	 */
-+	smp_wmb();
-+}
-+
-+static int spi_hid_panel_follower_resume(struct drm_panel_follower *follower)
-+{
-+	struct spi_hid *shid = container_of(follower, struct spi_hid, panel_follower);
-+
-+	/*
-+	 * Powering on a touchscreen can be a slow process. Queue the work to
-+	 * the system workqueue so we don't block the panel's power up.
-+	 */
-+	WRITE_ONCE(shid->panel_follower_work_finished, false);
-+	schedule_work(&shid->panel_follower_work);
-+
-+	return 0;
-+}
-+
-+static int spi_hid_panel_follower_suspend(struct drm_panel_follower *follower)
-+{
-+	struct spi_hid *shid = container_of(follower, struct spi_hid, panel_follower);
-+
-+	cancel_work_sync(&shid->panel_follower_work);
-+
-+	/* Match with shid_core_panel_follower_work() */
-+	smp_rmb();
-+	if (!READ_ONCE(shid->panel_follower_work_finished))
-+		return 0;
-+
-+	return spi_hid_suspend(shid);
-+}
-+
-+static const struct drm_panel_follower_funcs
-+				spi_hid_panel_follower_prepare_funcs = {
-+	.panel_prepared = spi_hid_panel_follower_resume,
-+	.panel_unpreparing = spi_hid_panel_follower_suspend,
-+};
-+
-+static int spi_hid_register_panel_follower(struct spi_hid *shid)
-+{
-+	struct device *dev = &shid->spi->dev;
-+
-+	shid->panel_follower.funcs = &spi_hid_panel_follower_prepare_funcs;
-+
-+	/*
-+	 * If we're not in control of our own power up/power down then we can't
-+	 * do the logic to manage wakeups. Give a warning if a user thought
-+	 * that was possible then force the capability off.
-+	 */
-+	if (device_can_wakeup(dev)) {
-+		dev_warn(dev, "Can't wakeup if following panel\n");
-+		device_set_wakeup_capable(dev, false);
-+	}
-+
-+	return drm_panel_add_follower(dev, &shid->panel_follower);
-+}
-+
- int spi_hid_core_probe(struct spi_device *spi, struct spihid_ops *ops,
- 		       struct spi_hid_conf *conf)
- {
-@@ -1234,6 +1364,7 @@ int spi_hid_core_probe(struct spi_device *spi, struct spihid_ops *ops,
- 	shid->ops = ops;
- 	shid->conf = conf;
- 	set_bit(SPI_HID_RESET_PENDING, &shid->flags);
-+	shid->is_panel_follower = drm_is_panel_follower(&spi->dev);
- 
- 	spi_set_drvdata(spi, shid);
- 
-@@ -1247,6 +1378,7 @@ int spi_hid_core_probe(struct spi_device *spi, struct spihid_ops *ops,
- 	init_completion(&shid->output_done);
- 
- 	INIT_WORK(&shid->reset_work, spi_hid_reset_work);
-+	INIT_WORK(&shid->panel_follower_work, spi_hid_panel_follower_work);
- 
- 	/*
- 	 * We need to allocate the buffer without knowing the maximum
-@@ -1257,42 +1389,18 @@ int spi_hid_core_probe(struct spi_device *spi, struct spihid_ops *ops,
- 	if (error)
- 		return error;
- 
--	/*
--	 * At the end of probe we initialize the device:
--	 *   0) assert reset, bias the interrupt line
--	 *   1) sleep minimal reset delay
--	 *   2) request IRQ
--	 *   3) power up the device
--	 *   4) deassert reset (high)
--	 * After this we expect an IRQ with a reset response.
--	 */
--
--	shid->ops->assert_reset(shid->ops);
--
--	shid->ops->sleep_minimal_reset_delay(shid->ops);
--
--	error = devm_request_threaded_irq(dev, spi->irq, NULL, spi_hid_dev_irq,
--					  IRQF_ONESHOT, dev_name(&spi->dev), shid);
--	if (error) {
--		dev_err(dev, "%s: unable to request threaded IRQ.", __func__);
--		return error;
--	}
--	if (device_may_wakeup(dev)) {
--		error = dev_pm_set_wake_irq(dev, spi->irq);
-+	if (shid->is_panel_follower) {
-+		error = spi_hid_register_panel_follower(shid);
- 		if (error) {
--			dev_err(dev, "%s: failed to set wake IRQ.", __func__);
-+			dev_err(dev, "%s: could not add panel follower.", __func__);
- 			return error;
- 		}
-+	} else {
-+		error = spi_hid_dev_init(shid);
-+		if (error)
-+			return error;
- 	}
- 
--	error = shid->ops->power_up(shid->ops);
--	if (error) {
--		dev_err(dev, "%s: could not power up.", __func__);
--		return error;
--	}
--
--	shid->ops->deassert_reset(shid->ops);
--
- 	dev_dbg(dev, "%s: d3 -> %s.", __func__,
- 		spi_hid_power_mode_string(shid->power_state));
- 
-@@ -1306,6 +1414,9 @@ void spi_hid_core_remove(struct spi_device *spi)
- 	struct device *dev = &spi->dev;
- 	int error;
- 
-+	if (shid->is_panel_follower)
-+		drm_panel_remove_follower(&shid->panel_follower);
-+
- 	spi_hid_stop_hid(shid);
- 
- 	shid->ops->assert_reset(shid->ops);
-@@ -1319,18 +1430,20 @@ static int spi_hid_core_pm_suspend(struct device *dev)
- {
- 	struct spi_hid *shid = dev_get_drvdata(dev);
- 
--	spi_hid_suspend(shid);
-+	if (shid->is_panel_follower)
-+		return 0;
- 
--	return 0;
-+	return spi_hid_suspend(shid);
- }
- 
- static int spi_hid_core_pm_resume(struct device *dev)
- {
- 	struct spi_hid *shid = dev_get_drvdata(dev);
- 
--	spi_hid_resume(shid);
-+	if (shid->is_panel_follower)
-+		return 0;
- 
--	return 0;
-+	return spi_hid_resume(shid);
- }
- 
- const struct dev_pm_ops spi_hid_core_pm = {
-diff --git a/drivers/hid/spi-hid/spi-hid-core.h b/drivers/hid/spi-hid/spi-hid-core.h
-index 293e2cfcfbf7..261b2fd7f332 100644
---- a/drivers/hid/spi-hid/spi-hid-core.h
-+++ b/drivers/hid/spi-hid/spi-hid-core.h
-@@ -10,6 +10,8 @@
- #include <linux/hid-over-spi.h>
- #include <linux/spi/spi.h>
- 
-+#include <drm/drm_panel.h>
-+
- /* Protocol message size constants */
- #define SPI_HID_READ_APPROVAL_LEN		5
- #define SPI_HID_OUTPUT_HEADER_LEN		8
-@@ -56,6 +58,10 @@ struct spi_hid {
- 	struct spi_hid_input_buf *input;	/* Input buffer. */
- 	struct spi_hid_input_buf *response;	/* Response buffer. */
- 
-+	struct drm_panel_follower panel_follower;
-+	bool	is_panel_follower;
-+	bool	panel_follower_work_finished;
-+
- 	u16 response_length;
- 	u16 bufsize;
- 
-@@ -66,6 +72,7 @@ struct spi_hid {
- 	unsigned long flags;	/* device flags. */
- 
- 	struct work_struct reset_work;
-+	struct work_struct panel_follower_work;
- 
- 	/* Control lock to ensure complete output transaction. */
- 	struct mutex output_lock;
-
--- 
-2.53.0.1185.g05d4b7b318-goog
-
+On 3/27/2026 10:35 AM, Jie Gan wrote:
+>
+>
+> On 3/17/2026 11:26 AM, Songwei Chai wrote:
+>> Add driver to support device TGU (Trigger Generation Unit).
+>> TGU is a Data Engine which can be utilized to sense a plurality of
+>> signals and create a trigger into the CTI or generate interrupts to
+>> processors. Add probe/enable/disable functions for tgu.
+>>
+>> Signed-off-by: Songwei Chai <songwei.chai@oss.qualcomm.com>
+>> ---
+>>   .../ABI/testing/sysfs-bus-amba-devices-tgu    |   9 +
+>>   drivers/Makefile                              |   1 +
+>>   drivers/hwtracing/Kconfig                     |   2 +
+>>   drivers/hwtracing/qcom/Kconfig                |  18 ++
+>>   drivers/hwtracing/qcom/Makefile               |   3 +
+>>   drivers/hwtracing/qcom/tgu.c                  | 183 ++++++++++++++++++
+>>   drivers/hwtracing/qcom/tgu.h                  |  51 +++++
+>>   7 files changed, 267 insertions(+)
+>>   create mode 100644 
+>> Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
+>>   create mode 100644 drivers/hwtracing/qcom/Kconfig
+>>   create mode 100644 drivers/hwtracing/qcom/Makefile
+>>   create mode 100644 drivers/hwtracing/qcom/tgu.c
+>>   create mode 100644 drivers/hwtracing/qcom/tgu.h
+>>
+>> diff --git a/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu 
+>> b/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
+>> new file mode 100644
+>> index 000000000000..ead237bb7d89
+>> --- /dev/null
+>> +++ b/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
+>> @@ -0,0 +1,9 @@
+>> +What:        /sys/bus/amba/devices/<tgu-name>/enable_tgu
+>> +Date:        March 2026
+>> +KernelVersion    7.1
+>
+> missed ":" in all patches.
+Thanks Jie, it will be updated in next version.
+> Thanks,
+> Jie
+>
+>> +Contact:    Jinlong Mao <jinlong.mao@oss.qualcomm.com>, Songwei Chai 
+>> <songwei.chai@oss.qualcomm.com>
+>> +Description:
+>> +        (RW) Set/Get the enable/disable status of TGU
+>> +        Accepts only one of the 2 values -  0 or 1.
+>> +        0 : disable TGU.
+>> +        1 : enable TGU.
+>> diff --git a/drivers/Makefile b/drivers/Makefile
+>> index 53fbd2e0acdd..82b712a12a26 100644
+>> --- a/drivers/Makefile
+>> +++ b/drivers/Makefile
+>> @@ -177,6 +177,7 @@ obj-$(CONFIG_RAS)        += ras/
+>>   obj-$(CONFIG_USB4)        += thunderbolt/
+>>   obj-$(CONFIG_CORESIGHT)        += hwtracing/coresight/
+>>   obj-y                += hwtracing/intel_th/
+>> +obj-y                += hwtracing/qcom/
+>>   obj-$(CONFIG_STM)        += hwtracing/stm/
+>>   obj-$(CONFIG_HISI_PTT)        += hwtracing/ptt/
+>>   obj-y                += android/
+>> diff --git a/drivers/hwtracing/Kconfig b/drivers/hwtracing/Kconfig
+>> index 911ee977103c..8a640218eed8 100644
+>> --- a/drivers/hwtracing/Kconfig
+>> +++ b/drivers/hwtracing/Kconfig
+>> @@ -7,4 +7,6 @@ source "drivers/hwtracing/intel_th/Kconfig"
+>>     source "drivers/hwtracing/ptt/Kconfig"
+>>   +source "drivers/hwtracing/qcom/Kconfig"
+>> +
+>>   endmenu
+>> diff --git a/drivers/hwtracing/qcom/Kconfig 
+>> b/drivers/hwtracing/qcom/Kconfig
+>> new file mode 100644
+>> index 000000000000..d6f6d4b0f28e
+>> --- /dev/null
+>> +++ b/drivers/hwtracing/qcom/Kconfig
+>> @@ -0,0 +1,18 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only
+>> +#
+>> +# QCOM specific hwtracing drivers
+>> +#
+>> +menu "Qualcomm specific hwtracing drivers"
+>> +
+>> +config QCOM_TGU
+>> +    tristate "QCOM Trigger Generation Unit driver"
+>> +    help
+>> +      This driver provides support for Trigger Generation Unit that is
+>> +      used to detect patterns or sequences on a given set of signals.
+>> +      TGU is used to monitor a particular bus within a given region to
+>> +      detect illegal transaction sequences or slave responses. It is 
+>> also
+>> +      used to monitor a data stream to detect protocol violations 
+>> and to
+>> +      provide a trigger point for centering data around a specific 
+>> event
+>> +      within the trace data buffer.
+>> +
+>> +endmenu
+>> diff --git a/drivers/hwtracing/qcom/Makefile 
+>> b/drivers/hwtracing/qcom/Makefile
+>> new file mode 100644
+>> index 000000000000..5a0a868c1ea0
+>> --- /dev/null
+>> +++ b/drivers/hwtracing/qcom/Makefile
+>> @@ -0,0 +1,3 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +
+>> +obj-$(CONFIG_QCOM_TGU) += tgu.o
+>> diff --git a/drivers/hwtracing/qcom/tgu.c b/drivers/hwtracing/qcom/tgu.c
+>> new file mode 100644
+>> index 000000000000..58c19f12f3d7
+>> --- /dev/null
+>> +++ b/drivers/hwtracing/qcom/tgu.c
+>> @@ -0,0 +1,183 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>> + */
+>> +
+>> +#include <linux/amba/bus.h>
+>> +#include <linux/device.h>
+>> +#include <linux/err.h>
+>> +#include <linux/io.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/pm_runtime.h>
+>> +
+>> +#include "tgu.h"
+>> +
+>> +static void tgu_write_all_hw_regs(struct tgu_drvdata *drvdata)
+>> +{
+>> +    TGU_UNLOCK(drvdata->base);
+>> +    /* Enable TGU to program the triggers */
+>> +    writel(1, drvdata->base + TGU_CONTROL);
+>> +    TGU_LOCK(drvdata->base);
+>> +}
+>> +
+>> +static int tgu_enable(struct device *dev)
+>> +{
+>> +    struct tgu_drvdata *drvdata = dev_get_drvdata(dev);
+>> +
+>> +    guard(spinlock)(&drvdata->lock);
+>> +    if (drvdata->enabled)
+>> +        return -EBUSY;
+>> +
+>> +    tgu_write_all_hw_regs(drvdata);
+>> +    drvdata->enabled = true;
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static void tgu_do_disable(struct tgu_drvdata *drvdata)
+>> +{
+>> +    TGU_UNLOCK(drvdata->base);
+>> +    writel(0, drvdata->base + TGU_CONTROL);
+>> +    TGU_LOCK(drvdata->base);
+>> +
+>> +    drvdata->enabled = false;
+>> +}
+>> +
+>> +static void tgu_disable(struct device *dev)
+>> +{
+>> +    struct tgu_drvdata *drvdata = dev_get_drvdata(dev);
+>> +
+>> +    guard(spinlock)(&drvdata->lock);
+>> +    if (!drvdata->enabled)
+>> +        return;
+>> +
+>> +    tgu_do_disable(drvdata);
+>> +}
+>> +
+>> +static ssize_t enable_tgu_show(struct device *dev,
+>> +                   struct device_attribute *attr, char *buf)
+>> +{
+>> +    struct tgu_drvdata *drvdata = dev_get_drvdata(dev);
+>> +    bool enabled;
+>> +
+>> +    guard(spinlock)(&drvdata->lock);
+>> +    enabled = drvdata->enabled;
+>> +
+>> +    return sysfs_emit(buf, "%d\n", !!enabled);
+>> +}
+>> +
+>> +/* enable_tgu_store - Configure Trace and Gating Unit (TGU) 
+>> triggers. */
+>> +static ssize_t enable_tgu_store(struct device *dev,
+>> +                struct device_attribute *attr,
+>> +                const char *buf,
+>> +                size_t size)
+>> +{
+>> +    unsigned long val;
+>> +    int ret;
+>> +
+>> +    ret = kstrtoul(buf, 0, &val);
+>> +    if (ret || val > 1)
+>> +        return -EINVAL;
+>> +
+>> +    if (val) {
+>> +        ret = pm_runtime_resume_and_get(dev);
+>> +        if (ret)
+>> +            return ret;
+>> +        ret = tgu_enable(dev);
+>> +        if (ret) {
+>> +            pm_runtime_put(dev);
+>> +            return ret;
+>> +        }
+>> +    } else {
+>> +        tgu_disable(dev);
+>> +        pm_runtime_put(dev);
+>> +    }
+>> +
+>> +    return size;
+>> +}
+>> +static DEVICE_ATTR_RW(enable_tgu);
+>> +
+>> +static struct attribute *tgu_common_attrs[] = {
+>> +    &dev_attr_enable_tgu.attr,
+>> +    NULL,
+>> +};
+>> +
+>> +static const struct attribute_group tgu_common_grp = {
+>> +    .attrs = tgu_common_attrs,
+>> +    NULL,
+>> +};
+>> +
+>> +static const struct attribute_group *tgu_attr_groups[] = {
+>> +    &tgu_common_grp,
+>> +    NULL,
+>> +};
+>> +
+>> +static int tgu_probe(struct amba_device *adev, const struct amba_id 
+>> *id)
+>> +{
+>> +    struct device *dev = &adev->dev;
+>> +    struct tgu_drvdata *drvdata;
+>> +    int ret;
+>> +
+>> +    drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+>> +    if (!drvdata)
+>> +        return -ENOMEM;
+>> +
+>> +    drvdata->dev = &adev->dev;
+>> +    dev_set_drvdata(dev, drvdata);
+>> +
+>> +    drvdata->base = devm_ioremap_resource(dev, &adev->res);
+>> +    if (IS_ERR(drvdata->base))
+>> +        return PTR_ERR(drvdata->base);
+>> +
+>> +    spin_lock_init(&drvdata->lock);
+>> +
+>> +    ret = sysfs_create_groups(&dev->kobj, tgu_attr_groups);
+>> +    if (ret) {
+>> +        dev_err(dev, "failed to create sysfs groups: %d\n", ret);
+>> +        return ret;
+>> +    }
+>> +
+>> +    drvdata->enabled = false;
+>> +
+>> +    pm_runtime_put(&adev->dev);
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static void tgu_remove(struct amba_device *adev)
+>> +{
+>> +    struct device *dev = &adev->dev;
+>> +
+>> +    sysfs_remove_groups(&dev->kobj, tgu_attr_groups);
+>> +
+>> +    tgu_disable(dev);
+>> +}
+>> +
+>> +static const struct amba_id tgu_ids[] = {
+>> +    {
+>> +        .id = 0x000f0e00,
+>> +        .mask = 0x000fffff,
+>> +    },
+>> +    { 0, 0, NULL },
+>> +};
+>> +
+>> +MODULE_DEVICE_TABLE(amba, tgu_ids);
+>> +
+>> +static struct amba_driver tgu_driver = {
+>> +    .drv = {
+>> +        .name = "qcom-tgu",
+>> +        .suppress_bind_attrs = true,
+>> +    },
+>> +    .probe = tgu_probe,
+>> +    .remove = tgu_remove,
+>> +    .id_table = tgu_ids,
+>> +};
+>> +
+>> +module_amba_driver(tgu_driver);
+>> +
+>> +MODULE_AUTHOR("Songwei Chai <songwei.chai@oss.qualcomm.com>");
+>> +MODULE_AUTHOR("Jinlong Mao <jinlong.mao@oss.qualcomm.com>");
+>> +MODULE_DESCRIPTION("Qualcomm Trigger Generation Unit driver");
+>> +MODULE_LICENSE("GPL");
+>> diff --git a/drivers/hwtracing/qcom/tgu.h b/drivers/hwtracing/qcom/tgu.h
+>> new file mode 100644
+>> index 000000000000..dd7533b9d735
+>> --- /dev/null
+>> +++ b/drivers/hwtracing/qcom/tgu.h
+>> @@ -0,0 +1,51 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>> + */
+>> +
+>> +#ifndef _QCOM_TGU_H
+>> +#define _QCOM_TGU_H
+>> +
+>> +/* Register addresses */
+>> +#define TGU_CONTROL        0x0000
+>> +#define TGU_LAR        0xfb0
+>> +#define TGU_UNLOCK_OFFSET    0xc5acce55
+>> +
+>> +static inline void TGU_LOCK(void __iomem *addr)
+>> +{
+>> +    do {
+>> +        /* Wait for things to settle */
+>> +        mb();
+>> +        writel_relaxed(0x0, addr + TGU_LAR);
+>> +    } while (0);
+>> +}
+>> +
+>> +static inline void TGU_UNLOCK(void __iomem *addr)
+>> +{
+>> +    do {
+>> +        writel_relaxed(TGU_UNLOCK_OFFSET, addr + TGU_LAR);
+>> +        /* Make sure everyone has seen this */
+>> +        mb();
+>> +    } while (0);
+>> +}
+>> +
+>> +/**
+>> + * struct tgu_drvdata - Data structure for a TGU (Trigger Generator 
+>> Unit)
+>> + * @base: Memory-mapped base address of the TGU device
+>> + * @dev: Pointer to the associated device structure
+>> + * @lock: Spinlock for handling concurrent access to private data
+>> + * @enabled: Flag indicating whether the TGU device is enabled
+>> + *
+>> + * This structure defines the data associated with a TGU device,
+>> + * including its base address, device pointers, clock, spinlock for
+>> + * synchronization, trigger data pointers, maximum limits for various
+>> + * trigger-related parameters, and enable status.
+>> + */
+>> +struct tgu_drvdata {
+>> +    void __iomem *base;
+>> +    struct device *dev;
+>> +    spinlock_t lock;
+>> +    bool enabled;
+>> +};
+>> +
+>> +#endif
+>
 
