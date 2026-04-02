@@ -1,281 +1,225 @@
-Return-Path: <devicetree+bounces-283905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283878-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mCaqAJs0zmk8mAYAu9opvQ
-	(envelope-from <devicetree+bounces-283905-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 11:19:23 +0200
+	id uEHeGBszzmk8mAYAu9opvQ
+	(envelope-from <devicetree+bounces-283878-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 11:12:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9136E386BBC
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 11:19:22 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA42386940
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 11:12:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4EDF931258ED
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 09:12:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 27BFC312AE8E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 09:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBDBC375F95;
-	Thu,  2 Apr 2026 09:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E872F3624D7;
+	Thu,  2 Apr 2026 09:06:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MoSR3gDL";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="R6fIZSvF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5EFD36F42C;
-	Thu,  2 Apr 2026 09:10:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAA8933B97D
+	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 09:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775121048; cv=none; b=d6TXIHm2EfvPYOgHV1XJN9qSzgrB6tjqz+bVy/0Te0UpELK3Okc/QxLFeqKR79/es+hSSPa7wShobzy7f1D2SqX1CVUFg6ttYt2UfWbzy6BW09CEsTA43LoHnhmiXdBTQGCT7msxACCfVTP0osOClP17P3A1SVmZlWbeHe47cyA=
+	t=1775120817; cv=none; b=qRcrKgi7MNLThDp6qk22vrtA44iVA6TpifjOzWFdpKMzVQKDmuAtIt3TR9yblJA6+UwlvvY+S5vW71cboYJ6JC2tX74PBFGo6Bi+UY222G1O/FT5gb5iJKeygHV/Ue4LwrKGcKPEg/Xgkr3hZJyxFC1y/d+u+Xvyb/arMGm00Es=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775121048; c=relaxed/simple;
-	bh=QW8cZbfDDiUr80rG6B5tOV1+EyT4O9IB3pA0VtBwJ2E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PD38Uf2mBDCfisW6bBPUv3cD0dEC/KjVKmnY9h4KP7oFg4njUldeipLYWqjc3OwSBGYU7/96YCDVpuOlpaYUTgnfjZUNkZJhCR5Fxr1EM9dDjJd0bmrlVqigp1eOTN+oIR8KGpgioFm5APFXe+7/IeAyPi2z8R/KVDSO004PzDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: JOsPZ5AVSH6Bp/A0rTPYtg==
-X-CSE-MsgGUID: OBsxnicMSCukZfqs3gLNEg==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 02 Apr 2026 18:10:45 +0900
-Received: from ubuntu.adwin.renesas.com (unknown [10.226.92.136])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id DBE9C40E1DDD;
-	Thu,  2 Apr 2026 18:10:36 +0900 (JST)
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	John Madieu <john.madieu@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	dmaengine@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	John Madieu <john.madieu.xa@bp.renesas.com>
-Subject: [PATCH v2 24/24] arm64: dts: renesas: r9a09g047e57-smarc: add DA7212 audio codec support
-Date: Thu,  2 Apr 2026 11:05:23 +0200
-Message-ID: <20260402090524.9137-25-john.madieu.xa@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260402090524.9137-1-john.madieu.xa@bp.renesas.com>
-References: <20260402090524.9137-1-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1775120817; c=relaxed/simple;
+	bh=OCAMB/XWu4jjvzZYi74jIMx7nKtjpOVuKvIQDoMLA84=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f8XnFg4f3w+KXcoYH7mirIilF+axz9O5UE6QO65A+ZB6bygzJY8C6DPgcS/BjFfJkMwkWLOrAkJzzvgF0zXks4LfUyLBZJq+bKBTT3EGgVoxvc5a+In9Km5XKUCkjpaQIgc1a0mU7ebPK+cBJcpZ3W+xA6UMnAXfCpQXtLvYUZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MoSR3gDL; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=R6fIZSvF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6326jS6k2798835
+	for <devicetree@vger.kernel.org>; Thu, 2 Apr 2026 09:06:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	eBHKqeFSeF5T06Q9DPdMvQmEY7TBogBNE3S5rXljXac=; b=MoSR3gDLAMqvU4Gb
+	Lv00AonIZIak/0LXbvReEKJlJ7jbPkYETCsMKWj3U3mrSZhgRnsmOsQqENQik8v1
+	ChEcV5vueBoeBo0L0H3WfpBsz6Wp2gM0WaW6OdkvPPRcMtks5dq/uvlc4fMabUAB
+	xEO6DSh6b5DshioL6lKaApHrNC/lmYXd5TA9hB/LsDoE9eN+610sWY4IX3QF5/2m
+	vaR83vCjWcECotYGDay1tiCRmUgVlCXdozyiBIIAC+6MhXbhxTLc4/Ay5Z7MdW7v
+	dmVvZ8s6ys3DodutNJetsw/S01paj0b6ra5ZvdrPxDKpKdo3fuBF5u2f4Z/lVyPZ
+	6TrBGA==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d96hk3a0a-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 02 Apr 2026 09:06:53 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-35d9010602bso666001a91.3
+        for <devicetree@vger.kernel.org>; Thu, 02 Apr 2026 02:06:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1775120812; x=1775725612; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eBHKqeFSeF5T06Q9DPdMvQmEY7TBogBNE3S5rXljXac=;
+        b=R6fIZSvFDt04IFGKed/hYoOHnP2UmD+SgUIyCEF1+nwU6bBqtBkOQsXcRVZta0hb4e
+         mRILwni0yIawYOjewwW229ylEiQZUWzkxMew9IH0qZqV+8RW6SIxXaRv37hpuBeRP/q2
+         pAGoUozL1eRed2tu4fJvfCpvlfsEL+GDV/V2oJSFbxPo9uDvSemlxWiMyVURs+P1ucZc
+         jnxJLA4LtDpo3GN7PPCLXota5cnLI8NTR75/QgX12W1f1OUyRj438uPmcLEVER4Svnex
+         OnBEeegABJL+GjbS1W7dwW6JwzjFX8zyEMcu/AlblExfDO5LyKlgbF9ROaMTk3b3zTMD
+         W2MQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775120812; x=1775725612;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eBHKqeFSeF5T06Q9DPdMvQmEY7TBogBNE3S5rXljXac=;
+        b=Vrrp9MaMx1dOdfiwyGiB9EoIgwxYVByF98wFXNc6vs7J/fRT/w73swxsOENgzyvxJV
+         v23nvM9YGDz5zqb3meSLgn0VThy5Asj2BtEbvdk1GwkogCtloWq5MqTaOMh/xLtSNYW1
+         ULDwPJrgsY8Xereult56Wl5PcBtq3ukUcdwIOGiBWLSeYmVyGGmlferMeIKnUrInC39j
+         cSj4sNg1fBrL6xvpbYHl0bvlxuhYgcRVByul22jHgfiSg70+mznRzdHvCpMrYBG5c731
+         UvNR8c+gpD/4l155UmzDh3meAJoiDmme9oynh6XWPd9I8E05o7MX023Tmz8NQ7zHITwb
+         HD8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXOXDFaU5QVXx7qbqanRJkY5QAPEs90UBotifn7IKpsvyhv55nk2dL9sGPT+z0sjia7Nkb+Kyn2mEIP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6+Nh9PEyfIqlx3Gf0Ghoe0z/cKItP4xyj3sQbLncWAg1YFBQE
+	Ov81ScDtk3yHHDkIZsOJZ3/rTuWK41r/HnnmFisbtwlKcLm1/YUKPcNWZgYVPncFAzT/DYUmnfO
+	dmM6eeSl58UeOpaks+/1OvU64fW3PisWt/1UjGzM1H9gJclUIR8VYhxjaAh27x5BL
+X-Gm-Gg: ATEYQzyAvHyX+NIGZIeNr+18zoFkxS8IhrnU8It7jRiGluc8L7a2WJyO/+nDOiy70cR
+	50u+Uwn+brlIE8x3QBV+ZLw20qqOIcQVN9bQ3ETcnX20fDuPM71+cLWOy3YY2du4wlKi8c47Ycd
+	dBcvUOX6AOVbcrhi3NYRd1CzeV64NwduARuTfPgLSiDsKJV8qrvwl9G6RxgH5+LPXzC7hZzSowU
+	7ofowxbk4QvVujZnhdTgx4I0ptq55qwWFpK3qLI0mprksS9GIYNNhvNNVE6GA+BHRF0rIdMEVIm
+	Bn0h8h3xLtjFEKLZJE3FON4t7DzOoHEvWbUm7eO8mB9MaAQicnu3d/klD2xr4f2u8ginC+dLAlQ
+	BdfVqYpROnru3ggykqhMjX6y29tIbujXdPrwjgnFU4i7VCJBLCW9x
+X-Received: by 2002:a05:6a21:6d9a:b0:399:12d:41f with SMTP id adf61e73a8af0-39f108b5e20mr2888207637.7.1775120812507;
+        Thu, 02 Apr 2026 02:06:52 -0700 (PDT)
+X-Received: by 2002:a05:6a21:6d9a:b0:399:12d:41f with SMTP id adf61e73a8af0-39f108b5e20mr2888172637.7.1775120812036;
+        Thu, 02 Apr 2026 02:06:52 -0700 (PDT)
+Received: from [10.218.44.178] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c76c65991a8sm2113342a12.28.2026.04.02.02.06.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Apr 2026 02:06:51 -0700 (PDT)
+Message-ID: <e654c46e-9315-4593-8395-f8b8e2726866@oss.qualcomm.com>
+Date: Thu, 2 Apr 2026 14:36:47 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.64 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/3] arm64: dts: qcom: kodiak: enable the inline crypto
+ engine for SDHC
+To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>, ulf.hansson@linaro.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260310113557.348502-1-neeraj.soni@oss.qualcomm.com>
+ <20260310113557.348502-3-neeraj.soni@oss.qualcomm.com>
+Content-Language: en-US
+From: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
+In-Reply-To: <20260310113557.348502-3-neeraj.soni@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDAyMDA4MSBTYWx0ZWRfX3/0HSbZJQdrt
+ H90FQp7oLdEcgQqbipogMCLSL6TjV/jscv1cOsPDP3H9BTYLyT0znA+heVbjEqpoBzKyXF4k8Y8
+ kv1XplT3zzRaKDui/KYkXGb7l8aKusk00GegNsj/TafVErByZzCWmuy4Cdu5WiSnm+93J00FSwK
+ h+8/5ZiaB9f9u3S4VhW9gW56Ab7Y6dAuXcpAMggzYinIqrTkMcLuSbkF0bdxc5VEsLFGrRIX92r
+ dfd0t60fZCti5JEnXtY7WLGBCNrYGQa/kuD3985NqV6FRBRipAXMXmglOGFUPqnZOjDZ3GTAhHi
+ KifV4L/FhxsRfSFten3wtXIOiCRRKdI5Q/urjPeBFI4FMFM9qxn6hePNNc846afP84YVDpfp448
+ F1/NiV8PYGTcI/0VrItCZMFUUJ0gaSPNGtoiTDlf/i3d+Mrddv0eHY078XZRTRbWsTbj6x5WeFe
+ 3Go6my+epWa3XxILffQ==
+X-Proofpoint-GUID: O4e7esCXZFWbs6boYwHb6EHtmb9TTsSz
+X-Proofpoint-ORIG-GUID: O4e7esCXZFWbs6boYwHb6EHtmb9TTsSz
+X-Authority-Analysis: v=2.4 cv=e9ULiKp/ c=1 sm=1 tr=0 ts=69ce31ad cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=EUspDBNiAAAA:8 a=J1RPYAV8tJtF6ET1qeAA:9 a=QEXdDO2ut3YA:10
+ a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-02_01,2026-04-02_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 priorityscore=1501 phishscore=0 bulkscore=0 malwarescore=0
+ clxscore=1015 suspectscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2604020081
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283878-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,perex.cz,suse.com,pengutronix.de,tuxon.dev,bp.renesas.com,renesas.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-283905-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.979];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 9136E386BBC
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kuldeep.singh@oss.qualcomm.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: CDA42386940
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-RZ/G3E SMARC board has a DA7212 audio codec connected via I2C1 for
-sound input/output using SSI3/SSI4 where:
+On 3/10/2026 5:05 PM, Neeraj Soni wrote:
+> Add an ICE node to kodiak SoC description and enable it by adding a
+> phandle to the SDHC node.
+> 
+> Signed-off-by: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/kodiak.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/kodiak.dtsi b/arch/arm64/boot/dts/qcom/kodiak.dtsi
+> index c2ccbb67f800..de01a6669522 100644
+> --- a/arch/arm64/boot/dts/qcom/kodiak.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/kodiak.dtsi
+> @@ -1045,6 +1045,8 @@ sdhc_1: mmc@7c4000 {
+>  			qcom,dll-config = <0x0007642c>;
+>  			qcom,ddr-config = <0x80040868>;
+>  
+> +			qcom,ice = <&sdhc_ice>;
+> +
+>  			mmc-ddr-1_8v;
+>  			mmc-hs200-1_8v;
+>  			mmc-hs400-1_8v;
+> @@ -1071,6 +1073,13 @@ opp-384000000 {
+>  			};
+>  		};
+>  
+> +		sdhc_ice: crypto@7c8000 {
+> +			compatible = "qcom,sc7280-inline-crypto-engine",
+> +				     "qcom,inline-crypto-engine";
+> +			reg = <0x0 0x007c8000 0x0 0x18000>;
+> +			clocks = <&gcc GCC_SDCC1_ICE_CORE_CLK>;
+> +		};
+> +
 
- - The codec receives its master clock from the Versa3 clock
-   generator present on the SoM
- - SSI4 shares clock pins with SSI3 to provide a separate data
-   line for full-duplex audio capture.
+Just thinking out loud, as ufs/emmc ice using same compatible and later
+need to add some specific handling due to erratum etc, how to
+distinguish two in driver then?
 
-Enable audio support on RZ/G3E SMARC2 EVK boards with a DA7212 audio codec.
+Can add an extra compatible layering to distinguish like
+qcom,sc7280-ufs-inline-crypto-engine, qcom,sc7280-ice-inline-crypto-engine?
 
-Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
----
+Otherwise,
+Reviewed-by: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
 
-Changes:
-
-v2: No changes
-
- .../boot/dts/renesas/r9a09g047e57-smarc.dts   | 114 ++++++++++++++++++
- 1 file changed, 114 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index 9be57785d9d5..2f4795e5e82b 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -32,6 +32,37 @@
- #include "rzg3e-smarc-som.dtsi"
- #include "renesas-smarc2.dtsi"
- 
-+/*
-+ * SSI-DA7212
-+ *
-+ * These commands are required when Playback/Capture
-+ *
-+ *	amixer -q cset name='Aux Switch' on
-+ *	amixer -q cset name='Mixin Left Aux Left Switch' on
-+ *	amixer -q cset name='Mixin Right Aux Right Switch' on
-+ *	amixer -q cset name='ADC Switch' on
-+ *	amixer -q cset name='Mixout Right Mixin Right Switch' off
-+ *	amixer -q cset name='Mixout Left Mixin Left Switch' off
-+ *	amixer -q cset name='Headphone Volume' 70%
-+ *	amixer -q cset name='Headphone Switch' on
-+ *	amixer -q cset name='Mixout Left DAC Left Switch' on
-+ *	amixer -q cset name='Mixout Right DAC Right Switch' on
-+ *	amixer -q cset name='DAC Left Source MUX' 'DAI Input Left'
-+ *	amixer -q cset name='DAC Right Source MUX' 'DAI Input Right'
-+ *	amixer -q sset 'Mic 1 Amp Source MUX' 'MIC_P'
-+ *	amixer -q sset 'Mic 2 Amp Source MUX' 'MIC_P'
-+ *	amixer -q sset 'Mixin Left Mic 1' on
-+ *	amixer -q sset 'Mixin Right Mic 2' on
-+ *	amixer -q sset 'Mic 1' 90% on
-+ *	amixer -q sset 'Mic 2' 90% on
-+ *	amixer -q sset 'Lineout' 80% on
-+ *	amixer -q set "Headphone" 100% on
-+ *
-+ * When Capture chained with DVC, use this command to amplify sound
-+ *	amixer set 'DVC In',0 80%
-+ * For playback, use: amixer set 'DVC Out',0 80%
-+ */
-+
- / {
- 	model = "Renesas SMARC EVK version 2 based on r9a09g047e57";
- 	compatible = "renesas,smarc2-evk", "renesas,rzg3e-smarcm",
-@@ -55,6 +86,22 @@ vqmmc_sd1_pvdd: regulator-vqmmc-sd1-pvdd {
- 		gpios-states = <0>;
- 		states = <3300000 0>, <1800000 1>;
- 	};
-+
-+	sound_card: sound {
-+		compatible = "audio-graph-card";
-+
-+		label = "snd-rzg3e";
-+
-+		dais = <&rsnd_port0>;	/* DA7212 */
-+	};
-+};
-+
-+&audio_clkb {
-+	clock-frequency = <11289600>;
-+};
-+
-+&audio_clkc {
-+	clock-frequency = <12288000>;
- };
- 
- &canfd {
-@@ -99,6 +146,37 @@ &i2c0 {
- 	pinctrl-names = "default";
- };
- 
-+&i2c1 {
-+	da7212: codec@1a {
-+		compatible = "dlg,da7212";
-+		#sound-dai-cells = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x1a>;
-+
-+		clocks = <&versa3 1>;
-+		clock-names = "mclk";
-+
-+		dlg,micbias1-lvl = <2500>;
-+		dlg,micbias2-lvl = <2500>;
-+		dlg,dmic-data-sel = "lrise_rfall";
-+		dlg,dmic-samplephase = "between_clkedge";
-+		dlg,dmic-clkrate = <3000000>;
-+
-+		VDDA-supply = <&reg_1p8v>;
-+		VDDSP-supply = <&reg_3p3v>;
-+		VDDMIC-supply = <&reg_3p3v>;
-+		VDDIO-supply = <&reg_1p8v>;
-+
-+		port {
-+			da7212_endpoint: endpoint {
-+				remote-endpoint = <&rsnd_endpoint0>;
-+				mclk-fs = <256>;
-+			};
-+		};
-+	};
-+};
-+
- &keys {
- 	pinctrl-0 = <&nmi_pins>;
- 	pinctrl-names = "default";
-@@ -280,6 +358,42 @@ &sdhi1 {
- 	vqmmc-supply = <&vqmmc_sd1_pvdd>;
- };
- 
-+&snd_rzg3e {
-+	pinctrl-0 = <&sound_clk_pins &sound_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+
-+	/* audio_clkout */
-+	#clock-cells = <0>;
-+	clock-frequency = <11289600>;
-+
-+	/* Multi DAI */
-+	#sound-dai-cells = <1>;
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		rsnd_port0: port@0 {
-+			reg = <0>;
-+			rsnd_endpoint0: endpoint {
-+				remote-endpoint = <&da7212_endpoint>;
-+
-+				dai-format = "i2s";
-+				bitclock-master = <&rsnd_endpoint0>;
-+				frame-master = <&rsnd_endpoint0>;
-+
-+				playback = <&ssi3>, <&src1>, <&dvc1>;
-+				capture = <&ssi4>, <&src0>, <&dvc0>;
-+			};
-+		};
-+	};
-+};
-+
-+&ssi4 {
-+	shared-pin;
-+};
-+
- &xhci {
- 	pinctrl-0 = <&usb3_pins>;
- 	pinctrl-names = "default";
 -- 
-2.25.1
+Regards
+Kuldeep
 
 
