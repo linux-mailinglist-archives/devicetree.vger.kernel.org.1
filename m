@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-283858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283859-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ILBaEaIrzmnIlQYAu9opvQ
-	(envelope-from <devicetree+bounces-283858-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 10:41:06 +0200
+	id 0HhJCTkrzmnIlQYAu9opvQ
+	(envelope-from <devicetree+bounces-283859-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 10:39:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E335438633B
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 10:41:05 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC3C338629F
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 10:39:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9042C30CE88C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 08:37:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9CE9930805AF
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 08:37:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 518C1396B85;
-	Thu,  2 Apr 2026 08:37:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4DF3B2FCE;
+	Thu,  2 Apr 2026 08:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="easidMHj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BiKMrog7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E06B3630BC;
-	Thu,  2 Apr 2026 08:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C1A23A544B;
+	Thu,  2 Apr 2026 08:37:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775119026; cv=none; b=pFvk4kIm71Evc7G0IZmecUdjwoK25pb0uJHyz5efXbAi6+1DW4zALTyRSkaoI/q3u4vOKQ7lGhqar+q6Gc9Btx02che+WgDDfEnm53QjCbANEkj4IBoXF6VdnAei/ht+uAWFlu5hkvn3YUMgPUrfoNfu96cTmzW/4qr7/hswm/8=
+	t=1775119077; cv=none; b=LIwSM5y3yTE3wNLeTKbMqJJFIQKCEyb7LQds+jqR5lm3k8dLGrC1HyzVVWT5FIRj0rqulJwLPTLSBpYx0rGrfqOSEBotVcd/xNvkcoiiqush96eQByKQr/brPmUxDjEVASG9eldFtmAZT9KgBLtBzarvrdUf/Rd/fTEAafET8yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775119026; c=relaxed/simple;
-	bh=SrwUM8qP2vmvd+iqM1MWO2S5hCKz8H2FDMw7BYuiQ3A=;
+	s=arc-20240116; t=1775119077; c=relaxed/simple;
+	bh=6gJKyNm61ca71g/rRIl+QthHdc+5GOA/jRMnr4r1pbE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qYFb1qfP9thCWkX0wNKo1YF5TP1Bq4kqsOwnYXnp4g27Yyp8cqWVP+F/ur5BMGXZgmiVMxl1Tvy6J9robTbnexXCmKCbcoiNcpEQf79gI8TIRwWNOoEzpNntVvSipjPyEjM9mOsO+u035Gm46LtDEDQDUEGhXpNmldp7AkXfkps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=easidMHj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 421C3C116C6;
-	Thu,  2 Apr 2026 08:37:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ebyjfds6/CNfbtBhlqe/u+qBnvyhA1Dj3Lbxtnp1i94VXPfDOwVEHKnIOPDUJplGpctWjM+Rkwi2l7N9CZpWbCvAMNYDYO/hlOaaVVQa9j6mNM2fTXhsP7yvM8w+1N4k7CggeZk+b92NsIJ4mdANKqwF85RJjmkvbGMkSdGkD24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BiKMrog7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31AB7C19423;
+	Thu,  2 Apr 2026 08:37:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775119025;
-	bh=SrwUM8qP2vmvd+iqM1MWO2S5hCKz8H2FDMw7BYuiQ3A=;
+	s=k20201202; t=1775119076;
+	bh=6gJKyNm61ca71g/rRIl+QthHdc+5GOA/jRMnr4r1pbE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=easidMHj5LXf8hSUbV+p9z+JcOSCCZwxrAjrBNrOYM6Shy8sh0pp0VSUucxzIk46Q
-	 rLLJF9oy1KlCu7MJlzn/lX5L52z+no98+Ao1dJkDFktyDMflWfHQ+O8BCNEktsQ314
-	 ++mWZQjHOcgddRR7+YIxVHRyWOfT2oYq1jzrVJNLTDcUWL9ijoCsGQ/Xn3K9SrV3Ur
-	 2X8P2tvy1Yr5EK4H5ImAdIUSj4i7XWfeKqM7VJu6/eNqvrAFL7utama1k0/hXNESAT
-	 ZW+KCV7WP/hrgtvroeq4yujfSiUzkgYfXfwGtAguQeF+LGpS2Lu8IxaK/ZdoB6iHvt
-	 KR8NTHGKX5V9w==
-Date: Thu, 2 Apr 2026 10:37:03 +0200
+	b=BiKMrog7/BqQ53Sq0I5qWPpsxTqZhi75tjgUzkz/4FjBvlTPWqhGZ3g0sisvoor5r
+	 C7xkcjfJwZBNvRqyRlEk/GIa1WlbZh1O/y8lO/sX5JldNFSClLiJGlObJkh8jh9omv
+	 8aERksNT9VySzn1tOnzfc7RUwFJvX8QHfC9u1iY4h4Thv6tboYDjfR5fZAnBmj+1/c
+	 E4SEWsQ9l/RduXqpKaHvMXRA/V8OVG5xfnHSMKdfgkRjha0fCrB1l12Jon20+MbP+y
+	 eq9zyiUwL1F8dl4/ROp8XigsLoSmTfwktNqchqm8CAJkqBFLvtmMXny+yPYRRV/VKL
+	 TCh/iQp/3sO0Q==
+Date: Thu, 2 Apr 2026 10:37:54 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
 Cc: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -55,7 +55,7 @@ Cc: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	kernel@oss.qualcomm.com
 Subject: Re: [PATCH 1/2] dt-bindings: spmi: glymur-spmi-pmic-arb: Add
  compatible for Hawi
-Message-ID: <20260402-nocturnal-dashing-vicugna-b4bbff@quoll>
+Message-ID: <20260402-lush-magnificent-gorilla-2b894c@quoll>
 References: <20260401-hawi-spmi-v1-0-c40963041078@oss.qualcomm.com>
  <20260401-hawi-spmi-v1-1-c40963041078@oss.qualcomm.com>
 Precedence: bulk
@@ -72,14 +72,14 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283858-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283859-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
@@ -90,22 +90,30 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E335438633B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DC3C338629F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Wed, Apr 01, 2026 at 02:41:23AM -0700, Fenglin Wu wrote:
 > Add a string for hawi-spmi-pmic-arb which is a compat of
-
-There is no such term as being a compat of something/someone.
-
 > glymur-spmi-pmic-arb.
+> 
+> Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+> ---
 
-SPMI PMIC Arbiter in Glymur?
+Another patch without any qcom reference.
+
+I already complained yesterday internally, but I did not Cc you.
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
 Best regards,
 Krzysztof
