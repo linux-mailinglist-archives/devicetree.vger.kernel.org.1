@@ -1,142 +1,133 @@
-Return-Path: <devicetree+bounces-283852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283853-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AO06D9spzmnIlQYAu9opvQ
-	(envelope-from <devicetree+bounces-283852-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 10:33:31 +0200
+	id kAwuITwqzmnIlQYAu9opvQ
+	(envelope-from <devicetree+bounces-283853-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 10:35:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A6BA3860F6
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 10:33:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCCF9386157
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 10:35:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2E90A30440AF
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 08:29:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D82A9301DE03
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 08:30:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B2BC38838C;
-	Thu,  2 Apr 2026 08:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11ACC39F16E;
+	Thu,  2 Apr 2026 08:30:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZHsyIUEB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J+BDRZRI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 082E433D511;
-	Thu,  2 Apr 2026 08:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E16B23314C2;
+	Thu,  2 Apr 2026 08:30:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775118579; cv=none; b=tNq/jK0YdX/Ubdu4zNKEn/mb+RWTXR26DZemC9/KPMZe4m/+nMs/qjls9M99qjiw9we2NZuZCKtPhORlykw0WxWkogbPFR/F8Pm2PSYyOtO2lMpJ/CbNZXMFxDo+GSix9Cawp+qH+u7H2HJdttdwVT6nfIY/s24oVKO6A5yI/PI=
+	t=1775118606; cv=none; b=ht8LrJhIqB+BR0MOFhDBGB2sgkw1hRKTaHsMwBv/rMXfKH9lwBLEH5W/J3tbIaaiGKOM1gdnTswvMAkalV66XJ/xz0nd1W/Jx48DV5lxf6vQ/oRvK+x8wgodUGf7rEHVPByOT/kyYYYfyk68fKt/O2d/uMJ6DbJXczGGf9oVHSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775118579; c=relaxed/simple;
-	bh=KikKJzOdwVazwBUTNG2rP5Lfumhuy30rZzv237IjEIM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=NzfJ0q01k2UfyczhdHOYhFWGvfwxJahCKhYXpIqRRB4gLnOFB5Lkx/MJJRnvbRVdDbktIH17CRISs+pLOd73tCZ4ECCxKT7Qv3Of3Fb3Nwa/6Hz3NmOGnJD4gHwx/pRk+ISRm+NEgiBTUu8NYdhnWJeExvyCtIWaCr459Xk7uP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZHsyIUEB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A767BC116C6;
-	Thu,  2 Apr 2026 08:29:38 +0000 (UTC)
+	s=arc-20240116; t=1775118606; c=relaxed/simple;
+	bh=f3OMYe24BIzLwz52vkVkdJZN5UJgKuGaAdMroDPyOgY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JLEUrK7s+7H0RywsFv0utdj9SB0OGUHn4Fb4xu73wS5zE9mnlvoqRzCu2b4GyVbkS4ZIh6O05i6DkwbVCtMYANAkBt72hURuM9Zfphtf6/LCcqS2kJVcG7J1DGWRpgnjLnPGtdpreu80VwldfiI/fvvqJU77bTWlZYuW8lwDRkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J+BDRZRI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA851C116C6;
+	Thu,  2 Apr 2026 08:30:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775118578;
-	bh=KikKJzOdwVazwBUTNG2rP5Lfumhuy30rZzv237IjEIM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ZHsyIUEBqmZw8ekvbML8DP1G9rAVH4l4Lm9wjmRLkOzyxMycU8EqwxK/osREh7BBV
-	 ifbPP2zKWINXQbPWtZXu0a93llfFMRsP1r+ukUUEqkgBpLX1Qe4D3T4PlrA9cutn3b
-	 SYknrfz0lI/3hQA9yUKGaoJRgPL4uqewPSyfon+CKU/440jpmARyqVYKtoaE6uHO49
-	 Kfuyr3/OJ8FlDyQ7aFjt6uOF1c9ugcDYb+vksW8O1LM4McRfB65NJpT07bHT4Y7s+a
-	 dWtJv6xL89RcJX2d2mp0gu5jeZ8eV5QGaWT/lvidOdByyrGI5P1TY5SJu9wAsfJDjx
-	 +aAJQTiFyM2eg==
-Date: Thu, 02 Apr 2026 03:29:36 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1775118605;
+	bh=f3OMYe24BIzLwz52vkVkdJZN5UJgKuGaAdMroDPyOgY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=J+BDRZRIryzq9W+DJcm5mHrpA/WR3l89tjf0i8xi9ilHDQ2gJDbgEAJLCVmt51T8j
+	 6ae+lBAlpR0p0jcxKcyoBgrdct8YlybobJJOAxVn+EN9BtBHsnR19/L5qlh84o1hEi
+	 H7/lf2oykvKnoUr+DZRzRrH3GbDlQg2W3JoNGxxUhsYv5mO2lTZi5Zrueu7LwCD0bi
+	 XmugWMIILuL8qJdiDp+BH/+xcSk4rmhCfFPRKDfJNEbgnuXql8Ho6UkjQJzo+CQitm
+	 24vCOFKECMf+AFeic5oLdk94sIgojTLztryjON44urSgbYw928TTEqSSg30qCQGdin
+	 ksJe88uNvtiLw==
+Date: Thu, 2 Apr 2026 10:30:02 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Cong Yang <yangcong5@huaqin.corp-partner.google.com>, 
+	Ondrej Jirman <megi@xff.cz>, Javier Martinez Canillas <javierm@redhat.com>, 
+	Jagan Teki <jagan@edgeble.ai>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 01/19] dt-bindings: display/panel: himax,hx83102:
+ describe Waveshare panel
+Message-ID: <20260402-sticky-wooden-silkworm-5bdff4@quoll>
+References: <20260401-waveshare-dsi-touch-v1-0-5e9119b5a014@oss.qualcomm.com>
+ <20260401-waveshare-dsi-touch-v1-1-5e9119b5a014@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, Srinivas Kandagatla <srini@kernel.org>, 
- devicetree@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>
-To: "karthik.s" <karthik.s@oss.qualcomm.com>
-In-Reply-To: <20260402072256.2811085-1-karthik.s@oss.qualcomm.com>
-References: <20260402072256.2811085-1-karthik.s@oss.qualcomm.com>
-Message-Id: <177511857667.2917822.6371182180784837499.robh@kernel.org>
-Subject: Re: [PATCH v2] ASoC: codecs: wcd937x: Add conditional regulator
- control for wcd937x
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260401-waveshare-dsi-touch-v1-1-5e9119b5a014@oss.qualcomm.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,suse.com,perex.cz];
-	TAGGED_FROM(0.00)[bounces-283852-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283853-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,huaqin.corp-partner.google.com,xff.cz,redhat.com,edgeble.ai,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: 8A6BA3860F6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: DCCF9386157
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-On Thu, 02 Apr 2026 12:52:56 +0530, karthik.s wrote:
-> Add has_always_on_supplies for managing regulators. Indicates that the
-> codec power supplies are provided by the board as always-on rails and
-> are not switchable by the codec or its associated regulators. This implies
-> that the codec supply regulators are always enabled by the system and
-> must not be requested or enabled by the codec driver.
+On Wed, Apr 01, 2026 at 10:26:20AM +0300, Dmitry Baryshkov wrote:
+> Describe Waveshare 12.3-DSI-TOUCH-A panel which allegedly uses HX83102
+> as a panel controller.
 > 
-> Signed-off-by: karthik.s <karthik.s@oss.qualcomm.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
->  .../devicetree/bindings/sound/qcom,wcd937x.yaml     |  8 ++++++++
->  sound/soc/codecs/wcd937x.c                          | 13 +++++++++----
->  2 files changed, 17 insertions(+), 4 deletions(-)
+>  Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml
+> index 66404b425af3..7667428bf9a8 100644
+> --- a/Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml
+> @@ -30,6 +30,8 @@ properties:
+>            - starry,2082109qfh040022-50e
+>            # STARRY himax83102-j02 10.51" WUXGA TFT LCD panel
+>            - starry,himax83102-j02
+> +          # Waveshare 12.3-DSI-TOUCH-A panel
+> +          - waveshare,12.3-dsi-touch-a
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I don't think we use '.' in compatibles, so waveshare,12-3-dsi-touch-a
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml: properties:qcom,always-on-supply: 'type' is not one of ['description', 'deprecated']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260402072256.2811085-1-karthik.s@oss.qualcomm.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
 
