@@ -1,177 +1,166 @@
-Return-Path: <devicetree+bounces-283960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283963-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QANvEY4+zmkImQYAu9opvQ
-	(envelope-from <devicetree+bounces-283960-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 12:01:50 +0200
+	id aGk9FII+zmkImQYAu9opvQ
+	(envelope-from <devicetree+bounces-283963-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 12:01:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9CBE387615
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 12:01:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 756CE3875EC
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 12:01:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7CEF331399A7
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 09:55:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D04F230A3D14
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 09:55:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D3843DC4AE;
-	Thu,  2 Apr 2026 09:53:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C7F3E316E;
+	Thu,  2 Apr 2026 09:54:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eClfswZ2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C0Q8IE5r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C87332621;
-	Thu,  2 Apr 2026 09:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C8D3DCD80;
+	Thu,  2 Apr 2026 09:54:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775123620; cv=none; b=CK2CLgnOtVHPvSg0sV4aaZl52ZIAwA3gFF2DKmyHDGWSVxx2o3bxwSiUaygsgioNZUj4US2OhKet+rk1UHZA/RIKaj6NqnfJ3OAaR97OE6Jnws/Gr763mXmfe6TEOFT5bokcTlEoRUg5tMtjPOV8qdvAiaEgifYnbEr5AvJyp3E=
+	t=1775123650; cv=none; b=IUfufNtHwnWo7d3VZJQ6LR/qXVoYnA8k7H89F9Ig/JvHIaxC8NTGdwt9LGibtEbABWASgIN1ywAxqrhs7ekwL6WvFNlZ00RtZh7PoEJvBY/yMxTrejxH4q7J0+BsOK21myVL+Frifl6/RzGrEcilqNoH8jn/nDrTT5Mlmzu6wfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775123620; c=relaxed/simple;
-	bh=a1jLTGUGZcEmkcUgnbM45f6QbxY+747Eq6dSXy+EG44=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kBtJ5vv5DE9aV4maW72P+Dd40e09zcgvMdn64yS+8qkeC7/VAaT5TpFe9XPtrPDr5Zxb+kPdG7FVkF4R/SCbiPHDQHd1BWFKdez75XcyVqPYzu3wgqYCTcH6MmrJgn82+coBzMJ1M9iViTMdXmfdvCphK6sTK0uyl4sJTLhVD1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eClfswZ2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B220C116C6;
-	Thu,  2 Apr 2026 09:53:36 +0000 (UTC)
+	s=arc-20240116; t=1775123650; c=relaxed/simple;
+	bh=g8X7jdbCgWRJVgbstnTrfuS11/pgXSaoaMN5ZccW5G8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YHemcUIwaU/19T0q3IDnae31AlsbzyfEweDXReZhnH9kyf6a3fck/E7SwLcoAbVUyOPesdFtuEL+7wlh6Fn3dr1TGMHcMlwePb+RTZt3o49T8DVN0QIb570ZjlolV0liR57caos9/1ShuDpSGNBjcP9q+JOAWWd78ZTpfXppjEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C0Q8IE5r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 75A08C19423;
+	Thu,  2 Apr 2026 09:54:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775123620;
-	bh=a1jLTGUGZcEmkcUgnbM45f6QbxY+747Eq6dSXy+EG44=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eClfswZ2tlhHvW9yuUOWF1y4fWu4JjVAiIqJO7yZ/iBk3qO+5xXikOxjByR7HL3Ur
-	 GrbDz2+F0ZkbwLrVsXGU1ltVKodDdTAsP9fdf2RphQbJXv6WFyAhmMnifMVGgGksBl
-	 G/hjyyhLlEKvj3I2ber+61dVqVbiq8naySV2ieJObjBihgkIaifTZTDMj43m4uzeD0
-	 hP8n5Q2P7+BumOKwmlZKGFHBueCmlJOXCA+5742ohxkKEGu0KPJQdDE63Ha8uIc0ae
-	 eyYMvC7to6NaWbuNGbagafEOyoxdSd99ewcArvzjW0DA0BhEq4kx6SDjq+JzF+RcmJ
-	 zsa7So7l75lpQ==
-Message-ID: <c4f41a94-50d0-4f7d-b5cb-2fc966129440@kernel.org>
-Date: Thu, 2 Apr 2026 11:53:35 +0200
+	s=k20201202; t=1775123649;
+	bh=g8X7jdbCgWRJVgbstnTrfuS11/pgXSaoaMN5ZccW5G8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=C0Q8IE5raY66RLgtk/htIln0tWdIfEVazxwz+tH7oSRyXPyJVO+37TOQLvRbw5A/l
+	 FafXDtIWcZgZcgTsgZFgxLqHLg9QXykFl3GhOZOa1S+hWkauYgrJKU+mJXIP4o/vNy
+	 ZsFNQNP1Fi1xqvfNPAOe0B7VQDXrZAwkym+tXOGuHMa60PWbQdZQVPXRkyI97ybhLZ
+	 UlfLjG8JqX6U45WPUCQEy4uqqvvsyj9DO1AxK6VqRJH7GJpBjWNacRX7facteTZ9mX
+	 FvZsRUmvtvqvAuhJzhdocO4FGQtRMkI8CUfyWdMa/wZ4BruZ+lh7PEpBFHWKDMCWeS
+	 uHe5JdnXsnIvw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 61A78D39408;
+	Thu,  2 Apr 2026 09:54:09 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH v3 0/3] SHIFT 6MQ SD-card support, improved responsivness
+ of touchscreen, and codec
+Date: Thu, 02 Apr 2026 11:54:05 +0200
+Message-Id: <20260402-axolotl-misc-p1-v3-0-8934e9db6831@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: timestamp: Add Tegra264 support
-To: Jon Hunter <jonathanh@nvidia.com>, Suneel Garapati <suneelg@nvidia.com>
-Cc: dipenp@nvidia.com, thierry.reding@gmail.com, krzk+dt@kernel.org,
- conor+dt@kernel.org, amhetre@nvidia.com, sheetal@nvidia.com,
- kkartik@nvidia.com, robh@kernel.org, pshete@nvidia.com,
- timestamp@list.linux.dev, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260401213831.187569-1-suneelg@nvidia.com>
- <20260401213831.187569-2-suneelg@nvidia.com>
- <20260402-neat-amiable-puma-d747ea@quoll>
- <1902fb50-ed1e-49a3-b210-cd9167824c1b@kernel.org>
- <dc3a518e-940b-40e6-aacc-9e1356d266f5@nvidia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <dc3a518e-940b-40e6-aacc-9e1356d266f5@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-B4-Tracking: v=1; b=H4sIAL08zmkC/3WNwQqDMBAFf0Vybspmo6I9+R+lBxOTumCNJBJsx
+ X9v9OKh9DgPZt7KgvFkArtlK/MmUiA3JpCXjOm+HZ+GU5eYIWAJEoG3ixvcPPAXBc0nwUsQXV6
+ BxqKzLFmTN5aWo3h/JO4pzM6/j4Mo9vV/KwoOvKp1rQqjFZamoYXmq/6wvRTxtHMQvzYm28rWy
+ ipXShVw2tu2fQHemk386gAAAA==
+X-Change-ID: 20260320-axolotl-misc-p1-601d480c25df
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Dylan Van Assche <me@dylanvanassche.be>
+Cc: linux-arm-msm@vger.kernel.org, Petr Hodina <phodina@protonmail.com>, 
+ Casey Connolly <casey.connolly@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Alexander Martinz <amartinz@shiftphones.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1146; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=g8X7jdbCgWRJVgbstnTrfuS11/pgXSaoaMN5ZccW5G8=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpzjy/pvCpctAMVvZY8W5n9dTG/nudXwKmeTXHn
+ nL+UMXqjIuJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCac48vwAKCRBgAj/E00kg
+ coJjD/4uCUKkiei3H4sL5HGCOEslH6+dfqYlpBJOdXAX5M125RAh6AjVsldTUClwWP5JsYabSDA
+ HlHP2CrERCZ5gE+adrPCvcRB1bcMylD3GgYIu9mIHIqQQ9P1Ep98Yf9jrqneIrximq8YwrEpP5Y
+ vr+XXWrNjxVHQZDqodnoL/lebmBwGGVb1w3GqUwMfd8rQYMi7v07hm9X87nVxRNVs8zcOT7JLXd
+ zT0AX9fkNe8pZlS+q61n65kU7J02L88Od4s8QloelzLZEHvREPP8gjqFSUJk5WDA3pEy0eox9cd
+ ZofYqRSelqvEGHG6o2UpaW6DIH5hBsIbnZJMhxoW/3AnkoXGJ37vNx0wGEWFbmSupPfGISVQ23C
+ E9LjQsCSnjkH7fpQfpHW/q0GPHPa462JdXNQg1a/6Mm8X7hIV6eLALL8qCRDts6xregdgkkPlK2
+ 91Cq1Ju7vNrD6fUC4EXfjrsn8xuv1FqeaTs3anMZWcTiU+Jmo+nnMJVok3k4AxavqYDbUCgIcjF
+ nxHxoH6UMZJY0Qx4b8LRNaDNsW8hq+h8yM7EayjMu1ZjF+rmZ7wuEKCpYNXr1MlVIaasguz7uFo
+ eRdSuhHXK3GWoR9hP8ddzelZyQLt8bsAfFxBDNwajNbVaqrpQTUwQuJMzoMK+lsjNqVl8r/k58t
+ ylTa7v5dVyitv8A==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283960-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[nvidia.com,gmail.com,kernel.org,list.linux.dev,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-283963-lists,devicetree=lfdr.de,david.ixit.cz];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E9CBE387615
+	FREEMAIL_CC(0.00)[vger.kernel.org,protonmail.com,linaro.org,oss.qualcomm.com,shiftphones.com,ixit.cz];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[david@ixit.cz];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ixit.cz:email,ixit.cz:replyto,ixit.cz:mid]
+X-Rspamd-Queue-Id: 756CE3875EC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 02/04/2026 11:49, Jon Hunter wrote:
-> 
-> On 02/04/2026 09:47, Krzysztof Kozlowski wrote:
->> On 02/04/2026 10:47, Krzysztof Kozlowski wrote:
->>> On Wed, Apr 01, 2026 at 09:38:29PM +0000, Suneel Garapati wrote:
->>>>     reg:
->>>>       maxItems: 1
->>>> @@ -112,6 +114,7 @@ allOf:
->>>>             contains:
->>>>               enum:
->>>>                 - nvidia,tegra234-gte-aon
->>>> +              - nvidia,tegra264-gte-aon
->>>
->>> And why exactly the slices are variable here? Explain that in commit
->>> msg.
->>
->> s/Explain/Shortly describe/
-> 
-> So this is not related to slices, but indicating the 
-> 'nvidia,gpio-controller' property is required for the AON controller. 
-> However, maybe your comment still applies and you want the commit 
-> message to be explicit that for the AON instance the 
-> 'nvidia,gpio-controller' is needed?
+I've tested that SD card and touchscreen works well, the codec does too,
+but for complete enablement needs soundcard support which isn't fully
+finished.
 
-You have two devices there - AON and LIC - and variable properties. I
-want answer why things are variable. HW is rarely variable. It is
-opposite of variable - afixed.
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Changes in v3:
+- sdcard property sorting (Konrad)
+- Link to v2: https://lore.kernel.org/r/20260401-axolotl-misc-p1-v2-0-f3af384bbb50@ixit.cz
+
+Changes in v2:
+- Changed bias-pull-up to bias-disable for SD card detection, since the
+  mechanism doesn't work, we can just save few uA. (Casey)
+- Link to v1: https://lore.kernel.org/r/20260320-axolotl-misc-p1-v1-0-89c9b5ecb26e@ixit.cz
+
+---
+Alexander Martinz (1):
+      arm64: dts: qcom: sdm845-shift-axolotl: Enable TFA9890 codec
+
+Casey Connolly (2):
+      arm64: dts: qcom: sdm845-shift-axolotl: Enable sdcard
+      arm64: dts: qcom: sdm845-shift-axolotl: Set higher touchscreen i2c clock
+
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 59 +++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+---
+base-commit: bd0f139e5fc11182777b81cefc3893ea508544ec
+change-id: 20260320-axolotl-misc-p1-601d480c25df
 
 Best regards,
-Krzysztof
+-- 
+David Heidelberg <david@ixit.cz>
+
+
 
