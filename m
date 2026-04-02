@@ -1,297 +1,142 @@
-Return-Path: <devicetree+bounces-284054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284065-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KFpMGFBgzmnvnAYAu9opvQ
-	(envelope-from <devicetree+bounces-284054-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 14:25:52 +0200
+	id wM3aHhRjzmmXnQYAu9opvQ
+	(envelope-from <devicetree+bounces-284065-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 14:37:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF28A389055
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 14:25:51 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7633E389232
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 14:37:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2012B301BA93
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 12:25:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1481C301CA9C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 12:35:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E21B3D891E;
-	Thu,  2 Apr 2026 12:25:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 853E13E3C7D;
+	Thu,  2 Apr 2026 12:35:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pjnTwmg9"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="iGFoLekf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B6823AC0FD;
-	Thu,  2 Apr 2026 12:25:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB5223E3D9F
+	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 12:34:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775132749; cv=none; b=t1XJ/jVZ5umG/GmPMJP9wFG3bAwBPP81mg33QczSKuv0q1xORfjwbejuvriUsc9vRNsG4d71RCwSaAqAyJ1OIf4AeQ8R14eI1L4L0RcTpmcqXWEODobBGBachQDP94WKswHQpgkagX8YIZoLK3WbxK7CU1QUCGBuEeqhFQXoaV0=
+	t=1775133301; cv=none; b=V0xB0vU+WI9uF2Xrb2vgph1H0FSDdc3gKnborg4u6Dy/k0ePqBiFWbvsMBLBUE9AyBlfeIzLovKjsvIbCdrK58sCvljvlFCQfmMr86h9OQCYN3EYvsF8rWkypCuL5Tqyx/A6XmSHhvvTXcHf/5nhCBuh29kQ8KfHUzI1o8z7ojk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775132749; c=relaxed/simple;
-	bh=A9qss19id8aEDS/Daora8wd8YySFOi8TeljTFjT0/8I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u/jZS/aagX6hVZuyK1gIlntwFUe6SzPEAcI1sFzAJvbGijBdF2ZWZJtMvWvRkA7jV8K6GKUZxbEDkARe11LTvWZUOxseSt65HFJvQcfDYko3w9/4k4w7Q4vpIZ9pSpmdzYciI41cMip7bIWazpChxx5oyC04+WxR/vSeiooRBzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pjnTwmg9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88CD2C116C6;
-	Thu,  2 Apr 2026 12:25:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775132748;
-	bh=A9qss19id8aEDS/Daora8wd8YySFOi8TeljTFjT0/8I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pjnTwmg9tl0xtuonCUtnkNri70pDB+DgXb/5scOyiB9f6uu3ZDGdibxZIDFbUb9af
-	 NgU749vIN9syriB5I91U1otBebcBVNoZo8o48rQuHGbAMifpJ2nAi5hXbcrAwuWt3k
-	 0TNdk1lwQHMh4cbZedqXLbhZvAtgz44GV5fYqe2sQ97foFS8PXNmpnEaCL0ZXjmkIP
-	 w5sLzeGvPxPII9sxopuKBbPuBEgu/LLbx4g/FcPEkdd4BqCkG0vatmSiLW9Wshb6v+
-	 Kjy3DUPuQfkYjhqrGzt0xeRdxZlF0ufUOr52IbHff6OhyRcDh72TnlTq1XVM/dp/ue
-	 DrXS1s4vpmxvQ==
-Date: Thu, 2 Apr 2026 13:25:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc: Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1775133301; c=relaxed/simple;
+	bh=eStbQ7NN4DXExlNiybRaL/c4YiUBu327h6xKiFmu5+8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sSqrtCLY5Iws8VAoQWVo/mGOCNFRPHV6DJm9ymMTsP+nTiHaMVsGVHSMqRuXPOJmWXp6ixscbKoCsacQNQjIH18vWE92kKEvFFfBsUnxZ2uBI7m0YKqNfKy69VN6GDN44FSHODiXFikebx2diOra6BAUbhuWS0cvrxZ8105JYTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=iGFoLekf; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=W+cQeTx6S4ds4B
+	GxhLTkBNyd3ZcV8I13pYxsoMZUT50=; b=iGFoLekfb3tjdf+zr9G0MBfFHkXsLc
+	B02doBOEM4d0cjom2rr8mU6m0QugV1Ku8x5NZ0TM2AFW0/z7EQuN/HzKUxPOBLiS
+	CtwwpReFyWILxqzHqOBZ/1rR9mVGEz6SkSU6sKg+oMz0r0T+KjH6Xx9Q3eqStwoS
+	1AJ1+qjr8tmTh+2RhzgwIbX63iigY3tBCECmd8QVoaacJ0R5njoU3pdkNastmhI1
+	vEuzoaYKFJc6ScdqNT7cHJ/dTkFPcd4AdGPj6xof0NAyxXT0lVqf2FYX8gyQRIRJ
+	SLHJO2E4TJdJvshjq78oRs51ndV9UdJWc4Qetn6mc+on4KdIr93b604Q==
+Received: (qmail 2500123 invoked from network); 2 Apr 2026 14:34:49 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 2 Apr 2026 14:34:49 +0200
+X-UD-Smtp-Session: l3s3148p1@1mIhbXlO1INUhsJN
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>, Yixun Lan <dlan@kernel.org>,
-	Joel Stanley <jms@oss.tenstorrent.com>,
-	Drew Fustini <dfustini@oss.tenstorrent.com>,
-	Darshan Prajapati <darshan.prajapati@einfochips.com>,
-	Guodong Xu <guodong@riscstar.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Junhui Liu <junhui.liu@pigmoral.tech>,
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-	E Shattow <e@freeshell.de>, Icenowy Zheng <uwu@icenowy.me>,
-	Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
-	Michael Zhu <michael.zhu@starfivetech.com>
-Subject: Re: [PATCH v1 5/5] riscv: dts: starfive: jhb100: Add JHB100 base DT
-Message-ID: <20260402-shakable-hefty-0164a042b748@spud>
-References: <20260402084019.440708-1-changhuang.liang@starfivetech.com>
- <20260402084019.440708-6-changhuang.liang@starfivetech.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [RFC PATCH] dt-bindings: incomplete-devices: allow additional properties
+Date: Thu,  2 Apr 2026 14:27:00 +0200
+Message-ID: <20260402123444.14177-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="37H7PQhY4CmOWSPg"
-Content-Disposition: inline
-In-Reply-To: <20260402084019.440708-6-changhuang.liang@starfivetech.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284054-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-284065-lists,devicetree=lfdr.de,renesas];
+	DMARC_NA(0.00)[sang-engineering.com];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,starfivetech.com:email,starfivetech.com:url,2.98.90.0:email,0.0.0.2:email]
-X-Rspamd-Queue-Id: EF28A389055
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,c1000000:email]
+X-Rspamd-Queue-Id: 7633E389232
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Linux test infrastructure is rightfully handled as 'incomplete devices.'
+It may need additional properties, though, like this mailbox test entry:
 
---37H7PQhY4CmOWSPg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+mailbox_test_send_to_recv@c1000000 {
+        compatible = "mailbox-test";
+        broken-usage-of-incorrect-compatible;
+        reg = <0x0 0xc1000000 0x0 0x100>;
+        mboxes = <&mfis 0 (MFIS_CHANNEL_IICR | MFIS_CHANNEL_TX)>,
+                 <&mfis 0 (MFIS_CHANNEL_EICR | MFIS_CHANNEL_RX)>;
+        mbox-names = "tx", "rx";
+ };
 
-On Thu, Apr 02, 2026 at 01:40:19AM -0700, Changhuang Liang wrote:
-> From: Ley Foon Tan <leyfoon.tan@starfivetech.com>
->=20
-> Add JHB100 base dtsi and dts. Consist of 4 Dubhe-70 cores, CLINT, PLIC,
-> PMU, UART and 1GB DDR.
->=20
-> Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> ---
->  MAINTAINERS                                   |   6 +
->  arch/riscv/boot/dts/starfive/Makefile         |   2 +
->  .../boot/dts/starfive/jhb100-evb1-eth.dts     |   6 +
->  arch/riscv/boot/dts/starfive/jhb100-evb1.dtsi |  32 ++
->  arch/riscv/boot/dts/starfive/jhb100.dtsi      | 326 ++++++++++++++++++
->  5 files changed, 372 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/starfive/jhb100-evb1-eth.dts
->  create mode 100644 arch/riscv/boot/dts/starfive/jhb100-evb1.dtsi
->  create mode 100644 arch/riscv/boot/dts/starfive/jhb100.dtsi
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7d10988cbc62..b1892a480c31 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -25306,6 +25306,12 @@ S:	Supported
->  F:	Documentation/devicetree/bindings/interrupt-controller/starfive,jh810=
-0-intc.yaml
->  F:	drivers/irqchip/irq-starfive-jh8100-intc.c
-> =20
-> +STARFIVE JHB100 DEVICETREES
-> +M:	Changhuang Liang <changhuang.liang@starfivetech.com>
-> +L:	linux-riscv@lists.infradead.org
-> +S:	Maintained
+So, allow additional properties to prevent:
 
-Supported, no?
+.../arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: mailbox_test_send_to_recv@c1000000 (mailbox-test): 'broken-usage-of-incorrect-compatible', 'mbox-names', 'mboxes', 'reg' do not match any of the regexes: '^pinctrl-[0-9]+$'
 
-> +F:	arch/riscv/boot/dts/starfive/jhb100*
-> +
->  STATIC BRANCH/CALL
->  M:	Peter Zijlstra <peterz@infradead.org>
->  M:	Josh Poimboeuf <jpoimboe@kernel.org>
-> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/=
-starfive/Makefile
-> index 3dd1f05283f7..7cdb75788053 100644
-> --- a/arch/riscv/boot/dts/starfive/Makefile
-> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> @@ -18,3 +18,5 @@ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-vision=
-five-2-lite.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-lite-emmc.=
-dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.2a.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.3b.dtb
-> +
-> +dtb-$(CONFIG_ARCH_STARFIVE) +=3D jhb100-evb1-eth.dtb
-> diff --git a/arch/riscv/boot/dts/starfive/jhb100-evb1-eth.dts b/arch/risc=
-v/boot/dts/starfive/jhb100-evb1-eth.dts
-> new file mode 100644
-> index 000000000000..62cd046e1224
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jhb100-evb1-eth.dts
-> @@ -0,0 +1,6 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (c) 2024-2026 StarFive Technology Co., Ltd.
-> + */
-> +
-> +#include "jhb100-evb1.dtsi"
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
 
-What is the point of this file? Is this the base-board?
-Shouldn't it have a specific compatible?
+Maybe this is not worth the hazzle because these testing bindings should
+never be used in production DTs. During development, however, this is
+useful because it reduces noise, so real bugs become more visible.
 
-Can the SoM be used without a base board? I've got no info about this
-board appearing on google, do you even have pictures of it or any
-documentation?
-I see this
-https://www.starfivetech.com/en/index.php?s=3Dhardware&c=3Dshow&id=3D22
-and
-https://www.starfivetech.com/en/index.php?s=3Dhardware&c=3Dshow&id=3D23
-but the former doesn't look like it needs a base-board and the latter is
-called "evb3", so is not what's here?
+If this is not applicable for reasons I overlooked, another approach
+could be to use 'broken-usage-of-incorrect-compatible' as an early exit
+in fixup_node_props() of the validator?
 
-Not got enough info to really do any kind of review here.
+RFC because of all of the above. Is this worth it?
 
-> diff --git a/arch/riscv/boot/dts/starfive/jhb100-evb1.dtsi b/arch/riscv/b=
-oot/dts/starfive/jhb100-evb1.dtsi
-> new file mode 100644
-> index 000000000000..462b6fb7953b
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jhb100-evb1.dtsi
-> @@ -0,0 +1,32 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (c) 2024-2026 StarFive Technology Co., Ltd.
-> + */
-> +
-> +#include "jhb100.dtsi"
-> +
-> +/ {
-> +	model =3D "StarFive JHB100 EVB-1";
-> +	compatible =3D "starfive,jhb100-evb1", "starfive,jhb100";
-> +
-> +	aliases {
-> +		serial6 =3D &uart6;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path =3D "serial6:115200n8";
-> +	};
-> +
-> +	cpus {
-> +		timebase-frequency =3D <5000000>;
-> +	};
-> +
-> +	memory@40000000 {
-> +		device_type =3D "memory";
-> +		reg =3D <0x0 0x40000000 0x0 0x40000000>;	/* 1GB */
-> +	};
-> +};
-> +
-> +&uart6 {
-> +	status =3D "okay";
-> +};
+ Documentation/devicetree/bindings/incomplete-devices.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> +		cpu2: cpu@2 {
-> +			compatible =3D "starfive,dubhe-70", "riscv";
-> +			riscv,isa =3D "rv64imafdcbh";
-> +			riscv,isa-base =3D "rv64i";
-> +			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "b", "h", "zba=
-", "zbb",
-> +					       "zbc", "zbs", "zicbom", "zicbop", "zicboz", "zicntr",
-> +					       "zicond", "zicsr", "zifencei", "zihintpause",
-> +					       "zihpm", "svinval", "svnapot", "sscofpmf";
-> +			riscv,cbom-block-size =3D <64>;
-> +			riscv,cbop-block-size =3D <64>;
-> +			riscv,cboz-block-size =3D <64>;
-> +			d-cache-block-size =3D <64>;
-> +			d-cache-sets =3D <512>;
-> +			d-cache-size =3D <32768>;
-> +			d-tlb-sets =3D <1>;
-> +			d-tlb-size =3D <16>;
-> +			device_type =3D "cpu";
-> +			i-cache-block-size =3D <64>;
-> +			i-cache-sets =3D <512>;
-> +			i-cache-size =3D <32768>;
-> +			i-tlb-sets =3D <1>;
-> +			i-tlb-size =3D <24>;
-> +			mmu-type =3D "riscv,sv48";
-> +			next-level-cache =3D <&l2c2>;
-> +			reg =3D <0x2>;
+diff --git a/Documentation/devicetree/bindings/incomplete-devices.yaml b/Documentation/devicetree/bindings/incomplete-devices.yaml
+index 4bb6c0141e9f..8f6df738f5e9 100644
+--- a/Documentation/devicetree/bindings/incomplete-devices.yaml
++++ b/Documentation/devicetree/bindings/incomplete-devices.yaml
+@@ -282,4 +282,4 @@ required:
+   - compatible
+   - broken-usage-of-incorrect-compatible
+ 
+-additionalProperties: false
++additionalProperties: true
+-- 
+2.51.0
 
-reg after compatible please.
-
-> +			tlb-split;
-> +
-> +			cpu2_intc: interrupt-controller {
-> +				compatible =3D "riscv,cpu-intc";
-> +				interrupt-controller;
-> +				#interrupt-cells =3D <1>;
-> +			};
-> +		};
-
---37H7PQhY4CmOWSPg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCac5gRQAKCRB4tDGHoIJi
-0mq/AQCdGRhH7fMsETbsHy/7XAwGdd6dyCgef5Ry/G9ZUAIsYQD/QcGn7v8E4xpq
-1187O7K4oldFt4xV97meM3SOU86bkAI=
-=u85q
------END PGP SIGNATURE-----
-
---37H7PQhY4CmOWSPg--
 
