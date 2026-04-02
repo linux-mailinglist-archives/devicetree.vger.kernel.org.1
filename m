@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-283996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283998-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qPZOHI5LzmmjmgYAu9opvQ
-	(envelope-from <devicetree+bounces-283996-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 12:57:18 +0200
+	id 0CVZGgJMzmmjmgYAu9opvQ
+	(envelope-from <devicetree+bounces-283998-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 12:59:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6444E387FDD
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 12:57:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7777388030
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 12:59:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 43BF1300FECA
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 10:56:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 360CD30AA85E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 10:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE37439BFEC;
-	Thu,  2 Apr 2026 10:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD5AF39E19C;
+	Thu,  2 Apr 2026 10:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="V0CLWWY/"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="aafphOAj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94167396B7B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4BC397E76;
 	Thu,  2 Apr 2026 10:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.12.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775127377; cv=none; b=iNixUTDzrjCpJXzJLXyKRjUqn3Cp3jvdArI2iBJBfjfcEzG26gxaznI/U5pOFmTlZ2Kjq/WewNkXt5WA2lE4kdhM15ENVo+c4jOZRgAoK/0FcTWRpPAd9uGCwOeTyYjsJE9YxSR8btAaQ87WBZoKY4U+eVWrf94odEOrtjRV994=
+	t=1775127378; cv=none; b=M/F+VVr1M6IIZK56hrSbaianfUs9N66y9qwf6DR1gt+4XuSQqvXiCsfoIL5mw9ZH4t76Z47gg534Q7fnEoePNxFCRv2m/MZB2wv8Ha89Zj+OESAPnd1jSOB+IS2P5h5Khyf2I6d1UnJwe6kVHWFPOO6+BawVVrITLGr/j5PvGUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775127377; c=relaxed/simple;
-	bh=se1NbwLgkKepQEgClAtuOlG9UWWIHCEediGM/ZRTUpg=;
+	s=arc-20240116; t=1775127378; c=relaxed/simple;
+	bh=9EcbegmdJVnD+T2W+Vt1SnOeAlQOR/d7tThScDFsK0s=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Nn9bp+1Ia02KirngAS4DWcOlCsScmFPVuFGwEYB6gTW/O1StsuixVCAwSMCd/nb4+6Qsn969Pu8mnwPtVK4+yetBdofsWWlhxGC2e5P5ILf1JOReSnGvYtBCB8RfTMigipuC45VQHWv130rvLNDtuRyw8byNnx7eD5P02T4607Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=V0CLWWY/; arc=none smtp.client-ip=46.19.12.180
+	 MIME-Version; b=uVfjDCYPyGz/X8cA0lU2AHRl65bOGmaaiL4kulrveepzQ6EASV8RzLwSaZX0H7+r7HLS0juCaxh5okBpb4zPQYdd9K9ZR7bSphMMBcIdBunfuFmPDhXzCwqipGhmTARouysTZe9WZ5XzXZJKIDBA2QqYGQ6Gs2WGVTVRhLBhXqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=aafphOAj; arc=none smtp.client-ip=46.19.12.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
@@ -40,17 +40,17 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
 	List-Post:List-Owner:List-Archive;
-	bh=+BoXlgipnNG+DuSePjmrCMzbqdgrmzoaZUj/nX6RrCU=; b=V0CLWWY/sLKZOW2STEH4RHVwE5
-	lJ6E+w2HmPYIM1EE63oh4TJY8ytqInDyDJQUSRz7tCH4PC4p8+97rtCDGi6YU4lrzNcXI4eUCFHTG
-	nthOkKpkN4rgKQzG7FIHX3BZyfR2eVX4W72Q2r02PFnn3oZAHo1lil+oRmWICWezomRWpXTgiTnye
-	TlvSbl/iVm+2ato1WcY75+2qn7PiJyNeF7umexTr/E8noK42Buq6hVCqQ0AXJVynkSNvQ0cvWveZg
-	avFwqOnUemws9/jGto7K/UyUOejlkabJjyM1becDskHnwbV1huaUGKll/zCAMpXNemkzWMy5eZL5/
-	ni9TaIOg==;
+	bh=OjwHf/y9TmPHoA5PmDsnJWIwaDDDm6wVm3D9G4XLFnQ=; b=aafphOAjR85bdn7ZYAHE+UM1Te
+	T82a5jNN+f/j2eEbCQpQvmPuJBXMVVHWcGu0k3y8dewYnoeC5EJvFIuOku4gdV5Xpjuc16Kl+iKO2
+	i+3BitC2Q4yCJPs4JMRE/vbWyXEiAFjhcWkfonrKo0dQw6boYmIkNg6B7UUYZDMCUdjA7vHec0lVp
+	eVIXJdK4HEFQCB4nQj0rrYmVJdpF+0UDKhwg6hAkwLxXl5VbYJM2dKQxlC5b2h8fsJwdLWVNPVWim
+	DUfowmbt24WEeMGGoilm1TyiyJ1QhN74L2il9CHDOOA4f8ipfgUZvhcKMYlTZszwa8W6G7DVgvcEe
+	+2SAis1Q==;
 Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:52086 helo=florijan-nb..)
 	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.99.1)
 	(envelope-from <florijan.plohl@norik.com>)
-	id 1w8Fig-00000009fYO-3jLJ;
+	id 1w8Fig-00000009fYO-4955;
 	Thu, 02 Apr 2026 12:56:14 +0200
 From: Florijan Plohl <florijan.plohl@norik.com>
 To: Rob Herring <robh@kernel.org>,
@@ -65,9 +65,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	upstream@lists.phytec.de
-Subject: [PATCH 4/5] arm64: dts: freescale: imx93-phyboard-nash: Add gpio-line-names
-Date: Thu,  2 Apr 2026 12:56:12 +0200
-Message-ID: <20260402105613.1303871-4-florijan.plohl@norik.com>
+Subject: [PATCH 5/5] arm64: dts: freescale: imx93-phyboard-segin: Add gpio-line-names
+Date: Thu,  2 Apr 2026 12:56:13 +0200
+Message-ID: <20260402105613.1303871-5-florijan.plohl@norik.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260402105613.1303871-1-florijan.plohl@norik.com>
 References: <20260402105613.1303871-1-florijan.plohl@norik.com>
@@ -94,7 +94,7 @@ X-Spamd-Result: default: False [2.54 / 15.00];
 	R_DKIM_REJECT(1.00)[norik.com:s=default];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -108,7 +108,7 @@ X-Spamd-Result: default: False [2.54 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	HAS_X_GMSV(0.00)[florijan.plohl@norik.com];
 	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	TAGGED_FROM(0.00)[bounces-283996-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283998-lists,devicetree=lfdr.de];
 	HAS_X_SOURCE(0.00)[];
 	DKIM_TRACE(0.00)[norik.com:-];
 	FROM_NEQ_ENVFROM(0.00)[florijan.plohl@norik.com,devicetree@vger.kernel.org];
@@ -119,55 +119,42 @@ X-Spamd-Result: default: False [2.54 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	HAS_X_ANTIABUSE(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[norik.com:email,norik.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6444E387FDD
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[norik.com:email,norik.com:mid]
+X-Rspamd-Queue-Id: B7777388030
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Add gpio-line-names for GPIOs with a defined board-level
-function on the PHYTEC phyBOARD-Nash-i.MX93.
+function on the PHYTEC phyBOARD-Segin-i.MX93.
 
 Signed-off-by: Florijan Plohl <florijan.plohl@norik.com>
 ---
- .../dts/freescale/imx93-phyboard-nash.dts     | 31 +++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ .../dts/freescale/imx93-phyboard-segin.dts     | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-index eac389ed30f3..b82192f25498 100644
---- a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-@@ -141,6 +141,37 @@ &flexcan1 {
+diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+index a982606de1ee..4e4356397ba0 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+@@ -145,6 +145,24 @@ &flexcan1 {
  	status = "okay";
  };
  
 +&gpio1 {
-+	gpio-line-names = "", "USER_LED", "I2C2_SCL", "I2C2_SDA";
-+};
-+
-+&gpio2 {
-+	gpio-line-names = "SPI6_CS0", "", "", "", "",
-+			  "", "", "", "", "",
-+			  "", "", "", "", "",
-+			  "", "", "TPM_nIRQ", "", "",
-+			  "", "", "", "", "",
-+			  "", "", "", "I2C3_SDA", "I2C3_SCL";
++	gpio-line-names = "", "USER_LED", "I2C1_SCL", "I2C1_SDA";
 +};
 +
 +&gpio3 {
-+	gpio-line-names = "SD2_nCD", "", "", "", "",
-+			  "", "", "SD2_nRESET", "", "",
-+			  "", "", "", "", "",
-+			  "", "", "", "", "",
-+			  "", "", "", "", "",
-+			  "", "nENET1_INT";
++	gpio-line-names = "SD1_nCD", "", "", "", "",
++			  "", "", "SD1_nRESET";
 +};
 +
 +&gpio4 {
 +	gpio-line-names = "", "", "", "", "",
 +			  "", "", "", "", "",
 +			  "", "", "", "", "",
-+			  "", "nCAN_EN", "", "", "",
++			  "", "CAN_EN", "", "", "",
 +			  "", "", "", "RESET_PHY", "",
 +			  "", "RTC_nINT", "PMIC_IRQ_B";
 +};
