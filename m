@@ -1,158 +1,133 @@
-Return-Path: <devicetree+bounces-284056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284063-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 3s15C7BhzmmXnQYAu9opvQ
-	(envelope-from <devicetree+bounces-284056-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 14:31:44 +0200
+	id cEy+DF1jzmmXnQYAu9opvQ
+	(envelope-from <devicetree+bounces-284063-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 14:38:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95521389163
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 14:31:43 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 940E0389267
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 14:38:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3ACE230254D6
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 12:29:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8DF853060CD0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 12:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99043E3C7B;
-	Thu,  2 Apr 2026 12:29:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HyuehP9f"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6121A3DCD88;
+	Thu,  2 Apr 2026 12:34:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D306C3AD500
-	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 12:29:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 968FE3A0B13
+	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 12:34:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775132961; cv=none; b=CVodW2dvf51VNUNykcNqjgckjJEjd2VjVgt31EJTntrLzdufRIEoSQWbrkf8R8cg0Q7RuS2YjaoMaVZhJ+MCC6oRdt3fEAF2UUtWw5noFnd6bOmJ7dw5JJcUgRD8G98hpcQcSc0M9cMKl1mop2bQCa5mgsRt+v/7nepwG/RdFgg=
+	t=1775133271; cv=none; b=uJARD92j8kEqd2zZA5ma/YBMOwyecC6qmqRnuQy5l78I5/FskM3ZPopJBLIX+xqGupnKtbCZJ2T+Gdc81q7DhinwNYbsiZYE89Mt7a9zRtvxCadPXwRZ84XQxa1kUZ8uFp+NWC/g++LB+w0GraK3qEJmBneYRn4+Cwdvz4Mh4wQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775132961; c=relaxed/simple;
-	bh=d7e7s7TnTP79BbzuyFXmjqDe5900yRh+zTsntc7JiEw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YZUlptszQWI+q0/lKWlNjhX/1dw+PgWn1ppfBBUpF+t9Bwsz2oB99BADnOCjerp7aDXiToQqAgAm87ZAxDRxNTNXgC2hA/1QkLQvMIsrV4HdyCAtAs2IOSdPMUAZ1hJ0pDoil5xfmwRoOCapMQCunx5eyRV119p5uD4LSF00rg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HyuehP9f; arc=none smtp.client-ip=209.85.222.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-8d1b746f522so97413385a.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Apr 2026 05:29:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775132954; x=1775737754; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vcXn6b67rRj+CqXQSR9AVzCdCSKAtKskjZ3iuSBT3lw=;
-        b=HyuehP9fDk8oSiKI7LBaJd1hrgLCtfuuelPjk1/eBfOA/NogVE8/JoA+xrZ1KjlgLA
-         Gu+mWj0HIc/EVX0e2O37zsQ8F35HQFNGkz36FR5EKovFb0j/0w1gDsnDB7u9mserKeZe
-         /E5vwNyGcQs1vwVWN1+MRLajkLezUVF3eNtAKqAvoBN2j4oQVlH97Ar5nyJubhk9H4Oa
-         nzZef7PKb08MKmaDUS1qq/Anf7LxbIxHRDcsr4h+9Baq9NLFjFx0EpZUQtwGERWPSnxE
-         FUwQfGgDwWEHqi6ZZASGMNfECSntg08XCuZEHEmkhhmNd9RIZUH8HeolCrs4IPDYizE0
-         Oiog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775132954; x=1775737754;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vcXn6b67rRj+CqXQSR9AVzCdCSKAtKskjZ3iuSBT3lw=;
-        b=Oy4x1lqZHXAq+h8WntJHaBrxuu3yGxDyPrAoWQWGSGj4v009S3c28eDM3C9lIj1+ix
-         mIyac/oixablKKh/oas0xCfZMtxr97tLdVfqXjjPjDNiBNRwtf+dyjmrgXB7LNdJXruC
-         CQnJlGCfYZhoDx2jtfhfWCKuXYWAHhOFffrBu5brCtTWSGWz8BR9dXa+pG2/VZ8pw0ba
-         FZzb8PXUS5Zfy5F9xAa5qzh8jvvBkhWa4u8L3Q/IyD/l4l5EIVHmk9bRofcyJtbBRNX/
-         w1wfLZjCQXaMxM52gIoT3oT24BSTZxySkHqEWu40fsZlEVsxkElg/HABZNreejnAiuo8
-         eqpg==
-X-Forwarded-Encrypted: i=1; AJvYcCUZmHSRoT5nPVVrkwlpTVfdTamsc7Wxmb/SeSjYXvWEdxgY2T50ywCBwWHUTBJieakc09WpOOHZJ8z9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMRZwKgUs24niwt3XfdaWEStdwduKMRL+C9naOB+65dIIwOsst
-	DTShmrfJlC5v6t+OKwSVcZdWpuMffWBu3LA2SmY+iBcUbpI6yWQtc8AT
-X-Gm-Gg: ATEYQzzxPwtTFEYzfTPaQ7JXsGFuyQIsuy6cmbhMcUxxJAELPHDdKcmQ8mvAyi0n3sK
-	zfe3C1wrqGrmNGglmTOKxqFW8JVnnSCgTgIjyVz9vMDlH7iLx9BSfNTjixRijriH23J38f+6N5q
-	W8l0LpFLAi5TJs679z8Yc59ZfDbz0rcwOWbjZrOJ9CeUSn17tyBasmoqCncKjMoCMcXsSLwGu9L
-	KkuSoCdKDns3Pv5ypb3dLTO5I2/BJCBNw80xB7D3L5ARpudGMlwJPaowTJnyJ+xHjM0RKHkL7Lm
-	zS7cN3PEphHB1MCobamPJgZNzijujQT8Sd6ZIVPXYGFvMIdpekWM/eDuR0cG0w7pKFK57huIJQl
-	yvwKzgwYfXVnKXUyCZEoXk0Zs/GFRQq2nx004ZnM/lQdxDqypYghrg/8lP5l4wn8f0XXoxCCZRJ
-	r7TNmTr7R3+900KU+zYMRI3CV+MndHgMr4/ORHGHZJpumzib6YS/Ai5ehz
-X-Received: by 2002:a05:620a:4802:b0:8cd:b38d:be7a with SMTP id af79cd13be357-8d1b5aac3a6mr1091790485a.4.1775132953851;
-        Thu, 02 Apr 2026 05:29:13 -0700 (PDT)
-Received: from sleek (d-23-244-200-70.nh.cpe.atlanticbb.net. [23.244.200.70])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8d2a8647b4esm202845285a.32.2026.04.02.05.29.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Apr 2026 05:29:13 -0700 (PDT)
-Date: Thu, 2 Apr 2026 08:29:10 -0400
-From: Joshua Milas <josh.milas@gmail.com>
-To: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-Cc: tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, pjw@kernel.org, samuel.holland@sifive.com,
-	unicorn_wang@outlook.com, inochiama@gmail.com,
-	daniel.lezcano@linaro.org, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, liujingqi@lanxincomputing.com,
-	alexander.sverdlin@gmail.com, rabenda.cn@gmail.com, dlan@kernel.org,
-	chao.wei@sophgo.com, anup@brainfault.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, sophgo@lists.linux.dev,
-	hanguidong02@gmail.com
-Subject: Re: [PATCH v4 0/5] Add initial Milk-V Duo S board support
-Message-ID: <ac5hFgLav_4oB2QA@sleek>
-References: <20260328173450.219664-1-josh.milas@gmail.com>
- <88400fa8-4545-49eb-af04-d82b94a89757@rootcommit.com>
+	s=arc-20240116; t=1775133271; c=relaxed/simple;
+	bh=vBVr1hY9zmi6eTqZ1irgBj8oY02q9+mPcGyT8biDgPk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=IkMGC6uk0ueJPJVlPojzzTAb4zkowbIOZYQ2N2xRswWtbHpeeJwPB0LIpNwatKv63Vrem0dDS3vbPdtKqsudG6QODseGjgw9u8jYoghG4suTL2wU9HVn6MXIv0h5T++4fsL0+ODNWjoNZly7WGglfXUhG1rOwOoUwcJgMG3LgLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1w8HFR-0004fG-Cz; Thu, 02 Apr 2026 14:34:09 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1w8HFP-003NFN-36;
+	Thu, 02 Apr 2026 14:34:07 +0200
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1w8HFP-000000009U5-3YvQ;
+	Thu, 02 Apr 2026 14:34:07 +0200
+Message-ID: <2ff25486a332ee3bfae1b30147445a44b11ff42e.camel@pengutronix.de>
+Subject: Re: [PATCH v10 4/5] reset: rzv2h-usb2phy: Convert to regmap API
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
+	tomm.merciai@gmail.com, peda@axentia.se
+Cc: linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, Fabrizio
+ Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>,  Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Arnd Bergmann <arnd@arndb.de>, Ulf
+ Hansson <ulf.hansson@linaro.org>, Josua Mayer <josua@solid-run.com>,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org
+Date: Thu, 02 Apr 2026 14:34:07 +0200
+In-Reply-To: <0732e1c53f21671b3a1a78db99fbbe3b78016d52.1775047175.git.tommaso.merciai.xr@bp.renesas.com>
+References: <cover.1775047175.git.tommaso.merciai.xr@bp.renesas.com>
+	 <0732e1c53f21671b3a1a78db99fbbe3b78016d52.1775047175.git.tommaso.merciai.xr@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <88400fa8-4545-49eb-af04-d82b94a89757@rootcommit.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-284063-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284056-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FREEMAIL_CC(0.00)[kernel.org,sifive.com,outlook.com,gmail.com,linaro.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lanxincomputing.com,sophgo.com,brainfault.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[pengutronix.de];
+	FREEMAIL_TO(0.00)[bp.renesas.com,gmail.com,axentia.se];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,renesas.com,kernel.org,glider.be,gmail.com,arndb.de,linaro.org,solid-run.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joshmilas@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 95521389163
+	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.265];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,pengutronix.de:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,renesas.com:email]
+X-Rspamd-Queue-Id: 940E0389267
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Michael,
+On Mi, 2026-04-01 at 17:16 +0200, Tommaso Merciai wrote:
+> Replace raw MMIO accesses (readl/writel) with regmap_read() and
+> regmap_multi_reg_write() via devm_regmap_init_mmio().
+> Drop the manual spinlock as regmap provides internal locking.
+>=20
+> Replace the custom rzv2h_usb2phy_regval struct with the standard
+> reg_sequence, and encode assert/deassert sequences as reg_sequence
+> arrays rather than individual scalar fields in the of_data
+> descriptor.
+>=20
+> Use the reg_sequence .delay_us field to encode the 11 =C2=B5s post-assert
+> delay, replacing the explicit usleep_range(11, 20) call in
+> rzv2h_usbphy_reset_assert().
+>=20
+> Select REGMAP_MMIO in Kconfig.
+>=20
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
-Thanks for testing this. I am not seeing that issue on my arm64 or riscv side.
-I am able to add an IP and do anything I can think of on the arm64 side.
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-[   96.618687] stmmaceth 4070000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-[   96.633977] stmmaceth 4070000.ethernet eth0: PHY [mdio_mux-0.0:01] driver [Generic PHY] (irq=POLL)
-[   96.676436] dwmac1000: Master AXI performs any burst length
-[   96.702852] stmmaceth 4070000.ethernet eth0: No Safety Features support found
-[   96.748740] stmmaceth 4070000.ethernet eth0: IEEE 1588-2002 Timestamp supported
-[   96.772880] stmmaceth 4070000.ethernet eth0: configuring for phy/internal link mode
-[ 1359.377528] stmmaceth 4070000.ethernet eth0: Link is Up - 100Mbps/Full - flow control off
-
-I can do the same on the riscv side but get a unhandled signal for TLS traffic
-which I believe is unrelated as it doesn't happen on adding an IP.
-
-I'll send over my configs to see if that helps.
-
-Have a great day,
-- Joshua Milas
+regards
+Philipp
 
