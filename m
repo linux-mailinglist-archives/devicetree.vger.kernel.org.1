@@ -1,249 +1,238 @@
-Return-Path: <devicetree+bounces-284162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284163-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sBILFO2hzmlZpAYAu9opvQ
-	(envelope-from <devicetree+bounces-284162-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 19:05:49 +0200
+	id eP7QMLqhzmlZpAYAu9opvQ
+	(envelope-from <devicetree+bounces-284163-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 19:04:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F49138C571
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 19:05:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EA5E38C526
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 19:04:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C1A9D3084AE1
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 16:54:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B63DA301AA90
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 17:01:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB87529B793;
-	Thu,  2 Apr 2026 16:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57628308F36;
+	Thu,  2 Apr 2026 17:01:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="TyDduWOp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81E138BF80;
-	Thu,  2 Apr 2026 16:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCB913FEE;
+	Thu,  2 Apr 2026 17:01:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775148873; cv=none; b=NMJWg+ydEVfQzX3+a9y7qv4Q1203s82ocGS/WL8rlSoL61dcGWYQjuAp/Gbeh56QngnyNsO6UIJy3RQSOqCVYnRW25dHij/RSgGCeyNGj7evIVYO/cBJQhPRYWnBLakVvYOxfSl8keps2WaNJznLTTIALxSrJb+S2JWUULaD0BQ=
+	t=1775149271; cv=none; b=IslpCJwrEvxZ3/Fhh+nXg11TFjS2/8tuffwNwxPtmhOIrHftuw4252YChOEZVZUp8lTYB3sQ4ZRc8DkV8mBpynYlxhnzjphggzz6vHYEce77to7OmS9I788HRvQ/pbhVn8IKFvaMzDo7nFcVaoQte1fMoTZV7BUmykniCRLJ7YA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775148873; c=relaxed/simple;
-	bh=mw8AtoRZ1F3+niFWD9MKFgwoL6Ngy+jtQ6JVQbO400U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DoO/ALUFmT/YNQDHmqkMZq+FXWjQEfM2+NAXB1HoO8dL4VtC23/Ty7SiAm2gQlvPTznR1/VVPxvBCH0dEpXw+xaav3LYr3fX8fVhw3hq+yC/vS9RfFfo0ocdkrYNknE5MWZJW5x+El4aJqk1LunDxJVYJllQ9zRQ/O8SiiwL1Es=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from localhost.localdomain (unknown [223.166.95.230])
-	by APP-05 (Coremail) with SMTP id zQCowADndwszn85p_LBMDA--.15885S5;
-	Fri, 03 Apr 2026 00:54:14 +0800 (CST)
-From: Han Gao <gaohan@iscas.ac.cn>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Cc: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Han Gao <rabenda.cn@gmail.com>,
-	Han Gao <gaohan@iscas.ac.cn>
-Subject: [PATCH v5 3/3] riscv: dts: spacemit: Enable USB3.0/PCIe on OrangePi RV2
-Date: Fri,  3 Apr 2026 00:54:07 +0800
-Message-ID: <cfe646a5549a2b3fc8a4335c3ab4918599615369.1775148159.git.gaohan@iscas.ac.cn>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1775148159.git.gaohan@iscas.ac.cn>
-References: <cover.1775148159.git.gaohan@iscas.ac.cn>
+	s=arc-20240116; t=1775149271; c=relaxed/simple;
+	bh=2OWqMG9cAvyIiZhUJJh6c3apSC/Ro+i93PaoDjc2ohY=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=TKVkkptBl7UoziHuALmVE7O/18gqh2LaTi7FRbUA/hLWgUqaidMshL48VB2rKkbgx0Rz13lolK+4t1V1zpHbjTcsFKGE72m4D1dF5wgfF8t4PoQiKoeoFeihMR2SAxgKfB4QEkK3WQlElVHTJdW4hqbAUzYU/pmGQw+r4B6Szcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=TyDduWOp; arc=none smtp.client-ip=65.21.61.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
+Message-ID: <d0d17d65-893d-44c8-a929-92ba5b71d7f6@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1775149257;
+	bh=2OWqMG9cAvyIiZhUJJh6c3apSC/Ro+i93PaoDjc2ohY=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=TyDduWOpNvxQeMWOJLRKd7O4x57VGwm/FtjFB4aCLFl7jth9inkleHxhtz7dfmZpO
+	 ainHsiv56YhFZcMxmPC6M0wdfV/f5bNz9T4fDyPLaFgxbBcKiYU+Tt4hIw74Jodnmh
+	 wBAzw0LIaUuYcMk2fb2yJxzZTEAN/qFAlVGgh+tQ=
+Date: Thu, 2 Apr 2026 19:00:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird Beta
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH 5/8] thermal: khadas-mcu-fan: Add fan config from platform
+ data Add regulator support
+To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Beniamino Galvani <b.galvani@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+References: <20260402-add-mcu-fan-khadas-vim4-v1-0-2b12eb4ac7b0@aliel.fr>
+ <20260402-add-mcu-fan-khadas-vim4-v1-5-2b12eb4ac7b0@aliel.fr>
+ <5e3e8684-f893-4fb0-879e-9661820f72dd@linaro.org>
+Content-Language: en-US
+In-Reply-To: <5e3e8684-f893-4fb0-879e-9661820f72dd@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowADndwszn85p_LBMDA--.15885S5
-X-Coremail-Antispam: 1UD129KBjvJXoWxXFyDCF45tF45CF4DXw45Awb_yoW5WF4UpF
-	47ursI9a4Syr1rKw45Wa4IgF43Ga1kCFZ3Cwn5ur48Jr40gas09rZayr1rAF95Gr4kt34a
-	yFyUAFyxGF12gw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmF14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JrWl82xGYIkIc2
-	x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
-	Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UM2
-	8EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
-	e2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI
-	8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwAC
-	jcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka0x
-	kIwI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_
-	Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1V
-	AY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAI
-	cVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIx
-	AIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2
-	KfnxnUUI43ZEXa7VUbpwZ7UUUUU==
-X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiBwkFDGnOhd4w0gAAsZ
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-284162-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gaohan@iscas.ac.cn,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[aliel.fr];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-284163-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.983];
+	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[aliel.fr:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:email,iscas.ac.cn:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,jmu.edu.cn:email,0.0.0.1:email,0.0.0.2:email]
-X-Rspamd-Queue-Id: 9F49138C571
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid]
+X-Rspamd-Queue-Id: 5EA5E38C526
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable the DWC3 USB 3.0 controller and its associated usbphy2 on the
-OrangePi RV2 board.
+On 4/2/26 5:39 PM, Neil Armstrong wrote:
+> On 4/2/26 16:27, Ronald Claveau wrote:
+>> Replace the hardcoded MAX_LEVEL constant and fan register
+>> with values read from platform_data (fan_reg, max_level),
+>> as new MCUs need different values.
+>>
+>> Optionally acquire and enable a "fan" regulator supply
+>> at probe time and on resume,
+>> so boards that gate fan power through a regulator are handled.
+>>
+>> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+>> ---
+>>   drivers/thermal/khadas_mcu_fan.c | 43 ++++++++++++++++++++++++++++++
+>> ++++------
+>>   1 file changed, 37 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/thermal/khadas_mcu_fan.c b/drivers/thermal/
+>> khadas_mcu_fan.c
+>> index d35e5313bea41..55b496625e3bd 100644
+>> --- a/drivers/thermal/khadas_mcu_fan.c
+>> +++ b/drivers/thermal/khadas_mcu_fan.c
+>> @@ -13,13 +13,15 @@
+>>   #include <linux/regmap.h>
+>>   #include <linux/sysfs.h>
+>>   #include <linux/thermal.h>
+>> -
+>> -#define MAX_LEVEL 3
+>> +#include <linux/regulator/consumer.h>
+>>     struct khadas_mcu_fan_ctx {
+>>       struct khadas_mcu *mcu;
+>> +    unsigned int fan_reg;
+>>       unsigned int level;
+>> +    unsigned int max_level;
+>>       struct thermal_cooling_device *cdev;
+>> +    struct regulator *power;
+>>   };
+>>     static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
+>> @@ -27,8 +29,7 @@ static int khadas_mcu_fan_set_level(struct
+>> khadas_mcu_fan_ctx *ctx,
+>>   {
+>>       int ret;
+>>   -    ret = regmap_write(ctx->mcu->regmap,
+>> KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
+>> -               level);
+>> +    ret = regmap_write(ctx->mcu->regmap, ctx->fan_reg, level);
+>>       if (ret)
+>>           return ret;
+>>   @@ -40,7 +41,9 @@ static int khadas_mcu_fan_set_level(struct
+>> khadas_mcu_fan_ctx *ctx,
+>>   static int khadas_mcu_fan_get_max_state(struct
+>> thermal_cooling_device *cdev,
+>>                       unsigned long *state)
+>>   {
+>> -    *state = MAX_LEVEL;
+>> +    struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
+>> +
+>> +    *state = ctx->max_level;
+>>         return 0;
+>>   }
+>> @@ -61,7 +64,7 @@ khadas_mcu_fan_set_cur_state(struct
+>> thermal_cooling_device *cdev,
+>>   {
+>>       struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
+>>   -    if (state > MAX_LEVEL)
+>> +    if (state > ctx->max_level)
+>>           return -EINVAL;
+>>         if (state == ctx->level)
+>> @@ -83,11 +86,32 @@ static int khadas_mcu_fan_probe(struct
+>> platform_device *pdev)
+>>       struct device *dev = &pdev->dev;
+>>       struct khadas_mcu_fan_ctx *ctx;
+>>       int ret;
+>> +    const struct khadas_mcu_fan_pdata *pdata =
+>> dev_get_platdata(&pdev->dev);
+>>         ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+>>       if (!ctx)
+>>           return -ENOMEM;
+>> +
+>>       ctx->mcu = mcu;
+>> +    ctx->fan_reg   = pdata->fan_reg;
+>> +    ctx->max_level = pdata->max_level;
+>> +
+>> +    ctx->power = devm_regulator_get_optional(dev->parent, "fan");
+>> +    if (IS_ERR(ctx->power)) {
+>> +        if (PTR_ERR(ctx->power) == -ENODEV)
+>> +            ctx->power = NULL;
+>> +        else
+>> +            return PTR_ERR(ctx->power);
+>> +    }
+>> +
+>> +    if (ctx->power) {
+>> +        ret = regulator_enable(ctx->power);
+>> +        if (ret) {
+>> +            dev_err(dev, "Failed to enable fan power supply: %d\n",
+>> ret);
+>> +            return ret;
+>> +        }
+>> +    }
+>> +
+>>       platform_set_drvdata(pdev, ctx);
+>>         cdev = devm_thermal_of_cooling_device_register(dev->parent,
+>> @@ -130,6 +154,13 @@ static int khadas_mcu_fan_suspend(struct device
+>> *dev)
+>>   static int khadas_mcu_fan_resume(struct device *dev)
+>>   {
+>>       struct khadas_mcu_fan_ctx *ctx = dev_get_drvdata(dev);
+>> +    int ret;
+>> +
+>> +    if (ctx->power) {
+>> +        ret = regulator_enable(ctx->power);
+> 
+> Seems you're missing a regulator_disable() on suspend.
+> 
+> Neil
+> 
 
-The board utilizes a Genesys Logic GL3523 USB3.0 hub.
+You right, I will add the regulator_disable on suspend for next version.
+Thanks for your feedback.
 
-Define a 3.3v fixed voltage regulator for PCIe and enable PCIe and
-PHY-related Device Tree nodes for the OrangePi RV2.
+>> +        if (ret)
+>> +            return ret;
+>> +    }
+>>         return khadas_mcu_fan_set_level(ctx, ctx->level);
+>>   }
+>>
+> 
 
-Co-developed-by: Chukun Pan <amadeus@jmu.edu.cn>
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
----
- .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-index a6de3753b876..c19952e70c31 100644
---- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-@@ -23,6 +23,15 @@ chosen {
- 		stdout-path = "serial0";
- 	};
- 
-+	pcie_vcc_3v3: regulator-pcie-vcc3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie_vcc3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio K1_GPIO(116) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	vcc_5v0: regulator-vcc-5v0 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc_5v0";
-@@ -42,6 +51,16 @@ vcc4v0: regulator-vcc4v0 {
- 		vin-supply = <&vcc_5v0>;
- 	};
- 
-+	vcc5v0_usb30: regulator-vcc5v0-usb30 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_usb30";
-+		enable-active-high;
-+		gpios = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v0>;
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -54,6 +73,10 @@ led1 {
- 	};
- };
- 
-+&combo_phy {
-+	status = "okay";
-+};
-+
- &eth0 {
- 	phy-handle = <&rgmii0>;
- 	phy-mode = "rgmii-id";
-@@ -200,8 +223,65 @@ dldo6 {
- 	};
- };
- 
-+&pcie1_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_3_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie1_port {
-+	phys = <&pcie1_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+};
-+
-+&pcie1 {
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
-+&pcie2_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_4_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie2_port {
-+	phys = <&pcie2_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+};
-+
-+&pcie2 {
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-+
-+&usbphy2 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3 {
-+	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	hub_2_0: hub@1 {
-+		compatible = "usb5e3,610";
-+		reg = <0x1>;
-+		peer-hub = <&hub_3_0>;
-+		vdd-supply = <&vcc5v0_usb30>;
-+	};
-+
-+	hub_3_0: hub@2 {
-+		compatible = "usb5e3,620";
-+		reg = <0x2>;
-+		peer-hub = <&hub_2_0>;
-+		vdd-supply = <&vcc5v0_usb30>;
-+	};
-+};
 -- 
-2.47.3
-
+Best regards,
+Ronald
 
