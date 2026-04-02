@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-283756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283757-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oFmCC3kSzmmnkgYAu9opvQ
-	(envelope-from <devicetree+bounces-283756-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 08:53:45 +0200
+	id 8DaoEjURzmmnkgYAu9opvQ
+	(envelope-from <devicetree+bounces-283757-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 08:48:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B636384C32
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 08:53:43 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4B51384B03
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 08:48:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 58BC73082E10
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 06:39:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C6A9031455F9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 06:40:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83EEB383C91;
-	Thu,  2 Apr 2026 06:39:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11749386427;
+	Thu,  2 Apr 2026 06:39:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="WSiKcIxG"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="NImyyrBI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
+Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6CEE38239D
-	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 06:39:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B16193845C6
+	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 06:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775111957; cv=none; b=a43tSyxNRK/XxTTeLlvIosPDxg5e3py0siUxAqgi7ayxx/AwbicGddliVZ+bVid3HeBgF8mgI+mFPS1PYQFz7GhzQwEc+5AcOloRtDd8Lx2ShJW/mJh+p96lmTEeQjoXNO5wBAh36c/eemXTZLjLzO9mi/j7Jvq3B1jkWaWlqV0=
+	t=1775111960; cv=none; b=qvOnkFP84fLfw64GeHlKqvjAIqh4/4ws28swDvLPcZK9IIAjTPQ7BBZxye2MVZeUL9cJtVlBpNt1ZaLe0xikMseYwE5QC0jIzn9186C/d+jOeQAAtCjzHF8b5IX5sZGRWBq00QFMlmLGtaC0Bh8/dwpDjNWlQPcWGRSUKZtEcik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775111957; c=relaxed/simple;
-	bh=vyi3O+pshzmeG01nzP3Kg33X+WAqIlIf0QllZdSZYAg=;
+	s=arc-20240116; t=1775111960; c=relaxed/simple;
+	bh=vHcmJbJnFiriXlFNhyWcvijfXUxqMdaq/h0SYf7nGzM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=U3bhXGL7ikWSnWmMnoKGekBUc1SNd/IpUcHvopFivKAH2QGtBrTP57src9n9djqYeYXMU1nL+Zw9meJxeHVi49nH6YIXhGZ3Uz87vJsaHhHa6PALBzrF0uvZ755FtkB1no8KLWRLfWBfpjHzX8u1SHOt4vsWNIL/Mqo/NQ9VsnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=WSiKcIxG; arc=none smtp.client-ip=91.218.175.183
+	 In-Reply-To:To:Cc; b=csXXaS3JBdUGwpk9kfezDuur/rGD+36sjAmBCiOPjCW1v/0pI6EMLwMK/WPlwk9FiaPyle8yORG9Y7XM11GLJ40Hax/EQKxvQyKuS7DjVJIXCi4GLt+vU8uWjBkQayblrO2WwZqVk4wx4NVrOzcFng7OeuGeZwpkaPG7t1fEnFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=NImyyrBI; arc=none smtp.client-ip=91.218.175.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1775111953;
+	s=key1; t=1775111956;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Km6l+SvAgwixRuIvp2J71CGRKML1xx3mzpIdz91b+xc=;
-	b=WSiKcIxGSRNm11gPK8K5j3G9r4/3nsw+vwEblN09HM2vLe+YYyhDPa116+A2G0/uJ8RDr2
-	J8PPfdT8g8LMm8MhDr+qYiBWC+mzhdF9WvEzzYLX7WLx3LLssdyK/7cL8aRleEMa3Ecwpi
-	c7uOwnZIyLmltTZHFewJ8vXb0mfnS0k3XtiM/+YmqhtKYPQIRgdae2Wgv8C4tF4bD0MbL/
-	u6heAO/VMLbFKMmAjtwMrT1pvjEYNeEyW4pOT2jPDdozqpx8dExKbv87jjCIKpnZF32kCU
-	tzhahit+V2wK3Cly+qIR9k1P5/WjLsbProVVBasbrOM5pAvTEHZoAW/5BNY6xQ==
+	bh=KXAlRMGR7jghkP+lnXdIYmzb8QsrY+DHKf9ZcHe2wtQ=;
+	b=NImyyrBIih/Q880zbpCCpOHgZmDcfdq4XQmT2dTH+TGToupalDJ7idpZK3K+xrU+GR/pzA
+	a1pOm2JoU3xgXPaCIQN61EoVglKYBO0eC6va6ntOk3rntXrXfpnT69mhOn3Uw18ipXXT5B
+	wa4I+1cxYOSTfJ/FkzxSLj5PeQz2gOidnZzJEDS5Pyrjv6ERuG+15REbcPZm7UNF4j12Jt
+	xynR0Mga8QTO3bo3xm7ySHU03AG2w4GzmRsTa11pE55bX/Q7xrPRS51mEfWC1fmYtNz53M
+	VqkzCcRDZNrJsUR7LRBHFRUNhRiY9DCJdDrwJRdRxaIWEHdzxNZ5VSk018zuVQ==
 From: Paul Sajna <sajattack@postmarketos.org>
-Date: Wed, 01 Apr 2026 23:38:33 -0700
-Subject: [PATCH v8 06/15] arm64: dts: qcom: sdm845-lg: Add uarts and
- Bluetooth
+Date: Wed, 01 Apr 2026 23:38:34 -0700
+Subject: [PATCH v8 07/15] arm64: dts: qcom: sdm845-lg-judyln: Add battery
+ and charger
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,7 +59,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260401-judyln-dts-v8-6-7677cfafbc78@postmarketos.org>
+Message-Id: <20260401-judyln-dts-v8-7-7677cfafbc78@postmarketos.org>
 References: <20260401-judyln-dts-v8-0-7677cfafbc78@postmarketos.org>
 In-Reply-To: <20260401-judyln-dts-v8-0-7677cfafbc78@postmarketos.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -71,12 +71,12 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  ~postmarketos/upstreaming@lists.sr.ht, Amir Dahan <system64fumo@tuta.io>, 
  Christopher Brown <crispybrown@gmail.com>, 
  Paul Sajna <sajattack@postmarketos.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775111929; l=3502;
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775111929; l=1347;
  i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
- bh=vyi3O+pshzmeG01nzP3Kg33X+WAqIlIf0QllZdSZYAg=;
- b=yJYjTKmKPaEwZviuQnwRDzbElS27MW2aZiTCdaP3ChNx1WxiO0ui836or/HHPG+FQz0u72NUA
- EmuKwF7SswGA+iqJCIINgbAcjCW5YZRqOlk+mI1byysmnpvoa40rXoY
+ bh=Ei6IXsIEZhjjI+rjDZqYmLKiYsgQWaTi16fUGmKfGLE=;
+ b=NFzGzlcDSqeBTekqjE5xZI+cdFAcvRNClVqG6ASBsk10aU3EAIe1/vL2CjTIxJ1PKUPoms8rK
+ lRQ7KWrXy0iC5aB/xdMYPKdMdnfVPCMrgueRvpcfDmmp2o1h79+7Fsw
 X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
  pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
 X-Migadu-Flow: FLOW_OUT
@@ -85,12 +85,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[postmarketos.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[postmarketos.org:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283756-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283757-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,tuta.io,gmail.com,postmarketos.org,oss.qualcomm.com];
@@ -104,145 +104,59 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sajattack@postmarketos.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[postmarketos.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,pololu.com:url,postmarketos.org:dkim,postmarketos.org:email,postmarketos.org:mid]
-X-Rspamd-Queue-Id: 2B636384C32
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,postmarketos.org:dkim,postmarketos.org:email,postmarketos.org:mid]
+X-Rspamd-Queue-Id: B4B51384B03
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-uart9 is debug serial on USB SBU1/2
+From: Christopher Brown <crispybrown@gmail.com>
 
-UART RX is SBU1 and UART TX is SBU2 of the USB-C port).
-1.8V Logic Level
-Tested using pololu usb07a https://www.pololu.com/product/2585
-and CH340 USB-UART
+Values based on lineageos kernel
 
-uart6 is bluetooth
+https://github.com/LineageOS/android_kernel_lge_sdm845/blob/lineage-22.2/arch/arm64/boot/dts/lge/sdm845-battery/LGE_BLT39_LGC_3000mAh.dtsi
 
-Bluetooth: hci0: setting up wcn399x
-Bluetooth: hci0: QCA Product ID   :0x0000000a
-Bluetooth: hci0: QCA SOC Version  :0x40010214
-Bluetooth: hci0: QCA ROM Version  :0x00000201
-Bluetooth: hci0: QCA Patch Version:0x00000001
-Bluetooth: hci0: QCA controller version 0x02140201
-Bluetooth: hci0: QCA Downloading qca/crbtfw21.tlv
-Bluetooth: hci0: QCA Downloading qca/judyln/crnv21.bin
-Bluetooth: hci0: QCA setup on UART is completed
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Signed-off-by: Christopher Brown <crispybrown@gmail.com>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 37 ++++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts  |  8 ++++++
- arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts   |  8 ++++++
- 3 files changed, 53 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-index 8b7a271b7568..27221b3afb30 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-@@ -27,10 +27,17 @@
- /delete-node/ &wlan_msa_mem;
- 
- / {
-+	aliases {
-+		serial0 = &uart9;
-+		serial1 = &uart6;
-+	};
-+
- 	chosen {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges;
-+
-+		stdout-path = "serial0:115200n8";
- 	};
- 
- 	reserved-memory {
-@@ -498,6 +505,16 @@ &qupv3_id_1 {
- 	status = "okay";
- };
- 
-+&qup_uart9_rx {
-+	drive-strength = <2>;
-+	bias-pull-up;
-+};
-+
-+&qup_uart9_tx {
-+	drive-strength = <2>;
-+	bias-disable;
-+};
-+
- &sdhc_2 {
- 	cd-gpios = <&tlmm 126 GPIO_ACTIVE_LOW>;
- 
-@@ -548,6 +565,26 @@ sd_card_det_n: sd-card-det-n-state {
- 	};
- };
- 
-+&uart6 {
-+	pinctrl-0 = <&qup_uart6_4pin>;
-+
-+	status = "okay";
-+
-+	bluetooth: bluetooth {
-+		compatible = "qcom,wcn3990-bt";
-+
-+		vddio-supply = <&vreg_s4a_1p8>;
-+		vddxo-supply = <&vreg_l7a_1p8>;
-+		vddrf-supply = <&vreg_l17a_1p3>;
-+		vddch0-supply = <&vreg_l25a_3p3>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
-+&uart9 {
-+	status = "okay";
-+};
-+
- /*
-  * UFS works partially and only with clk_ignore_unused.
-  * Sometimes it crashes with I/O errors.
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-index 6d6cc197176c..90dd5a2a6f30 100644
+index 90dd5a2a6f30..6b837da4ef21 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
 +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-@@ -43,6 +43,14 @@ &adsp_pas {
- 	firmware-name = "qcom/sdm845/LG/judyln/adsp.mbn";
+@@ -37,6 +37,14 @@ key-thinq {
+ 			interrupts = <89 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ 	};
++
++	battery: battery {
++		compatible = "simple-battery";
++
++		charge-full-design-microamp-hours = <3000000>;
++		voltage-min-design-microvolt = <3200000>;
++		voltage-max-design-microvolt = <4400000>;
++	};
  };
  
-+&bluetooth {
-+	/*
-+	 * This path is relative to the qca/
-+	 * subdir under lib/firmware.
-+	 */
-+	firmware-name = "judyln/crnv21.bin";
-+};
-+
- &cdsp_pas {
- 	firmware-name = "qcom/sdm845/LG/judyln/cdsp.mbn";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts
-index fd62abbb7128..efca260c3dcf 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts
-@@ -29,6 +29,14 @@ &adsp_pas {
- 	firmware-name = "qcom/sdm845/LG/judyp/adsp.mbn";
+ &adsp_pas {
+@@ -67,6 +75,12 @@ &mss_pil {
+ 	firmware-name = "qcom/sdm845/LG/judyln/mba.mbn", "qcom/sdm845/LG/judyln/modem.mbn";
  };
  
-+&bluetooth {
-+	/*
-+	 * This path is relative to the qca/
-+	 * subdir under lib/firmware.
-+	 */
-+	firmware-name = "judyp/crnv21.bin";
++&pmi8998_charger {
++	monitored-battery = <&battery>;
++
++	status = "okay";
 +};
 +
- &cdsp_pas {
- 	firmware-name = "qcom/sdm845/LG/judyp/cdsp.mbn";
- };
+ &tlmm {
+ 	thinq_key_default: thinq-key-default-state {
+ 		pins = "gpio89";
 
 -- 
 2.53.0
