@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-283752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283753-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mHinGq8QzmmnkgYAu9opvQ
-	(envelope-from <devicetree+bounces-283752-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 08:46:07 +0200
+	id +LZxDO8QzmmnkgYAu9opvQ
+	(envelope-from <devicetree+bounces-283753-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 08:47:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BA1E384A58
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 08:46:07 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C42A9384AC0
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 08:47:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0719E30CAC84
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 06:39:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B5F4B31614FF
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 06:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 534C93644D0;
-	Thu,  2 Apr 2026 06:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E5D369985;
+	Thu,  2 Apr 2026 06:39:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="lZ2EmA+0"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="Ykwwuway"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com [91.218.175.180])
+Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B85C273D6D
-	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 06:39:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70BA436CE02
+	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 06:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775111945; cv=none; b=szWoKCmW6DWDSRiguw0wC07iYyYpxn96kXIZrMqfVuQHeVwAccCBfqN2ZlrB20kRJK6/1fxUqKF10c/1Ej6skvZS3y8pEK44tpgTa24uqB8/ECcaluy7DJyOfpPKQdtyGopxKbt6jbVbOySYaKV4bhb7JiXLQSSXV28zcK3qSgE=
+	t=1775111947; cv=none; b=MWFFlVRTY0SmV0MPq4Rrq6IV2lYfjmufc5X7oMDCDhDlGO5UQkPd8pXveXhfeF879k4AjT4GftZvhYH8ql7lawo0A/5k9BZfPcZbzzI5M7Vw5y0HgMxvNfr6p7yVLi8Q+7WDKCW4O4SuQjeE/SC/Ec3jRXVSSrTSlHUwBPMohTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775111945; c=relaxed/simple;
-	bh=qVlujgMOEaY7xi+PNMAVdLKk/YdOHJZXwqfSWM9G4e4=;
+	s=arc-20240116; t=1775111947; c=relaxed/simple;
+	bh=zApbbXYni1gzGOLyTeTNtvriZHhep2sMKCAUx/mHuqw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nXdz5bLiK+DQZtTwg/oPteOaC1qcUUHvecLYLCuFC1PrYOGgtqqsvrsooP1+k5d3kZTlQHXmCbdxrujkzu7wEjphflGQDI7/mu2pcWVw39Cu6XFyI4KH2tjHb0MqvNTgvWqP/gDf/HH1xbJ1h7fDJ24MaJDeAoS3LFu2Q9D5ZyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=lZ2EmA+0; arc=none smtp.client-ip=91.218.175.180
+	 In-Reply-To:To:Cc; b=H+cCLiV0b/ynRdJRw2+p8MComSexod5MbsMDAxqvL/bjgEjmD7HchDzD0zYXG12W0ZNz4bQbZxxAYSzg0zep+AGKJx3kh/WmUifEZDNT838xfU/WdbcgQOOcPp84KZNZeUE6bTVmFMTnmAH9GAqhy/6lY60deYD+4hTAICxCNcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=Ykwwuway; arc=none smtp.client-ip=91.218.175.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1775111940;
+	s=key1; t=1775111943;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=1ErAhS6cOi4C2zWtYwViDGbHHXH/a8ocTkNTwSr/N2g=;
-	b=lZ2EmA+0yRxO+oztbx1mTHHWbK9gmhWvLWF7GI/eKQ7297rKLe2SRymCwttE6VuJJU/tiy
-	6fIsnWoAI7P1GCfOYtiZ+YVDXsaK0M3qux1bhi0aS/GjL1k9iuJjT4koaisMlXHNUan7q3
-	cNBhjpL4rFSQHii+ySO6o006eIihUS8hzez1FFuN/IvRnM9E0rc3nCdNWzrXXePONomjYj
-	hVY1JtYGudS0O6SFjvqBnkMDBRCzQqabRiSkdG92LV6iTSrWduSv3apH/cLf+LbvvzhbUm
-	RH0u/Q61wyQm70cciyhzuQf29QvYsCVgvTFLdkhdS2NYyArsspWBBtXKNzh8TA==
+	bh=2dwwoVBr8g+kp2SFK4hR6HBFGHkUWgDGC6Y8GBbVGEE=;
+	b=YkwwuwayWfMvSDi6VgSVc20qB5XKroqt4KP6aqfvYTPyR2G1cMlFXwqG7Kdb/4HgaFIK78
+	BgNpg4p0X0OpHHMcHpMScmFHtJvTE288qzVUEoeAOGBFP6jM1NuPZKk2ZnGt55Dbc/oyOU
+	C7qwbyy6EXsbWkBwvkU749pgJckmzI1/lJXUR5/eNHTKRQJy2c9MBl+xymvZf/QgpBH+hl
+	2jhv59exoIWIat/PwwVTSOFLlw3TKgpGs0ceEPQ9AUv7AJ8KUa2CHcKBIq9y3sKElv0lCT
+	o5MVTCIdGcvSd4YuOJB0nnYWPfzOIHFg8CMbEvWf4yCjWxmX2ooBe2wKhVgDXQ==
 From: Paul Sajna <sajattack@postmarketos.org>
-Date: Wed, 01 Apr 2026 23:38:29 -0700
-Subject: [PATCH v8 02/15] arm64: dts: qcom: sdm845-lg-judyln: Add firmware
- nodes, change path
+Date: Wed, 01 Apr 2026 23:38:30 -0700
+Subject: [PATCH v8 03/15] arm64: dts: qcom: sdm845-lg-judyp: Define
+ firmware paths for judyp
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,7 +59,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260401-judyln-dts-v8-2-7677cfafbc78@postmarketos.org>
+Message-Id: <20260401-judyln-dts-v8-3-7677cfafbc78@postmarketos.org>
 References: <20260401-judyln-dts-v8-0-7677cfafbc78@postmarketos.org>
 In-Reply-To: <20260401-judyln-dts-v8-0-7677cfafbc78@postmarketos.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -71,11 +71,11 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  ~postmarketos/upstreaming@lists.sr.ht, Amir Dahan <system64fumo@tuta.io>, 
  Christopher Brown <crispybrown@gmail.com>, 
  Paul Sajna <sajattack@postmarketos.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775111929; l=1633;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775111929; l=1276;
  i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
- bh=qVlujgMOEaY7xi+PNMAVdLKk/YdOHJZXwqfSWM9G4e4=;
- b=2Aq+dxMX10SqQHVoRkgT+wq+bVMBKKdIUcmENEwzCMUr1Eny+lmjPSxwsukgFcZJ2gT9YJkvE
- 0bWev9saiM2A3Il6CYuGNkJAM2liAJLoW6s/vDHgTt4K8C0/UE8Hi+Y
+ bh=zApbbXYni1gzGOLyTeTNtvriZHhep2sMKCAUx/mHuqw=;
+ b=wRGUvsjjQbVpSLVAT/dj5IALn75zYjMRdDHAlrQfk8RrACkKwnIR/3/Jr/+GHRwSot0YcnH5e
+ uCy8Sf1nv4mDYjF/yvpfvGFCMIip7dIDKGZE+GYznJTOi8P+7NO/gk9
 X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
  pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
 X-Migadu-Flow: FLOW_OUT
@@ -84,12 +84,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[postmarketos.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[postmarketos.org:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283752-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-283753-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,tuta.io,gmail.com,postmarketos.org];
@@ -103,69 +103,55 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sajattack@postmarketos.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[postmarketos.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[postmarketos.org:dkim,postmarketos.org:email,postmarketos.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1BA1E384A58
+	DBL_BLOCKED_OPENRESOLVER(0.00)[postmarketos.org:dkim,postmarketos.org:email,postmarketos.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,9d400000:email]
+X-Rspamd-Queue-Id: C42A9384AC0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add paths for Qualcomm firmware, including:
-ipa, modem, venus, gpu
-
-GPU and bluetooth are confirmed working, others may need more
-testing/fixes
-
-But regardless they will need the firmware paths specified here
-and firmware added upstream before they will work, so might as well
-get started on it now.
+For consistency with judyln and new naming scheme for firmware
 
 Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts | 16 ++++++++++++----
+ arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts | 16 ++++++++++++----
  1 file changed, 12 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-index 09bfcef42402..6d6cc197176c 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-@@ -40,19 +40,23 @@ key-thinq {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts
+index ffe1da2227f0..fd62abbb7128 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts
+@@ -26,17 +26,25 @@ framebuffer@9d400000 {
  };
  
  &adsp_pas {
--	firmware-name = "qcom/sdm845/judyln/adsp.mbn";
-+	firmware-name = "qcom/sdm845/LG/judyln/adsp.mbn";
+-	firmware-name = "qcom/sdm845/judyp/adsp.mbn";
++	firmware-name = "qcom/sdm845/LG/judyp/adsp.mbn";
  };
  
  &cdsp_pas {
--	firmware-name = "qcom/sdm845/judyln/cdsp.mbn";
-+	firmware-name = "qcom/sdm845/LG/judyln/cdsp.mbn";
+-	firmware-name = "qcom/sdm845/judyp/cdsp.mbn";
++	firmware-name = "qcom/sdm845/LG/judyp/cdsp.mbn";
  };
  
  &gpu_zap_shader {
--	firmware-name = "qcom/sdm845/judyln/a630_zap.mbn";
-+	firmware-name = "qcom/sdm845/LG/judyln/a630_zap.mbn";
+-	firmware-name = "qcom/sdm845/judyp/a630_zap.mbn";
++	firmware-name = "qcom/sdm845/LG/judyp/a630_zap.mbn";
 +};
 +
 +&ipa {
-+	firmware-name = "qcom/sdm845/LG/judyln/ipa_fws.mbn";
++	firmware-name = "qcom/sdm845/LG/judyp/ipa_fws.mbn";
  };
  
  &mss_pil {
--	firmware-name = "qcom/sdm845/judyln/mba.mbn", "qcom/sdm845/judyln/modem.mbn";
-+	firmware-name = "qcom/sdm845/LG/judyln/mba.mbn", "qcom/sdm845/LG/judyln/modem.mbn";
- };
- 
- &tlmm {
-@@ -64,3 +68,7 @@ thinq_key_default: thinq-key-default-state {
- 		bias-pull-up;
- 	};
- };
+-	firmware-name = "qcom/sdm845/judyp/mba.mbn", "qcom/sdm845/judyp/modem.mbn";
++	firmware-name = "qcom/sdm845/LG/judyp/mba.mbn", "qcom/sdm845/LG/judyp/modem.mbn";
++};
 +
 +&venus {
-+	firmware-name = "qcom/sdm845/LG/judyln/venus.mbn";
-+};
++	firmware-name = "qcom/sdm845/LG/judyp/venus.mbn";
+ };
 
 -- 
 2.53.0
