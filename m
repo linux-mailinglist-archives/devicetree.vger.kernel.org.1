@@ -1,187 +1,177 @@
-Return-Path: <devicetree+bounces-283815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283819-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oGhfBtcfzmnElAYAu9opvQ
-	(envelope-from <devicetree+bounces-283815-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 09:50:47 +0200
+	id 8ObGFn0izmnElAYAu9opvQ
+	(envelope-from <devicetree+bounces-283819-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 10:02:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D41F3856ED
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 09:50:46 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB403385944
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 10:01:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 761CD30AFA37
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 07:43:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D27E030FA916
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 07:45:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322D038F227;
-	Thu,  2 Apr 2026 07:43:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6180936680F;
+	Thu,  2 Apr 2026 07:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="Q83HqeFT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QwTlG0I2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85ADC389E04;
-	Thu,  2 Apr 2026 07:42:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EAD9325726;
+	Thu,  2 Apr 2026 07:44:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775115780; cv=none; b=U/c8ag6rRPRa9MzCEtL8utY2r1C+YBcurZfNCumaXBPo3Ll4eYlc0i9MCfORVIRUMkOHS4PAp2+ajsYgGP2qaKvKXveSDTUzX852Mff+NdFrs+umzPH2/IQ4s6PDBNLfcfzL16mxfR3ONJA0nbr2ExVxoojFJ43chpgnx78zt0g=
+	t=1775115848; cv=none; b=WXpfc6U4UUEYWg5n5icjGYN/sGyyB0AaR22k5qcuIsR1ZdsTyA9OX8ikKBOtD3bXt2dnOBF4bUhM9HRx/1GJidOrn7Lu5hg0K9ArV83m5XvWohA1/polLM4LtLgLdfyedUSGm01Qy+2Nq3UIPa1O7oZzy6f7cMpM97B5BQhYd4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775115780; c=relaxed/simple;
-	bh=b+f8WVgxcfFVdLR15zIdkcFeIiFKCfqXS0EqIibTu/s=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VPJOde4g+zi99uEyF7kUTGs9dxkgfgZeTu+Ljgxn+I6noB0pjM0cBJg78p/hs43TzbapPXtZlFjNsQmiUrEhVlUFljfD3ucrqDGGsU9uFBeLd3BThuXL554zxQNAuSDVoVtnk4Th4ZiXzYtIUj36A8VIGPxGjaDB6yP6xVWheTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=Q83HqeFT; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 6327e3frD2695631, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1775115603; bh=BJ0U5leuNpT+x7t9YPGO2C7AKeGOlIRyILg9lIOmw6A=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=Q83HqeFTZw1YMOMbfhsgyrcztowy7RVcvlrt0d6Wp+l1BSNUUm2/G5YVM4R5jf5EX
-	 mh01Ofs7FNjLTHYLk8H6TPJ4R69SvmbR5jGwgf8e5/cF0IpukTMu5a6+d3mfrX650R
-	 6ADj2oQ9vanqVom5U2vcWV0ixwPTtTeyQbVADfg04HeC8Au8tG2Xcxapdb3gPbXlGn
-	 R92AIchYAcrnoMPpbQiZz9PMV+/+xO0CbyOIiQqoTZqWHMsWxyq1aK1oh3GBrJKYBW
-	 PIjylM3oJ2zx4MCxEZr5iilUzFb1W4EdAk3BimejyKPyV4qOp8+nOLuM4t/tAOotIR
-	 ewHLKX6IPKFjw==
-Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
-	by rtits2.realtek.com.tw (8.15.2/3.26/5.94) with ESMTPS id 6327e3frD2695631
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 2 Apr 2026 15:40:03 +0800
-Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Thu, 2 Apr 2026 15:40:03 +0800
-Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Thu, 2 Apr 2026 15:40:03 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS05.realtek.com.tw
- (10.21.1.55) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Thu, 2 Apr 2026 15:40:02 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <p.zabel@pengutronix.de>,
-        <cylee12@realtek.com>, <afaerber@suse.com>, <jyanchou@realtek.com>
-CC: <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-realtek-soc@lists.infradead.org>, <james.tai@realtek.com>,
-        <cy.huang@realtek.com>, <stanley_chang@realtek.com>,
-        <eleanor.lin@realtek.com>
-Subject: [PATCH v6 10/10] arm64: dts: realtek: Add clock support for RTD1625
-Date: Thu, 2 Apr 2026 15:39:57 +0800
-Message-ID: <20260402073957.2742459-11-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260402073957.2742459-1-eleanor.lin@realtek.com>
-References: <20260402073957.2742459-1-eleanor.lin@realtek.com>
+	s=arc-20240116; t=1775115848; c=relaxed/simple;
+	bh=EoUiNgH3RLhJk/rzvHG3W111ug5RQnGLRQHQODHAo28=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KfWqJ/S6EMe5KOiq/ui+c5DqqEx2rpGThrXAYjSToxhlrT5GZuwrHeJ/fUzvRSRLZm30W04yt3IcgW1MhFYPoFrbq++0/1C2XK2YsqyeXbFMkjxRFzJWa/kMgY+GBF3FVdESc1bZZO8BZ1WF4uRzkyCyx4tJ/z36c+T14nGOA2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QwTlG0I2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E907C19423;
+	Thu,  2 Apr 2026 07:44:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775115847;
+	bh=EoUiNgH3RLhJk/rzvHG3W111ug5RQnGLRQHQODHAo28=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QwTlG0I2ppucR9kfKgc3p8Lzm05Seghu7vyIGxDP3oRRFvrUVgPHYupUibjTAd5X4
+	 IRUi58wVClEe3V61qSxFhyXbA2Gpzn5UPMbYjDBsmyzf4AU7pF5S5nH6uXAYI0VX0l
+	 +pCfVtg/ZRnPWw17owaDUkQQUKxrG67APDnZYECLeoDr96gTWyUEmsGi5udNGoWoAI
+	 wyTzjVZgQjP7BgTn+l3bmQQSdTFMCdw7Uu53LQ3zz9HA2hffd9HLbyWC37Aeh5hxkB
+	 ntBkBu7nmQTkh2/iV6jVl0eceEmgMsZq5bwDiRe6Oj3KDHh1Dz8R1DlIw3Nt98wyKH
+	 zYZwRegHHV5ng==
+Date: Thu, 2 Apr 2026 09:44:05 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: ASHISH YADAV <ashishyadav78@gmail.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Ashish Yadav <ashish.yadav@infineon.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon/pmbus: Add Infineon XDP720
+Message-ID: <20260402-enlightened-analytic-leopard-ddc512@quoll>
+References: <20260401104550.115715-1-Ashish.Yadav@infineon.com>
+ <20260401104550.115715-2-Ashish.Yadav@infineon.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260401104550.115715-2-Ashish.Yadav@infineon.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-283815-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-283819-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:dkim,realtek.com:email,realtek.com:mid,0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.27.176:email,5.215.92.128:email];
-	DBL_PROHIBIT(0.00)[0.0.30.120:email,0.2.59.134:email];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	NEURAL_HAM(-0.00)[-0.997];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 6D41F3856ED
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,devicetree.org:url,infineon.com:email,infineon.com:url]
+X-Rspamd-Queue-Id: AB403385944
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add the clock controller nodes and osc27m fixed clock for the
-Realtek RTD1625 SoC.
+On Wed, Apr 01, 2026 at 04:15:49PM +0530, ASHISH YADAV wrote:
+> From: Ashish Yadav <ashish.yadav@infineon.com>
+> 
+> Add documentation for the device tree binding of the XDP720 eFuse.
+> 
+> Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
+> ---
+> This patch introduces a YAML schema describing the required and optional
+> properties for the XDP720 eFuse device node. It includes details on the
+> compatible string, register mapping, and rimon-micro-ohms(RIMON).
+> 
+> The RIMON resistance is installed between the Imon pin and the ground
+> reference.
 
-Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
----
- arch/arm64/boot/dts/realtek/kent.dtsi | 33 +++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Why are you adding second commit msg? Hardware description goes to
+commit msg. Redundant parts go to /dev/null.
 
-diff --git a/arch/arm64/boot/dts/realtek/kent.dtsi b/arch/arm64/boot/dts/realtek/kent.dtsi
-index ae006ce24420..4722337a143d 100644
---- a/arch/arm64/boot/dts/realtek/kent.dtsi
-+++ b/arch/arm64/boot/dts/realtek/kent.dtsi
-@@ -26,6 +26,15 @@ timer {
- 			     <GIC_PPI  9 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
-+	clocks {
-+		osc27m: osc {
-+			compatible = "fixed-clock";
-+			clock-frequency = <27000000>;
-+			clock-output-names = "osc27m";
-+			#clock-cells = <0>;
-+		};
-+	};
-+
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-@@ -141,6 +150,14 @@ rbus: bus@98000000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 
-+			cc: clock-controller@0 {
-+				compatible = "realtek,rtd1625-crt-clk";
-+				reg = <0x0 0x900>;
-+				clocks = <&osc27m>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
-+
- 			uart0: serial@7800 {
- 				compatible = "snps,dw-apb-uart";
- 				reg = <0x7800 0x100>;
-@@ -150,6 +167,22 @@ uart0: serial@7800 {
- 				reg-shift = <2>;
- 				status = "disabled";
- 			};
-+
-+			ic: clock-controller@7088 {
-+				compatible = "realtek,rtd1625-iso-clk";
-+				reg = <0x7088 0x8>;
-+				clocks = <&osc27m>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
-+
-+			iso_s_cc: clock-controller@146310 {
-+				compatible = "realtek,rtd1625-iso-s-clk";
-+				reg = <0x146310 0x8>;
-+				clocks = <&osc27m>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
- 		};
- 
- 		gic: interrupt-controller@ff100000 {
--- 
-2.34.1
+
+> ---
+>  .../bindings/hwmon/pmbus/infineon,xdp720.yaml | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,xdp720.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,xdp720.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,xdp720.yaml
+> new file mode 100644
+> index 000000000000..bbde8ff92ae9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,xdp720.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,xdp720.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Infineon XDP720 Digital eFuse Controller
+> +
+> +maintainers:
+> +  - Ashish Yadav <ashish.yadav@infineon.com>
+> +
+> +description: |
+> +  The XDP720 is an eFuse with integrated current sensor and digital
+> +  controller. It provides accurate system telemetry (V, I, P, T) and
+> +  reports analog current at the IMON pin for post-processing.
+> +
+> +  Datasheet:
+> +     https://www.infineon.com/assets/row/public/documents/24/49/infineon-xdp720-001-datasheet-en.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - infineon,xdp720
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  infineon,rimon-micro-ohms:
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      The value of the RIMON resistor, in micro ohms, required to enable
+> +      the system overcurrent protection.
+> +
+
+Missing supply
+
+> +required:
+> +  - compatible
+> +  - reg
+
+Here as well, most likely.
+
+Best regards,
+Krzysztof
 
 
