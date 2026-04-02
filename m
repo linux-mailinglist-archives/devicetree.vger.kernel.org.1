@@ -1,189 +1,216 @@
-Return-Path: <devicetree+bounces-283765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-283767-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uIfAInQSzmmnkgYAu9opvQ
-	(envelope-from <devicetree+bounces-283765-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 08:53:40 +0200
+	id SC7iM8MTzmn1kwYAu9opvQ
+	(envelope-from <devicetree+bounces-283767-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 08:59:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0681F384C0E
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 08:53:39 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47A90384D70
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 08:59:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DB4CF30A674D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 06:43:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8EB7D30DAB91
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 06:52:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE225346A0A;
-	Thu,  2 Apr 2026 06:43:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0092732BF5D;
+	Thu,  2 Apr 2026 06:52:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F+NXctNS"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="rHlYBTn2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B627A4D8CE;
-	Thu,  2 Apr 2026 06:43:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5DC33031C
+	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 06:52:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775112216; cv=none; b=pIccImkg7NqRbiCsmx66tG4e0Y6oHwkE7XkAK6wN4ywVbkoHFmiD73qWOvo1mo+CNzRCU+mYCWa2eTRD1KhGAQxyso+5jNI6VEezqvZj/r05Lu229v+NF/WDoFqM3tzEYDlni9/ofZJyOybhD3wB8UrSJ5jbz0eJsmd0i+LCez8=
+	t=1775112772; cv=none; b=FmcC1hrSTMHy5+CsejIX4Gwx7Ebz8oNeNKlUjxblG4Klb9bd7o0jf0EgX99dwxBu4MBhWGTphcyuEXBgLwnfDj0ZmzSjsB4em/3V+Hns/xxhBtIVFltl8IgDjrV9DKPB7yD4ETYQ3IB6k7adwreIyJqqgh6mfl229daCrmWyQ18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775112216; c=relaxed/simple;
-	bh=5pJvsUEGXVB/eFmV7VyV1t/gS5WHF4vfE98KTHWbssU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rbh4ugNn25tTh4FGrPTg63Zw0OCmGKXRDWtQ2m7W/a8W+y2pOcCB/LrP+FTh2Z2J9vmY8y30ijRAqtML4oIAevW9lRtQ5kPsvhmm37KDTdDCvJHR2nAmj+ZFu+M9I4tbuWP9kvKpqBUmkN4OynJFdudu3kqUNwpHITcCXJG5Ic0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F+NXctNS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94D27C19423;
-	Thu,  2 Apr 2026 06:43:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775112216;
-	bh=5pJvsUEGXVB/eFmV7VyV1t/gS5WHF4vfE98KTHWbssU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=F+NXctNSIZ3dexgIyYgK3nTjZk2WUqV3LFGl+7Vhvdg2IlOgU3TK+Yc4fCrY+wVO6
-	 Rz7tKqXQT/zOJiE6Hlcwf0/MVOORW202DfV8/zNGzxmy57DJbXyJAgqKRpDLoSGTik
-	 FYprEwPySdRvnebamot9Ur6jkJw+vhmDccrql7wTSSfSengejWwBJukB8G/6EyNU6f
-	 scHvcmHshEuCqdFXakL7JcabtixPQkobn49NPJNTSkT20GcVxdzevVlp0i5qU90pEo
-	 C9xKSL12Y8CQb53qOI0LC6fSSztTtDR7ixOimWd1Wzl7YgjhIaw0sSqDNZVaJU13ib
-	 UZ5RdCoeoYs5Q==
-Message-ID: <5d645bb0-22cd-4e96-b8b6-15c4bb83d87d@kernel.org>
-Date: Thu, 2 Apr 2026 08:43:30 +0200
+	s=arc-20240116; t=1775112772; c=relaxed/simple;
+	bh=ntxbhzrvVPLpB37ChB11jjkFBlUbdUl1raHBJC0jfYU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=Ivb+z/WampxJ2ake8NEOVpimWRMjYvclZ3buZAaX0uAjOeejwpU8Ike9JEldvPKD/3Te87fuhgnuZwLHbjqm5awmFEOeeRQkXg17n5RsI6WGE+F92oD3E0F4IxcxIs1NaGRob4PcHib9OmezL8VaRXp01j4oX6B0c0T3wzEMytQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=rHlYBTn2; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20260402065242euoutp02eac92044ec102a5abd3e2666e6a42037~id6bwqGGz0033900339euoutp020
+	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 06:52:42 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20260402065242euoutp02eac92044ec102a5abd3e2666e6a42037~id6bwqGGz0033900339euoutp020
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1775112762;
+	bh=JqJnKEECHMM1x06qmTO+uD6JrQrf2ZS4nGeqK+WTZzo=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=rHlYBTn2z63aiI2Wo2FnFn2SBU+CLzJEwirOGkmMgdIAwBvSwtaC0tRbgDpq08nqj
+	 vuo/GiwaZi1yhPtxIHmWOk0y4IHI2do/+VNOWHW8h4u4acRp9xoySzFa+7+YgdAJOI
+	 lZQAw6OynspIX2Mm1rLkLYdN7Fk5dAHLEYVENr0g=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20260402065241eucas1p26fe08801bf816ff198a0361e0e00aa7d~id6bQM3u42082120821eucas1p2Q;
+	Thu,  2 Apr 2026 06:52:41 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20260402065238eusmtip2465f475377dc393f8274ea72cd5e5991~id6YxQUhd3266432664eusmtip2A;
+	Thu,  2 Apr 2026 06:52:38 +0000 (GMT)
+Message-ID: <7fc83a05-b392-4fc9-8ddb-1c169c698870@samsung.com>
+Date: Thu, 2 Apr 2026 08:52:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] Exynos850 APM-to-AP mailbox support
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Tudor Ambarus
- <tudor.ambarus@linaro.org>, Jassi Brar <jassisinghbrar@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>, linux-samsung-soc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260320-exynos850-ap2apm-mailbox-v1-0-983eb3f296fc@linaro.org>
- <20260321-beautiful-garnet-magpie-de4fbd@quoll>
- <DHIB5E66SP7A.110YA5R1OOQHS@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH v3 5/6] dma-buf: heaps: Add Coherent heap to dmabuf
+ heaps
+To: Maxime Ripard <mripard@redhat.com>, Andrew Davis <afd@ti.com>
+Cc: Albert Esteve <aesteve@redhat.com>, Sumit Semwal
+	<sumit.semwal@linaro.org>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>,
+	John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>,
+	=?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, Robin Murphy
+	<robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, Saravana Kannan
+	<saravanak@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linaro-mm-sig@lists.linaro.org, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, echanude@redhat.com
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <DHIB5E66SP7A.110YA5R1OOQHS@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <20260316-cherubic-eel-of-philosophy-10ef2b@houat>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20260402065241eucas1p26fe08801bf816ff198a0361e0e00aa7d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20260316120911eucas1p26492fa73abe29d02bb7f5da73f047abc
+X-EPHeader: CA
+X-CMS-RootMailID: 20260316120911eucas1p26492fa73abe29d02bb7f5da73f047abc
+References: <20260306-b4-dmabuf-heap-coherent-rmem-v3-0-3d00d36c9bc4@redhat.com>
+	<20260306-b4-dmabuf-heap-coherent-rmem-v3-5-3d00d36c9bc4@redhat.com>
+	<e8dd476f-1be8-46fa-bf56-65fe0bfe29a1@ti.com>
+	<CADSE00+-SQr3wGdgBmLowHPWE5bGxoyO4o20jZs4ma-71aOxUA@mail.gmail.com>
+	<1afc696a-9afb-48af-887d-2a209680784e@ti.com>
+	<CGME20260316120911eucas1p26492fa73abe29d02bb7f5da73f047abc@eucas1p2.samsung.com>
+	<20260316-cherubic-eel-of-philosophy-10ef2b@houat>
+X-Spamd-Result: default: False [-2.15 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-283765-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[samsung.com,linaro.org,baylibre.com,kernel.org,gmail.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	XM_UA_NO_VERSION(0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-283767-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[m.szyprowski@samsung.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.973];
+	TAGGED_RCPT(0.00)[devicetree];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0681F384C0E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:dkim,samsung.com:mid,ti.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 47A90384D70
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 02/04/2026 04:19, Alexey Klimov wrote:
-> On Sat Mar 21, 2026 at 10:44 AM GMT, Krzysztof Kozlowski wrote:
->> On Fri, Mar 20, 2026 at 09:15:12PM +0000, Alexey Klimov wrote:
->>> Hi all,
+On 16.03.2026 13:08, Maxime Ripard wrote:
+> On Wed, Mar 11, 2026 at 08:18:28AM -0500, Andrew Davis wrote:
+>> On 3/11/26 5:19 AM, Albert Esteve wrote:
+>>> On Tue, Mar 10, 2026 at 4:34 PM Andrew Davis <afd@ti.com> wrote:
+>>>> On 3/6/26 4:36 AM, Albert Esteve wrote:
+>>>>> Expose DT coherent reserved-memory pools ("shared-dma-pool"
+>>>>> without "reusable") as dma-buf heaps, creating one heap per
+>>>>> region so userspace can allocate from the exact device-local
+>>>>> pool intended for coherent DMA.
+>>>>>
+>>>>> This is a missing backend in the long-term effort to steer
+>>>>> userspace buffer allocations (DRM, v4l2, dma-buf heaps)
+>>>>> through heaps for clearer cgroup accounting. CMA and system
+>>>>> heaps already exist; non-reusable coherent reserved memory
+>>>>> did not.
+>>>>>
+>>>>> The heap binds the heap device to each memory region so
+>>>>> coherent allocations use the correct dev->dma_mem, and
+>>>>> it defers registration until module_init when normal
+>>>>> allocators are available.
+>>>>>
+>>>>> Signed-off-by: Albert Esteve <aesteve@redhat.com>
+>>>>> ---
+>>>>>     drivers/dma-buf/heaps/Kconfig         |   9 +
+>>>>>     drivers/dma-buf/heaps/Makefile        |   1 +
+>>>>>     drivers/dma-buf/heaps/coherent_heap.c | 414 ++++++++++++++++++++++++++++++++++
+>>>>>     3 files changed, 424 insertions(+)
+>>>>>
+>>>>> (...)
+>>>> You are doing this DMA allocation using a non-DMA pseudo-device (heap_dev).
+>>>> This is why you need to do that dma_coerce_mask_and_coherent(64) nonsense, you
+>>>> are doing a DMA alloc for the CPU itself. This might still work, but only if
+>>>> dma_map_sgtable() can handle swiotlb/iommu for all attaching devices at map
+>>>> time.
+>>> The concern is valid. We're allocating via a synthetic device, which
+>>> ties the allocation to that device's DMA domain. I looked deeper into
+>>> this trying to address the concern.
 >>>
->>> This patch series introduces support for the APM-to-AP mailbox on the 
->>> Exynos850 SoC. This mailbox is required for communicating with the APM 
->>> co-processor using ACPM.
+>>> The approach works because dma_map_sgtable() handles both
+>>> dma_map_direct and use_dma_iommu cases in __dma_map_sg_attrs(). For
+>>> each physical address in the sg_table (extracted via sg_phys()), it
+>>> creates device-specific DMA mappings:
+>>> - For direct mapping: it checks if the address is directly accessible
+>>> (dma_capable()), and if not, it falls back to swiotlb.
+>>> - For IOMMU: it creates mappings that allow the device to access
+>>> physical addresses.
 >>>
->>> The Exynos850 mailbox operates similarly to the existing gs101 
->>> implementation, but the register offsets and IRQ mask bits differ. 
->>> This series abstracts these differences into platform-specific data 
->>> structures matched via the device tree.
+>>> This means every attached device gets its own device-specific DMA
+>>> mapping, properly handling cases where the physical addresses are
+>>> inaccessible or have DMA constraints.
 >>>
->>> Also, it requires APM-to-AP mailbox clock in CMU_APM block.
->>>
->>> In theory this can be split into two series with correct dependecies:
->>> device tree node requires clock changes to be merged. The suggestion
->>> is to let this go through Samsung SoC tree with corresponding acks
->>> if it is okay.
+>> While this means it might still "work" it won't always be ideal. Take
+>> the case where the consuming device(s) have a 32bit address restriction,
+>> if the allocation was done using the real devices then the backing buffer
+>> itself would be allocated in <32bit mem. Whereas here the allocation
+>> could end up in >32bit mem, as the CPU/synthetic device supports that.
+>> Then each mapping device would instead get a bounce buffer.
 >>
->> I don't understand why this cannot be split into two seris
->> *practically*. What is exactly the dependency between mailbox and DTS,
->> that it had to be combined here?
-> 
-> Do you suggest to send 3 single patches with proper dependencies
-> description? DT bindings change first, then mailbox change that specifically
-> depends on dt-bindings change and then dts update (which will depend on both)?
-> 
-> I thought that mbox driver change depends implicitly on bindings update?
+>> (this example might not be great as we usually know the address of
+>> carveout/reserved memory regions, but substitute in whatever restriction
+>> makes more sense)
+>>
+>> These non-reusable carveouts tend to be made for some specific device, and
+>> they are made specifically because that device has some memory restriction.
+>> So we might run into the situation above more than one would expect.
+>>
+>> Not a blocker here, but just something worth thinking on.
+> As I detailed in the previous version [1] the main idea behind that work
+> is to allow to get rid of dma_alloc_attrs for framework and drivers to
+> allocate from the heaps instead.
+>
+> Robin was saying he wasn't comfortable with exposing this heap to
+> userspace, and we're saying here that maybe this might not always work
+> anyway (or at least that we couldn't test it fully).
+>
+> Maybe the best thing is to defer this series until we are at a point
+> where we can start enabling the "heap allocations" in frameworks then?
+> Hopefully we will have hardware to test it with by then, and we might
+> not even need to expose it to userspace at all but only to the kernel.
+>
+> What do you think?
 
-Please don't answer to a question with a question. Actually three
-questions. If you cannot give argument why there is a dependency, feels
-to me like you send something you do not understand.
+IMHO a good idea. Maybe in-kernel heap for the coherent allocations will 
+be just enough.
 
-Best regards,
-Krzysztof
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
 
