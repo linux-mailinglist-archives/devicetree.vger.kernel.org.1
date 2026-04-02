@@ -1,135 +1,154 @@
-Return-Path: <devicetree+bounces-284018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284021-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WALKIWZTzmmEmwYAu9opvQ
-	(envelope-from <devicetree+bounces-284018-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 13:30:46 +0200
+	id 8B0sFh9UzmmEmwYAu9opvQ
+	(envelope-from <devicetree+bounces-284021-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 13:33:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5B1038854C
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 13:30:45 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0E0F3885D4
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 13:33:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AAF143132AFE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 11:23:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E6B693087480
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 11:28:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 741DF3D6477;
-	Thu,  2 Apr 2026 11:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A45DA3C871B;
+	Thu,  2 Apr 2026 11:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OesrNw3Z"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="ZuplouSG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B705C3CA4A9;
-	Thu,  2 Apr 2026 11:23:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53E813BED28
+	for <devicetree@vger.kernel.org>; Thu,  2 Apr 2026 11:27:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775129014; cv=none; b=eAI2VF+/80tLk05B9HeJCBUm1F6XKRCPNo4YgcE4+xYBqIEpG48dky9y2jnnqSfDe72Xc5AY5n1sNtaYWRKBV3+xKSEFPr0dg15b4mwlwdJwsGRVLaAqSDs39zY6Y6c2H7/euYXw5ziHc3GzOvjVvHqasHNWZRBqctQkAc4Op1c=
+	t=1775129278; cv=none; b=jB00NV5Xt/bjiV1ezWGd09mtNIm5eQtdm0gQwy9jLqRsTrChX2/AeY5iKAAYLDJMrR/sJTmXOXCzr7Qvn3aGZZkqfByneAR6ZcfVXyTa6QcKAZfaI3KXW7tWwi26I7omzLPhBpw6YkhWllIQmH+ScGDDNWrHiZ1VvR1tlv6gEsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775129014; c=relaxed/simple;
-	bh=wRNRQbcaVLcFPqKCEC19+jCD5o4QjwrwTLAdJiPRC94=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P6KKEnA4ewCPKU7yzQuj1txhQMlF1GMncB/NOwAPcHdrLlKFu4N3t6imbslQqchwBSuYf1PswfZsxe3Jp6rcHYZ6BbeofhkQDB63vu98MzYSxOWcAk0BWps1gMCYanium/gBUS/jM1yPojoBkiY5l8nbY+3QaaFXkcfE/lmMXRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OesrNw3Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B680C116C6;
-	Thu,  2 Apr 2026 11:23:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775129014;
-	bh=wRNRQbcaVLcFPqKCEC19+jCD5o4QjwrwTLAdJiPRC94=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OesrNw3ZLTmDaJx5lLQkHwigx/p7tOvWEkh//frYhHK5YzCnZe1qx7xQxIOirnlyY
-	 wLNAkAAV2Ngbny8GLTXUaL4BmaSLvkzT62B+AmBF9QmaY42WbyVlEXe6qALfAZPY4s
-	 xe2KXPmDaLRzgxmxEt4AF7QDqeDRh0j9wbYDyK3EQZF7SNIE0j/Bf329H1Hivz9kdl
-	 Ge2iQIsEjejIN6lMOBhlt0V0zyM5ZSDnzX5rEQAnrtFC7nhqt0sRyRBYkYaKn9qxYO
-	 qYyefhCrSeLv9YZ/9I2lf5RBG6Sx+NUXe2UBT7YlcjHZacm6g25+zxuvov14i4icBh
-	 JwPsrl9gbf+4A==
-Date: Thu, 2 Apr 2026 12:23:28 +0100
-From: Mark Brown <broonie@kernel.org>
-To: "karthik.s" <karthik.s@oss.qualcomm.com>
-Cc: Srinivas Kandagatla <srini@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1775129278; c=relaxed/simple;
+	bh=T8iDr/pu20uRPBeX7MW8jhy3cF6OUggCeGd3GPHPWa8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=i0QAi3o86NGoXrfBec/ydc0AiAk3K+Ms3g0F6dCHHBkDSazwId1G8mgsHjyxLITWLE0v2fUOGgrS3w180tBoUdKAV5Tm3ohDh8FRqRRGVp4iRND8ZewKjA3fXcM3dXy6M2fug57NtFog2vILhn+gZqlWnhgZP0M/JDDhF+zGdkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=ZuplouSG; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=HhqIL+Nr78jcfW
+	YkUI9lCzMQGbFHWBjytuLuj+PmVb8=; b=ZuplouSGNFrkVOzmHMqzD4xn0htA4h
+	G+NnhOopaYFHpLBwnt/U9xWCOSRNHMBBchwu+ds4vzCOyPpyP+eybFq5+1EvYH58
+	xA8aBKsr9NMtOZAZWIpVnwiRhvXGbgRxseRwecWfiwizsUIufryqqYVN1+V6O+j2
+	wnrOMew0fQzYdnCOLD3SCaz42NzIFu2iEtnJk5XGfUwqMVlI+UeWfkZYStMiLqWw
+	19N2+9qxsaCxa5GF8jbOt8gMcTpsu3J5v5mGgoeoqcB5/lNLvb+4sz3DU8NqLNU2
+	5SiZcxjj1i1C+6V/GTsuIy7r0PTMcbDVIffx7ikli8SH46zy3PRmdLWg==
+Received: (qmail 2479082 invoked from network); 2 Apr 2026 13:27:39 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 2 Apr 2026 13:27:39 +0200
+X-UD-Smtp-Session: l3s3148p1@zl7kfHhOMh5UhsJN
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Marek Vasut <marek.vasut@mailbox.org>,
+	linux-kernel@vger.kernel.org,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] ASoC: codecs: wcd937x: Add conditional regulator
- control for wcd937x
-Message-ID: <fea78031-e570-4348-a4b3-d113b5749fec@sirena.org.uk>
-References: <20260402072256.2811085-1-karthik.s@oss.qualcomm.com>
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 0/3] soc: renesas: add MFIS driver
+Date: Thu,  2 Apr 2026 13:27:04 +0200
+Message-ID: <20260402112709.13002-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="K5vVp8HOB34veIQP"
-Content-Disposition: inline
-In-Reply-To: <20260402072256.2811085-1-karthik.s@oss.qualcomm.com>
-X-Cookie: <doogie> dpkg has bugs?  no way!
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-284021-lists,devicetree=lfdr.de,renesas];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284018-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[sang-engineering.com];
+	FREEMAIL_CC(0.00)[kernel.org,mailbox.org,vger.kernel.org,sang-engineering.com,glider.be,gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,suse.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E5B1038854C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sang-engineering.com:dkim,sang-engineering.com:mid]
+X-Rspamd-Queue-Id: B0E0F3885D4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Changes since v3:
 
---K5vVp8HOB34veIQP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+* dropped superfluous constraints in patch 1 (Thanks, Geert!)
+* use more 'unsigned int' instead of 'int' in patch 2
+* re-ordered declarations to be more xmas-tree like in patch 2
+  (don't want to go farther than this)
+* added tags from Krzysztof to patch 1 (Thanks!)
+* added tags from Geert to patches 1+2 (Thanks!)
 
-On Thu, Apr 02, 2026 at 12:52:56PM +0530, karthik.s wrote:
-> Add has_always_on_supplies for managing regulators. Indicates that the
-> codec power supplies are provided by the board as always-on rails and
-> are not switchable by the codec or its associated regulators. This implies
-> that the codec supply regulators are always enabled by the system and
-> must not be requested or enabled by the codec driver.
+Renesas R-Car MFIS offers multiple features but most importantly
+mailboxes and hwspinlocks. Because they share a common register space
+and a common register unprotection mechanism, a single driver was chosen
+to handle all dependencies. (MFD and auxiliary bus have been tried as
+well, but they failed because of circular dependencies.)
 
-Same issue, why would we want this?
+In this first step, the driver implements common register access and a
+mailbox controller. hwspinlock support will be added incrementally, once
+the subsystem allows out-of-directory drivers (patches already under
+review). This driver has been tested on a Renesas Ironhide board (R-Car
+X5H) and is able to communicate with the SCP via mailboxes. Also, the
+mailbox-test driver was used to confirm back-and-forth communication
+between two application cores.
 
---K5vVp8HOB34veIQP
-Content-Type: application/pgp-signature; name="signature.asc"
+Because of its multifunctional nature, the driver lives in
+drivers/soc/renesas. A branch (with some additions to enable it on R-Car
+X5H) can be found here:
 
------BEGIN PGP SIGNATURE-----
+git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git renesas/x5h/mfis-single-driver
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnOUbAACgkQJNaLcl1U
-h9CL1Qf+IR8sUMSpWh/JHq7ajsAWkzrl5ent1j3pgNh9rHFuaOjFzxNXx/mZKcfX
-qBdx9/xYt8cWejfxfr9ziQDtQYKnxxF+mUmh4/d52NYE3vsY1rEEFDJ2j+TgYrk6
-2fiVKjwAK0FB2mig8BbvERUXhLtAefKXHuywpqYP4jQ7rzMsNSO+j3TH7AN2I65e
-gVt7oXqhyI5tymLr1WzhHO57OT6mK1KHYz0C/4ctNLbyh6SidAZEaGS/rfsbJ2eA
-z6xwz5IZeyrFWDbLJl6818EvSTjK4ZgN1CmYFGcUsd5xjlQkdbhzjrq2ltjiPQxh
-vuRot1PvDPNY+j0jaFjlCMg5nAScwA==
-=3UR5
------END PGP SIGNATURE-----
+Thanks and happy hacking,
 
---K5vVp8HOB34veIQP--
+   Wolfram
+
+Wolfram Sang (3):
+  dt-bindings: soc: renesas: Document MFIS IP core
+  soc: renesas: Add Renesas R-Car MFIS driver
+  soc: renesas: add X5H PRR support
+
+ .../soc/renesas/renesas,r8a78000-mfis.yaml    | 187 ++++++++++
+ drivers/soc/renesas/Kconfig                   |   9 +
+ drivers/soc/renesas/Makefile                  |   1 +
+ drivers/soc/renesas/rcar-mfis.c               | 344 ++++++++++++++++++
+ drivers/soc/renesas/renesas-soc.c             |   8 +-
+ .../dt-bindings/soc/renesas,r8a78000-mfis.h   |  28 ++
+ 6 files changed, 576 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas,r8a78000-mfis.yaml
+ create mode 100644 drivers/soc/renesas/rcar-mfis.c
+ create mode 100644 include/dt-bindings/soc/renesas,r8a78000-mfis.h
+
+-- 
+2.51.0
+
 
