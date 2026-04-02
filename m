@@ -1,50 +1,49 @@
-Return-Path: <devicetree+bounces-284096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284095-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0I3/Mx19zmnBnwYAu9opvQ
-	(envelope-from <devicetree+bounces-284096-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 16:28:45 +0200
+	id KPFZIwp+zmnBnwYAu9opvQ
+	(envelope-from <devicetree+bounces-284095-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 16:32:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 679E838A82D
-	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 16:28:45 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0699F38A90E
+	for <lists+devicetree@lfdr.de>; Thu, 02 Apr 2026 16:32:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E0886301AE7E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 14:27:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 565F2301CC46
+	for <lists+devicetree@lfdr.de>; Thu,  2 Apr 2026 14:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7AEC3EB7E4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E9A3E929B;
 	Thu,  2 Apr 2026 14:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="sBe80RIl"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="tLdRH7kS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67F6930FC2E;
-	Thu,  2 Apr 2026 14:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321523DC4A5;
+	Thu,  2 Apr 2026 14:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775140062; cv=none; b=Sg4nB///pimwcrWmcCeN+tLeNqfd4fIjvoOpzWDeA+Fc8tHbIu259wyuDpQACrb5HMitRj5WFmVgKjUsUX93BybqjW+o1Ciw0qpXvchy9ao6dPeBfdCNqVMlM3CktWZpdbTCVj1b20BqB75Y6JR1pTLTueN0mdduNzhAb0o0GcI=
+	t=1775140062; cv=none; b=qp8dSIEDOHIwD+zBP9NGlVsxMHfBQeim8VADpDRyth7xmpJYXhCLSbIfws0ZV1yRpSke1Sm2QgnLeW8GM44zvYgSZDbEEl2J49S5s50oBdqfTtrvx7m2cG10dL+zBghcywwTXbdACDysEaNSBGVMCnFPSp0/27rdfsjAnOv8LKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1775140062; c=relaxed/simple;
-	bh=Q8ByvFFPbagYCfBbxUtAun76d9Q2AZFAwBqZPLsNOk4=;
+	bh=/fmGQFbRzxXF36D4HUeJ6hELpl1p69vINpfqcmw5ok0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=n0YMPaHXxnTkhXiGbfK0JowlzEC+dYjrB20KfWjmi+HdjRc0uBopICg0TsRtbnZYEj/Ft4pqlGXnl9673UfPMKgsmKMUTdxnoK0nxCCnUe/iBckJ3xJjuLEMiUW3HpHL1V08X2lZroYU+psrr8zqd+DonnPtAtW9B/Z8LOqAK9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=sBe80RIl; arc=none smtp.client-ip=65.21.61.41
+	 In-Reply-To:To:Cc; b=GWMrKSdMby2Sn59ouYWGi4EEFJoW0Pv/u+yFgQ2zi6vHl3kxnqyKMJUuRFYtUCGUX0a0gKgiLBAoSx9v4wa/eWwEu00ENpX1YoDzt6Mec0vRt3AP8FUQtS45zBuOK6JCUV1G6HLV91+uPvXzhhnLxnILHXYipE+UVwhj9AYhf/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=tLdRH7kS; arc=none smtp.client-ip=65.21.61.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1775140053;
-	bh=Q8ByvFFPbagYCfBbxUtAun76d9Q2AZFAwBqZPLsNOk4=;
+	s=courrier-s1; t=1775140054;
+	bh=/fmGQFbRzxXF36D4HUeJ6hELpl1p69vINpfqcmw5ok0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=sBe80RIlj8hq/fmHgN9x6nKuMk04V03duI2bCAK5aoOcCR8XJHG+LVCOQsRapJLrp
-	 647rtzNJpf82hPvHB9PydrRRiY5WeHUcxIXQypuwku2QqqHE/3zvIKENc+yWA7FavL
-	 Dbg9ML1MJZMnfv+Se5cPoOTec4NKh1qU4Uw3ug/o=
-Date: Thu, 02 Apr 2026 16:27:01 +0200
-Subject: [PATCH 1/8] dt-bindings: mfd: khadas: Add new compatible for
- Khadas VIM4 MCU
+	b=tLdRH7kSxa3HP44uhfEknVm15T0gIlNxjESGH0cAmTBX7EkYy0lTqZ6H/FcLHN/jC
+	 B9R7SU/lHQLzY5OxENQB/SSF2yuVS2FQpPDt5H+Kjzag78GK5jj1MRjVxpyaRralp4
+	 ro170MNssUfnQhOmljr9F4ty+papk70LiOP3Xghc=
+Date: Thu, 02 Apr 2026 16:27:02 +0200
+Subject: [PATCH 2/8] dt-bindings: i2c: amlogic: Add compatible for T7 SOC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +52,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260402-add-mcu-fan-khadas-vim4-v1-1-2b12eb4ac7b0@aliel.fr>
+Message-Id: <20260402-add-mcu-fan-khadas-vim4-v1-2-2b12eb4ac7b0@aliel.fr>
 References: <20260402-add-mcu-fan-khadas-vim4-v1-0-2b12eb4ac7b0@aliel.fr>
 In-Reply-To: <20260402-add-mcu-fan-khadas-vim4-v1-0-2b12eb4ac7b0@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
@@ -71,20 +70,20 @@ Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1775140049; l=1084;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1775140049; l=1221;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=Q8ByvFFPbagYCfBbxUtAun76d9Q2AZFAwBqZPLsNOk4=;
+ bh=/fmGQFbRzxXF36D4HUeJ6hELpl1p69vINpfqcmw5ok0=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QO9kC86Uy7mx3d8oNkTfYjfhMeV7EpSJ/5fh9o0tItxJoBZWoPkEV9/c9SnRCRv/XaJgs1GNnTf
- lkcDN+/hL7wg=
+ QPyTNUP4Nt6jyGT9Oby1/TaKZlI9pCKDP6UFTK7qrNBA5J2OufsBqRdi3n9biF5H0IvMUHwNHsJ
+ cNpvKnm6R1Qc=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -96,7 +95,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_NA(0.00)[aliel.fr];
 	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-284096-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284095-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -105,44 +104,43 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 679E838A82D
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid]
+X-Rspamd-Queue-Id: 0699F38A90E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Khadas VIM4 MCU register is slightly different
-from previous boards' MCU.
-This board also features a switchable power source for its fan.
+Add the T7 SOC compatible which fallback to AXG compatible.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- Documentation/devicetree/bindings/mfd/khadas,mcu.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../devicetree/bindings/i2c/amlogic,meson6-i2c.yaml         | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
-index 084960fd5a1fd..67769ef5d58b1 100644
---- a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
-+++ b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
-@@ -18,6 +18,7 @@ properties:
-   compatible:
-     enum:
-       - khadas,mcu # MCU revision is discoverable
-+      - khadas,vim4-mcu
+diff --git a/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
+index c4cc8af182807..7b59b60b62e5b 100644
+--- a/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
+@@ -16,10 +16,15 @@ allOf:
  
-   "#cooling-cells": # Only needed for boards having FAN control feature
-     const: 2
-@@ -25,6 +26,10 @@ properties:
+ properties:
+   compatible:
+-    enum:
+-      - amlogic,meson6-i2c # Meson6, Meson8 and compatible SoCs
+-      - amlogic,meson-gxbb-i2c # GXBB and compatible SoCs
+-      - amlogic,meson-axg-i2c # AXG and compatible SoCs
++    oneOf:
++      - items:
++          - enum:
++              - amlogic,t7-i2c
++          - const: amlogic,meson-axg-i2c
++      - enum:
++          - amlogic,meson6-i2c # Meson6, Meson8 and compatible SoCs
++          - amlogic,meson-gxbb-i2c # GXBB and compatible SoCs
++          - amlogic,meson-axg-i2c # AXG and compatible SoCs
+ 
    reg:
      maxItems: 1
- 
-+  fan-supply:
-+    description: Phandle to the regulator that powers the fan.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
- required:
-   - compatible
-   - reg
 
 -- 
 2.49.0
