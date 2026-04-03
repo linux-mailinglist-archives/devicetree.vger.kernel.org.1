@@ -1,118 +1,132 @@
-Return-Path: <devicetree+bounces-284427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284426-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EBrxL6m6z2kd0AYAu9opvQ
-	(envelope-from <devicetree+bounces-284427-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 15:03:37 +0200
+	id mF+hNHK6z2kd0AYAu9opvQ
+	(envelope-from <devicetree+bounces-284426-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 15:02:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FDF93944AC
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 15:03:37 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7013039448E
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 15:02:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 52519300B879
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 13:03:36 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B9C3A3015454
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 13:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CA153932D9;
-	Fri,  3 Apr 2026 13:03:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BD57386C2A;
+	Fri,  3 Apr 2026 13:01:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fT6U9tO4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpfb1-g21.free.fr (smtpfb1-g21.free.fr [212.27.42.9])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48DD83921D1;
-	Fri,  3 Apr 2026 13:03:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.42.9
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E51CF2DECB2
+	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 13:01:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775221413; cv=none; b=ESDAezU+WPxCe2TdIaLME499iK8Q4vhVBN0dvP854kTNvS/nGmxkRTgPmWyg4oYYHud8fbpg+32+/aDzPGYmNMR5sNoa0NBZ0csIcfk59l2vSRcN2fCHLaxUxF876iT8/5aDF/hQjVym9nLz3WXtV7wxgpAAcCepBNd3AZoXCwc=
+	t=1775221274; cv=none; b=ofIYMWNa64fLCeZF5VXP2iQNUIWDJ0B3DgMI8sJtshCrsBEJrNHEUvYrjuegEkgIP8WHGUMRpBHpbZqAOoBBtlDGsG302amgNTDZ/dsK6PaT7cYkMl1D6tvfp/yjW5FKzV3vS9LG+cNQxyxs7b8aSiPDlSRlZCIPJ/+MlQcJL4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775221413; c=relaxed/simple;
-	bh=+9FACoYqa7lh5gsKw23xvcRykRBv/FQQ5JtfDVe7hfM=;
-	h=Message-ID:Date:MIME-Version:In-Reply-To:To:From:Subject:
-	 Content-Type; b=j8uFS6GO5NPGQCoYPcx+yj4sFtHjd+Ij4JP8eDp11/7HP25fXiIdUT9KhKFpoiUwu33FiDxZ6cgSsSH+teIWoZhnbFoIfhc2glXyxGLz7hESe/AvM+Rf/gltkJx++IBPqgt3etBhOqNkmYv5wPW+7HYkLlTVKZwiz7aV7YfBmA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=online.fr; spf=pass smtp.mailfrom=online.fr; arc=none smtp.client-ip=212.27.42.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=online.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=online.fr
-Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [212.27.42.5])
-	by smtpfb1-g21.free.fr (Postfix) with ESMTP id 190E5834762;
-	Fri,  3 Apr 2026 14:57:59 +0200 (CEST)
-Received: from [10.0.0.2] (unknown [82.65.243.93])
-	(Authenticated sender: legoll@free.fr)
-	by smtp5-g21.free.fr (Postfix) with ESMTPSA id 8B5F36014E;
-	Fri,  3 Apr 2026 14:57:26 +0200 (CEST)
-Message-ID: <36cca49c-0cb4-42b9-87ae-702df825a4a4@online.fr>
-Date: Fri, 3 Apr 2026 14:57:26 +0200
+	s=arc-20240116; t=1775221274; c=relaxed/simple;
+	bh=viZ2BYLfE7Jb+K6yLXxVTA1IC1vVaIvF++RPVD4z8nQ=;
+	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
+	 References:Date:Message-Id; b=ffrEC5uOx6t9VhdeXz31gVjLe0fx0xxxJ7Vgbofw4f1+7exDNXevrbvQ2ertwXCMSo6dJyrBpfqf9nLv4SyY7YIXd/XL007Kr7pJ7hS1v2Mu92CWPR8IFWSTVWrfDtaV+0cQ1D0oC/x7gqm1+4unpoe1e4AgaWY3q5lO6kXG0nA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fT6U9tO4; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 1E23F1A3127;
+	Fri,  3 Apr 2026 13:01:09 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id DC5B7603C1;
+	Fri,  3 Apr 2026 13:01:08 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 10E12104500C5;
+	Fri,  3 Apr 2026 15:01:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1775221268; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=HN6EflbtZf6vQPoHUqakFtjSTjuC/o+6ozjBJwvQ8dg=;
+	b=fT6U9tO4FYDa6gDRuzKKtX3r9jJ+vW2jWCXQvM3ucjB8wWrDIuc1Mmr4dreXEKBND0IBtN
+	0OoV7t3rVHsuEvWboZdnnJ1rfmLEyjIZmlc17IBiMUGOO0lFoERtOP7i4hWORStrU5wYOw
+	74IJU1RwfOdof2G2n/2hSjfBttmfsE2wVPk9CitM7CIgIH02Ep76+uZ71250SwRYwmyn46
+	ot8aw0GDCSt0fMTW5iLKJuIKK8ZJx2lYFFD9+/VhFC8XwE7wQ8q3xG1eSDPf7UNJfXlSl3
+	DEQHviUByHHamqXmnfgxEmIBE/ab+qyN5m/Y57qyYe9exQRzue/4gGXrj/mRDQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-In-Reply-To: <20260119-patchv2-k1-thermal-v3-0-3d82c9ebe8a4@163.com>
-To: alex@ghiti.fr, aou@eecs.berkeley.edu, conor+dt@kernel.org,
- daniel.lezcano@linaro.org, devicetree@vger.kernel.org, dlan@gentoo.org,
- krzk+dt@kernel.org, krzysztof.kozlowski@oss.qualcomm.com,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-riscv@lists.infradead.org, lukasz.luba@arm.com,
- p.zabel@pengutronix.de, palmer@dabbelt.com, pjw@kernel.org,
- rafael@kernel.org, robh@kernel.org, rui.zhang@intel.com,
- spacemit@lists.linux.dev, gsh517025@gmail.com
-From: Vincent Legoll <legoll@online.fr>
-Subject: Re: [PATCH v3 0/3] thermal: spacemit: Add support for SpacemiT K1 SoC
- thermal sensor
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [0.14 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 2/3] clk: eswin: Add eic7700 HSP clock driver
+From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
+To: dongxuyang@eswincomputing.com
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ p.zabel@pengutronix.de, huangyifeng@eswincomputing.com, 
+ ningyu@eswincomputing.com, linmin@eswincomputing.com, 
+ pinkesh.vaghela@einfochips.com
+In-Reply-To: <20260403093612.725-1-dongxuyang@eswincomputing.com>
+References: <20260403093459.612-1-dongxuyang@eswincomputing.com>
+ <20260403093612.725-1-dongxuyang@eswincomputing.com>
+Date: Fri, 03 Apr 2026 15:00:55 +0200
+Message-Id: <177522125518.65868.10463060970678520217.b4-review@b4>
+X-Mailer: b4 0.15.1
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[online.fr : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284427-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284426-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[ghiti.fr,eecs.berkeley.edu,kernel.org,linaro.org,vger.kernel.org,gentoo.org,oss.qualcomm.com,lists.infradead.org,arm.com,pengutronix.de,dabbelt.com,intel.com,lists.linux.dev,gmail.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_SPAM(0.00)[0.339];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[legoll@online.fr,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[benoit.monin@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,online.fr:email,online.fr:mid]
-X-Rspamd-Queue-Id: 4FDF93944AC
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:url]
+X-Rspamd-Queue-Id: 7013039448E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello,
+On Fri, 03 Apr 2026 17:36:12 +0800, dongxuyang@eswincomputing.com <dongxuyang@eswincomputing.com> wrote:
+> diff --git a/drivers/clk/eswin/clk-eic7700-hsp.c b/drivers/clk/eswin/clk-eic7700-hsp.c
+> new file mode 100644
+> index 000000000000..65ad9e762ee9
+> --- /dev/null
+> +++ b/drivers/clk/eswin/clk-eic7700-hsp.c
+> @@ -0,0 +1,339 @@
+> [ ... skip 64 lines ... ]
+> +{
+> +	struct eic7700_hsp_clk_gate *gate = to_gate_clk(hw);
+> +	unsigned long flags;
+> +	u32 reg;
+> +
+> +	spin_lock_irqsave(gate->lock, flags);
 
+You can use guard(spinlock_irqsave)(gate->lock) instead, and drop the unlock.
 
-I applied this series on top of:
-
-- next-20260402
-
-- 
-https://patchwork.kernel.org/project/linux-riscv/patch/20260330-orangepi-sd-card-uhs-v5-9-bd853604322d@gmail.com/
-
-I need the the SD card series to boot from SD card.
-
-
-I'm also seeing the same "it works" state as Gong Shuai.
-
-So you can add another:
-
-Tested-by: Vincent Legoll <legoll@online.fr> # OrangePi-RV2
-
-Regards
-
-Thanks
+-- 
+Benoît Monin, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
