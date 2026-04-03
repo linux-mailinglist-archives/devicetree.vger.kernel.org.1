@@ -1,155 +1,183 @@
-Return-Path: <devicetree+bounces-284298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284295-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id HfOADmhyz2nfwQYAu9opvQ
-	(envelope-from <devicetree+bounces-284298-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 09:55:20 +0200
+	id SGwgITRuz2kTwQYAu9opvQ
+	(envelope-from <devicetree+bounces-284295-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 09:37:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C70A391DA2
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 09:55:18 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEC8F391C4F
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 09:37:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A3862301F185
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 07:55:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6D1643021E87
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 07:37:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E6F835DA69;
-	Fri,  3 Apr 2026 07:55:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C258374186;
+	Fri,  3 Apr 2026 07:37:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F83329C57;
-	Fri,  3 Apr 2026 07:55:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF36126ED45
+	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 07:37:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775202916; cv=none; b=pcKE9TIpOFUApibMH2K4HAazgrEIkm5PSEiD/hil/B28oTo+UpcznhULy2uSGeP//O4BTctlbtCzCqgSO2hyQG4ViZdE3ED07wp1KKsvpL37CqWw3ugcLxZxTxpyOBiOO3oPQnncZMlAFiu613Nj/YFdvz3LLcFc0dXkkf8BZEU=
+	t=1775201828; cv=none; b=DTQ/9o+q71fbqMa1YVQiij2pkU/gPu7hXcn+jyOOD7L8nkyusHtqsnNwvdlEeii+9sXS+flfrD5+W0WiRmsxHRfF9s3IHtjAUVGxN1hpcxy5G9Bf/icguZGYiSveNR7Waqa2WwOGi17TQoQGrktzBuhYW203Cc8EQ6Z/L+e0+Vw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775202916; c=relaxed/simple;
-	bh=RVvgNdsi1dOX7PNycn197fDsPTYs6Pyt69D0pjXXlEo=;
-	h=From:Date:Message-ID:To:Cc:In-Reply-To:References:Subject; b=ZCmrsOg6Jhi9kuqZ9ZHtIlNSr9EA55paXM2AofrAvhd3g8DasIz+f80jeFX/zlbiKnqL8n/qjoXBzPKnOJ1VW4wW31e7z/uwVhceF1B+W3bA+aQP8tw5TFwlne1bmlUgcLrCCfMCHHdsQ7eg+tCSqNrD1eYgX4XIgZFN0usZT/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from 0002-drivers-of-reconfig-status.eml (unknown [111.196.245.197])
-	by APP-03 (Coremail) with SMTP id rQCowABnh95ecs9pYqO9DA--.33532S2;
-	Fri, 03 Apr 2026 15:55:10 +0800 (CST)
-From: Pengpeng Hou <pengpeng@iscas.ac.cn>
-Date: Fri, 3 Apr 2026 15:33:11 +0800
-Message-ID: <20260403183502.2-drivers-of-reconfig-status-pengpeng@iscas.ac.cn>
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, pengpeng@iscas.ac.cn
-In-Reply-To: <20260403183501.1-drivers-of-live-tree-pengpeng@iscas.ac.cn>
-References: <20260403183501.1-drivers-of-live-tree-pengpeng@iscas.ac.cn>
-Subject: [PATCH 2/2] drivers/of: validate status properties in reconfig state
- changes
-X-CM-TRANSID:rQCowABnh95ecs9pYqO9DA--.33532S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7CFyxAFy7KFWfXrW3AFW5Wrg_yoW8Cw45pa
-	yjqa1Yg3y8JrWrGa9xtw1ruF9xKr18tFWxtr9Fyw1UZ3WYga45AF17GryYgrn8Ar95Z3y5
-	Ja1xuF98Ga1jkr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUkm14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
-	6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
-	Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-	I7IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r
-	4UM4x0Y48IcVAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwCY1x0262kKe7AKxVWUAVWU
-	twCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r
-	1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_JF0_Jw1lIxkGc2Ij
-	64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr
-	0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF
-	0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCTnIWIevJa73UjIFyTuYvjfUe0PSUUUUU
-X-CM-SenderInfo: pshqw1xhqjqxpvfd2hldfou0/
+	s=arc-20240116; t=1775201828; c=relaxed/simple;
+	bh=RQFIDvkQ6UcLgwztbD8oBHl4tS+ZCKb3aINkg7VeBsY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bQEGkpJPvP2xbGKOYSR7mweR+y94sdNZbCH7eL/ahQCFTjq3HrS7ZzdNHDk9NaBN3LvCnC2Qr4pTH7Iu3DlOxo7HsgjysT3qXZt+XdzzXXd4sENA+Tf7Et11CmNqa4pS7MNJULCLBmTKVO1Ce2U0C8HOcLVm+NprLreFlpm7xnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-56b6c7c8d00so1280309e0c.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 00:37:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775201826; x=1775806626;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=d4N0YKA/XUUd7O8Nr0votH0EtcIVeq9XRBqx9j9NkIk=;
+        b=nU2DFT24pM0rQmNc/HJoGocI4ZHne1Ngfn/VSPgW0y0jLv4jLDIag6AmAyf0Bpcvnq
+         nbrkFZhBENqUWGjvSrhmTL2tMOXs9logsj6jVVeEyRvr/ppp5nmjKHXkzVGa0S5w8GLT
+         bRgpqNfYpYi4jfGX/tj/JW/cDpFRuIPq2j2rUUzDBVA1MSA/CtB2trAzvnvgKuGXwwp/
+         277jzB4tzATHHVsPqeSBq0QIiGwyCUKqROYeI36GwGEyjd093hZt9+XcGIhjtSgIcqh6
+         ytgPvLVvvkP3UJRBVfLErXG20FeeOiDLFje6M8/ZwtE82VyKveU1J06H0YXHyfdxF5rt
+         4IRA==
+X-Forwarded-Encrypted: i=1; AJvYcCUiGRI76KAfgE/8eglb4r5HpvNR1M1AOGvUk+3Z8Lf5468v0iZTbpP2phBn8DNpcwLyiQ9PCMoSW+YC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDYIZGraYNB+2Icj6cFlAIXQljRn1lwBwn9IWSPmd5gGGhlfZa
+	f/e7kvuzD8vuqFdA8IjZWGs12wpAjBhvmDNc1scOtEB4gBpLHMMQxJgFzYMM8ZaJ
+X-Gm-Gg: AeBDieuQ/0BmwiPAgFm4SxZfxTzXHL0YDytk9mA0+DHiokOuLzIMjQApF3Tu4JhNVXq
+	76sdl95xeIyn2AIaojVXgYhhTcJiNzSiZ0WsN671K1WroJJ/4snbNqysMcfduUlx04g0gcpbCv1
+	B/ZZoWALB+LI5AoWTMjyv3kVLxnJRdFEPnRvmr588ZrCHY2cKpXiJJgnscFeDiQFCiC8cSfWny7
+	UjdAfG9lv9u9DRI7Hl0T23z7OFGaj0/PlUde4W5D51SpUUuHLpPxvkSw+JYDN/WGDJAXaILMvs1
+	IEhFCNXmfTOJ96poYPbzLRm9uw8Xl+xcOo4upKOTVmrU8fPYf/DpQhqFfJ/fBRy8reiSE6SeUzw
+	qhXNoCBnXMULlIbrKWHz1VTPi4HksqIgiaIIarUqbltxLNq+wIVLMRdFBg0DQIxNo0QYhzmD+Br
+	G5xbv+0rW8xSnvD9mDut23xI4tXoSFjqARPd01nCX06DCZyqmcgz1fmuTiTEwJ
+X-Received: by 2002:a05:6122:1687:b0:56c:d582:42d3 with SMTP id 71dfb90a1353d-56dab9f0300mr732749e0c.14.1775201825540;
+        Fri, 03 Apr 2026 00:37:05 -0700 (PDT)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56d9bc9bc41sm6006176e0c.11.2026.04.03.00.37.03
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Apr 2026 00:37:04 -0700 (PDT)
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-953943f7a33so788398241.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 00:37:03 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWVK9npMrWV/tRjW2HpbY6AQku1WO1YBw8jilqOIQXkpcikaAp/RFUztDyogxufE7DdmC2LL3VK/1fo@vger.kernel.org
+X-Received: by 2002:a05:6102:f0d:b0:605:315f:49f7 with SMTP id
+ ada2fe7eead31-605a4d81988mr717338137.6.1775201823680; Fri, 03 Apr 2026
+ 00:37:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260402162436.12059-1-john.madieu.xa@bp.renesas.com> <20260402162436.12059-10-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20260402162436.12059-10-john.madieu.xa@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 3 Apr 2026 09:36:51 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUHzcq_f8t0hi-FjiG2FByNmx8k2sz9-QEqzroLSWqXNg@mail.gmail.com>
+X-Gm-Features: AQROBzCXZAB5loNy5rsTC4EAiI9aKFN2pLERVORaR-uHChRoGZT6taMr9lCmLJs
+Message-ID: <CAMuHMdUHzcq_f8t0hi-FjiG2FByNmx8k2sz9-QEqzroLSWqXNg@mail.gmail.com>
+Subject: Re: [PATCh v3 09/14] ASoC: rsnd: Add ADG reset support for RZ/G3E
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Mark Brown <broonie@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, john.madieu@gmail.com, 
+	linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-284298-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[renesas.com,kernel.org,gmail.com,perex.cz,suse.com,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-284295-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[pengpeng@iscas.ac.cn,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.335];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
-	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:email,iscas.ac.cn:mid]
-X-Rspamd-Queue-Id: 2C70A391DA2
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: DEC8F391C4F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Live-tree reconfiguration properties also carry raw values plus explicit
-lengths. `of_reconfig_get_state_change()` currently treats `status`
-property values as NUL-terminated strings and feeds them straight into
-`strcmp()`.
+Hi John,
 
-Factor the `"okay"` / `"ok"` check out into a helper that first verifies
-that the property contains a bounded C string within `prop->length`.
-Malformed `status` updates should be treated as not enabling the node.
+On Thu, 2 Apr 2026 at 18:53, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
+> RZ/G3E requires the ADG reset line to be deasserted for the audio
+> subsystem to operate. The ADG module clock is already managed via
+> rsnd_adg_clk_enable/disable() through adg->adg, so no additional
+> clock handling is needed.
+>
+> Add support for the optional "adg" reset control on Renesas RZ/G3E SoC.
+>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 
-Signed-off-by: Pengpeng Hou <pengpeng@iscas.ac.cn>
+Thanks for your patch!
 
----
-drivers/of/dynamic.c | 20 ++++++++++++++++----
- 1 file changed, 16 insertions(+), 4 deletions(-)
+> --- a/sound/soc/renesas/rcar/adg.c
+> +++ b/sound/soc/renesas/rcar/adg.c
+> @@ -771,6 +771,7 @@ void rsnd_adg_clk_dbg_info(struct rsnd_priv *priv, struct seq_file *m)
+>
+>  int rsnd_adg_probe(struct rsnd_priv *priv)
+>  {
+> +       struct reset_control *rstc;
+>         struct rsnd_adg *adg;
+>         struct device *dev = rsnd_priv_to_dev(priv);
+>         int ret;
+> @@ -779,8 +780,13 @@ int rsnd_adg_probe(struct rsnd_priv *priv)
+>         if (!adg)
+>                 return -ENOMEM;
+>
+> +       rstc = devm_reset_control_get_optional_exclusive(dev, "adg");
+> +       if (IS_ERR(rstc))
+> +               return dev_err_probe(dev, PTR_ERR(rstc),
+> +                                    "failed to get adg reset\n");
 
-diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-index 1a06175def37..efee59ed371a 100644
---- a/drivers/of/dynamic.c
-+++ b/drivers/of/dynamic.c
-@@ -74,6 +74,20 @@ static const char *action_names[] = {
- 	[OF_RECONFIG_UPDATE_PROPERTY] = "UPDATE_PROPERTY",
- };
- 
-+static bool of_property_status_ok(const struct property *prop)
-+{
-+	const char *status;
-+
-+	if (!prop || !prop->value || prop->length <= 0)
-+		return false;
-+
-+	status = prop->value;
-+	if (strnlen(status, prop->length) >= prop->length)
-+		return false;
-+
-+	return !strcmp(status, "okay") || !strcmp(status, "ok");
-+}
-+
- #define _do_print(func, prefix, action, node, prop, ...) ({	\
- 	func("changeset: " prefix "%-15s %pOF%s%s\n",		\
- 	     ##__VA_ARGS__, action_names[action], node,		\
-@@ -135,11 +149,9 @@ int of_reconfig_get_state_change(unsigned long action, struct of_reconfig_data *
- 
- 	if (prop && !strcmp(prop->name, "status")) {
- 		is_status = 1;
--		status_state = !strcmp(prop->value, "okay") ||
--			       !strcmp(prop->value, "ok");
-+		status_state = of_property_status_ok(prop);
- 		if (old_prop)
--			old_status_state = !strcmp(old_prop->value, "okay") ||
--					   !strcmp(old_prop->value, "ok");
-+			old_status_state = of_property_status_ok(old_prop);
- 	}
- 
- 	switch (action) {
+Given this file already uses lines longer than 80 characters, the
+above statement would fit on a single line.
+
+> +
+>         ret = rsnd_mod_init(priv, &adg->mod, &adg_ops,
+> -                     NULL, NULL, 0, 0);
+> +                     NULL, rstc, 0, 0);
+
+This one fits for sure.
+
+>         if (ret)
+>                 return ret;
+>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.50.1 (Apple Git-155)
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
