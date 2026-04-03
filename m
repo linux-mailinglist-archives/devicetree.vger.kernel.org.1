@@ -1,346 +1,219 @@
-Return-Path: <devicetree+bounces-284257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284262-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4DYnHK09z2myuAYAu9opvQ
-	(envelope-from <devicetree+bounces-284257-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 06:10:21 +0200
+	id eF3KMjlLz2n1uwYAu9opvQ
+	(envelope-from <devicetree+bounces-284262-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 07:08:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF41C390D41
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 06:10:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43A1839106A
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 07:08:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8EE743037649
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 04:10:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 373C93058DC4
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 05:06:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4353B349AF4;
-	Fri,  3 Apr 2026 04:10:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11885352C2B;
+	Fri,  3 Apr 2026 05:06:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hWQQ+elv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KtD3ttPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010034.outbound.protection.outlook.com [52.101.46.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2ADF32AAAB
-	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 04:10:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0C733D515;
+	Fri,  3 Apr 2026 05:06:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.46.34
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775189418; cv=pass; b=JkbUuGfHv/1hBkY9RJW1xoZNMrGzGlNgmnS613JLnfDRV+a9ujV48Eq6j1D3Q58cX7jbG5oOc9JzFnaDjQJH7JwvYMj1IGqijC2TKglTkQ3pkiLWdoVxVs8o4jcNWFHlsxFP3yl3LSJfvJpVUp5+XbpGgbabTJKGN4pc/qoUaBw=
+	t=1775192814; cv=fail; b=obfQeoU0I0w9LgvFdXwrmDdbQgAYsqbYxGiwLJYY/diItns7u+u4+r7ppk8I83qOGJyHsbEZfj3sLxKWVWiEAPu89bFZTPGhMIaQkHVDA2dF9Dqaca/DbHDaMTQKO0UQmKIdXrQv3V6y68RHG65UZ4ElfDTr5Gq5hlJGia59OtA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775189418; c=relaxed/simple;
-	bh=8ppiMXufLA/kFWXI+XW0edobmt25DPORQ9//T8zMYiQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YBQdGvi0nSbdRAoIq0cgwFKV1EQcIObwaiDeGKBw1SyLfRcwAe/7RIkxITz5BnDuMBTyh95iCLZzw5XTYTq3OfPXI8UdOqZyIFdCPVlAlzZ1L8e5l4YU7U3zfx0a2ywfTFYQvvdZYAthm4YjIaS693jG/MoCisKTjW/2XQnMOo4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hWQQ+elv; arc=pass smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-66e52d8ab73so92246a12.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Apr 2026 21:10:16 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775189415; cv=none;
-        d=google.com; s=arc-20240605;
-        b=WYdX1G1vdWb/klU+Ry2LSkYlFeyBlr6oNjsZ3Mz/Xw0Y9qodp6wAu1juD8LjCqElIi
-         2jB/ClCQVMaP1a+INQYfxQ2U0ZuXFjkt0Q3c+e8UFm613Hu1RTHrbqZuB4gaU8tvmWGX
-         G4TRS85gzuV71YIhhFVb1fl8YsuzA+cCmnlETsLc66qw+2icu/vR1OUPhzvPeB7fFlYV
-         7fP+UHrH5tzxNRYWLqQ3yVdi5R6b1h594gDd1Rd1n3GBzDqnJA2H8TdXkk2Lcze32yD4
-         9TiMuhpVn70K4a8BYpJrQnM4cFvhnl1sRmmg0SdLjDxYOlujP/43ujukbiOxPGU1Rn9/
-         CQpA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=MQSjk0t+ENDTZIZmtMaYlDzt00D+esO1IY7w8JmAigY=;
-        fh=yeFEZEMHkEI0EKMK4UlVMWSSqvhpqeBgftdm3L2cP14=;
-        b=YNLzY7IdTzXRbUOg6NBWHsKccomLqxH6u+U4zwC2e7opZtSK0APXVewWAcQtiWETUs
-         5h4XjMZl+ms+wDPlJ+udgWbCLmpHr/dTI7K2mKk5QYiUJaVND+Wl+3MMEn9uWlFEwvyw
-         BRfzDWwIMOsSTngPDsZ5y8SnDYSQZnvGrmYHfL8LultW2fnAR9Q9s+5gH1UUsznJ0Cwq
-         Bk1rA7WA6nn53BDwa9RssO2wGsSZh6+7MdLc+ZX7bQ6bAjmaUH3RauJygs0oPrGTbbZY
-         HVaK1F6dl+opeY+qwburGSr3sQpviVsuJxjePK2ATThbjMnenzGrA28tEMHWzduBh65n
-         1Pcw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775189415; x=1775794215; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MQSjk0t+ENDTZIZmtMaYlDzt00D+esO1IY7w8JmAigY=;
-        b=hWQQ+elvv/uont9fh6Iyj+yI2QduYtFYYwHAfLua2QXsKNpA/v9TROWY1KCBNOWSoQ
-         mZDdBrMzr7fjArIxZ0bBeplZg9YfRPFHBtpUctkypx1oV8YwcNLIKRjJlAnuTbS9krld
-         U+SPBFAdsGqu75Ne20XAOU5QO6gBdfE2okqMFjTPnfRn1nKmYhk7/2ds4+GC3nmbSjBn
-         OcyZDZrIZfXKC3KgRQJsPgOhnks3oqhT22DKwpk1rn07oUi1704PDbqp3G+H1frQb2+3
-         GUiT65FUigXxaZdt/Zkfy0xRvCCo+AJtB2TQodBraYxzBZZGUsNyO5dDW4hl5zSAs/Fn
-         Qpkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775189415; x=1775794215;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=MQSjk0t+ENDTZIZmtMaYlDzt00D+esO1IY7w8JmAigY=;
-        b=qYslwQVFmJ0iO8CDPECgUKowOZbIOiANV0nQfwSj8g1E+s2snQI8APZLAnLeqLo1vg
-         eVztXR1YPLZCjK6zkvVbCKOYfsRmQw3hgeBD3K5Aj48pGT0jH0ig8LzdTqUymy10o+1W
-         ousGijsyB/sjVT0Tclwn73iRFsS0U+MCuK8xqZpUdPseje00ta/tLUPZzL6QcMyjjGSs
-         17txB5c52/UXSM6X1BHf5wdiAX2GgmMFzsLlebS2RdIa5TSYP4VcIOPIVt76yHkdCdWk
-         kYtwzsvIvZRek5c1hKDIPQDVoop1eytTrD1rYKsJosdbd1qJ8Xu4AveM/iVkR/VJd1GK
-         oMVA==
-X-Forwarded-Encrypted: i=1; AJvYcCWbIDMmldweCDzaU3yE5vbfWictFSGeqt10lD6yEPdy0di4Um4lGQgFLg+uV4k39Yi6V+SUU1vlggj5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLCebu9SNLFCcJ9xXjQIiSeS94s5BLg+8z1MW6Rniw7zfd3at1
-	zj38ALfQjK9/9HfsPa9agyjeHx2sc+vFjch9b4roW/70c6JX2uQzRJ7FPvjRo1N2DwBstArqkV9
-	TPIPdy3vHJs6zAuy9cULadwMgGCdrZ2k=
-X-Gm-Gg: AeBDievABCaugREdJ0xe7NfkIYUjZTkfQ2KijzTAjj4r0f2KeTPKC4+vZRa7/B09lQK
-	GVOPv2Tm+HIxMiVThd6X+sEftLA8D8Ogf1Gs+dRS+lr5jFbzObD4eMWuoeddX2Uev7S6wYkN6OY
-	QcZHbW1Zz/eBLyFgd+EQEhFgGT061ZQzaM/+SeDYvy6T5iIuvK3tYy0e2paFbJVpydxAnv7u48J
-	RR2TF2dTKg1xvfH555z68K3J50zLeK2sEcv50pIy2yXGNP1aFl5iTbxe1XvvCA0fRkLg2aViGtN
-	HTI/6YFH
-X-Received: by 2002:a05:6402:538d:b0:66e:1971:e43b with SMTP id
- 4fb4d7f45d1cf-66e3e8b71b8mr666558a12.0.1775189414724; Thu, 02 Apr 2026
- 21:10:14 -0700 (PDT)
+	s=arc-20240116; t=1775192814; c=relaxed/simple;
+	bh=4UlrZgggbiiM8vwSZPwUwSHBuj3RKb31EY/qX6OD+Y4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jgGAle5Och9Gen+g+jPQBlpc6Jpfwkw5Q9bKrRV1EmjGzB6RrNyXWgGokT71fAuAhYJUu58bTDrN7lIJMjHlzqZeh701SU0t1V0wqkNbh61ajExC4w3h/hohdOhWb/OD6VL7XkQXOC4dJbOZ1GGml92vNfe6RjQsZqNU1zEoU+c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KtD3ttPf; arc=fail smtp.client-ip=52.101.46.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pO2MS/Di0dNoja+sbf+EmsHMfMHMglbFkdsJ/BuSROxiF1KdUMy7abuknjL9uZGRL2/QxrGB6X3OmvFHdVcUzKYsJodRP4PPfiSJbjNlgv3WytwrMt0+HTboUx9uAnA1cbcmfWAJUbKJtmi9OpwRlAmxjA+U1sfNyS9e2cc0qX5ilBhFQFWmzyNNbu6PZXNtwyUExTFwUQ704GbHvtBPCjkns/GFtAcyWNimaDpQHJB9aiDAPedLjQJbpUDYqdog2iNinePhfpYvGhwOMMZIT59PBRVwFObtXK+K5DmSxPPwqiZJUtHTXkTGNh2g0pfnI/OcfWvgMlcesG9vc10A7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BvgD22elGtaqKnyKBku4PBUWxEcuGlDwbl+izL63moc=;
+ b=s7VK1mXDSrMnkDGujxI1W7YQaKNG8T0NfydrScWOAr+oB/iXbzkbWWaQ480h+hNOfWXtELoHDBO2mwV4+puGXGSbIE3/GK6o93A3NgGGtLY4vpTcb6vN+5ym1dd6TFkBh0xuw44ss2bOCY9tuGF4K6miC+2Kr8PqZXf9ER/WEoSHdFBHx4gfU/jVYly9+VoX2uK9ykPJU8H+EQ2e+ffFdvHTUuQIElIYnviq8gWYxKwYHXA7XbjACGbudclw/85/IbNPCQ5ZY2zTReK1aeKe5p4YKS8GfnnGDFiw1tdUrdeyYKi0hipYiHMGcc/N5mk+K2KHBW8FzVDDguNeB3zSvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BvgD22elGtaqKnyKBku4PBUWxEcuGlDwbl+izL63moc=;
+ b=KtD3ttPfO0/ANBuR9+yAFtxhwR48uEHHG0MSpAcf2CZ8WbLzF1XfFkcQrrE6u569OWAvh0QNl2WOkeMgE85GZRgT1SpULLLgl+zsFkZufdnoE6CpJQ1PdETScO9lWZdTepGWTZvGuWN8WwSlCYKLIRYSatDWLVqd6nxLehIgx38=
+Received: from BY5PR13CA0002.namprd13.prod.outlook.com (2603:10b6:a03:180::15)
+ by BY5PR10MB4211.namprd10.prod.outlook.com (2603:10b6:a03:20c::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Fri, 3 Apr
+ 2026 05:06:50 +0000
+Received: from SJ1PEPF0000231E.namprd03.prod.outlook.com
+ (2603:10b6:a03:180:cafe::cb) by BY5PR13CA0002.outlook.office365.com
+ (2603:10b6:a03:180::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.20 via Frontend Transport; Fri,
+ 3 Apr 2026 05:06:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ SJ1PEPF0000231E.mail.protection.outlook.com (10.167.242.230) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17 via Frontend Transport; Fri, 3 Apr 2026 05:06:49 +0000
+Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 3 Apr
+ 2026 00:06:36 -0500
+Received: from DFLE202.ent.ti.com (10.64.6.60) by DFLE215.ent.ti.com
+ (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 3 Apr
+ 2026 00:06:35 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE202.ent.ti.com
+ (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 3 Apr 2026 00:06:35 -0500
+Received: from localhost (mz02jj9v.dhcp.ti.com [128.247.81.246])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 63356ZHI3389686;
+	Fri, 3 Apr 2026 00:06:35 -0500
+From: Sen Wang <sen@ti.com>
+To: <linux-sound@vger.kernel.org>
+CC: <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<perex@perex.cz>, <tiwai@suse.com>, <shenghao-ding@ti.com>,
+	<kevin-lu@ti.com>, <baojun.xu@ti.com>, <niranjan.hy@ti.com>,
+	<l-badrinarayanan@ti.com>, <devarsht@ti.com>, <v-singh1@ti.com>,
+	<linux-kernel@vger.kernel.org>, Sen Wang <sen@ti.com>
+Subject: [PATCH v3 0/4] ASoC: Add TAS67524 quad-channel Class-D amplifier driver
+Date: Fri, 3 Apr 2026 00:06:18 -0500
+Message-ID: <20260403050627.635591-1-sen@ti.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260318071808.817074-1-pavitrakumarm@vayavyalabs.com>
-In-Reply-To: <20260318071808.817074-1-pavitrakumarm@vayavyalabs.com>
-From: Tony He <huangya90@gmail.com>
-Date: Fri, 3 Apr 2026 12:10:03 +0800
-X-Gm-Features: AQROBzC4X2v1r_d4TJ320nBj-a6NY6jBHZE8x221VtpUZqvaP2bJhZ7gsQyG-AU
-Message-ID: <CAAUX2SVmu+_Avs=6ipdJY9iciig4w6DzGNGaH_ZQf+LNqR=KVA@mail.gmail.com>
-Subject: Re: [PATCH v11 0/4] crypto: spacc - Add SPAcc Crypto Driver
-To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, herbert@gondor.apana.org.au, robh@kernel.org, 
-	conor+dt@kernel.org, Ruud.Derwig@synopsys.com, 
-	manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com, 
-	navami.telsang@vayavyalabs.com, bhoomikak@vayavyalabs.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF0000231E:EE_|BY5PR10MB4211:EE_
+X-MS-Office365-Filtering-Correlation-Id: c20f8782-c041-45f1-b3a9-08de913ed004
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|376014|7416014|82310400026|1800799024|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	RLcG9LqYeTbOMKy9BRUonusG8wKCZWaFkoc/eMbOU+C3W+QNrayuJMiFxaAXb3ZgizC6t8h7wA1k1Zx89ljBxvHygXlNjNNNTjgyG2RsV2TRuSlXuYwTFsAj9ReuAT0Ar2UfeYO0Umkran/fgmIRBt61A6sK5LAYp9pzA4T12JDhYK2RZZvj5p+EEfGF1DPl+f4XHud/A8dJbsBYfAFHYqyFoAlLVspIEFr5AIsJvv11wvr2SEYPlNbRNkdj9jsHnhTzk12IFrXXfDcKnd/7+cSFNjr3lM07X2trYFkcTI0O0NzdJ73mHmN3aNGNZ2YbbUa7zymmdddEzWDg6BDYm/4Ehx3iLc95lcX12g6KMDN4+6S7cSMAAT+zgFfzp1NygIHagdgWb4HwmLIFxd7ejAAH97hCG5Z0vwWd/6TypWk2wOTi7aF9EGPkj2eC/ui1McQaBdJ/GBGToJgtaakPBXsSJvkzackia8y5OQwibvDj5cBET13W+KfEpt3pUBzk3HwdfThVlKn1vyP9VplJ0uwQtGF/9vmqi2x6wODXOF5q3cP1EkDf72CSyMLD7eh/GY1vDDjS62gI+84OlzeyHVW79/3m+FE/C9klyVIiGltcxg5cQm0FOlX3PkFCAjb9i0Y3CeHmti538mA64VAPYrXnZo09X/s3+DcTNkwZw3cE7iyfMqQB4WgHP2LSyQxLoJXDnCtYA8GFwyuJc0ERm4vMwySGeT022qX0vNMgH6zH28v64h/OT4xtISkEHHfZC/trpPzUFfMuHadCkf9zRg7BuchwWr2jV9HUNLHCoDM=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700016)(376014)(7416014)(82310400026)(1800799024)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	3OfUG54Ua/1CHhVoMNZsL40uZyeUp1PgIf2scuCZIO91bhV0p3kXcnsq3ehaZ6jPN7ExnS1HpeVH3io8CHnogZDHn4cTAXFGNPIrKIVhMgDbH4speWwo13Zyj2oTHGxZCCr3kkQ7CEIJNtXuKtvV3b+lcziGnhAPcv12PUJ8JdIfXM/6cg46iTI2trY9qa2wvPgjGp4J+BQI7UVnPjGh+dDg6QIfEt6IT8aFeI6qnxbxMH1zu9ExclO7XlIIX3AxeZjXuRbbQpQbQb9DUVfTYUlaARCQlMXVO9vBhzB/smq033ymqfoRgWkz8qLvlzKFy/jHZFd7xubLOtquW1+oZHBy3BRP78Ez2O++MWBfpgkrUOZbQLaLr2XZK304ZQsjlmFZLDMxKMX6uqE2vofORyl7vJq94FoE2hfk6uhKWZuNA+fEUKsdYSKsuFlLNtef
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2026 05:06:49.5780
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c20f8782-c041-45f1-b3a9-08de913ed004
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF0000231E.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR10MB4211
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-284262-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284257-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,perex.cz,suse.com,ti.com];
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[sen@ti.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[ti.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[huangya90@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,vayavyalabs.com:email]
-X-Rspamd-Queue-Id: CF41C390D41
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 43A1839106A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+This series adds support for the TI TAS675x (TAS6754, TAS67524)
+quad-channel automotive Class-D amplifiers. The devices have an
+integrated DSP and load diagnostics, and are controlled over I2C.
 
-I have a question regarding the capabilities of the Synopsys
-SPAcc (Security Protocol Accelerator) in this driver series.
+Patch 1 adds the dt-binding, patch 2 the codec driver, patch 3 the
+ALSA mixer controls documentation, and patch 4 adds the MAINTAINERS
+entry.
 
-From the documentation, SPAcc appears to be more than a generic
-crypto engine and is described as supporting protocol-level
-acceleration (e.g., IPsec, TLS). I would like to clarify the
-exact scope of its offload capabilities, specifically for IPsec
-ESP processing.
+Tested on AM62D-EVM with a TAS67CD-AEC daughter card, on setups &
+test procedures, refer to the Github repository.
 
-Is SPAcc capable of handling full ESP packet processing (i.e.,
-beyond basic encryption/decryption and authentication)?
-For example:
+GitHub: https://github.com/SenWang125/tas67-linux
 
-Can it parse ESP packets and perform decapsulation
-(removing ESP headers/trailers and returning the inner
-payload)?
+Changes in v3:
+ - Renamed ALL tas675x filenames to tas67524, removed tas6754 compatible instance
+ - Changed pd-gpios to powerdown-gpios, cleanup unnessary .yaml formatting (1/4)
+ - Opt to use disable delayed_work and re-enable on runtime suspend/resume,
+ similarly, use disable/enable IRQ on system suspend/resume. (2/4)
+ - Include IRQ_NONE on ISR returns. (2/4)
+ - Clarify _check_faults() function which now returns need_clear boolean (2/4)
+ - Added register section (3/4)
+ - Added addintional notes: for clarification (3/4)
+ - Links to v2: https://lore.kernel.org/all/20260401223239.1638881-1-sen@ti.com/
 
-Does it handle sequence number processing and/or
-anti-replay checks?
+Changes in v2:
+ - Remove redundant DAPM event function (2/4)
+ - Move IRQ request past power_on, so regs can be set in a clean state (2/4)
+ - Add delayed_work at probe time to accomdate no PM configs (2/4)
+ - Change .set_fmt and .dapm_routes callbacks to the same tas675x_set_fmt name (2/4)
+ - Links to v1: https://lore.kernel.org/all/20260401024210.28542-1-sen@ti.com/
 
-Or is it limited to crypto operations where the
-driver/software stack (e.g., Linux XFRM) must handle all
-protocol-level processing such as SA lookup, replay
-protection, and packet decapsulation?
+Sen Wang (4):
+  ASoC: dt-bindings: Add ti,tas67524
+  ASoC: codecs: Add TAS67524 quad-channel audio amplifier driver
+  Documentation: sound: Add TAS675x codec mixer controls documentation
+  MAINTAINERS: add entry for TAS67524 audio amplifier
 
-In other words, should SPAcc be treated as:
+ .../bindings/sound/ti,tas67524.yaml           |  277 +++
+ Documentation/sound/codecs/index.rst          |    1 +
+ Documentation/sound/codecs/tas67524.rst       |  686 ++++++
+ MAINTAINERS                                   |    4 +
+ sound/soc/codecs/Kconfig                      |   11 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/tas67524.c                   | 2173 +++++++++++++++++
+ sound/soc/codecs/tas67524.h                   |  367 +++
+ 8 files changed, 3521 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,tas67524.yaml
+ create mode 100644 Documentation/sound/codecs/tas67524.rst
+ create mode 100644 sound/soc/codecs/tas67524.c
+ create mode 100644 sound/soc/codecs/tas67524.h
 
-a protocol-aware data-path accelerator for ESP
-(with partial packet processing), or
+-- 
+2.43.0
 
-a pure crypto offload engine where all IPsec
-semantics remain in software?
-
-Clarifying this would help understand how the driver is
-expected to integrate with the Linux IPsec/XFRM framework.
-
-Thanks.
-
-Tony
-
-On Wed, Mar 18, 2026 at 3:22=E2=80=AFPM Pavitrakumar Managutte
-<pavitrakumarm@vayavyalabs.com> wrote:
->
-> Add the driver for SPAcc(Security Protocol Accelerator), which is a
-> crypto acceleration IP from Synopsys. The SPAcc supports multiple ciphers=
-,
-> hashes and AEAD algorithms with various modes. The driver currently suppo=
-rts
-> below
->
-> hash:
-> - cmac(aes)
-> - xcbc(aes)
-> - cmac(sm4)
-> - xcbc(sm4)
-> - hmac(md5)
-> - md5
-> - hmac(sha1)
-> - sha1
-> - sha224
-> - sha256
-> - sha384
-> - sha512
-> - hmac(sha224)
-> - hmac(sha256)
-> - hmac(sha384)
-> - hmac(sha512)
-> - sha3-224
-> - sha3-256
-> - sha3-384
-> - sha3-512
-> - hmac(sm3)
-> - sm3
-> - michael_mic
->
-> changelog:
->   v1->v2 changes:
->     - Added local_bh_disable() and local_bh_enable() for the below calls.
->       a. for ciphers skcipher_request_complete()
->       b. for aead aead_request_complete()
->       c. for hash ahash_request_complete()
->     - dt-bindings updates
->       a. removed snps,vspacc-priority and made it into config option
->       b. renamed snps,spacc-wdtimer to snps,spacc-internal-counter
->       c. Added description to all properties
->     - Updated corresponding dt-binding changes to code
->
->   v2->v3 changes:
->     - cra_init and cra_exit replaced with init_tfm and exit_tfm for hashe=
-s.
->     - removed mutex_lock/unlock for spacc_skcipher_fallback call
->     - dt-bindings updates
->      a. updated SOC related information
->      b. renamed compatible string as per SOC
->    - Updated corresponding dt-binding changes to code
->
->   v3->v4 changes:
->    - removed snps,vspacc-id from the dt-bindings
->    - removed mutex_lock from ciphers
->    - replaced magic numbers with macros
->    - removed sw_fb variable from struct mode_tab and associated code from=
- the
->      hashes
->    - polling code is replaced by wait_event_interruptible
->
->   v4->v5 changes:
->    - Updated to register with the crypto-engine
->    - Used semaphore to manage SPAcc device hardware context pool
->    - This patchset supports Hashes only
->    - Dropping the support for Ciphers and AEADs in this patchset
->    - Added Reviewed-by tag on the Device tree patch since it was reviewed=
- on
->      v4 patch by Krzysztof Kozlowski and Rob Herring (Arm)
->
->   v5->v6 changes:
->    - Removed CRYPTO_DEV_SPACC_CIPHER and CRYPTO_DEV_SPACC_AEAD Kconfig op=
-tions,
->      since the cipher and aead support is not part of this patchset
->    - Dropped spacc_skcipher.o and spacc_aead.o from Makefile to fix build=
- errors
->      reported by kernel test robot
->    - Added Reported-by and Closes tags as suggested
->
->   v6->v7 changes:
->    - Fixed build error reported by Kernel test robot
->    - Added Reported-by and Closes tags as suggested
->
->   v7->v8 changes:
->    - Fixed misleading comment: Clarified that only HMAC key pre-processin=
-g
->      is done in software, while the actual HMAC operation is performed by
->      hardware
->    - Simplified do_shash() function signature by removing unused paramete=
-rs
->    - Updated all do_shash() call sites to use new simplified signature
->    - Fixed commit message formatting by adding "crypto: spacc - <subject>=
-" to
->      all patches
->    - used __free() for scope based resource management
->
->   v8->v9 changes:
->    - Updated the software fallback implementation to use HASH_FBREQ_ON_ST=
-ACK
->    - Corrected dynamic allocation of statesize and reqsize in init_tfm
->    - Fixed synchronization issues in the digest request
->
->   v9->v10 changes:
->    - Fixed unused variable warning
->
->   v10->v11 changes:
->    - Removed the redundant crypto_alloc_ahash in the init_tfm function
->    - Removed the redundant crypto_free_ahash in exit_tfm function
->    - Removed the redundant crypto_ahash_setkey call in setkey function
->
-> Pavitrakumar Managutte (4):
->   dt-bindings: crypto: Document support for SPAcc
->   crypto: spacc - Add SPAcc ahash support
->   Add SPAcc AUTODETECT Support
->   crypto: spacc - Add SPAcc Kconfig and Makefile
->
->  .../bindings/crypto/snps,dwc-spacc.yaml       |   50 +
->  drivers/crypto/Kconfig                        |    1 +
->  drivers/crypto/Makefile                       |    1 +
->  drivers/crypto/dwc-spacc/Kconfig              |   88 +
->  drivers/crypto/dwc-spacc/Makefile             |    8 +
->  drivers/crypto/dwc-spacc/spacc_ahash.c        |  886 ++++++
->  drivers/crypto/dwc-spacc/spacc_core.c         | 2413 +++++++++++++++++
->  drivers/crypto/dwc-spacc/spacc_core.h         |  827 ++++++
->  drivers/crypto/dwc-spacc/spacc_device.c       |  276 ++
->  drivers/crypto/dwc-spacc/spacc_device.h       |  236 ++
->  drivers/crypto/dwc-spacc/spacc_hal.c          |  374 +++
->  drivers/crypto/dwc-spacc/spacc_hal.h          |  114 +
->  drivers/crypto/dwc-spacc/spacc_interrupt.c    |  328 +++
->  drivers/crypto/dwc-spacc/spacc_manager.c      |  610 +++++
->  14 files changed, 6212 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/snps,dwc-spa=
-cc.yaml
->  create mode 100644 drivers/crypto/dwc-spacc/Kconfig
->  create mode 100644 drivers/crypto/dwc-spacc/Makefile
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_ahash.c
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_core.c
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_core.h
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_device.c
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_device.h
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_hal.c
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_hal.h
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_interrupt.c
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_manager.c
->
->
-> base-commit: c708d3fad4217f23421b8496e231b0c5cee617a0
-> --
-> 2.25.1
->
->
 
