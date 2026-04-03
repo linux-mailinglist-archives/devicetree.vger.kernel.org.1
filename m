@@ -1,272 +1,197 @@
-Return-Path: <devicetree+bounces-284488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284491-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2DVwGGziz2kS1gYAu9opvQ
-	(envelope-from <devicetree+bounces-284488-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 17:53:16 +0200
+	id EIhoJ3Pnz2kS1gYAu9opvQ
+	(envelope-from <devicetree+bounces-284491-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 18:14:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B7DA395FAA
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 17:53:15 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B332396285
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 18:14:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B228F30160F1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 15:50:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 87448302748A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 16:09:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0AA33BC689;
-	Fri,  3 Apr 2026 15:50:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 538303CD8A6;
+	Fri,  3 Apr 2026 16:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e5GZrzyd"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="gxQfOAYx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB32B280A51;
-	Fri,  3 Apr 2026 15:50:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 735143CCA1F;
+	Fri,  3 Apr 2026 16:09:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775231415; cv=none; b=QkWXfzpNpBCZsLuWbVACeJFJZLKeDO35nrXsZaBp3Ac0sX0BvcuCdDGgm7YYk6kBvR3XJncIjVayBv3x7S2qOlFN56s26P7w5LdgnBAMVPgezjx9oIwbopcZT1goIRxWo8jh4Nezz/yaHJZRdaG0nFwWo+23AhspdKFFff/TtuY=
+	t=1775232566; cv=none; b=jbQegyeSJ2IyTnZSeuufBFmMC7L6xEmoa0i5nFCPPOZuDUtt+3yt7KkMI6vrECCs57bVb5bRiXpN6Adll4dmwkhafZI2KQ1SR29az8zvEVJM4Saz225Fi+oh+nqz2U13G8sKz5NliYXwQ4i+90Zki5bWvo2nKtwLUyrOmXFfe4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775231415; c=relaxed/simple;
-	bh=prDkm53R9Cx3R2od50UsMKn7PCFX4EJS2fF/vGLBeYU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QEMpH+aXEB/zsje/yqMmwiIqQst/BTlWK/ZzYyj3oFPGw1yaZvwuqwHZGIcZ+4OoW8xp2Tb5KyNDR4szpubx8HaCGESiMirGJ2FfFNEQCdLpjivia7glUFuR/u5KFddxVSrZ3u5dYDkFQiOQ1JDCz7mcddvAZm4VQB05W/Ls00U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e5GZrzyd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D5ACC4CEF7;
-	Fri,  3 Apr 2026 15:50:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775231415;
-	bh=prDkm53R9Cx3R2od50UsMKn7PCFX4EJS2fF/vGLBeYU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e5GZrzydQ2eNeHFUBs9hO1fUN+M1I8zyAlUGnlyzZGlI8bmoj9tvyC9z2wahuOdQ5
-	 LXXGDAmcQAlHqZUETS8/fFbv54dKFLy3/k9ZNFt21WfWTtsp4Ra500/Z5Syi0vUr/z
-	 rPw3ckbhNW0C8/WtfFCND8YxyvTtgarI7GCHgPMwYS4qcjsPNz5Ju5OA/e2G8nScau
-	 V/l3tkNRyj3mAq1yc/hhlQKYkPKFTr8N2gmfO1H6sf09bUz6DMGAEUbbnXNun1w88e
-	 OdOXkB3nNsLjjdeAnCG4pJGmh6673d7Fd3Q0Y9feSbMVZe8LXj6reXhdH8xKg5tH8h
-	 Oy2mPR9IEGiYg==
-Date: Fri, 3 Apr 2026 17:50:06 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	John Stultz <john.stultz@linaro.org>,
-	Moritz Fischer <moritz.fischer@ettus.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-	Andre Draszik <andre.draszik@linaro.org>,
-	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, Srinivas Kandagatla <srini@kernel.org>
-Subject: Re: [PATCH v20 06/10] power: reset: Add psci-reboot-mode driver
-Message-ID: <ac/hru3IIiU0+Lp9@lpieralisi>
-References: <20260304-arm-psci-system_reset2-vendor-reboots-v20-0-cf7d346b8372@oss.qualcomm.com>
- <20260304-arm-psci-system_reset2-vendor-reboots-v20-6-cf7d346b8372@oss.qualcomm.com>
- <acaMPgRALnoUIHMC@lpieralisi>
- <93a78bc2-4fd1-41bd-bf4a-b433b06fc218@oss.qualcomm.com>
- <ac0trUGsRBLPS+ux@lpieralisi>
- <da6f4566-a719-409b-80a9-40ca89e3e721@oss.qualcomm.com>
+	s=arc-20240116; t=1775232566; c=relaxed/simple;
+	bh=b+FuEJoaX/LLvdfaT0daRsas8iidLBkE2+x2VRnGD5s=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UVXCmq/AEZB46TObI7sw2FUM911AsrBdnrFwVLkO7ErC91zox+nHwhZ9nZeHX+UI8wnx37gN3rqsf9YlbmCh9Iu6XuUXU2b8SWgL30XZ75/AeDPK3F7qVUwS/3cCsC4uQEJYuphSxcoFz7eqGwOZzwZIToE5xaUr8rfWj95qqAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=gxQfOAYx; arc=none smtp.client-ip=65.21.61.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1775232554;
+	bh=b+FuEJoaX/LLvdfaT0daRsas8iidLBkE2+x2VRnGD5s=;
+	h=From:Subject:Date:To:Cc;
+	b=gxQfOAYxt86hCKGMIRjOk6wkUnCbT8ZalxEomn5UO8PqLyUOqY26faz0Aw7H4DJGT
+	 RMIyBzIj+xQp09LZATgAEOmd5Om5EU5yza5X/CKZ4ZIKPaMarfeYgXIaBB5kFQlQT2
+	 XH02t6R6ubd8y7HRH/qfwCiZ8wI9nlsrJvr9QyRI=
+Subject: [PATCH v2 0/8] Add VIM4 MCU/FAN support
+Date: Fri, 03 Apr 2026 18:08:33 +0200
+Message-Id: <20260403-add-mcu-fan-khadas-vim4-v2-0-70536b22439a@aliel.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <da6f4566-a719-409b-80a9-40ca89e3e721@oss.qualcomm.com>
-X-Spamd-Result: default: False [3.84 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4VSy27bMBD8FUPn0uCbolAU+Y8gh13uMmarhyvJQ
+ oLA/x5a8aFGC/Q4S8wMd2Y/moXnwkvTHT6ambeylGmsQH87NOkE4yuLQhU3WmovrdQCiMSQLiL
+ DKH6dgGARWxmsgKQSsnMmRWwq+zxzLm+78vPLF57596UarF/DBmFhkaZhKGt3GPltFbuJ0eHGH
+ 3hZYLfvDt/vD15G7a07KukqUEKJnwXG4+nyBEM/vZZ0rHI/dndY02nnegeOgs+ZsP7MAKAxrUP
+ 0LqHUQUqbjOTAjyxtgvaxlarVnsgAhYzKM1oK5MkyoJNWh/aR5QJHlC1E3wJTdtaQIUnOp6wSW
+ EItUYPyzZ/pVrP7dnu2mAZrgtO3ZKpywZ4F163B5hCDgW7Tj6YYjMyOrUZW1EZS0bA3UDWdjS4
+ RZp0CBfynqZGitiTKuEFfSJzn6czz+i6wVmkpGpODujv+zVU7t0Yv1iDGS9+LmReuNaKXLWOOB
+ LbbVHOr/1SWdZrf9zuro1v//z2pTQlZxZSuuUMKKJ/qJ7k/5rl5uV6vn75hzAK8AgAA
+X-Change-ID: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b
+To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Beniamino Galvani <b.galvani@gmail.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openssh-sha256; t=1775232551; l=4062;
+ i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
+ bh=b+FuEJoaX/LLvdfaT0daRsas8iidLBkE2+x2VRnGD5s=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
+ BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QKbwxc2nyvaM/g7EJtMQkRcMXE0rrg9I/DCURkIsgkXgdt9W/vAsvqLW+rLYKdzSxqlUtsOHofg
+ R2wPjYnX0QgM=
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
+ fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284488-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[aliel.fr];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com];
+	TAGGED_FROM(0.00)[bounces-284491-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FREEMAIL_CC(0.00)[arndb.de,kernel.org,arm.com,rock-chips.com,gmail.com,linaro.org,ettus.com,broadcom.com,oss.qualcomm.com,vger.kernel.org,lists.infradead.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.981];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lpieralisi@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[aliel.fr:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0B7DA395FAA
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 9B332396285
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 03, 2026 at 12:05:27AM +0530, Shivendra Pratap wrote:
-> 
-> 
-> On 01-04-2026 20:07, Lorenzo Pieralisi wrote:
-> > On Tue, Mar 31, 2026 at 11:30:09PM +0530, Shivendra Pratap wrote:
-> > > 
-> > > 
-> > > On 27-03-2026 19:25, Lorenzo Pieralisi wrote:
-> > > > On Wed, Mar 04, 2026 at 11:33:06PM +0530, Shivendra Pratap wrote:
-> > > > > PSCI supports different types of resets like COLD reset, ARCH WARM
-> 
-> [snip..]
-> 
-> > > > > + * Predefined reboot-modes are defined as per the values
-> > > > > + * of enum reboot_mode defined in the kernel: reboot.c.
-> > > > > + */
-> > > > > +static struct mode_info psci_resets[] = {
-> > > > > +	{ .mode = "warm", .magic = REBOOT_WARM},
-> > > > > +	{ .mode = "soft", .magic = REBOOT_SOFT},
-> > > > > +	{ .mode = "cold", .magic = REBOOT_COLD},
-> > 
-> > These strings match the command userspace issue right ? I think that we
-> > should make them match the corresponding PSCI reset types, the list above
-> > maps command to reboot_mode values and those can belong to any reboot
-> > mode driver to be honest they don't make much sense in a PSCI reboot
-> > mode driver only.
-> > 
-> > It is a question for everyone here: would it make sense to make these
-> > predefined resets a set of strings, eg:
-> > 
-> > psci-system-reset
-> > psci-system-reset2-arch-warm-reset
-> > 
-> > and then vendor resets:
-> > 
-> > psci-system-reset2-vendor-reset
-> 
-> Can you share bit more details on this? We are already defining the string
-> from userspace in the struct - eg: ".mode = "warm".
+The Khadas VIM4 board features a different MCU variant compared to
+previous VIM boards.
+While it shares the same I2C-based communication model,
+it differs in some ways:
 
-"warm","soft","cold" are not strictly speaking PSCI concepts and mean nothing
-well defined to user space and even if they did, they would not belong in
-the PSCI reboot mode driver but in generic code.
+  - A distinct register map with its own volatile/writeable register set
+  - A fan control with 0–100 levels instead of the 0–3 levels previously
+  - A fan power supply gated through a regulator
 
-Spelling out what a reset is might help instead, again, this is just my
-opinion, I don't know how the semantics of resets have been handled thus
-far.
+This series adds support for this new variant by:
 
-If userspace issues a LINUX_REBOOT_CMD_RESTART2 with arg, say,
-"psci-system-reset2-arch-warm-reset" it is pretty clear what it wants
-to do in PSCI.
+  1. Refactoring the khadas-mcu MFD driver to use per-variant data
+     structures (regmap config, cells, fan platform data),
+     and adding the khadas,vim4-mcu compatible string.
 
-Again, it is a suggestion, comments welcome.
+  2. Extending the fan thermal driver to retrieve the fan register
+     and maximum level from platform_data,
+     and to optionally manage a power regulator for the fan supply.
 
-> yes we can move away from enum reboot_mode and use custom psci defines one -
-> Ack.
-> 
-> > 
-> 
-> [snip ..]
-> 
-> > > > > +
-> > > > > +/*
-> > > > > + * arg1 is reset_type(Low 32 bit of magic).
-> > > > > + * arg2 is cookie(High 32 bit of magic).
-> > > > > + * If reset_type is 0, cookie will be used to decide the reset command.
-> > > > > + */
-> > > > > +static int psci_reboot_mode_write(struct reboot_mode_driver *reboot, u64 magic)
-> > > > > +{
-> > > > > +	u32 reset_type = REBOOT_MODE_ARG1(magic);
-> > > > > +	u32 cookie = REBOOT_MODE_ARG2(magic);
-> > > > > +
-> > > > > +	if (reset_type == 0) {
-> > > > > +		if (cookie == REBOOT_WARM || cookie == REBOOT_SOFT)
-> > > > > +			psci_set_reset_cmd(true, 0, 0);
-> > > > > +		else
-> > > > > +			psci_set_reset_cmd(false, 0, 0);
-> > > > > +	} else {
-> > > > > +		psci_set_reset_cmd(true, reset_type, cookie);
-> > > > > +	}
-> > > > 
-> > > > I don't think that psci_set_reset_cmd() has the right interface (and this
-> > > > nested if is too complicated for my taste). All we need to pass is reset-type
-> > > > and cookie (and if the reset is one of the predefined ones, reset-type is 0
-> > > > and cookie is the REBOOT_* cookie).
-> > > > 
-> > > > Then the PSCI firmware driver will take the action according to what
-> > > > resets are available.
-> > > > 
-> > > > How does it sound ?
-> > > 
-> > > So we mean these checks will move to the psci driver? Sorry for re-iterating
-> > > the question.
-> > 
-> > Given what I say above, I believe that something we can do is mapping the magic
-> > to an enum like:
-> > 
-> > PSCI_SYSTEM_RESET
-> > PSCI_SYSTEM_RESET2_ARCH_SYSTEM_WARM_RESET
-> > PSCI_SYSTEM_RESET2_VENDOR_RESET
-> > 
-> > and can add a probe function into PSCI driver similar to psci_has_osi_support() but
-> > to probe for SYSTEM_RESET2 and initialize the predefined strings accordingly,
-> > depending on its presence.
-> 
-> Not able to get it cleanly.
-> 
-> 1. Will move away from reboot_mode enum for pre-defined modes and define new
-> enum defining these modes- fine.
-> 2. get SYSTEM_RESET2 is supported from psci exported function -- fine, but
-> how we use it here now, as we do not want to send the reset_cmd from
-> psci_set_reset_cmd now?
+  3. Adding the corresponding DTS node for the VIM4, wiring the MCU to
+     the I2C AO_A bus and exposing it as a thermal cooling device.
 
-You do keep psci_set_reset_cmd() but all it is used for is setting a struct
-shared with the PSCI driver where you initialize the enum above, possibly
-with a cookie if it is a vendor reset.
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+Changes in v2:
+- PATCH 5: Add regulator_disable on suspend thanks to Neil's feedback.
+- Link to v1: https://lore.kernel.org/r/20260402-add-mcu-fan-khadas-vim4-v1-0-2b12eb4ac7b0@aliel.fr
 
-> 3. For pre-defined modes, warm/soft or cold - reset_type and cookie, both
-> are zero, sys_reset2 or sys_reset2 decides the ARCH reset vs cold reset.
-> 4. For vendor-rest , we use sys_reset2 with reset_type and cookie.
+---
+Ronald Claveau (8):
+      dt-bindings: mfd: khadas: Add new compatible for Khadas VIM4 MCU
+      dt-bindings: i2c: amlogic: Add compatible for T7 SOC
+      mfd: khadas-mcu: Add per-variant configuration infrastructure and VIM4 support
+      mfd: khadas-mcu: Add support for VIM4 MCU variant
+      thermal: khadas-mcu-fan: Add fan config from platform data Add regulator support
+      arm64: dts: amlogic: t7: Add i2c pinctrl node
+      arm64: dts: amlogic: t7: Add i2c controller node
+      arm64: dts: amlogic: t7: khadas-vim4: Add i2c MCU fan node
 
-Yes.
+ .../bindings/i2c/amlogic,meson6-i2c.yaml           |  13 ++-
+ .../devicetree/bindings/mfd/khadas,mcu.yaml        |   5 +
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  |  13 +++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        |  20 ++++
+ drivers/mfd/khadas-mcu.c                           | 106 ++++++++++++++++++---
+ drivers/thermal/khadas_mcu_fan.c                   |  49 ++++++++--
+ include/linux/mfd/khadas-mcu.h                     |  39 +++++++-
+ 7 files changed, 222 insertions(+), 23 deletions(-)
+---
+base-commit: f7b64ed948718290209074a50bb0df17e5944873
+change-id: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b
+prerequisite-message-id: <20260326092645.1053261-1-jian.hu@amlogic.com>
+prerequisite-patch-id: f03a086b4137158412b2d47b3de793b858de8dde
+prerequisite-patch-id: 123970c9b29c2090440f2fd71c85d3c6fd8e36de
+prerequisite-patch-id: 3e2e56b0926ba327b520f935df4ced5089bbe503
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-change-id: 20260326-add-bcm43752-compatible-e264a4f7973a:v2
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-change-id: 20260330-fix-invalid-property-bbe54d933f71:v2
+prerequisite-patch-id: 8d675e7a239985c762843515b241f0a2f45f9c92
+prerequisite-change-id: 20260331-fix-aml-t7-null-reset-2b608ebf9da4:v1
+prerequisite-patch-id: 5b5de77af11747ce964404fb827d2ee2bff47ea5
+prerequisite-patch-id: 1e37fc75fed1e533adee0f3e7e6ead1f8ff3c55c
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 2daf583fb5e7449a02bd217d8aca330171b598aa
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: d1ddf9b7710e91f8062de83bd7ba55afb2c4c112
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-patch-id: 9debd88fa60febed9cd7208f86603b4c2d270520
+prerequisite-patch-id: 314ef9ff0c4d1d15dab1dea9d92aa065f1eac3e9
 
-> All above is done in reboot_notifier call at psci-reboot-mode.
-> --
-> 
-> Now in the final restart_notifier->psci_sys_reset --
-> 
-> If panic is in progress, we do not use any of the cmd based reset params and
-> go with the legacy reset. So we need to preserve the values that were set
-> from psci-reboot-mode.
-> 
-> Did not understand the proposed suggestion in above usecase. Need more input
-> on this.
+Best regards,
+-- 
+Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-I explained above. The reboot mode driver sets the command to carry out
-depending on the string coming from user space and whether PSCI supports
-SYSTEM_RESET2 or not.
-
-> --
-> 
-> One other option is to have a restart_notifier in psci-reboot-mode, with
-> lesser priority than psci_sys_rest and then handle all the case including
-> panic and sys_reset2.
-
-No.
-
-Thanks,
-Lorenzo
 
