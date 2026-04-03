@@ -1,164 +1,274 @@
-Return-Path: <devicetree+bounces-284337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284335-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kMs0M22Lz2mmxAYAu9opvQ
-	(envelope-from <devicetree+bounces-284337-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:42:05 +0200
+	id eKogJuiKz2mmxAYAu9opvQ
+	(envelope-from <devicetree+bounces-284335-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:39:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67888392E8E
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:42:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0024A392E27
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:39:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 739EC3077D27
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 09:35:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BD8DD30158B9
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 09:34:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20250361678;
-	Fri,  3 Apr 2026 09:35:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56102F0C74;
+	Fri,  3 Apr 2026 09:34:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Vec81VZg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmtyylji0my4xnjeumjiw.icoremail.net (zg8tmtyylji0my4xnjeumjiw.icoremail.net [162.243.161.220])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 390792F99B8;
-	Fri,  3 Apr 2026 09:35:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.161.220
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775208941; cv=none; b=saNUCC+iJm/FZ4/zX7D0UVI8Fw+m8SZ62egaW46CRPx8s41dPrqNKfVYvq6c7LZzmmcGT4v+4kr4SJgrJV8SCIB8medlUArhKE3nQvrJzAUZlAz0p2IxwlpAT2EZmmD8N3U/4+IQh2OPuPfDynUBkJzp7U57MmGX5cM7zH1bNbk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775208941; c=relaxed/simple;
-	bh=3aOgzOA4jLwxhsbvBWrKAOu+pLgm5ki8Y0k6FWbFxsk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EUSkl4JTdVUtiInZOT6tGLhREBYVxvwrGUYFAmn7GahHu2h0odQuQjN36bfNJHzHTnoiCiEca5jb9ng56DAmxds/mPV+aC6904RbmiSkS9hGHZG8hBmTzLWIRH9Xo8ylr7VF6OppdOC6jLpgjjZssqNZq7KyaEBXuKyIOuKUKLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=162.243.161.220
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app1 (Coremail) with SMTP id TAJkCgDXbHHWic9pw4oOAA--.58504S2;
-	Fri, 03 Apr 2026 17:35:19 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	p.zabel@pengutronix.de,
-	huangyifeng@eswincomputing.com,
-	dongxuyang@eswincomputing.com
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com
-Subject: [PATCH 0/3] Add driver support for ESWIN EIC7700 HSP clock and reset generator
-Date: Fri,  3 Apr 2026 17:34:59 +0800
-Message-Id: <20260403093459.612-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013013.outbound.protection.outlook.com [40.107.159.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289EC27B50F;
+	Fri,  3 Apr 2026 09:34:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.13
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775208867; cv=fail; b=gQY+PJAneqZLp7j/Vzrs62L9AziY4GCgGa2ASaruzCcWRKGoYwDypIQsm0wOAEEybfWUWn9HTWXommHO+XdomQYUfO8/6rFvLBDhz1smvWTZXD4eRCB1fe5xUp5T3U1QcSE/u/Y6W6wOBfrIEXa1dcE/Xrlg/3NVo2BvAvzrTXI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775208867; c=relaxed/simple;
+	bh=iOedspF3MNHklDwlBHy0Vc+z5lwisP9Qd3fm+RzBw0k=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Up8Jmvq5RWhkR7EQJMHgjFMkJOrT/llMRAkTsHnsjezAXGMe1KS4wTTXoMqL+FoibBbjdMFmMCfIXQfddIRUDdlBOdFWGyBIXrvVPzcCl/3EYuIsIZDnKXq0XWLdy/vrnxQndblg6leUeh4/sytk/YQ3+3ssdVTZSS8ZqZ4VGC0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Vec81VZg; arc=fail smtp.client-ip=40.107.159.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xrqYlGjZEGqO2BnVHvcKD7Z0GpDwT9ee4Qbgk+1l7ZjB5GYdy01PTv6e4L5p5EG366juWejm1AiztnfTu/c/XL07dtvbhCivNoX0iPidU0OVvQITqiyL3GV2Rit9+YNT5LlaKU+vw4m3ksszf9SyLYlQJsXX9WMhqtAEh3J6epBDAoMJq1oAQAZb33mZJRHw401VtGbcreDnZyWt6YCnryo0we2gyOwWk5VTPXCwMVU9ROTLg8PtI02QyUpd3OE4FGZYHh2Q2WABXJpFtT6lmnjWmGySYls6n/+KuugcxBT7i0lCT4hRL++xVVdum59A9NeFtAC38Of5buTHwDJ76A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RVmT/WlN+VsGcSpN+sNolSrteDQUxXvGdTYtp70UG80=;
+ b=hNYtQHpnZ2DdLR0dJ5x7u6IxDdruo3i/Ye9ZXl+ETd/2wEQCB0osje23kCV6VG4vvX3ve8Qh6fTDbwBHqfHuMTh3IGyBmvGT9N0FIs7AcDndUe15KWCYDPhqUGeXxCySFB/jy11gCo0MVqgdrJHl6FlGgkL4J8e21vuRM0nNaQB+gs6KpeCJm7ToGCnH7VhhuLcntZLLmpi4WgU6X3R2+81O3Z3o7aeqzzrWDcxMyUNWNjUtg/0m+sRuF6qp3JpU8pHG/rIGSa+xvKg/oSlS+y4S3BEYfxoJGIssVHa7K1uY7EXqZexO/9aelyPTDRsOd4xDluey6Qm0TG0Uc1ioug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RVmT/WlN+VsGcSpN+sNolSrteDQUxXvGdTYtp70UG80=;
+ b=Vec81VZg5FxtLEog+o0EI3K8YjhKW3JdExJKeOpuNSE1RRI/F3qA6VwhsoupBMKzVOvmT4Mhpj0NRept4+5kJagWs9qcELQaRBH4wo6X2B+SOFpGAyfAE0VGlzkmCG34RaEUkvRDKteWyJSOSjGz+1TecIG4ksiU423aGobbUa3CDiUIlovvOBuSeJngp5DuicJ9ObCPYCT8+RMWsJPfDkQG2F1nIa81G/+/4AcJZONiOrHp8ufJ9kJ+WK5Ibm5MTWR2sjH04xp6nbi7+CIZZ0XuPe6+0htyVjegZ84nuEyyTutZ1jf4jCLP0FiQWJV0pfuYrNz1fZDRac/sqReWmw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by VI2PR04MB10836.eurprd04.prod.outlook.com (2603:10a6:800:276::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.19; Fri, 3 Apr
+ 2026 09:34:19 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64%3]) with mapi id 15.20.9769.016; Fri, 3 Apr 2026
+ 09:34:19 +0000
+Message-ID: <37b06014-33fb-4c4f-bbe9-bbaa411b9d1d@nxp.com>
+Date: Fri, 3 Apr 2026 17:35:26 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 09/11] drm/bridge: imx8mp-hdmi-tx-connector-fixup: show
+ a warning when adding the overlay
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>, Marek Vasut <marex@denx.de>,
+ Stefan Agner <stefan@agner.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>
+Cc: Damon Ding <damon.ding@rock-chips.com>,
+ "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>,
+ =?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>,
+ Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Adam Ford <aford173@gmail.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Christopher Obbard <christopher.obbard@linaro.org>,
+ Daniel Scally <dan.scally@ideasonboard.com>,
+ Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+ Fabio Estevam <festevam@denx.de>,
+ Francesco Dolcini <francesco.dolcini@toradex.com>,
+ Frieder Schrempf <frieder.schrempf@kontron.de>,
+ Gilles Talis <gilles.talis@gmail.com>,
+ =?UTF-8?B?R29yYW4gUmHEkWVub3ZpxIc=?= <goran.radni@gmail.com>,
+ Heiko Schocher <hs@denx.de>, Josua Mayer <josua@solid-run.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Marco Felsch <m.felsch@pengutronix.de>,
+ Martyn Welch <martyn.welch@collabora.com>,
+ Oleksij Rempel <o.rempel@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
+ Richard Hu <richard.hu@technexion.com>, Shengjiu Wang
+ <shengjiu.wang@nxp.com>,
+ Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+ Vitor Soares <vitor.soares@toradex.com>
+References: <20260402-drm-lcdif-dbanc-v3-0-27cd247a0847@bootlin.com>
+ <20260402-drm-lcdif-dbanc-v3-9-27cd247a0847@bootlin.com>
+From: Liu Ying <victor.liu@nxp.com>
+Content-Language: en-US
+In-Reply-To: <20260402-drm-lcdif-dbanc-v3-9-27cd247a0847@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+X-ClientProxiedBy: MA5P287CA0089.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d4::9) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgDXbHHWic9pw4oOAA--.58504S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxAF18tFW7Cw1DCw4xur47CFg_yoW5Gw15pF
-	4DWF95Gr1UXrWxXan3J3W0vFWfX3WfJryakasrXa47Za9IvFyDJr4IyFy5AF97Z348Xr43
-	JF1aq3WUua42yaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
-	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUmjgxUUUUU=
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|VI2PR04MB10836:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec22d7e4-2da3-4503-af72-08de91642e24
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|366016|19092799006|376014|7416014|921020|56012099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+ Z70OpVziTqJigL8YJUddQv46Rt8BwlVFs8hJVo3akyeepJ+1mrhgpZS5V7BPNQixxCebvewvXQYlEijI06jnaXPaYg0Swokrz74HKEf9ENDF2y7OO5AZCpPHpfukBaqMN8to5q1yfXgVFSSBUBtrLaGElugbGQ3n19D20nPD35AqmHyY6gW9vLpZt2u58l3TLRVrOug4SVqVvcMtkT8bHHcFGApSu8N1HEQ93b4W17lJF1aZ6llxH7+Q9+pmCpwhQUWB5tYMe5ohGllvOT14gMmTu4QNbZiY+oRJPfPCVJRNMXjtkUk75ghh/xsdpXX+xx8Lz/BTxS5Z/3vz9BKgYyZlJ26nxnrHdRlaUrykCFtfF001okMBNN1CspXPEsLy8e/oavZ/Me6AgsNOX+9V0Fz8e5K5kan/k0VNAtScLEzW0EonFp0efSmu1oNoHHrrhvinPs7fBzbBrFuFbRWuiS1MpfbcP42VtQj9Q2mIShlwvgTWbhLAv6AQhxcJ/FTrjwODVQoxCq7Lram025EoSMJsq/g49IbDpsh7CfB0ftYh7jRrgsTmvx2PCpGdHeS2SM0m3kTfltdJ2E62otF29clBxuuI+jhq/w6i0YiVmrnY8L+uDlWWQLi390tCsgzrOUGQFmH8a4I4Pl4RJPIf2w2Vf1NSLrXEGeaIFqj0MWLn07zQNPTD5Ccsc3YNj9ZQHA9xW9vt05DTliHSWb92ToIGSNJ1DYia5rVz8x6TGN5SstsLFAGMhsb/q41zlB6j4BO1cPwjkT396P70LT9saemDWMb5othPsBnuOj7An/g=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(376014)(7416014)(921020)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?SUI3eTVWSTh1eWl5QTQzUElxbk9jTzFXQWZMUUNjTExHVDdBTjFvMjM5cU9K?=
+ =?utf-8?B?N3d6QXZjeTlWeDlEUFlPTFZiYjhaeXlLVm1ZY0duY0RMOFAxYjJRZFlWOE1p?=
+ =?utf-8?B?WUJoSVptYTRDSDBlbHh3WnhPNkhwRWhadVJFdzVCdHdocFAybnJOVHNZZ0M1?=
+ =?utf-8?B?VDd1RlJFQUVZZjA3aUhjUzlsVDRPb1Y1RGc4Sm8vRmxFbFZPcnc1bm9GT1l6?=
+ =?utf-8?B?VXIvWG1WTzRDS0JxeGQ4TCsrNGRUYThGZWhDc1M1TVBaWkYzNG4xSXFTazRB?=
+ =?utf-8?B?L2ovUTlEbW9ueGZkdHVHSFd6ZC9zaEJVWlNUSWNSOVpUM0dxelRJL0RucWI2?=
+ =?utf-8?B?K2lZcUZ6b3BjcXNxelN4dy9yU1RBYTlCOGFhdmxaNXptYktUajJYN1I1SGdD?=
+ =?utf-8?B?d2ZaT01YVTViTkx0V3lLSUp6UVF1bXJTSW1IZldTRXcrZVpzOXp0bTMzYytj?=
+ =?utf-8?B?bWZLdE0rSjlMMGRnMlhuRU8xRlJyeEF3ZVF5Ni8ya1krY1VONEljczhqTzFq?=
+ =?utf-8?B?N0FXcXk3emNJM2lmN1JHdWxFeHVuRWZ3MWo4aVdid1QyS2pLalAyUm5RL2VX?=
+ =?utf-8?B?M0p2OG4rSHdaVDlrSitybnJ0NG1BRVN4b3NxT1M4cm1zaDdYbWVSWkk5Q3BR?=
+ =?utf-8?B?QXJqbGNMU3NENlNKMXlmRExHeVNIMEdhZmllQjVLK2lreTdqeW92N3NxdUk2?=
+ =?utf-8?B?UGE5QkVNbnNVQWtJZG9CZkZaMGtacjlPTjBKTnhuZXFQV044RHVZNjQwNDZi?=
+ =?utf-8?B?QkRvQy9YdWVRdktHb1U3azl5Q2xFQ1JYakFiSWRiWEJrTHFBZkkrdTRFbFlW?=
+ =?utf-8?B?S1BPUjhnMGxmekhRUXd6MzI3ckxVeHI2L01VM1hLN2krY28valJPcmljVTNk?=
+ =?utf-8?B?NjErL2d1TG1VRHowcUdDWlR2RjZvVVBLUndaOEVJMWdOQ25NanhEeldWTFNC?=
+ =?utf-8?B?ZUIwdzIxKzFhdkNwaW5kK04vY1A4Q3hFS01MS2RxVUZrQmNXdVZhb1FjWkxy?=
+ =?utf-8?B?M0hlZDYzd2RDVTZqUE5OOVdQczlLbUNmWUoydnpncFRmbUJ2WFdVNVRNVk5P?=
+ =?utf-8?B?MVorVkpVd3V1elhTcFpNSnFzNUFnTlFMMThGaitIeEhXMDZlMzVkKzBYM2xq?=
+ =?utf-8?B?b1FNZDlsSUlpSkRUdGZESEdONUN0KzNpWklVT1QydXB4REEyd0YxeXp3S0VH?=
+ =?utf-8?B?SGxNaDVwcG9rRkRlVjYybXlyVE1FV1F5NzJJeUlPZlpzOS81aVhGbEU0UEN6?=
+ =?utf-8?B?bTlRdEs3dW4wV0FsOXp6OS8vSHhTcWw3Q2NHbVdZeC81ZDc0a2JVVGZmYTcw?=
+ =?utf-8?B?RDE0NjFBNEJBb2dSZk5sNGFwOWZJaStIajM1clg5VzNrNnhUN1NLQ0FNMVlC?=
+ =?utf-8?B?OVdLeWdOSTFZRzNCb2VFZ0NzRXk2S0R5M0UweTQ0QzR2Z2h2Y21zQlNlRGg1?=
+ =?utf-8?B?Nnh6dHFnaGI1c3lJYzQ0ZFY5eEg3My9veTk1K29WQXhPUCtyNk5FeUlBK0FS?=
+ =?utf-8?B?a3J4bGw3bDlNZWRCNTVOVXJZY1FQa2xiNEFVV28zUDBJWHhuSVZta0grcS9U?=
+ =?utf-8?B?cXlPUW1pa3ZHenNXelFBVEJsZkZXT1NWbmVBSk9UTEpqZ0l1UGVwR2V0SVJs?=
+ =?utf-8?B?ZlQ2YmRKend4NThRclRUQS93cnFjRm9yL3ZZb2dkM2VYdnNlTlhoVldsb3hQ?=
+ =?utf-8?B?NjlzUmd2YXlPc3BuU016S3Jwb2ExSEMxTEl1VWRab0w0bm96QVVNM25pNGNH?=
+ =?utf-8?B?N0N3UXJyUXR1NGE4KzNhZE1tV0VYWDlad2xub1RLRGNJbWhRTmxtK3dKQzJi?=
+ =?utf-8?B?WGxqNE5tMXhuRUNLcmZGQWdJWUZ6WERjMFFsUHRmZFhUcGo2eHhIN01COFZB?=
+ =?utf-8?B?d0NhZ0g0NitYczJRcWpLNEdUWHdyc2RSTU5yanZTdnVETGxWak42cWNOUFJ4?=
+ =?utf-8?B?QU0xcnBySEZaQjNWcnFleUppUng1aWdPTFJXQXFJSjRPUWhFN3VqUWE0Yk5D?=
+ =?utf-8?B?MWxwLzJMUHdjcFUwaVhkbjM5Yzh2bVV4UHMvYVF2VU5Na3ZpYnp1SWk0RDJj?=
+ =?utf-8?B?WW5NLzdoTmRXVEhMcFVCMVRpZ1VMc0ZBSWNLSXhlRW9Ed0VyVjRicG5GNGp6?=
+ =?utf-8?B?dUNic1NYek52NmhJY0RpeHpwQjZtTW5YbXJmd0JweER1UlBUQ3lCQnpINzJX?=
+ =?utf-8?B?dFgvdFlPUXdRby9ub2JhcGpNd2luUU9MWXRDd2d2cmc5TytHd1JrMGpKV3Ju?=
+ =?utf-8?B?R3JwZlNvTkhPWGt5VEw2WEdSUG9TOXlZUmNqdFpEZlIvWGxORzloMGpmWnNJ?=
+ =?utf-8?B?LzNZeFZuNWgwL3Y5endVTlRLdnVXMkRuL3dtbGo1VVZ1TVk2Nyt6QT09?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec22d7e4-2da3-4503-af72-08de91642e24
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2026 09:34:19.2105
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wv8qeiX9ZG7zUFINt5JgWfRYWhbrX/al5+wlZJCGTMGWdDei3FyCCh+vjPSotDNlZCM6V38CvVI5g01i90c8+A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10836
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-284337-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[bootlin.com,denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nxp.com,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-284335-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[rock-chips.com,bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,nxp.com,technexion.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
-	FROM_NO_DN(0.00)[];
-	TO_DN_NONE(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.963];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:email,eswincomputing.com:mid]
-X-Rspamd-Queue-Id: 67888392E8E
+	FROM_NEQ_ENVFROM(0.00)[victor.liu@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCPT_COUNT_GT_50(0.00)[52];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:dkim,nxp.com:email,nxp.com:mid,bootlin.com:email]
+X-Rspamd-Queue-Id: 0024A392E27
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
+On Thu, Apr 02, 2026 at 11:26:04AM +0200, Luca Ceresoli wrote:
+> Describing the HDMI connector in device tree is recommended. While the
+> overlay insertion is a workaround to avoid breaking existing devices, every
+> dts should be improved by adding a connector description.
+> 
+> Add a warning to make users aware as far as possible.
+> 
+> As a warning line cannot hold all the relevant info, add a detailed comment
+> in the code so it easy to find when the warning is seen.
+> 
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> 
+> ---
+> 
+> Patch added in v3. Kept as a separate comment w.r.t. the patch adding the
+> overlay to let it be added in a later moment in case we want to convert
+> existing dts files before adding the warning.
+> ---
+>  .../gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.c
+> index dc1736bfc3ac..f6190d86abd0 100644
+> --- a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.c
+> +++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.c
+> @@ -44,6 +44,23 @@ static int __init imx8mp_hdmi_tx_connector_fixup_init(void)
+>  	if (endpoint)
+>  		return 0;
+>  
+> +	/*
+> +	 * Boards with an HDMI connector should describe it in a device
+> +	 * tree node with compatible = "hdmi-connector".
+> +	 *
+> +	 * If you see this warning, it means such a node was not found and
+> +	 * a fallback one is added using a device tree overlay. Please add
+> +	 * one in your device tree, also describing the exact connector
+> +	 * type (the added overlay assumes Type A as a fallback, but it
+> +	 * might be wrong).
+> +	 *
+> +	 * This node is necessary for modern DRM, where bridge drivers do
+> +	 * not create a connector (see the DRM_BRIDGE_ATTACH_NO_CONNECTOR
+> +	 * flag). See https://docs.kernel.org/gpu/drm-kms-helpers.html for
+> +	 * more info.
+> +	 */
+> +	pr_warn("Please add a hdmi-connector DT node for imx8mp-hdmi-tx.");
 
-Add support for the ESWIN EIC7700 HSP (high-speed peripherals). The drivers
-provide basic functionality to manage and control the clock and reset
-signals for EIC7700 HSP, including mmc, USB, ethernet, SATA and DMAC.
+Missing '\n' in warning message.  With it added:
+Reviewed-by: Liu Ying <victor.liu@nxp.com>
 
-The clock and reset registers are mapped to overlapping I/O address ranges.
-This causes a resource conflict when two drivers attempt to request the
-same region. Use the auxiliary device framework: the main driver
-allocates the shared register region and passes it to auxiliary
-devices, avoiding resource contention and duplicate remapping.
+> +
+>  	dtbo_start = __dtbo_imx8mp_hdmi_tx_connector_fixup_begin;
+>  	dtbo_size = __dtbo_imx8mp_hdmi_tx_connector_fixup_end -
+>  		    __dtbo_imx8mp_hdmi_tx_connector_fixup_begin;
+> 
 
-Features:
-Implements support for the ESWIN EIC7700 HSP clock and reset controller.
-Provide API to manage clock and reset signals for the EIC7700 HSP.
-
-Supported chips:
-ESWIN EIC7700 series SoC.
-
-Test:
-Test this patch on the Sifive HiFive Premier P550 (which used the EIC7700
-SoC), include USB and other peripherals. All the drivers of these modules
-use the clock module and reset module.
-
-This patch depends on ESWIN EIC7700 clock controller patch [1], [2] and [3].
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20260331&id=8add6d87dc69c0620c7e60bdc6be6b3b0092d9fa
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20260331&id=cd44f127c1d42833a32ba0a0965255ee6184f8c1
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20260331&id=858f6273cf003e97c817903a07d8001b483fe40b
-
-Xuyang Dong (3):
-  dt-bindings: clock: Add ESWIN eic7700 HSP clock and reset generator
-  clk: eswin: Add eic7700 HSP clock driver
-  reset: eswin: Add eic7700 HSP reset driver
-
- .../bindings/clock/eswin,eic7700-hspcrg.yaml  |  63 ++++
- MAINTAINERS                                   |   3 +
- drivers/clk/eswin/Kconfig                     |  12 +
- drivers/clk/eswin/Makefile                    |   1 +
- drivers/clk/eswin/clk-eic7700-hsp.c           | 339 ++++++++++++++++++
- drivers/reset/Kconfig                         |  13 +
- drivers/reset/Makefile                        |   1 +
- drivers/reset/reset-eic7700-hsp.c             | 151 ++++++++
- .../dt-bindings/clock/eswin,eic7700-hspcrg.h  |  33 ++
- .../dt-bindings/reset/eswin,eic7700-hspcrg.h  |  21 ++
- 10 files changed, 637 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-hspcrg.yaml
- create mode 100644 drivers/clk/eswin/clk-eic7700-hsp.c
- create mode 100644 drivers/reset/reset-eic7700-hsp.c
- create mode 100644 include/dt-bindings/clock/eswin,eic7700-hspcrg.h
- create mode 100644 include/dt-bindings/reset/eswin,eic7700-hspcrg.h
-
---
-2.34.1
-
+-- 
+Regards,
+Liu Ying
 
