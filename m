@@ -1,62 +1,99 @@
-Return-Path: <devicetree+bounces-284389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284391-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iFU7Hh6iz2nDyAYAu9opvQ
-	(envelope-from <devicetree+bounces-284389-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 13:18:54 +0200
+	id EJjYBiukz2mZyQYAu9opvQ
+	(envelope-from <devicetree+bounces-284391-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 13:27:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCEA43939E7
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 13:18:53 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AEA8393A96
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 13:27:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 745A4303FDAC
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 11:18:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CD970301D952
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 11:27:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 971B63AF679;
-	Fri,  3 Apr 2026 11:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F10E63AD523;
+	Fri,  3 Apr 2026 11:27:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NTqx9WJ8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 935F93AEF4E;
-	Fri,  3 Apr 2026 11:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D49372E7185
+	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 11:27:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775215126; cv=none; b=cq9aPA7uxk03F+7U0fioC/rrX/yxL9Xlu0ZjKZcj5ScBDzz7F7hwfSCUGJed8nd4UMQ76gGTHkBkC/DFvj/aFHJ5O1PoI08yYm9UUAFOftwOftnmdAgwCI8WD+bqs7/PrSFGbifkRQBSnYr+hBQUmt2kYv51T1PT0nuRCIGIuFE=
+	t=1775215650; cv=none; b=Ka4wTD1XHntFOT7VywpAUnPyQIwyw583/O8BfEZ8i66fA1OZ2qRrRl6HQvGd2d3hrN11C8igQBHqy4upkE/ipcN45GZlV83xozZEm2EqcBb0bmCM01sl72EJoEg+hhaIxqs/SgMYD3DryyyVVWWRzNJLJwp3pfTXCUYT6QnWlpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775215126; c=relaxed/simple;
-	bh=rbf18IyppxwrWqB14RXBvTmJ3QT6VlotRUzDDsCrNrU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=O+4fZr/RNm4iH+jU8Vxg54Q+4j2R1NRQHhxN/IoplkhgrxApimVOo/HFgLsdDYSUPL+GeuynAYpwjvtbFZeSWmVfbn0vYvb8bRcMlJ2aHVGpaSRM106XGELCQm84XbBUNUGQsZe1Dw83AfbpEbYEizRojKbOQz1JJfvwClgOKc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from localhost.localdomain (unknown [223.166.95.230])
-	by APP-03 (Coremail) with SMTP id rQCowABngdgFos9pderADA--.36082S5;
-	Fri, 03 Apr 2026 19:18:31 +0800 (CST)
-From: Han Gao <gaohan@iscas.ac.cn>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Cc: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
+	s=arc-20240116; t=1775215650; c=relaxed/simple;
+	bh=aO1j+V45gKVspVh+STk4Nhcf53cEsgoJkFmIjjpcfHA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=StDYESTQMLc3fTFaZYOlttKrYN8iwtdLp/46rRhI831JnHfLTg5p+pvqLoaYau6hPcT+djVh8eifEs9ppWboOn9HXP9N3oSSr4AL135jmCsNNQ5hakhAsLwGpqrqMEOSGmcoE4GrGJHnuA/i/xlmkMBiSmYlqJd0SCrhXhmvGF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NTqx9WJ8; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-82cd6614a90so799934b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 04:27:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1775215642; x=1775820442; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+NHifJZgQHQqWkUaJjmrpZ1+zeEyrq0oDIlsASkhbXs=;
+        b=NTqx9WJ85Ju1zwhHb0HDfYYccjBZFaphv2/UeMJNyKp/g1Yu4udwbdIz5His/9OTcq
+         O1EwcQMRTJPQx0ZjYXykr+ksG+ZBS3WqqLaBH+PKEBq6sIJRIX/zv5iw1a/TCrjD6IfJ
+         ob4qsKmVnKKzl3viloDqi3foSi62yGzx3l09Ey6Dj+VPkhsTSXwPUzbbnro+qbpW7fg2
+         q5D7gjC3jp+vvX/o3yAx9aGNbgaxowKbcfYcv7fH3Tu4uRAqV/YY+uqVxTPhF26c3Qry
+         JnjNe4TUbjv0KEsWJ8LkKDF20P1yozVWz0EaHnTYJWGXXNIc1zdqAmxv0md8R9ogRYqG
+         Zrww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775215642; x=1775820442;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+NHifJZgQHQqWkUaJjmrpZ1+zeEyrq0oDIlsASkhbXs=;
+        b=b7Zj9SNE7hC32R9OPIeJy6Gn+KevGH6Gpolitmno4IRcKi33GEgIYCev0XdypkOdNi
+         B+elMKwqrYyuWefhsiNpye2mg5fqzMDlQZd0jThoxPCz6RnA8uxHKt+Kw4LqSi6beH2y
+         HGFzPoDmAAhLCVWAZczsWk+rAmFzpioe55kSqwo8rrj+NbkRQ2UwH4af3O593ETs7p2x
+         gYIT7+5SjWFP+wdFWrVQBbfzYYMHwMdqrTAxyfRbwdubpUq6quwE9qfGwdMXA3JRbnwL
+         DHegVg7WpzZE3AjQAEOKGw2n40su7SzZlK5YhMwY6gPcqrExGUnfSsARqWoyfwHb0Dyo
+         DLwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWlVuuIQQOsBoHAkZrlS6NXO5eJlB6e7416fU0X5OIPT5dvd0qzi/snoCzqSOeX4Jraz9X1r2KS6hr+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0djilQE+GNXG1uwgQMi9K2j7i2ccJLFsKfCjA+3kOIL7i1SiE
+	LzOYUGDa/xp9EC9bxPuJvhZElmIpiFAwEWzIWu9U6v/U/tmijes4hTObsLOQZg==
+X-Gm-Gg: AeBDiet7XXSv2naWg6rkTV+xXgvYp/Ni69twf1nPd0+T5kjGJob3HW24TeEL7vJJ2TW
+	HyxrdbV111ZdiFfRCb0/Unva4XbhAb9GVUME1L4dPs6Gd94Awt/NSMtor5lWk38LXVD4kwKSHkE
+	hcCjAWuZcBuhS9BYwyH65uJURpVGDvy4129t5MDmq5iQYP9nMIs7TBZ+/DOVTioLi/QTiHCbCJy
+	xttEBM0ZEYPpyUkpF+pCnua0DHEHPwQnQhyR2ZIzHEMYVOQcYBqMHMVcsihJrbZgiVQMqOz5XY9
+	1ZdY6tyYo6J+fZArb7LxSY2jEfYextaMaNMVUzSMnVBc8nBsRt60LCj6MGMLFvKqkYU7LCMQ3j+
+	XVprbqboXVON4vdmv40kn93NyaLBOGoJEXqYTxAGo384sSODbOSxw4Ez9Ba0Vr/mcL/ppHDmBtH
+	K1mYmWlqPcXFKarxMPz2vjwYbyBnfLg7EzKyck9GepQRg9pGq8DDOD14RyEQ==
+X-Received: by 2002:a05:6a00:1745:b0:82c:21df:807a with SMTP id d2e1a72fcca58-82d0db6ac7bmr2642877b3a.26.1775215641956;
+        Fri, 03 Apr 2026 04:27:21 -0700 (PDT)
+Received: from phuc-desktop.. ([183.91.15.56])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82cf9b6113dsm5202251b3a.23.2026.04.03.04.27.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Apr 2026 04:27:19 -0700 (PDT)
+From: phucduc.bui@gmail.com
+To: kuninori.morimoto.gx@renesas.com,
+	broonie@kernel.org
+Cc: lgirdwood@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	perex@perex.cz,
+	tiwai@suse.com,
+	linux-sound@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Han Gao <rabenda.cn@gmail.com>,
-	Han Gao <gaohan@iscas.ac.cn>
-Subject: [PATCH v6 3/3] riscv: dts: spacemit: Enable USB3.0/PCIe on OrangePi RV2
-Date: Fri,  3 Apr 2026 19:18:23 +0800
-Message-ID: <170530e57836a1793105d29fe3dff628844cfa64.1775214644.git.gaohan@iscas.ac.cn>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1775214644.git.gaohan@iscas.ac.cn>
-References: <cover.1775214644.git.gaohan@iscas.ac.cn>
+	bui duc phuc <phucduc.bui@gmail.com>
+Subject: [PATCH 0/3] ASoC: renesas: fsi: Fix system hang by adding SPU clock
+Date: Fri,  3 Apr 2026 18:26:52 +0700
+Message-ID: <20260403112655.167593-1-phucduc.bui@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,169 +101,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:rQCowABngdgFos9pderADA--.36082S5
-X-Coremail-Antispam: 1UD129KBjvJXoW7uFykZw1rWr1ktr18Xr4Utwb_yoW8KF4xpF
-	17ursI9asxtr1Sga13Wa40gr43G3WkGFZ5AwnYvr48Jr4kWas09rZayr13AF95Ja1kX343
-	AFy0yFyxGrsrKF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmY14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JrWl82xGYIkIc2
-	x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
-	Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UM2
-	8EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s0DM2AI
-	xVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-	vE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
-	r2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04
-	v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
-	6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
-	AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE
-	2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0x
-	vEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCTnIWIev
-	Ja73UjIFyTuYvjfUO_MaUUUUU
-X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiBgoGDGnPX2XmOwAAsH
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,glider.be,perex.cz,suse.com,vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284389-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284391-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NO_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gaohan@iscas.ac.cn,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.984];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[jmu.edu.cn:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.2:email]
-X-Rspamd-Queue-Id: CCEA43939E7
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8AEA8393A96
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable the DWC3 USB 3.0 controller and its associated usbphy2 on the
-OrangePi RV2 board.
+From: bui duc phuc <phucduc.bui@gmail.com>
 
-The board utilizes a Genesys Logic GL3523 USB3.0 hub.
+Hi all,
 
-Define a 3.3v fixed voltage regulator for PCIe and enable PCIe and
-PHY-related Device Tree nodes for the OrangePi RV2.
+The FSI on r8a7740 requires the SPU clock to be enabled
+before accessing its internal registers. Without this clock,
+register access may lead to a system hang, even when the FSI
+functional clock itself is properly enabled.
 
-Co-developed-by: Chukun Pan <amadeus@jmu.edu.cn>
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
----
- .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 69 +++++++++++++++++++
- 1 file changed, 69 insertions(+)
+This series adds support for the SPU clock and updates the
+bindings to allow multiple clocks. The driver retrieves the
+SPU clock and enables it during DAI startup, then disables
+it on shutdown to match the audio stream lifecycle.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-index 98b1d47053d2..5d4e278695c3 100644
---- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-@@ -23,6 +23,16 @@ chosen {
- 		stdout-path = "serial0";
- 	};
- 
-+	pcie_vcc3v3: regulator-pcie-vcc3v3 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio K1_GPIO(116) GPIO_ACTIVE_HIGH>;
-+		regulator-name = "pcie_vcc3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_5v0>;
-+	};
-+
- 	vcc_5v0: regulator-vcc-5v0 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc_5v0";
-@@ -54,6 +64,10 @@ led1 {
- 	};
- };
- 
-+&combo_phy {
-+	status = "okay";
-+};
-+
- &eth0 {
- 	phy-handle = <&rgmii0>;
- 	phy-mode = "rgmii-id";
-@@ -224,8 +238,63 @@ dldo7 {
- 	};
- };
- 
-+&pcie1_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_3_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie1_port {
-+	phys = <&pcie1_phy>;
-+	vpcie3v3-supply = <&pcie_vcc3v3>;
-+};
-+
-+&pcie1 {
-+	vpcie3v3-supply = <&pcie_vcc3v3>;
-+	status = "okay";
-+};
-+
-+&pcie2_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_4_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie2_port {
-+	phys = <&pcie2_phy>;
-+};
-+
-+&pcie2 {
-+	vpcie3v3-supply = <&pcie_vcc3v3>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-+
-+&usbphy2 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3 {
-+	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	vdd-supply = <&vcc_5v0>;
-+	status = "okay";
-+
-+	hub_2_0: hub@1 {
-+		compatible = "usb5e3,610";
-+		reg = <0x1>;
-+		peer-hub = <&hub_3_0>;
-+	};
-+
-+	hub_3_0: hub@2 {
-+		compatible = "usb5e3,620";
-+		reg = <0x2>;
-+		peer-hub = <&hub_2_0>;
-+	};
-+};
+The binding is also extended to support additional clocks,
+as FSIB may require more clock inputs, while FSIA typically
+uses fewer.
+
+This has been tested on r8a7740 (Armadillo800eva) and fixes
+system hangs observed during audio playback.
+
+Patch overview:
+ [1/3] dt-bindings: sound: renesas,fsi: Add support for multiple clocks
+ [2/3] arm: dts: renesas: r8a7740-armadillo800eva: Add spu clock to FSI
+ [3/3] ASoC: renesas: fsi: Fix hang by enabling SPU clock
+
+Thanks,
+Phuc
+
+bui duc phuc (3):
+  dt-bindings: sound: renesas,fsi: Add support for multiple clocks
+  arm: dts: renesas: r8a7740-armadillo800eva: Add spu clock to FSI
+  ASoC: renesas: fsi: Fix hang by enabling SPU clock
+
+ .../devicetree/bindings/sound/renesas,fsi.yaml     | 12 ++++++++++--
+ arch/arm/boot/dts/renesas/r8a7740.dtsi             |  3 ++-
+ sound/soc/renesas/fsi.c                            | 14 ++++++++++++++
+ 3 files changed, 26 insertions(+), 3 deletions(-)
+
 -- 
-2.47.3
+2.43.0
 
 
