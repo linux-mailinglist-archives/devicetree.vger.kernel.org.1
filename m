@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-284364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284365-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yIdIA2OVz2nmxQYAu9opvQ
-	(envelope-from <devicetree+bounces-284364-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 12:24:35 +0200
+	id 2A7pOYOTz2nmxQYAu9opvQ
+	(envelope-from <devicetree+bounces-284365-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 12:16:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FD71393474
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 12:24:34 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB4139333B
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 12:16:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A0E6A305D5CC
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 10:15:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 788EE302D917
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 10:15:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDEEE38F639;
-	Fri,  3 Apr 2026 10:15:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 849E56F2F2;
+	Fri,  3 Apr 2026 10:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hk57mXo9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="qYcoeav5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A4ED38F655
-	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 10:15:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEDDD38F255
+	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 10:15:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775211328; cv=none; b=urE6CwfxekfM3tn6LzGbCSjKTOQ5ZgFy7evylHsHIF8j6aFOolN45W896ujaST1oPP/O41oTrF9CSxNzytrBmDSAH5Ek6Nh5lig7G3ylmCXflztX2DAod3Fva0znWoea3IRK5wzQ44IfFN5I1sN1gTEo+FVbRlErjfIzKYpBd7U=
+	t=1775211329; cv=none; b=mhsOKJbKEoxjtPBfobnbx7ZuValyF7fvsfDhEqhPfvvcr9OSzEblMtYFOmJ0+LJMrdRpJL3bumts1a5SchrA1f336C4+g7C4fDRZ/9MmlyaRuK5Spv4ggVHkG8IEyYm4Smg/rfume4hfDpVkpbxXG6In6TfW+2AOElrrm+YMX/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775211328; c=relaxed/simple;
-	bh=IpM5hFB+kdNbV7lli0k0M4KR3AimfZZxqbKqhSv0u4k=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=ataBt1uR470JP5oM3pLxA9sKz4K5mMoVj1FKdzoFjGiLapxaWm3+Tf4oqa+xsr2O5kXRMsJ3Dd2p2FpnWVr4MPcxojTeUFh48+OsNoywipC52eBvO0me+EnDCII3JUjzw3RkhW/g4eh2S+nuCCEwE33JUkAOwCYKCuDVXx6zNXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hk57mXo9; arc=none smtp.client-ip=209.85.214.181
+	s=arc-20240116; t=1775211329; c=relaxed/simple;
+	bh=7i8J/fbN7z0SDl2RldQ6zv/iIja95/EoYFcW92yxPco=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=IL+wNVVveLSlmcgwqyiu5uzK1TL7wl82oyGkP5ow2mHFJkxmwZtpZEKrBFbdNJfaxeaVGkLnuZaCYSrmXvgYBeL+prp7i0SLgz/wXU+06h95jPbYowMVDer3k95al7joVPL1d/8/6ufRJaGxA+wtBbeTUnsEaIOBwjbeVJ4R6Dw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qYcoeav5; arc=none smtp.client-ip=209.85.214.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2ad21f437eeso10065115ad.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 03:15:23 -0700 (PDT)
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2b2503753efso14598925ad.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 03:15:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775211323; x=1775816123; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1775211326; x=1775816126; darn=vger.kernel.org;
         h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=h21ovezJUJbbP7dsEh1vhqxhJxf8p0z1BeveGGiIaz0=;
-        b=hk57mXo9IK/VQR+9l0hIBRrefOOp6LEgnSlt4VAWt4KsXq/u1UYYj8TcmiXYroGMA4
-         56ORcORf4NkFWXOHp1P1wRO6kwDQzBbRmXWiCMqB4m/HBZh77NiXsJMk5e+vFONt26IW
-         kFJHc5rdmSWDgwuHwcySA9hLLSVcc+sLSofQtmAiMw+Yyu1kgPvucyyyht8MmmsWaY+V
-         DXjhAZ1VR/BIKZFpZeuw2Crgn/ljNh1aK3b9gUbAij1en1I6Cg0pZszi7s0wWzgxm+mq
-         gKmDUvW3bAcGO5YaGEBESdvhBqDfoUI3OYokBrSX97WfTfWGgJLAZRz5OsXztFAFf4Lx
-         M3aA==
+        bh=tordCEdMdCISPKuHP1P7HVkOG9Rk7horQHJTiIOMN44=;
+        b=qYcoeav5Jgh6JG5CnQJLkcmYqjsY1PlCjfw8J+573oX6CfJph3zwhG055pv1/LhJD1
+         AacYzkviEHxOrrrc7wh5uT+3ASADEXLGI0bq2p+1DaNh+LeiqTLaJ99TOa/jFaGdl7Vk
+         w/zOgwi+PY/q+PTlZ2XxoV5iucti2ZGw2mczJDM5K7vlySDcRtE+a4q/DRcS9BGPTVxr
+         p4XA3ix0b3MbctswZ2ewAmFFyug7bnVz/LhmT9ZZXw/MvSnbZXvJqwmG6fdr8M0tB0Ma
+         H7ElKbClPSC8uUo7q6gFjNaTJDBJTcVCZMknN+bQAfoXhmuusJnRgCo5bQerzK0SllSm
+         sVsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775211323; x=1775816123;
+        d=1e100.net; s=20251104; t=1775211326; x=1775816126;
         h=references:in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h21ovezJUJbbP7dsEh1vhqxhJxf8p0z1BeveGGiIaz0=;
-        b=NLIZwu/7zkQdn/vCTwio51sFzNlIE8mvOCTxQGCsqQeS5wZRyukgxP5KoSuE+DuOVE
-         +STs5qWmGVpKVCw613fuvoGtTBAr6hO27VhT/y3te0GzenuomrT2ghHmUYh/OszTvbIv
-         gqBPHaSrtlQiIsBzVXvIAFoBcJzzTK87BQZnT57iNvBCWQKGC+KEJOuXvyK9QGvGoiEk
-         2FTjzjG2b0KxihSJFINhxz8PDRG7FIJLlqtQyce4xbdop3Ns5AxViGi7plhJf5pMS/vI
-         5p2+IVgIzYjlKn6xc54WNIkoPkei0hSVJfnU7qrJR/0f+YzubVXXA9ZqVI9E7M42JzEZ
-         9b+w==
-X-Forwarded-Encrypted: i=1; AJvYcCUjIkyQHE3OxIX1bXj1p5QmKLzqG4z5g/f4JP37YNWG5L0138C6FFe6XzvR64fncoQVXPto9bNhx1Sj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyanC1IJjV7rx9wk0p6AbI/ZUeW9mXt2nIxrTBbAEFjUb22AU2g
-	kFauK/6dPi1AK0L9tzFGuyitqCwcAcyeLkeQYQxk1dekShjIXwMUjC8ySrCzYU6qKjQ=
-X-Gm-Gg: AeBDievgTcJCoaoC2G5FHWFycGqfTir066WR9IRhEQUEpZeWacNd7tJqXTPfn1lnVgt
-	LG3irG7ekItWRqKzSIOlihkTOMMt1C/B0L2g4v1x/og1A9n1UQ1aSBBjmtBvwf0UCwLgWZkzdis
-	jp38TKUi189HIaei2Mn6kU6shv8HqjlsIpwOx14+tWp7CSKhdoE8zT/sx+6l3mPbuQeryQ3oEIW
-	CX7dlGyAtIEI/+SHPt4LAFlIw995I6kRVAUZoWii2DFdSFLjo12oac0gW+IVcqfJbywq2x8krs7
-	BuKT+h7bH9w89nVMMFPays7T2CyCXKdAiqbALV5USDk21g19JCUsSCupKbP0lD1/Op9ZIySx4NF
-	wcTmK8hboS5TIIo96yn7twhGKr1PyfLzLhoPF2D4cJZXX8B0yqJVLZlanWmYIWNCp3zZILo+Dge
-	YUsoF/EFc+yUP2CuMlTZG6VMHNr4fdGdMvvDcAeO3z4wHHRDuqT+GC
-X-Received: by 2002:a17:902:d2ca:b0:2b0:b557:6fe5 with SMTP id d9443c01a7336-2b277e88764mr51371725ad.30.1775211323213;
-        Fri, 03 Apr 2026 03:15:23 -0700 (PDT)
+        bh=tordCEdMdCISPKuHP1P7HVkOG9Rk7horQHJTiIOMN44=;
+        b=EKU2VDthsTj0KAzZ1foAE46N1GSKlsCtHSZg+t0pZfwrZ/AdZBZo9VjlJVfVJpT91q
+         kwYYRgjpPlT4n4mBx/hK+ZQ9fmO+4Iv1tnRfNpDLwfb7+Kl36LB6n0oA7WbG3s4G+MaE
+         1lT2j+tdw/0YyYePPTglwzJXpQs3nJ0P4K3twJY7cxMRtplhkTkCdZtrHWk1CM2DzB2c
+         et4KMxBVWs2+hssO65raol2Tf8JB3J7wyal+T2qzt8TrDTldRpfXFeE41k0eS5WHT2Ez
+         TydWPrszBI7PE2UzoIFcsJoqJ6mtndmfA+bPqkXSEc65/P8ki9KYSAZDRD9eG0JFCXqb
+         qEVA==
+X-Forwarded-Encrypted: i=1; AJvYcCVQYC4o2yUSqFwfwlsbBlhl/xzsKLN/slhx1ekFnaI8dgg+xcXJygE/C7VFP0mFtiE25BKDfkC+nFEq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxRLzNpyN3RGjdQenLdE2kt9K6roOoKFfbtq7k9AX20+RuCiYY
+	tuwvQqiWTj/dbmOAEKiwfKtlOoNuR/Wq+5gvvg3U0ydrrhmU/d6j+Ibb
+X-Gm-Gg: AeBDievvoeRiOElSUQVz3TvhcWn33ZO2xD0LrGR/XxKGYVkyUXb3YvFKArRP9y9MMYR
+	u1jIhmIRdW/MJwvnRLJcJB+ysVQXH5OtjgRORh0XPsaMzOE9IVVtuhPIEZUNhue1uzqdnqme1Iv
+	4wkZu4bmzcMiBXRgevEDnsnB6Ca3RvRyGpS50ju2GvbaC4Y5yk1tp2ZBurcU2pt/8KhzDUwWiy8
+	AH25gycvxYOPd5okNN/pjpC3ijaez4PbRVlgLa6OvzHOG4O71Pjr4ONuG91Pb/ibRnz2+rJT/aU
+	NnWPy4hQadAKPEHajW+xSbPoU3+t2cm4ozllxSemEpX1I/NmXerGA9Ih7foA2kC0pDykPsPfA36
+	jv2ZnfqrgbleJ6U/azg7XHLYl0yiFJDwQznkq2883LYz73YiEf82dITe0NChPbQxaBQ83ciIOyO
+	8q52JRSp5it4Bq+8OH+6ukW8eO5Esr0RF2V3S9jx+/xc1TKSNqyZrt2wF/r5q+4cU=
+X-Received: by 2002:a17:903:388e:b0:2b2:6df1:1112 with SMTP id d9443c01a7336-2b281969a70mr25700175ad.40.1775211326126;
+        Fri, 03 Apr 2026 03:15:26 -0700 (PDT)
 Received: from ubuntu.localdomain ([27.217.83.168])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b2747341a8sm54383675ad.3.2026.04.03.03.15.20
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b2747341a8sm54383675ad.3.2026.04.03.03.15.23
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 03 Apr 2026 03:15:22 -0700 (PDT)
+        Fri, 03 Apr 2026 03:15:25 -0700 (PDT)
 From: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
 To: linux@roeck-us.net
 Cc: robh@kernel.org,
@@ -82,9 +82,9 @@ Cc: robh@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	zaixiang.xu.dev@gmail.com
-Subject: [PATCH v5 2/3] dt-bindings: trivial-devices: add Sensirion SHT3x/STS3x and GXCAS GXHT30
-Date: Fri,  3 Apr 2026 18:14:55 +0800
-Message-Id: <1775211296-63722-3-git-send-email-zaixiang.xu.dev@gmail.com>
+Subject: [PATCH v5 3/3] hwmon: (sht3x) Add support for GXCAS GXHT30 sensor
+Date: Fri,  3 Apr 2026 18:14:56 +0800
+Message-Id: <1775211296-63722-4-git-send-email-zaixiang.xu.dev@gmail.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1775211296-63722-1-git-send-email-zaixiang.xu.dev@gmail.com>
 References: <1775211296-63722-1-git-send-email-zaixiang.xu.dev@gmail.com>
@@ -98,21 +98,21 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
 	FROM_NEQ_ENVFROM(0.00)[zaixiangxudev@gmail.com,devicetree@vger.kernel.org];
 	TO_DN_NONE(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284364-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284365-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	PRECEDENCE_BULK(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -121,59 +121,43 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9FD71393474
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8FB4139333B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Sensirion SHT3x/STS3x series (and its compatible alternative, the
-GXCAS GXHT30) are simple I2C temperature and humidity sensors. They
-require no external resources other than the I2C bus and power supply,
-fitting perfectly into the trivial-devices category.
+The GXCAS GXHT30 is a humidity and temperature sensor that is software
+compatible with the Sensirion SHT3x series.
 
-Historically, the driver matched against the "sht3x" wildcard compatible
-string. However, as pointed out by DT maintainers, wildcards are heavily
-discouraged in new bindings, and specific part numbers representing real
-devices should be used instead.
-
-Therefore, document the explicit chip names (sht30, sht31, sht35, sht85,
-sts30, sts31) along with the fully compatible gxht30 in
-trivial-devices.yaml. Note that sht85 is already supported in the driver
-but was missing from the bindings.
+Add the "gxht30" chip name to the i2c_device_id table to allow I2C core
+matching. For Device Tree instantiation, this driver relies on the I2C
+core fallback matching or DT compatible fallbacks (e.g., matching
+"gxcas,gxht30" with "sensirion,sht30").
 
 Signed-off-by: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
 ---
- Documentation/devicetree/bindings/trivial-devices.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/hwmon/sht3x.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index a482aeadcd44..e6efabfb1b14 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -125,6 +125,8 @@ properties:
-           - fsl,mma8450
-             # MPR121: Proximity Capacitive Touch Sensor Controller
-           - fsl,mpr121
-+            # GXCAS temperature & humidity sensor with I2C interface
-+          - gxcas,gxht30
-             # HiTRON AC/DC CompactPCI Power Supply
-           - hitron,hac300s
-             # Honeywell Humidicon HIH-6130 humidity/temperature sensor
-@@ -399,7 +401,14 @@ properties:
-           - sensirion,sht20
-           - sensirion,sht21
-           - sensirion,sht25
-+          - sensirion,sht30
-+          - sensirion,sht31
-+          - sensirion,sht35
-           - sensirion,sht4x
-+          - sensirion,sht85
-+            # Sensirion temperature sensor with I2C interface
-+          - sensirion,sts30
-+          - sensirion,sts31
-             # Sensortek 3 axis accelerometer
-           - sensortek,stk8312
-             # Sensortek 3 axis accelerometer
+diff --git a/drivers/hwmon/sht3x.c b/drivers/hwmon/sht3x.c
+index 08306ccb6d0b..abcc7b4abe5a 100644
+--- a/drivers/hwmon/sht3x.c
++++ b/drivers/hwmon/sht3x.c
+@@ -934,6 +934,7 @@ static const struct i2c_device_id sht3x_ids[] = {
+ 	{"sht3x", sht3x},
+ 	{"sts3x", sts3x},
+ 	{"sht85", sht3x},
++	{"gxht30", sht3x},
+ 	{}
+ };
+ 
+@@ -948,5 +949,6 @@ module_i2c_driver(sht3x_i2c_driver);
+ 
+ MODULE_AUTHOR("David Frey <david.frey@sensirion.com>");
+ MODULE_AUTHOR("Pascal Sachs <pascal.sachs@sensirion.com>");
++MODULE_AUTHOR("Zaixiang Xu <zaixiang.xu.dev@gmail.com>");
+ MODULE_DESCRIPTION("Sensirion SHT3x humidity and temperature sensor driver");
+ MODULE_LICENSE("GPL");
 -- 
 2.34.1
 
