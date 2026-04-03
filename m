@@ -1,85 +1,86 @@
-Return-Path: <devicetree+bounces-284442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284444-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8MEKJcbHz2kS0gYAu9opvQ
-	(envelope-from <devicetree+bounces-284442-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 15:59:34 +0200
+	id GG8YHxfHz2lH0QYAu9opvQ
+	(envelope-from <devicetree+bounces-284444-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 15:56:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D7D394CFE
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 15:59:33 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76D87394C52
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 15:56:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3ABB330A167A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 13:55:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6E0D43031F05
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 13:55:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D500E3B52E6;
-	Fri,  3 Apr 2026 13:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ABEB3BE64B;
+	Fri,  3 Apr 2026 13:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="uiiEeTs5"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="1iJCghLn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADAE934EEF1
-	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 13:55:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB35037B002
+	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 13:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775224527; cv=none; b=byDeM5TD7PYFTyj2res/exUXvwWBMApnTUh5yph9Sz3MuSDC9rUvKhhf880PXQQnkOhDjXmiJQDzICjfK1p4Rs9BG9MHTpw8REYjTchOpYhE8Dk7kzaaK1E6TUe+VtB5Y6+i2QkAnhSTjvX6C0xCjrqynibKgx/hfkCe5nhuESU=
+	t=1775224530; cv=none; b=NmiK1r2D1Pw3WWZuI2QwqcLFyr9Wjwwy+zGnGdtTRVZPpl6aLOdSU8qazxb6WfSA3v3VVt6Y/0jKEXVkJJ5Knno97+2mgv+yP0578XHRbykQAEiYRc4pdfogmLPoy8Hz0K9QYZh51vWJD+lq392pT5JekseNO/IpBRCQ6GAo2Ws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775224527; c=relaxed/simple;
-	bh=Laagl1WvmKQiKODwRM094nhY7LnQG8oBc9UyZ9+RHgI=;
+	s=arc-20240116; t=1775224530; c=relaxed/simple;
+	bh=akUQPIrMgPWRNFtOss4vuRIj1MAE0awNf856ZYFJhDg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=l3RkqUG4WkDgeR8rgVFMKGYVkTJtJyiFEj3rfXvip6HId3MVVLPpsS4QQd+84A3kiMZ8YgrVqqNlnkHDehHhjdg9/rTf6WCeB0qepQqFVKQ4u7WDDRY7bi1MEuejaW9Sef4CqrihWLM4wNM/OrCJ+XPWc8QYEAomMWb6+MOpizI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=uiiEeTs5; arc=none smtp.client-ip=209.85.208.41
+	 In-Reply-To:To:Cc; b=uZOJS58aWEDarGVl5SP5eXhohzDKiuDz1v7sFJTdnNA+pTISyv3ja/toYqjd/rGrVXqescnXkI/MuY8xCnjc/Q2tufXM6uxOwW3P4jCC3KsaYr1d3KEKeQ4Jzzof+DR8oc1MRpP0YevliVtwtb/6iU7LKa7+JGDDVvoCGBW9Oi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=1iJCghLn; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-66ba9898ae8so4915765a12.1
-        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 06:55:23 -0700 (PDT)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b93698bb57aso386406866b.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 06:55:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1775224521; x=1775829321; darn=vger.kernel.org;
+        d=fairphone.com; s=fair; t=1775224522; x=1775829322; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=q1YCa6QIo9PeY+05m/sjhH3PUg81ljbhDyFPKMlTXyw=;
-        b=uiiEeTs5YPL1xzsMNn93RhdNKRlOdfSlZ0vc6opd3J2dqbPonRHAIR5CM9UlaE0Coy
-         sPlG7rRiH5D+2dTFKSMo47XZskYHG3xa1EGWBv9rA2bE6+jwzwWcxOZOtSJgAuR36ROC
-         ta0RejydEDLcpusmRSgJjATdWM88lKfEvdh/z0ilj+RZ/oRMM1dSyGs/u/Ev9RezXjou
-         6SPG+BStWNAhW1zE/ulOoRiLXnIKTq0PdSuUtIOFBnWlg/qybwwkP5qgphoCpquKCv7q
-         fKaWoww1GxHA37HyDknA6E6A5iQ/BfipLpgfuR++bf7lJ9TviLDAo740pNtewoIDbvBu
-         sCWQ==
+        bh=EPHsiCpdUUXRFvwRdI2OtsPeWnYw906MZTDdwum5VRU=;
+        b=1iJCghLnvgfSUtBrShdDy/L79Y4llpI3oHKz2+th4NqH//TI3YsOLlElBFTCFSwQth
+         s2TttnLzyVCC6TT5Hqh0S3Q7w5CPh/XN94iAhtFlUExUFSEIhKsLbO4qZxCx6C5nQE0q
+         mYH4j3uW0hAoLlm/RAE91f0r9igUBigZ6Vqrlln4t9KiT0TsNpxOSxrJWqwpJlCtFDKf
+         RtbRRm3bQVdadj9CquFjAM//SK5tmu5HgRQ5E8pZoWo+WQKvdSfGYpYmmHumpTel/6Ip
+         2V6Z0ARw/Lm6cLIx72YKxhq0+CVyFeXaRhyWn2yk33YEzdE3v07YnrkbVenO4wpixqU/
+         bGDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775224521; x=1775829321;
+        d=1e100.net; s=20251104; t=1775224522; x=1775829322;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=q1YCa6QIo9PeY+05m/sjhH3PUg81ljbhDyFPKMlTXyw=;
-        b=L1fHZtYJOL7kDP5xk4UmiONO/83Dk1oc/5KJjk7mnQJcMvAWELrBKh9cSsl2R7Th80
-         fqU1gPDpG0EP0j0n3g/3j3TPZa4IH2xbaDK7Uym3y97/bh870tv/HY12lBS6T8rJ9nRJ
-         vhGKRpUPduAwTN/YN2cqPbwcdWfzUustAO90qW6VtE+080ufdIpLdrdI0coBWxxzuJuk
-         Dh8gvjQed0QkL3MhVsdLg83m6uM2tl8CuInu0/4t4UAiPSsJzGRZelMm7RkDWxAJDUBv
-         cuUIxzG4hYCYVk+fGo2JEvEhUQvvtWn47/g7lJY9aDilHrwcAKja/N5Q4a5LnnEHjQNj
-         mSbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXFC3FN6KbuAR8xLLv3/H70NkGxtqSmK1BvOFCtCDxxHsAUGyIe0n5nPWoG+bOg7HgwgooCVHeQvwTm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtHBpQMc0Af/WWgh26TqRjlt11WtWk+1XubyNF42o05++qjSFd
-	cNkMA6xYFH9hgG3MfVTu4yZwrF0cxsDzDziGpI+qiZ8Sg6uqoDZ6izV/uQUcwnurtMo=
-X-Gm-Gg: AeBDievJ7czj29rU1y3cDmEwxTL/uKQ3xvugkGYuvZlf3z7IqpYX61ZE6AbMe/KnLuX
-	PJmX59gMXFY7QH2l+yKw2EczdrhT1DI7P0+bqPIa2DY8BKliZw9ZXHKoW4gnCKePW6vgj06oNBT
-	V4JAsiTBZBg/olFx82D8/R/Nl8/Mh6SCtDwrcfCWYIomxO5oefn6PACYY1CLBbboKWsq6IBs9y5
-	QAVPWxt6F0ZeXRzN+2IDtdb9thbXJv8eZK9gLBQCQUWAiMkcaOX/13IyKaZ8BX3xrEJnMJ9bGL9
-	qsEIxn2gb6CSwHdCRO7toohGr3ktJfyq+xqioF4XTcRKhnD0wwS0q7rRopPs4COcClDR9OG6/h4
-	lge8cjHGmfjLbjXi8O44EBbD3ITtsDFv0XagYY+lFaB49KB19QBpJeIKfDG9rmbv4yq5mpvJaJT
-	EldRz6wQHpPZex7YD9qPIsqpOYS6JpLXeaUM8Z7GRJ9YZJV4eQsMXqoqhwXfQRDpC0tAWmFe0NA
-	UlJqKW9GqGDlVqRyUAkHdyeHtCjpHpeXLl91syQa8HKj0QU
-X-Received: by 2002:a17:906:ee83:b0:b99:86b6:85fd with SMTP id a640c23a62f3a-b9c65596fdbmr158557066b.9.1775224521403;
-        Fri, 03 Apr 2026 06:55:21 -0700 (PDT)
+        bh=EPHsiCpdUUXRFvwRdI2OtsPeWnYw906MZTDdwum5VRU=;
+        b=GBbHwTSONN5z1YLPhBDKJOjIeJ3VAYe9yma1gXQqxez2tOzqQB6yWBlWYTvklBsL51
+         WFpwKHgv4Gzak/8XokVv9lXSDvfXFJ19JysN+61x6F1cLSI14nOUzTlda6P86DkofQdf
+         DRdnpnDvcmgsvxAKv7/5hJHawyLIuxp9rLj4dr/mmXyZTJxaHJgwJeyr9YwBzmGnppeN
+         UVv1b6AgOwDsa8VgQ0kV+Siw0vgPJAyQ+u98Kf5tLSzxEL7coPiVf+DrvdJjsXcEGFpC
+         uQadpCojWqTSme6JnZr2P8GPI2MfBzrp1uAcmV1MCyZDbtFHe+DvAi4npXyQjZ2O5Djx
+         xFtA==
+X-Forwarded-Encrypted: i=1; AJvYcCWxjaabr51/VeETJhh1ds8cjB2sZ/Me3qnoNTJ1J2C8z0cVQtYfcF31ZwHzBvus4ypi6g0DR8tKTaol@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywv7Bz+sjZksJA4q3w6lH+J3uCD6l5N42oqV/8sPy6Nd/oKujAh
+	z0B5Cz6DszVZ64uY05vxXwjRUFnyyA8RzrlKiXto88wXBPrHEaEFMUkwhEYZ0sSigIc=
+X-Gm-Gg: ATEYQzylWk9tkfV6ttjJs5kUmilrra1SUihVrLS/ERBTEOR+pFKF2QDjdU9oeUsqmrQ
+	Ta9ATXKA56+hQf/z9ggg3LFhVjftSCVKpom4AU5lrxxQfGStExBOBm+7SSbkOHGbGA93HQTOZ4D
+	Dru5ZP2rk1cZt/OqBhHBEWz6TOhAF5/ZXeGsYL9guJRZPln2MfnnqD6Juhr8b9rBABnDiBeMuk2
+	mjvJUR/wjMwNKVC6YXi+OamBc6vDJISqlvSVoFK9uKoyvZbkculBu3NXlq0ZspZ3EcxckXEZ1hh
+	XLvvSqiyFK6MHuOGE6KSDkknnpIphhFXF6r3WeaOhfIzIyaKPWg5royCSf+NKTiFVYXuF3x5R0A
+	iHBr40XDgxtivu4OjQPTq3jNO6vRKPP7KKH+zAJHD+/nyhfYhcEToKs+/Vtebx392D9h9UL7r1e
+	DncFNBMoHicvS3Z8prI3NGJq3CQbokAUArA9M/01JiiwOKFpazs4/mlvE2rEybzPKWw/2sub8dn
+	EoqZG18iBanupgbrjIw/qCaf7Iv1ZMua86Rpg==
+X-Received: by 2002:a17:907:3d56:b0:b94:231f:26ca with SMTP id a640c23a62f3a-b9c46fedc37mr308190066b.20.1775224522291;
+        Fri, 03 Apr 2026 06:55:22 -0700 (PDT)
 Received: from otso.local (2001-1c00-3b89-c600-71a4-084f-6409-1447.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b89:c600:71a4:84f:6409:1447])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9c3c972e28sm198057266b.1.2026.04.03.06.55.20
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9c3c972e28sm198057266b.1.2026.04.03.06.55.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Apr 2026 06:55:20 -0700 (PDT)
+        Fri, 03 Apr 2026 06:55:21 -0700 (PDT)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 03 Apr 2026 15:52:51 +0200
-Subject: [PATCH v2 5/7] arm64: dts: qcom: milos: Add WCN6755 WiFi node
+Date: Fri, 03 Apr 2026 15:52:52 +0200
+Subject: [PATCH v2 6/7] arm64: dts: qcom: milos-fairphone-fp6: Enable
+ Bluetooth
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260403-milos-fp6-bt-wifi-v2-5-393322b27c5f@fairphone.com>
+Message-Id: <20260403-milos-fp6-bt-wifi-v2-6-393322b27c5f@fairphone.com>
 References: <20260403-milos-fp6-bt-wifi-v2-0-393322b27c5f@fairphone.com>
 In-Reply-To: <20260403-milos-fp6-bt-wifi-v2-0-393322b27c5f@fairphone.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -109,108 +110,269 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
  Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775224512; l=2562;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775224512; l=5650;
  i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=Laagl1WvmKQiKODwRM094nhY7LnQG8oBc9UyZ9+RHgI=;
- b=5dJnjoMOmNyoMHrWYuV+T1fDHL+fKjWcd2iksZsGpFY5KgrcxW85fMrGe1suXpl/g2g53QTu/
- 2BtMLr3WqRnAYp8oduhNM5XgqDpI+uMmoQqYThDMSgKypx2bIP832X6
+ bh=akUQPIrMgPWRNFtOss4vuRIj1MAE0awNf856ZYFJhDg=;
+ b=dyYdc5Ec1aiox9qFG4Riy10GAz315VOhkO2VRCASezMRP6RTMEzf6wuziUmcu2DsGn7c72cho
+ P8++lG8qX9OCFoKmQAwkmfYwCfcltX0EMy6Baz9Am39oTehVbjctRh/
 X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
  pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,pm.me,gmail.com,holtmann.org,quicinc.com,sipsolutions.net];
-	TAGGED_FROM(0.00)[bounces-284442-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[fairphone.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-284444-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,pm.me,gmail.com,holtmann.org,quicinc.com,sipsolutions.net];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[fairphone.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: E6D7D394CFE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fairphone.com:dkim,fairphone.com:email,fairphone.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 76D87394C52
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add a node for the WCN6755 WiFi found with the Milos SoC.
+Add the nodes to describe the WCN6755 chip with its PMU and Bluetooth
+parts.
+
+Thanks to Alexander Koskovich for helping with the bringup, adding
+'clocks' to the PMU node to make Bluetooth work.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- arch/arm64/boot/dts/qcom/milos.dtsi | 46 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+ arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 174 +++++++++++++++++++++++
+ 1 file changed, 174 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom/milos.dtsi
-index 71292dfd6e08..3a3d7f2134e8 100644
---- a/arch/arm64/boot/dts/qcom/milos.dtsi
-+++ b/arch/arm64/boot/dts/qcom/milos.dtsi
-@@ -2438,6 +2438,52 @@ gic_its: msi-controller@17140000 {
+diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+index c1899db46e71..db72418b7195 100644
+--- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
++++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+@@ -24,6 +24,7 @@ / {
+ 
+ 	aliases {
+ 		serial0 = &uart5;
++		serial1 = &uart11;
+ 	};
+ 
+ 	gpio-keys {
+@@ -225,6 +226,67 @@ trip1 {
  			};
  		};
- 
-+		wifi: wifi@17110040 {
-+			compatible = "qcom,wcn6755-wifi", "qcom,wcn6750-wifi";
-+			reg = <0x0 0x17110040 0x0 0x0>;
+ 	};
 +
-+			iommus = <&apps_smmu 0x1400 0x1>;
++	wcn6750-pmu {
++		compatible = "qcom,wcn6755-pmu", "qcom,wcn6750-pmu";
 +
-+			interrupts = <GIC_SPI 768 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 769 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 770 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 771 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 772 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 773 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 774 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 775 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 776 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 777 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 778 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 779 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 780 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 781 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 782 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 783 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 784 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 785 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 786 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 787 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 788 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 789 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 790 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 791 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 792 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 793 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 794 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 795 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 796 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 797 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 798 IRQ_TYPE_EDGE_RISING 0>,
-+				     <GIC_SPI 799 IRQ_TYPE_EDGE_RISING 0>;
++		vddaon-supply = <&vreg_s3b>;
++		vddasd-supply = <&vreg_l7b>;
++		vddpmu-supply = <&vreg_s3b>;
++		vddrfa0p8-supply = <&vreg_s3b>;
++		vddrfa1p2-supply = <&vreg_s2b>;
++		vddrfa1p7-supply = <&vreg_s1b>;
++		vddrfa2p2-supply = <&vreg_s1j>;
 +
-+			qcom,rproc = <&remoteproc_wpss>;
-+			qcom,smem-states = <&smp2p_wlan_out 0>;
-+			qcom,smem-state-names = "wlan-smp2p-out";
++		bt-enable-gpios = <&tlmm 53 GPIO_ACTIVE_HIGH>;
 +
-+			status = "disabled";
++		clocks = <&rpmhcc RPMH_RF_CLK1>;
++
++		pinctrl-0 = <&bluetooth_enable_default>;
++		pinctrl-names = "default";
++
++		regulators {
++			vreg_pmu_rfa_cmn: ldo0 {
++				regulator-name = "vreg_pmu_rfa_cmn";
++			};
++
++			vreg_pmu_aon_0p59: ldo1 {
++				regulator-name = "vreg_pmu_aon_0p59";
++			};
++
++			vreg_pmu_wlcx_0p8: ldo2 {
++				regulator-name = "vreg_pmu_wlcx_0p8";
++			};
++
++			vreg_pmu_wlmx_0p85: ldo3 {
++				regulator-name = "vreg_pmu_wlmx_0p85";
++			};
++
++			vreg_pmu_btcmx_0p85: ldo4 {
++				regulator-name = "vreg_pmu_btcmx_0p85";
++			};
++
++			vreg_pmu_rfa_0p8: ldo5 {
++				regulator-name = "vreg_pmu_rfa_0p8";
++			};
++
++			vreg_pmu_rfa_1p2: ldo6 {
++				regulator-name = "vreg_pmu_rfa_1p2";
++			};
++
++			vreg_pmu_rfa_1p7: ldo7 {
++				regulator-name = "vreg_pmu_rfa_1p7";
++			};
++
++			vreg_pmu_pcie_0p9: ldo8 {
++				regulator-name = "vreg_pmu_pcie_0p9";
++			};
++
++			vreg_pmu_pcie_1p8: ldo9 {
++				regulator-name = "vreg_pmu_pcie_1p8";
++			};
 +		};
++	};
+ };
+ 
+ &apps_rsc {
+@@ -752,6 +814,39 @@ &pon_resin {
+ 	status = "okay";
+ };
+ 
++&qup_uart11_cts {
++	/*
++	 * Configure a bias-bus-hold on CTS to lower power
++	 * usage when Bluetooth is turned off. Bus hold will
++	 * maintain a low power state regardless of whether
++	 * the Bluetooth module drives the pin in either
++	 * direction or leaves the pin fully unpowered.
++	 */
++	bias-bus-hold;
++};
 +
- 		timer@17420000 {
- 			compatible = "arm,armv7-timer-mem";
- 			reg = <0x0 0x17420000 0x0 0x1000>;
++&qup_uart11_rts {
++	/* We'll drive RTS, so no pull */
++	drive-strength = <2>;
++	bias-disable;
++};
++
++&qup_uart11_rx {
++	/*
++	 * Configure a pull-up on RX. This is needed to avoid
++	 * garbage data when the TX pin of the Bluetooth module is
++	 * in tri-state (module powered off or not driving the
++	 * signal yet).
++	 */
++	bias-pull-up;
++};
++
++&qup_uart11_tx {
++	/* We'll drive TX, so no pull */
++	drive-strength = <2>;
++	bias-disable;
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+@@ -810,6 +905,59 @@ &tlmm {
+ 			       <13 1>, /* NC */
+ 			       <63 2>; /* WLAN UART */
+ 
++	qup_uart11_sleep_cts: qup-uart11-sleep-cts-state {
++		pins = "gpio48";
++		function = "gpio";
++		/*
++		 * Configure a bias-bus-hold on CTS to lower power
++		 * usage when Bluetooth is turned off. Bus hold will
++		 * maintain a low power state regardless of whether
++		 * the Bluetooth module drives the pin in either
++		 * direction or leaves the pin fully unpowered.
++		 */
++		bias-bus-hold;
++	};
++
++	qup_uart11_sleep_rts: qup-uart11-sleep-rts-state {
++		pins = "gpio49";
++		function = "gpio";
++		/*
++		 * Configure pull-down on RTS. As RTS is active low
++		 * signal, pull it low to indicate the BT SoC that it
++		 * can wakeup the system anytime from suspend state by
++		 * pulling RX low (by sending wakeup bytes).
++		 */
++		bias-pull-down;
++	};
++
++	qup_uart11_sleep_tx: qup-uart11-sleep-tx-state {
++		pins = "gpio50";
++		function = "gpio";
++		/*
++		 * Configure pull-up on TX when it isn't actively driven
++		 * to prevent BT SoC from receiving garbage during sleep.
++		 */
++		bias-pull-up;
++	};
++
++	qup_uart11_sleep_rx: qup-uart11-sleep-rx-state {
++		pins = "gpio51";
++		function = "gpio";
++		/*
++		 * Configure a pull-up on RX. This is needed to avoid
++		 * garbage data when the TX pin of the Bluetooth module
++		 * is floating which may cause spurious wakeups.
++		 */
++		bias-pull-up;
++	};
++
++	bluetooth_enable_default: bluetooth-enable-default-state {
++		pins = "gpio53";
++		function = "gpio";
++		output-low;
++		bias-disable;
++	};
++
+ 	sdc2_card_det_n: sdc2-card-det-state {
+ 		pins = "gpio65";
+ 		function = "gpio";
+@@ -836,6 +984,32 @@ &uart5 {
+ 	status = "okay";
+ };
+ 
++&uart11 {
++	/delete-property/ interrupts;
++	interrupts-extended = <&intc GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH 0>,
++			      <&tlmm 51 IRQ_TYPE_EDGE_FALLING>;
++
++	pinctrl-1 =  <&qup_uart11_sleep_cts>,
++		     <&qup_uart11_sleep_rts>,
++		     <&qup_uart11_sleep_tx>,
++		     <&qup_uart11_sleep_rx>;
++	pinctrl-names = "default",
++			"sleep";
++
++	status = "okay";
++
++	bluetooth {
++		compatible = "qcom,wcn6755-bt", "qcom,wcn6750-bt";
++
++		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
++		vddaon-supply = <&vreg_pmu_aon_0p59>;
++		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
++		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
++		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
++		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
++	};
++};
++
+ &ufs_mem_hc {
+ 	reset-gpios = <&tlmm 167 GPIO_ACTIVE_LOW>;
+ 
 
 -- 
 2.53.0
