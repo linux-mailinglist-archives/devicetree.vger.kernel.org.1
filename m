@@ -1,322 +1,348 @@
-Return-Path: <devicetree+bounces-284340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284342-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AF8VJ6GLz2mmxAYAu9opvQ
-	(envelope-from <devicetree+bounces-284340-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:42:57 +0200
+	id AFSYDguLz2mmxAYAu9opvQ
+	(envelope-from <devicetree+bounces-284342-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:40:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47CCB392EC4
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:42:57 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C82AD392E43
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:40:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8FF9B30A3799
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 09:36:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2BB693004DF5
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 09:40:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27FEE31355C;
-	Fri,  3 Apr 2026 09:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D77F7386541;
+	Fri,  3 Apr 2026 09:40:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="A0dIu9OR";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="K3QC+sB7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA8B72F99B8;
-	Fri,  3 Apr 2026 09:36:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.46.229.174
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80C1B3016E3
+	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 09:40:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775209007; cv=none; b=h5DjirNhUGcIRBVrmMPk5HltdZariNm4/I74X9TWMDe/q/vKxB6MrXacSF9FJhjkDv11OUtqKjiBeKW+s07qckMkAroD6I+5T2CcEm7bTHW6p/jMDR5OLhx8WLBhUL9ZkWtwf7jVAP7wTvs5cJyBl6QAGWafjwsFOp/Tni3os6c=
+	t=1775209223; cv=none; b=J4xEXpF5Ml/NH5CdONg4qvARwMvBGIdbnobHN5aFYbct/s4ONXZKfCYnKxrvC2zHVUkZR31a0NvVUUR33iqTpJojhIGP8dcuvKdiH2cT8+rhED4h6qH3Gtgy1kczHLG3h6TT+u+8Q/wmlSgy07QmIZemL4pBTU89DW2wPO9RywU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775209007; c=relaxed/simple;
-	bh=Uxkvx+Lx+j12W7ooN1uNceoLuY2p+hNty/77PtX8kuo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mAB273yaaOXsVYW6XJAIj1dO/R/QzhoxQnoKZow22KQHRvUf65sbXMG2lJtzrLmthHG0JarTUCRqmxrLDXkhYpzZRxlP4XfH8o0Zed1Xrp/anQ5T29XziChcMp8FdqXrJvl5+1rbIdE7OpyQOehfleAbTM98jurmGexWrSFvTkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app2 (Coremail) with SMTP id TQJkCgAXLaAeis9pX4QOAA--.61774S2;
-	Fri, 03 Apr 2026 17:36:32 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	p.zabel@pengutronix.de,
-	huangyifeng@eswincomputing.com,
-	dongxuyang@eswincomputing.com
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com
-Subject: [PATCH 3/3] reset: eswin: Add eic7700 HSP reset driver
-Date: Fri,  3 Apr 2026 17:36:28 +0800
-Message-Id: <20260403093628.780-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20260403093459.612-1-dongxuyang@eswincomputing.com>
-References: <20260403093459.612-1-dongxuyang@eswincomputing.com>
+	s=arc-20240116; t=1775209223; c=relaxed/simple;
+	bh=OSgZ4dviDAaAdwa70bTRY6AtSOYZUZyiYcYEMG2DxhY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YAL4Iw7gP+pXV9ZsO8fZ/MmdwOifnXkIfqFmoGN+LVNDLOaVG8oYsxxhfKjuFARG9GknnW+OUDObiEMzUT0UAW0DhUNwclXssYZG4syvzNzEamd3fO8kFlk1Ie2z/LmpyHsGWmLBWXhAOUtcDC1462JFxuu4G13tQd55X3FSgeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=A0dIu9OR; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=K3QC+sB7; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1775209219;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LlIqRCpSkn+vkqIUF9eytfuVueKTfFVCaHifeJ7gRrQ=;
+	b=A0dIu9ORhbggiYvPd1998w+q9RQACT2bSqZLVKkp0imw3McPSbMqfwrDseZtx5BqIsPdgR
+	v5o7VQSerWFelVD0PlB/4W1WmlckUX310ZWZwQT4szzSpQjfDejkHgRuv+JajcD/LFhi8e
+	7LB0cgVGyWKlGaQvQO+Wg35ebqrq+7Q=
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com
+ [209.85.216.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-563-HxiLaEwxPfC8MsmRO8AX7w-1; Fri, 03 Apr 2026 05:40:17 -0400
+X-MC-Unique: HxiLaEwxPfC8MsmRO8AX7w-1
+X-Mimecast-MFC-AGG-ID: HxiLaEwxPfC8MsmRO8AX7w_1775209217
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-35da37203d2so3909475a91.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 02:40:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1775209217; x=1775814017; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LlIqRCpSkn+vkqIUF9eytfuVueKTfFVCaHifeJ7gRrQ=;
+        b=K3QC+sB7o+MoQStB0WUCZhvvRXV5Aptv9gYPA4jkh6bF0kofEP2nAr8RU0kNKcam4q
+         AF4pFoQjE43vMyVyJd2XQRsCiT2ZAvDzB1TpBIIXY33ecq+ZDo+1mt/oscB+/FWIE59z
+         8JAXBQsFPkqJbiFIs1BrDMjwxpKzOqBGCZhmHVTsl3GScvRLiGKgC2ojH/2Gy2p4W9nT
+         Ohi8UChsENhjtAoQ3IrgsighhLWONi2PuNLr7io/r0RJLJLJhvkHTiJpQrUOV9OToM6a
+         00Hoh2dBdLD92SXo06GYwlVZiILMUey8qyRoAHXxYZIdDqPoiP/a8W7Al0xQZDnnCXpU
+         j8hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775209217; x=1775814017;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LlIqRCpSkn+vkqIUF9eytfuVueKTfFVCaHifeJ7gRrQ=;
+        b=TFun2qIjP6h+OMEP3oX1gYEslNavGjH0RyEGWx5l8BWcP1v2gZDipzKHPdVjeydAwJ
+         ytbHU0F/DNRrkPFd8ei87eZEeBFdLmxbcWeOTKw/GBWV8dHlFa2ndNH8RYxcta4TEWlb
+         GeilVofeM9gWaz/J8mCP1IuPAh1SsIMkHu/44/TZN+bcVhAB8oysZqT23VwPvI9EfhSM
+         QsW/Qpz5DKnjU4x3BscJ/tLLUhnBjGVO2G5j8bO1t2P0PCjZMorQi+dBn+Ja9xzgjI4l
+         lqI/Yktar3C3lJXXweBe3sUD5zaMqG5JYewTJ0D1V/RLh2LPsok3MTB0lLvDTEP0ky0o
+         v35g==
+X-Forwarded-Encrypted: i=1; AJvYcCU61h983FhlqQa84gw61XL2ogfUnvmc0XhFgHWDhpOCtXsPLFHBgjNTYNs9aPECWYBqIF09TvAQ3Uel@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeAR13NhCWyqzwSWDMhIOb5YDppr4bqndlIdJos9spUYcPAQNT
+	nzM02nJqpSMzFcF1Z9gky6BTcEjUVTt9JsUzfHfvD9lyarjxQt9yny2C1KGPcRW8J/qoqJtOGhJ
+	g07Ws6sQJjIOYfpjyOHtbtdjphLzxkCDJaUWmoLsYIr/gLtPLVuC5GONdHB8y9AM=
+X-Gm-Gg: ATEYQzyA6jCSY/DAqzpq0uoUgzJdA0ULdcrSF41tFmXLpiQHHunWDuzSutZO92CH6Eb
+	rB598py9zbrJ8xTCcDJhR0VRK4ouRI0pY/PNXsWHCkbGwYIq4Iq+TS1keWxdgv2jD3OjyVW5njU
+	tmI21NS5wnEul9wqxrUZSY1h47SPgMl8/htfONgt4wDCUrCUYAoso9zqFoWyp5Q2lbySg1yA6GJ
+	1Vi7WCp2iYbhqD5WOXjlqWv3gB0/DOTybmVjo+TWiFQTRWkgYXTfIKg+JDEr/E1wPCEelYQDvK9
+	eOQkjapAe56AC5XkmpxcItfgyWG/EkvR0kTBwis6ppVCAAzy2lAsjWssxhYBAlqXynwPEyjyeOs
+	zgaVtF8JNgTCP
+X-Received: by 2002:a05:6a20:734b:b0:39b:c4cd:d854 with SMTP id adf61e73a8af0-39f2f072479mr2129509637.30.1775209216640;
+        Fri, 03 Apr 2026 02:40:16 -0700 (PDT)
+X-Received: by 2002:a05:6a20:734b:b0:39b:c4cd:d854 with SMTP id adf61e73a8af0-39f2f072479mr2129461637.30.1775209215889;
+        Fri, 03 Apr 2026 02:40:15 -0700 (PDT)
+Received: from localhost ([209.132.188.88])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c76c6491fe0sm4419498a12.11.2026.04.03.02.40.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Apr 2026 02:40:15 -0700 (PDT)
+Date: Fri, 3 Apr 2026 17:36:38 +0800
+From: Coiby Xu <coxu@redhat.com>
+To: Sourabh Jain <sourabhjain@linux.ibm.com>
+Cc: kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org, 
+	Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>, Baoquan he <bhe@redhat.com>, Dave Young <dyoung@redhat.com>, 
+	Kairui Song <ryncsn@gmail.com>, Pingfan Liu <kernelfans@gmail.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Thomas Staudt <tstaudt@de.ibm.com>, 
+	Will Deacon <will@kernel.org>, "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Madhavan Srinivasan <maddy@linux.ibm.com>, 
+	Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+	Saravana Kannan <saravanak@kernel.org>, open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 3/3] arm64,ppc64le/kdump: pass dm-crypt keys to kdump
+ kernel
+Message-ID: <ac-HoiqxZma0M7Ko@Rk>
+References: <20260225060347.718905-1-coxu@redhat.com>
+ <20260225060347.718905-4-coxu@redhat.com>
+ <51761fcf-955f-45e2-97a5-2b49d8e79d04@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TQJkCgAXLaAeis9pX4QOAA--.61774S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxuFyxZFW8ZFWkJFWDuF4Uurg_yoWxur13pF
-	WrAF43Ar4UXr4fGrZ3GF12yFyaqan3tFy5C3yxJ3WI9rs8WryUJrWUta40yr9rGr9rGry5
-	Jr13GFyxuFnIyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBm14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1U
-	MIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I
-	8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUOEfODUUUU
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
-X-Spamd-Result: default: False [1.54 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <51761fcf-955f-45e2-97a5-2b49d8e79d04@linux.ibm.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-284340-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-284342-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,lists.ozlabs.org,vger.kernel.org,clever-cloud.com,redhat.com,gmail.com,linux-foundation.org,kernel.org,de.ibm.com,arm.com,linux.ibm.com,ellerman.id.au];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
-	FROM_NO_DN(0.00)[];
-	TO_DN_NONE(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.988];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:email,eswincomputing.com:mid]
-X-Rspamd-Queue-Id: 47CCB392EC4
+	FROM_NEQ_ENVFROM(0.00)[coxu@redhat.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,clever-cloud.com:email,linux-foundation.org:email]
+X-Rspamd-Queue-Id: C82AD392E43
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
+On Thu, Apr 02, 2026 at 04:24:14PM +0530, Sourabh Jain wrote:
+>
+>
+>On 25/02/26 11:33, Coiby Xu wrote:
+>>CONFIG_CRASH_DM_CRYPT has been introduced to support LUKS-encrypted
+>>device dump target by addressing two challenges [1],
+>>  - Kdump kernel may not be able to decrypt the LUKS partition. For some
+>>    machines, a system administrator may not have a chance to enter the
+>>    password to decrypt the device in kdump initramfs after the 1st kernel
+>>    crashes
+>>
+>>  - LUKS2 by default use the memory-hard Argon2 key derivation function
+>>    which is quite memory-consuming compared to the limited memory reserved
+>>    for kdump.
+>>
+>>To also enable this feature for ARM64 and PowerPC, the missing piece is
+>>to let the kdump kernel know where to find the dm-crypt keys which are
+>>randomly stored in memory reserved for kdump. Introduce a new device
+>>tree property dmcryptkeys [2] as similar to elfcorehdr to pass the
+>>memory address of the stored info of dm-crypt keys to the kdump kernel.
+>>Since this property is only needed by the kdump kernel, it won't be
+>>exposed to user space.
+>>
+>>[1] https://lore.kernel.org/all/20250502011246.99238-1-coxu@redhat.com/
+>>[2] https://github.com/devicetree-org/dt-schema/pull/181
+>>
+>>Cc: Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>
+>>Cc: Baoquan he <bhe@redhat.com>
+>>Cc: Dave Young <dyoung@redhat.com>
+>>Cc: Kairui Song <ryncsn@gmail.com>
+>>Cc: Pingfan Liu <kernelfans@gmail.com>
+>>Cc: Andrew Morton <akpm@linux-foundation.org>
+>>Cc: Krzysztof Kozlowski <krzk@kernel.org>
+>>Cc: Rob Herring <robh@kernel.org>
+>>Cc: Thomas Staudt <tstaudt@de.ibm.com>
+>>Cc: Sourabh Jain <sourabhjain@linux.ibm.com>
+>>Cc: Will Deacon <will@kernel.org>
+>>Cc: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
+>>Signed-off-by: Coiby Xu <coxu@redhat.com>
+>>---
+>>  arch/arm64/kernel/machine_kexec_file.c |  4 ++++
+>>  arch/powerpc/kexec/elf_64.c            |  4 ++++
+>>  drivers/of/fdt.c                       | 21 +++++++++++++++++++++
+>>  drivers/of/kexec.c                     | 19 +++++++++++++++++++
+>>  4 files changed, 48 insertions(+)
+>>
+>>diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
+>>index fba260ad87a9..e31fabed378a 100644
+>>--- a/arch/arm64/kernel/machine_kexec_file.c
+>>+++ b/arch/arm64/kernel/machine_kexec_file.c
+>>@@ -134,6 +134,10 @@ int load_other_segments(struct kimage *image,
+>>  		kexec_dprintk("Loaded elf core header at 0x%lx bufsz=0x%lx memsz=0x%lx\n",
+>>  			      image->elf_load_addr, kbuf.bufsz, kbuf.memsz);
+>>+
+>>+		ret = crash_load_dm_crypt_keys(image);
+>>+		if (ret)
+>>+			goto out_err;
+>>  	}
+>>  #endif
+>>diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
+>>index 5d6d616404cf..ea50a072debf 100644
+>>--- a/arch/powerpc/kexec/elf_64.c
+>>+++ b/arch/powerpc/kexec/elf_64.c
+>>@@ -79,6 +79,10 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+>>  			goto out;
+>>  		}
+>>+		ret = crash_load_dm_crypt_keys(image);
+>>+		if (ret)
+>>+			goto out;
+>>+
+>>  		/* Setup cmdline for kdump kernel case */
+>>  		modified_cmdline = setup_kdump_cmdline(image, cmdline,
+>>  						       cmdline_len);
+>>diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+>>index 331646d667b9..2967e4aff807 100644
+>>--- a/drivers/of/fdt.c
+>>+++ b/drivers/of/fdt.c
+>>@@ -866,6 +866,26 @@ static void __init early_init_dt_check_for_elfcorehdr(unsigned long node)
+>>  		 elfcorehdr_addr, elfcorehdr_size);
+>>  }
+>>+static void __init early_init_dt_check_for_dmcryptkeys(unsigned long node)
+>>+{
+>>+	const char *prop_name = "linux,dmcryptkeys";
+>>+	const __be32 *prop;
+>>+
+>>+	if (!IS_ENABLED(CONFIG_CRASH_DM_CRYPT))
+>>+		return;
+>>+
+>>+	pr_debug("Looking for dmcryptkeys property... ");
+>>+
+>>+	prop = of_get_flat_dt_prop(node, prop_name, NULL);
+>>+	if (!prop)
+>>+		return;
+>>+
+>>+	dm_crypt_keys_addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
+>>+
+>>+	/* Property only accessible to crash dump kernel */
+>>+	fdt_delprop(initial_boot_params, node, prop_name);
+>>+}
+>>+
+>>  static unsigned long chosen_node_offset = -FDT_ERR_NOTFOUND;
+>>  /*
+>>@@ -1097,6 +1117,7 @@ int __init early_init_dt_scan_chosen(char *cmdline)
+>>  	early_init_dt_check_for_initrd(node);
+>>  	early_init_dt_check_for_elfcorehdr(node);
+>>+	early_init_dt_check_for_dmcryptkeys(node);
+>>  	rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
+>>  	if (rng_seed && l > 0) {
+>>diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+>>index c4cf3552c018..fbd253f0d3c5 100644
+>>--- a/drivers/of/kexec.c
+>>+++ b/drivers/of/kexec.c
+>>@@ -423,6 +423,25 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
+>>  		if (ret)
+>>  			goto out;
+>>+		if (image->dm_crypt_keys_addr != 0) {
+>>+			ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
+>>+						       "linux,dmcryptkeys",
+>>+						       image->dm_crypt_keys_addr,
+>>+						       image->dm_crypt_keys_sz);
+>>+
+>>+			if (ret)
+>>+				goto out;
+>>+
+>>+			/*
+>>+			 * Avoid dmcryptkeys from being stomped on in kdump kernel by
+>>+			 * setting up memory reserve map.
+>>+			 */
+>>+			ret = fdt_add_mem_rsv(fdt, image->dm_crypt_keys_addr,
+>>+					      image->dm_crypt_keys_sz);
+>>+			if (ret)
+>>+				goto out;
+>>+		}
+>>+
+>>  #ifdef CONFIG_CRASH_DUMP
+>>  		/* add linux,usable-memory-range */
+>>  		ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
+>
+>The above changes look good to me.
+>
+>Feel free to add:
+>Reviewed-by: Sourabh Jain <sourabhjain@linux.ibm.com>
 
-Add auxiliary driver to support ESWIN EIC7700 high-speed peripherals
-system. The reset controller is created using the auxiliary device
-framework and set up in the clock driver.
+Thanks for reviewing the patch!
 
-Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
----
- drivers/reset/Kconfig             |  13 +++
- drivers/reset/Makefile            |   1 +
- drivers/reset/reset-eic7700-hsp.c | 151 ++++++++++++++++++++++++++++++
- 3 files changed, 165 insertions(+)
- create mode 100644 drivers/reset/reset-eic7700-hsp.c
+>
+>But while reading crash_load_dm_crypt_keys() I noticed a possibility of a
+>double free at the address pointed by `keys_header`:
+>
+>In crash_load_dm_crypt_keys()/crash_dump_dm_crypt.c
+>    snip...
+>
+>    kbuf.buffer = keys_header;
+>
+>    snip....
+>
+>    r = kexec_add_buffer(&kbuf);
+>    if (r) {
+>        pr_err("Failed to call kexec_add_buffer, ret=%d\n", r);
+>        kvfree((void *)kbuf.buffer);                           <--- 
+>First Free
+>        return r;
+>    }
+>
+>Since `keys_header` is not reset, the next call to build_keys_header()
+>will cause a double free at `keys_header`.
+>
+>static int build_keys_header(void)
+>{
+>
+>    snip...
+>
+>    if (keys_header != NULL)
+>        kvfree(keys_header);
+>
+>    snip...
+>}
+>
+>What do you think?
+>
+>- Sourabh Jain
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 7ce151f6a7e4..50bb0cd069ba 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -83,6 +83,19 @@ config RESET_EIC7700
- 	  The driver supports eic7700 series chips and provides functionality for
- 	  asserting and deasserting resets on the chip.
- 
-+config RESET_EIC7700_HSP
-+	tristate "EIC7700 HSP Reset controller"
-+	depends on ARCH_ESWIN || COMPILE_TEST
-+	depends on COMMON_CLK_EIC7700_HSP
-+	select AUXILIARY_BUS
-+	default COMMON_CLK_EIC7700_HSP
-+	help
-+	  This enables the HSP reset controller driver for ESWIN SoCs. This
-+	  driver is specific to ESWIN SoCs and should only be enabled if using
-+	  such hardware.
-+	  The driver supports EIC7700 series chips and provides functionality
-+	  for asserting and deasserting resets on the chip.
-+
- config RESET_EYEQ
- 	bool "Mobileye EyeQ reset controller"
- 	depends on MACH_EYEQ5 || MACH_EYEQ6H || COMPILE_TEST
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index fc0cc99f8514..c8baaab75508 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
- obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
- obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
- obj-$(CONFIG_RESET_EIC7700) += reset-eic7700.o
-+obj-$(CONFIG_RESET_EIC7700_HSP) += reset-eic7700-hsp.o
- obj-$(CONFIG_RESET_EYEQ) += reset-eyeq.o
- obj-$(CONFIG_RESET_GPIO) += reset-gpio.o
- obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
-diff --git a/drivers/reset/reset-eic7700-hsp.c b/drivers/reset/reset-eic7700-hsp.c
-new file mode 100644
-index 000000000000..fe9822078bcc
---- /dev/null
-+++ b/drivers/reset/reset-eic7700-hsp.c
-@@ -0,0 +1,151 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd..
-+ * All rights reserved.
-+ *
-+ * ESWIN EIC7700 HSP Reset Driver
-+ *
-+ * Authors: Xuyang Dong <dongxuyang@eswincomputing.com>
-+ */
-+
-+#include <linux/auxiliary_bus.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/regmap.h>
-+#include <linux/reset-controller.h>
-+
-+#include <dt-bindings/reset/eswin,eic7700-hspcrg.h>
-+
-+/**
-+ * struct eic7700_hsp_reset_data - reset controller information structure
-+ * @rcdev: reset controller entity
-+ * @regmap: regmap handle containing the memory-mapped reset registers
-+ */
-+struct eic7700_hsp_reset_data {
-+	struct reset_controller_dev rcdev;
-+	struct regmap *regmap;
-+};
-+
-+static const struct regmap_config eic7700_hsp_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.max_register = 0x1ffc,
-+	.reg_stride = 4,
-+};
-+
-+struct eic7700_hsp_reg {
-+	u32 reg;
-+	u32 bit;
-+	bool active_low;
-+};
-+
-+static inline struct eic7700_hsp_reset_data *
-+to_eic7700_hsp_reset(struct reset_controller_dev *rcdev)
-+{
-+	return container_of(rcdev, struct eic7700_hsp_reset_data, rcdev);
-+}
-+
-+static const struct eic7700_hsp_reg eic7700_hsp_reset[] = {
-+	[EIC7700_HSP_RST_SATA_P0]	= {0x340, BIT(0), false},
-+	[EIC7700_HSP_RST_SATA_PHY]	= {0x340, BIT(1), false},
-+	[EIC7700_HSP_RST_USB0]		= {0x800, BIT(24), true},
-+	[EIC7700_HSP_RST_USB1]		= {0x900, BIT(24), true},
-+	[EIC7700_HSP_RST_USB0_PHY]	= {0x800, BIT(25), false},
-+	[EIC7700_HSP_RST_USB1_PHY]	= {0x900, BIT(25), false},
-+};
-+
-+static int eic7700_hsp_reset_assert(struct reset_controller_dev *rcdev,
-+				    unsigned long id)
-+{
-+	struct eic7700_hsp_reset_data *data = to_eic7700_hsp_reset(rcdev);
-+	int ret;
-+
-+	if (eic7700_hsp_reset[id].active_low)
-+		ret = regmap_clear_bits(data->regmap, eic7700_hsp_reset[id].reg,
-+					eic7700_hsp_reset[id].bit);
-+	else
-+		ret = regmap_set_bits(data->regmap, eic7700_hsp_reset[id].reg,
-+				      eic7700_hsp_reset[id].bit);
-+
-+	return ret;
-+}
-+
-+static int eic7700_hsp_reset_deassert(struct reset_controller_dev *rcdev,
-+				      unsigned long id)
-+{
-+	struct eic7700_hsp_reset_data *data = to_eic7700_hsp_reset(rcdev);
-+	int ret;
-+
-+	if (eic7700_hsp_reset[id].active_low)
-+		ret = regmap_set_bits(data->regmap, eic7700_hsp_reset[id].reg,
-+				      eic7700_hsp_reset[id].bit);
-+	else
-+		ret = regmap_clear_bits(data->regmap, eic7700_hsp_reset[id].reg,
-+					eic7700_hsp_reset[id].bit);
-+
-+	return ret;
-+}
-+
-+static int eic7700_hsp_reset_reset(struct reset_controller_dev *rcdev,
-+				   unsigned long id)
-+{
-+	int ret;
-+
-+	ret = eic7700_hsp_reset_assert(rcdev, id);
-+	if (ret)
-+		return ret;
-+
-+	usleep_range(10, 15);
-+
-+	return eic7700_hsp_reset_deassert(rcdev, id);
-+}
-+
-+static const struct reset_control_ops eic7700_hsp_reset_ops = {
-+	.reset = eic7700_hsp_reset_reset,
-+	.assert = eic7700_hsp_reset_assert,
-+	.deassert = eic7700_hsp_reset_deassert,
-+};
-+
-+static int eic7700_hsp_reset_probe(struct auxiliary_device *adev,
-+				   const struct auxiliary_device_id *id)
-+{
-+	struct eic7700_hsp_reset_data *data;
-+	struct device *dev = &adev->dev;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->regmap = devm_regmap_init_mmio
-+			(dev, (__force void __iomem *)adev->dev.platform_data,
-+			&eic7700_hsp_regmap_config);
-+	if (IS_ERR(data->regmap))
-+		return dev_err_probe(dev, PTR_ERR(data->regmap),
-+				     "failed to get regmap!\n");
-+
-+	data->rcdev.owner = THIS_MODULE;
-+	data->rcdev.ops = &eic7700_hsp_reset_ops;
-+	data->rcdev.of_node = dev->parent->of_node;
-+	data->rcdev.of_reset_n_cells = 1;
-+	data->rcdev.dev = dev;
-+	data->rcdev.nr_resets = ARRAY_SIZE(eic7700_hsp_reset);
-+
-+	return devm_reset_controller_register(dev, &data->rcdev);
-+}
-+
-+static const struct auxiliary_device_id eic7700_hsp_reset_dt_ids[] = {
-+	{ .name = "clk_eic7700_hsp.hsp-reset", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(auxiliary, eic7700_hsp_reset_dt_ids);
-+
-+static struct auxiliary_driver eic7700_hsp_reset_driver = {
-+	.probe	= eic7700_hsp_reset_probe,
-+	.id_table = eic7700_hsp_reset_dt_ids,
-+};
-+
-+module_auxiliary_driver(eic7700_hsp_reset_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Xuyang Dong <dongxuyang@eswincomputing.com>");
-+MODULE_DESCRIPTION("ESWIN EIC7700 HSP Reset Controller Driver");
+Good catch! I'll send a patch to address this issue. Thanks!
+
 -- 
-2.34.1
+Best regards,
+Coiby
 
 
