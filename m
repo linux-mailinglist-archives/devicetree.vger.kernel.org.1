@@ -1,215 +1,206 @@
-Return-Path: <devicetree+bounces-284343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284345-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8JK3BjGLz2mmxAYAu9opvQ
-	(envelope-from <devicetree+bounces-284343-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:41:05 +0200
+	id sCY8LvKMz2mmxAYAu9opvQ
+	(envelope-from <devicetree+bounces-284345-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:48:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF45F392E71
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:41:02 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4255392FA1
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:48:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D98EF30157C4
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 09:41:01 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 995C0300FEE1
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 09:45:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B3A1316197;
-	Fri,  3 Apr 2026 09:41:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2DE538F95D;
+	Fri,  3 Apr 2026 09:45:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="L26UcBJa";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="fFosXsg/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEA8B3B7A8;
-	Fri,  3 Apr 2026 09:40:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F9693909A9
+	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 09:45:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775209261; cv=none; b=qCDVcmM1Ouy/TOJeOyUWgz48T4FdmNgN7i15cW/jScghFJBSxeAG9q7NEHCgI9qg9FCBGmnb/GMGM4Ubm247ouwsUAVE4ECVfQvh65rgwsL3biRUE2uEqbTe90pfLulIDerl+f3+cUVaAg/JMQCXgFRdYwNbcBIdUba3k91YacU=
+	t=1775209523; cv=none; b=t5vlYXo1xWAu2h0d2F9P12wX3AwTmBgRO73mAl2uqHwBTgaJscJTrntVdTKAnAEsp9ShvD4lsL8WNbB1B9cniTS3Uxkf1Zhinl1bmEKrEHrlzy0UpqcafHruykgcwVWf4H4VEovRnfglgq038mD1hqo7EzagrsoN0LezDlt/6uo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775209261; c=relaxed/simple;
-	bh=AiBtAdXx3VegFtcSRwvWQvA36OGNPCVim7p8JFQ7feg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=aCJyjTICU3zqm6un/IKHcD+9spuy49tjgOPFCb4wEJN/cwYN4I4iQEUhIFPKuIhUJkT6AleAxdliE8PG1jknQQ73Rl407sL1ZO6xLVWgkiAScPshN0subEjfYpSKkpcr+Gkr6jz8GrypiYThRLf5Yal0hYtoVvGDayT61INqC0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [116.25.95.185])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3972f1899;
-	Fri, 3 Apr 2026 17:40:53 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: gaohan@iscas.ac.cn
-Cc: alex@ghiti.fr,
-	amadeus@jmu.edu.cn,
-	aou@eecs.berkeley.edu,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dlan@kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	palmer@dabbelt.com,
-	pjw@kernel.org,
-	rabenda.cn@gmail.com,
-	robh@kernel.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH v5 2/3] riscv: dts: spacemit: Define the P1 PMIC regulators for OrangePi RV2
-Date: Fri,  3 Apr 2026 17:40:21 +0800
-Message-Id: <20260403094021.229838-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <6376799689e094253fb1dc0e3e27b491be46e9db.1775148159.git.gaohan@iscas.ac.cn>
-References: <6376799689e094253fb1dc0e3e27b491be46e9db.1775148159.git.gaohan@iscas.ac.cn>
+	s=arc-20240116; t=1775209523; c=relaxed/simple;
+	bh=rf4dDvWp3PU3Uif9HeZdC7SKlkhCZx6cxAvy4r5EGSY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bvovr/BlccIMqpS4xS6j6tFxH+Xqn9FkdQC/VEVdBVTQTB0cIqQuPTvfJTaDTnw0G0b7IWaoiPcMyNJ+5iqG0QGdNLloqqNZ6HLJ7K6qwySn1W3BZQb34zT6vvVndYIGEWYyRCCpJ24sbNlqJSZDOd7dshfzDbNQ1FEjayMIKHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=L26UcBJa; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=fFosXsg/; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1775209519;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ZH9+LliZTB5HpO6CFpEOH4jpCgMrdVel5twiQSolHR0=;
+	b=L26UcBJahTYdEPvtdGgDj+Nenz/AX9z6icHuHq18kVUqBfNJrtYr2XHbE6j03MR7lm9aGt
+	Ld7FHAYG2HgbL5piDa8kDBXAmv3a7/C/KlEI6HEYHGyhPOthBQ8b4DQ9n35BJ8MjXpePFT
+	l+9/kxODymFX8uIg+Nl7K1F7AoMM17U=
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com
+ [209.85.210.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-308-gxrtj2hDOWelrlbD2Qho8Q-1; Fri, 03 Apr 2026 05:45:18 -0400
+X-MC-Unique: gxrtj2hDOWelrlbD2Qho8Q-1
+X-Mimecast-MFC-AGG-ID: gxrtj2hDOWelrlbD2Qho8Q_1775209517
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-82c7ec40f92so2495721b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 02:45:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1775209517; x=1775814317; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ZH9+LliZTB5HpO6CFpEOH4jpCgMrdVel5twiQSolHR0=;
+        b=fFosXsg/a38JkUqdV6xcQonp9NmOX8sDRiyKaaI4fgiZVqSA5NVy24V4QRubEBkSgu
+         1WylTp7gDURAkrHJ2UOKPWR/5cXDZNpPqyMehk7+LcRaUALkCjZuRn54g/TwhvPreb+R
+         TGhTlReNdgsjQTR0GjQwDzZcKi3RHMt/QwDm+vjO761aFZaeZ8cmxcytrUqczZAS/tGD
+         iv9WSpDHiC6uBQMq4401G8aRyizOaI87pZyKGV3+iC6fNX1xgaTsNQ4CqHSfMFPfDPb2
+         gTM1a/+moToWVzbSkE/uDlgg+j8RE1RDJE9NtbxAOnI4VElMtzhLA1A6lm1rRN8PW/9o
+         Sb5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775209517; x=1775814317;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZH9+LliZTB5HpO6CFpEOH4jpCgMrdVel5twiQSolHR0=;
+        b=miHUW9R98sjOJLm+NRTFL4F9xn01WPigAoy2DQtxSIi/hwdZZ2tWIOj2uu0kUwIW5L
+         hsoLrIoZUmKasyBveCoqVbh+NYnDSBKk9bkLQDlVjbWSSjavIGfUskLxb5vkzsq1IALC
+         C+xz9grj4UU0Lt2sYbdlD0Oq4mnJENawdvBLOOTmcv5KcEehfyFt3Nd32m5CVLHqBKVy
+         ZxSnWXMc3fC0vIXTMylaXHfu77erTZyoxT2oprllbHZF6QEz2LUBpW0xltDUzhwbGB6j
+         6gB/H4Wi2JGBJWhNqRY4+3YF13qB818+ywrK9WXFeUE8AYXlsviH37U3LinUESAdkocH
+         CSbA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtMD59oj9884CKg5mGs5n8HNzqGRdbnYmHJ0KTNcKGtElYBPJ4NHXK757+A46TMYMCmQKf3kU5L09V@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKL38JQkIlFwQgdMi/iyeO4+iE9jF/rwGKkd9+tXa5PRIQl91g
+	PCkaq9G1lslTcfYVNZ+bJ85iglblp74F4gXcoPSaWvuyA0sPz53hEARI1D7CTXq1viqE0UG8wqg
+	xdZcA+8HwOwu2E67zVV5l5/KAwvdNeHhwLFDt2L+v7WBJ0N85pxfGtc1JkPWpCJs=
+X-Gm-Gg: AeBDievYMt/wZoVQrGDtAxABdVuQrRMabO2IWJgeZ+UidloSVgsULptngRPFlJzq4D+
+	0HwJX+rf3UT7YFXVebO8PToed0ibf+7Bi938FAkMvWCOKpRHzvfiIyLeVYNQUYXodsBsXSV7dFj
+	amX+TPWMVjSWGnJh29+PUk1+4GTushpz7Nn1M4CR4Zu07JV+BYcIVUJECigNmrwukQVWk9JE1JT
+	HYuC2kqffoClBb5kAcLNCj4zKnNzqvEJdPuytdkE+fcEttt5mLy3EdmA/FdepgMr//aF5rc2Rcq
+	h0fwtzOlVGWIBkaM5XL8rkgrl+f2pbjFcBcLewb4+X/F/7wHZu7Sg6Pa17oOnY1TssP4kjO8xoZ
+	fjNytn5V1k6RZ
+X-Received: by 2002:a05:6a00:3027:b0:81f:52d4:a5ec with SMTP id d2e1a72fcca58-82d0dba9c6fmr2625455b3a.43.1775209516629;
+        Fri, 03 Apr 2026 02:45:16 -0700 (PDT)
+X-Received: by 2002:a05:6a00:3027:b0:81f:52d4:a5ec with SMTP id d2e1a72fcca58-82d0dba9c6fmr2625387b3a.43.1775209515832;
+        Fri, 03 Apr 2026 02:45:15 -0700 (PDT)
+Received: from localhost ([209.132.188.88])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82cf9c9cbf6sm5915263b3a.52.2026.04.03.02.45.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Apr 2026 02:45:15 -0700 (PDT)
+Date: Fri, 3 Apr 2026 17:40:52 +0800
+From: Coiby Xu <coxu@redhat.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Sourabh Jain <sourabhjain@linux.ibm.com>, kexec@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org, 
+	Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>, Baoquan he <bhe@redhat.com>, Dave Young <dyoung@redhat.com>, 
+	Kairui Song <ryncsn@gmail.com>, Pingfan Liu <kernelfans@gmail.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Thomas Staudt <tstaudt@de.ibm.com>, Will Deacon <will@kernel.org>, 
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Madhavan Srinivasan <maddy@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>, 
+	Nicholas Piggin <npiggin@gmail.com>, Saravana Kannan <saravanak@kernel.org>, 
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 3/3] arm64,ppc64le/kdump: pass dm-crypt keys to kdump
+ kernel
+Message-ID: <ac-KKklNrB5eQFvG@Rk>
+References: <20260225060347.718905-1-coxu@redhat.com>
+ <20260225060347.718905-4-coxu@redhat.com>
+ <51761fcf-955f-45e2-97a5-2b49d8e79d04@linux.ibm.com>
+ <20260402233118.08ea88a6836bd10f01031cce@linux-foundation.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9d52b78a2e03a2kunma4e3e7aa59b1ed
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDGh9DVh5NTB9IQh5NS08dHlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk5VSkNOWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
-	tLWQY+
-X-Spamd-Result: default: False [1.64 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <20260402233118.08ea88a6836bd10f01031cce@linux-foundation.org>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284343-lists,devicetree=lfdr.de];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-284345-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linux.ibm.com,lists.infradead.org,lists.ozlabs.org,vger.kernel.org,clever-cloud.com,redhat.com,gmail.com,kernel.org,de.ibm.com,arm.com,ellerman.id.au];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[ghiti.fr,jmu.edu.cn,eecs.berkeley.edu,kernel.org,vger.kernel.org,lists.infradead.org,dabbelt.com,gmail.com,lists.linux.dev];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
-	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,jmu.edu.cn:mid]
-X-Rspamd-Queue-Id: DF45F392E71
+	FROM_NEQ_ENVFROM(0.00)[coxu@redhat.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B4255392FA1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+On Thu, Apr 02, 2026 at 11:31:18PM -0700, Andrew Morton wrote:
+>On Thu, 2 Apr 2026 16:24:14 +0530 Sourabh Jain <sourabhjain@linux.ibm.com> wrote:
+>
+>> But while reading crash_load_dm_crypt_keys() I noticed a possibility of a
+>> double free at the address pointed by `keys_header`:
+>>
+>> In crash_load_dm_crypt_keys()/crash_dump_dm_crypt.c
+>>      snip...
+>>
+>>      kbuf.buffer = keys_header;
+>>
+>>      snip....
+>>
+>>      r = kexec_add_buffer(&kbuf);
+>>      if (r) {
+>>          pr_err("Failed to call kexec_add_buffer, ret=%d\n", r);
+>>          kvfree((void *)kbuf.buffer);                           <---
+>> First Free
+>>          return r;
+>>      }
+>>
+>> Since `keys_header` is not reset, the next call to build_keys_header()
+>> will cause a double free at `keys_header`.
+>>
+>> static int build_keys_header(void)
+>> {
+>>
+>>      snip...
+>>
+>>      if (keys_header != NULL)
+>>          kvfree(keys_header);
+>>
+>>      snip...
+>> }
+>>
+>> What do you think?
+>
+>It looks that way to me.
 
-> @@ -91,6 +110,94 @@ &i2c8 {
->  	pinctrl-0 = <&i2c8_cfg>;
->  	pinctrl-names = "default";
->  	status = "okay";
+Thanks for confirming it! I'll send a patch after finishing the testing.
 
-Perhaps the previous i2c8 enabling patch could be merged with this one.
-For the floating sections, I suggest marking them as "not connected":
+-- 
+Best regards,
+Coiby
 
-```
-		regulators {
-			buck1 {
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <3450000>;
-				regulator-ramp-delay = <5000>;
-				regulator-always-on;
-			};
-
-			buck2 {
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <3450000>;
-				regulator-ramp-delay = <5000>;
-				regulator-always-on;
-			};
-
-			buck3_1v8: buck3 {
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <1800000>;
-				regulator-ramp-delay = <5000>;
-				regulator-always-on;
-			};
-
-			buck4_3v3: buck4 {
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <3300000>;
-				regulator-ramp-delay = <5000>;
-				regulator-always-on;
-			};
-
-			buck5: buck5 {
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <3450000>;
-				regulator-ramp-delay = <5000>;
-				regulator-always-on;
-			};
-
-			buck6 {
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <3450000>;
-				regulator-ramp-delay = <5000>;
-				regulator-always-on;
-			};
-
-			aldo1 {
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <3400000>;
-				regulator-boot-on;
-			};
-
-			aldo2 {
-				/* not connected */
-			};
-
-			aldo3 {
-				/* not connected */
-			};
-
-			aldo4 {
-				/* not connected */
-			};
-
-			dldo1 {
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <3400000>;
-				regulator-boot-on;
-			};
-
-			dldo2 {
-				/* not connected */
-			};
-
-			dldo3 {
-				/* not connected */
-			};
-
-			dldo4 {
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <3400000>;
-				regulator-always-on;
-			};
-
-			dldo5 {
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <3400000>;
-			};
-
-			dldo6 {
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <3400000>;
-				regulator-always-on;
-			};
-
-			dldo7 {
-				/* not connected */
-			};
-		};
-```
-
-Thanks,
-Chukun
 
