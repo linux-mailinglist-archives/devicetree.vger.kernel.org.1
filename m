@@ -1,126 +1,237 @@
-Return-Path: <devicetree+bounces-284294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284299-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gOBPGD5sz2nAwAYAu9opvQ
-	(envelope-from <devicetree+bounces-284294-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 09:29:02 +0200
+	id 4GbMFGlyz2nhwQYAu9opvQ
+	(envelope-from <devicetree+bounces-284299-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 09:55:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64F96391BDC
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 09:29:01 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A4F3391DB0
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 09:55:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 929433003836
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 07:28:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 539B03023697
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 07:55:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64894371CE4;
-	Fri,  3 Apr 2026 07:28:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UTQ6fS9E"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6447637C911;
+	Fri,  3 Apr 2026 07:55:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41EF8362128;
-	Fri,  3 Apr 2026 07:28:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F0431A576;
+	Fri,  3 Apr 2026 07:55:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775201335; cv=none; b=MocYomdewt2I6F3F6UzMZqZWlx2gAer7o9G6BbgU8y7u3P7wXq1EkP74Z2PQNtzgPI/c8JsDYlbnxYLd0bYskAn2asL/up6Qs9wxhR01Wlq9Pr9D7SfnrLrF0G0xkskIcqQSXZrOrnOEkgV/a1z+8k/X+nYtrfxw0BfBbgh8Xo8=
+	t=1775202917; cv=none; b=hWSCn82ghH7MPyGCmGl9aongdz+JQTSqVzG//8I+GM8uzA7lLwuaNqCyqBMSBsghOAEOXpTkdqnfh+3DxFZ0P8zOlZpGABbVAPNLhCHDc5OBs9uYc6LyRCJu4gkz+ktLlFIw2lXFWNUDT5gZcimvzCpmz19VEfy2EAFmg3UmJBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775201335; c=relaxed/simple;
-	bh=SPbL2mrGyczm3g6hukeAuJmU2/lyZJSEF0dZ4mt/5ZE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cIJ+gOmvi5QGfuRt5GM0EJfRKLljMu3UQuUv0R4LRyEjkatxUuaZ827CpvOZl+hvGqn1RLA67odI2ATaT/S6qXCX8Oq36yGkAyJwytV4EpfXtZ3zctDmLqC4FT6Y4pih3PIAhrWmhZO0gQDuO4z1lgMIZ+nigEUQxU04SXdDjKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UTQ6fS9E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B5C4C19424;
-	Fri,  3 Apr 2026 07:28:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775201334;
-	bh=SPbL2mrGyczm3g6hukeAuJmU2/lyZJSEF0dZ4mt/5ZE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UTQ6fS9EWsdi0QVCIAZs2J7Vlda8cVCmFfMlrbnit5AdxL5FrvXBUomk4JR6bY2xy
-	 hpED+Ic2b1ygWFrl4rE1l8xYgDeFhiyylXwdX16JDnnJJqnBVr2T05eJBJtpi2nIOE
-	 OEEIO2KErKTE9TPSo6VwbpGDb2s3nuEws75Gcg84WPyZlp1dDpX6vevyMw50Kb4gSS
-	 vEIm/7k1S7EyngzwVEC2+YZNFEqxK3dRb+9bzOiskHQ+D528dTAy1TLW8Nznab1Ebx
-	 vVYmOqoT2+4mNnoWI7lmjPKi7A/IZ3ckOkA4nJ4vydGKsTANDsCOGwK3Pe5scyqOuO
-	 RYKFwjlqjO5CA==
-Date: Fri, 3 Apr 2026 09:28:52 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rustam Adilov <adilov@disroot.org>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stanley Chang <stanley_chang@realtek.com>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/6] dt-bindings: phy: realtek,usb2phy.yaml: extend
- for resets and RTL9607C support
-Message-ID: <20260403-striped-magpie-of-purring-ade9bb@quoll>
-References: <20260402154414.196012-1-adilov@disroot.org>
- <20260402154414.196012-4-adilov@disroot.org>
+	s=arc-20240116; t=1775202917; c=relaxed/simple;
+	bh=8GYgkPIo1FUe0kvQg6O45DX9xQLijtTCdiCRCynLDlA=;
+	h=From:Date:Message-ID:To:Cc:Subject; b=LHw6UIuN0FzJnVQH+DiXGfPQOh6tX1uLf/A8vKqRku0qQidaP566uLscr7/SAoPI88aPj7s0Y6l4EJjsf1DAMkNYnkuR9eg5VEaz9PJt96myyCYvY6GG6AcUty5ohQnSu3iRQ/xGu7TpGyQnshLyCclHzf6QKcHWPRUSqGJRImA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from 0001-drivers-of-live-tree.eml (unknown [111.196.245.197])
+	by APP-03 (Coremail) with SMTP id rQCowABnhdxecs9pXaO9DA--.12964S2;
+	Fri, 03 Apr 2026 15:55:10 +0800 (CST)
+From: Pengpeng Hou <pengpeng@iscas.ac.cn>
+Date: Fri, 3 Apr 2026 15:32:30 +0800
+Message-ID: <20260403183501.1-drivers-of-live-tree-pengpeng@iscas.ac.cn>
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, pengpeng@iscas.ac.cn
+Subject: [PATCH 1/2] drivers/of: validate live-tree string properties before
+ string use
+X-CM-TRANSID:rQCowABnhdxecs9pXaO9DA--.12964S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxGr13Jw45Aw1fXr1UuF4fuFg_yoWrXFW3pF
+	4Yy3yayrWrCFsrJrWfZr1rAa45Kw4ftayxtFy7KwnruwnxAFy5Xr4xGF1Yvrn3AF93u3y5
+	KF10qFW8Ga17uFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUkv14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
+	6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+	Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcVAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwCY1x0262kKe7AKxVWUAVWU
+	twCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r
+	1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_JF0_Jw1lIxkGc2Ij
+	64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr
+	0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF
+	0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUcBMtUUUUU=
+X-CM-SenderInfo: pshqw1xhqjqxpvfd2hldfou0/
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260402154414.196012-4-adilov@disroot.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	URIBL_MULTI_FAIL(0.00)[disroot.org:server fail,sin.lore.kernel.org:server fail,qualcomm.com:server fail];
-	TAGGED_FROM(0.00)[bounces-284294-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-284299-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 64F96391BDC
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[pengpeng@iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.992];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:email,iscas.ac.cn:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3A4F3391DB0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 02, 2026 at 08:44:11PM +0500, Rustam Adilov wrote:
-> Add the "realtek,rtl9607-usb2phy" compatible for USB2 PHY on the RTL9607C
-> SoC series.
-> 
-> Add a resets property to properties to describe the usb2phy reset line.
-> 
-> In RTL9607C, USB2 PHY reset line is from "IP Enable controller" which is
-> multipurpose and handle activating various SoC peripherals.
-> 
-> It is unclear whether RTD SoCs have something similar to that so set
-> the resets to false for these devices.
-> 
-> RTL9607C requires the "resets" to be specified so add the corresponding
-> if check for the "realtek,rtl9607-usb2phy" compatible.
-> 
-> Signed-off-by: Rustam Adilov <adilov@disroot.org>
-> ---
->  .../bindings/phy/realtek,usb2phy.yaml         | 25 ++++++++++++++++++-
->  1 file changed, 24 insertions(+), 1 deletion(-)
+`populate_properties()` stores live-tree property values as raw byte
+sequences plus a separate `length`. They are not globally guaranteed to
+be NUL-terminated.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+`of_prop_next_string()` currently advances through string-list
+properties with `strlen()`, `__of_node_is_type()` compares raw
+`device_type` bytes with `strcmp()`, `__of_device_is_status()` compares
+raw `status` bytes with `strcmp()`/`strncmp()`, and
+`of_alias_from_compatible()` treats the first `compatible` entry as a
+NUL-terminated string.
 
-Best regards,
-Krzysztof
+Validate these strings within their property bounds before treating
+them as C strings. In particular, reject malformed string-list entries
+whose next string is not terminated before `of_prop_next_string()`
+returns it.
+
+Signed-off-by: Pengpeng Hou <pengpeng@iscas.ac.cn>
+
+---
+drivers/of/base.c     | 39 +++++++++++++++++++++++----------------
+drivers/of/property.c | 30 +++++++++++++++++++++++++-----
+ 2 files changed, 48 insertions(+), 21 deletions(-)
+
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index 57420806c1a2..3c6af4051ad3 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -82,7 +82,14 @@ EXPORT_SYMBOL(of_node_name_prefix);
+ 
+ static bool __of_node_is_type(const struct device_node *np, const char *type)
+ {
+-	const char *match = __of_get_property(np, "device_type", NULL);
++	const char *match;
++	int matchlen;
++
++	match = __of_get_property(np, "device_type", &matchlen);
++	if (!match || matchlen <= 0)
++		return false;
++	if (strnlen(match, matchlen) >= matchlen)
++		return false;
+ 
+ 	return np && match && type && !strcmp(match, type);
+ }
+@@ -491,22 +498,22 @@ static bool __of_device_is_status(const struct device_node *device,
+ 		return false;
+ 
+ 	status = __of_get_property(device, "status", &statlen);
+-	if (status == NULL)
++	if (!status || statlen <= 0)
++		return false;
++	if (strnlen(status, statlen) >= statlen)
+ 		return false;
+ 
+-	if (statlen > 0) {
+-		while (*strings) {
+-			unsigned int len = strlen(*strings);
++	while (*strings) {
++		unsigned int len = strlen(*strings);
+ 
+-			if ((*strings)[len - 1] == '-') {
+-				if (!strncmp(status, *strings, len))
+-					return true;
+-			} else {
+-				if (!strcmp(status, *strings))
+-					return true;
+-			}
+-			strings++;
++		if ((*strings)[len - 1] == '-') {
++			if (!strncmp(status, *strings, len))
++				return true;
++		} else {
++			if (!strcmp(status, *strings))
++				return true;
+ 		}
++		strings++;
+ 	}
+ 
+ 	return false;
+@@ -1217,10 +1224,10 @@ EXPORT_SYMBOL(of_find_matching_node_and_match);
+ int of_alias_from_compatible(const struct device_node *node, char *alias, int len)
+ {
+ 	const char *compatible, *p;
+-	int cplen;
++	int ret;
+ 
+-	compatible = of_get_property(node, "compatible", &cplen);
+-	if (!compatible || strlen(compatible) > cplen)
++	ret = of_property_read_string_index(node, "compatible", 0, &compatible);
++	if (ret)
+ 		return -ENODEV;
+ 	p = strchr(compatible, ',');
+ 	strscpy(alias, p ? p + 1 : compatible, len);
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 50d95d512bf5..edbc7a95aa4c 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -648,16 +648,36 @@ EXPORT_SYMBOL_GPL(of_prop_next_u32);
+ 
+ const char *of_prop_next_string(const struct property *prop, const char *cur)
+ {
+-	const void *curv = cur;
++	const char *curv = cur;
++	const char *end;
++	size_t len;
+ 
+-	if (!prop)
++	if (!prop || !prop->value || !prop->length)
+ 		return NULL;
+ 
+-	if (!cur)
++	end = prop->value + prop->length;
++
++	if (!cur) {
++		len = strnlen(prop->value, prop->length);
++		if (len >= prop->length)
++			return NULL;
++
+ 		return prop->value;
++	}
+ 
+-	curv += strlen(cur) + 1;
+-	if (curv >= prop->value + prop->length)
++	if (cur < (const char *)prop->value || cur >= end)
++		return NULL;
++
++	len = strnlen(cur, end - cur);
++	if (len >= end - cur)
++		return NULL;
++
++	curv += len + 1;
++	if (curv >= end)
++		return NULL;
++
++	len = strnlen(curv, end - curv);
++	if (len >= end - curv)
+ 		return NULL;
+ 
+ 	return curv;
+-- 
+2.50.1 (Apple Git-155)
 
 
