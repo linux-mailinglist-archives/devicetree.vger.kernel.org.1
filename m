@@ -1,50 +1,49 @@
-Return-Path: <devicetree+bounces-284497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284495-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cNabDvDnz2kS1gYAu9opvQ
-	(envelope-from <devicetree+bounces-284497-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 18:16:48 +0200
+	id YNh5FuXnz2kS1gYAu9opvQ
+	(envelope-from <devicetree+bounces-284495-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 18:16:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E549D39634C
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 18:16:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC1E396326
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 18:16:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A624E30EDB4D
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 16:10:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 269C530E8299
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 16:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93CE73CCFB6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5537A3CF687;
 	Fri,  3 Apr 2026 16:09:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="EUSknzW6"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="LnTvwpkM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57CEF3CEB84;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69FA83CC9FD;
 	Fri,  3 Apr 2026 16:09:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775232569; cv=none; b=UAaOH4olFdiMgdwDrVZCMlhEcEUhZn09DjLHmLwciTGhmXF7z8v1GYP0MhLxlbF6Uk6lc8Vnq9e0+gsmW+tVNRwOEghEjTw/8CEomQJ9CCxj6nf9z/0+xVxEoLlPmkl1fxvwJZgbRRG2aI7hu8pF0GIC+GpxdNDfbpQWe3zLFTQ=
+	t=1775232569; cv=none; b=HgIfQr0Yn0SZdleojEpCXMsie0cOKPOd5Irr/JgPe1Jrei2g2Yg/po2abymuRj277yZQvK4ynp2zIGGVvqsqRrfFrWV83uPrWRje4pF7lpog0uI1Zyj7yMJBFLR2N6o5uBovfKa/b9SLm9Xh2sUqSz0ha29nvT8yI3D71WxP5Bs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1775232569; c=relaxed/simple;
-	bh=J2SoalosCyxImvGFu5R4J5FtFH7pMqPC3RBWKZVsADo=;
+	bh=Y66wwsu4uCJ5vCnrkH5iYoYFi2DeQ8efaTE8Rt+0Rik=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=O86LkqPCvB65w3/IJ2X3MSgsuFugBr4e4GSFjOmdkjGknkXItlJ2rCcLf4ZGlmyE4+dVt0Xgvmt+XZ4YOLGUrHPp0jf6L8zQcJJk+xUVepT/22fCsi3vw2p8Puq+D6wFXTfZ1AS1Z04F9Hrq2RCT4Va5o/UrOdoSww5COJW/8Ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=EUSknzW6; arc=none smtp.client-ip=65.21.61.41
+	 In-Reply-To:To:Cc; b=hvQm9Qcid89PKCpxwBfNQjyx+zNXZmUocEI6531XiZYec6xg8CqDYy6MyerBzNjbesTBcqrNLyaz//ODw2ZbmBAR/ga745jKc5wfiVDWWziXJuPtuCEHlgkUOMTsYdRTOkB6ORqrnnXXhOOeBtEUrKJ+6fOSEMfZ4hmG93vq3qM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=LnTvwpkM; arc=none smtp.client-ip=65.21.61.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1775232560;
-	bh=J2SoalosCyxImvGFu5R4J5FtFH7pMqPC3RBWKZVsADo=;
+	s=courrier-s1; t=1775232561;
+	bh=Y66wwsu4uCJ5vCnrkH5iYoYFi2DeQ8efaTE8Rt+0Rik=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=EUSknzW6QXDFBYi2M6ZqAl4SVbok284Y2Y48z/7aUBxPgf4Wpt3v5SPa+HbN7rpAL
-	 WLGiXGrBZ6X60yVoUYMxcDSv7r2UdRJMBp69j74ROe1H5U2LKzKOLdGzrlQcwXe0DL
-	 c+A9m97tM5uv7aU3VCXXjAr06SfFnq444i9f2uco=
-Date: Fri, 03 Apr 2026 18:08:38 +0200
-Subject: [PATCH v2 5/8] thermal: khadas-mcu-fan: Add fan config from
- platform data Add regulator support
+	b=LnTvwpkMx771x6nRMdFlVudAEKFabKfAf9/d0xkkrYpRZWgqam3aViXjyt8shUWDu
+	 GJbBHxwtoybWR+mL8YHwO685pYILWhjVCeAPHoVJ58u3W1HrDLQjsu1ec/yxxVbU/P
+	 Lvd3uyDWUMlk1KZsAO3V7Woudt4xm8Q/DyXamun4=
+Date: Fri, 03 Apr 2026 18:08:39 +0200
+Subject: [PATCH v2 6/8] arm64: dts: amlogic: t7: Add i2c pinctrl node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +52,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260403-add-mcu-fan-khadas-vim4-v2-5-70536b22439a@aliel.fr>
+Message-Id: <20260403-add-mcu-fan-khadas-vim4-v2-6-70536b22439a@aliel.fr>
 References: <20260403-add-mcu-fan-khadas-vim4-v2-0-70536b22439a@aliel.fr>
 In-Reply-To: <20260403-add-mcu-fan-khadas-vim4-v2-0-70536b22439a@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
@@ -71,13 +70,13 @@ Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1775232552; l=3477;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1775232553; l=835;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=J2SoalosCyxImvGFu5R4J5FtFH7pMqPC3RBWKZVsADo=;
+ bh=Y66wwsu4uCJ5vCnrkH5iYoYFi2DeQ8efaTE8Rt+0Rik=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QEFj0nfFG83jnBBd60nayCy9VVofB4EIdNwOIGL1JZxdO4sU2taPxbmzNMnLl+Iy7VzNGFGRYEq
- v3kniuehwGQI=
+ QPsdm36JJcZByW1pADuyo5JpuH9aWQy2RcwjJ+3DsRcX8aJUcMiuWkoxy6rs3MsOcOzR0qTWkVM
+ R0IKuLXm1ZAw=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-Spamd-Result: default: False [-0.16 / 15.00];
@@ -96,7 +95,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_NA(0.00)[aliel.fr];
 	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-284497-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284495-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -106,135 +105,39 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid]
-X-Rspamd-Queue-Id: E549D39634C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aliel.fr:dkim,aliel.fr:email,aliel.fr:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0BC1E396326
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Replace the hardcoded MAX_LEVEL constant and fan register
-with values read from platform_data (fan_reg, max_level),
-as new MCUs need different values.
-
-Optionally acquire and enable a "fan" regulator supply
-at probe time and on resume,
-so boards that gate fan power through a regulator are handled.
+Add the T7 pinctrl used by the Khadas VIM4 for MCU communication.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- drivers/thermal/khadas_mcu_fan.c | 49 +++++++++++++++++++++++++++++++++++-----
- 1 file changed, 43 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/thermal/khadas_mcu_fan.c b/drivers/thermal/khadas_mcu_fan.c
-index d35e5313bea41..24559bf65de46 100644
---- a/drivers/thermal/khadas_mcu_fan.c
-+++ b/drivers/thermal/khadas_mcu_fan.c
-@@ -13,13 +13,15 @@
- #include <linux/regmap.h>
- #include <linux/sysfs.h>
- #include <linux/thermal.h>
--
--#define MAX_LEVEL 3
-+#include <linux/regulator/consumer.h>
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index 7fe72c94ed623..e96fe10b251a0 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -376,6 +376,16 @@ mux {
+ 					};
+ 				};
  
- struct khadas_mcu_fan_ctx {
- 	struct khadas_mcu *mcu;
-+	unsigned int fan_reg;
- 	unsigned int level;
-+	unsigned int max_level;
- 	struct thermal_cooling_device *cdev;
-+	struct regulator *power;
- };
- 
- static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
-@@ -27,8 +29,7 @@ static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
- {
- 	int ret;
- 
--	ret = regmap_write(ctx->mcu->regmap, KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
--			   level);
-+	ret = regmap_write(ctx->mcu->regmap, ctx->fan_reg, level);
- 	if (ret)
- 		return ret;
- 
-@@ -40,7 +41,9 @@ static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
- static int khadas_mcu_fan_get_max_state(struct thermal_cooling_device *cdev,
- 					unsigned long *state)
- {
--	*state = MAX_LEVEL;
-+	struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
++				i2c0_ao_d_pins: i2c0-ao-d {
++					mux {
++						groups = "i2c0_ao_sck_d",
++							 "i2c0_ao_sda_d";
++						function = "i2c0_ao";
++						bias-disable;
++						drive-strength-microamp = <3000>;
++					};
++				};
 +
-+	*state = ctx->max_level;
- 
- 	return 0;
- }
-@@ -61,7 +64,7 @@ khadas_mcu_fan_set_cur_state(struct thermal_cooling_device *cdev,
- {
- 	struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
- 
--	if (state > MAX_LEVEL)
-+	if (state > ctx->max_level)
- 		return -EINVAL;
- 
- 	if (state == ctx->level)
-@@ -83,11 +86,32 @@ static int khadas_mcu_fan_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct khadas_mcu_fan_ctx *ctx;
- 	int ret;
-+	const struct khadas_mcu_fan_pdata *pdata = dev_get_platdata(&pdev->dev);
- 
- 	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
- 	if (!ctx)
- 		return -ENOMEM;
-+
- 	ctx->mcu = mcu;
-+	ctx->fan_reg   = pdata->fan_reg;
-+	ctx->max_level = pdata->max_level;
-+
-+	ctx->power = devm_regulator_get_optional(dev->parent, "fan");
-+	if (IS_ERR(ctx->power)) {
-+		if (PTR_ERR(ctx->power) == -ENODEV)
-+			ctx->power = NULL;
-+		else
-+			return PTR_ERR(ctx->power);
-+	}
-+
-+	if (ctx->power) {
-+		ret = regulator_enable(ctx->power);
-+		if (ret) {
-+			dev_err(dev, "Failed to enable fan power supply: %d\n", ret);
-+			return ret;
-+		}
-+	}
-+
- 	platform_set_drvdata(pdev, ctx);
- 
- 	cdev = devm_thermal_of_cooling_device_register(dev->parent,
-@@ -124,12 +148,25 @@ static int khadas_mcu_fan_suspend(struct device *dev)
- 
- 	ctx->level = level_save;
- 
-+	if (ctx->power) {
-+		ret = regulator_disable(ctx->power);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	return 0;
- }
- 
- static int khadas_mcu_fan_resume(struct device *dev)
- {
- 	struct khadas_mcu_fan_ctx *ctx = dev_get_drvdata(dev);
-+	int ret;
-+
-+	if (ctx->power) {
-+		ret = regulator_enable(ctx->power);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	return khadas_mcu_fan_set_level(ctx, ctx->level);
- }
+ 				pwm_a_pins: pwm-a {
+ 					mux {
+ 						groups = "pwm_a";
 
 -- 
 2.49.0
