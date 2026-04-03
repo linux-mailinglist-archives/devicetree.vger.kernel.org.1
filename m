@@ -1,253 +1,146 @@
-Return-Path: <devicetree+bounces-284390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284330-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MZp1OJaiz2mZyQYAu9opvQ
-	(envelope-from <devicetree+bounces-284390-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 13:20:54 +0200
+	id CLMCODaHz2mwwwYAu9opvQ
+	(envelope-from <devicetree+bounces-284330-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:24:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D4E93939FF
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 13:20:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 533A3392BD2
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 11:24:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A2255306F0D7
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 11:19:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E533B300B9A1
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 09:24:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E30043B47DE;
-	Fri,  3 Apr 2026 11:18:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b="RDOftD+5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6198E359A8A;
+	Fri,  3 Apr 2026 09:24:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from siberian.tulip.relay.mailchannels.net (siberian.tulip.relay.mailchannels.net [23.83.218.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4A63B27C5;
-	Fri,  3 Apr 2026 11:18:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.218.246
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775215130; cv=pass; b=tzXnKTm+TtuiiOMdg8/8I2LH1LoD5YsGJu+eYSZU4VsUK7IZzZJJ09x7FBO+g/7wrUdzQCW1FT71vPMUriDBVMZ/M5NsvXWl2SVDZz+R1uxGsW5NBCd4R+YlQH1wWDXttMkrrELbnaddeCE+/0hPb7GWi+9iNt5YqWkVWGeiePA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775215130; c=relaxed/simple;
-	bh=yev5PnA1FFUzvokiGbyOhvM8CdlJqNaaJfV1xZIyi98=;
-	h=From:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc:Date; b=kFhzdh+0AQ+V+O5Pnqneu7ksZJGdMKjaHchrGhXRwJ6wD5SwugRKATU/kkJWCEmlc/LFpn3iUtmaMOg4bfrdvs4YB/nAvfyTgF6Dx4GQGt63fJrt/daLWn5A45UQ+bq0gGcU++fiq2dOHcSMCdQmjo17OhMYZqjlXp4ctLLw8EM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com; spf=pass smtp.mailfrom=smankusors.com; dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b=RDOftD+5; arc=pass smtp.client-ip=23.83.218.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smankusors.com
-X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 9BB6A4C28B2;
-	Fri, 03 Apr 2026 09:23:30 +0000 (UTC)
-Received: from de-fra-smtpout2.hostinger.io (trex-green-8.trex.outbound.svc.cluster.local [100.96.233.91])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id BC1C14C2D01;
-	Fri, 03 Apr 2026 09:23:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
-	t=1775208209;
-	b=9M8kq5bYjxw5+iHO0DLRXTBuM6xjXnNg3l8TMpqRFXEU5R9TV9p4sN/HgysOI0dJ+egNeV
-	heYNIWBhOn1zwtqUKNqmwqQ9t/aq3UzXN/AQlt+33gFmSKajND561C67YN7nYFoOqlR3cE
-	CBKBGxBnXF4T37bfhWFzBj4eh/XfmKsZdJs5s7GsyqW9xEXK+AfP7oDpfXfN9F2ChgsxC/
-	QscqD4mt1sMV9skpvNaVfi2tOSLFHV8Xd4JOu1cR5UYXKY7ZuXDKERhYGI8Em2hjOlrApy
-	tDwUHH7xikJRWI/uE+ez3gOn3clR33Albo8C7dwAc1BafP4deLpLBacO0LjBaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1775208209;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=zShDjP0ybVf5DzPOobav3i0j52AsN0wf4g0/BbZ9QXM=;
-	b=slHbi1q8VuhKneTDYLgWkmvZzxt97M1Gq2VVegu+Nq3UAl1ZRFRtAh26A2v17veKbZf0f6
-	xsMfwnf5dqk6hxMCBpAqONdSMoutcA9kE5Evqlxag2JYik727cvJn1QxXUBfpyR9rTjPBh
-	SQtSzTdrlj1BPgchKPus6XzfUuvjcIG74bRd4wpY8L4h05NYpMbh37Ea9ymvvL4JsF7xmD
-	fB4UUPU9hxuB4iesq9s+OiEIKEXqvCCK/a3rWv2MPlzBBlwtXluTcwyVj8EEM617rdFFsz
-	+tYUStRZ3hsMK1AZpImr1msyXu3IE9hLq2fs26uoiQPjwfCmqCygu1zBBzqdQw==
-ARC-Authentication-Results: i=1;
-	rspamd-bd48b9d95-6g2k4;
-	auth=pass smtp.auth=hostingeremail smtp.mailfrom=linux@smankusors.com
-X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostingeremail|x-authuser|linux@smankusors.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Army-Spicy: 22a15b0a558c775f_1775208210500_1512015860
-X-MC-Loop-Signature: 1775208210500:3409479156
-X-MC-Ingress-Time: 1775208210500
-Received: from de-fra-smtpout2.hostinger.io (de-fra-smtpout2.hostinger.io
- [148.222.55.5])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.96.233.91 (trex/7.1.5);
-	Fri, 03 Apr 2026 09:23:30 +0000
-Received: from [172.17.0.2] (unknown [180.253.47.239])
-	(Authenticated sender: linux@smankusors.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fnCvG0k4Kz3wqB;
-	Fri,  3 Apr 2026 09:23:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smankusors.com;
-	s=hostingermail-a; t=1775208205;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zShDjP0ybVf5DzPOobav3i0j52AsN0wf4g0/BbZ9QXM=;
-	b=RDOftD+5zV6rDvzlq2JWvh7ZrzkyQZsxX549gPEOGDtxhLMF6tj9cYR/hms5UWDQon/Zg4
-	XRQr+FfnqGIlxnR2KvLEqzwRGBOiQnOY0rRFWkxyzTOSt7zX9F8GiqrS5WoHhgzArhCfsr
-	bIv6s051NUIq1/LSO5Ys5n1k4/tEUMoasHMJlwq8nyeYU2rlkZZkMx3aI6SceFnpltznDI
-	IZ/tM5nAVCgAnZSSGz637mZNah6E6Lg4PRDd3HNXTghXdcucbcJQsuKUAf1zmUicMpiHIF
-	4AqNY0owZ389Qjhf3pykE8VghvXGtNlkoalnIuBu6jJbbYA4aS5z+WM+uzcXaw==
-From: Antony Kurniawan Soemardi <linux@smankusors.com>
-Subject: [PATCH v2 3/3] iio: adc: qcom-pm8xxx-xoadc: add support for
- reading channel labels
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F051309DDF
+	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 09:23:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775208240; cv=none; b=JTNLkPmgG2CcM3uS2ebfYtteiyjOATo53lqkuzQ9h3v0C8nQuNpIpPa10vyM1+QBNu04s9DGzd0bWIgyMs4oHWCfC9PO4V0jwzihsE22ChRv0VTE5chL44uBQatfMrN66sTqsThYRICpQkn+iLOygvDhep6psPy7Slc8yHiij90=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775208240; c=relaxed/simple;
+	bh=m2vUozNn0aCng5ExIKXIT0OdW62fj2vQIm4HslRovuw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QP5LQRDQATOKEanVzi68TyBhRsUCxEwGF3mfUVLw6tpT2ZFsx7/s9dLAuo++pMLJWTxJax8/M+XYQCv4U/7rEj7nIDWtRgIxlRhzOFkfM93oQ25gA3x/X6ZDTVns5F3aslpwgurzvjFcdNXoOvES5lFszS7LR7+ED86Fvm/04bg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-94e2ad66abcso526695241.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 02:23:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775208238; x=1775813038;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QWOTSXRsWHBcjZnGGoJtQR/fyfNuqFqVCJ+5pGTBWnw=;
+        b=NKXQjQHypKQS2Vg1cpvhho74QarZRUNHMw0pd+vs/mM73jVJWoMqoBzACsB5zkwnjH
+         mrYn2aeAkq7yVvBnRCLCJ7p0MdqaBhsStKWPp8x2ykTPixt2+Aj1Wc3EVCTG/F4GgctT
+         Gf3woE+dMWHe/axSyB+MEFTGuG6x6EDd0PfCOwUAzqRUjZVAGF4m0dpCghBw5hQKzGrW
+         4CT/gqiWhvMpLx6g8v9tFfjS0g1JO1efc33Ingl07BBp0/AKCGR57GK9yulDF5pvBd0a
+         KSa7zHgFpuYq0DJzj31A5v9pUH5hmlSMC98UX8elNRJ83pYtP/lqwsKXY83ev+tp9xfz
+         T8/g==
+X-Forwarded-Encrypted: i=1; AJvYcCVBLKynPsR7y4PQWGP8CMWOG23HR+ezH4ZZQ9OpUmo2vTGpNgp6GOZ6yUqx2algYr/F7F2oCFYKgpiy@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywk91JvB4nguOK2p+gYCaQHuKdlqhjbTxS4tvedtIh6dM7Ky4T0
+	qYOj4EgPm2xuIqGan1d97lAnBtWlZoD04AyX+veCUu1zUAVvx3v0siLUl6ZwxzyW
+X-Gm-Gg: AeBDietXdwXcT5nB7IScP6li0NQ3ZKjD7ud+hmP542C4gITM+FQh/WD1E7knsM6pzey
+	SnfaA6qbA8pQw9jXNOAI60TOb+La+ZjYvrJZ1CzevXiJS+tUo1idEnNaFEnGl1jTdfkRUnNzo5Q
+	zR5qiq0TbPPPZvholudoM6EP+2K9GSGTkCBRcG5RNV1TMyFBW4c+F2T8C5SakRF8S7g8R3ckN66
+	jJX/Db8TuleiZ6qRWqw21m9RBjIyPLSPaKZxSKbucrA9MuX7g37Cjcdx9t4duLpePLOYTgFNWzU
+	a7PW+gOQ2FNPFCAsVRQ69gqtTUTnRlXULrBIJT5O33FLkpXQwkBlKtQH5J2rgar+l9i8bpqcDGI
+	7iNmvr0Xm2sPQRnc4uXrxQAgsdSiHXldOFLkLoSY+BwZw1KfzT2sMOYbyMOF+oFq2vZjCLnrf/B
+	eN4w2yuZ3BsPxY4sYqb2UBNqCBb8Rt6XVsqqGnnL4+8b7K0r1x50ZN536QCsHp
+X-Received: by 2002:a05:6102:f97:b0:5ff:a16b:93f0 with SMTP id ada2fe7eead31-605a5099353mr730275137.22.1775208238056;
+        Fri, 03 Apr 2026 02:23:58 -0700 (PDT)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-953fb84f2c5sm5783518241.5.2026.04.03.02.23.56
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Apr 2026 02:23:57 -0700 (PDT)
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-6058b3ec384so482171137.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 02:23:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXBc51x6CBFHQ5seCdavY8o63FU2IPbbGvzkbe4BboKXp/EUl/JqdC3Md5VfA8A9L2Jqc3+2SMJxO9H@vger.kernel.org
+X-Received: by 2002:a67:e718:0:b0:605:6089:6745 with SMTP id
+ ada2fe7eead31-605a4e54dabmr739558137.9.1775208236667; Fri, 03 Apr 2026
+ 02:23:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260403-pm8xxx-xoadc-label-v2-3-29b50bf821e6@smankusors.com>
-References: <20260403-pm8xxx-xoadc-label-v2-0-29b50bf821e6@smankusors.com>
-In-Reply-To: <20260403-pm8xxx-xoadc-label-v2-0-29b50bf821e6@smankusors.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- phone-devel@vger.kernel.org, 
- Antony Kurniawan Soemardi <linux@smankusors.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775208191; l=3440;
- i=linux@smankusors.com; s=20250609; h=from:subject:message-id;
- bh=yev5PnA1FFUzvokiGbyOhvM8CdlJqNaaJfV1xZIyi98=;
- b=+N+mYjw6pb7NLriWXLjXwElkRt5sTM2fMYARXMPGjKzv+J9KYG75hiXPfxt1klP2QLcR2xXCR
- s+L4wWhj6a8DB1OgJ4DTZO1dVxLTzhIWYOGR3YX2zfedld3iT96CaOa
-X-Developer-Key: i=linux@smankusors.com; a=ed25519;
- pk=65wTy06fJl2/h/EJwjr704YG+yjHFhZObJBWzzK+N00=
-Date: Fri,  3 Apr 2026 09:23:21 +0000 (UTC)
-X-CM-Analysis: v=2.4 cv=etGNzZpX c=1 sm=1 tr=0 ts=69cf870d a=EXl8KfDnlL3m3zOSb15mOw==:117 a=EXl8KfDnlL3m3zOSb15mOw==:17 a=IkcTkHD0fZMA:10 a=wxLWbCv9AAAA:8 a=RWyRNVyMI2VXGFIsuXIA:9 a=QEXdDO2ut3YA:10 a=QJY96suAAestDpCc5Gi9:22
-X-CM-Envelope: MS4xfPWXTfSxQ9YG/SfN78UhwKrMgiJgEe1NJu8QuFlN2vZ+3m+VYJH6Tl1LbBlgrzvFvwwlw1u9yVnUx1DghrQggeIV3TDCPJO/pvvcQw6v2YGjnt2boDbN XAhnLAzlavZP7/p+eBiEzAuqbd5eH6gq8o+njfmA9Stm5DA5/2WZU114j5cB/DFGf7vayxbl+NU4dnt/lYJwFVycog51taoBVAxCM5XqvZBPNknqYg4Lxj/W K72v1AUjpDSjLFJkndkgmkGSBMsgHSUrwEGUopqbSXqvkQLjb6hzceAgx/Z1YpQFTQxI0umPLn8wQd7JdBD0FDkCBD3QVaE+BNpbR36GMEQc4lTKOsPlF5/5 IfJMlTfxOjz6qiG1aY/3MtRRuqPxRLsTTBsLZ5kOHO13XoKXn6kUXF9YE/xgdJnQXo+GDyQT3DKf79jVMZbDELl9Up5HSB4iooucvejB5KEhNOOUiPgvva5b j1VlZsEtGGYGBTvMpkgFkJ6AmDw3XHN604zYaVB2LK3PYEySYGTYjodvxMncHPMvViOtN1fhH0d2hByH7RHmfL+gCEtk1sWjALlOoVe6X+lPux6ajaXPXNMn x0nVr9zTev46T7IgDKI7Nso47ym6KOmkPSyTBdEFUawMk+wk/3N4/9Ue+iKeBEUaqaM=
-X-AuthUser: linux@smankusors.com
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[smankusors.com,none];
+References: <20260327234244.91707-1-marek.vasut+renesas@mailbox.org> <20260327234244.91707-6-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260327234244.91707-6-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 3 Apr 2026 11:23:45 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVY8ZDeh8sGJkjtVj5e0EquhwhqeCo_T=CTdnDjKdRWvQ@mail.gmail.com>
+X-Gm-Features: AQROBzCrzWEeQ4kO2P7sS9dJ5S9Z5ZtuN0jTbygabX6Hc16Zm1QvZSNSKwYRCCc
+Message-ID: <CAMuHMdVY8ZDeh8sGJkjtVj5e0EquhwhqeCo_T=CTdnDjKdRWvQ@mail.gmail.com>
+Subject: Re: [PATCH 5/6] ARM: dts: renesas: genmai: Drop superfluous cells
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [-1.46 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[smankusors.com:s=hostingermail-a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284390-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[smankusors.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smankusors.com:dkim,smankusors.com:email,smankusors.com:mid];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@smankusors.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	TAGGED_FROM(0.00)[bounces-284330-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 4D4E93939FF
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.853];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux-m68k.org:email,glider.be:email,mailbox.org:email,mail.gmail.com:mid,1.18.168.128:email]
+X-Rspamd-Queue-Id: 533A3392BD2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Implement the .read_label callback to allow userspace to identify ADC
-channels via the "label" property in the device tree. The name field in
-pm8xxx_chan_info is renamed to label to better reflect its purpose. If
-no label is provided in the device tree, it defaults to the hardware
-datasheet name.
+On Sat, 28 Mar 2026 at 00:43, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Drop superfluous address-cells and size-cells to fix DTC warning:
+> "
+> arch/arm/boot/dts/renesas/r7s72100-genmai.dts:28.17-55.4: Warning (avoid_unnecessary_addr_size): /flash@18000000: unnecessary #address-cells/#size-cells without "ranges", "dma-ranges" or child "reg" or "ranges" property
+> "
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-The change has been tested on Sony Xperia SP (PM8921).
+My bad...
+Fixes: 30e0a8cf886cb459 ("ARM: dts: renesas: genmai: Add FLASH nodes")
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.2.
 
-Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
----
- drivers/iio/adc/qcom-pm8xxx-xoadc.c | 24 +++++++++++++++++++-----
- 1 file changed, 19 insertions(+), 5 deletions(-)
+Gr{oetje,eeting}s,
 
-diff --git a/drivers/iio/adc/qcom-pm8xxx-xoadc.c b/drivers/iio/adc/qcom-pm8xxx-xoadc.c
-index d63af84bf44776c9c7106a43473b1678496247cb..f473c5e0c5a217bb4a3773177b6e02f0603d7de6 100644
---- a/drivers/iio/adc/qcom-pm8xxx-xoadc.c
-+++ b/drivers/iio/adc/qcom-pm8xxx-xoadc.c
-@@ -369,7 +369,7 @@ static const struct xoadc_channel pm8921_xoadc_channels[] = {
- 
- /**
-  * struct pm8xxx_chan_info - ADC channel information
-- * @name: name of this channel
-+ * @label: label of this channel from device tree (defaults to datasheet name if not specified)
-  * @hwchan: pointer to hardware channel information (muxing & scaling settings)
-  * @calibration: whether to use absolute or ratiometric calibration
-  * @decimation: 0,1,2,3
-@@ -377,7 +377,7 @@ static const struct xoadc_channel pm8921_xoadc_channels[] = {
-  * calibration: 0, 1, 2, 4, 5.
-  */
- struct pm8xxx_chan_info {
--	const char *name;
-+	const char *label;
- 	const struct xoadc_channel *hwchan;
- 	enum vadc_calibration calibration;
- 	u8 decimation:2;
-@@ -446,7 +446,7 @@ static int pm8xxx_read_channel_rsv(struct pm8xxx_xoadc *adc,
- 	u8 lsb, msb;
- 
- 	dev_dbg(adc->dev, "read channel \"%s\", amux %d, prescale/mux: %d, rsv %d\n",
--		ch->name, ch->hwchan->amux_channel, ch->hwchan->pre_scale_mux, rsv);
-+		ch->label, ch->hwchan->amux_channel, ch->hwchan->pre_scale_mux, rsv);
- 
- 	mutex_lock(&adc->lock);
- 
-@@ -719,8 +719,20 @@ static int pm8xxx_fwnode_xlate(struct iio_dev *indio_dev,
- 	return -EINVAL;
- }
- 
-+static int pm8xxx_read_label(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, char *label)
-+{
-+	struct pm8xxx_xoadc *adc = iio_priv(indio_dev);
-+	struct pm8xxx_chan_info *ch = pm8xxx_get_channel(adc, chan->address);
-+
-+	if (!ch)
-+		return -EINVAL;
-+	return sysfs_emit(label, "%s\n", ch->label);
-+}
-+
- static const struct iio_info pm8xxx_xoadc_info = {
- 	.fwnode_xlate = pm8xxx_fwnode_xlate,
-+	.read_label = pm8xxx_read_label,
- 	.read_raw = pm8xxx_read_raw,
- };
- 
-@@ -764,7 +776,9 @@ static int pm8xxx_xoadc_parse_channel(struct device *dev,
- 			pre_scale_mux, amux_channel);
- 		return -EINVAL;
- 	}
--	ch->name = name;
-+	ret = fwnode_property_read_string(fwnode, "label", &ch->label);
-+	if (ret)
-+		ch->label = hwchan->datasheet_name;
- 	ch->hwchan = hwchan;
- 	/* Everyone seems to use absolute calibration except in special cases */
- 	ch->calibration = VADC_CALIB_ABSOLUTE;
-@@ -806,7 +820,7 @@ static int pm8xxx_xoadc_parse_channel(struct device *dev,
- 
- 	dev_dbg(dev,
- 		"channel [PRESCALE/MUX: %02x AMUX: %02x] \"%s\" ref voltage: %d, decimation %d prescale %d/%d, scale function %d\n",
--		hwchan->pre_scale_mux, hwchan->amux_channel, ch->name,
-+		hwchan->pre_scale_mux, hwchan->amux_channel, ch->label,
- 		ch->amux_ip_rsv, ch->decimation, hwchan->prescale.numerator,
- 		hwchan->prescale.denominator, hwchan->scale_fn_type);
- 
+                        Geert
 
 -- 
-2.34.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
