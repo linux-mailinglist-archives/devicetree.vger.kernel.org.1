@@ -1,225 +1,130 @@
-Return-Path: <devicetree+bounces-284252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284255-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4K4lGXU1z2nAtwYAu9opvQ
-	(envelope-from <devicetree+bounces-284252-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 05:35:17 +0200
+	id 2HfFCBY9z2myuAYAu9opvQ
+	(envelope-from <devicetree+bounces-284255-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 06:07:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8A9E390ADC
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 05:35:16 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFAF9390D12
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 06:07:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8FC193021D11
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 03:35:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 119FB303393D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 04:07:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E10430FC2E;
-	Fri,  3 Apr 2026 03:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="icYl7E5D"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E524534FF62;
+	Fri,  3 Apr 2026 04:07:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 533F84315A
-	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 03:35:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.216.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775187313; cv=pass; b=lW+eBA8kB7/7UN3vH+a7vEpURUGbQ7r8q+1Swqv8YOc1tcjG6GASSfXC4Cjgl3fxjsGcp2hG72PgwvdgPubbEMKBbAnaGgk3CxrpXysz+310jAKeS1nFFokzm9YmIQhz/YqWspAPhTKw0nnrUzjUHT00L9n/LhyF2pQb1Qdsf4E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775187313; c=relaxed/simple;
-	bh=+0MwXn0LJEuitKVf35y/AcyJhu9pLZu7swqJVU6DXVo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cXzBNRgLTYum8H+T/nm7Zsbo78q96nyqBi7DIRBTVY37cg4UCk8xI/cbtSou1ZvnP9HDKBSMsnhna729MPC58ARrDlVgbx48ViDW2TRb9AJiu1mu2XMUOBZPP6Fes0tNuZ7YLDdC+Bua/WPHKeU26t0udbqFznTpPN0eFirulTY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=icYl7E5D; arc=pass smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-35dac556bb2so952138a91.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Apr 2026 20:35:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775187312; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Ivv+YCdajcth/D7Mg246GaaccRrfSvjWvmt1ttaLqM5neTBvLv6ZILRZO3Rs7XaOHF
-         04fQZlkls1a6tfUG731RAOI/iuW3SXWy73jJQLlxCgBxjW48gRMZa4sN2jOxk/GWyHQc
-         Ieu6JvEl5OOT/HVOL+hl4StRiS3Z1Yk9qz0DhxGK6RhWcywhbcgptzD8phXotBMFRGYN
-         59vb184f7JgvEIO+aQ0rJoEzGhjKoAhcMbu5O7Trx69nBoIgVyH49vBvYPYXtWe0wstE
-         F9uGFrQ7rqzH8yQkZ+yyVQYCgweIE9Z0looxL+TFgyyARQYwjBtsaR1ztR+l1oz1c4eG
-         Bndw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=ahAWEcg4rYVlFXBXuYLShZwIh35ovqR23fOGx9fT9qw=;
-        fh=/zDveny2pJ3yYjOGBMrkaZUH0kSVdLPPzgWE05BGk2I=;
-        b=kRj/z3RHrGiE6hvtkqpm9M0VuWHb0FHz4RoqD12sfjkrCNPaY/sRLkXyq/rj7J+4lq
-         3Oip4Yxj/vqjsKWBcajgLlEN6iHXUDF5d1ayUCTtIiSPOjjBbx1dHHR7dtRgFaOqrsRt
-         5fPv0DAWfd4lPdtltyUVunfLCqRQm1uKLgYh1k1MFLJy/VhT5Lqy2q48WxKHr2YUf8Fu
-         WxVPNufbY+E4e4Mj+XfRSBD4HLn7au5jplfTnFoOILLT9TphrZiq5iyn7l/sXZvnjaim
-         9213fyX0mMOl2x6HHlDVf7fNbJU4jljjQUi/4gMDfOXpqwnGk8h4tdZGdkQJFDN3E2eP
-         3jRg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775187312; x=1775792112; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ahAWEcg4rYVlFXBXuYLShZwIh35ovqR23fOGx9fT9qw=;
-        b=icYl7E5DKorRnLxtiToowarc4hXGctXcoq3zaQpMdWidKaFZwNtXR4HmrLSlItWxr0
-         lGr6RcjrtB2MHUB70KjrmkysQJbskdkxny2VWzx+Yzn/5W+KGfIZOTpgpa4Vgt8l+RW4
-         O81aT+5TAkukTif5Bk5yoUXPIDtkJJtJ1VlrAtu41W34+a4LeUhCRumjXQaqJITYx8mB
-         RJ8LpcRTIo/PhW4pwpkCVrlbjaa66bnwhyD3wVncQQefp9M3SzPbyj6ZoQWO85cc14IO
-         Mq+3Oa3DaQWJxpLHrsHaF9QkQ6lsE+cjsYE5uzKxLx5qYIvPeb7NFfHeGgDP5YaCzmmt
-         u2dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775187312; x=1775792112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ahAWEcg4rYVlFXBXuYLShZwIh35ovqR23fOGx9fT9qw=;
-        b=mSXJRHPMaTABXnXGVGlzJ73RyL5wnd2haB0y5s5b1YXDq1El06SNdqsDrrTSYGEZPY
-         iDyOEFl7kDduzFxBK0OCZ3SJk45xfLXv45xnI7u25xdaj1pSiYskg5e37wzH9FfYEmTe
-         +MOA3qStxeUYr3v8e0fRTwWp0pdbj+zEAtYjfgKJz9EYAk/Jw9R6AHY7Gc2Hx4XfRnFf
-         dVTOzCYfXXFzyRTIjMRPfCjgGTKUjbFnX9+g+6vw2LtsU4/lVFl8Xj6odr3d0FQi/lbM
-         V8BZqwyFoh/NVXVTMAiDVQ8bHpbIrbuASYpqwZpwBs0MLyeQMUh82K2m2cGUlR0KoAys
-         3dHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUz4mwPjRsiBrF+vn7jm/xXTJkRMARws3UlMcQibDa0ySbp+8MBoEmj/+JZ4ofS6+IBkhNsGryJDDPH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXI5UwRvnjdvq6wfhSkrhu0COy7o5aYJmY68WpY1dRJzfjppmd
-	tINL8WzF1D0pyFs5DC6Cw8/rvIeHNByK1/C6bbnOOemA5D/j3ReifmaPNLywYx8I7gnL4fx6kGK
-	Udoe5Fk9EptghHY/+RVHs+HqlxpdE1JE=
-X-Gm-Gg: AeBDieu1McNf48bka+0R0yGx1xMCXrFGER9o17WEvFyarzjzzk7F5wnb0mir1OYIXvi
-	d2dcmNecNKwkJcsKKWQ7Rld/veQAEjFXxdLoluG6NA7q+7MoNeovOhsvr565Qkp98zM02iTAnSC
-	2BDe0F8aC0D29pwxhSUDpiu4Z6SOqToQKwOtLVOzjAVxfvQnooWjQ3iCvXbsyjHVNR8727v2qvy
-	T1UYCtohjBh9am/IDrR4KI4vlAYk6ubzZSjUyrhLwBfO7ggbgQD19kte+gWjgVDIpWzW4og0+bK
-	PrpWx3GrPBrIO+yudIvWuJZ1otPjkVnJo26YfA==
-X-Received: by 2002:a17:902:e751:b0:2ae:b807:da61 with SMTP id
- d9443c01a7336-2b2817b422fmr17307015ad.35.1775187311715; Thu, 02 Apr 2026
- 20:35:11 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C7472D3A60;
+	Fri,  3 Apr 2026 04:07:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775189235; cv=none; b=RO6wMzx+jEYOcOxrBC2fWyvAirRTCk6S3vbaQqalg7gx1FI2/KP0N/Y8BeHtVKQX1nquRJNsuVHUYmsMrueEeLmFl1o70GrnjRrDdR1iQH+wcQYrep8eRCf/9VONT1QYVQt3b0nhkdWOeOBBOwQR+/tuRr2IJ8xMnRzd7ApJzhw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775189235; c=relaxed/simple;
+	bh=IuTVe86slATQ9UYGYDQB9CHfQpyqF9HXTDuJSOFfFWc=;
+	h=From:Date:Message-ID:To:Cc:Subject; b=I4Do9B6nDxmHwdP5va1RRgvMgWJaZTrLQeC7t2Qd0hLhnGsz1vK/Xk52kLBx28Lrj8JwKBaJsxKRNxrIQ4PqNosMQEnUVqaW8hvhJYf2ysD2EVwi+yVzDZ9g0U2BGp3PjxTukVCKuADKXvMrQDrIgbbGCRKSbauna+04zjji5ow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from 0001-drivers-of-fdt.eml (unknown [111.196.245.197])
+	by APP-05 (Coremail) with SMTP id zQCowAAXpQjsPM9pEU1XDA--.12296S2;
+	Fri, 03 Apr 2026 12:07:08 +0800 (CST)
+From: Pengpeng Hou <pengpeng@iscas.ac.cn>
+Date: Fri, 3 Apr 2026 11:55:29 +0800
+Message-ID: <20260403143001.1-dt-fdt-stdout-pengpeng@iscas.ac.cn>
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, pengpeng@iscas.ac.cn
+Subject: [PATCH] drivers/of: fdt: validate stdout-path properties before
+ parsing them
+X-CM-TRANSID:zQCowAAXpQjsPM9pEU1XDA--.12296S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrtFyktr13Jw1DKw48GrykZrb_yoWkurg_W3
+	92yrn3Ar17WrsFgr1ftw13ZrW0y39rWF1kZ3yIvw1ayr9Igr15W3WkWrn7GF4UArWfuFyD
+	Ar1avw18uFs7WjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbc8FF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+	Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_GcCE3s
+	1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0
+	cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8Jw
+	ACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lc7CjxVAaw2AFwI0_JF0_Jw1l
+	42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJV
+	WUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r126r1DMIIYrxkI7VAK
+	I48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r
+	4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY
+	6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUehL0UUUUU
+X-CM-SenderInfo: pshqw1xhqjqxpvfd2hldfou0/
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260318083124.21793-1-phucduc.bui@gmail.com> <20260326141551.GA2304345-robh@kernel.org>
-In-Reply-To: <20260326141551.GA2304345-robh@kernel.org>
-From: Bui Duc Phuc <phucduc.bui@gmail.com>
-Date: Fri, 3 Apr 2026 10:35:00 +0700
-X-Gm-Features: AQROBzBK98OPGZHdV69IVsBAyLP_4-EkBm5a428QbKTLn_9UWmvRwVCS8EXNElE
-Message-ID: <CAABR9nH3hr+Y5ksD0cn3Gd9XUvmb07X7zJw0b4k_yVbnAuz9=w@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: input: touchscreen: ti,tsc2005: Add wakeup-source
-To: Rob Herring <robh@kernel.org>
-Cc: conor+dt@kernel.org, krzk+dt@kernel.org, conor@kernel.org, 
-	devicetree@vger.kernel.org, dmitry.torokhov@gmail.com, krzk@kernel.org, 
-	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, marex@denx.de, 
-	mingo@kernel.org, tglx@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-284252-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284255-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,denx.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[pengpeng@iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: C8A9E390ADC
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:email,iscas.ac.cn:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CFAF9390D12
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Rob, Krzysztof, Conor,
+early_init_dt_scan_chosen_stdout() fetches stdout-path and
+linux,stdout-path directly from the flat DT and immediately passes the
+result to strchrnul(). Flat DT properties are raw firmware-supplied
+byte sequences, and this path does not prove that either property is
+NUL-terminated within its declared bounds.
 
-Thanks for the discussion.
+Use fdt_stringlist_get() so malformed unterminated stdout-path
+properties are rejected before the local parser walks them as C
+strings.
 
-The core schema already defines "wakeup-source" as a common property
-(using oneOf for boolean or phandle-array), so defining the type here is
-redundant.
+Signed-off-by: Pengpeng Hou <pengpeng@iscas.ac.cn>
+---
+ drivers/of/fdt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/wake=
-up-source.yaml
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 331646d667b9..3dcd20c2fa73 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -954,9 +954,9 @@ int __init early_init_dt_scan_chosen_stdout(void)
+ 	if (offset < 0)
+ 		return -ENOENT;
+ 
+-	p = fdt_getprop(fdt, offset, "stdout-path", &l);
++	p = fdt_stringlist_get(fdt, offset, "stdout-path", 0, &l);
+ 	if (!p)
+-		p = fdt_getprop(fdt, offset, "linux,stdout-path", &l);
++		p = fdt_stringlist_get(fdt, offset, "linux,stdout-path", 0, &l);
+ 	if (!p || !l)
+ 		return -ENOENT;
+ 
+-- 
+2.50.1 (Apple Git-155)
 
-I'll update it to "wakeup-source: true" in v4.
-
-Best regards,
-Phuc
-
-On Thu, Mar 26, 2026 at 9:15=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Wed, Mar 18, 2026 at 03:31:24PM +0700, phucduc.bui@gmail.com wrote:
-> > From: bui duc phuc <phucduc.bui@gmail.com>
-> >
-> > Document the "wakeup-source" property for the ti,tsc2005 touchscreen
-> > controllers to allow the device to wake the system from suspend.
-> >
-> > Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
-> > ---
-> >
-> > changes:
-> > v3: Remove blank lines
-> > v2: Revise the commit content and remove patch1 related to I2C and SPI
-> > wakeup handling
-> >
-> >  .../devicetree/bindings/input/touchscreen/ti,tsc2005.yaml    | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti,tsc=
-2005.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.=
-yaml
-> > index 7187c390b2f5..a9842509c1fe 100644
-> > --- a/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.ya=
-ml
-> > +++ b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.ya=
-ml
-> > @@ -55,6 +55,9 @@ properties:
-> >    touchscreen-size-x: true
-> >    touchscreen-size-y: true
-> >
-> > +  wakeup-source:
-> > +    type: boolean
->
-> wakeup-source already has a defined type.
->
-> wakeup-source: true
->
-> > +
-> >  allOf:
-> >    - $ref: touchscreen.yaml#
-> >    - if:
-> > @@ -97,6 +100,7 @@ examples:
-> >
-> >              ti,x-plate-ohms =3D <280>;
-> >              ti,esd-recovery-timeout-ms =3D <8000>;
-> > +            wakeup-source;
-> >          };
-> >      };
-> >    - |
-> > @@ -124,5 +128,6 @@ examples:
-> >
-> >              ti,x-plate-ohms =3D <280>;
-> >              ti,esd-recovery-timeout-ms =3D <8000>;
-> > +            wakeup-source;
-> >          };
-> >      };
-> > --
-> > 2.43.0
-> >
 
