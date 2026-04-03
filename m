@@ -1,122 +1,158 @@
-Return-Path: <devicetree+bounces-284477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284479-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kF4yJW7Vz2kQ1AYAu9opvQ
-	(envelope-from <devicetree+bounces-284477-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 16:57:50 +0200
+	id GLuJEcbYz2mb1AYAu9opvQ
+	(envelope-from <devicetree+bounces-284479-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 17:12:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130D53956CC
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 16:57:49 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE032395A41
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 17:12:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CDD5B3023A5E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 14:57:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7F6F631257A5
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 15:01:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E3E53C5540;
-	Fri,  3 Apr 2026 14:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80AE33C9EEF;
+	Fri,  3 Apr 2026 15:00:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mAjM/85e"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="PHpF51M0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4CFE372B57;
-	Fri,  3 Apr 2026 14:57:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C4F83C5DDB
+	for <devicetree@vger.kernel.org>; Fri,  3 Apr 2026 15:00:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775228267; cv=none; b=MY33YBgloytThR+fnJPoFFXFDBoPd/4at00THjG54+8KIJ0QELUBYaHkJkZR85eHkABjoIJHG7mwJVbR6bcJC3z8U7zUuLE4PHSZrZyxQ8kqOT7CbxXR+dMHF7D2WhoJQ8daJK+uVesuWkpH7r6fO65XvusMCwC4JW72RdFq3SQ=
+	t=1775228439; cv=none; b=JVgwSgnMcnOPLrJF1vnWItpVJxywcsqN5tWi3xlVjYw0vOy8CghxNH5gDyBpp3pRjBy+tTdjIFwJidrM0osNcsG77cFXxnFV7peSmI/pYn6LU3FdVhv4fBq7lPh0wb7uh+K6kjJhiOlHy0mg0qdU9TWRVrsCP9tMhX9qcknhaEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775228267; c=relaxed/simple;
-	bh=3/niLYIzXKNN+7WXyba8rYAbmmDfrBLZglBTW+BpYLU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H/aVbWyyml0nNfwoewBnKS53yK6giSQadoQ9sOLjw29cgcQ/AxPrlrR63ZCj2fn3IOs2opQnbe2CCOvyIOBqHwfqw2ODQRIDzXqck2CTiltrzQsJo2Rt4GW1qHBATZ2hQieW2jC+ieg0a7D5nIHYxKDZEEiLjFlBJDFlxW9BjNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mAjM/85e; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id A2549C59F5E;
-	Fri,  3 Apr 2026 14:58:16 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id AB35A603C1;
-	Fri,  3 Apr 2026 14:57:44 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 30E89104500E1;
-	Fri,  3 Apr 2026 16:57:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1775228263; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=UA+mdSe0ccvugAmWac/vdBqHTrHlHxa8Afp9m9KG/48=;
-	b=mAjM/85e+0tVozCGKNdG5M/GmJDTIEPMFWCExjKU4eOkYQ8KcCXVveAOdKH6yDzRWdE/Cc
-	XoSFGvpzu3PnIacUMWh+YGKJyp5IaZHnXjnxbpCZexL4bVfYu5VVBjWna6kmcfT02DL7+m
-	JAUD2XvK/LAr8rg+BgKyO87vIBtwyM5JB+U3LOwPvs7W91eUN6niHftGfYJcwQT+59aw9o
-	t59A+rICLGWlmRh3nWVZ3CeTgWSNOwZq3AcA1DPdx8de8ajVefV0CL5tCPPBSc6meBrAs7
-	a0nSUvGq+aZ8E/860Ox1bTmXFJw4D4iWskTaGRKZSpqRBmy1i9XXjPPx+8AWnw==
-Date: Fri, 3 Apr 2026 16:57:41 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Anushka Badhe <anushkabadhe@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, dsd@laptop.org,
-	krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org, robh@kernel.org
-Subject: Re: [PATCH v2] dt-bindings: rtc: add olpc,xo1-rtc to trivial-rtc
-Message-ID: <177522825137.1506847.7039045820186398050.b4-ty@b4>
-References: <20260325093003.44051-1-anushkabadhe@gmail.com>
+	s=arc-20240116; t=1775228439; c=relaxed/simple;
+	bh=FhRIVcnNMzecnoa4rPDjvVpIXXCoMM3iqgJIuyFG5Z4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oSfzuju3ScM6JK3hmqGUyOkaDrmSWaqXdXVIzbkn1qif1w4kKsOORZ/UofpdF/0zIFkD30FIHkjpIBtGgW5hrLikLllZ6zKBqVQRlmNUM5qQwFkNPDMzYpeqNaY+qee06yFL/obCRKpDZnGGqJnQ58dQcD3XTeUSQ3EKp2VuJbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=PHpF51M0; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-66c17372965so3680848a12.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Apr 2026 08:00:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1775228436; x=1775833236; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=h0/QY6ehQue8Ry1HwgL+iBOWAjcDTargnHsUC+wjaTU=;
+        b=PHpF51M0kLHzN34mxvbVESWh5St6DaiaUp3Mv9hJEFArBH4qzc8FHPKXN4MRm6yl0J
+         vu5cdFW6Q3F+rfFKvo6lBRb7XfV3BTltjOIYnX5z+hjYBuW/GA+6EBYRnzuGYmC5gJ8g
+         qQfPLz8QPlMjwxtnJCh/SELWQSA8OoHfMoNa8zB6/5HVJltQ9ywg+9+/u4tPu+nahzeM
+         dMHCkkHfPPmV/cSlgMghnbMvEtqzk9jZjdfcKnUuqpc7Lu0G8KhJ5nBT6HGGOmDv51IJ
+         f+KpXW0/AVGd1dUS4N9AXpOe2NT54yurzxVLi0QCxlSisdWMw/9xpNaJsClEwm7C3dwa
+         J28g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775228436; x=1775833236;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h0/QY6ehQue8Ry1HwgL+iBOWAjcDTargnHsUC+wjaTU=;
+        b=R9/rnM6TxDLCd1ARroqFW5QOTkn8ovdlm4YihXdN+ku8wokhbS6JPx+2LKDQGk12Xu
+         KBh2KzZWhoAKsed3X9763Aq8RKiezU0l2USE90Qx/Mo6tEz5XnBNXFdxmYxqAzuuHZ3V
+         eOojn7lR0rWpiEbBn0NQ3sSPvBl0+53Pn17U+H26VFcpALIb/Krvtwyuw95eabuMSh25
+         lnhPDQ8/+E02ssSWYEwVygwaKYcBtBZYAhfK+vqRxEFG4JvATDva73ainJyrYkFPBAo7
+         tJz/FN2W7cvei7qHu+Mc88q0N6d7adPvHqLTDlo9jfdZ4uERRn6jA2auFqbNNcxxp2rF
+         XlCw==
+X-Forwarded-Encrypted: i=1; AJvYcCWzttURQZrfxMr8wHTwkRYgSMYV1F2tg0b9X4qojWYIfYqxNh0oMr/8FkFkDObZwnPGQp5dNOgVE2ZJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjpQFQAcUIwEE7ITSGQJggfUf/Rjsen+8JM+KQ7yL1nRDUq8xq
+	ANHDSQJNgqKubMsnG8T8wHS1q7S5kTn4sYX3cSpbKKPs0S9fr6mf4GzX/Nd3Smc8o+E=
+X-Gm-Gg: AeBDiestz7Eas3jcNfUl/QZH1S1m6sc65hKRAQ8tTA7OiEjQDLtT1WiVe/bi57q14e6
+	XAQcF/67uCa+XLO8aVZbRb5xLNfaecXRbpAbWPEdqZD0emIeeN/uSGIGbiB5+kxttH2vK4GZ3Zg
+	AzpAP3F5/tpn0GF6ccvb6I7AsF8CPYreB087PDmgpQxNE4htikIrz8SAqCK/zkI8L9v5UWl62Vi
+	WoVAxe6/8QMIcJQhWFlLSOyodnXB0VeAsSfb2QleQuxpAdaGhBBiEyHEYi7N69+B2uWPbDaGdWQ
+	w8FydZi03+u+5/eQbRXvo/TqckGknk3X0wuvcehQZ2DjfuQGs+7bj01a44o5S7LW3hY5/5xwYeM
+	b3AcdkIhx5T6RixBlQFhJTirCHG9PgnPi1NuI3BKeU2d+GC+kWjv0twKfVZww1ihvcIJ/4gU0ZJ
+	siU+0x6+C15vYhXEq4vs0GIcvSfRPNrj6AjBe/NJYXfLORFC8ew36xdNcTkEaB9Z9IP3jQJJo2W
+	XPXRxQj/IWZsh29iQEfdrpIG0+wQUPXfHWYwg==
+X-Received: by 2002:a05:6402:5106:b0:662:ac7e:aac9 with SMTP id 4fb4d7f45d1cf-66e3f71d3c4mr1491095a12.20.1775228435709;
+        Fri, 03 Apr 2026 08:00:35 -0700 (PDT)
+Received: from otso.local (2001-1c00-3b89-c600-71a4-084f-6409-1447.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b89:c600:71a4:84f:6409:1447])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-66e02f389absm1724648a12.13.2026.04.03.08.00.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Apr 2026 08:00:35 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/2] Describe IMEM on Milos
+Date: Fri, 03 Apr 2026 17:00:22 +0200
+Message-Id: <20260403-milos-imem-v1-0-4244ebb47017@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260325093003.44051-1-anushkabadhe@gmail.com>
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/y2NQQrCMBBFrxJm7UBMQsFeRbpI46gjJtFMKoXSu
+ xttlw/ef38BocIk0KsFCn1YOKcGx4OCcPfpRsiXxmC06bTTFiM/syBHimi9ts4Yd3KdhzZ4Fbr
+ y/I+dh41lGh8U6q+wG4XeU3upmwajF8KQY+Taq0Rzxf3JwLCuXxo0Qq2fAAAA
+X-Change-ID: 20260403-milos-imem-3a034224946a
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775228434; l=594;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=FhRIVcnNMzecnoa4rPDjvVpIXXCoMM3iqgJIuyFG5Z4=;
+ b=v0PIV7ASjl5AGLPJMb0wR7ZvLdSq7YzlZaP6WosPRsq/8BDQLdIwBfqHtSgd2wZ2sKyuaZDsR
+ O0IL2KwwsCuCoyPwl4SvSCSGi370fvObb4oLiUB+FWU8uxhFK9Si2hy
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284477-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[fairphone.com:+];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-284479-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 130D53956CC
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fairphone.com:dkim,fairphone.com:email,fairphone.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DE032395A41
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 25 Mar 2026 15:00:03 +0530, Anushka Badhe wrote:
-> Add the OLPC XO-1 RTC compatible string to the trivial-rtc schema
-> instead of creating a standalone binding file, as it only requires
-> a compatible property with no additional configuration.
+Add a compatible and describe the IMEM for the Milos SoC.
 
-Applied, thanks!
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Luca Weiss (2):
+      dt-bindings: sram: qcom,imem: Add the Milos compatible
+      arm64: dts: qcom: milos: Add IMEM node
 
-[1/1] dt-bindings: rtc: add olpc,xo1-rtc to trivial-rtc
-      https://git.kernel.org/abelloni/c/d1b091aaba8c
+ Documentation/devicetree/bindings/sram/qcom,imem.yaml |  1 +
+ arch/arm64/boot/dts/qcom/milos.dtsi                   | 19 +++++++++++++++++++
+ 2 files changed, 20 insertions(+)
+---
+base-commit: 83acad05dee54a5cff0c98dd7962e55d4c6b145a
+change-id: 20260403-milos-imem-3a034224946a
 
 Best regards,
+--  
+Luca Weiss <luca.weiss@fairphone.com>
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
