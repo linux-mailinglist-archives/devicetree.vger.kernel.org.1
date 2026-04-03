@@ -1,175 +1,156 @@
-Return-Path: <devicetree+bounces-284414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284416-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aMSuEFezz2l1zgYAu9opvQ
-	(envelope-from <devicetree+bounces-284414-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 14:32:23 +0200
+	id mMk8NPa0z2l1zgYAu9opvQ
+	(envelope-from <devicetree+bounces-284416-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 14:39:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B7C4394097
-	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 14:32:22 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 291EE3941A6
+	for <lists+devicetree@lfdr.de>; Fri, 03 Apr 2026 14:39:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D1BBF301ECEB
-	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 12:32:20 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BF4293049996
+	for <lists+devicetree@lfdr.de>; Fri,  3 Apr 2026 12:37:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 345871E7660;
-	Fri,  3 Apr 2026 12:32:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hPIUyh5M"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28119386C25;
+	Fri,  3 Apr 2026 12:37:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FCAF155C82;
-	Fri,  3 Apr 2026 12:32:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C19121A447;
+	Fri,  3 Apr 2026 12:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775219540; cv=none; b=VxLb4lCk4QUph8npb+PjOMBNXQnegLPjAH46Bjsx9njGtmXXucdeoS/l+Jv6uEKPeyyIFP0BhzNfDMlKhOD1WEZEoslUzNfzMCHT9p4sCwuGGw7oSYQdQozt8s6G2CIpo8D/AA+pTXEPLlE38WgTwnX7rCR/CANxkLhf8h7Sacc=
+	t=1775219860; cv=none; b=HN4ORAub3YKPWEyHK6cfb0LWSzaH9enuoRHoYIY2kbwXk6pZE2ydmpFFjugDOIHriWX+FsTePJ2K6uQRanMG+YYhTWj7YfMMMy/RckheUk494c+pUoWu/xRFwq5KPEy16Aa0XgzMugiJ7OrHTd9UDf7V7FCv5CP93UHSxE6J4YI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775219540; c=relaxed/simple;
-	bh=KBUjyrpPe2k4XhKFx345kREYiQ7Vjgg1jBFk6gpSAns=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AfKl8RD+hx3P0R2RiV1aZPrQ1s+kI7F37ZmVRbMPvz9Mczm9oEY3OtTXAXJ8Pi6oYY9gmlzGICcRUUPKmIIMXVmgWH1INXL9i3G++7nY6uiya38iZh9KGQPYvE4AMjbw4pyxdRifMa7rnZoAzcFpjdWBiQ5iaX79uBmFVyj0Ke0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hPIUyh5M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5498DC4CEF7;
-	Fri,  3 Apr 2026 12:32:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775219539;
-	bh=KBUjyrpPe2k4XhKFx345kREYiQ7Vjgg1jBFk6gpSAns=;
-	h=From:To:Cc:Subject:Date:From;
-	b=hPIUyh5MLKJzCMUWJkZ1EW0Uo8J1VVlOIxSZpxB3jrEPp8Eo7JYo0WRfg4Uh2VaZB
-	 oMZxBGwOE2dyRnlhW8I3rRnc93/TWbs7Qcg3A1igt7gshVsKd3WkSuKvC2MIqnvyEY
-	 zAhlQP7Jd4aLyCDwTAigM5M9PlnyJT5tRMko5YRaburX6yg8QF4tuxTGD/1mFwvAAK
-	 8uyWGBegVIt6kuG9Peo2J5f4CqkO44utmxlyGukSbKk6n3pyXq+XMi0S5zhYRGkRQj
-	 cwewXHoyz36eRdQL4iTKYkZraTftrnCe5A4crCoEdK87FMV9lnl5jgrbfRNwYW3eZ4
-	 NHWtWszItvOGw==
-From: Yixun Lan <dlan@kernel.org>
-To: soc@kernel.org
-Cc: Yixun Lan <dlan@gentoo.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	spacemit@lists.linux.dev,
+	s=arc-20240116; t=1775219860; c=relaxed/simple;
+	bh=5u7A2PozaJLqdJlt7qmde/AvEj2FCl14kJaAywP7fso=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=L7axuTUhWM4AZLqn9XVc0zW7OtgOfU97DAvKphJIHWrTFbdM6R4SRNG//MudGY5ZXjjSThMmqj3EY3Q/DvU3Et7krhWySJstZMlbGIB2zRn6W5p1NzhwmFXFXZpihHMjEkzKCXG0OmPaRjldE/yUOoHiEG7ObDElYIKDYDQTG4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from localhost.localdomain (unknown [223.166.95.230])
+	by APP-01 (Coremail) with SMTP id qwCowACXPWmHtM9pCsgRDA--.1349S2;
+	Fri, 03 Apr 2026 20:37:28 +0800 (CST)
+From: Han Gao <gaohan@iscas.ac.cn>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@kernel.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Cc: devicetree@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [GIT PULL] RISC-V SpacemiT Devicetrees for v7.1
-Date: Fri,  3 Apr 2026 12:32:06 +0000
-Message-ID: <20260403123040-KYC0145825@kernel.org>
-X-Mailer: git-send-email 2.53.0
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Han Gao <rabenda.cn@gmail.com>,
+	Han Gao <gaohan@iscas.ac.cn>
+Subject: [PATCH v7 0/3] riscv: dts: spacemit: Add PMIC regulators usb pcie
+Date: Fri,  3 Apr 2026 20:37:22 +0800
+Message-ID: <cover.1775219669.git.gaohan@iscas.ac.cn>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-CM-TRANSID:qwCowACXPWmHtM9pCsgRDA--.1349S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7ur15XFW8Zry3Xw17Jr4kXrb_yoW8uw17pr
+	y29r43uw4rXw42y393uws8Jr15KFn5Ar9Igr1UKw18ArnFgay7Za1xtr42vF9xur45tFsr
+	trs7Aw4xur4xZF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
+	0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
+	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
+	n2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
+	AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
+	17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
+	IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
+	IxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiBg0GDGnPrIkRQgAAsR
+X-Spamd-Result: default: False [1.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-284414-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284416-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[gaohan@iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8B7C4394097
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.870];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,iscas.ac.cn:mid]
+X-Rspamd-Queue-Id: 291EE3941A6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Yixun Lan <dlan@gentoo.org>
+Changes in v6:
+ - patch 1:
+   reorder i2c8
+ - patch 3:
+   restore vcc5v0_usb30
+   remove vin-supply from pcie_vcc3v3
+   restore vpcie3v3-supply from pcie2
+   update hub vdd-supply
+ - Link to v6: https://lore.kernel.org/linux-riscv/cover.1775214644.git.gaohan@iscas.ac.cn/
 
-Hi Arnd,
+Han Gao (3):
+  riscv: dts: spacemit: Enable i2c8 adapter for OrangePi RV2
+  riscv: dts: spacemit: Define the P1 PMIC regulators for OrangePi RV2
+  riscv: dts: spacemit: Enable USB3.0/PCIe on OrangePi RV2
 
-   Please pull SpacemiT's DeviceTree changes for v7.1
+ .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 218 ++++++++++++++++++
+ 1 file changed, 218 insertions(+)
 
-Yixun Lan
 
-The following changes since commit 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f:
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+prerequisite-patch-id: ef6e9c7b5854d0c08066b72f9a7868db8c2140eb
+prerequisite-patch-id: cfe3800f8c791ec4c63e070af9628e88e0fc31b9
+prerequisite-patch-id: b76493e625ae257c8adcd67874178458420e4d47
+prerequisite-patch-id: 88e01dc92c83bd88ddeb78891d3088209fed8d6b
+prerequisite-patch-id: 60336d10ab8322c70596d0f046b6b5c54bb24b54
+prerequisite-patch-id: 68c4d869548687dc115dd91e2ffb8f4c11482d86
+prerequisite-patch-id: fdadcf964c2cb3406160edb579d99a8d5695f8e6
+prerequisite-patch-id: 73b9e745338b0499b849fa4f7f9508987ab39a59
+prerequisite-patch-id: cd26770c2160c3c31a406bd8a6b01ab666180ae0
+prerequisite-patch-id: e5dfddc32cefae195692da8b80e19adf086e4ad7
+prerequisite-patch-id: 7fd53cbe4977598f26148a4bb1cf692bbdb79a09
+prerequisite-patch-id: 96ebac57bb29619b97fe95422206a685825618e9
+prerequisite-patch-id: 00fac16b52f60383db3140e2885f3f7f8d14dd1a
+prerequisite-patch-id: 3b7a60047b922c48e93599f621cb738856f42354
+prerequisite-patch-id: 275c030b963be05dd1041451f539a130ce614277
+prerequisite-patch-id: 93963424b0871e64276af0e0b2199b52e29b4603
+prerequisite-patch-id: 8383188b1c01ed6280629faaa29c37d699ade241
+prerequisite-patch-id: 5f8126b912b924d63d4a1e0c5eb42d212eb0d369
+prerequisite-patch-id: e80af628a2e0b5f2eeb3cb1b5e7133d08bdd2c4e
+prerequisite-patch-id: 0234a6dca15eb91f98a45a46604ce5b4935048a5
+-- 
+2.47.3
 
-  Linux 7.0-rc1 (2026-02-22 13:18:59 -0800)
-
-are available in the Git repository at:
-
-  https://github.com/spacemit-com/linux tags/spacemit-dt-for-7.1-1
-
-for you to fetch changes up to af62a095eb0c3359d477b55ef72d2afd94c83c8f:
-
-  dts: riscv: spacemit: k3: add P1 PMIC regulator tree (2026-03-30 04:42:10 +0000)
-
-----------------------------------------------------------------
-RISC-V SpacemiT DT changes for 7.1
-
-For K3 SoC
-- Add I2C support
-- Add PMIC regulator tree
-- Add ethernet support
-- Add pinctrl/GPIO/Clock
-- Enable full UART support
-
-For K1 SoC
- On Milk-V Jupiter
-- Enable PCIe/USB on
-- Enable QSPI/SPI NOR
-- Enable EEPROM, LEDs
- Others
-- Fix PMIC supply properties
-- Fix PCIe missing power regulator
-
-----------------------------------------------------------------
-Aurelien Jarno (7):
-      riscv: dts: spacemit: drop incorrect pinctrl for combo PHY
-      riscv: dts: spacemit: add LEDs for Milk-V Jupiter board
-      riscv: dts: spacemit: add 24c04 eeprom on Milk-V Jupiter
-      riscv: dts: spacemit: add i2c aliases on Milk-V Jupiter
-      riscv: dts: spacemit: enable QSPI and add SPI NOR on Milk-V Jupiter
-      riscv: dts: spacemit: enable USB 3 ports on Milk-V Jupiter
-      riscv: dts: spacemit: enable PCIe ports on Milk-V Jupiter
-
-Chukun Pan (2):
-      riscv: dts: spacemit: Add 'linux,pci-domain' to PCIe nodes for K1
-      riscv: dts: spacemit: reorder phy nodes for K1
-
-Guodong Xu (1):
-      riscv: dts: spacemit: Update PMIC supply properties for BPI-F3 and Jupiter
-
-Inochi Amaoto (1):
-      riscv: dts: spacemit: Add ethernet device for K3
-
-Yixun Lan (9):
-      riscv: dts: spacemit: pcie: fix missing power regulator
-      riscv: dts: spacemit: adapt regulator node name to preferred form
-      dt-bindings: serial: 8250: spacemit: fix clock property for K3 SoC
-      riscv: dts: spacemit: k3: add clock tree
-      riscv: dts: spacemit: k3: add pinctrl support
-      riscv: dts: spacemit: k3: add GPIO support
-      riscv: dts: spacemit: k3: add full resource to UART
-      dts: riscv: spacemit: k3: Add i2c nodes
-      dts: riscv: spacemit: k3: add P1 PMIC regulator tree
-
- Documentation/devicetree/bindings/serial/8250.yaml |   5 +-
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |  26 +-
- arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts  | 204 +++++++++++-
- arch/riscv/boot/dts/spacemit/k1.dtsi               | 112 ++++---
- arch/riscv/boot/dts/spacemit/k3-pico-itx.dts       | 170 ++++++++++
- arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi       |  69 ++++
- arch/riscv/boot/dts/spacemit/k3.dtsi               | 369 ++++++++++++++++++++-
- 7 files changed, 876 insertions(+), 79 deletions(-)
- create mode 100644 arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
 
