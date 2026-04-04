@@ -1,73 +1,63 @@
-Return-Path: <devicetree+bounces-284666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284670-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJ6PEkxa0WnuHwcAu9opvQ
-	(envelope-from <devicetree+bounces-284666-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 20:37:00 +0200
+	id GA3oBkNd0WlnIAcAu9opvQ
+	(envelope-from <devicetree+bounces-284670-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 20:49:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E80F639C137
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 20:36:59 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7352139C1EB
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 20:49:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AD5AD3018BD4
-	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 18:36:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1586C3009F39
+	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 18:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2868B33C1AD;
-	Sat,  4 Apr 2026 18:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43519292B2E;
+	Sat,  4 Apr 2026 18:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="ViRbAUtR"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="WHk0sXCA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1C03164D6;
-	Sat,  4 Apr 2026 18:35:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D66EA21638D;
+	Sat,  4 Apr 2026 18:49:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775327760; cv=none; b=vEkt4h35FqazoNwi2KkdPfy7l9LoPcHo2XXazuETgS076o34SYC8GkX164426W/kkPfVcks5ZCetgGD7LH7el3M4rlsXDh5PoeQfAQU9hZx8rrRDHu07vcT2NMjsznnXkmv8MAYu5L/L0JWw+nDE2B0rZlBoylU37cQqWBgEHlA=
+	t=1775328573; cv=none; b=n9jD1Oo7M3+ZXxMn2dRZgKg0/+CHLyD51nSsQT6Mr1IXUdiZBcjpFPKlXcBgWjBer3g8BEVUFisv0TpL1B4MlyymZ1dhsvDObd71y6yDyE8nRJz5eIjIoYBi8lRHm+zOB4A7QH+5r5pIV9FsphA+wkI4mv6kKWqS3qxlzbOc6nU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775327760; c=relaxed/simple;
-	bh=oCEFMSwXzF9OYvDstMxjlqgvlBwICSIRMALNepv+hvg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lshjR2RsUhuxzDnNsuGc7RyfLrO/uHe/cF2frjJt5VrkWezLk/d3KlLf3+1CGuUAaXtJAi7cCA6LE3ff4nvXUZ1jc0UrknpylLnZoFEmpPPt/+FsmjELNg2Vb1eppv8cfvbAHa6VdJRX/uIx6+k8jxn/swRLaVb2hPpPcCi8E8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=ViRbAUtR; arc=none smtp.client-ip=178.251.229.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5EF60113200;
-	Sat,  4 Apr 2026 20:35:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1775327757; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=NSBm8CQ9KV1sZc8xqRJrGb0nqJcw/MhMvwITjTm4MlU=;
-	b=ViRbAUtRvwhoms+GPAP50uGr+Fp0PaHUne+gjQOz+eAmdLPm7y0XhoHq4vwoY1j4vwGZiq
-	OFxMEJMjVq7q5t4IWVCuReOUCQcDeO2YwfwTUdjqiCDOVU58T62n5vcFqawha1xaZKQEZ0
-	X3vrGhWvNAShQ1aweYxL0DXdk8hT9mcc5poluSoIvX7oqZ1sZOSMh8HVVOgb3F1L68eVcc
-	rd5N4QorFVSLTLj/RlnZqyosbDQjqtW4rV+LUeqvde2p2JSogw2vXDdr/odeb0S2vQXOcQ
-	hz6OkvMGiyjgwnmwY+Tr5X6YPA8TbUys9pj8u6OPZpLPe7iAvIOy/jE+PKojiQ==
-From: Marek Vasut <marex@nabladev.com>
-To: linux-sound@vger.kernel.org
-Cc: Marek Vasut <marex@nabladev.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Nicolin Chen <nicoleotsuka@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Shengjiu Wang <shengjiu.wang@gmail.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Xiubo Li <Xiubo.Lee@gmail.com>,
+	s=arc-20240116; t=1775328573; c=relaxed/simple;
+	bh=IPBbkO3fjU8G0NNKxLCIFQuUl4/s13MtwUDedAGC0XU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QCFsR+LJok0dX1GJ+snW8ybUCnIpbuJ7J3D1LxRPcJ15zba3ZL0CLcoYrnOn5LAchPAdT7xtN7dJRa6tkr9+o9qmsKVjgJKdjphW6JVgkReTsUfiNNxIddvknM8fS5qZnAlEJaIIIAQKZTnmE6OzUQV2H6cnRd9iw4HWeGDniok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=pass smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=WHk0sXCA; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 02C9F18F6BB;
+	Sat,  4 Apr 2026 20:49:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1775328569; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=Lu1Z3Rm1rWWGK7Kmxsqji1TBL5EuCNVIhoEedYUd+lM=;
+	b=WHk0sXCAClAoKmuPkc5zeS+xpLerVE5gqqmUaYRBnKnKoZ1m/hySdZyYkJsE5UkXnsqx5y
+	MhQryGUsFeMU0Z2cPscikzHcdE4UVWsHZiIUuyamTutQCduIvOcZ8gwxXZRlFRkE0cs8RT
+	CZyGB2hgX0ESrwf3ABPRaqNjm8IYhBv2t0dja409ccZ3lu+uobebC473dThkgAqIwY8Qzc
+	mnXuEV6xTaadAEUXnIqsFyvRMxpb0Zpbqv+eXH9VTdj10+Ot/pmM8S0ok5pc8yHFKkzf2/
+	8eBAo2hscqgwduxY4ctKZ1zAXxNdosR0cn4CtPhuO45O04veoNeUGapfovRrOw==
+From: Caleb James DeLisle <cjd@cjdns.fr>
+To: linux-phy@lists.infradead.org
+Cc: naseefkm@gmail.com,
+	vkoul@kernel.org,
+	neil.armstrong@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-mips@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org
-Subject: [PATCH v2 2/2] ASoC: fsl_sai: Add RX/TX BCLK swap support
-Date: Sat,  4 Apr 2026 20:35:01 +0200
-Message-ID: <20260404183547.46509-2-marex@nabladev.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260404183547.46509-1-marex@nabladev.com>
-References: <20260404183547.46509-1-marex@nabladev.com>
+	Caleb James DeLisle <cjd@cjdns.fr>
+Subject: [PATCH v2 0/2] phy: econet: Add PCIe PHY driver for EcoNet SoCs
+Date: Sat,  4 Apr 2026 18:49:16 +0000
+Message-Id: <20260404184918.2184070-1-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,121 +68,72 @@ Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
-	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-284666-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linaro.org,vger.kernel.org,cjdns.fr];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-284670-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[nabladev.com,kernel.org,gmail.com,perex.cz,suse.com,vger.kernel.org,lists.ozlabs.org];
-	DKIM_TRACE(0.00)[nabladev.com:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ozlabs.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nabladev.com:dkim,nabladev.com:email,nabladev.com:mid]
-X-Rspamd-Queue-Id: E80F639C137
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,cjdns.fr:dkim,cjdns.fr:mid]
+X-Rspamd-Queue-Id: 7352139C1EB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for setting the Bit Clock Swap bit in CR2 register
-via new "fsl,sai-bit-clock-swap" DT property. This bit swaps the
-bit clock used by the transmitter or receiver in asynchronous mode,
-i.e. makes transmitter use RX_BCLK and TX_SYNC, and vice versa,
-makes receiver use TX_BCLK and RX_SYNC.
+Add EcoNet EN751221 and EN7528 PCIe PHY support.
 
-Signed-off-by: Marek Vasut <marex@nabladev.com>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Jaroslav Kysela <perex@perex.cz>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Nicolin Chen <nicoleotsuka@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc: Takashi Iwai <tiwai@suse.com>
-Cc: Xiubo Li <Xiubo.Lee@gmail.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-sound@vger.kernel.org
-Cc: linuxppc-dev@lists.ozlabs.org
----
-V2: Update email, rebase on next
----
- sound/soc/fsl/fsl_sai.c | 7 ++++++-
- sound/soc/fsl/fsl_sai.h | 2 ++
- 2 files changed, 8 insertions(+), 1 deletion(-)
+Re-sending rebased v2 because there have been no comments since March 12.
 
-diff --git a/sound/soc/fsl/fsl_sai.c b/sound/soc/fsl/fsl_sai.c
-index bd336d2e4cb38..87a40e2b9fdf7 100644
---- a/sound/soc/fsl/fsl_sai.c
-+++ b/sound/soc/fsl/fsl_sai.c
-@@ -355,6 +355,9 @@ static int fsl_sai_set_dai_fmt_tr(struct snd_soc_dai *cpu_dai,
- 	unsigned int ofs = sai->soc_data->reg_offset;
- 	u32 val_cr2 = 0, val_cr4 = 0;
- 
-+	if (sai->is_bit_clock_swap)
-+		val_cr2 |= FSL_SAI_CR2_BCS;
-+
- 	if (!sai->is_lsb_first)
- 		val_cr4 |= FSL_SAI_CR4_MF;
- 
-@@ -453,7 +456,8 @@ static int fsl_sai_set_dai_fmt_tr(struct snd_soc_dai *cpu_dai,
- 	}
- 
- 	regmap_update_bits(sai->regmap, FSL_SAI_xCR2(tx, ofs),
--			   FSL_SAI_CR2_BCP | FSL_SAI_CR2_BCD_MSTR, val_cr2);
-+			   FSL_SAI_CR2_BCS | FSL_SAI_CR2_BCP | FSL_SAI_CR2_BCD_MSTR,
-+			   val_cr2);
- 	regmap_update_bits(sai->regmap, FSL_SAI_xCR4(tx, ofs),
- 			   FSL_SAI_CR4_MF | FSL_SAI_CR4_FSE |
- 			   FSL_SAI_CR4_FSP | FSL_SAI_CR4_FSD_MSTR, val_cr4);
-@@ -1507,6 +1511,7 @@ static int fsl_sai_probe(struct platform_device *pdev)
- 	sai->soc_data = of_device_get_match_data(dev);
- 
- 	sai->is_lsb_first = of_property_read_bool(np, "lsb-first");
-+	sai->is_bit_clock_swap = of_property_read_bool(np, "fsl,sai-bit-clock-swap");
- 
- 	base = devm_platform_get_and_ioremap_resource(pdev, 0, &sai->res);
- 	if (IS_ERR(base))
-diff --git a/sound/soc/fsl/fsl_sai.h b/sound/soc/fsl/fsl_sai.h
-index af967833b6eda..6d84e5ff2258e 100644
---- a/sound/soc/fsl/fsl_sai.h
-+++ b/sound/soc/fsl/fsl_sai.h
-@@ -118,6 +118,7 @@
- 
- /* SAI Transmit and Receive Configuration 2 Register */
- #define FSL_SAI_CR2_SYNC	BIT(30)
-+#define FSL_SAI_CR2_BCS		BIT(29)
- #define FSL_SAI_CR2_BCI		BIT(28)
- #define FSL_SAI_CR2_MSEL_MASK	(0x3 << 26)
- #define FSL_SAI_CR2_MSEL_BUS	0
-@@ -301,6 +302,7 @@ struct fsl_sai {
- 	struct fsl_sai_dl_cfg *dl_cfg;
- 	unsigned int dl_cfg_cnt;
- 	bool mclk_direction_output;
-+	bool is_bit_clock_swap;
- 
- 	unsigned int mclk_id[2];
- 	unsigned int mclk_streams;
+Changes from v1:
+* Rebased on 2febe6e6ee6e34c7754eff3c4d81aa7b0dcb7979
+* v1: https://lore.kernel.org/linux-mips/20260312164432.569566-1-cjd@cjdns.fr/
+
+This is split from a larger PCIe patchset which crossed multiple
+subsystems. I'm not labeling this a v3 because it's a new patchset, but
+I'm keeping the historical record anyway.
+
+Changes from econet-pcie v2: none relevant to this patch set
+* econet-pcie v2: https://lore.kernel.org/linux-mips/20260309131818.74467-1-cjd@cjdns.fr
+
+Changes from econet-pcie v1:
+* econet,en751221-pcie-phy.yaml Refer to PHYs as "gen1" and "gen2"
+* econet-pcie v1: https://lore.kernel.org/linux-mips/20260303190948.694783-1-cjd@cjdns.fr/
+
+Caleb James DeLisle (2):
+  dt-bindings: phy: Document PCIe PHY in EcoNet EN751221 and EN7528
+  phy: econet: Add PCIe PHY driver for EcoNet EN751221 and EN7528 SoCs.
+
+ .../phy/econet,en751221-pcie-phy.yaml         |  50 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/phy/Kconfig                           |  12 ++
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/phy-econet-pcie.c                 | 180 ++++++++++++++++++
+ 5 files changed, 250 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/econet,en751221-pcie-phy.yaml
+ create mode 100644 drivers/phy/phy-econet-pcie.c
+
 -- 
-2.53.0
+2.39.5
 
 
