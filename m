@@ -1,65 +1,92 @@
-Return-Path: <devicetree+bounces-284616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284617-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GLkMGHLI0GkMAAcAu9opvQ
-	(envelope-from <devicetree+bounces-284616-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 10:14:42 +0200
+	id sJgpLuzR0GlBAwcAu9opvQ
+	(envelope-from <devicetree+bounces-284617-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 10:55:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D20539A5C0
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 10:14:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A9DC39A777
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 10:55:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C06AC308E954
-	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 08:10:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC384303455C
+	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 08:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07483A453C;
-	Sat,  4 Apr 2026 08:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57D863A5454;
+	Sat,  4 Apr 2026 08:53:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tZ0FcM3f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ilHZxwiS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A8AC3A4525;
-	Sat,  4 Apr 2026 08:10:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266EA3A543E
+	for <devicetree@vger.kernel.org>; Sat,  4 Apr 2026 08:52:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775290214; cv=none; b=bNgTUgcWsZHoTk1PG1vN+Vs5k/jnmJzstNfx/wcAzOouDGHvRsvIfyQ9XnSPceEfhzig5qx0gkAdHnVKx0RS28dV5vO1lzA1rf5MZWWPKXqmqFRNmFldT349ch3m1egPYR59/NYcgwWLovQBAc2eIbPW2u3D1vy+Q0yZZ0ThQME=
+	t=1775292781; cv=none; b=blgDjo1bNmGQpwsHOdvas/GTmX/m6Q5xsUtkkEr+NKtxZDFtepEWOTc7sD/gdsDeTVjGBF49EmTwuHnecp/nQAftuA0WalYKWu7bqyDhmGszzzsMJeogXtSpvGXdRjtWpZUfmn8x9/NjG1G6oTGUKGPTm/go3fjpS0Zk9dyIA94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775290214; c=relaxed/simple;
-	bh=0GCu5nkM0KBp8/WXOLonVDg5m0C5kdhGNfwrss8y85U=;
+	s=arc-20240116; t=1775292781; c=relaxed/simple;
+	bh=r1C3lzsUtmiKNwW2H1WNOIIKo2YXJF/eTqmy+2rXq2k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ly9dWnFv4/NOxVHVpK95cbPq/8ug7wG2lQX29iX6T16GCoyFUuh/myZTsGYTGhnyl9tMPbkyKTF638Q++qssh2dhGjKcRKUeFDOhRqvtoANqnhLx809zMfI6zxVoLbHEMMNRjJkureUoKDj12cZJ5Q3gWTcDOew+fq5cFu9VJD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tZ0FcM3f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB96AC19423;
-	Sat,  4 Apr 2026 08:10:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775290214;
-	bh=0GCu5nkM0KBp8/WXOLonVDg5m0C5kdhGNfwrss8y85U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tZ0FcM3fy6etdxKm2j9/6E0S+sOmVswILZRMTN0kE2Y6tv8SFCJnZ7HxLHQ7HwFnZ
-	 GSYyGO8QDhkn+Xt4PTmqdeDi7Qhgib7KEoO/EKjm3biBCBWhlO8rhiuA2MZ2zdL7m0
-	 7v7oZmnKzI0hoLCHKQ3P5W0YqKS5UKrR/CZi+X3pSOIqB5OTg8WfZoa0PK27Nw4TnS
-	 jZymhR9dX1P7HX/B9RHNFo7DB9+hqva8ge1/9bTkiIm7VhOxiniA2vfz3bld+d4K6w
-	 weg1O1sbRNiPztXCikFw5eIdEnJxpXqtbWIF1Fg7nhOeOxGnKbt8Q8QUGx7wSiKkLu
-	 oxXGCKtgov5eQ==
-Date: Sat, 4 Apr 2026 10:10:11 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Joshua Milas <josh.milas@gmail.com>
-Cc: tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, pjw@kernel.org, samuel.holland@sifive.com, 
-	unicorn_wang@outlook.com, inochiama@gmail.com, daniel.lezcano@linaro.org, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
-	liujingqi@lanxincomputing.com, alexander.sverdlin@gmail.com, rabenda.cn@gmail.com, 
-	dlan@kernel.org, chao.wei@sophgo.com, anup@brainfault.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	sophgo@lists.linux.dev, hanguidong02@gmail.com, michael.opdenacker@rootcommit.com
-Subject: Re: [PATCH v5 3/5] dt-bindings: soc: sophgo: add sg2000 plic and
- clint documentation
-Message-ID: <20260404-rustling-shapeless-ocelot-b2df71@quoll>
-References: <20260403111516.379795-1-josh.milas@gmail.com>
- <20260403111516.379795-4-josh.milas@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jzmI8CfijBCjJrQC0B284BLiOLlNMuievrvejVSBBLsISiwLEKqYzhnEU/BB2kiyOsPZqM8qROEzNXWCPFZZu0faMlcwJCAsLNKvY4TuMYzZxiQFPv+K0rCy8ZdydlIE2arvsN6/RbtQqP7tPEV9QTSWPSHxJh2Nh1vK0cVCHBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ilHZxwiS; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-35c238f1063so1538657a91.1
+        for <devicetree@vger.kernel.org>; Sat, 04 Apr 2026 01:52:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1775292777; x=1775897577; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=q2aER+v8jW6q498vOyMse8nH8+3QEx9bRFbFB8BhKt0=;
+        b=ilHZxwiSdG8X9hUGqDHJeS75iaqdyDoR/FhFXcsofIBQQUaHkczvlkMvhCSiWN7vLt
+         OFn3P+F0jGS98EpPUx0CUSPjNZAlzLDAzsK89WyDIghGrxPzHQ3In7+eFhtHfRJYHuPx
+         vVZhhrGtO4rMGoWxOnpvVVs3Xj+g+AS2zEbmQYhC7QbhUKb4NtrPATb49B8kPnJJfw8O
+         c9wyFlo+EJWTkF1F8d7LnSAv5dcyftRHKrOK3XHTw+C+zQSUwQUCPoysZrD7Scm1zAOH
+         sTLqSoF/iOUM4xHFqR28tUgJ68qUAtomDJVuvsx0y3JOYi0B1H0LgPEOSRMtBKuGovpA
+         r6kQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775292777; x=1775897577;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=q2aER+v8jW6q498vOyMse8nH8+3QEx9bRFbFB8BhKt0=;
+        b=rVbflOQ4FIXq5XaoQLYpLBvHUllQzWIppobJsXfQhh0pxF1aIXuxMWm6AR84OqnRGt
+         Y1LF6rf5sTkvPalE+wsPcUVaLIw/Rvc6S83AkQHCPAg+HmZzj+IvbkAldj2S83g1cLdO
+         jhC5nokKbtyRqSbN3zDI7vj5D1KD/VsJXdyF6f7NeUysXXKn8D9P0IiKv9P4NnR7jNGi
+         oh2YZ+FvRzhf+tZUGMXEUzD3Lfs1UQVDHbNFyAqOzT4EiaadzwaBjAABlk9Q/vT/MxRO
+         nWNLtRnhVkHIsslPlQObeUsWf65BXiHCxi3iNnjlaBB+aG0VygoQES0uueAjChMrm349
+         ma0A==
+X-Forwarded-Encrypted: i=1; AJvYcCV+gjOEGIIpsi1Ex4MAHmRYS1HOI+JfyOnK+5Z8oJyylo02o2yPtwVbwh7PK1uFko+ncfHYIix3Vufy@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZgS0qXup7xPgMhlWtPRcuooSXz8JqNhQbM6+y6DCN7cJYiLs/
+	0bG2PR8o3QRwE1q1xjcVlw3LagtCz5gLnvRhGHY3mKUhqR2/Eh2EOdvKKqmDpgTA
+X-Gm-Gg: AeBDievn3awPfpNhe2aVtWHGA+1/8AHro0bCSMqbMnQrxDj6FzeDXxkt7nI2CBauKHa
+	WM6joRvWZySAqC/4ADfmebVvLPj/yAwVWMNhslugtisuanczGGT8XJTbfWhEH2B+yn3wbAMXP26
+	u7gxiMVEmzJ99L4f5a3BfrqnN6bj+pWee19DECnLR8lZq09+Vt4kFw3wqGQBFjiVW2LbZZzfw83
+	JyHia5sqYt/NQ9mgx8nRY1+DCIaXGF2mKTVOPDoC0y2RNJmRGVDawbLYvDpiXyxi0JdWLXqX6GL
+	SOigGYBl/ev2RagK6FPaAGkGAwuMjcQ1bJY4TtaMqNB8nHMpa0WaGjQXzJT8A27C1SIsUJMM11V
+	jnxZYUzgHg4SE97TLlSnm11s8G/yCdP4lkXV6HiAToK85VRjC+R2+DqOXMD+YEg8y6SGR2Unu/E
+	FUF9Leuvgr9MFWZf5llEgQ
+X-Received: by 2002:a17:90b:5348:b0:35b:e690:c5ad with SMTP id 98e67ed59e1d1-35de69d2217mr4814877a91.25.1775292777269;
+        Sat, 04 Apr 2026 01:52:57 -0700 (PDT)
+Received: from fedora ([122.173.28.250])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35dd367bfb1sm7954011a91.10.2026.04.04.01.52.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 04 Apr 2026 01:52:56 -0700 (PDT)
+Date: Sat, 4 Apr 2026 14:22:17 +0530
+From: ShiHao <i.shihao.999@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: brgl@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, rric@kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	i.shihao.999@gmail.com
+Subject: Re: [PATCH v2] dt-bindings: gpio: cavium,thunder-8890: Convert to DT
+ schema
+Message-ID: <adDRQbpl1lBinbij@fedora>
+References: <20260330080108.24294-1-i.shihao.999@gmail.com>
+ <20260331-invisible-certain-albatross-844cff@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,54 +95,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260403111516.379795-4-josh.milas@gmail.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <20260331-invisible-certain-albatross-844cff@quoll>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-284617-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284616-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,sifive.com,outlook.com,gmail.com,linaro.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lanxincomputing.com,sophgo.com,brainfault.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,rootcommit.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9D20539A5C0
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ishihao999@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3A9DC39A777
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 03, 2026 at 07:15:14AM -0400, Joshua Milas wrote:
-> Document the compatible strings for the sg2000 interrupt
-> controller and timer.
+On Tue, Mar 31, 2026 at 09:30:56AM +0200, Krzysztof Kozlowski wrote:
+>
+> This binding is odd and not used, so you should follow guidelines I gave
+> more than a year ago and updated recently and NOT convert it.
 > 
-> Signed-off-by: Joshua Milas <josh.milas@gmail.com>
-> ---
->  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
->  Documentation/devicetree/bindings/timer/sifive,clint.yaml        | 1 +
->  2 files changed, 2 insertions(+)
+> Or rather answer - why this cannot be removed instead? What is the
+> benefit of this binding? Is any other project using it?
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Indeed this binding has no active user and i think it is good to be removed
+entirely because no driver no dts sources are using it , it seems abandoned.
+Please let me know if I need to resend it if it needs to be removed.Thanks
+for your time.
 
 Best regards,
-Krzysztof
+ Seihae no driver no dts sources are using it , it seens abandoned.
+ Please let me know if i need to resend it if it neeeds to be removed.Thanks
+ for your time.
+
 
 
