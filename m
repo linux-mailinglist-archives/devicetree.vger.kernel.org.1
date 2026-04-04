@@ -1,260 +1,167 @@
-Return-Path: <devicetree+bounces-284646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284648-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GC1AL1EK0WlfEAcAu9opvQ
-	(envelope-from <devicetree+bounces-284646-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 14:55:45 +0200
+	id IAVuCIMV0Wm8EwcAu9opvQ
+	(envelope-from <devicetree+bounces-284648-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 15:43:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EBF439B1F4
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 14:55:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65B1B39B3AD
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 15:43:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EEF6F301107D
-	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 12:55:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 414843006F36
+	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 13:43:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1612F6562;
-	Sat,  4 Apr 2026 12:55:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 710D234FF59;
+	Sat,  4 Apr 2026 13:43:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="El4+mzS0"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="B9LA0cOY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-106113.protonmail.ch (mail-106113.protonmail.ch [79.135.106.113])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42A131986C
-	for <devicetree@vger.kernel.org>; Sat,  4 Apr 2026 12:55:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.113
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 643FE345CDD
+	for <devicetree@vger.kernel.org>; Sat,  4 Apr 2026 13:43:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775307340; cv=none; b=YFgaJ2IK2LLgFKw4z5/3PAg3Fv3eeUfspoxG/3oAEmPxeUKUOeVK/xXC7FosstcTM+xRX9Fj9h35a8CnMMibFrtzo5WgyiinAfgPe0vqDeZn/yJgGAPr5Nz9NCm51nIAenjExiNMaUVPXZS5UpLMqKRddOjlkTPGCiXcRjWEbuU=
+	t=1775310208; cv=none; b=Sb6eL+vDDO5+/JrBqH8Ko5vQuoWZScR4reKgq+4tmpMoCROl9aAacLVBsNewXwJ6SDdg5BKHuVzL7062e3e2cpUNpub+7V8eu00Xth/0gMKdl3UV5aZg1/IRVXW+kXhsGfx88kHb5hJ2MOKf/bEcLRAO5CpS7pjieNAzP1cZdo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775307340; c=relaxed/simple;
-	bh=NNw89viHCAluudQ5hHl3RTCj23fU/KFs0wnqyKyi6Ks=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iRhbeNBClHeOjAYooivWC42UOYfqF1i7H3txYLejLEGeatSp3n15astS9XuxpJjcOAtWd0mNsrJ7Gv0+hrkGNAaIoO1uUhqsLyMExG/fHkLNVHVgGCoZrmEkehBaC2ZMVIL9glLuW2yKZDLCv4isTRDnWjdjGsfFN5OBJ7oMUSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=El4+mzS0; arc=none smtp.client-ip=79.135.106.113
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
-	s=protonmail2; t=1775307329; x=1775566529;
-	bh=oCTPVX4/Ad1LLXg3NGfYhCwqJCIY4GkH6bCOQnVy2bw=;
-	h=From:Date:Subject:Message-Id:References:In-Reply-To:To:Cc:From:To:
-	 Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=El4+mzS0MR2i3gQ7Kp1Va5y1KwS0HbOzRpIZQd2X+vQGxa/p1qBRPhCHiW2B84Vyh
-	 Ax+W/bFEjVHUvFzT5xBGxDI/415RbzLZov6IjPWQU48KvmnCC9C54nAsBtQ/Afil8c
-	 /p13tTuguZZDwUig/3cUSkc2AGAzf8AMsNydAEfS16DlDYPfD1E0oyNAAYppGCDNfk
-	 c3xWbe1w2lE/uep8ZjIfKwPJSJ3CwXIMKCWtdyv6sgHGs3BsuoDjCMUPwIeXdu2L1E
-	 SjY3EjueKZwHLWf0TFCbiojXMx0D6rDAUKMP/PYyIDlxjIATgRF+f/wx0Sh937bOea
-	 ZxHzAlQtYHSBg==
-X-Pm-Submission-Id: 4fnwYX4znBz1DDLg
-From: Aleksandrs Vinarskis <alex@vinarskis.com>
-Date: Sat, 04 Apr 2026 14:55:17 +0200
-Subject: [PATCH v2 4/4] arm64: dts: qcom: x1e80100-dell-xps13-9345:
- introduce EC
+	s=arc-20240116; t=1775310208; c=relaxed/simple;
+	bh=SdGycWIOB3BG5dloq4/UyFlmu8kZqSDXiej0RBe+/0Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=c+Vj1VFR/hS8nlClZHM5JRMkhIvHblmeanbrzB+0liUl/l0GV+aCFm2EPLQ6gzqaUUjs0WSxzZMn1zCxkWt6SvafmHJukIeFogDIdki5bata/1xe18kB7S0s0G0hsZtv/xtPNKc1PIo8qcGDPup9e+E9kkdKFGe639DMcneQAwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=B9LA0cOY; arc=none smtp.client-ip=209.85.167.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-46fc5b8a06bso771978b6e.0
+        for <devicetree@vger.kernel.org>; Sat, 04 Apr 2026 06:43:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1775310205; x=1775915005; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lMIoVmSCmnePN2nBeuOGxTIYxwpaueT16pR92e6ZJEg=;
+        b=B9LA0cOYXqxY996In7WHWvbr6Wb9eyBWeumqyVq0DWXJAbWQys2+D8Fi7sF0H7ZXMo
+         1TcHNgNyiEokugMKENXs34qJ5v4K4XvmBlkLuXfUIZ1Et53X1WKAMJpSpnMC/qKUGC4S
+         kiXSKm0EGX++BKJTLSsBA2oeKtXMZh60CkzMpfKPRFhxkBUlGTqvHlBiWU7irElOCQ2l
+         MVUOxhYB3Ihe9iO1EVy5cB91Lnxu0ruHUG0HfGj5azykto0/i0Opd2XyrjKsqdCasvuN
+         4TP5tu9SbgiG5ouWlB/lMlbeciSOt321cwnDkstITRfRDGQrvJrPY4rYwkcnY6yO57m/
+         qdzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775310205; x=1775915005;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lMIoVmSCmnePN2nBeuOGxTIYxwpaueT16pR92e6ZJEg=;
+        b=YCKOMkx44o0KOxaZvuL2YGbYQAXVB4obtfiCOjNAJFOQllueGA6uUy+drjwn8JyQDg
+         3UDoxyw1KpQIgPD5bIgF3RFcWeJE5TfG8k84yollr05hnfweDx/a7WpRhj9DZjeprOEr
+         A+pQW+won/zOhdTiC7RGwd64UsvbPUlbZko2hcQBxutQ76uJcxKOY72Tjuf6xSaJ5rJM
+         jIrVJcJPzj0bXHLWligb8R/olrhJIT5h0e9u38Qzqn1BpqU8FA29F1Cx0JLTnwOmcjLK
+         1Z7YfxqPL+7WOsBJDv4KzrfHmBH9S6Cg5hHvxOWONHyprJaueRH0CLSDZIV6E7fruO2U
+         casQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVZU9fxZJ32YV/PsOFEjyGR+Q1RPDA3PbuWPaMA+qH5iSq7mEsHztcFAvCCj8jQ+IYLcy2xGt8WJ7u3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZRC4/uSFCvKhBfJqruCMEbetmrEwwSlEXIbFJAA8mtBwmOsgP
+	OhB3B1kDFjTC0cQBYPjqmXLc/QKRyM9KVpiIkkA+YeBXCSHAiDF+xofGwdOwTOWfsRo=
+X-Gm-Gg: AeBDiev3QA1f+NGgJR/wBBgPsa+5WW9O/sfYdalUz/RwCzJNVCKvtG9/HC5fKyv7ORW
+	SCKmKDs1cBqrEDpjt8At66nekCNAjxKmg34rEIJjj/QiYDsw4qM5/inE1avwmdfYKpGLLwUpLJA
+	njVWZJeWgIWkTIg/PuBuQ0rrJEZ5ps/R59QL/Y2dVF3vrlojR6Vi9Erz2+ugPGaIPyQ/vFf/thy
+	QHs/2a+MDOcS/2GAsGNxdYp87PN+A7zm7nJcuQHkyct7a/gV28FyPtsz3f5GkG+mrT3dfr4gLLT
+	WuxS4LUdu5PIfbkTrIqb80U9mlPWB71aU9mtQ9Pcim0u+mQ/bZ2SZncBsy3gko1l90/1e/d7PvU
+	e3QFcYjgM3M6iuYPNkilX0BwWsxtJEnq6Av8YOGwkKA52PwOFrDJ6myOaiBKBVWwg5R58TbqmsA
+	eh7+ri/RX4BPUUHqM3TcJKpMZfWDOEVIEpgRVqX7VEOYWsATTxPgZlDVL80ubw5TZ8qRNs8pYfm
+	Q==
+X-Received: by 2002:a05:6808:1a21:b0:467:8b7:4a46 with SMTP id 5614622812f47-46f01343bc3mr3240466b6e.9.1775310205076;
+        Sat, 04 Apr 2026 06:43:25 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:e14e:bcc6:3f95:26eb? ([2600:8803:e7e4:500:e14e:bcc6:3f95:26eb])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-46ff2f94b71sm1991698b6e.5.2026.04.04.06.43.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 04 Apr 2026 06:43:24 -0700 (PDT)
+Message-ID: <dd0dbadb-604b-4f12-8674-268b7db096fd@baylibre.com>
+Date: Sat, 4 Apr 2026 08:43:22 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: add support for Microchip
+ MCP48FEB02 to MCP47FEB02
+To: Ariana Lazar <ariana.lazar@microchip.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Conor Dooley <conor.dooley@microchip.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260403-mcp47feb02-fix2-v1-0-da60c773550e@microchip.com>
+ <20260403-mcp47feb02-fix2-v1-1-da60c773550e@microchip.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20260403-mcp47feb02-fix2-v1-1-da60c773550e@microchip.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260404-dell-xps-9345-ec-v2-4-c977c3caa81f@vinarskis.com>
-References: <20260404-dell-xps-9345-ec-v2-0-c977c3caa81f@vinarskis.com>
-In-Reply-To: <20260404-dell-xps-9345-ec-v2-0-c977c3caa81f@vinarskis.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- laurentiu.tudor1@dell.com, Abel Vesa <abel.vesa@oss.qualcomm.com>, 
- Tobias Heider <tobias.heider@canonical.com>, Val Packett <val@packett.cool>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4034; i=alex@vinarskis.com;
- h=from:subject:message-id; bh=NNw89viHCAluudQ5hHl3RTCj23fU/KFs0wnqyKyi6Ks=;
- b=owGbwMvMwCX2dl3hIv4AZgHG02pJDJkXuSxkft/JrFB4USjUWWy0fNWqcn7btDlfJFVDzh56t
- rjc20i+o5SFQYyLQVZMkaX7z9e0rkVz1zJc1/gGM4eVCWQIAxenAEwkuoPhv8cWbh5vi7tLbi4v
- mycm4fz59Tbpxud3A7fZdikrrnD5sYmR4UyJgZXarzMbV4Qc6fjAOU//ixoTV51g+Jbbe8ttFSy
- sGQE=
-X-Developer-Key: i=alex@vinarskis.com; a=openpgp;
- fpr=8E21FAE2D2967BB123303E8C684FD4BA28133815
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[vinarskis.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[vinarskis.com:s=protonmail2];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-284646-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[baylibre.com];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-284648-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.144:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alex@vinarskis.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[vinarskis.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.148:email,14c:email,14d:email,0.0.0.147:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,3b:email,0.0.0.145:email]
-X-Rspamd-Queue-Id: 2EBF439B1F4
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_PROHIBIT(0.00)[0.0.0.60:email];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email]
+X-Rspamd-Queue-Id: 65B1B39B3AD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Describe embedded controller, its interrupt and required thermal zones.
-Add EC's reset GPIO to reserved range, as triggering it during device
-operation leads to unrecoverable and unusable state.
+On 4/3/26 5:50 AM, Ariana Lazar wrote:
+> This is the device tree schema for iio driver for Microchip
+> MCP48FxBy1/2/4/8 series of buffered voltage output Digital-to-Analog
+> Converters with nonvolatile or volatile memory on top of MCP47FEB02.
+> The families support up to 8 output channels and have 8-bit, 10-bit or
+> 12-bit resolution.
+> 
 
-Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
----
- .../boot/dts/qcom/x1e80100-dell-xps13-9345.dts     | 94 +++++++++++++++++++++-
- 1 file changed, 92 insertions(+), 2 deletions(-)
+...
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
-index ce7b10ea89b6dcb2a4a65c114037f4c90a4b0c6d..fe7e069f0ef56c6fdc3b495dd78dacd1b96c1c95 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
-@@ -7,6 +7,7 @@
- /dts-v1/;
- 
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/leds/common.h>
-@@ -759,8 +760,32 @@ retimer_ss0_con_sbu_out: endpoint {
- 
- &i2c5 {
- 	clock-frequency = <100000>;
--	status = "disabled";
--	/* EC @0x3b */
-+	status = "okay";
-+
-+	embedded-controller@3b {
-+		compatible = "dell,xps13-9345-ec";
-+		reg = <0x3b>;
-+
-+		interrupts-extended = <&tlmm 66 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&ec_int_n_default>;
-+		pinctrl-names = "default";
-+
-+		io-channels = <&pmk8550_vadc PM8350_ADC7_GPIO3_100K_PU(1)>,
-+			      <&pmk8550_vadc PM8350_ADC7_GPIO4_100K_PU(1)>,
-+			      <&pmk8550_vadc PM8350_ADC7_AMUX_THM1_100K_PU(1)>,
-+			      <&pmk8550_vadc PM8350_ADC7_AMUX_THM2_100K_PU(1)>,
-+			      <&pmk8550_vadc PM8350_ADC7_AMUX_THM3_100K_PU(1)>,
-+			      <&pmk8550_vadc PM8350_ADC7_AMUX_THM4_100K_PU(1)>,
-+			      <&pmk8550_vadc PM8350_ADC7_AMUX_THM5_100K_PU(1)>;
-+		io-channel-names = "sys_therm0",
-+				   "sys_therm1",
-+				   "sys_therm2",
-+				   "sys_therm3",
-+				   "sys_therm4",
-+				   "sys_therm5",
-+				   "sys_therm6";
-+	};
- };
- 
- &i2c7 {
-@@ -1025,6 +1050,64 @@ rtmr0_1p8_reg_en: rtmr0-1p8-reg-en-state {
- 	};
- };
- 
-+&pmk8550_vadc {
-+	/* Around DRAM */
-+	channel@14c {
-+		reg = <PM8350_ADC7_GPIO3_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "sys_therm0";
-+	};
-+
-+	/* Around left Type-C charging controller */
-+	channel@14d {
-+		reg = <PM8350_ADC7_GPIO4_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "sys_therm1";
-+	};
-+
-+	/* Around upper-left side of motherboard */
-+	channel@144 {
-+		reg = <PM8350_ADC7_AMUX_THM1_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "sys_therm2";
-+	};
-+
-+	/* Around right Type-C charging controller */
-+	channel@145 {
-+		reg = <PM8350_ADC7_AMUX_THM2_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "sys_therm3";
-+	};
-+
-+	/* Around SSD connector */
-+	channel@146 {
-+		reg = <PM8350_ADC7_AMUX_THM3_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "sys_therm4";
-+	};
-+
-+	/* Around battery charging circuit */
-+	channel@147 {
-+		reg = <PM8350_ADC7_AMUX_THM4_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "sys_therm5";
-+	};
-+
-+	/* Around keyboard */
-+	channel@148 {
-+		reg = <PM8350_ADC7_AMUX_THM5_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "sys_therm6";
-+	};
-+};
-+
- &qupv3_0 {
- 	status = "okay";
- };
-@@ -1071,6 +1154,7 @@ &smb2360_1_eusb2_repeater {
- 
- &tlmm {
- 	gpio-reserved-ranges = <44 4>,  /* SPI11 (TPM) */
-+			       <65 1>,  /* EC Reset, accessible but yields system unusable */
- 			       <76 4>,  /* SPI19 (TZ Protected) */
- 			       <238 1>; /* UFS Reset */
- 
-@@ -1081,6 +1165,12 @@ cam_indicator_en: cam-indicator-en-state {
- 		bias-disable;
- 	};
- 
-+	ec_int_n_default: ec-int-n-state {
-+		pins = "gpio66";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
- 	edp_bl_en: edp-bl-en-state {
- 		pins = "gpio74";
- 		function = "gpio";
+>  examples:
+>    - |
+> @@ -280,7 +398,7 @@ examples:
+>  
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+> -        dac@0 {
+> +        dac@60 {
+>            compatible = "microchip,mcp47feb02";
+>            reg = <0>;
 
--- 
-2.53.0
+Need to change reg to 0x60 also.
 
+>            vdd-supply = <&vdac_vdd>;
+> @@ -299,4 +417,29 @@ examples:
+>            };
+>        };
+>      };
 
