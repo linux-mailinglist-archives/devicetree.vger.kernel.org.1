@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-284614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284615-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yAmAEme40Gmu/QYAu9opvQ
-	(envelope-from <devicetree+bounces-284614-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 09:06:15 +0200
+	id GCcAJZTG0GkMAAcAu9opvQ
+	(envelope-from <devicetree+bounces-284615-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 10:06:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AA239A314
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 09:06:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB8D439A537
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 10:06:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9AAE3301104A
-	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 07:06:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E23D3043BFA
+	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 08:05:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B1F2363C61;
-	Sat,  4 Apr 2026 07:06:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B9993A4F33;
+	Sat,  4 Apr 2026 08:05:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hEz/JoMA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Msh7SXqa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC1F274B5C;
-	Sat,  4 Apr 2026 07:06:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570B13A4537;
+	Sat,  4 Apr 2026 08:05:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775286370; cv=none; b=JcP4WQDX3Mbku6K1+l5cDkIiAuJ6nD6On8ZU/Wz9b1ixnJvU0Ge97Pqnu46bIEIxbmqLEdxAcxfj1mbtY0w4j/6q/KtssCpWKSUOQv/ZD6xiR8K+BWq6OsZVBdmdFdSy1jdilO9SiyovMORknn0UUokBVtmtODyF9pTaGaC7kbQ=
+	t=1775289916; cv=none; b=NwvVFZ9Kc1p5zpfGpijWlQqdGVd61zYy4o6K16UHYi0yjoPVwry46Ws+CxvYMGR2SrPeW10I0NCy5Pch0zuUpmkApmoS5Fy2ND/IgqYya9NYLnHUlIdc8/D9q5ohxogHemGldr+6vkk7Ue0pvj12nvHScutTs8bizENDjl6TsLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775286370; c=relaxed/simple;
-	bh=UydkduQakN8IlobPbjOFqJ8kf+pF1zyaBtWMtlWtiO4=;
+	s=arc-20240116; t=1775289916; c=relaxed/simple;
+	bh=+ZsFuW9tk4hpboN25ffYwk5fs+8ZFTtpTy5hNNCs0rg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EoARch+a6u+yVXiaXSiVXf/G+ngwDY+zh5cwfN9Ooc0MPPMeiILa9mSG+arhueJ3f3M2FqRRr8e4B6w5yCCAkaBx1W4s4KzaEZNFsEnBlwSNHZXQR+M7rvGDRQMi6MYMqItPHea1TIYyTQh8JOjwQTjIxWq8y3+HkcXuUSXfmO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hEz/JoMA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CAA7C19423;
-	Sat,  4 Apr 2026 07:06:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=f+ogYboZCaGR2ylrJ1kRcV375+Adk1WQULlEzwKQuU+tj1N23jXhmboM9sVFiSl03tJpVLwc/O5SrAit4FRsgV3WEnsBBKLXxtlASfOOjnWZ6Gf/2zNdD/FPQbWelRQ5tv39SIXdlLX5S07QJvaE0QD45I0FeHLUpif8xmHoZgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Msh7SXqa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A49E9C19423;
+	Sat,  4 Apr 2026 08:05:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775286369;
-	bh=UydkduQakN8IlobPbjOFqJ8kf+pF1zyaBtWMtlWtiO4=;
+	s=k20201202; t=1775289916;
+	bh=+ZsFuW9tk4hpboN25ffYwk5fs+8ZFTtpTy5hNNCs0rg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hEz/JoMAqsKTFJjhnEotmECzkt9Q5vzVSePC2lYIvAxqPy51A/d1U03OXrDgBgfup
-	 +iX87pWlXYGZL4yp3jyYhDyXk2pwKLufPhsX2m4p9aoFrTG0bcjbzYyQT4yGgPvLTy
-	 g0OQOkuAVi2PHN/neQKRgnhh7h/OtN6iwpH8XDXGgsURqZs01QFUzF+H0l6DGCdXGF
-	 TIs7M1UcMfRLplpe+mrwwrZ5S+lioLp4RdoU3k88JAtZvA9Qp98cm8ELnYPCwC6ouh
-	 GZ6MtM4Dbxw/YNJFxEuznD2Af4+m3pH97jjS0ydczbDHdcIMqWUizodh+qix1XDitm
-	 w1XnrqTaQ0mjA==
-Date: Sat, 4 Apr 2026 09:06:07 +0200
+	b=Msh7SXqaYc4dEhC0eWoa9RuY3A/5Y3lbGZPolVZMuBeFMLMTY++zEal6AaERDxIyp
+	 EbLrx+23Td8iphI2FqP+xkP2Wbj1DHHB8EA6suyDLv7rhbzueRrPER9cvRDhW3Vrp0
+	 GwIb/iOCbqns2to1L8MU5ERT1XUJKGitfRdNGZ0sQ2BU2YreXzafQ/Mu5Bvc/rKYDF
+	 1bQaLHrPSETEN8+Yu3pWtueuiwlL+ladx+2fKkZgfhLueyRrdr86ROtvZ4K2OGJ/ML
+	 f1LtmVDt1t2NSV5C51QF1XLAAbJsuJNxtLQ/S2O60GBbz8VE1gHvGZFwZvxNTONS7R
+	 X42sBlLXLMelA==
+Date: Sat, 4 Apr 2026 10:05:13 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>, 
-	Matthias Kaehlcke <mka@chromium.org>, Alexey Charkov <alchark@flipper.net>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Mike Looijmans <mike.looijmans@topic.nl>, 
-	Pin-yen Lin <treapking@chromium.org>, J =?utf-8?Q?=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>, 
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>, Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 1/2] dt-bindings: usb: Add Genesys Logic GL3590 hub
-Message-ID: <20260404-tacky-fearless-mole-ade3ba@quoll>
-References: <20260403100435.3477729-1-swati.agarwal@oss.qualcomm.com>
- <20260403100435.3477729-2-swati.agarwal@oss.qualcomm.com>
+To: Joshua Milas <josh.milas@gmail.com>
+Cc: tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, pjw@kernel.org, samuel.holland@sifive.com, 
+	unicorn_wang@outlook.com, inochiama@gmail.com, daniel.lezcano@linaro.org, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
+	liujingqi@lanxincomputing.com, alexander.sverdlin@gmail.com, rabenda.cn@gmail.com, 
+	dlan@kernel.org, chao.wei@sophgo.com, anup@brainfault.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	sophgo@lists.linux.dev, hanguidong02@gmail.com, michael.opdenacker@rootcommit.com
+Subject: Re: [PATCH v5 1/5] dt-bindings: soc: sophgo: add Milk-V Duo S board
+ compatibles
+Message-ID: <20260404-polite-parrot-of-progress-401d4e@quoll>
+References: <20260403111516.379795-1-josh.milas@gmail.com>
+ <20260403111516.379795-2-josh.milas@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,49 +68,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260403100435.3477729-2-swati.agarwal@oss.qualcomm.com>
+In-Reply-To: <20260403111516.379795-2-josh.milas@gmail.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284614-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-284615-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[kernel.org,sifive.com,outlook.com,gmail.com,linaro.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lanxincomputing.com,sophgo.com,brainfault.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,rootcommit.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email]
-X-Rspamd-Queue-Id: A3AA239A314
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,milkv.io:url,qualcomm.com:email]
+X-Rspamd-Queue-Id: EB8D439A537
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 03, 2026 at 03:34:34PM +0530, Swati Agarwal wrote:
-> Add the binding for the USB3.2 Genesys Logic GL3590 hub.
-> GL3590 hub requires 1.2V and 3.3V supplies for operation.
+On Fri, Apr 03, 2026 at 07:15:12AM -0400, Joshua Milas wrote:
+> Document the compatible strings for the Milk-V Duo S board [1]
+> which uses the SOPHGO SG2000 SoC.
 > 
-> Signed-off-by: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
-> ---
->  .../bindings/usb/genesys,gl850g.yaml           | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+> Link: https://milkv.io/duo-s [1]
+> 
+> Signed-off-by: Joshua Milas <josh.milas@gmail.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
