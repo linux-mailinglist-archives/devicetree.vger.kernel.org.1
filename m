@@ -1,48 +1,50 @@
-Return-Path: <devicetree+bounces-284665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284666-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yAtiED5a0WnuHwcAu9opvQ
-	(envelope-from <devicetree+bounces-284665-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 20:36:46 +0200
+	id EJ6PEkxa0WnuHwcAu9opvQ
+	(envelope-from <devicetree+bounces-284666-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 20:37:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F39839C128
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 20:36:45 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E80F639C137
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 20:36:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A9D57300BD83
-	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 18:36:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AD5AD3018BD4
+	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 18:36:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F6B33AD82;
-	Sat,  4 Apr 2026 18:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2868B33C1AD;
+	Sat,  4 Apr 2026 18:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="cgCWUasD"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="ViRbAUtR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C550433ADA2;
-	Sat,  4 Apr 2026 18:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1C03164D6;
+	Sat,  4 Apr 2026 18:35:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775327759; cv=none; b=T8uNpF6SITWEXy46PZWFd+BsC4Hz1bU6U7pCtXrztkX0s0hmd2vRJsQVoxSg/LTyUzNxng7LdSeCWzKcpOwgkQ7FrPSK5bQb19AD3AvNV10WZR0Q5YaEn7Tr9X+/r+fwmsfFwan7DTmQiuXWZV4OkNEdGq9M432yeSzNTzxlWGo=
+	t=1775327760; cv=none; b=vEkt4h35FqazoNwi2KkdPfy7l9LoPcHo2XXazuETgS076o34SYC8GkX164426W/kkPfVcks5ZCetgGD7LH7el3M4rlsXDh5PoeQfAQU9hZx8rrRDHu07vcT2NMjsznnXkmv8MAYu5L/L0JWw+nDE2B0rZlBoylU37cQqWBgEHlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775327759; c=relaxed/simple;
-	bh=4euix1xHKSe5lEGUddBFauSyainydWuV70IIYfBNFXI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mC3TR3qSDfOFP63Cb1rSIntkTo+X9H1Qy3OBaeoXnR2wKcO0heUY70rD0y8cAjg+JHY4CRpow4WtuwhiIy9RVyadQycHNyOhWw4tX/ct4TJoT4z39H0U2TzAQesg32mZgCunZMv/WHeryaysYZloKlt2Owt+kAtl9+cI2JFDDfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=cgCWUasD; arc=none smtp.client-ip=178.251.229.89
+	s=arc-20240116; t=1775327760; c=relaxed/simple;
+	bh=oCEFMSwXzF9OYvDstMxjlqgvlBwICSIRMALNepv+hvg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=lshjR2RsUhuxzDnNsuGc7RyfLrO/uHe/cF2frjJt5VrkWezLk/d3KlLf3+1CGuUAaXtJAi7cCA6LE3ff4nvXUZ1jc0UrknpylLnZoFEmpPPt/+FsmjELNg2Vb1eppv8cfvbAHa6VdJRX/uIx6+k8jxn/swRLaVb2hPpPcCi8E8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=ViRbAUtR; arc=none smtp.client-ip=178.251.229.89
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B4B4A10D7E3;
-	Sat,  4 Apr 2026 20:35:53 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5EF60113200;
+	Sat,  4 Apr 2026 20:35:56 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1775327755; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=URBiisKpj/4VMst9ixL/iGdh8JIZ79ieZDT72gpFozg=;
-	b=cgCWUasDQ68qUJFqRIMhHNay3iSRHeThhK5wB5F+Yu0gW1+hMlnFBaDThvyqJqBX3bl23k
-	rCF3I1ZFCIlZlWYMRnryBW9/XqFiY8ZaT3lZdOUOLrUvm7+bbBdkwvwj+diePw8HUdIArk
-	1tVhnWnExWVDjSH63hX2BkVERZxDPQwTIeYxM/fI5snh7iZjXLHNpnjCrW2ZOgSyTsc671
-	wpTI9Gi3iHUvUXHB3ySpR1FiuiLR7zmO2qd5MVP/KSiQ8EmzsFNurujJjVR7yeANr9zTI3
-	QQfbojaWIAvmmAdgXGayEceLytHAtp5uyEHYCDc/G0I8afSY8nX6/EcsuF38Fw==
+	s=dkim; t=1775327757; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=NSBm8CQ9KV1sZc8xqRJrGb0nqJcw/MhMvwITjTm4MlU=;
+	b=ViRbAUtRvwhoms+GPAP50uGr+Fp0PaHUne+gjQOz+eAmdLPm7y0XhoHq4vwoY1j4vwGZiq
+	OFxMEJMjVq7q5t4IWVCuReOUCQcDeO2YwfwTUdjqiCDOVU58T62n5vcFqawha1xaZKQEZ0
+	X3vrGhWvNAShQ1aweYxL0DXdk8hT9mcc5poluSoIvX7oqZ1sZOSMh8HVVOgb3F1L68eVcc
+	rd5N4QorFVSLTLj/RlnZqyosbDQjqtW4rV+LUeqvde2p2JSogw2vXDdr/odeb0S2vQXOcQ
+	hz6OkvMGiyjgwnmwY+Tr5X6YPA8TbUys9pj8u6OPZpLPe7iAvIOy/jE+PKojiQ==
 From: Marek Vasut <marex@nabladev.com>
 To: linux-sound@vger.kernel.org
 Cc: Marek Vasut <marex@nabladev.com>,
@@ -60,10 +62,12 @@ Cc: Marek Vasut <marex@nabladev.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linuxppc-dev@lists.ozlabs.org
-Subject: [PATCH v2 1/2] ASoC: dt-bindings: fsl-sai: Document RX/TX BCLK swap support
-Date: Sat,  4 Apr 2026 20:35:00 +0200
-Message-ID: <20260404183547.46509-1-marex@nabladev.com>
+Subject: [PATCH v2 2/2] ASoC: fsl_sai: Add RX/TX BCLK swap support
+Date: Sat,  4 Apr 2026 20:35:01 +0200
+Message-ID: <20260404183547.46509-2-marex@nabladev.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260404183547.46509-1-marex@nabladev.com>
+References: <20260404183547.46509-1-marex@nabladev.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,11 +83,11 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
 	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-284665-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284666-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -100,13 +104,13 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nabladev.com:dkim,nabladev.com:email,nabladev.com:mid,ozlabs.org:email]
-X-Rspamd-Queue-Id: 8F39839C128
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ozlabs.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nabladev.com:dkim,nabladev.com:email,nabladev.com:mid]
+X-Rspamd-Queue-Id: E80F639C137
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Document support for setting the Bit Clock Swap bit in CR2 register
+Add support for setting the Bit Clock Swap bit in CR2 register
 via new "fsl,sai-bit-clock-swap" DT property. This bit swaps the
 bit clock used by the transmitter or receiver in asynchronous mode,
 i.e. makes transmitter use RX_BCLK and TX_SYNC, and vice versa,
@@ -130,30 +134,64 @@ Cc: linux-kernel@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 Cc: linuxppc-dev@lists.ozlabs.org
 ---
-V2: - Drop | from description
-    - Update email, rebase on next
+V2: Update email, rebase on next
 ---
- Documentation/devicetree/bindings/sound/fsl,sai.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+ sound/soc/fsl/fsl_sai.c | 7 ++++++-
+ sound/soc/fsl/fsl_sai.h | 2 ++
+ 2 files changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-index 83b5ea5f3d70e..ba65b3f3d0662 100644
---- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-+++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-@@ -162,6 +162,13 @@ properties:
-       of transmitter.
-     type: boolean
+diff --git a/sound/soc/fsl/fsl_sai.c b/sound/soc/fsl/fsl_sai.c
+index bd336d2e4cb38..87a40e2b9fdf7 100644
+--- a/sound/soc/fsl/fsl_sai.c
++++ b/sound/soc/fsl/fsl_sai.c
+@@ -355,6 +355,9 @@ static int fsl_sai_set_dai_fmt_tr(struct snd_soc_dai *cpu_dai,
+ 	unsigned int ofs = sai->soc_data->reg_offset;
+ 	u32 val_cr2 = 0, val_cr4 = 0;
  
-+  fsl,sai-bit-clock-swap:
-+    description:
-+      Enable Bit Clock Swap, which swaps the bit clock used by the transmitter
-+      or receiver in asynchronous mode, i.e. makes transmitter use RX_BCLK and
-+      TX_SYNC, and vice versa, makes receiver use TX_BCLK and RX_SYNC.
-+    type: boolean
++	if (sai->is_bit_clock_swap)
++		val_cr2 |= FSL_SAI_CR2_BCS;
 +
-   fsl,shared-interrupt:
-     description: Interrupt is shared with other modules.
-     type: boolean
+ 	if (!sai->is_lsb_first)
+ 		val_cr4 |= FSL_SAI_CR4_MF;
+ 
+@@ -453,7 +456,8 @@ static int fsl_sai_set_dai_fmt_tr(struct snd_soc_dai *cpu_dai,
+ 	}
+ 
+ 	regmap_update_bits(sai->regmap, FSL_SAI_xCR2(tx, ofs),
+-			   FSL_SAI_CR2_BCP | FSL_SAI_CR2_BCD_MSTR, val_cr2);
++			   FSL_SAI_CR2_BCS | FSL_SAI_CR2_BCP | FSL_SAI_CR2_BCD_MSTR,
++			   val_cr2);
+ 	regmap_update_bits(sai->regmap, FSL_SAI_xCR4(tx, ofs),
+ 			   FSL_SAI_CR4_MF | FSL_SAI_CR4_FSE |
+ 			   FSL_SAI_CR4_FSP | FSL_SAI_CR4_FSD_MSTR, val_cr4);
+@@ -1507,6 +1511,7 @@ static int fsl_sai_probe(struct platform_device *pdev)
+ 	sai->soc_data = of_device_get_match_data(dev);
+ 
+ 	sai->is_lsb_first = of_property_read_bool(np, "lsb-first");
++	sai->is_bit_clock_swap = of_property_read_bool(np, "fsl,sai-bit-clock-swap");
+ 
+ 	base = devm_platform_get_and_ioremap_resource(pdev, 0, &sai->res);
+ 	if (IS_ERR(base))
+diff --git a/sound/soc/fsl/fsl_sai.h b/sound/soc/fsl/fsl_sai.h
+index af967833b6eda..6d84e5ff2258e 100644
+--- a/sound/soc/fsl/fsl_sai.h
++++ b/sound/soc/fsl/fsl_sai.h
+@@ -118,6 +118,7 @@
+ 
+ /* SAI Transmit and Receive Configuration 2 Register */
+ #define FSL_SAI_CR2_SYNC	BIT(30)
++#define FSL_SAI_CR2_BCS		BIT(29)
+ #define FSL_SAI_CR2_BCI		BIT(28)
+ #define FSL_SAI_CR2_MSEL_MASK	(0x3 << 26)
+ #define FSL_SAI_CR2_MSEL_BUS	0
+@@ -301,6 +302,7 @@ struct fsl_sai {
+ 	struct fsl_sai_dl_cfg *dl_cfg;
+ 	unsigned int dl_cfg_cnt;
+ 	bool mclk_direction_output;
++	bool is_bit_clock_swap;
+ 
+ 	unsigned int mclk_id[2];
+ 	unsigned int mclk_streams;
 -- 
 2.53.0
 
