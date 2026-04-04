@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-284615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284616-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GCcAJZTG0GkMAAcAu9opvQ
-	(envelope-from <devicetree+bounces-284615-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 10:06:44 +0200
+	id GLkMGHLI0GkMAAcAu9opvQ
+	(envelope-from <devicetree+bounces-284616-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 10:14:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB8D439A537
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 10:06:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D20539A5C0
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 10:14:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5E23D3043BFA
-	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 08:05:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C06AC308E954
+	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 08:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B9993A4F33;
-	Sat,  4 Apr 2026 08:05:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07483A453C;
+	Sat,  4 Apr 2026 08:10:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Msh7SXqa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tZ0FcM3f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570B13A4537;
-	Sat,  4 Apr 2026 08:05:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A8AC3A4525;
+	Sat,  4 Apr 2026 08:10:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775289916; cv=none; b=NwvVFZ9Kc1p5zpfGpijWlQqdGVd61zYy4o6K16UHYi0yjoPVwry46Ws+CxvYMGR2SrPeW10I0NCy5Pch0zuUpmkApmoS5Fy2ND/IgqYya9NYLnHUlIdc8/D9q5ohxogHemGldr+6vkk7Ue0pvj12nvHScutTs8bizENDjl6TsLI=
+	t=1775290214; cv=none; b=bNgTUgcWsZHoTk1PG1vN+Vs5k/jnmJzstNfx/wcAzOouDGHvRsvIfyQ9XnSPceEfhzig5qx0gkAdHnVKx0RS28dV5vO1lzA1rf5MZWWPKXqmqFRNmFldT349ch3m1egPYR59/NYcgwWLovQBAc2eIbPW2u3D1vy+Q0yZZ0ThQME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775289916; c=relaxed/simple;
-	bh=+ZsFuW9tk4hpboN25ffYwk5fs+8ZFTtpTy5hNNCs0rg=;
+	s=arc-20240116; t=1775290214; c=relaxed/simple;
+	bh=0GCu5nkM0KBp8/WXOLonVDg5m0C5kdhGNfwrss8y85U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f+ogYboZCaGR2ylrJ1kRcV375+Adk1WQULlEzwKQuU+tj1N23jXhmboM9sVFiSl03tJpVLwc/O5SrAit4FRsgV3WEnsBBKLXxtlASfOOjnWZ6Gf/2zNdD/FPQbWelRQ5tv39SIXdlLX5S07QJvaE0QD45I0FeHLUpif8xmHoZgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Msh7SXqa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A49E9C19423;
-	Sat,  4 Apr 2026 08:05:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ly9dWnFv4/NOxVHVpK95cbPq/8ug7wG2lQX29iX6T16GCoyFUuh/myZTsGYTGhnyl9tMPbkyKTF638Q++qssh2dhGjKcRKUeFDOhRqvtoANqnhLx809zMfI6zxVoLbHEMMNRjJkureUoKDj12cZJ5Q3gWTcDOew+fq5cFu9VJD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tZ0FcM3f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB96AC19423;
+	Sat,  4 Apr 2026 08:10:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775289916;
-	bh=+ZsFuW9tk4hpboN25ffYwk5fs+8ZFTtpTy5hNNCs0rg=;
+	s=k20201202; t=1775290214;
+	bh=0GCu5nkM0KBp8/WXOLonVDg5m0C5kdhGNfwrss8y85U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Msh7SXqaYc4dEhC0eWoa9RuY3A/5Y3lbGZPolVZMuBeFMLMTY++zEal6AaERDxIyp
-	 EbLrx+23Td8iphI2FqP+xkP2Wbj1DHHB8EA6suyDLv7rhbzueRrPER9cvRDhW3Vrp0
-	 GwIb/iOCbqns2to1L8MU5ERT1XUJKGitfRdNGZ0sQ2BU2YreXzafQ/Mu5Bvc/rKYDF
-	 1bQaLHrPSETEN8+Yu3pWtueuiwlL+ladx+2fKkZgfhLueyRrdr86ROtvZ4K2OGJ/ML
-	 f1LtmVDt1t2NSV5C51QF1XLAAbJsuJNxtLQ/S2O60GBbz8VE1gHvGZFwZvxNTONS7R
-	 X42sBlLXLMelA==
-Date: Sat, 4 Apr 2026 10:05:13 +0200
+	b=tZ0FcM3fy6etdxKm2j9/6E0S+sOmVswILZRMTN0kE2Y6tv8SFCJnZ7HxLHQ7HwFnZ
+	 GSYyGO8QDhkn+Xt4PTmqdeDi7Qhgib7KEoO/EKjm3biBCBWhlO8rhiuA2MZ2zdL7m0
+	 7v7oZmnKzI0hoLCHKQ3P5W0YqKS5UKrR/CZi+X3pSOIqB5OTg8WfZoa0PK27Nw4TnS
+	 jZymhR9dX1P7HX/B9RHNFo7DB9+hqva8ge1/9bTkiIm7VhOxiniA2vfz3bld+d4K6w
+	 weg1O1sbRNiPztXCikFw5eIdEnJxpXqtbWIF1Fg7nhOeOxGnKbt8Q8QUGx7wSiKkLu
+	 oxXGCKtgov5eQ==
+Date: Sat, 4 Apr 2026 10:10:11 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Joshua Milas <josh.milas@gmail.com>
 Cc: tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
@@ -55,11 +55,11 @@ Cc: tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
 	dlan@kernel.org, chao.wei@sophgo.com, anup@brainfault.org, 
 	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
 	sophgo@lists.linux.dev, hanguidong02@gmail.com, michael.opdenacker@rootcommit.com
-Subject: Re: [PATCH v5 1/5] dt-bindings: soc: sophgo: add Milk-V Duo S board
- compatibles
-Message-ID: <20260404-polite-parrot-of-progress-401d4e@quoll>
+Subject: Re: [PATCH v5 3/5] dt-bindings: soc: sophgo: add sg2000 plic and
+ clint documentation
+Message-ID: <20260404-rustling-shapeless-ocelot-b2df71@quoll>
 References: <20260403111516.379795-1-josh.milas@gmail.com>
- <20260403111516.379795-2-josh.milas@gmail.com>
+ <20260403111516.379795-4-josh.milas@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,7 +68,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260403111516.379795-2-josh.milas@gmail.com>
+In-Reply-To: <20260403111516.379795-4-josh.milas@gmail.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
@@ -81,7 +81,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284615-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284616-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[gmail.com];
@@ -89,7 +89,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[kernel.org,sifive.com,outlook.com,gmail.com,linaro.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lanxincomputing.com,sophgo.com,brainfault.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,rootcommit.com];
@@ -98,18 +98,20 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,milkv.io:url,qualcomm.com:email]
-X-Rspamd-Queue-Id: EB8D439A537
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9D20539A5C0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 03, 2026 at 07:15:12AM -0400, Joshua Milas wrote:
-> Document the compatible strings for the Milk-V Duo S board [1]
-> which uses the SOPHGO SG2000 SoC.
-> 
-> Link: https://milkv.io/duo-s [1]
+On Fri, Apr 03, 2026 at 07:15:14AM -0400, Joshua Milas wrote:
+> Document the compatible strings for the sg2000 interrupt
+> controller and timer.
 > 
 > Signed-off-by: Joshua Milas <josh.milas@gmail.com>
+> ---
+>  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
+>  Documentation/devicetree/bindings/timer/sifive,clint.yaml        | 1 +
+>  2 files changed, 2 insertions(+)
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
