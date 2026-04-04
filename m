@@ -1,64 +1,70 @@
-Return-Path: <devicetree+bounces-284605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284607-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KcEhNHuH0GmY8gYAu9opvQ
-	(envelope-from <devicetree+bounces-284605-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 05:37:31 +0200
+	id 6ILsJW+I0GmY8gYAu9opvQ
+	(envelope-from <devicetree+bounces-284607-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 05:41:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7DCA399C23
-	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 05:37:30 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11FD3399C63
+	for <lists+devicetree@lfdr.de>; Sat, 04 Apr 2026 05:41:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D2B9A303853E
-	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 03:37:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 28F5D300788F
+	for <lists+devicetree@lfdr.de>; Sat,  4 Apr 2026 03:41:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72D1A23EA8B;
-	Sat,  4 Apr 2026 03:37:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 031AD330315;
+	Sat,  4 Apr 2026 03:41:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="jCgXOhBN"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="EEToSnKe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D59C7081A;
-	Sat,  4 Apr 2026 03:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690CF3246EB;
+	Sat,  4 Apr 2026 03:41:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775273847; cv=none; b=RS+3eE6rHYOVmPGMVd6iv00H37oBbe8QdLpe9JctI5kc20zliPpVT+DV2ojoTFza1jGG7gijnC0eNjekClkseuCZ6OyTtTznnq+YIRX+7RtyHYKtSnzUKbboAkwEZyHmrDKzLopoPchEpA2X6IP5AX3XkjKneNkLQ4tvppZ7MZI=
+	t=1775274092; cv=none; b=ccgCnE9pMhYkbBgQ5h2PePJ+FPtrGsFzt9FILVcPfrSAsJcwbmamHZI8Jyx7QEZg8LmQvIXfPqFt4+pYdCcjW2JwPHFYlqn+aSAL4GtGVky2E4A6SvrwnDP5dWwPir2A2X8/+1X4MK3FmdMaoDWjFAPZzOEjg34K/5RpjbOdCC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775273847; c=relaxed/simple;
-	bh=1tvXRwS09ZzJjjEs9WtCpWXms+pEPfd/SuI9LiFjs+I=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ohsuh4TvRtub3bD/MpnrhWdRKI4Ur/6CEqH2doytoNfx1dWfe9IJywJ4j7CussEkpVK6s6gBwGK8+bp+hVRHc61nlHBnLfjPl9P4aUCnpcORe5Tt3QUz5jvuRhtwZe1xm1At6H5OHEz7pVOl4HSgzCP9Ijg+6PqECfLSsCVBJ30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=jCgXOhBN; arc=none smtp.client-ip=178.251.229.89
+	s=arc-20240116; t=1775274092; c=relaxed/simple;
+	bh=q++nQVep0JbuGC13ierZL9G8PIDJwvhIiVuaFhHHv8M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ITvwF7MFW8vacbf1WVPBNQaIENemRSDbhULcgn4ImHPOCv5UnxUC4nQBB8Z6xfhRL3JpofG9rLD5VRdtw4kXa+ywDvXsqUIiHwQm8Q4IK401dOTYsrUzJscaVf0d6Z+UcaKxXwRCMKAJ7ibYhLtA2ypCzJxjN5Gnfx2oBv/rFWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=EEToSnKe; arc=none smtp.client-ip=178.251.229.89
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D46E011311A;
-	Sat,  4 Apr 2026 05:37:14 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3E699112C1D;
+	Sat,  4 Apr 2026 05:41:25 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1775273836; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=hiJCmR5ixpPNTGgaozyisC5HNhSbpDiqeh2G6vMXj7A=;
-	b=jCgXOhBNYiH4/nUDxj4fzSnRZ17ACaH7FlNyXluP/eQPdh1lqqeEAIUS+Q6fov64YuKkAD
-	7aDBkOFrytRfUHZBwy+V4TjlhBrgntusfXSfQ9pnnk89aKHuAfnq0XQZRTIFEcyONglTVs
-	U+1HT0P0sqrrCcKqHlQA1OlPsHA8mTfyZj2jBtRxM85eFlXDg+eo3FdXUhgSYW+KHVBfDf
-	0X1QpDxJEnLDOKvBD2ibzJhjelNEl7q9Lo3FykcEHg4y6BzTS2jol9umdRY4a0Xb0/ULQO
-	g4c1u3HPeNMvRBu176t/ZiewmDWPPByvOmX4G7YlS2gHQIde+k+6WIF7yCpWhA==
+	s=dkim; t=1775274088; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=ApgxGQ153IAfgJWC/bMyIf2DW/ZJRfgpNGeMYExnZEE=;
+	b=EEToSnKeWDrAtLrTk/ulw4nZTqY+G8oP2hUaEgq50oYXnXijFe8nIlzb+aeQa05ZHoPDiD
+	TZtOmxkB5Udt/8u52CxGCoYdCz+DDgvpGf6q16zVIsZR8fmq3SN/CSLoFmL7KD1zbFYiuz
+	AW/Xt6TyHQL5J1Zx0o4kekQx8A6g9u+T7RgQc0+4qoT95wykDS9M4pVb6IcaayvfiFfFGd
+	5t2qXKWG5D0DrXjw8pFo0IghpJNsyXbsxexXDjQnlmYvtN9WaZ6eezAfDs5sMmawMIhdHk
+	Q26+UqM+Ug2CcCAXGLBNzAmEJWiOB1FbGCqz/XT6D7rRB2i3eVn/9cHUDr+Wmw==
 From: Marek Vasut <marex@nabladev.com>
 To: devicetree@vger.kernel.org
 Cc: Marek Vasut <marex@nabladev.com>,
-	Baojun Xu <baojun.xu@ti.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kevin Lu <kevin-lu@ti.com>,
+	David Airlie <airlied@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Rob Herring <robh@kernel.org>,
-	Shenghao Ding <shenghao-ding@ti.com>,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: ti,tas2552: Add sound-dai-cells
-Date: Sat,  4 Apr 2026 05:36:56 +0200
-Message-ID: <20260404033709.340026-1-marex@nabladev.com>
+	Robert Foss <rfoss@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: display: bridge: lt9211: Require data-lanes on DSI input ports
+Date: Sat,  4 Apr 2026 05:40:18 +0200
+Message-ID: <20260404034123.340818-1-marex@nabladev.com>
 X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -74,19 +80,19 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-284605-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284607-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[nabladev.com,ti.com,kernel.org,gmail.com,vger.kernel.org];
+	FREEMAIL_CC(0.00)[nabladev.com,intel.com,kernel.org,gmail.com,kwiboo.se,ideasonboard.com,linux.intel.com,linaro.org,ffwll.ch,suse.de,lists.freedesktop.org,vger.kernel.org];
 	DKIM_TRACE(0.00)[nabladev.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -96,66 +102,108 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:email,nabladev.com:dkim,nabladev.com:email,nabladev.com:mid,0.0.0.41:email]
-X-Rspamd-Queue-Id: E7DCA399C23
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 11FD3399C63
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add missing sound-sai-cells for this codec into schema.
-At the same time, drop trailing spaces from description.
+The Lontium LT9211 is capable of 1..4 DSI lanes per input DSI port,
+describe the lane count for each input port in the schema.
 
-Fixes: 506e0825a4c9 ("ASoC: dt-bindings: Convert ti,tas2552 to DT schema")
 Signed-off-by: Marek Vasut <marex@nabladev.com>
 ---
-Cc: Baojun Xu <baojun.xu@ti.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Kevin Lu <kevin-lu@ti.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: Jonas Karlman <jonas@kwiboo.se>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
 Cc: Rob Herring <robh@kernel.org>
-Cc: Shenghao Ding <shenghao-ding@ti.com>
+Cc: Robert Foss <rfoss@kernel.org>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
 Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org
-Cc: linux-sound@vger.kernel.org
 ---
- Documentation/devicetree/bindings/sound/ti,tas2552.yaml | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+NOTE: For example Linux kernel driver does already use that information
+      and fails to probe if it is missing. There are currently no intree
+      users for this binding, so no new warnings will be generated once
+      this is applied, but a new user is about to be added.
+---
+ .../display/bridge/lontium,lt9211.yaml        | 37 ++++++++++++++++++-
+ 1 file changed, 35 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,tas2552.yaml b/Documentation/devicetree/bindings/sound/ti,tas2552.yaml
-index 10369aa5f0a86..7c7a9e624b898 100644
---- a/Documentation/devicetree/bindings/sound/ti,tas2552.yaml
-+++ b/Documentation/devicetree/bindings/sound/ti,tas2552.yaml
-@@ -12,8 +12,8 @@ maintainers:
-   - Baojun Xu <baojun.xu@ti.com>
+diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
+index 9a6e9b25d14a9..5264fb2b68b78 100644
+--- a/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
+@@ -36,18 +36,50 @@ properties:
  
- description: >
--  The TAS2552 can receive its reference clock via MCLK, BCLK, IVCLKIN pin or 
--  use the internal 1.8MHz. This CLKIN is used by the PLL. In addition to PLL, 
-+  The TAS2552 can receive its reference clock via MCLK, BCLK, IVCLKIN pin or
-+  use the internal 1.8MHz. This CLKIN is used by the PLL. In addition to PLL,
-   the PDM reference clock is also selectable: PLL, IVCLKIN, BCLK or MCLK.
+     properties:
+       port@0:
+-        $ref: /schemas/graph.yaml#/properties/port
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
+         description:
+           Primary MIPI DSI port-1 for MIPI input or
+           LVDS port-1 for LVDS input or DPI input.
  
-   For system integration the dt-bindings/sound/tas2552.h header file provides
-@@ -34,6 +34,9 @@ properties:
-     maxItems: 1
-     description: gpio pin to enable/disable the device
- 
-+  '#sound-dai-cells':
-+    const: 0
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
 +
- required:
-   - compatible
-   - reg
-@@ -54,6 +57,7 @@ examples:
-         audio-codec@41 {
-             compatible = "ti,tas2552";
-             reg = <0x41>;
-+            #sound-dai-cells = <0>;
-             vbat-supply = <&reg_vbat>;
-             iovdd-supply = <&reg_iovdd>;
-             avdd-supply = <&reg_avdd>;
++            properties:
++              data-lanes:
++                description: array of physical DSI data lane indexes.
++                minItems: 1
++                items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
+       port@1:
+-        $ref: /schemas/graph.yaml#/properties/port
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
+         description:
+           Additional MIPI port-2 for MIPI input or LVDS port-2
+           for LVDS input. Used in combination with primary
+           port-1 to drive higher resolution displays
+ 
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                description: array of physical DSI data lane indexes.
++                minItems: 1
++                items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
+       port@2:
+         $ref: /schemas/graph.yaml#/properties/port
+         description:
+@@ -99,6 +131,7 @@ examples:
+             reg = <0>;
+ 
+             endpoint {
++              data-lanes = <1 2 3 4>;
+               remote-endpoint = <&dsi0_out>;
+             };
+           };
 -- 
 2.53.0
 
