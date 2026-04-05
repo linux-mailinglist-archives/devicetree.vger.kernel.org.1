@@ -1,185 +1,226 @@
-Return-Path: <devicetree+bounces-284772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284775-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4LKbIYl/0mnFYQcAu9opvQ
-	(envelope-from <devicetree+bounces-284772-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Apr 2026 17:28:09 +0200
+	id SL/hAoCV0mkxZAcAu9opvQ
+	(envelope-from <devicetree+bounces-284775-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Apr 2026 19:01:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CEF839ED91
-	for <lists+devicetree@lfdr.de>; Sun, 05 Apr 2026 17:28:08 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFE539F177
+	for <lists+devicetree@lfdr.de>; Sun, 05 Apr 2026 19:01:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1A7633007CAF
-	for <lists+devicetree@lfdr.de>; Sun,  5 Apr 2026 15:28:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 33F6430062EB
+	for <lists+devicetree@lfdr.de>; Sun,  5 Apr 2026 17:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 429E13033E1;
-	Sun,  5 Apr 2026 15:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FA0B3115BD;
+	Sun,  5 Apr 2026 17:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="KvQWd+Gl"
+	dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b="AwNPWxN1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 795DF2750ED;
-	Sun,  5 Apr 2026 15:28:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775402885; cv=none; b=W8yR1hSuArPw6bkYxsGtKxdenDkTvQoBGLlpMnK4F/hKnNiyILBPLfCeCfJ9dr3glQ7CpZOF4svysqJ96ECdyH4/jCQVf0AgTEZECdL9NjVGRthAR9OaIXknsMyiQhIKnYVGWFH1MmVXaoOX2SMFXiyPwe9L5MG1CN8shcJJTKw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775402885; c=relaxed/simple;
-	bh=NDnBsbXnNGGHQG0turWSfj4CBg3TO2qRC78L3hPeXs4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f/G6aDiZLTTxAZsSRZOXDTw9Z1UHOf6jk8E58QljM7sagWUV4u6Ewlsrx7DUWU7pM54NGoBjG2Yr1A1+3wlsbGtP46p69JsTn+FXWHObhEUmiIaGRFd4IxIf0noxl8wTPVbUdWIMF3KxJJqa4jMpE4GRl/1R0S7R/ZdfCU/gGGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=KvQWd+Gl; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 048E81BC0;
-	Sun,  5 Apr 2026 08:27:49 -0700 (PDT)
-Received: from ryzen.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E34383F62B;
-	Sun,  5 Apr 2026 08:27:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1775402874; bh=NDnBsbXnNGGHQG0turWSfj4CBg3TO2qRC78L3hPeXs4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=KvQWd+GlyQ26qJRkqKLtd0rZhhvYeTZuhURhP2De+TrJdzHLaXomuaxGKCg7V+Nmu
-	 Cq76diR6Q/0tGfEMAOK8ZxI5sR+DH/t5TeJTkhUA5i4JJEJ6ngsn8s9++hzFvakxNn
-	 hubn+aHBCVzSVgfa8MK94n19vR39SYApBGMpstuA=
-Date: Sun, 5 Apr 2026 17:27:38 +0200
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] pinctrl: sunxi: a523: Remove unneeded IRQ
- remuxing flag
-Message-ID: <20260405172738.02530c80@ryzen.lan>
-In-Reply-To: <CAGb2v64A0rgiMkTCdvq-pVfzCTqWKqc=nx69B9tD7A8_E7vHUg@mail.gmail.com>
-References: <20260327113006.3135663-1-andre.przywara@arm.com>
-	<20260327113006.3135663-2-andre.przywara@arm.com>
-	<CAGb2v64A0rgiMkTCdvq-pVfzCTqWKqc=nx69B9tD7A8_E7vHUg@mail.gmail.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+Received: from siberian.tulip.relay.mailchannels.net (siberian.tulip.relay.mailchannels.net [23.83.218.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0BE912D1F1;
+	Sun,  5 Apr 2026 17:01:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.218.246
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775408507; cv=pass; b=mzJDI30rX+3LZNT3s9OaOZ2whN8zKHXC6Q5JsKsO9PbCxcrHm3XoXliQots0uUTp/ZXByZCikP/NV0C16WU94trEYqUH9lWqZ04Ua2ft90ts/bBOZpjnVF7UscrWf5G4tou4xGegvjEwUz93zy9PQO25i14lKX0y6N3yJMCyREU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775408507; c=relaxed/simple;
+	bh=Ejvm1mF+34uxQNchjGqwX3gtS0hDoCRWgPN3CAGoRFE=;
+	h=From:Subject:Message-Id:MIME-Version:Content-Type:To:Cc:Date; b=a7w1yATiKcCO+RDO1w061PHdhJuTUgFSK6Znqqrn+agG1JS5iEYUMRoUN/554ERqpXJo/rrls+LEupqUnYgWaaz0e34RjGBwXtyoQK48MtWZMi36c8+d+j/oZTKZYUoWMUVzG4QITAeThTs3C6PkWikVkTodm4RjGOIUkSFYz9U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com; spf=pass smtp.mailfrom=smankusors.com; dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b=AwNPWxN1; arc=pass smtp.client-ip=23.83.218.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smankusors.com
+X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 4FAB18C14AA;
+	Sun, 05 Apr 2026 16:52:23 +0000 (UTC)
+Received: from fr-int-smtpout21.hostinger.io (100-96-162-196.trex-nlb.outbound.svc.cluster.local [100.96.162.196])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 26AE28C1411;
+	Sun, 05 Apr 2026 16:52:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
+	t=1775407940;
+	b=lsOqrX42vQSdlOe4+u/P7UAJl86eKKTIivhGFWIyz7XjLR5M5Ie+OnSbLa0jXzozKHiDjX
+	+CJz2wK2qYDK3BbHot1Z7Wvl+F/WGbKggtdTz5EQufjLBTFACzHBi9dHXFVmP/xMRBo49v
+	zKYSfFa/x4CMcn8bAK26+P3gSTrhBRvnewlhM126P+Si6xM0iEJ2809TpEIIOaEbO0QOEJ
+	v+A2mX55yled+TXDrO/3veXGemQuLMdFmieykBucVEkOuV3AgKa6A0WgGKqVHySJ742ORk
+	DvHVpuM6M/GQMqE4E9Rj6vJ2pxx/Yv6KdTlqYtJnElrckcX+NGiVLdW1CykZ0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1775407940;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=SGWkcrHLVZBbKHZdiamVXthl2/ys9O6HhTded3iU7kU=;
+	b=J6DzBe1GglRp+skrs9VSRIqEnNyflZgBGIDYUia3hBDuMW+LN8f0szSedvw2EEBvY8skFs
+	q5xLIveSrR+jlrY/jZMeL3uaSBJx9oY7dAjKBiujLl/AdBwBiuPe2Z1bf5hVivuJGBR82W
+	DFYIdCohCZOp7SKHYxFHJu2rBjnFEWlYevO/Q7I//RUdSqKMYdaU3XVmiIY0Z+HcCGFFd2
+	oh50wcnWqqkFUwDP7JKIYbFQZRJTWb0JmgHDc1KWHCgK4YsMnwsX3BfxeHDRyeyRVfupzw
+	F2E29uU2VcANY/lw/TYnmBTvz5+ozpwMJUQXEUNjYtyXeIW5qBzKKVb3EER75g==
+ARC-Authentication-Results: i=1;
+	rspamd-bd48b9d95-7lsvd;
+	auth=pass smtp.auth=hostingeremail smtp.mailfrom=linux@smankusors.com
+X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId: hostingeremail|x-authuser|linux@smankusors.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Thread-Thoughtful: 647ec49d56d22680_1775407942932_4024220470
+X-MC-Loop-Signature: 1775407942932:2020132877
+X-MC-Ingress-Time: 1775407942932
+Received: from fr-int-smtpout21.hostinger.io ([TEMPUNAVAIL]. [148.222.54.33])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.96.162.196 (trex/7.1.5);
+	Sun, 05 Apr 2026 16:52:22 +0000
+Received: from [172.17.0.2] (unknown [180.247.251.74])
+	(Authenticated sender: linux@smankusors.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fpdm80xm5z1xmt;
+	Sun,  5 Apr 2026 16:52:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smankusors.com;
+	s=hostingermail-a; t=1775407931;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SGWkcrHLVZBbKHZdiamVXthl2/ys9O6HhTded3iU7kU=;
+	b=AwNPWxN1q/KK17OPx8k+QsQ5VOKOioxN3B6MOZtlDfjLj5XHiIf0R/mJQ7NPD0K6QEF1G+
+	IsfQ2EXLtoQRtg1+LJ8/KIA5aIHWNVhWrbB6T6ckhJ4weBViWdpND25BbHGGjs8AbVzLS6
+	TK0587GfspmwkRNJiG2vtcYNN6bRYUkwbkWy58CT8OLFZ48aS68ax5CD1LBksMkJzrvERo
+	Kig9VFLIJbrOgi7q2kZR87qKnbclj+Q1FqfizxrgYGSUCLI2dL5fwPmkdB+ybOWPz27GOx
+	cdm90WnYsPLTGwlFhfal9OzhyRCRuPDP32BL2fC7Wyy68t/rW4GcdzL8Nwyd9Q==
+From: Antony Kurniawan Soemardi <linux@smankusors.com>
+Subject: [PATCH v3 0/3] iio: adc: qcom-pm8xxx-xoadc: add support for
+ reading channel labels from DT
+Message-Id: <20260405-pm8xxx-xoadc-label-v3-0-9fe179c283ec@smankusors.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACeT0mkC/23NQQ6CMBCF4auYrq0ZBijgynsYFy1tpREoabWpI
+ dzdQmJcyPJ/yXwzE6+cUZ6cDzNxKhhv7JgiPx5I2/HxrqiRqQkCMsgxo9NQxxhptFy2tOdC9bS
+ ouJa60sB4Q9Lh5JQ2cUOvt9Sd8U/r3tuPkK3rl2N7XMgoUMCqhlJyWUhx8QMfHy9vnT+1diCrG
+ fDnFJDvOpgcbEQJQteYKfbnLMvyAROyhq4BAQAA
+X-Change-ID: 20260321-pm8xxx-xoadc-label-47afdf7f06a9
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ phone-devel@vger.kernel.org, 
+ Antony Kurniawan Soemardi <linux@smankusors.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775407927; l=2427;
+ i=linux@smankusors.com; s=20250609; h=from:subject:message-id;
+ bh=Ejvm1mF+34uxQNchjGqwX3gtS0hDoCRWgPN3CAGoRFE=;
+ b=AM5FjeUtNuBk7wTiHcsisTO6mn4c93LxD2rfperT1s5O3k0IrR6wsG+cwz2PIb6XGDxc2+4il
+ phgoEb5wOBwDQuLrTUAAP6EwCsIuNHq2CL+2xTAcsOVB89YgE63a6Ei
+X-Developer-Key: i=linux@smankusors.com; a=ed25519;
+ pk=65wTy06fJl2/h/EJwjr704YG+yjHFhZObJBWzzK+N00=
+Date: Sun,  5 Apr 2026 16:52:07 +0000 (UTC)
+X-CM-Envelope: MS4xfLpUBOISr39bgW0PB4sUOyf3l8Le8d9RFCOofAwBW9szaZphhGHo2Q3qgdSmVoB7BkgvDJiRZLLXtOeLeHMDaezGn0iCM78wtozLdHkHrxERaLT1HlTA fDb1P6jnUO7/IcZZ7cewf7fiQGbO8jLScjsCy9Z5ngHLqPO/MMaWPS1zwX6hUQxLTGbE2rdL9qKk47AO6vQgfBaov9CIvuXXNPyH+Ql8UrMzx/z1hCNahGOw z88kBgNND0MQ+brYVDLBear4xyIwZmYrcRxnYjXjvLdhcojSd42y+rgb3tKzQdZjNogF3Zpg1qf4PMmIPfKgcoe4QvaKlvtd4NWQ8QTFgDV92Nj7kpLlBOl4 Z5ZYiKFKpws45BTt+lvYN/DP0X+g8Ks2vGpqiupbW+zpeJFnwqyE/M/PVL8Zn+vLlWuTqLhKSUKfZc/7lOTPiBrbHosPBtNhbKBf7MOiqBhMLSa1RTwdzbMC rUFU/jYABiiRlY64m78TPpdyG/zFdByYIuQsd94v/mYpen7gQhqmqJLMDMieYgj38Eww5KNWJCaOP3DSPPme8zWL9351uq0Q/eS5mM4Tnix6xkaRcQaHBgPf Uy3R063Q3W29kUrtJNf0/9ndzMv/K3osEVyWd8bg7eGoRAqzdA8cVoPP4a6EkgPxz7Rk+7lWTKBxUaisxUyJ2rtiz/+IGTqylsCXYcsM2jjebRhVsR08qg64 K4qA/Nr38/O6CxFkkxXInI9vZsmtx4nvmvrfPb8E8Tu5B0nepyPSYA==
+X-CM-Analysis: v=2.4 cv=ZbRPNdVA c=1 sm=1 tr=0 ts=69d2933b a=iMBLmzX4nuXcozcv68JNPw==:117 a=iMBLmzX4nuXcozcv68JNPw==:17 a=IkcTkHD0fZMA:10 a=VwQbUJbxAAAA:8 a=wxLWbCv9AAAA:8 a=_3edPfKAy5zYfz3TofwA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=QJY96suAAestDpCc5Gi9:22
+X-AuthUser: linux@smankusors.com
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[smankusors.com,none];
+	R_DKIM_ALLOW(-0.20)[smankusors.com:s=hostingermail-a];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	TAGGED_FROM(0.00)[bounces-284772-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284775-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[arm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[smankusors.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[linux@smankusors.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8CEF839ED91
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 6CFE539F177
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 27 Mar 2026 19:38:57 +0800
-Chen-Yu Tsai <wens@kernel.org> wrote:
+This series adds support for reading channel labels from the device tree
+in the Qualcomm PM8xxx XOADC driver, along with the corresponding DT
+updates for the PM8921 PMIC. Also removes the redundant error logs when
+reading values, as returning -EINVAL and -ETIMEDOUT are sufficient to
+report failures.
 
-Hi Linus,
+Tested on Sony Xperia SP (PM8921):
+> cat /sys/bus/iio/devices/iio\:device0/in_voltage7_label
+usb_vbus
+> cat /sys/bus/iio/devices/iio\:device0/in_temp12_label
+ref_muxoff
+> sensors
+iio_hwmon-isa-0000
+Adapter: ISA adapter
+vbat:        267.86 V
+dcin:          4.82 kV
+...
+chg_temp:    +1071.4°C
 
-> On Fri, Mar 27, 2026 at 7:30=E2=80=AFPM Andre Przywara <andre.przywara@ar=
-m.com> wrote:
-> >
-> > The Allwinner A10 and H3 SoCs cannot read the state of a GPIO line when
-> > that line is muxed for IRQ triggering (muxval 6), but only if it's
-> > explicitly muxed for GPIO input (muxval 0). Other SoCs do not show this
-> > behaviour, so we added a optional workaround, triggered by a quirk bit,
-> > which triggers remuxing the pin when it's configured for IRQ, while we
-> > need to read its value.
-> >
-> > For some reasons this quirk flag was copied over to newer SoCs, even
-> > though they don't show this behaviour, and the GPIO data register
-> > reflects the true GPIO state even with a pin muxed to IRQ trigger.
-> >
-> > Remove the unneeded quirk from the A523 family, where it's definitely
-> > not needed (confirmed by experiments), and where it actually breaks,
-> > because the workaround is not compatible with the newer generation
-> > pinctrl IP used in that chip.
-> >
-> > Together with a DT change this fixes GPIO IRQ operation on the A523
-> > family of SoCs, as for instance used for the SD card detection.
-> >
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > Fixes: b8a51e95b376 ("pinctrl: sunxi: Add support for the secondary A52=
-3 GPIO ports") =20
->=20
-> Acked-by: Chen-Yu Tsai <wens@kernel.org>
+Note: the sensor readings above are incorrect due to pending calibration
+fixes are not included in this series. This patch only addresses label
+visibility. The values are expected to be wrong until the calibration
+fixes lands separately.
 
-Can you possibly take this patch and maybe the binding (PATCH v2 2/3)?
-Ideally still for v7.0? IIUC Chen-Yu would take the DT patch, but
-relies on those two here.
+Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
+---
+Changes in v3:
+- Simplify label assignment logic by removing the unnecessary
+  conditional branch.
+- Remove redundant error logging in pm8xxx_read_channel_rsv, since
+  -ETIMEDOUT is sufficient to report failures.
+- Link to v2: https://lore.kernel.org/r/20260403-pm8xxx-xoadc-label-v2-0-29b50bf821e6@smankusors.com
 
-Thanks,
-Andre
+Changes in v2:
+- Remove redundant error logging in pm8xxx_read_raw, since -EINVAL is
+  sufficient to report failures.
+- Reword the uncommon Tested-by commit tag to freeform text
+- Link to v1: https://lore.kernel.org/r/20260326-pm8xxx-xoadc-label-v1-0-027805dad4db@smankusors.com
 
+Changes since original patch:
+- The label is now read from the platform description (device tree)
+  instead of the internal datasheet name.
+- Link to original patch:
+  https://lore.kernel.org/all/20251028-pm8xxx-xoadc-fix-v1-1-b000e1036e41@smankusors.com/
 
->=20
-> > ---
-> >  drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c | 1 -
-> >  drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c   | 1 -
-> >  2 files changed, 2 deletions(-)
-> >
-> > diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c b/drivers/pi=
-nctrl/sunxi/pinctrl-sun55i-a523-r.c
-> > index 69cd2b4ebd7d..462aa1c4a5fa 100644
-> > --- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-> > +++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-> > @@ -26,7 +26,6 @@ static const u8 a523_r_irq_bank_muxes[SUNXI_PINCTRL_M=
-AX_BANKS] =3D
-> >  static struct sunxi_pinctrl_desc a523_r_pinctrl_data =3D {
-> >         .irq_banks =3D ARRAY_SIZE(a523_r_irq_bank_map),
-> >         .irq_bank_map =3D a523_r_irq_bank_map,
-> > -       .irq_read_needs_mux =3D true,
-> >         .io_bias_cfg_variant =3D BIAS_VOLTAGE_PIO_POW_MODE_SEL,
-> >         .pin_base =3D PL_BASE,
-> >  };
-> > diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c b/drivers/pinc=
-trl/sunxi/pinctrl-sun55i-a523.c
-> > index 7d2308c37d29..b6f78f1f30ac 100644
-> > --- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-> > +++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-> > @@ -26,7 +26,6 @@ static const u8 a523_irq_bank_muxes[SUNXI_PINCTRL_MAX=
-_BANKS] =3D
-> >  static struct sunxi_pinctrl_desc a523_pinctrl_data =3D {
-> >         .irq_banks =3D ARRAY_SIZE(a523_irq_bank_map),
-> >         .irq_bank_map =3D a523_irq_bank_map,
-> > -       .irq_read_needs_mux =3D true,
-> >         .io_bias_cfg_variant =3D BIAS_VOLTAGE_PIO_POW_MODE_SEL,
-> >  };
-> >
-> > --
-> > 2.43.0
-> > =20
->=20
+---
+Antony Kurniawan Soemardi (3):
+      ARM: dts: qcom: pm8921: add labels for ADC channels
+      iio: adc: qcom-pm8xxx-xoadc: remove redundant error logs when reading values
+      iio: adc: qcom-pm8xxx-xoadc: add support for reading channel labels
+
+ arch/arm/boot/dts/qcom/pm8921.dtsi  | 12 ++++++++++++
+ drivers/iio/adc/qcom-pm8xxx-xoadc.c | 34 ++++++++++++++++++++--------------
+ 2 files changed, 32 insertions(+), 14 deletions(-)
+---
+base-commit: 5619b098e2fbf3a23bf13d91897056a1fe238c6d
+change-id: 20260321-pm8xxx-xoadc-label-47afdf7f06a9
+
+Best regards,
+--
+Antony Kurniawan Soemardi <linux@smankusors.com>
 
 
