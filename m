@@ -1,155 +1,234 @@
-Return-Path: <devicetree+bounces-284774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284778-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id zt4aOy+V0mkxZAcAu9opvQ
-	(envelope-from <devicetree+bounces-284774-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 05 Apr 2026 19:00:31 +0200
+	id 4GhCJK2d0mnoZAcAu9opvQ
+	(envelope-from <devicetree+bounces-284778-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 05 Apr 2026 19:36:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE9039F168
-	for <lists+devicetree@lfdr.de>; Sun, 05 Apr 2026 19:00:31 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 949F439F354
+	for <lists+devicetree@lfdr.de>; Sun, 05 Apr 2026 19:36:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 603A43002309
-	for <lists+devicetree@lfdr.de>; Sun,  5 Apr 2026 17:00:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9A6C13001FAB
+	for <lists+devicetree@lfdr.de>; Sun,  5 Apr 2026 17:36:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F4913101B6;
-	Sun,  5 Apr 2026 17:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C04F2C1594;
+	Sun,  5 Apr 2026 17:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XVbb57zM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DkIFgdIh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C4C82D4816;
-	Sun,  5 Apr 2026 17:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7787128AB0B;
+	Sun,  5 Apr 2026 17:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775408426; cv=none; b=OpBfLNcJ19/uyWnJRqzHHohUk7wXHxGxVq13G8Lvk013qWWAchInbXSuEF/1ys775YpSGNK/ndZ8bo3FTx2fhAvWjeTM7VXjjx3xOCoQyk3ZEvkG1PSvH8miPK59xFDBtZAdJH5VQME78pagAGncXPUKFU7WFF8U3ZvG1C93Iy8=
+	t=1775410598; cv=none; b=F2eUr1V+Y93v37Bk6VT8XuANG80BrJLemsgRvgCASsV2Cp2trqwuKBgbUvgKeJJf12T+5hqZQwdUPpzI3nvIXX0Z1TxnNobQp5Uf/UiF/hYGVDYWKXjpnS6gyDgfa929WegmMrDD2rVTPPqrTQxPaJvDfyFjmfeuLu5xKl4HH4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775408426; c=relaxed/simple;
-	bh=7RinMIgD/mBUiJpF1jyOGuCOHbDKTi/0fzzc5+uGT1U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dEESaynT7epJF2Cv0Ppkdqf/T6nr806ehyxweIlss9tGEcYb/WW8T15CvCRb9wRHUB1Irz2+iLJR8VLSB5hr1/jRCwb2JUMcW7VXpbivjM/P1lzTLp7vyBEK4M2yJdP71R60mszkiRaeq2KTWab407jiv35XA20E0j5VjK2eF0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XVbb57zM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A4F7C116C6;
-	Sun,  5 Apr 2026 17:00:21 +0000 (UTC)
+	s=arc-20240116; t=1775410598; c=relaxed/simple;
+	bh=ZpadFe1RBUAmpGQkjkYP0sG88PfUKH1EwDULVQ2W8pg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dmbgy6FzkItkZQ7yY7/oGSbhGxT2sURhNOegrnK2PUx9V1qKrQS8i0yMrnJ03+WTgIJPrZJUtQlTZDMZMQJJWgewHPObtUWQd0wQer6QerXZjR30vCQWhlRzp/1CO/7+h2qcHiisDrm2xPTF/aLwxyLCaLAhxUDuuzGN1zjpsQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DkIFgdIh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 03D6BC116C6;
+	Sun,  5 Apr 2026 17:36:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775408425;
-	bh=7RinMIgD/mBUiJpF1jyOGuCOHbDKTi/0fzzc5+uGT1U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XVbb57zMmaf+rsoseeot3i1zMj74d9p06gFHLFWw4qIKPEh6BYSZcP+peGOkU5X/6
-	 WWACFTOR2TlHD0HjumeBAS8v71o3Bl9240oLHHnG80nQtV5CCOtDfYYEylq897ivTC
-	 gqF38omE6cSj0Z0tQP3RwsrVQzzJkU1LUn9z6p6jRS6RbI+7BmS76eSYTZRnpG9I5y
-	 jpPbt5Mb8Xhhq2HtIzQMGrKK9zNoki7cC4RV71aZLDeafWGd1ZGAn41LpwpZ5w5rtU
-	 yBVHKUfIrmYdbuJLwl7PUdaprBDz4MG8NH5IegJgh29TKSigIpbtcz4f93JgiLG4gU
-	 yHlzF0ljyEAGw==
-Message-ID: <32fc8606-d475-4cc0-b2a1-c5549aef402f@kernel.org>
-Date: Sun, 5 Apr 2026 19:00:20 +0200
+	s=k20201202; t=1775410598;
+	bh=ZpadFe1RBUAmpGQkjkYP0sG88PfUKH1EwDULVQ2W8pg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=DkIFgdIhHtO549nrAG9jrxyG8Ckd/fzfmVkNAww9KepAUZ08+DKu8uQa+iYEA/MfH
+	 18mbvPC8sAwQT93038dnBV6W/Bg2wYhaxSJd3p4BoDJnE6rxanmErTTYDo3g85jjeN
+	 2mP/bYkxeJDIwNJCaZvT60JQpxLe1/av5ITuGEH1pGOTt/P1lIMDse7jfRPcyXKqAX
+	 z20a2J19ujUsIANHShh2t8s1Tu+VklHMiYNbm9llrh1ztd0eMb5BgWHnGMFbiwOCG0
+	 FmFawirugSzZW7B/PtIVQqOdr2RoeVWgd5Os8WY/d09IqiylSfNa+RZ2dpbOIvz75D
+	 WQQzPlMyQ3XDw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E959DE9D814;
+	Sun,  5 Apr 2026 17:36:37 +0000 (UTC)
+From: Markus Probst via B4 Relay <devnull+markus.probst.posteo.de@kernel.org>
+Subject: [PATCH v6 0/2] Introduce Synology Microp driver
+Date: Sun, 05 Apr 2026 19:36:27 +0200
+Message-Id: <20260405-synology_microp_initial-v6-0-08fde474b6c9@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] ASoC: Add support for GPIOs driven amplifiers
-To: Herve Codina <herve.codina@bootlin.com>, Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Christophe Leroy
- <christophe.leroy@csgroup.eu>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20260330101610.57942-1-herve.codina@bootlin.com>
- <4daaa17d-5673-4efa-92ce-4f2ce87eb812@sirena.org.uk>
- <20260330173944.3fdc27ec@bootlin.com>
- <27e23c7b-4aca-41d2-96b8-df02c52e8121@sirena.org.uk>
- <20260330184128.68a4e779@bootlin.com>
-Content-Language: fr-FR
-From: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-In-Reply-To: <20260330184128.68a4e779@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJud0mkC/4XP32rDIBgF8FcpXs/if2Ou9h5jFKOfrdDGTlNZK
+ X33uXSwrBB2eYTz83w3VCBHKKjf3FCGGktMYwvqZYPcwY57wNG3jBhhinCicLmO6Zj2190pupz
+ OuzjGKdojJkF76/SghVGotc8ZQvyc5bf3R87wcWkfTI/HX7/fNF1SRjXOlzLt2iQPFQNI0VEwp
+ JOurxwtJ/1UKBWPyhF8wdZIE7RjQQfTVzo3BlsAu3Q6xanfVL0lODuFvgcdYplSvs6XVzov+vf
+ ISjHBwYUAHpQQnXs9pzJB2nqYzcqWTrfusOYY3hmjeODUyWeHLxzK1x3eHOuVdUJxywh9dsTCY
+ WTdEc0hgnHvh447K54duXTMuiObw7QbOjL4IM2fPff7/QvXPtyMbwIAAA==
+X-Change-ID: 20260306-synology_microp_initial-0f7dac7b7496
+To: Hans de Goede <hansg@kernel.org>, 
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Pavel Machek <pavel@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: platform-driver-x86@vger.kernel.org, linux-leds@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, Markus Probst <markus.probst@posteo.de>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4512;
+ i=markus.probst@posteo.de; h=from:subject:message-id;
+ bh=ZpadFe1RBUAmpGQkjkYP0sG88PfUKH1EwDULVQ2W8pg=;
+ b=owEBiQJ2/ZANAwAIATR2H/jnrUPSAcsmYgBp0p2iiqDvp4Z4mFyTjdzh/Ho0sUfzo1JeyMMq9
+ YZQ1StbUBOJAk8EAAEIADkWIQSCdBjE9KxY53IwxHM0dh/4561D0gUCadKdohsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMiwyLDIACgkQNHYf+OetQ9JozxAAmvxYifkeeVBXmgE7yhC/ymyrYc/nXJa
+ 8SrlZFsj7KAvcKGcSkhMKncVY+GWszqpD7ooNFVaLDG/h5r1lBsiezMhXSF5zvQVbzueRVFDJa9
+ ktwx6y02OM+XqVXFk55BQXL4IRq0h62VL6VsgikebOtvCyhkjI4XWEnxbFxq2woqbvzbmfTukFH
+ J/Gf34vVRZ61B/tjdDm5y1KVc86IM6sIdZvL7ZzcktixLUZVr9SxIEJ7F7Sqyn9kSLdvWmi0/Sn
+ 6uCutaT72DHGZRWpB8PU4hZI+EAA2OR8oXxaVaJkBUfEJ3bLdGw9HaavaxQ8DWrIMI/KwFxpld9
+ IMlbc87JNJ2yb/Auur7teHUqtyYlgJ5Hk8ETQW/d0RSqoCmQ+UmJJdxItz1HHPiPahXZ7a6/fAy
+ LSSCWp552+Dy+ABu4C+HTMXmqUU8m+XD9nCy1m1QXo5ufbwHfLJvkCYl5cvVAgTqWIJHKBDI5ZA
+ WurrI6R+Y3KEM+ngBW10izvfsEY03p6+C+OTTE1Wmhe4QRr/ws+OP8z1axgkmPL8l3BiFDRthJD
+ xW6xytQRmatgPIXpTM4ygR46f2JHQ/uXdnpqT5FsqZj7aBxZMCf3NKyOvAHc9f6qfPaWU3dxt3g
+ elVl0JacAZ3VimNCzTYnN6RfiJC5mk7k2QN98yOUthcc5dUa6VU8=
+X-Developer-Key: i=markus.probst@posteo.de; a=openpgp;
+ fpr=827418C4F4AC58E77230C47334761FF8E7AD43D2
+X-Endpoint-Received: by B4 Relay for markus.probst@posteo.de/default with
+ auth_id=680
+X-Original-From: Markus Probst <markus.probst@posteo.de>
+Reply-To: markus.probst@posteo.de
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,perex.cz,suse.com,vger.kernel.org,csgroup.eu,bootlin.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-284774-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284778-lists,devicetree=lfdr.de,markus.probst.posteo.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,linaro.org,garyguo.net,protonmail.com,google.com,umich.edu,linuxfoundation.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chleroy@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 7EE9039F168
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[markus.probst@posteo.de]
+X-Rspamd-Queue-Id: 949F439F354
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Mark,
+Synology uses a microcontroller in their NAS devices connected to a
+serial port to control certain LEDs, fan speeds, a beeper, to handle
+proper shutdown and restart, buttons and fan failures.
 
-Le 30/03/2026 à 18:41, Herve Codina a écrit :
-> On Mon, 30 Mar 2026 16:48:54 +0100
-> Mark Brown <broonie@kernel.org> wrote:
-> 
->> On Mon, Mar 30, 2026 at 05:39:44PM +0200, Herve Codina wrote:
->>> Mark Brown <broonie@kernel.org> wrote:
->>
->>>> This sounds a lot like simple-amplifier.c?
->>
->>> The gpio driven amplifier proposed is more generic and can handle
->>> more complex design. I.e. op-amp + resistor and/or line (mute,
->>> bypass) switching. Hardwares handled by this driver are a superset
->>> of just dio2125 and so simple-amplifier.c.
->>
->>> IMHO, it makes sense to have a specific driver for those kind
->>> of hardware design.
->>
->> Right, and if it's a superset it feels like it should all be one driver
->> rather than two separate ones.
-> 
-> Also, it is worth noting that simple-amplifier.c considered a stereo
-> amplifier (left + right).
-> 
-> Considering the two op-amp available in dio2125 as just two op-amp used
-> in two separated mono channel with additional component to switch related
-> to resistors (independant switching for each channel) means that almost
-> everything proposed in audio-gpio-amp have to be duplicated (gain, mute,
-> bypass per channel) instead of just instantiate two audio-gpio-amps.
-> 
-> On the other hand, there is no reason to handle a stereo component in
-> audio-gpio-amp. Further more with the hardware I have handling a stereo
-> component doesn't make sense. Indeed, I only have independent mono lines
-> with their own resistor switched amplification circuitry.
-> 
-> I could merge everything in one .c file but only a few part of source code
-> will be common to simple-amplifier and audio-gpio-amp. IMHO the resulting
-> merged code will look like two different drivers merged in one .c file.
+This patch series depends on the rust led abstraction [1] and the rust
+serdev abstraction [2].
 
-Following explanation from Herve I have the feeling that combining the 
-two drivers into a single one will bring more complexity for little benefit.
+This is only a initial version of the driver able to control LEDs.
+The following rust abstractions would be required, to implement the
+remaining features:
+- hwmon (include/linux/hwmon.h)
+- input (include/linux/input.h)
+- sysoff handler + hardware protection shutdown (include/linux/reboot.h)
 
-Do you still think it is worth having a combined driver allthough they 
-address quite different setups ?
+[1] https://lore.kernel.org/rust-for-linux/20260329-rust_leds-v13-0-21a599c5b2d1@posteo.de/
+[2] https://lore.kernel.org/rust-for-linux/20260313-rust_serdev-v3-0-c9a3af214f7f@posteo.de/
 
-Thanks
-Christophe
+Signed-off-by: Markus Probst <markus.probst@posteo.de>
+---
+Changes in v6:
+- moved devicetree bindings patch at the end of the set
+- remove several patches
+- move of id table from model.rs to synology_microp.rs
+- remove the model! macro
+- use if blocks in devicetree schema to narrow down the
+  fan-failure-gpios property
+- add multiple devicetree examples to test if blocks
+- Link to v5: https://lore.kernel.org/r/20260329-synology_microp_initial-v5-0-27cb80bdf591@posteo.de
+
+Changes in v5:
+- add esata led support
+- use different compatible for each model
+- add visibility modifier to of_device_table macro
+- fix match data missing when using PRP0001
+- Link to v4: https://lore.kernel.org/r/20260320-synology_microp_initial-v4-0-0423ddb83ca4@posteo.de
+
+Changes in v4:
+- convert to monolithic driver and moved it into drivers/platform
+- removed mfd rust abstraction
+- moved dt-bindings to embedded-controller
+- Link to v3: https://lore.kernel.org/r/20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de
+
+Changes in v3:
+- remove `default n` from Kconfig entry, as n is the default already.
+- select RUST_SERIAL_DEV_BUS_ABSTRACTIONS in Kconfig
+- add mfd rust abstraction
+- split core and led parts into their own driver. It should now be considered a
+  MFD device.
+- split led part of dt binding into its own file
+- Link to v2: https://lore.kernel.org/r/20260308-synology_microp_initial-v2-0-9389963f31c5@posteo.de
+
+Changes in v2:
+- fix missing tabs in MAINTAINERS file
+- remove word binding from patch subject
+- add missing signed-off-by
+- add missing help entry in Kconfig
+- add missing spdx license headers
+- remove no-check{,-cpu}-fan properties from the dt-bindings and replace
+  them with the check_fan module parameter
+- use patternProperties for leds in dt-bindings
+- license dt-binding as GPL-2.0-only OR BSD-2-Clause
+- move driver from staging tree into mfd tree and mark it as work in
+  progress inside Kconfig
+- only register alert and usb led if fwnode is present
+- Link to v1: https://lore.kernel.org/r/20260306-synology_microp_initial-v1-0-fcffede6448c@posteo.de
+
+---
+Markus Probst (2):
+      platform: Add initial synology microp driver
+      dt-bindings: embedded-controller: Add synology microp devices
+
+ .../synology,ds923p-microp.yaml                    | 112 +++++++++
+ MAINTAINERS                                        |   6 +
+ drivers/platform/Kconfig                           |   2 +
+ drivers/platform/Makefile                          |   1 +
+ drivers/platform/synology_microp/Kconfig           |  13 +
+ drivers/platform/synology_microp/Makefile          |   3 +
+ drivers/platform/synology_microp/TODO              |   7 +
+ drivers/platform/synology_microp/command.rs        |  55 ++++
+ drivers/platform/synology_microp/led.rs            | 276 +++++++++++++++++++++
+ drivers/platform/synology_microp/model.rs          |  49 ++++
+ .../platform/synology_microp/synology_microp.rs    | 109 ++++++++
+ 11 files changed, 633 insertions(+)
+---
+base-commit: b6c7d19951061de1be08fb8f5714e630b24bcc1c
+change-id: 20260306-synology_microp_initial-0f7dac7b7496
+prerequisite-change-id: 20251217-rust_serdev-ee5481e9085c:v3
+prerequisite-patch-id: 52b17274481cc770c257d8f95335293eca32a2c5
+prerequisite-patch-id: eec47e5051640d08bcd34a9670b98804449cad52
+prerequisite-patch-id: f24b68c71c3f69371e8ac0251efca0a023b31cc4
+prerequisite-patch-id: 3dfc1f7e5ecd3e0dd65d676aeb16f55260847b25
+prerequisite-change-id: 20251114-rust_leds-a959f7c2f7f9:v13
+prerequisite-patch-id: 818700f22dcb9676157c985f82762d7c607b861e
+prerequisite-patch-id: b15ffa7d95d9260151bfb116b259c4473f721c82
+prerequisite-patch-id: 8c47e0d107530f577a1be0b79f8ee791f95d3cbe
+
+
 
