@@ -1,180 +1,211 @@
-Return-Path: <devicetree+bounces-284934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284937-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SIZuNq6l02nhjwcAu9opvQ
-	(envelope-from <devicetree+bounces-284934-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 14:23:10 +0200
+	id AO3zBYyo02k4kAcAu9opvQ
+	(envelope-from <devicetree+bounces-284937-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 14:35:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85B4A3A342D
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 14:23:10 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABD0A3A34FC
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 14:35:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8267E3026AA8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 12:22:12 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3578930065E0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 12:35:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF2333689B;
-	Mon,  6 Apr 2026 12:22:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IrC7UiEA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17BFC33B6D1;
+	Mon,  6 Apr 2026 12:35:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDBEC336896
-	for <devicetree@vger.kernel.org>; Mon,  6 Apr 2026 12:22:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 024353368BA;
+	Mon,  6 Apr 2026 12:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775478132; cv=none; b=O8fcHzZsuhi42GYrCiTK+Yy/itV0ELLpuesyTvQnn017EvdOsrv7dLfytzRyrs7IdkB/xo3rBbOQwhY/rCS+GR0v02yyLaJ9KVkGRQnonYSTs9EmrjxCl0DkrPTuVId6fA1rKkyhQXBwDNxamf4EKZQITlCiUlrovXpR0mYqD38=
+	t=1775478910; cv=none; b=S7RveF25mjPIzNDxUfj6WGdB9DrnSKP0mRKQHHtZNwmiWoZkbDX6UvpJEp9Z8AvxMbgpzN4S4PxdmRNlyVexQhG+DqdAnKWjmSxN2QuFwSu+uvhpGKr5wyxF2L55Kqew2H80mh6WqgVhUiFhILrr8FcLqAyJQosXDWrVJNRr/bU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775478132; c=relaxed/simple;
-	bh=FGICL6rCnzR2xBx7znjm8kay3nHJtrtjUE8oTd6G4ec=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ksO3k3qHborzbgnfAXhpoCEv8p/hNbSkm57KLCggKLaozk446gomB/an5f6VvZ9jfrBqwADvYsydqzwM1yr1HOjrT/HNoi1cqg3YKHaM6AE7j3Z/dcp6kdLrtEuDekOtYYuuUOVVye+Ma0l6XCyFjlbheLy5P97L1mMV3jPDuYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IrC7UiEA; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-488b0046078so9336545e9.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Apr 2026 05:22:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775478129; x=1776082929; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8VseLj579mCf5xJUoXWavgASRskM+JIsaJ/nTASKO84=;
-        b=IrC7UiEAC5Owf3pxqIwjDw8VVlc9HyFALXPHYSdmykqqQcd/6i23sVqn026W7m+8/g
-         uYdyUisOJZg0KRTxLRvOl8SbtWQqZ6zgn7Ap49rpduSv0KgFJBmIOtnuqAoEs+6AhcgQ
-         WsYjWwJg5LHxrCC1KdmuP4MIhkBycAI1wvgBDYZ/kIOQ6uSEOKffgzhV2NHv8fFlpr0Z
-         yNUwGyELsMmxZ/jCOxijFBE/9W85Z6tZhaoTWZTg0Cav9XNUHNg72pT3E/vCgJwgyoNy
-         7QgrK4vNyUiTLLMoW4ynlZHahb+es3WLpWPJoTt1t8BBt6idJ52OT+fkSdxPOkSMP49p
-         KdgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775478129; x=1776082929;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=8VseLj579mCf5xJUoXWavgASRskM+JIsaJ/nTASKO84=;
-        b=YAhr41ikLvFntiTI4QWrHWAQzerRqz2ykuRkhk/T5Qr5Ma3WWkGCGd1MLg8JPa1i8K
-         Buk0opHR3jO9yUiuhZzeUOLM7svERV2uIXR8/4YBMXOeDJJQ/lLAtbkTX18e8vlD7L73
-         e4xNhUwJO6mws7I/i3+9gqJG3Usb3uZaBK/8X2KUxNIQmFfzJvrPZj4h9SESoFfK2JLn
-         0F3Si2KPnKTJ8MRxOnYt7VQLih7DnefgGjuxTxcuW9vTjp8AD+3JyLLWX5rgc5XY4zap
-         mB7zMiPk/p1M/tpUzkwrsi/bVMxAkW8cmFizToRnFPuue8nDGlD5QEXRPJb5GMnnBGG4
-         SWNQ==
-X-Gm-Message-State: AOJu0Ywuit1hW4fBVpNYEznWU2HNqK9EIat7BWN2BfKKApKgpUuaVylR
-	c2WA5UbiWRiq8+13YZ4E8IQMZtjBnBgadspeFbXctpTOewxd39NbFL5F
-X-Gm-Gg: AeBDieuhXDV1iNQadxaRFbDMSNKomRCprIkrHcpPEUfhgLlgOiIWuJeFXMkP4+IdI49
-	+wgbtPZoDet4z3npC0URuNvz6P8JIG7jTMbqSZ3NTjn8a7sXLgpXhUjUCZ9Uvu8I5MqG+L2Orel
-	OJ1D0a8inb5moKDVY5Urm1EdTxaMdgR5jNddgjUmyVfq4Ryck/s3L4YRneROqjEWhliocPxYg2c
-	Xvs6/hOQJ8nGPtxS0+lwLITTZp6XQ9PFCupP9YvF1RVmtM6zU90BrjPixqpnjnCUuWF65WO5fM2
-	R2TRJ9+ik7x1zl0AdBbNP8mW5XMieCRW4/ztIWMdQWJMiQtFbWPZmZ9W92s4V7HUmxh24vLsDIV
-	QncqKrTLZvWKdEBfRnjtmvMGDZBLrYU1RMQ4+G4bKU/mVj7kvpNLbk1Z3RJNM3csZxuto5MvdCk
-	Bc6pcaWrVMyHkLadVKs9QEFfIc2TGdj6CeHVWmTnYsXdYfHmGvtg==
-X-Received: by 2002:a05:600c:3b23:b0:485:17a7:b9c7 with SMTP id 5b1f17b1804b1-488996ecd50mr171236535e9.10.1775478129078;
-        Mon, 06 Apr 2026 05:22:09 -0700 (PDT)
-Received: from SMW024614.wbi.nxp.com ([128.77.115.158])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48899d1c148sm138541595e9.5.2026.04.06.05.22.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Apr 2026 05:22:08 -0700 (PDT)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Tushar Khandelwal <Tushar.Khandelwal@arm.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH RFC 3/3] dt-bindings: dsp: fsl,dsp: remove descriptions for common properties
-Date: Mon,  6 Apr 2026 05:20:25 -0700
-Message-ID: <20260406122025.4515-4-laurentiumihalcea111@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260406122025.4515-1-laurentiumihalcea111@gmail.com>
-References: <20260406122025.4515-1-laurentiumihalcea111@gmail.com>
+	s=arc-20240116; t=1775478910; c=relaxed/simple;
+	bh=NPrPqiCgKJF1cunXDwSkfsikoy1YG9Oo6bjJxlTMuxw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kKV4vgAqaoYzH77XR9HQUkKE4J528Nrq7jQ8iWX1dCgEYlWOJ35sbXuoSYlyboXq5c7OhieEZ7qKEAeTOfswO42k1UL5m4bmD41C9qVZIgHxT92BeJX+t0LQsQ/vjpzlaJUUl86UQtLYs7OH/67GbTTKWHbKYFRjcJi8VgIc0So=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1w9jAQ-00040r-00; Mon, 06 Apr 2026 14:34:58 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id D45FBC0988; Mon,  6 Apr 2026 14:31:29 +0200 (CEST)
+Date: Mon, 6 Apr 2026 14:31:29 +0200
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v7 0/3] Add MACB/GEM instances on EyeQ5, and their PHYs
+Message-ID: <adOnoepPSI4QRKWI@alpha.franken.de>
+References: <20260225-macb-phy-v7-0-d3c9842ec931@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+In-Reply-To: <20260225-macb-phy-v7-0-d3c9842ec931@bootlin.com>
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-284937-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284934-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	DMARC_NA(0.00)[franken.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurentiumihalcea111@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[tsbogend@alpha.franken.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.294];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 85B4A3A342D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linux.dev:url]
+X-Rspamd-Queue-Id: ABD0A3A34FC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+On Wed, Feb 25, 2026 at 05:55:21PM +0100, Théo Lebrun wrote:
+> EyeQ5 SoCs integrate two GEM instances. A system-controller register
+> region named "OLB" has some control over the Ethernet PHY integration.
+> 
+> Extend the current OLB ecosystem with a new generic PHY driver.
+>  - OLB is carried by one main platform driver: clk-eyeq.
+>  - It instantiates auxiliary devices: reset-eyeq & pinctrl-eyeq5.
+>  - We add a new one: phy-eyeq5-eth.
+> 
+> Here we update dt-bindings to indicate OLB is a PHY provider. Then we
+> add MACB/GEM instances in the devicetree, and the PHYs on the eval
+> board.
+> 
+> About related patches:
+> 
+>  - PHY patches are incoming to add the driver. Patches used to be [2] in
+>    the same series.
+> 
+>  - clk patches are incoming to make clk-eyeq instantiate this new
+>    auxiliary device. They also ensure we get a dev->of_node assigned.
+>    Patches used to be [2] in the same series.
+> 
+> Have a nice day,
+> Thanks!
+> Théo
+> 
+> [0]: https://lore.kernel.org/lkml/20250627-macb-v2-15-ff8207d0bb77@bootlin.com/
+> [1]: https://lore.kernel.org/lkml/20251022-macb-eyeq5-v2-0-7c140abb0581@bootlin.com/
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+> Changes in v7:
+> - Separate PHY / clk / MIPS patches into three series.
+> - Rebase onto v7.0-rc1 and test on EyeQ5. Nothing to report.
+> - Link to v6: https://lore.kernel.org/r/20260127-macb-phy-v6-0-cdd840588188@bootlin.com
+> 
+> Changes in v6:
+> - Rebase upon v6.19-rc7; nothing to report.
+> - Add new patch "phy: sort Kconfig and Makefile".
+> - phy-eyeq5-eth: drop useless explicit __iomem cast to
+>   dev_get_platdata() return value.
+> - I did *not* drop the Kconfig `default MACH_EYEQ5` nor driver
+>   `dev_dbg()`. I think both are useful and should be kept. See
+>   last revision discussion here:
+>   https://lore.kernel.org/lkml/DFGSMN8268O0.33TYCQDBVHUHZ@bootlin.com/
+> - Link to v5: https://lore.kernel.org/r/20251215-macb-phy-v5-0-a9dfea39da34@bootlin.com
+> 
+> Changes in v5:
+> - phy-eyeq5-eth:
+>   - fix #includes: add delay, gfp_types, module and drop array_size,
+>     bug, cleanup, container_of, lockdep, mutex.
+>   - eq5_phy_xlate(): avoid magic value, use EQ5_PHY_COUNT.
+>   - use dev_err_probe() in error cases of devm_phy_create() and
+>     devm_of_phy_provider_register().
+> - 3x Reviewed-by: Luca Ceresoli.
+> - Add Neil Armstrong to Cc as new PHY subsystem reviewer.
+> - Rebase on v6.19-rc1, tested on hardware, no changes.
+> - Link to v4: https://lore.kernel.org/r/20251124-macb-phy-v4-0-955c625a81a7@bootlin.com
+> 
+> Changes in v4:
+> - Append my SoB to Jerome's patch:
+>   [PATCH v4 3/7] clk: eyeq: use the auxiliary device creation helper
+> - Rebase on net-next & linux-{clk,mips,phy}. Nothing to report.
+> - Link to v3: https://lore.kernel.org/r/20251119-macb-phy-v3-0-e9a7be186a33@bootlin.com
+> 
+> Changes in v3:
+> - Take Philipp Zabel's Reviewed-by & Acked-by trailers on reset patch.
+> - Take Thomas Bogendoerfer's two Acked-by trailers on DT patches.
+> - Rebase on net-next & test on target. Nothing to report.
+> - Link to v2: https://lore.kernel.org/r/20251101-macb-phy-v2-0-c1519eef16d3@bootlin.com
+> 
+> Changes in v2:
+> - Take Acked-by: Conor Dooley on dt-bindings-patch.
+> - s/%ld/%tu/ for printing ptrdiff_t; warnings on 32-bit archs.
+>   Reported by NIPA's netdev/build_32bit test.
+>   https://patchwork.kernel.org/project/netdevbpf/patch/20251021-macb-eyeq5-v1-7-3b0b5a9d2f85@bootlin.com/
+>   https://netdev.bots.linux.dev/static/nipa/1014126/14277857/build_32bit/stderr
+> - Link to v1: https://lore.kernel.org/r/20251022-macb-phy-v1-0-f29f28fae721@bootlin.com
+> 
+> Changes since MACB V1:
+> - Drop the old "mobileye,olb" properties from DT patches; found while
+>   running dtbs_check and dt_binding_check.
+> - Drop all patches targeting net-next. That is MACB dt-bindings patch
+>   and MACB driver code. See there here [1].
+> - Link to v1: https://lore.kernel.org/lkml/20251021-macb-eyeq5-v1-0-3b0b5a9d2f85@bootlin.com/
+> 
+> Past versions of MACB patches:
+>  - March 2025: [PATCH net-next 00/13] Support the Cadence MACB/GEM
+>    instances on Mobileye EyeQ5 SoCs
+>    https://lore.kernel.org/lkml/20250321-macb-v1-0-537b7e37971d@bootlin.com/
+>  - June 2025: [PATCH net-next v2 00/18] Support the Cadence MACB/GEM
+>    instances on Mobileye EyeQ5 SoCs
+>    https://lore.kernel.org/lkml/20250627-macb-v2-0-ff8207d0bb77@bootlin.com/
+>  - August 2025: [PATCH net v3 00/16] net: macb: various fixes & cleanup
+>    https://lore.kernel.org/lkml/20250808-macb-fixes-v3-0-08f1fcb5179f@bootlin.com/
+> 
+> ---
+> Théo Lebrun (3):
+>       dt-bindings: soc: mobileye: OLB is an Ethernet PHY provider on EyeQ5
+>       MIPS: mobileye: eyeq5: add two Cadence GEM Ethernet controllers
+>       MIPS: mobileye: eyeq5-epm: add two Cadence GEM Ethernet PHYs
+> 
+>  .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  |  7 +++-
+>  arch/mips/boot/dts/mobileye/eyeq5-epm5.dts         | 26 +++++++++++++
+>  arch/mips/boot/dts/mobileye/eyeq5.dtsi             | 45 ++++++++++++++++++++++
+>  3 files changed, 77 insertions(+), 1 deletion(-)
+> ---
+> base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+> change-id: 20251022-macb-phy-21bc4e1dfbb7
 
-"mboxes", "power-domains", and "memory-region" are common properties,
-which should be already documented. As such, descriptions referencing
-old .txt binding files provide no additional information. Thus, remove
-them.
+seried applied to mips-next
 
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
----
- Documentation/devicetree/bindings/dsp/fsl,dsp.yaml | 10 ----------
- 1 file changed, 10 deletions(-)
+Thomas.
 
-diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-index 65ed26aa3308..d483a229c292 100644
---- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-+++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-@@ -44,17 +44,10 @@ properties:
-     minItems: 3
- 
-   power-domains:
--    description:
--      List of phandle and PM domain specifier as documented in
--      Documentation/devicetree/bindings/power/power_domain.txt
-     minItems: 1
-     maxItems: 4
- 
-   mboxes:
--    description:
--      List of <&phandle type channel> - 2 channels for TXDB, 2 channels for RXDB
--      or - 1 channel for TX, 1 channel for RX, 1 channel for RXDB
--      (see mailbox/fsl,mu.txt)
-     maxItems: 3
- 
-   mbox-names:
-@@ -64,9 +57,6 @@ properties:
-       - const: rxdb
- 
-   memory-region:
--    description:
--      phandle to a node describing reserved memory (System RAM memory)
--      used by DSP (see bindings/reserved-memory/reserved-memory.txt)
-     maxItems: 4
- 
-   firmware-name:
 -- 
-2.43.0
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
