@@ -1,225 +1,118 @@
-Return-Path: <devicetree+bounces-284833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284834-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GEoWDyIN02n3dQcAu9opvQ
-	(envelope-from <devicetree+bounces-284833-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 03:32:18 +0200
+	id qG3aBQkW02k7eAcAu9opvQ
+	(envelope-from <devicetree+bounces-284834-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 04:10:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F6C3A1064
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 03:32:17 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B3993A1197
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 04:10:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0A3603001D77
-	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 01:32:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 08F8A300565C
+	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 02:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0888721B9DA;
-	Mon,  6 Apr 2026 01:32:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580B22C08AB;
+	Mon,  6 Apr 2026 02:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FxNoFoLH"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="dz/01M8E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-24416.protonmail.ch (mail-24416.protonmail.ch [109.224.244.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A020B1FC7FB
-	for <devicetree@vger.kernel.org>; Mon,  6 Apr 2026 01:32:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775439135; cv=pass; b=sbBqamy65tsq8nAWmkI/PHKvgJYe1D4lk4e4ERYJKhH0IsADVa6xPu0p3Q8tjM8A8E0H1LMPHloN/9ZnzajOnAJM+9mGlE8vVMMtE2kfxJnQSCL11MzgEOZQJ5rAcrpXLqqrysrqBTBI2e1hXgYOht+XyYwrfAEqI/E2nACt8iY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775439135; c=relaxed/simple;
-	bh=/2oRo61DdxBAwVd7d7a4v3psrsDUMYudbEHSnh1N+pY=;
-	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=TAR4Q2FJndZWKn7HO+qoDhieS162bHKMTy9z5E7TphkYLw9D6lHWm88Rf8NMOB3++HHiLPVyCx0xDnjRDD8/O6Et9Hf99jkNMTDhcic3uLjIM/681D7bwVGnZY1hx5n5spL9uvSRo3MOOnTrYOxOlhDuMlEIOOXhsCblCN/DFHU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FxNoFoLH; arc=pass smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-43cfd96354aso2058223f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 05 Apr 2026 18:32:14 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775439133; cv=none;
-        d=google.com; s=arc-20240605;
-        b=i3lAuxoh/0OX0NmuhakIVJDXCxE1dmvzH68Dn4CEudmJFrz+Mk6RFNReLZQR/Xj68J
-         W06BEoFNk6bBrf5ypSHBJImDOq1LY9WuFqUBXDHa5QdUlYKdzJyf9NsCnwgTNYicHjTy
-         ApLxGiggWYxxt2iNrCQ//reqKiF8rA7DpfZQiPN6mZw4raryKXjOqCivkO2aPo6fhnZY
-         URY7FZRBeXp1bXYd0N/IKT11eJQLOpr1Nn2/ZwgTGkkaXGrTN6OsGFklJMQ5qV6Meo9W
-         FZjpKCdbloNiwt6kgVQBqvmFtzVX4TnAHOp24KuY7IXK4y4kbGzAfqWmXU2nNMFGSPYb
-         X7OQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=XAmxd3EuZ38iPvxWt4ogN1XlFqeLQb1aml5sIWvbbCY=;
-        fh=TiUj1o9cfGen3I47d9Oocd4nmC3Yaa3KXw52F1lgKI8=;
-        b=ex29PfRKqBk069HOLWSl9qP0Jli6NmZtKMoz8L8K/zhOivA6GFLDM+DhuWUPJf+2RQ
-         gVb1zC9Xd1fesTQzHHeKIUOYdhE1qhalN7bEB0mLJa07UQxigvoH4J1JbDe7sgnOBLC+
-         0B6Z00lEzrsah4S+iIM0c2SId+ipv3/eG5YNV9DDTlBGn8dXsCET/3GbgS7iWmLebXZa
-         rDFsPA2dxd7RmndwvoI0f69Zhv3lekMHiUSGu0i7+nGy6B/NzWuVV3t0+d6m+D95ek2t
-         h6WWNwqAVtUinmYxQwYx/1auRQ0uy4cwYYM08oyi0YhHKpusrbXMorI1DuoYbvCDY/IE
-         pwdw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775439133; x=1776043933; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=XAmxd3EuZ38iPvxWt4ogN1XlFqeLQb1aml5sIWvbbCY=;
-        b=FxNoFoLHJbQ2q5YJo+SohtBKC4R4IdqoKvaExHOwngByGINt42VmibAXJvht95z5sX
-         Anmzh610CcsFqkzeh2NL0LIH7aM9I+yTkPcJcDhOOgG4MWthqQ6FueyrALWctmJRpPl5
-         54yA2bCBBi1+9FJsSSWyEXp1jMRDvfUOGUpLtqgZnVGNeFVKg6Xg+lLfq1X+QAIRmhme
-         EacJrL1mfa/bl3jfFTnI5um5JOhJpsCjlY9J6mrGY5VrtvrX2JcthsqowTAFhWHVC/UJ
-         lWG3qfC2u3yMjTiaUuer682ES+21LtRGA2skqbOfgQ8bmCeLxc3nzHE/oyW4q4iuxjDR
-         x/2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775439133; x=1776043933;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XAmxd3EuZ38iPvxWt4ogN1XlFqeLQb1aml5sIWvbbCY=;
-        b=Xr76mKhvEBfTyKlwx73urewWLGLiGEunpxH6iH3YtaUPiAD+wkJe98zqahvG1SS7Sr
-         UrKdzkcXNqRE4wqsPZ8rFCEgeQtu0iU2Z8DdXe3jMDo9z2gA39pVn/ZH/UHgZ5TbY5iz
-         x+Pdu/5rzkPaXNTDOAWoDU3AV+s2rhF7a81sbHyzi/oFnuKYMyKy2ZOKVxSloSxqJNXT
-         DNzIFbGUTBMuF8nBtOhtOqoMyB50vpsxA4I7w3Ts9GgVgv8/oeqXNfjpOyXl0jJ+pF9A
-         EXGcurW0eOLtBYHk0nIkbJu0JNH2fRdXqq9LFsPwEy8aum8L9Dbw/oG+GoXN250Vl2Ym
-         fFKA==
-X-Forwarded-Encrypted: i=1; AJvYcCUbydOuKa8T3I92caTbC4sRRlim24/LESXTjBBK5jj4cceAZdSrcIrzXeiA2xjtGpy4FpHfigWyOGpN@vger.kernel.org
-X-Gm-Message-State: AOJu0YznxbKcQwuwtUL9Tgl+AHEeOENEsjIRKEe7m/EN8br9cF9//62W
-	YtztISiYI/u4dhpmBv94qvHdGzl/3llO+lDF/ULOxrFiyspXunKIH2rfjiH68AucgqPlPDga4Gh
-	qURGH5g/BhsjEiGz3/amn/bKjE3/xF2E=
-X-Gm-Gg: AeBDiesUPrgVexSvv1SjY6HTUy+0mSbyLdf/1uR5yxyz/Q7tUxGEFdK5c7yA2vlzIiX
-	5PmPHz9nNFFQEbdoimiMqYQumX+yivsOQaM0zzHkNS8FZXxfG3V403ZvXmLNzwuDjECchGBGwKk
-	nQjurgCrc575u6l/uo0YYGm8QgAkqxRpBljDHn7ec7n+eewTrUn8WsLXP41E2QKTGGPsRvjQFJW
-	I2PwXD2SloCklcTJoGaV7+9o0kJbPm6XRpGxOtj79xd/SpFInMc4iA2mPfNpvreCympXhgR5yLQ
-	c+JOSLRK10k3uabi6k28Q1wgc+4C7XEU/e/NQ5yXXHOCDGMUwqPyH9Yk7GkUXaQHSWQurw5lIbW
-	ZDAzs29wntJMpYuImaA==
-X-Received: by 2002:a05:6000:400e:b0:43c:f7e5:817b with SMTP id
- ffacd0b85a97d-43d2928f611mr16359770f8f.19.1775439132847; Sun, 05 Apr 2026
- 18:32:12 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 948FC26B75B
+	for <devicetree@vger.kernel.org>; Mon,  6 Apr 2026 02:10:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.16
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775441413; cv=none; b=gnGp8IxKVcBuDtFpSbKnjKalN3n/3yrM/5yppL1F6WPYFOuYPDm3UQluiMSkecL2ncZtgDNf0J4K9U8klE8Gh5O0wOdsztPQwMHs84LDmslJb6dlWKhM4cVtxP8hW1qPbt7dkzIKnMN/GSWOjb8rn4JKwIkw1sjwBzUMWdmPYe4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775441413; c=relaxed/simple;
+	bh=c9VHzmVSX3AObCFh92puFfvEMEn1CtIOC2zRnHZfUF8=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=JleU4/AE5yuBPm+shQltdQ34Nz8C0pWxYyz5S/GTGD7r1MB+nfl21VdSOzrkuDU5rZkemYnTfccnjb0XIi4womA+sNfwhfqo+zLdxgKb0hjxjkZHOeTcwezucXkkpFSOCgutLkG9484+K0L4V/m04vckKpcu4++B72L5V/c8LaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=dz/01M8E; arc=none smtp.client-ip=109.224.244.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+	s=protonmail3; t=1775441403; x=1775700603;
+	bh=B1Jv8NDBwJ7tq4D1+SxXstNTEVauQf7DZfeiRjDzIQc=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=dz/01M8Et8V+ht4mjt6zni1DRFNPLWuNvgG9JxQjGduLBf4/X9EvNygQDs2pclUz4
+	 b7Fcf7pW6YijLaiq9Wi77FzStWWAmP0ZDTyiM9qHfKkiaIwo+ShXWOIthiJieiPjOd
+	 KgJ3zTbGTcDM401M6pWSBWCDI/l/BRrvi1W5wr0LFq3IElXJ4eZ4546GNIx1LohQBA
+	 ExhluPuIAE4Q0UHHq7+OcgJFDKyKyGbrjGsYoo33Au72mF8gLEtGgipG17H2Q3X8J4
+	 Hk2FCDlT2ogMbogKug7VdfR/nko3ZUKaw3nmqxTJNKDhF4xkt2mHAN0Exob8YF7jUo
+	 5yIzkthMWc4nQ==
+Date: Mon, 06 Apr 2026 02:09:59 +0000
+To: Thara Gopinath <thara.gopinath@gmail.com>, Herbert Xu <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+From: Alexander Koskovich <akoskovich@pm.me>
+Cc: linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>
+Subject: [PATCH 0/2] arm64: dts: qcom: milos: Add QCrypto support
+Message-ID: <20260405-milos-qce-v1-0-6996fb0b8a9c@pm.me>
+Feedback-ID: 37836894:user:proton
+X-Pm-Message-ID: ef8bcfc47c5dae631baa5202d5e953705423b8fb
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Avi Radinsky <avi.radinsky@gmail.com>
-Date: Sun, 5 Apr 2026 21:31:36 -0400
-X-Gm-Features: AQROBzA3j2s2NQMYcQWfo_HArGSVTDexkk-MQM2xoTZ5dio4YbuWIuqeCIsmH_w
-Message-ID: <CAK=E+3BLMV35g1hC2=aQ57yKxgw1y8qR8ufpHQdKcx4MdT9ioA@mail.gmail.com>
-Subject: [PATCH] dt-bindings: rtc: moxa,moxart-rtc: convert to YAML
-To: alexandre.belloni@bootlin.com, robh@kernel.org
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, linux-rtc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
+	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284833-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-284834-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,gondor.apana.org.au,davemloft.net,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[aviradinsky@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[pm.me:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: D5F6C3A1064
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7B3993A1197
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Convert the MOXA ART Real Time Clock text binding to YAML schema.
+Add the dt-bindings and device tree nodes for the Qualcomm Crypto
+Engine (QCE) and its associated BAM DMA controller on the Milos
+platform.
 
-Signed-off-by: Avi Radinsky <avi.radinsky@gmail.com>
+Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
 ---
- .../bindings/rtc/moxa,moxart-rtc.txt          | 17 --------
- .../bindings/rtc/moxa,moxart-rtc.yaml         | 43 +++++++++++++++++++
- 2 files changed, 43 insertions(+), 17 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.txt
- create mode 100644 Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.yaml
+Alexander Koskovich (2):
+      dt-bindings: crypto: qcom-qce: Document the Milos crypto engine
+      arm64: dts: qcom: milos: Add QCrypto nodes
 
-diff --git a/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.txt
-b/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.txt
-deleted file mode 100644
-index 1374df7bf9d6..000000000000
---- a/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--MOXA ART real-time clock
--
--Required properties:
--
--- compatible : Should be "moxa,moxart-rtc"
--- rtc-sclk-gpios : RTC sclk gpio, with zero flags
--- rtc-data-gpios : RTC data gpio, with zero flags
--- rtc-reset-gpios : RTC reset gpio, with zero flags
--
--Example:
--
--       rtc: rtc {
--               compatible = "moxa,moxart-rtc";
--               rtc-sclk-gpios = <&gpio 5 0>;
--               rtc-data-gpios = <&gpio 6 0>;
--               rtc-reset-gpios = <&gpio 7 0>;
--       };
-diff --git a/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.yaml
-b/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.yaml
-new file mode 100644
-index 000000000000..9693c96a9f27
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/moxa,moxart-rtc.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/moxa,moxart-rtc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MOXA ART Real Time Clock
-+
-+maintainers:
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+
-+properties:
-+  compatible:
-+    const: moxa,moxart-rtc
-+
-+  rtc-sclk-gpios:
-+    maxItems: 1
-+    description: GPIO line for the RTC serial clock.
-+
-+  rtc-data-gpios:
-+    maxItems: 1
-+    description: GPIO line for the RTC data input/output.
-+
-+  rtc-reset-gpios:
-+    maxItems: 1
-+    description: GPIO line for the RTC reset.
-+
-+required:
-+  - compatible
-+  - rtc-sclk-gpios
-+  - rtc-data-gpios
-+  - rtc-reset-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    rtc {
-+        compatible = "moxa,moxart-rtc";
-+        rtc-sclk-gpios = <&gpio 5 0>;
-+        rtc-data-gpios = <&gpio 6 0>;
-+        rtc-reset-gpios = <&gpio 7 0>;
-+    };
---
-2.51.0
+ .../devicetree/bindings/crypto/qcom-qce.yaml       |  1 +
+ arch/arm64/boot/dts/qcom/milos.dtsi                | 32 ++++++++++++++++++=
+++++
+ 2 files changed, 33 insertions(+)
+---
+base-commit: 591cd656a1bf5ea94a222af5ef2ee76df029c1d2
+change-id: 20260405-milos-qce-a90710570bcf
+
+Best regards,
+--=20
+Alexander Koskovich <akoskovich@pm.me>
+
+
 
