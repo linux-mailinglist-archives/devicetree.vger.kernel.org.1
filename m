@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-284835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284836-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6I1lFSYW02k7eAcAu9opvQ
-	(envelope-from <devicetree+bounces-284835-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 04:10:46 +0200
+	id yGKuNUMW02k7eAcAu9opvQ
+	(envelope-from <devicetree+bounces-284836-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 04:11:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E7BE3A11B5
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 04:10:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79DE93A11CB
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 04:11:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 41A773013A61
-	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 02:10:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 94D723006B0E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 02:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 740182F5A12;
-	Mon,  6 Apr 2026 02:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C1DB2E1EFC;
+	Mon,  6 Apr 2026 02:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="WWX4DVla"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="CJkBC7T3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-24416.protonmail.ch (mail-24416.protonmail.ch [109.224.244.16])
+Received: from mail-07.mail-europe.com (mail-0701.mail-europe.com [51.83.17.38])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043102D9EDB;
-	Mon,  6 Apr 2026 02:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F9D72C08AB
+	for <devicetree@vger.kernel.org>; Mon,  6 Apr 2026 02:10:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.83.17.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775441415; cv=none; b=m/5gNKB2sOJXGBygOIPrvvh/wlZVC+ETP2aS8DoiPhAcXRBtjEgYoXz7KPfPPVjcXG/iP7jGOmxZCbKgtb+2BtsUx3rbj32kGV1Z/KwbckcVGVR8Pki2Lw0LANEdsd3lFYXf4kqqfuHpBoe1ZeHi9UZxLp6v6OnD4ObjO//hsP4=
+	t=1775441438; cv=none; b=d0YkvTNSp3lMS3vCXvwbUkOLQKJuYCrV63fuLi+G0kH4V8VgRuSa3j/h73c6QVZF14Lnb3P2Bh3ma9zBiHK4W8WwSXQpy/gAAKoHmMgYEPNKjSYIImUazRdNVp8CxbtWmQ6D1md9ZEFAjLv9Lrf4Y2gqBNULxIyIOFqo2OgqPgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775441415; c=relaxed/simple;
-	bh=M2DzvR2pqqgSNprHop37s8cCZKNrqRkfQSkL/KA9VlE=;
+	s=arc-20240116; t=1775441438; c=relaxed/simple;
+	bh=vIdoUgfNlLEYVNJ5CNBnAjRXSJr/QWNIypqg1e47IhA=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qgJeTBnUA8fG3UmfXItpCBfoTMyp9jUvTlzjZEznBdmrxJX7KAUBebSdd482YJC+Fe1JLiqTeXMPmaCxu61OHeiJETYGjlR/SWPcgjB3bkXvDKT5g/7WNUJ+hhLqPi5qeN6EOrlkJVnQIQbkrn/KNbVXW/w3xcHFDlavxP7ZosE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=WWX4DVla; arc=none smtp.client-ip=109.224.244.16
+	 MIME-Version:Content-Type; b=kq9et1IAuD8Q9QGFTWhGIAQGrrnyBjNKzWsIlLV5IU/lZnNsAv9iLxw2Vn2Ypud8+sNVKPMnpN/LIAf2NNIgELJTbfLkK1RLJqvKd7Jfc5T3zRvE1BQZUGQ5gWfODfONX1IbqFshZ6G1nCu2L45dn+RZOnR/f2bTQ0c5SdXhfUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=fail smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=CJkBC7T3; arc=none smtp.client-ip=51.83.17.38
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=pm.me
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1775441412; x=1775700612;
-	bh=SzY4W/b23UB8fXq48UN8sr1oOliTCVU3QLXbOpsh2mU=;
+	s=protonmail3; t=1775441421; x=1775700621;
+	bh=vIdoUgfNlLEYVNJ5CNBnAjRXSJr/QWNIypqg1e47IhA=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
 	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
 	 Message-ID:BIMI-Selector;
-	b=WWX4DVla5QCjbHhxkivvOUkJ+63R9ItwGsrRiZnCMQW7VJro0aULETJPOFTqkVNyk
-	 AXrHlSY81JzX37/8d0E677UFKBMYNBRIqlF/fNn2M2dj3ZhtYPw3IgBVHX+ZnyQouJ
-	 oqS0i3nGTa5v/MLOCnGEGHLtEW6y8rJTM977o3sGuJQtSYI/6+P4nhk9OJHb8BAvNj
-	 W33y6qGNyFJjmSgDfqEkbrRO4joVeRRmySzS13IOZBVaSPF9c3pYnE/PXHnjGCErLm
-	 3mEKwfAq0VzRuJAR2x/UUvPDI6v1KgC/3kXV1P6FXtqM7GVpqR6oAhPriOwZe+un1W
-	 IBzRAIeLuTF6Q==
-Date: Mon, 06 Apr 2026 02:10:07 +0000
+	b=CJkBC7T39je16Wmct7uzMzVhCvWntAkMPGuEvdFSZR1H7iQwornFFa0isXyqI062/
+	 FMqBU2Myig9bZZ70I9HvIpj1D/lTbNarelxz6zH+Tn6JPeX3QKi0uQC4NQ7HSyt1VO
+	 B94HjguTHxmW1oRmqZAXY4E5jkK9Qw+wVAaMRFVANsR9ZDsWbcYfMiDZUENY2l9w/m
+	 /InKal7XYvKOKd0V99VnMVGToYfWt3lS1Ddx94HGwN5ObXTNBGnyMn6c/A8wPm9ihE
+	 ucKjJO6O1JSzStRPDdfXF6QyNdwxbsVg2Iofyt82OW3MhepoR666Rr4RVm0ENcQpCe
+	 iMF4SfqBi61gg==
+Date: Mon, 06 Apr 2026 02:10:15 +0000
 To: Thara Gopinath <thara.gopinath@gmail.com>, Herbert Xu <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
 From: Alexander Koskovich <akoskovich@pm.me>
 Cc: linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>
-Subject: [PATCH 1/2] dt-bindings: crypto: qcom-qce: Document the Milos crypto engine
-Message-ID: <20260405-milos-qce-v1-1-6996fb0b8a9c@pm.me>
+Subject: [PATCH 2/2] arm64: dts: qcom: milos: Add QCrypto nodes
+Message-ID: <20260405-milos-qce-v1-2-6996fb0b8a9c@pm.me>
 In-Reply-To: <20260405-milos-qce-v1-0-6996fb0b8a9c@pm.me>
 References: <20260405-milos-qce-v1-0-6996fb0b8a9c@pm.me>
 Feedback-ID: 37836894:user:proton
-X-Pm-Message-ID: 1629e35ed17ef3e4aa90601004f87f3a03c836b5
+X-Pm-Message-ID: 5a9262f7375b83d436fe2a99fba0e3dc0b8570a9
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,49 +73,81 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-284836-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284835-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com,gondor.apana.org.au,davemloft.net,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_PROHIBIT(0.00)[0.25.240.160:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[pm.me:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:dkim,pm.me:email,pm.me:mid]
-X-Rspamd-Queue-Id: 8E7BE3A11B5
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:dkim,pm.me:email,pm.me:mid,1f40000:email]
+X-Rspamd-Queue-Id: 79DE93A11CB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Document the crypto engine on the Milos platform.
+Add the QCE and Crypto BAM DMA nodes.
 
 Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
 ---
- Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/milos.dtsi | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Docum=
-entation/devicetree/bindings/crypto/qcom-qce.yaml
-index 79d5be2548bc..74a121d8b2a5 100644
---- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-+++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-@@ -46,6 +46,7 @@ properties:
-       - items:
-           - enum:
-               - qcom,kaanapali-qce
-+              - qcom,milos-qce
-               - qcom,qcs615-qce
-               - qcom,qcs8300-qce
-               - qcom,sa8775p-qce
+diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom=
+/milos.dtsi
+index e1a51d43943f..61418657c4e9 100644
+--- a/arch/arm64/boot/dts/qcom/milos.dtsi
++++ b/arch/arm64/boot/dts/qcom/milos.dtsi
+@@ -1151,6 +1151,38 @@ aggre2_noc: interconnect@1700000 {
+ =09=09=09qcom,bcm-voters =3D <&apps_bcm_voter>;
+ =09=09};
+=20
++=09=09cryptobam: dma-controller@1dc4000 {
++=09=09=09compatible =3D "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
++=09=09=09reg =3D <0x0 0x01dc4000 0x0 0x28000>;
++
++=09=09=09interrupts =3D <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH 0>;
++
++=09=09=09#dma-cells =3D <1>;
++
++=09=09=09iommus =3D <&apps_smmu 0x480 0>,
++=09=09=09=09 <&apps_smmu 0x481 0>;
++
++=09=09=09qcom,ee =3D <0>;
++=09=09=09qcom,num-ees =3D <4>;
++=09=09=09num-channels =3D <20>;
++=09=09=09qcom,controlled-remotely;
++=09=09};
++
++=09=09crypto: crypto@1dfa000 {
++=09=09=09compatible =3D "qcom,milos-qce", "qcom,sm8150-qce", "qcom,qce";
++=09=09=09reg =3D <0x0 0x01dfa000 0x0 0x6000>;
++
++=09=09=09interconnects =3D <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
++=09=09=09=09=09 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
++=09=09=09interconnect-names =3D "memory";
++
++=09=09=09dmas =3D <&cryptobam 4>, <&cryptobam 5>;
++=09=09=09dma-names =3D "rx", "tx";
++
++=09=09=09iommus =3D <&apps_smmu 0x480 0>,
++=09=09=09=09 <&apps_smmu 0x481 0>;
++=09=09};
++
+ =09=09tcsr_mutex: hwlock@1f40000 {
+ =09=09=09compatible =3D "qcom,tcsr-mutex";
+ =09=09=09reg =3D <0x0 0x01f40000 0x0 0x20000>;
 
 --=20
 2.53.0
