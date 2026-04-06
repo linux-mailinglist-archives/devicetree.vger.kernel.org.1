@@ -1,42 +1,52 @@
-Return-Path: <devicetree+bounces-284964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284979-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +Nj+OUfH02kZmAcAu9opvQ
-	(envelope-from <devicetree+bounces-284964-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 16:46:31 +0200
+	id oF8aMRHS02nGmgcAu9opvQ
+	(envelope-from <devicetree+bounces-284979-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 17:32:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E9DC3A45FA
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 16:46:31 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D6F63A4C43
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 17:32:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A8C1130078BD
-	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 14:46:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 640CD3027310
+	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 15:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3604E22D7B5;
-	Mon,  6 Apr 2026 14:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15D422EAD15;
+	Mon,  6 Apr 2026 15:31:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="WZXoVWB7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C0E2DB7B4;
-	Mon,  6 Apr 2026 14:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D07E2264A3;
+	Mon,  6 Apr 2026 15:31:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775486788; cv=none; b=cApj9j+YR/Al5u+qEbNjFuT0KvJuspGwj4RnxKvuQlzZnNbWMniKHKGG3Zt9jia86ng/TKb5pN+cVqwCFpZP/Whz5V3pR2gW+6+P5mN/4GBJJSiombdZiD67q8SKyATS4o0o4wElbun5IPczaSnD8mCPNpxK2Bv60tZx/dUb20E=
+	t=1775489479; cv=none; b=mtWdcPjcLIXm3/N6uppWZOoRqb3qsnDlCoXfZPr5tLXDGbNDQPjfEQfEwbm/eMIE+mvEvDjR4XW+o5PkYm01SUf5l60cuE0/QrKk/ChHtM+Uptqh9wK4yWFtfl0bG+d8qAkdi95M1xr9mZbNHGD9hm+4bYe+5swLRYPVmeeI3Ok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775486788; c=relaxed/simple;
-	bh=En2b39jdFS5QMB/Ya52UshE/Amn98guN52WOng8pSGE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tKAkgAzcBiFqRwupz3RkwR1iWII5IWEwvKsA0igMKohjCHlX7fYr54hRi6cq3YR3gW82IJUA0FutROS8s00TI2lcLHDok5NQ6hhgBWEr4Z3m4dFDUTCzfX7HVfjyXftzEr1gEGRwMhToxSzN3MlZ6+sHFIloW8mPG0J75ozuEu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.101] (unknown [123.118.218.47])
-	by APP-05 (Coremail) with SMTP id zQCowAAHmQwux9Nps+a1DA--.49435S2;
-	Mon, 06 Apr 2026 22:46:07 +0800 (CST)
-Message-ID: <3538ad96-1dec-4bfd-9671-d351b385b4be@iscas.ac.cn>
-Date: Mon, 6 Apr 2026 22:46:06 +0800
+	s=arc-20240116; t=1775489479; c=relaxed/simple;
+	bh=iCEw2TmeljtV/dAKJVWtC+t69UJB27F42dnAvsDdQck=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=qWz9OOxGUbh6ikJdbWaKaj6kGM+oHDzYGA4lFO9hqWulbeUEzRFyHOMcAKnsh0jn6ZA1vYV5aeZUPtk9Lv/wX0cQ3WsWeEfcnRmxNfOWXq9NVMeWIuV03v7CfLrhzPUZlbtroD9LjCcYa7JWMJuAASTzxMPYnOxyciVNEwJh5OE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=WZXoVWB7; arc=none smtp.client-ip=178.251.229.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2A07710E8FA;
+	Mon,  6 Apr 2026 17:31:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1775489474; h=from:subject:date:message-id:to:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=3eX4xTWQUNx8ehAA/zPH9KQT2kpNQ6DRRx51zlCxFtE=;
+	b=WZXoVWB7iUr5C8X2s+vyKlRW4lCaC7D4tqv8FyFgEsAvYKOxxMVqr11u5H6ML7paZ96/DR
+	iUh4pOoZDL6d/3WL011/NtftDvUWIp4VrC8DP101V6lSGyl5jw1uxMoyO3pLjMYTX/UV7k
+	bLBZaYxq69ZZuVpmTTrF5I5Ck6Qq0JCqobkDZIgXxs+4gRfadKCOLQin7lv1t9WUCjE/OP
+	sbNHCUY+9lUJuPiA+U8pbx2hk8LIIDMoV7I2Gy9o5IkKN31mM/WKQ2nDS8EcFZHf9H/yxq
+	pGHcxsWq3zlDOAnClr38iqPw1Ssb2B8ACs4k/FHYCLD7dvbwQqAd55f07DK8uw==
+Message-ID: <4c915d11-930d-4a97-a5ee-46d72f4e8ce7@nabladev.com>
+Date: Mon, 6 Apr 2026 16:49:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,105 +54,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: Devicetree spec: Specifying /cpus/cpu@* unit address format?
-To: Rob Herring <robh@kernel.org>, David Gibson <david@gibson.dropbear.id.au>
-Cc: devicetree-spec@vger.kernel.org, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Alexandre Ghiti <alex@ghiti.fr>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@gmail.com>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, sophgo@lists.linux.dev
-References: <00ddad5a-02f5-474e-af9c-11ce7716ddfc@iscas.ac.cn>
- <adHofcKAr7C5YCSA@zatzit>
- <CAL_JsqJFv3+UJ-bjLGk0i7Wc+spsowCrqQZ_s3P4gN8r1W-Q-w@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: imx8mn-vhip4-evalboard-v1: Correct
+ interrupt flags
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+ Fedor Ross <fedor.ross@ifm.com>, Shawn Guo <shawnguo@kernel.org>,
+ Shengjiu Wang <shengjiu.wang@nxp.com>, Viorel Suman <viorel.suman@nxp.com>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260406063810.25531-4-krzysztof.kozlowski@oss.qualcomm.com>
 Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <CAL_JsqJFv3+UJ-bjLGk0i7Wc+spsowCrqQZ_s3P4gN8r1W-Q-w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowAAHmQwux9Nps+a1DA--.49435S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7Gr47uFWUKr13Xw45XFWUJwb_yoWkCrX_Wa
-	yj9r4DAr1DZay3Kasayr4rZasF9rWrCrZ8X3yUJwsrWa4kXFyDWFn3Gr1kZFn3Aw4jvw1a
-	kr98ZF47C3yxWjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbs8YjsxI4VW3JwAYFVCjjxCrM7AC8VAFwI0_Gr0_Xr1l1xkIjI8I
-	6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
-	8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0
-	cI8IcVCY1x0267AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z2
-	80aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAK
-	zVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx
-	8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7MxkF
-	7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI
-	8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AK
-	xVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI
-	8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280
-	aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43
-	ZEXa7IU8fpnPUUUUU==
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
-X-Spamd-Result: default: False [1.04 / 15.00];
+From: Marek Vasut <marex@nabladev.com>
+In-Reply-To: <20260406063810.25531-4-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	SUBJECT_ENDS_QUESTION(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-284964-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-284979-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,nxp.com,pengutronix.de,gmail.com,ifm.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,dabbelt.com,ghiti.fr,outlook.com,gmail.com,lists.infradead.org,lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_SPAM(0.00)[0.750];
-	DBL_PROHIBIT(0.00)[0.0.0.10:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangruikang@iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,dropbear.id.au:email,iscas.ac.cn:mid]
-X-Rspamd-Queue-Id: 3E9DC3A45FA
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nabladev.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,nabladev.com:dkim,nabladev.com:email,nabladev.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7D6F63A4C43
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/6/26 20:48, Rob Herring wrote:
-> On Sat, Apr 4, 2026 at 11:43 PM David Gibson
-> <david@gibson.dropbear.id.au> wrote:
->> On Fri, Apr 03, 2026 at 06:06:17PM +0800, Vivian Wang wrote:
->>> (Also posted at: https://github.com/devicetree-org/devicetree-specification/issues/86 )
->>>
->>> Hi all,
->>>
->>> Presently, there seems to be some confusion in the community about the
->>> format of unit addresses for "/cpus/cpu@*" nodes for a CPU with ID > 9, e.g.
->>>
->>>     cpu@??? {
->>>         reg = <10>;
->>>         /* reg = <0xa>; */ /* This should be equivalent */
->>>     }
->>>
->>>
->>> Should this be a decimal "cpu@10", or hexadecimal "cpu@a"? I can't find
->>> any explicit specification.
->> It should be hex.  That's a general convention for unit addresses.
->> Before flattened trees, OF essentially never used decimal
->> representations of things.
-> The only decimal usage in FDT were mistakes.
-
-Thanks for this. This is clear enough for me.
-
-> Rather than worrying about what the spec says, please worry about what
-> the tools check.
-
-Since, as you two said, there is an established convention, I agree that
-convention is enough here.
-
-Thanks,
-Vivian "dramforever" Wang
-
+On 4/6/26 8:38 AM, Krzysztof Kozlowski wrote:
+> GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
+> These are simple defines so they could be used in DTS but they will not
+> have the same meaning:
+> 1. GPIO_ACTIVE_HIGH = 0 => IRQ_TYPE_NONE
+> 2. GPIO_ACTIVE_LOW  = 1 => IRQ_TYPE_EDGE_RISING
+> 
+> Correct the interrupt flags, assuming the author of the code wanted the
+> same logical behavior behind the name "ACTIVE_xxx", this is:
+> ACTIVE_LOW  => IRQ_TYPE_LEVEL_LOW
+> 
+> Fixes: 5eb7405db99b ("arm64: dts: imx8mn: Add ifm VHIP4 EvalBoard v1 and v2")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Marek Vasut <marex@nabladev.com>
 
