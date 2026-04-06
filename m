@@ -1,161 +1,207 @@
-Return-Path: <devicetree+bounces-285047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285048-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UGt5EaAX1GksqwcAu9opvQ
-	(envelope-from <devicetree+bounces-285047-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 22:29:20 +0200
+	id TkaIGgYr1Gm3rwcAu9opvQ
+	(envelope-from <devicetree+bounces-285048-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 23:52:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB9913A7381
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 22:29:19 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB36F3A79DB
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 23:52:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 38E76304CA7A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 20:26:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6113330241A7
+	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 21:52:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0423E39C645;
-	Mon,  6 Apr 2026 20:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CC53909B3;
+	Mon,  6 Apr 2026 21:52:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CXN88ZPV"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="JjNclCHN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC708302140;
-	Mon,  6 Apr 2026 20:25:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 067012BEC27;
+	Mon,  6 Apr 2026 21:51:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775507137; cv=none; b=GxARqx0Bvjw06T08VNEE/c4/zSrAdFVO6laoms9j0tG36A1MvX08xJeg690BiXeA8oWvnKRhy8sJEslnwmoiCvu/ukiF1u5Rh5k1AQHux5hlYYuXtNwpqulaFPZrfjkskE3sa7lrr/8xUhOXUf+nVbJpx0rdiXrt2dLTIhdi5mY=
+	t=1775512320; cv=none; b=Y3EOXCazeX3Z0VeAeWofUJGOdU8/bBTFpej6TdU3kTWWbZNTbnQrlB/n7JflUTdiRxHPt/2/7dX0lyGRrUODnkQZJsO1ghfTNjGAGMiI00B92LYPPv1zcqTb8KKXLomAL7r8saUg6sJUrdvMr82bfmzz5pxq3VbJRkGlI0E47VI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775507137; c=relaxed/simple;
-	bh=ribnztIR4jWaiDRYmWtd83mRF1GazSvlgDdIiliQ/NI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eNWctWMgyZyTBMIhFOPTZavtRU8AhmykZDncshCaGAtRlqd17g4OM2kXK7cm+dJX0QTHHu/rtIzm4sNVZXfyr4g+Hy+DGdSOFQrPi7QQdcPViHvaCx/0ptOj1rFE4jpsObpvTUEhR0TGc5K5zdKk7wAZu4pdGjeAPHRRTACnC/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CXN88ZPV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AEC07C2BCB0;
-	Mon,  6 Apr 2026 20:25:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775507137;
-	bh=ribnztIR4jWaiDRYmWtd83mRF1GazSvlgDdIiliQ/NI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=CXN88ZPVaZbVCe3Oe5FGn+/aTE03Q5FCHQkzYAnD/s21Wr7UxVKf0Dnceh9rtm6Qw
-	 HIAutMWdcdmorlFfyT1/29P9V/T3M4ogB5b2Q0WHJ+RDc+LPk85l3nYmvcLJsJnHQv
-	 Y2lbw2Liat16pry+XxcKZMCf8abPngsuHxEOJjcQWHCZlo6vpBQigWGLjoGeEPOhRZ
-	 k5OxS6MSFqNv9liD2eCGtPZRtSobvgt6+fnoFtE6b9RSbI2D6Lm1ZdtaSs9w8uoGCT
-	 7RVGfUntc3me3cpHM7trYfhN7NSz9siA6gUybWEEp7dcjnO09OxtqhFpu8LO4AMe9B
-	 DbD/Wjpnc6JYg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A65F6FB516F;
-	Mon,  6 Apr 2026 20:25:37 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Mon, 06 Apr 2026 22:24:43 +0200
-Subject: [PATCH v21 6/6] arm64: dts: qcom: ipq9574: add pwm node
+	s=arc-20240116; t=1775512320; c=relaxed/simple;
+	bh=CKSSLJPGHSjNBfrbA4+DMtELxYcZregLIZEleTzRIMc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LvySv380vLLi22GCuZxq1peGgj2Q5ROCCizVnyjFgbJxx7KsfyZw2NP+EKFJAj8/ZGxV6MDCiTEbZCRtGhNRPDO1DUWGOzDAPAdB4H9sZXOXBSPj4BYT7Ppimc6xuumBOUDBGu9ofORh6YSTrk6GAXmohyQ0cy82eA4qvMDs8V8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=JjNclCHN; arc=none smtp.client-ip=178.251.229.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1EE7F10C52B;
+	Mon,  6 Apr 2026 23:51:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1775512315; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=lzK50nQJMlnI3QP0GEldfTDZBGHpJ0iSzc+L6OiCnSk=;
+	b=JjNclCHNN49I8vtWeAX9a2EYKiwoiBVn+HKmwTixaWp5EKrf39SU+lizEirsxTOWsuh5mE
+	rPbvCYwIPKVQiu1XXW8Bo+OGcLH0UGFn3cTWmP4AZdJmgKBQd+5XGnY2ycClMNXQx4tb+O
+	Bt+PdbQQBrS0m698t0FTqOMONCtv1LYDCn1ETubQE1dhibjzVfQ3VRubTfU4Mrsn0+/50l
+	vQTp5Zu3LDMjwnbOXrxeIlNEhXseCSkAaFZ6GuQzW86v9ZOlxnzQrJas621HUjITMOuifa
+	puWa/Fk3Dc7esjgrKqAxjgyBrYSU/3Y8F2j56TirTGThwCVatJ8bYdF3CdkQtg==
+From: Marek Vasut <marex@nabladev.com>
+To: linux-clk@vger.kernel.org
+Cc: Marek Vasut <marex@nabladev.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Brian Masney <bmasney@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Michael Walle <michael@walle.cc>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/6] dt-bindings: clock: fsl-sai: Document i.MX8M support
+Date: Mon,  6 Apr 2026 23:49:41 +0200
+Message-ID: <20260406215150.176599-1-marex@nabladev.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260406-ipq-pwm-v21-6-6ed1e868e4c2@outlook.com>
-References: <20260406-ipq-pwm-v21-0-6ed1e868e4c2@outlook.com>
-In-Reply-To: <20260406-ipq-pwm-v21-0-6ed1e868e4c2@outlook.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- George Moussalem <george.moussalem@outlook.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775507135; l=1239;
- i=george.moussalem@outlook.com; s=20260406; h=from:subject:message-id;
- bh=ZGylQ/mkBST8aMMXzv/c+bz2PK+194wczC4slSURFQY=;
- b=XvLPQ0OY93o1OdqdxLdxqFja7hrUaeFR/mqYjahxFcHPpWCwUkH9Gj8CSE2ZykcEZGdBrV7jc
- 7urHSEWvPY0CrtGq6tA4aWFofLpikodtPUD1labvUdn6mbCLPNsKrU/
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=uqspem3ahtBvPEBuxVbyyXT/0Vp3JNb/mo1EPbmBzWg=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20260406
- with auth_id=722
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-285047-lists,devicetree=lfdr.de,george.moussalem.outlook.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-285048-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[outlook.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[vger.kernel.org,outlook.com,oss.qualcomm.com];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DBL_PROHIBIT(0.00)[0.119.20.96:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[george.moussalem@outlook.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,0.29.142.104:email,outlook.com:email,outlook.com:replyto,outlook.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.29.158.18:email]
-X-Rspamd-Queue-Id: DB9913A7381
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nabladev.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nabladev.com:dkim,nabladev.com:email,nabladev.com:mid]
+X-Rspamd-Queue-Id: CB36F3A79DB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: George Moussalem <george.moussalem@outlook.com>
+The i.MX8M/Mini/Nano/Plus variant of the SAI IP has control registers
+shifted by +8 bytes and requires additional bus clock. Document support
+for the i.MX8M variant of the IP with this register shift and additional
+clock. Update the description slightly.
 
-Describe the PWM block on IPQ9574.
-
-Although PWM is in the TCSR area, make pwm its own node as simple-mfd
-has been removed from the bindings and as such hardware components
-should have its own node.
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Marek Vasut <marex@nabladev.com>
 ---
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Cc: Brian Masney <bmasney@redhat.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Michael Walle <michael@walle.cc>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+---
+V2: No change
+V3: - Rebase on current next, update mail address
+    - Pick ancient AB from Conor, although this may be outdated
+      https://patchwork.kernel.org/project/alsa-devel/patch/20241226162234.40141-1-marex@denx.de/
+    - Invert the allOf conditional to match on VF610 and limit
+      the clocks/clock-names there. MX8M can have one or two
+      input clock, "bus" is mandatory and "mclk1" is optional.
+      The "mclk1" are used by the driver in 4/4 .
+V4: No change
+---
+ .../bindings/clock/fsl,sai-clock.yaml         | 41 ++++++++++++++++---
+ 1 file changed, 35 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 622cfa96ed2b..3f15c40f7841 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -445,6 +445,16 @@ tcsr: syscon@1937000 {
- 			reg = <0x01937000 0x21000>;
- 		};
+diff --git a/Documentation/devicetree/bindings/clock/fsl,sai-clock.yaml b/Documentation/devicetree/bindings/clock/fsl,sai-clock.yaml
+index 3bca9d11c148f..90799b3b505ee 100644
+--- a/Documentation/devicetree/bindings/clock/fsl,sai-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/fsl,sai-clock.yaml
+@@ -10,10 +10,10 @@ maintainers:
+   - Michael Walle <michael@walle.cc>
  
-+		pwm: pwm@1941010 {
-+			compatible = "qcom,ipq9574-pwm", "qcom,ipq6018-pwm";
-+			reg = <0x01941010 0x20>;
-+			clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+			assigned-clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+			assigned-clock-rates = <100000000>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
+ description: |
+-  It is possible to use the BCLK pin of a SAI module as a generic clock
+-  output. Some SoC are very constrained in their pin multiplexer
+-  configuration. Eg. pins can only be changed groups. For example, on the
+-  LS1028A SoC you can only enable SAIs in pairs. If you use only one SAI,
++  It is possible to use the BCLK pin of a SAI module as a generic
++  clock output. Some SoC are very constrained in their pin multiplexer
++  configuration. E.g. pins can only be changed in groups. For example, on
++  the LS1028A SoC you can only enable SAIs in pairs. If you use only one SAI,
+   the second pins are wasted. Using this binding it is possible to use the
+   clock of the second SAI as a MCLK clock for an audio codec, for example.
+ 
+@@ -21,17 +21,46 @@ description: |
+ 
+ properties:
+   compatible:
+-    const: fsl,vf610-sai-clock
++    oneOf:
++      - items:
++          - enum:
++              - fsl,imx8mm-sai-clock
++              - fsl,imx8mn-sai-clock
++              - fsl,imx8mp-sai-clock
++          - const: fsl,imx8mq-sai-clock
++      - items:
++          - enum:
++              - fsl,imx8mq-sai-clock
++              - fsl,vf610-sai-clock
+ 
+   reg:
+     maxItems: 1
+ 
+   clocks:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
 +
- 		sdhc_1: mmc@7804000 {
- 			compatible = "qcom,ipq9574-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0x07804000 0x1000>,
-
++  clock-names:
++    minItems: 1
++    items:
++      - const: bus
++      - const: mclk1
+ 
+   '#clock-cells':
+     const: 0
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: fsl,vf610-sai-clock
++    then:
++      properties:
++        clocks:
++          maxItems: 1
++        clock-names: false
++
+ required:
+   - compatible
+   - reg
 -- 
-2.39.5
-
+2.53.0
 
 
