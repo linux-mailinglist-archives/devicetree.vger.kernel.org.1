@@ -1,123 +1,151 @@
-Return-Path: <devicetree+bounces-284972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284976-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CGY8LYXN02lpmQcAu9opvQ
-	(envelope-from <devicetree+bounces-284972-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 17:13:09 +0200
+	id 080OGJDR02m6mgcAu9opvQ
+	(envelope-from <devicetree+bounces-284976-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 17:30:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60F5C3A49DF
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 17:13:09 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7FCC3A4B95
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 17:30:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CA1CA30432C6
-	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 15:10:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 46CD93012C9F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 15:30:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A917738758B;
-	Mon,  6 Apr 2026 15:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D08E725E469;
+	Mon,  6 Apr 2026 15:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Szp85bO1"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="FEdhD5UU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-171.mta1.migadu.com (out-171.mta1.migadu.com [95.215.58.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855C1387578;
-	Mon,  6 Apr 2026 15:10:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A35D1231A23;
+	Mon,  6 Apr 2026 15:30:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775488214; cv=none; b=Lr2Fn6anhMCXoyoYr3FlQeu9NGhoQp4huW+IM7/xqYJfrH8Z644qVw5NQTvmyT5Zg1jl2bKqT7JMsgWdOL1F0EpGPSWyiSLD4UcJoi5uSlUbxWTvzCGOIBsjLoLAaR23JtfE9XpZK5nSYLy1Xb2Xgcpxj/xSP9GLI85fMk/66dk=
+	t=1775489415; cv=none; b=KtDY4RLUsphbUUa469rjXj9Z3hcETSd3f55epv7h5QxdG246MauV1oUnyUkXLiqXYiChxZtjUlsgZPWzxWLg5StrlQkrWyJxuck8ByYqCnduk0WCw3gNkFTjxCBIF2ZoXlNBNoWyxJDlZmKaMDkGf1MPEe/mK3/1v2j8Qj5GiwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775488214; c=relaxed/simple;
-	bh=0N/zosB/ood8NYUBNew4d5pVfknPYKqRSkHBHsiOvfs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WRopJyl0lJZ9l7BAUfIQV2/pb/j2pkQa53ioLbEZrGmHaC1jRFULYQaM6xZ6s4hpBV+fF3IW1gUhdl9NqcLVb6ZlgYYU0SYx8A8kKVIltLkI8p2RPjYWeCbTP8P4fXhkLO8qQwBwWChvNjrGh6S49jnjhJoCnLvXrbVYHerIK9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Szp85bO1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2044EC2BCB2;
-	Mon,  6 Apr 2026 15:10:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775488214;
-	bh=0N/zosB/ood8NYUBNew4d5pVfknPYKqRSkHBHsiOvfs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Szp85bO1BR7P3OB5HALfTwPgB+mHAYy07EZZ3FHpGeMYQLVKS1QIqA/Msiv7n3W6/
-	 lJ8hXAbBYW3A3p1bcHR/j9Jxahj4fxxYRNHgvMW9CmCm2zP9qHd6OCWpL30r60VoM0
-	 Sla4bjLn6lbJrfqhy42xd+z9qfTmSZ1a5RC6PpPZCcBncsIfISevsVjeS788OMxx8t
-	 oqb3MaEeoxxby1k+lBQbyZ+v8XuCM+mFocmVHCN18CzPYy7cJCGLAkQky1zvzyD0/+
-	 93GYuVYT3dESPDRjSzI/aCNx/PHc6PT966Nf2xfJgiTwioH1d5BpPGvI78caXDN0l+
-	 I4G+87s3sfl3Q==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Herring <robh@kernel.org>,
-	Shawn Guo <shengchao.guo@oss.qualcomm.com>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Stephan Gerhold <stephan@gerhold.net>,
-	Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: remoteproc: qcom: Drop types for firmware-name
-Date: Mon,  6 Apr 2026 10:10:03 -0500
-Message-ID: <177548820156.2290739.16749619194523233528.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260309123357.1911586-1-shengchao.guo@oss.qualcomm.com>
-References: <20260309123357.1911586-1-shengchao.guo@oss.qualcomm.com>
+	s=arc-20240116; t=1775489415; c=relaxed/simple;
+	bh=qY8HXRLd3rg8UeZmh2bcc4S7RvrC1Vew4Crqm0UVq88=;
+	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
+	 In-Reply-To:References; b=n/zycIhjOvk+LFLi4UMoNGtHY6nkp63TaECyB+CK96jiKU8JVM7XAxl+pZcz2weNw3mx+M43avzzJhANwqpiNf+mNmrnHdrQulxGh694p/NUog6FAQ8FNxTipa7h/gCF1ToFx1M5y9zKetbdRSNANOTCWiOIc7HVnOit8uyph9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=FEdhD5UU; arc=none smtp.client-ip=95.215.58.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1775489411;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Cl3MtyC0ml8bgrz0gHQfCrzWUIfK4oCJ4cASNn7ldtc=;
+	b=FEdhD5UUJEAxm6EKJXJ0/H+8PuEjb+nCod/U7iJixCFyku4NCJ7wfxD/pB8W2uu6tx89NZ
+	ruOIcWKXsnjNDFf4xkyOPRay87EHEcRsH8I1AMmw66PI92PAZ/CnOEJRWRrkrxb+EX8yXO
+	QJUA9r92sqSTkwMSrZoOYVFKcXrrjbqLnqpZD/I+UQ/IRy0trZpZSkuXhWcOj8AuxRcdsY
+	Ol2xr7blGEOxpvNhyz0Ead8/Y3c0J6ya6JZMsvmRaL/YKLHPKbh/3SmlQbzAd/n0tHx9tA
+	hqd4UsQH432TJfB8SzCs2f3xMbjBDDsoz1RJGKPxU7mY73gvoR9OXbX8ss8PFA==
+Date: Mon, 06 Apr 2026 15:30:05 +0000
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: quoted-printable
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Paul Sajna" <sajattack@postmarketos.org>
+Message-ID: <f63f25751b5db2ee5420ec4c12e36271ca22a864@postmarketos.org>
+TLS-Required: No
+Subject: Re: [PATCH v7 00/15] arm64: dts: qcom: sdm845-lg: Improve hardware
+ support in devicetree
+To: "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "David Heidelberg" <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, "Amir Dahan"
+ <system64fumo@tuta.io>, "Christopher Brown" <crispybrown@gmail.com>,
+ "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Pavel Machek" <pavel@ucw.cz>
+In-Reply-To: <177541802142.2061229.9094394728986735362.b4-ty@kernel.org>
+References: <20260331-judyln-dts-v7-0-87217b15fefb@postmarketos.org>
+ <177541802142.2061229.9094394728986735362.b4-ty@kernel.org>
+X-Migadu-Flow: FLOW_OUT
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,tuta.io,gmail.com,oss.qualcomm.com,ucw.cz];
+	TAGGED_FROM(0.00)[bounces-284976-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	DKIM_TRACE(0.00)[postmarketos.org:?];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-284972-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 60F5C3A49DF
+	DMARC_DNSFAIL(0.00)[postmarketos.org : SPF/DKIM temp error,quarantine];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sajattack@postmarketos.org,devicetree@vger.kernel.org];
+	NEURAL_SPAM(0.00)[0.264];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_TEMPFAIL(0.00)[postmarketos.org:s=key1];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D7FCC3A4B95
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+April 5, 2026 at 7:40 PM, "Bjorn Andersson" <andersson@kernel.org mailto:=
+andersson@kernel.org?to=3D%22Bjorn%20Andersson%22%20%3Candersson%40kernel=
+.org%3E > wrote:
 
-On Mon, 09 Mar 2026 20:33:57 +0800, Shawn Guo wrote:
-> The type of firmware-name is already defined by core schemas.  Drop it
-> from individual bindings that have either a redundant definition or
-> an override as string type.  For the later cases, constrain the number
-> of expected firmware names to 1.
-> 
-> 
+> Applied, thanks!
+>=20
+>=20[01/15] arm64: dts: qcom: sdm845-lg-common: Sort nodes and properties
+>  commit: 6a9e8df732014c1c758bd3cd6254b5b4cb273c7f
+> [02/15] arm64: dts: qcom: sdm845-lg-judyln: Add firmware nodes, change =
+path
+>  commit: b9afe8581c0e14b7b56e2314dc7f9597bf23ef67
+> [03/15] arm64: dts: qcom: sdm845-lg-judyp: Define firmware paths for ju=
+dyp
+>  commit: 8f4c53ae286bd6a113245ad53ce957e623374cf0
+> [04/15] arm64: dts: qcom: sdm845-lg-common: Enable venus
+>  commit: e9f611de7ab51540c0cf246df6b7d4d99f4cec64
+> [05/15] arm64: dts: qcom: sdm845-lg-common: Enable qups and their dma c=
+ontrollers
+>  commit: 4ec3045c969a326c458c53ca65bde5749e575d52
+> [06/15] arm64: dts: qcom: sdm845-lg: Add uarts and Bluetooth
+>  commit: e746ed5af3084e9534135679c55e69eced0c657f
+> [07/15] arm64: dts: qcom: sdm845-lg-judyln: Add battery and charger
+>  commit: 995c258982429db93db103fc26fcb3a0acd6a5ee
+> [08/15] arm64: dts: qcom: sdm845-lg-common: Add LEDs
+>  commit: b49722c8a18cdd11f49357f3b8be23549f76a506
+> [09/15] arm64: dts: qcom: sdm845-lg-judyln: Add lab/ibb
+>  commit: 2e7cdd400b6a4e67c27fc3e839342824b51d01ff
+> [10/15] arm64: dts: qcom: sdm845-lg-judyln: Add display panel
+>  commit: c6c66aa3ef33dc3076c6dac64003b29bd9515b58
+> [11/15] arm64: dts: qcom: sdm845-lg: Add wifi nodes
+>  commit: eb8fa32085261a07d763e9d616b3c206d0be82ff
+> [12/15] arm64: dts: qcom: sdm845-lg-common: Add chassis-type
+>  commit: a5a5ad9848980e1019ca841fe057afb83debecfa
+>=20
+>=20Best regards,
+> --=20
+>=20Bjorn Andersson <andersson@kernel.org>
+>
 
-Applied, thanks!
-
-[1/1] dt-bindings: remoteproc: qcom: Drop types for firmware-name
-      commit: 74eb6cd91aef968ee792575f10b438ae2f2a2bb2
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Please apply 13-15. 15 is the only change in v8, so what you've pulled he=
+re from v7 is fine.
 
