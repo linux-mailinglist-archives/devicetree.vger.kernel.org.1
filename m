@@ -1,199 +1,156 @@
-Return-Path: <devicetree+bounces-284840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-284842-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MI9+DUk302mjfwcAu9opvQ
-	(envelope-from <devicetree+bounces-284840-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 06:32:09 +0200
+	id 4D30C89B02m7gQcAu9opvQ
+	(envelope-from <devicetree+bounces-284842-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 07:17:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76ADF3A170A
-	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 06:32:08 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A32E53A1887
+	for <lists+devicetree@lfdr.de>; Mon, 06 Apr 2026 07:17:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 13C453008500
-	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 04:32:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4FF01300515D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Apr 2026 05:17:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 421AB2FB97B;
-	Mon,  6 Apr 2026 04:32:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0A12C0307;
+	Mon,  6 Apr 2026 05:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pqV1b5MM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OXYTN+An"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1180B27057D
-	for <devicetree@vger.kernel.org>; Mon,  6 Apr 2026 04:32:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 415214204E;
+	Mon,  6 Apr 2026 05:16:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775449926; cv=none; b=NGYCXSORI1k8ly1ps6OFAcYGBtiGrGafZxpZC3k/jsKPiqtb4AW/77P36nLxNA+aheNUsgMy/ybk1uQl6CYGIIDqKr+So35mQ6ZGTsGfNXQuU5sY3i00yAI/r0MtYctwJpn/dVk5lwOXxFiWpbvy7oKlsysRFT0lfVXo58Jezuk=
+	t=1775452619; cv=none; b=UC+5SOww8aBUcrvShyAfreWrM0aDKvXLfzdgGXg3HNRlW4wPLNOPN+01f+DNCt+BVJiJnoqp3Wno2DO8IqiwQggab44xjUzvVZCZh53+qIGXddufA0tpYV5/0PUVEe/+mV8o+MFs7QFXp7s7LgSC1JMnoXHEtqbTbx3nZLWvxLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775449926; c=relaxed/simple;
-	bh=ijE5vpUK5+igSOqrz67VaC6/x4PJRM+GtLEgUGPjiJE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dmrg8wYoEfRBVrMZQAMPnqEFMzmYQ3TVlsc/rrmNsEZq78bbWRGfz652eddBuhFEcWUTuf01qlM47FUfOH7ufllfOEHnjxOXErTwyBkS5Cl886E0fiiaIWZWbs7Mco5TqNol37R/M9BYgiWLiLq0DOZpgudVkgHyc5TBAXICCmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pqV1b5MM; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-356337f058aso1821973a91.2
-        for <devicetree@vger.kernel.org>; Sun, 05 Apr 2026 21:32:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1775449924; x=1776054724; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JLYhjqwYg6+Oumvs24wNUE9ZRMF9mduP8nacbJE4PGE=;
-        b=pqV1b5MMj7JaQQ4mR4FG6rXpaC2FY0XJr4/D6/elHbWW9hh9gY1J/W9mskJaFmsWqB
-         dtMQ3RE6RlpkKSLqST97uUWEsKpRFpKurPaj1TmIcv4ZfZ3irG9OTqlHkt9WS8JcUKPp
-         CXBIpYi0VIQvdM6Z8v5Mvdqm7XEBfxHl9cs4AurFdcKCCy7TN0zD5jpUTsM6usPtzaLc
-         pnFS9AWJpGls5AYbrPojC3ULIrUeJAbBCP+6c41tREdHFhsJ4FMVw2XLSp3I8XBGRjhU
-         N1UU7DBZ6nQeXH9UTeRLwo81Pm0XvfYPbVYWRwHZoTyzhizwtus9qtQqlWwkl/Z29jnU
-         aT4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775449924; x=1776054724;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JLYhjqwYg6+Oumvs24wNUE9ZRMF9mduP8nacbJE4PGE=;
-        b=aSbbFVqxDGnQAZ2GD3maba4A4vht/3NaMsWFPsI0WH6I7u6M9hXGnvblRV7qbSizD/
-         A0tLWFP9uRa1osNnVCfRQ5TgVHVEKsZUowuplbn3g646D9U82usfSMXtD4/YLaCDU4bd
-         y+ac1YlnM2HBiiQOOfIGeIRuKswEUFCN1e8A+wBkf1CGXGHGLdwa8Fsf0dIDgz17bw2w
-         WiBGCVrnoT6poA2KLSyTYxmHFJIec0eJpkJ5mx25jCsMb6yn4Xh12SWhJOroxve/Kiga
-         vRluXhJkRCRN/Z2xtA0ErR1xFsmS6lelQxCxOLB3tH5QCJAQfRBgpJxmHFaLPYU/rMpJ
-         uHxA==
-X-Forwarded-Encrypted: i=1; AJvYcCVSa97f8SKJsb8rXtaVJthdEVXE+7kc98dWnKgw9q+unukzBwbeHuwacM+wAAjZtrGxjWy0xTUHfL34@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywc7QebKHWY7EMzF1URvidC98LYC/eXHLl/Qt3VTpDtlDMbf9m1
-	2PXxCjIXEI1QH53MhtUNXMjkQGXtjGicROCFo4o9Ut1gdwtJ2KchDRgBMV8+c5WBTHpvRdqLsc0
-	c1Vl8
-X-Gm-Gg: AeBDiesLao9d7bnCPmZmUJKr0YaQNJkdYiuGhW03VMoP2Es+jNpxdeddbfQzDOBuzqf
-	/hFqWjazUAviVUDyvQk4Rottu2iTfVIUrs8fWfRblBAL/0tcCliscbYPsa/yktMntYuejCflTP4
-	KasqO7g9UapV6jcdO6L1b+SzXcpH7BIsg91fYRSEnDy44sLKN6lhheS3srIUfANbqafYlgY92gQ
-	e4XgKXWxStNtoO1EBHEqi78IGamNT/ZKQhUDRgbohK11JAK2LlRcsyLaY34ksx1PTfRJOOpC0DJ
-	1AcPcsOuBRK54IwMwNC/+5lM08/X6Pf99fdLu3XmIbQ7VLpxxym8kVklj6/IkcymDybjL34LTOz
-	GT5jIoJWt9hXo1W0r2E+90K/YyJpjDlfAb2MkCWSM9vzEoxzSD4fTarj181lYqS5IbDR9wSnFpT
-	/ROP1gAE7frWg8zpnmyMnPV72G
-X-Received: by 2002:a17:90b:314e:b0:35b:e551:90d2 with SMTP id 98e67ed59e1d1-35de69b28c7mr10531343a91.28.1775449924093;
-        Sun, 05 Apr 2026 21:32:04 -0700 (PDT)
-Received: from localhost ([122.172.81.200])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35dd36a0595sm12824309a91.16.2026.04.05.21.32.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Apr 2026 21:32:03 -0700 (PDT)
-Date: Mon, 6 Apr 2026 10:02:01 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Vivian Wang <wangruikang@iscas.ac.cn>
-Cc: Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: opp-v2: Fix example 3 CPU reg value
-Message-ID: <o6y25iupbgyc3iyyxzqtvnce7ll6f567d3db2i2nf3y2uijhcu@2gy63kdu3ngs>
-References: <20260403-dt-bindings-opp-v2-hex-cpu-reg-v1-1-38a4968ab515@iscas.ac.cn>
+	s=arc-20240116; t=1775452619; c=relaxed/simple;
+	bh=Mgy1duuWt0vR+mviueizCgI5vS8MuDmlLDbmB0xbpMk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LAm9vDqxICeAcYp0lny8+LVaKLeSMAgoWm7WZQyAv/8VANU2hbiQfKPYyUycUTqnvRm/0M0DMBholG49JEJVM+cUW5zzf0sytWQBsqpLxhk4jN164OTvZP60YBccgnOkKNg83Gc0KdtGYiSYUvAy98kSoNGfu2mTGrOpY4bHnME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OXYTN+An; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DA9C4C4CEF7;
+	Mon,  6 Apr 2026 05:16:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775452618;
+	bh=Mgy1duuWt0vR+mviueizCgI5vS8MuDmlLDbmB0xbpMk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=OXYTN+AnGs/YdVN6DJem8778RfBGXNCC9Kaq1ij+hKGvY8xxIf8FM9TBg14VIsswH
+	 iNMx1Q1AaxBmwXgNqHxggZbWhq1oCz8R7UqR9p3HwJvMOHb+hnE/csi/t+S1y1xOoD
+	 IhQ8IxhkTNAzODSGPMEkw6uw9Iv789NATipDjD9UvlleGZPBvLYKNaIczwog+Jz13c
+	 w+zpGcq0zmY0gPzn3xSmDSCZCFL3Doie9pU2nK+F+v+mW9DeV6XqG0zERslFhRO9OI
+	 Was+j7CMyazusPShytxygf4ehfjRwbmnnenFfaQlEaNy26jLA8Kw/phlhN7izabL3I
+	 5wsEHNMfO6doA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C8B85E9D818;
+	Mon,  6 Apr 2026 05:16:58 +0000 (UTC)
+From: Alexandre Messier via B4 Relay <devnull+alex.me.ssier.org@kernel.org>
+Subject: [PATCH v2 0/4] Describe more hardware of the HTC One (M8)
+Date: Mon, 06 Apr 2026 01:16:56 -0400
+Message-Id: <20260406-m8-dts-additions-v2-0-c4c4bd50af48@me.ssier.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260403-dt-bindings-opp-v2-hex-cpu-reg-v1-1-38a4968ab515@iscas.ac.cn>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMhB02kC/32NMQ6DMAxFr4I8NygJIEqn3qNiSIkBD0Blo6gVy
+ t3rcoBufv7fzwcIMqHArTiAMZHQtir4SwHDHNYJDUVl8NY3ztrWLFcTdzEhRtq1q9OgWefCGHw
+ NevZiHOl9Kh+98kyyb/w5PyT32/6RJWesaarYhmfVdDW29wVLEUIuN56gzzl/AfqKz4izAAAA
+X-Change-ID: 20251007-m8-dts-additions-ac20291afa24
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Luca Weiss <luca@lucaweiss.eu>, linux-arm-kernel@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Alexandre Messier <alex@me.ssier.org>, 
+ Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+ linux-leds@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775452618; l=1221;
+ i=alex@me.ssier.org; s=20240603; h=from:subject:message-id;
+ bh=Mgy1duuWt0vR+mviueizCgI5vS8MuDmlLDbmB0xbpMk=;
+ b=3Tt0iAZ6E7HTSlxgNIYL/SaG2UX02aKjPrgvG5Vsw6RtmW2qn6Lj9foVwxIs2s4rY7huMh71e
+ 27OECyK4cxNBxK3B+fvfm1ZVQ0JhBS9e58EuwJbHEOEtT+wOjrGpKJX
+X-Developer-Key: i=alex@me.ssier.org; a=ed25519;
+ pk=JjRqVfLd2XLHX2QTylKoROw346/1LOyZJX0q6cfnrKw=
+X-Endpoint-Received: by B4 Relay for alex@me.ssier.org/20240603 with
+ auth_id=168
+X-Original-From: Alexandre Messier <alex@me.ssier.org>
+Reply-To: alex@me.ssier.org
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-284840-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-284842-lists,devicetree=lfdr.de,alex.me.ssier.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[alex@me.ssier.org];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[viresh.kumar@linaro.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.101:email,0.0.0.100:email];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,iscas.ac.cn:email,0.0.0.1:email]
-X-Rspamd-Queue-Id: 76ADF3A170A
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A32E53A1887
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 03-04-26, 18:34, Vivian Wang wrote:
-> Example 3 is a dual-cluster example, meaning that the CPU nodes should
-> have reg values 0x0, 0x1, 0x100, 0x101. The example incorrectly uses
-> decimal 0, 1, 100, 101 instead, which seems unintended. Use the correct
-> hexadecimal values.
-> 
-> Even though the value doesn't change for the first two CPUs, 0 and 1 in
-> example 3 are changed to 0x0 and 0x1 respectively for consistency. Other
-> examples all have reg less than 10, so they have not been changed.
-> 
-> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
-> ---
-> Found while trying to figure out if cpu@* unit addresses are supposed to
-> be decimal or hexadecimal. This is AFAICT the only place in-tree where
-> an arm/arm64 DTS uses multi-digit decimal. See also:
-> 
-> - https://lore.kernel.org/devicetree-spec/00ddad5a-02f5-474e-af9c-11ce7716ddfc@iscas.ac.cn/
-> - https://github.com/devicetree-org/devicetree-specification/issues/86
-> ---
->  Documentation/devicetree/bindings/opp/opp-v2.yaml | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/opp/opp-v2.yaml b/Documentation/devicetree/bindings/opp/opp-v2.yaml
-> index 6972d76233aa..10000a758572 100644
-> --- a/Documentation/devicetree/bindings/opp/opp-v2.yaml
-> +++ b/Documentation/devicetree/bindings/opp/opp-v2.yaml
-> @@ -172,7 +172,7 @@ examples:
->          cpu@0 {
->              compatible = "arm,cortex-a7";
->              device_type = "cpu";
-> -            reg = <0>;
-> +            reg = <0x0>;
->              next-level-cache = <&L2>;
->              clocks = <&clk_controller 0>;
->              clock-names = "cpu";
-> @@ -183,7 +183,7 @@ examples:
->          cpu@1 {
->              compatible = "arm,cortex-a7";
->              device_type = "cpu";
-> -            reg = <1>;
-> +            reg = <0x1>;
->              next-level-cache = <&L2>;
->              clocks = <&clk_controller 0>;
->              clock-names = "cpu";
-> @@ -194,7 +194,7 @@ examples:
->          cpu@100 {
->              compatible = "arm,cortex-a15";
->              device_type = "cpu";
-> -            reg = <100>;
-> +            reg = <0x100>;
->              next-level-cache = <&L2>;
->              clocks = <&clk_controller 1>;
->              clock-names = "cpu";
-> @@ -205,7 +205,7 @@ examples:
->          cpu@101 {
->              compatible = "arm,cortex-a15";
->              device_type = "cpu";
-> -            reg = <101>;
-> +            reg = <0x101>;
->              next-level-cache = <&L2>;
->              clocks = <&clk_controller 1>;
->              clock-names = "cpu";
+Add hardware description for these parts of the HTC One (M8):
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+ - Notification LEDs
+ - Bluetooth
+ - NFC
+ - Touchscreen
 
+Signed-off-by: Alexandre Messier <alex@me.ssier.org>
+---
+Changes in v2:
+- Rebased on top of 7.0-rc6
+- In patch 1, change color of one LED from amber to orange.
+- In patch 1, use a multicolor LED to represent the logical grouping
+  of the LEDs.
+- In patches 2 and 4, note in the commit message the usage of same
+  I2C bus frequency as the downstream kernel.
+- In patch 3, gather Reviewed-by tag from Konrad Dybcio.
+- Link to v1: https://lore.kernel.org/r/20251007-m8-dts-additions-v1-0-53d7ab3594e7@me.ssier.org
+
+---
+Alexandre Messier (4):
+      ARM: dts: qcom: msm8974pro-htc-m8: add status LEDs
+      ARM: dts: qcom: msm8974pro-htc-m8: add NFC support
+      ARM: dts: qcom: msm8974pro-htc-m8: add Bluetooth pins
+      ARM: dts: qcom: msm8974pro-htc-m8: add touchscreen
+
+ arch/arm/boot/dts/qcom/qcom-msm8974pro-htc-m8.dts | 94 ++++++++++++++++++++++-
+ 1 file changed, 90 insertions(+), 4 deletions(-)
+---
+base-commit: 7aaa8047eafd0bd628065b15757d9b48c5f9c07d
+change-id: 20251007-m8-dts-additions-ac20291afa24
+
+Best regards,
 -- 
-viresh
+Alexandre Messier <alex@me.ssier.org>
+
+
 
