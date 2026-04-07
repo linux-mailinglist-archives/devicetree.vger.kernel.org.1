@@ -1,212 +1,170 @@
-Return-Path: <devicetree+bounces-285370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285416-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2G3uObgl1WnK1AcAu9opvQ
-	(envelope-from <devicetree+bounces-285370-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:41:44 +0200
+	id qFYDJmMw1WkL2QcAu9opvQ
+	(envelope-from <devicetree+bounces-285416-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 18:27:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 971323B12E5
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:41:44 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41DD13B1D42
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 18:27:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E42F4309FE93
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 15:35:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 73ADF301E014
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 16:25:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB3D03C276B;
-	Tue,  7 Apr 2026 15:35:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486D13C7E0E;
+	Tue,  7 Apr 2026 16:25:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="vgS96QEZ"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="Pab0btmp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011003.outbound.protection.outlook.com [40.107.74.3])
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 865FB3A5450;
-	Tue,  7 Apr 2026 15:35:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.3
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775576141; cv=fail; b=Nx3lTJXXiGkhatio5P66OlIEwMHMNXzuAujRERQaHh+QkmywIa0SscFwWFaXOvsdXc8ug2gJj5Hs3HlJHQqz1LZJCKXsZbq7fzpZKs4BW8rWnYBQd95wqa4JXGuM7yrQnkYEWW7GzStd8bdLkdMc2IIJwSFnevYmzjQCFXPGdGc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775576141; c=relaxed/simple;
-	bh=8a6Z2FEsNuGkiQzDYH2w4O9kyuYNJEQu4aIgFkqaHTw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=VmZcY7Ax3Ouxx8LgKForOtxfbJRRXaHIreHiOKAYJIrB7RjyrJbsbJxV/3RUClb7Vkyi/So3QBEOiEP5h9/h0GJS6T2G4vlR/GumSj8jUWyIzEtHw7RCBLgRSUX4cqe+VCDQoVnLPnpJZsXHAJ+z8WGhHJzxeIf/sw84r+pFiQ8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=vgS96QEZ; arc=fail smtp.client-ip=40.107.74.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sMOaZkaGSB7Tkb2wOuboHfGnNS6rBoM5gmWtPMhw8qdB+gY6/y98Fg+ihtzH1rgeyJHCEpxyL7xX4imA9ThBH6Yf79ncUpR7Maj8yXbO9OapjJ+4l2yagvWZOEhzYZ7Tbj2kl4HhrRU4CDrI5q1JHy8XeWNAZDeaubIThpyKrGOBl7F5Wi/xrVmtvUdyJAiOcqIVvJSv+VbOZ6xZBfNNgA2JliH2lTz+6PkAG2GuoUU+YpGtEXpWLiohsC8X2B0fnKlOjyeuZvzvWOQ3+TfBW9PPojppsyewaSx6myr04XIu3h+vOZptdax4IPK1itkIzbBxCPwx1asnm0SS2FVSwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zgKuc/zQeX88azUfnfyOcE0Koo7qf8sfynnNwVQUOmo=;
- b=lROIoLuG31ZkgG7hNwgdXnfkp2I5p4xsnXy4Hqf9FgjzPFF9UIqlJvWujhewcVm8nwEXUlHgTGliRX4zL8/XP/5duEON78bwnEzAMxlSE7G+W+WrJiHSPh6NRSBJXanmWsYXy7MqWbc3iiRBcRDgSPHReJ8ymJB8iAFLZb5FSgsphAP5rZVLvEKN8bydMBDpW9a3LFYFNaQv7CmnzSRg7eMpWz8JbDKXsc13n3X0XQqSbs979ltNr1Zw1Y2VU7Xm6zTs40XYw+BCZsILIVvsBKb/DGRo/6G4+nRalRGOxM7AlnwiESNV459Ao/TF69RjMVXw3tLFm7fOOSfVDVp/Zw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zgKuc/zQeX88azUfnfyOcE0Koo7qf8sfynnNwVQUOmo=;
- b=vgS96QEZYhEjI9Poce+uC32eQIOuT9HEdDf/953jvY5o/Ni7a7QS39lb/DxcNZKnrrjFk2mENqoiey7Nfw6TMezrQENJrj4odeQdgjmf/n0j2Hd06pQNyhIfRxLj6lD0xvQAasj6hFkM2cregzCi8ut/D6IOhy90e2B53O/D9c4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
- by TYWPR01MB11104.jpnprd01.prod.outlook.com (2603:1096:400:3f1::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.21; Tue, 7 Apr
- 2026 15:35:22 +0000
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9769.017; Tue, 7 Apr 2026
- 15:35:22 +0000
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-To: tomm.merciai@gmail.com,
-	peda@axentia.se,
-	p.zabel@pengutronix.de
-Cc: linux-renesas-soc@vger.kernel.org,
-	biju.das.jz@bp.renesas.com,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: renesas: r9a09g056: Add #mux-state-cells to usb20phyrst
-Date: Tue,  7 Apr 2026 17:34:29 +0200
-Message-ID: <31210e05f7189b466b30eedbdda3d11726dac279.1775575276.git.tommaso.merciai.xr@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1775575276.git.tommaso.merciai.xr@bp.renesas.com>
-References: <cover.1775575276.git.tommaso.merciai.xr@bp.renesas.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR3P281CA0013.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1d::18) To TYCPR01MB11947.jpnprd01.prod.outlook.com
- (2603:1096:400:3e1::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5098A3C6A27;
+	Tue,  7 Apr 2026 16:24:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.156.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775579099; cv=none; b=Our1riZtekXIePGkv19m3REpqSsYx6AQcodktJktioMMLfzNJQyE2iWZCOWQr50XpM5f+i73y90EP+Rg41gNOKW01uQdgzc6prDtTq57DlKDnDncI+mAPaYZftPuuOZL7QQ49hK7bLK7G5q77KTqS9bZBcklHzpNHIShV/7b3SE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775579099; c=relaxed/simple;
+	bh=pBF4SEXkjFLp7DPWE26mQt/IObzGyYOwvMKygTLzOvI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uAXvdqv6c64zJXBPK6UU6ZCxcGSGjQf40QsYx3Mlmxl13WTStkv0+VHB7wGCdeyTHGbNSwikHi1AFukEe9m79ss/Zm8Ffj1Ao4yoWgqM6IoF0yBxDW0cQqFG6PBGqHRwklSzMGaHy8umSJ5QAgbFoh4V/gPhPXzWWjpSW95fI08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=Pab0btmp; arc=none smtp.client-ip=67.231.156.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 637EIPmR2601069;
+	Tue, 7 Apr 2026 08:35:16 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	pfpt0220; bh=V96PxtxjjCu7m4wxga8K+elwPTNPNCtkr0qpIMETfAs=; b=Pab
+	0btmprdE2DiOzGsBMNZYYxtgKfFVS6Azt3KkW67VM2i061sQMtACEWolRqxYFAYg
+	w8ZVW3urDZzfYYs9RMhIVuUWK4d6amgLc/ROSGvxLbGFn43DyWhX9mmMyMqc/8pQ
+	NKetQvamwH1NXr/s7U7zAUqMGQFUsICENtXCtLrr7Hki54N2prdAyvTmNo0jmKMF
+	68QALmRCLEoXS4f8i8oCXcItNCnqEKfiLJMtIaUi2WRk0uSJeiDaxWYRQi0wlfsP
+	13M81CvOEtvyokESdrTam6xqF4HIOHg/2OjeKQIkAnbaGzNPT9M1ap79PvYfsF4t
+	vPI6m7zcJQlVJsCS8Vw==
+Received: from dc5-exch05.marvell.com ([199.233.59.128])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 4dcms9hywj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 Apr 2026 08:35:16 -0700 (PDT)
+Received: from DC5-EXCH05.marvell.com (10.69.176.209) by
+ DC5-EXCH05.marvell.com (10.69.176.209) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Tue, 7 Apr 2026 08:35:15 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH05.marvell.com
+ (10.69.176.209) with Microsoft SMTP Server id 15.2.1544.25 via Frontend
+ Transport; Tue, 7 Apr 2026 08:35:15 -0700
+Received: from hyd1soter3.marvell.com (unknown [10.29.37.12])
+	by maili.marvell.com (Postfix) with ESMTP id 23EDB3F7043;
+	Tue,  7 Apr 2026 08:35:12 -0700 (PDT)
+From: Geetha sowjanya <gakula@marvell.com>
+To: <linux-perf-users@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
+CC: <mark.rutland@arm.com>, <will@kernel.org>, <krzk+dt@kernel.org>
+Subject: [PATCH v4 0/2] perf: marvell: Add CN20K DDR PMU support
+Date: Tue, 7 Apr 2026 21:05:09 +0530
+Message-ID: <20260407153511.4250-1-gakula@marvell.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|TYWPR01MB11104:EE_
-X-MS-Office365-Filtering-Correlation-Id: d81b2429-fb1c-443e-c403-08de94bb4816
-X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|18002099003|38350700014|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	/9Rmu4Lwp6liHz06/Wsjl0IqUwvGaHgLEfet7SUfTuG3y7DE1ez/Ygfgm7aDDGIcYPT9CZ0bGfCoSfrDqDvvrbhdF/IdeGvPPTrPeS/5jMD2gg1ERTol8+NMcrB1K5Mbuv5+FQ8czMCmdDl9YwE169HU2JPifuMix6/fJTcIAw0arGJ3jzl9F6dZIIHnjZNbh/DHISGmwW2xQe8qVARFLFcclLgb5Fey3YBvNjLD1TWRYvxHBRcsa+kBbMQijHFPK3d4TvTonNw3oIZ4kv2/cjDORh3+0+AImMq/+yhXW7kvSUjGpXydlDTX7SpDqC10OmYMjJDuoDnScRJyByLjdNsUPsBqCsI5bYCDZRznVAw6ZwaZJK+pY8cUnjuRzBXfYRDYbbJY5V5a+xInkfQlySDY+LGi2PeBymMhe+OtLu6RF5jy7868GhA97UlNUFOTBGP15nPsfl4aVF/t5hkvMlNH7ol6pS8+5MWunJkSo9i8SoMtlfADzrubygewyxW8PVEDpM59h/L678/Se02PfJKyguDJ4l0yV8Mkv8ZK8VKQX+1k9TRZePRpdZcjzR0/BmFpFhEoEORTZhGXP9bz9HOITau796NwSxdLWrgrKWX44GWdEjeabpMQWEZDly4XsNoqqEFz4vFAqGWpDmOCHf7SBKKxhR889VdQb7yBNIprh3l1heWH/OmqzkeRTUiBJ0qwMsO2QN9WqWWGCVAG+pujea4KXlfRHhZ7+jHR5WHh8fY54DopP2vRi4TzUtwYcz+Hb9NdMskrzCq/z4WdOMiksd4T+2qslQMOMgSPgdU=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(18002099003)(38350700014)(22082099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?YlwNpHvgJVju5YqI/nNtb6Sc9on3/9Tyd2QIDIgHZWnbuB7bQtBe+ENimsx8?=
- =?us-ascii?Q?sTdplsy2PptdnR1ZOHq2cmm4VuyyIS0sKyOu8QsJY6/eMU/o60X7vlliA7cO?=
- =?us-ascii?Q?/6QMcF+TNK4lgDXnfOdklhD2NFMROaBzH4xgr8TUz5FBzWF8USUx8sqs5RHG?=
- =?us-ascii?Q?4FsIIqgg/dcwm83Rj/mHnew7HmEM/l9JOtWbxPajODupiF4ThJSlzvn8NTlK?=
- =?us-ascii?Q?SS20G3XimTJrp2rpb42i4WRl+5mHrdyyRqvqv+xDF3IR1y3fwMpMbb369MF+?=
- =?us-ascii?Q?wxK0y5VMq0hB7zy3jpySplb74bG/aZuAlYtO7qB2zgF3/EmEWeQJo8QhdFIB?=
- =?us-ascii?Q?Qg0LxQHbSF9kCWEul/vImMidJEMSIgCIWHsKs6a41U8shYZO/N3YWEv2FLv4?=
- =?us-ascii?Q?PAhpFuhC3vhxcJUHauU7sCMxme+x91iiRYBtUe1N/PM1eYl+eITIv4OJF+Ar?=
- =?us-ascii?Q?e8+F4S0rUkU0C1Ym0NcKvaFuSLTRN/xTijn0d6iROWgpAanLDSWCOUxTQrOZ?=
- =?us-ascii?Q?WU35CmatJqxnjaJ8RuCYFjLD7TBbuCwXNaGCrxH1wZTIaIEbATu+PUV/V9HR?=
- =?us-ascii?Q?8U4IRH21cGQkSupnv5nJmc3DaCCKce6hxK4zSoX5mQTl+Sr4RBaFVe/EdSNb?=
- =?us-ascii?Q?2tpwnxeMtq2OORUkN5hh4Zh0piO+xEuzD1aVPwBAEACwTFwy5YRQvx/iHU1T?=
- =?us-ascii?Q?OZTVGKbhSK5N28vSVnFu2mul33WI3lWMLCbm/+/+qBXYYoY5KAj8dcM8u4T3?=
- =?us-ascii?Q?FthY/Q82mA2x3k0eVOwWwjvSxQPfat5X2SvRoF7A06NOB+mfe8p0ZBpj5Ywu?=
- =?us-ascii?Q?yk5WuXtw9pOq58v2OUrIZxWSKg+ePS5cIcCMs68i/T68XqF1MuUfSewb9qkv?=
- =?us-ascii?Q?Cww1/F02N1ms/AWdteaosE3NoOb6xD0GL/Q/FWsxrxFqhLzaJR9rIWJN7F7V?=
- =?us-ascii?Q?eH5Q+jaK/DpxLBqJYK4E4adfDUwAbo8kTXF+g6JGR4+f3iCi1MIqXr7Uxehs?=
- =?us-ascii?Q?socqMkxjqmXblyU02ku8vHAb8PNA1U2VjpFoakTGz2ROL856wXE1CJAAd3vD?=
- =?us-ascii?Q?Xh29sPZjrtAU9Et27RPcw/0bR5cwxZIfhTb1m7cmjyrpDrrTP6SrHdczZoY2?=
- =?us-ascii?Q?WfqFVbuVHj5FupZK7sjyOXCf86MNCVMczVUytinRdCsDWjbr7TPsWiwV3VXr?=
- =?us-ascii?Q?qII4/XrHL821MDmFqCmMAA7gxPvx6qHlwp8NrLce6xwsEhDrE9fplnJwMU67?=
- =?us-ascii?Q?tNes5T08AnYioE8kk/khcGA5XIknPnTj6A8bfh9+Y3kgH7d43qlkrupwalJv?=
- =?us-ascii?Q?3p4rV/JEfQVqTOYpqzZCKyBmwJfQ08gUxUPusOwmn8vL/3SmI+5hIsE6sClA?=
- =?us-ascii?Q?FkcpROaTDgSJo9Lw6Z4cO62uCWlN4cT7BIr+UUO0ufjlJYgy0Nhrn4OJCtym?=
- =?us-ascii?Q?CyQDH9prKyt9BoSMv3xDwU5CZ0qru/zFza9fE0N2+cb3OiTXgi06ngBwOkeK?=
- =?us-ascii?Q?C3MGUdE4O6XkfL/M8SKcKzTXD7CwiFCPBsCBvqxT0O0/pbzg/z38KdUUJWEG?=
- =?us-ascii?Q?HNkzSKt77+NAboqGbZYk5s3BTrooXXGMWuaFrKVi8466jRfUhvZf98tLu3H4?=
- =?us-ascii?Q?Wl1ikm9NigS6KIfezNfKsF011J9jsf1LuhnNMEwx265Lcr8vByt6LD1ueNO2?=
- =?us-ascii?Q?B3aLFJ5M4lmCGe2P/la8rbQ71OcbJI5LCsKfux0HM8LDv/AwINOJnBAhZA9g?=
- =?us-ascii?Q?XtqZEG/lXqzOKVSmsXPo3k/0/hWAc/IM2tfTlWQNGeYT8D6cZqEm?=
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d81b2429-fb1c-443e-c403-08de94bb4816
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 15:35:22.3457
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gpIdcuN6wIGYXlZ9G8ODoj1z9HALFvlJUBnIDd0UG8Zf5bOPgQ2oG9kF7WDslWJfGnuGm0pq3YrTI9dHQwzT01w15+LHJcxo1nPUpEaua8O710VEleLAUtB56S54OtcH
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB11104
-X-Spamd-Result: default: False [2.84 / 15.00];
+Content-Type: text/plain
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDA3MDE0MiBTYWx0ZWRfX9+rGzVi6n+j1
+ ygWog7w6cZ6dvPmqvUgzLbQcpdBQ+xjB4l/S20ElbJNYFOPWytYPfcTgbpF9unr+6JTaGvR65i5
+ Z42t+kgTO97qgykY/NzeH1I8snV55IbaqYrY3kM/G1vBmUm3iUL+wD4R7P8W8Ll5uRZLC6sKgxU
+ vVOhNNTycDAE0aKLHl9aJn5P0B04kT8eHSJ+cJ3IZReLFuT2VguS2UznOkruYwC1OLmvaikhKJK
+ CwDe8+nRWO5IYn11giqYKo7p5HVa3jPJWRauN8jstKtijjpNXwIQlFb1AJ3R4P+V067ZY5OtW6w
+ W2Zu5zxymdVVPm/hVBLMfIybpoYOjRfE/f+OiVnmAF30+RV+SklYhlv9BhSUfXri6LWNuuA4FKu
+ AkmK/jlXOfR/691jUcslYa356MfsfE64rjt563zscaBvetOgZ/+ZJplenZBGMsX4inS4YGU7BkL
+ r74K9+E+ezGs5b9TWJA==
+X-Proofpoint-GUID: anZ_Aoj0OH_XX9yVr0TGrivMbGseZEhe
+X-Authority-Analysis: v=2.4 cv=FuY1OWrq c=1 sm=1 tr=0 ts=69d52434 cx=c_pps
+ a=rEv8fa4AjpPjGxpoe8rlIQ==:117 a=rEv8fa4AjpPjGxpoe8rlIQ==:17
+ a=A5OVakUREuEA:10 a=VkNPw1HP01LnGYTKEx00:22 a=l0iWHRpgs5sLHlkKQ1IR:22
+ a=QXcCYyLzdtTjyudCfB6f:22 a=M5GUcnROAAAA:8 a=adgkevBCHCmUBQKKAzcA:9
+ a=OBjm3rFKGHvpk9ecZwUJ:22
+X-Proofpoint-ORIG-GUID: anZ_Aoj0OH_XX9yVr0TGrivMbGseZEhe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-07_03,2026-04-07_02,2025-10-01_01
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[marvell.com,none];
+	R_DKIM_ALLOW(-0.20)[marvell.com:s=pfpt0220];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmail.com,axentia.se,pengutronix.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,glider.be,gmail.com,kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[marvell.com:+];
+	TAGGED_FROM(0.00)[bounces-285416-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-285370-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,marvell.com:dkim,marvell.com:email,marvell.com:mid];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tommaso.merciai.xr@bp.renesas.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[gakula@marvell.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-0.999];
-	DBL_PROHIBIT(0.00)[0.241.139.240:email];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email,bp.renesas.com:dkim,bp.renesas.com:mid]
-X-Rspamd-Queue-Id: 971323B12E5
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 41DD13B1D42
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The renesas,rzv2h-usb2phy-reset binding schema defines #mux-state-cells
-as a required property. Add it to the usb20phyrst node to fix the
-following warnings:
+This series adds support for the DDR Performance Monitoring Unit (PMU)
+present in Marvell CN20K SoCs.
 
-"arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dtb: usb20phy-reset@15830000 (renesas,r9a09g056-usb2phy-reset): '#mux-state-cells' is a required property"
-"arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-emmc.dtb: usb20phy-reset@15830000 (renesas,r9a09g056-usb2phy-reset): '#mux-state-cells' is a required property"
-"arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk-cn15-sd.dtb: usb20phy-reset@15830000 (renesas,r9a09g056-usb2phy-reset): '#mux-state-cells' is a required property"
+The DDR PMU is part of the DRAM Subsystem (DSS) and provides hardware
+counters to monitor DDR traffic and performance events. The block
+implements eight programmable counters and two fixed-function counters
+tracking DDR read and write activity, and is accessed via a dedicated
+MMIO region.
 
-Fixes: 6a1b6f7e56dc ("dt-bindings: reset: renesas,rzv2h-usb2phy: Add '#mux-state-cells' property")
-Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a09g056.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+CN20K is the successor to CN10K, and the DDR PMU hardware is functionally
+equivalent to the CN10K implementation, with only minor differences in
+register offsets and event mappings. To allow software to distinguish
+between the two silicon variants, this series introduces a specific
+"marvell,cn20k-ddr-pmu" compatible and extends the existing
+marvell_cn10k_ddr_pmu driver to handle CN20K via variant-specific data.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g056.dtsi b/arch/arm64/boot/dts/renesas/r9a09g056.dtsi
-index 40525470194e..7ccddd6a4a9a 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g056.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g056.dtsi
-@@ -1327,6 +1327,7 @@ usb20phyrst: usb20phy-reset@15830000 {
- 			resets = <&cpg 0xaf>;
- 			power-domains = <&cpg>;
- 			#reset-cells = <0>;
-+			#mux-state-cells = <1>;
- 			status = "disabled";
- 		};
- 
+Signed-off-by: Geetha sowjanya <gakula@marvell.com>
+
+Chnages in v3:
+- Expanded cover letter and commit message to better describe the DDR PMU
+  hardware and its relationship to CN10K
+- Fixed the file name.
+
+Changes in v2:
+ - Fixed YAML syntax error triggered by a tab character in the examples
+  section, which caused dt_binding_check to fail.
+
+Changes in v1:
+- Added a description field to the binding.
+- Simplified the compatible property using 'const' instead of 'items/enum'.
+- Updated the example node name to include a unit-address matching the reg base.
+
+Geetha sowjanya (2):
+  dt-bindings: perf: marvell: Document CN20K DDR PMU
+  perf: marvell: Add CN20K DDR PMU support
+
+ .../bindings/perf/marvell-cn20k-ddr-pmu.yaml  |  39 ++++
+ drivers/perf/marvell_cn10k_ddr_pmu.c          | 187 ++++++++++++++++--
+ 2 files changed, 210 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/perf/marvell-cn20k-ddr-pmu.yaml
+
 -- 
-2.43.0
+2.25.1
 
 
