@@ -1,244 +1,367 @@
-Return-Path: <devicetree+bounces-285155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285157-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0A17FZat1GnNwQcAu9opvQ
-	(envelope-from <devicetree+bounces-285155-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 09:09:10 +0200
+	id +HaxEQGy1GkkwgcAu9opvQ
+	(envelope-from <devicetree+bounces-285157-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 09:28:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9B9E3AAAA5
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 09:09:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9247E3AAC44
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 09:28:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 060A83085DAB
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 07:06:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 16A64300C59B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 07:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 095F9392C5B;
-	Tue,  7 Apr 2026 07:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD78339479D;
+	Tue,  7 Apr 2026 07:27:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bpc5j5BU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m30OgZ4+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B3E3921DC;
-	Tue,  7 Apr 2026 07:06:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F3F3921E7;
+	Tue,  7 Apr 2026 07:27:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775545606; cv=none; b=sqraIiG3/gfvKJz1jln6Y+/y8RqeU6/rIkza2EfZJ576rKmdAfrPlyqMdM7CWzkwW2rdyFTP8T3AFv2Vlp5RLkKkp3Mmgrs5VBFRkeLtZMAxUezFCYGBUboBUE/pp4q6wzYlISC5MA/+zC/uGaxJzbpMgsR3PDOUId/JgAhW1pQ=
+	t=1775546856; cv=none; b=Bq9R/r1NbPeTRsCZkqP5/1SxJRc/nh/8ogjxNd9yT2IpYUroSxScmhjJHnXpjJ6+lOS4nwR/9iiOK2MUW2y30oLoibE/Sjz6CDCS7YHaJbIMiQ8eMz1vddDwQ/6T05FlbdauCphItfGhxyiTZFxqlihslsbJjbq8amf8eD4aGo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775545606; c=relaxed/simple;
-	bh=w84JgY13B5psbJ/bCQLltCiZeluJ62uUoybI2BsB+oo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K4sXSR+POcdi80MzRDxPEwn6trYx5nxLUiuD3ZF7mJHFAkJ01/FuejUQU79OQk14n4jQdoKItLJW4WQNhdZ5Whb0ZNurftDuAzWr7/d4bTR+C3T0CHQl7E8QAl6RqSjDi1hSeyWT//PY2M53H5+MS3k4XrjBGFMZhLCnu5LzA6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bpc5j5BU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48734C116C6;
-	Tue,  7 Apr 2026 07:06:38 +0000 (UTC)
+	s=arc-20240116; t=1775546856; c=relaxed/simple;
+	bh=Ke+4cfFIuUyaAYRB85WlhtaSzn9Vsqf7eLubNm2wrC8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d0SEjTTTNPneD2ijgza6uz4htZdSOu0bhQ/KnibN6FToo/c5XgbMgvHWcXSqX5jEBmczFoPbmPpAT94Bdr5WG6adW80a0wsm2jjQ78PvPYggnD0jwtCGh/2DcHI/bdQfPCKGGWxJc31UvY+LUk1qkpeNhpaDlxjdGH86c7rd8oM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m30OgZ4+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F639C116C6;
+	Tue,  7 Apr 2026 07:27:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775545606;
-	bh=w84JgY13B5psbJ/bCQLltCiZeluJ62uUoybI2BsB+oo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Bpc5j5BU4G90M8I9KBBLn+o39rPFY6aozmJuYi+wsuFTWG/ELsK1i6vDqHivyIr46
-	 N9wLkfpu/lJ47LKHQzH408q1EPINq+GUwEggrTAMuJTDb6gEGdOitPs/7sJEjpfoX0
-	 VfLVXDdk1bsKBai4awpx8m4I6DCsqN+aclgpJcTOgEx+sC6NRWzDdTetCO9e/H6klT
-	 7lfL7fbUlemkLT+KWdbrNw0mZ6AKWm6c6oC90vSK/1SWCd2IRexchkPu6n8oIqBYzw
-	 5D8mc8nogt66lYinMeFK9CG/Uz/hWoPk8rYMRifSLjSOe6wzoOpJy0ZNg3EgD5PBrg
-	 t3B0yLs1WDhtg==
-Message-ID: <cca821a7-de9f-4377-9c0a-3f4170230d22@kernel.org>
-Date: Tue, 7 Apr 2026 09:06:36 +0200
+	s=k20201202; t=1775546856;
+	bh=Ke+4cfFIuUyaAYRB85WlhtaSzn9Vsqf7eLubNm2wrC8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m30OgZ4+3p1ReP/oAexgtmU1wpHtdCwMpqLsPQ1M0sfld/z/FFzZXpYDh4e3fybYj
+	 /pxqvDO1Tk2YWl7SwXOzZpmgZPuybaqhOnBhM2OusK35qXxa6nPe47jMcbyPObRx9A
+	 LIBBR24hxE+0GEJyrHG5Mor7C5RciZv0K1Y119quGDDpBWRKWuWFCrZtXtkdQBW4P/
+	 0NSGF1V4uZmeRTPBIIxtlEIQSD1QF0mJS+7VB4QuEvtYAR4nRExM1YEGb6Y1NIFanM
+	 5dyrIFv4Z+WGfhdSU+6/pMy8q4brJ4lkLN1g/LKq88orVqzymK08dPIflO6p1CiWaw
+	 stDhRXnwwdSEw==
+Date: Tue, 7 Apr 2026 12:57:19 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Douglas Anderson <dianders@chromium.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
+	Alan Stern <stern@rowland.harvard.edu>, Alexey Kardashevskiy <aik@ozlabs.ru>, 
+	Johan Hovold <johan@kernel.org>, Eric Dumazet <edumazet@google.com>, 
+	Leon Romanovsky <leon@kernel.org>, Christoph Hellwig <hch@lst.de>, 
+	Robin Murphy <robin.murphy@arm.com>, maz@kernel.org, Alexander Lobakin <aleksander.lobakin@intel.com>, 
+	Saravana Kannan <saravanak@kernel.org>, Mark Brown <broonie@kernel.org>, alexander.stein@ew.tq-group.com, 
+	andrew@codeconstruct.com.au, andrew@lunn.ch, andriy.shevchenko@linux.intel.com, 
+	astewart@tektelic.com, bhelgaas@google.com, brgl@kernel.org, davem@davemloft.net, 
+	devicetree@vger.kernel.org, driver-core@lists.linux.dev, hkallweit1@gmail.com, 
+	jirislaby@kernel.org, joel@jms.id.au, kees@kernel.org, kuba@kernel.org, 
+	lgirdwood@gmail.com, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org, linux@armlinux.org.uk, 
+	netdev@vger.kernel.org, pabeni@redhat.com, robh@kernel.org
+Subject: Re: [PATCH v5 8/9] driver core: Replace dev->of_node_reused with
+ dev_of_node_reused()
+Message-ID: <xoo5ymm44t66hr5ti2apl3u7mmenbic66gi7siiiwxtdgn6bhh@hvfzixit53pf>
+References: <20260406232444.3117516-1-dianders@chromium.org>
+ <20260406162231.v5.8.I806b8636cd3724f6cd1f5e199318ab8694472d90@changeid>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 11/13] dt-bindings: hwinfo: Add starfive,jhb100-socinfo
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Emil Renner Berthing <kernel@esmil.dk>, Chen Wang
- <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>,
- Alexey Charkov <alchark@gmail.com>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Keguang Zhang <keguang.zhang@gmail.com>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- Leyfoon Tan <leyfoon.tan@starfivetech.com>
-References: <20260403054945.467700-1-changhuang.liang@starfivetech.com>
- <20260403054945.467700-12-changhuang.liang@starfivetech.com>
- <20260405-strong-watchful-marmot-fdfad6@quoll>
- <ZQ4PR01MB12021DE82F5D893BBA15A659F25A2@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <ZQ4PR01MB12021DE82F5D893BBA15A659F25A2@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260406162231.v5.8.I806b8636cd3724f6cd1f5e199318ab8694472d90@changeid>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-285155-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-285157-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,pengutronix.de,esmil.dk,outlook.com,gmail.com,alpha.franken.de,vger.kernel.org,lists.infradead.org,starfivetech.com];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,rowland.harvard.edu,ozlabs.ru,google.com,lst.de,arm.com,intel.com,ew.tq-group.com,codeconstruct.com.au,lunn.ch,linux.intel.com,tektelic.com,davemloft.net,vger.kernel.org,lists.linux.dev,gmail.com,jms.id.au,lists.infradead.org,lists.ozlabs.org,armlinux.org.uk,redhat.com];
+	RCPT_COUNT_TWELVE(0.00)[41];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[starfivetech.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,bootlin.com:url,0.0.0.38:email]
-X-Rspamd-Queue-Id: E9B9E3AAAA5
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,chromium.org:email]
+X-Rspamd-Queue-Id: 9247E3AAC44
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 07/04/2026 08:49, Changhuang Liang wrote:
-> Hi, Krzysztof
+On Mon, Apr 06, 2026 at 04:23:01PM -0700, Douglas Anderson wrote:
+> In C, bitfields are not necessarily safe to modify from multiple
+> threads without locking. Switch "of_node_reused" over to the "flags"
+> field so modifications are safe.
 > 
-> Thanks for the review.
+> Cc: Johan Hovold <johan@kernel.org>
+> Acked-by: Mark Brown <broonie@kernel.org>
+> Reviewed-by: Rafael J. Wysocki (Intel) <rafael@kernel.org>
+> Reviewed-by: Danilo Krummrich <dakr@kernel.org>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+
+Acked-by: Manivannan Sadhasivam <mani@kernel.org> # PCI_PWRCTRL
+
+- Mani
+
+> ---
+> Not fixing any known bugs; problem is theoretical and found by code
+> inspection. Change is done somewhat manually and only lightly tested
+> (mostly compile-time tested).
 > 
->> On Thu, Apr 02, 2026 at 10:49:43PM -0700, Changhuang Liang wrote:
->>> Add starfive,jhb100-socinfo for StarFive JHB100 SoC.
->>>
->>> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
->>> ---
->>>  .../hwinfo/starfive,jhb100-socinfo.yaml       | 36
->> +++++++++++++++++++
->>>  1 file changed, 36 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/hwinfo/starfive,jhb100-socinfo.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/hwinfo/starfive,jhb100-socinfo.yam
->>> l
->>> b/Documentation/devicetree/bindings/hwinfo/starfive,jhb100-socinfo.yam
->>> l
->>> new file mode 100644
->>> index 000000000000..cc6b7d5a4c91
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/hwinfo/starfive,jhb100-socinfo
->>> +++ .yaml
->>> @@ -0,0 +1,36 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
->>> +---
->>> +$id:
->>> +http://devicetree.org/schemas/hwinfo/starfive,jhb100-socinfo.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: StarFive JHB100 SoC platform chipid module
->>> +
->>> +maintainers:
->>> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
->>> +
->>> +description:
->>> +  StarFive JHB100 SoC platform chipid module is represented by
->>> +JHB100_PRODUCT_ID
->>> +  register which contains information about revision. This register
->>> +is located
->>> +  under the syscon.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - const: starfive,jhb100-socinfo
->>
->> No, not a separate device.
->>
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    chipid@38 {
->>> +        compatible = "starfive,jhb100-socinfo";
->>> +        reg = <0x38 0x4>;
->>
->> One register is not a device. NAK.
+> (no changes since v4)
 > 
-> I noticed that other platforms have similar practices:
-> https://elixir.bootlin.com/linux/v7.0-rc7/source/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi#L205
+> Changes in v4:
+> - Use accessor functions for flags
+> 
+> Changes in v3:
+> - New
+> 
+>  drivers/base/core.c                      | 2 +-
+>  drivers/base/pinctrl.c                   | 2 +-
+>  drivers/base/platform.c                  | 2 +-
+>  drivers/net/pcs/pcs-xpcs-plat.c          | 2 +-
+>  drivers/of/device.c                      | 6 +++---
+>  drivers/pci/of.c                         | 2 +-
+>  drivers/pci/pwrctrl/core.c               | 2 +-
+>  drivers/regulator/bq257xx-regulator.c    | 2 +-
+>  drivers/regulator/rk808-regulator.c      | 2 +-
+>  drivers/tty/serial/serial_base_bus.c     | 2 +-
+>  drivers/usb/gadget/udc/aspeed-vhub/dev.c | 2 +-
+>  include/linux/device.h                   | 7 ++++---
+>  12 files changed, 17 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/base/core.c b/drivers/base/core.c
+> index 8a83d7c93361..30825bf83234 100644
+> --- a/drivers/base/core.c
+> +++ b/drivers/base/core.c
+> @@ -5283,7 +5283,7 @@ void device_set_of_node_from_dev(struct device *dev, const struct device *dev2)
+>  {
+>  	of_node_put(dev->of_node);
+>  	dev->of_node = of_node_get(dev2->of_node);
+> -	dev->of_node_reused = true;
+> +	dev_set_of_node_reused(dev);
+>  }
+>  EXPORT_SYMBOL_GPL(device_set_of_node_from_dev);
+>  
+> diff --git a/drivers/base/pinctrl.c b/drivers/base/pinctrl.c
+> index 6e250272c843..0bbc83231234 100644
+> --- a/drivers/base/pinctrl.c
+> +++ b/drivers/base/pinctrl.c
+> @@ -24,7 +24,7 @@ int pinctrl_bind_pins(struct device *dev)
+>  {
+>  	int ret;
+>  
+> -	if (dev->of_node_reused)
+> +	if (dev_of_node_reused(dev))
+>  		return 0;
+>  
+>  	dev->pins = devm_kzalloc(dev, sizeof(*(dev->pins)), GFP_KERNEL);
+> diff --git a/drivers/base/platform.c b/drivers/base/platform.c
+> index d44591d52e36..199e6fb25770 100644
+> --- a/drivers/base/platform.c
+> +++ b/drivers/base/platform.c
+> @@ -856,7 +856,7 @@ struct platform_device *platform_device_register_full(
+>  	pdev->dev.parent = pdevinfo->parent;
+>  	pdev->dev.fwnode = pdevinfo->fwnode;
+>  	pdev->dev.of_node = of_node_get(to_of_node(pdev->dev.fwnode));
+> -	pdev->dev.of_node_reused = pdevinfo->of_node_reused;
+> +	dev_assign_of_node_reused(&pdev->dev, pdevinfo->of_node_reused);
+>  
+>  	if (pdevinfo->dma_mask) {
+>  		pdev->platform_dma_mask = pdevinfo->dma_mask;
+> diff --git a/drivers/net/pcs/pcs-xpcs-plat.c b/drivers/net/pcs/pcs-xpcs-plat.c
+> index b8c48f9effbf..f4b1b8246ce9 100644
+> --- a/drivers/net/pcs/pcs-xpcs-plat.c
+> +++ b/drivers/net/pcs/pcs-xpcs-plat.c
+> @@ -349,7 +349,7 @@ static int xpcs_plat_init_dev(struct dw_xpcs_plat *pxpcs)
+>  	 * up later. Make sure DD-core is aware of the OF-node being re-used.
+>  	 */
+>  	device_set_node(&mdiodev->dev, fwnode_handle_get(dev_fwnode(dev)));
+> -	mdiodev->dev.of_node_reused = true;
+> +	dev_set_of_node_reused(&mdiodev->dev);
+>  
+>  	/* Pass the data further so the DW XPCS driver core could use it */
+>  	mdiodev->dev.platform_data = (void *)device_get_match_data(dev);
+> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> index f7e75e527667..be4e1584e0af 100644
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -26,7 +26,7 @@
+>  const struct of_device_id *of_match_device(const struct of_device_id *matches,
+>  					   const struct device *dev)
+>  {
+> -	if (!matches || !dev->of_node || dev->of_node_reused)
+> +	if (!matches || !dev->of_node || dev_of_node_reused(dev))
+>  		return NULL;
+>  	return of_match_node(matches, dev->of_node);
+>  }
+> @@ -192,7 +192,7 @@ ssize_t of_device_modalias(struct device *dev, char *str, ssize_t len)
+>  {
+>  	ssize_t sl;
+>  
+> -	if (!dev || !dev->of_node || dev->of_node_reused)
+> +	if (!dev || !dev->of_node || dev_of_node_reused(dev))
+>  		return -ENODEV;
+>  
+>  	sl = of_modalias(dev->of_node, str, len - 2);
+> @@ -254,7 +254,7 @@ int of_device_uevent_modalias(const struct device *dev, struct kobj_uevent_env *
+>  {
+>  	int sl;
+>  
+> -	if ((!dev) || (!dev->of_node) || dev->of_node_reused)
+> +	if ((!dev) || (!dev->of_node) || dev_of_node_reused(dev))
+>  		return -ENODEV;
+>  
+>  	/* Devicetree modalias is tricky, we add it in 2 steps */
+> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> index 9f8eb5df279e..1f9b669abdb0 100644
+> --- a/drivers/pci/of.c
+> +++ b/drivers/pci/of.c
+> @@ -38,7 +38,7 @@ int pci_set_of_node(struct pci_dev *dev)
+>  	struct device *pdev __free(put_device) =
+>  		bus_find_device_by_of_node(&platform_bus_type, node);
+>  	if (pdev)
+> -		dev->bus->dev.of_node_reused = true;
+> +		dev_set_of_node_reused(&dev->bus->dev);
+>  
+>  	device_set_node(&dev->dev, of_fwnode_handle(no_free_ptr(node)));
+>  	return 0;
+> diff --git a/drivers/pci/pwrctrl/core.c b/drivers/pci/pwrctrl/core.c
+> index 7754baed67f2..72963a92362a 100644
+> --- a/drivers/pci/pwrctrl/core.c
+> +++ b/drivers/pci/pwrctrl/core.c
+> @@ -39,7 +39,7 @@ static int pci_pwrctrl_notify(struct notifier_block *nb, unsigned long action,
+>  		 * If we got here then the PCI device is the second after the
+>  		 * power control platform device. Mark its OF node as reused.
+>  		 */
+> -		dev->of_node_reused = true;
+> +		dev_set_of_node_reused(dev);
+>  		break;
+>  	}
+>  
+> diff --git a/drivers/regulator/bq257xx-regulator.c b/drivers/regulator/bq257xx-regulator.c
+> index dab8f1ab4450..40e0f1a7ae81 100644
+> --- a/drivers/regulator/bq257xx-regulator.c
+> +++ b/drivers/regulator/bq257xx-regulator.c
+> @@ -143,7 +143,7 @@ static int bq257xx_regulator_probe(struct platform_device *pdev)
+>  	struct regulator_config cfg = {};
+>  
+>  	pdev->dev.of_node = pdev->dev.parent->of_node;
+> -	pdev->dev.of_node_reused = true;
+> +	dev_set_of_node_reused(&pdev->dev);
+>  
+>  	pdata = devm_kzalloc(&pdev->dev, sizeof(struct bq257xx_reg_data), GFP_KERNEL);
+>  	if (!pdata)
+> diff --git a/drivers/regulator/rk808-regulator.c b/drivers/regulator/rk808-regulator.c
+> index e66408f23bb6..8297d31cde9f 100644
+> --- a/drivers/regulator/rk808-regulator.c
+> +++ b/drivers/regulator/rk808-regulator.c
+> @@ -2115,7 +2115,7 @@ static int rk808_regulator_probe(struct platform_device *pdev)
+>  	int ret, i, nregulators;
+>  
+>  	pdev->dev.of_node = pdev->dev.parent->of_node;
+> -	pdev->dev.of_node_reused = true;
+> +	dev_set_of_node_reused(&pdev->dev);
+>  
+>  	regmap = dev_get_regmap(pdev->dev.parent, NULL);
+>  	if (!regmap)
+> diff --git a/drivers/tty/serial/serial_base_bus.c b/drivers/tty/serial/serial_base_bus.c
+> index a12935f6b992..5f23284a8778 100644
+> --- a/drivers/tty/serial/serial_base_bus.c
+> +++ b/drivers/tty/serial/serial_base_bus.c
+> @@ -74,7 +74,7 @@ static int serial_base_device_init(struct uart_port *port,
+>  	dev->parent = parent_dev;
+>  	dev->bus = &serial_base_bus_type;
+>  	dev->release = release;
+> -	dev->of_node_reused = true;
+> +	dev_set_of_node_reused(dev);
+>  
+>  	device_set_node(dev, fwnode_handle_get(dev_fwnode(parent_dev)));
+>  
+> diff --git a/drivers/usb/gadget/udc/aspeed-vhub/dev.c b/drivers/usb/gadget/udc/aspeed-vhub/dev.c
+> index 2ecd049dacc2..8b9449d16324 100644
+> --- a/drivers/usb/gadget/udc/aspeed-vhub/dev.c
+> +++ b/drivers/usb/gadget/udc/aspeed-vhub/dev.c
+> @@ -593,7 +593,7 @@ int ast_vhub_init_dev(struct ast_vhub *vhub, unsigned int idx)
+>  		d->gadget.max_speed = USB_SPEED_HIGH;
+>  	d->gadget.speed = USB_SPEED_UNKNOWN;
+>  	d->gadget.dev.of_node = vhub->pdev->dev.of_node;
+> -	d->gadget.dev.of_node_reused = true;
+> +	dev_set_of_node_reused(&d->gadget.dev);
+>  
+>  	rc = usb_add_gadget_udc(d->port_dev, &d->gadget);
+>  	if (rc != 0)
+> diff --git a/include/linux/device.h b/include/linux/device.h
+> index 5b0fb6ad4c72..a79865a212e9 100644
+> --- a/include/linux/device.h
+> +++ b/include/linux/device.h
+> @@ -483,6 +483,8 @@ struct device_physical_location {
+>   *		driver/bus sync_state() callback.
+>   * @DEV_FLAG_DMA_COHERENT: This particular device is dma coherent, even if the
+>   *		architecture supports non-coherent devices.
+> + * @DEV_FLAG_OF_NODE_REUSED: Set if the device-tree node is shared with an
+> + *		ancestor device.
+>   */
+>  enum struct_device_flags {
+>  	DEV_FLAG_READY_TO_PROBE = 0,
+> @@ -492,6 +494,7 @@ enum struct_device_flags {
+>  	DEV_FLAG_DMA_OPS_BYPASS = 4,
+>  	DEV_FLAG_STATE_SYNCED = 5,
+>  	DEV_FLAG_DMA_COHERENT = 6,
+> +	DEV_FLAG_OF_NODE_REUSED = 7,
+>  
+>  	DEV_FLAG_COUNT
+>  };
+> @@ -573,8 +576,6 @@ enum struct_device_flags {
+>   *
+>   * @offline_disabled: If set, the device is permanently online.
+>   * @offline:	Set after successful invocation of bus type's .offline().
+> - * @of_node_reused: Set if the device-tree node is shared with an ancestor
+> - *              device.
+>   * @flags:	DEV_FLAG_XXX flags. Use atomic bitfield operations to modify.
+>   *
+>   * At the lowest level, every device in a Linux system is represented by an
+> @@ -681,7 +682,6 @@ struct device {
+>  
+>  	bool			offline_disabled:1;
+>  	bool			offline:1;
+> -	bool			of_node_reused:1;
+>  
+>  	DECLARE_BITMAP(flags, DEV_FLAG_COUNT);
+>  };
+> @@ -715,6 +715,7 @@ __create_dev_flag_accessors(dma_skip_sync, DEV_FLAG_DMA_SKIP_SYNC);
+>  __create_dev_flag_accessors(dma_ops_bypass, DEV_FLAG_DMA_OPS_BYPASS);
+>  __create_dev_flag_accessors(state_synced, DEV_FLAG_STATE_SYNCED);
+>  __create_dev_flag_accessors(dma_coherent, DEV_FLAG_DMA_COHERENT);
+> +__create_dev_flag_accessors(of_node_reused, DEV_FLAG_OF_NODE_REUSED);
+>  
+>  #undef __create_dev_flag_accessors
+>  
+> -- 
+> 2.53.0.1213.gd9a14994de-goog
+> 
 
-Sure, how is that DTS and platform?
-
-Why did you chosen exactly this one, known of poor quality and multiple
-warnings, but did not choose something which is reviewed in detail and
-passes all expectations?
-
-> or could you provide me with alternative suggestions? Thank you very much.
-
-Fold into the parent. See also writing bindings or DTS101 talk.
-
-Best regards,
-Krzysztof
+-- 
+மணிவண்ணன் சதாசிவம்
 
