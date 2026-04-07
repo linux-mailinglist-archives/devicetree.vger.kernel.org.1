@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-285364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285365-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4HCmIdIj1WnK1AcAu9opvQ
-	(envelope-from <devicetree+bounces-285364-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:33:38 +0200
+	id qPsIK8wi1WnK1AcAu9opvQ
+	(envelope-from <devicetree+bounces-285365-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:29:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00FD33B1164
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:33:37 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D8733B0F9C
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:29:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0E002300CCA7
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6EC65300EFB7
 	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 15:29:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B3613BBA18;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BC636E487;
 	Tue,  7 Apr 2026 15:29:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB3236C58F;
-	Tue,  7 Apr 2026 15:28:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B401393DDF;
+	Tue,  7 Apr 2026 15:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775575747; cv=none; b=m+6kK1+XTCR8Fvx1mU3G3ZidLyl4pHN1R8A62ErgimRZTBWQy3dhLBMt1gpqF8WXPVyYA9DHHdJCxY6KBjwdhj6UWhtxeX+7IcQ5M/R/Ahs+DLqcg7tOkR+zpcdkvEnTmF02kMifytIuH1oD0Yqx4K4ixR6YkGJCyIutCGPCB44=
+	t=1775575749; cv=none; b=jUARBpPhbZmC04WpFru3UwsLixOdB8Ph7nbf4747a6EfkYjezC4f5KWyr/Gz0HdoIvga4mGr5ZWaRJwPzgqZWvVeLetcPmvkt/MQmey2I7K4+3HE/dqIhlCBrrrPIB0nLEB7rLeHLhtYjAohhn+kKHenbbv6fl5n7FTqoW4Om1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775575747; c=relaxed/simple;
-	bh=BnUIFsDP/NMougrWHuwUTkTEcHw3+HazvuuGtDewy7w=;
+	s=arc-20240116; t=1775575749; c=relaxed/simple;
+	bh=FlXeHaf/Hjion+ulpn7jEEn9Nkb/OY96ass0KI1nsro=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VWUNKRlV1tsDq34oYQ6a5BaeHNOkeL8GnjUcgJwoXe2QUfSe2Aa9BmGgWkE6DDjiyi3IsbypgBpjPaq7FUOWNIkjS7D35TIypeVF3DvhyHeSXeXWGPCvuB62ItXEV07kxsRnozhtqwwaLyJRe13YE5vZJbHq1wGucrjGie5fpD8=
+	 MIME-Version; b=B44SmAV7MaPsyNQiznmrqJPOjLhFRHZse1WOMrA0LS/fikhte6W+4WorEkqJgb1vkKTPLmh5efp8PX+SqPuhvCmJUcHjTjg/0ILtzNoEAYheE/mGMpXF1zQr75XNzFwiAoRl37rAOmgvjRyIaDu48W+ddpaFGir/+xcDYbAK6fg=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
 Received: from localhost.localdomain (unknown [223.166.95.230])
-	by APP-05 (Coremail) with SMTP id zQCowAB3zhGSItVpaxDVDA--.63755S3;
-	Tue, 07 Apr 2026 23:28:19 +0800 (CST)
+	by APP-05 (Coremail) with SMTP id zQCowAB3zhGSItVpaxDVDA--.63755S4;
+	Tue, 07 Apr 2026 23:28:20 +0800 (CST)
 From: Han Gao <gaohan@iscas.ac.cn>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -52,9 +52,9 @@ Cc: devicetree@vger.kernel.org,
 	Han Gao <rabenda.cn@gmail.com>,
 	Han Gao <gaohan@iscas.ac.cn>,
 	Vincent Legoll <legoll@online.fr>
-Subject: [PATCH v10 1/3] riscv: dts: spacemit: Enable i2c8 adapter for OrangePi RV2
-Date: Tue,  7 Apr 2026 23:28:14 +0800
-Message-ID: <d66f897b179271f508ac5352e52b1223f3bca5fb.1775575436.git.gaohan@iscas.ac.cn>
+Subject: [PATCH v10 2/3] riscv: dts: spacemit: Define the P1 PMIC regulators for OrangePi RV2
+Date: Tue,  7 Apr 2026 23:28:15 +0800
+Message-ID: <193370a69e1cc3e4d8c4eb57bfea208e29ac75d8.1775575436.git.gaohan@iscas.ac.cn>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1775575436.git.gaohan@iscas.ac.cn>
 References: <cover.1775575436.git.gaohan@iscas.ac.cn>
@@ -65,43 +65,43 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowAB3zhGSItVpaxDVDA--.63755S3
-X-Coremail-Antispam: 1UD129KBjvdXoWrtF4xKF18uF4xAFykurW8tFb_yoW3ZFX_CF
-	13Cay09FyUurWvkFn7Xr1rta1xu3yYkrWSywn3tr1UGa4FgrWfKFWUKaykJ345GrWqvrWf
-	Gw48tF1xJwnIkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbyAFF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUGwA2048vs2IY02
-	0Ec7CjxVAFwI0_Gr0_Xr1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-	wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
-	x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oVCq3wAS0I0E
-	0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67
-	AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48I
-	cxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2kIc2xKxw
-	CY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8
-	JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1V
-	AFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4
-	A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU
-	0xZFpf9x0JU4OJ5UUUUU=
-X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiBgoKDGnVHKkVyAAAse
+X-CM-TRANSID:zQCowAB3zhGSItVpaxDVDA--.63755S4
+X-Coremail-Antispam: 1UD129KBjvJXoWxWw4kCFWfAFWDGr1xZrWDArb_yoW5Kw13pa
+	n8ZFsxuF4rAFyxJw45Ww1xta15Wr1Fkasrury0krWrJrWUtFnF9r9Fyr1rt3W8Ja1vvw4Y
+	yrWUZFyxtF1Ig3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUmj14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_Jryl82xGYIkIc2
+	x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
+	Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UM2
+	8EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s0DM2AI
+	xVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
+	vE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
+	r2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04
+	v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
+	6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
+	AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE
+	2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcV
+	C2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2Kfnx
+	nUUI43ZEXa7VUbH5lUUUUUU==
+X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiCREKDGnVHS8TdAAAs3
 X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-285364-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-285365-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DMARC_NA(0.00)[iscas.ac.cn];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn,online.fr];
-	NEURAL_SPAM(0.00)[0.336];
+	NEURAL_SPAM(0.00)[0.363];
 	TO_DN_SOME(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[gaohan@iscas.ac.cn,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
@@ -109,37 +109,173 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[online.fr:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,iscas.ac.cn:email,iscas.ac.cn:mid]
-X-Rspamd-Queue-Id: 00FD33B1164
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,online.fr:email,0.0.0.41:email]
+X-Rspamd-Queue-Id: 0D8733B0F9C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The adapter is used to access the SpacemiT P1 PMIC present in this board.
+Define the DC power input and the 4v power as fixed regulator supplies.
 
+Define the SpacemiT P1 PMIC voltage regulators and their constraints.
+
+Co-developed-by: Chukun Pan <amadeus@jmu.edu.cn>
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
 Tested-by: Vincent Legoll <legoll@online.fr> # OrangePi-RV2
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---
- arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 131 ++++++++++++++++++
+ 1 file changed, 131 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-index 7b7331cb3c72..57ec1cc32b03 100644
+index 57ec1cc32b03..f7a1dadaa95f 100644
 --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
 +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-@@ -87,6 +87,12 @@ &pdma {
+@@ -23,6 +23,25 @@ chosen {
+ 		stdout-path = "serial0";
+ 	};
+ 
++	vcc_5v0: regulator-vcc-5v0 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_5v0";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++	};
++
++	vcc4v0: regulator-vcc4v0 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc4v0";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <4000000>;
++		regulator-max-microvolt = <4000000>;
++		vin-supply = <&vcc_5v0>;
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -91,6 +110,118 @@ &i2c8 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c8_cfg>;
  	status = "okay";
++
++	pmic@41 {
++		compatible = "spacemit,p1";
++		reg = <0x41>;
++		interrupts = <64>;
++		vin1-supply = <&vcc4v0>;
++		vin2-supply = <&vcc4v0>;
++		vin3-supply = <&vcc4v0>;
++		vin4-supply = <&vcc4v0>;
++		vin5-supply = <&vcc4v0>;
++		vin6-supply = <&vcc4v0>;
++		aldoin-supply = <&vcc4v0>;
++		dldoin1-supply = <&buck5>;
++		dldoin2-supply = <&buck5>;
++
++		regulators {
++			buck1 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3450000>;
++				regulator-ramp-delay = <5000>;
++				regulator-always-on;
++			};
++
++			buck2 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3450000>;
++				regulator-ramp-delay = <5000>;
++				regulator-always-on;
++			};
++
++			buck3_1v8: buck3 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-ramp-delay = <5000>;
++				regulator-always-on;
++			};
++
++			buck4_3v3: buck4 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-ramp-delay = <5000>;
++				regulator-always-on;
++			};
++
++			buck5: buck5 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3450000>;
++				regulator-ramp-delay = <5000>;
++				regulator-always-on;
++			};
++
++			buck6 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3450000>;
++				regulator-ramp-delay = <5000>;
++				regulator-always-on;
++			};
++
++			aldo1 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-boot-on;
++			};
++
++			aldo2 {
++				/* not connected */
++			};
++
++			aldo3 {
++				/* not connected */
++			};
++
++			aldo4 {
++				/* not connected */
++			};
++
++			dldo1 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-boot-on;
++			};
++
++			dldo2 {
++				/* not connected */
++			};
++
++			dldo3 {
++				/* not connected */
++			};
++
++			dldo4 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-always-on;
++			};
++
++			dldo5 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++			};
++
++			dldo6 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-always-on;
++			};
++
++			dldo7 {
++				/* not connected */
++			};
++		};
++	};
  };
  
-+&i2c8 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c8_cfg>;
-+	status = "okay";
-+};
-+
  &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
 -- 
 2.47.3
 
