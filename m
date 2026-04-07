@@ -1,174 +1,176 @@
-Return-Path: <devicetree+bounces-285179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285188-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8LLVDra/1GmWwwcAu9opvQ
-	(envelope-from <devicetree+bounces-285179-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 10:26:30 +0200
+	id iNMDD6jB1GmWwwcAu9opvQ
+	(envelope-from <devicetree+bounces-285188-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 10:34:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F24A13AB49A
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 10:26:29 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D42E43AB680
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 10:34:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 35155301905F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 08:26:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3B8FB300598B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 08:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC423A5E8B;
-	Tue,  7 Apr 2026 08:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 163D939B48E;
+	Tue,  7 Apr 2026 08:34:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="CWG04K2G"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="xkGzOt2f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8E143A5E67
-	for <devicetree@vger.kernel.org>; Tue,  7 Apr 2026 08:26:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85430399015;
+	Tue,  7 Apr 2026 08:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775550367; cv=none; b=EeCUPPU16O5ydW3KWg/qCFlyLVteik6XTThFScu15QiyZdhatgUy2mhgTqpiwM04iR5VnsN/XmmLlv2PotuwOltIIxkdcUiF0JWhDkAwAro52KsTa7Dqutpo8vHac3SQFPTo1k3tnE7EOpqrtsjdoeZOPgagDTzM2fNqBM/sQEI=
+	t=1775550884; cv=none; b=B8pP77hh/p8czJQPIXJEsdyFjS0z3i5JHLSYqhem+oK43nPjfZ8M9m+8LwmGRaQfmakBQl1o2koxlYP0hQsz0FqBCzQ2GmvYPDINfIFxmNX/BfxGHL1rUx/sUcIL57AeFSx5fZnTJsF1+WBcUFjzSz/UgWGzuYlux+4THi7k/B4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775550367; c=relaxed/simple;
-	bh=zqygcrO8Ojeqem5zuMJaEBnyLG60aJqsmeSRNn3NpUw=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NmsKQIy0KDjwnfoI7MyH6G7RR7WkJ8w2ILSar6pPGg4qzpxCY9yK5BsPqTgC9+6Y20cNQ/P8zLytnx4a68cMI54ZBQSfXamDmt/AnuKnq7qZpyCVx57Fhho6VDMbXdiQ40LSDKY1lNXk6O7/QLidlikQAVPpAfuXJkM7AfHuhZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=CWG04K2G; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-43ccda008cdso2867561f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Apr 2026 01:26:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1775550364; x=1776155164; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GAhnvdn7hKx6YnOufXJRDlAYALMzw6HqrxcTsLc/17U=;
-        b=CWG04K2G8TgRZ+LclYnSa44LQoqFyCNQlgt1jfGxJMSw6BR4n2wUsg0AqKmEwYv3sq
-         1ssmWtRC0WtWJ5X3rnsHJVRbd0vJsJ1TZ7nQCTMQr35yWMhl40rQL/Pcg/CnoPzKMpFy
-         yrwoDEXIxOam/gC6ZuR5aoliDxJYBEU3wCKePmVgcyq4gT2rkG5BnAfDLFXFOOiKRrYn
-         Oy2qbSWqsEQOApfkIOEjzAacZUS2ZV+1HZM6nMdjPReht4YApx90NBO+bXug8HS9+cUA
-         vmaddclN9/kNxRXQxvpPDOmIIV1cLYfl7vxm3C6vZQee6SLxZthr4wp1tD8bGqmT6kgf
-         2tHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775550364; x=1776155164;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GAhnvdn7hKx6YnOufXJRDlAYALMzw6HqrxcTsLc/17U=;
-        b=H5ePDOYjh7CcqJi2vz6shI6tYVHNKurTq4f7URg5M9k72B3Wp4b1PY4xMiHnmfgP75
-         eexZEGbuQfc1jTONNGKfPn4oYEY3+m/+m6zsA2F9zqhn+nd4EBfmJmrCS1IjYRp28vNi
-         yYrWipumKDWos+qWnSgoA1cmPch6Ycb6H9HIwUkdUx2tQPPsGfba7Fp/mpXha1DB4+v2
-         zrbxs2lTUHLtG6vrWw1GxcCfRPTncBjT2wZKz8Yaq+suB0ttbe/fFzb+VXN0SjM+aMC0
-         9pV7pWnEo1Vh5GfqPsnn7TtqMAkL1hjoNT4Tj9IZwaZZlAE94OJE0gii0GkEoYTULyZP
-         w9sw==
-X-Forwarded-Encrypted: i=1; AJvYcCX9/LsF85w1UJDgxdRf1G1BHWXZvAfE92/Gi0FWDsGDSqUi7mxHQetShOAI72G/JNP9DHiT24HwpqrN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmG/KYFLsr3kBKuUPsRatjajB+v949KneWPhwvTa8AQZ0ytfx4
-	zjQso/On8GK7T97FnIcl7zbLIVJqCIy3pDh7Bcyw4zD8OQGGiS+IUNNQyJEjnY0+cg4=
-X-Gm-Gg: AeBDiesvnbjUm0rFwwcC8AKlLAJJWJ1F6iwUnDysU7V8QtDFYuHJpSaI8k6ihJoxA5N
-	JmH2a5mMlsLlypjR3dFjcgC58mERs2IZ5aWdfBRpcSAhvEy2Z3E3Nif7U+iGyZVT4Nlqkk3JbUu
-	l/9oyqz7d6aDr/KniyIC/LT1K4WSpfGeIUg+BZqcJP9hFbj/wBee5PYQafCwmNVNmkK2EwFvD6t
-	AM09Y/gLZoX9QPzb4RlPvA32So1KrWaV62570Lq63noZ1D+TfRuxmucA2f+bthGjmEnild6pLdQ
-	FPppXzRjOV6h8YvGdEgmr9fhrlRldrLFAqIcXOk++wWnCp+O5muZ4zNmiOmgz3GXZYIatzwUCZY
-	JKzS9bP/knJHzFdg+PBdhzai8JQ4dqvB0+XhH6hVYD1jreEl0A+oC9ltMLrDS6y13gZzHVH1vMF
-	+sYXYWevLBVtVec6oeZwZtDypxG9VS7f5Q9G71ADipvBgPWxa0Kg==
-X-Received: by 2002:a5d:5d0a:0:b0:43b:9b0a:7e80 with SMTP id ffacd0b85a97d-43d2115aed7mr29018679f8f.3.1775550363998;
-        Tue, 07 Apr 2026 01:26:03 -0700 (PDT)
-Received: from localhost (93-41-3-120.ip79.fastwebnet.it. [93.41.3.120])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43d1e2c637asm46018051f8f.14.2026.04.07.01.26.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Apr 2026 01:26:03 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Tue, 7 Apr 2026 10:29:09 +0200
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-pwm@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Stanimir Varbanov <svarbanov@suse.de>
-Subject: Re: [PATCH 1/3] dt-bindings: pwm: Add Raspberry Pi RP1 PWM controller
-Message-ID: <adTAVQddjxHgoh9k@apocalypse>
-References: <cover.1775223441.git.andrea.porta@suse.com>
- <11b5eee3c22cfd034bb4b425d28a5a3ff2a71828.1775223441.git.andrea.porta@suse.com>
- <20260405-enormous-glittering-avocet-285f82@quoll>
+	s=arc-20240116; t=1775550884; c=relaxed/simple;
+	bh=ll5Xf8OgLSwzLu5gj1f8oU0LLlZwJOhEZFC7iIA9WeM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GnDSw73FJVR3s38fKH1PKEbfPVHXBIDLw5Mz8eFUca13spXVPmqmdKxs0Qa6PZtzOdaF3HUh7irSFatyMI8Iyzy+yr2rmhF+j8WXOcIE8mV6uba2pOknMj9G9bbKophZsSl/rbV7uQEPhZd+WnQCnp9uHhJawO43ZtG2rnclHo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=xkGzOt2f; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 032084E4294F;
+	Tue,  7 Apr 2026 08:34:26 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id AA828603C7;
+	Tue,  7 Apr 2026 08:34:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 901F310450169;
+	Tue,  7 Apr 2026 10:34:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1775550865; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=MeVAzDBoyGqpo2KSnPfszamlpaudEQsSPJY6g/H6Ddc=;
+	b=xkGzOt2fHZy8K/uSb8zZSe7krpsMuTwa9sV0dleOZNXCZ0Rcr1V7kjqWPldKOwQVt8psTM
+	2hwNspJcP04jPOiA9hsbPXa19xKzO9a1DIRyJhEX6oNnIwPiYbDNv66rWw1CXzVi4aSsv7
+	RZJurmrlgJNgpZPP7uggfsMrRrrvjUoo2EK2LNoCcC7LoiVn8cVo/GTbjuDj7dgGJk9/C/
+	rJtt6dqYnnlxuANE4gZbL6y3vbWEwGICizQSymY3chIhzLn0DuMYt89JYpjNcS6Z6fTXNo
+	pT+lmzsH2H86Ege+Vey2IbLFm+6y9o4jUJSycrPmaiOdEn5M2wFBOqDV6GEeCQ==
+Message-ID: <c2026868-35ff-4b5e-a0e2-bf6b3f6b75ce@bootlin.com>
+Date: Tue, 7 Apr 2026 10:34:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260405-enormous-glittering-avocet-285f82@quoll>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: Add schema for LAN75XX compatible
+ USB Ethernet controllers
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>,
+ Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>,
+ Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-omap@vger.kernel.org
+References: <20260403-b4-var-som-om44-lan7500-v1-0-0dadde850143@bootlin.com>
+ <20260403-b4-var-som-om44-lan7500-v1-1-0dadde850143@bootlin.com>
+ <20260405-smoky-spectacular-koel-dbfcda@quoll>
+Content-Language: en-US
+From: Thomas Richard <thomas.richard@bootlin.com>
+In-Reply-To: <20260405-smoky-spectacular-koel-dbfcda@quoll>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-285179-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-285188-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[suse.com:+];
+	FROM_NEQ_ENVFROM(0.00)[thomas.richard@bootlin.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,suse.com:dkim]
-X-Rspamd-Queue-Id: F24A13AB49A
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: D42E43AB680
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Krzysztof,
+Hello Krzysztof,
 
-On 09:52 Sun 05 Apr     , Krzysztof Kozlowski wrote:
-> On Fri, Apr 03, 2026 at 04:31:54PM +0200, Andrea della Porta wrote:
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +
+On 4/5/26 10:06 AM, Krzysztof Kozlowski wrote:
+> On Fri, Apr 03, 2026 at 09:02:23PM +0200, Thomas Richard wrote:
+>> Create schema for LAN75XX compatible USB Ethernet controllers. The smsc75xx
+>> driver only supports LAN7500 and LAN7505 devices.
+>>
+>> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
+>> ---
+>>  .../devicetree/bindings/net/microchip,lan75xx.yaml | 52 ++++++++++++++++++++++
+>>  1 file changed, 52 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/microchip,lan75xx.yaml b/Documentation/devicetree/bindings/net/microchip,lan75xx.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..b84022976044ffec2024cff9fc0aa5016723abed
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/microchip,lan75xx.yaml
 > 
-> Missing ref to pwm.yaml.
-
-The reference to pwm.yaml is at line 13, as follows:
-
-allOf:
-  - $ref: pwm.yaml#
-
-currently right after the maintainers: block. Are you
-suggesting to move it after the required: block?
-
+> Rather microchip,lan7500.yaml. Wildcards don't really scale when you
+> have 75yy coming which does not fit into this binding.
 > 
-> > +additionalProperties: false
 > 
-> and this should be unevaluatedProperties. See other files.
-
-Ack.
-
-Many thanks,
-Andrea
-
+>> @@ -0,0 +1,52 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/microchip,lan75xx.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Microchip LAN7500/LAN7505 USB Ethernet Controllers
+>> +
+>> +maintainers:
+>> +  - Thomas Richard <thomas.richard@bootlin.com>
+>> +
+>> +description:
+>> +  Device tree properties for LAN75XX compatible USB Ethernet controller.
+>> +
+>> +allOf:
+>> +  - $ref: ethernet-controller.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
 > 
-> Best regards,
-> Krzysztof
+> Drop items, that's enum directly.
 > 
+>> +      - enum:
+>> +          - usb424,7500
+>> +          - usb424,7505
+> 
+> But you should notice that this is exactly the same as 95xx, so why it
+> cannot go there? Because of the wildcard 95xx naming? That's not a
+> reason.
+
+Yes I noticed. I did not put them in 95xx because it is not the same
+driver. Isn't that a valid reason?
+
+Best Regards,
+Thomas
+
 
