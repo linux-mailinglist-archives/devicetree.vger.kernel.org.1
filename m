@@ -1,252 +1,137 @@
-Return-Path: <devicetree+bounces-285366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285367-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aAInHtAi1WnK1AcAu9opvQ
-	(envelope-from <devicetree+bounces-285366-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:29:20 +0200
+	id IDtGIj0k1WnK1AcAu9opvQ
+	(envelope-from <devicetree+bounces-285367-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:35:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCF803B0FA3
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:29:19 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 059833B11B1
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:35:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ECB4D301C8B5
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 15:29:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2EB6530A9500
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 15:30:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D43A36F43D;
-	Tue,  7 Apr 2026 15:29:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126B033D51D;
+	Tue,  7 Apr 2026 15:30:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LjSgZ7Ar"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B559393DEB;
-	Tue,  7 Apr 2026 15:29:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87A336C0D3;
+	Tue,  7 Apr 2026 15:30:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775575751; cv=none; b=pYUyVzAQ3FlYkAV1s+g9XnQx2SCSJXPN3o8sdRpYFqwsUU6S320VOyFeHoL7QYgKj5TYP1iFvAc5033PbnByEfFzG5kXPlxgs6sn5AT8XdWAVvfPts8k4xi1M/6ipSRGFUpxK/Gw1dnMKJmP/UB2gIyeKO5IkNwEb8B6mKovAJU=
+	t=1775575826; cv=none; b=NoPz7pC7kDZi4LjPe/HBsZku5RNY0OLFPZIyPLQ+KWpIP/FskUrnYMcAFL6OBJ7WsJoQ+IdDoFmXiBUQEi8i+O1wSo/IqIXD4KDAePKdTjyhN58gEykAGslmv472nylwJ4kpswGep4S757lKu8khI2vrT2I78knTyphr4foMCm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775575751; c=relaxed/simple;
-	bh=v9H0/BiEgDLyr6+O80bvcvvTwvvkgOoLtkejCvMvSfk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=O06Afz8KQdkaeZlXbSgpHjWoWCpPVE249t2P5cojdPpHItxg6tPJljSy161t386a8BGpfOkbGnSFcLb6fLPi1uzZWDpLNLe4R+9Gf+K9+zLgVR8EFfSOZjRX92b5ZTKKXSQffec7RTZs+9DglLPIY5UD6T8AwygLeWs5Rjgf8Qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from localhost.localdomain (unknown [223.166.95.230])
-	by APP-05 (Coremail) with SMTP id zQCowAB3zhGSItVpaxDVDA--.63755S5;
-	Tue, 07 Apr 2026 23:28:20 +0800 (CST)
-From: Han Gao <gaohan@iscas.ac.cn>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1775575826; c=relaxed/simple;
+	bh=TbudX6aGyCNPsFVssjZ3W5xAnai05Ks8V4pY3NZT0WA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dtZkZwaHxElX3rUEu5zxgI4RGzVw1IZnBugdqyrEsst9gy+r8QvCZU3hR5k8oMIBRs01F2yi2uq2r0Gg04Q1oJ64U0jt3NApADpmqmteOt0mRErW4ggv1/KQcM6VRdrdAXQnDKhB6UrjewuuoIKkgZs/xklmMAMMdH2JYL37c2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LjSgZ7Ar; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C9FDC116C6;
+	Tue,  7 Apr 2026 15:30:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775575825;
+	bh=TbudX6aGyCNPsFVssjZ3W5xAnai05Ks8V4pY3NZT0WA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=LjSgZ7ArsiIgSXuvC4Wa7OwmiSV5natfgZll6bAz11p/VX5bFsojq9j0wkeB+RDSa
+	 bLwORRzjSMbAe0hR0CytgHpMri9eL9TmVMraAzQgyh8JspoY3/RkIRcZBaCUkyd681
+	 AYpd6W1Gh4i1DhUgl1yz/9cxCdUhfYNP+7GJlH3JgZX4AzNMqrnOmf6s8e+GhPZzBq
+	 7Ujf8xYxSYwCui72pT9lACnRTZqGPJOtv7W+N3LA2nN5FKPVDkWlSgUTbZXC5F+/TE
+	 H021AByuPtzTtoOIaynxgWpFOmDtozYctzdZLJjnBxWQ+qtBss35vSJxaPz5hG7dWd
+	 /E1zBo2/YA1Mw==
+From: Conor Dooley <conor@kernel.org>
+To: linux-riscv@lists.infradead.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Cc: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Han Gao <rabenda.cn@gmail.com>,
-	Han Gao <gaohan@iscas.ac.cn>,
-	Vincent Legoll <legoll@online.fr>
-Subject: [PATCH v10 3/3] riscv: dts: spacemit: Enable USB3.0/PCIe on OrangePi RV2
-Date: Tue,  7 Apr 2026 23:28:16 +0800
-Message-ID: <8e397efb06efd9b02788df07f435ce153de05cd5.1775575436.git.gaohan@iscas.ac.cn>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1775575436.git.gaohan@iscas.ac.cn>
-References: <cover.1775575436.git.gaohan@iscas.ac.cn>
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] dt-bindings: soc: microchip: document irqmux on pic64gx
+Date: Tue,  7 Apr 2026 16:29:31 +0100
+Message-ID: <20260407-headache-reward-ae93bacdba0e@spud>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1268; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=nvr39C1LZXppwb7vRRHE2hQ7HrUmAZPXSdwtVK9tNMI=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJlXlW5zFeyzO6d+/PqyFGP5zdczxbb7BaabvVWTFKp6N zV3WVtlRykLgxgXg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACZS8Z/hF3NDUvOsC+ufBFk4 y3hEe8RcVb579p4M/6+eEyfd/nYcjGH4HzD/hb2qVq/AwzJxrbro4AdJQWGzAvKKLeweaR27tbe fBQA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowAB3zhGSItVpaxDVDA--.63755S5
-X-Coremail-Antispam: 1UD129KBjvJXoWxXFyDCF45tF45CF4DXw45Awb_yoW5WFWDpF
-	47ursI9as3Ar1rKw45Wa4IgF43Ga1kGFZ7CwnY9r48Jr4Duas09rZayr1rAFn5Jw4kXw1a
-	yFyUAFyxGFnFgw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUm014x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JrWl82xGYIkIc2
-	x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
-	Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UM2
-	8EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s0DM2AI
-	xVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-	vE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
-	r2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04
-	v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
-	6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
-	AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE
-	2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0x
-	vEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVj
-	vjDU0xZFpf9x0JUHWlkUUUUU=
-X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiBwwKDGnVHWAS8wAAst
-X-Spamd-Result: default: False [1.54 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	TAGGED_FROM(0.00)[bounces-285366-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn,online.fr];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	NEURAL_SPAM(0.00)[0.353];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gaohan@iscas.ac.cn,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-285367-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.2:email];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,online.fr:email]
-X-Rspamd-Queue-Id: CCF803B0FA3
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,microchip.com:email]
+X-Rspamd-Queue-Id: 059833B11B1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable the DWC3 USB 3.0 controller and its associated usbphy2 on the
-OrangePi RV2 board.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-The board utilizes a Genesys Logic GL3523 USB3.0 hub.
+Being practically identical to PolarFire SoC, pic64gx has a irqmux
+that's entirely compatible with that on mpfs.
 
-Define a 3.3v fixed voltage regulator for PCIe and enable PCIe and
-PHY-related Device Tree nodes for the OrangePi RV2.
-
-Co-developed-by: Chukun Pan <amadeus@jmu.edu.cn>
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-Tested-by: Vincent Legoll <legoll@online.fr> # OrangePi-RV2
-Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
+CC: Conor Dooley <conor.dooley@microchip.com>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: linux-riscv@lists.infradead.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+---
+ .../bindings/soc/microchip/microchip,mpfs-irqmux.yaml       | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-index f7a1dadaa95f..3a829e3c9cbc 100644
---- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-@@ -23,6 +23,16 @@ chosen {
- 		stdout-path = "serial0";
- 	};
+diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.yaml
+index 51164772724f5..419b32e2df936 100644
+--- a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.yaml
++++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.yaml
+@@ -26,7 +26,11 @@ description: |
  
-+	pcie_vcc3v3: regulator-pcie-vcc3v3 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio K1_GPIO(116) GPIO_ACTIVE_HIGH>;
-+		regulator-name = "pcie_vcc3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_5v0>;
-+	};
-+
- 	vcc_5v0: regulator-vcc-5v0 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc_5v0";
-@@ -42,6 +52,16 @@ vcc4v0: regulator-vcc4v0 {
- 		vin-supply = <&vcc_5v0>;
- 	};
+ properties:
+   compatible:
+-    const: microchip,mpfs-irqmux
++    oneOf:
++      - items:
++          - const: microchip,pic64gx-irqmux
++          - const: microchip,mpfs-irqmux
++      - const: microchip,mpfs-irqmux
  
-+	vcc5v0_usb30: regulator-vcc5v0-usb30 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
-+		regulator-name = "vcc5v0_usb30";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v0>;
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -54,6 +74,10 @@ led1 {
- 	};
- };
- 
-+&combo_phy {
-+	status = "okay";
-+};
-+
- &eth0 {
- 	phy-handle = <&rgmii0>;
- 	phy-mode = "rgmii-id";
-@@ -224,8 +248,64 @@ dldo7 {
- 	};
- };
- 
-+&pcie1_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_3_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie1_port {
-+	phys = <&pcie1_phy>;
-+	vpcie3v3-supply = <&pcie_vcc3v3>;
-+};
-+
-+&pcie1 {
-+	status = "okay";
-+};
-+
-+&pcie2_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_4_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie2_port {
-+	phys = <&pcie2_phy>;
-+	vpcie3v3-supply = <&pcie_vcc3v3>;
-+};
-+
-+&pcie2 {
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-+
-+&usbphy2 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3 {
-+	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	vbus-supply = <&vcc5v0_usb30>;
-+	status = "okay";
-+
-+	hub_2_0: hub@1 {
-+		compatible = "usb5e3,610";
-+		reg = <0x1>;
-+		peer-hub = <&hub_3_0>;
-+		vdd-supply = <&vcc_5v0>;
-+	};
-+
-+	hub_3_0: hub@2 {
-+		compatible = "usb5e3,620";
-+		reg = <0x2>;
-+		peer-hub = <&hub_2_0>;
-+		vdd-supply = <&vcc_5v0>;
-+	};
-+};
+   reg:
+     maxItems: 1
 -- 
-2.47.3
+2.53.0
 
 
