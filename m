@@ -1,182 +1,162 @@
-Return-Path: <devicetree+bounces-285343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285339-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sNmsBcEf1Wnr0wcAu9opvQ
-	(envelope-from <devicetree+bounces-285343-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:16:17 +0200
+	id mMlECXwb1Wli0wcAu9opvQ
+	(envelope-from <devicetree+bounces-285339-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 16:58:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 603E23B0C6C
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:16:16 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE44D3B07B1
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 16:58:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9C7AA3096103
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 15:09:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 266DB301AAA4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 14:58:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D6D349AE0;
-	Tue,  7 Apr 2026 15:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7500E33CEA5;
+	Tue,  7 Apr 2026 14:58:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="gfQT8L/e"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AcGu+MWK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5677233D505;
-	Tue,  7 Apr 2026 15:09:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C585333D4F3
+	for <devicetree@vger.kernel.org>; Tue,  7 Apr 2026 14:57:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775574581; cv=none; b=jkiR4fYmwfHhRnN5bVpJqAHBnqBi0TjqG00g+blfYNLgVAzcIN5LUVrM96qo9WH6KWJklf6YylPahsMPRB/tR9xLuQNSZ1xRfItQDYFQo2KoNlw7I3c5J4cEn1wrbBaecS1B7FxtVAiZRRw0ij5as2/qpwX1WlT9P/QTORF9smI=
+	t=1775573880; cv=none; b=AbL4MJNXqA2rW5Y9f5eOX5EHnxh89PazES9RoPo9+HpQWd2CLMOQ0ADx1I1E3Z4oQxCyJyeNPlSFEFj5pf9eEw8AK+7hTi9nSbx4zHfWnD6n0F2NZmaPzRP7uHm/oCJ0UIsoykIjUfdkIHBHczoo2BYKqo4XO9JzAn1OtWkxmEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775574581; c=relaxed/simple;
-	bh=dkcbGVCRR5JfW5kZaQmLiuBhWaoFEwvQeU9ASSY32kk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Csazu8yGm3kHb2RnJnijsebcS29wevpTS7kNnCNaz9izaAhDKbEH7sN6ZtoArlHdLCY5BowsVFzPaOrAYF/8o4bvHTVCshPsJpS+2ORgsE5Z6nQ4o7riIaFmjTnoV3GfN6ehXV67KkRcJYO8jJlx2YZIjMgJRXJRkQJRH1SiAV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=gfQT8L/e; arc=none smtp.client-ip=178.251.229.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B98CF10E33C;
-	Tue,  7 Apr 2026 17:09:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1775574576;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=fUKRr3PIBlTzdV7W5Whjo5YyCw0hsjFvMeaap8RDMWk=;
-	b=gfQT8L/ePFsPjNOlKK7k4A8ISlVQUwClinREShy/diZqB70BOY43EQwB6JhIiJJHrtQWet
-	xaxDxyWLPzX1j2RvMm8/jtZinzR9neA6m/dPmrHL2ZTh0TivcHbMT8SXrRIXyZmAc2eQmC
-	uWb3saPAGAaNFP5DG1xfevjSqP+YDyCQL3itj/wcesOIM26SANxL4snTrnLa8CbIMkOjG/
-	uv6ELiglcBwNlO992owG7IPXHLH6FufdjnKXibgtwZvknkRkApNMm0ql+ASjKi9r+CwxTJ
-	f2aqkyl7QcFb8opXCWp0DlBHIqEN0r0td1ZbL6mU+F7VbO+LynOsSEPK5ztzeQ==
-Message-ID: <c3a9c4eb-92ce-48c2-83ff-18c7ce03acd9@nabladev.com>
-Date: Tue, 7 Apr 2026 16:51:45 +0200
+	s=arc-20240116; t=1775573880; c=relaxed/simple;
+	bh=cyqmsmFaUhWO0usCsRhXLb1p8EfZ2EfkZtfAQtdHSG0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FMcV8hEyoCxsE/4lqNvK5+BtHVma7jw35vbCQMchUnRTsP6oaGZxF8MK96ocWS20ciicerpMAO/f8Yxwr24bunPJzZXt+sEm2CcmbsvBFYO0sGLUbluZs/syo8kqJZHRZDGKfmp+YLnqXl33vBew8iN1ARhMDhdIp0S6tGNq4z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AcGu+MWK; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-43ba1f3fa7eso5419753f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Apr 2026 07:57:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1775573877; x=1776178677; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2khtJu6y4LBtKzkynEVHeXEXsp2G3dQZozt2yDEDQ5I=;
+        b=AcGu+MWKaxBlR9OCuaRg/7FY7dedBby8JeBdw3lXPsl+7J9IQeRFcI96xzHyd3rbOX
+         Sp+Pp7Evcke/1ZnhMNLq1M8hAe6jD9GZb0N7uqHadPus/OspDp4N/Vj3Lsl7famsIb8q
+         tln/3snA0MZJVlTfzmYD33emyfNcZayHPSVrLHhywnNGFOgkB0pZOSoUHzNtdWiau+iX
+         s6KIapwhGmoJ387YqVtSmoY9PuhBp49gmdTBZQ60PWS/zN09gXYLySbmHmqLmxJLQ8E3
+         ZOX/38psK82LqIUX+JPUDocBMNY5ESGhIbjmkEbL6AUA0qaneI70yFhjUJI6zmD8O6mp
+         89vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775573877; x=1776178677;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2khtJu6y4LBtKzkynEVHeXEXsp2G3dQZozt2yDEDQ5I=;
+        b=Kd9KIbMrt+qkfIlhy3ZzLOknjMlq3GVC+mNJ+xsTuOqVdZA+rhaVyd+1HRNoLM5aWP
+         JwwA2WGEOUkKu0Hb7MK4gTMV0QYBJMjf91WQdU2EF2xUBMy8+youi+jrf3DpcHBkImJ0
+         Jo87Qe5YpkLuj8I75h5Tk5+cAu+bWa1jS601r2LaBlGhGKV15jU0U6FVI/1RuBWxsTdH
+         cr4uBb4ifR8baKTt75jHCTa1wCenADwVdSE8GXXfzgHeY/kQpRPrshy85uyrTjkpaGJZ
+         jXw53UCWLTYtesM3auPw79tv1T/fCQFWeqK5C82dCZraxaYob5yZ3tHS3jc6Qpn/tyBE
+         yRqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUDTJ3UBScxhad3hj3RM/yF9ESzso1Jo0J3VbDUpA1yPImdw+ARgcnnhZUfIYPd2O6qDL3OMO/u+aaw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxtr7YGJGQGgJgZCKnm91ygQ9RSwgZt1wLSjw9nHjveiqnpNmX6
+	Pxqp9fn86BGfaXqb9tOTM7A0OF+2AWECPxpJmcriyvrH+FJPwCIzrmJm
+X-Gm-Gg: AeBDiev81cled9rHXgs2Av4XIi/qk8TDbXqKWst52GCx6twWC/RZ9qvVzHhHElKb7Z1
+	0oQC1W9YVo/gGfyPklaoJvy81VvY4MgPWxjyeczu0PbOcuLzZWuejcSnHHwTUI3YJVJKM5Jx3uU
+	lpYIV5aDwLmCQvEzdfMEfWTkvvpe4Th2fDFP50BrPgryqaAcvueW5LnHIkzeg1w09fkKXyV+W7d
+	3YSzBNC/6z9qysx7L204W3FYIgmLSI4f73+DCTMng9YtihnVlybPxRlb64wytLEUDKw5MRWkpQ/
+	HgstRZVlEb+9GIhS/aXl8WswQUJdpTuMTkROCzalrrcLp5OHphCDaipITJSobcM9vy0qvxYuvx2
+	o2hBkGy9FYKvFrWfS77vR6Gr3XZ2fZieqhpIY77FEefN4VHEuPcCQaSzrUUkAHe8Kvde7CX1vJG
+	I3Zhz198eueAojpZZiR7nUUnwG1RD2MrOFW40tDmk2SGTSJwh6
+X-Received: by 2002:a05:6000:401f:b0:43d:2be:e4e with SMTP id ffacd0b85a97d-43d292ff520mr25307993f8f.46.1775573876941;
+        Tue, 07 Apr 2026 07:57:56 -0700 (PDT)
+Received: from localhost.localdomain ([2a00:23c4:a758:8a01:3f9a:11a8:20c3:fe58])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43d1e2c5253sm45207018f8f.9.2026.04.07.07.57.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Apr 2026 07:57:56 -0700 (PDT)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-spi@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v3 0/2] Add Renesas RZ/G3L RSPI support
+Date: Tue,  7 Apr 2026 15:57:49 +0100
+Message-ID: <20260407145753.101840-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: display: bridge: lt9211: Require data-lanes
- on DSI input ports
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20260404034123.340818-1-marex@nabladev.com>
- <20260407-invaluable-pretty-leopard-1e8dfc@quoll>
-Content-Language: en-US
-From: Marek Vasut <marex@nabladev.com>
-In-Reply-To: <20260407-invaluable-pretty-leopard-1e8dfc@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
-	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-285343-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-285339-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_TO(0.00)[renesas.com,kernel.org,glider.be,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,intel.com,kernel.org,gmail.com,kwiboo.se,ideasonboard.com,linux.intel.com,linaro.org,ffwll.ch,suse.de,lists.freedesktop.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nabladev.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nabladev.com:dkim,nabladev.com:mid,0.0.0.0:email]
-X-Rspamd-Queue-Id: 603E23B0C6C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,renesas.com:email]
+X-Rspamd-Queue-Id: BE44D3B07B1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/7/26 10:00 AM, Krzysztof Kozlowski wrote:
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
->> NOTE: For example Linux kernel driver does already use that information
->>        and fails to probe if it is missing. There are currently no intree
-> 
-> The first sentence must be part of the commit msg. That is important
-> reason why you are doing this... but I don't see how you achieve any of
-> this. Look:
-> 
-> 
->>        users for this binding, so no new warnings will be generated once
->>        this is applied, but a new user is about to be added.
-> 
-> What warnings? How?
+This patch series adds binding and driver support for RSPI IP found on the
+RZ/G3L SoC. The RSPI is compatible with RZ/V2H RSPI, but has 2 clocks
+compared to 3 on RZ/V2H.
 
-There are no in-tree users of this binding, so no DT checker warnings 
-will be produced on existing in-tree DTs. I am in the process of adding 
-a DTO which uses this binding now in arm64: dts: imx8mm: imx8mp: Add 
-DTOs for Data Modul i.MX8M Mini and Plus eDM SBC
+v2->v3:
+ * Added ordered DMA names for the dma-names property.
+ * Dropped the tag from bindings as there is a change related to dma-names
+   property.
+v1->v2:
+ * Rebased to next
+ * Collected tags
 
->> ---
->>   .../display/bridge/lontium,lt9211.yaml        | 37 ++++++++++++++++++-
->>   1 file changed, 35 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
->> index 9a6e9b25d14a9..5264fb2b68b78 100644
->> --- a/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
->> +++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
->> @@ -36,18 +36,50 @@ properties:
->>   
->>       properties:
->>         port@0:
->> -        $ref: /schemas/graph.yaml#/properties/port
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> 
-> OK, that's correct.
-> 
->> +        unevaluatedProperties: false
->>           description:
->>             Primary MIPI DSI port-1 for MIPI input or
->>             LVDS port-1 for LVDS input or DPI input.
->>   
->> +        properties:
->> +          endpoint:
->> +            $ref: /schemas/media/video-interfaces.yaml#
->> +            unevaluatedProperties: false
-> 
-> That's correct.
-> 
->> +
->> +            properties:
->> +              data-lanes:
->> +                description: array of physical DSI data lane indexes.
->> +                minItems: 1
->> +                items:
->> +                  - const: 1
->> +                  - const: 2
->> +                  - const: 3
->> +                  - const: 4
-> 
-> That's almost redundant in this context - it was already there - and the
-> point is that it solves noting in the problem you had. Binding still
-> does not validate the ABI and does not match it, still.
-> 
-> Since commit foo bar, driver needs data-lanes, so what you need to do is
-> allow them and to require them. You can also specify their constraints
-> if device can be configured multiple ways, up to 4 lanes.
-Please pardon my ignorance, what exactly do you propose I change in this 
-patch ?
+Biju Das (2):
+  dt-bindings: spi: renesas,rzv2h-rspi: Document RZ/G3L SoC
+  spi: rzv2h-rspi: Add support for RZ/G3L (R9A08G046)
+
+ .../bindings/spi/renesas,rzv2h-rspi.yaml      | 28 +++++++++++++++++++
+ drivers/spi/spi-rzv2h-rspi.c                  |  8 ++++++
+ 2 files changed, 36 insertions(+)
+
+-- 
+2.43.0
+
 
