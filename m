@@ -1,263 +1,413 @@
-Return-Path: <devicetree+bounces-285103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285105-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iIQYJuuC1GmVugcAu9opvQ
-	(envelope-from <devicetree+bounces-285103-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 06:07:07 +0200
+	id UH+fGL+D1GmVugcAu9opvQ
+	(envelope-from <devicetree+bounces-285105-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 06:10:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998013A99EF
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 06:07:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B66A43A9A48
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 06:10:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6B87C3006806
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 04:07:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AC88B3009CE7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 04:10:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8C7377575;
-	Tue,  7 Apr 2026 04:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6E9374187;
+	Tue,  7 Apr 2026 04:10:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NMVrl8Ag";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EFa2i5LW"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="uZDmyQLe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from BN8PR05CU002.outbound.protection.outlook.com (mail-eastus2azon11011001.outbound.protection.outlook.com [52.101.57.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4F60231A23
-	for <devicetree@vger.kernel.org>; Tue,  7 Apr 2026 04:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775534822; cv=none; b=e953VqtDITVd0HQGhjnGbd1Ho7UpvfUcLCcbdfVzV2Kbs1t6ybZCedcyJImEe1g5/YBWxaDc2vfV2o4+hmJYLS09Pd5nc6ypa3659ocHes8qWBT73y7O5DzWTfS2voNqnfFDspvH4GmjeCHCcUtvvCrhI4lw84eGiDQMI1mpbHA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775534822; c=relaxed/simple;
-	bh=/hfGQbtesKRC3lit+F91bIJfGvVZA63Gc2j//SRpkW8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IRpPKEyBSpB0sppY4SO0jk8y6yseqZMSaNEO6mui/uP1IXjBPx2nyI7LLE2gvco7lSI4322tKpGxX/d0HZdmdSE/X1WmLezDN81Yn12/6b73CFVRX8+dRd/EuXlDb0nsa81damdpy13aVJ8JJuYSuJmWgnc/JGYt8vuM3wf5Rpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NMVrl8Ag; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EFa2i5LW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 636LQPnY493369
-	for <devicetree@vger.kernel.org>; Tue, 7 Apr 2026 04:07:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	h5OG6lICsmuX05QyL4RIPqB/8SW9MLBfBau3CiAnvoY=; b=NMVrl8AgoCNV5rTW
-	sHdkBslP0f3lNzkrbFcRcpeTpcg51I5aBbQbtnWuMj4nIJfi2jifSFja+qHxgOaW
-	DHIuZsIbsu8ARY7snOG2xGXGer2xWLbI89K+aU0krpy935k0ToEWDGCNGC+iNZEv
-	1T92hZhmFJMz7NAu4fEwFdgJCfh774IVxAKBfhpsG3Vb4q9fPRGO3eWSe9ZazTsr
-	kzbNIKhnFtY/CJejE/SoPCOrvKIieyUrEYIAVCbm2m2gkRGoxlAucz/X6++o9D3o
-	ddt9HWnWQn8KBGkVVwblaVgkqJ74qzT354G+9q/WikrrHakHvKBZ0hJbguLGKXxk
-	bEvJJA==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dcmr8rx7s-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 07 Apr 2026 04:07:00 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-82d02942266so5795875b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Apr 2026 21:07:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1775534819; x=1776139619; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=h5OG6lICsmuX05QyL4RIPqB/8SW9MLBfBau3CiAnvoY=;
-        b=EFa2i5LWdiAIwbOHTo2QAV2BjMrRvmXnl2NCl50u1pZIp9bnUw+xxoQA9/OjPTSQft
-         fyXStl2+F5zVFHCc/FKc2L+vy0FqTb/B+vLgewE49E579pNluwad4TbdaQyzcCZgD+Gk
-         brVgeamTywC0MbdCjmrdI7LeiDW095PUGhWo1suhb9Jr2AaGHjnZA3fakxDBOW87P7Ab
-         IPQlH1ypr33ADK4AAPvm2UuPp25kzDZlWQWt9tHJeHXmJBQkWnK7oqnt8GC/PJKAtFyb
-         O1wF9wQSKoXAgMRwY5CiflYMy0wYG5O3xHC0/iwxQuD4TK24PEc3EXIDwq2dMXhdJpUs
-         9a5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775534819; x=1776139619;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=h5OG6lICsmuX05QyL4RIPqB/8SW9MLBfBau3CiAnvoY=;
-        b=hXX9MVtBzVNCyOK73AkN0oCzdu0mRT2ozDw/57oXiZ16swOomnPf81o68Y2Xn+0D5i
-         qpWRp76qBfdKEvWyMBP+pthRgxTicidJ60SM/zjNdiI+WKa79WADES02jfpNTERzKeJF
-         atRK564LfSSTe06Xe4PWrP0IZjVv/KvXVat8B1tVEMyJa40kDT3gSg9KJ05FsLTmtOv1
-         BV98idJBvkohetvD4iwivD1zCsREIGmS9VbMcMDZs3h8jPNNImMVKz42rIUrdeNvdRwK
-         514C1MQFjfyvfuRhJ2pEVoQF1ESuFGwTPRT88wrKSMrfZcJWwyGI3GtjPNrKUg+OhctP
-         qcpw==
-X-Forwarded-Encrypted: i=1; AJvYcCWOMdUeNVKSLGOh+XeTwiTK0BVdwp/CTGBBBslwKFkZu7SVfUhhXC1OcL2Mn1n8MU+cr60lnyD5+KAX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzN3jvY2eeKxMMFnXoGbvehFNRsB9vqlg/dmr0zmvJ3otYM1hiy
-	9/Y34wVlw+QdvVifQTbn/j2ujsfnEipbcU0HZmRwmUCas0iFwHkKZ0Uqd11vvj9R/mxL4XoIjlg
-	L7GKqMGkhdQvkvxfQbZx2xAahav8UJnXCs7DOgsV0RJbbl34ssL4LcGjzsc61Mv99
-X-Gm-Gg: AeBDiesF0PvNCkkD3jlvYsAOUYUaT8H4X0pnT7RpB+fABQyG9Oe7di+Xre+OcHRhd0B
-	Q0BoESATs+ThfRQLM1YTkNuePj9v3JsT3ZsrxIal47O16iQLpVflMtZYBBGtkIQSSJyzJLrjKxK
-	lg1TUKwPbk6Mm3xYVX0PwvY/JyjAue002symEfNoC0VS7BByiB6RlQjMT0dwFI9RAhxyl5pMreg
-	gSXlskToWArj5F6vESJIH9y6DQ9cO2SPN2W4/pSCUcc2Ifs+JFGvD+Z/5opFOD7ihpPdfLTJnl5
-	eAZl0f22anXWsP9qYtWEx+xp2vWWoznYbC0+MLOXEtGGxN/CxXfcNB9L66sS9Ewf9z4i2PvbaaN
-	fhj7WeixzOOfFbCNzb/g3zqYFCRJZCy6YyzJ2K1dTaT2SsDsgpg==
-X-Received: by 2002:a05:6a00:298e:b0:82c:e601:3601 with SMTP id d2e1a72fcca58-82d0db8f8dcmr15118558b3a.42.1775534819425;
-        Mon, 06 Apr 2026 21:06:59 -0700 (PDT)
-X-Received: by 2002:a05:6a00:298e:b0:82c:e601:3601 with SMTP id d2e1a72fcca58-82d0db8f8dcmr15118528b3a.42.1775534818855;
-        Mon, 06 Apr 2026 21:06:58 -0700 (PDT)
-Received: from [10.152.196.198] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82cfebe5b23sm15802821b3a.59.2026.04.06.21.06.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Apr 2026 21:06:58 -0700 (PDT)
-Message-ID: <ae47256c-053f-474f-b799-24274c68dfd5@oss.qualcomm.com>
-Date: Tue, 7 Apr 2026 09:36:53 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FB7A272803;
+	Tue,  7 Apr 2026 04:10:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.57.1
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775535028; cv=fail; b=heB1AwiPRIdpsEUO6pdXuoSP8UAmYSWHUTBam6gfbMQpLMs1edXIBdVWYsvztCk5VMAp3UnNRQLF2xQ8/1ooyN5LlMof75ooHIC/vB0VgGKBWurTW5GVhc9jCsZAoMJFkw5rpBQ9iPYL65SwZBhmwY6+Tu0DcG0zw5gTSeTvS/Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775535028; c=relaxed/simple;
+	bh=9NVjM++DB0OvU8/eI845XwDRoAlMP+w70cmPK5/yDCU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=DbQgeYLPgEy3ZQd+Xz/+lzTdEN90o+0+/v6laBuXY69KqIewh3siEXrnSWxXO8IjZ3T7LSP87a5ttyiEZ6D4vcHRe3pK638FSTgbJ9SG6vT+WO/ftbXWnXTJ3LguhK/1/dlN3La5vuCE2yQx8QuliAzZvtZD0NJDlT/Y7CtR914=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=uZDmyQLe; arc=fail smtp.client-ip=52.101.57.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eK8k/apzIx6azRWKoECcS1BUbdbzDZbPVDF3s0vbHZHIBQY6Jd99HA4czQVxk41LOc2R928VmWPhclaVKdUQjNaWUPU6BRaF/4ggDhR77zZKoM03rjY49O+huoVQvHjHq7kv1jC/Qqw6REFVivGRSMJXrMZhGvuMRuRZE+XHxmXSVkZn7Qcl6CQKgHjD11Wq38XohRCfH4XbQmE/3vle4RIO55cBBoL6G+De2rXt/oD+oE46bYw90uKlsgHyk0nD1vwigkgFsvJAkJO+889rRnlky7xDeWeOb3yNdV971G9TkfG7o7pSl1WKv1dOL7NDRrsoao9l4jacnfdW4NxuCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=t+H2RiAe/2/ZqiIJ+1H6rmNZYZeMvkI8tCp0XrmOQ0M=;
+ b=YEJVuXeVgzywGq7S6laR5yAriE8nSRSE1cPj4cDZhQNq8+to0ttNDsLt/ouZys4j1tg1ZGwDVUqP74JKiuXIXcJR2c2ZX0sflD7px/OkPrpBnTl1QJ0yniDeZzv6vyy0ACnGA28XCuPx2cgSs0s/X3t6oN5Pn27gvWAvhgfvs9S9JRW/EIyHDVoIan93EU+aXiQibnPu/WkgtRKairyuByQk1BECBR4klkvxr82XbEY4fPF/EtOmyZ8Tkux8YciI9zXH4ylhKKGr+0Uz9+HgFTTH3PRDA+b2NLLAx4SkQqOgbl6v1c1cm3AWSQ20iRhgtBHYsl7RfWcKHhbGfCr5DA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=t+H2RiAe/2/ZqiIJ+1H6rmNZYZeMvkI8tCp0XrmOQ0M=;
+ b=uZDmyQLefJFvEC7AR+fE8trZD+nu2kP72vyUmowYfeytfb8/Na2jvIZE3k+/tg/8sOBvrXJffIBB+5qPMc6Jb3uBsbNzOHdA/ZestFMc4FnS/3xFJRp1grVd/r7OBSLnuqqvDI/53plCnOtII/wD42qbg7v4VSnBaIpBa1bnLJEOHgMdXe52fMrNGIVrm7nWx2LSTim0KuGnaYggAhyLhkdmDCOzICA3l8rNrkB97iNhD/6SktLdGeYl7lhdMZudYrhmosF2qga149o1zDEXk637kUWUJOtFb5dfi3HxqAI7XKZbSjDGE9xFGL0/fzgP51XfNfbQW5YCZPKaig4yVQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from SJ2PR12MB9161.namprd12.prod.outlook.com (2603:10b6:a03:566::20)
+ by DS0PR12MB7876.namprd12.prod.outlook.com (2603:10b6:8:148::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Tue, 7 Apr
+ 2026 04:10:16 +0000
+Received: from SJ2PR12MB9161.namprd12.prod.outlook.com
+ ([fe80::d9d1:8c49:a703:b017]) by SJ2PR12MB9161.namprd12.prod.outlook.com
+ ([fe80::d9d1:8c49:a703:b017%4]) with mapi id 15.20.9769.015; Tue, 7 Apr 2026
+ 04:10:15 +0000
+From: Mikko Perttunen <mperttunen@nvidia.com>
+To: Thierry Reding <thierry.reding@kernel.org>,
+ Aaron Kling <webgeek1234@gmail.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] Revert "arm64: tegra: Disable ISO SMMU for Tegra194"
+Date: Tue, 07 Apr 2026 13:09:10 +0900
+Message-ID: <oPjOdaRsQES6O8jgrehMZw@nvidia.com>
+In-Reply-To:
+ <CALHNRZ8Zs2Zp80OgoU6R54=n76JgiYGbMvWD2iP9HpUFYO2big@mail.gmail.com>
+References:
+ <20251101-tegra194-dc-mmu-v1-0-8401c45d8f13@gmail.com>
+ <aZQ-cMn-3vI7UH7t@orome>
+ <CALHNRZ8Zs2Zp80OgoU6R54=n76JgiYGbMvWD2iP9HpUFYO2big@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-ClientProxiedBy: TYCP286CA0270.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:455::16) To SJ2PR12MB9161.namprd12.prod.outlook.com
+ (2603:10b6:a03:566::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH ath-next v4 2/6] wifi: ath12k: Add ath12k_hw_params for
- IPQ5424
-To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ath12k@lists.infradead.org,
-        Saravanakumar Duraisamy <quic_saradura@quicinc.com>
-References: <20260402-ath12k-ipq5424-v4-0-cd1e0f0a6c88@oss.qualcomm.com>
- <20260402-ath12k-ipq5424-v4-2-cd1e0f0a6c88@oss.qualcomm.com>
- <5fff7189-fee7-4d73-a9a1-728389900678@oss.qualcomm.com>
-Content-Language: en-US
-From: Raj Kumar Bhagat <raj.bhagat@oss.qualcomm.com>
-In-Reply-To: <5fff7189-fee7-4d73-a9a1-728389900678@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: naECawatHlL_JQ2_TPjA0-dBp_dBdzHO
-X-Proofpoint-ORIG-GUID: naECawatHlL_JQ2_TPjA0-dBp_dBdzHO
-X-Authority-Analysis: v=2.4 cv=c9abhx9l c=1 sm=1 tr=0 ts=69d482e4 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=tZNLRw8BZbjVNQK_SNEA:9 a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDA3MDAzNiBTYWx0ZWRfXysAeWel32UIC
- KvIgArgfjdyjgfKLiUpZNISxcK+7MC6gx2neLCutrUB0LKmRwhsKpq/7M68Th0zpXRQpwBHc58J
- L8LwEtTOVJnwhDUVNfH4MTby2/mRXdRVW1p1cRXtvr6JfS3ez/j8bq2Z/Rf+DJKsp5PfLYxQ5T4
- qUcCvP3EUmr8JQNujGVNaif35I/SZVjWOJmUSSaMmFDPUWAXCA/z/pEcxeKNyYsStXvIi6VI786
- i86mxirSGDfRBusXTw7CXOccG4FzAkguWRxDGKZuGvNdB5yU7REYpVDdleL3ln54CC38Lp+p3MA
- RcUK9eYVkDwWTjZvJ/S1eveVzXwkBCvcXyUFALC3DlNySGlcmxbB2rPKimSMY6jXYpOuSehVSfN
- 3y7rKeM1u+GohQeUQCBmYqYyAPMjC/YCNNulvIumO8KtDBRNF7mSy10xi9DLU0h4JnlBpR9Ac22
- s52Ip34HAsoHeFl+RHQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-07_01,2026-04-03_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 adultscore=0 suspectscore=0 priorityscore=1501
- bulkscore=0 spamscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604010000 definitions=main-2604070036
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB9161:EE_|DS0PR12MB7876:EE_
+X-MS-Office365-Filtering-Correlation-Id: bde10ecb-7210-4583-8d54-08de945b92ac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|10070799003|376014|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	KeSgNyu6LnlJITXnVIr6q40RYY/EiFe2XdeERPmFkAoFRpN4K0k1gUvaW4V27KG7HKi6zmqT+sZItlUotG2orE7ejruKNaqZaR6v3+sva1MmSVxU/YO0LRhIbhL8wUW5wh5d5Q8NUV35+mfAQe5hPEe2iicIRqTOuRKxx9r6FkdqaPydOECrV2QlduYYnuvtpUn8x+LwcqPDY1Swm6D0AMVI7mDWlaWOp9mizlKqSGysf00FmZB+o10z4L1t+mM5wJElUV+3G9BGgt3VbobbnFOk/h06uGv0Tv1XTlXLINDTyQnqljSvu8yQi/7l7wt4XJ/lof/e5Y9pnnvbhpdPNvCB5pWFMbakvDgzj+Y3WEKDvj4QQkvfT4xyMpi5Fn5YY+rbJzHaKz2PcBJK9bR+r7i/pvGCv+ubQynKEWveSudpNJflsvRBwidwlDr2Nk8O0uaFnuSIbLd9PEUx3iZ6+06lgM5ZA/o5gZIhkPVwt891/Cip4rLvkKjFIQ8A7cPeRZ2Kwfn2TmJmNi+1UFj5TLdZb/fOn4KLRJFvj8t7jbmSPMcBNDbEATONtChLryewSOLTgezk69Aob77lHqmKHKH2lpShNEuIbya/ITiQe6JkTAvYJv37Y4pDWsgBvWJW1UOf1qqkYPy0ODO2y5ty6BRclxXInMt4tfdmweQxlsBPu3fq+AXilJTqVqhYRhBojXe2TwwrkV2G6HSjhuHlJ1nG4gPQfIMrhpc+EkE60IM=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB9161.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(10070799003)(376014)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dEZ2STVKeHpWOTQ5SzI4WitPb1plMWJIVWlvMllHR1BhWVpESEsrSGpQNTRz?=
+ =?utf-8?B?bnEwQWtQTkdPaFhuQ0NHckk0MHNKT0NEeDc2RGVIYXAwRXRlUTR3elM2NkRD?=
+ =?utf-8?B?MjIzNll4T0k0eC9qR083RzU1cUUrbkZnaE5LaU9yNm9hS0xMUmt3ZWV5Z3Bs?=
+ =?utf-8?B?cDdpTzA0NVVTVnR2MW5tZk56eklwM2JBOHFPOWNoa1AyVWp2Mzg5NDk3dCtD?=
+ =?utf-8?B?azRVV3ZVbnY0aUJsand2VzM0RUl0em9PYnUzUTk3d1NsZE93L29TSXIvWHds?=
+ =?utf-8?B?QlBrd1JiWUJMejVzbnZacmhNNXZqR3ZGbVdQc1gwQWovVUJHNmZIY3krRDVJ?=
+ =?utf-8?B?UkRWK05OeXhmdVRZTVVBejYrWHNZdE5GS3lYWDB5aEpMZWxDWGV2eGRPdWYw?=
+ =?utf-8?B?WCt6ZXRHZThyNmJNVGY4UVYvWHE2Zm53b2g3Q05pZlBEamNsZ0NuSXk1MmJx?=
+ =?utf-8?B?M2htcmE4b2Z2ay92WFJvcGF0UGhIQ0VQTmRtRzBJUElidU1NVkQ4bGtKQW8w?=
+ =?utf-8?B?KzRJRjZMUlpick10QjJ3NHB3WlZ2UElFUjRXVERGQXRTc3lPOVNHcC9RNEVT?=
+ =?utf-8?B?UGl1VHI3UHRRTXpGKzh0Y0czWExwa2o2Z0RhaXhmcFFHVTRHSnRod2dIT3FI?=
+ =?utf-8?B?VGN4dlZvTjJUSWR5SVdXMmpBVEV6Q1I2QXhUb3lZM0RzOWo0K09sQmNpNytu?=
+ =?utf-8?B?TmhDM2dNV25sY3J5ZnR4VDhiM0d4SDRZZkxRZmNDNUF1L0Z4Tk1HbE56QTFx?=
+ =?utf-8?B?Mm91SG02OTZNanJoSHVWUFVieGU0Z1J2TEM1bkI4THcwV25uL2JKUkVhTkJs?=
+ =?utf-8?B?ZjJGRzczVVdmb3p4ZWpweTFUcmlTbWZwUGEwb0lBTmlMcGIwL0pLQ21MUlVJ?=
+ =?utf-8?B?Z09WdFM4THZUZXk2VThoMUVKbXBXZEtsN2xLeGtVQWRKRXFta20veVBYSGtX?=
+ =?utf-8?B?MUJobXFIZGFFSDVKamI3YnFrUStFYmxPOXhDSnV0Znh6MlR6cml5RlJSQXBy?=
+ =?utf-8?B?Nk1lRk1ZbXFycEFPWGlsN05lQ2t0RnJkcEV0VUNJS0tQbWVwdHVNU09TNzZR?=
+ =?utf-8?B?SFQ4WW5Pc1dWRUNPbWF5RWJtcUkzeUpaem9PWnNjeTBwT3pXeE8xdjd1RFZL?=
+ =?utf-8?B?aXR2SVQyYXdveFVmY0JYaEJWWDNWVWk1OTBDTTVZL3RDd1ArWVFHTHVsYmZ3?=
+ =?utf-8?B?amkrOTNvTXZsNkt3WHJFckMya2x6eEVvNWJud3BuNi96VmFrdVdxVExaMHJO?=
+ =?utf-8?B?czRVdzVRU0puNEd2Z2s4MjkwMDVMRzhCN1BOTGo2dThTVjJKbnFuUTUvRUdI?=
+ =?utf-8?B?K3F2RFFmL2lGUDdkdk1RZ3VsQmRrNExXRFpna3dtdlpzeUtKQythUXBnTnRm?=
+ =?utf-8?B?ekhacytNWjJpalRqeG1scndpaHdRNm9QQWxPTUlhM3ZkUUl3c1pWZjJka0p3?=
+ =?utf-8?B?RXZZbFJEZm5aRmgyaUtvVHlTaDA3RXpqakdDME9yUk1JK05nQVkrZktCRE9Z?=
+ =?utf-8?B?ZGE0WjVEU2NPbnZZOG5UbElnSlZrTCs4YzA2ZnhJWS9UQWYwZW5ySjJ1NVln?=
+ =?utf-8?B?VDJjUEpTWFNNRXhSdzFiMEN1dmlTMlVscC83L1VZdlJzeEVYRGR3YWZGZktJ?=
+ =?utf-8?B?ZXFFQ2l0bVVGa2FMajQwd2s0MGtXekpJOU8xZHZHVjBxNlpQVlE0clVVVjhT?=
+ =?utf-8?B?QVBPdmRXeVdMcEFzc09uYU9nTWw0dy9uU3ZMbnlOemVsbmFyWXJZQzkxeUxV?=
+ =?utf-8?B?QXZBQnRlbEd1NlFqK3Z1NnU3K2RiY3JnRjlaTmxSMkw0WHBPSG9ScHI1YWt1?=
+ =?utf-8?B?ZzlyRStEdU9UWjJ1KzI1eXJVQmxGUU9zUTRMMGZqb1FzOEtoeE8vZjV6dEYv?=
+ =?utf-8?B?aW03b2QxMS9tMEhjZlJ0M1MvVXVDUGZaSWlDUytvUGsyMS8rSGN6UXNJWGd6?=
+ =?utf-8?B?WUlSZjFVZS9HYmFONXJwQVl0NzgrVmxGWUd2SSt3Y3IxN2FwL0pFRmZLM0t3?=
+ =?utf-8?B?cFFIcGNmUnZjWXBGMjE2c0RHdm90cnR2dUtFdG9rb3BKZENKeFVmeDlFdzBK?=
+ =?utf-8?B?NGdRWmUrenFMUGxhL2NmMWNpOWVIUzhUVm9qaXM5QkxERXkzUEdncVp2b01H?=
+ =?utf-8?B?NTFyREU2VmM5bWs2cUxUdDRtR3pqM3ovczJLdFNnSlhGcGxkYll2OEwvRWpr?=
+ =?utf-8?B?dHZRWXhiQlhnWGVoL000a2hUZ1Z5eG0vdW5uMXJTUWtvbS91UkFBU1FWMm9Y?=
+ =?utf-8?B?REt3ZFc2Vmg4c0hqc0JXb2k1a0o1S0x5d2drZlFBcXBybHJDaS8rbjltTFVp?=
+ =?utf-8?B?SzU4SkxzMnRkUVlQd1hOb2p1OHZ3MzdWWXVPdEgrd1RDeEZCcmI2Q3JJQ3pS?=
+ =?utf-8?Q?JjMHGKURGalzGoU885v2LhPxLCHdJVJK4FDfgFxgL33mT?=
+X-MS-Exchange-AntiSpam-MessageData-1: sx68VacuApn/rA==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bde10ecb-7210-4583-8d54-08de945b92ac
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB9161.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 04:10:15.8667
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tYz95akY5uQcCc+LGvn/0urRa4pgewPZQ/l4LuG4VZQhdt7mj545qTmOKSM8NY/DXOPZBBRjahKy3CR1q+xRXg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7876
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:dkim];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nvidia.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-285105-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-285103-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[raj.bhagat@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[mperttunen@nvidia.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	DBL_PROHIBIT(0.00)[0.152.150.128:email];
 	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 998013A99EF
+	RCPT_COUNT_SEVEN(0.00)[10];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.183.27.0:email,nvidia.com:email,nvidia.com:mid]
+X-Rspamd-Queue-Id: B66A43A9A48
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 03-04-2026 14:31, Baochen Qiang wrote:
->> +	{
->> +		.name = "ipq5424 hw1.0",
->> +		.hw_rev = ATH12K_HW_IPQ5424_HW10,
->> +		.fw = {
->> +			.dir = "IPQ5424/hw1.0",
->> +			.board_size = 256 * 1024,
->> +			.cal_offset = 128 * 1024,
->> +			.m3_loader = ath12k_m3_fw_loader_remoteproc,
->> +			.download_aux_ucode = false,
->> +		},
->> +		.max_radios = 1,
->> +		.single_pdev_only = false,
->> +		.qmi_service_ins_id = ATH12K_QMI_WLFW_SERVICE_INS_ID_V01_IPQ5332,
->> +		.internal_sleep_clock = false,
->> +
->> +		.hw_ops = &qcn9274_ops,
->> +		.ring_mask = &ath12k_wifi7_hw_ring_mask_ipq5332,
->> +
->> +		.host_ce_config = ath12k_wifi7_host_ce_config_ipq5332,
->> +		.ce_count = 12,
->> +		.target_ce_config = ath12k_wifi7_target_ce_config_wlan_ipq5332,
->> +		.target_ce_count = 12,
->> +		.svc_to_ce_map =
->> +			ath12k_wifi7_target_service_to_ce_map_wlan_ipq5332,
->> +		.svc_to_ce_map_len = 18,
->> +
->> +		.rxdma1_enable = true,
->> +		.num_rxdma_per_pdev = 1,
->> +		.num_rxdma_dst_ring = 0,
->> +		.rx_mac_buf_ring = false,
->> +		.vdev_start_delay = false,
->> +
->> +		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
->> +				   BIT(NL80211_IFTYPE_AP) |
->> +				   BIT(NL80211_IFTYPE_MESH_POINT),
->> +		.supports_monitor = true,
->> +
->> +		.idle_ps = false,
->> +		.download_calib = true,
->> +		.supports_suspend = false,
->> +		.tcl_ring_retry = true,
->> +		.reoq_lut_support = false,
->> +		.supports_shadow_regs = false,
->> +
->> +		.num_tcl_banks = 48,
->> +		.max_tx_ring = 4,
->> +
->> +		.wmi_init = &ath12k_wifi7_wmi_init_qcn9274,
->> +
->> +		.qmi_cnss_feature_bitmap = BIT(CNSS_QDSS_CFG_MISS_V01),
->> +
->> +		.rfkill_pin = 0,
->> +		.rfkill_cfg = 0,
->> +		.rfkill_on_level = 0,
->> +
->> +		.rddm_size = 0,
->> +
->> +		.def_num_link = 0,
->> +		.max_mlo_peer = 256,
->> +
->> +		.otp_board_id_register = 0,
->> +
->> +		.supports_sta_ps = false,
->> +
->> +		.acpi_guid = NULL,
->> +		.supports_dynamic_smps_6ghz = false,
->> +		.iova_mask = 0,
->> +		.supports_aspm = false,
->> +
->> +		.ce_ie_addr = NULL,
->> +		.ce_remap = NULL,
->> +		.bdf_addr_offset = 0x940000,
->> +
->> +		.dp_primary_link_only = true,
->> +	},
->>   };
-> mhi_config and current_cc_support are missing, please explicitly set them.
+On Monday, April 6, 2026 4:49=E2=80=AFPM Aaron Kling wrote:
+> On Tue, Feb 17, 2026 at 4:13=E2=80=AFAM Thierry Reding
+> <thierry.reding@kernel.org> wrote:
+> >
+> > On Tue, Feb 17, 2026 at 12:53:54PM +0900, Mikko Perttunen wrote:
+> > > On Thursday, January 22, 2026 7:22=E2=80=AFPM Mikko Perttunen wrote:
+> > > > On Tuesday, December 9, 2025 1:21=E2=80=AFPM Aaron Kling wrote:
+> > > > > On Mon, Nov 3, 2025 at 12:05=E2=80=AFPM Aaron Kling <webgeek1234@=
+gmail.com> wrote:
+> > > > > >
+> > > > > > On Mon, Nov 3, 2025 at 5:07=E2=80=AFAM Thierry Reding <thierry.=
+reding@gmail.com> wrote:
+> > > > > > >
+> > > > > > > On Sat, Nov 01, 2025 at 06:13:26PM -0500, Aaron Kling wrote:
+> > > > > > > > On Sat, Nov 1, 2025 at 6:01=E2=80=AFPM Aaron Kling via B4 R=
+elay
+> > > > > > > > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
+> > > > > > > > >
+> > > > > > > > > From: Aaron Kling <webgeek1234@gmail.com>
+> > > > > > > > >
+> > > > > > > > > This reverts commit ebea268ea583ba4970df425dfef8c8e21d0a4=
+e12.
+> > > > > > > > >
+> > > > > > > > > Mmu is now being enabled for the display controllers.
+> > > > > > > > >
+> > > > > > > > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > > > > > > > > ---
+> > > > > > > > >  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 2 +-
+> > > > > > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > > > > > >
+> > > > > > > > > diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/a=
+rch/arm64/boot/dts/nvidia/tegra194.dtsi
+> > > > > > > > > index 1399342f23e1c4f73b278adc66dfb948fc30d326..854ed6d46=
+aa1d8eedcdfbae1fdde1374adf40337 100644
+> > > > > > > > > --- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> > > > > > > > > +++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> > > > > > > > > @@ -1807,7 +1807,7 @@ iommu@10000000 {
+> > > > > > > > >                         #iommu-cells =3D <1>;
+> > > > > > > > >
+> > > > > > > > >                         nvidia,memory-controller =3D <&mc=
+>;
+> > > > > > > > > -                       status =3D "disabled";
+> > > > > > > > > +                       status =3D "okay";
+> > > > > > > > >                 };
+> > > > > > > > >
+> > > > > > > > >                 smmu: iommu@12000000 {
+> > > > > > > > >
+> > > > > > > > > --
+> > > > > > > > > 2.51.0
+> > > > > > > > >
+> > > > > > > > >
+> > > > > > > >
+> > > > > > > > Question for Jon as the author of the commit being reverted=
+. The
+> > > > > > > > commit message states "we do not have a way to pass frame-b=
+uffer
+> > > > > > > > memory from the bootloader to the kernel". If I understand =
+this
+> > > > > > > > correctly, this is talking about seamless handoff. What doe=
+s this have
+> > > > > > > > to do with enabling mmu on the display controllers? Seamles=
+s does not
+> > > > > > > > work on any tegra arch as far as I'm aware, but Tegra194 is=
+ the only
+> > > > > > > > one that doesn't have mmu enabled for the dc's. But enablin=
+g mmu
+> > > > > > > > allows for better and faster memory allocation. My initial =
+attempts to
+> > > > > > > > enable this didn't work because I tried to attach them to t=
+he main mmu
+> > > > > > > > unit, see the related freedesktop issue [0]. After noticing=
+ in the
+> > > > > > > > downstream dt that the dc's are on a separate unit, I made =
+it work.
+> > > > > > > > And so far, it seems to work just as well as Tegra186. Then=
+ when I was
+> > > > > > > > packaging up the change to submit, I found that this had be=
+en
+> > > > > > > > explicitly disabled. But I'm not seeing why. Am I missing s=
+ome
+> > > > > > > > additional factors?
+> > > > > > >
+> > > > > > > This isn't seamless handoff to the Tegra DRM driver for displ=
+ay, but
+> > > > > > > rather to simple-framebuffer. While this does technically wor=
+k, it also
+> > > > > > > causes a spew of SMMU faults during early boot because the fi=
+rmware does
+> > > > > > > not properly pass the SMMU mapping information to the kernel.
+> > > > > > >
+> > > > > > > In a nutshell what happens is that the firmware sets up the d=
+isplay
+> > > > > > > controller to scan out from a reserved memory region, but it =
+does so
+> > > > > > > without involving the SMMU, so it uses physical addresses dir=
+ectly. When
+> > > > > > > the kernel boots and the SMMU is enabled the continued access=
+es from
+> > > > > > > display hardware cause SMMU faults (because there is no mappi=
+ng for the
+> > > > > > > framebuffer addresses).
+> > > > > > >
+> > > > > > > That said, we did solve these issues and this may not be happ=
+ening
+> > > > > > > anymore with the most recent L4T releases, so it may be okay =
+to revert
+> > > > > > > this now. We should find out exactly which release includes a=
+ll the
+> > > > > > > needed changes so that it can be referenced in the commit mes=
+sage. I
+> > > > > > > want to avoid people running new kernels with an old L4T rele=
+ase and
+> > > > > > > then seeing these errors without any reference as to why that=
+ might
+> > > > > > > suddenly happen.
+> > > > > >
+> > > > > > For reference, I have rolled back my Android usecase to use the=
+ L4T
+> > > > > > r32.7.6 bootloaders on T194 for a variety of reasons. So I am u=
+sing
+> > > > > > cboot as the final bootloader and not edk2 as in L4T r34/r35. I=
+ have a
+> > > > > > pending cboot patch to support simple-framebuffer handoff, but =
+haven't
+> > > > > > fully verified it as tegra-drm is currently unable to takeover =
+from
+> > > > > > simplefb like openrm does for t234. But all that to say that si=
+nce I
+> > > > > > no longer use r35 for t194 I don't have the setup to easily ver=
+ify
+> > > > > > which point release works here and what doesn't.
+> > > > >
+> > > > > Any further thoughts on this patch?
+> > > > >
+> > > > > Aaron
+> > > >
+> > > > FWIW,
+> > > >
+> > > > looks like the edk2 patch to update iommu-addresses --
+> > > >
+> > > > commit 6071946461389221d2314cbbae0377610b5b1f6a
+> > > > Author: Jan Bobek <jbobek@nvidia.com>
+> > > > Date:   Tue Mar 21 00:15:27 2023 +0000
+> > > >
+> > > >     feat(NvDisplayControllerDxe): update FDT with framebuffer info
+> > > >
+> > > >     On ready-to-boot and whenever FDT is installed, update FDT with
+> > > >     framebuffer mode information, base address and size.
+> > > >
+> > > >     Signed-off-by: Jan Bobek <jbobek@nvidia.com>
+> > > >     Reviewed-by: Ashish Singhal <ashishsingha@nvidia.com>
+> > > >
+> > > > is in since r36.2
+> > > >
+> > > > $ git tag --contains 6071946461389221d2314cbbae0377610b5b1f6a | gre=
+p "^r"
+> > > > r36.2
+> > > > r36.3.0
+> > > > r36.4.0
+> > > > r36.4.3
+> > > > r36.4.4
+> > > > r36.4.5
+> > > > r38.2
+> > > > r38.4
+> > > >
+> > > > Not so good for T194 since r36 only supports Orin.
+> > > >
+> > > > I'll look into getting this cherry-picked to r35.
+> > > >
+> > > > Mikko
+> > > >
+> > > >
+> > >
+> > > I looked into this and it appears a version of this is in r35, but it
+> > > only supports T234. However, I also found that at one point, L4T
+> > > bootloader configuration has been modified to place the display
+> > > controllers into SMMU bypass until otherwise configured by the kernel
+> > > -- which the kernel does in tegra_mc_probe_device.
+> > >
+> > > I think that means there is still potential for an issue where the
+> > > display continues to be on between tegra_mc_probe_device and tegradrm
+> > > reconfiguring it. However, I cannot reproduce that happening -- most
+> > > likely the display is being turned off before that because of a clock
+> > > or power domain being turned off.
+> > >
+> > > In any case, this means that we no longer need to pass the
+> > > framebuffer's information to the kernel. I think it would be good to
+> > > have some clarity to ensure the issue described above cannot happen,
+> > > but otherwise we should be able to enable IOMMU.
+> >
+> > The problem would happen if you enable some sort of early framebuffer
+> > support, such as simple-drm or simple-framebuffer. Maybe even efifb. I
+> > think it'd still be worth getting the iommu-addresses code into r35 if
+> > for nothing else but to have a bit more of a safety buffer for the
+> > future.
+> >
+> > If we don't and for some reason decide that we want early framebuffer
+> > support, it might be too late to get UEFI updated for Tegra194. I recal=
+l
+> > that the UEFI code for Tegra194 is different from the one for Tegra234,
+> > so it is probably not as trivial as a simple cherry-pick, but I'll try
+> > to do some digging and find the code that does this for Xavier.
+>=20
+> Any updates on this?
 
-Sure will update in next version.
+FWIW, in my testing with L4T versions with UEFI firmware, I'm not seeing=20
+any issues even if efifb is enabled. My inclination would be to merge,=20
+and we can work on issues related to early framebuffer separately.
+
+Outside adding support to r35, one option is to make it so TegraDRM has=20
+to explicitly call tegra_mc_probe_device (not necessarily directly) when=20
+it has quiesced the hardware during probe. This would not allow seamless=20
+early framebuffer transition, but otherwise it should work. Implementing=20
+this for tegra-smmu would also allow us to get rid of the IOMMU API=20
+paths in TegraDRM and Host1x, which would be a great boon.
+
+Cheers
+Mikko
+
+>=20
+> Aaron
+
+
+
+
 
