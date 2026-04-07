@@ -1,127 +1,188 @@
-Return-Path: <devicetree+bounces-285149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285151-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0Ou0L5ur1GmKwQcAu9opvQ
-	(envelope-from <devicetree+bounces-285149-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 09:00:43 +0200
+	id 8NAXGA2s1GmKwQcAu9opvQ
+	(envelope-from <devicetree+bounces-285151-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 09:02:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C10A43AA910
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 09:00:42 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1DCF3AA98D
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 09:02:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 99D703006010
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 07:00:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3DFBA3006782
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 07:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3BB5391838;
-	Tue,  7 Apr 2026 07:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019CF391E48;
+	Tue,  7 Apr 2026 07:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ID+ItTp7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RkYJZOZm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90D2B38A71E;
-	Tue,  7 Apr 2026 07:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16D138F936;
+	Tue,  7 Apr 2026 07:02:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775545237; cv=none; b=TPmQl1kbHwnwg0VUm/ubtWdUSjka9iUf118sbueG0akzLYyxmoGvSf6WSO5wf9ZKHo7uTlwRzejNZThqX8ro0UTNXshUdA8nip+z4sJ3SUB23fsTg+RV8aSLwVy4d7sOWjOW2OGss8FX81HxhyKAHjlqKGgiLB50oI6MC3DM9sI=
+	t=1775545354; cv=none; b=Rcm/8nXIiYUgaJ6OZI+iLXBdGhwtBECzeNzqXB9iJ2cxNMmpUkrAr57qf9cDyShakFmtWJ7s36QnPKwdTs3/smvzlHf0CblFte5l7KGhj4qSx10/jstANaGMhyPDC48B6U/Fxt0qKn/WDXiULmAiZtlBeJoqytzJajemsasl7GM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775545237; c=relaxed/simple;
-	bh=KC++AGYaCPtqG8OBRYariCPXzGcrTMUsx7ei4Bja4QQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KYuINtAvkjHRgRN4tr69i2+g8dc13AQwTfbQdUAohKVYl4664Ov5cMRgsTgnBZfd6ubkiNWnOSk6kLghUjO0tTWj/5GPWESs+ODsPk8PhreEDhYphZEUqV0NeJnUpW2cSbc9f/ghpmC/a9SSo+p1OFaM0w2PFLEMD4pkcD4weX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ID+ItTp7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0586C2BC9E;
-	Tue,  7 Apr 2026 07:00:36 +0000 (UTC)
+	s=arc-20240116; t=1775545354; c=relaxed/simple;
+	bh=mLiutvpBOTT1px2ATTfz6tAMd8Owf6XOgX/z8K9oGx0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=c9KLZxYR1HeH1oucwOM4nzSDDsK9zEbMIsMEWFLCn+Hya1ZgFBlCk6SIuNoiRvDCmGSJYf5FJI1XLBYZ67WNawYsuu4fxO3pLmDHAvyNU81674grU8YSBirKJZkkoZ9qdbNv1xxgwrIfrc/2k8H/1T6xwXPAMGj5TPFq6HA6mhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RkYJZOZm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 257BAC116C6;
+	Tue,  7 Apr 2026 07:02:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775545237;
-	bh=KC++AGYaCPtqG8OBRYariCPXzGcrTMUsx7ei4Bja4QQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ID+ItTp7caZBgfAvTzsBBhnu+06DZg8amfvbRzMgapVy7TeBPfTaFvCHtLpFAUgdL
-	 eeuD/Xu1FrRMlPI+2Y1030XGlUuYiwfwaqLRnwH5/MRcYfUNAdCNSY3MklSX+iRraM
-	 fAWrGvdBqkb9SkFe9TpW49HFMbQlMJO43AocZHd3WGebXzFBE8px7btC61C5vxHbHA
-	 CK3fsSwQ3L9BckdTvbOsr6f8dvrTGU0W2tABUqAv+avJwYgzOF3J7XhD2rfu0+lcpb
-	 8+lnHxcgCnCm9LUX/wQFq8HygHNV12Txti/e+VkoJPEQj9oMai/03ruRT0f+BYrq0Z
-	 JDgkz2L6pGhbA==
-Date: Tue, 7 Apr 2026 09:00:34 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: ASHISH YADAV <ashishyadav78@gmail.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Ashish Yadav <ashish.yadav@infineon.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon/pmbus: Add Infineon XDP720
-Message-ID: <20260407-monumental-mastiff-of-sunshine-fb27ab@quoll>
-References: <20260406101647.109667-1-Ashish.Yadav@infineon.com>
- <20260406101647.109667-2-Ashish.Yadav@infineon.com>
+	s=k20201202; t=1775545354;
+	bh=mLiutvpBOTT1px2ATTfz6tAMd8Owf6XOgX/z8K9oGx0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RkYJZOZmzCsLI1eZnFzLjN5mPET7mvEsbdqGNR1REOpJMpOBVvm0jIQjU7Sy1TxcH
+	 faoqC/HklvPICy0nVSG8SHXb3pHodD428VldYyqh3TsLdW5WaEK2SJJVYa4DBnFCXM
+	 esrEnplOmw/BIhCWlWSiByModB0VM0fGNuTHRd/FHEFqySmF9+sfmDybK+vDRIZ/GW
+	 c4hPqmHqq7YJMMD4qYarCtXHCd6GOQHZV4AB36rF+JXx72jX4YV0RwjYmsmHj22LpC
+	 O13fAppvBw6pcRwLIu+dyzK0H44AeHoJcLbT8JOxAHuM59gwG64jbGqOCf+vJD5qCB
+	 GWvChrG0TmSjQ==
+Message-ID: <5f2a1946-9ca7-414c-a764-60f46f3b3cf5@kernel.org>
+Date: Tue, 7 Apr 2026 09:02:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260406101647.109667-2-Ashish.Yadav@infineon.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 02/13] dt-bindings: clock: Add system-0 domain PLL
+ clock
+To: Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Emil Renner Berthing <kernel@esmil.dk>, Chen Wang
+ <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>,
+ Alexey Charkov <alchark@gmail.com>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Keguang Zhang <keguang.zhang@gmail.com>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ Leyfoon Tan <leyfoon.tan@starfivetech.com>
+References: <20260403054945.467700-1-changhuang.liang@starfivetech.com>
+ <20260403054945.467700-3-changhuang.liang@starfivetech.com>
+ <20260405-godlike-pistachio-mackerel-7ab494@quoll>
+ <ZQ4PR01MB120275BC5277C4FF18A738E6F25A2@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <ZQ4PR01MB120275BC5277C4FF18A738E6F25A2@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-285151-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-285149-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,pengutronix.de,esmil.dk,outlook.com,gmail.com,alpha.franken.de,vger.kernel.org,lists.infradead.org,starfivetech.com];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C10A43AA910
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,starfivetech.com:email]
+X-Rspamd-Queue-Id: F1DCF3AA98D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Apr 06, 2026 at 03:46:46PM +0530, ASHISH YADAV wrote:
-> From: Ashish Yadav <ashish.yadav@infineon.com>
+On 07/04/2026 08:56, Changhuang Liang wrote:
+> Hi, Krzysztof
 > 
-> Add documentation for the device tree binding of the XDP720 eFuse.
-> This patch introduces a YAML schema describing the required and optional
-
-Redundant parts was supposed to go to /dev/null.
-
-You already said this in the first sentence.
-
-Also, there is no such thing as YAML schema.
-
-
-> properties for the XDP720 eFuse device node. It includes details on the
-> compatible string, register mapping,supply and rimon-micro-ohms(RIMON).
-
-So nothing here is useful - nothing explains the hardware, so drop all
-this and keep only first sentence. Or say something useful about
-hardware.
-
+> Thanks for the review.
 > 
-> Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
-> ---
+>> On Thu, Apr 02, 2026 at 10:49:34PM -0700, Changhuang Liang wrote:
+>>> Add system-0 domain PLL clock for StarFive JHB100 SoC.
+>>>
+>>> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+>>> ---
+>>>  .../bindings/clock/starfive,jhb100-pll.yaml   | 44 +++++++++++++++++++
+>>>  .../dt-bindings/clock/starfive,jhb100-crg.h   |  6 +++
+>>
+>> You did not test your code. Apply patch #1 and test it. Do you see build-level
+>> errors?
+> 
+> I'm very sorry about this. I will reorganize my patch to avoid the related errors.
+> 
+
+Anyway this one should be folded into the parent. You have one generic,
+system-wide clock as input, so as well this can be the resource of the
+parent. And no address spaces.
+
+Other examples have one-register address spaces, so these are not really
+separate devices.
 
 Best regards,
 Krzysztof
-
 
