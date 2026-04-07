@@ -1,262 +1,168 @@
-Return-Path: <devicetree+bounces-285301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285295-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id FhvoCfT41GmdzQcAu9opvQ
-	(envelope-from <devicetree+bounces-285301-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 14:30:44 +0200
+	id oCTfOM331Gl+zQcAu9opvQ
+	(envelope-from <devicetree+bounces-285295-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 14:25:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E1DF3AE670
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 14:30:40 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88B1C3AE51C
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 14:25:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 53231304A9CD
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 12:26:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DD379301F3C0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 12:25:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626963B38A8;
-	Tue,  7 Apr 2026 12:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA1343B3C0C;
+	Tue,  7 Apr 2026 12:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="yT4C2/At"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lTeuxXTH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F16BA3A6EFB;
-	Tue,  7 Apr 2026 12:26:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61BB93AA516;
+	Tue,  7 Apr 2026 12:25:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775564789; cv=none; b=dPMpZHNaLlJIHV8MsMHiDrZ0nFk+9I5OZUrfcQRBLWfYOCqK2qf7XVZnj2ftqHeqFzywpKncT3nvPVPv/BlQgM8YorO+8wjIsXLvmH9+QKCmM2lriYB/hUr7UWAkIOakqe7q70jWdwTEGDXQOG/d7BRxdBPpruJm5bbkIDOXQXc=
+	t=1775564736; cv=none; b=UKA1SC+FeUyOOYN5tr3dxRH/LfKeUKboLgN8x/q0CwdYnKlGPkEJzoNwkR1qLwouHrWWVEarffRkn1F6hryrCgHw6xZuGdaEDDE6sTalPx4cukpmlis+mnDZAbZNr/Oi/xVKXPFLcRP8nROc61iw0/m54MMTSKxePWRwB2T+eeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775564789; c=relaxed/simple;
-	bh=gDW1kKCDH/hb2Z3qCDf8FgI4nHG9uhNZHyesLtqQ66A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tNzDEOfG6KmMI6PNrywdFSfl/BJ9mHGAZrDhDXDR5hsW/7zj1OWL8V+uimz7cHn799gUaQCjaK8/IylB09HIi8NdRftEwRUF9xFpjVPCa9P0ybu+P4GeKZVmn+r/eJOiwFGVLUXOH770crmd/G3wC+TkYBUR3c4Th1sbEAudNUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=yT4C2/At; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 7B0D94E4295E;
-	Tue,  7 Apr 2026 12:26:26 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 4D74C603C7;
-	Tue,  7 Apr 2026 12:26:26 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4B82C1045020E;
-	Tue,  7 Apr 2026 14:26:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1775564783; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=AlG/dcUK00yA1Ez4jPZ5YroPlq5ftafDx5ata3ZpRRs=;
-	b=yT4C2/AtKdT+ZXrbA+JVrInH4/6v4Eikg+Qfvq9VuhOGFXjFJSK7iLnfW0p9lyMfBKSVzA
-	4jD5KwyT0x1P16h4YrfpKhBRdxz3XR+avXD4wXj4kSKli5onB/8i/wUZ+F4Lnn/PlVuk2+
-	w3NWXh/EhqUgfgupcFkiTLyvzdoxuGqveoXcNir2bWRxlIorKCr+K1OtpoBFgR4b+spfv2
-	K8oB6lhFsHjVX8lsjfkjTq/xV8qiWNufi3J0qFpSrA1YTLcoBY9Q/fgfp3WEUJ6rZmNqCR
-	+evP7IJ06KajPjM9LGC244WXgvVzm8CiuAAZUDXsYROUY+QqvBQ1h5ggNG2v+A==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Tue, 07 Apr 2026 14:24:25 +0200
-Subject: [PATCH v4 11/11] drm/mxsfb/lcdif: use
- DRM_BRIDGE_ATTACH_NO_CONNECTOR and the bridge-connector
+	s=arc-20240116; t=1775564736; c=relaxed/simple;
+	bh=WnUj41HY436U/PRRPWD3UEcJnw1euxhOP0IoV/BAZZI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sMe4LysZ9/lpR0YdLxfwB1Ww+CPYlElnSggduKXf7cX0Ch/Jl0uIsK4SHyhH1g+fCqg1kN6NSlfZsMD8bR0m/vZVqLYsqKzrOTPCENL0AB0H+ogsMkqmHQV8vcSO26neswXpXaAiIGm2mtVCfi+f5oCyPZedRUqVKtJ1tymT23E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lTeuxXTH; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1775564735; x=1807100735;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WnUj41HY436U/PRRPWD3UEcJnw1euxhOP0IoV/BAZZI=;
+  b=lTeuxXTHjWuQ8dzBpV3x6oi8ds9hm/Nx6OX/mVCBfVR40ln6YKsUF5tg
+   Yy8Ya838o7qd4NFDwHN9N4OY9bnh4wbc/IxnfAdja1z/1HF3Ed9O/3aMj
+   R3tl8TGzrBCiv59cuM2DNfNSp717/15169QVGnneb6Lp0xhTsue59MU6Z
+   AQ5ZdPf7l0LvNIKC3NsdRkZfad3cAsRpgYyXEEGxI1LuTBVJKMcnUUIab
+   Uldt9zPJGo0S1ILJQWK1XB9oGtTnLDnK4eTY4GN8xDAObUoOgAic3sny5
+   K/1NTLRJn4u5qevPseTIqzHH3lfMjF5Nqrv1k5Gq5+chUT27FiwDtVukK
+   Q==;
+X-CSE-ConnectionGUID: 4D+9sY+eTquFoRzuUqdw5g==
+X-CSE-MsgGUID: fqyEj6xOQASGLGyZbXkCug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="99153069"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; 
+   d="scan'208";a="99153069"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Apr 2026 05:25:35 -0700
+X-CSE-ConnectionGUID: Kru5kzBKQKa8am7+6ZIQUw==
+X-CSE-MsgGUID: ikCDASAQRvSVrMMGtgyLbA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; 
+   d="scan'208";a="227158213"
+Received: from black.igk.intel.com ([10.91.253.5])
+  by orviesa006.jf.intel.com with ESMTP; 07 Apr 2026 05:25:30 -0700
+Received: by black.igk.intel.com (Postfix, from userid 1008)
+	id 12E7295; Tue, 07 Apr 2026 14:25:29 +0200 (CEST)
+Date: Tue, 7 Apr 2026 15:24:39 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Amit Sunil Dhamne <amitsd@google.com>
+Cc: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jagan Sridharan <badhri@google.com>,
+	Mark Brown <broonie@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Subject: Re: [PATCH v10 6/6] usb: typec: tcpm/tcpci_maxim: deprecate WAR for
+ setting charger mode
+Message-ID: <adT3h8ZEQh_mFi5j@kuha>
+References: <20260331-max77759-charger-v10-0-76f59233c369@google.com>
+ <20260331-max77759-charger-v10-6-76f59233c369@google.com>
+ <ac5-OzwQkczTWtMg@kuha>
+ <017b8552-87e2-4409-ae34-9a3ab7365a68@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260407-drm-lcdif-dbanc-v4-11-247a16e61ef9@bootlin.com>
-References: <20260407-drm-lcdif-dbanc-v4-0-247a16e61ef9@bootlin.com>
-In-Reply-To: <20260407-drm-lcdif-dbanc-v4-0-247a16e61ef9@bootlin.com>
-To: Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Liu Ying <victor.liu@nxp.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@kernel.org>
-Cc: Damon Ding <damon.ding@rock-chips.com>, 
- "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, 
- =?utf-8?q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
- Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Adam Ford <aford173@gmail.com>, 
- Alexander Stein <alexander.stein@ew.tq-group.com>, 
- Christopher Obbard <christopher.obbard@linaro.org>, 
- Daniel Scally <dan.scally@ideasonboard.com>, 
- Emanuele Ghidoli <emanuele.ghidoli@toradex.com>, 
- Fabio Estevam <festevam@denx.de>, 
- Francesco Dolcini <francesco.dolcini@toradex.com>, 
- Frieder Schrempf <frieder.schrempf@kontron.de>, 
- Gilles Talis <gilles.talis@gmail.com>, 
- =?utf-8?q?Goran_Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>, 
- Heiko Schocher <hs@denx.de>, Josua Mayer <josua@solid-run.com>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Marco Felsch <m.felsch@pengutronix.de>, 
- Martyn Welch <martyn.welch@collabora.com>, 
- Oleksij Rempel <o.rempel@pengutronix.de>, Peng Fan <peng.fan@nxp.com>, 
- Richard Hu <richard.hu@technexion.com>, 
- Shengjiu Wang <shengjiu.wang@nxp.com>, 
- Stefan Eichenberger <stefan.eichenberger@toradex.com>, 
- Vitor Soares <vitor.soares@toradex.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>
-X-Mailer: b4 0.15.1
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <017b8552-87e2-4409-ae34-9a3ab7365a68@google.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nxp.com,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[rock-chips.com,bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,nxp.com,technexion.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-285301-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,linuxfoundation.org,google.com,gmail.com,linux-foundation.org,samsung.com,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-285295-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_GT_50(0.00)[53];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
+	FROM_NEQ_ENVFROM(0.00)[heikki.krogerus@linux.intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 1E1DF3AE670
+X-Rspamd-Queue-Id: 88B1C3AE51C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Convert this driver to DRM_BRIDGE_ATTACH_NO_CONNECTOR and to the
-drm_bridge_connector framework which is the current DRM bridge best
-practice.
+Hi Amit,
 
-Based on the in-tree dts[i] files this introduces no regression. Based on
-the kernel doc of drm_bridge_connector.c:
+On Thu, Apr 02, 2026 at 11:47:30AM -0700, Amit Sunil Dhamne wrote:
+> Hi Heikki,
+> 
+> On 4/2/26 7:33 AM, Heikki Krogerus wrote:
+> > Hi Amit,
+> > 
+> > > +static int get_vbus_regulator_handle(struct max_tcpci_chip *chip)
+> > > +{
+> > > +	if (IS_ERR_OR_NULL(chip->vbus_reg)) {
+> > > +		chip->vbus_reg = devm_regulator_get_exclusive(chip->dev,
+> > > +							      "vbus");
+> > Sorry to go back to this, but why can't you just get the regulator in
+> > max_tcpci_probe()?
+> 
+> Thanks for calling this out. This was an intentional design decision to
+> break a circular dependency.
+> 
+> The charger driver is guaranteed to probe after the TCPC driver due to a
+> power supply dependency (the TCPC is a supplier of power for the Battery
+> Charger). However, the charger driver is also the regulator provider for
+> VBUS out (when Type-C goes into source mode).
+> 
+> Because of this, the regulator handle will not be available during the TCPC
+> driver's probe. If we tried to fetch it in max_tcpci_probe() and returned
+> -EPROBE_DEFER, it would create a probe deadlock, as the charger would then
+> never probe. Therefore, I made the decision to get the regulator handle
+> lazily and on-demand.
 
- * To make use of this helper, all bridges in the chain shall report bridge
- * operation flags (&drm_bridge->ops) and bridge output type
- * (&drm_bridge->type), as well as the DRM_BRIDGE_ATTACH_NO_CONNECTOR attach
- * flag (none of the bridges shall create a DRM connector directly).
-
-and each of the 3 LCDIF blocks in the i.MX8MP, all of them comply with the
-above requirement:
-
- * For the LCDIF3, the pipeline is:
-
-   LCDIF3 -> fsl,imx8mp-hdmi-pvi -> fsl,imx8mp-hdmi-tx -> HDMI connector
-
-   And the involved bridges are:
-
-   * fsl,imx8mp-hdmi-pvi has ops = 0 (it doesn't set it) because it
-     implements none the optional features mentioned by those flags, and it
-     honors the DRM_BRIDGE_ATTACH_NO_CONNECTOR by propagating it
-
-   * fsl,imx8mp-hdmi-tx is implemented based on dw-hdmi, which sets ops as
-     appropriate and also propagates the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag
-
-   * display-connector (enabled via the DT overlay if needed) sets ops and
-     makes DRM_BRIDGE_ATTACH_NO_CONNECTOR mandatory
-
- * The LCDIF2 involves the panel-bridge, display-connector and lvds-decoder
-   (even though only the pane-bridge is surrently supported), amd all these
-   three also set ops as needed and propagate
-   DRM_BRIDGE_ATTACH_NO_CONNECTOR or make it mandatory.
-
- * The LCDIF1 is used with the adv7511, tc358767 and the panel bridge
-   drivers which also comply with the requirements.
-
-Tested-by: Martyn Welch <martyn.welch@collabora.com>
-Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com> # TQMa8MPxL/MBa8MPxL
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
----
-
-Changes in v4:
-- enhance commit message to list all involved peripherals based on my dts
-  review
-
-Changes in v2:
-- Added missing select DRM_DISPLAY_HELPER in Kconfig
-- Rebased on previous patch changes
----
- drivers/gpu/drm/mxsfb/Kconfig     |  2 ++
- drivers/gpu/drm/mxsfb/lcdif_drv.c | 16 +++++++++++++++-
- 2 files changed, 17 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/mxsfb/Kconfig b/drivers/gpu/drm/mxsfb/Kconfig
-index 264e74f45554..31db7a824a93 100644
---- a/drivers/gpu/drm/mxsfb/Kconfig
-+++ b/drivers/gpu/drm/mxsfb/Kconfig
-@@ -33,6 +33,8 @@ config DRM_IMX_LCDIF
- 	select DRM_GEM_DMA_HELPER
- 	select DRM_PANEL
- 	select DRM_PANEL_BRIDGE
-+	select DRM_DISPLAY_HELPER
-+	select DRM_BRIDGE_CONNECTOR
- 	help
- 	  Choose this option if you have an LCDIFv3 LCD controller.
- 	  Those devices are found in various i.MX SoC (i.MX8MP,
-diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c b/drivers/gpu/drm/mxsfb/lcdif_drv.c
-index c8ba8f9b1da8..7f07ae24e0dc 100644
---- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
-+++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
-@@ -18,6 +18,7 @@
- #include <drm/clients/drm_client_setup.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
-+#include <drm/drm_bridge_connector.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_encoder.h>
- #include <drm/drm_fbdev_dma.h>
-@@ -57,6 +58,7 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
- 		struct of_endpoint of_ep;
- 		struct drm_bridge *bridge;
- 		struct drm_encoder *encoder;
-+		struct drm_connector *connector;
- 		int ret;
- 
- 		if (!of_device_is_available(remote))
-@@ -86,11 +88,23 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
- 					     "Failed to initialize encoder for endpoint%u\n",
- 					     of_ep.id);
- 
--		ret = drm_bridge_attach(encoder, bridge, NULL, 0);
-+		ret = drm_bridge_attach(encoder, bridge, NULL, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
- 		if (ret)
- 			return dev_err_probe(dev, ret,
- 					     "Failed to attach bridge for endpoint%u\n",
- 					     of_ep.id);
-+
-+		connector = drm_bridge_connector_init(lcdif->drm, encoder);
-+		if (IS_ERR(connector))
-+			return dev_err_probe(dev, PTR_ERR(connector),
-+					     "Failed to init bridge_connector for endpoint%u\n",
-+					     of_ep.id);
-+
-+		ret = drm_connector_attach_encoder(connector, encoder);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Failed to attach connector for endpoint%u\n",
-+					     of_ep.id);
- 	}
- 
- 	return 0;
+Got it. Thanks for the explanation!
 
 -- 
-2.53.0
+heikki
 
 
