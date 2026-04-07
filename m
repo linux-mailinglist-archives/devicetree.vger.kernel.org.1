@@ -1,227 +1,182 @@
-Return-Path: <devicetree+bounces-285338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285343-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IOLbCPIZ1Wli0wcAu9opvQ
-	(envelope-from <devicetree+bounces-285338-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 16:51:30 +0200
+	id sNmsBcEf1Wnr0wcAu9opvQ
+	(envelope-from <devicetree+bounces-285343-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:16:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F6783B0609
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 16:51:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 603E23B0C6C
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 17:16:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1A8573025E74
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 14:46:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9C7AA3096103
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 15:09:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D4BE2F12AC;
-	Tue,  7 Apr 2026 14:46:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D6D349AE0;
+	Tue,  7 Apr 2026 15:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GwCshkM5"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="gfQT8L/e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4AAF2E8DEA;
-	Tue,  7 Apr 2026 14:46:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5677233D505;
+	Tue,  7 Apr 2026 15:09:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775573176; cv=none; b=nMqxZjpw6irU/CxoI3PbOw9AWH82PWQyZw1EJt4IAOC2ahcnFYt9H9gVScUb+e509R12CoEHN468t4uur/D142gjvtng4VTD/nopplzVZ++vuWtVN5M9ITBjr5WND7z/IKaRwPMzXH6Ll6UBOsTTp+LcEyjdsO/9VaW4cF+fpTI=
+	t=1775574581; cv=none; b=jkiR4fYmwfHhRnN5bVpJqAHBnqBi0TjqG00g+blfYNLgVAzcIN5LUVrM96qo9WH6KWJklf6YylPahsMPRB/tR9xLuQNSZ1xRfItQDYFQo2KoNlw7I3c5J4cEn1wrbBaecS1B7FxtVAiZRRw0ij5as2/qpwX1WlT9P/QTORF9smI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775573176; c=relaxed/simple;
-	bh=MBh1A7ZOApVu6tgjYRrDMhGn2k6yHcaWaU2mTjTyE84=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gxJhl7sUMlLIs2kbQV4rj71f9j8oax3yMm8o5OmNGKOxOWU662p3pKPv+J84vR4gjMVAPGC59BQ7S2Ct7YWGB57I23rRLkY8LZgo7fd/3NINc8TmXYH2PQPw5pW4c7j+Zx4o+aOGdB+D/QCQOJ6+Qu1jNdQTlUXD+tBlzgRHlpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GwCshkM5; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1775573172; x=1807109172;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MBh1A7ZOApVu6tgjYRrDMhGn2k6yHcaWaU2mTjTyE84=;
-  b=GwCshkM56ClNa6VVT1J6eTAT5SKj3E21fgXjqZ3MEfyE3ci11/E9lyLG
-   9mPXjiiJ9VjoKToGdXrshVdxWtS2bPW7Sjoj47gTaB9HMco58ljrm2YGq
-   mKlHXAIXAlPsf+F6CqRTnHwDt01EjVY8kzzxaycKGzI0x+JneItSeRcSm
-   rY7fPWP2Hy6e+E6hGfmU2DBR/W6uQyumXjy3ifB89voKuoIkffWk1qIB7
-   Qc8v8PlkIlSOPgmpODJyFwRhVewUzQPeX1fZ4pDXmNeslXMisgy4lqAED
-   GwcUEykRPW/Ub7C2SiBSOKGLM4fV+0go9uhWJGdMcNGXTVQikC4NOKWrk
-   g==;
-X-CSE-ConnectionGUID: zX+nWBAXRfGRjVjLzqwVqQ==
-X-CSE-MsgGUID: QGE1r1qzRjaLi7FU8x9J4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="87241310"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; 
-   d="scan'208";a="87241310"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Apr 2026 07:46:10 -0700
-X-CSE-ConnectionGUID: gvCoZNvwQiGe5nCmpGl+Jg==
-X-CSE-MsgGUID: Eh7srEzQQkiEWGlZvU5wOQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; 
-   d="scan'208";a="228450985"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.182])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Apr 2026 07:46:07 -0700
-Date: Tue, 7 Apr 2026 17:46:05 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] iio: dac: ad5706r: Add support for AD5706R DAC
-Message-ID: <adUYrSWiX-oexxGN@ashevche-desk.local>
-References: <20260407-dev_ad5706r-v5-0-a4c7737b6ae9@analog.com>
- <20260407-dev_ad5706r-v5-2-a4c7737b6ae9@analog.com>
+	s=arc-20240116; t=1775574581; c=relaxed/simple;
+	bh=dkcbGVCRR5JfW5kZaQmLiuBhWaoFEwvQeU9ASSY32kk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Csazu8yGm3kHb2RnJnijsebcS29wevpTS7kNnCNaz9izaAhDKbEH7sN6ZtoArlHdLCY5BowsVFzPaOrAYF/8o4bvHTVCshPsJpS+2ORgsE5Z6nQ4o7riIaFmjTnoV3GfN6ehXV67KkRcJYO8jJlx2YZIjMgJRXJRkQJRH1SiAV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=gfQT8L/e; arc=none smtp.client-ip=178.251.229.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B98CF10E33C;
+	Tue,  7 Apr 2026 17:09:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1775574576;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=fUKRr3PIBlTzdV7W5Whjo5YyCw0hsjFvMeaap8RDMWk=;
+	b=gfQT8L/ePFsPjNOlKK7k4A8ISlVQUwClinREShy/diZqB70BOY43EQwB6JhIiJJHrtQWet
+	xaxDxyWLPzX1j2RvMm8/jtZinzR9neA6m/dPmrHL2ZTh0TivcHbMT8SXrRIXyZmAc2eQmC
+	uWb3saPAGAaNFP5DG1xfevjSqP+YDyCQL3itj/wcesOIM26SANxL4snTrnLa8CbIMkOjG/
+	uv6ELiglcBwNlO992owG7IPXHLH6FufdjnKXibgtwZvknkRkApNMm0ql+ASjKi9r+CwxTJ
+	f2aqkyl7QcFb8opXCWp0DlBHIqEN0r0td1ZbL6mU+F7VbO+LynOsSEPK5ztzeQ==
+Message-ID: <c3a9c4eb-92ce-48c2-83ff-18c7ce03acd9@nabladev.com>
+Date: Tue, 7 Apr 2026 16:51:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260407-dev_ad5706r-v5-2-a4c7737b6ae9@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: display: bridge: lt9211: Require data-lanes
+ on DSI input ports
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20260404034123.340818-1-marex@nabladev.com>
+ <20260407-invaluable-pretty-leopard-1e8dfc@quoll>
+Content-Language: en-US
+From: Marek Vasut <marex@nabladev.com>
+In-Reply-To: <20260407-invaluable-pretty-leopard-1e8dfc@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-285338-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-285343-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,intel.com,kernel.org,gmail.com,kwiboo.se,ideasonboard.com,linux.intel.com,linaro.org,ffwll.ch,suse.de,lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.991];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8F6783B0609
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nabladev.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nabladev.com:dkim,nabladev.com:mid,0.0.0.0:email]
+X-Rspamd-Queue-Id: 603E23B0C6C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Apr 07, 2026 at 11:39:45AM +0800, Alexis Czezar Torreno wrote:
-> Add support for the Analog Devices AD5706R, a 4-channel 16-bit
-> current output digital-to-analog converter with SPI interface.
+On 4/7/26 10:00 AM, Krzysztof Kozlowski wrote:
+
+>> NOTE: For example Linux kernel driver does already use that information
+>>        and fails to probe if it is missing. There are currently no intree
 > 
-> Features:
->   - 4 independent DAC channels
->   - Hardware and software LDAC trigger
->   - Configurable output range
->   - PWM-based LDAC control
->   - Dither and toggle modes
->   - Dynamically configurable SPI speed
+> The first sentence must be part of the commit msg. That is important
+> reason why you are doing this... but I don't see how you achieve any of
+> this. Look:
+> 
+> 
+>>        users for this binding, so no new warnings will be generated once
+>>        this is applied, but a new user is about to be added.
+> 
+> What warnings? How?
 
-Mostly okay, see minor comments below, the main one is about treating void * as
-__be16/__be32 * without any validation.
+There are no in-tree users of this binding, so no DT checker warnings 
+will be produced on existing in-tree DTs. I am in the process of adding 
+a DTO which uses this binding now in arm64: dts: imx8mm: imx8mp: Add 
+DTOs for Data Modul i.MX8M Mini and Plus eDM SBC
 
-...
-
-> +static int ad5706r_regmap_write(void *context, const void *data, size_t count)
-> +{
-> +	struct ad5706r_state *st = context;
-> +	unsigned int num_bytes, val;
-> +	u16 reg;
-> +
-> +	reg = get_unaligned_be16(data);
-> +	num_bytes = ad5706r_reg_len(reg);
-> +
-> +	struct spi_transfer xfer = {
-> +		.tx_buf = st->tx_buf,
-> +		.len = num_bytes + 2,
-> +	};
-
-> +	val = get_unaligned_be32(data);
-
-Is it safe? The data is void *, no size of it is counted here...
-
-> +	put_unaligned_be32(val, st->tx_buf);
-> +
-> +	/* For single byte, copy the data to the correct position */
-> +	if (num_bytes == AD5706R_SINGLE_BYTE_LEN)
-> +		st->tx_buf[2] = st->tx_buf[3];
-> +
-> +	return spi_sync_transfer(st->spi, &xfer, 1);
-> +}
-
-> +static int ad5706r_regmap_read(void *context, const void *reg_buf,
-> +			       size_t reg_size, void *val_buf, size_t val_size)
-> +{
-> +	struct ad5706r_state *st = context;
-> +	unsigned int num_bytes;
-> +	u16 reg, cmd, val;
-> +	int ret;
-> +
-> +	reg = get_unaligned_be16(reg_buf);
-> +	num_bytes = ad5706r_reg_len(reg);
-> +
-> +	/* Full duplex, device responds immediately after command */
-> +	struct spi_transfer xfer = {
-> +		.tx_buf = st->tx_buf,
-> +		.rx_buf = st->rx_buf,
-> +		.len = 2 + num_bytes,
-> +	};
-> +
-> +	cmd = AD5706R_RD_MASK | (reg & AD5706R_ADDR_MASK);
-> +	put_unaligned_be16(cmd, st->tx_buf);
-
-For the consistency's sake use &st->tx_buf[0].
-
-> +	put_unaligned_be16(0, &st->tx_buf[2]);
-> +
-> +	ret = spi_sync_transfer(st->spi, &xfer, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Extract value from response (skip 2-byte command echo) */
-> +	if (num_bytes == AD5706R_SINGLE_BYTE_LEN)
-> +		val = st->rx_buf[2];
-> +	else if (num_bytes == AD5706R_DOUBLE_BYTE_LEN)
-> +		val = get_unaligned_be16(&st->rx_buf[2]);
-> +	else
-> +		return -EINVAL;
-> +
-> +	put_unaligned_be16(val, val_buf);
-> +
-> +	return 0;
-> +}
-
-...
-
-> +#define AD5706R_CHAN(_channel) {				\
-> +	.type = IIO_CURRENT,					\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		\
-> +			      BIT(IIO_CHAN_INFO_SCALE),	\
-
-Missing indentation at the end with tabs.
-
-> +	.output = 1,						\
-> +	.indexed = 1,						\
-> +	.channel = _channel,					\
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>> ---
+>>   .../display/bridge/lontium,lt9211.yaml        | 37 ++++++++++++++++++-
+>>   1 file changed, 35 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
+>> index 9a6e9b25d14a9..5264fb2b68b78 100644
+>> --- a/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
+>> +++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
+>> @@ -36,18 +36,50 @@ properties:
+>>   
+>>       properties:
+>>         port@0:
+>> -        $ref: /schemas/graph.yaml#/properties/port
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> 
+> OK, that's correct.
+> 
+>> +        unevaluatedProperties: false
+>>           description:
+>>             Primary MIPI DSI port-1 for MIPI input or
+>>             LVDS port-1 for LVDS input or DPI input.
+>>   
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/media/video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+> 
+> That's correct.
+> 
+>> +
+>> +            properties:
+>> +              data-lanes:
+>> +                description: array of physical DSI data lane indexes.
+>> +                minItems: 1
+>> +                items:
+>> +                  - const: 1
+>> +                  - const: 2
+>> +                  - const: 3
+>> +                  - const: 4
+> 
+> That's almost redundant in this context - it was already there - and the
+> point is that it solves noting in the problem you had. Binding still
+> does not validate the ABI and does not match it, still.
+> 
+> Since commit foo bar, driver needs data-lanes, so what you need to do is
+> allow them and to require them. You can also specify their constraints
+> if device can be configured multiple ways, up to 4 lanes.
+Please pardon my ignorance, what exactly do you propose I change in this 
+patch ?
 
