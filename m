@@ -1,255 +1,228 @@
-Return-Path: <devicetree+bounces-285089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285091-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aMTENvpw1GlVuAcAu9opvQ
-	(envelope-from <devicetree+bounces-285089-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 04:50:34 +0200
+	id SLfaNCV11GmyuAcAu9opvQ
+	(envelope-from <devicetree+bounces-285091-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 05:08:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 868653A93F6
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 04:50:34 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 869DB3A9508
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 05:08:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id ECBAD3003827
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 02:50:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 876FD30055CD
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 03:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19381355F42;
-	Tue,  7 Apr 2026 02:50:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="YgAU5k/T"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 897E2372681;
+	Tue,  7 Apr 2026 03:08:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011056.outbound.protection.outlook.com [52.101.70.56])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FD3F1474CC
-	for <devicetree@vger.kernel.org>; Tue,  7 Apr 2026 02:50:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.56
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775530231; cv=fail; b=cHoKUYRe7rcOMR2Dr/+6pJrJa5HBtYR7TQEgfO83xH+xLq+i/sHA1yHoPosk5eqcV6nWWb4kd+a1F+bClnrzu/8pTLoONyn0Gb9EguBZMitToNsn+9MJgLHWFUZW5cwazNJSCsS/z827lcPdd9IEP74fFRlNqvpJG1aCYKCMtu0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775530231; c=relaxed/simple;
-	bh=RiMMBY7y8qRpuZCjWNV02W/JMgbGDftS8m/ghYM8qpA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=tgtiUQ7XN06NxDxVMfwOODWPlk4xx/RssZuM8d383l5CgfCi3Gt66EvqQMGde3RVmU/ojcVEhSmy4ChgxdegZfTmjl4qV20RF+cJqvTknu8jqlqJYpMBrR00P8/tiZonc/7DkeD3o5HTOQxCqPHLKhXfoJXhPrkZxbinvKlaYEc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=fail (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=YgAU5k/T reason="signature verification failed"; arc=fail smtp.client-ip=52.101.70.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vNTDy7A3ZXZO2uH/9a0Se1ZZFJl41Lt6QQzbBulc82UjIG46WNWZfdaqS5FQ608izX4s/BKZmpjBZcMUJpMD/EmG4ZsPN4zdh1QADC2WB6ycWCbIfGUn2i28uHFvcshwK8CsiGlupbOID9VPFyBS1mvw7gY+TTcQwgCY6OybUZauGXo3NifL19C+ZCttRkinrBf5VcglvxDi0B6kwkwg9bQq1D67Yvw76Z02R1uAxo3AiS78wFseUfQ3sHs6+Y/h3BDQCcEcp55xccw5MEjghgL+Slgby1X83cM/QwsEzPqnsW2r/meTPxwN7ijWFOo+ULwa2jpnHSooNyi7j3Hx+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SySb8nK1HAxGRC5lKmxGE4dT5A6tIPQOuEK8jcrLag8=;
- b=TQeQ0H1uDlsYTNzlrX64IeBxMQE2mxVh4R0DRRE69WI1ytr2szrHREdMVawdQd8SEP1ZlDm1gtLGrnoTEg9BedWskqbQwKoveXaIk8E3tmRQoM5Ei9HmMArs1YYnmitsIKp6QXmBJmIqtrvnApO1dc2+dDvZp0jgoSUIg4XzE5i6cY5eBq01cLnNsKF4+c+CUIiLqZlmzIn6FO/j0rOz62EE0OCdJaywU/81IncWFienrygzILeqAQukF8jOVVLT1C0gJX4sODB8Q27yK5i3bfHJjifUlMX/ANWDBEduMGTXmaJLPRVUA3Di5i6ZJLiFxI1TSdbsptrFS2yrB047vQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SySb8nK1HAxGRC5lKmxGE4dT5A6tIPQOuEK8jcrLag8=;
- b=YgAU5k/TuZOgEGaaKOPia4hvp1Eal2jVT4eeQpz9DYPNjRjSTrQyy97+/JfrJWqFP6Yu85d7tft0CgH80cLBzoV87neZ9TrxwaUe7e5BWPYxaqlI9XVdtmCJd3sgk1duQm7cuIPloess0Q8ZLB6b9UwwhZv+oPIR6hANCu28TObl+I4NXk8rpb2EGBSyqrlWqxdHRqWPjrjkMLa3WlKFFQIwGpYe3wQCwzFffrxx88d1+5tRVERyL8jUConz/qXbWGgoEOjK/AZRKxwBXhOKg49oCWL6lRKT+UfwpKAu2bJf0cLZz11+jFMeA9uiKSd/mk2m7rRb9M1Jfk2ZOqkBFQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by AS8PR04MB8246.eurprd04.prod.outlook.com (2603:10a6:20b:3f6::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.18; Tue, 7 Apr
- 2026 02:50:27 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9769.018; Tue, 7 Apr 2026
- 02:50:27 +0000
-Date: Mon, 6 Apr 2026 22:50:18 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Dominik Haller <D.Haller@phytec.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Cc: "robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"sam@ravnborg.org" <sam@ravnborg.org>,
-	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"upstream@phytec.de" <upstream@phytec.de>
-Subject: Re: [PATCH 2/2] drm/panel: simple: Add EDT ETML1010G0DKA panel
-Message-ID: <adRw6sNItxMNEfK6@lizhi-Precision-Tower-5810>
-References: <20220818124518.42080-1-d.haller@phytec.de>
- <20220818124518.42080-2-d.haller@phytec.de>
- <ba13246c-3838-4993-12ef-420d82730b28@phytec.de>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ba13246c-3838-4993-12ef-420d82730b28@phytec.de>
-X-ClientProxiedBy: BYAPR06CA0064.namprd06.prod.outlook.com
- (2603:10b6:a03:14b::41) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A182D8DCA;
+	Tue,  7 Apr 2026 03:08:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775531296; cv=none; b=jblvwXZc9a4k+1dbPNm6Fio6yPb/tTuMhzooz5r6JGzRf8n13U0i9TqsQdUwUFwGPr2X6sw7wCBZD6C+9HJ7EL26Zza5BMbiixlUolvCYSs/hmhxRv/80fnbWmHWhfBdjjqLyUlxZ9kxSWvWZdbALl12Qaz+IqP4myiFZ0+ZUWY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775531296; c=relaxed/simple;
+	bh=6+9skIeBKMpnp8/9FeVOV83soZuwsa79YV+g8KhVhnk=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=fW3V3FwnuZ1miJ+gNYzyGgcaHdDKfC3Cgm5ymPrsS67+nrYG5iLbLgfS4Zcz4/bDLT1aMaHm4GbUUMwA5DrsSeNXRwk0ZJonULuUGgvnuZIcnxkXpVYmVSOAExqCvawHVQo/ktD037sTl2LJPvQTQovXtKy+d4ILlo+00pPxCzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 7 Apr
+ 2026 11:08:04 +0800
+Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Tue, 7 Apr 2026 11:08:04 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+Subject: [PATCH v5 0/4] AST2700-A2 interrupt controller hierarchy and route
+ support
+Date: Tue, 7 Apr 2026 11:08:03 +0800
+Message-ID: <20260407-irqchip-v5-0-c0b0a300a057@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AS8PR04MB8246:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c733353-7d1d-4e8b-c21a-08de94506c57
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|19092799006|366016|52116014|38350700014|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	XOtyxc9oxuz1p2r/qJkMWpxp1POo0TrekLDGNcEes75Txh5R0+x0wp8IvY2KOhLhcqn+VP4E96EsBY5ezJkibqOlFTOyaetOVouaaO+ltz5MZEzN09U6RDnWR8gI7ONjYJ7FP3oDwQM8Vhj18qNJATmi4qvfFX3/Dazz4vHyfAvCHV7wawi6qm/iaqwraUYGKALo702kYaImvkP8kYJSbTFwHSy07u5R9XhwlV0BDUWsMzGndBmGw4VH/hDAJBse19xDy6xMTi8/HqVhR5vuoRccl6533zgtaUZnw8a2Hy2iXzEtFTD095XcR3z1blXY6RIHSOTUtJFAsTq5FVG4hmBnwfNO0CXc/ZbH7K5WbQujHobGJwlL87awH5rsO4OSJ/alFdy8u42hE+o2WiAYcLJOUJaBLhY36I3LLjYj3GQYY04GdzwXDsKZeHJpohdP/g0S2zAsrNuV9EeVNkDsI34F8xHyM8EOwZ1kYz0mrRaTTnjgsYOXu/AoRrnQVPtvpAVZj+BYtFZRLDnaUS3E6HpWyXT1fpGRxebLzFXbBCI2ROCjC3+O6xil9GDZIPKYiZTwI6JGi1CiGJZBv8UN13zrSBDVqmIr6BZffl6Mw7EJvG0RQNPWOOBTSQJEAQEwtFEZI/v5gn6fUNTjuKVa+TqQj0Nre4Ww2UOxCj7B+Bvr4rRzAz/ZIxdbmmDOCdee/dZ7eU95Og4/6sHVHN1kmrsu/J2lxoFwl8oftPW4I4fCuAqBpiH40+//n1L9OaLY2dqk2Nokv4tPPIV3MhlzgrTe8WCPafq8mMFR6bS6vzY=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(19092799006)(366016)(52116014)(38350700014)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?iso-8859-1?Q?QxTiV9YqCYpbZHa3Ii0XagA+I3MBjkZ7e1G/6tE/wIhCkpUGz1X+uemM/S?=
- =?iso-8859-1?Q?+MHPyJ1CC99sSQBLQcnqYos5IzoER5/FcUdgDEZciMRte1AsjwkuJiN3R5?=
- =?iso-8859-1?Q?cXRo1hpKYlJkxi2bBg1l642gZF2EgazL9wMZr/P1FHPl7x3NpXIp/dX9yP?=
- =?iso-8859-1?Q?FeLYa4netQlY6RFCSZ6q7pvcDHcZicgHrrtQhbm0owda8SJF+JODz67Wbs?=
- =?iso-8859-1?Q?tikrSOW1c3wU6hEi8JtRWu7VyHlRCWpk0noXwmKHD6euRPQleeXgayybgY?=
- =?iso-8859-1?Q?G4lG4ZJqdDgZ1bKZ2bupdjFn6gc5ial5sFNq2LURExcXpsSuGvVGFHXQUw?=
- =?iso-8859-1?Q?PyE798vo356iRn4v2oqxuTR3a0TndF1GxkGKUGd4qRAnoGC68POtYwfgIV?=
- =?iso-8859-1?Q?tcWGOXt3jj3u61XwW73fWkBE5gFy9Ic9YHrg1Yygu8rbRp4hYdAE7/xkn7?=
- =?iso-8859-1?Q?Xr3caJwxdtfKenbhw/WRYVqEin5Lw+YGsfDkWp0ixLxnFMKQ658CzQzBNd?=
- =?iso-8859-1?Q?EtjKbgbOvWXeALrB1bmA5lsrwk/xMpCe16KbhpNKmD72euiOxKXBLYV5c6?=
- =?iso-8859-1?Q?I92wsIeKwmwtAaEK4XTU4zj61nb2byhmfKlbTOi59t0stfC/A/kSGBXmxA?=
- =?iso-8859-1?Q?ozVJ3Bzw5w67iWjDHS4jl+orxphge9xBNzBm1ou2CPHwRrt9NXPocNy8ZO?=
- =?iso-8859-1?Q?Uh2nuaMlsSkoJZ7kN7WvyCqxHq8N5kNBo4MrEb87tvpSEBpzIN0mmgUXxw?=
- =?iso-8859-1?Q?m6AjjCgvZdIaPf+otONjdUMaeyQ4TFW12OcS27pGNIMstJZpOaYInR5rZR?=
- =?iso-8859-1?Q?eQu0vZn4v4elfIPqV6Fn2YVDS6Yc5pEcIa/XLvfet1YaOatTt2XMzmP9q6?=
- =?iso-8859-1?Q?vIjtqEjefQP2cdBPEYTatH69f7rQEI7H0FsqgK16swN7MqXBnoGJadKGZe?=
- =?iso-8859-1?Q?l6SMB/0atPxW3hk5pDCEk9rAgzyOhMPkQwSHwe9CRLlW7hIFTo9SFeRvua?=
- =?iso-8859-1?Q?HDyAcdEQ7uVFBBpvyyudx2MkuYssR5ah0qJIue8vvCYmD9/XfuMAx7lzF/?=
- =?iso-8859-1?Q?gUc1nbB8/ggeQw2X4T+20NCuYtXUA6nu+SjJFDEy47y8iUCVMOp7+1lPRD?=
- =?iso-8859-1?Q?/Yxmf0XxpMnSiofugeiwNz9V+7HSvYfE9fagcjFUKTwMFp6O7iMATsDcLQ?=
- =?iso-8859-1?Q?OmL4WlxEVsKgucgpbgKaQBN23NHHuFQN2pKqaGFjWYANjXcRMm9AiZjzqP?=
- =?iso-8859-1?Q?NJz9mqOIWyDaN5ssvz2y6frWR/jUs/mWJOq/6RF6EFI1R1aJgPylu9EwZN?=
- =?iso-8859-1?Q?brJka1RBc6hQ8zgkKVuwUPsJcwG2VCp0I0klvz45mLdqRjcCfGwcLzQR8s?=
- =?iso-8859-1?Q?xeCufJHJDT0utWVRtdyDk1WnuJcE64Zsp7UNMmo5KAS8ck5nnXCWaK8XTX?=
- =?iso-8859-1?Q?GqY2uFdSFhEoaiPZwhtlo4lyK/vJ45Vx+d2VoeZhtMsjABpFOmS072GMBV?=
- =?iso-8859-1?Q?Wa4fuNA8qETC6GYX19vLwbskmv1XHWIl8jUOM/4Ku1UUCn0Omo3png/ZtK?=
- =?iso-8859-1?Q?benAAiEW/7xwzABtT/4UWic/1qN9ftqC6kG7eHMAg3MS4KceouEO7BJTXL?=
- =?iso-8859-1?Q?1sHlyZgRt7Uu9KJHIkXqZcQziI8efbiRTlwOPjXy9DoaTMUjhqKFsr/eYx?=
- =?iso-8859-1?Q?KCAA41A0QJdcP+q6n5r42fI0Dl0D/UOtqLH2fc3LukZ8o/7fNOnygBdF85?=
- =?iso-8859-1?Q?kutvYkP7qfeOC2qyjMFpxkK4HIepquvMHeguBh+X3p0cLL?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c733353-7d1d-4e8b-c21a-08de94506c57
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 02:50:27.0701
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VWoMxEci+bqNdmEATtnRtxUoNpZsZ3I3irZmuT/BrMRTWnn4FtDhEe8X1cU+i4AOXs7+OZr0edcgYkA1LtYUSA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8246
-X-Spamd-Result: default: False [3.64 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABN11GkC/23MwQ6CMAzG8VcxOzvTrdCJJ9/DeMDSyQ4KboRoD
+ O/u8AKJHr+mv/9bJYlBkjps3irKGFLo7nmU243itr5fRYcmb2XBElgodYgPbkOvndTikVzRSKX
+ ydx/Fh+e3dDrn3YY0dPH1DY9mvv42RqNBXwANCBDD3h3r1Is0g3C74+6m5tBoF4xAC7YZ+31pL
+ EN1EcK/GFfYrjBmjEQOK1+6mv1fXKwwwoKLGTN4QxaYgX7wNE0f47db+1oBAAA=
+X-Change-ID: 20260205-irqchip-7eaef3674de9
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, "Andrew
+ Jeffery" <andrew@codeconstruct.com.au>, Paul Walmsley <pjw@kernel.org>,
+	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	"Alexandre Ghiti" <alex@ghiti.fr>, Thomas Gleixner <tglx@kernel.org>, Thomas
+ Gleixner <tglx@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-riscv@lists.infradead.org>, Ryan Chen <ryan_chen@aspeedtech.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775531284; l=5780;
+ i=ryan_chen@aspeedtech.com; s=20251126; h=from:subject:message-id;
+ bh=6+9skIeBKMpnp8/9FeVOV83soZuwsa79YV+g8KhVhnk=;
+ b=R8aMVBjns27VKqiyV93c13Nm6t9MPe4j7TnbDqdkWPiXENeG3jLCkUG5QkRrq/LRVEKiyt76d
+ neKofaKyLIvBxvHYL1XrRogFPZnhbUxv4hsq2aCiEtI7vr83M4vIWIx
+X-Developer-Key: i=ryan_chen@aspeedtech.com; a=ed25519;
+ pk=Xe73xY6tcnkuRjjbVAB/oU30KdB3FvG4nuJuILj7ZVc=
+X-Spamd-Result: default: False [1.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[nxp.com:s=selector1];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-285089-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,ravnborg.org,gmail.com,linaro.org,vger.kernel.org,lists.freedesktop.org,phytec.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-285091-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:-];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_SPAM(0.00)[0.171];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[phytec.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 868653A93F6
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.332];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,aspeedtech.com:email,aspeedtech.com:mid]
+X-Rspamd-Queue-Id: 869DB3A9508
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Feb 06, 2023 at 02:20:31PM +0000, Dominik Haller wrote:
-> Hello,
+The AST2700 SoC has undergone multiple silicon revisions (A0, A1, A2)
+prior to mass production.
 
-Neil Armstrong:
+A0 laid the ground-work with a split controller design (INTC0 and
+INTC1) used for early development and bring-up. The interrupt
+architecture was substantially reworked in the A1 to introduce an
+explicit routing model and clearer hierarchy, though the split
+controllers remained. The A1 interrupt architecture is unchanged in A2.
 
-It is quite old. Any reason why not pick this patch?
+A2 is the production design. A0 and A1 are pre-production silicon and
+are no longer intended for deployment outside of ASPEED.
 
-Frank
->
-> ping here, this one got forgotten.
-> It still applies on drm-misc-next and v6.2-rc7
->
->
-> On 18.08.22 14:45, Dominik Haller wrote:
-> > Add support for the EDT ETML1010G0DKA 10.1" 1280x800 LVDS panel.
-> >
-> > Signed-off-by: Dominik Haller <d.haller@phytec.de>
-> > ---
-> >   drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
-> >   1 file changed, 29 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> > index f9e1f85daef7..9314db24ab51 100644
-> > --- a/drivers/gpu/drm/panel/panel-simple.c
-> > +++ b/drivers/gpu/drm/panel/panel-simple.c
-> > @@ -1779,6 +1779,32 @@ static const struct panel_desc edt_etml0700y5dha = {
-> >   	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-> >   };
-> >
-> > +static const struct drm_display_mode edt_etml1010g0dka_mode = {
-> > +	.clock = 70000,
-> > +	.hdisplay = 1280,
-> > +	.hsync_start = 1280 + 100,
-> > +	.hsync_end = 1280 + 100 + 19,
-> > +	.htotal = 1280 + 100 + 19 + 41,
-> > +	.vdisplay = 800,
-> > +	.vsync_start = 800 + 4,
-> > +	.vsync_end = 800 + 4 + 4,
-> > +	.vtotal = 800 + 4 + 4 + 15,
-> > +	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
-> > +};
-> > +
-> > +static const struct panel_desc edt_etml1010g0dka = {
-> > +	.modes = &edt_etml1010g0dka_mode,
-> > +	.num_modes = 1,
-> > +	.bpc = 8,
-> > +	.size = {
-> > +		.width = 216,
-> > +		.height = 135,
-> > +	},
-> > +	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-> > +	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-> > +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-> > +};
-> > +
-> >   static const struct drm_display_mode edt_etmv570g2dhu_mode = {
-> >   	.clock = 25175,
-> >   	.hdisplay = 640,
-> > @@ -4057,6 +4083,9 @@ static const struct of_device_id platform_of_match[] = {
-> >   	}, {
-> >   		.compatible = "edt,etml0700y5dha",
-> >   		.data = &edt_etml0700y5dha,
-> > +	}, {
-> > +		.compatible = "edt,etml1010g0dka",
-> > +		.data = &edt_etml1010g0dka,
-> >   	}, {
-> >   		.compatible = "edt,etmv570g2dhu",
-> >   		.data = &edt_etmv570g2dhu,
->
->
-> --
-> PHYTEC Messtechnik GmbH | Barcelona-Allee 1 | 55129 Mainz, Germany
->
-> Geschäftsführer: Dipl.-Ing. Michael Mitezki, Dipl.-Ing. Bodo Huber |
-> Handelsregister Mainz HRB 4656 | Finanzamt Mainz-Mitte | St.Nr.
-> 266500608, DE 149059855
->
+The existing binding and driver were written against A0 prior to the A1
+rework. The A0 design directly wired INTC1 instances to INTC0, and
+INTC0 to the GIC of the Primary Service Processor (PSP, a Cortex-A35).
+The A0 binding and driver therefore do not account for the alternative
+destinations of the Secondary and Tertiary Service Processors (SSP,
+TSP) and BootMCU, or the necessary route selection logic present in the
+production design.
+
+With the above context, this series replaces the existing binding and
+driver.
+
+It is not necessary for projects to maintain support for A0 due to its
+pre-production nature, and between Linux, U-Boot and Zephyr there are
+no upstream devicetree users of the current binding.
+
+The new binding uses localised interrupt numbers and models the
+hardware connectivity between interrupt controllers using the
+aspeed,interrupt-ranges property. It is introduced in a new file before
+the existing binding is removed in order to keep the diff readable.
+
+The INTC0 driver creates a hierarchical irqdomain under the selected
+upstream interrupt controller and implements route resolution logic.
+INTC1 driver instances defer route selection to INTC0 and expose a
+linear interrupt namespace to their parent.
+
+A brief history of related submissions
+--------------------------------------
+
+Some modifications to the existing binding were sent to the lists in
+the past. Due to process choices the revisions were difficult to track.
+They are listed below.
+
+The approaches took several forms but ended in the minor adjustment in
+v6 being applied. This enabled use of the A1 design but requires
+assumptions about platform route configuration defined in firmware.
+These assumptions are removed by this current series.
+
+* [PATCH] dt-bindings: interrupt-controller: aspeed: Refine AST2700 binding description and example
+  https://lore.kernel.org/all/20250714071753.2653620-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v2] dt-bindings: interrupt-controller: aspeed: Add parent node compatibles and refine documentation
+  https://lore.kernel.org/all/20250715024258.2304665-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v3 0/2] irqchip: aspeed: Add AST2700 INTC debugfs support and yaml update
+  https://lore.kernel.org/all/20250722095156.1672873-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v4 0/2] irqchip/ast2700-intc: Add AST2700 INTC debugfs support and yaml update
+  https://lore.kernel.org/all/20250812100830.145578-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v5 0/3] AST2700 interrupt controller hierarchy support
+  https://lore.kernel.org/all/20251022065507.1152071-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v6 0/1] Update correct AST2700 interrupt controller binding
+  https://lore.kernel.org/all/20251030060155.2342604-1-ryan_chen@aspeedtech.com/
+
+Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+---
+Changes in v5:
+- 2/4 reduce unnecessary line breaks.
+- 2/4, 3/4 fix enable CONFIG_PROVE_LOCKING irq lock inversion dependency
+  detected.
+- Link to v4: https://lore.kernel.org/r/20260330-irqchip-v4-0-3c0f1620cc06@aspeedtech.com
+
+Changes in v4:
+- 3/4 fix warning: the frame size of 1296 bytes is larger than 1280 bytes
+- Link to v3: https://lore.kernel.org/r/20260326-irqchip-v3-0-366739f57acf@aspeedtech.com
+
+Changes in v3:
+- 1/4 Squash patch 5/5 and 1/5.
+- 1/4 modify wrap lines at 80 char.
+- 1/4 modify maintainers name and email.
+- 1/4 modify typo Sevice-> Service
+- Link to v2: https://lore.kernel.org/r/20260306-irqchip-v2-0-f8512c09be63@aspeedtech.com
+
+Changes in v2:
+- Change suject to "AST2700-A2 interrupt controller hierarchy and route
+  support".
+- Describe timeline for (pre-)production design evolution and
+  binding development to support the break in compatibility.
+- fix "make dt_binding_check" compatible string consistance with
+  example.
+- Split KUnit coverage out of the main driver patch.
+- Link to v1: https://lore.kernel.org/r/20260205-irqchip-v1-0-b0310e06c087@aspeedtech.com
+
+---
+Ryan Chen (4):
+      dt-bindings: interrupt-controller: Describe AST2700-A2 hardware instead of A0
+      irqchip/ast2700-intc: Add AST2700-A2 support
+      irqchip/ast2700-intc: Add KUnit tests for route resolution
+      irqchip/aspeed-intc: Remove AST2700-A0 support
+
+ .../interrupt-controller/aspeed,ast2700-intc.yaml  |  90 ----
+ .../aspeed,ast2700-interrupt.yaml                  | 188 +++++++
+ drivers/irqchip/.kunitconfig                       |   5 +
+ drivers/irqchip/Kconfig                            |  23 +
+ drivers/irqchip/Makefile                           |   3 +-
+ drivers/irqchip/irq-aspeed-intc.c                  | 139 -----
+ drivers/irqchip/irq-ast2700-intc0-test.c           | 473 +++++++++++++++++
+ drivers/irqchip/irq-ast2700-intc0.c                | 582 +++++++++++++++++++++
+ drivers/irqchip/irq-ast2700-intc1.c                | 280 ++++++++++
+ drivers/irqchip/irq-ast2700.c                      | 107 ++++
+ drivers/irqchip/irq-ast2700.h                      |  48 ++
+ 11 files changed, 1708 insertions(+), 230 deletions(-)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260205-irqchip-7eaef3674de9
+
+Best regards,
+-- 
+Ryan Chen <ryan_chen@aspeedtech.com>
+
 
