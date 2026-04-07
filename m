@@ -1,50 +1,51 @@
-Return-Path: <devicetree+bounces-285084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285087-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EGTmEydv1Gn6twcAu9opvQ
-	(envelope-from <devicetree+bounces-285084-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 04:42:47 +0200
+	id 2PPeMVFv1Gn6twcAu9opvQ
+	(envelope-from <devicetree+bounces-285087-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 04:43:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E72883A92D0
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 04:42:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B9453A931E
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 04:43:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2AAAD300616B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 02:42:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 97AB3304971E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 02:42:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C265637269A;
-	Tue,  7 Apr 2026 02:42:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1551E373BF1;
+	Tue,  7 Apr 2026 02:42:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="TA1e7L70"
+	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="peATmGC2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B3D37267C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9AA8372675;
 	Tue,  7 Apr 2026 02:42:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775529764; cv=none; b=VQ1+a6WdUCalQB8N3HtyzAJ57Y0OxFdTcdj7pr8K7W67OrpCBk3D3TxZeHMWcqobMOYdmPS+H1GAE29XStSpIkQoKTVQZClSjUIpZjgsFNoqxIKn+dEy/I4QSS2R7u7kRRwiFuM0W5hUZYzF37sWoqC8sNbBcNyqSLLfZeNo3OY=
+	t=1775529766; cv=none; b=P3n+XVaxEqnaO0L0ADCbMSNi/HOyP4WsyyMtinyQeSq7P5gXZ0LR5tzj2yRd4Oel+zawoSrcxdZ4rKMRLPeMi7nU05BSXI/tx37Ib9hpoLm0Xw/X7sfkUwditoBYGtSzB03FC0ZY1xWdnANw1Jkc9nNCEf++e/84jcKC/1Zg8iU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775529764; c=relaxed/simple;
-	bh=P4GjG77njFnhJKKg9A7TX9zCDvXFIHaSQNO7h4lqj9E=;
+	s=arc-20240116; t=1775529766; c=relaxed/simple;
+	bh=2BZqFPQe7ZUR/8QtDScuAwxFzFvibJ0/lbthK8okdZ4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WBMbjQyJf8/DvF5RQMcTerA1HRJDx7ymKcOVQ5Ywwe4eVxKOToR3NBLozyK8p7mXQnEEs5iB8+Vto4uPlfxlyWORCNmVJ9/nHWXRb9JWHsTne9fWlm7B7ezT2ubJyyHGyID58KAEsma5B9JwaMwsuzJa1942FXUNTQLEMA2x/bQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=TA1e7L70; arc=none smtp.client-ip=218.76.62.146
+	 In-Reply-To:To:Cc; b=K79Ok3+5e9S1DAgmACJ2wHgdpHSyQqsR9R8uUodVlw2/sbe2szgnf74M9hgXGW2l2ZM0YVF36LhxTyVcsmWvD2a2N3jFGn32u02aUmx1m+Vo10pgnXs4KpGbbRELjbgBOuhIPUtpnwTBABSVGPAoS3HJA9cyuGm6jNqH6/Lsqgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=peATmGC2; arc=none smtp.client-ip=218.76.62.146
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ultrarisc.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=ultrarisc.com; s=dkim; h=Received:From:Date:Subject:
 	MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:
-	References:In-Reply-To:To:Cc; bh=ZN/5/S7kTbegEsZX6fYTTdSKmL1BGcO
-	/nPWfivSkaKs=; b=TA1e7L7051NM8AitD5TKUlWWZHz09DMtdf9WO2m6lGfsJs4
-	/1oJVzroDc8Y18PbSsqeIO1R/Hr3Ui+cB/+khfPU+CakcTVpI1vRjvbKWeoWdnYu
-	nuWKa13xBxDh0bSaJ2KMxSIH6jwV+0LM8A67OHgaxITKgnlKo7y19DuEdvd4=
+	References:In-Reply-To:To:Cc; bh=U2LYLqsQqE6vo0BCMVpbgQFy8GUf++Y
+	cC5+RdbPFp0s=; b=peATmGC2Nt6AnZVXh4vJCYxT7dIck8q34/aJdlOl/qmDOgE
+	XjjI6LEL5vt8mjeWz5vM+V+9J0nt+0GBTWb/FVEssQuuzBKg1RWvibK7Qz5++DAm
+	wrYckE65GgDVXMIz1870A/3KF5LQos28hMqkjUBApP+rwRXXin0sjYxJSX5U=
 Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwDXEELwbtRpBZsBAA--.862S3;
-	Tue, 07 Apr 2026 10:41:56 +0800 (CST)
+	by localhost.localdomain (Coremail) with SMTP id AQAAfwDXEELwbtRpBZsBAA--.862S4;
+	Tue, 07 Apr 2026 10:41:57 +0800 (CST)
 From: Jia Wang <wangjia@ultrarisc.com>
-Date: Tue, 07 Apr 2026 10:40:52 +0800
-Subject: [PATCH v2 1/4] riscv: add UltraRISC SoC family Kconfig support
+Date: Tue, 07 Apr 2026 10:40:53 +0800
+Subject: [PATCH v2 2/4] MAINTAINERS: Add entry for the UltraRISC DP1000
+ PCIe controller driver and its DT binding
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +54,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260407-ultrarisc-pcie-v2-1-2aa2a19a7fb3@ultrarisc.com>
+Message-Id: <20260407-ultrarisc-pcie-v2-2-2aa2a19a7fb3@ultrarisc.com>
 References: <20260407-ultrarisc-pcie-v2-0-2aa2a19a7fb3@ultrarisc.com>
 In-Reply-To: <20260407-ultrarisc-pcie-v2-0-2aa2a19a7fb3@ultrarisc.com>
 To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -69,38 +70,38 @@ Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
  linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
  Jia Wang <wangjia@ultrarisc.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775529665; l=924;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775529665; l=906;
  i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
- bh=P4GjG77njFnhJKKg9A7TX9zCDvXFIHaSQNO7h4lqj9E=;
- b=qbn5R6x4HJ8lCpXBgSbCqIU+8E7QUq5mB8cvupA3fI4AFYPa3fOMLgNxZdcftfBX2kGVzsjWh
- c3Bp9M21LRtDbXla88kbnP98xT1D0Xc/mwXRA/JzM0hWfkj/qIxdoWE
+ bh=2BZqFPQe7ZUR/8QtDScuAwxFzFvibJ0/lbthK8okdZ4=;
+ b=kYprOHgEELwb1wXhKp6khEG6yvTvLN/ALPw31WwJTHU8D0+C+lQIqFY4SZUvB3MGNmgFg4dXc
+ IMu61M8s7wTBFwH4YETQ/dzeYDPFWnAfeVpAVGrf4yI9G0s4d4s5PNW
 X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
  pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
-X-CM-TRANSID:AQAAfwDXEELwbtRpBZsBAA--.862S3
-X-Coremail-Antispam: 1UD129KBjvdXoW7Jw45Gr4DJry7tw1Utry8uFg_yoWfAwb_C3
-	s7J3y8ua48AFW8ua98Wr4fWFyrCws8WFy3Gr1SqryUua4xXr17Xw4Dt3W8tr15uw15Xa1k
-	ZrZ3JFWfurySyjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUb9kFF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUGwA2048vs2IY02
-	0Ec7CjxVAFwI0_Gr0_Xr1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-	wVC0I7IYx2IY67AKxVWUJVWUCwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
-	x0Y4vEx4A2jsIE14v26r1j6r4UM28EF7xvwVC2z280aVCY1x0267AKxVW8JVW8Jr1le2I2
-	62IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcV
-	AFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG
-	0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI
-	1lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMxC20s026xCa
-	FVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
-	Wlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j
-	6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr
-	0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUv
-	cSsGvfC2KfnxnUUI43ZEXa7sREUDG3UUUUU==
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAKEWnTLbsAIAAAsW
+X-CM-TRANSID:AQAAfwDXEELwbtRpBZsBAA--.862S4
+X-Coremail-Antispam: 1UD129KBjvdXoWrZrykuryxZw1fKrWxJF4UXFb_yoWfuwb_Gr
+	1xXrWxZFWUGFy0yayvkF4IyryYyw4xXF1Ik3WktanrZ3y8try5t34ktFySy3WDCr4rCanr
+	JF97JFyv9r43ZjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbB8FF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUXwA2048vs2IY02
+	0Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+	wVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1l84
+	ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AI
+	xVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
+	vE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
+	r2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04
+	v7MxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04k20xvY0x0EwIxGrwCFx2IqxVCF
+	s4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r
+	1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWU
+	JVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42xK8VAvwI8IcIk0rV
+	WUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4U
+	JbIYCTnIWIevJa73UjIFyTuYvjTRRCJPDUUUU
+X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAKEWnTLbsAIgAAsU
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
 	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -112,7 +113,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_TO(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,google.com,gmail.com,ultrarisc.com];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-285084-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-285087-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[ultrarisc.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -121,40 +122,39 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ultrarisc.com:dkim,ultrarisc.com:email,ultrarisc.com:mid]
-X-Rspamd-Queue-Id: E72883A92D0
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ultrarisc.com:dkim,ultrarisc.com:email,ultrarisc.com:mid]
+X-Rspamd-Queue-Id: 2B9453A931E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The first SoC in the UltraRISC series is UR-DP1000, containing octa
-UltraRISC C100 cores.
+Add a MAINTAINERS entry for the UltraRISC DP1000 PCIe host driver and its
+DT binding.
 
 Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
 ---
- arch/riscv/Kconfig.socs | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ MAINTAINERS | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-index d621b85dd63b..98708569ec6a 100644
---- a/arch/riscv/Kconfig.socs
-+++ b/arch/riscv/Kconfig.socs
-@@ -84,6 +84,15 @@ config ARCH_THEAD
- 	help
- 	  This enables support for the RISC-V based T-HEAD SoCs.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index c3fe46d7c4bc..c8159670a14d 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20582,6 +20582,14 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+ F:	drivers/pci/controller/plda/pcie-starfive.c
  
-+config ARCH_ULTRARISC
-+	bool "UltraRISC RISC-V SoCs"
-+	help
-+	  This enables support for UltraRISC SoC platform hardware,
-+	  including boards based on the UR-DP1000.
-+	  UR-DP1000 is an 8-core 64-bit RISC-V SoC that supports
-+	  the RV64GCBHX ISA. It supports Hardware Virtualization
-+	  and RISC-V RV64 ISA H(v1.0) Extension.
++PCIE DRIVER FOR ULTRARISC DP1000
++M:	Xincheng Zhang <zhangxincheng@ultrarisc.com>
++M:	Jia Wang <wangjia@ultrarisc.com>
++L:	linux-pci@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml
++F:	drivers/pci/controller/dwc/pcie-ultrarisc.c
 +
- config ARCH_VIRT
- 	bool "QEMU Virt Machine"
- 	select POWER_RESET
+ PCIE ENDPOINT DRIVER FOR QUALCOMM
+ M:	Manivannan Sadhasivam <mani@kernel.org>
+ L:	linux-pci@vger.kernel.org
 
 -- 
 2.34.1
