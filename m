@@ -1,128 +1,145 @@
-Return-Path: <devicetree+bounces-285148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285150-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SFIYKger1GmKwQcAu9opvQ
-	(envelope-from <devicetree+bounces-285148-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 08:58:15 +0200
+	id MKNtMp2r1GmKwQcAu9opvQ
+	(envelope-from <devicetree+bounces-285150-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 09:00:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D04A3AA8A1
-	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 08:58:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CC2B3AA918
+	for <lists+devicetree@lfdr.de>; Tue, 07 Apr 2026 09:00:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 434353007496
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 06:58:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 56877300B1A0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 07:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A622438F25D;
-	Tue,  7 Apr 2026 06:58:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WgOpbeWx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C4B9392812;
+	Tue,  7 Apr 2026 07:00:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 835CE38C2D1;
-	Tue,  7 Apr 2026 06:58:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E5F3921C0;
+	Tue,  7 Apr 2026 07:00:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775545090; cv=none; b=gWJZoYZH42iGohVqI6Hqm8tcGuStwrwUgKTIevo9pTpxXGzZ9BFjVtLADw4WYCgud8MYR/VIOreoOg5TrDQRhJo+Rn7ApeQ8+DGsziEDyPQnJZ4SiwTiIQBoLa4CyN5dg18VKPbZPPFPPZAuWbdY39nCw04tzQKouFvrfsl4rq0=
+	t=1775545242; cv=none; b=nv1jVd8jF0mUAlSdLIvSBGaIXijaSxYFgZg4pP4+BDpL5ABIGimCRYme2+r+KBEsXbVOCMKpo3dTZqD4smPz+pq7F0GEWm5buqOV5+6jBANnX9es3mXlWjXGbtvohr3UM1e+FI26/QWKGwaBb7CCVktnidrbzQiu88hBP09fQN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775545090; c=relaxed/simple;
-	bh=Q1EVqiFzLQWhtx3CgXKnHJgnO4sfqApqXVHbkrxtwQM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lKd9qCmIN90RWrkRR84Ovid4JNav0w49XjaVGvHds2/ddMkYK9W9t1Km4ugt6bTvES5NeHWWg6DPGof3uWCPBfYd030J7un40fvMnwDQV2ni1gV9FAOI1wDPtpzN/ASFhU/KRPlNVmqkzbb9L7+i2pbEpFMe8mnq6pXjU4v/q08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WgOpbeWx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C801C116C6;
-	Tue,  7 Apr 2026 06:58:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775545090;
-	bh=Q1EVqiFzLQWhtx3CgXKnHJgnO4sfqApqXVHbkrxtwQM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WgOpbeWxdAW5ztDLp8QxTv/ZMMwhz2q7Sqv1FmZqc9uGxWbZ4pnZOCC11hxtHiIeD
-	 2O9IuscFQ736YUdf+UpjIkRC/aFo7CgjbEknmeW0xEDzGzAfrPeN6t3eOglUs/xQik
-	 Zenaf6YL6rvVbkzoOH+5ATtbe7Pr/DYcsxvxMVkUqumVjo4WBDAZ2Qe7WEkaWX3RuS
-	 J+xxPwE1qcWYrw+OX+ecBDTBTRCnf6XawOX4EgOdQZYmZ7AKQlZtUwEsAdA4Z+4zXI
-	 vAc4rBMCmNQGPq2Jje7r16MHMNRLlN0CV9JMbzYWSWOAm8kqBIVHRY1kuOQOwTpLjP
-	 932F8mQNV1G3A==
-Date: Tue, 7 Apr 2026 08:58:07 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jan Carlo Roleda <jancarlo.roleda@analog.com>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: leds: Document LTC3208 Multidisplay
- LED Driver
-Message-ID: <20260407-outstanding-sceptical-giraffe-3fd6bb@quoll>
-References: <20260406-upstream-ltc3208-v3-0-7f0b1d20ee7a@analog.com>
- <20260406-upstream-ltc3208-v3-2-7f0b1d20ee7a@analog.com>
+	s=arc-20240116; t=1775545242; c=relaxed/simple;
+	bh=Baq+UbIgzaL4fuwo1eAiTLYHgANmfzRmCPOtKq5siEA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=urOjJEk7XSxUL1nb/oHlNR7OAnktg6pgMB5frNGcsAx8jGyR2fwglSijW/7jnI3jSqzPRKprbzw0DBkyLeaejKzh5RpbQ3II1tv3eQ+AFpLrQsf6BiQKLzGU5CaRuORj2nXEiPwUUJFYlarLW53C/AUltZyoVViX3Je1P4XXK1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [116.25.94.42])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 39c3690ca;
+	Tue, 7 Apr 2026 15:00:28 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: gaohan@iscas.ac.cn
+Cc: alex@ghiti.fr,
+	amadeus@jmu.edu.cn,
+	aou@eecs.berkeley.edu,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dlan@kernel.org,
+	krzk+dt@kernel.org,
+	legoll@online.fr,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	palmer@dabbelt.com,
+	pjw@kernel.org,
+	rabenda.cn@gmail.com,
+	robh@kernel.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH v9 3/3] riscv: dts: spacemit: Enable USB3.0/PCIe on OrangePi RV2
+Date: Tue,  7 Apr 2026 15:00:22 +0800
+Message-Id: <20260407070022.645614-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <dba1428ac649dbc6d3fe4c58f0c6d24bb7432b9f.1775417019.git.gaohan@iscas.ac.cn>
+References: <dba1428ac649dbc6d3fe4c58f0c6d24bb7432b9f.1775417019.git.gaohan@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260406-upstream-ltc3208-v3-2-7f0b1d20ee7a@analog.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9d66be1d2903a2kunm1b4f0c4c66ad55
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDHhpKVk4ZTBlITkMaSxgaHVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk9VT0lZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSktLVUtZBg
+	++
+X-Spamd-Result: default: False [1.64 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-285148-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[ghiti.fr,jmu.edu.cn,eecs.berkeley.edu,kernel.org,vger.kernel.org,online.fr,lists.infradead.org,dabbelt.com,gmail.com,lists.linux.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-285150-lists,devicetree=lfdr.de];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
+	NEURAL_SPAM(0.00)[0.252];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,analog.com:email,1b:email]
-X-Rspamd-Queue-Id: 3D04A3AA8A1
+	R_DKIM_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,jmu.edu.cn:mid]
+X-Rspamd-Queue-Id: 5CC2B3AA918
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Apr 06, 2026 at 03:17:06PM +0800, Jan Carlo Roleda wrote:
-> Add Documentation for LTC3208 Multidisplay LED Driver.
-> 
-> Signed-off-by: Jan Carlo Roleda <jancarlo.roleda@analog.com>
-> ---
+Hi,
 
-Still incorrect order.
+> +	pcie_vcc3v3: regulator-pcie-vcc3v3 {
+> +		compatible = "regulator-fixed";
+> +		enable-active-high;
+> +		gpios = <&gpio K1_GPIO(116) GPIO_ACTIVE_HIGH>;
+> +		regulator-name = "pcie_vcc3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
 
-...
+Please add: `vin-supply = <&vcc_5v0>;`
 
-> +
-> +      led-controller@1b {
-> +        compatible = "adi,ltc3208";
-> +        reg = <0x1b>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        adi,disable-camhl-pin;
-> +        adi,cfg-enrgbs-pin;
-> +        adi,disable-rgb-aux4-dropout;
-> +
-> +        led@0 {
-> +          reg = <0>;
+> +	vcc5v0_usb30: regulator-vcc5v0-usb30 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc5v0_usb30";
+> +		enable-active-high;
+> +		gpios = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
 
-I still expect this to be complete, so at least function and color.
+Could you place `regulator-name` under `gpios`?
 
-Best regards,
-Krzysztof
+	vcc5v0_usb30: regulator-vcc5v0-usb30 {
+		compatible = "regulator-fixed";
+		enable-active-high;
+		gpios = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
+		regulator-name = "vcc5v0_usb30";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		vin-supply = <&vcc_5v0>;
+	};
 
+> +&pcie1 {
+> +	vpcie3v3-supply = <&pcie_vcc3v3>;
+
+Redundant vpcie3v3-supply.
+
+> +	status = "okay";
+> };
+
+Thanks,
+Chukun
 
