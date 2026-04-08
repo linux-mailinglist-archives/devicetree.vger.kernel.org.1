@@ -1,318 +1,158 @@
-Return-Path: <devicetree+bounces-285787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285783-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id APo1DIVT1mm8DQgAu9opvQ
-	(envelope-from <devicetree+bounces-285787-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:09:25 +0200
+	id oCg6BwZT1mm8DQgAu9opvQ
+	(envelope-from <devicetree+bounces-285783-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:07:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AF183BC989
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:09:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77C1D3BC8F2
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:07:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9671F3008516
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 13:09:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 38B0830378A9
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 13:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEACC3CA4B6;
-	Wed,  8 Apr 2026 13:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 879B93C3C09;
+	Wed,  8 Apr 2026 13:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Sxxbf7W0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B50E3BE146
-	for <devicetree@vger.kernel.org>; Wed,  8 Apr 2026 13:09:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2412D40DFCC;
+	Wed,  8 Apr 2026 13:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775653762; cv=none; b=p+/koVI+WlJj36AfA62s8NzUSUVaACEjlc0t7vfDW32Z4TCU7njQH/h3QfD2rGArSnRAv9tJLJd7IjHSxZp6ZazIvT5ziZVX0aLMmXy0S04YDz88CfKxlr0LxnmZVmEEBFR7Je8Mesckb0PrjkNmed8XTwBdpwiW+IXjPe2Mknk=
+	t=1775653287; cv=none; b=KqBnnjcBJDwA4g7nXuSGtL59dTHGUjrc56sYCDjtLrozRicBx24gyt9aExQBOJf6JZIlF4cWnZUcBpvMLPWJwVWwWyjmM+ske0cKeo2n9t1WE95Aywkw90qWCQvWNEKx7BxilFU5eFo1sbF6eGAgH56J0LKBEcpE9E/sZMC3kUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775653762; c=relaxed/simple;
-	bh=sQmw9lWDcF2d/4KFoX+2MzyqctprsKDF8SgNpypvZGo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UqTnz8Em3FBMzsNbHlJQBUjUgA8IxwYTNka0ngzhJNv0WBTSLQIs6SqDffsMx5NH9UQedwDqEsj7Xo4punX6jbnGX8cmk9RgJDrd+Z1sNelizhw4W3u/EPYQBUWKxge8iv/Rz+wK8HtVb2cPnjml80RPobjX8lYMlll2FxjbEwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-8cbc593a67aso624786785a.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 06:09:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775653760; x=1776258560;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H/ehc1JvHivWXa8+tx/BxLqhZP9bLnNS5TsQxkh+zto=;
-        b=C8BQBR6qt6hHnDif7dbWudeJ+df4ApKLSI94jFOTClRdOx7u7+T8Fwo0ABnfcKnKc7
-         /EDKgovO5GAT2uRLuZj6oOq6zvwly9WiV0GnFOs/MFb7a69F4yBvoQQ6Zd1rzVpictLa
-         EtRp0uFU8LdYUd8dCeb8dWtnbNjZRMZP77TDoeOaqpH9LArbflg1nGSQEhJxOHrSS30p
-         f9ozV5sFXs8MMsJUWV9xRpOjje2MypjtRBP5chCKdwyskoDyxwMOdzLfrt8zcU6tARbk
-         KNZIxz1rb5whmTy+K0hvqE9hWBmPfD1ZzxvPQBIb+t5hr+niD8hE0HJuy2mIMFpEoPPv
-         fFpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXitBvNN38B7MiXZVM6g12Y+S8axavn9F7NBAkI/Y6ay/M9OhF48QYTA+cWfK+b1/pvooQyuE9uBzSJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVW61inya8rP28vGrp8qN9W3B2Dq2sS2eQGf80WRGlVYsNMbDf
-	uVAqB8OXYXjq6N/fX9xSsHaX2PItHx0Wf9qoKpv2XhN7qmSOxnujskMbQbI6DtgE
-X-Gm-Gg: AeBDietjq9N2odTa9EAAe6ecShOalSEi/vUD6/YJKILxevo9fuAyJ0xg+fhSrZ//HLU
-	rGefUy+0ewgX2jkdNTuVbe0cJo4wzmYJAP3XipZWU8hrIXi3/jH0LkEZQnawPSB/PU0FR/ardrE
-	cGCo9Ccg/J1+n/FNcweBjfMrHIRFFq5rFM5QLh7sNDT//FjDXbMllmvLw7wY55QOGltkCpYik2v
-	4Ut7AefcveEBvmh20GgDqsJ7UDnaKSV7bavh7Prxqk8hKwUPFXoDnM69WOB8fz34iyokA7D5U7C
-	LLDTjS2EjLYx7uUCqLgtowQs1nAUEdpKpzA+aasPYXjoSYdV/UlzLom13yzbULrguq/avIvxkh6
-	EMhG65Z2gbh5kuNisagoHOoRiPhgWgcSsk2po2CCuBIstpYmumvYGUX8mUzKUQxcNFaQ7CbAhNv
-	yjyMiQTLDNxWjHbKIPl4687D5ao6GuJgZKjGQnvC6cLR+9D4nPjG+yvwyWu1POmhBhgdgPlbHl/
-	sE=
-X-Received: by 2002:a05:620a:448f:b0:8c5:2dbc:623e with SMTP id af79cd13be357-8d41e437a65mr2963464885a.50.1775653760209;
-        Wed, 08 Apr 2026 06:09:20 -0700 (PDT)
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com. [209.85.160.172])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8d2a8648c17sm1539871485a.33.2026.04.08.06.09.19
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Apr 2026 06:09:20 -0700 (PDT)
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-50d8e11b948so32179281cf.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 06:09:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXmpRgzhMMz5slPyiTbKQ4qBNkT92MOEwq+scxfEw2JS4Isx70m01WlIVsJ7IewqzHlTB4iMIsrg8Gg@vger.kernel.org
-X-Received: by 2002:a05:6122:a05:b0:566:2711:d8ab with SMTP id
- 71dfb90a1353d-56dab90cf81mr7244283e0c.6.1775653285855; Wed, 08 Apr 2026
- 06:01:25 -0700 (PDT)
+	s=arc-20240116; t=1775653287; c=relaxed/simple;
+	bh=1Hfafoc3ly3D6h4fKTZQjQMqxuMvV9JkC8Aiwyu0Uek=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GbsasVCwtpmuJbz6kLTy10fdtGx19Be/ZH/p+u87fsZxOZ/WodfutJ1dKFOced8MEVi1g0ZYVxiq7IQd+icPSx9VIIFKRy4uX1sKOr6C+djunbSrPRLXslyS0a4+NIfP6ebGN1q6Z8DgpyKVFqVFwBMxTCvHV2e0BznuauCw6I4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Sxxbf7W0; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id C58B81A320E;
+	Wed,  8 Apr 2026 13:01:22 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 97D82603CB;
+	Wed,  8 Apr 2026 13:01:22 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 05E69104500F8;
+	Wed,  8 Apr 2026 15:01:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1775653281; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=huJ2L2oU4KHAc1jGEiaYIFEB7ZxYHbo7AAGmz4+EcxE=;
+	b=Sxxbf7W0mx8PnpL1cL6CN8adOPRwJvhsnrNFSR2B92ZaTRlNr4j3J81ZklNxTe+JD18Fy5
+	aiHv87dopMvi0ZBGL/tPjcoM462tB0eqQcOHDmP0O0EVHClu9pMvKIIZ+zzKvVk7uFEyLd
+	1+ExHpOp5b51uwQxzt8PuM/TfT3MuJ924dG6y55a9/ieXKr06JWmxTgWW+Lbl8sEbhS7ku
+	sFNANslJ1JhtLQUghBjy62yLAMcTzslkxRPRZWNzG8hmIvP/mpYFy4WJ956GFC3duCdMXy
+	AdKYBzHjc/z0FUSkEEsPKHSXHhTEZeqNLi6jN6a3l1yyx0EMwc6gSCDDjqK3mw==
+Message-ID: <c7c6c8cc-fafe-4b27-8dff-a284d399ee32@bootlin.com>
+Date: Wed, 8 Apr 2026 15:01:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1775636898.git.tommaso.merciai.xr@bp.renesas.com> <481fefa0c9f6f0629a663fe3da1fb17e7f4a1a05.1775636898.git.tommaso.merciai.xr@bp.renesas.com>
-In-Reply-To: <481fefa0c9f6f0629a663fe3da1fb17e7f4a1a05.1775636898.git.tommaso.merciai.xr@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 8 Apr 2026 15:01:13 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWimH9kaOcwVx1LnujT=Lbm8cE50mj+YFxtBQMZCT0N8w@mail.gmail.com>
-X-Gm-Features: AQROBzB38k87n7vfkgAHJ2zbU_998n7zblsjoYLjCSjeXBMYaqe_VAmcFna50bs
-Message-ID: <CAMuHMdWimH9kaOcwVx1LnujT=Lbm8cE50mj+YFxtBQMZCT0N8w@mail.gmail.com>
-Subject: Re: [PATCH v6 21/21] arm64: dts: renesas: r9a09g047e57-smarc: Enable
- DU0 and DSI support
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, laurent.pinchart@ideasonboard.com, 
-	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [0.04 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/11] dt-bindings: regulator: ti,pbias-regulator: Add
+ pbias_sim_omap4 regulator
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+ Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
+ <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>,
+ Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260330-omap4-fix-usb-support-v2-0-1c1e11b190dc@bootlin.com>
+ <20260330-omap4-fix-usb-support-v2-2-1c1e11b190dc@bootlin.com>
+ <20260331-funny-impetuous-bobcat-eb56af@quoll>
+ <9d76f827-3967-4ab6-b6f0-77d1bd564278@bootlin.com>
+ <20260408124109.GB1864812-robh@kernel.org>
+Content-Language: en-US
+From: Thomas Richard <thomas.richard@bootlin.com>
+In-Reply-To: <20260408124109.GB1864812-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,ideasonboard.com,vger.kernel.org,bp.renesas.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,glider.be,baylibre.com,lists.freedesktop.org];
-	TAGGED_FROM(0.00)[bounces-285787-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-285783-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_SPAM(0.00)[0.405];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,bootlin.com,vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thomas.richard@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,renesas.com:email,mail.gmail.com:mid,0.0.0.2:email,0.0.0.12:email,linux-m68k.org:email,3d:email]
-X-Rspamd-Queue-Id: 9AF183BC989
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid]
+X-Rspamd-Queue-Id: 77C1D3BC8F2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Tommaso,
+On 4/8/26 2:41 PM, Rob Herring wrote:
+> On Wed, Apr 08, 2026 at 09:58:15AM +0200, Thomas Richard wrote:
+>> Hello Krzysztof,
+>>
+>> On 3/31/26 10:22 AM, Krzysztof Kozlowski wrote:
+>>> On Mon, Mar 30, 2026 at 03:43:59PM +0200, Thomas Richard wrote:
+>>>> Define pbias_sim_omap4 regulator for OMAP4. This regulators drives SIM_VDDS
+>>>> supply and allows to unlock USB I/O cell.
+>>>>
+>>>> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/regulator/ti,pbias-regulator.yaml | 1 +
+>>>>  1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/regulator/ti,pbias-regulator.yaml b/Documentation/devicetree/bindings/regulator/ti,pbias-regulator.yaml
+>>>> index 3e020d87701b..908fbb46b5cf 100644
+>>>> --- a/Documentation/devicetree/bindings/regulator/ti,pbias-regulator.yaml
+>>>> +++ b/Documentation/devicetree/bindings/regulator/ti,pbias-regulator.yaml
+>>>> @@ -89,6 +89,7 @@ allOf:
+>>>>                contains:
+>>>>                  enum:
+>>>>                    - pbias_mmc_omap4
+>>>> +                  - pbias_sim_omap4
+>>>
+>>> Names cannot be fixed, because they represent different board naming.
+>>> Why growing the deprecated style?
+>>
+>> Okay, so I'll drop all if statements, add a regex which matches
+>> regulator names and fix the regulator name in the driver.
+> 
+> If a driver depends on the names, you can't change them.
+> 
 
-On Wed, 8 Apr 2026 at 12:40, Tommaso Merciai
-<tommaso.merciai.xr@bp.renesas.com> wrote:
-> Enable DU0, DSI and ADV7535 on RZ/G3E SMARC EVK.
->
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+I mean the new regulator I add with this series. At this time it does
+not exist yet in the driver.
 
-Thanks for your patch!
+Best Regards,
+Thomas
 
-> --- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-> @@ -33,6 +33,7 @@ aliases {
->                 ethernet0 = &eth0;
->                 ethernet1 = &eth1;
->                 i2c2 = &i2c2;
-> +               i2c7 = &i2c7;
->                 mmc0 = &sdhi0;
->                 mmc2 = &sdhi2;
->         };
-> @@ -77,12 +78,47 @@ reg_vdd0p8v_others: regulator-vdd0p8v-others {
->                 regulator-always-on;
->         };
->
-> +       reg_1p8v_adv: regulator-1p8v-adv {
-
-Please preserve sort order (alphabetical, by node name).
-
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "fixed-1.8V";
-> +               regulator-min-microvolt = <1800000>;
-> +               regulator-max-microvolt = <1800000>;
-> +               regulator-boot-on;
-> +               regulator-always-on;
-> +       };
-> +
-> +       reg_3p3v_adv: regulator-3p3v-adv {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "fixed-3.3V";
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +               regulator-boot-on;
-> +               regulator-always-on;
-> +       };
-
-Why not reusing the existing reg_1p8v and reg_3p3v?
-Note that reg_1p8v driving eMMC and QSPI are also not the same
-physical power rail.
-
-> +
-> +       osc1: cec-clock {
-
-Please preserve sort order (alphabetical, by node name).
-
-> +               compatible = "fixed-clock";
-> +               #clock-cells = <0>;
-> +               clock-frequency = <12000000>;
-> +       };
-> +
->         /* 32.768kHz crystal */
->         x3: x3-clock {
->                 compatible = "fixed-clock";
->                 #clock-cells = <0>;
->                 clock-frequency = <32768>;
->         };
-> +
-> +       dsi-to-hdmi-out {
-
-hdmi-out?
-
-Please preserve sort order (alphabetical, by node name).
-
-> +               compatible = "hdmi-connector";
-> +               type = "d";
-> +
-> +               port {
-> +                       dsi_to_hdmi_out: endpoint {
-> +                               remote-endpoint = <&adv7535_out>;
-> +                       };
-> +               };
-> +       };
->  };
->
->  &audio_extal_clk {
-> @@ -107,6 +143,37 @@ &eth1 {
->         status = "okay";
->  };
->
-> +&dsi {
-
-Please preserve sort-order (alphabetical, by label).
-
-> +       status = "okay";
-> +
-> +       ports {
-> +               port@0 {
-> +                       dsi_in0: endpoint {
-> +                               remote-endpoint = <&du0_out_dsi>;
-> +                       };
-> +               };
-> +
-> +               port@2 {
-> +                       dsi_out: endpoint {
-> +                               remote-endpoint = <&adv7535_in>;
-> +                               data-lanes = <1 2 3 4>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&du0 {
-> +       status = "okay";
-> +
-> +       ports {
-> +               port@0 {
-> +                       du0_out_dsi: endpoint {
-> +                               remote-endpoint = <&dsi_in0>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
->  &gpu {
->         status = "okay";
->         mali-supply = <&reg_vdd0p8v_others>;
-> @@ -132,6 +199,48 @@ raa215300: pmic@12 {
->         };
->  };
->
-> +&i2c7 {
-> +       pinctrl-0 = <&i2c7_pins>;
-> +       pinctrl-names = "default";
-> +       status = "okay";
-> +       clock-frequency = <400000>;
-> +
-> +       adv7535: hdmi@3d {
-> +               compatible = "adi,adv7535";
-> +               reg = <0x3d>, <0x4d>, <0x2d>, <0x5d>;
-> +               reg-names = "main", "edid", "cec", "packet";
-> +               clocks = <&osc1>;
-> +               clock-names = "cec";
-> +               avdd-supply = <&reg_1p8v_adv>;
-> +               dvdd-supply = <&reg_1p8v_adv>;
-> +               pvdd-supply = <&reg_1p8v_adv>;
-> +               a2vdd-supply = <&reg_1p8v_adv>;
-> +               v3p3-supply = <&reg_3p3v_adv>;
-> +               v1p2-supply = <&reg_1p8v_adv>;
-> +               adi,dsi-lanes = <4>;
-> +               interrupts-extended = <&pinctrl RZG3E_GPIO(L, 4) IRQ_TYPE_EDGE_FALLING>;
-> +
-> +               ports {
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +
-> +                       port@0 {
-> +                               reg = <0>;
-> +                               adv7535_in: endpoint {
-> +                                       remote-endpoint = <&dsi_out>;
-> +                               };
-> +                       };
-> +
-> +                       port@1 {
-> +                               reg = <1>;
-> +                               adv7535_out: endpoint {
-> +                                       remote-endpoint = <&dsi_to_hdmi_out>;
-> +                               };
-> +                       };
-> +               };
-> +       };
-> +};
-> +
->  &i3c {
->         pinctrl-0 = <&i3c_pins>;
->         pinctrl-names = "default";
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
