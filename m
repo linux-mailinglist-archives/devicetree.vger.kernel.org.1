@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-285563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285564-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eNvsFC/21Wn4/gcAu9opvQ
-	(envelope-from <devicetree+bounces-285563-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 08:31:11 +0200
+	id CIzMDV721Wn4/gcAu9opvQ
+	(envelope-from <devicetree+bounces-285564-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 08:31:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8F963B792A
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 08:31:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B183B7966
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 08:31:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A9B3F30440B8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 06:28:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A83A9301C3FB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 06:29:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2B75363084;
-	Wed,  8 Apr 2026 06:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAAA6364EB7;
+	Wed,  8 Apr 2026 06:29:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rSuiGnoc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U2Xnrkyj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DF723624BE;
-	Wed,  8 Apr 2026 06:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 944D3364EA6;
+	Wed,  8 Apr 2026 06:29:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775629737; cv=none; b=j++PFETCXP6HysNm3DepxQT3ic3YkV/b1hba17cVT4snedIhR8CQmzD11alaj1GOJPktKEKXmLEFWdxCVXBWGgFKOFA7zz8bY6qEK2KAsCWYd3nAAVZEwvassC+41pfqiXEqnNFQk7E7k18/2o16NmnXmULeaBryqVx5Eylhp8k=
+	t=1775629787; cv=none; b=brwIKc0/hTgxV2yXtWPT18+LO/SHLVEGpudbDfMwb3LZT42ogmDKSQ8MDgn9nAE0NP1tTvSvt0Nl0mMeP4AxTNAA5bIxr6w3ufBKYv8n8UPnnbQcf+Hkg8qjNd7P9or88oUyklrd7KGB1H+/7fOKIycUiTOGN4xomuhLXJ0VeXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775629737; c=relaxed/simple;
-	bh=0fEihocmEY0C9P4KGpdTrRN37siIc3be+RyIxJUAZwo=;
+	s=arc-20240116; t=1775629787; c=relaxed/simple;
+	bh=eR8zy7zxRWhUTbS60j8Zjhcdg9pRFWkkDDyQ0bGHtWQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DJLD9z2zeaSes5eMpMp5jjj0qVPLrJVvckQ7LnIVkShanIE7MatGfz5n1jh47qbzOIIvEnW55NjYXdRfrJK/0zRB9XEyCPQ+u1XGtnCju9qGq/KZ0it+f3o+NAFuCnqDhfJklqug4OiVoLgGjBP0uRFm6GYKLiEvym2qODX1FrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rSuiGnoc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70F24C19424;
-	Wed,  8 Apr 2026 06:28:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BYMjKQ5UtuJRrT1xQsv4pc1K3/vtr9EWOSGqeleE4ktVJWeJv0kZWb7AmrGC+U61YF11SIr2YBz4aGrCNhHu6Q3QYrKEGtzex1B93xBi6HamBbUCgwS97uW1s3U8pNBq+owxJ7fyr77v7llqY4/5p50pe0mjcW9QAD4xujqsU0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U2Xnrkyj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6048C19424;
+	Wed,  8 Apr 2026 06:29:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775629737;
-	bh=0fEihocmEY0C9P4KGpdTrRN37siIc3be+RyIxJUAZwo=;
+	s=k20201202; t=1775629787;
+	bh=eR8zy7zxRWhUTbS60j8Zjhcdg9pRFWkkDDyQ0bGHtWQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rSuiGnocxKhFPPvLVJeIfnY3mA7nifiEyJpbHc/yMUiNkW3uC0ZEZVUp+Cg/Q9SXQ
-	 OzWtahD2azxw3+1zjeW6D8GlykIQCjmOKGd9MS375ZikYpHciAOvsZcI01t9P/Okht
-	 b11ygN74JtOKxrgvzOnAfcie2Ex43essOVOI/AtUkulV4+qnLIxwzUwa2GV9+xI1Wv
-	 gcHAWC1Tl7+vNL3Xb5K0O3EtazBg1kfao+XX+RUvMMpZ9OQvJb1BNahw5dlEgq2Efd
-	 k/0jmzMR1Uj46/8AvroKCD+li1ZN+ty7SqfggbZ1xCLBjtx+bx36mFNggq/SFavpyR
-	 hJ/DZtSazcvEw==
-Message-ID: <13907c0e-0502-413d-b54d-4e903f5c781e@kernel.org>
-Date: Wed, 8 Apr 2026 08:28:51 +0200
+	b=U2XnrkyjM0DOnmpWlcZ7q3y+u8rDtHo5em5J68hm2HxcKqGybdGRWGdkWonI3L3h5
+	 Hwf20GiEz83DgMwR2t9DfyEYUxKzKV8urieuS8uO3wmVExFpuf9Pnvs774lHjKDSyX
+	 JrEoV3O36QGJTuiCymm9Hghtf6zsqLAbzDbgIhpjmNdYX4OXKodRg12LKqKyVPztlP
+	 azydME8vFF9M9xqpn618YLbzOptg+UMOmRczUBCe6sd0z2oUeB3ojAeouNezgaohxf
+	 AXPx6LVPqr0q9NV23ERbC6UwqRk9TI+I5nTMJfWYkU3wimHztRMaXhTG/XoEHX1xRi
+	 zi/n7DUdBbUfQ==
+Message-ID: <05afaba5-24c7-4359-a8b7-4f96dc0741d1@kernel.org>
+Date: Wed, 8 Apr 2026 08:29:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,24 +53,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] dt-bindings: PCI: Add UltraRISC DP1000 PCIe
- controller
-To: Jia Wang <wangjia@ultrarisc.com>
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+Subject: Re: [PATCH v1 02/13] dt-bindings: clock: Add system-0 domain PLL
+ clock
+To: Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
  Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
- Xincheng Zhang <zhangxincheng@ultrarisc.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260407-ultrarisc-pcie-v2-0-2aa2a19a7fb3@ultrarisc.com>
- <20260407-ultrarisc-pcie-v2-3-2aa2a19a7fb3@ultrarisc.com>
- <20260407-uptight-tody-of-weather-ae1e35@quoll>
- <177561928084.2918127.18218641774926914517.b4-reply@b4>
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Emil Renner Berthing <kernel@esmil.dk>, Chen Wang
+ <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>,
+ Alexey Charkov <alchark@gmail.com>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Keguang Zhang <keguang.zhang@gmail.com>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ Leyfoon Tan <leyfoon.tan@starfivetech.com>
+References: <20260403054945.467700-1-changhuang.liang@starfivetech.com>
+ <20260403054945.467700-3-changhuang.liang@starfivetech.com>
+ <20260405-godlike-pistachio-mackerel-7ab494@quoll>
+ <ZQ4PR01MB120275BC5277C4FF18A738E6F25A2@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
+ <5f2a1946-9ca7-414c-a764-60f46f3b3cf5@kernel.org>
+ <ZQ4PR01MB120210CE64AEE9CD57002CCAF25B2@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,7 +123,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <177561928084.2918127.18218641774926914517.b4-reply@b4>
+In-Reply-To: <ZQ4PR01MB120210CE64AEE9CD57002CCAF25B2@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -128,41 +135,41 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-285563-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-285564-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,google.com,gmail.com,ultrarisc.com,lists.infradead.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,pengutronix.de,esmil.dk,outlook.com,gmail.com,alpha.franken.de,vger.kernel.org,lists.infradead.org,starfivetech.com];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A8F963B792A
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.198.132.80:email]
+X-Rspamd-Queue-Id: 86B183B7966
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 08/04/2026 05:34, Jia Wang wrote:
->>> +  max-link-speed:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    const: 4
->>
->> If const then deducible from the compatible. Drop the property.
->>
+On 08/04/2026 07:17, Changhuang Liang wrote:
 > 
-> Will replace `const: 4` with `maximum: 4` in v3.
+> In the next version, it will be changed to this, correct?
+> 
+> 			sys0_syscon: syscon@13010000 {
+> 				compatible = "starfive,jhb100-sys0-syscon", "syscon";
+> 				reg = <0x0 0x13010000 0x0 0x2000>;
+> 				clocks = <&osc>;
+> 				#clock-cells = <1>;
 
-Why? Wasn't maximum link speed fixed to 4?
-
+Yes
 
 Best regards,
 Krzysztof
