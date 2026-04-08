@@ -1,153 +1,121 @@
-Return-Path: <devicetree+bounces-285518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285519-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KPHXDuyZ1Wm07wcAu9opvQ
-	(envelope-from <devicetree+bounces-285518-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 01:57:32 +0200
+	id cDnbICqf1Wks8AcAu9opvQ
+	(envelope-from <devicetree+bounces-285519-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 02:19:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE0A3B5926
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 01:57:31 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2E0C3B5ABE
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 02:19:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 58DF130440B8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Apr 2026 23:56:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 955DE300F783
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 00:19:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C005B38E12A;
-	Tue,  7 Apr 2026 23:56:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F7B1D61B7;
+	Wed,  8 Apr 2026 00:19:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="etZKesGq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Znvicg7H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.166.231])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C46A138D018;
-	Tue,  7 Apr 2026 23:56:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7370118C2C;
+	Wed,  8 Apr 2026 00:19:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775606192; cv=none; b=FojUZhsN30Ewj8h1QU+Z7M5BozTCQFdcFJqdJCSh+7dnZORVmI7cChtED6dhL83+5Z1H+zx/z7imTdqjVZWmHGccybtdIAcfaAoVeF8fJZIleDWeZqPJac3/TiNoQI1XqBlhpH50WrCFmDMHt208kJe/pKrqB+8tD9O6zV0AAGc=
+	t=1775607589; cv=none; b=fmdkHw9cYSn0Kq9jbno0KhlFqV4Q5J3GNFIT51qsIElbxhUFuUWl9+7dIteO1o15ttDPFbE2SOmDXrqX1qMP6ywtME5D5vDxWSKF3tRR+HoAxlwcirVzSrI/dwZAgpHCRRb1HoGEMPx7gyy/vwrKrC+K+AnIdFraUnoURHltFFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775606192; c=relaxed/simple;
-	bh=lDHPIP0z91YIoy/9et8RAk6xDXDfMvOvLikEmjLe23E=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ZHNxscB3PmbfGAAnvCyKigqvNqVicS0b2c9VrNon1ODMlpZiUzHg4prSuIdTTQdaVYS8l2FW7K/VVUoe6hf7SnczEcTF959W+4BrqmQEC7Q4BWouoijWf8Poldo7zHrtH1S4GvQFYNmqHSg9Ew6LU1fpSnMK1ad47XfAyvqck+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=etZKesGq; arc=none smtp.client-ip=192.19.166.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-acc-it-01.broadcom.com (mail-acc-it-01.acc.broadcom.net [10.35.36.83])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 47A12C011866;
-	Tue,  7 Apr 2026 16:56:21 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 47A12C011866
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1775606181;
-	bh=lDHPIP0z91YIoy/9et8RAk6xDXDfMvOvLikEmjLe23E=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=etZKesGqg8Yyrjb9O/jaDjI/86KXY6pYOmhT97KKTouVQbpQSlEg2zk7wuGKb389z
-	 VU41KCeCikcbyThzNvL8gvnUOBrfGa6CRrQk+a6MO8JwjHXJ1A5YU3aaHk6Zz0zVcy
-	 Tay/hxbKuORbJU3qIbbYwu8thbi3eP2vnyg2XtUk=
-Received: from stbirv-lnx-1.igp.broadcom.net (stbirv-lnx-1.igp.broadcom.net [10.67.48.32])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail-acc-it-01.broadcom.com (Postfix) with ESMTPSA id 399BDAE80;
-	Tue,  7 Apr 2026 19:56:20 -0400 (EDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: linux-kernel@vger.kernel.org
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1775607589; c=relaxed/simple;
+	bh=OXs0Y2Jl9HdzHS2ird2lMW+ChAu5fLrUXDPFb8yIrDk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ovxWmxNGFGAy1jMF/MDlkMNMuF78z32AJ7XaA1PHJDqNHaGYsBMX0/c3kKmlwdVHNZ660EkpqdMU0Oj9dthLsjqUr4d0Qg37mxuLa/JOALTwAN0JRiy6SzoS5WEzYI9PUb1/RU/1zAvvcLx/WuWWUGHN+OApOkObcLjZUjXG8T8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Znvicg7H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D173CC116C6;
+	Wed,  8 Apr 2026 00:19:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775607589;
+	bh=OXs0Y2Jl9HdzHS2ird2lMW+ChAu5fLrUXDPFb8yIrDk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Znvicg7HoBJ/Y1hIrP5bjjWIHLDPN+3QIcAlVe4xcM+qf8aY+AO2psHaNv1rAX3HJ
+	 mFN6R0o1NAARuWExTKjItxLuHZyFDOqtckmJhb90nED3kRXlQXInan0iDUe1+0uPN0
+	 lpaFFVw2XfOoghvyi0HSDeLVgr7FGFqkPrMpMrH9mzFGf4yg2a7Xbk9zcYneTXXflM
+	 Gl2bx9roHdJLL+luasZoYnvyykNdjJX9yLZxjPHSl9hQEWCpLHxbMXBTYwQWbVstJd
+	 UQpH5RxXQnFauhr+OT/cpurbKH7DeTZbMD0U8dVeNSRospLVaNFXNG2SE0K38yPIKF
+	 SaNL+ZwP2qCUA==
+Date: Tue, 7 Apr 2026 19:19:46 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Thorsten Blum <thorsten.blum@linux.dev>
+Cc: Guenter Roeck <linux@roeck-us.net>, Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tony Lindgren <tony@atomide.com>,
-	Haojian Zhuang <haojian.zhuang@linaro.org>,
-	linux-gpio@vger.kernel.org (open list:PIN CONTROL SUBSYSTEM),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-arm-kernel@lists.infradead.org (moderated list:PIN CONTROLLER - SINGLE),
-	linux-omap@vger.kernel.org (open list:PIN CONTROLLER - SINGLE)
-Subject: [PATCH 2/2] pinctrl: single: Add bcm7038-padconf compatible matching
-Date: Tue,  7 Apr 2026 16:56:11 -0700
-Message-Id: <20260407235611.550515-3-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260407235611.550515-1-florian.fainelli@broadcom.com>
-References: <20260407235611.550515-1-florian.fainelli@broadcom.com>
+	Antoni Pokusinski <apokusinski01@gmail.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Cosmo Chou <chou.cosmo@gmail.com>,
+	Pawel Dembicki <paweldembicki@gmail.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Wensheng Wang <wenswang@yeah.net>,
+	Dixit Parmar <dixitparmar19@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	devicetree@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	linux-kernel@vger.kernel.org, Eddie James <eajames@linux.ibm.com>
+Subject: Re: [PATCH 2/2] dt-bindings: trivial-devices: add atmel,atecc608b
+Message-ID: <177560758652.39663.11215595026885409037.robh@kernel.org>
+References: <20260330100800.389042-3-thorsten.blum@linux.dev>
+ <20260330100800.389042-4-thorsten.blum@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260330100800.389042-4-thorsten.blum@linux.dev>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[broadcom.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[broadcom.com:s=dkimrelay];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-285518-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[broadcom.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[florian.fainelli@broadcom.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[roeck-us.net,kernel.org,gmail.com,huawei.com,analog.com,yeah.net,nxp.com,oss.qualcomm.com,vger.kernel.org,microchip.com,linux.ibm.com];
+	TAGGED_FROM(0.00)[bounces-285519-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,broadcom.com:dkim,broadcom.com:email,broadcom.com:mid]
-X-Rspamd-Queue-Id: ABE0A3B5926
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux.dev:email]
+X-Rspamd-Queue-Id: F2E0C3B5ABE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Just like the TI J7200 padconf, we lose the context and therefore need
-to save it and restore it across suspend/resume states.
 
-Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
----
- drivers/pinctrl/pinctrl-single.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+On Mon, 30 Mar 2026 12:08:01 +0200, Thorsten Blum wrote:
+> Add entry for ATECC608B.  Update the ATECC508A comment for consistency.
+> 
+> Signed-off-by: Thorsten Blum <thorsten.blum@linux.dev>
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
 
-diff --git a/drivers/pinctrl/pinctrl-single.c b/drivers/pinctrl/pinctrl-single.c
-index d85e6c1f6321..657b42caf811 100644
---- a/drivers/pinctrl/pinctrl-single.c
-+++ b/drivers/pinctrl/pinctrl-single.c
-@@ -1960,7 +1960,7 @@ static const struct pcs_soc_data pinctrl_single_am654 = {
- 	.irq_status_mask = (1 << 30),   /* WKUP_EVT */
- };
- 
--static const struct pcs_soc_data pinctrl_single_j7200 = {
-+static const struct pcs_soc_data pinctrl_single_loss_off = {
- 	.flags = PCS_CONTEXT_LOSS_OFF,
- };
- 
-@@ -1972,6 +1972,7 @@ static const struct pcs_soc_data pinconf_single = {
- };
- 
- static const struct of_device_id pcs_of_match[] = {
-+	{ .compatible = "brcm,bcm7038-padconf", .data = &pinctrl_single_loss_off },
- 	{ .compatible = "marvell,pxa1908-padconf", .data = &pinconf_single },
- 	{ .compatible = "ti,am437-padconf", .data = &pinctrl_single_am437x },
- 	{ .compatible = "ti,am654-padconf", .data = &pinctrl_single_am654 },
-@@ -1979,7 +1980,7 @@ static const struct of_device_id pcs_of_match[] = {
- 	{ .compatible = "ti,omap3-padconf", .data = &pinctrl_single_omap_wkup },
- 	{ .compatible = "ti,omap4-padconf", .data = &pinctrl_single_omap_wkup },
- 	{ .compatible = "ti,omap5-padconf", .data = &pinctrl_single_omap_wkup },
--	{ .compatible = "ti,j7200-padconf", .data = &pinctrl_single_j7200 },
-+	{ .compatible = "ti,j7200-padconf", .data = &pinctrl_single_loss_off },
- 	{ .compatible = "pinctrl-single", .data = &pinctrl_single },
- 	{ .compatible = "pinconf-single", .data = &pinconf_single },
- 	{ },
--- 
-2.34.1
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
