@@ -1,214 +1,197 @@
-Return-Path: <devicetree+bounces-285789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285791-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IGfVAvNU1mm8DQgAu9opvQ
-	(envelope-from <devicetree+bounces-285789-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:15:31 +0200
+	id CAjoDNZV1mm8DQgAu9opvQ
+	(envelope-from <devicetree+bounces-285791-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:19:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71F8E3BCB15
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:15:30 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D8573BCBB2
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:19:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6353D3018409
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 13:15:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2E59B3004400
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 13:19:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 936D22F39B8;
-	Wed,  8 Apr 2026 13:15:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C72AE30C354;
+	Wed,  8 Apr 2026 13:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PmmZi6a1";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZUAPccZ2"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="kv+BuSgW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DBBD2F3614
-	for <devicetree@vger.kernel.org>; Wed,  8 Apr 2026 13:15:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67EFA2F39B4;
+	Wed,  8 Apr 2026 13:19:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775654126; cv=none; b=aLf0yDva79czjDrw5ktHGOMc1/OJ+oL/QHFuxrRVvfTxe5dqTi87V3ZYjRvaNLQMWcRgdiNm+HqVWZRLM8srPAQrjnk6IlAEVx688itnmUcr5E40zMtiaz21B4PtAvzC9xTYKZt4nwjPe7DY8qA5o7ltDea8z7BHrvM3HT9woRw=
+	t=1775654351; cv=none; b=UFN2ecXIJ/RYBpRSh9p2d68jdVvG0oaLW1ppmasDpm+c4fBbf+vVX8pIeHBGyxH1SdAcopaPzjTtJvtknmlHDv0dLj6Vtpmpf5hhIpvGWNvWQKRWy6RCLU93ueuhRADnIrLr2PuNWT0h7sURh6UtEy51SVa5DdmoWVurMbM4iKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775654126; c=relaxed/simple;
-	bh=WKw2b3FSwa9eQdiAmEXghTEAkcX11kE2vpR3flmnA3g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JTy4sBwIWuv/JDe09HJ38Fid9jS+QdVCORnzUz4ELJKJ/XI7OHwmziYN4xyDQanDWv6BwGOm8l334d/dTdww3wd9XEzAVrNmRCXvwwxdoI7lkwWtxDvhFthx/tg3SIziIuHsaQHvtOycgoR+OjyAiLWK5viuUeHpTxfJ7sM0g5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PmmZi6a1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZUAPccZ2; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6388YnOc1796071
-	for <devicetree@vger.kernel.org>; Wed, 8 Apr 2026 13:15:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8GEteQTg38VOFlAPveazAOZENV7yVsPAb7+IVYkJJmw=; b=PmmZi6a1fRtGG6F1
-	xE1cJN/v0PWX2VTPCVRU3MwIurl42/A48suwCfWyN0lAJxQwagJqVMIDqU69TWk9
-	qEae8Wp88HQnb1tjAe3egguHktB/fLH4eHLtKunKQh3KlcCz6CtAW6iQ1gnB+FEU
-	fTXJW0BUNaBESfPhbh2tVY/2DaE2XNe0El7JYsqwc2aqBNQxbIfUEEugpNPhcfa+
-	bGYGUO1ypZrU0j0yq61VUk6ugO1yehFYZYcsbDk+3mYdZJl4is/sdAqqprBU3tyc
-	T6REKmapRK6jx0twW4QbRsphm+TkxKNG7VFA0mJj1xqYz7uq49V6rM6c4i644hrM
-	2Syn6w==
-Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com [209.85.221.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dd51dc9ta-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 13:15:24 +0000 (GMT)
-Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-56d848ad88eso437242e0c.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 06:15:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1775654124; x=1776258924; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8GEteQTg38VOFlAPveazAOZENV7yVsPAb7+IVYkJJmw=;
-        b=ZUAPccZ27Rw6TujKXwe+5VCKUKZP0WdFTdBRyUuGhJvPIEu8QHegqYtaFxx9Romg4J
-         I9c3EFPD240BhslcFeLhSSnmF5GJuPiZbZCgU0GNO/Z7+OIWoIEJL8T4lwbNFgoHoMnq
-         5Wq1dgnzBXN5mhtJxOB/Lj4H450d1ZhHR5v/Vh6av/P29XPP78LdOk/lZhjFbueAX0n8
-         nhXOHtUcHel/ElaLw6lTp+0SP70G7x1GUyovZGV7Qz8C+AZHB/yCDBNUrFMqr6ZFOR5n
-         MfrhrpKD7RFN/lDwGDRpN706ruzvB4BsVWoiJ7CYbnQ7HQItkmF223AlldWAN8QiO2Ys
-         YNzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775654124; x=1776258924;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8GEteQTg38VOFlAPveazAOZENV7yVsPAb7+IVYkJJmw=;
-        b=nwyN26x1K2fKztA/vK/MMFsGfkwvfy4tcM/Gl5F5sf0XVCU5VTqX2gWfUZh2dhPaJo
-         H07T2ZseRb483bHCFdr2LzlqzcBa4rdmMDDuIbHaLE2LS19HstNGvn/jR+dFHVoa1NdO
-         om6pG7kzCQcyyLq6XLu1aS0XfffHyFCiWALNgJvkHYK/eUzN2o9RXZqgBiwpIaNl3yYR
-         y4tOcYzIX93ik+PL4Gx4n26baJgS/JaIFzaaBwVwGY3XekC33H3oli6rSCeFF443A5JI
-         bqYWUqEsJyYgPQHk568ZDz/ZxggG4AAemP6vAcwiIeXLXcMwxovCiP/yr3mm/vwFHsWi
-         +6ow==
-X-Forwarded-Encrypted: i=1; AJvYcCXgR6gn1tPordsUBIOze1RmJNfuL/6JL9XK86dbrlvcbDxu48fZ6SC/ZxH22scz2u036Rx3eHPBe4LK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGPNEH2Mw6AY0vOh9j2/z737pMXMetkLrzmmJVig5DSdFVibe5
-	hw+xWHeW3JL//qinnqz4NyN9dh3qzmek29D3YbeuyPXhJ4KQVLuiay0S6KCJ9yKxUVvDS0fSODw
-	LHDZA0XHyE1bfjUVOtp2s5Va1LJX66Iyj1X6SoFjcxkZI1jMGa7ZH4qwLJmk5va0X
-X-Gm-Gg: AeBDieuwFEf4uO1S/zeFDTeXZiUCs/WCbtvQpyl124VURykKsk7O5xWHIWGJ0g5EWVU
-	ucuaEGPDVpsnLYLq2qsOALbBXtyBEgx+4lFjtEu/2rsUzlsq2sNhpI1ZI1j+kY01kQcufYifbd+
-	7ePk+YPfXei4nSMYEHvlk4UBmBWxayI/PGE7jXQbS6e9NidbDtGkw/pzJiGbQdKa/tScZMw8Qp3
-	jUe2CkW+sNIeHNyZjferjHI70Wav6RzgkqSGXOpUbZ4eYhgdFHh4tkY4TTi6rU/NalzEK9hBuGg
-	ctrzPf68GQRjlkqLMVL326Fm4zFoAr46E/mgm/Lou/0XvBGSfaeXWWum/C6ipKBNxp5dGnQpRv8
-	Mv77BwaoPJNCPzhz5tC4RKLA6siGa0+wVeKKxsNirwdfXlY/r29QP+dQet8yX7pL7rvYEfusSf5
-	evbGI=
-X-Received: by 2002:a05:6102:a0e:b0:5f8:d54c:18c9 with SMTP id ada2fe7eead31-6079973d057mr455251137.3.1775654123658;
-        Wed, 08 Apr 2026 06:15:23 -0700 (PDT)
-X-Received: by 2002:a05:6102:a0e:b0:5f8:d54c:18c9 with SMTP id ada2fe7eead31-6079973d057mr455235137.3.1775654123132;
-        Wed, 08 Apr 2026 06:15:23 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38cd217c96asm44670771fa.40.2026.04.08.06.15.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Apr 2026 06:15:22 -0700 (PDT)
-Message-ID: <285a6169-61c5-4230-80d4-795c55155838@oss.qualcomm.com>
-Date: Wed, 8 Apr 2026 15:15:18 +0200
+	s=arc-20240116; t=1775654351; c=relaxed/simple;
+	bh=MbCR5O3U09Lmz1CqFkKC2UX874A225qIG27/kgiNCRA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=raHujzmY4EneQiRE7AN+XE0CJbyyWzrzwI/TiIJsBk/AAf1OlzWXZvFj6+oDim44TmrOTA1o8aDAMsXI5FEWyKFnCXa9BpjDlKkuWBcrqZbEvuGHrdIW4w8LJZEaVTj6rKCktbmuh5j8KAH0JWWaZG5txv/w2OAVtMV3/UuQQLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=kv+BuSgW; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1775654350; x=1807190350;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=MbCR5O3U09Lmz1CqFkKC2UX874A225qIG27/kgiNCRA=;
+  b=kv+BuSgWV/xZrcGO6TgxuUfhcVb5Z7zrRh1PlJgNO6gMkHOmdhFdHYhJ
+   Oj3NusHoPPYwdc8qqhY8CQ1jv7B4ri3vIPtNG6FA3NBdPjSKkGz873GuR
+   m82ZYw+FCerBmFrxrhOk6gWD3JfycMBy5mI9D3UQt8vnfH9YPmG0FEHnc
+   t2Eu3iFPjRE04rAlJTHnS/D9DkqPqgRkP3YqhjqzsF7MnqHhgdx4yjH9C
+   9YLKrqMyT941uwv9wB9eQZKkl6cIa9A09z0S5ePm/YAcGRbyQjLEAmeNn
+   6B7uuW31jAHvc5TecUgv20FgHgm995dus3dZwkYrNdeummOrduj3mpkkj
+   A==;
+X-CSE-ConnectionGUID: T3ddjfqzSe6g7V8tvrMVFg==
+X-CSE-MsgGUID: kFnD8QtdSuWi48O4qJ2s6w==
+X-IronPort-AV: E=Sophos;i="6.23,167,1770620400"; 
+   d="scan'208";a="55070709"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Apr 2026 06:19:04 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Wed, 8 Apr 2026 06:18:44 -0700
+Received: from bby-cbu-swbuild03.eng.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Wed, 8 Apr 2026 06:18:43 -0700
+From: Charles Perry <charles.perry@microchip.com>
+To: <netdev@vger.kernel.org>
+CC: <MameMaria.Mbaye@microchip.com>, Charles Perry
+	<charles.perry@microchip.com>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+	<linux@armlinux.org.uk>, <devicetree@vger.kernel.org>
+Subject: [PATCH net-next v5 0/3] Add support for PIC64-HPSC/HX MDIO controller
+Date: Wed, 8 Apr 2026 06:18:13 -0700
+Message-ID: <20260408131821.1145334-1-charles.perry@microchip.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: qcs8550: add QCS8550 RB5Gen2
- board support
-To: Neil Armstrong <neil.armstrong@linaro.org>, jsandom@axon.com,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260407-rb5gen2-dts-v2-0-d0c7f447ee73@axon.com>
- <20260407-rb5gen2-dts-v2-5-d0c7f447ee73@axon.com>
- <4359bb07-d848-4b77-b1a9-f1c6f53caa10@oss.qualcomm.com>
- <ce9061ea-8961-4d5a-bbb0-b4f50b7e6d29@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <ce9061ea-8961-4d5a-bbb0-b4f50b7e6d29@linaro.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: BQl4_IQcq5WEgWcU1NxXGtrgXJiEMIFK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDA4MDEyMyBTYWx0ZWRfXyuCl/p5+ySsJ
- ITwYmW1wjCSzFZp1HBmTzzWaerFg6e8iySRS4WjHW+ijGteG7BADlcMMam+P3qGKzJiki7rliEY
- vljmUEI5v/0CdtK/mj+xuAjC95ujsxvA0448T3/l4bf00vP03tqmUg1dsChMAHRZ3wf3NyqFhBv
- V86aApxcFnTjKF8KdXIOF7rsV5eAFABM2+oFUgXHz/LpelIiM8xNDFYr2hl9T/5WUOB57+2Cwar
- ZJfNhk11TwyEs7/CvNQ+UGdck3WIT2lJWGKuWv+27Rhu13xAv4hS3CuvcL/j0p5gqhw4vg41SsP
- RvyXdjmGlXO2tsP+i+o1gwrj3O2tTmRI/Kki/SclLPQuyOu91fMZrzNO2XJNNq8JkqBC4q8pwlm
- BHm+MNophEYkJaFkdW+ioqQepo5rbEIRBRh545ThfNZnRd1S8G9pQ0mxZJ4oZJQWlRu0PQpSk7+
- NBPuNGCcDSkoRXicZzA==
-X-Authority-Analysis: v=2.4 cv=AcaB2XXG c=1 sm=1 tr=0 ts=69d654ec cx=c_pps
- a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=h77gEMGJAAAA:8 a=lEVunVoeGWrKdAki99sA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=tNoRWFLymzeba-QzToBc:22 a=PYyYjrCoJcZo81GydsRF:22
-X-Proofpoint-GUID: BQl4_IQcq5WEgWcU1NxXGtrgXJiEMIFK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-08_04,2026-04-08_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 priorityscore=1501 bulkscore=0 malwarescore=0
- phishscore=0 impostorscore=0 spamscore=0 clxscore=1015 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604010000 definitions=main-2604080123
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,axon.com:email];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-285789-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-285791-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[charles.perry@microchip.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 71F8E3BCB15
+	DKIM_TRACE(0.00)[microchip.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,armlinux.org.uk:email,microchip.com:dkim,microchip.com:mid,lunn.ch:email]
+X-Rspamd-Queue-Id: 2D8573BCBB2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/8/26 2:35 PM, Neil Armstrong wrote:
-> On 4/8/26 11:57, Konrad Dybcio wrote:
->> On 4/7/26 5:46 PM, Joe Sandom via B4 Relay wrote:
->>> From: Joe Sandom <jsandom@axon.com>
->>>
->>> The RB5gen2 is an embedded development platform for the
->>> QCS8550, based on the Snapdragon 8 Gen 2 SoC (SM8550).
->>
->> [...]
->>
->>
->>> +    /* Lontium LT9611UXC fails FW upgrade and has timeouts with geni-i2c */
->>> +    /* Workaround is to use bit-banged I2C */
->>
->> Interesting.. I was under the impression that it was only an issue on
->> RB1 and RB2 boards.. perhaps we're missing some magic register write..
-> 
-> On the SM8650-HDK, the HDMI i2c is shared with the battmgr in ADSP, causing a lot
-> of issues... the only solution is [1] to declare the bus shared and use GPI DMA.
-> I assume it's the same here.
+Hello,
 
-Ohhhh hmm.. doesn't seem to be the case on RB1 but I wouldn't
-completely rule that out either (maybe something is poking at the
-bus regardless of its usefulness..)
+This series adds a driver for the two MDIO controllers of PIC64-HPSC/HX.
+The hardware supports C22 and C45 but only C22 is implemented for now.
 
-> Sharing the same bus between APPS and ADSP is a weird feat... It seems that having
-> 26 i2c busses and 212 gpios available on the system is not enough.
+This MDIO hardware is based on a Microsemi design supported in Linux by
+mdio-mscc-miim.c. However, The register interface is completely different
+with pic64hpsc, hence the need for a separate driver.
 
-That's only the tip of the iceberg..
+The documentation recommends an input clock of 156.25MHz and a prescaler of
+39, which yields an MDIO clock of 1.95MHz.
 
-Konrad
+This was tested on Microchip HB1301 evalkit which has a VSC8574 and a
+VSC8541. I've tested with bus frequencies of 0.6, 1.95 and 2.5 MHz.
+
+This series also adds a PHY write barrier when disabling PHY interrupts as
+discussed in [1].
+
+Thanks,
+Charles
+
+[1]: https://lore.kernel.org/all/acvUqDgepCIScs8M@shell.armlinux.org.uk/
+
+Changes in v5:
+- 1/3: Collect Conor's Acked-by
+- 1/3: Remove the "|" in "description: |" (Rob)
+- 1/3: Don't mention how many instances of the MDIO controller there are
+         (Rob)
+- 1/3: Hex addresses are now in lowercase (Rob)
+- 1/3: Drop the phy DT label in the example (Rob)
+- 3/3: Support MDIO controllers that only support C45 (Russell, Andrew)
+
+Changes in v4:
+- 2/3: return FIELD_GET() directly instead of using "ret" (Russell)
+- 3/3: Add the PHY barrier patch (Russell, Andrew)
+
+Changes in v3:
+- 2/2: Add a MAINTAINERS entry (Jakub)
+
+Changes in v2:
+- 1/2: Make "clocks" and "interrupts" required (Andrew)
+- 1/2: Add a default value to "clock-frequency" (Andrew)
+- 2/2: Remove #define for unused registers (Maxime)
+- 2/2: Add "c22" to clause 22 read/write ops (Maxime)
+- 2/2: Remove the call to platform_set_drvdata() (Andrew)
+- 2/2: Make the clock mandatory (Andrew)
+- 2/2: Use 2.5MHz if no clock-frequency was specified (Andrew)
+- 2/2: Change the error message for bad clock-frequency (Andrew)
+- 2/2: Fix a use without initialization on bus_freq (Andrew)
+
+CC: Andrew Lunn <andrew+netdev@lunn.ch>
+CC: "David S. Miller" <davem@davemloft.net>
+CC: Eric Dumazet <edumazet@google.com>
+CC: Jakub Kicinski <kuba@kernel.org>
+CC: Paolo Abeni <pabeni@redhat.com>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: Heiner Kallweit <hkallweit1@gmail.com>
+CC: Russell King <linux@armlinux.org.uk>
+CC: netdev@vger.kernel.org
+CC: devicetree@vger.kernel.org
+
+Charles Perry (3):
+  dt-bindings: net: document Microchip PIC64-HPSC/HX MDIO controller
+  net: mdio: add a driver for PIC64-HPSC/HX MDIO controller
+  net: phy: add a PHY write barrier when disabling interrupts
+
+ .../net/microchip,pic64hpsc-mdio.yaml         |  68 +++++++
+ MAINTAINERS                                   |   6 +
+ drivers/net/mdio/Kconfig                      |   7 +
+ drivers/net/mdio/Makefile                     |   1 +
+ drivers/net/mdio/mdio-pic64hpsc.c             | 190 ++++++++++++++++++
+ drivers/net/phy/phy.c                         |  25 ++-
+ 6 files changed, 296 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/net/microchip,pic64hpsc-mdio.yaml
+ create mode 100644 drivers/net/mdio/mdio-pic64hpsc.c
+
+-- 
+2.47.3
+
 
