@@ -1,213 +1,181 @@
-Return-Path: <devicetree+bounces-285549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285553-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +ILMIVro1Wmw/AcAu9opvQ
-	(envelope-from <devicetree+bounces-285549-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 07:32:10 +0200
+	id GCkpLKLo1WnO/AcAu9opvQ
+	(envelope-from <devicetree+bounces-285553-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 07:33:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2765C3B732A
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 07:32:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 585083B73AE
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 07:33:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 68CD83029C2A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 05:32:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 182C6302E3ED
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 05:32:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED56D35CB76;
-	Wed,  8 Apr 2026 05:32:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ED1435B64E;
+	Wed,  8 Apr 2026 05:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CzQgX19w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NEzML/5c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012022.outbound.protection.outlook.com [40.107.200.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61B5F35AC2B;
-	Wed,  8 Apr 2026 05:32:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.22
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775626322; cv=fail; b=bsssY87jK5ZzNAjohIJ33bXixYbaWDn8BGcl4JwgDDZLI2DxbL/zu0EW6KYxEvDQ7nLGknXiR0sBYa14hAEaFNBt+ImkR9NfnPdOHol9X1Mq5uGPGN1VXrW44DxVErFd2vG2ScypGAbAz2F6qhTxJAxmrV5XVS0P3Gzz+FSyadw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775626322; c=relaxed/simple;
-	bh=SVN8RK6t5iCrczHTqjkg0f73rjkmsVj4yCPx2wZLCDA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UncWRVsy7WLWJy6pHXy+gTRbwm8841Tvbu/4O9XJ48bIpDQHUR4ByVxpnykhlEVID9/ypQZZXliA+tKYzMdlvLxq/4IMvvI2cjg18ckTFS2e8Gn61YZ/4ZmyNdrKEh+tALijhwoTBAk83pR2FC/pt1XB1bh7EZsFMkAijx7TMm4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CzQgX19w; arc=fail smtp.client-ip=40.107.200.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DsfBsjeNQM6yo1HNaza2BBNEGrvHswywQ+PHgtCclAKqMwTsukA6oyB1vGygKB8Qbat8moApcEIrBAWlWHjYB0HxBr4MtRmjDzuiRRi2k+n1imIJqWiE9HZ5uMxcDnm56mcQJAellJYjtoDE9M+K6fGVOhneJ6uY/Tp2ho50x0sakNGcn2xFZ0448EbyPmok0ORojzCpnw1p6Gv3qnTgj4h+FS0DVyy/FM4q1oz1grVJTfXdANUfAjFD9/tG+Wa3Zr7UizHqNgag1nOpj2rMAvDb8u0DdBsjiHuozxNTcr1wtvTj1De1EYVGeIWZuodKfCRJrVpFJfeNsUENbHjEsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fILuxeyIumz5Vd6OzcJl2nKcEwZuotrnTRDBBoqNeNo=;
- b=yYX2iCfmQCm0zqGkrQQ7pYl/My2sgDgkpvgWWy/URE6IQtcmLjF1bR40H96Chh4Zn8eDYMIVuXwCdLch/VTGmgIchzmRvdKyR8f1V+6h46dl3c7vd1xIq7HfGZrQ7pC1MZtSJ1on1h44UuPINQVPql1/YeaWJD5UDraJFzrktJf7DdTeceopLWCw1H9NPDbp55WWNV3kpj6Kcm+sVUoVOakCOYG2+fYLiRC3T1AtWX7v8qSXFcMjXPDRqBzNYF2qsXPo3IgDKprx2ADcLBVlJz0JBB+7kHTNzSgwP7KYpCMFY197bLbeNqluMidlDaCdrN0JLtEAwtz1xUC7eUFocg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fILuxeyIumz5Vd6OzcJl2nKcEwZuotrnTRDBBoqNeNo=;
- b=CzQgX19wmIJF+YVPxR23fxkM3WiYvCw5jJAmSNUXUb+dU8gfH+gx2rDdI23On9rMYWaKohFezqcnlKAfNz8178Jrsu3tHb3HI9ybKbgbrTotRjzqAihjzZzBZhwr8ykCEEQ5DtQ9T5pQVCBkgomLQrS5JAkuMSWBsrX3z8/Dhjc=
-Received: from SN6PR04CA0101.namprd04.prod.outlook.com (2603:10b6:805:f2::42)
- by PH8PR10MB6503.namprd10.prod.outlook.com (2603:10b6:510:229::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Wed, 8 Apr
- 2026 05:31:58 +0000
-Received: from SN1PEPF0002636D.namprd02.prod.outlook.com
- (2603:10b6:805:f2:cafe::8b) by SN6PR04CA0101.outlook.office365.com
- (2603:10b6:805:f2::42) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.33 via Frontend Transport; Wed,
- 8 Apr 2026 05:31:58 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- SN1PEPF0002636D.mail.protection.outlook.com (10.167.241.138) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17 via Frontend Transport; Wed, 8 Apr 2026 05:31:57 +0000
-Received: from DFLE205.ent.ti.com (10.64.6.63) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 8 Apr
- 2026 00:31:57 -0500
-Received: from DFLE202.ent.ti.com (10.64.6.60) by DFLE205.ent.ti.com
- (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 8 Apr
- 2026 00:31:56 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE202.ent.ti.com
- (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 8 Apr 2026 00:31:56 -0500
-Received: from localhost (mz02jj9v.dhcp.ti.com [128.247.81.246])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6385VuOL162470;
-	Wed, 8 Apr 2026 00:31:56 -0500
-From: Sen Wang <sen@ti.com>
-To: <linux-sound@vger.kernel.org>
-CC: <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<perex@perex.cz>, <tiwai@suse.com>, <shenghao-ding@ti.com>,
-	<kevin-lu@ti.com>, <baojun.xu@ti.com>, <niranjan.hy@ti.com>,
-	<l-badrinarayanan@ti.com>, <devarsht@ti.com>, <v-singh1@ti.com>,
-	<linux-kernel@vger.kernel.org>, <sen@ti.com>
-Subject: [PATCH v4 4/4] MAINTAINERS: add entry for TAS67524 audio amplifier
-Date: Wed, 8 Apr 2026 00:31:48 -0500
-Message-ID: <20260408053149.1369350-5-sen@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260408053149.1369350-1-sen@ti.com>
-References: <20260408053149.1369350-1-sen@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B0F13BB4A;
+	Wed,  8 Apr 2026 05:32:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775626366; cv=none; b=UX5iDyxh1IFiYw0pu2ysZXN77NRQV0mujlrgZh3WtyjiDbhkihEw8iHvzNQVcJZgFQ9KUuPCyxEbM4gPKoNSMdTtB9M23HF74ufXBRTaq8WY58V/kMjRLjEq5cChQxMNX5y+kfvGfUQ05aHssFzW0+TbTOn3RMDFX5u9oVdVUxA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775626366; c=relaxed/simple;
+	bh=4uTI8UOVIZulietJSjNMsqfC3JUpA5rfcPQ0Qg4tPps=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QxOPpiOZOgPcyIVV4WdRdtsH03rLu9jtgpMExGviiddJfiQ3kv2XJ9OGfNWcoxm4/syb2+WxTJhekggI8lm/lSDwsfe1KprmNYbdTSOXTtcBYuSaLFxRfQYNYrMtloPxCDuUZfBRVnAMk6r3vXTqtehyaXhAERQRheENs9tzcKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NEzML/5c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CC057C19424;
+	Wed,  8 Apr 2026 05:32:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775626365;
+	bh=4uTI8UOVIZulietJSjNMsqfC3JUpA5rfcPQ0Qg4tPps=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=NEzML/5chum846fuX+qntTd9jwvTsgHPI7f16MRfmcszdYoudWA6U7disgOLtsULw
+	 FaLHyZSZBZyVTbSFJyjp+Weq7tzAeR7Gt2RbMUl/aYJQSgnAE79mxflZCWi5Yp6via
+	 dOaQDyL/5Nlot4r0nEqzvqoKG8UPP33o+ZLGl20Gxq88x82K0IiF0jRMTemUgjvert
+	 0fm+id2Q4Bq7R2qqQVIDB+O7a5fcJUvq3muq5EXbR/2lamEp7HrmM+HDVs8EnV8tO5
+	 FflKBXmgUjkEv8pNHEEREggTnEK0DPkr+CMDecE42pRG67uh1bLu/iRlHx28UZK2bo
+	 CkfCLjYR7Wpkw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6B28FD5F6C;
+	Wed,  8 Apr 2026 05:32:45 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Subject: [PATCH v4 0/2] drm/panel: Add panel driver for ChipWealth CH13726A
+ based panels
+Date: Wed, 08 Apr 2026 00:32:38 -0500
+Message-Id: <20260408-ch13726a-v4-0-9bb1a9b8f329@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002636D:EE_|PH8PR10MB6503:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6e6447e0-c50a-4ea9-2a67-08de953026d8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700016|376014|7416014|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	QHMTPdOqUmhE8SLVoGqZgbGLfoeJwB2Meur8tadZNOLGzgII1Xkd8YLSI9JKHhEAoRwOpX16iufv8AXmB4sHSK2kgclnHelLh1MWVLanM1k7MyNgE048qxRIyAV1TAiqkk2fPK/EzJzE0tQhvJ4eBAktJZ7i/+PilbbIJS6JTAhUIqvKJ7O9dpl4Gmf8K0UdYvN6vp85AskLFju8yxU9HTCjEKnbfxBww+Tloir0XmFWHtKKD6SL1dYEq77P8RJg1HC4IguXRUYuRe3ymZOZSFN9ywL8EqRIu2IpiDU9o+TqwhleVIMWJs0lT5QR9PkjkCOsAf3kH14E6n49bA3sgf8vZcr6FV6AAbwr0VSKEgoNTXkGPRk9tybq+ds7oUiWIjWoqegq0SVEQkAf37VbNk++DTu3FvNXQQzME0JKoa6QqcT1DNavR6Jo4yip81vXRViqZAoqLj2zUw89r04EMNCfvpxyJFQRJAl/QQJgheaqQufkn7NqBwAKMQM3AKIDeanA8I9e1ll/Td0EdcqAVwrIsi052vMso9l2B+pzy0lu5rp1T0yZEwGyr/9NMaWgGQSnG6SllTZV21yGJBAZtlVoWnuFU/lQnTtVeKfFvnkA0+KSLYg/EbPBFbhFcN3reAUgjwqIFqX2lJB2aPnFPrH5SiEv+LTgaeRg+1BBVKCIxM3ZOWVPog9O/mKI8E2qJI8/beye/vxay578j66SUyETkEpUIydf/xvk6YhS4vgSpsa5qwvuopiijGuVLWJjtqE8dKu8aFuOtB1sXm+IZA==
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(7416014)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	j/sdPxFJwCPAqXej8VJYehFR00KAAbv/7gU+T99AEGGUoNnAn3wHkhFThNzSm1GpW4cJZEEgauloR6q2KiMVfwAEDhIHvrwpE0VI0BzlLjcotuu81AGKjRSii10ubZJkO0Lgk0azIlvKJ/B5/zU1T08Ipb+DTTp2Sbq7xrk1e5mSnUvVP7W8eOlc2gl4ymGQowV95XtmpkBNMH4Bkiy9yZj+uvCV2VLPJdDo/ZQAf8KgR9r/T+I2zLngb9NRjU0eTYx1/bu0Sfwp+GQOryQIHw9fWCk0OM/nLwthi7niAQaX+i6slSLBfWEUl2Fj1LYmLDDNtekCPb8J3A7nmPTXmIvaFncbZMuI/ReQPyca5w40ATyUtD4FLHPKKgtGzqpWqAuq9EMF2Ci+HjzPebB64uRT/TDV+os2u55CeFe+6y3qvZ4QgWuYpmqhwIKx5puq
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2026 05:31:57.5208
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e6447e0-c50a-4ea9-2a67-08de953026d8
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF0002636D.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR10MB6503
-X-Spamd-Result: default: False [2.84 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/12PSW6EMBBFr4K8jiO7jAdY5R5RFh7KjaUA3Zigt
+ FrcPW6IBMnyl+r94UEyTgkzaasHmXBJOY1DEfVLRXxnhwvSFIomwEAxAEZ9x4UGZalsvFLaBCm
+ CIeX9OmFM35vV+8euJ7x9Fcd5PxJnM1I/9n2a20obGRk6iEYG9A615xgbiw1AI3hkvKlj9IDk3
+ KSt9h5cU3sf6M1nIyWjXHmmnRIBQbVLTZ7xXcrzON23YQvf8n83wLFh4ZRRlIwHbZAzad8uvU2
+ fr6XkZrLAAYoSeoBQQDDW1sr5oAL7D4oTCOIEimciGKdioyOaP+C6rj9lFhIKkQEAAA==
+X-Change-ID: 20260220-ch13726a-59c6678d53d8
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>, 
+ Aaron Kling <webgeek1234@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775626365; l=2276;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=4uTI8UOVIZulietJSjNMsqfC3JUpA5rfcPQ0Qg4tPps=;
+ b=fypg7sL9xsw9TCAotM+pnsUwQi2ksnpfSOlqOOQnKCYWQURQvG54FKk1DsVo4BFMn/mWZcTkY
+ AwOyQYYdgmwChfKQn1Nsm+1sT9GktG3XijGddUhDq5EFd5+/W85wQ56
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,perex.cz,suse.com,ti.com];
-	TAGGED_FROM(0.00)[bounces-285549-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-285553-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sen@ti.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ti.com:dkim,ti.com:email,ti.com:mid];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[webgeek1234@gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,sobir.in,gmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 2765C3B732A
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 585083B73AE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add Sen Wang as maintainer and register file patterns for the newly
-added TAS67524 amplifier driver.
+This driver is based on the one by Teguh Sobirin [0], cut down to only
+support the AYN Thor bottom panel.
 
-Signed-off-by: Sen Wang <sen@ti.com>
+Due to [1], the AYN vendor description patch has been folded into the
+AYN QCS8550 dt series. Which means this series now depends on said
+series and it must be picked up before this.
+
+[0] https://github.com/AYNTechnologies/linux/commit/d0ff75b09e66023c5f88992706dee4601aa7a437
+[1] https://lore.kernel.org/linux-arm-msm/c7fb3f89-6574-4761-9ef2-2fdf6d4801b5@kernel.org
+
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 ---
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
+Changes in v4:
+- Add fallback compatible to bindings doc in patch 1
+- Link to v3: https://lore.kernel.org/r/20260323-ch13726a-v3-0-e28b6f97fe80@gmail.com
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a626dee5c106..a78b6cb9b907 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -26191,17 +26191,20 @@ TEXAS INSTRUMENTS AUDIO (ASoC/HDA) DRIVERS
- M:	Shenghao Ding <shenghao-ding@ti.com>
- M:	Kevin Lu <kevin-lu@ti.com>
- M:	Baojun Xu <baojun.xu@ti.com>
-+M:	Sen Wang <sen@ti.com>
- L:	linux-sound@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/sound/ti,tas2552.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tas2562.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tas2770.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tas27xx.yaml
-+F:	Documentation/devicetree/bindings/sound/ti,tas67524.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tpa6130a2.yaml
- F:	Documentation/devicetree/bindings/sound/ti,pcm1681.yaml
- F:	Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tlv320*.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml
-+F:	Documentation/sound/codecs/tas675x*
- F:	include/sound/tas2*.h
- F:	include/sound/tlv320*.h
- F:	sound/hda/codecs/side-codecs/tas2781_hda_i2c.c
-@@ -26215,6 +26218,7 @@ F:	sound/soc/codecs/pcm3168a*.*
- F:	sound/soc/codecs/pcm5102a.c
- F:	sound/soc/codecs/pcm512x*.*
- F:	sound/soc/codecs/tas2*.*
-+F:	sound/soc/codecs/tas675x*.*
- F:	sound/soc/codecs/tlv320*.*
- F:	sound/soc/codecs/tpa6130a2.*
- 
+Changes in v3:
+- Reword patch 1 commit message for clarity
+- Order properties properly in patch 1
+- Track vendor description dependency series change
+- Link to v2: https://lore.kernel.org/r/20260317-ch13726a-v2-0-28aa46bcd6d0@gmail.com
+
+Changes in v2:
+- Add Neil Armstrong to binding maintainer list
+- Add 120hz mode, which required a minor restructure of the driver
+- Link to v1: https://lore.kernel.org/r/20260222-ch13726a-v1-0-e501d78e105a@gmail.com
+
+---
+Aaron Kling (1):
+      dt-bindings: display: panel: Add ChipWealth CH13726A AMOLED driver
+
+Teguh Sobirin (1):
+      drm/panel: Add panel driver for ChipWealth CH13726A based panels
+
+ .../display/panel/chipwealth,ch13726a.yaml         |  67 ++++
+ drivers/gpu/drm/panel/Kconfig                      |  11 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c  | 339 +++++++++++++++++++++
+ 4 files changed, 418 insertions(+)
+---
+base-commit: 785f0eb2f85decbe7c1ef9ae922931f0194ffc2e
+change-id: 20260220-ch13726a-59c6678d53d8
+prerequisite-change-id: 20260217-ayn-qcs8550-16c07b63de26:v4
+prerequisite-patch-id: 042cab8f04748207ba5395dd0f23c445955aaa2b
+prerequisite-patch-id: 4e13275bfaa4f838a627fe8dfa3d4cb8972fc5b4
+prerequisite-patch-id: 16c130bcfd7c787b91e828b8e600bd0d740f937e
+prerequisite-patch-id: 4b7e6b017349c386f54e221790da4392fe066ff3
+prerequisite-patch-id: 3844bef2eda3cf59031b1d131eb6ba9295629bb4
+prerequisite-patch-id: bcb261e40f0386b91a09eb4080cbdf74d21f3df2
+
+Best regards,
 -- 
-2.43.0
+Aaron Kling <webgeek1234@gmail.com>
+
 
 
