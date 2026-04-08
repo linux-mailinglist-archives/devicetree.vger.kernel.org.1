@@ -1,155 +1,117 @@
-Return-Path: <devicetree+bounces-285802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285795-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0CQaKJpZ1mnLEQgAu9opvQ
-	(envelope-from <devicetree+bounces-285802-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:35:22 +0200
+	id eMFIN4FX1mlJEAgAu9opvQ
+	(envelope-from <devicetree+bounces-285795-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:26:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC9B43BD00B
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:35:21 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0C723BCD24
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:26:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 29659305DF1F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 13:31:47 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 08CD73004683
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 13:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADA2D33AD99;
-	Wed,  8 Apr 2026 13:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A86134FF40;
+	Wed,  8 Apr 2026 13:26:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lz/BUBTi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F166733A717
-	for <devicetree@vger.kernel.org>; Wed,  8 Apr 2026 13:31:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6621A30EF7C;
+	Wed,  8 Apr 2026 13:26:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775655105; cv=none; b=WB++TlGnE//thLtAdc2pEBMRwLlo0u/1Bd8r60QBDFeePZd+PgXhli8rLowsdYnsfLY0uI4MdKHo2giGf2vB0dmZKv67wL6DAmhVBlRMwKNrFbXKfQm22+VNOMvdwxiUnk77zKPLz19B+lGIWnCWxfZgQM+gT06cNWgxrN0SVME=
+	t=1775654779; cv=none; b=HpTNMPu0lOInjvGfMovUNM13LthBO084A9qn5iyF2RwNqMeCvsvx5F5jnwvTUvd5uQtOp+3R42uxaHgXrSkgkMuP/6gkfXyJKJHjaj9TCsYKMJ2TR4lc9lZvncMRmtQdp0FjWTEpgfNre+35m+XuLzBaaDkVMGmP3emy5DgcIcE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775655105; c=relaxed/simple;
-	bh=Esa6dVRyYOOr3vJIDSY5cJEBLjvkhKepH2lKClA4ih8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R0fHrsTH+QE5UtiecQL2U5eSvAqWPW7v38f/MrfgvSB3OtsisibW3cn9yHFckFC2vL87osAmLMcFLp2dhU1dIrlY0Mruk/aT9vQQt3niSqJzKAjnXeYbWTLD5jhzSAIBkdylkFxk91BhAuh8avnKFf1qvNlTH9AAGGJXMH+e3Ds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-7dbca22dbfeso2281376a34.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 06:31:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775655102; x=1776259902;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8VHgesrf5StiprJKDytJNXvB7R5FJ2lBTM9ZJItFuhE=;
-        b=jTmX7K/75WIz2yICwdnGYwl9IqaA6x/K2fr1HFsjBJoc/5nd+UmGW20OFWG4tgsjZe
-         OjBtWr1DmBYfRB7x9lFGqsUHUElH+AwTaNcN4LPUiAyRFtwG0gQiUYfs5hNRYBxfIwkh
-         jyTelLtXAvaK+JZppGax94k/O9RZTJSyXdGxNVmmaHigAsD8AJgidXfVsLQV2XBQpOre
-         SdViIsRHRAenSQc/oR7tQK+JHXkgRdVgqkHzE3K03YNqdIX3Y743B4p5STY2/pKdYDG2
-         sZKaTkm/Os1pRIjPiyQTRmZha0jwL9yAGHKhXA422WdEUuCM6diBW0yufWq2JKLR0Hkt
-         yeaw==
-X-Forwarded-Encrypted: i=1; AJvYcCXgAoryxL7EgWPp3/GU4PMLkQ88dPN3JbZqCPSbnneTfwoDruULIKjtSyAG+X8qHzkiTpVpsy/QeeIh@vger.kernel.org
-X-Gm-Message-State: AOJu0YwyyTaYZ+xxVlawcaj0rwMRzEhTHB+VX4WR2/a7DLyuc5TR04me
-	78FL+ovs+uxjpN25rv6CeO95Yhnqu5vqcprE7ppquYSwLd8Vz5XVSTgnIFcGDn8W
-X-Gm-Gg: AeBDieuHXfGUftbkcRvlLkfCsQP3oAnSbBtd0FWUMkNAYO8d3oBa2D/gFJLbdwXOmzn
-	1QjXcBn3g5mxahsu3s+r6r/dAWMXt0Plt9ySF2MIeZaqTUUm4tvoCCI4ng1emGu+OvmwwEizAR7
-	pX3cyY4WPLZpnY76rcIfEzQBQ+6q7oylVG+MHsh+2Ot6O5VW17+n1PSSwOR0uVGArFTh71ALFWh
-	l++OuYV+ZOyfH1R5IzvcGH3CEJR3adbeFseafqPypy+SJD9fxrrqMW5ETjlkv7xJXp2LIUBFgll
-	IOx2eKpAEcwX1axvASL5faWjV2Gh5j3SYDVAnJR3Urq9NvcJuqViqUJYyqzfRYa1bJ+63fpfKWl
-	snUX+T0Fw9eaREW8QG+yTGhKm1LXkbRG0DTsLkYqT96TyDTZCqulX7Pwg6V9iNPn2r27b3LChRJ
-	p+9byY9c0d0LijdnB2jz2/Ksk+3Xt1uoT3NPuHWfAYNIU6OeSGxef3oU+fygFrlBEX
-X-Received: by 2002:a05:6808:14cb:b0:46a:7718:c518 with SMTP id 5614622812f47-46ef73fd694mr10692435b6e.34.1775655101906;
-        Wed, 08 Apr 2026 06:31:41 -0700 (PDT)
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com. [209.85.160.176])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-50d4b73e7e5sm159405141cf.17.2026.04.08.06.31.41
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Apr 2026 06:31:41 -0700 (PDT)
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-50b392f1846so87412981cf.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 06:31:41 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU08c8NWcZBfy8KByDruKXI0AUcbz2oH6ytOynY7ehTbZ5Cds9jGhLn8MyYqyYKg6GkvrOQrb0WzyJN@vger.kernel.org
-X-Received: by 2002:a05:6122:3a03:b0:56f:1a26:563a with SMTP id
- 71dfb90a1353d-56f1a265761mr1211064e0c.7.1775654605828; Wed, 08 Apr 2026
- 06:23:25 -0700 (PDT)
+	s=arc-20240116; t=1775654779; c=relaxed/simple;
+	bh=GVrGCsYxYO1/MdZJjJeSRrGaIhOdYh3676msyyoaKdc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PPkcBb0eTa/+3ukTEDkl4v9fd0JDE/7bH9CfAhm6bGGad+5hthNbzDudMc43OOHHWKE6UvveqHLtJR1yA+i7cR0hmaI2j2FzipWek1vWqBfbB1XH2RAS0UU7i8P9XFzdaG12K9IIM7bwhiiBaL4ESETKDJEXCkLSiieThh5Df18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lz/BUBTi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02A23C19421;
+	Wed,  8 Apr 2026 13:26:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775654779;
+	bh=GVrGCsYxYO1/MdZJjJeSRrGaIhOdYh3676msyyoaKdc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lz/BUBTiqY8EVcK+XDn2pOFoUt7qP/AUu/OiZMqgfJE+wefnWFQq+rRwz9NxxtDoP
+	 Sf8a/FIYIUb0gwlwcRnLHvh678Kzrm9vPtOM/KX6GvSTi/ZKFGizwmL+obmffi4KO2
+	 +Zg9vCFsABL4bBf9HF8a492Vt+nAgb4WpFi+72mVPz2lXTZc8ExotjioreezxcvxIS
+	 pJNcFlE2y6C6KZZTlQGXCEPlwpbmQ4RhN8RtpF8/ZNi5P5KQ0NTNPEKDWSWSiXuuYT
+	 BG5a90YiqFzeW5y4xFtqYoNC7MlVclVPujaakn2ln39J1RDTcx/bkpQTZvemkcc1yd
+	 ZZNCmJgOkJ7eg==
+Date: Wed, 8 Apr 2026 08:26:17 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Vivek Aknurwar <vivek.aknurwar@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Taniya Das <taniya.das@oss.qualcomm.com>, linux-clk@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Taniya Das <quic_tdas@quicinc.com>, Stephen Boyd <sboyd@kernel.org>,
+	Mike Tipton <mike.tipton@oss.qualcomm.com>,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 1/7] dt-bindings: clock: qcom-rpmhcc: Add RPMHCC bindings
+ for Hawi
+Message-ID: <177565477679.1936972.12358129694919211077.robh@kernel.org>
+References: <20260330-clk-hawi-v1-0-c2a663e1d35b@oss.qualcomm.com>
+ <20260330-clk-hawi-v1-1-c2a663e1d35b@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1775636898.git.tommaso.merciai.xr@bp.renesas.com> <9595f56ce8ab120477bfc11eaafb0f2b655d049a.1775636898.git.tommaso.merciai.xr@bp.renesas.com>
-In-Reply-To: <9595f56ce8ab120477bfc11eaafb0f2b655d049a.1775636898.git.tommaso.merciai.xr@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 8 Apr 2026 15:23:14 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXr_=E+WhCd0Tfrehn+2Mo3L+GUUUCWX5vc-gunYx_oTw@mail.gmail.com>
-X-Gm-Features: AQROBzCAS3tdwS4I5i1ony0ZYqV2Tos82DINalsSZpND3OxFU3AJc31boq9f15A
-Message-ID: <CAMuHMdXr_=E+WhCd0Tfrehn+2Mo3L+GUUUCWX5vc-gunYx_oTw@mail.gmail.com>
-Subject: Re: [PATCH v6 06/21] clk: renesas: r9a09g047: Add support for SMUX2_DSI{0,1}_CLK
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, laurent.pinchart@ideasonboard.com, 
-	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [0.04 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260330-clk-hawi-v1-1-c2a663e1d35b@oss.qualcomm.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,ideasonboard.com,vger.kernel.org,bp.renesas.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,baylibre.com,lists.freedesktop.org];
-	TAGGED_FROM(0.00)[bounces-285802-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	TAGGED_FROM(0.00)[bounces-285795-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.059];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,linux-m68k.org:email,glider.be:email,renesas.com:email]
-X-Rspamd-Queue-Id: EC9B43BD00B
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: E0C723BCD24
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 8 Apr 2026 at 12:38, Tommaso Merciai
-<tommaso.merciai.xr@bp.renesas.com> wrote:
-> Add support for the SMUX2_DSI0_CLK and SMUX2_DSI1_CLK clock muxes
-> present on the r9a09g047 SoC.
->
-> These muxes select between CDIV7_DSI{0,1}_CLK and CSDIV_2to16_PLLDSI{0,1}
-> using the CPG_SSEL3 register (SELCTL0 and SELCTL1 bits).
->
-> According to the hardware manual, when LVDS0 or LVDS1 outputs are used,
-> SELCTL0 or SELCTL1 must be set accordingly.
->
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Mon, 30 Mar 2026 17:34:56 -0700, Vivek Aknurwar wrote:
+> Update documentation for the RPMH clock controller on the Hawi SoC.
+> 
+> Signed-off-by: Vivek Aknurwar <vivek.aknurwar@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml | 1 +
+>  include/dt-bindings/clock/qcom,rpmh.h                    | 2 ++
+>  2 files changed, 3 insertions(+)
+> 
 
-Gr{oetje,eeting}s,
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
