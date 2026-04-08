@@ -1,101 +1,82 @@
-Return-Path: <devicetree+bounces-285633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285634-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6GE1OsIQ1mmxAwgAu9opvQ
-	(envelope-from <devicetree+bounces-285633-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 10:24:34 +0200
+	id eIkRH5QQ1mmxAwgAu9opvQ
+	(envelope-from <devicetree+bounces-285634-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 10:23:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 472FB3B8F69
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 10:24:34 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66F2E3B8F3C
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 10:23:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E4E423021E7F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 08:20:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 35B9C3005144
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 08:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F77939F175;
-	Wed,  8 Apr 2026 08:20:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CC4A3A1A28;
+	Wed,  8 Apr 2026 08:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="z8esgjH+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ohGdPq80"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41C039023C
-	for <devicetree@vger.kernel.org>; Wed,  8 Apr 2026 08:20:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A07C51F09AD
+	for <devicetree@vger.kernel.org>; Wed,  8 Apr 2026 08:23:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775636425; cv=none; b=QvEjkel6aBgcSpSWESmf8SbN3amwJIDY+CX1ys1xexp68kPPXoEUxgJBDK41rdtmDXhrMOZrdMnwj0m+kMG0/sg05CPO2HDupQwRPWr2+hBK6gxd3LnKf6lylEfCAIKP+v7bB7o2F5roXApOCCUFquAzUwiTIPSVJYUhvK7/Fr4=
+	t=1775636623; cv=none; b=NWRkwf2ApfgJtGWyurd1LYBFUjYTTVzAoRWRX3IHZpoVOauUEcKemEeKiQSdHgmnnzbCnPBE7vmc9cG/NBATPpU0hUTbBGWAkKr8JmMaLT5cNmlKVsegEtrceJ13KihUG3ohmDxsPooxeLtqG7aYEDHn3ltXdqx2jbLqjtEIPVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775636425; c=relaxed/simple;
-	bh=gtZfbxKRElMEZn8O6b4BlJRIdwl5gp/hWHEN0k3wwbw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=AMy1nlVmz+g5qPjasPDL0MrMu8uL+GZIghwY6fnmMizJIICLUeb9rwSgFQ/IyKDEtLCSOIkpNIXGs3rJC5IKFMlRSg831KElWxGRULD1yLjbiRhCL/ZwFqwIz01pQe+q1s7WbSbW0DEsb7woYJLmM/4FKkgA/xBAc++9Syo2nh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=z8esgjH+; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-43cf5d14d6eso4789695f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 01:20:22 -0700 (PDT)
+	s=arc-20240116; t=1775636623; c=relaxed/simple;
+	bh=lJNpucUX68tWdyUfNgUwSALBY8DGx6c0lVEaarXpxxg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=OGAe4LeBuYB/L+y+0X3TzFLiHA0+LWbKCj/G439sAlHtA+SbZOWoyL5E7GmItZRpGPMxGXrOoLkqIvPiEmijCPH1UwAM8iyUGg5U6mcnqoE3xBE8QdBoiAghM07Xl8CksCLg1p9TGXrq2t5FBMzDJ71yKkx1hThcNccZorNj3z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ohGdPq80; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-3567e2b4159so3760549a91.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 01:23:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1775636421; x=1776241221; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VRd+Civy+geLALzWFHgxsIesA9wBU9+u1x5Mut66okY=;
-        b=z8esgjH+Gh3qIJaW05xkOEePSjAm895g8ZL0T4OekOPmHQwVIx7D5hlTSApfkA5R4b
-         SsfmdI7dXVi91x/7Icu1VaPCz9OrOhGZPjSkpNyxJ7rpgx/Inx/zT5m3PPOGYUyWqGgo
-         oI99geuB50ZWhKb9Kevjr01KFpg+wBeONiWSpJu8GsJsI086DVENyomGubXUf98OOzYz
-         QL4NPRd7u4LToomxEAq9AjEynX/ZsxMFVLuM38ZpovMaND+d8Unj1vSCgAQgbgYtZIec
-         /ICSB4tAbjEsYVjyp/FFT1lkFvzKgPPEiX7HGHCgIezp7v4zldFOEiHxZEy1g9Lswav4
-         FSXg==
+        d=gmail.com; s=20251104; t=1775636620; x=1776241420; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MH17IUeOdxsudCo9m2h4oI37xiu1+r/Gu5AYVv32s0Y=;
+        b=ohGdPq80WssoXr+QOV31btBchyyfmKuecasUv2gfvFgrkgd2BeAfc7I2fjlLHbVglM
+         8tz9Lgvfynom/UM/sTvB9a1EEfrZtBX4Ugh2Wek3FhgrZnppP5svWoh8Ir2nieLXH1+j
+         Drv+KiTjB9HOipjwIAlOvyW1+TcOOkcAhh8tInRBQc3kMqY23fk0dwG6PsYNfP7duRRt
+         ySfW1viUYCJ60WA+T26WMy3sbjF5ci3G1jYESmp3lzTJYQnWoSAzZtGk2muqA8ChRz8n
+         D50qfcyJqJZL6udtQsL8v2xBywyLSFjbZld1eaiXdeylWpjnXij1wnvB9C0RU6mFNJnC
+         9W+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775636421; x=1776241221;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=VRd+Civy+geLALzWFHgxsIesA9wBU9+u1x5Mut66okY=;
-        b=VynZ4Lf/d/2UIEO/0a+RmEi8fdwK3nXW3usZC9obd5G+F87GjTPslWZ/fbOryT3QOp
-         reJf5p/G/2eoYEI3vT/fJGa+p1mHg8vJa0gs2C80ZgoaTVM3WwDrCKe/tLZP+MFF5AQe
-         pPdkBplnJYl12ASe+2jkPNOJqseZMncm5ijl5AoucjnIhkcIyuOnzpPXgkadbS3dHy8t
-         lb+qPxsBJMsBOlHm2XZnFpV4AeW/4Xdt7zv3yZUH5FiTfz95aZ3Urpa60ta9AagU+vR3
-         4b3own+TIyzJ4Z6mSTJY/XiIfbD71LBG9wo57OSTiq0ig7MnOxt6i5kOoBFPqr4S+OkM
-         om5w==
-X-Gm-Message-State: AOJu0YwvUO9JDjYRjG5bO71slak+cOM1+Ffzrp3Umo3LQm6RzqwR3ukU
-	JN465NDOrQfMQkebTLUl0np2w8rHqHkzRhYAR5DjEC8ejHY6LSEUUmmKE3AnKBzHz9E=
-X-Gm-Gg: AeBDievGK37SqUCyeAz4uCsVxIiVF/npEojFvzmEXDCJhS2C53WpAvVTWt67gNT6sBu
-	PSdL78El/VyEirPXQ0HBm05dLmQfaKuT9tweYjGdOAqorh/ngNfeYEztbPUxYfT19k94l8IA+tv
-	djBnOTbxJr/8196hyuCtviWkctsoG/V6vedZPyS71ga5SMziw5XUBaT90+cea6Ni2obJvH/RgAt
-	illDFEHzToiuCObP3geWKTtcN27TSLOvBUs40SCtLAFwdWhjOJ/gQwHAvR4gy4aquW4BYJAqR7e
-	EBz8mHcyFKNjOd+wOa3wns62W+xVejHN53HQ1uNvwgCB0wIcmPn8x7nyN7RFg3QBMQodaPsbITP
-	OW/ik/VCCXIsrhPEVOyvV/6IZn9arAzFC0deusCKxEMvILG6gWssajwR/m2qH9jahEdQzoeu0we
-	s54+HKy1msWGkY0VpQZEtI8w==
-X-Received: by 2002:a05:6000:18a9:b0:43c:f90b:5663 with SMTP id ffacd0b85a97d-43d292d4753mr27905582f8f.37.1775636420996;
-        Wed, 08 Apr 2026 01:20:20 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:6715:3376:7379:78d8])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-43d1e2a6f1esm54494851f8f.2.2026.04.08.01.20.20
+        d=1e100.net; s=20251104; t=1775636620; x=1776241420;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MH17IUeOdxsudCo9m2h4oI37xiu1+r/Gu5AYVv32s0Y=;
+        b=hjftbNKkheeyhrbdmYFUAI9Y4QyhpDq+7uknDdLpWATlTRtCUyIS2BBI0awsO9fH70
+         FNs9pTIWR35kGUmq5FmHQjacca9jGwDvNH17cHWfWYmmS1FvnFuvtvigrPDhDU7Z6nyr
+         2do4xc5cYbb9nPpklDdmKE4BTEqKVLnsm1SJPh20RBTphiB/5Cg2cN8Hp/wJAAXISblO
+         fydjdryxWikg3o/AkTBOQZ875pR/SgopOlIY68xgc/+RJ0HDB+3eh6Bpn7pNXxgT84J6
+         sr/aJLX4g7ehJ8dIrA7vkG3lTyOs6k7r51RqhIdegKdsiA/qKqty9zFzP6c2ieZ3FBAg
+         Cr4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUituFhq/aLuhYi11I2UR05nJw3I6YV394P2Y3nYITTihzEIXdAbDCpHiPTUbPYPnSO36NDNpo9Ech/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0Cu0jchTv7qhL6zlQzHhxy2cHPn79QyEHjBL9zZ6Dptgwsn1S
+	9bucn0aISa7qHl5/1u+a0nvpaN8HipmCXi9rj7Jr4x8axIt/zhVFSN6W
+X-Gm-Gg: AeBDiet/MGqy53xxGU6BhK8bo7TPylA6SFrKRJ32i0ZL0fOesGZ9Z+Qx1gQPgQji1bJ
+	4aL8NtNqXzKRhbNIHXchrJumEIlHc6yQo2ujtsB+bXxS9zU9uHWyImjdWWwfF0PE9m1/UK1QV9C
+	+brw3h/iXXFxnSmyVq5+9OPydStyU9bot3Gqt7X9bInaUOVne3ycztEMAlyM50H4jCZs8r9OQpn
+	BccWAc9RVC9ieVZfbwr00CFbyzYvJJzJbyg30W8rwFz3u0+jZutNgdrtEo14qsxaFgX82rH/7V4
+	ECn8lAZmojxNyloabqxy1Rj6Fl5gYHB/rtR2tznk95uxHkkRXOtsZqYDgc+m+tuREZqY4lTH7wd
+	eTJGvTWtEYU6+qiJsQpNrKf2o9ur7HCaNHJSE3HzMw4MGflXcYbCTt5e71kTEoqCfZyU6bUnvEj
+	hdwpI74h+s4lGaiqIepN/V5nEFl59QdPWqHGIdLxvDYq+cbref
+X-Received: by 2002:a17:90b:2b4b:b0:34c:fe7e:84fe with SMTP id 98e67ed59e1d1-35de69aec1bmr20355141a91.28.1775636619649;
+        Wed, 08 Apr 2026 01:23:39 -0700 (PDT)
+Received: from LAPTOP-872M7T80.localdomain ([223.181.104.171])
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-35e27c6173asm1020696a91.2.2026.04.08.01.23.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Apr 2026 01:20:20 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Stephen Boyd <sboyd@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jian Hu <jian.hu@amlogic.com>
-Cc: devicetree <devicetree@vger.kernel.org>, 
- linux-clk <linux-clk@vger.kernel.org>, 
- linux-amlogic <linux-amlogic@lists.infradead.org>, 
- linux-kernel <linux-kernel@vger.kernel.org>, 
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>, 
- Ferass El Hafidi <funderscore@postmarketos.org>
-In-Reply-To: <20260326092645.1053261-1-jian.hu@amlogic.com>
-References: <20260326092645.1053261-1-jian.hu@amlogic.com>
-Subject: Re: (subset) [PATCH v3 0/3] Add the missing mpll3 clock and clock
- controller nodes
-Message-Id: <177563641892.1659838.16115307647051827681.b4-ty@b4>
-Date: Wed, 08 Apr 2026 10:20:18 +0200
+        Wed, 08 Apr 2026 01:23:39 -0700 (PDT)
+From: Akhila YS <akhilayalmati@gmail.com>
+Date: Wed, 08 Apr 2026 08:23:31 +0000
+Subject: [PATCH] dt-bindings: i2c: nxp,pca9564: convert to DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,48 +85,165 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20260408-i2c-nxp-v1-1-8276ccbd95fb@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAIIQ1mkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDEwNz3UyjZN28igJdI8s0I1PDxBQLsyQDJaDqgqLUtMwKsEnRsbW1ADa
+ GKthZAAAA
+X-Change-ID: 20260407-i2c-nxp-29f251ad86b0
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Akhila YS <akhilayalmati@gmail.com>
 X-Mailer: b4 0.15.1
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org,amlogic.com];
-	DMARC_NA(0.00)[baylibre.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_ALL(0.00)[];
-	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-285633-lists,devicetree=lfdr.de];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-285634-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre-com.20251104.gappssmtp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 472FB3B8F69
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.1.56.128:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akhilayalmati@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.989];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: 66F2E3B8F3C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Applied to clk-meson (clk-meson-next), thanks!
+Convert NXP PCA PCA9564/PCA9665 I2C controller to YAML format.
 
-[1/3] dt-bindings: clock: amlogic: Fix redundant hyphen in "amlogic,t7-gp1--pll" string.
-      https://github.com/BayLibre/clk-meson/commit/6d6be1cca2c9
-[2/3] dt-bindings: clock: amlogic: t7: Add missing mpll3 parent clock
-      https://github.com/BayLibre/clk-meson/commit/87edca62c4f5
+Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
+---
+ .../devicetree/bindings/i2c/i2c-pca-platform.txt   | 27 ----------
+ .../devicetree/bindings/i2c/nxp,pca9564.yaml       | 60 ++++++++++++++++++++++
+ 2 files changed, 60 insertions(+), 27 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-pca-platform.txt b/Documentation/devicetree/bindings/i2c/i2c-pca-platform.txt
+deleted file mode 100644
+index 73a693d66ef7..000000000000
+--- a/Documentation/devicetree/bindings/i2c/i2c-pca-platform.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-* NXP PCA PCA9564/PCA9665 I2C controller
+-
+-The PCA9564/PCA9665 serves as an interface between most standard
+-parallel-bus microcontrollers/microprocessors and the serial I2C-bus
+-and allows the parallel bus system to communicate bi-directionally
+-with the I2C-bus.
+-
+-Required properties :
+-
+- - reg : Offset and length of the register set for the device
+- - compatible : one of "nxp,pca9564" or "nxp,pca9665"
+-
+-Optional properties
+- - interrupts : the interrupt number
+- - reset-gpios : gpio specifier for gpio connected to RESET_N pin. As the line
+-   is active low, it should be marked GPIO_ACTIVE_LOW.
+- - clock-frequency : I2C bus frequency.
+-
+-Example:
+-	i2c0: i2c@80000 {
+-		compatible = "nxp,pca9564";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0x80000 0x4>;
+-		reset-gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
+-		clock-frequency = <100000>;
+-	};
+diff --git a/Documentation/devicetree/bindings/i2c/nxp,pca9564.yaml b/Documentation/devicetree/bindings/i2c/nxp,pca9564.yaml
+new file mode 100644
+index 000000000000..5d5653255b91
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/nxp,pca9564.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/nxp,pca9564.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP PCA9564 / PCA9665 I2C Controller
++
++maintainers:
++  - Peter Rosin <peda@axentia.se>
++
++description:
++  The PCA9564/PCA9665 serves as an interface between standard
++  parallel-bus microcontrollers/microprocessors and the serial I2C bus.
++  It enables bidirectional communication between the parallel bus
++  system and the I2C bus.
++
++properties:
++  compatible:
++    enum:
++      - nxp,pca9564
++      - nxp,pca9665
++
++  reg:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  clock-frequency:
++    default: 100000
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c@80000 {
++        compatible = "nxp,pca9564";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0x80000 0x4>;
++        reset-gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
++        clock-frequency = <100000>;
++    };
++...
+
+---
+base-commit: d4906ae14a5f136ceb671bb14cedbf13fa560da6
+change-id: 20260407-i2c-nxp-29f251ad86b0
 
 Best regards,
---
-Jerome
+--  
+Akhila YS <akhilayalmati@gmail.com>
 
 
