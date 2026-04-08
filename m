@@ -1,188 +1,306 @@
-Return-Path: <devicetree+bounces-285536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285539-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFdZF7/D1Wkx9gcAu9opvQ
-	(envelope-from <devicetree+bounces-285536-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 04:55:59 +0200
+	id iIM+OETF1Wkx9gcAu9opvQ
+	(envelope-from <devicetree+bounces-285539-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 05:02:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D589F3B65DD
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 04:55:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45CF93B672A
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 05:02:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A5C34300BBBD
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 02:55:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EBA313001CC2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 02:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B764372EE1;
-	Wed,  8 Apr 2026 02:55:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98F8936B05F;
+	Wed,  8 Apr 2026 02:57:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="v+4YAQTY"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="BKjH3c8A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012033.outbound.protection.outlook.com [52.101.66.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C87F202C29;
-	Wed,  8 Apr 2026 02:55:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775616942; cv=none; b=RBqpU3OgRMoDEkrptCtREKUrNHUMq13k5DZdqJtVSkFPGvJmbpMmFuUuZxVWxztio35CfuIjW5D7Lhu65IGbXoHke30xbWKiQ4m+BXNYOiVFWtq04HNqP1xKQv1SVsJ+65S2DmOyejDCXLg3JmhE10fpH8knPRraOsqDCc98c3Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775616942; c=relaxed/simple;
-	bh=qwaFlGkP6/RsX6kelxwLonZ4sICUED9M2kUULVpOFao=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OLt+ipCT1+K6uyCAyLJyl+U0war47QA8L7BGSYwOPBRUf4EgOTLeiV92cvywgTnWLxjACQ08jLko5qbg2BvxFd3T++XhJxj8/AA8LykbSsz56Ttut5UA27V0QE6J/06ySvutPGz7gvMoQdUnCNkar0AQLqifrcaPwI2PRE+7/nM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=v+4YAQTY; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 6382qkMO32349162, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1775616766; bh=ByB2NCua2AOa2e3a09GFIdMk1eZywRgOzjPJhvZ9QNs=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=v+4YAQTYBAURaio4X7Q7zo2+siRblosQymR+PWUvjObRP1gy7djJEpYpO1lJmbzGU
-	 jntPL+WDOOWtGsqegVjv9JrK9M0KN7KCFdzTmKK+bOSWx7u7b5YeaBWQlD2XYIonZT
-	 3GohHh207EJPKkUBGVC7hqEbeoXZ27nVcFijtDTYPQ8YCHSixKk8ibQ9RRhv14d08H
-	 7V2PDqyD1tf097m1dhv3nSX58q7pbNbhka4zd2oESgy4y3j2Jk3F42z4GTO4NHyakd
-	 rHTAog9FW+snfPK3mZAF0M4LNKpsKvFgaN8QWiI8Zw82WkdIEl3HUKPUTjNFCJ3j4D
-	 LtoCFzwzHXmnw==
-Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.26/5.94) with ESMTPS id 6382qkMO32349162
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 8 Apr 2026 10:52:46 +0800
-Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 8 Apr 2026 10:52:47 +0800
-Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 8 Apr 2026 10:52:46 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS05.realtek.com.tw
- (10.21.1.55) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Wed, 8 Apr 2026 10:52:46 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <linusw@kernel.org>, <brgl@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <afaerber@suse.com>,
-        <tychang@realtek.com>
-CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-realtek-soc@lists.infradead.org>, <cy.huang@realtek.com>,
-        <stanley_chang@realtek.com>, <eleanor.lin@realtek.com>,
-        <james.tai@realtek.com>
-Subject: [PATCH v2 4/4] arm64: dts: realtek: Add GPIO support for RTD1625
-Date: Wed, 8 Apr 2026 10:52:43 +0800
-Message-ID: <20260408025243.1155482-5-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260408025243.1155482-1-eleanor.lin@realtek.com>
-References: <20260408025243.1155482-1-eleanor.lin@realtek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 142773603FB;
+	Wed,  8 Apr 2026 02:57:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.33
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775617055; cv=fail; b=sX5epsDYuuwvXpNLuIaKdaIjlhT0i545kaI4gg5aSNuUnvF2eluF1MR6NVhJ7/1zor2A73h+/kEyEMd7gZrdF1LwB9w3goG5h/jlNuhD0eDkPUmuaRpvgq83SUxkLbD0jcaDpOlCTK9etrZJ6J2F5Iwx0FduwkZIMY5EAoHsSUI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775617055; c=relaxed/simple;
+	bh=EAuT0alc0RZH66ZTY2W8UzSTmU7U0ydQYPsOeQaC1js=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=ePIv4NBOhZo/2AJDfBW7b1u1y+vixOBt0FafC7BHHz5DVmVwbKOU92UgoSg0yGXTkPdC/KArk+DbpS+0/9Dt4HEmUu2nMILBmj1VjKSub6gtQZv20o7wKlEOXLY283mmX9OGTbgR4Ac6qae3aY0Z45tuDSS2kOSLHmP6kUaFQ5I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=BKjH3c8A; arc=fail smtp.client-ip=52.101.66.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=miV3F86j6khyJB6pKzKLgOOdENsXAjmqatIi2Dq8nnSqrPdtr+8yI3MjIp2M3PyQOvgyZKlA/s0EKQHoK/oZDP40BsKRwEpi9Q/o6CupvmtJS3Hap9LZQCq9rhcV0ZeozqkDThKD8o3n0SjSqLMOzhctAEeWqAPgPxqVkgHXXGZGF+OS+2nMrlyLP6clIAqf659iKGq8Ac6nzKWRJX8m/SHc1sczTUXCDnRf2vAMp0tMlNOMXH4q0AHzu8f9KSNAq3fjWx23YUt7mNLpYenxIJCCemIwAE60sZDMNa0JCbzGhVbLI9fbhjP53cSK8aK3VPYZpXxK9eDHrGKsbuL35A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eA5uBHR+jwig+47CGz/jmLegqyrujaf7LL8D4sAM1Mg=;
+ b=thdW4YdWuK3RUBrdDXOOLFL2VryjwD4xh6KARrmSWP4Ak3e8ayRRj4ThwYW+gEBQcle1ZqNbmZCIIhzdOOChBBBB2yaorymoaQQAQgksYl2VFBV1NUqumN8N7rbaVqpVYh8GMAWhkz5GbyWCUvnb8QJYn56SdNNa7XYVP7v2SBJAeQ/BxvKqpiDGqbVJ9hUSAuBqCUGE3ZVjYIUMEtJDfJEKjUD0O1if6yis7a3wk6m5HpYgDE2ThsvGqvmJvUnnmMQeWGfH2A9UHWjSZNUtxZ3Tmam51pfoFNAXpFSkl/WPu9LAOq9MhVcIKIZyvWJxTMzp9zS6MrbvnpYNIc4WXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eA5uBHR+jwig+47CGz/jmLegqyrujaf7LL8D4sAM1Mg=;
+ b=BKjH3c8AqJ95/pNyE5NgpMBmy4hfWyZdMdqpoJDOy6S4/o3Rbi1hO2Wa93Oooy618bJnEYR7XGrAC/7SF/BDFfLNkDIghlO8pnLnRQIHAG9agKQTqLzkVHr5b35JKd/AYPXFndVo4kGKWU37nB9yYvyGcPf8hjqCMH6zYqC1O39sXBaH0pk55X11iz09Qcse/4M49EisjVeVPbaHygZrkgK3VEu6xW5lCd+XViV2xL5RRsvUZxzQiGm3kmJKHdUsPboSZseUVDk+bG8s40mvn26prKzVUFQuCOxBHKZN5p8KAJMBtTdJk2Y8WCNW1Ep8WGz5WG98EGmYAVHWusrsUQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by DB9PR04MB9356.eurprd04.prod.outlook.com (2603:10a6:10:36a::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Wed, 8 Apr
+ 2026 02:57:28 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64%3]) with mapi id 15.20.9769.016; Wed, 8 Apr 2026
+ 02:57:28 +0000
+Message-ID: <863f6c6d-88c0-471a-a548-3cc3dc63f72d@nxp.com>
+Date: Wed, 8 Apr 2026 10:58:36 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 08/11] drm/bridge: imx8mp-hdmi-tx-connector-fixup: add
+ an hdmi-connector when missing using a DT overlay at boot time
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>, Marek Vasut <marex@denx.de>,
+ Stefan Agner <stefan@agner.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>
+Cc: Damon Ding <damon.ding@rock-chips.com>,
+ "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>,
+ =?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>,
+ Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Adam Ford <aford173@gmail.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Christopher Obbard <christopher.obbard@linaro.org>,
+ Daniel Scally <dan.scally@ideasonboard.com>,
+ Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+ Fabio Estevam <festevam@denx.de>,
+ Francesco Dolcini <francesco.dolcini@toradex.com>,
+ Frieder Schrempf <frieder.schrempf@kontron.de>,
+ Gilles Talis <gilles.talis@gmail.com>,
+ =?UTF-8?B?R29yYW4gUmHEkWVub3ZpxIc=?= <goran.radni@gmail.com>,
+ Heiko Schocher <hs@denx.de>, Josua Mayer <josua@solid-run.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Marco Felsch <m.felsch@pengutronix.de>,
+ Martyn Welch <martyn.welch@collabora.com>,
+ Oleksij Rempel <o.rempel@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
+ Richard Hu <richard.hu@technexion.com>, Shengjiu Wang
+ <shengjiu.wang@nxp.com>,
+ Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+ Vitor Soares <vitor.soares@toradex.com>
+References: <20260407-drm-lcdif-dbanc-v4-0-247a16e61ef9@bootlin.com>
+ <20260407-drm-lcdif-dbanc-v4-8-247a16e61ef9@bootlin.com>
+From: Liu Ying <victor.liu@nxp.com>
+Content-Language: en-US
+In-Reply-To: <20260407-drm-lcdif-dbanc-v4-8-247a16e61ef9@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+X-ClientProxiedBy: MA5P287CA0187.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b6::9) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|DB9PR04MB9356:EE_
+X-MS-Office365-Filtering-Correlation-Id: aa58580c-4590-4596-319d-08de951a91be
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|376014|1800799024|7416014|19092799006|22082099003|18002099003|56012099003|921020;
+X-Microsoft-Antispam-Message-Info:
+ T2ELXqVu31FQzgdi/GHMxIOiux6gKgFJgPrVvp+yyUgB08vWVIgpRP6F5rvlze4sOy40X0fOA6VuU3Q7tldCi99+tmoS6nb2c0Q7ZJPNVAdSvv9xFv4vOLaV+saCurGMfVFFsRHjhAsgbcERtf6OXPUFultiKZDYwvm28wNu6eo1vKTOwXVpdpEf5Q2hzg9SquOclx9K/Bw15Sbfx9zei40sb2ajtNw+ceuuGE44gHMhVh26Qz5S6RofYBoDJUV5+ryFsxR43/8Ry1dbjGw1BbURgZwtJiUENZ8wUnjbdiJWFs91SF36V9/rCEQvH3Y3xG59O1f2KiV5u8xYXMxamGhQQBYrwGPRGjXEhR7jidIhlMM5bk+X/U62JxhHLF/6eTyTfHub5cwHaouvBIIGSRd6ewS5fj0c4KkRlUg95kv+Tj+fHEWiiJUyXWQdr7V3+zjBpPHxmNztvlrqapf9fCsLixm2jBPHX89D49DO22F7ofZcY7ZvMCgfrbUJAU/dkCKD1L8INZjdaAjFYTpKKqZBuLufG0W8azFDdydbtzhuJlBJsc7Q5XWDLqk93kYvvZZmJ/DpwTmvcV/kuu5ggHyFqg1qMWSoJpijLCRqRyq977V20V+AlkgW4CPwQdHGbb7dGTl74AnTKa1rJmcn8xb63kONUfP7w/HXPf6F2xBS8ECbff47nJbuy2O4kSpwq1x3QiEM26/Fo33MJQQcXL+Hh98FuDRxIa492UQWkuk=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7416014)(19092799006)(22082099003)(18002099003)(56012099003)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?WENSeUdoTFNNYTBRVkE4Ti9NSE03MDdkUWxjTUUySEIrL0tCbGI5RWlUU2xY?=
+ =?utf-8?B?V29WeGJ5Q20zVndaaXMyK3RUNE5uTVErNW1vMlhPNDd1RktmTmMrZzg0NHNl?=
+ =?utf-8?B?dzVOUkRwa0c3M2JpbGlxeTRNcWtmVFN2WmJlTkkzRytyQXlGbGYrUkh1Z2FP?=
+ =?utf-8?B?MnRyNXYzRk90WEdaMUFzV0l2TzRqVjFCUEs1d0dDemRORjNIVE9JTGxLS2Vh?=
+ =?utf-8?B?T21LenZaNTlTTVM4clY2cGQ1WHpaWFdlZEpyMzNTOVFkcXZmTUgxam1raTM5?=
+ =?utf-8?B?NnMxeG53TU9PNzBiT2JuMyszekE3Y0pCUVBxWFU0c1JpUm1qMU85TkNja25i?=
+ =?utf-8?B?ME9helVNdk1IRkgrTDhyV1VvSTMwWE0xYU1PTndrbStUSUZhdDllRVVFc25v?=
+ =?utf-8?B?dnk5U1R1SS80R1Iwd3YwZHBVOTQvNm1ZcVhFQ1NWa2xwcGZjc2ZkOEd0ZCtT?=
+ =?utf-8?B?VHhzUUdGSE1oRTNZUmZuenh0TG9xZWNEb0p4M2ZkZkkybXc1cGR2eUhJelNp?=
+ =?utf-8?B?M1hYQW9hbEthblltSnU1L29MdzROdVlXRWRQbkVuODU1dUJSc3VSeTJQRThz?=
+ =?utf-8?B?TmxtOHcrOURpRU5sZHBIcHZtdmtiNzIxenlZbG5XdW5sUFBPaUxaTUlUTUNo?=
+ =?utf-8?B?WnRSa3hjSU9taWFCY1R1VDI4Mml6ZTc4SXp6ZlJoSlBHRERQdnh2ZDN0QVMv?=
+ =?utf-8?B?OUwrUFdnSXRlcTRKdzVFKzBWbjhqNm0rMTJyUXM1dGNLTDVWV1FVMXBqWEVR?=
+ =?utf-8?B?WmpEcC9wSWxuMHE4VTM5ZTNoZUpSaG82ZnQvK3pjdnUzSzdHYlI1Q1BIQTFS?=
+ =?utf-8?B?RFBibzVZM1dVMnBBZFp0Q2VBVW5GaHdLRTBObnk4cXREaEZzc3JVRkhTYzBE?=
+ =?utf-8?B?YkliZkQwRC9qVnA4QldXaU9XTVRoam51SEVVQkpFeFZhRUNxbGJRaTZiM1Bo?=
+ =?utf-8?B?bmJPMTJJRUpjL2dBR0I3Znk5V1krLzZReEU2UXplVkpJMFFjWUs3REZ4ZmNo?=
+ =?utf-8?B?R1krN1ROdloyYlVoRGpXa09MWjBEbzkwL1F0eUYvMGRIaWptbGN6ZGRxZFRP?=
+ =?utf-8?B?SHpaZVVHVDFla0huaUpick5sSVJ4VnM4NGl2RUJaTEUxUzJOMDRvaDhpSUFV?=
+ =?utf-8?B?VVZQQ0xsU09PYi9ZZzg4cVJOMjYwc3UzMFFWVllxWjZRenJyTTc3UjFXYzM1?=
+ =?utf-8?B?Q1JzR0FZeFVKYnNTRmt0azI1Nm5PVGRnWEpvVEVnNFFWNzA1ZE1vV0gyQUl0?=
+ =?utf-8?B?bGNNeUpMYW9La05RaTd4VkRZUTA2NmdaWmJVK1QyNnhEUGd6L0dRd09ONCtO?=
+ =?utf-8?B?OG1KTnZXcmZ0TnpKYk9mRThQc2RsR3hBU0JBNGQ5SzF1VVJ0blBDQlliWFRz?=
+ =?utf-8?B?TGxVVVJDbzdhRHU2UGUwdjd6S2l4ZmxqZm83ZlZ1aEpCNGFMK1VpaFF0OHE4?=
+ =?utf-8?B?S2JoZ3E0YUZrdGpPR1NZQXFLMCswU3lwVS9WcEk3UG5pcDgwaVBya1JTb0Fn?=
+ =?utf-8?B?WFlvVVF2Y1RZUUo2OTlsWlBuRWZYQnFvQVpjTnFSU3YzQkdJNlFjbEJTd2Jm?=
+ =?utf-8?B?aVZ3RG1oM2JEMzBlemJXWklCNE9qUkZYUmpnbE5pcGhVZGVsRDdvWGZBQUFW?=
+ =?utf-8?B?VFFucmQrUDE1UHRZMXl3R1FIVTJNZWZPdTM0RE0xdEZDTEVHZ3pjZnJlTkVK?=
+ =?utf-8?B?UTVzWHdNdDhMNStLQmMvbDRjTjdTR2FGM0NzZTlMR1ZhNWNjVmN2bEQ2Vy9L?=
+ =?utf-8?B?YzhHd1pCM3JQTUVESGEvd3Q3dWh4bFpSVTJzNkI5MlBaMnEvdElxSjFHKzh6?=
+ =?utf-8?B?eEFncHh3eS80bWQzdE50Mi9iNmZRUTY5Z3J4ZjZOYW1ITzJhcGdHbThmOFZx?=
+ =?utf-8?B?VlJQcGJlVllFNnQ4aXRsWTlOU2lUVDRwWVc2Zm0vRFg3VTFtYmF6aTZnbUF2?=
+ =?utf-8?B?dWt4cWNYb0QzZzdkUDVneEIwSTBSZkdYRHEyeitiZ3FGdDA4ZmJqc3B1UlNW?=
+ =?utf-8?B?OU5sSlorV01PU2E4STVMSFYrUDJMNWtRT0hzc2U3dEIva2orbTM4Y29xY2pW?=
+ =?utf-8?B?WmFGd0VaN2dqS0MzMnVOeVphRW1nKzZLd1M5YWFseUU0WmJvQlU4WHdNV2gr?=
+ =?utf-8?B?Y3pDcllJV09nclhiVVlnOEhzU2ErYnBuYjRnMUsxNHpZUVo0VE0zY3d5M3BQ?=
+ =?utf-8?B?OEdiWHBPeTJIZnNIVUI5Tzd2alFMM1Y5ZGN1NS9vZUxnNVJlQTRyeTNzdk5h?=
+ =?utf-8?B?blVvR3g1Z3BLRlN3MERmWWVTaGw4eUpyb25LaE5VQ0FmVkhVdDZpem9HenZv?=
+ =?utf-8?B?QTFSZXA5bzRBZkJZbnNXd0RsTExmc09ZcWtLMVdsVVBjZnNvL2ZZdz09?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa58580c-4590-4596-319d-08de951a91be
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2026 02:57:28.3176
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9gR6NpVVptgpx8WNv7m7UuUGvvOBjD1ajyaMCO/PtdsXEK3/R7+URB01cY7vJgq9eydCa7tdupcF33T1Ad+B5A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9356
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-285536-lists,devicetree=lfdr.de];
-	DBL_PROHIBIT(0.00)[0.1.92.12:email,0.2.59.24:email];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[bootlin.com,denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nxp.com,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-285539-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[rock-chips.com,bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,nxp.com,technexion.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[victor.liu@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCPT_COUNT_GT_50(0.00)[52];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,4f200:email,realtek.com:dkim,realtek.com:email,realtek.com:mid,0.0.30.120:email,0.0.121.24:email];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: D589F3B65DD
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,bootlin.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email,nxp.com:dkim,nxp.com:email,nxp.com:mid]
+X-Rspamd-Queue-Id: 45CF93B672A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add the GPIO node for the Realtek RTD1625 SoC.
+On Tue, Apr 07, 2026 at 02:24:22PM +0200, Luca Ceresoli wrote:
+> The imx8mp-hdmi-tx is one of many drivers based on dw-hdmi. dw-hdmi in turn
+> can operate in two different modes, depending on the platform data as set
+> by the driver:
+> 
+>  A. hdmi->plat_data->output_port = 0:
+>     the HDMI output (port@1) in device tree is not used [0]
+> 
+>  B. hdmi->plat_data->output_port = 1:
+>     the HDMI output (port@1) is parsed to find the next bridge
+> 
+> The imx8mp-hdmi-tx driver falls in case A. This implies next_bridge will
+> always be NULL, and so dw_hdmi_bridge_attach() [1] will always fail if
+> called with the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag.
+> 
+> In fact case A assumes that DRM_BRIDGE_ATTACH_NO_CONNECTOR is not set and
+> in that case it adds an HDMI Type A connector programmatically at bridge
+> attach time.
+> 
+> Support for DRM_BRIDGE_ATTACH_NO_CONNECTOR is implemented by dw-hdmi.c in
+> case B. However switching to base B requires that port@1 is connected to a
+> "next bridge" DT node, typically the HDMI connector, because dw-hdmi won't
+> add the connector when using DRM_BRIDGE_ATTACH_NO_CONNECTOR.
+> 
+> Many dts files for imx8mp-based boards in the kernel have such a connector
+> described and linked to port@1, so the pipeline will be fully attached up
+> to a display-connector and a drm_connector added by the
+> bridge-connector. Sadly some of those dts files don't have the connector
+> described. Adding it would solve the problem easily, but this would break
+> existing devices which do not update the dtb when upgrading to a newer
+> kernel.
+> 
+> In preparation for switching to case B while preserving backward
+> compatibility for such devices, introduce a module adding the
+> hdmi-connector node to the live device tree at init time. This will allow
+> the dw-hdmi code to find the next bridge (the one wrapping the
+> hdmi-connector) and let the pipeline work as before.
+> 
+> The module is inserted only if there is no endpoint in port@1. So boards
+> whose device tree describe the connector will not have the device tre
+> modified, and will start isntantiating the correct HDMI connector type as
+> described in the device tree.
+> 
+> For boards lacking a connector description in DT the overlay will be added,
+> abd the HDMI connector will be Type A, which is a reasonable fallback and
+> is what the driver is currently doing.
+> 
+> [0] https://elixir.bootlin.com/linux/v7.0-rc1/source/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c#L3310
+> [1] https://elixir.bootlin.com/linux/v7.0-rc1/source/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c#L2907
+> 
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> 
+> ---
+> 
+> Changes in v4:
+> - fixed warning in overlay build
+> 
+> Changes in v3:
+> - removed unused variable
+> - simplified overlay using full path to port@1
+> - handle of_overlay_fdt_apply() errors
+> - use of_graph_get_endpoint_by_regs() for more robust endpoint lookup
+> - improve subject line
+> 
+> Changes in v2:
+> - don't apply the overlay if the SoC is not i.MX8MP
+> - build unconditionally, but depend on DRM_IMX_LCDIF
+> - remove useless error check
+> - add missing cleanup.h and init.h includes, remove unneeded includes
+> - avoid dtc warnings on overlay
+> - fix typo in Kconfig help text
+> - not added the Tested-bys because the code has changed
+> - split the 'plat_data->output_port = 1' line to a separate patch
+> - improve commit message
+> 
+> This patch is inspired by commit 0ff223d99147 ("drm/tilcdc: Convert legacy
+> panel binding via DT overlay at boot time")
+> ---
+>  drivers/gpu/drm/bridge/imx/Kconfig                 | 18 +++++++
+>  drivers/gpu/drm/bridge/imx/Makefile                |  2 +
+>  .../bridge/imx/imx8mp-hdmi-tx-connector-fixup.c    | 58 ++++++++++++++++++++++
+>  .../bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso | 30 +++++++++++
+>  4 files changed, 108 insertions(+)
 
-Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
----
-Changes in v2:
-- Merge two reg memory regions.
-- Remove redundant status setting.
----
- arch/arm64/boot/dts/realtek/kent.dtsi | 39 +++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+Reviewed-by: Liu Ying <victor.liu@nxp.com>
+Thanks!
 
-diff --git a/arch/arm64/boot/dts/realtek/kent.dtsi b/arch/arm64/boot/dts/realtek/kent.dtsi
-index 8d4293cd4c03..dafe56ce7d71 100644
---- a/arch/arm64/boot/dts/realtek/kent.dtsi
-+++ b/arch/arm64/boot/dts/realtek/kent.dtsi
-@@ -151,6 +151,37 @@ uart0: serial@7800 {
- 				status = "disabled";
- 			};
- 
-+			gpio: gpio@31000 {
-+				compatible = "realtek,rtd1625-iso-gpio";
-+				reg = <0x31000 0x398>;
-+				gpio-controller;
-+				gpio-ranges = <&isom_pinctrl 0 0 2>,
-+					      <&ve4_pinctrl 2 0 6>,
-+					      <&iso_pinctrl 8 0 4>,
-+					      <&ve4_pinctrl 12 6 2>,
-+					      <&main2_pinctrl 14 0 2>,
-+					      <&ve4_pinctrl 16 8 4>,
-+					      <&main2_pinctrl 20 2 3>,
-+					      <&ve4_pinctrl 23 12 3>,
-+					      <&iso_pinctrl 26 4 2>,
-+					      <&isom_pinctrl 28 2 2>,
-+					      <&ve4_pinctrl 30 15 6>,
-+					      <&main2_pinctrl 36 5 6>,
-+					      <&ve4_pinctrl 42 21 3>,
-+					      <&iso_pinctrl 45 6 6>,
-+					      <&ve4_pinctrl 51 24 1>,
-+					      <&iso_pinctrl 52 12 1>,
-+					      <&ve4_pinctrl 53 25 11>,
-+					      <&main2_pinctrl 64 11 28>,
-+					      <&ve4_pinctrl 92 36 2>,
-+					      <&iso_pinctrl 94 13 19>,
-+					      <&iso_pinctrl 128 32 4>,
-+					      <&ve4_pinctrl 132 38 13>,
-+					      <&iso_pinctrl 145 36 19>,
-+					      <&ve4_pinctrl 164 51 2>;
-+				#gpio-cells = <2>;
-+			};
-+
- 			iso_pinctrl: pinctrl@4e000 {
- 				compatible = "realtek,rtd1625-iso-pinctrl";
- 				reg = <0x4e000 0x1a4>;
-@@ -161,6 +192,14 @@ main2_pinctrl: pinctrl@4f200 {
- 				reg = <0x4f200 0x50>;
- 			};
- 
-+			iso_m_gpio: gpio@89100 {
-+				compatible = "realtek,rtd1625-isom-gpio";
-+				reg = <0x89100 0x30>;
-+				gpio-controller;
-+				gpio-ranges = <&isom_pinctrl 0 0 4>;
-+				#gpio-cells = <2>;
-+			};
-+
- 			isom_pinctrl: pinctrl@146200 {
- 				compatible = "realtek,rtd1625-isom-pinctrl";
- 				reg = <0x146200 0x34>;
 -- 
-2.34.1
-
+Regards,
+Liu Ying
 
