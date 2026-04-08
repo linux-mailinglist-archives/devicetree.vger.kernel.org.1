@@ -1,381 +1,141 @@
-Return-Path: <devicetree+bounces-285895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285900-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8LFIKYKv1mk7HQgAu9opvQ
-	(envelope-from <devicetree+bounces-285895-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 21:41:54 +0200
+	id oPLJLzWw1mk7HQgAu9opvQ
+	(envelope-from <devicetree+bounces-285900-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 21:44:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0D7D3C34DA
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 21:41:53 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8910B3C35AD
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 21:44:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 352813024A6E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 19:41:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B9F5B300AC87
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 19:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C849A3B19DB;
-	Wed,  8 Apr 2026 19:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A560C3A8744;
+	Wed,  8 Apr 2026 19:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EgYbC8Az"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h/t7Mvad"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CDD637F00B;
-	Wed,  8 Apr 2026 19:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C117387374
+	for <devicetree@vger.kernel.org>; Wed,  8 Apr 2026 19:44:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775677287; cv=none; b=f1rS3p+lcixnDulV+hwNe/+6Co391cHVajq36ZJ9oCCmwyOhG0nULWuQ47hrlgJDO52gXZUqOIpL6nXF1aspEvJ9+Bp3/k94+f4TSAw0OwyDhexMNeAM0mS5INypdEkx9Dj+XVSNijVyy6Qmka6wfx3stPGtwUQTBw03ECRSMUY=
+	t=1775677489; cv=none; b=BvZeNzP5rMDcJoC14lMS5wzTEIdsnMxywUbH4ifYJHKgLfpYQPPlW4JroV90tqGEm399Us1i1o6CiZf8d8vbpeCnisn0dvfQiPuyPN3w9zNCFcH5Nyt53sxswYXPFVMaX0DQhLSZAb9gg4ph4W7hn0lqfZJXULxfZBbp81v/67w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775677287; c=relaxed/simple;
-	bh=W+AkUfyZGl5WkQD5hknj6KJBzvaavoW3A+7PW5Xr+Qs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cLEC+hMh/lgQ1qvlNjckatR6EtG1AaqQk1w7TNFM2Ib+YtIEuMagg0JUXm80Li+NjMmAnAM7n0rDQRS0E3nSk09WgxAGU8Tw7SLdofpTkowBzzVr+ghlCgdK0fgKXpXtixocqydM1nccdQ20y/ym07l7kIlGCRHYvn+66TMKy7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EgYbC8Az; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6351CC2BCB7;
-	Wed,  8 Apr 2026 19:41:27 +0000 (UTC)
+	s=arc-20240116; t=1775677489; c=relaxed/simple;
+	bh=c5WnR933iazb0lin+oW2ATL9IN7UoHtxMl/eLZxJcb0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SsRMvwdiczX9EisYYgHnaKwWPvcMokVSOi6RhxDK+QRZKCHMt9iFh8//mtRxd9k5k4KPvtdLadCSAmVI8PJOJIMwY+/u7gt9aH2nrFy+a/SJWseKE6ki2sazIxRIOTysfsqPUIKVIanhkUogpI2jntzSRCdxGaJ3LLIh404IG14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h/t7Mvad; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68CFAC19425
+	for <devicetree@vger.kernel.org>; Wed,  8 Apr 2026 19:44:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775677287;
-	bh=W+AkUfyZGl5WkQD5hknj6KJBzvaavoW3A+7PW5Xr+Qs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=EgYbC8AzDNcHL/fSHNiksbRuF2/sk5EYE27FNEMDyhu9ZjqCBl1QOvPZqdpzI8v6u
-	 cjCBo29oc4q3TWeq5JZ5svnnh/iAiA2t6J9VibqPYlfdGL/vINmdzuTvRQRq5ZEx4t
-	 i9/arwhCCBK8XpeHqQS2mGGQSE0kDaSusjJH98UQjlSEh/xBaGxPYpz3cTspZVJf94
-	 sascbL5naef0NOqJ//YI3J2p8m7/E+7jpMt0EhzNXZl7mWF+P+ntjIILX5t273Wbon
-	 +rS4OW87sMbzIwF9FbzbnxFpBEGOSD4OUoMCK+Sg629NlRobyfVQ9Yepth+rpsLUeO
-	 jij0LYrsA7Iyg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C6C310F9977;
-	Wed,  8 Apr 2026 19:41:27 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Wed, 08 Apr 2026 14:41:29 -0500
-Subject: [PATCH v5 6/6] arm64: dts: qcom: Add AYN Thor
+	s=k20201202; t=1775677488;
+	bh=c5WnR933iazb0lin+oW2ATL9IN7UoHtxMl/eLZxJcb0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=h/t7MvadYlcTmS24VXSHmX/uQwrlhTPAG3MLnhvHT91dvLf1Y2ieO9eXoZB2TXrcd
+	 6GABrkaM5MR4G2jBPPXkPVUeDcpQpgVLiBiw/PBWRkDUAV+FOusvfQa8DFQ8vrOofk
+	 mTrOrA1YtRCBVstexSwBr75B/IWCkwGvQ3+FSd/dZw+pTaDM2UMgkGWzNG3wSHB96d
+	 N4XKgWKEeghWeFNeUWieYPSPSp5oMdyDa9hWwqIJOGSEFssdTQjmbKLkY+NLnjRGgN
+	 E0isYap1tYKGjrpUD9Rp0DZUhbT33mXIupZgZFTI8g8W6/LiQbRd623SnmYa4Z/uSO
+	 BX4OX5b2pOlAg==
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b9c755b2cdeso12562166b.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 12:44:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVtiUPWEJ6tsCpu3CxqnQVgDYWaKLUkQpbzw38MpxnwyR0+RuXO8kPdwfwLVAeh6OEdrd47yYnrIoKR@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIj6I2KV3jyJ5zKWE2dLQUQ3J8gnCgpeyiJF6q9xw+VIxJLzAG
+	kgldDUjb9vDNgUi3LRaYpZ98Ok1I1F1Sbym4VMpWaOlLD5YQ/ziTVgGMDRzB87Q/+Fv4cYV1uyY
+	vSwSlQvBIprpoe6r3NBS1B3Cpls75RQ==
+X-Received: by 2002:a17:907:c20:b0:b97:a39d:ae3d with SMTP id
+ a640c23a62f3a-b9d476a9b22mr36701966b.44.1775677486956; Wed, 08 Apr 2026
+ 12:44:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260408-ayn-qcs8550-v5-6-c90abeb7a152@gmail.com>
-References: <20260408-ayn-qcs8550-v5-0-c90abeb7a152@gmail.com>
-In-Reply-To: <20260408-ayn-qcs8550-v5-0-c90abeb7a152@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>, 
- Teguh Sobirin <teguh@sobir.in>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775677286; l=6227;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=Aoe59zShJAm9LqsbtTeOAxSKG37xMv+KPZP6UxGeHpY=;
- b=TnYgTj4ONJW/MeTXekyaFtLywM/uLCwfmFzvYiNestD5W23vlw29ze5VVijdkOJntbgodkJ8p
- 6HV/h6szrT0AqwnR7z+xXTc6+MTn3NMvUqsYudbxR2gV1OrmErMz+Ta
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
-X-Spamd-Result: default: False [1.34 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+References: <20260330195853.392877-1-macroalpha82@gmail.com>
+ <20260330195853.392877-2-macroalpha82@gmail.com> <20260408131944.GA1901621-robh@kernel.org>
+ <PH0PR19MB9973386B000D79AD04904C96B2A55BA@PH0PR19MB997338.namprd19.prod.outlook.com>
+In-Reply-To: <PH0PR19MB9973386B000D79AD04904C96B2A55BA@PH0PR19MB997338.namprd19.prod.outlook.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 8 Apr 2026 14:44:33 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLEBnF2g7p2ubkUnpc2X9+r7wx9HP-Wdzp5Cm5wj013eQ@mail.gmail.com>
+X-Gm-Features: AQROBzDGxcdM9Vyw-5a18RZVzC8wwyekQwwIUeeoAHpDXWW3RAwMTQpvv5yzZ2I
+Message-ID: <CAL_JsqLEBnF2g7p2ubkUnpc2X9+r7wx9HP-Wdzp5Cm5wj013eQ@mail.gmail.com>
+Subject: Re: [PATCH V3 1/9] dt-bindings: iio: imu: icm42607: Add devicetree binding
+To: Chris Morgan <macromorgan@hotmail.com>
+Cc: Chris Morgan <macroalpha82@gmail.com>, linux-iio@vger.kernel.org, andy@kernel.org, 
+	nuno.sa@analog.com, dlechner@baylibre.com, jic23@kernel.org, 
+	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org, 
+	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org, 
+	krzk+dt@kernel.org, andriy.shevchenko@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-285895-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
+	TAGGED_FROM(0.00)[bounces-285900-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,intel.com];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,sobir.in];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[hotmail.com];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[webgeek1234@gmail.com]
-X-Rspamd-Queue-Id: E0D7D3C34DA
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 8910B3C35AD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Teguh Sobirin <teguh@sobir.in>
+On Wed, Apr 8, 2026 at 9:31=E2=80=AFAM Chris Morgan <macromorgan@hotmail.co=
+m> wrote:
+>
+> On Wed, Apr 08, 2026 at 08:19:44AM -0500, Rob Herring wrote:
+> > On Mon, Mar 30, 2026 at 02:58:45PM -0500, Chris Morgan wrote:
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > >
+> > Subject space is limited, so don't say devicetree binding twice:
+> >
+> > dt-bindings: iio: imu: Add Invensense ICM42607
+> >
+> > > Add devicetree binding for the Invensense ICM42607 and Invensense
+> > > ICM42607P inertial measurement unit. This unit is a combined
+> > > accelerometer, gyroscope, and thermometer available via I2C or SPI.
+> > >
+> > > This device is functionally very similar to the icm42600 series with =
+a
+> > > very different register layout.
+> >
+> > Similar enough to use the same binding schema?
+>
+> Yes. I was under the (possibly mistaken) impression that different driver=
+s
+> required different binding schemas, but these should be similar enough to
+> use the same schema if it's allowed.
 
-The AYN Thor is a high-performance Android-based handheld gaming console
-powered by the Qualcomm Snapdragon 8 Gen 2 processor featuring dual
-AMOLED touchscreens.
+Total fine. Bindings and drivers can be 1:1, N:1 or 1:N.
 
-Signed-off-by: Teguh Sobirin <teguh@sobir.in>
-Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile                |   1 +
- arch/arm64/boot/dts/qcom/qcs8550-ayntec-thor.dts | 227 +++++++++++++++++++++++
- 2 files changed, 228 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 6bfc4554580bd5..6feecd62e01546 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -186,6 +186,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride-el2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-ayntec-odin2mini.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-ayntec-odin2portal.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-ayntec-thor.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
- 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8550-ayntec-thor.dts b/arch/arm64/boot/dts/qcom/qcs8550-ayntec-thor.dts
-new file mode 100644
-index 00000000000000..641146a9a7798e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcs8550-ayntec-thor.dts
-@@ -0,0 +1,227 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2025, Teguh Sobirin.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include "qcs8550-ayntec-common.dtsi"
-+
-+&{/} {
-+	model = "AYN Thor";
-+	compatible = "ayntec,thor", "qcom,qcs8550", "qcom,sm8550";
-+
-+	vdd_bl_5v0: vdd-bl-5v0-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_bl_5v0";
-+
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+
-+		gpio = <&tlmm 52 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vdd_disp_1v8: vdd-disp-1v8-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_disp_1v8";
-+
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+
-+		gpio = <&tlmm 70 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vdd_disp1_2v8: vdd-disp1-2v8-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_disp1_2v8";
-+
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+
-+		gpio = <&tlmm 142 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vdd_disp2_2v8: vdd-disp2-2v8-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_disp2_2v8";
-+
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+
-+		gpio = <&tlmm 143 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vdd_ts_3v0: vdd-ts-3v0-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_ts_3v0";
-+
-+		regulator-min-microvolt = <3000000>;
-+		regulator-max-microvolt = <3000000>;
-+
-+		gpio = <&tlmm 144 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vdd_ts_1v8: vdd-ts-1v8-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_ts_1v8";
-+
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+
-+		gpio = <&tlmm 102 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+};
-+
-+&gpio_keys {
-+	pinctrl-0 = <&volume_up_n &key_ayn_n>;
-+
-+	key-ayn {
-+		label = "AYN Key";
-+		debounce-interval = <15>;
-+		gpios = <&tlmm 41 GPIO_ACTIVE_LOW>;
-+		linux,code = <KEY_F24>;
-+		linux,can-disable;
-+	};
-+
-+	switch-lid {
-+		label = "Hall Lid Sensor";
-+		gpios = <&tlmm 17 GPIO_ACTIVE_LOW>;
-+		linux,input-type = <EV_SW>;
-+		linux,code = <SW_LID>;
-+		linux,can-disable;
-+		wakeup-source;
-+	};
-+};
-+
-+&i2c4 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	touchscreen@38 {
-+		compatible = "focaltech,ft5426";
-+		reg = <0x38>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
-+
-+		reset-gpios = <&tlmm 24 GPIO_ACTIVE_LOW>;
-+
-+		vcc-supply = <&vreg_l14b_3p2>;
-+		iovcc-supply = <&vreg_l12b_1p8>;
-+
-+		pinctrl-0 = <&ts_p_rst_default &ts_p_int_default>;
-+		pinctrl-1 = <&ts_p_rst_sleep &ts_p_int_sleep>;
-+		pinctrl-names = "default", "sleep";
-+
-+		touchscreen-size-x = <1080>;
-+		touchscreen-size-y = <1920>;
-+		touchscreen-swapped-x-y;
-+		touchscreen-inverted-x;
-+	};
-+};
-+
-+&i2c_hub_3 {
-+	clock-frequency = <100000>;
-+
-+	status = "okay";
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	touchscreen@38 {
-+		compatible = "focaltech,ft5452";
-+		reg = <0x38>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-+
-+		reset-gpios = <&tlmm 14 GPIO_ACTIVE_LOW>;
-+
-+		vcc-supply = <&vdd_ts_3v0>;
-+		iovcc-supply = <&vdd_ts_1v8>;
-+
-+		pinctrl-0 = <&ts_s_rst_default &ts_s_int_default>;
-+		pinctrl-1 = <&ts_s_rst_sleep &ts_s_int_sleep>;
-+		pinctrl-names = "default", "sleep";
-+
-+		touchscreen-size-x = <1080>;
-+		touchscreen-size-y = <1240>;
-+		touchscreen-swapped-x-y;
-+		touchscreen-inverted-x;
-+	};
-+};
-+
-+&mdss_dsi0 {
-+	vdda-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	panel@0 {
-+		reg = <0>;
-+
-+		port {
-+			panel0_in: endpoint {
-+				remote-endpoint = <&mdss_dsi0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss_dsi0_out {
-+	remote-endpoint = <&panel0_in>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&mdss_dsi0_phy {
-+	vdds-supply = <&vreg_l1e_0p88>;
-+
-+	status = "okay";
-+};
-+
-+&mdss_dsi1_out {
-+	qcom,te-source = "mdp_vsync_s";
-+};
-+
-+&pm8550_multi_led {
-+	status = "disabled";
-+};
-+
-+&remoteproc_adsp {
-+	firmware-name = "qcom/sm8550/ayntec/thor/adsp.mbn",
-+			"qcom/sm8550/ayntec/thor/adsp_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
-+&spk_amp_l {
-+	firmware-name = "qcom/sm8550/ayntec/thor/aw883xx_acf.bin";
-+};
-+
-+&spk_amp_r {
-+	firmware-name = "qcom/sm8550/ayntec/thor/aw883xx_acf.bin";
-+};
-+
-+&tlmm {
-+	key_ayn_n: key-ayn-n-state {
-+		pins = "gpio41";
-+		function = "gpio";
-+		bias-pull-up;
-+		output-disable;
-+	};
-+};
-
--- 
-2.53.0
-
-
+Rob
 
