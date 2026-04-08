@@ -1,179 +1,148 @@
-Return-Path: <devicetree+bounces-285628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285623-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CK9QOZIO1mmfAwgAu9opvQ
-	(envelope-from <devicetree+bounces-285628-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 10:15:14 +0200
+	id 8JN2N0AM1mmfAwgAu9opvQ
+	(envelope-from <devicetree+bounces-285623-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 10:05:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C27D3B8DA5
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 10:15:14 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1ED23B8B97
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 10:05:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 958993034287
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 08:10:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 21DEF3002B14
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 08:05:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EE9139C008;
-	Wed,  8 Apr 2026 08:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB5539B958;
+	Wed,  8 Apr 2026 08:05:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Z2110AsJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8704395D90
-	for <devicetree@vger.kernel.org>; Wed,  8 Apr 2026 08:10:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 420D0397698;
+	Wed,  8 Apr 2026 08:05:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775635858; cv=none; b=XXeZWNc90j17LZ0g8b/jho27BvXpj0xs9B/VB2g0hUSdn8EJIxgFZcj4t/69WrXfozBXobR3gEP3srWFKrhmmxLLvika66Kh88YZazOOUFOBZXsfDJUvjFTPtA318eKMXrYt3wcNzc7bGksWm7e60tbCri1GgfW//XqLJzG3LAk=
+	t=1775635513; cv=none; b=VzJ5LDecjBd59bEdz+GsWUfjqDmb5fmJBBm+JwizJOfaP5fqa/qDw0GZ0B2x2nTk4OZQGMaZ+w6czaOwvIyTdUuy0/HvGzVCSsJBw6utURmQa0jRuoBjEGVoEfiSL+oyjYgTzzxSjQufwn2JAQ6bIHOJpgCoirlwFVei48RYTSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775635858; c=relaxed/simple;
-	bh=OO8/V/ieRVIAY7OerP7B4Q+EVWmrnJ0uFfqR67sUp4A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MHpgTbOnuGtJmSD1u/1p3rXithn66iHWB1LQDKyszD+rPMgHkfA8SsHz22LjrOiGXy5mnx4GQd5cq7mbS6H+90TgIiK/bqEeu5a8q9260r5wd0I0LkIyoZklOqfkvfiVPSunAsPXjZcBmSEkokfkQ6+QwpRB6iw42le0seMhQq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-50d2945e6adso93457571cf.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 01:10:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775635856; x=1776240656;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9UVrHD1kGj3aaIesoTisHRRJzYnLIrQ82+sB6XN35Xo=;
-        b=eX3KgE9Fsp87NVh9HC9tkipbk/EvhqhSU+akcgIRisIUBUfAkwWhSMo84Jr4/cjB6v
-         BYyY4pB5qXjk0TWDO8o9KamaMpDNRzKwJ49txGvX4lMGBYOIpOJ+oM5buRys4KltEZ2o
-         KEC7aAqFKsQC8EXp7UEdOBy8mlS1p1KrP4oAcmP0VP50RKcXiX/hOrkyzCjuO0n+eQVe
-         m8Kam5tlv+mhQpuOUtyJ+fvAtpI7ROSWLrUDL34ZVIzGnPLyRy0JhPrOddv79bigvH1F
-         vR2532AvDrI+0R4tAuytHKDnoDJyfjn1ziD5y16DwHIXJXel0elXGjF57YPsoeNP9wNQ
-         AQTA==
-X-Forwarded-Encrypted: i=1; AJvYcCX+7ZRO2vPjQqng0GdU3f/Iy3w9TVcoTEoHoFZo+a3nuMuvXYwWhedX2vHvv3TvTswyzhYttWPFa9Il@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIz1YESV+Y4PlsJQozEbimxIQEDHf8vSLvN+Czf2QPk7KyHotu
-	M4kY45VR7SQpXwF9BQRnFpa0wwumQhMuK6w6ju49RAYoBshfWz+cF/K0ieNJdQ==
-X-Gm-Gg: AeBDietKoevkYAqjEaxKxa9mCdPjnmxx23jKApP9ui9dwTWMZ4UOQVLWIT14xpwApdk
-	/vvGPo7HrGf9vaPTz7RgyrC81R/APJvwm4q7V4h8rzmuB63jE2DN64B+iq9R/9Y3jF09Xi/wASr
-	7qYaWG2NnP39wRAhmfJDY2SflRKglz1p2H+cFvATL0lu3oPrn0nAFJrEcRPk02JZ0ZhUKC9bLTZ
-	snNR3vz61WE7OHEFYExAC5gzyLxBpaHS3XMwkyD/nF3f5wctGfv7Oa0T8tmmyRLWCq78d5eKRL6
-	vdVZkkZe8gdgETh8/rtWmQfVGiEz0eYyz5pEFaD67j1IPBW37jQuljyMNhiBeVKW12zjoxDLZ2+
-	pJHkR8zKANSZMHOWH7ddYHZ0kPHXMPGztot31kqI4vR0eugKXjx+/eWW5PvR4QKY79I6Z7F94cE
-	LqLQTgKX/7dEzjKCpXNV2ou/GfyGsno5IKexKJoXj21JLEOGc8EMHniC8F13zA/KDKk2fO6vzEP
-	AY=
-X-Received: by 2002:a05:622a:418f:b0:50d:5a11:1b5 with SMTP id d75a77b69052e-50d6263b6a9mr307426601cf.17.1775635855780;
-        Wed, 08 Apr 2026 01:10:55 -0700 (PDT)
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com. [209.85.160.171])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8a596915986sm187735646d6.24.2026.04.08.01.10.55
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Apr 2026 01:10:55 -0700 (PDT)
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-50d87c138e1so36091791cf.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 01:10:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVzLBF4rHryAfZpdh+mlB8cragEY4KlRJh7cIObk8OLevFrA98Groe+jtgMJarAytu16+kzlGK2kg07@vger.kernel.org
-X-Received: by 2002:a05:6102:5486:b0:602:ac40:969d with SMTP id
- ada2fe7eead31-605a5125dbemr8047885137.30.1775635529642; Wed, 08 Apr 2026
- 01:05:29 -0700 (PDT)
+	s=arc-20240116; t=1775635513; c=relaxed/simple;
+	bh=LsoItqOaE3hAy7uN2dHO7bdB6DnI0M10PxH+jAAFVN8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mLZLX6iwdLyeAgU3V2IVjXHLNM+c/KJQF8Nv0LOCYt1KJdSXSKu1l/K5P5M3Irv+g2PkP6o1pvJis2ufaInXIaz6D9fFzIyioD9E/7OVeS+LOMMlVvCj2U/bTXesWowE+2aQCFe6PDSQbEOX+PEtgWBtp0/1pY9eFUWIIE+i1Uw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Z2110AsJ; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1775635512; x=1807171512;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=LsoItqOaE3hAy7uN2dHO7bdB6DnI0M10PxH+jAAFVN8=;
+  b=Z2110AsJ14G98ZFurUeKE0nJEuJcNiK2iywiFjOaH3ftvslUakkhOKD/
+   lLo97GbCWS2e2xwJp6UmzbdLQ7QzaSFhJYsUpdz3ughc06VJ9guWDrsCr
+   NNrjDf1qkSVaHRMh/p5Q3QKDLxbO5E7VgvYaROzYoRIcyKTM/zb2PXHlr
+   RhSPPFZBnH5qsL42zjx5Newy8PvHMOO16DEAbuaZgBudHeZzR2ZUMFCER
+   rgjqat4quZfUo+lMdGQ31xwn6U5+YEWo48WbFmZL39cGnpWyFxuz5s3iA
+   R27Xpm8xFRYecwfR/mnhqcD819jXnsyI/YhaYI/w2uI+GfGLiOSF3T46G
+   w==;
+X-CSE-ConnectionGUID: RDZz8Y8KTbKjZgUijnr2VA==
+X-CSE-MsgGUID: YBRGaKuqSLu8537VfKvXmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="79203529"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; 
+   d="scan'208";a="79203529"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2026 01:05:11 -0700
+X-CSE-ConnectionGUID: cQSqKE2ERT6zeih3/eSOPw==
+X-CSE-MsgGUID: dFTYpTEWSDeViP1x0oSaHA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; 
+   d="scan'208";a="228657545"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.17])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2026 01:05:08 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 058A911F8BF;
+	Wed, 08 Apr 2026 11:05:22 +0300 (EEST)
+Date: Wed, 8 Apr 2026 11:05:22 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: michael.riesch@collabora.com
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Frank Li <Frank.li@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Collabora Kernel Team <kernel@collabora.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] media: dt-bindings: rockchip,rk3568-mipi-csi2:
+ add rk3588 compatible
+Message-ID: <adYMQlNtInGYu7Ka@kekkonen.localdomain>
+References: <20260305-rk3588-csi2rx-v4-0-81c6bcfefa63@collabora.com>
+ <20260305-rk3588-csi2rx-v4-1-81c6bcfefa63@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260327-schneider-v7-0-rc1-crypto-v1-0-5e6ff7853994@bootlin.com> <20260327-schneider-v7-0-rc1-crypto-v1-12-5e6ff7853994@bootlin.com>
-In-Reply-To: <20260327-schneider-v7-0-rc1-crypto-v1-12-5e6ff7853994@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 8 Apr 2026 10:05:18 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWr5OT0iAbZMgDAizO9KnhmyUN3hsqFnp+JYRao4aKu_A@mail.gmail.com>
-X-Gm-Features: AQROBzB7FKSpqL9vAEkvQ3NeO0nTGrKiA5rUbk_QvEvIe1vD5_FZ5lwMa_3wMnk
-Message-ID: <CAMuHMdWr5OT0iAbZMgDAizO9KnhmyUN3hsqFnp+JYRao4aKu_A@mail.gmail.com>
-Subject: Re: [PATCH 12/16] irqchip/eip201-aic: Add support for Safexcel
- EIP-201 AIC
-To: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Gleixner <tglx@kernel.org>, Olivia Mackall <olivia@selenic.com>, 
-	Herbert Xu <herbert@gondor.apana.org.au>, Jayesh Choudhary <j-choudhary@ti.com>, 
-	"David S. Miller" <davem@davemloft.net>, Christian Marangi <ansuelsmth@gmail.com>, 
-	Antoine Tenart <atenart@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Pascal EBERHARD <pascal.eberhard@se.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-crypto@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [0.04 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260305-rk3588-csi2rx-v4-1-81c6bcfefa63@collabora.com>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-285628-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,selenic.com,gondor.apana.org.au,ti.com,davemloft.net,gmail.com,bootlin.com,se.com,sang-engineering.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-285623-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	NEURAL_SPAM(0.00)[0.148];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	SEM_URIBL_UNKNOWN_FAIL(0.00)[collabora.com:query timed out,intel.com:query timed out];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linux-m68k.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:email]
-X-Rspamd-Queue-Id: 6C27D3B8DA5
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.993];
+	SEM_URIBL_FRESH15_UNKNOWN_FAIL(0.00)[collabora.com:query timed out,intel.com:query timed out];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim,collabora.com:email]
+X-Rspamd-Queue-Id: C1ED23B8B97
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Miquel,
+Hi Michael,
 
-On Fri, 27 Mar 2026 at 21:11, Miquel Raynal (Schneider Electric)
-<miquel.raynal@bootlin.com> wrote:
-> Describe the EIP-201 Advanced Interrupt Controller from Inside Secure,
-> typically found in a bigger block named EIP-150. This controller is
-> rather simple and is driven using the generic irqchip model. Its
-> own interrupt domain is limited to just a few interrupts connected to
-> other inner blocks, such as a Random Number Generator and a Public Key
-> Accelerator.
->
-> The one I used receives only rising edge interrupts and uses its own
-> logic to track them. It is theoretically possible to wire devices with
-> level interrupts, but not in the context of the EIP-150.
->
-> Signed-off-by: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
+On Fri, Mar 27, 2026 at 12:10:00AM +0100, Michael Riesch via B4 Relay wrote:
+> From: Michael Riesch <michael.riesch@collabora.com>
+> 
+> The RK3588 MIPI CSI-2 receivers are compatible to the ones found in
+> the RK3568.
+> Introduce a list of compatible variants and add the RK3588 variant to
+> it.
 
-Thanks for your patch!
+Please use your editor to wrap the commit messages in the future as needed.
+It became:
 
-> --- a/drivers/irqchip/Kconfig
-> +++ b/drivers/irqchip/Kconfig
-> @@ -826,4 +826,12 @@ config SUNPLUS_SP7021_INTC
->           chained controller, routing all interrupt source in P-Chip to
->           the primary controller on C-Chip.
->
-> +config SAFEXCEL_EIP201_AIC
-> +        tristate "Safexcel EIP201 AIC"
-
-Is there any platform dependency that could be added here?
-
-> +       select IRQ_DOMAIN
-> +       help
-> +         Support for the Advanced Interrupt Controller (AIC) typically
-> +         inside Safexcel EIP150 IPs, gathering Public Key Accelerator
-> +         and True Random Number Generator interrupts.
-> +
->  endmenu
-
-Gr{oetje,eeting}s,
-
-                        Geert
+The RK3588 MIPI CSI-2 receivers are compatible to the ones found in the
+RK3568. Introduce a list of compatible variants and add the RK3588 variant
+to it.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Sakari Ailus
 
