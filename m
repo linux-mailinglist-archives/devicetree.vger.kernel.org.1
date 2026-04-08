@@ -1,200 +1,223 @@
-Return-Path: <devicetree+bounces-285845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285846-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QEbAEyd41mm9FggAu9opvQ
-	(envelope-from <devicetree+bounces-285845-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 17:45:43 +0200
+	id uC1AJSN61mnxFggAu9opvQ
+	(envelope-from <devicetree+bounces-285846-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 17:54:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A927E3BE6E7
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 17:45:42 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B8993BE8C3
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 17:54:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CB97A3044823
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 15:41:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 02AFA30723AF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 15:48:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595A83D330A;
-	Wed,  8 Apr 2026 15:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4071230C372;
+	Wed,  8 Apr 2026 15:46:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XJ7D8gFz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BA9JNBzd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35F0631CA4E;
-	Wed,  8 Apr 2026 15:41:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED82930B50C
+	for <devicetree@vger.kernel.org>; Wed,  8 Apr 2026 15:46:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775662898; cv=none; b=u2iHOUJY9if/mTh1rp+cPcap49PsxJb2cMCgZRc0gb5ur89A5zqAD5pAZgLLDO2YKV9U6h4EPFgKgvHCIdIYPR2M4M1PiN/8DT3FLgVyJDtcbI2+5ldIHPyfqWPOrCvKbr8l+I2Ih4NcWEYppt7TjkNjbuGgHtRne93B/AYTX0E=
+	t=1775663198; cv=none; b=T91cYLJJuU4mEcuVjaCJGRZ09Zk9gbyqRqxxSZuVk2DTzY4dm3xeLIemw3q+Ihk0kXam2Ubz9Jdu/F1StCHE4VekulSendHa3rVyVfPgRBFIf6w3ogxsAK9ceOGR18AfDZMmVJzwavOp9/CtxM7+SarUt6kw1ht38G8p9djQhGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775662898; c=relaxed/simple;
-	bh=HnjpWZWv4oa3+uPeyz0eYjGyj48PHQZfGZVRIeT8thA=;
+	s=arc-20240116; t=1775663198; c=relaxed/simple;
+	bh=V1TTOcmexzvL0zMGH90+djDV/QILglULKt5i2NNrPeY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uv76fLTZCfTyGPuPFgr487QtiriI7GAO1aYkWjO8TN6/0wHJUAXY4PjiVWh/OrHaY+H/A+znQGFouhQeBRtcXYTlGQF3QivKZ6RHWQcDO6boT+kUyBrh5DsGDZIUM1DuqM7mtxIzQC4QvVhlEJ1EV+5+Gh+HIrn3wz5RExWQfkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XJ7D8gFz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80E26C19425;
-	Wed,  8 Apr 2026 15:41:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775662897;
-	bh=HnjpWZWv4oa3+uPeyz0eYjGyj48PHQZfGZVRIeT8thA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XJ7D8gFz1C42k1i6VXLrqsUVJhqUWOIoYWWloBfivEcjb2/Zv2vZk91pmBLvZcGrq
-	 O5Pim/+cZzfBcHbjyllLhpV1GEjS7Qahx2boSN+Iwx/UXFek12YbH3HnBNykCXiOJi
-	 z66OrUIiKu0dLGwicH+yP9PyLrjMVBpw2haj0VeTvjdqOB8I2krBt9Otwh+NPZ+LB4
-	 L96BT5uAMN066E3FTkCvPzn/0gM83oU4AN+Jt2oQsMqsBE54hXFNS3/5BzfWXRtRjz
-	 fmokdy5iqGvDmjDVzWSO9loUeI2Q5VQyE6Bv8p87IjPh7xN7bLFFD1NMqQOH0IdXnq
-	 6jKN+xYEl9dxQ==
-Date: Wed, 8 Apr 2026 16:41:31 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Sen Wang <sen@ti.com>
-Cc: linux-sound@vger.kernel.org, lgirdwood@gmail.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	perex@perex.cz, tiwai@suse.com, shenghao-ding@ti.com,
-	kevin-lu@ti.com, baojun.xu@ti.com, niranjan.hy@ti.com,
-	l-badrinarayanan@ti.com, devarsht@ti.com, v-singh1@ti.com,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] ASoC: codecs: Add TAS67524 quad-channel audio
- amplifier driver
-Message-ID: <588c699e-7ad0-4f71-9727-56e8a3c78805@sirena.org.uk>
-References: <20260408053149.1369350-1-sen@ti.com>
- <20260408053149.1369350-3-sen@ti.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=PdM5WgAI4PEyD0R6EHxJA/KRupSjXnizsBuG3b+gni8PBZhUi9uVS1LE2EEHoHk9OA9KJo2uBbmAIp2Rv0n0yaKWTNJn3yJ9FyfAuXcguPAs8mXj2/Y7mp4KzR6dt8zNHGGmL2DLmVPSqM4PM0fm/rLvomfGJfaYug9xLnndZM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BA9JNBzd; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-82cebbdbdccso644235b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 08:46:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1775663196; x=1776267996; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=R5zH5Yy++LFl5X1883WPkm0h00qGtgJqcjU1g/XLy30=;
+        b=BA9JNBzd8Lb5daOid6hiG9Ov+QJr/xcwSHdoZnhDrGwyM/pXzemiBr/II69zar3dgK
+         rrZ+lUHwML0QwZUbzcBJsF+m85dKq4Kpbk/DS15pSiieEuDA4N7F05DzMRRXzt/gJyf1
+         PNxY+WxWcPbW1MO6Ih27q6ErPhRjAeRXkfZVul534Kf0j9mnENHwjhkKCpcBpt/kuRC6
+         9onxKxpLgQ8KORiXelstlPUtEJwYLNu55eUhBdL7WV0NCvroWZtLPsJqBrFM9Lww4vxb
+         ytcIrwDzBqjfCqdX4VAAXJLouQWyNq8qWeF0ojTVTbSMP2DQfYETg6YD0d1JLFCKH31V
+         dmcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775663196; x=1776267996;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=R5zH5Yy++LFl5X1883WPkm0h00qGtgJqcjU1g/XLy30=;
+        b=gnuIQomjW4ex8M0hDsTbloDZ3VvkM6ddRV+sI1bolAPbNx6+wUabXZ2dJnLjai1YXr
+         eFIfNCWcPG6UHhmL8Alto1/OdcERAuU76RbB0j6vzPj4KFBokXQw/JjfqFWcd+mLvqmI
+         ho0xLMiX5GY4T6+UQskP5km599wgi+lab5HG9ntLcxVaFlT4Oe0a3BTlSjPuEhqEfaVG
+         PMoIP5vos8gCg787eOwyz9T8l6lvmCtZCr9PqyDyVgmlJt08bNtvXygkos/Iy98PCsqm
+         j7VzSN046VxJkMRlTmX5oqQK+ZPtz3rFK7lZVPiG801HPZKt5ZRQcyF7siLUQuEL7FVE
+         16eg==
+X-Forwarded-Encrypted: i=1; AJvYcCU+DObIwNuUXre2aH0ei1RZ1eN7wF2vsggIH3uoErJt1s8umts6TUyyeTczUlKbInyH72Czpvlipc7q@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSjUUYAlOda6D5GVT7D/cqLsThPs5AZj1yJfskQ/dWurgSV0Rb
+	vrcXgV9tzqQyYmevhKvIP61OnLHIYz7u4WdcWaPdOAL892itX0WckOyOVCPajM1vfUw=
+X-Gm-Gg: AeBDiet3L9buPyOvSVu5KX0L99qcyw+sbQy0dcxmE8zIX5da7ar47FU4exuBnedSRmE
+	WSLww/G19ta8MREqsu+cR8rAyrylzAYcPSXBkCyT9KdMZ/U1YqwcsfuBO4rJW0LszpzqgC16qko
+	gOwmpZ6K/vvOojhU2whtvVmgFDWfiHvhjhZPh7mCe2nljoUqLh91DyUqXiRcrjK6sKY6/fNBrvW
+	TsgOe3WY8dRaHPhBRfCFuqvegf9x5zrB/nyVP8qnNzU4DE8xxzIQgStSMGlSVw3ue+cZDkhFzFl
+	nCwvs5g3SbQhKyJhwWiqMldphpqxlqoAlqKW6gqrDfAktj9BYIHW+dTqoteC9orEQNn0SB+gtlI
+	pp2ZOfmLDeyu09btk1Ix874a7YJPb3kpP2PluhtCpVwmJn5KTCxZfxb6tLFAiRPtsNiR060uvra
+	nUz/7gAHhwQivXNeYQLhqpqFIJWw==
+X-Received: by 2002:a05:6a00:188e:b0:82a:170d:fe1d with SMTP id d2e1a72fcca58-82d001e92efmr22313731b3a.1.1775663196006;
+        Wed, 08 Apr 2026 08:46:36 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:bec3:28f:3ce4:6925])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82cf9c41bc6sm21534378b3a.29.2026.04.08.08.46.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Apr 2026 08:46:35 -0700 (PDT)
+Date: Wed, 8 Apr 2026 09:46:32 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/3] remoteproc: imx_rproc: Pass bootaddr to SM
+ CPU/LMM reset vector
+Message-ID: <adZ4WIaC6WN97JhR@p14s>
+References: <20260327-imx943-rproc-v2-0-a547a3588730@nxp.com>
+ <20260327-imx943-rproc-v2-2-a547a3588730@nxp.com>
+ <acqjS440STRl2sK2@p14s>
+ <acs2PAZq2k3zjmDW@shlinux89>
+ <adUghiyZbe3fmcNX@p14s>
+ <PAXPR04MB8459AA009C932EB9D6139A11885BA@PAXPR04MB8459.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wwDffXShvDV19HKf"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260408053149.1369350-3-sen@ti.com>
-X-Cookie: Often things ARE as bad as they seem!
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <PAXPR04MB8459AA009C932EB9D6139A11885BA@PAXPR04MB8459.eurprd04.prod.outlook.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-285845-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[oss.nxp.com,kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,kernel.org,perex.cz,suse.com,ti.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-285846-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[mathieu.poirier@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.998];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A927E3BE6E7
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 6B8993BE8C3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Wed, Apr 08, 2026 at 01:30:16AM +0000, Peng Fan wrote:
+> > Subject: Re: [PATCH v2 2/3] remoteproc: imx_rproc: Pass bootaddr to
+> > SM CPU/LMM reset vector
+> > 
+> [...]
+> > 
+> > >
+> > > Aligning the ELF entry point with the hardware reset base on
+> > Cortex‑M
+> > > systems is possible, but it comes with several risks.
+> > 
+> > I'm not asking to align the ELF entry point with the hardware reset base.
+> > All I want is to have the correct start address embedded in the ELF file
+> > to avoid having to use a mask.
+> 
+> I see, per my understanding:
+> FreeRTOS typically exposes __isr_vector, which corresponds to the hardware
+> reset / vector table base.
+> Zephyr (Cortex‑M) exposes _vector_table, which serves the same purpose.
+> I am not certain about other RTOSes, but the pattern seems consistent:
+> the vector table base is already available as a named ELF symbol.
+> 
+> Given that, if the preferred approach is to parse the ELF and explicitly
+> retrieve the hardware reset base, I can update the implementation accordingly.
+> If you prefer to parse the elf file to get the hardware reset base,
+> I could update to use them.
+> 
+> Options1: Something as below:
+> 1. Include rproc_elf_find_symbol in remoteproc_elf_loader.c
+> 2. Use below in imx_rproc.c
+> ret = rproc_elf_find_symbol(rproc, fw, "__isr_vector", &vector_base);
+> if (ret)
+>     ret = rproc_elf_find_symbol(rproc, fw, "__vector_table", &vector_base);
+> 
+> if (!ret)
+>     rproc->bootaddr = vector_base
+> else
+>    dev_info(dev, "no __isr_vector or __vector_table\n")
 
---wwDffXShvDV19HKf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+No
 
-On Wed, Apr 08, 2026 at 12:31:46AM -0500, Sen Wang wrote:
+> 
+> This makes the hardware reset base explicit, avoids masking e_entry.
+> 
+> Option 2: User‑provided reset symbol via sysfs 
+> As an alternative, we could expose a sysfs attribute,
+> e.g. reset_symbol, allowing users to specify the symbol name
+> to be used as the reset base:
+> 
+> echo __isr_vector > /sys/class/remoteproc/remoteprocX/reset_symbol
+> 
 
-> +static int tas675x_dsp_mem_write(struct tas675x_priv *tas, u8 page, u8 reg, u32 val)
-> +{
+Definitely not.
 
-> +out:
-> +	__tas675x_select_book(tas, TAS675X_BOOK_DEFAULT);
-> +	mutex_unlock(&tas->io_lock);
+The definition of e_entry in the specification is clear, i.e "the address of the
+entry point from where the process starts executing".  If masking is required
+because the tool that puts the image together gets the wrong address, then it
+should be fixed.
 
-Do we really need to restore the book here?  The book select register is
-marked as volatile so regmap will figure things out if it's the next
-thing to write, and anything else will need to set whatever it wants
-anyway.  Alternatively if the book register were cached (which wouldn't
-be a bad idea) then we'd need to restore whatever the cache has or
-invalidate the cache.
-
-> +static int tas675x_dsp_mem_read(struct tas675x_priv *tas, u8 page, u8 reg, u32 *val)
-> +{
-
-> +out:
-> +	__tas675x_select_book(tas, TAS675X_BOOK_DEFAULT);
-> +	mutex_unlock(&tas->io_lock);
-
-Same here
-
-> +static int tas675x_rtldg_thresh_info(struct snd_kcontrol *kcontrol,
-> +				     struct snd_ctl_elem_info *uinfo)
-> +{
-> +	uinfo->type = SNDRV_CTL_ELEM_TYPE_INTEGER;
-> +	uinfo->count = 1;
-> +	uinfo->value.integer.min = 0;
-> +	/* Accepts 32-bit values, even though 8bit MSB is ignored */
-> +	uinfo->value.integer.max = 0xFFFFFFFF;
-
-This is going to break on 32 bit architectures since long is a 32 bit
-signed value.  You want LONG_MAX, or to restrict the value (which would
-be more friendly to mixer-test!).
-
-> +static int tas675x_set_dcldg_trigger(struct snd_kcontrol *kcontrol,
-> +				     struct snd_ctl_elem_value *ucontrol)
-> +{
-
-> +	/* Wait for LOAD_DIAG to exit */
-> +	regmap_read_poll_timeout(tas->regmap, TAS675X_STATE_REPORT_CH1_CH2_REG,
-> +				 state, (state & 0x0F) != TAS675X_STATE_LOAD_DIAG &&
-> +					(state >> 4) != TAS675X_STATE_LOAD_DIAG,
-> +				 TAS675X_POLL_INTERVAL_US,
-> +				 TAS675X_STATE_TRANSITION_TIMEOUT_US);
-> +	regmap_read_poll_timeout(tas->regmap, TAS675X_STATE_REPORT_CH3_CH4_REG,
-> +				 state34, (state34 & 0x0F) != TAS675X_STATE_LOAD_DIAG &&
-> +					  (state34 >> 4) != TAS675X_STATE_LOAD_DIAG,
-> +				 TAS675X_POLL_INTERVAL_US,
-> +				 TAS675X_STATE_TRANSITION_TIMEOUT_US);
-
-Don't know how likely it is in practice but we ignore any timeout
-failures in this function.
-
-> +static irqreturn_t tas675x_irq_handler(int irq, void *data)
-> +{
-> +	struct tas675x_priv *tas = data;
-> +
-> +	if (!tas675x_check_faults(tas))
-> +		return IRQ_NONE;
-> +
-> +	regmap_write(tas->regmap, TAS675X_RESET_REG, TAS675X_FAULT_CLEAR);
-> +	return IRQ_HANDLED;
-> +}
-
-This probably ought to take a runtime PM reference to ensure the I2C
-controller is woken up, and in case in future you get regulator support.
-Even if the device itself shouldn't be generating interrupts while it's
-idle the interrupt might be shared or something might fire for some
-other reason.
-
---wwDffXShvDV19HKf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnWdyoACgkQJNaLcl1U
-h9ChEQf+IxWtw/VLcwZPpsmL+aypDnL3ZfCwK+NEszO0Ph8SEETRkadUfarMKvuP
-n/uImJ95d54xIwI0pmbAkMRqyIyq6t4MuqcWrbAl3BfqvG591jLDJupML/HtxoKc
-hDd7q0D7nj47Ab1gLByfwIqrNCn0Iy49mhrA41mGzQ0oeuiLTJE/xytGfuTCsD+E
-A6z+JahVNrpMm5OhUfuWYFgZQynGX0A5fS7qr/CvUXrMVh6ulc5l+7gQD08XM8F/
-9feU7sQnmfNrPQG8BFbjxGsgo1wPvMhZUKv/XoQznEeYTZyVqYF3bEMeX0/a0CYq
-akjjsfVKNp0qatf95Xi9RZZfVCKQow==
-=RwnG
------END PGP SIGNATURE-----
-
---wwDffXShvDV19HKf--
+> The remoteproc core would then resolve that symbol from
+> the ELF and set rproc->bootaddr accordingly.
+> This provides maximum flexibility but does introduce a new user‑visible ABI,
+> so I see it more as an opt‑in or fallback mechanism.
+> 
+> Please let me know which approach you prefer, and I will update
+> this series accordingly in v3..
+> 
+> Thanks,
+> Peng.
+> 
+> 
+> > 
+> > > 1, Semantic mismatch (ELF vs. hardware behavior) 2, Debuggers may
+> > > attempt to set breakpoints or start execution at the entry symbol
+> > >
 
