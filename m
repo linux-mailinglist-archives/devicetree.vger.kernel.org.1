@@ -1,170 +1,344 @@
-Return-Path: <devicetree+bounces-285792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285794-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CEtvBmNW1mm8DQgAu9opvQ
-	(envelope-from <devicetree+bounces-285792-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:21:39 +0200
+	id GFuqI7VW1mm8DQgAu9opvQ
+	(envelope-from <devicetree+bounces-285794-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:23:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80FCC3BCC38
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B9A33BCC93
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:23:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 49BDB307B365
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 13:19:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C93693097023
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 13:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F052F3176E4;
-	Wed,  8 Apr 2026 13:19:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156713264CF;
+	Wed,  8 Apr 2026 13:20:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C18D30C354
-	for <devicetree@vger.kernel.org>; Wed,  8 Apr 2026 13:19:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EBEB313E36;
+	Wed,  8 Apr 2026 13:20:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775654368; cv=none; b=mt2JPPuXBSDGaB0VVzScNMKj0JjYI7zxsQcHQYndS6OGKX1W3YlGDXAOERahzxrZfpY5Lv/CsZq0DGc38onWRTSeuG7N67KkylXCe1ynHLo2CYDo107bI/Is7UrFe3rmAyWQ9U2NCO7otrgDCRG0P/RLxG5tWDuju9ED8r4Ki3g=
+	t=1775654409; cv=none; b=X9PBi7f3ry6YDbKTn72mx78JbfqpmNPb4GStmWNvgICxbzKFW++L/mbGN+1e0H8qGQHPyHPCcp3iuaoRqGN4qt16j7dmzm1GTJCO0p0rvoFqb9t7OlUNwZAZpnfE3p1BQt9yvanHqvrdYbSx6OpyresBp6jycONYzoDyKOgp7yA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775654368; c=relaxed/simple;
-	bh=eDPl1BxiRe/fUMVm6v8nPkG76S8YwwEBsYa94mj/dvw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NJV5DlrvH4f/r69/6rcYdfe0lmqArQZXwWOxniL83+OqwLpttJsgQiQZON7aezVeqGex9f3+WIkAvK939jHpw65TnR/vpaf5w2Le4UBieaa2vWmOhJrNEps22hFi/GXBfB3edBFB6GG7WJyH/egD+mFwr/42jFxRBJJs0xSC/Io=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-56d9ed609d2so1878848e0c.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 06:19:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775654366; x=1776259166;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=11iAo9dki9YzQOZbHMLoGuCa0VnV6ePIcYUznc5FWP8=;
-        b=kMu2wWNe9hztR4aB6vUnT7zOn9slmqLmrNaJYwTSLAOZJG9z3lLeKjC77isPaMzbDK
-         hUlFCAaxiVQ3ih6VX1KGj5T73TrwftV4Ws7T/PJD9loaltTRRLmbtg6K73KCnBFI/KFP
-         iQM+7LUD7v9X+PjGunb4Id2d3A6EzywMjJ/qZX2n1TmcNNRGTcUmnjrbRiB7YZnVe3pb
-         dtx8R3Op0LxiaXnN4ClUY5JYIwDytJqRHhcYwUsBg3wnwezrNMMuFyS87zXRKlMPbvA+
-         l822wlFmTvwE4SGXpCCeRAsWQWgim7ixnuNdw/vj5/U9KoEqUgqrQNHFDPBTG7Dk3SHK
-         +KXg==
-X-Forwarded-Encrypted: i=1; AJvYcCWyJ+Nd6hutjCTdkE8HiMC3Qugkja3Txk1eIESKnY8G63RTPM4gprZmBmJQt/cTU7lqdHmxHv3vA1cD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxB3J+Fnay5TLghmBNPvi0BMYrmhq8EV8FltQ5eYSEpzZ+wo8+P
-	Q/kTmjYVZRNX3NMW/GtNJNVz+HDkrdDmyh1rlhdQ+iXVbCGLNNzW92YdVrJUOitn
-X-Gm-Gg: AeBDieu2Um+a4DU9CnJeEG7/SQbwhixGSEmqiLYoixKnpm01gX5al1IL28v9Nx59zqy
-	v3HfoJNeNIrtMe0aVPcQn8RHiA4QuZjROKzU+QanpmANVPrnxqhWD2oeAp+QWsL/gaDsWyKw0Qf
-	Kb+bbmZ6aBl+U5xFzgLLHbqnc2MVQZVGv/wei62rYNFzSaXr+8l2dmANvGPxM9Vq7xoaQF58BSr
-	1YZTf17FpNDmhe+47/JFd8s8hDAPVi3p5uIBaZVq9LWVVgMqfUZvFQsV8VBgRUp/pZcYk+ab1ld
-	p1Q58Msea8P0WDBeGyoETXB92jbF/F5H8HKsjEyk800TBUEAY9bfhGAJz/hvK8pE3TS/WOcg1MA
-	a7TujW9irytdCR9CHh2OX1afBUgmNPcBmwsJsVT/3dHFYwdkgcj9w5+j9+qknZh94D0GAdzh5/U
-	DAIbzW+Bk2JP/n45jGgZMSWc2L8VEZX4o+VqEiVeMQPJTjS8r1x2q+pZE5ISZ4dj1g
-X-Received: by 2002:a05:6122:e469:b0:56d:8646:2911 with SMTP id 71dfb90a1353d-56dab4e2ba4mr8072054e0c.0.1775654366493;
-        Wed, 08 Apr 2026 06:19:26 -0700 (PDT)
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com. [209.85.221.169])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56d9bae1117sm20119653e0c.7.2026.04.08.06.19.26
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Apr 2026 06:19:26 -0700 (PDT)
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-56a9c5cb48bso1875127e0c.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 06:19:26 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWu4RpaF8rp4WcUnGHQtaUYj2FogxRUrVjry8T2RJmStZddTVt03uKroOgPuL0Rh7/DUWLI4olNL08M@vger.kernel.org
-X-Received: by 2002:a05:6122:4b05:b0:56d:3b69:87d2 with SMTP id
- 71dfb90a1353d-56dab9df26emr8767911e0c.11.1775654366102; Wed, 08 Apr 2026
- 06:19:26 -0700 (PDT)
+	s=arc-20240116; t=1775654409; c=relaxed/simple;
+	bh=Qwpbhww7CrXXunhU8ku2p7hNzmTqVyIvdYsDejjvfsM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lfWSDabGaaAnljuFUu1QHjr/oT+UnKCXBngDw1klXEFf9YqhTsh2fxYloLyCtvihW8JcEHAhGnBD3OcdUmfnc7DvaRP5EaS7GRd35R0PTupU0HkwFv/ohygyB9Az0CHtNAz84bLFWYrKm0oeleQsMoh13bxkXfC+JpxXE3KYe3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.207.19.206
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: esmtpsz18t1775654363t3cb4073c
+X-QQ-Originating-IP: gZbJhug9qvNVdH4zYW+DyL7LZUKCNEJAVtc2edbWdQA=
+Received: from [127.0.0.1] ( [116.234.85.158])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 08 Apr 2026 21:19:21 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 9970830700309624208
+Message-ID: <7BA26FC036D1C9AF+64204287-21b5-4664-ae75-be3dd54ec092@radxa.com>
+Date: Wed, 8 Apr 2026 21:19:19 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1775636898.git.tommaso.merciai.xr@bp.renesas.com> <24d3853ca2522df21e6a071a23e23ba4ca4b7276.1775636898.git.tommaso.merciai.xr@bp.renesas.com>
-In-Reply-To: <24d3853ca2522df21e6a071a23e23ba4ca4b7276.1775636898.git.tommaso.merciai.xr@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 8 Apr 2026 15:19:14 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV-GrDWaKzxf09DRKwDkcY7W_cZrnubBWqD0w1iAYc8Kw@mail.gmail.com>
-X-Gm-Features: AQROBzC36oVu26dy7QAue_JJJeRvfbuifO9CcFeX81T2keIzqU6JIH81ayIbX9M
-Message-ID: <CAMuHMdV-GrDWaKzxf09DRKwDkcY7W_cZrnubBWqD0w1iAYc8Kw@mail.gmail.com>
-Subject: Re: [PATCH v6 01/21] clk: renesas: rzv2h: Add PLLDSI clk mux support
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, laurent.pinchart@ideasonboard.com, 
-	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] pwm: clk-pwm: add GPIO and pinctrl support for
+ constant output levels
+To: Nikita Travkin <nikita@trvn.ru>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20260408-clk-pwm-gpio-v2-0-d22f1f3498a0@radxa.com>
+ <20260408-clk-pwm-gpio-v2-2-d22f1f3498a0@radxa.com>
+ <8030cac3703f9aa1b7a8b476ad92aeae@trvn.ru>
+Content-Language: en-US
+From: Xilin Wu <sophon@radxa.com>
+In-Reply-To: <8030cac3703f9aa1b7a8b476ad92aeae@trvn.ru>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:radxa.com:qybglogicsvrsz:qybglogicsvrsz3b-0
+X-QQ-XMAILINFO: NvjhxCSDgXICj91atmTlnbUBY1+dVlCNR7IDUDdEfp3KvGNGjxPVNsDo
+	urwzpIJKfXKahcDXxbOx/8S3xnUUsppvftsmv/qBRmvlvO8tNMZpR1qRcBV3zlDXvLnEPlx
+	NPvAcb88zwvZgw+2BPMR01uIhdgmJ4HtK7eYmPKDezPl+UVVD2AOzN55SkgTQcShRxAt6zr
+	iqzz0NqAAbEclWMhZm/FpYtHEFwA/X8Wlh/IIPNKhDXcgCCz290LyineUzbYQeKaekFoW7k
+	G/c1LKxHHyWxigGfMRmB10XzS2irKPrjV9I+uxl4mGrPQ7IZ1GbsERGgR0EcUSXUuEc5xYT
+	FbHG4aFmQ2AsaZ/uO95DXqnt9WXbNJl1y5+AkvvMamHWJhho0QQ9ZoB+Zun3qdasOUF/Yq0
+	/85ghtMIPFJCZmfvY7KKtjyWDb9Vk8qoEDITwdRINBZ8yphiu2nmqqTbjLKIuvIr3MP9tyk
+	8srS4B9pVrwAY9r8+DFKC5bzJ5sgDmq6geK5U2QVyiuTKQZRPLlp1SziQGNRcCZ7ZTFP5Z8
+	DivwzSYeBtHKKJFVrtdDz7X9HHBpZfrQSXvKnTUO8PUDc+fCaI9QfC/kJCVyIK8felIzWU4
+	55VyfbBp+3dZgd2ge0cXW5ltjmmoPoyIqIM1RGIwDBtiASEwcBtH3YIEeO0toqXZFqOdLZl
+	0MzxvhyGXCkT9tvBjLCzT/QIsZaGwtMLV7ZROlboMwOW0SxZo7zvRxR38WnGnG0KljCbe+H
+	OTCxVrlRN/mA7qBBqsxAwGBCXXvlBVjVDqYhTjDlOHMfoxQGJ45a+bGejdSe2tKuRAQY89X
+	g7nDJinK67u6H7ao8PQEtXXBSl3vMR1AW+Wvmwa5vbRuDiyTLVrbFtOCWQ4K6CA77igfLiQ
+	RndIcy/1+AP+oq46o/e9+os6lfoWQXpyy2j+gGuOJTxXFYZho1jiWyK4YUw59k94Nr9lw0N
+	f2RLOzbqTmNmAqkWOxiK4s+9/KUHZmLB5/hlctNJcIMjavocMBPATLqmpvk71ZcpNN2Yfg1
+	raq8Fs0Q==
+X-QQ-XMRINFO: OWPUhxQsoeAVwkVaQIEGSKwwgKCxK/fD5g==
+X-QQ-RECHKSPAM: 0
+X-Spamd-Result: default: False [-1.36 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[radxa.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-285792-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,ideasonboard.com,vger.kernel.org,bp.renesas.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,baylibre.com,lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	TAGGED_FROM(0.00)[bounces-285794-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_MUA_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	NEURAL_SPAM(0.00)[0.051];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,linux-m68k.org:email]
-X-Rspamd-Queue-Id: 80FCC3BCC38
+	NEURAL_HAM(-0.00)[-0.966];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sophon@radxa.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	R_DKIM_NA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,radxa.com:email,radxa.com:mid]
+X-Rspamd-Queue-Id: 1B9A33BCC93
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 8 Apr 2026 at 12:38, Tommaso Merciai
-<tommaso.merciai.xr@bp.renesas.com> wrote:
-> Add PLLDSI clk mux support to select PLLDSI clock from different clock
-> sources.
->
-> Introduce the DEF_PLLDSI_SMUX() macro to define these muxes and register
-> them in the clock driver.
->
-> Extend the determine_rate callback to calculate and propagate PLL
-> parameters via rzv2h_get_pll_dtable_pars() when LVDS output is selected,
-> using a new helper function rzv2h_cpg_plldsi_smux_lvds_determine_rate().
->
-> The CLK_SMUX2_DSI{0,1}_CLK clock multiplexers select between two paths
-> with different duty cycles:
->
-> - CDIV7_DSIx_CLK (LVDS path, parent index 0): asymmetric H/L=4/3 duty (4/7)
-> - CSDIV_DSIx (DSI/RGB path, parent index 1): symmetric 50% duty (1/2)
->
-> Implement rzv2h_cpg_plldsi_smux_{get,set}_duty_cycle clock operations to
-> allow the DRM driver to query and configure the appropriate clock path
-> based on the required output duty cycle.
->
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> ---
-> v5->v6:
->  - Fixed rzv2h_cpg_plldsi_smux_clk_register() removed u8 width, mask
->    variables and replaced with direct use of smux.width and clk_div_mask(smux.width).
+On 4/8/2026 6:42 PM, Nikita Travkin wrote:
+> Xilin Wu писал(а) 08.04.2026 15:07:
+>> The clk-pwm driver cannot guarantee a defined output level when the
+>> PWM is disabled or when 0%/100% duty cycle is requested, because the
+>> pin state when the clock is stopped is hardware-dependent.
+>>
+>> Add optional GPIO and pinctrl support: when a GPIO descriptor and
+>> pinctrl states ("default" for clock mux, "gpio" for GPIO mode) are
+>> provided in the device tree, the driver switches the pin to GPIO mode
+>> and drives the appropriate level for disabled/0%/100% states. For
+>> normal PWM output, the pin is switched back to its clock function mux.
+>>
+>> If no GPIO is provided, the driver falls back to the original
+>> clock-only behavior.
+>>
+>> Signed-off-by: Xilin Wu <sophon@radxa.com>
+>> ---
+>>   drivers/pwm/pwm-clk.c | 84 ++++++++++++++++++++++++++++++++++++++++++++++++---
+>>   1 file changed, 80 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/pwm/pwm-clk.c b/drivers/pwm/pwm-clk.c
+>> index f8f5af57acba..d7d8d2c2dd0f 100644
+>> --- a/drivers/pwm/pwm-clk.c
+>> +++ b/drivers/pwm/pwm-clk.c
+>> @@ -11,11 +11,20 @@
+>>    * - Due to the fact that exact behavior depends on the underlying
+>>    *   clock driver, various limitations are possible.
+>>    * - Underlying clock may not be able to give 0% or 100% duty cycle
+>> - *   (constant off or on), exact behavior will depend on the clock.
+>> + *   (constant off or on), exact behavior will depend on the clock,
+>> + *   unless a gpio pinctrl state is supplied.
+>>    * - When the PWM is disabled, the clock will be disabled as well,
+>> - *   line state will depend on the clock.
+>> + *   line state will depend on the clock, unless a gpio pinctrl
+>> + *   state is supplied.
+>>    * - The clk API doesn't expose the necessary calls to implement
+>>    *   .get_state().
+>> + *
+>> + * Optionally, a GPIO descriptor and pinctrl states ("default" and
+>> + * "gpio") can be provided. When a constant output level is needed
+>> + * (0% duty, 100% duty, or disabled), the driver switches the pin to
+>> + * GPIO mode and drives the appropriate level. For normal PWM output
+>> + * the pin is switched back to its clock function mux. If no GPIO is
+>> + * provided, the driver falls back to the original clock-only behavior.
+>>    */
+>>   
+>>   #include <linux/kernel.h>
+>> @@ -25,11 +34,17 @@
+>>   #include <linux/of.h>
+>>   #include <linux/platform_device.h>
+>>   #include <linux/clk.h>
+>> +#include <linux/gpio/consumer.h>
+>> +#include <linux/pinctrl/consumer.h>
+>>   #include <linux/pwm.h>
+>>   
+>>   struct pwm_clk_chip {
+>>   	struct clk *clk;
+>>   	bool clk_enabled;
+>> +	struct pinctrl *pinctrl;
+>> +	struct pinctrl_state *pins_default;  /* clock function mux */
+>> +	struct pinctrl_state *pins_gpio;     /* GPIO mode */
+>> +	struct gpio_desc *gpiod;
+>>   };
+>>   
+>>   static inline struct pwm_clk_chip *to_pwm_clk_chip(struct pwm_chip *chip)
+>> @@ -45,14 +60,36 @@ static int pwm_clk_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>>   	u32 rate;
+>>   	u64 period = state->period;
+>>   	u64 duty_cycle = state->duty_cycle;
+>> +	bool constant_level = false;
+>> +	int gpio_value = 0;
+>>   
+>>   	if (!state->enabled) {
+>> -		if (pwm->state.enabled) {
+>> +		constant_level = true;
+>> +		gpio_value = 0;
+>> +	} else if (state->duty_cycle == 0) {
+>> +		constant_level = true;
+>> +		gpio_value = (state->polarity == PWM_POLARITY_INVERSED) ? 1 : 0;
+>> +	} else if (state->duty_cycle >= state->period) {
+>> +		constant_level = true;
+>> +		gpio_value = (state->polarity == PWM_POLARITY_INVERSED) ? 0 : 1;
+>> +	}
+>> +
+> 
+> So I'm looking at it again, and I'm a bit confused.
+> 
+> Old behavior was:
+>   - pwm was enabled and being disabled -> stop the clock and hope state is 0;
+>   - pwm is still enabled but
+>                              - duty=0%   -> set clk duty to 0%
+>                              - duty=100% -> set clk duty to 100%
+> 
+> New behavior if we have gpio:
+>   - pwm was enabled and being disabled -> constant 0
+>   - pwm is still enabled but
+>                              - duty=0%   -> constant 0
+>                              - duty=100% -> constant 1
+> 
+> New behavior if we don't have gpio:
+> Same as above but
+>    - if we need constant 0 -> clock is halted and we pray it's 0
+>    - if we need constant 1 -> clock is halted and we pray it's 1 (??)
+> 
+> Per my recollection, when I wrote this driver 5 years ago, I've manually
+> verified that at least on qcom setting duty cycle to 0% and 100% worked
+> properly, so this feels like it would regress it if left as-is...
+> 
+> (Btw I wonder what's the platform you need this for?)
+> 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I took a careful look at clk_rcg2_set_duty_cycle() in 
+drivers/clk/qcom/clk-rcg2.c, and I believe the Qualcomm RCG2 MND counter 
+cannot produce a true 0% or 100% duty cycle. For a 0% duty request, the 
+actual duty cycle can become very small, but never exactly zero. 
+Likewise, for a 100% duty request, it can get very close to 100%, but 
+not exactly 100%.
 
-Gr{oetje,eeting}s,
+I agree that the current change may cause a regression. Do you think it 
+would make more sense to keep the old behavior when no GPIO is 
+available, and still set the clock duty cycle to 0% or 100% in that case?
 
-                        Geert
+We need this for many of our future Qualcomm-based products, because the 
+PMIC that comes with the SoC usually provides only one PWM output.
+
+>> +	if (constant_level) {
+>> +		if (pcchip->gpiod) {
+>> +			gpiod_direction_output(pcchip->gpiod, gpio_value);
+>> +			pinctrl_select_state(pcchip->pinctrl, pcchip->pins_gpio);
+>> +		}
+>> +		if (pcchip->clk_enabled) {
+>>   			clk_disable(pcchip->clk);
+>>   			pcchip->clk_enabled = false;
+>>   		}
+>>   		return 0;
+>> -	} else if (!pwm->state.enabled) {
+>> +	}
+>> +
+>> +	if (pcchip->gpiod)
+>> +		pinctrl_select_state(pcchip->pinctrl, pcchip->pins_default);
+>> +
+>> +	if (!pcchip->clk_enabled) {
+>>   		ret = clk_enable(pcchip->clk);
+>>   		if (ret)
+>>   			return ret;
+>> @@ -97,6 +134,45 @@ static int pwm_clk_probe(struct platform_device *pdev)
+>>   		return dev_err_probe(&pdev->dev, PTR_ERR(pcchip->clk),
+>>   				     "Failed to get clock\n");
+>>   
+>> +	pcchip->pinctrl = devm_pinctrl_get(&pdev->dev);
+>> +	if (IS_ERR(pcchip->pinctrl)) {
+>> +		ret = PTR_ERR(pcchip->pinctrl);
+>> +		pcchip->pinctrl = NULL;
+>> +		if (ret == -EPROBE_DEFER)
+>> +			return ret;
+>> +	} else {
+>> +		pcchip->pins_default = pinctrl_lookup_state(pcchip->pinctrl,
+>> +							    PINCTRL_STATE_DEFAULT);
+>> +		pcchip->pins_gpio = pinctrl_lookup_state(pcchip->pinctrl,
+>> +							 "gpio");
+>> +		if (IS_ERR(pcchip->pins_default) || IS_ERR(pcchip->pins_gpio))
+>> +			pcchip->pinctrl = NULL;
+>> +	}
+>> +
+>> +	/*
+>> +	 * Switch to GPIO pinctrl state before requesting the GPIO.
+>> +	 * The driver core has already applied the "default" state, which
+>> +	 * muxes the pin to the clock function and claims it.  We must
+>> +	 * release that claim first so that gpiolib can request the pin.
+>> +	 */
+>> +	if (pcchip->pinctrl)
+>> +		pinctrl_select_state(pcchip->pinctrl, pcchip->pins_gpio);
+>> +
+>> +	pcchip->gpiod = devm_gpiod_get_optional(&pdev->dev, NULL, GPIOD_ASIS);
+>> +	if (IS_ERR(pcchip->gpiod))
+>> +		return dev_err_probe(&pdev->dev, PTR_ERR(pcchip->gpiod),
+>> +				     "Failed to get gpio\n");
+>> +
+>> +	/*
+>> +	 * If pinctrl states were found but no GPIO was provided, the pin is
+>> +	 * stuck in GPIO mode from the switch above.  Restore the default
+>> +	 * (clock-function) mux and fall back to clock-only operation.
+>> +	 */
+> 
+> Feels slightly weird to silently allow "broken" DT, it would make no sense
+> for it to have "gpio" pinctrl and not have a gpio defined, would it?
+> 
+> Perhaps it makes more sense to put getting a gpio under having pins_gpio
+> and make it strict, so two allowed states for the driver would be either
+> no pinctrl-1 and no gpio, or having both at the same time?
+> 
+> (maybe then also worth adding cross dependency of pinctrl-1 and gpio in
+> the binding, it's one way only currently, not sure what's the correct
+> way to describe it tho)
+> 
+> Nikita
+> 
+
+Yeah, good point. Having a gpio pinctrl state without an actual gpio 
+property is indeed a broken DT and there's no reason to silently work 
+around it. Do you think the following change would work?
+
+	if (pcchip->pinctrl) {
+		pinctrl_select_state(pcchip->pinctrl, pcchip->pins_gpio);
+
+		pcchip->gpiod = devm_gpiod_get(&pdev->dev, NULL, GPIOD_ASIS);
+		if (IS_ERR(pcchip->gpiod))
+			return dev_err_probe(&pdev->dev, PTR_ERR(pcchip->gpiod),
+					     "GPIO required when 'gpio' pinctrl state is present\n");
+	}
+
+>> +	if (pcchip->pinctrl && !pcchip->gpiod) {
+>> +		pinctrl_select_state(pcchip->pinctrl, pcchip->pins_default);
+>> +		pcchip->pinctrl = NULL;
+>> +	}
+>> +
+>>   	chip->ops = &pwm_clk_ops;
+>>   
+>>   	ret = pwmchip_add(chip);
+> 
+
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Best regards,
+Xilin Wu <sophon@radxa.com>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
