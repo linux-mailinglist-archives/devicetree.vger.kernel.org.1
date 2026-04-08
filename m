@@ -1,239 +1,170 @@
-Return-Path: <devicetree+bounces-285790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285792-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6KOLFSxX1mn5DwgAu9opvQ
-	(envelope-from <devicetree+bounces-285790-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:25:00 +0200
+	id CEtvBmNW1mm8DQgAu9opvQ
+	(envelope-from <devicetree+bounces-285792-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:21:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 927723BCCD6
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:24:59 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80FCC3BCC38
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:21:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8A2AD30649FA
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 13:19:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 49BDB307B365
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 13:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159683002B9;
-	Wed,  8 Apr 2026 13:19:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="2ec1Lyqf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F052F3176E4;
+	Wed,  8 Apr 2026 13:19:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C6D2F39B4;
-	Wed,  8 Apr 2026 13:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C18D30C354
+	for <devicetree@vger.kernel.org>; Wed,  8 Apr 2026 13:19:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775654341; cv=none; b=SIuK+riEds/oKkjvpe5JQqAom/i0tY34ok+INuEzqbUm274KDyMyNR9TjotM9282Fz/+bX5Xmm02wont0pV5RIipf509nAeAOlK1a3UYHrZ4lEqM1ox/op8GLJXWk9AyqeZ/I8pOXZErvTE7QY5ZsYjmpITNY3YZ4WTB+oeo9RE=
+	t=1775654368; cv=none; b=mt2JPPuXBSDGaB0VVzScNMKj0JjYI7zxsQcHQYndS6OGKX1W3YlGDXAOERahzxrZfpY5Lv/CsZq0DGc38onWRTSeuG7N67KkylXCe1ynHLo2CYDo107bI/Is7UrFe3rmAyWQ9U2NCO7otrgDCRG0P/RLxG5tWDuju9ED8r4Ki3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775654341; c=relaxed/simple;
-	bh=yuIyXukk9Sp6FPHkyBlGYAvLU1bo1+o8OkZSeIJ63Uw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XWdcAX0fWXQki8QYCbwezwug7ROStR01HEnUElCDxG3HfMbsdmE7y8KJ3T7tM1y0ViSi/U0XWR3w/P9VqurTKG8DyaxV7oQxC+CXUBuntr6iOYluKA5n/fibF/bgnprWg4XBif4SAck18y9BNWWHaD4/XJGtZbLNvly1JhAeodk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=2ec1Lyqf; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1775654338; x=1807190338;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=yuIyXukk9Sp6FPHkyBlGYAvLU1bo1+o8OkZSeIJ63Uw=;
-  b=2ec1LyqfEd73kqO64pEVQXXs0yEytkC6s5xtsPJun8ILcYacsdVTxo+i
-   n3Nj2ip8tywE019xehvjBk0qSauCmrLkbTp4OvUCJz98UX3fveRmuJQzw
-   bWSgjWhglqClQCw3m+9rMQXPWkew8E7xzX3EqHbh9YvTFTBn03TJYdiZO
-   KfAyn6JAkPYk1CmEF/6OlgECIC8AskrB6dgx6lRGceifPGW44vGxMSS46
-   qv1DdgqoiUylDKvWDX+3LzbWQ1bH5q+EwRGSXLKGwPo4uMyQXN2PgLTdn
-   ZZVVUVTpwPVnuxen3b6rfZUZQJHO57jyUpdVsfLhrMgGTprk3mXWpc35f
-   A==;
-X-CSE-ConnectionGUID: BR2izZaeTd24uGudQ9OtxQ==
-X-CSE-MsgGUID: bLZGc0KtRX6MiyL09H3ZXA==
-X-IronPort-AV: E=Sophos;i="6.23,167,1770620400"; 
-   d="scan'208";a="287197573"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Apr 2026 06:18:57 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Wed, 8 Apr 2026 06:18:49 -0700
-Received: from bby-cbu-swbuild03.eng.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Wed, 8 Apr 2026 06:18:49 -0700
-From: Charles Perry <charles.perry@microchip.com>
-To: <netdev@vger.kernel.org>
-CC: <MameMaria.Mbaye@microchip.com>, Charles Perry
-	<charles.perry@microchip.com>, Conor Dooley <conor.dooley@microchip.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH net-next v5 1/3] dt-bindings: net: document Microchip PIC64-HPSC/HX MDIO controller
-Date: Wed, 8 Apr 2026 06:18:14 -0700
-Message-ID: <20260408131821.1145334-2-charles.perry@microchip.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260408131821.1145334-1-charles.perry@microchip.com>
-References: <20260408131821.1145334-1-charles.perry@microchip.com>
+	s=arc-20240116; t=1775654368; c=relaxed/simple;
+	bh=eDPl1BxiRe/fUMVm6v8nPkG76S8YwwEBsYa94mj/dvw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NJV5DlrvH4f/r69/6rcYdfe0lmqArQZXwWOxniL83+OqwLpttJsgQiQZON7aezVeqGex9f3+WIkAvK939jHpw65TnR/vpaf5w2Le4UBieaa2vWmOhJrNEps22hFi/GXBfB3edBFB6GG7WJyH/egD+mFwr/42jFxRBJJs0xSC/Io=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-56d9ed609d2so1878848e0c.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 06:19:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775654366; x=1776259166;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=11iAo9dki9YzQOZbHMLoGuCa0VnV6ePIcYUznc5FWP8=;
+        b=kMu2wWNe9hztR4aB6vUnT7zOn9slmqLmrNaJYwTSLAOZJG9z3lLeKjC77isPaMzbDK
+         hUlFCAaxiVQ3ih6VX1KGj5T73TrwftV4Ws7T/PJD9loaltTRRLmbtg6K73KCnBFI/KFP
+         iQM+7LUD7v9X+PjGunb4Id2d3A6EzywMjJ/qZX2n1TmcNNRGTcUmnjrbRiB7YZnVe3pb
+         dtx8R3Op0LxiaXnN4ClUY5JYIwDytJqRHhcYwUsBg3wnwezrNMMuFyS87zXRKlMPbvA+
+         l822wlFmTvwE4SGXpCCeRAsWQWgim7ixnuNdw/vj5/U9KoEqUgqrQNHFDPBTG7Dk3SHK
+         +KXg==
+X-Forwarded-Encrypted: i=1; AJvYcCWyJ+Nd6hutjCTdkE8HiMC3Qugkja3Txk1eIESKnY8G63RTPM4gprZmBmJQt/cTU7lqdHmxHv3vA1cD@vger.kernel.org
+X-Gm-Message-State: AOJu0YxB3J+Fnay5TLghmBNPvi0BMYrmhq8EV8FltQ5eYSEpzZ+wo8+P
+	Q/kTmjYVZRNX3NMW/GtNJNVz+HDkrdDmyh1rlhdQ+iXVbCGLNNzW92YdVrJUOitn
+X-Gm-Gg: AeBDieu2Um+a4DU9CnJeEG7/SQbwhixGSEmqiLYoixKnpm01gX5al1IL28v9Nx59zqy
+	v3HfoJNeNIrtMe0aVPcQn8RHiA4QuZjROKzU+QanpmANVPrnxqhWD2oeAp+QWsL/gaDsWyKw0Qf
+	Kb+bbmZ6aBl+U5xFzgLLHbqnc2MVQZVGv/wei62rYNFzSaXr+8l2dmANvGPxM9Vq7xoaQF58BSr
+	1YZTf17FpNDmhe+47/JFd8s8hDAPVi3p5uIBaZVq9LWVVgMqfUZvFQsV8VBgRUp/pZcYk+ab1ld
+	p1Q58Msea8P0WDBeGyoETXB92jbF/F5H8HKsjEyk800TBUEAY9bfhGAJz/hvK8pE3TS/WOcg1MA
+	a7TujW9irytdCR9CHh2OX1afBUgmNPcBmwsJsVT/3dHFYwdkgcj9w5+j9+qknZh94D0GAdzh5/U
+	DAIbzW+Bk2JP/n45jGgZMSWc2L8VEZX4o+VqEiVeMQPJTjS8r1x2q+pZE5ISZ4dj1g
+X-Received: by 2002:a05:6122:e469:b0:56d:8646:2911 with SMTP id 71dfb90a1353d-56dab4e2ba4mr8072054e0c.0.1775654366493;
+        Wed, 08 Apr 2026 06:19:26 -0700 (PDT)
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com. [209.85.221.169])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56d9bae1117sm20119653e0c.7.2026.04.08.06.19.26
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Apr 2026 06:19:26 -0700 (PDT)
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-56a9c5cb48bso1875127e0c.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 06:19:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWu4RpaF8rp4WcUnGHQtaUYj2FogxRUrVjry8T2RJmStZddTVt03uKroOgPuL0Rh7/DUWLI4olNL08M@vger.kernel.org
+X-Received: by 2002:a05:6122:4b05:b0:56d:3b69:87d2 with SMTP id
+ 71dfb90a1353d-56dab9df26emr8767911e0c.11.1775654366102; Wed, 08 Apr 2026
+ 06:19:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spamd-Result: default: False [0.84 / 15.00];
+References: <cover.1775636898.git.tommaso.merciai.xr@bp.renesas.com> <24d3853ca2522df21e6a071a23e23ba4ca4b7276.1775636898.git.tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <24d3853ca2522df21e6a071a23e23ba4ca4b7276.1775636898.git.tommaso.merciai.xr@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 8 Apr 2026 15:19:14 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV-GrDWaKzxf09DRKwDkcY7W_cZrnubBWqD0w1iAYc8Kw@mail.gmail.com>
+X-Gm-Features: AQROBzC36oVu26dy7QAue_JJJeRvfbuifO9CcFeX81T2keIzqU6JIH81ayIbX9M
+Message-ID: <CAMuHMdV-GrDWaKzxf09DRKwDkcY7W_cZrnubBWqD0w1iAYc8Kw@mail.gmail.com>
+Subject: Re: [PATCH v6 01/21] clk: renesas: rzv2h: Add PLLDSI clk mux support
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, laurent.pinchart@ideasonboard.com, 
+	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-285790-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charles.perry@microchip.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[microchip.com:+];
+	TAGGED_FROM(0.00)[bounces-285792-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,ideasonboard.com,vger.kernel.org,bp.renesas.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,baylibre.com,lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	NEURAL_SPAM(0.00)[0.051];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,microchip.com:dkim,microchip.com:email,microchip.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 927723BCCD6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,linux-m68k.org:email]
+X-Rspamd-Queue-Id: 80FCC3BCC38
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This MDIO hardware is based on a Microsemi design supported in Linux by
-mdio-mscc-miim.c. However, The register interface is completely different
-with pic64hpsc, hence the need for separate documentation.
+On Wed, 8 Apr 2026 at 12:38, Tommaso Merciai
+<tommaso.merciai.xr@bp.renesas.com> wrote:
+> Add PLLDSI clk mux support to select PLLDSI clock from different clock
+> sources.
+>
+> Introduce the DEF_PLLDSI_SMUX() macro to define these muxes and register
+> them in the clock driver.
+>
+> Extend the determine_rate callback to calculate and propagate PLL
+> parameters via rzv2h_get_pll_dtable_pars() when LVDS output is selected,
+> using a new helper function rzv2h_cpg_plldsi_smux_lvds_determine_rate().
+>
+> The CLK_SMUX2_DSI{0,1}_CLK clock multiplexers select between two paths
+> with different duty cycles:
+>
+> - CDIV7_DSIx_CLK (LVDS path, parent index 0): asymmetric H/L=4/3 duty (4/7)
+> - CSDIV_DSIx (DSI/RGB path, parent index 1): symmetric 50% duty (1/2)
+>
+> Implement rzv2h_cpg_plldsi_smux_{get,set}_duty_cycle clock operations to
+> allow the DRM driver to query and configure the appropriate clock path
+> based on the required output duty cycle.
+>
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> ---
+> v5->v6:
+>  - Fixed rzv2h_cpg_plldsi_smux_clk_register() removed u8 width, mask
+>    variables and replaced with direct use of smux.width and clk_div_mask(smux.width).
 
-The hardware supports C22 and C45.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-The documentation recommends an input clock of 156.25MHz and a prescaler
-of 39, which yields an MDIO clock of 1.95MHz.
+Gr{oetje,eeting}s,
 
-The hardware supports an interrupt pin to signal transaction completion
-which is not strictly needed as the software can also poll a "TRIGGER"
-bit for this.
+                        Geert
 
-Signed-off-by: Charles Perry <charles.perry@microchip.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
-
-Notes:
-    Changes in v5:
-      - Collect Conor's Acked-by
-      - Remove the "|" in "description: |" (Rob)
-      - Don't mention how many instances of the MDIO controller there are (Rob)
-      - Hex addresses are now in lowercase (Rob)
-      - Drop the phy DT label in the example (Rob)
-    
-    Changes in v4: none
-    Changes in v3: none
-    
-    Changes in v2:
-      - Make "clocks" and "interrupts" required (Andrew)
-      - Add a default value to "clock-frequency" (Andrew)
-    
-    Changes in v5: none
-    Changes in v4: none
-    Changes in v3: none
-    
-    Changes in v2:
-      - Make "clocks" and "interrupts" required (Andrew)
-      - Add a default value to "clock-frequency" (Andrew)
-
- .../net/microchip,pic64hpsc-mdio.yaml         | 68 +++++++++++++++++++
- 1 file changed, 68 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/microchip,pic64hpsc-mdio.yaml
-
-diff --git a/Documentation/devicetree/bindings/net/microchip,pic64hpsc-mdio.yaml b/Documentation/devicetree/bindings/net/microchip,pic64hpsc-mdio.yaml
-new file mode 100644
-index 000000000000..20f29b71566b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/microchip,pic64hpsc-mdio.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/microchip,pic64hpsc-mdio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip PIC64-HPSC/HX MDIO controller
-+
-+maintainers:
-+  - Charles Perry <charles.perry@microchip.com>
-+
-+description:
-+  This is the MDIO bus controller present in Microchip PIC64-HPSC/HX SoCs. It
-+  supports C22 and C45 register access and is named "MDIO Initiator" in the
-+  documentation.
-+
-+allOf:
-+  - $ref: mdio.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: microchip,pic64hpsc-mdio
-+      - items:
-+          - const: microchip,pic64hx-mdio
-+          - const: microchip,pic64hpsc-mdio
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    default: 2500000
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        mdio@4000c21e000 {
-+            compatible = "microchip,pic64hpsc-mdio";
-+            reg = <0x400 0x0c21e000 0x0 0x1000>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            clocks = <&svc_clk>;
-+            interrupt-parent = <&saplic0>;
-+            interrupts = <168 IRQ_TYPE_LEVEL_HIGH>;
-+
-+            ethernet-phy@0 {
-+                reg = <0>;
-+            };
-+        };
-+    };
 -- 
-2.47.3
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
