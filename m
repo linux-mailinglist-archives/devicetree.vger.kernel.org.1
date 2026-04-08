@@ -1,333 +1,144 @@
-Return-Path: <devicetree+bounces-285786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285788-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UBRzChtU1mm8DQgAu9opvQ
-	(envelope-from <devicetree+bounces-285786-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:11:55 +0200
+	id yA32GqtU1mm8DQgAu9opvQ
+	(envelope-from <devicetree+bounces-285788-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:14:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B7013BC9E4
-	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:11:54 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0CD33BCAE6
+	for <lists+devicetree@lfdr.de>; Wed, 08 Apr 2026 15:14:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1E475306A82D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 13:08:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DD089301387F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Apr 2026 13:14:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D170F3CBE93;
-	Wed,  8 Apr 2026 13:08:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0060A3CCFB7;
+	Wed,  8 Apr 2026 13:14:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zjcC2sOw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n9Cjs7Bt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CF743CAE7B
-	for <devicetree@vger.kernel.org>; Wed,  8 Apr 2026 13:08:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D169F38D00B;
+	Wed,  8 Apr 2026 13:14:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775653685; cv=none; b=Q/AVrSveyk5qb6ZaMxQIMQ/5ucrfKX2UqNmNyPr+WxveRvNIFtbg3j0BiZOPnkufIEKT+OhWExnbIiWYbzISaaUVs1bC8gkMN1xN9GdMmvK2l1RRSllAOshJZOc4fWAbEdSaLBW6xgw2jkqiy5HAfFRTHKHwnlvOQP3jannbl8g=
+	t=1775654046; cv=none; b=bguetpkMeZpF9j1jub7Pad021lu1oB+UE270yr1Gu3bup6xu8lioZO2D7t3L4+sAgsfqhE1mu1VkfEJ38vPJL9fm5OcMK3ORz1EAimOHi+tZunXReMa5q4LCt4z3V5/rW9HYo8VXkdZxWBkGykY3HEPLbpl4y2cU9E3EeGHTUCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775653685; c=relaxed/simple;
-	bh=a2GPSLjoVuh/bOAiRRBM+nHcSa++S79DoAQOpkjg8+c=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=X49CzhIBulgVEXT1xQjRUtd439a7SxvM+1yZgNVSdWRzO/YIVK0fNaSnzLCNRlVZUVcU7PvigNO/nhdQi4nVroc46wStQZwLY+ZMYnuR27jph5DpPn5fu/luUEH2IVwUi0dHQ7ebH7jOqBCutukTzN6mfroROm0Be3a23MvtzVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zjcC2sOw; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-66feeb8ff41so55141a12.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Apr 2026 06:08:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1775653682; x=1776258482; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z5yV3renFUCMzTGFq9ONgz22Ec7d4PCew4CFxTTtr88=;
-        b=zjcC2sOwDqQfuUIFywmtGZc84hozfRNS9XYMKBqdUzHbdPMUFI0nzEc44PdEp88MZB
-         JOtF459HOomRnksA2u35hpcoymiwgM3Kws544WEUrYqU+r2YkcCbRGPpY5hVV0lzRzWc
-         7o4cKONgBWDXsnwg3HNeoXCvNqjp8BMGysOZ6VUF9KsuHadjdSyDX5y1ZVz5OeDrzUTo
-         CCIOtN2mgdFv5ZwwJk+TsJOOlEdfbScsfdsP65ZwD4u0BTPUt7iWPV4PgmQDZD6GTKI6
-         WqIptT1AwhRP9Ss6JD78wV6ABPF7AII8aqQGzRWoZzM7huvDc3PmZWcbV7coY4sXGAV4
-         soVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775653682; x=1776258482;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z5yV3renFUCMzTGFq9ONgz22Ec7d4PCew4CFxTTtr88=;
-        b=iR3FsZLwiRdMUUfVx5DeWiAOUBWTZwx1mGZb7HwKErRfWQGcRJiCcyGcHpkIUN/IrJ
-         R0nMRXAvuHHEa1Hpx8SMTgzo+yXxHjLvzQ2G7RvP2dskhM5e2s8KCFjuG601PeD2K5JQ
-         Lna8EN5187+J1+zt9Z83Aki2Z2HuTg0ZReue+7J1rrhYyI+f7FVlrPkbaSUiIJWgDovh
-         9W/pqbIXe2eRjQ7RSqeszEkqyDHLtRR8+BNJphUvDu1ywldStebe/Hk8JIqzWc3CcTVf
-         J0Ay+/G0h2ltlMTdezHIzPmHNpIUJPZ2su7UzD02hHxgBZXs3ux9tuUvVj4VoxGy7egY
-         NXKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUkbeqnk2YaIU7uQtAVP9co8pPD4v1kOA0cn1vTtpDSjS/HPdZARo/TDrm+mPbUbCAPHR+6G8xBjmPk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+5/EKmcHW9mSR66IQaoT1wTPupY2QAOdNn9EHg/9r9ikHX83x
-	l90DQ2c+PWIm2trFdHuD8O59ELwZg20b+z9pjRdxpJ2YvwCp1+2FAI1nQXRNzPU+2v0=
-X-Gm-Gg: AeBDietO8HwGlhO5Hd7Mjd1sUeNESvP0QVtnu+1onfOteFlq4c5GzNLnMZVZJsY8SWy
-	bOImF7xuHNwS8OythmkxVKBfWZ4hchSKmnlhUXjbhC+uVSKE64pCORybeR3X0ZxUws8N5jk7XHP
-	LpoAEzyURl3IRJ1AeiseNR2hX6nCmRw1W1pOsjQKCdp7H3qnenDTRAF24l+LIca0RPSDYs09+zz
-	qMJ51xZ/2pdyaov8RBhoGzpqrWNX9xqlF9mKowKocUOjaofsb8FVOVWS09C/Ev73NZnx9MHMN+o
-	CuFmO94y+ceYWWZTDl8kLyNfxNV3utpjz1xKJnS6SnHnWN5Tv5xZaifYz+g/3ZcwNSpMUSLqMWl
-	uiOOhi5dBqTOSVFtOt4qkW0GEOBurp3A70+GMnNRqpLepy7eAJIBlXbps65mUaBZeVW0ZhYS1is
-	femVXs+coZoxKNqAqPJ1EZfiwycv7lbXe9uNFSW/NERVwVo4Nj3ZL3Y9ztS7Uv5VAbRhnG5JodH
-	3oBx8ESzC6826ai/A==
-X-Received: by 2002:a17:906:478e:b0:b98:1129:51 with SMTP id a640c23a62f3a-b9c675492c5mr1034699866b.17.1775653681583;
-        Wed, 08 Apr 2026 06:08:01 -0700 (PDT)
-Received: from localhost ([2a00:2381:fd67:101:9775:58c0:569c:bd74])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9d3a6a48f3sm24687366b.58.2026.04.08.06.08.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Apr 2026 06:08:00 -0700 (PDT)
+	s=arc-20240116; t=1775654046; c=relaxed/simple;
+	bh=z8q4ncPH4c1plim8Lv7I6Q6nJPCoar03FfzaVYfd1pU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IVrwOVpgCsmq9y6ak2mFT0QuBTLnoICMqsAmP30+j7aHDOsDze52Pb9LJwvv6oXo2g9vgA+UYmgVM9wMClWLTfgKKGkv/OiEzLxTTxbfBzUhK0vBuFTeIQ5zzArvrg6xTKdXmhRXVbrtI9PXGGXGO7N7UjGHrY0Dds+u7plP/Bc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n9Cjs7Bt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1121C19421;
+	Wed,  8 Apr 2026 13:14:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775654046;
+	bh=z8q4ncPH4c1plim8Lv7I6Q6nJPCoar03FfzaVYfd1pU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=n9Cjs7Bth2XIC/jxF++rb+VJ6QaWmizAtCGnyTdQyD0Yxj0nzZDUuzfRDGVmpeF8Z
+	 XTmwhworbyf29+s7PdCqG9o/5pzKGmUvU0m9JscLAVamt4Zovae22kH5aCj5IMBNr+
+	 xMO1RmAnZjhSQUIvzYwycGKfz4BUKwksHZw5MxwXVxvh9XyS/VOUvkOI2WpMyk8ZLP
+	 4BduEGhRvvfIB8cm5qW/drhYkGIZK2xYJ+LJ/gApBVwNHf8Z34g9fkov6v/GhFxDsA
+	 oCIIW+CUZPN+/ub4FKXcdSF0Pg2x2T7Mg7A2fqhfzk42skbkDdEVcp2jVadGyfOxY6
+	 1KHNRkRuni0BQ==
+Date: Wed, 8 Apr 2026 14:14:01 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Herve Codina <herve.codina@bootlin.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Saravana Kannan <saravanak@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/4] ASoC: dt-bindings: Add support for the GPIOs driven
+ amplifier
+Message-ID: <91f41e85-a70a-41be-8f90-92c1ef93386d@sirena.org.uk>
+References: <20260330101610.57942-1-herve.codina@bootlin.com>
+ <20260330101610.57942-3-herve.codina@bootlin.com>
+ <20260408122901.GA42727-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 08 Apr 2026 14:08:00 +0100
-Message-Id: <DHNSP3FVR4ZQ.1PIRHF0KJGKI5@linaro.org>
-Cc: "Krzysztof Kozlowski" <krzk@kernel.org>, "Sylwester Nawrocki"
- <s.nawrocki@samsung.com>, "Chanwoo Choi" <cw00.choi@samsung.com>, "Alim
- Akhtar" <alim.akhtar@samsung.com>, "Sam Protsenko"
- <semen.protsenko@linaro.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Jassi Brar"
- <jassisinghbrar@gmail.com>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Peter Griffin" <peter.griffin@linaro.org>,
- <linux-samsung-soc@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] mailbox: exynos: Add support for Exynos850
- mailbox
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Tudor Ambarus" <tudor.ambarus@linaro.org>
-X-Mailer: aerc 0.20.0
-References: <20260402-exynos850-ap2apm-mailbox-v2-0-ca5ffdff99d4@linaro.org>
- <20260402-exynos850-ap2apm-mailbox-v2-2-ca5ffdff99d4@linaro.org>
- <a02a693e-b06e-43bf-ac5f-8253f298c83d@linaro.org>
-In-Reply-To: <a02a693e-b06e-43bf-ac5f-8253f298c83d@linaro.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/gIiaJRUw/5IfKBJ"
+Content-Disposition: inline
+In-Reply-To: <20260408122901.GA42727-robh@kernel.org>
+X-Cookie: Often things ARE as bad as they seem!
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-285786-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,baylibre.com,gmail.com,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-285788-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[bootlin.com,gmail.com,kernel.org,perex.cz,suse.com,vger.kernel.org,csgroup.eu];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexey.klimov@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,gitlab.com:url]
-X-Rspamd-Queue-Id: 9B7013BC9E4
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sirena.org.uk:mid]
+X-Rspamd-Queue-Id: F0CD33BCAE6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Tudor,
 
-On Thu Apr 2, 2026 at 9:42 AM BST, Tudor Ambarus wrote:
-> Hi, Alexey,
->
-> On 4/2/26 5:20 AM, Alexey Klimov wrote:
->> Exynos850-based platforms support ACPM and has similar workflow
->> of communicating with ACPM via mailbox, however mailbox controller
->> registers are located at different offsets and writes/reads could be
->> different. To distinguish between such different behaviours,
->> the registers offsets for Exynos850 and the platform-specific data
->> structs are introduced and configuration is described in such structs
->> for gs101 and exynos850 based SoCs. Probe routine now selects the
->> corresponding platform-specific data via device_get_match_data().
->>=20
->> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->> ---
->>  drivers/mailbox/exynos-mailbox.c | 67 +++++++++++++++++++++++++++++++++=
-+++++--
->>  1 file changed, 64 insertions(+), 3 deletions(-)
->>=20
->> diff --git a/drivers/mailbox/exynos-mailbox.c b/drivers/mailbox/exynos-m=
-ailbox.c
->> index d2355b128ba4..f9c59c07558a 100644
->> --- a/drivers/mailbox/exynos-mailbox.c
->> +++ b/drivers/mailbox/exynos-mailbox.c
->> @@ -31,14 +31,61 @@
->> =20
->>  #define EXYNOS_MBOX_CHAN_COUNT		HWEIGHT32(EXYNOS_MBOX_INTGR1_MASK)
->> =20
->> +#define EXYNOS850_MBOX_MCUCTRL		0x0	/* Mailbox Control Register		*/
->> +#define EXYNOS850_MBOX_INTGR0		0x8	/* Interrupt Generation Register 0	*=
-/
->> +#define EXYNOS850_MBOX_INTCR0		0x0C	/* Interrupt Clear Register 0		*/
->> +#define EXYNOS850_MBOX_INTMR0		0x10	/* Interrupt Mask Register 0		*/
->> +#define EXYNOS850_MBOX_INTSR0		0x14	/* Interrupt Status Register 0		*/
->> +#define EXYNOS850_MBOX_INTMSR0		0x18	/* Interrupt Mask Status Register =
-0	*/
->> +#define EXYNOS850_MBOX_INTGR1		0x1C	/* Interrupt Generation Register 1	=
-*/
->> +#define EXYNOS850_MBOX_INTMR1		0x24	/* Interrupt Mask Register 1		*/
->> +#define EXYNOS850_MBOX_INTSR1		0x28	/* Interrupt Status Register 1		*/
->> +#define EXYNOS850_MBOX_INTMSR1		0x2C	/* Interrupt Mask Status Register =
-1	*/
->> +#define EXYNOS850_MBOX_VERSION		0x70
->
-> Please consider defining just the registers that are used, to not
-> pollute the driver. You may drop the unused gs101 definitions too.=20
+--/gIiaJRUw/5IfKBJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Sure. Thanks. I was surprised how many unused defines were introduced
-by gs101 SoC in the first place all over.
+On Wed, Apr 08, 2026 at 07:29:01AM -0500, Rob Herring wrote:
+> On Mon, Mar 30, 2026 at 12:16:06PM +0200, Herve Codina wrote:
 
->> +#define EXYNOS850_MBOX_INTMR1_MASK	GENMASK(15, 0)
->> +
->> +/**
->> + * struct exynos_mbox_driver_data - platform-specific mailbox configura=
-tion.
->> + * @irq_doorbell_offset:	offset to the IRQ generation register, doorbel=
-l
->> + *				to APM co-processor.
->> + * @irq_doorbell_shift:		shift to apply to the value written to IRQ
->> + *				generation register.
->> + * @irq_mask_offset:		offset to the IRQ mask register.
->> + * @irq_mask_value:		value to right to the mask register to mask out
->> + *				all interrupts.
->> + */
->> +struct exynos_mbox_driver_data {
->> +	u16 irq_doorbell_offset;
->> +	u16 irq_doorbell_shift;
->> +	u16 irq_mask_offset;
->> +	u16 irq_mask_value;
->> +};
->> +
->>  /**
->>   * struct exynos_mbox - driver's private data.
->>   * @regs:	mailbox registers base address.
->>   * @mbox:	pointer to the mailbox controller.
->> + * @data:	pointer to driver platform-specific data.
->>   */
->>  struct exynos_mbox {
->>  	void __iomem *regs;
->>  	struct mbox_controller *mbox;
->> +	const struct exynos_mbox_driver_data *data;
->> +};
->> +
->> +static const struct exynos_mbox_driver_data exynos850_mbox_data =3D {
->> +	.irq_doorbell_offset =3D EXYNOS850_MBOX_INTGR0,
->> +	.irq_doorbell_shift =3D 16,
->> +	.irq_mask_offset =3D EXYNOS850_MBOX_INTMR1,
->> +	.irq_mask_value =3D EXYNOS850_MBOX_INTMR1_MASK,
->> +};
->> +
->> +static const struct exynos_mbox_driver_data exynos_gs101_mbox_data =3D =
-{
->> +	.irq_doorbell_offset =3D EXYNOS_MBOX_INTGR1,
->> +	.irq_doorbell_shift =3D 0,
->> +	.irq_mask_offset =3D EXYNOS_MBOX_INTMR0,
->> +	.irq_mask_value =3D EXYNOS_MBOX_INTMR0_MASK,
->>  };
->
-> I find it strange that the SoCs use different registers. Are you sure you=
-'re
-> using the right direction? i.e. ring the doorbell to APM and not to AP?
+> > +dependencies:
+> > +  gain-points: [ gain-gpios ]
+> > +  gain-range: [ gain-gpios ]
+> > +  gain-labels: [ gain-gpios ]
 
-Well, I am not sure I correctly understood the questions and comment. So,
-this all was tested with ACPM TMU code with 3 temp sensors and it seems
-to work and sensors react in the right way.
+> gain-gpios is really optional?
 
-Downstream clearly does the following (see also [1],[2]) when sending
-ACPM msg:
+You've still got mute control, and power up/down - each feature should
+be optional.
 
-static void apm_interrupt_gen(unsigned int id)
-{
-	/* APM NVIC INTERRUPT GENERATE */
-	writel((1 << id) << 16, acpm_ipc->intr + INTGR0);
-}
+--/gIiaJRUw/5IfKBJ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I am aware that gs101 downstream uses INTGR1 in apm_interrupt_gen().
+-----BEGIN PGP SIGNATURE-----
 
-When I use INTGR1 for e850 then I observe acpm timeouts. Hence, out of
-curiosity, what's the expected behaviour when/if I ring the doorbell to
-AP (to itself as far as I understand)? My understanding that it won't
-work at all in such case unless APM firmware does some very fast
-polling.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnWVJgACgkQJNaLcl1U
+h9D3Awf/e8H/NY6iRWy+XgSiVPn9AvssHdvREmwV6FJ2C8hXojdrV8XBoD/r5Bww
+8UAlB5kdkolKhXj+EHTVq6ckYi8DqjeFaLyVmWAvg+eSEArUNw3shPdW0s8a1WJ7
+7mnmLl5BUROho12E2uSlqSQgZfGjoKAcFDGpdMdBxecD1indkI5UDB1OjDVVA1XA
+W+OuVDxT0iPeczhYvDe8U9f8W+F6qNNJjOsJfrhs97HSl5VL6j9bYb7cwFVVG2qS
+MUoSk1Awt7rxKKbJqaJ7z4wyDGG/zdo8nsbaGKBqNoGLzU/LztfDzHkpBVhONk4j
+wWFFId7YjlzyJO4MeVVgMAxMYsMonQ==
+=CBZH
+-----END PGP SIGNATURE-----
 
-
-[1]: https://gitlab.com/Linaro/96boards/e850-96/kernel/-/blob/android-exyno=
-s-4.14-linaro/drivers/soc/samsung/acpm/acpm_ipc.c?ref_type=3Dheads#L423
-[2]: https://github.com/samsungexynos850/android_kernel_samsung_exynos850/b=
-lob/0af517be2336bf8e09c59d576c4c314446713101/drivers/soc/samsung/acpm/acpm_=
-ipc.c#L426
-
->>  static int exynos_mbox_send_data(struct mbox_chan *chan, void *data)
->> @@ -57,7 +104,8 @@ static int exynos_mbox_send_data(struct mbox_chan *ch=
-an, void *data)
->>  		return -EINVAL;
->>  	}
->> =20
->> -	writel(BIT(msg->chan_id), exynos_mbox->regs + EXYNOS_MBOX_INTGR1);
->> +	writel(BIT(msg->chan_id) << exynos_mbox->data->irq_doorbell_shift,
->> +	       exynos_mbox->regs + exynos_mbox->data->irq_doorbell_offset);
->
-> Use FIELD_PREP from <linux/bitfield.h> please. You will use a mask instea=
-d of
-> a shift.
->
-> I would rename irq_doorbell_offset to intgr. It aligns with the register =
-name
-> from the datasheet. You won't need to prepend _offset to the name, we alr=
-eady
-> see it's an offset when doing the writel().
-
-Sure. Thanks. Let's use FIELD_PREP.
-
-"doorbell" naming was chosen for readability and maintainability reasons.
-It seems to be more generic enough name that better reflects the workflow
-of what's going on in ACPM+mailbox machinery. We can rename it to just
-"doorbell" for instance.
-
-From platform data it will be clear to which register it is set, INTGR0
-or INTGR1, to align it with datasheet (which is closed anyway).
-
-Regarding intgr vs doorbell name, the intgr is a bit unclear for a
-reader if it means interrupt generation register or something else.
-But if you prefer, I can go with "intgr".
-
-One more option is add a comment, smth like /* Ring the doorbell */
-before that writel().
-
-[..]
-
->> @@ -133,7 +194,7 @@ static int exynos_mbox_probe(struct platform_device =
-*pdev)
->>  	platform_set_drvdata(pdev, exynos_mbox);
->> =20
->>  	/* Mask out all interrupts. We support just polling channels for now. =
-*/
->> -	writel(EXYNOS_MBOX_INTMR0_MASK, exynos_mbox->regs + EXYNOS_MBOX_INTMR0=
-);
->> +	writel(data->irq_mask_value, exynos_mbox->regs + data->irq_mask_offset=
-);
->> =20
->
-> and here I would s/irq_mask_value/intmr_mask and irq_mask_offset/intmr.
-
-Ack. Thanks.
-
-Best regards,
-Alexey
+--/gIiaJRUw/5IfKBJ--
 
