@@ -1,162 +1,222 @@
-Return-Path: <devicetree+bounces-286282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286278-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gFliIyMW2GmFXQgAu9opvQ
-	(envelope-from <devicetree+bounces-286282-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 23:12:03 +0200
+	id YGtTDhUV2GmAXQgAu9opvQ
+	(envelope-from <devicetree+bounces-286278-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 23:07:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F80C3CFD43
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 23:12:02 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1D703CFC53
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 23:07:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D5F64300BC9F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 21:08:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6493A301588D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 21:07:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB19371049;
-	Thu,  9 Apr 2026 21:08:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B721A370D7B;
+	Thu,  9 Apr 2026 21:07:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="XgaHP513"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="DWpeyYh4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from mail-43101.protonmail.ch (mail-43101.protonmail.ch [185.70.43.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBEC0341AB1
-	for <devicetree@vger.kernel.org>; Thu,  9 Apr 2026 21:08:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 399E12FA0C6;
+	Thu,  9 Apr 2026 21:07:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775768937; cv=none; b=SK0lfGEnF7e5MEVWf3sBETSQpCo9pjUTRe/7uzACD5ctQOMp1M+Rmpu/o0oxQuaRrySO5pUU1cCEc1QlrhIOJP0NJzblj/q4ThpA40g2jDd0dtCet90z0oA0z3P56+fewnFbOMdBFFbjUsCxmXivynm51Xj02rSttboJJnMrsyI=
+	t=1775768847; cv=none; b=gj9v5SiOoQLx1ASTyOCPQ3YYtPIIsWFi0CpXf6XAMpLBWdy1fFGpcvV8TuEX/94PbV8Jf8/p5Qr4yIRpgmVxiFQ27tWsj90MlQqFaixjfhk88OZJOYPmiDFDejKSisuw2+lrUE41TyiA35zuIy/SCW1kjPaw6sRIehMkpE1AnVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775768937; c=relaxed/simple;
-	bh=XheOPdijU1lZxYO4ms3QUXbItdzGCZlfc4fRl37DxXo=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=eGvONwiHHzWWWoUfZSupbl5sf2fu3X7yGi7UlJe813vALmiwLfYd9O0nKtMMkMYqCn8Um7pl3VorRURRsYlOHrwVoWX+Koccj/EDFl1CtWABvw/wwAAOeFhUb5xkixV3FzmCEz/QcqhuuGJtQb0jmX1cgz3R9UJIN6kS7q5DB5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=XgaHP513; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 937C02C044C;
-	Fri, 10 Apr 2026 09:02:43 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1775768563;
-	bh=XheOPdijU1lZxYO4ms3QUXbItdzGCZlfc4fRl37DxXo=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=XgaHP513faJnSLELsi1ls21ddeYz1QEn3NFTmfyq+A3Wz7DzWoynHj+HM8yNjVSew
-	 OumM316BZUYQkwB2waMjDPGLPxw5ISU2viEePseJmDHYz5wAn3BuBZBThxZ4EBhAUS
-	 AZ6rSKjvYo/2KOHUX1epRXedFjzUwIcRRNk94beGoMq3QyxbbTDDOFK/cmO/O3nFQm
-	 XgCwaUFKAnnurSDsWICAmm5LP1ziJiwTWWN5vff7lGiwXqwid8XXTroiGH1u0CdROE
-	 pgFP4KEWeWpgt+gAVvFJ5mQTzUWLOTAkkDec32oT1qXD539IC527rFoMXeKUC9ZcmE
-	 eveZWgAd4qDYg==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B69d813f30001>; Fri, 10 Apr 2026 09:02:43 +1200
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.39; Fri, 10 Apr 2026 09:02:43 +1200
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1748.039; Fri, 10 Apr 2026 09:02:43 +1200
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Guenter Roeck <linux@roeck-us.net>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 0/2] hwmon: pmbus: Sony APS-379
-Thread-Topic: [PATCH v4 0/2] hwmon: pmbus: Sony APS-379
-Thread-Index: AQHcwkooU7aXFpGjtUmacAZ76cSkdbXKuyMAgAu/hwA=
-Date: Thu, 9 Apr 2026 21:02:43 +0000
-Message-ID: <20ea1c7b-d7d4-4f29-a0f0-c8a8b5a1076d@alliedtelesis.co.nz>
-References: <20260402024101.4136697-1-chris.packham@alliedtelesis.co.nz>
- <cce0e8c4-8df3-408c-b3ac-6ede3c4b2cf0@roeck-us.net>
-In-Reply-To: <cce0e8c4-8df3-408c-b3ac-6ede3c4b2cf0@roeck-us.net>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <EA60C1FF54D4AE4B8A8566161038CF02@alliedtelesis.co.nz>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1775768847; c=relaxed/simple;
+	bh=A4vYpJR4R1Zfcc5UPKnQUIvd3DYx+20Qbl7bkyBWwXQ=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=WzyaB1Lnj7Sm30egjObs1aWyQZ188SBjPL+KHcR/l5kldy0pH/U5bJhCz5fWicfj7m+mHkxCJ5SplYuC4xCWv6LoNEPOVeavBQnfEg/BB+Z0bNa9NlRfSpMiN9A0MMiO+xSRxk1No94eHH+IJmvgfWiS3l22LWQyfGfDPchFP08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=DWpeyYh4; arc=none smtp.client-ip=185.70.43.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+	s=protonmail3; t=1775768838; x=1776028038;
+	bh=dsuOl6TYFl20q1OWDoSsPgAQVgUgCF0ZcayvS81OW6A=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=DWpeyYh4is+jDCZ/f3kXmHzSsvX+f7TMh8HV5E4EkI1EmpliZAQiykqTTz5hmSdwD
+	 PV3+09FuT1Iuj7Ah6PAgqfBW05HiTegC3poGpAClPGAYykSfFdwmRY2tFF0opVToch
+	 aSO0cTtgaDZ6kIpMsA+vK8ODIg1JDBohy6r3bd/uJn3Qk9hxNq6h+abZIp+tCAi1R2
+	 ParJwKuoVFQOPV+zqfU0zRo9f0oKk/SfZz0lyYKCr3B/abbAhOnD8JcHFDQXx5GOhU
+	 ORRTc6vd5E1aCVz3utz09dgIcY3mGoYae1tu+HBCAulth694afP9x+wA77LQTXhxn6
+	 Xssg4utbq+6Uw==
+Date: Thu, 09 Apr 2026 21:07:11 +0000
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+From: Hardik Phalet <hardik.phalet@pm.me>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, =?utf-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Brigham Campbell <me@brighamcampbell.com>, Shuah Khan <skhan@linuxfoundation.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev, Hardik Phalet <hardik.phalet@pm.me>
+Subject: [PATCH v2 0/4] Add QST QMC5883P magnetometer driver
+Message-ID: <20260409210639.3197576-1-hardik.phalet@pm.me>
+Feedback-ID: 166659585:user:proton
+X-Pm-Message-ID: fa4a78a46b0fe775bce56ef0e13b802b4195cc89
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=EcprQ+mC c=1 sm=1 tr=0 ts=69d813f3 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=drD7vYo3kbIA:10 a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=c92rfblmAAAA:8 a=DqNkSbqnGu-f0Yt-4CcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=GvGzcOZaWPEFPQC_NcjD:22
-X-SEG-SpamProfiler-Score: 0
-X-Spamd-Result: default: False [-2.06 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[alliedtelesis.co.nz,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[alliedtelesis.co.nz:s=mail181024];
+	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286282-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286278-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,alliedtelesis.co.nz:dkim,alliedtelesis.co.nz:mid];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	DKIM_TRACE(0.00)[alliedtelesis.co.nz:+];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Chris.Packham@alliedtelesis.co.nz,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hardik.phalet@pm.me,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[pm.me:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 9F80C3CFD43
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pm.me:dkim,pm.me:mid]
+X-Rspamd-Queue-Id: A1D703CFC53
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-DQpPbiAwMi8wNC8yMDI2IDIzOjM4LCBHdWVudGVyIFJvZWNrIHdyb3RlOg0KPiBPbiA0LzEvMjYg
-MTk6NDAsIENocmlzIFBhY2toYW0gd3JvdGU6DQo+PiBUaGlzIHNlcmllcyBhZGQgc3VwcG9ydCBm
-b3IgdGhlIFBNQnVzIGh3bW9uIG9uIHRoZSBTb255DQo+PiBBUFMtMzc5IHBvd2VyIHN1cHBseSBt
-b2R1bGUuIFRoZXJlJ3Mgc29tZSBkZXZpYXRpb25zIGZyb20NCj4+IHRoZSBQTUJ1cyBzcGVjaWZp
-Y2F0aW9uIHRoYXQgbmVlZCB0byBiZSBkZWFsdCB3aXRoLg0KPj4NCj4+IENocmlzIFBhY2toYW0g
-KDIpOg0KPj4gwqDCoCBkdC1iaW5kaW5nczogdHJpdmlhbC1kZXZpY2VzOiBBZGQgc29ueSxhcHMt
-Mzc5DQo+PiDCoMKgIGh3bW9uOiBwbWJ1czogQWRkIHN1cHBvcnQgZm9yIFNvbnkgQVBTLTM3OQ0K
-Pj4NCj4+IMKgIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL3RyaXZpYWwtZGV2aWNlcy55YW1swqAg
-fMKgwqAgMiArDQo+PiDCoCBEb2N1bWVudGF0aW9uL2h3bW9uL2Fwcy0zNzkucnN0wqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgNTggKysrKysrDQo+PiDCoCBEb2N1bWVudGF0aW9uL2h3
-bW9uL2luZGV4LnJzdMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgIDEgKw0K
-Pj4gwqAgZHJpdmVycy9od21vbi9wbWJ1cy9LY29uZmlnwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHzCoMKgIDYgKw0KPj4gwqAgZHJpdmVycy9od21vbi9wbWJ1cy9NYWtlZmls
-ZcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqAgMSArDQo+PiDCoCBkcml2
-ZXJzL2h3bW9uL3BtYnVzL2Fwcy0zNzkuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IHwgMTc4ICsrKysrKysrKysrKysrKysrKw0KPj4gwqAgNiBmaWxlcyBjaGFuZ2VkLCAyNDYgaW5z
-ZXJ0aW9ucygrKQ0KPj4gwqAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vaHdtb24v
-YXBzLTM3OS5yc3QNCj4+IMKgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2h3bW9uL3BtYnVz
-L2Fwcy0zNzkuYw0KPj4NCj4NCj4gU2FzaGlrbyBzdGlsbCBkb2Vzbid0IGxpa2UgaXQuDQo+DQo+
-IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDQwMjAyNDEwMS40MTM2Njk3LTEt
-Y2hyaXMucGFja2hhbSU0MGFsbGllZHRlbGVzaXMuY28ubnogDQo+DQoNCkp1c3Qgb3V0IGlmIGlu
-dGVyZXN0IGlzIHRoaXMgc29tZXRoaW5nIEkgc2hvdWxkIGJlIGxvb2tpbmcgdG8gcnVuIGJlZm9y
-ZSANCnN1Ym1pdHRpbmc/IEkgd2FzIHB1dCBvZmYgYnkgdGhlIGxvdyBxdWFsaXR5IHJlc3VsdHMg
-KGFuZCBkdWJpb3VzIA0KbGljZW5zZSkgb2Ygc29tZSBvZiB0aGUgZWFybGllciBBSSBjb2RlIGFz
-c2lzdGFudHMgc28gSSB0ZW5kIHRvIGF2b2lkIA0KdGhlbS4gVGltZSB0byByZXZpc2l0IHBlcmhh
-cHMuDQoNCj4NCj4gLSBZZXMsICJleHRyYWN0ZWQgd2hpbGUgcHJvYmluZyIgaXMgbm8gbG9uZ2Vy
-IGFjY3VyYXRlLg0KPiDCoCBNYXliZSBhZGQgYSBjb21tZW50IGV4cGxhaW5pbmcgdGhhdCB0aGUg
-ZXhwb25lbnQgaXMgY29uc3RhbnQuDQo+IMKgIE1heWJlIGV2ZW4gdXNlIGEgZGVmaW5lID8gVGhh
-dCB3b3VsZCBtYWtlIHN0cnVjdCBhcHNfMzc5X2RhdGENCj4gwqAgdW5uZWNlc3NhcnkuDQpJIGtl
-cHQgaXQgZm9yIHR3byByZWFzb25zLiAxKSB0aGUgbXA1OTkwLmMgSSBjb3BpZWQgaXQgZnJvbSBo
-YWQgaXQuIDIpIA0KaXQgbGVhdmVzIHRoZSBkb29yIG9wZW4gZm9yIGhhdmluZyBzb21ldGhpbmcg
-dGhhdCB1c2VzIGEgZGlmZmVyZW50IA0KZXhwb25lbnQgKHBvc3NpYmx5IGFkanVzdGVkIGF0IHJ1
-biB0aW1lKS4gSXQncyBub3QgcmVhbGx5IG5lZWRlZCBzbyBJJ20gDQpoYXBweSB0byByZXBsYWNl
-IGl0IHdpdGggYSBkZWZpbmUuDQo+IC0gUmVqZWN0aW5nIHZpcnR1YWwgcmVnaXN0ZXJzOiBXaHkg
-aW5kZWVkID8gSXMgdGhlcmUgYSByZWFzb24gPw0KDQpDb3B5IGFuZCBwYXN0ZSBzdHJpa2VzIGFn
-YWluLiBJIHNob3VsZCBwcm9iYWJseSByZW1vdmUgdGhlIHNhbWUgdGhpbmcgDQpmcm9tIHRoZSBi
-cGEtcnM2MDAuYyAoSSdsbCBuZWVkIHRvIGZpbmQgb25lIGFyb3VuZCBoZXJlKS4NCg0KPg0KPiBU
-aGFua3MsDQo+IEd1ZW50ZXINCj4=
+This series adds initial Linux support for the QST QMC5883P, a 3-axis
+anisotropic magneto-resistive (AMR) magnetometer with a 16-bit ADC that
+communicates over I2C. To my knowledge there is no existing upstream
+driver for this device.
+
+The driver supports:
+  - Raw magnetic field readings on X, Y, and Z axes
+  - Four selectable full-scale ranges (=C2=B12 G, =C2=B18 G, =C2=B112 G, =
+=C2=B130 G)
+  - Configurable output data rate (10, 50, 100, 200 Hz)
+  - Configurable oversampling ratio (1, 2, 4, 8)
+  - Configurable downsampling ratio (1, 2, 4, 8) via a custom sysfs
+    attribute
+  - Runtime PM with a 2 s autosuspend delay
+  - System suspend/resume via pm_runtime_force_suspend/resume
+
+Regmap with an rbtree cache is used throughout. CTRL_1 and CTRL_2
+bit fields are accessed via regmap_field to avoid read-modify-write
+races. The STATUS register is marked precious so regmap never reads
+it speculatively and clears the DRDY/OVFL bits unexpectedly.
+
+The init sequence on probe is: soft reset =E2=86=92 wait 1 ms =E2=86=92 dea=
+ssert
+reset =E2=86=92 configure SET/RESET control =E2=86=92 apply default ODR/OSR=
+/DSR/RNG
+=E2=86=92 enter normal mode. This ordering was determined empirically on
+hardware to produce reliable, non-zero axis readings.
+
+The driver is placed under drivers/staging/iio/magnetometer/ with a
+TODO file tracking the remaining work before it can graduate:
+  - Triggered buffer support (iio_triggered_buffer_setup)
+  - DRDY interrupt support
+  - Self-test implementation
+
+Patches:
+  1/4 - dt-bindings: vendor-prefixes: Add 'qst' for QST Corporation
+  2/4 - dt-bindings: iio: magnetometer: Add binding for QST QMC5883P
+  3/4 - staging: iio: magnetometer: Add QST QMC5883P driver
+  4/4 - MAINTAINERS: Add entry for QST QMC5883P magnetometer driver
+
+Testing
+-------
+Tested on a Raspberry Pi 4B running a mainline kernel (aarch64) with a
+GY-271 HM-246 board connected via I2C bus 1. The chip was confirmed to
+enumerate at address 0x2C via i2cdetect.
+
+The driver was cross-compiled from Fedora (x86_64) targeting aarch64
+and loaded as a module (qmc5883p.ko) with the Device Tree overlay
+pointing at i2c1:0x2c.
+
+Verification steps performed:
+  - Chip ID register (0x00) reads back 0x80 on probe, confirming the
+    correct device is present
+  - All three axes (in_magn_x_raw, in_magn_y_raw, in_magn_z_raw) return
+    non-zero, stable values when the board is held still and change
+    appropriately when the board is rotated
+  - in_magn_x_scale (and Y, Z) returns the expected fractional value for
+    the default =C2=B18 G range (1/37500000)
+  - in_magn_sampling_frequency / _available, in_magn_oversampling_ratio /
+    _available, and downsampling_ratio / downsampling_ratio_available all
+    read and write correctly; the chip responds without error to each
+    valid setting
+  - Runtime PM: after 2 s of inactivity the device enters suspend mode
+    (MODE =3D 0x00 confirmed via i2cdump); the next sysfs read correctly
+    resumes the device and returns valid data
+  - System suspend/resume (echo mem > /sys/power/state) leaves the
+    driver in a consistent state; readings remain valid after resume
+  - dt_binding_check passes for patch 2/4
+  - Kernel builds cleanly with W=3D1 and no new warnings
+
+Changes in v2:
+  - Use get_unaligned_le16() from <linux/unaligned.h> instead of manual
+    byte-shifting for deserialising axis data (review feedback)
+  - Fix pm_runtime_* calls in downsampling_ratio_store() to use
+    data->dev (the i2c parent device) instead of dev (the iio device),
+    avoiding PM refcount imbalances (review feedback)
+  - Replace manual pm_runtime_disable() devm action with
+    devm_pm_runtime_enable(), which avoids a kcfi-violating function
+    pointer cast (review feedback)
+  - Move chip suspend into a devm action (qmc5883p_suspend_action)
+    registered before devm_iio_device_register() so that devres LIFO
+    ordering guarantees the IIO interface is fully unregistered before
+    the hardware is put to sleep, closing a race window on removal
+    (review feedback)
+  - Drop qmc5883p_remove() and the .remove hook entirely, as the above
+    devm action subsumes it (review feedback)
+  - Remove the empty qmc5883p_runtime_idle() stub; passing NULL in
+    RUNTIME_PM_OPS already provides the correct default behaviour
+  - Add regulator support: use devm_regulator_get_enable_optional() for
+    the vdd-supply documented in the dt-binding, with a 50 ms post-enable
+    delay per datasheet section 5.3 (PSUP ramp + POR time) (review
+    feedback)
+  - Reinitialise the chip in qmc5883p_system_resume() via
+    qmc5883p_chip_init() followed by regcache_mark_dirty() +
+    regcache_sync(), so that the driver recovers correctly if the
+    regulator was physically cut during system suspend and POR reset all
+    registers (review feedback)
+
+v1: https://lore.kernel.org/all/20260409162308.2590385-1-hardik.phalet@pm.m=
+e/
+
+Hardik Phalet (4):
+  dt-bindings: vendor-prefixes: Add QST Corporation
+  dt-bindings: iio: magnetometer: Add binding for QST QMC5883P
+  staging: iio: magnetometer: Add QST QMC5883P driver
+  MAINTAINERS: Add entry for QST QMC5883P magnetometer driver
+
+ .../iio/magnetometer/qst,qmc5883p.yaml        |  48 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ drivers/staging/iio/Kconfig                   |   1 +
+ drivers/staging/iio/Makefile                  |   1 +
+ drivers/staging/iio/magnetometer/Kconfig      |  20 +
+ drivers/staging/iio/magnetometer/Makefile     |   7 +
+ drivers/staging/iio/magnetometer/TODO         |   5 +
+ drivers/staging/iio/magnetometer/qmc5883p.c   | 830 ++++++++++++++++++
+ 9 files changed, 921 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/qst,=
+qmc5883p.yaml
+ create mode 100644 drivers/staging/iio/magnetometer/Kconfig
+ create mode 100644 drivers/staging/iio/magnetometer/Makefile
+ create mode 100644 drivers/staging/iio/magnetometer/TODO
+ create mode 100644 drivers/staging/iio/magnetometer/qmc5883p.c
+
+--=20
+2.53.0
+
+
 
