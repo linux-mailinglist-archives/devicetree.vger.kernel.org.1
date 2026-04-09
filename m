@@ -1,174 +1,273 @@
-Return-Path: <devicetree+bounces-286210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286213-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cFXLFM7G12n6SwgAu9opvQ
-	(envelope-from <devicetree+bounces-286210-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 17:33:34 +0200
+	id mKxiK/DG12n6SwgAu9opvQ
+	(envelope-from <devicetree+bounces-286213-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 17:34:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB3593CCBCF
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 17:33:33 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFAA43CCC0E
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 17:34:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1DEC63098291
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 15:27:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A668B3065E64
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 15:28:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8130D3E0243;
-	Thu,  9 Apr 2026 15:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0ED3DFC65;
+	Thu,  9 Apr 2026 15:27:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U4AjnQKq"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ko7c+Dcs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010035.outbound.protection.outlook.com [52.101.201.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A8333E0222;
-	Thu,  9 Apr 2026 15:26:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775748416; cv=none; b=Oc4SBPLzI3RX6/hR6GY+JZKy/+aIkEbiLPL86mec0TWjeDN/bNPZx60bQz/Z5GPFNhCE8oCKfCmdzufMxCjjjYk/yO0oD6g9AviehS6AgUR3V0HJSfmdhipDVLTaspRVIfGWgTMlE/u3L2KZqgxp27uYZ4ZZTDxbwz7e0Bqmh38=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775748416; c=relaxed/simple;
-	bh=CPeLnTCytq5apC3Xf81ylWPoZiJdIH6Sk0OmNhFg2bw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZvsTEO4/M1RyekFXO7N7ABNKlUUwW7LQ+1/aa4X+HVMXIHE34F3jkmKFCDd6mMBobzMe3Vz62XYppO5cTqV5IBE5FYVEL1L0NS7sKtcDQGAicEzXlI4S3rMhh+a0oazfHeDn/sIdRzTrewsPc27hwBOTt/NacSmYUbI6SOeMMqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U4AjnQKq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DE623C2BCB2;
-	Thu,  9 Apr 2026 15:26:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775748415;
-	bh=CPeLnTCytq5apC3Xf81ylWPoZiJdIH6Sk0OmNhFg2bw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=U4AjnQKq9N1mevxgxXeOngAYGgtsMKycGaGDLkQCynjc+ODgRNi5xClrbrLny/7HR
-	 pOcqnogEhlpkHc2tvJppLxX6Ex5Eng8diBdNatQlRTp5ZRvWCk/wTZowcPyWA6vIfP
-	 B0V6oNV+pH2yo6DdJj2mmZb0jFauh1l3obxb82n2snKP6mBKaYxRG0rXT+TYWQb4fF
-	 Sctw/ag8MUHKMrH/nwnKCFqaWun32ml63BKriIK7Qnv/L5zrMWJa/S9pS1pwgKQF62
-	 qRebVrMKRsTfcniSqkTGI9ANhhL9UkUVTyCJ5GaBrtc1LD1RqYxymOLDFxf1Uo5Jvc
-	 a3aBH/vSsCw4w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D3B8CF31E2D;
-	Thu,  9 Apr 2026 15:26:55 +0000 (UTC)
-From: Joe Sandom via B4 Relay <devnull+jsandom.axon.com@kernel.org>
-Date: Thu, 09 Apr 2026 16:26:55 +0100
-Subject: [PATCH v3 3/5] arm64: dts: qcom: sm8550: move IPA properties to
- SoC device tree
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E4D3BD62A;
+	Thu,  9 Apr 2026 15:27:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.35
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775748454; cv=fail; b=h3zXzUSzArGi7lWCmXcM8BFcTD//8TltLpNNPTcC3dPvxGqYk/L6gqRGAswIF6fu/PYXeKDwqh25JGcAmQF/0ecX5PNYwFEW68ZUO0oXX/BWOE6mLFhqjyPDfhXM7F0rZgb8IspXSUArVKF0iDU+iNpS7L7dQEWA0vx6e6S8Vb0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775748454; c=relaxed/simple;
+	bh=uEdKeeZFdkuCrxW7zZBb6RxWhHdcq5h+5sdT4GTaWwM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=rWiWGcRQiibvFZnFtqLjq95YAEHyF51VWI9BGqogND8rqQAzHN/HUMVPnmgIIIU7gD8q3GLTeqpv3VSg6I910cBfKYEPi7AY0/Ijud1iVdtCZDLpurVlcGTKyXefQ4Qx17/D55a1QQCvYw5XyQMqa2ZkYqy9GhKtONuFxxS1FnQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ko7c+Dcs; arc=fail smtp.client-ip=52.101.201.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yUZWwsBrxHFleacYViuMmt+pfkWUC3y2Hq26vCWNl/fXis1XmDuLFNvmfIMXZhYawdQwxWbOWWSDWz5lb1pWO6KC3he918gXEp76I0GcGlx8PsdQD1y2CrVEgfsn/Ks4oI56/wRJ3EtfCA6SC3bsPSFxpEfPKOqOccaIr4oV3NSkxyp13aFfGLelxJfoeaEn78SwQIeU5FYmiZjPm3pUe1Zs5NV9GCbzf1C7MNh5WsxgojeJi7WuWnAUCJliyoxolXL3niRdYdOga9k4Tb1GVDQkifeSJMexaKjn5xbJBozEBUte7In+WaYJykXbp61dMP7/8F98DR1eMlzqEi4/ZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=n5xVos7b2EuYayAR3TgR3IQAzIIsxb9TsfqOKgSDcxQ=;
+ b=KZqQLRdDTbgWZu29CFV4R8Ox5z3ApC4faZpH6NHDH6Me37hdMRi7Lb9mgjUrykquGkFGo08D1O1fVVPlgBlJqapZZVyfMNhqwzu1IepcxOiTwRJVo8XnHt1//5QrSQYRtoF7Tyi43arOV8vVUtjIsat74V0SoQ01QfO1EgaavudnkdmYw727t+XSNmbMn9h07zcHVuLs9ZxwiWkyYQ4MeFCJBHUq9XMo4RKDP2lqTP36cxUHcljx6nHZllDUja89BYwcVGv0AMpqihY2BbN2FjAd9TzYYmaEMvmcYC2o7JbfDatPOH8K2qDS+jqFPv5+VmvWU7BPp/8renePPLbjWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n5xVos7b2EuYayAR3TgR3IQAzIIsxb9TsfqOKgSDcxQ=;
+ b=ko7c+DcsHpuU/O3X9xS9t22qJUW/kFron7ab3MUBDRQ3L1WSgTbXv18h2OvdxjmAEr8mlLYxuPtrg9/q56S/E8JkC1xuMxVJ05N74Y7hHzt0DI2nMASsUyFr89Flp4hhLT4nVZpGpb5IdUdq4HP+0RcXJbgQ+ChamFmX1kNHWfQ=
+Received: from BYAPR06CA0071.namprd06.prod.outlook.com (2603:10b6:a03:14b::48)
+ by IA0PR10MB7382.namprd10.prod.outlook.com (2603:10b6:208:43f::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.42; Thu, 9 Apr
+ 2026 15:27:30 +0000
+Received: from SJ1PEPF00002325.namprd03.prod.outlook.com
+ (2603:10b6:a03:14b:cafe::55) by BYAPR06CA0071.outlook.office365.com
+ (2603:10b6:a03:14b::48) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.41 via Frontend Transport; Thu,
+ 9 Apr 2026 15:27:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ SJ1PEPF00002325.mail.protection.outlook.com (10.167.242.88) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17 via Frontend Transport; Thu, 9 Apr 2026 15:27:28 +0000
+Received: from DFLE212.ent.ti.com (10.64.6.70) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 9 Apr
+ 2026 10:26:56 -0500
+Received: from DFLE204.ent.ti.com (10.64.6.62) by DFLE212.ent.ti.com
+ (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 9 Apr
+ 2026 10:26:56 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 9 Apr 2026 10:26:56 -0500
+Received: from [10.249.35.69] ([10.249.35.69])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 639FQtUG3991264;
+	Thu, 9 Apr 2026 10:26:55 -0500
+Message-ID: <6d0fa8ee-b189-4ccb-a120-d7d42300168a@ti.com>
+Date: Thu, 9 Apr 2026 10:26:55 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] ASoC: codecs: Add TAS67524 quad-channel audio
+ amplifier driver
+To: Mark Brown <broonie@kernel.org>
+CC: <linux-sound@vger.kernel.org>, <lgirdwood@gmail.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<perex@perex.cz>, <tiwai@suse.com>, <shenghao-ding@ti.com>,
+	<kevin-lu@ti.com>, <baojun.xu@ti.com>, <niranjan.hy@ti.com>,
+	<l-badrinarayanan@ti.com>, <devarsht@ti.com>, <v-singh1@ti.com>,
+	<linux-kernel@vger.kernel.org>
+References: <20260408053149.1369350-1-sen@ti.com>
+ <20260408053149.1369350-3-sen@ti.com>
+ <588c699e-7ad0-4f71-9727-56e8a3c78805@sirena.org.uk>
+Content-Language: en-US
+From: "Wang, Sen" <sen@ti.com>
+In-Reply-To: <588c699e-7ad0-4f71-9727-56e8a3c78805@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260409-rb5gen2-dts-v3-3-be736355d4b4@axon.com>
-References: <20260409-rb5gen2-dts-v3-0-be736355d4b4@axon.com>
-In-Reply-To: <20260409-rb5gen2-dts-v3-0-be736355d4b4@axon.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Joe Sandom <jsandom@axon.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1775748414; l=2013;
- i=jsandom@axon.com; s=20260319; h=from:subject:message-id;
- bh=2Hf81fBazRw+MMKDG2/cNY2JsBcSjh+sphR62doLGW8=;
- b=xD0wu3dYCtlLNv6B0W0ajhsBSMrO23mvlsSycyxbjV9y+Sb6h4KdeiNTkkUlzNq3dkpvocVG6
- 9WHVUasggR0AWD8ft45a9TmiW2WfBNnVpqJLjG1fNOaA1VrAGrAhQPp
-X-Developer-Key: i=jsandom@axon.com; a=ed25519;
- pk=Q/yflwj2WhkgBVTskrS9Vl5oScD0Bp3vTzDi+OxskTo=
-X-Endpoint-Received: by B4 Relay for jsandom@axon.com/20260319 with
- auth_id=687
-X-Original-From: Joe Sandom <jsandom@axon.com>
-Reply-To: jsandom@axon.com
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002325:EE_|IA0PR10MB7382:EE_
+X-MS-Office365-Filtering-Correlation-Id: deb2b58e-6172-4acd-c2e7-08de964c8273
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|36860700016|7416014|82310400026|1800799024|56012099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	DV7j0ZSW/8zNSMthz6sxk3kGnknJt7/zPabatKQySpaDwLUSyFAv1vjGozLL70iPOKfiGNJJtPj0VZFvnEtisfUkpI9hO9+N8v/Jt/0Vtl1FecKkEGKuoVXc3RqktJ4Dk9aw5iidd2l4swgWps9iJlp4WglXMKfn5Icttf6KiNx9sm7k8FXsGckUxdTj43YyKfz0pPZ3tKHq8ZsHGUCEbIVvyZher3bUW9BkHRS+Nddz2V1xMbaMzIJBrGYSPvP3Kb4hhlCt+QGTYWgOa4kzSJIZCU3SKJ19O0vMZLXe3vo+wMMcRz32z5IZKapFFooXp5k+cXkmhcFAWeP/XfzSHqRPphbrUMDUMkz44gdXajoK594R+trCehU8K2jMit3508SbGOuxlN2tNlasIM94eZbJKOMEh2bv461LBZzd2ROY1CH7pxAaAS/A51X0HT8BtpG+ci8+s9gAZaL08wqsMSaBCL2Sr/LXcAIfLlgmrfuHa0tjtPpqoVQWNLvT98doQb/0ZgKxBpaU+KrKXeqqlXauJAiPiOQQB5LMkVLc07DsjZ1+f8g5g+3edbdIKp7sRrIzFQmLOFl5WGPpmgZxXLrIXzQf6ZRBPHLXvfN9iFpz30Bi36XmucDDDjxefj1SxsdNdTinx1K7HZhUbmzYdunYlfFOIhsBlFxn94XZElu8aOBmMMq7g8we/qqnl3XK8qlPv3Ec7tuPULMdh0+WKIqcve55gQeiFcAJkWblkWbfStOvVrrsCvMoTPMByOrq76vuqMoRxzihnplG4Wjs4A==
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(36860700016)(7416014)(82310400026)(1800799024)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	ACRjupLoGpScVOn4Id+HWTL5es92ivdmvsIJmtrTOJZmM1v+WxmQjnGTSCGz9IJFQw8WJO4pAeAuy+4uee0abmGpPpRooze6fXoVRB4E+guaH9mIQ5VW+h+PNYEeaK4mQuztRQYtMAudnd1GXuWM8O+XLDkHy45cO2aQV9y8QJk92DaVFgaRBXsj7SSdToyIx3y/5IZkyv7SmUitEsRYFzBbls/P506CU8OCRatyrP33Qk3tsqj3AFEp3u2MvD+VqoMdaEoQD9S2c1g0FS6lxQVVz++uOkV1ipiT1yYW+mj/kOclKjmrLFF8aszVpRspmssnbOOxGZkcHBv06VfIPL6getVrWKgWact6VVUlfevgG2T/S0JUm6IOy/UrcMtsfEomsl1E238PEFmWz3KWHM2pJMEd2mbN99ZnfaXZNQ1ZOOJVI9XIWG17bD3rzHur
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 15:27:28.2211
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: deb2b58e-6172-4acd-c2e7-08de964c8273
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF00002325.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR10MB7382
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286210-lists,devicetree=lfdr.de,jsandom.axon.com];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-286213-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,kernel.org,perex.cz,suse.com,ti.com];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ti.com:dkim,ti.com:mid];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[jsandom@axon.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sen@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[axon.com:email,axon.com:replyto,axon.com:mid,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EB3593CCBCF
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: CFAA43CCC0E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Joe Sandom <jsandom@axon.com>
+On 4/8/2026 10:41 AM, Mark Brown wrote:
+> On Wed, Apr 08, 2026 at 12:31:46AM -0500, Sen Wang wrote:
+> 
+>> +static int tas675x_dsp_mem_write(struct tas675x_priv *tas, u8 page, u8 reg, u32 val)
+>> +{
+> 
+>> +out:
+>> +	__tas675x_select_book(tas, TAS675X_BOOK_DEFAULT);
+>> +	mutex_unlock(&tas->io_lock);
+> 
+> Do we really need to restore the book here?  The book select register is
+> marked as volatile so regmap will figure things out if it's the next
+> thing to write, and anything else will need to set whatever it wants
+> anyway.  Alternatively if the book register were cached (which wouldn't
+> be a bad idea) then we'd need to restore whatever the cache has or
+> invalidate the cache.
+> 
+Hi Mark, Thanks for the review!
 
-Move qcom,gsi-loader and memory-region properties from individual board
-DTS files into the SoC DTSI, since these are common to all SM8550-based
-boards.
+The book restore was needed because only the page register is listed as 
+the selector_reg, and the hardware also requires page 0 before switching 
+books, which kind of prevents cache and including book management into 
+the ranges config alongside page selection.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Joe Sandom <jsandom@axon.com>
----
- arch/arm64/boot/dts/qcom/sm8550-hdk.dts | 2 --
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 2 --
- arch/arm64/boot/dts/qcom/sm8550.dtsi    | 2 ++
- 3 files changed, 2 insertions(+), 4 deletions(-)
+All other regmap accesses in the driver implicitly assume DEFAULT book, 
+and therefore I can get away with simple and explicit switching of the 
+books with help of mutex in a few places.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-index e821b731bdc496c872703723df02ae9b9b0233b5..b795589385520acd74eecc7701cab82f4f7da200 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-@@ -939,8 +939,6 @@ &i2c_master_hub_0 {
- };
- 
- &ipa {
--	qcom,gsi-loader = "self";
--	memory-region = <&ipa_fw_mem>;
- 	firmware-name = "qcom/sm8550/ipa_fws.mbn";
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index cf63109ff7bf7b6fc827f108e22e82b8b04273c1..f2effa55d8197819175bfd5a89d2fddb20561548 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -818,8 +818,6 @@ fsa4480_sbu_mux: endpoint {
- };
- 
- &ipa {
--	qcom,gsi-loader = "self";
--	memory-region = <&ipa_fw_mem>;
- 	firmware-name = "qcom/sm8550/ipa_fws.mbn";
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 54308cbde40732da072177eab533582c155df590..d292dfce6b66fff6cff918b8bd6ac0b9cd22c4b3 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -2730,6 +2730,8 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 			qcom,smem-state-names = "ipa-clock-enabled-valid",
- 						"ipa-clock-enabled";
- 
-+			qcom,gsi-loader = "self";
-+			memory-region = <&ipa_fw_mem>;
- 			sram = <&ipa_modem_tables>;
- 
- 			status = "disabled";
+Would you suggest a regmap/cache mechanism better suited for this 
+two-level hierarchy? Happy to rework it if there's a cleaner approach.
 
--- 
-2.34.1
+>> +static int tas675x_dsp_mem_read(struct tas675x_priv *tas, u8 page, u8 reg, u32 *val)
+>> +{
+> 
+>> +out:
+>> +	__tas675x_select_book(tas, TAS675X_BOOK_DEFAULT);
+>> +	mutex_unlock(&tas->io_lock);
+> 
+> Same here
+> 
+>> +static int tas675x_rtldg_thresh_info(struct snd_kcontrol *kcontrol,
+>> +				     struct snd_ctl_elem_info *uinfo)
+>> +{
+>> +	uinfo->type = SNDRV_CTL_ELEM_TYPE_INTEGER;
+>> +	uinfo->count = 1;
+>> +	uinfo->value.integer.min = 0;
+>> +	/* Accepts 32-bit values, even though 8bit MSB is ignored */
+>> +	uinfo->value.integer.max = 0xFFFFFFFF;
+> 
+> This is going to break on 32 bit architectures since long is a 32 bit
+> signed value.  You want LONG_MAX, or to restrict the value (which would
+> be more friendly to mixer-test!).
+> 
 
+Right, I should restrict the max value to be just 24bit 0x00FFFFFF to 
+make it friendly to mixer-test. And I can also lift the explicit 
+zero-padding in the dsp_mem_write funcs which is not necessary anymore.
 
+>> +static int tas675x_set_dcldg_trigger(struct snd_kcontrol *kcontrol,
+>> +				     struct snd_ctl_elem_value *ucontrol)
+>> +{
+> 
+>> +	/* Wait for LOAD_DIAG to exit */
+>> +	regmap_read_poll_timeout(tas->regmap, TAS675X_STATE_REPORT_CH1_CH2_REG,
+>> +				 state, (state & 0x0F) != TAS675X_STATE_LOAD_DIAG &&
+>> +					(state >> 4) != TAS675X_STATE_LOAD_DIAG,
+>> +				 TAS675X_POLL_INTERVAL_US,
+>> +				 TAS675X_STATE_TRANSITION_TIMEOUT_US);
+>> +	regmap_read_poll_timeout(tas->regmap, TAS675X_STATE_REPORT_CH3_CH4_REG,
+>> +				 state34, (state34 & 0x0F) != TAS675X_STATE_LOAD_DIAG &&
+>> +					  (state34 >> 4) != TAS675X_STATE_LOAD_DIAG,
+>> +				 TAS675X_POLL_INTERVAL_US,
+>> +				 TAS675X_STATE_TRANSITION_TIMEOUT_US);
+> 
+> Don't know how likely it is in practice but we ignore any timeout
+> failures in this function.
+> 
+
+Will add in the complete error checking for this function.
+
+>> +static irqreturn_t tas675x_irq_handler(int irq, void *data)
+>> +{
+>> +	struct tas675x_priv *tas = data;
+>> +
+>> +	if (!tas675x_check_faults(tas))
+>> +		return IRQ_NONE;
+>> +
+>> +	regmap_write(tas->regmap, TAS675X_RESET_REG, TAS675X_FAULT_CLEAR);
+>> +	return IRQ_HANDLED;
+>> +}
+> 
+> This probably ought to take a runtime PM reference to ensure the I2C
+> controller is woken up, and in case in future you get regulator support.
+> Even if the device itself shouldn't be generating interrupts while it's
+> idle the interrupt might be shared or something might fire for some
+> other reason.
+
+Absolutely, let me add the runtime PM reference (mark_busy & 
+put_autosuspend) on this one as well. Better be safe than sorry.
+
+Best Regards,
+Sen Wang
 
