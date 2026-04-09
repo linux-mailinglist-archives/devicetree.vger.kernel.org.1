@@ -1,313 +1,143 @@
-Return-Path: <devicetree+bounces-285951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285953-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WHs2HnMM12npKggAu9opvQ
-	(envelope-from <devicetree+bounces-285951-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 04:18:27 +0200
+	id SGBZA5QN12npKggAu9opvQ
+	(envelope-from <devicetree+bounces-285953-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 04:23:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31F1F3C579D
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 04:18:26 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1086E3C5828
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 04:23:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 61E57300BB82
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 02:18:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 84CD9300A391
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 02:22:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C9436680C;
-	Thu,  9 Apr 2026 02:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="iebWO+Er"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAB42366DB4;
+	Thu,  9 Apr 2026 02:22:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011009.outbound.protection.outlook.com [40.107.130.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93F38366DB9;
-	Thu,  9 Apr 2026 02:18:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.9
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775701105; cv=fail; b=LCHY0bRfo5Jx+lDzgn97TQ+6swf3kh4GFv5MX1uO9TcM161k1JlhpQjUnKf3Rz2EOWEi0iBDuwAL7mNYI5ljRPht1Zgx5V2xDLjhHunrjGXtCV9zpAEsJPUOMZOpaWYRn5WEpF44+cF5MXxIQIw44orAdwmkjKGdPb7HNE7/zGQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775701105; c=relaxed/simple;
-	bh=w0Kwa+1FZck4gPPUNhT0OHgcE9uqfv5keBb8QpmY7XE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Sww4MNdAu8NWxrSwWJV6Firs0ykPud0zn8OY9WI3qzB12OmuQMmn+PeahjKNhbJd/xeaqd4br/v5xJ6whg9fyAGyIiuWUZfeBOc8ifg1bb6ZCcVzC5qGBh4X9HQilxSd6uV7rxHE6JUtGDvffXjn2TtI7uwxcX66xXCBXsOFEnc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=iebWO+Er; arc=fail smtp.client-ip=40.107.130.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nq/mcEPxcgKG7qWxigd8Z/G2zH7Il5OErZYlyKs66XmP2UdYoi9sSfG7msIyl+qcM0tmY7GnU9RIRbUZevBiib2K18U8TQzP9Lk/u5vCXV1vM1bVf5ntaJle4L0PnVBUIlg16Q4fGKo4V5qjDoRdFM6w3OUzky6zdpv6CrV5r6g2ijx3WAKEtu2nlMrPkAuY0UAorVaadoAut0g1VNqL0UkpQqunlhbnsXuRpfdvxABhNpBx/Bn2zp94zebAIKCh4T6sRYVMvIoOyQSHcNF0ZncL9F81z28Lt3gWUlb3GyHxdwDWmUStyBonhHjBtsfp6x52z84I3i1lGcLtDJmdIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bsuciZSmvaZ6QqR6Op1G+sJMUyo49B+ntVVQ860feP0=;
- b=irwUutq3ScaJ8deQlIE16HGmuZbmLnwUCNuo4R0cy7rcxi7xdceONFwwTun+x57w6Wibc8ZGU/ahVBJvIm6J3t8utm4np9ClLAu2m73WHp+Lk/s11VjxvSTzxyn2LV2myLT1dqYI8uBCtF/7Kht24JgQbAHHfRvWItdbnOgcPTW0K1D6DWxH2pdKqNagB8VTwG/40ftwFq9/JNFNpDAIsVEg8CvU7l+ApS+WCxzXeEyFxrak1Cn47OTZKFaQgbq0RKDsl0pvrTd0R+5MjGersrtZwvgwdwjOlu4pV4m1sVVOo7kTLAXXxUSlQ/s0vhUIOZdDumfKRpbe4YAtyrktZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bsuciZSmvaZ6QqR6Op1G+sJMUyo49B+ntVVQ860feP0=;
- b=iebWO+ErVFwCFHUyV4xqqE5IjqKwagcI5x5A66RdgtfxgkaXFcfCCGbqRNT/QJM+nNCl+gFSK89YMyk+Vm04eLFsAd+ObraXt6aU23yszUCTLtf7VqRcntjMOyc2mm0lgk/o4N0Nnf+8lS3/lKuCIB4it5R5mDFgFM/ERfMxLqaHX5Jp00OZ3tqYkGfl9KjJ+yR+hNWlZQKpl/9Wur2W7PBnXN9/+u3WEMTS5AYMhbQHPWc7F7QOlmN84xvF/VQw/TeuJYKFnKvJFHJs8IoYGTf4WExuAv0Yt54/k7CQN6ehPrZptS+j7AZ/74pxouaSUv7fUh2fr7ZHmA+7gohngw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by AM8PR04MB7283.eurprd04.prod.outlook.com (2603:10a6:20b:1c7::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Thu, 9 Apr
- 2026 02:18:20 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64%3]) with mapi id 15.20.9769.016; Thu, 9 Apr 2026
- 02:18:20 +0000
-Message-ID: <17dc43ce-5e18-41d7-8d4a-88b5c746d610@nxp.com>
-Date: Thu, 9 Apr 2026 10:19:40 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: imx93-9x9-qsb: Add tianma,tm050rdh03 panel
-To: Frank Li <Frank.li@nxp.com>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260407-tianma-tm050rdh03-imx93-9x9-qsb-v1-1-24d514a62fdc@nxp.com>
- <adTUkWvqVUhLiw_J@lizhi-Precision-Tower-5810>
- <a31e926e-9e7e-4ba4-aafd-0f76f53fa176@nxp.com>
- <adYKtjPvIgoK2oou@lizhi-Precision-Tower-5810>
- <f5cd5da8-566d-4dff-b712-3d48927f97eb@nxp.com>
- <adYRuAU5ueEKHK5l@lizhi-Precision-Tower-5810>
- <5ce48659-2c6c-4c60-a8e8-9031bdbaa2a3@nxp.com>
- <adYy9xesCKsYWNBg@lizhi-Precision-Tower-5810>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <adYy9xesCKsYWNBg@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0165.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1ba::7) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CA86364946;
+	Thu,  9 Apr 2026 02:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775701363; cv=none; b=kAGgOVUDNyLVEOGEGaOVK+AwMbwxVBHL+7h/Fa3cYNfDvbZKGiSz9vp8JeIESaIi9HcxOOjdWW8hD1ZB7C2S+eaXGZ29JRbjE0eEDw+q+N2RJljQgZhfgK9Gd5CTDw8gbLReBrZdLXJfi7CKHphJ6NFhSIhH/1y0EvKpHT11sjA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775701363; c=relaxed/simple;
+	bh=UJMv3wK8OWOgWMvRa8idznhH0AwTgTCogVObQl/K87o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IHDtNPt3WMe3jO72yUR0JS7EonmPtinhH+DuC8/ptzP15XvbOgnmwhUBeTNGCX1Ik68NG5Rl+bOrmUS4iroa3HQ1qcDsYQ/+dxawbYvAL5x2I9NpX2AUuHM8BQXro/ts1s9zLjqvXTseERmEy2jcRcSX2S10uQ5chGb9Jv8sPrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from dfae2b116770.home.arpa (unknown [124.16.138.129])
+	by APP-01 (Coremail) with SMTP id qwCowAA33mlrDddpWiiyDA--.15423S2;
+	Thu, 09 Apr 2026 10:22:35 +0800 (CST)
+From: Wentao Liang <vulab@iscas.ac.cn>
+To: robh@kernel.org,
+	saravanak@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Wentao Liang <vulab@iscas.ac.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH] of: unittest: fix use-after-free in of_unittest_changeset()
+Date: Thu,  9 Apr 2026 02:22:33 +0000
+Message-Id: <20260409022233.418103-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AM8PR04MB7283:EE_
-X-MS-Office365-Filtering-Correlation-Id: b6cedb84-8a2d-4312-b9ae-08de95de44f1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|366016|19092799006|1800799024|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	4U5dWm62JbZnh5QoFjycGjPk3Gxa7WvqPubdAKSB7IeyP7LbISWVPbwpilV2ruLAkfv1rS5RfdxRAxVF1n0zCFQ0I73+5lkx4QS4dxkA6TS8o9pmADzoqRoGh42DUVyf3nwaPxyg26v/aCuzoNLW3oufpx/iIFoBxpqkjOrlJivPzlZ7Ozit+hqK6me76HHJsPhLYHs8rrdUCxJ3QXUsUZdFHuY2MSbd54XQ7e2vB16kQexMQDI5zbphFo+a+gK6AlLVRpQImLajLG1pM59Nubq2ZAa58I8b4SRafEt2BNH0VD45K/mEGDHFgP5wgFlQwNmuCf9PseC81xP5KPEa8QKL1iZBXU8CU49XdAIXAvISgBZrg/v+aBzJI4E/h8hNxyuItJFoG7FbRSKVN1raMib1aXftLUOSDhwbZIF40SHqq9a0aE/NQMFbCVb38EXSpU2tJw9jsif0wVZoIj4lSspTLnyb7OFTGMx2OIoFyt0W/Ib83wv2v7+b4L2L0bB2FCkFS0G+g1/uqf0JOOVFFDE1wy+wNZhk4J+BzNP24hULKzv2zmCiUEApf0/B3f5rF/CrgxCRg2ziJPZZcghKIfyVIgh97imyNLyqmoV0IsBHrf05X5/knucMI340s41LG9d1V3gj0G60y1BJnr9ktNNH4ri+wB7xinjyBVNCzoQU50StpNIkTaNxU3nHfEAElaHq0VQa58Ty/p1Y00Xk77j/JXoVO1FdTpWpzSXjY30=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(19092799006)(1800799024)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?dzZkenBNQTJQK3ZMYWtDOFFpL2RQZ0d6MzBNSlFNL2tTNXZiVzcrYkRjUENq?=
- =?utf-8?B?Sm5KM3hHSG14QWF3Zlk5WjNsN2VZZXFSVTNxRWpyZFBRVzNwVHZnSEp0TmI3?=
- =?utf-8?B?MU1KR1RBQzg2NE1sSnBKcm92Rnd6OEx2VlNpclNGRTF5U2s3clBON0FTSnVP?=
- =?utf-8?B?UWJLbWd6N1BUUFZwYzhNOFpEQXh0ZTc4a2FpMWw2emgwenRjOFE3RUxkYTh2?=
- =?utf-8?B?RWp1S1RSOERYWUZReUowQ1pGdkJzcnpVMHdyTC9EOHNaY09FYnZBR3RwTkVn?=
- =?utf-8?B?VmxSZ0pSNExiQ2I0eng2VzZ5ajFOR0pNU2djdWkxUlF4NitTcVlJaG1KRTVG?=
- =?utf-8?B?MGl1bVN0RTd0WWhhMVk5RGo5WTFvRHlXQ1BobEprN2FpTjdhVXVzakEreldz?=
- =?utf-8?B?MmcvRVltU0JyTGdJRFJTNmpwMUR4bnJvaXkrNWNtaDdHVEpwNDRoMnF5T1E4?=
- =?utf-8?B?WVhTVm1QN0Q1a3Uvd3UvZ1g4U1YyYkRDbFo5VkNCaHIxMG1QZExrSytuckls?=
- =?utf-8?B?bWFPMHNUZ3lpcCtwY0ZmZXJPZGE4VUVqcmwzWERJWjc2bkNDWFR5OHVuUU85?=
- =?utf-8?B?OGo3Z3piWkYwNE8wd0YwSWt2S1dTNnhES29PTlB1aVZpTHcrSkxDTzkzRS90?=
- =?utf-8?B?RVp2WlIyQjN1VjFSVTBnN092R3pGUkJaM01KVW4rdU9CeGZpOE1XbEo2TU4v?=
- =?utf-8?B?dWJ0cjdYRWp1OFowRzE5OVZ6ZG12cUM3c0d4ZmtzdWk4cEYyUUZlZU5zc3dM?=
- =?utf-8?B?eTlNTkZqOEdvdDcveFY0REsvbmtEZWtWOHc4b3F1T1BpSFhiOTQyVVlzUStR?=
- =?utf-8?B?VW5aV1dXWEJGeHVOUkgxWmU2Nm55VjI2WlJ5L1hON1k0UTRuUm4xVDhHTlJs?=
- =?utf-8?B?aWZDUUpsZEZjS1Q5YWZ6RVJpUHd2VnB5d3VSK00rSFUwd0xRaFZBZnVlYzVC?=
- =?utf-8?B?ZW0yN3gyVWdSTDdhS0VMMENZR1lyZkhZRk1UV0wwY2h1NzVFVXg1VzJxbWJW?=
- =?utf-8?B?VUVhSmEyUC9aOS91RUwrempQdjhuSUZrWTRocHcxeVNkTyswOG04Zmc4REU1?=
- =?utf-8?B?WWxtVStBUDFERy84dWw3YStlcnZNNmorR2Jsd1RaUEdMZkxWeXlIalhpVzVp?=
- =?utf-8?B?TVdRdlgvUDRwMDBjRUgzL2xaWktWV21EYkkybThPZ0NnRktjNW9lMUtWZ2g3?=
- =?utf-8?B?UDhNYjcvMnd3Tnlqc2lqVGYvRkJrcW5PRkVzc0lsanNkaTV1b0JCWHlsSmVl?=
- =?utf-8?B?bU1oQUpWSnFuZWlBWnFkbWE0OVhUa2k5K0dRTUYveFBaNUZKZnhDM3JaVzJY?=
- =?utf-8?B?bmxEbEJ1OFZnaWd0TnNtamNlZFZ4eGdPZkxKcHhBQ0xLbG1KSTZHRkNza2NM?=
- =?utf-8?B?Y1dlTytZOEhXcllNenU3VU1ldUJOK3lFQVFKV1Uvam81YW4xSS9DbmpOYUdB?=
- =?utf-8?B?RityNnYrVmRFWWM2Sk13VTQ3bzZoQ0phQlFYL1pITzZ4Q1AzQ25DZkZ6YkpE?=
- =?utf-8?B?VVFEbFpCTFA5U0VhdjI2Qk14UUhNbFZneXFvdk9hRHZyVnBZTXF1QXBmb2dt?=
- =?utf-8?B?KysxRndkallOWmVlUndQUjRmbk5zSEM3ZWpZMkRsMXN1SGg2R1NjbG14RnNN?=
- =?utf-8?B?SUNEZVNvRzJWME93b0NVR1ByRkNmZjNHeUtJL2laeW9GYzhVVzhET2RPZVc0?=
- =?utf-8?B?bHVvek1rU2VxU0RxUkwvMi9DcmR2bTR0K2dDWkJoRU5NcHVoQ3JBNmE3UDYr?=
- =?utf-8?B?VWdYQjFmY2MwK3IxY3J3a09ZeDZFaStqWmJDcUVRenA2SnZSbFdmNDUvaFBk?=
- =?utf-8?B?SnlEWkxkYjN2bDVoNWR0QXVkY2VUWE55L3dsV1JMVzBubnE2N2RLMGdBcWtT?=
- =?utf-8?B?L1UvaFJPVUhTcDB1c09UbXdzbHZTQkw2V29MaTNndDFCM2c0UWJtY2lyU2Rs?=
- =?utf-8?B?UVhjVmJ1cWlOaGZCYUlIVmJxQzNzMFlIeW5Ca1pJd3JWM3BGRHIvVVEwMmhh?=
- =?utf-8?B?VXdQakxXUEkxbUppaGFLV0J4clpCa1IzZ0dlNkoyT0FFQ090Ui9OdHhZUnJo?=
- =?utf-8?B?enJyZWdiTWpjOWkrN2UreVczOHorbFJuUWRYQ1ROMUdDMUY2M2ZBNnkzWVBt?=
- =?utf-8?B?bEpHUkFXOStxa1Y4aW5BL3lhcnh4di83dFpBVHhmOE5uQ1oyUWdQdDFzeXFE?=
- =?utf-8?B?Y3djSlU5a1pWcU1ORmpCc3BoTWs2aFpmYzU5OXJwUlp5MHpaenR6djRGUmdG?=
- =?utf-8?B?Tmw4MDlhbU9mNTVGR2xQK3FEZ0dsLzE3ZnBLeXRFMFhjdE1xSWFSVHh1OHQw?=
- =?utf-8?B?VXFjMUVjNVI5all2MHRybFBVb1hRbG9nRFVCQ2NIQkdZTUNZS091UT09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6cedb84-8a2d-4312-b9ae-08de95de44f1
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 02:18:20.6863
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Fv7OBSibfbR7a7+Bs+2gPJ1wyTXDC9/bDuynRdPBHkSCWx9FpIzCfDHVOU/stz7VB/3s5HtAcgQddEcMbq6YBw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7283
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qwCowAA33mlrDddpWiiyDA--.15423S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7tw1fKw1DtFy3ury5WryfJFb_yoW8XFy7pr
+	Wa9a42yrWDJF47Jay0v347ZFyayasxtrWrGF1UK3WFvan8JFy7Ar1UJayYgFyDuFn7uas0
+	v3W0qr1UX3WjyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26F
+	4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv
+	7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r
+	1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwCY1x0262kKe7AK
+	xVWUAVWUtwCY02Avz4vE14v_Gr1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr
+	0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY
+	17CE14v26r126r1DMIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcV
+	C0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY
+	6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvj
+	DU0xZFpf9x0JUS1v3UUUUU=
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCQ8MA2nW9r9e9QAAsU
+X-Spamd-Result: default: False [0.04 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,kernel.org,lists.linux.dev,lists.infradead.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCVD_COUNT_THREE(0.00)[4];
+	PRECEDENCE_BULK(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-285951-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[victor.liu@nxp.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-285953-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:dkim,nxp.com:mid,nxp.com:email,nxp.com:url]
-X-Rspamd-Queue-Id: 31F1F3C579D
+	FROM_NEQ_ENVFROM(0.00)[vulab@iscas.ac.cn,devicetree@vger.kernel.org];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.917];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1086E3C5828
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Apr 08, 2026 at 06:50:31AM -0400, Frank Li wrote:
-> On Wed, Apr 08, 2026 at 04:40:37PM +0800, Liu Ying wrote:
->> On Wed, Apr 08, 2026 at 04:28:40AM -0400, Frank Li wrote:
-> ...
->>>>>>>
->>>>>>> Is it possible to appply this overlay file and kd50g21-40nt-a1 overlay file
->>>>>>>
->>>>>>> to imx93-9x9-qsb.dtb, so needn't create dtsi.
->>>>>>
->>>>>> I'm sorry, I don't get your question here.
->>>>>> Anyway, the DT overlays are needed, because the 40-pin EXP/PRI interface on
->>>>>> the i.MX93 9x9 QSB board can not only connect to a DPI panel adapter board
->>>>>> but also to an audio hat[2], and maybe more.  The newly introduced .dtsi
->>>>>> file just aims to avoid duplicated code.
->>>>>
->>>>> My means apply two overlay files to dtb
->>>>>
->>>>> imx93-9x9-qsb-tianma-tm050rdh03-dtbs += imx93-9x9-qsb.dtb imx93-9x9-qsb-ontat-kd50g21-40nt-a1.dtbo imx93-9x9-qsb-tianma-tm050rdh03.dtbo
->>
->> This ...
->>
->>>>>
->>>>> In imx93-9x9-qsb-tianma-tm050rdh03.dtbo, only include
->>>>> &{/} {
->>>>> 	panel {
->>>>> 		compatible = "tianma,tm050rdh03";
->>>>> 		enable-gpios = <&pcal6524 8 GPIO_ACTIVE_HIGH>;
->>>>> 	};
->>>>> };
->>>>
->>>> If an user wants to use imx93-9x9-qsb.dtb and the DT overlay blob
->>>> imx93-9x9-qsb-tianma-tm050rdh03.dtbo to enable the tianma,tm050rdh03
->>>> DPI panel, then it won't work unless the user also apply
->>>> imx93-9x9-qsb-ontat-kd50g21-40nt-a1.dtbo, right?
->>>>
->>>>>
->>>
->>> Yes, imx93-9x9-qsb-tianma-tm050rdh03.dtb already created, which already
->>> applied both overlay file.
->>
->> .... indicates that imx93-9x9-qsb-tianma-tm050rdh03.dtb is generated by
->> applying both imx93-9x9-qsb-ontat-kd50g21-40nt-a1.dtbo and
->> imx93-9x9-qsb-tianma-tm050rdh03.dtbo to imx93-9x9-qsb.dtb.
->> While, imx93-9x9-qsb-tianma-tm050rdh03.dtbo(a DT overlay blob) just contains
->> the panel node, which means that an user __cannot_ enable the tianma,tm050rdh03
->> DPI panel by only applying it to imx93-9x9-qsb.dtb, unless the user also
->> applies imx93-9x9-qsb-ontat-kd50g21-40nt-a1.dtbo.  That's why the .dtsi
->> file is needed.
-> 
-> what's problem if we require user do that? Makefile already create finial
-> imx93-9x9-qsb-tianma-tm050rdh03.dtb.
+The variable 'parent' is assigned the value of 'nchangeset' earlier in the
+function, meaning both point to the same struct device_node. The call to
+of_node_put(nchangeset) can decrement the reference count to zero and
+free the node if there are no other holders. After that, the code still
+uses 'parent' to check for the presence of a property and to read a
+string property, leading to a use-after-free.
 
-The problem is that the user would apply imx93-9x9-qsb-tianma-tm050rdh03.dtbo
-to imx93-9x9-qsb.dtb to enable the tianma,tm050rdh03 DPI panel, say in the
-U-boot stage with the 'fdt' command, which is fairly a typical usecase, just
-like the user would apply imx93-9x9-qsb-ontat-kd50g21-40nt-a1.dtbo to
-imx93-9x9-qsb.dtb to enable the ontat,kd50g21-40nt-a1 DPI panel.  We cannot
-ask the user to additionally apply imx93-9x9-qsb-ontat-kd50g21-40nt-a1.dtbo
-to enable the tianma,tm050rdh03 DPI panel, because that's very confusing.
+Fix this by moving the of_node_put() call after the last access to
+'parent', avoiding the UAF.
 
-Note that imx93-9x9-qsb-tianma-tm050rdh03.dtb certainly can be used to
-enable the tianma,tm050rdh03 DPI panel, but in addition to that,
-imx93-9x9-qsb.dtb + imx93-9x9-qsb-tianma-tm050rdh03.dtbo can also be
-used to enable the panel.
+Fixes: 1c668ea65506 ("of: unittest: Use of_property_present()")
+Cc: stable@vger.kernel.org
+Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
+---
+ drivers/of/unittest.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-> 
-> Any user really apply dtso manaully without use kernel's Makefile?
-
-That's not relevant.
-The point is that imx93-9x9-qsb-tianma-tm050rdh03.dtbo would be generated
-and applied by the user to imx93-9x9-qsb.dtb to enable the tianma,tm050rdh03
-DPI panel.
-
-> 
->>
->>>
->>> can the same board be use for imx91 or other evk boards?
->>
->> Yes, both tianma,tm050rdh03 and ontat,kd50g21-40nt-a1 DPI panels can be
->> connected to i.MX91/93 11x11 EVK and 9x9 QSB boards.
-> 
-> Is it possible to use one overlay files for all imx91/imx93 boards?
-
-No, that's impossible, because they use GPIO backlight or PWM backlight,
-different GPIOs to enable DPI panels and different GPIO hogs.
-
-> 
-> Frank
->>
->>>
->>> Frank
->>>
->>>>> Frank
->>>>>>
->>>>>> [2] https://www.nxp.com/design/design-center/development-boards-and-designs/mx93aud-hat-audio-board:MX93AUD-HAT
->>>>>>
->>>>>>>
->>>>>>> Frank
->>>>>>>>
->>>>>>>> ---
->>>>>>>> base-commit: 816f193dd0d95246f208590924dd962b192def78
->>>>>>>> change-id: 20260407-tianma-tm050rdh03-imx93-9x9-qsb-6e4bbbde3d08
->>>>>>>>
->>>>>>>> Best regards,
->>>>>>>> --
->>>>>>>> Liu Ying <victor.liu@nxp.com>
->>>>>>>>
->>>>>>
->>>>>> --
->>>>>> Regards,
->>>>>> Liu Ying
->>>>
->>>> --
->>>> Regards,
->>>> Liu Ying
->>
->> --
->> Regards,
->> Liu Ying
-
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 2940295843e6..eae7ebdf5130 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -896,8 +896,6 @@ static void __init of_unittest_changeset(void)
+ 
+ 	unittest(!of_changeset_apply(&chgset), "apply failed\n");
+ 
+-	of_node_put(nchangeset);
+-
+ 	/* Make sure node names are constructed correctly */
+ 	unittest((np = of_find_node_by_path("/testcase-data/changeset/n2/n21")),
+ 		 "'%pOF' not added\n", n21);
+@@ -919,6 +917,7 @@ static void __init of_unittest_changeset(void)
+ 	if (!ret)
+ 		unittest(strcmp(propstr, "hello") == 0, "original value not in updated property after revert");
+ 
++	of_node_put(nchangeset);
+ 	of_changeset_destroy(&chgset);
+ 
+ 	of_node_put(n1);
 -- 
-Regards,
-Liu Ying
+2.34.1
+
 
