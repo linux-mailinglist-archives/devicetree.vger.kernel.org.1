@@ -1,539 +1,200 @@
-Return-Path: <devicetree+bounces-286231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286233-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UDVHBsXR12mrTAgAu9opvQ
-	(envelope-from <devicetree+bounces-286231-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 18:20:21 +0200
+	id sPMfAPHS12mrTAgAu9opvQ
+	(envelope-from <devicetree+bounces-286233-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 18:25:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5EE73CD93D
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 18:20:20 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68A223CDA3E
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 18:25:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5ACB9306BAB4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 16:13:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AFB553046F39
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 16:21:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FDED3DEAD0;
-	Thu,  9 Apr 2026 16:13:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE623D34B6;
+	Thu,  9 Apr 2026 16:21:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="fvpQq2TR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W8hiZUcx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70E863DDDC9
-	for <devicetree@vger.kernel.org>; Thu,  9 Apr 2026 16:13:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395293630B5
+	for <devicetree@vger.kernel.org>; Thu,  9 Apr 2026 16:21:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775751218; cv=none; b=BazcsRoZ0TR6J5Bd5UqcCeFgbnWprSCGaouFFUM+nlkqjCuXKklqdY7SjiyYgTTKrsSUfnacRvn06A28Hnbj7fQsE0YD9E36Jr7asVWAr8VEtoMCmVRSgqGpKGGkTIsFfQKDmbn2Fu3VduOZDzwzXmUylybz+zVcf3VSyXNhx14=
+	t=1775751687; cv=none; b=OIGYuuKKtcP+6e3FgDDzpr2nLmc0Dlf99JX14bC53NjeR2v0WzcAL+3iMtNCy/Kfvj+x1eXl1q9yaO4M/R/RZZEhnKIf8XuyqL6F2Ye2vKTJtWHAf4iq6BIbjVDuWqKeA+sLNGxAV2mrh+2H+o920H9UCxyT7vOEqzXcPyUVcPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775751218; c=relaxed/simple;
-	bh=lABvhPkfSUEZQ/UrtmnvRvwQE+Cu91hJU6oQtHtIJ/A=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BqSXAi6v0RpxRDK7X0AI7xZ6AyITQZarTjqCke2ynO9iIJqXcTwJvzVC3/e9Uya/aY73YKOxM47rlduYyYs9hHp3/nViHfiy+Mv7w4l/lAOhjjeSSDlEhvn/mF5L4xG48fTrF5O/UTpDDuKHOW7zRy6jLwdDjWoknVXaXBZATf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=fvpQq2TR; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-43cfce3a195so686644f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Apr 2026 09:13:36 -0700 (PDT)
+	s=arc-20240116; t=1775751687; c=relaxed/simple;
+	bh=KgYrTRAzAqR2qcRtqco8ayHZnGZegHdK68JQOVgPks4=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=DUf0infVfxju1eQ0IkpYptk8iX7zZtXf+BD5gBGRLHH59nDgRouRKlNmWsp9Wl1i8uOF70g6Iteeu25qJS97RlclppJjnCRUz4DG5jAXZtbVJFSXer6M+TC0Um+Yp5iNdjw7woIy15dE+PiDv4Ph+mOgVfc4hTvaD+ZM1i5TBpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W8hiZUcx; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-82cef263bedso573982b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Apr 2026 09:21:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1775751215; x=1776356015; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+        d=gmail.com; s=20251104; t=1775751684; x=1776356484; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=bBKgfLsTkzPVnY3AYieDVnJ/jktPCR6tcs7xRYIk1ro=;
-        b=fvpQq2TR8B2jlMC/tWauzBoqG9CyCuqFtx5dXQvJb2Fnt+6Hl0yJzDzkeDzttTO8nr
-         ZGHTATQw2c3oxHExBMUKKFtz1RgaZi3XHDfjgWJvhZhpviB68eb5Dc6UbpT7rODrFOOE
-         pd/GTM3ZZ4HRu2Kbn5rgGhTmzAALl3N5BtEh5A5ThjbsqbycTVUOsJxHZ24NA+d22L2V
-         eLDUz6CYTtDhUSP7RKiGVYi9QLLK9NXd7V+qY9C8Mup2pNQ7aWVZGzG+50PXVPhKx3+x
-         FxSDn3053Ma74VJ5lsMB6FhflS5AXLNH3JzhteaJZaP+ujY9H8w6GJDsd493sYv98c75
-         YOqw==
+        bh=JPPDJR3OP9YsqgLCzmnEwDF9nzYo3p95aTxV4oH2T4E=;
+        b=W8hiZUcxJ/KaIlX6ErNliEMRV3RnAr2nJc/zC4z4FBL5z5oi5laJj3+OjtPZ2XFKqB
+         PUnuZ+jBzCZTrsz5hQcqCFfdSdRJzULV5aFvMHDq10fz5Ef7X9My7aqhFujM2wZwXOG4
+         QPxsXuh/ZI/AbkFUHV8jjv8w1qmrjGCrwPLHc9CoUlkVCgYi5ojnYmfTUXtmq9P9KRMZ
+         /vM/LJOvTf1fWwh19OKnO0tUPrgABNFn90dYE6mT0x2lUNfuvRKUOXOy0oE6CSMDoGYM
+         olqIYUBb8xvpK9tn+yt6UnGs0dJJhkk0RO9qsgyqFlSJ/0aSKq/p8uqPVWDOzUPpP3ci
+         sW7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775751215; x=1776356015;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
+        d=1e100.net; s=20251104; t=1775751684; x=1776356484;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bBKgfLsTkzPVnY3AYieDVnJ/jktPCR6tcs7xRYIk1ro=;
-        b=oe70i3B1D8lRatHsNHys5McJlydr8LtY7VNBvSPWEctYsVemFIJXeBsdY2QMachw3U
-         S76LwHDJska8wLDM0X6frhDKAFdRpc93/JnQ8+YriKQRrootibBS1ujVm0JGo/+1E1zh
-         uPJPS0dGDb4BOBNVgnGRnMzgU+Uaz2T//Gvlfj5tPAolLBCkHizJmYKAAFOl9s+F2AO0
-         SxXzvUn8TorZd9/lkmR5Rob5jNBs/KzkSwVJ3xCTdbL1Dn4c8P6QWiAv67WEOcHu4T3t
-         ThtUSOg3swZlmS1/13vlj7xB7GPosfWHLpsDtvH1iwuiWW3YFBoPXdZPJTGGYhZV18CM
-         93gQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXYBZYS63wh1SjisUJaony4Eg0+8ZxN7TBI6msnf5DYrzovBmJrZN9RNhucTbNYeZPuaDv9uH7c3RAZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIUCca0wJ0DrxOPFOdjowSQ3PPbgLFPSddOYG08YvwBPdC0eje
-	58gxFX6TzWyDLsbDCF4diR8ubsGa82bDHo034ndLdKqu5zSgx1Ftd5NGkKjwAtuOk18=
-X-Gm-Gg: AeBDietAEg2vDiAeMHPaN9rXw/8IM8cHlgBrz3RIQL4s0Xmiaa+Kznro2yXLsnRVnWg
-	+j1OCUHScTj71fPHfYmc7JLbZwQj+KUjv4zQIdt1K0cICimp0MlISbTQhroeBZGNVxSzdrtsgsP
-	Gyv7vV5UO9i3up516ByKkFcCcD55lsK6PieeJnP6SM+eW9qccCGEHUOndihASi3zrHnYaF9Xzax
-	v2x0Vy7AHJxTEKldY534ORd9NRlGhA1J+Af1I3Nix9hk6d4NEQAbhsPYrDoDANmTXv+tBtAhhzj
-	Hw4vstA9L/h59GCszhTdSOBZcQeVfXS6sp0YJDxn47ZdEih3NioNEoFOf1nNtYnPXcbh/0E/gxc
-	DmApSB0uKQFItjdA8Q1jzOxjJhztwuT+lAGcnYDwiYwnStjYN75qUHxtOgnliJoPDWNCyDLhYS1
-	qM0uvk17suKG1zsLZ7E7rJit7puhCYBCobbsgJTaQtMJOk7UGEow==
-X-Received: by 2002:a05:6000:4310:b0:43c:ffcc:b682 with SMTP id ffacd0b85a97d-43d5a1a21ecmr6369277f8f.33.1775751214675;
-        Thu, 09 Apr 2026 09:13:34 -0700 (PDT)
-Received: from localhost (93-41-3-120.ip79.fastwebnet.it. [93.41.3.120])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43d1e2a720dsm69291174f8f.4.2026.04.09.09.13.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Apr 2026 09:13:34 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Thu, 9 Apr 2026 18:16:41 +0200
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>, linux-pwm@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Stanimir Varbanov <svarbanov@suse.de>
-Subject: Re: [PATCH 2/3] pwm: rp1: Add RP1 PWM controller driver
-Message-ID: <adfQ6Tvst3Vd1Mxe@apocalypse>
-References: <cover.1775223441.git.andrea.porta@suse.com>
- <28e29fbfc20c0b8a115d006233c2759d8f49e639.1775223441.git.andrea.porta@suse.com>
- <adLTwOTbkJ0VQXy6@monoceros>
+        bh=JPPDJR3OP9YsqgLCzmnEwDF9nzYo3p95aTxV4oH2T4E=;
+        b=ro0Jq3if+rfHsSRTMWWsPqxTemyffN+ZjEJlrUEfFr+9EVXIFGVDEcb8cZ2ANDq1Ko
+         3uhhkQk7NmAiJQmbkut+Qy/8w9FMzkgCgP259kUxSB/02xAOAFmUMtDQmGFY7qMyidJK
+         7RLxm/XNIFhnA0vz/9Ujmmg5yZ6XNK6nnBsF46Q0BDHtjtdoSqUSWQlDRkuj0Hfx8klT
+         fARzQqeqFZBbiQacbwjbq9DGcCVJjFawQekn7ZlCgW4ZnYy381NqNgKYgRYFYe8X8Zom
+         pg3VUiAZQHKISHmaLr65GQgWYXDNMCiGrwflJTH2mCNZ7Dc8AW60u1LzLZUnF4xuVAt2
+         02bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW3CtyJVh6NaipnE0v5egohnNixp/Q6mj/1xDWwoXt7ohJ/5/VTyjBFeD3cI1fMXrWh0R55ozfhdxoo@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUOzC6291Ssctn2kb2o11WJtf2c680xktkAUh73LvN4S9s/G4v
+	7Bve5KXD+Qv+LViAzxxU0k6wBgjUyjO97c41iXZrInOyI8fbrXWxPeNh
+X-Gm-Gg: AeBDiet34KWuWtpGGZBUmVgeAmc6TfWW8IYmXUN8ar/84DyPH54mBPaxpjCMR2eResC
+	E9GFn5oewqvBuzRGESZJ518kwXBGC7Ikcno0Kd4ZeLgNl6skXKhxb05BlwKHOfviT4ANhaRcHA8
+	zlcaCiKN0sJDTP74blCD7bSEFdxpqzHMOuR56stRJERJDiaAouzooNdPt3I9TV5J1OPoQ12dyon
+	yomHT/K7RzyI30cKzyht5TDSigimrdjHJTAasvhtyXSasMSvU2uyWSrvw9ohm3RFX6UhozscbDF
+	6nfDwgMOZGubYXMRgLAaGRiA9m7kj9LeFECBiY3CLOAPUJfRZQcJqWfiIO4GFPtLoOdOIfVK7aO
+	7lAQUTTreIqYCl0f1rtxepp4lq/CFLgyd6NYIuwb3OzuF3Cy5tKa/8+WVFVMMrUPmAI5Gg3WlXp
+	JRTZHrONAOjd7a5JlMP9aOxUTm4fEH4n2LIjpWZSwDvHz2G3A8y69VwnkEhmKGDaMdcGbMS/Nye
+	WRKJ4GPWMM=
+X-Received: by 2002:a05:6a00:2d01:b0:81f:9b4c:81c0 with SMTP id d2e1a72fcca58-82dd8abaaeemr4410862b3a.41.1775751684017;
+        Thu, 09 Apr 2026 09:21:24 -0700 (PDT)
+Received: from ?IPV6:2401:4900:8f4f:f496:6d85:c852:1b90:58b8? ([2401:4900:8f4f:f496:6d85:c852:1b90:58b8])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82cf9c9cbdfsm31162001b3a.53.2026.04.09.09.21.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Apr 2026 09:21:23 -0700 (PDT)
+Message-ID: <968dafc5-ba00-459e-b31a-b46d1f0de347@gmail.com>
+Date: Thu, 9 Apr 2026 21:51:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <adLTwOTbkJ0VQXy6@monoceros>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: i2c: nxp,pca9564: convert to DT schema
+From: Akhila YS <akhilayalmati@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260408-i2c-nxp-v1-1-8276ccbd95fb@gmail.com>
+ <20260409-rampant-swinging-wolf-51ab4e@quoll>
+ <7930789e-6930-45b9-997b-0e5c850db194@gmail.com>
+Content-Language: en-US
+In-Reply-To: <7930789e-6930-45b9-997b-0e5c850db194@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286231-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_FROM(0.00)[bounces-286233-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[suse.com:+];
+	FROM_NEQ_ENVFROM(0.00)[akhilayalmati@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,thomasmore.be:email,raspberrypi.com:email,suse.com:dkim,suse.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C5EE73CD93D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 68A223CDA3E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Uwe,
 
-On 23:45 Sun 05 Apr     , Uwe Kleine-König wrote:
-> Hello Andrea,
-> 
-> On Fri, Apr 03, 2026 at 04:31:55PM +0200, Andrea della Porta wrote:
-> > From: Naushir Patuck <naush@raspberrypi.com>
-> > 
-> > The Raspberry Pi RP1 southbridge features an embedded PWM
-> > controller with 4 output channels, alongside an RPM interface
-> > to read the fan speed on the Raspberry Pi 5.
-> > 
-> > Add the supporting driver.
-> > 
-> > Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
-> > Co-developed-by: Stanimir Varbanov <svarbanov@suse.de>
-> > Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> > ---
-> >  drivers/pwm/Kconfig   |  10 ++
-> >  drivers/pwm/Makefile  |   1 +
-> >  drivers/pwm/pwm-rp1.c | 244 ++++++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 255 insertions(+)
-> >  create mode 100644 drivers/pwm/pwm-rp1.c
-> > 
-> > diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> > index 6f3147518376a..22e4fc6385da2 100644
-> > --- a/drivers/pwm/Kconfig
-> > +++ b/drivers/pwm/Kconfig
-> > @@ -625,6 +625,16 @@ config PWM_ROCKCHIP
-> >  	  Generic PWM framework driver for the PWM controller found on
-> >  	  Rockchip SoCs.
-> >  
-> > +config PWM_RP1
-> 
-> I prefer PWM_RASPBERRYPI1, or PWM_RASPBERRYPI_RP1 here.
+On 09-04-2026 20:32, Akhila YS wrote:
+> On 09-04-2026 13:56, Krzysztof Kozlowski wrote:
+>> On Wed, Apr 08, 2026 at 08:23:31AM +0000, Akhila YS wrote:
+>>> Convert NXP PCA PCA9564/PCA9665 I2C controller to YAML format.
+>> DT schema, not YAML format. Look at your subject.
+>
+> Okay, i will change it.
+>
+>> ...
+>>
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 1
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 0
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  reset-gpios:
+>>> +    maxItems: 1
+>>> +
+>>> +  clock-frequency:
+>>> +    default: 100000
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>> +additionalProperties: false
+>> And if you tested any DTS with this, you would see this cannot work.
+>> Look at other bindings - you miss ref to i2c-controller and
+>> unevaluatedProps. But the problem is that you are doing something which
+>> would never work, so I have doubts that you know what you are doing. One
+>> thing is to make a mistake, other thing is to post something can never
+>> work thus putting quite noticeable requirements on review.
+>
+> You are right, i missed referencing the common i2c controller schema and
+> did not handle unevaluated properties correctly,which makes binding invalid.
 
-Ack.
 
-> 
-> > +	tristate "RP1 PWM support"
-> > +	depends on MISC_RP1 || COMPILE_TEST
-> > +	depends on HWMON
-> > +	help
-> > +	  PWM framework driver for Raspberry Pi RP1 controller
-> > +
-> > +	  To compile this driver as a module, choose M here: the module
-> > +	  will be called pwm-rp1.
-> > +
-> >  config PWM_SAMSUNG
-> >  	tristate "Samsung PWM support"
-> >  	depends on PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TEST
-> > diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> > index 0dc0d2b69025d..895a7c42fe9c0 100644
-> > --- a/drivers/pwm/Makefile
-> > +++ b/drivers/pwm/Makefile
-> > @@ -56,6 +56,7 @@ obj-$(CONFIG_PWM_RENESAS_RZG2L_GPT)	+= pwm-rzg2l-gpt.o
-> >  obj-$(CONFIG_PWM_RENESAS_RZ_MTU3)	+= pwm-rz-mtu3.o
-> >  obj-$(CONFIG_PWM_RENESAS_TPU)	+= pwm-renesas-tpu.o
-> >  obj-$(CONFIG_PWM_ROCKCHIP)	+= pwm-rockchip.o
-> > +obj-$(CONFIG_PWM_RP1)		+= pwm-rp1.o
-> >  obj-$(CONFIG_PWM_SAMSUNG)	+= pwm-samsung.o
-> >  obj-$(CONFIG_PWM_SIFIVE)	+= pwm-sifive.o
-> >  obj-$(CONFIG_PWM_SL28CPLD)	+= pwm-sl28cpld.o
-> > diff --git a/drivers/pwm/pwm-rp1.c b/drivers/pwm/pwm-rp1.c
-> > new file mode 100644
-> > index 0000000000000..0a1c1c1dd27e9
-> > --- /dev/null
-> > +++ b/drivers/pwm/pwm-rp1.c
-> > @@ -0,0 +1,244 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * pwm-rp1.c
-> > + *
-> > + * Raspberry Pi RP1 PWM.
-> > + *
-> > + * Copyright © 2026 Raspberry Pi Ltd.
-> > + *
-> > + * Author: Naushir Patuck (naush@raspberrypi.com)
-> > + *
-> > + * Based on the pwm-bcm2835 driver by:
-> > + * Bart Tanghe <bart.tanghe@thomasmore.be>
-> > + */
-> 
-> Please add a paragraph here named "Limitations" in the same format as
-> several other drivers describing how the driver behaves on disable and
-> configuration changes (can glitches occur? Is the currently running
-> period completed or aborted?)
+There is no file named i2c-controller.yaml to take ref to this yaml. I
+tried testing the yaml file with the dts in my local machine and its
+working as expected.
 
-Ack.
+I even checked the status in patchwork and there it was marked as
+successful.
 
-> 
-> > +#include <linux/bitops.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/err.h>
-> > +#include <linux/hwmon.h>
-> > +#include <linux/io.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pwm.h>
-> > +
-> > +#define PWM_GLOBAL_CTRL		0x000
-> > +#define PWM_CHANNEL_CTRL(x)	(0x014 + ((x) * 0x10))
-> > +#define PWM_RANGE(x)		(0x018 + ((x) * 0x10))
-> > +#define PWM_PHASE(x)		(0x01C + ((x) * 0x10))
-> > +#define PWM_DUTY(x)		(0x020 + ((x) * 0x10))
-> > +
-> > +/* 8:FIFO_POP_MASK + 0:Trailing edge M/S modulation */
-> > +#define PWM_CHANNEL_DEFAULT	(BIT(8) + BIT(0))
-> > +#define PWM_CHANNEL_ENABLE(x)	BIT(x)
-> > +#define PWM_POLARITY		BIT(3)
-> > +#define SET_UPDATE		BIT(31)
-> > +#define PWM_MODE_MASK		GENMASK(1, 0)
-> > +
-> > +#define NUM_PWMS		4
-> 
-> Please prefix all #defines by something driver specific (e.g. RP1_PWM_).
-
-Ack.
-
-> 
-> > +
-> > +struct rp1_pwm {
-> > +	void __iomem	*base;
-> > +	struct clk	*clk;
-> > +};
-> > +
-> > +static const struct hwmon_channel_info * const rp1_fan_hwmon_info[] = {
-> > +	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT),
-> > +	NULL
-> > +};
-> > +
-> > +static umode_t rp1_fan_hwmon_is_visible(const void *data, enum hwmon_sensor_types type,
-> > +					u32 attr, int channel)
-> > +{
-> > +	umode_t mode = 0;
-> > +
-> > +	if (type == hwmon_fan && attr == hwmon_fan_input)
-> > +		mode = 0444;
-> > +
-> > +	return mode;
-> > +}
-> > +
-> > +static int rp1_fan_hwmon_read(struct device *dev, enum hwmon_sensor_types type,
-> > +			      u32 attr, int channel, long *val)
-> > +{
-> > +	struct rp1_pwm *rp1 = dev_get_drvdata(dev);
-> > +
-> > +	if (type != hwmon_fan || attr != hwmon_fan_input)
-> > +		return -EOPNOTSUPP;
-> > +
-> > +	*val = readl(rp1->base + PWM_PHASE(2));
-> > +
-> > +	return 0;
-> > +}
-> 
-> I don't like having hwmon bits in pwm drivers. Is the PWM only usable
-> for a fan? I guess the hwmon parts should be dropped and a pwm-fan
-> defined in dt.
-
-The pwm-fan generic driver expects an interrupt to count the RPM, while
-on RP1 this data is passed via a register filled by the RP1 fw running
-on the internal core. Instead of changing the generic pwm-fan driver,
-I'll add a syscon to export this register which will be read by a new
-device/driver registering an hwmon device.
-
-> 
-> > +static const struct hwmon_ops rp1_fan_hwmon_ops = {
-> > +	.is_visible = rp1_fan_hwmon_is_visible,
-> > +	.read = rp1_fan_hwmon_read,
-> > +};
-> > +
-> > +static const struct hwmon_chip_info rp1_fan_hwmon_chip_info = {
-> > +	.ops = &rp1_fan_hwmon_ops,
-> > +	.info = rp1_fan_hwmon_info,
-> > +};
-> > +
-> > +static void rp1_pwm_apply_config(struct pwm_chip *chip, struct pwm_device *pwm)
-> > +{
-> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
-> > +	u32 value;
-> > +
-> > +	value = readl(rp1->base + PWM_GLOBAL_CTRL);
-> > +	value |= SET_UPDATE;
-> > +	writel(value, rp1->base + PWM_GLOBAL_CTRL);
-> > +}
-> > +
-> > +static int rp1_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
-> > +{
-> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
-> > +
-> > +	writel(PWM_CHANNEL_DEFAULT, rp1->base + PWM_CHANNEL_CTRL(pwm->hwpwm));
-> 
-> Please add a comment about what this does.
-
-Ack.
-
-> 
-> > +	return 0;
-> > +}
-> > +
-> > +static void rp1_pwm_free(struct pwm_chip *chip, struct pwm_device *pwm)
-> > +{
-> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
-> > +	u32 value;
-> > +
-> > +	value = readl(rp1->base + PWM_CHANNEL_CTRL(pwm->hwpwm));
-> > +	value &= ~PWM_MODE_MASK;
-> > +	writel(value, rp1->base + PWM_CHANNEL_CTRL(pwm->hwpwm));
-> > +
-> > +	rp1_pwm_apply_config(chip, pwm);
-> 
-> What is the purpose of this call?
-
-To update the configuration on the next PWM strobe in order to avoid
-glitches. I'll add a short comment in the code.
-
-> 
-> > +}
-> > +
-> > +static int rp1_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> > +			 const struct pwm_state *state)
-> > +{
-> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
-> > +	unsigned long clk_rate = clk_get_rate(rp1->clk);
-> > +	unsigned long clk_period;
-> > +	u32 value;
-> > +
-> > +	if (!clk_rate) {
-> > +		dev_err(&chip->dev, "failed to get clock rate\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	/* set period and duty cycle */
-> > +	clk_period = DIV_ROUND_CLOSEST(NSEC_PER_SEC, clk_rate);
-> 
-> DIV_ROUND_CLOSEST is wrong here. (I don't go into details as .apply()
-> should be dropped.)
-
-Ack.
-
-> 
-> > +	writel(DIV_ROUND_CLOSEST(state->duty_cycle, clk_period),
-> 
-> Dividing by the result of a division loses precision.
-> 
-> > +	       rp1->base + PWM_DUTY(pwm->hwpwm));
-> > +
-> > +	writel(DIV_ROUND_CLOSEST(state->period, clk_period),
-> > +	       rp1->base + PWM_RANGE(pwm->hwpwm));
-> > +
-> > +	/* set polarity */
-> > +	value = readl(rp1->base + PWM_CHANNEL_CTRL(pwm->hwpwm));
-> > +	if (state->polarity == PWM_POLARITY_NORMAL)
-> > +		value &= ~PWM_POLARITY;
-> > +	else
-> > +		value |= PWM_POLARITY;
-> > +	writel(value, rp1->base + PWM_CHANNEL_CTRL(pwm->hwpwm));
-> > +
-> > +	/* enable/disable */
-> > +	value = readl(rp1->base + PWM_GLOBAL_CTRL);
-> > +	if (state->enabled)
-> > +		value |= PWM_CHANNEL_ENABLE(pwm->hwpwm);
-> > +	else
-> > +		value &= ~PWM_CHANNEL_ENABLE(pwm->hwpwm);
-> > +	writel(value, rp1->base + PWM_GLOBAL_CTRL);
-> > +
-> > +	rp1_pwm_apply_config(chip, pwm);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct pwm_ops rp1_pwm_ops = {
-> > +	.request = rp1_pwm_request,
-> > +	.free = rp1_pwm_free,
-> > +	.apply = rp1_pwm_apply,
-> 
-> Please implement the waveform callbacks instead of .apply().
-
-Ack.
-
-> 
-> > +};
-> > +
-> > +static int rp1_pwm_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct device *hwmon_dev;
-> > +	struct pwm_chip *chip;
-> > +	struct rp1_pwm *rp1;
-> > +	int ret;
-> > +
-> > +	chip = devm_pwmchip_alloc(dev, NUM_PWMS, sizeof(*rp1));
-> > +	if (IS_ERR(chip))
-> > +		return PTR_ERR(chip);
-> > +
-> > +	rp1 = pwmchip_get_drvdata(chip);
-> > +
-> > +	rp1->base = devm_platform_ioremap_resource(pdev, 0);
-> > +	if (IS_ERR(rp1->base))
-> > +		return PTR_ERR(rp1->base);
-> > +
-> > +	rp1->clk = devm_clk_get_enabled(dev, NULL);
-> > +	if (IS_ERR(rp1->clk))
-> > +		return dev_err_probe(dev, PTR_ERR(rp1->clk), "clock not found\n");
-> 
-> Please start error messages with a capital letter.
-
-Ack.
-
-> 
-> > +
-> > +	ret = devm_clk_rate_exclusive_get(dev, rp1->clk);
-> 
-> After this call you can determine the rate just once and fail if it's ==
-> 0.
-
-Ack.
-
-> 
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "fail to get exclusive rate\n");
-> > +
-> > +	chip->ops = &rp1_pwm_ops;
-> > +
-> > +	platform_set_drvdata(pdev, chip);
-> > +
-> > +	ret = devm_pwmchip_add(dev, chip);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "failed to register PWM chip\n");
-> > +
-> > +	hwmon_dev = devm_hwmon_device_register_with_info(dev, "rp1_fan_tach", rp1,
-> > +							 &rp1_fan_hwmon_chip_info,
-> > +							 NULL);
-> > +
-> > +	if (IS_ERR(hwmon_dev))
-> > +		return dev_err_probe(dev, PTR_ERR(hwmon_dev),
-> > +				     "failed to register hwmon fan device\n");
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int rp1_pwm_suspend(struct device *dev)
-> > +{
-> > +	struct rp1_pwm *rp1 = dev_get_drvdata(dev);
-> > +
-> > +	clk_disable_unprepare(rp1->clk);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int rp1_pwm_resume(struct device *dev)
-> > +{
-> > +	struct rp1_pwm *rp1 = dev_get_drvdata(dev);
-> > +
-> > +	return clk_prepare_enable(rp1->clk);
-> 
-> Hmm, if this fails and then the driver is unbound, the clk operations
-> are not balanced.
-
-I'll add some flags to check if the clock is really enabled or not.
-
-Regards,
-Andrea
-
-> 
-> > +}
-> > +
-> > +static DEFINE_SIMPLE_DEV_PM_OPS(rp1_pwm_pm_ops, rp1_pwm_suspend, rp1_pwm_resume);
-> > +
-> > +static const struct of_device_id rp1_pwm_of_match[] = {
-> > +	{ .compatible = "raspberrypi,rp1-pwm" },
-> > +	{ /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, rp1_pwm_of_match);
-> > +
-> > +static struct platform_driver rp1_pwm_driver = {
-> > +	.probe = rp1_pwm_probe,
-> > +	.driver = {
-> > +		.name = "rp1-pwm",
-> > +		.of_match_table = rp1_pwm_of_match,
-> > +		.pm = pm_ptr(&rp1_pwm_pm_ops),
-> > +	},
-> > +};
-> > +module_platform_driver(rp1_pwm_driver);
-> > +
-> > +MODULE_DESCRIPTION("RP1 PWM driver");
-> > +MODULE_AUTHOR("Naushir Patuck <naush@raspberrypi.com>");
-> > +MODULE_LICENSE("GPL");
-> > -- 
-> > 2.35.3
-> > 
-> 
-> Best regards
-> Uwe
-
+>
+>> Please first learn how DTS and DT bindings work, before you post new
+>> patches.
+>
+> Thank you for the review, i will work on it.
+>
+>> Best regards,
+>> Krzysztof
+>>
+-- 
+Best Regards,
+Akhila.
 
 
