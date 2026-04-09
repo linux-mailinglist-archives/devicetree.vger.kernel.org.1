@@ -1,393 +1,145 @@
-Return-Path: <devicetree+bounces-286001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-285999-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mNhUOkNZ12lqMwgAu9opvQ
-	(envelope-from <devicetree+bounces-286001-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 09:46:11 +0200
+	id yDvEKL9Y12loMwgAu9opvQ
+	(envelope-from <devicetree+bounces-285999-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 09:43:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F0DE3C7349
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 09:46:11 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 175433C72DF
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 09:43:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 79BBA3049295
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 07:44:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 10122300E617
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 07:43:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 253A93803E3;
-	Thu,  9 Apr 2026 07:44:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14FCC37C92E;
+	Thu,  9 Apr 2026 07:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U9D/ZN9U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EVllBZVK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35FC437F002
-	for <devicetree@vger.kernel.org>; Thu,  9 Apr 2026 07:44:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E35DC3081BE;
+	Thu,  9 Apr 2026 07:43:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775720662; cv=none; b=RdaT3r1yUc3BRzjXcyGEqUAizDnn3cn8pCCD7SCCjJj9ja7fUvva8Ir+9cxPgFpL9XCdJ05w79UwYHNWtIIWvCdMww+JdTfRysOWDtNa6ujL8Grmmoi7enPiYAWhZlspurbvoZI56qm/yANi+1aKfv7c9sE5182Zsqe5wBH2hzo=
+	t=1775720637; cv=none; b=c5kWS9bClbUFWuIflP0ug9EkLyYAtlN6vNGDrOeSTBMR/QwolE63YM5Ycefkq6pF7b9iGxQg7DIWcUMIz1wFYkteRx2S2/Rk7f899B8jhu2mq7ugeyAIWOWVxrPVf7c748e/bUaI4qMSjiHve4iMdeHtw62/wyhgKMLuwGZQodw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775720662; c=relaxed/simple;
-	bh=+neZOOjWdQVdJTB55it/1EVZihaYU1w2cBZD5co5sdQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=icBRQb3SKi8aBI1ItuwgXvTa0Y9EubWG/2UStSIMy6j6ydv1cbY3V7VcxRJm8jKwRnhJSQZ717nhfbuKw2NkLA52s7lfLmAe5MxcoXIgC9wezANvlmg5MlqXYdbA7voXr82UAw2tcH3DC8XYmdZp1tyrv6OEj+x/Sico75EPnP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U9D/ZN9U; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-c76c067bc51so242045a12.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Apr 2026 00:44:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775720659; x=1776325459; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LYfS1O2yf/ne7E+3AVEnMmfiNz3xkDVuJUPn1EUTtNA=;
-        b=U9D/ZN9UkT5WL4NuOegARnUGpzGgz38xr3IVzRvyeypvpireAcRi+usa1l7JFikcKS
-         f9bDSRDeKdT/VfqhW2MVZ89QMpHsKvgGvA2fpK9rR2mu4/kC5BPgDAGuHA5INZzAlt3I
-         oVYHYrd5Fje1XY6RHE7UEHHDu+dGLw++h4P/l+K2GJeU9sad7P3Mdxb8by7FXw1eoUPc
-         Al5tNxiq+azvvqNs0XK7P8JiiaBr8oY/VGD0LNB/OCQQaPXFyj01vK/l7rqfGP+rz1yE
-         aSlcGCJxCXKuHeUPtJla/ITnw8j7taZcXcZTBOYtdQYljY2iEj8d2quQIlVV4M8e0V4b
-         ePmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775720659; x=1776325459;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LYfS1O2yf/ne7E+3AVEnMmfiNz3xkDVuJUPn1EUTtNA=;
-        b=TYr0/OSOEIulyryYLhRyJTFTYv3CEatKfWeurZ4xCJxMZKuKuhoCuawW0iP9txmmnw
-         zUiHTMC8dt+b7VEcFy6oAdPa00ol/LIsgMbVxKPpOtn1jsxeDdMR0nvnft55/9S6nOpn
-         g5riLR73jD5kdrte0p2kadD+TCULE+FI+8JKgyL4RT7QUiQdrvAQbQ0Z2k5zV/V1ifUM
-         yb0+mlz4QaCJHVspicElMA/bDUsb5UKlSaYSBb2eADibGmL7NYMgYrhz9JRFZjGUfQ/8
-         36mlqUM8b7YofhBH0x24k8EpTVfEnsRVZuTWz6y1L3uI8XXoQA14TRYVuFlF6pCYv+GM
-         1WMw==
-X-Forwarded-Encrypted: i=1; AJvYcCUsJZfFD7OmY6Cmu+MjP5c4D8YpNu58ZqO2lCE3LVKmtVE4u07f9hhMg0NHCChxqqeSUWgXS0OePRbZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxanfxCCMNyRWPnI5c2f8DxG/z7FSevnYdZAsLAfo/q5jb/zKwq
-	ByMNAX//atZTsMFpw9u07Qp4ea9Z/oCoAxCJ2DVnuC+PSkWaUAC1DqEy
-X-Gm-Gg: AeBDieu8uxjJoaBuozlQFoPoPt5ucDhRjxSEOb9nzz1OYeLJ+M+FZ4Ctq4ySlS20OjJ
-	rCePpZdRqos3yedpg/wYR9s7tC4iJKGe68eVIrPbj0+YQfqA+8WWeFXPkwRA1ylorGYT09TMyj1
-	vXXHKangl0s7leKdMX1c11qHiRtc25m3oSsEd8nKYc2fkENzR08xhTQmmuZ6iEMpGwxo43vXhl7
-	UEP4W0+aAAtRHGMiBGDPX7uzfesrrc7KSiKRMzIAtMcAQQ4NohQUQzapwNqNwUY7j0XIAL3KuzJ
-	AuiXR4YY0wRKenr3lw5hK4YAdDIoZB8mBVkSK2UdQszdTxG+odW0yqHDgrjKoy6WiBdOnhg9w5j
-	g5h4DLj7qaq3AC68sdT4EFZ1k4bmFPoYxBmDDAT8j3DQxqRR7/eePdS74hEP6XPckGg8r0RTXcL
-	PaTz5g63GEq2hfXaBVYG0ryvjdpgYByaKM6UKzooD/NzaJC9j3Vw==
-X-Received: by 2002:a05:6a20:7f86:b0:398:7866:e8e8 with SMTP id adf61e73a8af0-39fc82e89a3mr3171074637.31.1775720659419;
-        Thu, 09 Apr 2026 00:44:19 -0700 (PDT)
-Received: from Black-Pearl.localdomain ([157.50.173.193])
-        by smtp.googlemail.com with ESMTPSA id 41be03b00d2f7-c76c6475b56sm21226965a12.1.2026.04.09.00.44.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Apr 2026 00:44:19 -0700 (PDT)
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Thu, 09 Apr 2026 07:43:16 +0000
-Subject: [PATCH] dt-bindings: mmc: st,sdhci: convert to DT schema
+	s=arc-20240116; t=1775720637; c=relaxed/simple;
+	bh=uq/R6PmosWxaig3fB+at0I2ppDM6xQzhVCUmWXfCLIE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mWutZHr1/EXXKSypSsMK9JLPX8pI9HGi2iyndpCiVQdYG4N64HfCmowHSAXKx2LoZLGUBRGQ5Kby52/VfHrqZX9ReKWV7498HRLQR+UiFExftNym1kZZgRmpkpdj0TLXJvGmWeJxb78fGQwETQg+tVMxjbVFydcteHKWFwaUyMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EVllBZVK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05C1EC4CEF7;
+	Thu,  9 Apr 2026 07:43:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775720636;
+	bh=uq/R6PmosWxaig3fB+at0I2ppDM6xQzhVCUmWXfCLIE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EVllBZVKxqZDb6GWFRf6NCvRGFukJ+3EsnP2wGG9WlFBKXTj1m8EIxNieXFokKcNC
+	 DY8z5BewLaM0clOfV8z+g1lmeigkmas2Ef6llkBYUOLKsmHrhs6frICytJD1gAsrKP
+	 ILgqkdcyErgC7vKK10MJFyN83omrsJUU66Wg5JXSURzCIb3ir1Ij3WrhC0G+47k5+2
+	 fOyhhnUVmELllc1kcdTZyR18jQlxhVRpMa5u74L1GuCocHwkhIB/mey17qCMktLJqH
+	 ipAjY8yoPibjVwitnUb53lOicQ19oNEt78twPkuxZBkzykgu0tVCNo/b3LtrTDEbtB
+	 v2GJLeLdgZMLA==
+Date: Thu, 9 Apr 2026 09:43:53 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Yu-Chun Lin <eleanor.lin@realtek.com>
+Cc: linusw@kernel.org, brgl@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, afaerber@suse.com, tychang@realtek.com, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-realtek-soc@lists.infradead.org, cy.huang@realtek.com, 
+	stanley_chang@realtek.com, james.tai@realtek.com
+Subject: Re: [PATCH v2 2/4] dt-bindings: gpio: realtek: Add
+ realtek,rtd1625-gpio
+Message-ID: <20260409-heavy-colorful-monkey-e09d42@quoll>
+References: <20260408025243.1155482-1-eleanor.lin@realtek.com>
+ <20260408025243.1155482-3-eleanor.lin@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260409-st-mmc-v1-1-4c54321c3535@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAJRY12kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDYyNz3eIS3dzcZN1kSwOzxBRL07Q0C2MloOKCotS0zAqwQdGxtbUAWNW
- 1kFgAAAA=
-X-Change-ID: 20260327-st-mmc-c906ad95ff83
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
-X-Mailer: b4 0.15.1
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260408025243.1155482-3-eleanor.lin@realtek.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-286001-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-285999-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,0.138.62.160:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.138.140.192:email,devicetree.org:url]
-X-Rspamd-Queue-Id: 4F0DE3C7349
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 175433C72DF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Convert STMicroelectronics sdhci-st MMC/SD controller binding to DT schema.
+On Wed, Apr 08, 2026 at 10:52:41AM +0800, Yu-Chun Lin wrote:
+> +maintainers:
+> +  - Tzuyi Chang <tychang@realtek.com>
+> +
+> +description: |
+> +  GPIO controller for the Realtek RTD1625 SoC, featuring a per-pin register
+> +  architecture that differs significantly from earlier RTD series controllers.
+> +  Each GPIO has dedicated registers for configuration (direction, input/output
+> +  values, debounce), and interrupt control supporting edge and level detection
+> +  modes.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - realtek,rtd1625-iso-gpio
+> +      - realtek,rtd1625-isom-gpio
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: |
+> +      Memory region containing both interrupt control and GPIO
+> +      configuration registers in a contiguous address space.
+> +
+> +      For realtek,rtd1625-iso-gpio:
+> +        - Base + 0x0 ~ 0xff: Interrupt control registers
+> +        - Base + 0x100 ~ 0x397: GPIO configuration registers
+> +
+> +      For realtek,rtd1625-isom-gpio:
+> +        - Base + 0x0 ~ 0x1f: Interrupt control registers
+> +        - Base + 0x20 ~ 0x2f: GPIO configuration registers
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
----
- Documentation/devicetree/bindings/mmc/sdhci-st.txt | 110 -------------------
- .../devicetree/bindings/mmc/st,sdhci.yaml          | 122 +++++++++++++++++++++
- 2 files changed, 122 insertions(+), 110 deletions(-)
+Drop description, you are duplicating here DTS. Bindings do not need to
+serve as reference manual for the device.
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-st.txt b/Documentation/devicetree/bindings/mmc/sdhci-st.txt
-deleted file mode 100644
-index ccf82b4ee838..000000000000
---- a/Documentation/devicetree/bindings/mmc/sdhci-st.txt
-+++ /dev/null
-@@ -1,110 +0,0 @@
--* STMicroelectronics sdhci-st MMC/SD controller
--
--This file documents the differences between the core properties in
--Documentation/devicetree/bindings/mmc/mmc.txt and the properties
--used by the sdhci-st driver.
--
--Required properties:
--- compatible:		Must be "st,sdhci" and it can be compatible to "st,sdhci-stih407"
--			to set the internal glue logic used for configuring the MMC
--			subsystem (mmcss) inside the FlashSS (available in STiH407 SoC
--			family).
--
--- clock-names:		Should be "mmc" and "icn".  (NB: The latter is not compulsory)
--			See: Documentation/devicetree/bindings/resource-names.txt
--- clocks:		Phandle to the clock.
--			See: Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--- interrupts:		One mmc interrupt should be described here.
--- interrupt-names:	Should be "mmcirq".
--
--- pinctrl-names:	A pinctrl state names "default" must be defined.
--- pinctrl-0:		Phandle referencing pin configuration of the sd/emmc controller.
--			See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
--
--- reg:			This must provide the host controller base address and it can also
--			contain the FlashSS Top register for TX/RX delay used by the driver
--			to configure DLL inside the flashSS, if so reg-names must also be
--			specified.
--
--Optional properties:
--- reg-names:		Should be "mmc" and "top-mmc-delay". "top-mmc-delay" is optional
--			for eMMC on stih407 family silicon to configure DLL inside FlashSS.
--
--- non-removable:	Non-removable slot. Also used for configuring mmcss in STiH407 SoC
--			family.
--			See:  Documentation/devicetree/bindings/mmc/mmc.txt.
--
--- bus-width:		Number of data lines.
--			See:  Documentation/devicetree/bindings/mmc/mmc.txt.
--
--- max-frequency:	Can be 200MHz, 100MHz or 50MHz (default) and used for
--			configuring the CCONFIG3 in the mmcss.
--			See:  Documentation/devicetree/bindings/mmc/mmc.txt.
--
--- resets:		Phandle and reset specifier pair to softreset line of HC IP.
--			See: Documentation/devicetree/bindings/reset/reset.txt
--
--- vqmmc-supply:		Phandle to the regulator dt node, mentioned as the vcc/vdd
--			supply in eMMC/SD specs.
--
--- sd-uhs-sdr50:	To enable the SDR50 in the mmcss.
--			See:  Documentation/devicetree/bindings/mmc/mmc.txt.
--
--- sd-uhs-sdr104:	To enable the SDR104 in the mmcss.
--			See:  Documentation/devicetree/bindings/mmc/mmc.txt.
--
--- sd-uhs-ddr50:		To enable the DDR50 in the mmcss.
--			See:  Documentation/devicetree/bindings/mmc/mmc.txt.
--
--Example:
--
--/* Example stih416e eMMC configuration */
--
--mmc0: sdhci@fe81e000 {
--	compatible	= "st,sdhci";
--	reg		= <0xfe81e000 0x1000>;
--	interrupts	= <GIC_SPI 127 IRQ_TYPE_NONE>;
--	interrupt-names	= "mmcirq";
--	pinctrl-names	= "default";
--	pinctrl-0	= <&pinctrl_mmc0>;
--	clock-names	= "mmc";
--	clocks		= <&clk_s_a1_ls 1>;
--	bus-width	= <8>
--
--/* Example SD stih407 family configuration */
--
--mmc1: sdhci@9080000 {
--	compatible	= "st,sdhci-stih407", "st,sdhci";
--	reg		= <0x09080000 0x7ff>;
--	reg-names	= "mmc";
--	interrupts	= <GIC_SPI 90 IRQ_TYPE_NONE>;
--	interrupt-names	= "mmcirq";
--	pinctrl-names	= "default";
--	pinctrl-0	= <&pinctrl_sd1>;
--	clock-names	= "mmc";
--	clocks		= <&clk_s_c0_flexgen CLK_MMC_1>;
--	resets		= <&softreset STIH407_MMC1_SOFTRESET>;
--	bus-width	= <4>;
--};
--
--/* Example eMMC stih407 family configuration */
--
--mmc0: sdhci@9060000 {
--	compatible	= "st,sdhci-stih407", "st,sdhci";
--	reg		= <0x09060000 0x7ff>, <0x9061008 0x20>;
--	reg-names	= "mmc", "top-mmc-delay";
--	interrupts	= <GIC_SPI 92 IRQ_TYPE_NONE>;
--	interrupt-names	= "mmcirq";
--	pinctrl-names	= "default";
--	pinctrl-0	= <&pinctrl_mmc0>;
--	clock-names	= "mmc";
--	clocks		= <&clk_s_c0_flexgen CLK_MMC_0>;
--	vqmmc-supply	= <&vmmc_reg>;
--	max-frequency	= <200000000>;
--	bus-width	= <8>;
--	non-removable;
--	sd-uhs-sdr50;
--	sd-uhs-sdr104;
--	sd-uhs-ddr50;
--};
-diff --git a/Documentation/devicetree/bindings/mmc/st,sdhci.yaml b/Documentation/devicetree/bindings/mmc/st,sdhci.yaml
-new file mode 100644
-index 000000000000..22060fe6e364
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/st,sdhci.yaml
-@@ -0,0 +1,122 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/st,sdhci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics SDHCI-ST MMC/SD Controller
-+
-+description:
-+  The STMicroelectronics SDHCI-ST MMC/SD host controller, which is
-+  compliant with the SD Host Controller Interface (SDHCI) specification and
-+  is used to interface with MMC, SD and SDIO cards. The ST SDHCI controller
-+  extends the standard SDHCI capabilities with platform-specific
-+  configurations such as additional register regions,clock inputs, and delay
-+  control mechanisms required for signal timing adjustments which are
-+  necessary to support high-speed modes and ensure reliable data transfer
-+  across different ST SoCs.
-+
-+maintainers:
-+  - Peter Griffin <peter.griffin@linaro.org>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: st,sdhci
-+      - items:
-+          - const: st,sdhci-stih407
-+          - const: st,sdhci
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+
-+  reg-names:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      enum:
-+        - mmc
-+        - top-mmc-delay
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      enum:
-+        - mmc
-+        - icn
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    const: mmcirq
-+
-+  pinctrl-names:
-+    const: default
-+
-+  resets:
-+    maxItems: 1
-+    description: Phandle to reset line of host controller.
-+
-+  vqmmc-supply:
-+    description: Regulator supplying I/O voltage (Vcc/Vdd for SD/eMMC).
-+
-+  non-removable:
-+    type: boolean
-+    description:
-+      Indicates a non-removable device (e.g., eMMC). Also used for mmcss config.
-+
-+  bus-width:
-+    description: Number of data lines.
-+    enum: [1, 4, 8]
-+
-+  max-frequency:
-+    enum: [50000000, 100000000, 200000000]
-+    default: 50000000
-+    description:
-+      Maximum bus frequency. Used to configure CCONFIG3 in mmcss.
-+
-+  sd-uhs-sdr50:
-+    type: boolean
-+
-+  sd-uhs-sdr104:
-+    type: boolean
-+
-+  sd-uhs-ddr50:
-+    type: boolean
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+  - interrupt-names
-+  - pinctrl-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/stih407-clks.h>
-+    sdhci@9060000 {
-+        compatible = "st,sdhci-stih407", "st,sdhci";
-+        reg = <0x09060000 0x7ff>, <0x9061008 0x20>;
-+        reg-names = "mmc", "top-mmc-delay";
-+        interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "mmcirq";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_mmc0>;
-+        clock-names = "mmc", "icn";
-+        clocks = <&clk_s_c0_flexgen CLK_MMC_0>,
-+                 <&clk_s_c0_flexgen CLK_RX_ICN_HVA>;
-+        bus-width = <8>;
-+    };
-+...
+However when you state them like this and give them names, I have the
+same concerns as last time - please consult your datasheet whether this
+is really one address space.
 
----
-base-commit: e77a5a5cfe43b4c25bd44a3818e487033287517f
-change-id: 20260327-st-mmc-c906ad95ff83
+With description dropped:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
---  
-Charan Pedumuru <charan.pedumuru@gmail.com>
+Krzysztof
 
 
