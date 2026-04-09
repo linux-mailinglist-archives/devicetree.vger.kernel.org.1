@@ -1,168 +1,199 @@
-Return-Path: <devicetree+bounces-286206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286207-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iAm6BKvF12mdSQgAu9opvQ
-	(envelope-from <devicetree+bounces-286206-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 17:28:43 +0200
+	id 6PPRFSnG12n6SwgAu9opvQ
+	(envelope-from <devicetree+bounces-286207-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 17:30:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F8EB3CCAAB
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 17:28:42 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A26B3CCB30
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 17:30:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 841783036114
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 15:27:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B1635301CC5A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 15:27:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B687F3E1216;
-	Thu,  9 Apr 2026 15:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562193E022E;
+	Thu,  9 Apr 2026 15:26:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bbziAoWD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D7+feIo+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 918BD3DFC70;
-	Thu,  9 Apr 2026 15:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2822BE7DD;
+	Thu,  9 Apr 2026 15:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775748390; cv=none; b=JDxxLIHycADfUdmLYW7tEbKVg3FUEjzSUvn+KH8VxDsH418EITF4BhMufn2ZWdCvG1aBqcI/bC9ee2CDU40tbbHfiNfsm+2q/30GoClGN049t1p28GwXGSvr4DPmQpYAOeR6huE68k+oqe6eWdwaHySn/QEfS+AyLHh65Q6IC8E=
+	t=1775748416; cv=none; b=u0GU5h7UHfodHZnehUVl1sy7ZRruK1rnNixITmrF9yyln4p3BuMyH6Ld/wrNHeHMdkK8b9pJXbVZ3DWoIJDsr/HwIw+hNZOHq9E4z7yKPMM4GIz96cTvv9fjIxUS7LkHKyOilwzQVeMDFDpj8NRyKItjXaXQl1td/GJhycTlDM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775748390; c=relaxed/simple;
-	bh=pnyIYTGFvUHdVT/9CLO3bbomQBEswW1wI7LRF6GHZL8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CD2Kn/QZ2heWZ/9crGg/guwS0CJJB6P33nV79NxcWbosgyZikuQpKXQwBbfWKsWT4rVmij05nTS8iMMg/22Vthyr5CHk9x0pdADpGWlS6t6El2SC65MYdNypW1vn2VtoyVdku8u9DQujPm7o/U4Zs3TbX9CyZhEorKdT72n51wE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bbziAoWD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6894C19424;
-	Thu,  9 Apr 2026 15:26:27 +0000 (UTC)
+	s=arc-20240116; t=1775748416; c=relaxed/simple;
+	bh=vxQfWBQLHZFQ/BGpZWA3g64b1+ji6GZCRcyXkxP873Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ew2yK1l3rJ1O6EotIo2d5PH0O66k+8Hgx0dW0be1jqKC2HTV/ZsZb/Y5/vz8xgbIjNEXmkHN8Lqdy/I6d5XvFjA/SzQuA6Sjv2Unh+6mXzDPDTlcfaCCAkunINkyKrPzPUtkkGodGHZr91cSOEhRKDpKlPTYfr4xlh8L9PHbBAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D7+feIo+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B018AC4CEF7;
+	Thu,  9 Apr 2026 15:26:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775748390;
-	bh=pnyIYTGFvUHdVT/9CLO3bbomQBEswW1wI7LRF6GHZL8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bbziAoWDSRTTTMnxVnwR5RhcwIRuSot5r/dl9oyCR4z3VCuF9OHbW9lYFvdzq2KgN
-	 matqwhXrEZORNEF21t4mPb5Z2TdKqGwFxZV94dmI9RAy8wXQPFcMkh6YBws5WUyHkF
-	 qTJ4c1p8746//KlKaJYbLnX33t0hWGQXvIkK5gU8Pq21BrwLzx8Qeq4GWmZDZhROp/
-	 cB1AODdE1zIHj9vDt4DCpA4gPBuxOVmZy4PysLVgciQSxaqjIT/GszByrqu1022FCl
-	 qvymzGIDTAqq4zExGpF8mgl4XSLgMSI74KDJMvLfO3GewMF8fAhHPQ96dmSvnvblrp
-	 Wh/MgqF2xWbEg==
-Date: Thu, 9 Apr 2026 16:26:25 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Herve Codina <herve.codina@bootlin.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: Add support for the GPIOs driven
- amplifier
-Message-ID: <383635c6-0417-4333-aa9c-9056437d4a5f@sirena.org.uk>
-References: <20260330101610.57942-1-herve.codina@bootlin.com>
- <20260330101610.57942-3-herve.codina@bootlin.com>
- <20260408122901.GA42727-robh@kernel.org>
- <20260408190932.0ab936b0@bootlin.com>
- <CAL_JsqK4SHQS6MciQpLSrGWo2knqs7-eB3yoAv2J54bSfW-Lxg@mail.gmail.com>
+	s=k20201202; t=1775748415;
+	bh=vxQfWBQLHZFQ/BGpZWA3g64b1+ji6GZCRcyXkxP873Q=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=D7+feIo+50o4jHQIHglg5UXOthWCS4hh/dwNWU/WeJywo0lzxSJf+4EnxN4O/RkWh
+	 tYkPAuyEoBpP+NiE+0kRMctpoP+MTVqp/Mk/vY/6A64WBnG9M00FcQV5lXK0wA6vVG
+	 FR05W6rJJvtm9nV0TqnVndI2MRCo23H2hsPbokRaLTTz8CuWnzVFNg7uqNW02ROXYC
+	 5spGRpylSUfo9p/JYD9xlp21XoiC4+icKv6EEQJHe1kyy2ZJPCWSk9xjiFqjs+05r1
+	 1byHCXUgO6m3V6DAPrhaOS1nOJdPZ69xRFYTVK405Sjl2YZUuwyiFI4V/HGonkazWD
+	 MYhsIJ9pej9/w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A169F31E29;
+	Thu,  9 Apr 2026 15:26:55 +0000 (UTC)
+From: Joe Sandom via B4 Relay <devnull+jsandom.axon.com@kernel.org>
+Subject: [PATCH v3 0/5] arm64: dts: qcom: add QCS8550 RB5Gen2 support
+Date: Thu, 09 Apr 2026 16:26:52 +0100
+Message-Id: <20260409-rb5gen2-dts-v3-0-be736355d4b4@axon.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="g09VxWLtjplPgHzT"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqK4SHQS6MciQpLSrGWo2knqs7-eB3yoAv2J54bSfW-Lxg@mail.gmail.com>
-X-Cookie: Hailing frequencies open, Captain.
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADzF12kC/23MsQ6DIBSF4Vcxdy4NIIp26ns0HRQuylBowBAbw
+ 7sXnWzS8Zzk+zeIGCxGuFUbBEw2Wu/KqC8VqHlwExKrywZOeUsFFSSMzYSOE71EwjqqNNJRslZ
+ BEe+Axq5H7fEse7Zx8eFzxBPb3/+dxAglXd+YzijRC6Puw+rdVfkX7JnEz1T+Ul6opkoaISSir
+ E805/wFgbzWUOAAAAA=
+X-Change-ID: 20260404-rb5gen2-dts-180cde0b716c
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Joe Sandom <jsandom@axon.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775748414; l=3630;
+ i=jsandom@axon.com; s=20260319; h=from:subject:message-id;
+ bh=vxQfWBQLHZFQ/BGpZWA3g64b1+ji6GZCRcyXkxP873Q=;
+ b=tWg7h5sB7u0M12G/wm9/S79zw3zn1GAWAtUrFtXRUv77XV+bhD9wlYqo9M3nuwcgwQjMMe8R0
+ ReCsZ8Zi730BmEPlexyPd3xLFwLgwZqdsdc1fyvOWCH6SRwpq74nRv/
+X-Developer-Key: i=jsandom@axon.com; a=ed25519;
+ pk=Q/yflwj2WhkgBVTskrS9Vl5oScD0Bp3vTzDi+OxskTo=
+X-Endpoint-Received: by B4 Relay for jsandom@axon.com/20260319 with
+ auth_id=687
+X-Original-From: Joe Sandom <jsandom@axon.com>
+Reply-To: jsandom@axon.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286206-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[bootlin.com,gmail.com,kernel.org,perex.cz,suse.com,vger.kernel.org,csgroup.eu];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-286207-lists,devicetree=lfdr.de,jsandom.axon.com];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sirena.org.uk:mid,bootlin.com:email]
-X-Rspamd-Queue-Id: 9F8EB3CCAAB
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[jsandom@axon.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,axon.com:email,axon.com:replyto,axon.com:mid,thundercomm.com:url]
+X-Rspamd-Queue-Id: 4A26B3CCB30
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This series adds device tree support for the Thundercomm RB5Gen2
+development kit, based on the Qualcomm QCS8550 chipset.
 
---g09VxWLtjplPgHzT
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Patches 1-3 prepares for the RB5gen2 device tree by adding MHI register
+regions and port labels to the PCIe controller nodes, as well as moving
+common IPA properties into sm8550.dtsi. Then update the existing HDK
+and QRD board files accordingly.
 
-On Thu, Apr 09, 2026 at 10:00:55AM -0500, Rob Herring wrote:
-> On Wed, Apr 8, 2026 at 12:09=E2=80=AFPM Herve Codina <herve.codina@bootli=
-n.com> wrote:
+Patches 4-5 add the dt-bindings documentation and the board device tree
+for the RB5Gen2. This initial submission covers the main board; the vision
+mezzanine will be supported in a follow-up series.
 
-> > Mark suggested to merge this gpio-audio-amp with simple-amplifier.
+Product page:
+https://www.thundercomm.com/product/qualcomm-rb5-gen-2-development-kit
 
-> Merging driver and merging binding are separate questions.
+Signed-off-by: Joe Sandom <jsandom@axon.com>
+---
+Changes in v3:
+- Reworded MHI commit message to describe actual usage (debugfs
+  link_transition_count) per Neil's feedback
+- Reordered pinctrl-0 before pinctrl-names file-wide per Konrad's
+  feedback
+- Removed output-high from lt9611_rst_pin since the driver handles
+  reset sequencing
+- Reordered tlmm pinctrl entries by GPIO number
+- Changed bias-pull-up to bias-disable for regulator enable pins
+  (upd_1p05_en, upd_3p3_en) since these are active-high enables
+- Added comments for gpio-reserved-ranges explaining GPIOs 32-35
+  are for NFC secure element and 36-39 for fingerprint sensor
+- Removed max-sd-hs-hz override since upstream clock driver already
+  provides the correct 37.5MHz frequency
+- Updated msi-map deletion rationale with root cause: Gunyah limits
+  ITS device mappings to two per root complex on SM8550
+- Link to v2: https://lore.kernel.org/r/20260407-rb5gen2-dts-v2-0-d0c7f447ee73@axon.com
 
-Yes, my comments were purely about the driver.
+Changes in v2:
+- Lowercase hex in MHI region definitions for pcie0 and pcie1 nodes +
+  vertical alignment
+- Change pcie0 and pcie1 reg-names for one entry per line
+- Ensured pcie port labels + changes to sm8550-hdk.dts and sm8550-qrd.dts
+  are done in a single commit
+- Moved IPA gsi-loader and memory-region to sm8550.dtsi since they are common
+  properties. Reflect changes in sm8550-hdk.dts and sm8550-qrd.dts
+- Removed usbhub_reset since this is not required
+- Added swctrl-gpios property to wcn7850-pmu
+- Split sw_ctrl_default gpio from bt_default grouping and referenced the
+  pinctrl separately
+- Replaced upd_reset regulator-fixed with pinctrl and vddpe-3v3-supply
+  on pcie0
+- Aligned firmware-name values vertically on the quote mark
+- Changed cdsp, adsp and modem remoteprocs to .mbn file type instead of
+  .mdt
+- Added remark in rb5gen2 dts commit explaining the rationale for
+  deleting msi-map in pcie0 and pcie1 nodes
+- Link to v1: https://lore.kernel.org/r/20260404-rb5gen2-dts-v1-0-895f8fc494fc@axon.com
 
-> > I didn't want to set a particular limit related to the number of GPIOs
-> > used for thje gain value. Of course 2^32 is obviously a lot.
+---
+Joe Sandom (5):
+      arm64: dts: qcom: sm8550: add PCIe MHI register regions
+      arm64: dts: qcom: sm8550: add PCIe port labels
+      arm64: dts: qcom: sm8550: move IPA properties to SoC device tree
+      dt-bindings: arm: qcom: document QCS8550 RB5Gen2 board
+      arm64: dts: qcom: qcs8550: add QCS8550 RB5Gen2 board support
 
-> > What do you think about 16 for maxItems?
+ Documentation/devicetree/bindings/arm/qcom.yaml |    6 +
+ arch/arm64/boot/dts/qcom/Makefile               |    1 +
+ arch/arm64/boot/dts/qcom/qcs8550-rb5gen2.dts    | 1573 +++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550-hdk.dts         |    4 +-
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts         |    4 +-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi            |   26 +-
+ 6 files changed, 1602 insertions(+), 12 deletions(-)
+---
+base-commit: af241225893ac4933bb8f0615f2dfda8ea2326ce
+change-id: 20260404-rb5gen2-dts-180cde0b716c
 
-> What is the most you are aware of? Take that and double it.
+Best regards,
+-- 
+Joe Sandom <jsandom@axon.com>
 
-> Seems to me 256 levels would be way more than a human ear could distingui=
-sh.
 
-There's plenty of gain controls with way more than 256 bits of
-resolution, though I'm not aware of any that are configured via GPIO.
-The step size and absolute values you want can vary dramatically
-depending on application, possibly in the same system (eg, a DAC that
-can be connected to both headphones or speakers) so you often end up
-making practical adjustments in a small subset of the available range
-but that subset can vary a lot for the same part.
-
-> I guess my point was that really we could deprecate simple-amplifier
-> binding because this one can handle it and more. But I'm not
-> suggesting we do that yet.
-
-That's my thinking.
-
---g09VxWLtjplPgHzT
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnXxSAACgkQJNaLcl1U
-h9AyAQf+PFfdD5FaRa7cXGLebu7K6JB2uKAdF6KxBmTK/OT8yImF22Wg5pj5mNGs
-QUm6G8gCvGa4dQbTBnYg2h9q0zs0V0sRR46Y4Wkrv28X3LjKK8tj4EP7lTxNlmSX
-oTtC6PPajivpCRauXtiq7ouL/4Gfk6wNoDZbD/And/vdBJjQFuLRA74IO4nYU11n
-X+tUhe6S8yHQrFUjYEACPfTls+CP6xj/Z/CYgUBZySggMvygFezorl7HeSqsJW6W
-kXcpIdxnTQ6gvTdl/l7dpQbSB/GSIy+7+u6HsOYN/bplwYvoXhFuVQLwYMrRMnNq
-Y7diPqvUaaH+gC1XsY/9ge+dfoFcag==
-=XhEP
------END PGP SIGNATURE-----
-
---g09VxWLtjplPgHzT--
 
