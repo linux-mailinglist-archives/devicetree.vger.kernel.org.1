@@ -1,124 +1,118 @@
-Return-Path: <devicetree+bounces-286035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286036-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SGY6CCpo12lVNwgAu9opvQ
-	(envelope-from <devicetree+bounces-286035-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 10:49:46 +0200
+	id WLuLFepn12myNggAu9opvQ
+	(envelope-from <devicetree+bounces-286036-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 10:48:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70AD03C7F4E
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 10:49:45 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B24653C7F1C
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 10:48:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9B4CC30166CF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 08:47:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 99DBB301628C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 08:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03B3334DCF3;
-	Thu,  9 Apr 2026 08:47:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39DFB3815DC;
+	Thu,  9 Apr 2026 08:48:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BARPx+Sm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z9YuU1OK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4ED630F55F
-	for <devicetree@vger.kernel.org>; Thu,  9 Apr 2026 08:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 161DF34A791;
+	Thu,  9 Apr 2026 08:48:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775724441; cv=none; b=DHclwDJ7FiLo/4GAYXhJTu1wAS2mUkgOuoWbNNeceNQhJ96bGJEUDaNTtMGkoOLwO2MFMxcF5mtV+eo01jk0EpCg9gfTmBuKPjCP+XcS4hskmij6hfQp2KP339w4pLHQ0FBOQ65TLhIjEC6gpZc1Gxe5GgzM+HHUt3B8G3a/qB0=
+	t=1775724519; cv=none; b=mhhADGcQlHm31sykMuPiCptvFTWrHNtf2eb0YWDZwqU57p7agPLriXI5HIfMyZsQrRbuMQ0Au/3s9aL31SNHSA9v1MvFN/uCsXTARAf70ZJwLODDU47AxJBRDNzNNUF6EorkPj7D9e3Pc1zODbVo2lV/68ghQEiyYg+DPxPBRSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775724441; c=relaxed/simple;
-	bh=FhoqXLreX/BLdwXmDMi/YVzFa/SUVXcXnQnOklrPkYc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RdNfkLVy8SAq5wa4iNmUo8hq+eemPNoYJ0YNX/HvIvyfV+tSxlG2kyjUbdLgPE6XrfJ6bkGkqn8IMMyF6+pkDF2kbbvuLI+MkDpsB0MYDfKJuDWK4hzXKvm4BIJZBbp/QG4W0QyteXv4CtiIyfXT4AhT4hLdM7kvwy6yzMRLgbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BARPx+Sm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96FB0C2BCB2
-	for <devicetree@vger.kernel.org>; Thu,  9 Apr 2026 08:47:21 +0000 (UTC)
+	s=arc-20240116; t=1775724519; c=relaxed/simple;
+	bh=Ucrrm+UdDjJaW/Cy0XhWuFhqJm3EGIewHjfu8mGM1Hg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GE8sYtlQsQkUIOV/6yZBOXuCKlqefiqEOs3Vpr6N+sOzyPuaU8OtPpSnRf/FmiWjQ3tjzmqJX8coNdhgtHc6nBPvazOLi0+5zBPQRN7UaklAKwRQ6/MDqlYUXUEpg3S4dwZanpb/haUu7DugfNbZoOpG21F0j4v/898bbQmqFZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z9YuU1OK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41636C4CEF7;
+	Thu,  9 Apr 2026 08:48:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775724441;
-	bh=FhoqXLreX/BLdwXmDMi/YVzFa/SUVXcXnQnOklrPkYc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=BARPx+SmrdAjYotD8o8UZliyK2PlMQInpQpasCwiq1aI8uGW57GvEpjZT52D+AEJd
-	 0wOaILYuVAWHmm0HGN88AEztH3nEFCxqLIEn+VKJb3GRcRwde5EtRASic0nBf9zHtI
-	 GKqnKEhsZ4Kze/ZkF70Sw0Z04I6rWCTiKkIgz/JWutPiGdKpx32EX9hz7wMXTcLqrN
-	 ki+q7WSfeFTeBziiXT1FQKxgFxSfCwe6lU/rZJJy+VBa7HIhmqtZZq4GcmMFcIBvpG
-	 JG74s1nUIgwXwyeICrjjJ4ACuS1+RombSELmyirIVcA9eZCGeig6DY6KZ6Ax08WMvA
-	 v23F7GS/EfnYQ==
-Received: by mail-yx1-f44.google.com with SMTP id 956f58d0204a3-64eb84d1e37so487299d50.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Apr 2026 01:47:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVP5OoqWxH2XIKhe/awuvT4KN7sbnv+6NgmjouyENK6ahgW0anURgb5TLhRx9C+CmaRfEaJVdWiPdtG@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGAqgXNkVIszkgi+IDLEELAXMc92Z258J2AclnVQptAP2VMOCc
-	NyNdjIxMkyVTOYPXkps7KxL6s0OEBh1oKjH0hta+E9KMgYRppYIcSAa4eyklr2YwlEqWph6QVrZ
-	QOWLCRA8pUz3tfm3SCUl6cqKe1byWZ8M=
-X-Received: by 2002:a05:690c:ed6:b0:79a:c7f8:d95c with SMTP id
- 00721157ae682-7a4d5b4dc8emr230824317b3.40.1775724440989; Thu, 09 Apr 2026
- 01:47:20 -0700 (PDT)
+	s=k20201202; t=1775724518;
+	bh=Ucrrm+UdDjJaW/Cy0XhWuFhqJm3EGIewHjfu8mGM1Hg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z9YuU1OK8hE77fbU342lH4ZxNDHUGbiWDT+bNv77/ibID3TxtJB/L7lnD5BHwT2YF
+	 RfmCi4Vi8/nRGhRmU0dz6z5TATqJAcNwrjiQzpnOcqTsYzPgAldDVHZY+wie3uuLIX
+	 SaoKKeFcbNmJVBB+gFz8iIiTCXogInrBUR1vBCRDMMxG9YNOMV64JmHFqIkenqEv9f
+	 skIv/KmbeI4Z+Qh0A3W3T0OsOuTMC5p0HLPkrwS+nSEt1whsmKZexnq4PccbqePGAu
+	 U426Wrvo4TLGE/Hvn4ebV6g9fQ8XZ9ZMR0Nbiy7V3INjewrIxucUU9mGx51nzHegFd
+	 rpA4Zl9s32ABw==
+Date: Thu, 9 Apr 2026 10:48:36 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Yazan Shhady <yazan.shhady@solid-run.com>, 
+	Mikhail Anikin <mikhail.anikin@solid-run.com>, Alexander Dahl <ada@thorsis.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Add SolidRun i.MX8DXL SoM and
+ HummingBoard
+Message-ID: <20260409-peridot-lynx-from-uranus-75a502@quoll>
+References: <20260408-imx8dxl-sr-som-v1-0-ce5a39acd713@solid-run.com>
+ <20260408-imx8dxl-sr-som-v1-1-ce5a39acd713@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260406075114.25672-1-clamor95@gmail.com> <20260406075114.25672-3-clamor95@gmail.com>
-In-Reply-To: <20260406075114.25672-3-clamor95@gmail.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 9 Apr 2026 10:47:10 +0200
-X-Gmail-Original-Message-ID: <CAD++jLkTF+-qaKsmOtjajPdL0Xdt6_hiXaysUrh-qrvjU_Lgvw@mail.gmail.com>
-X-Gm-Features: AQROBzBahChtljCTZBs0lkmpK4Rt75xAc3CX7ZbX_Bl5LHWdhOmPTzY0tf2nAuE
-Message-ID: <CAD++jLkTF+-qaKsmOtjajPdL0Xdt6_hiXaysUrh-qrvjU_Lgvw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] dt-bindings: pinctrl: pinctrl-max77620: convert to
- DT schema
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260408-imx8dxl-sr-som-v1-1-ce5a39acd713@solid-run.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-286035-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-286036-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,solid-run.com,thorsis.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 70AD03C7F4E
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,solid-run.com:email]
+X-Rspamd-Queue-Id: B24653C7F1C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Apr 6, 2026 at 9:51=E2=80=AFAM Svyatoslav Ryhel <clamor95@gmail.com=
-> wrote:
+On Wed, Apr 08, 2026 at 08:38:36PM +0200, Josua Mayer wrote:
+> Add binding for the SolidRun i.MX8DXL based System on Module, and the
+> reference HummingBoard Telematics.
+> 
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 
-> Convert pinctrl-max77620 devicetree bindings for the MAX77620 PMIC from
-> TXT to YAML format. This patch does not change any functionality; the
-> bindings remain the same.
->
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Patch applied to the pinctrl tree for v7.1 in accordance with Rob's
-instructions.
+Best regards,
+Krzysztof
 
-Yours,
-Linus Walleij
 
