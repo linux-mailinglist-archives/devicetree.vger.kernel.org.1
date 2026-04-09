@@ -1,213 +1,218 @@
-Return-Path: <devicetree+bounces-286295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286298-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AEeFFToj2GmNYggAu9opvQ
-	(envelope-from <devicetree+bounces-286295-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 00:07:54 +0200
+	id KCbSEXo62GmAaAgAu9opvQ
+	(envelope-from <devicetree+bounces-286298-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 01:47:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEBB53D01A0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 00:07:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E61333D090F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 01:47:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 65164302D095
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 22:07:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6283930293EA
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 23:43:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E243138758C;
-	Thu,  9 Apr 2026 22:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 639913A255D;
+	Thu,  9 Apr 2026 23:43:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tXNbi1i6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BAmDpI6p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11012044.outbound.protection.outlook.com [52.101.48.44])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 437D0386C3F;
-	Thu,  9 Apr 2026 22:07:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.48.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775772422; cv=fail; b=DNQrZyqK904ZnqGZB4g0L9BeiGdo4hjT+IPV5SaKm2jS5ACh0r8R4O5rQvF2ucYVqzfWxRI3HhGzzrBHDcrw9HgG1pdfc0XNZp79i117SSoHQGWYm9c9K2DQYNqGRXUieg4fxO0S1W42xBiYUok+2ac8c9Y/DQ9y/mmO/sEU7yA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775772422; c=relaxed/simple;
-	bh=SVN8RK6t5iCrczHTqjkg0f73rjkmsVj4yCPx2wZLCDA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=a5PUV2nMolAmPFGhWhOh6miVEoiyQoVwBN2vU6HoMG70QJsu1aNCaTIoWGNIeGyRpuunOe4kdQuT7W9dXa41Ec4AdC3fU49nyetmV01OjhXPezPnDnqdGDyB2xRLunm3YN659nV2UVyjniOSgZoX1589llAEhta0D92FqLFKcWI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tXNbi1i6; arc=fail smtp.client-ip=52.101.48.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tcWHKuVz1aq/1xqmt3UJBRXeLWldegk+mE5YftbWTi5ifq0umEiuJZjr+XCj3pl9JpMm5Jh4vJDAmWVuB1ThMg0AAluvev06q1HVmWFxiBqL6bcNlxIIQjpTfMW2eNJMhhJBi2AC9ZNPK9hVzqaG1TXFi4NNF7MSReGhC9Mx+JF+sVZXioGUyAdy31UlsF8FAX1O8NYZ8bWrpOnZhH83udWSkiHKA9Lnv0neAkSHf6MGX5dBHAtLq0maDYV9vm0owPiqtgnxkonXpeAKp+2+tZTcfB6f08DDh6S6FAJTtVqy3yfmePo6pzAsxOUAHFKWgqJMUAd4LsV4Co7a3SQZug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fILuxeyIumz5Vd6OzcJl2nKcEwZuotrnTRDBBoqNeNo=;
- b=NQctkQRX7+0dCVhZWADCvMrQPBQbM1iXF8T+Bluqrjr6ss/ZXphWsALYKdubEpVr0evOxVQ7WhoZBZ55TVP45NgVO8ap06AZSaSyq5bzJHthXurxtoIks8ZdVZVxXYSXxBUoYr7K0q2LeXx5cxEjPkKBksPpOD4FzEqBvClB7nXqX+i5x5dNBnAkEcKynQcM/1+TCSutoMp+nwY6iwSmZROPB00k/ffIYuAC3EVVCAwyFXNBfcN/8kZ87U6eAze5AYv1PAzEyLskguzPpRV9JEwNAWXINfWkUFDOGT89CJ1EPk0LcCUeRwVgxPuGY/ABAD8I83R7MfrE8C2txtCmEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fILuxeyIumz5Vd6OzcJl2nKcEwZuotrnTRDBBoqNeNo=;
- b=tXNbi1i6D0xePthF5aQzGAjtBOqwdppbYmbaFQCs98GKHtSGVzUamQxX//SIsaOBYTC04QicXzTmrXdVkQxiGoMYjFyxSa3RjA/tcn06XrtQa4b9at4FMs3oDK5BUjoA0pdnerFGOhEMZkiKTtr9S/d9PMvpJZoSsfkn960DEPk=
-Received: from LV3P220CA0015.NAMP220.PROD.OUTLOOK.COM (2603:10b6:408:234::25)
- by SA1PR10MB997583.namprd10.prod.outlook.com (2603:10b6:806:4b7::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Thu, 9 Apr
- 2026 22:06:59 +0000
-Received: from BN2PEPF0000449E.namprd02.prod.outlook.com
- (2603:10b6:408:234:cafe::4b) by LV3P220CA0015.outlook.office365.com
- (2603:10b6:408:234::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.41 via Frontend Transport; Thu,
- 9 Apr 2026 22:06:56 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- BN2PEPF0000449E.mail.protection.outlook.com (10.167.243.149) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17 via Frontend Transport; Thu, 9 Apr 2026 22:06:57 +0000
-Received: from DFLE214.ent.ti.com (10.64.6.72) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 9 Apr
- 2026 17:06:55 -0500
-Received: from DFLE204.ent.ti.com (10.64.6.62) by DFLE214.ent.ti.com
- (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 9 Apr
- 2026 17:06:55 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE204.ent.ti.com
- (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 9 Apr 2026 17:06:55 -0500
-Received: from localhost (mz02jj9v.dhcp.ti.com [128.247.81.246])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 639M6t0o295521;
-	Thu, 9 Apr 2026 17:06:55 -0500
-From: Sen Wang <sen@ti.com>
-To: <linux-sound@vger.kernel.org>
-CC: <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<perex@perex.cz>, <tiwai@suse.com>, <shenghao-ding@ti.com>,
-	<kevin-lu@ti.com>, <baojun.xu@ti.com>, <niranjan.hy@ti.com>,
-	<l-badrinarayanan@ti.com>, <devarsht@ti.com>, <v-singh1@ti.com>,
-	<linux-kernel@vger.kernel.org>, <sen@ti.com>
-Subject: [PATCH v5 4/4] MAINTAINERS: add entry for TAS67524 audio amplifier
-Date: Thu, 9 Apr 2026 17:06:06 -0500
-Message-ID: <20260409220607.686146-5-sen@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260409220607.686146-1-sen@ti.com>
-References: <20260409220607.686146-1-sen@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 403883A2542;
+	Thu,  9 Apr 2026 23:43:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775778234; cv=none; b=ai3DAcsDnhEaSoeXSZOpffn4eCQwapYDp+vAuQYrmlBXzVhqct8Na/QKvGpDabo1Ly7IdRBZC3Ux7H9FfZqrZPtvXbRmKlmqSnLk1LSrbJQL3jiVhgaxG+m4VGhLMfgXrQIt2A9B0RjodqRd8HtUoCZD8y2O05XXaKFJouNjR1c=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775778234; c=relaxed/simple;
+	bh=gAUOUKeQWfXMQS+gwzMyPSCdGvq7t2FyRZ1piCNyVsw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OHBu+a6YvjrfYH9D1MLlUR41Lokg/QFwKdiNNANq2hWPSHvO4lyxkLCoHrPG4IYZFQ7gS/ecBOdbB54WtslU+ZEFd3LSNV/MLJ8NIzX+nK0EuH1j/Kj8AJ3wllQTTfQVlzcPTwJq98GK4QGm3MLhhhluxFaatfVY6YSgvVtPlvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BAmDpI6p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58292C2BC87;
+	Thu,  9 Apr 2026 23:43:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775778233;
+	bh=gAUOUKeQWfXMQS+gwzMyPSCdGvq7t2FyRZ1piCNyVsw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BAmDpI6p5H0OzeaMLCTzHNoflFqzKwKYdloMNxBi+6kGcMaa4S6XHSQ9wg5Wd2jcP
+	 hy+C8CQSJihzNs6WDtWiTnma3TI+IKBcM0eVxqMxPrDOo3PevseGl26/51rvAA4YIG
+	 VG3oYhF9d4HAYX/lDdTcrD3jxGWifNabJHPFhl1M/iMjcjiukfx35yyorXaozrTqqP
+	 Ox7EUsiNQ8S0sKwtrnMmgH39FKcQqDMQq4v2N+q45JKihxhiEwJVX5k7FpKxDFyUnD
+	 IsMTRDGdVcTP0ERDCfC0o8yblXIhHFBYzaJRswWrryilqniMO23nc0rMuc1s83Bjog
+	 09JY03oEqpviA==
+Date: Fri, 10 Apr 2026 07:43:51 +0800
+From: Yixun Lan <dlan@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Uwe =?utf-8?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje@dujemihanovic.xyz>,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: marvell,pxa-pwm: Add SpacemiT K3
+ PWM support
+Message-ID: <20260409234351-GKA1160389@kernel.org>
+References: <20260409-03-k3-pwm-drv-v1-0-1307a06fba38@kernel.org>
+ <20260409-03-k3-pwm-drv-v1-1-1307a06fba38@kernel.org>
+ <20260409-laboring-announcer-4a0f9ca152a1@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF0000449E:EE_|SA1PR10MB997583:EE_
-X-MS-Office365-Filtering-Correlation-Id: c1c6b54b-354b-4cb3-92c7-08de96845177
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|7416014|36860700016|376014|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	ilkv/zSYJoMlmgprqLg8VUeP6R98T+9mFTcD4Mz7TZkT3BgjwC3bxUeElUPVk/BHP4bivG6DSC9cPbBdWII+7tvF3CLcl+PnRRzEMIF8WS1lip13UvGgOcV8aHgDKj2f0jEWCcnACl3v5jRpibe/qIr7JzIOxNc2et47bFkXohVaDzSTYVtd4yAAvVPc3BtRT/PXD8hhMLJxY3BQSIFXXSzMSgdH1e1m72nKXczt8UfNxGcWwkj8SQ626wD5DAorLIHlMXOqrY4fz+b9KoEt+9z7zEmgRV4uhBM0weuqqmR8f6pPPf/H1v9K9plKcnIYASK66jL+M27Df8afFLOEyRbi01TER8lrQcm3v/QcIH03xlcal2PKHTHoUn/cHsfJLLWDIHUl7e90TpzZV2NlrVTZLHuWXEIyQN65yevzzlGpXYNdHM5Job2Q/kqoXYdZS1eQj+068/xTq4mdBt+STH+fXpwaTz+jnbA47Vv1mEhYZt1mwF+OBZaY8jwPYZdqYLbJgYKjju/tpcLi/U5ma+tL+ZAz085x+zs5NqS/D+lS0iLi+Xuigd9gI+DI/4MPS+ArexxgNw+7V5XQPg3NAVOyOxQJ/1i+H0XUspo7/R5s4TtVL+LKxMelurKTAdQo+y/5Bsz4c09OCxuw7NsG9YFOP4EZ0QNcpEu1KvQo26q4UMzYEb8qh5P5UX1RVdVeXx4G/spv/vsHe211FQPTeNR+JPK6gDAaQT3BRVKQPOPolXq1IPSabvHqNVP9PLWv4VG+c8HN3y8tSgBT8A9XmQ==
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(36860700016)(376014)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	KvMdx1zomrix56j5SqQTG8XyWSWUT8fL9swyhdYDmMdiiu2Vdj7c6BKJeW/+n/r17+YpAUUugvG7xiNY4mpFKTqWvYwOgCW7zF0HD7AD+li2vYDt7cI4ywWYDTQanKrMuadM2yNd9HYAE6d9yOASvdaV/dMcPcuN0D99uuBUHBvSXCHBexj1tB38oMR+hCuIDai0sIUvy9nQoGG6zWNCAbrPLZGvPXRE7YqzIWLGsSh4E4En5ICTkBlqN0dwp8fE0BEJTa9nFmEMdVR6jPZTMkT0U4bWwrjzVYO5ud3XRRoazuITDkqqhpiN380BzvcHK8VwSC+vEhQrOQjnJYkeZYOzc/sM7TCcPh6o5BmOH/YSRLzpv5ueCDSlRMWaeElsucd7/PEV3swMzgCqrX8x4mnPWrt9zq/8jNFrBqPL4CKqymhiVQzX6MFKn699L647
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 22:06:57.8608
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1c6b54b-354b-4cb3-92c7-08de96845177
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN2PEPF0000449E.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB997583
-X-Spamd-Result: default: False [2.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260409-laboring-announcer-4a0f9ca152a1@spud>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,perex.cz,suse.com,ti.com];
-	TAGGED_FROM(0.00)[bounces-286295-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286298-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sen@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:dkim,ti.com:email,ti.com:mid];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: AEBB53D01A0
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E61333D090F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add Sen Wang as maintainer and register file patterns for the newly
-added TAS67524 amplifier driver.
+Hi Conor, 
 
-Signed-off-by: Sen Wang <sen@ti.com>
----
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
+On 16:41 Thu 09 Apr     , Conor Dooley wrote:
+> On Thu, Apr 09, 2026 at 12:45:11AM +0000, Yixun Lan wrote:
+> > The PWM controller in SpacemiT K3 SoC reuse the same IP as previous K1
+> > generation, while the difference is that one additional bus clock is
+> > added.
+> > 
+> > Signed-off-by: Yixun Lan <dlan@kernel.org>
+> > ---
+> >  .../devicetree/bindings/pwm/marvell,pxa-pwm.yaml   | 53 ++++++++++++++++++++--
+> >  1 file changed, 50 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
+> > index 8df327e52810..3427c8ef3945 100644
+> > --- a/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
+> > +++ b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
+> > @@ -15,7 +15,9 @@ allOf:
+> >        properties:
+> >          compatible:
+> >            contains:
+> > -            const: spacemit,k1-pwm
+> > +            enum:
+> > +              - spacemit,k1-pwm
+> > +              - spacemit,k3-pwm
+> >      then:
+> >        properties:
+> >          "#pwm-cells":
+> > @@ -26,6 +28,38 @@ allOf:
+> >            const: 1
+> >            description: |
+> >              Used for specifying the period length in nanoseconds.
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - spacemit,k3-pwm
+> > +    then:
+> > +      properties:
+> > +        clock-names:
+> > +          items:
+> > +            - const: func
+> > +            - const: bus
+> 
+> This condition here doesn't appear to do anything? It just repeats
+> what's already done unconditonally below?
+> 
+You right, I should merge clock-names with below..
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a626dee5c106..a78b6cb9b907 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -26191,17 +26191,20 @@ TEXAS INSTRUMENTS AUDIO (ASoC/HDA) DRIVERS
- M:	Shenghao Ding <shenghao-ding@ti.com>
- M:	Kevin Lu <kevin-lu@ti.com>
- M:	Baojun Xu <baojun.xu@ti.com>
-+M:	Sen Wang <sen@ti.com>
- L:	linux-sound@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/sound/ti,tas2552.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tas2562.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tas2770.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tas27xx.yaml
-+F:	Documentation/devicetree/bindings/sound/ti,tas67524.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tpa6130a2.yaml
- F:	Documentation/devicetree/bindings/sound/ti,pcm1681.yaml
- F:	Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tlv320*.yaml
- F:	Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml
-+F:	Documentation/sound/codecs/tas675x*
- F:	include/sound/tas2*.h
- F:	include/sound/tlv320*.h
- F:	sound/hda/codecs/side-codecs/tas2781_hda_i2c.c
-@@ -26215,6 +26218,7 @@ F:	sound/soc/codecs/pcm3168a*.*
- F:	sound/soc/codecs/pcm5102a.c
- F:	sound/soc/codecs/pcm512x*.*
- F:	sound/soc/codecs/tas2*.*
-+F:	sound/soc/codecs/tas675x*.*
- F:	sound/soc/codecs/tlv320*.*
- F:	sound/soc/codecs/tpa6130a2.*
- 
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - spacemit,k3-pwm
+> > +    then:
+> > +      required:
+> > +        - clock-names
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 2
+> > +        clock-names:
+> > +          minItems: 2
+> > +    else:
+> > +      properties:
+> > +        clocks:
+> > +          maxItems: 1
+> > +        clock-names:
+> > +          maxItems: 1
+> >  
+> >  properties:
+> >    compatible:
+> > @@ -36,7 +70,9 @@ properties:
+> >            - marvell,pxa168-pwm
+> >            - marvell,pxa910-pwm
+> >        - items:
+> > -          - const: spacemit,k1-pwm
+> > +          - enum:
+> > +              - spacemit,k1-pwm
+> > +              - spacemit,k3-pwm
+> >            - const: marvell,pxa910-pwm
+> >  
+> >    reg:
+> > @@ -47,7 +83,18 @@ properties:
+> >      description: Number of cells in a pwm specifier.
+> >  
+> >    clocks:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    items:
+> > +      - description: The function clock
+> > +      - description: An optional bus clock
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +    oneOf:
+> > +      - items:
+> > +          - const: func
+> > +          - const: bus
+> >  
+> >    resets:
+> >      maxItems: 1
+> > 
+> > -- 
+> > 2.53.0
+> > 
+
+
+
 -- 
-2.43.0
-
+Yixun Lan (dlan)
 
