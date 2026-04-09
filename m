@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-286189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286191-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MPe5I+2o12mxRAgAu9opvQ
-	(envelope-from <devicetree+bounces-286189-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 15:26:05 +0200
+	id UCAiLCar12kMRQgAu9opvQ
+	(envelope-from <devicetree+bounces-286191-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 15:35:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 001EA3CB1F4
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 15:26:04 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E38F3CB4FE
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 15:35:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0E6833046EA9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 13:24:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 68A763024577
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 13:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E1223D16ED;
-	Thu,  9 Apr 2026 13:23:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BC38277C9D;
+	Thu,  9 Apr 2026 13:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="NGFizDXq"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="FoAfbg0A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout3.routing.net (mxout3.routing.net [134.0.28.8])
+Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D761D3CFF79;
-	Thu,  9 Apr 2026 13:23:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0B227A92E;
+	Thu,  9 Apr 2026 13:26:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775741008; cv=none; b=uiEgrqpr0LmLeOSxyyxS5p62vRaAEnNC1a34q7jgZ66tTMWghjpPKWSB4f6qiP6+nDDHKeceKCnDieN2wZRUPqUDeggGgTWR7CIt3nGBloYnjTujCDQTyXkv2q/iPt1B1SEB2myAc+PcyanzNdJYuOWAl+fuauT8ujjIFtY+Iwo=
+	t=1775741176; cv=none; b=ZoyhL1g3iWmN0UCQNih4bO7VF0gaaynXgZgmLYWOi551Tb6pzDq8Ld59QUauIvQLggevlD5lqBU9+ukrFSH4wOTy5e0jyodLDiR3EUdAbwDsA6J89xegBwFyhHSVgFO09WxbeCq1Ey5N+YdtNfs+2/dkEkeOtkHztM1qK0vGwCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775741008; c=relaxed/simple;
-	bh=qmWlWYgdADl5OcefcP3gCkw/Ojgpid+d0MQlfTey8iE=;
+	s=arc-20240116; t=1775741176; c=relaxed/simple;
+	bh=qiaR0tsu8ENIOIK4hpyGBWs5m4RYne4hlcbtao7TM2c=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fyzWBu4bi5E+Kp3SoHmBrDbtUTk6ZRN5UdElPTNND3nFZT6wtPwApXyd2Tql5pp4TUPo9kniWZ0Pub4oqkpAFvwHxg7pl1H+bJkAbYvx28GHNkS0+N0Og616Ll1x+L3ux+7e6z3firRE+MnZj1MjCm1ml2xY+jSyNCzVbDxkSkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=NGFizDXq; arc=none smtp.client-ip=134.0.28.8
+	 MIME-Version:Content-Type; b=ImYDS2rLyadjV9+4j/RmWcxuGEkbJmGSope+o1cbEme+GGjmdNN+GM5324DZhW3vnuv0I+ZHq7tPuIpjh155jfLOE+pixClXoajHDYrzg4SyoL9y1HIQR1fzTWjj7v3DFYt3EZTc5PBqlwBNJ05jeXrwJ8TP3DkNwL9XXl8utBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=FoAfbg0A; arc=none smtp.client-ip=134.0.28.9
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
 Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-	by mxout3.routing.net (Postfix) with ESMTP id 6E125607C1;
+	by mxout4.routing.net (Postfix) with ESMTP id 9A4EF10086D;
 	Thu,  9 Apr 2026 13:18:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
 	s=routing; t=1775740684;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=HT1LmTE+wyO1hbqhpbnpGgkpi6vYm7hFobdw7gJUxz4=;
-	b=NGFizDXqCXx/8o6Igf3d4G8luJ8Xw1XF7H44eCzZsRR+D9kIeKLMIvbVa6YNnvTK1ZssX1
-	k58FXnY0U+DmOZLJQCY4GIjTDCP8dVFRkZhfyfOooW2AHGLt8Pits7RgWm//rbq9bA2/6n
-	Gywv9vXcXe1J6Fcf18AiR6irdqazTYA=
+	bh=raj8KEj7nncAo56c1DXB93zAwOjYFuyy1P91EJAGKgQ=;
+	b=FoAfbg0Ar/qN7/CNnYXpybCDJj45NkDPLWINkhoihBBZ+dA6MRP7rlhJOM77/eVjdXy+lJ
+	Fnu+xE7q/yJphP8utODHFSMDJZtBn+He4iQw9j26j2FEMe5SsyX8D72oEj3G/3G80a2k35
+	Imic6WbJPlRaNXrGFgYsdcE8k6YaFKk=
 Received: from frank-u24.. (fttx-pool-217.61.155.21.bambit.de [217.61.155.21])
-	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id 3FE7B122701;
+	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id 6EC781226C0;
 	Thu,  9 Apr 2026 13:18:04 +0000 (UTC)
 From: Frank Wunderlich <linux@fw-web.de>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
@@ -63,9 +63,9 @@ Cc: Frank Wunderlich <frank-w@public-files.de>,
 	devicetree@vger.kernel.org,
 	Daniel Golle <daniel@makrotopia.org>,
 	Andrew LaMarche <andrewjlamarche@gmail.com>
-Subject: [PATCH v1 1/3] arm64: dts: mediatek: mt7988a-bpi-r4pro: drop duplicate fan properties
-Date: Thu,  9 Apr 2026 15:17:49 +0200
-Message-ID: <20260409131754.121737-2-linux@fw-web.de>
+Subject: [PATCH v1 2/3] arm64: dts: mediatek: mt7988a-bpi-r4pro: update gpio-leds
+Date: Thu,  9 Apr 2026 15:17:50 +0200
+Message-ID: <20260409131754.121737-3-linux@fw-web.de>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260409131754.121737-1-linux@fw-web.de>
 References: <20260409131754.121737-1-linux@fw-web.de>
@@ -75,19 +75,20 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[mailerdienst.de:s=routing];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286189-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286191-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	DMARC_NA(0.00)[fw-web.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com,collabora.com,kernel.org];
@@ -100,43 +101,48 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linux@fw-web.de,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[mailerdienst.de:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 001EA3CB1F4
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fw-web.de:mid,mailerdienst.de:dkim,public-files.de:email]
+X-Rspamd-Queue-Id: 6E38F3CB4FE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Frank Wunderlich <frank-w@public-files.de>
 
-These properties are already set in the original node and do not need
-to be defined again.
+On the official case the red LED is named ERR, the blue LED is named ACT.​​​​​​​​​​​​​​​​
+Reflect these labels in function and set them default off.
 
 Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 ---
- .../boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi     | 7 -------
- 1 file changed, 7 deletions(-)
+ .../boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi      | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
-index 1175ee156cb3..759f608d1081 100644
+index 759f608d1081..7f770a76775a 100644
 --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
-@@ -185,13 +185,6 @@ &eth {
- 	status = "okay";
- };
+@@ -61,14 +61,16 @@ gpio-leds {
  
--&fan {
--	pinctrl-0 = <&pwm0_pins>;
--	pinctrl-names = "default";
--	pwms = <&pwm 0 50000>;
--	status = "okay";
--};
--
- &gmac0 {
- 	status = "okay";
- };
+ 		led_red: sys-led-red {
+ 			color = <LED_COLOR_ID_RED>;
++			function = LED_FUNCTION_FAULT;
+ 			gpios = <&pca9555 15 GPIO_ACTIVE_HIGH>;
+-			default-state = "on";
++			default-state = "off";
+ 		};
+ 
+ 		led_blue: sys-led-blue {
+ 			color = <LED_COLOR_ID_BLUE>;
++			function = LED_FUNCTION_ACTIVITY;
+ 			gpios = <&pca9555 14 GPIO_ACTIVE_HIGH>;
+-			default-state = "on";
++			default-state = "off";
+ 		};
+ 	};
+ 
 -- 
 2.43.0
 
