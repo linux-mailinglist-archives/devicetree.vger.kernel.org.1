@@ -1,240 +1,155 @@
-Return-Path: <devicetree+bounces-286192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286187-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cGaEDv2p12noQwgAu9opvQ
-	(envelope-from <devicetree+bounces-286192-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 15:30:37 +0200
+	id kKDxLRKq12kMRQgAu9opvQ
+	(envelope-from <devicetree+bounces-286187-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 15:30:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F9DB3CB360
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 15:30:36 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64EF73CB3A4
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 15:30:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 58C3C30488F4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 13:26:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E99B83083FFF
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 13:22:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BB6928000F;
-	Thu,  9 Apr 2026 13:26:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C66412C2363;
+	Thu,  9 Apr 2026 13:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="iV0xX78R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N7k2trJ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE16278161;
-	Thu,  9 Apr 2026 13:26:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C2F282F3B;
+	Thu,  9 Apr 2026 13:19:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775741178; cv=none; b=nbncJHWzYvZPr+HxXvUpeB7eMTaYinz0mnduBw3tPioht1ti+4jeflw4Twt+GcElqcLEiNLQSU1CoQ8MxQ8iDYvda/mVayH0EKz/eIEXw0vFlHQsouBEtX5/JnUMS8LPBPU5Eep0iuv6lZ+hCUH2IctVq6hD4unGcaNT31Suv8M=
+	t=1775740786; cv=none; b=US/i6E1zGKfrEWttBLMNdvxvm+8WnEQ3sOZx3fbf+ZQYqMjHm7bctWCrOZt1m6LmpMGJAGRjWCe6j8SzJuxDVJjtatCxpHlpF2SSX0oeg1Krxg5RWdiSzyrG2znhEn2xC55b6vN6GnBYHKN7RqmmOx4M0cW2yuBd0cn05gmspKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775741178; c=relaxed/simple;
-	bh=2b8e6KDRHUx557Zs9mpVC6mrg85/qR2iWiETxWm5GYM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Gly1Y7ei/LUXJ61kh7VrqSXZXjbOQRsVYiVZpKv42GP3ESth01ht/Z5p5u7oC1dSvMtJ/Lf9i3Y4/KCiq5EZlcj8pJyxldS3ugYRrflIEgjBvVHHSZxGVapkTjV/oKDNcVbzBwWkIRSBnWjYwa+PBUPVLGdhBCPu8dq03W2Io8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=iV0xX78R; arc=none smtp.client-ip=134.0.28.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-	by mxout4.routing.net (Postfix) with ESMTP id C3BA51009C2;
-	Thu,  9 Apr 2026 13:18:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=routing; t=1775740684;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=FP0oUVRJTrSUxMu2T07s70jxaRLS0hdrFQ/m0Q/hA+Q=;
-	b=iV0xX78RKUFysO0SCY6atUDJ50w1E4gjRr9piRQFNNUelEZZqUGIIIELa2i46AHEVAn2vU
-	gkCgLa+xTPI1h9nOaky8G/A0ZtyblL13rfo8FFBc0qqm/QXyfm3QK4AUV2kvGKH4WZr26+
-	TgAuH5YNtYn8+GP2l9q4FhzKKfMuU+o=
-Received: from frank-u24.. (fttx-pool-217.61.155.21.bambit.de [217.61.155.21])
-	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id 9B1A5122703;
-	Thu,  9 Apr 2026 13:18:04 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Daniel Golle <daniel@makrotopia.org>,
-	Andrew LaMarche <andrewjlamarche@gmail.com>
-Subject: [PATCH v1 3/3] arm64: dts: mediatek: mt7988a-bpi-r4pro: rework pcie gpio-hog handling
-Date: Thu,  9 Apr 2026 15:17:51 +0200
-Message-ID: <20260409131754.121737-4-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260409131754.121737-1-linux@fw-web.de>
-References: <20260409131754.121737-1-linux@fw-web.de>
+	s=arc-20240116; t=1775740786; c=relaxed/simple;
+	bh=rKdLwvFDH2Z+iQDKRBba6IcKoLCahcyIw66U+XrMJLQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y7m7fcEM7uYIvT5y08JJSMyXEfu4i1eytXZdwyWt8qNyfH9BnrCa+MAkyYQviqFcOokFCdKMYfc+cUj63I4DKFe891z0mzxatMOHowB+iGWPvYP3ZXPxzFMWuXqbJW5Y+VWBuENI/X5Gk99ZJWZuGT392Hs60nt8HV6ZtfiC3Yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N7k2trJ0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15876C4CEF7;
+	Thu,  9 Apr 2026 13:19:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775740786;
+	bh=rKdLwvFDH2Z+iQDKRBba6IcKoLCahcyIw66U+XrMJLQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=N7k2trJ0Q9dAhUvjjBVrj/6ZmM/leBFyOT/aEmXRz7/H5LmzK3jGJlFZ3Kh58t++N
+	 NO3e4yfONZlPkR87OaWzTuhYE7yQQmMcT24RaLn+HJtYFOc3iDoFRphfn8GMtDf9tx
+	 Z6d9k45avKPNbwfFduMvuCrNiXv0TCyH6VQQOwqPDISPDgb3e6wC0qIAB/9WzzJeds
+	 9rZmavNsfNjgAWFD5Yn6jO7cpYoVhxchASjN0DQLirWX6uwTqHFte9ArOaDSxswpao
+	 OszKsu3EXtDDBBpJ2zefR4jUEfNiVQsgn+OFJZqOaT56ZOtIddNWfKUJRgGFtDJ5u5
+	 yqrT+LJHzV6XQ==
+Date: Thu, 9 Apr 2026 08:19:41 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Qiang Yu <qiang.yu@oss.qualcomm.com>
+Cc: Taniya Das <taniya.das@oss.qualcomm.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, johan@kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 3/4] clk: qcom: tcsrcc-glymur: Migrate
+ tcsr_pcie_N_clkref_en to clk_ref common helper
+Message-ID: <adem2WKh2B-Leivq@baldur>
+References: <20260331-qref_vote-v1-0-3fd7fbf87864@oss.qualcomm.com>
+ <20260331-qref_vote-v1-3-3fd7fbf87864@oss.qualcomm.com>
+ <ebce5979-0ab5-47ff-963e-68e27216821d@oss.qualcomm.com>
+ <ac306hTHe3qVORk2@hu-qianyu-lv.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ac306hTHe3qVORk2@hu-qianyu-lv.qualcomm.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[mailerdienst.de:s=routing];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286192-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[fw-web.de];
+	TAGGED_FROM(0.00)[bounces-286187-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,collabora.com,kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[public-files.de,vger.kernel.org,lists.infradead.org,makrotopia.org,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@fw-web.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mailerdienst.de:+];
-	NEURAL_HAM(-0.00)[-0.998];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 9F9DB3CB360
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 64EF73CB3A4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On Wed, Apr 01, 2026 at 09:47:38PM -0700, Qiang Yu wrote:
+> On Wed, Apr 01, 2026 at 10:05:12PM +0530, Taniya Das wrote:
+> > On 4/1/2026 12:05 PM, Qiang Yu wrote:
+> > > diff --git a/drivers/clk/qcom/tcsrcc-glymur.c b/drivers/clk/qcom/tcsrcc-glymur.c
+[..]
+> > > +static const char * const tcsr_pcie_4_regulators[] = {
+> > > +	"vdda-refgen-0p9",
+> > > +	"vdda-refgen-1p2",
+> > > +	"vdda-qreftx1-0p9",
+> > > +	"vdda-qrefrpt0-0p9",
+> > > +	"vdda-qrefrpt1-0p9",
+> > > +	"vdda-qrefrpt2-0p9",
+> > > +	"vdda-qrefrx2-0p9",
+> > > +};
+> > > +
+> > 
+> > TCSR clock refs are just not for PCIe alone, they would have supplies
+> > for all the ref clocks. These supplies can also be shared across other
+> > clock refs. I think it is not the correct way to handle the supplies, as
+> > TCSR does not have the complete supplies map.
+> >
+> We have complete supplies map. You can get it on ipcatlog. Here is example
+> for other instances eg USB and EDP:
+> - Glymur (eDP): CXO PAD -> TX0 -> RPT0 -> RX0 -> eDP
+> - Glymur (USB4_2): CXO PAD -> TX0 -> RPT0 -> RPT1 -> RX1 -> USB4_2
+> - Glymur (USB3): CXO PAD -> TX0 -> RPT3 -> RPT4 -> RX4 -> USB3_SS3
+> 
+> I only add supplies for PCIe in this series because USB and EDP vote these
+> LDO in their PHY driver. They can remove them in PHY dts node and add same
+> regulator list here.
+> 
 
-The active-high property in base-dt cannot be overwritten and must be
-set in separate overlay.
+The regulators are reference counted. Can't we add the USB and eDP
+handling here as well now, and then after they are voted here we remove
+them from the PHY?
 
-Fixes: f397471a6a8c ("arm64: dts: mediatek: mt7988: Add devicetree for BananaPi R4 Pro")
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- arch/arm64/boot/dts/mediatek/Makefile         |  8 ++++++++
- .../mt7988a-bananapi-bpi-r4-pro-cn13.dtso     | 20 +++++++++++++++++++
- .../mt7988a-bananapi-bpi-r4-pro-cn14.dtso     | 20 +++++++++++++++++++
- .../mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi |  2 --
- 4 files changed, 48 insertions(+), 2 deletions(-)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-cn13.dtso
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-cn14.dtso
+Regards,
+Bjorn
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 387faa9c2a09..a86fb313b1a9 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -47,6 +47,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-2g5.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-emmc.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-4e.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-8x.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-cn13.dtbo
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-cn14.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-cn15.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-cn18.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-emmc.dtbo
-@@ -70,18 +72,24 @@ mt7988a-bananapi-bpi-r4-2g5-sd-dtbs := \
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-2g5-sd.dtb
- mt7988a-bananapi-bpi-r4-pro-8x-emmc-dtbs := \
- 	mt7988a-bananapi-bpi-r4-pro-8x.dtb \
-+	mt7988a-bananapi-bpi-r4-pro-cn13.dtbo \
-+	mt7988a-bananapi-bpi-r4-pro-cn14.dtbo \
- 	mt7988a-bananapi-bpi-r4-pro-emmc.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-8x-emmc.dtb
- mt7988a-bananapi-bpi-r4-pro-8x-sd-dtbs := \
- 	mt7988a-bananapi-bpi-r4-pro-8x.dtb \
-+	mt7988a-bananapi-bpi-r4-pro-cn13.dtbo \
-+	mt7988a-bananapi-bpi-r4-pro-cn14.dtbo \
- 	mt7988a-bananapi-bpi-r4-pro-sd.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-8x-sd.dtb
- mt7988a-bananapi-bpi-r4-pro-8x-sd-cn15-dtbs := \
- 	mt7988a-bananapi-bpi-r4-pro-8x-sd.dtb \
-+	mt7988a-bananapi-bpi-r4-pro-cn14.dtbo \
- 	mt7988a-bananapi-bpi-r4-pro-cn15.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-8x-sd-cn15.dtb
- mt7988a-bananapi-bpi-r4-pro-8x-sd-cn18-dtbs := \
- 	mt7988a-bananapi-bpi-r4-pro-8x-sd.dtb \
-+	mt7988a-bananapi-bpi-r4-pro-cn13.dtbo \
- 	mt7988a-bananapi-bpi-r4-pro-cn18.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-8x-sd-cn18.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-cn13.dtso b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-cn13.dtso
-new file mode 100644
-index 000000000000..973b76ba0cbf
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-cn13.dtso
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 MediaTek Inc.
-+ * Author: Frank Wunderlich <frank-w@public-files.de>
-+ */
-+
-+/* This enables key-m slot CN13 on pcie2(11280000 1L0) on BPI-R4-Pro */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	compatible = "bananapi,bpi-r4-pro", "mediatek,mt7988a";
-+};
-+
-+&{/soc/pinctrl@1001f000/pcie-2-hog} {
-+	output-high;
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-cn14.dtso b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-cn14.dtso
-new file mode 100644
-index 000000000000..90b2a64459c3
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-cn14.dtso
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 MediaTek Inc.
-+ * Author: Frank Wunderlich <frank-w@public-files.de>
-+ */
-+
-+/* This enables key-m slot CN14 on pcie3(11290000 1L1) on BPI-R4-Pro */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	compatible = "bananapi,bpi-r4-pro", "mediatek,mt7988a";
-+};
-+
-+&{/soc/pinctrl@1001f000/pcie-3-hog} {
-+	output-high;
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
-index 7f770a76775a..5c5d4e26aa56 100644
---- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
-@@ -432,14 +432,12 @@ mux {
- 	pcie-2-hog {
- 		gpio-hog;
- 		gpios = <79 GPIO_ACTIVE_HIGH>;
--		output-high;
- 	};
- 
- 	/* 1L1 0=key-b (CN18), 1=key-m (CN14) */
- 	pcie-3-hog {
- 		gpio-hog;
- 		gpios = <63 GPIO_ACTIVE_HIGH>;
--		output-high;
- 	};
- 
- 	pwm0_pins: pwm0-pins {
--- 
-2.43.0
-
+> - Qiang Yu
+> > 
+> > > +static const struct qcom_clk_ref_desc tcsr_cc_glymur_clk_descs[] = {
+> > > +	[TCSR_EDP_CLKREF_EN] = {
+> > > +		.name = "tcsr_edp_clkref_en",
+> > > +		.offset = 0x60,
+> > >  	},
+> > > -};
+> > >
+> > 
+> > 
+> > -- 
+> > Thanks,
+> > Taniya Das
+> > 
 
