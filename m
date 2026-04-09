@@ -1,147 +1,393 @@
-Return-Path: <devicetree+bounces-285998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286001-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uJcvF1NY12kFMggAu9opvQ
-	(envelope-from <devicetree+bounces-285998-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 09:42:11 +0200
+	id mNhUOkNZ12lqMwgAu9opvQ
+	(envelope-from <devicetree+bounces-286001-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 09:46:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7053C7285
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 09:42:10 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F0DE3C7349
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 09:46:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B4F90300FEDD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 07:41:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 79BBA3049295
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 07:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDFB937B01E;
-	Thu,  9 Apr 2026 07:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 253A93803E3;
+	Thu,  9 Apr 2026 07:44:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aeiDIhYb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U9D/ZN9U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA5712FFF81
-	for <devicetree@vger.kernel.org>; Thu,  9 Apr 2026 07:41:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35FC437F002
+	for <devicetree@vger.kernel.org>; Thu,  9 Apr 2026 07:44:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775720498; cv=none; b=BmV81WOAi8tglPMJUZxypTMZYJaicV3g3Zr/dwwOfYPJZp6X/4/vOu1geErA3stXoURN9+jDsqlQRgWk8EXejRcaInUE08mD6evzzmVy7fvU4i0vSvZ10P1b4OvcbE/oPfDr7vHLIXWBUtTRSUbNK6FuzpSTJzp7GW6JDjccOP0=
+	t=1775720662; cv=none; b=RdaT3r1yUc3BRzjXcyGEqUAizDnn3cn8pCCD7SCCjJj9ja7fUvva8Ir+9cxPgFpL9XCdJ05w79UwYHNWtIIWvCdMww+JdTfRysOWDtNa6ujL8Grmmoi7enPiYAWhZlspurbvoZI56qm/yANi+1aKfv7c9sE5182Zsqe5wBH2hzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775720498; c=relaxed/simple;
-	bh=lc8JQ/vWkeejRsiU76ULhKIucAIfpuHv9grmFJL3auY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SK2ahxfck5WMYwodaexUjS74UqLJ8ljgFuwpmCKiuR3wnNsn8aUc9/uB0r74mCa/w3fNvNUDrouMo+TF0o/IU07EPM84xEoDaDgtxCTRMZBWxnQb99+50fCbJ9wR+WBoRr69JH8yQRt3hxdo/U6INqjbY7tXhxMXLUPGURURHpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aeiDIhYb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 715C0C2BCB8
-	for <devicetree@vger.kernel.org>; Thu,  9 Apr 2026 07:41:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775720498;
-	bh=lc8JQ/vWkeejRsiU76ULhKIucAIfpuHv9grmFJL3auY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=aeiDIhYbjGLVo5et9i0z06029dElhtQsqqpGSxDa1v9OZyjsB1oTGh8K6bcFc7kcn
-	 JLI7awnKYXneMHhvfm2BjANOEthYuG0g1McbanPHizN0r/Ms/LSpTaQRKn0xIBgK6t
-	 BTxEwOB4pcbylMNXanxPcYLL20CwkViS+pqgEGbqI+rLLh265g55YwC0kCOxG1ByxJ
-	 IjOiQPHKfXFyv18uw4OPusWcwwj+u7tKtygv4ZtsHsIwrEkyh6/rwDsgQT6YzrcvrO
-	 NBXAwCoiGpgo0x4/xjxPcSQwI1tcKMz4/lsirKZLQAQrcGN2MnmsMzK2cTruvw6Pct
-	 c6wbE2piH1biQ==
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-38df1889fb9so5989181fa.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Apr 2026 00:41:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXDP7ywyozOlYg1gOC4G4nPon9kSLlLtkXF6Gtka6jEfZgwg3I9jcmjS8I0vayjW4Yeh3Ewt7BwhsZm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcT6g2jrJsyNzYF591lvKWoER/+ljTYTJgEaFFlkyGkpy1HGp6
-	qH/puXE1saUHNbhrggCKJ5HGIjjWga7H+xwJsGAb0lUBl8v9odqYUzbzzhQcut7JGMSnHpoTuri
-	5pQCzBRcAjgHhkfKQ0EC1UueSEQyI2zry7f3JkyPtrw==
-X-Received: by 2002:a05:651c:4192:b0:38d:eb82:d80f with SMTP id
- 38308e7fff4ca-38deb82dc50mr48627071fa.0.1775720497068; Thu, 09 Apr 2026
- 00:41:37 -0700 (PDT)
+	s=arc-20240116; t=1775720662; c=relaxed/simple;
+	bh=+neZOOjWdQVdJTB55it/1EVZihaYU1w2cBZD5co5sdQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=icBRQb3SKi8aBI1ItuwgXvTa0Y9EubWG/2UStSIMy6j6ydv1cbY3V7VcxRJm8jKwRnhJSQZ717nhfbuKw2NkLA52s7lfLmAe5MxcoXIgC9wezANvlmg5MlqXYdbA7voXr82UAw2tcH3DC8XYmdZp1tyrv6OEj+x/Sico75EPnP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U9D/ZN9U; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-c76c067bc51so242045a12.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Apr 2026 00:44:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1775720659; x=1776325459; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LYfS1O2yf/ne7E+3AVEnMmfiNz3xkDVuJUPn1EUTtNA=;
+        b=U9D/ZN9UkT5WL4NuOegARnUGpzGgz38xr3IVzRvyeypvpireAcRi+usa1l7JFikcKS
+         f9bDSRDeKdT/VfqhW2MVZ89QMpHsKvgGvA2fpK9rR2mu4/kC5BPgDAGuHA5INZzAlt3I
+         oVYHYrd5Fje1XY6RHE7UEHHDu+dGLw++h4P/l+K2GJeU9sad7P3Mdxb8by7FXw1eoUPc
+         Al5tNxiq+azvvqNs0XK7P8JiiaBr8oY/VGD0LNB/OCQQaPXFyj01vK/l7rqfGP+rz1yE
+         aSlcGCJxCXKuHeUPtJla/ITnw8j7taZcXcZTBOYtdQYljY2iEj8d2quQIlVV4M8e0V4b
+         ePmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775720659; x=1776325459;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LYfS1O2yf/ne7E+3AVEnMmfiNz3xkDVuJUPn1EUTtNA=;
+        b=TYr0/OSOEIulyryYLhRyJTFTYv3CEatKfWeurZ4xCJxMZKuKuhoCuawW0iP9txmmnw
+         zUiHTMC8dt+b7VEcFy6oAdPa00ol/LIsgMbVxKPpOtn1jsxeDdMR0nvnft55/9S6nOpn
+         g5riLR73jD5kdrte0p2kadD+TCULE+FI+8JKgyL4RT7QUiQdrvAQbQ0Z2k5zV/V1ifUM
+         yb0+mlz4QaCJHVspicElMA/bDUsb5UKlSaYSBb2eADibGmL7NYMgYrhz9JRFZjGUfQ/8
+         36mlqUM8b7YofhBH0x24k8EpTVfEnsRVZuTWz6y1L3uI8XXoQA14TRYVuFlF6pCYv+GM
+         1WMw==
+X-Forwarded-Encrypted: i=1; AJvYcCUsJZfFD7OmY6Cmu+MjP5c4D8YpNu58ZqO2lCE3LVKmtVE4u07f9hhMg0NHCChxqqeSUWgXS0OePRbZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxanfxCCMNyRWPnI5c2f8DxG/z7FSevnYdZAsLAfo/q5jb/zKwq
+	ByMNAX//atZTsMFpw9u07Qp4ea9Z/oCoAxCJ2DVnuC+PSkWaUAC1DqEy
+X-Gm-Gg: AeBDieu8uxjJoaBuozlQFoPoPt5ucDhRjxSEOb9nzz1OYeLJ+M+FZ4Ctq4ySlS20OjJ
+	rCePpZdRqos3yedpg/wYR9s7tC4iJKGe68eVIrPbj0+YQfqA+8WWeFXPkwRA1ylorGYT09TMyj1
+	vXXHKangl0s7leKdMX1c11qHiRtc25m3oSsEd8nKYc2fkENzR08xhTQmmuZ6iEMpGwxo43vXhl7
+	UEP4W0+aAAtRHGMiBGDPX7uzfesrrc7KSiKRMzIAtMcAQQ4NohQUQzapwNqNwUY7j0XIAL3KuzJ
+	AuiXR4YY0wRKenr3lw5hK4YAdDIoZB8mBVkSK2UdQszdTxG+odW0yqHDgrjKoy6WiBdOnhg9w5j
+	g5h4DLj7qaq3AC68sdT4EFZ1k4bmFPoYxBmDDAT8j3DQxqRR7/eePdS74hEP6XPckGg8r0RTXcL
+	PaTz5g63GEq2hfXaBVYG0ryvjdpgYByaKM6UKzooD/NzaJC9j3Vw==
+X-Received: by 2002:a05:6a20:7f86:b0:398:7866:e8e8 with SMTP id adf61e73a8af0-39fc82e89a3mr3171074637.31.1775720659419;
+        Thu, 09 Apr 2026 00:44:19 -0700 (PDT)
+Received: from Black-Pearl.localdomain ([157.50.173.193])
+        by smtp.googlemail.com with ESMTPSA id 41be03b00d2f7-c76c6475b56sm21226965a12.1.2026.04.09.00.44.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Apr 2026 00:44:19 -0700 (PDT)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Date: Thu, 09 Apr 2026 07:43:16 +0000
+Subject: [PATCH] dt-bindings: mmc: st,sdhci: convert to DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260401-waveshare-dsi-touch-v1-0-5e9119b5a014@oss.qualcomm.com>
- <20260401-waveshare-dsi-touch-v1-19-5e9119b5a014@oss.qualcomm.com>
- <CAMRc=Mcusnm-k76e6jTiwrw5xJL7f-nWBsg4=QpD08cv8pPgMw@mail.gmail.com> <l6pezliurpgv2mopw2xl4gfgpki6r3v6ufpsaavj774qnxgept@h3jxxpco23oa>
-In-Reply-To: <l6pezliurpgv2mopw2xl4gfgpki6r3v6ufpsaavj774qnxgept@h3jxxpco23oa>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Thu, 9 Apr 2026 09:41:23 +0200
-X-Gmail-Original-Message-ID: <CAMRc=MdRs3oSYUCc8t1Fz+9f4f3FS8gpzh4OqGLwpzhR09nsPQ@mail.gmail.com>
-X-Gm-Features: AQROBzDMHxHCpdplwZHc_f_Epk3_RdAPtZIzTXn5xXroKG8KWM4nBKA4II4kNgA
-Message-ID: <CAMRc=MdRs3oSYUCc8t1Fz+9f4f3FS8gpzh4OqGLwpzhR09nsPQ@mail.gmail.com>
-Subject: Re: [PATCH 19/19] gpio: add GPIO controller found on Waveshare DSI
- TOUCH panels
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Cong Yang <yangcong5@huaqin.corp-partner.google.com>, Ondrej Jirman <megi@xff.cz>, 
-	Javier Martinez Canillas <javierm@redhat.com>, Jagan Teki <jagan@edgeble.ai>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260409-st-mmc-v1-1-4c54321c3535@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAJRY12kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDYyNz3eIS3dzcZN1kSwOzxBRL07Q0C2MloOKCotS0zAqwQdGxtbUAWNW
+ 1kFgAAAA=
+X-Change-ID: 20260327-st-mmc-c906ad95ff83
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.15.1
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-285998-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,huaqin.corp-partner.google.com,xff.cz,redhat.com,edgeble.ai];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-286001-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: ED7053C7285
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,0.138.62.160:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.138.140.192:email,devicetree.org:url]
+X-Rspamd-Queue-Id: 4F0DE3C7349
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 9, 2026 at 3:26=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
->
-> >
-> > This driver looks like it could be easily converted to use gpio-regmap =
-and
-> > become much shorter in the process. Could you please take a look at
-> > linux/gpio/regmap.h?
->
-> I took a glance. It is a nice wrapper, but I think being able to call
-> waveshare_gpio_set() internally without extra troubles overweights the
-> bonuses of the wrapper. Also, I'd agree if there were extra complexity
-> here (e.g. the stride or the in/out handling), but having just the out
-> GPIOs doesn't seem to warrant it.
->
-> An alternative would be to split away the backlight into a separate
-> pwm-backlight device. Then having waveshare_gpio_set() isn't that
-> important and thus I could switch to GPIO_REGMAP. But then... We don't
-> have real control over the PWM. We are really programming some values,
-> with the actual PWM duty cycle calculations being handled internally.
->
-> With all that in mind, unless you really insist, I'd prefer to leave
-> this part the driver as is.
->
+Convert STMicroelectronics sdhci-st MMC/SD controller binding to DT schema.
 
-Ok, with the other issues fixed it's good to go then.
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+ Documentation/devicetree/bindings/mmc/sdhci-st.txt | 110 -------------------
+ .../devicetree/bindings/mmc/st,sdhci.yaml          | 122 +++++++++++++++++++++
+ 2 files changed, 122 insertions(+), 110 deletions(-)
 
-Bart
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-st.txt b/Documentation/devicetree/bindings/mmc/sdhci-st.txt
+deleted file mode 100644
+index ccf82b4ee838..000000000000
+--- a/Documentation/devicetree/bindings/mmc/sdhci-st.txt
++++ /dev/null
+@@ -1,110 +0,0 @@
+-* STMicroelectronics sdhci-st MMC/SD controller
+-
+-This file documents the differences between the core properties in
+-Documentation/devicetree/bindings/mmc/mmc.txt and the properties
+-used by the sdhci-st driver.
+-
+-Required properties:
+-- compatible:		Must be "st,sdhci" and it can be compatible to "st,sdhci-stih407"
+-			to set the internal glue logic used for configuring the MMC
+-			subsystem (mmcss) inside the FlashSS (available in STiH407 SoC
+-			family).
+-
+-- clock-names:		Should be "mmc" and "icn".  (NB: The latter is not compulsory)
+-			See: Documentation/devicetree/bindings/resource-names.txt
+-- clocks:		Phandle to the clock.
+-			See: Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-- interrupts:		One mmc interrupt should be described here.
+-- interrupt-names:	Should be "mmcirq".
+-
+-- pinctrl-names:	A pinctrl state names "default" must be defined.
+-- pinctrl-0:		Phandle referencing pin configuration of the sd/emmc controller.
+-			See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+-
+-- reg:			This must provide the host controller base address and it can also
+-			contain the FlashSS Top register for TX/RX delay used by the driver
+-			to configure DLL inside the flashSS, if so reg-names must also be
+-			specified.
+-
+-Optional properties:
+-- reg-names:		Should be "mmc" and "top-mmc-delay". "top-mmc-delay" is optional
+-			for eMMC on stih407 family silicon to configure DLL inside FlashSS.
+-
+-- non-removable:	Non-removable slot. Also used for configuring mmcss in STiH407 SoC
+-			family.
+-			See:  Documentation/devicetree/bindings/mmc/mmc.txt.
+-
+-- bus-width:		Number of data lines.
+-			See:  Documentation/devicetree/bindings/mmc/mmc.txt.
+-
+-- max-frequency:	Can be 200MHz, 100MHz or 50MHz (default) and used for
+-			configuring the CCONFIG3 in the mmcss.
+-			See:  Documentation/devicetree/bindings/mmc/mmc.txt.
+-
+-- resets:		Phandle and reset specifier pair to softreset line of HC IP.
+-			See: Documentation/devicetree/bindings/reset/reset.txt
+-
+-- vqmmc-supply:		Phandle to the regulator dt node, mentioned as the vcc/vdd
+-			supply in eMMC/SD specs.
+-
+-- sd-uhs-sdr50:	To enable the SDR50 in the mmcss.
+-			See:  Documentation/devicetree/bindings/mmc/mmc.txt.
+-
+-- sd-uhs-sdr104:	To enable the SDR104 in the mmcss.
+-			See:  Documentation/devicetree/bindings/mmc/mmc.txt.
+-
+-- sd-uhs-ddr50:		To enable the DDR50 in the mmcss.
+-			See:  Documentation/devicetree/bindings/mmc/mmc.txt.
+-
+-Example:
+-
+-/* Example stih416e eMMC configuration */
+-
+-mmc0: sdhci@fe81e000 {
+-	compatible	= "st,sdhci";
+-	reg		= <0xfe81e000 0x1000>;
+-	interrupts	= <GIC_SPI 127 IRQ_TYPE_NONE>;
+-	interrupt-names	= "mmcirq";
+-	pinctrl-names	= "default";
+-	pinctrl-0	= <&pinctrl_mmc0>;
+-	clock-names	= "mmc";
+-	clocks		= <&clk_s_a1_ls 1>;
+-	bus-width	= <8>
+-
+-/* Example SD stih407 family configuration */
+-
+-mmc1: sdhci@9080000 {
+-	compatible	= "st,sdhci-stih407", "st,sdhci";
+-	reg		= <0x09080000 0x7ff>;
+-	reg-names	= "mmc";
+-	interrupts	= <GIC_SPI 90 IRQ_TYPE_NONE>;
+-	interrupt-names	= "mmcirq";
+-	pinctrl-names	= "default";
+-	pinctrl-0	= <&pinctrl_sd1>;
+-	clock-names	= "mmc";
+-	clocks		= <&clk_s_c0_flexgen CLK_MMC_1>;
+-	resets		= <&softreset STIH407_MMC1_SOFTRESET>;
+-	bus-width	= <4>;
+-};
+-
+-/* Example eMMC stih407 family configuration */
+-
+-mmc0: sdhci@9060000 {
+-	compatible	= "st,sdhci-stih407", "st,sdhci";
+-	reg		= <0x09060000 0x7ff>, <0x9061008 0x20>;
+-	reg-names	= "mmc", "top-mmc-delay";
+-	interrupts	= <GIC_SPI 92 IRQ_TYPE_NONE>;
+-	interrupt-names	= "mmcirq";
+-	pinctrl-names	= "default";
+-	pinctrl-0	= <&pinctrl_mmc0>;
+-	clock-names	= "mmc";
+-	clocks		= <&clk_s_c0_flexgen CLK_MMC_0>;
+-	vqmmc-supply	= <&vmmc_reg>;
+-	max-frequency	= <200000000>;
+-	bus-width	= <8>;
+-	non-removable;
+-	sd-uhs-sdr50;
+-	sd-uhs-sdr104;
+-	sd-uhs-ddr50;
+-};
+diff --git a/Documentation/devicetree/bindings/mmc/st,sdhci.yaml b/Documentation/devicetree/bindings/mmc/st,sdhci.yaml
+new file mode 100644
+index 000000000000..22060fe6e364
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/st,sdhci.yaml
+@@ -0,0 +1,122 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/st,sdhci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: STMicroelectronics SDHCI-ST MMC/SD Controller
++
++description:
++  The STMicroelectronics SDHCI-ST MMC/SD host controller, which is
++  compliant with the SD Host Controller Interface (SDHCI) specification and
++  is used to interface with MMC, SD and SDIO cards. The ST SDHCI controller
++  extends the standard SDHCI capabilities with platform-specific
++  configurations such as additional register regions,clock inputs, and delay
++  control mechanisms required for signal timing adjustments which are
++  necessary to support high-speed modes and ensure reliable data transfer
++  across different ST SoCs.
++
++maintainers:
++  - Peter Griffin <peter.griffin@linaro.org>
++
++properties:
++  compatible:
++    oneOf:
++      - const: st,sdhci
++      - items:
++          - const: st,sdhci-stih407
++          - const: st,sdhci
++
++  reg:
++    minItems: 1
++    maxItems: 2
++
++  reg-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      enum:
++        - mmc
++        - top-mmc-delay
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      enum:
++        - mmc
++        - icn
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-names:
++    const: mmcirq
++
++  pinctrl-names:
++    const: default
++
++  resets:
++    maxItems: 1
++    description: Phandle to reset line of host controller.
++
++  vqmmc-supply:
++    description: Regulator supplying I/O voltage (Vcc/Vdd for SD/eMMC).
++
++  non-removable:
++    type: boolean
++    description:
++      Indicates a non-removable device (e.g., eMMC). Also used for mmcss config.
++
++  bus-width:
++    description: Number of data lines.
++    enum: [1, 4, 8]
++
++  max-frequency:
++    enum: [50000000, 100000000, 200000000]
++    default: 50000000
++    description:
++      Maximum bus frequency. Used to configure CCONFIG3 in mmcss.
++
++  sd-uhs-sdr50:
++    type: boolean
++
++  sd-uhs-sdr104:
++    type: boolean
++
++  sd-uhs-ddr50:
++    type: boolean
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - interrupts
++  - interrupt-names
++  - pinctrl-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/stih407-clks.h>
++    sdhci@9060000 {
++        compatible = "st,sdhci-stih407", "st,sdhci";
++        reg = <0x09060000 0x7ff>, <0x9061008 0x20>;
++        reg-names = "mmc", "top-mmc-delay";
++        interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "mmcirq";
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_mmc0>;
++        clock-names = "mmc", "icn";
++        clocks = <&clk_s_c0_flexgen CLK_MMC_0>,
++                 <&clk_s_c0_flexgen CLK_RX_ICN_HVA>;
++        bus-width = <8>;
++    };
++...
+
+---
+base-commit: e77a5a5cfe43b4c25bd44a3818e487033287517f
+change-id: 20260327-st-mmc-c906ad95ff83
+
+Best regards,
+--  
+Charan Pedumuru <charan.pedumuru@gmail.com>
+
 
