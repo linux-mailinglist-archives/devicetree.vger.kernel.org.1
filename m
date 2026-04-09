@@ -1,208 +1,190 @@
-Return-Path: <devicetree+bounces-286101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286116-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iNWwAEKG12k9PQgAu9opvQ
-	(envelope-from <devicetree+bounces-286101-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 12:58:10 +0200
+	id iMXCNYGI12mwPQgAu9opvQ
+	(envelope-from <devicetree+bounces-286116-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 13:07:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E41F3C9566
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 12:58:09 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B6243C9814
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 13:07:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E38A43009177
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 10:58:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4B5E03014403
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 11:07:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F043B6371;
-	Thu,  9 Apr 2026 10:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23A7C3BFE5B;
+	Thu,  9 Apr 2026 11:07:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Z/sIflwr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vk2WBH75"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010028.outbound.protection.outlook.com [52.101.84.28])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2302E14884C;
-	Thu,  9 Apr 2026 10:58:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.28
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775732287; cv=fail; b=N5XkxjgAHR4YQKXMCDsHVwUpyQS/XxoxvJEJxWmiJu8wYFYdfgXgdwOD6Ufco+KPBSutBYoaeMGU4U58ouIuqmri43H4sWyLFvJVpMQtEbYpQGpvN7S+prtCD0Pk9Qfbu2hQ4coqLE/j5aaCIEVFLfySWXchjsI0aF081U1m5pI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775732287; c=relaxed/simple;
-	bh=cSHM2nYXWJHO4hlIA83kryV61QWzHxtMm72xxZbMeU0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Z9hlLctOQyOWggDqiohmBr8te3hP4OjGj/iJEHwlFjQIUT4tIARGlNBMG8nnU8R2R3938Re4n62MfgbmiV0ED9kGe380KWSZn+ceeurZHtKC3TzQWg1nfN1K9ksdfGDekfnvrwRh2UuECChrrVKzicKS8o3u8OsLeGWlopyKjYc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Z/sIflwr; arc=fail smtp.client-ip=52.101.84.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SavmfxJyzmHPxZP/sdTphlIieWj2vEvqCVl/GXGP0Xh0mjgzFtuhMz8yzlcoNehT2d0yGfxjV9lPZkEUyrserB84CfgwPRC45QlpKtZBxu69k6HUunGObxq8UFRLJa/PFgL09+OnAWFkV1UcPzMhx4+eOkf9BdfbThyJbyyEsEUkM3GfDkoBG0XDM3ELmtATJDvFG+nc5DCwG1XAukXm57h21bzS0NPFBFR99302ddTVG0pqWKY6J7lE9dqQuIvW2U1eTdXO5Et7Se9kQl3r6qtun28u/a6UjDA87diIzmS+HnydMp6I/NnzEFUqmG1FMZHAEhaqEmachVB3yi08ww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2t7Rh31O/cnJYSHLoy6/znK3rUYDAJ6C6u7KKmwoByY=;
- b=ERbLVNwJ7pB18Bdaici0EHxay7CnSpohd5jfLhrbkuKnHm2W/raXoRWCczCR2fG7RnI17hHwmRSb+wA7E9DFZc66RrMAhATE9iXUuZ6z6C6sguo+gs8UaayR7dAx+umwzadHjQl8n9zGdJQo2b7HnvjV21zOK0QR4bWX3+1mmUFeFKuatK85+vJXQLGwPV9nRs04u/Nem1KU3P82kipNXFTOvrvTzNdgwwTBLLT0S02NK3hFPupnNQrrxfDs+Gy7weZJIiMBjmn0oTw+7U6AZef+Vh3a+bGApVk2rkQac0yPpDrUVj+StW/SviPyyOWndaHZ1icBPCP2u4GX19+FAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2t7Rh31O/cnJYSHLoy6/znK3rUYDAJ6C6u7KKmwoByY=;
- b=Z/sIflwrE3q3R4Asab1fm0ZX1LmS6+3WTxgZwwm5WR92V80oAeEAodWOR1zz8R/h5JW3GDM+ktbqf4iX6NG0SvT/QN8XrE9ldH0mPbwRYSuOwoPTNm6CaHuaDjbe7WvKzdv0FpnFstQ+tbO89LRI+9ggW9acnEvHUgcBMJxdOSkFw2qhidoR5XJqNT4IUqfbnNs59FsUARosjTS5mbd0Mqkb5AURf+3oBwezFGl2IkepdCvakJOg3mxxJpXitRZuxZsOE09ebRYQsVIEcljBWCDqnWwQBX0QVEEz3zTh0xLG3wc4dr8+boc6TxEscTL8uySK/ZucL+cUjhzTpEVzGg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by PA4PR04MB7918.eurprd04.prod.outlook.com (2603:10a6:102:c7::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Thu, 9 Apr
- 2026 10:58:03 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9769.018; Thu, 9 Apr 2026
- 10:58:03 +0000
-Date: Thu, 9 Apr 2026 06:57:55 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] ARM: dts: imx6ul: add #io-channel-cells to ADC
-Message-ID: <adeGM96R99hgp4Xd@lizhi-Precision-Tower-5810>
-References: <20260409101759.4159324-1-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260409101759.4159324-1-alexander.stein@ew.tq-group.com>
-X-ClientProxiedBy: SA1P222CA0089.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:806:35e::19) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0D953BF69A
+	for <devicetree@vger.kernel.org>; Thu,  9 Apr 2026 11:07:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775732863; cv=none; b=GWgbi/Z+O5ao03A5PJyimOg63jYYOgxin0BDcXNb9B4blqcN4RF2UwIAAzmS9PKYId+G4tFIgWJYJsVCcNWh21AB8cUw0ZCbNsZYF/zYkHRvt6ovx85YUjD3QYYf13rcSSqd3Azu5QRhYDoMqcRkivn3F5Pq6/XDMrkqz9yBf+c=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775732863; c=relaxed/simple;
+	bh=AwjrzL0fh5CEgp6ILuxORU62HOKwb9P8MF8D4O9oX30=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=A+9Q9GN/8LWnxF5GfstNXGfHga//U0WSQxixPRa9nMA0RHEjqX00o0BVBK7yQdCeJNnz2aeRQxpf9sHkxu+Utz1bzRS9MXuaPSgkRY8jxQhI69sb9lo3vEpih1SxUM0qSnoHykisTbZe6ANTFTzep2XBChMjrX4wmN6ygi83AAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vk2WBH75; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6C68C2BCB2
+	for <devicetree@vger.kernel.org>; Thu,  9 Apr 2026 11:07:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775732862;
+	bh=AwjrzL0fh5CEgp6ILuxORU62HOKwb9P8MF8D4O9oX30=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Vk2WBH75rBQxC/rySOUlJ3r+B9mC0vIwFek0r48g+ZonAR2VWYz0pq0yMr+d90VmJ
+	 DyRzj9M4KrHDy+BXKa8sunve22IKi3mmHD96UFn6+dF+8GY516m+b6mvg428nMeAZv
+	 buoUeWkjxPPxcPmeBWXzkbfH93htPNsqzEFeaPVzYSNiVHL9ffrK5VCiu0797B2w7G
+	 UgBut3mqOU45kl96CXw0bO1Erx851OhBk7WQPPBDL8B0KFnUeCyJ2snIe7jCBYMVe4
+	 byEsxj+bOGTmnwY6rLP8m5Oi+6/CiSFYCEGWaYjR3vfDGiO/p9dgfBe3usBgKMito9
+	 uqBck0c5AtKnw==
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-47018d341f8so545632b6e.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Apr 2026 04:07:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWyp97Vcqzy6xfF3NEQaeLc5bRpis4TZ9R+be65HyHSDZU+XhPH+9gOhV+HDu39m6BJTElS+X+IwvCo@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaMSppYbdtjM6CQUQzs+MDAdXZo85lKC1WmUuBXoLVjVbgmM5w
+	//9VCkg+kcVL6DDZ5uYRKF0nZ2vnp2vyZAugUaCLVXK6bb+Pf6im0t7drQ0/4bYXuDpYRb38bLs
+	HToA1XRoAnFE7GnZcMVBYUx3U5y1pCEM=
+X-Received: by 2002:a05:6808:c2a1:b0:467:70eb:36ae with SMTP id
+ 5614622812f47-46efb1cf097mr12520225b6e.29.1775732861791; Thu, 09 Apr 2026
+ 04:07:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PA4PR04MB7918:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f604917-9601-4974-42de-08de9626df21
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|366016|7416014|19092799006|1800799024|38350700014|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	LoIx+RcOFvsG/rrZcGZCmmr5FpBs5FrHbYYdS5poUi5wfTj55HSdDNOkKT5UHb4mdCcc+K8ubL81ggjKdJVWG8uhdURKANVfMIAqOZH0/kcPMM72xk+/smLJhOk6p8sVZLtnutsiSdnyyn4wGI/ReNWDQ2PqlrHJj38iUG/q1xUHbtpoZdh7Wy9VAhF4ZrnkKC/D0fu7Tx3O7GF7ExbEqb87cih2MuI2ENKYzH9dfmMR/LW6YM1hSXnuuP4jPW4qBcRIKUtM1yCVsjRhnmj33tYzdL9ugnjcqFRPOapoQxnj0lVG8ZZLif+K/RSp/ZgslAhMejJRb6KEV9kQ6zpYnPFuxpmGxrlCc0Y1thy1PPEtxMF9PNyQ+aZPZAh24H3wgkBRt81oM8Q0HBG48NE2pyDU3ZReZlC8XuUdQ6JlhSRMXbuXJCiHw4VYptcB6mFX7XHbqYtQIQvFQTHmDGfrQiMJJT17aml2y5jDLz7DGZl/Vw0Juvw96Rvh7mr8itpMJ26S4rC0xwg8+U3AedP07fEB0COK2AyfndLB/tSj+T7OJksPNS6pvmGzw9sjuh7J3H+4fx6ywfa/M0etKPiPASj2LmDSqm8D80z8eJm27pyVt3Xomg5T0eTjZy7hsOI8CfEC7cMRvDOjxLEJITINArWg8r77L4LRg24L3MUkcBs91yi0x1a2xVmmnsjsPK7QU7HkzrLhxa5h1UvJTMrvzvcLFZs9WsHAu3HLiWXsx/KH+IHe9TFPeRqxTfOv6zu1F0OHfK/jQKL+2MSSatFIucF6EAkfGlbqjsK85TIu5MM=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(366016)(7416014)(19092799006)(1800799024)(38350700014)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?YkFNgZlauUCTxkQuIGPcsy1NgaQ8C7ifkR+EC4hRD6FuCr5oj2iPnfdN3Lfs?=
- =?us-ascii?Q?+093G0Vfyimn/FAmvVLNfFbvAXVOi2Uf6uRhOfa5Mxuq/3wQpDRDrZ6i4uDz?=
- =?us-ascii?Q?3BWXXbY3sxoCDFkFHSxTJeqMQhXyhzpZuLUZdiK2lqIow4rP/OCKbNTfCYBT?=
- =?us-ascii?Q?i+3mGVo/KgzSc3ZzJGA/EHlaGUAS9Gj9hEVmAwafrEqgR1aEFPfCEqlNPaK8?=
- =?us-ascii?Q?7Fzx6HIqkvZYHFk87xgi322aYt5SK+MvlvkowbUUViEvmbXcbTL+XBz+8vJV?=
- =?us-ascii?Q?4q2TSx0JZJcoPmaE01tJuvK9ujLZI3Fvzagw50sTiwY7rNeLvYjC15uIBh+o?=
- =?us-ascii?Q?1f2CQlu9fXh2BKVsbeV/2HZthDG1WWsP7adxobZmw9bvL8DNByGC11bIKNNr?=
- =?us-ascii?Q?EmkurpvvJrZkH3Aa+DH6CSm45FIBxpCMl0XhL0CxStQQwAMNdFYrsFKlINAU?=
- =?us-ascii?Q?/ReskezwMey+iL3heW1+x0V4lrdGfnw/a3Plna1RcxXLfznKOcgoDRpyTcm3?=
- =?us-ascii?Q?j1oedFrwW276Rcn+fvpeVD2f6LXJ/IfE7UqUm2+ho9rLOGqHTDlkQxboiV9I?=
- =?us-ascii?Q?BKOLDtPza3wN8iNi2M9xlFOrUSPOWfl5G9YKn4mCUGAvuVOKaxHNEHyNgFUX?=
- =?us-ascii?Q?KYuCRKuOtPSwCuKeAA6Pwi3Q7IhR9QoMRWfokBDrN6EKR6Y1ZylSlyzWQkzm?=
- =?us-ascii?Q?RkHhlegyoz1R2L7PlsrohZbzMEy0TpMxaLScH+1Yit+FZ8SlnBl5X8Urkie9?=
- =?us-ascii?Q?87Vb39QlOEy1GH2pa4DpAQ+wkDfT+4YNKasNk7ZtOzPxpGRtxjX1R6i6XByf?=
- =?us-ascii?Q?ppx4bA5atMaJQlOM96hC004N2i0/86mXbRe9u7qaYTSOpUIqZBfy7y79Ecph?=
- =?us-ascii?Q?8ocKsQ34c5RFgBIdcBzChi7WmjmskcOuTA/QACh3hi2eYzakvhqzv9KDq8vE?=
- =?us-ascii?Q?GpwT8cbsLdc1MGAjNOZXa8/Me67FP0AYxIfkPsufRRHXD/0GsWIPN5/MvqYK?=
- =?us-ascii?Q?7PNjGPiGrvW+VPxSJeBm2KIBs9hgtj2AjDAoV0dVHtw2/3B3afzXo2H7A2KT?=
- =?us-ascii?Q?sBExxfD5Rz2ylcOWZ92Z4iQo99UuBuusDNK+AClTP8KcNVIiL1crDAHJmzE/?=
- =?us-ascii?Q?sV/ywjd6jRPJXc54hdsv63UZ3F8SewQpkBVfshCIhRnAErOLaLFOq92kCAtc?=
- =?us-ascii?Q?wH9W/N6vh34XXfu5mnCvpH0B+C7xAA3qknK3inr0embTLJuKD/vsy7SCnP/h?=
- =?us-ascii?Q?EUnttk7QRApihuuDbmybUUCI2kbPwBV+DTWjgF9CwREDbGFMng8b5+8jp0Yt?=
- =?us-ascii?Q?rEPOiLPndW4gez14ZphoBTNf8yYSabWjkVAb7EcEnlSZn+Ai5ja6vmSTvRp0?=
- =?us-ascii?Q?QU4/61Qbiw6EH1+YkVaKLo6Wi9lEPT7OYNGubKwW/09DL+OlJOrzCyca22nn?=
- =?us-ascii?Q?dPzJm8cWM6XeUcB0Y2+Hxbxin1B8zJCioX5yqWb+QF9Q8iZzzUdPnU3ruUru?=
- =?us-ascii?Q?pg3MAc6ljRDJAk/0UT+3+W/LFFI/G4hXMH4e/Hp0kqQEOLX1OdE35mofSTmG?=
- =?us-ascii?Q?cdZYgu3Rx785iNe0xP8LhSFFyPeosVxrciMyLi29jC+BcnIIS8QEG5TM2xBR?=
- =?us-ascii?Q?e+mInSMqVnpCt/LxNSLs3g7xnBp++Yvoh0t5lyW7wwzjzAARcITJwTfSTuvS?=
- =?us-ascii?Q?jexMCLD2CIkJyG55XuuWpwE4K7ElWAUZYnUWD0R+egnkjeRzLdtyLpQcXipl?=
- =?us-ascii?Q?ANo5OgHxiw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f604917-9601-4974-42de-08de9626df21
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 10:58:03.1619
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cTWgGzyxbX7oLENc/K+ZRQPE+p0UpNbN0eZooS0huTdqATdLkm5D2Tu395CV1JUvix94cH3XtiywpyCZHQBcCw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7918
-X-Spamd-Result: default: False [1.84 / 15.00];
+References: <20260409105747.48158-1-akhilrajeev@nvidia.com> <20260409105747.48158-3-akhilrajeev@nvidia.com>
+In-Reply-To: <20260409105747.48158-3-akhilrajeev@nvidia.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Thu, 9 Apr 2026 13:07:30 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0g1-gyReMo4AvtBfth2bDhxJdr+o8rTozJJ0q28RTDGMw@mail.gmail.com>
+X-Gm-Features: AQROBzDNvyu9QpULO0jlYjq4hyvVVIYN8TZ7GG9yU-t4nZ37LiVlTgpbMoONhDY
+Message-ID: <CAJZ5v0g1-gyReMo4AvtBfth2bDhxJdr+o8rTozJJ0q28RTDGMw@mail.gmail.com>
+Subject: Re: [PATCH v2 02/13] ACPICA: Read LVR from the I2C resource descriptor
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, Frank Li <Frank.Li@nxp.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Robert Moore <robert.moore@intel.com>, Len Brown <lenb@kernel.org>, 
+	Guenter Roeck <linux@roeck-us.net>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Eric Biggers <ebiggers@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, linux-i3c@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev, 
+	linux-hwmon@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,ew.tq-group.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-286101-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-286116-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	DBL_PROHIBIT(0.00)[0.33.137.240:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:dkim]
-X-Rspamd-Queue-Id: 4E41F3C9566
+	FROM_NEQ_ENVFROM(0.00)[rafael@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nvidia.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 5B6243C9814
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 09, 2026 at 12:17:57PM +0200, Alexander Stein wrote:
-> From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+On Thu, Apr 9, 2026 at 12:59=E2=80=AFPM Akhil R <akhilrajeev@nvidia.com> wr=
+ote:
 >
-> This commit adds io-channel-cells property to the ADC node. This
-
-Avoid use words "This patch/commit".
-
-Add io-channel-cells property to the ADC node. This is required ...
-
-Frank
-> property is required in order for an IIO consumer driver to work.
+> ACPI 6.3 specifies byte 8 of I2C Serial Bus Connection descriptor to be
+> used for Legacy Virtual Register (LVR) data as specified in the MIPI
+> I3C Specification for an I2C device connected to an I3C Host Controller.
+> LVR will be read by I3C host controller drivers and it provides details
+> about the specific speed and 50ns spike filter capabilities of I2C
+> devices.
 >
-> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Update the rsconvert_info to include this field. For I2C devices on an
+> I2C bus, this field is Reserved and unused.
+>
+> This commit is the result of squashing the following:
+> ACPICA commit 70082dc8fc847673ac7f4bbb1541776730f0b63e
+> ACPICA commit e62e74baf7e08cf059ec82049aeccd565b24d661
+> ACPICA commit c404118235108012cad396c834b5aabe2dd1b51a
+> ACPICA commit 7650d4a889ea7907060bfce89f4f780ce83e7b28
+> ACPICA commit 014fa9f2dbcc6b1bd42a4a4a6f6705d9cf7d460b
+>
+> Link: https://github.com/acpica/acpica/commit/70082dc8
+> Link: https://github.com/acpica/acpica/commit/b3c38dc9
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+
+Acked-by: Rafael J. Wysocki (Intel) <rafael@kernel.org> # ACPI
+
 > ---
->  arch/arm/boot/dts/nxp/imx/imx6ul.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/acpi/acpica/rsserial.c | 6 +++++-
+>  include/acpi/acrestyp.h        | 1 +
+>  2 files changed, 6 insertions(+), 1 deletion(-)
 >
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul.dtsi
-> index 24541fdf49ceb..d2bfa08b5e767 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6ul.dtsi
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6ul.dtsi
-> @@ -951,6 +951,7 @@ adc1: adc@2198000 {
->  				interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6UL_CLK_ADC1>;
->  				clock-names = "adc";
-> +				#io-channel-cells = <1>;
->  				fsl,adck-max-frequency = <30000000>, <40000000>,
->  							 <20000000>;
->  				status = "disabled";
+> diff --git a/drivers/acpi/acpica/rsserial.c b/drivers/acpi/acpica/rsseria=
+l.c
+> index 279bfa27da94..c06e918ab889 100644
+> --- a/drivers/acpi/acpica/rsserial.c
+> +++ b/drivers/acpi/acpica/rsserial.c
+> @@ -315,7 +315,7 @@ struct acpi_rsconvert_info acpi_rs_convert_csi2_seria=
+l_bus[14] =3D {
+>   *
+>   ***********************************************************************=
+*******/
+>
+> -struct acpi_rsconvert_info acpi_rs_convert_i2c_serial_bus[17] =3D {
+> +struct acpi_rsconvert_info acpi_rs_convert_i2c_serial_bus[18] =3D {
+>         {ACPI_RSC_INITGET, ACPI_RESOURCE_TYPE_SERIAL_BUS,
+>          ACPI_RS_SIZE(struct acpi_resource_i2c_serialbus),
+>          ACPI_RSC_TABLE_SIZE(acpi_rs_convert_i2c_serial_bus)},
+> @@ -391,6 +391,10 @@ struct acpi_rsconvert_info acpi_rs_convert_i2c_seria=
+l_bus[17] =3D {
+>          AML_OFFSET(i2c_serial_bus.type_specific_flags),
+>          0},
+>
+> +       {ACPI_RSC_MOVE8, ACPI_RS_OFFSET(data.i2c_serial_bus.lvr),
+> +        AML_OFFSET(i2c_serial_bus.type_specific_flags) + 1,
+> +        1},
+> +
+>         {ACPI_RSC_MOVE32, ACPI_RS_OFFSET(data.i2c_serial_bus.connection_s=
+peed),
+>          AML_OFFSET(i2c_serial_bus.connection_speed),
+>          1},
+> diff --git a/include/acpi/acrestyp.h b/include/acpi/acrestyp.h
+> index 842f932e2c2b..38a19b1d19ac 100644
+> --- a/include/acpi/acrestyp.h
+> +++ b/include/acpi/acrestyp.h
+> @@ -423,6 +423,7 @@ struct acpi_resource_i2c_serialbus {
+>         ACPI_RESOURCE_SERIAL_COMMON u8 access_mode;
+>         u16 slave_address;
+>         u32 connection_speed;
+> +       u8 lvr;
+>  };
+>
+>  /* Values for access_mode field above */
 > --
-> 2.43.0
+> 2.50.1
+>
 >
 
