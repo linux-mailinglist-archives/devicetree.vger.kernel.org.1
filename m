@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-286086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286087-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8BTdGLh512kQOwgAu9opvQ
-	(envelope-from <devicetree+bounces-286086-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 12:04:40 +0200
+	id wB2kHsF512kQOwgAu9opvQ
+	(envelope-from <devicetree+bounces-286087-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 12:04:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E6C3C8E54
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 12:04:39 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 197C23C8E6B
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 12:04:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EA0E7306A93F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 09:59:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C444D307037F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 09:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760413B9DA2;
-	Thu,  9 Apr 2026 09:59:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8BC3BA251;
+	Thu,  9 Apr 2026 09:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="QwkGgUIZ"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="b8g3NX1N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC8BF3B27E8;
-	Thu,  9 Apr 2026 09:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A113938B7AC;
+	Thu,  9 Apr 2026 09:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775728750; cv=none; b=doWfE1pJiSHTvXBV8xLTielGQ7qUntf8i0WErEu0B7Y3SR91lSWkOj1OxSNMVOaW6eBO0aqLcOpEwRRGAI8ZlK3iBciuke8DVAmRUBKEhfULzRZ32IGSHXY8G/jlf0FDv8vOvbLVUUoDcIeGaosmWKDxDGC++HutZbSdzLdwWCE=
+	t=1775728750; cv=none; b=kwHN43QezWtHZrh4qYPeJpGXtk2img7f9UWYSjx+NDhEQFK8t+ziEvcDfsX5xF8x9NOB3cmE/6t83B8bTVvzfYICrrGNM9km8E4u77uDV8Ci8wGcUAAhr+iI4CNT6NxePoqKX79wVwUA5E454hX9DbMsl115pw+eR7rGxjQ6tUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1775728750; c=relaxed/simple;
-	bh=iCjJdv6UmtR2mcMf7I6aIF5Z1PydaiALBEkkJRuYH8s=;
+	bh=WnYeKe0+0HjIxBjz5+9jUqiJnqKAgj+SVvLX0k6GYRs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Me3tOGSn7tL+I+3DRdfV9N7AUUK7oDHkjJNHiZLUsTSOCRcr1AlmbyieY7/ZSffDPIdmcUgcFUncZg6JCxnD76Ktxzl4E0dX9Gr7ucAYIj8RABmGr4V+71vckETz4ZKuhSIORLtGMB8CqMiFrUR9UuvSfF3ptVWwUM32Jkw+owk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=QwkGgUIZ; arc=none smtp.client-ip=217.194.8.81
+	 MIME-Version; b=KqluOHQVSThi5LkufpfnW/OiIlIpQPIISky4vMHz1QFvq5RA/m6YNZic5Og2PMJsQjQXn7J5yJbg4ux0asx9xmY2qVm1G6Wpxw2PtQkAMOYycING5IqW+pkNseS9C3SWMaGIFvd6EBzHhtygYuDrAIfZYM5qlxv5BDQd5tChH1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=b8g3NX1N; arc=none smtp.client-ip=217.194.8.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
 Received: from francesco-nb.. (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
-	by mail11.truemail.it (Postfix) with ESMTPA id B72542035C;
-	Thu,  9 Apr 2026 11:59:06 +0200 (CEST)
+	by mail11.truemail.it (Postfix) with ESMTPA id 6771220379;
+	Thu,  9 Apr 2026 11:59:07 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
 	s=default; t=1775728747;
-	bh=VTCgxSY8g7O+dmDT3SEttIJvvi9A+fVxUT3Jnm4+5+k=; h=From:To:Subject;
-	b=QwkGgUIZOcpmIbn5RFOOMTbPyXVkKsIZJePywxwj7j86zRjOhCIoFMLM76IQBz77v
-	 mthY05LZZisrsGwGMaHJk6fp63B1QovXLzTrWsVcpk8HKPA3vdvndSDv/EPSxCZ3gY
-	 VXAr65DtP2r98x5Hp966ZKBxlZlHxO4hnSPOenSVX9QDE42FL6SqRZ67UDUWL5xi0u
-	 07INBL96zXhXxj2l3hZN94xP352wZYHlI7LIfq3j7Z8kHaB/v0Fq3LYT9mDYNHPGBa
-	 AYajvK9x2cnW4DufPGoAbxn/pWsRC4twYIfBs250WGJUZG3RF1FTRhux4XxQIoGcfi
-	 vS6+jyvimBS0g==
+	bh=rilisu3ZqruoV1nzBO4jO5k4MVTLVZBUuqa+slZBBfA=; h=From:To:Subject;
+	b=b8g3NX1NdIjgOoXZ6fdu3FWRYHasMPjj4kAp0KYM1J8VKJEZsX6ko8EfHKKWHnUX7
+	 MnIc2bu/xa6VmHq6xA0Zf8+a+iGbvqv5U/t8XKQFHJB6iKyeOUf5h7K1VRE/6elveH
+	 8FBfY4IMwJyJTq7aSAjjG8mQ11riCrUG76Xkpgi/7pU0gnF2li40EySXzA87kdDHA3
+	 7fESurPu/nv56qw6Z3WVKS65twNmBlCTR1y+X7tO02IP6h6EFD5r0GbHLWkGbek0Gt
+	 p/3yqSw/3XSjuGWszM9o/qJfx32+i/KjShVHdoSOLSG7F5SirGbUaxlCyYE7k+APbW
+	 UOtxrm8/tdVhw==
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -60,9 +60,9 @@ Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
 	linux-kernel@vger.kernel.org,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 1/7] dt-bindings: arm: fsl: Add verdin imx8m[mp] and imx95 zinnia board
-Date: Thu,  9 Apr 2026 11:58:47 +0200
-Message-ID: <20260409095855.61252-2-francesco@dolcini.it>
+Subject: [PATCH v1 2/7] arm64: dts: freescale: imx8mm-verdin: Split UART_2 pinctrl group
+Date: Thu,  9 Apr 2026 11:58:48 +0200
+Message-ID: <20260409095855.61252-3-francesco@dolcini.it>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260409095855.61252-1-francesco@dolcini.it>
 References: <20260409095855.61252-1-francesco@dolcini.it>
@@ -80,13 +80,13 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	TAGGED_FROM(0.00)[bounces-286086-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286087-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -100,75 +100,59 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,toradex.com:email,toradex.com:url,dolcini.it:dkim,dolcini.it:mid]
-X-Rspamd-Queue-Id: F1E6C3C8E54
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dolcini.it:dkim,dolcini.it:mid,toradex.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 197C23C8E6B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Add Toradex Verdin Zinnia carrier board mated with Verdin
-iMX8M Plus, Verdin iMX8M Mini and Verdin iMX95.
+Some carrier board reuse the UART_2 control signals as GPIO, split
+the pinctrl RTS/CTS in separated nodes to maximize flexibility.
 
-Link: https://www.toradex.com/products/carrier-board/zinnia-carrier-board
 Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 0023cd126807..f5429e6c86ff 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1025,6 +1025,7 @@ properties:
-               - toradex,verdin-imx8mm-nonwifi-ivy    # Verdin iMX8M Mini Module on Ivy
-               - toradex,verdin-imx8mm-nonwifi-mallow # Verdin iMX8M Mini Module on Mallow
-               - toradex,verdin-imx8mm-nonwifi-yavia  # Verdin iMX8M Mini Module on Yavia
-+              - toradex,verdin-imx8mm-nonwifi-zinnia # Verdin iMX8M Mini Module on Zinnia
-           - const: toradex,verdin-imx8mm-nonwifi     # Verdin iMX8M Mini Module without Wi-Fi / BT
-           - const: toradex,verdin-imx8mm             # Verdin iMX8M Mini Module
-           - const: fsl,imx8mm
-@@ -1037,6 +1038,7 @@ properties:
-               - toradex,verdin-imx8mm-wifi-ivy    # Verdin iMX8M Mini Wi-Fi / BT Module on Ivy
-               - toradex,verdin-imx8mm-wifi-mallow # Verdin iMX8M Mini Wi-Fi / BT Module on Mallow
-               - toradex,verdin-imx8mm-wifi-yavia  # Verdin iMX8M Mini Wi-Fi / BT Module on Yavia
-+              - toradex,verdin-imx8mm-wifi-zinnia # Verdin iMX8M Mini Wi-Fi / BT Module on Zinnia
-           - const: toradex,verdin-imx8mm-wifi     # Verdin iMX8M Mini Wi-Fi / BT Module
-           - const: toradex,verdin-imx8mm          # Verdin iMX8M Mini Module
-           - const: fsl,imx8mm
-@@ -1271,6 +1273,7 @@ properties:
-               - toradex,verdin-imx8mp-nonwifi-ivy    # Verdin iMX8M Plus Module on Ivy
-               - toradex,verdin-imx8mp-nonwifi-mallow # Verdin iMX8M Plus Module on Mallow
-               - toradex,verdin-imx8mp-nonwifi-yavia  # Verdin iMX8M Plus Module on Yavia
-+              - toradex,verdin-imx8mp-nonwifi-zinnia # Verdin iMX8M Plus Module on Zinnia
-           - const: toradex,verdin-imx8mp-nonwifi     # Verdin iMX8M Plus Module without Wi-Fi / BT
-           - const: toradex,verdin-imx8mp             # Verdin iMX8M Plus Module
-           - const: fsl,imx8mp
-@@ -1283,6 +1286,7 @@ properties:
-               - toradex,verdin-imx8mp-wifi-ivy    # Verdin iMX8M Plus Wi-Fi / BT Module on Ivy
-               - toradex,verdin-imx8mp-wifi-mallow # Verdin iMX8M Plus Wi-Fi / BT Module on Mallow
-               - toradex,verdin-imx8mp-wifi-yavia  # Verdin iMX8M Plus Wi-Fi / BT Module on Yavia
-+              - toradex,verdin-imx8mp-wifi-zinnia # Verdin iMX8M Plus Wi-Fi / BT Module on Zinnia
-           - const: toradex,verdin-imx8mp-wifi     # Verdin iMX8M Plus Wi-Fi / BT Module
-           - const: toradex,verdin-imx8mp          # Verdin iMX8M Plus Module
-           - const: fsl,imx8mp
-@@ -1515,6 +1519,7 @@ properties:
-               - toradex,verdin-imx95-nonwifi-ivy    # Verdin iMX95 Module on Ivy
-               - toradex,verdin-imx95-nonwifi-mallow # Verdin iMX95 Module on Mallow
-               - toradex,verdin-imx95-nonwifi-yavia  # Verdin iMX95 Module on Yavia
-+              - toradex,verdin-imx95-nonwifi-zinnia # Verdin iMX95 Module on Zinnia
-           - const: toradex,verdin-imx95-nonwifi     # Verdin iMX95 Module without Wi-Fi / BT
-           - const: toradex,verdin-imx95             # Verdin iMX95 Module
-           - const: fsl,imx95
-@@ -1527,6 +1532,7 @@ properties:
-               - toradex,verdin-imx95-wifi-ivy     # Verdin iMX95 Wi-Fi / BT Module on Ivy
-               - toradex,verdin-imx95-wifi-mallow  # Verdin iMX95 Wi-Fi / BT Module on Mallow
-               - toradex,verdin-imx95-wifi-yavia   # Verdin iMX95 Wi-Fi / BT Module on Yavia
-+              - toradex,verdin-imx95-wifi-zinnia  # Verdin iMX95 Wi-Fi / BT Module on Zinnia
-           - const: toradex,verdin-imx95-wifi      # Verdin iMX95 Wi-Fi / BT Module
-           - const: toradex,verdin-imx95           # Verdin iMX95 Module
-           - const: fsl,imx95
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+index 1594ce9182a5..5fc177f589cb 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+@@ -735,7 +735,7 @@ &uart2 {
+ /* Verdin UART_2 */
+ &uart3 {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_uart3>;
++	pinctrl-0 = <&pinctrl_uart3>, <&pinctrl_uart3_cts>, <&pinctrl_uart3_rts>;
+ 	uart-has-rtscts;
+ };
+ 
+@@ -1144,12 +1144,20 @@ pinctrl_uart2: uart2grp {
+ 			<MX8MM_IOMUXC_SAI3_TXFS_UART2_DCE_RX		0x146>;	/* SODIMM 129 */
+ 	};
+ 
++	pinctrl_uart3_cts: uart3ctsgrp {
++		fsl,pins =
++			<MX8MM_IOMUXC_ECSPI1_SS0_UART3_DCE_RTS_B	0x146>;	/* SODIMM 143 */
++	};
++
++	pinctrl_uart3_rts: uart3rtsgrp {
++		fsl,pins =
++			<MX8MM_IOMUXC_ECSPI1_MISO_UART3_DCE_CTS_B	0x146>;	/* SODIMM 141 */
++	};
++
+ 	pinctrl_uart3: uart3grp {
+ 		fsl,pins =
+-			<MX8MM_IOMUXC_ECSPI1_MISO_UART3_DCE_CTS_B	0x146>,	/* SODIMM 141 */
+ 			<MX8MM_IOMUXC_ECSPI1_MOSI_UART3_DCE_TX		0x146>,	/* SODIMM 139 */
+-			<MX8MM_IOMUXC_ECSPI1_SCLK_UART3_DCE_RX		0x146>,	/* SODIMM 137 */
+-			<MX8MM_IOMUXC_ECSPI1_SS0_UART3_DCE_RTS_B	0x146>;	/* SODIMM 143 */
++			<MX8MM_IOMUXC_ECSPI1_SCLK_UART3_DCE_RX		0x146>;	/* SODIMM 137 */
+ 	};
+ 
+ 	pinctrl_uart4: uart4grp {
 -- 
 2.47.3
 
