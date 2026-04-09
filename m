@@ -1,132 +1,203 @@
-Return-Path: <devicetree+bounces-286005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286007-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6AriKsVa12lqMwgAu9opvQ
-	(envelope-from <devicetree+bounces-286005-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 09:52:37 +0200
+	id 2Jw9L/Vc12lUNAgAu9opvQ
+	(envelope-from <devicetree+bounces-286007-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 10:01:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC1963C74BF
-	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 09:52:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EE563C7683
+	for <lists+devicetree@lfdr.de>; Thu, 09 Apr 2026 10:01:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7B81E300A64D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 07:52:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0704C305E300
+	for <lists+devicetree@lfdr.de>; Thu,  9 Apr 2026 07:59:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E33386576;
-	Thu,  9 Apr 2026 07:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A0C387570;
+	Thu,  9 Apr 2026 07:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VNSxtkDE"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="TCkNOn6z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76C13815D4;
-	Thu,  9 Apr 2026 07:52:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6952638836A
+	for <devicetree@vger.kernel.org>; Thu,  9 Apr 2026 07:59:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775721142; cv=none; b=M9BoAVRJmLvVoIVNAfe9vOinE0+o3SEKvOF11m+sGbhQULHr++pRulorjoLGkW3PwodEmBqoOU6uI2SSrD1hBnZT6foYVw0uxhNSb2Ht/+UvzvRSGmTg/L2pa1kKEWRJKWWjUGxRs7bBJGu85baa5kViaPMJIyuqj99V/uEZYUY=
+	t=1775721556; cv=none; b=hvbr7nvxKCnFT++lDQJ5V0X+C7SvTHKrC8IoX16bY+TeKkM4s8XADfOdPiWjwAD0b5aHXjmnb5FMwZq68O2fPzmOEMMFAbW12EyLbwwvzxt4VmCDogldyeAnXhRoPXddSgHUVFSJslIbB5TF3zOVgV2RZzfM2XCtnUuOvNEYV+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775721142; c=relaxed/simple;
-	bh=AEGSH7uqeU+Lwm35Z0c1HO6xd8EheEWUPP+QQbCRcUY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HWJKk+CTg5H2rY7gPdS4an8idB+J+B2ZwKbAoNQENdKxSCubhdyt9ru9J4MM8fPwFmK6+2HIrcs0yaYzl2ReBNv1RAf8MGqx2GqkW7z4FDB+psJOK7sbtfKl5vK6mLM83ti0bPNs4TN+yLxAoAWQ/0chNf5vdpkkNbmo2NaSqpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VNSxtkDE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DD1EC4CEF7;
-	Thu,  9 Apr 2026 07:52:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775721141;
-	bh=AEGSH7uqeU+Lwm35Z0c1HO6xd8EheEWUPP+QQbCRcUY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VNSxtkDEZffNw90cxRqD2s1VidL3ASfUTQgrFqnu3P+szt2RL4Gplpe6W+r+9wjIs
-	 qAcZwgfwASIKH5zuK4H0MUqenzz/4LCnmDQ3j5NVM96352Lpe79+7W6c8x/s2TAFxw
-	 EOREiAaU89KiRO8sltRl930RnbIuUM/UsNi5OdIXZDWUfwTk+uZaA4OYFRggpcoISc
-	 7R/TEAlE46uzGfE4xIwC2+qZ85Us0brLPItQ/eWQnys9WffuKB51IO5oFe+5iiLZTW
-	 ofPhi7ORDw79Z9TWgx0Cj2iFbiMxB9Vy5TUJCL7Y0ixbjopDOeBuTMl42n9rc/OjNI
-	 0l2cjGqBSzXgA==
-Date: Thu, 9 Apr 2026 09:52:19 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Shi Hao <i.shihao.999@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, andi.shyti@kernel.org, 
-	conor+dt@kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, daniel.baluta@nxp.com, simona.toaca@nxp.com, d-gole@ti.com, 
-	m-chawdhry@ti.com
-Subject: Re: [PATCH v2] dt-bindings: i2c: cnxt,cx92755-i2c: Convert to DT
- schema
-Message-ID: <20260409-beneficial-macho-shrimp-4b3a8b@quoll>
-References: <20260408083549.12815-1-i.shihao.999@gmail.com>
+	s=arc-20240116; t=1775721556; c=relaxed/simple;
+	bh=OycfU7u+U/NNYT4DdlI9EJeDZgT32WOWQNZ8vocbWHA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=NHXBsyTdrEKekYNQplG6c0UiNdPPey4WYtGUe5awxO3z58/CPUTMxycszplnJWFast95fzRsjM1JjHZfmUFK5fIr3Ejrw//CtkPjyWvD8oce/PMyGY28vQLfskKmY4F6e8ekYQ56u1VmG5qKnc2rBKEcHmadyYbLm0OJnLye3ms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=TCkNOn6z; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1775721554;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MRrmBnYMXTNU9GdbPVrYhlAGHmJY6Atzwlyad3mHaKo=;
+	b=TCkNOn6zpLQN+3/ageyRgBfU/uSEg86D9pJiwWAWE7KMdRxi8bcsOGO4nuLYG6lWGa5CKQ
+	tr3+XUJb245kM2yHS0b0elqrdPmDoFTc7pxt08lJl3kxXN0clRw6yTQWYdiZXTT5shVI2U
+	mKJ4Wx2VgWAb0P+s41LQ7uXQs5zK1ik=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-221-g5s87ZHXPC6VOWTzEJ9IvQ-1; Thu,
+ 09 Apr 2026 03:59:09 -0400
+X-MC-Unique: g5s87ZHXPC6VOWTzEJ9IvQ-1
+X-Mimecast-MFC-AGG-ID: g5s87ZHXPC6VOWTzEJ9IvQ_1775721546
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 97A9C1956095;
+	Thu,  9 Apr 2026 07:59:06 +0000 (UTC)
+Received: from gerbillo.redhat.com (unknown [10.44.32.181])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 952271800357;
+	Thu,  9 Apr 2026 07:59:00 +0000 (UTC)
+From: Paolo Abeni <pabeni@redhat.com>
+To: luca.weiss@fairphone.com
+Cc: pabeni@redhat.com,
+	krzk+dt@kernel.org,
+	akoskovich@pm.me,
+	konradybcio@kernel.org,
+	linux-kernel@vger.kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	andersson@kernel.org,
+	netdev@vger.kernel.org,
+	kuba@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	robh@kernel.org,
+	edumazet@google.com,
+	~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	elder@kernel.org
+Subject: Re: [5/6] arm64: dts: qcom: milos: Add IPA node
+Date: Thu,  9 Apr 2026 09:58:54 +0200
+Message-ID: <20260409075854.308955-1-pabeni@redhat.com>
+In-Reply-To: <20260403-milos-ipa-v1-5-01e9e4e03d3e@fairphone.com>
+References: <20260403-milos-ipa-v1-5-01e9e4e03d3e@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260408083549.12815-1-i.shihao.999@gmail.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286005-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-286007-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pabeni@redhat.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BC1963C74BF
+	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:url,3da0000:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,3f40000:email]
+X-Rspamd-Queue-Id: 5EE563C7683
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Apr 08, 2026 at 02:05:49PM +0530, Shi Hao wrote:
-> Convert the Conexant Digicolor I2C bindings to DT schema.
-> 
-> Signed-off-by: Shi Hao <i.shihao.999@gmail.com>
-> ---
-> 
+This is an AI-generated review of your patch. The human sending this
+email has considered the AI review valid, or at least plausible.
 
-<form letter>
-This is a friendly reminder during the review process.
+For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
+---
+arm64: dts: qcom: milos: Add IPA node
 
-It looks like you received a tag and forgot to add it.
+Add the description of the IPA block in the Milos SoC.
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here. However, there's no
-need to repost patches *only* to add the tags. The upstream maintainer
-will do that for tags received on the version they apply.
+> diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom/milos.dtsi
+> index e1a51d43943f..a244e136a877 100644
+> --- a/arch/arm64/boot/dts/qcom/milos.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/milos.dtsi
+> @@ -1281,6 +1281,50 @@ adreno_smmu: iommu@3da0000 {
+>  			dma-coherent;
+>  		};
+>
+> +		ipa: ipa@3f40000 {
+> +			compatible = "qcom,milos-ipa";
+> +
+> +			reg = <0x0 0x03f40000 0x0 0x10000>,
+> +			      <0x0 0x03f50000 0x0 0x5000>,
+> +			      <0x0 0x03e04000 0x0 0xfc000>;
+> +			reg-names = "ipa-reg",
+> +				    "ipa-shared",
+> +				    "gsi";
+> +
+> +			interrupts-extended = <&intc GIC_SPI 654 IRQ_TYPE_EDGE_RISING 0>,
+> +					      <&intc GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH 0>,
+> +					      <&smp2p_ipa_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_ipa_in 1 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "ipa",
+> +					  "gsi",
+> +					  "ipa-clock-query",
+> +					  "ipa-setup-ready";
+> +
+> +			clocks = <&rpmhcc RPMH_IPA_CLK>;
+> +			clock-names = "core";
+> +
+> +			interconnects = <&aggre2_noc MASTER_IPA QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+> +					 &cnoc_main SLAVE_IPA_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
+> +			interconnect-names = "memory",
+> +					     "config";
+> +
+> +			iommus = <&apps_smmu 0x4a0 0x0>,
+> +				 <&apps_smmu 0x4a2 0x0>;
+> +
+> +			qcom,qmp = <&aoss_qmp>;
+> +
+> +			qcom,smem-states = <&smp2p_ipa_out 0>,
+> +					   <&smp2p_ipa_out 1>;
+> +			qcom,smem-state-names = "ipa-clock-enabled-valid",
+> +						"ipa-clock-enabled";
+> +
+> +			sram = <&ipa_modem_tables>;
+>                                ^^^^^^^^^^^^^^^^^^
 
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+Is the ipa_modem_tables label defined anywhere? The Device Tree Compiler
+will fail with "Reference to non-existent node or label
+'ipa_modem_tables'" if this label doesn't exist.
 
-If a tag was not added on purpose, please state in the patch changelog
-or cover letter why and what changed.
-</form letter>
+The sram property is optional according to the qcom,ipa.yaml binding, and
+other similar Qualcomm SoCs like SM8350, SM8550, and SM8650 don't include
+this property in their IPA nodes. Should this line be removed, or does the
+ipa_modem_tables node need to be added to the reserved-memory section?
 
-You missed Rob's tag.
+> +
+> +			status = "disabled";
+> +		};
+> +
 
-Best regards,
-Krzysztof
+[ ... ]
 
 
