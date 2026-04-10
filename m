@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-286636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286638-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sEJjBCdv2WnGpggAu9opvQ
-	(envelope-from <devicetree+bounces-286636-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 23:44:07 +0200
+	id oGs2LIp02WnXpwgAu9opvQ
+	(envelope-from <devicetree+bounces-286638-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 00:07:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BB963DD028
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 23:44:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58DDF3DD17F
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 00:07:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C3D1F300FEFD
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 21:38:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 64E0E3010BB8
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 22:06:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDF223DAC13;
-	Fri, 10 Apr 2026 21:38:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EEF93DE448;
+	Fri, 10 Apr 2026 22:06:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="rowVptpZ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="jMkpHsZV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27E0C3DB643
-	for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 21:38:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4729D3DCD85
+	for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 22:06:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775857133; cv=none; b=XV4qy6BtKCNVo8pwdHZ8X4N1/ygVBKwXW7vN/afvm8QIa3/7acuNgScJqDr4po86mGhouhs/KQ3ITCOCfYEBf/BEOJf+7+B05nRXGGFLReAvX707G4X7H+9Q8XCEWMhWE5lvOodBmOFOTXAGDbX45QDRLYMy6BYcsp75+zohKWc=
+	t=1775858773; cv=none; b=LN5EgYve37EIr95Y8w1INRtBDgSWQHfvItLKMA0gShCh5/WB6hpfXdibNBaWep8bA3bjVLOFp4Mrq6EBBM994NJCQ2XLqCsjx7QU/Uglzgle/m3xS2DzOZuFekFLMi9GxKZgRX0sA/B1zsWr5qU2BCtiKhJBmN7TsvcqMuLmj6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775857133; c=relaxed/simple;
-	bh=AfxJCGuDwawedT7P4I/1sW7q39LqQw75gWL8s0+dAh4=;
+	s=arc-20240116; t=1775858773; c=relaxed/simple;
+	bh=2oYL1Edb/BgUmJbeIjVrBygMbSJf9ktj3+kWUpOJb+g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ed9AIadkgdiV3YHKVhFiKIiGxZ+QL+/zqmRytN2dlo9g6HJLIb5rzPb39uAQ4MsJvBXkO1rrZ6NPWN5p+Xm6jrlYwaLuONXRE+ieDgyyMzQePODapzgSVJNS6xVx/6kYT/NdQxBSwQy3/JNcaKc2ntFDzs+HsNDRUeBgW/h7qdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=rowVptpZ; arc=none smtp.client-ip=209.85.210.53
+	 In-Reply-To:Content-Type; b=QQrrTUqE3ALs4o37xCNaczHnYSJ0W2aL9+y4f5BuoQnYDL9DMyJWwwUDuo/jJjmZ0HIdj+dgsxujrR+U+DnnFgI0t6iEzzWs8Vx7cLTKK1YB+F0gALtYoiucJRdO5UMjTWTIyfiKEVMDxQMb4FxEKRBq/l8Doee2PpmrhtpKBMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=jMkpHsZV; arc=none smtp.client-ip=209.85.210.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7dbd08144deso2156941a34.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 14:38:50 -0700 (PDT)
+Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-7dbec19732eso2338583a34.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 15:06:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1775857130; x=1776461930; darn=vger.kernel.org;
+        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1775858770; x=1776463570; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eaFyqgC3R1GXm84D3GWzj8iqNT7a1oUcf/2QMWQlMeg=;
-        b=rowVptpZ9UsLOgQik7lVyrdF6+0eY2gPqRnhkmcgu/6QsD99GYfkanNJsi2AKSIXD7
-         88VqicmttTOrzlAWUidS213yc6pY8yVX8IksXXJQ3MYkEiGEiZxWpWQQecHNXXjq9/8C
-         XZBGam90Cs62hlon1Ih5+sHpbdvigOtZMFLQXkSKX5xAlW7TuzoCZrozGYqMXrQCviuS
-         79MPxY9ZkNpiu+PCEM6l4cEMO7buD0M6ZhQAqacUbbm57Nm5P50QuZBouVuGBMjAthKW
-         eXNJ8GQEDbGefxYshH/1nBwLSFEoxuM+api7VjUBUmFZOgZdYjmBL9UPCFLvTpfkGy6T
-         ctRQ==
+        bh=j9076am4mzfnqKCXO40uzm6bV16grH8URJAf1spBMMo=;
+        b=jMkpHsZVNg4QoWioUoytLN6FfRpc0w3hEk5Dag8SzrMkq8/uT2aP7dgVF1hhnHtVV5
+         BMUPHWWv5aXH79Twt7aawoa5eESmBxwLJ645TOrk5+DcNle6wowDJMUv5XVgQH6MCSUF
+         xVBbtQz06XeA4BkzIr9aWZc2eFGCqdWsgF/Y50/lUa6o2Q3AKdEJJZXEWjHl4c1VIkj/
+         Q9rF92o5yOi2SJ0tJXEcppjp/JfpLTo0Dc4kOUzVJUztRkzBztUZSBWCrJbcGi4LWt6B
+         jYdI+lLUKLgk3JWcLIiRUPMaBX/4NPn4Z0ZjCOxkUED6/mkVqZlsKJoPveecY6LPVGVW
+         G3zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775857130; x=1776461930;
+        d=1e100.net; s=20251104; t=1775858770; x=1776463570;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=eaFyqgC3R1GXm84D3GWzj8iqNT7a1oUcf/2QMWQlMeg=;
-        b=MQS7Wu1xmrSOApvpR6F33mfkHNLAsr1lMcbqlqE+R6egOPx6dL0tt68Pk4Szh5Cher
-         xNxnD8k92iGVO8Aye2pxjreTTfkEh5k3WwVuYAY+i1tkkFwW47P9OL6I8azoEWXDsVtR
-         WGuHteZQvzy8JU89O9mJ3wpDHctQznjR8IRr9oOrcs0dDzJ1MyRFrXjKR1VK86P7yDpW
-         ZjFrHd+WeH8y5Cwn+tu+oLl1lSWOUjzplAK6qpoLSX4G0UwsOTrcKCzLelzvlQzRhy8w
-         J7d/RiMQXd7I9E6+jb3Fm3Bm/yCOrUSLCYsSa5/RqpHb8aGCgD4A0PFEj0lcndSk+K+h
-         gtJw==
-X-Forwarded-Encrypted: i=1; AJvYcCWX8ysLFF4Lm8Xfjso9qW1Qd7jRJNWtwjo3QJKJO7Y+INorz4bE2GId8DqWkTDeCefOpBarWgotDASJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoMRhNeY6MY+YgZdsT3Nku+3GWGlygAC1v7FUGK78KfMPHgWqa
-	kBCDnGJIObbF1CQw88KwzPDLvBUmNoALV1c74KkjUHkglIVaLVIGygVeB7n3rzyJzWI=
-X-Gm-Gg: AeBDieuub3Dlxad1/DHZWlB3dIoO252/b2wAMYbh5xvv+lbqY3PtpJEa79r8rPTK1XG
-	mfIFIVZImZL6Hm8E4e5rKHcLRoaG7o/PQ6nOqSU+IjHY60u3fDXcB5WLxPZ03NztH7WluUEM8bv
-	qyCkiofhftY6YspuWuQ5AnLUYJdDwFLYt2ry9NKZZ7aPT798yWbsK36+mozR30Iuc4PvDZSQfPj
-	+j5M4yHnKHKg829+Vtx5+f2PJbUys1y3Y720R/tvPf0t6JbcIL0BlKfUZ7d66oSl8ZoofAWwJ47
-	RJEJa/5ZPOQuPbyRFBwkHLByoV1zMsl9im1QgnBYHNfa/qkJqY/tbSsRPEkr20ZJYCepzZwGxY7
-	BayO6tQeGsSkJelGQmeJhzOqs9Vg7yEHGtOJMMnpA2gYdRO+ByYf/D3bv/SgZyRDBhtvvMWMyKs
-	3e8jwjFp34pJfNOewFRZvauhMs3b/sDFwOXl3ff4RAj/l5PUdmTK6XF4LRoMjs6i0DoLsM6C5pn
-	Q==
-X-Received: by 2002:a05:6830:498b:b0:7d7:f617:3573 with SMTP id 46e09a7af769-7dc27cbf49bmr3103286a34.10.1775857130046;
-        Fri, 10 Apr 2026 14:38:50 -0700 (PDT)
+        bh=j9076am4mzfnqKCXO40uzm6bV16grH8URJAf1spBMMo=;
+        b=FxgX5HF1xbwV3Bw+1/+jVM5k30RieisACstFhSVG+GIbXB6iEb+vofBzH15mBHotlW
+         1CVQLrBsYsATuWOPw4rAWus5RbfOzWH4HUtCtr1wXSE6yJ3aorPH4s/7v5C5skQPD43d
+         ZT/vRtCNZOKDAwRaxjvMMmOK19sBxTK2K68nLwDxp7YG9tPlAdmpHPqtfW488dKK81ey
+         /2ZdC4JthqQlX89WfOGth515U06ZtbXKVGby2atkC1ub2BHMlCsn598FKMxIowPRoTbE
+         pESB7Ni7MCk6sc+m0kAIhOKNzQjY6awHtJ1+fi+U1Gw3IjCc27hWkRk338/d/x4WJAjA
+         SMXA==
+X-Forwarded-Encrypted: i=1; AJvYcCVquY+X19OpmjaqR63hIxbU1B5Eu60pbCm3hY/U/rAYiIm5t8IkkvGH/FTtNibK3/M1PxLiOHO8bW4m@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUQZAo8Yw4vbAX54Ax/Vt/4UEMgC2/0rqKCSJys60YUSchGOd6
+	FV8LctgffJMtOfgLqp7cYaAloI2WY6uH34CqfGHBtb+N/BH/H+O5hTUVrG3Rfko0kig=
+X-Gm-Gg: AeBDiesv58gQI+J+N4FPeaaU2xE1xC0TC4NxCNIAIjYiZ7wFjBWW6w9MxTG32shmpMP
+	yoz8LR1/supCrIRds9R7nuGiZJdia/RW1/LKibt6DNxsMT1LFyIprBro8Te3K8JWbiIpOcTroFO
+	6QvM8BFfndlngoZVAw3kc3olCTOBpA/NbzbunTKatWSzcBFzDgJqP/EvyS2BTdy4vJzAgP+l7ed
+	EEWZLbgyuK/J6qsGA3uV7PF6grO275wyENRLfcL9L1hqOM2dUSPHRgu3gZT7FKfnwjp6wL4AY4m
+	9hpUcS9jPwdtBVDnwFhEqYwU8Uj8q+og6hBQrdJKvpYeghyfax/xmpJg684koXKfOFBvGSzeThm
+	UEFxO3+2UM7iAl974rV4OHct6Iolap0C+k914HYK1bQwUtFR9ym51kMqy8IDtc2cBDUHeTpnx2w
+	nYzISzftpoTzemxsswTOjM59PH8mju3qtC+eBnYH0AK8PgUXSsGGNIeoDQuQLFO6y9YVGCF9CLx
+	g==
+X-Received: by 2002:a05:6820:f03:b0:687:d51c:e637 with SMTP id 006d021491bc7-68be5873460mr2265750eaf.7.1775858770102;
+        Fri, 10 Apr 2026 15:06:10 -0700 (PDT)
 Received: from ?IPV6:2600:8803:e7e4:500:b75d:2440:dc10:808b? ([2600:8803:e7e4:500:b75d:2440:dc10:808b])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7dc26941b7esm2736484a34.19.2026.04.10.14.38.49
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-423ddb20c0fsm2980846fac.11.2026.04.10.15.06.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Apr 2026 14:38:49 -0700 (PDT)
-Message-ID: <9c36ee85-12da-41e8-b9ab-e32b7ec29e75@baylibre.com>
-Date: Fri, 10 Apr 2026 16:38:48 -0500
+        Fri, 10 Apr 2026 15:06:09 -0700 (PDT)
+Message-ID: <631f3adb-550a-4902-b6f2-5614cd79ab75@baylibre.com>
+Date: Fri, 10 Apr 2026 17:06:08 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,118 +87,346 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 6/6] docs: iio: adc: ad4691: add driver documentation
-To: radu.sabau@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
- Bartosz Golaszewski <brgl@kernel.org>, Philipp Zabel
- <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20260409-ad4692-multichannel-sar-adc-driver-v7-0-be375d4df2c5@analog.com>
- <20260409-ad4692-multichannel-sar-adc-driver-v7-6-be375d4df2c5@analog.com>
+Subject: Re: [PATCH V3 2/9] iio: imu: inv_icm42607: Add Core for inv_icm42607
+ Driver
+To: Chris Morgan <macroalpha82@gmail.com>, linux-iio@vger.kernel.org
+Cc: andy@kernel.org, nuno.sa@analog.com, jic23@kernel.org,
+ jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, andriy.shevchenko@intel.com,
+ Chris Morgan <macromorgan@hotmail.com>
+References: <20260330195853.392877-1-macroalpha82@gmail.com>
+ <20260330195853.392877-3-macroalpha82@gmail.com>
 Content-Language: en-US
 From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20260409-ad4692-multichannel-sar-adc-driver-v7-6-be375d4df2c5@analog.com>
+In-Reply-To: <20260330195853.392877-3-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286636-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286638-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[analog.com,metafoo.de,kernel.org,gmail.com,pengutronix.de,lwn.net,linuxfoundation.org];
+	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DMARC_NA(0.00)[baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre-com.20251104.gappssmtp.com:dkim,baylibre.com:mid]
-X-Rspamd-Queue-Id: 6BB963DD028
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:mid,baylibre-com.20251104.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: 58DDF3DD17F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/9/26 10:28 AM, Radu Sabau via B4 Relay wrote:
-> From: Radu Sabau <radu.sabau@analog.com>
+On 3/30/26 2:58 PM, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Add RST documentation for the AD4691 family ADC driver covering
-> supported devices, IIO channels, operating modes, oversampling,
-> reference voltage, LDO supply, reset, GP pins, SPI offload support,
-> and buffer data format.
+> Add the core component of a new inv_icm42607 driver. This includes
+> a few setup functions and the full register definition in the
+> header file.
 > 
-> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
-> ---
->  Documentation/iio/ad4691.rst | 283 +++++++++++++++++++++++++++++++++++++++++++
->  Documentation/iio/index.rst  |   1 +
->  MAINTAINERS                  |   1 +
->  3 files changed, 285 insertions(+)
-> 
-> diff --git a/Documentation/iio/ad4691.rst b/Documentation/iio/ad4691.rst
-> new file mode 100644
-> index 000000000000..a1012c8b78a3
-> --- /dev/null
-> +++ b/Documentation/iio/ad4691.rst
-> @@ -0,0 +1,283 @@
-> +.. SPDX-License-Identifier: GPL-2.0-only
-> +
-> +=============
-> +AD4691 driver
-> +=============
+> +#define INV_ICM42607_REG_PWR_MGMT0			0x1F
+> +#define INV_ICM42607_PWR_MGMT0_ACCEL_LP_CLK_SEL		BIT(7)
+> +#define INV_ICM42607_PWR_MGMT0_IDLE			BIT(4)
+> +#define INV_ICM42607_PWR_MGMT0_GYRO_MODE_MASK		GENMASK(3, 2)
+> +#define INV_ICM42607_PWR_MGMT0_GYRO(_mode)		\
+> +	FIELD_PREP(INV_ICM42607_PWR_MGMT0_GYRO_MODE_MASK, (_mode))
 
+We usually try to avoid macros that hide FIELD_PREP(). IMHO, it makes
+the code harder to read because you have to jump back and forth to
+definitions to see if it really is that.
 
-One overall comment. This goes into driver implementation details quite a bit.
-I think that is really better done as comments in the driver itself. And this
-document should just focus on how to use the driver from the userspace point
-of view.
-
-
-> +Buffer data format
-> +==================
-> +
-> +The IIO buffer data format (``in_voltageN_type``) is the same across all
-> +paths: 16-bit unsigned big-endian samples with no shift.
-> +
-> ++-------------------------+-------------+----------+-------+
-> +| Path                    | storagebits | realbits | shift |
-> ++=========================+=============+==========+=======+
-> +| Triggered buffer        | 16          | 16       | 0     |
-> ++-------------------------+-------------+----------+-------+
-> +| CNV Burst offload (DMA) | 16          | 16       | 0     |
-> ++-------------------------+-------------+----------+-------+
-> +| Manual offload (DMA)    | 16          | 16       | 0     |
-> ++-------------------------+-------------+----------+-------+
-
-Not sure this table is helpful since all values are the same everywhere.
-
-Also, doesn't SPI offload have storagebits == 32?
-
-> +
-> +In the triggered-buffer path the SPI rx_buf for each transfer points directly
-> +into the scan buffer, so the 16-bit big-endian result is written in place with
-> +no additional copying.
+> +#define INV_ICM42607_PWR_MGMT0_ACCEL_MODE_MASK		GENMASK(1, 0)
+> +#define INV_ICM42607_PWR_MGMT0_ACCEL(_mode)		\
+> +	FIELD_PREP(INV_ICM42607_PWR_MGMT0_ACCEL_MODE_MASK, (_mode))
 > +
 
+...
+
+
+> +u32 inv_icm42607_odr_to_period(enum inv_icm42607_odr odr)
+> +{
+> +	static u32 odr_periods[INV_ICM42607_ODR_NB] = {
+> +		/* Reserved values */
+> +		0, 0, 0, 0, 0,
+> +		/* 1600Hz */
+> +		625000,
+> +		/* 800Hz */
+> +		1250000,
+> +		/* 400Hz */
+> +		2500000,
+> +		/* 200Hz */
+> +		5000000,
+> +		/* 100 Hz */
+> +		10000000,
+> +		/* 50Hz */
+> +		20000000,
+> +		/* 25Hz */
+> +		40000000,
+> +		/* 12.5Hz */
+> +		80000000,
+> +		/* 6.25Hz */
+> +		160000000,
+> +		/* 3.125Hz */
+> +		320000000,
+> +		/* 1.5625Hz */
+> +		640000000,
+> +	};
+
+No range checking to avoid out-of-bouds access?
+
+> +
+> +	return odr_periods[odr];
+> +}
+> +
+> +int inv_icm42607_debugfs_reg(struct iio_dev *indio_dev, unsigned int reg,
+> +			     unsigned int writeval, unsigned int *readval)
+> +{
+> +	struct inv_icm42607_state *st = iio_device_get_drvdata(indio_dev);
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	if (readval)
+> +		return regmap_read(st->map, reg, readval);
+> +
+> +	return regmap_write(st->map, reg, writeval);
+> +}
+> +
+> +static int inv_icm42607_set_conf(struct inv_icm42607_state *st,
+> +				 const struct inv_icm42607_conf *conf)
+> +{
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	val = INV_ICM42607_PWR_MGMT0_GYRO(conf->gyro.mode) |
+> +	INV_ICM42607_PWR_MGMT0_ACCEL(conf->accel.mode);
+
+Indent wrapped lines one tab or line up with INV_ after `= `.
+
+> +	/*
+> +	 * No temperature enable reg in datasheet, but BSP driver
+> +	 * selected RC oscillator clock in LP mode when temperature
+> +	 * was disabled.
+> +	 */
+> +	if (!conf->temp_en)
+> +		val |= INV_ICM42607_PWR_MGMT0_ACCEL_LP_CLK_SEL;
+> +	ret = regmap_write(st->map, INV_ICM42607_REG_PWR_MGMT0, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	val = INV_ICM42607_GYRO_CONFIG0_FS_SEL(conf->gyro.fs) |
+> +	INV_ICM42607_GYRO_CONFIG0_ODR(conf->gyro.odr);
+> +	ret = regmap_write(st->map, INV_ICM42607_REG_GYRO_CONFIG0, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	val = INV_ICM42607_ACCEL_CONFIG0_FS_SEL(conf->accel.fs) |
+> +	INV_ICM42607_ACCEL_CONFIG0_ODR(conf->accel.odr);
+> +	ret = regmap_write(st->map, INV_ICM42607_REG_ACCEL_CONFIG0, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	val = INV_ICM42607_GYRO_CONFIG1_FILTER(conf->gyro.filter);
+> +	ret = regmap_write(st->map, INV_ICM42607_REG_GYRO_CONFIG1, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	val = INV_ICM42607_ACCEL_CONFIG1_FILTER(conf->accel.filter);
+> +	ret = regmap_write(st->map, INV_ICM42607_REG_ACCEL_CONFIG1, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->conf = *conf;
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + *  inv_icm42607_setup() - check and setup chip
+> + *  @st:	driver internal state
+> + *  @bus_setup:	callback for setting up bus specific registers
+> + *
+> + *  Returns 0 on success, a negative error code otherwise.
+> + */
+> +static int inv_icm42607_setup(struct inv_icm42607_state *st,
+> +			      inv_icm42607_bus_setup bus_setup)
+> +{
+> +	const struct inv_icm42607_hw *hw = &inv_icm42607_hw[st->chip];
+> +	const struct device *dev = regmap_get_device(st->map);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret = regmap_read(st->map, INV_ICM42607_REG_WHOAMI, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (val != hw->whoami)
+> +		dev_warn_probe(dev, -ENODEV,
+> +			       "invalid whoami %#02x expected %#02x (%s)\n",
+> +			       val, hw->whoami, hw->name);
+> +
+> +	st->name = hw->name;
+> +
+> +	ret = regmap_write(st->map, INV_ICM42607_REG_SIGNAL_PATH_RESET,
+> +			   INV_ICM42607_SIGNAL_PATH_RESET_SOFT_RESET);
+> +	if (ret)
+> +		return ret;
+
+nit: Add blank line here.
+
+> +	msleep(INV_ICM42607_RESET_TIME_MS);
+> +
+> +	ret = regmap_read(st->map, INV_ICM42607_REG_INT_STATUS, &val);
+> +	if (ret)
+> +		return ret;
+> +	if (!(val & INV_ICM42607_INT_STATUS_RESET_DONE))
+> +		return dev_err_probe(dev, -ENODEV,
+> +				     "reset error, reset done bit not set\n");
+
+Could also replace this and msleep with regmap_read_poll_timeout().
+
+> +
+> +	ret = bus_setup(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_update_bits(st->map, INV_ICM42607_REG_INTF_CONFIG0,
+> +				 INV_ICM42607_INTF_CONFIG0_SENSOR_DATA_ENDIAN,
+> +				 INV_ICM42607_INTF_CONFIG0_SENSOR_DATA_ENDIAN);
+
+Simplify with regmap_set_bits().
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_update_bits(st->map, INV_ICM42607_REG_INTF_CONFIG1,
+> +				 INV_ICM42607_INTF_CONFIG1_CLKSEL_MASK,
+> +				 INV_ICM42607_INTF_CONFIG1_CLKSEL_PLL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return inv_icm42607_set_conf(st, hw->conf);
+> +}
+> +
+> +static int inv_icm42607_enable_vddio_reg(struct inv_icm42607_state *st)
+> +{
+> +	int ret;
+> +
+> +	ret = regulator_enable(st->vddio_supply);
+> +	if (ret)
+> +		return ret;
+> +
+> +	usleep_range(3000, 4000);
+
+Use fsleep() and add a comment to explain why the duration
+was chosen.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static void inv_icm42607_disable_vddio_reg(void *_data)
+> +{
+> +	struct inv_icm42607_state *st = _data;
+> +
+> +	regulator_disable(st->vddio_supply);
+> +}
+> +
+> +int inv_icm42607_core_probe(struct regmap *regmap, int chip,
+> +			    inv_icm42607_bus_setup bus_setup)
+> +{
+> +	struct device *dev = regmap_get_device(regmap);
+> +	struct fwnode_handle *fwnode = dev_fwnode(dev);
+> +	struct inv_icm42607_state *st;
+> +	int irq, irq_type;
+> +	bool open_drain;
+> +	int ret;
+> +
+> +	if (chip < INV_CHIP_INVALID || chip >= INV_CHIP_NB)
+
+Only two chips are defined in regmap_read_poll_timeout, so this range
+checking seems wrong.
+
+> +		dev_warn_probe(dev, -ENODEV,
+> +			       "Invalid chip = %d\n", chip);
+> +
+> +	/* get INT1 only supported interrupt or fallback to first interrupt */
+> +	irq = fwnode_irq_get_byname(fwnode, "INT1");
+> +	if (irq < 0 && irq != -EPROBE_DEFER) {
+> +		dev_info(dev, "no INT1 interrupt defined, fallback to first interrupt\n");
+> +		irq = fwnode_irq_get(fwnode, 0);
+> +	}
+> +	if (irq < 0)
+> +		return dev_err_probe(dev, irq, "error missing INT1 interrupt\n");
+> +
+> +	irq_type = irq_get_trigger_type(irq);
+> +	if (!irq_type)
+> +		irq_type = IRQF_TRIGGER_FALLING;
+> +
+> +	open_drain = device_property_read_bool(dev, "drive-open-drain");
+> +
+> +	st = devm_kzalloc(dev, sizeof(*st), GFP_KERNEL);
+> +	if (!st)
+> +		return -ENOMEM;
+> +
+> +	dev_set_drvdata(dev, st);
+> +	mutex_init(&st->lock);
+> +	st->chip = chip;
+> +	st->map = regmap;
+> +	st->irq = irq;
+> +
+> +	ret = iio_read_mount_matrix(dev, &st->orientation);
+> +	if (ret) {
+> +		dev_err(dev, "failed to retrieve mounting matrix %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_regulator_get_enable(dev, "vdd");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to get vdd regulator\n");
+> +
+> +	msleep(INV_ICM42607_POWER_UP_TIME_MS);
+> +
+> +	st->vddio_supply = devm_regulator_get(dev, "vddio");
+
+If we aren't implementing power managament, we can just use
+devm_regulator_get_enabled() and avoid the devm_add_action_or_reset().
+
+> +	if (IS_ERR(st->vddio_supply))
+> +		return PTR_ERR(st->vddio_supply);
+> +
+> +	ret = inv_icm42607_enable_vddio_reg(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_add_action_or_reset(dev, inv_icm42607_disable_vddio_reg, st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Setup chip registers (includes WHOAMI check, reset check, bus setup) */
+
+This comment would be better as part of the function doc comment.
+
+> +	ret = inv_icm42607_setup(st, bus_setup);
+> +
+> +	return ret;
+> +}
 
