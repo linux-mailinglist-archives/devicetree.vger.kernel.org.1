@@ -1,177 +1,195 @@
-Return-Path: <devicetree+bounces-286370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286371-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WOFQAn5/2GlSeAgAu9opvQ
-	(envelope-from <devicetree+bounces-286370-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 06:41:34 +0200
+	id wD1dIn6A2GlSeAgAu9opvQ
+	(envelope-from <devicetree+bounces-286371-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 06:45:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A55B3D2201
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 06:41:33 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 040803D2241
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 06:45:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C289D3009CE9
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 04:41:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D8DF4301A43F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 04:45:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613033321A2;
-	Fri, 10 Apr 2026 04:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B0E31D8E01;
+	Fri, 10 Apr 2026 04:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EW88khza"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="X9wzc/kc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011019.outbound.protection.outlook.com [52.101.62.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20EEB1A6806;
-	Fri, 10 Apr 2026 04:41:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775796090; cv=none; b=CkG5ycIE92ge38gaZhMe+LXZmOritNsA4cTDjaCW8gTvvWbdyVBGsxJlFeGx3ro1JFn4W1ggr/Do+G9Q/AJtFIolrwdtORoBumT3xM0URBXs+dIuPMIJ51DjKSI7v9ePZQH43rcV2lFWmdS/ODokjP49Ca8OFFO1xOiy/C5NYW8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775796090; c=relaxed/simple;
-	bh=otSg5k8DKpkHBXxp8Ri0nGPCGBLgyeepWMGyUfxtkvU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=htirMI4gNeIWTSCTRM3nWVpoBOfBcmeJGuz3yrxNA3he1OVqWRbWPxTK/CIh3wL6UUpTEPH+dPXJP8JMjv6A72dIh1z7DBQXr+Ja0sZK8VSs7rkmpisQ1mtuqaMt3Ce25fjh0tpDHVRQeAee78QbtyRv+LrclLXXXcEMe9kW32w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EW88khza; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1775796089; x=1807332089;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=otSg5k8DKpkHBXxp8Ri0nGPCGBLgyeepWMGyUfxtkvU=;
-  b=EW88khzaQSUBjWusAPOjB/QGZlZo3+hsjMqK3R47baFiTrPNrxuS1zvw
-   BWItRWpDgPI96mmm3XaEuLs0yvp1aNX9VXRxc+3dKzYg5H6mRB2FchvAr
-   qRuGRVUOUqdEw/GnWmL5svXrlBnb4GuEQpuGlBiS9f3pMmbcWR7w1xrNY
-   6k08ywUF9/OIM4Ywv8JZKgr6dDiUWFzDX5jt4+bf4krnFlEbPFvq++3ff
-   Tzu+jKcyWHyYMXCwITzQ4dWSyvcxWRhXSTIyRHoA5gn7rjQ592eatKpnu
-   9Nkp5KgBRrufLdAK0ZTcMu2IYejqOLrqjRLSc7/yYxJL41pSPM7Z91Qa8
-   w==;
-X-CSE-ConnectionGUID: Nn8p1lwTRGSStwdRiCwUiw==
-X-CSE-MsgGUID: Au0/Y1MVQniiKgOxkLjPyw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="76882781"
-X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; 
-   d="scan'208";a="76882781"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2026 21:41:28 -0700
-X-CSE-ConnectionGUID: u/m46udhSHi4Zk0yDaB7WA==
-X-CSE-MsgGUID: XFWpufY6TwekADUMsE/pFw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; 
-   d="scan'208";a="233907358"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.51])
-  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2026 21:41:26 -0700
-Date: Fri, 10 Apr 2026 07:41:23 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] iio: dac: ad5706r: Add support for AD5706R DAC
-Message-ID: <adh_c1GG17zCbBdu@ashevche-desk.local>
-References: <20260410-dev_ad5706r-v6-0-f3fda5921fe4@analog.com>
- <20260410-dev_ad5706r-v6-2-f3fda5921fe4@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04FAE883F;
+	Fri, 10 Apr 2026 04:45:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.19
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1775796346; cv=fail; b=jdNQA2mcHovpZleEos6bQFPuio7hhbCaTFwW7wbyHDqiSVIIDsBVZKDfG5OfRKBQRVy4AKmAquwI2L+eKdcWg4ojS0RNI7sQp/2NdskLjQLZf9wyPQ9VYu2s3g0DBrUhVR+zoLcoL2rUZstaTCTVilquQ3hAtqGl3Kt0qJbBxtI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1775796346; c=relaxed/simple;
+	bh=a9VDwf2Wio9jsY1ePViZPs5cFBc1S55WpZu3nnDSicI=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dgnF6ezdn9ahmhhU4MOgwwK3Vwkc4gIS5ZFCmQju3AOJhfYaJlcmM7Kgel5OFaymxwh0qWFcryxUiClEMSSyR3y0ghAWnqHDSmkfYb4smUB2McrR9RgGkdNXwYnLpP2xY3JIAHcH/26nsREqr646Y5RlRiWYCFARvoaMBDpXMx4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=X9wzc/kc; arc=fail smtp.client-ip=52.101.62.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fvq73L30OKZMZhtrT40cjgkR5c/sFUcRMzbwNrraa0JpjwT9FGv9jyxN3QZrKOlfkl49vwYmZJ4PBzF97r8aTFO03BLUNWZml14WtlSqi7zKkwSNWCv4s7Fr/qBsLswJif7ljeZ5R7Rz7RkKFYIOC0QDWXNH9SyCP6pMnhFq2qeLNtWe1GtOUpFb4cq/QWZxL621WzdV2cBBEDDcG2TKCAfh9vS0ndaqODHXxV3sS84lT50FY/PFV6vHnJ4bphRmZgDJ0W1Omh5ZhJ08k5jmCdG9OkHEpFrpBzzefb7TpMKd9hqCBTmwnT5cPQ0PCQjHwymYy5Slw9X32UzVWr8VtQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vuA3bJ2itvJCLxbu52uuJhg7JB4a9uTpGwqBP1mhrmQ=;
+ b=OwTHPY3g19YD+UrmtoDIfwq1SOvJwrizrCe1RlF8Zm+SWOGgjfhIW+cziUaG8LGurCwDslHgP4bD2RrnwvQIH0qeBSwGXp2DtoPmsCHUlM1EMiSk1NOzp6TvNb+nE9ZPWsCvkvCGFwF6RVkAEiYefuZUFeulfWAehGEOPr5VVRgnfs8pkNPsKSFlLZMLlEe+UWuSmTbIbQt0zu7lOcmT6Fw14HTW+RKHiiZp4ZqoR8uGe6s8xInSN5MPCTl0P9UvEJrzO+/XuX1CZD/Iw9vGiLQFCsxk3cNUFpzOWILeg+g36xkTdygqAqUvbi9usmvSsh3UZWKIesLXKQGlsChx7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=nxp.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vuA3bJ2itvJCLxbu52uuJhg7JB4a9uTpGwqBP1mhrmQ=;
+ b=X9wzc/kcdrHR+JM5ukA5EqszWhajNps7JaIgSHOHRs+c2w5wkZYV3uZjBLjskorgUKqfYntcxcRVSMmaODwOrckEJzl4ferOCML5gUeHAYtYpUgZbIGQMvUKd3QaYHws6xb5uE0Pru0xeOqhsTmb1JaX1vsEh3j3l/l+eFZNyJqTJJ91jsncq30W1AWpzOx/6AO0vpQ2hQaQFcGrgskH8JclKmY76dnBQcyfQeIxVy+Vg37zs2CCi0/Pu2haWcMAhLknux3QolC0ANryE2CRZmX1iM7vSDl0HxNU3X7gO42QPEpbReSgFmJqDhNJSEhf2iHE2RvMhHrGkYYRia1cbg==
+Received: from BN9PR03CA0598.namprd03.prod.outlook.com (2603:10b6:408:10d::33)
+ by SA5PPF8BD1FB094.namprd12.prod.outlook.com (2603:10b6:80f:fc04::8d3) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Fri, 10 Apr
+ 2026 04:45:39 +0000
+Received: from BN3PEPF0000B073.namprd04.prod.outlook.com
+ (2603:10b6:408:10d:cafe::93) by BN9PR03CA0598.outlook.office365.com
+ (2603:10b6:408:10d::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.42 via Frontend Transport; Fri,
+ 10 Apr 2026 04:45:39 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ BN3PEPF0000B073.mail.protection.outlook.com (10.167.243.118) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17 via Frontend Transport; Fri, 10 Apr 2026 04:45:39 +0000
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 9 Apr
+ 2026 21:45:22 -0700
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail203.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 9 Apr
+ 2026 21:45:22 -0700
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
+ Transport; Thu, 9 Apr 2026 21:45:16 -0700
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <frank.li@nxp.com>
+CC: <acpica-devel@lists.linux.dev>, <akhilrajeev@nvidia.com>,
+	<alexandre.belloni@bootlin.com>, <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, <ebiggers@kernel.org>, <krzk+dt@kernel.org>,
+	<lenb@kernel.org>, <linux-acpi@vger.kernel.org>,
+	<linux-hwmon@vger.kernel.org>, <linux-i3c@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux@roeck-us.net>,
+	<miquel.raynal@bootlin.com>, <p.zabel@pengutronix.de>, <rafael@kernel.org>,
+	<robh@kernel.org>, <sakari.ailus@linux.intel.com>,
+	<wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH v2 02/13] ACPICA: Read LVR from the I2C resource descriptor
+Date: Fri, 10 Apr 2026 10:15:15 +0530
+Message-ID: <20260410044515.23667-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <adhalQxfbMsL3V0T@lizhi-Precision-Tower-5810>
+References: <adhalQxfbMsL3V0T@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260410-dev_ad5706r-v6-2-f3fda5921fe4@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B073:EE_|SA5PPF8BD1FB094:EE_
+X-MS-Office365-Filtering-Correlation-Id: 169202a6-54eb-4ab2-35ac-08de96bc03e6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|82310400026|36860700016|1800799024|13003099007|56012099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+	QxmbO7zsMpoYQkBWoqGxSsZDlpHcso0+UleConsDZm7fwfeplwpX/NwHNUV912BSsew4DWj0A8XENaWq9tkqlpAykEFe6MvDOPqVRpVlSRDrOt2ijPEP4a9b95eIQbvvWFucv5hfPRvGyBr538f+hR/g/gWo9vTtJtu4pgJ3sck/wQvVfoIHhnW7+DIpKqTfvd4Zq2L2CFZ4QB6tqrU/ZEHacr9Qm3P48MUqVck9ETN7TP1cv0x6fXXrgrT8SmFcL2e79gp0qwE1tTCrULa/Qb+AnWmeCmlHQtuwOfCqlXh2OxMHXt28s6dXBOYKxMfJTdSSb27lBNBIwDW9CDeaprsiMLwV4RTVvjKZvPeI9CaWUC4T2QBOwj0ynQ4ctRM8nQbvJwmLJxHZctNAi2yO5YbMaHELlilviUm6HB0bzXXwGk+0cdIdwgEGd/M2KvKPoNrGFvLCZxUMn4J3ApHeGr4GdZZzDltfyjVDVJFXf0WaxoOyvaRKkGEd0GljNZRHwBS9VGqbrCGY/adr8QZkItNM3Bfdf68u6x7GGBVTLeKf+3woydkZTPyFwEp66oP6ijWFiF8bqFU8BeHvx1A2hS7GQCSbKTFXnWphHeH/HjzKSi3nPyQshMkGYuMFDMzYxx+SCHFWyZejHq5Yx7Z5qLoShsz8FZbkuIgQyKA82UiMMW0UsAtu+Ku3hp4uwKHESETNzEIbBLMjwDjBcROjYb+OIrcZSyr+cen4qv84E+SMgwoCk7JJx8qWur5XMv7L4/b138yyJe25sBnBO4Hcnw==
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(7416014)(82310400026)(36860700016)(1800799024)(13003099007)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	Rg0hbIQxvfyaynGNzqayxBthacw3ISY6qlKnCsUPEYHerhUfC4/HrWG1hckf0RoTfT9VlE1H7fgxSkDMw0SMcpMkWp24wpgQKaOISlGjQfLAJMGwTz3pxnbImGmuldOj5NpI/izbn/wuQQKcfNOY8zGaqhkTMM8SUK7zEaaUXtmsFdSXcJIhIqEmgTe07PKLoM6lS7W/hamoz0Os5AKStFYPLSuxDnoWdK6zrOGRmD8x1Mo7xaklvX9W9Td4gA29paZV+VNHheHtjMSP2gC+23nRL1FtBFR1bExWdfO9cDKc7FRAen5zon1jrb1cJyMpOGvSC6KaF9b4+OeC3qwCa9ekq6yFutZWvZBStyV51CvP/f/JjXa5WQV4bQ1zTERfPNdfaxX5uVwUGjA6oXy2TaiuIui3jEx0oRHBkf1XVv4i0xOcBxrzeFRD1VPHFZ63
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 04:45:39.4701
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 169202a6-54eb-4ab2-35ac-08de96bc03e6
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN3PEPF0000B073.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPF8BD1FB094
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286370-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-286371-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_NONE(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,ashevche-desk.local:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5A55B3D2201
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,Nvidia.com:dkim,nvidia.com:mid];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 040803D2241
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 10, 2026 at 09:33:56AM +0800, Alexis Czezar Torreno wrote:
-> Add support for the Analog Devices AD5706R, a 4-channel 16-bit
-> current output digital-to-analog converter with SPI interface.
+On Thu, 9 Apr 2026 22:04:05 -0400, Frank Li wrote:
+> On Thu, Apr 09, 2026 at 04:27:32PM +0530, Akhil R wrote:
+>> ACPI 6.3 specifies byte 8 of I2C Serial Bus Connection descriptor to be
+>> used for Legacy Virtual Register (LVR) data as specified in the MIPI
+>> I3C Specification for an I2C device connected to an I3C Host Controller.
+>> LVR will be read by I3C host controller drivers and it provides details
+>> about the specific speed and 50ns spike filter capabilities of I2C
+>> devices.
+>>
+>> Update the rsconvert_info to include this field. For I2C devices on an
+>> I2C bus, this field is Reserved and unused.
+>>
+>> This commit is the result of squashing the following:
+>> ACPICA commit 70082dc8fc847673ac7f4bbb1541776730f0b63e
+>> ACPICA commit e62e74baf7e08cf059ec82049aeccd565b24d661
+>> ACPICA commit c404118235108012cad396c834b5aabe2dd1b51a
+>> ACPICA commit 7650d4a889ea7907060bfce89f4f780ce83e7b28
+>> ACPICA commit 014fa9f2dbcc6b1bd42a4a4a6f6705d9cf7d460b
 > 
-> Features:
->   - 4 independent DAC channels
->   - Hardware and software LDAC trigger
->   - Configurable output range
->   - PWM-based LDAC control
->   - Dither and toggle modes
->   - Dynamically configurable SPI speed
+> These commit number is not existed at linus official tree. Please remove it.
 
-Still the same issue...
-After addressing it in full feel free to add
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+These are commits from ACPI-CA github. The files in the acpica folder is
+a mirror of that repo. I suppose the commits in this folder are expected
+to be structured like this. The process is also described here -
+https://docs.kernel.org/driver-api/acpi/linuxized-acpica.html
 
-...
-
-> +static int ad5706r_regmap_write(void *context, const void *data, size_t count)
-> +{
-> +	struct ad5706r_state *st = context;
-> +	unsigned int num_bytes, val;
-> +	u16 reg;
-
-> +	reg = get_unaligned_be16(data);
-
-But this has the similar issue... Validation has to be done before the access.
-(also theoretically possible to have count 0, so even for byte access we have
- to validate the input, strictly speaking)
-
-> +	num_bytes = ad5706r_reg_len(reg);
-> +
-> +	struct spi_transfer xfer = {
-> +		.tx_buf = st->tx_buf,
-> +		.len = num_bytes + 2,
-> +	};
-> +
-> +	if (count != 4)
-> +		return -EINVAL;
-> +
-> +	val = get_unaligned_be32(data);
-> +	put_unaligned_be32(val, &st->tx_buf[0]);
-> +
-> +	/* For single byte, copy the data to the correct position */
-> +	if (num_bytes == AD5706R_SINGLE_BYTE_LEN)
-> +		st->tx_buf[2] = st->tx_buf[3];
-> +
-> +	return spi_sync_transfer(st->spi, &xfer, 1);
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best Regards,
+Akhil
 
