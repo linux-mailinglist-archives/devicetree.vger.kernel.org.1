@@ -1,60 +1,54 @@
-Return-Path: <devicetree+bounces-286459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286464-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CMl3FpTK2GktiQgAu9opvQ
-	(envelope-from <devicetree+bounces-286459-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:01:56 +0200
+	id 2F8iD23M2GktiQgAu9opvQ
+	(envelope-from <devicetree+bounces-286464-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:09:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 658693D559A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:01:55 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2983D5709
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:09:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 04B00302B161
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:00:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9DFDD3031B0F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:08:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6561F37C11E;
-	Fri, 10 Apr 2026 10:00:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 772FB382360;
+	Fri, 10 Apr 2026 10:08:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from mail-sc.amlogic.com (unknown [64.106.246.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E70E337AA97;
-	Fri, 10 Apr 2026 10:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EB843815DF;
+	Fri, 10 Apr 2026 10:08:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.106.246.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775815231; cv=none; b=EhReBsy7mjcoJjsdUHARNGinENhVSFAi5O4ZsAlIEvEqiXZOd9i4w3x6s06E6mJlN7HnI8QTjO43HPy3tpvqKvhfZaEyQEzWU1K4O//0LXQw9iRN7lytNAyM/RLT5PgSbsuxHIY67ldLFfxKFHr1lE/35v7CrKF0+ZJUU2jYW5s=
+	t=1775815730; cv=none; b=R8xIQXQS5+i0ZNnJP3pvk7VXG2Ah3vIKLkOBJQfB8zs/cUuw55hjVhnpinuQQtRFqngBJkCleDVPs3dii1UlpPwsXyN5e4FCC7YSRU4e1XZPUJWkplUvflPbBciXBN6Jpr6F/pl4gFWritWKsvvtOCJHt5L/6GXb2AFaK140mXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775815231; c=relaxed/simple;
-	bh=rLQhkgL7/DpR2/eMAnDzHILrQUxyU0OkFaCS3uF1FwU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Zu/OqcmHDsBtvgWEf91nb/aLOcpM/c1SQk0vYOHSkBlCvrwXxJtR+QRcwLWmdKZyP8858xme9pXpcJDrHu6opWUCI9RCo6p9ipMVR+/mm/akLIoSYZxMgnNBUDLomHOwfsCe1VSL/VxEESU0WyqFDvGw9HzpTI69oUT8UVbTGIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from Vostro-3710.lan (unknown [116.25.94.53])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3a3f23e97;
-	Fri, 10 Apr 2026 18:00:20 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Yixun Lan <dlan@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH v3 2/2] riscv: dts: spacemit: enable USB3 on OrangePi R2S
-Date: Fri, 10 Apr 2026 18:00:10 +0800
-Message-Id: <20260410100010.1197804-3-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260410100010.1197804-1-amadeus@jmu.edu.cn>
-References: <20260410100010.1197804-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1775815730; c=relaxed/simple;
+	bh=lW26ufnPoRIsivoBcpTpi4s2RTL70583oHka9UAM+pE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iG5/RMBbQPa307CP8m0QYbveMf2BanTMMLFQS1nZFlZ2IGbv+shep1kw2/A2jH+gF+TEZisqYkGoqDGwmM/loj3malC0ptAml35Q+CefM9NGg+iOEqiJOI0fiLuRg7/tgOz4i67B9jr4kwXLTpS7z4Avqwcb8ExNuEgFYFbP7+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; arc=none smtp.client-ip=64.106.246.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+Received: from rd03-sz.software.amlogic (10.28.11.121) by mailsc.amlogic.com
+ (10.8.11.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Fri, 10 Apr
+ 2026 03:02:38 -0700
+From: Jian Hu <jian.hu@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, "Michael
+ Turquette" <mturquette@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, robh+dt <robh+dt@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
+CC: Jian Hu <jian.hu@amlogic.com>, devicetree <devicetree@vger.kernel.org>,
+	linux-amlogic <linux-amlogic@lists.infradead.org>, linux-kernel
+	<linux-kernel@vger.kernel.org>, linux-arm-kernel
+	<linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH 0/4] soc: amlogic: clk-measure: add A1 and T7 support
+Date: Fri, 10 Apr 2026 18:03:25 +0800
+Message-ID: <20260410100329.3167482-1-jian.hu@amlogic.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,91 +56,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9d76d5dc1903a2kunmc24b7d52bd027
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCTUkaVkNPShgYSk4fGUoYS1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk9VTkhZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE5VSktLVUpCS0
-	tZBg++
-X-Spamd-Result: default: False [1.64 / 15.00];
+Content-Type: text/plain
+X-ClientProxiedBy: mailsh.amlogic.com (10.18.11.5) To mailsc.amlogic.com
+ (10.8.11.35)
+X-Spamd-Result: default: False [3.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_QUARANTINE(1.50)[amlogic.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-286459-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-286464-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_ALL(0.00)[];
+	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_NEQ_ENVFROM(0.00)[jian.hu@amlogic.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,jmu.edu.cn:email,jmu.edu.cn:mid]
-X-Rspamd-Queue-Id: 658693D559A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,amlogic.com:mid]
+X-Rspamd-Queue-Id: CA2983D5709
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable the DWC3 USB3.0 controller and its associated PHY on the
-OrangePi R2S. The USB regulator provides VBUS for USB2 and USB3
-ports, but the USB2 ports are handled by a separate controller.
+This series adds Amlogic clock measurement support for A1 and T7 SoCs,
+including binding updates, driver additions, and device tree enablement.
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- .../boot/dts/spacemit/k1-orangepi-r2s.dts     | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Jian Hu (4):
+  dt-bindings: soc: amlogic: clk-measure: Add A1 and T7 compatible
+  soc: amlogic: clk-measure: Add A1 and T7 support
+  arm64: dts: meson: a1: Add clk measure support
+  arm64: dts: amlogic: t7: Add clk measure support
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-index 409a6db269ae..bc68721e6263 100644
---- a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-@@ -40,6 +40,20 @@ vcc4v0: regulator-vcc4v0 {
- 		regulator-max-microvolt = <4000000>;
- 		vin-supply = <&vcc_5v0>;
- 	};
-+
-+	vcc5v0_usb: regulator-vcc5v0-usb {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio K1_GPIO(126) GPIO_ACTIVE_HIGH>;
-+		regulator-name = "vcc5v0_usb";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v0>;
-+	};
-+};
-+
-+&combo_phy {
-+	status = "okay";
- };
- 
- &emmc {
-@@ -109,3 +123,13 @@ &uart0 {
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-+
-+&usbphy2 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3 {
-+	dr_mode = "host";
-+	vbus-supply = <&vcc5v0_usb>;
-+	status = "okay";
-+};
+ .../amlogic/amlogic,meson-gx-clk-measure.yaml |   2 +
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   |   5 +
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   5 +
+ drivers/soc/amlogic/meson-clk-measure.c       | 272 ++++++++++++++++++
+ 4 files changed, 284 insertions(+)
+
 -- 
-2.34.1
+2.47.1
 
 
