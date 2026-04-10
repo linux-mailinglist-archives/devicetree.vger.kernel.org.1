@@ -1,190 +1,227 @@
-Return-Path: <devicetree+bounces-286432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286430-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SGWaOsG02GnQhAgAu9opvQ
-	(envelope-from <devicetree+bounces-286432-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:28:49 +0200
+	id OOE9A2612GnnhAgAu9opvQ
+	(envelope-from <devicetree+bounces-286430-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:31:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48A7F3D4178
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:28:49 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0923C3D41CC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:31:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 87F5D306A903
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 08:22:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8394A30E4878
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 08:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B90E3AE185;
-	Fri, 10 Apr 2026 08:22:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9B6F3ACA5A;
+	Fri, 10 Apr 2026 08:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="XgEU51QU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ode3qkqx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 634A03AD52E;
-	Fri, 10 Apr 2026 08:22:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67C643AC0EC
+	for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 08:20:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775809335; cv=none; b=NaYH10ERWOiBv/K5qb3ePqAGiKpvgvgVR+64f9Ta1gdgPgk03ftqpN5oNo5d67c5ynJW9qQkZHdbSUNIYABSaQcYhOEwVSDWDxlpVBKQynwUi3uCo7zDU9aPwamFOsjSMSjv0e5h4PvWy1j/ll6azJ5FsCq8UrcbdJ5FmGO3A8o=
+	t=1775809247; cv=none; b=ChSq7OatKtOHYKd2MjtRyLPDlO4J42YSwYfGr502eTjFuS7FzKbSstwtnY6o8MHyY3eJRaRvLBpyI4c7Ozn7yHZo5CgsHGK8jfuSf97P9LPUF5L+ylbClsRaFjySnxW0cLgJGhn3c/4U0LsqyoxjoUjr/8rxsqS9VUP/Z5OKxp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775809335; c=relaxed/simple;
-	bh=ZWzkrA/bwLbRCPvX3RFVkYa5zw99jrqSYsIl6QbfexA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LgBPCOAGUQMk+GPpXb7uOTxRqwfeqO0PBoUkxZk1xuN4XtAVQwyvbsODbmVpWH0VEYZOQ5LcuH2eF454lqCd9+3VVM4XQSfOdW/9PFpNBZ/0LJP0FyFPM81AfkiuWTd5NfvAQVz8bwe1ZMACWDVEMfsLHvltMOyvEgWILBt8LsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=XgEU51QU; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 63A8JcIfA2678929, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1775809178; bh=JS0s+sMh5+ewy1DfxEghosKaPfurtyPM6ofxGjjJm6o=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=XgEU51QUMR6TsTTKF7a9IJAwy7WTY0F3TSeg8RaxLuuGc0jEAT8BQOEtsut7KQWS0
-	 CTzhpI22ofswvzrziqtxepXd1N6+W/R4fUZv+BxkKFaxRgc0eXCztjmygPAd0L5Cfe
-	 tkzgfGO2DwHQyk3W0Tmc9+81in6UDRdEHBhuUzzXezZNzvvDo20svbwSNY2/HcuHh3
-	 v7MKKcl++XNSYnt5VXfNOakEDQwnY+pEy3l1268wuyBVzAiWcK8TtlVXozZ5sNg8/y
-	 TK+lxJUTtFmnTdK5XJVQsKajlYAEccfnd1XbCMp1fw76OhchjOk8vYEo5gS7OjEU8v
-	 8xLZR7kyEeV4Q==
-Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.26/5.94) with ESMTPS id 63A8JcIfA2678929
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 10 Apr 2026 16:19:38 +0800
-Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Fri, 10 Apr 2026 16:19:38 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS05.realtek.com.tw
- (10.21.1.55) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Fri, 10 Apr 2026 16:19:37 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <bmasney@redhat.com>
-CC: <afaerber@suse.com>, <conor+dt@kernel.org>, <cy.huang@realtek.com>,
-        <cylee12@realtek.com>, <devicetree@vger.kernel.org>,
-        <eleanor.lin@realtek.com>, <james.tai@realtek.com>,
-        <jyanchou@realtek.com>, <krzk+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-realtek-soc@lists.infradead.org>, <mturquette@baylibre.com>,
-        <p.zabel@pengutronix.de>, <robh@kernel.org>, <sboyd@kernel.org>,
-        <stanley_chang@realtek.com>
-Subject: Re: [PATCH v6 05/10] clk: realtek: Add support for gate clock
-Date: Fri, 10 Apr 2026 16:19:37 +0800
-Message-ID: <20260410081937.2859395-1-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <ac_RcGSpVBpt3S7C@redhat.com>
-References: <ac_RcGSpVBpt3S7C@redhat.com>
+	s=arc-20240116; t=1775809247; c=relaxed/simple;
+	bh=4BBBokKM99tWLBI/09+5jzoj0Hru9iJwCnK+mZGnP44=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oxH4RA6+JF8KKLTnn2LgyVpJBif6lbYAMuf9MUvrINUAtlGW4adlR27OYN78B4r56nYAhqkQtWqTsea8eMsGmdhxWtzD+4b2rwKvv9Ow4WoGT/NJGr393hpK7ENjdjviPcOrLddONfglpexfuRm2Dzw53bH6ECfLQ6YRZ381mNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ode3qkqx; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b9910707d82so224793366b.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 01:20:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1775809244; x=1776414044; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YPFRGUPaINCrOf46yJMesxy4TAsT49spMjDxM76tDE0=;
+        b=Ode3qkqxH22ivmrvX1DO0imaS4meImW58aHmsE7MtZEMA7F8YgFDuSiJqEq2T+1Iit
+         vJVn3jFwX4vISGF31lEoSZuajGwkWMCVBaP9nBY3ooZptJIf0/YQsZcTfasgyGrAoUXp
+         vD9uF+lmyD0YVuMUhnZb1Glg8Nv37WroAuEY1X1QGbesL3Csp3oqgryUc+PfcyeObM2+
+         P9+Eh/eT01fcauJNfPGCk50e+AufyjOFPlT+uaZ4uDUlsXw6rvQQZkicp1gxcnQNVbK0
+         N/Ew13phLf46mAENeYY45EBpTlu//mUYWX1mCHLcVPtpFNEBe7z7B+dEcNHgVL5+FEp9
+         m65g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775809244; x=1776414044;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YPFRGUPaINCrOf46yJMesxy4TAsT49spMjDxM76tDE0=;
+        b=o0lPKTu5sKvwXrnbZgcIks+2A8NjISf8b/t8vmG9pMleC6wY2BAZM8Hhy/gBOu1Lhw
+         zYmmFZzCrAwPY5TCTOHK0TSdZyWP8DsMYyY4GN4F7k3E3gT0Wh4deYNJXzsq6GV7autv
+         afRTH5jar/uHpnop7b1dWl4RWiPYLNLuTSxWcy+LDdP/3DXwyEpf8vSfVO54i1gAO+pH
+         sbhfw04sUdKWLVMeLfqbNANZ5ZR1Hd0NphRkhF4XyLibu+cFk9SiJJuWbJ1jVU2DOnta
+         FWHQlWxCn4wjMwkjHs22OEufuK57Pds3cedwMf+W1MUcPxVm+tDxPrcalL39qFr0Qdso
+         U3VQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWo/QpfZF7ne6CMhJ9hd5gGvwKM3gUDCI6WDZXBpAE1MOiGX8AH1TQNrWmiJlraK5NEN355swc7wI0D@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFg7ctmy93Y1fJlAIU2gIbO9U/GWN+2DTPQGIiLt4oc0aA2JiM
+	hQ+jptX1WnLMWvgiM/chrOl1TxaijQYPgWM10te1nNLQxY0eKD6dFo7KbGm6CTj6uM8=
+X-Gm-Gg: AeBDiet7iRE1xNRbaF1ZESopMbYpxYv1jDCSwwA5Cc2t/wtNUn3DIbxDIdAfO2vrya8
+	5LE0M/8x1kmFQvIJJfaL7KJGBvNggMkjkP18NN6RmsC8yTk0rnLzyMXAVeS0DzQDc066MMQ8uQj
+	D3vvQ3TNGcL7WEJrDIXjoxzR8CN5L1TNqprVxfT5D0SA47vUKZ6K4n1THelN80MBXNqj3PgQSAu
+	pam0qw6jpvPlAIDoaY06WfALFhs1OOOQux/uQp4oegclK4j9E/mhqrGfYAr89pBWb1KFMXfm/cq
+	J82d3fTQIDpdscuFe6Vbf7bX9er1r5KWKb+FiTDX8QYP67BmEfdc8balyfNdd63oMz18LlcXMqj
+	tp5z5LW95jjXYXP/IxtBazRToanTJzMiQ01ZqmpSqDOSL+my01x8LeG0OqDEGAbYafkP0uunooc
+	inGym6kcZTMU5TiUJeXNbd2Nr9+/3loVfZkKDYWvwegK77jdRiJPY1vjlQeTVr9yPLAYuXfin9C
+	o+VXhNK9fGTFnBbzoYv152bhxUNv7YfE4cShPIwtu413x+2iaSIvd2DBStoa09nkicawC6az3Zz
+	z7in58lmRbevNi4CuiiO3//q
+X-Received: by 2002:a17:907:ea4:b0:b9c:5264:f56d with SMTP id a640c23a62f3a-b9d7297da1amr116597766b.28.1775809243655;
+        Fri, 10 Apr 2026 01:20:43 -0700 (PDT)
+Received: from ?IPV6:2001:1c06:2302:5600:7555:cca3:bbc4:648b? (2001-1c06-2302-5600-7555-cca3-bbc4-648b.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:7555:cca3:bbc4:648b])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9d6dfd78f6sm61820266b.26.2026.04.10.01.20.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Apr 2026 01:20:43 -0700 (PDT)
+Message-ID: <72e5ada7-0b08-4e5f-97e8-0af655cb0904@linaro.org>
+Date: Fri, 10 Apr 2026 09:20:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: x1e80100-microsoft-romulus: add
+ PM8010 camera regulators
+To: Oliver White <oliverjwhite07@gmail.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260409083609.75341-1-oliverjwhite07@gmail.com>
+ <20260409201717.108169-1-oliverjwhite07@gmail.com>
+ <_NLFEtvoR7MO6EVKzB-wwMi3NXItRRCRNXp1xpNZa_jGQgW2TbbHX602YQr779q_c8dzKUyGkIGwos74TwuyQA==@protonmail.internalid>
+ <20260409201717.108169-2-oliverjwhite07@gmail.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20260409201717.108169-2-oliverjwhite07@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286432-lists,devicetree=lfdr.de];
-	TO_DN_NONE(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	TAGGED_FROM(0.00)[bounces-286430-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,realtek.com:dkim,realtek.com:email,realtek.com:mid,sashiko.dev:url]
-X-Rspamd-Queue-Id: 48A7F3D4178
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0923C3D41CC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Brian,
-
-> Hi Cheng-Yu,
+On 09/04/2026 21:17, Oliver White wrote:
+> Add the PM8010 regulator outputs used by the front-facing OV02C10
+> camera module on Microsoft Romulus.
 > 
-> On Thu, Apr 02, 2026 at 03:39:52PM +0800, Yu-Chun Lin wrote:
-> > From: Cheng-Yu Lee <cylee12@realtek.com>
-> > 
-> > Introduce clk_regmap_gate_ops supporting enable, disable, is_enabled, and
-> > disable_unused for standard regmap gate clocks.
->
-> disable_unused is not implemented below.
->
-
-Will remove it from commit message.
-
-> > 
-> > Add clk_regmap_gate_ro_ops as a read-only variant exposing only is_enabled.
-> > 
-> > Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
-> > Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
-> > Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
-> > ---
-> > Changes in v6:
-> > - Add the headers used in c file to follow the "Include What You Use" principle.
-> > ---
-> >  drivers/clk/realtek/Makefile          |  2 +
-> >  drivers/clk/realtek/clk-regmap-gate.c | 69 +++++++++++++++++++++++++++
-> >  drivers/clk/realtek/clk-regmap-gate.h | 65 +++++++++++++++++++++++++
-> >  3 files changed, 136 insertions(+)
-> >  create mode 100644 drivers/clk/realtek/clk-regmap-gate.c
-> >  create mode 100644 drivers/clk/realtek/clk-regmap-gate.h
-> > 
-> > diff --git a/drivers/clk/realtek/Makefile b/drivers/clk/realtek/Makefile
-> > index a89ad77993e9..74375f8127ac 100644
-> > --- a/drivers/clk/realtek/Makefile
-> > +++ b/drivers/clk/realtek/Makefile
-> > @@ -2,5 +2,7 @@
-> >  obj-$(CONFIG_RTK_CLK_COMMON) += clk-rtk.o
-> >  
-> >  clk-rtk-y += common.o
-> > +
-> >  clk-rtk-y += clk-pll.o
-> > +clk-rtk-y += clk-regmap-gate.o
-> >  clk-rtk-y += freq_table.o
-> > diff --git a/drivers/clk/realtek/clk-regmap-gate.c b/drivers/clk/realtek/clk-regmap-gate.c
-> > new file mode 100644
-> > index 000000000000..8738d6c6f8dd
-> > --- /dev/null
-> > +++ b/drivers/clk/realtek/clk-regmap-gate.c
-> > @@ -0,0 +1,69 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (C) 2017 Realtek Semiconductor Corporation
-> > + * Author: Cheng-Yu Lee <cylee12@realtek.com>
-> > + */
-> > +
-> > +#include <linux/regmap.h>
-> > +#include <linux/bits.h>
-> > +#include "clk-regmap-gate.h"
-> > +#include <linux/clk-provider.h>
->
-> linux/clk-provider.h needs to be included before clk-regmap-gate.h.
->
-
-Ack.
-
-> Also Sashiko reports that linux/export.h should also be included.
-https://sashiko.dev/#/patchset/20260402073957.2742459-1-eleanor.lin%40realtek.com
+> These rails provide the supplies referenced by the camera enablement patch.
 > 
-> Brian
+> Signed-off-by: Oliver White <oliverjwhite07@gmail.com>
+> ---
+>   .../dts/qcom/x1e80100-microsoft-romulus.dtsi  | 52 +++++++++++++++++++
+>   1 file changed, 52 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+> index 14b5663a4d48..4427ecae423f 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+> @@ -857,6 +857,57 @@ vreg_l3j: ldo3 {
+>   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>   		};
+>   	};
+> +
+> +	regulators-8 {
+> +		compatible = "qcom,pm8010-rpmh-regulators";
+> +		qcom,pmic-id = "m";
+> +
+> +		vdd-l1-l2-supply = <&vreg_s5j>;
+> +		vdd-l3-l4-supply = <&vreg_s4c>;
+> +		vdd-l7-supply = <&vreg_bob1>;
+> +
+> +		vreg_l1m_1p2: ldo1 {
+> +			regulator-name = "vreg_l1m_1p2";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1260000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l2m_1p2: ldo2 {
+> +			regulator-name = "vreg_l2m_1p2";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1260000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l3m_1p8: ldo3 {
+> +			regulator-name = "vreg_l3m_1p8";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1900000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l4m_1p8: ldo4 {
+> +			regulator-name = "vreg_l4m_1p8";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1900000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l5m_2p8: ldo5 {
+> +			regulator-name = "vreg_l5m_2p8";
+> +			regulator-min-microvolt = <2800000>;
+> +			regulator-max-microvolt = <3072000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l7m_2p8: ldo7 {
+> +			regulator-name = "vreg_l7m_2p8";
+> +			regulator-min-microvolt = <2800000>;
+> +			regulator-max-microvolt = <3072000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +	};
+>   };
+> 
+>   &gpu {
+> @@ -867,6 +918,7 @@ &gpu_zap_shader {
+>   	firmware-name = "qcom/x1e80100/microsoft/qcdxkmsuc8380.mbn";
+>   };
+> 
+> +
+>   &i2c0 {
 
-Ack.
+Dangling newline.
 
-Best Regards,
-Yu-Chun.
+Can be fixed on application of the patch though.
+
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
+---
+bod
+
 
