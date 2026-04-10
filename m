@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-286526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286527-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0CSAF5oI2WnnlQgAu9opvQ
-	(envelope-from <devicetree+bounces-286526-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:26:34 +0200
+	id iPRMNnYL2WnnlQgAu9opvQ
+	(envelope-from <devicetree+bounces-286527-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:38:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5D753D8A2C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:26:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DE763D8BA7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:38:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 426503006B7C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 14:26:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 933AC30A85D7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 14:32:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B173D1713;
-	Fri, 10 Apr 2026 14:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF853D333F;
+	Fri, 10 Apr 2026 14:32:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q10meThx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tqGN2qeP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80B013D16F4;
-	Fri, 10 Apr 2026 14:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BB2226CE05;
+	Fri, 10 Apr 2026 14:32:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775831191; cv=none; b=W4AQKsiI7nZz+wrgzDfBCVgCQQ5MjLkz5dzB9Q8lgvEHR9nu76Qmgv1cdaNTwyAzLlkeTuRfFf4nfwXwgxcz+h1OSP3+yY3bKZoJo+SWgXhs/xKCQSnsEWt8ijbLZf61TJQbSKwrAVt1+RFD3c3YotWWKAAxxfKQlOyq5UmuGqU=
+	t=1775831524; cv=none; b=hkgzd/RHpLTj/8IE75D89fgyAXiAjfNGKBUqhIINtHfh/NoSpXMxYqrzdImsDB57DRycrGB0hPMKkIdgG0X6bVXoQMFJ9zOcJHCaPN6Rk5CXzquUARUmJ0UE2gIAmEAVatibU3or9/dzWV/jpBmEhCcQ5Z60/52vAlM0xOlC8rM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775831191; c=relaxed/simple;
-	bh=mgU7ufWgyq5CVWYMIYcZpQp/Lw4+Kvxg3axiC7VuNX4=;
+	s=arc-20240116; t=1775831524; c=relaxed/simple;
+	bh=25xPWzxiGr4LHVrhwE7A6wdqd8RHpKmiF28MPO0r6nE=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=juwFZZeBdNwtf+B0PE/Pq+vuPG+BJ5bD3uoqsRfKpBjPpRzuInQ9tSVDbeJJQCzUE5e4a7bgnVabF7NB7q0oVRyTen5qX6IlalXvcdVQDiFNiyL9lVYEscxs7P1Aty1jvt+PXP/EZgEn2pCkCdklBq4Ndovy6IQ49Wu8oBsi1y4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q10meThx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FD43C19421;
-	Fri, 10 Apr 2026 14:26:30 +0000 (UTC)
+	 MIME-Version:Content-Type; b=tf7RAHH/UhKHOtnoEom3tTQbY3IVIdgNJGjkXQRdvwxMBMdfeV5d74guGH/1ChiA+4aSs0UBXYSeeNDDXyIt0bMGRJtCpR/qa8GQaCd1A9aZXlZESWEGg1rieA9xDEbRkImEGIG2DUprzJGkNSEsoSBKqdDUWMKpLMlPFpBIyuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tqGN2qeP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA419C2BC87;
+	Fri, 10 Apr 2026 14:32:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775831191;
-	bh=mgU7ufWgyq5CVWYMIYcZpQp/Lw4+Kvxg3axiC7VuNX4=;
+	s=k20201202; t=1775831523;
+	bh=25xPWzxiGr4LHVrhwE7A6wdqd8RHpKmiF28MPO0r6nE=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=q10meThxM8vviyNV//BrdxCA3+xM9EXbqlFRxU0K16YF6ej1U0t9gUx+COufYLryh
-	 J5RaA/8yVfIkNfCgU11eVkWrSlGZP2T/RpYMcHjH7wPPxwzITAQr3fS4DZoZqG0BjQ
-	 cjfBlb3daqmOS0vwxWaTx6NjlTZ3KiUKnuRSpeBGeQ0wV7JQNrF0k4jRyvKjX9b9jq
-	 FtzbNehub4MY9XUm+RmipXJmEaKVgUveT3Rc08w3Vnl+nuzNP6c7MaO6n14jcauig0
-	 U5dL+Fdi59XCC9QwFrUQ7vJXStfoF6KLQt/Ciljv3f23XVz+87A8zijH+Rtnl63vQO
-	 3AQ7cwqjLBuIg==
+	b=tqGN2qePD9xAh3Pj3AGoPKMZhuIq5LHCILZITbTkgSeoYaOubddRaNn55X/LJ11lk
+	 QmJAx0/SG/k9UE2DrIOYC+Na+Y3k7QmSpEo5zLExPRO0OOE6czkClBkwwlcRjYOOB1
+	 AK8cK+rg6AKZt+Hh223VAYbYopaIbHmtt7oeDNoU3OH9tRh4ixIM698eT5PcPx6m9A
+	 EIq5SQkX26V9rxhPipdu5CctuRM195kmo29QW8uwqLnmSAyAfjxxBg9+z3WUZ2qWsd
+	 MpfbWAGNzKcTm+H313Ah+ogX/bDyCwHC5MZUtAAalRhf6Kn3x9SZzWXyXwOL+XLCLa
+	 58hOvhP84Xt3g==
 From: Thomas Gleixner <tglx@kernel.org>
 To: Changhuang Liang <changhuang.liang@starfivetech.com>, Rob Herring
  <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -52,13 +52,13 @@ Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-riscv@lists.infradead.org, Ley Foon Tan
  <leyfoon.tan@starfivetech.com>, Changhuang Liang
  <changhuang.liang@starfivetech.com>
-Subject: Re: [PATCH v1 2/5] irqchip: starfive: Convert the word "jh8100" to
- "jhb100"
-In-Reply-To: <20260410090106.622781-3-changhuang.liang@starfivetech.com>
+Subject: Re: [PATCH v1 3/5] irqchip: starfive: Use devm_ interfaces to
+ simplify resource release
+In-Reply-To: <20260410090106.622781-4-changhuang.liang@starfivetech.com>
 References: <20260410090106.622781-1-changhuang.liang@starfivetech.com>
- <20260410090106.622781-3-changhuang.liang@starfivetech.com>
-Date: Fri, 10 Apr 2026 16:26:28 +0200
-Message-ID: <87cy0628ob.ffs@tglx>
+ <20260410090106.622781-4-changhuang.liang@starfivetech.com>
+Date: Fri, 10 Apr 2026 16:32:00 +0200
+Message-ID: <87a4va28f3.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,43 +70,55 @@ X-Spamd-Result: default: False [4.34 / 15.00];
 	MID_END_EQ_FROM_USER_PART(4.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286526-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286527-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	GREYLIST(0.00)[pass,meta];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[tglx@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: D5D753D8A2C
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3DE763D8BA7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Fri, Apr 10 2026 at 02:01, Changhuang Liang wrote:
+> -	irqc->base = of_iomap(intc, 0);
+> +	irqc->base = devm_platform_ioremap_resource(pdev, 0);
+>  	if (!irqc->base) {
+> -		pr_err("Unable to map registers\n");
+> +		dev_err(&pdev->dev, "unable to map registers\n");
+>  		ret = -ENXIO;
+>  		goto err_free;
 
-Please use the documented prefix scheme, i.e. irqchip/....:
+You can eliminate err_free as well by doing:
 
-Your subject line might be more descriptive when it says:
+    struct startfive_irq_chip *irqc __free(kfree) = kzalloc_obj(*irqc);
 
-     Rename jh8100 to jhb100
+    ....
+    dev_info(..);
+
+    retain_and_null_ptr(irqc);
+    return 0;
 
 Thanks,
 
