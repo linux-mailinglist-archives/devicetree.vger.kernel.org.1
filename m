@@ -1,133 +1,204 @@
-Return-Path: <devicetree+bounces-286416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286418-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kHZ9A5+t2GljgwgAu9opvQ
-	(envelope-from <devicetree+bounces-286416-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 09:58:23 +0200
+	id 4Fz4BvCt2GljgwgAu9opvQ
+	(envelope-from <devicetree+bounces-286418-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 09:59:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10E83D3AB0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 09:58:22 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A7A3D3AD4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 09:59:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F1861303F06E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 07:55:27 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9CFD4300AD82
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 07:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3825F3A5E9F;
-	Fri, 10 Apr 2026 07:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F453A75BC;
+	Fri, 10 Apr 2026 07:59:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PFIiHWif"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="u488TrHC";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="biA2xEQm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 146833A5E82;
-	Fri, 10 Apr 2026 07:55:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B295394798;
+	Fri, 10 Apr 2026 07:59:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775807727; cv=none; b=BYr17Jt0Zd2RAWLK7VkUogCxVpZ3gUATxpUDky8ouqMnLMz0/FdpEASTLkC66HPLTNFn14Dgsjmncc3Y1D8z/BqhWUDd3QoL3XjMsDtZOYi9daPtlprsyhbUxtIB3d+dxwmD+w+/pbf3sYdZurwg9w6QLVsx6srA35uoXVMCWHo=
+	t=1775807976; cv=none; b=mDiZYKp9CHG54DbCzXPXB/tyEuCkansihAgyr1/q6KXHmVGYdh2bY1B5rztUKAd20Ji8LQKJRRYDxGTptXZjVLdn9B5saA5bEPD6lPShYjYP+8kaVkMV9yjqxnIgugADGFrkPfHf9C9QJR+NX1pjZFd3m/ZXZUnVOfQ9173y8RQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775807727; c=relaxed/simple;
-	bh=Dy3jxjZVTM8xz6GR0KyUbEI3OVMGwMs+L96Ws83GCTw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WnGQMgWtL0ICr4EWbQaOjGMh+cX+H+90+GzeoMLgy43wMF/7FMAa45vRr9xGM/ds3CCEvbmwP4N8Li5u0OOFncDem7wMr2sJ9Z59WPVi3q9lQpxXlWHGbXoBLnCSSCT+bWBZ+QN33J+U0geri63jy8S/td8xCYJPyI+D0Tl2bwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PFIiHWif; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90644C19421;
-	Fri, 10 Apr 2026 07:55:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775807727;
-	bh=Dy3jxjZVTM8xz6GR0KyUbEI3OVMGwMs+L96Ws83GCTw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PFIiHWif0XHwXHioK+oOmA2XRo/jNuLxMnfKyh2RTCWBFfCEyo92GKO4z+9Er2FT+
-	 EjAgp9UwU1mpMxS4seg3pY4iulgMVDm7jxPnhUcbR+pmDQ7mWnr3u1ZhV+qUrCLOiQ
-	 /leDTwVapdXNTqMwPy0ZVh6uUTtMAaCVX5eimHaSPP7+ZuqIAHGxK+3p2P3KHBLeJR
-	 /bjuHaYZMNBWmcLUYC9FfFxJ9FObVF4ZhO2oevc5SQFTqi6z1ndswvBOWzArk3LUZ/
-	 583QmVSB09kx77J0p40VW92al4HZCzqdQIA2Hg9/QUuqgc/b0Ed/yJ+b0ONFVkW02F
-	 jeSP4MhPrCvNA==
-Date: Fri, 10 Apr 2026 09:55:24 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Hardik Phalet <hardik.phalet@pm.me>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Brigham Campbell <me@brighamcampbell.com>, Shuah Khan <skhan@linuxfoundation.org>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 2/4] dt-bindings: iio: magnetometer: Add binding for
- QST QMC5883P
-Message-ID: <20260410-stimulating-happy-terrier-e82dcc@quoll>
-References: <20260409210639.3197576-1-hardik.phalet@pm.me>
- <20260409210639.3197576-3-hardik.phalet@pm.me>
+	s=arc-20240116; t=1775807976; c=relaxed/simple;
+	bh=FeITDC/Wu3yb3H+8bxUK/EofL6or0jSpsm7kf+klLiw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=e/8ykAKEi+WM2oTbVAAtt8Azxi33rwby9s/2d4hx4dNEShIQ7S4IklybH07ytYMjpLMrYOUSiMXqsxx/i3QI3HYkkHJp8wWSHc5WNsax2s9WOLfh0FOr1x7ULhrhfyUAOuIj64fU2zZf2bGUtsEWc1ERlqeCvIuveIMYai6EY+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=u488TrHC; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=biA2xEQm; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4fsTjH6R8Hz9tVg;
+	Fri, 10 Apr 2026 09:59:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1775807972;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=pdMupNV8SQH25nPQgo6yosbWJa8EJVott5NjvgAdmzo=;
+	b=u488TrHCmC2oDwyTMhsyVBFs8gADJoiSDdU2t574byHJQc9Vr2hOSfxDyaBhboCzdM2O5k
+	Hqx4NVEuGXK7P9fQQy4nGrtKZmfaQQmknlNQ0pDTCqKAJHHFuDJrNST7uQTcp40zwRXTyC
+	ICZokpnMagDR29zDKkamlzJomrJY5ne27hcWEfdDqqCHshV263x6HuOnxDmb79UkPJruh/
+	KqCPVOSMd0oQL5Xn/ONTQc3EfpOnEcqUsDpJkvS5OIICT9CJNdFesajsLNd1qo3s10njCV
+	92a3/5VsIazTfjQcQjWcSfKp1G/8LJ079OUrCMGd/5akTa1Nl7dOPGLJuQLmnA==
+From: Shuwei Wu <shuwei.wu@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1775807969;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=pdMupNV8SQH25nPQgo6yosbWJa8EJVott5NjvgAdmzo=;
+	b=biA2xEQmEhQXECUxzgwRWNqDC/XpwfA46WJ4ZigDrPZ9Jg1YdErE6TohQKLcjL35ACqqcS
+	V73yTbyBhpJqFmolGnyL5fBjBFbXI3cFceP9qXgwCrv2xc9JggMVl7xrHMY+oExkVEIdtX
+	vTooqolPRjjmtxWA6fxQ16WKzXO1fYwTU36InJYNpBibKwO23/D5I6raoK1M2Tk7D5j2GF
+	IVTK0q8tuqAHWlKsFpuoVkwlP8XeQsuuvDbOxjFozKD+DoxihimjOKgH6QZP9hbv2jlXP2
+	WB+n030Fzx6dOnrPgqY/k0/5rkX2YjY86vgMU0HyuiuLJe+mL5iKdKEHEhNs4w==
+Subject: [PATCH v2 0/2] cpufreq: spacemit: Add cpufreq support for K1 SoC
+Date: Fri, 10 Apr 2026 15:58:21 +0800
+Message-Id: <20260410-shadow-deps-v2-0-4e16b8c0f60e@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260409210639.3197576-3-hardik.phalet@pm.me>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ2t2GkC/22Qy2rDMBBFf8Vo3Ql6eCTZlJL/KFnoMY5F49i1X
+ Dcl5N+rOF200OUVzNHhXFmmOVFmbXVlM60pp/FchnyqWOjd+UiQYtlMcqm54gZy7+L4CZGmDAq
+ tdMY6Z1CzcjHN1KXLRns9PPZM7x8Fujwe2eSW0BdkWwmsfaw7I3kg5BojWt9YG8l20ijJja9rN
+ JLu3IFydptKWz1vJpJryJMLNKQFJgFrDRxspxuMjbJC0H5OOeTFzbswDi//QxRHeBMQTm9QtGE
+ VIMD54CxGTVLr/eDSyY+X3TgfN4R3maDwyqdthULX1CAWddVF5LYcugYVCiVVh0bo2PkixO4l+
+ pSXcf7aMq9iS/GjYP8ULQ4cShGPwQRuyP92YIfb7fYN/KHkcrIBAAA=
+X-Change-ID: 20260307-shadow-deps-3582a78aa756
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@kernel.org>, 
+ Yixun Lan <dlan@kernel.org>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ devicetree@vger.kernel.org, Shuwei Wu <shuwei.wu@mailbox.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1775807959; l=2567;
+ i=shuwei.wu@mailbox.org; s=20251125; h=from:subject:message-id;
+ bh=FeITDC/Wu3yb3H+8bxUK/EofL6or0jSpsm7kf+klLiw=;
+ b=IkShTdJXqbof0FcLu6L47SjTOGt8Zw2qonrPSlXJWOd+dzJWOF0NpmeDdsG2nWglcOhBz51/D
+ ITsJQIALMUkAs9IyoPhLm66F+Qkg5zR5VdlPUHT+R/co7dYr1E/ZRml
+X-Developer-Key: i=shuwei.wu@mailbox.org; a=ed25519;
+ pk=qZs6i2UZnXkmjUrwO5HJxcfpCvgSNrR4dcU5cjtfTSk=
+X-MBO-RS-ID: 1ff74546b71c080cfd6
+X-MBO-RS-META: 1d3df5xeshc6anpdtytt7tkp3r3eh4z9
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286416-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286418-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[shuwei.wu@mailbox.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A10E83D3AB0
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mailbox.org:dkim,mailbox.org:email,mailbox.org:mid]
+X-Rspamd-Queue-Id: 26A7A3D3AD4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 09, 2026 at 09:07:29PM +0000, Hardik Phalet wrote:
-> Add the device tree binding document for the QST QMC5883P, a 3-axis
-> anisotropic magneto-resistive (AMR) sensor with a 16-bit ADC that
-> communicates over I2C. The binding exposes the required 'compatible'
-> and 'reg' properties along with an optional 'vdd-supply' for the
-> 2.5 V=E2=80=933.6 V VDD rail.
+This series enables dynamic voltage and frequency scaling (DVFS) for
+the SpacemiT K1 SoC using the generic cpufreq-dt driver.
 
-Drop last sentence. We can read the diff.
+Tested on Banana Pi BPI-F3, the execution time scales as expected
+across different CPU frequencies:
 
-=2E..
+~ # echo userspace > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
-> +properties:
-> +  compatible:
-> +    const: qst,qmc5883p
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: I2C address of the device; the default address is 0x2c.
-> +
-> +  vdd-supply:
-> +    description:
-> +      VDD power supply (2.5 V to 3.6 V). Powers all internal analog and
-> +      digital functional blocks.
+~ # echo 1600000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed
+~ # time awk 'BEGIN{for(i=0;i<1000000;i++){}}'
+real    0m 1.07s
+user    0m 1.07s
+sys     0m 0.00s
 
-Supply should be required. Devices need them to operate.
+~ # echo 1228800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed
+~ # time awk 'BEGIN{for(i=0;i<1000000;i++){}}'
+real    0m 1.40s
+user    0m 1.40s
+sys     0m 0.00s
+
+~ # echo 1000000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed
+~ # time awk 'BEGIN{for(i=0;i<1000000;i++){}}'
+real    0m 1.72s
+user    0m 1.72s
+sys     0m 0.00s
+
+~ # echo 819000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed
+~ # time awk 'BEGIN{for(i=0;i<1000000;i++){}}'
+real    0m 2.10s
+user    0m 2.10s
+sys     0m 0.00s
+
+~ # echo 614400 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed
+~ # time awk 'BEGIN{for(i=0;i<1000000;i++){}}'
+real    0m 2.80s
+user    0m 2.80s
+sys     0m 0.00s
+
+Signed-off-by: Shuwei Wu <shuwei.wu@mailbox.org>
+---
+Changes in v2:
+- Move OPP tables to dedicated k1-opp.dtsi
+- Enable OPP only on BPI-F3 with cpu-supply present
+- Link to v1: https://lore.kernel.org/r/20260308-shadow-deps-v1-0-0ceb5c7c07eb@mailbox.org
+
+---
+Shuwei Wu (2):
+      cpufreq: dt-platdev: Add SpacemiT K1 SoC to the allowlist
+      riscv: dts: spacemit: Add cpu scaling for K1 SoC
+
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts |  35 +++++++-
+ arch/riscv/boot/dts/spacemit/k1-opp.dtsi        | 105 ++++++++++++++++++++++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi            |   8 ++
+ drivers/cpufreq/cpufreq-dt-platdev.c            |   1 +
+ 4 files changed, 148 insertions(+), 1 deletion(-)
+---
+base-commit: 5164e95565d3fd508ca8a95351323f5716dfb695
+change-id: 20260307-shadow-deps-3582a78aa756
+prerequisite-patch-id: 154bd4f720ce5065d58b988de8f273207b44572e
+prerequisite-message-id: <20260206-spacemit-p1-v4-0-8f695d93811e@riscstar.com>
+prerequisite-patch-id: 5da3e75b18291a5540d4f66d7a0600fb8975ef62
+prerequisite-patch-id: bcf41917414ecef8cf743095d130f6004c32f6a5
+prerequisite-patch-id: cfe3800f8c791ec4c63e070af9628e88e0fc31b9
+prerequisite-message-id: <20260305-k1-clk-fix-v1-1-abca85d6e266@mailbox.org>
+prerequisite-patch-id: 7c7fb9f87dba019ece4c97c45750349a7cd28f3a
 
 Best regards,
-Krzysztof
+-- 
+Shuwei Wu <shuwei.wu@mailbox.org>
 
 
