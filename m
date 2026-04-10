@@ -1,103 +1,147 @@
-Return-Path: <devicetree+bounces-286552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286554-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AIN0Kw0l2WmnmggAu9opvQ
-	(envelope-from <devicetree+bounces-286552-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 18:27:57 +0200
+	id gOo0OEon2WkPmwgAu9opvQ
+	(envelope-from <devicetree+bounces-286554-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 18:37:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BB0E3DA630
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 18:27:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 894AC3DA795
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 18:37:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1B1CE308399C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:22:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5B97A3007944
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7FE43DA7EE;
-	Fri, 10 Apr 2026 16:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 032FC3DC4D6;
+	Fri, 10 Apr 2026 16:30:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KIcQ5zy4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lVUymMSb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
+Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com [74.125.82.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CEBF3C5558
-	for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 16:22:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1BF83DBD72
+	for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 16:30:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775838144; cv=none; b=bw6r6XXu+dYWGkHvZofbaztpUn1CQfRkZ69CpAHIN1qAYHSotdw+DltR1C0Tv9NtbLe3As0j5B2j4FZDUZTAab+bmGuPcp18RqdXS5fm/ToPQ0xGrfc/v/t/ChGeYcnkeR0xTxQlQ1juhcMKTCRiaeDiYl4aYF4Oa7vSCrT4m8s=
+	t=1775838650; cv=none; b=U4OcWEg/Gg3p0pS3m1nXP9Xf8a1Ng3Oc8usbOeeFFDw3tIZPBejlwT3kvvh8zsc7Ncp0tp++aHANN7mO/YvPqhlGgb6aeoYS/fbKonN2Ilz1LGF4yi6Rpnc1LTvvtITL9343TtuKeHVZcUM4BnNO+U77XdW8EDJbm6K5xPlKSMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775838144; c=relaxed/simple;
-	bh=BBIkEk5IWn0dgN8UubTAKBIOMBYqreRBUyJgp0WUWdQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HD9sA8I5rGQFy4ySPmzzRccLkK/0GyKaUQxVBy5BuHgjw7FGhWQlC42nCIOwz/OBp6f48ZvutM0eQyfBhFJmNaMkey1+gZt+W24iTnXZ0i0ElrVdo+NEWuflQ5JNzXcDQwzzqtuYQXAVRggVbyfN2j182dUL1P8QiWYsBWRd+9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KIcQ5zy4; arc=none smtp.client-ip=74.125.82.46
+	s=arc-20240116; t=1775838650; c=relaxed/simple;
+	bh=Undq6STZNqRrbFQaVnW7mDpSSi0KgbNQArRWEWLZ8SU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MQFJqP5FbP05IhKsmBzdfmAzl3VmnL7onUTx8YmKLDCtwKg2oFFVoe+U0y+jlo4aCwhhFHAPhVspTjxf5VoimHvVl8oG/sE4QRFZKFZRLobHdGwPXYE+a12vt6iaf+G2arVw1JDOX1vs6riJcZGEyGsjWnT98p5QsdCYJ3f+En4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lVUymMSb; arc=none smtp.client-ip=74.125.82.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f46.google.com with SMTP id a92af1059eb24-128b9b7e3edso403286c88.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 09:22:23 -0700 (PDT)
+Received: by mail-dy1-f172.google.com with SMTP id 5a478bee46e88-2cfd69b564dso3156730eec.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 09:30:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775838143; x=1776442943; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ud2WfQQv0Jjbl2amZn8W+6KYSKXPpeMW+BFIbEVApCI=;
-        b=KIcQ5zy4WnnWRfT+vruB+DhxD+8sbKr00/OiqrrZGReIyT4YTyfsLmVjwLgFWTNVHN
-         dnjIZhfj4MTQB2UsLYUWwhdwWmxaTFduiUdrjw8tXkECHSFJ+dDpSCvxMtNUYYqixcnZ
-         PN2mi9JvYnFFy2NYz3i+ZBnGAsieDtoaQxWh1muDdgGIipaX+i5+mZxcP5ZI0JOlNMSf
-         ABcQpxq7CmdvxAGbabLHqRcp8O8XWIIxkszwI24UX1jJYi1GSJMp1BzVDpdEMNdka5qJ
-         WN37W5cGxZRsCaPm5lU8gnebn17uZ/UzfJknmwvTB0XzA1V9PKn+IG04ApUnYXpMU7Of
-         9f6A==
+        d=gmail.com; s=20251104; t=1775838649; x=1776443449; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=LhP5b/cZwXBwnnrIhhft7r+i2inPS25UHhwkMigbIjk=;
+        b=lVUymMSbI7zd0dnPGBCiDIwUi+jfULmXXk/2+YZzsxkddheRlWqaG8/wahWB3gwmtZ
+         kel91gzHzrue9UqlZmikwtbp1RJOhAcMwgVRyBb8E/HnBWquLrtxnmMhjY4p0EZPEOH8
+         Mjum/+apCrmvc/hD+V6dCicP75BByXN+PH2WC/gLn4D9lM8ZXVMJT2KoO3kPg0ltlMdi
+         DwKDu3r0jChZaIJn8pwjX4EzVIwaPks92pDdB14ou0dSRHYh1ZslXEerV/JdbuaHSsGr
+         34CEBJmOh+Z1ZOYHs5/MORt/wUCxo/Q9iFj0b5gAi3vKud7TIp0yK3JO9iR0+MD40ZHc
+         +NNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775838143; x=1776442943;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Ud2WfQQv0Jjbl2amZn8W+6KYSKXPpeMW+BFIbEVApCI=;
-        b=Yw2/OYHXTD8xqpXHmJ3UZMrFXBgThYsCgQGYY4MLpoUVAO4zEWjL7mANGE8NoMAr96
-         642ezlXg6DTPbfaG7Y1DF0Z1o/NuOXXnef+7iJSp6RvaPCoBzdbIGRAX6zFHnEloC72J
-         aZUkUbw/5qWhEgXknbW858Q9GWzbhNL+22iim1zxuhz1QTPLLZX+QwicKWyHGeAmrN4N
-         1ipH+oa9lgbWQDDoLo918E2s9R2brRTTrzD2i5if2mVOX2ZSMg9mn0A0mS2HLwaF5rH1
-         S+B0OFwEQP7Qo0d/BDaKeVRAAk+CM7OFIO/4t5g68OMo9m84+hESuqyGLQB2sqhhTA2f
-         CeGw==
-X-Forwarded-Encrypted: i=1; AJvYcCU0QMPT9wo9GqmKx36ft76RPQPV3xOIrtALPVvG4u7PoCsaF5GXZ/s841T7EgBGZg9A9ThZItNbEv9J@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjMfxqbzdwQb5s0TMS+z+BpxsHP4oyArrz/1vM/dA7b/9XrAVh
-	VIG+ZSR7cbX4gz3736DYImDmcljB1X0Ui0gX/h8+lzOWtzyEGKCBAN1Z
-X-Gm-Gg: AeBDieuPbGAP3y3abdsQGIh3ti/sPdIt26EZi13mNL1Z/5Wm5rh3GlA1oU/5w2XMYuJ
-	qqCyoJkhDsrPtyAY2lzi7KZ/FAeZw0BY+3oN36Oo6NbLu7Vp/0qkxKRxaxo6tZeQQs3wggschbt
-	4oCphXiDAje83n+wdURIO0d20u4OZKZ2W+g1nbqQiWJLraQSYFTGFjjUJcij546zBKhVbP1KVcx
-	qJ9mtMlc+jr1OfkeWWrh/28Qubh0ReTeIDQyVPvIkR9aWXVlripdlY65aakB1OdjPQtb6KDtiI8
-	+l3IA8smyLJuFHj/QPuXa9cyVv8AQsg8JK8oi7uu3nn4RytIwCTlhnceUbGybtUA30YXDa0cdQI
-	+8UuvYptGaqlBAuMOZd3vFFrcyC8+6xdJRLjy8wZp4HRbzo4G/Y9AquNfNgMmky4dAys14nY4oX
-	sMCgBNIDWmkFjNjoErXKyssWj7UAS4gAFXrvDMlG2eK0bDWys=
-X-Received: by 2002:a05:7022:60a7:b0:12c:33dd:f9ff with SMTP id a92af1059eb24-12c34ef7bbbmr2055222c88.33.1775838142675;
-        Fri, 10 Apr 2026 09:22:22 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12c346eb228sm4445290c88.9.2026.04.10.09.22.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Apr 2026 09:22:22 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1775838649; x=1776443449;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LhP5b/cZwXBwnnrIhhft7r+i2inPS25UHhwkMigbIjk=;
+        b=KIL7G0pbkdwMXAKhlRrM/Aj8YarJ7Qie0G6wfgXfSYhPqjaOmy/eVQ8l+6l+dEEply
+         A5EgN0E/EZ+z01oGtPk8sr5bESphuZDlLdGqcGEwPQfLM+95ANlKX0AnzVxgFM6iFzYx
+         QnUoYNwwU2kGQrm/tMUnRz418GzzzxMYtK098YjXM+r1jpNKudL62UKsSerZav3t+Sd2
+         2Di3TbTC2NOydIpElzVoHwsukL28PWLxQjSS7dRXcxnZQkgsER2GqSJcfozW37XxrpjD
+         ZMkZ91ouo3ZQOTgO01Uf42RsU3lv8BdOQ8LMK+8zbTeoZhIVLAOqIjE7suVN0QjaWxkC
+         dWuQ==
+X-Gm-Message-State: AOJu0YxOEXyfUvegSpGv6soNyyVRyYvTtNR93zQxMhe2uG0RVHAMs18b
+	pjqv28k+hf0IKuE8KM01dfe5PhjSI2ZNC/wAPs4IpkUFcZc7KpsXDgdtp4z5pw==
+X-Gm-Gg: AeBDievTXS2KU90WGg8/j0XCdicORluidi0FMo+hU3FhRrwb3ey+kpSIlaRNs8u6QCo
+	nwcT+hKONxJliJZdJ1UmhmtpjstRuF7u5Kf+Q3v9ZOyb+zxVfwurGI6Qos2Vt/FQh3D6x8S58pV
+	XpgT3Zd+EH38BKJMVQm5Rjd6d9LW/6oCdlOG0hJjUGeR7u4CifNsvk3Jq3xIe9637GP+qUrkqKX
+	6+Wj674aHJG+1U307Z8b61Udy+jkb3Sz60KPMJtWnO6cU4x29bMvDrWdjx6cernffuME1TT0NB9
+	acmkjm1TakMb0rgbOUMVMDuKKGDqxqWvcJWHlmQxBe/whPwNK9+CeAmRXx99VvPILfDFgd18kcz
+	9xriOgMDzXjmZSFjjWx/cDSnrG9qiH0TAPIEdXa7BXiLW/SLNEclA5L55LbgiylItPQtEWZbznq
+	TeEdpyn+4D1Uj1fVyUm5JNLNd8hduACDzujCli8g0qyk2s8QO6RSx1JJW0qUf+jY/xJowcn9uH
+X-Received: by 2002:a05:7300:f082:b0:2c1:7afc:df00 with SMTP id 5a478bee46e88-2d589361d94mr2267276eec.30.1775838648647;
+        Fri, 10 Apr 2026 09:30:48 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2d5630ac330sm4803680eec.29.2026.04.10.09.30.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Apr 2026 09:30:47 -0700 (PDT)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Fri, 10 Apr 2026 09:22:21 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Victor Duicu <victor.duicu@microchip.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, marius.cristea@microchip.com
-Subject: Re: [PATCH v12 2/2] hwmon: add support for MCP998X
-Message-ID: <3025e1bc-9801-4483-b03c-f638767c1465@roeck-us.net>
-References: <20260403-add-mcp9982-hwmon-v12-0-b3bfb26ff136@microchip.com>
- <20260403-add-mcp9982-hwmon-v12-2-b3bfb26ff136@microchip.com>
+Message-ID: <9872a816-9a4f-4826-a4c9-151efa73213d@roeck-us.net>
+Date: Fri, 10 Apr 2026 09:30:46 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260403-add-mcp9982-hwmon-v12-2-b3bfb26ff136@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] hwmon: (pmbus/q54sj108a2) Add support for
+ q50sn12072 and q54sn120a1
+To: Brian Chiang <chiang.brian@inventec.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, Jack Cheng <Cheng.JackHY@inventec.com>
+References: <20260402-add-support-for-q50sn12072-and-q54sn120a1-v3-0-67a5184e93b8@inventec.com>
+ <20260402-add-support-for-q50sn12072-and-q54sn120a1-v3-2-67a5184e93b8@inventec.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20260402-add-support-for-q50sn12072-and-q54sn120a1-v3-2-67a5184e93b8@inventec.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
@@ -107,36 +151,68 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_FROM(0.00)[bounces-286552-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286554-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	DMARC_NA(0.00)[roeck-us.net];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,roeck-us.net:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2BB0E3DA630
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 894AC3DA795
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 03, 2026 at 04:32:17PM +0300, Victor Duicu wrote:
-> Add driver for Microchip MCP998X/33 and MCP998XD/33D
-> Multichannel Automotive Temperature Monitor Family.
+On 4/1/26 18:29, Brian Chiang wrote:
+> From: Jack Cheng <cheng.jackhy@inventec.com>
 > 
-> Signed-off-by: Victor Duicu <victor.duicu@microchip.com>
+> The Q50SN12072 and Q54SN120A1 are high-efficiency, high-density DC-DC power
+> module from Delta Power Modules.
+> 
+> The Q50SN12072, quarter brick, single output 12V. This product provides up
+> to 1200 watts of output power at 38~60V. The Q50SN12072 offers peak
+> efficiency up to 98.3%@54Vin.
+> 
+> The Q54SN120A1, quarter brick, single output 12V. This product provides up
+> to 1300 watts of output power at 40~60V. The Q54SN120A1 offers peak
+> efficiency up to 98.1%@54Vin.
+> 
+> Add support for them to q54sj108a2 driver.
+> 
+> Signed-off-by: Jack Cheng <cheng.jackhy@inventec.com>
+> Co-developed-by: Brian Chiang <chiang.brian@inventec.com>
+> Signed-off-by: Brian Chiang <chiang.brian@inventec.com>
+> ---
+...
+> -	/*
+> -	 * The chips support reading PMBUS_MFR_MODEL.
+> -	 */
+>   	ret = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, buf);
+>   	if (ret < 0) {
+>   		dev_err(dev, "Failed to read Manufacturer Model\n");
+>   		return ret;
+>   	}
+> -	if (ret != 14 || strncmp(buf, "Q54SJ108A2", 10)) {
+> +	for (mid = q54sj108a2_id; mid->name[0]; mid++) {
+> +		if (!strncasecmp(mid->name, buf, strlen(mid->name)))
+> +			break;
+> +	}
 
-Applied.
+If ret < strlen(mid->name), this check compares uninitialized data.
+Also see Sashiko feedback:
+
+https://sashiko.dev/#/patchset/20260402-add-support-for-q50sn12072-and-q54sn120a1-v3-0-67a5184e93b8%40inventec.com
 
 Thanks,
 Guenter
+
 
