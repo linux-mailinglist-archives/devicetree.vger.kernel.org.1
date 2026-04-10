@@ -1,285 +1,192 @@
-Return-Path: <devicetree+bounces-286444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286451-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WDAEHqK72GmmhQgAu9opvQ
-	(envelope-from <devicetree+bounces-286444-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:58:10 +0200
+	id uI9yE1fG2GlQiAgAu9opvQ
+	(envelope-from <devicetree+bounces-286451-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 11:43:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E9C63D46AE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:58:10 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB5153D51D7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 11:43:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 829513006B51
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 08:58:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3C7DF3032A6D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 09:39:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2735E3AEF49;
-	Fri, 10 Apr 2026 08:58:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qW/kT/NF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DEA33C6A32;
+	Fri, 10 Apr 2026 09:36:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2137.outbound.protection.partner.outlook.cn [139.219.146.137])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0143ACA52
-	for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 08:58:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCF7B3C5DA6;
+	Fri, 10 Apr 2026 09:36:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.137
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775811486; cv=pass; b=oXye/DxepMYQ/X3O6dhI5OK+Cut7owMXcGOCFXK3PnZs0q+M5ZT1tnfLqF2jva7PQWwW1TcIjznbE5fDPRwi0yF8YX5gZUvIM0IUtxhy5joqQpUz9mTXQ5lSW5Q6ydbmv7ilIAD0qg7WwsME2q7fZvqRDMAdl0CaRg5cqWfKIvA=
+	t=1775813788; cv=fail; b=YkY8/wVLKymTg6z9z0d3TEsGxIwWWl5H0P0BPCODHvXs7gJQV2ygLgyixRSwkOw4IQY5fPBY4m6P+XNpEZyHRikEbh4rIuS+WUjQJLiZCCUz7cRBkfQOZxoyxJX8o4oZ8l1r4BA/ywQv0MExes6pGwUStrS49zm3WXmnfbYwiLc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775811486; c=relaxed/simple;
-	bh=iaYKT1sl2Tr/cLZwPA0Zvqg9ubw9wCPbruk9AwA0cek=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FZ5Mowxn1lgHK1v0t9YbkcjINkGUZE5IIw3Miagum13+Dig/W469fFsI+Xbmpf57LVQby60y+dY5XqTTj6kt/eV3bxrVuBixKWARbOUMoGmIYYb/v/3G1UTmos0jn08x0t24N5GAYTkDsfjls8tvroMmQUzUihsSOmucKsMlmQ4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qW/kT/NF; arc=pass smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5a283c44478so2802079e87.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 01:58:03 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775811482; cv=none;
-        d=google.com; s=arc-20240605;
-        b=ENbCAW/YvuTUolgtildNrtFFSZbRxOVq0ZE32dqSmKSUb7LEPsrYhQ8O+9zsm3tNsJ
-         3z1ZBmlXAHbqjfU2zkQK6+D1/C/uH/MTpsW5KMyY1mIa0vWAQyEAxV5PB8DuAOCI+w6V
-         /8N1aGHuMmSrA9glVPdToyMqeaf3TMEcRqvy1bKpKOciuByKyYxZJ3AoIgffIS/JY+zz
-         DR2gZ1TuTfiz4mIJR3+QGV+/BZ0QLx5zg2XH7WhN/HInySTpzIzjUjyXOvtaUKkiCVu+
-         Bftexu8X3jHlkQzaqmd+GsG4w6G5sJtYZ18G+uut8n1R8uoSeLZfRSX1Vo3wgAa8OyC+
-         xAdQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=Z1vmmkZcYrQbBuSPIBwVZCij2+2X5p9lbMUk5Tsb6wM=;
-        fh=LRPomeurC2EfOgI1qeBedWA8zbwE3HSXGJMEFW648qI=;
-        b=LYIBd95mp8B3eQLUD15MfaAbWJdtYNocCJ6RopkUQEZN0u1AxsuoyOcfoflwZPNe8Q
-         RU23W9wLAmGano9zigwtZY6hX5BZLDYJUEPH4MRTtmwOb6vKp/yZ7ghNPWlbK2gchPsK
-         gCYeOoPeaPQPMN3ctWcSeXXnxYX+6doIUmJTvs0hpQwdJQa/ZqBR+j+LyxU2scKdvZae
-         jNtcAPZsM/FM9VuYi0EcLL5gfXSwQo7mtN31FfqnquaXK9uw1DJs1Wy3hMkNguXlsNnY
-         1J7meA9oviqjBFoppkF7+CYzdiOOFHYgMYIWXMAlWLoNwVWt6MtrRbXWoACcVjkA9mBV
-         /kyw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1775811482; x=1776416282; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z1vmmkZcYrQbBuSPIBwVZCij2+2X5p9lbMUk5Tsb6wM=;
-        b=qW/kT/NFo+XhkEqKBwLgGwFMLH+rH4rsWbCuYQHqlqBoIVsGX3AFU8FsJ5LyrqMCgG
-         u92Rw8ZKiwWCdVr5TrFD6S2Q3lVNWvAwtBiazEHryzoWM68NyEO3tEZnsuMlG94qPAaS
-         REZjxiVsOILaxQzEsmhRI72TSVZia7M8617I8HHJmiQwAUwYsfJjHTHu+GiehjhH9V+x
-         CcjNZzJGVadFLKT4V9EPy5EPxtzSba0ZySbSZ2s2xXc3ELq7zTclCF7ufUKFEeoUvt26
-         gCsJlqO6pG2y6xGY5DqKd4T8xd847j+lbuibBPZ9HLAFJl2NsXEWieUjMOSmtuJVGnaa
-         rAWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775811482; x=1776416282;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z1vmmkZcYrQbBuSPIBwVZCij2+2X5p9lbMUk5Tsb6wM=;
-        b=GwsGA0G51kg5+unde0elPfZAmtFJJVpVSAjfpRVN+Xn4l748tL/UquwrBHYv35pe1C
-         ilLDLXlwaw0aEKnTHukmoDzrzNc8MkOOOUqoI7g4cUjWnrOwO31t58ntUOl7WhLRD1uv
-         0MT2XVvnLyT3LRmSvdDpb70Mfh61/0VGvWflY9qCWsIE83I1Z75L8aQaYHtq3yB3Npte
-         Wwv2RdOgrQcoN92AGjRzk4JkiVjmxYF1cNLqkCeAmnuE88nrc0Ff7lQHEVNn9dsxrJv1
-         MkNaYPnkqq/HOzWnDAawzPIj3EPKPQzmPSCecJrrV8bhuMmJpEAyvO/3IMSKS5mhc+4Z
-         Z0kQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWgqjk3yxWrRWBvdvMWwJ7mOp+UReNkzu1nvdJzcSadxQDdoHyw802yGAc6rJ6sREaGKpvdc+PyUe0A@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyO7Im5vibR9yIcVt2K2lDXOmYtu8EDO1LwQ3G5rCw75zRKSjH
-	Pb3GqbcUJQ96lXUBoUdYaWj2Es05+JxfebdpJ7gwLy0099ooUFmCcrtI4SxDiP4IgHw+ez23BuD
-	xliCHSsokozdNOR9yVKgXRTDyuFeQZUowCd4s18FruJiFKJymq43xG/A=
-X-Gm-Gg: AeBDiet2Wi2NYvjKIuehzm5wdNC2Gzk7W8XaLclrslQfIlq9TFtq4Eg3iRjfR9bgokp
-	5U7mYAZkLTDDuqc5IQGYikYxtoS91z73iP1ssC0HKmlhZcgM/6fKEN4Ey/kcgiiSskOlVgitMo2
-	j4Z7tU/2PAm0mWdrP2eNsz7/N+D64LE2MLHXXj7oDFoY0xCuRxrLExztsIwqNtR2TS3Z2nQczxl
-	S1P9do871B4mnO7+wSLQpo6gSMDp8QyNF2HcOm2/zkn/8L+cffPpstN8IoYfyWlKh9AM9qKq9IN
-	Boh5xPfb
-X-Received: by 2002:a05:6512:1396:b0:5a2:c8d9:ec4a with SMTP id
- 2adb3069b0e04-5a3ef9127demr836109e87.19.1775811482189; Fri, 10 Apr 2026
- 01:58:02 -0700 (PDT)
+	s=arc-20240116; t=1775813788; c=relaxed/simple;
+	bh=hqg5SJgcvuuW2m8ON8F8BrXMSmbQwgo2rZ/iJZBJ/0U=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Odz9ej3TGybLcLSYYmRoiQhYNjJwrDlGS49mAJyIw7yqxq9BmXDtB27NV0XNxVoUH1OQnX3Kt0f2tciceNQvRwiknAEEHZG/eoQV7+8kSN7n2dmbu/hsxlL/rmLSKCSSN6Ix0NLI803xjjhbgl5UEKmzz9pVyoPj20GX3YtgBqY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.137
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mgPw19BgXWKJngDXSQ4uYuOKFPTwO4ttPDJS4F8HMul5q/fkeatFt8zYqQx4NwX2gkqWN7xya05DNKRCS091yGjRqdNFJauXBTcRcxnHaDUYrV9zWNkNLksrK7cFguQtbqnsWT27G5j8e2yFAD4rlutxSpTE7iVuw61mtopp9VouOxUkKgIlxy5FvCck9icYff0SO1SJq3QlTa9FywhP4fjQPNDg0egLrKj1uGx6oGbxue99w+eh6vrq9J/+R32O2ZMERBNb1f6X5DdybtEC8mHw0ziHjf8a6I7rj9+jDivkQ9KQ0ysuKbeIv4gnYixg1sID4O0htJJy6whPuLAySQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9ALqT10FsuMzvmum3euKKZmbOSU7+U/9nu8Xmh4dbM0=;
+ b=ayyTc3GmMIgB/uGnarf+UaIYHxDheLshD+7Id/gJYVGluuoENCsVAI86nWqB6l8NbYcoS4qUYZIMneOV5ZRPqc+Cja7qqYHd3LERoAwaGLWh3fbyAtedrtqsmCh8GNzsZLKok9VaRsmd3KXdxUzCW7yKqR6K2B2JKcjj66h3gu1b3HlG5DnmY0RiYKYMZ/kWvoQHmXY1BBHReqX+si6KDaIO0pZmGXc+owr5AyLCGxJWzRA93+yszTK7FBQWrsfH3g7RdWVuUDoGT3GXEgji4QWYat6dKs+QPpy3QrQ6eOnKEVZhTeNITeofdjRPXmFvrD+zAWFQlZ5XGhrHoIv0Yw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:17::6) by ZQ4PR01MB1218.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:17::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.42; Fri, 10 Apr
+ 2026 09:01:14 +0000
+Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+ ([fe80::e7d4:256c:b066:850d]) by
+ ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%5])
+ with mapi id 15.20.9769.020; Fri, 10 Apr 2026 09:01:14 +0000
+From: Changhuang Liang <changhuang.liang@starfivetech.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	Changhuang Liang <changhuang.liang@starfivetech.com>
+Subject: [PATCH v1 0/5] Add interrupt controller for JHB100 SoC
+Date: Fri, 10 Apr 2026 02:01:01 -0700
+Message-Id: <20260410090106.622781-1-changhuang.liang@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: NT0PR01CA0017.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510::6) To ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:17::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260310-topic-lpm-pmdomain-child-ids-v1-0-5361687a18ff@baylibre.com>
- <20260310-topic-lpm-pmdomain-child-ids-v1-2-5361687a18ff@baylibre.com>
- <CAPDyKFquJ7K4NcWuKMr1sjrnFVVPGAeLCiSF_FhvJf9Frbn1uA@mail.gmail.com> <7h4iljskvz.fsf@baylibre.com>
-In-Reply-To: <7h4iljskvz.fsf@baylibre.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 10 Apr 2026 10:57:24 +0200
-X-Gm-Features: AQROBzDhT0oW3z8LEIG1Euo0M3-dmugaTMajHzsT9TLnPM4O-8m4J3dOe0QMXE4
-Message-ID: <CAPDyKFrR2zyMFXTAkKs1XRgB-u5jSP256g730s=7SLuOZKsKVg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] pmdomain: core: add support for power-domains-child-ids
-To: Kevin Hilman <khilman@baylibre.com>
-Cc: Rob Herring <robh@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1218:EE_
+X-MS-Office365-Filtering-Correlation-Id: fbc8bd3b-c0f8-402e-cfec-08de96dfb823
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|1800799024|366016|56012099003|38350700014|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	C23vM9yaGKYfbt73g/3/FzNEbBJbuic0+J40SpkZl8PZy/8PnPbBYRFQCIbtSV7LBmo0AK5RGnX4ZCyHqxDdXNnVVevuHbfqQ7tNo+7DTfT/aZ4lGlyPWMV2OnQsXGfJvzfPE1b6tb/ff7LLVgUjy5o4nGITcNxLvRlQRWgQcBnFZzc8bJE7ITY29GPoaqqPKXj6WqFzpK0xtmOYQpHp4Dc4h5MkI1BLYBXKxAK6u+yc/nWZK61G1GGvwybu19//uCqqZ+f5mJT4LbBXFWXOuS+We9EcFDPN5pV1GdchbbW9QwNCALRb2tu6o8Jiv4Thg8Mx/0ZbKX/gUBePBFYGCYSxm3lJQvK0yOfFuEQTS5kRHbILO2CaxKVkRGG6ZkinxvTQHYZWWnqEJfrux6Q6Il2NHa9zjavzkp9PSc49XX6td36k0YhZggDjJxSQdNsiAf5u3I5NI9wPwT7Oc4aLuGndcBMwLrJXBE2JrYkGCxlkRIMilSRsLH7DV+teGywZ2bdQcNe6yy4vHjB0NCixhiH8kx6ibdsegrTRJS51sd9gnF0ouPcng43gjs+8oyD0frTGgwmIwb/5se3fkafuzw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(366016)(56012099003)(38350700014)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?AzVnNlNUjvq8ukAfdg0LU8RzexBK42uIp8fJzu2bNoeZNlxOxGm6DD9fEdPB?=
+ =?us-ascii?Q?Dnld5n/b1VRkAJblOFX6Jt7UuDzvP5IBf1E1Fd23xbT4yZ07y8VUbg0+3ghx?=
+ =?us-ascii?Q?idqekBSY3+jhsLgK7fxG8BzmncweD0G8w0JuhCqg/Zbhis6Z23R4qgjw9Y10?=
+ =?us-ascii?Q?9i6btX8zFsdzv9+NNVmGUiI+WSuBk1ZdN6heRUnc2i+qsZeda6rf7NhRgrja?=
+ =?us-ascii?Q?nfKeLBXOc3tAUUk8ayQgrD4sX1l+j1//+wkU9pr1wBO6ZsTOPFYTIp4y0tVa?=
+ =?us-ascii?Q?2TYveP5GD3grF9LA6hMswCgjGOe8TYvT0nvntV5aOD9zB9cykVSiZ9DcgYFE?=
+ =?us-ascii?Q?vUc+pI8A9I++KFx/1x1Yfvn3VM1w+gBJTUiJcTVBUX7F8xOHjszl6dCHRKtA?=
+ =?us-ascii?Q?cXNbi9YH7Qezq3KyzX9uL0/FSv2TMwRc5cTuhvkXDADWWHJyehpIGpyxgwNt?=
+ =?us-ascii?Q?/JUw7Nh/I+SU+4jnuZIExdM6cjyYk2RjCOOpvS+ExqTf3F+cfk42HTHNiEb5?=
+ =?us-ascii?Q?+fZJUKPFOTwHJwmfdvhzuIpSGPhtGLiSDjj/owpVoGom5GYnTvP6RL9Iwh+g?=
+ =?us-ascii?Q?rNWX+NuechLOcOZL6PrUBS2DsAjweY/cE0VDL1dm8BRU9DMsLAm46FZUcBNy?=
+ =?us-ascii?Q?w5IGuNtjpIgQn7dZ6L02B+e8VB3KeIlHztgLERNLezhQ52YurjTuE2VLMFYP?=
+ =?us-ascii?Q?wWlCnwDJZXIwOUUMPrPneXP/AwNdFAkRfoDa3aUrXe2qS2jM0BkWBD+K2XHI?=
+ =?us-ascii?Q?6zz0RkYK4Ze+sbAf4O65+eDjoYirD/GRrBw38HcPXd+cjmoZ658fsi0glPz8?=
+ =?us-ascii?Q?BL4erdaceK9GwsY8O9u3fa7k0GuESfm2a7h0Ut0RZCntPvxH/9Hh04jpzH7N?=
+ =?us-ascii?Q?XcdMqzciG/cN7V/L0aPF2qOY8DD9IKxjMNeSUGGKRbJwh+NbaZkhTB171SU3?=
+ =?us-ascii?Q?RNfW/pf7ojBWNN1r/zTDWRz3TW3VZNSyvM4qeg9sfc4md+Qo3x0znT1oQe9H?=
+ =?us-ascii?Q?FOhHwT+1s5JLIQoW5LtquAciMPqEivUdLGExJdT8HP+nQzNh180D9MHxXK0q?=
+ =?us-ascii?Q?aFhSwwv99AEk9eaGDQ0PtBBqGa4FRwLp7Vfvt0wrutJPb3L2j7ETukvX1P0U?=
+ =?us-ascii?Q?GUtODVxw3aVC7r5QUoGe1eUrFeO9wDjGj2PUGddFJrmqfvrncq+x21NgZL4T?=
+ =?us-ascii?Q?3FI8LhDJJoyCqGx252YRtQe2zdmR83g67GTQXcrTSY0di1y8NIACq7cgCsU3?=
+ =?us-ascii?Q?fjVf92Y9gDuKmW2MkJGLKA+OZSfof6ZVh9PDuX1seVUop0KCgG911e9mEbP6?=
+ =?us-ascii?Q?3KChX+8uDT1pa1RxLoulxC2He5CCPbxn/wTVmf9+jb98BeGE5DtwThn5zCm5?=
+ =?us-ascii?Q?DM6hFuoYxz2ogogrdZi1CGnk4gtIKJnHC7Fo24NMzu0ANNsN0BfpwKAjPeXJ?=
+ =?us-ascii?Q?m+TqR4tZDyuWIckEomNQ2pzgeDLP//JhqGiEBdQ0B6lZlGi6uPXSHuNd9Bwc?=
+ =?us-ascii?Q?ftJqYzjqF92o6441HkNenHZoD4ge6M2pwHXGNwG+f7SYZ1GY9YtN93oxQB3J?=
+ =?us-ascii?Q?hf6yQ/6V33AxF0n4i00G890B5kp2qCb6YC4FGnK5YuvrDJki6Y51dyIMbf8v?=
+ =?us-ascii?Q?N6wtC+CfR0+8hhvZU/wH4/PRzYwXjh+2bpsGaCGO79VKIQ+HFYJdRfFx4ETm?=
+ =?us-ascii?Q?HbXsiiaiYmzBL/DijyX1j0YR8YE5Sj05/FlsLHRyO5Jr5t27EEcVVekEZv21?=
+ =?us-ascii?Q?qn39u5AgahpYjOeqoI2/Dza5oMCKwSGdUpDPJKUl3sLZDgids6Px?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbc8bd3b-c0f8-402e-cfec-08de96dfb823
+X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 09:01:14.6373
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: l+cV3WJC2UBs9LRo4mnDODk7JhRRMo1DOZFfKxCCGVo/9BuG+JLW3mf9xrZ/dlQm8oVIkUefx9OL795Bb974IY//zpn9nn4naegpvArkrvscZrXhopsEyXLmG7yw60Tt
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1218
+X-Spamd-Result: default: False [5.04 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286444-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-286451-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	GREYLIST(0.00)[pass,meta];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid,0.0.0.11:email,baylibre.com:email]
-X-Rspamd-Queue-Id: 1E9C63D46AE
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,starfivetech.com:mid]
+X-Rspamd-Queue-Id: AB5153D51D7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 10 Apr 2026 at 02:45, Kevin Hilman <khilman@baylibre.com> wrote:
->
-> Ulf Hansson <ulf.hansson@linaro.org> writes:
->
-> > On Wed, 11 Mar 2026 at 01:19, Kevin Hilman (TI) <khilman@baylibre.com> wrote:
-> >>
-> >> Currently, PM domains can only support hierarchy for simple
-> >> providers (e.g. ones with #power-domain-cells = 0).
-> >>
-> >> Add support for oncell providers as well by adding a new property
-> >> `power-domains-child-ids` to describe the parent/child relationship.
-> >>
-> >> For example, an SCMI PM domain provider has multiple domains, each of
-> >> which might be a child of diffeent parent domains. In this example,
-> >> the parent domains are MAIN_PD and WKUP_PD:
-> >>
-> >>     scmi_pds: protocol@11 {
-> >>         reg = <0x11>;
-> >>         #power-domain-cells = <1>;
-> >>         power-domains = <&MAIN_PD>, <&WKUP_PD>;
-> >>         power-domains-child-ids = <15>, <19>;
-> >>     };
-> >>
-> >> With this example using the new property, SCMI PM domain 15 becomes a
-> >> child domain of MAIN_PD, and SCMI domain 19 becomes a child domain of
-> >> WKUP_PD.
-> >>
-> >> To support this feature, add two new core functions
-> >>
-> >> - of_genpd_add_child_ids()
-> >> - of_genpd_remove_child_ids()
-> >>
-> >> which can be called by pmdomain providers to add/remove child domains
-> >> if they support the new property power-domains-child-ids.
-> >>
-> >> Signed-off-by: Kevin Hilman (TI) <khilman@baylibre.com>
-> >
-> > Thanks for working on this! It certainly is a missing feature!
->
-> You're welcome, thanks for the detailed review.
->
-> >> ---
-> >>  drivers/pmdomain/core.c   | 169 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-> >>  include/linux/pm_domain.h |  16 ++++++++++++++++
-> >>  2 files changed, 185 insertions(+)
-> >>
-> >> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
-> >> index 61c2277c9ce3..acb45dd540b7 100644
-> >> --- a/drivers/pmdomain/core.c
-> >> +++ b/drivers/pmdomain/core.c
-> >> @@ -2909,6 +2909,175 @@ static struct generic_pm_domain *genpd_get_from_provider(
-> >>         return genpd;
-> >>  }
-> >>
-> >> +/**
-> >> + * of_genpd_add_child_ids() - Parse power-domains-child-ids property
-> >> + * @np: Device node pointer associated with the PM domain provider.
-> >> + * @data: Pointer to the onecell data associated with the PM domain provider.
-> >> + *
-> >> + * Parse the power-domains and power-domains-child-ids properties to establish
-> >> + * parent-child relationships for PM domains. The power-domains property lists
-> >> + * parent domains, and power-domains-child-ids lists which child domain IDs
-> >> + * should be associated with each parent.
-> >> + *
-> >> + * Returns 0 on success, -ENOENT if properties don't exist, or negative error code.
-> >
-> > I think we should avoid returning specific error codes for specific
-> > errors, simply because it usually becomes messy.
-> >
-> > If I understand correctly the intent here is to allow the caller to
-> > check for -ENOENT and potentially avoid bailing out as it may not
-> > really be an error, right?
->
-> Right, -ENOENT is not an error of parsing, it's to indicate that there
-> are no child-ids to be parsed.
->
-> > Perhaps a better option is to return the number of children for whom
-> > we successfully assigned parents. Hence 0 or a positive value allows
-> > the caller to understand what happened. More importantly, a negative
-> > error code then really becomes an error for the caller to consider.
->
-> I explored this a bit, but it gets messy quick.  It means we have to
-> track cases where only some of the children were added as well as when
-> all children were added.   Personally, I think this should be an "all or
-> nothing" thing.  If all the children cannot be parsed/added, then none
-> of them should be added.
->
-> This also allows the remove to not have to care about how many were
-> added, and just remove them all, with the additional benefit of not
-> having to track the state of how many children were successfully added.
->
+This patchset adds external interrupt controller driver for the StarFive
+JHB100 SoC. It supports up to 64 interrupt sources, and both level and
+edge trigger types.
 
-I fully agree, it should be all or nothing. Failing with one
-child/parent should end up with an error code being returned.
+Changhuang Liang (4):
+  dt-bindings: interrupt-controller: Convert the word "jh8100" to
+    "jhb100"
+  irqchip: starfive: Convert the word "jh8100" to "jhb100"
+  irqchip: starfive: Use devm_ interfaces to simplify resource release
+  irqchip: starfive: Implement irq_set_type and irq_ack hooks
 
-That said, it still seems to make perfect sense to return the number
-of children for whom we assigned parents for, no?
+Mason Huo (1):
+  irqchip: starfive: Increase the interrupt source number up to 64
 
-[...]
+ ...00-intc.yaml => starfive,jhb100-intc.yaml} |  12 +-
+ MAINTAINERS                                   |   6 +-
+ drivers/irqchip/Kconfig                       |   6 +-
+ drivers/irqchip/Makefile                      |   2 +-
+ drivers/irqchip/irq-starfive-jh8100-intc.c    | 207 -------------
+ drivers/irqchip/irq-starfive-jhb100-intc.c    | 278 ++++++++++++++++++
+ 6 files changed, 289 insertions(+), 222 deletions(-)
+ rename Documentation/devicetree/bindings/interrupt-controller/{starfive,jh8100-intc.yaml => starfive,jhb100-intc.yaml} (81%)
+ delete mode 100644 drivers/irqchip/irq-starfive-jh8100-intc.c
+ create mode 100644 drivers/irqchip/irq-starfive-jhb100-intc.c
 
-> >> +int of_genpd_remove_child_ids(struct device_node *np,
-> >> +                          struct genpd_onecell_data *data)
-> >> +{
-> >> +       struct of_phandle_args parent_args;
-> >> +       struct generic_pm_domain *parent_genpd, *child_genpd;
-> >> +       struct of_phandle_iterator it;
-> >> +       const struct property *prop;
-> >> +       const __be32 *item;
-> >> +       u32 child_id;
-> >> +       int ret;
-> >> +
-> >> +       /* Check if both properties exist */
-> >> +       if (of_count_phandle_with_args(np, "power-domains", "#power-domain-cells") <= 0)
-> >> +               return -ENOENT;
-> >> +
-> >> +       prop = of_find_property(np, "power-domains-child-ids", NULL);
-> >> +       if (!prop)
-> >> +               return -ENOENT;
-> >> +
-> >> +       item = of_prop_next_u32(prop, NULL, &child_id);
-> >
-> > Similar comments as for of_genpd_add_child_ids().
-> >
-> > Moreover, I think we should remove the children in the reverse order
-> > of how we added them.
->
-> I'm curious why does the order matter?  The children are all siblings
-> (no hierarchy), so why would the order be important?
-
-It might not be that important, but generally, it seems like a good
-idea to me to reverse the order when undoing things.
-
->
-> I'm not ware of a phandle iterator/helper to parse in the reverse, so
-> that would mean iterating once to create a list, and then walking it in
-> reverse.  Seems unnecessary.
-
-Sure, I leave the call to you, to see what fits best.
-
-Kind regards
-Uffe
+--
+2.25.1
 
