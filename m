@@ -1,198 +1,172 @@
-Return-Path: <devicetree+bounces-286475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286553-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YPiqBnrW2GmuiwgAu9opvQ
-	(envelope-from <devicetree+bounces-286475-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:52:42 +0200
+	id eN3mDt0n2WkPmwgAu9opvQ
+	(envelope-from <devicetree+bounces-286553-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 18:39:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FF2C3D5DCE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:52:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6BCC3DA852
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 18:39:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 949A4301379C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:47:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8F43D302EEF7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:28:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 411F7395D90;
-	Fri, 10 Apr 2026 10:47:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA453DBD5E;
+	Fri, 10 Apr 2026 16:28:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mULBR3uW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cF4CWjKY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117083947AA;
-	Fri, 10 Apr 2026 10:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B74433DA5D1;
+	Fri, 10 Apr 2026 16:28:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775818038; cv=none; b=niDYXAGRc21k+njfmvrFGkxiozvhFd3x4veEtnF4ipahwQ7O21bc7h0xB7lzusRmSRoHxhq3v5Qc88TKpVHUzWwerMpIrxf05RJtr/zc4quQAyS7RLdXZytAg4FFj+McDmf03mZ/9snaS4gzC6sb15G877FVNtijG9nuKVnnJbU=
+	t=1775838503; cv=none; b=VpddTh+3K6oGJ/+NfgCN1bg6yiMFY5BUSYYp3OS0lZ5uasJu5NipZ2SZ2HXUmVAe4vsQkmULz99F1xx2buuYde/Co8iSPtvIK2p+BF3aBIXWbodqDrabfPn0I99aJGF0uyLOZHVo8uXJViVNJv8E8rePttd0aVWqMZfO3amGuyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775818038; c=relaxed/simple;
-	bh=VxQEfGXpxpMHA8FzWWQyJjc+5K8xS5fjOzKEGbCASu8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UofdLm/5E15uF7A5q8kDMkNu8J1fGtmTj8OrkwkPaBZp/CrWJvBfLnfalmf+NMRUN9Te/TU8LFVEP9Ukfx3pwR1nruIW/2RkDn/LW/WF7Rhq8KNq3tsOaWcxexTFCB37cz42mP6PDKMMjIDpxmwuOAQdknnZsmbP4ynYa41uc+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mULBR3uW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C2F9C19421;
-	Fri, 10 Apr 2026 10:47:16 +0000 (UTC)
+	s=arc-20240116; t=1775838503; c=relaxed/simple;
+	bh=KDJKpZpI8gF/8EhfJCOR6TdwnZwUN1VzGf+Iv+pFLrw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=jKpp2/ESEfkSpcsCJwpOWb4J7eAhV6yhPShhODzROEGF1zeWxqrG5YeojEc/79sW7OUoagnehS8CDMbD2FNagThw0P8828pzJcQ94M0QBH7MY75DWC9hO6w6dxCWc7AmXIVaW6/Skvdtpyoq5HJ1f7uATGQWRjUAFBp7hRWfq+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cF4CWjKY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FA07C19421;
+	Fri, 10 Apr 2026 16:28:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775818037;
-	bh=VxQEfGXpxpMHA8FzWWQyJjc+5K8xS5fjOzKEGbCASu8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mULBR3uWs4EOlT9tU3UKzKzjlb0rgY30yj/W+Pb9GMiI2OzR44gW59dYOqxFMhxfq
-	 pRLpXMjibVodQOgLplqcSYKSPKZ0F5V0WZCn+IZb7Ayl3ACQMBhKgIbpkBen000KmN
-	 1oz2kPtkXSDFfrGFH9JI6cs1WkHV8UWWVDnmiKOD1s9CcTA4uWeW+RlvgB2aKHL6dX
-	 7hYV2IbiYrypSk2ZeYt3YVcBoraq8HWw2n6s+E/1GYnUQ+5T1QLQMdnlJaqa6c2LY1
-	 a9VrwbA70xXwPriIQvPcI/D6gXULqwLUGHlD7N0FsBBCxo/oe9WQwNUW3XafCfpSh+
-	 CI+dsTbVkl3JQ==
-Date: Fri, 10 Apr 2026 12:47:14 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: linux-pwm@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Naushir Patuck <naush@raspberrypi.com>, Stanimir Varbanov <svarbanov@suse.de>
-Subject: Re: [PATCH 2/3] pwm: rp1: Add RP1 PWM controller driver
-Message-ID: <adjU6KqtDEweVRes@monoceros>
-References: <cover.1775223441.git.andrea.porta@suse.com>
- <28e29fbfc20c0b8a115d006233c2759d8f49e639.1775223441.git.andrea.porta@suse.com>
- <adLTwOTbkJ0VQXy6@monoceros>
- <adfQ6Tvst3Vd1Mxe@apocalypse>
- <adiW1tBC8Imd14LD@monoceros>
- <adjQl37-6a--_y3Y@apocalypse>
+	s=k20201202; t=1775838503;
+	bh=KDJKpZpI8gF/8EhfJCOR6TdwnZwUN1VzGf+Iv+pFLrw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=cF4CWjKYbZHWGjXlvofpoDGGZ9TR1yOHT8WIjyxcptxXl3SDv2Lhf75LVrz0mcF6u
+	 qR13YLMv8/btr7sxC/RzG8+B3d+QbgRlQeHYud04zgOxvzK129v/GNVQATcd0ixA6y
+	 eF2kUIwv1WFFTZtM+sfVZ5voPLJmRQwjS0m7xdd7jBRLTWfTzgQgXRFxPPPKcd6D3O
+	 I/ndlNekOfLNpuOa28l/ZlwkjJ+zFXCLTJUWUwFYOxxIrW/D2k9RQohdGYwxvJXq9J
+	 nMFw1d3XIHZDkOtXJQfdQaohIoq5nW0vQE32bJvBmNNN1TNuI+fWXJnCigeCUOzV5K
+	 6nvEkqQKZhqpg==
+From: Mark Brown <broonie@kernel.org>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Sebastian Reichel <sre@kernel.org>, 
+ Alexey Charkov <alchark@flipper.net>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ linux-pm@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ stable@vger.kernel.org
+In-Reply-To: <20260331-bq25792-v6-0-0278fba33eb9@flipper.net>
+References: <20260331-bq25792-v6-0-0278fba33eb9@flipper.net>
+Subject: Re: (subset) [PATCH v6 00/11] Add support for the TI BQ25792
+ battery charger
+Message-Id: <177581837919.1070744.17621563361333380335.b4-ty@b4>
+Date: Fri, 10 Apr 2026 11:52:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="76qgdc7mk3nwvbgo"
-Content-Disposition: inline
-In-Reply-To: <adjQl37-6a--_y3Y@apocalypse>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2478; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=KDJKpZpI8gF/8EhfJCOR6TdwnZwUN1VzGf+Iv+pFLrw=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBp2SUieLBs4yjJAKCjA+O7IjNPiz2mxalGykmUr
+ 8W+kxR+IV+JATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCadklIgAKCRAk1otyXVSH
+ 0K1IB/9cuplHzaSjeGBe910uWfzNFmnewSyag1dJ0LyVf9FdNk80V4JPAjU1+SoeZcdiR6pDJpQ
+ OlU2bvBZmIZbceaDC5bQvv6BsDEWFzoDg3ouwsMLjdFUvh4RqfueUSx7E+Tl72Mxa3gYjmXYAp/
+ LpaTeY4IopVA9rJzRvx8YB0mhpkO5gxHymlpRCEI/3iGUhTULtkMDYqMOU6XafYI4IQVvG4TW9K
+ MumRXYD2ngOxsl5BSI9Rn3B6Yc/L3ApMYA9169OIIZzWRlGfcLtw2G0460s5VIVLMkKYO8f3bh0
+ WSM+4lS49oz9t0NJltdgXsJqagdiTxATRZSSwygtNLBUS+wy
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286475-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ukleinek@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[kernel.org,hotmail.com,gmail.com,flipper.net];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-286553-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6FF2C3D5DCE
+X-Rspamd-Queue-Id: B6BCC3DA852
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Tue, 31 Mar 2026 19:43:37 +0400, Alexey Charkov wrote:
+> Add support for the TI BQ25792 battery charger
+> 
+> This adds support for the TI BQ25792 battery charger, which is similar in
+> overall logic to the BQ25703A, but has a different register layout and
+> slightly different lower-level programming logic.
+> 
+> The series is organized as follows:
+> - Patch 1 adds the new variant to the existing DT binding, including the
+>   changes in electrical characteristics
+> - Patches 2-4 are minor cleanups to the existing BQ25703A OTG regulator
+>   driver, slimming down the code and making it more reusable for the new
+>   BQ25792 variant
+> - Patch 5 is a logical fix to the BQ25703A clamping logic for VSYSMIN
+>   (this is a standalone fix which can be applied independently and may be
+>   backported to stable)
+> - Patches 6-8 are slight refactoring of the existing BQ25703A charger
+>   driver to make it more reusable for the new BQ25792 variant
+> - Patch 9 adds platform data to distinguish between the two variants in
+>   the parent MFD driver, and binds it to the new compatible string
+> - Patches 10-11 add variant-specific code to support the new BQ25792
+>   variant in the regulator part and the charger part respectively,
+>   selected by the platform data added in patch 9
+> 
+> [...]
 
---76qgdc7mk3nwvbgo
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 2/3] pwm: rp1: Add RP1 PWM controller driver
-MIME-Version: 1.0
+Applied to
 
-Hello Andrea,
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.1
 
-On Fri, Apr 10, 2026 at 12:27:35PM +0200, Andrea della Porta wrote:
-> On 08:27 Fri 10 Apr     , Uwe Kleine-K=F6nig wrote:
-> > On Thu, Apr 09, 2026 at 06:16:41PM +0200, Andrea della Porta wrote:
-> > > On 23:45 Sun 05 Apr     , Uwe Kleine-K=F6nig wrote:
-> > > > On Fri, Apr 03, 2026 at 04:31:55PM +0200, Andrea della Porta wrote:
-> > > > > +static void rp1_pwm_free(struct pwm_chip *chip, struct pwm_devic=
-e *pwm)
-> > > > > +{
-> > > > > +	struct rp1_pwm *rp1 =3D pwmchip_get_drvdata(chip);
-> > > > > +	u32 value;
-> > > > > +
-> > > > > +	value =3D readl(rp1->base + PWM_CHANNEL_CTRL(pwm->hwpwm));
-> > > > > +	value &=3D ~PWM_MODE_MASK;
-> > > > > +	writel(value, rp1->base + PWM_CHANNEL_CTRL(pwm->hwpwm));
-> > > > > +
-> > > > > +	rp1_pwm_apply_config(chip, pwm);
-> > > >=20
-> > > > What is the purpose of this call?
-> > >=20
-> > > To update the configuration on the next PWM strobe in order to avoid
-> > > glitches. I'll add a short comment in the code.
-> >=20
-> > .pwm_free() should not touch the hardware configuration. Changing the
-> > pinmuxing (which I guess is the purpose of clearing PWM_MODE_MASK) is
-> > somewhat a grey area. If that saves energy, that's okish. Otherwise
-> > not interfering with the operation of the PWM (e.g. to keep a display on
-> > during kexec or so) is preferred.
->=20
-> Sorry I should've been more clear on this. The pinmux/conf is not changed
-> at all by this mask, only the PWM output mode is. The controller can outp=
-ut
-> several type of waveforms and clearing PWM_MODE_MASK is just setting the
-> controller to output a 0, which is the reset default i.e. the same value
-> as just before exporting the channel.
-> I guess this is the expected behaviour in case of a fan, it should stop
-> spinning in case you unexport the pwm channel, but I see it could be
-> different with displays.
-> Honestly I don't have a strong opinion about that, please just let me
-> know if I should drop that pwm_free entirely.
+Thanks!
 
-Yes, in this case drop the function completely. It's the responsibility
-of the consumer to stop the PWM before releasing it.
+[02/11] regulator: bq257xx: Remove reference to the parent MFD's dev
+        https://git.kernel.org/broonie/regulator/c/aef4d87f2c1f
+[04/11] regulator: bq257xx: Make OTG enable GPIO really optional
+        https://git.kernel.org/broonie/regulator/c/de76a763805d
 
-> > > > > +static int rp1_pwm_resume(struct device *dev)
-> > > > > +{
-> > > > > +	struct rp1_pwm *rp1 =3D dev_get_drvdata(dev);
-> > > > > +
-> > > > > +	return clk_prepare_enable(rp1->clk);
-> > > >=20
-> > > > Hmm, if this fails and then the driver is unbound, the clk operatio=
-ns
-> > > > are not balanced.
-> > >=20
-> > > I'll add some flags to check if the clock is really enabled or not.
-> >=20
-> > To be honest, I guess that is a problem of several drivers, not only in
-> > drivers/pwm. If this complicates the driver, I guess addressing this
-> > isn't very critical.
->=20
-> I'll come up with something, we can always drop this check if deemed
-> too 'noisy'.=20
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Great, thanks
-Uwe
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
---76qgdc7mk3nwvbgo
-Content-Type: application/pgp-signature; name="signature.asc"
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
------BEGIN PGP SIGNATURE-----
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmnY1TAACgkQj4D7WH0S
-/k5KOAf+OQyTYcP/Ul35R81Bb5k+Ezz9DcY8HnJ6dIcCdsGfLlj5xfexCMkbGtki
-MWd1M0fgQCifDkkFHr/CaH6F8l0JUAtqbVdECz8RBUkknrsjrTawj91kp27Va4IC
-FQKRhMbpkOVJLYoU5yKeokBUZmqF/zOrmWhWxHpCKFoQq18yv+cODDR+XbHTNGRz
-8MC7YV7Fqhi1+qp1edRe5nmanvWhdi08sM5Eo9jimEphB1xlqvz8pQlPtFCoFUkp
-2n/t8rSLWRxCMmK/8q6QJ7DdJLQwIt9nw/fBHtoZ0ztNmCFVgC8uK6845uq0EnV0
-O1H3wAu8bpystWDLHqU9/oSMeQ9Nog==
-=J4+0
------END PGP SIGNATURE-----
+Thanks,
+Mark
 
---76qgdc7mk3nwvbgo--
 
