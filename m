@@ -1,163 +1,216 @@
-Return-Path: <devicetree+bounces-286431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286435-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wGfqM3612GnnhAgAu9opvQ
-	(envelope-from <devicetree+bounces-286431-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:31:58 +0200
+	id MHAbDdG12GnnhAgAu9opvQ
+	(envelope-from <devicetree+bounces-286435-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:33:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBD003D41D3
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:31:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38F5B3D422A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:33:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0A1CE3056D8F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 08:22:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3B7013042624
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 08:25:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2DE3AD517;
-	Fri, 10 Apr 2026 08:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD9263ACA46;
+	Fri, 10 Apr 2026 08:25:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="dX7mU6hM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 154D93AD518;
-	Fri, 10 Apr 2026 08:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6F7B3AA4E9;
+	Fri, 10 Apr 2026 08:25:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775809259; cv=none; b=Hf2jKH6kTbazl0qEUlx4xRudxqhpxiWgi8+Pknnd3Iw0taDciTQEOX9mLiJ97I9S84K8cEFg0qSAESfNQFs6vXIfaNPdvbPTOHB6hfwNF2if38HPLQmk7PVylL/AjOm3Liz2VlDM6I9tXgRq7HK7RvD6JejZ4nCRmADdnMugzyg=
+	t=1775809521; cv=none; b=J1UM10LyIvqAXkir8Z6fuytzK0NgLzp/Tm0PPNUnyldImfrOyzYh97qm6awcanDLpr44wP5K4ex83U0grmH4ZTsKGhPA1Zj8A/Cgw3F4O+ep6HSplmK0jLhs2FCXJZsdmmUnzvu7cTFxAc9kEyMwU+Nq3nXWT4rk1sqHU4AGPVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775809259; c=relaxed/simple;
-	bh=OFHEx486+doBb6U2ENiOcMTUx2zJFUWYJ5DRPbM5rb0=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=IJdXLKU22WC41Pd12PSF4/s/3MxqTHtJRAfi2mmY7C5oEA+DBYaCfhDzxvyP0W2kVdoo2SLfv25kjWBA4gKYRtEM4tFv1KmGjVb+B/QUcYVZSYyFkte4o2HFgcEb4vsfNbGjOuhsiOf2kv0BDD+z0GG5nSfAzrzWD3pseinYKeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [10.20.42.101])
-	by gateway (Coremail) with SMTP id _____8BxWcLmsthpeOwjAA--.34410S3;
-	Fri, 10 Apr 2026 16:20:54 +0800 (CST)
-Received: from [10.20.42.101] (unknown [10.20.42.101])
-	by front1 (Coremail) with SMTP id qMiowJCxHOHlsthp9zhqAA--.5473S3;
-	Fri, 10 Apr 2026 16:20:53 +0800 (CST)
-Subject: Re: [PATCH v1 1/2] dt-bindings: i2c: ls2x-i2c: Add clock- related
- properties
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, loongarch@lists.linux.dev
-References: <20260325011852.19079-1-wanghongliang@loongson.cn>
- <20260325011852.19079-2-wanghongliang@loongson.cn>
- <20260325-outstanding-weasel-of-fruition-89db37@quoll>
- <1b5283d8-294c-86de-c3d8-bf205ac24216@loongson.cn>
- <0d7dfe5b-5e2d-4850-8922-16eb6bd9bcae@kernel.org>
- <900dc1a4-66ab-411f-8a32-4c6cf339e8ec@kernel.org>
- <bc22bad4-9825-829d-1df0-a801ebd933d6@loongson.cn>
- <ca984be0-e7a6-4897-bf9f-db9465942c6e@kernel.org>
- <ac62e280-1099-c0bc-f322-ba8b65307053@loongson.cn>
- <2388acbc-a927-4727-a23c-5ecd7c33a926@kernel.org>
- <a08ac3f9-a770-df48-a95b-4b07cd2c0d58@loongson.cn>
- <e10017ce-cda0-5b5e-8cd8-3488aef4cdb0@loongson.cn>
- <dc1c0b6d-b6e6-4a88-8e50-e8316e3dcf5e@kernel.org>
- <0f560e80-3fbb-c24f-51f9-b4425db17867@loongson.cn>
- <3c57275e-0574-46e5-9893-053ae5cc22cb@kernel.org>
-From: Hongliang Wang <wanghongliang@loongson.cn>
-Message-ID: <991204c6-6710-e62c-69ab-d7db91325013@loongson.cn>
-Date: Fri, 10 Apr 2026 16:20:42 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+	s=arc-20240116; t=1775809521; c=relaxed/simple;
+	bh=T1L02dg6RFoVGQ/FlKFkoyuOT9BMekcepcLQCo7lU0s=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=ZFPGk4LxffT5XTUg27V2X8gX/Get9jaPA5KR2ycRN1L7JHh5B7CPASidnJxHeBQMhlyo/CWqQ0CI6doHXdhkNcfbGusxjtiaKLoAJW9/kxkER299f6RFdijPLlaDHHlhQNgR2XHd5MKXYPTAjor/Q53pgpf9YbzqHQBSIW2cdNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=dX7mU6hM; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 63A8OtG022684423, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1775809496; bh=T1L02dg6RFoVGQ/FlKFkoyuOT9BMekcepcLQCo7lU0s=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:MIME-Version;
+	b=dX7mU6hMx7fHwoB6gnF4ogNRjbZpMuQdusgt1SJVYLg6pxmLuFsykZvk9a5ywBncc
+	 ldEyaO5MrSe3ECtX14tY75fbIBXDflKZgl5xToL4g8WTBffZOWaFlf2mmgtTQ/HEvL
+	 YiCq2J5KFm7LMYnwIlGa2bO3aUHPItObAXdJ7FxV+k0UUzwKP7SDSxgksT3rPGmJYc
+	 6pseC9IeZC3Uti3Wk/6czSumGGSVB6hATcFY4GJvvMaOnKITPZ0ASaxbZFFW08wX/K
+	 TVO+VmXOOm6M8Vu4m/UWrCWHrbf9RZ7CZA5R/IlrEf36o8bxehJCAE4RnfRctUA1/A
+	 xyqD8zo5Z8dHw==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.26/5.94) with ESMTPS id 63A8OtG022684423
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 10 Apr 2026 16:24:55 +0800
+Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Fri, 10 Apr 2026 16:24:55 +0800
+Received: from RTKEXHMBS06.realtek.com.tw ([fe80::ed72:3015:2840:4458]) by
+ RTKEXHMBS06.realtek.com.tw ([fe80::ed72:3015:2840:4458%10]) with mapi id
+ 15.02.1748.010; Fri, 10 Apr 2026 16:24:55 +0800
+From: =?big5?B?WXUtQ2h1biBMaW4gW6pMr6enZ10=?= <eleanor.lin@realtek.com>
+To: Brian Masney <bmasney@redhat.com>
+CC: "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org"
+	<sboyd@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        =?big5?B?RWRnYXIgTGVlIFun9anTv9ld?= <cylee12@realtek.com>,
+        "afaerber@suse.com" <afaerber@suse.com>,
+        =?big5?B?SnlhbiBDaG91IFupUKrppndd?=
+	<jyanchou@realtek.com>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-clk@vger.kernel.org"
+	<linux-clk@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "linux-realtek-soc@lists.infradead.org"
+	<linux-realtek-soc@lists.infradead.org>,
+        =?big5?B?SmFtZXMgVGFpIFvAuafTrnBd?=
+	<james.tai@realtek.com>,
+        =?big5?B?Q1lfSHVhbmdbtsDgsq7LXQ==?=
+	<cy.huang@realtek.com>,
+        =?big5?B?U3RhbmxleSBDaGFuZ1up96h8vHdd?=
+	<stanley_chang@realtek.com>
+Subject: RE: [PATCH v6 06/10] clk: realtek: Add support for mux clock
+Thread-Topic: [PATCH v6 06/10] clk: realtek: Add support for mux clock
+Thread-Index: AQHcwnPq8HmZxIkpqUqMP4W7CMRK7rXM6G+AgAsZZvA=
+Date: Fri, 10 Apr 2026 08:24:55 +0000
+Message-ID: <603e602b8a294e0ea26e818226087bb7@realtek.com>
+References: <20260402073957.2742459-1-eleanor.lin@realtek.com>
+ <20260402073957.2742459-7-eleanor.lin@realtek.com>
+ <ac_UkRiqWb6fSc1I@redhat.com>
+In-Reply-To: <ac_UkRiqWb6fSc1I@redhat.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <3c57275e-0574-46e5-9893-053ae5cc22cb@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-CM-TRANSID:qMiowJCxHOHlsthp9zhqAA--.5473S3
-X-CM-SenderInfo: pzdqwxxrqjzxhdqjqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBj93XoW7Kw4rWFy5Wr1fXr1DXw4UWrX_yoW8Wr13pF
-	Z3KF1qyrZ8Aryvv397Kw1xZr1Yyws8Cr4rJry8KryUZw45ZryrtF1fArZ5Wr9Y9r1fA3yj
-	va1kGa4DurZxZagCm3ZEXasCq-sJn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUvIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
-	xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
-	1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv
-	67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
-	AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
-	F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GF
-	ylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
-	xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
-	1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jU
-	sqXUUUUU=
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [0.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
 	MAILLIST(-0.15)[generic];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-286431-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[loongson.cn];
+	TAGGED_FROM(0.00)[bounces-286435-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wanghongliang@loongson.cn,devicetree@vger.kernel.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[realtek.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DBD003D41D3
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:dkim,realtek.com:email,realtek.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 38F5B3D422A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-On 2026/4/10 下午2:42, Krzysztof Kozlowski wrote:
-> On 10/04/2026 05:04, Hongliang Wang wrote:
->> Hi, Krzysztof
->>
->> On 2026/4/9 下午8:11, Krzysztof Kozlowski wrote:
->>> On 09/04/2026 14:03, Hongliang Wang wrote:
->>>> I have a question, the input clock of i2c controller can be described by
->>>> "clocks",
->>>> but there is no existing attribute can describe the divisor of the input
->>>> clock,
->>>> Can I define a new attribute named "clock-div" to describe it in DT
->>>> bindings?
->>>> or do you have any standard solutions for the divisor problem? Thank you.
->>>>
->>> You should determine/calculate the divisor in the driver code, depending
->>> on clocks and bus frequencies. You don't need a property for that, usually.
->> Not only clocks and bus frequencies, but also a third property is required.
->>
->> The frequency divison calculation formula of i2c is
->> Prcescale = clock_a/(clock_div*clock_s)-1
->>
->> There is three parameters in this formula:
->> clock_a represents the input clock, which is described by "clocks",
->> clock_s represents the i2c bus frequency, which is described by
->> "clock-frequency",
->> but there is no existing property to describe clock_div, which has
->> different value
->> on different platform (for example, it is 5 on 7a1000/7a2000, 4 on
->> 2K1000/2K2000,
->> 5.5 on 2K3000.), So I need a property to describe clock_div in this formula.
-> So it is fixed per compatible? Then you do not need.
->
-OK, I will fix the clock_div based on per compatible. thank you.
-> Best regards,
-> Krzysztof
-Best regards,
-Hongliang Wang
-
+SGkgQnJpYW4sDQoNCj4gSGkgWXUtQ2h1biBhbmQgQ2hlbmctWXUsDQo+IA0KPiBPbiBUaHUsIEFw
+ciAwMiwgMjAyNiBhdCAwMzozOTo1M1BNICswODAwLCBZdS1DaHVuIExpbiB3cm90ZToNCj4gPiBG
+cm9tOiBDaGVuZy1ZdSBMZWUgPGN5bGVlMTJAcmVhbHRlay5jb20+DQo+ID4NCj4gPiBBZGQgYSBz
+aW1wbGUgcmVnbWFwLWJhc2VkIGNsa19vcHMgaW1wbGVtZW50YXRpb24gZm9yIFJlYWx0ZWsgbXV4
+IGNsb2Nrcy4NCj4gPg0KPiA+IFRoZSBpbXBsZW1lbnRhdGlvbiBzdXBwb3J0cyBwYXJlbnQgc2Vs
+ZWN0aW9uIGFuZCByYXRlIGRldGVybWluYXRpb24NCj4gPiB0aHJvdWdoIHJlZ21hcC1iYWNrZWQg
+cmVnaXN0ZXIgYWNjZXNzLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogQ2hlbmctWXUgTGVlIDxj
+eWxlZTEyQHJlYWx0ZWsuY29tPg0KPiA+IENvLWRldmVsb3BlZC1ieTogWXUtQ2h1biBMaW4gPGVs
+ZWFub3IubGluQHJlYWx0ZWsuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFl1LUNodW4gTGluIDxl
+bGVhbm9yLmxpbkByZWFsdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiBDaGFuZ2VzIGluIHY2Og0KPiA+
+IC0gQWRkIHRoZSBoZWFkZXJzIHVzZWQgaW4gYyBmaWxlIHRvIGZvbGxvdyB0aGUgIkluY2x1ZGUg
+V2hhdCBZb3UgVXNlIg0KPiBwcmluY2lwbGUuDQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvY2xrL3Jl
+YWx0ZWsvTWFrZWZpbGUgICAgICAgICB8ICAxICsNCj4gPiAgZHJpdmVycy9jbGsvcmVhbHRlay9j
+bGstcmVnbWFwLW11eC5jIHwgNDgNCj4gPiArKysrKysrKysrKysrKysrKysrKysrKysrKysrICBk
+cml2ZXJzL2Nsay9yZWFsdGVrL2Nsay1yZWdtYXAtbXV4LmggfA0KPiA+IDQzICsrKysrKysrKysr
+KysrKysrKysrKysrKysNCj4gPiAgMyBmaWxlcyBjaGFuZ2VkLCA5MiBpbnNlcnRpb25zKCspDQo+
+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2Nsay9yZWFsdGVrL2Nsay1yZWdtYXAtbXV4
+LmMNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvY2xrL3JlYWx0ZWsvY2xrLXJlZ21h
+cC1tdXguaA0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvY2xrL3JlYWx0ZWsvTWFrZWZp
+bGUNCj4gPiBiL2RyaXZlcnMvY2xrL3JlYWx0ZWsvTWFrZWZpbGUgaW5kZXggNzQzNzVmODEyN2Fj
+Li5mOTBkYzU3ZmNmZGIgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9jbGsvcmVhbHRlay9NYWtl
+ZmlsZQ0KPiA+ICsrKyBiL2RyaXZlcnMvY2xrL3JlYWx0ZWsvTWFrZWZpbGUNCj4gPiBAQCAtNSw0
+ICs1LDUgQEAgY2xrLXJ0ay15ICs9IGNvbW1vbi5vDQo+ID4NCj4gPiAgY2xrLXJ0ay15ICs9IGNs
+ay1wbGwubw0KPiA+ICBjbGstcnRrLXkgKz0gY2xrLXJlZ21hcC1nYXRlLm8NCj4gPiArY2xrLXJ0
+ay15ICs9IGNsay1yZWdtYXAtbXV4Lm8NCj4gPiAgY2xrLXJ0ay15ICs9IGZyZXFfdGFibGUubw0K
+PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2Nsay9yZWFsdGVrL2Nsay1yZWdtYXAtbXV4LmMNCj4g
+PiBiL2RyaXZlcnMvY2xrL3JlYWx0ZWsvY2xrLXJlZ21hcC1tdXguYw0KPiA+IG5ldyBmaWxlIG1v
+ZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi4wNjhiMDU2ZDYxZjANCj4gPiAtLS0g
+L2Rldi9udWxsDQo+ID4gKysrIGIvZHJpdmVycy9jbGsvcmVhbHRlay9jbGstcmVnbWFwLW11eC5j
+DQo+ID4gQEAgLTAsMCArMSw0OCBAQA0KPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
+R1BMLTIuMC1vbmx5DQo+ID4gKy8qDQo+ID4gKyAqIENvcHlyaWdodCAoQykgMjAxNyBSZWFsdGVr
+IFNlbWljb25kdWN0b3IgQ29ycG9yYXRpb24NCj4gPiArICogQXV0aG9yOiBDaGVuZy1ZdSBMZWUg
+PGN5bGVlMTJAcmVhbHRlay5jb20+ICAqLw0KPiA+ICsNCj4gPiArI2luY2x1ZGUgPGxpbnV4L3Jl
+Z21hcC5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvY2xrLXByb3ZpZGVyLmg+DQo+IA0KPiBTb3J0
+IHRoZSBpbmNsdWRlcy4NCj4gDQoNCkFjay4NCg0KPiA+ICsjaW5jbHVkZSAiY2xrLXJlZ21hcC1t
+dXguaCINCj4gPiArDQo+ID4gK3N0YXRpYyB1OCBjbGtfcmVnbWFwX211eF9nZXRfcGFyZW50KHN0
+cnVjdCBjbGtfaHcgKmh3KSB7DQo+ID4gKyAgICAgc3RydWN0IGNsa19yZWdtYXBfbXV4ICpjbGtt
+ID0gdG9fY2xrX3JlZ21hcF9tdXgoaHcpOw0KPiA+ICsgICAgIGludCBudW1fcGFyZW50cyA9IGNs
+a19od19nZXRfbnVtX3BhcmVudHMoaHcpOw0KPiA+ICsgICAgIHUzMiB2YWw7DQo+ID4gKyAgICAg
+aW50IHJldDsNCj4gPiArDQo+ID4gKyAgICAgcmV0ID0gcmVnbWFwX3JlYWQoY2xrbS0+Y2xrci5y
+ZWdtYXAsIGNsa20tPm11eF9vZnMsICZ2YWwpOw0KPiA+ICsgICAgIGlmIChyZXQpDQo+ID4gKyAg
+ICAgICAgICAgICByZXR1cm4gMDsNCj4gDQo+IFRoaXMgaXMgYW5vdGhlciBjYXNlIHdoZXJlIGl0
+J2QgYmUgbmljZSB0byBnZXQgdGhlIGdldF9wYXJlbnQgZGVjbGFyYXRpb24gZml4ZWQuDQo+IFN0
+ZXBoZW4gcmVjZW50bHkgbGlua2VkIHRvIHNvbWUgd29yayBvZiBoaXMgZnJvbSAyMDIyIGhlcmUu
+DQo+IA0KPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1jbGsvMTc3NDMxMzA1NTA5LjU0
+MDMuMTUzODYwMjEzMzc1MTc5NzA2NjcNCj4gQGxhem9yLw0KPiANCj4gVGhlcmUncyBub3RoaW5n
+IGZvciB5b3UgdG8gZG8gcmlnaHQgbm93Lg0KPiANCj4gPiArDQo+ID4gKyAgICAgdmFsID0gdmFs
+ID4+IGNsa20tPnNoaWZ0ICYgY2xrbS0+bWFzazsNCj4gDQo+IEkga25vdyB0aGVyZSdzIHRoZSBv
+cmRlciBvZiBvcGVyYXRpb25zLCBob3dldmVyIGZvciBjbGFyaXR5IEkgd291bGQganVzdCBpbmNs
+dWRlDQo+IHNvbWUgKCkgaGVyZSB0byBtYWtlIGl0IGNsZWFyIHRoZSBleHBlY3RlZCBvcmRlci4N
+Cg0KQWNrLg0KDQo+ID4gKw0KPiA+ICsgICAgIGlmICh2YWwgPj0gbnVtX3BhcmVudHMpDQo+IA0K
+PiBSZW1vdmUgbmV3bGluZSBiZWZvcmUgaWYuDQoNCkFjay4NCg0KPiANCj4gPiArICAgICAgICAg
+ICAgIHJldHVybiAwOw0KPiA+ICsNCj4gPiArICAgICByZXR1cm4gdmFsOw0KPiANCj4gT3IgeW91
+IGNvdWxkIGp1c3QgdXNlIGEgdGVybmFyeSBvcGVyYXRvcjoNCj4gDQo+IHJldHVybiB2YWwgPj0g
+bnVtX3BhcmVudHMgPyAwIDogdmFsOw0KPiANCg0KQWNrLg0KDQo+ID4gK30NCj4gPiArDQo+ID4g
+K3N0YXRpYyBpbnQgY2xrX3JlZ21hcF9tdXhfc2V0X3BhcmVudChzdHJ1Y3QgY2xrX2h3ICpodywg
+dTggaW5kZXgpIHsNCj4gPiArICAgICBzdHJ1Y3QgY2xrX3JlZ21hcF9tdXggKmNsa20gPSB0b19j
+bGtfcmVnbWFwX211eChodyk7DQo+ID4gKw0KPiA+ICsgICAgIHJldHVybiByZWdtYXBfdXBkYXRl
+X2JpdHMoY2xrbS0+Y2xrci5yZWdtYXAsIGNsa20tPm11eF9vZnMsDQo+ID4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBjbGttLT5tYXNrIDw8IGNsa20tPnNoaWZ0LCBpbmRleCA8PA0K
+PiA+ICtjbGttLT5zaGlmdCk7IH0NCj4gPiArDQo+ID4gK2NvbnN0IHN0cnVjdCBjbGtfb3BzIHJ0
+a19jbGtfcmVnbWFwX211eF9vcHMgPSB7DQo+ID4gKyAgICAgLnNldF9wYXJlbnQgPSBjbGtfcmVn
+bWFwX211eF9zZXRfcGFyZW50LA0KPiA+ICsgICAgIC5nZXRfcGFyZW50ID0gY2xrX3JlZ21hcF9t
+dXhfZ2V0X3BhcmVudCwNCj4gPiArICAgICAuZGV0ZXJtaW5lX3JhdGUgPSBfX2Nsa19tdXhfZGV0
+ZXJtaW5lX3JhdGUsIH07DQo+ID4gK0VYUE9SVF9TWU1CT0xfTlNfR1BMKHJ0a19jbGtfcmVnbWFw
+X211eF9vcHMsICJSRUFMVEVLX0NMSyIpOw0KPiA+ICsNCj4gPiArY29uc3Qgc3RydWN0IGNsa19v
+cHMgcnRrX2Nsa19yZWdtYXBfbXV4X3JvX29wcyA9IHsNCj4gPiArICAgICAuZ2V0X3BhcmVudCA9
+IGNsa19yZWdtYXBfbXV4X2dldF9wYXJlbnQsIH07DQo+ID4gK0VYUE9SVF9TWU1CT0xfTlNfR1BM
+KHJ0a19jbGtfcmVnbWFwX211eF9yb19vcHMsICJSRUFMVEVLX0NMSyIpOw0KPiANCj4gcnRrX2Ns
+a19yZWdtYXBfbXV4X3JvX29wcyBpcyBleHBvcnRlZCwgaG93ZXZlciB0aGUgZGVjbGFyYXRpb24g
+aXMgbm90DQo+IGFjdHVhbGx5IGRlY2xhcmVkIGluIGFueSBoZWFkZXIgZmlsZXMuDQo+IA0KPiBC
+cmlhbg0KDQpTaW5jZSBpdCBpcyBjdXJyZW50bHkgdW51c2VkLCBJIHdpbGwgZHJvcCB0aGUgJ3J0
+a19jbGtfcmVnbWFwX211eF9yb19vcHMnDQppbXBsZW1lbnRhdGlvbi4NCg0KQmVzdCBSZWdhcmRz
+LA0KWXUtQ2h1bi4NCg==
 
