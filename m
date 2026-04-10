@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-286383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286384-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oKnBIXaY2GkgfggAu9opvQ
-	(envelope-from <devicetree+bounces-286383-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 08:28:06 +0200
+	id +LJ8Laab2GkgfggAu9opvQ
+	(envelope-from <devicetree+bounces-286384-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 08:41:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CD6B3D2C42
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 08:28:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 120DF3D2DF6
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 08:41:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8F0BC300E2B5
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 06:28:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E1C5030071E3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 06:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24409370D44;
-	Fri, 10 Apr 2026 06:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74235386C17;
+	Fri, 10 Apr 2026 06:37:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cpON9+SB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="St8G5kCW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00747334688;
-	Fri, 10 Apr 2026 06:28:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D31D32572F;
+	Fri, 10 Apr 2026 06:37:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775802484; cv=none; b=s6Koa93RvwS4bsgXROdhJgDvT51Lt4INRHdJzwavw2R6F969NzAkSH6uTX7E8QGKM8fuSU0N41bpRgV/abjVjPRHQqVAenWEJxVcKLKbPM9HNp8VLoUzJZgx1FPMCm79kr/3fMGW6EOoHR6lZLRcUARipasJIa8fMblFE+60bwM=
+	t=1775803049; cv=none; b=t3ML+9EhRQUdK3cQcILgjHLex0AqB8ho8atQTctsWz9/rBqMv8p995sctLq6EukQuLUMGYHBf/enWEARJI1C+wW7PLvAnFZFrd7udCIv8oCQs/E/YIe0GMxLYuDGHN5OE3TmAB319p0jy3/TPrDIgKGhpVFjwZbLazRFiT6nZ4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775802484; c=relaxed/simple;
-	bh=0et9MKpqB067gKO1QucfCh1G8Ji90t+DxfnD6e0BESA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aBPj8uMuP1GioeSJOQrfwfkBQcEx8IkPAGjp5+7O/kd565kPba31CtPEGA5yf9R3cD7TPfoLLyvPUvbUmH+j3Lg6e7h5oxWi3epTCxdf7XOCLrU6SMkqV155GONaiCQu9scX02WmcpwLTvRiW2eRdbGWulUGv8tvE6Xg9UbmbQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cpON9+SB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7DD4C19424;
-	Fri, 10 Apr 2026 06:28:00 +0000 (UTC)
+	s=arc-20240116; t=1775803049; c=relaxed/simple;
+	bh=KBa5vFQ5+slgNhst/Sn5LAiOplZSrCZiyilEzz40VKM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=mupndvUd2onzWPeAN6kmLP4z3o5JfMT7m/EIuSrJenAKs5CDkvRm6eey8IA+tPrmfIk+jk8foIzAoaunr6dNPW6eK6OAmKHOG2qKe1j12hC9PScUBJke1IVFXquKhj+/kAUC9rCFugLpD4MZNR4td2lnYNUnozHvp6UZj+lgIXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=St8G5kCW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61163C19421;
+	Fri, 10 Apr 2026 06:37:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775802483;
-	bh=0et9MKpqB067gKO1QucfCh1G8Ji90t+DxfnD6e0BESA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cpON9+SB4lt2PS093yRX0C1Qo++TQ5+q4BbJldN4Q9IsYA28ajS//P6z7l5FRLCWv
-	 T9pidX4e68eVQX4pqZ3cylDOOEVi00Wb8/3QiCbTZjfSE7AmLBzxMqpDqZaodbKZ0+
-	 g/cmMbR7fcxBksw0GFlzA3vxR1ZOHJMmv+ZyVdztxSTn70SXsmEejIyYPHp/E1Idmb
-	 NsKjNRte4bdm8gQw/A9iauGbwNuZZSce7l0h9V4px7bDHS9n7R2IsQImOd/XhENZ6s
-	 qBW8JHYoqTz4EFIskBMROJ7IM1LXCYQOM4B2S031Nh86iR/NJIjcLjV/frqg0M496A
-	 pG3sxpWddKXgA==
-Message-ID: <157b33d6-5c08-4f33-92bf-ce40ab99e109@kernel.org>
-Date: Fri, 10 Apr 2026 08:27:58 +0200
+	s=k20201202; t=1775803049;
+	bh=KBa5vFQ5+slgNhst/Sn5LAiOplZSrCZiyilEzz40VKM=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=St8G5kCWWBv73Tx21AeeenftB/7wOTMX2Hk22nJoiwLQWlsjIOwtIpDjKQGFID+cD
+	 1cUyhR6q4dVGQ1qltXwg3WRzoFsqo6RethlW5T0tD03c9FA8WoEVh1KusDFiUAn6gJ
+	 o+cmFUQAhwiyERFzWp0Ugm39kGUrzdMpLntAM2kIG6/uklG923V6jQISyB8HX4NU//
+	 ZmOvt4O+V4wABzrJAsJctp040TCHQ26bmFhG9MLYGplxeZJyF6JZhdnnunQQMRoHQ1
+	 6ZDONgJksVFIV8wel6qcUWaLqjoFr2R42nB65+F7JDxMlurX60ufn/J2s1f75LnKDy
+	 m+G6sbxXo6wng==
+Message-ID: <9408f231-7a12-425c-b8de-2990d3162bb3@kernel.org>
+Date: Fri, 10 Apr 2026 08:37:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,19 +53,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] ASoC: codecs: wcd937x: Add conditional regulator
- control for wcd937x
-To: Karthik S <karthik.s@oss.qualcomm.com>,
- Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260402070854.2804291-1-karthik.s@oss.qualcomm.com>
- <4d08f16e-856a-46ae-8a41-334ec4d32952@kernel.org>
- <1c203ea9-c674-43b6-a2e5-87054a9e3b83@oss.qualcomm.com>
+Subject: Re: [PATCH 6/6] arm64: defconfig: make Tegra238 and Tegra264 Pinctrl
+ a loadable module
+To: pshete@nvidia.com, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, arnd@arndb.de,
+ bjorn.andersson@oss.qualcomm.com, conor+dt@kernel.org,
+ dmitry.baryshkov@oss.qualcomm.com, ebiggers@kernel.org,
+ geert@linux-m68k.org, jonathanh@nvidia.com, krzk+dt@kernel.org,
+ kuninori.morimoto.gx@renesas.com, linusw@kernel.org,
+ luca.weiss@fairphone.com, michal.simek@amd.com,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, robh@kernel.org, rosenp@gmail.com,
+ sven@kernel.org, thierry.reding@kernel.org, webgeek1234@gmail.com
+References: <20260409131340.168556-1-pshete@nvidia.com>
+ <20260409131340.168556-7-pshete@nvidia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,7 +112,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <1c203ea9-c674-43b6-a2e5-87054a9e3b83@oss.qualcomm.com>
+In-Reply-To: <20260409131340.168556-7-pshete@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -119,59 +120,64 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286383-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com,perex.cz,suse.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-286384-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[nvidia.com,vger.kernel.org,arndb.de,oss.qualcomm.com,kernel.org,linux-m68k.org,renesas.com,fairphone.com,amd.com,bp.renesas.com,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2CD6B3D2C42
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email]
+X-Rspamd-Queue-Id: 120DF3D2DF6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 10/04/2026 07:38, Karthik S wrote:
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml
->>> index f94203798f24..d89fff1f7171 100644
->>> --- a/Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml
->>> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml
->>> @@ -28,6 +28,12 @@ properties:
->>>     vdd-px-supply:
->>>       description: A reference to the 1.8V I/O supply
->>>   
->>> +  qcom,always-on-supply:
->> You described the desired Linux feature or behavior, not the actual
->> hardware. The bindings are about the latter, so instead you need to
->> rephrase the property and its description to match actual hardware
->> capabilities/features/configuration etc.
+On 09/04/2026 15:13, pshete@nvidia.com wrote:
+> From: Prathamesh Shete <pshete@nvidia.com>
 > 
-> Current description in dt-binding:
-> Indicates that the codec supply regulators are always enabled by the 
-> system and must not be requested or enabled by the codec driver.
-> 
-> new description in dt-binding:
-> implies that the codec supply Vdd is on always on rails off the 
-> board/hardware and must not be requested or enabled by the codec driver.
+> Building the Pinctrl driver into the kernel image increases its size.
 
-Still driver stuff. But another point is that kernel handles well always
-on rails, so this property is completely redundant.
+That's obvious.
+
+> These drivers are not required during early boot, build them as a loadable
+> module instead to reduce the kernel image size.
+
+So you replace built-in into module?
+> 
+> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
+> ---
+>  arch/arm64/configs/defconfig | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index dd1ac01ee29b..f525670d3b84 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -711,6 +711,8 @@ CONFIG_PINCTRL_SC8280XP_LPASS_LPI=m
+>  CONFIG_PINCTRL_SM8550_LPASS_LPI=m
+>  CONFIG_PINCTRL_SM8650_LPASS_LPI=m
+>  CONFIG_PINCTRL_SOPHGO_SG2000=y
+> +CONFIG_PINCTRL_TEGRA238=m
+> +CONFIG_PINCTRL_TEGRA264=m
+
+No, you just added as module. Why do we want them in upstream defconfig?
+
+Standard question, already asked Nvidia more than once.
 
 Best regards,
 Krzysztof
