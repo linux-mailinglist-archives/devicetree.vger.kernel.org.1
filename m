@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-286569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286571-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oKY1LlIr2WnhmwgAu9opvQ
-	(envelope-from <devicetree+bounces-286569-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 18:54:42 +0200
+	id MPcOAWQr2WnhmwgAu9opvQ
+	(envelope-from <devicetree+bounces-286571-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 18:55:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 332263DAC13
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 18:54:42 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 719A73DAC29
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 18:54:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 862A4307E645
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:49:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 52903308F82F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:50:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D62F33E025C;
-	Fri, 10 Apr 2026 16:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 936D63E0C73;
+	Fri, 10 Apr 2026 16:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="YfucTBgf"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="SCs982he"
 X-Original-To: devicetree@vger.kernel.org
 Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 748D132B9B5;
-	Fri, 10 Apr 2026 16:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC9143E024C;
+	Fri, 10 Apr 2026 16:49:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775839747; cv=none; b=KUznaSFHJN1/p7+fzIH6CYwkLPH+Dd9jiqa2A5BgSIMHnZuHeTUdxFy8m08nlMsfIhMd3nbgZMZlhL4WlolMgRkGpZM0nL/5Gf9Fjm3HWyTC7rf64tA+J9e2mtJmYGiSjABoLMZ91sC0Go4HQZtbo9kGF3dWwGiSzVdoqrS1vpk=
+	t=1775839747; cv=none; b=Ud8f1qiVhl1c7AlrjPlbYhqqcqaKtbdAhUYxTRaNOmYITgJQVQK+P4DKnd42uXohuYPKhMHA9aakPqWrSqIJz80iMl9WuyNt66Q1/goX8SDXTMgS/NUbbtED1Xc2z3Vo9xd1QxeplMCgQDLJ27q54JylyFfspmQdMV0FgOKJ8ZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1775839747; c=relaxed/simple;
-	bh=jRwx4UOGQKck2LzNwyZ2J1QtyGXYLTMaW9i3FnIY8es=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=P45woTbyDomlOq/R5VK1KIEqlJSPHxjayhPZE0md2L6ZREATwwh5KqZwAEIjCxs6LD5TMp0uURQ0NJtZqPz5BH+DKQm6dlxvE1wCbCK34hTSdVf4BbCAULrTnjbeOwHvYmImHGqea8HVykjFrvr60LLVxm02xGv+Hma0fYmmeBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=YfucTBgf; arc=none smtp.client-ip=65.21.61.41
+	bh=JnH9zOxJRNagemiQv9oYzRiv1ojhPKXvc6QjWfgg8M8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=qHnTKGE3WJJdf0GLd6mzA5O4+OkNEeyXTxemPEWH+A/d2NweFMTFC6ZA7I+QAgH9VyDVICaPAPxYtWIz4SZCRbO/8uwnMhNQw9cHogtgTzXyLLgfRkIjS5vPrTf62tSvCNRpaA9aYfEwnf0tgg4tS/mdYwT0HfVJI8DN737HX4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=SCs982he; arc=none smtp.client-ip=65.21.61.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
 	s=courrier-s1; t=1775839733;
-	bh=jRwx4UOGQKck2LzNwyZ2J1QtyGXYLTMaW9i3FnIY8es=;
-	h=From:Subject:Date:To:Cc;
-	b=YfucTBgflNJIOQvcMxKBLz7nr2jm7lXTPbW9/d9mTYCpN/d1dWQsyVCIDyBP5e1Y1
-	 Pqhy4h10MV0VqHJZizSnnuyTF6uZ3Td5ES+xoNN2AgHG0NtICxpUCKtWcjmvuujN9K
-	 hLPiNgGFcAKKx6GZEKUuEANl0r5lTPT3Zr5LUJKs=
-Subject: [PATCH 0/8] arm64: amlogic: T7 thermal support
-Date: Fri, 10 Apr 2026 18:48:01 +0200
-Message-Id: <20260410-add-thermal-t7-vim4-v1-0-19f2b8da74d7@aliel.fr>
+	bh=JnH9zOxJRNagemiQv9oYzRiv1ojhPKXvc6QjWfgg8M8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=SCs982hejK1UFmNVnWr8K/Cbi6sBubCOwkRe+97Q0ApaylbdBtBf8rC7Gkn9X3Jjo
+	 /lxvY38e3TlgjNq3HyjS7cBYBV171K9g36SJ8xzxIKlBrevwQgkiNfX0qwE868SZBI
+	 OC3TD5CHkDkrlf1yQTgOn/mdwxpULIW/ObwTHcEE=
+Date: Fri, 10 Apr 2026 18:48:02 +0200
+Subject: [PATCH 1/8] dt-bindings: thermal: amlogic: Add support for T7
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,16 +51,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22SzW7bMBCEX8XQOTT4T1EoirxHkMMudxkxlWRXk
- oUUQd69jOxDjOSgwwiYbzCzfG8WngsvTXd4b2beylJOUxXq4dCkHqYXFoWqbrTUXlolBRCJted
- 5hEGsQWxltEJKdkEhUEqqqc7zzLm87dSn56ue+e+lwtfrz2bkZYEd3h1+7WxTv6i9dUclXRVKK
- PFaYDr2l0cYh9NLScd0Gn/vfFhTv3u9A0fB50yYIhoANKZ1iN4llDpIaZORHPjepU3QPrZStdo
- TGaCQUXlGS4E8WQZ00urQ3rtc4IiyhehbYMrOGjIkyfmUVQJLqCVqUL75ul0Nu7Xbl8M0WhOcF
- rVKJRccWHBtDTaHGAx0m74PxWBkdmw1sqI2koqGvYHKdDa6RJh1ChTwx1AjRb2DKNMGQyFxnk9
- nntd/ApGdpWhMDuqW+N2rdm+d/vPM02UYxMwLr0Kjly1jjgS229RPZiv13nZMF5FhEn96IFiub
- wWSSjXemXqvWzbCwp+DjGXtDhO/1YzrZqF5/vj4D0JHDlijAgAA
-X-Change-ID: 20260410-add-thermal-t7-vim4-00e571badcc1
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260410-add-thermal-t7-vim4-v1-1-19f2b8da74d7@aliel.fr>
+References: <20260410-add-thermal-t7-vim4-v1-0-19f2b8da74d7@aliel.fr>
+In-Reply-To: <20260410-add-thermal-t7-vim4-v1-0-19f2b8da74d7@aliel.fr>
 To: Guillaume La Roque <glaroque@baylibre.com>, 
  "Rafael J. Wysocki" <rafael@kernel.org>, 
  Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
@@ -75,20 +69,20 @@ Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1775839729; l=5117;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1775839730; l=2587;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=jRwx4UOGQKck2LzNwyZ2J1QtyGXYLTMaW9i3FnIY8es=;
+ bh=JnH9zOxJRNagemiQv9oYzRiv1ojhPKXvc6QjWfgg8M8=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QKZKN0iBZLq4JJnD9hFGpFuA77wuZbij+XbvPMqB9a6PoQjcYUCNqn5Fr0vudwAL9cxs2ORGTmH
- KpXlnyVuK/AE=
+ QIown5ndRspw9U+KORP1wl++iWagf/WHOEUwIGEnUXSIOxnigvlQa9Dxfaq2ppb6l2j+JeBWAwO
+ W7lGJSZi92Qk=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -100,7 +94,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_NA(0.00)[aliel.fr];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-286569-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286571-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -109,102 +103,97 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid,amlogic.com:email]
-X-Rspamd-Queue-Id: 332263DAC13
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.78.32:email,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid]
+X-Rspamd-Queue-Id: 719A73DAC29
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This series adds thermal monitoring support for the Amlogic T7 SoC,
-used on the Khadas VIM4 board.
+Add the amlogic,t7-thermal compatible for the Amlogic T7 thermal sensor.
 
-The T7 exposes six thermal sensors (a53, a73, gpu, nna, vpu, hevc),
-each accessible through the secure monitor firmware interface rather
-than a directly mapped eFuse register as on older SoCs.
+Unlike existing variants which use a phandle to the ao-secure syscon,
+the T7 relies on a secure monitor interface described by a phandle and
+a sensor index argument.
 
-The series is organized as follows:
-
-- Patch 1 extends the amlogic,t7-thermal DT binding to describe the
-  new amlogic,secure-monitor property.
-- Patches 2-3 extend the Meson secure monitor driver to expose a
-  thermal calibration read command (SMC ID 0x82000047).
-- Patch 4 adds the secure monitor readout path to the amlogic thermal
-  driver and introduces the amlogic,t7-thermal compatible.
-- Patches 5-7 wire up the T7 DTSI with CPU cooling cells, sensor
-  nodes, and thermal zones.
-- Patch 8 extends the Khadas VIM4 DTS to map all thermal zones to the
-  on-board MCU fan controller (states 30–100, corresponding to the
-  FAN_CTRL register range 0x1E–0x64).
+Introduce the amlogic,secure-monitor property as a phandle-array and
+make amlogic,ao-secure or amlogic,secure-monitor conditionally required
+depending on the compatible.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
-Ronald Claveau (8):
-      dt-bindings: thermal: amlogic: Add support for T7
-      firmware: meson: sm: Thermal calibration read via secure monitor
-      firmware: meson: sm: Add thermal calibration SMC call
-      thermal: amlogic: Add support for secure monitor calibration readout
-      arm64: dts: amlogic: t7: Add cooling cells to all CPUs
-      arm64: dts: amlogic: t7: Add thermal sensor nodes
-      arm64: dts: amlogic: t7: Add thermal zones
-      arm64: dts: amlogic: t7: khadas-vim4: Add fan cooling to thermal zones
+ .../bindings/thermal/amlogic,thermal.yaml          | 40 +++++++++++++++++++++-
+ 1 file changed, 39 insertions(+), 1 deletion(-)
 
- .../bindings/thermal/amlogic,thermal.yaml          |  40 +++-
- .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 102 +++++++++
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        | 245 +++++++++++++++++++++
- drivers/firmware/meson/meson_sm.c                  |  19 +-
- drivers/thermal/amlogic_thermal.c                  |  58 ++++-
- include/linux/firmware/meson/meson_sm.h            |   3 +
- 6 files changed, 456 insertions(+), 11 deletions(-)
----
-base-commit: f7b64ed948718290209074a50bb0df17e5944873
-change-id: 20260410-add-thermal-t7-vim4-00e571badcc1
-prerequisite-message-id: <20260326092645.1053261-1-jian.hu@amlogic.com>
-prerequisite-patch-id: f03a086b4137158412b2d47b3de793b858de8dde
-prerequisite-patch-id: 123970c9b29c2090440f2fd71c85d3c6fd8e36de
-prerequisite-patch-id: 3e2e56b0926ba327b520f935df4ced5089bbe503
-prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
-prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
-prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
-prerequisite-change-id: 20260326-add-bcm43752-compatible-e264a4f7973a:v2
-prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
-prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
-prerequisite-change-id: 20260330-fix-invalid-property-bbe54d933f71:v2
-prerequisite-patch-id: 8d675e7a239985c762843515b241f0a2f45f9c92
-prerequisite-change-id: 20260331-fix-aml-t7-null-reset-2b608ebf9da4:v1
-prerequisite-patch-id: 5b5de77af11747ce964404fb827d2ee2bff47ea5
-prerequisite-patch-id: 1e37fc75fed1e533adee0f3e7e6ead1f8ff3c55c
-prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
-prerequisite-patch-id: 2daf583fb5e7449a02bd217d8aca330171b598aa
-prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
-prerequisite-patch-id: d1ddf9b7710e91f8062de83bd7ba55afb2c4c112
-prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
-prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
-prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
-prerequisite-patch-id: 9debd88fa60febed9cd7208f86603b4c2d270520
-prerequisite-patch-id: 314ef9ff0c4d1d15dab1dea9d92aa065f1eac3e9
-prerequisite-change-id: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b:v2
-prerequisite-patch-id: f03a086b4137158412b2d47b3de793b858de8dde
-prerequisite-patch-id: 123970c9b29c2090440f2fd71c85d3c6fd8e36de
-prerequisite-patch-id: 3e2e56b0926ba327b520f935df4ced5089bbe503
-prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
-prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
-prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
-prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
-prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
-prerequisite-patch-id: 8d675e7a239985c762843515b241f0a2f45f9c92
-prerequisite-patch-id: 9debd88fa60febed9cd7208f86603b4c2d270520
-prerequisite-patch-id: 314ef9ff0c4d1d15dab1dea9d92aa065f1eac3e9
-prerequisite-patch-id: 34a2bbfe3ce30c530e69af5083aa26534b2c2560
-prerequisite-patch-id: 406f88d7dabd3a870b358fb53c21686f29eb32b7
-prerequisite-patch-id: d7a75ae3be0f54e0a7e81ccb0043a2f05423c9d0
-prerequisite-patch-id: 5e19dc5ace12b532284246f5c2ff3f214d8a9c4f
-prerequisite-patch-id: d6a87ebcf5246eb67b94ca0908afa3df9f9383fe
-prerequisite-patch-id: 4809bbedf79f59e1abc52c17cffc0b1bbb43d365
-prerequisite-patch-id: c050e8bac4b5491f6c7008a5ccb26f20fad38b46
-prerequisite-patch-id: 30677db8fc57270787245103c0d5acf8791307b0
+diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+index 70b273271754b..85ee73c6e1161 100644
+--- a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+@@ -22,6 +22,7 @@ properties:
+               - amlogic,g12a-ddr-thermal
+           - const: amlogic,g12a-thermal
+       - const: amlogic,a1-cpu-thermal
++      - const: amlogic,t7-thermal
+ 
+   reg:
+     maxItems: 1
+@@ -42,12 +43,40 @@ properties:
+   '#thermal-sensor-cells':
+     const: 0
+ 
++  amlogic,secure-monitor:
++    description: phandle to the secure monitor
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: phandle to the secure monitor
++          - description: sensor index
++
+ required:
+   - compatible
+   - reg
+   - interrupts
+   - clocks
+-  - amlogic,ao-secure
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,g12a-cpu-thermal
++              - amlogic,g12a-ddr-thermal
++              - amlogic,a1-cpu-thermal
++    then:
++      required:
++        - amlogic,ao-secure
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: amlogic,t7-thermal
++    then:
++      required:
++        - amlogic,secure-monitor
+ 
+ unevaluatedProperties: false
+ 
+@@ -62,4 +91,13 @@ examples:
+         #thermal-sensor-cells = <0>;
+         amlogic,ao-secure = <&sec_AO>;
+     };
++  - |
++    a73_tsensor: temperature-sensor@20000 {
++        compatible = "amlogic,t7-thermal";
++        reg = <0x0 0x20000 0x0 0x50>;
++        interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clkc_periphs CLKID_TS>;
++        #thermal-sensor-cells = <0>;
++        amlogic,secure-monitor = <&sm 1>;
++    };
+ ...
 
-Best regards,
 -- 
-Ronald Claveau <linux-kernel-dev@aliel.fr>
+2.49.0
 
 
