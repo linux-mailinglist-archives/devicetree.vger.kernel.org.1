@@ -1,452 +1,319 @@
-Return-Path: <devicetree+bounces-286488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286494-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eE+YGHLh2GnHjAgAu9opvQ
-	(envelope-from <devicetree+bounces-286488-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 13:39:30 +0200
+	id IKRWEmTk2GnHjAgAu9opvQ
+	(envelope-from <devicetree+bounces-286494-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 13:52:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C599F3D6470
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 13:39:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95C803D6638
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 13:52:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 82B00300E3A3
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 11:36:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A4F6730086C1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 11:49:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B7C39D6E9;
-	Fri, 10 Apr 2026 11:36:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41913BBA0D;
+	Fri, 10 Apr 2026 11:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nvEG8M1/"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="tjs3hBbZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D25226D18;
-	Fri, 10 Apr 2026 11:36:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320213A16BA;
+	Fri, 10 Apr 2026 11:49:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775820977; cv=none; b=ayT2Zjm6iw1M92TPuLFhRSZY9UbD3R5MIDBAJVUGkr9741cUWlrw54TD2/Yt/KGjqqXXxLOlt3Z1vFVGk5zjpfOlEwEOWWHLVjEHrxTpoxZQT9c3Rqhq5pFlmBOJdgf6qL/0VySiQYr+SGZTqqlc2SK0nXpuw/ph9+IbqoVkEDs=
+	t=1775821765; cv=none; b=LnaTuVFaQC98PGLOcp4AEnQQfJpusgHdrb+Mea0b7RLLjWHGThSFYo3TXQjayfZysGJeqdctC94gq18hXKtAt2PgR+cV6mI4xFZGgBEWZ0yxLrFvJBIezYfQW7/ronKEkkex9Hm58Dc/nHCkbdazzBiC3KXVfU2pEOOqUGAo+6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775820977; c=relaxed/simple;
-	bh=lsupq9R2pTC92JO1VlNT7Qf59g5WAYg6FcL+y/yXXmg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MT44gJn7elKPLVWeWYkiTxxWYChUM3ppu0J5ASPmvt6xbXhtrv5E3NzaOWMVtq9OElpln+N156peaFKmvCJareFQ9UhmAxgSejP7nbPjXKXtD2ky8/cEm2S35XwBUa2PKKtYSrMRtS5NV/REiWooDPMIvGrbPnieBooP/zc/Fzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nvEG8M1/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D563C19421;
-	Fri, 10 Apr 2026 11:36:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775820977;
-	bh=lsupq9R2pTC92JO1VlNT7Qf59g5WAYg6FcL+y/yXXmg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nvEG8M1/riSuCZSHNHe9ei5Nn3+5EutgtS5Ntm+a/SWcel3WIMXnN0CWRnSq3SQxK
-	 b8ukVge/9AMSClNvyrtKllpC2sqr4jzLboHOQzVg0EpJHK2NHB8vf3eV+aUhhShfOQ
-	 pA//4fa+7bWIGXohwWbLK4iWnFTUsnZ+p789rv2Pj7CDcDuIx+ADBbrm3oTt7AzgJW
-	 sE4DK/Ps9+7I5b+KGdRLpVT28N10qaxVoFTs0veCIYpIq31aWtO0uRllAn4tAYfIga
-	 Aa6PYpIqKVvEApnnoU9Js/BxygodqGDTWnjIRLEBy4msqe2O0hVN7wc/unmgYXKbXT
-	 uiETkdXcU+TKw==
-Date: Fri, 10 Apr 2026 13:36:14 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: media: Add bindings for
- qcom,x1p42100-camss
-Message-ID: <20260410-outgoing-hidden-jaguarundi-699fa0@quoll>
-References: <20260410-purwa_camss-v1-0-eedcf6d9d8ee@oss.qualcomm.com>
- <20260410-purwa_camss-v1-1-eedcf6d9d8ee@oss.qualcomm.com>
+	s=arc-20240116; t=1775821765; c=relaxed/simple;
+	bh=dFT1bSCSFn204+SbjN1sMF0FL925qEN1P8fq2+78wm8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=bJG/KzuNVOOLSCS81m/0zvvjloeShgW9aWJRtss6slZX+lSaP6IyGdSLdadH7ex6tjGsxNg4DMklD9ML9wN0jd4VVx2iSn9p9oPNls7t3Xgo2xcuRG4dN1a21fSd+elc40LzoYx+bMzmmbnD9wl2Q1QoWL4ktsgVyypQdP6V9MY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=tjs3hBbZ; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1775821762; x=1807357762;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=dFT1bSCSFn204+SbjN1sMF0FL925qEN1P8fq2+78wm8=;
+  b=tjs3hBbZYQ7r8ZyVUMqlILG7dpZOzxV29KgKr/5uXOAIx7THg7Vi5nRf
+   LQchzNbYixnG+5epEtmuZ04UPiua+ddtFlTEmUfGIRbwp8NpiFXoCKCyz
+   Xq6AxS5VwBBqWuW1M15MXw4YH/LnfVL0BB7MDWNUXyJW/XqJaT0UPf6NN
+   4Ie4/HuhOECOB+OC5+V9ECLlxXXwLZYfxUdD8fADkGps7DuIM8ww106bA
+   QOnEZ0EsdZsZSnK5DLAehiobjupO4KIfzNMGylS6avdoD2GKMD7T6VvB2
+   5lEsHnxuplnnHVvlBcpOQ+LK26J8J5p2xvfaWBw26rmkvAN7PnTK69pf0
+   w==;
+X-CSE-ConnectionGUID: 5wKV5KtcSz++ZxUXM42HNw==
+X-CSE-MsgGUID: 1dv3eaCHQZWCtZ05bpEYiQ==
+X-IronPort-AV: E=Sophos;i="6.23,171,1770620400"; 
+   d="scan'208";a="223180542"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 10 Apr 2026 04:49:21 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Fri, 10 Apr 2026 04:48:46 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Fri, 10 Apr 2026 04:48:43 -0700
+From: =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+Subject: [PATCH net-next v3 0/9] net: dsa: add DSA support for the LAN9645x
+ switch chip family
+Date: Fri, 10 Apr 2026 13:48:36 +0200
+Message-ID: <20260410-dsa_lan9645x_switch_driver_base-v3-0-aadc8595306d@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260410-purwa_camss-v1-1-eedcf6d9d8ee@oss.qualcomm.com>
-X-Spamd-Result: default: False [3.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
-	MID_RHS_NOT_FQDN(0.50)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAJTj2GkC/4XNSwrCMBSF4a1Ixkby6NOR+xApSXpjL9i0JCVWS
+ vduyEicdHg48P0bCeARArmeNuIhYsDJpSHPJ2IG5Z5AsU+bCCYqJjijfVDdS7m2Ksq1C29czND
+ 1HiP4TqsAVHKhtTWyhl6TpMweLK65cCcOFupgXcgjPQOGZfKfnI48/7kimTysRE4Z1dY2RnHZV
+ ra8jWj8ZAacL2Yasx/FjymKY1Mk09YlK0BqVjX839z3/QtgF/E4MAEAAA==
+To: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>, "Vladimir
+ Oltean" <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Woojung Huh <woojung.huh@microchip.com>, Russell King
+	<linux@armlinux.org.uk>, Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>
+CC: <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+X-Mailer: b4 0.15-dev
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286488-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-286494-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_SPAM(0.00)[0.764];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,bootlin.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: C599F3D6470
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:dkim,microchip.com:mid,microchip.com:email,microchip.com:url,bridge_mld.sh:url,bridge_vlan_mcast.sh:url,bridge_vlan_aware.sh:url,bridge_mdb.sh:url,bridge_vlan_unaware.sh:url,test_fdb_stress_test.sh:url]
+X-Rspamd-Queue-Id: 95C803D6638
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 10, 2026 at 12:25:31PM +0800, Wenmeng Liu wrote:
-> Add bindings for the Camera Subsystem for X1P42100.
-> 
+This series provides the Microchip LAN9645X Switch driver.
 
-A nit, subject: drop second/last, redundant "bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+The LAN9645x is a family of chips with ethernet switch functionality and
+multiple peripheral functions. The switch delivers up to 9 ethernet
+ports and 12 Gbps switching bandwidth.
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+The switch chip has 5 integrated copper PHYs, support for 2x RGMII
+interfaces, 2x SGMII and one QSGMII interface.
 
-> The X1P42100 platform provides:
-> - 2 x CSIPHY
-> - 3 x TPG
-> - 3 x CSID
-> - 2 x CSID Lite
-> - 1 x IFE
-> - 2 x IFE Lite
-> 
-> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
-> ---
->  .../bindings/media/qcom,x1p42100-camss.yaml        | 424 +++++++++++++++++++++
->  1 file changed, 424 insertions(+)
-> 
+The switch chip is from the same design architecture family as ocelot
+and lan966x, and the driver reflects this similarity. However, LAN9645x
+does not have an internal CPU in any package, and must be driven
+externally. For register IO it supports interfaces such as SPI, I2C and
+MDIO.
 
-You have ~20 prerequisities and some are even DTS patches, so either you
-organized this wrong or patches are wrong. They cannot depend on DTS.
+The chip supports a variety of network features such as
 
-Probably this does not affect the binding, but it is not really
-maintainers task to figure that out. You really should make it obvious
-and easy for the community to review.
+* Mactable for MDB/FDB functionality
+* Bridge forwarding offload
+* VLAN-aware bridging
+* IGMP/MLD snooping
+* Link aggregation
+* PTP timestamping
+* FRER (802.1CB)
+* Media Redundancy Protocol
+* Parallel Redundancy and High-Availability Seamless Redundancy
+  (HSR/PRP) in DANH/DANP mode
+* Per stream filtering and policing
+* Shapers such as Credit Based Shaping and Time Aware Shaing
+* Frame preemption
+* A TCAM (VCAP) for line-rate frame processing
 
+The LAN9645x family consists of the following SKUs:
 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,x1p42100-camss.yaml b/Documentation/devicetree/bindings/media/qcom,x1p42100-camss.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..8bfa7e616c3b6b91adc8e21ebfbbe6fb579484f6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/qcom,x1p42100-camss.yaml
-> @@ -0,0 +1,424 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/qcom,x1p42100-camss.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm X1P42100 Camera Subsystem (CAMSS)
-> +
-> +maintainers:
-> +  - Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
-> +
-> +description:
-> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,x1p42100-camss
-> +
-> +  reg:
-> +    maxItems: 14
-> +
-> +  reg-names:
-> +    items:
-> +      - const: csid0
-> +      - const: csid1
-> +      - const: csid2
-> +      - const: csid_lite0
-> +      - const: csid_lite1
-> +      - const: csid_wrapper
-> +      - const: csiphy0
-> +      - const: csiphy4
-> +      - const: csitpg0
-> +      - const: csitpg1
-> +      - const: csitpg2
-> +      - const: vfe0
-> +      - const: vfe_lite0
-> +      - const: vfe_lite1
-> +
-> +  '#address-cells':
-> +    const: 2
-> +
-> +  '#size-cells':
-> +    const: 2
-> +
-> +  ranges: true
-> +
-> +  clocks:
-> +    maxItems: 22
-> +
-> +  clock-names:
-> +    items:
-> +      - const: camnoc_nrt_axi
-> +      - const: camnoc_rt_axi
-> +      - const: core_ahb
-> +      - const: cpas_ahb
-> +      - const: cpas_fast_ahb
-> +      - const: cpas_vfe0
-> +      - const: cpas_vfe_lite
-> +      - const: cphy_rx_clk_src
-> +      - const: csid
-> +      - const: csid_csiphy_rx
-> +      - const: csiphy0
-> +      - const: csiphy0_timer
-> +      - const: csiphy4
-> +      - const: csiphy4_timer
-> +      - const: gcc_axi_hf
-> +      - const: gcc_axi_sf
-> +      - const: vfe0
-> +      - const: vfe0_fast_ahb
-> +      - const: vfe_lite
-> +      - const: vfe_lite_ahb
-> +      - const: vfe_lite_cphy_rx
-> +      - const: vfe_lite_csid
-> +
-> +  interrupts:
-> +    maxItems: 10
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: csid0
-> +      - const: csid1
-> +      - const: csid2
-> +      - const: csid_lite0
-> +      - const: csid_lite1
-> +      - const: csiphy0
-> +      - const: csiphy4
-> +      - const: vfe0
-> +      - const: vfe_lite0
-> +      - const: vfe_lite1
-> +
-> +  interconnects:
-> +    maxItems: 4
-> +
-> +  interconnect-names:
-> +    items:
-> +      - const: ahb
-> +      - const: hf_mnoc
-> +      - const: sf_mnoc
-> +      - const: sf_icp_mnoc
-> +
-> +  iommus:
-> +    oneOf:
-> +      - items:
-> +          - description: S1 HLOS IFE and IFE_LITE non-protected read
-> +          - description: S1 HLOS IFE and IFE_LITE non-protected write
-> +          - description: S1 HLOS SFE non-protected read
-> +          - description: S1 HLOS SFE non-protected write
-> +          - description: S1 HLOS CDM IFE non-protected
-> +          - description: Legacy slot 0 - do not use
-> +          - description: Legacy slot 1 - do not use
-> +          - description: Legacy slot 2 - do not use
-> +      - items:
-> +          - description: S1 HLOS IFE and IFE_LITE non-protected read
-> +          - description: S1 HLOS IFE and IFE_LITE non-protected write
-> +          - description: S1 HLOS SFE non-protected read
-> +          - description: S1 HLOS SFE non-protected write
-> +          - description: S1 HLOS CDM IFE non-protected
-> +
-> +  power-domains:
-> +    items:
-> +      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
-> +      - description: Titan Top GDSC - Titan ISP Block, Global Distributed Switch Controller.
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: ife0
-> +      - const: top
-> +
-> +  vdd-csiphy-0p8-supply:
-> +    description:
-> +      0.8V supply to a PHY.
-> +
-> +  vdd-csiphy-1p2-supply:
-> +    description:
-> +      1.2V supply to a PHY.
+LAN96455F
+LAN96457F
+LAN96459F
+LAN96455S
+LAN96457S
+LAN96459S
 
-Properties of phys.
+The difference between the SKUs is the number of supported ports (5, 7
+or 9) and features supported. The F subfamily supports HSR/PRP and TSN,
+while the S subfamily does not.
 
-> +
-> +  phys:
-> +    maxItems: 2
-> +
-> +  phy-names:
-> +    items:
-> +      - const: csiphy0
-> +      - const: csiphy4
+The intended way to bind this driver is using a parent MFD driver,
+responsible for the register IO protocol, and distributing regmaps to
+child devices. The goal is to use the same approach as the MFD driver in
+drivers/mfd/ocelot-spi.c.
 
-If phys are listed here, why they are also child nodes? Drop above phys,
-unless you want to say that phys should not be children of camss?
+This driver expects to request named regmaps from a parent device. This
+approach is similar to the DSA driver
 
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    description:
-> +      CSI input ports. Supports either standard single sensor mode or
-> +      Qualcomm's combo mode with one sensor in 2x1 + 1x1 data-lane, clock-lane mode.
-> +
-> +    patternProperties:
-> +      "^port@[0-3]$":
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +
-> +        description:
-> +          Input port for receiving CSI data.
-> +
-> +        properties:
-> +          endpoint@0:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            description:
-> +              Endpoint for receiving a single sensor input (or first leg of combo).
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4 # Base max allows 4 (for D-PHY)
-> +
-> +              clock-lanes:
-> +                maxItems: 1
-> +
-> +              bus-type:
-> +                enum:
-> +                  - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
-> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
-> +
-> +          endpoint@1:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            description:
-> +              Endpoint for receiving the second leg of a combo sensor input.
-> +
-> +            properties:
-> +              data-lanes:
-> +                maxItems: 1
-> +
-> +              clock-lanes:
-> +                maxItems: 1
-> +
-> +              bus-type:
-> +                const: 4 # Combo is D-PHY specific
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +        allOf:
-> +          # Case 1: Combo Mode (endpoint@1 is present)
-> +          # If endpoint@1 exists, we restrict endpoint@0 to 2 lanes (D-PHY split)
-> +          - if:
-> +              required:
-> +                - endpoint@1
-> +            then:
-> +              properties:
-> +                endpoint@0:
-> +                  properties:
-> +                    data-lanes:
-> +                      minItems: 2
-> +                      maxItems: 2
-> +                    bus-type:
-> +                      const: 4
-> +                endpoint@1:
-> +                  properties:
-> +                    data-lanes:
-> +                      minItems: 1
-> +                      maxItems: 1
-> +                    bus-type:
-> +                      const: 4
-> +
-> +          # Case 2: Single Mode (endpoint@1 is missing)
-> +          # We explicitly allow up to 4 lanes here to cover the D-PHY use case.
-> +          - if:
-> +              not:
-> +                required:
-> +                  - endpoint@1
-> +            then:
-> +              properties:
-> +                endpoint@0:
-> +                  properties:
-> +                    data-lanes:
-> +                      minItems: 1
-> +                      maxItems: 4
-> +
-> +patternProperties:
-> +  "^phy@[0-9a-f]+$":
-> +    $ref: /schemas/phy/qcom,x1e80100-csi2-phy.yaml
-> +    unevaluatedProperties: false
-> +
-> +  "^opp-table(-.*)?$":
+drivers/net/dsa/ocelot/ocelot_ext.c
 
-Why multiple opp-tables?
+which supports being driven by an external CPU via SPI with parent
+device drivers/mfd/ocelot-spi.c.
 
-> +    type: object
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - interconnects
-> +  - interconnect-names
-> +  - iommus
-> +  - power-domains
-> +  - power-domain-names
-> +  - ports
-> +
+The MFD driver will come in a later series, because there are
+requirements on the number of child devices before a driver qualifies as
+a MFD device.
 
-...
+Development is done using the LAN966x as a host CPU, running the lan966x
+swichdev driver, using the EVB-LAN9668 EDS2 board.
 
-> +            power-domains = <&camcc CAM_CC_IFE_0_GDSC>,
-> +                            <&camcc CAM_CC_TITAN_TOP_GDSC>;
-> +
-> +            power-domain-names = "ife0",
-> +                                 "top";
-> +
-> +            vdd-csiphy-0p8-supply = <&csiphy_0p8_supply>;
-> +            vdd-csiphy-1p2-supply = <&csiphy_1p2_supply>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    csiphy_ep0: endpoint {
-> +                        data-lanes = <0 1>;
-> +                        remote-endpoint = <&sensor_ep>;
-> +                    };
-> +                };
-> +            };
+The datasheet is available here:
+https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/LAN9645xF-Data-Sheet-DS00006065.pdf
 
-Incomplete, please add children.
+This series will deliver the following features:
 
-> +        };
-> +    };
-> 
-> -- 
-> 2.34.1
-> 
+* Standalone ports
+* Bridge forwarding and FDB offloading
+* VLAN-aware bridge
+* Stats integration
+
+More support will be added at a later stage. Here is a tentative plan of
+future patches for this DSA driver:
+
+* Add LAG support.
+* Add MDB support.
+* Add TC matchall mirror support.
+* Add TC matchall police support.
+* Add DCB/qos support.
+* Add simple TC support: mqprio, cbs, tbf, ebf.
+* Add TC flower filter support.
+* Add HSR/PRP offloading support.
+* Add PTP support.
+* Add TC taprio support.
+
+For completeness I include tentative plan of planned patches for
+LAN9645x peripherals:
+
+* Extend pinctrl-ocelot for LAN9645x:
+  https://lore.kernel.org/linux-gpio/20260119-pinctrl_ocelot_extend_support_for_lan9645x-v1-0-1228155ed0ee@microchip.com/
+* Add driver for internal PHY:
+  https://lore.kernel.org/netdev/20260123-phy_micrel_add_support_for_lan9645x_internal_phy-v1-1-8484b1a5a7fd@microchip.com/
+* MFD driver for managing register IO protocol and child device
+  initialization.
+* Extend pinctrl-microchip-sgpio for LAN9645x support.
+* Extend i2c_designware for LAN9645x support.
+* Add driver for outbound interrupt controller.
+* Add serdes driver for lan9645x.
+
+Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
+---
+Changes in v3:
+- Individual patches mention specific v3 changes.
+- Add guard before vlan_remove_tag on xmit
+- Add pskb_may_pull checks on rx
+- Remove additionalProperties: true in bindings
+- Remove unnecessary | from description in bindings
+- Change top level $ref to dsa.yaml#/$defs/ethernet-ports
+- Use ethernet-ports and ethernet-port
+- Move ethernet-ports under properties instead of patternProperties
+- Move unevaluatedProperties: false after $ref
+- Update bindings example to use ethernet-ports and ethernet-port
+- Move DEV_MAC_TAGS_CFG to port setup, instead of vlan config, so vlan
+  overhead is always included in port frame maxlen calculation.
+- Remove code disabling ipv6 on conduit
+- Use of_property_read_u32 for {rx,tx}-internal-delay-ps
+- Use dsa_user_ports(ds) instead of
+  GENMASK(lan9645x->num_phys_ports - 1, 0) as base flood mask.
+- Add comment explaining obey vlan
+- Allow disabling aging with explicit zero parameters.
+- Fix non-forwarding STP states in bridge fwd calculation.
+- Restore host flood state on bridge leave.
+- Avoid mac_entry dealloc when mac table writes fail.
+- Avoid mdb_entry dealloc when mac table writes fail.
+- Dealloc mac_entries on deinit.
+- Dealloc mdb_entries on deinit.
+- Link to v2: https://lore.kernel.org/r/20260324-dsa_lan9645x_switch_driver_base-v2-0-f7504e3b0681@microchip.com
+
+Changes in v2:
+- Individual patches have specific v2 changes.
+- Ran DSA, and std counters, selftests, which prompted several changes.
+  The following selftests pass, except for some expected failures:
+    - bridge_vlan_aware.sh
+    - bridge_vlan_unaware.sh
+    - bridge_vlan_mcast.sh
+    - no_forwarding.sh
+    - bridge_mdb.sh
+    - bridge_mld.sh
+    - test_fdb_stress_test.sh
+    - .../drivers/net/hw/ethtool_rmon.sh
+    - .../drivers/net/hw/ethtool_std_stats.sh (from Ioana's series)
+- Added new patch for MDB management, as this was required for selftests.
+- Added port_set_host_flood to enable unknown traffic to standalone during
+  promisc/ALL_MULTI (selftests).
+- Remove the dubugfs.
+- Link to v1: https://lore.kernel.org/r/20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com
+
+---
+Jens Emil Schulz Østergaard (9):
+      net: dsa: add tag driver for LAN9645X
+      dt-bindings: net: lan9645x: add LAN9645X switch bindings
+      net: dsa: lan9645x: add autogenerated register macros
+      net: dsa: lan9645x: add basic dsa driver for LAN9645X
+      net: dsa: lan9645x: add bridge support
+      net: dsa: lan9645x: add vlan support
+      net: dsa: lan9645x: add mac table integration
+      net: dsa: lan9645x: add mdb management
+      net: dsa: lan9645x: add port statistics
+
+ .../net/dsa/microchip,lan96455s-switch.yaml        |  111 ++
+ MAINTAINERS                                        |   10 +
+ drivers/net/dsa/Kconfig                            |    2 +
+ drivers/net/dsa/microchip/Makefile                 |    1 +
+ drivers/net/dsa/microchip/lan9645x/Kconfig         |   11 +
+ drivers/net/dsa/microchip/lan9645x/Makefile        |   12 +
+ drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c  |  430 +++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_main.c |  993 ++++++++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_main.h |  450 +++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_mdb.c  |  383 ++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_npi.c  |   76 +
+ .../net/dsa/microchip/lan9645x/lan9645x_phylink.c  |  381 ++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_port.c |  204 +++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_regs.h | 1915 ++++++++++++++++++++
+ .../net/dsa/microchip/lan9645x/lan9645x_stats.c    |  922 ++++++++++
+ .../net/dsa/microchip/lan9645x/lan9645x_stats.h    |  277 +++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_vlan.c |  378 ++++
+ include/linux/dsa/lan9645x.h                       |  145 ++
+ include/net/dsa.h                                  |    2 +
+ net/dsa/Kconfig                                    |   11 +
+ net/dsa/Makefile                                   |    1 +
+ net/dsa/tag_lan9645x.c                             |  301 +++
+ 22 files changed, 7016 insertions(+)
+---
+base-commit: b3e69fc3196fc421e26196e7792f17b0463edc6f
+change-id: 20260210-dsa_lan9645x_switch_driver_base-312bbfc37edb
+
+Best regards,
+-- 
+Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
+
 
