@@ -1,249 +1,210 @@
-Return-Path: <devicetree+bounces-286575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286577-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0JlpIrcr2WnhmwgAu9opvQ
-	(envelope-from <devicetree+bounces-286575-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 18:56:23 +0200
+	id 2LrPAdYt2Wl+nAgAu9opvQ
+	(envelope-from <devicetree+bounces-286577-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 19:05:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07C113DAC9B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 18:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D6CD3DADDC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 19:05:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7CF293042EB7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:50:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8E3A7308810C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:54:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 115E13E0240;
-	Fri, 10 Apr 2026 16:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BF053E3DB9;
+	Fri, 10 Apr 2026 16:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="V8cYyD9b"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PapauwYy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com [74.125.82.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ADCB3E1CEE;
-	Fri, 10 Apr 2026 16:49:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD6E3DFC66
+	for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 16:52:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775839753; cv=none; b=baUNQerAIPDmUpghONy6PRLsOcM0Cj4zbg6v30UhtAmCAUCaCkdxpYThIJ5bETNclwvPeqvHmq0Gj12EpCKuL7/YOMUGCgezCqwlIWHwYvSDH5z43JIoIzuV6Cu2HQJhv99bYiGWS6oR4IIvYQGLBNil2T/oaeEch34Wd3U7QAI=
+	t=1775839960; cv=none; b=ovBkBQS9tqaICMTUCieUz2Zr69yfNXjPffS3vXFfMHpnq+qlJ9J5UnlffnQcJPqd3nX2JBskJTaWS75+bD6ktmrycW7jTo83mlHyRCUWOeScs4FSoywtlz8dtN6gTYp5TMrDP9xw4i29+TSuue1r+gf62A/HKmrEwOyla/v7q8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775839753; c=relaxed/simple;
-	bh=zbgRfmKb31HDgkan9Fy8S+p1BOUmWfaoe9tmTB9hGac=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lEQ7kCVUKXO6OnSTSiwiJD8g5eL2WoHG/V6ml6TCsQvtRjcC5fYpkn8tWuyQS7a2dgs7kAiixRilPx5MTx46F9pbn5y9NjTAGJCBGmpoLUMkA7RpFveovCCn0uvvXjV3Tk5yDOxoaEq+LZnOgCof5UjgNOMiNOBnovq/ghbhoyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=V8cYyD9b; arc=none smtp.client-ip=65.21.61.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1775839740;
-	bh=zbgRfmKb31HDgkan9Fy8S+p1BOUmWfaoe9tmTB9hGac=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=V8cYyD9bEpwmmkTC/R7Qz5FjheScvjl8nZ5M8pQ41u89djP5EFMB8CTdxr004BJzm
-	 N70SjO/+XSlnZQ5g3u+y70Puhe46UGJWDTDsn99BXyRXS9y4GDpSEYoAF8DSUnrTsJ
-	 vTR+2xxzZQKCX9tDDf11eygThjC1pcZepzqs8tOw=
-Date: Fri, 10 Apr 2026 18:48:09 +0200
-Subject: [PATCH 8/8] arm64: dts: amlogic: t7: khadas-vim4: Add fan cooling
- to thermal zones
+	s=arc-20240116; t=1775839960; c=relaxed/simple;
+	bh=ZJQ/6STZALeRog1n9zMG3DDRsVZ8lpyVsIt/JnlaSvw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fdh7dqQ9NwFDFg6yg5Dq8B1Rz8VZuVurQcfps0823uQymjOhbvjiTTVPXIcSHkTPIE4+5uu1KlXBrMD462SCHknLWo1Man5zKy4Ogorx1L59h6QL0YtlObScmrZBPo+xS16cXYrim62tqaZcRXPxK/oGVPBF5E4XnUoWGCNtRVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PapauwYy; arc=none smtp.client-ip=74.125.82.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f174.google.com with SMTP id 5a478bee46e88-2c54c68db4dso3968688eec.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 09:52:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1775839957; x=1776444757; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=ipHaH6PMq71U83t6ZzV35VtmOmfjOzg6Hcsr7AXxQVc=;
+        b=PapauwYyxLqqFJUSza64YOmLwwJ7jTneDrwjFmMP2Her3/BGRDB2qVoNsJYF4NT9wB
+         MSa6A84kfJm9T8uRpDdMw5YYPmdvF+6ZditpMjZBgfr5QQDV0azpqEcJZI0OjM0wDZPO
+         2jFhgWWzT4bFEb3A0NiaLqUpSpeR8M5COc7i36YmCrY4qVx2Jhsr1TL05vMw9a9EeE81
+         m5Ir97W4KppWayZ5wH/nlTht3tSwUW0Daan0P5dv1x6lAetUQYwpRMB4k/rUZ6XPg1Hp
+         A1NfRXRuxm5sN24N5tw6AOZry9rI9DtENRHHeEfUVfo/QgU6s26fqi9fiIR8uHPmM66X
+         1bzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775839957; x=1776444757;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ipHaH6PMq71U83t6ZzV35VtmOmfjOzg6Hcsr7AXxQVc=;
+        b=PhLv6HdAOYOx3loRF9+NXXSCeOxqKp3ugmGo6ulvuNL9Fz/2YsU++sRneciRiWXTMh
+         dRa+qHv5UeEwr9Zo8GMC2B6GEy3lzFvCWl2H8rOgkw6k1zihhmpqvQI7EzsWORC+NR9a
+         Fq5obAiNR+4Hv0ho6WieOB5xQBXe+x6Oit9JpFKcLhMxSbz5J/+iuYYayYU9rd7VvX+1
+         83dCYxP6DO3mM4BBMuTvvv9JdECD7/GndMe8t/UWLX/UYUAjDXnJuOHw0MAJbp3QS2R0
+         Qjc+QQLmHUNmCDUjsyAcxlCxa+6BkQveYk2ga4Ib/ZpyH25VX1vbuaaYK0GDpLC79kcv
+         z4aQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVZ2wXz+twgdYLXcFFrRJ2diPIM6RpgELN9GbyZ788DWmMIjEtdAbC/RZTn5itmbOrSdFsMgIUjRu3V@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5/zCfatBsDARRfcIxo0NNz1UMxhCjSNvQjurJMOdFpLfA8OTX
+	xNELxM90pZZj6qul0lcdO5JDjazxJIryOC6yX/1fPJuzFtDjiaiDQQDs
+X-Gm-Gg: AeBDieublwTCq50xuriSqtZCzVq6CTCJge/MjJCtfKcHTNm4meiBWXdiO+JF6DK1XI5
+	tEeX8Q8WwcfwbXFm1Qy5gDeP0SAvEizt3xtIWf7BKbaeDL6mwz9+Ns8VE4d1b4xjsng5xxoZlkt
+	Kx64j6RrzENvcz4igjysOw4dQk0OEmv9VZ0GuR+f2FxzZLwyCI/DIJVoPrH434fNS8gQLdzd/eO
+	COBd2QTUaEeLjTGsqC520PzwYBiJc1zqEokzSl0QBWXHeXnnao11im5/BqtOQR9JaiOQuhloMPu
+	4cUVlone3oc+T+8iqE5EmKTVTzkjV7E2YO4LK8l7k9B/CgxTV6vVYU1qHlNBXFGj7vTIajuFKJZ
+	tmTNoI9VqVy8K2JERqEyVAOtRfYd98YI1t9m+w5XoHmZjGmbJonCRzfaaqi6UU1TANQxgidQGnp
+	raJRzY6t/vc6+KgIx2rctktJiL7r3BUCwQSE0G9gCW1Hkjqg5bw0GeGb2XBKxhvNKA2M1W5VSs5
+	15tbaGDhHM=
+X-Received: by 2002:a05:7300:320a:b0:2c8:6361:ab2e with SMTP id 5a478bee46e88-2d5877a7b8fmr2872302eec.8.1775839956718;
+        Fri, 10 Apr 2026 09:52:36 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2d55f5c69d5sm5736628eec.3.2026.04.10.09.52.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Apr 2026 09:52:36 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <f6a8479a-b955-41d6-9b45-1b16ef438188@roeck-us.net>
+Date: Fri, 10 Apr 2026 09:52:33 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260410-add-thermal-t7-vim4-v1-8-19f2b8da74d7@aliel.fr>
-References: <20260410-add-thermal-t7-vim4-v1-0-19f2b8da74d7@aliel.fr>
-In-Reply-To: <20260410-add-thermal-t7-vim4-v1-0-19f2b8da74d7@aliel.fr>
-To: Guillaume La Roque <glaroque@baylibre.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1775839732; l=2874;
- i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=zbgRfmKb31HDgkan9Fy8S+p1BOUmWfaoe9tmTB9hGac=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
- BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QC2gP6l2ZGwBwfkdmnqHoopj7P0pXQieYHCsQz4S7Isj+ycLZJpj4jxyYI8NLM4ceXReP/Ntm/y
- vy0wj2kaYsQY=
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
- fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/3] hwmon: (sht3x) Add support for GXCAS GXHT30
+To: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <1775211296-63722-1-git-send-email-zaixiang.xu.dev@gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <1775211296-63722-1-git-send-email-zaixiang.xu.dev@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[baylibre.com,kernel.org,intel.com,arm.com,linaro.org,googlemail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_FROM(0.00)[bounces-286577-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[aliel.fr];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-286575-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[aliel.fr:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.18:email,aliel.fr:dkim,aliel.fr:email,aliel.fr:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 07C113DAC9B
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,roeck-us.net:mid,sashiko.dev:url]
+X-Rspamd-Queue-Id: 6D6CD3DADDC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add an active trip at 50°C to all six thermal zones and map it to the
-khadas_mcu fan controller, using cooling states 30 to 100.
+On 4/3/26 03:14, Zaixiang Xu wrote:
+> Hi all,
+> 
+> First, I sincerely apologize for the noise in v3 and v4. I unfortunately
+> missed the crucial feedback provided in v1 by Krzysztof, Conor,
+> and Guenter.
+> 
+> In this v5, I have completely dropped the incorrect approaches from the
+> previous versions and completely refactored the patchset to strictly
+> follow the maintainers' guidelines:
+> 
+> 1. Wildcards are entirely avoided. Explicit chip names are used.
+> 2. The standalone YAML binding has been dropped. The devices are
+>     now added to trivial-devices.yaml.
+> 3. The redundant of_match_table addition in the driver is dropped.
+>     The driver now relies on the I2C core's fallback matching mechanism.
+> 
+> Patch 1 adds the vendor prefix for GXCAS (Carries Conor's Acked-by
+> from v1).
+> Patch 2 adds the explicit SHT3x/STS3x and GXHT30 models to
+> trivial-devices.yaml.
+> Patch 3 adds minimal I2C ID support to the sht3x driver.
+> 
 
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 102 +++++++++++++++++++++
- 1 file changed, 102 insertions(+)
+Sashiko feedback:
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 5d7f5390f3a66..ba9219073dd0a 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -157,6 +157,74 @@ wifi32k: wifi32k {
- 	};
- };
- 
-+&a53_thermal {
-+	trips {
-+		a53_active: a53-active {
-+			temperature = <50000>; /* millicelsius */
-+			hysteresis = <2000>; /* millicelsius */
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map {
-+			trip = <&a53_active>;
-+			cooling-device = <&khadas_mcu 30 100>;
-+		};
-+	};
-+};
-+
-+&a73_thermal {
-+	trips {
-+		a73_active: a73-active {
-+			temperature = <50000>; /* millicelsius */
-+			hysteresis = <2000>; /* millicelsius */
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map {
-+			trip = <&a73_active>;
-+			cooling-device = <&khadas_mcu 30 100>;
-+		};
-+	};
-+};
-+
-+&gpu_thermal {
-+	trips {
-+		gpu_active: gpu-active {
-+			temperature = <50000>; /* millicelsius */
-+			hysteresis = <2000>; /* millicelsius */
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map {
-+			trip = <&gpu_active>;
-+			cooling-device = <&khadas_mcu 30 100>;
-+		};
-+	};
-+};
-+
-+&hevc_thermal {
-+	trips {
-+		hevc_active: hevc-active {
-+			temperature = <50000>; /* millicelsius */
-+			hysteresis = <2000>; /* millicelsius */
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map {
-+			trip = <&hevc_active>;
-+			cooling-device = <&khadas_mcu 30 100>;
-+		};
-+	};
-+};
-+
- &i2c_m_ao_a {
- 	status = "okay";
- 	pinctrl-0 = <&i2c0_ao_d_pins>;
-@@ -170,6 +238,23 @@ khadas_mcu: system-controller@18 {
- 	};
- };
- 
-+&nna_thermal {
-+	trips {
-+		nna_active: nna-active {
-+			temperature = <50000>; /* millicelsius */
-+			hysteresis = <2000>; /* millicelsius */
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map {
-+			trip = <&nna_active>;
-+			cooling-device = <&khadas_mcu 30 100>;
-+		};
-+	};
-+};
-+
- &pwm_ab {
- 	status = "okay";
- 	pinctrl-0 = <&pwm_a_pins>;
-@@ -266,3 +351,20 @@ &uart_a {
- 	clocks = <&xtal>, <&xtal>, <&xtal>;
- 	clock-names = "xtal", "pclk", "baud";
- };
-+
-+&vpu_thermal {
-+	trips {
-+		vpu_active: vpu-active {
-+			temperature = <50000>; /* millicelsius */
-+			hysteresis = <2000>; /* millicelsius */
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map {
-+			trip = <&vpu_active>;
-+			cooling-device = <&khadas_mcu 30 100>;
-+		};
-+	};
-+};
+https://sashiko.dev/#/patchset/1775211296-63722-1-git-send-email-zaixiang.xu.dev%40gmail.com
 
--- 
-2.49.0
+I think at the very least this will require a proper of_device_id table.
+
+Thanks,
+Guenter
+
 
 
