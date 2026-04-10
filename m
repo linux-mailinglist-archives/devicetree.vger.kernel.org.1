@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-286473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286470-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uCAFCbfS2GngiQgAu9opvQ
-	(envelope-from <devicetree+bounces-286473-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:36:39 +0200
+	id 6GrvIJnT2GmuiwgAu9opvQ
+	(envelope-from <devicetree+bounces-286470-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:40:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19EB23D5BB1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:36:38 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE0553D5BE3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:40:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3D2A9300515F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:36:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BF71B302F731
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:34:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 940F3385528;
-	Fri, 10 Apr 2026 10:36:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6087637F01F;
+	Fri, 10 Apr 2026 10:34:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2106.outbound.protection.partner.outlook.cn [139.219.17.106])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2092.outbound.protection.partner.outlook.cn [139.219.17.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB012DC767;
-	Fri, 10 Apr 2026 10:36:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8310238736A;
+	Fri, 10 Apr 2026 10:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.92
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775817392; cv=fail; b=iVkh6ioGLTXYfj5SGj5wkGTx24BUUBze7S7knvNvN7nvTtALMgvuhT2HhgD7rPFqUbBpj7cDn5kaa3B/2G3UVglNel6sjTUURVNOKJfElG0/uKuHdFf1rtyEGq2hO4GRV+okqbCKb7duDjVFnj9kMHlkbkW9TIlcGbbGMbOGz30=
+	t=1775817248; cv=fail; b=cf2jYBCh0lvRUG90gzmNtGc/m7Fs4ULwBGoEiePlyShdGJoRt+2nvwQcVNg1Tq16Eq61DXhNCQhSu0CzhFAz8aYIDYBmtAUYBw+PNTG0UBUmiAEWIevDJijmpAXv3J7utc32eVSdnrqU9Mb2PVEoTXlNHh8Zc1kRlxkxhFjsSgY=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775817392; c=relaxed/simple;
-	bh=S1bUrx3Hm4eW08ka4Wggl+o5vTKi4OjVZ9M0tmkzRGc=;
+	s=arc-20240116; t=1775817248; c=relaxed/simple;
+	bh=vykxvldXZ4VIDz8tnQBa/yesN11pNCyqvz9jvv7K6Ys=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=VzsghiTkRtPf9GtrDIxbd7zDBqXEIL6qwoD+EYZxYlXtJXJl/vROPSwxx2dG9lJOXsl336sDlPmU7Br2+aCQmq5rX90vf5GMt4Y/afc5oSI0mNr9OhdGI+Zx4CimiSwLuniSZXsW2s2nhrQbzToxs8ecJNKFyyActa721xVQ8LY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.106
+	 Content-Type:MIME-Version; b=GUSgAw3Gd05U0VP3Nb/Bn3sUYje5meYjYL9Lf+/qshOeYaFrsXBNtb1LtNcIR6pIvm+McpeYHl2jHWc5C6pbiWDcUs6fs7Qw9lYAhER6C5uDRqWP6tEQ1oy2OwrOX3M/zbHhMzO8ohgCApHEpS+Wef4k/jqjizvJ7PRh94r181k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.92
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OCC9YcfOBc7saaIzJuKod89ZhZiGcoY6f+QAcvGjrr91V95LFVnYKA1lhCuw8k/k5wz8ok+JK85uVq/i7eUNr3P9jLi7zQWDAu2i0v9ow94F3TU7BdOta19B4zW3U1jSuYAkrZ7rI6bGNQGKYgI5PXyjun1qhl7ccWNlyMv2O5aTsejNC9hwvS2xB3z4w3vetM/0Hphtke6IcUzf9R2brjV46H2KONNwBt5CqJ5QScAY6wsjkd9jsN1tFbimWKbjBQ7rnrdpM1Q0jk1mUpUvvg0o3S97CBZPMA2yxHVUgEls8afZSmIXKVghVAe/9NutHLs0hZMBF61RZC9N5G4vvg==
+ b=QQyI62SfYDpgcbDY60iJ7+goYunLzMPN9rbc4JufYqbPKU7mkEFTy7XMvjJXG0YeSGSRErBltNsz+RKovIrM1UVv+Ppq3ZGdc449tyn3qIGCRQ1JTUQE0aPllMmMDCgzkjK2rjEiayeOCTUQArGNyOc5ZGlbc4HAzWaxd00o95EEe13flCyOPdL0hXA6o2n3Fz/RZlkjfOlbUvdi6qk5lWgebc7YxxvDqwcUU4KVoXXzEhnjrC1IxR3GuanOxcydVWeQH+34t9ZWWJZgjzqK8TbRuTkBMOnWb8yWdyjDXU0tGom7AUgi0zUEnuc6G62f7ln6pt2uVxr28bKz/YMgyg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jgmlN3ixTZyLCqqcf1//3+Ol+z59PSHvlNUJpUh0dwY=;
- b=BQLMzobvChN74wTL3j4mLWBmwj22NvHkQbGW2h5UJKPnsrE+aOzV+E9/dmKJqYcVQwivkTnMoewTOkkl4wlWCbJKAPEhsUFmyx4Qcw8BRovoRiQnyCWjAON1EQaUdvxb3icW8zC2YzHrSgZeyIXdL3gBwFFrgNRB9ROJmsB/z7AGcW5DPnk2w72UMihyRDm6f+0btkmtd6rLKLMtrEs3nNezzNMAAOhmSKoBdl6Ths9Df6KQE5l+wVJaSo+QiySje8/knOtMTbTtopzpccBIu2uqEdVIF7eYjQEaG/lMau2MQ9YmbM3GDb6nGRLjLNuhBA9qs0ON46AMgpCUCwW4ZQ==
+ bh=iFOh+h1iu7oVJvNxrwfU17kQyzMdni2BEZN3kgQvpoM=;
+ b=Htc99AB8mUdAWbQVLQTiMJ8A15AawW6k+ehSm1sw9Q6mL27Ipd8m1hQMqlSJYERvl/mDmTUgKpDYQ4yUtq3lzynIetFxImJezCwMEHMNk/KEeKfNe3hUEZHjKlimCUYbKoS/u6Z2geg0hcgZBdaiQ5amDh1VMBxd7l7xfqaf3grjolHfrTL7HpsM/0gJle1qu1/kG08WHTnPV8Az+pmy8gotqK0vG26JnTY/gsOb/O6+N16VC5gmV8ZjCCKbiKIHc59j1FOPqZEThlgvyauxkn8upjDNtVe9ia7BT1GRM0c35wwJTgNCEZSfzuB7qsaxQzbHy5bdWa5rqrV97r3L+A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=starfivetech.com; dmarc=pass action=none
  header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
@@ -48,11 +48,11 @@ Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:17::6) by ZQ4PR01MB1218.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:17::13) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.42; Fri, 10 Apr
- 2026 09:01:17 +0000
+ 2026 09:01:18 +0000
 Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
  ([fe80::e7d4:256c:b066:850d]) by
  ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%5])
- with mapi id 15.20.9769.020; Fri, 10 Apr 2026 09:01:17 +0000
+ with mapi id 15.20.9769.020; Fri, 10 Apr 2026 09:01:18 +0000
 From: Changhuang Liang <changhuang.liang@starfivetech.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -64,9 +64,9 @@ Cc: linux-kernel@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
 	Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: [PATCH v1 3/5] irqchip: starfive: Use devm_ interfaces to simplify resource release
-Date: Fri, 10 Apr 2026 02:01:04 -0700
-Message-Id: <20260410090106.622781-4-changhuang.liang@starfivetech.com>
+Subject: [PATCH v1 4/5] irqchip: starfive: Increase the interrupt source number up to 64
+Date: Fri, 10 Apr 2026 02:01:05 -0700
+Message-Id: <20260410090106.622781-5-changhuang.liang@starfivetech.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260410090106.622781-1-changhuang.liang@starfivetech.com>
 References: <20260410090106.622781-1-changhuang.liang@starfivetech.com>
@@ -83,56 +83,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1218:EE_
-X-MS-Office365-Filtering-Correlation-Id: 986d7b11-ddbc-4cc0-b783-08de96dfb9eb
+X-MS-Office365-Filtering-Correlation-Id: 129d65b3-43fb-450d-445f-08de96dfba7f
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam:
 	BCL:0;ARA:13230040|52116014|376014|1800799024|366016|56012099003|38350700014|22082099003|18002099003;
 X-Microsoft-Antispam-Message-Info:
-	U+Lp+SkAPrz3ltb7E3t3E6pMtqFpA065JbKaf+h3dQ9b7VvFtO+7YcTpQZVYot4tKiubvpcziGzIVNAoitgTCTUskZND7LufFk5w/U+5Ng4gZRL11vkJemA0+XgEFAxgN9TXKrpu4ko0tOroc7m3kIKOpTYipHXu7LvEbT8uQ7vf6f1wti4m30coBFU3Lsg1MGsPzpRiJtGBnewA6J/uHygfVfPWn5NM3U8/ecqF/siTf+QdwcyxuknK0NiXkwoBvxxICwI9k5Q4IUgy9hQ9EvaODge/wtIdnvuwnvvrqS+OAEiiTIMOvVXsoVWNawXyLbwXc3iWDb1URyMqCXQDV0W6QtJsONHnug1kEeGGIqclKYoM57xt0WaMusmQkEK+aFW7gpaN3Lw48DZVCpos8/GfENQ2Juxb2nw0jf6rZUfTZWte3gnwr8wrkZSMSxRYQbFekLMtj7e+rXhXe7SsYAFPxyZ6KDpWnBEUvqLKjgi4ZUCGejwak3wy3q50in2NfzXVcmd9qwqokNybyanGsLBEChUU0/8SSJMIm+IoVXOrvJq/eO5BrfABTXcZn1NAP65E5uIaimZnQNNtkw9wKw==
+	ZFgQpoG2xOxHczCDE8hLeTZrarwAuhjx+AhXnVmbFJAvD0F5n6N4LjAK3xf/aoThuimtalx4dbXYlK1qWMxkn0trhElUQnRFxEqbzBzG/Ch5iEgwLesYFMh1IhoLV7Lba2J7xGF2z6YgSrPDs2glY5MwBNUV64tIifZ8FFxZFXuZQnQ4f62mUwzC7zOE112gNbEfrUq47oViSHyCXrQwNWpSV4S6eLXXbWKTXI+gL5c3xDibei1ghgpVAiMrv6qjDbFdSnlIQabq9i7MywGdrgFiU6RILxH6xrHE0t4ec3Pr05nV7qJ5TlZkKJrJqzsWWkiGFpdb7dtyFJ/z2yty4YpV1SqLVbuMUymJ1VoJSjWU1gvL3vxGbfDph8SqjH6tkkwiTNSGYJE11HTojD+OXA4yRYXa+OCqQRt0PmiIsuA8yIUBSsgbZb4kPL5irSOCfBTQSWHLb5jDB7heGSGHyEsVmk3K7ZpUz6cRj9IxlZtsSnEzQb8m8jQeETsNgXgnifVh7yMQnXrDvyoMQ62nvNIH3x+hIH5fUAjuNHbHR+JBzT0lDU0RLyiVRYbH7ix83RUJeivMJPWNBHJZmghG6g==
 X-Forefront-Antispam-Report:
 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(366016)(56012099003)(38350700014)(22082099003)(18002099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?n9u1wtNtwbgW6JGfE0LcMgIKm/Zo03fvzAuNxZgSBMTNRw4F+48H+ucqfLBy?=
- =?us-ascii?Q?LIs8ZMyJpWM5gvcj0OOWQEK1OA1DjUutG5sv/6wm2yIF3LLZcBaRc0uzpRAI?=
- =?us-ascii?Q?e26JspmV4sWAPT1C+lBh7vr4WLkXlsdDtNWnxmQqtGv4mDNJ3QMzYn5aud5l?=
- =?us-ascii?Q?MXAu8IOLyVSVrj1oKzaXLZFC8DxHNl7NMYwFYVI6EYSS/NwsqVzNvPGcmUh1?=
- =?us-ascii?Q?XVg+3FGX8ynXPxhPGK9Wo1hIKfjTWhDz0Xq3qUxBj6TJFeSyp+NAMDTsIPxz?=
- =?us-ascii?Q?ErA+Mc+yDQBhjdz75K9di0Pz5vbBYAnioiT+FtGFwo2s+mtF97CoZKNWsS1H?=
- =?us-ascii?Q?s/8M3FkcATfMp16DejFiBdmT8iSqEZVxchYFTFh4b+pLTG1+OmbfICACuhIN?=
- =?us-ascii?Q?HDdCwDO/pPa/xRm2IgLvB3duTLvz5zf3BicsTShJ0rCph/WDWd+H1yGEtfrk?=
- =?us-ascii?Q?gUgzjIJbzke/xVaDi79KCucA9fCNg8cYq9z/6wzyXcghs7H3Lcz48ljU+pPF?=
- =?us-ascii?Q?KfsATpB3GghX1GdA+guzii7gJbnoTfjSvurS8Re8Nd9YBHfeIuTUPWgsMN28?=
- =?us-ascii?Q?FEDhUkREB/jVHhPTnZIATWguOjQzw3PprjOHXqesqn+xbwJZsyovsbnzSSv/?=
- =?us-ascii?Q?K4sHDM+Q+JYLsUMKC9n0nCpDRrg719K/qnNshNfOPQz3nnzZdMzcY+RmEWTt?=
- =?us-ascii?Q?J/fJqeEaSbnwo9kCHPbzgfQ9NXwvwZWr+2aWYASJrCUxTqsMR0r9J0oGCaLL?=
- =?us-ascii?Q?mgkBi0xNQN0/tPsIjwtTu9FXIXFgv7eutizEFyeb00UObAvjZgbVUFGEBNV+?=
- =?us-ascii?Q?+0a2MKfeo4GPTCy0a6SeVYXsrnQzOMor/EteG/UoEoWxAlct+X1xRdubgP0P?=
- =?us-ascii?Q?f3dw+0SS9lLvGqV/41+ihWTml1xKpoldLOZdQ3iEPnsBsbNpcu1gjqz80Ci1?=
- =?us-ascii?Q?z5Y7B2ddO/LxZXsucE7QLmO1AswgPHAb/4P2utkebxWfrvA+1RDHuEk5lvxs?=
- =?us-ascii?Q?qK+CAUcYcWaMtUrx0ZLi5n7WpgFnYjganR3/UZ931uO3zrsJ9LaAe6n+k0si?=
- =?us-ascii?Q?T03LoyAB5jyQMGphguCn1R28oJxwJeD2omhPXiCihPQf1NtdQ120bb8AOAvt?=
- =?us-ascii?Q?AmNH/CruzypexvhD/v0iO42EKrPw7XxwcfsMF7mpq7ALsX5jhEJDR2sFvFAo?=
- =?us-ascii?Q?KVDR/uSJ5njcepJZSwpXAO5S76L2Cp690TNNniKTEFe3OnRAwNc4g+ssk9tI?=
- =?us-ascii?Q?dMZA2eRZRTXzRTNFBgeTVNJzzEEWsLPtsPeGG4Ir+aipaMurF77Zoz07GySr?=
- =?us-ascii?Q?l4AlWgzoc1kHWm2BlWe3e6Q3pB751ETv+qNIO1agu1qrN2PWHmt/+Zy9NOA5?=
- =?us-ascii?Q?A7SrfTk+paJTN+iiD9bXEEDjXdZrdS57TF8emCKTCOopx513kcQl1yluwJq3?=
- =?us-ascii?Q?FyA1VrbCyoQqZVI+d3/A3DVeTfSZHrhh2jpEaQ4DW1T/HWT1DDtGTeRLMPU+?=
- =?us-ascii?Q?I4kUPDnrkf+aIZYkr4QvCfUqX4CavvYfkMJrWu/kX/ttxnhPb0XTiqnsLsAH?=
- =?us-ascii?Q?KEZ5FdBEwZQITbWqJYlPAeKv2rEXNGAhVFVcd8zOojEE4Qo7omsJXwh49yOR?=
- =?us-ascii?Q?wMJKxH+ZE0ehx+t93x3zKCGc56bR5HT0aOGNzXaNQ7LbKNg1qj8AFtV72iN+?=
- =?us-ascii?Q?iq/GOwLPwAH9uW2msAYM4fhzaTkbfJzklHA6diV5l8lPesHbrjC4W5xlAhCJ?=
- =?us-ascii?Q?KXuBPHGsJfDYmefImB8MabTRqUvrMz5EWV0Y73f+QYAPSxhQQvvY?=
+	=?us-ascii?Q?U3ivJu/IIsQ70n7HYEp25l3RxCS20a04N8Rjb4vYnwsYVgimHxgi3lTlUAmH?=
+ =?us-ascii?Q?L8gzMWEQbaL7VbWe9OyhRLVP3+MOOb9h+jVUhfdq+9XKmR0/TtSjeOJFAliW?=
+ =?us-ascii?Q?PHOOf7odZcXRXVV3KAAban5Iazc4HGFlNeto8N2kjFAjFqyG5Ydm0hiajLpF?=
+ =?us-ascii?Q?sSaULEsMw7E9tUL4kf9k5zxv48k4n1gS0lq4bxxdVHdeOP6RqFgeAhGJ9CCE?=
+ =?us-ascii?Q?vFk44UDFAVbiYLDd9Lt2O3s2nU8QQhLdjDUW5T4pkQail9Szp0xU8Hn1k5qY?=
+ =?us-ascii?Q?iiJo9uj9pEKUVNFFKx27ntrQELCDU7vta3O0v1C1DYgWADmTGNx6KdicWmHQ?=
+ =?us-ascii?Q?ZLRqNZvx5qt2I8Qke1YZzxoF3UBRSCRzFoNj3D8VSJxrBct/MjwVjlZsqUQR?=
+ =?us-ascii?Q?hHc924BGZa613NM+lRb5Bs9UQn+vdaqGPb3vc1fd+BA68fx6pxPrMGzWSpEp?=
+ =?us-ascii?Q?IfkZPueoNSp3TRvhO7DgFZgQMusAj3eHmwvipDF1/Bv7HaYPI3P2pB1o8LRi?=
+ =?us-ascii?Q?A5J+hSMh7EsQpsZdwJaZhFfv9ruN8kSBswOMSC0ToMvwREsR25CSA8K4zMc7?=
+ =?us-ascii?Q?mNgBMK/CpTXqS15nI+bpQDdR8/CAtyYMxYPUtpCH4O9GgZphZ/2zOtwmzwdF?=
+ =?us-ascii?Q?ov9Hv3HEJaO7V4tI/2TcO8qFCvooi1CB0moP2a84/4/Yv1uRa62gDTU6bpHU?=
+ =?us-ascii?Q?gK64XIy1Xea9fXWzWMl8fN0Urff3WKA/Sp03KjQWnAvz38nnXhbf/xTjnSbt?=
+ =?us-ascii?Q?+SyN9trEXjiQDFJuLNC7tc+NyqEnFcp/7gzq6Z2VZJA8/NcSLaojYk64LMO7?=
+ =?us-ascii?Q?7gLGJ8DFodb8hIZFNadaVnqkYgY8Tf3NGVsygTVQYlnGnujdEhGRsrU6Ecy+?=
+ =?us-ascii?Q?9GJpY1k8QoZI0XOZD5TH3anQ5Z+d917wlma1hHLvr0h+jpA/zL1d7p6eyTqM?=
+ =?us-ascii?Q?i5jkLwJTcaFR3oUxxVvYHA4Rtc3ia3mGjl3PAmuzSGpaDEKMB0AJpkwdakv3?=
+ =?us-ascii?Q?Zc88+f0k86clkmd53+g5Udypm//acd2eVk6rNwoAGieDZQC8H3Y09qt5CFFW?=
+ =?us-ascii?Q?DBKhqirxYndH+V+mUONX/5uT2aN29yZLXGdtBk6bUUhCVyvGlDqa/wbr35P/?=
+ =?us-ascii?Q?A99j9ceDI2EoSn7/9UbiNqlJCPQZyD9sneWhQu8Eh54H5ujwI7EaVETj0iyS?=
+ =?us-ascii?Q?ilNfPHWsaOyLOxTgSdjLdTMVVdwFn7STz9jx+pAjkYv4ogyiQCl05PHsbNZM?=
+ =?us-ascii?Q?vmMK9tuNf0nQWwppJJy/bUegdYXg7x8751bJ4k/xuzRtZaU3JK92s7/+s1Fa?=
+ =?us-ascii?Q?aguFNpaIj0hh10wggT32X/DC7vPAJGM8BiGOwj2H0y3QwukX1kJ/oi5FW711?=
+ =?us-ascii?Q?hJC+go1s9C0tbFl84ocvQ0gPA2K0IwvID2ojxu0smScFVdUe9YZD1BKcXPTo?=
+ =?us-ascii?Q?YbWepIgrUt5bjXWsjP4tMDojKGNI4jJvEe+wFxdfLjfg3EmWSMODE6TUXPqK?=
+ =?us-ascii?Q?fPys0Uv5MalLbv0T1tCHc05nOVoaL4ml7Ji8M0/zIZ0KKpbRb8HvW7EZvGqh?=
+ =?us-ascii?Q?TE4qzs/WZBgA9WBWZlIqbwVXjvoimq8fpMHY7DVg67SGR4liLUUzoI73d9Jn?=
+ =?us-ascii?Q?+dkVCxN/BaIK5jMcsiu6NbiXqHn2Na4ghq2lg0wSGBWFH2Zng0vHpAu5bUoY?=
+ =?us-ascii?Q?dTREfWSip59xCOlr4BBpmVVHrz6FYcn7xivMVhONsjZadrnwuAk3/WoFL0on?=
+ =?us-ascii?Q?n9tnU1BRJlWng6OpZmKqrIVTYCmAwew3OJeiFW3qR/psMMotPO2X?=
 X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 986d7b11-ddbc-4cc0-b783-08de96dfb9eb
+X-MS-Exchange-CrossTenant-Network-Message-Id: 129d65b3-43fb-450d-445f-08de96dfba7f
 X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 09:01:17.5474
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 09:01:18.5094
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LBEybF6zOumvDc0Cq6W+MkNrFEWmaBYb+l4VhcjoK1bXFW3O+Lyaju6gOOhrzX/SAa4us1PbD0j2DOXnsUB0aRh1k+FyR3rnm6csAtxzdeImuGovIXPF3SwfycFiO+Gs
+X-MS-Exchange-CrossTenant-UserPrincipalName: bxR/i2iz8z0rBI+Eql9ZqsCVYHHA/PeFBb9p03KNbSVJmw4RJGeSgNnmH1Uu7jvN/mI7hwwgQfn9jE14HENSDfmFUWn6RIQ0yG9xIghZrt9gSlCRmLjw+WrxvbSvkIoG
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1218
 X-Spamd-Result: default: False [5.04 / 15.00];
 	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
@@ -140,12 +140,12 @@ X-Spamd-Result: default: False [5.04 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286473-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286470-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -153,136 +153,129 @@ X-Spamd-Result: default: False [5.04 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_COUNT_FIVE(0.00)[5];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,starfivetech.com:email,starfivetech.com:mid]
-X-Rspamd-Queue-Id: 19EB23D5BB1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[starfivetech.com:email,starfivetech.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CE0553D5BE3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Use devm_ interfaces to simplify resource release. Make clock and reset
-get optional as they are not used on the JHB100 SoC. Replace pr_ logging
-with dev_* logging.
+From: Mason Huo <mason.huo@starfivetech.com>
 
+StarFive JHB100 SoC interrupt controller actually supports 64 interrupt
+sources, the original code only supported up to 32. now it is extended
+to 64.
+
+Signed-off-by: Mason Huo <mason.huo@starfivetech.com>
 Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 ---
- drivers/irqchip/irq-starfive-jhb100-intc.c | 44 ++++++++--------------
- 1 file changed, 15 insertions(+), 29 deletions(-)
+ drivers/irqchip/irq-starfive-jhb100-intc.c | 43 ++++++++++++++--------
+ 1 file changed, 28 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/irqchip/irq-starfive-jhb100-intc.c b/drivers/irqchip/irq-starfive-jhb100-intc.c
-index 2c9cdad7f377..312a4634870a 100644
+index 312a4634870a..d5ecbb603a58 100644
 --- a/drivers/irqchip/irq-starfive-jhb100-intc.c
 +++ b/drivers/irqchip/irq-starfive-jhb100-intc.c
-@@ -7,16 +7,14 @@
-  * Author: Changhuang Liang <changhuang.liang@starfivetech.com>
-  */
- 
--#define pr_fmt(fmt) "irq-starfive-jhb100: " fmt
--
- #include <linux/bitops.h>
- #include <linux/clk.h>
- #include <linux/irq.h>
- #include <linux/irqchip.h>
- #include <linux/irqchip/chained_irq.h>
- #include <linux/irqdomain.h>
--#include <linux/of_address.h>
- #include <linux/of_irq.h>
-+#include <linux/platform_device.h>
+@@ -18,10 +18,11 @@
  #include <linux/reset.h>
  #include <linux/spinlock.h>
  
-@@ -127,48 +125,44 @@ static int starfive_intc_probe(struct platform_device *pdev, struct device_node
- 	if (!irqc)
- 		return -ENOMEM;
+-#define STARFIVE_INTC_SRC0_CLEAR	0x10
+-#define STARFIVE_INTC_SRC0_MASK		0x14
+-#define STARFIVE_INTC_SRC0_INT		0x1c
++#define STARFIVE_INTC_SRC_CLEAR(n)	(0x10 + ((n) * 0x20))
++#define STARFIVE_INTC_SRC_MASK(n)	(0x14 + ((n) * 0x20))
++#define STARFIVE_INTC_SRC_INT(n)	(0x1c + ((n) * 0x20))
  
--	irqc->base = of_iomap(intc, 0);
-+	irqc->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (!irqc->base) {
--		pr_err("Unable to map registers\n");
-+		dev_err(&pdev->dev, "unable to map registers\n");
- 		ret = -ENXIO;
- 		goto err_free;
++#define STARFIVE_INTC_NUM		2
+ #define STARFIVE_INTC_SRC_IRQ_NUM	32
+ 
+ struct starfive_irq_chip {
+@@ -53,18 +54,26 @@ static void starfive_intc_bit_clear(struct starfive_irq_chip *irqc,
+ static void starfive_intc_unmask(struct irq_data *d)
+ {
+ 	struct starfive_irq_chip *irqc = irq_data_get_irq_chip_data(d);
++	int i, bitpos;
++
++	i = d->hwirq / STARFIVE_INTC_SRC_IRQ_NUM;
++	bitpos = d->hwirq % STARFIVE_INTC_SRC_IRQ_NUM;
+ 
+ 	raw_spin_lock(&irqc->lock);
+-	starfive_intc_bit_clear(irqc, STARFIVE_INTC_SRC0_MASK, BIT(d->hwirq));
++	starfive_intc_bit_clear(irqc, STARFIVE_INTC_SRC_MASK(i), BIT(bitpos));
+ 	raw_spin_unlock(&irqc->lock);
+ }
+ 
+ static void starfive_intc_mask(struct irq_data *d)
+ {
+ 	struct starfive_irq_chip *irqc = irq_data_get_irq_chip_data(d);
++	int i, bitpos;
++
++	i = d->hwirq / STARFIVE_INTC_SRC_IRQ_NUM;
++	bitpos = d->hwirq % STARFIVE_INTC_SRC_IRQ_NUM;
+ 
+ 	raw_spin_lock(&irqc->lock);
+-	starfive_intc_bit_set(irqc, STARFIVE_INTC_SRC0_MASK, BIT(d->hwirq));
++	starfive_intc_bit_set(irqc, STARFIVE_INTC_SRC_MASK(i), BIT(bitpos));
+ 	raw_spin_unlock(&irqc->lock);
+ }
+ 
+@@ -93,20 +102,23 @@ static void starfive_intc_irq_handler(struct irq_desc *desc)
+ 	struct starfive_irq_chip *irqc = irq_data_get_irq_handler_data(&desc->irq_data);
+ 	struct irq_chip *chip = irq_desc_get_chip(desc);
+ 	unsigned long value;
+-	int hwirq;
++	int hwirq, i;
+ 
+ 	chained_irq_enter(chip, desc);
+ 
+-	value = ioread32(irqc->base + STARFIVE_INTC_SRC0_INT);
+-	while (value) {
+-		hwirq = ffs(value) - 1;
++	for (i = 0; i < STARFIVE_INTC_NUM; i++) {
++		value = ioread32(irqc->base + STARFIVE_INTC_SRC_INT(i));
++		while (value) {
++			hwirq = ffs(value) - 1;
+ 
+-		generic_handle_domain_irq(irqc->domain, hwirq);
++			generic_handle_domain_irq(irqc->domain,
++						  hwirq + i * STARFIVE_INTC_SRC_IRQ_NUM);
+ 
+-		starfive_intc_bit_set(irqc, STARFIVE_INTC_SRC0_CLEAR, BIT(hwirq));
+-		starfive_intc_bit_clear(irqc, STARFIVE_INTC_SRC0_CLEAR, BIT(hwirq));
++			starfive_intc_bit_set(irqc, STARFIVE_INTC_SRC_CLEAR(i), BIT(hwirq));
++			starfive_intc_bit_clear(irqc, STARFIVE_INTC_SRC_CLEAR(i), BIT(hwirq));
+ 
+-		__clear_bit(hwirq, &value);
++			__clear_bit(hwirq, &value);
++		}
  	}
  
--	rst = of_reset_control_get_exclusive(intc, NULL);
-+	rst = devm_reset_control_get_optional(&pdev->dev, NULL);
- 	if (IS_ERR(rst)) {
--		pr_err("Unable to get reset control %pe\n", rst);
-+		dev_err(&pdev->dev, "Unable to get reset control %pe\n", rst);
- 		ret = PTR_ERR(rst);
--		goto err_unmap;
-+		goto err_free;
- 	}
- 
--	clk = of_clk_get(intc, 0);
-+	clk = devm_clk_get_optional_enabled(&pdev->dev, NULL);
- 	if (IS_ERR(clk)) {
--		pr_err("Unable to get clock %pe\n", clk);
-+		dev_err(&pdev->dev, "Unable to get and enable clock %pe\n", clk);
- 		ret = PTR_ERR(clk);
--		goto err_reset_put;
-+		goto err_free;
- 	}
- 
- 	ret = reset_control_deassert(rst);
- 	if (ret)
--		goto err_clk_put;
--
--	ret = clk_prepare_enable(clk);
--	if (ret)
--		goto err_reset_assert;
-+		goto err_free;
+ 	chained_irq_exit(chip, desc);
+@@ -152,7 +164,8 @@ static int starfive_intc_probe(struct platform_device *pdev, struct device_node
  
  	raw_spin_lock_init(&irqc->lock);
  
- 	irqc->domain = irq_domain_create_linear(of_fwnode_handle(intc), STARFIVE_INTC_SRC_IRQ_NUM,
+-	irqc->domain = irq_domain_create_linear(of_fwnode_handle(intc), STARFIVE_INTC_SRC_IRQ_NUM,
++	irqc->domain = irq_domain_create_linear(of_fwnode_handle(intc),
++						STARFIVE_INTC_SRC_IRQ_NUM * STARFIVE_INTC_NUM,
  						&starfive_intc_domain_ops, irqc);
  	if (!irqc->domain) {
--		pr_err("Unable to create IRQ domain\n");
-+		dev_err(&pdev->dev, "Unable to create IRQ domain\n");
- 		ret = -EINVAL;
--		goto err_clk_disable;
-+		goto err_reset_assert;
- 	}
- 
- 	parent_irq = of_irq_get(intc, 0);
- 	if (parent_irq < 0) {
--		pr_err("Failed to get main IRQ: %d\n", parent_irq);
-+		dev_err(&pdev->dev, "Failed to get main IRQ: %d\n", parent_irq);
- 		ret = parent_irq;
- 		goto err_remove_domain;
- 	}
-@@ -176,23 +170,15 @@ static int starfive_intc_probe(struct platform_device *pdev, struct device_node
- 	irq_set_chained_handler_and_data(parent_irq, starfive_intc_irq_handler,
+ 		dev_err(&pdev->dev, "Unable to create IRQ domain\n");
+@@ -171,7 +184,7 @@ static int starfive_intc_probe(struct platform_device *pdev, struct device_node
  					 irqc);
  
--	pr_info("Interrupt controller register, nr_irqs %d\n",
--		STARFIVE_INTC_SRC_IRQ_NUM);
-+	dev_info(&pdev->dev, "Interrupt controller register, nr_irqs %d\n",
-+		 STARFIVE_INTC_SRC_IRQ_NUM);
+ 	dev_info(&pdev->dev, "Interrupt controller register, nr_irqs %d\n",
+-		 STARFIVE_INTC_SRC_IRQ_NUM);
++		 STARFIVE_INTC_SRC_IRQ_NUM * STARFIVE_INTC_NUM);
  
  	return 0;
  
- err_remove_domain:
- 	irq_domain_remove(irqc->domain);
--err_clk_disable:
--	clk_disable_unprepare(clk);
- err_reset_assert:
- 	reset_control_assert(rst);
--err_clk_put:
--	clk_put(clk);
--err_reset_put:
--	reset_control_put(rst);
--err_unmap:
--	iounmap(irqc->base);
- err_free:
- 	kfree(irqc);
- 	return ret;
 -- 
 2.25.1
 
