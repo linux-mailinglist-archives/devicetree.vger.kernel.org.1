@@ -1,73 +1,63 @@
-Return-Path: <devicetree+bounces-286469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286472-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8CeQDPHQ2GngiQgAu9opvQ
-	(envelope-from <devicetree+bounces-286469-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:29:05 +0200
+	id EOQ2EdjT2GmuiwgAu9opvQ
+	(envelope-from <devicetree+bounces-286472-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:41:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D7C73D5AD4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:29:04 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E081E3D5C10
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:41:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 827E130094DF
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:28:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C26523007CB5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 10:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0572437F8D9;
-	Fri, 10 Apr 2026 10:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F201386C28;
+	Fri, 10 Apr 2026 10:35:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sm0Jn21W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GARQ2WLj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5117B37EFFF;
-	Fri, 10 Apr 2026 10:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08AA4328260;
+	Fri, 10 Apr 2026 10:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775816935; cv=none; b=LKrCPHtsXKjBLMVQi0IO6jcrKc1jU30kIYrS6l1uk5G/JZRCetMZgBoxj+7EBAgQL0uAJ4EN6tJgAbvvKEOYKtBb29EBgUpgOUQSSW5KuUN8es7dXp3VdoOQdqc00ZKtbEXx1TqN9b9eGTF0mRgFafUy6LtuytxEE66AIQ7R2W4=
+	t=1775817306; cv=none; b=VPDrTZSJ6wXV6nKZZXd3WsaKRs+srVE5Ew4/aN6LarrC2OmCF9oRBd+9NS//0yvaxA8FrsjkkWvk+LuYE11wxFNbu4ySa84EkPiSRqs9sCSGhqCYxTMdL74kxXpvhl9pm/OiYcG0maU0HiQ++zhnxAUJ51mvRpbEIv4Ed9TMjDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775816935; c=relaxed/simple;
-	bh=JcpXPHlj5lb/tC6GGA8d4uK2G8UACazbeyqXotcuMjs=;
+	s=arc-20240116; t=1775817306; c=relaxed/simple;
+	bh=NbLMW9yD5qW6WB9yg4ttyR+1tADafNTIh7LxC+xpkQU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q6/s03Eni1EFaW2IMW0cjI2OA4Vwj1IejUKc9bY5+FdxqGfRNh6bu8hk2Uxrs9aoRtlBGu0Xc8KvaQ4zPOcqAKKMaKckNKAQlthU1JIGYMo5tOhSLDvqKkYHfRPo1fVHNIS6G49W4qDRwuJZWw4exxTPC7cvIaJfz4QAXSWqhCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sm0Jn21W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A05F8C19421;
-	Fri, 10 Apr 2026 10:28:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BqxiRmqduYEnIQDl06MC6rK688B/+T3EnyDmI1MsGuE6yOkQxGgco4bPSjbFCZSDzhjPzvmz2dGN442oNHu+wEsZ0603xlNj8AakU7+nnYE8vpCRy5KQ9uAXRC2ErRH537dgNmJ+IML3cB/e8mLiyPTgGT2GAzRQH4kV6I0bsEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GARQ2WLj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 653FFC19421;
+	Fri, 10 Apr 2026 10:35:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775816934;
-	bh=JcpXPHlj5lb/tC6GGA8d4uK2G8UACazbeyqXotcuMjs=;
+	s=k20201202; t=1775817305;
+	bh=NbLMW9yD5qW6WB9yg4ttyR+1tADafNTIh7LxC+xpkQU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Sm0Jn21W5KKuhJBrMB+l4yidD3bcufvSGT8Fdnj+KnFoTrB3fMBJS9QZC8b+sBcFN
-	 JiVbKkbdTZnLQqYsvw53QhRdiUWcYP9R97Na7ijJDAUSduZJk1DScVeIxG03n47Nch
-	 XPaV4Q7FDC4gP9TiIJ7GNtZt2DLTXohg5cAvQlBMTN9HpCeUIGQfVbr8VjRPLqJCvo
-	 IPwLOlvvTqAgrBmvuXLktWb7w6wUXwF6+eoJW4Mkko/TwcIj3qm8EEFj+hdaAYBsF9
-	 wrPlxYPB6PWUs0IgcAzu2iaG9DyFvUMzaDvLU3kwtt3d+qzj2tn8n2X3iyDeJeFifH
-	 sqecpZQbOrlzg==
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-	id 30DAA1AC58AF; Fri, 10 Apr 2026 11:28:52 +0100 (BST)
-Date: Fri, 10 Apr 2026 11:28:52 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: Add support for the GPIOs driven
- amplifier
-Message-ID: <adjQ5N69y2PnV-11@sirena.co.uk>
-References: <20260330101610.57942-1-herve.codina@bootlin.com>
- <20260330101610.57942-3-herve.codina@bootlin.com>
- <20260408122901.GA42727-robh@kernel.org>
- <20260408190932.0ab936b0@bootlin.com>
- <CAL_JsqK4SHQS6MciQpLSrGWo2knqs7-eB3yoAv2J54bSfW-Lxg@mail.gmail.com>
- <383635c6-0417-4333-aa9c-9056437d4a5f@sirena.org.uk>
- <20260410100330.1fc4b97b@bootlin.com>
+	b=GARQ2WLjSg5318qxd44xvfOHr5o4PZb8ep4XJU+jy7EVLExVz0fmJ77P/dHWqM+Zs
+	 IPaWAUkJqA77hhpaFOvT1fsyzy4d3ezpyDco1x7J67X0LZrZ0Y5/NF8iQzYKY6kIhJ
+	 IbK7eOtENWVJv1XFZPJMYYExQwwc/WludzAO6ZRcCKEIfGd1C8ZOFLmQRfIKvZNHMU
+	 QbQQCLeK966dblNIiSag1XSlSch4p+ogRF5Dr3g0St9h/d8088Y01/g+IQfllG/UCv
+	 kWFiSUHXGphB09x4dJuKVJ8+REimujKAO44foNPi6UwmlJ4M7tYfydKq64eb6Ak4UE
+	 /QTceuKQGeYFQ==
+Date: Fri, 10 Apr 2026 12:35:03 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ansuelsmth@gmail.com,
+	benjamin.larsson@genexis.eu, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, Xuegang Lu <xuegang.lu@airoha.com>
+Subject: Re: [PATCH net-next v3 10/12] net: airoha: Do not stop GDM port if
+ it is shared
+Message-ID: <adjSV_ITucZItPjb@lore-desk>
+References: <20260406-airoha-eth-multi-serdes-v3-10-ab6ea49d59ff@kernel.org>
+ <20260410025726.1810041-1-kuba@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,91 +65,188 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="o+9W+h3qdmnfJbB1"
+	protocol="application/pgp-signature"; boundary="8LLt8ct3/nBL/EoR"
 Content-Disposition: inline
-In-Reply-To: <20260410100330.1fc4b97b@bootlin.com>
-X-Cookie: You will be divorced within a year.
-X-Spamd-Result: default: False [-2.76 / 15.00];
+In-Reply-To: <20260410025726.1810041-1-kuba@kernel.org>
+X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286469-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,suse.com,vger.kernel.org,csgroup.eu,bootlin.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-286472-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,redhat.com,kernel.org,gmail.com,genexis.eu,lists.infradead.org,vger.kernel.org,airoha.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sirena.co.uk:mid]
-X-Rspamd-Queue-Id: 9D7C73D5AD4
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[airoha.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E081E3D5C10
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---o+9W+h3qdmnfJbB1
+--8LLt8ct3/nBL/EoR
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 10, 2026 at 10:03:30AM +0200, Herve Codina wrote:
-> Mark Brown <broonie@kernel.org> wrote:
+> This is an AI-generated review of your patch. The human sending this
+> email says "For your consideration."
+> ---
+> net: airoha: Do not stop GDM port if it is shared
+>=20
+> Theoretically, in the current codebase, two independent net_devices can
+> be connected to the same GDM port so we need to check the GDM port is not
+> used by any other running net_device before setting the forward
+> configuration to FE_PSE_PORT_DROP.
+>=20
+> Tested-by: Xuegang Lu <xuegang.lu@airoha.com>
+>=20
+> > diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/eth=
+ernet/airoha/airoha_eth.c
+> > index fd27ba13029bd..5b0cd37b155e4 100644
+> > --- a/drivers/net/ethernet/airoha/airoha_eth.c
+> > +++ b/drivers/net/ethernet/airoha/airoha_eth.c
+>=20
+> [ ... ]
+>=20
+> > @@ -1688,18 +1693,18 @@ static int airoha_dev_stop(struct net_device *n=
+etdev)
+> >  	struct airoha_gdm_dev *dev =3D netdev_priv(netdev);
+> >  	struct airoha_gdm_port *port =3D dev->port;
+> >  	struct airoha_qdma *qdma =3D dev->qdma;
+> > -	int i, err;
+> > +	int i;
+> > =20
+> >  	netif_tx_disable(netdev);
+> > -	err =3D airoha_set_vip_for_gdm_port(dev, false);
+> > -	if (err)
+> > -		return err;
+> > -
+> >  	for (i =3D 0; i < ARRAY_SIZE(qdma->q_tx); i++)
+> >  		netdev_tx_reset_subqueue(netdev, i);
+> > =20
+> > -	airoha_set_gdm_port_fwd_cfg(qdma->eth, REG_GDM_FWD_CFG(port->id),
+> > -				    FE_PSE_PORT_DROP);
+> > +	if (atomic_dec_and_test(&port->users)) {
+> > +		airoha_set_vip_for_gdm_port(dev, false);
+> > +		airoha_set_gdm_port_fwd_cfg(qdma->eth,
+> > +					    REG_GDM_FWD_CFG(port->id),
+> > +					    FE_PSE_PORT_DROP);
+> > +	}
+> > =20
+> >  	if (atomic_dec_and_test(&qdma->users)) {
+> >  		airoha_qdma_clear(qdma, REG_QDMA_GLOBAL_CFG,
+> > 				  GLOBAL_CFG_TX_DMA_EN_MASK |
+> > 				  GLOBAL_CFG_RX_DMA_EN_MASK);
+> >=20
+> > 		for (i =3D 0; i < ARRAY_SIZE(qdma->q_tx); i++) {
+> > 			if (!qdma->q_tx[i].ndesc)
+> > 				continue;
+> >=20
+> > 			airoha_qdma_cleanup_tx_queue(&qdma->q_tx[i]);
+> > 		}
+> > 	}
+>=20
+> This problem wasn't introduced by this patch, but does the QDMA teardown
+> path have a DMA corruption vulnerability here?
+>=20
+> When GLOBAL_CFG_TX_DMA_EN_MASK is cleared, it fails to poll
+> GLOBAL_CFG_TX_DMA_BUSY_MASK, proceeding to unmap memory while the hardware
+> DMA engine may still be processing in-flight descriptors.
+>=20
+> Furthermore, airoha_qdma_cleanup_tx_queue() unmaps the DMA addresses and
+> frees the SKBs, but it does not appear to clear the physical hardware
+> descriptors or reset the hardware ring pointers (REG_TX_CPU_IDX /
+> REG_TX_DMA_IDX).
+>=20
+> When the device is later reopened in airoha_dev_open(),
+> GLOBAL_CFG_TX_DMA_EN_MASK is set again without re-initializing the rings.
+> Will the hardware DMA engine resume fetching from its previous index,
+> processing stale descriptors whose backing memory was already unmapped
+> and freed?
 
-> > > > I didn't want to set a particular limit related to the number of GP=
-IOs
-> > > > used for thje gain value. Of course 2^32 is obviously a lot. =20
+ack, I will work on it with a dedicated patch.
 
-> > > > What do you think about 16 for maxItems? =20
+>=20
+> [ ... ]
+>=20
+> > @@ -1851,10 +1856,22 @@ static void airoha_dev_get_stats64(struct net_d=
+evice *netdev,
+> >  static int airoha_dev_change_mtu(struct net_device *netdev, int mtu)
+> >  {
+> >  	struct airoha_gdm_dev *dev =3D netdev_priv(netdev);
+> > +	u32 cur_len, len =3D ETH_HLEN + mtu + ETH_FCS_LEN;
+> >  	struct airoha_gdm_port *port =3D dev->port;
+> > -	u32 len =3D ETH_HLEN + mtu + ETH_FCS_LEN;
+> >  	struct airoha_eth *eth =3D dev->eth;
+> > =20
+> > +	cur_len =3D FIELD_GET(GDM_LONG_LEN_MASK,
+> > +			    airoha_fe_rr(eth, REG_GDM_LEN_CFG(port->id)));
+> > +	if (len < cur_len) {
+> > +		u8 port_refcnt =3D atomic_read(&port->users);
+> > +
+> > +		/* We can decrease the device MTU just if the GDM port is
+> > +		 * not shared or if the other device is not running.
+> > +		 */
+> > +		if (port_refcnt > 1 || (port_refcnt && !netif_running(netdev)))
+> > +			return -EBUSY;
+> > +	}
+> > +
+>=20
+> Does this MTU decrease validation create a state trap on shared ports?
+>=20
+> If both eth0 and eth1 (sharing a port) are up, and a user increases eth0 =
+MTU
+> to 9000, the hardware MTU updates to 9000. If the user then tries to lower
+> eth0 MTU back to 1500, len < cur_len evaluates to true. Because eth1 is a=
+lso
+> up (port_refcnt > 1), this returns -EBUSY.
+>=20
+> This would prevent either interface from decreasing its MTU without fully
+> bringing down the sibling interface.
+>=20
+> Should the software netdev->mtu be decoupled from the hardware validation,
+> allowing valid MTU changes in software while dynamically programming the
+> hardware MTU to the maximum of all currently up interfaces on the shared
+> port?
 
-> > > What is the most you are aware of? Take that and double it. =20
+It seems more correct to me avoid receiving in the stack packet bigger than=
+ the
+configured 'SW MTU".
 
-> > > Seems to me 256 levels would be way more than a human ear could disti=
-nguish. =20
+Regards,
+Lorenzo
 
-> > There's plenty of gain controls with way more than 256 bits of
-> > resolution, though I'm not aware of any that are configured via GPIO.
-> > The step size and absolute values you want can vary dramatically
-> > depending on application, possibly in the same system (eg, a DAC that
-> > can be connected to both headphones or speakers) so you often end up
-> > making practical adjustments in a small subset of the available range
-> > but that subset can vary a lot for the same part.
 
-> Mark, do you think that max 16 GPIOs could be an acceptable limit?
-
-> IMHO, this value is large enough to be used as the limit.
-
-That does seem larger than any real system would ever need.
-
---o+9W+h3qdmnfJbB1
-Content-Type: application/pgp-signature; name="signature.asc"
+--8LLt8ct3/nBL/EoR
+Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnY0OMACgkQJNaLcl1U
-h9Ao1ggAgWdjTX1pvufL7cIl1/RH40GGhnRehBGD8GngAKRTvfoi3/KBcPk29O/u
-HwFPzD5v1yZIbmq4SZme6Ob/25SUIEIps3YuoLBMH2z21q6CB14p7cs97I7J2XFk
-PQGkqRkHvzLyG0OjtY6NHG9xzGGViF9qTFvsTWlvYOSjUNZ4wsoYLSOD9XNmjmt6
-YRJlvciBynFLtfg1QmO8Gb5Tdxjx398hPugL9griW1z0Oyii2d1MIc7nQ57JLjP9
-ld7N7tfqJMVTCpIpGKbYBUx5D+7PXd0J473ig15bAtAkdVMLOTSQDQQIAMY1BCQl
-4FfL2rjwoo9GL/o428atk0ph9xOLgg==
-=eyC5
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCadjSVwAKCRA6cBh0uS2t
+rKGBAQDRSN/e8N+6AoxvLopfJBHvUijN7q4xUeofQsEYNntjygEAhNk5cQC8KD5p
+37hLOLJqsp50UUBwxSDUH4e9phnmyAQ=
+=5Ae+
 -----END PGP SIGNATURE-----
 
---o+9W+h3qdmnfJbB1--
+--8LLt8ct3/nBL/EoR--
 
