@@ -1,329 +1,144 @@
-Return-Path: <devicetree+bounces-286635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286637-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YD4yNLdp2Wk1pggAu9opvQ
-	(envelope-from <devicetree+bounces-286635-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 23:20:55 +0200
+	id yD66NDxu2WnGpggAu9opvQ
+	(envelope-from <devicetree+bounces-286637-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 23:40:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73CDB3DCD85
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 23:20:55 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB5F3DCFDA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 23:40:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D14ED301220D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 21:20:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D463C3008093
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 21:40:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 977703B2FC3;
-	Fri, 10 Apr 2026 21:20:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gg+8N9WX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E5553B27E1;
+	Fri, 10 Apr 2026 21:40:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from irl.hu (irl.hu [95.85.9.111])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B6403B19C4
-	for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 21:20:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE02345749;
+	Fri, 10 Apr 2026 21:40:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.85.9.111
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775856052; cv=none; b=jESd6nV81tPrTtNWgl8+hxY0tQLK2fLrEGlh0Za+ndYkrNO8yTenlqBmuXn1P9NGfoON4xfukId0nZzpV9buGsdvpJdYbIQUAyBF1/0qqeVw0dHkuek1GJl5t48ldjIiQqFN7I6SZYz/AiVT7WSwQw2ZHGGccgwFvZgQleWuZF0=
+	t=1775857207; cv=none; b=AsaN+L5zkca1lFbjTy9XZGXJKJSh/eeaeMhHM8AjCHyS0aOMg+014ajUQpN6e6nOrZzP6AMtv0u4d2ESJFPFKK65FBEPu/koFesgHhcuthqUg4wT+frqIxtOIRZgxADfbwFcRiZFZKHdGPD14q089QHM71BrUG/i7aOjlNcY9Y4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775856052; c=relaxed/simple;
-	bh=nHis4KbGzKiM9B6a3caKE9lQfYb92pA78VEAYoJK2aU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BXWXXpjMNWFVPtMdEdEAtETmkWTvq+8WyLJMGLxcGdhKe/zHQlZBoxNL9/SvK7C1ZnfQEvMYOKdINl3YjiysdeXfGWTb0zX3kSOqQzFwglT/QwX7TTgQAiWCcVfDPkFzqjAHd5xypVvHqaVb3G3RRVyQvrewW+fX6g+NL4ZBC6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gg+8N9WX; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-35da9692ec3so2540372a91.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 14:20:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775856050; x=1776460850; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KaNs7oe7X7plINpb7j4hvUEmm6egxVc5Y+2JXLZ35cg=;
-        b=Gg+8N9WX95Ga+kCQTYCjJzQsVQ1XPjpTfw8x6cNIxZyoQhUz10hh2zwHuavK8pK9hi
-         JX0DTa6HAam8TKWPVUX3FwjbiItDf9ECghg0ZgirvuDgsdEyGBXm2gxmUSx251dEJ89X
-         zjL7NWCqNqM+klgbF1pq+u3gf+CQtQX3+DN88z4DjkGHe7wluMjuxwOJYenQqQfYJdxX
-         qwh091xOJTx2z/tu2MpW5sP2F/9Yp4GEFrmWsMobI+PRiN7koT1DquWWq/MfmM/qtCvJ
-         nQgDQlHQtOtVw8q3irgdxd7CoJq/r2gXKFkcbXCnLrWj0qSYnkAkgm4Wn3ObQ/uRF4nw
-         6Ddg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775856050; x=1776460850;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KaNs7oe7X7plINpb7j4hvUEmm6egxVc5Y+2JXLZ35cg=;
-        b=V2surkbIzzNTJ3KwraTTPtj7/8XW0zLmT+rHkiQzdmcc4PmhBZbravBdzPK2zcLgWA
-         fX7/P9vd1Z9SgeQAUQPKNvgvMC9JxelIZ1UWLeoVwKIKxtBQbHPHk/6ETX9XzPpEeQM3
-         RKJ6Rc5qTPZOSrM/cJ9HhIlI5Aq5eGUMNJbn9KC89FBzm3bASnSzC1ZqvEmGAwqCF/2y
-         uKrqtmydWRt4q8MRWP1bZxXwk9O0RKQGmS/0EaxR6TAyv3Ao3eUQXC6LgtjW3WF5+c/Q
-         qyMH9kIiqZR61ciNPPyF8xfkKN0hKzv7o3M/Gt07hyGWPyFd3197LwcRuCfwrs3IO02l
-         gGCg==
-X-Forwarded-Encrypted: i=1; AJvYcCXbd3jvaqy3Kpf7VZhY2mYLh3eHLLGqM1ZxazsVWBsTcTYbukc1q6YJ0MQhbkbhqyXslmpFTkBrBPY3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUBdrjPspvtkjWmuy8RuaYwJkJdXvKUKMpZkA7XMMYhHE8w9ub
-	hESAA9Q25+ZVrQyEsPN4iS2HMzBO1hHcCINwbtkra01fDj4BWZsAumS4
-X-Gm-Gg: AeBDievhiek1rRDQFJLHjFScyh9vN/XDx+8/fWrJmj2bhePi7I9LFH2l7jc9W+/omq9
-	jPedij/FJv8VmfWGK9UECFtx0cOGwAXvUmB9Plm/SpOCTFXb70hIDsYK47BH9cOi+wjdpMypfNr
-	I4q3UYvkJjazJhKgUFta1CQiVepAlRBPxsk+vLyc74RU5rKGqXuK52+/3lg4PYjeO5hgkLL1322
-	tTx/8VOmyv2WEObh4W4weaaAw9ZTRJnV4CELl8KfF9WWV1zFLf2e0DKUUrcJb5YrhaMfELPNB0q
-	B9yxumn9O+l6xSVrEiRSEET2JWzmBjDh9jaYJcJMe2yT0eXjt5Ria3YjvP+IvZAtvPHpGMiQYgu
-	//n1Xxnk0N7PGXx18FEKHvnkwLpIkFoAsUu9Y/9fhkURj31R3pspFTkxCbaW3JF8PIZkahRtz43
-	bV5ZpRnM5rquAbFp2YJnlHdN+rdmYOr/vNi5cFV6ajhIbljYw=
-X-Received: by 2002:a17:90b:4f86:b0:35e:30bc:96d3 with SMTP id 98e67ed59e1d1-35e427eb04dmr5349968a91.9.1775856050387;
-        Fri, 10 Apr 2026 14:20:50 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35e3517f2a0sm10240059a91.17.2026.04.10.14.20.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Apr 2026 14:20:49 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Fri, 10 Apr 2026 14:20:48 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: ASHISH YADAV <ashishyadav78@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ashish Yadav <ashish.yadav@infineon.com>
-Subject: Re: [PATCH v4 2/2] hwmon:(pmbus/xdp720) Add support for efuse xdp720
-Message-ID: <19284383-2e50-45c6-bf26-9bd366988c62@roeck-us.net>
-References: <20260410070154.3313-1-Ashish.Yadav@infineon.com>
- <20260410070154.3313-3-Ashish.Yadav@infineon.com>
+	s=arc-20240116; t=1775857207; c=relaxed/simple;
+	bh=GeuUMRs2W9Fh+4XlcGggZYngTDUj3oGxt427uSOKYoo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XzrK5wAhUbXgWF0TVpJNKfwV3tDdEyZb3RJ5ogHrSkO/cAKFYb7ptWakARelD9Nb2iwxr+3hU90mgW+J0mN7ue3F7tciBlKabyvbFK990Gw3JgK+v3Yd8BT17sNFZSWzAOnlyx4RLgWPlXhmYyt9vbKZotAK+5J0IPrglaRBo78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=irl.hu; spf=pass smtp.mailfrom=irl.hu; arc=none smtp.client-ip=95.85.9.111
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=irl.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=irl.hu
+Received: from [192.168.2.4] (51b68cef.dsl.pool.telekom.hu [::ffff:81.182.140.239])
+  (AUTH: CRAM-MD5 soyer@irl.hu, )
+  by irl.hu with ESMTPSA
+  id 00000000000C70AC.0000000069D96CFE.000BCF15; Fri, 10 Apr 2026 23:34:54 +0200
+Message-ID: <4e954ef3b906ffe102fe2709bd62844581478043.camel@irl.hu>
+Subject: Re: [PATCH v2] dt-binding: leds: publish common bindings under dual
+ license
+From: Gergo Koteles <soyer@irl.hu>
+To: Corvin =?ISO-8859-1?Q?K=F6hne?= <corvin.koehne@gmail.com>,
+  linux-kernel@vger.kernel.org
+Cc: "open list:LED SUBSYSTEM" <linux-leds@vger.kernel.org>,
+  Pavel Machek <pavel@kernel.org>,
+  "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
+         BINDINGS" <devicetree@vger.kernel.org>,
+  Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+  Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>,
+  Corvin =?ISO-8859-1?Q?K=F6hne?= <c.koehne@beckhoff.com>,
+  Ashley Towns <mail@ashleytowns.id.au>, Dan Murphy <dmurphy@ti.com>,
+  INAGAKI Hiroshi <musashino.open@gmail.com>,
+  Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+  Olliver Schinagl <oliver@schinagl.nl>, Pavel Machek <pavel@ucw.cz>,
+  =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
+  Roderick Colenbrander <roderick@gaikai.com>,
+  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Date: Fri, 10 Apr 2026 23:35:00 +0200
+In-Reply-To: <20260408062942.7128-1-corvin.koehne@gmail.com>
+References: <20260408062942.7128-1-corvin.koehne@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260410070154.3313-3-Ashish.Yadav@infineon.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[irl.hu : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286635-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-286637-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,beckhoff.com,ashleytowns.id.au,ti.com,gmail.com,schinagl.nl,ucw.cz,milecki.pl,gaikai.com,oss.qualcomm.com];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.996];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FROM_NEQ_ENVFROM(0.00)[soyer@irl.hu,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infineon.com:email,infineon.com:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,roeck-us.net:mid]
-X-Rspamd-Queue-Id: 73CDB3DCD85
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ucw.cz:email,ti.com:email,milecki.pl:email]
+X-Rspamd-Queue-Id: DDB5F3DCFDA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 10, 2026 at 12:31:54PM +0530, ASHISH YADAV wrote:
-> From: Ashish Yadav <ashish.yadav@infineon.com>
-> 
-> Add the pmbus driver for Infineon XDP720 Digital eFuse Controller.
-> 
-> Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
-
-Applied.
-
-Thanks,
-Guenter
-
+On Wed, 2026-04-08 at 08:29 +0200, Corvin K=C3=B6hne wrote:
+> From: Corvin K=C3=B6hne <c.koehne@beckhoff.com>
+>=20
+> Changes leds/common.h DT binding header file to be published under GPLv2
+> or BSD-2-Clause license terms. This change allows this common LED
+> bindings header file to be used in software components as bootloaders
+> and OSes that are not published under GPLv2 terms.
+>=20
+> All contributors to leds/common.h file in copy.
+>=20
+> Cc: Ashley Towns <mail@ashleytowns.id.au>
+> Cc: Dan Murphy <dmurphy@ti.com>
+> Cc: Gergo Koteles <soyer@irl.hu>
+> Cc: INAGAKI Hiroshi <musashino.open@gmail.com>
+> Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> Cc: Olliver Schinagl <oliver@schinagl.nl>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> Cc: Roderick Colenbrander <roderick@gaikai.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Corvin K=C3=B6hne <c.koehne@beckhoff.com>
 > ---
-> XDP720 Digital eFuse Controller provides accurate system telemetry
-> (V, I, P, T) and reports analog current at the IMON pin for post-processing.
-> 
-> The Current and Power measurement depends on the RIMON and GIMON values.
-> Please look into data sheet sections 5.4.2 and 5.4.4 for more details:
-> https://www.infineon.com/assets/row/public/documents/24/49/infineon-xdp720-001-datasheet-en.pdf
-> 
-> The GIMON (microA/A) depends on the 10th bit of TELEMETRY_AVG PMBUS Register.
-> The value of RIMON (kohm) can be provided by the user through device tree using
-> infineon,rimon-micro-ohms  property.
-> ---
->  drivers/hwmon/pmbus/Kconfig  |   9 +++
->  drivers/hwmon/pmbus/Makefile |   1 +
->  drivers/hwmon/pmbus/xdp720.c | 128 +++++++++++++++++++++++++++++++++++
->  3 files changed, 138 insertions(+)
->  create mode 100644 drivers/hwmon/pmbus/xdp720.c
-> 
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index fc1273abe357..c419e3ecce90 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -702,6 +702,15 @@ config SENSORS_XDP710
->  	  This driver can also be built as a module. If so, the module will
->  	  be called xdp710.
->  
-> +config SENSORS_XDP720
-> +	tristate "Infineon XDP720 family"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for Infineon
-> +	  XDP720.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called xdp720.
-> +
->  config SENSORS_XDPE152
->  	tristate "Infineon XDPE152 family"
->  	help
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index d6c86924f887..1cac7ccae79f 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -68,6 +68,7 @@ obj-$(CONFIG_SENSORS_TPS546D24)	+= tps546d24.o
->  obj-$(CONFIG_SENSORS_UCD9000)	+= ucd9000.o
->  obj-$(CONFIG_SENSORS_UCD9200)	+= ucd9200.o
->  obj-$(CONFIG_SENSORS_XDP710)	+= xdp710.o
-> +obj-$(CONFIG_SENSORS_XDP720)	+= xdp720.o
->  obj-$(CONFIG_SENSORS_XDPE122)	+= xdpe12284.o
->  obj-$(CONFIG_SENSORS_XDPE152)	+= xdpe152c4.o
->  obj-$(CONFIG_SENSORS_ZL6100)	+= zl6100.o
-> diff --git a/drivers/hwmon/pmbus/xdp720.c b/drivers/hwmon/pmbus/xdp720.c
-> new file mode 100644
-> index 000000000000..8729a771f216
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/xdp720.c
-> @@ -0,0 +1,128 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Hardware monitoring driver for Infineon XDP720 Digital eFuse Controller
-> + *
-> + * Copyright (c) 2026 Infineon Technologies. All rights reserved.
-> + */
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/of_device.h>
-> +#include <linux/bitops.h>
-> +#include <linux/math64.h>
-> +#include "pmbus.h"
-> +
-> +/*
-> + * The IMON resistor required to generate the system overcurrent protection.
-> + * Arbitrary default Rimon value: 2k Ohm
-> + */
-> +#define XDP720_DEFAULT_RIMON 2000000000 /* 2k ohm */
-> +#define XDP720_TELEMETRY_AVG 0xE9
-> +
-> +static struct pmbus_driver_info xdp720_info = {
-> +	.pages = 1,
-> +	.format[PSC_VOLTAGE_IN] = direct,
-> +	.format[PSC_VOLTAGE_OUT] = direct,
-> +	.format[PSC_CURRENT_OUT] = direct,
-> +	.format[PSC_POWER] = direct,
-> +	.format[PSC_TEMPERATURE] = direct,
-> +
-> +	.m[PSC_VOLTAGE_IN] = 4653,
-> +	.b[PSC_VOLTAGE_IN] = 0,
-> +	.R[PSC_VOLTAGE_IN] = -2,
-> +	.m[PSC_VOLTAGE_OUT] = 4653,
-> +	.b[PSC_VOLTAGE_OUT] = 0,
-> +	.R[PSC_VOLTAGE_OUT] = -2,
-> +	/*
-> +	 * Current and Power measurement depends on the RIMON (kOhm) and
-> +	 * GIMON(microA/A) values.
-> +	 */
-> +	.m[PSC_CURRENT_OUT] = 24668,
-> +	.b[PSC_CURRENT_OUT] = 0,
-> +	.R[PSC_CURRENT_OUT] = -4,
-> +	.m[PSC_POWER] = 4486,
-> +	.b[PSC_POWER] = 0,
-> +	.R[PSC_POWER] = -1,
-> +	.m[PSC_TEMPERATURE] = 54,
-> +	.b[PSC_TEMPERATURE] = 22521,
-> +	.R[PSC_TEMPERATURE] = -1,
-> +
-> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_PIN |
-> +		   PMBUS_HAVE_TEMP | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_INPUT |
-> +		   PMBUS_HAVE_STATUS_TEMP,
-> +};
-> +
-> +static int xdp720_probe(struct i2c_client *client)
-> +{
-> +	struct pmbus_driver_info *info;
-> +	int ret;
-> +	u32 rimon;
-> +	int gimon;
-> +
-> +	info = devm_kmemdup(&client->dev, &xdp720_info, sizeof(*info),
-> +			    GFP_KERNEL);
-> +	if (!info)
-> +		return -ENOMEM;
-> +
-> +	ret = devm_regulator_get_enable(&client->dev, "vdd-vin");
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +			"failed to enable vdd-vin supply\n");
-> +
-> +	ret = i2c_smbus_read_word_data(client, XDP720_TELEMETRY_AVG);
-> +	if (ret < 0) {
-> +		dev_err(&client->dev, "Can't get TELEMETRY_AVG\n");
-> +		return ret;
-> +	}
-> +
-> +	ret >>= 10; /* 10th bit of TELEMETRY_AVG REG for GIMON Value */
-> +	ret &= GENMASK(0, 0);
-> +	if (ret == 1)
-> +		gimon = 18200; /* output gain 18.2 microA/A */
-> +	else
-> +		gimon = 9100; /* output gain 9.1 microA/A */
-> +
-> +	if (of_property_read_u32(client->dev.of_node,
-> +				 "infineon,rimon-micro-ohms", &rimon))
-> +		rimon = XDP720_DEFAULT_RIMON; /* Default if not set via DT */
-> +	if (rimon == 0)
-> +		return -EINVAL;
-> +
-> +	/* Adapt the current and power scale for each instance */
-> +	info->m[PSC_CURRENT_OUT] = DIV64_U64_ROUND_CLOSEST((u64)
-> +		info->m[PSC_CURRENT_OUT] * rimon * gimon, 1000000000000ULL);
-> +	info->m[PSC_POWER] = DIV64_U64_ROUND_CLOSEST((u64)
-> +		info->m[PSC_POWER] * rimon * gimon, 1000000000000000ULL);
-> +
-> +	return pmbus_do_probe(client, info);
-> +}
-> +
-> +static const struct of_device_id xdp720_of_match[] = {
-> +	{ .compatible = "infineon,xdp720" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, xdp720_of_match);
-> +
-> +static const struct i2c_device_id xdp720_id[] = {
-> +	{ "xdp720" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, xdp720_id);
-> +
-> +static struct i2c_driver xdp720_driver = {
-> +	.driver = {
-> +		   .name = "xdp720",
-> +		   .of_match_table = xdp720_of_match,
-> +	},
-> +	.probe = xdp720_probe,
-> +	.id_table = xdp720_id,
-> +};
-> +
-> +module_i2c_driver(xdp720_driver);
-> +
-> +MODULE_AUTHOR("Ashish Yadav <ashish.yadav@infineon.com>");
-> +MODULE_DESCRIPTION("PMBus driver for Infineon XDP720 Digital eFuse Controller");
-> +MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS("PMBUS");
+>  include/dt-bindings/leds/common.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds=
+/common.h
+> index 4f017bea0123..b7bafbaf7df3 100644
+> --- a/include/dt-bindings/leds/common.h
+> +++ b/include/dt-bindings/leds/common.h
+> @@ -1,4 +1,4 @@
+> -/* SPDX-License-Identifier: GPL-2.0 */
+> +/* SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) */
+>  /*
+>   * This header provides macros for the common LEDs device tree bindings.
+>   *
+
+I don't know if a single line change counts, but it's fine with me.
+
+Acked-by: Gergo Koteles <soyer@irl.hu>
 
