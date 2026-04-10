@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-286445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286514-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ANBUCHy82GlVhggAu9opvQ
-	(envelope-from <devicetree+bounces-286445-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 11:01:48 +0200
+	id ODWlLqz82GmRkggAu9opvQ
+	(envelope-from <devicetree+bounces-286514-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 15:35:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2BAA3D4740
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 11:01:46 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 431C03D829B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 15:35:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 06C0A300D961
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 09:01:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9491D301117F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 13:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C80F34EEF1;
-	Fri, 10 Apr 2026 09:01:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 324573C4573;
+	Fri, 10 Apr 2026 13:35:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2119.outbound.protection.partner.outlook.cn [139.219.146.119])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2109.outbound.protection.partner.outlook.cn [139.219.17.109])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C43F03A1D14;
-	Fri, 10 Apr 2026 09:01:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.119
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA8C0223323;
+	Fri, 10 Apr 2026 13:35:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.109
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775811694; cv=fail; b=ldvMwsNNVYTovZgi/RsxQHiJs51RSbblBAo6/mYy6RW4nC63DOO1GFu+/xD0xeSZrO5vkLmVO4sGdp2/ypcBAwKyt84db78JIOtp3pUsQZBWSd/BCyGVVmQxubqBZWRm9YflpXIBnb2srk3n65JugG1FOj0P0kGx2T3s9Vjx++A=
+	t=1775828139; cv=fail; b=ZfnDDoS2mgiU+fiWbzMyLu/h+1fvzGIm2+XqC3Xs9SoVurz0zH2FjRRJUAILUMCqLxFsGGVamqzORxBIzhs/eYwyZ+WU5nGnacHrO0FeB3ycjHJQERt7ufOInCTZl5UnXQSugATDnaFyZiTnQnideQRQu0u9thrYLsmi0EwPlAE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775811694; c=relaxed/simple;
-	bh=U7Nqfo/gJkLltbvRdqDWHD5aX/QkBbl/n5msFi1032g=;
+	s=arc-20240116; t=1775828139; c=relaxed/simple;
+	bh=LiS7zBidJgJL5HiqbEjFC3705ZAdr1IddIHFNI4kvQo=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=AP/5uPWpK8BB4oU2pOvcrdK7ohXGq42VYKEQPnmQVKVGNGxxGZug7dci32Yy8TWbwDrqyj6WmhybhyUfgib2jU+wEEi9chHyOscq5uDA0dcWkDvgP4e7UVIi81AnbPjMF1RcoIU7yHu2VMfBs6V6fnVt4sTkRQQbHIV8Qruv9Uc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.119
+	 Content-Type:MIME-Version; b=Ukyac5DLqoYfEBKpbEkXFO+6btX0WhEhdxCfWauH3EXbYS9F7mN990X2JDmuHzJtgktiPzgQOVhb+Qk7nkmQUXHZqpy1xTzZ4nBFREQ7fxDFkxIEMMMEfmJjqb/WEG4dLuC+0Uc8jT/vYOZWdwDT/SUHIKZ47y/SSdyyZ66ecd8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.109
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GNFtpsyzlYLWpFY3zNZkruxFPsmSaf+iOyQzFjiVdkO7Pa48EOMm8tX1je6Uwe9HQ5q+xH6ke32eMM6SRzSbdVmfBHIJbXFi6JN5eWqjeHShC+4FP6sWh+LBWnrIqpcVn44i3eoYXbTMn2B4+UU20S78m4ah4wPkr7+VTM/UPCT2n2/v13TXIsuVDaCYgHye2xQXRiPHz6735IX54YdBb9IU4fjGB07vwF0HSDToF2OmJSukpCb2TPN70RI/LTDgJ1mWyM1s1EnYTFOpWSeg43O8KjMjnCzQjxsu9ZIEUCVtdejXLNps+zmsxyVOubvDF5uCgpukIMlHBucFgVZ1ZQ==
+ b=F8YJyQxtfnpfr8gcdGdy+h760vgfABmnL9+FYvN2X9kHaKyjU4P7EILhrCqnI3BZ3vrszbB1xLb6fCUVqqF5ITJdIMn1ATOsYbd/l8H5oVykyURu/5UWMoNPH/cTk5IgyeK/0bS9V0hOJFNqk85Kj38g73In0cLAxMN8f5Fc0o7CWekb1FcuhPD8XU3aSGwnxsSEs7kCbZ/VIZgbFH410dVTz6msxUqm7Qfc+SdDLwFXBNhNfN3tvgzpZLBWlev0bNAJvdDXHg8sAzta6XdITGeHevJsxTIaUqhoVqlHrTUd6/JLZWU/+iyXmthGthpLNqOughk9mGT+RF8BZ04Jag==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RtAxS0xUP8NB5BFDWdOHwyLEuxWVJlM+zSWD6Ou2CyY=;
- b=NSwAO3pcCFrYEkFhZnSxpkHIWROkn5UUUHhk3eUFCj54aBkwecS0vC4SK1iKi8utOSVKDOz08X8QnIwVgA+oDkUTp/riv8R2VnuKsYKHH78thvKH6loSfdmPV1WHKlc1ZIJR9TR8/RAW8DLFXwtYxlG7d+l4adNlk//nbu5qPhx/ExEUtIXTJD6f3OBJww9i0u8ge5zTIgViBfMFI+7SvqT42ypCAXFE7OmZjtDAWV+MV5901ujd/4dSdVl3HM203n/B+IrDLmeWWkHlhYxlqkFxGpUMeF0j0ZQy+yzC0EErxdniPmzMcs/JHZ7FxKd1KayiD7cfss/u5ST5QftZsg==
+ bh=G7QHqJywyYBuCYEkhBAkzgv7c+ZKQ0vDbMfZ3yfMoQ8=;
+ b=WGIdqkH9wYGKfEPYYrIAbnGaHfJFWIDefaT5TcaAH1wkuEE+DFvk5NURFFBL36T5pTTZoJ/PmeEIg5hQP7+UrrM6XFmlWmm6NgawSF45IpcL7Abub6MGPK8p1zBrpBGErh697KFhW5hdclx3+ubU3jDDeb3tfrRygSiFi/+PNE6HwxCgBekbvqSNdgTZZJTVTp98oMnqwo6TY/pEGa2Cp2vvM89LSfx7PgL9uEIskENSGnelYuYqfeT042i14/9jDggSEmkamDQ0pYhCudPlcHDyIpWHh2VOnOIWZkJCk4GbtJfKFZLPSWhXg7kxFyQupECn3BxxpqcLQVRHt08tSg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=starfivetech.com; dmarc=pass action=none
  header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
@@ -48,11 +48,11 @@ Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:17::6) by ZQ4PR01MB1218.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:17::13) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.42; Fri, 10 Apr
- 2026 09:01:15 +0000
+ 2026 09:01:16 +0000
 Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
  ([fe80::e7d4:256c:b066:850d]) by
  ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%5])
- with mapi id 15.20.9769.020; Fri, 10 Apr 2026 09:01:15 +0000
+ with mapi id 15.20.9769.020; Fri, 10 Apr 2026 09:01:16 +0000
 From: Changhuang Liang <changhuang.liang@starfivetech.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -64,9 +64,9 @@ Cc: linux-kernel@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
 	Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: [PATCH v1 1/5] dt-bindings: interrupt-controller: Convert the word "jh8100" to "jhb100"
-Date: Fri, 10 Apr 2026 02:01:02 -0700
-Message-Id: <20260410090106.622781-2-changhuang.liang@starfivetech.com>
+Subject: [PATCH v1 2/5] irqchip: starfive: Convert the word "jh8100" to "jhb100"
+Date: Fri, 10 Apr 2026 02:01:03 -0700
+Message-Id: <20260410090106.622781-3-changhuang.liang@starfivetech.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260410090106.622781-1-changhuang.liang@starfivetech.com>
 References: <20260410090106.622781-1-changhuang.liang@starfivetech.com>
@@ -83,170 +83,198 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1218:EE_
-X-MS-Office365-Filtering-Correlation-Id: 57f414db-5a46-4653-d279-08de96dfb8d1
+X-MS-Office365-Filtering-Correlation-Id: 2b305e2e-65b0-4cea-9d22-08de96dfb954
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam:
 	BCL:0;ARA:13230040|52116014|376014|1800799024|366016|56012099003|38350700014|22082099003|18002099003;
 X-Microsoft-Antispam-Message-Info:
-	uWi/utukRCCXE9/62gqPT8PGu3MrCsmDu0DtVpDnsRhhrWzvBSFMUOlCKORG3gaWCwSaZDsKqIcUmXGsV/NBKZWtgMRqzT9Lgiif9h1oxLmQoQxG+LeLIZ2UfzhApQJ9YLWd/ag3xLjnArsbNFohWBB/8qVN0f8PRmbFHC3X9BEERjQn3Li7m8nP0tYBjv4XyX3BcFaygbcpMV1aUr8uKHuFGw7uoMMPOl3kg1dipDF47z6m2IFgD5+2bIyfROT9KkvdNBgkkGUgW7se+kpHpeL2Kt0jngYPimc8m7xBdatB/0gYHPRvpYPcFetor7uYBDSt7z9IYGXqrY4aPDGPGcom6NK1tOnNw0uo8512Ati4chVaDKCgbUJ54D/uqjSq2h3DcgEfESDWj1+Z2u2sYBgISnTx+aFTvQYx/uFWFWdCWNc/rv5Uq0TEvwWkWXU1/v6gH++5wmIZSE4WcXeBn9zbvljmF4iFto2z57JQg7/Vm/oKk7NgeoHWpoFeT8mx2SyJzWBJ+cyUCWri1fye2xAetpSWBOHrDmH5L02eO3ywWKLQ2WqxrPDL31zd/muj01x7wzaZZjEYfSWs1YD8+hVXsk4/pkJzdaWH6vMCaqQ=
+	GGXdK++5g3+z5AFS+0+LZJlDxPm+68LuM6AM7LbiEhh/Ua90zY5TXQW35WmqASJQdH6hcnFLZYh1wcU3SBLSLRCtuReNzNVxiTLfmfoJpUtAGYGJCF5KZJKsNbP3QffkpRFnj70953tfHwzWCdoVCHsLb1WLhLullSx53sCPesXtiBbq9YnAnRE6ZC0qIB4fFutTi7J5cYRm2Kw7ZJpxwUbh4kg66S4T124BIKs2AbiYvPiepmrqHq4xencIdMG7u6ApwHlWDDNBoNNaauZgK24jGIkFcmyVEDxyi77SbPOtcPRXQLDpaq/yZUWlO1GHSXs5KTqMvZHTsFgOD0AkWo+4QJWZjD0ct+BriH/hRWW37KIfvlFr4y3WvhwmYH6wWruFG2Vbny/VYU5I9UuC061m9+LDIGMddOtHUlASDII3fZc66YR5Ntu5DLnt2jnmO/ITg0IF6clusfY0Bt8dqiyHs3dbOZ+JIW3U3Os4o0V24g5zMMTZ9yho00TjRRCp4u4z7GbeuhMZ5pfs42eovp5oaDHvxlQdtkzakKY4dXnCwNxQ6I6Th7DIiGV53FMG4rWHhC+ED2HqrrllX9vab3HTv0yZhSODpywKb8Jnils=
 X-Forefront-Antispam-Report:
 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(366016)(56012099003)(38350700014)(22082099003)(18002099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?80wuooCIfedW47Cr0a659uh4VzjtrTC88dpMoJ5sMQtrdx/ZAdzU6LJnCxPv?=
- =?us-ascii?Q?nnQbEDe8JgY97N0fuKjZJ12eKGUuf6nvRR3RanQneDS7CMvSM+kkpNgMlFCk?=
- =?us-ascii?Q?tAzh8rIj9t6q68GKjZ/hu4/9UOIpI2X7EvotNNuv4Thf5q58Jb0IvuZ0CEBD?=
- =?us-ascii?Q?zzEYjDPM/1AfWYh9O1n5eDJWF3yjG89piKkZx0Q+q1qY+306kJ0VqW2gR0vQ?=
- =?us-ascii?Q?ibZ4OLr7jLJK7ZIN21KHCYkzwhtR7fzvkCCbo+SfUYdyu0JFOH0p53mIyf/m?=
- =?us-ascii?Q?gpzF5nexzUmuW5vqCFCH/RkcSn5IQn0mxI2WIZQutig33i9hv2SjQHtLtBHD?=
- =?us-ascii?Q?LW+CxTJsDDgjj6PAl0uTSdw4FzGOd8Wj2VQtxM1HMFB2iwfHPq0JK70PVVaQ?=
- =?us-ascii?Q?dDt1fCC7IU4BDO2kPP2OnlXpCHNhcO4BCJaygV7nEDFIiZFerUzyem4DtC52?=
- =?us-ascii?Q?GT/lpES8ofepOoLshsRJrDBq3BoKihQAzLgQ4vgEMLvEuMRAD1//d5u/KiGy?=
- =?us-ascii?Q?WEi63a6XX2lnZtUMY2IWCDFCPmolZmSGDKQ41bE04hwl3nTPxZjk3e4Aobdy?=
- =?us-ascii?Q?2gkwzzrTxL14Zvu3ErxZTaVNXXoh93JYbNp7+uDknTTOG6IADFH5Pg6Dhx+C?=
- =?us-ascii?Q?31fvn2zpi8g6mwsIEibXWH+czvlMl7HmpA0m6DL5kMO7t1tPV1njxMd8U06k?=
- =?us-ascii?Q?XeUo3CF+syt9S+yRuA/WB1FR3jPGZkyrMmpmWyj0sEE+UPjisJFslicweMUr?=
- =?us-ascii?Q?sNMJeruogTlSLAQHzCRgEjrzVeFvMeJqFI149huM+Gsqdv+8GmIPcFCHEFnh?=
- =?us-ascii?Q?kkmm4DWi278dMhV6FQCrGX+R70OeY42Ce8LGBJND6Zv/WdSnt2a+08/wCNbe?=
- =?us-ascii?Q?OgcBRAx29lYUV18wMXkvxpboAB8CXW3tvjb73kgXhniGwN68K2Ns71CM23id?=
- =?us-ascii?Q?7YNytaGevWuiMXeB/1a+zooEX4x1REMgQs2DzcuJLLjrgLCEoNQD6qmwzATn?=
- =?us-ascii?Q?MkefVpL77edy40O3Ir61tRRbiAmJVOVZLz/ZIcWccDlWFlD4Ee2SoR1kyIKJ?=
- =?us-ascii?Q?X3vzK75lgvx0auyILXpiRiQIOnUQj9lI9DRcYwoG7Oajj7PCQpkDmTGp193g?=
- =?us-ascii?Q?2Kcdf0WWihNeYynA1i+eIqMdH6uS1XGeY/bHZ+JXRZ6iQHoIIy3xRZ9872KE?=
- =?us-ascii?Q?2vS0zPL2BatOhx8fMeeA0wYYHpVjJxZTBxAPP/doqfYKk4UEhf/80eMkfCIx?=
- =?us-ascii?Q?77umlNeLpNdkc/8pIOBFPcUE4EYlWNo2VrZiAsgFhkQ/TmnhrfUkgTMv33ar?=
- =?us-ascii?Q?kzRBeIhhFjTXYue7jQ34jprUpeswQywdvvGbtW8esMDdF67AYkPMyhsC70/7?=
- =?us-ascii?Q?eheBu2BFYw6C4XZb9fmjp/1QGf0wktBz4VU91DrwRiusSNSihrgDzYlPQXt2?=
- =?us-ascii?Q?71Ig/Qy2d/y+fTk3jv5LhQ8cL47zwUdtRpTCk3AzPYc+sKSEYP6LF+EYafJq?=
- =?us-ascii?Q?LaRUv/qRrRzI9yUajr5ze4U9hwLi8szgvx9rz/EeEMpeuyM957QhjVk9kOOS?=
- =?us-ascii?Q?MLjqE1tOJ+oVLK0RYwRaSsnlYjfvgZ3RB6Rxr2YMV4ZNcQgusR4tsD+spFzx?=
- =?us-ascii?Q?gRLjW/08YHxCTTbX0y2ASO79YMn1z1laUr0moP9jTWMwMOvAtD12A0DdHpov?=
- =?us-ascii?Q?GQFrkATkXuEy08azO8hf16W9GfxRcW8BOT4wr8Nl+5Tepi1Wznbi2sDQQadO?=
- =?us-ascii?Q?xcalk4xoFMhkw8/JNcn/e0cRBZVc/PE1KIlzwQh6pjh0d5LdtvrA?=
+	=?us-ascii?Q?67+YplaeRg4BMNIWY3sPRMiujTOcG9iUvFy6jMZeD7M26L9qOCxPXrskPZb6?=
+ =?us-ascii?Q?/9F7PAXpKT2O0MqiXpk2KrdLH7qunYTsPZdrjxHQL1Snm/0kbI0U7KtZhJ9I?=
+ =?us-ascii?Q?a07Qulkf+qJh7BPqUacbhAesfOICCToK0s4IZnk6p0+Y57ezkeAQF8dcY8hh?=
+ =?us-ascii?Q?K7dgxi1jVxyl3GtCIWcDj3gL5JZzTuPTJ+FaesBNQNSX8UuXHLNdFLbMlOLy?=
+ =?us-ascii?Q?/kmNwg/P23w213sIeFscMwmTw+hhyJwTgXeO0BoQmvKW52xXJ5WfiGEL3f0p?=
+ =?us-ascii?Q?CV/DBG0u07i2JI5AAq+mxgpc9EhxMdwCIh6/+95BRlber18iBZ5/QhVvL+Ll?=
+ =?us-ascii?Q?qiz0JNjy2EsjUdYWF+VWAMg0UbTNm5OPgRIyND0lhoQxaMTxpVLD4RQFHb2U?=
+ =?us-ascii?Q?fSqL2w2q/lqDKHeyK+1zYuAE2DPqhv6gesNdD9JM7tJneZSQ9B4NTwkQhibK?=
+ =?us-ascii?Q?sseeJ6Plb5UPG6ec8YJ5ZeQhTc4VmPFZO9T2mAqV4x4jTO5ym5aDqjTDDC/L?=
+ =?us-ascii?Q?nUy1tlJygaD1Bjdy23PWVF60nrFZCXRRzaDPWBoMkTBdQTuVieT9rbhuDbuZ?=
+ =?us-ascii?Q?uxdHTlSXd5AKhLfnPhA23xSCA19Y6CYbqlBUbtKmEPi1f3K/JwQKIhXHJ5bw?=
+ =?us-ascii?Q?ENd8b35vxNZP0CwPM0Q8//zXyJFnxS3bdZN11llfeQJbM9D0t+bNgh0BvfII?=
+ =?us-ascii?Q?wue7ya3XE+ljf/5NiIxsakwlSm+1+Mj//8jmt2OE7fa+SgQIrGjlq2SkpBA6?=
+ =?us-ascii?Q?yZkxRs1gMyIwTDaLv0gbscBxlFfmR+dz+a1aIkKrjqeKudJPmN13KufTx4PO?=
+ =?us-ascii?Q?pRY/xbXN1Fc8VM03B5e9FB/GIo6pTJ6xBWryztwThK7Cx2Qv3l9c7VImQmyq?=
+ =?us-ascii?Q?1JmutQLy0q+8tilCm8mPZ0hFWYv0tGgiYK3ArY1xmt3t1rpm+WnRF5/lvXji?=
+ =?us-ascii?Q?9Ww16OvvuoZb9YITzc2K/7cC0FvmcTG73RQRRBrx2VXhe+c+lUS5yRCFmmeb?=
+ =?us-ascii?Q?PeZWcRH7aKk4OGjEpP0aeXWgP8mHiK+V7M+YiPBLoAmWZFL2lbFD6yUqtLMa?=
+ =?us-ascii?Q?7smU3QV/dbyu4ZTSA8GGAkLbWW3gcJ39Qo3Fkz8h+zbE3pX7xD9PU1v0Dukp?=
+ =?us-ascii?Q?e8TZmW/K4jOhKcsZMmljbA8m82Ihc3DIcLW9gmnnB8nbMpKv5uVe9JS99TLA?=
+ =?us-ascii?Q?yNZdzBuLw4wAQSunV4b+XBrlWcJ4U+ILxiP2N4vYzNpaPWHITzFACMSsqb+e?=
+ =?us-ascii?Q?tGg8/z3VGZzGi8jlm2ieJOecGTv/WTI6+bhhULqFVSCR1PviX4i7az5Q5GNW?=
+ =?us-ascii?Q?sieGBLuLN2xy+zwlxPPZBfN/Ul7d+jxFJAkjZN+A/IHVVv11/OFg7Vb6qKCl?=
+ =?us-ascii?Q?TdZqPvyNyJJ+PJyTlBrWn2GKcz4swuAQZx3Shx1T6CLg3nEcL3JXiFWRd0QM?=
+ =?us-ascii?Q?iKUDOhyLp8sne+qYH6Qs+Iu93eIPdxUb3oeZVkDLtbJJBytM/8SPL62H8W3/?=
+ =?us-ascii?Q?tVyWamudxAMvPMWUxIlqUCqsPb+9VNR4Pt/yoll/TfgiUyJdCY1B8r8kcODi?=
+ =?us-ascii?Q?vJfUIt4CvnL/NxpLxu98rWAysxQToy7dF+HQ+l9k1o9MmAwjmI/Z9NH8LyOt?=
+ =?us-ascii?Q?+CF9AWEQbCwypZmTIaM3faHZBCOc/PAuwxTobFPO59sR2DC0KJoMGFPpr5bk?=
+ =?us-ascii?Q?hf1SzRaA8hfv5ScvLalm7z9yvDtvKcCEEXiQHFDlXTs1vp83SEzlmc8eqZWL?=
+ =?us-ascii?Q?17Kt/ov+4fvhDcE4eWKVdiDiwwztQVUDiMrZGH9/yje2l4whdUeB?=
 X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57f414db-5a46-4653-d279-08de96dfb8d1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b305e2e-65b0-4cea-9d22-08de96dfb954
 X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 09:01:15.6523
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 09:01:16.5883
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: E+h87bK39cgX5sJzRSwZgTf5/tqLxST39t4u1IVhkcoL1Cvd0Q80s5LSHJwK4P4bZ+Kqq7vaguGYxvxUW3c3PgNP/VzGsk/1dWd8BKJEi6QqH/6hgA08/IkCpKU7ipi6
+X-MS-Exchange-CrossTenant-UserPrincipalName: mZJxGfEgzjNOdnLkbJdOZLtqfitRT/NQ9znKEVLgj4oGR9aZ2QIHj9B5on2JySEVSmgGOznjqDpqXFTdtus0ebQXK2ge0Ij5/XjFVW+KXO36Ej1FwMpKCGkqzU8ApRyM
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1218
 X-Spamd-Result: default: False [5.04 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	GREYLIST(0.00)[pass,meta];
-	TAGGED_FROM(0.00)[bounces-286445-lists,devicetree=lfdr.de];
-	URIBL_MULTI_FAIL(0.00)[0.187.18.160:server fail];
 	RCVD_TLS_LAST(0.00)[];
+	GREYLIST(0.00)[pass,meta];
+	TAGGED_FROM(0.00)[bounces-286514-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.187.18.160:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E2BAA3D4740
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 431C03D829B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 The StarFive JH8100 SoC was discontinued before production. The
 newly taped-out JHB100 SoC uses the same interrupt controller IP.
-
-Rename the binding file, compatible string, and MAINTAINERS entry
-from "jh8100" to "jhb100". In JHB100 SoC, The clocks and resets are
-not operated by users, but they exist in the hardware. Mark them as
-optional.
+Rename the driver file, Kconfig symbol, and internal references
+from "jh8100" to "jhb100" to accurately reflect the supported
+hardware.
 
 Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 ---
- ...ve,jh8100-intc.yaml => starfive,jhb100-intc.yaml} | 12 ++++--------
- MAINTAINERS                                          |  2 +-
- 2 files changed, 5 insertions(+), 9 deletions(-)
- rename Documentation/devicetree/bindings/interrupt-controller/{starfive,jh8100-intc.yaml => starfive,jhb100-intc.yaml} (81%)
+ MAINTAINERS                                            |  4 ++--
+ drivers/irqchip/Kconfig                                |  6 +++---
+ drivers/irqchip/Makefile                               |  2 +-
+ ...arfive-jh8100-intc.c => irq-starfive-jhb100-intc.c} | 10 +++++-----
+ 4 files changed, 11 insertions(+), 11 deletions(-)
+ rename drivers/irqchip/{irq-starfive-jh8100-intc.c => irq-starfive-jhb100-intc.c} (94%)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/starfive,jh8100-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/starfive,jhb100-intc.yaml
-similarity index 81%
-rename from Documentation/devicetree/bindings/interrupt-controller/starfive,jh8100-intc.yaml
-rename to Documentation/devicetree/bindings/interrupt-controller/starfive,jhb100-intc.yaml
-index ada5788602d6..576b1d6c7973 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/starfive,jh8100-intc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/starfive,jhb100-intc.yaml
-@@ -1,13 +1,13 @@
- # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/interrupt-controller/starfive,jh8100-intc.yaml#
-+$id: http://devicetree.org/schemas/interrupt-controller/starfive,jhb100-intc.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: StarFive External Interrupt Controller
- 
- description:
--  StarFive SoC JH8100 contain a external interrupt controller. It can be used
-+  StarFive SoC JHB100 contain a external interrupt controller. It can be used
-   to handle high-level input interrupt signals. It also send the output
-   interrupt signal to RISC-V PLIC.
- 
-@@ -16,7 +16,7 @@ maintainers:
- 
- properties:
-   compatible:
--    const: starfive,jh8100-intc
-+    const: starfive,jhb100-intc
- 
-   reg:
-     maxItems: 1
-@@ -40,8 +40,6 @@ properties:
- required:
-   - compatible
-   - reg
--  - clocks
--  - resets
-   - interrupts
-   - interrupt-controller
-   - "#interrupt-cells"
-@@ -51,10 +49,8 @@ additionalProperties: false
- examples:
-   - |
-     interrupt-controller@12260000 {
--      compatible = "starfive,jh8100-intc";
-+      compatible = "starfive,jhb100-intc";
-       reg = <0x12260000 0x10000>;
--      clocks = <&syscrg_ne 76>;
--      resets = <&syscrg_ne 13>;
-       interrupts = <45>;
-       interrupt-controller;
-       #interrupt-cells = <1>;
 diff --git a/MAINTAINERS b/MAINTAINERS
-index d238590a31f2..a2961727e3d1 100644
+index a2961727e3d1..93cbe852ac0b 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -25312,7 +25312,7 @@ F:	drivers/phy/starfive/phy-jh7110-usb.c
- STARFIVE JH8100 EXTERNAL INTERRUPT CONTROLLER DRIVER
+@@ -25309,11 +25309,11 @@ F:	Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml
+ F:	drivers/phy/starfive/phy-jh7110-pcie.c
+ F:	drivers/phy/starfive/phy-jh7110-usb.c
+ 
+-STARFIVE JH8100 EXTERNAL INTERRUPT CONTROLLER DRIVER
++STARFIVE JHB100 EXTERNAL INTERRUPT CONTROLLER DRIVER
  M:	Changhuang Liang <changhuang.liang@starfivetech.com>
  S:	Supported
--F:	Documentation/devicetree/bindings/interrupt-controller/starfive,jh8100-intc.yaml
-+F:	Documentation/devicetree/bindings/interrupt-controller/starfive,jhb100-intc.yaml
- F:	drivers/irqchip/irq-starfive-jh8100-intc.c
+ F:	Documentation/devicetree/bindings/interrupt-controller/starfive,jhb100-intc.yaml
+-F:	drivers/irqchip/irq-starfive-jh8100-intc.c
++F:	drivers/irqchip/irq-starfive-jhb100-intc.c
  
  STATIC BRANCH/CALL
+ M:	Peter Zijlstra <peterz@infradead.org>
+diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+index f07b00d7fef9..697c6b2e006c 100644
+--- a/drivers/irqchip/Kconfig
++++ b/drivers/irqchip/Kconfig
+@@ -651,13 +651,13 @@ config SIFIVE_PLIC
+ 	select IRQ_DOMAIN_HIERARCHY
+ 	select GENERIC_IRQ_EFFECTIVE_AFF_MASK if SMP
+ 
+-config STARFIVE_JH8100_INTC
+-	bool "StarFive JH8100 External Interrupt Controller"
++config STARFIVE_JHB100_INTC
++	bool "StarFive JHB100 External Interrupt Controller"
+ 	depends on ARCH_STARFIVE || COMPILE_TEST
+ 	default ARCH_STARFIVE
+ 	select IRQ_DOMAIN_HIERARCHY
+ 	help
+-	  This enables support for the INTC chip found in StarFive JH8100
++	  This enables support for the INTC chip found in StarFive JHB100
+ 	  SoC.
+ 
+ 	  If you don't know what to do here, say Y.
+diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+index 26aa3b6ec99f..c686caaa4451 100644
+--- a/drivers/irqchip/Makefile
++++ b/drivers/irqchip/Makefile
+@@ -108,7 +108,7 @@ obj-$(CONFIG_RISCV_APLIC_MSI)		+= irq-riscv-aplic-msi.o
+ obj-$(CONFIG_RISCV_IMSIC)		+= irq-riscv-imsic-state.o irq-riscv-imsic-early.o irq-riscv-imsic-platform.o
+ obj-$(CONFIG_RISCV_RPMI_SYSMSI)		+= irq-riscv-rpmi-sysmsi.o
+ obj-$(CONFIG_SIFIVE_PLIC)		+= irq-sifive-plic.o
+-obj-$(CONFIG_STARFIVE_JH8100_INTC)	+= irq-starfive-jh8100-intc.o
++obj-$(CONFIG_STARFIVE_JHB100_INTC)	+= irq-starfive-jhb100-intc.o
+ obj-$(CONFIG_ACLINT_SSWI)		+= irq-aclint-sswi.o
+ obj-$(CONFIG_IMX_IRQSTEER)		+= irq-imx-irqsteer.o
+ obj-$(CONFIG_IMX_INTMUX)		+= irq-imx-intmux.o
+diff --git a/drivers/irqchip/irq-starfive-jh8100-intc.c b/drivers/irqchip/irq-starfive-jhb100-intc.c
+similarity index 94%
+rename from drivers/irqchip/irq-starfive-jh8100-intc.c
+rename to drivers/irqchip/irq-starfive-jhb100-intc.c
+index bb62ef363d0b..2c9cdad7f377 100644
+--- a/drivers/irqchip/irq-starfive-jh8100-intc.c
++++ b/drivers/irqchip/irq-starfive-jhb100-intc.c
+@@ -1,13 +1,13 @@
+ // SPDX-License-Identifier: GPL-2.0
+ /*
+- * StarFive JH8100 External Interrupt Controller driver
++ * StarFive JHB100 External Interrupt Controller driver
+  *
+  * Copyright (C) 2023 StarFive Technology Co., Ltd.
+  *
+  * Author: Changhuang Liang <changhuang.liang@starfivetech.com>
+  */
+ 
+-#define pr_fmt(fmt) "irq-starfive-jh8100: " fmt
++#define pr_fmt(fmt) "irq-starfive-jhb100: " fmt
+ 
+ #include <linux/bitops.h>
+ #include <linux/clk.h>
+@@ -71,7 +71,7 @@ static void starfive_intc_mask(struct irq_data *d)
+ }
+ 
+ static struct irq_chip intc_dev = {
+-	.name		= "StarFive JH8100 INTC",
++	.name		= "StarFive JHB100 INTC",
+ 	.irq_unmask	= starfive_intc_unmask,
+ 	.irq_mask	= starfive_intc_mask,
+ };
+@@ -199,9 +199,9 @@ static int starfive_intc_probe(struct platform_device *pdev, struct device_node
+ }
+ 
+ IRQCHIP_PLATFORM_DRIVER_BEGIN(starfive_intc)
+-IRQCHIP_MATCH("starfive,jh8100-intc", starfive_intc_probe)
++IRQCHIP_MATCH("starfive,jhb100-intc", starfive_intc_probe)
+ IRQCHIP_PLATFORM_DRIVER_END(starfive_intc)
+ 
+-MODULE_DESCRIPTION("StarFive JH8100 External Interrupt Controller");
++MODULE_DESCRIPTION("StarFive JHB100 External Interrupt Controller");
+ MODULE_LICENSE("GPL");
+ MODULE_AUTHOR("Changhuang Liang <changhuang.liang@starfivetech.com>");
 -- 
 2.25.1
 
