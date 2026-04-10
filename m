@@ -1,208 +1,114 @@
-Return-Path: <devicetree+bounces-286524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286526-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gCuwOiEE2WnolAgAu9opvQ
-	(envelope-from <devicetree+bounces-286524-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:07:29 +0200
+	id 0CSAF5oI2WnnlQgAu9opvQ
+	(envelope-from <devicetree+bounces-286526-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:26:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CCC23D8753
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:07:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5D753D8A2C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:26:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 67F2C3023ECA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 14:07:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 426503006B7C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 14:26:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19B213CCFA0;
-	Fri, 10 Apr 2026 14:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B173D1713;
+	Fri, 10 Apr 2026 14:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="guIaUm/I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q10meThx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 928B03CCA16
-	for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 14:07:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80B013D16F4;
+	Fri, 10 Apr 2026 14:26:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775830030; cv=none; b=lHWO9km0peY/03ULWpIMb6ByubsurFn16sAqYaPkfMAagAyDoPhWFDjSyF1hnGJLFZ58VKW7nHweQvNqm4BB+qy/Nifp3oAS0AKNNGAq19lvgXFQgHUb9sQs6NzlzrukkYRLAg4ldsk9Id3Hi5CDD8zlYhrLDuwrjf9EbLpAHjY=
+	t=1775831191; cv=none; b=W4AQKsiI7nZz+wrgzDfBCVgCQQ5MjLkz5dzB9Q8lgvEHR9nu76Qmgv1cdaNTwyAzLlkeTuRfFf4nfwXwgxcz+h1OSP3+yY3bKZoJo+SWgXhs/xKCQSnsEWt8ijbLZf61TJQbSKwrAVt1+RFD3c3YotWWKAAxxfKQlOyq5UmuGqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775830030; c=relaxed/simple;
-	bh=fLM8M+exZKgQsFh5tdcGS1DmZreTyFRyr9bIXtCcplM=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=iuSgIIS1tfvFc5TO8PnA4LG5k0G8oxiXD9zphZzumqawvU5oH+webKylTQFS7AoL+tVl5DmE9/qrTsQQ3RwHgjBbWj35M8FtnE+mcOe5z8oZjtwtZP36YmEFhW/jhqsTTezvbN+Z82qLwtsU0fFFi/QIYFdmk3OcefHW1ccGgQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=guIaUm/I; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-488d2079582so17867695e9.2
-        for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 07:07:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1775830027; x=1776434827; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aUTaySjIgh6lfu9rWtVOEFr4avLmeO2LROURou8Y2uw=;
-        b=guIaUm/Ig4S1Znyrp4UMP1qm/cqwoz4yl+Cs6Cf4bz/F4dQw2j88pEL219KHWtyKQc
-         2dp9fSPasQGM4zSKpeLlj4j0UqfyztGDVBhsYhh6rooIK7u2g5uDrN+Wpyr+/7FiHnHU
-         AVthi2J7QEarl+YEyLmZzMXuM4OIh0B1giq9k6oRt/jN3ejDPcK84B1bAjuVABaAcnGj
-         gEUo1SUnwBDSCaBLy3MqEekG/jrPQ+fWt9cZyBuy8nt/bqiNYSmdgcRQWBc6rGP9IrdF
-         Dx+SB7Co7JsSB8+TsdXtO37P0NFv9diJbQQ0kzGpWLDMnY0XOLYUVMh6jlURGFK7K1Zf
-         3xAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775830027; x=1776434827;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=aUTaySjIgh6lfu9rWtVOEFr4avLmeO2LROURou8Y2uw=;
-        b=kmHIKkMTSnVgzv1XX383lAO9NP+KmJhCAel1n5fDdye5YySq+PDMBGekrg4tYAxp6y
-         CzIBg+TNSb5AbQ7IvC/iG7Abf+u5q5lJYGKnEnUyGxV+9MwmY0npBAQ+zlXQvZA98O0e
-         UxRLC8munNwsXu9MYW5Z49hFCa18hmxyw+Z8MU0K8VPpX0X7n+B23HQxhWdS/piudxhJ
-         JkgQUrW+wWz/qyf75iZx26DJ8Yirs5q+DhO5leeYQNv8W26DVcyBds3p5YGIc/26b0+w
-         35RLfqJV1Svp9WINlu/O+PGeaOgOprKCGcJgyxoKi71Jbbg6KZSkXX1012ENePjwBiVU
-         tnig==
-X-Forwarded-Encrypted: i=1; AJvYcCWbd+h939Ytj0TP8Asxyd3i5yuyu2ubpPZbJdONnOjtIaxQgjmg1twR6eYevdIPpqUlPxuAotYfmVn8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSvwZ+UyyaEuFgk08VNurJf0nkE64AJ50ouPQbT/XvXJkEDN8M
-	5LrY0Um6Le6F+GNz+5Ux4utoCLralOCb+Ie0Y+86RNFBxhxxcSPM/HmTc5xc2MJWc5E=
-X-Gm-Gg: AeBDievkVtQ5DE1E5Ql6vTwwfYBx+LZe7XQxeMOSjTbbTmSzPn7+lguVp+BnJ4ui4LK
-	j1mQB7NA3m0uWNapMbhnvTs7LTfn0dJ/b/MJKg3CrUThV0r7WKh+xqSzm+qSYdQTjLv5FQEF88h
-	+MKv/TyF0/baQI2JEkvPxpktIF7iBXEDpSBecyeIsjwjdrIFREFXtuqg9dvI5WsX3vDY/BkLU1X
-	uKn5F+Bv1Pbtsoo3GrVyW0LsL749vZTAAJypbtuijmy759f6pT8GG9fEIFXqZqm3032WrCFfhdj
-	Du7kWBybvWY4NVfAu1bCjF9GWTkltf9ei61HlX3NgOpK4BkdjlruQoKb5OjjNwuEe08W0aQjd6A
-	FgrrQhUoOh6X4ZUqo5J9jIXzuOFEwRtIxOkrVozzgQtqH5VGow+5a06ZdBNLPwWV/3CPbj9JEn2
-	NhvzpECIXSV2pyih+b813KZjsa83pR8WbkxHxucgFUNqb2pLvWzrKK8WAKP45r
-X-Received: by 2002:a05:600c:608e:b0:488:8185:e672 with SMTP id 5b1f17b1804b1-488d688d2fbmr43720335e9.30.1775830026934;
-        Fri, 10 Apr 2026 07:07:06 -0700 (PDT)
-Received: from localhost (93-41-3-120.ip79.fastwebnet.it. [93.41.3.120])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43d63deb904sm8504646f8f.9.2026.04.10.07.07.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Apr 2026 07:07:06 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	linux-pwm@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Stanimir Varbanov <svarbanov@suse.de>,
-	mbrugger@suse.com
-Subject: [PATCH v2 3/3] arm64: dts: broadcom: rpi-5: Add RP1 PWM node
-Date: Fri, 10 Apr 2026 16:09:59 +0200
-Message-ID: <ba57b3b38757d37cf09ea1b8b9e6b6a106d0b292.1775829499.git.andrea.porta@suse.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <cover.1775829499.git.andrea.porta@suse.com>
-References: <cover.1775829499.git.andrea.porta@suse.com>
+	s=arc-20240116; t=1775831191; c=relaxed/simple;
+	bh=mgU7ufWgyq5CVWYMIYcZpQp/Lw4+Kvxg3axiC7VuNX4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=juwFZZeBdNwtf+B0PE/Pq+vuPG+BJ5bD3uoqsRfKpBjPpRzuInQ9tSVDbeJJQCzUE5e4a7bgnVabF7NB7q0oVRyTen5qX6IlalXvcdVQDiFNiyL9lVYEscxs7P1Aty1jvt+PXP/EZgEn2pCkCdklBq4Ndovy6IQ49Wu8oBsi1y4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q10meThx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FD43C19421;
+	Fri, 10 Apr 2026 14:26:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775831191;
+	bh=mgU7ufWgyq5CVWYMIYcZpQp/Lw4+Kvxg3axiC7VuNX4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=q10meThxM8vviyNV//BrdxCA3+xM9EXbqlFRxU0K16YF6ej1U0t9gUx+COufYLryh
+	 J5RaA/8yVfIkNfCgU11eVkWrSlGZP2T/RpYMcHjH7wPPxwzITAQr3fS4DZoZqG0BjQ
+	 cjfBlb3daqmOS0vwxWaTx6NjlTZ3KiUKnuRSpeBGeQ0wV7JQNrF0k4jRyvKjX9b9jq
+	 FtzbNehub4MY9XUm+RmipXJmEaKVgUveT3Rc08w3Vnl+nuzNP6c7MaO6n14jcauig0
+	 U5dL+Fdi59XCC9QwFrUQ7vJXStfoF6KLQt/Ciljv3f23XVz+87A8zijH+Rtnl63vQO
+	 3AQ7cwqjLBuIg==
+From: Thomas Gleixner <tglx@kernel.org>
+To: Changhuang Liang <changhuang.liang@starfivetech.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Ley Foon Tan
+ <leyfoon.tan@starfivetech.com>, Changhuang Liang
+ <changhuang.liang@starfivetech.com>
+Subject: Re: [PATCH v1 2/5] irqchip: starfive: Convert the word "jh8100" to
+ "jhb100"
+In-Reply-To: <20260410090106.622781-3-changhuang.liang@starfivetech.com>
+References: <20260410090106.622781-1-changhuang.liang@starfivetech.com>
+ <20260410090106.622781-3-changhuang.liang@starfivetech.com>
+Date: Fri, 10 Apr 2026 16:26:28 +0200
+Message-ID: <87cy0628ob.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain
+X-Spamd-Result: default: False [4.34 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-286524-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286526-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	GREYLIST(0.00)[pass,meta];
 	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[suse.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tglx@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 4CCC23D8753
+X-Rspamd-Queue-Id: D5D753D8A2C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Stanimir Varbanov <svarbanov@suse.de>
+On Fri, Apr 10 2026 at 02:01, Changhuang Liang wrote:
 
-The RP1 chipset used on the Raspberry Pi 5 features an integrated
-PWM controller to drive the cooling fan.
+Please use the documented prefix scheme, i.e. irqchip/....:
 
-Add the corresponding DT node for this PWM controller.
+Your subject line might be more descriptive when it says:
 
-Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-Co-developed-by: Andrea della Porta <andrea.porta@suse.com>
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
----
- arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts | 12 ++++++++++++
- arch/arm64/boot/dts/broadcom/rp1-common.dtsi     | 10 ++++++++++
- 2 files changed, 22 insertions(+)
+     Rename jh8100 to jhb100
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-index 2856082814462..a4e5ba23bf536 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-@@ -64,12 +64,24 @@ phy1: ethernet-phy@1 {
- };
- 
- &rp1_gpio {
-+	fan_pwm_default_state: fan-pwm-default-state {
-+		function = "pwm1";
-+		pins = "gpio45";
-+		bias-pull-down;
-+	};
-+
- 	usb_vbus_default_state: usb-vbus-default-state {
- 		function = "vbus1";
- 		groups = "vbus1";
- 	};
- };
- 
-+&rp1_pwm {
-+	pinctrl-0 = <&fan_pwm_default_state>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &rp1_usb0 {
- 	pinctrl-0 = <&usb_vbus_default_state>;
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/broadcom/rp1-common.dtsi b/arch/arm64/boot/dts/broadcom/rp1-common.dtsi
-index 5a815c3797945..d0f4d6be75500 100644
---- a/arch/arm64/boot/dts/broadcom/rp1-common.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/rp1-common.dtsi
-@@ -26,6 +26,16 @@ rp1_clocks: clocks@40018000 {
- 				       <200000000>;  // RP1_CLK_SYS
- 	};
- 
-+	rp1_pwm: pwm@4009c000 {
-+		compatible = "raspberrypi,rp1-pwm";
-+		reg = <0x00 0x4009c000  0x0 0x100>;
-+		clocks = <&rp1_clocks RP1_CLK_PWM1>;
-+		assigned-clocks = <&rp1_clocks RP1_CLK_PWM1>;
-+		assigned-clock-rates = <50000000>;
-+		#pwm-cells = <3>;
-+		status = "disabled";
-+	};
-+
- 	rp1_gpio: pinctrl@400d0000 {
- 		compatible = "raspberrypi,rp1-gpio";
- 		reg = <0x00 0x400d0000  0x0 0xc000>,
--- 
-2.35.3
+Thanks,
 
+        tglx
 
