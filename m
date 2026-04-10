@@ -1,271 +1,196 @@
-Return-Path: <devicetree+bounces-286415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286417-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AODIEGCs2GljgwgAu9opvQ
-	(envelope-from <devicetree+bounces-286415-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 09:53:04 +0200
+	id CA/1G8ut2GljgwgAu9opvQ
+	(envelope-from <devicetree+bounces-286417-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 09:59:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC8233D39D2
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 09:53:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFAA03D3AC5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 09:59:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 59ED5300AC15
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 07:52:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9436330048CB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 07:56:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446AB3A5457;
-	Fri, 10 Apr 2026 07:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C653C3A63E6;
+	Fri, 10 Apr 2026 07:56:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="xWa5dGPv"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="kmMrAIRU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CE75387362;
-	Fri, 10 Apr 2026 07:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0166128D8DA;
+	Fri, 10 Apr 2026 07:56:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775807573; cv=none; b=sONZdf8rUhPkOFvxOyQiTuouiMLeEX91As6/MhyHEnID0RgiUrQHFu/A/6AS7mw8dZQ+5+M/fWR8P7zPF5CPH9c0+G7Pyw/CZcHFLxcypyD6mxtnF/pNOvf5ipc25zyoErLkyoEfpB8mFbcUq1g8sVcDX+8yX2JLqpNw2aX3oKU=
+	t=1775807765; cv=none; b=BFZHaigK0T8Xnds2YEAWxnpwuOsW6gGvAmvxRXqUTzNobvYafjr0qvRmThsN7EFOqJpQ1Csr7dr/k+bS2/z87Y5RiRpEgsOwE/0eUTO7NM7cEQjKRB2Hh3tAfo6WNtwLn4qY6rj4udk+sU4xTs+LTOxb7XM2SxWUZshZS/bVumI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775807573; c=relaxed/simple;
-	bh=On3sPjQdkSCY/QGac7HCv94DWl2MdNb+QTAfi7v3M8s=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VERiW8YqmruiQ77EccWjvTIvVIiJLEiEwShdU16hyUfKcIzxBlx7r4ELMFCnY+i/LOJdF3eD1DMm3BN4hrx1rZnjtZYYlSWNd4Nwhf0UQL+T6oKwrAkkfYlp40XJKaUrtDpyz88gPEZK/o2WHv05Hg/V+bR84dyvwmQukPYmKIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=xWa5dGPv; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 1E0364E429A3;
-	Fri, 10 Apr 2026 07:52:49 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id E553D603F0;
-	Fri, 10 Apr 2026 07:52:48 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DB7971045001D;
-	Fri, 10 Apr 2026 09:52:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1775807568; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=UpCgt8IIGYMIiNdVzfsPwqSVZXoCi5LgZgi/lwSze/0=;
-	b=xWa5dGPvDsIS5bAGiB/IQYT3wiJrhNBulYPGSeasuhAhXH/t3kRHmZlrrTba6AI+EiJ+D0
-	7jZmNG4vjtESMypwGi7nGl9Sw+cvl+fmW+IYKzRfiYpqXXF7EfzemgHIZjDmjcIPiVXDTi
-	+kqP/46jaOJN2l17JSrMsGrYki/loSXAEpDTNM9bFHVGuHjI61wb/cJS2MRXK5VzQ+mc8f
-	vKhCugRdYnq9+0eOXStS04GrwjsRa9CKjTnKUvh+hV9hTjnEjLTLFmNvFu8VBk4331wafU
-	sV5wnNn1e34kTvby8BP/ayrWP7WXztL9qjOd+iMMbW+Q/Be72Bj4RKOJozTKAQ==
-Date: Fri, 10 Apr 2026 09:52:42 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>, Jaroslav
- Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Christophe Leroy
- <christophe.leroy@csgroup.eu>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: Add support for the GPIOs driven
- amplifier
-Message-ID: <20260410095242.0826fe7e@bootlin.com>
-In-Reply-To: <CAL_JsqK4SHQS6MciQpLSrGWo2knqs7-eB3yoAv2J54bSfW-Lxg@mail.gmail.com>
-References: <20260330101610.57942-1-herve.codina@bootlin.com>
-	<20260330101610.57942-3-herve.codina@bootlin.com>
-	<20260408122901.GA42727-robh@kernel.org>
-	<20260408190932.0ab936b0@bootlin.com>
-	<CAL_JsqK4SHQS6MciQpLSrGWo2knqs7-eB3yoAv2J54bSfW-Lxg@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1775807765; c=relaxed/simple;
+	bh=ZmO8NKn75iaIxGBSirNTeC+xk+OMBuTTMTQ9NVejXd8=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RamCjvf9kAgcatKN88FprAoLkPGcyN0Sg1EezW61p4/uYVVjEQftN/gv63Sgct8a4iS7wwIO3Z5EsGsLtg1s3MT0ydp03QfXiZZY81meRaOmiagwdDj2WMO6nzIT1glv/dELjF8x+R2V7VQZYpbwDU85d0xV57ABdHyPMZrdNvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=kmMrAIRU; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 63A7rJ7Y12629035, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1775807599; bh=1gYxyowuHupE/P8ao3pa6ZgxztqPahT8BS261CIm2ZA=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Transfer-Encoding:Content-Type;
+	b=kmMrAIRU6RE8rn9yNwdzSWQeK9lNqkY+Q0SKbuId3utRpkOIscr+P4gnkV67zmbto
+	 KSnI1nto9nNw1lToxXPdvvStyI9Rv4w6Wdug9CXcypbowX1V/w7Cul/sIiQWruNtXO
+	 DMz69JEuDjNCtZCBw3TGIiPLtdO8h1IlCXKZaRg3VDQczfkBmNnNs75IaWpO8BfxgA
+	 q5faJR5Y1I5KBOza8xxPB4QVi6+AzG1qrZrL/Hwa1oyJyrK0D71SfpndnbG1yT7+vD
+	 PNCPY/5ztoe3U0NKL3n5DF5+DtAH5YXld8WSd8iQLOtZwseEMjarFoPM+Xe/BOnkix
+	 L3NXunJTheZOw==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.26/5.94) with ESMTPS id 63A7rJ7Y12629035
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 10 Apr 2026 15:53:19 +0800
+Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Fri, 10 Apr 2026 15:53:18 +0800
+Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
+ RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Fri, 10 Apr 2026 15:53:18 +0800
+Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS05.realtek.com.tw
+ (10.21.1.55) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Fri, 10 Apr 2026 15:53:18 +0800
+From: Yu-Chun Lin <eleanor.lin@realtek.com>
+To: <bmasney@redhat.com>
+CC: <afaerber@suse.com>, <conor+dt@kernel.org>, <cy.huang@realtek.com>,
+        <cylee12@realtek.com>, <devicetree@vger.kernel.org>,
+        <eleanor.lin@realtek.com>, <james.tai@realtek.com>,
+        <jyanchou@realtek.com>, <krzk+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-realtek-soc@lists.infradead.org>, <mturquette@baylibre.com>,
+        <p.zabel@pengutronix.de>, <robh@kernel.org>, <sboyd@kernel.org>,
+        <stanley_chang@realtek.com>
+Subject: Re: [PATCH v6 04/10] clk: realtek: Add support for phase locked loops (PLLs)
+Date: Fri, 10 Apr 2026 15:53:18 +0800
+Message-ID: <20260410075318.2854478-1-eleanor.lin@realtek.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <ac_SX1UJRqiBH2iM@redhat.com>
+References: <ac_SX1UJRqiBH2iM@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,perex.cz,suse.com,vger.kernel.org,csgroup.eu,bootlin.com];
-	TAGGED_FROM(0.00)[bounces-286415-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-286417-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[realtek.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:dkim,realtek.com:email,realtek.com:mid,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CC8233D39D2
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: DFAA03D3AC5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Rob, Mark,
+Hi Brian,
 
-On Thu, 9 Apr 2026 10:00:55 -0500
-Rob Herring <robh@kernel.org> wrote:
-
-...
-
-> 
-> > > If not, then gain-range could be expressed using gain-points instead.  
+> Hi Cheng-Yu and Yu-Chun,
+>
+> On Thu, Apr 02, 2026 at 03:39:51PM +0800, Yu-Chun Lin wrote:
+> > From: Cheng-Yu Lee <cylee12@realtek.com>
 > >
-> > Do you have in mind something like the following?
-> >   gain-range = <0 (-300)>, <3 600>;
+> > Provide a full set of PLL operations for programmable PLLs and a read-only
+> > variant for fixed or hardware-managed PLLs.
 > >
-> > defining the range from -3dB to +6dB with GPIOs value 0 for -3dB and 3 for +6dB.  
-> 
-> Yes, but since you can have reserved values, that won't work.
+> > Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
+> > Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+> > Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+> > ---
+> > +static int clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+> > +			    unsigned long parent_rate)
+> > +{
+> > +	struct clk_pll *clkp = to_clk_pll(hw);
+> > +	const struct freq_table *fv;
+> > +	int ret;
+> > +
+> > +	fv = ftbl_find_by_rate(clkp->freq_tbl, rate);
+> > +	if (!fv || fv->rate != rate)
+> > +		return -EINVAL;
+> > +
+> > +	if (clkp->seq_pre_set_freq) {
+> > +		ret = regmap_multi_reg_write(clkp->clkr.regmap, clkp->seq_pre_set_freq,
+> > +					     clkp->num_seq_pre_set_freq);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> > +	ret = regmap_update_bits(clkp->clkr.regmap, clkp->freq_reg,
+> > +				 clkp->freq_mask, fv->val);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (clkp->seq_post_set_freq) {
+> > +		ret = regmap_multi_reg_write(clkp->clkr.regmap, clkp->seq_post_set_freq,
+> > +					     clkp->num_seq_post_set_freq);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> > +	if (is_power_on(clkp)) {
+> > +		ret = wait_freq_ready(clkp);
+>
+> I should have checked Sashiko before I hit send on my last review.
+> https://sashiko.dev/#/patchset/20260402073957.2742459-1-eleanor.lin%40realtek.com
+>
+> It suggested the following:
+>
+>    In the Common Clock Framework, .set_rate executes under the prepare_lock
+>    mutex, while .enable and .disable execute under the enable_lock spinlock.
+>
+>    Could an interleaved clk_pll_enable() corrupt the hardware state by running
+>    its seq_power_on sequence concurrently with these multi-step register
+>    updates?
+>
+>    There also appears to be a potential race condition later in this function:
+>
+>        if (is_power_on(clkp)) {
+>            ret = wait_freq_ready(clkp);
+>            ...
+>        }
+>    
+>    If .disable() powers off the PLL right before wait_freq_ready() is called,
+>    will wait_freq_ready() poll a disabled PLL and erroneously return
+>    -ETIMEDOUT? Is a private spinlock needed to serialize these operations?
+>
+> Brian
+>
 
-In that case gpio-points can be used.
+Agreed, I will add a private spinlock here.
 
-The other solution will be to allow multiple ranges:
-
-   gpios    Gain
-   0b000 -> -6dB
-   0b001 -> -3dB
-   0b010 -> 0dB
-   0b011 -> Reserved
-   0b100 -> +3dB
-   0b101 -> +6dB
-   other -> Reserved
-
-This could be described as
-  gain-ranges = <0 (-600)>, <2 0>,
-                <4 300>, <5 600>;
-
-As a side note, this will probably add quite a lot of complexity to handle
-multiple ranges in the driver. If too complex, the driver will handle only
-one range and returns -ENOTSUPP if multiple ranges (more than one) are used.
-
-Is that something acceptable?
-
-
-...
-> > > > +    description: |
-> > > > +      List of the gain labels attached to the combination of GPIOs controlling
-> > > > +      the gain. The first label is related to the gain value 0, the second label
-> > > > +      is related to the gain value 1 and so on.
-> > > > +
-> > > > +      With 2 GPIOs controlling the gain, GPIOs value can be 0, 1, 2 and 3.
-> > > > +      Assuming that gain value set the hardware according to the following
-> > > > +      table:
-> > > > +
-> > > > +         GPIOs | Hardware
-> > > > +         value | amplification
-> > > > +         ------+--------------
-> > > > +           0   | Low
-> > > > +           1   | Middle
-> > > > +           2   | High
-> > > > +           3   | Max
-> > > > +         ------+--------------
-> > > > +
-> > > > +      The description using gain labels can be:
-> > > > +        gain-labels = "Low", "Middle", "High", "Max";  
-> > >
-> > > Do we need to allow these to be anything? It's going to get hard to come
-> > > up with 2^32 names.  
-> >
-> > Well, "Normal" / "Boost" can make sense on some hardware.
-> >
-> > I don't think we need to restrict labels to a list of known label here.  
-> 
-> As long as the names are meaningless to software.
-> 
-> >
-> > Of course 2^32 names is obviously a lot. What could be the limit?  
-> 
-> I would guess at 8 or more, it's just going to be gain1, gain2, etc.
-> or something similar constructed from the gain values.
-
-I suppose that gpio-points or gpio-ranges are going to be used instead
-of labels at 8 or more.
-
-With a lot number of GPIOs involved, I am not sure that using labels makes
-sense even from the hardware point of view.
-
-The 3 possible descriptions (gpio-points, gpio-range(s), gpio-labels) are
-mutually exclusive. Depending on the hardware designed, one of them has to
-be chosen.
-
-Of course, you can describe 256 labels but does it make sense in that case
-with alternative available ?
-
-> 
-> > ...
-> >  
-> > > > +
-> > > > +    /* A mutable amplifier without any gain control */
-> > > > +    amplifier4 {
-> > > > +        compatible = "audio-gpio-amp";
-> > > > +        vdd-supply = <&regulator>;
-> > > > +        mute-gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;  
-> > >
-> > > This case is just simple-amplifier...  
-> >
-> > No, simple-amplifier uses 'enable' and not 'mute'.  
-> 
-> Yes, I know...
-> 
-> > We can have the amplifier enabled ('enable' GPIO active) as it is
-> > used and a switch driven by an other GPIO to mute / un-mute the
-> > amplifier output.  
-> 
-> But you have no 'enable' GPIO here. To me, enable just looks like
-> inverted mute. If there's some electrical difference, I can't tell
-> what that is from either binding.
-
-A known physical component handle by simple-amplifier is the dio2125.
-
-According to its datasheet:
-  Pop-free power up is ensured by keeping the EN (shutdown pin) low during
-  power down. The EN pin should be kept low EN pin high to achieve pop-less
-  power up
-
-The 'enable' gpio should be used when power is established or remove.
-
-The mute gpio handle an output switch:
-
-           +---------+   op-amp output
-           | dio2125 +-------------------o
-           |         |                        o---- Amplifier feature output
- enable ---+         |                ,--o  ^
-           |         |                |     |
-           +---------+                v     |
-                                     GND    |
-                                            |
- mute --------------------------------------'
-
-
-The mute signal switches on/off the dio2125 output while the dio2125 is
-active (powered uup) and so its enable pin is driven high.
-
-
-I can add an 'enable' GPIO here to handle it in the same way as it is handled in the 
-simple-amplifier (dio2125 use case).
-
-> 
-> I guess my point was that really we could deprecate simple-amplifier
-> binding because this one can handle it and more. But I'm not
-> suggesting we do that yet.
-> 
-
-Best regards,
-Hervé
+Best Regards,
+Yu-Chun
 
