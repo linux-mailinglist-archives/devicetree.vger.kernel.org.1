@@ -1,198 +1,167 @@
-Return-Path: <devicetree+bounces-286504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286506-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AOuTHMDk2GnHjAgAu9opvQ
-	(envelope-from <devicetree+bounces-286504-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 13:53:36 +0200
+	id 2CwtGY/q2GkFjwgAu9opvQ
+	(envelope-from <devicetree+bounces-286506-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 14:18:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 738AC3D6684
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 13:53:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27F003D6938
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 14:18:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0A96C3004625
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 11:53:01 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 20D883001CF9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 12:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 876BE3BC67C;
-	Fri, 10 Apr 2026 11:52:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4187636EAAB;
+	Fri, 10 Apr 2026 12:18:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u8hkTLvd"
+	dkim=pass (2048-bit key) header.d=milecki.pl header.i=@milecki.pl header.b="pElMn0Jl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from 8.mo583.mail-out.ovh.net (8.mo583.mail-out.ovh.net [178.32.116.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B9930BF5C;
-	Fri, 10 Apr 2026 11:52:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3EF022F74A
+	for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 12:18:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.32.116.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775821977; cv=none; b=Yrr3z+f8of0XwBsEIPZUuzMUBzDiURB2mSxpHEHH4GQfGGp0XmrfS6hE2J957bpgEcttIRA9KSU6Ayl4cWpY7NWm8C6rTn3K+DO24zFjFi9Q566SoiFdq0Ps3STD19/io5gEfGQVhcbvW+afFuxA7yYLaDr08lloVOZQmXdGffc=
+	t=1775823497; cv=none; b=FoLSsw4P33Dh2PCjabt+cQ9NdXsU0YMYsUAzKnvk581PSSvOZJtc69+46lg5LebvwiiYTaSUJoluELtg4t4tctQ0DLY7h0KcjwAl9u/8Rpr+ZnyawlHz4V4USI7aof8ArVsE5wROFWLKUT7ZeqzLOTLqNj8KfhvKJvDI63/g9jg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775821977; c=relaxed/simple;
-	bh=Y4GnJSxmVoLcOsU28nVNoZ44KeRm+qtdWi6Re7neJws=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lHzfbkMjBMVo+Zc4mV334bnPdG8nEeB2Ldr8thRdSQqlmK9Z0W1FSAyUmvZAkS7R5tPnfMmnPt/SIDxQ9MYmzMQjmBXZIQGQ9R3yeMlbMAwvqcIHmvs1ODbv7sHdoG+I6s4ooI1glUL2n2KSuyRzVDcNavX/X86D72+1riNrgfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u8hkTLvd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88B71C19421;
-	Fri, 10 Apr 2026 11:52:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775821977;
-	bh=Y4GnJSxmVoLcOsU28nVNoZ44KeRm+qtdWi6Re7neJws=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u8hkTLvdwmNEtlQbPxwGhpXKFahK7mAw84EdneFSvzt8h2dssZtDjOraINVgKLXVw
-	 zCFVOJJr0UaOhh3JHtuGLlFl8kL6eLsvcRTOdeI0ZbjWyJ98VN9BOtayLeSX6jRPfm
-	 XsbIfNl2jY9BmQNkieqFqSIKunfkAPedZWAkKJ/x8aygtpXTGcCFXbt/t/4o0Ns7g8
-	 TLmmIjcEwypFAgvyUOTa55Gs406EdHlufYK2P5Tv5HN2ZRcLTIoZZccpEWgBC6HmBM
-	 CZHB2dAjbMS+jd/Ke1lK6d62Orvfk1YtmGHmghdTeu8RPdsjOVplos307CCBnyvzl4
-	 prUynAYuTiZGA==
-Date: Fri, 10 Apr 2026 13:52:54 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Benjamin Larsson <benjamin.larsson@genexis.eu>
-Cc: Jakub Kicinski <kuba@kernel.org>, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	ansuelsmth@gmail.com, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v3 04/12] net: airoha: Rely on net_device
- pointer in HTB callbacks
-Message-ID: <adjklonQX0q7ghZD@lore-desk>
-References: <20260406-airoha-eth-multi-serdes-v3-4-ab6ea49d59ff@kernel.org>
- <20260410025722.1809973-1-kuba@kernel.org>
- <bd486b55-a8d7-4811-965a-aa1f3dc98e30@genexis.eu>
+	s=arc-20240116; t=1775823497; c=relaxed/simple;
+	bh=3CW4diUM/JB8LiWZnoXA4stnM/1uNg2TuLFEj95TcXU=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=XiQH/alM84nLH3DhXVUaKF/TiZnT/kqn6k0nVyfTY5W6SXWMNYvugS3y+apnuLYJRcCKXzslhks4KYBFdhdPXnL6SvlxywmUpTBJcCpEIaV241Q0quOn3VqxqltceNb9vrzlEbTMVQglTpCVWwqeF/v8rs9lK30qqsrWMWEkU0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=milecki.pl; spf=pass smtp.mailfrom=milecki.pl; dkim=pass (2048-bit key) header.d=milecki.pl header.i=@milecki.pl header.b=pElMn0Jl; arc=none smtp.client-ip=178.32.116.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=milecki.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=milecki.pl
+Received: from director8.ghost.mail-out.ovh.net (unknown [10.110.37.191])
+	by mo583.mail-out.ovh.net (Postfix) with ESMTP id 4fsZvH1LP6z5xv9
+	for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 11:53:31 +0000 (UTC)
+Received: from ghost-submission-7d8d68f679-thxv6 (unknown [10.110.101.93])
+	by director8.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 3F4F5C015D;
+	Fri, 10 Apr 2026 11:53:30 +0000 (UTC)
+Received: from milecki.pl ([37.59.142.108])
+	by ghost-submission-7d8d68f679-thxv6 with ESMTPSA
+	id Q1CoCbrk2GlosAsA37Gi0A
+	(envelope-from <rafal@milecki.pl>); Fri, 10 Apr 2026 11:53:30 +0000
+Authentication-Results:garm.ovh; auth=pass (GARM-108S0026f3801b7-5a6d-45c8-a682-cbea1b95ff79,
+                    CB257AE30968F6DC1ADB9B1DFC9DF9D0FAE0E632) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp:91.134.92.225
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="i1NM/Tit3uG0u/BY"
-Content-Disposition: inline
-In-Reply-To: <bd486b55-a8d7-4811-965a-aa1f3dc98e30@genexis.eu>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Date: Fri, 10 Apr 2026 13:53:27 +0200
+From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To: =?UTF-8?Q?Corvin_K=C3=B6hne?= <corvin.koehne@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, Pavel Machek
+ <pavel@kernel.org>, devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Corvin_K=C3=B6hne?=
+ <c.koehne@beckhoff.com>, Ashley Towns <mail@ashleytowns.id.au>, Dan Murphy
+ <dmurphy@ti.com>, Gergo Koteles <soyer@irl.hu>, INAGAKI Hiroshi
+ <musashino.open@gmail.com>, Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Olliver Schinagl <oliver@schinagl.nl>, Pavel Machek <pavel@ucw.cz>, Roderick
+ Colenbrander <roderick@gaikai.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v2] dt-binding: leds: publish common bindings under dual
+ license
+In-Reply-To: <20260408062942.7128-1-corvin.koehne@gmail.com>
+References: <20260408062942.7128-1-corvin.koehne@gmail.com>
+Message-ID: <4fbad496f9f52e11f4ff3efe2a5ae4d0@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+x-ovh-tracer-id: 16481767265536823906
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: dmFkZTEVdcfbvIOBJB2+bRFZN5uvglsDeTJ8QMQd6jIracklhyuhdcBcD8Ww3maFkZ8kXin/gDDz2L3u1T8MRzCXgDZz9SBrqf2axe7f3Va00KRBaXT9+sbp4qW3HcpxWQmyur05ln8PZ94dlYoKVza273GShBBSxFdgTntIEPD4yn4CBJSLMeWHD3I0Mz88aYvdWye5Tsl8VMrmv6aoKXWMYBPyEE4kKcTZR9K037BOc5yAoZEwhaSvlD71Bqzcb0exZDvDw34EHVv+u5aGyMOORbMK4NIRxUmDf0acHbqlRkUZNCm6NN3v0XK9owFAZhkWv0za+YkvRpfr0AdSSIv+SrfWnAXFg58l9lgsaV/sLV5XxtaTscASYYVjrBpa/KBLvGWHr/bBa3/DgFYJSDX+rT6/2syCpi2CZM/9VAMx02deA+Ow6Gv+BUhbklCXUPttGXiXfQZIHp2QAyylIhg87IIewZ5KEzgGxgSxEqn9L4BKBE/HcxnStN6izMfwn/DKSx1F4GXMkdtSGN5OdBCitPEIEGcvYr24B+5Ttiriv7sB1V6u6k8NVuAox/KK1bYtFEunBeHi0itmlweDJxL+TTNIn5DEZIejv7O+2KSgH5qglQMTmuods7f54B2XxEwdmiP9kE3vY27ns7RQt6SjTqbwmd9Y3RdS2APx7XayYff1oA
+DKIM-Signature: a=rsa-sha256; bh=m8v0/pj5YIHBXmpmtcD4RBpe85xEWaB0LLlNYUt+3rU=;
+ c=relaxed/relaxed; d=milecki.pl; h=From; s=ovhmo3028686-selector1;
+ t=1775822011; v=1;
+ b=pElMn0Jli13QIPOARmikAjJsixTLKCgaScBCOR9rtLEH3yGDOjs6CrodNZyQjZmveXH3mzl1
+ BNa/s1h2UvNggNzi5Iq3u3F8zDP06QJdyrcGbmucS1dZyk6iiYsgxrmh4eI0jXzX60lcHxQdOBw
+ gEG9aH5M29MMumfbHNXdJTY1/ZRGnlNFuCYvdNtH9Hcly+kmxqJSJO9/M1WgjOrw97++UChFC2k
+ r0CyPHv+0lMAmCLGF+wvvoOWyf47aAu5EkP5b7lO205bhrtfpdCrjLYHpucLAuEO028PTlmAUr1
+ 58W2QMHWKX1elB4Swz2E05FlljcqXJ88X4byyk5NkcqTA==
+X-Spamd-Result: default: False [0.51 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MIXED_CHARSET(0.67)[subject];
+	R_DKIM_ALLOW(-0.20)[milecki.pl:s=ovhmo3028686-selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286504-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-286506-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[milecki.pl];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,beckhoff.com,ashleytowns.id.au,ti.com,irl.hu,gmail.com,schinagl.nl,ucw.cz,gaikai.com,oss.qualcomm.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,lists.infradead.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DKIM_TRACE(0.00)[milecki.pl:+];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 738AC3D6684
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[rafal@milecki.pl,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 27F003D6938
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On 2026-04-08 08:29, Corvin Köhne wrote:
+> Changes leds/common.h DT binding header file to be published under 
+> GPLv2
+> or BSD-2-Clause license terms. This change allows this common LED
+> bindings header file to be used in software components as bootloaders
+> and OSes that are not published under GPLv2 terms.
+> 
+> All contributors to leds/common.h file in copy.
 
---i1NM/Tit3uG0u/BY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Acked-by: Rafał Miłecki <rafal@milecki.pl>
 
-> On 10/04/2026 04:57, Jakub Kicinski wrote:
-> > This is an AI-generated review of your patch. The human sending this
-> > email says "For your consideration."
-> > ---
-> > net: airoha: Introduce WAN device flag
-> >=20
-> > This commit introduces a WAN flag to specify whether a device is used to
-> > transmit or receive WAN or LAN traffic. It enables specifying multiple =
-LAN
-> > devices but limits the configuration to a single WAN device.
-> >=20
->=20
-> [...]
->=20
-> > > +		fallthrough;
-> > > +	}
-> > > +	case AIROHA_GDM2_IDX:
-> > > +		/* GDM2 is always used as wan */
-> > > +		dev->flags |=3D PRIV_FLAG_WAN;
-> > >   		break;
-> > >   	default:
-> > >   		break;
-> > >   	}
-> > > -	for (i =3D 0; i < eth->soc->num_ppe; i++)
-> > > -		airoha_ppe_set_cpu_port(dev, i, airoha_get_fe_port(dev));
-> > > +	airoha_dev_set_qdma(dev);
-> > > +	airoha_set_macaddr(dev, netdev->dev_addr);
-> >=20
-> > Since the commit message notes it is possible to specify multiple LAN
-> > devices, does unconditionally calling airoha_set_macaddr() for each
-> > device overwrite the single shared hardware LAN MAC register?
-> >=20
-> > If so, could this cause only the last initialized LAN device to have it=
-s MAC
-> > correctly programmed into the hardware, leading to dropped unicast
-> > packets for the other LAN interfaces?
-> >=20
-> > > +
-> > > +	if (!airoha_is_lan_gdm_dev(dev) &&
-> > > +	    (port->id =3D=3D AIROHA_GDM3_IDX || port->id =3D=3D AIROHA_GDM4=
-_IDX)) {
-> > > +		int err;
-> >=20
-> > [ ... ]
->=20
-> Hi, the frame engine can be configured with a range of wan mac addresses =
-and
-> a range of lan mac addresses via registers that set the top 24 bits and t=
-hen
-> 2 registers that form a range of the low 24 bits.
->=20
-> Documentation says that packets that fall into this mac address range eit=
-her
-> on the lan side or the wan side are to be treated as layer 3 packages and=
- if
-> a packet is not then it will be handled as a layer 2 packet.
->=20
-> The exact implication of this and if it actually matters is unknown. But
-> traffic that comes in on an interface that is not matched by an accelerat=
-ion
-> flow is usually forwarded to the cpu for further processing.
 
-The assumption here is the mac addresses are read from the SNAND or eMMC and
-they all share the upper bits. I will fix the issue with a separated patch =
-for
-net tree.
+> Cc: Ashley Towns <mail@ashleytowns.id.au>
+> Cc: Dan Murphy <dmurphy@ti.com>
+> Cc: Gergo Koteles <soyer@irl.hu>
+> Cc: INAGAKI Hiroshi <musashino.open@gmail.com>
+> Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> Cc: Olliver Schinagl <oliver@schinagl.nl>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Rafał Miłecki <rafal@milecki.pl>
+> Cc: Roderick Colenbrander <roderick@gaikai.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Corvin Köhne <c.koehne@beckhoff.com>
+> ---
+>  include/dt-bindings/leds/common.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/leds/common.h 
+> b/include/dt-bindings/leds/common.h
+> index 4f017bea0123..b7bafbaf7df3 100644
+> --- a/include/dt-bindings/leds/common.h
+> +++ b/include/dt-bindings/leds/common.h
+> @@ -1,4 +1,4 @@
+> -/* SPDX-License-Identifier: GPL-2.0 */
+> +/* SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) */
+>  /*
+>   * This header provides macros for the common LEDs device tree 
+> bindings.
+>   *
 
-Regards,
-Lorenzo
-
->=20
-> MvH
-> Benjamin Larsson
-
---i1NM/Tit3uG0u/BY
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCadjklgAKCRA6cBh0uS2t
-rOALAQDChwhT+q+W9kV8svjw4vYBOXlgu4gRACeUn8gsl1GgfQD9HP1z0i1xfifR
-9EwKX95S/PvAovnwKbRE5sYz1v1dGQY=
-=Za20
------END PGP SIGNATURE-----
-
---i1NM/Tit3uG0u/BY--
+-- 
+Rafał Miłecki
 
