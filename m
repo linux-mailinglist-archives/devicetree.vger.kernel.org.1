@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-286527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286528-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iPRMNnYL2WnnlQgAu9opvQ
-	(envelope-from <devicetree+bounces-286527-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:38:46 +0200
+	id wG+7ChQL2WnnlQgAu9opvQ
+	(envelope-from <devicetree+bounces-286528-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:37:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DE763D8BA7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:38:46 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBFC73D8B80
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 16:37:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 933AC30A85D7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 14:32:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F09223011159
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 14:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF853D333F;
-	Fri, 10 Apr 2026 14:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 233353D413B;
+	Fri, 10 Apr 2026 14:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tqGN2qeP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UyKzbjNn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BB2226CE05;
-	Fri, 10 Apr 2026 14:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00C5C3D2FFD;
+	Fri, 10 Apr 2026 14:37:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775831524; cv=none; b=hkgzd/RHpLTj/8IE75D89fgyAXiAjfNGKBUqhIINtHfh/NoSpXMxYqrzdImsDB57DRycrGB0hPMKkIdgG0X6bVXoQMFJ9zOcJHCaPN6Rk5CXzquUARUmJ0UE2gIAmEAVatibU3or9/dzWV/jpBmEhCcQ5Z60/52vAlM0xOlC8rM=
+	t=1775831826; cv=none; b=kNl5tlpwFWxqIqbQE4YtBl4/1NQpXHo3d66eLzcl9vidOO0VfsLOBmv+LC/RdaweKjO2WlnVCYU6MTtaaBvyJmUK/kc13vVk0YXBztzwKhOXjelqAocwhgTRYCVh0e6lEqOliyR04IdXsMD8qg/CpzpovJ9m72n0s4sjOF/ANIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775831524; c=relaxed/simple;
-	bh=25xPWzxiGr4LHVrhwE7A6wdqd8RHpKmiF28MPO0r6nE=;
+	s=arc-20240116; t=1775831826; c=relaxed/simple;
+	bh=lIPy10seU4u6dXsty190ZSW7/g5QTmitfsih214NoVk=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=tf7RAHH/UhKHOtnoEom3tTQbY3IVIdgNJGjkXQRdvwxMBMdfeV5d74guGH/1ChiA+4aSs0UBXYSeeNDDXyIt0bMGRJtCpR/qa8GQaCd1A9aZXlZESWEGg1rieA9xDEbRkImEGIG2DUprzJGkNSEsoSBKqdDUWMKpLMlPFpBIyuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tqGN2qeP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA419C2BC87;
-	Fri, 10 Apr 2026 14:32:02 +0000 (UTC)
+	 MIME-Version:Content-Type; b=XzvMk53cXzIaehBdEuL6Bw8eZyAuceP+5SXwAYRUjIzQ14xUjiN/vOK4mSLSqepjgxn2rawrBwLz70XiRsGlDpIJdBJHX/1ac7a/ZfSqn59Mlg/FoP7kwfq03Toe6nTLssOTHgDK2jrxKhSvG7e/XGfsBWxpgpDqeGK304q0wLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UyKzbjNn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7D06C2BC87;
+	Fri, 10 Apr 2026 14:37:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775831523;
-	bh=25xPWzxiGr4LHVrhwE7A6wdqd8RHpKmiF28MPO0r6nE=;
+	s=k20201202; t=1775831825;
+	bh=lIPy10seU4u6dXsty190ZSW7/g5QTmitfsih214NoVk=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=tqGN2qePD9xAh3Pj3AGoPKMZhuIq5LHCILZITbTkgSeoYaOubddRaNn55X/LJ11lk
-	 QmJAx0/SG/k9UE2DrIOYC+Na+Y3k7QmSpEo5zLExPRO0OOE6czkClBkwwlcRjYOOB1
-	 AK8cK+rg6AKZt+Hh223VAYbYopaIbHmtt7oeDNoU3OH9tRh4ixIM698eT5PcPx6m9A
-	 EIq5SQkX26V9rxhPipdu5CctuRM195kmo29QW8uwqLnmSAyAfjxxBg9+z3WUZ2qWsd
-	 MpfbWAGNzKcTm+H313Ah+ogX/bDyCwHC5MZUtAAalRhf6Kn3x9SZzWXyXwOL+XLCLa
-	 58hOvhP84Xt3g==
+	b=UyKzbjNn66GEdbJqVrbPMv7CyLVNPazndTrSz+P4e0qN6uRb4EHUnrKH9qEYBTURK
+	 whoeDOK8e/ItAp/cFxz5jn+8fMaRPD0yfdN5QZLTVV6sCgzzkAKtQrt8HyhLpaRfmS
+	 8KOULMvM6l88OtOcunsXZNdVdaT6flJZ1GQYxCVI3x34zAfusBnUH62WhVrB3QksyD
+	 AsvW21nshwfq7VJyTaUKD0K3CyHDKCA2vzyeGOI0Ur3ZCUdq0dKQjhdLziz4kcmJWQ
+	 eYWdyxeFFz0Lz8BvhjDAAiTiwsamKku9/YuyEVNK+9zqiDIAkTh15zrDH0OUjdf5nB
+	 CvDUqRl7Yi3zA==
 From: Thomas Gleixner <tglx@kernel.org>
 To: Changhuang Liang <changhuang.liang@starfivetech.com>, Rob Herring
  <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -52,13 +52,13 @@ Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-riscv@lists.infradead.org, Ley Foon Tan
  <leyfoon.tan@starfivetech.com>, Changhuang Liang
  <changhuang.liang@starfivetech.com>
-Subject: Re: [PATCH v1 3/5] irqchip: starfive: Use devm_ interfaces to
- simplify resource release
-In-Reply-To: <20260410090106.622781-4-changhuang.liang@starfivetech.com>
+Subject: Re: [PATCH v1 4/5] irqchip: starfive: Increase the interrupt source
+ number up to 64
+In-Reply-To: <20260410090106.622781-5-changhuang.liang@starfivetech.com>
 References: <20260410090106.622781-1-changhuang.liang@starfivetech.com>
- <20260410090106.622781-4-changhuang.liang@starfivetech.com>
-Date: Fri, 10 Apr 2026 16:32:00 +0200
-Message-ID: <87a4va28f3.ffs@tglx>
+ <20260410090106.622781-5-changhuang.liang@starfivetech.com>
+Date: Fri, 10 Apr 2026 16:37:02 +0200
+Message-ID: <877bqe286p.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,19 +73,19 @@ X-Spamd-Result: default: False [4.34 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286527-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286528-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	GREYLIST(0.00)[pass,meta];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[tglx@kernel.org,devicetree@vger.kernel.org];
@@ -96,29 +96,68 @@ X-Spamd-Result: default: False [4.34 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3DE763D8BA7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BBFC73D8B80
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Fri, Apr 10 2026 at 02:01, Changhuang Liang wrote:
-> -	irqc->base = of_iomap(intc, 0);
-> +	irqc->base = devm_platform_ioremap_resource(pdev, 0);
->  	if (!irqc->base) {
-> -		pr_err("Unable to map registers\n");
-> +		dev_err(&pdev->dev, "unable to map registers\n");
->  		ret = -ENXIO;
->  		goto err_free;
 
-You can eliminate err_free as well by doing:
+> From: Mason Huo <mason.huo@starfivetech.com>
+>
+> StarFive JHB100 SoC interrupt controller actually supports 64 interrupt
+> sources, the original code only supported up to 32. now it is extended
+> to 64.
+>
+> Signed-off-by: Mason Huo <mason.huo@starfivetech.com>
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> ---
+>  drivers/irqchip/irq-starfive-jhb100-intc.c | 43 ++++++++++++++--------
+>  1 file changed, 28 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/irqchip/irq-starfive-jhb100-intc.c b/drivers/irqchip/irq-starfive-jhb100-intc.c
+> index 312a4634870a..d5ecbb603a58 100644
+> --- a/drivers/irqchip/irq-starfive-jhb100-intc.c
+> +++ b/drivers/irqchip/irq-starfive-jhb100-intc.c
+> @@ -18,10 +18,11 @@
+>  #include <linux/reset.h>
+>  #include <linux/spinlock.h>
+>  
+> -#define STARFIVE_INTC_SRC0_CLEAR	0x10
+> -#define STARFIVE_INTC_SRC0_MASK		0x14
+> -#define STARFIVE_INTC_SRC0_INT		0x1c
+> +#define STARFIVE_INTC_SRC_CLEAR(n)	(0x10 + ((n) * 0x20))
+> +#define STARFIVE_INTC_SRC_MASK(n)	(0x14 + ((n) * 0x20))
+> +#define STARFIVE_INTC_SRC_INT(n)	(0x1c + ((n) * 0x20))
+>  
+> +#define STARFIVE_INTC_NUM		2
+>  #define STARFIVE_INTC_SRC_IRQ_NUM	32
+>  
+>  struct starfive_irq_chip {
+> @@ -53,18 +54,26 @@ static void starfive_intc_bit_clear(struct starfive_irq_chip *irqc,
+>  static void starfive_intc_unmask(struct irq_data *d)
+>  {
+>  	struct starfive_irq_chip *irqc = irq_data_get_irq_chip_data(d);
+> +	int i, bitpos;
+> +
+> +	i = d->hwirq / STARFIVE_INTC_SRC_IRQ_NUM;
+> +	bitpos = d->hwirq % STARFIVE_INTC_SRC_IRQ_NUM;
+>  
+>  	raw_spin_lock(&irqc->lock);
+> -	starfive_intc_bit_clear(irqc, STARFIVE_INTC_SRC0_MASK, BIT(d->hwirq));
+> +	starfive_intc_bit_clear(irqc, STARFIVE_INTC_SRC_MASK(i), BIT(bitpos));
+>  	raw_spin_unlock(&irqc->lock);
+>  }
 
-    struct startfive_irq_chip *irqc __free(kfree) = kzalloc_obj(*irqc);
+As you are touching this code, please convert the locking to guard()
 
-    ....
-    dev_info(..);
+  	guard(raw_spinlock)(&irqc->lock);
+	starfive_intc_bit_clear(irqc, STARFIVE_INTC_SRC0_MASK, BIT(d->hwirq));
 
-    retain_and_null_ptr(irqc);
-    return 0;
+
+> +	for (i = 0; i < STARFIVE_INTC_NUM; i++) {
+
+  for (int i = 0; ...)
 
 Thanks,
 
