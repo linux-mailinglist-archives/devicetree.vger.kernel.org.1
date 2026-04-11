@@ -1,271 +1,253 @@
-Return-Path: <devicetree+bounces-286753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286755-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4A27AXxo2mkY2QgAu9opvQ
-	(envelope-from <devicetree+bounces-286753-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 17:27:56 +0200
+	id KFevEmFv2mn02QgAu9opvQ
+	(envelope-from <devicetree+bounces-286755-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 17:57:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A290C3E0A71
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 17:27:55 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C049A3E0BAD
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 17:57:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DDD5E302573B
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 15:27:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 96F5A30868FF
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 15:54:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71FF391849;
-	Sat, 11 Apr 2026 15:27:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7AC33A9D94;
+	Sat, 11 Apr 2026 15:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ngcp0+kE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a5FGLWXb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797FE36EA99;
-	Sat, 11 Apr 2026 15:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 545D2217F33
+	for <devicetree@vger.kernel.org>; Sat, 11 Apr 2026 15:54:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775921269; cv=none; b=FKTeem7gIT6VUfoJFNI4LBeFlrg4s/bg3coT8BK0MVvyXkh9zi/bCF6D4VTjVc8afwl8Krfkl/9OQ+BmVEE3n6s7v4za9dtSLu9JHxFWKtVRw1TVAMYQeR+HX0RQdDIorTglSpuWJnK1ztW54RsJvlZjmhoiOR4az2qYv0ZxImQ=
+	t=1775922881; cv=none; b=Ln6KOUAgOLff8mKgiR5gf3mQW5EzXrah7oq2DpoFuoaCm/KHxZ4uAcjQZgUBaVazDzMDCi8AGg9aodNvxcApl8IKV+EJxY7bbg9wnYoOLHL2erR/mpNHqESioiTHXHd/Oi6XgJLGzvPnOMTpwM93dV5b5BE9epCbvWVDUu2aelc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775921269; c=relaxed/simple;
-	bh=v6OfpwvtwA+/DgzVbjmuBKTzaqYTvEx6D0rNX/X8W78=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rar/ADc+KyFtjUp0a5ISnakKSXamGUCiIUCfMTxI04bQiZdU4e0CVc7zIN41kxnOkPtBtm6ONaaLGtdl0ZLXBzcZAG8/vMSkyiFsFFSFHKg2kLrkuAX7epxMAzlC09wlPxKfZRDJmMVZ3O31MdRr40rWcfmcACBEWYNPVMlh2HM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ngcp0+kE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 26960C2BCAF;
-	Sat, 11 Apr 2026 15:27:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775921269;
-	bh=v6OfpwvtwA+/DgzVbjmuBKTzaqYTvEx6D0rNX/X8W78=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Ngcp0+kEmrUfl0vPb1iVNDEldDbFhipdNUTz9dPmeQs+Sc2KvuYiC7IJfS25q/RPt
-	 nxvW1oaiBLBtaeiyNbnVwvc56pfxd2JgLysdE/zqI3vcA9uXz1GNyHNZ40ZoL2i8oy
-	 UUWx9HA9Oqc+rDFU1ctoyCeQTwWlgm9tBL84gwL0WpY9KoM2ONQeHImeDyrFEfv0PI
-	 5Y+hHhi3rZETCfUly0XMsOKs/kdWkVX6X9bZcl3sIRyiqA7rP1kt1A/lB3JhrpZ+Td
-	 0c2EPcVjRC8yLj8AxUB5H97dA37sTWVZCnml0RcakrHYqw8JlqJwBcf8MTcS4UL+Wq
-	 U2mCZG+ZBo4SQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 17594F3ED50;
-	Sat, 11 Apr 2026 15:27:49 +0000 (UTC)
-From: Markus Probst via B4 Relay <devnull+markus.probst.posteo.de@kernel.org>
-Date: Sat, 11 Apr 2026 17:27:35 +0200
-Subject: [PATCH v7 2/2] dt-bindings: embedded-controller: Add synology
- microp devices
+	s=arc-20240116; t=1775922881; c=relaxed/simple;
+	bh=vyZ3p4QNZDmYaHVFaAa2c29T/arRXgNKIbADpC/E2RY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=geoc6wlhleBXqtwNEFDM8mvuvE0ydLvko2c8VsuS3/KVAhc8tzuUa0UhsK7Vqb/BgIcnzT7tvIUoR0TYxXvnR6iC3hUKTBGSp4ARp3riaVwSTbqVGDjt1QCCVnpJ0QjMzX57RuhP9CHawIdZh0ABYZIZVpESj7jBbUXH60EVjIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a5FGLWXb; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-35da9692ec3so3041630a91.1
+        for <devicetree@vger.kernel.org>; Sat, 11 Apr 2026 08:54:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1775922880; x=1776527680; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=KdjVpbQ+mHdJ8uLjb1LbuXKErsPJPIomY1MUk5b01hY=;
+        b=a5FGLWXbA+ZrxwwsqjwXzqUXV9wVjVCWmKesO6H8aM5/Ka02nkLd0uxVVl2e7QGmoH
+         iQbzHQruqgrqco+l5va1Zhpj3u696v7V1V0+LzmYh4C8RoHrFfOBjBEOm13WndLeFE0K
+         z/JYpUHKEeSfMdf5lbt+6YkRP/irSbE+N0Jb/YgVpRs+PWaQ2Wyi93U7hIaGitLaUBxp
+         nN+IcubwXJjRGXU0dTmwt7jvngppj2wjLIES1oA3dYS4qivOU20p1HmWoJdRS8LxM98+
+         IxRQNG8H/6x+WlrIbyKEez4A4Oh2kJDu8/Iv8EEKB/P8UVqFUc/Dg1Bh0RfNJrZcvGAc
+         Mzhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775922880; x=1776527680;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KdjVpbQ+mHdJ8uLjb1LbuXKErsPJPIomY1MUk5b01hY=;
+        b=S0KWA4bVwzmFX0hCVdISCrL69i8DkTkY7kRazukguwswhLUBPeuEKURFVbhRFdjBuj
+         TcV9tBmX1mTOj4T6BPpnAh2+VNjkQkvGzG4meD79B0SY29ws+eEYOoE7lY1uwy1OsHTT
+         uTrH1LUysa8jUcHTdlO0CqEjPPoSHoV7TUrOY1mtF6c9I+WCTZSo2muVCb/TFfg/KKOh
+         SH5N5k+2pjuseYOjMjrWXQ1+JLIjUIUhomREtNnDIXvfOF/IGFP50dBAT2kJM+Ob3NoC
+         AE7zR0+DLpZs/S1WSgmsLpybmE/ok2PfRBgDysQ7R8NihVd4BLJK89QKT+W6gXXuixAq
+         9hgA==
+X-Forwarded-Encrypted: i=1; AFNElJ9swwwdq6/B8af3Rq9n7+hCCjzGN4lZyj4lGYT3cDlVnDt6i7mglIcPumEa5LNX0qQIr7jdjSlUlERr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxC1TZaBaSrRXl5B9CcBtEL/iI7+QaBCfiCx1Kx32jEXobl+WJ3
+	a08sIbwRKFXt9FcnhOsBr6Wgh3wbme25y8//lCby+jOISI7ki2bD3/VK
+X-Gm-Gg: AeBDievysJEYt+IjKAXAUs7JcaSEx7D6HGNgU3gJbzueJXcAmIBTmglpZ42Fs/LRk1E
+	yDJafcyeOKaimIvH8Zj5/L+jk5+BlqG7R8wZQOO7ricdwSSYSl7vOHfYeoJkBRig0bTReASdp0f
+	M5g4B3yTi6xVN6vcpdiUADFnkguDmCynUcfYXgV2zoj2o++PK+ymw3ydGO9wy5FWjM02m6yo61y
+	Zw451AR755LU4Cqi95hTRzTbVzDzgKQFw3TAAdn3PoG/MLkCrA+nuvfhaA01bMJSuGzDA/bz9JT
+	pDLnDZdyAO+q2gk/l7u+4BnJEa4zAzWrXwEs3yKYId7n8EOC2YI4izKyavCAXh8E2ekxaplSVyM
+	qVjJraQAZwUmmf0T6YckoB+/HAW6Rxukyc+zVljLRhgoaKKXULa7/m/O5tDvdboU/MiPdNElTCH
+	9kAeHmTaqt6I9mg3FoqITGcNDg2J+5pRF/UPwUCYDNN9Zx1jPP6jL4C5otsO8X94YROw+zxKH9d
+	rjeAo4IXU0=
+X-Received: by 2002:a17:902:9341:b0:2b0:4fb6:85ce with SMTP id d9443c01a7336-2b2d5a45a0bmr58725085ad.21.1775922879656;
+        Sat, 11 Apr 2026 08:54:39 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b2d4f0a39fsm61293595ad.48.2026.04.11.08.54.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Apr 2026 08:54:39 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <5b695477-8dc9-49c8-ac0a-51c29604fdbf@roeck-us.net>
+Date: Sat, 11 Apr 2026 08:54:37 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260411-synology_microp_initial-v7-2-9a3a094e763a@posteo.de>
-References: <20260411-synology_microp_initial-v7-0-9a3a094e763a@posteo.de>
-In-Reply-To: <20260411-synology_microp_initial-v7-0-9a3a094e763a@posteo.de>
-To: Hans de Goede <hansg@kernel.org>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Lee Jones <lee@kernel.org>, 
- Pavel Machek <pavel@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: platform-driver-x86@vger.kernel.org, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, Markus Probst <markus.probst@posteo.de>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4380;
- i=markus.probst@posteo.de; h=from:subject:message-id;
- bh=O5PcQocls9jYPOmJQIMpn3kj6x8hmmTQ60bjbG9C8SQ=;
- b=owEBiQJ2/ZANAwAIATR2H/jnrUPSAcsmYgBp2mhzxH9NkOyGTHpenRnUbDClbZNHWppOsYbh4
- yvMcG2JECGJAk8EAAEIADkWIQSCdBjE9KxY53IwxHM0dh/4561D0gUCadpocxsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMiwyLDIACgkQNHYf+OetQ9JZwg//fMkjG/j8LsBVgWYd5pEPkpVrI0q8Vnm
- rU6R/wI2qssEwy4tBISYC9lO+5ZKfHUED8BmwZGj8CpvSCS/JjYWs5Vb7auOgrLxRsbsF/KG+Nx
- JiSE0Wmzj/7QUYlE5qc4XNwcdQJ5QupdNYkxsAxpZXE60/k+XzHmLIjSh2kBV1dBkrTdKj4wVLN
- LTnW/Lrj40tAzJ6H1n11SKJPzxL7o0kCI0+4hFyDQl1KvOvKl4T1u9u5BYD/9VKu6nlkq2JGQkr
- W3jAmOvk2kJXbu2e9n3kUg4GpEE27YPp4X5s5pH8wozH/b5S5wQena42IIqp0QBqU8jBdPIe/Gu
- H75esXbL9jnSXz9HCisenm9A/Ig4QJovgTj4Y9qNXfFC5CxManD8bmdEOhui8nKflkV5j4k2apR
- aR+pnClCc+g3Xahxa+RSG9QLq0UOPqLY7RYq9iJOZVJ4jbdqGCgqzzIXpjGOY3f0v3yPeJvu8Ci
- QsxlSk9QmUP2uaDKJxRHvPNXYiw1RhP+pKtW1bKf2+K0n0iquLkEc94sshvzziBaebdRKXk+rZL
- XxO8lmZXLCou+sKdITbmoMi16835NkkwaPNnRfR2Kpi/GBDU8sRjjVY1H8HbiQRe39lzreifoY6
- 8Wj+Ye+T36d9poNJTpuK1WZgs9B/W2hPZmgQGoQ3iUfYYe3FdVKA=
-X-Developer-Key: i=markus.probst@posteo.de; a=openpgp;
- fpr=827418C4F4AC58E77230C47334761FF8E7AD43D2
-X-Endpoint-Received: by B4 Relay for markus.probst@posteo.de/default with
- auth_id=680
-X-Original-From: Markus Probst <markus.probst@posteo.de>
-Reply-To: markus.probst@posteo.de
-X-Spamd-Result: default: False [-0.66 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
+ Controller
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>, nuno.sa@analog.com,
+ linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
+References: <20260406-ltc4283-support-v9-0-b66cfc749261@analog.com>
+ <20260406-ltc4283-support-v9-2-b66cfc749261@analog.com>
+ <29b207c8-10ab-42b4-a1c8-988aacc75154@roeck-us.net>
+ <2653dc70f42fd015b88e2744da257f6200603b50.camel@gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <2653dc70f42fd015b88e2744da257f6200603b50.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-286755-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286753-lists,devicetree=lfdr.de,markus.probst.posteo.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,linaro.org,garyguo.net,protonmail.com,google.com,umich.edu,linuxfoundation.org];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_TO(0.00)[gmail.com,analog.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[markus.probst@posteo.de];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,posteo.de:email,posteo.de:replyto,posteo.de:mid,devicetree.org:url]
-X-Rspamd-Queue-Id: A290C3E0A71
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,analog.com:email,roeck-us.net:mid]
+X-Rspamd-Queue-Id: C049A3E0BAD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Markus Probst <markus.probst@posteo.de>
+On 4/11/26 05:38, Nuno Sá wrote:
+> On Fri, 2026-04-10 at 16:27 -0700, Guenter Roeck wrote:
+>> On 4/6/26 07:31, Nuno Sá via B4 Relay wrote:
+>>> From: Nuno Sá <nuno.sa@analog.com>
+>>>
+>>> Support the LTC4283 Hot Swap Controller. The device features programmable
+>>> current limit with foldback and independently adjustable inrush current to
+>>> optimize the MOSFET safe operating area (SOA). The SOA timer limits MOSFET
+>>> temperature rise for reliable protection against overstresses.
+>>>
+>>> An I2C interface and onboard ADC allow monitoring of board current,
+>>> voltage, power, energy, and fault status.
+>>>
+>>> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+>>
+>> The patch still has some issues. Please see
+>>
+>> https://sashiko.dev/#/patchset/20260406-ltc4283-support-v9-0-b66cfc749261%40analog.com
+>>
+>> Specifically:
+>>
+>> - regmap_clear_bits() may not cause problems, but it is not the best
+>>     choice either because the register was already read.
+>>     It might be better to just write the value to be masked since
+>>     both the register value and the mask are known.
+> 
+> Fair enough.
+> 
+>>
+>> - I can't comment on the energy accuracy lost. That is your call.
+>>
+> 
+> The AI might have a point. Maybe you know better but if I understood correctly,
+> mul_u64_u64_div_u64() will handle the multiplication by using 128bits (when
+> available) or if not, using clever tricks. And it should also handle overflows.
+> 
+> So my feeling is that we can simplify all of those check_overflow paths with the
+> suggested API.
+> 
+>> - Clamping before multiplying is indeed wrong.
+>>     You'll need to clamp before multiplying (and then possibly
+>>     clamp again).
+> 
+> Yeah, the clamp change was just nonsense from me. What about about
+> 
+> val = clamp_val((u64)val * MILLI, ...)
+> 
+> ?
+> 
 
-Add the Synology Microp devicetree bindings. Those devices are
-microcontrollers found on Synology NAS devices. They are connected to a
-serial port on the host device.
+I don't think that will work on systems where sizeof(long) == 64.
+I'd suggest to just bite the bullet and clamp against LONG_MAX/MILLI
+first.
 
-Those devices are used to control certain LEDs, fan speeds, a beeper, to
-handle buttons, fan failures and to properly shutdown and reboot the
-device.
+> 
+>> -  %*ph: The AI seems to have a point.
+> 
+> Indeed!
+> 
+> FWIW, I was already aware of the AI feedback but I'll just setup things locally and
+> run the review before submitting again.
+> 
 
-The device has a different feature set depending on the Synology NAS
-model, like having different number of fans, buttons and leds. Depending
-on the architecture of the model, they also need a different system
-shutdown behaviour.
+The AI now copies you on new revisions. Please feel free to rely on that
+(unless you have tokens to burn, of course ;-). Those AI reviews are cheap
+for what they do, but they are expensive in absolute terms.
 
-Signed-off-by: Markus Probst <markus.probst@posteo.de>
----
- .../synology,ds923p-microp.yaml                    | 92 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 93 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/embedded-controller/synology,ds923p-microp.yaml b/Documentation/devicetree/bindings/embedded-controller/synology,ds923p-microp.yaml
-new file mode 100644
-index 000000000000..0a8fb1d8f314
---- /dev/null
-+++ b/Documentation/devicetree/bindings/embedded-controller/synology,ds923p-microp.yaml
-@@ -0,0 +1,92 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/embedded-controller/synology,ds923p-microp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Synology NAS on-board Microcontroller
-+
-+maintainers:
-+  - Markus Probst <markus.probst@posteo.de>
-+
-+description: |
-+  Synology Microp is a microcontroller found in Synology NAS devices.
-+  It is connected to a serial port on the host device.
-+
-+  It is necessary to properly shutdown and reboot the NAS device and
-+  provides additional functionality such as led control, fan speed control,
-+  a beeper and buttons on the NAS device.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - synology,ds923p-microp
-+      - synology,ds918p-microp
-+      - synology,ds214play-microp
-+      - synology,ds225p-microp
-+      - synology,ds425p-microp
-+      - synology,ds710p-microp
-+      - synology,ds1010p-microp
-+      - synology,ds723p-microp
-+      - synology,ds1522p-microp
-+      - synology,rs422p-microp
-+      - synology,ds725p-microp
-+      - synology,ds118-microp
-+      - synology,ds124-microp
-+      - synology,ds223-microp
-+      - synology,ds223j-microp
-+      - synology,ds1823xsp-microp
-+      - synology,rs822p-microp
-+      - synology,rs1221p-microp
-+      - synology,rs1221rpp-microp
-+      - synology,ds925p-microp
-+      - synology,ds1525p-microp
-+      - synology,ds1825p-microp
-+
-+  fan-failure-gpios:
-+    description: GPIOs needed to determine which fans stopped working on a fan failure event.
-+    minItems: 2
-+    maxItems: 3
-+
-+required:
-+  - compatible
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - synology,ds214play-microp
-+              - synology,ds225p-microp
-+              - synology,ds710p-microp
-+              - synology,ds723p-microp
-+              - synology,ds725p-microp
-+              - synology,ds118-microp
-+              - synology,ds124-microp
-+              - synology,ds223-microp
-+              - synology,ds223j-microp
-+              - synology,ds1823xsp-microp
-+              - synology,rs822p-microp
-+              - synology,rs1221p-microp
-+              - synology,rs1221rpp-microp
-+              - synology,ds1825p-microp
-+    then:
-+      properties:
-+        fan-failure-gpios: false
-+    else:
-+      required:
-+        - fan-failure-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    embedded-controller {
-+      compatible = "synology,ds923p-microp";
-+
-+      fan-failure-gpios = <&gpio 68 GPIO_ACTIVE_HIGH>, <&gpio 69 GPIO_ACTIVE_HIGH>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 78c99d831431..72075c9a2016 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25557,6 +25557,7 @@ F:	include/uapi/linux/sync_file.h
- SYNOLOGY MICROP DRIVER
- M:	Markus Probst <markus.probst@posteo.de>
- S:	Maintained
-+F:	Documentation/devicetree/bindings/embedded-controller/synology,ds923p-microp.yaml
- F:	drivers/platform/synology_microp/
- 
- SYNOPSYS ARC ARCHITECTURE
-
--- 
-2.52.0
-
+Thanks,
+Guenter
 
 
