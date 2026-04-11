@@ -1,119 +1,149 @@
-Return-Path: <devicetree+bounces-286726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286727-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WM3/Fl5V2mkQ0QgAu9opvQ
-	(envelope-from <devicetree+bounces-286726-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 16:06:22 +0200
+	id 6FywN11X2mn/0QgAu9opvQ
+	(envelope-from <devicetree+bounces-286727-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 16:14:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEE8B3E03C5
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 16:06:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E5C83E044B
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 16:14:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6AFD2301AF5A
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 14:01:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BD002301DB83
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 14:02:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D834E2D7DD7;
-	Sat, 11 Apr 2026 14:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 165FE2DA749;
+	Sat, 11 Apr 2026 14:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fibVdRXp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lfHU50fY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B101D2D5922;
-	Sat, 11 Apr 2026 14:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7DE52D73A1;
+	Sat, 11 Apr 2026 14:02:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775916074; cv=none; b=DcGZKrzdBRXA1IZXOThTDJeuKXidMYmDDgUB27azQPsORNoUcJReN6WQtjneMhBkMLZiro4e1GhLSSIlHy9rmin6nWCE2KiT24Vk8tON/WC5bEABIRFH513QhHPb6cNB0hkRLnFzrm9fqOghnbcOitVMMAMtbICMRkez77vEF1Y=
+	t=1775916128; cv=none; b=jlgFPyPJpn8kSKNR8x2Kj90l0WsXTZgOY9rql+dD7o8q8A470UTxsN1pnx16XDWV+cp5srlUkwz1yXON2J19tlrThWJfZfx5kGQDbc4PzhRXWT4rjEcVEFbxjpc/14nNQuFk4aZBbGTpCMgMCdt2/b2KqaH1zKHNohYFKngC9Gc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775916074; c=relaxed/simple;
-	bh=zMQAjZnqu7cingfSFT93HgX3xVl7kJGu55bIC2BPZC0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DUqhKEKscmJkUJL0sQQXjHEBeVmYhHAXGCWvzvWUUCDbWkqQr43s1FIY6wl5EE1a4ogvfhqgZkpssY6qvN6jIHet+QJS6mZCBfcUb4hOnnNOReeIwcmTwERL0wLS3mumtLge2HcLwydqjh9gpoT5isH3M3BUlX8UtVGy6CAmENM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fibVdRXp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAD43C4CEF7;
-	Sat, 11 Apr 2026 14:01:13 +0000 (UTC)
+	s=arc-20240116; t=1775916128; c=relaxed/simple;
+	bh=HifjkcugVN1bUR9aUlAaCwwsoa3LDIAOA2z2Ky7FFFU=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=rBCPmxelIeeBxxgsslCTNeJsFrMcbAzxqEDCDCIrLauDkbmJgZHcdbn0xa+X4r7xfw6Qlw45lOMUNvSObzVHLQhD0aUOnW5hY88AiM/+PF2NkAqTJzfBHvBUau2H9+puL7Rj117pFrP9uk3ukwKfS1fudCJmgeKJ+1/CdxsI22w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lfHU50fY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5576CC4CEF7;
+	Sat, 11 Apr 2026 14:02:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775916074;
-	bh=zMQAjZnqu7cingfSFT93HgX3xVl7kJGu55bIC2BPZC0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fibVdRXpFVBtMh8is7+fWFJ/FwQnltlwXPrjcVyD1/DX/+whtdITt+HgUl+9DBi48
-	 fne8Q+juqdi6mzg5B/DqvMzaWAcYfXhxOtBZqqn+tZPep9kSM64s2AyZ6yibdHdq1Y
-	 MzgRnlKpVIPWWm1fGjdUmyNn9Ej94ZapvduXyuElPrqIkN8I3CZ3nO8mWhHGiURbMQ
-	 bn0O9l6gf4xOF4wNajddiyQ4Er1Pz2STKoSctR44WVGrPIszV+QAT46ix2EpRlvkA3
-	 rw2EUaYEkjSdpmZTKNNClNBqPAQV6z25v+1HTW/8VTZ2scBFENkhPa81L23swDe71w
-	 OKGzWb9Z1upoA==
-Date: Sat, 11 Apr 2026 16:01:12 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: David Heidelberg <david@ixit.cz>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Petr Hodina <petr.hodina@protonmail.com>, linux-input@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	phone-devel@vger.kernel.org
-Subject: Re: [PATCH v4 07/11] dt-bindings: input: touchscreen: st,stmfts:
- Introduce reset GPIO
-Message-ID: <20260411-proficient-observant-bonobo-fc98b8@quoll>
-References: <20260409-stmfts5-v4-0-64fe62027db5@ixit.cz>
- <20260409-stmfts5-v4-7-64fe62027db5@ixit.cz>
+	s=k20201202; t=1775916127;
+	bh=HifjkcugVN1bUR9aUlAaCwwsoa3LDIAOA2z2Ky7FFFU=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=lfHU50fYbMJVnv5moMPuvMFtO2ZbntH9O+ewCs5yyesb/p8nrUXixKYEIAUYN9P7Z
+	 j547ednK4t31ex6305byYUhlFuEc+W0XU9IsjIbLU8SIUkkyu73ohUGtFQchYLevDy
+	 SHHMn932dZyV2lOfhshssweJDAga297XOaR9ps20oy8JbNBu/TWzVLgnRtqmTDvfEe
+	 GyZBks3pvlkPhUpX+3E+7MftcJUQkpgbRfx1r8NQ2cE//FkRiDGnOn7iVb5JKLB3k0
+	 +eWrYssGh0RvMLK8RtpikZqNpQ4+9G7sXD7g3a/iBW41hB0bPgQa8K3KA3zXSCOygS
+	 UWLXuhdQAUGOQ==
+Date: Sat, 11 Apr 2026 09:02:05 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260409-stmfts5-v4-7-64fe62027db5@ixit.cz>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Cong Yang <yangcong5@huaqin.corp-partner.google.com>, 
+ Ondrej Jirman <megi@xff.cz>, Maxime Ripard <mripard@kernel.org>, 
+ Linus Walleij <linusw@kernel.org>, 
+ Javier Martinez Canillas <javierm@redhat.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Bartosz Golaszewski <brgl@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Jagan Teki <jagan@edgeble.ai>, 
+ Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <20260411-waveshare-dsi-touch-v2-5-75cdbeac5156@oss.qualcomm.com>
+References: <20260411-waveshare-dsi-touch-v2-0-75cdbeac5156@oss.qualcomm.com>
+ <20260411-waveshare-dsi-touch-v2-5-75cdbeac5156@oss.qualcomm.com>
+Message-Id: <177591612547.2802023.3418602345377561200.robh@kernel.org>
+Subject: Re: [PATCH v2 05/21] dt-bindings: dipslay/panel: describe panels
+ using Focaltech OTA7290B
+X-Spamd-Result: default: False [5.84 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286726-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286727-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	GREYLIST(0.00)[pass,body];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[huaqin.corp-partner.google.com,xff.cz,kernel.org,redhat.com,linaro.org,gmail.com,lists.freedesktop.org,suse.de,edgeble.ai,ffwll.ch,linux.intel.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,foss.st.com,kernel.org,bitmath.org,protonmail.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.746];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ixit.cz:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: AEE8B3E03C5
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,0.0.0.0:email]
+X-Rspamd-Queue-Id: 3E5C83E044B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 09, 2026 at 12:15:50AM +0200, David Heidelberg wrote:
-> FTS has associated reset GPIO, document it.
+
+On Sat, 11 Apr 2026 15:10:25 +0300, Dmitry Baryshkov wrote:
+> Add schema for the panels using Focaltech OTA7290B controller. For now
+> there is only one such panel, from the Waveshare 8.8 DSI TOUCH-A kit.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
->  Documentation/devicetree/bindings/input/touchscreen/st,stmfts.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../bindings/display/panel/focaltech,ota7290b.yaml | 70 ++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Best regards,
-Krzysztof
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/display/panel/focaltech,ota7290b.example.dtb: /example-0/dsi/panel@0: failed to match any schema with compatible: ['waveshare,8.8-dsi-touch-a']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260411-waveshare-dsi-touch-v2-5-75cdbeac5156@oss.qualcomm.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
