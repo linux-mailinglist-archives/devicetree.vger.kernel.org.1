@@ -1,152 +1,142 @@
-Return-Path: <devicetree+bounces-286721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286723-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJlHHzJJ2mnWzggAu9opvQ
-	(envelope-from <devicetree+bounces-286721-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 15:14:26 +0200
+	id s4AnEIpT2mkQ0QgAu9opvQ
+	(envelope-from <devicetree+bounces-286723-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 15:58:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEEBE3E015F
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 15:14:25 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FDB13E02F0
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 15:58:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 54259304741C
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 13:13:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4ED333015491
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 13:58:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14469231827;
-	Sat, 11 Apr 2026 13:13:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12FDD28851C;
+	Sat, 11 Apr 2026 13:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nunJRZKv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kjc86yvN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF641212548;
-	Sat, 11 Apr 2026 13:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2EB32F851;
+	Sat, 11 Apr 2026 13:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775913194; cv=none; b=mDtKjRWZK9fc0tVNU+AF/sR4/y0t7GW8fmvTB+nw7J8S2TUbmukDyutYFZFOBFjC3pFT7rrjVx57KMdjNqoZvxG45eY0DIRmTQp19/FXSlEf9E5Q10I18qn81YnoaKucpSeLdzypUSOmaARH+OYres/48bqMPEt+MdA2hsCmNq0=
+	t=1775915911; cv=none; b=HN7BgQLkB6GD8cCXW9MFl+vd4CkjhqLr/iqUlt82MaQV6IYHIFleZnnbFFvH8w7bTpYIY7TfgABjwo4o0+TlU/O99vbvOlZKs/uCyEvvb4zS58AMhzraEATpaP60cQY7ftVnXvXnwJJFa1KAfM1vobTSYQluM+OYVr0rbNUY8tQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775913194; c=relaxed/simple;
-	bh=gYvw5ZKRCl0RH8BgUOu5V3anD1d0+Iic81fLL49D928=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KaSxdJi2bbpvb5MBC6ULe9fmKNtuNanZ/3mHVt52rFymTwz2gflRO+Ldyvu0svn+r7f+8jh3zfdRBiV/jjJ5cZUsTOv/ubOsg+70qYXA0NW/A2cD1YRiGWFYCTZV1UJWHbA1JVLQWzTlOvkY4fvcBQYIhgbcUrfJkay74kEgU3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nunJRZKv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B5625C2BCB3;
-	Sat, 11 Apr 2026 13:13:13 +0000 (UTC)
+	s=arc-20240116; t=1775915911; c=relaxed/simple;
+	bh=XJVN1RE5cpLgCfJiaV7vU1X5RKb/6yX6+y+wQI0OJvQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NGjQLSAARXm8cuIlfFkV5gYEKG4JI7R91oS5l7CMLFeYz9QplOKU9S8sIxodrFgNBdl8h+krYoZtKm1i++QWwocIR/k7++k4Kclui6U/U6j64LhbVxzc3eUDlTZdd+nf/p04w6moDCYAt1n1/YZWtNDNKNiylx3EEajZqXoJBFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kjc86yvN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A48EC4CEF7;
+	Sat, 11 Apr 2026 13:58:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775913193;
-	bh=gYvw5ZKRCl0RH8BgUOu5V3anD1d0+Iic81fLL49D928=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=nunJRZKv+bX5GutT7y2MU+Ql+3/2vb2vEHZFTNhhznSFU/QtmH/XsHFZymosX4azG
-	 O/fLz0c/cNm1PXrDEe5xEU0BLDLjJCFVSpT5GZ+cVebstRPN0tyB43vZ2LhRjQLyqa
-	 XBJdK/gYB7MkQRJ8N78xEIey8nrs6u/cnv82lysG5F3ZEEdLp1EWrCAlSuxPLyiq5T
-	 tOucuHkFMYaVjrL8B7vqfaChpKGqKNC4IEBdGmCOu0HAUYEimfxh/fRlJnnljJ/DHo
-	 zCcDGKDptulKUTjhWZBV4HSTRLPrE+ZL4DEB4p6OxKCn9x/hNbWDqjbcpa1MAwgf+h
-	 vwJ1JtsHL2JMg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ABE32F3ED53;
-	Sat, 11 Apr 2026 13:13:13 +0000 (UTC)
-From: Vasiliy Doylov via B4 Relay <devnull+nekocwd.mainlining.org@kernel.org>
-Date: Sat, 11 Apr 2026 16:13:10 +0300
-Subject: [PATCH v5 3/3] MAINTAINERS: Add entry for Onsemi LC898217XC lens
- voice coil driver
+	s=k20201202; t=1775915910;
+	bh=XJVN1RE5cpLgCfJiaV7vU1X5RKb/6yX6+y+wQI0OJvQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kjc86yvNDh3A5XDOg9evruqJgOKDxwQxWY/HLQJRQ/5R+p3HsUi8FF1Ns7W/IEDA4
+	 Tw8Ld10WyHY3vYXoFJEIPeuWhy2k0mqQnGJx7uEKLaElvU+oCFMnDnZtQ4nRhKNKpR
+	 Vbmt2NEjiGVJ9Lsng7/OU0uxyw5lIz8+ChH9CceQC9P6ez3ciEqFrosPSCgTJ/402p
+	 q1uCTmbFct/ypcvsXhEM8B5b0RfVGm2MT/nF4erWDdrN1sDNeKXerYSvqYJPHZ0CvH
+	 HkoFhK4bAKNa8V0fIeh4fQR3/M+ipohP1IfbSLnyRSANYFwq0cu7DKtaeNRrDUQq71
+	 yCBTeODdAknkQ==
+Date: Sat, 11 Apr 2026 15:58:28 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: dennis@ausil.us
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki <naoki@radxa.com>, Hsun Lai <i@chainsx.cn>, 
+	Jonas Karlman <jonas@kwiboo.se>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+	John Clark <inindev@gmail.com>, Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
+	Quentin Schulz <quentin.schulz@cherry.de>, Andrew Lunn <andrew@lunn.ch>, Chukun Pan <amadeus@jmu.edu.cn>, 
+	Alexey Charkov <alchark@gmail.com>, Peter Robinson <pbrobinson@gmail.com>, 
+	Michael Riesch <michael.riesch@collabora.com>, Mykola Kvach <xakep.amatop@gmail.com>, 
+	Jimmy Hon <honyuenkwun@gmail.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 3/3] arm64: dts: rockchip: Add Orange Pi 5 Pro board
+ support
+Message-ID: <20260411-practical-persimmon-foxhound-f5869d@quoll>
+References: <20260411024743.195385-1-dennis@ausil.us>
+ <20260411024743.195385-4-dennis@ausil.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260411-media-i2c-lc898217xc-initial-driver-v5-3-c71ddcf40bad@mainlining.org>
-References: <20260411-media-i2c-lc898217xc-initial-driver-v5-0-c71ddcf40bad@mainlining.org>
-In-Reply-To: <20260411-media-i2c-lc898217xc-initial-driver-v5-0-c71ddcf40bad@mainlining.org>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, david@ixit.cz
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- Vitalii Skorkin <nikroks@mainlining.org>, 
- Antonio Rische <nt8r@protonmail.com>, 
- Vasiliy Doylov <nekocwd@mainlining.org>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=790;
- i=nekocwd@mainlining.org; h=from:subject:message-id;
- bh=47zPYZVQfTlmz5yR21UDZYEArwVIUE2fjhcCknakC2A=;
- b=owGbwMvMwCVmXFbadLHr1XTG02pJDJm3PF7oOn+d/NHi/3RJ+9A9a9JL/c280jTeRNv+Ph/a5
- 3Yt8XlSRykLgxgXg6yYIkv3+8P3HszjZS1V/8QLM4eVCWQIAxenAEzkmRjDP6scCb98vyzG8vR1
- KWvLc+dx3kzbqsf9/e7S3EednySXejD8d5rBWuY5jT/2h2DlscC7d+J+M6slPRfd0xUyQ8328qH
- P/AA=
-X-Developer-Key: i=nekocwd@mainlining.org; a=openpgp;
- fpr=8BEFC3DEE09E0D057527F20D33767582D18AEA97
-X-Endpoint-Received: by B4 Relay for nekocwd@mainlining.org/default with
- auth_id=692
-X-Original-From: Vasiliy Doylov <nekocwd@mainlining.org>
-Reply-To: nekocwd@mainlining.org
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260411024743.195385-4-dennis@ausil.us>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-286723-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286721-lists,devicetree=lfdr.de,nekocwd.mainlining.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,mainlining.org,protonmail.com];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[nekocwd@mainlining.org];
+	FREEMAIL_CC(0.00)[kernel.org,sntech.de,radxa.com,chainsx.cn,kwiboo.se,rock-chips.com,gmail.com,rootcommit.com,cherry.de,lunn.ch,jmu.edu.cn,collabora.com,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:email,mainlining.org:replyto,mainlining.org:mid,linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CEEBE3E015F
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ausil.us:email]
+X-Rspamd-Queue-Id: 9FDB13E02F0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Vasiliy Doylov <nekocwd@mainlining.org>
+On Fri, Apr 10, 2026 at 09:47:43PM -0500, dennis@ausil.us wrote:
+> From: Dennis Gilmore <dennis@ausil.us>
+> 
+> Add device tree for the Xunlong Orange Pi 5 Pro (RK3588S).
+> 
+> - eMMC module, you can optionally solder a SPI NOR in place and turn
+>  off the eMMC
+> - PCIe-attached NIC (pcie2x1l1)
+> - PCIe NVMe slot (pcie2x1l2)
+> - AP6256 WiFi (BCM43456) via SDIO with mmc-pwrseq
+> - BCM4345C5 Bluetooth
+> - es8388 audio
+> - USB 2.0 and USB 3.0
+> - Two HDMI ports, the second is connected to the SoC's DP controller
+>   driven by a transparent LT8711UXD bridge that has firmware onboard and
+>   needs no node defined.
+> 
+> Vendors description and links to schematics available:
+> http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-5-Pro.html
+> 
+> Signed-off-by: Dennis Gilmore <dennis@ausil.us>
+> ---
+>  .../display/rockchip/rockchip,dw-dp.yaml      |   7 +
 
-Add entry for Onsemi LC898217XC lens voice coil driver
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
 
-Signed-off-by: Vasiliy Doylov <nekocwd@mainlining.org>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Didn't you already got this comment?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d4b396dccfe9..a87c03ad740b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19938,6 +19938,13 @@ S:	Supported
- W:	http://www.onsemi.com
- F:	drivers/net/phy/ncn*
- 
-+ONSEMI LC898217XC LENS VOICE COIL DRIVER
-+M:	Vasiliy Doylov <nekocwd@mainlining.org>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/media/i2c/onnn,lc898217xc.yaml
-+F:	drivers/media/i2c/lc898217xc.c
-+
- OP-TEE DRIVER
- M:	Jens Wiklander <jens.wiklander@linaro.org>
- L:	op-tee@lists.trustedfirmware.org (moderated for non-subscribers)
-
--- 
-2.50.1
-
+Best regards,
+Krzysztof
 
 
