@@ -1,160 +1,271 @@
-Return-Path: <devicetree+bounces-286664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286531-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QO1eN8G52WnUsQgAu9opvQ
-	(envelope-from <devicetree+bounces-286664-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 05:02:25 +0200
+	id oOp9LpkR2Wl+lggAu9opvQ
+	(envelope-from <devicetree+bounces-286531-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 17:04:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 805BB3DE2C8
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 05:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 594B93D8E62
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 17:04:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9F8273027580
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 03:01:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C604F30181A3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Apr 2026 15:04:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7373E2D2381;
-	Sat, 11 Apr 2026 03:01:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D063D75D4;
+	Fri, 10 Apr 2026 15:04:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZaBgkScc"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b="FDcg1y4P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E57A288C3D;
-	Sat, 11 Apr 2026 03:01:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 484D43CCFA0
+	for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 15:04:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775876476; cv=none; b=uqGc9UvV0VWK91CtnkNbzsAmdl1NF30jUdz8GYDsrM7sYiAzlAmOmz/E4pP3maQOFBcoNLY8yd7TZFV0ojmgrL/rN94eX14nLhwTMbzl7WXCGoMoAwbOonxuGfj/F1L+BpfVdGGxOe7wngPDGg/9lBzTkGDA4peS4P3/s42EIOY=
+	t=1775833493; cv=none; b=BhhzGMQCEAkRif53C3E43CQPnbQgWKKkVIahAfdyDIB/yELurcwQIah+g248BZ3y+IWaiHdHtSbRpG44ead1MYDkP8yrWv5kvtpEGllfoUkl3uNNVrnbsX+RKVKHcRbZjQCa3zy0iy9NSPv8olHJRUIrLaTV156TbkZZ60uPGN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775876476; c=relaxed/simple;
-	bh=1hOwTCTLviIdbhUA/wu6I+fdZfwSO9nCYxHp8cKmsog=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HoVE9X5GBaAhG9nRqVwDLt1CsGL5LbfRSDGyrwjQ+Iy/6mA8LFUMhHaX4ciSa3STL/oCxl5Af87BP+qT3xG6XHfAfHINaOktQpv2vwakrr7TK09CDEo8VVcuyaakJCctx7KYa8f/kqPq6D3xBY4g2OAK2pYAdxUNYHiC/oz2xy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZaBgkScc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1B41C2BC9E;
-	Sat, 11 Apr 2026 03:01:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775876475;
-	bh=1hOwTCTLviIdbhUA/wu6I+fdZfwSO9nCYxHp8cKmsog=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZaBgkSccXu5bZR/4mlmKhoNEQrp7sY5rePTIiCSQQnxQkwKEmCFLI8V/3Ui87uaxf
-	 gsT9c7yWyNP10y956QFWHQW8SxPUkz9ob3PIDj52DH5fsyUT1t75eWKoS8wLfHMZ02
-	 tMpIQGJrxKiVnJ52xbkAL3nprYs1ORw8jTGsMEY6sZ19KYejyY2Gei1MlRxtwl7E5s
-	 YSEFDoxqQ9/JIkHNC83g3VV7fZjoNBhvNxzKlYKjET9T/ufB8dK7N/f2czZui+7+fm
-	 /yZGn/tLVOWwSjqC4HOJY9pP3DteGn3Hi08ilO18S3WB2pTHwmGnc3+3G30oqWA1pM
-	 +BVr8uMUBPP3Q==
-Date: Fri, 10 Apr 2026 22:01:11 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Luca Weiss <luca.weiss@fairphone.com>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
-	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, 
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v5 5/5] remoteproc: qcom_q6v5_pas: Add SoCCP node on
- Kaanapali
-Message-ID: <adm5M9oxm99UxmaS@baldur>
-References: <20260409-knp-soccp-v5-0-805a492124da@oss.qualcomm.com>
- <20260409-knp-soccp-v5-5-805a492124da@oss.qualcomm.com>
+	s=arc-20240116; t=1775833493; c=relaxed/simple;
+	bh=LOamkOoU4OVVI8X9g75MJ4lPXrvJuQtSV7WWo3C0igs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=TATqNDzPj1Sg+heLiZCYzzDzp49y4j/OUU+XL/UaJ1S+uLgT7khBDp8O1FcNqgoUTV9FEB5USiTgZmwePZcXkWl4aasoMccEJjyJuFpYfMK72jVBl/EBKImufLKosaolpnaOGcv2xkEtQ5Q7kAtZSI6xbTC6wO5LGYW6iBit8HE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b=FDcg1y4P; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-82cec955160so1588493b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 08:04:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20251104.gappssmtp.com; s=20251104; t=1775833492; x=1776438292; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nyFmM55+8nwlvhnoFbA02HWarg4SN6Bckaku3Nj5Ch0=;
+        b=FDcg1y4PgvgSEYY4XlRNZ2A+4Sin8TE9UW/amTKO1BJ0RGpee/L0wWzfFzIwCMW2cu
+         m+7nj+Ud512RPklYyj4zYfTfPtqDW6ohDcqJKe6XKrzi65pfo4G+/8BwR0vXSM5INKOA
+         HGq8E3UqF3pMIXSUAqvOQh4q6EBcOWMfC8lFvuLyUE4OAXKPYnAIjW/X0vNEhwfEaNSC
+         UuRS41k/J0w5sx08WaJfEZDINnwACYtLZrXWwd7usVpaEf7mK6QgX5tlgfYDGPJ/93uC
+         pvl+uZAT+nqpBVpEuTEiPYGOjX4P48AXOzPGC3SI9egcTtulq7JJTvlCSodrO0jEQ3Bb
+         XitA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775833492; x=1776438292;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nyFmM55+8nwlvhnoFbA02HWarg4SN6Bckaku3Nj5Ch0=;
+        b=oPxwepJLggiZgnYvCh84ibYhwybbHdlQypfffvWMTipTBoZg1Rx6MjSBFEl4yb4V2Z
+         c169xP/be9Sud7Y45h/C54zj/UcU61iVk2yKpC3YrFzB5FykrPcxIEJDBrCSHMPytI8K
+         zqsBCS3FCGsz6T7F1gPUzzUbrdqJdnJ1QGQiQ3xAXxGrrQ1RHfU0PmZ8UY+pTpechwfx
+         Me6+FosXwyAd49pw9jYqmZ4mHUaIFLG7xwWL/+Qfy0P6NJuh3dw1SbMQh8edfkzexWt6
+         0EVzrVEM+iUz7Bf9PXAJ2a7Wsl5evyQEL9pYW+H7TazD/oP8jpKcTFmncqnpKerEc9jZ
+         aNRg==
+X-Forwarded-Encrypted: i=1; AJvYcCWkhWa1gyCqOcWQN/83SwcDkWv8CXGeRlDipZPnTybH607B9gCjPJPgDOcdhsC+5a4mRb4V7rIIOwXH@vger.kernel.org
+X-Gm-Message-State: AOJu0YywTIHHofyxfFwv/oW5kcAJElKTgfxE4UNybqzx7f3MNiDZsNyh
+	xLp2UiE1+BCf+FgQaeKdOsnfSIe6ndWX2d7noyYsu77Sk+F6PFVZTO5NHOctpU1rAic=
+X-Gm-Gg: AeBDieut4tP6CHXWu2nNWfSVly0/7t3hzxaaafa5YhcD9f8QJRttugEikGc3HmOk+4+
+	E89vgUClnSVo2wRqDGqeZMMCJpz2qcBMkG93cFPlUy6lvedi4E57C7IHA++XpxyIf0KKfCBQtvL
+	fjNQh4EFocvle3B+nxNmSSqc0i0D4JAi73D1FPqRqRT6CfdqXgy3okNDoetvYsSdhhNPsELOUCG
+	heM4i2X7flzPlupCp839rGu27U2FrJuKCa3p7QL2MIwf+OE8fZ7pFEWE0B+GWSbvK8ThAb1D4cA
+	fWb4tAfRpFfQx+AZyiMw53Khf7N5190rkpyzurOSG5uLOe4/Hi/Q7EhjvghDUf49V631YpOYebS
+	79XbvV1bt3U41xxnCHGPapi5YhwBNZYWqtQmQqrfQbmj4ZvCK5lmNlnvNwGMZML0FzG/C2/43Rq
+	Z9WAAEX4y9shec8uq1qYWkugR0TiYdpatw+wbmj/bOGQy4L9BILIrYee68QdUa2JcE
+X-Received: by 2002:a05:6a00:400b:b0:82c:6b46:271d with SMTP id d2e1a72fcca58-82f0c2efb17mr4220868b3a.48.1775833491374;
+        Fri, 10 Apr 2026 08:04:51 -0700 (PDT)
+Received: from [127.0.1.1] ([45.8.220.15])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82f0c4d5413sm2970532b3a.40.2026.04.10.08.04.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Apr 2026 08:04:50 -0700 (PDT)
+From: Guodong Xu <guodong@riscstar.com>
+Subject: [PATCH v8 0/3] spi: support the SpacemiT K1 SPI controller
+Date: Fri, 10 Apr 2026 23:04:19 -0400
+Message-Id: <20260410-spi-spacemit-k1-v8-0-53ebb48a4146@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260409-knp-soccp-v5-5-805a492124da@oss.qualcomm.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADO62WkC/yXMyw5AMBCF4VeRWWvS1t2riAU1GOKSDiIR765Yn
+ MW3OP8FjJaQIfcusHgQ0zI7pL4Hpq/mDgU1zqCljmUoE8EruVUGJ9rEqATKLEpMoJSKNLjXarG
+ l8ysW5W/e6wHN9mbgvh/8TjubcwAAAA==
+X-Change-ID: 20260407-spi-spacemit-k1-e0957c311152
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
+ Alex Elder <elder@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Guodong Xu <guodong@riscstar.com>, 
+ Alex Elder <elder@riscstar.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ Yixun Lan <dlan@kernel.org>
+X-Mailer: b4 0.15.1
+X-Spamd-Result: default: False [3.94 / 15.00];
+	DATE_IN_FUTURE(4.00)[11];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_DKIM_ALLOW(-0.20)[riscstar-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286664-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-286531-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[riscstar-com.20251104.gappssmtp.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[guodong@riscstar.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: 805BB3DE2C8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[riscstar-com.20251104.gappssmtp.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 594B93D8E62
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 09, 2026 at 01:52:28AM -0700, Jingyi Wang wrote:
-> The SoC Control Processor (SoCCP) is small RISC-V MCU that controls
-> USB Type-C, battery charging and various other functions on Qualcomm SoCs.
-> It provides a solution for control-plane processing, reducing per-subsystem
-> microcontroller reinvention. Add support for SoCCP PAS loader on Kaanapali
-> platform.
-> 
+This series adds support for the SPI controller found in the SpacemiT
+K1 SoC.  The driver currently supports only master mode.  The controller
+has two 32-entry FIFOs and supports PIO and DMA for transfers.
 
-Very nice commit message.
+Starting with v8, I am taking over from Alex Elder to shepherd this
+series upstream.  Alex developed versions 1 through 7.
 
-(Patch looks good as well)
+Version 8 reworks the driver based on Mark Brown's review of v7, making
+much better use of the SPI core framework.
 
-Thank you,
-Bjorn
+(Note, this is a distinct series from the QSPI driver, which was
+merged recently.)
 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> ---
->  drivers/remoteproc/qcom_q6v5_pas.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-> index 34b54cf832d0..1c81f22438cc 100644
-> --- a/drivers/remoteproc/qcom_q6v5_pas.c
-> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
-> @@ -1604,8 +1604,26 @@ static const struct qcom_pas_data sm8750_mpss_resource = {
->  	.region_assign_vmid = QCOM_SCM_VMID_MSS_MSA,
->  };
->  
-> +static const struct qcom_pas_data kaanapali_soccp_resource = {
-> +	.crash_reason_smem = 656,
-> +	.firmware_name = "soccp.mbn",
-> +	.dtb_firmware_name = "soccp_dtb.mbn",
-> +	.pas_id = 51,
-> +	.dtb_pas_id = 0x41,
-> +	.proxy_pd_names = (char*[]){
-> +		"cx",
-> +		"mx",
-> +		NULL
-> +	},
-> +	.ssr_name = "soccp",
-> +	.sysmon_name = "soccp",
-> +	.auto_boot = true,
-> +	.early_boot = true,
-> +};
-> +
->  static const struct of_device_id qcom_pas_of_match[] = {
->  	{ .compatible = "qcom,eliza-adsp-pas", .data = &sm8550_adsp_resource },
-> +	{ .compatible = "qcom,kaanapali-soccp-pas", .data = &kaanapali_soccp_resource },
->  	{ .compatible = "qcom,milos-adsp-pas", .data = &sm8550_adsp_resource },
->  	{ .compatible = "qcom,milos-cdsp-pas", .data = &milos_cdsp_resource },
->  	{ .compatible = "qcom,milos-mpss-pas", .data = &sm8450_mpss_resource },
-> 
-> -- 
-> 2.34.1
-> 
+ -
+ Guodong
+
+Between version 7 and version 8:
+  - Use // comments for the file header (Mark Brown)
+  - Remove open-coded DMA mapping (k1_spi_map_dma_buffer(),
+    k1_spi_unmap_dma_buffer(), k1_spi_map_dma_buffers(), the dummy
+    buffer, k1_spi_io struct); use SPI core DMA mapping via
+    transfer->tx_sg/rx_sg instead
+  - Add can_dma() callback, replacing open-coded transfer length
+    checks
+  - Add set_cs() callback for chip select control via the
+    TOP_HOLD_FRAME_LOW bit
+  - Switch from transfer_one_message() to transfer_one()
+  - DMA completion calls spi_finalize_current_transfer() directly
+    instead of using a completion
+  - Add SSP_STATUS_BCE (bit count error) to error detection
+  - Return IRQ_NONE early if no transfer is active, before
+    acknowledging interrupts
+  - Simplify k1_spi_driver_data struct
+  - ~160 fewer lines of code
+
+Here is version 7 of this series:
+  https://lore.kernel.org/lkml/20251114185745.2838358-1-elder@riscstar.com/
+
+Between version 6 and version 7:
+  - DIV_ROUND_UP_ULL() is now used when setting the speed, to address
+    two errors reported by the Intel kernel test robot on 32-bit builds
+  - Fixed a bug interpreting the resource pointer in k1_spi_dma_cleanup()
+  - The driver is now built as a module by default, if ARCH_SPACEMIT
+    is defined
+
+Here is version 6 of this series:
+  https://lore.kernel.org/lkml/20251027125504.297033-1-elder@riscstar.com/
+
+Between version 5 and version 6:
+  - Rebase only
+
+Here is version 5 of this series:
+  https://lore.kernel.org/lkml/20251013123309.2252042-1-elder@riscstar.com/
+
+Between version 4 and version 5:
+  - Added Yixun's Reviewed-by tag on patch 3
+
+Here is version 4 of this series:
+  https://lore.kernel.org/lkml/20250925121714.2514932-1-elder@riscstar.com/
+
+Between version 3 and version 4 (all suggested by Yixun):
+  - Fixed an underrun/overrun comment error
+  - Renamed a pinctrl node
+  - Formatted dmas and dma-names properties on one line
+
+Here is version 3 of this series:
+  https://lore.kernel.org/lkml/20250922161717.1590690-1-elder@riscstar.com/
+
+Between version 2 and version 3:
+  - Add Conor's Acked-by to patch 1
+  - Add Rob's Reviewed-by to patch 1
+  - Added imply_PDMA to the SPI_SPACEMIT_K1 Kconfig option
+  - Fixed a bug pointed out by Vivian (and Troy) in word-sized reads
+  - Added a comment stating we use 1, 2, or 4 bytes per word
+  - Cleaned up DMA channels properly in case of failure setting up
+  - No longer use devm_*() for allocating DMA channels or buffer
+  - Moved the SPI controller into the dma-bus memory region
+
+Here is version 2 of this series:
+  https://lore.kernel.org/lkml/20250919155914.935608-1-elder@riscstar.com/
+
+Between version 1 and version 2:
+  - Use enum rather than const for the binding compatible string
+  - Omit the label and status property in the binding example
+  - The spi-spacemit-k1.o make target is now added in sorted order
+  - The SPI_SPACEMIT_K1 config option is added in sorted order
+  - The SPI_SPACEMIT_K1 config does *not* depend on MMP_PDMA,
+    however MMP_PDMA is checked at runtime, and if not enabled,
+    DMA will not be used
+  - Read/modify/writes of registers no longer use an additional
+    "virt" variable to hold the address accessed
+  - The k1_spi_driver_data->ioaddr field has been renamed base
+  - The DMA address for the base address is maintained, rather than
+    saving the DMA address of the data register
+  - The spi-max-frequency property value is now bounds checked
+  - A local variable is now initialized to 0 in k1_spi_write_word()
+  - The driver name is now "k1-spi"
+  - DT aliases are used rather than spacemit,k1-ssp-id for bus number
+  - The order of two pin control properties was changed as requested
+  - Clock names and DMA names are now on one line in the "k1.dtsi"
+  - The interrupts property is used rather than interrupts-extended
+
+Here is version 1 of this series:
+  https://lore.kernel.org/lkml/20250917220724.288127-1-elder@riscstar.com/
+
+Alex Elder (3):
+  dt-bindings: spi: add SpacemiT K1 SPI support
+  spi: spacemit: introduce SpacemiT K1 SPI controller driver
+  riscv: dts: spacemit: define a SPI controller node
+
+Signed-off-by: Guodong Xu <guodong@riscstar.com>
+---
+Alex Elder (3):
+      dt-bindings: spi: add SpacemiT K1 SPI support
+      spi: spacemit: introduce SpacemiT K1 SPI controller driver
+      riscv: dts: spacemit: define a SPI controller node
+
+ .../devicetree/bindings/spi/spacemit,k1-spi.yaml   |  84 +++
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |   7 +
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi       |  20 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi               |  15 +
+ drivers/spi/Kconfig                                |   9 +
+ drivers/spi/Makefile                               |   1 +
+ drivers/spi/spi-spacemit-k1.c                      | 782 +++++++++++++++++++++
+ 7 files changed, 918 insertions(+)
+---
+base-commit: 7aaa8047eafd0bd628065b15757d9b48c5f9c07d
+change-id: 20260407-spi-spacemit-k1-e0957c311152
+
+Best regards,
+--  
+Guodong Xu <guodong@riscstar.com>
+
 
