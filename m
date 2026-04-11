@@ -1,177 +1,127 @@
-Return-Path: <devicetree+bounces-286685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286688-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6HRfL3ge2mmdyggAu9opvQ
-	(envelope-from <devicetree+bounces-286685-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 12:12:08 +0200
+	id OC0AJ+4f2mnEyggAu9opvQ
+	(envelope-from <devicetree+bounces-286688-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 12:18:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232353DF40F
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 12:12:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBFF23DF47D
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 12:18:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 546AE301BC1C
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 10:12:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 456FE301AD26
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 10:18:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5629933A9CF;
-	Sat, 11 Apr 2026 10:12:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FC32KA5O"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 968BB31F9AB;
+	Sat, 11 Apr 2026 10:18:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E7022425B;
-	Sat, 11 Apr 2026 10:12:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32B07294A10;
+	Sat, 11 Apr 2026 10:18:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775902324; cv=none; b=csenuty4ivSQa7ilBVgn8F10jtworaaEd5jMxiAhs80x0RwGd/Gi23d62q+vzfSgP46YN7G4XQ8gu1/ib1xIs/X5AEOwbqqbsW7ptEk+47lnyBQPUnfITTP0i3eog55IdSjrPzSgnchhxl+xYP0gvLj47sCOdYQfkAwQeNdsYVU=
+	t=1775902685; cv=none; b=aEViSdX9lm9hlUfwhJA7oah8TFPw0ef3Q8DIyVIqGwW4dhGBFvf6xgG5UxuhtmO9k7szT01Ys07Ml4KId0fGpYVeSwWovF80rRfZvnd5HauSYk9biV0bCHfzJP+6XXM0QNo2TNvHFQ5O1/wJ1XdV3uBvupLjrxMtZOqs4ZcU1Z8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775902324; c=relaxed/simple;
-	bh=q00KISChBRUHNHyaVW48Rtym9t2Uy6m/+GeunCQzPdc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jR6/CfDlnZ0EHbFZ90R8j2nYXFhSO7warlyCKRtIXGv1brWgJBAdpI1j+H/x4LFBcOPtS8KxKgdl5M+gi/SH35lOTB6RSUGMqbrvpZfQcDMM8kUIqldY4mcWLHYaDt6852cJOh0breuYg1wiMW6SB0PozLrvp/C4aJwAvU/Pd1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FC32KA5O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DFDA8C2BC9E;
-	Sat, 11 Apr 2026 10:12:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775902324;
-	bh=q00KISChBRUHNHyaVW48Rtym9t2Uy6m/+GeunCQzPdc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=FC32KA5O81Ka+RQwwhFbiSpFks4AYMu1AyIRB003sTJn8IZ4nrmRW0WeXM7T0uror
-	 2M52SFYiTGx2lMuLU4u8PjTktaxMOPAZbXvBTT57dzOXiYg7+KrDq4mthXTwqjv8wp
-	 fsLqNLVeh9XTo/xNeAX7SrKsXlLTRlL95lzIsS8Ge9z6ZuXgLHA2v0ZHDar4VzakPm
-	 3J1woDp+DFnZfQE8ZKfZYrLL+LwqOd1WTk1IBOa/JpfkXJYF2KuXHEG9k1hLumGfgu
-	 ++ZFACr0ctE8cSaPh14lqIc4x2dK+jgyDInt6V8IBUIZ7LyBmmlXaNgrFfeROk0wCt
-	 pzD3OWuKMezVA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D4560F3ED41;
-	Sat, 11 Apr 2026 10:12:03 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Sat, 11 Apr 2026 12:12:03 +0200
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sdm845-google: Enable PMI8998
- camera flash LED
+	s=arc-20240116; t=1775902685; c=relaxed/simple;
+	bh=P7JgAQUkHvF8eV5CI8MNiikfBhYq8gaNjsfbWNvhsfw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=e+bcMU28BQ5RIsXWxdhzsOUO3DE9y8NueKfwzjRVOeLAYsInZI1kwWGZPNgjNGFGWotci2IwCTB5d0FYDCCwMJi2C0m03OK7a5uGWrx/XcEsYGsLhhKaqpeiNiAoKEhdjAJls7imt+T+v8WX3R89ZZ74ckegRXf0sLB2lA/yLa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from edelgard.fodlan.icenowy.me (unknown [112.94.102.1])
+	by APP-03 (Coremail) with SMTP id rQCowABHaeDJH9pp6sKrDQ--.17907S2;
+	Sat, 11 Apr 2026 18:17:46 +0800 (CST)
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc: devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Subject: [PATCH 0/2] Enable LPC interrupt controller on MIPS LS7A systems
+Date: Sat, 11 Apr 2026 18:17:42 +0800
+Message-ID: <20260411101744.4020216-1-zhengxingda@iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260411-pixel3-camera-v2-2-41b889abb14c@ixit.cz>
-References: <20260411-pixel3-camera-v2-0-41b889abb14c@ixit.cz>
-In-Reply-To: <20260411-pixel3-camera-v2-0-41b889abb14c@ixit.cz>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Petr Hodina <petr.hodina@protonmail.com>, 
- Richard Acayan <mailingradian@gmail.com>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- phone-devel@vger.kernel.org, David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1378; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=44B67eoSxTZ4WyYriw0YqGPLUibyC/y8pYBqVebOa4c=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBp2h5yVvDHV6k5Xumh1+kFN7pxD1UZOBOqzydjx
- 3FrS9aCAxmJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCadoecgAKCRBgAj/E00kg
- ci7vD/95LqSUFUncSITjMTfnlRGGmKSZeYvIlA9JO+X8RnkULCj4mnFRxyJzrh3qS2k8FysVytT
- N1eX0VsTMYhxtF6nWR90mYczbjtZJwjpLZsptGlcCUakYUFh/0jmoObs4OelXu/Qv+MKKFoDMrt
- IoGxxN14aKyJsq0x7uC69DBmzRTtmAcyXr0nx6GlStuiWrPXqeD21A29ntf1Huq+27ysWZmk0va
- zaAb/T1kImVZzBnlqVJ+KjZeoW1SEpI5bH4dH8Juruyf25OiTfndfVoNxnOF9SUMu0QoreZiw3c
- yusAyc9CX5e4/gAjUMkWqP6E7YMtYbVkQAJsDxUw19/GBCR6K5Zn6SPk1R/Hz0D+Fad1tVPyM5t
- UdohnQ86RsY6FgPR/zSzuB/LtpZz2J6usosU4BXFIDd3bpGB/lN/rvSG9rPaGGqgbGX180GbzKl
- JfiJXk5OBJWKC+stbV4hLKKCuE6WPRNskQBQQLkmk5Q0sOgCBhOysxMXhkHrvGGqXKhUNAausDt
- 6BqMkwKucnkKll50//vMKwuPQK19kUBSF47DvD0ktfxymeV9+Su4y69YJVpQSEazHEwMuDh2sJl
- tiHxwAuAraiDrf898SgbOwglV6lBkd4Haoi271YoDLK2jJeaes10Lb4XOQBUhPWX/4dW7HUZic4
- N1wWpxp4CJOQYqg==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:rQCowABHaeDJH9pp6sKrDQ--.17907S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrCFW8Cw43CryUKw18ur4rKrg_yoWxWrg_GF
+	yIvrZ3Ga47Xas7JFZ7ZF1IgrW7WFWUuw1xC3Wvqr48t34Yyw4fJF4DCrW5JFn3XFZ0qF1r
+	Wr4kXFWrZ3ZIqjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbcAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+	Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
+	0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
+	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7MxkF7I0En4kS14v26r1q
+	6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI
+	0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y
+	0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxV
+	WUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1l
+	IxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjfUonmRUUUUU
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286685-lists,devicetree=lfdr.de,david.ixit.cz];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-286688-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[protonmail.com,gmail.com,vger.kernel.org,ixit.cz];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[david@ixit.cz];
+	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ixit.cz:email,ixit.cz:replyto,ixit.cz:mid]
-X-Rspamd-Queue-Id: 232353DF40F
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DBFF23DF47D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: David Heidelberg <david@ixit.cz>
+This patchset tries to enable support for LPC interrupts on MIPS-based
+Loongson systems with Loongson 7A1000 PCH chip.
 
-Enable the PMI8998 flash LED block and describe the white flash LED
-used for the rear camera.
+The corresponding irqchip support (along with the DT binding) is already
+added to the tip tree.
 
-Configure the LED in flash mode with hardware limits matching the
-original device configuration, including maximum current and timeout.
+Tested on a Haier Boyue G51 system with legacy i8042 keyboard/mouse as
+integrated ones.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+This patchset is splitted from the original patchset that contains both
+driver part and DT part.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi
-index 084058a597c10..44b6d61697caf 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/media/video-interfaces.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
-@@ -590,6 +591,19 @@ &pmi8998_charger {
- 	status = "okay";
- };
- 
-+&pmi8998_flash {
-+	status = "okay";
-+
-+	led-1 {
-+		function = LED_FUNCTION_FLASH;
-+		color = <LED_COLOR_ID_WHITE>;
-+		led-sources = <2>;
-+		led-max-microamp = <500000>;
-+		flash-max-microamp = <750000>;
-+		flash-max-timeout-us = <1280000>;
-+	};
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
+Icenowy Zheng (2):
+  MIPS: Loongson64: dts: Sort nodes
+  MIPS: Loongson64: dts: Add node for LS7A PCH LPC
+
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 17 +++++++++++++----
+ 1 file changed, 13 insertions(+), 4 deletions(-)
 
 -- 
-2.53.0
-
+2.52.0
 
 
