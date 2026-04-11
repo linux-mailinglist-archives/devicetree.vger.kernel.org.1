@@ -1,612 +1,229 @@
-Return-Path: <devicetree+bounces-286658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286660-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +MfmOoC22WmhsQgAu9opvQ
-	(envelope-from <devicetree+bounces-286658-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 04:48:32 +0200
+	id OJq7K6G22WmhsQgAu9opvQ
+	(envelope-from <devicetree+bounces-286660-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 04:49:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 663133DE13E
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 04:48:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31BED3DE16B
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 04:49:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2B5AB3061D71
-	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 02:48:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 87EF03046F32
+	for <lists+devicetree@lfdr.de>; Sat, 11 Apr 2026 02:48:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30ACE2D12F3;
-	Sat, 11 Apr 2026 02:47:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4056029D275;
+	Sat, 11 Apr 2026 02:48:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ausil.us header.i=@ausil.us header.b="NXMUGKCZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g433Igv1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f99.google.com (mail-oa1-f99.google.com [209.85.160.99])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 699722BE7CD
-	for <devicetree@vger.kernel.org>; Sat, 11 Apr 2026 02:47:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C85296BA9;
+	Sat, 11 Apr 2026 02:48:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775875674; cv=none; b=mzHq3bNgJlQQZiDmW71qAguIAG19Rh1zdScTeOVn/DFCjaMFcc9uolyjHYEXFLJ/OqYbq0Eylelom8F5zV1HIv4fr2QZhpXfxL7BrMroOXkNDrgQA8MBkvwXePUu3AHMfvRCVZ3P5AMhrfOqgxROaf7G4YhhyOB5c0UJIVJRjLA=
+	t=1775875709; cv=none; b=u74vQh6/fcY6BUwfXFNq5edrUwiyBi6UAw4CJOkwbSITfIECsZvD8nwId72Jp1DnFSsqRM90CBpQA8SGwNDbwwrpE8gmmOCWea+aOxZYYjQ07DkjqE6vI7O8v7WOPg8EPBm0K2kU/4/Uh/ZXv4qn3CRjBCBjYlS18XDbBzmECdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775875674; c=relaxed/simple;
-	bh=ZcCQ6W2IMvj63jshKw/rlzeW+QEB/Bn3TOaLS02KdgY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dNeylJC5gmSpVXaISlYpHpNB9B0Bh4ng+HsO5JxQm1znqf6yxf4SFjRnWzmqIbVWD1F8WhZtwy7wqkaCngH2EQ1699xfGrsXOPCkR/wFVm7ZyRop7IEjjwSCnetekEGNv55ukcZsg3BBczegGW0odm2qiZYmg18mQak7UFYl/BU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ausil.us; spf=pass smtp.mailfrom=ausil.us; dkim=pass (2048-bit key) header.d=ausil.us header.i=@ausil.us header.b=NXMUGKCZ; arc=none smtp.client-ip=209.85.160.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ausil.us
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ausil.us
-Received: by mail-oa1-f99.google.com with SMTP id 586e51a60fabf-40f1ffba6a0so2014783fac.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Apr 2026 19:47:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ausil.us; s=google; t=1775875671; x=1776480471; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jAyEa4z1gWAsFEu6m/B+ItGIiM/KxnkrlG9tVm7TFrE=;
-        b=NXMUGKCZH0c5aCpb5EFXgssQ7aWMqpxpYSlbGDXOhC+Xi/vawjwwu8pvHBbZpcdKY1
-         8C296Z1aKluPn8UwAq6JrZNeVYmXnb+cILIT5d8uk4fDJHjx+jybl6mXOuWkmHYgF5W0
-         wAEjnqH3RmO8SrAz6Hjk06UJQvLCv5jLTvCZmO0uAeQ9FU3TTOFJvq6XZZvd4oakyJTs
-         3rulHlrerxBUzexbTX30nv3vugS2mQcqrDJpUXCm/a36tQPkPsndvNlVmLFEF3yEIMKP
-         eaefFVCrRwHvqmwqZ9s+zJ1FzsrXKYQhQcn7iNh6NbIM4Entbc6/YPzfPSp41zqa4UQH
-         PZgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775875671; x=1776480471;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=jAyEa4z1gWAsFEu6m/B+ItGIiM/KxnkrlG9tVm7TFrE=;
-        b=sRvuA3E/3uSd0USlTiVbFDInDOm6o6VNvUefYgBQkfMhP/L/0SSLjIMID8F/soOwDj
-         VVONDBkUDl91XqKpxCL0kddhCwp4njUTfG1J++YLjgoSwauG3C35rG6kpkdlVu+6IHAC
-         U0TU3q2iriws+bsygsfXJqXacympptb6etN06CiwVuTljwwb1AQRwkhPojl+yKA6aqtL
-         F7w0QJ9GSTYgis8OlCMmZ8QXGqxFmegtquMwO2nlxze+iXNylsSv735uiSSeSV5OdMNk
-         xGefUlEBbKdGAsycan9ig7lBasdiDbzAehhXxCwkslrnlPW9Hn/ayIr4v2ZXIGgxAa1H
-         Iaag==
-X-Forwarded-Encrypted: i=1; AJvYcCUCDWt2kKJnf5QiOq6ml3yNkSjCRs4uW10zRW4Cejfqkfe5TU5b/0LgmLlecQH4HlSAxxOeo1SOCQA4@vger.kernel.org
-X-Gm-Message-State: AOJu0YygYOJdZ06qzVHrEL1kwc6Gor334VTIIa70zHin6ubIxbV0Jm6n
-	lI4Zwks/k25mba5bQlaOb70MKEXIDM/hggm0D1Bwr/oujtOqjsMMG76Cg2di9L4tOG8CsfZOVx0
-	FuMpUqqaRv0oi1WpU6bqOvdW30lWdAbTleV0b
-X-Gm-Gg: AeBDievxhoBr7eHm3CkervAelN0HPvpWdwfnRqR2ugNvffxQEbTONXfrAba7kGc+rWQ
-	29MZP1N3gZnWoHZmysKrmkAdeCrQLYbJK3anT2Sq938Pe5J/ONZS7ZD11jNcR9RkCZqWl/sCcsz
-	/k0INZxla/LiLJnoQ1yvlBC2zyTxRVqBlByJZr9gyFT+hfsYxOZHp7HUckwaKmNVe/CsPzEnU9f
-	BF7VCd3j5axMtIZ76kNXdyfY0wh/oMUofGzslhOoKLt+sNRRvMiw1PaYItV3Ks6lvXA1nTAtgBD
-	Xvii/7/Vu/LUDBIpqt/RFINHrXs8fFC0fQpxfuJXlc9rV4XJ3Xpk+up3kDjmj0fKg9X8amJ8hVs
-	UmArtVcD5c5sJR23v2+U98MbNNLiYSprFA3L+vBwhgleF
-X-Received: by 2002:a05:6870:3e07:b0:417:6bc7:1e21 with SMTP id 586e51a60fabf-423e11e605cmr3050812fac.38.1775875671430;
-        Fri, 10 Apr 2026 19:47:51 -0700 (PDT)
-Received: from ryac.ausil.us (207-179-239-100.mtco.net. [207.179.239.100])
-        by smtp-relay.gmail.com with ESMTPS id 586e51a60fabf-423ddd32ab3sm599086fac.16.2026.04.10.19.47.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Apr 2026 19:47:51 -0700 (PDT)
-X-Relaying-Domain: ausil.us
-From: dennis@ausil.us
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: FUKAUMI Naoki <naoki@radxa.com>,
-	Hsun Lai <i@chainsx.cn>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	John Clark <inindev@gmail.com>,
-	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	Alexey Charkov <alchark@gmail.com>,
-	Peter Robinson <pbrobinson@gmail.com>,
-	Dennis Gilmore <dennis@ausil.us>,
-	Michael Riesch <michael.riesch@collabora.com>,
-	Mykola Kvach <xakep.amatop@gmail.com>,
-	Jimmy Hon <honyuenkwun@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v6 3/3] arm64: dts: rockchip: Add Orange Pi 5 Pro board support
-Date: Fri, 10 Apr 2026 21:47:43 -0500
-Message-ID: <20260411024743.195385-4-dennis@ausil.us>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260411024743.195385-1-dennis@ausil.us>
-References: <20260411024743.195385-1-dennis@ausil.us>
+	s=arc-20240116; t=1775875709; c=relaxed/simple;
+	bh=C1L68wEOa7QMkQeMg6JXJEZiMI7tywqjcBSBQ2MYaUQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AF+DJXxcAvmab90wM11zlZ+nT34jX0eDG4WX1r1jQflEpxVO42cMoX7wAMSTw23nNoRWUJ/2T4ZVyxdT55M6bISBORLrW01BRE23HbMHn0uM9wYdPjYalPKgE+avuP7hqL0qFDVCj8CybHTrMd00XUtuCrxHyp8dpIJO3zD/4hk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g433Igv1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0A6DC2BC9E;
+	Sat, 11 Apr 2026 02:48:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775875708;
+	bh=C1L68wEOa7QMkQeMg6JXJEZiMI7tywqjcBSBQ2MYaUQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=g433Igv1pb8nfxFa7rj3ZTc49IIxGzXLBizezqRH4XX0qqVj55+mIGjqhDbPGZURa
+	 IKvEazGCxKsucmjEZTRs2uAUQE5amkO3kD9BuUfakVl2pjT6wQJ7XSh5kW/NBYWlmU
+	 JyVWVyJynrmoiZulNiqdYZVnXGKX/9J3pKyZZ7ubpH9+OZyL9Or0V27o5M/dDSFPfU
+	 f2QxUWsIz0KVb+sLAcWy8GNvOjm6KU6zstyhh3CWPS50ut18aFngmJ8f5KKx+U3Dh8
+	 GtRgDGeAAUuk6eVm3ZroXz8H+Q7X5f0/c6WcA5oZoRMaNJ1QTAtNX/cJwRQUP7sfXQ
+	 9DZ6s6YRwXPjw==
+Date: Fri, 10 Apr 2026 21:48:25 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Cc: Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 00/35] irqchip/qcom-pdc: Clean up register mapping and DT
+ descriptions
+Message-ID: <adm1uXe6QRes8DiX@baldur>
+References: <20260410184124.1068210-1-mukesh.ojha@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.34 / 15.00];
+In-Reply-To: <20260410184124.1068210-1-mukesh.ojha@oss.qualcomm.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[ausil.us:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FREEMAIL_CC(0.00)[radxa.com,chainsx.cn,kwiboo.se,rock-chips.com,gmail.com,rootcommit.com,cherry.de,lunn.ch,jmu.edu.cn,ausil.us,collabora.com,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-286658-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-286660-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_BAD_POLICY(0.00)[ausil.us : Multiple policies defined in DNS];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dennis@ausil.us,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ausil.us:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.1:email,ausil.us:dkim,ausil.us:email,ausil.us:mid,a:email,0.0.0.11:email]
-X-Rspamd-Queue-Id: 663133DE13E
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 31BED3DE16B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Dennis Gilmore <dennis@ausil.us>
+On Sat, Apr 11, 2026 at 12:10:37AM +0530, Mukesh Ojha wrote:
+> The Qualcomm PDC (Power Domain Controller) hardware exposes multiple DRV
+> (Driver) regions, each 0x10000 bytes in size, where each region serves a
+> specific client in the system . Linux only needs access to the APSS DRV
+> region.
+> 
+> Despite this, the driver was mapping up to 0x30000 bytes (three DRV
+> regions) via a QCOM_PDC_SIZE clamp introduced as a workaround for old
+> sm8150 DTs that described a too-small register window. Correspondingly,
+> most platform DTS files described the PDC reg as 0x30000 in size, and
+> several also carried a second, entirely unused reg entry pointing at an
+> unrelated register region that the driver never maps.
+> 
+> This series cleans all of that up in three logical steps:
+> 
+> 1. (patches 2-6):
+> 
 
-Add device tree for the Xunlong Orange Pi 5 Pro (RK3588S).
+These patches are for the IRQ subsystem/maintainer.
 
-- eMMC module, you can optionally solder a SPI NOR in place and turn
- off the eMMC
-- PCIe-attached NIC (pcie2x1l1)
-- PCIe NVMe slot (pcie2x1l2)
-- AP6256 WiFi (BCM43456) via SDIO with mmc-pwrseq
-- BCM4345C5 Bluetooth
-- es8388 audio
-- USB 2.0 and USB 3.0
-- Two HDMI ports, the second is connected to the SoC's DP controller
-  driven by a transparent LT8711UXD bridge that has firmware onboard and
-  needs no node defined.
+> Split __pdc_enable_intr() into two focused per-version helpers
+> to separate the HW < 3.2 bank-based path from the HW >= 3.2 per-pin
+> path. Replace the pdc_version global with a function pointer assigned
+> once at probe time, moving the version check out of the hot path.
+> Tighten the ioremap clamp from QCOM_PDC_SIZE (0x30000) to PDC_DRV_SIZE
+> (0x10000) now that the DT fixes below make the workaround unnecessary.
+> Also add a PDC_VERSION() constructor macro and use FIELD_GET() for bank
+> index extraction to make the bit encoding self-documenting.
+> 
+> 2. (patches 1, 7-28):
+> 
 
-Vendors description and links to schematics available:
-http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-5-Pro.html
+And these patches are for the Qualcomm SoC/DT tree.
 
-Signed-off-by: Dennis Gilmore <dennis@ausil.us>
----
- .../display/rockchip/rockchip,dw-dp.yaml      |   7 +
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3588s-orangepi-5-pro.dts   | 352 ++++++++++++++++++
- drivers/gpu/drm/bridge/synopsys/dw-dp.c       |  12 +
- 4 files changed, 372 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
+> All 28 platform DTS files that described the PDC reg window as 0x30000
+> are corrected to 0x10000, reflecting the single APSS DRV region that
+> Linux actually maps.
+> 
+> 3. (patches 29-35):
+> 
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
-index 6345f0132d43..079a912d97f1 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
-@@ -57,6 +57,13 @@ properties:
-       - const: i2s
-       - const: spdif
- 
-+  hpd-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO used for hot plug detection when the controller's native HPD
-+      input is not connected. If not specified, the controller uses its
-+      internal HPD detection mechanism.
-+
-   phys:
-     maxItems: 1
- 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 4d384f153c13..c99dca2ae9e7 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -214,6 +214,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-odroid-m2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5-pro.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-cm5-base.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-radxa-cm5-io.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-roc-pc.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
-new file mode 100644
-index 000000000000..84c83aa69f63
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
-@@ -0,0 +1,352 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "rk3588s-orangepi-5.dtsi"
-+
-+/ {
-+	model = "Xunlong Orange Pi 5 Pro";
-+	compatible = "xunlong,orangepi-5-pro", "rockchip,rk3588s";
-+
-+	aliases {
-+		mmc0 = &sdhci;
-+		mmc1 = &sdmmc;
-+		mmc2 = &sdio;
-+	};
-+
-+	dp-con {
-+		compatible = "dp-connector";
-+
-+		port {
-+			dp_con_in: endpoint {
-+				remote-endpoint = <&dp0_out_con>;
-+			};
-+		};
-+	};
-+
-+	analog-sound {
-+		compatible = "simple-audio-card";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_detect>;
-+		simple-audio-card,bitclock-master = <&masterdai>;
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,frame-master = <&masterdai>;
-+		simple-audio-card,hp-det-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
-+		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,name = "rockchip,es8388";
-+		simple-audio-card,routing =
-+			"Headphones", "LOUT1",
-+			"Headphones", "ROUT1",
-+			"LINPUT1", "Microphone Jack",
-+			"RINPUT1", "Microphone Jack",
-+			"LINPUT2", "Onboard Microphone",
-+			"RINPUT2", "Onboard Microphone";
-+		simple-audio-card,widgets =
-+			"Microphone", "Microphone Jack",
-+			"Microphone", "Onboard Microphone",
-+			"Headphone", "Headphones";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&i2s2_2ch>;
-+		};
-+
-+		masterdai: simple-audio-card,codec {
-+			sound-dai = <&es8388>;
-+			system-clock-frequency = <12288000>;
-+		};
-+	};
-+
-+	pwm-leds {
-+		compatible = "pwm-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+			linux,default-trigger = "heartbeat";
-+			max-brightness = <255>;
-+			pwms = <&pwm15 0 1000000 0>;
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_ACTIVITY;
-+			linux,default-trigger = "heartbeat";
-+			max-brightness = <255>;
-+			pwms = <&pwm3 0 1000000 0>;
-+		};
-+	};
-+
-+	fan: pwm-fan {
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		cooling-levels = <0 50 100 150 200 255>;
-+		fan-supply = <&vcc5v0_sys>;
-+		pwms = <&pwm2 0 20000000 0>;
-+	};
-+
-+	vcc3v3_dp: regulator-vcc3v3-dp {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_HIGH>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "vcc3v3_dp";
-+		vin-supply = <&vcc_3v3_s3>;
-+	};
-+
-+	vcc3v3_phy1: regulator-vcc3v3-phy1 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_HIGH>;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "vcc3v3_phy1";
-+		startup-delay-us = <50000>;
-+		vin-supply = <&vcc_3v3_s3>;
-+	};
-+
-+	vcc5v0_otg: regulator-vcc5v0-otg {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_otg_en>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-name = "vcc5v0_otg";
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&hym8563>;
-+		clock-names = "ext_clock";
-+		post-power-on-delay-ms = <200>;
-+		reset-gpios = <&gpio0 RK_PD0 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	typea_con: usb-a-connector {
-+		compatible = "usb-a-connector";
-+		data-role = "host";
-+		label = "USB3 Type-A";
-+		power-role = "source";
-+		vbus-supply = <&vcc5v0_otg>;
-+	};
-+};
-+
-+&dp0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dp0m0_pins>;
-+	status = "okay";
-+};
-+
-+&dp0_in {
-+	dp0_in_vp1: endpoint {
-+		remote-endpoint = <&vp1_out_dp0>;
-+	};
-+};
-+
-+&dp0_out {
-+	dp0_out_con: endpoint {
-+		remote-endpoint = <&dp_con_in>;
-+	};
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1m4_xfer>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c3m0_xfer>;
-+	status = "okay";
-+
-+	es8388: audio-codec@11 {
-+		compatible = "everest,es8388", "everest,es8328";
-+		reg = <0x11>;
-+		#sound-dai-cells = <0>;
-+		AVDD-supply = <&vcc_3v3_s0>;
-+		DVDD-supply = <&vcc_1v8_s0>;
-+		HPVDD-supply = <&vcc_3v3_s0>;
-+		PVDD-supply = <&vcc_3v3_s0>;
-+		assigned-clock-rates = <12288000>;
-+		assigned-clocks = <&cru I2S2_2CH_MCLKOUT>;
-+		clocks = <&cru I2S2_2CH_MCLKOUT>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&i2s2m1_mclk>;
-+	};
-+};
-+
-+&i2c4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c4m3_xfer>;
-+	status = "okay";
-+};
-+
-+&i2s2_2ch {
-+	pinctrl-0 = <&i2s2m1_lrck &i2s2m1_sclk
-+		     &i2s2m1_sdi &i2s2m1_sdo>;
-+	status = "okay";
-+};
-+
-+&package_thermal {
-+	polling-delay = <1000>;
-+
-+	cooling-maps {
-+		map0 {
-+			trip = <&package_fan0>;
-+			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
-+		};
-+
-+		map1 {
-+			trip = <&package_fan1>;
-+			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
-+		};
-+	};
-+
-+	trips {
-+		package_fan0: package-fan0 {
-+			hysteresis = <2000>;
-+			temperature = <55000>;
-+			type = "active";
-+		};
-+
-+		package_fan1: package-fan1 {
-+			hysteresis = <2000>;
-+			temperature = <65000>;
-+			type = "active";
-+		};
-+	};
-+};
-+
-+/* NVMe */
-+&pcie2x1l1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie30x1m1_1_clkreqn &pcie30x1m1_1_waken>;
-+	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
-+	supports-clkreq;
-+	vpcie3v3-supply = <&vcc_3v3_s3>;
-+	status = "okay";
-+};
-+
-+/* NIC */
-+&pcie2x1l2 {
-+	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_phy1>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	bluetooth {
-+		bt_wake_gpio: bt-wake-pin {
-+			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		bt_wake_host_irq: bt-wake-host-irq {
-+			rockchip,pins = <0 RK_PC5 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	usb {
-+		vcc5v0_otg_en: vcc5v0-otg-en {
-+			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	wlan {
-+		wifi_host_wake_irq: wifi-host-wake-irq {
-+			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+};
-+
-+&pwm15 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm15m2_pins>;
-+	status = "okay";
-+};
-+
-+&pwm2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm2m1_pins>;
-+	status = "okay";
-+};
-+
-+&pwm3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm3m2_pins>;
-+	status = "okay";
-+};
-+
-+&sdhci {
-+	status = "okay";
-+};
-+
-+&sdio {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	cap-sdio-irq;
-+	keep-power-in-suspend;
-+	max-frequency = <150000000>;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	no-mmc;
-+	no-sd;
-+	non-removable;
-+	sd-uhs-sdr104;
-+	status = "okay";
-+
-+	ap6256: wifi@1 {
-+		compatible = "brcm,bcm43456-fmac", "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		interrupt-names = "host-wake";
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PA0 IRQ_TYPE_LEVEL_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_host_wake_irq>;
-+	};
-+};
-+
-+&uart9 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart9m2_xfer &uart9m2_ctsn &uart9m2_rtsn>;
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4345c5";
-+		clocks = <&hym8563>;
-+		clock-names = "lpo";
-+		device-wakeup-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		interrupt-names = "host-wakeup";
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_HIGH>;
-+		max-speed = <1500000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_wake_host_irq &bt_wake_gpio>;
-+		shutdown-gpios = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
-+		vbat-supply = <&vcc_3v3_s3>;
-+		vddio-supply = <&vcc_1v8_s3>;
-+	};
-+};
-+
-+&usb_host0_xhci {
-+	dr_mode = "host";
-+};
-+
-+&usbdp_phy0 {
-+	rockchip,dp-lane-mux = <0 1>;
-+};
-+
-+&vp1 {
-+	vp1_out_dp0: endpoint@a {
-+		reg = <ROCKCHIP_VOP2_EP_DP0>;
-+		remote-endpoint = <&dp0_in_vp1>;
-+	};
-+};
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-dp.c b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-index fd23ca2834b0..b58f57b69b22 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-@@ -8,6 +8,7 @@
-  */
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/iopoll.h>
- #include <linux/irq.h>
- #include <linux/media-bus-format.h>
-@@ -330,6 +331,8 @@ struct dw_dp {
- 	u8 pixel_mode;
- 
- 	DECLARE_BITMAP(sdp_reg_bank, SDP_REG_BANK_SIZE);
-+
-+	struct gpio_desc *hpd_gpiod;
- };
- 
- enum {
-@@ -481,6 +484,9 @@ static bool dw_dp_hpd_detect(struct dw_dp *dp)
- {
- 	u32 value;
- 
-+	if (dp->hpd_gpiod)
-+		return gpiod_get_value_cansleep(dp->hpd_gpiod);
-+
- 	regmap_read(dp->regmap, DW_DP_HPD_STATUS, &value);
- 
- 	return FIELD_GET(HPD_STATE, value) == DW_DP_HPD_STATE_PLUG;
-@@ -2002,6 +2008,12 @@ struct dw_dp *dw_dp_bind(struct device *dev, struct drm_encoder *encoder,
- 		return ERR_CAST(dp->regmap);
- 	}
- 
-+	dp->hpd_gpiod = devm_gpiod_get_optional(dev, "hpd", GPIOD_IN);
-+	if (IS_ERR(dp->hpd_gpiod)) {
-+		dev_err_probe(dev, PTR_ERR(dp->hpd_gpiod), "failed to get hpd GPIO\n");
-+		return ERR_CAST(dp->hpd_gpiod);
-+	}
-+
- 	dp->phy = devm_of_phy_get(dev, dev->of_node, NULL);
- 	if (IS_ERR(dp->phy)) {
- 		dev_err_probe(dev, PTR_ERR(dp->phy), "failed to get phy\n");
--- 
-2.53.0
+Same with these.
 
+
+I don't see any dependencies between the IRQ and DT patches, can they be
+merged independently? Why did you send them together?
+
+Regards,
+Bjorn
+
+> Seven platform DTS files (kaanapali, lemans, milos, monaco, sc8280xp,
+> sdx75, talos) carried a second reg entry pointing at an unrelated
+> hardware block. The driver only ever calls of_address_to_resource(node,
+> 0, ...) so this second entry was never mapped or accessed. Remove it.
+> 
+> The net result is that every PDC node in the tree now describes exactly
+> one register region of exactly 0x10000 bytes — the APSS DRV region that
+> the driver actually uses — and the driver's ioremap clamp matches that
+> reality.
+> 
+> Mukesh Ojha (35):
+>   dt-bindings: qcom,pdc: Tighten reg to single APSS DRV region
+>   irqchip/qcom-pdc: Split __pdc_enable_intr() into per-version helpers
+>   irqchip/qcom-pdc: Tighten ioremap clamp to single DRV region size
+>   irqchip/qcom-pdc: Replace pdc_version global with a function pointer
+>   irqchip/qcom-pdc: Add PDC_VERSION() macro to describe version register
+>     fields
+>   irqchip/qcom-pdc: Use FIELD_GET() to extract bank index and bit
+>     position
+>   arm64: dts: qcom: sdm845: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sdm670: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sc7180: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sc7280: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sc8180x: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sm8150: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sc8280xp: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sm8250: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sm8350: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sm8450: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sm8550: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sm8650: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sm4450: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: x1e80100: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sm6350: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sar2130p: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: qcs615: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: qcs8300: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sa8775p: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: sdx75: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: milos: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: qdu1000: Fix PDC reg size to single APSS DRV region
+>   arm64: dts: qcom: kaanapali: Drop unused second PDC reg entry
+>   arm64: dts: qcom: lemans: Drop unused second PDC reg entry
+>   arm64: dts: qcom: milos: Drop unused second PDC reg entry
+>   arm64: dts: qcom: monaco: Drop unused second PDC reg entry
+>   arm64: dts: qcom: sc8280xp: Drop unused second PDC reg entry
+>   arm64: dts: qcom: sdx75: Drop unused second PDC reg entry
+>   arm64: dts: qcom: talos: Drop unused second PDC reg entry
+> 
+>  .../interrupt-controller/qcom,pdc.yaml        |  2 +-
+>  arch/arm64/boot/dts/qcom/hamoa.dtsi           |  2 +-
+>  arch/arm64/boot/dts/qcom/kaanapali.dtsi       |  3 +-
+>  arch/arm64/boot/dts/qcom/kodiak.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/lemans.dtsi          |  3 +-
+>  arch/arm64/boot/dts/qcom/milos.dtsi           |  3 +-
+>  arch/arm64/boot/dts/qcom/monaco.dtsi          |  3 +-
+>  arch/arm64/boot/dts/qcom/qdu1000.dtsi         |  2 +-
+>  arch/arm64/boot/dts/qcom/sar2130p.dtsi        |  2 +-
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/sc8180x.dtsi         |  2 +-
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |  2 +-
+>  arch/arm64/boot/dts/qcom/sdm670.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/sdx75.dtsi           |  3 +-
+>  arch/arm64/boot/dts/qcom/sm4450.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/sm6350.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/sm8450.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/sm8650.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/talos.dtsi           |  3 +-
+>  drivers/irqchip/qcom-pdc.c                    | 56 +++++++++++--------
+>  25 files changed, 57 insertions(+), 53 deletions(-)
+> 
+> -- 
+> 2.53.0
+> 
 
