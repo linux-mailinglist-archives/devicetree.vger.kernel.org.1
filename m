@@ -1,57 +1,61 @@
-Return-Path: <devicetree+bounces-286823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286824-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MDeNBni922lDGAkAu9opvQ
-	(envelope-from <devicetree+bounces-286823-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 17:42:48 +0200
+	id MP1qMLi922lDGAkAu9opvQ
+	(envelope-from <devicetree+bounces-286824-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 17:43:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 033CA3E48E1
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 17:42:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 190CD3E4925
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 17:43:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 193333001CDF
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 15:42:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 43352300D17F
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 15:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F081A21D3D6;
-	Sun, 12 Apr 2026 15:42:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2864A218EB1;
+	Sun, 12 Apr 2026 15:42:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="gAUnYHhP"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="fl9B0RUc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-244123.protonmail.ch (mail-244123.protonmail.ch [109.224.244.123])
+Received: from mail-10628.protonmail.ch (mail-10628.protonmail.ch [79.135.106.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E8C53D76
-	for <devicetree@vger.kernel.org>; Sun, 12 Apr 2026 15:42:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2718214812
+	for <devicetree@vger.kernel.org>; Sun, 12 Apr 2026 15:42:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.28
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776008561; cv=none; b=ZwFASeOvdT85baYiVByEoSZCbM2dIAQfhTzpNbDN8Q+ngVVn1heaDmGAMBmdyogvdr2Q6d2afzapDacyU/Yvht6ndVZNUto66MeKTCRPGOqSs9zV8/4c6JOuVjxh0uttnf6YdDsxbtbWKskFFnCICtsBIjp2UhLg3OKC/EQKVhI=
+	t=1776008570; cv=none; b=GYJVEsFb1NLCq7J6yZtXqWgTPYoCBj26c9vLxjizMv04jDFZDupZ3aHOFnxvb8NH/bX6qmfVPBCpPRQdmwisktWN06S60nnAKR1GT5bQ3YNGnOumV6b0zXcR7UWdQakcOxwcvDH+T9mDlrOlmBcbAzqDZggXPxax8MVgVnW2/3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776008561; c=relaxed/simple;
-	bh=9CJk1t9F5SlcrGWRfmBpqYFSi3T6SQXOkmV4qt1SDp0=;
-	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=M3wKR8tAJ7QYRtdxGUdqnK4A9a/1mxeAB+2p1jYeKmwO20Ual+x46pfGu8xqtTBJ0TPJ45HIgdTqrr4i+4kyzyrqmOnkQPmbPeLV5hbpv8w2MCr6IsWFJtSr1tiQza7boeNWuS580mYOcf8RVHYY5OKzBJnhikM32PPaIMI4cIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=gAUnYHhP; arc=none smtp.client-ip=109.224.244.123
+	s=arc-20240116; t=1776008570; c=relaxed/simple;
+	bh=rIbysXru0mgKRFjCg8cHayNmcXciQRQrTZ8kA9mqINU=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=vBpaTS/kF4pks6xpKDz/4O+lIKWDh6TRpBk3y6e8jNYiAvD2GamNx+nhKsGuHa08UGMvbhKIvThjGRmujsDQK11A2P36NkzI+cd13utssCubYrHxPXz+eDYwQ4WK5wTvZfdC1KTvpcHQhHj3hkW2ygrSApS7CVqCO1f/e7iVLCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=fl9B0RUc; arc=none smtp.client-ip=79.135.106.28
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1776008558; x=1776267758;
-	bh=Bew5KmnMorYR9Zy4h2US12KItYTg2WZYjqhq27DwyJ8=;
-	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=gAUnYHhPlCE+E7gw3mtMPsgFK2cide3XojrrNiUp8f9iJQBvBNhh6JHmEERdXjEvx
-	 MR8FEmWV6P+uBzWo9+Q7A34fcEvidCd+NiiB7KEXwNjZL7CAvs4o6x0aTZk3TKqEFp
-	 7YfxC9ygz3WzXcLXnHg5XIigcHUNXVuIFsPl3PQfkS8Lp5L0qC4Unz0+S+swFBlMKq
-	 5pEbIZ4vUlD5lLq3kgipufPdgwnx7+Gf4ISpO9KZThhBuNlUlb2okcHgyWeKGRVig8
-	 b6EyGdtvJLrgeJAuMTLOaAKniHB3lExwEwF0WaVGcmKdvmrJZ2OXdFOjfeK68a8T3F
-	 G90so3nrTZ6ag==
-Date: Sun, 12 Apr 2026 15:42:33 +0000
+	s=protonmail3; t=1776008565; x=1776267765;
+	bh=rIbysXru0mgKRFjCg8cHayNmcXciQRQrTZ8kA9mqINU=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=fl9B0RUczJJiuJBdQxqAuXsqbXzx9tV9HENtCWugDb3uwWqd5/MN37sB0Tnr7BqLv
+	 DF9NTs6QD3/sGqBrxU0OJy1J9p6gm8zOD90T+drCQ0iX4jWecoXstwJUbnaoadMwBS
+	 AML4xwd8t82jtdalpUbYo9vbtETpiQwmoRCSxLGOib7i+wGoe2EpBK+iIscZ8zO4/I
+	 bv/Zk38V2/VQ41auDFDNQNWdJhcL8KEXZJSc1ovplDeTuyUn2kKyESHGL9AOhedX9l
+	 HHRG7MeOyeG6oGfk39PidujuSWUOU1KAecx90wrJ1qD2NXJLBYOcbjDFPZCfO1ezR0
+	 1R7tT8shgtc+w==
+Date: Sun, 12 Apr 2026 15:42:40 +0000
 To: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 From: Alexander Koskovich <akoskovich@pm.me>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>
-Subject: [PATCH 0/2] soc: qcom: socinfo: Add SoC ID for SM7750
-Message-ID: <20260412-sm7550-id-v1-0-958a673ff791@pm.me>
+Subject: [PATCH 1/2] dt-bindings: arm: qcom,ids: Add SoC ID for SM7750
+Message-ID: <20260412-sm7550-id-v1-1-958a673ff791@pm.me>
+In-Reply-To: <20260412-sm7550-id-v1-0-958a673ff791@pm.me>
+References: <20260412-sm7550-id-v1-0-958a673ff791@pm.me>
 Feedback-ID: 37836894:user:proton
-X-Pm-Message-ID: 4e8e6fdc8a05e68b6f9295d76e263b00689f5864
+X-Pm-Message-ID: 03430faf182fcb56a7018892a77bb956d739a3ed
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +67,7 @@ Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -71,7 +75,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[pm.me:+];
 	RCVD_COUNT_THREE(0.00)[3];
-	TAGGED_FROM(0.00)[bounces-286823-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286824-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MISSING_XM_UA(0.00)[];
@@ -79,35 +83,40 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 033CA3E48E1
+X-Rspamd-Queue-Id: 190CD3E4925
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add the ID for the SM7750 which is a variant of Eliza, and found on the
-Nothing Phone (4a) Pro.
+Document the ID for SM7750, an Eliza SoC variant that can be found on
+the Nothing Phone (4a) Pro.
 
 Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
 ---
-Alexander Koskovich (2):
-      dt-bindings: arm: qcom,ids: Add SoC ID for SM7750
-      soc: qcom: socinfo: Add SoC ID for SM7750
-
- drivers/soc/qcom/socinfo.c         | 1 +
  include/dt-bindings/arm/qcom,ids.h | 1 +
- 2 files changed, 2 insertions(+)
----
-base-commit: 66672af7a095d89f082c5327f3b15bc2f93d558e
-change-id: 20260412-sm7550-id-271d5875311c
+ 1 file changed, 1 insertion(+)
 
-Best regards,
+diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/q=
+com,ids.h
+index 336f7bb7188a..916f418a869e 100644
+--- a/include/dt-bindings/arm/qcom,ids.h
++++ b/include/dt-bindings/arm/qcom,ids.h
+@@ -290,6 +290,7 @@
+ #define QCOM_ID_IPQ5424=09=09=09651
+ #define QCOM_ID_QCM6690=09=09=09657
+ #define QCOM_ID_QCS6690=09=09=09658
++#define QCOM_ID_SM7750=09=09=09659
+ #define QCOM_ID_SM8850=09=09=09660
+ #define QCOM_ID_IPQ5404=09=09=09671
+ #define QCOM_ID_QCS9100=09=09=09667
+
 --=20
-Alexander Koskovich <akoskovich@pm.me>
+2.53.0
 
 
 
