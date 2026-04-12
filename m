@@ -1,124 +1,137 @@
-Return-Path: <devicetree+bounces-286789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286794-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id dr5NB/Nj22mgBQkAu9opvQ
-	(envelope-from <devicetree+bounces-286789-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 11:20:51 +0200
+	id 9DufMYdm22kmBgkAu9opvQ
+	(envelope-from <devicetree+bounces-286794-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 11:31:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F433E3407
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 11:20:50 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D3B53E3453
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 11:31:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6058C3015A7E
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 09:20:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 42C7C301177C
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 09:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4321314A65;
-	Sun, 12 Apr 2026 09:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4837830EF89;
+	Sun, 12 Apr 2026 09:31:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ALCNqMc8"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="W71RaUil"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mxout1.routing.net (mxout1.routing.net [134.0.28.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF95B312803;
-	Sun, 12 Apr 2026 09:20:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB0AF2AE8D;
+	Sun, 12 Apr 2026 09:31:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775985647; cv=none; b=V0qVFfqr0hZVJXFtUmQGToppMdpoKy6l6+i7PDXOmp5Opvw/n420hdywcRNsgHldic8Z+Cj2WrBhP6FJ6w4UkssuAOuVEZnywMHBXylKPOLdGX8sLd4VnoTToasBfuysZ5/qTYcEuTIK1/t5NYn99dXf08LZUYtYkIhlphhq30k=
+	t=1775986307; cv=none; b=KqYOC7ObKhYBCDnu+4SkhH72nFTVd6FhziqcLuraA7udYWo+2T+cU6uhKvm1A/ATdm3uRSSkum98K3QhkhruVWUpAUaSRNmPwnfXWWzdo+gcpb4Xxj0eI6ki9xq14rb2Z+aRTnz0rkB47ZN/vzjGBtL7EF68KmolQP6nMASUUAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775985647; c=relaxed/simple;
-	bh=rczNStscr53iHBjcCqFVqCWDf/LgHdrfBQWMDLQbIgY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=suzHfMBUGhLN35HW0rM5WqTLhVV7YKyQIbd6CExLCur+eSQiFPdbDPvLZjkReAsqnKr01gk1D8mZZNm/rawLaIB4j0axeW5lrdaLVZvSo+mkt+oPNkJG6JOH1rxm+HIKfykd/izIPfN/dcWvUQrwCBdndiiYufMR1PJr2g25/UE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ALCNqMc8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C24EDC19424;
-	Sun, 12 Apr 2026 09:20:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775985647;
-	bh=rczNStscr53iHBjcCqFVqCWDf/LgHdrfBQWMDLQbIgY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ALCNqMc807cOnpuj/vzKIl/RhVfL4NOVch/USLcg39xaO1JZB2xJpSSAP3gRt5h1i
-	 EKmsTD9+OoSB0DicvqKI5n3ge/ehwC7Hx2B+x5TZxCY9jquSaVVtFhD5kBldrAknOw
-	 NEpKTA8lzq5FJbtojsus8omjX3B2rgMh4v9NL87m3MN1cT6/zR+oV5OxuN6Oc6ak9z
-	 2fv7BG04zNvWXZKLLzb16hT/DZczh6akwCKo4IUTSEx6cKI8XNki449zaErQtQ5e+L
-	 Zx19E+wjNEBJ6htte0HqCPwVU1Uf1yzWAoNyNtPVTH0PU89h6z7UoMcahbs0VdT2bb
-	 61ozkiM0CZlkg==
-Date: Sun, 12 Apr 2026 11:20:44 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	linux-pwm@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Naushir Patuck <naush@raspberrypi.com>, Stanimir Varbanov <svarbanov@suse.de>, mbrugger@suse.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: pwm: Add Raspberry Pi RP1 PWM
- controller
-Message-ID: <20260412-elite-mushroom-of-happiness-fade9c@quoll>
-References: <cover.1775829499.git.andrea.porta@suse.com>
- <6f0fa1a817b5af5040b652320daa7268297932a9.1775829499.git.andrea.porta@suse.com>
+	s=arc-20240116; t=1775986307; c=relaxed/simple;
+	bh=ZCKGGvsavQAiGLksR5TRVzFYUrtozhdZZ7UJxs7Uhpc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZirjGE9FBjGmVNevkrifB1kCDRtx6nO7sHFRQyESfQcBNgdL4jgzWh6ev3/wR85HGKLWKPMFU8F0o+3ysIhZwfFBEPH2MRd8XJUnnA+FyoIMhNBY3i1lYlUv24XMQ18D7FvVRsEpQfu//Ymb9IGJWA+tsanOVwp3B84JVw+mzw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=W71RaUil; arc=none smtp.client-ip=134.0.28.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
+	by mxout1.routing.net (Postfix) with ESMTP id 43F953FD57;
+	Sun, 12 Apr 2026 09:23:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=routing; t=1775985819;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=b/1+h/woDJ+LRlAGuVlOPR5DC6XTRRSPJZgjVIzkrNo=;
+	b=W71RaUil2TlB22R4Oj27Frd8eB/xlxBF5yLCx+8I2kbJNzBYYaJnGCO1BB1Y/1RpVkclTH
+	AKEWqUUc6TI2LFVulCgtMpD4rmZYvIBOul+0pbFD4EbUQkOCWEBvh6f72aP+O5cX+kxfBx
+	pDdSagnUCxWeAZY2IQnFJmVYYqiualU=
+Received: from frank-u24.. (fttx-pool-80.245.78.225.bambit.de [80.245.78.225])
+	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id 112E11226B6;
+	Sun, 12 Apr 2026 09:23:39 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Daniel Golle <daniel@makrotopia.org>,
+	Andrew LaMarche <andrewjlamarche@gmail.com>
+Subject: [PATCH v2 0/4] some BPI-R4Pro dts updates
+Date: Sun, 12 Apr 2026 11:23:28 +0200
+Message-ID: <20260412092333.6371-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <6f0fa1a817b5af5040b652320daa7268297932a9.1775829499.git.andrea.porta@suse.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[mailerdienst.de:s=routing];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-286794-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-286789-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[fw-web.de];
+	FREEMAIL_TO(0.00)[gmail.com,collabora.com,kernel.org];
+	FREEMAIL_CC(0.00)[public-files.de,vger.kernel.org,lists.infradead.org,makrotopia.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[linux@fw-web.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mailerdienst.de:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[raspberrypi.com:email,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 76F433E3407
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 3D3B53E3453
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 10, 2026 at 04:09:57PM +0200, Andrea della Porta wrote:
-> From: Naushir Patuck <naush@raspberrypi.com>
-> 
-> Add the devicetree binding documentation for the PWM
-> controller found in the Raspberry Pi RP1 chipset.
-> 
-> Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
-> Co-developed-by: Stanimir Varbanov <svarbanov@suse.de>
-> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
->  .../bindings/pwm/raspberrypi,rp1-pwm.yaml     | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/raspberrypi,rp1-pwm.yaml
-> 
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+There are some parts of BPI-R4Pro DTS that need to be changed. Currently
+there should be not much users of the mainline-dts and we noticed some
+things while openwrt integration.
 
-Best regards,
-Krzysztof
+v2:
+- added mgmt port renaming as this patch is still outstanding to keep
+  all in one series
+  https://patchwork.kernel.org/project/linux-mediatek/patch/20260303202006.37515-1-linux@fw-web.de/
+- dropped default-state in gpio-leds patch as suggested by daniel
+
+Frank Wunderlich (4):
+  arm64: dts: mediatek: mt7988a-bpi-r4pro: rename mgmt port to lan5
+  arm64: dts: mediatek: mt7988a-bpi-r4pro: drop duplicate fan properties
+  arm64: dts: mediatek: mt7988a-bpi-r4pro: update gpio-leds
+  arm64: dts: mediatek: mt7988a-bpi-r4pro: rework pcie gpio-hog handling
+
+ arch/arm64/boot/dts/mediatek/Makefile         |  8 ++++++++
+ .../mt7988a-bananapi-bpi-r4-pro-cn13.dtso     | 20 +++++++++++++++++++
+ .../mt7988a-bananapi-bpi-r4-pro-cn14.dtso     | 20 +++++++++++++++++++
+ .../mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi | 15 +++-----------
+ 4 files changed, 51 insertions(+), 12 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-cn13.dtso
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-cn14.dtso
+
+-- 
+2.43.0
 
 
