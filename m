@@ -1,52 +1,53 @@
-Return-Path: <devicetree+bounces-286836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286837-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8DJoARbR22l2HAkAu9opvQ
-	(envelope-from <devicetree+bounces-286836-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 19:06:30 +0200
+	id ALeWFhrR22l2HAkAu9opvQ
+	(envelope-from <devicetree+bounces-286837-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 19:06:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70C313E4FF9
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 19:06:29 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 594C83E5000
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 19:06:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F1EBC3017BD3
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 17:05:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DCB913008681
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 17:05:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D36314B8C;
-	Sun, 12 Apr 2026 17:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C2331E837;
+	Sun, 12 Apr 2026 17:05:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FFHc+nEp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SDGToRl9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3902F5468;
-	Sun, 12 Apr 2026 17:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E692E31D371;
+	Sun, 12 Apr 2026 17:05:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776013538; cv=none; b=SydkcEa/WFYQl8XozT0PfwG4j0Ykc2MJ64HRa/FRoLu4Nwb+Ls6WET6LjvZiSOelXOQNeSdbtpzaqJUJ5sk/ZCt1hIWTTR67QZFy2me/3NkoSICcm0IRIpx8urL7wPTFsChlLOgPT1kXv17A5ymc39mx5zJTSO6qHgHauKlyUk8=
+	t=1776013540; cv=none; b=nZ2IXlhLbjog8amIBLWkNGXjtRkGesxIOF8Icy0HF0O3pRBr3luR3oECTodp+mVFKXqyqexTUOyKWASE76L8H1iDj8Uo7Ksf257oEevk5cDpIhKDYc/IzP/r0FlOD6l5A3PC5ewYw648sP2Trn1jaRZRC1iQ1CFaDNPAtVBlf9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776013538; c=relaxed/simple;
-	bh=3zinErAF7PIUZyN4YZ8S8wFZ34k6zuwyefbRqDldTUU=;
+	s=arc-20240116; t=1776013540; c=relaxed/simple;
+	bh=W8zuggLj2QSx6JBIzg0DPDLdXsNV2HuCzzIW517iS7U=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To; b=DbDsmHUHa9iB+o0wNS4ePrd3+k1P+o/nvXFfpTu2i6AaWAawFlT6WxgMp+6KmyeqcYlrqc/x1EQo1PwX+SIuJniWxF0O9zcyM4htYD17MDO4nRn698ntUSp5p/v+ZV78TpmgGVoph/aod3c0fw28bzqGrxg+WZ/1jjplAvhStms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FFHc+nEp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B03EC19425;
-	Sun, 12 Apr 2026 17:05:36 +0000 (UTC)
+	 In-Reply-To:To; b=nPN+Iqssg4xjkohaJWTpDhuhswy3je8mpCOtfYErCAHZt+Ob88jVhNMZbCYdwIDf59teolDeckNExBOYD3dwVQPka/gZb08B32EzjHmOPH0aPYKSUVdA/0633vlyZAsskRLvJdXLPQpjbGuuHbM7eutZvKnXvNVNam93qoBxOGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SDGToRl9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C70FC2BCB0;
+	Sun, 12 Apr 2026 17:05:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776013537;
-	bh=3zinErAF7PIUZyN4YZ8S8wFZ34k6zuwyefbRqDldTUU=;
+	s=k20201202; t=1776013539;
+	bh=W8zuggLj2QSx6JBIzg0DPDLdXsNV2HuCzzIW517iS7U=;
 	h=From:Date:Subject:References:In-Reply-To:To:From;
-	b=FFHc+nEpmbGi089Bcp/h8IU0b+Rui8aVj5WeJ93zHZ7WUVeDa+jd1ISr+DCaq/KEr
-	 MwH7eEYLR5NY4DYNtKhcUGu83wfsz5MbcwK8bZoUv0xQZj7LxS5aShB1RHXe4L3Wj1
-	 VWqzfGv/iqHuckU5eMCmHivJ/XoiSL2j7LKzfZWTH4LF8UAWAh9V8ozNxG45oICPIW
-	 B7y9Uid0svthw1DXVIQ1TJZDyrzQEWWfr7ciklAGRyWtJbolga8+QWp3KwkozlSXLT
-	 bBgp7lNN6NqqY3FgFbUwI4IzUErH955RHA2oS9BArHJsfhJNKt0LMuNzywdUKSXkFH
-	 mxLb46kYu7UCA==
+	b=SDGToRl9HJl3D+WQ0BNrCThKIOoobD5fQ2jkmv3MIlmw3svTJC+odJec5ewJI9+Nv
+	 IpCoGr0LWrddwuMuPBMLlAApzHI1ZCt1Kr/OCQ2pmhOjHB7XsqjThTszaSfzxAakUM
+	 HR2f9CEB55n9uXfdhlv0Y8Dl7sEVVl30dlzQL9c87VFFOFtE+Y/1b6FM/M5cFmRlpC
+	 zaV6I+8atcQV0t3Y4OeLfQgkn77PObyiCq0Jv9lpVH4z6u6Jrpoorv/RlMraSugbgv
+	 u1mEdvyMYgDe/DZIbpx8JmvIL7kebXXf+cBd26tfHNDtziWTQEhLnQ0+ZKAdpeynhB
+	 Tacol4r6qMfxg==
 From: Sudeep Holla <sudeep.holla@kernel.org>
-Date: Sun, 12 Apr 2026 18:04:39 +0100
-Subject: [PATCH 3/5] dt-bindings: firmware: Add Arm FF-A binding
+Date: Sun, 12 Apr 2026 18:04:40 +0100
+Subject: [PATCH 4/5] firmware: arm_ffa: Use device node interrupts property
+ for IRQ lookup
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,7 +56,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260412-b4-ffa_ns_sgi_gicv3-v1-3-af61243eb405@kernel.org>
+Message-Id: <20260412-b4-ffa_ns_sgi_gicv3-v1-4-af61243eb405@kernel.org>
 References: <20260412-b4-ffa_ns_sgi_gicv3-v1-0-af61243eb405@kernel.org>
 In-Reply-To: <20260412-b4-ffa_ns_sgi_gicv3-v1-0-af61243eb405@kernel.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -67,13 +68,13 @@ X-Mailer: b4 0.15.0
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_FROM(0.00)[bounces-286836-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286837-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
@@ -83,74 +84,104 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sudeep.holla@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 70C313E4FF9
+X-Rspamd-Queue-Id: 594C83E5000
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Document the FF-A firmware device node.
+Use the standard interrupts property from the arm,ffa node instead of
+synthesizing a GIC mapping directly.
 
-Describes the "arm,ffa" compatible and requires the standard interrupts
-property.
+Requires the "arm,ffa" device node to describe exactly one interrupt,
+validate that its affinity spans cpu_possible_mask so the interrupt is
+per-CPU, and then cross-check the mapped hwirq against the interrupt
+ID returned by FFA_FEATURES.
+
+This removes the FF-A driver's direct arm,gic-v3 lookup and raw
+irq_create_of_mapping() usage while still keeping the DT description in
+sync with the firmware-reported interrupt.
 
 Signed-off-by: Sudeep Holla <sudeep.holla@kernel.org>
 ---
- .../devicetree/bindings/firmware/arm,ffa.yaml      | 42 ++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+ drivers/firmware/arm_ffa/driver.c | 53 +++++++++++++++++++++++++++++----------
+ 1 file changed, 40 insertions(+), 13 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/firmware/arm,ffa.yaml b/Documentation/devicetree/bindings/firmware/arm,ffa.yaml
-new file mode 100644
-index 000000000000..150f394b3327
---- /dev/null
-+++ b/Documentation/devicetree/bindings/firmware/arm,ffa.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/firmware/arm,ffa.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/firmware/arm_ffa/driver.c b/drivers/firmware/arm_ffa/driver.c
+index f2f94d4d533e..7a3800a55dc1 100644
+--- a/drivers/firmware/arm_ffa/driver.c
++++ b/drivers/firmware/arm_ffa/driver.c
+@@ -1821,6 +1821,45 @@ static void ffa_sched_recv_irq_work_fn(struct work_struct *work)
+ 	ffa_notification_info_get();
+ }
+ 
++static int ffa_dt_map_irq(int intid)
++{
++	struct device_node *ffa __free(device_node) = NULL;
++	const struct cpumask *affinity;
++	struct irq_data *irqd;
++	int count, irq;
 +
-+title: Arm Firmware Framework for A-profile
++	ffa = of_find_compatible_node(NULL, NULL, "arm,ffa");
++	if (!ffa)
++		return -ENXIO;
 +
-+maintainers:
-+  - Sudeep Holla <sudeep.holla@kernel.org>
++	count = of_irq_count(ffa);
++	if (count <= 0)
++		return count ? count : -ENXIO;
 +
-+description: |
-+  Arm Firmware Framework for A-profile (FF-A) firmware device node
-+  describing the   notification interrupt exposed to the normal world.
++	if (count != 1) {
++		pr_err("FF-A currently supports exactly one interrupt\n");
++		return -EINVAL;
++	}
 +
-+properties:
-+  $nodename:
-+    const: ffa
++	affinity = of_irq_get_affinity(ffa, 0);
++	if (!affinity || !cpumask_equal(affinity, cpu_possible_mask)) {
++		pr_err("FF-A currently supports only SGIs/PPIs\n");
++		return -EINVAL;
++	}
 +
-+  compatible:
-+    const: arm,ffa
++	irq = of_irq_get(ffa, 0);
++	if (irq <= 0)
++		return irq ? irq : -ENXIO;
 +
-+  interrupts:
-+    description:
-+      Per-CPU notification interrupt used by the normal world FF-A partition.
-+    maxItems: 1
++	irqd = irq_get_irq_data(irq);
++	if (!irqd || irqd_to_hwirq(irqd) != intid) {
++		irq_dispose_mapping(irq);
++		return -EINVAL;
++	}
 +
-+required:
-+  - compatible
-+  - interrupts
++	return irq;
++}
 +
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    ffa {
-+        compatible = "arm,ffa";
-+        interrupts = <GIC_SGI 8 IRQ_TYPE_EDGE_RISING>;
-+    };
+ static int ffa_irq_map(u32 id)
+ {
+ 	char *err_str;
+@@ -1842,19 +1881,7 @@ static int ffa_irq_map(u32 id)
+ 	}
+ 
+ 	if (acpi_disabled) {
+-		struct of_phandle_args oirq = {};
+-		struct device_node *gic;
+-
+-		/* Only GICv3 supported currently with the device tree */
+-		gic = of_find_compatible_node(NULL, NULL, "arm,gic-v3");
+-		if (!gic)
+-			return -ENXIO;
+-
+-		oirq.np = gic;
+-		oirq.args_count = 1;
+-		oirq.args[0] = intid;
+-		irq = irq_create_of_mapping(&oirq);
+-		of_node_put(gic);
++		irq = ffa_dt_map_irq(intid);
+ #ifdef CONFIG_ACPI
+ 	} else {
+ 		irq = acpi_register_gsi(NULL, intid, ACPI_EDGE_SENSITIVE,
 
 -- 
 2.43.0
