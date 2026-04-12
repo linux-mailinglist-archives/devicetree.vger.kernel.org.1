@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-286768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286770-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cNiHNDzp2mk97AgAu9opvQ
-	(envelope-from <devicetree+bounces-286768-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 02:37:16 +0200
+	id YHEtKU7p2mk97AgAu9opvQ
+	(envelope-from <devicetree+bounces-286770-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 02:37:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC3A3E22D5
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 02:37:16 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 481893E22F9
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 02:37:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F1CA33020EF0
-	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 00:37:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8EB9130071F7
+	for <lists+devicetree@lfdr.de>; Sun, 12 Apr 2026 00:37:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361D426AA93;
-	Sun, 12 Apr 2026 00:37:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0384029BDBD;
+	Sun, 12 Apr 2026 00:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oz2HYAFP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uMQBlN5u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CCF01E834E;
-	Sun, 12 Apr 2026 00:37:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4CA429B77E;
+	Sun, 12 Apr 2026 00:37:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1775954228; cv=none; b=mATPLtFUDCZQwOTtc8pb4POU3DoLnpEXeg0/9/E6IN25ZzI5WQCPm6mhZ+3iNkOsIPXG7v0f6rXeKkMpDEm+NrYtxWAsesotqqkUBJdA7yvo/NfQTvTCe/Mt21zoi/XVyocqiehxBhzgSrMb+loZvie3hyzCbWH5S16ZVq53Ck0=
+	t=1775954251; cv=none; b=kDKlrhUg2dQKJUd1AX1rk4cu7UyuZUwsI3nSqBGRTmiW+0RWSdmk/T9LVmJFSJPqVhgUZvI4GtAFiwd4GJZxdb1ilfgguEPcyfZgUXpFqRZVU/wFOoErxRx/q3sT62fjsdCQ/EbJThACcEWzueeOmfZEhBry4qrNDP4LuStQ+fI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1775954228; c=relaxed/simple;
-	bh=dvzBqzI3yC8ixbllsTUs8ohe9YV3Md9q1xJFgsT0Lz8=;
+	s=arc-20240116; t=1775954251; c=relaxed/simple;
+	bh=vxse8937geRn+N3jXgY4zjOhgZKC5UTaxN/0knCLaqY=;
 	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=MDw2ywuqa3f+xZGtm5R8EwU3v0depU9owNh3C7bDBLftyaJCvM9J8JsbdGfIg0NNTsvoYn7aBouMxOUOaAqcA1nJg+NNyVCSOzJVES2KZVKSGGGNfOzmrL2As33vDC64FBYTP2Wraiplg6Cphq3SGDI8q5g0/Mw0s/risTtPFqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oz2HYAFP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF5A1C116C6;
-	Sun, 12 Apr 2026 00:37:07 +0000 (UTC)
+	 To:Date:Message-ID; b=OTHNhifsadNIf7/VlYypgbrQOIw44ISx/BvJsduX7dFlTcWki536xJs5RmTvSedcui+R9sLBYnAcSy+MRgoxTR+Qrhxs7r6+oubmQDxYn6Q0mXp/4nnm8xzdXmS6AbDtGU3d51uvOOTbkJey6zOs+6yvXXlcefkJcQ3j+gY5Jog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uMQBlN5u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3B34C116C6;
+	Sun, 12 Apr 2026 00:37:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775954227;
-	bh=dvzBqzI3yC8ixbllsTUs8ohe9YV3Md9q1xJFgsT0Lz8=;
+	s=k20201202; t=1775954251;
+	bh=vxse8937geRn+N3jXgY4zjOhgZKC5UTaxN/0knCLaqY=;
 	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=oz2HYAFPMRngYKP3o4Y8KekuH0kX0S48VNnjV1az0SDgQgBaz9MguVHhvc9VUVCdx
-	 EZ1J3ywvp2xmUX9YGyDpbUpM6l55sDWFzSgHhBmHVdYpxTTecNqhzy5FpTw8GV5eqF
-	 Ob/jxr9mMNfCLAGBpJiDB7Hxr3/6EzPzSd3v1Sp7WU19iwPZzFWih3nnGGOsZfGqAS
-	 pPLGRLlakUyW4ajPjJW2R4sBdak5TwVe1HwZ1g2UVez4c36ytUPYZUeeRQWpnPmO1B
-	 sQxXlD+KaJ21ThJyazvht0Rmp/e3fxCszz/ADqGQYwkLgwI9pZnrRJ/tMa9V0QoSk3
-	 v3IoHx/lE3rKw==
+	b=uMQBlN5uBPscCEnh+dZq2tWJYn9CyYpntqCTfaRejP0nbKbW++eJiczV6q3m61zhd
+	 eGin5ior4XfOSGXDGHxKe9sivmQGi6bOppQ6Rfe5Tc77V4IJxQV39P6YIPwRG2xMxe
+	 4zDG0/p+rYlhspTKRozWiqRqQc5l9kmRAsfygIeSNlVgYI1ECPoFn3exgHQJsGgcFg
+	 srz6t/4OvXpM0yM+JBuE6TBd+JGCqgHEvBj5hcPa9DZOOXpYS7OStG+0zOpY4Gp1pv
+	 ZagJvc2FPi/IeoQ0qlqE1YjQ3MPcmwgT72sS/AfamdJTnbjUwidTh0+vhjbuNym06g
+	 fK1V0ZIuTAWZQ==
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -52,50 +52,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260409002952.319668-2-marex@nabladev.com>
-References: <20260409002952.319668-1-marex@nabladev.com> <20260409002952.319668-2-marex@nabladev.com>
-Subject: Re: [PATCH v6 2/6] clk: fsl-sai: Sort the headers
+In-Reply-To: <20260409002952.319668-3-marex@nabladev.com>
+References: <20260409002952.319668-1-marex@nabladev.com> <20260409002952.319668-3-marex@nabladev.com>
+Subject: Re: [PATCH v6 3/6] clk: fsl-sai: Add i.MX8M support with 8 byte register offset
 From: Stephen Boyd <sboyd@kernel.org>
-Cc: Marek Vasut <marex@nabladev.com>, Brian Masney <bmasney@redhat.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Michael Walle <michael@walle.cc>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Marek Vasut <marex@nabladev.com>, Brian Masney <bmasney@redhat.com>, Peng Fan <peng.fan@nxp.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Michael Walle <michael@walle.cc>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 To: Marek Vasut <marex@nabladev.com>, linux-clk@vger.kernel.org
-Date: Sat, 11 Apr 2026 17:37:05 -0700
-Message-ID: <177595422591.5403.9495044878522581843@lazor>
+Date: Sat, 11 Apr 2026 17:37:15 -0700
+Message-ID: <177595423511.5403.5163612629622865239@lazor>
 User-Agent: alot/0.12
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286768-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286770-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sboyd@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nabladev.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8BC3A3E22D5
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nabladev.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 481893E22F9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Quoting Marek Vasut (2026-04-08 17:29:02)
-> Sort the headers. No functional change.
+Quoting Marek Vasut (2026-04-08 17:29:03)
+> The i.MX8M/Mini/Nano/Plus variant of the SAI IP has control registers
+> shifted by +8 bytes and requires additional bus clock. Add support for
+> the i.MX8M variant of the IP with this register shift and additional
+> clock.
 >=20
 > Reviewed-by: Brian Masney <bmasney@redhat.com>
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
 > Signed-off-by: Marek Vasut <marex@nabladev.com>
 > ---
 
