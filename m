@@ -1,157 +1,221 @@
-Return-Path: <devicetree+bounces-287090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287094-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gE25AO833Wk3awkAu9opvQ
-	(envelope-from <devicetree+bounces-287090-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 20:37:35 +0200
+	id uOOSNbc43Wk3awkAu9opvQ
+	(envelope-from <devicetree+bounces-287094-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 20:40:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A67D23F2268
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 20:37:34 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A7B33F22C9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 20:40:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AAD933058BBE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 18:33:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6BDCC301CFDB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 18:40:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BE238C2D8;
-	Mon, 13 Apr 2026 18:33:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AEA238F931;
+	Mon, 13 Apr 2026 18:40:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b="QPEKKRi3"
+	dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b="Yinr1tDX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+Received: from poodle.tulip.relay.mailchannels.net (poodle.tulip.relay.mailchannels.net [23.83.218.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A11338B7D9;
-	Mon, 13 Apr 2026 18:33:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.147.86
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776105201; cv=none; b=aIu21JahASu7XUltL2irifJM8OW8zff9WSY+/gfhkfW+bRVZf9z4X4gLozmA16GRxGxqa0PzKH3MHrQd6RkFD930uVl+8dEM0QvRLm0jq1quMONjZ+oSZZy8/a5ah/G/PK9tnLELDDkHORparjMeysWOmFhTn6vaOJJcajJCsIQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776105201; c=relaxed/simple;
-	bh=Blc0cyWBGhGHDSw9tT2QTYowMsIPJ6zRh6tG830mZpI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=E94P8OmjrdXpW4VN4EANtnyshc5sIhIw2rdLJHiMSP26zMMZMACa5HU/AMcuA6QfjFPA1mt6gkgj5pUfzF3df6irVJrze61ckdUgTlqw4ewgWlE/PACyTWUzgLObqbAbhTjYYkqrsS4RGhDWQTDb4c7VawVB1S8b9BKRwy0nVA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com; spf=pass smtp.mailfrom=hpe.com; dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b=QPEKKRi3; arc=none smtp.client-ip=148.163.147.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hpe.com
-Received: from pps.filterd (m0134420.ppops.net [127.0.0.1])
-	by mx0b-002e3701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63DHaw2w2904837;
-	Mon, 13 Apr 2026 18:33:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=cc
-	:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=pps0720; bh=vx4SoO1veOTgA
-	l5kc7rmMtx8QOzy8eO04ZxK9Zwyi0A=; b=QPEKKRi3j5NzTXYgfmIu2hOKxxi0d
-	fiqNN1VnjGp9GXhMC4A2vf39euoDDanP/W/YevrAl4g/uyo+qadyV8aWwoNmzsNU
-	NWsAtvyw+Oniiht1CnScrxZbRwSKizNPqrl8j1UJ2aAFQ0zVyvwjnLLLtNSyXu5J
-	3CGTvUq4Cz8b8UEJA8ECbMXFVcfjF6eEhCtDA7XfGZjhKfnumCl2yFLQ8gULiSiA
-	VZqkO/ZNjwyOD3zaGxDbKtQOzUmLx6CcYfN248b2l9BD5FmOuTvJSqg59ecd2yN+
-	+qOHW1NHZ4+QPah0pwX17k9KNn5U44MCCWO7uNu+C8AVkEf15DzhOUKJQ==
-Received: from p1lg14878.it.hpe.com (p1lg14878.it.hpe.com [16.230.97.204])
-	by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 4dh51x0jgb-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Mon, 13 Apr 2026 18:33:02 +0000 (GMT)
-Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by p1lg14878.it.hpe.com (Postfix) with ESMTPS id 60AE789A;
-	Mon, 13 Apr 2026 18:32:59 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.36])
-	by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id 181D08104A2;
-	Mon, 13 Apr 2026 18:32:59 +0000 (UTC)
-From: nick.hawkins@hpe.com
-To: catalin.marinas@arm.com, will@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        krzysztof.kozlowski@oss.qualcomm.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Nick Hawkins <nick.hawkins@hpe.com>
-Subject: [PATCH v6 4/4] arm64: defconfig: Enable ARCH_HPE
-Date: Mon, 13 Apr 2026 18:32:47 +0000
-Message-ID: <20260413183247.1381172-5-nick.hawkins@hpe.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260413183247.1381172-1-nick.hawkins@hpe.com>
-References: <20260413183247.1381172-1-nick.hawkins@hpe.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A5B38F64E;
+	Mon, 13 Apr 2026 18:40:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.218.249
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776105645; cv=pass; b=aFJ4pt3yok52fiUy9lBQA/8hLy4uD/HatA2YF7xqiFtHz7zs7+b/OrdMLcrFNb6Mzth5Cpky1Vpjsp+re9namhRrIL+2Ccrrugybi3c+XRTVN3dan01G7tHWsSNSFHAj8bR907hpyspdL7i3UuDhGF3iDlMciF4T9t/4Vyjlxbk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776105645; c=relaxed/simple;
+	bh=52sN7cxj/7Bd4nf5gMwyPBNngTDrvT+m5lyiAdubMvU=;
+	h=From:Subject:Message-Id:MIME-Version:Content-Type:To:Cc:Date; b=sU39YJiu/0HD/KxuJexvgCVtOuBfZw3u4cm8gtboO+gDG0l7GG8xDNS7prlRapvoVr0EwY+zJhcW8m43xAtfY1glN+Bu3YZxwQ0Jlb249/BM4fWD/nHLVZpZktyl2gItWRqNFQm8vAdd6ocVYoyz0pu67WpYC2+JnpB4Z2GQu3c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com; spf=pass smtp.mailfrom=smankusors.com; dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b=Yinr1tDX; arc=pass smtp.client-ip=23.83.218.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smankusors.com
+X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 55285443094;
+	Mon, 13 Apr 2026 18:33:00 +0000 (UTC)
+Received: from fr-int-smtpout18.hostinger.io (trex-green-5.trex.outbound.svc.cluster.local [100.103.3.248])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 566C6442DA1;
+	Mon, 13 Apr 2026 18:32:55 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
+	t=1776105178;
+	b=1War/9gLfY9ckwAul+BHzYyNjuXwl0H5NtWyyKgIJDC7YEE6l/v3JgSV0dmCfXgRyZICp5
+	0znDaSJEUWVCtGGN9q0606Dk1F+5hDYwRLr+K7eeaxTcuTRbvV5oKVo/iCtcBGmzI5UljI
+	SV8vwuhSumiramJKY/ypdUVIMU6A4rt0mzIGZX00bHZHVMbceRZowh7zffenkyVUCHx3J8
+	O8a+SaACZzAY5tOTdJOvPvdfTp9CeqE/mn3VbMeScqqy8FgyzuGt1zeM+7xSclFTCivS6Y
+	B1D0AT3Zj/AnZva3PZdSZs95kqLENiAXVuhXHmfydke5EwnVTA6g+ohw8zmE0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1776105178;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=5VmPqTvLOfUwbsB9JR/cj2dmOe8UgYkfqn/CCYd62ps=;
+	b=pdSZJS/w3l46x/Daoe2zQ93hyU247wKZ7ejA3cZX7sQMdHJ/TqmRGuDYITkZdFH5hLcPLX
+	KUeHs7IJ8GpGbhi8F5VOpPuw5wW/ti9Uyno37ohbkfyU+9ynbkuWhSvuvvQUbkntqRqnRX
+	YuGsjLCFyTMqSYyPD5lFPAseELMFZExDlFSRR7hwJxwbZwPvMvU9Dn2T0LPuom3LmKbuC6
+	2QqTP3Tlyi/jRr7Z2sC/up8qmFM0tKz39xN2hvRqVyXzJS0IjD4n6NnTUtz/4JKrkLAPwA
+	dIkROn9bUUu8WKNhcEaHOwmZWpqbay/pM4qEmCz+SwNsfM7hPz4GBqKDQy5Isg==
+ARC-Authentication-Results: i=1;
+	rspamd-7d86dcc447-brlgt;
+	auth=pass smtp.auth=hostingeremail smtp.mailfrom=linux@smankusors.com
+X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId: hostingeremail|x-authuser|linux@smankusors.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Inform-Vacuous: 5ab0c4dc75ed8708_1776105180110_2651789384
+X-MC-Loop-Signature: 1776105180110:4023615666
+X-MC-Ingress-Time: 1776105180110
+Received: from fr-int-smtpout18.hostinger.io (fr-int-smtpout18.hostinger.io
+ [148.222.54.9])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.103.3.248 (trex/7.1.5);
+	Mon, 13 Apr 2026 18:33:00 +0000
+Received: from [172.17.0.2] (unknown [180.247.251.74])
+	(Authenticated sender: linux@smankusors.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fvbcf14N3z1xvd;
+	Mon, 13 Apr 2026 18:32:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smankusors.com;
+	s=hostingermail-a; t=1776105173;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=5VmPqTvLOfUwbsB9JR/cj2dmOe8UgYkfqn/CCYd62ps=;
+	b=Yinr1tDXrBCda5iPxXoTm5zo9f/kxFu100uO1w60Arm9cnsOfELLOcYuvrNoEwkdEaDKSR
+	Tgpjf2Mb1V7dYYsCkxPpZ+2+4XnRa3q5XlF3F4CcqrxQ0bt5XoSh5V2+nYSmlUhLerz8cL
+	YIO0JgBrW7BotryFXGYtaNvVF02jN+FZQt8b2T0lApQB+rOqRypxoaH6Rru6NNXiXEkOA9
+	5NuUq1NKeISYUqU7NQJlOJJt5TN0knzMvKvzTHw+TRCWaN+qaXiUP48eaIViLLeA1ghieC
+	DVIzLpxxlK5BvgLO775jPJ7ILPfOBm1DyrJDIfQwo5Y2UnIK7Ru91LcyJwi5Mw==
+From: Antony Kurniawan Soemardi <linux@smankusors.com>
+Subject: [PATCH 00/10] ARM: qcom: msm8960: enable WCNSS (Bluetooth & Wi-Fi)
+Message-Id: <20260414-msm8960-wifi-v1-0-01c081e54610@smankusors.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Ks59H2WN c=1 sm=1 tr=0 ts=69dd36de cx=c_pps
- a=UObrlqRbTUrrdMEdGJ+KZA==:117 a=UObrlqRbTUrrdMEdGJ+KZA==:17
- a=A5OVakUREuEA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gQcMVamqm3wCPoSYhaRC:22
- a=RtSn8ETxjE2H05FtM2s8:22 a=MvuuwTCpAAAA:8 a=EUspDBNiAAAA:8
- a=eJgTY4hZ_eZb3zzOyW4A:9
-X-Proofpoint-ORIG-GUID: xl2cr-xhRq8b39bY2fylX4qKVJL4q2zN
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDEzMDE4MiBTYWx0ZWRfX6otUxZ2yas/s
- 0wFTcmPxziHYTpQLzdCanz3OMvlqKjfsEA+s/nqVcmCSkXF9wKwgCBL8WBxnvsK6MnTcSOL5nmh
- sjrNYIWNXemT7fJkiUMqMOMtvT47oUH3HeeKPBtdp1Ty0NqERiwBhCG03uf3OejJ1TkRn5Z+Khm
- NPbxSimaB5Mf6jjklcgVhM+m9AYRojecUozecfxyFOC6dqkq1iFNxdo4qcmia/V/6CxirOnLcGk
- n3NwmamM9Ly2cKBoqc1/tKSf2wdWB7l40g/445IlRlv4ycgmjyR8WLONCAqnZS4IFN4HR+VAGFX
- KBnsroOIezFrjfUZxgFJnIqOy0N6j0H8mOXqbJBguqNelNbBy/rHCEV7fVr8hYwUKplw+72zBF1
- s2TDGI9ijl+X7uidl9wxLDnXK0cHdgKUXfDYVJnrQpGinkJDseScJgc0tjI5ipqHTeSg5Ve+/PM
- t1zJ1PEANxbcMSWx/CQ==
-X-Proofpoint-GUID: xl2cr-xhRq8b39bY2fylX4qKVJL4q2zN
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-13_03,2026-04-13_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
- suspectscore=0 clxscore=1015 adultscore=0 phishscore=0 malwarescore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2604010000
- definitions=main-2604130182
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACY23WkC/x3MQQ5AQAxA0atI15rQ0OAqYsEouhhkmiCRubuJ5
+ Vv8/4JJUDHosheCXGp67AllnoHbxn0V1DkZqKC6JGL05puWC7x1UZxE3NyyY64YUnIGWfT5d/0
+ Q4wdy1J4oXgAAAA==
+X-Change-ID: 20251226-msm8960-wifi-beecd96c6646
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ Rudraksha Gupta <guptarud@gmail.com>, 
+ Antony Kurniawan Soemardi <linux@smankusors.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776105169; l=2609;
+ i=linux@smankusors.com; s=20250609; h=from:subject:message-id;
+ bh=52sN7cxj/7Bd4nf5gMwyPBNngTDrvT+m5lyiAdubMvU=;
+ b=ldTK2rqmxkwGe8TRHFcJ+AGxmJktLlOckn2dgPw0i8VOGS1Q3Oe8nulUmUHDGrp2k4OZE0pbf
+ oNcginx8YPbA2HNBeDPyGFX8m5MB5X8VCrTsoR/+iTXDpoLyYEJUC77
+X-Developer-Key: i=linux@smankusors.com; a=ed25519;
+ pk=65wTy06fJl2/h/EJwjr704YG+yjHFhZObJBWzzK+N00=
+Date: Mon, 13 Apr 2026 18:32:49 +0000 (UTC)
+X-CM-Analysis: v=2.4 cv=UN2PHzfy c=1 sm=1 tr=0 ts=69dd36d5 a=iMBLmzX4nuXcozcv68JNPw==:117 a=iMBLmzX4nuXcozcv68JNPw==:17 a=IkcTkHD0fZMA:10 a=NEAV23lmAAAA:8 a=wxLWbCv9AAAA:8 a=1XrRl8l2ajt_F3_S8g0A:9 a=QEXdDO2ut3YA:10 a=QJY96suAAestDpCc5Gi9:22
+X-CM-Envelope: MS4xfOENm35fBi4cnyIyIiaBILKk8BZuKifS1T1DeSonUwk1/pgaLGxwi87AVe4eXJlArbtnNgoeE5vuh47JV+DU/PXmm1pxesoLZRYUMyS1CcNSDGHrGjrO PK8zoz+w7rxdGjjFPagx2TZZEBJi0mgc4twApQHdZmRIMo9ooeAYtyYOs6kNHK2lloV0oibATei19Y7RpEZz3hvju2xbkiP4zaHjvNnojfrWQs9U5xHW/34D NQa67CmAqYyjKVbH35TFYBwrhintUdK3DCGIWkMzyQLBP3+RHEhd/CKMw3FgSAxJuxr6z7WTE4/Dr7YMgm6oHEnvYGIKoo4Oio3W0gxJ/ILuCApAhyiw69rH kdtTmgS+WoyLL20Q8IzwhdDgd8e1MeVDd5ObKVojnocmQ7y+8b8LNLywbONYQxHUjIzcIeA7V7aUhHcSdvToP+rTzxFKUxq3eCq7+pjIbuk2UVuXFwln+KvC HApZeVW2WsSMe76uWupYhR11BLIVb0lhOXt7TZGCYBCWRobHJfsS2dn8QIFgIQX2u2j9LvjIdi76hgYh2FGUt0huDowIfABx6tpMh3L4LvcmOsuvKL+nBf51 Rw2J8ku3Q0XpNRMLx4FdvQjhW5iHS4HcbvzwXm2mnEyKzk2PUoEoJ7pyuy9RAnTdSMirvQMNWDBZ2/BJWN+cRat4
+X-AuthUser: linux@smankusors.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[hpe.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[hpe.com:s=pps0720];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[smankusors.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[smankusors.com:s=hostingermail-a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287090-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,smankusors.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[hpe.com:+];
-	FROM_NO_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nick.hawkins@hpe.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-287094-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@smankusors.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[smankusors.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: A67D23F2268
+X-Rspamd-Queue-Id: 4A7B33F22C9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Nick Hawkins <nick.hawkins@hpe.com>
+Enable the WCNSS (Riva) subsystem on MSM8960-based devices to support
+Bluetooth and Wi-Fi.
 
-Enable ARCH_HPE in the arm64 defconfig to include HPE GSC BMC SoC
-support in the default build.
+Add the required device tree nodes and resources, including memory
+regions, clocks, interconnects, and communication interfaces used by
+the WCNSS firmware and drivers.
 
-Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Changes:
+- Add Riva (WCNSS) nodes: firmware memory, WCN3660 iris radio,
+  Bluetooth and Wi-Fi subdevices, and pinctrl states
+- Add SMSM and SPS nodes for coordination with the WCNSS subsystem
+- Add shared memory and hardware mutex for inter-processor communication
+- Add SCM node for secure channel manager interaction
+- Add RPM clock controller and required QDSS clock resource
+- Add bindings for SPS interrupt controller and RPM clocks
+
+Known limitations (not addressed in this series):
+The wcn36xx driver appears to misclassify 2.4 GHz networks as 5 GHz
+during hardware scanning, preventing association with 2.4 GHz networks.
+This issue has also been observed on MSM8916 and MSM8953 platforms
+using WCN3620 [1][2].
+
+Tested on:
+- Sony Xperia SP
+- Samsung Galaxy Express (SGH-I437) - secure firmware loading not yet
+  functional (separate series pending)
+
+[1] https://github.com/msm8916-mainline/linux/commit/cc4abc694fcf2c942410136bc58a61e79bf21e83
+[2] https://github.com/msm8953-mainline/linux/commit/779c9627ec0b971bf466588e64fe530cf78a414d
+
+Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Antony Kurniawan Soemardi (10):
+      dt-bindings: clock: qcom,rpmcc: add msm8960 compatible
+      dt-bindings: mfd: syscon: add qcom,msm8960-sps-sic
+      mfd: qcom_rpm: add msm8960 QDSS clock resource
+      clk: qcom: clk-rpm: add msm8960 compatible
+      ARM: dts: qcom: msm8960: add RPM clock controller and fix USB clocks
+      ARM: dts: qcom: msm8960: add SCM
+      ARM: dts: qcom: msm8960: add SMEM & hwmutex
+      ARM: dts: qcom: msm8960: add SMSM & SPS
+      ARM: dts: qcom: msm8960: add Riva
+      ARM: dts: qcom: msm8960: huashan: enable Wi-Fi and Bluetooth
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index xxxxxxxxxxxxxxx..xxxxxxxxxxxxxxx 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -xx,6 +xx,7 @@
- CONFIG_ARCH_HISI=y
-+CONFIG_ARCH_HPE=y
- CONFIG_ARCH_KEEMBAY=y
--- 
-2.34.1
+ .../devicetree/bindings/clock/qcom,rpmcc.yaml      |   5 +-
+ Documentation/devicetree/bindings/mfd/syscon.yaml  |   2 +
+ .../boot/dts/qcom/qcom-msm8960-sony-huashan.dts    |  19 +++
+ arch/arm/boot/dts/qcom/qcom-msm8960.dtsi           | 157 ++++++++++++++++++++-
+ drivers/clk/qcom/clk-rpm.c                         |   1 +
+ drivers/mfd/qcom_rpm.c                             |   1 +
+ 6 files changed, 182 insertions(+), 3 deletions(-)
+---
+base-commit: 978e0d8216cae014f10326c9a257890cf98a6398
+change-id: 20251226-msm8960-wifi-beecd96c6646
+
+Best regards,
+--
+Antony Kurniawan Soemardi <linux@smankusors.com>
+
 
