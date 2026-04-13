@@ -1,345 +1,282 @@
-Return-Path: <devicetree+bounces-287022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287023-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMFwFfz33GnLYgkAu9opvQ
-	(envelope-from <devicetree+bounces-287022-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 16:04:44 +0200
+	id UBFTBdb53GnXYgkAu9opvQ
+	(envelope-from <devicetree+bounces-287023-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 16:12:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91273ECEF8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 16:04:43 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E4FB3ED238
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 16:12:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 95657300F10F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 14:04:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 75872306B3BC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 14:05:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CF813D411D;
-	Mon, 13 Apr 2026 14:04:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96F663D646B;
+	Mon, 13 Apr 2026 14:05:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="A4Yk1ABG"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OvOJjp52";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HdmqXb+a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C4A3D3CE2;
-	Mon, 13 Apr 2026 14:04:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8486A3D525A
+	for <devicetree@vger.kernel.org>; Mon, 13 Apr 2026 14:05:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776089048; cv=none; b=ftzSONOUb3i9vi1m8yIcrW7WznMgzYXPOA/N3aMfnWgYE0uWq1R4ueIj1oW2FuCrxfaNL10TH0xF2o1H/neHWCzs3065yVvrsjpzCbO0D1kIGutTpClT+imWssKadNz3s6PPy7en1uKuBjnvg5gRMT+ibXDTrGP7+TKeYJ8D+Sk=
+	t=1776089138; cv=none; b=IehG0g5KAN4R5k4FQ3GzeIo/jj3BYaSaMZ3OmHLUg2qyTiYQwdlQCIo/BqZLZ0XiIPqcGcCcWBplkakjP/mIwROv8O6MqP4O489ljbMXTTDWWIPCH2MRPYx7TgQ4swFHUVhhlGZbUxxCjDPznEka/q3QnYYNcHTc0InibyWtUlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776089048; c=relaxed/simple;
-	bh=O3z31uVT+Dfd8j0b4hkRpmwYzvLPn03LuNW3yKqjl40=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=f47+M5kiNpj6mMANf4Uia8F0XqG71iTaJ0Bp5TDpzytf03A1WFBhrQcBU+HryaNOoTfaWqzmlOFTAcfWLB8e0r8zDK7aSUrH3JcLhh946xD8XkVm/7Bvku11WmEc8ixj8qd/ZbmRdz4BzhVykpQVoCFC2ncIoTQGm2ftddALoYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=A4Yk1ABG; arc=none smtp.client-ip=5.135.140.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7094F9D108;
-	Mon, 13 Apr 2026 16:03:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
-	t=1776089038; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=GdKZudBiZWRmnj2Q8xLAe5Ktsw/srDvDPRU3HuRREMc=;
-	b=A4Yk1ABGxWLdq40Gvch9gUgy3szNqMcS5sYkVGBWDOnj4Nwan2XZP22vijpjyuVRBjDhqB
-	3G1ZCKZPIg4V4m5YvBV354jG7tjV5X2AxfKcElxeT3ZZf2R/vaoLVaq1XoeoE0yykz2Mvq
-	LFeJ1k6NgjymqkhJlyrnvM9q30oM3Hp3DGYSbAVz77pCYDk95kEB9BBg/osYwb2V91+F+Y
-	Gcbc4F8O4Eve/+A+iv75RxLZf4E3swTCpoGZ+oHXSr0aFPHsrLsRpJ4E8A6ZcWdua8J8RW
-	dCxubAeiJY3/3d4Ko0VMUfcralaaf0UBQJ1EyHRl9pdQBD2HreeL/wsb7sMHEA==
-From: Caleb James DeLisle <cjd@cjdns.fr>
-To: linux-pci@vger.kernel.org
-Cc: linux-mips@vger.kernel.org,
-	naseefkm@gmail.com,
-	ryder.lee@mediatek.com,
-	helgaas@kernel.org,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	ansuelsmth@gmail.com,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Caleb James DeLisle <cjd@cjdns.fr>
-Subject: [PATCH v5 2/2] PCI: mediatek: Add support for EcoNet EN7528 SoC
-Date: Mon, 13 Apr 2026 14:03:39 +0000
-Message-Id: <20260413140339.16238-3-cjd@cjdns.fr>
-In-Reply-To: <20260413140339.16238-1-cjd@cjdns.fr>
-References: <20260413140339.16238-1-cjd@cjdns.fr>
+	s=arc-20240116; t=1776089138; c=relaxed/simple;
+	bh=wEdTAfZhA3dRyKgeejvoD2oVmXK92LCOSWr9CbXRIC0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=AyBco16PHag7xM5IPrvkMbHgnZm2VFyqcW5z+Tngxw+RoyWeK+JfErlQ/eF3fqmSAb2UZhG2LrLsAr29qfcDIIOEM0eIMqeTkc7ZTBhStwMGqV5v6t/f5eC7qnzKHkns2NpbgUybRWG6Kkw4Tf8Ms+FKFxRIHuB+h7HOebGYMzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OvOJjp52; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HdmqXb+a; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63DCZEwW3989201
+	for <devicetree@vger.kernel.org>; Mon, 13 Apr 2026 14:05:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Jw/M6fkhmg0a+f6VUfUMit
+	ttuOygKbZKhL1zBRtA9yI=; b=OvOJjp52uEvm5Y5DDLq/CTpd4HC6BFWItJGbu6
+	otX9UV6voIlwUO/2sJW7znm2ZwGZ7MTUaq6BVsZen6hZKrSp4Jl38I45LQRlebUf
+	IJyMe77todaXzBqoGqP8Etdfe+CRA5khumz2lsIVKxRsX+odFMQu4+CLSnohFAC0
+	vh242/Har2Ra+uOuF+C8mb1b1XGYTpfZQKeyvDk62SBTTV/9yTT4dR9VyKHqMaAf
+	2HQANFRtrV3VmOV/WSGnQAkUjJQlYfUTZBdcQq8V+L7NoX2yDBrjOSmWnkOvki6k
+	Sj+TflhI0mnQpB/i2kPMnicSVD2MIZiGj0uasV4FFmEaTULA==
+Received: from mail-oa1-f72.google.com (mail-oa1-f72.google.com [209.85.160.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dh0mfrcfm-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 13 Apr 2026 14:05:33 +0000 (GMT)
+Received: by mail-oa1-f72.google.com with SMTP id 586e51a60fabf-40efa542b8aso5179092fac.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Apr 2026 07:05:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1776089132; x=1776693932; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jw/M6fkhmg0a+f6VUfUMitttuOygKbZKhL1zBRtA9yI=;
+        b=HdmqXb+a93h+6NtM8JmwvFBbvdioQd2bVX2XLOFr5+Ps+KohZD2j/SOhcGAeZf/gPg
+         eOYR9MlaJLBTo9C8Hl1hJpydmjqD57T+4LZvmR2SVEcuUPmd0PbVPBZaZRob1j1SFoVk
+         AMEsRTg7cVaQOSuI2ZAddW4dz26RSulCaAG5Xda4lbUcQvaEyH9eZapjN84Ill50+cqI
+         bi+wSY6ieh3gh0pfJO6+vvFjzPDEwINlnGaa9CZKGwft9w1liKhc7wq6mY/lx2Lwylf6
+         s4B7yIiyZUknz74BHBp287jki8qS4ERROemR1Pi//7MlEW96UQkOsoQ+ryVB4VsYsM02
+         +tbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776089132; x=1776693932;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Jw/M6fkhmg0a+f6VUfUMitttuOygKbZKhL1zBRtA9yI=;
+        b=cw1nMPrKuT6hd/e2ptLa7ULyOFZ8dpGTIcB7WkX2dt//kdyOATkWapcOfDtWKOtQIw
+         tN7US+4VVDIl6FGi8n2Vu69ArM3KvFOXIgHWIuUmM31ZMGZ1enVBsguKu37OFe4O4wCH
+         4jueurkixmvNxHp+mJ8HEXDO8i0fyIGDaOJZDoih0CueS81QBqGgMRL0PI2/1bNkwKcc
+         iyl5n+WfZl1VuuAI0j876/mQVHFG4Xrk9t/6HWTegb9brIejUG63JD4dlMRT/kPN0T2i
+         YpUqEwQU9OrIIw02SVbt/enTryrmYiXmAxj6NNVA8FM2yVYqijAoojhyKJhRzJlQvzKk
+         8c9w==
+X-Forwarded-Encrypted: i=1; AFNElJ+XiQcsn/6Q88lyBw501g7dqeg3uWW/0TkOKR761WQuGeSu7fKqk9O5m/zth9LRhj5IAcVliT6zIjAn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7TMwfMMybgko/C6mecOZ0W2MzKhY6hwQfzCQ13FcGPgZCoEu4
+	3/lQbdetFoTfOlOxMA53M+Jb9XWmAhmiYKWjqCnsPCVPOOyWNOf+7IEa3AsfY+WDgDra1tz14Af
+	4vMjBoDjYrvqC4wgRoUXriV5pTnGxwrcKxL5A+3gKNYE6YVkwaOP6Dh/ss85bP7/6
+X-Gm-Gg: AeBDievyf75ME4LOVh0GJuK92BHP7Ip3dsbq294tyb9ORUQ+4y8aQI12fglUDi9jrYY
+	Bp0hEGOWfgY7yoB/OcCuM75gjnzzjqtq6VysHUbuqXoAr3pWgiaKQYy31R/LmyvEXdeeSWeixfe
+	lIyotaVMvbxoC4lJBTw+tAzd1M6rOiYYA5fQC66OIX0rv81gebhDcomV4n6r1g1tNv2MFTk3hQf
+	EFsAduUQ5y5QHalQVRkVvT5ukP2AxowsbtgPlfwnwwNQmQVBxfOfuGgwl936Y9X8aJVg638EAg5
+	d+0Ipc4gibjxssyDdY+B5y3mIzRsMmxHhZiI9H1muVgdMA4HCMwtj5CCUms5ee7/eHe4/JqmNvp
+	swhX/u0xZ8AW7i9WBm+zMrb+B2K/+vNQGEWupR0FYMognZrTbq7oFvAceDIHle7oQGfN4TRdtiQ
+	VI5g4gMcNizODGELfCyd9p+Hk5aP1gDaTxGnA=
+X-Received: by 2002:a05:6808:d4e:b0:467:13b5:8ae6 with SMTP id 5614622812f47-4789c847f10mr6644065b6e.4.1776089132218;
+        Mon, 13 Apr 2026 07:05:32 -0700 (PDT)
+X-Received: by 2002:a05:6808:d4e:b0:467:13b5:8ae6 with SMTP id 5614622812f47-4789c847f10mr6644014b6e.4.1776089131622;
+        Mon, 13 Apr 2026 07:05:31 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a3eee8c91csm2687521e87.19.2026.04.13.07.05.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Apr 2026 07:05:30 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v3 00/21] drm/panel: support Waveshare DSI TOUCH kits
+Date: Mon, 13 Apr 2026 17:05:23 +0300
+Message-Id: <20260413-waveshare-dsi-touch-v3-0-3aeb53022c32@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACP43GkC/32NQQ6CMBBFr0K6tqRTKQRX3sO4KGWQGqHagaoh3
+ N2CGxfqZpKX/HlvYoTeIrFdMjGPwZJ1fYTtJmGm1f0Jua0jMylkLjIB/K4DUqs98posH9xoWo5
+ QQKGhaUwmWPy8emzsY7Uejm+msTqjGRbVsmgtDc4/12yAZfe/EIALrrAEKCulBWR7R5TeRn0xr
+ uvSeNgSCvJDBT9UMqoKZeoKtVGg8i+qeZ5fzy5TjhoBAAA=
+X-Change-ID: 20260401-waveshare-dsi-touch-e1717a1ffc40
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+        Ondrej Jirman <megi@xff.cz>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Jagan Teki <jagan@edgeble.ai>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        Jie Gan <jie.gan@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Riccardo Mereu <r.mereu@arduino.cc>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4231;
+ i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
+ bh=wEdTAfZhA3dRyKgeejvoD2oVmXK92LCOSWr9CbXRIC0=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBp3PgmJKF3OmQH1Pf6JKciyG+7b56afxoPJdlI2
+ 4/U/TnbN9yJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCadz4JgAKCRCLPIo+Aiko
+ 1T64CACv/CiSlNnPJd1kNBob5X55JIYxKmStTn8ebkJWcVcKFm/q4MWr+1aVntdfd3BHbhOpxV7
+ 1MZpSe4DPvW+NZQsKdw11AUkv9D44LRnEeyGMav27neOQfRyQxRJtVwcWzbTlJAtsvxXV2hM0AL
+ JRVrxxp/193oCoVZ0uvSqCdc/MZ5yJ5kylKzadx1rekxpEDfLwqWCh9k2/0uVsfSjK8+6m9uKq0
+ kok2mECUudNoh6JhXkfWe+zeNvZVbJXOyUypI/yMvHhInUGgNalzT1CA6YwRn1tSFUhM5cwFlbM
+ P3yLBgip9HtumdM/8QOg9UjaiLhkufol44Z70Zo++TKCaqiv
+X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-Proofpoint-GUID: 65QNT7teuwJA5ps8hHeODdoJvTYIMZpA
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDEzMDEzOCBTYWx0ZWRfX+MZEZRiMWM5l
+ YwiaIUlFhXNmsLhjTivhBB5rUVrtT9/ZeNHjk737QR/OrZoCKdYOLPR58SoB7jGwHl2EKgMvc7M
+ RakcIOXzMMAPb7WM8WECNNPak4dxDy2QM3CQCmAdn2ZmHZ/Tvo/YqTA/Qld+aq5FYahKbM/FMxQ
+ KgE6leaeGe5sBjJ2KV5sh6t0ZxdgF8flMlZNTXGUVNHAjI+8QVliUTK7OTU6gtdAIHFKnSftiKE
+ A/eFtU8rJ0NVYe9EUM9YD2dHq5epUgDEp0+/n7QfppUkO6b8oaNWFi8BQ8qtMemjv3gsmdeApzj
+ pzHNJuzrGQP0sCaZ/BeZeUvKIurRLZKLjoy411GDyb/Z3jmgkmiQeOmQ+4A3S5DTvetpBZY32m+
+ RneBwAJV5OGTpRIaPgfX+OY9tBv+/rV/aIRhM3R5X8KOesMkiSk/l2BOWPehk+U/Zs5qdwdI+vt
+ vAxAxPbpKorOhdtCqbA==
+X-Authority-Analysis: v=2.4 cv=cMvQdFeN c=1 sm=1 tr=0 ts=69dcf82d cx=c_pps
+ a=Z3eh007fzM5o9awBa1HkYQ==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=bC-a23v3AAAA:8
+ a=EUspDBNiAAAA:8 a=DTMZbMRqsfAL1qRoJ20A:9 a=QEXdDO2ut3YA:10
+ a=eBU8X_Hb5SQ8N-bgNfv4:22 a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-ORIG-GUID: 65QNT7teuwJA5ps8hHeODdoJvTYIMZpA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-13_03,2026-04-13_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 priorityscore=1501 adultscore=0 impostorscore=0
+ malwarescore=0 bulkscore=0 phishscore=0 clxscore=1015 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604010000 definitions=main-2604130138
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,kernel.org,collabora.com,lists.infradead.org,cjdns.fr];
-	TAGGED_FROM(0.00)[bounces-287022-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-287023-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,huaqin.corp-partner.google.com,xff.cz,redhat.com,edgeble.ai,oss.qualcomm.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[cjdns.fr:+];
-	NEURAL_HAM(-0.00)[-0.961];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,cjdns.fr:dkim,cjdns.fr:email,cjdns.fr:mid,mediatek.com:email]
-X-Rspamd-Queue-Id: E91273ECEF8
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 9E4FB3ED238
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the PCIe present on the EcoNet EN7528 (and EN751221) SoCs.
+The Waveshare DSI TOUCH family of DSI panel kits feature different DSI
+video-mode panels, bundled with the separate controlling circuit,
+produing necessary voltages from the 3.3V and 5V supplies. Extend panel
+drivers to support those Waveshare panels and also add GPIO driver for
+the onboard control circuitry.
 
-These SoCs have a mix of Gen1 and Gen2 capable ports, but the Gen2 ports
-require re-training after startup.
-
-Co-developed-by: Ahmed Naseef <naseefkm@gmail.com>
-Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
-Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- drivers/pci/controller/Kconfig         |   2 +-
- drivers/pci/controller/pcie-mediatek.c | 133 +++++++++++++++++++++++++
- 2 files changed, 134 insertions(+), 1 deletion(-)
+Changes in v3:
+- Fix another typo in the focaltech,ota7290b schema, sorted out voltage
+  supplies in the schema and in the driver
+- Dropped Ricardo's T-B from bindings patch (Krzysztof)
+- In the Waveshare GPIO driver bumped max register to REG_VERSION (Jie
+  Gan)
+- Add a lanes vs config check in the JD9365 driver (Jie Gan)
+- Link to v2: https://patch.msgid.link/20260411-waveshare-dsi-touch-v2-0-75cdbeac5156@oss.qualcomm.com
 
-diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
-index 686349e09cd3..5808d5e407fd 100644
---- a/drivers/pci/controller/Kconfig
-+++ b/drivers/pci/controller/Kconfig
-@@ -209,7 +209,7 @@ config PCI_MVEBU
- 
- config PCIE_MEDIATEK
- 	tristate "MediaTek PCIe controller"
--	depends on ARCH_AIROHA || ARCH_MEDIATEK || COMPILE_TEST
-+	depends on ARCH_AIROHA || ARCH_MEDIATEK || ECONET || COMPILE_TEST
- 	depends on OF
- 	depends on PCI_MSI
- 	select IRQ_MSI_LIB
-diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
-index 75722524fe74..915a35825ce1 100644
---- a/drivers/pci/controller/pcie-mediatek.c
-+++ b/drivers/pci/controller/pcie-mediatek.c
-@@ -7,6 +7,7 @@
-  *	   Honghui Zhang <honghui.zhang@mediatek.com>
-  */
- 
-+#include <asm-generic/errno-base.h>
- #include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/iopoll.h>
-@@ -14,6 +15,7 @@
- #include <linux/irqchip/chained_irq.h>
- #include <linux/irqchip/irq-msi-lib.h>
- #include <linux/irqdomain.h>
-+#include <linux/kconfig.h>
- #include <linux/kernel.h>
- #include <linux/mfd/syscon.h>
- #include <linux/msi.h>
-@@ -77,6 +79,7 @@
- 
- #define PCIE_CONF_VEND_ID	0x100
- #define PCIE_CONF_DEVICE_ID	0x102
-+#define PCIE_CONF_REV_CLASS	0x104
- #define PCIE_CONF_CLASS_ID	0x106
- 
- #define PCIE_INT_MASK		0x420
-@@ -89,6 +92,11 @@
- #define MSI_MASK		BIT(23)
- #define MTK_MSI_IRQS_NUM	32
- 
-+#define EN7528_HOST_MODE	0x00804201
-+#define EN7528_LINKUP_REG	0x50
-+#define EN7528_RC0_LINKUP	BIT(1)
-+#define EN7528_RC1_LINKUP	BIT(2)
-+
- #define PCIE_AHB_TRANS_BASE0_L	0x438
- #define PCIE_AHB_TRANS_BASE0_H	0x43c
- #define AHB2PCIE_SIZE(x)	((x) & GENMASK(4, 0))
-@@ -148,12 +156,15 @@ struct mtk_pcie_port;
-  * @MTK_PCIE_FIX_DEVICE_ID: host's device ID needed to be fixed
-  * @MTK_PCIE_NO_MSI: Bridge has no MSI support, and relies on an external block
-  * @MTK_PCIE_SKIP_RSTB: Skip calling RSTB bits on PCIe probe
-+ * @MTK_PCIE_RETRAIN: Re-train link to bridge after startup because some
-+ *                    Gen2-capable devices start as Gen1.
-  */
- enum mtk_pcie_quirks {
- 	MTK_PCIE_FIX_CLASS_ID = BIT(0),
- 	MTK_PCIE_FIX_DEVICE_ID = BIT(1),
- 	MTK_PCIE_NO_MSI = BIT(2),
- 	MTK_PCIE_SKIP_RSTB = BIT(3),
-+	MTK_PCIE_RETRAIN = BIT(4),
- };
- 
- /**
-@@ -753,6 +764,80 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
- 	return 0;
- }
- 
-+static int mtk_pcie_startup_port_en7528(struct mtk_pcie_port *port)
-+{
-+	struct mtk_pcie *pcie = port->pcie;
-+	struct pci_host_bridge *host = pci_host_bridge_from_priv(pcie);
-+	struct resource *mem = NULL;
-+	struct resource_entry *entry;
-+	u32 val, link_mask;
-+	int err;
-+
-+	entry = resource_list_first_type(&host->windows, IORESOURCE_MEM);
-+	if (entry)
-+		mem = entry->res;
-+	if (!mem)
-+		return -EINVAL;
-+
-+	if (!pcie->cfg) {
-+		dev_err(pcie->dev, "EN7528: pciecfg syscon not available\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Assert all reset signals */
-+	writel(0, port->base + PCIE_RST_CTRL);
-+
-+	/*
-+	 * Enable PCIe link down reset, if link status changed from link up to
-+	 * link down, this will reset MAC control registers and configuration
-+	 * space.
-+	 */
-+	writel(PCIE_LINKDOWN_RST_EN, port->base + PCIE_RST_CTRL);
-+
-+	msleep(PCIE_T_PVPERL_MS);
-+
-+	/* De-assert PHY, PE, PIPE, MAC and configuration reset */
-+	val = readl(port->base + PCIE_RST_CTRL);
-+	val |= PCIE_PHY_RSTB | PCIE_PERSTB | PCIE_PIPE_SRSTB |
-+	       PCIE_MAC_SRSTB | PCIE_CRSTB;
-+	writel(val, port->base + PCIE_RST_CTRL);
-+
-+	writel(PCIE_CLASS_CODE | PCIE_REVISION_ID,
-+	       port->base + PCIE_CONF_REV_CLASS);
-+	writel(EN7528_HOST_MODE, port->base);
-+
-+	link_mask = (port->slot == 0) ? EN7528_RC0_LINKUP : EN7528_RC1_LINKUP;
-+
-+	/* 100ms timeout value should be enough for Gen1/2 training */
-+	err = regmap_read_poll_timeout(pcie->cfg, EN7528_LINKUP_REG, val,
-+				       !!(val & link_mask), 20,
-+				       PCI_PM_D3COLD_WAIT * USEC_PER_MSEC);
-+	if (err) {
-+		dev_err(pcie->dev, "EN7528: port%d link timeout\n", port->slot);
-+		return -ETIMEDOUT;
-+	}
-+
-+	/* Activate INTx interrupts */
-+	val = readl(port->base + PCIE_INT_MASK);
-+	val &= ~INTX_MASK;
-+	writel(val, port->base + PCIE_INT_MASK);
-+
-+	if (IS_ENABLED(CONFIG_PCI_MSI))
-+		mtk_pcie_enable_msi(port);
-+
-+	/* Set AHB to PCIe translation windows */
-+	val = lower_32_bits(mem->start) |
-+	      AHB2PCIE_SIZE(fls(resource_size(mem)));
-+	writel(val, port->base + PCIE_AHB_TRANS_BASE0_L);
-+
-+	val = upper_32_bits(mem->start);
-+	writel(val, port->base + PCIE_AHB_TRANS_BASE0_H);
-+
-+	writel(WIN_ENABLE, port->base + PCIE_AXI_WINDOW0);
-+
-+	return 0;
-+}
-+
- static void __iomem *mtk_pcie_map_bus(struct pci_bus *bus,
- 				      unsigned int devfn, int where)
- {
-@@ -1149,6 +1234,46 @@ static int mtk_pcie_probe(struct platform_device *pdev)
- 	if (err)
- 		goto put_resources;
- 
-+	/* EN7528 PCIe initially comes up as Gen1 even if Gen2 is supported.
-+	 * The cannonical way to achieve Gen2 is to re-train the link
-+	 * immediately after setup. However, to save a lot of duplicated code
-+	 * we use pcie_retrain_link() which is usable once we have the pci_dev
-+	 * struct for the bridge, i.e. after pci_host_probe(). */
-+	if (pcie->soc->quirks & MTK_PCIE_RETRAIN) {
-+		int slot = of_get_pci_domain_nr(dev->of_node);
-+		struct pci_dev *rc = NULL;
-+		int ret = -ENOENT;
-+
-+		if (slot >= 0)
-+			rc = pci_get_slot(host->bus, PCI_DEVFN(slot, 0));
-+
-+		if (rc) {
-+			ret = -EOPNOTSUPP;
-+
-+			/* pcie_retrain_link() is not an exported symbol but
-+			 * this driver supports being built as a loadable
-+			 * module. Someone using this on an EN7528 should make
-+			 * it builtin, or accept Gen1 PCI. */
-+#if IS_BUILTIN(CONFIG_PCIE_MEDIATEK)
-+			ret = pcie_retrain_link(rc, true);
-+#endif
-+		}
-+
-+		if (ret) {
-+			dev_info(dev, "port%d failed to retrain %pe\n", slot,
-+				 ERR_PTR(ret));
-+		} else {
-+			u16 lnksta;
-+			u32 speed;
-+
-+			pcie_capability_read_word(rc, PCI_EXP_LNKSTA, &lnksta);
-+			speed = lnksta & PCI_EXP_LNKSTA_CLS;
-+
-+			dev_info(dev, "port%d link retrained, speed %s\n", slot,
-+				 pci_speed_string(pcie_link_speed[speed]));
-+		}
-+	}
-+
- 	return 0;
- 
- put_resources:
-@@ -1264,8 +1389,16 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
- 	.quirks = MTK_PCIE_FIX_CLASS_ID | MTK_PCIE_FIX_DEVICE_ID,
- };
- 
-+static const struct mtk_pcie_soc mtk_pcie_soc_en7528 = {
-+	.ops = &mtk_pcie_ops_v2,
-+	.startup = mtk_pcie_startup_port_en7528,
-+	.setup_irq = mtk_pcie_setup_irq,
-+	.quirks = MTK_PCIE_RETRAIN,
-+};
-+
- static const struct of_device_id mtk_pcie_ids[] = {
- 	{ .compatible = "airoha,an7583-pcie", .data = &mtk_pcie_soc_an7583 },
-+	{ .compatible = "econet,en7528-pcie", .data = &mtk_pcie_soc_en7528 },
- 	{ .compatible = "mediatek,mt2701-pcie", .data = &mtk_pcie_soc_v1 },
- 	{ .compatible = "mediatek,mt7623-pcie", .data = &mtk_pcie_soc_v1 },
- 	{ .compatible = "mediatek,mt2712-pcie", .data = &mtk_pcie_soc_mt2712 },
--- 
-2.39.5
+Changes in v2:
+- Fixed errors in focaltech,ota7290b and waveshare,dsi-touch-gpio schemas
+- Split the JD9365 patch, making the changes more obvious (and
+  describing panel classes)
+- Cleaned up GPIO driver: moved NUM_GPIOS from the enum, switched to
+  guard(), added regmap error handling, dropped
+waveshare_gpio_i2c_read() (Bartosz)
+- Link to v1: https://patch.msgid.link/20260401-waveshare-dsi-touch-v1-0-5e9119b5a014@oss.qualcomm.com
+
+---
+Dmitry Baryshkov (21):
+      dt-bindings: display/panel: himax,hx83102: describe Waveshare panel
+      dt-bindings: display/panel: himax,hx8394: describe Waveshare panel
+      dt-bindings: display/panel: jadard,jd9365da-h3: describe Waveshare panel
+      dt-bindings: display/panel: ilitek,ili9881c: describe Waveshare panel
+      dt-bindings: dipslay/panel: describe panels using Focaltech OTA7290B
+      drm/of: add helper to count data-lanes on a remote endpoint
+      drm/panel: himax-hx83102: support Waveshare 12.3" DSI panel
+      drm/panel: himax-hx8394: set prepare_prev_first
+      drm/panel: himax-hx8394: simplify hx8394_enable()
+      drm/panel: himax-hx8394: support Waveshare DSI panels
+      drm/panel: jadard-jd9365da-h3: use drm_connector_helper_get_modes_fixed
+      drm/panel: jadard-jd9365da-h3: support variable DSI configuration
+      drm/panel: jadard-jd9365da-h3: set prepare_prev_first
+      drm/panel: jadard-jd9365da-h3: support Waveshare round DSI panels
+      drm/panel: jadard-jd9365da-h3: support Waveshare WXGA DSI panels
+      drm/panel: jadard-jd9365da-h3: support Waveshare 720p DSI panels
+      drm/panel: ilitek-ili9881c: support Waveshare 7.0" DSI panel
+      drm/panel: add devm_drm_panel_add() helper
+      drm/panel: add driver for Waveshare 8.8" DSI TOUCH-A panel
+      dt-bindings: gpio: describe Waveshare GPIO controller
+      gpio: add GPIO controller found on Waveshare DSI TOUCH panels
+
+ .../bindings/display/panel/focaltech,ota7290b.yaml |   70 +
+ .../bindings/display/panel/himax,hx83102.yaml      |    2 +
+ .../bindings/display/panel/himax,hx8394.yaml       |    2 +
+ .../bindings/display/panel/ilitek,ili9881c.yaml    |    2 +
+ .../bindings/display/panel/jadard,jd9365da-h3.yaml |    6 +
+ .../bindings/gpio/waveshare,dsi-touch-gpio.yaml    |  100 ++
+ drivers/gpio/Kconfig                               |   10 +
+ drivers/gpio/Makefile                              |    1 +
+ drivers/gpio/gpio-waveshare-dsi.c                  |  208 +++
+ drivers/gpu/drm/drm_of.c                           |   34 +
+ drivers/gpu/drm/drm_panel.c                        |   23 +
+ drivers/gpu/drm/panel/Kconfig                      |   13 +
+ drivers/gpu/drm/panel/Makefile                     |    1 +
+ drivers/gpu/drm/panel/panel-focaltech-ota7290b.c   |  226 +++
+ drivers/gpu/drm/panel/panel-himax-hx83102.c        |  144 +-
+ drivers/gpu/drm/panel/panel-himax-hx8394.c         |  279 +++-
+ drivers/gpu/drm/panel/panel-ilitek-ili9881c.c      |  251 +++-
+ drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c   | 1577 ++++++++++++++++++--
+ include/drm/drm_of.h                               |   13 +
+ include/drm/drm_panel.h                            |    1 +
+ 20 files changed, 2833 insertions(+), 130 deletions(-)
+---
+base-commit: efcd474ed273ae7da614b30e798651c6d57d3109
+change-id: 20260401-waveshare-dsi-touch-e1717a1ffc40
+
+Best regards,
+--  
+With best wishes
+Dmitry
 
 
