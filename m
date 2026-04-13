@@ -1,166 +1,210 @@
-Return-Path: <devicetree+bounces-287119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287121-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cJ1BKbtR3WkFcQkAu9opvQ
-	(envelope-from <devicetree+bounces-287119-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 22:27:39 +0200
+	id skztI/tl3WmydgkAu9opvQ
+	(envelope-from <devicetree+bounces-287121-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 23:54:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 231AF3F3177
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 22:27:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E55903F3A2F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 23:54:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 199673030997
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 20:27:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 70B013027316
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 21:54:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4E1394785;
-	Mon, 13 Apr 2026 20:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B4E8358379;
+	Mon, 13 Apr 2026 21:53:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mWzZNZY7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R2geWxAe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC054393DE0;
-	Mon, 13 Apr 2026 20:27:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF38034DCF3
+	for <devicetree@vger.kernel.org>; Mon, 13 Apr 2026 21:53:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776112056; cv=none; b=oiB6FzbfsfxXoVR6gJu1eU6dKMKyb8q/msrx2XoS+C2nbd7Qu3E4ZgqklanxFK4nK8gTh/xjE2SxsgWEx8f2HH8AvN8C2l4pekrLqI7I/82qqgujHwTxIX90lo0AY82Rbr7bMINBhVnEg0D+CmQrvM98Tj62/vZj3wL+djO3Flo=
+	t=1776117238; cv=none; b=nPI921N3QcvSD4lbut8lVe3hxzs+qxYwls7Pntls3qc9HyI8I61w1WalZ+xn+iOukQRHh1awXrZsn/BxGIfH3Z2JiuVw7GhQOBMsT4Y9fvHvENhQ1l7rEPKIlH4QY09m0bZtvsPyZc/4cmnG+mlXFwQWeCzZLNAUzh/hZXw3reM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776112056; c=relaxed/simple;
-	bh=6yofSQLj+gW5ePwKJizrWlHOQntWXc7yHgiMuUR/QC4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DzEP73cQpUJpcBpXL8i2UR/GOGrP3EdjfIwM8hIjnG/uNBA5UkMHUjEpOhjlAUJZU8Xc6jNai3iB4bgG1hOUHzTDWJW1ApwS6f8K8vj8hEN7byzTHgGwzVXVSZUmI8nOlfLoI3O6rKuUnHskKeqk6JMJe7Bt8F410AEO2XQVagE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mWzZNZY7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 086CAC2BCAF;
-	Mon, 13 Apr 2026 20:27:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776112056;
-	bh=6yofSQLj+gW5ePwKJizrWlHOQntWXc7yHgiMuUR/QC4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mWzZNZY7tBqVHisz5/TAuMVz5TwYyVIrJsX2ylAlDYRVokTuIo5Bszo7eLA4Qynxp
-	 lxS1eKsHMcVwYP52rBrfR27Pa4yrhzLJHiESqYKIoA0fVWL+ro0SPvkTiRY9VM2+0p
-	 x/Aq7TOWJVGFwZINF46Bfu2mEIGDBpejfOpskTy8eAJHAir8Dj9VrX7VjW61Y7v6+W
-	 w8Y6P6VbTuBha74LE3s4zK+JdtTWCNzvamxsZz0OECIkT+Xbx/AQLHGyhM5FGv9yHS
-	 9ASdk+UPEaN2ecqhnGIUwF2kgGaMvId6IRX7l3QxDM7ov93KyvFfoXhrv2csydSsmF
-	 p6huCDnuQQocA==
-Date: Mon, 13 Apr 2026 22:27:33 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: George Moussalem <george.moussalem@outlook.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Devi Priya <quic_devipriy@quicinc.com>
-Subject: Re: [PATCH v21 2/6] pwm: driver for qualcomm ipq6018 pwm block
-Message-ID: <ad1RFmg0AEb7hudQ@monoceros>
-References: <20260406-ipq-pwm-v21-0-6ed1e868e4c2@outlook.com>
- <20260406-ipq-pwm-v21-2-6ed1e868e4c2@outlook.com>
- <ady2pLwiNT9FffF7@monoceros>
- <DS7PR19MB888389B41E784995F064EE0B9D242@DS7PR19MB8883.namprd19.prod.outlook.com>
+	s=arc-20240116; t=1776117238; c=relaxed/simple;
+	bh=GduQs4mnC0TiWfiB1zr130rkIiYVwmD7FjRW7S78JNA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Fu7dd4csICBe9RfsDnbOKCcmDN1MlB8+XUWfk7mYrLnqHNsMTvKP83sCTROof6HbaSdhNluwSzyBzrGdIe92UvXpz1huC4I+jdGmGAFN/41+vgD4Cr5iwJxqz6wYwVMMVDVy5ttIaCQmkeJ6evq198FGkPMZwqp012iP5Ynwc6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R2geWxAe; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-59de8155501so5403877e87.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Apr 2026 14:53:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1776117235; x=1776722035; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AOXMNTIIXoqpY3VFkb3PMLMzullDNaoQaiXPYXq2Yho=;
+        b=R2geWxAeqwzXUuZtu0Fq5QRkt0BS9SE0GZAksYUusqzxQPNXKVT2WbnKq+eNUPMtog
+         qI9ZopWTBqgjUqRa1B/sW23zLEq7Q7nlqUUPUg3Q272Mlnh8Ti4B7X489ieiqNCNc/5M
+         9u8NW5LZT6+gbumOABm9iFVD+Y0RFQQTA1vcaJZmwwu5uKgdz/Yn+r0/2aGKwntcC6Yz
+         VIVQtsfQxoqc5uwV3rbLaDXnvM+EpMF4cU65o/zwysj8ItP8K2a0r9h2JXR9Q//yC/vL
+         ulLQ9trTOsFwHeiy8S+WoImxtUwc1H11KDHHSEEEChrRHNL8W1GA2UtDdZ0MoxKfAPwN
+         4BWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776117235; x=1776722035;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AOXMNTIIXoqpY3VFkb3PMLMzullDNaoQaiXPYXq2Yho=;
+        b=rBHWK8Q208e0EAB6oQ2fLkfbdzn/FdhXNVEmmJiPHBlJKNTQmuokhVgylK6YBZEeyw
+         Gr/gUNUIpEiKlJycUxJ+I6cwZcLGebJwhNiIe0DfTKGpTbNbhf4AqH/ve82ViA9bLlJD
+         u/DAncQ2AaRvU7jtCCLxpVi2CHI9QXoFQ99kDr1vVMkCnisEw5luEzmRzlRq/zjaTG+A
+         QJID43v2odfJiIiQNr0TeHHr5YIfWvOzF7IEovNPB0r1kHuxLnIrlTDwS1mLFYPfQrZN
+         72ixqud35bCX9BZO3HxENQjNS8K7pi12maxEBedv6yqWVhk8NwZcSD8BYTGXH2pt6Jbv
+         VPlA==
+X-Forwarded-Encrypted: i=1; AFNElJ+cL80TKuF/2icd32oNWLno1RzUFrEsdQc9opR1ZUVkQpK4rdBnUxwOHTBkbKb/MLwl9wuaoY0QXMDz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxjlHyEkmQeMcx0ivKv5nCjJoPqNNujfUg/b3Pl0cGJoP3NDXP
+	1VWrnmgsmMwyvAmkuIOUTWz3DHEjza61uWsjheXIQt56ONoyOm84L803
+X-Gm-Gg: AeBDieuvvqerhuyoIJ3sgNilsON/fDKt25Xba8i9do2HMgtUeEiB3UHa3lNhbvaZxNf
+	tOBlUK+6sf2yxj5nDzv3WVPJ4xpaB7errj2FI9kwhCov6b5fZ3LQC49Q+jaTyan0ScaFe2/elMr
+	xQzUg5su+R73RhWmCfP3CNycDGV8h6nM2K7uL+ZTPn0XPnVOI9HQzKJBmXPvScr7dGqM9bQu1BB
+	nPeYhvb1lLad4hMgeDbkODEb1uWd503NSJY1AGlzS748R6F18uuErwWKf9Jpr1oLpJAUmqo07aI
+	+Hl1CZa36ItWKa7q3GHMirRHkZQCofx3C5sMg1aXv4xQ5Oy26NvJPdCHWDRS1rxgdjg8Ra/HnSI
+	lAUnMNMBfHP3R79XNHPoZRF0+Fm3eZr/M/Xqx1JunTC7A3bDQ0wFAz1sovxDscT17WJNC9RYz9o
+	e8TGCR22pb8II7g2n4WWSTNRppbVjvUC4AMlDPYWN0q9sZJMV7vuy/IMEZxfl+rh35F0Ug0e/mv
+	K4uMYkCG9t7/E+4sWbCmHKXXOfW4g==
+X-Received: by 2002:a05:6512:108d:b0:5a4:d4:5c5e with SMTP id 2adb3069b0e04-5a400d45e20mr1006936e87.22.1776117234891;
+        Mon, 13 Apr 2026 14:53:54 -0700 (PDT)
+Received: from rocky.so.lan (9091-40f8-8d6a-8ea6-6a01-841a-07d0-2001.dyn.estpak.ee. [2001:7d0:841a:6a01:8ea6:8d6a:40f8:9091])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a3fe65214fsm806370e87.49.2026.04.13.14.53.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Apr 2026 14:53:53 -0700 (PDT)
+From: Sten-Silver Ots <stensilver@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Sten-Silver Ots <stensilver@gmail.com>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Torsten Duwe <duwe@lst.de>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Enable the NPU on rk3588-rock-5-itx
+Date: Tue, 14 Apr 2026 00:52:49 +0300
+Message-ID: <20260413215301.4656-1-stensilver@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bhhp4rpnsyfcrsua"
-Content-Disposition: inline
-In-Reply-To: <DS7PR19MB888389B41E784995F064EE0B9D242@DS7PR19MB8883.namprd19.prod.outlook.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287119-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[outlook.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,radxa.com,lst.de,oss.qualcomm.com,rock-chips.com,vger.kernel.org,lists.infradead.org];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-287121-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ukleinek@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stensilver@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.987];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,outlook.com:email]
-X-Rspamd-Queue-Id: 231AF3F3177
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.42:email]
+X-Rspamd-Queue-Id: E55903F3A2F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This commit enables the NPU on Radxa Rock 5 ITX board.
+The regulator vdd_npu_s0 was already in place and since the NPUs
+power domain supply is now described remove the always-on property
+from the regulator.
 
---bhhp4rpnsyfcrsua
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v21 2/6] pwm: driver for qualcomm ipq6018 pwm block
-MIME-Version: 1.0
+Signed-off-by: Sten-Silver Ots <stensilver@gmail.com>
+---
+ .../boot/dts/rockchip/rk3588-rock-5-itx.dts   | 35 ++++++++++++++++++-
+ 1 file changed, 34 insertions(+), 1 deletion(-)
 
-Hello George,
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+index de154adb1497..d3ab6c68a60b 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+@@ -421,7 +421,6 @@ vdd_npu_s0: regulator@42 {
+ 		reg = <0x42>;
+ 		fcs,suspend-voltage-selector = <1>;
+ 		regulator-name = "vdd_npu_s0";
+-		regulator-always-on;
+ 		regulator-boot-on;
+ 		regulator-min-microvolt = <550000>;
+ 		regulator-max-microvolt = <950000>;
+@@ -683,6 +682,10 @@ &pd_gpu {
+ 	domain-supply = <&vdd_gpu_s0>;
+ };
+ 
++&pd_npu {
++	domain-supply = <&vdd_npu_s0>;
++};
++
+ &pinctrl {
+ 	hym8563 {
+ 		rtc_int: rtc-int {
+@@ -802,6 +805,36 @@ dp1_hpd: dp1-hpd {
+ 	};
+ };
+ 
++&rknn_core_0 {
++	npu-supply = <&vdd_npu_s0>;
++	sram-supply = <&vdd_npu_s0>;
++	status = "okay";
++};
++
++&rknn_core_1 {
++	npu-supply = <&vdd_npu_s0>;
++	sram-supply = <&vdd_npu_s0>;
++	status = "okay";
++};
++
++&rknn_core_2 {
++	npu-supply = <&vdd_npu_s0>;
++	sram-supply = <&vdd_npu_s0>;
++	status = "okay";
++};
++
++&rknn_mmu_0 {
++	status = "okay";
++};
++
++&rknn_mmu_1 {
++	status = "okay";
++};
++
++&rknn_mmu_2 {
++	status = "okay";
++};
++
+ &pwm14 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pwm14m1_pins>;
+-- 
+2.53.0
 
-On Mon, Apr 13, 2026 at 11:17:18PM +0400, George Moussalem wrote:
-> On 4/13/2026 1:35 PM, Uwe Kleine-K=F6nig wrote:
-> > On Mon, Apr 06, 2026 at 10:24:39PM +0200, George Moussalem via B4 Relay=
- wrote:
-> >> From: Devi Priya <quic_devipriy@quicinc.com>
-> >>
-> >> Driver for the PWM block in Qualcomm IPQ6018 line of SoCs. Based on
-> >> driver from downstream Codeaurora kernel tree. Removed support for old=
-er
-> >> (V1) variants because I have no access to that hardware.
-> >>
-> >> Tested on IPQ5018 and IPQ6010 based hardware.
-> >>
-> >> Co-developed-by: Baruch Siach <baruch.siach@siklu.com>
-> >> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
-> >> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> >> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-> >> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
-> >=20
-> > I have a few remaining nitpicks. If you're ok I'll squash the following
-> > diff into this patch and apply it:
->=20
-> Just applied it to my own branch, all okay from my side. Thanks for your
-> guidance and support!
-
-I did that and added a ; to make the compiler happy. It is now contained
-at
-https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
-nexxt
-as 7.2-rc1 material. I'll push it into next after the merge window
-closes in ~ two weeks.
-
-Best regards and thanks for work
-Uwe
-
---bhhp4rpnsyfcrsua
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmndUbIACgkQj4D7WH0S
-/k5qHwf9EyYDJxkItQQ8h2TnnUjFw/Gtpwym37kt7l4VGsrVlHX6YBTycxXCXH7s
-VNWNACZRjum7xCCpPmz4VAl4zTgWgEx7+ex8VuNbv65fcrSl6i3PBFUuGA/y0KRl
-+az3cRlBjn8ByJOrdNCbN6CU8W19mPJJQRR5xWPQyglvp8fng+zzJh6IP+GFC0AD
-WS0v07e4h8EsKceHh+IcVpd6WgCyB6dLEbhOB0zNk5T28NrN0Rv+fM1/BzheTekN
-l/gOJVtH/EE+3VviRU9B55fpHEIJokOoHghOpgvmTYYhvzG/eriVsVOqrBW681MQ
-y4Xyyq/MgtbXa0i0xl+kyoGSt07qrA==
-=QXzN
------END PGP SIGNATURE-----
-
---bhhp4rpnsyfcrsua--
 
