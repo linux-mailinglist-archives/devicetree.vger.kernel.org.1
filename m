@@ -1,67 +1,64 @@
-Return-Path: <devicetree+bounces-286885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286886-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GH+RO7qS3Gl9TAkAu9opvQ
-	(envelope-from <devicetree+bounces-286885-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 08:52:43 +0200
+	id wKFHFRmT3GkkTQkAu9opvQ
+	(envelope-from <devicetree+bounces-286886-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 08:54:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A2A33E7F79
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 08:52:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F30CC3E7FE5
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 08:54:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A9DD4301C95E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 06:52:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 867AE3012C92
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 06:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3BE43859D9;
-	Mon, 13 Apr 2026 06:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF7723921DF;
+	Mon, 13 Apr 2026 06:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SYNH6BTE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i1ry5J7u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F21C1FC101;
-	Mon, 13 Apr 2026 06:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9967535F5E2;
+	Mon, 13 Apr 2026 06:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776063121; cv=none; b=LxmSQNEdm3pSiTvGMPsKow/49Ov7t7Oxs6+xEhCM0PVLafMt9FfcTV5yPiglbVU8jd08lKZgpZtByVne7rGBlNppb4ZWsQWdGPErFtIwuIKCznla2/BJc9aHmsBO8ZQ0g7eX0R7YuC3wjwggEDp91p7QXOj+qMQ8DS0NgGWUEx4=
+	t=1776063243; cv=none; b=hh/esd0ccmXBKBeIltcD/NBDwo5vASOnUCP/Ctv4JMcUkcpg90wArnW1WfpuN53OwpG3VqdpPxiXbYqdxvNvZxNGYgGewgCwX07xQ/kJ069FWmawlHPauwjsu+pRmk8ry27762VYoldRr3boCLhZwK/t7HJXfF/VxdzKRjmpsXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776063121; c=relaxed/simple;
-	bh=zUqAAQfxQkgm1L+orXnWkgiT2yfCQDcQl2Ic8bOCAt8=;
+	s=arc-20240116; t=1776063243; c=relaxed/simple;
+	bh=5ABNB8VOMVObtOFIQIy3h/bbDRmjGyrH103S1pSZws0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LOUuZSEqm/CxqCFSxkMQdS930AGOZL+aZ0PmAeVGTLAm5UonHTNBcw81k4mSLPD1dHIZs0RVqgJ5fI2G6hjgHQzSgzX+3TevvOG5jvjEsYd9TDnjahFq9kZvwCsgW2yBXrfncNLIETwilLxXFIQw3AFBvZbgq9j55PXzW+ScACY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SYNH6BTE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAE24C2BCB1;
-	Mon, 13 Apr 2026 06:52:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jYpBWiSIdHv4IuCyCGjJdz9YgKKvXPEnY0XfNQKw2q/0pmzGDWLURiUas0e1W+jPkEVdDbOQNtjRvvsYIAcNSTd78tSCAjTd3ezeCvjKairRx0Ct4KprQ5nn/wjv2kKizJWJpzVrBoKU6pmpwSJTZ/2o2XOTrXtifoz8wi0R+Yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i1ry5J7u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEBB4C2BCB0;
+	Mon, 13 Apr 2026 06:54:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776063121;
-	bh=zUqAAQfxQkgm1L+orXnWkgiT2yfCQDcQl2Ic8bOCAt8=;
+	s=k20201202; t=1776063243;
+	bh=5ABNB8VOMVObtOFIQIy3h/bbDRmjGyrH103S1pSZws0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SYNH6BTENC4BdUvaXolabjGi1gFboGAhzv/4yOxAfwDslD7CrfvkgvvWqQmC2+10C
-	 TpTM4WTvIOMMpAjcE09IBwNeGgsCZKf9/6D0jL7HQbj3K79SYBJ95tmJWhvp2wbR5L
-	 AZ3CN0ENARZ+Oe7uGXq40Q8UzJ+rD0lr/1/FlLG1ch6rx4zYns3cNXNG8RnYtJCiCg
-	 FvwBzKLd+vqxR2a/sKGHNmcoebIMHjleFBPx9/ZUx+d6fLwcqgUtnWhGxRpK2h/1vB
-	 xh1nWhy3IacGpAXO6Dp4iEogQ2GYElSQj/zazf0q6xaHIvKCmMXo7btkINAKT/3Zaq
-	 BQ/jC9upJd/mA==
-Date: Mon, 13 Apr 2026 08:51:58 +0200
+	b=i1ry5J7udu20WdcsYFAq4MSVTOwiqiR838HoyG2yPoBUC37/HBgRTvs0lIW63SCuV
+	 Rw925Ey72cprXnUK+vub28eLR7Pcw+Pv5jyL7RC/7ODylVq+qi6uWUyICVKVTnzmWD
+	 ptE77WJllDh9UnEekclDOGja78KqP75M+B1n/vQh9z1myTiNHE2ZOPyPXTD3TKHnLd
+	 tzfMaoAO7BXLzhnyyxHRjefv+jSG0bqHACJazeac4z/ko/kd3s0+IlTHkx1RnH2u/p
+	 zXxH0I5H+XQmAtGso+cyyIrfisv0jyJuEqchYJ/70cE4Xn3WnlltYd5MitqeXgDZKM
+	 kGOHBperz0WUQ==
+Date: Mon, 13 Apr 2026 08:54:00 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <jesszhan0024@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, 
+	Daniel Lezcano <daniel.lezcano@kernel.org>, Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, Joseph Guo <qijian.guo@nxp.com>, 
-	Marek Vasut <marek.vasut+renesas@mailbox.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: waveshare,dsp2dpi: describe
- DSI2LVDS setup
-Message-ID: <20260413-thick-lionfish-of-dignity-19d6e9@quoll>
-References: <20260412-ws-lcd-v3-0-db22c2631828@oss.qualcomm.com>
- <20260412-ws-lcd-v3-1-db22c2631828@oss.qualcomm.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 07/10] dt-bindings: timer: renesas,rz-mtu3: document
+ RZ/{T2H,N2H}
+Message-ID: <20260413-hairy-dove-of-criticism-97c3da@quoll>
+References: <20260410163530.383818-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20260410163530.383818-8-cosmin-gabriel.tanislav.xa@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,7 +67,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260412-ws-lcd-v3-1-db22c2631828@oss.qualcomm.com>
+In-Reply-To: <20260410163530.383818-8-cosmin-gabriel.tanislav.xa@renesas.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
@@ -81,14 +78,14 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286885-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286886-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,ravnborg.org,nxp.com,mailbox.org,intel.com,ideasonboard.com,kwiboo.se,lists.freedesktop.org,vger.kernel.org];
+	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,glider.be,gmail.com,baylibre.com,pengutronix.de,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -99,27 +96,31 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: 6A2A33E7F79
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,renesas.com:email,qualcomm.com:email]
+X-Rspamd-Queue-Id: F30CC3E7FE5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, Apr 12, 2026 at 08:32:24PM +0300, Dmitry Baryshkov wrote:
-> Several the Waveshare DSI LCD panel kits use DSI2LVDS ICN6202 bridge
-> together with the LVDS panels. Define new compatible for the on-kit
-> bridge setup (it is not itmized and it uses Waveshare prefix since the
-> rest of the integration details are not known).
+On Fri, Apr 10, 2026 at 07:35:27PM +0300, Cosmin Tanislav wrote:
+> Compared to the previously supported SoCs, the Renesas RZ/T2H and RZ/N2H
+> SoCs do not have a reset line.
 > 
-> Note: the ICN6202 / ICN6211 bridges are completely handled by the board
-> itself, they should not be programmed by the host (which otherwise might
-> override correct params), etc. As such, it doesn't make sense to use
-> those in the compat strings. I consider those to be an internal detail
-> of the setup.
+> Add support for them by moving the required reset into a conditional
+> matching all compatibles for the existing SoCs. Disable the resets for
+> RZ/T2H and RZ/N2H.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> Document RZ/T2H and RZ/N2H, and use the generic compatible as a
+> fallback, as functionality is the same.
+> 
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 > ---
->  .../devicetree/bindings/display/bridge/waveshare,dsi2dpi.yaml    | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> V2:
+>  * squash "move required resets to conditional" into this
+>  * disable the resets in the else branch of the condition
+> 
+>  .../bindings/timer/renesas,rz-mtu3.yaml       | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
