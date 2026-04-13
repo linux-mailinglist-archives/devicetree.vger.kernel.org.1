@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-286910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-286912-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNuZMvak3GkEUgkAu9opvQ
-	(envelope-from <devicetree+bounces-286910-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 10:10:30 +0200
+	id aNDmMIij3GkEUgkAu9opvQ
+	(envelope-from <devicetree+bounces-286912-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 10:04:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 267623E8E2E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 10:10:29 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 737763E8C10
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 10:04:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1D2DB3057488
-	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 08:02:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 21B68302AF35
+	for <lists+devicetree@lfdr.de>; Mon, 13 Apr 2026 08:03:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FBDC3A5E61;
-	Mon, 13 Apr 2026 08:02:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44D113A6B8C;
+	Mon, 13 Apr 2026 08:02:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W/cLTJHa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="awIaZizJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47FC3A4F2F
-	for <devicetree@vger.kernel.org>; Mon, 13 Apr 2026 08:02:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E4B5332EBD
+	for <devicetree@vger.kernel.org>; Mon, 13 Apr 2026 08:02:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776067366; cv=none; b=h+MyAinL2iki7s1vk2UMIf0YkPHuaVIG3Eol3378f4tYEoRfj2wBBqHGMD44Y++MKGvjhyYJPp0dml2LeJ/JUQdTb5qGs4IIf5sSOy1oBvJ3TQf2jrL6TtaQfSkWdbz0BGSGnDc5H85RA6L3/GrYzMgnfB+pqrlnCDoHAbrJ+Io=
+	t=1776067369; cv=none; b=sjGQZ9Q0icgGE9lxFlOTCBZKVmj/2OLS4aDsf03j947mn86BfpLjvqEszug4nla+vOtJLw86N1TOAZS8g2HSSes/dYLcTh+QIj4Z3don82bw3UA9iDxDuJAeaLXzxVW0RC0hTJCuqAvErgtZsNXt7u2wIfc19JiDQML37MIBgeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776067366; c=relaxed/simple;
-	bh=GAdxD2ODxB/c86QgzU3hy4MnLe5aqdkbVZkALteNG0s=;
+	s=arc-20240116; t=1776067369; c=relaxed/simple;
+	bh=eVrkEXLP+791DyS5CNA9zSUQG9FyxWIPqUaZlx8PVx8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ep5yW+qV1VL/IarWE0aIhTMQarpnF+pIt3yaW7hKbmVzw1WP30fz+79Gdui3tIF2agDH2tXgVVxVUWvFCf8l/UkYjGE2dDooH9uCmQSxtE3VSww8BxD/SptB2PSZi88uSwdn2fuAZhvJDf2m3zzGVWdxYOJ1c+UejKlR7Etxm9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W/cLTJHa; arc=none smtp.client-ip=209.85.221.50
+	 In-Reply-To:To:Cc; b=JygiMZSLcm5WkFEaG66kqDb45Rwwy90/yK8GH4kzVp4v0r6b6ntQtwtu954NxB5FuvhynUL4sXvV4zaz67tDvl8Ac/yIK/ZZR40pI33M+n0B6Vya9z5XKu9poB4Z4Pu/ZM+oIrwm527BbnWvZh3S9NB5+vZ9zIVogzL+sd9Iwlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=awIaZizJ; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-43d7a5e77b1so272925f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Apr 2026 01:02:43 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-43d76dd4ee8so758751f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Apr 2026 01:02:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1776067362; x=1776672162; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1776067364; x=1776672164; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sLi9neqVCeiJM5TwaR6TR5n9frPeJnqk3U/FYZfnxS4=;
-        b=W/cLTJHa+fsNjKUiLEu3ftQNWY/X9HLXCU83SM4ixmldYutnejFZdI541vkftlpzGR
-         z19p2VleYApXZzl2pKAf0Qd62YmUmFVTvj4GzCSw/2SmOY0+6IWICLm3UQW9+yc2K7T2
-         e1TIogz2DAJ+t6my/tHmyzXxIJVyTDci1Yodp4XDNRPDafqYKNkTapUv6cVDdtghUvQr
-         mt30qFuAexz6tG0sWi5nGq+ebXKR5DDZ1n2Gz+94onRIiOp3bCqjRw8Z4F6glsHusDIS
-         Lzfa0hPNlhn7BvTWOLr2ybE1Wx3QtjKHsiB/h7VU5U9M1qiXIeEdiOmqrZIWRLcYg5uB
-         ylTA==
+        bh=J1uRceIt6FZHOLqKiVcTKsVGt2IzySijGuQ2Z2k+iYk=;
+        b=awIaZizJtCS1nTBSvZeNWP1O43sz0ySsJWcKvGxYvWDqoJ1nfCqkVy47BHaVvy4Wbq
+         u6epnqDgYDuj1WXO2uxtdu+KdpZAo8zaazg1G2xVaav4YqQP07bKQu9PO+Y7KZNYmKt3
+         J0tImueuHDMasMwz9rf/QcRlhPUE9pzWcj5MnIXLB1x/2xpuZrvqwJdBBJ+sWogXFLZE
+         2pfY4kZ7lZTbtnIY0x5dr1iGPCX6kk4KKwmcntATr00+qEnZTm9UjcVeZ3Z+GrJsi7ld
+         orM5Y9A+Zeu/xwTyVM/s3mz089KtwHtpC6FYG2xc4c/W94MUjurFmK280zI/7dEKg1ce
+         RijA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776067362; x=1776672162;
+        d=1e100.net; s=20251104; t=1776067364; x=1776672164;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=sLi9neqVCeiJM5TwaR6TR5n9frPeJnqk3U/FYZfnxS4=;
-        b=NL0Qpf9r8nNukpDXv7Vw40soGloFLYMhdBZLSz0GxS3So7SAyZxyVHOoMMtIknyMvi
-         MupR0g1SsrzrTt+4jQ1ioNI1Zpj/PQBK8wYwNXntxGPiUb7LpHReJ1Pu4u+ACm1sS+vz
-         mnlCMMZI3YzARqfGFDzQPdFZ0z8Xj5CoxhnrSgKRZn9Un2mbA615Y75eVkNnK1a8KYwS
-         Zmfya1ht3tJSFYIlFI9cnW7AgIgaNGwl5Crq0bHEtgSriCVRmjc+KD+6EsuiAqwrHya6
-         ba8x4RYcPPlp6/gK7cPUPbWp58nIxzC8wC7lq0jJrr0rgCfT8wG71Sm7aUTaOCEkIw0V
-         E1Vg==
-X-Forwarded-Encrypted: i=1; AFNElJ/2zXcATZaT8bCNs2ebyHsywfH6GvXkY+fy+pHlrAKrWcgU0H83mScBNYV9S90cOhBtit4rY54wMk1a@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFe6B0pKydkZ/dX7aD52jgN8JUR/zoDyMEntyQXcnxJ/XJ0k3a
-	9zcK+zEHYAIfra/heFqU56qKjY4OZwrwQIAQCbknqRfiJrf5lDwI3EYC
-X-Gm-Gg: AeBDieuDAYTeMcTlb1tkQqBQQqgJgKmtTHrPXZzdGgFmanRZBM1gNocphfwFFaIfoNe
-	brJ+SiPpbjNOSpvVW++vzlf/kzxKyvDaxBs6Ig0qx6pDGUFKjxUuGyipb7tsUPCT5I136e/BMtG
-	dTWa7GAA41dDFYYkDsTfPgXKe43OTkObM3o6y519LlFSbj0YVtswyld1N+QbqnTOSnh79OzI5zw
-	PgkaBHIhb0lplbbwjQJXLYdZk002SyyBdZsJTxJ7am9oOAHxEE+98xsDkQnvBhaSbKG4c9PVy0N
-	PbhXiZWlwbnU+dqW7KgdL16GiM+1FAFbSZgnHMyulNr/PNCVazPij3ZR8gFjKrgDLU1LohkFJbt
-	LPeo1dZFBj9We5lEp2bZEK0UTaFE7i/wm85zpoTgfagGCUpEfG19MAwZM80DyZOf+lY8k8TXkID
-	bIFvycKWycYgkYKXXe8xWWtAlPJ1k4R70wFoVNJP2jn/JvQp8D6qyNRJ4+Gs0RIQdo
-X-Received: by 2002:a05:6000:25ca:b0:43b:5091:39db with SMTP id ffacd0b85a97d-43d649740c0mr19026840f8f.13.1776067361775;
-        Mon, 13 Apr 2026 01:02:41 -0700 (PDT)
+        bh=J1uRceIt6FZHOLqKiVcTKsVGt2IzySijGuQ2Z2k+iYk=;
+        b=SVVEabbndCnoRZbNWBnzBmbKd+BhrOqHEoBMs21/nB7IjcTvf6eoF03TUlGl3VzM0b
+         XpgksuCSFDGmtqdZXGxmwtujTO7OiaU8tT5CZ4ZHDcte7gC6p63fV3Irxvb5hDUP4DkT
+         XCgT0l8n+YhRTiUrRbfh6uEI09tSq/Msb6BgaXBYQegXbU0dApvtiTWouT4enYUpL38w
+         uUNLZHEsJpRfR8rhpO9EeoCZeTDQV7HwmlbYnz22JApPs+YYNXH0rOE/MEnBphL5f4xE
+         PPLNJX+IQV0Fkj9/bfkgP8iE5mncFPII7lL3cTZv6bYGJ1yB4xVcC3ynXRgNB9Id0b3o
+         ZeRw==
+X-Forwarded-Encrypted: i=1; AFNElJ/rKPjzdMB54V9kdijTOiV4w7NYJRZwBHz0vy1RE4uII9gAJWC814ATJr4dPGdZuzMl2oZpR3/GFur3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyp+GcWUR55k1+kofEO5QESDTNCNNHQJoP3TbDqcbQJEjBmOlQW
+	absqA5+Rg/JY5/GXiIMOUA3Dwf08FQaxQbTEE9Nx+uqj4RrSmsdIR8Hv
+X-Gm-Gg: AeBDiesykEZJJ5o9o0k85+RqbZUipSfeoK58odmZX0kHGSPcGXo3cRMGXGBabv18JWT
+	VvcIpfsksXOP2gAhwKiQStqis20jbPURte8ZRWPMIjgeBCCZN4GFrecK8T72R+1s059Knyx9r7D
+	Oh9fspHIi8rZc+0t1+osNABR2KqzzZ6kAHP+nUcAZVSz20NgJOB8f8qiGfawsxGlEfOteHEXpCH
+	qH1yEjEgBHz0hLMHeYCcnuRSWbDaMofQxFfrWL+XLxHta1cL88yUvL5pF4p3hdk/GpnXFqVugcj
+	46mrSL803c+3AKFFGiol9iCDMTvn5kJWk+nz8Mw044YtDoDUTE8A99q8Yb2byxQceaXp8K9359g
+	lFRfU+pK5zUxyc/H9roN9B5CawFoo4Z2lXTf38NsLrWzyHOEYywOxXTeoNRO5sKc8MNEn3oh/yN
+	wyzYXdUIp32lTay/OU0F0sRR+u/987xNO5vvVU2PClFiKh5JTomaU1ME+CB/ZXL5Xg
+X-Received: by 2002:a05:6000:40cd:b0:43b:912c:25c7 with SMTP id ffacd0b85a97d-43d642c4f22mr17696379f8f.25.1776067363780;
+        Mon, 13 Apr 2026 01:02:43 -0700 (PDT)
 Received: from ipedrosa-thinkpadx1carbongen12.rmtes.csb ([67.218.239.37])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43d63e5c981sm32155932f8f.33.2026.04.13.01.02.39
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43d63e5c981sm32155932f8f.33.2026.04.13.01.02.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Apr 2026 01:02:41 -0700 (PDT)
+        Mon, 13 Apr 2026 01:02:43 -0700 (PDT)
 From: Iker Pedrosa <ikerpedrosam@gmail.com>
-Date: Mon, 13 Apr 2026 10:02:13 +0200
-Subject: [PATCH v8 4/9] mmc: sdhci-of-k1: add comprehensive SDR tuning
- support
+Date: Mon, 13 Apr 2026 10:02:14 +0200
+Subject: [PATCH v8 5/9] riscv: dts: spacemit: k1: add SD card controller
+ and pinctrl support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,8 +87,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260413-orangepi-sd-card-uhs-v8-4-c21c40ec16d0@gmail.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260413-orangepi-sd-card-uhs-v8-5-c21c40ec16d0@gmail.com>
 References: <20260413-orangepi-sd-card-uhs-v8-0-c21c40ec16d0@gmail.com>
 In-Reply-To: <20260413-orangepi-sd-card-uhs-v8-0-c21c40ec16d0@gmail.com>
 To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
@@ -110,11 +110,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-286910-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-286912-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -122,7 +122,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[23];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -133,238 +133,105 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email,intel.com:email,online.fr:email]
-X-Rspamd-Queue-Id: 267623E8E2E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[online.fr:email,d4280000:email,baylibre.com:email,d4281000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux.dev:email]
+X-Rspamd-Queue-Id: 737763E8C10
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Implement software tuning algorithm to enable UHS-I SDR modes for SD
-card operation and HS200 mode for eMMC. This adds both TX and RX delay
-line tuning based on the SpacemiT K1 controller capabilities.
+Add SD card controller infrastructure for SpacemiT K1 SoC with complete
+pinctrl support for both standard and UHS modes.
 
-Algorithm features:
-- Add tuning register definitions (RX_CFG, DLINE_CTRL, DLINE_CFG)
-- Conditional tuning: only for high-speed modes (≥100MHz)
-- TX tuning: configure transmit delay line with optimal values
-  (dline_reg=0, delaycode=127) to ensure optimal signal output timing
-- RX tuning: single-pass window detection algorithm testing full
-  delay range (0-255) to find optimal receive timing window
-- Retry mechanism: multiple fallback delays within optimal window
-  for improved reliability
+- Add sdhci0 controller definition with clocks, resets and interrupts
+- Add mmc1_cfg pinctrl for 3.3V standard SD operation
+- Add mmc1_uhs_cfg pinctrl for 1.8V UHS high-speed operation
+- Configure appropriate drive strength and power-source properties
+
+This provides complete SD card infrastructure that K1-based boards can
+enable.
 
 Tested-by: Anand Moon <linux.amoon@gmail.com>
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
 Tested-by: Trevor Gamblin <tgamblin@baylibre.com>
 Tested-by: Vincent Legoll <legoll@online.fr>
+Reviewed-by: Troy Mitchell <troy.mitchell@linux.dev>
 Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
 ---
- drivers/mmc/host/sdhci-of-k1.c | 172 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 172 insertions(+)
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi | 40 ++++++++++++++++++++++++++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi         | 13 +++++++++
+ 2 files changed, 53 insertions(+)
 
-diff --git a/drivers/mmc/host/sdhci-of-k1.c b/drivers/mmc/host/sdhci-of-k1.c
-index d9144537032a..37b0911e7cf2 100644
---- a/drivers/mmc/host/sdhci-of-k1.c
-+++ b/drivers/mmc/host/sdhci-of-k1.c
-@@ -69,6 +69,28 @@
- #define  SDHC_PHY_DRIVE_SEL		GENMASK(2, 0)
- #define  SDHC_RX_BIAS_CTRL		BIT(5)
- 
-+#define SPACEMIT_SDHC_RX_CFG_REG        0x118
-+#define  SDHC_RX_SDCLK_SEL0_MASK        GENMASK(1, 0)
-+#define  SDHC_RX_SDCLK_SEL1_MASK        GENMASK(3, 2)
-+#define  SDHC_RX_SDCLK_SEL1             FIELD_PREP(SDHC_RX_SDCLK_SEL1_MASK, 1)
+diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+index b13dcb10f4d6..b3c472a0783b 100644
+--- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+@@ -570,4 +570,44 @@ pwm14-1-pins {
+ 			drive-strength = <32>;
+ 		};
+ 	};
 +
-+#define SPACEMIT_SDHC_DLINE_CTRL_REG    0x130
-+#define  SDHC_DLINE_PU                  BIT(0)
-+#define  SDHC_RX_DLINE_CODE_MASK        GENMASK(23, 16)
-+#define  SDHC_TX_DLINE_CODE_MASK        GENMASK(31, 24)
-+
-+#define SPACEMIT_SDHC_DLINE_CFG_REG     0x134
-+#define  SDHC_RX_DLINE_REG_MASK         GENMASK(7, 0)
-+#define  SDHC_RX_DLINE_GAIN             BIT(8)
-+#define  SDHC_TX_DLINE_REG_MASK         GENMASK(23, 16)
-+
-+#define SPACEMIT_RX_DLINE_REG		9
-+#define SPACEMIT_RX_TUNE_DELAY_MIN	0x0
-+#define SPACEMIT_RX_TUNE_DELAY_MAX	0xFF
-+
-+#define SPACEMIT_TX_TUNING_DLINE_REG	0x00
-+#define SPACEMIT_TX_TUNING_DELAYCODE	127
-+
- struct spacemit_sdhci_host {
- 	struct clk *clk_core;
- 	struct clk *clk_io;
-@@ -96,6 +118,50 @@ static inline void spacemit_sdhci_clrsetbits(struct sdhci_host *host, u32 clr, u
- 	sdhci_writel(host, val, reg);
- }
- 
-+static void spacemit_sdhci_set_rx_delay(struct sdhci_host *host, u8 delay)
-+{
-+	spacemit_sdhci_clrsetbits(host, SDHC_RX_DLINE_CODE_MASK,
-+				  FIELD_PREP(SDHC_RX_DLINE_CODE_MASK, delay),
-+				  SPACEMIT_SDHC_DLINE_CTRL_REG);
-+}
-+
-+static void spacemit_sdhci_set_tx_delay(struct sdhci_host *host, u8 delay)
-+{
-+	spacemit_sdhci_clrsetbits(host, SDHC_TX_DLINE_CODE_MASK,
-+				  FIELD_PREP(SDHC_TX_DLINE_CODE_MASK, delay),
-+				  SPACEMIT_SDHC_DLINE_CTRL_REG);
-+}
-+
-+static void spacemit_sdhci_set_tx_dline_reg(struct sdhci_host *host, u8 dline_reg)
-+{
-+	spacemit_sdhci_clrsetbits(host, SDHC_TX_DLINE_REG_MASK,
-+				  FIELD_PREP(SDHC_TX_DLINE_REG_MASK, dline_reg),
-+				  SPACEMIT_SDHC_DLINE_CFG_REG);
-+}
-+
-+static void spacemit_sdhci_tx_tuning_prepare(struct sdhci_host *host)
-+{
-+	spacemit_sdhci_setbits(host, SDHC_TX_MUX_SEL, SPACEMIT_SDHC_TX_CFG_REG);
-+	spacemit_sdhci_setbits(host, SDHC_DLINE_PU, SPACEMIT_SDHC_DLINE_CTRL_REG);
-+	udelay(5);
-+}
-+
-+static void spacemit_sdhci_prepare_tuning(struct sdhci_host *host)
-+{
-+	spacemit_sdhci_clrsetbits(host, SDHC_RX_DLINE_REG_MASK,
-+				  FIELD_PREP(SDHC_RX_DLINE_REG_MASK, SPACEMIT_RX_DLINE_REG),
-+				  SPACEMIT_SDHC_DLINE_CFG_REG);
-+
-+	spacemit_sdhci_setbits(host, SDHC_DLINE_PU, SPACEMIT_SDHC_DLINE_CTRL_REG);
-+	udelay(5);
-+
-+	spacemit_sdhci_clrsetbits(host, SDHC_RX_SDCLK_SEL1_MASK, SDHC_RX_SDCLK_SEL1,
-+				  SPACEMIT_SDHC_RX_CFG_REG);
-+
-+	if (host->mmc->ios.timing == MMC_TIMING_MMC_HS200)
-+		spacemit_sdhci_setbits(host, SDHC_HS200_USE_RFIFO, SPACEMIT_SDHC_PHY_FUNC_REG);
-+}
-+
- static void spacemit_sdhci_reset(struct sdhci_host *host, u8 mask)
- {
- 	sdhci_reset(host, mask);
-@@ -191,6 +257,111 @@ static unsigned int spacemit_sdhci_clk_get_max_clock(struct sdhci_host *host)
- 	return clk_get_rate(pltfm_host->clk);
- }
- 
-+static int spacemit_sdhci_execute_tuning(struct sdhci_host *host, u32 opcode)
-+{
-+	int current_len = 0, current_start = 0;
-+	int max_pass_len = 0, max_pass_start = 0;
-+	struct mmc_host *mmc = host->mmc;
-+	struct mmc_ios ios = mmc->ios;
-+	u8 final_delay;
-+	int ret = 0;
-+	int i;
-+
-+	/*
-+	 * Tuning is required for SDR50/SDR104, HS200/HS400 cards and
-+	 * if clock frequency is greater than 100MHz in these modes.
-+	 */
-+	if (host->clock < 100 * 1000 * 1000 ||
-+	    !(ios.timing == MMC_TIMING_MMC_HS200 ||
-+	      ios.timing == MMC_TIMING_UHS_SDR50 ||
-+	      ios.timing == MMC_TIMING_UHS_SDR104))
-+		return 0;
-+
-+	if (mmc->caps2 & MMC_CAP2_NO_MMC) {
-+		spacemit_sdhci_set_tx_dline_reg(host, SPACEMIT_TX_TUNING_DLINE_REG);
-+		spacemit_sdhci_set_tx_delay(host, SPACEMIT_TX_TUNING_DELAYCODE);
-+		spacemit_sdhci_tx_tuning_prepare(host);
-+
-+		dev_dbg(mmc_dev(host->mmc), "TX tuning: dline_reg=%d, delaycode=%d\n",
-+			SPACEMIT_TX_TUNING_DLINE_REG, SPACEMIT_TX_TUNING_DELAYCODE);
-+	}
-+
-+	spacemit_sdhci_prepare_tuning(host);
-+
-+	for (i = SPACEMIT_RX_TUNE_DELAY_MIN; i <= SPACEMIT_RX_TUNE_DELAY_MAX; i++) {
-+		spacemit_sdhci_set_rx_delay(host, i);
-+		ret = mmc_send_tuning(host->mmc, opcode, NULL);
-+
-+		dev_dbg(mmc_dev(host->mmc), "RX delay %d: %s\n",
-+			i, ret == 0 ? "pass" : "fail");
-+
-+		if (ret == 0) {
-+			/* Test passed - extend current window */
-+			if (current_len == 0)
-+				current_start = i;
-+			current_len++;
-+		} else {
-+			/* Test failed - check if current window is best so far */
-+			if (current_len > max_pass_len) {
-+				max_pass_len = current_len;
-+				max_pass_start = current_start;
-+			}
-+			current_len = 0;
-+		}
-+	}
-+
-+	if (current_len > max_pass_len) {
-+		max_pass_len = current_len;
-+		max_pass_start = current_start;
-+	}
-+
-+	if (max_pass_len < 3) {
-+		dev_err(mmc_dev(host->mmc), "Tuning failed: no stable window found\n");
-+		return -EIO;
-+	}
-+
-+	final_delay = max_pass_start + max_pass_len / 2;
-+	spacemit_sdhci_set_rx_delay(host, final_delay);
-+	ret = mmc_send_tuning(host->mmc, opcode, NULL);
-+	if (ret) {
-+		u8 retry_delays[] = {
-+			max_pass_start + max_pass_len / 4,
-+			max_pass_start + (3 * max_pass_len) / 4,
-+			max_pass_start,
-+			max_pass_start + max_pass_len - 1
++	mmc1_cfg: mmc1-cfg {
++		mmc1-data-cmd-pins {
++			pinmux = <K1_PADCONF(104, 0)>,   /* mmc1_d3 */
++				 <K1_PADCONF(105, 0)>,   /* mmc1_d2 */
++				 <K1_PADCONF(106, 0)>,   /* mmc1_d1 */
++				 <K1_PADCONF(107, 0)>,   /* mmc1_d0 */
++				 <K1_PADCONF(108, 0)>;   /* mmc1_cmd */
++			bias-pull-up = <1>;
++			drive-strength = <19>;
++			power-source = <3300>;
 +		};
-+		int retry_count = ARRAY_SIZE(retry_delays);
 +
-+		dev_warn(mmc_dev(mmc), "Primary delay %d failed, trying alternatives\n",
-+			 final_delay);
++		mmc1-clk-pins {
++			pinmux = <K1_PADCONF(109, 0)>;   /* mmc1_clk */
++			bias-pull-down = <1>;
++			drive-strength = <19>;
++			power-source = <3300>;
++		};
++	};
 +
-+		for (i = 0; i < retry_count; i++) {
-+			if (retry_delays[i] >= SPACEMIT_RX_TUNE_DELAY_MIN &&
-+			    retry_delays[i] <= SPACEMIT_RX_TUNE_DELAY_MAX) {
-+				spacemit_sdhci_set_rx_delay(host, retry_delays[i]);
-+				ret = mmc_send_tuning(host->mmc, opcode, NULL);
-+				if (!ret) {
-+					final_delay = retry_delays[i];
-+					dev_info(mmc_dev(mmc), "Retry successful with delay %d\n",
-+						 final_delay);
-+					break;
-+				}
-+			}
-+		}
++	mmc1_uhs_cfg: mmc1-uhs-cfg {
++		mmc1-data-cmd-pins {
++			pinmux = <K1_PADCONF(104, 0)>,   /* mmc1_d3 */
++				 <K1_PADCONF(105, 0)>,   /* mmc1_d2 */
++				 <K1_PADCONF(106, 0)>,   /* mmc1_d1 */
++				 <K1_PADCONF(107, 0)>,   /* mmc1_d0 */
++				 <K1_PADCONF(108, 0)>;   /* mmc1_cmd */
++			bias-pull-up = <1>;
++			drive-strength = <42>;
++			power-source = <1800>;
++		};
 +
-+		if (ret) {
-+			dev_err(mmc_dev(mmc), "All retry attempts failed\n");
-+			return -EIO;
-+		}
-+	}
-+
-+	dev_dbg(mmc_dev(host->mmc),
-+		"Tuning successful: window %d-%d, using delay %d\n",
-+		max_pass_start, max_pass_start + max_pass_len - 1, final_delay);
-+
-+	return 0;
-+}
-+
- static int spacemit_sdhci_pre_select_hs400(struct mmc_host *mmc)
- {
- 	struct sdhci_host *host = mmc_priv(mmc);
-@@ -326,6 +497,7 @@ static const struct sdhci_ops spacemit_sdhci_ops = {
- 	.set_bus_width		= sdhci_set_bus_width,
- 	.set_clock		= spacemit_sdhci_set_clock,
- 	.set_uhs_signaling	= spacemit_sdhci_set_uhs_signaling,
-+	.platform_execute_tuning = spacemit_sdhci_execute_tuning,
++		mmc1-clk-pins {
++			pinmux = <K1_PADCONF(109, 0)>;   /* mmc1_clk */
++			bias-pull-down = <1>;
++			drive-strength = <42>;
++			power-source = <1800>;
++		};
++	};
  };
- 
- static const struct sdhci_pltfm_data spacemit_sdhci_k1_pdata = {
+diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+index f0bad6855c97..28949f804610 100644
+--- a/arch/riscv/boot/dts/spacemit/k1.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+@@ -1211,6 +1211,19 @@ emmc: mmc@d4281000 {
+ 				interrupts = <101>;
+ 				status = "disabled";
+ 			};
++
++			sdhci0: mmc@d4280000 {
++				compatible = "spacemit,k1-sdhci";
++				reg = <0x0 0xd4280000 0x0 0x200>;
++				clocks = <&syscon_apmu CLK_SDH_AXI>,
++					 <&syscon_apmu CLK_SDH0>;
++				clock-names = "core", "io";
++				resets = <&syscon_apmu RESET_SDH_AXI>,
++					 <&syscon_apmu RESET_SDH0>;
++				reset-names = "axi", "sdh";
++				interrupts = <99>;
++				status = "disabled";
++			};
+ 		};
+ 	};
+ };
 
 -- 
 2.53.0
