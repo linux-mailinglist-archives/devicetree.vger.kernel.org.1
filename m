@@ -1,179 +1,192 @@
-Return-Path: <devicetree+bounces-287370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287372-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id vp1jMfNo3mnyDwAAu9opvQ
-	(envelope-from <devicetree+bounces-287370-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 18:18:59 +0200
+	id 2KEvC3Vp3mmxDgAAu9opvQ
+	(envelope-from <devicetree+bounces-287372-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 18:21:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26F613FC74F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 18:18:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 835F13FC7A9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 18:21:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2720F3015E35
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 16:13:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A6787306B3B6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 16:16:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C413ECBD9;
-	Tue, 14 Apr 2026 16:13:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A873EC2EB;
+	Tue, 14 Apr 2026 16:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hwu/UDtg"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="15Ajp4Xj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010015.outbound.protection.outlook.com [52.101.193.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5031E3EC2E2;
-	Tue, 14 Apr 2026 16:13:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776183235; cv=none; b=TbilHah0PZSAY+JRcWcKkb562Sxp53Wy6YfVkvp+qVXJopEqZh1v9mcDgzuI9xitGeX8UTwAVt9l7gg/CPzPlZ2uCNcyiGV7WCRNxmwRezAqYPN3YIogTckc7BMJizuOHl0JUh48r+nUYaeVBLacEfydaZ8dfw5Y9XS1dosI9q8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776183235; c=relaxed/simple;
-	bh=IO4ywonkL7DSzA1j7r2F5qYT1Kbev7PVfGagAwllQUI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cKijz4PW65l5Dxbby38CeiajEJdRZnSs8f9FUGkliH1Av/1Yh0bfVZyqf4ugyFETWNGv2nWNVvbzGGUqC5/BTn25P68Un2z+LT2OXoHP44qrN2i+1A1K708F7LXKzwq9FmJC0EkvK2Adc3XggbhAPrw3pauSgUwWspIhtvEycW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hwu/UDtg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D690DC19425;
-	Tue, 14 Apr 2026 16:13:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776183235;
-	bh=IO4ywonkL7DSzA1j7r2F5qYT1Kbev7PVfGagAwllQUI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hwu/UDtgx4/YBtc19JUvhfvJhkFrBAYIw9hFKbVJ9rkT/NzYHIXz1bkX7hZ1YiWgK
-	 dFhM18Gx/DMoH9UFLd9BxGu5/PmQiR5YTxLV3N9zJC6diSM//0Pslvx3DC2kTAYtEu
-	 EQ9Gwe2ukP9P4QA9Wh2Qn8wvNqy5vUuewdtOr9mqCXDfR6XBXM7jxjvkmIaCcDpJKw
-	 eIsG+u+MmEIPqPjNJYIFRUCactBIfXTNC7NpNCTb3CkDKI9mo7SAMH2792OzzWqCpE
-	 Ivf6qGdeJqrEOmy/VMtQanxxGPQ43qXDyNPP8QUo05RiqeeTBn317TTMgWedR081og
-	 SN4zGU/zQl12g==
-Date: Tue, 14 Apr 2026 17:13:48 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Valerio Setti <vsetti@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC v2 02/11] ASoC: meson: aiu-encoder-i2s: use gx_iface
- and gx_stream structures
-Message-ID: <58d1df89-7c97-4e2f-af15-93d1f7bce5a7@sirena.org.uk>
-References: <20260411-audin-rfc-v2-0-4c8a6ec5fcab@baylibre.com>
- <20260411-audin-rfc-v2-2-4c8a6ec5fcab@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76C873ECBD8;
+	Tue, 14 Apr 2026 16:16:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776183369; cv=fail; b=DVUjg8X1sMjMX4c+Cs/OtpHXXFg58btG4PMWzRjRrU9wTqMtgYoT3ES8aaw+djlCkPqQTlYQ8pPzFzEehRkOPMAoN7fyDh0TBPV167zuIjvvVUpSZLvlMqMg2mqX2DW8y92FGxjdM3F91BVaSf4JbaFYWmMRZ6uZxUAapWbsKAM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776183369; c=relaxed/simple;
+	bh=HqA8X8QVcIaMil7/XG7Fy+NcFBOvv/xHMeh4tW0bAks=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tZZiLZStG2i4pqBHPkufMa6ENQfs4qPB8R7O9mKCklLQmBmis7Y0Kby3RYXtP3+uOsrZInaZo11SglrWLgkDjswJJOWGBy+QDuIDRNeEHZnl5FgS/ghmtw7SSaQijnCbQF5J2E8NWtXUpdoMnHNRc8E+1fa/8Awss9WNi37Qmqg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=15Ajp4Xj; arc=fail smtp.client-ip=52.101.193.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eCgFK5YEP4wu/Pa3og274+uu8SQ7TlyZejY02PUucMcTnSHgtVzxjAlLC/gQDIJlAs0zq+C5PL9bGUjHPt3zJYPZfQTPYsTiCAvQ8mt/+mnDjti09Rk0m1gtwD/yXoP6O9da8x96ljp5sVVX7GJmfdB/sdpSOtKaMJLpB12kXEuTXHFA2JcdqwT3BBssVS7yZF19JGxoTKelwFMIAwkSkmT1AyqFR7OE/xwXTDe0QBDQLxhu0X0mwIAdlX3jE81TiZ2ekrdz/9XDBkVflv3/hZAxLWEetnMK5LVEXIIssHjSW16KUYQVoX9x7S7kGKAVTq/A3f+Ezu0JukURbwSRnQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NVhfZ7O3mHiydTU4g0yDN0spvqofIeTxaws9q/L/Al0=;
+ b=qtrXlDriySV0MS8bDK5k5oEsR34of6RXcrBDc4yk0KynfLf1OToT/K7p+fXHlXrfGtD5fcdx3b8FmwCDH7gS05Ii4z84V1smmMCgJpp+MZRLI1jaV73DUaMfTGEI680OYt4KStXT+asLQATe3OIUzkys/qLo3ggumJ90nhphjXPBfDcsqOC4rXZae/4+5Fu9MJe8HbQhkfV4z35O5Rs/L6buQ4G86xp6TVbOmtfz5aoFo/AyFkmU4B2fj0EM6oQku5IGUIm+15KJO1aAAgngF9aVAz6LBX/6lZW3mibYnY5Cmasr4RhqurfyOtzJstwgO69am1F78EWPttCT6TA1Mw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NVhfZ7O3mHiydTU4g0yDN0spvqofIeTxaws9q/L/Al0=;
+ b=15Ajp4XjBRvU9OroSJBqgLfzt+d7IVeysoWTiI0F5gMIyAQ3Jnfz9GWqllHnii9sploPGDBFpFpq0WQicfiujBW/n4e6Npac0JuQltNv/sz2CqVCKJkejwOSUei3dTIM9vCMi/synvgs+Yx5s2yszaLAOPIuFhUngszi7+HNsU4=
+Received: from BLAPR03CA0077.namprd03.prod.outlook.com (2603:10b6:208:329::22)
+ by IA1PR12MB9499.namprd12.prod.outlook.com (2603:10b6:208:595::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9791.34; Tue, 14 Apr
+ 2026 16:16:03 +0000
+Received: from MN1PEPF0000ECDA.namprd02.prod.outlook.com
+ (2603:10b6:208:329:cafe::a8) by BLAPR03CA0077.outlook.office365.com
+ (2603:10b6:208:329::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.49 via Frontend Transport; Tue,
+ 14 Apr 2026 16:16:03 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MN1PEPF0000ECDA.mail.protection.outlook.com (10.167.242.134) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17 via Frontend Transport; Tue, 14 Apr 2026 16:16:03 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Tue, 14 Apr
+ 2026 11:15:59 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 14 Apr
+ 2026 11:15:59 -0500
+Received: from xsjblevinsk51.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Tue, 14 Apr 2026 11:15:58 -0500
+From: Ben Levinsky <ben.levinsky@amd.com>
+To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <ben.levinsky@amd.com>,
+	<tanmay.shah@amd.com>, <michal.simek@amd.com>
+Subject: [PATCH 0/2] Add a MicroBlaze remoteproc driver and binding
+Date: Tue, 14 Apr 2026 09:15:56 -0700
+Message-ID: <20260414161558.2579920-1-ben.levinsky@amd.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gYIy0O5bB28fsder"
-Content-Disposition: inline
-In-Reply-To: <20260411-audin-rfc-v2-2-4c8a6ec5fcab@baylibre.com>
-X-Cookie: Academicians care, that's who.
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: ben.levinsky@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECDA:EE_|IA1PR12MB9499:EE_
+X-MS-Office365-Filtering-Correlation-Id: 54c59071-7513-42f7-5fd3-08de9a411fe2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|36860700016|82310400026|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	B+d6eZSpVMG33DD9qQk8Tr8DOa64VhLMhznSFNbfPUUZBh6YlthTmp14Uu6qHMnFpeyCgHyAZM7769VvbQCQDF9B2sDo0ZthbCvfjKDIgUwcu9x0pVP+1D+ICjjEPru5Z1WpqwPaYu7u8zxtlgAj95juvGCewdKTd+hGV5L5gYiyTZyi3UhyEyFSvOhVrCBMZtk11X61cVBMN3mIBaSC0Ob+p9EcQdbJBP/uf+pt/uWnKko1jrI09CDoswITx2uL7pL2MXFCvrEWBE0ga83icwD2lwvy2RBmp9ev3/eCbsNagiAHyE2hTnp1W1eZbOqxpXq7ZFe1kQQCF3BIbwojyveQpV7IEs7JNp0dTuLbq8OXJk1KCo//sLv1E0Fbsm0xZj9KeZ7OJGOUvRJEbxKEoD16pU5cxbRwXBpMnUOgP8UXzL5xRqcMECN8/1mFdvefwPd31CBam9BCJBQ1yOVXa1UzxiqF3Sb++c7SvJgvxetcnqF4ZBGvA6RQsMmbd1xycsjLb8tu4O1qXZMeXyBRP4S7dbwtA7ogfZ8e2VGL/NXf5mbqMjLthBeeCRIquAQseXp4CF346EA4q2WQa4BfPFkale6tSWsE2e9qOeiaduS/61qSHeDDCruNyxdmzQ2ZkCh1ruBwOolxoedOO8YkfOC7yTxryX0XDE51DncQrzVhGO9lEURWDwMF0MlUHC1fc/UtMXuuyE/PKpqW74zO5awyqNzEx+fKZb5iplisVfZFSo0LvjxSqp7Ipb/I3ocyXiACOh5a6Tw38r63/CZJvw==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700016)(82310400026)(56012099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	6DQLhcxbxDb/1piFqAXWWVc2qxB3xqpfQ1qPfmLCnMuDPxN8aDsVhgBCt5Bh2IRqccch8U9oQZyomhTAjJCEEjI3JcIgW/+bL559ZudXP8A3Ps5TjDOUiqvwwcemXo4XgDWT8pkjVqJ+IEFRijrZUqXb46fXO4sH2W7LV2JV2qR31rXqh6edZH2g0GZMp5uOaBpXn5bMDPpzS/LEZXWiCRq8y8vqLPoVFECR8RuCKG2MXW5riyFJgrns5X5Gn4EBSt35u/VHojmM2cy9L/+OpM/I8ZBjcGUxZ+oCYBQShgnk19Y5owMe5ge1EMXghTvx+mb216BYhuGsP9+JMMe0OITtiLurO4WgcCqUPfeZrpBaw72S+WunUueQCTCyfCEroqZjsthK4BUgXQnW35I3A8wcLPXxsZVdL8xfNhEg9qn9h1Rzx6XtFnGAV22OPaq6
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2026 16:16:03.1211
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54c59071-7513-42f7-5fd3-08de9a411fe2
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MN1PEPF0000ECDA.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB9499
+X-Spamd-Result: default: False [1.34 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287370-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[baylibre.com,gmail.com,perex.cz,suse.com,linaro.org,googlemail.com,kernel.org,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	TAGGED_FROM(0.00)[bounces-287372-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[ben.levinsky@amd.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 26F613FC74F
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 835F13FC7A9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This series adds initial remoteproc support for AMD MicroBlaze soft
+processors.
 
---gYIy0O5bB28fsder
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The binding models the MicroBlaze remote processor as a child node whose
+reg property describes the executable firmware memory window in the
+MicroBlaze-local address space. The parent bus ranges property provides
+the standard devicetree address translation to the Linux-visible system
+physical address.
 
-On Sat, Apr 11, 2026 at 04:57:27PM +0200, Valerio Setti wrote:
+The driver uses that translated memory window as the executable
+remoteproc carveout and coredump segment, holds the MicroBlaze in reset
+through an active-low GPIO until firmware loading completes, and allows
+the firmware image to be selected with the optional firmware-name
+property. Firmware images without a resource table are also accepted.
 
-> @@ -200,13 +200,17 @@ static int aiu_encoder_i2s_hw_params(struct snd_pcm=
-_substream *substream,
+This initial series focuses on basic load/start/stop support for a
+single executable memory window. It does not add any transport or
+mailbox integration.
 
-> -	aiu_encoder_i2s_divider_enable(component, true);
-> +	ret =3D gx_stream_set_cont_clocks(ts, iface->fmt);
-> +	if (ret)
-> +		dev_err(dai->dev, "failed to apply continuous clock setting\n");
-> +
-> +	aiu_encoder_i2s_divider_enable(component, 1);
+Ben Levinsky (2):
+  dt-bindings: remoteproc: add AMD MicroBlaze binding
+  remoteproc: add AMD MicroBlaze driver
 
-If we're checking the error here we should probably return it as well.
-Including the error code in the log message is also generally helpful.
+ .../bindings/remoteproc/amd,microblaze.yaml   |  67 ++++++
+ MAINTAINERS                                   |   7 +
+ drivers/remoteproc/Kconfig                    |  15 ++
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/amd_microblaze_rproc.c     | 202 ++++++++++++++++++
+ 5 files changed, 292 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/amd,microblaze.yaml
+ create mode 100644 drivers/remoteproc/amd_microblaze_rproc.c
 
-> @@ -214,16 +218,20 @@ static int aiu_encoder_i2s_hw_params(struct snd_pcm=
-_substream *substream,
->  static int aiu_encoder_i2s_hw_free(struct snd_pcm_substream *substream,
->  				   struct snd_soc_dai *dai)
->  {
-> +	struct gx_stream *ts =3D snd_soc_dai_get_dma_data(dai, substream);
->  	struct snd_soc_component *component =3D dai->component;
-> =20
-> -	aiu_encoder_i2s_divider_enable(component, false);
-> -
-> -	return 0;
-> +	/* This is the last substream open and that is going to be closed. */
-> +	if (snd_soc_dai_active(dai) <=3D 1)
-> +		aiu_encoder_i2s_divider_enable(component, 0);
-> +	return gx_stream_set_cont_clocks(ts, 0);
->  }
-
-Note that we only hw_free() if we preprared, but we enable in
-hw_params().
-
-> @@ -284,6 +295,8 @@ static int aiu_encoder_i2s_set_sysclk(struct snd_soc_=
-dai *dai, int clk_id,
->  	if (ret)
->  		dev_err(dai->dev, "Failed to set sysclk to %uHz", freq);
-> =20
-> +	aiu->i2s.iface.mclk_rate =3D freq;
-> +
->  	return ret;
->  }
-
-This means we store the new rate even if the set above failed.
-
---gYIy0O5bB28fsder
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmneZ7wACgkQJNaLcl1U
-h9Ad3Af/RhJ2L28N7i/aChvggwpANR0yRXtQJkvt0H9t5MTtdmhzQNlshMoA2NHz
-Eh60IZd4InWHJrBe0Vyof62VkoKw1ryRN/devj6c7NVbKCtJ6LmNfqSut4h55Q2z
-6Eu1qde7moQRulSJHRqnW3mNDn2B4RDaTw3mexGlKqHui3R0V6numiOhXGZ08ms4
-cKKF9qaVy5rB0QjKuCpShcGR2x1hUXBboeo3szEQwJTDoiS99eA/S+3WP6THKIJR
-eUqVORpNbCLmT1Pho2rTohXc0tnuPFtb8NocgtnVemwfm9C81B8TxspTwNmLD3qA
-+iS3Kd+96yoD8HCRWH7szyxO78eRfA==
-=iHoZ
------END PGP SIGNATURE-----
-
---gYIy0O5bB28fsder--
+-- 
+2.34.1
 
