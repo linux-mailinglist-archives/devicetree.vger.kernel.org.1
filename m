@@ -1,196 +1,211 @@
-Return-Path: <devicetree+bounces-287231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287233-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iBd0Mt0F3mlRmQkAu9opvQ
-	(envelope-from <devicetree+bounces-287231-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 11:16:13 +0200
+	id EKN4LiwH3mlRmQkAu9opvQ
+	(envelope-from <devicetree+bounces-287233-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 11:21:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F4543F7BEE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 11:16:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18D623F7D32
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 11:21:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1E505308BF2B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 09:00:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DFCF630036CF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 09:08:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 678FD38E133;
-	Tue, 14 Apr 2026 09:00:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B8EB3B7744;
+	Tue, 14 Apr 2026 09:08:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SAZxmZhk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VbwhTnDB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D10C30BBB8
-	for <devicetree@vger.kernel.org>; Tue, 14 Apr 2026 09:00:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7603237F756;
+	Tue, 14 Apr 2026 09:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776157247; cv=none; b=oE3piI7kDEwzh+HgW16Bscfgd6K/Ie/sTglXmI/6HwPkvb6LlxqRcc6GvRx53kG8e10PYVb5B2+yfvmhx15CIpoUDIrTnskCbGXK3E/F2ard0MRQ26y5vcXAt0ood3+yc6Pc8F/N9uiMBg6NkcwYzunzKesM1XcUnBIV1Lbe8OQ=
+	t=1776157705; cv=none; b=Icp/TZLMw5YwBgZPdUvjcUl8NFSWncOuY9KCrnR4lpoLAODJOF5qm6HV3GgG4sZdzvNxLofXB3pUQt8hDZqy8VJEhItr/4Q6iEoD3iPdLovDnmWd3IOGfR7w4yyOFO59vNPW3tW4+ncyt7/Tr75duUdtx+dC/HpPkp12TLTYr0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776157247; c=relaxed/simple;
-	bh=rIrkXb80Gn7kwO+sP2E0LkaZFepFX2GRT4jsp3bqoxo=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=eEhWszyMRpuGlquKOwCsSgUaKNQbEKGtdYwfGzdxnupso9c4YdLmdp/mD6TOnrQMlid9ukfP2LvnJr52UjjXDtBegkMsRer8u0HvPIijomTvIe2Nwjr90LEb804uhVr8mSHoT2HNtKw+xvHWkq84g80QHt86QQ8g178WuybAegU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SAZxmZhk; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b9c745e18a0so729303466b.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Apr 2026 02:00:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1776157244; x=1776762044; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JBYUs6vtopkXApMTy5KoL+CYxoYocSKqj1Le8Qpg1Dk=;
-        b=SAZxmZhkleEpARgRyXAQzikRx1uApATyEcT1W9F6IqrDpLYdO3ejmzAWCufR1Dh3UL
-         l/EU9bKvfvaUHnvdus3RsDrxhnmF3vj+l/md1o9GYCHIa3YUFA7nM3t1ffs4MJdXUGYx
-         inNYMR8DPD8I3iLk045CMx+XdY5DcRbWYnx9HgwPixl6zlPUMFyT/AKSFRARpSBmzHI7
-         HPsg8GDvBQOkkSU+wgkJKVLmyxTum29fo18wo/k71om1qDwl5EIQfBy0fD5WKkLgGr3n
-         zvEr3tLwXgEdFpsPSeJDxHIICZG9TicBehetUPemRYXqI3FslqopMZh8xf+gemeVwVg3
-         wCvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776157244; x=1776762044;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JBYUs6vtopkXApMTy5KoL+CYxoYocSKqj1Le8Qpg1Dk=;
-        b=jmMWv+274tN5HyYLfqxe2c3825n8KNHB5eZhPAQp17LdMeECmHXrHCMK3fz45oNhFx
-         K9WbEO3WPVutoE6KBKqqeL1vSGCtWtTAxiHZJ+Q2sHbZj5p33rM+G+tnEauMhp8+V2pG
-         eNvKgB0L0oA8+/2HKvGG3CLziaSrLjg86UYwGioP4Kz32AE7h8Px7D46dzjPnBt04vez
-         2zFP7Jgo9V7Nt2+kX3vSAPU3TigO8tlTRXp42L1fbEZbcACNZXzdIhtIqOb8G0Xccmwp
-         slYi2brCdYTmK+1KmIhdyEKgDQzqb6dMNAoEqESCMElDcrMu/p/WVUQF9hDfW/sfWbxh
-         Kitg==
-X-Forwarded-Encrypted: i=1; AFNElJ+xKvB9A0sZGIrAR0lJnYzAa59MGMvSSOKByfYux/hDi0Yy4qJBkBWVdbYHvSCDF8Q5ZyaoV7Rh/kNP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwhOoyR/bP8l2onlwX0uFGivm8iAYlC9Zn+FqegjrldTyBBkTnA
-	0ZbMLzEn60Fky3QJxNmZQkh8NfyxUTB/Hv4Tx7e7FvwTxIW3n/yyy92suzrplq22woQ=
-X-Gm-Gg: AeBDieustlrtzg00Llw7vhzoJj+Y56UVyYPF6BRAM6vOnNwT4//7sXKAVPk6koegU7r
-	p4dAsMUU9/4+oiLtVS8qJdroN8l5Kq71R+yy76YOhIgHm+ei5V/mm0BVSp3VTaeoGjdXDtboNqR
-	mDxHgtQTrHJilC+aGqAZvHdjdL1PARGw1fqm0jsaa6WHds9ldEopAxv4oIFlNUnGvkFszJtyRzs
-	urAmgPXnfUYYAo393rFwL8JreSgErc2pUcP3vmhoaDARdWIp22kRSR3/J1PV7XNdS/Xyf3XZozU
-	arJ1avU4+9VV/No8gQOpXO10axzf87r7NUPhK5DS5LqBGtpenKcwRtCcmijbcPKYL6pK8Odc4A+
-	GfRgZJtlPd4+ha9cGcdKlIpFfcHSrteGppeH0Q5+RC+cNtOkhAYroM1TiCur0ydOYFAY66xqWKv
-	YwXTANRQLglg0Glf21JXMV2u6MWW0VawjhKr+wrVY7meXbVAMQMvzwd0e79EfcEzPsz5JaG1WLe
-	Gk/z/HTSsG8Zt4XF0ZwU/L0HUz8
-X-Received: by 2002:a17:906:6a15:b0:b9b:e7b3:a25a with SMTP id a640c23a62f3a-b9d76d2f86fmr806127766b.12.1776157242962;
-        Tue, 14 Apr 2026 02:00:42 -0700 (PDT)
-Received: from localhost ([212.187.182.166])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9d6de97e43sm396148266b.13.2026.04.14.02.00.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Apr 2026 02:00:42 -0700 (PDT)
+	s=arc-20240116; t=1776157705; c=relaxed/simple;
+	bh=kOitrEK4mNc+UbBONUKFdxc0c9QlWdF0i4PXUddFiMw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gh+JTpwhY8NnAPxfyvaGpH3ndJU/ClmmJdfhV5OMdnjgFmXvkUxSUlW93C7Jun9c+SztTXCZuzIeMLvn5o1nhLb0P+BK7DEu+Q5v84yRKsx2xCQwO+zpWYsYm0yrl3REnRZFSo+IYGJWqSyMX1FgEqfWzn99sewJtlsoIYsTm8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VbwhTnDB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E72CAC19425;
+	Tue, 14 Apr 2026 09:08:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776157705;
+	bh=kOitrEK4mNc+UbBONUKFdxc0c9QlWdF0i4PXUddFiMw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VbwhTnDBMyjQLMEWcddXz4zonlCbfhSwf7Of9Gsd5hvQfOTbl3w1JMPPY+EQVqvGp
+	 LFKCWaI+8IS2teNJCAudZmCD4MJI7GFQmU6lnzZEpLK5kwoQDk0y+NRw9iQDrsIKdx
+	 a8RZdzNoK0PPSZq3YHkv92uaaiRc6D/70fUyjEYHW2HDVVEayY01vy57vaqYrQk5Jp
+	 3bCsXlj+uQRtd5n/Zl1TBgaeIO9Lsze0nzaI2YOcUyJCufAPK79qEQjg86MUvhCFc7
+	 JUzNA4D6lMjdWQJpOxt75c8mBTWORKb2T4HSn0Cf6Le+Xlvv20M4VsRwmnKIEnCiFc
+	 Rfv9AsieZZjNQ==
+Message-ID: <4c6a92e0-15a1-4f82-afc9-542f5ad9d2df@kernel.org>
+Date: Tue, 14 Apr 2026 11:08:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 14 Apr 2026 10:00:41 +0100
-Message-Id: <DHSR70EGYY4N.2EA2HWIXJR7QR@linaro.org>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Alexey Klimov"
- <alexey.klimov@linaro.org>, "Sam Protsenko" <semen.protsenko@linaro.org>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Alim Akhtar"
- <alim.akhtar@samsung.com>
-Cc: <linux-samsung-soc@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] arm64: dts: exynos850: Add SRAM node
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-X-Mailer: aerc 0.21.0
+To: Alexey Klimov <alexey.klimov@linaro.org>,
+ Sam Protsenko <semen.protsenko@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20260413-exynos850_sram-v1-1-7fda5b7fb7d4@linaro.org>
  <2ff077e1-8983-4a41-bb21-5e4140545aa3@kernel.org>
-In-Reply-To: <2ff077e1-8983-4a41-bb21-5e4140545aa3@kernel.org>
-X-Spamd-Result: default: False [5.34 / 15.00];
+ <DHSR70EGYY4N.2EA2HWIXJR7QR@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <DHSR70EGYY4N.2EA2HWIXJR7QR@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [4.84 / 15.00];
 	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MV_CASE(0.50)[];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[linaro.org,none];
-	TAGGED_FROM(0.00)[bounces-287231-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-287233-lists,devicetree=lfdr.de];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	R_DKIM_ALLOW(0.00)[linaro.org:s=google];
+	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	GREYLIST(0.00)[pass,body];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.165];
 	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexey.klimov@linaro.org,devicetree@vger.kernel.org];
-	NEURAL_SPAM(0.00)[0.895];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[11d20000:email,0.0.0.0:email,0.31.28.216:email,linaro.org:dkim,linaro.org:email,linaro.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4F4543F7BEE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.31.28.216:email,0.0.0.0:email,linaro.org:email,11d20000:email]
+X-Rspamd-Queue-Id: 18D623F7D32
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon Apr 13, 2026 at 4:23 PM BST, Krzysztof Kozlowski wrote:
-> On 13/04/2026 16:52, Alexey Klimov wrote:
->> SRAM is used by the ACPM protocol to retrieve the ACPM channels
->> information and configuration data. Add the SRAM node.
->>=20
->> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->> ---
->>  arch/arm64/boot/dts/exynos/exynos850.dtsi | 8 ++++++++
->>  1 file changed, 8 insertions(+)
->>=20
->> diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot=
-/dts/exynos/exynos850.dtsi
->> index cb55015c8dce..cf4a6168846c 100644
->> --- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
->> +++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
->> @@ -910,6 +910,14 @@ spi_2: spi@11d20000 {
->>  			};
->>  		};
->>  	};
->> +
->> +	apm_sram: sram@2039000 {
->> +		compatible =3D "mmio-sram";
->> +		reg =3D <0x0 0x2039000 0x40000>;
->> +		#address-cells =3D <1>;
->> +		#size-cells =3D <1>;
->> +		ranges =3D <0x0 0x0 0x2039000 0x40000>;
->
-> You miss here children.
+On 14/04/2026 11:00, Alexey Klimov wrote:
+> On Mon Apr 13, 2026 at 4:23 PM BST, Krzysztof Kozlowski wrote:
+>> On 13/04/2026 16:52, Alexey Klimov wrote:
+>>> SRAM is used by the ACPM protocol to retrieve the ACPM channels
+>>> information and configuration data. Add the SRAM node.
+>>>
+>>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>>> ---
+>>>  arch/arm64/boot/dts/exynos/exynos850.dtsi | 8 ++++++++
+>>>  1 file changed, 8 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/dts/exynos/exynos850.dtsi
+>>> index cb55015c8dce..cf4a6168846c 100644
+>>> --- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
+>>> +++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
+>>> @@ -910,6 +910,14 @@ spi_2: spi@11d20000 {
+>>>  			};
+>>>  		};
+>>>  	};
+>>> +
+>>> +	apm_sram: sram@2039000 {
+>>> +		compatible = "mmio-sram";
+>>> +		reg = <0x0 0x2039000 0x40000>;
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <1>;
+>>> +		ranges = <0x0 0x0 0x2039000 0x40000>;
+>>
+>> You miss here children.
+> 
+> Thank you! I guess I should convert it to smth like this:
+> 
+> apm_sram: sram@2039000 {
+> 		compatible = "mmio-sram";
+> 		reg = <0x0 0x2039000 0x40000>;
+> 		ranges = <0x0 0x0 0x2039000 0x40000>;
+> 		#address-cells = <1>;
+> 		#size-cells = <1>;
+> 
+> 		acpm_sram_region: sram-section@0 {
+> 			reg = <0x0 0x40000>;
 
-Thank you! I guess I should convert it to smth like this:
+This covers entire block, so feels pointless. Maybe requirement of
+children should be dropped. What's the point of having children? Why
+does the driver need them?
 
-apm_sram: sram@2039000 {
-		compatible =3D "mmio-sram";
-		reg =3D <0x0 0x2039000 0x40000>;
-		ranges =3D <0x0 0x0 0x2039000 0x40000>;
-		#address-cells =3D <1>;
-		#size-cells =3D <1>;
+> 		};
+> 	};
+> 
+> And then later reference shmem = &acpm_sram_region from acpm node.
+> 
+>> Also, 'ranges' should be after 'reg'.
+> 
+> Thanks, will fix this.
+> 
+> FWIW this commit is a copy of commit 48e7821b26904
+> https://lore.kernel.org/r/20250207-gs101-acpm-dt-v4-1-230ba8663a2d@linaro.org
 
-		acpm_sram_region: sram-section@0 {
-			reg =3D <0x0 0x40000>;
-		};
-	};
 
-And then later reference shmem =3D &acpm_sram_region from acpm node.
+Huh, we should fix that one as well.
 
-> Also, 'ranges' should be after 'reg'.
-
-Thanks, will fix this.
-
-FWIW this commit is a copy of commit 48e7821b26904
-https://lore.kernel.org/r/20250207-gs101-acpm-dt-v4-1-230ba8663a2d@linaro.o=
-rg
 
 Best regards,
-Alexey
-
+Krzysztof
 
