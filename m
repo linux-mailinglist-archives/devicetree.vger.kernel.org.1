@@ -1,60 +1,69 @@
-Return-Path: <devicetree+bounces-287192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287193-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ePIfOePh3WnrkgkAu9opvQ
-	(envelope-from <devicetree+bounces-287192-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 08:42:43 +0200
+	id iOlfBr/j3WnDkwkAu9opvQ
+	(envelope-from <devicetree+bounces-287193-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 08:50:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 471CD3F62D2
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 08:42:42 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E183F6420
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 08:50:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7CF9C304D1CE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 06:39:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6E856305DA57
+	for <lists+devicetree@lfdr.de>; Tue, 14 Apr 2026 06:46:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDD5336F426;
-	Tue, 14 Apr 2026 06:39:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3948B326D75;
+	Tue, 14 Apr 2026 06:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q43hQJ/C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i8Pim6ma"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F8B30215A;
-	Tue, 14 Apr 2026 06:39:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE54324B2C;
+	Tue, 14 Apr 2026 06:46:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776148743; cv=none; b=LXtTMoKc0ub6F+qREc6M6gmL7+kF8+NwjPiJOUBZW4wjg5ztEJbyIwZN5D2SLJ6oYPOYq6fpb/kfBOY1NnVHh9uUEEV2dlP1nbmyd18C66iK8LW5FBKSbueUcOEaOAgGw2PdaVTDsUWkTSaOncK8ENvjdlWPUHtfV4npzzCa+KU=
+	t=1776149164; cv=none; b=P3BhIX/8Ch6z7JtK/waBHzTiHve73G8xi3gRzhuF16fr8MsgNfAmcsPDh8KQocM7CdDhXBu2mxt1XkfHL2yDPHQfO5UCoIfAAqpIsMdepwafikFDG9t3AdvDTRVurfxRCUFrxUKAYQHVTUDs9bcFVaKpY1n2BEpyeibrLpqFn6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776148743; c=relaxed/simple;
-	bh=HcFN985M8cVBNV+nJVfU/D2qwyRHgA8jrgIw37nikXI=;
+	s=arc-20240116; t=1776149164; c=relaxed/simple;
+	bh=K4oybcycMxSVWlM7LCJXfJ24fNZzAEJthizWSnJFlmE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sak4emT474zb+3n9AXzLRjqYyzYf028oG/FI0h/x5v9iPjt5g3SnHDEwaFR3H4MhX3NbbQpUYYTYvDMRB4GczlcA9yNe99LSa7dux7eVvycamwxovkSkfjUgHNmr9B4fLaGHQqQIbVr2GcTCjdxC0FAIPiU8bxunRthpbiRrqGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q43hQJ/C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 913B6C2BCB3;
-	Tue, 14 Apr 2026 06:39:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jJ9MnzJAuXoDAZrJZlLzzMOH8foVREgaN/5n9hU7P1e90XFg776ic7cGVw3TJISStF+AsquajuWjzF9Z9HVTEp6rR8rdQ0bsmaIaJjXu+hrK2Lc8/QCSG9gEHNVr9BTQdy2S3di9t5Ls++E2oHCWFfeXrCl7nyo5mTV956DU4ik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i8Pim6ma; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D567C19425;
+	Tue, 14 Apr 2026 06:46:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776148743;
-	bh=HcFN985M8cVBNV+nJVfU/D2qwyRHgA8jrgIw37nikXI=;
+	s=k20201202; t=1776149164;
+	bh=K4oybcycMxSVWlM7LCJXfJ24fNZzAEJthizWSnJFlmE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q43hQJ/CukH5jFiswk3wKncSuDobC/A9jIuCQC1xN375siWMpQhG07NBCzXjDwEN7
-	 23ekm6Epu56tNuG7kciKqkNoQcHr+nRuGNRlA9fNnyeAW+Vkas5h4gPcYsFnMKlw92
-	 qTFhsUOC7Dfpomw1zLALSdxbQmhpViMwAiF8ofeyF1fzDj5jddfNJOP4/X7e2vCE/Y
-	 IiU8muEOgYJAMeM2d5BoXM1XBv/U4G9QI9YszUqXLnrEHH3TejQyGfVuSNNdmsv7Ex
-	 Bn6WYKNHn+Gxev0iJp91AmOYXPA+vEkGduvtt1SR18JXYF3e77E6T/RrAXLJkb7dLV
-	 eSWpi4H6gKZuw==
-Date: Tue, 14 Apr 2026 08:39:00 +0200
+	b=i8Pim6maYQyrcTqM4pWnIiwlti0JxyvKwvwuUlrZSRQVF1WxedvuTiC3i9iC9LAA7
+	 BRFuRUrlRvkDbXLoopVCe6vAZTp1q/I1QH39ANsGtF5BrpHch+ZmE3Ny01PXO1LUnU
+	 WXnvs+YrTi4KAM3IkqgyyCMgO8cG5Jwh89ScSDjW3HhuHuSRxSu40AxnjHeCnfnED0
+	 OWZaczglyJTHNZ9XuLTN/UZ857569LXCd3rHH30JyJIIQTkRhWw8wWjyFh54YXvWwW
+	 +8YXo5J25iqrV3fo27NHeb9/ZgxfwI/D2P0QsHb/hEDd/yRaUoxDI1P/8JZZtSrvDR
+	 HJaOsuuef8VAQ==
+Date: Tue, 14 Apr 2026 08:46:01 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Padmashree S S <padmashreess2006@gmail.com>
-Cc: k.marinushkin@gmail.com, lgirdwood@gmail.com, broonie@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] ASoC: dt-bindings: ti,pcm3060: add descriptions and
- rename binding
-Message-ID: <20260414-tentacled-mantis-of-control-cb08f3@quoll>
-References: <20260327121919.603768-1-padmashreess2006@gmail.com>
- <20260414034854.461661-1-padmashreess2006@gmail.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Cong Yang <yangcong5@huaqin.corp-partner.google.com>, 
+	Ondrej Jirman <megi@xff.cz>, Javier Martinez Canillas <javierm@redhat.com>, 
+	Jagan Teki <jagan@edgeble.ai>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Jie Gan <jie.gan@oss.qualcomm.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v3 05/21] dt-bindings: dipslay/panel: describe panels
+ using Focaltech OTA7290B
+Message-ID: <20260414-silver-chipmunk-of-storm-c6572e@quoll>
+References: <20260413-waveshare-dsi-touch-v3-0-3aeb53022c32@oss.qualcomm.com>
+ <20260413-waveshare-dsi-touch-v3-5-3aeb53022c32@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,64 +72,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260414034854.461661-1-padmashreess2006@gmail.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+In-Reply-To: <20260413-waveshare-dsi-touch-v3-5-3aeb53022c32@oss.qualcomm.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-287193-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287192-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,huaqin.corp-partner.google.com,xff.cz,redhat.com,edgeble.ai,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:url]
-X-Rspamd-Queue-Id: 471CD3F62D2
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 60E183F6420
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Apr 14, 2026 at 09:18:54AM +0530, Padmashree S S wrote:
-> Add description to reg property and overall binding mentioning that this 
-> driver supports both I2C and SPI. Rename binding to match compatible 
-> naming convention.
+On Mon, Apr 13, 2026 at 05:05:28PM +0300, Dmitry Baryshkov wrote:
+> Add schema for the panels using Focaltech OTA7290B controller. For now
+> there is only one such panel, from the Waveshare 8.8 DSI TOUCH-A kit.
 > 
-> Signed-off-by: Padmashree S S <padmashreess2006@gmail.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
-> Changes in v4:
->   - Rename binding from pcm3060 to ti,pcm3060
->   - Add binding description
->   - Add description to 'reg' property
->   - Remove unused label in example
-> 
-> Changes in v3:
->   - Remove description from 'reg' property
-> ---
->  .../bindings/sound/{pcm3060.yaml => ti,pcm3060.yaml}   | 10 +++++-----
+>  .../bindings/display/panel/focaltech,ota7290b.yaml | 70 ++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
 
-What v4 is that of? There is no such file.
-
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets. See also:
-https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/submitting-patches.rst#L830
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
