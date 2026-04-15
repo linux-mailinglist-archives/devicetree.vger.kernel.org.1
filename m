@@ -1,53 +1,58 @@
-Return-Path: <devicetree+bounces-287582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287583-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uOACGZli32mKSQAAu9opvQ
-	(envelope-from <devicetree+bounces-287582-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 12:04:09 +0200
+	id +N1IMe9j32mKSQAAu9opvQ
+	(envelope-from <devicetree+bounces-287583-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 12:09:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 227DA4031A4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 12:04:09 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CD7E403244
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 12:09:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8337330300C0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 10:04:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 77AC9300E264
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 10:04:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46308335566;
-	Wed, 15 Apr 2026 10:04:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B21B33EAED;
+	Wed, 15 Apr 2026 10:04:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="jxmAWKgU";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="4PcGopkm"
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="XwGRhLne"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from canpmsgout03.his.huawei.com (canpmsgout03.his.huawei.com [113.46.200.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39D123290D9;
-	Wed, 15 Apr 2026 10:03:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2945D328B5E;
+	Wed, 15 Apr 2026 10:04:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776247441; cv=none; b=qGrD6F2kixg2+l8yJM5O31eYH4XowWb6Fuwf+MwPgGygVrwUYfQVhgHoMXp1L02d1nyPE0wILGOAC4ir8+Nm949+ocAeyI4LKB2m8dnP4F1faLF9hKmPbpvcSdRFoQxDJH/0MyolpkH+xv4Sd8/MU+AWCFUE7zmqo2ntZo/W5ns=
+	t=1776247480; cv=none; b=ZOxiCWpJhzazo5HfWcdcupEjxsphN7ooGGh3KmkYvExO/6Vl8WnA9XyDvKKEPpYYktDBm9hNjaK/myyP9CihJJltITm4qPDesUaXdV5qZdWK14YxIA0J3JCyA2D+w07zBO4k/oAD7cia/oVS3oyeCiWjQtcPq3XklDEJWlWhKEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776247441; c=relaxed/simple;
-	bh=5yBTBGWlx6WJxLclL2VvWQ69gFKuMVjrjutE062FuGI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NTrtGm9Wf05QaGTlWqap+zJPrxsKeep/8ojFJoPHdo2zTwqutbQUxt2PTyOPC124VukK4ULYaNgMOrCT2kyec6YrDVxbzTX/MWuwhmG1xrW+ZqY5r0BfC90DoXFTeSjSV0nFOBdlITiGAWBPowQANwhX90sycUYEsJ/zt4QuDyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=jxmAWKgU; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=4PcGopkm; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=From:To:Subject:Date:Message-ID; t=1776247435; bh=AWQZd7lMzwoEiIi2phJxA3k
-	aflwasMW5lqDeJ5guP6g=; b=jxmAWKgU7o8UjN7kiHE5n1Fwl4QkudrHzS/2AOCYv3dqIAhghk
-	fX0bprqbHsatIYQ/Gp1Y8jbBVmFaT18GPGHn8mnLHywN5PKikgoNY2yUKOcd+J3PfEM5i6QRmu+
-	ZMynZJAexiOUaiAxbPqQg+7Ry0SFq5rHuYHcf+YGrK1mV9TEH1anHNUSpvFAiM9Jtt8hj4rKQN8
-	qfnRlGcdjUimG/XsO3zBhLiE5edmBy0J3qyEISZL8cyEKfcwf42nu3POLLiz2fyCda2izoYuZjX
-	vOo3wAwpR+7v3jy/HAnecPLxR67Lv79fnTPV5rY23H7PQi3mdMBDA4/RAflE5fRtp/A==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=From:To:Subject:Date:Message-ID; t=1776247435; bh=AWQZd7lMzwoEiIi2phJxA3k
-	aflwasMW5lqDeJ5guP6g=; b=4PcGopkmv3G2f8w3VvxC54UVJFEuhhSxIXhPdobCRphoT6i3SZ
-	cTZ8voujRwfccvMl2RNdA84mp2N0VM7UV6Bw==;
-Message-ID: <479f6176-8f72-48f6-9401-b5e0b81d668d@mainlining.org>
-Date: Wed, 15 Apr 2026 13:03:54 +0300
+	s=arc-20240116; t=1776247480; c=relaxed/simple;
+	bh=DUzPuCMw86QkIrftZ76FgQw8nEgDjJ7QsQ79mi5Jl8o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=iRsgsBNG1JOkFjHyb2wS556UkcXi27ZPBxPaXmceRhnE++uVubZC8IwFv8MHwo/HftJva1K7efpa5JTwWx3LwB189d13jomJfjALTw7ZYI5t7AqM+UN6QatHzyYdpo0+jJwLtonu2ADkobOm2xuk56JYxfP0zZmF1r8DzA9S/5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=XwGRhLne; arc=none smtp.client-ip=113.46.200.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=ECSSlTyhJvtyzyV12bRiciUTZEMt5lG0F0BW5PZ9epA=;
+	b=XwGRhLne6TgIRHTpnVjff9jL3j2nEOUg/4fZqohVv7IVECo3hpMZzFAeQRSYPfQpZazp8xLIF
+	L4BvOv/i1ejypeY+N7Bw7ro/40TcmqZH93SdaTwdtLVozGchElPUhdWYant6q56kDs/Fs1058fD
+	SLf1DVLYrM2j/JVPi7gaTBc=
+Received: from mail.maildlp.com (unknown [172.19.162.140])
+	by canpmsgout03.his.huawei.com (SkyGuard) with ESMTPS id 4fwc651Jp2zpSys;
+	Wed, 15 Apr 2026 17:58:21 +0800 (CST)
+Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
+	by mail.maildlp.com (Postfix) with ESMTPS id AD24820104;
+	Wed, 15 Apr 2026 18:04:33 +0800 (CST)
+Received: from [10.67.109.254] (10.67.109.254) by
+ dggpemf500011.china.huawei.com (7.185.36.131) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Wed, 15 Apr 2026 18:04:30 +0800
+Message-ID: <3e861ad2-a57d-45a5-94d0-0a8c4d58f7b6@huawei.com>
+Date: Wed, 15 Apr 2026 18:04:26 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,97 +60,178 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sdm630: describe adsp_mem region
- properly
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20260415-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-v1-0-03b475b29554@mainlining.org>
- <20260415-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-v1-3-03b475b29554@mainlining.org>
- <70d4dbe7-0e5b-4065-858e-b5a57bbf45e3@oss.qualcomm.com>
-Content-Language: ru-RU, en-US
-From: Nickolay Goppen <setotau@mainlining.org>
-In-Reply-To: <70d4dbe7-0e5b-4065-858e-b5a57bbf45e3@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v12 00/15] arm64/riscv: Add support for crashkernel CMA
+ reservation
+To: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
+	<will@kernel.org>, <chenhuacai@kernel.org>, <kernel@xen0n.name>,
+	<maddy@linux.ibm.com>, <mpe@ellerman.id.au>, <npiggin@gmail.com>,
+	<chleroy@kernel.org>, <pjw@kernel.org>, <palmer@dabbelt.com>,
+	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <tglx@kernel.org>,
+	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
+	<hpa@zytor.com>, <robh@kernel.org>, <saravanak@kernel.org>,
+	<akpm@linux-foundation.org>, <bhe@redhat.com>, <vgoyal@redhat.com>,
+	<dyoung@redhat.com>, <rdunlap@infradead.org>, <peterz@infradead.org>,
+	<pawan.kumar.gupta@linux.intel.com>, <feng.tang@linux.alibaba.com>,
+	<dapeng1.mi@linux.intel.com>, <kees@kernel.org>, <elver@google.com>,
+	<paulmck@kernel.org>, <lirongqing@baidu.com>, <rppt@kernel.org>,
+	<leitao@debian.org>, <ardb@kernel.org>, <jbohac@suse.cz>,
+	<cfsworks@gmail.com>, <tangyouling@kylinos.cn>, <sourabhjain@linux.ibm.com>,
+	<ritesh.list@gmail.com>, <hbathini@linux.ibm.com>, <eajames@linux.ibm.com>,
+	<guoren@kernel.org>, <songshuaishuai@tinylab.org>, <kevin.brodsky@arm.com>,
+	<vishal.moola@gmail.com>, <junhui.liu@pigmoral.tech>, <coxu@redhat.com>,
+	<fuqiang.wang@easystack.cn>, <liaoyuanhong@vivo.com>,
+	<takahiro.akashi@linaro.org>, <james.morse@arm.com>, <lizhengyu3@huawei.com>,
+	<x86@kernel.org>, <linux-doc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<loongarch@lists.linux.dev>, <linuxppc-dev@lists.ozlabs.org>,
+	<linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<kexec@lists.infradead.org>
+References: <20260402072701.628293-1-ruanjinjie@huawei.com>
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+In-Reply-To: <20260402072701.628293-1-ruanjinjie@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-ClientProxiedBy: kwepems200001.china.huawei.com (7.221.188.67) To
+ dggpemf500011.china.huawei.com (7.185.36.131)
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
+	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-287582-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[mainlining.org:+];
-	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[huawei.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-287583-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,infradead.org,linux.alibaba.com,google.com,baidu.com,debian.org,suse.cz,kylinos.cn,tinylab.org,pigmoral.tech,easystack.cn,vivo.com,linaro.org,huawei.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[setotau@mainlining.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_GT_50(0.00)[64];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[f6800000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mainlining.org:email,mainlining.org:dkim,mainlining.org:mid,9f800000:email,f6000000:email]
-X-Rspamd-Queue-Id: 227DA4031A4
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_NONE(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,huawei.com:dkim,huawei.com:mid]
+X-Rspamd-Queue-Id: 2CD7E403244
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-15.04.2026 12:52, Konrad Dybcio wrote:
-> On 4/15/26 11:40 AM, Nickolay Goppen wrote:
->> Downstream [1] this region is marked as shared and reusable so
->> describe it that way.
->>
->> [1]: https://github.com/xiaomi-sdm660/android_kernel_xiaomi_sdm660/blob/11-EAS/arch/arm/boot/dts/qcom/sdm660.dtsi#L448
->>
->> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
->> ---
-> +Ekansh some insight, please?
->
-> We're giving away that memory via qcom_scm_assign_mem() anyway
-> and I would assume that making it not-"no-map" could introduce issues
-> when the OS tries to access that region
 
-I've made it as sdm845 done [1].
+On 4/2/2026 3:26 PM, Jinjie Ruan wrote:
+> The crash memory allocation, and the exclude of crashk_res, crashk_low_res
+> and crashk_cma memory are almost identical across different architectures,
+> This patch set handle them in crash core in a general way, which eliminate
+> a lot of duplication code.
+> 
+> And add support for crashkernel CMA reservation for arm64 and riscv.
+> 
+> Rebased on v7.0-rc1.
+> 
+> Basic second kernel boot test were performed on QEMU platforms for x86,
+> ARM64, and RISC-V architectures with the following parameters:
+> 
+> 	"cma=256M crashkernel=256M crashkernel=64M,cma"
+> 
+> Changes in v12:
+> - Remove the unused "nr_mem_ranges" for x86.
+> - Add "Fix crashk_low_res not exclude bug" test log.
+> - Provide a separate patch for each architecture for using
+>   crash_prepare_headers(), which will make the review more convenient.
+> - Add Reviewed-by and Tested-by.
+> - Link to v11: https://lore.kernel.org/all/20260328074013.3589544-1-ruanjinjie@huawei.com/
+> 
+> Changes in v11:
+> - Avoid silently drop crash memory if the crash kernel is built without
+>   CONFIG_CMA.
+> - Remove unnecessary "cmem->nr_ranges = 0" for arch_crash_populate_cmem()
+>   as we use kvzalloc().
+> - Provide a separate patch for each architecture to fix the existing
+>   buffer overflow issue.
 
-[1]: 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/sdm845.dtsi#n893
+Are there any further review comments? Especially regarding the patch
+for fixing out-of-bounds access (suggested by the AI review), as well as
+the changes for LoongArch, x86 and riscv architectures.
 
-> Konrad
->
->
->>   arch/arm64/boot/dts/qcom/sdm630.dtsi | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
->> index 4b47efdb57b2..13094b5e9339 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
->> @@ -495,8 +495,9 @@ venus_region: venus@9f800000 {
->>   		};
->>   
->>   		adsp_mem: adsp-region@f6000000 {
->> +			compatible = "shared-dma-pool";
->>   			reg = <0x0 0xf6000000 0x0 0x800000>;
->> -			no-map;
->> +			reusable;
->>   		};
->>   
->>   		qseecom_mem: qseecom-region@f6800000 {
->>
--- 
-Best regards,
-Nickolay
+> - Add Acked-bys for arm64.
+> 
+> Changes in v10:
+> - Fix crashk_low_res not excluded bug in the existing
+>   RISC-V code.
+> - Fix an existing memory leak issue in the existing PowerPC code.
+> - Fix the ordering issue of adding CMA ranges to
+>   "linux,usable-memory-range".
+> - Fix an existing concurrency issue. A Concurrent memory hotplug may occur
+>   between reading memblock and attempting to fill cmem during kexec_load()
+>   for almost all existing architectures.
+> - Link to v9: https://lore.kernel.org/all/20260323072745.2481719-1-ruanjinjie@huawei.com/
+> 
+> Changes in v9:
+> - Collect Reviewed-by and Acked-by, and prepare for Sashiko AI review.
+> - Link to v8: https://lore.kernel.org/all/20260302035315.3892241-1-ruanjinjie@huawei.com/
+> 
+> Changes in v8:
+> - Fix the build issues reported by kernel test robot and Sourabh.
+> - Link to v7: https://lore.kernel.org/all/20260226130437.1867658-1-ruanjinjie@huawei.com/
+> 
+> Changes in v7:
+> - Correct the inclusion of CMA-reserved ranges for kdump kernel in of/kexec
+>   for arm64 and riscv.
+> - Add Acked-by.
+> - Link to v6: https://lore.kernel.org/all/20260224085342.387996-1-ruanjinjie@huawei.com/
+> 
+> Changes in v6:
+> - Update the crash core exclude code as Mike suggested.
+> - Rebased on v7.0-rc1.
+> - Add acked-by.
+> - Link to v5: https://lore.kernel.org/all/20260212101001.343158-1-ruanjinjie@huawei.com/
+> 
+> Jinjie Ruan (14):
+>   riscv: kexec_file: Fix crashk_low_res not exclude bug
+>   powerpc/crash: Fix possible memory leak in update_crash_elfcorehdr()
+>   x86/kexec: Fix potential buffer overflow in prepare_elf_headers()
+>   arm64: kexec_file: Fix potential buffer overflow in
+>     prepare_elf_headers()
+>   riscv: kexec_file: Fix potential buffer overflow in
+>     prepare_elf_headers()
+>   LoongArch: kexec: Fix potential buffer overflow in
+>     prepare_elf_headers()
+>   crash: Add crash_prepare_headers() to exclude crash kernel memory
+>   arm64: kexec_file: Use crash_prepare_headers() helper to simplify code
+>   x86/kexec: Use crash_prepare_headers() helper to simplify code
+>   riscv: kexec_file: Use crash_prepare_headers() helper to simplify code
+>   LoongArch: kexec: Use crash_prepare_headers() helper to simplify code
+>   crash: Use crash_exclude_core_ranges() on powerpc
+>   arm64: kexec: Add support for crashkernel CMA reservation
+>   riscv: kexec: Add support for crashkernel CMA reservation
+> 
+> Sourabh Jain (1):
+>   powerpc/crash: sort crash memory ranges before preparing elfcorehdr
+> 
+>  .../admin-guide/kernel-parameters.txt         |  16 +--
+>  arch/arm64/kernel/machine_kexec_file.c        |  43 +++-----
+>  arch/arm64/mm/init.c                          |   5 +-
+>  arch/loongarch/kernel/machine_kexec_file.c    |  43 +++-----
+>  arch/powerpc/include/asm/kexec_ranges.h       |   1 -
+>  arch/powerpc/kexec/crash.c                    |   7 +-
+>  arch/powerpc/kexec/ranges.c                   | 101 +-----------------
+>  arch/riscv/kernel/machine_kexec_file.c        |  42 +++-----
+>  arch/riscv/mm/init.c                          |   5 +-
+>  arch/x86/kernel/crash.c                       |  92 +++-------------
+>  drivers/of/fdt.c                              |   9 +-
+>  drivers/of/kexec.c                            |   9 ++
+>  include/linux/crash_core.h                    |   9 ++
+>  include/linux/crash_reserve.h                 |   4 +-
+>  kernel/crash_core.c                           |  89 ++++++++++++++-
+>  15 files changed, 193 insertions(+), 282 deletions(-)
+> 
 
 
