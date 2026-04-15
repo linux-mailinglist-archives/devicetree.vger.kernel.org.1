@@ -1,268 +1,219 @@
-Return-Path: <devicetree+bounces-287510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287512-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ALbfNydL32mFRQAAu9opvQ
-	(envelope-from <devicetree+bounces-287510-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 10:24:07 +0200
+	id mFNiKqRK32mFRQAAu9opvQ
+	(envelope-from <devicetree+bounces-287512-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 10:21:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815C7401E48
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 10:24:07 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A829401DD8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 10:21:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F09F3302F726
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 08:20:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B0EE13004DCE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 08:21:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F93A3CC9F5;
-	Wed, 15 Apr 2026 08:20:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E4C3A5435;
+	Wed, 15 Apr 2026 08:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O0k3KIXT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Oj/6ZZKk";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LGrKIk/I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 566783C873B
-	for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 08:20:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D03281357
+	for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 08:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776241214; cv=none; b=Qxd+ZtezXB8vQtgAdsOtnLh6eihnSg4vcAi6vmcfPAZ/aO3087mIajMd1KNgjhUYb727nDfLPmq2ErwiK1YJOee5VpysBiKfyGPa/TXtoLsoMEGTDXlLr62BNOGwUHmQQY+kYtDZ35yZ2tsg/G3ba7eJH5qCnm4Ky+6o64GbSEg=
+	t=1776241314; cv=none; b=TLmn0UxKvaM6etJey+b/2Bq7g6piOBKTO5Mb4F2nNSpV0+PFBLwXHKTuzS8bBa0NoFkJ0GpvRXd6pYphpycZ5kxH0bWDvBY3Qvh+Uj2zHPjMwWKk7B8I7bL7rT/qghpkq53ehSB9+fcT54If8U1Wjhkivnfb6FSulGc3lxcx0vM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776241214; c=relaxed/simple;
-	bh=AS429itr7wbpGuNOk5jL7MlDnLt1qmHnn3vRkHB1nVk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ybuyqf2Qz3ABmUJFOalUye29Lb/bSM+haYiAJ9by/DAj1GLYgTcGJuYekrRKFWQI6HTH3iWXNoauIT2YT1lYUxObOZlT9Zgth18wV8iXCKE36qlvTUWAq7bCWG7a+jn3fIN1+Mdr1rNKXN7G7lFSMmiiehGBNrTKGR7L27ZmLsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O0k3KIXT; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4887fd35e60so45240945e9.2
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 01:20:12 -0700 (PDT)
+	s=arc-20240116; t=1776241314; c=relaxed/simple;
+	bh=QRV4MLHxKSpNcqM4BDf+UW00MmNeU+zesBUiRCyk4VM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pwq/nFsI39B3WQ5/hD31uvbLZLiBxT4H4RemxLXNfkDy+Wh+SpXgadQBP6OacsT2uPQskSyCasPMvbJaxLy0TMiARV9K3DIYBlzz1BUqa7j/X+x8L+00PP5r6ZvQaUqjuoroIhIntYpTYnzj0cfwEVvOciTUsGHr3loXIZZK940=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Oj/6ZZKk; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LGrKIk/I; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63F4CqGd3759299
+	for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 08:21:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=I0eqagUMBzZb/Qop6f7WgKx7bP7+THfDsWO
+	e5fhJtE0=; b=Oj/6ZZKk7FvsHVVWJGiDc1oUwdFN9G6s5bNN+57X1IJIIRISSdZ
+	v4ht5yl+6/aSuoTyhuSXNKpJm3EvXrkLbE6sBA+x0nbLVC/rNG4p5iTOc0sHKBhy
+	sAY7l+4u5GchpFKQkaZv9e7wo42W2lRXWfanWbvgEj0AMSYbsXIA1hduBQKqrJ9f
+	9Sc/30l6njFK+VhHfm67zf/vkdzG5zWLukOA5omc03uf77f8CzBa1EpXcF6BjlTO
+	6Xowi2UuMpttqjxJ8FP+wYpA732GDeueACVZjkYwcC+uLNi+AFgePSzV5Mp+Syr5
+	1f9FsOV2uZyWmfqQd1RK7PucETA7Cg2/xGw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dhtg0abfj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 08:21:52 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-50d5d1c2289so109863471cf.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 01:21:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1776241211; x=1776846011; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0otFmE3OfgX1ocRffAsBD3VgKhSHJKmOocoLMY68w2Q=;
-        b=O0k3KIXTrRRTXq7ITdfsgz4CqfxhnnsMH1eB/RPf8ZrOiN+jGV7dxT1ik7p8SNFD4O
-         jI4fSaTYA40PH2meeWkBVio+RGdNX7bS+9NrufjDQektPsXipRcOjrxVkTI/J14sF9ht
-         d77eO62p8G4jsUCwh4bijIM1BiLwlzJL1GQg4D0UumwndDvsJ/ToV/MMIzQu3U94vpzW
-         d+h8ES2B1K9GtcErvIv2vEtf4/CKmgUtbstgEbZNpyD6/mIEhXR3MbOkWvMXBVrzr645
-         6PG1yiI5JiN3JouibmvfbLp9TGVvQyIoh/jCNDHZu4Z1q6tTGGVK4XR2rFetxvd9dSce
-         hm+g==
+        d=oss.qualcomm.com; s=google; t=1776241311; x=1776846111; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I0eqagUMBzZb/Qop6f7WgKx7bP7+THfDsWOe5fhJtE0=;
+        b=LGrKIk/ICmJS0P5/UI88b5r/ZGy3UQ2nYQAFPTYwBPASvGNxFEhrSrecvICwoVTXz7
+         8X4QVl0qMxkYJcgFmMntKu234EVMbdtM5vemuUyBNFxW4Fd5jarjCo5l78GZolSB5/4f
+         GqMVPnE2MxXkENahQVZnnFLjEMxn74d0DEMHXbh5fhrcUll1AF1rcroB1ths7fX8DE5m
+         xND7USKuld5o2TRC+HUeE+LK2DJLR/RwOeq5kZ/cqEK8BGQA9GS5+hMpdUgvvLxKVOE1
+         GvRqFttOoIek5b9DFybjdQ6HC6tOl8/GYG6vd4MRaMgfh7dZh/oWJKR3XoFkOKZE57Jk
+         DQow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776241211; x=1776846011;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0otFmE3OfgX1ocRffAsBD3VgKhSHJKmOocoLMY68w2Q=;
-        b=mgu/ylJiStZx+Q0/3wqzxAlEiCouMCx/xDiLauyvXkjK71FiHGDAEu2Cqdb21kkpaB
-         P/++1RfWdySwegyp60j3M+vW83RhFqTJtZGyGNzMrQme8uXcjsZJU5PLkm85P6LgN/YG
-         omytPYEelMREsCR+zZ55tpX8fZmaccCRqlwUEM3xUQboW+Z1OptGB+npTt0/yAeNg7ry
-         JaVVT/oVT/3UR5kD0BzEWK7DUZJVTdb80buV339Hb3xDi80eo7PyzN0dkkIG1/04XlzF
-         cL7w/6gDiOdZYH48QTKB/+sjn24uT0i86OMJaCCV5GShYbp5l0m/tfiqBCCpJ090zvOX
-         3w6A==
-X-Forwarded-Encrypted: i=1; AFNElJ8kecOg7Wo8waJcR+KIWyWrOgNyGP6YH50hE2l/3+nst3/Uc4Lu3JPlxD2xd3LE+grxpgRNLK2eaGA8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCFNLRkPgV+XbQGmGTVX+26dsnV0c++2siX2K/AqPMJfnhE/ZV
-	hTIvLw7pMcBInH2Claj4mHXFXQ6QeW0rhISF8e6Vc1k6nJ+Ie9Z3CFaK
-X-Gm-Gg: AeBDiesgeuI18QTUfYDRpuSZSwCiNgvnMjGmyP0JKLfWUouN+Tu5R3Ks+Ej5EIUtyNP
-	Zmaf/JWn1LdmJ6u3HQd7HM6ln9ZQr/Y93PdIvT6ELIj7OzwoSpKvBDppN31Pymn9OO999B/zbD+
-	zfQ4XHEKim+wjcoGxSd7SIR1QmDwjCe3EzNbIr9ZXJXQ15m1hxc8cHO0i5IfSKKupHjfOczHYGt
-	Z18VI5DOCkOxmKdt4uBRAldZ0E9Iz/O1wtnZR55FKVtqGV6bA3Wdv17wDlS0y5pzeCTWZMF5ZZq
-	UE8eMhRWWTNBOkwqTJuhAGExSFBV9h6nUT6WhUjAD/cGfeVcdbo6cnqpKxOGtgYTnTns9XzSKWc
-	KngY7KN6Cn6AIPNdKjSH6tU3gHPjD2Th498Xb1dp2ULzLLxgGdHqF4kdZwMiLzOyW5tlyHIh3Wj
-	woQTaZlfEFN122yjePzmck9l4=
-X-Received: by 2002:a05:600c:c0dc:b0:488:aa3d:fab1 with SMTP id 5b1f17b1804b1-488d68364f2mr188027275e9.17.1776241210420;
-        Wed, 15 Apr 2026 01:20:10 -0700 (PDT)
-Received: from nsa ([45.94.208.74])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43ead3ebaf1sm2980604f8f.33.2026.04.15.01.20.08
+        d=1e100.net; s=20251104; t=1776241311; x=1776846111;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I0eqagUMBzZb/Qop6f7WgKx7bP7+THfDsWOe5fhJtE0=;
+        b=JLgScoXFHzT3xAuMvfmdrR09s7qcO1o1szvK08h9Y7erGkjPu/+fWBNLUY8FQHMeaU
+         KXUgwhf93B5gIuNE0Or2BA1de+HwLDD/VplapJBnSO2DlxksVyzV8um31pAy8WeIXIEN
+         kjMMhCrNuLAB2k9lOWtw6DfG1o+79LWDXt3SKpGvLB4DVPwo/98COOqbb3FG2lL5yyzh
+         UbhXjPpgigO7onS8nS0bVl4NcFlGuMmctEBxa/dDIOHLxeAUBLk5EEpeNwBl2cIg0337
+         1GtlFpm8FQwcBMwfJ2vBscx6YwWFBWzSc9Yyaq6gpkvVclcWuj/5O6ed04523HGv1vau
+         FpKA==
+X-Forwarded-Encrypted: i=1; AFNElJ+jePb8mNfD+rsVRYIYnjhYY8qVUbfIemckBoMaIbfpX0JjDlcB5ySSB8g39VUANZ3P/eDuSwllEvYy@vger.kernel.org
+X-Gm-Message-State: AOJu0YzL6ZRQEktPd6/TUr/V2NTC13Q2x8X4P8M2z+LPjjMW04kBRkMq
+	sb6uU3LTceFh3CcHSJYz+j8A9qz0cyAM8P+Wk5g/o1L7c5dbE5sFqkBbkHDePIqhz8nwf0Cv+8H
+	rJC71D/vXokDSc1miSO6rFWAPdGVMb5AzWYf8h9S6fHvEzslssxPclt0gzOWiODCM
+X-Gm-Gg: AeBDievxL8AHgMrwy2USPUlzG512uKGMWyeTdi+DSgpdFAM3qWLTgR4Z70OL0d37NZK
+	qqiCTO0WhteejjT+Nr+QzNpsUpH8QygN/kkKMHS/V1qaNF0enjeV3qnhlSv3GecVIMwx8vHB1UD
+	giw61i1n2OZNCfPT7OMc7hZ2dSdtldxCIjotYNzxIzJI7NK6NGrR2gGai5ZRrRmHLqhs/YI6WsI
+	9+I4iaF7M8WE31NEqhs+BKsx/6o4KJz3cqhwJGp8mkP1sgMJwLv480R9ZGMIw2i77wyFpfYUY8d
+	VgEiWlOG5dZzNdNxDYXUPznK0OqKGztrA9VCrj9VQ8JRHBwptBaY8Twwaj40cxvJ9+xVDmPGrB1
+	qFSAA/Ct33cCpZMfNJLHTeWVbg3xP0VXIbkV7
+X-Received: by 2002:a05:622a:24c:b0:509:2677:68f7 with SMTP id d75a77b69052e-50dd5aab64emr303838701cf.5.1776241311554;
+        Wed, 15 Apr 2026 01:21:51 -0700 (PDT)
+X-Received: by 2002:a05:622a:24c:b0:509:2677:68f7 with SMTP id d75a77b69052e-50dd5aab64emr303838431cf.5.1776241311100;
+        Wed, 15 Apr 2026 01:21:51 -0700 (PDT)
+Received: from quoll ([178.197.219.94])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488f0ebd0e1sm14333445e9.28.2026.04.15.01.21.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Apr 2026 01:20:09 -0700 (PDT)
-Date: Wed, 15 Apr 2026 09:20:59 +0100
-From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: "Sabau, Radu bogdan" <Radu.Sabau@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	"Hennerich, Michael" <Michael.Hennerich@analog.com>, "Sa, Nuno" <Nuno.Sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v7 5/6] iio: adc: ad4691: add oversampling support
-Message-ID: <ad9J9C5K7tyxuztU@nsa>
-References: <20260409-ad4692-multichannel-sar-adc-driver-v7-0-be375d4df2c5@analog.com>
- <20260409-ad4692-multichannel-sar-adc-driver-v7-5-be375d4df2c5@analog.com>
- <742b1821-9103-414e-a860-c2e8d5406e35@baylibre.com>
- <20260412185821.739e477f@jic23-huawei>
- <LV9PR03MB8414E0A68C5676302909E220F7252@LV9PR03MB8414.namprd03.prod.outlook.com>
- <b352b76c-8047-4a1f-8b83-db8144466c36@baylibre.com>
+        Wed, 15 Apr 2026 01:21:50 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH] docs: dt: writing-bindings: Extend compatible fallbacks guideline
+Date: Wed, 15 Apr 2026 10:21:14 +0200
+Message-ID: <20260415082113.22775-2-krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1654; i=krzysztof.kozlowski@oss.qualcomm.com;
+ h=from:subject; bh=QRV4MLHxKSpNcqM4BDf+UW00MmNeU+zesBUiRCyk4VM=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBp30p5mBuRVBsm75haPO57WuvBG3SRGoHHe/bYh
+ hZdlMqGMsiJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCad9KeQAKCRDBN2bmhouD
+ 16WcD/9KdRDL5BEuBDX6uUevh6nOyhWdilO4PVAczQp1ENTFj+9EyLHVux7xHudi1uVkBOTf5xo
+ BxK1MmvqosCBX2xSFVxeXEssP6ERQ0n9n+FX1mbotP2wNhdcIv1OS7279Kx5tDSlzSLakRyO5Zb
+ 71LHGQq3ARKsBUZS/zHo7byjoZ0BwwKByMsE2mR5STvdTOlPnsEcM/LdZe8584WqLdQ/t3oOj1q
+ bpiQYBuGXBnjgz2V9CwvSATNUR3higzGICIzLUanafLr8fuDIJtn0f4Efq5Zg1Z7kQMWZDTZIz5
+ km7x91NAt7NsJ7B8JFTB81mhiOyXrHL9AHD/iCiKTWvPcpH0T5utrZoO9T0OhUUHu9ESBGZsBaA
+ qPr2d20hQ+dcWYc3abTy1YIBGfUWHEVZ1amlPbqElEHPIXoLYT08xtNb73IqujXNXYG3uqKb/G4
+ sn7xKE6n20CV+fdlUp4MUftM+KC2OBAP3KJLwbHzbLl1Iuxbw1bGjRPpPFXA8e5kOACgfYsiVhH
+ h1RhBXZJM5sohYwyNOw2Ofky2TdMH9RY9OGVRjOVvG+dQSan1bD+H46rXeXsUIU++DTO0nCE+0O
+ lxYAqctWTitkNgOwZrH45b+38Ys9mMGuCTD499hlU8MWu17njU6pAzIBQkh5vQ776xb6KEbwNxW qv28Yqp6O/GHkKg==
+X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <b352b76c-8047-4a1f-8b83-db8144466c36@baylibre.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Authority-Analysis: v=2.4 cv=AszeGu9P c=1 sm=1 tr=0 ts=69df4aa0 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=gOEeR9iKwsj33Yj5oN/cWg==:17
+ a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=EUspDBNiAAAA:8
+ a=YRjzyCTZZ4-ze7UGkugA:9 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-GUID: BK_2aERgRrrLH1E_dFI843U7izJNsk9n
+X-Proofpoint-ORIG-GUID: BK_2aERgRrrLH1E_dFI843U7izJNsk9n
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDE1MDA3NSBTYWx0ZWRfXzCDmOawkJzxx
+ bNAPtEL4CPyjSVGXilMX89R7Fe/dkpg33RFPyaJd7eVupGPySlikSWgmCRNc3Of5JQRgBSRbPUP
+ SUGt2yLglqz+wQZ82Og3wsrkWSanfwceT1nIX7znEw1BOQeZwgzc4qinnTklIAaKKAHzJLf0enL
+ iANlyZCCpGQKv6U/kF/7f9EXwLvYSMjGJIwdgefpy1NFs4Pp+/QhySCN+oS7eQejMX4lVbREvkM
+ QPzpUw0BSuqOIeNr5NuSZWZuxaXWaRwc2AYZPl9nGSYEPL+Y11m87KBHnUyJqKJgQOd9cKE0wgl
+ VkfKvnlRbKwWW2QwpyCsrhi/N8M/4I6f5pquD7dypMcGxAlSLPJJKAtJmPhUyENpFuDsArTDn0Y
+ +gnzEZYko9FCVnMn2WqQJv6rGtw+EEdLvnne9xphzWyXnWS8eCkaK5fU1uHLaNmpCTZyEZuZnEE
+ DEVhgTacOFofyYjdDwg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-14_04,2026-04-13_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 malwarescore=0 bulkscore=0 impostorscore=0 clxscore=1015
+ phishscore=0 suspectscore=0 priorityscore=1501 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604150075
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-287510-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[analog.com,kernel.org,metafoo.de,gmail.com,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	TAGGED_FROM(0.00)[bounces-287512-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 815C7401E48
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 4A829401DD8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Apr 14, 2026 at 10:02:31AM -0500, David Lechner wrote:
-> On 4/14/26 9:25 AM, Sabau, Radu bogdan wrote:
-> > 
-> > 
-> >> -----Original Message-----
-> >> From: Jonathan Cameron <jic23@kernel.org>
-> >> Sent: Sunday, April 12, 2026 8:58 PM
-> >> To: David Lechner <dlechner@baylibre.com>
-> >> Cc: Sabau, Radu bogdan <Radu.Sabau@analog.com>; Lars-Peter Clausen
-> >> <lars@metafoo.de>; Hennerich, Michael <Michael.Hennerich@analog.com>;
-> >> Sa, Nuno <Nuno.Sa@analog.com>; Andy Shevchenko <andy@kernel.org>;
-> >> Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;
-> >> Conor Dooley <conor+dt@kernel.org>; Uwe Kleine-König
-> >> <ukleinek@kernel.org>; Liam Girdwood <lgirdwood@gmail.com>; Mark Brown
-> >> <broonie@kernel.org>; Linus Walleij <linusw@kernel.org>; Bartosz
-> >> Golaszewski <brgl@kernel.org>; Philipp Zabel <p.zabel@pengutronix.de>;
-> >> Jonathan Corbet <corbet@lwn.net>; Shuah Khan
-> >> <skhan@linuxfoundation.org>; linux-iio@vger.kernel.org;
-> >> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
-> >> pwm@vger.kernel.org; linux-gpio@vger.kernel.org; linux-doc@vger.kernel.org
-> >> Subject: Re: [PATCH v7 5/6] iio: adc: ad4691: add oversampling support
-> >>
-> >> [External]
-> >>
-> >> On Fri, 10 Apr 2026 16:15:20 -0500
-> >> David Lechner <dlechner@baylibre.com> wrote:
-> >>
-> >>> On 4/9/26 10:28 AM, Radu Sabau via B4 Relay wrote:
-> >>>> From: Radu Sabau <radu.sabau@analog.com>
-> >>>>
-> >>>> Add per-channel oversampling ratio (OSR) support for CNV burst mode.
-> >>>> The accumulator depth register (ACC_DEPTH_IN) is programmed with the
-> >>>> selected OSR at buffer enable time and before each single-shot read.
-> >>>>
-> >>>> Supported OSR values: 1, 2, 4, 8, 16, 32.
-> >>>>
-> >>>> Introduce AD4691_MANUAL_CHANNEL() for manual mode channels,
-> >> which do
-> >>>> not expose the oversampling ratio attribute since OSR is not applicable
-> >>>> in that mode. A separate manual_channels array is added to
-> >>>> struct ad4691_channel_info and selected at probe time; offload paths
-> >>>> reuse the same arrays with num_channels capping access before the soft
-> >>>> timestamp entry.
-> >>>>
-> >>>> The reported sampling frequency accounts for the active OSR:
-> >>>> effective_freq = oscillator_freq / osr
-> >>>
-> >>> Technically, the way this is implemented is fine according to IIO ABI
-> >>> rules. Writing any attribute can cause others to change. It does
-> >>> introduce a potential pitfall though. Currently, changing the OSR will
-> >>> change the sampling frequency, so you have to always write
-> >> oversampling_ratio
-> >>> first, then write sampling_frequency to get what you asked for. If you want
-> >>> to change the OSR and keep the same sample rate, you still have to write
-> >> both
-> >>> attributes again.
-> >>>
-> >>> In other drivers, I've implemented it so that the requested sampling
-> >> frequency
-> >>> is stored any you always get the closest sampling frequency available based
-> >> on
-> >>> the oversampling ratio. This way, it doesn't matter which order you write
-> >>> the attributes. In that case, the actual periodic trigger source isn't set up
-> >>> until we actually start sampling.
-> >>>
-> >> Agreed. This is more intuitive. Now generally the userspace should
-> >> be sanity checking the value anyway as limitations may mean the new
-> >> sampling frequency is not particularly close to the original one but
-> >> at least it increases the chances of getting the expected value somewhat!
-> >>
-> >> So to me this is a nice useability improvement given the code to implement
-> >> it tends not to be too complex.
-> >>
-> > 
-> > Hi David, Jonathan,
-> > 
-> > What I understand from this is that the osr should be taken into account when writing
-> > the sampling frequency as well, right? Here's what I understand:
-> > 
-> > If the user wants a 125kHz freq with 4 OSR, then when internal osc will be written
-> > to 500kHz before single-shot read, buffer preenable/postenable.
-> > However, if the user wants a 500kHz frequency with 4 OSR, that would mean a 2MHz
-> > Internal osc freq, which is impossible.
-> 
-> It is up to the user to request something that is legal. They should know this
-> from reading the datasheet.
-> 
-> > 
-> > More than this, if the OSR is 32 the maximum effective rate would be 31250, so 25kHz
-> > would make it the closes available one. If the user would select 1MHz from the available
-> > list it would be weird I would say. So perhaps a solution for this is to display the avail list
-> > depending on the set OSR value.
-> 
-> Yes, the available list should reflect the current state of any other attributes
-> that affect it.
+Extend the guidelines when to use fallback compatibles to cover to
+common review responses.  Devices are most likely compatible and should
+use fallbacks when having:
 
-IMO, the above makes total sense to me.
+1. Compatible programming interface, meaning one is a subset, and Linux
+   device drivers can use the subset to correctly match/bind and still
+   operate with the subset features.
 
-- Nuno Sá
+2. Device variant discovery through some means, like registers.
 
-> 
-> > 
-> > Linking the two together is perhaps wrong to begin with from my end, since in this
-> > driver's case, the per-channel sampling frequency is controlled by the internal oscillator
-> > which has static available values. So perhaps sampling frequency should be separate, and
-> > OSR separate as well, which would make everything cleaner.
-> > 
-> > Indeed, the effective rate is changed by OSR, but perhaps that is something the user
-> > should be aware of, since the sampling frequency is the rate at which the channel samples
-> > (1 sample per period) and OSR is how many times the channel samples upon a final sample
-> > is to be read. The user already has to take this into account when setting the buffer
-> > sampling frequency, so it would make sense to take this into account here too.
-> 
-> We can't change the definition of the IIO ABI just to make one driver simpler
-> to implement. The OSR and sample rate can't be completely independent.
-> 
-> If you want to leave it the way it is currently implemented though, that is fine.
-> 
-> > 
-> > Please let me know you thoughts on this,
-> > Radu
-> 
+Devices are incompatible and fallback is not suitable when that
+fallback cannot be used by the drivers to match/bind.
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+---
+ Documentation/devicetree/bindings/writing-bindings.rst | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/writing-bindings.rst b/Documentation/devicetree/bindings/writing-bindings.rst
+index 667816dd7d50..03e29e2d50af 100644
+--- a/Documentation/devicetree/bindings/writing-bindings.rst
++++ b/Documentation/devicetree/bindings/writing-bindings.rst
+@@ -53,7 +53,12 @@ Properties
+    - DON'T use wildcards or device-family names in compatible strings.
+ 
+    - DO use fallback compatibles when devices are the same as or a superset of
+-     prior implementations.
++     prior implementations.  Fallback compatibles are applicable especially
++     when sharing a programming interface or when able to discover the
++     variants.
++
++   - DON'T add fake fallback compatibles when software cannot use such to match
++     and bind to a device, and still operate correctly.
+ 
+    - DO add new compatibles in case there are new features or bugs.
+ 
+-- 
+2.51.0
+
 
