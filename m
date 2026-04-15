@@ -1,219 +1,163 @@
-Return-Path: <devicetree+bounces-287564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287560-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GBPJC65h32lhSQAAu9opvQ
-	(envelope-from <devicetree+bounces-287564-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 12:00:14 +0200
+	id oHn6BDpf32m5SAAAu9opvQ
+	(envelope-from <devicetree+bounces-287560-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 11:49:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 110DA403092
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 12:00:13 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81727402D87
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 11:49:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9D1C7307E46F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 09:49:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 35ADC3039D91
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 09:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 197BF2EA171;
-	Wed, 15 Apr 2026 09:49:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15CF533DEC8;
+	Wed, 15 Apr 2026 09:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jHSYmTew"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.76.78.106])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13AC533A9E2;
-	Wed, 15 Apr 2026 09:49:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.76.78.106
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E687E49620;
+	Wed, 15 Apr 2026 09:49:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776246584; cv=none; b=e0S5dBSuyXOjiOiInRWbVkE+U1/pM+GvJ31HTaAannSjJ9Z2ArHMOlxvkm2AP2UsdrA0OQDOutQ6XIJi4oWQecS3c53zaLQoKrzHNUQFEnbV4k7WWyHU/kg6bTA/83zHg63NYuFcj70b8KL3ZSbOygPoQjio7OEitzJ1lBHbOlM=
+	t=1776246545; cv=none; b=E9qybaUXyvRZKeim66zzkNDePm7FA+5ocaywTqtZ+Oehksw8AfleatSrHC531kFOoz18/Hk6ZCAv0JkoZnofmBXiPsL8GX0O2STQp/+mjAhrLyMQmQT4yc9cmbt7wPaA4iHSlU16oW9PHIwqBbwt7AyJDpDmkP8h4O91MAxmmaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776246584; c=relaxed/simple;
-	bh=DYVFNdk+djD8K61KVIPUXoIqm13LT4O06uqmf+HTNoY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=OjT9V6ecONQfOzo+x4GKfTT9yoXxle1fSz9+1CnRa8v7Pf8eqxxAQgVcJKB61G9I+ZPCq0/4MY+2Q+pyJ89Nl0TolPMC5zc1yfnKAW/2jG1iW6Th+jkM73nwc4cfN+h40M17Su8IkLXhA0MtGeAl1pp955m56C75971IH4CSVoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.76.78.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app2 (Coremail) with SMTP id TQJkCgBXbaAWX99pReMRAA--.51076S2;
-	Wed, 15 Apr 2026 17:49:12 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: ukleinek@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	ben-linux@fluff.org,
-	ben.dooks@codethink.co.uk,
-	p.zabel@pengutronix.de,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	xuxiang@eswincomputing.com,
-	wangguosheng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	Xuyang Dong <dongxuyang@eswincomputing.com>
-Subject: [PATCH v4 0/2] Update designware pwm driver
-Date: Wed, 15 Apr 2026 17:49:08 +0800
-Message-Id: <20260415094908.1539-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
+	s=arc-20240116; t=1776246545; c=relaxed/simple;
+	bh=OPSManH+jTZmiMkHIrnnuu40Oe35ldc++5hslhv84s8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q7MZiLSHw0iGB1GC5nO1JrU23pjCCH0jd58tKosFCMV2VOvcpe4taUDneC2h6c99h7/45fDbgLsg1ZLbHBuJ1kIaiKCrgQ8dlg3IzzSfJEWpaC5EcP2xRyCKfzszxPqlAH8Nm8HQwZ2jF1CAbD6FF8PyHKFwbggQ7No9zY7v0qM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jHSYmTew; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1776246543; x=1807782543;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OPSManH+jTZmiMkHIrnnuu40Oe35ldc++5hslhv84s8=;
+  b=jHSYmTewacOqCLYtjgKcwW3rYEvYElybpkJGnO6aa1hcDyO2MGj3vOgD
+   ISCKUcQ6MNhXOg8a63jyMAPt1Ov0nYiTa15rUwEeceue7eqL9v4vLls48
+   YNHgHa+HT5hTfcfBYOaEaHCwSJuSb7ZgcfNoOJ/KPjBxm+BnPhy2QsPZA
+   tY9rrsq9Zspqk/cfNsn1KKAJpWgFC5CY08Ep4hbNs8RMkK252MfpyNsbs
+   PgqBbX6ZCdYwY5scxZVMx6gc9W8B5oQjSd9mCuWSq0BBdMD+jTr8M5wYV
+   w3dfjwZwT0KTtQ4hEcgQFzH/v5CVdHz3WruOyowyCOPFl1chRUfYyBpPx
+   w==;
+X-CSE-ConnectionGUID: HyntHTdhQAeKBmHIO5a2Iw==
+X-CSE-MsgGUID: MrVESaDJTAiRgw4npMv3SA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="80815273"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; 
+   d="scan'208";a="80815273"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Apr 2026 02:49:02 -0700
+X-CSE-ConnectionGUID: A6qVCW9bRLGDOxkJmud2ww==
+X-CSE-MsgGUID: E6Cp6JlaTOGjxIUxqLR9kQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; 
+   d="scan'208";a="268366630"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.58])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Apr 2026 02:48:57 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 5DD6311FBE3;
+	Wed, 15 Apr 2026 12:49:15 +0300 (EEST)
+Date: Wed, 15 Apr 2026 12:49:15 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
+	tarang.raval@siliconsignals.io,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil+cisco@kernel.org>,
+	Hans de Goede <johannes.goede@oss.qualcomm.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+	Svyatoslav Ryhel <clamor95@gmail.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: Add os02g10 sensor
+Message-ID: <ad9fG7PpyQzlCNKd@kekkonen.localdomain>
+References: <20260414084952.217215-1-elgin.perumbilly@siliconsignals.io>
+ <20260414084952.217215-2-elgin.perumbilly@siliconsignals.io>
+ <63b6d2a0-c67c-4099-8477-f3b7241e3885@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TQJkCgBXbaAWX99pReMRAA--.51076S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxAF1rZw4rXw1xJF1ktr4fZrb_yoWrKrWxpF
-	W8KrWakrWkWrySgan7X3W8uFyYq3Z5JF4UKwn5Ga4UZw1Yy3yUJrZY9Fy5tF9Fvr4kWFyY
-	yryfGa129a4YyF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
-	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUHCJQUUUUU=
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
-X-Spamd-Result: default: False [1.54 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <63b6d2a0-c67c-4099-8477-f3b7241e3885@kernel.org>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-287564-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DMARC_NA(0.00)[eswincomputing.com];
+	FREEMAIL_CC(0.00)[siliconsignals.io,kernel.org,oss.qualcomm.com,linaro.org,linux.intel.com,ideasonboard.com,foss.st.com,gmail.com,intel.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-287560-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_NO_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.928];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:mid,eswincomputing.com:email,intel.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 110DA403092
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 81727402D87
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
+Hi Krzysztof,
 
-There is already a patch [1] for the DesignWare PWM driver,
-which is posted by Ben and still under review.
-Based on this patch, this series is a continuation of [1]
-to add support for IP versions 2.11a and later, which
-includes support for "Pulse Width Modulation with 0%
-and 100% Duty Cycle".
+On Wed, Apr 15, 2026 at 11:03:51AM +0200, Krzysztof Kozlowski wrote:
+> On 14/04/2026 10:49, Elgin Perumbilly wrote:
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        $ref: /schemas/media/video-interfaces.yaml#
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          data-lanes:
+> > +            items:
+> > +              - const: 1
+> > +              - const: 2
+> 
+> This looks completely fixed per model. If device cannot work with four
+> lanes, then you simply don't need this property. It's deducible from the
+> compatible.
 
-Supported chips:
-ESWIN EIC7700 series SoC.
+Presumably one lane is enough for the sensor even if the driver only
+supports two lane operation.
 
-Test:
-Tested this patch on the Sifive HiFive Premier P550 (which uses the EIC7700
-SoC).
+-- 
+Regards,
 
-[1] https://lore.kernel.org/lkml/20230907161242.67190-1-ben.dooks@codethink.co.uk/
-
-Updates:
-  Change in v4:
-  - YAML:
-    - Change maxItems from 1 to 2. As there is a corresponding reset signal
-      for each clock domain, the effective maxItems of the resets property
-      is set to 2.
-    - Update the YAML commit message to describe the hardware.
-  - Driver:
-    - Replace devm_reset_control_get_optional_exclusive() with
-      devm_reset_control_array_get_optional_exclusive(). Since the number
-      of reset signals has increased from one to two.
-
-  - Link to v3: https://lore.kernel.org/all/20260402091718.1608-1-dongxuyang@eswincomputing.com/
-
-  Change in v3:
-  - YAML:
-    - Added a clear justification for the optional resets property. It is
-      required to support proper controller initialization when no PWM
-      channel is active at boot time, while allowing the driver to skip
-      reset deassertion if any channel is already enabled.
-  - Driver:
-    - Update the boundary value check of tmp in __dwc_pwm_configure_timer()
-      for DWC_TIM_CTRL_0N100PWM_EN.
-    - Replace 'sizeof(struct dwc_pwm_drvdata)' with
-      'struct_size(data, chips, 1)'.
-    - Drop devm_clk_get_enabled() in favor of devm_clk_get() with explicit
-      clk_prepare_enable() and clk_disable_unprepare() allowing runtime PM
-      to manage clock state.
-    - Replace devm_reset_control_get_optional_exclusive_deasserted() with
-      devm_reset_control_get_optional_exclusive() and issue a full reset via
-      reset_control_reset() only when no PWM channel is active at probe time.
-    - Detect bootloader-enabled PWM channels by reading the enable bit, and
-      initialize runtime PM as active for those channels by calling
-      pm_runtime_set_active() and pm_runtime_get_noresume().
-    - Remove autosuspend as it is not required for this driver.
-    - Use explicit pm_runtime_enable() and pm_runtime_disable() instead of
-      the managed devm_pm_runtime_enable() variant to ensure correct cleanup.
-    - On device removal, recheck the channel enable status. If any channel
-      remains active, call pm_runtime_put_noidle() before disabling clocks
-      via clk_disable_unprepare().
-      Resume device before register access during removal if it is runtime
-      suspended, and re-suspend it afterward.
-    - If device is suspended, resume it before register access during system
-      resume/suspend.
-    - Use pm_ptr() instead of pm_sleep_ptr() for correct PM operation.
-
-  - Link to v2: https://lore.kernel.org/all/20260306093000.2065-1-dongxuyang@eswincomputing.com/
-
-  Change in v2:
-  - YAML:
-    - Remove eswin,eic7700-pwm.yaml. Use snps,dw-apb-timers-pwm2.yaml.
-      The description in snps,dw-apb-timers-pwm2.yaml is better.
-    - Add the resets property as optional, as defined in the databook.
-    - Remove snps,pwm-full-range-enable as no additional property is needed.
-  - Driver:
-    - Change the file from pwm-dwc-eic7700.c to pwm-dwc-of.c from [1].
-    - Define DWC_TIM_VERSION_ID_2_11A 2.11a as the baseline version.
-    - Enable the 0% and 100% duty cycle mode by setting dwc->feature if
-      the version read from the TIMERS_COMP_VERSION register is later
-      than or equal to DWC_TIM_VERSION_ID_2_11A.
-    - Use the DIV_ROUND_UP_ULL() to calculate width in the .apply and
-      .get_state.
-    - Additionally, Power Management (PM) support has been added to the
-      pwm-dwc-of.c driver.
-    - Drop the headers that are not used.
-    - Use devm_clk_get_enabled() instead of devm_clk_get().
-    - Drop of_match_ptr.
-    - Fix build error with 1ULL << 32.
-      Reported-by: kernel test robot <lkp@intel.com>
-      Closes: https://lore.kernel.org/oe-kbuild-all/202512061720.j31AsgM7-lkp@intel.com/
-
-  - Link to v1: https://lore.kernel.org/all/20251205090411.1388-1-dongxuyang@eswincomputing.com/
-  - Link to v9: https://lore.kernel.org/lkml/20230907161242.67190-1-ben.dooks@codethink.co.uk/
-
-Xuyang Dong (2):
-  dt-bindings: pwm: dwc: add reset optional
-  pwm: dwc: add of/platform support
-
- .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml |   3 +
- drivers/pwm/Kconfig                           |  10 +
- drivers/pwm/Makefile                          |   1 +
- drivers/pwm/pwm-dwc-core.c                    | 101 ++++--
- drivers/pwm/pwm-dwc-of.c                      | 331 ++++++++++++++++++
- drivers/pwm/pwm-dwc.h                         |  25 +-
- 6 files changed, 442 insertions(+), 29 deletions(-)
- create mode 100644 drivers/pwm/pwm-dwc-of.c
-
---
-2.34.1
-
+Sakari Ailus
 
