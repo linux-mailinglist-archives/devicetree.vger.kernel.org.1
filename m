@@ -1,203 +1,219 @@
-Return-Path: <devicetree+bounces-287561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287564-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OApWKxNh32k0SQAAu9opvQ
-	(envelope-from <devicetree+bounces-287561-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 11:57:39 +0200
+	id GBPJC65h32lhSQAAu9opvQ
+	(envelope-from <devicetree+bounces-287564-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 12:00:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6A72402FB1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 11:57:38 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 110DA403092
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 12:00:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8F540300AD71
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 09:49:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9D1C7307E46F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 09:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1728133C536;
-	Wed, 15 Apr 2026 09:49:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WcfNbZNy";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hUf/V0A7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 197BF2EA171;
+	Wed, 15 Apr 2026 09:49:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD0933E344
-	for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 09:49:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.76.78.106])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13AC533A9E2;
+	Wed, 15 Apr 2026 09:49:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.76.78.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776246556; cv=none; b=fF6cY9H2xWXUIUmOFogygbkScUBQ1qPIosye1ZvnIcANG4ggtK6ouHwogA1g7rGZElcdGNHX8IMFeoVvIc5sj3Lbzn8eE1N35CS9e/98Lb1Y6ZaScVayn7d38vlw/7kvCY9wePoNlHJ+aEWQiIUd5TASNKTQxWV0rBh1EFAPVCo=
+	t=1776246584; cv=none; b=e0S5dBSuyXOjiOiInRWbVkE+U1/pM+GvJ31HTaAannSjJ9Z2ArHMOlxvkm2AP2UsdrA0OQDOutQ6XIJi4oWQecS3c53zaLQoKrzHNUQFEnbV4k7WWyHU/kg6bTA/83zHg63NYuFcj70b8KL3ZSbOygPoQjio7OEitzJ1lBHbOlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776246556; c=relaxed/simple;
-	bh=QKpaqkhXVhw3e6dha4xFZ1hNG1rBhcfaP4RE9kuyYqo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BL31Sdc9jv14QeHnhOd43Houb6s22GC63L4fNVEW8YBg7ruTDoFDojQf3hGG8eSAvVBPQ9MfezFQUb041L08qFgeiI0+wSTro0PM07FKSNKXZU2XdXPi0u/T9EJ3WR8iXfmDfbol9hW9U41rgDEr4GKf1BfPVdGLe5U12+M/g20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WcfNbZNy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hUf/V0A7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63F3vwKn3059008
-	for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 09:49:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KIzUYLQ0tR1nBOwCy/qt9ww/9VJu8w749s+dTlb0dVA=; b=WcfNbZNymh6KGA6R
-	1kojeyZJ6XrqR+3UUXo6qMnCEgE/DZXEiVOL3AgFUxlL6cEWdzAYCvEd9CHVefbk
-	FV/w0+6QYPqfuwXkMzCtM2p2RSi1fR136ZSV+Gv+mzGJxH+1r+xgldY5sXlSyA4F
-	rfh2AzlRGLFL6UMC0V7A8aCxF6Pz2paHRwadfcrDt4x3fMPNppfHUnLd0eQWnqRh
-	iVJSUW/3Jk15gpRhhIvbjy8qBPRfHOgaz2n7GRIQDgrBVNfLCRWfhhtFZyr+HKl2
-	F2K8g3E6rgE72G0UdCd1y5qpDUz8GkuuiJYcyxiFFBvAiK9z46hW84M+xu3wH+HQ
-	GSRg7w==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dhteptnhc-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 09:49:12 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8e141739794so71665285a.2
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 02:49:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1776246552; x=1776851352; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KIzUYLQ0tR1nBOwCy/qt9ww/9VJu8w749s+dTlb0dVA=;
-        b=hUf/V0A7utTUW3U+e/FoRwfUpMrrL49zs7r1JFIeI6uVO6OCs8RDwkTi7fH67tIkGj
-         JPosl+DrhQAQLi2riSiWyrWLW5V8k3WsFqHbxhBplZSmTD5Cad2GmqwuWXwaiYDuyRFe
-         KBIjX7uAjhPKKG1QVXT3kxObdGnhMcS9xwY1sv2OhoirQNJve8QR9joT/Zol3Ox1fQkU
-         qlI7sz03o4HHhQLjyujC7THcxiDxgZDo72EeUBPYeZYOfnQ4conhsv/GO8Ev14grRgO5
-         7yF5TVguuEkpG9SRzG+LXlscM5lYyzxfmVv3cgJOX9l8M5vF+F4y4/meF6H1QYe+ky1H
-         BreQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776246552; x=1776851352;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KIzUYLQ0tR1nBOwCy/qt9ww/9VJu8w749s+dTlb0dVA=;
-        b=ION5gMhb/v7TxCHOclAo1JzKCvRpCE2eMTyh+PVFtBB+wtwnBjJmNj7FHicSg3Nw36
-         gkYcQknNTZMMAVgG9j68bpTmpO1izxeCkZifdxSmuz0Yf0jm+jLDw7nHdHydoSW6++Je
-         Psxf3WgWhLJvGqcH4oB7KBxDmra+C/vphBMTWenjmwIv7tHLZRye4mdtuDzdyb8y5kur
-         jnxwyH8n5X15hhP0UkzUY8O6t1e+N9NlI6j96UlGj9AoLSyFfQJrlQMqPh3lhav7jKvs
-         OLC+UTPuZiZ4mw3IQ5NMGimqfWFXIujgX+X4IBDbamdDAz2iOUlYU+m99EpHQm3yswrX
-         MbqA==
-X-Forwarded-Encrypted: i=1; AFNElJ/l0K23SrYvK4Vk4aQ+VumyIX3x8yi21VGdoVw2D95tEDyXLRilsmzSXCGjo1JRv3AjFRcs30mERKXl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxl6BIrG95FOYqnGMcCNmeCdtiyTG+ICkNSIbVxdQoSWM6kLFnt
-	BzsfC/NHB8YWQh6gPjhTN+GLsVS66FmbC7NZi03UjzfGavsrtt5UKgDmZs6YnmM8jG18gAiD2e6
-	x3eSy9UsQJ/Cj2d8pQbEYzElZ/gbqf4nCMFo6o0vzRHyj9qXhc0AM87Iq6MPtt3gY
-X-Gm-Gg: AeBDietZu70TFOX/IwBEuVU+k7F1TFdcK32wKQe2f8uuqQJ2LR9TSdQ/VkNCM/Y2nXp
-	pObMZpDN0pYwA1uypAc0Ynzt6cMSrPiqrvyZ46ZJW+68XeBheabFxvVZN/uqPKFXiaxWw6auT0L
-	KWSpQ3L+/AfL3q9MgN+pMz5qOpLj8vacd/x7Mc9VMeOA2Fp4Rz+pnaP0Nq0cIlA8rUr2JYK7vGj
-	Qdlgn4PZjfXRTEVnuqfeAgp0yv2Q1cStItYcpwXeD++bnPsw0ZXBsUPX7d2sn8uarfsvYjsR2bG
-	Ue2GJ56Jl736vAbHEEiQBwNf/Uz/mCJ+0GiaJeKj38FMs7mXJfjd9qAYRfazzkhfO3U/3usVogc
-	gistDCqNSSsXRKC96ct50Hl4xedDv1g9HQMTHIy7mtu4qLRq5gR/4F3FN/15hRXiMK5VGMiIhlN
-	qjhfeNQ9FbHHVg2Q==
-X-Received: by 2002:a05:620a:4511:b0:8cf:df37:4f6c with SMTP id af79cd13be357-8e4cbead971mr170718885a.5.1776246552260;
-        Wed, 15 Apr 2026 02:49:12 -0700 (PDT)
-X-Received: by 2002:a05:620a:4511:b0:8cf:df37:4f6c with SMTP id af79cd13be357-8e4cbead971mr170717185a.5.1776246551857;
-        Wed, 15 Apr 2026 02:49:11 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-67237d79258sm283300a12.4.2026.04.15.02.49.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Apr 2026 02:49:11 -0700 (PDT)
-Message-ID: <e89cca9b-e67b-4d5a-aecd-6c2001d079ac@oss.qualcomm.com>
-Date: Wed, 15 Apr 2026 11:49:07 +0200
+	s=arc-20240116; t=1776246584; c=relaxed/simple;
+	bh=DYVFNdk+djD8K61KVIPUXoIqm13LT4O06uqmf+HTNoY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=OjT9V6ecONQfOzo+x4GKfTT9yoXxle1fSz9+1CnRa8v7Pf8eqxxAQgVcJKB61G9I+ZPCq0/4MY+2Q+pyJ89Nl0TolPMC5zc1yfnKAW/2jG1iW6Th+jkM73nwc4cfN+h40M17Su8IkLXhA0MtGeAl1pp955m56C75971IH4CSVoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.76.78.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app2 (Coremail) with SMTP id TQJkCgBXbaAWX99pReMRAA--.51076S2;
+	Wed, 15 Apr 2026 17:49:12 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	ben-linux@fluff.org,
+	ben.dooks@codethink.co.uk,
+	p.zabel@pengutronix.de,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	xuxiang@eswincomputing.com,
+	wangguosheng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>
+Subject: [PATCH v4 0/2] Update designware pwm driver
+Date: Wed, 15 Apr 2026 17:49:08 +0800
+Message-Id: <20260415094908.1539-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/7] arm64: dts: qcom: talos: Add QSPI support
-To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
-        Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260414-spi-nor-v2-0-bcca40de4b5f@oss.qualcomm.com>
- <20260414-spi-nor-v2-4-bcca40de4b5f@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260414-spi-nor-v2-4-bcca40de4b5f@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: Ea78eWX88Yv78gFhLPVXRGgFkRTQX_Sz
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDE1MDA4OSBTYWx0ZWRfX+gIJxZcf2D2A
- InBVjr63SM8YJZHlRkuQd8BgQAtofo6gArw6U5z+3PhgQ7L95t9ml+qXQjjom5ngD1rHPQsz+sr
- uONSgZx0wC3rPN3NpVVFTQ4HaXctuSpRPV4wC43E+I1irJ+Msd2c9e1pya6JsXcGDj54LxQauF1
- HHJkZMjW7ZOdOwnAMYcBk28IV1EFz0KjzfQnT08l2mEz4/3Dfc36nT/Uas0aj1Los7hCOhdCzhJ
- Nxy6JYkCYiAYy6ov5W9cPWqRxNykW5sZJkzrzTuBfJESO9WQUsKu/5xRrG4JnHTY4+EC5ZJPBm5
- MHrISAu6eEgdmSt9bx3T/Gda/XiG53cWSdtVIxgA36u7urZ62ecNecU5+S0TMxvzXjU4Kq9Mw2z
- 1+vNZVi1go1G03LByZAN3wL1wgX6dULACYUL6T1+Gq18JKGAdIHDiObuGdd8ORCctiJk2cLAUKB
- xMimZqb0fFnGSosPPZg==
-X-Authority-Analysis: v=2.4 cv=CoGPtH4D c=1 sm=1 tr=0 ts=69df5f18 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=EUspDBNiAAAA:8 a=mL5Sac-3cE_IzsZij1IA:9 a=QEXdDO2ut3YA:10
- a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-ORIG-GUID: Ea78eWX88Yv78gFhLPVXRGgFkRTQX_Sz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-14_04,2026-04-13_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 adultscore=0 priorityscore=1501 bulkscore=0 clxscore=1015
- malwarescore=0 spamscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604150089
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgBXbaAWX99pReMRAA--.51076S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxAF1rZw4rXw1xJF1ktr4fZrb_yoWrKrWxpF
+	W8KrWakrWkWrySgan7X3W8uFyYq3Z5JF4UKwn5Ga4UZw1Yy3yUJrZY9Fy5tF9Fvr4kWFyY
+	yryfGa129a4YyF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUHCJQUUUUU=
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287561-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-287564-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DMARC_NA(0.00)[eswincomputing.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_NO_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.928];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: A6A72402FB1
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:mid,eswincomputing.com:email,intel.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 110DA403092
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/14/26 7:08 PM, Viken Dadhaniya wrote:
-> The Talos (QCS615) platform includes a QSPI controller used for accessing
-> external flash storage. Add the QSPI OPP table, TLMM pinmux entries, and
-> the QSPI controller node to enable support for this hardware.
-> 
-> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-> ---
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
-[...]
+There is already a patch [1] for the DesignWare PWM driver,
+which is posted by Ben and still under review.
+Based on this patch, this series is a continuation of [1]
+to add support for IP versions 2.11a and later, which
+includes support for "Pulse Width Modulation with 0%
+and 100% Duty Cycle".
 
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-> +					 &config_noc SLAVE_QSPI QCOM_ICC_TAG_ACTIVE_ONLY>,
-> +					<&aggre1_noc MASTER_QSPI QCOM_ICC_TAG_ACTIVE_ONLY
-> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>;
+Supported chips:
+ESWIN EIC7700 series SoC.
 
-The qspi-memory path _must_ be TAG_ALWAYS, since APSS may collapse
-at any time (which could drop the vote in the ACTIVE_ONLY case), and
-a DMA operation may still be ongoing
+Test:
+Tested this patch on the Sifive HiFive Premier P550 (which uses the EIC7700
+SoC).
 
-Konrad
+[1] https://lore.kernel.org/lkml/20230907161242.67190-1-ben.dooks@codethink.co.uk/
+
+Updates:
+  Change in v4:
+  - YAML:
+    - Change maxItems from 1 to 2. As there is a corresponding reset signal
+      for each clock domain, the effective maxItems of the resets property
+      is set to 2.
+    - Update the YAML commit message to describe the hardware.
+  - Driver:
+    - Replace devm_reset_control_get_optional_exclusive() with
+      devm_reset_control_array_get_optional_exclusive(). Since the number
+      of reset signals has increased from one to two.
+
+  - Link to v3: https://lore.kernel.org/all/20260402091718.1608-1-dongxuyang@eswincomputing.com/
+
+  Change in v3:
+  - YAML:
+    - Added a clear justification for the optional resets property. It is
+      required to support proper controller initialization when no PWM
+      channel is active at boot time, while allowing the driver to skip
+      reset deassertion if any channel is already enabled.
+  - Driver:
+    - Update the boundary value check of tmp in __dwc_pwm_configure_timer()
+      for DWC_TIM_CTRL_0N100PWM_EN.
+    - Replace 'sizeof(struct dwc_pwm_drvdata)' with
+      'struct_size(data, chips, 1)'.
+    - Drop devm_clk_get_enabled() in favor of devm_clk_get() with explicit
+      clk_prepare_enable() and clk_disable_unprepare() allowing runtime PM
+      to manage clock state.
+    - Replace devm_reset_control_get_optional_exclusive_deasserted() with
+      devm_reset_control_get_optional_exclusive() and issue a full reset via
+      reset_control_reset() only when no PWM channel is active at probe time.
+    - Detect bootloader-enabled PWM channels by reading the enable bit, and
+      initialize runtime PM as active for those channels by calling
+      pm_runtime_set_active() and pm_runtime_get_noresume().
+    - Remove autosuspend as it is not required for this driver.
+    - Use explicit pm_runtime_enable() and pm_runtime_disable() instead of
+      the managed devm_pm_runtime_enable() variant to ensure correct cleanup.
+    - On device removal, recheck the channel enable status. If any channel
+      remains active, call pm_runtime_put_noidle() before disabling clocks
+      via clk_disable_unprepare().
+      Resume device before register access during removal if it is runtime
+      suspended, and re-suspend it afterward.
+    - If device is suspended, resume it before register access during system
+      resume/suspend.
+    - Use pm_ptr() instead of pm_sleep_ptr() for correct PM operation.
+
+  - Link to v2: https://lore.kernel.org/all/20260306093000.2065-1-dongxuyang@eswincomputing.com/
+
+  Change in v2:
+  - YAML:
+    - Remove eswin,eic7700-pwm.yaml. Use snps,dw-apb-timers-pwm2.yaml.
+      The description in snps,dw-apb-timers-pwm2.yaml is better.
+    - Add the resets property as optional, as defined in the databook.
+    - Remove snps,pwm-full-range-enable as no additional property is needed.
+  - Driver:
+    - Change the file from pwm-dwc-eic7700.c to pwm-dwc-of.c from [1].
+    - Define DWC_TIM_VERSION_ID_2_11A 2.11a as the baseline version.
+    - Enable the 0% and 100% duty cycle mode by setting dwc->feature if
+      the version read from the TIMERS_COMP_VERSION register is later
+      than or equal to DWC_TIM_VERSION_ID_2_11A.
+    - Use the DIV_ROUND_UP_ULL() to calculate width in the .apply and
+      .get_state.
+    - Additionally, Power Management (PM) support has been added to the
+      pwm-dwc-of.c driver.
+    - Drop the headers that are not used.
+    - Use devm_clk_get_enabled() instead of devm_clk_get().
+    - Drop of_match_ptr.
+    - Fix build error with 1ULL << 32.
+      Reported-by: kernel test robot <lkp@intel.com>
+      Closes: https://lore.kernel.org/oe-kbuild-all/202512061720.j31AsgM7-lkp@intel.com/
+
+  - Link to v1: https://lore.kernel.org/all/20251205090411.1388-1-dongxuyang@eswincomputing.com/
+  - Link to v9: https://lore.kernel.org/lkml/20230907161242.67190-1-ben.dooks@codethink.co.uk/
+
+Xuyang Dong (2):
+  dt-bindings: pwm: dwc: add reset optional
+  pwm: dwc: add of/platform support
+
+ .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml |   3 +
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-dwc-core.c                    | 101 ++++--
+ drivers/pwm/pwm-dwc-of.c                      | 331 ++++++++++++++++++
+ drivers/pwm/pwm-dwc.h                         |  25 +-
+ 6 files changed, 442 insertions(+), 29 deletions(-)
+ create mode 100644 drivers/pwm/pwm-dwc-of.c
+
+--
+2.34.1
+
 
