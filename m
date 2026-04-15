@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-287504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287508-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2GNtM7VJ32mFRQAAu9opvQ
-	(envelope-from <devicetree+bounces-287504-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 10:17:57 +0200
+	id gBcyGOJK32mFRQAAu9opvQ
+	(envelope-from <devicetree+bounces-287508-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 10:22:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92ECC401D46
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 10:17:57 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E9F401E05
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 10:22:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C064930848A5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 08:17:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 041B03036BF8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 08:19:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED0DC3A16AC;
-	Wed, 15 Apr 2026 08:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3101F3A5435;
+	Wed, 15 Apr 2026 08:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="qVELjG/A"
+	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="lfCM565k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
+Received: from mxout70.expurgate.net (mxout70.expurgate.net [91.198.224.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A9022CBE6;
-	Wed, 15 Apr 2026 08:17:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA54E3B7751;
+	Wed, 15 Apr 2026 08:19:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.198.224.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776241053; cv=none; b=LvjgkUYK+sg8F7qeRmE7HQgkv4Dl+WphrgFk50994CNMQwaGDGtPzhHnRtwgDYwtRe3RITRaT+uNetAHJPK2SapwmxQzyzm6NxqJbevGcSppSBdInPgZC4WNOoWgslgwoRwC9nCHGcvLsa4CvrzWEo377s+v9el2hC8niaRJ6GQ=
+	t=1776241190; cv=none; b=A3jc1D6ztsplCunnDr1JB3RZkyD/PGlGO7eHwogtUVcxoZwHSpCxPWlRcvamZDE7HvhVhU3bpH0rBcsq8w1UGzlCDEBE+dUPDz44kDLwbuZ5R/7x4/OGop9LKOl/bYNU3iSEYCV7v1Xkuru62ezPTZem9JHyjj5gMwpUeQUNw+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776241053; c=relaxed/simple;
-	bh=xn9R5Y4c2FVuxWGJ+XDVZ0hhgrzdWZnr3TAJrrkBg1E=;
+	s=arc-20240116; t=1776241190; c=relaxed/simple;
+	bh=9EFkreYEFt8jz6Z1NkYfjCRoqkyaofsUqKdhyek/ti4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:Cc; b=d8ND4mbkbpRsSbKaNq6kh65jMhPfSf251xovNcGO7X16jny9FRAK5eQI6C07n/2TTEhE+q9H6pGRXcaZfwH5bTpRmTvfNm5J52VA2hghbMswmbyg77Gn+Dw0+TpQ+fUam+v29chvSZvUPBx3cXmEo/DExpPsYouDHwY+jiKMS/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=qVELjG/A; arc=none smtp.client-ip=194.37.255.70
+	 In-Reply-To:To:Cc; b=KKdu1e3/M0jpdlFPf7x7xdXs5pGkc/3y4JHvPQ+jon+YyKksV75SPg1JK9dfbhtLL1ZH5ukDkhssTwbrBKY1x6VoqcDV7VLpCxzd+qd2ebLDx2M8X99OS2UHKFVpsvOkC83V2muDEn/l/T32XqOJDh23/7FnIKhjcxvR28QgoH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=lfCM565k; arc=none smtp.client-ip=91.198.224.70
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
 Received: from [194.37.255.9] (helo=mxout.expurgate.net)
 	by relay.expurgate.net with smtp (Exim 4.92)
 	(envelope-from <prvs=657992536b=fe@dev.tdt.de>)
-	id 1wCvC5-003sby-RB; Wed, 15 Apr 2026 10:01:53 +0200
+	id 1wCvC7-00BwWQ-EW; Wed, 15 Apr 2026 10:01:55 +0200
 Received: from [195.243.126.94] (helo=securemail.tdt.de)
 	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <fe@dev.tdt.de>)
-	id 1wCvC5-00FgQP-AC; Wed, 15 Apr 2026 10:01:53 +0200
+	id 1wCvC6-00BwVb-US; Wed, 15 Apr 2026 10:01:54 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dev.tdt.de;
-	s=z1-selector1; t=1776240112;
-	bh=dqCPK//hWZVdcc5L/u7Ya15VIfulvFBTzBi5FMRGLF0=;
+	s=z1-selector1; t=1776240114;
+	bh=k0RzhtyN2lEDzgUVLjPsscw7natQWQb/iXLZdZSRiKo=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=qVELjG/AAGG5V9lc6cJkmATM5aX3aegjZMosxWN9484PmV1e+RSpKiKNCLK69NioN
-	 I6xPPQtJW+pzQqXt7d815yjn2HbTF4lLIqpaZNOctE/sRqltlesI6eV99UrBZB2PNT
-	 lQs/vPQ/3wgMWwIpJ35qsXNwO71u0frMt5D0VAgztuDSHzC6lTMRwTk94mEn9KXti/
-	 hqrXU6YnyrjvENZKMZtwLx4C6mZ1no4x7WeA00UypcK/joskcIecuJwXpE37LNiGRy
-	 8tgO4YWyne2/pl7NBy+xA5qh+1q9Dq48ICYYVrGmSnavBFwATCEkhoWaHNgNI18vCD
-	 VCmykxxoS8s2g==
+	b=lfCM565kzBRusN/Xri47VzhyH+BZcKI0l9/0k6OG08J82FMcdTSke6amfmLM/KEyq
+	 4C7IZMZ5XnkwZi8zIss2dhxKhN5xAT2eKEigtplCzfvbEAmE86VGLWeYujLZgIaYPe
+	 zv+eXJpeHiPt6Pe8CDOzcYTiKEauzqPzGVExZnSIcr1Iq1yF2XPTGLbpG7J69Qb2Os
+	 jzNQ18pqhE0YcFnS3SWyai13jxtANZijZs3c8T9QDgOXuEA5kstJFokrHs6EGrGoRD
+	 wbdFwfjZ2u9t/I6Okmlki8HPfCH/TuqJWO0M3qGEno/Kru0YoAbHCYs9oClTqxK8Xa
+	 rsF5paDISLpTg==
 Received: from securemail.tdt.de (localhost [127.0.0.1])
-	by securemail.tdt.de (Postfix) with ESMTP id D75E924004E;
-	Wed, 15 Apr 2026 10:01:52 +0200 (CEST)
+	by securemail.tdt.de (Postfix) with ESMTP id 8C36E240041;
+	Wed, 15 Apr 2026 10:01:54 +0200 (CEST)
 Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-	by securemail.tdt.de (Postfix) with ESMTP id C52C0240046;
-	Wed, 15 Apr 2026 10:01:52 +0200 (CEST)
+	by securemail.tdt.de (Postfix) with ESMTP id 8330D240040;
+	Wed, 15 Apr 2026 10:01:54 +0200 (CEST)
 Received: from [10.2.3.40] (unknown [10.2.3.40])
-	by mail.dev.tdt.de (Postfix) with ESMTPSA id ABD4023F30;
+	by mail.dev.tdt.de (Postfix) with ESMTPSA id C385324028;
 	Wed, 15 Apr 2026 10:01:52 +0200 (CEST)
 From: Florian Eckert <fe@dev.tdt.de>
-Date: Wed, 15 Apr 2026 10:01:48 +0200 (CEST)
-Subject: [PATCH v4 2/7] PCI: intel-gw: Remove unused define
+Date: Wed, 15 Apr 2026 10:01:49 +0200 (CEST)
+Subject: [PATCH v4 3/7] PCI: intel-gw: Move interrupt enable to own function
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,8 +72,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260415-pcie-intel-gw-v4-2-ad45d2418c8e@dev.tdt.de>
+Message-ID: <20260415-pcie-intel-gw-v4-3-ad45d2418c8e@dev.tdt.de>
 References: <20260415-pcie-intel-gw-v4-0-ad45d2418c8e@dev.tdt.de>
 In-Reply-To: <20260415-pcie-intel-gw-v4-0-ad45d2418c8e@dev.tdt.de>
 To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
@@ -89,20 +88,21 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org, Florian Eckert <fe@dev.tdt.de>,
 	Eckert.Florian@googlemail.com, ms@dev.tdt.de
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776240111; l=814;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776240111; l=2926;
  i=fe@dev.tdt.de; s=20260205; h=from:subject:message-id;
- bh=xn9R5Y4c2FVuxWGJ+XDVZ0hhgrzdWZnr3TAJrrkBg1E=;
- b=30wXOiI8KcmHESyl9H/yuDXVFd2GzUoEDNdoss5l4AoHLR9luLObnEkIc3lsm58l7iNObn62n
- XTeyr7DHItIDSrCMw0GYQRdqsHEnmXKdfCwtZHBNdjiHnJeE7DF3XfP
+ bh=ZYKI9htHzLsLWQm9mMvJbP0KpPmuZ1vngPu0F8zCXMI=;
+ b=jcsd9M7td+8J8ulKtrrL+BPo6v8bhL6aK4wA3oMZfabsnaPpY8ewS3sf0kgvOvqJNKS5qRymy
+ awd53nP3yC4B3UgMH3YTeBpnIMkv7DXnkejsQQbwZQLswio7syQQSmF
 X-Developer-Key: i=fe@dev.tdt.de; a=ed25519;
  pk=q7Pvv3Au2sAVRhBz5UF7ZqUPNxUwXQ78Jdqu8E6Negk=
-X-purgate-ID: 151534::1776240113-5515C19A-8E439D5D/0/0
+Content-Transfer-Encoding: quoted-printable
 X-purgate-type: clean
 X-purgate: clean
+X-purgate-ID: 151534::1776240115-3DFF02EC-420E88E8/0/0
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[tdt.de,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[dev.tdt.de:s=z1-selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -110,48 +110,102 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	FREEMAIL_CC(0.00)[vger.kernel.org,dev.tdt.de,googlemail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-287504-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-287508-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[dev.tdt.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,dev.tdt.de:dkim,dev.tdt.de:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intc.com:url,maxlinear.com:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,dev.tdt.de:dkim,dev.tdt.de:mid,tdt.de:email];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[fe@dev.tdt.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,linaro,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 92ECC401D46
+X-Rspamd-Queue-Id: 60E9F401E05
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The C preprocessor define 'PCIE_APP_INTX_OFST' is not used in the sources
-and can therefore be deleted.
+To improve the readability of the code, move the interrupt enable
+instructions to a separate function. That is already done for the disable
+interrupt instruction.
+
+In addition, all pending interrupts are cleared and disabled, just as thi=
+s
+is done in the disable function 'intel_pcie_core_irq_disable()'. After
+that, all relevant interrupts are enabled again. The 'PCIE_APP_IRNEN'
+definition contains all the relevant interrupts that are of interest.
+
+This change is also done in the MaxLinear SDK [1]. As I unfortunately
+don=E2=80=99t have any documentation for this IP core, I suspect that the
+intention is to set the IP core for interrupt handling to a specific
+state. Perhaps the problem is that the IP core did not reinitialize the
+interrupt register properly after a power cycle.
+
+In my view, it can=E2=80=99t do any harm to switch the interrupt off and =
+then on
+again to set them to a specific state.
+
+The reason why the MaxLinear SDK is used as a reference here is, that thi=
+s
+pcie dwc IP is used in the URX851 and URX850 SoC. This SoC was originally
+developed by Intel when they acquired Lantiq=E2=80=99s home networking di=
+vision in
+2015 [2]. In 2020 the home network division was sold to MaxLinear [3].
+Since then, this SoC belongs to MaxLinear. They use their own SDK,
+which runs on kernel version '5.15.x'.
+
+[1] https://github.com/maxlinear/linux/blob/updk_9.1.90/drivers/pci/contr=
+oller/dwc/pcie-intel-gw.c#L431
+[2] https://www.intc.com/news-events/press-releases/detail/364/intel-to-a=
+cquire-lantiq-advancing-the-connected-home
+[3] https://investors.maxlinear.com/press-releases/detail/395/maxlinear-t=
+o-acquire-intels-home-gateway-platform
 
 Signed-off-by: Florian Eckert <fe@dev.tdt.de>
 ---
- drivers/pci/controller/dwc/pcie-intel-gw.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/pci/controller/dwc/pcie-intel-gw.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/controller/dwc/pcie-intel-gw.c
-index c21906eced61896c8a8307dbd6b72d229f9a5c5f..80d1607c46cbbb1e274b37a0bb9377a877678f5d 100644
+diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/con=
+troller/dwc/pcie-intel-gw.c
+index 80d1607c46cbbb1e274b37a0bb9377a877678f5d..e88b8243cc41c607c39e4d58c=
+4dcd8c8c082e8b0 100644
 --- a/drivers/pci/controller/dwc/pcie-intel-gw.c
 +++ b/drivers/pci/controller/dwc/pcie-intel-gw.c
-@@ -47,7 +47,6 @@
- #define PCIE_APP_IRN_INTD		BIT(16)
- #define PCIE_APP_IRN_MSG_LTR		BIT(18)
- #define PCIE_APP_IRN_SYS_ERR_RC		BIT(29)
--#define PCIE_APP_INTX_OFST		12
- 
- #define PCIE_APP_IRN_INT \
- 	(PCIE_APP_IRN_AER_REPORT | PCIE_APP_IRN_PME | \
+@@ -195,6 +195,13 @@ static void intel_pcie_device_rst_deassert(struct in=
+tel_pcie *pcie)
+ 	gpiod_set_value_cansleep(pcie->reset_gpio, 0);
+ }
+=20
++static void intel_pcie_core_irq_enable(struct intel_pcie *pcie)
++{
++	pcie_app_wr(pcie, PCIE_APP_IRNEN, 0);
++	pcie_app_wr(pcie, PCIE_APP_IRNCR, PCIE_APP_IRN_INT);
++	pcie_app_wr(pcie, PCIE_APP_IRNEN, PCIE_APP_IRN_INT);
++}
++
+ static void intel_pcie_core_irq_disable(struct intel_pcie *pcie)
+ {
+ 	pcie_app_wr(pcie, PCIE_APP_IRNEN, 0);
+@@ -316,9 +323,7 @@ static int intel_pcie_host_setup(struct intel_pcie *p=
+cie)
+ 	if (ret)
+ 		goto app_init_err;
+=20
+-	/* Enable integrated interrupts */
+-	pcie_app_wr_mask(pcie, PCIE_APP_IRNEN, PCIE_APP_IRN_INT,
+-			 PCIE_APP_IRN_INT);
++	intel_pcie_core_irq_enable(pcie);
+=20
+ 	return 0;
+=20
 
--- 
+--=20
 2.47.3
 
 
