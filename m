@@ -1,75 +1,62 @@
-Return-Path: <devicetree+bounces-287706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287707-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GHuGNgIM4GmzcAAAu9opvQ
-	(envelope-from <devicetree+bounces-287706-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 00:06:58 +0200
+	id GPvkBycM4GmzcAAAu9opvQ
+	(envelope-from <devicetree+bounces-287707-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 00:07:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 714AA4086B8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 00:06:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5E544086D8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 00:07:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A6F18304A6F8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 22:06:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 454F6304B2B1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 22:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CA433F5AC;
-	Wed, 15 Apr 2026 22:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8199533C1B7;
+	Wed, 15 Apr 2026 22:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WpmGlyK/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dTvNuVKv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB2CF33B6DA;
-	Wed, 15 Apr 2026 22:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EF3117A2EA;
+	Wed, 15 Apr 2026 22:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776290808; cv=none; b=BXtAXUGZJagcSbkfuMRXpmUkDjJJnQiVJI0QuWJJR6xsAfSHJ+uQ2eLApZdqz6I1GVzM0OwVDocA5cMhHBjfJMfSMH4p6G4Yh29qY5FA9QCE3925ShbmGx6UbxJ7CcJdJvyfDTPRksCBCD/IjH72HsaJN/qWPeG43cmrwl0hBfM=
+	t=1776290833; cv=none; b=ZbrregYoWAN4I0ApJM647I6KXpH/k52AK2y6QMfh62v9en+qXtl6DZjkBiQRCw5OhTsml0aDQh+FrBnHZYMuDsSngdLSz1w10RvBBfHHFKxYy2wZxRbUnA7TsS0TYSH6G0YFFopK+g7HuK8d8x0DkLl6q4WqNa35bnEkbFiMMkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776290808; c=relaxed/simple;
-	bh=E29+qDjLXYSv2tlZvykhXipH12XKtY5vHl+plbfdKHk=;
+	s=arc-20240116; t=1776290833; c=relaxed/simple;
+	bh=BBBQ9gbHiCf9xaemK5ba58xuP5YK+2O+OVL7gV1vBkU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h19S4xhWNzXzF6AnVTOdSseBY+QEmlF+rs7HYOEtX5po/tqRFOcFBPaUEIN6L5pfMFgF6ZVpy2QQWrOrkOq+UKJhedNEpcoYFQ3ZcKzRRQFt2bL5UhqmCXRxRtOQl8xkqfOe5UajDv82Q8U6YpfWgTOsOiixVh7VGkYCa8s/enc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WpmGlyK/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20331C2BCB3;
-	Wed, 15 Apr 2026 22:06:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EsPjy7eyZiF5zaMgmHCSXuBa/dow2R1lL7WUDb1ZpJzt5L+lJXGZsqn/O1xXTQb5oBorTmLisZvrZ+ICqvOnyY81ZeqKcdJMF9bvsH6mOi+lIrXHptJDLa9GaWpeM+pCZlI/wZtvRLccjT/xjSa7iHLJShdNYssFgflxhGosFgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dTvNuVKv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1364C19424;
+	Wed, 15 Apr 2026 22:07:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776290808;
-	bh=E29+qDjLXYSv2tlZvykhXipH12XKtY5vHl+plbfdKHk=;
+	s=k20201202; t=1776290833;
+	bh=BBBQ9gbHiCf9xaemK5ba58xuP5YK+2O+OVL7gV1vBkU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WpmGlyK/TuEyr822LwhsXgWTFR45X6kwcud48WTu9z+FXbtJ9CfXcZ62kA5PurYff
-	 du04F5ly7hVZm66N8xxBqthn0rAocT0a3HtXmysVoOkabBj70RGVwuesMwcMV3qGk8
-	 GrOnMrp2/Hl1TpXDajHimc7/E/IcZZ08Gg6EO4epLc6296OFXQSXczZB3pdw+hNwOn
-	 6aYvatXjdTp4qWn7qCRszGX4yKrA2R1bxWrrZYZA5kp15NhjcngfujN0g9ItJFbWNp
-	 T4oukAJEMK5E3kaejQYUqF8BzUk7jEwQg8hCm9HlFFyp+KyemCbxQGL8hpbeskwVLt
-	 Y9aoLcEGe9JjQ==
-Date: Wed, 15 Apr 2026 17:06:46 -0500
+	b=dTvNuVKvICGgkyw3qzB5rHvvXx0bxMcuuxfo4X+/1XMEExI5grXgrZ54q7UNFPFzl
+	 izrFP+9gXvH1HWDP5hHyiwx2I0FtBEXVhIZCHBWGo3lnWGSSodRghrglfCKaRAIOSf
+	 kqzAGqmJr5LvSi7ut2OpnwTXMQqWAXmuui0jXPptwRFd1BJxV+SywqRJssg4qlYwaN
+	 fOkrmnmz3PLImO92xPw41Lzg7gcGBruzzJ6Cb/fVi7nc1XhuK/RS9RBSL81exU5ufd
+	 uAci/PRRfLT9dHnTgXVSnal8xCfoDOM3DdnbRxrVnKrG5isNz1/TjhLeaqUhB0ERu4
+	 +2Thjh+jSHH+w==
+Date: Wed, 15 Apr 2026 17:07:10 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, freedreno@lists.freedesktop.org,
-	Rob Clark <robin.clark@oss.qualcomm.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	David Airlie <airlied@gmail.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>, devicetree@vger.kernel.org,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Kuogee Hsieh <quic_khsieh@quicinc.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 5/8] dt-bindings: display/msm: qcom,eliza-mdss:
- Correct DPU and DP ranges in example
-Message-ID: <177629080563.748248.16989025333635985971.robh@kernel.org>
-References: <20260405-dts-qcom-display-regs-v2-0-34f4024c65dc@oss.qualcomm.com>
- <20260405-dts-qcom-display-regs-v2-5-34f4024c65dc@oss.qualcomm.com>
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org
+Subject: Re: [PATCH v1 1/1] dt-bindings: media: mt9m114: document common
+ video device properties
+Message-ID: <177629083018.750921.11968530700134617704.robh@kernel.org>
+References: <20260406081330.30362-1-clamor95@gmail.com>
+ <20260406081330.30362-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,53 +65,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260405-dts-qcom-display-regs-v2-5-34f4024c65dc@oss.qualcomm.com>
+In-Reply-To: <20260406081330.30362-2-clamor95@gmail.com>
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.freedesktop.org,oss.qualcomm.com,somainline.org,linux.intel.com,gmail.com,ffwll.ch,suse.de,linux.dev,quicinc.com,linaro.org,poorly.run];
-	TAGGED_FROM(0.00)[bounces-287706-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-287707-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 714AA4086B8
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C5E544086D8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Sun, 05 Apr 2026 16:34:01 +0200, Krzysztof Kozlowski wrote:
-> VBIF register range is 0x3000 long.  DisplayPort block has few too short
-> ranges and misses four more address spaces.  Similarly first part of DSI
-> space should be 0x300 long.
+On Mon, 06 Apr 2026 11:13:30 +0300, Svyatoslav Ryhel wrote:
+> Document common video interface device properties, such as rotation and
+> orientation.
 > 
-> No practical impact, except when existing code is being re-used in new
-> contributions.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  .../bindings/display/msm/qcom,eliza-mdss.yaml        | 20 ++++++++++++--------
->  1 file changed, 12 insertions(+), 8 deletions(-)
+>  .../devicetree/bindings/media/i2c/onnn,mt9m114.yaml          | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
