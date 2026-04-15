@@ -1,76 +1,103 @@
-Return-Path: <devicetree+bounces-287691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287693-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0H5THMb732ntbAAAu9opvQ
-	(envelope-from <devicetree+bounces-287691-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 22:57:42 +0200
+	id DGHmLT3+32nnbQAAu9opvQ
+	(envelope-from <devicetree+bounces-287693-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 23:08:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DBFE407C88
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 22:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 478D940800C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 23:08:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A8FFD3087D00
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 20:57:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 74DA7309E8E4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 21:05:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA5238BF81;
-	Wed, 15 Apr 2026 20:57:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50DCB31E106;
+	Wed, 15 Apr 2026 21:05:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qvrvxP8f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VUiTObtd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58FB810785;
-	Wed, 15 Apr 2026 20:57:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22260201278
+	for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 21:05:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776286656; cv=none; b=apgzXLKnTz6NrMGalQ449Xu8FGs1DfEdPE26apA0/QKpv2kly3HNUMIhU+2T4MmRuNPqwV2FRGe1edVioJfoeWNW+h5JaZPTI9zh9Ij9zo92lo6ErrnPyN9txg5oGu+IDBxq7F1i8eur+Cx5rTcyDTyNs5IFWb+CalUGg5sd6Ak=
+	t=1776287108; cv=none; b=g5OBOs9Xmtckq4Pfo7Cu2dbtDbe1H/R+B+GYOm3UU22HLeJVas2GkYWdh2UkQy1u9z2yv1lTE26JP7xYU9QxOL11o0ULgtegooiOpJChZMKR2qX64Sy8mL7yV+sr6EUB3Sgi0nsUZAK5UmzRp5JVRnzoAQoRIrkobkD1ixD6DcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776286656; c=relaxed/simple;
-	bh=aqhppy8I9dR8UMYq5nQG0mjZqAyJaHAT6wJPHqTBjp4=;
+	s=arc-20240116; t=1776287108; c=relaxed/simple;
+	bh=xYle8OALelDvpnEKaAewXH1F9igqeAq6EIsjrDcymEA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VWYfR4IOHrQloeyxjlZQSG7CQhNBODEnZq2/3r7cu1nzBgaMipngklN3t+nq/mdaKe53MxR31HCXjwcgTw2fvyjnW09NORORgY/df4agtbohfMigSj4M0VEYhUyaoB1TWVrmHwjquxr9bsI1zGnlmnayCVuMHlWERDAcJE/BtCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qvrvxP8f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D819DC19424;
-	Wed, 15 Apr 2026 20:57:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776286656;
-	bh=aqhppy8I9dR8UMYq5nQG0mjZqAyJaHAT6wJPHqTBjp4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qvrvxP8f3feyB84C54LUvSSbpisJTYNVytbYbS977fkWQ1Yn8/kU3888fH18CC2gc
-	 CxsjSPfxa+Y0/rYs7Z0J0iD2iLR4iBAJfetB4POM2eLmN9IZhw8nwjXgFD3yB+0dFp
-	 e/ejxw++syxZqhq4qQlhTuYue6ydk3c7yXcgopbPEFGFn+XZxGh9Xq8qAHDC0J1ChT
-	 r64fQH4f529LG0zJkRJRBTsIS1bETKyTkSP/z/ftFUmYX1rFbT8YNJiRvLEqaumPoJ
-	 CPbFIkzw+59fQaS6pTNsGG6xWCC6kiP13U+TAs7Xx9FU5gGJKOBwe7nds/T8y/Gfa9
-	 9bM5ZsiCSnv7Q==
-Date: Wed, 15 Apr 2026 15:57:33 -0500
-From: Rob Herring <robh@kernel.org>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=cnbEaQziVzhLTU5xFDAwsT1Wtxx4Gge4G1SOPb5hdOcxiWRWQt690sTs7hKE+iKlDm+yQ65vro8LtUi712JUl6s5wvpEk0Omo+3s8LASkYYpjKeTmTtGTh8dLJGVNcOV13gr6CgGTqlQOiUIkzwznlrk7k8hlWq0kHueCJdOEtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VUiTObtd; arc=none smtp.client-ip=209.85.219.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-8a48deebe95so58873186d6.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 14:05:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1776287104; x=1776891904; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=t3h/QztRQ32hYvS/TluXhLyLjB2ztnFIYcWLAXwf6aE=;
+        b=VUiTObtdbtuIVphLWg5yjP1AaYunCAFuScu/bBC/tt+OQc7zls7fKiV9D2LFerACIl
+         MbjXFMzykJvffMHA+XOvp0HPgm4z2a87rjwjO5p6EXdDdMQGcwX3Y6ttRBED8TA38MCB
+         DhYhTHBFrUfuRF+a0no1vPupv0Bq7/Z8MhmNeElMeuWia2MnsiumpDBg0Wv4/en7buP7
+         Id2vNTwy8eG4oI5Sfntoa+Ze62D2RKDbF+wpg8nh4OoL9StzkDuNrdsOTcA6cZo0WWgv
+         mh+b3Xb1jXmF51PLV1lthzqyviLvgv6CmpYy0MeDcIB51uvHr7Los/MR2eTDvwq3faHf
+         fs2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776287104; x=1776891904;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=t3h/QztRQ32hYvS/TluXhLyLjB2ztnFIYcWLAXwf6aE=;
+        b=nMqqbIaIfD0MJ9FXf75SRfST7PoxMFVcf6rX/LUa7L4G/jAmEIgVguuj6OhUP4WvTX
+         +QQP6bDlySWjF7nE3kFS1AeQOelodXGAauekae5doU+fOt1wCAu+dW9ZD88GaliGi4Ef
+         DxSf6/djDQHj4fMg7yXnHEqVHFJK91aGzkdo+LSDdnYDqC691wYHsWoWadKqQQJ41G9U
+         gtqaMWMUqkjZH16NbHwBy7no6dz/0cLoGJi9ZBdxmEBsiV8ZaMeF7JIzLngCQefEliVj
+         FFYeuU0osfDUNPoQPr3ED8L0Q7wDH6vMvIJ3qtYpPQ6xhmuFP4A6ZvPARx9KCjTvmPmt
+         +HwQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8qQxd9Eq2pqvPsEkcPfeXpg7xG9+rIhEaCsR9hqSEw7bAQIgbumuGMRn1YxLH8hzS/3Du9nWhQuovm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmW9AcJtSscTdZHTqXda5UX2Ea1WldeN2z4eELeZ0PwCzfOL4N
+	rNDDDd4qRknlF0Mrc7PaRhPLenTi8dZ8tLrrQulyFJChUmQjkVjrIcQt
+X-Gm-Gg: AeBDieveuUPE5Q4XaxRdiG8zRewY2TulKdO3RXbWNLRjgQyyXAFf/QigAQvfNtZxTU/
+	c8UZbsOleu0sinv8pwC5nXJsGYfYxxxCijdRQbBLkK3qpY0wqU4wtNd0e5eS+01ypnGENCC0zyN
+	jOCD8hJK03WfSluvV04n+UospPQCWTjePhV5c4yb9K8x/m0emyx11Y2CszudORt80z5W0SG0hcf
+	5Li/x0yuMgWGwOGwI25cvUycgRQaWrUPBOeLiSnKZuXf95h9E13T8tOMBD2Fkz20/+4/mYDVcmy
+	53R4Z/vY62KRxfAjYxeM+QJNBaJLHdlPYrRicP2XtxxVQJ6+eGr44ysi4rmP1PG2fN7EAbphmys
+	IECtikfdsX7C6Oz6Ict4GN5Ldzl+Q/5ss+g7hQGPc9yHyENX1Ve+P7sE7Bpc0G8xzLYA07m7E27
+	OwmT93TFaJL/afxToc5z197RgP6A==
+X-Received: by 2002:a05:6214:810c:b0:8a5:fcce:1da5 with SMTP id 6a1803df08f44-8ac861567e3mr324194876d6.10.1776287103955;
+        Wed, 15 Apr 2026 14:05:03 -0700 (PDT)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8ae6cb9eb87sm19935686d6.32.2026.04.15.14.05.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Apr 2026 14:05:03 -0700 (PDT)
+Date: Wed, 15 Apr 2026 17:05:44 -0400
+From: Richard Acayan <mailingradian@gmail.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Thomas Gleixner <tglx@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	John Madieu <john.madieu@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH v2 06/24] ASoC: dt-bindings: Add RZ/G3E (R9A09G047) sound
- binding
-Message-ID: <20260415205733.GA354660-robh@kernel.org>
-References: <20260402090524.9137-1-john.madieu.xa@bp.renesas.com>
- <20260402090524.9137-7-john.madieu.xa@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Amit Kucheria <amitk@kernel.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Dmitry Baryshkov <lumag@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: pm660: add thermal monitor
+Message-ID: <ad_9qM6JjizihQwY@rdacayan>
+References: <20260210021819.12673-1-mailingradian@gmail.com>
+ <20260210021819.12673-4-mailingradian@gmail.com>
+ <e72ede03-94cb-45c3-95e7-63dff0ca3888@oss.qualcomm.com>
+ <aaXKyIJQA9SFqt41@rdacayan>
+ <4311c618-f084-44c5-86e2-7f97661d887b@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,269 +106,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260402090524.9137-7-john.madieu.xa@bp.renesas.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+In-Reply-To: <4311c618-f084-44c5-86e2-7f97661d887b@oss.qualcomm.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[glider.be,renesas.com,kernel.org,baylibre.com,gmail.com,perex.cz,suse.com,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-287693-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287691-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,intel.com,arm.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 1DBFE407C88
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.13.72:email,0.0.0.85:email]
+X-Rspamd-Queue-Id: 478D940800C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 02, 2026 at 11:05:05AM +0200, John Madieu wrote:
-> The RZ/G3E shares the same audio IP as the R-Car variants but differs
-> in several aspects: it supports up to 5 DMA controllers per audio
-> channel, requires additional clocks (47 total including per-SSI ADG
-> clocks, SCU domain clocks and SSIF supply) and additional reset lines
-> (14 total including SCU, ADG and Audio DMAC peri-peri resets).
+On Wed, Apr 15, 2026 at 11:15:57AM +0200, Konrad Dybcio wrote:
+> On 3/3/26 3:25 AM, Richard Acayan wrote:
+> > On Tue, Feb 10, 2026 at 10:59:20AM +0100, Konrad Dybcio wrote:
+> >> On 2/10/26 3:18 AM, Richard Acayan wrote:
+> >>> The thermal monitor is used to monitor arbitrary ADC-based thermal
+> >>> sensors. It is suitable for use in thermal zones. Add support for it in
+> >>> PM660.
+> >>>
+> >>> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> >>> ---
+> >>>  arch/arm64/boot/dts/qcom/pm660.dtsi | 10 ++++++++++
+> >>>  1 file changed, 10 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/qcom/pm660.dtsi b/arch/arm64/boot/dts/qcom/pm660.dtsi
+> >>> index 156b2ddff0dc..7cedf6980b34 100644
+> >>> --- a/arch/arm64/boot/dts/qcom/pm660.dtsi
+> >>> +++ b/arch/arm64/boot/dts/qcom/pm660.dtsi
+> >>> @@ -197,6 +197,16 @@ channel@85 {
+> >>>  			};
+> >>>  		};
+> >>>  
+> >>> +		pm660_adc_tm: adc-tm@3400 {
+> >>> +			compatible = "qcom,spmi-adc-tm-hc";
+> >>> +			reg = <0x3400>;
+> >>> +			interrupts = <0x0 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
+> >>> +			#thermal-sensor-cells = <1>;
+> >>> +			#address-cells = <1>;
+> >>> +			#size-cells = <0>;
+> >>> +			status = "disabled";
+> >>
+> >> Can we enable it by default?
+> > 
+> > This is for the ADC thermal monitor, and not the ADC itself. I don't see
+> > the need to allocate channels just so this can be enabled by default,
+> > since the thermal monitor's purpose is mostly to send interrupts when
+> > the ADC values go above or below a certain threshold.
 > 
-> Add a dedicated devicetree binding for the RZ/G3E sound controller.
-> The binding references the common renesas,rsnd-common.yaml schema for
-> shared property and subnode definitions.
+> Sorry, this fell through the cracks
 > 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
-> 
-> Changes:
-> 
-> v2: New patch
-> 
->  .../sound/renesas,r9a09g047-sound.yaml        | 371 ++++++++++++++++++
->  1 file changed, 371 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml b/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
-> new file mode 100644
-> index 000000000000..1dfe9bab3382
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
-> @@ -0,0 +1,371 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/renesas,r9a09g047-sound.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G3E Sound Controller
-> +
-> +maintainers:
-> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> +  - John Madieu <john.madieu.xa@bp.renesas.com>
-> +
-> +description:
-> +  The RZ/G3E (R9A09G047) integrates an R-Car compatible sound controller
-> +  with extended DMA channel support (up to 5 DMACs per direction), additional
-> +  clock domains, and additional reset lines compared to the R-Car Gen2/Gen3
-> +  variants.
-> +
-> +allOf:
-> +  - $ref: renesas,rsnd-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: renesas,r9a09g047-sound
-> +
-> +  reg:
-> +    maxItems: 5
-> +
-> +  reg-names:
-> +    items:
-> +      - const: scu
-> +      - const: adg
-> +      - const: ssiu
-> +      - const: ssi
-> +      - const: audmapp
-> +
-> +  clocks:
-> +    maxItems: 47
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ssi-all
-> +      - const: ssi.9
-> +      - const: ssi.8
-> +      - const: ssi.7
-> +      - const: ssi.6
-> +      - const: ssi.5
-> +      - const: ssi.4
-> +      - const: ssi.3
-> +      - const: ssi.2
-> +      - const: ssi.1
-> +      - const: ssi.0
-> +      - const: src.9
-> +      - const: src.8
-> +      - const: src.7
-> +      - const: src.6
-> +      - const: src.5
-> +      - const: src.4
-> +      - const: src.3
-> +      - const: src.2
-> +      - const: src.1
-> +      - const: src.0
-> +      - const: mix.1
-> +      - const: mix.0
-> +      - const: ctu.1
-> +      - const: ctu.0
-> +      - const: dvc.0
-> +      - const: dvc.1
-> +      - const: clk_a
-> +      - const: clk_b
-> +      - const: clk_c
-> +      - const: clk_i
-> +      - const: ssif_supply
-> +      - const: scu
-> +      - const: scu_x2
-> +      - const: scu_supply
-> +      - const: adg.ssi.9
-> +      - const: adg.ssi.8
-> +      - const: adg.ssi.7
-> +      - const: adg.ssi.6
-> +      - const: adg.ssi.5
-> +      - const: adg.ssi.4
-> +      - const: adg.ssi.3
-> +      - const: adg.ssi.2
-> +      - const: adg.ssi.1
-> +      - const: adg.ssi.0
-> +      - const: audmapp
-> +      - const: adg
-> +
-> +  resets:
-> +    maxItems: 14
-> +
-> +  reset-names:
-> +    items:
-> +      - const: ssi-all
-> +      - const: ssi.9
-> +      - const: ssi.8
-> +      - const: ssi.7
-> +      - const: ssi.6
-> +      - const: ssi.5
-> +      - const: ssi.4
-> +      - const: ssi.3
-> +      - const: ssi.2
-> +      - const: ssi.1
-> +      - const: ssi.0
-> +      - const: scu
-> +      - const: adg
-> +      - const: audmapp
-> +
-> +  rcar_sound,dvc:
-> +    description: DVC subnode.
-> +    type: object
+> I see your argument, but at the same time, there are channels that are
+> always present (e.g. VPH_PWR) and any way to reduce the boilerplate is
+> welcome
 
-Move 'additionalProperties' here.
-
-blank line after.
-
-> +    patternProperties:
-> +      "^dvc-[0-1]$":
-> +        type: object
-> +        additionalProperties: false
-
-blank line
-
-> +        properties:
-> +          dmas:
-> +            maxItems: 5
-
-blank line
-
-> +          dma-names:
-> +            maxItems: 5
-> +            allOf:
-
-Don't need 'allOf'
-
-> +              - items:
-> +                  enum:
-> +                    - tx
-
-blank line
-
-> +        required:
-> +          - dmas
-> +          - dma-names
-> +    additionalProperties: false
-> +
-> +  rcar_sound,src:
-> +    description: SRC subnode.
-> +    type: object
-> +    patternProperties:
-> +      "^src-[0-9]$":
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          interrupts:
-> +            maxItems: 1
-> +          dmas:
-> +            maxItems: 10
-> +          dma-names:
-> +            maxItems: 10
-> +            allOf:
-> +              - items:
-> +                  enum:
-> +                    - tx
-> +                    - rx
-> +    additionalProperties: false
-> +
-> +  rcar_sound,ssiu:
-> +    description: SSIU subnode.
-> +    type: object
-> +    patternProperties:
-> +      "^ssiu-[0-9]+$":
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          dmas:
-> +            maxItems: 10
-> +          dma-names:
-> +            maxItems: 10
-> +            allOf:
-> +              - items:
-> +                  enum:
-> +                    - tx
-> +                    - rx
-> +        required:
-> +          - dmas
-> +          - dma-names
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-
-Most of these are already required by the common schema. No need to 
-duplicate.
-
-> +
-> +unevaluatedProperties: false
+If you saw my first sentence in the reply, why are we talking about
+VPH_PWR? I don't understand if you're asking for the thermal monitor to
+handle a voltage sensor here.
 
