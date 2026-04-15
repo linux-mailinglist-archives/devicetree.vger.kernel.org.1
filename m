@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-287599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287601-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WKvgKrxz32mFTAAAu9opvQ
-	(envelope-from <devicetree+bounces-287599-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 13:17:16 +0200
+	id 6MJ3FPN032mFTAAAu9opvQ
+	(envelope-from <devicetree+bounces-287601-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 13:22:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FAB3403A8C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 13:17:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BDD4403B87
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 13:22:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0E6473027CF1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 11:17:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 509EC30078FC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 11:17:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3900A37A481;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC8337AA72;
 	Wed, 15 Apr 2026 11:17:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="XH8leFYv"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="GsP1+XjD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8248E1DE4F1;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E715E30ACF6;
 	Wed, 15 Apr 2026 11:17:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776251828; cv=none; b=WNtVUNHDpMVNqRYB1v7pFVDB1u3a2cqYme4WzpAbDc58tsBaPPM77+8680U0CzA6Q0a5N4oKG6E7I4GmNh9K2fK+Y1+6tSFCsJYEqk0EfzKiKGw1iBWlfsVwr1mkHr54pBG+AEOHnlc/r82EE53aPIyQf7DGjTuvSE5z/nxJ1ZA=
+	t=1776251828; cv=none; b=Isn36pbaunsUkuiqIDfWIOWk6N7ujyfm1jXx4V89cFaB+CTr4zebpgb1nTO6WuOu0h27gT4RmxtgnwFb9AUvdJoOTGpj11VVBTIVIoe+Ejp9R7knsA9E+E7/KNXsglxGj9YUM0p+byLBVOE+f/Kx/kJcgRfq958ptRyyPpPdJ/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1776251828; c=relaxed/simple;
-	bh=L3Q7zkw2FPx+B+NP3gRuCh4v3HV7G+1IeRCxJ9+Fo90=;
+	bh=DPF5oLsd+wIQDlajlz7/DrzffaotuK1YeTV2FHM1dXA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZcyhIN5sUiyPssxHO//4BtI+Rwpm2zCyQV5xSuDKlEPnygGkweqw0JwDB6PB5W6bD9NfQthakpQM1LaxhOOGm78C3I2pYoFWQje3YMlewcZBg6tynwXWBKl/KxYKxizeSh8CSWM5MWvhlkrEKBFW7hmI3qyQz/edjmxWg3gC9DY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=XH8leFYv; arc=none smtp.client-ip=65.21.61.41
+	 In-Reply-To:To:Cc; b=ATig5Z9c2BPRU9SbS8Ye1PbVmm38CUCAsDv3v9QtcmR0OJaE3K03Pa4Dr8C8aRjOMpTOZjCxESAuhZ8NFHBzvNR9/DW5778CBZ42Y1hy50J7hTZ4hZbFytV9HKPsJ0ELCpDblEM6/J5NmNLAGyIQ5IyE1vARG+hdrGeS9R4GN7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=GsP1+XjD; arc=none smtp.client-ip=65.21.61.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776251823;
-	bh=L3Q7zkw2FPx+B+NP3gRuCh4v3HV7G+1IeRCxJ9+Fo90=;
+	s=courrier-s1; t=1776251824;
+	bh=DPF5oLsd+wIQDlajlz7/DrzffaotuK1YeTV2FHM1dXA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=XH8leFYvQduC2e5BQTdD3s/kN4Yx8hNJH9qS4aenS5YRC1pDORLWUQiEX6Sb5JAYg
-	 LJ/Inn/WoUYRk48g9qfhvCEQKjyyDaVCEpCB/yhIojvxzuxX7V1mOJGyXItDOKWjE0
-	 ShiETy+Fng0eYhXXRZmXDg0LJuH3AzipkpUAvyHI=
-Date: Wed, 15 Apr 2026 13:16:14 +0200
-Subject: [PATCH 2/3] arm64: dts: amlogic: t7: Add UART controllers nodes
+	b=GsP1+XjDJww6lCTw794owyPZ3ca2t0rhzZVINkruIhQCdzjo9P34XbJ6t9GUn5N1a
+	 B4Faeqx4cce/dJM93jcwc677jxKpnMJgHQyfbENIQOEvNLwuOwzHcWXakv44JRkThE
+	 Qnmlhgzw/PWESlL+qe6CtXlpQUrqsh67ZiPPDikU=
+Date: Wed, 15 Apr 2026 13:16:15 +0200
+Subject: [PATCH 3/3] arm64: dts: amlogic: t7: khadas-vim4: Enable Bluetooth
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,7 +52,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260415-add-bluetooth-t7-vim4-v1-2-0ba0746cc1d6@aliel.fr>
+Message-Id: <20260415-add-bluetooth-t7-vim4-v1-3-0ba0746cc1d6@aliel.fr>
 References: <20260415-add-bluetooth-t7-vim4-v1-0-0ba0746cc1d6@aliel.fr>
 In-Reply-To: <20260415-add-bluetooth-t7-vim4-v1-0-0ba0746cc1d6@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -64,142 +64,85 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1776251821; l=3650;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1776251821; l=1497;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=L3Q7zkw2FPx+B+NP3gRuCh4v3HV7G+1IeRCxJ9+Fo90=;
+ bh=DPF5oLsd+wIQDlajlz7/DrzffaotuK1YeTV2FHM1dXA=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QNZFuzW9w43solsBUqQBQsol4CdNLpiKGi8QELKGmU1lzLkaCkIl4n0fwFlyQHw5mQj2kXGqrTl
- in7oOmgbvAQI=
+ QHMu5b9QHNxDA3A4bpPrtdDYFK+0IKIqopw2UudLPschxzYakCFITJJZ2h6EMjD4t4JxAa5DZ7a
+ jCTwma54TBwA=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
-	TAGGED_FROM(0.00)[bounces-287599-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DMARC_NA(0.00)[aliel.fr];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[aliel.fr];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-287601-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.31.144:email,0.1.48.176:email,0.0.234.96:email,0.1.64.80:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[aliel.fr:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,aliel.fr:email,aliel.fr:dkim,aliel.fr:mid,0.0.15.240:email,0.1.87.192:email,0.1.56.128:email]
-X-Rspamd-Queue-Id: 3FAB3403A8C
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aliel.fr:email,aliel.fr:dkim,aliel.fr:mid]
+X-Rspamd-Queue-Id: 9BDD4403B87
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add device tree nodes for UART B through F (serial@7a000 to
-serial@82000), completing the UART controller description for the T7
-SoC. Each node includes the peripheral clock.
-
-While at it, move the uart_a node to its correct position in the
-bus address order (0x78000) to comply with the DT requirement that
-nodes be sorted by their reg address. Complete the
-uart_a node with its peripheral clock (CLKID_SYS_UART_A) and the
-associated clock-names, matching the vendor default clock assignment,
-consistent with the other UART nodes.
+Enable UART C on the Khadas VIM4 board and attach the BCM43438
+ compatible Bluetooth controller to it. The node configures the RTS/CTS
+hardware flow control, the associated pinmux, the power supplies (vddao_3v3
+and vddao_1v8), the 32 kHz LPO clock shared with the wifi32k fixed
+clock, and the GPIO lines used for host wakeup, device wakeup and
+shutdown.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 61 +++++++++++++++++++++++++----
- 1 file changed, 54 insertions(+), 7 deletions(-)
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts     | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 531931cc1437c..56b015cfbd6d1 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -577,13 +577,6 @@ gpio_intc: interrupt-controller@4080 {
- 					<10 11 12 13 14 15 16 17 18 19 20 21>;
- 			};
- 
--			uart_a: serial@78000 {
--				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
--				reg = <0x0 0x78000 0x0 0x18>;
--				interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
--				status = "disabled";
--			};
--
- 			gp0: clock-controller@8080 {
- 				compatible = "amlogic,t7-gp0-pll";
- 				reg = <0x0 0x8080 0x0 0x20>;
-@@ -713,6 +706,60 @@ pwm_ao_cd: pwm@60000 {
- 				status = "disabled";
- 			};
- 
-+			uart_a: serial@78000 {
-+				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
-+				reg = <0x0 0x78000 0x0 0x18>;
-+				interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_A>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+index 69d6118ba57e7..16f648908090f 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+@@ -253,3 +253,22 @@ &uart_a {
+ 	clocks = <&xtal>, <&xtal>, <&xtal>;
+ 	clock-names = "xtal", "pclk", "baud";
+ };
 +
-+			uart_b: serial@7a000 {
-+				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
-+				reg = <0x0 0x7a000 0x0 0x18>;
-+				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_B>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
++&uart_c {
++	status = "okay";
++	pinctrl-0 = <&uart_c_pins>;
++	pinctrl-names = "default";
++	uart-has-rtscts;
 +
-+			uart_c: serial@7c000 {
-+				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
-+				reg = <0x0 0x7c000 0x0 0x18>;
-+				interrupts = <GIC_SPI 170 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_C>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+
-+			uart_d: serial@7e000 {
-+				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
-+				reg = <0x0 0x7e000 0x0 0x18>;
-+				interrupts = <GIC_SPI 171 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_D>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+
-+			uart_e: serial@80000 {
-+				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
-+				reg = <0x0 0x80000 0x0 0x18>;
-+				interrupts = <GIC_SPI 172 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_E>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+
-+			uart_f: serial@82000 {
-+				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
-+				reg = <0x0 0x82000 0x0 0x18>;
-+				interrupts = <GIC_SPI 173 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_F>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+
- 			sd_emmc_a: mmc@88000 {
- 				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
- 				reg = <0x0 0x88000 0x0 0x800>;
++	bluetooth {
++		compatible = "brcm,bcm43438-bt";
++		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
++		host-wakeup-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
++		device-wakeup-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
++		max-speed = <3000000>;
++		clocks = <&wifi32k>;
++		clock-names = "lpo";
++		vbat-supply = <&vddao_3v3>;
++		vddio-supply = <&vddao_1v8>;
++	};
++};
 
 -- 
 2.49.0
