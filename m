@@ -1,762 +1,314 @@
-Return-Path: <devicetree+bounces-287690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287692-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4PeZFZn632ntbAAAu9opvQ
-	(envelope-from <devicetree+bounces-287690-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 22:52:41 +0200
+	id gCxoBLD832ntbAAAu9opvQ
+	(envelope-from <devicetree+bounces-287692-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 23:01:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0D23407BDE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 22:52:40 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4960407D61
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 23:01:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2CF4730C3EB4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 20:51:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3370E302579E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 21:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACAE638B7C9;
-	Wed, 15 Apr 2026 20:51:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4162031E832;
+	Wed, 15 Apr 2026 21:01:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sHPz3lzR"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="YIshGjK6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 877B9385506;
-	Wed, 15 Apr 2026 20:51:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8BC25C818
+	for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 21:01:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776286283; cv=none; b=e8cJneUJ2P/g7h9EcxXjcSUiGPole5kiwi8kbFFkwoL/fKjxcuANqojbuOwrVv4jIZrxqI4JjM7vVeATUM2n3MbMwqs5JOtE+hF8QdElJ18wnlKujN7mMI2QvI97MEbRl4eViBIf5CdHze7jEbgeT33ifxgNJS9rohkQ6JB9P2A=
+	t=1776286888; cv=none; b=Ah0865Rut05NOizm/rD3vfOAmZaYqr8hyTeyUEKre2Qx8RUxcVOxxf0PR06/WwIHsXdLNWjqpby7MrhLtLNg5gji0JwT9ieIhopauY21B7lukBMYIkz5jhgscZYCLxn52mDyuDAYcq5S6fPM2kb2xBjVxCbGDTVe4LVoA0Xezg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776286283; c=relaxed/simple;
-	bh=ccxvPQ9IHLzAd7f2NYR3IfFEAhs2uYAktFiooxlp2Us=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZEpYZssPusVWcb+d6BGvjsBAbJWo0qW1x+v2q/+Lo2xZ5KHgdeKF+dnAxTQJThDmipHU5RVoHsTGwqCUtptIzA3gecfnM1qsNKtP9rokGUzY04lCvyeFyO7/R1dCOYjvS6IM44LT3AgLKqet+3t85WYqcpIsQftSdXAI0CL/kNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sHPz3lzR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D801EC19424;
-	Wed, 15 Apr 2026 20:51:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776286283;
-	bh=ccxvPQ9IHLzAd7f2NYR3IfFEAhs2uYAktFiooxlp2Us=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sHPz3lzR4GChsWdyYUXCUUFjGnRPPot3R7nnKAS+FxHW6fnGddaPlzixKD9tWRoX4
-	 h2/B8ls76o3uNAxk1fQ7QliR9glvcPokjxD7yXbUhoI4rz0LLNjxUHadTix9uOxCkT
-	 0uO5fUcxmrFzW9Pz4/p6W6LkU64jptJIyyM60cXfmOME/3oljAg7D1q+EeCHn88g6Z
-	 pwXt9wH8/xF30nT/G2WtZDmXZ08w1ckrNB1S1gQolkVlPP/zbkLtL/+6oFy0jvPO1H
-	 f3c/vo66WGpET+HVxW2Kp20f2b9DFPA454limWIXzWVMPHwGJb7Eh+8Y0W2Lf8XCXa
-	 H+5tYwcjVgPEg==
-Date: Wed, 15 Apr 2026 15:51:21 -0500
-From: Rob Herring <robh@kernel.org>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Thomas Gleixner <tglx@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	John Madieu <john.madieu@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH v2 05/24] ASoC: dt-bindings: renesas,rsnd: Split into
- generic and SoC-specific parts
-Message-ID: <20260415205121.GA331204-robh@kernel.org>
-References: <20260402090524.9137-1-john.madieu.xa@bp.renesas.com>
- <20260402090524.9137-6-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1776286888; c=relaxed/simple;
+	bh=LIGk+6JCqpmGlvNj4DXjLt3b/bSistoZdo0VtPcUw8g=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=eRCaWQP80JSB7JKeyOhRV2gsi0fJB8LEVLjtYg8sRuf6g+lMGuCMBwtxzstEZ4+u0xlRZUrK812Gye5pziI+Hx7jBxAISTPxc/Fu3jGjWs5fl6wMVKacnLyg3Oh2XSbary7v5RAHYFNIWoLBuoEI6HU8M0dGtBi9bB/KSdO4Au8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=YIshGjK6; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id F397A240101
+	for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 22:54:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1776286470; bh=sqQbN/cl0vomVFx2IrUxM16Wezbrd+GAm8eM7tvhzs0=;
+	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
+	 MIME-Version:OpenPGP:From;
+	b=YIshGjK6qqi+7jZtjDuTszaT6lyjEs7ovEbA37zxmPT+IkOu6qMWjwNUKAmZ9K5ER
+	 9/QassmrCHww0c75SXY3T+jGonu6SHABcwK8bzWS88cqGoqFn+mqVmCSxbXSOZ7CxR
+	 01qfXLXqm5ZIAlhdy9c6YFigdSzvl7vAgeZwmZyF5ZgKL9oBCb9gu2bwro4nKnRJCU
+	 QKFBEdod/HcIdNIcKAyifeGHSrarYJTeYrV4OQR5kN+CA/Wke/hwsdzipFxRXIVUma
+	 Yuc0FOiDY6vJTaXlQzt2a7WqeKXlVS348pMe3s1xhXbWCzeLHve915Evs/O53kDUPd
+	 G/v6F4S/u/Vvw==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4fwtg65z9Pz6tvq;
+	Wed, 15 Apr 2026 22:54:26 +0200 (CEST)
+Message-ID: <8c8555b3375375dac47a22fad40080fd5b4228a5.camel@posteo.de>
+Subject: Re: [PATCH v7 2/2] dt-bindings: embedded-controller: Add synology
+ microp devices
+From: Markus Probst <markus.probst@posteo.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Hans de Goede <hansg@kernel.org>, Ilpo =?ISO-8859-1?Q?J=E4rvinen?=	
+ <ilpo.jarvinen@linux.intel.com>, Bryan O'Donoghue
+ <bryan.odonoghue@linaro.org>,  Lee Jones <lee@kernel.org>, Pavel Machek
+ <pavel@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, Boqun Feng
+ <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, =?ISO-8859-1?Q?Bj=F6rn?=
+ Roy Baron	 <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg	 <a.hindborg@kernel.org>, Alice Ryhl
+ <aliceryhl@google.com>, Trevor Gross	 <tmgross@umich.edu>, Danilo Krummrich
+ <dakr@kernel.org>, Rob Herring	 <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	platform-driver-x86@vger.kernel.org, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org
+Date: Wed, 15 Apr 2026 20:54:29 +0000
+In-Reply-To: <125cad6c-fb58-4498-a967-41778f6f91f6@kernel.org>
+References: <20260411-synology_microp_initial-v7-0-9a3a094e763a@posteo.de>
+	 <20260411-synology_microp_initial-v7-2-9a3a094e763a@posteo.de>
+	 <20260412-cuddly-taipan-of-reputation-1cafe0@quoll>
+	 <485ab9e829e902e3f29172059be8c3203062d06b.camel@posteo.de>
+	 <125cad6c-fb58-4498-a967-41778f6f91f6@kernel.org>
+Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
+ keydata=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
+ jfGillcaQOqFZ3WwVqyzG1BUfTow==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-zCxPlgqRCfQxERdu6rZO"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260402090524.9137-6-john.madieu.xa@bp.renesas.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[glider.be,renesas.com,kernel.org,baylibre.com,gmail.com,perex.cz,suse.com,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,linaro.org,garyguo.net,protonmail.com,google.com,umich.edu,linuxfoundation.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-287692-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287690-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[posteo.de:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: A0D23407BDE
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C4960407D61
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 02, 2026 at 11:05:04AM +0200, John Madieu wrote:
-> The current renesas,rsnd.yaml binding file handles all supported SoCs
-> in a single schema, resulting in deeply nested if/else/then constructs
-> that become increasingly difficult to maintain. Each new SoC addition
-> amplifies this complexity, making reviews harder and diffs noisier than
-> they need to be.
-> 
-> Refactor the binding by extracting the common properties shared across
-> all SoCs into a dedicated renesas,rsnd-common.yaml schema, and keeping
-> only SoC-specific constraints (required nodes, port counts, clock names,
-> etc.) in per-SoC or per-family files that $ref the common part.
-> 
-> This prepares the ground for upcoming SoCs such as the RZ/G3E, which
-> introduces a different set of audio resources compared to existing
-> R-Car Gen variants. With the split in place, adding RZ/G3E support
-> becomes a self-contained change that neither bloats a monolithic schema
-> nor buries new constraints inside ever-deeper conditional blocks.
-> 
-> No functional change in validation behaviour for existing device trees.
-> 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
-> 
-> Changes:
-> 
-> v2: New patch
-> 
->  .../bindings/sound/renesas,rsnd-common.yaml   | 196 +++++++++++
->  .../bindings/sound/renesas,rsnd.yaml          | 319 +++++-------------
->  2 files changed, 274 insertions(+), 241 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/renesas,rsnd-common.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd-common.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd-common.yaml
-> new file mode 100644
-> index 000000000000..ec6bf644d1a4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd-common.yaml
-> @@ -0,0 +1,196 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/renesas,rsnd-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas R-Car/RZ Sound Common Properties
-> +
-> +maintainers:
-> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> +
-> +description:
-> +  Common property and subnode definitions shared by Renesas R-Car and RZ
-> +  sound controller bindings.
-> +
-> +select: false
-> +
-> +properties:
-> +  compatible: true
-> +
-> +  reg: true
-> +
-> +  reg-names: true
 
-Drop these as they should be defined in the device specfic schemas.
+--=-zCxPlgqRCfQxERdu6rZO
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +  "#sound-dai-cells":
-> +    description:
-> +      Must be 0 for a single-DAI system and 1 for a multi-DAI system.
-> +    enum: [0, 1]
-> +
-> +  "#clock-cells":
-> +    description:
-> +      Must be 0 when the system has audio_clkout and 1 when it has
-> +      audio_clkout0/1/2/3.
-> +    enum: [0, 1]
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  clock-frequency:
-> +    description: Audio clock output frequency for audio_clkout0/1/2/3.
-> +
-> +  clkout-lr-asynchronous:
-> +    description: audio_clkoutn is asynchronous with lr-clock.
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +
-> +  power-domains: true
-> +
-> +  resets: true
-> +
-> +  reset-names: true
-> +
-> +  clocks: true
-> +
-> +  clock-names: true
+On Sun, 2026-04-12 at 15:22 +0200, Krzysztof Kozlowski wrote:
+> On 12/04/2026 15:21, Markus Probst wrote:
+> > On Sun, 2026-04-12 at 10:26 +0200, Krzysztof Kozlowski wrote:
+> > > On Sat, Apr 11, 2026 at 05:27:35PM +0200, Markus Probst wrote:
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - synology,ds923p-microp
+> > > > +      - synology,ds918p-microp
+> > > > +      - synology,ds214play-microp
+> > > > +      - synology,ds225p-microp
+> > > > +      - synology,ds425p-microp
+> > > > +      - synology,ds710p-microp
+> > > > +      - synology,ds1010p-microp
+> > > > +      - synology,ds723p-microp
+> > > > +      - synology,ds1522p-microp
+> > > > +      - synology,rs422p-microp
+> > > > +      - synology,ds725p-microp
+> > > > +      - synology,ds118-microp
+> > > > +      - synology,ds124-microp
+> > > > +      - synology,ds223-microp
+> > > > +      - synology,ds223j-microp
+> > > > +      - synology,ds1823xsp-microp
+> > > > +      - synology,rs822p-microp
+> > > > +      - synology,rs1221p-microp
+> > > > +      - synology,rs1221rpp-microp
+> > > > +      - synology,ds925p-microp
+> > > > +      - synology,ds1525p-microp
+> > > > +      - synology,ds1825p-microp
+> > >=20
+> > > Previous comment is not resolved. For example you stated that ds723p =
+is
+> > > compatible with ds725p, so this should be expressed.
+> > Using this expression?
+> >=20
+> > properties:
+> >   compatible:
+> >     oneOf:
+> >       - enum:
+> >           - synology,ds923p-microp
+> >           - synology,ds1522p-microp
+> >       - enum:
+> >           - synology,ds918p-microp
+> >           - synology,ds415p-microp
+> >       - const: synology,ds214play-microp
+> > ...
+> > ?
+> > If so shall there each be a description?
+>=20
+> No, you changed nothing. You need fallbacks, please read example-schema
+> or DTS101 slides.
+The documentation says to "use fallback compatibles when devices are
+the same as or a superset of prior implementations" [1].
 
-And drop these unless you have some global constraints.
+Differences are not publicly documented in this device, making it hard
+to tell if it is a superset or the same implementation. This would make
+no device a fallback, as compatibility is not guaranteed. I could
+imagine it would be an ABI breakage if a fallback is no longer
+considered compatible with a device later on.
 
-> +
-> +  port:
-> +    $ref: audio-graph-port.yaml#/definitions/port-base
-> +    unevaluatedProperties: false
+If deciding based on driver compatibility (accepting loss of features
+and accounting for future driver features), one device entry would look
+like this:
 
-Blank line
+- items:
+  - const: synology,ds923p-microp
+  - const: synology,ds1522p-microp
+  - const: synology,ds925p-microp # no current sensor from here
+  - const: synology,ds425p-microp
+  - const: synology,ds1525p-microp
+  - const: synology,ds918p-microp
+  - const: synology,ds1823xsp-microp # no fan failure check from here
+  - const: synology,ds1825p-microp
 
-> +    patternProperties:
-> +      "^endpoint(@[0-9a-f]+)?$":
-> +        $ref: audio-graph-port.yaml#/definitions/endpoint-base
+which isn't maintainable in this size for ~22 entries.
 
-Blank line
 
-> +        properties:
-> +          playback:
-> +            $ref: /schemas/types.yaml#/definitions/phandle-array
+But the example schema
 
-Blank line
+- items:
+  - enum:
+    - vendor,soc4-ip
+    - vendor,soc3-ip
+    - vendor,soc2-ip
+  - enum:
+    - vendor,soc1-ip
 
-(and similar throughout)
+also does not have all of the previous devices as fallbacks (assuming
+"vendor,soc3-ip" is compatible with "vendor,soc2-ip" and so on).
 
-> +          capture:
-> +            $ref: /schemas/types.yaml#/definitions/phandle-array
-> +        unevaluatedProperties: false
+Only adding devices as fallbacks with the exact same known feature set
+would ignore the other devices with less features which would still
+work (e.g. "synology,ds925p-microp" would still work on a ds923+, but
+the "current sensor" would not be accessible).
 
-Move after $ref.
+So my question is, what makes a device eligible to be a fallback for
+another device?
 
-> +
-> +  rcar_sound,dvc:
-> +    description: DVC subnode.
-> +    type: object
-> +    patternProperties:
-> +      "^dvc-[0-1]$":
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          dmas: true
-> +          dma-names: true
-> +        required:
-> +          - dmas
-> +          - dma-names
-> +    additionalProperties: false
+Just using the one device that is compatible with most of the devices
+(having the least features) for all of the compatible devices as
+fallback like in the example?
 
-Move after 'type'.
 
-> +
-> +  rcar_sound,mix:
-> +    description: MIX subnode.
-> +    type: object
-> +    patternProperties:
-> +      "^mix-[0-1]$":
-> +        type: object
-> +        additionalProperties: false
-> +    additionalProperties: false
-> +
-> +  rcar_sound,ctu:
-> +    description: CTU subnode.
-> +    type: object
-> +    patternProperties:
-> +      "^ctu-[0-7]$":
-> +        type: object
-> +        additionalProperties: false
-> +    additionalProperties: false
-> +
-> +  rcar_sound,src:
-> +    description: SRC subnode.
-> +    type: object
-> +    patternProperties:
-> +      "^src-[0-9]$":
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          interrupts:
-> +            maxItems: 1
-> +          dmas: true
-> +          dma-names: true
-> +    additionalProperties: false
-> +
-> +  rcar_sound,ssiu:
-> +    description: SSIU subnode.
-> +    type: object
-> +    patternProperties:
-> +      "^ssiu-[0-9]+$":
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          dmas: true
-> +          dma-names: true
-> +        required:
-> +          - dmas
-> +          - dma-names
-> +    additionalProperties: false
-> +
-> +  rcar_sound,ssi:
-> +    description: SSI subnode.
-> +    type: object
-> +    patternProperties:
-> +      "^ssi-[0-9]$":
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          interrupts:
-> +            maxItems: 1
-> +          dmas: true
-> +          dma-names: true
-> +          shared-pin:
-> +            description: Shared clock pin.
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +          pio-transfer:
-> +            description: PIO transfer mode.
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +          no-busif:
-> +            description: BUSIF is not used for the mem-to-SSI via DMA case.
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +        required:
-> +          - interrupts
-> +    additionalProperties: false
-> +
-> +patternProperties:
-> +  'rcar_sound,dai(@[0-9a-f]+)?$':
+I would prefer a generic "synology,microp-x64" entry as fallback only,
+which only supports the baseline of features (power led, status led,
+shutdown/reboot, power button, fan speed), which all devices I am aware
+of support.
+But documentation explicitly states "DON=E2=80=99T use wildcards or device-
+family names in compatible strings" [1], so I think I am not allowed to
+do that.
 
-Why does this have a unit-address, but no 'reg' property? That should be 
-dropped.
+Thanks
+- Markus Probst
 
-> +    description: DAI subnode.
-> +    type: object
-> +    patternProperties:
-> +      "^dai([0-9]+)?$":
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          playback:
-> +            $ref: /schemas/types.yaml#/definitions/phandle-array
-> +          capture:
-> +            $ref: /schemas/types.yaml#/definitions/phandle-array
-> +        anyOf:
-> +          - required:
-> +              - playback
-> +          - required:
-> +              - capture
-> +    additionalProperties: false
-> +
-> +  'ports(@[0-9a-f]+)?$':
-> +    $ref: audio-graph-port.yaml#/definitions/port-base
+[1] https://docs.kernel.org/devicetree/bindings/writing-bindings.html
 
-This is 'ports', not 'port', so not the right ref.
+>=20
+> Best regards,
+> Krzysztof
 
-> +    unevaluatedProperties: false
-> +    patternProperties:
-> +      '^port(@[0-9a-f]+)?$':
-> +        $ref: "#/properties/port"
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +additionalProperties: true
-> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> index e8a2acb92646..0d989922a5b4 100644
-> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> @@ -9,8 +9,11 @@ title: Renesas R-Car Sound Driver
->  maintainers:
->    - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
->  
-> -properties:
-> +description:
-> +  Binding for Renesas R-Car Gen1/Gen2/Gen3/Gen4 and RZ/G1/G2 sound
-> +  controllers using the standard RSND layout.
->  
-> +properties:
->    compatible:
->      oneOf:
->        # for Gen1 SoC
-> @@ -67,34 +70,6 @@ properties:
->      minItems: 1
->      maxItems: 5
->  
-> -  "#sound-dai-cells":
-> -    description: |
-> -      it must be 0 if your system is using single DAI
-> -      it must be 1 if your system is using multi  DAIs
-> -      This is used on simple-audio-card
-> -    enum: [0, 1]
-> -
-> -  "#clock-cells":
-> -    description: |
-> -      it must be 0 if your system has audio_clkout
-> -      it must be 1 if your system has audio_clkout0/1/2/3
-> -    enum: [0, 1]
-> -
-> -  "#address-cells":
-> -    const: 1
-> -
-> -  "#size-cells":
-> -    const: 0
-> -
-> -  clock-frequency:
-> -    description: for audio_clkout0/1/2/3
-> -
-> -  clkout-lr-asynchronous:
-> -    description: audio_clkoutn is asynchronizes with lr-clock.
-> -    $ref: /schemas/types.yaml#/definitions/flag
-> -
-> -  power-domains: true
-> -
->    resets:
->      minItems: 1
->      maxItems: 11
-> @@ -109,181 +84,45 @@ properties:
->      maxItems: 31
->  
->    clock-names:
-> -    description: List of necessary clock names.
-> -    # details are defined below
-> -
-> -  # ports is below
-> -  port:
-> -    $ref: audio-graph-port.yaml#/definitions/port-base
-> -    unevaluatedProperties: false
-> -    patternProperties:
-> -      "^endpoint(@[0-9a-f]+)?":
-> -        $ref: audio-graph-port.yaml#/definitions/endpoint-base
-> -        properties:
-> -          playback:
-> -            $ref: /schemas/types.yaml#/definitions/phandle-array
-> -          capture:
-> -            $ref: /schemas/types.yaml#/definitions/phandle-array
-> -        unevaluatedProperties: false
-> -
-> -  rcar_sound,dvc:
-> -    description: DVC subnode.
-> -    type: object
-> -    patternProperties:
-> -      "^dvc-[0-1]$":
-> -        type: object
-> -        additionalProperties: false
-> -
-> -        properties:
-> -          dmas:
-> -            maxItems: 1
-> -          dma-names:
-> -            const: tx
-> -        required:
-> -          - dmas
-> -          - dma-names
-> -    additionalProperties: false
-> -
-> -  rcar_sound,mix:
-> -    description: MIX subnode.
-> -    type: object
-> -    patternProperties:
-> -      "^mix-[0-1]$":
-> -        type: object
-> -        additionalProperties: false
-> -    additionalProperties: false
-> -
-> -  rcar_sound,ctu:
-> -    description: CTU subnode.
-> -    type: object
-> -    patternProperties:
-> -      "^ctu-[0-7]$":
-> -        type: object
-> -        additionalProperties: false
-> -    additionalProperties: false
-> -
-> -  rcar_sound,src:
-> -    description: SRC subnode.
-> -    type: object
-> -    patternProperties:
-> -      "^src-[0-9]$":
-> -        type: object
-> -        additionalProperties: false
-> -
-> -        properties:
-> -          interrupts:
-> -            maxItems: 1
-> -          dmas:
-> -            maxItems: 2
-> -          dma-names:
-> -            allOf:
-> -              - items:
-> -                  enum:
-> -                    - tx
-> -                    - rx
-> -    additionalProperties: false
-> -
-> -  rcar_sound,ssiu:
-> -    description: SSIU subnode.
-> -    type: object
-> -    patternProperties:
-> -      "^ssiu-[0-9]+$":
-> -        type: object
-> -        additionalProperties: false
-> -
-> -        properties:
-> -          dmas:
-> -            maxItems: 2
-> -          dma-names:
-> -            allOf:
-> -              - items:
-> -                  enum:
-> -                    - tx
-> -                    - rx
-> -        required:
-> -          - dmas
-> -          - dma-names
-> -    additionalProperties: false
-> -
-> -  rcar_sound,ssi:
-> -    description: SSI subnode.
-> -    type: object
-> -    patternProperties:
-> -      "^ssi-[0-9]$":
-> -        type: object
-> -        additionalProperties: false
-> -
-> -        properties:
-> -          interrupts:
-> -            maxItems: 1
-> -          dmas:
-> -            minItems: 2
-> -            maxItems: 4
-> -          dma-names:
-> -            allOf:
-> -              - items:
-> -                  enum:
-> -                    - tx
-> -                    - rx
-> -                    - txu # if no ssiu node
-> -                    - rxu # if no ssiu node
-> -
-> -          shared-pin:
-> -            description: shared clock pin
-> -            $ref: /schemas/types.yaml#/definitions/flag
-> -          pio-transfer:
-> -            description: PIO transfer mode
-> -            $ref: /schemas/types.yaml#/definitions/flag
-> -          no-busif:
-> -            description: BUSIF is not used when [mem -> SSI] via DMA case
-> -            $ref: /schemas/types.yaml#/definitions/flag
-> -        required:
-> -          - interrupts
-> -    additionalProperties: false
-> +    description: List of clock names.
-> +    minItems: 1
-> +    maxItems: 31
-> +
+--=-zCxPlgqRCfQxERdu6rZO
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 
-> +  "#sound-dai-cells": true
-> +
-> +  "#clock-cells": true
-> +
-> +  "#address-cells": true
-> +
-> +  "#size-cells": true
-> +
-> +  clock-frequency: true
-> +
-> +  clkout-lr-asynchronous: true
-> +
-> +  power-domains: true
-> +
-> +  port: true
-> +
-> +  rcar_sound,dvc: true
-> +
-> +  rcar_sound,mix: true
-> +
-> +  rcar_sound,ctu: true
-> +
-> +  rcar_sound,src: true
-> +
-> +  rcar_sound,ssiu: true
-> +
-> +  rcar_sound,ssi: true
+-----BEGIN PGP SIGNATURE-----
 
-Use 'unevaluatedProperties' and drop all of these.
+iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmnf+vcbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTIsMiwyAAoJEDR2H/jnrUPS9cYP/03t5hh6MXyY2hpnIpEO
+5bv7fMrSvcw9pR9f6hlMla0caRKuoAvFxa0U3RNFKCDesvB9P54tXAceRDeIkYMG
+2K2WtYlwalFnB5Kqn9eV8DNYlNfq+o9EIEKWTS+2lLC/SXxx8nW9luqVOifLomgh
+sLmrd8ICjyV9JxSSP1rqxfQGrUp4VX95wsGt1zFeT6LmDRikBYUpmNdoQ62A2VaL
+31BMSuXfnCYZPqDR2JRWqvm6rvPkXBrq4IbaPEVRdAp8dPDlX0X+1//BhVx7CrPw
+7iNCqRAx+U9KvPR23k5Ig0zBxFT7b4ngch9/qtF2OYdxHmf52SZWkDGmoTj3qSXt
+rTauYrUTN7sW4CB0Y2zni+ljOchOSfuE8WwJLDCa/anqJvCJLlf1jATP6tFO9jOV
+A8bUDN7XSTF+QGR1de2pDDY5F1ScnKKXUTrn6sCF40fpmAvvPNQkH573gn3uxct2
+gNvg87wS/QibyuvGJtdE/Mam0DinvzMK7oh0ojLb7/as/atJWrRmKW8AVdb1SWAI
+IJkSRE9v9C54qf2+VvDmyYB9QZbETuLSHoEAoiSXBo5QfS3HuI9gPtBm8WWbtoL0
+sFs8QMr4jrXTRMguIa6o/5aTk2DwfaK//zBhNumZPdU+PeiKLSLCtEn4skSRknvf
+EVUw50yIk3E/NwiCYuOV+pFL
+=b+JB
+-----END PGP SIGNATURE-----
 
->  
->  patternProperties:
-> -  # For DAI base
-> -  'rcar_sound,dai(@[0-9a-f]+)?$':
-> -    description: DAI subnode.
-> -    type: object
-> -    patternProperties:
-> -      "^dai([0-9]+)?$":
-> -        type: object
-> -        additionalProperties: false
-> -
-> -        properties:
-> -          playback:
-> -            $ref: /schemas/types.yaml#/definitions/phandle-array
-> -          capture:
-> -            $ref: /schemas/types.yaml#/definitions/phandle-array
-> -        anyOf:
-> -          - required:
-> -              - playback
-> -          - required:
-> -              - capture
-> -    additionalProperties: false
-> -
-> -  'ports(@[0-9a-f]+)?$':
-> -    $ref: audio-graph-port.yaml#/definitions/port-base
-> -    unevaluatedProperties: false
-> -    patternProperties:
-> -      '^port(@[0-9a-f]+)?$':
-> -        $ref: "#/properties/port"
-> -
-> -required:
-> -  - compatible
-> -  - reg
-> -  - reg-names
-> -  - clocks
-> -  - clock-names
-> +  'rcar_sound,dai(@[0-9a-f]+)?$': true
-> +  'ports(@[0-9a-f]+)?$': true
->  
->  allOf:
-> -  - $ref: dai-common.yaml#
-> +  - $ref: renesas,rsnd-common.yaml#
->  
-> -  # --------------------
-> -  # reg/reg-names
-> -  # --------------------
-> -  # for Gen1
->    - if:
->        properties:
->          compatible:
-> @@ -295,11 +134,10 @@ allOf:
->            maxItems: 3
->          reg-names:
->            items:
-> -            enum:
-> -              - sru
-> -              - ssi
-> -              - adg
-> -  # for Gen2/Gen3
-> +            - const: sru
-> +            - const: ssi
-> +            - const: adg
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -310,16 +148,34 @@ allOf:
->      then:
->        properties:
->          reg:
-> -          minItems: 5
-> +          maxItems: 5
->          reg-names:
->            items:
-> -            enum:
-> -              - scu
-> -              - adg
-> -              - ssiu
-> -              - ssi
-> -              - audmapp
-> -  # for Gen4
-> +            - const: scu
-> +            - const: adg
-> +            - const: ssiu
-> +            - const: ssi
-> +            - const: audmapp
-> +        resets:
-> +          maxItems: 11
-> +        reset-names:
-> +          items:
-> +            oneOf:
-> +              - const: ssi-all
-> +              - pattern: '^ssi\.[0-9]$'
-> +        clocks:
-> +          maxItems: 31
-> +        clock-names:
-> +          items:
-> +            oneOf:
-> +              - const: ssi-all
-> +              - pattern: '^ssi\.[0-9]$'
-> +              - pattern: '^src\.[0-9]$'
-> +              - pattern: '^mix\.[0-1]$'
-> +              - pattern: '^ctu\.[0-1]$'
-> +              - pattern: '^dvc\.[0-1]$'
-> +              - pattern: '^clk_(a|b|c|i)$'
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -336,38 +192,19 @@ allOf:
->                - ssiu
->                - ssi
->                - sdmc
-> -
-> -  # --------------------
-> -  # clock-names
-> -  # --------------------
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            const: renesas,rcar_sound-gen4
-> -    then:
-> -      properties:
-> -        clock-names:
-> -          maxItems: 3
-> +        resets:
-> +          maxItems: 2
-> +        reset-names:
->            items:
-> -            enum:
-> -              - ssi.0
-> -              - ssiu.0
-> -              - clkin
-> -    else:
-> -      properties:
-> +            - const: ssiu.0
-> +            - const: ssi.0
-> +        clocks:
-> +          maxItems: 3
->          clock-names:
-> -          minItems: 1
-> -          maxItems: 31
->            items:
-> -            oneOf:
-> -              - const: ssi-all
-> -              - pattern: '^ssi\.[0-9]$'
-> -              - pattern: '^src\.[0-9]$'
-> -              - pattern: '^mix\.[0-1]$'
-> -              - pattern: '^ctu\.[0-1]$'
-> -              - pattern: '^dvc\.[0-1]$'
-> -              - pattern: '^clk_(a|b|c|i)$'
-> +            - const: ssiu.0
-> +            - const: ssi.0
-> +            - const: clkin
->  
->  unevaluatedProperties: false
->  
-> -- 
-> 2.25.1
-> 
+--=-zCxPlgqRCfQxERdu6rZO--
 
