@@ -1,71 +1,79 @@
-Return-Path: <devicetree+bounces-287708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287709-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gDqfMogM4GmzcAAAu9opvQ
-	(envelope-from <devicetree+bounces-287708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 00:09:12 +0200
+	id UAtCCFQO4GmzcAAAu9opvQ
+	(envelope-from <devicetree+bounces-287709-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 00:16:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1CC74086FF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 00:09:11 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D1BE408822
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 00:16:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D254E300B44F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 22:09:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A75D330651F7
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 22:11:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9C1A364EB0;
-	Wed, 15 Apr 2026 22:09:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8814A390238;
+	Wed, 15 Apr 2026 22:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kDTw5mAO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p0G82jNv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C614F2FF657;
-	Wed, 15 Apr 2026 22:09:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE4A383C80;
+	Wed, 15 Apr 2026 22:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776290945; cv=none; b=mIX4dTcr1Af5StbSo0ZxWzvW654Jj4GbEYC4qvD9DDQ/GQUi/E68AyVEWxlkqAMqd4XYipmCX/D/Sz/YBR0ANgCF5o0vAuTTPh3/UoAQRYaErslzV1eY9zs1vhTXULgGCQiuM4bS4BLPSCYQUxg22TnJuF/VdFitK1e9fDFjeYw=
+	t=1776291061; cv=none; b=lWifzMClCuha/Ksxp7QkaI+6ZEIFkg2TTbkGtYXMxcz7EJFYbOvRW48Wu+IjjCJlodl8Sv9gYE0KQwBgiH0/TfQxblBoAqWgugU8c/EXpKjvQKuF4JXL5mPab9OFlvWkWbe/8CZZxWXG4+JGsIPJlwouxUm8lSqgdJCM8vvTTyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776290945; c=relaxed/simple;
-	bh=w0k1S9PWDZSsF3IjtgouZVXru1PuRKpeEwZNd/z0RDw=;
+	s=arc-20240116; t=1776291061; c=relaxed/simple;
+	bh=4MjkOgWu+H/4IbKFLTcEqaA80AYv/7LFnNzAZ1Q9/eY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZE6Hc3VcANKjXCdCT6nyEt1ucYa/A1Ov3Wtqf4Brrkjnli6N8uKApqHykOhUfzvcr7DcoflDYcDMxsov3ZKqHRZ6+e1IF/t9MJ2AgO100FHmSRRXCaBSHeuXNfA+l7s9LeI6NRMc8OBauEzuuHhV65QKoWnFyC+hU336Y71rc74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kDTw5mAO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C68EC2BCB5;
-	Wed, 15 Apr 2026 22:09:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=N6paiYNmS4bZJDFfti1WA+88Hw4SQ933f7rgIvZPzOXueLP98ZlLLKxlyXELeibNyftzDh9tEWYxYO7OBCBJVHtwONAXgvzH0426ypTzuZJI4IjXlXCT4KOPZtjsCtWoXKwWNs5fRZ9aEAvI2KvuQQ4Z2asBU5/utkmPGtwJfVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p0G82jNv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9759C2BCB3;
+	Wed, 15 Apr 2026 22:11:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776290945;
-	bh=w0k1S9PWDZSsF3IjtgouZVXru1PuRKpeEwZNd/z0RDw=;
+	s=k20201202; t=1776291061;
+	bh=4MjkOgWu+H/4IbKFLTcEqaA80AYv/7LFnNzAZ1Q9/eY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kDTw5mAOj6efMmX6LEgIoMfdjqt+7yY/uLy7LNijxprb5rHphW+4eb0g+67XbD2UG
-	 vYcc46PgqQFHuwfmHTVGllZqdPCmTPaAPcgybGDQw7kJ1JDhCNthl/ajtbekO0r+QX
-	 PvrX/wCPR107B3CedKwYbPaTzm/4kY2ruALzeeUXajTGv2APIRQeZDHZcR9Hnaf4qZ
-	 Z2vfji3PYXTS16L2DJFDQoiW+mDd8zECPWTUDDB1JH2ERcSSGou4exXVX+chUvwmRc
-	 N21zZZPxmS7wEVqVS676c4W2NWaGRUWCFvV+/4Dl2DgDNmb1CucBgQih6jC7EwjH8t
-	 wl7t9GKNxsEiA==
-Date: Wed, 15 Apr 2026 17:09:02 -0500
+	b=p0G82jNvv+WdUrzCg0FXEUgFE67KoF8lsRoHLR1Eixg/LXzBOmBt72ny96ygZ1Yh7
+	 5pjtAjRmscQPZ3vzTHEJVK2X3F5iY9VBGqR24yPawyJQ/gAIlyZBVqDlxU6RxtLQOu
+	 GIOuEzZ4IIVyp1JVp1Bd0caHsANeP3Y9FjSY0dKokZFCp73u2B9/2SZh9VaeNP9dKw
+	 bDqy1aSrrHxSChU/DDEkPqQ/9mXmyBZFULTx7CeyP1LoiLkGahr6y7zWTmj5JAf+iF
+	 LSKM2823g0Z3h0jTPv9V+xvD6mu4GBgiebxCOKq/m8zV5ubcEy7dHDB71HDaXfInaG
+	 zk3lxaVX52GYQ==
+Date: Wed, 15 Apr 2026 17:10:59 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dumitru Ceclan <dumitru.ceclan@analog.com>
-Cc: Martin Hecht <Martin.Hecht@avnet.eu>, linux-staging@lists.linux.dev,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Julien Massot <julien.massot@collabora.com>,
-	Vivekananda Dayananda <vivekana@amd.com>,
-	linux-kernel@vger.kernel.org, mitrutzceclan@gmail.com,
-	Cosmin Tanislav <cosmin.tanislav@analog.com>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>
-Subject: Re: [PATCH v10 10/22] dt-bindings: media: i2c: max96712: add
- control-channel-port property
-Message-ID: <177629094249.753736.890273374328121727.robh@kernel.org>
-References: <20260406-gmsl2-3_serdes-v10-0-645560fedca5@analog.com>
- <20260406-gmsl2-3_serdes-v10-10-645560fedca5@analog.com>
+To: Douglas Anderson <dianders@chromium.org>
+Cc: astewart@tektelic.com, linux-arm-kernel@lists.infradead.org,
+	Mark Brown <broonie@kernel.org>, bhelgaas@google.com,
+	maz@kernel.org, linux@armlinux.org.uk, kees@kernel.org,
+	Alan Stern <stern@rowland.harvard.edu>,
+	Saravana Kannan <saravanak@kernel.org>, netdev@vger.kernel.org,
+	linux-serial@vger.kernel.org, davem@davemloft.net, andrew@lunn.ch,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, brgl@kernel.org,
+	jirislaby@kernel.org, mani@kernel.org,
+	Johan Hovold <johan@kernel.org>, linux-aspeed@lists.ozlabs.org,
+	linux-pci@vger.kernel.org, kuba@kernel.org,
+	Alexander Lobakin <aleksander.lobakin@intel.com>,
+	Leon Romanovsky <leon@kernel.org>,
+	andriy.shevchenko@linux.intel.com,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Alexey Kardashevskiy <aik@ozlabs.ru>, lgirdwood@gmail.com,
+	andrew@codeconstruct.com.au, hkallweit1@gmail.com,
+	linux-kernel@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, linux-usb@vger.kernel.org,
+	alexander.stein@ew.tq-group.com,
+	Robin Murphy <robin.murphy@arm.com>, pabeni@redhat.com,
+	devicetree@vger.kernel.org, driver-core@lists.linux.dev,
+	joel@jms.id.au, Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH v5 8/9] driver core: Replace dev->of_node_reused with
+ dev_of_node_reused()
+Message-ID: <177629105858.764226.5689083905556313606.robh@kernel.org>
+References: <20260406232444.3117516-1-dianders@chromium.org>
+ <20260406162231.v5.8.I806b8636cd3724f6cd1f5e199318ab8694472d90@changeid>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,24 +82,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260406-gmsl2-3_serdes-v10-10-645560fedca5@analog.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+In-Reply-To: <20260406162231.v5.8.I806b8636cd3724f6cd1f5e199318ab8694472d90@changeid>
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[avnet.eu,lists.linux.dev,ideasonboard.com,collabora.com,amd.com,vger.kernel.org,gmail.com,analog.com,ragnatech.se,kernel.org,linuxfoundation.org,linux.intel.com];
-	TAGGED_FROM(0.00)[bounces-287708-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-287709-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[tektelic.com,lists.infradead.org,kernel.org,google.com,armlinux.org.uk,rowland.harvard.edu,vger.kernel.org,davemloft.net,lunn.ch,linuxfoundation.org,lists.ozlabs.org,intel.com,linux.intel.com,ozlabs.ru,gmail.com,codeconstruct.com.au,ew.tq-group.com,arm.com,redhat.com,lists.linux.dev,jms.id.au,lst.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[41];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -99,27 +106,54 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,amd.com:email,analog.com:email]
-X-Rspamd-Queue-Id: C1CC74086FF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8D1BE408822
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Mon, 06 Apr 2026 23:14:49 +0300, Dumitru Ceclan wrote:
-> Add maxim,control-channel-port property to allow platforms choose which
-> control-channel port MAX96724 exposes to the upstream I2C host.
+On Mon, 06 Apr 2026 16:23:01 -0700, Douglas Anderson wrote:
+> In C, bitfields are not necessarily safe to modify from multiple
+> threads without locking. Switch "of_node_reused" over to the "flags"
+> field so modifications are safe.
 > 
-> Suggested-by: Vivekananda Dayananda <vivekana@amd.com>
-> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> Cc: Johan Hovold <johan@kernel.org>
+> Acked-by: Mark Brown <broonie@kernel.org>
+> Reviewed-by: Rafael J. Wysocki (Intel) <rafael@kernel.org>
+> Reviewed-by: Danilo Krummrich <dakr@kernel.org>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->  Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> Not fixing any known bugs; problem is theoretical and found by code
+> inspection. Change is done somewhat manually and only lightly tested
+> (mostly compile-time tested).
+> 
+> (no changes since v4)
+> 
+> Changes in v4:
+> - Use accessor functions for flags
+> 
+> Changes in v3:
+> - New
+> 
+>  drivers/base/core.c                      | 2 +-
+>  drivers/base/pinctrl.c                   | 2 +-
+>  drivers/base/platform.c                  | 2 +-
+>  drivers/net/pcs/pcs-xpcs-plat.c          | 2 +-
+>  drivers/of/device.c                      | 6 +++---
+>  drivers/pci/of.c                         | 2 +-
+>  drivers/pci/pwrctrl/core.c               | 2 +-
+>  drivers/regulator/bq257xx-regulator.c    | 2 +-
+>  drivers/regulator/rk808-regulator.c      | 2 +-
+>  drivers/tty/serial/serial_base_bus.c     | 2 +-
+>  drivers/usb/gadget/udc/aspeed-vhub/dev.c | 2 +-
+>  include/linux/device.h                   | 7 ++++---
+>  12 files changed, 17 insertions(+), 16 deletions(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
