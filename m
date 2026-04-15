@@ -1,158 +1,162 @@
-Return-Path: <devicetree+bounces-287715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287716-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uNgJH2US4GllcQAAu9opvQ
-	(envelope-from <devicetree+bounces-287715-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 00:34:13 +0200
+	id HdqrMkIg4GlKcwAAu9opvQ
+	(envelope-from <devicetree+bounces-287716-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 01:33:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6925408B56
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 00:34:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63422408F58
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 01:33:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4795830A36B7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 22:32:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 56E9E30BFFB8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 23:33:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA111390C94;
-	Wed, 15 Apr 2026 22:31:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3586F25A357;
+	Wed, 15 Apr 2026 23:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uJ5VWjvM"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="oKP4Oj3+";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="AfAeqXh3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6FCF38F22F;
-	Wed, 15 Apr 2026 22:31:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F2951A01BE;
+	Wed, 15 Apr 2026 23:33:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776292315; cv=none; b=JONw7Bu2BBNE9dB4KWRsOc0MUm7mkHlgdKRWLpXQ6p2IOmoaDh//HIU4+LhgxkGquChV4gzOYBoN90AIvdpX/uAn2Ahj9im5vn55C3RcVqY1AxbxRO6zY6xJR7jGf9bwxbNhhkipufAn9uzBdOfTTPBsGIlImAwy2HZX85cZncM=
+	t=1776296000; cv=none; b=mS2eEplkYHXqaxgJx/Ssqh36mG9fX9wq5O9qH9Yv4Wb+zzfnuf8VUzcgZTzg6DYQxzKuNC7+u2tUH0Odn1zaSWkbdygRwC/FD1FsDDDr9Sodib/Ceie/5xU3eqYpGkBLD1RGZ05gGB61nYRrPYItan8CeQ8R02ot4QCnqlTO0EM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776292315; c=relaxed/simple;
-	bh=WPuIjMAw2ocla7dY4PH5AfZDm54Cudg1cBk8x+T2SWo=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=qFuiBcIxaLl9N6YtpjUt8IIAL/ipy4jajKiO6BZ6B7Ixav3QJldnvrw7iVbfGO+25sROsp3qpaTD0X3bGuV4dq59ISjIh/1mDFtq2NNTecwl9cxWtRY3IXu/qxR+O9WVI3cQYjtR/dDGpS7qxr0Lgc4A0DYoss67FCX0DYHVc2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uJ5VWjvM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55B73C19424;
-	Wed, 15 Apr 2026 22:31:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776292315;
-	bh=WPuIjMAw2ocla7dY4PH5AfZDm54Cudg1cBk8x+T2SWo=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=uJ5VWjvMoT3HFcDUCZIjlcya34Wb+vN/KoNeCdTsmgE0YpuNfEF7a8tR5VJUYNKtD
-	 ZLMiZJ3TRHtJiiWzSLEgNT8KNDwHCFE8yyBFY30yBgTT+deMu0BopFqUETadRqZN+v
-	 d7kEb26guP4aMc8y4lA/wJprSezQyaf+103VrbqK7aP0ycrmy95ktZxaJ9/QGlOkH8
-	 YiZ5gjfKqHOcVGyl0SPffjtIJ3nhiQxDcVDvm0dXD+Vk3zdjQfbWCrIBQieSMd7oTk
-	 uqpvT/oqyEP1VeNp+Idtogxc3N4Fut0riuoME02qVOR1t5eoo1K9tOjjRiv5Mzir3a
-	 hnzfJ9FhivtTA==
-Date: Wed, 15 Apr 2026 17:31:53 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1776296000; c=relaxed/simple;
+	bh=nD+DOZCqRg7yUCKRVdUZCOhUEHlGnvGD+8VMNtlkb9E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nyZgyQ6mXzaUSvmndIUS9cahBhgeSsYCVou6rqV1DvRu8rj8r9Xc5EMSCK0k4mGpFSMemCQisaYFvt8zIiQqZlvSrfd5AyBNhQqN8QEwSTqzWjSc4M/v9WeSFazuRolhk8x88SVhwu017lCUBi2gNXjF3Z91GMj3kgArzxutEkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=oKP4Oj3+; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=AfAeqXh3; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4fwyBN0tKMz9txg;
+	Thu, 16 Apr 2026 01:33:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1776295996;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=gvWOWQVPz49XTZTstMQ/fvYu1MF/JxDwsGNwmUvTe68=;
+	b=oKP4Oj3+pCqBUNihBLZNhvmVArwceWZ9wffmh9Afe8lUzgwgdQrVkn04/r/W2QPyTwYLKM
+	ZC7K+cnBXevP92tJinmH71Mfk6Qs+/ALQrMOpyWqD3/ODVGnZwUXzyb89NbvnoTu4C6aQu
+	81ymzOtBlpA4jw7kLz21KeG9TBj4iMDL8oPtinD02keIZ0blBywlcK2iv0FCr3maGwhqXN
+	nbDt5CBeqXU1e+qqUpzqq80mTzZ773ZpLP9/sjlvx5EOeOW3EbseOTElxDlyMh4lk8W9sG
+	VOwpue7atI4TUTNfoMp2lxdm2EpuLWlGoS/s/EFEuj2S15VuZvzcK69cLEaN9w==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1776295994;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=gvWOWQVPz49XTZTstMQ/fvYu1MF/JxDwsGNwmUvTe68=;
+	b=AfAeqXh3NT12dP48aAuh5RQuIdcjsUpXzKEh1IYBwKYexG71oabLSsU/AwXLURLBYpmc4M
+	qzzP4YktqsCbzCyj80UMEiBeUJtbW4S9yJolZpHXLkx+kZVYHI9xAxBRN5MX+hKdN0FUEC
+	WPkFotwoQLQiLbaCMnmEJtKjT9PkLYyGeFHbUnrRxsR/5IQAaLRA8mttQqMrktXR6cvXk2
+	sikdx+UE/OuWbo+FSqn1Ln3t5FOhicUqKCmFhuAqgPk83xneCdu6fK+uvfrFjacZLaiV7y
+	3pZYIcL/uJyW86a8MJtFzlOfNgKju4TPFGlx+faL8nWA4RzawZlm53MC+b6vpg==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2 0/4] Describe coresight on R-Mobile A1
+Date: Thu, 16 Apr 2026 01:31:37 +0200
+Message-ID: <20260415233300.457892-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Bartosz Golaszewski <brgl@kernel.org>, Ryan Chen <ryan_chen@aspeedtech.com>, 
- Lee Jones <lee@kernel.org>, Andrew Jeffery <andrew@aj.id.au>, 
- Linus Walleij <linusw@kernel.org>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-aspeed@lists.ozlabs.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-gpio@vger.kernel.org, Joel Stanley <joel@jms.id.au>, 
- linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-In-Reply-To: <20260414-upstream_pinctrl-v6-2-709f2127da33@aspeedtech.com>
-References: <20260414-upstream_pinctrl-v6-0-709f2127da33@aspeedtech.com>
- <20260414-upstream_pinctrl-v6-2-709f2127da33@aspeedtech.com>
-Message-Id: <177629231119.934339.16424036449507234934.robh@kernel.org>
-Subject: Re: [PATCH v6 2/3] dt-bindings: mfd: aspeed,ast2x00-scu: Describe
- AST2700 SCU0
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: rxmaqd7ujwu4pup7znsqwx9x5yhk6sb1
+X-MBO-RS-ID: a58143ec36526588d86
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287715-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-287716-lists,devicetree=lfdr.de,renesas];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[mailbox.org,kernel.org,glider.be,gmail.com,baylibre.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aspeedtech.com:email,devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D6925408B56
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	NEURAL_HAM(-0.00)[-0.986];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,mailbox.org:mid]
+X-Rspamd-Queue-Id: 63422408F58
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Implement support for ZT trace bus and ZTR trace clock on R-Mobile A1.
+Describe coresight topology on R-Mobile A1. Extend the current PTM node
+with connection funnel, TPIU, ETB and replicator. The coresight on this
+hardware is clocked from the ZT/ZTR trace clock.
 
-On Tue, 14 Apr 2026 17:39:00 +0800, Billy Tsai wrote:
-> AST2700 consists of two interconnected SoC instances, each with its own
-> System Control Unit (SCU). The SCU0 provides pin control, interrupt
-> controllers, clocks, resets, and address-space mappings for the
-> Secondary and Tertiary Service Processors (SSP and TSP).
-> 
-> Describe the SSP/TSP address mappings using the standard
-> memory-region and memory-region-names properties.
-> 
-> Disallow legacy child nodes that are not present on AST2700, including
-> p2a-control and smp-memram. The latter is unnecessary as software can
-> access the scratch registers via the SCU syscon.
-> 
-> Also allow the AST2700 SoC0 pin controller to be described as a child
-> node of the SCU0, and add an example illustrating the SCU0 layout,
-> including reserved-memory, interrupt controllers, and pinctrl.
-> 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  .../bindings/mfd/aspeed,ast2x00-scu.yaml           | 112 +++++++++++++++++++++
->  1 file changed, 112 insertions(+)
-> 
+Please note that this is written according to R-Mobile A1 User's Manual:
+Hardware , Rev.2.00 Sep. 2013 . I currently do not have access to this
+hardware, therefore I am sending this as an RFC patchset.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Marek Vasut (4):
+  dt-bindings: clock: renesas,cpg-clocks: Document ZT/ZTR trace clock on
+    R-Mobile A1
+  clk: renesas: r8a7740: Implement ZT/ZTR trace clock on R-Mobile A1
+  ARM: dts: renesas: r8a7740: Add ZT/ZTR trace clock on R-Mobile A1
+  ARM: dts: renesas: r8a7740: Describe coresight on R-Mobile A1
 
-yamllint warnings/errors:
+ .../bindings/clock/renesas,cpg-clocks.yaml    |   6 +-
+ arch/arm/boot/dts/renesas/r8a7740.dtsi        | 116 +++++++++++++++++-
+ drivers/clk/renesas/clk-r8a7740.c             |   2 +
+ include/dt-bindings/clock/r8a7740-clock.h     |   2 +
+ 4 files changed, 120 insertions(+), 6 deletions(-)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml: allOf:1: 'then' is a dependency of 'if'
-	hint: Keywords must be a subset of known json-schema keywords
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml: allOf:1: 'then' is a dependency of 'else'
-	hint: Keywords must be a subset of known json-schema keywords
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260414-upstream_pinctrl-v6-2-709f2127da33@aspeedtech.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.53.0
 
 
