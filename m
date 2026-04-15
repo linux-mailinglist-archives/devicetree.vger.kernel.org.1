@@ -1,381 +1,194 @@
-Return-Path: <devicetree+bounces-287682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287653-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kAaJEum432mOYQAAu9opvQ
-	(envelope-from <devicetree+bounces-287682-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 18:12:25 +0200
+	id kIv4Ivui32miXAAAu9opvQ
+	(envelope-from <devicetree+bounces-287653-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 16:38:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 769364064B2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 18:12:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7F3940565E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 16:38:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DDAA53014646
-	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 16:12:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8EA3B315AE93
+	for <lists+devicetree@lfdr.de>; Wed, 15 Apr 2026 14:32:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 732FC3DE44D;
-	Wed, 15 Apr 2026 16:12:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22EA3343D7B;
+	Wed, 15 Apr 2026 14:32:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="ANiX1m/B"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bam28bm+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from 12.546.mail-out.ovh.net (12.546.mail-out.ovh.net [188.165.57.92])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DACCF2C1595
-	for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 16:11:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.165.57.92
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B657D2DECDE
+	for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 14:32:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776269522; cv=none; b=QZQ3wbCXhVGCfYaRbQU/8IqUBQ09Fcm9kKzV1atoteF/rm4HtjgKscYKMm3n4bZRLd+46kYumWfsmZxux4DTR6VY1ov4LKF7kiUzVnoA092WzlctgQkqfkVbu1PtcE/7dRdRPkqUHvlMRlJ63qFPh+eLLRbovPEpMKlDWgEUZa0=
+	t=1776263573; cv=none; b=Q2mAwNUh5KcrCgzyePSn9QbySJWJ7fj6fKKSGCdXdk8TnzKjXukT60Uk5Zz5ukbeOC0BUpY+Se4yGREFtGK+vcHX+f8+8WEw+ouioBOvBOJS7sPz2Y7HN0eF0CBwaXPwIJk8t7JXlirUPPMG9L3m1bkAGrlRHxDDxo5ZNafjGHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776269522; c=relaxed/simple;
-	bh=6zwdwdT2jJk/+f+JKXNN6oRk5cmS2Z0+et0DMx5S738=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=XpKe++qkBmve2UD1tpFLE5VCCd2rXDAi9Ccexss241LcZgOTG702g4TL8SYul77CIlz1WrK8jT8slU2eepnEqCpDFEja1z8U9pdetIwjB/cn67COJfVcpu8Ysj3z+lsUvOFc1s5HLGv+l1WiS1KvBOILYVNLSXmmyzhAqlou3XQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=fail (2048-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=ANiX1m/B reason="signature verification failed"; arc=none smtp.client-ip=188.165.57.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-Received: from ex.mail.ovh.net (unknown [10.108.42.95])
-	by mo546.mail-out.ovh.net (Postfix) with SMTP id 4fwk9y1cxQz5wgR;
-	Wed, 15 Apr 2026 14:32:06 +0000 (UTC)
-Message-ID: <bbeb7798-2fe4-42b6-825b-6d2d889528cc@aliel.fr>
-Date: Wed, 15 Apr 2026 16:32:04 +0200
+	s=arc-20240116; t=1776263573; c=relaxed/simple;
+	bh=3HepdRyQzPaOaFk8Iiiaa5QdNKTntj32oiu0bvvizxc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=ExXYKonyLrmibILw2/4cvhF57PLcgvcTJaO+ySBORNACOhsiBDkptBxOgycx8OWwQI9as7fd45HMqKttvXxHNqj5dCDShR98RzAR5OAZ2fV0o8O/vzTTONDFpvI6+EL0/bhF5hmPUUErFh/FVbKLQiJFoPHiAP+D72fMsVLDo4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bam28bm+; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-488a8ca4aadso81282515e9.3
+        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 07:32:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1776263570; x=1776868370; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3HepdRyQzPaOaFk8Iiiaa5QdNKTntj32oiu0bvvizxc=;
+        b=Bam28bm+ncD9dKmSXk1HY3yKj1vcZTykVVsHCQowM1JvCRS66Y/BEaMJ6OBsdcyPxk
+         YKGMP7EK+y8sFAOTPg2QC4eTYq0dMufgbvnmolLd5/muta6S3vmtBpoE20AzcXHhojzc
+         LtGAmcu5m7lYSMnvBUwjjwOHI+KH2gdt3swlGifTpq9ZF3L1DY7P1eXyms5IwmbtcCus
+         fdIDSO/S4k/qNaYYAF89EPzoVBhGSGAtjhJP4mZh0JsoEpxl8HISVTbZBYrBzrO1dBZy
+         5OXTW7NoytYFdTzfprV2k1orF/a6TpBIpR8hJXMlsrHdFd5AgUhbjqtz30c+QHts1zi5
+         Zn3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776263570; x=1776868370;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3HepdRyQzPaOaFk8Iiiaa5QdNKTntj32oiu0bvvizxc=;
+        b=XC2Xr35QV1GZXMMQNzA2cmPXrUfxUTbQsDp/8b9f4S8AKESb88FBrJYWK8F1dU9bGk
+         xtst8tGTilBy4H/GA3ESO1K6rgVFDA+Pbg0x2GzzN2POelJhn3LyIhzkibDbcU9pWuCj
+         CSnAfLzg9JYW2uo+T8dTVhG3rtQNLyfv61+AZL6cNMUaWwqfAr70OTvEBIdzER0iicaP
+         Qi6U+AbvYeeC9RXdd2LMcRGYjT3QFCJe5RisZUaEdad1om5wWOjBPcuj/QKC4bPoeuPp
+         5X+Fzqg4DbF9HoZ2Nh+SRAWTy0DG0EjSyoU5Qf2CpGEdemNz9nck0gp3CsTAls6wStGv
+         D84g==
+X-Forwarded-Encrypted: i=1; AFNElJ+H2m5nMvBEap/fiGJ93XSgsKkajt13qLsXt0HDlVM5n8llo/K9qKcWDUvMZL0y9jJaxbmHIFbiQLWV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRLNORgyRewtxWKPSgmygpKrKwyhW6X+1LPJL3YLOkASj9gl7P
+	ECLUU6m7hd7k6nzh3zK+ea926/TdqLOQoy+c4wmWSonOUiigoSSdGCl2kGb9nbVVYEg=
+X-Gm-Gg: AeBDieviJtk/qCfyCi6WfqTMgGAOFDkQwHH4hzLvIu+80uCRiYkQ7ifpxPB22LAowYb
+	CCwZhyUDjPCBlpebSttLSce014MtrG44FRhNGnNoR4/aBFr4sAB6rJKAM4uK7eAq7YE4pqf0giX
+	AaEUW06PWRMEjBLOsLoZOKCqbFXo1RKwkjLwYXf5PI9RK1U/FmiHE6dkj0Kpx+/NG03vlBZunQW
+	9vpd4o4LlnlItzDVE+PzBmzqwlw7gK0/JMw+9xWDo1LIV88PJrPk0+q1yyLWQeWLqYBtB7z4jh1
+	igXzGJ10uSYyRkZJ8FqL2Em/KxA3vz3kC1IqPu7Ub4EMfNAilF2dZiGUmtpmjYr4j+JHBJaePrL
+	KypJ8W/eZoM/jBQ9G+GDHx78H0kUPwItxs5G4qELXErk6SX7Af4Gy4wa0qA17Tb5dtGm0jr5p8g
+	sTdV8d7u+EHZzGwX1kb93GW6ME7toWzNSHKm5fg5qoR5IhHA7fDW+fMQri82Q7v9qE3arF22KtC
+	g5xhAEiVM12eFYeDQ==
+X-Received: by 2002:a05:600c:3149:b0:488:ab26:8fe0 with SMTP id 5b1f17b1804b1-488d68432f2mr298691635e9.15.1776263570072;
+        Wed, 15 Apr 2026 07:32:50 -0700 (PDT)
+Received: from localhost ([212.187.182.164])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488f4352900sm2651745e9.1.2026.04.15.07.32.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Apr 2026 07:32:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH 2/3] arm64: dts: amlogic: t7: Add UART controllers nodes
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-CC: <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>
-References: <20260415-add-bluetooth-t7-vim4-v1-0-0ba0746cc1d6@aliel.fr>
- <20260415-add-bluetooth-t7-vim4-v1-2-0ba0746cc1d6@aliel.fr>
- <68577e42-2fdb-4b66-84a4-610acb8b975b@amlogic.com>
-Content-Language: en-US
-In-Reply-To: <68577e42-2fdb-4b66-84a4-610acb8b975b@amlogic.com>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: CAS8.indiv.local (172.16.1.8) To DAG11EX2.indiv.local
- (172.16.2.112)
-DKIM-Signature: v=1; a=rsa-sha256; d=aliel.fr; s=ovhex24454-selector1;
- c=relaxed/relaxed; t=1776263526; h=from:to:subject:date;
- bh=HWwbfe148YK1BjilYZVLbZ5BrrSt1mUVL06J1Oqf+Sg=;
- b=ANiX1m/BZwplcLyY2NbxTZIdWLkPiSZnuu7uQKVW8fYpSEDfVTBA9EB3v0NRXgGnjNTmEVBzL58Qsfz3ye8s8ATqe93FK+0d9UHJbo/nwVH+m25Vl06Wod0rdVaO1x1q8LUBTACVOTXAo+85FJt1e2y5d9OM9TxNVk/gYYp7pwy+IfUxQZE8NfSUWpZds8Rd/lM6sDHmeT5Pj79J25c36rdZDSvqnZ4mJSF1duOFL/2jY9suUMNJqrZhxwse08PV1MvPsJDQBkOUo0nZRaFZkpsV+pS8BhBy1lUUWFK3ns4uQmS7M7Jb9zC1LopDRwUIb5gqfAIOR4BE6RnTSh39Pw==
-x-ovh-tracer-id: 11629983089739566574
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: dmFkZTFcGbYPApRYoNkrHZwecakttOj/5ftmQG49s9AtF7JbxVKNfry11j9Rq9APaqd7TlJyuFOLi7SUuEjX2gh68LK1jBNt7BhCiOhatqBZbQlDPGL6HI0jyqyiMWm9FzUrlcgQCAeo2XAeQtxMAyP34YvzqAgZPnRlIWo3Ix/Rr+6rdrvJIY1FC9AfzZumtkBEVkggQVlhhX6Y5ot3+0fDNBmBycXGOEqNo2Cm+2qtuMgk+ZoMV1NvVyBDCCvrS3YnzgtUhcCBgCUzIjjxoSNqYJ4wsn+Wr5ZhL1UzKzkRbTydbovE6iqnPvFoTyKJwKJuKH2mL7cDgNdNnwicFSgl7ixYDnvmI/p8BUl/29EbapHaySiC3qAiSVAOBaTNsKY/hUZLbJ/AXXXBjgxxHcCWpepovdHnfqcuoSRp0KdeK0zKcCYONp56Y3wzSqcj5gNVlIFamHYF9t8uJ6RFTmytTI1Qpes8sOQLAwqa/mJvoARafH8H8FgPWcirbT5wGmLGG12r4lNW8gew5pUBeFDFfV+pMcgaMuhGJ0jrBscI/wpdNDaN8VUxEMGCzjFLBGTOfYRo8qYGYZPWKmQvPPo55aAeDzin2WlMevqgBXEF2e71v8bZ/hMbATwpOAoY70LPLfvOrEzeXyFttZbGSpACL926gLnWM5axNPG0twGh8FI0lg
-X-Spamd-Result: default: False [1.04 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 15 Apr 2026 15:32:48 +0100
+Message-Id: <DHTSVU4ZU568.2BCATHBGQMAWV@linaro.org>
+Cc: "Sylwester Nawrocki" <s.nawrocki@samsung.com>, "Chanwoo Choi"
+ <cw00.choi@samsung.com>, "Alim Akhtar" <alim.akhtar@samsung.com>, "Sam
+ Protsenko" <semen.protsenko@linaro.org>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Tudor Ambarus"
+ <tudor.ambarus@linaro.org>, "Jassi Brar" <jassisinghbrar@gmail.com>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Peter Griffin"
+ <peter.griffin@linaro.org>, <linux-samsung-soc@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 0/5] Exynos850 APM-to-AP mailbox support
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+X-Mailer: aerc 0.21.0
+References: <20260320-exynos850-ap2apm-mailbox-v1-0-983eb3f296fc@linaro.org>
+ <20260321-beautiful-garnet-magpie-de4fbd@quoll>
+ <DHIB5E66SP7A.110YA5R1OOQHS@linaro.org>
+ <5d645bb0-22cd-4e96-b8b6-15c4bb83d87d@kernel.org>
+In-Reply-To: <5d645bb0-22cd-4e96-b8b6-15c4bb83d87d@kernel.org>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[aliel.fr:s=ovhex24454-selector1];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287682-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[aliel.fr];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-287653-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,linaro.org,baylibre.com,googlemail.com,kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[samsung.com,linaro.org,baylibre.com,kernel.org,gmail.com,vger.kernel.org,lists.infradead.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.1.56.128:email,0.1.48.176:email,0.1.64.80:email,0.0.31.144:email];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[aliel.fr:-];
+	FROM_NEQ_ENVFROM(0.00)[alexey.klimov@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_SPAM(0.00)[0.841];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.1.87.192:email,7a000:email,0.0.234.96:email,0.0.15.240:email]
-X-Rspamd-Queue-Id: 769364064B2
+	NEURAL_HAM(-0.00)[-0.996];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:dkim,linaro.org:mid]
+X-Rspamd-Queue-Id: C7F3940565E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Xianwei,
+On Thu Apr 2, 2026 at 7:43 AM BST, Krzysztof Kozlowski wrote:
+> On 02/04/2026 04:19, Alexey Klimov wrote:
+>> On Sat Mar 21, 2026 at 10:44 AM GMT, Krzysztof Kozlowski wrote:
+>>> On Fri, Mar 20, 2026 at 09:15:12PM +0000, Alexey Klimov wrote:
+>>>> Hi all,
+>>>>
+>>>> This patch series introduces support for the APM-to-AP mailbox on the=
+=20
+>>>> Exynos850 SoC. This mailbox is required for communicating with the APM=
+=20
+>>>> co-processor using ACPM.
+>>>>
+>>>> The Exynos850 mailbox operates similarly to the existing gs101=20
+>>>> implementation, but the register offsets and IRQ mask bits differ.=20
+>>>> This series abstracts these differences into platform-specific data=20
+>>>> structures matched via the device tree.
+>>>>
+>>>> Also, it requires APM-to-AP mailbox clock in CMU_APM block.
+>>>>
+>>>> In theory this can be split into two series with correct dependecies:
+>>>> device tree node requires clock changes to be merged. The suggestion
+>>>> is to let this go through Samsung SoC tree with corresponding acks
+>>>> if it is okay.
+>>>
+>>> I don't understand why this cannot be split into two seris
+>>> *practically*. What is exactly the dependency between mailbox and DTS,
+>>> that it had to be combined here?
+>>=20
+>> Do you suggest to send 3 single patches with proper dependencies
+>> description? DT bindings change first, then mailbox change that specific=
+ally
+>> depends on dt-bindings change and then dts update (which will depend on =
+both)?
+>>=20
+>> I thought that mbox driver change depends implicitly on bindings update?
+>
+> Please don't answer to a question with a question. Actually three
+> questions. If you cannot give argument why there is a dependency, feels
+> to me like you send something you do not understand.
 
-On 4/15/26 1:38 PM, Xianwei Zhao wrote:
-> Hi Ronald,
->=20
-> On 2026/4/15 19:16, Ronald Claveau wrote:
->> Add device tree nodes for UART B through F (serial@7a000 to
->> serial@82000), completing the UART controller description for the T7
->> SoC. Each node includes the peripheral clock.
->>
->> While at it, move the uart_a node to its correct position in the
->> bus address order (0x78000) to comply with the DT requirement that
->> nodes be sorted by their reg address. Complete the
->> uart_a node with its peripheral clock (CLKID_SYS_UART_A) and the
->> associated clock-names, matching the vendor default clock assignment,
->> consistent with the other UART nodes.
->>
->> Signed-off-by: Ronald Claveau<linux-kernel-dev@aliel.fr>
->> ---
->> =C2=A0 arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 61 ++++++++++++++++=
-+++
->> ++++++----
->> =C2=A0 1 file changed, 54 insertions(+), 7 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/
->> boot/dts/amlogic/amlogic-t7.dtsi
->> index 531931cc1437c..56b015cfbd6d1 100644
->> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
->> @@ -577,13 +577,6 @@ gpio_intc: interrupt-controller@4080 {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 <10 11 12 13 14 15 16 17 18
->> 19 20 21>;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->>
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uart_a: ser=
-ial@78000 {
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "amlogic,t7-uart",
->> "amlogic,meson-s4-uart";
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x0 0x78000 0x0 0x18>;
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <GIC_SPI 168
->> IRQ_TYPE_EDGE_RISING>;
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "disabled";
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->> -
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gp=
-0: clock-controller@8080 {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "amlogic,t7-gp=
-0-pll";
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x0 0x8080 0x0 0x20>=
-;
->> @@ -713,6 +706,60 @@ pwm_ao_cd: pwm@60000 {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "disabled";
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->>
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uart_a: ser=
-ial@78000 {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "amlogic,t7-uart",
->> "amlogic,meson-s4-uart";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x0 0x78000 0x0 0x18>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <GIC_SPI 168
->> IRQ_TYPE_EDGE_RISING>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&xtal>, <&clkc_periphs
->> CLKID_SYS_UART_A>, <&xtal>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names =3D "xtal", "pclk", "baud"=
-;
->=20
-> The xtal clock is defined in the board-level DTS file, while it is
-> referenced in the DTSI file, which seems a bit unusual.
->=20
-> On other chips, the xtal clock is usually defined directly in the DTSI
-> file.
->=20
+Sorry. You're right on the first part. Couldn't say anything about last par=
+t.
 
-Thanks for your feedback.
-I have tested with clock removed in the DTS, and it is ok.
-I will send the modification in V2.
+So I saw series where DTS enablement changes are included in the series
+after changes in drivers were introduced. I guess it is more preferred
+to split out DTS changes (also considering that kernel without these
+changes should be able to boot with new DTS and vice versa). I can split
+out DTS change(s), yes. There should/must be no dependency. Thanks.
 
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "disabled";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uart_b: ser=
-ial@7a000 {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "amlogic,t7-uart",
->> "amlogic,meson-s4-uart";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x0 0x7a000 0x0 0x18>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <GIC_SPI 169
->> IRQ_TYPE_EDGE_RISING>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&xtal>, <&clkc_periphs
->> CLKID_SYS_UART_B>, <&xtal>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names =3D "xtal", "pclk", "baud"=
-;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "disabled";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uart_c: ser=
-ial@7c000 {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "amlogic,t7-uart",
->> "amlogic,meson-s4-uart";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x0 0x7c000 0x0 0x18>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <GIC_SPI 170
->> IRQ_TYPE_EDGE_RISING>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&xtal>, <&clkc_periphs
->> CLKID_SYS_UART_C>, <&xtal>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names =3D "xtal", "pclk", "baud"=
-;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "disabled";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uart_d: ser=
-ial@7e000 {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "amlogic,t7-uart",
->> "amlogic,meson-s4-uart";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x0 0x7e000 0x0 0x18>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <GIC_SPI 171
->> IRQ_TYPE_EDGE_RISING>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&xtal>, <&clkc_periphs
->> CLKID_SYS_UART_D>, <&xtal>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names =3D "xtal", "pclk", "baud"=
-;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "disabled";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uart_e: ser=
-ial@80000 {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "amlogic,t7-uart",
->> "amlogic,meson-s4-uart";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x0 0x80000 0x0 0x18>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <GIC_SPI 172
->> IRQ_TYPE_EDGE_RISING>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&xtal>, <&clkc_periphs
->> CLKID_SYS_UART_E>, <&xtal>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names =3D "xtal", "pclk", "baud"=
-;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "disabled";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uart_f: ser=
-ial@82000 {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "amlogic,t7-uart",
->> "amlogic,meson-s4-uart";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x0 0x82000 0x0 0x18>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <GIC_SPI 173
->> IRQ_TYPE_EDGE_RISING>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&xtal>, <&clkc_periphs
->> CLKID_SYS_UART_F>, <&xtal>;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names =3D "xtal", "pclk", "baud"=
-;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "disabled";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->> +
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sd=
-_emmc_a: mmc@88000 {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "amlogic,t7-mm=
-c",
->> "amlogic,meson-axg-mmc";
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x0 0x88000 0x0 0x80=
-0>;
-
-
---=20
 Best regards,
-Ronald
+Alexey
 
