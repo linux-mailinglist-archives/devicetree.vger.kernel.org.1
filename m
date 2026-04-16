@@ -1,163 +1,122 @@
-Return-Path: <devicetree+bounces-287969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287970-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UPDFEhsW4WnoogAAu9opvQ
-	(envelope-from <devicetree+bounces-287969-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 19:02:19 +0200
+	id OLi9FQIj4WkBpgAAu9opvQ
+	(envelope-from <devicetree+bounces-287970-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 19:57:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1408412425
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 19:02:18 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC5FD4135FA
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 19:57:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 87A0F308D9C3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 17:01:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C9B603011590
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 17:51:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9B4531F999;
-	Thu, 16 Apr 2026 17:00:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4308226A1A4;
+	Thu, 16 Apr 2026 17:51:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="sy138BmJ"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="giLrKqEz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86BB11FBEA6
-	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 17:00:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3EFD221275;
+	Thu, 16 Apr 2026 17:51:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776358858; cv=none; b=dakaW5QIGCGi2j6dL2Ptk7cqL+cE72ujEFfQ/OVQZCH9qSZZicOypKsU1Bt5detW8o2462Od8LV61L1LhpKxWaimfxoNDAEQCXRwEHNfqFGI6+ipFncP5Qzv5HijQXg0aJSLPNacxkKPU+qoaPW5b+AKKosonrBWZPz3BUoagXQ=
+	t=1776361875; cv=none; b=q6hSUTmrnmvEgiDGaZamdD59g4wv6i+0k+2+nsOFnOb7N6MyBn6weXQxG/RNAfNxmdtqyJ1U+dpWVQ+duig0OADEfUFlobVlq3NUYINn4uGUdyK7KzN1xcRMIihplMqM+mcsR/oUd4H9Zyi1EJc178dIaiXxTRRsMXZN2K4CvEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776358858; c=relaxed/simple;
-	bh=1CZuCyQ4F7gIhJWlCZS7gOU94W9dFudind/rqbdZLnA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m6+wDkubF74E1JW6pMp+l7GSHzke1Pangb8XJxajQ/mlQhR6TXwy1ACy2oIP5oY/Joino8nzmSpcEKhblHuTZT6WHnFrguBi+E81XvUBGYgAsdoCDffY9poie7D8GXArHLmTevwJHU0vwNkVEfhFqVwaGs8DxpPyQviMDlTD/K8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=sy138BmJ; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-38ce8a5bc20so87544771fa.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 10:00:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1776358856; x=1776963656; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2VpkNf2axxZW2MI3QuLeduQYZrK6zUSn2neT924zAFg=;
-        b=sy138BmJhg46ddSgrk/ooCIiK1C1NcBAs8JXLnwx0oN2sFJw5hf8+zPixXNeBwY9zz
-         WLggPaIomf4PudZyyCrDu22xuRhXf1GMET6HnD9q4hmw/TZ+KMHMrSPMD9+0JOwKM+u9
-         gOi7KDXflU90JC1Sr/vDgaUxxGEhm2dgUsHHte9AFBSq2oaeImelNXICkEH/lJUgVCiZ
-         2FnnXWY+UdEDQz+1DHIHNHSubZw7ZCw6IglJ6HE9f2F0zRe1QUiMVmcEq44+JmDTrUlK
-         gdjsOVCQbz4BHUWvu16YG+EB203d1sQBNK2Sot47N3kMw9hYSCzHV89ANvggzcvzaAVB
-         yrZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776358856; x=1776963656;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2VpkNf2axxZW2MI3QuLeduQYZrK6zUSn2neT924zAFg=;
-        b=QgwWNJWGeh+0O4hBkC8PnxPv9d+Jeqgrye8pJYkgPUPBz0zTn+iUkJbDWO0NZQ5gDQ
-         ZyD0bqup+j9KRCjvRJl8P6FTCWSpRUIeNFqQnoYfB5szrh7vV5Q/Thsuk9qJqw0dHdTf
-         2Uohba0mH442eVtuUfcz++Q60NN3oi3q3vvv+CwFCHf2Mgae7EDcjBbiluGpOdRxCB5I
-         uBblx4xwCwBg6z+Yto+oJ21PEV0PZEdaeRcQluqh6av+frKQqH3+Aa7i4fWZCxhfv7KY
-         fNYDRWn29etIVvx70y0LnJCv0eJLZv30Wuv+mtO46+lTrsZiS7zB7eVIj7iunqR/f2ed
-         Z2EQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+gVrUvJdDx820HbLwD/qLzYzd6C6l3GXr3xy3VWAQzCpM/rs7akJn4G/l5ZJEbTKc4XOn5ilTnFzfh@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUK7iwQNt4e8v6GHKq/mzm/DTY1G4eH2exl5AkVuj/qRlu+gx7
-	jcpu1FVFV6tC3nEPunXNd1PioYd9Y43z5Z1T8byNmgm22EfOXFXyGPGq
-X-Gm-Gg: AeBDieup8y5lt/DNT+jZAO+mh2546VBazKgSNviOVeB5KCubRd1ZTp7oqsUnXx+FmMb
-	cpkq0OztUCfRuEqraYtByjVu+jRV6uaaa7YqFjcFZK/xPeiOTrpJ7biCxbVy1mFRzHbG2agNFk1
-	FQlpq1Rmhwz09aVOImGBzjAxaUJAW7DnAA3K64C80cUfp+BhhhvszHxP4Cl4UneYwr7mhAzRDOC
-	dw6rsktjitMgLqUkiwaTJ/9rUiWnT2dU4GNkV0OFvudeachf+cViRz/glUu7LD1mN3PtZBOgQSB
-	bhmzI5HFZJJlzzX0WQCgXb9OflulVqcWEN78s1cllSUeNEACpW8nWHAfCC5iJpE5n8JZdKM+hVF
-	6pQSbPr8cVV+5hW3VB3x3H1mq1+Au7GDaorrBj46MkGQoCNeuH/YNzmz00bvdpSdzVpUhjs7jcR
-	+cFajhC5+hJ/hYLS5YYtZg+YtfC1XUgrD64qfQHTivFADlobkQN4F33uR2cH6JttVNZB2+Ys++E
-	QE=
-X-Received: by 2002:a05:6512:3405:b0:5a3:fe5e:3d5f with SMTP id 2adb3069b0e04-5a415540f62mr51697e87.20.1776358854697;
-        Thu, 16 Apr 2026 10:00:54 -0700 (PDT)
-Received: from [10.29.244.82] (m-37-0-167-201.cust.tele2.lt. [37.0.167.201])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a40a272e14sm1416433e87.3.2026.04.16.10.00.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Apr 2026 10:00:53 -0700 (PDT)
-Message-ID: <6b8f767b-98c3-4e31-beb3-20988f764359@gmail.com>
-Date: Thu, 16 Apr 2026 20:00:49 +0300
+	s=arc-20240116; t=1776361875; c=relaxed/simple;
+	bh=yuQWORxJKRnUyRGZmBa1Cz2oUxC9/FiTLkK0A21tAOM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=BfZs8mgihLVGLdk+GlnRfbSQ/iheb0pBNFimcKVuByGw76EzH3/fs3AYARmvny4j+SuCLLSQAW2hccuIqgDbJ3WXhMgXkfngGxq6dcYm9RUyytEll5zOnJUGoLAclihswO5iURFthMlSE/tb/ZyBAzb0jYljSNlJyhM5eVicH7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=giLrKqEz; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AF4DBFBF63;
+	Thu, 16 Apr 2026 19:51:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1776361865; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=09cXq4kMFgSJtMoxapD51NPJqiDpj1lEGNS2iDhOrMU=;
+	b=giLrKqEz7yi5TNG06JZtaEGiBXcIQRM3vgQtD6Dm9njuiFFi+ixt57ufxLbvKZBQv9cTZp
+	0XCsGdjFWv1xnke1a45cAqscJIZxmro4Gx6WzwAcBP1i9Ng2QbwACOjtptddpIAY6EYddy
+	1jvq+pn/gX+VBhIJJD0kZyw5Mkvi48B+z8PrlNB3ug/xq8ywXtss2FlFgoj+d8HclQu2tl
+	9Q3Lk496trtR0TAmBTeZy7laCSwJXpU55cR0TpPVmoF5UMBj1cizkbzE5bDzf8W0S1EQkO
+	5UuvkKFdIKLYJVaa8O7tsJjJZG6D2ju8Pg6TUh7U0u3hp9C9DQR/jLf4PwyFHw==
+From: Caleb James DeLisle <cjd@cjdns.fr>
+To: linux-mips@vger.kernel.org
+Cc: naseefkm@gmail.com,
+	daniel.lezcano@kernel.org,
+	tglx@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Caleb James DeLisle <cjd@cjdns.fr>
+Subject: [PATCH 0/2] clocksource/timer-econet-en751221: Support irq number per timer
+Date: Thu, 16 Apr 2026 17:50:59 +0000
+Message-Id: <20260416175101.958073-1-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 00/10] media: qcom: venus: add MSM8939 support
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bryan O'Donoghue <bod@kernel.org>,
- Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
- Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260416-msm8939-venus-rfc-v1-0-a09fcf2c23df@gmail.com>
- <b7b6c3e7-f8e6-4b73-b17a-e5e1691a54f8@oss.qualcomm.com>
-Content-Language: en-US
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-In-Reply-To: <b7b6c3e7-f8e6-4b73-b17a-e5e1691a54f8@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-287969-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,cjdns.fr];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-287970-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F1408412425
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,cjdns.fr:dkim,cjdns.fr:mid]
+X-Rspamd-Queue-Id: EC5FD4135FA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
->> 3. MSM8939 supports HEVC decoding, however, as the patchset is written
->>    now, it does not work. It can be enabled, however, it will result in
->>    breakage of Venus for faulty MSM8916 firmwares, because the code
->>    disabling HEVC for HFI v1 needs to be removed, and as per commit
->>    c50cc6dc6c48 ("media: venus: hfi_parser: Ignore HEVC encoding for V1"),
->>    this would break support for some MSM8916 devices. What could be the
->>    best way to work around this?
-> 
-> if (!device_is_compatible(core->dev, "qcom,msm8939-venus"))?
-> 
-> Also, you mentioned HEVC *de*coding, while the commit you pointed to
-> disables *en*coding (decoding had been already disabled prior to that
-> commit)
-> 
-> Konrad
+In prep for adding EN751627 and EN7528 SoCs, we need to support the GIC
+interrupt controller. Unlike the intc in the EN751221, this intc does
+not create a percpu interrupt for the timers, so we update the timer
+driver to support both models.
 
-From the commit message I assumed HEVC decoding had already been
-disabled for the same reasons encoding was - faulty firmware reporting
-codecs it doesn't actually support.
+Caleb James DeLisle (2):
+  dt-bindings: timer: econet: Update EN751627 for multi-IRQ
+  clocksource/timer-econet-en751221: Support irq number per timer
+
+ .../bindings/timer/econet,en751221-timer.yaml |  16 +-
+ drivers/clocksource/Kconfig                   |   5 +-
+ drivers/clocksource/timer-econet-en751221.c   | 137 ++++++++++++++----
+ 3 files changed, 127 insertions(+), 31 deletions(-)
+
+
+base-commit: ff1c0c5d07028a84837950b619d30da623f8ddb2
+-- 
+2.39.5
+
 
