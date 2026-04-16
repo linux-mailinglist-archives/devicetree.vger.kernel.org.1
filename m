@@ -1,141 +1,125 @@
-Return-Path: <devicetree+bounces-287881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287888-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qNduG0PR4GkkmQAAu9opvQ
-	(envelope-from <devicetree+bounces-287881-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:08:35 +0200
+	id 2JOWFjXQ4GkkmQAAu9opvQ
+	(envelope-from <devicetree+bounces-287888-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:04:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E78140DDE7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:08:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0BF740DCA9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:04:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5208331B3FA9
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 12:01:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E564A3040A88
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 12:03:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22FB73A9D8F;
-	Thu, 16 Apr 2026 12:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE0934D4F9;
+	Thu, 16 Apr 2026 12:03:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OKub4dON"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="srxwgCje"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F03433793B0;
-	Thu, 16 Apr 2026 12:01:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF1328CF4A;
+	Thu, 16 Apr 2026 12:03:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776340862; cv=none; b=Mx1zYzSkmE27SOzeDazDleBcvyhIh44QuIrw0XXYXKWhnpbmxx3uowxoMeuk72q4Mb67ettZ4b026WGc5nBhKYBOTbjZlIE5FlJ8hmyYrmNDFLj0sd4+JPNtgpm6xiJr/sUx0VLAYWpJr2fZglP8ln/Ne5/Rrf85VjG58qP4Kgg=
+	t=1776341006; cv=none; b=HbwVT1FUbMxMqPpDuqPKXnjTEZAfEqGOEzFnewLsaMfYjjSTQME+kb7Grv70BASDJKaczadJua9GscV3isQMEwTL+EVs1ZQhTAUVtvrruuRlHjLz9+s3B+CHr9SYZp9VaSslg1rXXGzJ5SO+KvL0rlTaYKNRGHI8oGgVVSfF9RY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776340862; c=relaxed/simple;
-	bh=S2XabBjYZhsC7sABAPetHBPk84SDJde1dhmatVsKbbE=;
+	s=arc-20240116; t=1776341006; c=relaxed/simple;
+	bh=jI4kFil06zWjf1iB2JpyDVHEeoSXvfIVgPeUzpVg22s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kdx+Z5FM6D+ZCAERTaWo0AJCoLJLM2zCfZccCx72XLF95JETFZWOyVy0Aui6iZwOok1mR0MGAChyzIAHvWND78ZE3WTgGjYOrLgS5nOOwA0MxH98cUQWKeVv58d4jqtcUKGwc+t/FADb4dSWagNeB/P5RMqFhPTUPL18ya/v7NA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OKub4dON; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69799C2BCB4;
-	Thu, 16 Apr 2026 12:01:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sSdjB9109hlSx3v9cCuJMvwJFmA8vSEbSHHvKNbwsqM/R5Gv2hUPKpa9Cnjy3qOnS1zFHj2DaUK6ZS3C4dznlktMdYvsOYzEuQXfAYOY7Kh1fnIcej8MivtiQqXlEbYHS/kcGd8p/3X7sIKS5LA3uZ2gBVq0oq5/e/I9ZqbIPbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=srxwgCje; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BE4CC2BCB3;
+	Thu, 16 Apr 2026 12:03:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776340861;
-	bh=S2XabBjYZhsC7sABAPetHBPk84SDJde1dhmatVsKbbE=;
+	s=k20201202; t=1776341006;
+	bh=jI4kFil06zWjf1iB2JpyDVHEeoSXvfIVgPeUzpVg22s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OKub4dONgo057cMnGPJrd0DDstAxx1WRIKk7zzO26GHp4JPrOpwSyYkrEyP4ejlPF
-	 YvWOlnaMvEPxSzfYI9tgqifsZHkq/kStKcJw7RydmGHeScanaNiTlXhPVWCrkJVsab
-	 YeFlw66HR3RUHzJWgw3PpHvIkupicHLOoCdoee0KDKDRW4fWYGaakz75+T7DycJ9Ga
-	 CTr6jtz4zs5UOMv35hOsB61hMtHRWKBIhWVs+va8tO+3X8mhnLjjxO0glh+kZJ/qE8
-	 j95FM46aqQEHceyCXOfO7OnRyzAUx4xBVbSDRabf2lgq2CNo8FFCjFQFxfubMK79Cs
-	 Mz9I6XY9SDxCQ==
-Date: Thu, 16 Apr 2026 07:00:59 -0500
+	b=srxwgCjexUJhI7u7BtSixy04nCyM5H4FWBThlGn5OIFN1p1hZEKdRgZz2YYKuh42/
+	 P6EgtT/Px8T2Ot2J/wCOJ0x8buWQwV/Y8+TOlZp2VXTDbqPPbnemwXTu2ivnpUNxD4
+	 mR2em/yma14CQQhACTkdKStw9lP0oGOSo/3gyOG+3LtRanEQyxQN+qbKmNDEKrzhAK
+	 zU8WgwckvbrLdBr50uq0wsziVD/OEXx5dvpNi07VAsTttwmpr6IZWWq6jLFwk3DjSg
+	 iFgB0ehXLDHi2yNFdpbCv6TIzvhINofmfeyu16gIDsPHXiFFfMlwYXtGlR13+zkhiS
+	 i7r2qUNNdtN6Q==
+Date: Thu, 16 Apr 2026 07:03:22 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jens Emil Schulz =?iso-8859-1?Q?=D8stergaard?= <jensemil.schulzostergaard@microchip.com>
-Cc: Steen Hegelund <Steen.Hegelund@microchip.com>,
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-	linux-kernel@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-	UNGLinuxDriver@microchip.com, Simon Horman <horms@kernel.org>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH net-next v3 2/9] dt-bindings: net: lan9645x: add LAN9645X
- switch bindings
-Message-ID: <177634085879.2732675.9167969896775365019.robh@kernel.org>
-References: <20260410-dsa_lan9645x_switch_driver_base-v3-0-aadc8595306d@microchip.com>
- <20260410-dsa_lan9645x_switch_driver_base-v3-2-aadc8595306d@microchip.com>
+	Lukasz Luba <lukasz.luba@arm.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>, linux-pm@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: thermal: Fix false warning with 'phandle'
+ in trips nodes
+Message-ID: <177634099816.2735884.15576512683464919146.robh@kernel.org>
+References: <20260410223601.1487473-2-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260410-dsa_lan9645x_switch_driver_base-v3-2-aadc8595306d@microchip.com>
+In-Reply-To: <20260410223601.1487473-2-robh@kernel.org>
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[microchip.com,kernel.org,vger.kernel.org,gmail.com,armlinux.org.uk,davemloft.net,redhat.com,google.com,lunn.ch];
-	TAGGED_FROM(0.00)[bounces-287881-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-287888-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2E78140DDE7
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url]
+X-Rspamd-Queue-Id: B0BF740DCA9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Fri, 10 Apr 2026 13:48:38 +0200, Jens Emil Schulz Østergaard wrote:
-> Add bindings for LAN9645X switch. We use a fallback compatible for the
-> smallest SKU microchip,lan96455s-switch.
+On Fri, 10 Apr 2026 17:36:00 -0500, Rob Herring (Arm) wrote:
+> A pattern property matching essentially anything doesn't work if there
+> are implicit properties such as 'phandle' which can occur on any node.
+> One such example popped up recently:
 > 
-> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
-> ---
-> Changes in v3:
-> - remove additionalProperties: true
-> - remove unnecessary | from description
-> - change top level $ref to dsa.yaml#/$defs/ethernet-ports
-> - use ethernet-ports and ethernet-port
-> - move ethernet-ports under properties instead of patternProperties
-> - move unevaluatedProperties: false after $ref
-> - update example to use ethernet-ports and ethernet-port
+> arch/arm64/boot/dts/qcom/sm8650-hdk.dtb: thermal-zones: gpuss0-thermal:trips:phandle: 531 is not of type 'object'
+>         from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml
 > 
-> Changes in v2:
-> - rename file to microchip,lan96455s-switch.yaml
-> - remove led vendor property
-> - add {rx,tx}-internal-delay-ps for rgmii delay
-> - remove labels from example
-> - remove container node from example
+> Instead of a pattern property, use an "additionalProperties" schema
+> instead which is the fallback in case of no matching property.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  .../net/dsa/microchip,lan96455s-switch.yaml        | 111 +++++++++++++++++++++
->  MAINTAINERS                                        |   1 +
->  2 files changed, 112 insertions(+)
+> Daniel, Please pick this up for v7.1 as the above warning is in next. Or
+> if you prefer, I can take it.
+> 
+>  .../bindings/thermal/thermal-zones.yaml       | 111 +++++++++---------
+>  1 file changed, 54 insertions(+), 57 deletions(-)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
