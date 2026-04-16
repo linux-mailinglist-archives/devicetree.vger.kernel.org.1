@@ -1,328 +1,181 @@
-Return-Path: <devicetree+bounces-287946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287948-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SH26NDb04GkZnwAAu9opvQ
-	(envelope-from <devicetree+bounces-287946-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 16:37:42 +0200
+	id IFapMGn14GmInwAAu9opvQ
+	(envelope-from <devicetree+bounces-287948-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 16:42:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EB2B40FA50
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 16:37:42 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5DE340FB31
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 16:42:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 20D32300C240
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:37:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F0E73300869F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:42:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 670D63BA248;
-	Thu, 16 Apr 2026 14:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EB933DE448;
+	Thu, 16 Apr 2026 14:42:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BeoZi6iE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JHdggSbA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 136221DBB3A
-	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 14:37:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A565EEA8
+	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 14:42:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776350260; cv=none; b=Z9yuPeFcRfxdq1CiCGvKIjnKvzWEj6GlmE6KlShB6ZhqGT8Lr6rHk+fe6tyuGrklfKKXuw8tuUUhUjh+wMDblkeidX23EAA1WkPZqvtfPJkm1M20rjzDF3+qvJ4MADbivDOGUf5vn1Lo1xETd9iVAXTSW8SjXjQ8SKC1acrq2a0=
+	t=1776350563; cv=none; b=uSOpvYK9TVxGCVjb5diXLgkCGnIm3+ZoxTM966e2ta5cecyf53kEFO6kNn0lO2wMUr21XsNgHw64LiTTSnxhKAFcTes6/r8+VomEk8LSQQ7RCUCjD1TnqiFJXFsiQe+EZ14iBh43EELm4SXdpWAvcNkQaWOXukaFgqvIQNzl6zM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776350260; c=relaxed/simple;
-	bh=v0CmJsJ2YboECIMwVR31yUzzIZtQS7igYnAk5OF0hCw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F7FGTsF1uNxwaqcaZwuKLlz6j8mqdb8kRKPzDuJSlJcpKKDqNW+ICth8Ut4dRjG0DWvbpvlyA0WSxNWHc7XOCeTtHw+eEXPPfZ+7sMkS9EdnnL7MJlUrQIO/eON48Xue/KtsccZTyC/r1+IcaOMb1uHOuEIhLjfY7hhCuLxRipA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BeoZi6iE; arc=none smtp.client-ip=209.85.128.51
+	s=arc-20240116; t=1776350563; c=relaxed/simple;
+	bh=o7RjQadYHL/375cjm6XwoIOguUQh3DPk4SGVbAOcCPs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iCGh/hQ+CwjdwLp7emo0uT0hxb5T4SkriJSrfSAh3ZEMN/2Iyh5+h7Az+5ECgExtK2/hZx+DuEGbXkVUTWX1zBsT2qsfaRrgeomjSXi9reCo739BpAFiGAujwzt/+1DFgN5sBwLPxwhgds38eTSxVMT+2weuem/cX+X7FA9C378=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JHdggSbA; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-488ba840146so80097175e9.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 07:37:37 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b982b0889d8so1198112866b.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 07:42:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1776350256; x=1776955056; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=VysYGCXsyIEebfIwJV27h+uUWML92olF3CQNmU0siXk=;
-        b=BeoZi6iEqsK2MXckmjSMjBjeBe9uUarSQD5OYlYS/ejj2hpPrub967trtIIkNijQYC
-         oeFeDC9T2lHUPhB6scStq0MoNwyaI3F7IESphUJHIF6wpTaemZxH7AmqAxO9JUtzT5rh
-         bhRbZSW4r2eeAl87UsnuGxGXhz6pWSsKPovyJ16CwYFcLfP8glGYiQsmXtZ+3GIKtQ+N
-         aI9wFa2mKYYElmOoNbAUJFroEJq0qUfB/508tw/fZuCqoWHhI9L0bHlnUHfdheGwZf4f
-         NqmNqBFgtZ+aZiC59dUAieiXTT6INbiIs0u626gFR81fwT/ufE1u/O46Pm4L1wzD0Poz
-         tpxA==
+        d=gmail.com; s=20251104; t=1776350560; x=1776955360; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kV10FdcC3w13UCLKuFTzhb2hnSCEpOxDvfqK3oc2E8s=;
+        b=JHdggSbA57Iie/Fxx3IzNvDlAMC/JIZ8T4unXqLV4Nl+uJ7MWwV9PrErGXsUkavglV
+         YIBmcFapRtot16rfq0ZQfr2KFibEYEOcJa9rx1eNveKNSO3656s7uyoIKSZV3DQ5UvON
+         iyoJIkYd06Z+HoIHmHrYENWx0XdoPG1m8N3XMAFqpptzqKIVp9S3kh6vGfpdkBCzI4MU
+         BI+aKgwRq+EkS3Gqh6yB9Zpdq+YUYf1HGCzdtHdaKyjyviFHSLke2XG2CTJBttQxdlID
+         TvWQChDq4mM5PiLFzlLMt4zD8BvUAkJyTJR2J0T+hh3fElzAKqlnSuirwE16IYfVaaZ0
+         Al+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776350256; x=1776955056;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VysYGCXsyIEebfIwJV27h+uUWML92olF3CQNmU0siXk=;
-        b=eubtpAeknff2qdRPuv8f00aXexTWmkHXPzh0DKAG4PbavEqU3zi3g3gpKMAulg9CUN
-         5EJ6AD7ODJp1dyxESQ6eOdl3Hx2oBfuYTW20OR19D4rWnK4nXcJ64GWKLwhQQa/2Rs6b
-         3PLB43xJBtyeSuEFH+iuVyKm3MvKOoMo02vjepDZrhnrBcPUntO42kRJnGd2uHQm1tuz
-         SxuuNcH5fBSDY/gTbGuxz9Cr6wkveqSPFRdSWN85npHEjxyhb86LIv2yAI8L1u9zfvAb
-         79PaM2k/lodMNnUOhrN7UD4HnL7wal+W5oEhslHspawXQhAbyXeK2xI1dr4y9M7JGDEL
-         VkiQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9vQCinWbnc0XZiV98TKY/8gmLiN6sTY4z1ql6gNPh61dwFQ94Z/FUwxYs7Acvg6RLBrXKOp8OtS428@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4BIICi2PKkGzRTPlNiKHAxErKzhNxJJxtIXyEWrYnJQC1b8Nc
-	dp5ksdJdZUFTRdavaumFakY4DtkNTCSBlTm88uq/TaPbfNJqap9Vg4ApRCMZpzEewwk=
-X-Gm-Gg: AeBDievsc/ACfUIzaq/RiAyOdnMZAdNnxnMOiHC7/zPObnPjNn1F6BU6ylLUr0vF4V4
-	I6CiDkDxMoA3rA3POVfBYPN+nKVgpRPUB2/nxEm2czdK9xnxTNYcCuSUIPXPm5JMhiiIPfC9bPn
-	ZmmGDKWAqg3XrtYMePN5bNMOTYY7eFRkXZdiXHn3QAc+WiaopzchEaCwo6+z69uHUJxgBrqlmL2
-	uz07oWHbNql43IC4v4vuqNkO1+0aul+E1tp/8GlZk14NNbvPb5LBsf4r3G5WoMuE+5y/kEB4n0l
-	G/9N7YdPhCWL255dFrvfDEkPJcdKDDWclorwqCF1JmlWbvYNKd7G3tZ7F7mYygi8Rnmwmg2OzPE
-	9AwQNolajAJUDAT0J/tTiGquinoLHPA8x/RtyjcSHSZKkPDMZ4QPN96F40W9gUuSjqL3JOZ9tB1
-	drapA8lquZUajPNGU=
-X-Received: by 2002:a05:600c:3f19:b0:485:3ff1:d5ed with SMTP id 5b1f17b1804b1-488d67bbc2amr343915545e9.1.1776350255889;
-        Thu, 16 Apr 2026 07:37:35 -0700 (PDT)
-Received: from nsa ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488f0e7ecd9sm73158735e9.7.2026.04.16.07.37.34
+        d=1e100.net; s=20251104; t=1776350560; x=1776955360;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kV10FdcC3w13UCLKuFTzhb2hnSCEpOxDvfqK3oc2E8s=;
+        b=Ins5xtfj3cPZACa2HBUsgrhQ+sc/33ETaV2j6qG6L/AMInGTM0x3YFcnWTKQpg0Axc
+         0I8Hq/pzJhfY6THztWrecQGUq7y0Ke/OUzmTk0qBK4tJD2gjqFRVwTROPFaBil13NT4t
+         0xGaVouZ5DiduKlrORAeDsxo3JRsb2AYoPAkStJ+deLTYc6HJbjJV6m0mjL0ZzQap9cK
+         hLFKL56O+1k3AssVMtJjOwxecRHrMbQPesvwRoIOQFLxg4pYSUCztfNcW9UsiaKo4Khv
+         8vlEmWxaWSWpvhE/yhbsQfHGNvyHuT8TmjSsDRgtqrH6UoUhlmro3fo7DjNgaOfQKg8A
+         yMZg==
+X-Forwarded-Encrypted: i=1; AFNElJ/IHHM5YCVRsZJs96VT6+NrmkZRQziP15QvCu36LDXYwESQLaAyMesNeUY2tG6c4AXWF9HbgzAEZGuS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxC89y3Dj0ZiBaRWq5iiOfR1RsGO52kxslvTNNzDQhQRG0e98/n
+	EHCJfLXhQjd+pl1H4TMFn3xjfg9FwLA7uAvEVlRSz1Q0ZBYcgH7LKdRM
+X-Gm-Gg: AeBDieuT8RaUX+MEf26Hi0PKfEs8edeK5iW2JYACQ9mElWHzAAMuqa1gXP9I53bWnpe
+	DMhePJdhQtvg6xp2lkKq0ey569JkhpXhufFU0QGt3r0vbaKH/xcBxWoozhKwWlZ1oi1EWke3BTH
+	WtPifBd1E0CyKIldt7kOQC9Pe56GC6AyKVq1dkA99Om0CYJjIe+fID/GuJClXGJZLOaTT8M68FZ
+	mWEDFhQFhkZs6syhYzjOqTeDlqZnK6GtpeSyuztAE2LMFultnnZyJ8juf7L/3xcAKzCGSy3gj1c
+	zNOQgluT6JZthhDlOym457fCsNDk95FG+zny8PgF7Mi5GbCBilwd0zJz9WemlmcN7wIWBM1S2X6
+	mgqQDogPIKqYrvCiU4d25DxeEl283h88WvpsP5zEbv8BUZw3VKRdfesShpGBfakyJIr5pQHt9NV
+	iWgYCXPYRqkH/+ooWED+2ATMcpy6UteUYN62l9
+X-Received: by 2002:a17:907:782:b0:b9b:1cad:fe93 with SMTP id a640c23a62f3a-b9d7266157amr1436656866b.24.1776350560042;
+        Thu, 16 Apr 2026 07:42:40 -0700 (PDT)
+Received: from iris-Ian.. ([2a00:20:636a:3838:3bf9:3a9b:8000:4975])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ba2a112cc9csm90502766b.40.2026.04.16.07.42.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Apr 2026 07:37:35 -0700 (PDT)
-Date: Thu, 16 Apr 2026 15:38:24 +0100
-From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] hwmon: (pmbus/max20830) add driver for max20830
-Message-ID: <aeD0BCvuu2I5UFtX@nsa>
-References: <20260416-dev_max20830-v2-0-2c7d676dc0bd@analog.com>
- <20260416-dev_max20830-v2-2-2c7d676dc0bd@analog.com>
+        Thu, 16 Apr 2026 07:42:39 -0700 (PDT)
+From: iansdannapel@gmail.com
+To: linux-fpga@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: mdf@kernel.org,
+	yilun.xu@intel.com,
+	trix@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	neil.armstrong@linaro.org,
+	heiko@sntech.de,
+	marex@nabladev.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	dev@kael-k.io,
+	Ian Dannapel <iansdannapel@gmail.com>
+Subject: [PATCH v7 0/3] Add Efinix FPGA configuration support
+Date: Thu, 16 Apr 2026 16:42:33 +0200
+Message-ID: <20260416144237.373852-1-iansdannapel@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260416-dev_max20830-v2-2-2c7d676dc0bd@analog.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-287946-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,redhat.com,linaro.org,sntech.de,nabladev.com,bp.renesas.com,kael-k.io,gmail.com];
+	TAGGED_FROM(0.00)[bounces-287948-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_NEQ_ENVFROM(0.00)[iansdannapel@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:url,analog.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3EB2B40FA50
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E5DE340FB31
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 16, 2026 at 03:59:11PM +0800, Alexis Czezar Torreno wrote:
-> Add support for MAX20830 step-down DC-DC switching regulator with
-> PMBus interface. It allows monitoring of input/output voltage,
-> output current and temperature through the PMBus serial interface.
-> 
-> Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-> ---
->  Documentation/hwmon/index.rst    |  1 +
->  Documentation/hwmon/max20830.rst | 49 +++++++++++++++++++++++
->  MAINTAINERS                      |  2 +
->  drivers/hwmon/pmbus/Kconfig      |  9 +++++
->  drivers/hwmon/pmbus/Makefile     |  1 +
->  drivers/hwmon/pmbus/max20830.c   | 86 ++++++++++++++++++++++++++++++++++++++++
->  6 files changed, 148 insertions(+)
-> 
-> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-> index 8b655e5d6b68b90c697a52c7bf526e81d370caf7..56f7eb761be76dd627a2f34135abad05203b0582 100644
-> --- a/Documentation/hwmon/index.rst
-> +++ b/Documentation/hwmon/index.rst
-> @@ -158,6 +158,7 @@ Hardware Monitoring Kernel Drivers
->     max197
->     max20730
->     max20751
-> +   max20830
->     max31722
->     max31730
->     max31760
-> diff --git a/Documentation/hwmon/max20830.rst b/Documentation/hwmon/max20830.rst
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..936e409dcc5c0898dde27d782308d4a7e1357e73
-> --- /dev/null
-> +++ b/Documentation/hwmon/max20830.rst
-> @@ -0,0 +1,49 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Kernel driver max20830
-> +======================
-> +
-> +Supported chips:
-> +
-> +  * Analog Devices MAX20830
-> +
-> +    Prefix: 'max20830'
-> +
-> +    Addresses scanned: -
-> +
-> +    Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/max20830.pdf
-> +
-> +Author:
-> +
-> +  - Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-> +
-> +
-> +Description
-> +-----------
-> +
-> +This driver supports hardware monitoring for Analog Devices MAX20830
-> +Step-Down Switching Regulator with PMBus Interface.
-> +
-> +The MAX20830 is a 2.7V to 16V, 30A fully integrated step-down DC-DC switching
-> +regulator. Through the PMBus interface, the device can monitor input/output
-> +voltages, output current and temperature.
-> +
-> +The driver is a client driver to the core PMBus driver. Please see
-> +Documentation/hwmon/pmbus.rst for details on PMBus client drivers.
-> +
-> +Sysfs entries
-> +-------------
-> +
-> +================= ========================================
-> +in1_label         "vin"
-> +in1_input         Measured input voltage
-> +in1_alarm         Input voltage alarm
-> +in2_label         "vout1"
-> +in2_input         Measured output voltage
-> +in2_alarm         Output voltage alarm
-> +curr1_label       "iout1"
-> +curr1_input       Measured output current
-> +curr1_alarm       Output current alarm
-> +temp1_input       Measured temperature
-> +temp1_alarm       Chip temperature alarm
-> +================= ========================================
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 031c743e979521a92ed9ac67915c178ce31727bd..d6a6745e2dae29c3b8f80bbe61c54a2f5ecd9f47 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15585,6 +15585,8 @@ L:	linux-hwmon@vger.kernel.org
->  S:	Supported
->  W:	https://ez.analog.com/linux-software-drivers
->  F:	Documentation/devicetree/bindings/hwmon/pmbus/adi,max20830.yaml
-> +F:	Documentation/hwmon/max20830.rst
-> +F:	drivers/hwmon/pmbus/max20830.c
->  
->  MAX2175 SDR TUNER DRIVER
->  M:	Ramesh Shanmugasundaram <rashanmu@gmail.com>
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index 8f4bff375ecbc355f5ed3400855c2852ec2aa5ef..987705bf45b75b7b91ccc469247909f3c3f53d77 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -365,6 +365,15 @@ config SENSORS_MAX20751
->  	  This driver can also be built as a module. If so, the module will
->  	  be called max20751.
->  
-> +config SENSORS_MAX20830
-> +	tristate "Analog Devices MAX20830"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for Analog
-> +	  Devices MAX20830.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called max20830.
-> +
->  config SENSORS_MAX31785
->  	tristate "Maxim MAX31785 and compatibles"
->  	help
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index 7129b62bc00f8a2e98de14004997752a856dfda2..bc52f930e0825a902a0dd1c9e2b44f2e8d577c35 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -36,6 +36,7 @@ obj-$(CONFIG_SENSORS_MAX16601)	+= max16601.o
->  obj-$(CONFIG_SENSORS_MAX17616)	+= max17616.o
->  obj-$(CONFIG_SENSORS_MAX20730)	+= max20730.o
->  obj-$(CONFIG_SENSORS_MAX20751)	+= max20751.o
-> +obj-$(CONFIG_SENSORS_MAX20830)	+= max20830.o
->  obj-$(CONFIG_SENSORS_MAX31785)	+= max31785.o
->  obj-$(CONFIG_SENSORS_MAX34440)	+= max34440.o
->  obj-$(CONFIG_SENSORS_MAX8688)	+= max8688.o
-> diff --git a/drivers/hwmon/pmbus/max20830.c b/drivers/hwmon/pmbus/max20830.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..21ea8b59150cb0564f1776ee08131bad7fdef003
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/max20830.c
-> @@ -0,0 +1,86 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Hardware monitoring driver for Analog Devices MAX20830
-> + *
-> + * Copyright (C) 2026 Analog Devices, Inc.
-> + */
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include "pmbus.h"
-> +
-> +static struct pmbus_driver_info max20830_info = {
-> +	.pages = 1,
-> +	.format[PSC_VOLTAGE_IN] = linear,
-> +	.format[PSC_VOLTAGE_OUT] = linear,
-> +	.format[PSC_CURRENT_OUT] = linear,
-> +	.format[PSC_TEMPERATURE] = linear,
-> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
-> +		PMBUS_HAVE_TEMP |
-> +		PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_STATUS_IOUT |
-> +		PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP,
-> +};
-> +
-> +static int max20830_probe(struct i2c_client *client)
-> +{
-> +	u8 buf[I2C_SMBUS_BLOCK_MAX + 1];
+From: Ian Dannapel <iansdannapel@gmail.com>
 
-AI seems a bit paranoid but maybe to be on the safe side just initialize
-the above buffer.
+Hi all,
 
-> +	u8 len;
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(client->adapter,
-> +				     I2C_FUNC_SMBUS_READ_I2C_BLOCK))
-> +		return -ENODEV;
-> +
-> +	/*
-> +	 * Use i2c_smbus_read_i2c_block_data() instead of
-> +	 * i2c_smbus_read_block_data() to support I2C controllers
-> +	 * which do not support SMBus block reads.
-> +	 */
-> +	ret = i2c_smbus_read_i2c_block_data(client, PMBUS_IC_DEVICE_ID,
-> +					    I2C_SMBUS_BLOCK_MAX, buf);
-> +	if (ret < 0)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "Failed to read IC_DEVICE_ID\n");
-> +
-> +	/* First byte is the block length. */
-> +	len = buf[0];
-> +	if (len != 9)
-> +		return dev_err_probe(&client->dev, -ENODEV,
-> +				     "Unexpected IC_DEVICE_ID response\n");
-> +
-> +	buf[len] = '\0';
+This is v7 of the series adding support for programming Efinix FPGAs
+over SPI using the fpga-mgr subsystem.
 
-It looks like it has a point in the above though.
+The series adds DT bindings for the Efinix SPI configuration interface
+and a new FPGA manager driver implementing passive SPI configuration.
 
-- Nuno Sá
+Testing:
+- Verified on a custom board with an Efinix Trion T13 FPGA
+- Tested full bitstream configuration over SPI at 25 MHz
+
+Changes since v6:
+
+dt-bindings: fpga: Add Efinix SPI programming bindings
+- Require spi-cpha and spi-cpol in the binding to match the driver’s probe-time requirement
+- Dropped review tag
+
+fpga-mgr: Add Efinix SPI programming driver
+- moved Makefile entry to the end of the FPGA manager section
+- moved "keep asserted CS" comment to first appeareance
+- removed unnecessary variable struct device *dev = &mgr->dev; in fpga mgr callbacks
+- trimmed unused spi_device_id's
+
+Ian Dannapel (3):
+  dt-bindings: vendor-prefix: Add prefix for Efinix, Inc.
+  dt-bindings: fpga: Add Efinix SPI programming bindings
+  fpga-mgr: Add Efinix SPI programming driver
+
+ .../bindings/fpga/efinix,trion-config.yaml    |  98 +++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/fpga/Kconfig                          |   7 +
+ drivers/fpga/Makefile                         |   1 +
+ drivers/fpga/efinix-spi.c                     | 260 ++++++++++++++++++
+ 5 files changed, 368 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/fpga/efinix,trion-config.yaml
+ create mode 100644 drivers/fpga/efinix-spi.c
+
+-- 
+2.43.0
 
 
