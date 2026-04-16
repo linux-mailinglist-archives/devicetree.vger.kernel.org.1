@@ -1,283 +1,212 @@
-Return-Path: <devicetree+bounces-287760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287763-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aEgbJdiF4GlPjAAAu9opvQ
-	(envelope-from <devicetree+bounces-287760-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 08:46:48 +0200
+	id qIiEHfiJ4GnFjQAAu9opvQ
+	(envelope-from <devicetree+bounces-287763-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 09:04:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 526E840AC2A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 08:46:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D832440ADBC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 09:04:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C6E7E3053BC9
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 06:46:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 166803075018
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 07:03:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5966937C108;
-	Thu, 16 Apr 2026 06:46:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="NnHS2LbT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020BB378D74;
+	Thu, 16 Apr 2026 07:03:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2091.outbound.protection.partner.outlook.cn [139.219.146.91])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADDD137B40A
-	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 06:46:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776321997; cv=none; b=DR8zyjS8NSHbnGOC7UqAR7r1xVEk3syNwaw1yU+1Itbn1eEsH2//8leeWJkDvcSfGUdSRYdJAq2SWRZs6T5aiZxwebug0zuRuCyFcXKdCP0MQeZJjvCBkocVz1frpEgaVN5Ep34UzCUQ7C+Gr9tKD+JST+PXjYb88y1mq9wkCEw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776321997; c=relaxed/simple;
-	bh=4LU1IrL5gyBpEHR7/NLXXJqQW/u2iHDuiJdll/UcfBs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Jy5BWQRGFo/uq/nKp0Jiq3WV3xboJWUY/R3xBzuJT48JkCgmU/lIjRUgRUIDlYnKZDx9BXca+DP6KrlO2UlbfoGi/W9ns4OX+GUi2UxeAQ/EiaF0Ofdqvv+ZULnQfDuhBZA1OqbTUd/qjkJgyhdMelRAOG9RfcYlTGU2b/VVcSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=NnHS2LbT; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-82f7c7ee9b8so130894b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Apr 2026 23:46:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1776321994; x=1776926794; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p/V5ox+79P3LcSxd6wN5P/F1MTZ5N007Bin+MslZtJ8=;
-        b=NnHS2LbTE2nBD7EZIhojlzOWoeL1w8mdtIr6zYbbokBYruXQ/UCMV02t5IiT3Crf4v
-         ajSzuW39rC2Csxi4HAbzbwqVMZPSV7RZX9EF5LZsgfU4OrQg5BMFjiaQqaGTRgPcysE0
-         6KeMeUzOF5jqXOH86ykGbyWOZ2QmXlAxqMasQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776321994; x=1776926794;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=p/V5ox+79P3LcSxd6wN5P/F1MTZ5N007Bin+MslZtJ8=;
-        b=KTEmhT2Il40OWU+m87J5iDuZQ0WDR06z1fj90yvmAfIGwBKS31YjXKbmN8k6RQA3Qr
-         1dKo4c33caWojncHg+mPf1au2LFE9B7d9SUFfn/o6dcG0N/m//O3GA7GwPMlm3FuOJJc
-         51xGZWpNH4FwXCcrgRnagQBaavZkI1OtKRSUHYHcQbUbjfY2XdnLQ4LxjXfJQuJu+JZA
-         hafh5+58RSI/08WzBCr766o+Qn3VCIfI3kpz1DDlUR5mlqQ9O1PS6/aWUQxwvkMhpzdV
-         p7107q12DBDIC1EcaPFiMb6aiucqkmg6ukmmAC9/HmCr5VeUf4k/EiJd27I0AYmCowzy
-         uCXw==
-X-Forwarded-Encrypted: i=1; AFNElJ+KVp0+smCsJIJqNrdfSMJEsX8LuLnAVwx+35VOpSVppoJHi/oXw7QU5sfHPH0+9qUnlrkInUK8jony@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBX3mZVbki3eikq3AbaVvMTXJs+49SP11+uC5L4Vu/Ie1Ble25
-	WcaBcCqNby3dT9nIEEFZ8YV9Wiw3mRxcU9oXasgqNhGB5CgDTbzs8sPyDJkkZA+Giis=
-X-Gm-Gg: AeBDiet3Wnue5UlsV67bT7qogQgFZTlbXn1ishMxMMWjAt4D60rpAZZop4JeMJx66c9
-	onVLMO44nUbiVh1MbFwFFK5d9NIM6duC+skynXtJatSN76neVxRL6kOp1xWRZUZFcOSKpevIYLW
-	58jE7/fdan7PD12spzaOx3T1+AmVEXyQWwIebxcExpW8EeYSpKLd542TDgu3aWhpZ5a9VK0Epe9
-	KDKITreksItos01i6z7arnTypaMRUzIMUubaYJbIgwfhOXvsgEg8CjRy6jI48/0beWrgxNqKYNc
-	7RS2yVNahtOdDCgoPrI3TPmNFXr7HC4rYLL2TgXUuXG+H6PVqTSQGmUYbrBaOSya9JYF1s8cHKp
-	3l1cewGkERTubuHM3hFwj26BoDe5r9tXZc681YtPLGvasBep4+IZsZHOhePYIYHW2Kk323033Or
-	kvSZ6/ak/0Cc3gwDag+hY5ue/qDVvtdf7KcusZxv6jCmJZy3hwkJ/F/QgEyy5yKsu04Dj10EBL1
-	8Lec1hFibi9wDQ/KowL9Pa+QJ7qfZOhVnRnxR0f/JELt1QW/R1/zav/LiyqmFKvAfc=
-X-Received: by 2002:a05:6a00:4212:b0:823:9e5:855e with SMTP id d2e1a72fcca58-82f0bea2ba5mr22997415b3a.0.1776321994057;
-        Wed, 15 Apr 2026 23:46:34 -0700 (PDT)
-Received: from localhost.localdomain ([103.108.57.9])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82f67418a47sm4107066b3a.48.2026.04.15.23.46.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Apr 2026 23:46:33 -0700 (PDT)
-From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-To: linux-crypto@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB2C78F39;
+	Thu, 16 Apr 2026 07:03:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.91
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776323022; cv=fail; b=l4BfXobMy3DLL1XnCXJH79xyymBMZl+jqhjHyuubvpK3kIZNRa7RS7Xi88gotGvoj24v70HRsiHG6lZjLUNtfLGIkG7YHV8mnwMp9Evv5hSAOEgf1q1aDwzmk0zt04FSwkfybCwWwdhwMWmn6Vv96LRDO3bw/K6bT19WKc/QHvM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776323022; c=relaxed/simple;
+	bh=cY7UROBu+5pyWIQGC0K3sQaFpS0JSteilRkz/rDm4f4=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=TqIfFGPHbilXYiFRXuxRHGbr1WyRTfq25aEpF3rhIgGSEP3nOEGTyZz457Gw8zsMKTnvlrNQ4vbBS4p3OG1GESWgqO4r9nms4jRxsvgEq4K4NRhEWyal8u1Lxrl5ca4AkHb5leiKbUeEwlwqq6IM0lnXwHRJbOwTJDMNE12sOHk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Mz7y2F2t3J/K9x7wnHG0Pio1iYAGUrPOClm73Jd7AOi7fLnnOtR1W+DiTDl9ix1NjCW6MEXUjS4a4FEZuWqlWv/wrc2egg9e4YMeroeQTvJbaKtvhYWIInVuUBFefFygA7y26I6tO2Y3W8Qw1Ii7VXK1XpYfkKWJRqyRq+j1DtWE8zzikY+0Bdj71qkrYOp+kFxFB/+FNnB/pEJsUx6XmIIegjS7KgKk3w0Cre4NMcwe0+EOf3wQm2v++w7Yo+Mg+clW64SxyahYAtCy/77sB+YGJSCo9QVLZXv5wTCB7kc3LQJXUY1+PDsn0WIOlzvb21BN9UjBieBs2HGIEySsMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RmnrUPcgTD8ahEorYwwbtT07/kasYa7E0rZPrsQJ1Nc=;
+ b=C4T00qyLIWeR4FK6V3BmF53hc2wFaEiTEgKEkcDMqGez3AS6oVOyZAYRI+DsbwKP1ju2y5Lh/9qDsS5r9nfKPh0K4iwcCi6y6rnLctH+p17npowRqJWOdeCfgmW0Tq5P7VWwrdm2lYW6VjjQTVSnQnA58GnrD/vOnBGev21fRRv+Bp5UzJgmVwQ9xrUqfwPKTwiLyKxrVYqIA17wArVQXpdEKCeNszaennhj5FoXOG5+eTvtOz/Jb2GWYvvxyYlBbOlrtGVE7099n/AIHgUUbs1hg/l9LTL7+syDLX0kr7BE0YJi12o3ZBygi9DzywxyYhXp5QHzBGJiGlcTY/TCZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from NT0PR01MB1216.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:11::9) by NT0PR01MB1231.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:e::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.51; Thu, 16 Apr
+ 2026 06:48:14 +0000
+Received: from NT0PR01MB1216.CHNPR01.prod.partner.outlook.cn
+ ([fe80::1666:48e8:19e9:ad29]) by
+ NT0PR01MB1216.CHNPR01.prod.partner.outlook.cn ([fe80::1666:48e8:19e9:ad29%7])
+ with mapi id 15.20.9769.048; Thu, 16 Apr 2026 06:48:09 +0000
+From: Changhuang Liang <changhuang.liang@starfivetech.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	herbert@gondor.apana.org.au,
-	robh@kernel.org
-Cc: conor+dt@kernel.org,
-	Ruud.Derwig@synopsys.com,
-	manjunath.hadli@vayavyalabs.com,
-	adityak@vayavyalabs.com,
-	navami.telsang@vayavyalabs.com,
-	bhoomikak@vayavyalabs.com,
-	Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Subject: [PATCH v12 4/4] crypto: spacc - Add SPAcc Kconfig and Makefile
-Date: Thu, 16 Apr 2026 12:14:51 +0530
-Message-Id: <20260416064451.99886-5-pavitrakumarm@vayavyalabs.com>
+	linux-riscv@lists.infradead.org,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	Changhuang Liang <changhuang.liang@starfivetech.com>
+Subject: [PATCH v2 0/5] Add interrupt controller for JHB100 SoC
+Date: Wed, 15 Apr 2026 23:47:46 -0700
+Message-Id: <20260416064751.632138-1-changhuang.liang@starfivetech.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260416064451.99886-1-pavitrakumarm@vayavyalabs.com>
-References: <20260416064451.99886-1-pavitrakumarm@vayavyalabs.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: NT0PR01CA0006.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510::8) To NT0PR01MB1216.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:11::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: NT0PR01MB1216:EE_|NT0PR01MB1231:EE_
+X-MS-Office365-Filtering-Correlation-Id: 29f1ef16-5a86-4f82-6129-08de9b841bc8
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|1800799024|52116014|38350700014|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	MUuECWQ4006zElwZC0ERmBSaJRPbhEy39lpRFt6O+VyiMZaPgUpjaK7+DfZJlTPgPGkjfczCE0/6jfdckV/rCAEhuB5ubfObqkDwk2mHazZwRmkDIw5lq5LySJObiD9jmhnshCWJZTYn05GXzxyYvF4aszL5PTEX5r21muo1ptDzPcdVU7ooWcTgNTSAXjrf9MVlng5lWEiQ9CsJYr+3n3PXBjqXdDAuNvEORpbkIuhgMo14q1UXz+vkQPqLV0i4zJsw3tTqke9iB0XDXwUTsw2YEJTcjyeLmG+LSgASkjwJQQyMm5TDIxH1NnsjPMJ1CsnvD5BLfLl5sKDDG+kCN4OVOzNta9ZZbX34XIrorXhVPlRtVeH4mf1MGnIVJ9hq3a6CEuXJoQtexwKx6huZ74LqE3FrBIe1n3VlLubt+SxKJPY05sI3F8GmNZw2R7cCIyoR9EPHXr/b9vUuuNB4l+OsQhFmZfSYB6lYmNsXDB/pt+VxvQzzeDoJ2IlT+4/0n/EQNnR6hLb0oiHdlqBQSwwGfRKr7J0dOVF/keqvOOoS9+65ZNUeQbXUhb4LAhymbXtHoK7qFRihEar9wFwjR+BIVTDTtdf3it5cn1ktu80=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NT0PR01MB1216.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(52116014)(38350700014)(56012099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?K/YfJLVq1NZTKsuRCzxr2mJqaUGfGyXeFaYWZ/1cFJ83e19NgrREsTa5+vQs?=
+ =?us-ascii?Q?efQYXueTqM58XKZmVBdupw8V8NF+awzfHUX019eK77UbZ7mG1B85Xaavmqmn?=
+ =?us-ascii?Q?ptBFWWB9KppKO6kUjTFbAeFJs6vFRe87xXaMuwv2iF6NMc2WYFcv4BjbqeKk?=
+ =?us-ascii?Q?li8tqhwxCSxBlKwnphbIxdvk7WhxqJxbnSVz8YYqbgvaepclhWFzvtfAiv6O?=
+ =?us-ascii?Q?QAvS4G+3Jkfv6CnFqYaNDR0z5AoHBPBczBqnE6wspzaTyh/sUXxuqANZDf77?=
+ =?us-ascii?Q?jaPeO11oLhWiHp9uTu4/QuG+TjXD4dM9u7/aGidkBZn+pYy9J0V6DktnmdNq?=
+ =?us-ascii?Q?K7eGDwemYUEc9/KlLCCxODx+Msvhyl/U7mBih+441R70ZAmhHKGre8kdy7lx?=
+ =?us-ascii?Q?XapsHArCtFBk+JBp31aFoL+ta7H51GVwsO9R0Pp47EUqJTibNC2ubkys9s95?=
+ =?us-ascii?Q?ui9ULhWurSNYg3EACGDBdcV834YBsDBsD83ydBQFzrpY6DmTLx4oQevOk2wZ?=
+ =?us-ascii?Q?YsFjY5Fnt9ZWWgiascFrtmo3acu1JP1+7kkazdptsQj8alG2rRK95D7qMq+L?=
+ =?us-ascii?Q?b0BgipFf9t+PbZbd7YRDl24pxh6N4wt14O6KP6429By8bqZ3RGAPQtIjgrPh?=
+ =?us-ascii?Q?Rtl9Z379uXEmNmQ6YF5lv4gBkLlvKdOKo1HHpCTRkC07Hg38k0fnri+qDvCc?=
+ =?us-ascii?Q?F9eCL4N4n7hX+B4xX7nztNzV8Y9wxXelJTXjtPsg3vYaGmTjkn7vNlonAscQ?=
+ =?us-ascii?Q?IIj1fg1hJWB1u+75Qm77SBwtU8Z7L8KtsDzrNcI5MBoz/UZRzmj+Cjht59S+?=
+ =?us-ascii?Q?VRmtgrl4q12R2BcQkwoeWoAX7FwKSnEraaC+6to4W0Ovot4BUP12R9DdctZK?=
+ =?us-ascii?Q?AlY0+t2ItylxUC/eh1w6rgt0MM8siy9CYRBq3pIoB0q2IN70dwwVf6r8qftq?=
+ =?us-ascii?Q?P8kpmCHgnQzxeFuSJcciKPT4iXL47tIYeCk4iIvCGKDuMNO31s7QpWXeTAA4?=
+ =?us-ascii?Q?JVz73QNYa9qX0JaivmSGofu6OG6da8+ovcKipn/4yRyVpM9WoV5ENU0KZMWQ?=
+ =?us-ascii?Q?O095iamACFGzN8jH+qPQgOZyJYHurHSPy+vwW9SpCxy8iHGi24Vb3PyB4Rcv?=
+ =?us-ascii?Q?FCjf3/6Am00djfEvd9ylyTYeOEGJvdGUlstcSpiZ/PenGf7+hzTZSiEzwVl5?=
+ =?us-ascii?Q?fy6iFNQr/0b/5sCzsDPqlxHgOKwBbPHQKvGyksFzxcXlxWh1/mRKBse9//pJ?=
+ =?us-ascii?Q?yyzLEgx8eD6IAVZXD2ZpXQIogjDN5A3trKQuN/oD/8HFbN+3nlx+dYED+PRE?=
+ =?us-ascii?Q?kJuIuFiix4IxiCCFOAIQE8JoF9wFI2g2Vw07zPr/vzwuuLMrlOHSfQVG41zL?=
+ =?us-ascii?Q?0EI01orsgFD4NMiXH5lc33RhWFQGxnPOrfG9DZ3dJ5Spgu5qsCP8LYlz3U5F?=
+ =?us-ascii?Q?BGp0MKlIMoMOCF0k55dOzK6HlMPnaxaBYj68OFV3P7LnXPhva3gjg+MKXwhH?=
+ =?us-ascii?Q?Ud4+ovAofXoScdQcsjB8J5aur9eyvPlo9gx/+jVs2ExTJi+qgprKj/ZReHnj?=
+ =?us-ascii?Q?Lxi0xQU9YGop+zbpuBZZNS5QBe3HoGQJzNO8U8p+fM76K1fOgBc2uWQ/o9L5?=
+ =?us-ascii?Q?DRJRwSy7jKhKNHAFnJWuMq+FHOtyatT2oiPWdNDr8rboTP0+eEnv9o2syXLn?=
+ =?us-ascii?Q?8Zxz3J8dAxekjZ2+DXpaTnbc7//OzR8OWSQSyOUcAPYUTqD5hxdyJWKEyAmh?=
+ =?us-ascii?Q?5mOHWQgxjUSyBNBe4r84CEtxNkRoVeKyJ8jLGeg9pFsYQahyARfE?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 29f1ef16-5a86-4f82-6129-08de9b841bc8
+X-MS-Exchange-CrossTenant-AuthSource: NT0PR01MB1216.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2026 06:48:09.4943
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RDMG5zfCidVlDjC1py20zL8g9iBKjC+N+tjhNp2KNQwq6BA9UyUsUeZZdypeb4dKeSg8fdsOwNXQKrLwrkNxvRl4va/AdCfctUF/f3pgeE34cmraFICK7plTqP/GWUjz
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: NT0PR01MB1231
+X-Spamd-Result: default: False [5.04 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[vayavyalabs.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[vayavyalabs.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-287763-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.c.6.3.0.1.0.0.e.4.0.c.3.0.0.6.2.asn6.rspamd.com:server fail];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-287760-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pavitrakumarm@vayavyalabs.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[vayavyalabs.com:+];
+	GREYLIST(0.00)[pass,meta];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.c.6.3.0.1.0.0.e.4.0.c.3.0.0.6.2.asn6.rspamd.com:query timed out];
+	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.959];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[synopsys.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vayavyalabs.com:email,vayavyalabs.com:dkim,vayavyalabs.com:mid]
-X-Rspamd-Queue-Id: 526E840AC2A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,starfivetech.com:mid]
+X-Rspamd-Queue-Id: D832440ADBC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add Makefile and Kconfig for SPAcc driver.
+This patchset adds external interrupt controller driver for the StarFive
+JHB100 SoC. It supports up to 64 interrupt sources, and both level and
+edge trigger types.
 
-Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
-Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
----
- drivers/crypto/Kconfig            |  1 +
- drivers/crypto/Makefile           |  1 +
- drivers/crypto/dwc-spacc/Kconfig  | 88 +++++++++++++++++++++++++++++++
- drivers/crypto/dwc-spacc/Makefile |  8 +++
- 4 files changed, 98 insertions(+)
- create mode 100644 drivers/crypto/dwc-spacc/Kconfig
- create mode 100644 drivers/crypto/dwc-spacc/Makefile
+changes since v1:
+- irqchip: starfive -> irqchip/starfive
 
-diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-index 971f17a155435..2d10ef4321bc8 100644
---- a/drivers/crypto/Kconfig
-+++ b/drivers/crypto/Kconfig
-@@ -774,6 +774,7 @@ config CRYPTO_DEV_BCM_SPU
- 	  ahash, and aead algorithms with the kernel cryptographic API.
+patch 1:
+- Update commit title and add Conor's Acked-by tag
 
- source "drivers/crypto/stm32/Kconfig"
-+source "drivers/crypto/dwc-spacc/Kconfig"
+patch 3:
+- Use __free(kfree) cleanup
+- Replace dev_err() with dev_err_probe()
+- Replace devm_reset_control_get_optional() + reset_control_deassert()
+  with devm_reset_control_get_optional_exclusive_deasserted()
 
- config CRYPTO_DEV_SAFEXCEL
- 	tristate "Inside Secure's SafeXcel cryptographic engine driver"
-diff --git a/drivers/crypto/Makefile b/drivers/crypto/Makefile
-index 283bbc650b5b2..d106c1c729060 100644
---- a/drivers/crypto/Makefile
-+++ b/drivers/crypto/Makefile
-@@ -42,6 +42,7 @@ obj-$(CONFIG_CRYPTO_DEV_BCM_SPU) += bcm/
- obj-y += inside-secure/
- obj-$(CONFIG_CRYPTO_DEV_ARTPEC6) += axis/
- obj-y += xilinx/
-+obj-y += dwc-spacc/
- obj-y += hisilicon/
- obj-y += loongson/
- obj-$(CONFIG_CRYPTO_DEV_AMLOGIC_GXL) += amlogic/
-diff --git a/drivers/crypto/dwc-spacc/Kconfig b/drivers/crypto/dwc-spacc/Kconfig
-new file mode 100644
-index 0000000000000..f9752e6f664b8
---- /dev/null
-+++ b/drivers/crypto/dwc-spacc/Kconfig
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+
-+config CRYPTO_DEV_SPACC
-+	tristate "Support for dwc_spacc Security Protocol Accelerator"
-+	depends on HAS_DMA
-+	select CRYPTO_ENGINE
-+	default n
-+
-+	help
-+	  This enables support for SPAcc Hardware Accelerator.
-+
-+config CRYPTO_DEV_SPACC_HASH
-+	bool "Enable HASH functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	select CRYPTO_HASH
-+	select CRYPTO_SHA1
-+	select CRYPTO_MD5
-+	select CRYPTO_SHA256
-+	select CRYPTO_SHA512
-+	select CRYPTO_HMAC
-+	select CRYPTO_SM3
-+	select CRYPTO_CMAC
-+	select CRYPTO_MICHAEL_MIC
-+	select CRYPTO_XCBC
-+	select CRYPTO_AES
-+	select CRYPTO_SM4_GENERIC
-+
-+	help
-+	  Say y to enable Hash functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_AUTODETECT
-+	bool "Enable Autodetect functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	help
-+	  Say y to enable Autodetect functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_DEBUG_TRACE_IO
-+	bool "Enable Trace MMIO reads/writes stats"
-+	depends on CRYPTO_DEV_SPACC
-+	default n
-+	help
-+	  Say y to enable Trace MMIO reads/writes stats.
-+	  To Debug and trace IO register read/write oprations.
-+
-+config CRYPTO_DEV_SPACC_DEBUG_TRACE_DDT
-+	bool "Enable Trace DDT entries stats"
-+	default n
-+	depends on CRYPTO_DEV_SPACC
-+	help
-+	  Say y to enable Enable DDT entry stats.
-+	  To Debug and trace DDT opration
-+
-+config CRYPTO_DEV_SPACC_SECURE_MODE
-+	bool "Enable Spacc secure mode stats"
-+	default n
-+	depends on CRYPTO_DEV_SPACC
-+	help
-+	  Say y to enable SPAcc secure modes stats.
-+
-+config CRYPTO_DEV_SPACC_PRIORITY
-+	int "VSPACC priority value"
-+	depends on CRYPTO_DEV_SPACC
-+	range 0 15
-+	default 1
-+	help
-+	  Default arbitration priority weight for this Virtual SPAcc instance.
-+	  Hardware resets this to 1. Higher values means higher priority.
-+
-+config CRYPTO_DEV_SPACC_INTERNAL_COUNTER
-+	int "SPAcc internal counter value"
-+	depends on CRYPTO_DEV_SPACC
-+	range 100000 1048575
-+	default 100000
-+	help
-+	  This value configures a hardware watchdog counter in the SPAcc engine.
-+	  The counter starts ticking when a completed cryptographic job is
-+	  sitting in the STATUS FIFO. If the job remains unprocessed for the
-+	  configured duration, an interrupt is triggered to ensure it is serviced.
-+
-+config CRYPTO_DEV_SPACC_CONFIG_DEBUG
-+	bool "Enable SPAcc debug logs"
-+	default n
-+	depends on CRYPTO_DEV_SPACC
-+	help
-+          Say y to enable additional debug prints and diagnostics in the
-+	  SPAcc driver. Disable this for production builds.
-diff --git a/drivers/crypto/dwc-spacc/Makefile b/drivers/crypto/dwc-spacc/Makefile
-new file mode 100644
-index 0000000000000..45d0166dfc8f7
---- /dev/null
-+++ b/drivers/crypto/dwc-spacc/Makefile
-@@ -0,0 +1,8 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_CRYPTO_DEV_SPACC) += snps-spacc.o
-+snps-spacc-objs = spacc_hal.o spacc_core.o \
-+spacc_manager.o spacc_interrupt.o spacc_device.o
-+
-+ifeq ($(CONFIG_CRYPTO_DEV_SPACC_HASH),y)
-+snps-spacc-objs += spacc_ahash.o
-+endif
+patch 4:
+- Use guard(raw_spinlock)
+
+patch 5:
+- Update starfive_intc_set_type()
+
+v1: https://lore.kernel.org/all/20260410090106.622781-1-changhuang.liang@starfivetech.com/
+
+Changhuang Liang (4):
+  dt-bindings: interrupt-controller: repurpose binding for unreleased
+    jh8100 for jhb100
+  irqchip/starfive: Rename jh8100 to jhb100
+  irqchip/starfive: Use devm_ interfaces to simplify resource release
+  irqchip/starfive: Implement irq_set_type() and irq_ack() callbacks
+
+Mason Huo (1):
+  irqchip/starfive: Increase the interrupt source number up to 64
+
+ ...00-intc.yaml => starfive,jhb100-intc.yaml} |  20 +-
+ MAINTAINERS                                   |   6 +-
+ drivers/irqchip/Kconfig                       |   6 +-
+ drivers/irqchip/Makefile                      |   2 +-
+ drivers/irqchip/irq-starfive-jh8100-intc.c    | 207 --------------
+ drivers/irqchip/irq-starfive-jhb100-intc.c    | 254 ++++++++++++++++++
+ 6 files changed, 265 insertions(+), 230 deletions(-)
+ rename Documentation/devicetree/bindings/interrupt-controller/{starfive,jh8100-intc.yaml => starfive,jhb100-intc.yaml} (68%)
+ delete mode 100644 drivers/irqchip/irq-starfive-jh8100-intc.c
+ create mode 100644 drivers/irqchip/irq-starfive-jhb100-intc.c
+
 --
 2.25.1
-
 
