@@ -1,388 +1,213 @@
-Return-Path: <devicetree+bounces-287954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287956-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iP5vIkz94GlloAAAu9opvQ
-	(envelope-from <devicetree+bounces-287954-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 17:16:28 +0200
+	id 8BVWK/r94GnzoAAAu9opvQ
+	(envelope-from <devicetree+bounces-287956-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 17:19:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7E204106CA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 17:16:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E4A8410814
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 17:19:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A130A307E1E7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 15:16:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1B0E830C86ED
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 15:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB6223E2748;
-	Thu, 16 Apr 2026 15:16:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 667773E2767;
+	Thu, 16 Apr 2026 15:17:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D+jR5nKe"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Cyiw650j";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MFa7woHw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4EB33346A8;
-	Thu, 16 Apr 2026 15:16:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC93E3A0B2B
+	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 15:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776352564; cv=none; b=I0i20bSrgeFYUtyeRKkDA7bVhdP9Y8FbNuNOZxtGr1ultz1+gzyjjvyYn5do6vf3G0NTwbPckqXk3XVAFZIxYbxz2CcEWGX9AQHnrS9ojddt/+g3arFtVIniAZUYrHlZDJcFlM5NBMUJsj/1LBsmaSow/UT569fONo7P0VFxJtE=
+	t=1776352653; cv=none; b=Qf/vUk5ID3RxLhjnKxmYUlDICXhmhPZG8fXMEiZOHZrIpsryNMDNL6vuxKW/sNpznW2mVBN7CI3PVznWdpiyCTdnN0Q95qU18a2+GRA87KEVf6Ucu1k3vtGpO5xOzML5JwPNrJp/bQbhJsbRGwP/Pe/vrARIM2FejR+BTyX/MP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776352564; c=relaxed/simple;
-	bh=l6bkkSP7Cmuntn0/tS/mtGEL2aXlh377Zwdwnpd9BdE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rVzdX6OHn9yeOF+bhiO4EVtx8XpJt6BVdE0dpW++UPlxIZZu8+v7uCUz4dDHXfv21Oli6ywZ6f/OccJgqcAzp/oTtT9rsVwhF9SKoaq0UqhA+AD+Wu8v8hXgSLoPMTwGOt5aUSsHAiBvNkh+qu8KQfowdwbqc91QEJxFxgxMtb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D+jR5nKe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC40DC2BCB3;
-	Thu, 16 Apr 2026 15:16:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776352564;
-	bh=l6bkkSP7Cmuntn0/tS/mtGEL2aXlh377Zwdwnpd9BdE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D+jR5nKeynY2aEyqnc6T5ILVfh1jl10pceofGTAJcAzW01jV9lG7uN7nhD0DQIVDb
-	 6k4z/TZ2wGTlmAWi57GlVb7Bet0wnraauU6ahNGWJ5+6KZWNmHaKyOzrdCY65e2HBc
-	 G/hvdt1PhIwal753iipUzIYaYqprT2l+/dSIgSbS9so+LGTfpAs4PJOD1XJrbm+4m7
-	 D0WznRIpBHl/NC9GECVnJI/ePiZ9kXO+zoV1F72Q2XMdoERowD2wKSK/z8g3V/ZVxh
-	 WKzQK0KQhtPRj9lrB9/eofXdWiQgoQ7ZdIwPihFO6tW1CN7icWHMzn/dHFEAtvFogl
-	 qA2d8/YLGbd8w==
-Date: Thu, 16 Apr 2026 16:15:59 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ariana Lazar <ariana.lazar@microchip.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: dac: mcp47feb02: Fix binding issues
-Message-ID: <20260416-primate-robust-c9de03e50946@spud>
-References: <20260416-mcp47feb02-fix5-v1-1-9656c2fed6d2@microchip.com>
+	s=arc-20240116; t=1776352653; c=relaxed/simple;
+	bh=OoDxQ6JnCdkvOIF3hQyinUzkThw8zBb3mtjvgZ2UdeQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ImNZt+gOoIUi755Pc+rY7hzX7CtqvEjV3LwhLFaxpeS+NYcU9SwaGZtSlKCOFtGRft2XaSD3egi3kY2EzZvujTLe2CgOnrUfO4fXsZnIifkom8JCSmTtdvzY1pzpVSa+HP65+xQTHP238tuE+3pPD9fvacu5G3LJT+vLzLD9oIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Cyiw650j; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MFa7woHw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63G8Z9eu1702363
+	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 15:17:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	alGNKkLw21+BrqlqmkPplSlaervhuZpi/jOw7KRz/LE=; b=Cyiw650jP1GvuZns
+	XT2bm1qDSlwzCTgSyeUxpj0iSWM+xmATXjOEN2tq5YX6sDQvk3ccCsjWRhy7Jkxl
+	dPo1WhG9TnHjt0o8vvLE42SY5m7WkyTaOnckdFWmfZLlYj24x4VJOuoWgi5UHWly
+	NkXJactehdyih9M4G7hZOH0RImh4lJo5XvGSyEtkzShm6y5wX5Qq33Y/wmeKoHo3
+	mEc96UxRtKC86B7yd8M9XLRwTpDCKbglUKXctifyp4/jj579uauva1oyzrtPrUbi
+	EbSVnJLCkK8kSstuTyY8YTRbG/Y+aR6JsSyJoTKICn2cqkK3xNWTxtN/XmOJnjDg
+	HrEuDQ==
+Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com [209.85.161.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4djdammcdc-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 15:17:24 +0000 (GMT)
+Received: by mail-oo1-f70.google.com with SMTP id 006d021491bc7-6826de8e284so1466149eaf.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 08:17:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1776352644; x=1776957444; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=alGNKkLw21+BrqlqmkPplSlaervhuZpi/jOw7KRz/LE=;
+        b=MFa7woHwYGxeFHnhCebOngApdmzxgicc4v3jXPQyhwoKayqhWL9ON7I09tiIukrjF1
+         JlVC3rkno9sQFab03s4AlgpkCYlgifmTimdK6aemjSzk6XM3tTKPkBEv12eReJX7YzR/
+         wRBP5tTxLVjxfZlde9M0d2VmWD2PNnWYfZI7kRtXOa2KanupoC+SZw1y7lKDtbqOvj6g
+         ESZzI8hem6CBjRKdblXO/Hnw+syec1p3dvga4MVcFEfkqc2VvpFbuYtcgTH3YdmXOKnO
+         beM1Qq3/toeTseRA17IY5M7Vcr33DJddBs09SV1ndI4zcnRsBAC0j8moexzM4yNw+sX9
+         mbkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776352644; x=1776957444;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=alGNKkLw21+BrqlqmkPplSlaervhuZpi/jOw7KRz/LE=;
+        b=YJP7UJ1wFqroyLxA8NuBR9XQn6J5AmuZJssDk/EXImkLS0r4tDDzvvXHTeyq+HqNu7
+         mNtNxMX101GE3+5jGbb5L3TSS+KndvqrqG/3Ysui/afkDUdNM+AXRQOAz579rpM6f3XI
+         68UAn+dIKpHfJanEZaPIyCTLqJMvYF2UrT3hjebLALHAvoJv8wAovXNxMa504nTNdE+E
+         xJPlFSuLtGvQr2ESKO2oWQuYSCozETpm3Oufa8NCsURKLHyssZk5NpQX7s6mHqsd/JXz
+         6vxgZIcW/Sfa/seeBzIf1CcB7kzqIm6ErmReqENyvPxZnfvCROfvsqzvGTx0QtxDEgK9
+         4wIw==
+X-Forwarded-Encrypted: i=1; AFNElJ8gjaNUMSlkLNGlMsT4R5Az0SQMVUjW4ux0gq/28er5Enm/AKfojqdF53cYLXtPsTKrYdZE0TcJJxxQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrJKmubmsT0VA025rPhxGNo0Cz96ohS3M90Xt4v3V66EbV90Te
+	a2oE1rRVNfXOWuS1kCp2P3A13NPcV4S+HjxaJvAgIXCMIVQh+duwHfdpshjDgDMRZDedOCU1sav
+	XwPd9QWJHJyFzvL2UMYxGVS9qSLaL8JiFDI3VlLk7bushQcEHITmpjym2L+t1z0no
+X-Gm-Gg: AeBDiesAtv8kfy9QJTEKWWTList7YDIA3wkMVafn82rfaJcUKi+diwnRG+0yDMbACU0
+	5xgd4gmTQ02Uefgq+e4lkm3d5nLk6yIjaErM4P26LC0JoN4fbFvNEY6fm9hX/UlA6eDqtUBEzIG
+	KiMLCNR842hDsxgC2y2MP+ai9Yo3nT+c5rSWkgczUqvBvEQWAfbd2/NqHyG8KIjJPE3uwkk4Z/u
+	fY/yyy/g3kogFlBek94IS+ENVx0NB6DwKJ5eVfrOaxWQOzZPq6TvIwgXQ8fkDZztAZgmQTgTcsm
+	ryPgJi0/+/uxGvCnP8mAr62uZEU9l9CxUT2y+U8XO9cmBUGwWUGAU/lZFFU1Xm6XUO1W5yHmVpf
+	Y3S+F1Rjkmm4aK20MXIjrzEP75GVmb+poSFcINT5Soa0oJnkpBLFNxAxKnOUTAp+ACXmKkDF43m
+	POdtNJlkSs559eMQ==
+X-Received: by 2002:a05:6808:2225:b0:459:f0c5:781d with SMTP id 5614622812f47-4798903ba3dmr901501b6e.5.1776352644375;
+        Thu, 16 Apr 2026 08:17:24 -0700 (PDT)
+X-Received: by 2002:a05:6808:2225:b0:459:f0c5:781d with SMTP id 5614622812f47-4798903ba3dmr901486b6e.5.1776352643869;
+        Thu, 16 Apr 2026 08:17:23 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ba299f51c01sm93170766b.4.2026.04.16.08.17.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Apr 2026 08:17:22 -0700 (PDT)
+Message-ID: <0a5f9bd6-d3ea-4819-8be3-cc5a06ec0339@oss.qualcomm.com>
+Date: Thu, 16 Apr 2026 17:17:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="JQ4o0TT4kWMfmrhu"
-Content-Disposition: inline
-In-Reply-To: <20260416-mcp47feb02-fix5-v1-1-9656c2fed6d2@microchip.com>
-X-Spamd-Result: default: False [3.24 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
-	SIGNED_PGP(-2.00)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 06/10] arm64: dts: qcom: msm8939-asus-z00t: add Venus
+To: Erikas Bitovtas <xerikasxx@gmail.com>, Bryan O'Donoghue <bod@kernel.org>,
+        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org
+References: <20260416-msm8939-venus-rfc-v1-0-a09fcf2c23df@gmail.com>
+ <20260416-msm8939-venus-rfc-v1-6-a09fcf2c23df@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260416-msm8939-venus-rfc-v1-6-a09fcf2c23df@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: Vjc199k7Ynm7EqaBlKVOmV87t_8c7hWB
+X-Authority-Analysis: v=2.4 cv=HMjz0Itv c=1 sm=1 tr=0 ts=69e0fd85 cx=c_pps
+ a=lkkFf9KBb43tY3aOjL++dA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=pGLkceISAAAA:8 a=sGea1UAM9DjOSmaL17QA:9 a=QEXdDO2ut3YA:10
+ a=k4UEASGLJojhI9HsvVT1:22
+X-Proofpoint-GUID: Vjc199k7Ynm7EqaBlKVOmV87t_8c7hWB
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDE2MDE0NCBTYWx0ZWRfX6zhAlyGg29M3
+ CzrxwpOmDNVgP2xnJSDXr4i5kic5oUOgjiXX0To3aUTHupQJ4dDfkrJUKFSuFLNdN3gmMvxg2K/
+ Y57A2zW89cqUyZIjhqgpagQBx5uVL+UHY/k7+c+eIQDKDAEy8H5d1MW0n5D/iS5/emGBXnqXHqW
+ 3YRBnrG7UJAj2ogGl3M8mu4YyGUXqi+PKbbzNx7uFDLKnU6XtjdVj2k/pW6sH66R0WKbdbYHIr6
+ N4jQwS1RQctQ3+8UFbiwiaXoGeEh3hS+unEfZ81hNC33bW2ou7SRb1SmM6c+Ed/t+BBdvs+0SYj
+ ceVN/JBZSDhwXRNTizsIst45OgF0YMK+dphVH1WEZ/jbbAY2a3EhY8f/qRadQwYOPFfqLd/MFmT
+ ngxUmkIX822vtAJKoZJNWXy8wuQWAraCHUbhjSme4Zo8rxubtuVF+aoVtiieyvu1os3XpvHvz+o
+ 2NVp4YClD8NOkuHuRYw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-16_03,2026-04-16_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 lowpriorityscore=0 phishscore=0 bulkscore=0 priorityscore=1501
+ clxscore=1015 impostorscore=0 spamscore=0 malwarescore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604160144
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287954-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-287956-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,oss.qualcomm.com,apitzsch.eu,baylibre.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.60:email];
-	NEURAL_HAM(-0.00)[-0.307];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,baylibre.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email]
-X-Rspamd-Queue-Id: E7E204106CA
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 4E4A8410814
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
---JQ4o0TT4kWMfmrhu
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey,
-
-On Thu, Apr 16, 2026 at 04:33:36PM +0300, Ariana Lazar wrote:
-> Change maxItems value from 8 to 1 for the channel number reg property.
-> Change example reg value from 0 to 0x60.
-> Fix a few typos in property descriptions.
-> Sort the part numbers in the enum list lexicographically.
-
-Hmm, this looks like 3 or 4 patches to me. The maxItems change probably
-qualifies for a fixes tag, none of the rest do.
-
->=20
-> Fixes: 4ba12d304175 ("dt-bindings: iio: dac: adding support for Microchip=
- MCP47FEB02")
-
-> Reported-by: Conor Dooley <conor@kernel.org>
-> Closes: https://lore.kernel.org/all/20260403-speed-childless-1360de358229=
-@spud/
-
-I didn't report anything, I just commented on something that you had
-already "reported" when you fixed it yourself.
-
-> Reported-by: David Lechner <dlechner@baylibre.com>
-> Closes: https://lore.kernel.org/all/dd0dbadb-604b-4f12-8674-268b7db096fd@=
-baylibre.com/
-
-David didn't report anything either, he just gave you review feedback on
-the change you made to the example.
-
-> Signed-off-by: Ariana Lazar <ariana.lazar@microchip.com>
+On 4/16/26 3:43 PM, Erikas Bitovtas wrote:
+> Enable Venus video encoder/decoder for Asus ZenFone 2 Laser/Selfie.
+> 
+> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
 > ---
->  .../bindings/iio/dac/microchip,mcp47feb02.yaml     | 57 +++++++++++-----=
-------
->  1 file changed, 28 insertions(+), 29 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb=
-02.yaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.ya=
-ml
-> index d2466aa6bda2106a8b695347a0edf38462294d03..88a1495f2967a3d821ada7e7e=
-9a7fbb466401040 100644
-> --- a/Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml
-> +++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml
-> @@ -61,29 +61,29 @@ properties:
->    compatible:
->      enum:
->        - microchip,mcp47feb01
-> -      - microchip,mcp47feb11
-> -      - microchip,mcp47feb21
->        - microchip,mcp47feb02
-> +      - microchip,mcp47feb04
-> +      - microchip,mcp47feb08
-> +      - microchip,mcp47feb11
->        - microchip,mcp47feb12
-> +      - microchip,mcp47feb14
-> +      - microchip,mcp47feb18
-> +      - microchip,mcp47feb21
->        - microchip,mcp47feb22
-> +      - microchip,mcp47feb24
-> +      - microchip,mcp47feb28
->        - microchip,mcp47fvb01
-> -      - microchip,mcp47fvb11
-> -      - microchip,mcp47fvb21
->        - microchip,mcp47fvb02
-> -      - microchip,mcp47fvb12
-> -      - microchip,mcp47fvb22
->        - microchip,mcp47fvb04
-> -      - microchip,mcp47fvb14
-> -      - microchip,mcp47fvb24
->        - microchip,mcp47fvb08
-> +      - microchip,mcp47fvb11
-> +      - microchip,mcp47fvb12
-> +      - microchip,mcp47fvb14
->        - microchip,mcp47fvb18
-> +      - microchip,mcp47fvb21
-> +      - microchip,mcp47fvb22
-> +      - microchip,mcp47fvb24
->        - microchip,mcp47fvb28
-> -      - microchip,mcp47feb04
-> -      - microchip,mcp47feb14
-> -      - microchip,mcp47feb24
-> -      - microchip,mcp47feb08
-> -      - microchip,mcp47feb18
-> -      - microchip,mcp47feb28
-> =20
->    reg:
->      maxItems: 1
-> @@ -111,13 +111,13 @@ properties:
->          - for single-channel device: Vout0;
->          - for dual-channel device: Vout0, Vout1;
->          - for quad-channel device: Vout0, Vout2;
-> -        - for octal-channel device: Vout0, Vout2, Vout6, Vout8;
-> +        - for octal-channel device: Vout0, Vout2, Vout4, Vout6;
-> =20
->    vref1-supply:
->      description: |
->        Vref1 pin may be used as a voltage reference when this supply is s=
-pecified.
->        The internal reference will be taken into account for voltage refe=
-rence
-> -      beside VDD if this supply does not exist.
-> +      besides VDD if this supply does not exist.
+>  arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
+> index 90e966242720..231a3e9c1929 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
+> @@ -267,6 +267,14 @@ &usb_hs_phy {
+>  	extcon = <&usb_id>;
+>  };
+>  
+> +&venus {
+> +	status = "okay";
 
-ngl, I don't think this is a typo, the sentence doesn't make sense
-either before or after the change. Should this be something like "The
-internal reference and VDD will be used as the voltage reference if this
-supply does not exist?
+You need a firmware path here
 
-> =20
->        This supply will be voltage reference for the following outputs:
->          - for quad-channel device: Vout1, Vout3;
-> @@ -141,7 +141,7 @@ properties:
->      description:
->        Enable buffering of the external Vref/Vref0 pin in cases where the
->        external reference voltage does not have sufficient current capabi=
-lity in
-> -      order not to drop it=E2=80=99s voltage when connected to the inter=
-nal resistor
-> +      order not to drop its voltage when connected to the internal resis=
-tor
->        ladder circuit.
-> =20
->    microchip,vref1-buffered:
-> @@ -149,7 +149,7 @@ properties:
->      description:
->        Enable buffering of the external Vref1 pin in cases where the exte=
-rnal
->        reference voltage does not have sufficient current capability in o=
-rder not
-> -      to drop it=E2=80=99s voltage when connected to the internal resist=
-or ladder
-> +      to drop its voltage when connected to the internal resistor ladder
->        circuit.
-> =20
->  patternProperties:
-> @@ -161,8 +161,7 @@ patternProperties:
->      properties:
->        reg:
->          description: The channel number.
-> -        minItems: 1
-> -        maxItems: 8
-> +        maxItems: 1
-> =20
->        label:
->          description: Unique name to identify which channel this is.
-> @@ -227,12 +226,12 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> -              - microchip,mcp47fvb04
-> -              - microchip,mcp47fvb14
-> -              - microchip,mcp47fvb24
->                - microchip,mcp47feb04
->                - microchip,mcp47feb14
->                - microchip,mcp47feb24
-> +              - microchip,mcp47fvb04
-> +              - microchip,mcp47fvb14
-> +              - microchip,mcp47fvb24
->      then:
->        patternProperties:
->          "^channel@[0-3]$":
-> @@ -245,12 +244,12 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> -              - microchip,mcp47fvb08
-> -              - microchip,mcp47fvb18
-> -              - microchip,mcp47fvb28
->                - microchip,mcp47feb08
->                - microchip,mcp47feb18
->                - microchip,mcp47feb28
-> +              - microchip,mcp47fvb08
-> +              - microchip,mcp47fvb18
-> +              - microchip,mcp47fvb28
->      then:
->        patternProperties:
->          "^channel@[0-7]$":
-> @@ -280,9 +279,9 @@ examples:
-> =20
->          #address-cells =3D <1>;
->          #size-cells =3D <0>;
-> -        dac@0 {
-> +        dac@60 {
->            compatible =3D "microchip,mcp47feb02";
-> -          reg =3D <0>;
-> +          reg =3D <0x60>;
->            vdd-supply =3D <&vdac_vdd>;
->            vref-supply =3D <&vref_reg>;
-> =20
-> @@ -297,6 +296,6 @@ examples:
->              reg =3D <0x1>;
->              label =3D "Adjustable_voltage_ch1";
->            };
-> -      };
-> +        };
->      };
-
-This whitespace change looks odd. You've aligned the opening and closing
-braces, but the indent is not consistent as there's mixed 4- and 2-space
-indentation used in this example. I think you need to do:
-diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02=
-=2Eyaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.ya=
-ml
-index d2466aa6bda21..a36874c4ae276 100644
---- a/Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml
-+++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml
-@@ -278,25 +278,25 @@ examples:
-   - |
-     i2c {
-=20
-+      #address-cells =3D <1>;
-+      #size-cells =3D <0>;
-+      dac@0 {
-+        compatible =3D "microchip,mcp47feb02";
-+        reg =3D <0>;
-+        vdd-supply =3D <&vdac_vdd>;
-+        vref-supply =3D <&vref_reg>;
-+
-         #address-cells =3D <1>;
-         #size-cells =3D <0>;
--        dac@0 {
--          compatible =3D "microchip,mcp47feb02";
-+        channel@0 {
-           reg =3D <0>;
--          vdd-supply =3D <&vdac_vdd>;
--          vref-supply =3D <&vref_reg>;
-+          label =3D "Adjustable_voltage_ch0";
-+        };
-=20
--          #address-cells =3D <1>;
--          #size-cells =3D <0>;
--          channel@0 {
--            reg =3D <0>;
--            label =3D "Adjustable_voltage_ch0";
--          };
--
--          channel@1 {
--            reg =3D <0x1>;
--            label =3D "Adjustable_voltage_ch1";
--          };
-+        channel@1 {
-+          reg =3D <0x1>;
-+          label =3D "Adjustable_voltage_ch1";
-+        };
-       };
-     };
- ...
-
-Cheers,
-Conor.
-
->  ...
->=20
-> ---
-> base-commit: d2a4ec19d2a2e54c23b5180e939994d3da4a6b91
-> change-id: 20260416-mcp47feb02-fix5-26994c5b428c
->=20
-> Best regards,
-> --=20
-> Ariana Lazar <ariana.lazar@microchip.com>
->=20
-
---JQ4o0TT4kWMfmrhu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaeD9LwAKCRB4tDGHoIJi
-0gFcAP9TedHY+84n7m1trbDiJ7xC2ULT4pkNyU53avTjzYo1EQD/T0yjOB9fivEM
-H0SAkgv5TL4VytP9I5cQsZjb7rhv9ws=
-=QboO
------END PGP SIGNATURE-----
-
---JQ4o0TT4kWMfmrhu--
+Konrad
 
