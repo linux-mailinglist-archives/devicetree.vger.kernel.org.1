@@ -1,295 +1,597 @@
-Return-Path: <devicetree+bounces-287762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287764-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kAQ2EvWG4GlPjAAAu9opvQ
-	(envelope-from <devicetree+bounces-287762-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 08:51:33 +0200
+	id 0GmuAx2O4GnNjgAAu9opvQ
+	(envelope-from <devicetree+bounces-287764-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 09:22:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3B5F40ACA4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 08:51:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCA6C40AFAE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 09:22:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9687E309A0C8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 06:48:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 10B26312A621
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 07:20:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7235E37C0F5;
-	Thu, 16 Apr 2026 06:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28E4389471;
+	Thu, 16 Apr 2026 07:20:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bvp85Fs1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2109.outbound.protection.partner.outlook.cn [139.219.17.109])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C97237BE7B;
-	Thu, 16 Apr 2026 06:48:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.109
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C428B38947D
+	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 07:20:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.181
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776322131; cv=fail; b=e2hPxDjLoH4s5k2ryLds57A7YnCXvGyQKbntK3toCg77H85dZwtBgqomOySo5X+91V7ZSM0d8FoqLLhKInRpbaJGbW9UXw1ZsYvyrTSTmY49qnwTipc6lHDG3K6Se4cWk3aQMXJ+K8MYAbzeBF81MkUHmnDof/oSzpJGyPQj32s=
+	t=1776324008; cv=pass; b=nDAIvhy1D+h9dYpHZZ+QZUretu8+4++JkRKJNEjzJJhFQwmKhZ5mTUQ/JoooZ1tIk8Zl1GZdZ073UfbeVsC7tQShWOTap7rM0LS1GpNJmtMo2824Y8I0OftpJbERwxU7SX5nta2GXdToMPQZ/Nii215DPmi4mtpU62wztP+CCow=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776322131; c=relaxed/simple;
-	bh=8Cpl5B/ySK24ROygo8tjpK215mDkCPDcKgK8LsFcz4A=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=opThPmjkJgk/jWXUP5DGjvu/gWuUYFnAR7xOVxn0fKiua2rrtfN8tH8Y2YqxXrOgD4ssSA3+y/k9uthi0ihdDclFEoixnKWRvFlHRSimcYCyt8ggrOfDKC8UjmN4yeJw41Z7aFe+Gq5wP//I5a3pdDMD5BUN/eF237xTqOvPvbk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.109
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iBfx8GE/63FB2Kc5oXyoTVRAwBLZfkGXdhdy3GvWf3kptQy1DO1TJT0//u23HOTONJe7v+UpgElB+x7rIOGyiG4OI3WotVQUpe+Ax4xsq7XIA1jSvXNsDLizvHQ0KQfljHx3aKEWCeAUSLi4qRYhT+QivS/mELBV1GqOnwfFRbIsUPWu1kiv8E5sSR94TqBjXLs3KhzSBwIQgRMCHZJnYMfWpbfsqh3tO03/WbJCPCCgpdLU4ny6Z7s+vRcD+Us9xswNpbx+JKKMPKBiTQdrciVXbAdPzxnkDxurVp7KGaaRB04j1M1RR0poHMCeunouzJTPU6sYPdZnOH+2PuUBKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=36LQKrzoyeqi/EovQ77CNtu3JpnSfH7XeZPX9HNd/WQ=;
- b=g+CnPigIL2fBel07HVj9DcbYACoY335YELIFIzjcEebNLAsmHhwUC5tnxRFKQik+pypIKXDcvTD26ZPplo9Ab693rZRXfKyFInbfL+tPJ0SaAaDCa904Xcku25SyZBpWdkrnCpqDCmw4iKum+GEpI3oTUpoe5nULnC9iekuNaVWnTxri7qpc+fCCGQTGe7oEXfneClfXpTjoKeU8CldDuolSDPbHPiVrQ3Eqoi2V3BEPuWZOevgYvlQZLDTeQO7q07sM5/4gTZ7/rU9dAmsXH7lMOjTwaLtTWKzDkjsVBIuYi+zlFcDR6y+ewMo5zSaDmjfO7a80w7snzTAxIpCUYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-Received: from NT0PR01MB1216.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510:11::9) by NT0PR01MB0958.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510:7::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.51; Thu, 16 Apr
- 2026 06:48:34 +0000
-Received: from NT0PR01MB1216.CHNPR01.prod.partner.outlook.cn
- ([fe80::1666:48e8:19e9:ad29]) by
- NT0PR01MB1216.CHNPR01.prod.partner.outlook.cn ([fe80::1666:48e8:19e9:ad29%7])
- with mapi id 15.20.9769.048; Thu, 16 Apr 2026 06:48:34 +0000
-From: Changhuang Liang <changhuang.liang@starfivetech.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
-	Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: [PATCH v2 5/5] irqchip/starfive: Implement irq_set_type() and irq_ack() callbacks
-Date: Wed, 15 Apr 2026 23:47:51 -0700
-Message-Id: <20260416064751.632138-6-changhuang.liang@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260416064751.632138-1-changhuang.liang@starfivetech.com>
-References: <20260416064751.632138-1-changhuang.liang@starfivetech.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: NT0PR01CA0006.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510::8) To NT0PR01MB1216.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510:11::9)
+	s=arc-20240116; t=1776324008; c=relaxed/simple;
+	bh=/gyTRI5k1jPIFqSRQn4txK224+6rd+nA/ntO584T5dM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ndwg8CDqP1ny00gzkcl0BSQKtXwp3obg+xD0LXv6YC3k906nZGxT5PRtBi1KhKx6JuZJGe0tnEjRGUQaQ/anFu3UoXSrpYKAmQe8JljXQXF/FIZdqSnT6GaB5DpbUUSh1U7ey+s07a9cr59KAs24oAI/eV5uERVn5MfT8e5N2xk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bvp85Fs1; arc=pass smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-38e12c67a6fso72250661fa.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 00:20:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1776324004; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Jb75cfxsJCjt+965pLKAAhA8BDGDTcvtic5+reiqia97rurh08Ya8X5wKXRvEKBokI
+         Bd/WW+XwnflkKVct/4niCPRr4VyuKIS4DR2FI6T9PCUQ9gkXQ4jCBoFJFBMqVWocIwWl
+         y1wRABD8TKu+Wlfridg+iz7qpeucbA7psbCQvKY04mDSzDpaYU+9Aqk8oK0UFeV1FfA5
+         CZk4tPlIAqNONODOtnVUc5x4ZFOW6QeC7+tEJzKSD5mT+cDFxWcnRTpn0CwT2k505/x+
+         7JlHdFa5j/Uy0q5aB0WbU2wdvsd3GkVYOBmOuE+t1tJnpy3tYXd3bmGDsOc/sRLqXLzN
+         PVeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=12LljQo9v9VqYtlqMKjlKnyqUso1P6vImLmY4jcnOd0=;
+        fh=ZXPk0Fztp0zc9YT4BOP5tbviYipW7PkXbeQeQj54fl8=;
+        b=Uh/jaL/cJwjKAx6WM7+OzrQesHBxSDKGFNqGNKL5nt1iJmbo77sstaTbRzEdiNKJN9
+         k9OcBNXVoVlh6VWtA8WCeY03hfWZiCra+cfyD8I1RCAhaDf8DK3eO6oq/RaHbJUHjmgr
+         krTS7JZYK0Oqdxt4ot0TXHO3Gn+BWec3wtr2zmR/FFLZlXAHB3XwK2Vdq5PgO9Y1ibTv
+         RQw6+ZK75Ok7AjMxSmh2GIvUyTadP2HIw6H4XQbu2koQWNfwh4DjplrKkHQyaZwAzmQu
+         kiXclxuM6LREHoJb0i94HtpTWYu+u/HADr6YtgoFcx1JRkGNaB4uG0FFrMHntqmn+6vV
+         BADQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1776324004; x=1776928804; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=12LljQo9v9VqYtlqMKjlKnyqUso1P6vImLmY4jcnOd0=;
+        b=Bvp85Fs1LVDLItOxiIdFOZ9UneCV2IAth6Sv7RFbGtX6xWHiXu6JXe1wSIoZ6DS+Oc
+         +Az6YMRNegWle1iThSM/EelLkc4xSGA8avygKCT0Q4MaLz6TY9g9d9iISj7W+e0AgQUm
+         +fHqGSDOwu3mJgwIa8RTyAraB43PkPcGTkBoxYiIxoL8bFw/Y25gjSFcTQzJGHYzv9Hf
+         CtNZIeaTISpfQDp55rcVli6YHFwocKlpOhF00myQ+ipZI7qz6rtd9nAXeGfKKHCwXeBD
+         NqUzl1iN+AcW6veq9vAdjIS6GFwNTbAC8NqnRaZWx54CLeeyVwPZDI5yN75lNnEvC2Oy
+         r8hQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776324004; x=1776928804;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=12LljQo9v9VqYtlqMKjlKnyqUso1P6vImLmY4jcnOd0=;
+        b=LkGTarTCYj4WQRHIo4MDqiS8vQzoO5nQVpqUO6PafiX3rIgr19LsBHaPeXrFwVqVN0
+         n31fOyc28sDokNz3ECCL8B+6D00SeTlYwECcsQOjhGVphOYvxVaGZ+Lewrq0pbdUpzIb
+         4vX/6DsOzM9boEVxW4yI3FRKkGHj4XLZ4V3qascU15cGcsVTVNmgZii6Qg2908WsYI7g
+         VMoaFUAo6NeHh0ef0M+5eGG820iiBoKPm29urtmd1ngYlKoZGckc8jgOF8fd9enEU/9N
+         DKPMwxuWCl6VIegiFArenY+7iXG+VFIM45K8XvBVJe3FGqH0JEGwRlqDd2RfkvK6r7t5
+         6AkQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/DxoUVaTBb1Mr4QTCucwhIqXpHpK/ioYbO3gar9Jfo7uy1/CDsJA7lNYfRnC04Nx6sA+v7jbGjeCZ6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw71wxnXg/0sJ1nTU9SIZosFITR65QE3NV6MXifs0XDccwcsWH0
+	FYVus7zMkU8LvRBVJZrLeCJU1OW761ljVKjs6Cq+bzXM7BYXdAGYx542uK6Igx6eN9OopcPWQVP
+	iP6xKruImVM2a3NSzwrQ/oxWc0yRedIc=
+X-Gm-Gg: AeBDieskVN/yOOlgEGAMRUuvnS4gS6Xqz9Dkssyq5xXVw8XhyuUaOkkXm4++bSxFfSM
+	1a9aH4am66cJKy6FD82FFvWWY7CaXfVlkhX9C4hM8mmZQqKUOzxAotM3/UFNhDtMQT/gJb97PfK
+	h6QNy9Ls5MbMV2IkAvX2mb7+PLa5Akc2s+SE9BiQkWCszq9RY0Xd7FmcZyMNs3r5rG58e/5L9bW
+	TrHOhrvCp0QHRCVSq1c2S+AzzUpKb3XRbJgc2P3KLEYiZdU4SpPsFSvWkmDAUbRU69HM8CBD9Sh
+	MqY31uf1UGrhC+UVLlEQlAGQlZcv/GwN0oW5EeAHMfYplGRYRnAwZlSUXsUxCqdMJuW9fi163+T
+	kKZw=
+X-Received: by 2002:a05:6512:39c4:b0:5a3:e5f3:daec with SMTP id
+ 2adb3069b0e04-5a3efb2b6b1mr7853655e87.21.1776324003467; Thu, 16 Apr 2026
+ 00:20:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: NT0PR01MB1216:EE_|NT0PR01MB0958:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c44bdef-cc50-40a2-2a24-08de9b842e20
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|52116014|376014|38350700014|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	hAEVKdIxzlnC3YDmB2+a62ooAxdmRF7wDeQ90iX9xCgmJUlc3bJBgNhAcOvmnDA4jAWk3CJ9KGZBbLdHJ8PN4dQ4Wu3zWWRN+Mk+IB4YSpB2piy/A2TjRoxrB872L5MQhasFqyLe61DAbLoBI/PWVdTKI15VKqDyhNdvo5ju2j/Lxid8IhI7SVr1yzJzCR3DJPpH68u+kDtB8zNR4s6PAD2sQJ2eCuCqXwLk7matRAzIaR0DN9cF3Se6tsyoN1KjTcrgqqETZqVHz0Wr9IO4bZ4n4adD7JBaIqDA72BFmELezvBEljSXBZxfmvQJwf8dgpVgVDXWRkhsPL0sCviZ/GwdmNHnlmxLi/COHsOP/6i4s9DGL9WLB/05ljx61S6ZYh6Pdmxgl6Mzeom5uDOJtbkmcdHx0hAhNvbVTsKijiuwLBgKmUaRi/winnc2gr3SO7UC3cFq1C/6Gz3cmUMXSHdAn18aLVb63LcTWo1UdVGcxHwivqBMONkMmSMmL4NzjUtIzgPXEUn44DmThvLAT+iSWBGDyuQJVmH0lcFoxqv52RzveG4ZMhlHQZREGbgKnsG0WmGDIRlSGTPoiN10L9OFJOt6E53iKX5RDz1RwfU=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NT0PR01MB1216.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(376014)(38350700014)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?6sHQ9rZRBIg068YM8m2f78VuNQwxu5cPAsm9YSk0bOA5DnDbcIdkD6iZ5eLq?=
- =?us-ascii?Q?ECoNHX8qQ8DUPjmGVCyf1vssTkjREWUYMwGBdAxsdCZuw4QLP7v8UnH60ZkG?=
- =?us-ascii?Q?fKwB8Hi+2Z0JeDcoLTr1HAOYY0Slp1cvHHxvYl/vfAYd5UGJTUR4ZzDM9a0v?=
- =?us-ascii?Q?UeblS4yRJ3fbTOdEamcnK1mGHT3qxB0uc/VwWljsEw2Cod8Bb6jgjC5/Uj3j?=
- =?us-ascii?Q?vZvdP7Ey3i5hcHXWT3bMKwu+H1BwtDvt0JMQ4jGGxPubLfiGAjU1WklfKA3m?=
- =?us-ascii?Q?cLc2mPdwNKTtDjC1uUQac+K6bhs/v00p7GeA/Hc+0rGa95GijNe4M4hFH6MC?=
- =?us-ascii?Q?83esael0cI8INc17zpTPHwrAD/RUe1O5kEwDv2YsPUEIOaCqg/RiUVTeeYDB?=
- =?us-ascii?Q?s6u+lHwRcUTGSjXTRqsbNe9KHP/4LmW2K06wx4OGh3Bknq/pBWATagvv+oZ8?=
- =?us-ascii?Q?15idXKBSPlrZWLDw27PZdsfocvKYsBghIkENzvkZ7jYlvaMQn4mr+xFnqq7U?=
- =?us-ascii?Q?F8d7TUZw1DylTyQV/Q51HHBEQcKwS8PN22B1yQQUP0KQQMZS+uNhTSoAvzM3?=
- =?us-ascii?Q?GyDL3fJ3wk3I+RmT2T05t85XChN+zqd4MmVxfF3OM7oqX6qhEFEJ0VexBApN?=
- =?us-ascii?Q?w5aAC197z1EREbbwCAoXTWJWM3q1FHQ97UNbTp61qHaSsLR6hg5qRNN79LV5?=
- =?us-ascii?Q?tXb3LaAWPqRfCbPAoEkd/erA7JHa3u8SRexLvM4CNlU9oov74noMZWpC7002?=
- =?us-ascii?Q?4J6rzpJyRXH2JOhXu8CrnHhBQ61Te4Ww8xWnasgA+j0zIE8hRqALjccPpHCc?=
- =?us-ascii?Q?mnN9nFYngxsEIZ/AcapoezN/YZNWbbkSWkKVCGhhier1Gp2pcRl00xIS+JuE?=
- =?us-ascii?Q?ORxuv3ItTCvmkZYyx8wdYINDAGJ0vRQVEPVz6Bq1Vj51QHm0LPEc/kLXAYnZ?=
- =?us-ascii?Q?t96dLQlt3lRKtOFjH2jbJ5WXUEoT5Cozt31CWnUYfwnhxsleh437sG6cmNks?=
- =?us-ascii?Q?S7HpKwdy7tOVL+3HaHNk/jXt+PLS2INn0CmW8CjLa9DJ0AYheTclZeoztWlv?=
- =?us-ascii?Q?8H5cwzp7HfdeehcjJMOW7eh8dVCQBzTB5ZBwBhi0oQ8qyFwArNxr7tvYnWIh?=
- =?us-ascii?Q?QWUSYlnVXlyi+Y46voHablGo5yNHovpXXxaWwKRNqWr/W8WtqL/xMnOH2r/h?=
- =?us-ascii?Q?dSmnjztTfCDSjBhVktO9L42evBwiW/p8/GSgGIF6K62+b88iwDAC9PQLn8Zz?=
- =?us-ascii?Q?z9yR41JwSgHK8H1vpv7phN2DlkhhZSy3nHPwkRO8bUanlovqCaVAwvxoIQfG?=
- =?us-ascii?Q?HBMAqxreBds+wcm8YL5+IFpuPLs15dPS3SnypV9XgDT3ntO6qJYbGSv0EePA?=
- =?us-ascii?Q?pYvYnBlfQ7nIwYQr1qx0HoaQUJEVBiL6eQXuvc9Nw0tSX86Z9pXynOC1RWAq?=
- =?us-ascii?Q?C+iUWj5DZtbOPrNhUqilLFTTPhQcKV1sHicmI7pfWnrjoJ1f/U2OQx2+8MDC?=
- =?us-ascii?Q?MScxPIkcccDzlmJaU0CCQOicB2hi9nZ5wDaSb54qtw6OmhGh1Vvz71SLYn7O?=
- =?us-ascii?Q?ZSHWg1eKxCmxxHI0K5277lYaCpmIdwr22o9oLlXCUuekp6KstpvcAeJfnczP?=
- =?us-ascii?Q?th6Urx1lMsRKB2wlQK1LbsaKIDVG0Vph8csCBILBgMRbwAdvl5Kcn0z9FiaQ?=
- =?us-ascii?Q?e4KpDbYeB+Ig/Zs9xgkXQgaA4YOIK8WqsbO4FXB0BNJ3U1CC6sWvDbqJN5N4?=
- =?us-ascii?Q?SOo3WtxMYhOrC8C+LeYHUM5deO2wofEXYyw/clPrwtHbrcnyjU7H?=
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c44bdef-cc50-40a2-2a24-08de9b842e20
-X-MS-Exchange-CrossTenant-AuthSource: NT0PR01MB1216.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2026 06:48:34.6227
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Yt5d40H4CUqGnLO27XwDKwdnGqjNva42XLLTQ+9IUdkVGJvqGzYCTdeuubckRjf0bBsUO5Dvs3GSm7B0VKIxL7pN4GWhx4PDv95ONfjZTQFixULNKDJYeZriIuE01yxP
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: NT0PR01MB0958
-X-Spamd-Result: default: False [5.04 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+References: <20260408-ch13726a-v4-0-9bb1a9b8f329@gmail.com>
+ <20260408-ch13726a-v4-2-9bb1a9b8f329@gmail.com> <63870098-5e70-44af-ba18-1fd726b5ef5a@linaro.org>
+In-Reply-To: <63870098-5e70-44af-ba18-1fd726b5ef5a@linaro.org>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Thu, 16 Apr 2026 02:19:50 -0500
+X-Gm-Features: AQROBzBj4-wwk9SE6AzOnvYO989LEw_EOowIk1wGyD260q_kQYqxrhnGdkEhtIk
+Message-ID: <CALHNRZ-aEmzSWwMNbs2TR_18uvEaBQVK3fy-S5r5-fhnN9Gq+A@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] drm/panel: Add panel driver for ChipWealth
+ CH13726A based panels
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jessica Zhang <jesszhan0024@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-287762-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	GREYLIST(0.00)[pass,meta];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.b.d.0.0.1.0.0.e.a.0.c.3.0.0.6.2.asn6.rspamd.com:server fail];
-	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.912];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-287764-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.b.d.0.0.1.0.0.e.a.0.c.3.0.0.6.2.asn6.rspamd.com:server fail];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[webgeek1234@gmail.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,lists.freedesktop.org,vger.kernel.org,sobir.in];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[starfivetech.com:mid,starfivetech.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E3B5F40ACA4
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sobir.in:email,linaro.org:email]
+X-Rspamd-Queue-Id: BCA6C40AFAE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add irq_set_type() callback to support configuring interrupt trigger types
-(level high/low, edge rising/falling) for the JHB100 interrupt controller.
-Also add irq_ack() callabck as required by handle_edge_irq().
+On Mon, Apr 13, 2026 at 4:17=E2=80=AFAM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
+>
+> On 4/8/26 07:32, Aaron Kling via B4 Relay wrote:
+> > From: Teguh Sobirin <teguh@sobir.in>
+> >
+> > This is used by the AYN Thor for the bottom panel.
+> >
+> > Signed-off-by: Teguh Sobirin <teguh@sobir.in>
+> > Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
+> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > ---
+> >   drivers/gpu/drm/panel/Kconfig                     |  11 +
+> >   drivers/gpu/drm/panel/Makefile                    |   1 +
+> >   drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c | 339 +++++++++++++=
++++++++++
+> >   3 files changed, 351 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kcon=
+fig
+> > index d6863b28ddc559..e2c00f08f4507d 100644
+> > --- a/drivers/gpu/drm/panel/Kconfig
+> > +++ b/drivers/gpu/drm/panel/Kconfig
+> > @@ -105,6 +105,17 @@ config DRM_PANEL_BOE_TV101WUM_LL2
+> >         Say Y here if you want to support for BOE TV101WUM-LL2
+> >         WUXGA PANEL DSI Video Mode panel
+> >
+> > +config DRM_PANEL_CHIPWEALTH_CH13726A
+> > +     tristate "CHIPWEALTH CH13726A-based DSI panel"
+> > +     depends on OF
+> > +     depends on DRM_MIPI_DSI
+> > +     depends on BACKLIGHT_CLASS_DEVICE
+> > +     select DRM_DISPLAY_DP_HELPER
+> > +     select DRM_DISPLAY_HELPER
+> > +     help
+> > +       Say Y here if you want to enable support for ChipWealth
+> > +       CH13726A-based display panels.
+> > +
+> >   config DRM_PANEL_EBBG_FT8719
+> >       tristate "EBBG FT8719 panel driver"
+> >       depends on OF
+> > diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Mak=
+efile
+> > index a4291dc3905bed..343d283d1620fb 100644
+> > --- a/drivers/gpu/drm/panel/Makefile
+> > +++ b/drivers/gpu/drm/panel/Makefile
+> > @@ -9,6 +9,7 @@ obj-$(CONFIG_DRM_PANEL_BOE_TD4320) +=3D panel-boe-td432=
+0.o
+> >   obj-$(CONFIG_DRM_PANEL_BOE_TH101MB31UIG002_28A) +=3D panel-boe-th101m=
+b31ig002-28a.o
+> >   obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_LL2) +=3D panel-boe-tv101wum-ll2.=
+o
+> >   obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_NL6) +=3D panel-boe-tv101wum-nl6.=
+o
+> > +obj-$(CONFIG_DRM_PANEL_CHIPWEALTH_CH13726A) +=3D panel-chipwealth-ch13=
+726a.o
+> >   obj-$(CONFIG_DRM_PANEL_DSI_CM) +=3D panel-dsi-cm.o
+> >   obj-$(CONFIG_DRM_PANEL_LVDS) +=3D panel-lvds.o
+> >   obj-$(CONFIG_DRM_PANEL_SIMPLE) +=3D panel-simple.o
+> > diff --git a/drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c b/driver=
+s/gpu/drm/panel/panel-chipwealth-ch13726a.c
+> > new file mode 100644
+> > index 00000000000000..48a5e20e07c487
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c
+> > @@ -0,0 +1,339 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * ChipWealth CH13726A MIPI-DSI panel driver
+> > + * Copyright (c) 2024, Teguh Sobirin <teguh@sobir.in>.
+> > + */
+> > +
+> > +#include <linux/backlight.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/regulator/consumer.h>
+> > +
+> > +#include <drm/drm_mipi_dsi.h>
+> > +#include <drm/drm_modes.h>
+> > +#include <drm/drm_panel.h>
+> > +
+> > +#include <video/mipi_display.h>
+> > +
+> > +struct ch13726a_panel {
+> > +     struct drm_panel panel;
+> > +     struct mipi_dsi_device *dsi;
+> > +     struct regulator_bulk_data supplies[4];
+> > +     struct gpio_desc *reset_gpio;
+> > +     struct ch13726a_desc *desc;
+> > +     enum drm_panel_orientation orientation;
+> > +     bool prepared;
+>
+> Drop this, it's handled by the panel core now.
+Ack.
+>
+> > +};
+> > +
+> > +struct ch13726a_desc {
+> > +     unsigned int width_mm;
+> > +     unsigned int height_mm;
+> > +     unsigned int bpc;
+> > +
+> > +     const struct drm_display_mode *modes;
+> > +     unsigned int num_modes;
+> > +};
+> > +
+> > +static inline struct ch13726a_panel *to_ch13726a_panel(struct drm_pane=
+l *panel)
+> > +{
+> > +     return container_of(panel, struct ch13726a_panel, panel);
+> > +}
+> > +
+> > +static void ch13726a_reset(struct ch13726a_panel *ctx)
+> > +{
+> > +     gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> > +     usleep_range(10000, 11000);
+> > +     gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> > +     usleep_range(10000, 11000);
+> > +     gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> > +     usleep_range(10000, 11000);
+> > +}
+> > +
+> > +static int ch13726a_on(struct ch13726a_panel *ctx)
+> > +{
+> > +     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D ctx->dsi };
+> > +
+> > +     ctx->dsi->mode_flags |=3D MIPI_DSI_MODE_LPM;
+> > +
+> > +     mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xf0, 0x50);
+> > +     mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xb9, 0x00);
+> > +
+> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> > +
+> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
+> > +
+> > +     return dsi_ctx.accum_err;
+> > +}
+> > +
+> > +static int ch13726a_disable(struct drm_panel *panel)
+> > +{
+> > +     struct ch13726a_panel *ctx =3D to_ch13726a_panel(panel);
+> > +     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D ctx->dsi };
+> > +
+> > +     ctx->dsi->mode_flags &=3D ~MIPI_DSI_MODE_LPM;
+> > +
+> > +     mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
+> > +     mipi_dsi_msleep(&dsi_ctx, 50);
+> > +     mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
+> > +
+> > +     return dsi_ctx.accum_err;
+> > +}
+> > +
+> > +static int ch13726a_prepare(struct drm_panel *panel)
+> > +{
+> > +     struct ch13726a_panel *ctx =3D to_ch13726a_panel(panel);
+> > +     struct device *dev =3D &ctx->dsi->dev;
+> > +     int ret;
+> > +
+> > +     if (ctx->prepared)
+> > +             return 0;
+> > +
+> > +     ret =3D regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->sup=
+plies);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to enable regulators: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     ch13726a_reset(ctx);
+> > +
+> > +     ret =3D ch13726a_on(ctx);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to initialize panel: %d\n", ret);
+> > +             gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> > +             regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->su=
+pplies);
+> > +             return ret;
+> > +     }
+> > +
+> > +     msleep(28);
+> > +
+> > +     ctx->prepared =3D true;
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int ch13726a_unprepare(struct drm_panel *panel)
+> > +{
+> > +     struct ch13726a_panel *ctx =3D to_ch13726a_panel(panel);
+> > +
+> > +     if (!ctx->prepared)
+> > +             return 0;
+> > +
+> > +     gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> > +     regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> > +
+> > +     ctx->prepared =3D false;
+> > +     return 0;
+> > +}
+> > +
+> > +static const struct drm_display_mode thor_bottom_modes[] =3D {
+> > +     {
+> > +             /* 120Hz */
+> > +             .clock =3D (1080 + 28 + 4 + 36) * (1240 + 16 + 4 + 8) * 1=
+20 / 1000,
+> > +             .hdisplay =3D 1080,
+> > +             .hsync_start =3D 1080 + 28,
+> > +             .hsync_end =3D 1080 + 28 + 4,
+> > +             .htotal =3D 1080 + 28 + 4 + 36,
+> > +             .vdisplay =3D 1240,
+> > +             .vsync_start =3D 1240 + 16,
+> > +             .vsync_end =3D 1240 + 16 + 4,
+> > +             .vtotal =3D 1240 + 16 + 4 + 8,
+> > +     },
+> > +     {
+> > +             /* 60Hz */
+> > +             .clock =3D (1080 + 28 + 4 + 36) * (1240 + 16 + 4 + 8) * 6=
+0 / 1000,
+> > +             .hdisplay =3D 1080,
+> > +             .hsync_start =3D 1080 + 28,
+> > +             .hsync_end =3D 1080 + 28 + 4,
+> > +             .htotal =3D 1080 + 28 + 4 + 36,
+> > +             .vdisplay =3D 1240,
+> > +             .vsync_start =3D 1240 + 16,
+> > +             .vsync_end =3D 1240 + 16 + 4,
+> > +             .vtotal =3D 1240 + 16 + 4 + 8,
+> > +     }
+> > +};
+> > +
+> > +static struct ch13726a_desc thor_bottom_desc =3D {
+> > +     .modes =3D thor_bottom_modes,
+> > +     .num_modes =3D ARRAY_SIZE(thor_bottom_modes),
+> > +     .width_mm =3D 65,
+> > +     .height_mm =3D 75,
+> > +     .bpc =3D 8,
+> > +};
+> > +
+> > +static int ch13726a_get_modes(struct drm_panel *panel,
+> > +                                     struct drm_connector *connector)
+> > +{
+> > +     struct ch13726a_panel *ctx =3D to_ch13726a_panel(panel);
+> > +
+> > +     for (uint8_t i =3D 0; i < ctx->desc->num_modes; i++) {
+> > +             const struct drm_display_mode *m =3D &ctx->desc->modes[i]=
+;
+> > +             struct drm_display_mode *mode;
+> > +
+> > +             mode =3D drm_mode_duplicate(connector->dev, m);
+> > +             if (!mode) {
+> > +                     dev_err(&ctx->dsi->dev, "failed to add mode %ux%u=
+@%u\n",
+> > +                             m->hdisplay, m->vdisplay, drm_mode_vrefre=
+sh(m));
+> > +                     return -ENOMEM;
+> > +             }
+>
+> Can you use drm_connector_helper_get_modes_fixed instead ?
 
-Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
----
- drivers/irqchip/irq-starfive-jhb100-intc.c | 73 ++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
+Per the description for that function, it only works if there's a
+single mode. This panel supports two modes, 60hz and 120hz.
+>
+> > +
+> > +             mode->type =3D DRM_MODE_TYPE_DRIVER;
+> > +             if (i =3D=3D 0)
+> > +                     mode->type |=3D DRM_MODE_TYPE_PREFERRED;
+> > +
+> > +             drm_mode_set_name(mode);
+> > +             drm_mode_probed_add(connector, mode);
+> > +     }
+> > +
+> > +     connector->display_info.width_mm =3D ctx->desc->width_mm;
+> > +     connector->display_info.height_mm =3D ctx->desc->height_mm;
+> > +     connector->display_info.bpc =3D ctx->desc->bpc;
+> > +
+> > +     return ctx->desc->num_modes;
+> > +}
+> > +
+> > +static enum drm_panel_orientation ch13726a_get_orientation(struct drm_=
+panel *panel)
+> > +{
+> > +     struct ch13726a_panel *ctx =3D to_ch13726a_panel(panel);
+> > +
+> > +     return ctx->orientation;
+> > +}
+> > +
+> > +static const struct drm_panel_funcs ch13726a_panel_funcs =3D {
+> > +     .prepare =3D ch13726a_prepare,
+> > +     .unprepare =3D ch13726a_unprepare,
+> > +     .disable =3D ch13726a_disable,
+> > +     .get_modes =3D ch13726a_get_modes,
+> > +     .get_orientation =3D ch13726a_get_orientation,
+> > +};
+> > +
+> > +static int ch13726a_bl_update_status(struct backlight_device *bl)
+> > +{
+> > +     struct mipi_dsi_device *dsi =3D bl_get_data(bl);
+> > +     u16 brightness =3D backlight_get_brightness(bl);
+> > +     int ret;
+> > +
+> > +     dsi->mode_flags &=3D ~MIPI_DSI_MODE_LPM;
+> > +
+> > +     ret =3D mipi_dsi_dcs_set_display_brightness(dsi, brightness);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     dsi->mode_flags |=3D MIPI_DSI_MODE_LPM;
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static const struct backlight_ops ch13726a_bl_ops =3D {
+> > +     .update_status =3D ch13726a_bl_update_status,
+> > +};
+> > +
+> > +static struct backlight_device *
+> > +ch13726a_create_backlight(struct mipi_dsi_device *dsi)
+> > +{
+> > +     struct device *dev =3D &dsi->dev;
+> > +     const struct backlight_properties props =3D {
+> > +             .type =3D BACKLIGHT_RAW,
+> > +             .brightness =3D 255,
+> > +             .max_brightness =3D 255,
+> > +     };
+> > +
+> > +     return devm_backlight_device_register(dev, dev_name(dev), dev, ds=
+i,
+> > +                                           &ch13726a_bl_ops, &props);
+> > +}
+> > +
+> > +static int ch13726a_probe(struct mipi_dsi_device *dsi)
+> > +{
+> > +     struct device *dev =3D &dsi->dev;
+> > +     struct ch13726a_panel *ctx;
+> > +     int ret;
+> > +
+> > +     ctx =3D devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> > +     if (!ctx)
+> > +             return -ENOMEM;
+> > +
+> > +     ctx->desc =3D (struct ch13726a_desc *)of_device_get_match_data(de=
+v);
+> > +     if (!ctx->desc)
+> > +             return -ENODEV;
+> > +
+> > +     ctx->supplies[0].supply =3D "vdd1v2";
+> > +     ctx->supplies[1].supply =3D "vddio";
+> > +     ctx->supplies[2].supply =3D "vdd";
+> > +     ctx->supplies[3].supply =3D "avdd";
+> > +
+> > +     ret =3D devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies),
+> > +                                   ctx->supplies);
+> > +     if (ret < 0)
+> > +             return dev_err_probe(dev, ret, "Failed to get regulators\=
+n");
+> > +
+> Can you switch to devm_regulator_bulk_get_const ?
 
-diff --git a/drivers/irqchip/irq-starfive-jhb100-intc.c b/drivers/irqchip/irq-starfive-jhb100-intc.c
-index b3d86bd926ed..0d5914813afd 100644
---- a/drivers/irqchip/irq-starfive-jhb100-intc.c
-+++ b/drivers/irqchip/irq-starfive-jhb100-intc.c
-@@ -10,6 +10,7 @@
- #include <linux/bitops.h>
- #include <linux/cleanup.h>
- #include <linux/clk.h>
-+#include <linux/interrupt.h>
- #include <linux/irq.h>
- #include <linux/irqchip.h>
- #include <linux/irqchip/chained_irq.h>
-@@ -19,12 +20,20 @@
- #include <linux/reset.h>
- #include <linux/spinlock.h>
- 
-+#define STARFIVE_INTC_SRC_TYPE(n)	(0x04 + ((n) * 0x20))
- #define STARFIVE_INTC_SRC_CLEAR(n)	(0x10 + ((n) * 0x20))
- #define STARFIVE_INTC_SRC_MASK(n)	(0x14 + ((n) * 0x20))
- #define STARFIVE_INTC_SRC_INT(n)	(0x1c + ((n) * 0x20))
- 
-+#define STARFIVE_INTC_TRIGGER_MASK	0x3
-+#define STARFIVE_INTC_TRIGGER_HIGH	0
-+#define STARFIVE_INTC_TRIGGER_LOW	1
-+#define STARFIVE_INTC_TRIGGER_POSEDGE	2
-+#define STARFIVE_INTC_TRIGGER_NEGEDGE	3
-+
- #define STARFIVE_INTC_NUM		2
- #define STARFIVE_INTC_SRC_IRQ_NUM	32
-+#define STARFIVE_INTC_TYPE_NUM		16
- 
- struct starfive_irq_chip {
- 	void __iomem		*base;
-@@ -32,6 +41,16 @@ struct starfive_irq_chip {
- 	raw_spinlock_t		lock;
- };
- 
-+static void starfive_intc_mod(struct starfive_irq_chip *irqc, u32 reg, u32 mask, u32 data)
-+{
-+	u32 value;
-+
-+	value = ioread32(irqc->base + reg) & ~mask;
-+	data &= mask;
-+	data |= value;
-+	iowrite32(data, irqc->base + reg);
-+}
-+
- static void starfive_intc_bit_set(struct starfive_irq_chip *irqc,
- 				  u32 reg, u32 bit_mask)
- {
-@@ -76,10 +95,64 @@ static void starfive_intc_mask(struct irq_data *d)
- 	starfive_intc_bit_set(irqc, STARFIVE_INTC_SRC_MASK(i), BIT(bitpos));
- }
- 
-+static void starfive_intc_ack(struct irq_data *d)
-+{
-+	/* for handle_edge_irq, nothing to do */
-+}
-+
-+static int starfive_intc_set_type(struct irq_data *d, unsigned int type)
-+{
-+	struct starfive_irq_chip *irqc = irq_data_get_irq_chip_data(d);
-+	u32 i, bitpos, ty_pos, ty_shift, trigger, typeval;
-+	irq_flow_handler_t handler;
-+
-+	i = d->hwirq / STARFIVE_INTC_SRC_IRQ_NUM;
-+	bitpos = d->hwirq % STARFIVE_INTC_SRC_IRQ_NUM;
-+	ty_pos = bitpos / STARFIVE_INTC_TYPE_NUM;
-+	ty_shift = (bitpos % STARFIVE_INTC_TYPE_NUM) * 2;
-+
-+	switch (type) {
-+	case IRQF_TRIGGER_LOW:
-+		trigger = STARFIVE_INTC_TRIGGER_LOW;
-+		handler = handle_level_irq;
-+		break;
-+	case IRQF_TRIGGER_HIGH:
-+		trigger = STARFIVE_INTC_TRIGGER_HIGH;
-+		handler = handle_level_irq;
-+		break;
-+	case IRQF_TRIGGER_FALLING:
-+		trigger = STARFIVE_INTC_TRIGGER_NEGEDGE;
-+		handler = handle_edge_irq;
-+		break;
-+	case IRQF_TRIGGER_RISING:
-+		trigger = STARFIVE_INTC_TRIGGER_POSEDGE;
-+		handler = handle_edge_irq;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	irq_set_handler_locked(d, handler);
-+	typeval = trigger << ty_shift;
-+
-+	guard(raw_spinlock)(&irqc->lock);
-+
-+	starfive_intc_mod(irqc, STARFIVE_INTC_SRC_TYPE(i) + 4 * ty_pos,
-+			  STARFIVE_INTC_TRIGGER_MASK << ty_shift, typeval);
-+
-+	/* Once the type is updated, clear interrupt can help to reset the type value */
-+	starfive_intc_bit_set(irqc, STARFIVE_INTC_SRC_CLEAR(i), BIT(bitpos));
-+	starfive_intc_bit_clear(irqc, STARFIVE_INTC_SRC_CLEAR(i), BIT(bitpos));
-+
-+	return 0;
-+}
-+
- static struct irq_chip intc_dev = {
- 	.name		= "StarFive JHB100 INTC",
- 	.irq_unmask	= starfive_intc_unmask,
- 	.irq_mask	= starfive_intc_mask,
-+	.irq_ack	= starfive_intc_ack,
-+	.irq_set_type	= starfive_intc_set_type,
- };
- 
- static int starfive_intc_map(struct irq_domain *d, unsigned int irq,
--- 
-2.25.1
+Looks like I can.
+>
+> > +     ctx->reset_gpio =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> > +     if (IS_ERR(ctx->reset_gpio))
+> > +             return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
+> > +                                  "Failed to get reset-gpios\n");
+> > +
+> > +     ret =3D of_drm_get_panel_orientation(dev->of_node, &ctx->orientat=
+ion);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "%pOF: failed to get orientation %d\n", dev-=
+>of_node, ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     ctx->dsi =3D dsi;
+> > +     mipi_dsi_set_drvdata(dsi, ctx);
+> > +
+> > +     dsi->lanes =3D 4;
+> > +     dsi->format =3D MIPI_DSI_FMT_RGB888;
+> > +     dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO |
+> > +                       MIPI_DSI_CLOCK_NON_CONTINUOUS;
+> > +
+> > +     drm_panel_init(&ctx->panel, dev, &ch13726a_panel_funcs,
+> > +                    DRM_MODE_CONNECTOR_DSI);
+>
+> Please use devm_drm_panel_alloc() instead.
 
+Ack
+>
+> > +     ctx->panel.prepare_prev_first =3D true;
+> > +
+> > +     ctx->panel.backlight =3D ch13726a_create_backlight(dsi);
+> > +     if (IS_ERR(ctx->panel.backlight))
+> > +             return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
+> > +                                  "Failed to create backlight\n");
+> > +
+> > +     drm_panel_add(&ctx->panel);
+> > +
+> > +     ret =3D mipi_dsi_attach(dsi);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
+> > +             drm_panel_remove(&ctx->panel);
+> > +             return ret;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static void ch13726a_remove(struct mipi_dsi_device *dsi)
+> > +{
+> > +     struct ch13726a_panel *ctx =3D mipi_dsi_get_drvdata(dsi);
+> > +     int ret;
+> > +
+> > +     ret =3D mipi_dsi_detach(dsi);
+> > +     if (ret < 0)
+> > +             dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n"=
+, ret);
+> > +
+> > +     drm_panel_remove(&ctx->panel);
+> > +}
+> > +
+> > +static const struct of_device_id ch13726a_of_match[] =3D {
+> > +     { .compatible =3D "ayntec,thor-panel-bottom", .data =3D &thor_bot=
+tom_desc },
+> > +     { /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, ch13726a_of_match);
+> > +
+> > +static struct mipi_dsi_driver ch13726a_driver =3D {
+> > +     .probe =3D ch13726a_probe,
+> > +     .remove =3D ch13726a_remove,
+> > +     .driver =3D {
+> > +             .name =3D "panel-ch13726a-amoled",
+> > +             .of_match_table =3D ch13726a_of_match,
+> > +     },
+> > +};
+> > +module_mipi_dsi_driver(ch13726a_driver);
+> > +
+> > +MODULE_DESCRIPTION("DRM driver for CH13726A DSI panels");
+> > +MODULE_LICENSE("GPL");
+> >
+>
+Aaron
 
