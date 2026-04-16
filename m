@@ -1,64 +1,66 @@
-Return-Path: <devicetree+bounces-287793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287794-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AFHEJt+l4GkEkgAAu9opvQ
-	(envelope-from <devicetree+bounces-287793-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 11:03:27 +0200
+	id mKspOJim4GlZkgAAu9opvQ
+	(envelope-from <devicetree+bounces-287794-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 11:06:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E7EB40BF5E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 11:03:23 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6907B40C003
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 11:06:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7FE9C3157FE8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 08:58:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A787B3013A56
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 09:06:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E79C3921FF;
-	Thu, 16 Apr 2026 08:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9B36381B02;
+	Thu, 16 Apr 2026 09:06:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X2pui/sN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cKjANYqg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF220389E18;
-	Thu, 16 Apr 2026 08:58:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7376303CB0;
+	Thu, 16 Apr 2026 09:06:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776329886; cv=none; b=tIpSqA1cfgquBHb1zdwpgxMOs7+UOY6EG1cRz1Vj5LlVmILnkPTMSwHe7n57kPKhZPazhZ6Rysdgo1uLUMhzcivb774JxNK198PZ3Fcq/jvjuw9BX5sVjiKP8p67r1qEyWbK0qbF9F71x+kv6vfKpFAKfXgxpG7v9IaLmyj14Eo=
+	t=1776330367; cv=none; b=PJJSaUDmcDWL+yDk1Ax6wpMz9tpUDkAvNsWaHB8+qcocCdP99RI6T+Eb8wrWw6QXq3bDL66u3fw/XcNnRYJYtyK4sjUal2mG3RwSj4/gPA4k0rgRP3Kfn/sV41E0ZCJD3EpIec9NlpzzHmvmOTMeSg9N27dXjztIU5vvrKQnoYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776329886; c=relaxed/simple;
-	bh=wIVmSPEWi58JQM7nvjRlxWGWBS3n11NN6UIk/ySZXFU=;
+	s=arc-20240116; t=1776330367; c=relaxed/simple;
+	bh=jdvOEzFNQCnkjiaq/gjCIrrpDBLRp/B98yKiskUg1Ew=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qTpfnLwpDeE5ZTQCdQAIoygMq6DfZLWUTqVh9sIXQ0Q0rapBseCz1sQO0iR6HbG1tyDL5nHY4TYTDFv/H81hwZ9qbujRQdYfkM3pVpX5XW1sIHpSYc+qE8rsovpaIL1zBCu1ZPlnTi5h8DS7cM5HByVTI961Upvw4OL1IXNVyMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X2pui/sN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5761C2BCAF;
-	Thu, 16 Apr 2026 08:58:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fnKCCqVL2aAhi7lNB6dz3jpYmukkhCBDf5A1vAfXLEEOgSex1af90E6k/gq4QAEi95QF0jktEvGmmlhyhlqeBrvOk7EQYw26vBXJhbA1URqUDi7SuxtJudAcgu89ZWLogsySzYDe2c1vUnYdvF3bsIv13IquRfkRlOUsFfwvQ8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cKjANYqg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3826C2BCAF;
+	Thu, 16 Apr 2026 09:06:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776329886;
-	bh=wIVmSPEWi58JQM7nvjRlxWGWBS3n11NN6UIk/ySZXFU=;
+	s=k20201202; t=1776330367;
+	bh=jdvOEzFNQCnkjiaq/gjCIrrpDBLRp/B98yKiskUg1Ew=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X2pui/sNYh+IOj8b2MtTogNe0yeCNU6qS1lupk0CscO+IXwOqSHNplQYjwwvcw72E
-	 JBaEDta9t4o0wjgh3osrO7pM0PzANOcgyUy66x1n/t32MEjiWsxqneBk4o73GGFMQY
-	 Z6HYMognzwkUavvDvBf4RGc6Jj7+XtfmwlhW0fI+dGMRPvckg6+Q+NSksxo72SZqqz
-	 lWjvAwQNH+QTJEAx7DpHHHDi8QdOIKnyG+MoNmrLi7aSWcXKX3RmC5aHQfTbSAS7fB
-	 WMpEo7zx0utCqlB3U6OLd/hnL9XfXswNr192UqREFWshgIhPoOYArakTsMS7ogtJgh
-	 RgezysU48045Q==
-Date: Thu, 16 Apr 2026 10:58:03 +0200
+	b=cKjANYqgXYLcM+Vu6dT3zaOm17uCcf5i5yRVA8jQLAj/7AjPuaOpFSsCkTxsPvlmO
+	 4m/CM47+1jCQDe/pv6hY+RZbVTCuPHo8cBiaqgiAuzhNc+U5BkT52hsdhihUyRPkiq
+	 OX6PEj9BbE50j/yRJHwlDU40yfhj0p74Gwzg2s/uSjzK9nMZkSehFg1MylQftmDcek
+	 W09I3eyXBiGGyzkBHt7jpK63Q2NBowPCZtb5ba54lk0kMlwfDskezXgfdIH5D91wyK
+	 cVZe23obJnTeq8xFUubqxTnZS205BZ2i6CGYjIl5iqFO/A0s6+3uuce+uDOAegZqFb
+	 NZBgG3n39+oSw==
+Date: Thu, 16 Apr 2026 11:06:04 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Xiaoshun Xu <xiaoshun.xu@mediatek.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Sirius Wang <sirius.wang@mediatek.com>, Vince-wl Liu <vince-wl.liu@mediatek.com>, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v3 6/6] dt-bindings: soc: mediatek: devapc: Add bindings
- for MT8196
-Message-ID: <20260416-gabby-porcupine-of-snow-bc10c0@quoll>
-References: <20260416031231.2932493-1-xiaoshun.xu@mediatek.com>
- <20260416031231.2932493-7-xiaoshun.xu@mediatek.com>
+To: Michal Simek <michal.simek@amd.com>
+Cc: Conor Dooley <conor@kernel.org>, 
+	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, linux-kernel@vger.kernel.org, git@amd.com, 
+	shubhrajyoti.datta@gmail.com, Srinivas Neeli <srinivas.neeli@amd.com>, 
+	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: gpio: Add EIO GPIO compatible to
+ gpio-zynq
+Message-ID: <20260416-graceful-warthog-of-superiority-62acbd@quoll>
+References: <20260415105628.957689-1-shubhrajyoti.datta@amd.com>
+ <20260415105628.957689-3-shubhrajyoti.datta@amd.com>
+ <20260415-rectal-visible-a8ccb534a176@spud>
+ <c973f9d4-9bb5-40f4-8f09-72e23f92cd2d@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,13 +69,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260416031231.2932493-7-xiaoshun.xu@mediatek.com>
+In-Reply-To: <c973f9d4-9bb5-40f4-8f09-72e23f92cd2d@amd.com>
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -82,40 +84,57 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.b.d.0.0.1.0.0.e.a.0.c.3.0.0.6.2.asn6.rspamd.com:server fail];
-	TAGGED_FROM(0.00)[bounces-287793-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	ASN_FAIL(0.00)[114.105.105.172.asn.rspamd.com:server fail];
+	TAGGED_FROM(0.00)[bounces-287794-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org,mediatek.com];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,amd.com,vger.kernel.org,gmail.com,lists.infradead.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3E7EB40BF5E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6907B40C003
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 16, 2026 at 11:12:09AM +0800, Xiaoshun Xu wrote:
-> Extend the devapc device tree bindings to support the MediaTek MT8196
-> SoC. This includes:
+On Thu, Apr 16, 2026 at 07:58:27AM +0200, Michal Simek wrote:
 > 
-> - Adding "mediatek,mt8196-devapc" to the list of compatible strings.
 > 
-> These changes enable proper configuration and integration of devapc on
-> MT8196 platforms, ensuring accurate device matching and resource
-> allocation in the device tree.
+> On 4/15/26 17:01, Conor Dooley wrote:
+> > On Wed, Apr 15, 2026 at 04:26:27PM +0530, Shubhrajyoti Datta wrote:
+> > > EIO (Extended IO) is a GPIO block found on xa2ve3288 silicon..
+> > 
+> > 
+> > Why does the compatible have a "1.0" when it is in silicon?
+> 
+> Sorry not following what the problem is. Yes this is hard block in silicon
+> and it is silicon v1.
 
-Same comments. It's really poor commit msg.
+Writing bindings: compatibles should be specific to device, not some
+arbitrary versioning.
 
-Also, subject wrong. Drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+OR explain in commit msg. That commit msg clealy suggests code is wrong.
+
+
+> 
+> > Why doesn't the compatible contain "xa2ve3288"?
+> 
+> This unit can be used on different silicons too.
+
+That's not what the commit said.
+
+> 
+> > Why is this device not compatible with existing ones, since
+> > gpio-lines-names appears to be the sole difference?
+> 
+> There is no way how to detect gpio width.
+
+Where in the commit msg are the differences explained?
 
 Best regards,
 Krzysztof
