@@ -1,166 +1,124 @@
-Return-Path: <devicetree+bounces-287784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287781-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iJjZKOKg4GlukQAAu9opvQ
-	(envelope-from <devicetree+bounces-287784-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:42:10 +0200
+	id SA3UF6ye4GlukQAAu9opvQ
+	(envelope-from <devicetree+bounces-287781-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:32:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E2A440BB79
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:42:09 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id E561D40B96F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:32:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D5CF7301C5E7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 08:42:03 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 091AD301A089
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 08:32:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 819423932EE;
-	Thu, 16 Apr 2026 08:41:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF2EA39185C;
+	Thu, 16 Apr 2026 08:32:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="WJj2u3Sw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YcemiNJc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from 10.mo546.mail-out.ovh.net (10.mo546.mail-out.ovh.net [46.105.76.192])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6CD78F39
-	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 08:41:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.105.76.192
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA71B311C32;
+	Thu, 16 Apr 2026 08:32:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776328917; cv=none; b=iPCE20OEqy59R8G/YKIfbGL0TnvKJStRtZ8tja3qk6jpTAOrgGS+xZhi22L5//qHSYU/n+zcgq+Voj9mYsLL7sTz3hxO87h/usA5YyCD7VouZ1aYnXrfGNyIPnDQk/rlSwoO/LYoeX1zpdDrDdPnBEQC++6IoqaYif172LJqATM=
+	t=1776328358; cv=none; b=c8H8Fw039Fzng2SGkgpOUwLLIrRS3hsyxuo4oNuRrw2dG3t6f7q0WaLvsVQyhQkfxOCzRMFTQFsLvdOSNeLxkqqz3l0dQML9n7/BClgX4hvTRdo36GXEI+USUVXL8AOm6o7IBTbPkrIwmuqt16dqmylB+623Xdn6FtqnqVKIxco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776328917; c=relaxed/simple;
-	bh=aw+BkfSLT9i7+XxykOTeoq6lWAXY6hQlNwsxo2cu4Hw=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=iBMPaU6iT5vfqIJHUnw5XJ73ABh7MxTXN0UOSxiSPRc5YqDHgbnOhxIl6vBF5y1enXVwA9VhCyydtyixLC3Ck1lnIaIztt7Bkbu3tpnceVIdz1E0oAcyF0qHfFO4saKN4OBAQ9wlUeWiSi7oSNcfuJ7WOgpHc5/DD3Fmb+SafWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (2048-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=WJj2u3Sw; arc=none smtp.client-ip=46.105.76.192
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-Received: from ex.mail.ovh.net (unknown [10.111.174.41])
-	by mo546.mail-out.ovh.net (Postfix) with SMTP id 4fxB0K1fYFz658n;
-	Thu, 16 Apr 2026 08:25:21 +0000 (UTC)
-Message-ID: <6fc8ddeb-d54d-473d-94d2-49dc78a07154@aliel.fr>
-Date: Thu, 16 Apr 2026 10:25:19 +0200
+	s=arc-20240116; t=1776328358; c=relaxed/simple;
+	bh=HTjMxf5v3aR9ygGnGEUoiaruNqB6TeQAxAASh+62FLA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K42F8lLKlGYmfjnZit30wfjtP4XP/tDDbDP1hu7hXs0G3HHnKr6+C4RIpnGYNnA/Zy8sW3cYctFUfwzC0owV7WfZFXtCLxyixBHld6r+zHnglMUClBzdgwjasePQ5qgzYREuRUxO5uuJ4B7LA4FzAshgpfVwXnUt1gbQ8LpPQcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YcemiNJc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE6A1C2BCAF;
+	Thu, 16 Apr 2026 08:32:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776328358;
+	bh=HTjMxf5v3aR9ygGnGEUoiaruNqB6TeQAxAASh+62FLA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YcemiNJcOcYiquxwpbF9j5uGN/B6pXMTwYMiVPLLA2AI6nbwDGb94DptPvcpPvhR4
+	 /6dTNnkMnG5VwEJTqBwzaBpFflatwNedwRbxPxCrNUPjkKYqYW2EvS1e7Ad3JM5nb/
+	 9mFOsHEO7+Ystu8uKRvLaxGqdVKLRTLxJk7qOKr/dwvHWqgsi2TBMoAIL+KOg+eWXE
+	 RNxGmCSyCFzRSvE3KnM/M8gaKGivETXBp6JZktttmt0v9ufFbrn8MwZqFl4D0oJL87
+	 3gEpYRA5F69Vz+lP2KN6YhXkeOTZ11Jb8a5oKHSjswlnyWURKtPiRFGpj0TttOkFPv
+	 keOlQzoi5ScRA==
+Date: Thu, 16 Apr 2026 10:32:35 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Swamil Jain <s-jain1@ti.com>
+Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devarsht@ti.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, praneeth@ti.com, vigneshr@ti.com
+Subject: Re: [PATCH v4] dt-bindings: display: ti, am65x-dss: Fix AM62L DSS
+ reg and clock constraints
+Message-ID: <20260416-venomous-arcane-labrador-e0bfdc@quoll>
+References: <20260415110409.2577633-1-s-jain1@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH v2 1/8] dt-bindings: mfd: khadas: Add new compatible for
- Khadas VIM4 MCU
-To: Rob Herring <robh@kernel.org>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Beniamino Galvani
-	<b.galvani@gmail.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel
- Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz
- Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-	<broonie@kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-i2c@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-pm@vger.kernel.org>
-References: <20260403-add-mcu-fan-khadas-vim4-v2-0-70536b22439a@aliel.fr>
- <20260403-add-mcu-fan-khadas-vim4-v2-1-70536b22439a@aliel.fr>
- <20260415214815.GA602572-robh@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20260415214815.GA602572-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: CAS6.indiv.local (172.16.1.6) To DAG11EX2.indiv.local
- (172.16.2.112)
-DKIM-Signature: v=1; a=rsa-sha256; d=aliel.fr; s=ovhex24454-selector1;
- c=relaxed/relaxed; t=1776327921; h=from:to:subject:date;
- bh=pFOmuggUuSRoz8cJkPKGP7DvDQuCHyf5KhKmxv5ivoA=;
- b=WJj2u3Sw9klNHCmqWBIBwUAd6tng48dLg+QKWHtKreX2JXQ67wigXe0TQP09NrQdmjUdwYsVTIyNXg4WsMawW2PmYK7jooYwzgx8we3T9RfQx1UZQXMpaipb4jkwQp18llokPWqyMOVBtBgrQPBrHmwTjeESar/AykfbQnBZNwp/pjzaIaW2WNcDq+ayKr+VpdIATbkHVjJTpB8++FJGaLn7Ol1tFFkyi1AGSgG98ENB42Y/mEsn2aeqTPV3QhE3SaopbBg7OcaxLDOhjq5VrsoBVb3M/ZQ9d/J23gPci+pOIg9idifu9W/UraOS+CQDDiVvyayR3TcF4gkqOf5YNw==
-x-ovh-tracer-id: 11309101614479183212
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: dmFkZTGn1Zxn7wlgRAk3Ls9HCSQIM4J7NsCvDBxD4MAUEzQ319Tl8D+J9DRCSxDWfnhZBirHrMBroybDTW/ifa7s/TX61Cq1qD7Plv4j4gqth9jElM8m8lL5uZaot7/CIcLhbmDQcxKVaGwJGKieR33WAaBijrVQPO30sMw94oTcS2ML8nPtfAsVfoiIzbsyHLnkFodLJa+IaEAujtZ7TULWFAR2dvLjd+30CuJOFupt+NPg60/KJvm8NS0WNT7b27RGiIs28KQWG7dLvMPlvP203CJnbo58FK18k6MC9luvcwxFxMp7VK/Kyynji+k+emjUreeA7ZNLd0jKJE7AShi72O9EK/Py+Qj7pqHOcFu0v99QnkqMJB32b0PzsZz78C1xa5o+Td1459KqjlMRtaidgNCiyUnIa8snrN6JAZTHZBdOpyJ1t0Qdgod0GBU+oll1AWzKYOB8WMck4/vqyf366h54XV3csqSAvMGnXmVieYrkzkzjxFkOilGcLN4Do2dalN99LVDjx3GW1UyV3b11o665Rqt4Kk8izf+4QDtdFIv/38vVISb7nnEqxHw+xQnEDwhZSW1Sh81XUad8bUy2pNAHeasPX5qPHxqLlVDYlmDV/weFzND9AK0qthn2R1CijJ4b9zO59gyCXlabD/w6m9y4Z7iNMp9G3Oyn1f7Ntu5iJA
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260415110409.2577633-1-s-jain1@ti.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=ovhex24454-selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[aliel.fr];
+	ASN_FAIL(0.00)[74.135.232.172.asn.rspamd.com:server fail];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-287781-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.7.a.0.0.1.0.0.e.9.0.c.3.0.0.6.2.asn6.rspamd.com:server fail];
-	TAGGED_FROM(0.00)[bounces-287784-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[aliel.fr:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com,lists.infradead.org,vger.kernel.org];
-	NEURAL_HAM(-0.00)[-0.999];
+	FREEMAIL_CC(0.00)[iki.fi,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,ti.com,lists.freedesktop.org,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,aliel.fr:email,aliel.fr:dkim,aliel.fr:mid]
-X-Rspamd-Queue-Id: 6E2A440BB79
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,ti.com:url,ti.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E561D40B96F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/15/26 11:48 PM, Rob Herring wrote:
-> On Fri, Apr 03, 2026 at 06:08:34PM +0200, Ronald Claveau wrote:
->> The Khadas VIM4 MCU register is slightly different
->> from previous boards' MCU.
->> This board also features a switchable power source for its fan.
->>
->> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
->> ---
->>  Documentation/devicetree/bindings/mfd/khadas,mcu.yaml | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
->> index 084960fd5a1fd..67769ef5d58b1 100644
->> --- a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
->> @@ -18,6 +18,7 @@ properties:
->>    compatible:
->>      enum:
->>        - khadas,mcu # MCU revision is discoverable
+On Wed, Apr 15, 2026 at 04:34:09PM +0530, Swamil Jain wrote:
+> The AM62L DSS [1] support incorrectly used the same register and
+> clock constraints as AM65x, but AM62L has a single video port
 > 
-> The revision is no longer discoverable as was claimed?
+> Fix this by adding conditional constraints that properly define the
+> register regions and clocks for AM62L DSS (single video port) versus
+> other AM65x variants (dual video port).
 > 
+> [1]: Section 12.7 (Display Subsystem and Peripherals)
+> Link : https://www.ti.com/lit/pdf/sprujb4
+> 
+> Fixes: cb8d4323302c ("dt-bindings: display: ti,am65x-dss: Add support for AM62L DSS")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Swamil Jain <s-jain1@ti.com>
+> ---
+> Validated the changes with some examples:
+> https://gist.github.com/swamiljain/79f30568c9ece89f5a20218f52647486
 
-The firmware revision is still discoverable, and via the same register,
-but the VIM4 MCU has a different register layout (eg: no DEVICE_NO
-register). The new compatible is needed to describe a different MCU
-variant, not a different revision of the same MCU.
-I will remove the comment as it is confusing with new boards.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
->> +      - khadas,vim4-mcu
->>  
->>    "#cooling-cells": # Only needed for boards having FAN control feature
->>      const: 2
->> @@ -25,6 +26,10 @@ properties:
->>    reg:
->>      maxItems: 1
->>  
->> +  fan-supply:
->> +    description: Phandle to the regulator that powers the fan.
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +
->>  required:
->>    - compatible
->>    - reg
->>
->> -- 
->> 2.49.0
->>
-
-
--- 
 Best regards,
-Ronald
+Krzysztof
+
 
