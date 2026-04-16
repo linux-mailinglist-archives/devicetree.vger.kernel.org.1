@@ -1,156 +1,220 @@
-Return-Path: <devicetree+bounces-287789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287791-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gDr4OLqk4GkEkgAAu9opvQ
-	(envelope-from <devicetree+bounces-287789-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:58:34 +0200
+	id iObYJnek4GkEkgAAu9opvQ
+	(envelope-from <devicetree+bounces-287791-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:57:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F4E140BEDA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:58:33 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5056040BE80
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:57:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C1F5C3171DFC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 08:55:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9219230729F7
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 08:56:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28204395275;
-	Thu, 16 Apr 2026 08:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7048395276;
+	Thu, 16 Apr 2026 08:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="Iq5somVu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iJlnzjZD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06E538F938;
-	Thu, 16 Apr 2026 08:55:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4653803E4;
+	Thu, 16 Apr 2026 08:55:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776329715; cv=none; b=pvjX5TMXp4ohwilmmYTClpihM4wjLtoswuDswLufCMbbBTUPSNoVBYaRQeV1hMu1DQGhwyYKMAXn5PlBzpZfyrxATY3a/ypiuLCwn/kFFvJWSQt/DyIpMMjLxIQwcC67oXe0isJtLzBPLj5mzAh2YZ4Q7LJqwAcLLgCf1LSAUCw=
+	t=1776329759; cv=none; b=HkmqzkC237y8LyPKIZ9CMaQtNFubvzI1X+BPUfJ+BUs6HlrxlMpVrPtgkUGMTfapXOir4Xru7dJekFjEWmA53jZMwVkIcRwnQMYVHoPPBNBlRY/eFWsjJo2FlUw5PyGYUOtEhsYGDHVUIgAPk46JlNcG8QsR4dlLuSxSHE6tisk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776329715; c=relaxed/simple;
-	bh=5dwFJADDv48q8TA8PHHEBjFP0VQQwZ8DdLYNIrtO1DM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ti5psuCcsz/bkLDB8mJh6tm4+vzTcPaQVipkhkeNd5dfMsXDZRtjnieXfkZc9ooA6c7XhdkbYnovFTbJ2frGthXgWsgz9ZfqGNYKQbWcUSwX9dRDrcS5yKjNs+92udo3wIIaLjOg20FwxdGE0LPvJ3Owy91Rf6S+pMtoY8ioRJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=Iq5somVu; arc=none smtp.client-ip=65.21.61.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776329705;
-	bh=5dwFJADDv48q8TA8PHHEBjFP0VQQwZ8DdLYNIrtO1DM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=Iq5somVuCyWlQilOgH/ZxtHnN1jxREwHZzBPSmAyaSelKk9tIpqVt/uegn+SV8cwh
-	 Md5ztRSjNk2xngY1fIRyh1KvQR+Xgki4+f3IdYnZ+DyYAAYINiz1s3mIyQ0O7mJnbd
-	 KlLvvRrbcqICEqPNHRdfFvSNLJb1IHJvoh4DSlHk=
-Date: Thu, 16 Apr 2026 10:54:42 +0200
-Subject: [PATCH v2 3/3] arm64: dts: amlogic: t7: khadas-vim4: Enable
- Bluetooth
+	s=arc-20240116; t=1776329759; c=relaxed/simple;
+	bh=qP9op7qqcS5Lukl0xY0FbOKSLZSPfuuTkBQ5FGAIXHs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eecpctI9I+2cTil7kbrNbea4202oxQSJKHcb44SGCNU5poUE+WG4fRDVQYJ5R5XMiaf94mhhAnPYTUJy+2KIbq+mXyst139gR3KRpYAgWC7C+0joLv/+eU89GcQYC5kS846Jdg6Mx09Pz0KNrlpqKe9yYh/3QwBmC9JNKc2WvwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iJlnzjZD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE584C2BCB3;
+	Thu, 16 Apr 2026 08:55:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776329759;
+	bh=qP9op7qqcS5Lukl0xY0FbOKSLZSPfuuTkBQ5FGAIXHs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iJlnzjZDwcviicCbIILPDAxC4Y0Mnwb5Vex/ZZdnkcTF4swx0HthKq5a/CxVUQJ5I
+	 RaWf/yMsvg2I7H+kK63WbY+o5zZt0NKR7QtexrEONzBwSOzI6xsrS6jpTYT39jbH02
+	 JAJFyv/K9BkTkJQziyfkkJJ+FhebMJ0JYH6D9GiJAJLx0OQpJOmwTMXGH3MoSGp+d2
+	 bqootzA4OtnmAGQ1OTMfP8QAFPMn4OuQ2WmuMCjZIKcbYpFs1TAUh1TPAydaBLNcIX
+	 5xr/kJUuKYS9LEiUC46WBOHJwYYsjh4h8xTtUoYnGFn89huAW56f/j+VjePkFn3Dl6
+	 dy5VRIffuc3YA==
+Date: Thu, 16 Apr 2026 14:25:39 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Nicolas Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>, 
+	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Mark Pearson <mpearson-lenovo@squebb.ca>, 
+	"Derek J. Clark" <derekjohn.clark@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org, 
+	Hans de Goede <johannes.goede@oss.qualcomm.com>, Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>
+Subject: Re: [PATCH v7 0/8] Add support for handling PCIe M.2 Key E
+ connectors in devicetree
+Message-ID: <4yockfx5rjcvfh2n2excrgsknnhi72rv2w7wf7onks2ryt33sm@w7zkcxuc6vem>
+References: <20260326-pci-m2-e-v7-0-43324a7866e6@oss.qualcomm.com>
+ <20260413075459.GA2626902@google.com>
+ <fpcs4p62f35a5qyqwgm5ysa73stbysxcr62tkmmkrrcvsuf4t4@4ivukyqjey57>
+ <eeytuhqpgdz4do4tgtbmfntub2femtyq7bij7svhodpyjwaylx@j3gmvq2a2zqc>
+ <CAGXv+5E=tujhtZjwi6Qm7hk3Ks74UzTQHWq82NiTEw1+vYod5g@mail.gmail.com>
+ <ad36pIu-0dutL7Nk@ashevche-desk.local>
+ <CAGXv+5EGe59nJctLweEdZjb3MNmMvjuCHngGSfptzN985OiLdg@mail.gmail.com>
+ <ad4tJN27opdEooA7@ashevche-desk.local>
+ <CAGXv+5EPA29G-fsH=wWOD8AK6TZFezFhsE0NHPYj_Pt3nT+d_w@mail.gmail.com>
+ <20260415165651.153b573d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260416-add-bluetooth-t7-vim4-v2-3-9a57098fd055@aliel.fr>
-References: <20260416-add-bluetooth-t7-vim4-v2-0-9a57098fd055@aliel.fr>
-In-Reply-To: <20260416-add-bluetooth-t7-vim4-v2-0-9a57098fd055@aliel.fr>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1776329703; l=1625;
- i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=5dwFJADDv48q8TA8PHHEBjFP0VQQwZ8DdLYNIrtO1DM=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
- BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QIXwE2g0xgSsmV0hMeQZGNLsN5zJJxnJdIYbj2GsE+ydRVdwZz4D3k2FSgT+Uoz5xMvr/XOJKQx
- xERIPUljPBwc=
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
- fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260415165651.153b573d@bootlin.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	DMARC_NA(0.00)[aliel.fr];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	ASN_FAIL(0.00)[10.253.234.172.asn.rspamd.com:server fail];
+	ASN_FAIL(0.00)[114.105.105.172.asn.rspamd.com:server fail];
+	RCPT_COUNT_TWELVE(0.00)[34];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[aliel.fr:+];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-287791-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-287789-lists,devicetree=lfdr.de];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[chromium.org,linux.intel.com,oss.qualcomm.com,kernel.org,linuxfoundation.org,linux.dev,squebb.ca,gmail.com,holtmann.org,bgdev.pl,vger.kernel.org,linaro.org,bootlin.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aliel.fr:email,aliel.fr:dkim,aliel.fr:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7F4E140BEDA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5056040BE80
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable UART C on the Khadas VIM4 board and attach the BCM43438
- compatible Bluetooth controller to it. The node configures the RTS/CTS
-hardware flow control, the associated pinmux, the power supplies (vddao_3v3
-and vddao_1v8), the 32 kHz LPO clock shared with the wifi32k fixed
-clock, and the GPIO lines used for host wakeup, device wakeup and
-shutdown.
+On Wed, Apr 15, 2026 at 04:56:51PM +0200, Herve Codina wrote:
+> Hi Chen, all,
+> 
+> ...
+>  
+> > 
+> > I'm not arguing for a even more generic "M.2" connector. The "key" is
+> > already described in the compatible. I'm saying we should have some way
+> > of describing the individual interfaces (PCIe, SDIO, USB, UART, I2S, I2C)
+> > on the connector so further nodes or properties can be attached to them,
+> > either with overlays or dynamically within the kernel. Right now the
+> > are only described as individual ports, but we can't actually tie a
+> > device to a OF graph port.
+> > 
+> > But maybe I'm overthinking the representation part. AFAICT for Qualcomm's
+> > UART-based BT bit part, Mani just had the driver create a device node
+> > under the UART (by traversing the OF graph to find the UART). If that's
+> > the desired way then the connector binding should mention it. And that
+> > works for me. But I think it's messier and also we're missing an
+> > opportunity to make the M.2 connector a standardized attachment point
+> > for overlays.
+> > 
+> > Mani, could you also chime in a bit on what you envisioned?
+> > 
+> > (Added Luca from Bootlin to CC, as I think there are parallels to the
+> >  "Hotplug of Non-discoverable Hardware" work)
+> >
+> 
+> Related to "Hotplug of Non-discoverable Hardware",
+> 
+> I would add entries for busses in the connector without using an OF graph.
+> 
 
-Remove clocks and clock-names for UART A, as they are defined in DTSI.
+I don't think this is a correct representation. It is non-standard to describe
+the device nodes in some other connectors. While it may work with your series in
+the future, not something I would bet-on at this point.
 
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts   | 21 +++++++++++++++++++--
- 1 file changed, 19 insertions(+), 2 deletions(-)
+Using OF graph to link the connector nodes look like the cleaner solution to me.
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 69d6118ba57e7..8ea7ae609fbd5 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -250,6 +250,23 @@ &sd_emmc_c {
- 
- &uart_a {
- 	status = "okay";
--	clocks = <&xtal>, <&xtal>, <&xtal>;
--	clock-names = "xtal", "pclk", "baud";
-+};
-+
-+&uart_c {
-+	status = "okay";
-+	pinctrl-0 = <&uart_c_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		host-wakeup-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
-+		device-wakeup-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
-+		max-speed = <3000000>;
-+		clocks = <&wifi32k>;
-+		clock-names = "lpo";
-+		vbat-supply = <&vddao_3v3>;
-+		vddio-supply = <&vddao_1v8>;
-+	};
- };
+> For I2C and later SPI, this was is done.
+> 
+> You already have an i2c-parent property but no node where an i2c device
+> can be added.
+> 
+> The last discussion related to hotplug, connectors and DT led to the RFC
+> series [1].
+> 
+> It is a huge series. The last patch give a real example of representation:
+>   https://lore.kernel.org/all/20260112142009.1006236-78-herve.codina@bootlin.com/
+> 
+> In your case I would see some thing like:
+> 
+>     connector {
+>         compatible = "pcie-m2-e-connector";
+>         vpcie3v3-supply = <&vreg_wcn_3p3>;
+>         vpcie1v8-supply = <&vreg_l15b_1p8>;
+> 
+> 	/*
+> 	 * If those GPIOs have to be used by components available in
+> 	 * the connected board, a Nexus node should be used.
+>          */
+>         w-disable1-gpios = <&tlmm 115 GPIO_ACTIVE_LOW>;
+>         w-disable2-gpios = <&tlmm 116 GPIO_ACTIVE_LOW>;
+>         viocfg-gpios = <&tlmm 117 GPIO_ACTIVE_HIGH>;
+>         uart-wake-gpios = <&tlmm 118 GPIO_ACTIVE_LOW>;
+>         sdio-wake-gpios = <&tlmm 119 GPIO_ACTIVE_LOW>;
+>         sdio-reset-gpios = <&tlmm 120 GPIO_ACTIVE_LOW>;
+> 
+> 	conn-i2c {
+> 		i2c-parent = <&i2c0>;
+> 
+> 		/*
+>  		 * Here i2c devices available on the board
+> 		 * connected to the connector can be described.
+> 		 */
+> 	};
+> 
+> 	/* Same kind to description for other busses */
+> 	conn-pcie {
+> 		pci-parent = <&xxxxx>;
+> 
+> 		/*
+> 		 * The PCIe bus has abilities to discover devices.
+> 		 * Not sure this node is needed.
+> 		 *
+> 		 * If a PCI device need a DT description to describe
+> 		 * stuffs behind the device, what has been done for LAN966x
+> 		 * could be re-used [2] and [3]
+> 		 */
+
+I don't think anyone would connect something like LAN966x to the M.2 connector.
+M.2 cards have a defined purpose, like NVMe, WLAN etc... If anyone wants to
+connect another SoC like LAN966x, they would use non-M.2 connectors.
+
+- Mani
 
 -- 
-2.49.0
-
+மணிவண்ணன் சதாசிவம்
 
