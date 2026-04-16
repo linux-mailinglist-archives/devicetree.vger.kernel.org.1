@@ -1,145 +1,176 @@
-Return-Path: <devicetree+bounces-287726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287729-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wD1qC00s4GmldAAAu9opvQ
-	(envelope-from <devicetree+bounces-287726-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 02:24:45 +0200
+	id AJYyMr0+4GmPdwAAu9opvQ
+	(envelope-from <devicetree+bounces-287729-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 03:43:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C6E64093D0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 02:24:43 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89EF54098DE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 03:43:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EFA5B304C722
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 00:24:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4D417307A41C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 01:43:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EC321A76BB;
-	Thu, 16 Apr 2026 00:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD51522A80D;
+	Thu, 16 Apr 2026 01:43:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="M4ufa4ou"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="QLVWHamE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-106120.protonmail.ch (mail-106120.protonmail.ch [79.135.106.120])
+Received: from mail-m1973172.qiye.163.com (mail-m1973172.qiye.163.com [220.197.31.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98621A9F8C;
-	Thu, 16 Apr 2026 00:23:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.120
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85D752288D5;
+	Thu, 16 Apr 2026 01:43:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776299037; cv=none; b=DZ3CcNFh+hdAaNs0apP/CC0ZR+9UjcvVLFSEgLDpG69MFYvUDZteA2rf0hPIJXrRAc1B2kezgE0SWQjN0sJVQ47YpQyYJxKdxC+ktoy/i8QCePWrDLKrAvZ0xIEwmqZLkeUxdqrMQTTBQKooxeQj6LcnN2ChGUHAdVL7xnDcPNI=
+	t=1776303798; cv=none; b=liAiLWSpAgBl38n1RJi+Ud71IkI7kILDxsliv/LXfFm6OfDq6tVFhgZMNg/YvDU1QCcstMwqs6M2WOyrDkWD15EAtIMz1eZCI+w38RpjMgZvyoFGZmrlpZW/B64IdAiK/Owga/Xijcb8vK1krDaoULWsEl5dPEp5DwMV9cd+vOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776299037; c=relaxed/simple;
-	bh=b+/P5S46EXmbx7Y4p1BzA5O5ISbeJcNi0wD2r34Ocd8=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ANiDmwBdh4Zf4J4eilPvYLEBcOFy7q3/HTOFnn6tl4ZEPUjS6qA4EGfrBzEIGxXhWGh6/aciuhd4u3SzkkqMdo8AQrUNBHsVdB1nt+dzMGwembr5JZ8hZuJlC0GLr/e7Pm3svVPuU35av5zdJ5uwr/6rQMuR7eDAa1ZHqfD1wCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=M4ufa4ou; arc=none smtp.client-ip=79.135.106.120
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1776299025; x=1776558225;
-	bh=b+/P5S46EXmbx7Y4p1BzA5O5ISbeJcNi0wD2r34Ocd8=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=M4ufa4ouBvbS/c+r1dTzU5BW4WcKRC0qg3jCwkWDuKorJp7XG979dRX8hHth274pR
-	 LtC1/s/5IKmpRXBB0cn/RVhUpDS9J5Smg/rSmVDynjy1Y/fO5ak/+jXH1p60L1McNM
-	 VTbG5BgICLKJdr2OGN7FCf7o0MSiMfmPViys5vEqEd+3ct4O+hGOigJyXW/sUXRvLr
-	 sji8MqOk+36YWHX1dPdYHYp1IFRMSoxENORvBnerSmm0M1JGjRIr0Fg+/VwCwn1Ej8
-	 dx1LO6VJfHcaSCGbTNrnFVlpf667jXvadB/OiWeGCqgjh8BzAaDJj2KUigLRmw5wUt
-	 AUQ52Fo7MWbyg==
-Date: Thu, 16 Apr 2026 00:23:41 +0000
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-From: Alexander Koskovich <akoskovich@pm.me>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>
-Subject: [PATCH 2/2] arm64: dts: qcom: eliza: Add IMEM node
-Message-ID: <20260415-eliza-imem-v1-2-4a90e8683799@pm.me>
-In-Reply-To: <20260415-eliza-imem-v1-0-4a90e8683799@pm.me>
-References: <20260415-eliza-imem-v1-0-4a90e8683799@pm.me>
-Feedback-ID: 37836894:user:proton
-X-Pm-Message-ID: 11c1c4c31c71802b4067f066c59d4fb7259ee097
+	s=arc-20240116; t=1776303798; c=relaxed/simple;
+	bh=koVhQPofFJ0xf0B5h25d5ZrJpSfHdrZyeW8TD62LtVQ=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=VBKaiP+0bPfoDIi/jwZMWOVE2nlRo9JtE15OrHbWltyCttTqr2sp/hLEy0lMUw7Qzgr+epvO81k1x7m54kexFirUq/DV3kdoPhY3VfjR3rKUqKNmmLiBDXTqYyDf4RsHC+NqIrllFxTV+cF64ZH8ImtXzE9pyfF8ci4zvK9VhnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=QLVWHamE; arc=none smtp.client-ip=220.197.31.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.17] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3ae6eaf4f;
+	Thu, 16 Apr 2026 08:27:29 +0800 (GMT+08:00)
+Message-ID: <5243585c-2fcf-dc68-54e9-cd8afc74fb5d@rock-chips.com>
+Date: Thu, 16 Apr 2026 08:27:27 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-2.16 / 15.00];
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Cc: shawn.lin@rock-chips.com, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] mmc: dw_mmc: implement option for configuring DMA
+ threshold
+To: Kaustabh Chakraborty <kauschluss@disroot.org>,
+ Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jaehoon Chung <jh80.chung@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+References: <20260415-dwmmc-dma-thr-v3-0-31014d36b6ee@disroot.org>
+ <20260415-dwmmc-dma-thr-v3-1-31014d36b6ee@disroot.org>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20260415-dwmmc-dma-thr-v3-1-31014d36b6ee@disroot.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9d93af8e1e09cckunmbbec6de61a99b1
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQk1DGlZKGRgeShgaTBgfQ0NWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=QLVWHamEtWPXbOyxhHmQ1CXl+jZhKt7agdGVtiD3HhXO7faGFVEG8aNlFWSU+wKYkw3bwvLTyBCJKwBwOTisumx3PDWl3M+xF2p7rG1YWHSE8MDYPWI7uzHrlVvXHVfX1pzRJ19JFUlqEU/f1XLcmv+2iaI4nBHV5pXdZi0X8XE=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=nKA5dmo91yCLapXpWOigMm3bpFe+GNmIfRh+PO4vxzk=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-287726-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[104.64.211.4:from];
-	DKIM_TRACE(0.00)[pm.me:+];
-	ASN_FAIL(0.00)[4.211.64.104.asn.rspamd.com:server fail];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.11.184:email];
-	FROM_NEQ_ENVFROM(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.b.d.0.0.1.0.0.e.a.0.c.3.0.0.6.2.asn6.rspamd.com:server fail];
+	TAGGED_FROM(0.00)[bounces-287729-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shawn.lin@rock-chips.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[100.90.174.1:received,79.135.106.120:received];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,pm.me:email,pm.me:dkim,pm.me:mid,94c:email,1.111.188.160:email,0.223.255.192:email]
-X-Rspamd-Queue-Id: 4C6E64093D0
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,rock-chips.com:dkim,rock-chips.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 89EF54098DE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add a node for the IMEM found on Eliza, which contains pil-reloc-info
-and the modem tables for IPA, among others.
 
-Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
----
- arch/arm64/boot/dts/qcom/eliza.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+在 2026/04/15 星期三 23:02, Kaustabh Chakraborty 写道:
+> Some controllers, such as certain Exynos SDIO ones, are unable to
+> perform DMA transfers of small amount of bytes properly. Following the
+> device tree schema, implement the property to define the DMA transfer
+> threshold (from a hard coded value of 16 bytes) so that lesser number of
+> bytes can be transferred safely skipping DMA in such controllers. The
+> value of 16 bytes stays as the default for controllers which do not
+> define it. This value can be overridden by implementation-specific init
+> sequences.
 
-diff --git a/arch/arm64/boot/dts/qcom/eliza.dtsi b/arch/arm64/boot/dts/qcom=
-/eliza.dtsi
-index 4a7a0ac40ce6..1f0c92898f13 100644
---- a/arch/arm64/boot/dts/qcom/eliza.dtsi
-+++ b/arch/arm64/boot/dts/qcom/eliza.dtsi
-@@ -1343,6 +1343,26 @@ qup_uart14_default: qup-uart14-default-state {
- =09=09=09};
- =09=09};
-=20
-+=09=09sram@14680000 {
-+=09=09=09compatible =3D "qcom,eliza-imem", "mmio-sram";
-+=09=09=09reg =3D <0x0 0x14680000 0x0 0x2c000>;
-+=09=09=09ranges =3D <0x0 0x0 0x14680000 0x2c000>;
-+
-+=09=09=09no-memory-wc;
-+
-+=09=09=09#address-cells =3D <1>;
-+=09=09=09#size-cells =3D <1>;
-+
-+=09=09=09pilreloc-sram@94c {
-+=09=09=09=09compatible =3D "qcom,pil-reloc-info";
-+=09=09=09=09reg =3D <0x94c 0xc8>;
-+=09=09=09};
-+
-+=09=09=09ipa_modem_tables: modem-tables-sram@3000 {
-+=09=09=09=09reg =3D <0x3000 0x2000>;
-+=09=09=09};
-+=09=09};
-+
- =09=09gem_noc: interconnect@24100000 {
- =09=09=09compatible =3D "qcom,eliza-gem-noc";
- =09=09=09reg =3D <0x0 0x24100000 0x0 0x163080>;
+Reviewed-by: Shawn Lin <shawn.lin@rock-chips.com>
 
---=20
-2.53.0
-
-
+> 
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+>   drivers/mmc/host/dw_mmc.c | 4 ++--
+>   drivers/mmc/host/dw_mmc.h | 2 ++
+>   2 files changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
+> index 20193ee7b73eb..3b4157f34d11f 100644
+> --- a/drivers/mmc/host/dw_mmc.c
+> +++ b/drivers/mmc/host/dw_mmc.c
+> @@ -40,7 +40,6 @@
+>   				 SDMMC_INT_RESP_ERR | SDMMC_INT_HLE)
+>   #define DW_MCI_ERROR_FLAGS	(DW_MCI_DATA_ERROR_FLAGS | \
+>   				 DW_MCI_CMD_ERROR_FLAGS)
+> -#define DW_MCI_DMA_THRESHOLD	16
+>   
+>   #define DW_MCI_FREQ_MAX	200000000	/* unit: HZ */
+>   #define DW_MCI_FREQ_MIN	100000		/* unit: HZ */
+> @@ -821,7 +820,7 @@ static int dw_mci_pre_dma_transfer(struct dw_mci *host,
+>   	 * non-word-aligned buffers or lengths. Also, we don't bother
+>   	 * with all the DMA setup overhead for short transfers.
+>   	 */
+> -	if (data->blocks * data->blksz < DW_MCI_DMA_THRESHOLD)
+> +	if (data->blocks * data->blksz < host->dma_threshold)
+>   		return -EINVAL;
+>   
+>   	if (data->blksz & 3)
+> @@ -3185,6 +3184,7 @@ struct dw_mci *dw_mci_alloc_host(struct device *dev)
+>   	host = mmc_priv(mmc);
+>   	host->mmc = mmc;
+>   	host->dev = dev;
+> +	host->dma_threshold = 16;
+>   
+>   	return host;
+>   }
+> diff --git a/drivers/mmc/host/dw_mmc.h b/drivers/mmc/host/dw_mmc.h
+> index 42e58be74ce09..f29d40158dc59 100644
+> --- a/drivers/mmc/host/dw_mmc.h
+> +++ b/drivers/mmc/host/dw_mmc.h
+> @@ -107,6 +107,7 @@ struct dw_mci_dma_slave {
+>    * @ciu_clk: Pointer to card interface unit clock instance.
+>    * @fifo_depth: depth of FIFO.
+>    * @data_addr_override: override fifo reg offset with this value.
+> + * @dma_threshold: data threshold value in bytes to carry out a DMA transfer.
+>    * @wm_aligned: force fifo watermark equal with data length in PIO mode.
+>    *	Set as true if alignment is needed.
+>    * @data_shift: log2 of FIFO item size.
+> @@ -163,6 +164,7 @@ struct dw_mci {
+>   	void __iomem		*regs;
+>   	void __iomem		*fifo_reg;
+>   	u32			data_addr_override;
+> +	u32			dma_threshold;
+>   	bool			wm_aligned;
+>   
+>   	struct scatterlist	*sg;
+> 
 
