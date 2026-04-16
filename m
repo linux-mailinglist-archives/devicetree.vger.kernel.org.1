@@ -1,139 +1,166 @@
-Return-Path: <devicetree+bounces-287780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287784-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QOieKVWe4GlKkQAAu9opvQ
-	(envelope-from <devicetree+bounces-287780-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:31:17 +0200
+	id iJjZKOKg4GlukQAAu9opvQ
+	(envelope-from <devicetree+bounces-287784-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:42:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF2F40B91D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:31:06 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E2A440BB79
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:42:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DD9323040212
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 08:24:33 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D5CF7301C5E7
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 08:42:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E374E39150D;
-	Thu, 16 Apr 2026 08:24:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 819423932EE;
+	Thu, 16 Apr 2026 08:41:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YbNL1BW3"
+	dkim=pass (2048-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="WJj2u3Sw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from 10.mo546.mail-out.ovh.net (10.mo546.mail-out.ovh.net [46.105.76.192])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C01283890E1;
-	Thu, 16 Apr 2026 08:24:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6CD78F39
+	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 08:41:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.105.76.192
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776327872; cv=none; b=SD8UTzIRmH3itul7eo3n49f2XphMA/edz9tlG01sJ4KOaMlEXsXzk6NHzy9tPSHLGSlvBkPUbEzVXdnCjR2w0a+REuQXacp+eBhL3gnYNy+LIH6Y/IuuEbrWZerWZCTd7Dlob89Ju6Bv3aEB0GWjBI1JWCL5CMblePc2JXBBi5Q=
+	t=1776328917; cv=none; b=iPCE20OEqy59R8G/YKIfbGL0TnvKJStRtZ8tja3qk6jpTAOrgGS+xZhi22L5//qHSYU/n+zcgq+Voj9mYsLL7sTz3hxO87h/usA5YyCD7VouZ1aYnXrfGNyIPnDQk/rlSwoO/LYoeX1zpdDrDdPnBEQC++6IoqaYif172LJqATM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776327872; c=relaxed/simple;
-	bh=B9NrsopThAdQy1pEQQhGyJ5Ca9nA0GaI99bu8QZCq8Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d1UjcSU1OxYLiyXQMKaF1qqDL2dNi+NRajJBwvvq56TJ5A2ke4bu0012orp6h+FHwC3FktUa+EN6Lf5wT2JM2Uve9PQ6FQmJlQMvYdKOIVKOgLhNS2VpH9yXKYdJdAkTTX3J3GVcahrLPdj+PpTJ1gWoJWK3o6i9yPPszh19H8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YbNL1BW3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5EF9C2BCAF;
-	Thu, 16 Apr 2026 08:24:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776327872;
-	bh=B9NrsopThAdQy1pEQQhGyJ5Ca9nA0GaI99bu8QZCq8Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YbNL1BW3G8VlKFztm99hsxG+cOBPjXewViZlBi3YoKDSwQLw2yLg2c8yyK3RsU+Yh
-	 m8fFDq1MlwINhFR1WLz4evtFK6L2TB1nho7dIKILjppndigNqNMPHFV0EQJdD/uilj
-	 /K67bOuESDM49cdejT+yk3LwSOuLFZngL4Er7C/4r05q3SWsiDJyyK8msJNNyoH8Rs
-	 HBVzb0ajlqlKWeNjxRiSJyxQt2TeQMucQEc7VlcHP+wmspY/JkxQpQVVu5GtVWX97g
-	 kz4NJOUHdgDMhBy26A+paEhHICR6EaD5lMlEkCwqinhUmia0L0iSyOVKnumRFJa7Rp
-	 wygwQsu/31pJA==
-Date: Thu, 16 Apr 2026 10:24:29 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: dongxuyang@eswincomputing.com, ukleinek@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, ben-linux@fluff.org, 
-	ben.dooks@codethink.co.uk, p.zabel@pengutronix.de, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, ningyu@eswincomputing.com, 
-	linmin@eswincomputing.com, xuxiang@eswincomputing.com, wangguosheng@eswincomputing.com, 
-	pinkesh.vaghela@einfochips.com
-Subject: Re: [PATCH v4 1/2] dt-bindings: pwm: dwc: add reset optional
-Message-ID: <20260416-wandering-solemn-uakari-083ae7@quoll>
-References: <20260415094908.1539-1-dongxuyang@eswincomputing.com>
- <20260415095020.1597-1-dongxuyang@eswincomputing.com>
- <20260415-reacquire-handstand-d1923af82c9d@spud>
+	s=arc-20240116; t=1776328917; c=relaxed/simple;
+	bh=aw+BkfSLT9i7+XxykOTeoq6lWAXY6hQlNwsxo2cu4Hw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=iBMPaU6iT5vfqIJHUnw5XJ73ABh7MxTXN0UOSxiSPRc5YqDHgbnOhxIl6vBF5y1enXVwA9VhCyydtyixLC3Ck1lnIaIztt7Bkbu3tpnceVIdz1E0oAcyF0qHfFO4saKN4OBAQ9wlUeWiSi7oSNcfuJ7WOgpHc5/DD3Fmb+SafWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (2048-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=WJj2u3Sw; arc=none smtp.client-ip=46.105.76.192
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
+Received: from ex.mail.ovh.net (unknown [10.111.174.41])
+	by mo546.mail-out.ovh.net (Postfix) with SMTP id 4fxB0K1fYFz658n;
+	Thu, 16 Apr 2026 08:25:21 +0000 (UTC)
+Message-ID: <6fc8ddeb-d54d-473d-94d2-49dc78a07154@aliel.fr>
+Date: Thu, 16 Apr 2026 10:25:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260415-reacquire-handstand-d1923af82c9d@spud>
+User-Agent: Mozilla Thunderbird Beta
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH v2 1/8] dt-bindings: mfd: khadas: Add new compatible for
+ Khadas VIM4 MCU
+To: Rob Herring <robh@kernel.org>
+CC: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Beniamino Galvani
+	<b.galvani@gmail.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel
+ Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz
+ Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-i2c@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-pm@vger.kernel.org>
+References: <20260403-add-mcu-fan-khadas-vim4-v2-0-70536b22439a@aliel.fr>
+ <20260403-add-mcu-fan-khadas-vim4-v2-1-70536b22439a@aliel.fr>
+ <20260415214815.GA602572-robh@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20260415214815.GA602572-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: CAS6.indiv.local (172.16.1.6) To DAG11EX2.indiv.local
+ (172.16.2.112)
+DKIM-Signature: v=1; a=rsa-sha256; d=aliel.fr; s=ovhex24454-selector1;
+ c=relaxed/relaxed; t=1776327921; h=from:to:subject:date;
+ bh=pFOmuggUuSRoz8cJkPKGP7DvDQuCHyf5KhKmxv5ivoA=;
+ b=WJj2u3Sw9klNHCmqWBIBwUAd6tng48dLg+QKWHtKreX2JXQ67wigXe0TQP09NrQdmjUdwYsVTIyNXg4WsMawW2PmYK7jooYwzgx8we3T9RfQx1UZQXMpaipb4jkwQp18llokPWqyMOVBtBgrQPBrHmwTjeESar/AykfbQnBZNwp/pjzaIaW2WNcDq+ayKr+VpdIATbkHVjJTpB8++FJGaLn7Ol1tFFkyi1AGSgG98ENB42Y/mEsn2aeqTPV3QhE3SaopbBg7OcaxLDOhjq5VrsoBVb3M/ZQ9d/J23gPci+pOIg9idifu9W/UraOS+CQDDiVvyayR3TcF4gkqOf5YNw==
+x-ovh-tracer-id: 11309101614479183212
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: dmFkZTGn1Zxn7wlgRAk3Ls9HCSQIM4J7NsCvDBxD4MAUEzQ319Tl8D+J9DRCSxDWfnhZBirHrMBroybDTW/ifa7s/TX61Cq1qD7Plv4j4gqth9jElM8m8lL5uZaot7/CIcLhbmDQcxKVaGwJGKieR33WAaBijrVQPO30sMw94oTcS2ML8nPtfAsVfoiIzbsyHLnkFodLJa+IaEAujtZ7TULWFAR2dvLjd+30CuJOFupt+NPg60/KJvm8NS0WNT7b27RGiIs28KQWG7dLvMPlvP203CJnbo58FK18k6MC9luvcwxFxMp7VK/Kyynji+k+emjUreeA7ZNLd0jKJE7AShi72O9EK/Py+Qj7pqHOcFu0v99QnkqMJB32b0PzsZz78C1xa5o+Td1459KqjlMRtaidgNCiyUnIa8snrN6JAZTHZBdOpyJ1t0Qdgod0GBU+oll1AWzKYOB8WMck4/vqyf366h54XV3csqSAvMGnXmVieYrkzkzjxFkOilGcLN4Do2dalN99LVDjx3GW1UyV3b11o665Rqt4Kk8izf+4QDtdFIv/38vVISb7nnEqxHw+xQnEDwhZSW1Sh81XUad8bUy2pNAHeasPX5qPHxqLlVDYlmDV/weFzND9AK0qthn2R1CijJ4b9zO59gyCXlabD/w6m9y4Z7iNMp9G3Oyn1f7Ntu5iJA
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[aliel.fr:s=ovhex24454-selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[aliel.fr];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287780-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.b.d.0.0.1.0.0.e.a.0.c.3.0.0.6.2.asn6.rspamd.com:query timed out];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.7.a.0.0.1.0.0.e.9.0.c.3.0.0.6.2.asn6.rspamd.com:server fail];
+	TAGGED_FROM(0.00)[bounces-287784-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[aliel.fr:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com,lists.infradead.org,vger.kernel.org];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RSPAMD_EMAILBL_FAIL(0.00)[dongxuyang.eswincomputing.com:query timed out];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:email]
-X-Rspamd-Queue-Id: CBF2F40B91D
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,aliel.fr:email,aliel.fr:dkim,aliel.fr:mid]
+X-Rspamd-Queue-Id: 6E2A440BB79
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Apr 15, 2026 at 04:09:49PM +0100, Conor Dooley wrote:
-> On Wed, Apr 15, 2026 at 05:50:20PM +0800, dongxuyang@eswincomputing.com wrote:
-> > From: Xuyang Dong <dongxuyang@eswincomputing.com>
-> > 
-> > The DesignWare PWM includes separate reset signals dedicated to each clock
-> > domain:
-> > The presetn signal resets logic in pclk domain.
-> > The timer_N_resetn signal resets logic in the timer_N_clk domain.
-> > The resets are active-low.
-> > 
-> > Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
+On 4/15/26 11:48 PM, Rob Herring wrote:
+> On Fri, Apr 03, 2026 at 06:08:34PM +0200, Ronald Claveau wrote:
+>> The Khadas VIM4 MCU register is slightly different
+>> from previous boards' MCU.
+>> This board also features a switchable power source for its fan.
+>>
+>> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+>> ---
+>>  Documentation/devicetree/bindings/mfd/khadas,mcu.yaml | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+>> index 084960fd5a1fd..67769ef5d58b1 100644
+>> --- a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+>> @@ -18,6 +18,7 @@ properties:
+>>    compatible:
+>>      enum:
+>>        - khadas,mcu # MCU revision is discoverable
 > 
-> This commit implies that your hardware differs from existing devices,
-> I think you should add a device-specific compatible.
+> The revision is no longer discoverable as was claimed?
 > 
-> > ---
-> >  .../devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml       | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-> > index 7523a89a1773..a8bbad0360f8 100644
-> > --- a/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-> > +++ b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-> > @@ -43,6 +43,9 @@ properties:
-> >        - const: bus
-> >        - const: timer
-> >  
-> > +  resets:
-> > +    maxItems: 2
 
-And this should really be listed with description, because order is
-fixed.
+The firmware revision is still discoverable, and via the same register,
+but the VIM4 MCU has a different register layout (eg: no DEVICE_NO
+register). The new compatible is needed to describe a different MCU
+variant, not a different revision of the same MCU.
+I will remove the comment as it is confusing with new boards.
 
+>> +      - khadas,vim4-mcu
+>>  
+>>    "#cooling-cells": # Only needed for boards having FAN control feature
+>>      const: 2
+>> @@ -25,6 +26,10 @@ properties:
+>>    reg:
+>>      maxItems: 1
+>>  
+>> +  fan-supply:
+>> +    description: Phandle to the regulator that powers the fan.
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>>
+>> -- 
+>> 2.49.0
+>>
+
+
+-- 
 Best regards,
-Krzysztof
-
+Ronald
 
