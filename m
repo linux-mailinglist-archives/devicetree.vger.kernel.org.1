@@ -1,195 +1,247 @@
-Return-Path: <devicetree+bounces-287872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287877-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OHAbMszP4GkkmQAAu9opvQ
-	(envelope-from <devicetree+bounces-287872-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:02:20 +0200
+	id sIesKpjP4GkkmQAAu9opvQ
+	(envelope-from <devicetree+bounces-287877-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:01:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4857840DC3C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:02:20 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5CBA40DC03
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:01:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 604243074F7F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 11:59:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B0BA2306CDC7
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 12:00:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6D93B0AE1;
-	Thu, 16 Apr 2026 11:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9DB328CF4A;
+	Thu, 16 Apr 2026 12:00:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FKQSpSff"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="blF2X0/n";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="W/F/FaDj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D778839D6D1;
-	Thu, 16 Apr 2026 11:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88D6D38C2C1
+	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 12:00:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776340763; cv=none; b=qFHfouTkNLN47eztD5yWesgXo7EzaKkR6RG8evutD0Ngy0ypezbBNrCnRG0+eAtbsayz8sAaCrCKb61jxBEv+jNldKgM8srcGUttwEDh5lvrG0eBl2mpdGZDfKOuxPZ/6dgwS+vkKrDdD2/thoA/vAjI2LJI8NKpuhmgo9yhatQ=
+	t=1776340824; cv=none; b=UhWFukcEdPaVkhwMLy/+Sy29EeFDaY6fSY9QS6LzAvBhDhYykiUiH03sJxYSYQHHy34Zxy2SSZryA1yGEEwTaefG+0dfve0m6BDMoO80v2gWPTw78WPPgCzJ+dvASwHOa/nRAlwrL91EC3i902B7WziALv8yxjPKW1N9WqLLk5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776340763; c=relaxed/simple;
-	bh=py7wWhiWmBXGzlBtBHNVd2e7B5dJrS5FkveYE/aeNek=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RrPv4c5ddFFk3wgt85HzUlctA+Ip1R4pJ5Z4q7eqOVTHCTCV8dqDvqTnRoVO7LsPFt7QP+TRjF7EkCZc5gAbtzdY/mSEgcEBJLY8b1Jnk/S0z3M9OI/oZno3/S2hcXH6mqeCys+Jl8MiPZdKH7PtxHOWyP55nJfQAS/zlh1QHkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FKQSpSff; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34ACAC2BCAF;
-	Thu, 16 Apr 2026 11:59:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776340763;
-	bh=py7wWhiWmBXGzlBtBHNVd2e7B5dJrS5FkveYE/aeNek=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FKQSpSffpiBziKTs2wrKLd54/U5m8YfRAOg7k9HlmeUGd0cqVQsHQmICDl1sS4fWw
-	 7YxEtCqUdJ3/MMg2ymrm4NgXW185Jd+gcoFxX0mGJwVeJenMzT1VFgtZGuoU9cE2lb
-	 hefo+YQtU9/oXiL9AyKUpgbzPvnCDLQCYsPil9MjvqVU+3ONKf15yRSE5eLwxA9lss
-	 IClFfY+vWWpS/vOvKtoMcw9m1/40d0SRkN3aPIWBP0gdwreaAfdJofPlZEemcw8sk8
-	 igPnINMEYDlNRCj7pupcdNWvr31ITdhrXpfd5GI9lpJc2pgWBQiXpx6Nqde0sazqrh
-	 fPlu2DYfBWzrA==
-Date: Thu, 16 Apr 2026 06:59:21 -0500
-From: Rob Herring <robh@kernel.org>
-To: Akhil R <akhilrajeev@nvidia.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Robert Moore <robert.moore@intel.com>, Len Brown <lenb@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Eric Biggers <ebiggers@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	acpica-devel@lists.linux.dev, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v2 01/13] dt-bindings: i3c: Add mipi-i3c-static-method to
- support SETAASA
-Message-ID: <20260416115921.GA2724261-robh@kernel.org>
-References: <20260409105747.48158-1-akhilrajeev@nvidia.com>
- <20260409105747.48158-2-akhilrajeev@nvidia.com>
+	s=arc-20240116; t=1776340824; c=relaxed/simple;
+	bh=WoZmdcsES0kVFqgFOLWDNt7rW2ibjnMYVhqmjTrduxY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=lI+q+ewm5JZ82DYvTBzTEteTzLW2LjwgDTfb5b63uZlcs2Zm4Fja/YXxkOz/OIHfNWi33x1syPtDR62RLfnGiPMh1PrbvTNmjR1mKkfoCJbKEyxLZnuRKcXw+zdthnVky+1q85wHyIHiBqorEHEPNTOQGT2FWEv8325CoOJz0zM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=blF2X0/n; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=W/F/FaDj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63GAYDZm1245667
+	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 12:00:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	cdM6xkgTl4qUH9SkEuho0KJ2Ezd/MNfY0LaRCpzflp8=; b=blF2X0/n1o73Igc+
+	hoQLaZ24RsP2vUB/bWyWPAPPb9+SGupsdavtwi+UKXSwx3YRtIzEN2qIbVx85xYD
+	bKIl/5r/P4dt7qsmQlhiUMOqbi3eN6mi4yIt3CNgIuVaapk1Dbg3mn4A5+2O++eF
+	h6+FWZ7b7ohNDgM07Dn5B6jqKaiO1Kh9pRTng/u0Ikzh6WJZcvCzv80zLiRPMNlt
+	G7jVO0jSsnRnV5blhpCEtr00T5hvPvSwsEZvSYJLUjEDKkeFE5cvDxgchDYSiq8f
+	EZY/kF1ErN9O0ZuXCmojYcbTwK8WpzSg6If+9lh51mCcg9/JcSlC7i7xbGojOZwU
+	KsZqsw==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4djx4k87vx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 12:00:22 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-c76b0e04285so3511268a12.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 05:00:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1776340822; x=1776945622; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cdM6xkgTl4qUH9SkEuho0KJ2Ezd/MNfY0LaRCpzflp8=;
+        b=W/F/FaDjakl1N6RCXS4hrtnmkkPhiHAGvotC3yzH5sGmIRIP49uZuUZZZ3wLB6J7KN
+         FA3zsBAPHOdnAENUuSsCJ5Sg8E5PLpYKlBOXqB09icmZZx6giR9zF7SZyj6KX7g329nt
+         Khd8uB6owTLTMLfx2HDQHfqDxf8bd8pd2OUpx/x+/EuVP3ROl6eqbtCR2+q2wVY8mCws
+         oMnftBTwO3VazWy/ztheI8vcDffSFLRdBxcak2RuuKGQrPlZsMX48jpxI5FloxRtDYNL
+         DFF2ldDhug9hz3mLMdOrBUnjSUn4+H3vXOg+nq9zGgDzjFcWmN1n7qRIaUO6hVo2A4wA
+         kBOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776340822; x=1776945622;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=cdM6xkgTl4qUH9SkEuho0KJ2Ezd/MNfY0LaRCpzflp8=;
+        b=c47jzpI2fzFp2abiiVzwopI01aPoU1MwLIJpNU/7fkVeWd/9QPHGmxk6k+Ala+U7MZ
+         y20VAycIJmUaMGVqedZ2ha5zop8GHfIrvYIb2dtMjkCANmjAkSKt2+tNF5Vahi5EpOUA
+         LfkWnxuYNX/K+PnheMItvbGW9z/BRCSN4whOQ29tcgTVdzqfwkgJmWKd16Ah7/tduWu2
+         idQ4uAoFyMt/9r/gctr9+YHStLc4heYTbPG6zOsw9tSvBSKSFZJOGUfwe0ViwDdyXl2d
+         MkXBK6ki53sZZFPiFrkTsy7kCuDhq5e5wYiKoDlg/xMCOQTxPDdz6Xwu4nLKSW3U25IO
+         7P9A==
+X-Forwarded-Encrypted: i=1; AFNElJ95K0q+zG2UrwXJN/SL+eqeBPtozA3RLNrqgtvrf2licYD8wzq8bwQHw80j/Eot73JJOz0mCZeBV3mJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywepep8wZ0hwdT3ajE2ih+0+HBti1Cu2xf9W2WkeEFF4QRH5t1y
+	4SNcC2bmScJ4rFkMcsS2MukEXhAIE5Va80xKWAusfc1nmoD0KPj5uMvBPX1iohJeRShU3bPqrY3
+	pMAK7mRv7b4a4ANJ9C0GdmOg0CHcnXdcH65T7zXsspcRj/fniIpb7f/kmJr7BXsIP
+X-Gm-Gg: AeBDietkxP955JsJdBmUvGY8DPwA7Vp+e7NsnrwTa0/bJHdA5vILASWqv5MPJVaYBbt
+	PENRQ07OWHDDOVzJk3RXKHinfcSN+DusfjV9slvES2/ApnlQFVk5bWL6oWjm7F0EplueoOndrjP
+	oCVwnTXilnMia2RUJ/X1Ao9yqOHjOPFbFotik96dzDmvlnrocCGDzhDEe8qQwP7NpghgNALsvBF
+	c/2BLa+uPN5CYleg/GLWK/sOmoaU4uSpEp3UETw/5IJGXcc3FwDUvLVQqJeFljS8zJzJPIZeoYH
+	q2CiLix45ORiitjZmFitEKtyz3KbN1zNzTRSy+qzabZ6xiOpw5R2+7YLiDtzI94Io8YCZbd9kCp
+	mmeqv7f4h6t4mCTRRgJbZc7p+yL+N0KipaJHZKcwiDKCe8PH9P+VqvoKqGQ==
+X-Received: by 2002:a05:6a20:6a27:b0:39c:2bcb:4197 with SMTP id adf61e73a8af0-39fe3f8b573mr28395539637.30.1776340821979;
+        Thu, 16 Apr 2026 05:00:21 -0700 (PDT)
+X-Received: by 2002:a05:6a20:6a27:b0:39c:2bcb:4197 with SMTP id adf61e73a8af0-39fe3f8b573mr28395462637.30.1776340821330;
+        Thu, 16 Apr 2026 05:00:21 -0700 (PDT)
+Received: from hu-hdev-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82f673e0f15sm6335937b3a.35.2026.04.16.05.00.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Apr 2026 05:00:20 -0700 (PDT)
+From: Harshal Dev <harshal.dev@oss.qualcomm.com>
+Date: Thu, 16 Apr 2026 17:29:21 +0530
+Subject: [PATCH v5 04/13] arm64: dts: qcom: lemans: Add power-domain and
+ iface clk for ice node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260409105747.48158-2-akhilrajeev@nvidia.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260416-qcom_ice_power_and_clk_vote-v5-4-5ccf5d7e2846@oss.qualcomm.com>
+References: <20260416-qcom_ice_power_and_clk_vote-v5-0-5ccf5d7e2846@oss.qualcomm.com>
+In-Reply-To: <20260416-qcom_ice_power_and_clk_vote-v5-0-5ccf5d7e2846@oss.qualcomm.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        cros-qcom-dts-watchers@chromium.org,
+        Eric Biggers <ebiggers@google.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        David Wronek <davidwronek@gmail.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Alexander Koskovich <akoskovich@pm.me>,
+        Abel Vesa <abelvesa@kernel.org>
+Cc: Brian Masney <bmasney@redhat.com>,
+        Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
+        Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Harshal Dev <harshal.dev@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776340775; l=1575;
+ i=harshal.dev@oss.qualcomm.com; s=20251124; h=from:subject:message-id;
+ bh=WoZmdcsES0kVFqgFOLWDNt7rW2ibjnMYVhqmjTrduxY=;
+ b=pb1FuQxvTSvTtFtNSn3aakvjrTq921tbTyrt+lJTWSUPXIUkJOZ2PbX2FnB84iBfcHaMWa2jO
+ remJRi5jMlNA8YKTEqZFohDiorv9WeOQV5MYy7jbYZ2yWCRpkc+Z4GY
+X-Developer-Key: i=harshal.dev@oss.qualcomm.com; a=ed25519;
+ pk=SHJ8K4SglF5t7KmfMKXl6Mby40WczSeLs4Qus7yFO7c=
+X-Proofpoint-GUID: 1Dwe4VHdL-9isuseSLdzjXHz8H5s-i9h
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDE2MDExNCBTYWx0ZWRfX6tzSttyADHc1
+ C326GGc7mLJ48cu5XUS2PQOtDDlTsQIlDp3dC5ozKe+qGvUTZ+bEuLCGKMGIkS/P/0YLMg7DAGM
+ MUBHr9spwa18sd+dMKBzB0UHz+xJvOK88MOkOD0l9wGKWRgLwI2eOlU3rZlBiPwTXn9R8vk0dnH
+ AcPPEU7J9steRTxoGBLJrih5Kh0Whm1dkNeTidMpkZ2FduY1cRc9bIht8baL2AbWJg/UzTIT2Ec
+ 9jxCx2diC+llCL4iVNDj5yVP50eARzaF7DEGa2wbt28YoMROrDTgVCDfX7eSTvculzEnA+NHamX
+ Q2EwHIVLCQLBEPjueHmFlpYFIcbLe79yTO2kUmRCJqoNMLt81NR5XR6LdHHMit1hQlZEqaTjUQQ
+ je5yBvf7GHTt8bw73c5da6BH7s/Pu/NswZBQYVgPrsw/viDSLFi+uM+N2kPkBdVo5gkz9LCyWQt
+ 3pMZ9yh7AHOAHqVsUyg==
+X-Authority-Analysis: v=2.4 cv=H47rBeYi c=1 sm=1 tr=0 ts=69e0cf56 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=EUspDBNiAAAA:8 a=IPGZAGG64n0kybUxs1kA:9 a=QEXdDO2ut3YA:10
+ a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-ORIG-GUID: 1Dwe4VHdL-9isuseSLdzjXHz8H5s-i9h
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-16_03,2026-04-13_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015
+ priorityscore=1501 phishscore=0 bulkscore=0 adultscore=0 spamscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604070000
+ definitions=main-2604160114
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287872-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-287877-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gondor.apana.org.au,davemloft.net,kernel.org,oss.qualcomm.com,chromium.org,google.com,gmail.com,fairphone.com,linaro.org,quicinc.com,pm.me];
+	RCPT_COUNT_TWELVE(0.00)[33];
+	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.7.a.0.0.1.0.0.e.9.0.c.3.0.0.6.2.asn6.rspamd.com:query timed out];
+	RCVD_COUNT_SEVEN(0.00)[7];
+	RSPAMD_EMAILBL_FAIL(0.00)[dma-controller.1dc4000:query timed out];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[harshal.dev@oss.qualcomm.com,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mipi.org:url]
-X-Rspamd-Queue-Id: 4857840DC3C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,1d88000:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,1dc4000:email]
+X-Rspamd-Queue-Id: A5CBA40DC03
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 09, 2026 at 04:27:31PM +0530, Akhil R wrote:
-> Add the 'mipi-i3c-static-method' property mentioned in the MIPI I3C
-> Discovery and Configuration Specification [1] to specify which discovery
-> method an I3C device supports during bus initialization. The property is
-> a bitmap, where a bit value of 1 indicates support for that method, and 0
-> indicates lack of support.
-> Bit 0: SETDASA CCC (Direct)
-> Bit 1: SETAASA CCC (Broadcast)
-> Bit 2: Other CCC (vendor / standards extension)
-> All other bits are reserved.
-> 
-> It is specifically needed when an I3C device requires SETAASA for the
-> address assignment. SETDASA will be supported by default if this property
-> is absent, which means for now the property just serves as a flag to
-> enable SETAASA, but keep the property as a bitmap to align with the
-> specifications.
-> 
-> [1] https://www.mipi.org/mipi-disco-for-i3c-download
-> 
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-> ---
->  .../devicetree/bindings/i3c/i3c.yaml          | 30 ++++++++++++++++---
->  1 file changed, 26 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
-> index e25fa72fd785..1705d90d4d79 100644
-> --- a/Documentation/devicetree/bindings/i3c/i3c.yaml
-> +++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
-> @@ -31,10 +31,12 @@ properties:
->        described in the device tree, which in turn means we have to describe
->        I3C devices.
->  
-> -      Another use case for describing an I3C device in the device tree is when
-> -      this I3C device has a static I2C address and we want to assign it a
-> -      specific I3C dynamic address before the DAA takes place (so that other
-> -      devices on the bus can't take this dynamic address).
-> +      Other use-cases for describing an I3C device in the device tree are:
-> +      - When the I3C device has a static I2C address and we want to assign
-> +        it a specific I3C dynamic address before the DAA takes place (so
-> +        that other devices on the bus can't take this dynamic address).
-> +      - When the I3C device requires SETAASA for its discovery and uses a
-> +        pre-defined static address.
->  
->    "#size-cells":
->      const: 0
-> @@ -147,6 +149,26 @@ patternProperties:
->            through SETDASA. If static address is not present, this address is assigned
->            through SETNEWDA after assigning a temporary address via ENTDAA.
->  
-> +      mipi-i3c-static-method:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0x1
-> +        maximum: 0xff
+Qualcomm in-line crypto engine (ICE) platform driver specifies and votes
+for its own resources. Before accessing ICE hardware during probe, to
+avoid potential unclocked register access issues (when clk_ignore_unused
+is not passed on the kernel command line), in addition to the 'core' clock
+the 'iface' clock should also be turned on by the driver. This can only be
+done if the UFS_PHY_GDSC power domain is enabled. Specify both the
+UFS_PHY_GDSC power domain and the 'iface' clock in the ICE node for lemans.
 
-Looks like the max is 0x7 currently.
+Fixes: 96272ba7103d4 ("arm64: dts: qcom: sa8775p: enable the inline crypto engine")
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Reviewed-by: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
+Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/lemans.dtsi | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-> +        default: 1
-> +        description: |
-> +          Bitmap describing which methods of Dynamic Address Assignment from a
-> +          static address are supported by this I3C Target. A bit value of 1
-> +          indicates support for that method, and 0 indicates lack of support.
+diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+index fe6e76351823..d83cad26a20f 100644
+--- a/arch/arm64/boot/dts/qcom/lemans.dtsi
++++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+@@ -2758,7 +2758,11 @@ ice: crypto@1d88000 {
+ 			compatible = "qcom,sa8775p-inline-crypto-engine",
+ 				     "qcom,inline-crypto-engine";
+ 			reg = <0x0 0x01d88000 0x0 0x18000>;
+-			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
++			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>,
++				 <&gcc GCC_UFS_PHY_AHB_CLK>;
++			clock-names = "core",
++				      "iface";
++			power-domains = <&gcc UFS_PHY_GDSC>;
+ 		};
+ 
+ 		cryptobam: dma-controller@1dc4000 {
 
-blank line here.
+-- 
+2.34.1
 
-> +          Bit 0: SETDASA CCC (Direct)
-> +          Bit 1: SETAASA CCC (Broadcast)
-> +          Bit 2: Other CCC (vendor / standards extension)
-> +          All other bits are reserved.
-
-Indent these by 2 more.
-
-> +
-> +          This property follows the MIPI I3C specification. The primary use
-> +          of this property is to indicate support for SETAASA, i.e Bit 1, but
-> +          will allow all values so that it is aligned with the specifications.
-> +          SETDASA will remain as the default method even if this property is
-> +          not present.
-> +
->      required:
->        - reg
->  
-> -- 
-> 2.50.1
-> 
 
