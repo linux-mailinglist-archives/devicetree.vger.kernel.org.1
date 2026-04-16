@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-287888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287889-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2JOWFjXQ4GkkmQAAu9opvQ
-	(envelope-from <devicetree+bounces-287888-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:04:05 +0200
+	id oHqREvLR4GkkmQAAu9opvQ
+	(envelope-from <devicetree+bounces-287889-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:11:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0BF740DCA9
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:04:04 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7922A40DE83
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:11:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E564A3040A88
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 12:03:27 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 240473047716
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 12:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE0934D4F9;
-	Thu, 16 Apr 2026 12:03:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A279378D78;
+	Thu, 16 Apr 2026 12:03:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="srxwgCje"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R9QIbwsP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF1328CF4A;
-	Thu, 16 Apr 2026 12:03:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562D834D3BE;
+	Thu, 16 Apr 2026 12:03:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776341006; cv=none; b=HbwVT1FUbMxMqPpDuqPKXnjTEZAfEqGOEzFnewLsaMfYjjSTQME+kb7Grv70BASDJKaczadJua9GscV3isQMEwTL+EVs1ZQhTAUVtvrruuRlHjLz9+s3B+CHr9SYZp9VaSslg1rXXGzJ5SO+KvL0rlTaYKNRGHI8oGgVVSfF9RY=
+	t=1776341037; cv=none; b=TUokRRB2Jii7GArO5tbruFzLNFZjfHDBA9G8lKm5XOo5H1N/GbWLg5u4b5HrLVPh/WyzaxwMN1PA2iYf1XtPoLTdtgvV2tSg4opHU4ASZ3antbC7pnhTVbsVR1wAj7Dk2dfk4pDoG0lXSut9KlZobrZJD5IbO+KpiDl5D4L80/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776341006; c=relaxed/simple;
-	bh=jI4kFil06zWjf1iB2JpyDVHEeoSXvfIVgPeUzpVg22s=;
+	s=arc-20240116; t=1776341037; c=relaxed/simple;
+	bh=RV/pVm8MsCdGAJco1670hjDP15pZoTBL/ZV1sRrirzI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sSdjB9109hlSx3v9cCuJMvwJFmA8vSEbSHHvKNbwsqM/R5Gv2hUPKpa9Cnjy3qOnS1zFHj2DaUK6ZS3C4dznlktMdYvsOYzEuQXfAYOY7Kh1fnIcej8MivtiQqXlEbYHS/kcGd8p/3X7sIKS5LA3uZ2gBVq0oq5/e/I9ZqbIPbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=srxwgCje; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BE4CC2BCB3;
-	Thu, 16 Apr 2026 12:03:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YBncq/KPCabNqB4ual4TyiC5nd3sKzhHk+O0NJxPGboGdXX+wRaSPUnH2mQbms4ddc5tmJs4k7chwxDgSH63o2+OJw78cd+1qgbZDz56Ytl7xQ2gjwNoHIVZhaDFnWnCfqdlvR5zGKa2lj/lBywSc8+Vg7D0vg5STljU5ff1hes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R9QIbwsP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5B20C2BCB3;
+	Thu, 16 Apr 2026 12:03:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776341006;
-	bh=jI4kFil06zWjf1iB2JpyDVHEeoSXvfIVgPeUzpVg22s=;
+	s=k20201202; t=1776341037;
+	bh=RV/pVm8MsCdGAJco1670hjDP15pZoTBL/ZV1sRrirzI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=srxwgCjexUJhI7u7BtSixy04nCyM5H4FWBThlGn5OIFN1p1hZEKdRgZz2YYKuh42/
-	 P6EgtT/Px8T2Ot2J/wCOJ0x8buWQwV/Y8+TOlZp2VXTDbqPPbnemwXTu2ivnpUNxD4
-	 mR2em/yma14CQQhACTkdKStw9lP0oGOSo/3gyOG+3LtRanEQyxQN+qbKmNDEKrzhAK
-	 zU8WgwckvbrLdBr50uq0wsziVD/OEXx5dvpNi07VAsTttwmpr6IZWWq6jLFwk3DjSg
-	 iFgB0ehXLDHi2yNFdpbCv6TIzvhINofmfeyu16gIDsPHXiFFfMlwYXtGlR13+zkhiS
-	 i7r2qUNNdtN6Q==
-Date: Thu, 16 Apr 2026 07:03:22 -0500
+	b=R9QIbwsPOe2YCFQmPMnCippjkeP6Qa8MUXuAuHnnykuDdh5djsmYku/XiSm3Y1tyM
+	 dqk+v36Fo2mWS8tUD+QFV2NQ3scIPDihA67UqQEnpiYzW4PK1PdHbf0nlHMzcXPQtO
+	 rayiv8icPm/+SCIC/pF8p5IM8MzYMSkR1pK1dxS+niYSdHx47yCzxWGH4lDOQe71aA
+	 3oANnkpcSaIOdS+DHmOtyc8YS2x3FoDNod0Uurs0Nay6qQRaaL43zshyIplICVSXVC
+	 NrKsslIZPaMKN5LJLbyGHp9tryjiqe/E+PPQW1b8FBmH3VNSLn8fHxnXtpb39wDTDU
+	 Q9E1BDptW8yWA==
+Date: Thu, 16 Apr 2026 07:03:55 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>, linux-pm@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: thermal: Fix false warning with 'phandle'
- in trips nodes
-Message-ID: <177634099816.2735884.15576512683464919146.robh@kernel.org>
-References: <20260410223601.1487473-2-robh@kernel.org>
+To: "Kevin Hilman (TI)" <khilman@baylibre.com>
+Cc: devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+	linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, arm-scmi@vger.kernel.org,
+	Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: power: Add power-domains-child-ids
+ property
+Message-ID: <177634103449.2736751.6317268015188601498.robh@kernel.org>
+References: <20260410-topic-lpm-pmdomain-child-ids-v2-0-83396e4b5f8b@baylibre.com>
+ <20260410-topic-lpm-pmdomain-child-ids-v2-1-83396e4b5f8b@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,60 +64,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260410223601.1487473-2-robh@kernel.org>
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <20260410-topic-lpm-pmdomain-child-ids-v2-1-83396e4b5f8b@baylibre.com>
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-287888-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-287889-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url]
-X-Rspamd-Queue-Id: B0BF740DCA9
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,baylibre.com:email]
+X-Rspamd-Queue-Id: 7922A40DE83
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Fri, 10 Apr 2026 17:36:00 -0500, Rob Herring (Arm) wrote:
-> A pattern property matching essentially anything doesn't work if there
-> are implicit properties such as 'phandle' which can occur on any node.
-> One such example popped up recently:
+On Fri, 10 Apr 2026 16:44:36 -0700, Kevin Hilman (TI) wrote:
+> Add binding documentation for the new power-domains-child-ids property,
+> which works in conjunction with the existing power-domains property to
+> establish parent-child relationships between a multi-domain power domain
+> provider and external parent domains.
 > 
-> arch/arm64/boot/dts/qcom/sm8650-hdk.dtb: thermal-zones: gpuss0-thermal:trips:phandle: 531 is not of type 'object'
->         from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml
+> Each element in the uint32 array identifies the child domain
+> ID (index) within the provider that should be made a child domain of
+> the corresponding phandle entry in power-domains. The two arrays must
+> have the same number of elements.
 > 
-> Instead of a pattern property, use an "additionalProperties" schema
-> instead which is the fallback in case of no matching property.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Kevin Hilman (TI) <khilman@baylibre.com>
 > ---
-> Daniel, Please pick this up for v7.1 as the above warning is in next. Or
-> if you prefer, I can take it.
-> 
->  .../bindings/thermal/thermal-zones.yaml       | 111 +++++++++---------
->  1 file changed, 54 insertions(+), 57 deletions(-)
+>  Documentation/devicetree/bindings/power/power-domain.yaml | 34 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
