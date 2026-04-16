@@ -1,262 +1,215 @@
-Return-Path: <devicetree+bounces-287728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287730-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OA0jKYo94Gk4dwAAu9opvQ
-	(envelope-from <devicetree+bounces-287728-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 03:38:18 +0200
+	id e6BXC+xL4GkXegAAu9opvQ
+	(envelope-from <devicetree+bounces-287730-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 04:39:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8890409879
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 03:38:16 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32AE6409B84
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 04:39:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 546BD302B83D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 01:38:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 775AC3034DA7
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 02:39:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74470204F93;
-	Thu, 16 Apr 2026 01:38:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B13E21A457;
+	Thu, 16 Apr 2026 02:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="hTNhTC86"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="VJwXDEnt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023105.outbound.protection.outlook.com [40.107.44.105])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93BF117AE11;
-	Thu, 16 Apr 2026 01:38:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.105
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776303494; cv=fail; b=pFpTOgh800AP5G3llVAdko2WTXhdFyS3cZwOSQGz8HygKHm6VsOagm07uQVshtWWSC7uO6ALpCqVKQx1gsuriSNZ0VbcQC7jlPiXXl3vl/ECTUqfGyCwsEfupAapn0YrxoRO6D2EqhO+QQBi7lL1Vz8bouC4f+i2f2yMcou/2aU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776303494; c=relaxed/simple;
-	bh=BuusvgrGciGikpqyrPVjWpFDFQ/RHxhtbjLd/fiB59o=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=G8QgARj8K1fBoX8+zUvDBlU2vMUzdp4pJIsEpQ3QQwjz7ScfDvlci3LvpbJIOkrYxCZ1O3HwKihC2g1zCO010Oc+ik88Uc3mcCWqFElPL30+1Qat0UcGPP+S2seGHOxv5II9sMyoY7LzRxX61hM3BqFH5E3kKANq/sq7IFvN39Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=hTNhTC86; arc=fail smtp.client-ip=40.107.44.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hzo5ShSkhnvq+TO97UCpyZUZlv4+gXwj07U2TaE+SWtWJCQ12no10Rwvqx3PZER1lPs0ycgYy05zDGkUy1rPyYQFmkabgvHcBAXp+1YiHpOEpIuuk0TMFHFvcAFAnzfbjQZT5Nj8i89yjRzNcz1OJjaCw9A0qCEAGDh8GJcba0pOMp6ZWU6XYzc3qz3Dn+ToK/COqJMhcIfEHOTSlHyEW5IoR2+RP+JDgAJZWp3vqXRSiBaaPUCWMcYJW7vV5qsUkCkowRwSod7Wac3Bz93lq7thUddztWXjueD4c/g4dPQczNncU080n5Heen1QISdrxg9GWLxTnWUrWDckeVtGNA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xAwrcgiO10DZta9fhQhFWkMAy96vTIhE6EY8hzJ+tfs=;
- b=PrAM4WUwUr0Gis0Zw0GGFiTIr1YM1YbCG6zEz8FJKJCTnBU6/i4iyVrgWId+/4C5c0S1GcGbINWcO2RAh0HXdnjxANBuQyf04GaZhcbmnzLoEy7QjYWaKfDjCL7jPym62S9IMGd+3OCWLmDiws/fXYUbSbtpMCXg7MuFlLu7SGgPPyCBUOwg9+X/QZ11ra/qZaMZ8LrWVOjC+6V1UC5rPUIrXiJkNVD1E8HX/mOkUM7W6lWS0x+7XQMkd0Z2zSJIrFOYKzI3lc6B2GryRiE1xSO0crGY63yjfIyVu7hQX2hsg98spd4sJebr4QdwPeO8nAaJQ55J1CIUwSPBy2m7kw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xAwrcgiO10DZta9fhQhFWkMAy96vTIhE6EY8hzJ+tfs=;
- b=hTNhTC86PWEnWUzByUUKOiVC9AdUtbFJcDYz8p628OlLZj9suETFS9q3F6wY/KWMdfyNK4tuaV23q5QgsHNp0Q4qOosiTJzur9SjfnCCNVWFBL7Vu/Uwy1IaJC1EBolBoGKll6gfJ1vD8kxmLKCsf/YJgkNSB7i3plJgCZ+vUOpvAzp8AAa4LSbLV/19PwoKI/vatOB0tUTTAx8sPhEF5iifPXJNdmwscP4gO5GAPkocxB/E+pgY06UrMYrUgxRuo5Aw/qRX1MJfRITcqMHjoDvFYgqi9wt5NI86ZGVPbcTZdhOdXSyWRKQcFOqzIxzYxOVJ2m9HIEhAvmdpAFtwJw==
-Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com (2603:1096:408::791)
- by TYZPR06MB6995.apcprd06.prod.outlook.com (2603:1096:405:3b::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.48; Thu, 16 Apr
- 2026 01:38:01 +0000
-Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
- ([fe80::8c70:cb01:78fb:d9c0]) by TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
- ([fe80::8c70:cb01:78fb:d9c0%6]) with mapi id 15.20.9769.046; Thu, 16 Apr 2026
- 01:38:01 +0000
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: Conor Dooley <conor@kernel.org>
-CC: "jk@codeconstruct.com.au" <jk@codeconstruct.com.au>,
-	"andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>, Andi
- Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel
- Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>, Rayn Chen
-	<rayn_chen@aspeedtech.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "openbmc@lists.ozlabs.org"
-	<openbmc@lists.ozlabs.org>
-Subject: RE: [PATCH v29 2/4] dt-bindings: i2c: ast2600-i2c.yaml: Add
- global-regs properties
-Thread-Topic: [PATCH v29 2/4] dt-bindings: i2c: ast2600-i2c.yaml: Add
- global-regs properties
-Thread-Index: AQHczJaxkaOKREqTYE6dA5SIQp13i7XgPUGAgACq5GA=
-Date: Thu, 16 Apr 2026 01:38:01 +0000
-Message-ID:
- <TY2PPF5CB9A1BE6FC06FB69A7CD16147CECF2232@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
-References: <20260415-upstream_i2c-v29-0-317c1a905ae1@aspeedtech.com>
- <20260415-upstream_i2c-v29-2-317c1a905ae1@aspeedtech.com>
- <20260415-unrushed-collected-562130070d8b@spud>
-In-Reply-To: <20260415-unrushed-collected-562130070d8b@spud>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY2PPF5CB9A1BE6:EE_|TYZPR06MB6995:EE_
-x-ms-office365-filtering-correlation-id: 875f47c7-cd7c-4746-6083-08de9b58cc2b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|376014|7416014|1800799024|56012099003|22082099003|18002099003|38070700021;
-x-microsoft-antispam-message-info:
- Qt9pdbE9girxJoiZrS0rGzev/fusM0FEjwUunorjEMSjvTKkFvZOU2wDfsFEn6WaoaC7AhG2geGcxCOp1jsMU2SH00lNI/zJcpey46NGHQVJ+7AeJ4jpGFMpy4x8XWM4gx1QJd+ywHdJZr8ON7pcag3uKjhb5vHO5HMsPFGrywRg0EcWUUwLa1G6CsfgBmXiF/e9s1bSAbztBQJaxFwAn/faTRb/4gs5TfudSWhzkjVJznracW6KMYjN/8qkW6yg5emS0ZROFsV/7siOXuSc94FArSs6i6j1jQjugW0sHX+QBSn69QGB0rx+KGOn68xCMdTqLGgJIz+F7AZKmFLh7hwwY7KwEUjsBeKY696cKv75qUSEeDKl8HkNq4xAdsmcNLMwjBwbBMS9coufbi9Sh4eYpU0zs0sx9BfObEoZsVgY8rXAP/OzFLSMyHDhJLYvzzqWwazOK/k0QDhbubHOXieWnV4nrr5yH4vZnapSo1dacwQpP2pMA2gU0360QBjAI0/M9ImO80QcuL4sFumOms2IJ7YikIdncRR7i970C11nBpXpR9HKgPMV0g71B7Cyz5LHxikDKuhtfCYL+E0pZZGusYNujPuPwloBknR+V5+JL5TxLse+DXUDu+SfLTtvsoKK70Pf24nXLNritZB/w4vyjRU/eWKErJthSHbM1omS4ya+lev89ab0pvauOrXYxkjsRL280uQJKb0FyaE9KMpDNV2gd8ocLkpEt/uHvaMaTNkH6sKoS1JTzLiTgFG68FTF6OY4FA+i3U+P4gGoHKStG/FUN0ClO1YcEowcQAw=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(56012099003)(22082099003)(18002099003)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?lKcb8SHiuPoYAg3ZVj9mEDY+VFxhfIjr14iqANk/ArD/Ceyxi5emwA87e3B/?=
- =?us-ascii?Q?jkAGLahhUgLGSpP+mPwWNDRNnXI+y//6P3AvOCIXty/yd+rvMnmnuPIQYP8d?=
- =?us-ascii?Q?NikIqeQYH1J5jwNXFPB4UYwSb1oCESOx0/xA/zHX+iIbN9x6NPJh2/V6HLog?=
- =?us-ascii?Q?YBjAZ30BHhsE1+lCy5LEmQYshZ+utKU6ynDBOQZqPEtEMmscRM5+/gVLxmIy?=
- =?us-ascii?Q?QNC6xVYwuLCFfCO0AuNidvKOduiq+5IWQyAeNSs8SO5LzK0dYJEu9/b8SEQw?=
- =?us-ascii?Q?fnw/YXlznBendBJjmU4QKyOwhx7P/G2X8N2yXaau3NyPpeXK4nGqrk4kcSiB?=
- =?us-ascii?Q?9Kev+hgr5V52ZRHpaj7FzXpHT6kfl58Fi7A+/wpsVOOahv7YMfapDzRwqarH?=
- =?us-ascii?Q?mqQEW1wyxwq3R/pyx0rlS9YmtkBRHkdxkhN9Egyul4uo6iKrUwq064KJI7z2?=
- =?us-ascii?Q?EN2Y6pGp0TM77LT6CD+Qe++3v+yqOAnwWUbhwtetpejzVl2yizmwQAj1/tkB?=
- =?us-ascii?Q?He6O/YWmPcVsAlUmaWARwKKEfM8SdAygjCp0nF2PjRXb03WgO5y3zcyvhARn?=
- =?us-ascii?Q?UQOgfK+STb0QlyEcy9CLzXlcvRotb1DX2ENo3biUCKQwdh4oJorJUPPlbEyZ?=
- =?us-ascii?Q?aXgubw5ZkL7vRXZf/ShRzkxNwV2n0TzjQbKnWjw99aez5GLXm2ksEMHsxG2L?=
- =?us-ascii?Q?Ks3ysbcpYY+zv7Jko4JGw8pwaFkmuM/4UK1GqUni6lQwqxqK8SIOm76F9gtq?=
- =?us-ascii?Q?rngMwCAbhlTYzzY68T8Q0LfG1OImMAZzC5k4ynub1KdljE+06taHNtMJE/O7?=
- =?us-ascii?Q?TM14tpDOR6c5seKljuFcsvBmTLQKBdFMHgb2NMq7mHfgmhXOaRzZBp5hXhhH?=
- =?us-ascii?Q?+XIxNqCQxfqYuOHBNhxhV6nORQ9acB/CmVong+UFOYPmvkoJIhf54RIqOZni?=
- =?us-ascii?Q?fjIEisxvbMqAqVQqWKw6tqw7jg8S75tqT62b00f02zNrTbdJSvKbyFEbztW7?=
- =?us-ascii?Q?ljS5UVks5jmmN5O11IytvTEdDeGe/IhUAf+KOhgsRMgyCZ2xPG9bB1Yu2SY7?=
- =?us-ascii?Q?pJ0eekH776/HJpM2bSuWxgunO8eINkCrnKyInturwmZUzEOX6o0WOkE5HrSw?=
- =?us-ascii?Q?3RqImrRgLaW/XOPhANcCoz0aVQlHjS/m7jZjfFxQ7UH7cxLxV5MJfGIsl36Y?=
- =?us-ascii?Q?xHp78ln9dFUSqkMZogSx00WgTJGX70R5bJVmwugq1UgU7Cn8OeE7zkhdU/L5?=
- =?us-ascii?Q?xKNRYKxfZhphJd/t4Ea76Yd+U1sQMfh+7oWkf4Is2rnOHmJdx2O+09Yc2uW2?=
- =?us-ascii?Q?65V3yO5bPknb+/kvNaOWVchbabibJ5jhSJFf0zYBF4mwbTvI64wgpJq/kIYy?=
- =?us-ascii?Q?BratQAdoUB7MA/LBl5wu9vK0edYhnABDR+aH7R2US0nWFtUelAgJAJICT4vc?=
- =?us-ascii?Q?4LNZQy2uzTEPh7WoyFOHmTwYf0JEUMtEWcT/GcWWdsRYdXzHpn5+K1BEg4W+?=
- =?us-ascii?Q?wB0enWKNfDNXu5b359c39AQAUZeBURIbYyIL6jKxBt4Ju0WvPHaO9ErXI5D5?=
- =?us-ascii?Q?aLOnoJNetDqK744XDWSKZtpNn4La1MfxqN/3nHjVwDk3Debbd7dTtpEHnm9Q?=
- =?us-ascii?Q?JX+ab3pidcYTCiTovk/HXMQoaJRq8cbk2CI40HyRuam78sPt+pSnWFKe3bhF?=
- =?us-ascii?Q?jav5gL7IslC6Kr4/GVKMuqxpZH7WgMNWQsP7Mn1nRxgZBmrmxuoT6jKCGHYl?=
- =?us-ascii?Q?34irAT6wMA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B92F018872A;
+	Thu, 16 Apr 2026 02:39:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776307177; cv=none; b=kqg+D7QtceBAmTioURYt6WMrV/w86zBjGWDui5AgDTn7aty1B//eWd6Ep+tMYdQUaYMYy7mYnhOFKC+mHqnu9TxQ6j24RYE6DtGHoCJTPEPBpDonwSsZgDJW4xR9pVip9uxwmxQmvxtGevWukWzV6Ugg6naPkUNvOOBEUoC2Lx0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776307177; c=relaxed/simple;
+	bh=rWGYOW+dVMm1F57SXLjtSZILpqDH9LQRFtO4GdJAAzE=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=pw9gCyclGOIuA+gJGQzUF4DNIjO78l2geKT+KwY6mHKC9BfJr5qb3VjTyBApH9+fyWKt5DR/aBfT+FhjlijVdFby7vSFU9sTYi8MUYub5TheJW4fdLmwzw0c2hagtlF2TYL5nFYq1/b2qxcyn6cXWqZDAgTBpw/l/NvcoxeghRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=VJwXDEnt; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63G2FVXd679991;
+	Wed, 15 Apr 2026 22:39:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=CRxjkH9LvsGZqlAMtC4QC3mAJS/
+	Tj1JNO9+b76EyTBo=; b=VJwXDEntvV99V1+o1BDkGN2CUjV5qkdZdx9JvJZMIl4
+	VgmLQB6/KVawDEH2C3kOnNRkquoT4wKidfprEnAF10Xq7DmJaURf7KGRj5rvX8KI
+	rdNc3I9AED6ISypWw4uOYmwFJNVc3HtwvXzjjj093CW8gGNTEPAPxCm6/hKUKE59
+	0ZZbwmbo3vKytp6X99u/M6P97otT6sIrbWSZ96HBN4DZ5N7oK7hqApv3lLR2sFX/
+	zYWvqo9caGV4Zplt6lN9AjjYjJOZwEXRICS8ssTGNzvY9rchSw08HTRyPo2gB/K1
+	ioPvPz7aMQxylO2kefrzunGljbLtLI/DmVNSyzx3EkQ==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4dh84rk3rp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 15 Apr 2026 22:39:32 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 63G2dV1o001030
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 15 Apr 2026 22:39:31 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Wed, 15 Apr
+ 2026 22:39:30 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Wed, 15 Apr 2026 22:39:30 -0400
+Received: from HYB-VFz9h4bIQxi.ad.analog.com (HYB-VFz9h4bIQxi.ad.analog.com [10.118.4.30])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 63G2dJpN001886;
+	Wed, 15 Apr 2026 22:39:22 -0400
+From: Jan Carlo Roleda <jancarlo.roleda@analog.com>
+Subject: [PATCH v4 0/2] Add support for LTC3208 multi-display driver
+Date: Thu, 16 Apr 2026 10:39:05 +0800
+Message-ID: <20260416-upstream-ltc3208-v4-0-3884ed3e49f5@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 875f47c7-cd7c-4746-6083-08de9b58cc2b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Apr 2026 01:38:01.7662
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HwP1SfYatdEIWmSE73Nc9LlPm/iWmELXgyzztyUdISHGpEXNeg1PPJZJ34yoWynl2GC1uPQtacZ0f+e+eeUpFzlSPBjde3fl4DSrcE7tbjo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB6995
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[aspeedtech.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[aspeedtech.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMlL4GkC/33NQQ7CIBCF4asY1mIGUAquvIdxAXSwJLVtoBKN6
+ d2l3ajRuPxfMt88SMIYMJH96kEi5pBC35XYrlfENaY7Iw11acKBSxBM0euQxojmQtvRCQ6KVs4
+ pLZX1UiMpZ0NEH24LeTyVbkIa+3hfPmQ2r3+wzChQYDvPPEMNcncwnWn788b1FzJrmb8JXP4Qe
+ BFEbZ3W3ErQ6ksQL2ELvwRRhMqDZTUHxMp8CNM0PQH3XVtFNQEAAA==
+X-Change-ID: 20260318-upstream-ltc3208-7cc8968bf69e
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Jan Carlo Roleda <jancarlo.roleda@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776307159; l=2619;
+ i=jancarlo.roleda@analog.com; s=20260317; h=from:subject:message-id;
+ bh=rWGYOW+dVMm1F57SXLjtSZILpqDH9LQRFtO4GdJAAzE=;
+ b=2AvkAzhnjsBe/f3F5PjCw+4mClQDcAlRHhMngKcYvkcO+OVf6ll+vo7+wf5MoyDBFBIN0dNav
+ TzjsrN+gtYZAD59tskKDiwDsdjvjo38k/1TFj2HmvuwQjouzCDzdRZt
+X-Developer-Key: i=jancarlo.roleda@analog.com; a=ed25519;
+ pk=zPMh+eO6/Mj6tqaie75BLiTLQvE3f9pck0UejKLmLMc=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: v73-9MYxxnJnWyzeu2_FGr0nHaVrlp6O
+X-Authority-Analysis: v=2.4 cv=GIM41ONK c=1 sm=1 tr=0 ts=69e04be4 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=0sLvza09kfJOxVLZPwjg:22 a=uXIjobp8t2wMuQ0fPvqm:22 a=VwQbUJbxAAAA:8
+ a=gAnH3GRIAAAA:8 a=klxL6F2T4m-zQSqrJGUA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDE2MDAyMiBTYWx0ZWRfX0CAWEPGWL4Rs
+ G0kcWHAHMr6dhez3OF40egBkj3LTvoBhUzLdiJIzQGsrrMh8kJLZKLzyVKLPsL9+9Xk1sfOGeKa
+ YlIvOkDVlE4c3azmN+6rw61eBtfJAIgIO7SC7AMO2b8wKLTti0Bo2KcPA7sjMCoqTiFnE2aK4BZ
+ 9eyowV0/i6TK97HvF+OoFhJWRyfjCEk42dfAsB3pWqk5CJHSAdXUtIEtBWJLKEE7JLcDoszrYtv
+ jb5jmbuD6SL0AhYzRqQNoZdieQBsoR2I9V53iQTVHw1VVQ8GeBcXqqNPUDaP+8xG/1BcPixqTtr
+ cdupVs8wgFls8W/ZNSpl8ZCfQUlEoqnkEdai6VzOmAxWUvmzX+DJMlkKmxLdy1OXwGyQFpPv8/H
+ VtqvyoHOVbU3z0IQcuYZXZ9U0DF6Je/ii5sKsXoCLdDkCEpqBYLVEOmiLe5Ia5vcLSI27a3xCFe
+ kbfaYlnp4ofW1ImPVAw==
+X-Proofpoint-ORIG-GUID: v73-9MYxxnJnWyzeu2_FGr0nHaVrlp6O
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-16_01,2026-04-13_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0
+ suspectscore=0 clxscore=1015 phishscore=0 priorityscore=1501 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604160022
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-287728-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	ASN_FAIL(0.00)[114.105.105.172.asn.rspamd.com:server fail];
+	ASN_FAIL(0.00)[74.135.232.172.asn.rspamd.com:server fail];
+	DKIM_TRACE(0.00)[analog.com:+];
+	TAGGED_FROM(0.00)[bounces-287730-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,analog.com:email,analog.com:dkim,analog.com:mid,0-7:email];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[jancarlo.roleda@analog.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[aspeedtech.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aspeedtech.com:dkim,aspeedtech.com:email]
-X-Rspamd-Queue-Id: A8890409879
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 32AE6409B84
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> Subject: Re: [PATCH v29 2/4] dt-bindings: i2c: ast2600-i2c.yaml: Add glob=
-al-regs
-> properties
->=20
-> On Wed, Apr 15, 2026 at 01:14:03PM +0800, Ryan Chen wrote:
-> > Add the aspeed,global-regs phandle to reference the AST2600 global
-> > registers syscon node, containing the SoC-common I2C register set.
-> >
-> > These properties apply only to the AST2600 binding. Legacy DTs remain
-> > unchanged.
-> >
-> > Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
->=20
-> I hate to do it to you on v29, but can you please explain what this
-> "soc-common i2c register set" actually is/does in your commit message.
+The LTC3208 is a multi-display LED driver, using a high-efficiency, low
+noise charge pump to provide power to 5 channels (MAIN, SUB, RGB, CAM,
+AUX). Current for each LED is controlled by the I2C serial interface.
+Four AUX current sources can be independently assigned via the I2C port
+to the CAM, SUB, MAIN, or AUX DAC controlled displays
 
-Thanks your review.
-The common means this global register is common register have common
-register control used by all i2c bus.
-Such like register layout mode (new vs. legacy) and shared base clock divid=
-ers.
+Signed-off-by: Jan Carlo Roleda <jancarlo.roleda@analog.com>
+---
+Changes in v4:
+- Reordered commit order to match dependency order
+- Updated Kconfig to be more descriptive of device
+- Added led@0-7 with more complete example properties (function and
+  color)
+- Driver changes:
+-- Removed unnecessary include headers
+-- Formatted macros
+-- Created helper `write_current_level` functions for LED current
+  configuration, using `regmap_update_bits()`
+-- Adjusted awkward tabbing issues
+-- Updated variable names in probe to be more descriptive
+-- Updated inline comment capitalization
+-- Initialized `i` within the for loop in AUX configuration in probe
+-- Refactored `update_aux_dac` function to use array pointer
+-- Fixed error messages in probe 
+- Link to v3: https://lore.kernel.org/r/20260406-upstream-ltc3208-v3-0-7f0b1d20ee7a@analog.com
 
-> The patch seems fine, so with that
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> pw-bot: not-applicable
->=20
-> > ---
-> > Changes in v29:
-> > - remove aspeed,enable-dma properties.
-> >
-> > Changes in v28:
-> > - update commit message correspond with aspeed,enable-dma.
-> > - remove aspeed,transfer-mode and add aspeed,enable-dma property and
-> >   description.
-> > - Fix aspeed,enable-dma description to reflect hardware capability rath=
-er
-> >   than software behavior
-> >
-> > Changes in v27:
-> > - change aspeed,transfer-mode to aspeed,enable-dma.
-> > ---
-> >  Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml | 7
-> > +++++++
-> >  1 file changed, 7 insertions(+)
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml
-> > b/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml
-> > index de2c359037da..0c769efb76a5 100644
-> > --- a/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml
-> > +++ b/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml
-> > @@ -37,6 +37,12 @@ properties:
-> >    resets:
-> >      maxItems: 1
-> >
-> > +  aspeed,global-regs:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      Phandle reference to the i2c global syscon node, containing the
-> > +      SoC-common i2c register set.
-> > +
-> >  required:
-> >    - reg
-> >    - compatible
-> > @@ -59,4 +65,5 @@ examples:
-> >          resets =3D <&syscon ASPEED_RESET_I2C>;
-> >          clock-frequency =3D <100000>;
-> >          interrupts =3D <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
-> > +        aspeed,global-regs =3D <&i2c_global>;
-> >      };
-> >
-> > --
-> > 2.34.1
-> >
+Changes in v3:
+- Edited device bindings descriptions
+-- removed full stop in title
+-- replaced quotes with double quotes for consistency
+-- removed <dt-bindings/gpio/gpio.h> from example
+-- removed led1-7 in example for brevity
+- squashed maintainers commit to driver commit
+- Link to v2: https://lore.kernel.org/r/20260326-upstream-ltc3208-v2-0-3dbc992b6098@analog.com
+
+Changes in v2:
+- Addressed DTSchema bot warnings and errors
+-- removed extra blank lines
+-- fixed $id to match current naming
+- Addressed Kernel test warnings
+-- fixed bounds for aux channel configurations
+- Link to v0: https://lore.kernel.org/r/20260318-upstream-ltc3208-v1-0-015f1f1e9065@analog.com
+
+---
+Jan Carlo Roleda (2):
+      dt-bindings: leds: Document LTC3208 Multidisplay LED Driver
+      leds: ltc3208: Add driver for LTC3208 Multidisplay LED Driver
+
+ .../devicetree/bindings/leds/adi,ltc3208.yaml      | 181 ++++++++++++++
+ MAINTAINERS                                        |   7 +
+ drivers/leds/Kconfig                               |  12 +
+ drivers/leds/Makefile                              |   1 +
+ drivers/leds/leds-ltc3208.c                        | 278 +++++++++++++++++++++
+ 5 files changed, 479 insertions(+)
+---
+base-commit: e68f95a51d1a8c1594b536c4d495cbea38d47561
+change-id: 20260318-upstream-ltc3208-7cc8968bf69e
+
+Best regards,
+-- 
+Jan Carlo Roleda <jancarlo.roleda@analog.com>
+
 
