@@ -1,179 +1,216 @@
-Return-Path: <devicetree+bounces-287931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287936-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qGToNz7p4Gl/nQAAu9opvQ
-	(envelope-from <devicetree+bounces-287931-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 15:50:54 +0200
+	id eKP6LwPp4GlInQAAu9opvQ
+	(envelope-from <devicetree+bounces-287936-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 15:49:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D82F40F31E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 15:50:54 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CF9B40F2CE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 15:49:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E15A0315611D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 13:45:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 39D783038EF9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 13:48:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D25C3D0932;
-	Thu, 16 Apr 2026 13:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6EFB3C3BFE;
+	Thu, 16 Apr 2026 13:48:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="dvILqsjE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fm6vBwCg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E527F3C6A51
-	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 13:44:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.160.169
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776347084; cv=pass; b=qVcvOkOe5W1MQ1y9Rdp/vbPx+655cqDYvXsYPnYCn928UoL3VZ/XLJkDsIREokav4IZGn3zGN5KJDQieAuTbU05O4gpQzeUVy0wkMJJwdyUqsZfMYLyWM4+SZWUr+obFqzlw/6ysP2mZZYwCZV3gZc2scrAviZtuTj4KHzMKDXo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776347084; c=relaxed/simple;
-	bh=mTVpBdjjI9oKXuDpma/uOA+GO9QV+eMtEK8P/UbJDZY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=P1GusatU0Opkg7zwVqhWqGopbI9wVa5YQ8O9J0MhzBihlTsJ/xevfJzK0kNRLM2q/QaXwLBB7uUz8B2aF8c+k02+NFQbWLJyIR0kDCq9ul0as550oQIGShCXUX8piEbl+HKdq0GG/FuzUmkbTtpTWltc5JO6L9J9K4ITs/UeJ9c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=dvILqsjE; arc=pass smtp.client-ip=209.85.160.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-50d58c513dbso57330471cf.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 06:44:40 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1776347078; cv=none;
-        d=google.com; s=arc-20240605;
-        b=TrnA6pvyGN+S+sx5r/DJ25a3TBFD9mMj019pT8eMvhvvEitQmM4LR5ZPu+TK7mnfOw
-         F1KDJqcXZ2vep4gSGlnTYufgXn3ro+wcZTFsIEey7vkX3FQ3D/t3X7yXo9ho3VfVOAZ1
-         HROTmbYgmd655vaabGKZDE3JhcdpZvMI8dC+9VemOAadk1e+MpWK7AmxgQFGtkGd3jo+
-         EOb526k1ZsuWpSo0YDmPvGYb55kUAaKuHcO0lrmYD8xnBNb3riVwa384FsvkaIBeQXuT
-         ozTkTmiM9mlGEDUqPBB8VPDoa1TxvPsb/RWckcSypdWelCdL8hthjtp9GAFQrEQWm7xF
-         9urg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=vJytEO4edAXWK8urZx0Wgyg6Umc0OrtkWTX64gcjRrI=;
-        fh=baWx+SdHx18ZbJyX9VZQqoVU9eL1MbpvXykI35TCVgI=;
-        b=DTd4KR6CFsBZLc6oaycv8XlNmAPhztv65PSsu5Cp62A3bxAajD+pY4hfkHwPoHgpeE
-         YvGQ/l5SQ744acabKjidMoJUEbi18p5+Dh44CDQGlFduvgTuOyTW1Z/KpFnwW4/koVuJ
-         MK45+Ak/N32VK1ttaxyInjOjrCAkU3hMj9xKx1DALOUN8Aoq/A0OnFdFT8IIq68lS/AP
-         UH2k416CDBoSNW1FP7nQRSdIgGZM1v5kMrw7D5fkTrKPSA3MgJ7zVx1V16KkOMuoAtRW
-         FLybJN3mwmqG1VRn6WhKECz+foV9i05CTqs/s+0YMsmrt4a/tkN+J6+j/dgn+Qy5KBz4
-         dj8Q==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1776347078; x=1776951878; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vJytEO4edAXWK8urZx0Wgyg6Umc0OrtkWTX64gcjRrI=;
-        b=dvILqsjEArZ6xXUf9nYlPSJ++t74PRSTEGhkELZj/hAPpLmm+he1LJGGmc1g6jnUO7
-         FLP+kppvDjX59dgv+y8Y/tqp05UZuxCaa+7IPUQHhLwH9xdY0PmuStcYVkjsrVIhOJgm
-         RpHJJ07mJFAB/rKshCNOe8rbDtXLImY7xVKtw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776347078; x=1776951878;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=vJytEO4edAXWK8urZx0Wgyg6Umc0OrtkWTX64gcjRrI=;
-        b=dJl9uPG4pjxhb3PyXQcsFrzXS744k8e8rgSsDPG26A87Aq4TUk4ohP6INH0ugJd1ZN
-         3sMJPQ3NnTwPUBmK/xJUoWZXAjzYuNGU7g3feaADv+RwhMfbuJ+vifgi0SUicbCoPHJQ
-         oW0HRcAvNt2ltfMpwEi/T2AMQvOKo+06yFwKHmv312aD/y31xsOtXhONI3w5DQm08qiQ
-         J7vdIeI+vjmEQ0Uq/X8zzO71agBPfjv18xnLArgiBCTGMV/x1JvUTcmLRiVUS4KqPTvS
-         aYewKkuEMOLjjngImdnDAjO4af1TaJLup3e2TQ1xBfjDyCL4/vNe8R8QkISrzjCAFyKu
-         NRug==
-X-Forwarded-Encrypted: i=1; AFNElJ8K/ddh930JcUpGQH0TKHO2c30nNV88PyKtWJUmP2i7pOlTZPd3+lmDY5X5Rh7ZT8swvXvTEO3/AaAO@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxAxf+XJd9RmwmPipwV58pOG9utoFx66G11lFKIsk8ZmfcB8MB
-	zcGywHOMmo0XF0y9nYgqUQCsATEgSRHKecnq3ahV0DEeN6J4q30JCfQAUQ7kGAp7iqmJxlhy4Bh
-	wdqASLUOBV2MwnsbATka7b+0GGSkYkW2TJxqbMn9N7w==
-X-Gm-Gg: AeBDietZSsah3c8GHQWrR04cnBHKtjC6tuZLVUSrhAMIoy2HJYI/54eKo97RZDCDJdb
-	eUWz5shlz1+71OJnH+i3y4xAPxa5YabjkpMExEZYEo6TVBwCPwuaGsVrj+lnbkRR6qL5yzLaL6F
-	66Zi2ENm8d3TInXV+ZmmWy6b6ypYbQmVplp2pNao6d+FuJKolmayihjnKwh6o5qcwMg3Jwvj8eu
-	P0LoxRXrb3/7j5mU/zgnb2V3IgT5q5DKOecLBhwRTgBDvl5V7HF1jVqKmfpNyqbJusD/LSdQJNz
-	r17ZV3P7cobLMNT511BlFl01GGFyKZKUNVVRKpSnA+SwrZgYHkD+d0vnslh4CuEXrbd/mEi2AoZ
-	hOxc6O/4S+8z+kg9Nhddzw9TfECcIBV7UpO95eBBEWuYJ7g/RuLt3C6bGEQ==
-X-Received: by 2002:a05:622a:244e:b0:50e:5db:ec5c with SMTP id
- d75a77b69052e-50e05dbf7f7mr213657131cf.52.1776347077910; Thu, 16 Apr 2026
- 06:44:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD48E3B7A8;
+	Thu, 16 Apr 2026 13:48:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776347298; cv=none; b=qcSsJFWDTYvPwpPULc1BxUvdOxu0yzmCTQhl/JcLNAhn2sHmYLQE4Kya8wMWrAzz8yGGH+tiKuScyxCRyEDqA/w5E+3NBRAIngNRMtUWL5xA/vEjcE6/yr0Pas0VoZtUJ3nTkBYxjoVf1/Xo/dIFadh6U22F8JOIDKOz0ZcxFmc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776347298; c=relaxed/simple;
+	bh=uTJD2gM29MtP9GMelRFqj+IKtjoMn9+Dn//dWVAgy88=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kk0GG57dDoMaNeUeDfSJ3pzoiOfeBv+7KLFoZihZO3Hn/fWQH7VquAw14Xx4njaPHJTgXJuvrn24O9wpMO7jSXmJYy+/5jFYg5CDxK9NvjSqY/HL992+N/CdqGrT1cL0dj31HqKeDZmqRkJPN62USNhys5gdQFvKpJtF9fiHtJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fm6vBwCg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD6ACC2BCB3;
+	Thu, 16 Apr 2026 13:48:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776347298;
+	bh=uTJD2gM29MtP9GMelRFqj+IKtjoMn9+Dn//dWVAgy88=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fm6vBwCgh/orJ+Veej0NxOgBPBdM3c4HilOYT/mTK3zbRqgF+VgPtMAckcXiE9En9
+	 qzeqYh49dgiDhZ6p6vr5eIj7LlktJJHzed4z5ZpLPJN5hBjT+8DX7wGRgy8tpt3zKy
+	 alM1wVycCERuFhcU0uGVLzBvxdhTX6LQNWxCVsSTjUFJVTgfKNVH1qJqdYeCowTF5u
+	 WzAy9pQI+UeHqW9R0in129XTFMGU9A3Qu7V0GpuYT1EfgIdnKdMSg4PxAqdbcq7TW5
+	 JY6QSpQGb96OYRUS4mqKYVKEiy7L38JtF6CMmA7E67dgEDKUdirh0CdAh+rsOwGzcO
+	 JVm7phy6y5CuA==
+Date: Thu, 16 Apr 2026 15:48:15 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: linux-pwm@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Naushir Patuck <naush@raspberrypi.com>, Stanimir Varbanov <svarbanov@suse.de>, mbrugger@suse.com
+Subject: Re: [PATCH v2 2/3] pwm: rp1: Add RP1 PWM controller driver
+Message-ID: <aeDmk-t5Lc1zpkg9@monoceros>
+References: <cover.1775829499.git.andrea.porta@suse.com>
+ <0d99317b9150310dfbd98de1cb2a890f0bffe7cd.1775829499.git.andrea.porta@suse.com>
+ <adkrHkANCzxO8KUP@monoceros>
+ <aeC6U7D6TfWm8JPx@apocalypse>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260318071808.817074-1-pavitrakumarm@vayavyalabs.com>
- <20260318071808.817074-3-pavitrakumarm@vayavyalabs.com> <acZL65nbtfMCPHhq@gondor.apana.org.au>
- <CALxtO0nFEG2Lm18Fnb=YVQfy4-Qjb5+WtOxsHNOwYTy2Kzyb4g@mail.gmail.com>
- <CALxtO0kj4JfL94qY-radGcLwMeTnq4NQF7vPqs6giuhBinvALw@mail.gmail.com> <ad4iJhEM-ZwgadBh@gondor.apana.org.au>
-In-Reply-To: <ad4iJhEM-ZwgadBh@gondor.apana.org.au>
-From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Date: Thu, 16 Apr 2026 19:14:26 +0530
-X-Gm-Features: AQROBzDWPjMyI40iDcqRckFcLA4-wp9ja-BQn6tZCrNmb6YScm7vzgbCOU3Mfcs
-Message-ID: <CALxtO0kZX58X1Yk2cmGuBJa98Gcroy0b-wPxL=1h+ph5rT9ebQ@mail.gmail.com>
-Subject: Re: [PATCH v11 2/4] crypto: spacc - Add SPAcc ahash support
-To: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, 
-	Ruud.Derwig@synopsys.com, manjunath.hadli@vayavyalabs.com, 
-	adityak@vayavyalabs.com, navami.telsang@vayavyalabs.com, 
-	bhoomikak@vayavyalabs.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="53ygmt545ulvux3v"
+Content-Disposition: inline
+In-Reply-To: <aeC6U7D6TfWm8JPx@apocalypse>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[vayavyalabs.com,reject];
-	R_DKIM_ALLOW(-0.20)[vayavyalabs.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-287931-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-287936-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[vayavyalabs.com:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pavitrakumarm@vayavyalabs.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ukleinek@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[apana.org.au:url,apana.org.au:email,mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vayavyalabs.com:dkim]
-X-Rspamd-Queue-Id: 5D82F40F31E
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6CF9B40F2CE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Herbert,
-  I have pushed the V12 patchset as per your inputs. Dropped SM3 for
-now, added other code improvements.
 
-Warm regards,
-PK
+--53ygmt545ulvux3v
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 2/3] pwm: rp1: Add RP1 PWM controller driver
+MIME-Version: 1.0
 
+Hello Andrea,
 
-On Tue, Apr 14, 2026 at 4:47=E2=80=AFPM Herbert Xu <herbert@gondor.apana.or=
-g.au> wrote:
->
-> On Tue, Apr 14, 2026 at 03:58:16PM +0530, Pavitrakumar Managutte wrote:
-> > Hi Herbert,
-> >    If the above snip looks good, I can push that and some more code
-> > clean-ups/improvements as part of V12 patchset. Do let me know.
-> >
-> > Below are the code fixes and improvements
-> > 1. Multi-device safety handling - All packed up inside priv
-> > 2. Minor code polishes
-> > 3. memzero_explicit inside setkey, spacc_compute_xcbc_key etc.
-> > 4. Algo registration clean-ups
->
-> I would prefer if you left out sm3 for now.  If it really mattered
-> someone would move it to lib/crypto.
->
-> Thanks,
-> --
-> Email: Herbert Xu <herbert@gondor.apana.org.au>
-> Home Page: http://gondor.apana.org.au/~herbert/
-> PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
->
+one thing I forgot to ask: Is there a public reference manual covering
+the hardware. If yes, please add a link at the top of the driver.
+
+On Thu, Apr 16, 2026 at 12:30:43PM +0200, Andrea della Porta wrote:
+> On 19:31 Fri 10 Apr     , Uwe Kleine-K=F6nig wrote:
+> > I assume there is a glitch if I update two channels and the old
+> > configuration of the first channel ends while I'm in the middle of
+> > configuring the second?
+>=20
+> The configuration registers are per-channel but the update flag is global.
+> I don't have details of the hw insights, my best guess is that anything t=
+hat
+> you set in the registers before updating the flag will take effect, so th=
+ere
+> should be no glitches.
+
+Would be great if you could test that. (Something along the lines of:
+configure a very short period and wait a bit to be sure the short
+configuration is active. Configure something with a long period and wait
+shortly to be sure that the long period started, then change the duty,
+toggle the update bit and modify a 2nd channel without toggling update
+again. Then check the output of the 2nd channel after the first
+channel's period ended.
+
+> > > +	if (ticks > U32_MAX)
+> > > +		ticks =3D U32_MAX;
+> > > +	wfhw->period_ticks =3D ticks;
+> >=20
+> > What happens if wf->period_length_ns > 0 but ticks =3D=3D 0?
+>=20
+> I've added a check, returning 1 to signal teh round-up, and a minimum tic=
+k of 1
+> in this case.
+
+Sounds good. Are you able to verify that there is no +1 missing in the
+calculation, e.g. using 1 as register value really gives you a period of
+1 tick and not 2?
+
+> > > +	if (wf->duty_offset_ns + wf->duty_length_ns >=3D wf->period_length_=
+ns) {
+> >=20
+> > The maybe surprising effect here is that in the two cases
+> >=20
+> > 	wf->duty_offset_ns =3D=3D wf->period_length_ns and wf->duty_length_ns =
+=3D=3D 0
+> >=20
+> > and
+> > =09
+> > 	wf->duty_length_ns =3D=3D wf->period_length_ns and wf->duty_offset_ns =
+=3D=3D 0
+> >=20
+> > you're configuring inverted polarity. I doesn't matter technically
+> > because the result is the same, but for consumers still using pwm_state
+> > this is irritating. That's why pwm-stm32 uses inverted polarity only if
+> > also wf->duty_length_ns and wf->duty_offset_ns are non-zero.
+
+Please align to the pwm-stm32 algorithm (as of
+https://patch.msgid.link/c5e7767cee821b5f6e00f95bd14a5e13015646fb.177626410=
+4.git.u.kleine-koenig@baylibre.com)
+here to decide when to select inverted polarity.
+
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +
+> > > +err_disable_clk:
+> > > +	clk_disable_unprepare(rp1->clk);
+> > > +
+> > > +	return ret;
+> > > +}
+> >=20
+> > On remove you miss to balance the call to clk_prepare_enable() (if no
+> > failed call to clk_prepare_enable() in rp1_pwm_resume() happend).
+>=20
+> Since this driver now exports a syscon, it's only builtin (=3DY) so
+> it cannot be unloaded.
+> I've also avoided the .remove callback via .suppress_bind_attrs.
+
+Oh no, please work cleanly here and make the driver unbindable. This
+yields better code quality and also helps during development and
+debugging.
+
+Best regards
+Uwe
+
+--53ygmt545ulvux3v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmng6J0ACgkQj4D7WH0S
+/k7hMggAn8rENjZtWE1kj1D/NlWx5jd1LB+UVOUTfUUHjZwhyEqvw7BXYQ42LooK
+ONSs3zBv+kpBp8ZVk5oON1Qw7Cjp7WXon5ePWM4adZE96cqdp62lExHO873C/2f1
+LJcEvluoxNyDLtSoDKvlhlnYfxi/Cww2aMEa+Mm2n/NWbkEQAnI8zW8WWifBr16/
+xKaZDUHJKyxfAq2wrgqWwersaJTsx4OQ3slVTLraUQ9nG3bJmuhde3NcSRLzXlcg
+1Be+aAYFggvG10IjVlmiqaRAVEa4jTMo42ep/xQH+Lqr1BYgVFwbYHvpFQ7kmPep
+4VBRQjnRDS5So3LCp7p3VgT3IkAGGg==
+=S8mZ
+-----END PGP SIGNATURE-----
+
+--53ygmt545ulvux3v--
 
