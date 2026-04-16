@@ -1,193 +1,180 @@
-Return-Path: <devicetree+bounces-287955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287941-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sC+1JNn94GnzoAAAu9opvQ
-	(envelope-from <devicetree+bounces-287955-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 17:18:49 +0200
+	id wItJOInw4GnfngAAu9opvQ
+	(envelope-from <devicetree+bounces-287941-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 16:22:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD4214107E0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 17:18:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4119D40F81A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 16:22:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 77C62308F064
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 15:17:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2E7BE302C338
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 14:22:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA92D3A7F7E;
-	Thu, 16 Apr 2026 15:17:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACCAF3DE454;
+	Thu, 16 Apr 2026 14:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b="lEv7agIW"
+	dkim=pass (2048-bit key) header.d=arista.com header.i=@arista.com header.b="K235CF+t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from toucan.tulip.relay.mailchannels.net (toucan.tulip.relay.mailchannels.net [23.83.218.254])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f45.google.com (mail-dl1-f45.google.com [74.125.82.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 979393A0B2B;
-	Thu, 16 Apr 2026 15:17:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.218.254
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776352634; cv=pass; b=g149Jd5yMRgvihS/vSHGF3lx9CHzRZmVzZSTPEncw3kUGEmdKf6Qi/yxOFxgSewrXj+1NULqyZF1XTIxU5ZyLIGS+O3YX3ihlvEnbRKgdqreAmyTGsllJKaclkoQYKLpf7/ZWZnLGF41AdfytFl5SObEuhwopRDNak2m/SKgRs4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776352634; c=relaxed/simple;
-	bh=k5MUKGOVrCVrBWwmnXvVxw9XxdH4Lvc7kPSIVFfh5KY=;
-	h=Message-ID:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:Date; b=gJ/7PUphhflRlDS3VvXWolNrZTZLyz1Hxnb/KlM69tFZmLcofNxLki/c74wwqsoJV0WR5q8Tg9HG0oWSdRoXw4PgqVSPfboangTC+QOnx4tuaGxqiWKoiFwH02DDV8aSlqqSxEJr5Er3OcARlgg2zv1mNQBr9NraYu5NGljfmlc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com; spf=pass smtp.mailfrom=smankusors.com; dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b=lEv7agIW; arc=pass smtp.client-ip=23.83.218.254
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smankusors.com
-X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 11E3B62972;
-	Thu, 16 Apr 2026 14:18:18 +0000 (UTC)
-Received: from fr-int-smtpout11.hostinger.io (100-104-232-135.trex-nlb.outbound.svc.cluster.local [100.104.232.135])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 65E1562156;
-	Thu, 16 Apr 2026 14:18:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
-	t=1776349097;
-	b=KkrIPuYuIa1s626KFZrMp4kd+TG40trShL9RHkBCAyCCFCvSCyvDSddm0yyP+xylp1YkCT
-	vJVp0bde4utCUhFfLbzB9c5kPoFNfIWPcooGb7RCbURlujStBoeSv8o5wbg96FzfoDHHxj
-	wfEjJr02KIOdWcBPJN1Pn/Xc3bFGN01ZMfillqrhxFNotezXeKm63AiukhqIVKo7AabdpS
-	Mdd/NgO1poTRBYZ1lAv/06ryg+q9t3aZ7KfIox+ECjtK66H1iGJ3u9rwm1ulDgmR4HcZVx
-	QueAX5e5iDqoFyNEP3/Uh37fqw3qau09JLMVQSXoOdogaiCyjU+ajqmb2G0BXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1776349097;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=Hn6SBBKIBqaGEQumTEmlP67MmqncRnqILDOCk7wtFDs=;
-	b=3FD/HUIHpOhQpipCg/YCIwraGX409AcFy0DQMsPNpRo5Jui8Os9LwEMliX6maPCJksspRV
-	wuecWR2CHA+WUYQuDaPcQySHiVmLXcnlWg16bnGNDzSF1EZCBt2bD7FnnaISdIksZJ3bzf
-	yLkHX24Ik4Dg9aoCQxzQ1KxB75j5TK17wfg01W25BluPlPcPEVkBhzCt458iLkrMY+Ru7i
-	j32hdqXyg6uD4/xLSgm6yPKaliesHsgMGSKe+bQ4RJEu7efvj2WVRZvgPMPEpJDxSPLnk7
-	NDDePxyNGtDkL8rH/EWEpZ1n68wiYf1Z4GomVAIs8SeiVVwLuUp/+ivWDG13jg==
-ARC-Authentication-Results: i=1;
-	rspamd-6c65dd77f-lfrr8;
-	auth=pass smtp.auth=hostingeremail smtp.mailfrom=linux@smankusors.com
-X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostingeremail|x-authuser|linux@smankusors.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Soft-Squirrel: 4a053fd44af3bbf4_1776349097333_988753514
-X-MC-Loop-Signature: 1776349097333:2263129882
-X-MC-Ingress-Time: 1776349097333
-Received: from fr-int-smtpout11.hostinger.io (fr-int-smtpout11.hostinger.io
- [148.222.54.47])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.104.232.135 (trex/7.1.5);
-	Thu, 16 Apr 2026 14:18:17 +0000
-Received: from [IPV6:2001:448a:c020:bc7:ac88:b14e:d67a:9dbd] (unknown [IPv6:2001:448a:c020:bc7:ac88:b14e:d67a:9dbd])
-	(Authenticated sender: linux@smankusors.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fxKqP3jdgzyZq;
-	Thu, 16 Apr 2026 14:18:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smankusors.com;
-	s=hostingermail-a; t=1776349092;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Hn6SBBKIBqaGEQumTEmlP67MmqncRnqILDOCk7wtFDs=;
-	b=lEv7agIWouzZiTX/q3GviFd5zRkt3hLZEedCn9EgArxYRRzbOmMcCEMvJw0xVP1fn2lrh+
-	32TwqbsRJ1q5p1r0gwucg57ZHqd3nRhawTxd8H6c+BYdBg2lvlKf9s62Zq2GJQ6QA2HL48
-	tkRIh+qVzRpvnHZaJHH6Hj1ELtF/JMReu90N1lp7tCL6Ck/DcWs3Afeqa0jpXlYeKh6eOR
-	ir8hm6HQzjOMDPDI497y1HFwdIhnBE/uGbG+HGaAZzGYRf7u4MyjpD72Zk3I3wbjgwFSOs
-	El4s9gliFLNOqaGHADFF7n96uLNrcG4txqfvbnSVTih1h1GCVmtNXsqhlLWVrg==
-Message-ID: <92c8ad93-8e7f-4714-91ea-ebdfa31a4ac0@smankusors.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DEF43DE44D
+	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 14:21:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776349317; cv=none; b=I/FemHYW1wEmXy2qkE+PX33dCVEqky43HfWLVxcia4mGdUsUTSQcKcQTMSYSpMPKI2V1tCDAdKBLYJe7jDYVv1bOYi/bMCpwgdSvFrUKR/BgD7QLijNt8ixbpGh7Bpx3DjpCZYuguQQ0ambRul7NBP64FwNpSW7IwAJ1Ftq5R8Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776349317; c=relaxed/simple;
+	bh=mAjT45WQhnjtVyYVvBf2pQ/QyrbZdt2tiyZOsc7r+ck=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CkTK+G7+jsMqkOuAxsalxAmwGlQ5Uv5xRYPqfB6ilKJlBhL1H0ADuCS+LXyUdJVgjdQDfa/pszuXIOPBlEpo9ZoN00QWd1M9lp4r0BS352/kEsKGV2BtAznCX4rbdFoERMSBtQmcKJ3F8tbcbZw+Fk8N8M1iH6kB1Z7JjWDPSvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=arista.com; spf=pass smtp.mailfrom=arista.com; dkim=pass (2048-bit key) header.d=arista.com header.i=@arista.com header.b=K235CF+t; arc=none smtp.client-ip=74.125.82.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=arista.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arista.com
+Received: by mail-dl1-f45.google.com with SMTP id a92af1059eb24-12c0ee23e24so723760c88.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 07:21:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=arista.com; s=google; t=1776349315; x=1776954115; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uFu1DzNio6n1RumPdBhDerBBGIlEwFQJz0L3Q0gtmOw=;
+        b=K235CF+t5eMvvDMUhl9C6BbtmbC7yCWvlzK11XOVOt1y2ghHNdcbvdC2WqBb9XAdq7
+         U6EuokXEvhkqUGlMRqSup+F0q89Ydqzmn5sA+Up3n2/VUb1qC/CcuCffxvIVqBW/WBB3
+         KytuiJhyxtUYE+5eVjtyslh80+BbAPX1sUPfuHn39h/jOtGfmLY9azcIpEqsrUH/FkRX
+         kqi6oN40QQPoeumhfuefIayJEO4Qfo6BJ/LNZxhnmHwH8fU5DU3Ymr/Jqg+a/dQHyiCe
+         AYX2Rtgue+sOktyWtWoz2J80eg+Egx6EJPFDvf/6/JKRG7E+TyrM/sAJM5MCszjV7Krn
+         3wXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776349315; x=1776954115;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uFu1DzNio6n1RumPdBhDerBBGIlEwFQJz0L3Q0gtmOw=;
+        b=Nhl9BbFPaP8Le4J+OCPV7lkC3v3R6rOJ1opfWewLIBrjuHfWvs/jKFGS45YgTHcGGK
+         BoY/dYkfNpJiWKC22N9rzQ+yQ2xWEDxIsYans9VHDJ6kYjOesG5oIX3tMSp1PRj6x6GN
+         SYxBqIp1uWt2Alg65UzegnjBZ7FI2xHsuOKvBaH0oALMzeHnUFaEoSiM5jm+j3Yp9tvQ
+         R6Ad97OZjl7oyfhN/guhc2dJpNZHNz+GeoZIST4SxoketF2gWgaQm59si/k7x6OLZVcm
+         IQnC0B4PQmgquA8KD3vl46WyS+dDs2g7H3NhTsfq5H4q4qFntpml5Hu9PsPCLveyOiUk
+         zGYQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/h1OVJQPxWz3C/VnVB4RH3hQANDOh3HsTYxx7vdOX0TbCmQVFiMmFecL34o3mQCYZtKeJQ0LlXXMjF@vger.kernel.org
+X-Gm-Message-State: AOJu0YyzR9Or+GtclnGA0/u2+VtOwzdUoXJS38plL+6EqKQupREONylc
+	oQjnpOuMoiALgk7r3T8QGJrP45KDls+rqRoAmr4SZY8RQv/AX/a9oRora0iumqS32A==
+X-Gm-Gg: AeBDieuVRH7GTroGdhOvh5nQhvhw/3RE5oZT81SrebqTZjg8eP1n9mJUA+B13edFhnf
+	9mD2nh265aeSeWPlwTybU4aj88BRC8q+wCjCKfEFsYRoAnErkrrOAWtbCfWS+YiisP8agYIyZr1
+	jg75qfCl61JnuD9IB5HDAF8AsWFLVhKE/AQFYcvCkr/tCJ3igeqVj1yn2Hs6ld3OOT+sRuzoeJR
+	UZe+ecmNG0lkAu9RsnC2fr05p+nsM7+u30A7gbRQ+UtbMqUlpNA0xVmvGa28Z1pwENK8e2UdEkv
+	rHt8aBg4wek3Mm3lFFnSPBkRIYZUiyGahNZXyQ2j1acUkINtQFBlBopoDT7z1sTde+XflMKS6PV
+	GBOLeWZEHL2z5Iq2diFb63aofU65eRhLf42uwThxeAgxAzrQY05uXW45inyGN8rvlx7qca7iSl+
+	YLWwv8vEAe+Zoe9N/LsALByYAa7blgDXehPJOxa6FyEq5X1H+lYU7/KZGky14=
+X-Received: by 2002:a05:7300:7495:b0:2c1:7ca:cec2 with SMTP id 5a478bee46e88-2e193539dd3mr726559eec.8.1776349315133;
+        Thu, 16 Apr 2026 07:21:55 -0700 (PDT)
+Received: from adriana-schoodic-rtc.sjc.aristanetworks.com ([74.123.28.13])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2de8c605851sm7577478eec.9.2026.04.16.07.21.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Apr 2026 07:21:54 -0700 (PDT)
+From: Adriana Stancu <adriana@arista.com>
+To: alexandre.belloni@bootlin.com
+Cc: linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Adriana Stancu <adriana@arista.com>
+Subject: [PATCH v3] rtc: bq32000: add configurable delay between RTC reads
+Date: Thu, 16 Apr 2026 07:21:51 -0700
+Message-ID: <20260416142151.3385827-1-adriana@arista.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/10] dt-bindings: mfd: syscon: add qcom,msm8960-sps-sic
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
- Rudraksha Gupta <guptarud@gmail.com>
-References: <20260414-msm8960-wifi-v1-0-007fda9d6134@smankusors.com>
- <20260414-msm8960-wifi-v1-2-007fda9d6134@smankusors.com>
- <20260414-frisky-aloof-koala-4cbfdb@quoll>
- <b80727eb-6a7a-44fc-b6a2-56c4ee199b57@smankusors.com>
- <bac33524-1caa-4bff-be36-df909917cf3b@kernel.org>
-Content-Language: en-US
-From: Antony Kurniawan Soemardi <linux@smankusors.com>
-In-Reply-To: <bac33524-1caa-4bff-be36-df909917cf3b@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Date: Thu, 16 Apr 2026 14:18:09 +0000 (UTC)
-X-CM-Analysis: v=2.4 cv=Gq4Q+V1C c=1 sm=1 tr=0 ts=69e0efa4 a=qlZgJvs7r4/QxD5CpBykdQ==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=nC9N5ERdtgYCITw5gnEA:9 a=QEXdDO2ut3YA:10
-X-CM-Envelope: MS4xfIJNXRkwk6UfT2R1d4BLhZd8iSaOBTVF8KQ1LY2UKWlxoF4S1yfNAIk0bCspaFT+wBZCapQ9ThGLYZgIg6WrmM0e0VdU2JG4LL4Lg8n7ghFuNdXqsabh lTBBeIl8Kf23ush2n294cAyp3dkDsKx/NjVjWL03b/paRb/REC1DubGf65J7UdRxw1F+9yMuQmEfn7WaskcUBQpy7GatV1w+4Vvq+rJC/aPF+ZCCc/ylkjgJ ykHjFCTpZOMoVKrR6KDILzLMfEJfSVWtjQpXhGxBlfqi88MqyeO8hsR0G3B9jlDZb+g2TdE7HEuDThahTrGKqJG7m7GGAKy5IgKI/NpnFvtL2PVRUjcwYEH2 aSCMo7cK14lVXCoDDkEszO2eUISDf0h4RlJt2SP55dFzve8AzpDF5n31Uz08qICfzSonG0vGFFA+A+6wL2k7aWgFMJd1j/WhH1qLaLiqYQn1HJmSfX3A3Til 04zcUAGg5I0JGNsb9iq++dcYBvq7fb/M8aOkswTPs5eMmgBQcgUgk2UJ20hwE6hEUgdSAfpCIzCO8s2xb2Q+54bGksxMvF8VjXalPkhiAO8PJumsBreLZ/5c IUbpOuEPj/vj5Iv44u7k5GdQe5BZDXfOkC+3Z7CZB1Zz8H9lcXITkVU9S6jh1d0nUYrYMdWGrfZogYPp+C+YRUt7t8VPhbzyL8Y38l6B8JRjKgH2t+e1gnrw UI+5UXfhCgOP/UfTNgqfyO9r7gMS7lVm5CUISqaBjhEVoHtSfWGrOw==
-X-AuthUser: linux@smankusors.com
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[smankusors.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[smankusors.com:s=hostingermail-a];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[arista.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[arista.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-287955-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smankusors.com:dkim,smankusors.com:mid];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[smankusors.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@smankusors.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[adriana@arista.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-287941-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-0.998];
+	DKIM_TRACE(0.00)[arista.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: DD4214107E0
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,arista.com:email,arista.com:dkim,arista.com:mid]
+X-Rspamd-Queue-Id: 4119D40F81A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/15/2026 1:51 PM, Krzysztof Kozlowski wrote:
-> On 14/04/2026 20:34, Antony Kurniawan Soemardi wrote:
->> On 4/14/2026 2:19 PM, Krzysztof Kozlowski wrote:
->>> This was also sent. Where is the changelog and versioning? What changed
->>> here?
->> Sorry, the cover letter should have referenced the earlier dt-bindings
->> series [1] and explained about it.
->>
->> In this patch series, I combined the original 2 patches into a larger 10
->> patch series to make it more complete. Especially since earlier feedback
->> noted that the bindings were not used by any in-tree consumers. Since
->> the scope changed significantly from the original, I resent it as a new
->> series rather than a v2.
->>
->> Would you prefer splitting this series into separate series like before,
->> for example:
-> 
-> No, you need to keep versioning, changelogs and make clear how previous
-> comments got resolved.
+When the RTC is used on systems without a interrupt line, userspace
+tools like `hwclock` fall back to a frequent polling loop to synchronize
+with the edge of the next second.
 
-I see, thanks for the clarification.
+On the BQ32000, this aggressive polling can temporarly lock the register
+refresh cycle, because the continuous transfers prevent the hardware from
+updating the buffer. This results in stale data reads or select() timeouts
+in userspace.
 
-To confirm my understanding, since this series already went out without
-proper versioning, the next resend should be labeled v3, with a
-changelog covering both what changed from the original dt-bindings
-series (v1) and from this series (v2).
+This patch introduces a delay before reading the RTC registers in order to
+provide a sufficient idle time for the hardware to sync with the register
+buffer.
 
-Is that correct?
+Signed-off-by: Adriana Stancu <adriana@arista.com>
+---
+ drivers/rtc/rtc-bq32k.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
+diff --git a/drivers/rtc/rtc-bq32k.c b/drivers/rtc/rtc-bq32k.c
+index 7ad34539be4d..edce95eb328f 100644
+--- a/drivers/rtc/rtc-bq32k.c
++++ b/drivers/rtc/rtc-bq32k.c
+@@ -16,6 +16,7 @@
+ #include <linux/kstrtox.h>
+ #include <linux/errno.h>
+ #include <linux/bcd.h>
++#include <linux/delay.h>
+ 
+ #define BQ32K_SECONDS		0x00	/* Seconds register address */
+ #define BQ32K_SECONDS_MASK	0x7F	/* Mask over seconds value */
+@@ -89,9 +90,17 @@ static int bq32k_write(struct device *dev, void *data, uint8_t off, uint8_t len)
+ 
+ static int bq32k_rtc_read_time(struct device *dev, struct rtc_time *tm)
+ {
++	struct i2c_client *client = to_i2c_client(dev);
+ 	struct bq32k_regs regs;
+ 	int error;
+ 
++	/*
++	 * When the device doesn't have the interrupt connected, prevent
++	 * userpace from polling the RTC registers to frequently.
++	 */
++	if (client->irq <= 0)
++		usleep_range(2000, 2500);
++
+ 	error = bq32k_read(dev, &regs, 0, sizeof(regs));
+ 	if (error)
+ 		return error;
 -- 
-Thanks,
-Antony K. S.
+2.51.0
+
 
