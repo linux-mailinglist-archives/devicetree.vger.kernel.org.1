@@ -1,482 +1,174 @@
-Return-Path: <devicetree+bounces-287839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-287841-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGc2MeG54GmIlAAAu9opvQ
-	(envelope-from <devicetree+bounces-287839-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 12:28:49 +0200
+	id qOMTFVu74GmIlAAAu9opvQ
+	(envelope-from <devicetree+bounces-287841-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 12:35:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40B2B40CEA0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 12:28:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F5740CF6A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 12:35:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 514243035887
-	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:27:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5CFD0300210F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Apr 2026 10:33:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 688D0396567;
-	Thu, 16 Apr 2026 10:27:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE883A4F5E;
+	Thu, 16 Apr 2026 10:33:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="bzDaiW1i"
+	dkim=pass (2048-bit key) header.d=arista.com header.i=@arista.com header.b="B9BM1rtF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB163947A1
-	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 10:27:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776335258; cv=none; b=lHN1vcONTQUHCMW5ae9sVwtGR+MHYC9MzuNJ3j2LDXv0/nOZMzOvXZD1lh7BpPlqLzAQgoPyPfaOABB8OeOkG5BIZ9AuMa0N3HEDQ8mxeNEtctEgyrasIG20HnWASrBQuP6GmRl8uXhQNY5iexF3GF2G4UGkQ7ZuZGQzx+zWrBY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776335258; c=relaxed/simple;
-	bh=w9q388Vzqwl8rvLdEaZHWTqCR0j9/zn7j9pEumntPY4=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n3L9D2ty4140c125CTv66L9f49z4AJUJCDKL2uer+QcGBxSw3hHZ44M6+XTm+O4kxxkXXWyF4xAzEEbYov7Zd8uvUHjZLr+udc00uz32A4kMxpk8wTy6WAQi1plzWDJHj0yOKLxsMEm5tlHrFsCMIPKX/JFJe4JA8MgFxwTmTL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=bzDaiW1i; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-43d73352cf2so3978263f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 03:27:36 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE947396587
+	for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 10:33:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.161.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776335605; cv=pass; b=qGxnFRtCXRkvbDVekJ42OKBw/X3/XH6QUFigy2+r+iDiek1ufCjcjOBFhTJFTySUGmm8N1h2U/pVoxX7VnTxB3VhOTSWijPY4klcO9BMbrybQIJEdgS1PoYHWUxo4F7cP7Wfxx8IxfQTjAe8AGcmNnkUEMqlzJ5o3g6HoNNhI78=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776335605; c=relaxed/simple;
+	bh=ys6SjAbwkwwOSNiMZKz7D7xfWBNhXXjI7CffrOihqRE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lH81enFN4A/OfJf8BbOAvqkBTqUQV7HD58mN6A0HAoRBYa8LkkEw/ohjZ10KySFV+NOp2t6Ed3kaNRsvuV6DpJV+Sgcxu7xkyVPL7KaScYxufxcK9fgStXQ02EXf7NmqmzKNZfE3vl6lmHBuKyXXEhq85XfAgEBsnolTX8yS/s8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=arista.com; spf=pass smtp.mailfrom=arista.com; dkim=pass (2048-bit key) header.d=arista.com header.i=@arista.com header.b=B9BM1rtF; arc=pass smtp.client-ip=209.85.161.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=arista.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arista.com
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-6806d92de66so302559eaf.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 03:33:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1776335603; cv=none;
+        d=google.com; s=arc-20240605;
+        b=eqFf6babcJilpjO9FkxtyUqZXoKwxBZXP8tKxrA6Y0cBag6WjVaX3WtB79OMyfmf0r
+         8g0tN8JYcjosQlvroQqkwrtpobp1HI4quHY3MfU6j/7Pgay+ZgMh8nIxMvNYQQl34hMr
+         SFzY57SPLPf5cluXrRAVK+hZ4+UjdWpAr4pxSoHI7xm2Lvs4pcvEg3TlSZPheJc9fQzc
+         f15W8TjQJC2YJZ1dCVLFDqWOpSZTi09YwtiPD0pj0sfJZ20SvTpNey/ZjLmUXurWwRDQ
+         xZ2jG5mDoeTt+cyhIavDYsnnddBU+QRviKoRRRHn1Nz1lFr98qzI38kRm4LEN0hw38gQ
+         2Cag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=ys6SjAbwkwwOSNiMZKz7D7xfWBNhXXjI7CffrOihqRE=;
+        fh=kdkQqaUKotb8rA9GUKniNI/udof4d1XLJRecYzF8Wmg=;
+        b=XjgfCXNJbMSO4RM6VGIt2brbTneAG/ntno7LnN3f3kc/049LUELggJaruPrBx7LoI9
+         0E17n8+nDnqzhktKYaAcbMmDX9iSEU2N4qDSNqyaX5iBHdhLS+qxtKb3MmwfK8GR8x6D
+         iwFs0+0mRNtQS6XB3kEF4mAj1tt/vw8tQIaiPskS5kRgXuV+S3R9SY8h4q/NBUuLqY75
+         dqyyMnIu1Fhk3AVitsetyWNfFxHHkNyW/7ewC9tmhiRzxZiR3TW9sFGRkDqOgtMBfAE+
+         fQTu7YKrxr4B5OoWDvn+YjRNqPq0jb9XGCH7nk4wZBZfV0Nj/fc/DE8QRYdN31QaUsX3
+         S2eQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1776335255; x=1776940055; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4HCRqhH2DLFveExlKyLVA9G9WBAn4h6tRZdd4chEffg=;
-        b=bzDaiW1i5OZaAZnjzclrCjivvi/q76gjygkY5Rvg/nSfLF/MMJnasGzoK7uTsGA53J
-         JR3l8j3byiAudfEGyhuUPwWhe0UlEIaFu6EBod8eb9m+r2hD3EjIbXxKRmV86oddNNRd
-         yT9rQyrAMFqeOoCRWmlVgJ9XhHv63TXjfxOnNzTd9kGvPzql+5ZwkW5ROX+GkhG2uSGy
-         gj4Ep14yZr23Dp+CJuSGUpr1FtKD5fkUludeKQ3N6XgLA6W8uU6KnB52TNO99YSrYLvk
-         HN15BG6Nt4qbat0B5lwiaBc5dE/7behB1RwAxhrb93d4YQtO4XGjkU19d6hypjzgcUsS
-         V+tA==
+        d=arista.com; s=google; t=1776335603; x=1776940403; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ys6SjAbwkwwOSNiMZKz7D7xfWBNhXXjI7CffrOihqRE=;
+        b=B9BM1rtF2c2V2dZx0YIK7ZBfI86RCFTH3w9ZB56U6T16m2baMyVOShnQaFAAKJnlrV
+         dbhSYONpoL6zdFXTL/sXkRXaBdUdOK/xw0d3y9CFP6m5M1RgQI3eDiBTcsDLYZApGgEk
+         yUicuaavLrrsQIdPMWQ0SSRy9kvo9+h9zMg8Bbuwqr39kPUWHqDYgpZxuwuFwjaL5kRL
+         L775Buz3czvUJ0qv4JCr9Xp4xZyG2EU3WrdTIuXX0xHsutmKcvQtnCc/jflTptbCMNvE
+         ngGBOR8N54ymJTM4XnrqlsMLDTj9/OfK9qYvmqTSXM3eRMYRvhfMFb0D0l1HXbzHaZhq
+         SXjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776335255; x=1776940055;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4HCRqhH2DLFveExlKyLVA9G9WBAn4h6tRZdd4chEffg=;
-        b=U1aOA0RyJ/3b+PRtEePiydONsodB7yqwHoQubbmuIaNMYwxL/hND07V+zoiilF7y4A
-         naT4eW7cCMs7pHAh4mEW9nwepL8M/WU4e9fIP+s4JZ5uTJ6AV1cMI0rK4iOXVXy7vHuw
-         yx2/230vExJRRbcSp/6IH7MQq4pIsP4dSENhR0la1QDrV4d5vnze0eHD1RhOf2gjH4iZ
-         C1JkZBgySZ47fwYRFMJX48S5vDX6kZHlSWXkyyQHcZC93It7oXCDTwqiCIAxqs0LVwi6
-         yZY5gZs+YhzMbl8KljzN8mQkp9fAgt3p6/bM+nYOK/p/BmcDXR4P8nM44Qdr2QEKcdBh
-         95Qg==
-X-Forwarded-Encrypted: i=1; AFNElJ9kdJmgWk4Cz6WKawxac2at873STwGmn+RKB7kyF9UpMANaUrgsJ4HmJGxGDnCvBGJUUMV0HDH+VfuI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTWLNSdSDkw9e50y7UVQiqCiHTb3SkFadmUppDjXVP4C7CLnrU
-	XwcTB3IZu+zN0oDU/INp4jifUClHuRs6Uo5nUrxu4ZEGIe4mRC0CHvyVmyizRL1rwCs=
-X-Gm-Gg: AeBDiesGKsfyaPoDX9QZNxHm28rDJRjkRbBX4ugdUcGuS+DbYGB/OBoBEoml9JM8Fw8
-	3MsrY+15mwPlFQr6Gsfjo+1OVbXm7Kxbw5bmphKWWJswKQRrzGmf8yB/crqc4/W0M51BbjWbqoM
-	MfCxCS5nirIUorQsNTQxAG3GZ483uE8OIBodiQsDIHeUCZWlNTgAI2JGGfDZxIVst3HY6y81UMw
-	H6idLyW29hgOfd3ZDO67EsX/RBvhnX6q3Z9Am8RCeRz1/58jHNOGWlFlIhvedaJhi2G06vZfliE
-	qblBuFDJ5fB0ionyhwUJw2wf1iSNmHDAaA2Sse1SOFGHMWzVpISkZGhCmPUCyBTJRSMobtPu3x2
-	D2FsHxEJddTtERAfNt2dCo78xJia8MvvbxTqg3yG7DUzk4NhPj0gYVzlcsYdSJ3IM+2Fu41bxtY
-	5FlFT6l2jFT/2zBjGo0IQiPBLZq3nO9BTTptWxz7Z/4e5NrjlGMx97UApe6OtQamiyhIjGGM9kW
-	+LHV3Q=
-X-Received: by 2002:a05:6000:25c2:b0:439:c18f:5aaf with SMTP id ffacd0b85a97d-43d642ccd7dmr38851820f8f.34.1776335254939;
-        Thu, 16 Apr 2026 03:27:34 -0700 (PDT)
-Received: from localhost (host-79-33-140-232.retail.telecomitalia.it. [79.33.140.232])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43ead3566b7sm13011883f8f.11.2026.04.16.03.27.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Apr 2026 03:27:34 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Thu, 16 Apr 2026 12:30:43 +0200
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>, linux-pwm@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Stanimir Varbanov <svarbanov@suse.de>, mbrugger@suse.com
-Subject: Re: [PATCH v2 2/3] pwm: rp1: Add RP1 PWM controller driver
-Message-ID: <aeC6U7D6TfWm8JPx@apocalypse>
-References: <cover.1775829499.git.andrea.porta@suse.com>
- <0d99317b9150310dfbd98de1cb2a890f0bffe7cd.1775829499.git.andrea.porta@suse.com>
- <adkrHkANCzxO8KUP@monoceros>
+        d=1e100.net; s=20251104; t=1776335603; x=1776940403;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ys6SjAbwkwwOSNiMZKz7D7xfWBNhXXjI7CffrOihqRE=;
+        b=SSvaxMd6Wyy2cEMkERU/CyTFXtE1I1N+Veat4XXllgQEcRSnIjrsyCgEnGUchHGDl4
+         x8B2mniOW4x9xn13FSu/GqoMg8PGpI7RRZYLo6GAmvHxSizyLwylhxrm4a4nDv7/X28f
+         FisTRbSox6XpCrwfXnDiYrru7mcoOZA0V7LS1iL2Yuzgro0IKZ/l9P1vjh/aRAzuVPfY
+         IYG30M4cfpF4t3AbAMyqBcQTJoiHD1oGgIYN+ZM0os0X+g286+Fn9gxbJ5F5EhoX9wSo
+         hHBHa9O0eNUhiV0Q+5EnMRuNBz+phOk3kpkmIEq5uXLioxev4Cm13zuvXR7FFLJKTJcE
+         ggew==
+X-Forwarded-Encrypted: i=1; AFNElJ+MXfJV+K07uua7vwAutX41fOfQGp2VXHPDvF76XrMRgqYbPzlKBdlx+1Pb/oZpSyYKnjK+4Jl7cDTK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPFgdO59jd+xBAKez4TLn5cJPdhGakx4ur/1DEYeb0rm8L2T3p
+	CfSUDODiRuSwkC/C+o+WPwalQn7lecjs7pDC9e0ZqL4NasO+5f6pRllLylkvQ+VI7VIJEWKocg4
+	aSNjx17TjrBDe58xyJcEO1C1Qm5sorN56u+dj0m0T
+X-Gm-Gg: AeBDietncUHw7DisGY4iSJ82smAt5HdReP52g7KG+QDTOaREvJjoA3pFgjBgJM5pplU
+	6iXZRZtHfjvZwuliA7A6q4d256rYcBHHbC4/6Q67FjNmlX5GuGXrOZIfoSMs6jeiIC9OUe6WWi0
+	auHwq584r627QExG1RsMcKHtrRZTfLsxtB+cYHQRKwWKqy1En+XOimwRF4n3W9dLiSXfFKrlFgV
+	IB2lvhlRKBHXy3Xev2xSulwi1P/7LP/cz8QGTDDeUuoYMmT+jQvehszTLVmT1xuUZGntol9FgY7
+	xZtrCqxPpOMh9t8DjAqm5cET8MQwnlyEGvrr0iIqmNb3zDG9fp/5
+X-Received: by 2002:a05:6870:c69e:b0:423:92b9:5ce1 with SMTP id
+ 586e51a60fabf-42612e3aca4mr2210815fac.7.1776335602563; Thu, 16 Apr 2026
+ 03:33:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <adkrHkANCzxO8KUP@monoceros>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+References: <20260416092414.3210383-1-adriana@arista.com> <20260416095706.3212158-1-adriana@arista.com>
+ <20260416095706.3212158-2-adriana@arista.com> <20260416100354ac85cb48@mail.local>
+In-Reply-To: <20260416100354ac85cb48@mail.local>
+From: Adriana Nicolae <adriana@arista.com>
+Date: Thu, 16 Apr 2026 13:33:11 +0300
+X-Gm-Features: AQROBzAX-RAhjw4JwkHHyO2XcSkeiIxM2zy7fbiV7Qac4LnF7Shh7IHBsR9v2qo
+Message-ID: <CAERbo5x1zV2m=rT4ETQzajMw=-XT-p5xF2xaZC26Xr6kSD+S5A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: ti,bq32k: Add delay on rtc reads
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[arista.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[arista.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-287839-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-287841-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[arista.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[suse.com:+];
+	FROM_NEQ_ENVFROM(0.00)[adriana@arista.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 40B2B40CEA0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,bootlin.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C3F5740CF6A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Uwe,
+On Thu, Apr 16, 2026 at 1:03=E2=80=AFPM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
+>
+> On 16/04/2026 02:57:05-0700, Adriana Stancu wrote:
+> > Add a configurable "ti,read-settle-us" property to resolve a limitation
+> > where aggressive I2C polling prevents the BQ32000's internal register t=
+o
+> > update. This ensures the hardware has sufficient idle time to update it=
+s
+> > buffer, preventing stale data reads on systems where the "interrupts" a=
+re
+> > not configured.
+> >
+>
+> Why does it need to be configured?
+>
+In my testing on a 100kHz bus, 2ms was the stable value that resolved
+the issue with the hwclock version I tested.
+But it might be a delay too long for other systems becuase the
+required "settle" time may vary depending on the I2C bus speed and how
+fast the userspace is polling.
+I chose to make it configurable to avoid forcing an empirical value on
+all systems, especially those where a shorter delay might work, or
+where the interrupt line is properly connected and no polling is
+needed.
 
-On 19:31 Fri 10 Apr     , Uwe Kleine-König wrote:
-> Hello Andrea,
-> 
-> nice work for a v2!
-
-Thanks!
-
-> 
-> On Fri, Apr 10, 2026 at 04:09:58PM +0200, Andrea della Porta wrote:
-
-<...snip...>
-
-> > +#define RP1_PWM_GLOBAL_CTRL	0x000
-> > +#define RP1_PWM_CHANNEL_CTRL(x)	(0x014 + ((x) * 0x10))
-> > +#define RP1_PWM_RANGE(x)	(0x018 + ((x) * 0x10))
-> > +#define RP1_PWM_PHASE(x)	(0x01C + ((x) * 0x10))
-> > +#define RP1_PWM_DUTY(x)		(0x020 + ((x) * 0x10))
-> > +
-> > +/* 8:FIFO_POP_MASK + 0:Trailing edge M/S modulation */
-> > +#define RP1_PWM_CHANNEL_DEFAULT		(BIT(8) + BIT(0))
-> 
-> Please add a #define for BIT(8) and then use that and
-> FIELD_PREP(RP1_PWM_MODE, RP1_PWM_MODE_SOMENICENAME) to define the
-> constant. Also I would define it below the register defines.
-
-Ack.
-
-> 
-> > +#define RP1_PWM_CHANNEL_ENABLE(x)	BIT(x)
-> > +#define RP1_PWM_POLARITY		BIT(3)
-> > +#define RP1_PWM_SET_UPDATE		BIT(31)
-> > +#define RP1_PWM_MODE_MASK		GENMASK(1, 0)
-> 
-> s/_MASK// please
-> 
-> It would be great if the bitfield's names started with the register
-> name.
-
-Ack.
-
-> 
-> > +
-> > +#define RP1_PWM_NUM_PWMS	4
-> > +
-> > +struct rp1_pwm {
-> > +	struct regmap	*regmap;
-> > +	struct clk	*clk;
-> > +	unsigned long	clk_rate;
-> > +	bool		clk_enabled;
-> > +};
-> > +
-> > +struct rp1_pwm_waveform {
-> > +	u32	period_ticks;
-> > +	u32	duty_ticks;
-> > +	bool	enabled;
-> > +	bool	inverted_polarity;
-> > +};
-> > +
-> > +static const struct regmap_config rp1_pwm_regmap_config = {
-> > +	.reg_bits    = 32,
-> > +	.val_bits    = 32,
-> > +	.reg_stride  = 4,
-> > +	.max_register = 0x60,
-> 
-> I'm not a fan of aligning the = in a struct, still more if it fails like
-> here. Please consistently align all =s, or even better, use a single
-> space before each =. (Same for the struct definitions above, but I won't
-> insist.)
-
-Let's use the single space.
-
-> 
-> > +};
-> > +
-> > +static void rp1_pwm_apply_config(struct pwm_chip *chip, struct pwm_device *pwm)
-> > +{
-> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
-> > +	u32 value;
-> > +
-> > +	/* update the changed registers on the next strobe to avoid glitches */
-> > +	regmap_read(rp1->regmap, RP1_PWM_GLOBAL_CTRL, &value);
-> > +	value |= RP1_PWM_SET_UPDATE;
-> > +	regmap_write(rp1->regmap, RP1_PWM_GLOBAL_CTRL, value);
-> 
-> I assume there is a glitch if I update two channels and the old
-> configuration of the first channel ends while I'm in the middle of
-> configuring the second?
-
-The configuration registers are per-channel but the update flag is global.
-I don't have details of the hw insights, my best guess is that anything that
-you set in the registers before updating the flag will take effect, so there
-should be no glitches.
-
-> 
-> > +}
-> > +
-> > +static int rp1_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
-> > +{
-> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
-> > +
-> > +	/* init channel to reset defaults */
-> > +	regmap_write(rp1->regmap, RP1_PWM_CHANNEL_CTRL(pwm->hwpwm), RP1_PWM_CHANNEL_DEFAULT);
-> > +	return 0;
-> > +}
-> > +
-> > +static int rp1_pwm_round_waveform_tohw(struct pwm_chip *chip,
-> > +				       struct pwm_device *pwm,
-> > +				       const struct pwm_waveform *wf,
-> > +				       void *_wfhw)
-> > +{
-> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
-> > +	struct rp1_pwm_waveform *wfhw = _wfhw;
-> > +	u64 clk_rate = rp1->clk_rate;
-> > +	u64 ticks;
-> 
-> 	if (!wf->period_length_ns)
-> 		wfhw->enabled = false
-> 		return 0;
-> 
-> > +	ticks = mul_u64_u64_div_u64(wf->period_length_ns, clk_rate, NSEC_PER_SEC);
-> 
-> To ensure this doesn't overflow please fail to probe the driver if
-> clk_rate > 1 GHz with an explaining comment. (Or alternatively calculate
-> the length of period_ticks = U32_MAX and skip the calculation if
-> wf->period_length_ns is bigger.)
-
-Ack.
-
-> 
-> > +	if (ticks > U32_MAX)
-> > +		ticks = U32_MAX;
-> > +	wfhw->period_ticks = ticks;
-> 
-> What happens if wf->period_length_ns > 0 but ticks == 0?
-
-I've added a check, returning 1 to signal teh round-up, and a minimum tick of 1
-in this case.
-
-> 
-> > +	if (wf->duty_offset_ns + wf->duty_length_ns >= wf->period_length_ns) {
-> 
-> The maybe surprising effect here is that in the two cases
-> 
-> 	wf->duty_offset_ns == wf->period_length_ns and wf->duty_length_ns == 0
-> 
-> and
-> 	
-> 	wf->duty_length_ns == wf->period_length_ns and wf->duty_offset_ns == 0
-> 
-> you're configuring inverted polarity. I doesn't matter technically
-> because the result is the same, but for consumers still using pwm_state
-> this is irritating. That's why pwm-stm32 uses inverted polarity only if
-> also wf->duty_length_ns and wf->duty_offset_ns are non-zero.
-
-Ack.
-
-> 
-> > +		ticks = mul_u64_u64_div_u64(wf->period_length_ns - wf->duty_length_ns,
-> > +					    clk_rate, NSEC_PER_SEC);
-> 
-> The rounding is wrong here. You should pick the biggest duty_length not
-> bigger than wf->duty_length_ns, so you have to use
-> 
-> 	ticks = wfhw->period_ticks - mul_u64_u64_div_u64(wf->duty_length_ns, clk_rate, NSEC_PER_SEC):
-> 
-> . I see this is a hole in the pwmtestperf coverage.
-
-Ack.
-
-> 
-> > +		wfhw->inverted_polarity = true;
-> > +	} else {
-> > +		ticks = mul_u64_u64_div_u64(wf->duty_length_ns, clk_rate, NSEC_PER_SEC);
-> > +		wfhw->inverted_polarity = false;
-> > +	}
-> > +
-> > +	if (ticks > wfhw->period_ticks)
-> > +		ticks = wfhw->period_ticks;
-> 
-> You can and should assume that wf->duty_length_ns <=
-> wf->period_length_ns. Then the if condition can never become true.
-
-Ack.
-
-> 
-> > +	wfhw->duty_ticks = ticks;
-> > +
-> > +	wfhw->enabled = !!wfhw->duty_ticks;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int rp1_pwm_round_waveform_fromhw(struct pwm_chip *chip,
-> > +					 struct pwm_device *pwm,
-> > +					 const void *_wfhw,
-> > +					 struct pwm_waveform *wf)
-> > +{
-> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
-> > +	const struct rp1_pwm_waveform *wfhw = _wfhw;
-> > +	u64 clk_rate = rp1->clk_rate;
-> > +	u32 ticks;
-> > +
-> > +	memset(wf, 0, sizeof(*wf));
-> 
-> 	wf = (struct pwm_waveform){ };
-> 
-> is usually more efficient.
-
-Ack.
-
-> 
-> > +	if (!wfhw->enabled)
-> > +		return 0;
-> > +
-> > +	wf->period_length_ns = DIV_ROUND_UP_ULL((u64)wfhw->period_ticks * NSEC_PER_SEC, clk_rate);
-> > +
-> > +	if (wfhw->inverted_polarity) {
-> > +		wf->duty_length_ns = DIV_ROUND_UP_ULL((u64)wfhw->duty_ticks * NSEC_PER_SEC,
-> > +						      clk_rate);
-> > +	} else {
-> > +		wf->duty_offset_ns = DIV_ROUND_UP_ULL((u64)wfhw->duty_ticks * NSEC_PER_SEC,
-> > +						      clk_rate);
-> > +		ticks = wfhw->period_ticks - wfhw->duty_ticks;
-> > +		wf->duty_length_ns = DIV_ROUND_UP_ULL((u64)ticks * NSEC_PER_SEC, clk_rate);
-> > +	}
-> 
-> This needs adaption after the rounding issue in tohw is fixed.
-
-Ack.
-
-> 
-> > +	return 0;
-> > +}
-> > +
-> > +static int rp1_pwm_write_waveform(struct pwm_chip *chip,
-> > +				  struct pwm_device *pwm,
-> > +				  const void *_wfhw)
-> > +{
-> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
-> > +	const struct rp1_pwm_waveform *wfhw = _wfhw;
-> > +	u32 value;
-> > +
-> > +	/* set period and duty cycle */
-> > +	regmap_write(rp1->regmap,
-> > +		     RP1_PWM_RANGE(pwm->hwpwm), wfhw->period_ticks);
-> > +	regmap_write(rp1->regmap,
-> > +		     RP1_PWM_DUTY(pwm->hwpwm), wfhw->duty_ticks);
-> > +
-> > +	/* set polarity */
-> > +	regmap_read(rp1->regmap, RP1_PWM_CHANNEL_CTRL(pwm->hwpwm), &value);
-> > +	if (!wfhw->inverted_polarity)
-> > +		value &= ~RP1_PWM_POLARITY;
-> > +	else
-> > +		value |= RP1_PWM_POLARITY;
-> > +	regmap_write(rp1->regmap, RP1_PWM_CHANNEL_CTRL(pwm->hwpwm), value);
-> > +
-> > +	/* enable/disable */
-> > +	regmap_read(rp1->regmap, RP1_PWM_GLOBAL_CTRL, &value);
-> > +	if (wfhw->enabled)
-> > +		value |= RP1_PWM_CHANNEL_ENABLE(pwm->hwpwm);
-> > +	else
-> > +		value &= ~RP1_PWM_CHANNEL_ENABLE(pwm->hwpwm);
-> > +	regmap_write(rp1->regmap, RP1_PWM_GLOBAL_CTRL, value);
-> 
-> You can exit early if wfhw->enabled is false after clearing the channel
-> enable bit.
-
-Ack.
-
-> 
-> > +	rp1_pwm_apply_config(chip, pwm);
-> > +
-> > +	return 0;
-> > +}
-> > +
-
-<,...snip...>
-
-> > +	}
-> > +
-> > +	return 0;
-> > +
-> > +err_disable_clk:
-> > +	clk_disable_unprepare(rp1->clk);
-> > +
-> > +	return ret;
-> > +}
-> 
-> On remove you miss to balance the call to clk_prepare_enable() (if no
-> failed call to clk_prepare_enable() in rp1_pwm_resume() happend).
-
-Since this driver now exports a syscon, it's only builtin (=Y) so
-it cannot be unloaded.
-I've also avoided the .remove callback via .suppress_bind_attrs.
-
-> 
-> > +
-> > +static int rp1_pwm_suspend(struct device *dev)
-> > +{
-> > +	struct rp1_pwm *rp1 = dev_get_drvdata(dev);
-> > +
-> > +	if (rp1->clk_enabled) {
-> > +		clk_disable_unprepare(rp1->clk);
-> > +		rp1->clk_enabled = false;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int rp1_pwm_resume(struct device *dev)
-> > +{
-> > +	struct rp1_pwm *rp1 = dev_get_drvdata(dev);
-> > +	int ret;
-> > +
-> > +	ret = clk_prepare_enable(rp1->clk);
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to enable clock on resume: %d\n", ret);
-> 
-> Please use %pe for error codes.
-
-Ack.
-
-Best regards,
-Andrea
-
-> 
-> > +		return ret;
-> > +	}
-> > +
-> > +	rp1->clk_enabled = true;
-> > +
-> > +	return 0;
-> > +}
-> 
-> Best regards
-> Uwe
-
-
+If you prefer, I can change this to a fixed specific delay in the
+driver instead of a device tree property, but I thought a configurable
+value was more flexible for different board designs.
 
