@@ -1,234 +1,219 @@
-Return-Path: <devicetree+bounces-288324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288186-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0Lo3KVjQ4mkN+wAAu9opvQ
-	(envelope-from <devicetree+bounces-288324-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 02:29:12 +0200
+	id eFf9AMcS4mkg1AAAu9opvQ
+	(envelope-from <devicetree+bounces-288186-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 13:00:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF41F41F71A
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 02:29:11 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B652941A940
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 13:00:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 13F4B3016CBA
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 00:29:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 20F03300FED6
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 11:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9463212564;
-	Sat, 18 Apr 2026 00:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D55B83BADA7;
+	Fri, 17 Apr 2026 11:00:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="CuZtCEll"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxhk.zte.com.cn (mxhk.zte.com.cn [160.30.148.35])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010066.outbound.protection.outlook.com [52.101.69.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF3E21F4C8C;
-	Sat, 18 Apr 2026 00:29:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.30.148.35
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776472149; cv=none; b=QD2RyYLkixV8pBDAYzJp/WV9i7oZLO1MORrjaEH5Djvp/520D4DA5TMRUiJ0qOilQdfMnL3qtu0Z/2RiHvKU2CYBZeCky5BLwnOobCkiw+cpwcT+JToviEqeviyANwkx8zeEaN5EkQUv09wCRoBSWvhaFjiwBFUtqYTQbSgk0o0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776472149; c=relaxed/simple;
-	bh=5XfkxBgRZw1G4iOWjC/UNxOQcOsxLiT6whw9IzG3hBo=;
-	h=Message-Id:In-Reply-To:References:Date:Mime-Version:From:To:Cc:
-	 Subject:Content-Type; b=bv+t3SXJsMFp074guZjA48sjcN6tuxBj04VIfqHvksqICgWgqD3iDiL4K3NJoT7dB1UCOeu25MSGDMAxggFpSKmnB55Utj/yD/rJwmBrRJJH6J0Z/mnISEdEvp14GP5kGkwQtOpyY45vCp/EIl3uVjG7qAsSXT726eDzQR5fJA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=zte.com.cn; spf=pass smtp.mailfrom=zte.com.cn; arc=none smtp.client-ip=160.30.148.35
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=zte.com.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zte.com.cn
-Received: from mse-fl1.zte.com.cn (unknown [10.5.228.132])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mxhk.zte.com.cn (FangMail) with ESMTPS id 4fyCKk72ghz8Xs6Q;
-	Sat, 18 Apr 2026 08:28:58 +0800 (CST)
-Received: (from root@localhost)
-	by mse-fl1.zte.com.cn id 63I0Svo8029922;
-	Sat, 18 Apr 2026 08:28:57 +0800 (+08)
-	(envelope-from guo.wenjia23@zte.com.cn)
-Message-Id: <202604180028.63I0Svo8029922@mse-fl1.zte.com.cn>
-Received: from njb2app05.zte.com.cn ([10.55.22.121])
-	by mse-fl1.zte.com.cn with SMTP id 63HAqPVX032987;
-	Fri, 17 Apr 2026 18:52:25 +0800 (+08)
-	(envelope-from guo.wenjia23@zte.com.cn)
-Received: from mapi (njy2app02[null])
-	by mapi (Zmail) with MAPI id mid202;
-	Fri, 17 Apr 2026 18:52:27 +0800 (CST)
-X-Zmail-TransId: 2afa69e210ebfc0-fc690
-X-Mailer: Zmail v1.0
-In-Reply-To: <20260414-ssqosid-cbqri-rqsc-v7-0-v3-6-b3b2e7e9847a@kernel.org>
-References: 20260414-ssqosid-cbqri-rqsc-v7-0-v3-0-b3b2e7e9847a@kernel.org,20260414-ssqosid-cbqri-rqsc-v7-0-v3-6-b3b2e7e9847a@kernel.org
-Date: Fri, 17 Apr 2026 18:52:27 +0800 (CST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E1C33BBA09;
+	Fri, 17 Apr 2026 11:00:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776423616; cv=fail; b=TuM4p7YvtC61yQ1vw9OXBr6C/xMfyc6SSN3h/a9WqoFNY85a7VX7acqAjiKWEG63iUOLTvxa0eIlIV3JJ83KNFc47kZUgmTpQubAdbRKwx/0TVfHDUnblPTZGLEew+A7apcY4jyrQ7y8gaxFTRkCrFRTZtxdUbIb0xtq3ILZOzw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776423616; c=relaxed/simple;
+	bh=y8KajkngJsAaaePI0ZEgxCT8Dpxx0vBL3/s51nya2gk=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=cuppN25qfIdMg8kMErxoEQElcwHKn2njgJpGXDrTVnpcTgthL1C/pd2NhGvep+bRt21jVJL9HlkJnNWg5VsUhJIFIBNKwz2FrPkBA+KFgqVARo+ytRoioCVhH9OJi/7S3kocFg+ci2lz6BzLqfBkIUXYDXlBFrTZqqqGCvyT1gw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=CuZtCEll; arc=fail smtp.client-ip=52.101.69.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nVVxE2zPwISgixh8zKL0MaPtJFZ41jJ5HnGOxMJxrCFRRbgQUyfh4ANFHoJMcIQFfwAzDndgqkx579rPigEBJDvynDkxlNjCzxs+LXlzSBUnMcz6tF6SV1Fr64sdftbeKJfJMEvQ9L1K0annjGcuYQ775FR/KU46FaYDWs7MSKFyKzkQAgycRsYWZjUPvE3IqeKAfY/7lqQUhoZI+CZY/DG9bEK9r0BJ8+jH8OqyaD3LDqBz+OoEgbwsB7IPLnUzcJlCw1/hKWBX8Ra2ZmVrbS6vIPCEdNvyDg9Vxoanol1twXabQ4cZ62x1Rf51Pi2/6cvlevWKM3ywNFT48yyOAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YSnNGEQc82xSVE7hS0vM3RU6y1qTbAkWRgL0yv3iCL0=;
+ b=JWnC5JskdSvFe3h1uf0VMl4+TWeszbBz8i8+IATq/I9ezwy0+zo5kKyjQJhL3HMA90T8m2XFVoxbA0b0Dd1Jxyd+Px2TvD7Fbo1iVkzepPJdOFfnazbMgtyaPeyDgP0SV98RrQsTS2FzIoCW9ECyWDt6pb/uDLwJAjlKyYhHT83t/D3dNAaHa+DJ7B/ap3Zpz8Q7FRlILsAWXi/5HpSqGcCCzMMDUQIblTNfmBnR2y0xSNthY7vi9tiw1kPlDdCgFqk9Z/AyuT9mdDadcoB5Oz9RLC+qfquXgMily8kPYCT4jqD3hgxpiuXkg1HL3D0YK6CG8O3KbcA/Y1VlltIalQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YSnNGEQc82xSVE7hS0vM3RU6y1qTbAkWRgL0yv3iCL0=;
+ b=CuZtCEllYyv/yHd4PV4xdAd+/Pt/efdIopx3xuXhtgvMS4g0HcV6Xbg5GtLcs6cpac5f+qySMlXJmFZifIuwR5LDdGyavu6m6xuxHz6gW0qObF852UoFlXTerEU20PbmVfjbsMo/QyiuG1sRHQX3MRrctkiqXFxOVOzxxCal1GcmxrA82hXZPUI9xPf4oVu0774kziWl0byy2XSoQo4ui2PEpIvPVyNzgFBfijFZwpuqS9TH6gnvAf6ZpA+plLLW9GzzFtZknIi0jxZYS77SIPH6pEwYUWjrkgtEf3Aed+am7IdoqjBjEUMjsKuvu7ud/9V7SBNaMIApnB3hHGgUXg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB7821.eurprd04.prod.outlook.com (2603:10a6:102:c5::5)
+ by DU4PR04MB12276.eurprd04.prod.outlook.com (2603:10a6:10:629::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.25; Fri, 17 Apr
+ 2026 11:00:12 +0000
+Received: from PA4PR04MB7821.eurprd04.prod.outlook.com
+ ([fe80::67dc:4bd2:8552:9b50]) by PA4PR04MB7821.eurprd04.prod.outlook.com
+ ([fe80::67dc:4bd2:8552:9b50%5]) with mapi id 15.20.9818.023; Fri, 17 Apr 2026
+ 11:00:12 +0000
+From: Robby Cai <robby.cai@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Frank.Li@nxp.com,
+	s.hauer@pengutronix.de,
+	festevam@gmail.com,
+	shawnguo@kernel.org,
+	martin.kepplinger@puri.sm
+Cc: kernel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Enable dual OV5640 cameras on i.MX8MQ EVK board
+Date: Fri, 17 Apr 2026 19:01:58 +0800
+Message-Id: <20260417110200.753678-1-robby.cai@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA1P287CA0016.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a00:35::33) To PA4PR04MB7821.eurprd04.prod.outlook.com
+ (2603:10a6:102:c5::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-From: <guo.wenjia23@zte.com.cn>
-To: <fustini@kernel.org>
-Cc: <pjw@kernel.org>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
-        <alex@ghiti.fr>, <rkrcmar@ventanamicro.com>,
-        <samuel.holland@sifive.com>, <aricciardi@baylibre.com>,
-        <npitre@baylibre.com>, <mindal@semihalf.com>, <atish.patra@linux.dev>,
-        <atishp@rivosinc.com>, <vasu@rivosinc.com>, <ved@rivosinc.com>,
-        <conor.dooley@microchip.com>, <cuiyunhui@bytedance.com>,
-        <cp0613@linux.alibaba.com>, <zhiwei_liu@linux.alibaba.com>,
-        <liwei1518@gmail.com>, <gong.shuai@sanechips.com.cn>,
-        <gsh517@gmail.com>, <liu.qingtao2@zte.com.cn>,
-        <reinette.chatre@intel.com>, <tony.luck@intel.com>,
-        <babu.moger@amd.com>, <peternewman@google.com>, <fenghua.yu@intel.com>,
-        <james.morse@arm.com>, <ben.horgan@arm.com>, <Dave.Martin@arm.com>,
-        <robh@kernel.org>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <rafael@kernel.org>, <lenb@kernel.org>, <robert.moore@intel.com>,
-        <sunilvl@ventanamicro.com>, <fustini@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <x86@kernel.org>, <linux-acpi@vger.kernel.org>,
-        <acpica-devel@lists.linux.dev>, <devicetree@vger.kernel.org>,
-        <paul.walmsley@sifive.com>
-Subject: =?UTF-8?B?UmU6IFtQQVRDSCBSRkMgdjMgMDYvMTFdIFJJU0MtVjogUW9TOiBhZGQgcmVzY3RybCBzZXR1cCBhbmQgZG9tYWluIG1hbmFnZW1lbnQ=?=
-Content-Type: text/plain;
-	charset="UTF-8"
-X-MAIL:mse-fl1.zte.com.cn 63I0Svo8029922
-X-MSS: AUDITRELEASE@mse-fl1.zte.com.cn
-X-TLS: YES
-X-SPF-DOMAIN: zte.com.cn
-X-ENVELOPE-SENDER: guo.wenjia23@zte.com.cn
-X-SPF: None
-X-SOURCE-IP: 10.5.228.132 unknown Sat, 18 Apr 2026 08:28:59 +0800
-X-Fangmail-Anti-Spam-Filtered: true
-X-Fangmail-MID-QID: 69E2D04A.002/4fyCKk72ghz8Xs6Q
-X-Spamd-Result: default: False [3.19 / 15.00];
-	SUBJ_EXCESS_BASE64(1.50)[];
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB7821:EE_|DU4PR04MB12276:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1d503e55-bd97-42df-803a-08de9c707f9b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|7416014|52116014|19092799006|1800799024|18002099003|56012099003|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	4rATppew7kRvadEZ2G1bzcMIGPkwLlssw/Zvt/FuIYL+8Tk/iYWDAlM/iJ7w9kmrNeob8f/hFJwMgixSG+TCCldiXSZQMEkbzoNqFbpJgMTNfMo2PUD23982YzBQPrRIWECIJZ6PYYSM5IoJlbSjX2bCiG01lOVCkokLvRrLEbsqhRvfUNEqYpmkqliF7Q3oRAjN9uEddHE959FOScpbxUZD1XKNL3cwf+QLtsFu5wN7sybIpWuwCiMWOnYVX745cHMPPqkoRWinrmQAqK6bXZ8ewRD0h62SBGC2n+cXMxws5llilOf4puZtxVIhJ5yK3qAbPjFU58T9a0gzm0nLdNi0FGeM4Tpv+0a0YLSgIBGbSXwcY90LCWy5D5uai6JPysSzRVOHzYyvwYQhYU3wcK60lmqgH8mSyAEbM2q1TIdmrNFFOOSsOetIJaua31wv+gFcJnj+1XPqXxk9gkVTVm61smSKkEhqLhJd02k/SbrrODG7+HchqVbSk7fPMo4kADKmYDFh+qJN9lPoq9AjrZop4OaCD+xBSvDJ8OAU1i3tx92kl4xsODiPX2BV3pG9Y517r8poE0gDUh40+2k6IQZtSiwBlVqKaHmlMNjWJuKBWl8kEhlKxur4ioNf++BRkZGzt22flaH88mwm+QpVLYlSXk5NSi8xPpsXuswU5xjLiOwknc3uCjVMHk7d4jMvee7FgXMeBewKm5LqAA4qx0fNDel2jR40DoFwgOF2oe843G4oMjF0+GLzhRdGLk6nMZsVHZjmdqkdbxKzHos4HpkVXntGY9Aw1Y4eNDWnHRA=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB7821.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(52116014)(19092799006)(1800799024)(18002099003)(56012099003)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?T3crekY2NHdLdTVoU3hNTWpQcVp2aitBK2xLOWRtWDMwVnd6QytIbnpZcUpz?=
+ =?utf-8?B?cmJCMVduRUhuZTZrV3BBMkNJWmFDRHN4N1lRMHJGUFdDM3huUXFFNFFuejFO?=
+ =?utf-8?B?QWMvdDJ6dFdSNUNBNnE0Q3o2UXNUVHo4UDlHaHJtb0J0d2RGSkphek1jcjNB?=
+ =?utf-8?B?U1JpYTRXTytJODdJZE44bzdJM1h6WFhuWGNja0JVZ2hoREVIakViYTBYbHBt?=
+ =?utf-8?B?TkFUSG5xK2NaSENObnJaSTF0ekMycHdhcXZRSnZsZ3RwYURtZGpnZFB5WVJj?=
+ =?utf-8?B?UkR1ZUJUUlBWMGJrYWlpUitLTTJBdSt5VDNRODNCaWo4enJHQXVBaGNaeXRt?=
+ =?utf-8?B?WG5vSm9Xc0diNXlNMEdnc250VjViZjFQNGhYejNEUTBUYzVpbDY0cm5pY2wv?=
+ =?utf-8?B?UjNxblg0SUMveUl0ZmFtdzlaR09HV3RxakQwaU9oK3ZUZWJBMnpFMTlFaDJE?=
+ =?utf-8?B?YllHTUw0TjhaenpIMlFJMWZRenNVSUlBU0tBZ1N1Y2tCSnI4NVowY3NqeG1W?=
+ =?utf-8?B?RE4rUVlac3BKenFDdGx2WmZ4ZjhreUsrMjRLM0tpeHlRK0xhUHRYTlE0L1FP?=
+ =?utf-8?B?WGNzdkl2dVN6T2MxcEVzUkw1czRQUEM1VTh0RDR2VzRQRHBiczBFYTdEck9u?=
+ =?utf-8?B?cVE2QUZzRGZWVGZGdGxET3FTR0lwNHJPNnVGN1NmTnozSmtXazhCc2hSVE03?=
+ =?utf-8?B?SWlDbzR0ak1MaDZEdCtXZmFsZFBhUm1HNE94QXAyZkphZjJzYlE2ZWZmeENq?=
+ =?utf-8?B?YWRCdXl6Yi9KdHNobWdQTzhpdVdVMXc4N0h1YzNLWFdxdy9hRi9kV0wxcHRY?=
+ =?utf-8?B?TzdtMkNGRTBOc0JhMnNnV09qRndWUHlwMEhtZ0RwYks0eVFkWkFzeFQ2eEhz?=
+ =?utf-8?B?TzN4UlNCU0szWStSSi9aVzl2RzBWV09udktsaCtDVHViZVd1MXViWEdoVlRR?=
+ =?utf-8?B?M2ovK1BESlphcWoxZUdzaENsR0JRK1BFNXNZUWJOYWh0aU14R0ZrSmlxdWNl?=
+ =?utf-8?B?a1ozY1FnZW4ySStZTzRHZ2doUlRmY0J1a1hGSXFtOFAxcVZacmlkNHZSN1dr?=
+ =?utf-8?B?OEo1UGpyeEVyK1B4VUpLYXFkMkJFc0lQQTd1Znh4SHhOeHNPQURpZnczZkRQ?=
+ =?utf-8?B?MTY2M1EvbFY1MzRkeWg3WWJEWjVPMC85QzNrU0FuOUg1VHI0aWhkOWFyK1BE?=
+ =?utf-8?B?SnprS0srZllwcXJaTmZkVkR1d0dNRzV0bjAxcWtnY1MrNGQxZzgwMlFPVk04?=
+ =?utf-8?B?aEF5RGdoUU9wY2x5cWNvVEtXNnJNZXlTMnRQcFBBUFZyN1htVm5xMml6TUhw?=
+ =?utf-8?B?aFRJYzZUdWo1ZExLd1Y1bi95S1B5Q2pxdis5MlRMZUFOQjFTd3BBdHIyS0h5?=
+ =?utf-8?B?Zmh0RDNTeEkxWXJpTnhzVFgxSnFsSEFaeXIyd3V0ZVZ3WStKOEorSUZiRW1N?=
+ =?utf-8?B?dnduUFJxSmFybTFCWTRkZGQrVmZodjlIemJHKzJvMGZDczhSMG5naEthNHEr?=
+ =?utf-8?B?U2tqU0x1T2FSdHVSZEtaUVR5ZEMrN3Y1cHU0TzFBUlQvV1BDSVRhSTlTWjZO?=
+ =?utf-8?B?c0JDS0ZPaDBNT3Ywa2U3YTkxdTRIdWJsQVE0OXdmamFUYm9FUVhhWnlpRXA3?=
+ =?utf-8?B?U1A2alBwclgxOW0rWGlYSzA0MDArMk04bHB5VzQ0Rmp3YVdjY0hNSXR1cCtu?=
+ =?utf-8?B?QnY3dWxlU09hWVBEK2tzckhzb0hJb2V4RlRJYWV0ajZ1a3BEMW0zL3pSMUgv?=
+ =?utf-8?B?cFV1eGpwdHBHUy92eTBwd3paUnVvZCs3cUJMS1BISmtUNjQ2WncwdGRabll0?=
+ =?utf-8?B?aFQ5eUVBRWZ4Mmx6NEtwd1FSZjJMdzliTVBMbmg3bW5CTzFhKzVXYy93TGRS?=
+ =?utf-8?B?RHpEa2k1NzFuSFo5ZVpiZGdoeCs3NnhVOXpYZ3FNTTFkb3RuTUNTQ1NWWUhE?=
+ =?utf-8?B?d0NKQlRUSWVzNndVUWx0aUJsTEZkeUY3V1JmdThuT3dxQUxMRDR1S0tlVHFi?=
+ =?utf-8?B?NFlDVGVMcERtRTFKaTNvc0NwZlA3Smt1QTZvSkdjWHhlK3dWSUhMRnhSeUx6?=
+ =?utf-8?B?WTZVN3pRSEtpazRoN25oUVZwNDVjNFIxQ3JDajUxckhMV2VoeXJxZzFzcFVZ?=
+ =?utf-8?B?YThBTGEwbzl0UTJiNk9HM2w1bzdvQXlGQUpIM3UvNUpoRnVDbFh4TFIvR2hk?=
+ =?utf-8?B?c2VFZG9VTGFCNGpKa3hscVh6cFhpcFVyS29wWkRScFRaTjBaOVl2TVFrOGE4?=
+ =?utf-8?B?TEZoY1RlWmdFY2NIcEtsTXpPOXd2N0FzdHJwRTdoL01NWU56VU9TNEVqQWRL?=
+ =?utf-8?B?UDVxdTBQcXZsRE9EU2phdy9QYmtjV0tHWm5HVTg4eHA3QzRBNWZ1UT09?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d503e55-bd97-42df-803a-08de9c707f9b
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB7821.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2026 11:00:12.6555
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CmPMiW2D7OgxI58v1MNRCN1X30lxGebot4i913gyhXJxhoqvCi0WsxEQxKqkxBWtBZoQ+cc3ajzzhqBGP7SO7w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB12276
+X-Spamd-Result: default: False [2.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_BAD_CTE_7BIT(1.05)[unknown,utf8];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[zte.com.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,microchip.com,bytedance.com,linux.alibaba.com,gmail.com,sanechips.com.cn,zte.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-288324-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,puri.sm];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288186-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mse-fl1.zte.com.cn:mid];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[guo.wenjia23@zte.com.cn,devicetree@vger.kernel.org];
-	FROM_NO_DN(0.00)[];
-	R_DKIM_NA(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-0.975];
-	RCPT_COUNT_TWELVE(0.00)[45];
+	FROM_NEQ_ENVFROM(0.00)[robby.cai@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: EF41F41F71A
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:dkim,nxp.com:mid]
+X-Rspamd-Queue-Id: B652941A940
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Drew,
+This series adds dual-camera support for the i.MX8MQ EVK board.
 
-On Wed, Apr 15, 2026 at 9:57 AM Drew Fustini <fustini@kernel.org> wrote:
+Patch 1 fixes the MIPI CSI clock configuration in the i.MX8MQ device tree.
+The previous configuration violated a timing constraint defined in the
+i.MX8MQ Reference Manual:
 
-> Add the setup and domain management layer: domain allocation
-> (qos_new_domain), controller value initialization
-> (qos_init_domain_ctrlval), resource struct initialization for cache and
-> bandwidth resources, domain registration with the resctrl filesystem
-> (qos_resctrl_add_controller_domain), and the top-level setup function
-> (qos_resctrl_setup) that probes all controllers and calls resctrl_init().
->
-> Also add qos_resctrl_online_cpu() and qos_resctrl_offline_cpu() for CPU
-> hotplug integration.
->
-> Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
-> Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
-> Signed-off-by: Drew Fustini <fustini@kernel.org>
-> ---
->  arch/riscv/kernel/qos/qos_resctrl.c | 295 +++++++++++++++++++++++++++++++++++-
->  1 file changed, 294 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/riscv/kernel/qos/qos_resctrl.c b/arch/riscv/kernel/qos/qos_resctrl.c
-> index a4a120f89840..8d7e3b0abb75 100644
-> --- a/arch/riscv/kernel/qos/qos_resctrl.c
-> +++ b/arch/riscv/kernel/qos/qos_resctrl.c
-> @@ -675,7 +675,23 @@ void resctrl_arch_reset_rmid_all(struct rdt_resource *r, struct rdt_l3_mon_domai
->  
->  void resctrl_arch_reset_all_ctrls(struct rdt_resource *r)
->  {
-> -    /* not implemented for the RISC-V resctrl implementation */
-> +    struct cbqri_resctrl_res *hw_res;
-> +    struct rdt_ctrl_domain *d;
-> +    enum resctrl_conf_type t;
-> +    u32 default_ctrl;
-> +    int i;
-> +
-> +    lockdep_assert_cpus_held();
-> +
-> +    hw_res = container_of(r, struct cbqri_resctrl_res, resctrl_res);
-> +    default_ctrl = resctrl_get_default_ctrl(r);
-> +
-> +    list_for_each_entry(d, &r->ctrl_domains, hdr.list) {
-> +        for (i = 0; i < hw_res->max_rcid; i++) {
-> +            for (t = 0; t < CDP_NUM_TYPES; t++)
-> +                resctrl_arch_update_one(r, d, i, t, default_ctrl);
+"The frequency of clk must be exactly equal to or greater than the RX
+byte clock coming from the RX DPHY."
 
-For the bw controller, default_ctrl = max_bw, and resctrl_arch_update_one will set the rbwb of all RCIDs to max_bw. 
-According to the spec: The sum of Rbwb allocated across all rcids must not exceed MRBWB value. 
+This mismatch could lead to unstable operation, observed as intermittent
+capture failures. The updated clock ratios align with those used in NXP��s
+downstream BSP and were verified to resolve the issue.
 
-Does this conflict with the spec?
+Patch 2 enables full MIPI CSI support and dual OV5640 camera operation on
+the i.MX8MQ EVK. This includes enabling both CSI controllers and their
+corresponding MIPI CSI-2 host interfaces, as well as adding two OV5640
+sensor nodes on I2C1 and I2C2.
 
-> +        }
-> +    }
->  }
->  
->  void resctrl_arch_pre_mount(void)
-> @@ -797,3 +813,280 @@ u32 resctrl_arch_get_config(struct rdt_resource *r, struct rdt_ctrl_domain *d,
->      spin_unlock(&ctrl->lock);
->      return val;
->  }
-> +
-> +static struct rdt_ctrl_domain *qos_new_domain(struct cbqri_controller *ctrl)
-> +{
-> +    struct cbqri_resctrl_dom *hw_dom;
-> +    struct rdt_ctrl_domain *domain;
-> +
-> +    hw_dom = kzalloc_obj(*hw_dom, GFP_KERNEL);
-> +    if (!hw_dom)
-> +        return NULL;
-> +
-> +    /* associate this cbqri_controller with the domain */
-> +    hw_dom->hw_ctrl = ctrl;
-> +
-> +    /* the rdt_domain struct from inside the cbqri_resctrl_dom struct */
-> +    domain = &hw_dom->resctrl_ctrl_dom;
-> +
-> +    INIT_LIST_HEAD(&domain->hdr.list);
-> +
-> +    return domain;
-> +}
-> +
-> +static int qos_init_domain_ctrlval(struct rdt_resource *r, struct rdt_ctrl_domain *d)
-> +{
-> +    struct cbqri_resctrl_res *hw_res;
-> +    int err = 0;
-> +    int i;
-> +
-> +    hw_res = container_of(r, struct cbqri_resctrl_res, resctrl_res);
-> +
-> +    for (i = 0; i < hw_res->max_rcid; i++) {
-> +        err = resctrl_arch_update_one(r, d, i, 0, resctrl_get_default_ctrl(r));
+Note:
+This series depends on patch [1] currently under review, as well as commit
+6d79bb8fd2aa ("media: imx8mq-mipi-csi2: Explicitly release reset").
 
-Also set rbwb of all RCIDs to max_bw. Does this also conflict with the spec?
+[1] https://lore.kernel.org/imx/20260417080851.489303-1-robby.cai@nxp.com/
 
-> +        if (err)
-> +            return err;
-> +    }
-> +    return 0;
-> +}
-> +
+Robby Cai (2):
+  arm64: dts: imx8mq: Correct MIPI CSI clocks
+  arm64: dts: imx8mq-evk: Enable MIPI CSI and dual OV5640 cameras
 
+ arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 149 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi    |   4 +-
+ 2 files changed, 151 insertions(+), 2 deletions(-)
 
-Thanks,
-Wenjia
+-- 
+2.37.1
+
 
