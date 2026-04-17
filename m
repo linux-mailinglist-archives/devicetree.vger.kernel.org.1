@@ -1,149 +1,214 @@
-Return-Path: <devicetree+bounces-288273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288264-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4CvZEA9i4mkJ5gAAu9opvQ
-	(envelope-from <devicetree+bounces-288273-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 18:38:39 +0200
+	id QKPjFQ5i4mkJ5gAAu9opvQ
+	(envelope-from <devicetree+bounces-288264-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 18:38:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D011341D38A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 18:38:38 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5FE941D37A
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 18:38:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 804573042F1A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 16:37:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 942E63038F4E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 16:34:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8542D3C3429;
-	Fri, 17 Apr 2026 16:37:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5F1D33B6D0;
+	Fri, 17 Apr 2026 16:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="UKyaeMjW"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="I4chTyUm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1FE13B8BCD;
-	Fri, 17 Apr 2026 16:37:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78BF53491D0;
+	Fri, 17 Apr 2026 16:34:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776443831; cv=none; b=Re4bx4pK714MVZQ3etRkriTg4aP7bxQ9P7uQ+wiOyxzwm8y7KFg9KIgshg/8Fm8P2lFEicXbak+pAzQpH0iU5vRhWdfAhdKG0aJjKmdSclJQdiGkAytzYSDZQ7fmIwoKe7mUczlLs5ETadRHli6rC3spcq9/D/d92ibBRATck7k=
+	t=1776443668; cv=none; b=AohO/5vbVLOVccAgeTSNjanMfzSizfNfd6oLJBldNctnAuaYUsHOZlTygx5Wvluijifb0lDiHjAf1p/8RyjhTiwjmsbiMOJWEtF1eNFT/xATeLfiQyuzBcRUmMCM35ljXoR4C/fvTrkYR3raOisaT813NbgvGSiLLCJybO3ZCp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776443831; c=relaxed/simple;
-	bh=tWFcpje6b/UPuUaynpp5o+HzSsytJcZL6uVNyAgG8qQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Id0/socXHYSvOgOcL3xcrnH97nfDJ9lFjeE5ZAdiAGwySkva4kL3sEXwQa9r9lQebS7EFabhlzZR/j9GLUvx/eDrn24QJJyh+N3ZU5BnuP3l3oCqFg1pU7A7STdITy4A28eALX15LFq7PZ1W/1VRpzOPy4M5TE8yGwsmz7U6Tm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=UKyaeMjW; arc=none smtp.client-ip=65.21.61.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776443828;
-	bh=tWFcpje6b/UPuUaynpp5o+HzSsytJcZL6uVNyAgG8qQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=UKyaeMjWUcKnD9zAv8zJPBSrnqk2n1SMU4oVAjw9yGbs0yL6FDVhoo0Ric2waZGe4
-	 hU+M+CY4LNI23hIXLtuDmxtraU8btUsAvPfa/ZYQbvn2BYSliD+8DZYPg9+RiUAD6z
-	 IbSm8Gw5L8PY1mio8dSEBIoojMvYTcvZ9Xj0kaPw=
-Date: Fri, 17 Apr 2026 18:27:24 +0200
-Subject: [PATCH v3 8/8] arm64: dts: amlogic: t7: khadas-vim4: Add i2c MCU
- fan node
+	s=arc-20240116; t=1776443668; c=relaxed/simple;
+	bh=g4lO6rW3zr2fdZujOWSFg/NCpM1f2D3pE6jpFlC8CCU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k3BFkqQkbBiR1/QdVeZnfDwdxi3u4+Q8yDQTfuvXJuhNJCSbrLnRqFzd0g634YSdOJz5sWrQvaeieo0SbTlmhWNnh7vz6N6LfT6QYYYf0ia6LvzxwZFq6LmC88Dt05HBXBOgNBFekznzj8oqLcYlnLbWJqUdr15CMeeLwSOV/Wk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=I4chTyUm; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1776443658;
+	bh=g4lO6rW3zr2fdZujOWSFg/NCpM1f2D3pE6jpFlC8CCU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=I4chTyUmARiCkAr8wAFIH6QrsG06odlCvgC9ew0ysyOYaBoBNeF4h2hi3EPiHgj2d
+	 h0S1z1pVk33KxZZ5bQmbi7wDKw49dHifiBD0eKTZijhNZofq+IsgZAQ866QEfLEs5/
+	 rAgFTBkDO74HFToE20td/XX5qDqfEdROD6lkl1d8RUYVzdGmOu96Mjp4szcXzCRYds
+	 5c3pWvNFxcvA/lNfV5/V0NkKehYKxZRWUYz0k6qsfbX1t4jA/5/AuEd8zXqQLDub5j
+	 2L2/GYTAfEzNG26ITUgJOMQ/mzapqsVDX67xPWde4PfXYezDFQcnJ6vq6VQlCwi5Yq
+	 YufoG8GVwzHCQ==
+Received: from [100.64.0.241] (unknown [100.64.0.241])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id EE40617E127F;
+	Fri, 17 Apr 2026 18:34:17 +0200 (CEST)
+Message-ID: <62f51359-9d91-4107-917b-cd722c7321c2@collabora.com>
+Date: Fri, 17 Apr 2026 19:34:17 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260417-add-mcu-fan-khadas-vim4-v3-8-a6a7f570b11b@aliel.fr>
-References: <20260417-add-mcu-fan-khadas-vim4-v3-0-a6a7f570b11b@aliel.fr>
-In-Reply-To: <20260417-add-mcu-fan-khadas-vim4-v3-0-a6a7f570b11b@aliel.fr>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Beniamino Galvani <b.galvani@gmail.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1776443818; l=969;
- i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=tWFcpje6b/UPuUaynpp5o+HzSsytJcZL6uVNyAgG8qQ=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
- BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QN/dYkD2B0h67pd/skbXv2YwanXlJWZMFNrSgKAnH7oN6KvpXQkf4z2/bVVV+yiQemeyiyg6rem
- mlbNijAs0cwo=
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
- fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/40] arm64: dts: rockchip: Add frl-enable-gpios to
+ rk3576-luckfox-core3576
+To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260417-dts-rk-frl-enable-gpios-v1-0-a19c0dd8c9f6@collabora.com>
+ <20260417-dts-rk-frl-enable-gpios-v1-5-a19c0dd8c9f6@collabora.com>
+ <2000470.6tgchFWduM@phil>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <2000470.6tgchFWduM@phil>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[aliel.fr];
-	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-288273-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288264-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[aliel.fr:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aliel.fr:email,aliel.fr:dkim,aliel.fr:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.18:email]
-X-Rspamd-Queue-Id: D011341D38A
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,collabora.com:dkim,collabora.com:mid]
+X-Rspamd-Queue-Id: D5FE941D37A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable and configure i2c MCU node to get fan working on Khadas VIM4.
+Hi Heiko,
 
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- .../boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts      | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+On 4/17/26 2:32 PM, Heiko Stuebner wrote:
+> Hi Cristian,
+> 
+> the comments below apply sort of to all patches in that series.
+> 
+> Am Freitag, 17. April 2026, 11:24:39 Mitteleuropäische Sommerzeit schrieb Cristian Ciocaltea:
+>> The board exposes the GPIO4_C6 line to control the voltage bias on the
+>> HDMI data lines.  It must be asserted when operating in HDMI 2.1 FRL
+>> mode and deasserted for HDMI 1.4/2.0 TMDS mode.
+>>
+>> Wire up the HDMI node to the GPIO line using the frl-enable-gpios
+>> property and drop the line from the vcc_5v0_hdmi regulator to allow
+>> adjusting the bias when transitioning between TMDS and FRL operating
+>> modes.
+>>
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi | 9 ++++-----
+>>  1 file changed, 4 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi
+>> index 749f0a54b478..93ae37699366 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi
+>> @@ -140,10 +140,7 @@ regulator-state-mem {
+>>  
+>>  	vcc_5v0_hdmi: regulator-vcc-5v0-hdmi {
+>>  		compatible = "regulator-fixed";
+>> -		enable-active-high;
+>> -		gpios = <&gpio4 RK_PC6 GPIO_ACTIVE_HIGH>;
+>> -		pinctrl-names = "default";
+>> -		pinctrl-0 = <&hdmi_con_en>;
+>> +		regulator-always-on;
+>>  		regulator-min-microvolt = <5000000>;
+>>  		regulator-max-microvolt = <5000000>;
+>>  		regulator-name = "vcc_5v0_hdmi";
+> 
+> I think this regulator was sort of a complete hack, to set that
+> gpio to some sort of default state, by declaring it as hdmi-pwr-supply.
+> 
+> Only 2 rk3576 boards seem, to use that hack, so I think as that "regulator"
+> is completely functionless now, the whole thing could be removed?
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 69d6118ba57e7..5d7f5390f3a66 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -157,6 +157,19 @@ wifi32k: wifi32k {
- 	};
- };
- 
-+&i2c_m_ao_a {
-+	status = "okay";
-+	pinctrl-0 = <&i2c0_ao_d_pins>;
-+	pinctrl-names = "default";
-+
-+	khadas_mcu: system-controller@18 {
-+		compatible = "khadas,vim4-mcu";
-+		reg = <0x18>;
-+		fan-supply = <&vcc5v>;
-+		#cooling-cells = <2>;
-+	};
-+};
-+
- &pwm_ab {
- 	status = "okay";
- 	pinctrl-0 = <&pwm_a_pins>;
+Ack, let's just drop it.
 
--- 
-2.49.0
+> 
+> 
+>> @@ -231,6 +228,8 @@ &gpu {
+>>  };
+>>  
+>>  &hdmi {
+>> +	pinctrl-0 = <&hdmi_txm0_pins &hdmi_tx_scl &hdmi_tx_sda &hdmi_frl_en>;
+>> +	frl-enable-gpios = <&gpio4 RK_PC6 GPIO_ACTIVE_LOW>;
+> 
+> this should be sorted the other way around I think.
+> 
+> Also please provide a pinctrl-names property too. If for whatever reason
+> the dw-hdmi aquires a 2nd pinctrl state in the future, this makes sure
+> board DTs are staying in the "old" compatible mode until they are adapted.
 
+Just to make sure I fully understand, the convention is that 
+
+  pinctrl-names = "default";
+
+should be always provided, even when the node overrides an existing pinctrl-0
+property?
+
+E.g. in rk3576.dtsi we have:
+
+  hdmi: hdmi@27da0000 {
+    ...
+    pinctrl-names = "default";
+    pinctrl-0 = <&hdmi_txm0_pins &hdmi_tx_scl &hdmi_tx_sda>;
+    ...
+  }
+
+Hence I omitted pinctrl-names which doesn't change and just appended
+&hdmi_frl_en to pinctrl-0's original value.
+
+> 
+> 
+>>  	status = "okay";
+>>  };
+>>  
+>> @@ -655,7 +654,7 @@ &pcie0 {
+>>  
+>>  &pinctrl {
+>>  	hdmi {
+>> -		hdmi_con_en: hdmi-con-en {
+>> +		hdmi_frl_en: hdmi-frl-en {
+> 
+> pinctrl names should ideally match the naming in schematics, for example the
+> "HDMI0_TX_ON_H" for jaguar and tiger. This makes it way easier to> go from DT
+> to schematics and back.
+
+I opted for a more descriptive name that could be used consistently across all
+boards, given that not all schematics are publicly available.
+
+You make a fair point though, we should probably stick with the pretty terrible
+hdmi[N]_tx_on_h naming instead.
+
+Thanks,
+Cristian
 
