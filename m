@@ -1,190 +1,496 @@
-Return-Path: <devicetree+bounces-288090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288091-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WMUwFiLv4WmKzgAAu9opvQ
-	(envelope-from <devicetree+bounces-288090-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:28:18 +0200
+	id AA/hI8Px4WmKzgAAu9opvQ
+	(envelope-from <devicetree+bounces-288091-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:39:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B926418A2A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:28:13 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF04F418CA1
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:39:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BE5793014A10
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 08:19:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C1C2630151F3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 08:27:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076B6317163;
-	Fri, 17 Apr 2026 08:19:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A96A739E6FC;
+	Fri, 17 Apr 2026 08:27:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VAaAU97+";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TMenLeLq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FPVn8Yvf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4B21338592
-	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 08:19:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8443B39BFE2;
+	Fri, 17 Apr 2026 08:27:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776413965; cv=none; b=PwU/YuFGT4q9XDkF4sMmZvtW5ZgP0mhnd7pO8JI7sjcKyGmDJup/O5JkK0sB0KTjCImQAdN4d22UBD9yg8gpwOq3bJV784YNfBq8Hpt0O5dHmIFSv7beQuxbhKY/GvSxzgwTTmjTsxwCw96f8Bwv/475SVk9le1XcV7UbKFNavs=
+	t=1776414426; cv=none; b=E46kVvt5WIATKSrUOFz8jz9szPLU2HEjLSt6D6RPhmeRhNZ5Ue0iNaUTRzfgPRZOaXdC60odu+z5l+wTYSQACFWrhOlGp5cFxh4AnYS7McOPv94GY8IHJSqEA4dpTbtLP98biCRcmXYopm2c11F3JBKCDQ3N6digV+De5KH4yKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776413965; c=relaxed/simple;
-	bh=HsR1pD1cZejjpSMOdjKfntIeiU3V/CQ7BcAr3GWo2zM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dAUg8O2ID8wrIQraBuc17E786C2spW5tOPKJ0KLtS3aFdd2xun62+izLBpfG6AZZ2i9yOe/HrXf8S5cQhBPye6q4P5VYCK3oH2H3FRy7abs/9vh14fa6idITbBfKy/X7wReiXdKF6J+Hi5dwGL6xDeA5GPwZk0fsJpTnGhnvZrU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VAaAU97+; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TMenLeLq; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63H79S3A3942109
-	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 08:19:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tEXx3SSRARXgD/Ye1EzxIF1scAs6C4XDpVH/7JetmD8=; b=VAaAU97+o8+VxS93
-	PbHUwjDR0nZgpaOC/6uY0xywdR/k2fMF6K/i2UdDrE0E9Qp2/XQ9Xx/ui2XdD1jo
-	2ckR1q2l9710YTpzSF1jJH5aKEvnfJ/W86O1gmfeJxbp4vq/MNM3FuHm3+G0jIzZ
-	6i27p6p9xH6nI4kzYTruVOEIAf25RdM0Lwq9/owEW1xtJ7e7lC6z1d+pyWxFLmg5
-	DUoBemphwkitgtuMuR1ijAG5B05LZRW+igjh/1/gq+UYD28RR3D5tGu+/QlX647F
-	7AxScQwXeWO1ObxD0Vp/FTzF9SJV0Fgd1yQouyN23RuYzUnOr3TJuBwT+1jSWhFm
-	3M4Mdg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dkg7rrbn3-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 08:19:24 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-50db373cf13so792841cf.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 01:19:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1776413963; x=1777018763; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tEXx3SSRARXgD/Ye1EzxIF1scAs6C4XDpVH/7JetmD8=;
-        b=TMenLeLqwv7kPrv3QbBVtNxCdvm5DiZEakHwmBDbnAV2OkMBXY1GFlgOYSakHEgSn2
-         TW55oMhRGvtprqz9p8X1Oy0xZVzx/K6QCtDLNWplywmVq27oc3iUc37JOnF8G8o3h8QF
-         V2q9+v205chWoqO0g2csiAZtdOI9Ojdky/YMznoo4WRISI8X75Vl3LeQhwh/sFuVtKlw
-         7udlV5JCMFZWQWosKML9EDZzGs4b/4kbWWbLBOJWkAiSSpWiHcKNrExEuXNqkgKN2UKG
-         j+x8rv3HlmUKX7OI+K+6qzp0+R84qx6pjDsg+WDCf8zC+FudiSWCpiIo7jlxTlgf9dek
-         DLXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776413963; x=1777018763;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tEXx3SSRARXgD/Ye1EzxIF1scAs6C4XDpVH/7JetmD8=;
-        b=dUGnYWZlb0+R+naVyxPRRKqOSgyxrhhy/0kkgRE+ofFzntqUi1ULvCLuww+5LJW7VC
-         a6KsFW4WfhvuSbm12NUAXWuFqv4ROp4GyeY12AE1szo4YaeMtdIsj2huTiPX9nHdgCiq
-         W9MRr2qH7PtCp5YxMLXiH7qeZytTvuRO5tWPJS0saSlQT/rUV/SnM4WaVl7qW5HSql6D
-         dRNEx4IjCog+5DnI6/LmJ/Q5NMUw8D5jWJt+0HTC+WL20IdvwPGLUrw1QHhSUtS7burl
-         7rPL8swUbR4V5SKlvhP+BzIVcziEcw5jFCyxgFU9IcxRf2GBrb6pUDkcWNeXd70LufaD
-         yp7Q==
-X-Gm-Message-State: AOJu0YxUd2OjnMsdA3ULZtdbDHE0PGcSdR4Dt+ZPWxwOfQdbzlkwticm
-	JdHsolH2+Y/XBNywAB6xhBfHqi/o98bknod1UkLBa6wQSsf1lIQc/DbUiHz4R8lCZmIZ/Rwh+hM
-	seNPhGmT3v/hwzGWTJXsZMte0TcZAX0RdA/yh+kZ7ci5qRAAfG/iA+hkLIYvzQ/2R
-X-Gm-Gg: AeBDievIAHHrgWbZ8J3CfU5MbKBBeB4Q0rmW0EL4biKsOjeKjJ8BzzEjeaWujBUckag
-	ScfFM6+rslffjUPPt/e6++c7Cm4+TKmrp+giqcESOuunAdlI8ttaTTvvPLNzEPlf8cqP9BzQiJk
-	46CjFMZ4BFvYRsVaKDsv7EKi7zXxmY4SkoplkWEwQEMuG5ZJj+yRHIK3D1uHhgW/VheMfX6Q+Xz
-	ewq1cpAk48C/HUJCZsolSN3ry8AwSu3H/nCgGzZgPimEYkisZK0cX19ekRLOFs+WljOA1XpcpdN
-	I1eRp65hmWOaxu6Cl3StJ65Pv32Yv1XqGAdDIBSL3VUNTjVaRdVCTHNvRdvuDN4dY7fQvAEFIJa
-	I6hDNoolcV/vb5QDGOMbK09mKmKStgWHL7AjzoVq989RlckPGnzfPhKnn3CkiMiVnbrimcXTic3
-	V1CbZnjA/KnHhpQQ==
-X-Received: by 2002:a05:622a:2488:b0:50d:5af1:65bb with SMTP id d75a77b69052e-50e36c4b4c3mr17653711cf.5.1776413963173;
-        Fri, 17 Apr 2026 01:19:23 -0700 (PDT)
-X-Received: by 2002:a05:622a:2488:b0:50d:5af1:65bb with SMTP id d75a77b69052e-50e36c4b4c3mr17653551cf.5.1776413962814;
-        Fri, 17 Apr 2026 01:19:22 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ba451cd8205sm31905066b.24.2026.04.17.01.19.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Apr 2026 01:19:21 -0700 (PDT)
-Message-ID: <c862e4b3-3168-4b75-a002-ede2961dc002@oss.qualcomm.com>
-Date: Fri, 17 Apr 2026 10:19:19 +0200
+	s=arc-20240116; t=1776414426; c=relaxed/simple;
+	bh=DQNXe8BqsPpMC5joo8b3sb/Qu3y+fvMDufSWmXVr+1s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LWLZpo576vINwmtoA257gHAKKBoTlHyPDpKg9asfOHDjlC1zzZ+77S4RnCkQBtQLTwpTs0ZcrI1dbFCb78N+T3wd5zqFRwaYDw/68jHiKPbd5p5KkAldDilKcDoSuL+QgA5En2M3JhP9t6xajqd2VYg1E+SvUfTH+iPLTE/s32s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FPVn8Yvf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95997C19425;
+	Fri, 17 Apr 2026 08:27:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776414426;
+	bh=DQNXe8BqsPpMC5joo8b3sb/Qu3y+fvMDufSWmXVr+1s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FPVn8YvfjCLjxYZeISK1Mwi47+149cb7Npnb++cUe3o/PwH6GQtRsuC6eOIgmJ0LV
+	 9F4qbM8RxYsA6KuCBOVyDPVSoy2d7fmsgMmHfzY+hiSAbtqDjKAC1m4luu44/0lcfm
+	 Ua0KHlNTw8qNwHORGYrZqTaERfrtr/BEMgQ8zqB7rNu9hKklLRl4YiLIg7NmrBAsA1
+	 vwwLnSEopo9FMeFul06QmSeQgLmdA6Rp7jJ6wssHZOzbEz9djank7kfWX2eiLBAeAo
+	 eucIvOoloyP43fDyYskwLyD7QNJ5/paLOi8HMhBT6+Sc2K4PgIVfWE1Q0w1awF1rlr
+	 8o2ZI9OvYv67g==
+Date: Fri, 17 Apr 2026 10:27:03 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: John Madieu <john.madieu@gmail.com>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	John Madieu <john.madieu.xa@bp.renesas.com>
+Subject: Re: [PATCH v5 01/14] ASoC: dt-bindings: sound: Add DT binding for
+ RZ/G3E sound
+Message-ID: <20260417-energetic-practical-frigatebird-5b93ad@quoll>
+References: <20260415124731.3684773-1-john.madieu.xa@bp.renesas.com>
+ <20260415124731.3684773-2-john.madieu.xa@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: eliza: Sort nodes by unit
- address
-To: Alexander Koskovich <akoskovich@pm.me>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20260416-eliza-imem-v2-0-fb7a71123451@pm.me>
- <20260416-eliza-imem-v2-1-fb7a71123451@pm.me>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260416-eliza-imem-v2-1-fb7a71123451@pm.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: iHN6G8Ii_kVFPWjDGIFnk4YpOgUIl_WV
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDE3MDA4MiBTYWx0ZWRfX7ILannf5Jd2D
- 9xkvSlVrXgUR4T783siaqe3V0fmaHQC4ZuEDW801CO+bReCebJxnro+yw4okFjFOHsUXpmu2Ssu
- d8HBowuwWRUcwu9iTK/QZOM5ntIgvl0sThKEN0h6iLON0m4zPIkHM5kbwBPReRLkGRLegxssCzg
- e7a7Mp3nlVvep70f3D6QPAbYQUi9AiPGQJ3L4svGJGHA1nYsQS5wgVNuhgoQUgMGLgafbCd44jC
- 8ElqsTSnOjfWqlK4baPPuKyAa7DTQFEZCTyWMgaI5izdUMdR/lZcnnzPthxrwckoft0SlSgNP2C
- MIs2HXR2y69N12aZqF0MRBvWfh+k1h4jhbaa7lgvZs8HE7+4KzlhCOV72nrv75j+JyMkLsseb3A
- /obMpnedzigCoSmtCCC322e3TCWVKnntAAIuORYrBCgKtwpim4eWWhmsie8iJLNx82GrB0CNjce
- r4PAqliBwD9Fmd9xrjw==
-X-Authority-Analysis: v=2.4 cv=b4mCJNGx c=1 sm=1 tr=0 ts=69e1ed0c cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=EUspDBNiAAAA:8 a=O7T_dzNiMBTscPX1knoA:9 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-GUID: iHN6G8Ii_kVFPWjDGIFnk4YpOgUIl_WV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-16_04,2026-04-16_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 suspectscore=0 priorityscore=1501 adultscore=0 bulkscore=0
- phishscore=0 clxscore=1015 spamscore=0 impostorscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604170082
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260415124731.3684773-2-john.madieu.xa@bp.renesas.com>
+X-Spamd-Result: default: False [5.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,pm.me:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288090-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288091-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
+	FREEMAIL_TO(0.00)[gmail.com];
+	GREYLIST(0.00)[pass,body];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[renesas.com,kernel.org,gmail.com,perex.cz,suse.com,glider.be,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 8B926418A2A
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	NEURAL_SPAM(0.00)[0.013];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,renesas.com:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DF04F418CA1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/16/26 11:39 AM, Alexander Koskovich wrote:
-> Qualcomm DTS uses sorting of MMIO nodes by the unit address, so move
-> few nodes in Eliza DTSI to fix that.
+On Wed, Apr 15, 2026 at 12:47:18PM +0000, John Madieu wrote:
+> Add a standalone device tree binding for the Renesas RZ/G3E (R9A09G047)
+> sound controller.
 > 
-> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
+> The RZ/G3E sound IP is based on R-Car Sound but differs in several ways:
+> - Uses unprefixed sub-node names (ssi, ssiu, src, dvc, mix, ctu) instead
+>   of R-Car's rcar_sound,xxx prefixed names.
+> - Supports up to 5 DMA controllers per direction, allowing multiple DMA
+>   entries with repeated channel names in SSIU, SRC and DVC sub-nodes.
+> - Has 47 clocks including per-SSI ADG clocks (adg.ssi.0-9), SCU clocks
+>   (scu, scu_x2, scu_supply), SSIF supply clock, AUDMAC peri-peri clock,
+>   and ADG clock.
+> - Has 14 reset lines including SCU, ADG and AUDMAC peri-peri resets.
+> - SSI operates exclusively in BUSIF mode.
+> 
+> These differences make the RZ/G3E binding incompatible with the existing
+> renesas,rsnd.yaml, so it is added as a separate standalone binding with
+> its own $ref to dai-common.yaml.
+> 
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+
+DCO/author mismatch.
+
+Did you run checkpatch?
+
 > ---
+> 
+> Changes:
+>  
+> v5:
+>  - Drop the two-patch rsnd.yaml split approach from v4.
+>    Replace with a single self-contained standalone binding that does
+>    not touch renesas,rsnd.yaml at all.
+>  - Remove select: false, redundant blanket properties (compatible: true,
+>    reg: true, etc.) and pointless patternProperties per Krzystof's review
+>  - Add missing #clock-cells and #sound-dai-cells constraints
+>  - Add hardware description text instead of "Binding for ..." phrasing
+>  - Move G3E-specific DMA comment into the binding itself rather than
+>    relying on a shared schema
+>  - Use unprefixed sub-node names (ssi, ssiu, src, dvc, mix, ctu) to
+>    reflect the actual RZ/G3E DT binding
+> 
+> v4: No changes
+> v3: No changes
+> v2:
+>  - Introduce RZ/G3E sound binding as a standalone schema
+> 
+>  .../sound/renesas,r9a09g047-sound.yaml        | 770 ++++++++++++++++++
+>  1 file changed, 770 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml b/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
+> new file mode 100644
+> index 000000000000..b7e5348636bb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
+> @@ -0,0 +1,770 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/renesas,r9a09g047-sound.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/G3E Sound Controller
+> +
+> +maintainers:
+> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> +  - John Madieu <john.madieu.xa@bp.renesas.com>
+> +
+> +description:
+> +  The RZ/G3E (R9A09G047) sound controller is based on R-Car Sound IP
+> +  with extended DMA channel support (up to 5 DMACs per direction),
+> +  additional clock domains (47 clocks including per-SSI ADG clocks),
+> +  and additional reset lines (14 including SCU, ADG and Audio DMAC
+> +  peri-peri resets). SSI operates exclusively in BUSIF mode with
+> +  2-4 BUSIF channels per SSI.
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: renesas,r9a09g047-sound
+> +
+> +  reg:
+> +    maxItems: 5
+> +
+> +  reg-names:
+> +    items:
+> +      - const: scu
+> +      - const: adg
+> +      - const: ssiu
+> +      - const: ssi
+> +      - const: audmapp
+> +
+> +  "#sound-dai-cells":
+> +    enum: [0, 1]
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Why is this flexible? That's a defined device meaning you have one XOR more
+DAIs. Not "1 and more".
 
-Konrad
+> +
+> +  "#clock-cells":
+> +    const: 0
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  clocks:
+> +    maxItems: 47
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ssi-all
+> +      - const: ssi.9
+
+
+Use consistently -
+
+> +      - const: ssi.8
+> +      - const: ssi.7
+> +      - const: ssi.6
+> +      - const: ssi.5
+> +      - const: ssi.4
+> +      - const: ssi.3
+> +      - const: ssi.2
+> +      - const: ssi.1
+> +      - const: ssi.0
+> +      - const: src.9
+> +      - const: src.8
+> +      - const: src.7
+> +      - const: src.6
+> +      - const: src.5
+> +      - const: src.4
+> +      - const: src.3
+> +      - const: src.2
+> +      - const: src.1
+> +      - const: src.0
+> +      - const: mix.1
+> +      - const: mix.0
+> +      - const: ctu.1
+> +      - const: ctu.0
+> +      - const: dvc.0
+> +      - const: dvc.1
+> +      - const: clk_a
+
+And here as well
+
+name "clk_a" is half useless, because this cannot be anything else than
+clk, thus basically you said "a". What is a?
+
+
+> +      - const: clk_b
+> +      - const: clk_c
+> +      - const: clk_i
+> +      - const: ssif_supply
+> +      - const: scu
+> +      - const: scu_x2
+> +      - const: scu_supply
+> +      - const: adg.ssi.9
+> +      - const: adg.ssi.8
+> +      - const: adg.ssi.7
+> +      - const: adg.ssi.6
+> +      - const: adg.ssi.5
+> +      - const: adg.ssi.4
+> +      - const: adg.ssi.3
+> +      - const: adg.ssi.2
+> +      - const: adg.ssi.1
+> +      - const: adg.ssi.0
+> +      - const: audmapp
+> +      - const: adg
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 14
+> +
+> +  reset-names:
+> +    items:
+> +      - const: ssi-all
+> +      - const: ssi.9
+
+s/./-/
+
+> +      - const: ssi.8
+> +      - const: ssi.7
+> +      - const: ssi.6
+> +      - const: ssi.5
+> +      - const: ssi.4
+> +      - const: ssi.3
+> +      - const: ssi.2
+> +      - const: ssi.1
+> +      - const: ssi.0
+> +      - const: scu
+> +      - const: adg
+> +      - const: audmapp
+> +
+> +  clock-frequency:
+> +    description: Audio clock output frequency.
+
+Drop, this is a legacy property, not really allowed for new devices
+which are not I2C buses.
+
+> +
+> +  clkout-lr-asynchronous:
+
+Missing vendor prefix.
+
+> +    description: audio_clkoutn is asynchronous with lr-clock.
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +
+> +  dvc:
+
+Mixing nodes with and without addressing is discouraged. Why do you have
+such mixup?
+
+This node looks empty, so just define dvc-[01] directly. Same for other
+cases.
+
+> +    type: object
+> +    patternProperties:
+> +      "^dvc-[0-1]$":
+> +        type: object
+> +        additionalProperties: false
+> +        properties:
+> +          dmas:
+> +            maxItems: 5
+> +          dma-names:
+> +            maxItems: 5
+> +            allOf:
+> +              - items:
+> +                  enum:
+> +                    - tx
+> +        required:
+> +          - dmas
+> +          - dma-names
+> +    additionalProperties: false
+> +
+> +  mix:
+> +    type: object
+> +    patternProperties:
+> +      "^mix-[0-1]$":
+> +        type: object
+> +        additionalProperties: false
+> +    additionalProperties: false
+> +
+> +  ctu:
+> +    type: object
+> +    patternProperties:
+> +      "^ctu-[0-7]$":
+> +        type: object
+> +        additionalProperties: false
+> +    additionalProperties: false
+> +
+> +  src:
+> +    type: object
+> +    patternProperties:
+> +      "^src-[0-9]$":
+> +        type: object
+> +        additionalProperties: false
+> +        properties:
+> +          interrupts:
+> +            maxItems: 1
+> +          dmas:
+> +            maxItems: 10
+> +          dma-names:
+> +            maxItems: 10
+> +            allOf:
+> +              - items:
+> +                  enum:
+> +                    - tx
+> +                    - rx
+> +    additionalProperties: false
+> +
+> +  ssiu:
+> +    type: object
+> +    patternProperties:
+> +      "^ssiu-[0-9]+$":
+> +        type: object
+> +        additionalProperties: false
+> +        properties:
+> +          dmas:
+> +            maxItems: 10
+> +          dma-names:
+> +            maxItems: 10
+> +            allOf:
+> +              - items:
+> +                  enum:
+> +                    - tx
+> +                    - rx
+> +        required:
+> +          - dmas
+> +          - dma-names
+> +    additionalProperties: false
+> +
+> +  ssi:
+> +    type: object
+> +    patternProperties:
+> +      "^ssi-[0-9]$":
+> +        type: object
+> +        additionalProperties: false
+> +        properties:
+> +          interrupts:
+> +            maxItems: 1
+> +          dmas: true
+> +          dma-names: true
+> +          shared-pin:
+> +            description: Shared clock pin.
+> +            $ref: /schemas/types.yaml#/definitions/flag
+> +        required:
+> +          - interrupts
+> +    additionalProperties: false
+> +
+> +  port:
+> +    $ref: audio-graph-port.yaml#/definitions/port-base
+> +    unevaluatedProperties: false
+> +    patternProperties:
+> +      "^endpoint(@[0-9a-f]+)?$":
+> +        $ref: audio-graph-port.yaml#/definitions/endpoint-base
+> +        properties:
+> +          playback:
+> +            $ref: /schemas/types.yaml#/definitions/phandle-array
+> +          capture:
+> +            $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        unevaluatedProperties: false
+> +
+> +patternProperties:
+> +  '^dai(@[0-9a-f]+)?$':
+
+Why node addressing is optional?
+
+> +    type: object
+> +    patternProperties:
+> +      "^dai([0-9]+)?$":
+
+You did not verify your DTS, you have warnings here. And I really do not
+understand why dai@0 has dai@0 again.
+
+
+> +        type: object
+> +        additionalProperties: false
+> +        properties:
+> +          playback:
+> +            $ref: /schemas/types.yaml#/definitions/phandle-array
+> +          capture:
+> +            $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        anyOf:
+> +          - required:
+> +              - playback
+> +          - required:
+> +              - capture
+> +    additionalProperties: false
+> +
+> +  'ports(@[0-9a-f]+)?$':
+
+Why ports even have addferssing?
+
+> +    $ref: audio-graph-port.yaml#/definitions/port-base
+
+So this is port base or ports? How port-base could have one more port as
+a child? Open the port-base definition and look there.
+
+> +    unevaluatedProperties: false
+> +    patternProperties:
+> +      '^port(@[0-9a-f]+)?$':
+
+No, you must define exactly what the ports are.
+
+> +        $ref: "#/properties/port"
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+
+Best regards,
+Krzysztof
+
 
