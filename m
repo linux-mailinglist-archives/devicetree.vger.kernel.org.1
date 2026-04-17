@@ -1,306 +1,139 @@
-Return-Path: <devicetree+bounces-288279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288281-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +BtvInt44mnh6AAAu9opvQ
-	(envelope-from <devicetree+bounces-288279-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 20:14:19 +0200
+	id mE/9M7F14mnh6AAAu9opvQ
+	(envelope-from <devicetree+bounces-288281-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 20:02:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD5F41DE13
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 20:14:18 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FCDB41DC5C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 20:02:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E454D3144160
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 17:54:10 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 03E70301A2CB
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 17:55:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8C83B0ACB;
-	Fri, 17 Apr 2026 17:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1772ECE86;
+	Fri, 17 Apr 2026 17:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PJf6RVER"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Ud7SICim"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB89130CDB6
-	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 17:52:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2416236494E;
+	Fri, 17 Apr 2026 17:55:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776448365; cv=none; b=Evz4xwGVMeX68edHLO0EyuFQQZ7JlSB392YEPIABNmBd3IXErMHVuRsHdRQz4oYDSAh0ikmXhbEa1jBwmJQ0+vhCB+3Zz35mGsbkC4XZoDdjlboSXG5iNqcaHYNoIKMUECfn6Nh3IrrqJEvVHjK8CFaU14MjRX9tDuhfCSQcORk=
+	t=1776448523; cv=none; b=JuqykQf5J+gmH58CNwZP6SEl5OIr/t7nQFG4eER4PdZPseD0j3PD4wnlANCa4oyr4gdOM3p7OPn3RiOkwubXyhEWjWEhSSZelfpEvkJJBy8ba0/s7ZYlIIHAYYrmOs+kot413mfiU/TxiX3j6pC3nZVLKRioa0JG1O37c/br1O8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776448365; c=relaxed/simple;
-	bh=ChWfJT6jYHO8O5gq0fvteY6A9Sj+WFluSBHsD4S10u0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=b714UU9Vm7JPLunCP9VPqiFYnsJtjt5b7K8xU1vO+MOiZNWhM+oZBi63ZeFg2ZS21n+Htbm0wYDSjolJF5IZ56dI6tU76aZHZASJ8I5CamP4hXvRnvomsaQIKw4zV8sgWarNP1y8+bflZ82IbzSVjOHSbQbol+pc2wKNXsRP/s0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PJf6RVER; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-488c2690057so9648575e9.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 10:52:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1776448359; x=1777053159; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JzAtXQjauknA1e9f55ELLhSNN5mP1FnYcEPzv2Nn1ds=;
-        b=PJf6RVER4rqoBDZ5TIlx9JVzRQtiJbYEG1d/f8qa2JWo4IBKGdrV0SezQ04eDtY7AM
-         /23LRj9VUHJDDptqBW45lVpzixpEeiF7uAnQwKdkHKzIMtodJnZzh7/mzEP1629RiKHk
-         ZxStGvKEPGLNCalBEeoJlKdMk1CoryV6p1yH/LYy6dQxYu0UV+c4G8HNB4NeoEVp4+Bl
-         sHfx3D+g5K6crDXopV/fOD3odAxoC8buR36Ibmd4C+FZPHgnbzpatRRH/Kd0oXMSo3Xx
-         QhPQItwP1jXt4rlvP1AVxPO/Qg+fNSzs3lu7M3xo045i59ndm6UbRisUnnyjx9CUsyqM
-         wkFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776448359; x=1777053159;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=JzAtXQjauknA1e9f55ELLhSNN5mP1FnYcEPzv2Nn1ds=;
-        b=AUWueAB6uvda0m4dKuXxRYIv+DedJNi17etX2iI0EPWPGtlnC5epU7ZQIA2eqGojlG
-         SyHlngeL90+vmzJXvZgV2Uj/aNj8N3oTBvpyzKbMlgl7LFbyxyyG1xhtHTRAXOb+y4Td
-         lPUAl28h6xvdt3XLNkzgYZvswZSLtxIghAd2lNv2po4Zb3YTU+X8lYizsmKqdtDlaBA3
-         obzKPODfIuxi/xlkasZ697UJ8gqc565bP3Htf4HuzkF83ub5SrwLwVPD/4P/M/0iHAGY
-         fORrHs+gc6veSmwpIs5elZ/jrUFHd0+7DZFdkpdQn0x2yx/AdTaVfy2cES67hYaxnTBd
-         UvLw==
-X-Forwarded-Encrypted: i=1; AFNElJ/HYy+kk70QswU2A6+MCQoW4rax/evO98K9YTHsL2sP5mfeE1ylG1IvxUu1T3JRbJz2KeFCEfNuZdGk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz17STskK2eLAw4NNw+CQu86xFScibDTnVLrh3fvoq8dpHoMnc/
-	LSnZ09s5zEXJWJEPqZfObW42VtXwX6rPiwTgAO6gZEtZpXcElHTY/Igj
-X-Gm-Gg: AeBDievalkzUbKr0hqNM934v+BlFsGVPeFq+qPyvoFMBxq2JjV+QC999/KAESr8aM7+
-	RiezVtwb/gY4+o4T3xe7iaGCU/fyDMvUt9Yh0XC5LXLYDE/TK65ssURmkjRBw6+rVu5HwTTkAnp
-	EDWdnpwC51tHPVEJHOdAn4dCcO4YrCwTLg30AQYGjaK7+ReQqHfTT9l4lNLq/aWIwdnjgNH0wDm
-	RAdmnDx3ApMs9eyMJsWCOvr++0gUFPMiJJGgCVMO+gqiddejbtUKPnm6SH9qfRd/JTptaVHOlly
-	tYzFEMIeEKP7+8kc04AJkmcpRJyd2SvaGwLgNvcgc9r48Ig6DC+owa5DE0kEFFOVV+mciPoW8sN
-	APb8m79o85wEn9wKbauInBnryD5KEVPZxF+OS05V5/vh3KNuK419WIvgAOSo8p9PpmuzeL9ugBY
-	GfhACNZR0xUCIF2jImPqfXq0kP2sRJBfSqCG4Ji5UF
-X-Received: by 2002:a05:600c:c084:b0:485:39d1:b4dd with SMTP id 5b1f17b1804b1-488fb74a495mr42654155e9.10.1776448358967;
-        Fri, 17 Apr 2026 10:52:38 -0700 (PDT)
-Received: from biju.lan ([2a00:23c4:a758:8a01:528c:590:5bef:9bc8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fc1c773fsm56166535e9.12.2026.04.17.10.52.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Apr 2026 10:52:38 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 2/3] dt-bindings: display: bridge: Document Renesas RZ/G3L LVDS encoder
-Date: Fri, 17 Apr 2026 18:52:29 +0100
-Message-ID: <20260417175235.224809-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260417175235.224809-1-biju.das.jz@bp.renesas.com>
-References: <20260417175235.224809-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1776448523; c=relaxed/simple;
+	bh=Q/GzuWIQEHuvkg9yZh9vcQC8AxPXoccLErnZodAciHk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OJL5iVp5aIUHV7gAnlHjNopKpilNTR91r3tHRj+djVazs345uNUBfGSZ6h6j0JX3Uy2F5HIrWg5QlAVdh3VXqC0nUsTIKHOo3PZWN4qdn/HIgVL0ld/NWol1A+El83amOUnj5tVe1hHNMBsiZBiMJLZaL/I6bmuAyAJ2HXaXQII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Ud7SICim; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1776448518;
+	bh=Q/GzuWIQEHuvkg9yZh9vcQC8AxPXoccLErnZodAciHk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ud7SICimNN1HnVxsVZ3WfMCv8BI5OB7UvQ9beJebQtQmpu+coTXWZz8u7N0GISF5O
+	 Oxdrr9Eczp15S4lJpmFXUQU2OZ15f43hE3z/CvimwKyeySfmkLQAlYYlUvKC0RUUes
+	 mu7PLc6arQL9Um1iQErLyMZke9U2PRElA9D9fddK792XireuYepTaVW+5EyUfTM7tf
+	 2PYtNFlkW6fwEIOUWFstvW2mXmVXhfWZ4VYzPKTlGAYavKcM8RMrcNU0rruRYJT1X7
+	 yjc5xpzNKjI5rGsHXqSnYgMXQ13OjkCSv/BDX096cBXQHqEizTRnGJ/zALBlESGop1
+	 X6cTELVcasb0Q==
+Received: from [100.64.0.241] (unknown [100.64.0.241])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 67BBC17E131F;
+	Fri, 17 Apr 2026 19:55:18 +0200 (CEST)
+Message-ID: <70e9a8a0-414d-428f-8da8-9b65cc764849@collabora.com>
+Date: Fri, 17 Apr 2026 20:55:17 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/40] arm64: dts: rockchip: Wire up frl-enable-gpios for
+ RK3576/RK3588 boards
+To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260417-dts-rk-frl-enable-gpios-v1-0-a19c0dd8c9f6@collabora.com>
+ <2297365.1BCLMh4Saa@phil>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <2297365.1BCLMh4Saa@phil>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [5.34 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288279-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
-	GREYLIST(0.00)[pass,body];
-	FREEMAIL_CC(0.00)[bp.renesas.com,ideasonboard.com,kwiboo.se,gmail.com,lists.freedesktop.org,vger.kernel.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,glider.be];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288281-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.996];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,108a0000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.1:email,devicetree.org:url,bp.renesas.com:mid,0.0.0.10:email,renesas.com:email]
-X-Rspamd-Queue-Id: EFD5F41DE13
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,collabora.com:dkim,collabora.com:mid]
+X-Rspamd-Queue-Id: 0FCDB41DC5C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+Hi Heiko,
 
-Document the LVDS encoder IP found on the RZ/G3L SoC. It supports
-single-link mode. LVDS and the DSI interface share a peripheral clock and
-the MIPI_DSI_PRESET_N reset signal. However, the LVDS module cannot be
-used at the same time as MIPI-DSI.
+On 4/17/26 2:34 PM, Heiko Stuebner wrote:
+> Hi Cristan,
+> 
+> Am Freitag, 17. April 2026, 11:24:34 Mitteleuropäische Sommerzeit schrieb Cristian Ciocaltea:
+> 
+> [...]
+> 
+>> Cristian Ciocaltea (40):
+>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-100ask-dshanpi-a1
+>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-armsom-sige5
+>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-evb1-v10
+>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-evb2-v10
+>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-luckfox-core3576
+>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-nanopi-m5
+>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-nanopi-r76s
+>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-roc-pc
+>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-rock-4d
+> 
+> I do think one patch per SoC (rk3576, rk3588, rk3588s) would make more
+> sense, because these patches really are mostly identical :-)
 
-Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- .../bridge/renesas,r9a08g046-lvds.yaml        | 128 ++++++++++++++++++
- 1 file changed, 128 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,r9a08g046-lvds.yaml
+Yeah, apologies for the large number of patches, I went this way to allow
+per-board reviews.  As previously noted, I tried to identify the GPIO pins from
+multiple sources, so I'm not entirely sure about the accuracy in every case.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,r9a08g046-lvds.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,r9a08g046-lvds.yaml
-new file mode 100644
-index 000000000000..b1f6d020ae7b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/renesas,r9a08g046-lvds.yaml
-@@ -0,0 +1,128 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/renesas,r9a08g046-lvds.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G3L LVDS Encoder
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+  - Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-+
-+description: |
-+  This binding describe the LVDS encoder embedded in the Renesas RZ/G3L
-+  SoC. The encoder can operate in LVDS Single-link mode with 4 lanes
-+  (Data) + 1 lane (Clock).
-+
-+properties:
-+  compatible:
-+    const: renesas,r9a08g046-lvds
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Peripheral clock
-+      - description: PHY clock
-+      - description: Dot clock
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+      - const: phyclk
-+      - const: dotclk
-+
-+  resets:
-+    items:
-+      - description: LVDS_RESET_N
-+      - description: MIPI_DSI_PRESET_N
-+      - description: MIPI_DSI_CMN_RSTB
-+      - description: MIPI_DSI_ARESET_N
-+
-+  reset-names:
-+    items:
-+      - const: lvdrst
-+      - const: prst
-+      - const: rst
-+      - const: arst
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Input channel, directly connected to the Display Unit.
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: |
-+          Output channel, directly connected to the LVDS panel or bridge.
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - power-domains
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/renesas,r9a08g046-cpg.h>
-+
-+    lvds-cmn@108a0000 {
-+        compatible = "renesas,r9a08g046-lvds-cmn",
-+                     "simple-mfd", "syscon";
-+        reg = <0x108a0000 0x10000>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        lvds0: lvds@10 {
-+            compatible = "renesas,r9a08g046-lvds";
-+            reg = <0x10 0x8>;
-+            clocks = <&cpg CPG_MOD R9A08G046_MIPI_DSI_PCLK>,
-+                     <&cpg CPG_MOD R9A08G046_LVDS_PLLCLK>,
-+                     <&cpg CPG_MOD R9A08G046_LVDS_CLK_DOT0>;
-+            clock-names = "pclk", "phyclk", "dotclk";
-+            resets = <&cpg R9A08G046_LVDS_RESET_N>,
-+                     <&cpg R9A08G046_MIPI_DSI_PRESET_N>,
-+                     <&cpg R9A08G046_MIPI_DSI_CMN_RSTB>,
-+                     <&cpg R9A08G046_MIPI_DSI_ARESET_N>;
-+            reset-names = "lvdrst", "prst", "rst", "arst";
-+            power-domains = <&cpg>;
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+                    lvds0_in: endpoint {
-+                        remote-endpoint = <&du_out_lvds0>;
-+                    };
-+                };
-+
-+                port@1 {
-+                    reg = <1>;
-+                    lvds0_out: endpoint {
-+                        remote-endpoint = <&panel_in>;
-+                    };
-+                };
-+            };
-+        };
-+    };
-+...
--- 
-2.43.0
+Would it be preferable to squash the patches per SoC and board vendor, instead?
 
+Thanks,
+Cristian
 
