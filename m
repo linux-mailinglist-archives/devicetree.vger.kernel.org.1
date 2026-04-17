@@ -1,189 +1,191 @@
-Return-Path: <devicetree+bounces-288205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288208-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJYUBBMh4mlX1wAAu9opvQ
-	(envelope-from <devicetree+bounces-288205-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 14:01:23 +0200
+	id AEE3N8Yk4mlX1wAAu9opvQ
+	(envelope-from <devicetree+bounces-288208-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 14:17:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 761C841B060
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 14:01:22 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68A8E41B25F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 14:17:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C24B2303B155
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 11:59:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C511B30530FE
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 12:15:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 079EB399018;
-	Fri, 17 Apr 2026 11:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D8521CA03;
+	Fri, 17 Apr 2026 12:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="pYNPcNvJ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TwvOToKC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AC0038F23A
-	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 11:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6136978F2E;
+	Fri, 17 Apr 2026 12:15:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776427153; cv=none; b=EfSsxKXHZ4Fv7FFg0NMNykkZ8jrlFWpBuvRdfABUQLX74CfEeJrkqVL1VyDedtd9n3kq8divyOqyq004jo4meAYFqQovIFpEHXfwvcukbI/QEqtSm5XoVD3ZcR6TcLmNIMViJQ4dMiGJzR11rvyCkoH96gUC4ONAq/Y57lSj1+4=
+	t=1776428130; cv=none; b=KwMsMC1LTdDi5Hh37V5w50Tw+UAJ1/mH+mtprVemertIwNLH2/1oCxtp8TKXTjd74kgAcgQlmxfc67pVfwqIcrjZ+gghIr1a9OwdVYZKxqesji1gF6HKeIoDlOCbaZ1mdsnA1j133RA9SYrAyVy+/RFL1pogVLwHaz0eZxoMxyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776427153; c=relaxed/simple;
-	bh=K02Snn3IVf1p6+hyNMpPD51fWmtuska6FUViGDQ8eiY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=sidm88iq63lwBhNp7Zsgokk4uo0B3CbPFO+KPkwSGmkmfkAB+ODc2g9atHShYyfz0zVGmpLOYcduWXmC7MQTt80oKoADAeJtm/NnO0oqK2uiWFl9GHixp9nRnIPM/kEHzp7QgFpWbss7umvc9rH/so+UyaepTrGpJjbJxqzCjHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=pYNPcNvJ; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20260417115910epoutp04fef886b086151ce76ce8db43f4cb9a15~nIxTFW94m0359903599epoutp04U
-	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 11:59:10 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20260417115910epoutp04fef886b086151ce76ce8db43f4cb9a15~nIxTFW94m0359903599epoutp04U
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1776427150;
-	bh=ojLXeHbC5TlNvceo/oEDKPeYBz7Ith8Rtaarof/EAdA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pYNPcNvJLqlSsBte0b8lToSabkE7VGI1k5JSrnVkXcNWxg5Xa2XkfBlGRhdVZC4rQ
-	 3hmfKy/6USLFarcGY0nPZfa4G+j0jNTJYUR50VGeeA50OyKUBOfXyP8A6DoPjTXC8H
-	 WtkUMbEvALt13VpFVrA2yVDuIOLLaNY77KRKjkLw=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20260417115909epcas5p14de402e43845f76bdabf7f7cf66ca66f~nIxSpTAUE0070100701epcas5p1s;
-	Fri, 17 Apr 2026 11:59:09 +0000 (GMT)
-Received: from epcas5p1.samsung.com (unknown [182.195.38.89]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4fxthX4GWwz2SSKY; Fri, 17 Apr
-	2026 11:59:08 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20260417115908epcas5p1450496b1b2e333ec1d07c18afd32540c~nIxRMJUh82797527975epcas5p1S;
-	Fri, 17 Apr 2026 11:59:08 +0000 (GMT)
-Received: from bose.samsungds.net (unknown [107.108.83.9]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20260417115901epsmtip2622e58a34699ed1d26ffef78ef3abfe4~nIxLLmJkE0979809798epsmtip2Y;
-	Fri, 17 Apr 2026 11:59:01 +0000 (GMT)
-From: Alim Akhtar <alim.akhtar@samsung.com>
-To: avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org,
-	martin.petersen@oracle.com, krzk+dt@kernel.org
-Cc: sowon.na@samsung.com, peter.griffin@linaro.org,
-	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, Alim Akhtar
-	<alim.akhtar@samsung.com>
-Subject: [PATCH v2 4/4] arm64: dts: exynosautov920: enable support for ufs
- controller
-Date: Fri, 17 Apr 2026 17:44:52 +0530
-Message-Id: <20260417121452.827054-5-alim.akhtar@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260417121452.827054-1-alim.akhtar@samsung.com>
+	s=arc-20240116; t=1776428130; c=relaxed/simple;
+	bh=3/JcE1oEFCamdQomtHM6Su/mHXplatrZXsHT3756tyg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e7IsmIcMcWqNgyaYwoqRGCnsIpsOPxqb+Zoqi7zj6Kv1Slp2t4nf00IG7zotdRwTZZ7kqtjzjNnhwZBhr3WhFVWY1oN/AH+QwyzolT6eelC+l15LnquUHMvLGPXXQPrxO7NK7/i3YXMtUPoZFhzkZtjnEH5HzllgZUb7kTfH5EU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TwvOToKC; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1776428130; x=1807964130;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3/JcE1oEFCamdQomtHM6Su/mHXplatrZXsHT3756tyg=;
+  b=TwvOToKCCIcr2AjZSZl8iP9Argl3y4QdGV3LThGdJS3lgdBhuLknN7hF
+   VRayjzELWnJPqFICHlZeHlx7jFfy1RYBM8k4+5CC7vCVcZOAUH+3IMkXB
+   OY2piTGzKveXSrRfRY/WBDwtQ4rJmyIfQbcc/lGqnBq5nxqojJakieiVo
+   YM+VpXi7vBtGVMp2ZfewJIRPtmbOc8un4uxZ1TiylhbshVFOLBgTJwOMv
+   ziMnKTFYdY4W1+vppwS2Li+cd1Pxy8LNx3TFhPtKGRtZVwQnAAaO6Nnv6
+   P6PUPdR6R7TZq806sAN98gBFvS/AzS4tRX+kQsdN+woCsOvMF0OMBd0wX
+   Q==;
+X-CSE-ConnectionGUID: H0mICCmkSwyOFSSz+imrDQ==
+X-CSE-MsgGUID: mr7dDHBmTOiwGprWymR/YQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77351011"
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; 
+   d="scan'208";a="77351011"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 05:15:29 -0700
+X-CSE-ConnectionGUID: MMce8I8hTyuPnqmz0T5PwQ==
+X-CSE-MsgGUID: h5+8Y66sTQ6lkZ8AB6pkXg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; 
+   d="scan'208";a="227891671"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.170])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 05:15:26 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id D81E4120E0E;
+	Fri, 17 Apr 2026 15:15:45 +0300 (EEST)
+Date: Fri, 17 Apr 2026 15:15:45 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH v1 1/5] media: lm3560: Add HWEN pin support
+Message-ID: <aeIkceWY7SrulUPf@kekkonen.localdomain>
+References: <20260417114226.100033-1-clamor95@gmail.com>
+ <20260417114226.100033-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20260417115908epcas5p1450496b1b2e333ec1d07c18afd32540c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-543,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20260417115908epcas5p1450496b1b2e333ec1d07c18afd32540c
-References: <20260417121452.827054-1-alim.akhtar@samsung.com>
-	<CGME20260417115908epcas5p1450496b1b2e333ec1d07c18afd32540c@epcas5p1.samsung.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260417114226.100033-2-clamor95@gmail.com>
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-288205-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,samsung.com:dkim,samsung.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,16e04000:email,16d20000:email];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[samsung.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-288208-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 761C841B060
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[kekkonen.localdomain:mid,intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 68A8E41B25F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Sowon Na <sowon.na@samsung.com>
+Hi Svyatoslav,
 
-Add ufs node for ExynosAutov920 SoC. Also enable ufs_phy and
-ufs controller nodes.
+On Fri, Apr 17, 2026 at 02:42:22PM +0300, Svyatoslav Ryhel wrote:
+> Add HWEN - logic high hardware enable input found in LM3560 to ensure its
+> proper operation.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  drivers/media/i2c/lm3560.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/media/i2c/lm3560.c b/drivers/media/i2c/lm3560.c
+> index f4cc844f4e3c..e6af61415821 100644
+> --- a/drivers/media/i2c/lm3560.c
+> +++ b/drivers/media/i2c/lm3560.c
+> @@ -11,6 +11,7 @@
+>  
+>  #include <linux/delay.h>
+>  #include <linux/module.h>
+> +#include <linux/gpio.h>
+>  #include <linux/i2c.h>
+>  #include <linux/slab.h>
+>  #include <linux/mutex.h>
+> @@ -45,6 +46,7 @@ enum led_enable {
+>   * @dev: pointer to &struct device
+>   * @pdata: platform data
+>   * @regmap: reg. map for i2c
+> + * @hwen_gpio: line connected to hwen pin
+>   * @lock: muxtex for serial access.
+>   * @led_mode: V4L2 LED mode
+>   * @ctrls_led: V4L2 controls
+> @@ -54,6 +56,7 @@ struct lm3560_flash {
+>  	struct device *dev;
+>  	struct lm3560_platform_data *pdata;
+>  	struct regmap *regmap;
+> +	struct gpio_desc *hwen_gpio;
+>  	struct mutex lock;
+>  
+>  	enum v4l2_flash_led_mode led_mode;
+> @@ -425,6 +428,12 @@ static int lm3560_probe(struct i2c_client *client)
+>  	flash->dev = &client->dev;
+>  	mutex_init(&flash->lock);
+>  
+> +	flash->hwen_gpio = devm_gpiod_get_optional(&client->dev, "enable",
+> +						   GPIOD_OUT_HIGH);
 
-Signed-off-by: Sowon Na <sowon.na@samsung.com>
-Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
----
- .../boot/dts/exynos/exynosautov920-sadk.dts   |  8 +++++++
- .../arm64/boot/dts/exynos/exynosautov920.dtsi | 21 +++++++++++++++++++
- 2 files changed, 29 insertions(+)
+Please add runtime PM support for this so it can be powered on when needed.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-index a397f068ed53..5873720c213e 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-@@ -83,6 +83,14 @@ &usi_0 {
- 	status = "okay";
- };
- 
-+&ufs_0 {
-+	status = "okay";
-+};
-+
-+&ufs_0_phy {
-+	status = "okay";
-+};
-+
- &xtcxo {
- 	clock-frequency = <38400000>;
- };
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-index 0eb853770732..f1f5efcdb91e 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-@@ -1444,6 +1444,27 @@ pinctrl_hsi2ufs: pinctrl@16d20000 {
- 			interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		ufs_0: ufs@16e00000 {
-+			compatible = "samsung,exynosautov920-ufs";
-+			reg = <0x16e00000 0x100>,
-+			      <0x16e01100 0x400>,
-+			      <0x16e80000 0x8000>,
-+			      <0x16d08000 0x800>;
-+			reg-names = "hci", "vs_hci", "unipro", "ufsp";
-+			interrupts = <GIC_SPI 613 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cmu_hsi2 CLK_MOUT_HSI2_UFS_EMBD_USER>,
-+				 <&cmu_hsi2 CLK_MOUT_HSI2_NOC_UFS_USER>;
-+			clock-names = "core_clk", "sclk_unipro_main";
-+			freq-table-hz = <0 0>, <0 0>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&ufs_rst_n &ufs_refclk_out>;
-+			phys = <&ufs_0_phy>;
-+			phy-names = "ufs-phy";
-+			samsung,sysreg = <&syscon_hsi2 0x710>;
-+			dma-coherent;
-+			status = "disabled";
-+		};
-+
- 		ufs_0_phy: phy@16e04000 {
- 			compatible = "samsung,exynosautov920-ufs-phy";
- 			reg = <0x16e04000 0x4000>;
+> +	if (IS_ERR(flash->hwen_gpio))
+> +		return dev_err_probe(&client->dev, PTR_ERR(flash->hwen_gpio),
+> +				     "failed to get hwen gpio\n");
+> +
+>  	rval = lm3560_subdev_init(flash, LM3560_LED0, "lm3560-led0");
+>  	if (rval < 0)
+>  		return rval;
+> @@ -452,6 +461,8 @@ static void lm3560_remove(struct i2c_client *client)
+>  		v4l2_ctrl_handler_free(&flash->ctrls_led[i]);
+>  		media_entity_cleanup(&flash->subdev_led[i].entity);
+>  	}
+> +
+> +	gpiod_set_value_cansleep(flash->hwen_gpio, 0);
+>  }
+>  
+>  static const struct i2c_device_id lm3560_id_table[] = {
+
 -- 
-2.34.1
+Kind regards,
 
+Sakari Ailus
 
