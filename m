@@ -1,116 +1,78 @@
-Return-Path: <devicetree+bounces-288067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288071-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yCpxHg/j4WkKzgAAu9opvQ
-	(envelope-from <devicetree+bounces-288067-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 09:36:47 +0200
+	id gO2wBMbk4WmKzgAAu9opvQ
+	(envelope-from <devicetree+bounces-288071-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 09:44:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F293417FEA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 09:36:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A22774181A8
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 09:44:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D5CD9306EF46
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 07:35:36 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id ED6A230400C4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 07:43:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B6137F73C;
-	Fri, 17 Apr 2026 07:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA2D43815E6;
+	Fri, 17 Apr 2026 07:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UkaTCHx0";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HRJZFq0u"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="ikYCYNIv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFF0F37F019
-	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 07:35:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B163815FB;
+	Fri, 17 Apr 2026 07:43:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776411316; cv=none; b=JSS1Lm4MHqjxv4TEsnh2Ow9FqM25sSCGlz+xOL1UkeiP3Ss/YlBDlMDQSTMlPkNcXDxOzD8yw52Jugxz3MraPlMzZaM/I0jPNQc9VN0TASy8vtfyTcQARQQKgQRfN7xhsXxl/5X3KqVQtuQ5OLB0knG0/x5fPGASkZaqSK1m8xU=
+	t=1776411808; cv=none; b=W4LlT8KMvS970mgG+Q5rFbtkznCu6XDLEXTWhWkebWSAsPUazMTMTl+IhPZZ/p4BtyYYpzFRZ6L1ZbqnCfXlu0BsspQSsruNTUul9xq3cNWmKTLDuJG+ENVgCYy5q5BRscQaRP/z3TlNvCHENpzPfRm4NaNkcQ/rZ/vyu5b5cME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776411316; c=relaxed/simple;
-	bh=/GxrqyShWZhhCu9NPNw1MksJCRtI3frvzN1IvUNV9Xo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=UUDnRCiDyn7jWxM5bvHV3OObR8ofxzhNhV7IotSgFd9cJLZfMZ8M6ZsNP6p/os4p+rePW0FhImEMMFspo34A80h58YLOi62NOAnK+2sEPHUvz8PXO5dyqrnHaM3yKD1sdrw3auZcQlkgKmyC4NDbj1sgu+p+yvlLeelOYQu6Yj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UkaTCHx0; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HRJZFq0u; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63H0fqdr1981934
-	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 07:35:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=mzlwHG7jhot
-	LNRO30L9UEJODwYWeGVbGNVOxC1oDuvc=; b=UkaTCHx0RtCDf+fkEkOhUHMBWjg
-	3J83PH9M0UvtNbr8tdG2ZT4RkRPt2ImAaEUFe9m+SWSTi7yIlAqeDtVFX0KO5aG8
-	n5DXxjvEUaP7jPIv770RNiG/b1GopU4phME+XUfS47P1A6NOWt79RHzKi3qF80Zs
-	DDbun5ElxRMAE12FkSuDsUIDvb19D4oqavvMliOf95HPKU9FfstAOwJasf4kZ9p1
-	oBgw8VzPCRnhE8d6IqzGL/hgFzOXudszMFP4Ng6nw9vXvSVpihQMagBcsrpsSr5u
-	+cUZOBCR1dWPz538Y+qBZQH8Q7/5YzIGucncFytmdym8jlrC5jLAGLWHgEw==
-Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dk52jj5d5-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 07:35:13 +0000 (GMT)
-Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-2d8a677cdfaso373664eec.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 00:35:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1776411251; x=1777016051; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mzlwHG7jhotLNRO30L9UEJODwYWeGVbGNVOxC1oDuvc=;
-        b=HRJZFq0uohC3deWbtU1KyDi/Bubn6Zsv35BbPOtevoJ4ZeaMjRjNA9PTSA4BdAInd5
-         H2TucjhruyC5+/NF++Pdq0od+YrZFxSiD+JRBrjkYQFPvXGGliXMJTaToo/gGaH+KjKk
-         mesQbs7dsUvfq3kZS4inzyDWaSF1CAav8/WYUtd+SrjXrIF3MBOBiHqQeuxHHz6vxULr
-         aH/hvnBsg2PMMWm8WbtcuCDi80ULCnJcAzQqYNOIpZIgnOIRZkbKj65E828ILcReMkwW
-         s3fXVPzahN+krNx2qUjhog37T9Vc4WERhicC2WQqc0j1HdGjYoV4lxykmqbZFztosdJ5
-         noKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776411251; x=1777016051;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=mzlwHG7jhotLNRO30L9UEJODwYWeGVbGNVOxC1oDuvc=;
-        b=ZmwtFGxv/4QeejM3QaOG8t03BvGT/8XoBX3UHqIx5xhfTW+fyBwbwvVfw+Ee48BKnO
-         ALOk20i7kMKQA0qosWKI34rFV/Z5oOyegalhUfrbRcuHvgg+M+XtngWLKONLvDePGZHe
-         APrkBGRXZNoxOW3LTuX9Uw4ujX8zWWxP9QGmzZZij0/zpxv84hi1M+Yyqd1qrZG6eCoF
-         GQKD7y9Ydg8rj/xqIV0Mv1J/SmR01Lpg6ZuCSucZqYXWCrLha11PjT9PfL9bfMh+Vycu
-         hL5r+l9w+9/zGW3rZ+kbymNQf4J1C3ZDl1JQ/C43Xtze9OdhyVP6VMeLwYadff/B0pLT
-         wrmg==
-X-Forwarded-Encrypted: i=1; AFNElJ81eWRtEmF23tLvUbNDrGMMEHIw+57yban9AJlH8QKFy1t0POHhyPoEfgh7hHFuhjE5DCBO4YBB9ZGz@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzajzBxw1HSwvWzzMoJVT/CBkBboq2Eb8hIvzHtQx2jWnI6G68
-	cQZnN2+ypfDBNwxs/E40yGOPDt0wM0pkqQmWrERDu7b2/8zVHgi3wUT7QI0OBd8bCzaIsDejHlN
-	qv7CV4FoZWXevN2k3ZBK3jR3y6pDWANkg+JZJr6KD+Kb50EesG15AyumxuC+Q+MZO
-X-Gm-Gg: AeBDietPhAggm7r28gL3rlpP8HvktgrsVkFzKI9lOXGiQBOPk1vukvJq7OgWdsow8sn
-	57W72u5FMVjQA3+Lpb6aFQpisHl9Ebd3OikC8ydsQKkyruMuP4EpAOySps6OiZ6K3JbEXoqLY5M
-	I4DTQ+e5gAHEs9lFjAY4l8Fwx7NiKvJM4TvHoYWNuf0+QtEilWP4WxSnSMCs/M6jGaw1RT5tArP
-	x8Kt5cltQfqZQT4vu7gw9ACQf9eREQcIurPzen+YUFrmlwKF0En8OrkflDsX5wS5/gHnHBoiyku
-	GddQMcZywpXanVLw4uZcIrGFPhHK5+1I7Da249hk+Pxdq+9Kj8hWvhNJuAbR/b4zgSmE/cuyO1i
-	6bGamTKyytY4b0X8ZRN1HgQSIzYRCUSatkSx5Tbe/H7q/dG4JI7DgYi7qz7OYp4NhB1gn7oWTU6
-	+hpnYfuaBF7Y8=
-X-Received: by 2002:a05:7301:4591:b0:2d9:6373:ad24 with SMTP id 5a478bee46e88-2e479214a0emr691206eec.26.1776411250714;
-        Fri, 17 Apr 2026 00:34:10 -0700 (PDT)
-X-Received: by 2002:a05:7301:4591:b0:2d9:6373:ad24 with SMTP id 5a478bee46e88-2e479214a0emr691194eec.26.1776411250104;
-        Fri, 17 Apr 2026 00:34:10 -0700 (PDT)
-Received: from hu-songchai-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2e53ccd2564sm1135168eec.18.2026.04.17.00.34.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Apr 2026 00:34:09 -0700 (PDT)
-From: Songwei Chai <songwei.chai@oss.qualcomm.com>
-To: andersson@kernel.org, alexander.shishkin@linux.intel.com,
-        mike.leach@linaro.org, konrad.dybcio@oss.qualcomm.com,
-        suzuki.poulose@arm.com, james.clark@arm.com, krzk+dt@kernel.org,
-        conor+dt@kernel.org
-Cc: Songwei Chai <songwei.chai@oss.qualcomm.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        coresight@lists.linaro.org, devicetree@vger.kernel.org,
-        gregkh@linuxfoundation.org
-Subject: [PATCH v14 7/7] qcom-tgu: Add reset node to initialize
-Date: Fri, 17 Apr 2026 00:33:36 -0700
-Message-Id: <20260417073336.2712426-8-songwei.chai@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260417073336.2712426-1-songwei.chai@oss.qualcomm.com>
-References: <20260417073336.2712426-1-songwei.chai@oss.qualcomm.com>
+	s=arc-20240116; t=1776411808; c=relaxed/simple;
+	bh=rmCu0v0USkpwDe2jBOhMYOJEeBKXUyAdSRRO40th+Cw=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EvxqhlWO56uQkU5OtGJq7eVS3ZlrbQ4yKosgY3FwRYERSmfPAMer6DqUW/h9Zf+2UFFH6kZu4vmun1ysk4ttDGgvv990nXAg9lx9s9387Qgw/4Ll4HuK2LyX2Vq88cdx//ftG3UJbkFwinohs7iQfqekN7zaU85invSXd1oAbBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=ikYCYNIv; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 63H7eJVS13458892, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1776411619; bh=7bAnNbDSyQm2tbM9RfAjxsUZhyF08bOCjXCLhVyYxIo=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Transfer-Encoding:Content-Type;
+	b=ikYCYNIvaltaimo4dwiRBzSVzmihzvmdYD7TJf2OPt27HwAJK2pvp050wzbnNDpoD
+	 gI5FrY5GukW4H9GNS7Z1kcIf6SmsIhBmp3lZBv7QroZaIC0eTqzWICbkEY+G5h1d5r
+	 3KySmlaUooQp2CV67wFWLnIO+hhX2I/FRBCq/V2yq0ASMgAoGvv6lYlojwTWhpXoPh
+	 eSbvmaeKr0NDnEu6K2z8a6li55KM7/sDIec9azlCM1nMEvdpD/uJsfm157bMmn8M8s
+	 NYOKKenr+GvPwy/Ed06c0MASG+m4oK9R9L1LAzV0mJHCRlnur+0mlzIOzv6/UrvlV6
+	 KZNWlIB+mr0AA==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.26/5.94) with ESMTPS id 63H7eJVS13458892
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 17 Apr 2026 15:40:19 +0800
+Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Fri, 17 Apr 2026 15:40:18 +0800
+Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS04.realtek.com.tw
+ (10.21.1.54) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Fri, 17 Apr 2026 15:40:17 +0800
+From: Yu-Chun Lin <eleanor.lin@realtek.com>
+To: <bmasney@redhat.com>
+CC: <afaerber@suse.com>, <conor+dt@kernel.org>, <cy.huang@realtek.com>,
+        <cylee12@realtek.com>, <devicetree@vger.kernel.org>,
+        <eleanor.lin@realtek.com>, <james.tai@realtek.com>,
+        <jyanchou@realtek.com>, <krzk+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-realtek-soc@lists.infradead.org>, <mturquette@baylibre.com>,
+        <p.zabel@pengutronix.de>, <robh@kernel.org>, <sboyd@kernel.org>,
+        <stanley_chang@realtek.com>
+Subject: Re: [PATCH v6 07/10] clk: realtek: Add support for MMC-tuned PLL clocks
+Date: Fri, 17 Apr 2026 15:40:17 +0800
+Message-ID: <20260417074017.1198940-1-eleanor.lin@realtek.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <ac_XtHzDpIjHW8xT@redhat.com>
+References: <ac_XtHzDpIjHW8xT@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -118,172 +80,292 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=buR8wkai c=1 sm=1 tr=0 ts=69e1e2b1 cx=c_pps
- a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22 a=EUspDBNiAAAA:8
- a=IgPCHI2mAnvcCQI4J_AA:9 a=bBxd6f-gb0O0v-kibOvt:22
-X-Proofpoint-GUID: dYxpX4ja6oANmO3Mcb3Q58FLPp9v-QlD
-X-Proofpoint-ORIG-GUID: dYxpX4ja6oANmO3Mcb3Q58FLPp9v-QlD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDE3MDA3NSBTYWx0ZWRfX6HvcnnUcG7dg
- Y42hgiEzKcIwNtf7oaKUmOSQUowUIC/uGaRWBwXV/AezgEM5Xp6nUvr4SuYQpb9UEs4m1C8ZmFy
- h4PKfFfosiNRcX3Yjmw8Q1h0wuXsnI5iwNQr5KjzCrksTXMFC+b7GV4KQMKjafC1lDL6IU23Itn
- QGovjG4YySxuYr5Z+vOHGEyvQx3NKDZ5Oox2tnYilC4gOgJ6m9T4+KLvpA82X9jcilJhdA++eEQ
- NfI753hNduzcTjqNZcVhGa1GR40YuEErukUXeggLz5rN6EQU14MaeucLYRWViRRO5dZMGx3u4lt
- PP9ripgHDb4aF9qm6OZuNx7vMAk4ajNkDKK25U7z95OScoEgNB5ZlxlvilPMrVolEZL36OG//hl
- ByLta/eVHfx+iDvhSXlogRTTXv/9Osp+CCwHlr5iAZU9Esz2RNMdJYr9IvBskoIB8lP7l6YhvL2
- s2zOq6ESDMzeJJTIj7g==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-16_04,2026-04-16_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0
- priorityscore=1501 spamscore=0 malwarescore=0 phishscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604170075
+Content-Type: text/plain
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-288067-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288071-lists,devicetree=lfdr.de];
+	TO_DN_NONE(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[songwei.chai@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[realtek.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 3F293417FEA
+	NEURAL_HAM(-0.00)[-0.990];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A22774181A8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add reset node to initialize the value of
-priority/condition_decode/condition_select/timer/counter nodes.
+Hi Brian,
 
-Signed-off-by: Songwei Chai <songwei.chai@oss.qualcomm.com>
----
- .../ABI/testing/sysfs-bus-amba-devices-tgu    |  7 ++
- drivers/hwtracing/qcom/tgu.c                  | 74 +++++++++++++++++++
- 2 files changed, 81 insertions(+)
+Sorry for the late reply.
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu b/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
-index 7a3573e03e27..a6b6019c8ef1 100644
---- a/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
-+++ b/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
-@@ -42,3 +42,10 @@ KernelVersion:	7.1
- Contact:	Jinlong Mao <jinlong.mao@oss.qualcomm.com>, Songwei Chai <songwei.chai@oss.qualcomm.com>
- Description:
- 		(RW) Set/Get the counter value with specific step for TGU.
-+
-+What:		/sys/bus/amba/devices/<tgu-name>/reset_tgu
-+Date:		April 2026
-+KernelVersion:	7.1
-+Contact:	Jinlong Mao <jinlong.mao@oss.qualcomm.com>, Songwei Chai <songwei.chai@oss.qualcomm.com>
-+Description:
-+		(Write) Write 1 to reset the dataset for TGU.
-diff --git a/drivers/hwtracing/qcom/tgu.c b/drivers/hwtracing/qcom/tgu.c
-index 6d5bf2621cb0..9fb51f2a912f 100644
---- a/drivers/hwtracing/qcom/tgu.c
-+++ b/drivers/hwtracing/qcom/tgu.c
-@@ -420,8 +420,82 @@ static ssize_t enable_tgu_store(struct device *dev,
- }
- static DEVICE_ATTR_RW(enable_tgu);
- 
-+/* reset_tgu_store - Reset Trace and Gating Unit (TGU) configuration. */
-+static ssize_t reset_tgu_store(struct device *dev,
-+			       struct device_attribute *attr, const char *buf,
-+			       size_t size)
-+{
-+	struct tgu_drvdata *drvdata = dev_get_drvdata(dev);
-+	struct value_table *vt = drvdata->value_table;
-+	u32 *cond_decode = drvdata->value_table->condition_decode;
-+	unsigned long value;
-+	int i, j, ret;
-+
-+	if (kstrtoul(buf, 0, &value) || value != 1)
-+		return -EINVAL;
-+
-+	spin_lock(&drvdata->lock);
-+	if (!drvdata->enabled) {
-+		spin_unlock(&drvdata->lock);
-+		ret = pm_runtime_resume_and_get(drvdata->dev);
-+		if (ret)
-+			return ret;
-+		spin_lock(&drvdata->lock);
-+	}
-+
-+	tgu_do_disable(drvdata);
-+
-+	if (vt->priority) {
-+		size_t size = MAX_PRIORITY * drvdata->num_step *
-+				drvdata->num_reg * sizeof(unsigned int);
-+		memset(vt->priority, 0, size);
-+	}
-+
-+	if (vt->condition_decode) {
-+		size_t size = drvdata->num_condition_decode *
-+			      drvdata->num_step * sizeof(unsigned int);
-+		memset(vt->condition_decode, 0, size);
-+	}
-+
-+	/* Initialize all condition registers to NOT(value=0x1000000) */
-+	for (i = 0; i < drvdata->num_step; i++) {
-+		for (j = 0; j < drvdata->num_condition_decode; j++) {
-+			cond_decode[calculate_array_location(drvdata, i,
-+			TGU_CONDITION_DECODE, j)] = 0x1000000;
-+		}
-+	}
-+
-+	if (vt->condition_select) {
-+		size_t size = drvdata->num_condition_select *
-+			      drvdata->num_step * sizeof(unsigned int);
-+		memset(vt->condition_select, 0, size);
-+	}
-+
-+	if (vt->timer) {
-+		size_t size = (drvdata->num_step) * (drvdata->num_timer) *
-+				sizeof(unsigned int);
-+		memset(vt->timer, 0, size);
-+	}
-+
-+	if (vt->counter) {
-+		size_t size = (drvdata->num_step) * (drvdata->num_counter) *
-+			      sizeof(unsigned int);
-+		memset(vt->counter, 0, size);
-+	}
-+
-+	spin_unlock(&drvdata->lock);
-+
-+	dev_dbg(dev, "Qualcomm-TGU reset complete\n");
-+
-+	pm_runtime_put(drvdata->dev);
-+
-+	return size;
-+}
-+static DEVICE_ATTR_WO(reset_tgu);
-+
- static struct attribute *tgu_common_attrs[] = {
- 	&dev_attr_enable_tgu.attr,
-+	&dev_attr_reset_tgu.attr,
- 	NULL,
- };
- 
--- 
-2.34.1
+> Hi Yu-Chun and Cheng-Yu,
+>
+> On Thu, Apr 02, 2026 at 03:39:54PM +0800, Yu-Chun Lin wrote:
+> > From: Cheng-Yu Lee <cylee12@realtek.com>
+> > 
+> > Add clk_pll_mmc_ops for enable/disable, prepare, rate control, and status
+> > operations on MMC PLL clocks.
+> > 
+> > Also add clk_pll_mmc_phase_ops to support phase get/set operations.
+> > 
+> > Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
+> > Co-developed-by: Jyan Chou <jyanchou@realtek.com>
+> > Signed-off-by: Jyan Chou <jyanchou@realtek.com>
+> > Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+> > Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+> > ---
+> > Changes in v6:
+> > - Add the headers used in c file to follow the "Include What You Use" principle.
+> > - Move to_clk_pll_mmc() from clk-pll.h to clk-pll-mmc.c to limit its scope.
+> > - Change offset type from int to unsigned int.
+> > ---
+> >  MAINTAINERS                       |   8 +
+> >  drivers/clk/realtek/Kconfig       |   3 +
+> >  drivers/clk/realtek/Makefile      |   2 +
+> >  drivers/clk/realtek/clk-pll-mmc.c | 410 ++++++++++++++++++++++++++++++
+> >  drivers/clk/realtek/clk-pll.h     |  13 +
+> >  5 files changed, 436 insertions(+)
+> >  create mode 100644 drivers/clk/realtek/clk-pll-mmc.c
+> > 
+
+(snip)
+
+> > +
+> > +static inline int get_phrt0(struct clk_pll_mmc *clkm, u32 *val)
+> > +{
+> > +	u32 reg;
+> > +	int ret;
+> > +
+> > +	ret = regmap_read(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC1_OFFSET, &reg);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	*val = (reg >> PLL_PHRT0_SHIFT) & PLL_PHRT0_MASK;
+>
+> Sashiko reports the following:
+> https://sashiko.dev/#/patchset/20260402073957.2742459-1-eleanor.lin%40realtek.com
+> 
+>    With PLL_PHRT0_SHIFT defined as 1 and PLL_PHRT0_MASK as BIT(1) (0x02), shifting
+>    right by 1 moves the target bit 1 to position 0, but masking with 0x02 checks
+>    position 1 of the shifted value.
+>    
+>    Will this cause clk_pll_mmc_is_enabled() to always evaluate to false since it
+>    expects val == 0x1?
+>
+
+Thank you for catching this critical bug! You're absolutely right.
+The issue is that I incorrectly used BIT() for the mask values
+I will correct them, like PLL_PHRT0_MASK from BIT(1) to 0x1.
+
+> > +	return 0;
+> > +}
+> > +
+> > +static inline int set_phrt0(struct clk_pll_mmc *clkm, u32 val)
+> > +{
+> > +	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + PLL_EMMC1_OFFSET,
+> > +				  PLL_PHRT0_MASK, val << PLL_PHRT0_SHIFT);
+> > +}
+> > +
+> > +static inline int get_phsel(struct clk_pll_mmc *clkm, int id, u32 *val)
+> > +{
+> > +	int ret;
+> > +	u32 raw_val;
+> > +	u32 sft = id ? 8 : 3;
+>
+> Put variables in reverse Christmas tree order.
+>
+
+Ack.
+
+(snip)
+
+> > +
+> > +static int clk_pll_mmc_phase_set_phase(struct clk_hw *hw, int degrees)
+> > +{
+> > +	struct clk_hw *hwp = clk_hw_get_parent(hw);
+> > +	struct clk_pll_mmc *clkm;
+> > +	int phase_id;
+> > +	int ret;
+> > +	u32 val;
+> > +
+> > +	if (!hwp)
+> > +		return -ENOENT;
+> > +
+> > +	clkm = to_clk_pll_mmc(hwp);
+> > +	phase_id = (hw - &clkm->phase0_hw) ? 1 : 0;
+> 
+> Are you checking to see if these two pointers are the same? If so, what
+> do you think about this instead?
+>
+>    hw == &clkm->phase0_hw
+>
+>
+> Does you mean phase_id = (hw == &clkm->phase0_hw) ? 0 : 1; ?
+>
+
+Yes, I will revise it according to your suggestion.
+
+> > +	val = DIV_ROUND_CLOSEST(degrees * 100, PHASE_SCALE_FACTOR);
+> > +	ret = set_phsel(clkm, phase_id, val);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	usleep_range(10, 20);
+> > +	return 0;
+> > +}
+> > +
+
+(snip)
+
+> > +
+> > +static unsigned long clk_pll_mmc_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
+> > +{
+> > +	struct clk_pll_mmc *clkm = to_clk_pll_mmc(hw);
+> > +	u32 val, ext_f;
+> > +	int ret;
+> > +
+> > +	ret = get_ssc_div_n(clkm, &val);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = get_ssc_div_ext_f(clkm, &ext_f);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return parent_rate / 4 * (val + 2) + (parent_rate / 4 * ext_f) / 8192;
+> > +}
+> > +
+> > +static int clk_pll_mmc_determine_rate(struct clk_hw *hw, struct clk_rate_request *req)
+> > +{
+>
+> Should there be a check for a parent rate of zero before the division is
+> done?
+>
+
+Ack, I will do it.
+
+> > +	u32 val = DIV_ROUND_CLOSEST(req->rate * 4, req->best_parent_rate);
+> > +
+> > +	req->rate = req->best_parent_rate * val / 4;
+> > +	return 0;
+> > +}
+> > +
+> > +static int clk_pll_mmc_set_rate(struct clk_hw *hw, unsigned long rate, unsigned long parent_rate)
+> > +{
+> > +	struct clk_pll_mmc *clkm = to_clk_pll_mmc(hw);
+> > +	u32 val = PLL_MMC_SSC_DIV_N_VAL;
+> > +	int ret;
+> > +
+> > +	ret = regmap_update_bits(clkm->clkr.regmap,
+> > +				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC1_OFFSET,
+> > +				 PLL_FLAG_INITAL_EMMC_MASK, 0x0 << PLL_FLAG_INITAL_EMMC_SHIFT);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = set_ssc_div_n(clkm, val);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = set_ssc_div_ext_f(clkm, 1517);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	switch (val) {
+> > +	case 31 ... 46:
+> > +		ret |= set_pi_ibselh(clkm, 3);
+> > +		ret |= set_sscpll_rs(clkm, 3);
+> > +		ret |= set_sscpll_icp(clkm, 2);
+> > +		break;
+> > +
+> > +	case 20 ... 30:
+> > +		ret |= set_pi_ibselh(clkm, 2);
+> > +		ret |= set_sscpll_rs(clkm, 3);
+> > +		ret |= set_sscpll_icp(clkm, 1);
+> > +		break;
+> > +
+> > +	case 10 ... 19:
+> > +		ret |= set_pi_ibselh(clkm, 1);
+> > +		ret |= set_sscpll_rs(clkm, 2);
+> > +		ret |= set_sscpll_icp(clkm, 1);
+> > +		break;
+> > +
+> > +	case 5 ... 9:
+> > +		ret |= set_pi_ibselh(clkm, 0);
+> > +		ret |= set_sscpll_rs(clkm, 2);
+> > +		ret |= set_sscpll_icp(clkm, 0);
+> > +		break;
+> > +	}
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_update_bits(clkm->clkr.regmap,
+> > +				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC3_OFFSET,
+> > +				 PLL_NCODE_SSC_EMMC_MASK,
+> > +				 27 << PLL_NCODE_SSC_EMMC_SHIFT);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_update_bits(clkm->clkr.regmap,
+> > +				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC3_OFFSET,
+> > +				 PLL_FCODE_SSC_EMMC_MASK, 321);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_update_bits(clkm->clkr.regmap,
+> > +				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC4_OFFSET,
+> > +				 PLL_GRAN_EST_EM_MC_MASK, 5985);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_update_bits(clkm->clkr.regmap,
+> > +				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC1_OFFSET,
+> > +				 PLL_EN_SSC_EMMC_MASK, 0x1);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_update_bits(clkm->clkr.regmap,
+> > +				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC1_OFFSET,
+> > +				 PLL_EN_SSC_EMMC_MASK, 0x0);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_update_bits(clkm->clkr.regmap,
+> > +				 clkm->ssc_dig_ofs + PLL_SSC_DIG_EMMC1_OFFSET,
+> > +				 PLL_FLAG_INITAL_EMMC_MASK,
+> > +				 0x1 << PLL_FLAG_INITAL_EMMC_SHIFT);
+>
+> It looks like the rate and parent rate are not used in this function.
+> Will this always end up with the same rate when everything is
+> successful?
+>
+> Brian
+
+Despite receiving various rate requests (26MHz, 52MHz, 200MHz), this function
+consistently returns 0x1b (represents the 27MHz) because it reflects the input
+reference clock frequency to the SSCPLL, not the PLL output frequency.
+
+However, the emmc host controller handles frequency division internally to
+achieve the requested eMMC frequency.
+
+Best Regards,
+Yu-Chun
 
 
