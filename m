@@ -1,71 +1,70 @@
-Return-Path: <devicetree+bounces-288105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288107-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iKksMw/x4WmKzgAAu9opvQ
-	(envelope-from <devicetree+bounces-288105-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:36:31 +0200
+	id yNXnEJvy4WmKzgAAu9opvQ
+	(envelope-from <devicetree+bounces-288107-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:43:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E2A418C08
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:36:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB98F418D87
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:43:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0EC743021A33
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 08:36:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2FFBF31F6203
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 08:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3DF73B0AF3;
-	Fri, 17 Apr 2026 08:36:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456EA3B19D5;
+	Fri, 17 Apr 2026 08:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="FmBXZDu4"
+	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="V/u9a+iS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 595B2347520;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 596C9358391;
 	Fri, 17 Apr 2026 08:36:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776414981; cv=none; b=u+8B1oApRyK5lTq1tGEny3L/Mld5eY+93n1PsqCpY+tgrqdDw/8+d3GSYsFmXK+BXoOyLABiqbGotLmDbv8SErF6xV+CIyiWuX32yg2lk+RZb7DsKD77Y8YswjUTBfEMHUyczmIK9NYLNQ0/1kJIKeADHban7hwsxZkFvxzq+Zs=
+	t=1776414982; cv=none; b=U2hB99zKsv3p6PTDwU52YyXsnoe4rRYCl949NT6h+Fpraxz3OMGbq5c17q1q2OsRWePU7Rmk6QnnhHwllLw5NObLAp22wXvESplyUVlPMhfsPtK5Yr3R9cI71bhKNn3Wg8U9bH5c8Y4Qiqll1qxd6q1D/On1fev1nCo8YfYppmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776414981; c=relaxed/simple;
-	bh=MQ0l0wvtSEfoCATLx4nlx33NhwoOEDLG+v/8QS6v2ow=;
-	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:Cc; b=bGruYNqdXJ8U6CuO480kYpFebQ1YhMFfYZbwv/7gRvWnpcTM8Zi4CE1lbLrG+PjJprfg65sAEVvb5B+80IqIdiKSrnoRxwknxQEK7WMnIVCuQB4QePI4Y3h8uAno70ZPJ6uRtJ9v6qQr0e4F5lynlwu1fbq4vtMKMT8siFRVVcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=FmBXZDu4; arc=none smtp.client-ip=194.37.255.70
+	s=arc-20240116; t=1776414982; c=relaxed/simple;
+	bh=SDHu4CF6hiHHjw7wIYF2M+BZ1AnJr501zKLvFcrIIPQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:Cc; b=gU9b8u/udUCAW/WoWULguYLDjyl5Al93NWtNHZBqbLFJNIbBr+jcvxsuXRMQUoc+AAOCT9V3zSv9FzLSrr2T+so0bX8fX2d/kDh5FmtsN35YFY6/Q78kHSQbdFev8Oe0pP5ImH1aVH1aR9F7BdJuiFRqcfCLqij/YEF3+Y9l+QI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=V/u9a+iS; arc=none smtp.client-ip=194.37.255.70
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
 Received: from [194.37.255.9] (helo=mxout.expurgate.net)
 	by relay.expurgate.net with smtp (Exim 4.92)
 	(envelope-from <prvs=75813159fe=fe@dev.tdt.de>)
-	id 1wDegM-00Bg5u-QL; Fri, 17 Apr 2026 10:36:10 +0200
+	id 1wDegM-00Bg5v-Qm; Fri, 17 Apr 2026 10:36:10 +0200
 Received: from [195.243.126.94] (helo=securemail.tdt.de)
 	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <fe@dev.tdt.de>)
-	id 1wDegM-00A0Nq-8J; Fri, 17 Apr 2026 10:36:10 +0200
+	id 1wDegM-00EXG6-Ak; Fri, 17 Apr 2026 10:36:10 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dev.tdt.de;
 	s=z1-selector1; t=1776414969;
-	bh=/nX3mnXGkgvCvk936+01D3PVH8vtU5ubaHOeYIoG1Gs=;
-	h=From:Subject:Date:To:Cc:From;
-	b=FmBXZDu42OgQGtr0+f/ayxZa8FahaBzwCYWP+OO/GE2BE+kwFUsLN6Lc3k/gcyY8q
-	 iQ8XnipKWb7r43LsR//zHol+fhfE3QDWJkwymRjcs0RDWgg7Vfy3yuTElzAC9lO6xf
-	 jmTXPV2XoBp35m0LTsjprDANtW3fFhr7aO6xwgsZ3I1xewMDPsUW6S5sgdccSHwd5m
-	 rVs0ucre7Ra1VIonUdmwRbtVuEaKp7TKJVXl7/h9/OfXy0UrSvuS+ImPvoTDHi4hhe
-	 /HtxHmUtYefEJSR99weOaCLKhXlsmMPpFRH1VK8oEvXrZz4AsO7RYFsevsPMxotAxI
-	 fONUoRdoPE5zg==
+	bh=JqZmvXp+hLfJuRdo0qRIk/QxAIHQamNDzRshObedo7Q=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=V/u9a+iS39lP5DUq6Mwk7tWKlNQD8xUM6AeJrPQyMAA+n7VnSJN0o3wZjJmctgvLL
+	 jxst+w4rgD57DJf/rGmYaBnLkZPTMkdjTNK/4yNkpQYyR2OTdQNKIc8VyiHr8X95J8
+	 tC3HdzZppW1eOPEzEqH4xx4AuwXI6/tCw0rzsBboF2jkxzUW7kKJBDegCp7vfUGxb/
+	 23iBOq3W+Bxj7MWqXTx43c98c1/0pI/APhzAiGbUV8ubrwUzs1VXyvSilLbbIR9uhw
+	 g6L1nE7nKKcIm87CtU360Km8c0nQ9nKUUXeKovfGzOQfi91tPmi8rZyqx2mSAJBDfd
+	 DNnwW/pJ7+LOA==
 Received: from securemail.tdt.de (localhost [127.0.0.1])
-	by securemail.tdt.de (Postfix) with ESMTP id BDD31240042;
+	by securemail.tdt.de (Postfix) with ESMTP id DE5B3240046;
 	Fri, 17 Apr 2026 10:36:09 +0200 (CEST)
 Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-	by securemail.tdt.de (Postfix) with ESMTP id AAFF7240040;
+	by securemail.tdt.de (Postfix) with ESMTP id C7937240045;
 	Fri, 17 Apr 2026 10:36:09 +0200 (CEST)
 Received: from [10.2.3.40] (unknown [10.2.3.40])
-	by mail.dev.tdt.de (Postfix) with ESMTPSA id 1DE4D2425D;
+	by mail.dev.tdt.de (Postfix) with ESMTPSA id A74AE242E9;
 	Fri, 17 Apr 2026 10:36:09 +0200 (CEST)
 From: Florian Eckert <fe@dev.tdt.de>
-Subject: [PATCH v5 0/7] PCI: intel-gw: Fixes to make the driver working
- again
-Date: Fri, 17 Apr 2026 10:35:44 +0200 (CEST)
-Message-ID: <20260417-pcie-intel-gw-v5-0-0a2b933fe04f@dev.tdt.de>
+Date: Fri, 17 Apr 2026 10:35:45 +0200 (CEST)
+Subject: [PATCH v5 1/7] MAINTAINERS: Remove bouncing intel-gw maintainer
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,11 +73,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAODw4WkC/3XOwQrCMAzG8VeRnq0kabt2nnwP8bCtmRZkyjaqI
- nt3oxd14vEL/P7krgbuEw9qvbirnnMa0qmT4ZYL1Ryqbs86RdmKgAow6PW5SXLrRj7q/UU7KIE
- QTVsyKjHnntt0ffW2O9mHNIyn/vbKZ3xe/5UyatC+ZTSeiiradhM5r8Y4riKrZyrTBzcw5yQ81
- BG8KXxFZfjh5s0t4Jwb4YWpAULjal/TD7cfHN2cW+HytItkMTSBv/g0TQ9TJnlyaAEAAA==
-X-Change-ID: 20260317-pcie-intel-gw-50902113f9e1
+Message-ID: <20260417-pcie-intel-gw-v5-1-0a2b933fe04f@dev.tdt.de>
+References: <20260417-pcie-intel-gw-v5-0-0a2b933fe04f@dev.tdt.de>
+In-Reply-To: <20260417-pcie-intel-gw-v5-0-0a2b933fe04f@dev.tdt.de>
 To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	=?utf-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
 	Manivannan Sadhasivam <mani@kernel.org>,
@@ -92,20 +89,20 @@ Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org, Florian Eckert <fe@dev.tdt.de>,
 	Eckert.Florian@googlemail.com, ms@dev.tdt.de
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776414969; l=3158;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776414969; l=809;
  i=fe@dev.tdt.de; s=20260205; h=from:subject:message-id;
- bh=MQ0l0wvtSEfoCATLx4nlx33NhwoOEDLG+v/8QS6v2ow=;
- b=Vc1mwi+2r36IkQDXtgYt/QmGC89q15f4e9YLlHviJTalR1poXAHSlAbbKVNUibwx1KlgorhPK
- /m/+QTcFv0dCtIA79Rx084v6qb+q2lDwyrOnfzxN1f4Q+R6M6rTVJZ3
+ bh=SDHu4CF6hiHHjw7wIYF2M+BZ1AnJr501zKLvFcrIIPQ=;
+ b=bpmSa1lj6s6S7/G2Headrpqt+f067wIU9fI/h0b9vE8+qfbEYzBfUQmOfKimgtTa/XxhnlZYL
+ qX+gT65F5MLAvt6oP5ayc8iP06EZL65CG7lU5vzr0RVQF95xgP02Pwz
 X-Developer-Key: i=fe@dev.tdt.de; a=ed25519;
  pk=q7Pvv3Au2sAVRhBz5UF7ZqUPNxUwXQ78Jdqu8E6Negk=
-X-purgate-type: clean
-X-purgate-ID: 151534::1776414970-1AEC7049-B87333E6/0/0
+X-purgate-ID: 151534::1776414970-2BC2A049-D46FE017/0/0
 X-purgate: clean
+X-purgate-type: clean
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[tdt.de,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[dev.tdt.de:s=z1-selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -113,97 +110,51 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	FREEMAIL_CC(0.00)[vger.kernel.org,dev.tdt.de,googlemail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-288105-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-288107-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[dev.tdt.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tdt.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,dev.tdt.de:dkim,dev.tdt.de:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,maxlinear.com:email,dev.tdt.de:dkim,dev.tdt.de:mid,tdt.de:email];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[fe@dev.tdt.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,linaro,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: A4E2A418C08
+X-Rspamd-Queue-Id: CB98F418D87
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This series fixes and improve the 'intel-gw' driver to work again with
-the current dwc pcie framework. The following changes are:
-
-* Move interrupt 'enable' to its own function to improve readability,
-  and add additional register writes just as the Maxlinear kernel does in
-  their SDK.
-* Enable clock for the PHY before PHY init call.
-* Add missing 'start_link' callback. That was added to the PCIe dwc
-  framework.
-* Move ATU base address assignment to the probe function and also add the
-  the possibility to read it from the devicetree by dwc core.
-* Update devicetree documentation for intel-gw-pcie.yaml
-* Remove unused preprocessor define.
-* Mark driver as orphaned as the maitainer's email no longer works
+The maintainer's email address has been bouncing for months. Mark the PCI
+intel-gw driver as orphaned.
 
 Signed-off-by: Florian Eckert <fe@dev.tdt.de>
 ---
-Changes in v5:
-- Also add the DTS 'minItems' option for 'reg-names'.
-- Add missing quotation marks to the DTS example change to make the DTS
-  bot hopefully happy.
-- Link to v4: https://lore.kernel.org/r/20260415-pcie-intel-gw-v4-0-ad45d2418c8e@dev.tdt.de
+ MAINTAINERS | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Changes in v4:
-- Add 'atu' to the end of the resource definition to ensure backwords
-  compatibility.
-- Updated the commit description to explain why the MaxLinear SDK is used
-  as a reference.
-- Remove 'Rahul Tanwar <rtanwar@maxlinear.com>' out of the loop, as the email
-  address is no longer valid and is being rejected.
-- Link to v3: https://lore.kernel.org/r/20260401-pcie-intel-gw-v3-0-63b008c5b7b2@dev.tdt.de
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d1cc0e12fe1f004da89b1aa339116908f642e894..725f333f265bef416b5144c56649cb6eae736e40 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20518,9 +20518,8 @@ F:	Documentation/devicetree/bindings/pci/intel,keembay-pcie*
+ F:	drivers/pci/controller/dwc/pcie-keembay.c
+ 
+ PCIE DRIVER FOR INTEL LGM GW SOC
+-M:	Chuanhua Lei <lchuanhua@maxlinear.com>
+ L:	linux-pci@vger.kernel.org
+-S:	Maintained
++S:	Orphan
+ F:	Documentation/devicetree/bindings/pci/intel-gw-pcie.yaml
+ F:	drivers/pci/controller/dwc/pcie-intel-gw.c
+ 
 
-Changes in v3:
-- Update commit messages.
-- Correct the sample code for dt bindings by adding the missing quotation
-  marks. Add 'minItems: 3' to avoid ABI issues.
-- Move driver atu base assignment to probe function and keep backward
-  compatibility.
-- Link to v2: https://lore.kernel.org/r/20260330-pcie-intel-gw-v2-0-8bd07367a298@dev.tdt.de
-
-Changes in v2:
-- Added additional information to the commit descriptions
-- Add additional patch to mark driver as orphaned as the maintainer's
-  email no longer works.
-- Fix wrong error path for enable clock before phy init.
-- Add new patch to update the devicetree documentation for the 'atu'
-  resource
-- Add additional recipients responsible for documenting the dervicetree
-  bindings.
-- Link to v1: https://lore.kernel.org/r/20260317-pcie-intel-gw-v1-0-7fe13726ad4f@dev.tdt.de
-
----
-Florian Eckert (7):
-      MAINTAINERS: Remove bouncing intel-gw maintainer
-      PCI: intel-gw: Remove unused define
-      PCI: intel-gw: Move interrupt enable to own function
-      PCI: intel-gw: Enable clock before phy init
-      PCI: intel-gw: Add start_link callback function
-      PCI: intel-gw: Move driver atu base assignment to probe function
-      dt-bindings: PCI: intel,lgm-pcie: Add atu resource
-
- .../devicetree/bindings/pci/intel-gw-pcie.yaml     |  9 ++-
- MAINTAINERS                                        |  3 +-
- drivers/pci/controller/dwc/pcie-intel-gw.c         | 73 +++++++++++++++-------
- 3 files changed, 58 insertions(+), 27 deletions(-)
----
-base-commit: 028ef9c96e96197026887c0f092424679298aae8
-change-id: 20260317-pcie-intel-gw-50902113f9e1
-
-Best regards,
 -- 
-Florian Eckert <fe@dev.tdt.de>
+2.47.3
 
 
