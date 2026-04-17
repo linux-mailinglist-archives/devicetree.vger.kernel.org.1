@@ -1,99 +1,110 @@
-Return-Path: <devicetree+bounces-288280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288279-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MA9cMil14mnh6AAAu9opvQ
-	(envelope-from <devicetree+bounces-288280-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 20:00:09 +0200
+	id +BtvInt44mnh6AAAu9opvQ
+	(envelope-from <devicetree+bounces-288279-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 20:14:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45FD441DC28
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 20:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFD5F41DE13
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 20:14:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 51F4D320C8ED
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 17:54:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E454D3144160
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 17:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BC5138F64A;
-	Fri, 17 Apr 2026 17:52:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8C83B0ACB;
+	Fri, 17 Apr 2026 17:52:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mn/F8pMN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PJf6RVER"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F61E361DC8
-	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 17:52:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB89130CDB6
+	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 17:52:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776448366; cv=none; b=j8b7tC5bEETZ3U2oXM5MXJ+cfGgboncpwJgXmy13KIhYcjZ0HSCbyeC75sXvO/pM/yth94mkujtFzFAmI6v4gcyxyCwcraJl9B2o+e5rqikFjLfgKlkY6jiEmdJEhY58yebDZCnkUaK9Qjk5sD/irwVUrpyVCO3LHwMhaAg4RB8=
+	t=1776448365; cv=none; b=Evz4xwGVMeX68edHLO0EyuFQQZ7JlSB392YEPIABNmBd3IXErMHVuRsHdRQz4oYDSAh0ikmXhbEa1jBwmJQ0+vhCB+3Zz35mGsbkC4XZoDdjlboSXG5iNqcaHYNoIKMUECfn6Nh3IrrqJEvVHjK8CFaU14MjRX9tDuhfCSQcORk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776448366; c=relaxed/simple;
-	bh=YpOTPUvd7+Ix6fxPIg06TIb4qRZNZIUThtvV8RtBuU0=;
+	s=arc-20240116; t=1776448365; c=relaxed/simple;
+	bh=ChWfJT6jYHO8O5gq0fvteY6A9Sj+WFluSBHsD4S10u0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NxDbL6oW6W5qibTb6+DqK59tTOi6McWPvaTeJa5kNUQINTGFpiue9ZCHqBuffrQwhaVd5hkCeddZ2YJaqeiqmzddMlhClkDz92tYjes4Arj1QzHoPva5sm/AgHZub1S3fBwl4OPatY7ch7Xhut1Y9qdgzPGboNEpCvamSseFkr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Mn/F8pMN; arc=none smtp.client-ip=209.85.128.46
+	 MIME-Version; b=b714UU9Vm7JPLunCP9VPqiFYnsJtjt5b7K8xU1vO+MOiZNWhM+oZBi63ZeFg2ZS21n+Htbm0wYDSjolJF5IZ56dI6tU76aZHZASJ8I5CamP4hXvRnvomsaQIKw4zV8sgWarNP1y8+bflZ82IbzSVjOHSbQbol+pc2wKNXsRP/s0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PJf6RVER; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-488af96f6b2so12496215e9.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 10:52:39 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-488c2690057so9648575e9.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 10:52:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1776448358; x=1777053158; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1776448359; x=1777053159; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=t9WLAo+FIpFIL/Tg50QaIjrY8GmsgmdfX6tOY1c2ldc=;
-        b=Mn/F8pMNVp5aFI0BNyZkcQ9VhbZogux7o+NIkiDH+EP/NzurTmBexARF/F8S4XFH6w
-         2jr9o0nIxQGu0qEdg9VIaD//kzvBLQmgQoEe0GVWUlek4MDaFzKzClsQLyWgqVTC58kq
-         p+G68+uPDwdSpxeMqEe/JYTXbW/BQFj8mdQPVC3J+v08sSq3dCBtsERZ9C5VTW16TFmp
-         Ed98JQ0a8p3LVMbCBndbOi98GWeMjYXf9BJCImsUG0wt4vlhQUNxE1o0JdAegJy1aqOs
-         jNlHJagiRHRqBLbQMjNu0msSVikg/2LsjW7Z94GxDNGWXGzwbAtN4KnMrYZ1w95FV+ms
-         JT7w==
+        bh=JzAtXQjauknA1e9f55ELLhSNN5mP1FnYcEPzv2Nn1ds=;
+        b=PJf6RVER4rqoBDZ5TIlx9JVzRQtiJbYEG1d/f8qa2JWo4IBKGdrV0SezQ04eDtY7AM
+         /23LRj9VUHJDDptqBW45lVpzixpEeiF7uAnQwKdkHKzIMtodJnZzh7/mzEP1629RiKHk
+         ZxStGvKEPGLNCalBEeoJlKdMk1CoryV6p1yH/LYy6dQxYu0UV+c4G8HNB4NeoEVp4+Bl
+         sHfx3D+g5K6crDXopV/fOD3odAxoC8buR36Ibmd4C+FZPHgnbzpatRRH/Kd0oXMSo3Xx
+         QhPQItwP1jXt4rlvP1AVxPO/Qg+fNSzs3lu7M3xo045i59ndm6UbRisUnnyjx9CUsyqM
+         wkFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776448358; x=1777053158;
+        d=1e100.net; s=20251104; t=1776448359; x=1777053159;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=t9WLAo+FIpFIL/Tg50QaIjrY8GmsgmdfX6tOY1c2ldc=;
-        b=PmB9e75hkX6EuSWNqRqElUjSSpEqcqXYCtEACIy8BMoo7P/2JksmmgF6jHvczVPO7A
-         WF0pm+G6dU7wvObA5vbqKIfYYA4IbOVchNrvQfBR8cAqS7M1BUNZ+d5tLN3dVkanj632
-         Xtgh956nvFkjNGHGIV0zB/u4U5kUVcayAxRdmLGd42nwJ+pgwwqmH9cD/GG1w3Bwa1iP
-         c1dXOIPKUBdGWJpGsn/gGwsckGharqMWoGK5ndghgrjQ0P3fnBJfSgtyjvs52INwfUEa
-         Vms4FzzA/58AZ3o50Ph0TefOb/iORvVl8fetKfVRzFJshwidwMgXvxmYXAzjwMNiaIx/
-         g/lA==
-X-Forwarded-Encrypted: i=1; AFNElJ+uxXq+UgDFMX9tjjeOEmrDhozWleCpoI0QNXSRiDhe6vjMLIYU6GB3Fs5nrp1KXmbKs+TWcSLgNbOx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+PRqZU+mI96KZUYBJUBk+RXDdADk22NINEdTNtxCXVFZ0GIpB
-	zvMjzu8HMAv+O+Bm5bYevW7AA+95UaZp3JIMHCEHOzNT/BIKiNB7gEl6
-X-Gm-Gg: AeBDieu2JljKTcE+2fjtRCrDP5V+gN9Xe8PzsDzYuYmaxXGXDTomr/UbmC9oFA6RlDv
-	Q1sLzZP/jvSYli3FKnOTAdMqlA0HDGRkbf3lWspBCP9ls8eOBBF6Et/d2Ug+eHCV+SceiWLtngu
-	IELmTyl91ObqQ1InDp4PFiRCYrZsriehzD/Y3AZy2/BxqYuKI44rhSWuIuQVywzDXPwOaDCYsHx
-	awRufaVhsbtP5oRosnJj0wu6u7q2jwsngjV2QkAQGMaqwEBqIZIWZ6t9BIubZi5lhjLbZtSZk4x
-	qzRqdBpOAYzeTLu8HXcNBpFAK8EzutUS2H8EnGVVcG1+yeoBy2Q0vbpXnvgNpbND9akzN7DPRZX
-	X6PZxH6V69zr70vDp/YEbdngBZxFfdHxfa1GNwJ5DqUIqx7z6neYPUZ5jMnfX3+ac2GBOwMEngT
-	NvEpKiyZyWA6hxyjw6Zer5kmQ1lhmY5Gv1GrBV77i6
-X-Received: by 2002:a05:600c:8183:b0:488:b187:d898 with SMTP id 5b1f17b1804b1-488fb771445mr53526905e9.14.1776448358089;
+        bh=JzAtXQjauknA1e9f55ELLhSNN5mP1FnYcEPzv2Nn1ds=;
+        b=AUWueAB6uvda0m4dKuXxRYIv+DedJNi17etX2iI0EPWPGtlnC5epU7ZQIA2eqGojlG
+         SyHlngeL90+vmzJXvZgV2Uj/aNj8N3oTBvpyzKbMlgl7LFbyxyyG1xhtHTRAXOb+y4Td
+         lPUAl28h6xvdt3XLNkzgYZvswZSLtxIghAd2lNv2po4Zb3YTU+X8lYizsmKqdtDlaBA3
+         obzKPODfIuxi/xlkasZ697UJ8gqc565bP3Htf4HuzkF83ub5SrwLwVPD/4P/M/0iHAGY
+         fORrHs+gc6veSmwpIs5elZ/jrUFHd0+7DZFdkpdQn0x2yx/AdTaVfy2cES67hYaxnTBd
+         UvLw==
+X-Forwarded-Encrypted: i=1; AFNElJ/HYy+kk70QswU2A6+MCQoW4rax/evO98K9YTHsL2sP5mfeE1ylG1IvxUu1T3JRbJz2KeFCEfNuZdGk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz17STskK2eLAw4NNw+CQu86xFScibDTnVLrh3fvoq8dpHoMnc/
+	LSnZ09s5zEXJWJEPqZfObW42VtXwX6rPiwTgAO6gZEtZpXcElHTY/Igj
+X-Gm-Gg: AeBDievalkzUbKr0hqNM934v+BlFsGVPeFq+qPyvoFMBxq2JjV+QC999/KAESr8aM7+
+	RiezVtwb/gY4+o4T3xe7iaGCU/fyDMvUt9Yh0XC5LXLYDE/TK65ssURmkjRBw6+rVu5HwTTkAnp
+	EDWdnpwC51tHPVEJHOdAn4dCcO4YrCwTLg30AQYGjaK7+ReQqHfTT9l4lNLq/aWIwdnjgNH0wDm
+	RAdmnDx3ApMs9eyMJsWCOvr++0gUFPMiJJGgCVMO+gqiddejbtUKPnm6SH9qfRd/JTptaVHOlly
+	tYzFEMIeEKP7+8kc04AJkmcpRJyd2SvaGwLgNvcgc9r48Ig6DC+owa5DE0kEFFOVV+mciPoW8sN
+	APb8m79o85wEn9wKbauInBnryD5KEVPZxF+OS05V5/vh3KNuK419WIvgAOSo8p9PpmuzeL9ugBY
+	GfhACNZR0xUCIF2jImPqfXq0kP2sRJBfSqCG4Ji5UF
+X-Received: by 2002:a05:600c:c084:b0:485:39d1:b4dd with SMTP id 5b1f17b1804b1-488fb74a495mr42654155e9.10.1776448358967;
         Fri, 17 Apr 2026 10:52:38 -0700 (PDT)
 Received: from biju.lan ([2a00:23c4:a758:8a01:528c:590:5bef:9bc8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fc1c773fsm56166535e9.12.2026.04.17.10.52.37
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fc1c773fsm56166535e9.12.2026.04.17.10.52.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Apr 2026 10:52:37 -0700 (PDT)
+        Fri, 17 Apr 2026 10:52:38 -0700 (PDT)
 From: Biju <biju.das.au@gmail.com>
 X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Lee Jones <lee@kernel.org>,
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Geert Uytterhoeven <geert+renesas@glider.be>,
 	Magnus Damm <magnus.damm@gmail.com>
 Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Subject: [PATCH 1/3] dt-bindings: mfd: syscon: Document the LVDS_CMN syscon for the RZ/G3L
-Date: Fri, 17 Apr 2026 18:52:28 +0100
-Message-ID: <20260417175235.224809-2-biju.das.jz@bp.renesas.com>
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH 2/3] dt-bindings: display: bridge: Document Renesas RZ/G3L LVDS encoder
+Date: Fri, 17 Apr 2026 18:52:29 +0100
+Message-ID: <20260417175235.224809-3-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260417175235.224809-1-biju.das.jz@bp.renesas.com>
 References: <20260417175235.224809-1-biju.das.jz@bp.renesas.com>
@@ -104,65 +115,191 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [5.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
+	SUSPICIOUS_RECIPS(1.50)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288280-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-288279-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
+	GREYLIST(0.00)[pass,body];
+	FREEMAIL_CC(0.00)[bp.renesas.com,ideasonboard.com,kwiboo.se,gmail.com,lists.freedesktop.org,vger.kernel.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,glider.be];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,glider.be,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bp.renesas.com:mid]
-X-Rspamd-Queue-Id: 45FD441DC28
+	NEURAL_SPAM(0.00)[0.996];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,108a0000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.1:email,devicetree.org:url,bp.renesas.com:mid,0.0.0.10:email,renesas.com:email]
+X-Rspamd-Queue-Id: EFD5F41DE13
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Biju Das <biju.das.jz@bp.renesas.com>
 
-The RZ/G3{E,L} SoCs have an LVDS Common (LVDS_CMN) region which is common
-to all LVDS channels. The RZ/G3L has single-link, but the RZ/G3E has both
-single and dual-link.
-
-Use the syscon interface to access these registers for scalability.
+Document the LVDS encoder IP found on the RZ/G3L SoC. It supports
+single-link mode. LVDS and the DSI interface share a peripheral clock and
+the MIPI_DSI_PRESET_N reset signal. However, the LVDS module cannot be
+used at the same time as MIPI-DSI.
 
 Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../bridge/renesas,r9a08g046-lvds.yaml        | 128 ++++++++++++++++++
+ 1 file changed, 128 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,r9a08g046-lvds.yaml
 
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index e22867088063..9c81010d5a74 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -221,6 +221,7 @@ properties:
-               - nxp,s32g3-gpr
-               - qcom,apq8064-mmss-sfpb
-               - qcom,apq8064-sps-sic
-+              - renesas,r9a08g046-lvds-cmn
-               - rockchip,px30-qos
-               - rockchip,rk3036-qos
-               - rockchip,rk3066-qos
+diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,r9a08g046-lvds.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,r9a08g046-lvds.yaml
+new file mode 100644
+index 000000000000..b1f6d020ae7b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/renesas,r9a08g046-lvds.yaml
+@@ -0,0 +1,128 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/renesas,r9a08g046-lvds.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas RZ/G3L LVDS Encoder
++
++maintainers:
++  - Biju Das <biju.das.jz@bp.renesas.com>
++  - Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
++
++description: |
++  This binding describe the LVDS encoder embedded in the Renesas RZ/G3L
++  SoC. The encoder can operate in LVDS Single-link mode with 4 lanes
++  (Data) + 1 lane (Clock).
++
++properties:
++  compatible:
++    const: renesas,r9a08g046-lvds
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Peripheral clock
++      - description: PHY clock
++      - description: Dot clock
++
++  clock-names:
++    items:
++      - const: pclk
++      - const: phyclk
++      - const: dotclk
++
++  resets:
++    items:
++      - description: LVDS_RESET_N
++      - description: MIPI_DSI_PRESET_N
++      - description: MIPI_DSI_CMN_RSTB
++      - description: MIPI_DSI_ARESET_N
++
++  reset-names:
++    items:
++      - const: lvdrst
++      - const: prst
++      - const: rst
++      - const: arst
++
++  power-domains:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Input channel, directly connected to the Display Unit.
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: |
++          Output channel, directly connected to the LVDS panel or bridge.
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - power-domains
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/renesas,r9a08g046-cpg.h>
++
++    lvds-cmn@108a0000 {
++        compatible = "renesas,r9a08g046-lvds-cmn",
++                     "simple-mfd", "syscon";
++        reg = <0x108a0000 0x10000>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        lvds0: lvds@10 {
++            compatible = "renesas,r9a08g046-lvds";
++            reg = <0x10 0x8>;
++            clocks = <&cpg CPG_MOD R9A08G046_MIPI_DSI_PCLK>,
++                     <&cpg CPG_MOD R9A08G046_LVDS_PLLCLK>,
++                     <&cpg CPG_MOD R9A08G046_LVDS_CLK_DOT0>;
++            clock-names = "pclk", "phyclk", "dotclk";
++            resets = <&cpg R9A08G046_LVDS_RESET_N>,
++                     <&cpg R9A08G046_MIPI_DSI_PRESET_N>,
++                     <&cpg R9A08G046_MIPI_DSI_CMN_RSTB>,
++                     <&cpg R9A08G046_MIPI_DSI_ARESET_N>;
++            reset-names = "lvdrst", "prst", "rst", "arst";
++            power-domains = <&cpg>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++                    lvds0_in: endpoint {
++                        remote-endpoint = <&du_out_lvds0>;
++                    };
++                };
++
++                port@1 {
++                    reg = <1>;
++                    lvds0_out: endpoint {
++                        remote-endpoint = <&panel_in>;
++                    };
++                };
++            };
++        };
++    };
++...
 -- 
 2.43.0
 
