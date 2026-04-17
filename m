@@ -1,156 +1,209 @@
-Return-Path: <devicetree+bounces-288099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288105-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OAkMJoDx4WmKzgAAu9opvQ
-	(envelope-from <devicetree+bounces-288099-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:38:24 +0200
+	id iKksMw/x4WmKzgAAu9opvQ
+	(envelope-from <devicetree+bounces-288105-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:36:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB60418C53
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:38:20 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4E2A418C08
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:36:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6BAA630826B4
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 08:35:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0EC743021A33
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 08:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F1753A4F3A;
-	Fri, 17 Apr 2026 08:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3DF73B0AF3;
+	Fri, 17 Apr 2026 08:36:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MGWMutRO"
+	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="FmBXZDu4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA19224677B;
-	Fri, 17 Apr 2026 08:35:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 595B2347520;
+	Fri, 17 Apr 2026 08:36:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776414923; cv=none; b=fpIpUcE7SdIhdn7wHqHNuOPraHQhS6i7MwDsiJz3mrzC0ozHhwzl/2Y1huhvOAM62L10+wSaZPTmGgYSVGdKpZv441Xo2k1gYn8V0gH/1seOGfJGXZ14J2lAOkJ0z7lcWVDBk0UxuFx1L3o+kB8iRMPha3dieIswbEaA5mvKHHY=
+	t=1776414981; cv=none; b=u+8B1oApRyK5lTq1tGEny3L/Mld5eY+93n1PsqCpY+tgrqdDw/8+d3GSYsFmXK+BXoOyLABiqbGotLmDbv8SErF6xV+CIyiWuX32yg2lk+RZb7DsKD77Y8YswjUTBfEMHUyczmIK9NYLNQ0/1kJIKeADHban7hwsxZkFvxzq+Zs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776414923; c=relaxed/simple;
-	bh=zR7+9dP1+DpJDiJ+XcPLqbQViv2kqXUxCxZip6yFEbM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NidxuCEjBC5KsQuOQYC5DCvACYRFW//UadbgobptkJDetSeWo+cdZg49cODWYkUfIrgska0YrVXvsUlVIKZrwWg5KrTQHy+UA4zwgBmh6CeJ2DAyNYqphCHtDqkrs1rsuloDvL9FU9IUtZ00azrl97AzEVUt9uNCftdTZBVWYaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MGWMutRO; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1776414922; x=1807950922;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zR7+9dP1+DpJDiJ+XcPLqbQViv2kqXUxCxZip6yFEbM=;
-  b=MGWMutRO8myc52lPtJS7WBgfdLbPg5QjruhzEqIDirTcIu8Je8WPeVu+
-   r3vHkE1PWXe9LsoVHI06tNjFT7XzdPEhEwXsQqcoFu8NxXyywbAxsMPJK
-   bL/YP5NPbCesDoARANSNASmdOo0XF7OJazT7fBYRBRKMboCuWgxgmbQtr
-   YfAiTgo2NbwXBE+Znc2eTnOgR5HiDoxhk5FOYtTOjeVpRcNk3Q0JsR3ug
-   cyzm+WWbhsTDMJpLGmMgZ+0AOr8tmM0AzidzK3APeNH3YnbkLTzs1bCRe
-   niO5+KBnSFzEugYunW4thjGKedlVtwENWcwppCX5FtjOgOgkQBqLWa71A
-   g==;
-X-CSE-ConnectionGUID: 91wb8fFWSfWs1nfHtA2WvQ==
-X-CSE-MsgGUID: haUKPwr/SuqreDaggpA7Ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="81299419"
-X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; 
-   d="scan'208";a="81299419"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 01:35:18 -0700
-X-CSE-ConnectionGUID: oqV0CzeQTJiR7fXjMAW4nw==
-X-CSE-MsgGUID: R/rTHQ0PQrCKfpJ0fTwNEw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; 
-   d="scan'208";a="232728804"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.245.78])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 01:35:15 -0700
-Date: Fri, 17 Apr 2026 11:35:12 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 2/2] iio: dac: ad5706r: Add support for AD5706R DAC
-Message-ID: <aeHwwN2sFJBzQ21H@ashevche-desk.local>
-References: <20260417-dev_ad5706r-v8-0-ef87dff62b57@analog.com>
- <20260417-dev_ad5706r-v8-2-ef87dff62b57@analog.com>
+	s=arc-20240116; t=1776414981; c=relaxed/simple;
+	bh=MQ0l0wvtSEfoCATLx4nlx33NhwoOEDLG+v/8QS6v2ow=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:Cc; b=bGruYNqdXJ8U6CuO480kYpFebQ1YhMFfYZbwv/7gRvWnpcTM8Zi4CE1lbLrG+PjJprfg65sAEVvb5B+80IqIdiKSrnoRxwknxQEK7WMnIVCuQB4QePI4Y3h8uAno70ZPJ6uRtJ9v6qQr0e4F5lynlwu1fbq4vtMKMT8siFRVVcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=FmBXZDu4; arc=none smtp.client-ip=194.37.255.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
+Received: from [194.37.255.9] (helo=mxout.expurgate.net)
+	by relay.expurgate.net with smtp (Exim 4.92)
+	(envelope-from <prvs=75813159fe=fe@dev.tdt.de>)
+	id 1wDegM-00Bg5u-QL; Fri, 17 Apr 2026 10:36:10 +0200
+Received: from [195.243.126.94] (helo=securemail.tdt.de)
+	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <fe@dev.tdt.de>)
+	id 1wDegM-00A0Nq-8J; Fri, 17 Apr 2026 10:36:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dev.tdt.de;
+	s=z1-selector1; t=1776414969;
+	bh=/nX3mnXGkgvCvk936+01D3PVH8vtU5ubaHOeYIoG1Gs=;
+	h=From:Subject:Date:To:Cc:From;
+	b=FmBXZDu42OgQGtr0+f/ayxZa8FahaBzwCYWP+OO/GE2BE+kwFUsLN6Lc3k/gcyY8q
+	 iQ8XnipKWb7r43LsR//zHol+fhfE3QDWJkwymRjcs0RDWgg7Vfy3yuTElzAC9lO6xf
+	 jmTXPV2XoBp35m0LTsjprDANtW3fFhr7aO6xwgsZ3I1xewMDPsUW6S5sgdccSHwd5m
+	 rVs0ucre7Ra1VIonUdmwRbtVuEaKp7TKJVXl7/h9/OfXy0UrSvuS+ImPvoTDHi4hhe
+	 /HtxHmUtYefEJSR99weOaCLKhXlsmMPpFRH1VK8oEvXrZz4AsO7RYFsevsPMxotAxI
+	 fONUoRdoPE5zg==
+Received: from securemail.tdt.de (localhost [127.0.0.1])
+	by securemail.tdt.de (Postfix) with ESMTP id BDD31240042;
+	Fri, 17 Apr 2026 10:36:09 +0200 (CEST)
+Received: from mail.dev.tdt.de (unknown [10.2.4.42])
+	by securemail.tdt.de (Postfix) with ESMTP id AAFF7240040;
+	Fri, 17 Apr 2026 10:36:09 +0200 (CEST)
+Received: from [10.2.3.40] (unknown [10.2.3.40])
+	by mail.dev.tdt.de (Postfix) with ESMTPSA id 1DE4D2425D;
+	Fri, 17 Apr 2026 10:36:09 +0200 (CEST)
+From: Florian Eckert <fe@dev.tdt.de>
+Subject: [PATCH v5 0/7] PCI: intel-gw: Fixes to make the driver working
+ again
+Date: Fri, 17 Apr 2026 10:35:44 +0200 (CEST)
+Message-ID: <20260417-pcie-intel-gw-v5-0-0a2b933fe04f@dev.tdt.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260417-dev_ad5706r-v8-2-ef87dff62b57@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAODw4WkC/3XOwQrCMAzG8VeRnq0kabt2nnwP8bCtmRZkyjaqI
+ nt3oxd14vEL/P7krgbuEw9qvbirnnMa0qmT4ZYL1Ryqbs86RdmKgAow6PW5SXLrRj7q/UU7KIE
+ QTVsyKjHnntt0ffW2O9mHNIyn/vbKZ3xe/5UyatC+ZTSeiiradhM5r8Y4riKrZyrTBzcw5yQ81
+ BG8KXxFZfjh5s0t4Jwb4YWpAULjal/TD7cfHN2cW+HytItkMTSBv/g0TQ9TJnlyaAEAAA==
+X-Change-ID: 20260317-pcie-intel-gw-50902113f9e1
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?utf-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Sajid Dalvi <sdalvi@google.com>,
+	Ajay Agarwal <ajayagarwal@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Florian Eckert <fe@dev.tdt.de>,
+	Eckert.Florian@googlemail.com, ms@dev.tdt.de
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776414969; l=3158;
+ i=fe@dev.tdt.de; s=20260205; h=from:subject:message-id;
+ bh=MQ0l0wvtSEfoCATLx4nlx33NhwoOEDLG+v/8QS6v2ow=;
+ b=Vc1mwi+2r36IkQDXtgYt/QmGC89q15f4e9YLlHviJTalR1poXAHSlAbbKVNUibwx1KlgorhPK
+ /m/+QTcFv0dCtIA79Rx084v6qb+q2lDwyrOnfzxN1f4Q+R6M6rTVJZ3
+X-Developer-Key: i=fe@dev.tdt.de; a=ed25519;
+ pk=q7Pvv3Au2sAVRhBz5UF7ZqUPNxUwXQ78Jdqu8E6Negk=
+X-purgate-type: clean
+X-purgate-ID: 151534::1776414970-1AEC7049-B87333E6/0/0
+X-purgate: clean
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[tdt.de,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[dev.tdt.de:s=z1-selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288099-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[vger.kernel.org,dev.tdt.de,googlemail.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288105-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[dev.tdt.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tdt.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,dev.tdt.de:dkim,dev.tdt.de:mid];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3CB60418C53
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fe@dev.tdt.de,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,linaro,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: A4E2A418C08
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 17, 2026 at 04:27:16PM +0800, Alexis Czezar Torreno wrote:
-> Add support for the Analog Devices AD5706R, a 4-channel 16-bit
-> current output digital-to-analog converter with SPI interface.
-> 
-> Features:
->   - 4 independent DAC channels
->   - Hardware and software LDAC trigger
->   - Configurable output range
->   - PWM-based LDAC control
->   - Dither and toggle modes
->   - Dynamically configurable SPI speed
+This series fixes and improve the 'intel-gw' driver to work again with
+the current dwc pcie framework. The following changes are:
 
-...
+* Move interrupt 'enable' to its own function to improve readability,
+  and add additional register writes just as the Maxlinear kernel does in
+  their SDK.
+* Enable clock for the PHY before PHY init call.
+* Add missing 'start_link' callback. That was added to the PCIe dwc
+  framework.
+* Move ATU base address assignment to the probe function and also add the
+  the possibility to read it from the devicetree by dwc core.
+* Update devicetree documentation for intel-gw-pcie.yaml
+* Remove unused preprocessor define.
+* Mark driver as orphaned as the maitainer's email no longer works
 
-> +#define AD5706R_DAC_RESOLUTION		16
-> +#define AD5706R_DAC_MAX_CODE		GENMASK(15, 0)
+Signed-off-by: Florian Eckert <fe@dev.tdt.de>
+---
+Changes in v5:
+- Also add the DTS 'minItems' option for 'reg-names'.
+- Add missing quotation marks to the DTS example change to make the DTS
+  bot hopefully happy.
+- Link to v4: https://lore.kernel.org/r/20260415-pcie-intel-gw-v4-0-ad45d2418c8e@dev.tdt.de
 
-I know Jonathan asked for this, hence it's comment for him.
-I think that BIT() notation in a form of (BIT(16) - 1) is
-also appropriate here as it gives the relationship to the
-resolution of the given register / bitfield in HW.
+Changes in v4:
+- Add 'atu' to the end of the resource definition to ensure backwords
+  compatibility.
+- Updated the commit description to explain why the MaxLinear SDK is used
+  as a reference.
+- Remove 'Rahul Tanwar <rtanwar@maxlinear.com>' out of the loop, as the email
+  address is no longer valid and is being rejected.
+- Link to v3: https://lore.kernel.org/r/20260401-pcie-intel-gw-v3-0-63b008c5b7b2@dev.tdt.de
 
-GENMASK() works for me, but it might require an additional
-operation to deduce the above.
+Changes in v3:
+- Update commit messages.
+- Correct the sample code for dt bindings by adding the missing quotation
+  marks. Add 'minItems: 3' to avoid ABI issues.
+- Move driver atu base assignment to probe function and keep backward
+  compatibility.
+- Link to v2: https://lore.kernel.org/r/20260330-pcie-intel-gw-v2-0-8bd07367a298@dev.tdt.de
 
-(Note, there is no request to change or resend for you, Alexis. It's just
- a remark to make Jonathan to think about which one suits better. He might
- change that whilst applying.)
+Changes in v2:
+- Added additional information to the commit descriptions
+- Add additional patch to mark driver as orphaned as the maintainer's
+  email no longer works.
+- Fix wrong error path for enable clock before phy init.
+- Add new patch to update the devicetree documentation for the 'atu'
+  resource
+- Add additional recipients responsible for documenting the dervicetree
+  bindings.
+- Link to v1: https://lore.kernel.org/r/20260317-pcie-intel-gw-v1-0-7fe13726ad4f@dev.tdt.de
 
+---
+Florian Eckert (7):
+      MAINTAINERS: Remove bouncing intel-gw maintainer
+      PCI: intel-gw: Remove unused define
+      PCI: intel-gw: Move interrupt enable to own function
+      PCI: intel-gw: Enable clock before phy init
+      PCI: intel-gw: Add start_link callback function
+      PCI: intel-gw: Move driver atu base assignment to probe function
+      dt-bindings: PCI: intel,lgm-pcie: Add atu resource
+
+ .../devicetree/bindings/pci/intel-gw-pcie.yaml     |  9 ++-
+ MAINTAINERS                                        |  3 +-
+ drivers/pci/controller/dwc/pcie-intel-gw.c         | 73 +++++++++++++++-------
+ 3 files changed, 58 insertions(+), 27 deletions(-)
+---
+base-commit: 028ef9c96e96197026887c0f092424679298aae8
+change-id: 20260317-pcie-intel-gw-50902113f9e1
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Florian Eckert <fe@dev.tdt.de>
 
 
