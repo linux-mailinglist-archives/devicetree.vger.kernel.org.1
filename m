@@ -1,233 +1,222 @@
-Return-Path: <devicetree+bounces-288019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288021-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2MdME4im4WknwQAAu9opvQ
-	(envelope-from <devicetree+bounces-288019-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 05:18:32 +0200
+	id wM1KNqun4Wl5wQAAu9opvQ
+	(envelope-from <devicetree+bounces-288021-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 05:23:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AB6D416851
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 05:18:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B4404168C5
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 05:23:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 78630306964D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 03:17:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3490B306F5CA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 03:22:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B3A63537F1;
-	Fri, 17 Apr 2026 03:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8BA434F24A;
+	Fri, 17 Apr 2026 03:22:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="neKor8hf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XdDwL7F1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013027.outbound.protection.outlook.com [40.107.159.27])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DAD934F497;
-	Fri, 17 Apr 2026 03:17:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.27
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776395843; cv=fail; b=STvPc1ShmhYt9vLVzC1KLmxF+bNMyaA2ym//VClI1gGkzMxIeiHdHGB9oxRdE/G+AAf7+iHsVk2zjeu7sOs+fIyUsqnko+uevgRY3e7EpbilPy60qzvxcqyRuYCKCdOJyh2iQMGOAqDwBj6eZuYXWy1I2jWWZ7qGv6pJBzH4BbI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776395843; c=relaxed/simple;
-	bh=r0I32NO3yxwSwuOpDBVpbc55f0+uVQaslOhJ8ZwLc5c=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=NLYgkFrH67Tp71sHTxArlt+I4LmOI7VEhykwUsojKvm1b6u6EflJBgOdo1I/9sW1uq+OExSYfkC6shl+VXdbhE6qNNJeOvJIWik4XvU7BcR5qeCPtqAJO2b4jjA+pWo771WfJOOmpNs5tLbWidRF7PYXW7Ra+WfTmLAiZhpr53c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=neKor8hf; arc=fail smtp.client-ip=40.107.159.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GDSxQGqf0vX4sn7CVr2qFTvE3szE8Cl1tOBLlnZ4G1kZRQRPTxi1Aul3oBGu46AjiZQCcud3dOyIfrw/8aig8TnpikTeGGwgq4RTuLzDjx3Evqz3yB60XOfRFovXUz8+Gq8e98ErJLldm16TseZ6O26e6oLpANl8jhzoiGP+XlzDNSLe0B4ldtwvNuEJCr/FAHOsYNoEgVUEfljHexgP9QLkEWe1eVVYqjh9yKncGAo+4UdIxVR7wG8UfJrpG/qTDT8ntsU9t/UtNAd374OtgCb3gM196pbN813ApXvh+TqTDMgdQh05YE3EL39jUilFISmPQl6WxsAdseUxtXpsHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AhC5Hv4KFrMNALYAHm6wZQl+WhK88pPM2cqbui3I3KQ=;
- b=KbtXo4GlKJI4DAhoqutxjLI2MK8eD+Su4pU17IJusZHndyCOViK+3zaL/Lf8RnNUL+Tl2lNDUtOzNALZQYLAxoGPzXLasdBSvH8VJvKq6LR/HCRtMtmy6EFNqdAKYYzH2RIMQPHPJFPBm6G5oQyA2UDTjkfxciUHAie5sFFYRB+JP6CfNZBRgj5WORF3QvLx3ImBqBMN4/rsNljm/wvZtPbEn/9hd8Ffu4ntj3yvZT9BWldIxKqyOA4qHXorpWVusCs8e+b7rvYJBEy/JvYQaaqFRjPK/WtAwlGbOPiLnpKcTheli3jlPL9k0AJGTqLDTW1UpK9tO97CbMDjPwEfWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AhC5Hv4KFrMNALYAHm6wZQl+WhK88pPM2cqbui3I3KQ=;
- b=neKor8hfqjWXq7sjGhoGjURzKBadCGI6ZG/6InrMJ5oLK3KMVSFTGzsV21oLoqDa39EIVZo/fD2z8NHNkdNH65gvaNqpw1GxdRwukI75gNvYn69vw5H+aEFtNwZHBsiIv0Pwrmi34/9STjAfGrND80WkJ2AX+v1soOALih/78uZ7a0Az4O6J0dG7VeX7o/mXEIT24EjLslWn0NgoSG2VCmiZLswy0B5PIK+FCwpjh9P2SvH55HIWFZVhHWEppFZSsrv4w/ISEwFemK1uO5R8gbcA3uBOAchcHYPVmtO02SUhswFb8YAFyhxNhC2OPHK0RrH4gbdICMacC29VKlWPYw==
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13) by DBBPR04MB7787.eurprd04.prod.outlook.com
- (2603:10a6:10:1e3::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.25; Fri, 17 Apr
- 2026 03:17:16 +0000
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994%6]) with mapi id 15.20.9818.023; Fri, 17 Apr 2026
- 03:17:16 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Frank Li
-	<frank.li@nxp.com>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
-	<festevam@gmail.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kwilczynski@kernel.org" <kwilczynski@kernel.org>, "mani@kernel.org"
-	<mani@kernel.org>, "bhelgaas@google.com" <bhelgaas@google.com>, Hongxing Zhu
-	<hongxing.zhu@nxp.com>, "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH V13 02/12] PCI: host-generic: Add common helpers for
- parsing Root Port properties
-Thread-Topic: [PATCH V13 02/12] PCI: host-generic: Add common helpers for
- parsing Root Port properties
-Thread-Index: AQHczZH9Fw0NTzMvoUCb4PMSz4pIBbXiJv2AgABoHuA=
-Date: Fri, 17 Apr 2026 03:17:16 +0000
-Message-ID:
- <VI0PR04MB1211449884AC3BC8E3711F1AB92202@VI0PR04MB12114.eurprd04.prod.outlook.com>
-References: <20260416111422.183860-3-sherry.sun@nxp.com>
- <20260416203905.GA29913@bhelgaas>
-In-Reply-To: <20260416203905.GA29913@bhelgaas>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|DBBPR04MB7787:EE_
-x-ms-office365-filtering-correlation-id: 31cdc49b-118a-4f80-b97a-08de9c2fd3e4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|7416014|376014|1800799024|19092799006|18002099003|56012099003|22082099003|38070700021;
-x-microsoft-antispam-message-info:
- nQIKTtESUfv6o46CI4Td4FzMFJe4PF9Tg4PN9sKoaMxfYLvHjiAxi1DndPEc3Ci+mxVDtxk8KnX8qcfcNhhqu1CHqw5E1zuMuROFOs/O9Lsxf3d7adCeKq2sktlEO6SL2WPbb2kbbZ8sgEk0RUKFEf4bGOJCnK/r1C30KYgRyhP4830RHjRH5nqrlvhGiESk7W59oYLaIySc5DK2+CgWd/wosdq1JtINNYUNm8dN8dkVXpYGc7VBXf97HpMuIwVAd5Alk5RLQjANifGAZyuVoR7GF0B2pp+LiOU1sxRp6O8+e4lyFljtdUYnHH7lRmCnBPygM94Fd/7Pgzy/m0UX1i2zSjXVoUQIJtvp1fYJeByJjngaxgYIeYOUZ8cUeO9FUQnDS2o5uyWf9bP9u+L4fjZaQI1NwI+FFc6ZdYO740qv6o9iJGNY9EGX89XqJYw4gdmGzowBxI/PuDuFLNrgeP0BoZY6LRJJQmmXWN0nw6mYs6fcHuF2AXZpe4wfRIia/kO22MRKjiMjC3YTs2mruN27eUjScQAdH/KbOuV97Md7o+ioNMxlBpShPMxbO1KBH+SdIlHZZMxcuxfOm2zXWswD6+Ia6I9gw4MUtGY7R6BMvir4HpffDh3RXuwwSkf7PdJfNWJkiXFKe3dZKna/m54zAFduWETkZkhsBkjhF/aloVesT/QzeCWk7a/gDDgg0PdPSWh8rzShTTA0SPuPTsYogfuJnbQCVNUZEx4K4BdbxRpZ2oxoeFL9wHEM2lE4iTBdkEf5g3sz4xiMUNcsulQFEMAWd//oDv/UO9qvU8A3faOIPl89Fco1gndBMwi2
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(19092799006)(18002099003)(56012099003)(22082099003)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?tclBypOWKFdk9iMx18xMwQSwD2cv54njDR8Xluk9ZaeV51yjMwB6KuuBYsCw?=
- =?us-ascii?Q?wuN0J9/ScCAyQbRmNkTe+Oacmy2q09fouDKjkxZHJjQ5Q66jFwfi+M7/BTok?=
- =?us-ascii?Q?+rSBu5d6ZWjCXQ8bnlp6waIe6F+9ki0THZyktP/7Ks2kiRAvqoAssVyMDx6i?=
- =?us-ascii?Q?D/Phl+xYOXjEArq2cnttkVbRw58z06uQwaIn10/Sff4BcKec1FNY6F1CMFca?=
- =?us-ascii?Q?eUogdLxYObGHrvtcZMRhVNY4gjfNRyRNv1tzmzc4rTzIXKYgRmr3hc6xPwa4?=
- =?us-ascii?Q?E9XkaLW9jo1CUKdRkz3YTtauyEX7rPMxBU9KYRhq22NMzyw+5DoZHY5jG1i3?=
- =?us-ascii?Q?rkE7fafbh8+55RbwUsS48dStiFJHtqn3cduJHLQDGrl119mlK0BCwMn2NDEB?=
- =?us-ascii?Q?sY6Ar2PhGkw7wTMvS1rmiWk1fkACaTsGNy2tZkqAcAzzCIa87i9Ugc+QHDlG?=
- =?us-ascii?Q?Zu46+DR1sp/xWQGwigXhbfUTYNQCZ6yabBP5qoJPMC/KXeHcxhOQRQ1EQ6+5?=
- =?us-ascii?Q?852hYvphVFDOodxBvHmEOM3Gk0oIre9l8x7GIf7Uy8AXZ4sV4CTRuCmctpCe?=
- =?us-ascii?Q?AykB5APG7o3pDEh9lMkxTu0aa72vBvxA4QzC3NEQagiFuf/IRaR4OxCySfXu?=
- =?us-ascii?Q?wPN36xzcLqxi8Q5jXvCGUH534ohZ1CKIUQG7U+AlVlSI7oXXCMoN++R4zKNI?=
- =?us-ascii?Q?+arZyiwuN9yuj3ZN59tFpaqXZQ+KzudYYWd463eYt1s0c/yvHdiC+ybuZgKI?=
- =?us-ascii?Q?Ta/jtfnGjGdAHa6/D78M5reTf2j7CwI/CyldB+y2xU0Lw4UptevU+Aus6J56?=
- =?us-ascii?Q?ZRWkbpvFwKBoC9a3wKLGKfolAsQlJJGSKwWxtMLJq/xSoO5J91xioSeQuXwy?=
- =?us-ascii?Q?ljJZ3ko2nqGRIPQcv9IU6bt6GfFGHDgj2/nDzaupn/JYgTu9P9zB2RviLWQz?=
- =?us-ascii?Q?bjBcdsHq+GIsKjYCQ0NPvp0OOhpkVl7kY9NUV/QUCE2XlJhxLi4zRDSybIXY?=
- =?us-ascii?Q?K2fcQC2r2YdhOrblYYx1/TLMtXU2/23xi32iBpEhQQiAVvmyRPxxXUhja+mz?=
- =?us-ascii?Q?tuwUOU/716ityTLm6IaiZ8dzp2/50+drC4SAFXBniGTgaOaZS/5PaUS1Xi8x?=
- =?us-ascii?Q?Gtgbl6Xs8Nn6SXoDk8iWPUS0A+VdJfQol8whQqPgjAu+1DkFFhda9W5i0rkF?=
- =?us-ascii?Q?fWypMGIdE5QkJfSlIvUGYmc3AGTTmAx52piXSfNoyjhCIT+ozevZIiPRDsrv?=
- =?us-ascii?Q?Nie1VqENexN6KXnDgcY9oh2/5F8neHqZ5K/gts62NZGGDWoCmVfTyuD7zH0t?=
- =?us-ascii?Q?KljMyHGets8+QekgCqQ5hXHPTgQ1/V4JV6/9BATkPXZUHM9m26gQwJukvEWG?=
- =?us-ascii?Q?MuvZMfIsPArXtvHnWEUALBD/UybITcokEWz3XkvH9tynqIhYuCx8/oOI23t0?=
- =?us-ascii?Q?igHPwDychlyOSZx+bREjuAAHGJo0nZKQVp9aQddSsyAcz68vnOgpxpiIGBbu?=
- =?us-ascii?Q?eweMty64ZDsoTg0J7YAsz2bBMf2EJV2oKmqXRFkHYF9DaaKr4yKU1spZyDv7?=
- =?us-ascii?Q?6FLX9ZDgnumBOMKiv+E2YT9t8Ki5oLNG0XiWX8stSaYjxBLTowMYgMTdZyAf?=
- =?us-ascii?Q?nuwBE9Z6oJLe7d+YnWDoavSr1JQe5jLpPQtou2MnThfQ7e7w63XAjRdO7MwQ?=
- =?us-ascii?Q?m1tN0fYx/TY96wy1yo+ufcNbIe7dYi1V4Sq0RNIn96PTSJqo?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D3431E833
+	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 03:22:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776396157; cv=none; b=S+lUGpHPun/RrH5zpwjHbL8g4RNwVufuc+2RN+h3/Nc/AqYGQRNhHb0wioJW7Ts+KCtQM7q+nIAcnWuaamP+FsWkHAuQL9J7Hnx70XzPocF9MkpejSUji12rKARf1gmV2m4HcS78QvV9UzpFfKV3/To1VBc8VzzE5qrspZxccjk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776396157; c=relaxed/simple;
+	bh=ZSZi3UpSXF8Wby9x8TqfZI7RiyaKLQaIxoAawQtBQXw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HNeckIvcOACquezpxVHoYYpGQIp6Wd2CCrlot7n2MMQKNBzvEJ6C3kA6vVNIkcdrNLcEoYlVOcJzm/wVAhg7SlFfKsEtfpXU802eKfU1glvCD9FBaBJQaQsfKe9BSXfNH24dcI9zDf7iXl70apwhhOfqjSsRH3MSfGwGjDBx+yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XdDwL7F1; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2b25cf1b5f0so1184405ad.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Apr 2026 20:22:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1776396154; x=1777000954; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=riHL8PUFIWxFVSSO9aFHtXI+aBYHRPRmwkjy7XIHGSY=;
+        b=XdDwL7F1MbngrLrDtArSW/iSMtZi5poL+fPgCjODw7mj+5ZY07DeW7Emqsm/TyzmX0
+         XSS6Tj2LK0gQrw9503Mf1pC3QUO3ms7yA/egkjTsj5teehGKYLMvIjFIpKRurYDIDIgE
+         vj3TQPpVnlEoWyTd1D/QQKsSnkVZgEYzsmWS6bJQ5t7/x11kjGUGXrh8C0u/rhbJ+Txh
+         vvIqzucmcBWyH13stjLaeg1jLsUjUeY+Ow2MTEggdxYrBlh9y4YaacLBRwd+Ve8v7FEN
+         X670taxX2pg23hXdX/jIj7a4qzt0MR37F+UxDF5rGY/42wHvhvB69C4AfGflpxjR37N4
+         O7fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776396154; x=1777000954;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=riHL8PUFIWxFVSSO9aFHtXI+aBYHRPRmwkjy7XIHGSY=;
+        b=PDJJMlUM4E/vyEE6bfxz+oyUfgFSrnLTaWfmrX1Dt3xeCAPbe86+ZGjzbG8drieU1M
+         IGbJgeyPv2aQuHapgseaM+4jrFTnPQbNWTx11Bf2FNA+juJOuT1LsPee30IvomIdGC0s
+         CvwKijr3CTjPphkr7oynSiOoPzMX3oCbZ/bW21D/0JY1oNm5F7yBrJYRLOmoYA7TrWls
+         sI6L/LtbnQyXGeqvI0K6QtqkZE/qAf2nULOHTMVP8x89+YFUt6rFGxJJ/6Sdkbza7ll8
+         iydS9BGWu+75rzZs7XmQ858BwjHEiWWw37oj3nTNCpOh/8Eo+RikxRP9xxokDsth7YPX
+         CRfg==
+X-Forwarded-Encrypted: i=1; AFNElJ8BMkpU3hmqJZEBhmwGGmdj9hvIitqHfxv78rjmmkShxmoxsoz5Hgvi+VNBY7cB3GOeZIkQLKnAbkpE@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrwaOFOrRkojg8RbZBLl3YWV53KYtQ4Wum4B66QydzJRpn9BlU
+	fHEc/R9YZiyr6of/L5FAX2TGMUNTF9aTcfSov25Bm7d3l8exFXxlvW7FR9tRhA==
+X-Gm-Gg: AeBDietmR94GAkkXNLsp1gvScHAiu3Cy7AV4WPaJEzVpNsmG/FYvjQ5u04HsVk2kRvC
+	r0DKjTlRvsMSI7V1cwpEzQjVL7yFHYkii/cQb7XkUBybbRBrqTas4zHJTbyiU12JKVA5Hqapyyb
+	oZ4WdWEhIsbrpBfeJxIlcSETQ3OmyQpeEEpTz29Dau21nfey/jY/h8CKMyEi2QxdBeMGEcz1v5H
+	XTT9G/Sj99xyIYmA2d7NwhxcMhfJUZlyXJCnjhehYGlFefLlcn0x5d5a77EPbKwA6ofX/5YLoDC
+	a+6WtJRfYoI69TSG5VvQw1fY4v1ZOD1l3AUFCJOUtjozllTos9kdZ+b3aUVdzjI0cC3d78vokh2
+	3wN7pvglUnCmKV9QUOTKyvYioQWNprS9koIx8Mrm1G2pMy22qu0RE6HSHNrM+733z7TfXccsf8l
+	jCbEb8xOPoFsvRmgGrATR8FCOyJCgM8jhv+9YTEWHbYXF/LItd0iZvwUEVSHBDeGsQ3+ueKCzI8
+	SQ3X9e7SWw=
+X-Received: by 2002:a17:903:2c0e:b0:2b2:539b:d2b1 with SMTP id d9443c01a7336-2b5f9ea6173mr11262965ad.16.1776396154079;
+        Thu, 16 Apr 2026 20:22:34 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b5fab0cf3bsm3965605ad.44.2026.04.16.20.22.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Apr 2026 20:22:33 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <a142d5ce-e4a3-4f50-8009-f796609fb13c@roeck-us.net>
+Date: Thu, 16 Apr 2026 20:22:32 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31cdc49b-118a-4f80-b97a-08de9c2fd3e4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Apr 2026 03:17:16.5279
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: m8kzFib327Xh6xMpSpeD5lpgCFemiEBMr5Rg/E/uSri75ahCK74H6/IIoEsBbrqD5gI6zdkpLpkdE9HRtY83nQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7787
-X-Spamd-Result: default: False [1.34 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: pmbus: add max20830
+To: "Torreno, Alexis Czezar" <AlexisCzezar.Torreno@analog.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>,
+ "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
+References: <20260416-dev_max20830-v2-0-2c7d676dc0bd@analog.com>
+ <20260416-dev_max20830-v2-1-2c7d676dc0bd@analog.com>
+ <20260416-diaphragm-corrode-494560404ed4@spud>
+ <84a5154f-1139-425e-94ae-31d7e662cd0e@roeck-us.net>
+ <20260416-scoring-secluding-c7a7235b181a@spud>
+ <PH0PR03MB635166088B7C473CF59F17D1F1202@PH0PR03MB6351.namprd03.prod.outlook.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <PH0PR03MB635166088B7C473CF59F17D1F1202@PH0PR03MB6351.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288021-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288019-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,google.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,VI0PR04MB12114.eurprd04.prod.outlook.com:mid]
-X-Rspamd-Queue-Id: 9AB6D416851
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid]
+X-Rspamd-Queue-Id: 3B4404168C5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> On Thu, Apr 16, 2026 at 07:14:12PM +0800, Sherry Sun wrote:
-> > Introduce generic helper functions to parse Root Port device tree
-> > nodes and extract common properties like reset GPIOs. This allows
-> > multiple PCI host controller drivers to share the same parsing logic.
-> >
-> > Define struct pci_host_port to hold common Root Port properties
-> > (currently only reset GPIO descriptor) and add
-> > pci_host_common_parse_ports() to parse Root Port nodes from device
-> tree.
->=20
-> Are the Root Port and the RC the only possible places for 'reset' GPIO
-> descriptions in DT?  I think PERST# routing is outside the PCIe spec, so =
-it
-> seems like a system could provide a PERST# GPIO routed to any Switch
-> Upstream Port or Endpoint (I assume a PERST# connected to a switch would
-> apply to both the upstream port and the downstream ports).
+On 4/16/26 18:04, Torreno, Alexis Czezar wrote:
+> 
+>>>>
+>>>> On the previous version, you got an LLM comment about not having the
+>>>> interrupts property amongst other things.
+>>>> I think the other things got implemented, but I didn't see any reply
+>>>> to the bot about that?
+> 
+> I wasn't sure if it was that type of bot. I'll try replying on the other patch review.
+> I just added a note in the cover letter change log about the lacking smbalert.
+> 
+>>>> I think the answer is that it shouldn't because the pin it
+>>>> referenced doesn't exist, but when looking at the schematic I have
+>>>> to wonder if
+>>>
+>>> I had to look this up in the datasheet. A SMBus chip with no alert pin
+>>> is a bit odd, but you are correct.
+>>>
+>>>> there should be an interrupts property for dealing with "pgood"?
+>>>>
+>>> FWIW, I have never seen that. Normally such pins are used to take
+>>> devices out of reset.
+>>
+>> It's an output on this device seemingly. I don't care if the driver ignores it, but
+>> for completeness (and we like completeness with
+>> bindings) I think it should be documented as an interrupt or gpio.
+> 
+> Alright, I'll add it as an interrupt: optional power-good signal
+> 
 
-Hi Bjorn,
+Uuh, that really doesn't make any sense. Please at least make it a gpio pin,
+matching pwr-good-gpios of ti,tps65185.yaml.
 
-Thanks for the feedback. You're right that PERST# routing could theoretical=
-ly be
-connected to any device in the hierarchy. However, for this patch series, I=
-'ve focused
-on the most common use case in practice: use Root Port level PERST# instead=
- of the
-legacy Root Complex level PERST#.
+Guenter
 
-Root Port level PERST# - This is the primary target, where each Root Port h=
-as individual
-control over devices connected to it.
-RC level PERST# - Legacy binding support, where a single GPIO controls all =
-ports.
-
-We can extend this framework later if real hardware emerges that needs Swit=
-ch or
-EP-level PERST# control. I can add a comment documenting this limitation if=
- needed.
-
-BTW, Mani and Rob had some great discussions in dt-schema about PERST# and =
-WAKE#
-sideband signals settings.
-You can check here:
-https://github.com/devicetree-org/dt-schema/issues/168
-https://github.com/devicetree-org/dt-schema/pull/126
-https://github.com/devicetree-org/dt-schema/pull/170
-
-Best Regards
-Sherry
 
