@@ -1,191 +1,206 @@
-Return-Path: <devicetree+bounces-288104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288108-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aC7TDl3y4WmKzgAAu9opvQ
-	(envelope-from <devicetree+bounces-288104-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:42:05 +0200
+	id +EViI+zy4Wmv0AAAu9opvQ
+	(envelope-from <devicetree+bounces-288108-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:44:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E714418D26
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:42:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 208D6418DBB
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:44:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7E14A30B541A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 08:36:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C6A363214981
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 08:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E1333AF67C;
-	Fri, 17 Apr 2026 08:36:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C723B19AE;
+	Fri, 17 Apr 2026 08:36:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="GELn7gSc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CmPcXyVm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout70.expurgate.net (mxout70.expurgate.net [194.37.255.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08B3B3A9615;
-	Fri, 17 Apr 2026 08:36:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.37.255.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B49A3B0AF7
+	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 08:36:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776414981; cv=none; b=Xx/VgoFOySAA4FJ1Y0vlbTWYKaRlFiin384VJXJTiMqzooJ6yB3hiee3J2If8U/RF8MXVutRCRCud3w0mmvTPZOjXcRnWepZ6CHE995ZMwDf1yBoFkmtzNmXJCITPYC9Eb6Vw8UW302hnwVfpFcKWY8mJrxOSEJ3vQyzL5baYuA=
+	t=1776414992; cv=none; b=gzUmgCxS/cCx35/OeRPZyRywoHH8wUvEorktdV3xiEmaEC1P3qov5Dt7zcymI2Y2znl0ERHkgQgOoW6XA6dENhx2jXlMyykkB1jSIq9v3Vsus3dL4cREKJKja41egHj72TQm/6XSzsSXdun1ECZq5GJtPZPatfVsCoXO9ZNuee8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776414981; c=relaxed/simple;
-	bh=t+G3zYgTsMTowJn0yo3fLFh5TKKiqyTLaVwL59V0M1E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:Cc; b=LwnJOQ4Fqs9J2ffRRtsZVAhmgxmw44N9wjo0s6mJpAJO3m9auaflOvIeqOJTXdHuq1EbnkAd8w9LNJ/AUAuUpyFh17WiutPG92a6+82CuWf10M1p2LviPqAmGO5ZRfYvif6yAYxPMhWT1YicaPGIN+vOib9ryydFYA0dpwWhIbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=GELn7gSc; arc=none smtp.client-ip=194.37.255.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
-Received: from [194.37.255.9] (helo=mxout.expurgate.net)
-	by relay.expurgate.net with smtp (Exim 4.92)
-	(envelope-from <prvs=75813159fe=fe@dev.tdt.de>)
-	id 1wDegP-00BgAj-0i; Fri, 17 Apr 2026 10:36:13 +0200
-Received: from [195.243.126.94] (helo=securemail.tdt.de)
-	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <fe@dev.tdt.de>)
-	id 1wDegO-00DTvO-HA; Fri, 17 Apr 2026 10:36:12 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dev.tdt.de;
-	s=z1-selector1; t=1776414971;
-	bh=VpO7tSDeSrvpivl94BB4ux2keIxCCjATqhuGI/Eo9ho=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=GELn7gScTbj+/R8BGijesND5vsQxr5R/Fo2BdrI81/yG6zZWurrxuinz6HKIvA8Y5
-	 7oMF+kdK/gGsrBYH7uzL6AQl1w71hQP+9FThkkUf2unkmxSnD8jsKhUvlf+rp84w16
-	 SiIGeSRmO1IE3sR42lqVdvnqSu1zRfGLfmxsYgJAfZmYVg9kJCH7kfexmVJqW3NMF2
-	 z3UNukl/SByL6Dsmh98YFCPWHBw6uLYgoHMEqllerKALJYjLPLP3J6hMtLvubEmEh3
-	 omvsrs7g67uP8AcpaVU5iZweZ3YSSHmkcw/m7uh7WvDt5Bjp4IyI4jfapjoy5JFZC+
-	 Gl+EOltPvn26A==
-Received: from securemail.tdt.de (localhost [127.0.0.1])
-	by securemail.tdt.de (Postfix) with ESMTP id 1AD40240041;
-	Fri, 17 Apr 2026 10:36:11 +0200 (CEST)
-Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-	by securemail.tdt.de (Postfix) with ESMTP id 11E13240040;
-	Fri, 17 Apr 2026 10:36:11 +0200 (CEST)
-Received: from [10.2.3.40] (unknown [10.2.3.40])
-	by mail.dev.tdt.de (Postfix) with ESMTPSA id E6E31242E4;
-	Fri, 17 Apr 2026 10:36:10 +0200 (CEST)
-From: Florian Eckert <fe@dev.tdt.de>
-Date: Fri, 17 Apr 2026 10:35:51 +0200 (CEST)
-Subject: [PATCH v5 7/7] dt-bindings: PCI: intel,lgm-pcie: Add atu resource
+	s=arc-20240116; t=1776414992; c=relaxed/simple;
+	bh=+6x6QSjg9WDHOM6OfwMMX46Jbd5d/tcXlvODjbQmQhI=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CEmDImmv3nfJ6WNHOVEnkTPivqgPB7SEellHFo1T7O0bqduNrA7a5z5tfeFy7vRz2eQStyYKoYeJ2nofAKL8L/oMGemNL5+7H/L74rfIci2LJOt3LgE4DkFftlqc95ETpONRg+rngAHsaUs5SVYyK/dY6QcMQB9FC1r1dIJcfb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CmPcXyVm; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-43cfde3c3f3so444501f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 01:36:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1776414987; x=1777019787; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CS4QQsQN7RmaHyI35F2RiAWiiiGHkRaNuLXPNb9Rp1U=;
+        b=CmPcXyVmMFW/Ru5XQk+qJiv+A+2qOWiw7Xoh/2hhpSLmc0TsrJBuFPc++U+w+ubDQw
+         O2qpD1ve7P6vJQTJIjQw/mZ4qdiiLQxXM8FZ1c2egt2vwLjCNxrBThJeJVmHwMD1Ilid
+         fO0kZ1G0B8d0iStwhLTuGe1Usq/9Lf1pa1k8CMEc9AZxUtGbR9nV54nqtkys3I5Lcsl7
+         17s08aj0xJGfR9BGJ630rAWEiVF11oH6FIJRLFfjnsrYjSQyfCpPmmBvklDOIyJnbUwU
+         N3eX6bP0kR5M92glv8SXxBAKLxBF1L7cWcTg4Ytt5yKbjqd/RKKzejpgHafDUgGcEZbo
+         FzoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776414987; x=1777019787;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CS4QQsQN7RmaHyI35F2RiAWiiiGHkRaNuLXPNb9Rp1U=;
+        b=iQG30EPOmMeVADzfmj5k97KVTKaqccVbmpN/uaJw0TuYGLnz7/AfS+0Vr4fMLk0Zx/
+         /uRy8XorZjNluQ084HblYbyk0+Wr/cDuCxfZaXigCQxU2z91q20EDmfcIBlmhOWu9WcH
+         Moh0ePo11D4eTJqxl07DeU01RlicCS950gNpxgwVlVuDaaUuLkq9Ov2raOKg48bnTumR
+         avQSXcli5HyRerkM1N1GSf7snrEYIS74v4iY4QdBMciYG2PpMkaEuTL3JJ9k65EOJ0f+
+         QRHQ8vih/paSn1yMya1AtOmC6l8wlRG0+vKOgwOVgNjZtpUZRWQCnbxKYil/0wjYb15e
+         Qq2A==
+X-Forwarded-Encrypted: i=1; AFNElJ+X+boasNS9qQbKFoZLXHRDX8Xr/Q37sRf32qliaFYgWDpyHwDTUPsneoiiQV/oGYDR/J0lwCqbEZcY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMWaRnVeqlavQXy5Xif5HEfdyOt3oCrDGXifCXSYlaM8NyytKu
+	hilihd5SUP0kjdtJr0ucAPgFmpfc8RdVauJ8oKt7O7HWA6Lc8/Kiw0J/
+X-Gm-Gg: AeBDieuVrnKOi5wL76/8X156kIx8FXWM9V0JAtWswDI4gdugpgt82EpMLR/l35NjPoI
+	81INEqJAVA6uCc5uWZHO6kKYf+eRcV2oCD00J3ft2y8DlmMDwAedjP6KgJBXDbyVgf2l1W5is7x
+	D1N3JVSlsvMJQlK+FRBmYUWzUulosVBCGWtjJo3NHxH0utJp3sfzzIfLvR24pCxOKvrqISwT/pV
+	+RUi0lkayIFAyT+tXbD+vPRHB77M70C52e+qMBFqzK6pOxP58DUh3p5V1ZEjG5aNzYX8KtzXMMZ
+	HLkQWv4+0OQSS43oliLckir5u7aCR0QGP8tDdLB1DmTaux/4vtwZsoxzcjPtEVM0egZhYe0tSt1
+	IQ259Unl7X+qXS1rJSBlSoCiOT4MTeNhuJsn81reEcqVZ1QF1v2DJGecry+mHU+rhfAVca3wOaz
+	q3ipkSCwo964oHJNqfK14KFzFFFKud3LdWCs3FLh3LaH/jQRjVu2zOYM+/6jKm/WKRZMi9ejEo4
+	KGXV/dqnUmJy8NaKlkZDuvdZ1wvvIWBYiOU5ByqM2tqOE2c1rUuJ1s6gdU50nwuzSRkQwBL
+X-Received: by 2002:a05:6000:2308:b0:43d:76d8:5794 with SMTP id ffacd0b85a97d-43fe3e14f8dmr2894776f8f.36.1776414987239;
+        Fri, 17 Apr 2026 01:36:27 -0700 (PDT)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43fe4cc0d51sm2911996f8f.10.2026.04.17.01.36.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Apr 2026 01:36:26 -0700 (PDT)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Fri, 17 Apr 2026 09:36:20 +0100
+To: Rodrigo Alencar <rodrigo.alencar@analog.com>, 
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-doc@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+	Andrew Morton <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, 
+	Steven Rostedt <rostedt@goodmis.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>, Sergey Senozhatsky <senozhatsky@chromium.org>, 
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v10 02/11] lib: kstrtox: add kstrtoudec64() and
+ kstrtodec64()
+Message-ID: <mhfgedq2t5lqtu6535ahdmpbvib2xzp2hmyt7ezflnf52r56jh@ze6tee7vpij3>
+References: <20260415-adf41513-iio-driver-v10-0-df61046d5457@analog.com>
+ <20260415-adf41513-iio-driver-v10-2-df61046d5457@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-ID: <20260417-pcie-intel-gw-v5-7-0a2b933fe04f@dev.tdt.de>
-References: <20260417-pcie-intel-gw-v5-0-0a2b933fe04f@dev.tdt.de>
-In-Reply-To: <20260417-pcie-intel-gw-v5-0-0a2b933fe04f@dev.tdt.de>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?utf-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Sajid Dalvi <sdalvi@google.com>,
-	Ajay Agarwal <ajayagarwal@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Florian Eckert <fe@dev.tdt.de>,
-	Eckert.Florian@googlemail.com, ms@dev.tdt.de
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776414969; l=1926;
- i=fe@dev.tdt.de; s=20260205; h=from:subject:message-id;
- bh=rlwTMCXH/aMqUifxKhjkwyS27qKPELxXtIKb/5h280o=;
- b=2Rfky6YKUgQWBMqIyb/z6lyGcEay4A9f4YYYOv7T+W27+BbjpN2beAgIl3MYvVzRy6i/1x6Md
- JDJd8unUAuGB2+z0QwR2y1qXqqsjaxOnTZMyae9ZGFBT2B+gHIXf6ou
-X-Developer-Key: i=fe@dev.tdt.de; a=ed25519;
- pk=q7Pvv3Au2sAVRhBz5UF7ZqUPNxUwXQ78Jdqu8E6Negk=
-Content-Transfer-Encoding: quoted-printable
-X-purgate: clean
-X-purgate-ID: 151534::1776414972-1B6C0049-C5E597B6/0/0
-X-purgate-type: clean
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260415-adf41513-iio-driver-v10-2-df61046d5457@analog.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[tdt.de,none];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[dev.tdt.de:s=z1-selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[vger.kernel.org,dev.tdt.de,googlemail.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-288104-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288108-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[dev.tdt.de:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,dev.tdt.de:dkim,dev.tdt.de:mid,tdt.de:email];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fe@dev.tdt.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,linaro,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 8E714418D26
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 208D6418DBB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The 'atu' information is already set in the dwc core, if it is specified
-in the devicetree. The driver uses its own default, if not set in the
-devicetree. This information is hardware specific and should therefore be
-maintained in the devicetree rather than in the source.
+On 26/04/15 10:51AM, Rodrigo Alencar wrote:
+> Add helpers that parses decimal numbers into 64-bit number, i.e., decimal
+> point numbers with pre-defined scale are parsed into a 64-bit value (fixed
+> precision). After the decimal point, digits beyond the specified scale
+> are ignored.
 
-To be backward compatible, this field is not mandatory. If 'atu'
-resource is not specified in the devicetree, the driver=E2=80=99s default=
- value
-is used.
+...
 
-Signed-off-by: Florian Eckert <fe@dev.tdt.de>
----
- Documentation/devicetree/bindings/pci/intel-gw-pcie.yaml | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+> +static int _kstrtoudec64(const char *s, unsigned int scale, u64 *res)
+> +{
+> +	u64 _res = 0, _frac = 0;
+> +	unsigned int rv;
+> +
+> +	if (scale > 19) /* log10(2^64) = 19.26 */
+> +		return -EINVAL;
+> +
+> +	if (*s != '.') {
+> +		rv = _parse_integer(s, 10, &_res);
+> +		if (rv & KSTRTOX_OVERFLOW)
+> +			return -ERANGE;
+> +		if (rv == 0)
+> +			return -EINVAL;
+> +		s += rv;
+> +	}
+> +
+> +	if (*s == '.' && scale) {
+> +		s++; /* skip decimal point */
+> +		rv = _parse_integer_limit(s, 10, &_frac, scale);
+> +		if (rv & KSTRTOX_OVERFLOW)
+> +			return -ERANGE;
+> +		if (rv == 0)
+> +			return -EINVAL;
+> +		s += rv;
+> +		if (rv < scale)
+> +			_frac *= int_pow(10, scale - rv);
+> +		while (isdigit(*s)) /* truncate */
+> +			s++;
+> +	}
+> +
+> +	if (*s == '\n')
+> +		s++;
+> +	if (*s)
+> +		return -EINVAL;
+> +
+> +	if (check_mul_overflow(_res, int_pow(10, scale), &_res) ||
+> +	    check_add_overflow(_res, _frac, &_res))
+> +		return -ERANGE;
+> +
+> +	*res = _res;
+> +	return 0;
+> +}
 
-diff --git a/Documentation/devicetree/bindings/pci/intel-gw-pcie.yaml b/D=
-ocumentation/devicetree/bindings/pci/intel-gw-pcie.yaml
-index 54e2890ae6314ac6847fc23f49440d05d66d87d4..394bb46b38e601345429de828=
-f491980f8058d25 100644
---- a/Documentation/devicetree/bindings/pci/intel-gw-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/intel-gw-pcie.yaml
-@@ -27,16 +27,20 @@ properties:
-       - const: snps,dw-pcie
-=20
-   reg:
-+    minItems: 3
-     items:
-       - description: Controller control and status registers.
-       - description: PCIe configuration registers.
-       - description: Controller application registers.
-+      - description: Internal Address Translation Unit (iATU) registers.
-=20
-   reg-names:
-+    minItems: 3
-     items:
-       - const: dbi
-       - const: config
-       - const: app
-+      - const: atu
-=20
-   ranges:
-     maxItems: 1
-@@ -95,8 +99,9 @@ examples:
-       #size-cells =3D <2>;
-       reg =3D <0xd0e00000 0x1000>,
-             <0xd2000000 0x800000>,
--            <0xd0a41000 0x1000>;
--      reg-names =3D "dbi", "config", "app";
-+            <0xd0a41000 0x1000>,
-+            <0xd0ec0000 0x1000>;
-+      reg-names =3D "dbi", "config", "app", "atu";
-       linux,pci-domain =3D <0>;
-       max-link-speed =3D <4>;
-       bus-range =3D <0x00 0x08>;
+I have an alternative (slightly more complex) implementation of this function
+that handles E notation. I find this particularly handy when writting big
+values like 25 GHz when the ABI is defined in Hz, so instead of writing
+25000000000, one can just use 25e9, or 2.5e10. I found that my python code
+was printing big floating point values or really small ones using E notation
+and that was giving me -EINVAL, so I had to adjust formatting when generating
+the string input to the file. No big deal, and we would not need this here,
+but if maintainers find this useful I could add it into a v11 of this series.
 
---=20
-2.47.3
+-- 
+Kind regards,
 
+Rodrigo Alencar
 
