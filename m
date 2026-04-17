@@ -1,149 +1,151 @@
-Return-Path: <devicetree+bounces-288305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288306-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KLbiNNC54mlF9gAAu9opvQ
-	(envelope-from <devicetree+bounces-288305-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 00:53:04 +0200
+	id +GvTHR+84mmA9gAAu9opvQ
+	(envelope-from <devicetree+bounces-288306-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 01:02:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B00E41EF2A
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 00:53:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BD9F41EFD9
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 01:02:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AC1183051915
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 22:53:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4D3D1306A43D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 23:00:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E715B36A027;
-	Fri, 17 Apr 2026 22:53:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6698930BF66;
+	Fri, 17 Apr 2026 22:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WD+AArgD"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="1d4HoLrR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF66635C19F;
-	Fri, 17 Apr 2026 22:53:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F7B814D719;
+	Fri, 17 Apr 2026 22:59:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776466381; cv=none; b=oIFgZSNBLz9sNdFcP6fiio2+GW8AOUpx4DAbZopeKHP50UWtq5pw1FTY+dauXNmQgdk8hm+Vg1k/NCU5s3CcgyNWJrzMS82SgVf8/Wz8vwt7zC30rWmpOh7VW0xb273cGq7pJAI1EeadQJ9HVotg9RPq6505txW5Jj8h72C4IJg=
+	t=1776466797; cv=none; b=DTLW7Oz7xxoDjB3AtrMREtQ8AGKwzO/yohAGM8FREUgXzGQnYv7nyX6TFdQozroFNf5wv8WKJZBGfI6KBt/A1DDouODYvQT3HGeuYoa7lLiNujb7ns7a/XpRkz3gbyGJ+eRkTbWXFcMRIl0luP+e6HyTms1d7tJnqJamCowNOFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776466381; c=relaxed/simple;
-	bh=Frw2WIcsMXau1lzNqvo61mU42MBSPeG0i7j4l0PnqU8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NUq28zEi+P+GYxXcBos/xuLuHHvL+9uR8zGknZiGl8xD9iZYWZcSIricdoPB0NSSziXSGWqFrTrrim/CUIQqe+s5W66g6hq2gBkkxtgDjNCqEMNZXJQvRYHPPgZ2Rkz/z239buxEzfsPSWZASF8vZS1UYtE8S6mNgJN4URDvmFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WD+AArgD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AEE8C19425;
-	Fri, 17 Apr 2026 22:53:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776466381;
-	bh=Frw2WIcsMXau1lzNqvo61mU42MBSPeG0i7j4l0PnqU8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WD+AArgDs+vyowQlE5XeV2t9ZJObt/J1PFD4+zhCh6pjvkZOkeoXeGlT4FIcuTw5d
-	 6KOggY7yyvLsa/1jBjN3oYKmfuPg6aRAEc1FjGGRfsMhpwJH4JR3XFR/SJQ/i5buOr
-	 qBefF7+8NhwuMHxxCC/vuAg+nJcsbFwbIgeZ9nY7KqnRbVrLq4EbrnvFJlz4B3QNeA
-	 w8vHjVGd1bLmbjN1VPlzPpyd8PFVKr9QsgM5qcBB4niTWCjQNzt+7851Rp+s10t0e6
-	 7qlfMxBT4PPAPYsPiV0pMnI48o7oUnxCe+BeYGRWyF25EwJMaxaPQepQK/IyHnirWU
-	 zXKGRPvcAlgyg==
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-	id 3C6671AC57F2; Fri, 17 Apr 2026 23:52:57 +0100 (BST)
-Date: Fri, 17 Apr 2026 23:52:57 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Cyril Chao =?utf-8?B?KOmSnuaCpik=?= <Cyril.Chao@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Darren Ye =?utf-8?B?KOWPtumjnik=?= <Darren.Ye@mediatek.com>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"tiwai@suse.com" <tiwai@suse.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"perex@perex.cz" <perex@perex.cz>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v8 08/10] ASoC: mediatek: mt8196: add platform driver
-Message-ID: <aeK5ySqgvHdBvuuB@sirena.co.uk>
-References: <20260324015719.17543-1-Cyril.Chao@mediatek.com>
- <20260324015719.17543-9-Cyril.Chao@mediatek.com>
- <892468cc-7eb4-411e-b91b-f14789d8da0c@sirena.org.uk>
- <da5752796e1774b6bbc24f5ef1ab2529e24a384f.camel@mediatek.com>
+	s=arc-20240116; t=1776466797; c=relaxed/simple;
+	bh=GHtVHx2nhBSquGSPYryXKtY4F20htfrr0aJ1VzWLVGE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ff0TOCjpc9ObT8txP7t8nXzUhcG+QagHBpCmVjNlUek6ZeKMzzbycwkAIXBe2hx9MpHK9jL1lZSRJLLNrdMlwP/g70qISUY8AoYaastxjOte41iwcPMqphCZiWPJwFfyHuqb1idCPuA6rY8/jtEKNvGf9z97OjkRT/1C4SVbi98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=1d4HoLrR; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=GHtVHx2nhBSquGSPYryXKtY4F20htfrr0aJ1VzWLVGE=; b=1d4HoLrRxJTUT549vCErRSXE70
+	0tfVdMU83O5FAnRlau6P8+hP7nQ3Knk6e87RPoVtssg0Un1B3CiDi66pWPsnCY+Mr7DdQ4/rRw+hm
+	VSTXWGL+G8J9BBN5jllkygiIzB++sl/LItzoLrRoJ4LkiT0jh96TDceoME1ZKseMxraK6eRl1fbDt
+	4uBpjV07uxv5I5PGP8fggQII+EXNs58iIA1TF/Byrw2786NDjng+bQBBsdFQLXwO5qFNWVpsnCvPt
+	xrpTaFrCnGV+Ee9MK4NEngorGHIW66HU+PDk21STzHn40EReIP0Odvn9hoGTO434b6PsFjZLMp2Mp
+	RfLZXSsQ==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Alexey Charkov <alchark@flipper.net>
+Cc: Pavel Zhovner <pavel@flipper.net>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Alexey Charkov <alchark@flipper.net>
+Subject:
+ Re: [PATCH RFC 2/4] clk: rockchip: pll: use round-nearest in determine_rate
+Date: Sat, 18 Apr 2026 00:59:40 +0200
+Message-ID: <39479281.XM6RcZxFsP@phil>
+In-Reply-To: <20260417-rk3576-dclk-v1-2-26a9d0dcb2de@flipper.net>
+References:
+ <20260417-rk3576-dclk-v1-0-26a9d0dcb2de@flipper.net>
+ <20260417-rk3576-dclk-v1-2-26a9d0dcb2de@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="1Z+JCqeY2FxPdfrp"
-Content-Disposition: inline
-In-Reply-To: <da5752796e1774b6bbc24f5ef1ab2529e24a384f.camel@mediatek.com>
-X-Cookie: Victory uber allies!
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,mediatek.com,kernel.org,suse.com,gmail.com,perex.cz,collabora.com];
-	TAGGED_FROM(0.00)[bounces-288305-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-288306-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sirena.co.uk:mid]
-X-Rspamd-Queue-Id: 3B00E41EF2A
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sntech.de:dkim]
+X-Rspamd-Queue-Id: 2BD9F41EFD9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hi Alexey,
 
---1Z+JCqeY2FxPdfrp
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Am Freitag, 17. April 2026, 17:11:45 Mitteleurop=C3=A4ische Sommerzeit schr=
+ieb Alexey Charkov:
+> rockchip_pll_determine_rate() walks the rate table in descending order
+> and picks the first entry <=3D the requested rate. This floor-rounding
+> interacts poorly with consumers that use CLK_SET_RATE_PARENT: a divider
+> iterating candidates asks the PLL for rate*div, and a tiny undershoot
+> causes the PLL to snap to a much lower entry.
+>=20
+> For example, requesting 1991.04 MHz (248.88 MHz * 8) causes the PLL to
+> return 1968 MHz instead of 1992 MHz =E2=80=94 a 24 MHz table gap that pro=
+duces
+> a 1.2% pixel clock error when divided back down.
+>=20
+> Change to round-to-nearest: for each table entry compute the absolute
+> distance from the request, and pick the entry with the smallest delta.
+> The CCF's divider and composite logic handle over/undershoot preferences
+> via their own ROUND_CLOSEST flags.
+>=20
+> Signed-off-by: Alexey Charkov <alchark@flipper.net>
 
-On Thu, Apr 16, 2026 at 05:53:25AM +0000, Cyril Chao (=E9=92=9E=E6=82=A6) w=
-rote:
-> Thank you for your assistance in reviewing. Could you please also
-> review the modifications in the diff? If everything is okay, I will
-> include them in v9 in the next update.
+as Sebastian said, this could cause overclocking in a number of areas.
+The rate you get should always be lower or equal to the requested rate.
 
-That looks OK from a scan through, though it's possible I'd see
-something else if I review in full context.
+Additionally, such a core behaviour change, would affect 13 years of
+SoCs with unknown side-effects.
 
---1Z+JCqeY2FxPdfrp
-Content-Type: application/pgp-signature; name="signature.asc"
+If you're missing specific clock rates, you can always add them to the
+list :-) . The vendor-kernel does have code that can calculate the
+rate params itself, so this could give you a hint where to start.
 
------BEGIN PGP SIGNATURE-----
+=3D=3D=3D=3D=3D=3D=3D just to explain =3D=3D=3D=3D=3D=3D=3D
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmniucgACgkQJNaLcl1U
-h9DACwf9H2I11k4JlXEGCoDjtI4sgy3/SrHG9jWgFJ4N+WaSWg5a00Cs1icay7Lz
-CrAmRcjVbCuLniYSP18LS3Mbv8dtKs98W60KdDGGHDz3pxFCKGYr4pnhkXdM/SFz
-D0PbcBHlaj11Abd4kUSeTG3JO4GiEUidCja0vZX+YYGVaPJjWeA3SJwZuvkSjUcM
-FJ6hhGnvDJcyhwt29fV+FTYVe8gYxUYQFELH0vKUwsk5gj58vi6ZFHo+1GDSwBbC
-KfCAO2nvkF1mJhLJckU2xca67RoYdMULyNCkh5ig/8g6/u54TuD5smI4wByhHmwK
-Qw+KSoMw96DdwqNqYYb0Ewhh9pl92w==
-=Ugrc
------END PGP SIGNATURE-----
+Though I still don't think that code should be in the mainline-kernel,
+as a curated PLL rates allows more control, where that algorithm
+creates parameters that are programmatically correct, but essentially
+untested.
 
---1Z+JCqeY2FxPdfrp--
+On the two Chromebook projects, they actually measured things like
+clock jitter, which got us more specific params for some rates.
+
+
+Heiko
+
+
+
 
