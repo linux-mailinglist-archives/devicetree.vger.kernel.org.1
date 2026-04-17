@@ -1,296 +1,337 @@
-Return-Path: <devicetree+bounces-288035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288212-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qAtfOI3E4WndxwAAu9opvQ
-	(envelope-from <devicetree+bounces-288035-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 07:26:37 +0200
+	id QS+iOTUp4mmO2QAAu9opvQ
+	(envelope-from <devicetree+bounces-288212-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 14:36:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCBCD41715A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 07:26:36 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3309D41B3F0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 14:36:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0C025302B730
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 05:26:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2ADC630146AF
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 12:36:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C64236897F;
-	Fri, 17 Apr 2026 05:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0ABA373C04;
+	Fri, 17 Apr 2026 12:36:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FHmpc5kL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2AF1359A9A;
-	Fri, 17 Apr 2026 05:26:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82BA737187C;
+	Fri, 17 Apr 2026 12:36:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776403588; cv=none; b=P4cfbnljxvQXgcYpXYDnyp3LXp05ETM3/3z1tB9dj8p6Z1W5kenrysCnHslsiIBte5qIzdqEWWqeuUCMlnPdrumX9w534X+yh6gxBhbxCHrudhI3ZB87D0gGUpKu1DAJF+TlbZjhFXQNZtNqZum5WeTEMqN9n+MxKpPVJXCazvc=
+	t=1776429362; cv=none; b=q/dtHcfTv7fjKWEJPBAz+IkPDnAT9Kfyy4VZJ6kTRWB3CwMjeSezNcSAmYfOhMcO7vh1mSFUq5Uv0p0wDX8c7R77iNuQaXry8sQjnNuISlnlHWShcp8bIJPT4mjmIA+/HjyI2iOfFaDFEVMS8WmSqXRQHS7UXveRc/oBXmsdGOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776403588; c=relaxed/simple;
-	bh=q6OPc7hn9kPNhHx94Hu4LfFumXodAU5ZSx3p21Sc+A0=;
-	h=From:Date:Message-ID:To:Cc:In-Reply-To:References:Subject; b=ObzBw8mTB8jLmNbYHF+llmdRViCtQLuhMSDoVVgUZe4Xz3lWDi+sW28OoXkjAXdh43KPfHudu45OpNPxbqA0SP+iDJQn5Dyen0UB0W7mQLYIqoCxpz1tZ98UaF/o9k11id/WO7vlne6TRO9XicjtB52xz+CFmrO2ZOsd51XFWmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from 0004-drivers-of-v2-1.eml (unknown [111.196.245.116])
-	by APP-03 (Coremail) with SMTP id rQCowAAX++F7xOFpAjhZDg--.14973S2;
-	Fri, 17 Apr 2026 13:26:19 +0800 (CST)
-From: Pengpeng Hou <pengpeng@iscas.ac.cn>
-Date: Fri, 17 Apr 2026 20:36:00 +0800
-Message-ID: <20260417223003.1-drivers-of-live-tree-v2-pengpeng@iscas.ac.cn>
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, pengpeng@iscas.ac.cn
-In-Reply-To: <20260403183501.1-drivers-of-live-tree-pengpeng@iscas.ac.cn>
-References: <20260403183501.1-drivers-of-live-tree-pengpeng@iscas.ac.cn>
-Subject: [PATCH v2 1/2] drivers/of: validate live-tree string properties
- before string use
-X-CM-TRANSID:rQCowAAX++F7xOFpAjhZDg--.14973S2
-X-Coremail-Antispam: 1UD129KBjvJXoW3GF43CF15ZF45Gw4DtF4UCFg_yoWxCrWfpF
-	4jyayYyrW8CFs3Xry3Zr18Aa43Kw1Sy3yxtFW7t3srZasxJFy5ZrW7Ja1Y9r1Duryfuay5
-	Xw1kWa18Ca129FJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvE14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2jI8I6cxK62vIxIIY0VWUZVW8XwA2ocxC64kIII
-	0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xv
-	wVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4
-	x0Y4vEx4A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG
-	64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r
-	1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I
-	648v4I1lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7
-	v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF
-	1VAY17CE14v26r126r1DMIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIx
-	AIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI
-	42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWI
-	evJa73UjIFyTuYvjTRAku4DUUUU
-X-CM-SenderInfo: pshqw1xhqjqxpvfd2hldfou0/
+	s=arc-20240116; t=1776429362; c=relaxed/simple;
+	bh=/w3dR8ZCpT4vjo3Uyh4otuAOLxMOYA7HdIN3qaecC1o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dwWITKfxtEfs4LVTQwpn2tnFWpLT7VqG+ooIbmYU264Er0dMMiu9Dy+trLspanCCmIQBlAhzeXhtCCAI+8hEyGCfXOId9BvehrIgpUClbd9wlY+GJ+AOPIKxm/5Sf0/LlSCyVkynTMrX5R6uyY43Ddmi389iikY66W6ROhXMJmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FHmpc5kL; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1776429360; x=1807965360;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=/w3dR8ZCpT4vjo3Uyh4otuAOLxMOYA7HdIN3qaecC1o=;
+  b=FHmpc5kLLm7xx7Qu2QqlkYYNAFKMJAO8SncNhNxk8V5jYVr34cZeRGcR
+   mIG6Lv/TKThuWFJDpMPbSkRZF5vy19pmrqC0ZJ/jnDeQ68sf+UGcLcbhQ
+   yy/Ih6rmjcgQ72p1mm2Ozhft38u7B4EmF5dzXENJsvv6wNwbOSm0D/UvI
+   g7Iy7FyC/uhbVJF7ItpPLTOE894+sI3kaW8ymQsQUqnpJUznCDJfZdxZ1
+   L4NFI9ECkOG0N1G+9QPiKoWFdnaJ13149YP27AiwuueD2T19M3nW+bpGF
+   aS0wpki7w7iphV5+6OfgP+rzVZY5FmSbQz0iCEPRDYlOcH1JFbvXqFY08
+   g==;
+X-CSE-ConnectionGUID: B5FjEawdRj+itNqRPpRW7A==
+X-CSE-MsgGUID: PM+KYKLISOe9HvQSmd8uzQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="95009902"
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; 
+   d="scan'208";a="95009902"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 05:35:59 -0700
+X-CSE-ConnectionGUID: ugOC7ITITBmeR0Q7T5rgpA==
+X-CSE-MsgGUID: QoM5KGieQK2+nAcFq8FRNg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; 
+   d="scan'208";a="230950099"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.170])
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 05:35:56 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id E758E120E0E;
+	Fri, 17 Apr 2026 15:36:14 +0300 (EEST)
+Date: Fri, 17 Apr 2026 15:36:14 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH v1 5/5] dt-bindings: leds: Document TI LM3560 Synchronous
+ Boost Flash Driver
+Message-ID: <aeIpPvwpjJ1Q6eUl@kekkonen.localdomain>
+References: <20260417114226.100033-1-clamor95@gmail.com>
+ <20260417114226.100033-6-clamor95@gmail.com>
+ <aeIkBR4cx54OVmGo@kekkonen.localdomain>
+ <CAPVz0n3wi2yzVc0noYe=5=VR2NWEeyXke3EPKJpSPm81qrpp4Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [4.04 / 15.00];
-	DATE_IN_FUTURE(4.00)[7];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPVz0n3wi2yzVc0noYe=5=VR2NWEeyXke3EPKJpSPm81qrpp4Q@mail.gmail.com>
+X-Spamd-Result: default: False [3.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-288035-lists,devicetree=lfdr.de];
-	URIBL_MULTI_FAIL(0.00)[iscas.ac.cn:server fail,sin.lore.kernel.org:server fail];
-	GREYLIST(0.00)[pass,meta];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCVD_COUNT_THREE(0.00)[4];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pengpeng@iscas.ac.cn,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
+	TAGGED_FROM(0.00)[bounces-288212-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	HAS_ORG_HEADER(0.00)[];
+	R_DKIM_ALLOW(0.00)[intel.com:s=Intel];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:mid,iscas.ac.cn:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CCBCD41715A
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.891];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(0.00)[+ip4:172.232.135.74];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.53:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.1:email,intel.com:dkim,intel.com:email,0.0.0.0:email,devicetree.org:url,kekkonen.localdomain:mid]
+X-Rspamd-Queue-Id: 3309D41B3F0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-`populate_properties()` stores live-tree property values as raw byte
-sequences plus a separate `length`. They are not globally guaranteed to
-be NUL-terminated.
+Hi Svyatoslav,
 
-`of_prop_next_string()` iterates string-list properties by walking raw
-bytes, `__of_node_is_type()` checks `device_type`,
-`__of_device_is_status()` checks `status`, and
-`of_alias_from_compatible()` reads the first `compatible` entry. These
-paths must validate that the relevant string fits within the property
-bounds before they hand it to C string helpers.
+On Fri, Apr 17, 2026 at 03:30:30PM +0300, Svyatoslav Ryhel wrote:
+> пт, 17 квіт. 2026 р. о 15:13 Sakari Ailus <sakari.ailus@linux.intel.com> пише:
+> >
+> > Hi Svyatoslav,
+> >
+> > Thanks for the set.
+> >
+> > This patch should be the first one in the set, or at least before those
+> > using the bindings defined here.
+> >
+> 
+> Maybe before conversion, but definitely not the first. I would like to
+> avoid patch multiplication caused by schema adjustments after every
+> single commit if possible.
 
-Validate these live-tree string properties within their declared bounds.
-In particular, make `of_prop_next_string()` reject malformed entries
-before returning them, use `of_property_match_string()` for
-`device_type`, and add unit coverage for malformed first and trailing
-string-list entries.
+You don't have to use all the properties defined but you can't use
+properties in drivers not yet defined in bindings.
 
-Signed-off-by: Pengpeng Hou <pengpeng@iscas.ac.cn>
----
-Changes since v1:
-- use of_property_match_string() for device_type as suggested by
-  Rob Herring
-- rework of_prop_next_string() so the first returned string is validated
-  through the same bounded path
-- add of_unittest_property_string() coverage for malformed first and
-  trailing string-list entries
+> 
+> > On Fri, Apr 17, 2026 at 02:42:26PM +0300, Svyatoslav Ryhel wrote:
+> > > Document TI LM3560 Synchronous Boost Flash Driver used for camera flash
+> > > LEDs.
+> > >
+> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > > ---
+> > >  .../devicetree/bindings/leds/ti,lm3560.yaml   | 134 ++++++++++++++++++
+> > >  1 file changed, 134 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/leds/ti,lm3560.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/leds/ti,lm3560.yaml b/Documentation/devicetree/bindings/leds/ti,lm3560.yaml
+> > > new file mode 100644
+> > > index 000000000000..460ea1fbc1e5
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/leds/ti,lm3560.yaml
+> > > @@ -0,0 +1,134 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/leds/ti,lm3560.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: TI LM3560 Synchronous Boost Flash Driver
+> > > +
+> > > +maintainers:
+> > > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > > +
+> > > +description:
+> > > +  The LM3560 is a 2-MHz fixed frequency synchronous boost converter with two
+> > > +  1000-mA constant current drivers for high-current white LEDs. The dual high-
+> > > +  side current sources allow for grounded cathode LED operation and can be
+> > > +  tied together for providing flash currents at up to 2 A through a single LED.
+> > > +  An adaptive regulation method ensures the current for each LED remains in
+> > > +  regulation and maximizes efficiency.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - ti,lm3559
+> > > +      - ti,lm3560
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  '#address-cells':
+> > > +    const: 1
+> > > +
+> > > +  '#size-cells':
+> > > +    const: 0
+> > > +
+> > > +  enable-gpios:
+> > > +    description: GPIO connected to the HWEN pin.
+> > > +    maxItems: 1
+> > > +
+> > > +  vin-supply:
+> > > +    description: Supply connected to the IN line.
+> > > +
+> > > +  ti,peak-current-microamp:
+> > > +    description:
+> > > +      The LM3560 features 4 selectable current limits 1.6A, 2.3A, 3A, and 3.6A.
+> > > +      When the current limit is reached, the LM3560 stops switching for the
+> > > +      remainder of the switching cycle.
+> > > +    enum: [16000000, 23000000, 30000000, 36000000]
+> > > +    default: 36000000
+> > > +
+> > > +  ti,max-flash-timeout-ms:
+> > > +    description:
+> > > +      Maximum flash timeout in ms with step 32ms.
+> > > +    minimum: 32
+> > > +    maximum: 1024
+> > > +    default: 1024
+> > > +
+> > > +patternProperties:
+> > > +  '^led@[01]$':
+> > > +    description: LED control bank nodes.
+> > > +    $ref: /schemas/leds/common.yaml#
+> > > +    unevaluatedProperties: false
+> > > +
+> > > +    properties:
+> > > +      reg:
+> > > +        description: Control bank selection (0 = bank A, 1 = bank B).
+> > > +        maximum: 1
+> > > +
+> > > +      ti,max-flash-current-microamp:
+> > > +        description:
+> > > +          Maximum flash current in uA with step 62500uA.
+> > > +        minimum: 62500
+> > > +        maximum: 1000000
+> > > +        default: 1000000
+> > > +
+> > > +      ti,max-torch-current-microamp:
+> >
+> > Don't the LED flash bindings already have standardised properties for
+> > these?
+> >
+> 
+> Oh, they do! Thanks for pointing out. led-max-microamp,
+> flash-max-microamp and flash-max-timeout-us. Very nice, I will adjust
+> in the v2.
 
- drivers/of/base.c     | 36 ++++++++++++----------
- drivers/of/property.c | 27 +++++++++++++++++-----
- drivers/of/unittest.c | 32 ++++++++++++++++++++++++++++++++
- 3 files changed, 72 insertions(+), 23 deletions(-)
+Sounds good, thanks!
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 57420806c1a2..96e4d7a7d5b8 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -82,9 +82,10 @@ EXPORT_SYMBOL(of_node_name_prefix);
- 
- static bool __of_node_is_type(const struct device_node *np, const char *type)
- {
--	const char *match = __of_get_property(np, "device_type", NULL);
-+	if (!np || !type)
-+		return false;
- 
--	return np && match && type && !strcmp(match, type);
-+	return of_property_match_string(np, "device_type", type) == 0;
- }
- 
- #define EXCLUDED_DEFAULT_CELLS_PLATFORMS ( \
-@@ -491,22 +492,22 @@ static bool __of_device_is_status(const struct device_node *device,
- 		return false;
- 
- 	status = __of_get_property(device, "status", &statlen);
--	if (status == NULL)
-+	if (!status || statlen <= 0)
-+		return false;
-+	if (strnlen(status, statlen) >= statlen)
- 		return false;
- 
--	if (statlen > 0) {
--		while (*strings) {
--			unsigned int len = strlen(*strings);
-+	while (*strings) {
-+		unsigned int len = strlen(*strings);
- 
--			if ((*strings)[len - 1] == '-') {
--				if (!strncmp(status, *strings, len))
--					return true;
--			} else {
--				if (!strcmp(status, *strings))
--					return true;
--			}
--			strings++;
-+		if ((*strings)[len - 1] == '-') {
-+			if (!strncmp(status, *strings, len))
-+				return true;
-+		} else {
-+			if (!strcmp(status, *strings))
-+				return true;
- 		}
-+		strings++;
- 	}
- 
- 	return false;
-@@ -1217,10 +1218,11 @@ EXPORT_SYMBOL(of_find_matching_node_and_match);
- int of_alias_from_compatible(const struct device_node *node, char *alias, int len)
- {
- 	const char *compatible, *p;
--	int cplen;
-+	int ret;
- 
--	compatible = of_get_property(node, "compatible", &cplen);
--	if (!compatible || strlen(compatible) > cplen)
-+	ret = of_property_read_string_index(node, "compatible", 0,
-+					    &compatible);
-+	if (ret)
- 		return -ENODEV;
- 	p = strchr(compatible, ',');
- 	strscpy(alias, p ? p + 1 : compatible, len);
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 50d95d512bf5..e97bfe357808 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -648,16 +648,31 @@ EXPORT_SYMBOL_GPL(of_prop_next_u32);
- 
- const char *of_prop_next_string(const struct property *prop, const char *cur)
- {
--	const void *curv = cur;
-+	const char *curv;
-+	const char *end;
-+	size_t len;
- 
--	if (!prop)
-+	if (!prop || !prop->value || !prop->length)
- 		return NULL;
- 
--	if (!cur)
--		return prop->value;
-+	curv = cur ? cur : prop->value;
-+	end = prop->value + prop->length;
- 
--	curv += strlen(cur) + 1;
--	if (curv >= prop->value + prop->length)
-+	if (curv < (const char *)prop->value || curv >= end)
-+		return NULL;
-+
-+	if (cur) {
-+		len = strnlen(curv, end - curv);
-+		if (len >= end - curv)
-+			return NULL;
-+
-+		curv += len + 1;
-+		if (curv >= end)
-+			return NULL;
-+	}
-+
-+	len = strnlen(curv, end - curv);
-+	if (len >= end - curv)
- 		return NULL;
- 
- 	return curv;
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index 29402958f11c..ee53363dfa84 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -713,6 +713,7 @@ static void __init of_unittest_parse_phandle_with_args_map(void)
- static void __init of_unittest_property_string(void)
- {
- 	const char *strings[4];
-+	const struct property *prop;
- 	struct device_node *np;
- 	int rc;
- 
-@@ -789,6 +790,37 @@ static void __init of_unittest_property_string(void)
- 	strings[1] = NULL;
- 	rc = of_property_read_string_array(np, "phandle-list-names", strings, 1);
- 	unittest(rc == 1 && strings[1] == NULL, "Overwrote end of string array; rc=%i, str='%s'\n", rc, strings[1]);
-+
-+	/* of_prop_next_string() tests */
-+	prop = of_find_property(np, "phandle-list-names", NULL);
-+	strings[0] = of_prop_next_string(prop, NULL);
-+	unittest(strings[0] && !strcmp(strings[0], "first"),
-+		 "of_prop_next_string() failure; got '%s'\n", strings[0]);
-+	strings[0] = of_prop_next_string(prop, strings[0]);
-+	unittest(strings[0] && !strcmp(strings[0], "second"),
-+		 "of_prop_next_string() failure; got '%s'\n", strings[0]);
-+	strings[0] = of_prop_next_string(prop, strings[0]);
-+	unittest(strings[0] && !strcmp(strings[0], "third"),
-+		 "of_prop_next_string() failure; got '%s'\n", strings[0]);
-+	strings[0] = of_prop_next_string(prop, strings[0]);
-+	unittest(!strings[0],
-+		 "of_prop_next_string() should return NULL at end of list\n");
-+
-+	prop = of_find_property(np, "unterminated-string", NULL);
-+	strings[0] = of_prop_next_string(prop, NULL);
-+	unittest(!strings[0],
-+		 "of_prop_next_string() should reject unterminated first string\n");
-+
-+	prop = of_find_property(np, "unterminated-string-list", NULL);
-+	strings[0] = of_prop_next_string(prop, NULL);
-+	unittest(strings[0] && !strcmp(strings[0], "first"),
-+		 "of_prop_next_string() failure; got '%s'\n", strings[0]);
-+	strings[0] = of_prop_next_string(prop, strings[0]);
-+	unittest(strings[0] && !strcmp(strings[0], "second"),
-+		 "of_prop_next_string() failure; got '%s'\n", strings[0]);
-+	strings[0] = of_prop_next_string(prop, strings[0]);
-+	unittest(!strings[0],
-+		 "of_prop_next_string() should reject unterminated trailing string\n");
- }
- 
- #define propcmp(p1, p2) (((p1)->length == (p2)->length) && \
+I think it'd be worth standardising maximum input current, too, as other
+devices use it, too.
+
+> 
+> > > +        description:
+> > > +          Maximum flash current in uA with step 31250uA.
+> > > +        minimum: 31250
+> > > +        maximum: 250000
+> > > +        default: 250000
+> > > +
+> > > +    required:
+> > > +      - reg
+> >
+> > I'd say the max current properties are required as well, same for the
+> > timeouts. Or make the lowest the default. The lowest values are very seldom
+> > used in practice though.
+> >
+> 
+> I have transferred from the driver which uses maximum values as
+> default one. I can change to minimum if needed, that is not a big
+> deal.
+
+I'd just make these mandatory.
+
+> 
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - '#address-cells'
+> > > +  - '#size-cells'
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/gpio/gpio.h>
+> > > +
+> > > +    i2c {
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <0>;
+> > > +
+> > > +        led-controller@53 {
+> > > +            compatible = "ti,lm3560";
+> > > +            reg = <0x53>;
+> > > +
+> > > +            enable-gpios = <&gpio 28 GPIO_ACTIVE_HIGH>;
+> > > +            vin-supply = <&vdd_3v3_sys>;
+> > > +
+> > > +            ti,peak-current-microamp = <16000000>;
+> > > +            ti,max-flash-timeout-ms = <1024>;
+> > > +
+> > > +            #address-cells = <1>;
+> > > +            #size-cells = <0>;
+> > > +
+> > > +            led@0 {
+> > > +                reg = <0>;
+> > > +
+> > > +                label = "white::flash";
+> > > +                linux,default-trigger = "flash";
+> > > +
+> > > +                ti,max-flash-current-microamp = <562500>;
+> > > +                ti,max-torch-current-microamp = <156250>;
+> > > +            };
+> > > +
+> > > +            led@1 {
+> > > +                reg = <1>;
+> > > +
+> > > +                label = "yellow::flash";
+> > > +                linux,default-trigger = "flash";
+> > > +
+> > > +                ti,max-flash-current-microamp = <562500>;
+> > > +                ti,max-torch-current-microamp = <156250>;
+> > > +            };
+> > > +        };
+> > > +    };
+> >
+> > --
+> > Kind regards,
+> >
+> > Sakari Ailus
+
 -- 
-2.50.1 (Apple Git-155)
+Kind regards,
 
+Sakari Ailus
 
