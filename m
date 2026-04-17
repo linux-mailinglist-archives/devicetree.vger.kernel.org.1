@@ -1,225 +1,173 @@
-Return-Path: <devicetree+bounces-288057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288059-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4C89HMHe4WnEzQAAu9opvQ
-	(envelope-from <devicetree+bounces-288057-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 09:18:25 +0200
+	id 6MBMN6Td4WklzQAAu9opvQ
+	(envelope-from <devicetree+bounces-288059-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 09:13:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07C2D417D47
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 09:18:21 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C1B9417C70
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 09:13:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7889E31DB79C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 07:12:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8C5723033D74
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 07:12:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3015F346A1F;
-	Fri, 17 Apr 2026 07:11:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFBDE372675;
+	Fri, 17 Apr 2026 07:11:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nx59QLGq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lRl73Ztf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36F3A34677D
-	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 07:11:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776409901; cv=none; b=a7Z4PzRv9X5OqW6kkWsO04rSzxGMMiRR2aj7ensawnRmQb1LYp8i9a2wLvdMsQvQDvddaS3+Mp+I8pfRzuVwhufROQQG01kkxPfiTLg0bc9B11/ScbpmktbM2Eb7znk/mU517f8G5lFJIu8FUX3A9Kj0XN5Y2L80a7Vr+hyAFyA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776409901; c=relaxed/simple;
-	bh=w1dOcGnTI59GCQNhwQP6xzsT4wAulf/UcemmHchCPqw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jsYv0tlR7T49MNBLBQ2HuhoS4E6kmeKxBpiYavkHIumavVn22ADE9xsY6XkFkR7VXNHjKKpepSG+lvBO+vmcq1M2XVSkxkROXAOT9agJEEUZR4MMoXlKYHgSeaQt4OmHE/fONjXZRe8iCQgKLREZTB4l9SGovcs0EEi8+pn5Fuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nx59QLGq; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9282336606C
+	for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 07:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.177
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776409902; cv=pass; b=ralCN0r9OouXCxwSl+pRE+Fmpu1OkfUzssizSb5HmFL/XxpSx9Htt1WbH4irKuejCFM5HObEz5N8VJj/42Ud63KSQ5YihpFROQgCcm8P8LwRMK4MJ7+KQ4/zbyousH5lrzNwgPhfNwo4D4zvPMitUqOeiXr/vyAf+LjU8P/U6ZM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776409902; c=relaxed/simple;
+	bh=jtz7GuhXRP8kE8tZI9mplR5rsQDAs8LrpkdCl8PvHSg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ah+f5/NfPRh67YXGrrO4ZaQKA5pMd+KNUPlRasb2qb9r1JiDoscdnaDKetrsfjHp9XoCcKFE3JkM7qWP6T99OkAhItxvP4mY8le1ilA2uxO9OIlRGY5nYoy1HO8NxaRGi113yfCM0RNQ1jWh7vavFuY2gZcbp9ndc58mB2SFvug=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lRl73Ztf; arc=pass smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5a2c9c5ff87so439479e87.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 00:11:39 -0700 (PDT)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2addb31945aso2294025ad.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Apr 2026 00:11:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1776409901; cv=none;
+        d=google.com; s=arc-20240605;
+        b=hjHLfw9w9vQTJ0AtlMmq1TthyTuGaeIiKYeXQe6ZBQrZKcgotn/EhOeGrVzJQYO9tb
+         Kzw8yafoLKXC5xZpv7IoXmvLrTlY1BwCHLLSbNCyetcWlvVXGKP+JxpuyW/cwBFwbFD0
+         yVmQowgPygu4WziTK+4IALCxRcGSjfLxshl7imalgxMJQyVKF0MblHBqfl0JwI8/rz1U
+         p6zHGG8/5zKLGkwpV99BtVpJnlnTsd4fLGurtr3nu0tettiD11WlYqXFQ3UbNR4BRoHh
+         ZvJNzC+cmxufhioHlnJcviJDMwPnEu4YXp+3Ul3CrDnA0XrJ91BDGvAxC5G5q1s8sXlD
+         NhMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=jtz7GuhXRP8kE8tZI9mplR5rsQDAs8LrpkdCl8PvHSg=;
+        fh=j9fUiA5KtuRV8/S5wPn/AML47NmEZ3oP4zIYtYezBPE=;
+        b=T+ZX+5wxUJyPsV1ANO/AqCbIXcq840kdXcuzNjWo7J+/NQMFqR+dmCDVQZFENDO5va
+         P+ALWPqZNEFWzNbwtYVu9lY63OMLkS80qfoTXqE0GL6zrL08Zw/Uax3QBBPRSUpAlR5M
+         EfgPFEtQmWFQ0BjJgflFXq7AA+/E6uFvFHg9X1OtG+S9hlWezG5NJIOt3Z9ea8i1lpbV
+         LI88t4QKYEEdFpVUPxrz4O+nEkBJ5++fP1TpJMJVJ7mhey9dVwmvkzLLs17TQF7Y6Z9p
+         /rWrW5qV8xb/h5BTaQ43nbHLaqtjV2H3sfr1iATKjpqYNVNEIWdgocFYjuKbEWF4lvH+
+         gGzw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1776409897; x=1777014697; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1776409901; x=1777014701; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=53/v+YSG+6GYj3ywOiaHOLUwr98tdqBSh9I2cLizLtg=;
-        b=nx59QLGqRdFNthD1mnE3RNMKRvroHkt6LzXdRtQ66iep7MPMt9QRL/kLcjsoPUMEkb
-         p0liOyiv6YBsNq2WbZ5AOflM+SjfsqUGmi04rGPTA1JjXir8a7IQgkHeSMQfpdAnvmTi
-         3n1ODV3xNeraRTCDokN3JJ39Yrnn63PptsZlLYkRKrbIHIg4ij3VN3Zx4V4o+Cr3mHNH
-         9KtojXD7hqu5HE3gtPABGu7j6r6K+oLuKPSqKCTVISJ4kQOmYh+Fu3DvQ4fh6Qz57znE
-         qy1tJHku+njHmyrMo2u6bI7+seJUWnciaDHOuQMt831ElD8DdsLSL32V2jAqQiuep4ra
-         Ek+A==
+        bh=jtz7GuhXRP8kE8tZI9mplR5rsQDAs8LrpkdCl8PvHSg=;
+        b=lRl73Ztf6vQ+dPDOijkfogT4WK+g9JIxcMkPxmJoY/YNnPqKSm263lgh0BspbfHV4y
+         CEG0X5E+FTiKT0FK2r3oCYyJFS2EH8MQIA8cbJ1/+jMsnHLitDUfqrbQtjlYzQp8ZhaJ
+         24Jaa2iqS/+FkS/bwyMFT/1+eQHcktkSq3J/yHZPLZy1ps5KQzAq/jD1bYHyWBDACC7l
+         I8FJnTP2r8NcjJK3GHA2jsmgdZqNNRL+zSe3EfKjpfrJl9mxDNva+W2Ny1pCuQkmZnEG
+         4dWut37vCCRklixj+rUfNe2sUN7UC2KZOgWXe3/D8AGPacVuwgVOaJeBN+tHFN0tmTY7
+         D93A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776409897; x=1777014697;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20251104; t=1776409901; x=1777014701;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=53/v+YSG+6GYj3ywOiaHOLUwr98tdqBSh9I2cLizLtg=;
-        b=kvPskjzbFFA3vNe90Wmv6fE6JDDiof1bKTwbGehGowPXPd5TvHhmxzX+SvIg+D3sTp
-         xPhIymtld+6I34EIs70CkQC0AYSN+R5u97KfImFQhMN7LYY03ga9ZJhCvUIJ6dTPFw7a
-         IOAAS+u+IRDi3a+/UOowI/S/jB/r7DuCM6Cx4J9wmkRrrlIbDiAVm8ybC+REFeboF+m8
-         sAmKO172TidWc4J3mTRXoXqM2/+e5BYTA8IcQi3ayQKuDN8aNFnrTBuLZIxmGnHC4xXO
-         3+Czkip0c6D3aJN9GOaoGTCFtWcMhMLdFgcNsmWN3cTEhaCIKMGT3xm0LCxswxbbAWSj
-         7EeA==
-X-Forwarded-Encrypted: i=1; AFNElJ++puqR3z/Ec4NZgptQkjwl/Nl9RQLjRXhOvAUSr5nIwOc7nU5CupAOGweY4gdl4OFkrof+7vNDIRXS@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkhUGHhOynoGJwkL8HV16KQLB8f7Iud7USgzv2bXq3tVChVIb3
-	ZBL2ef+91IfhjWbNllnAlew7MxX2FqORdM6mcX8lwsR1xzYFWJbLZRaP
-X-Gm-Gg: AeBDiesW9ZfXrifV8ArYUOwSzta+MKVkQXmsoI41SXLSjNhigmrUC3dV0CrX36zraD8
-	qbq9+NCyL277uRemHCG8X3rtL2jpy3jntjN/NJv1PMpS49vTm0wfaNlWRjHPuweHmXoPWMLaczK
-	crxvdBZsn2c+o/RvYYKYvwT53939krAQs6xVWmjr2M5LPPQMb1OwCNsmXY1q7D60sr8kF1ZoEvM
-	LszIpqV/37jMSab3RfZOzNVaV+zgOodKMJBFC1IvU8HwYjiNgIpgf+2SuCwRlW7hSnfwESXiRHg
-	0IsQ6BUnxsTeQ6Gb9beEgPyoB6TPreXaUgPdbq1nxKexHZU4/YRJgGu9d5uCrDzyoYvUhhz98Fx
-	+FUBEgBimp6T8nLbh14UmeRqCONnmda1vJO1rTh4yigWgOE/umqNhR3zc+fBXn8x0X3QAaHkVlA
-	TiYPNfH47JuIyDgXNtrAx6TrqqECJcee7Sag==
-X-Received: by 2002:a05:6512:1242:b0:5a4:640:9f07 with SMTP id 2adb3069b0e04-5a4172e7b8bmr511770e87.31.1776409897215;
-        Fri, 17 Apr 2026 00:11:37 -0700 (PDT)
-Received: from xeon ([188.163.112.56])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a4185bc240sm162772e87.23.2026.04.17.00.11.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Apr 2026 00:11:36 -0700 (PDT)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Tony Lindgren <tony@atomide.com>
-Cc: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org
-Subject: [PATCH v4 6/6] mfd: motorola-cpcap: add support for Mot CPCAP composition
-Date: Fri, 17 Apr 2026 10:11:06 +0300
-Message-ID: <20260417071106.21984-7-clamor95@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260417071106.21984-1-clamor95@gmail.com>
-References: <20260417071106.21984-1-clamor95@gmail.com>
+        bh=jtz7GuhXRP8kE8tZI9mplR5rsQDAs8LrpkdCl8PvHSg=;
+        b=gulO4ENfH781+QSdFymNUDsARXQzlt28r3sGrF3NJxrmQan0Khup4Jk/ZxIRFns2gT
+         Ot1ciqIePSRRZjTZD6DRgBYDbD9mHTveN646vXXKdBw5BzglxPFkyaAFw6aC0gGeVoC7
+         fubAZrCiSkl/+lFCeq1SLPJHPV8VAsfKZGEfkfX7tCd91t7v3kqb20L9OvacPTj4fR13
+         zDwnsPZ5CwHjxcFYf2gwa6chByK0+rBX/M1kaPdFfGLdOyOg/vtZ4xqJOgt+eBacFAFh
+         8SIKQwerh7mnjNlRWaIqCBLQpfbEeS+9BcqHhbvztxQ6BIMoBsxmi7DwTszJ/l9QmooH
+         SI8A==
+X-Forwarded-Encrypted: i=1; AFNElJ9q8T7AzFCJpw+eeoRF07xuWxb9EnFGft4QNEFAWL5KDHZC4ot43s3ECiAnZM1T9HKfxGL8aWvQ/kLs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0ixXhhzmXWvfuQBnjqovXYyfiNiYL1dYn4dCGQ+H8fxVCcyq6
+	GyLFmNs0F3ZZOIOg5vxAUiMwS9OpLKLhZ8lE9hOrrUgvvLDVxMwVxT2HM2odPcYX3o2Znv/hQeO
+	3rDRvBhpMT7OGAcHa5g5OW5jEJ1el1Q8=
+X-Gm-Gg: AeBDietq4b826bzDuqORy6IbyrM1rIZ9MiltcMXdE1zZkHSnTZAoXjgJQjqdl3KGac8
+	dK/LSQCdPib1M042rkQREaa9mFGWN45hykm22iYsfcMn/Q02LbNNX4wmYPAYq1Im22uxSn/lCVA
+	tg1H+3cIwS4pBgTjfdjfzCw4r2qjcbr3OHKjoozh2kx3XpMxzdz/P1kWfPwN+N77z9+DazOr1G6
+	r9vO5Vbk1HxJbYU3XnjDkjdmRYKVPziLkmsE+gavegjX/3V6zQHiXKJQ64ge4RAuyzWQFTMaBMw
+	sdf3LX2eylD7SEsMTlJcLslBYFZiSlLZPKhiaU6Kvr9a8XKq
+X-Received: by 2002:a17:903:1988:b0:2b4:5cea:f618 with SMTP id
+ d9443c01a7336-2b5f9e7823fmr16651795ad.3.1776409900985; Fri, 17 Apr 2026
+ 00:11:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+References: <20260413100700.30995-1-phucduc.bui@gmail.com> <20260413100700.30995-3-phucduc.bui@gmail.com>
+ <87tstepes7.wl-kuninori.morimoto.gx@renesas.com> <CAABR9nFN9C4CGsaZoWzrHEjibBLqQ1KmM8o5oG2-pSMcrgMsAw@mail.gmail.com>
+ <87pl3yzabq.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87pl3yzabq.wl-kuninori.morimoto.gx@renesas.com>
+From: Bui Duc Phuc <phucduc.bui@gmail.com>
+Date: Fri, 17 Apr 2026 14:11:29 +0700
+X-Gm-Features: AQROBzDizsepmDX0MeErlaHCs1gi7_m9r-_da5ZnWboWUDc9-Dlr4ZBcUowHw4U
+Message-ID: <CAABR9nGdBVaidxSoPHjXSFZxuiN2-194DKqB-d=__awc1qGGrQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] ASoC: renesas: fsi: Fix hang by enabling SPU clock
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be, 
+	magnus.damm@gmail.com, perex@perex.cz, tiwai@suse.com, 
+	linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288057-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-288059-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,glider.be,perex.cz,suse.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,baylibre.com,atomide.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.990];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 07C2D417D47
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 1C1B9417C70
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add a MFD subdevice composition used in Tegra20 based Mot board
-(Motorola Atrix 4G and Droid X2).
+Hi Morimoto-san,
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/mfd/motorola-cpcap.c | 50 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+> > I d> Since fsi_hw_startup() and fsi_hw_shutdown() are called from fsi_d=
+ai_trigger(),
+> > I think this runs in an atomic context, but please correct me if I'm wr=
+ong.
+> > If so, is it safe to call clk_prepare_enable() under guard(spinlock_irq=
+save)?
+> > Since clk_prepare() can sleep, I=E2=80=99m wondering if this could pote=
+ntially
+> > cause a "scheduling while atomic" issue.
+> >
+> > Would it make more sense to move clk_prepare() to init time (in new
+> > fsi_clk_init() ),
+> > and only use clk_enable() / clk_disable() in the trigger path?
+>
+> I don't remember detail of SH-Mobile clock driver, but yes.
 
-diff --git a/drivers/mfd/motorola-cpcap.c b/drivers/mfd/motorola-cpcap.c
-index 516d1e33affa..fdec92f5c6b0 100644
---- a/drivers/mfd/motorola-cpcap.c
-+++ b/drivers/mfd/motorola-cpcap.c
-@@ -335,6 +335,54 @@ static const struct cpcap_chip_data cpcap_mapphone_data = {
- 	.num_devices = ARRAY_SIZE(cpcap_mapphone_mfd_devices),
- };
- 
-+/*
-+ * The Mot board features a USB-PHY and charger similar to the ones in
-+ * Mapphone; however, because Mot is based on Tegra20, it is incompatible
-+ * with the existing implementation, which is tightly interconnected with
-+ * the OMAP USB PHY.
-+ */
-+static const struct mfd_cell cpcap_mot_mfd_devices[] = {
-+	{
-+		.name          = "cpcap_adc",
-+		.of_compatible = "motorola,mot-cpcap-adc",
-+	}, {
-+		.name          = "cpcap_battery",
-+		.of_compatible = "motorola,cpcap-battery",
-+	}, {
-+		.name          = "cpcap-regulator",
-+		.of_compatible = "motorola,mot-cpcap-regulator",
-+	}, {
-+		.name          = "cpcap-rtc",
-+		.of_compatible = "motorola,cpcap-rtc",
-+	}, {
-+		.name          = "cpcap-pwrbutton",
-+		.of_compatible = "motorola,cpcap-pwrbutton",
-+	}, {
-+		.name          = "cpcap-led",
-+		.id            = 0,
-+		.of_compatible = "motorola,cpcap-led-red",
-+	}, {
-+		.name          = "cpcap-led",
-+		.id            = 1,
-+		.of_compatible = "motorola,cpcap-led-green",
-+	}, {
-+		.name          = "cpcap-led",
-+		.id            = 2,
-+		.of_compatible = "motorola,cpcap-led-blue",
-+	}, {
-+		.name          = "cpcap-led",
-+		.id            = 3,
-+		.of_compatible = "motorola,cpcap-led-adl",
-+	}, {
-+		.name          = "cpcap-codec",
-+	},
-+};
-+
-+static const struct cpcap_chip_data cpcap_mot_data = {
-+	.mfd_devices = cpcap_mot_mfd_devices,
-+	.num_devices = ARRAY_SIZE(cpcap_mot_mfd_devices),
-+};
-+
- static int cpcap_probe(struct spi_device *spi)
- {
- 	struct cpcap_ddata *cpcap;
-@@ -389,6 +437,7 @@ static int cpcap_probe(struct spi_device *spi)
- static const struct of_device_id cpcap_of_match[] = {
- 	{ .compatible = "motorola,cpcap", .data = &cpcap_default_data },
- 	{ .compatible = "motorola,mapphone-cpcap", .data = &cpcap_mapphone_data	},
-+	{ .compatible = "motorola,mot-cpcap", .data = &cpcap_mot_data },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, cpcap_of_match);
-@@ -396,6 +445,7 @@ MODULE_DEVICE_TABLE(of, cpcap_of_match);
- static const struct spi_device_id cpcap_spi_ids[] = {
- 	{ .name = "cpcap", .driver_data = (kernel_ulong_t)&cpcap_default_data },
- 	{ .name = "mapphone-cpcap", .driver_data = (kernel_ulong_t)&cpcap_mapphone_data },
-+	{ .name = "mot-cpcap", .driver_data = (kernel_ulong_t)&cpcap_mot_data },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(spi, cpcap_spi_ids);
--- 
-2.51.0
+Thank you. I will update it in the next version.
 
+Best Regards,
+Phuc
 
