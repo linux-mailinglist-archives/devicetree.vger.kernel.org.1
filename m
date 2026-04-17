@@ -1,73 +1,76 @@
-Return-Path: <devicetree+bounces-288093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288095-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aIbcEWTv4WmKzgAAu9opvQ
-	(envelope-from <devicetree+bounces-288093-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:29:24 +0200
+	id 4CbXDYTv4Wle0AAAu9opvQ
+	(envelope-from <devicetree+bounces-288095-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:29:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C235B418AB7
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:29:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B37CD418AF4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 10:29:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 748E330C09EF
-	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 08:28:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F15231497FE
+	for <lists+devicetree@lfdr.de>; Fri, 17 Apr 2026 08:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 360B73AB29E;
-	Fri, 17 Apr 2026 08:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 479843AC0E5;
+	Fri, 17 Apr 2026 08:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="Xosr7A0P"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="d6k7G3es"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B063C3A9625;
-	Fri, 17 Apr 2026 08:28:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1D539FCA9;
+	Fri, 17 Apr 2026 08:28:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776414495; cv=none; b=n4FRld4gtr8+ogppM6aeA5FLX3HOBREhuGjiddvASeMQlJI/2lpJZ87FIKGNLgvJyfxoqteTZyjGbwxirZbBR/Rw0JU7b+gnq10pq3+QSH648KJbET+3vuurXCxFDpy2b/CLR3mLcjSfsC6Up/Vfjx16+3FqX+9E1AzTCge6WZo=
+	t=1776414496; cv=none; b=cS2j9J1m1PCj8w5zsjexh565VGNPRCbj0PTZe3+c5P6HVXAqXrETHSILizf78NU8tUg6reYpOMfX+2wUuYVkN/U2P1v9UjsjLjgeDlb92E5HNdFl0RSvRd2VjBl/n6tHFpJqisB9NXa66qb3mNAJj9Lle2FB8kL726pyYqSGSqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776414495; c=relaxed/simple;
-	bh=ARRiuAm3euM3jPyM10A/k7Z8LraeT/Fam/a7tZM+LgE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=GNhKhq+cPDH0nqX7Z066vZxXrqrpr3HF+84jgYJTtOpv3ILPChrkL87Eadbapnwn9vFMVAvx1jNQ87/z/nJk+k9EmRAE2QzNaCRnSAQOHoWDxNPnGdgIeIjPoJPOGVpgS81V1Z6Q8BbU0ao++VZbV7tvjfkcopF+vAtMvoirQC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=Xosr7A0P; arc=none smtp.client-ip=148.163.135.77
+	s=arc-20240116; t=1776414496; c=relaxed/simple;
+	bh=Mav47hscuufzCCAvdd+4tuR8jA9lkL1R1ktHsXl3du0=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=gB7GgeMbnWgxYZeleElR5Src3v7x3j7fl9mv+a9wlcPkX/Rq8TvIQjCI5Gayf1QIQ9+Dkjqyk/6ZHWwO6HY+v/g3Qc6MK0Xu3+ObWNJe0ReItwG8nd70NYyu8SVtY8Q7ry0G/g1xg9rL32J7mVYDDkV70ILPnZ+K67wvcxCaVy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=d6k7G3es; arc=none smtp.client-ip=148.163.135.77
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
 Received: from pps.filterd (m0516787.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63H7bHQN203845;
-	Fri, 17 Apr 2026 04:27:57 -0400
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63H7fWgL203566;
+	Fri, 17 Apr 2026 04:27:54 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=dyC3f
-	upVH/1PpZ1No+sAqEC+auj9zkyoh6aWpIQV5UU=; b=Xosr7A0PncOmxzNzM/hBD
-	LektY6dYMwEmbw9eDo2bm3vTc1HmZFIc3Mhzpw9JZyAC3kwjWLRQo7hywN5kf8yl
-	9ZJFn3VL6EcAw58WXJsb/VGzpdtXlLwbY80vGZVWgdW7EdxK35OtMoFT2l25O2ne
-	F92AGW5PYDCuktWIU+Y5Mzp8w92JxT1BKXLU6rTinfpbyNk7UKgzvmnHwQpZZxSx
-	jDMbmixbCpd2kDHK37yLkNLDshwvvipWEyN5hDPoN9AX86loj3CE3YHEPsyEB7NI
-	BpG8WTFn6N6hm6eghDQAVshDxhiDDjQJL7ipz36xg3UftoyPjG+9NNCpQHyRJv6Z
-	w==
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=QVRTBpqcBBBGO6vHom71ogGCpho
+	fx5FtwxWBaXV8C48=; b=d6k7G3eszKGQlTdpk7cIgHqtS7S7L2U/74FEv0CHld1
+	wqpP4WgXSHasXAVIG11cOftk+r9M2avwQ2vFCFCbsRzT7m4f7Or0eDt0fwkwTknc
+	U2kc83IYpvTr8acTC1e/Qis3wyBkv3itdVr/2HosyINf4J9PDr32Q4fYEwfnOAEN
+	2zYBfkZGFIE43Hy/eQKkhzvQEe1IdUR3u0dvJ2pr92Xxt/phKDrIfKjq1qrCpILm
+	aE4aryjmAu2azcpCItFeDcROmVGgtYRPmqg7jmlK8fQG8ki5dNOKAXUhlemMmqcW
+	xlBS/lkex8lXPrtt3vzlyhPlJiFLp9RzSNNYGe3Doaw==
 Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4djv9acyre-1
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4djv9acyr8-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Apr 2026 04:27:57 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 63H8RuLe010663
+	Fri, 17 Apr 2026 04:27:54 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 63H8Rr8P010657
 	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 17 Apr 2026 04:27:56 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Fri, 17 Apr
- 2026 04:27:56 -0400
+	Fri, 17 Apr 2026 04:27:53 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 17 Apr 2026 04:27:53 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 17 Apr 2026 04:27:53 -0400
 Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
  (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 17 Apr 2026 04:27:56 -0400
+ Transport; Fri, 17 Apr 2026 04:27:53 -0400
 Received: from ATORRENO-L02.ad.analog.com ([10.66.6.191])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 63H8RZ9k029843;
-	Fri, 17 Apr 2026 04:27:46 -0400
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 63H8Rbia029844;
+	Fri, 17 Apr 2026 04:27:40 -0400
 From: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Date: Fri, 17 Apr 2026 16:27:13 +0800
-Subject: [PATCH v3 1/2] dt-bindings: hwmon: pmbus: add max20830
+Subject: [PATCH v8 0/2] Add support for AD5706R DAC
+Date: Fri, 17 Apr 2026 16:27:14 +0800
+Message-ID: <20260417-dev_ad5706r-v8-0-ef87dff62b57@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,42 +79,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20260417-dev_max20830-v3-1-0cb8d56067aa@analog.com>
-References: <20260417-dev_max20830-v3-0-0cb8d56067aa@analog.com>
-In-Reply-To: <20260417-dev_max20830-v3-0-0cb8d56067aa@analog.com>
-To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+X-B4-Tracking: v=1; b=H4sIAOLu4WkC/33Q3UrEMBAF4FdZcm0lk9+pV76HiEw6yW5AW0mlK
+ Evf3bQ3227FyxP4zmFyFWMsOY7i6XQVJU55zENfAz6cRHeh/hybzDULJZWTSsmG4/RGbL10pVE
+ gbQRm1VIQVXyWmPL32vbyWvMlj19D+VnLJ1he/+6ZoJGNV1aHwN4gts/U0/twfuyGD7EUTeqGN
+ cAeq4qTdjVoDgzhgPUW4x7rii1Lj8lAbBEP2NywkXfLpmLyaAENIVt9wHaL/R7bBZvOe+2Do3i
+ 82W0w3H2YW29OTLZVkKI5YP8P9styanVdJwJ0OzzP8y+7XNQ1FQIAAA==
+X-Change-ID: 20260220-dev_ad5706r-2105e1dd29ab
+To: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        "David
+ Lechner" <dlechner@baylibre.com>,
+        =?utf-8?q?Nuno_S=C3=A1?=
+	<nuno.sa@analog.com>,
+        Andy Shevchenko <andy@kernel.org>, Rob Herring
+	<robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Shuah Khan <skhan@linuxfoundation.org>
-CC: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        Alexis Czezar
- Torreno <alexisczezar.torreno@analog.com>
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Alexis Czezar Torreno
+	<alexisczezar.torreno@analog.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@oss.qualcomm.com>,
+        Andy Shevchenko
+	<andriy.shevchenko@intel.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776414456; l=3152;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776414457; l=5065;
  i=alexisczezar.torreno@analog.com; s=20250213; h=from:subject:message-id;
- bh=ARRiuAm3euM3jPyM10A/k7Z8LraeT/Fam/a7tZM+LgE=;
- b=IKDS8FW4ETpzypnsOdB4M9EJJ0FAWWLJy9khuCUaHoAEgZTI7a3J0rADm8q093e4vgXclmOVN
- 7C4Rjm4xDC7CCnI7bli21MAyUX/W+6tSjTm6OVbfCx0jLeKBIEELCEC
+ bh=Mav47hscuufzCCAvdd+4tuR8jA9lkL1R1ktHsXl3du0=;
+ b=UTLrl1D4P6pyyHW0k7Z40SFVy5dsbrVwWzsbaNhCa6ccdOzsor+QeoQ0t5ckXsK+VkjRPAXJB
+ EbDZnCyfymdARj4DFb0K0CvdKmVhD5BvuJx7XwKYsFPU4zA6LlefFk1
 X-Developer-Key: i=alexisczezar.torreno@analog.com; a=ed25519;
  pk=XpXmJnRjnsKdDil6YpOlj9+44S+XYXVFnxvkbmaZ+10=
 X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: cHp7cxNnVXME7HJI6ArHihhH2Z6vnwDO
-X-Authority-Analysis: v=2.4 cv=KIZqylFo c=1 sm=1 tr=0 ts=69e1ef0d cx=c_pps
+X-Proofpoint-GUID: tFQTWRQVnJxsDlCzzrZ30F0lGWSR0VDe
+X-Authority-Analysis: v=2.4 cv=KIZqylFo c=1 sm=1 tr=0 ts=69e1ef0a cx=c_pps
  a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
  a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=0sLvza09kfJOxVLZPwjg:22 a=OmVn7CZJonkx5R5zMQLL:22 a=gEfo2CItAAAA:8
- a=gAnH3GRIAAAA:8 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=otUEmpEx_C0DwgoW3ccA:9
- a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDE3MDA4NCBTYWx0ZWRfX+kv9gUdRGcJW
- XTaUy4QvC3EJxznt6EC0CwYaGTCCgmfyuRk7oSVkL8xA8tAHq1qM8sR629Ml9n+Uz+hsmf98gxp
- mQywphZWIvJeabmHHV3jUVB1cr4faI/U1m9nytdcERowkEmcWvW+AUXFmy2XIiUYgDY4J5yqCCz
- X/Qx8wPWHvADKEnnViwAhvTEblfFop/3+QaRKcYebt1mR68BngXNEX4Y+kUKxkIPIL9qEXEI+jQ
- D7dPn0ECwA6my0VYO4JPz5RtCBelVg6PTK+d/CEbGTUJbkxS9ivwUVBJlLBTA8uz/eDfY9DUtD6
- DCFqsXy8tH41ErwP++4/2YMKSnl3O/tH0DeE4n2JtrIb/2l4p9vlx1VyXvd9+smPxT9hyURsWRg
- qUaKl+h4y3cAvxxQAQPzA7ee/jDhjGkpuwheSxb8aAvXYkrsBXTXxfflpRg7Oi1NBGvvac24Kty
- DI2O5srC1kJVxvp0f6Q==
-X-Proofpoint-ORIG-GUID: cHp7cxNnVXME7HJI6ArHihhH2Z6vnwDO
+ a=0sLvza09kfJOxVLZPwjg:22 a=OmVn7CZJonkx5R5zMQLL:22 a=gAnH3GRIAAAA:8
+ a=VwQbUJbxAAAA:8 a=mW3XGZRhfHrgJpV7rlMA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDE3MDA4NCBTYWx0ZWRfX2EVz6Qrvazk+
+ KziN4ZzE3N7nEP7BBIXAcVBCmwmHZ+go06R/kKWW6H98teObKjR81XWAtlhoMP4m/93eJHrRLKu
+ oGnQt7jYrGvB8Cw3diZrfXYEdPEYzLso+v6gAGje5M8gmy72fthIM9XPjlwc7W7a3X+87snyx3C
+ /JEdcD+jJRsoUCcjLQrxjpnZdYgR89HmqgWpYs8UiybhvevOUAX56cLpG7hiRhVevpqkoQxEjC9
+ 7Fx0+VydhMwoyCATcD2VZ3ysIIppT/ybTfjLRBiFzRMGB4UR0qGPZQZ4zqyl9YVQrwgUayos0/p
+ VhfzUOu0IpUb4631wadXH3uR9x2m2/BE/7z21oJDHchcKN+qZkvVLrFGr3JSS/5102CzmFC5UD0
+ a+BrJB6Qeyeol1CgBkw1DGemFXqqjwy8VLtQ3681QF1g/ueF1tIqrrXm0pgw2Wkry0kIDpTzkPo
+ kz/jXWHwsuvcABXmVuw==
+X-Proofpoint-ORIG-GUID: tFQTWRQVnJxsDlCzzrZ30F0lGWSR0VDe
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-04-16_04,2026-04-16_03,2025-10-01_01
@@ -130,129 +148,146 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[analog.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-288093-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-288095-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:mid,analog.com:email,analog.com:dkim,analog.com:url];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[analog.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:mid,analog.com:email,analog.com:dkim,analog.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[alexisczezar.torreno@analog.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.30:email];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: C235B418AB7
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: B37CD418AF4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add device tree documentation for MAX20830 step-down DC-DC switching
-regulator with PMBus interface.
+This series adds support for the Analog Devices AD5706R, a 4-channel
+16-bit current output digital-to-analog converter with SPI interface.
+
+The AD5706R features:
+  - 4 independent current output DAC channels
+  - Configurable output ranges (50mA, 150mA, 200mA, 300mA)
+  - Hardware and software LDAC trigger with configurable edge selection
+  - Toggle and dither modes per channel
+  - Internal or external voltage reference selection
+  - PWM-controlled LDAC
+  - Dynamic change SPI speed
+
+The driver exposes standard IIO raw/scale/offset channel attributes for
+DAC output control, sampling frequency for PWM-based LDAC timing, and
+extended attributes for device configuration including output range
+selection, trigger mode, and multiplexer output.
+
+This driver is developed and tested on the Cora Z7S platform using
+the AXI SPI Engine and AXI CLKGEN IP cores. The 'clocks' property
+enables dynamic SPI clock rate management via the CLKGEN.
+
+Datasheet: https://www.analog.com/en/products/ad5706r.html
 
 Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
 ---
- .../bindings/hwmon/pmbus/adi,max20830.yaml         | 66 ++++++++++++++++++++++
- MAINTAINERS                                        |  7 +++
- 2 files changed, 73 insertions(+)
+Changes in v8:
+- driver:
+  - changed DAC_CODE from BIT(16) to GENMASK(15,0)
+  - removed defines for single/multi byte, replaced with number
+  - adjusted regmap_write to use if/else similar to read()
+  - reverted in_range back to open code equivalent, removed minmax.h
+- Link to v7: https://lore.kernel.org/r/20260410-dev_ad5706r-v7-0-af93a4caa186@analog.com
 
-diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/adi,max20830.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/adi,max20830.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..1625dd59417f1b3ca689a9c86ca266da913d1217
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/pmbus/adi,max20830.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/pmbus/adi,max20830.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices MAX20830 Step-Down Switching Regulator with PMBus
-+
-+maintainers:
-+  - Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-+
-+description: |
-+  The MAX20830 is a fully integrated step-down DC-DC switching regulator with
-+  PMBus interface. It provides 2.7V to 16V input, 0.4V to 5.8V adjustable
-+  output, and up to 30A output current. It allows monitoring of input/output
-+  voltage, output current and temperature through the PMBus serial interface.
-+  Datasheet:
-+    https://www.analog.com/en/products/max20830.html
-+
-+allOf:
-+  - $ref: /schemas/regulator/regulator.yaml#
-+
-+properties:
-+  compatible:
-+    const: adi,max20830
-+
-+  reg:
-+    maxItems: 1
-+
-+  vddh-supply:
-+    description:
-+      Phandle to the regulator that provides the VDDH power supply.
-+
-+  avdd-supply:
-+    description:
-+      Phandle to the regulator that provides the AVDD power supply.
-+
-+  ldoin-supply:
-+    description:
-+      Optional 2.5V to 5.5V LDO input supply.
-+
-+  pwr-good-gpios:
-+    description:
-+      GPIO connected to the power-good status output pin.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - vddh-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        regulator@30 {
-+            compatible = "adi,max20830";
-+            reg = <0x30>;
-+            vddh-supply = <&vddh>;
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0a3991c10ade20dd79cc7d1bf2a1d307ba6bd19d..031c743e979521a92ed9ac67915c178ce31727bd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15579,6 +15579,13 @@ F:	Documentation/devicetree/bindings/hwmon/pmbus/adi,max17616.yaml
- F:	Documentation/hwmon/max17616.rst
- F:	drivers/hwmon/pmbus/max17616.c
- 
-+MAX20830 HARDWARE MONITOR DRIVER
-+M:	Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Supported
-+W:	https://ez.analog.com/linux-software-drivers
-+F:	Documentation/devicetree/bindings/hwmon/pmbus/adi,max20830.yaml
-+
- MAX2175 SDR TUNER DRIVER
- M:	Ramesh Shanmugasundaram <rashanmu@gmail.com>
- L:	linux-media@vger.kernel.org
+Changes in v7:
+- driver:
+  - Moved/added size validation before data access in write()/read()
+- Link to v6: https://lore.kernel.org/r/20260410-dev_ad5706r-v6-0-f3fda5921fe4@analog.com
 
+Changes in v6:
+- driver:
+  - Added size validation in regmap_write()
+  - Used &st->tx_buf[0] consistently in _be32/be16 calls
+  - Added missing indent in AD5706R_CHAN
+- Link to v5: https://lore.kernel.org/r/20260407-dev_ad5706r-v5-0-a4c7737b6ae9@analog.com
+
+Changes in v5:
+- dt-bindings:
+  - Changed out-en-gpios to enable-gpios
+- driver:
+  - Kconfig: Added select REGMAP_SPI
+  - Headers: Removed device.h, errno.h, string.h; added dev_printk.h
+  - Use IIO_DMA_MINALIGN instead of ARCH_DMA_MINALIGN
+  - Replaced memcpy/memset with put_unaligned_be* for consistency
+  - Added struct device *dev shorthand in probe()
+  - other minor style edits
+- Link to v4: https://lore.kernel.org/r/20260401-dev_ad5706r-v4-0-a785184a8d53@analog.com
+
+Changes in v4:
+- dt-bindings:
+  - Reverted pwm and gpio entries.
+  - Added missing power supply properties
+  - Clocks not added back as they were driver specific, not device
+    properties
+- driver:
+  - Added missing includes
+  - Converted to use regmap with custom SPI bus implementation.
+    spi_write_then_read not applied as suggested, prevents future
+    need to change SPI speed
+  - removed driver speciifc mutex/guards in favor of regmap internal
+    locking
+  - Minor style cleanups
+- Link to v3: https://lore.kernel.org/r/20260318-dev_ad5706r-v3-0-5d078f41e988@analog.com
+
+Changes in v3:
+- Added MAINTAINERS entry, files added on each patch
+- dt-bindings:
+  - Added allOf and ref to spi-peripheral-props.yaml
+  - Changed additionalProperties to unevaluatedProperties
+  - Added avdd-supply property and added it to required
+- driver:
+  - Removed redundant includes, added respective includes of APIs used
+  - Simplified bit manipulation in SPI read/write, used feedback from v2
+  - Fixed inconsistent trailing commas in device ID tables
+  - Removed zero initialization in spi_device_id
+- Link to v2: https://lore.kernel.org/r/20260311-dev_ad5706r-v2-0-f367063dbd1b@analog.com
+
+Changes in v2:
+- Stripped driver down to basic DAC functionality (read/write raw,
+  read-only scale) as suggested.
+- Removed PWM (LDAC), GPIO (reset/shutdown), clock generator,
+  SPI engine frequency switching, debugfs streaming, and all
+  custom ext_info sysfs attributes
+- Removed regmap, IIO_BUFFER, and iio/sysfs.h dependencies
+- Simplified SPI read/write to use standard spi_sync_transfer
+  without clock mode logic
+- Scale reports default 50mA range as read-only using
+  IIO_VAL_FRACTIONAL_LOG2; writable range selection deferred
+  to future follow-up series
+- Simplified DT binding to only require compatible, reg, and
+  spi-max-frequency
+- Link to v1: https://lore.kernel.org/r/20260220-dev_ad5706r-v1-0-7253bbd74889@analog.com
+
+---
+Alexis Czezar Torreno (2):
+      dt-bindings: iio: dac: Add ADI AD5706R
+      iio: dac: ad5706r: Add support for AD5706R DAC
+
+ .../devicetree/bindings/iio/dac/adi,ad5706r.yaml   | 105 +++++++++
+ MAINTAINERS                                        |   8 +
+ drivers/iio/dac/Kconfig                            |  11 +
+ drivers/iio/dac/Makefile                           |   1 +
+ drivers/iio/dac/ad5706r.c                          | 253 +++++++++++++++++++++
+ 5 files changed, 378 insertions(+)
+---
+base-commit: 3674f3ca92730d9a07b42b311f1337d83c4d5605
+change-id: 20260220-dev_ad5706r-2105e1dd29ab
+
+Best regards,
 -- 
-2.34.1
+Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
 
 
