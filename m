@@ -1,160 +1,183 @@
-Return-Path: <devicetree+bounces-288328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288330-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GKmRJdnU4mm++wAAu9opvQ
-	(envelope-from <devicetree+bounces-288328-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 02:48:25 +0200
+	id 4AcDC+Db4mlu/QAAu9opvQ
+	(envelope-from <devicetree+bounces-288330-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 03:18:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08DBE41F80F
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 02:48:24 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C16641F95A
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 03:18:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 59B26303AF3F
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 00:39:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B65CE301489B
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 01:18:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B38A523EAAB;
-	Sat, 18 Apr 2026 00:39:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DBF5248F7C;
+	Sat, 18 Apr 2026 01:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YJZ5fNIR"
+	dkim=pass (2048-bit key) header.d=puri.sm header.i=@puri.sm header.b="cPt86atW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ms.puri.sm (ms.puri.sm [135.181.196.210])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F016175A91;
-	Sat, 18 Apr 2026 00:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8085533987;
+	Sat, 18 Apr 2026 01:18:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=135.181.196.210
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776472770; cv=none; b=UiWdwCoy8vKkCpHDxy+5vHWsZj+WtQRDQgpPaIkdsuWJFK42IORsFBHU4/bq0c8BJftydyvoIGSwydCBUHmjdYJv0/Hoc//wGy31zMnQ61labGH0fKIlaH2xoTCDfoqz6OKBxNZuVTJM6nBjXWk0TUjSTvpOBrkHNLIEeIzGMrQ=
+	t=1776475095; cv=none; b=pF9Lt8Lfu1HNG61kSbMFLdQP7akzne0e1zR3yucu6GUDWYrXySwEogEwyPpBW8/6+FCuRto7UBRN35GuKqQ4vwEPd0hbcDSmwP9V1Lw+Gql1/LuYepBIhOrco68wcYBGOdqdjSBq4C95kCjoKz5F4eDdHeE/lorRjghrrXVcgGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776472770; c=relaxed/simple;
-	bh=b372NDYq44UfFAC/z9eXlIkHcS6zAx5W1MVX5qnMiz0=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=V8/W2tsBroCjOAX/jslM7pTuokLzfsrgwaNcIhFGq+q4fwKO2bx1SLiKwo1+jJ0oxr8XWL2sYcrO2U0Kq+0brI5kwwSiVtjHbVuppWhiG+aPTlzzNs6u9iZ1xGXO8RmTpXwy+IeIj5mYHt83MArJ/pH1mcPWJMyTmFmn4jaTMvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YJZ5fNIR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DADC6C19425;
-	Sat, 18 Apr 2026 00:39:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776472770;
-	bh=b372NDYq44UfFAC/z9eXlIkHcS6zAx5W1MVX5qnMiz0=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=YJZ5fNIRUVbFQ+U1e9W8Ny09u7NrW0y/Rx0HQPIXjW5RXz7a7IQCbWE6Jcn08VwZV
-	 elrrU+4oZwBCxBff51WVi8SYHd23IY2mSAGkZIVJrqsogMbX96v6aQ4gzTt2sTqsFn
-	 eOHvvRRHL6wpYtpu63esRqoxDGX8m+DEn17LtcdDTRHNpwSVdRwZRIkx3JNpqS9dP7
-	 00ifdYHQTGyTA3NDw2vrk6JP6DGU7rPBTd1z53F1D4ChBho4w7k4uHrgE44tS7RATw
-	 DsWRAEjyU4HfEJrFP/+iSFvn3i4zVjsoPyIEddlKOFrLBnKs/MWlTOhCBgz12kNUCO
-	 9eYkmbBPFx0DQ==
-Date: Fri, 17 Apr 2026 19:39:27 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1776475095; c=relaxed/simple;
+	bh=mmChPfcRDpqiw0FLemsBzoTj3ox+7KRwoQk45RTuLAU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KXovn7kASWTgvnBDp/eW8Iif3MP/KyWFRinxFTlt+sJHLZ5vayYVq7vpxdxkrPW5IYCb7inWw/TQb4DzA7R+Twlch2gYUfQhhZ18t6bcOjH9IDFkP7JHXcZgrqwC1CL/hdpF5AKMhlbPU/tNhxXgKdAFG5EDyeZ2WFVogFw1MzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=puri.sm; spf=pass smtp.mailfrom=puri.sm; dkim=pass (2048-bit key) header.d=puri.sm header.i=@puri.sm header.b=cPt86atW; arc=none smtp.client-ip=135.181.196.210
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=puri.sm
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=puri.sm
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=smtp2;
+	t=1776474758; bh=mmChPfcRDpqiw0FLemsBzoTj3ox+7KRwoQk45RTuLAU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=cPt86atWNRPzuNj+y5LfZz8WmilWhGgWUR2EJYuvlZAR2elMPkEqYMjzPbyDPjzlk
+	 aBflYeZ4W9nrSVjQub4atcShp2gSlSfn0VtKK27QgRZKDjpFrJnpM8lNix+j5AigAo
+	 01W8dNMhhFuKJaD2+pFJkHYKJliNPPYeR1QUjP4YEjTVjKbrXcHHcaW7RdloGe78xR
+	 NN6OH5SELxuFpp8q0DeiVswsUmB/cAra0YRGXsVaz7tHwPt7FSmmMFQDm83+UnrgWa
+	 sHHhdf2BT8jwSRPtpjAOO9ydOXBTIrhODXY7p8GDobwPH+0pHUFFReiO5ly/I+t/y+
+	 deY2opENBN3uQ==
+Received: from pliszka.localnet (79.184.67.253.ipv4.supernova.orange.pl [79.184.67.253])
+	by ms.puri.sm (Postfix) with ESMTPSA id E0C341F6CB;
+	Fri, 17 Apr 2026 18:12:37 -0700 (PDT)
+From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ Frank.Li@nxp.com, s.hauer@pengutronix.de, festevam@gmail.com,
+ shawnguo@kernel.org, martin.kepplinger@puri.sm, Robby Cai <robby.cai@nxp.com>
+Cc: kernel@pengutronix.de, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mq: Correct MIPI CSI clocks
+Date: Sat, 18 Apr 2026 03:12:24 +0200
+Message-ID: <5956186.LvFx2qVVIh@pliszka>
+In-Reply-To: <20260417110200.753678-2-robby.cai@nxp.com>
+References:
+ <20260417110200.753678-1-robby.cai@nxp.com>
+ <20260417110200.753678-2-robby.cai@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, Jessica Zhang <jesszhan0024@gmail.com>, 
- Conor Dooley <conor.dooley@microchip.com>, Simona Vetter <simona@ffwll.ch>, 
- linux-gpio@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Javier Martinez Canillas <javierm@redhat.com>, 
- Maxime Ripard <mripard@kernel.org>, Jagan Teki <jagan@edgeble.ai>, 
- David Airlie <airlied@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Bartosz Golaszewski <brgl@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Cong Yang <yangcong5@huaqin.corp-partner.google.com>, 
- Jie Gan <jie.gan@oss.qualcomm.com>, Mark Brown <broonie@kernel.org>, 
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-kernel@vger.kernel.org, Linus Walleij <linusw@kernel.org>, 
- Ondrej Jirman <megi@xff.cz>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Liam Girdwood <lgirdwood@gmail.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <20260418-waveshare-dsi-touch-v4-3-b249f3e702bd@oss.qualcomm.com>
-References: <20260418-waveshare-dsi-touch-v4-0-b249f3e702bd@oss.qualcomm.com>
- <20260418-waveshare-dsi-touch-v4-3-b249f3e702bd@oss.qualcomm.com>
-Message-Id: <177647276773.3416847.5121391765535033685.robh@kernel.org>
-Subject: Re: [PATCH v4 3/4] dt-bindings: gpio: describe Waveshare GPIO
- controller
-X-Spamd-Result: default: False [5.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[puri.sm,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[puri.sm:s=smtp2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288328-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
-	RCVD_COUNT_THREE(0.00)[4];
-	GREYLIST(0.00)[pass,body];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com,microchip.com,ffwll.ch,vger.kernel.org,kernel.org,redhat.com,edgeble.ai,linux.intel.com,linaro.org,huaqin.corp-partner.google.com,oss.qualcomm.com,xff.cz,suse.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288330-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,puri.sm];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.762];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.krzyszkowiak@puri.sm,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[puri.sm:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,qualcomm.com:email,0.0.0.0:email]
-X-Rspamd-Queue-Id: 08DBE41F80F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nxp.com:email]
+X-Rspamd-Queue-Id: 1C16641F95A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On pi=C4=85tek, 17 kwietnia 2026 13:01:59 czas =C5=9Brodkowoeuropejski letn=
+i Robby Cai=20
+wrote:
+> CSI capture may intermittently fail due to mismatched clock rates. The
+> previous configuration violated the timing requirement stated in the
+> i.MX8MQ Reference Manual:
+>=20
+>   "The frequency of clk must be exactly equal to or greater than the RX
+>    byte clock coming from the RX DPHY."
+>=20
+> Update the clock configuration to ensure that the CSI core clock rate is
+> equal to or greater than the incoming DPHY byte clock. The updated clock
+> ratios are consistent with those used in NXP's downstream BSP.
 
-On Sat, 18 Apr 2026 02:16:22 +0300, Dmitry Baryshkov wrote:
-> The Waveshare DSI TOUCH family of panels has separate on-board GPIO
-> controller, which controls power supplies to the panel and the touch
-> screen and provides reset pins for both the panel and the touchscreen.
-> Also it provides a simple PWM controller for panel backlight.
-> 
-> Add bindings for these GPIO controllers. As overall integration might be
-> not very obvious (and it differs significantly from the bindings used by
-> the original drivers), provide complete example with the on-board
-> regulators and the DSI panel.
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+I believe this is a misreading of the docs.
+
+IMX8MQ_CLK_CSIX_PHY_REF refers to the UI pixel clock (clk_ui), not the RX D=
+PHY=20
+byte clock. All this change would do is to break streaming with more than 1=
+00=20
+Mpixels per second / 1064 Mbps per MIPI lane.
+
+As mentioned in the reference manual:
+
+"The frequency of clk_ui must be such that the data received on the data_ou=
+t=20
+output is greater than or equal to the total bandwidth of the physical MIPI=
+=20
+interface. Clk_ui has no relationship requirement with regards to =E2=80=98=
+clk=E2=80=99 other=20
+than the bandwidth requirement mentioned previously."
+
+> Fixes: bcadd5f66c2a ("arm64: dts: imx8mq: add mipi csi phy and csi bridge
+> descriptions") Cc: stable@vger.kernel.org
+> Signed-off-by: Robby Cai <robby.cai@nxp.com>
 > ---
->  .../bindings/gpio/waveshare,dsi-touch-gpio.yaml    | 100 +++++++++++++++++++++
->  1 file changed, 100 insertions(+)
-> 
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mq.dtsi index
+> 6a25e219832c..165716d08e64 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -1377,7 +1377,7 @@ mipi_csi1: csi@30a70000 {
+>  				assigned-clocks =3D <&clk=20
+IMX8MQ_CLK_CSI1_CORE>,
+>  				    <&clk=20
+IMX8MQ_CLK_CSI1_PHY_REF>,
+>  				    <&clk IMX8MQ_CLK_CSI1_ESC>;
+> -				assigned-clock-rates =3D=20
+<266000000>, <333000000>, <66000000>;
+> +				assigned-clock-rates =3D=20
+<133000000>, <100000000>, <66000000>;
+>  				assigned-clock-parents =3D <&clk=20
+IMX8MQ_SYS1_PLL_266M>,
+>  					<&clk=20
+IMX8MQ_SYS2_PLL_1000M>,
+>  					<&clk=20
+IMX8MQ_SYS1_PLL_800M>;
+> @@ -1429,7 +1429,7 @@ mipi_csi2: csi@30b60000 {
+>  				assigned-clocks =3D <&clk=20
+IMX8MQ_CLK_CSI2_CORE>,
+>  				    <&clk=20
+IMX8MQ_CLK_CSI2_PHY_REF>,
+>  				    <&clk IMX8MQ_CLK_CSI2_ESC>;
+> -				assigned-clock-rates =3D=20
+<266000000>, <333000000>, <66000000>;
+> +				assigned-clock-rates =3D=20
+<133000000>, <100000000>, <66000000>;
+>  				assigned-clock-parents =3D <&clk=20
+IMX8MQ_SYS1_PLL_266M>,
+>  					<&clk=20
+IMX8MQ_SYS2_PLL_1000M>,
+>  					<&clk=20
+IMX8MQ_SYS1_PLL_800M>;
 
-My bot found errors running 'make dt_binding_check' on your patch:
 
-yamllint warnings/errors:
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/waveshare,dsi-touch-gpio.example.dtb: panel@0 (waveshare,8.0-dsi-touch-a): compatible:0: 'waveshare,8.0-dsi-touch-a' is not one of ['anbernic,rg-ds-display-bottom', 'anbernic,rg-ds-display-top', 'chongzhou,cz101b4001', 'kingdisplay,kd101ne3-40ti', 'melfas,lmfbx101117480', 'radxa,display-10hd-ad001', 'radxa,display-8hd-ad002', 'taiguanck,xti05101-01a']
-	from schema $id: http://devicetree.org/schemas/display/panel/jadard,jd9365da-h3.yaml
-Documentation/devicetree/bindings/gpio/waveshare,dsi-touch-gpio.example.dtb: /example-0/dsi/panel@0: failed to match any schema with compatible: ['waveshare,8.0-dsi-touch-a', 'jadard,jd9365da-h3']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260418-waveshare-dsi-touch-v4-3-b249f3e702bd@oss.qualcomm.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
