@@ -1,159 +1,159 @@
-Return-Path: <devicetree+bounces-288334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288336-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iMVYHdsf42nwCAEAu9opvQ
-	(envelope-from <devicetree+bounces-288334-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 08:08:27 +0200
+	id K2LdOacl42kkCgEAu9opvQ
+	(envelope-from <devicetree+bounces-288336-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 08:33:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE5384201AD
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 08:08:26 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55670420311
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 08:33:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C0C9F300D478
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 06:08:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DBF9A30457EA
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 06:33:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB4E833DEE1;
-	Sat, 18 Apr 2026 06:08:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3417925EF87;
+	Sat, 18 Apr 2026 06:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sjkCztzT"
+	dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b="aB4E7i7p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sonic314-21.consmr.mail.gq1.yahoo.com (sonic314-21.consmr.mail.gq1.yahoo.com [98.137.69.84])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A6F12F585;
-	Sat, 18 Apr 2026 06:08:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFD4513D503
+	for <devicetree@vger.kernel.org>; Sat, 18 Apr 2026 06:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=98.137.69.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776492497; cv=none; b=Vv2gl77JZSYAdAL7uqYv7hqi9alx/YtUtGZYlalyMuqRem0y0oPsdAhC4WDavwkN6exQPiymN6QkP75vG1eRJ5/xKbgEyrYf4qvKjDoIGh5jHakz+f0uOyya+V8AiuHTJKb3utZ1WqzXkWpz/lGXrJ9u+el8cUdIxahMLgcrgJE=
+	t=1776493989; cv=none; b=tRW7OBWUMe4Y+PlDbky4e8DljNEGfDisKUEDuqCpjdq454ZtzdssethkTTCL02NuzPM7tRncBS+WWOzJTFMVre+KMYkJMkAUkzk9mGqiEd0vqxv0ZZDQI/VyiriAoNJs7UepmnyvPsiduerOboTZMpYyLs4fSYqBynVX/4v81p0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776492497; c=relaxed/simple;
-	bh=4tdQ4myJ3/2Qzw/iKug70gkDUKySGOD6S1ORNO1oIao=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=oLP63aFKfwDPLcSOlUj5k4A0d062Ekecovu8roVd1Xqs9nLOR7cY6jSP/ZPVaBWWW0a27njdBPf5umIunfiWZmOkJC/2reANR12IQmKi2hWCI/P0TPvPVrRAmHKgi2E7Tp+tG96Ynmr0meM1HAiGRGuqsxN/6aOAYZObUadhhWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sjkCztzT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2AE0AC19424;
-	Sat, 18 Apr 2026 06:08:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776492497;
-	bh=4tdQ4myJ3/2Qzw/iKug70gkDUKySGOD6S1ORNO1oIao=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=sjkCztzTpepswITq7pxryFaFS2dRoRiv06Ai8hLlA8/u8qNkpWpL7FqkIQJc5uyGu
-	 DdRQgGMxyrFnmfxCmFqEh6Eh51MUnWQFcDn37Oyu5O3N70IIZYu6MHoNMn3Z2k0uik
-	 87FVYzeFK+IW7qNmKl7cdkAVTntgghQebMjV6ZRcMR9nN4Bsje5D/II68wAWUZfNva
-	 Dj+s6uUdN5jBE9sxhI7Po0KyASMPK9EfKKk9D23D2Y+KU5PNsFfD8iHo2mZToBitGU
-	 tH63u7v1WGlwJUeXAzT3XUQGA7Y0F7R6vKXyXVd00wbIjIYp+9wnhf5dStOg5lvoiS
-	 EAmedkxTVSRNw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15935F436BC;
-	Sat, 18 Apr 2026 06:08:17 +0000 (UTC)
-From: Ekansh Gupta via B4 Relay <devnull+ekansh.gupta.oss.qualcomm.com@kernel.org>
-Date: Sat, 18 Apr 2026 11:38:15 +0530
-Subject: [PATCH] arm64: dts: qcom: hamoa: add audio PD remote heap region
+	s=arc-20240116; t=1776493989; c=relaxed/simple;
+	bh=syYlsVI+Cyv8Iu32MCXECG2skpMfIlco1Q2E9koQb+g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:References; b=pW9zgwdBVaHFG6COCs3YSfRuM1t5f3rPtZDxYifdWjrcuVkQV70WsVsiZ625X4cnrHUWdj8YWXgI9V7MJZeTuwrFiKhkaTsAJyyfD0/e2f7tNja1AqHOuSGMfU+QceN+ih/966yV2tSa1Kt0MuyKp0Or6Air3yfno+Ai5PMLTDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com; spf=pass smtp.mailfrom=yahoo.com; dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b=aB4E7i7p; arc=none smtp.client-ip=98.137.69.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1776493987; bh=mBG7j24/UA6K7DkNwL26nXFDgEt/I9aECPcm83oyrFg=; h=From:To:Cc:Subject:Date:References:From:Subject:Reply-To; b=aB4E7i7prjU6q1ycGQSNxj3bLMJ/cEWH583iZFlRffCI/ACf6iJNKMqKqumJK+MQ7YArLmgAEUfKyDPM++DyAHAJvSAfMVXkk7DL+mbFNkXQ11p2On/tY7rw1NYZ2+rI5S+D6o3oaM0YMc64nyS2lW+1pju/Zmq0m3nOZ7tp0M3IfRFkkHmrEbNYM5elJnaz5higqxm7A0FYpvgHDFF4VvSsmDhaOB3cny+60o0a2KDm5Yzd6Ga7g44TqOBXxmKve5Ez80XYcvaaYa4k20Jnlrm+cM3CW3iFPnOavz18mOEXp2ROdLxO83X/VxiivGz3n4muKNjxQuwKMdG9KJwngQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1776493987; bh=9VSCLJEN1usyHRYHXyLBmBUbsMu1tJYfN8dmwJVztM1=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=iqSxYa0qn3A0gGuvuw9nYVGVA86zWfU1850+MU0O6B2PfT0UBoatbcD8pwXdBH8ZMm+7qmYJyyIjtwKebKsRwKXNHNctaVv4Vefa+xe2hFevyTcauHlGiSjYwvKYiSiUeWpuCS+yyFqOEgIhfzPthmo54PWGNUMp51OLgM+D+DAmArzwdOsLgUf0Bxd2kErVoXM14oLD86TRr2mfuuyQRfj21XaXkY3spNOJMTKhvLodq/fdqlPCkDVkO5s/3otm9v6vjOi8B3LTS1sAvOdlbOKGBCHCMKI80snu2L/4Wo9pDspjR2EXH6W8rOaH0f4J0xfyl0RCula1h3p4EWSA+Q==
+X-YMail-OSG: j2eH2QEVM1n.585Kf._9NQGHgBXsRpS8gJUO3XlLmV_tyGhUiMxnDfY1AEUI4HD
+ BKPPdQE8Xjx0nr98NnCkUQCX_UGZk9BoRAnUfXfeXUdAJtGlCvW.GXAg9uJjM.YVCZpQaZaayUJr
+ YwPzUqBEUUVfzxFVeBO_zBQIQYgqxk5HqnO0mmCkx6uGn4PZCXiVmkdw60RX9KM9IXMsTnr7os8M
+ QOzAfQhex5d3zPrw.LaOm3mw.Ah0PhXafEGxtke4a4yuqbS2TVTITfwKjtNZUhEOxdS9JTzMDNi.
+ 6q26VXGgCXAMZPperEHWxRw3mNSe_2.8CvyLM4Rb_9os4wmpzS.p1hq12UyUT5xHM8b065d4GFh8
+ uEtVqNi318IJeMjcM9RFsPB33W285MQx3F44caQvABmkgrW4EmUGfrxnB1e9Y3t26XEpA4bibWf_
+ J7LE9EOavR4V8T0qz5oNFsyumB0webJaXhNhJD9IUwv2_iUs73KzXYqC3aOk24BvRnjiZBXcnei4
+ .9gTw7lt99RRt_GwEcD.RBOnu03T38g54YMEeIFKYlegYCIptYmyqEJZyJIRm7.g61Juxv0qfE78
+ .j7Sa7BTlVrqh5sEFRSrKhs4lvTd3NCuC2qVzq17HfcuQI4eE7d9dNPUaTLirdqRMvLwo8zazPuV
+ 832Fbz22npeE9AprnZEheiLlS6f4QTMXKzocMjag_P9_7dkwDP0XmF_yE2EMezLC.Um9nTER6X_A
+ rNMcu3PBgVocWKCeUGkqJ_KPS9kCAueQamHchu1nQvRZI3ybWZMMpwzo2ioCxh7YOWY8SRcFpNoj
+ U3MNMF1GzPTyoQIUgKtfMF0cOJrj_r.XzDEfGpwmYz4dCRACOFNcUA9NqiBlIRzMMlThH4wTWi2U
+ FXo1V_3cngqFjmJxP9JGkDVnObCrMW3K5XcWR.jH0_0rkn_Flq3WhuWYmuQ7t90t_uH7ZCkw35_t
+ keoUGXZNSB3tFYneBPUhLTw2mGEMet4iscZdsqDVBICVCW1PqUbAzDl_pD8UCYH01xvaI2l1NjeF
+ 9Oz1Nc_RHaI5391c5tGiqQ9JQ3AjqRMeYEqQTOVUlwBffAenc29C1Wd4oaZjkUqDN.3YNVJNCtFG
+ fQPHyvlrQRr2.yWlTGyy9cTPD2jjU211vrHNgxbSAtzsWX8U5Ul82.gZxtV6iYRWvGGoql7IuwHe
+ EsbGw_76Mvze_f5FYPB9TxzC7ckr6rnUPSW0Opr2z5SK1eua3gGfLxHDe0NITi6Tfs5fbTxdxhPg
+ .PdxwRU.whBcN8nTaGdZ_M_FPyFyg5QmuNeokfkbxwVnUo09kzW.t5exHWNHTwC7nwgzBZKehmJR
+ ZKsQUeC0OsuTHqKUbs47HnceAyqPoUJChg1zehfYPIYVgFkJZ0RbnNlhnpHFqqrO4Y.ictfh.TkH
+ AJ22lKPzu7yijgb13.aXRJDyWBlSl064qGejecNb6H74ux3xpMTTVtHMJCQIwxfDz.lFS617qAtG
+ EQafEuu9JVxK79GTxwa8bBJHfKIoBQBuLfmsVnU_Flwse.l.VVtfxzvGEwxYK7U5Jny8Jq4TShjO
+ 3ZXzQUQaQMjoQNqK_8ga6gZnVVobrwle3X.SFPYaL6TR3hZG1lZv4BbPkx9TIdMaZz9BHUEi6b2B
+ Pi.uPO8yozosBJVwO8Xb0P0BHokxVxx.PY3tLqC8EQ4fuRa2zRpT2pY7FDESmfs0dKUKrRh9zdJs
+ hpsrWi9txXRq9PwE_XBxLStQVRIepepu6KB70QsTKYhSeOd_vXYYxsmGdnEhN14fA3nhSNtom.l4
+ xpHA8fTvNldFVB2ekFLfkwkuTS1I3bfxjazWgitB4ZmN35YYE0jgzCBAfWWBtnnnVRREnewIfbkL
+ 7_4knvNMszofbWHwE2tNkg._4axq2CKLiywYHt8KoWxnSGMyQks5FNtIciTwQgygElYxsCU4Nn1s
+ p42l1zOIvci3bf50j3B8t8Ucffq_.ilDWwuoynimyulcIuLX.IH37L_PCOTyJKZXz8RRqSAohVTK
+ g8P8NCyH2WN7r0mtyLiWAN96v_QZJc6Av47012ZKFnTogZwk4bryNRuD7gZGUX9uW9KNvKNweoMz
+ tVxmNZD_NpnPxH3Blvmy6I0KO55uHIm6PyJ5yU1KjfdN9PT7yIK8J0Hvv3eH304LZwu0wf.3GukW
+ wJVTullGENvvgtYhpb20a35NDjxc1YKmx4L4abrfWnuzD.ev_Sx2ApJfQekFPJ21iS6o_HGbigKK
+ IrlhfssOQSeF_GnloshKmV3By7Gp_GoCDMGkF4033e9CwwGpa6ujAUROTdQ5r09GPCVtVKLkMTVm
+ UkDZ1TrFh
+X-Sonic-MF: <sainiharpreet29@yahoo.com>
+X-Sonic-ID: d89da938-ab56-4417-a5e6-f0b226bcd0e7
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic314.consmr.mail.gq1.yahoo.com with HTTP; Sat, 18 Apr 2026 06:33:07 +0000
+Received: by hermes--production-bf1-697f88457-nwz5r (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 9b8d7fe4763979ee0d1c15afeb8a3b24;
+          Sat, 18 Apr 2026 06:22:48 +0000 (UTC)
+From: Harpreet Saini <sainiharpreet29@yahoo.com>
+To: Rob Herring <robh@kernel.org>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH v3 0/2] Add PixArt PAJ7620 gesture sensor support
+Date: Sat, 18 Apr 2026 02:22:31 -0400
+Message-ID: <20260418062241.104697-1-sainiharpreet29@yahoo.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260418-hamoaaudio-v1-1-a92866f744a6@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAM4f42kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDE0ML3YzE3PzExNKUzHxdS0OTRDNjM8tES5MUJaCGgqLUtMwKsGHRsbW
- 1AItMNWVcAAAA
-X-Change-ID: 20260418-hamoaaudio-914a6369a94d
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Bharath Kumar <quic_bkumar@quicinc.com>, 
- Chenna Kesava Raju <quic_chennak@quicinc.com>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776492495; l=1437;
- i=ekansh.gupta@oss.qualcomm.com; s=20260223; h=from:subject:message-id;
- bh=t8xKrGP5JlZ29QeT2aH4/4HxK5N4poIHW/rEsjbHC34=;
- b=6Tn3gQGGE69Mma0ktj82/PQxI2QTsMpvMWqD7NMGD2MmU5gb9Qe121YjbAuABdE6d0xFg6glt
- zoX38nXR2fOCwfvIx6cnpfG5Y74GkSy3YkR8BnNosOa1ajACeyfMLCu
-X-Developer-Key: i=ekansh.gupta@oss.qualcomm.com; a=ed25519;
- pk=n0SepARizye+pYjhjg1RA5J+Nq4+IJbyRcBybU+/ERQ=
-X-Endpoint-Received: by B4 Relay for ekansh.gupta@oss.qualcomm.com/20260223
- with auth_id=647
-X-Original-From: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-Reply-To: ekansh.gupta@oss.qualcomm.com
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+References: <20260418062241.104697-1-sainiharpreet29.ref@yahoo.com>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[yahoo.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[yahoo.com:s=s2048];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288334-lists,devicetree=lfdr.de,ekansh.gupta.oss.qualcomm.com];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-288336-lists,devicetree=lfdr.de];
 	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sainiharpreet29@yahoo.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[yahoo.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	HAS_REPLYTO(0.00)[ekansh.gupta@oss.qualcomm.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,oss.qualcomm.com:replyto,oss.qualcomm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BE5384201AD
+	FREEMAIL_FROM(0.00)[yahoo.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,checkpatch.pl:url]
+X-Rspamd-Queue-Id: 55670420311
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
+This series adds support for the PixArt PAJ7620 gesture sensor.
+The first patch provides the DT bindings, and the second patch
+implements the input driver.
 
-Reference the reserved memory region for audio PD dynamic loading
-and remote heap requirements. Add the required VMID list for memory
-ownership transfers.
+Changes in v3:
+- Moved sensor power-up and paj7620_init() to input open/close 
+  callbacks
+- Implemented dynamic keymap support via 'linux,keycodes' DT property
+  and enabled userspace adjustment via EVIOCSKEYCODE.
+- Updated YAML bindings to include mandatory vdd, vbus, and vled
+  supplies.
+- Added gpio-controller properties to YAML for hardware completeness.
+- Verified with dt_binding_check and checkpatch.pl --strict.
 
-Signed-off-by: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/hamoa.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+Harpreet Saini (2):
+  dt-bindings: input: Add PixArt PAJ7620 gesture sensor
+  input: misc: Add PixArt PAJ7620 gesture sensor driver
 
-diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-index 051dee076416..3a0717d49990 100644
---- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
-+++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/clock/qcom,x1e80100-gpucc.h>
- #include <dt-bindings/clock/qcom,x1e80100-tcsr.h>
- #include <dt-bindings/dma/qcom-gpi.h>
-+#include <dt-bindings/firmware/qcom,scm.h>
- #include <dt-bindings/interconnect/qcom,icc.h>
- #include <dt-bindings/interconnect/qcom,x1e80100-rpmh.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -4371,6 +4372,9 @@ fastrpc {
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
- 					label = "adsp";
-+					memory-region = <&adsp_rpc_remote_heap_mem>;
-+					qcom,vmids = <QCOM_SCM_VMID_LPASS
-+						      QCOM_SCM_VMID_ADSP_HEAP>;
- 					qcom,non-secure-domain;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
+ .../bindings/input/pixart,paj7620.yaml        |  79 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/input/misc/Kconfig                    |  12 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/paj7620.c                  | 338 ++++++++++++++++++
+ 5 files changed, 432 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/
+ pixart,paj7620.yaml
+ create mode 100644 drivers/input/misc/paj7620.c
 
----
-base-commit: c7275b05bc428c7373d97aa2da02d3a7fa6b9f66
-change-id: 20260418-hamoaaudio-914a6369a94d
-
-Best regards,
 -- 
-Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-
+2.43.0
 
 
