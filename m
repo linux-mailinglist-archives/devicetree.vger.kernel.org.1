@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-288335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288337-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uAKZBlgj42miCQEAu9opvQ
-	(envelope-from <devicetree+bounces-288335-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 08:23:20 +0200
+	id CC9aL6oq42mgCwEAu9opvQ
+	(envelope-from <devicetree+bounces-288337-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 08:54:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE8342026A
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 08:23:19 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D622420372
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 08:54:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 11AC03035258
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 06:23:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8AFBE3008C2E
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 06:54:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7EE34DB7B;
-	Sat, 18 Apr 2026 06:23:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8FC332B9B6;
+	Sat, 18 Apr 2026 06:54:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b="geJGM2Mx"
+	dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b="fEesqAtv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sonic316-8.consmr.mail.gq1.yahoo.com (sonic316-8.consmr.mail.gq1.yahoo.com [98.137.69.32])
+Received: from sonic313-21.consmr.mail.gq1.yahoo.com (sonic313-21.consmr.mail.gq1.yahoo.com [98.137.65.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB8B232B9B6
-	for <devicetree@vger.kernel.org>; Sat, 18 Apr 2026 06:23:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=98.137.69.32
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C1DA293B5F
+	for <devicetree@vger.kernel.org>; Sat, 18 Apr 2026 06:54:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=98.137.65.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776493388; cv=none; b=CKYeDUlafbAgdxKphDd/AXA6BbMqgRRkf8FCDac6l0CPH8C/tbxyvH1DkFHxe6UwMo3LshZYcXspn4Qh3Is8YBDkieyio79ejcnW1mVEN12jJV91QYiAO9XBQPfmaqY22IdXNvWeianjA1tz61X6HMmQDLPexdThcWkrM6UJn3M=
+	t=1776495270; cv=none; b=vCwEaRf7THAmyvzhxXs5pOqvahJR2gHqbMMKhgTqrQ4XRo8A/u3xRc7y7L8FFaot1avyXLkgZVP1CCVCYfI+A2lNYvMavLVYaStcs4Q0P8E8KSiHMn2uiXDpVQa9ycSJuoSd/otmoRc3GdkJvl30PRh4aEqLfjhLDEk37wRbDfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776493388; c=relaxed/simple;
-	bh=tJ38sPBE44u7cfCEI1L+UkQrsZMnWslKX35E8jdDMMU=;
+	s=arc-20240116; t=1776495270; c=relaxed/simple;
+	bh=1M/eiT7+1QlD7ugBdkYfyjce9MRZ8mx3m19dzCnrZHk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BmgCPvOlswSb80TVWH9KzyTW9PlX1kLE40A3pKUnfe6cf9JPOy6BMxDn23RccVFMU8CUJvmyxTbakAcwFrVtQdFj3PIuEhrvdAudje3GThk+TH47xN6K7VH2B58bVxrS4txvK/3Z8vOJcODQierveap+gfA2qazBZypbRZDyzL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com; spf=pass smtp.mailfrom=yahoo.com; dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b=geJGM2Mx; arc=none smtp.client-ip=98.137.69.32
+	 MIME-Version; b=Sp3LcirLKjIY/hpnIFHX/Uh+qNqnjUjEfMpzuj7xxrsIeRlgBgFlvPI5YUyEfj2hPV5kBKEnlneLXbouhmeoP0zVWGj0d0qiRF5o8j2INg99Ba5fwoe7VhxvZqp2fTeS+42bL1/hIzc8w5MLannED3bMDSZD/X36w8yCNfkae2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com; spf=pass smtp.mailfrom=yahoo.com; dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b=fEesqAtv; arc=none smtp.client-ip=98.137.65.84
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yahoo.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1776493380; bh=16Ijfd48/GJzocvRwiaCCBgeCnMlll5aL3qExpRPjkY=; h=From:To:Cc:Subject:Date:In-Reply-To:References:From:Subject:Reply-To; b=geJGM2MxExChTDZO71Ox6hfJz5SCZi20X2n37WqlpXW0SzHsA1nXSepeeWh2w9v3tEiiDuasLTFB45I8mJXYULlcyNL/e/I9v3FbpcznsBYrJ4I92NguPAEgcbnX1AnUcjAOLRZ2r4sTatiHMnND2768pUMnp4AkJslSFNoAlr1oad/Gll717rsmNB8gvJfgo+IDfDVp3S6/as3XBRjyBZg6tReptxPk58hjBlUUofbZYJ44z4RcdTJtc2GiEnDXARO1rVe/wZHR/QiYTfdDvxODuUz/370ZGnHsvkDW/5+YbdM1L0VUeEx0b4SJMnD3j0TcaXKVzdJ0qNKcuaPkjA==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1776493380; bh=nSkS3+2Xny0PR0E4ff086TXsNobctPMxP0zTdCh4nq1=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=msXF2hqby9X2RIJrFFWXXXCX+rOLjwcWStHAVXduib6uujsdyAvaL8KBFVtcEhqhgmftRL+lAQlUM0MHmKhbrmFiPapdyVpCeucltWH7esgk2Ok63CJz78i17Yxl/FzjwsJFERdb7v5N0ocAXyHRe1ILe1LTXytc4OY9TkIlDgemwfcyW2l/CJQN0Ia0SgP67T1B184wjYXjqCtFw9yL1nI+zZndrX4+7PRDhGH959HkNVo6NCLAE5Clgm0z8l7GOsajASF6rm0jwPmB5m9OdDpHTH1fwE/QSNv9Nv2k9PVCDkikHGkgtv6BO6pdknSWSYzELHROb0Ajnncbm498vQ==
-X-YMail-OSG: LDI9BA4VM1nXKl_F1akmFxZmvws1PaShMAhVoccmiTc3HJGa7bSSNS99ZfzKhRa
- 6kJs0i5Ue5u7zJYbPSKfGgPk_eOP0qOMf9.4kRjUQYEQgTtD4.BHu7X7WR.ZJELGlSaXTctfa9Cc
- 4KDzAlzbzpu6z95nrqvjfTX_d7lAvcGnepXZytwlJpilSzxmpPG1u6wDObuzRV4A3kV1GK5Gz1kg
- GGnWcS48JYHyMsFGuTdeg5eiQ0boFeKrAH.HfzwUYfaFKbjpHYK4o8XQhsKE1ncE78N64LXzcFsp
- Eky4D8dYkPjRQeoqlsImaFfvgEEot3aRGPuH29kILcggsfI5laShMX78x528FNYXQEAa9dVKhqlM
- z5RkQkf6atOECXUZVZ07TYN7XZc2nrEt_N4.9V1gCQyLYa7L9we5NQ1yb3VRExkFlqxeBW5fpXgz
- qHnbeylaal1HsKHC3D6Or8S7aGCswoXlrFaBLGHucwVYFLNwT56eE8hwgh85mnmEjBB_PeUXckkH
- .9gqf40GG4zt47XesBELkmaErcwtMxB3qUGluqdXfd728oE6HuNVfZeer8O2eH_Lpi7qpS7wd75i
- sSL8vXVHB_nLV1EY9m3ZKDjMqjw3heHQnk0Yyt8cVP0.sw9QtzPbViEyh9ufs8vheG3FKOObettf
- Asa1sIw1sCVs87bNuL1y2_Rd6OG1gT14LklcXssg_b2abKr4SUruPtANRF4f264o4unGvDBtTQ_h
- 4s9ZfLULOvcGaylTe1Fuxbnr7Up8VX_nRfiDrEFC8oLcVtqyR55GbRtuhHIuRhXPZXt25E0Yrdwy
- 1G7eoQMDCD9wXRuy8OwxZp1HWlTziNXSprxKKLroIUG_nCSPTg1N0xmNFPqMWrkDyfAvvBYXQO.1
- pUdlok408SoR.Dq.BJpzS3yjz.QXDnTH3LV9v6r3LBXKDZYG.A.p0QRFuDzJR4FrrbWgiVf.ZPFT
- nNl78ry2wEDBxVxFFP_atubBaSX8a7kyIXKBhSKJgsV0ASuMThIgkMDnB4IpdeuzdvKPlaPC4Bri
- wUMBf.dfAyq2AbR_OgppEGsGNvQZACXBBPhzubweYWYDgR7QYTauWVQ_Z7fCubWl.V6lAHwOoX7P
- omod9ruFNxouWm_9V9pvYAqYcOmvmQBNaRcQxNaxcl7YYMnujboHtdjIrJ3JEiCKYys.h.Tj8HZZ
- PPHcbt.NYBbJuWxF7q5YfaqBlBl.bfJswWqe6lK4yLG3ty8x7.ZUgDOPi0ETmj7fmVqZnADRcFLJ
- mZZuAYy6golhQ.IZoubx.35Q1G5Ix1.1i.dAFp6iT.YXyYa7aYzemkb1imzTFM35TQFiWY0NuBj5
- 8FOWGAhc5b4qvK8fYNzSlBaVthFW_Icjy54jdu1ngkApud0SX6LxC1UI9h_cRk2CKfz5A8BDicsB
- kkU65LmxLvVyan5hONKjaI1_WOajzfLyWBLyg4CBb9DvQje4esmAE9NJ2N.WJj6ucZJ94bKHrE90
- 8dyDy3MnRgieMLLjBCHXxMVtz_Ms.rZIW3UxeGHpk3lPgQLRhIL2s7jr2nP4d3wHoruTjhtkhGWR
- nJGeuDjQoDhN1gtyNN1H95T_PZlr4t_lo5c9nblijwBK5XMKAoBYQBkIORm_Ag2X4.nqMMMNDn1u
- YuIz2l7A.ZwmrVUz2kB_ppdPeT.K0dXd3ToX19eZ8SRWmLXC3lUmmkp5mv8cjAMVSiSF4zRqsJbE
- mjKP3AXhv9fL2J8xNXGzg7JWC_Ptcw7_j2vu1s5YawMpa8gN4n4aI8pQC91Kku3OvnEj9hlrE6It
- pRTlfktcZVPwLLDtgjJ5YGIBj8mNYrpxs68LJZtz..jGrld9DsYg8aH6JRDwzfvTUl7_e1dwNJvL
- DDQzNiU.mv0W1czxKMbpYjpwhcfOT5abtunfUgkfJxAHrwKsgGLiWnxru2p0sefjyL.SiFHtAdGO
- Cm.PydPnj0LulBzo5O0z0h8ntKFtfpZs1r6T8bsJqOoKar0475bQTk9bfX51NiqcqHhuh4CX9xCb
- 12N8EKcEmHlaKnFSGajb1E3wJDEjA9N7.foSij2VgoAwR7ChVRi7c6YbGBweCgFQAaqfzEuzzFKZ
- 3olKd8Yf7eFaKColn2fUojIuXTfj_IIscoNDiDT6slGOdK.1DrRspJuqYixf_vAr6t46nVXHrENR
- ZonKtawvx9xnghtccj_jKVTy6AKHN5FeccatTyzR4DooYpRAz.edB1r2Dtzq1654ZZTOu3HmsxrZ
- 78NohXAhQXLZILvCsOaIwy53MeUmOHsGKfoELcJoAZPE0fJ4ilb0Aw.TgFmb0LAyKmTv_It_epOr
- R9sU-
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1776495262; bh=nUtUJys4O34TwWHPEXfvLYfiRO4mMMlUjpPlWcgxrF8=; h=From:To:Cc:Subject:Date:In-Reply-To:References:From:Subject:Reply-To; b=fEesqAtvZSolBfsvEyEbgs/4nMEc1RE8mzVlm6tG5P8uDJCTfMCWb3YFWA9O9Ifl12xAuz3Z0NyCYWun5HQYWoa2qVuIDQV8Ag7qaVzez62RK6jrkuS688X7CTU4HRgLkK2p65NeVP1+pfzEKUXQ4iSdaqL3MHLANB1IbblXzkpkLUaP4CXXgpWAdNQPvlX8DjVnxAGU2l+akdZcwX1T9pnhpYZ/2e5mpM2i4FNolSwlgacy6XDMwY+Nn0f8RepfocY/GsvIg+GAWhUmkh8/nDWMEfPcGxd1rEJMImPtQMAiuRpo9I9KafVQzUeHElZoH5W8XFn5uu0j1CvCq53lcA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1776495262; bh=n9qgL8tXCzAdxcPJ8gPoCgQpbMAQ9mphr6NQJMcFw5D=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=MSOo+mdynX2iQlfH332/XxOUiEjhrDJeyZcpB8bqj9y63CQmCefV7D+sHfzmOvlk0lhWdEVTHhf4JEnjpyY6nHNgYV3nLMsGN+LvXdmyVnLyEakKxw7Lp2dPI4w3MyAaE2rOxrmoWj5Teh7jcG3QLW4Hgj5ZKwnYDXRcnAawECm1KRxxYaKRd4qeSZi8iAxmTnQtuOE1uL3ruqlLIH8AQkF8X8eKHxuEWGPF4nlqhcb+7juFsAnFo9VBWmVoQuzLzCC4hZ7ud3ZdSchkt1Z9quygeLzag4dfwMz5DIMA2U+ZAHb1Bdn6o5SMqROwgWvefWVlfdNSlcL/neAou4z+eA==
+X-YMail-OSG: 7x9okcQVM1k17s3nS3ATrsggxpGBNza_Rl6N0iorZlkKZH3ei4P2Z3tbVInzvsJ
+ qXb7DDZCk4uWuur4RQuEsu9JE3bVuRuTghBeTvmpyF1Z0xqc5giCFP_RzpIwokTZTA194_XUJa.e
+ zdX8E_llEYl2lHkuLjs5HfgraoPHLdXwYWgnmZ0OMaNbGmic5UlMjAv4WeOjv7RBj5yctLjdwTCU
+ H5TICVwTdb9l82TH39gvvvSRzpbttpY98gROONTg2n049P0tVc7L5MsbJGbzQHY09LUOLlC77EY3
+ iMN6ofIb3hj7tjKfTJm0C9odk87604uCIsDY1TyynjFe1Vz6Qry8qrqxGJZrnus7JuPq2kyVGymn
+ LiR5V031nqiO_pgyuHawSsl5q_SqF5QdZWKszS2q9VVhocfVKK3E3kodR7ADFnKyAgWgDtPh9OW5
+ fNpPQJMu5Is7D5Q7UY_ytPTLOoTlOPa.RNgt1bNJR9AV2VCxP7SgPY6MkoSYxqUGH8FsfXseVyAZ
+ 9vtiYzkuXv8ZkqkHwqlt1GHkXCFP.PUtYhdCPQsS3KZD7SDhXzgBO6ez13sTPtkxoYdBkT0U106Z
+ C2kNAX3uetsVezOkjqlHQB4D4HCghd9Gq8._QVHkP4WhJeHzTWqq24lsG5KqlwfiGxzCLtfBvzxN
+ .6ehbmXfGDkLXm7DvouQDc9s_.BY3_UQVQ25EuOM_bpseqzmcUap7tAxV.hGNbqhcZhr9jQcZutT
+ 03VMBYkkudKXUJMBNJ7FR.ur5blbjQCB9R85sB8gyMzq7a.09BeTCWulw.HpKxIQ19lwDCcWsN.c
+ tCNNVllhBlJ4ggqU4jL_tJbdHwl5PZGIVQxlm1KhoUwNWdjjRVTD9zcN9s3.Dgnd75hYtOXAEELy
+ WfaIlUSeF0zaDbJUdxf9OaEixyfvTJGs2fWXLiix0_gjxOXoOjk45w_YzU.0xS6QGqh0zZusVZ3N
+ FElvec3sVJSKI6acmfo4NIXJMdK7H2Z7oLSa2JOHnzZ6i4BBxjdIMObT50rUR7.2F3Db1F2sZFSL
+ 5jyT_fN.3y_Oz2NiPe2tOGwvff8uFyIkIPtO0PibNyPWLo1uMLZaptVlffJ3Zn37nUDvXIjJ4C6v
+ 6weNZYvISau1uWGXbVq0kwhHoMP4uZgjpwQLCvlzuTcN39FZ4aDPVuOKVn9mt3WvLMAKc_IBW_fF
+ yxv7dUMjYZQulGr3rUw2cSB_EGOIJ9RG8a32i99yw9XOzO8WB1HoDxRGPjhGz.TF5Jm4s6uFOGnk
+ 7macs02g73pS6f3J2WC3dTp0RfGg5owS6Y8Kci26uG0Cdu2pLNsYs5EsUscUdODkJjKobw9Hm5I4
+ 5RvZnbGKcIzYTpgJ7aCaeto8Itce8vz79U8jgBQvV7xGv2pIdeo0KD2iLzwHoS2jxoOnFYWsNOu5
+ C0wfmWlvDqOHDAPsA3SHf_ZiXkWRMVE1vXESNMIg5LHX1DV.OX_CItlC2_NzcybwmrYY.BKoDFwY
+ j1vD48GQIA62ZRHw0xk3BdsV.yHy19gHb7Pf62c.vMI3DyKC8aI9P2qjKS79ZRdx63TFJQ_F5aTe
+ pcnll5_Y3_QuENAWN2usgk_wV2GCcdKbSjeaUOoIH4FHPF9omGLJD9atqd9JVpUzF.D78eQsMl2B
+ 5XnXbM7tbEUQSan3F4c1eeyEzW2AV9fPaU5CMl37FU.LX1m8KddYDlzDW7t0HDD1KJgjsa6QykiU
+ Fma1e0j4JIuFc2bJ0m3djqoOasLnshVu2HuY0ufdvhOWQHIOs6psrEFYAkYsMy3DBPupZEZP1k5m
+ SGlfR58tYO48BKI0SmU2kd_3v4sUwhQx1_F5Tl9Iz6N2Nnk0HAzhhsdNZ1Db564zHoIgeRuGY5.5
+ cUK4Mu1TxmSM4d2eR41oWVUqeqZT2bBAmj52tiKu0u7t.XqtorlauTHhqrRvUR1gSE404T1k_V2w
+ 1F9VSJdu9OjyCZxMJsGNA.R514kYCtAFLYSDl.T5oR4Djs5thxZqdax44ooBCV23b0zhCY_9w5_U
+ BhbMGEjW6D_YsXf1C0q_1nTvfr1qiePCK8JQMDkItJo936GYXgy..vF7fm2kWkRoldB4UHXhdwub
+ eRtIwAJWtPZIcUZ0LO9fZjFkfzQPCmZF4UmT_LbmpLRd21LW_ZKIjZKCzUj9OuLAMSodhtZUtp5Z
+ qPt.5DLS8LIk0Xo3X32DXS9TTAn3VVEHWN1ObUv.1XZbteqtDst12sBTJMFzvJDAtO8qCYNjq_vS
+ VtofLEKD6cMQTtr7dhNPaYDgVCxC2sdmr5xlp_pVBnBUioI90ofihD6duE6RE5wIKV01vxWQ3YJW
+ N1NgFxkuO
 X-Sonic-MF: <sainiharpreet29@yahoo.com>
-X-Sonic-ID: 46d901d5-3c57-4e52-8f99-ef2646a429b8
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic316.consmr.mail.gq1.yahoo.com with HTTP; Sat, 18 Apr 2026 06:23:00 +0000
-Received: by hermes--production-ne1-555c74f9db-s8l8v (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID b432dcc2b987fc70763d717a7e8da0f3;
-          Sat, 18 Apr 2026 06:22:54 +0000 (UTC)
+X-Sonic-ID: 354f1f99-f4a9-4f3c-b98f-629c0c95f96d
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.gq1.yahoo.com with HTTP; Sat, 18 Apr 2026 06:54:22 +0000
+Received: by hermes--production-bf1-697f88457-w2c9n (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 1e7afc1cf157fe4496c824b71ef29ec9;
+          Sat, 18 Apr 2026 06:23:02 +0000 (UTC)
 From: Harpreet Saini <sainiharpreet29@yahoo.com>
 To: Rob Herring <robh@kernel.org>,
 	linux-input@vger.kernel.org,
@@ -81,9 +81,9 @@ To: Rob Herring <robh@kernel.org>,
 Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v3 1/2] dt-bindings: input: Add PixArt PAJ7620 gesture sensor
-Date: Sat, 18 Apr 2026 02:22:32 -0400
-Message-ID: <20260418062241.104697-2-sainiharpreet29@yahoo.com>
+Subject: [PATCH v3 2/2] input: misc: Add PixArt PAJ7620 gesture sensor driver
+Date: Sat, 18 Apr 2026 02:22:33 -0400
+Message-ID: <20260418062241.104697-3-sainiharpreet29@yahoo.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260418062241.104697-1-sainiharpreet29@yahoo.com>
 References: <20260418062241.104697-1-sainiharpreet29@yahoo.com>
@@ -100,13 +100,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[yahoo.com,reject];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[yahoo.com:s=s2048];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org];
-	TAGGED_FROM(0.00)[bounces-288335-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-288337-lists,devicetree=lfdr.de];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -121,124 +121,404 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FREEMAIL_FROM(0.00)[yahoo.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,0.0.0.73:email]
-X-Rspamd-Queue-Id: ABE8342026A
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4D622420372
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add Device Tree bindings for Pixart PAJ7620 gesture sensor.
-The sensor supports 9 hand gestures via I2C interface.
-
-The binding include mandatory power supplies (vdd, vbus, vled)
-and optional GPIO controller properties to describe the hardware's
-ability to repurpose SPI pins opeating in I2C mode.
+This driver adds support for the PixArt PAJ7620 gesture sensor.
+It implements hand gesture recognition (up, down, left, right,
+etc.) and reports them as standard input key events. The driver
+includes power management support via Runtime PM.
 
 Signed-off-by: Harpreet Saini <sainiharpreet29@yahoo.com>
 ---
- .../bindings/input/pixart,paj7620.yaml        | 79 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- 2 files changed, 81 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/pixart,paj7620.yaml
+ drivers/input/misc/Kconfig   |  12 ++
+ drivers/input/misc/Makefile  |   1 +
+ drivers/input/misc/paj7620.c | 338 +++++++++++++++++++++++++++++++++++
+ 3 files changed, 351 insertions(+)
+ create mode 100644 drivers/input/misc/paj7620.c
 
-diff --git a/Documentation/devicetree/bindings/input/pixart,paj7620.yaml b/Documentation/devicetree/bindings/input/pixart,paj7620.yaml
+diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
+index 94a753fcb64f..de4206c297f2 100644
+--- a/drivers/input/misc/Kconfig
++++ b/drivers/input/misc/Kconfig
+@@ -453,6 +453,18 @@ config INPUT_KXTJ9
+ 	  To compile this driver as a module, choose M here: the module will
+ 	  be called kxtj9.
+ 
++config INPUT_PAJ7620
++	tristate "PixArt PAJ7620 Gesture Sensor"
++	depends on I2C
++	select REGMAP_I2C
++	help
++	  Say Y here if you want to support the PixArt PAJ7620 gesture
++	  sensor. This sensor supports 9 hand gestures and communicates
++	  over the I2C bus.
++
++	  To compile this driver as a module, choose M here: the
++	  module will be called paj7620.
++
+ config INPUT_POWERMATE
+ 	tristate "Griffin PowerMate and Contour Jog support"
+ 	depends on USB_ARCH_HAS_HCD
+diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
+index 415fc4e2918b..dec8b8d0cdf4 100644
+--- a/drivers/input/misc/Makefile
++++ b/drivers/input/misc/Makefile
+@@ -67,6 +67,7 @@ obj-$(CONFIG_INPUT_PF1550_ONKEY)	+= pf1550-onkey.o
+ obj-$(CONFIG_INPUT_PM8941_PWRKEY)	+= pm8941-pwrkey.o
+ obj-$(CONFIG_INPUT_PM8XXX_VIBRATOR)	+= pm8xxx-vibrator.o
+ obj-$(CONFIG_INPUT_PMIC8XXX_PWRKEY)	+= pmic8xxx-pwrkey.o
++obj-$(CONFIG_INPUT_PAJ7620) 		+= paj7620.o
+ obj-$(CONFIG_INPUT_POWERMATE)		+= powermate.o
+ obj-$(CONFIG_INPUT_PWM_BEEPER)		+= pwm-beeper.o
+ obj-$(CONFIG_INPUT_PWM_VIBRA)		+= pwm-vibra.o
+diff --git a/drivers/input/misc/paj7620.c b/drivers/input/misc/paj7620.c
 new file mode 100644
-index 000000000000..ad051cf641a6
+index 000000000000..8738c174bcc1
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/input/pixart,paj7620.yaml
-@@ -0,0 +1,79 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/pixart,paj7620.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/input/misc/paj7620.c
+@@ -0,0 +1,338 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * PixArt PAJ7620 Gesture Sensor - Input driver
++ *
++ * Copyright (C) 2026 Harpreet Saini <sainiharpreet29@yahoo.com>
++ */
 +
-+title: PixArt PAJ7620 Gesture Sensor
++#include <linux/delay.h>
++#include <linux/i2c.h>
++#include <linux/input.h>
++#include <linux/interrupt.h>
++#include <linux/module.h>
++#include <linux/pm_runtime.h>
++#include <linux/regmap.h>
++#include <linux/regulator/consumer.h>
 +
-+maintainers:
-+  - Harpreet Saini <sainiharpreet29@yahoo.com>
++/* Registers */
++#define PAJ7620_REG_BANK_SEL        0xEF
++#define PAJ7620_REG_GES_RESULT1     0x43
++#define PAJ7620_REG_GES_RESULT2     0x44
++#define PAJ7620_REG_SLEEP_BANK0     0x65
++#define PAJ7620_REG_SLEEP_BANK1     0x05
++#define PAJ7620_REG_AUTO_STANDBY    0x073
 +
-+description: |
-+  The PixArt PAJ7620 is a gesture recognition sensor with an integrated
-+  infrared LED and CMOS array. It communicates over an I2C interface and
-+  provides gesture data via a dedicated interrupt pin.
++/* Gesture bits */
++#define PAJ_UP           BIT(0)
++#define PAJ_DOWN         BIT(1)
++#define PAJ_LEFT         BIT(2)
++#define PAJ_RIGHT        BIT(3)
++#define PAJ_FORWARD      BIT(4)
++#define PAJ_BACKWARD     BIT(5)
++#define PAJ_CLOCKWISE    BIT(6)
++#define PAJ_ANTICLOCK    BIT(7)
++#define PAJ_WAVE         BIT(8)
++#define PAJ_MAX_GESTURES 9
 +
-+properties:
-+  compatible:
-+    const: pixart,paj7620
++struct paj7620_data {
++	struct i2c_client *client;
++	struct regmap *regmap;
++	struct input_dev *idev;
++	struct regulator_bulk_data supplies[3];
++	u32 keymap[PAJ_MAX_GESTURES];
++};
 +
-+  reg:
-+    maxItems: 1
++/*
++ * The following arrays contain undocumented register sequences required to
++ * initialize the sensor's internal DSP and gesture engine.
++ * These were derived from vendor reference code and verified via testing.
++ */
++static const struct reg_sequence init_register[] = {
++	{ 0xEF, 0x00 }, { 0x37, 0x07 }, { 0x38, 0x17 }, { 0x39, 0x06 },
++	{ 0x41, 0x00 }, { 0x42, 0x00 }, { 0x46, 0x2D }, { 0x47, 0x0F },
++	{ 0x48, 0x3C }, { 0x49, 0x00 }, { 0x4A, 0x1E }, { 0x4C, 0x20 },
++	{ 0x51, 0x10 }, { 0x5E, 0x10 }, { 0x60, 0x27 }, { 0x80, 0x42 },
++	{ 0x81, 0x44 }, { 0x82, 0x04 }, { 0x8B, 0x01 }, { 0x90, 0x06 },
++	{ 0x95, 0x0A }, { 0x96, 0x0C }, { 0x97, 0x05 }, { 0x9A, 0x14 },
++	{ 0x9C, 0x3F }, { 0xA5, 0x19 }, { 0xCC, 0x19 }, { 0xCD, 0x0B },
++	{ 0xCE, 0x13 }, { 0xCF, 0x64 }, { 0xD0, 0x21 }, { 0xEF, 0x01 },
++	{ 0x02, 0x0F }, { 0x03, 0x10 }, { 0x04, 0x02 }, { 0x25, 0x01 },
++	{ 0x27, 0x39 }, { 0x28, 0x7F }, { 0x29, 0x08 }, { 0x3E, 0xFF },
++	{ 0x5E, 0x3D }, { 0x65, 0x96 }, { 0x67, 0x97 }, { 0x69, 0xCD },
++	{ 0x6A, 0x01 }, { 0x6D, 0x2C }, { 0x6E, 0x01 }, { 0x72, 0x01 },
++	{ 0x73, 0x35 }, { 0x74, 0x00 }, { 0x77, 0x01 },
++};
 +
-+  interrupts:
-+    maxItems: 1
++/*
++ * Specific configuration overrides required to enable the internal
++ * 8-gesture state machine.
++ */
++static const struct reg_sequence init_gesture_array[] = {
++	{ 0xEF, 0x00 }, { 0x41, 0x00 }, { 0x42, 0x00 }, { 0xEF, 0x00 },
++	{ 0x48, 0x3C }, { 0x49, 0x00 }, { 0x51, 0x10 }, { 0x83, 0x20 },
++	{ 0x9F, 0xF9 }, { 0xEF, 0x01 }, { 0x01, 0x1E }, { 0x02, 0x0F },
++	{ 0x03, 0x10 }, { 0x04, 0x02 }, { 0x41, 0x40 }, { 0x43, 0x30 },
++	{ 0x65, 0x96 }, { 0x66, 0x00 }, { 0x67, 0x97 }, { 0x68, 0x01 },
++	{ 0x69, 0xCD }, { 0x6A, 0x01 }, { 0x6B, 0xB0 }, { 0x6C, 0x04 },
++	{ 0x6D, 0x2C }, { 0x6E, 0x01 }, { 0x74, 0x00 }, { 0xEF, 0x00 },
++	{ 0x41, 0xFF }, { 0x42, 0x01 },
++};
 +
-+  vdd-supply:
-+    description: Main power supply.
++static const struct reg_sequence paj7620_suspend_regs[] = {
++	{ PAJ7620_REG_BANK_SEL, 0x00 },
++	{ PAJ7620_REG_SLEEP_BANK0, 0x01 },
++	{ PAJ7620_REG_BANK_SEL, 0x01 },
++	{ PAJ7620_REG_SLEEP_BANK1, 0x01 },
++};
 +
-+  vbus-supply:
-+    description: I/O and I2C bus power supply.
++static void paj7620_report_keys(struct paj7620_data *data, int gesture)
++{
++	int i;
 +
-+  vled-supply:
-+    description: Power for the integrated IR LED.
++	for (i = 0; i < PAJ_MAX_GESTURES; i++) {
++		if (gesture & BIT(i)) {
++			int key = data->keymap[i];
 +
-+  linux,keycodes:
-+    minItems: 9
-+    maxItems: 9
-+    description: |
-+      List of keycodes mapping to the 9 supported gestures.
++			input_report_key(data->idev, key, 1);
++			input_sync(data->idev);
++			input_report_key(data->idev, key, 0);
++			input_sync(data->idev);
++		}
++	}
++}
 +
-+  gpio-controller: true
++static irqreturn_t paj7620_irq_thread(int irq, void *ptr)
++{
++	struct paj7620_data *data = ptr;
++	unsigned int g1, g2;
++	int error;
 +
-+  "#gpio-cells":
-+    const: 2
++	/* 2. RUNTIME PM: Force awake to read registers */
++	pm_runtime_get_sync(&data->client->dev);
 +
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - vdd-supply
-+  - vbus-supply
-+  - vled-supply
++	regmap_write(data->regmap, PAJ7620_REG_BANK_SEL, 0);
++	error = regmap_read(data->regmap, PAJ7620_REG_GES_RESULT1, &g1);
++	error |= regmap_read(data->regmap, PAJ7620_REG_GES_RESULT2, &g2);
 +
-+additionalProperties: false
++	if (!error && (g1 || g2))
++		paj7620_report_keys(data, (g2 << 8) | g1);
 +
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/input/input.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
++	pm_runtime_mark_last_busy(&data->client->dev);
++	pm_runtime_put_autosuspend(&data->client->dev);
 +
-+        gesture@73 {
-+            compatible = "pixart,paj7620";
-+            reg = <0x73>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
-+            vdd-supply = <&reg_3v3>;
-+            vbus-supply = <&reg_1v8>;
-+            vled-supply = <&reg_3v3>;
-+            linux,keycodes = <KEY_UP KEY_DOWN KEY_LEFT KEY_RIGHT
-+                             KEY_ENTER KEY_BACK KEY_NEXT KEY_PREVIOUS
-+                             KEY_MENU>;
-+            gpio-controller;
-+            #gpio-cells = <2>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index ee7fd3cfe203..d73a0bf62b62 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1273,6 +1273,8 @@ patternProperties:
-     description: Pine64
-   "^pineriver,.*":
-     description: Shenzhen PineRiver Designs Co., Ltd.
-+  "^pixart,.*":
-+    description: PixArt Imaging Inc.
-   "^pixcir,.*":
-     description: PIXCIR MICROELECTRONICS Co., Ltd
-   "^plantower,.*":
++	return IRQ_HANDLED;
++}
++
++static int paj7620_init(struct paj7620_data *data)
++{
++	int state = 0, error, i;
++
++	/* 1. Wake-up sequence: Read register 0x00 until it returns 0x20 */
++	for (i = 0; i < 10; i++) {
++		error = regmap_read(data->regmap, 0x00, &state);
++		if (error >= 0 && state == 0x20)
++			break;
++		usleep_range(1000, 2000);
++	}
++
++	if (state != 0x20) {
++		dev_err(&data->client->dev, "Sensor wake-up failed (0x%02x)\n", state);
++		return -ENODEV;
++	}
++
++	/* 2. Blast full register array into PAJ7620 instantly */
++	error = regmap_multi_reg_write(data->regmap, init_register,
++				       ARRAY_SIZE(init_register));
++	if (error < 0) {
++		dev_err(&data->client->dev, "Multi-reg write failed (%d)\n", error);
++		return error;
++	}
++
++	error = regmap_write(data->regmap, PAJ7620_REG_BANK_SEL, 0x00);
++	if (error < 0)
++		return error;
++
++	error = regmap_multi_reg_write(data->regmap, init_gesture_array,
++				       ARRAY_SIZE(init_gesture_array));
++	if (error < 0) {
++		dev_err(&data->client->dev, "Multi-reg write failed (%d)\n", error);
++		return error;
++	}
++
++	return 0;
++}
++
++static int paj7620_input_open(struct input_dev *idev)
++{
++	int error;
++	struct paj7620_data *data = input_get_drvdata(idev);
++
++	error = regulator_bulk_enable(ARRAY_SIZE(data->supplies), data->supplies);
++	if (error)
++		return error;
++
++	error = paj7620_init(data);
++	if (error) {
++		regulator_bulk_disable(ARRAY_SIZE(data->supplies), data->supplies);
++		return error;
++	}
++
++	return 0;
++}
++
++static void paj7620_input_close(struct input_dev *idev)
++{
++	struct paj7620_data *data = input_get_drvdata(idev);
++
++	regmap_multi_reg_write(data->regmap, paj7620_suspend_regs,
++			       ARRAY_SIZE(paj7620_suspend_regs));
++
++	regulator_bulk_disable(ARRAY_SIZE(data->supplies), data->supplies);
++}
++
++static int paj7620_runtime_suspend(struct device *dev)
++{
++	int error;
++	struct paj7620_data *data = dev_get_drvdata(dev);
++
++	error = regmap_write(data->regmap, PAJ7620_REG_BANK_SEL, 0x01);
++	if (error)
++		return error;
++
++	error = regmap_write(data->regmap, PAJ7620_REG_AUTO_STANDBY, 0x30);
++	if (error)
++		return error;
++
++	return 0;
++}
++
++static int paj7620_runtime_resume(struct device *dev)
++{
++	int error;
++	struct paj7620_data *data = dev_get_drvdata(dev);
++
++	error = regmap_write(data->regmap, PAJ7620_REG_BANK_SEL, 0x01);
++	if (error)
++		return error;
++
++	error = regmap_write(data->regmap, PAJ7620_REG_AUTO_STANDBY, 0x00);
++	if (error)
++		return error;
++
++	error = regmap_write(data->regmap, PAJ7620_REG_BANK_SEL, 0x00);
++	if (error)
++		return error;
++
++	usleep_range(1000, 2000);	// Stabilization delay (1ms minimum)
++	return 0;
++}
++
++static const struct dev_pm_ops paj7620_pm_ops = {
++	SET_RUNTIME_PM_OPS(paj7620_runtime_suspend, paj7620_runtime_resume, NULL)
++	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend, pm_runtime_force_resume)
++};
++
++static const struct regmap_config paj7620_reg_config = {
++	.reg_bits = 8, .val_bits = 8, .max_register = 0xEF,
++};
++
++static void paj7620_disable_pm(void *dev)
++{
++	pm_runtime_disable(dev);
++	pm_runtime_dont_use_autosuspend(dev);
++}
++
++static int paj7620_probe(struct i2c_client *client)
++{
++	struct paj7620_data *data;
++	int error, i;
++
++	data = devm_kzalloc(&client->dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	data->client = client;
++	i2c_set_clientdata(client, data);
++
++	data->supplies[0].supply = "vdd";
++	data->supplies[1].supply = "vbus";
++	data->supplies[2].supply = "vled";
++
++	error = devm_regulator_bulk_get(&client->dev, ARRAY_SIZE(data->supplies), data->supplies);
++	if (error)
++		return dev_err_probe(&client->dev, error, "Failed to get regulators\n");
++
++	error = device_property_read_u32_array(&client->dev, "linux,keycodes",
++					       data->keymap, ARRAY_SIZE(data->keymap));
++
++	if (error) {
++		data->keymap[0] = KEY_UP;
++		data->keymap[1] = KEY_DOWN;
++		data->keymap[2] = KEY_LEFT;
++		data->keymap[3] = KEY_RIGHT;
++		data->keymap[4] = KEY_ENTER;
++		data->keymap[5] = KEY_BACK;
++		data->keymap[6] = KEY_NEXT;
++		data->keymap[7] = KEY_PREVIOUS;
++		data->keymap[8] = KEY_MENU;
++	}
++
++	data->regmap = devm_regmap_init_i2c(client, &paj7620_reg_config);
++	if (IS_ERR(data->regmap))
++		return PTR_ERR(data->regmap);
++
++	data->idev = devm_input_allocate_device(&client->dev);
++	if (!data->idev)
++		return -ENOMEM;
++
++	data->idev->name = "PAJ7620 Gesture Sensor";
++	data->idev->id.bustype = BUS_I2C;
++	data->idev->open = paj7620_input_open;
++	data->idev->close = paj7620_input_close;
++	data->idev->keycode = data->keymap;
++	data->idev->keycodemax = ARRAY_SIZE(data->keymap);
++	data->idev->keycodesize = sizeof(u32);
++
++	for (i = 0; i < ARRAY_SIZE(data->keymap); i++)
++		input_set_capability(data->idev, EV_KEY, data->keymap[i]);
++
++	input_set_drvdata(data->idev, data);
++
++	error = input_register_device(data->idev);
++	if (error)
++		return error;
++
++	pm_runtime_set_active(&client->dev);
++	pm_runtime_enable(&client->dev);
++	pm_runtime_set_autosuspend_delay(&client->dev, 2000);
++	pm_runtime_use_autosuspend(&client->dev);
++
++	error = devm_add_action_or_reset(&client->dev, paj7620_disable_pm, &client->dev);
++	if (error)
++		return error;
++
++	return devm_request_threaded_irq(&client->dev, client->irq,
++									 NULL, paj7620_irq_thread,
++									 IRQF_ONESHOT, "paj7620",
++									 data);
++}
++
++static const struct of_device_id paj7620_of_match[] = {
++	{ .compatible = "pixart,paj7620" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, paj7620_of_match);
++
++static struct i2c_driver paj7620_driver = {
++	.driver = {
++		.name = "paj7620",
++		.of_match_table = paj7620_of_match,
++		.pm = &paj7620_pm_ops,
++	},
++	.probe = paj7620_probe,
++};
++module_i2c_driver(paj7620_driver);
++
++MODULE_LICENSE("GPL");
++MODULE_AUTHOR("Harpreet Saini");
++MODULE_DESCRIPTION("PAJ7620 Gesture Input Driver");
 -- 
 2.43.0
 
