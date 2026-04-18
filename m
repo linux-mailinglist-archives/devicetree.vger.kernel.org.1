@@ -1,179 +1,192 @@
-Return-Path: <devicetree+bounces-288374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288375-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id J14KNTH/42k4OQEAu9opvQ
-	(envelope-from <devicetree+bounces-288374-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 00:01:21 +0200
+	id kIDIEsoD5GlxOgEAu9opvQ
+	(envelope-from <devicetree+bounces-288375-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 00:20:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 640E7422521
-	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 00:01:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAFA7422677
+	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 00:20:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8A25A3007517
-	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 22:01:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9C5BC303B4E4
+	for <lists+devicetree@lfdr.de>; Sat, 18 Apr 2026 22:19:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C29E1AAE17;
-	Sat, 18 Apr 2026 22:01:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6023B34DCEB;
+	Sat, 18 Apr 2026 22:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ov6I0C9W"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="IEMZ9JNc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 084C3199D8;
-	Sat, 18 Apr 2026 22:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F149913957E
+	for <devicetree@vger.kernel.org>; Sat, 18 Apr 2026 22:18:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776549678; cv=none; b=O38tdUA8XIkiGjZI8wKvEd+P6F6zXKxnSzz1ofF6i5QAI59oWNsshTZxTJ/DE2MM6ucrNBB/scKlLimcJv5LHW/Il/c7u7BdLZwb8jPPPjXTN1P4EYC1Z5cOEXV4BfMYXn9VeZrJxHDwYCwSpT4SQ8UEQN9ga94+vmjZr01FaKg=
+	t=1776550740; cv=none; b=uahX9Q1Rm0DtXwhF5oZ0LSNrcST0LqcSXmX8pteN+q3so1evygruq0jqqrVLJHpHza8u45OvAg5Zz5St9iTS3LZVKhcWn43hR3mkMTeOG2f/5zyRUJJhdbcXtnE99UaUnHAZwekW+Eeklh0EQRt2yIMxmISf+aNBDWdbrNK9xZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776549678; c=relaxed/simple;
-	bh=A5nAfY0NCQpH7+XTQGibmLwo/DHt2HJgZy3T+nc98RQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bl14aWEJw9tZQaOSKqxMsbaS9CBjmvJJ/JB258Qb0/pXY6VtTLnE+IoY0GVZRY3SS2zUk6ZjjvIdcklTU6yqClmUCqdtxWgZ7JOMjMKBL5YxeEsyA5hDsbB5Fi9U+VtuJd902dyQ/7hn8zneGonMypFO/FXQoTV+yxBHmvz1jRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ov6I0C9W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0758C19424;
-	Sat, 18 Apr 2026 22:01:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776549677;
-	bh=A5nAfY0NCQpH7+XTQGibmLwo/DHt2HJgZy3T+nc98RQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ov6I0C9WO+pvVeHHF8+eA1mVy/+nfpXNloSzyhX3q7T0ksZvQ8V1V3A63tcjeaDnY
-	 /bFBmlsemI4DRs1nKLBBXsmeVlYp1t2d96Uy6e04cwlpKK4Firh3X6VRDNIMszsVnn
-	 Kv7DSmLdGRXNK6envCiqUlGHxk9k6VHlnMc8gFSpsPtxYr4W4tNOI4RkTs1GU65LQI
-	 6/7Antf6xdT9gPXzY97fNCOsspL70XTzbTiwmtpFD+cdjR4Wcr2ldzoNkRsCKxQnGH
-	 //Pt9Pt60iTtFp6f8R4dKTd6jMGXq93OMWOlwaJKQOqNs6lMf+UwDwCAnGCcx02voi
-	 Bb/kPWTBSpApw==
-Date: Sat, 18 Apr 2026 15:01:12 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: guo.wenjia23@zte.com.cn
-Cc: pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, rkrcmar@ventanamicro.com, samuel.holland@sifive.com,
-	aricciardi@baylibre.com, npitre@baylibre.com, mindal@semihalf.com,
-	atish.patra@linux.dev, atishp@rivosinc.com, vasu@rivosinc.com,
-	ved@rivosinc.com, conor.dooley@microchip.com,
-	cuiyunhui@bytedance.com, cp0613@linux.alibaba.com,
-	zhiwei_liu@linux.alibaba.com, liwei1518@gmail.com,
-	gong.shuai@sanechips.com.cn, gsh517@gmail.com,
-	liu.qingtao2@zte.com.cn, reinette.chatre@intel.com,
-	tony.luck@intel.com, babu.moger@amd.com, peternewman@google.com,
-	fenghua.yu@intel.com, james.morse@arm.com, ben.horgan@arm.com,
-	Dave.Martin@arm.com, robh@kernel.org, conor+dt@kernel.org,
-	krzk+dt@kernel.org, rafael@kernel.org, lenb@kernel.org,
-	robert.moore@intel.com, sunilvl@ventanamicro.com,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	x86@kernel.org, linux-acpi@vger.kernel.org,
-	acpica-devel@lists.linux.dev, devicetree@vger.kernel.org,
-	paul.walmsley@sifive.com
-Subject: Re: [PATCH RFC v3 06/11] RISC-V: QoS: add resctrl setup and domain
- management
-Message-ID: <aeP_KJz07WnkqVTP@gen8>
-References: <20260414-ssqosid-cbqri-rqsc-v7-0-v3-6-b3b2e7e9847a@kernel.org>
- <202604180028.63I0Svo8029922@mse-fl1.zte.com.cn>
+	s=arc-20240116; t=1776550740; c=relaxed/simple;
+	bh=1+qBHzyq/RyZJbREu6jXeYPnrwObeNp0SVWFjo3/mGQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BxSgRgp2zUU2kxM3EhNecMCLBNk+IlDIOnhp2C5R5fdj3twQ1WCKaVvqMkAhTg4HEUgOF1Aq090DenNRfx1PNF9sEKezYyPYlKSlSm2OQgFOeAXIqKYZS1Wa9iiUxM7kN2Svq1TIRGNP+JpkqVzV+utxxOUWtxCCWznDu4rF7ig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=IEMZ9JNc; arc=none smtp.client-ip=209.85.210.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-7dbdcb85067so1716295a34.1
+        for <devicetree@vger.kernel.org>; Sat, 18 Apr 2026 15:18:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1776550736; x=1777155536; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7jUgfQx3lTPA8+l0sSnmwFwjO5apfcViqgnRKAaYZmE=;
+        b=IEMZ9JNcgs0Ak5I8FQwmUlIRJtdvoa6yVVIV9F6oMBOiM1V991pGkew57G3GScZXZj
+         d+OoHl/1cTtC2fjeRPgZKqgURtfWa+STRAJaPqGM+55IIkOUJ99tLuOnA7QE5NvL0Hfk
+         YR2f2YfNhk2Kz/N4C7BXS5U5AvENK9aMgdgZnylTp9wOs8j0kz3jLTwoHCPQ/ChEO0zn
+         0VmxfszJc67nSb4Hhu7QYkrvfRn+MQe/2u11PBe+qCNav9m+D2TCVGVPnQI3VSJK7MpA
+         xgH0SnLcgieElPO+CKK8hhjDfUiMXlG6Z+rj5LRuV+QfEjHcVdfVTepA2ek1eK+j+SD8
+         tRqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776550736; x=1777155536;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7jUgfQx3lTPA8+l0sSnmwFwjO5apfcViqgnRKAaYZmE=;
+        b=oUHA5ce98Npdf7h4TXKjB97LlSCI4lHYuUNyBBv1h2fVtUugywLneeR9fsBVJ7WUz1
+         ynLrgmHZv92RbBV6kEFxihkcIT79HcppyInYnmuc+/LpmmmGXLbxMU6wKwCxiuO02qMu
+         aqbGjx7Ifwjp0kgHef5DUG21c9uAQXR29bFBByZYxpgVG8Gc3r0D0EApy3+uRxu6X2WT
+         Rh3obSE5tss74pLsnR+d1RXiGnhcYKy4owl7TuECpWW3TDLRQGBwYkiHNuJwN+z9wpfp
+         R7XRylXYtoDJstl0Ig1DmGY0CXWQ7Ncs3E0YgUOiTsGxmMTdXguL3jHUpu0gCvS9+yjo
+         42PA==
+X-Forwarded-Encrypted: i=1; AFNElJ+xe96lQB7uzBmc641EhqXCqu6mLOcF/x0pZDdsIgbiT6sBC59WuajaBGNKdplBFFWcbbiiYLsZ8wp1@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZfKtglx/zl5AZMm9XRqkx98O0GM2wIlfNoj+J/jA84yio7Jid
+	wm9tgvAhnn6VIABr8i47cg9XWwJxNO2NEXTnmjMNI3bz3A84ijHoTNwxrOrlWIAliMDSyeKcUt9
+	Ql2cE
+X-Gm-Gg: AeBDiesvzUsGNa/H3veuU80QuIPgXmOgO/M8Ax65Tb2JNHjpZrV6NUiThDXOhETh5mD
+	C/0hhZpFppJDuPxEQIeIrgsJyu46TR9MhbgLKhuMtpGMaqXZViY6aQpGTGjBo5mM79mqw8k+yTX
+	c1QG+dENgpShtI1tIbZxv+CMRoaojKwsJer4zdrR7EPy0sMvGouS4e2MOnTV95PMh7J1gkQbxKd
+	cXJo42aqENn+pwaXVc3KHujO9NQWDdAf3XJRexv6gOnigYWS277oCEhRd609mHjHYYgaA7X5kWK
+	e+1EScqhfVLksiyCJoqFObwovur4+VLSq85aMCZKZ4Tj4ExQCrusMpyImzR4q9jx9Gy0nxZ8eI4
+	d3HFiI+deSVO1X1diZY+tiyYnKPMikzNDpLnKsaLIi8vpAHIXVeS9Zdfbr1cX5vyJk6AbGoB6zw
+	NrkBh1RjsTpBU/SwL3ZWWSmWU9NX9EKCribmN8oFOiqaLBOa4s1A51nshL6ODkH46olZhWb4c6O
+	UV/40s6AA1x
+X-Received: by 2002:a05:6830:2b0a:b0:7d7:da43:387 with SMTP id 46e09a7af769-7dc9518bfffmr5451502a34.16.1776550735928;
+        Sat, 18 Apr 2026 15:18:55 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:b1f8:aabe:74d7:21ba? ([2600:8803:e7e4:500:b1f8:aabe:74d7:21ba])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7dc975b19fesm4638922a34.22.2026.04.18.15.18.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 18 Apr 2026 15:18:55 -0700 (PDT)
+Message-ID: <ebd1fd7b-ee47-40e7-b953-cfe7bff41961@baylibre.com>
+Date: Sat, 18 Apr 2026 17:18:54 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/5] Update APDS990x ALS to support device trees
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260418144716.132936-1-clamor95@gmail.com>
+ <36e3611d-642e-42de-9a56-cf81c3e06832@baylibre.com>
+ <CAPVz0n1ph0Cjw9WOqoVPaEywF0MzaNXeEjw6=0rKf4qLWiJZtw@mail.gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <CAPVz0n1ph0Cjw9WOqoVPaEywF0MzaNXeEjw6=0rKf4qLWiJZtw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <202604180028.63I0Svo8029922@mse-fl1.zte.com.cn>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288374-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288375-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,microchip.com,bytedance.com,linux.alibaba.com,gmail.com,sanechips.com.cn,zte.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[44];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,baylibre.com:email]
-X-Rspamd-Queue-Id: 640E7422521
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre-com.20251104.gappssmtp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:mid,baylibre.com:email]
+X-Rspamd-Queue-Id: BAFA7422677
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 17, 2026 at 06:52:27PM +0800, guo.wenjia23@zte.com.cn wrote:
-> Hi Drew,
+On 4/18/26 2:48 PM, Svyatoslav Ryhel wrote:
+> сб, 18 квіт. 2026 р. о 19:24 David Lechner <dlechner@baylibre.com> пише:
+>>
+>> On 4/18/26 9:47 AM, Svyatoslav Ryhel wrote:
+>>> Document Avago APDS9900/9901 ALS/Proximity sensor in schema and modernize
+>>> its driver to support OF bindings.
+>>>
+>>> Svyatoslav Ryhel (5):
+>>>   dt-bindings: iio: light: Document Avago APDS9900/9901 ALS/Proximity
+>>>     sensor
+>>>   misc: apds990x: Use more device managed approach in the probe
+>>>   misc: apds990x: Drop Vled supply
+>>>   misc: apds990x: Convert to use OF bindings
+>>>   misc: apds990x: Drop IRQF_TRIGGER_LOW trigger
+>>>
+>>>  .../bindings/iio/light/avago,apds9900.yaml    |  83 ++++++++
+>>>  drivers/misc/apds990x.c                       | 197 +++++++++---------
+>>
+>> As mentioned in my reply to the dt-bindings patch, there is already an
+>> IIO driver that looks like it could be compatible. I'm guessing that
+>> this misc driver pre-dates the IIO subsystem. I would have a look at it
+>> instead (drivers/iio/light/tsl2772.c).
+>>
 > 
-> On Wed, Apr 15, 2026 at 9:57 AM Drew Fustini <fustini@kernel.org> wrote:
-> 
-> > Add the setup and domain management layer: domain allocation
-> > (qos_new_domain), controller value initialization
-> > (qos_init_domain_ctrlval), resource struct initialization for cache and
-> > bandwidth resources, domain registration with the resctrl filesystem
-> > (qos_resctrl_add_controller_domain), and the top-level setup function
-> > (qos_resctrl_setup) that probes all controllers and calls resctrl_init().
-> >
-> > Also add qos_resctrl_online_cpu() and qos_resctrl_offline_cpu() for CPU
-> > hotplug integration.
-> >
-> > Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
-> > Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
-> > Signed-off-by: Drew Fustini <fustini@kernel.org>
-> > ---
-> >  arch/riscv/kernel/qos/qos_resctrl.c | 295 +++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 294 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/riscv/kernel/qos/qos_resctrl.c b/arch/riscv/kernel/qos/qos_resctrl.c
-> > index a4a120f89840..8d7e3b0abb75 100644
-> > --- a/arch/riscv/kernel/qos/qos_resctrl.c
-> > +++ b/arch/riscv/kernel/qos/qos_resctrl.c
-> > @@ -675,7 +675,23 @@ void resctrl_arch_reset_rmid_all(struct rdt_resource *r, struct rdt_l3_mon_domai
-> >  
-> >  void resctrl_arch_reset_all_ctrls(struct rdt_resource *r)
-> >  {
-> > -    /* not implemented for the RISC-V resctrl implementation */
-> > +    struct cbqri_resctrl_res *hw_res;
-> > +    struct rdt_ctrl_domain *d;
-> > +    enum resctrl_conf_type t;
-> > +    u32 default_ctrl;
-> > +    int i;
-> > +
-> > +    lockdep_assert_cpus_held();
-> > +
-> > +    hw_res = container_of(r, struct cbqri_resctrl_res, resctrl_res);
-> > +    default_ctrl = resctrl_get_default_ctrl(r);
-> > +
-> > +    list_for_each_entry(d, &r->ctrl_domains, hdr.list) {
-> > +        for (i = 0; i < hw_res->max_rcid; i++) {
-> > +            for (t = 0; t < CDP_NUM_TYPES; t++)
-> > +                resctrl_arch_update_one(r, d, i, t, default_ctrl);
-> 
-> For the bw controller, default_ctrl = max_bw, and
-> resctrl_arch_update_one will set the rbwb of all RCIDs to max_bw.
-> According to the spec: The sum of Rbwb allocated across all rcids must
-> not exceed MRBWB value. 
-> 
-> Does this conflict with the spec?
+> tsl2772 driver fits, thanks for pointing out. Maybe you know how
+> apds9930 lux table was calculated? It is quite obscure to me.
 
-Good point. Yeah, this is not being done correctly. I had been doing
-similar to what is done on x86 but the big difference is that CBQRI is
-reservation based.
+The tsl2772 driver says:
 
-Each RCID must have at least 1 Rbwb, and the remainder should be
-assigned to default group, RCID 0. It'll update the implementation.
+/*
+ * Different devices require different coefficents, and these numbers were
+ * derived from the 'Lux Equation' section of the various device datasheets.
+ * All of these coefficients assume a Glass Attenuation (GA) factor of 1.
+ * The coefficients are multiplied by 1000 to avoid floating point operations.
+ * The two rows in each table correspond to the Lux1 and Lux2 equations from
+ * the datasheets.
+ */
 
-Thanks,
-Drew
+So probably just need to look up the A tsl datasheet and compare it to the
+apds datasheet. The apds has some equations with GA, so just need to figure
+out what Lux1 and Lux2 correspond to.
+
+> 
+> Obviously this patchset is obsolete and different set of changes is required.
+> 
+>>>  include/linux/platform_data/apds990x.h        |  65 ------
+>>>  3 files changed, 187 insertions(+), 158 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/iio/light/avago,apds9900.yaml
+>>>  delete mode 100644 include/linux/platform_data/apds990x.h
+>>>
+>>
+
 
