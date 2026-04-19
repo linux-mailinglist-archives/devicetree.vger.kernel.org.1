@@ -1,147 +1,212 @@
-Return-Path: <devicetree+bounces-288399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288407-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QHe0Jb685GmhYwEAu9opvQ
-	(envelope-from <devicetree+bounces-288399-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 13:30:06 +0200
+	id 8DWwKenD5Gn8ZAEAu9opvQ
+	(envelope-from <devicetree+bounces-288407-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 14:00:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AD51423CB2
-	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 13:30:05 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DDD4423E16
+	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 14:00:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 09F9A3004DD1
-	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 11:30:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9A632301452A
+	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 12:00:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425823385BC;
-	Sun, 19 Apr 2026 11:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7DB7355055;
+	Sun, 19 Apr 2026 12:00:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OLA4WNsv"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=superkali.me header.i=@superkali.me header.b="Y2lyVA/+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fr5000-r.dnsiaas.com (fr5000-r.dnsiaas.com [92.42.104.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DCE930F803;
-	Sun, 19 Apr 2026 11:30:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BADF335AC24;
+	Sun, 19 Apr 2026 12:00:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.42.104.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776598202; cv=none; b=q/f25+cTRf7giH6y+/vdJtAPnFhnzqIJ/zkDPF+Q954P/HC+ZiTaqwPdYb00R3svpXxpKLGEDadWJREII4RQMbVlWNJMXbQiBl8p8CL7own6uhYk1yyLuFxAWG9qdKuh2Kv9vwqMtZYhVg1TFgVCR3lr49yRPYNXeHU/ecg+SEg=
+	t=1776600017; cv=none; b=NGOPgJzp4lNE5OLX4znAR8zkAwH8xo1HXExfbsuZQ1oS4+e2zuMEM13Hm8zxDAMiwgQRHG7y4j7d//uppeJ8eXtjNYfNq1ipByNH64rkkB7LOBI57/7fj5+BoBqq+7T/k/Ops7lXMgV2k2Zckq17CVYvAuHowRkxvEuxkQNiykw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776598202; c=relaxed/simple;
-	bh=CHB4/6+0UEiC/NOhE0jTVNiOoZM6X5MNmZ8tDCiMuYk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=A0VBQxnsSNK2LgBhDjyptqzJg8WbcUjAYIDHpga8+n4Pkz85J0JnQg/UGlbj9+YvB85TfY8Yyx6kuMhnw/DZGom4svI18RyPV3HAV4fVnP8Rleqhn/ghQKoz5mN+OFDzj97D3/Ph3XmEMSlUHFhaXNAHubNCuBa70woqdDDzqtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OLA4WNsv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 225EAC2BCAF;
-	Sun, 19 Apr 2026 11:29:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776598201;
-	bh=CHB4/6+0UEiC/NOhE0jTVNiOoZM6X5MNmZ8tDCiMuYk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=OLA4WNsveo1tU8lw+9Wf0KVQhwYkwgLbftZ6QU0ltrNthIzHFh7YY84NHYLb3NtFL
-	 QGLu+DKfL53LBBBPKzmkCtqinWSZKaOBMnt9rEzXvxQw7qHbxmYFNjEnmymMK5uSor
-	 CIvO10CDqrx+Z5lpe41cMEmctEOp/TQOERZNKce5usKvpWOO5CgCjQI3kBM6EODIu3
-	 wPwBYqmDjVZ8JjwhGpRQejOKfHgIsFZs3OF4rXpUnP89cnVlZWbdyHOTDNTTGbGzx9
-	 l9RPRTc10XMMfc49NaBJTovd6fQntVXC7Pu1XpsIvnGc53N8rhOMEBi90Atci9Rca/
-	 QjNfUOYuMYIuA==
-Date: Sun, 19 Apr 2026 12:29:50 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan
- <skhan@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Randy Dunlap
- <rdunlap@infradead.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] iio: tsl2772: add support for Avago
- APDS9900/9901 ALS/Proximity sensor
-Message-ID: <20260419122950.67355f4c@jic23-huawei>
-In-Reply-To: <20260419083125.35572-3-clamor95@gmail.com>
-References: <20260419083125.35572-1-clamor95@gmail.com>
-	<20260419083125.35572-3-clamor95@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1776600017; c=relaxed/simple;
+	bh=r1SkPPydlBOIm8udGkFqPv+zpQaBol9w5Mkm43oRDw0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Xt6738MXZTpQpgznaIjDw9cnGFmr1kTjpG3ZOUQawJ58ZuwTGwS97vu0gop+8SIdu03wwlWxLdH8jiT8bH7z8M5XskOBxYQFE+gT1PIGxXH8ljg+1A+xCQS/F8jWJ7hcnchtpkE1Yw/xJ55JzRRY6iTEoUaASO4EvhboNW+l4o4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=superkali.me; spf=pass smtp.mailfrom=superkali.me; dkim=pass (2048-bit key) header.d=superkali.me header.i=@superkali.me header.b=Y2lyVA/+; arc=none smtp.client-ip=92.42.104.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=superkali.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=superkali.me
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=superkali.me; s=default; h=Cc:To:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=TZqO5/zYANJpAE1cS811lXxJvdTPmWyQ/PwqDeOFtrE=; b=Y2lyVA/+6Slvj3tM0jYEF/seQU
+	WU/bjvfV6cGpb0ug+3mWc8anm+Z26nKt/oMqSIAELHjgdMrFLbUlEcQDAw/JteR8Vb0xkbY7o/ctA
+	q8vy9EbHfdzNxA7TyMVncDgYbnw1GwdlM0IoZHYA7m0yMYDOAtad0+T3R7YDkanU6oEX3zZfOVhfF
+	9U1oT4xn4zi2EWqZkxKKLpolP5kF+mth7vQLeVHq+SSM6GXruXv0mijTpCzg8t/U/ss9/owsCrQOO
+	6+o4GTQkw3N/4/qWCOwD1corym25ee3ZuJ+77MIG+iuebhdngVtR6+HeXQlJFCBkEnzQKSMoU6tz5
+	HRKXdhGQ==;
+Received: from [2a0d:52c0:500f:0:89e7:36b:a29f:1abe] (port=50188 helo=1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa)
+	by fr5000-r.dnsiaas.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.1)
+	(envelope-from <hello@superkali.me>)
+	id 1wEQYV-00000000aDt-27Ex;
+	Sun, 19 Apr 2026 13:43:15 +0200
+From: Daniele Briguglio <hello@superkali.me>
+Subject: [PATCH v4 0/5] clk: rockchip: rk3588: add I2S MCLK output gate
+ clocks
+Date: Sun, 19 Apr 2026 13:43:05 +0200
+Message-Id: <20260419-rk3588-mclk-gate-grf-v4-0-513a42dd1dcc@superkali.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4XNSw6CMBSF4a2Qjq3py1IcuQ/joJQLNDzTYqMh7
+ N3CiBiJw/8k97sz8uAseHRNZuQgWG+HPoY4JcjUuq8A2yI2YoRJwqnEruEXpXBn2gZXegJcuRI
+ bkVNFBFelISiejg5K+9rY+yN2bf00uPf2JdB1/QMGigmWsswzzYRMqbr55wiu0a09d4BWM7C9k
+ x04LDpGGFVonZNUsh8O3zmMHDg8OpkinCvQpmDmy1mW5QMfzyzySwEAAA==
+X-Change-ID: 20260316-rk3588-mclk-gate-grf-c4b180438fc0
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Daniele Briguglio <hello@superkali.me>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Ricardo Pardini <ricardo@pardini.net>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776598989; l=3569;
+ i=hello@superkali.me; s=20260316; h=from:subject:message-id;
+ bh=r1SkPPydlBOIm8udGkFqPv+zpQaBol9w5Mkm43oRDw0=;
+ b=lubJrv9kgpydRivH8D+BbR9768NZY1HEJ3CqujvrxTzXg8fOrmAqoWeMWuvpDCyyXu8nuEB/3
+ 2A+j1q252vBCmghEYREvT2Jhp0U0Pvpe93GdoI6+3rHr1isnoe8BSHW
+X-Developer-Key: i=hello@superkali.me; a=ed25519;
+ pk=5tynRWQdL93CDcapJ73FkcCRY2PeBOJOIAoIhRig53U=
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - fr5000-r.dnsiaas.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - superkali.me
+X-Get-Message-Sender-Via: fr5000-r.dnsiaas.com: authenticated_id: hello@superkali.me
+X-Authenticated-Sender: fr5000-r.dnsiaas.com: hello@superkali.me
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Spamd-Result: default: False [3.04 / 15.00];
+	DMARC_POLICY_REJECT(2.00)[superkali.me : SPF not aligned (relaxed),reject];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_REJECT(1.00)[superkali.me:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288399-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288407-lists,devicetree=lfdr.de];
+	HAS_X_GMSV(0.00)[hello@superkali.me];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_X_AS(0.00)[hello@superkali.me];
+	HAS_X_ANTIABUSE(0.00)[];
+	DKIM_TRACE(0.00)[superkali.me:-];
+	FROM_NEQ_ENVFROM(0.00)[hello@superkali.me,devicetree@vger.kernel.org];
+	NEURAL_HAM(-0.00)[-0.051];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_HAS_DN(0.00)[];
+	HAS_X_SOURCE(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 3AD51423CB2
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[superkali.me:mid,superkali.me:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1DDD4423E16
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, 19 Apr 2026 11:31:23 +0300
-Svyatoslav Ryhel <clamor95@gmail.com> wrote:
+On RK3588, the four I2S master clock (MCLK) outputs to external IO
+pins are gated by bits in SYS_GRF SOC_CON6 (offset 0x0318). These
+are set-to-disable gates with hiword mask semantics.
 
-> The Avago APDS990x has the same register set as the TAOS/AMS TSL2772 so
-> just add the correct bindings and the appropriate LUX table derived from
-> the values in the datasheet. Driver was tested on the LG Optimus Vu P895.
-> 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Hi Svyatoslav,
+The TRM documents the reset value of these bits as 0 (gate open),
+but in practice the Rockchip firmware (BL31) may set them during
+early boot, preventing the MCLK signal from reaching external audio
+codecs. The kernel should manage these gates explicitly so that
+audio functionality does not depend on bootloader register state.
 
-Just one small thing. 
+This series adds GATE_GRF clock entries for all four I2S MCLK output
+gates, following the same approach used for the RK3576 SAI MCLK
+output gates [1]. Board DTS files that need MCLK on an IO pin can
+reference these clocks (e.g. clocks = <&cru I2S0_8CH_MCLKOUT_TO_IO>),
+ensuring the output gate is opened when the clock is enabled.
 
-Experience has given me a strong aversion to the use of wildcards
-in naming within drivers.  They go wrong too often because companies
-can seem to resist using similar names for very different parts.
+Patch 1 adds the four clock ID bindings.
+Patch 2 removes the grf_type_sys exclusion from the aux_grf_table
+        lookup, which prevented SYS_GRF-based GATE_GRF entries from
+        being resolved on RK3588 (where ctx->grf points to PHP_GRF).
+Patch 3 introduces rockchip_clk_add_grf(), a helper to register
+        auxiliary GRFs, so SoC drivers don't open-code the aux_grf
+        allocation and hashtable insertion.
+Patch 4 adds the RK3588_SYSGRF_SOC_CON6 register define.
+Patch 5 adds the four GATE_GRF clock entries and registers the
+        SYS_GRF via the new helper.
 
-> ---
->  drivers/iio/light/tsl2772.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/drivers/iio/light/tsl2772.c b/drivers/iio/light/tsl2772.c
-> index c8f15ba95267..8dab34bf00ca 100644
-> --- a/drivers/iio/light/tsl2772.c
-> +++ b/drivers/iio/light/tsl2772.c
-> @@ -127,6 +127,7 @@ enum {
->  	tmd2672,
->  	tsl2772,
->  	tmd2772,
-> +	apds990x,
+clk-rk3576.c currently open-codes the same GRF registration pattern
+twice and is an obvious candidate for conversion to the new helper,
+but that refactor is left as a separate follow-up to keep this
+series focused.
 
-As above, just name this after one of the supported parts. apds9900
-That doesn't stop you using it for multiple compatible devices.
+Tested on a Youyeetoo YY3588 (RK3588) board with an ES8388 audio
+codec connected to I2S0, and independently on a Mekotronics R58X-Pro
+(ES8388) by Ricardo Pardini.
 
-Same applies for all the uses of x as a wildcard.
+[1] https://lore.kernel.org/r/20250305-rk3576-sai-v1-2-64e6cf863e9a@collabora.com/
 
-thanks,
+Changes in v4:
+- Introduced rockchip_clk_add_grf() helper and used it in clk-rk3588.c
+  instead of open-coding the aux_grf registration (Heiko)
+- Dropped Reviewed-by from patch 5 since the code was refactored
 
-Jonathan
+Changes in v3:
+- Added separate patch for RK3588_SYSGRF_SOC_CON6 register define
+  in rk3588_grf.h, replacing magic 0x0318 (Nicolas)
+- Dropped Reported-by/Closes tags from the driver patch (Nicolas)
+- Added Tested-by from Ricardo Pardini (Mekotronics R58X-Pro)
 
->  	apds9930,
->  };
+Changes in v2:
+- Patch 1: shortened commit message (Krzysztof)
+- Driver patch: added missing #include <linux/slab.h> for kzalloc_obj
+  (kernel test robot)
+
+Signed-off-by: Daniele Briguglio <hello@superkali.me>
+---
+Daniele Briguglio (5):
+      dt-bindings: clock: rockchip,rk3588-cru: add I2S MCLK output to IO clock IDs
+      clk: rockchip: allow grf_type_sys lookup in aux_grf_table
+      clk: rockchip: add helper to register auxiliary GRFs
+      soc: rockchip: rk3588: add SYS_GRF SOC_CON6 register offset
+      clk: rockchip: rk3588: add GATE_GRF clocks for I2S MCLK output to IO
+
+ drivers/clk/rockchip/clk-rk3588.c               | 16 ++++++++++++++++
+ drivers/clk/rockchip/clk.c                      | 25 +++++++++++++++++++++----
+ drivers/clk/rockchip/clk.h                      |  3 +++
+ include/dt-bindings/clock/rockchip,rk3588-cru.h |  4 ++++
+ include/soc/rockchip/rk3588_grf.h               |  2 ++
+ 5 files changed, 46 insertions(+), 4 deletions(-)
+---
+base-commit: b84a0ebe421ca56995ff78b66307667b62b3a900
+change-id: 20260316-rk3588-mclk-gate-grf-c4b180438fc0
+
+Best regards,
+--  
+Daniele Briguglio <hello@superkali.me>
 
 
