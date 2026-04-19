@@ -1,158 +1,221 @@
-Return-Path: <devicetree+bounces-288411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288416-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CPh/AufO5GlDaAEAu9opvQ
-	(envelope-from <devicetree+bounces-288411-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 14:47:35 +0200
+	id 6D14GzXX5GnZagEAu9opvQ
+	(envelope-from <devicetree+bounces-288416-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 15:23:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BDDC423FA5
-	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 14:47:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D3C8424216
+	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 15:23:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 56972301038E
-	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 12:47:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D0131300E250
+	for <lists+devicetree@lfdr.de>; Sun, 19 Apr 2026 13:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67130321F5E;
-	Sun, 19 Apr 2026 12:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1852A37C919;
+	Sun, 19 Apr 2026 13:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="WHYyn43z"
+	dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b="eGMkwv8z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
+Received: from dog.elm.relay.mailchannels.net (dog.elm.relay.mailchannels.net [23.83.212.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD381FDA61;
-	Sun, 19 Apr 2026 12:47:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776602844; cv=none; b=G73SZD7jWxz20MImYeUaRunpnIljBxzCSKXW0+mcPVYtigCwOnlphZMdAXf5eEqHUmXkGp6O3L3pn8kxbs5JnvdCHETrscZh480fLSJdyqGp9k/V1V9HMaH7KViOk6YswmUjI/TN96D7H1AzfDpgCu8aqbB2Dh+00rk66yBbrhI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776602844; c=relaxed/simple;
-	bh=XIZIjEbSaQwU8SHGIG2f7vQGlj5NsG6mt1shAs4DnYk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=C0sUlaztPC37kJ9nM+16N5gNARbyIm+in0Z8OMiTkyI5uCj6E4GlC5H/xtGGcOSVKx8R5JMJWobqpd5NPGs2wyX0cxhio2l52bwIrwoaGDNQkfqy2ZCpvbHgR/tZF2qKDrwnWbODjrG5PJqqeVjQqQdQs3zoQ8aADXFqpaEAN68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=WHYyn43z; arc=none smtp.client-ip=195.78.66.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=mmpsystems.pl; s=x; h=Cc:To:In-Reply-To:References:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=2BKUeRAw6ts3xVXKTWrENRqOPfrQujq1taYcPu1ViSY=; b=WHYyn43zrwSsNZHvME77Khnubn
-	z32UzaMgwVlhoL7jAJBnnIuj7T3EUdmVUQBow5D4T1VWf4K9NvR2oEPpSbRZdzrrCWwQO1Z2LCpw+
-	BsJfPC+xZ3129MMuBG1utOo5W025gj89Awhkigpa00yLPS05cXxummsln/dSPE37bmxzopZmIVEdy
-	2Qjv52bUPT4DtEQOfEONr8YBe4sT5+Yaqi9G4cEpfaloZ3Ys4G2Hz+PJSL8U3rwwFh8xIClnbESJg
-	/Dw0Rx2tZH/UpkmHoYbjvzjHrorlnAyG7ACaWiV4tDbPwsRc3/DTUXPA5wiIOJDPHgh7I589nDoSH
-	Z3eKIf4A==;
-Received: from user-5-173-16-91.play-internet.pl ([5.173.16.91] helo=localhost)
-	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <michal.piekos@mmpsystems.pl>)
-	id 1wERYW-0000000FcVm-3A4V;
-	Sun, 19 Apr 2026 14:47:20 +0200
-From: Michal Piekos <michal.piekos@mmpsystems.pl>
-Date: Sun, 19 Apr 2026 14:46:10 +0200
-Subject: [PATCH 4/4] arm: dts: allwinner: t113s: add hstimer node
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B87E1378D84;
+	Sun, 19 Apr 2026 13:22:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.212.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776604954; cv=pass; b=Oy74I+3M94YoRHEs9bCwuPggycT9Gi5DYua4uGh6vPENcLOR97xdhjBC8t1OSK1KTDhwRJmTGo1yyPLC4ZlTn28h2I1Aapr6OngZZppDPcS+Hgru6yfJE/h13icxAvzbB1/+QG6jfuU12YYOKlhEH4j1mpZmM4It1ORz87KuxeM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776604954; c=relaxed/simple;
+	bh=kbdezKdy9n1Z+EmrfrTSzAuisz3gfPItrQLUQdy4kJA=;
+	h=Message-ID:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:Date; b=jl2NiDi5WaRJf9zawJzqmue8VdFsvOY2RIc9dfBoCGPd29uqr1ie4ry7/qhRbQEPPwO+cF2BXebv+VpAyLtbtrpakq19Buzz5W9diucWym36oEPai4VSfSdMyhNkcuGj4ijxp324Ok7/aWUIruZuiLVshh/9zF8vj0JY43aUTj4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com; spf=pass smtp.mailfrom=smankusors.com; dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b=eGMkwv8z; arc=pass smtp.client-ip=23.83.212.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smankusors.com
+X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 338CB4400CB;
+	Sun, 19 Apr 2026 13:02:51 +0000 (UTC)
+Received: from de-fra-smtpout1.hostinger.io (100-101-167-79.trex-nlb.outbound.svc.cluster.local [100.101.167.79])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 9AC8A441FCD;
+	Sun, 19 Apr 2026 13:02:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
+	t=1776603770;
+	b=lVBn1Oh+I7baBLfIeuk1MJKM8Cb60BWIeADYIUEVdTUw7Larh4hMX9Z9JTUk/1ObtIj7uc
+	9YL9CWXWZNeJbDQFUTD2AwPCjry6bLOG5A9jbmPVlcs0kyKdgM6+7EBd87fLbA3mKaJuZE
+	LpZN4/b0dmIj9MSUs4P6BsFOmteY3Z0jvltv2E7z2O2QWJFeUN6KJ6jUcHCvdZdTp3u3eh
+	e5vYrpG75FS3+ODxJRY4YJ4BlUkIlxotJedXxJKGLqHEPouuvAHERfScB+TeufGZykJ0z5
+	JOb85KuFgfYVoneyq4RaLqHq3k2tmmrH3b0lAGGagzA3wDUNW0niPzaC5z+HlQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1776603770;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=4X91Jm71JdGFejxNB2NzaiAeGdnRYzhGzaEASuCVPCc=;
+	b=cShFOz7ViomBwkjxfM7AKzxxOqLGX+ITnWXwWiokRNcIbo2AilFY3/GIPCgsVfl3uTFQzw
+	RPLkUb3JjExBDwAs8hF3YOxfZiL8LtZl5Ss7tW9uyhrXgeZhIPNNMIgoAD60d7+vDY/e8/
+	+dyIXEbX/ImxgZcuI/Dcz4bQGdlzwj/4L/1fei7FufxTbwyPTvp6ibGkbdoii9oK7w6OFf
+	Biet27ykwH5JXc726xUkyzAHUp2RHzODgyH/LJAHzTr7BhKiMhtqmqFJLGN2e2hZZpllp9
+	OSZ7jSUmpj1jPTw1MK+OaDgSAu7YdgHuvzq1SXKOjM4OLnVPkOQlHOsVZLs0BQ==
+ARC-Authentication-Results: i=1;
+	rspamd-5895b9784c-2s8zv;
+	auth=pass smtp.auth=hostingeremail smtp.mailfrom=linux@smankusors.com
+X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId: hostingeremail|x-authuser|linux@smankusors.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Tart-Spill: 0cb3a38d61e2caa1_1776603770916_1766329072
+X-MC-Loop-Signature: 1776603770916:2376270110
+X-MC-Ingress-Time: 1776603770915
+Received: from de-fra-smtpout1.hostinger.io (de-fra-smtpout1.hostinger.io
+ [148.222.55.8])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.101.167.79 (trex/7.1.5);
+	Sun, 19 Apr 2026 13:02:50 +0000
+Received: from [IPV6:2001:448a:c020:c3c:d097:d42a:836e:79a] (unknown [IPv6:2001:448a:c020:c3c:d097:d42a:836e:79a])
+	(Authenticated sender: linux@smankusors.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fz80y17vPz405x;
+	Sun, 19 Apr 2026 13:02:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smankusors.com;
+	s=hostingermail-a; t=1776603765;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4X91Jm71JdGFejxNB2NzaiAeGdnRYzhGzaEASuCVPCc=;
+	b=eGMkwv8zL5UPQ0kcFH3PZhVyRaJOUB3P9n0U8ucRzhWtr0wLfnDQdgg9+oIzyrGIhUVzH1
+	+5VAeieEtqkNQ9D6ldHZ4mK73A2xXW0bGoqDU7OrStfQxR8Dtn8NyJ/sEGyPcHD0yW7Ofx
+	r5sfr+f15nFfNzlQZRfPlWGrywalteiiWHypnrlq6Riqq+xPIqBbZacAhqkiAbEv0Zc92w
+	XeaxB8LyTElxIjdgYzGLm+hQJ+JkNiXA9HG/SkuBYZOWhkQn7KjCmPIOb84t4Tufmoy4by
+	x/Tr2hABuPX71H6nZiuLUIyn4FwczBEHhs/ZW2AbQalxwytMyqBJX3FYUeumbA==
+Message-ID: <c3219cad-8563-4bb4-b1f7-94b8db54c09e@smankusors.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/10] mfd: qcom_rpm: add msm8960 QDSS clock resource
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski
+ <krzk@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org, Rudraksha Gupta <guptarud@gmail.com>
+References: <20260414-msm8960-wifi-v1-0-007fda9d6134@smankusors.com>
+ <20260414-msm8960-wifi-v1-3-007fda9d6134@smankusors.com>
+ <c63abc0e-e060-4825-b595-a46ddf262673@oss.qualcomm.com>
+ <caa589af-f026-4664-8fb9-6b23b0e087f9@oss.qualcomm.com>
+ <71751331-651d-43aa-b30f-135cc62e8915@smankusors.com>
+ <00e40481-9e62-437e-ac75-a04594ef6879@oss.qualcomm.com>
+ <rnpbdbjlpx6wemeuzsm33njmnihhli6mvjzhwu4m64vpgbxait@7pnk2rdt2djk>
+Content-Language: en-US
+From: Antony Kurniawan Soemardi <linux@smankusors.com>
+In-Reply-To: <rnpbdbjlpx6wemeuzsm33njmnihhli6mvjzhwu4m64vpgbxait@7pnk2rdt2djk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260419-h616-t113s-hstimer-v1-4-1af74ebef7c5@mmpsystems.pl>
-References: <20260419-h616-t113s-hstimer-v1-0-1af74ebef7c5@mmpsystems.pl>
-In-Reply-To: <20260419-h616-t113s-hstimer-v1-0-1af74ebef7c5@mmpsystems.pl>
-To: Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- Michal Piekos <michal.piekos@mmpsystems.pl>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776602788; l=1183;
- i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
- bh=XIZIjEbSaQwU8SHGIG2f7vQGlj5NsG6mt1shAs4DnYk=;
- b=TWIqqEA3ErGL3FCRddP1xCmGyg6MgptJEaxLHGDfIlXCIwxmqmSSlTDe+7h5M1kN/P9BSgKau
- jlIiAaWCfkTBQMbfJDBTIr2MWKsAwz5QTib25pUuAMasN+08WxHdfMO
-X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
- pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
-X-Authenticated-Id: michal.piekos@mmpsystems.pl
-X-Spamd-Result: default: False [1.14 / 15.00];
+Date: Sun, 19 Apr 2026 13:02:41 +0000 (UTC)
+X-CM-Analysis: v=2.4 cv=ALriHGRn c=1 sm=1 tr=0 ts=69e4d275 a=q8XfeKLTkGORBkIvkVRlwA==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=wxLWbCv9AAAA:8 a=mUryVpMS6HeJfSHEwLcA:9 a=QEXdDO2ut3YA:10 a=QJY96suAAestDpCc5Gi9:22
+X-CM-Envelope: MS4xfFupofheZFz+YPyWAx2XbSBOcml5hGXAcuqP7Qlv8ZpSvWhMTH4OaBnQ2Ey/IuTBdQEN341kxCGMpgoRBE8/Duv9Fe/chU7wXiyxYVcuR4QeMVT3KwKG q6B7rrdXdRXGM6j9U8LZ3W+tfo7R+ObirFS8amb0aey40YBHo4ApTXnDJbTTVRO2H2/1hL8tBUgADtVunkVbuhkrlG0wEswvMJhVQQjaBRJzI0ztUOa2ZOu/ rNA1HMxUxih/MGOOrzx6LXk0hgZ7R9ypLj4nXElYTlfNt+TPKd7iExrNa7Ye7LrQiG93L1jv/m7L/ZexF9vaof8tHsq3L9GX6U+8y9Z04hpDmtJ5DNbcMF/r nfrIpKL66g1WHkgPPEOt10cdkEenPz7ai5pDooNVmpWBo47ybZTRRweloOcZhlwYDuW56FBHpytQrMNafta1U6nwNJHWfVH7unPUUHyhIyHeyTYV8hGHn/sA ixvbQjiv0O3cuAP5oP3UWanKh6sh1/OIuqt+M0HpOU372YX5rM3SUER54VGhu+ZkAai26a13RJ/02jqyAbX8DPybjY6xmDh78fObWiIWzMngbua4PHgms9G1 nlh2GhomazVVrSvUfMjWD+3SNd9LzCa27txBcpfMBiJERZdncJALmJ8Io6TigVYN5IXutF+tL1feLCFcBH9wnoXfR0eS1d6kHPN6krwOkV3scwvhBRBtjOCe kHo+orO3CDSMD/SbfZjbPZjLkWEBpMMQ22OfKs4gZga6pewx20PxLX8k7FrjWhgQju/Qco8cFXrue6a2pGQIXEkI0F311k77nh+lrtO0+Xts4wBMIL6+RJnC 99ohA5DWH8yt6B3cH44=
+X-AuthUser: linux@smankusors.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[smankusors.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[smankusors.com:s=hostingermail-a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288411-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-288416-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smankusors.com:email,smankusors.com:dkim,smankusors.com:mid];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[smankusors.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@smankusors.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[mmpsystems.pl:-];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.630];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.45.230.0:email]
-X-Rspamd-Queue-Id: 5BDDC423FA5
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 0D3C8424216
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Describe high speed timer block on Allwinner T113-S3.
+On 4/18/2026 11:11 PM, Dmitry Baryshkov wrote:
+> On Thu, Apr 16, 2026 at 03:49:33PM +0200, Konrad Dybcio wrote:
+>> On 4/15/26 5:20 PM, Antony Kurniawan Soemardi wrote:
+>>> On 4/14/2026 3:07 PM, Konrad Dybcio wrote:
+>>>> On 4/14/26 10:06 AM, Konrad Dybcio wrote:
+>>>>> On 4/13/26 8:55 PM, Antony Kurniawan Soemardi via B4 Relay wrote:
+>>>>>> From: Antony Kurniawan Soemardi <linux@smankusors.com>
+>>>>>>
+>>>>>> msm8960 uses the same clock descriptor as apq8064 but lacked the
+>>>>>
+>>>>> This doesn't quite seem to be the case, some fields differ and
+>>>>> apq8064 additionally has:
+>>>>>
+>>>>> QCOM_RPM_PM8821_SMPS1
+>>>>> QCOM_RPM_PM8821_SMPS2
+>>>>> QCOM_RPM_PM8821_LDO1
+>>>>> QCOM_RPM_VDDMIN_GPIO
+>>>>
+>>>> Ah hmm, the MFD driver seems to provide *all* RPM resources..
+>>>
+>>> What I meant by "clock descriptor" in the commit message was
+>>> specifically the subset corresponding to RPM managed clocks. From what I
+>>> can tell based on downstream code, msm8960 and apq8064 seem to share the
+>>> same set of RPM clocks, even though the overall resource lists differ.
+>>>
+>>> Is that understanding correct?
+>>
+>> If that's struct msm_rpm_map_data on msm-3.x, then I see that 8x60 has:
+>>
+>> +MSM_RPM_MAP(PLL_4, PLL_4, 1),
+>> +MSM_RPM_MAP(SMI_CLK, SMI_CLK, 1),
+>>
+>> While 8960 has:
+>> -MSM_RPM_MAP(QDSS_CLK, QDSS_CLK, 1),
+> 
+> You are comparing 8x60 to 8960, while it should be 8960 to 8064.
+> 
+> I see that there are differences, but the QDSS is the same.
 
-Tested on LCPI-PC-T113/F113:
-- hstimer is registered as clocksource
-- switching clocksource at runtime works
-- after rating increase hstimer operates as a broadcast clockevent device
+I'm looking at downstream code from my Sony Xperia SP (based on
+android-msm-mako-3.4 for LG Nexus 4 / APQ8064). Both apq8064 and msm8960
+uses the same clock-8960.c file in that tree, including the RPM clock
+descriptions, so I assumed their RPM clock sets were identical.
 
-Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
----
- arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+That's why later commit 1da13533627d ("clk: qcom: clk-rpm: add msm8960
+compatible") reuses rpm_clk_apq8064 for qcom,rpmcc-msm8960 compatible.
+But the problem is rpm_clk_apq8064 includes QDSS, which is not yet
+present on msm8960_rpm_resource_table, causing rpmcc init to fail, hence
+this patch.
 
-diff --git a/arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi b/arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi
-index 424f4a2487e2..f811ae0924d6 100644
---- a/arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi
-+++ b/arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi
-@@ -34,6 +34,18 @@ cpu1: cpu@1 {
- 		};
- 	};
- 
-+	soc {
-+		hstimer@3008000 {
-+			compatible = "allwinner,sun8i-t113s-hstimer",
-+				     "allwinner,sun50i-h616-hstimer";
-+				reg = <0x03008000 0x1000>;
-+				interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&ccu CLK_BUS_HSTIMER>;
-+				resets = <&ccu RST_BUS_HSTIMER>;
-+		};
-+	};
-+
- 	gic: interrupt-controller@1c81000 {
- 		compatible = "arm,gic-400";
- 		reg = <0x03021000 0x1000>,
+That said, I agree with Dmitry on the other email reply. I will update
+the commit message to match with android-msm-mako-3.4 downstream code
+instead of claiming both SoC has the same clock descriptions.
 
 -- 
-2.43.0
-
+Thanks,
+Antony K. S.
 
