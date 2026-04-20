@@ -1,145 +1,212 @@
-Return-Path: <devicetree+bounces-288598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288599-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id w6eHJl3z5Wk9pgEAu9opvQ
-	(envelope-from <devicetree+bounces-288598-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:35:25 +0200
+	id IODOJpnz5Wk9pgEAu9opvQ
+	(envelope-from <devicetree+bounces-288599-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:36:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 339A1428E88
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:35:25 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C253428EA0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:36:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 738183008C16
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 09:35:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E1A99302332D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 09:35:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D453859D9;
-	Mon, 20 Apr 2026 09:35:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1CE0388373;
+	Mon, 20 Apr 2026 09:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iV9s2VE7"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="y9dY48/l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2231E13AA2F;
-	Mon, 20 Apr 2026 09:35:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FEB037FF50;
+	Mon, 20 Apr 2026 09:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776677721; cv=none; b=mKIno91d/R+RFjdXKz+GF+9jy7xbZsekgdiv828KPKqXvcAT91T+GmeidzP7ldz7U5X3HVzaxVYIaeD7FYHHLfaH9cLQw7GOVV7RUerElWpQv9Tzv4wFIoAlDCQEkWs71opdyLQNHpp8mP4NgXMwXH5qBZbpv7zIaNFgBXDwaNo=
+	t=1776677743; cv=none; b=Vls1e6h/5PgQzw+97iCNAjvWo02zed0pt6218BQuFfWJePVJpfka/WrAI2TrDRQuBY8Xb49kU1W56yf3+jLnUr3IWSyTExR0UkuK2ct6CdrqJwYzaCcrmFuXSY17jxlbL+ooVxr80gQYOORry/OKC+VdCSNzu75NuWL+EzT9RtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776677721; c=relaxed/simple;
-	bh=ie4pHq24hX87Ox/y+xM4soh8D6peU7BX9IY2UXo6tvo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O8rJuJPzI+mdY8jTJablrzni6hRQx82E7/Mx3WKykvRPtAiLo9XFT8Ccfi5/vCf+Z7/mBBdsfBI1thKdZ2jJF4Qk0muNuDeBoQrDqPXMKL5nVgjv7Wo/NIFQdNvsiR8qM6gULmqaL/DKWZ98oY+iHJ7CE2rO28jG2R5Xhxr7mq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iV9s2VE7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C961C19425;
-	Mon, 20 Apr 2026 09:35:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776677720;
-	bh=ie4pHq24hX87Ox/y+xM4soh8D6peU7BX9IY2UXo6tvo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iV9s2VE7d9sBsBuzGHLRNE26Z22EnHXTiJ4oB0tzlYLUsoh7adXQjrGiO64itbhCZ
-	 Om6gFOOYbUfzpwhvKwAkzv7SRRB8Bi+81ZYByhhaH8AiyYH/py4Wz+GULEuUIgdj44
-	 WKkH3tlPvTs0mit1v59bSBi7j3dbvmgImK/GONTje2t5eucckT0rrUcSO35nDE25mN
-	 8P/w+UqUlb9QyQApZK93jcQoxTEhKrhxyos1w7O81m/iWpXnxDYVP5nWiN5kmwEdts
-	 /UndC8ta1PzkwWXmoCWTM6O14Hpsx9uqN8KQS69u+ON8rvUss13OSrJvZDwtFlfHsB
-	 q5FIQySjmrYvw==
-Date: Mon, 20 Apr 2026 15:05:06 +0530
-From: "mani@kernel.org" <mani@kernel.org>
-To: Sherry Sun <sherry.sun@nxp.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, 
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>, 
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de" <kernel@pengutronix.de>, 
-	"festevam@gmail.com" <festevam@gmail.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>, 
-	"kwilczynski@kernel.org" <kwilczynski@kernel.org>, "bhelgaas@google.com" <bhelgaas@google.com>, 
-	Hongxing Zhu <hongxing.zhu@nxp.com>, "l.stach@pengutronix.de" <l.stach@pengutronix.de>, 
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH V13 02/12] PCI: host-generic: Add common helpers for
- parsing Root Port properties
-Message-ID: <nwoyko5feezkakwjjgwdbpwrlv7a3e72avux36t72uzp5mc2x7@26q7fnpvwupe>
-References: <VI0PR04MB1211449884AC3BC8E3711F1AB92202@VI0PR04MB12114.eurprd04.prod.outlook.com>
- <20260417195533.GA92707@bhelgaas>
- <viggqsxczf5d5hok4qpqhknalwb46xapsgdxbbgbqhruhyn2hn@wtck4yajmuw7>
- <VI0PR04MB12114304913B6AACF6A206E10922F2@VI0PR04MB12114.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1776677743; c=relaxed/simple;
+	bh=8W/J8aK+sWUGq5pncpL3L4qdZR0FZTI1XoD1DzM3QFg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=CJZ3vmocK/PyFc7zfRywvFvOwclJe1GzXNtvNF46+GL3Hm9v8JXC8b5JW9nhT7/eBz/OFBDes5NgUqUuZkmaCx0OstSFs3j0TIbBGmXhiZmATCZqStu1tR5UzHA4VFQBr2JFxM15yGlQzDUwLOYPeVy90lawyZulELPuOpecpAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=y9dY48/l; arc=none smtp.client-ip=54.92.39.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1776677725;
+	bh=vkXbNIbR++h6pZ5ZhTdpzW0zQcZfR0zYZFiVasZtcwg=;
+	h=Mime-Version:Date:Message-Id:Subject:From:To;
+	b=y9dY48/lFdNCv2em4ADMiyDDYROoAqiZuJE48fPMKtvmGMkdLvvhbDvEWCitPDsYA
+	 ZzsLC4Jbcr1MVYxT/pix4i7h8rlKWI7DAh0gb/EaIloN1TNhElsWycvT8zoQhz1kVl
+	 wBRflUXWFV2MlgvJERBDuGZsB19kU2Yl3km390ik=
+X-QQ-mid: zesmtpgz7t1776677719t20d36658
+X-QQ-Originating-IP: L8IWvy8kdMykC/iQ/0qMSe0QQFM6oUby0IAkvkRc1Dg=
+Received: from = ( [120.237.158.181])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 20 Apr 2026 17:35:17 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 14122269761632793100
+EX-QQ-RecipientCnt: 16
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <VI0PR04MB12114304913B6AACF6A206E10922F2@VI0PR04MB12114.eurprd04.prod.outlook.com>
-X-Spamd-Result: default: False [0.84 / 15.00];
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 20 Apr 2026 17:35:17 +0800
+Message-Id: <DHXVORP1EJ4M.1ZOO1F7UVW11@linux.spacemit.com>
+Cc: "Troy Mitchell" <troy.mitchell@linux.spacemit.com>, "Krzysztof
+ Kozlowski" <krzk@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Paul Walmsley" <paul.walmsley@sifive.com>, "Palmer Dabbelt"
+ <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre
+ Ghiti" <alex@ghiti.fr>, <spacemit@lists.linux.dev>,
+ <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "kernel test robot" <lkp@intel.com>
+Subject: Re: [PATCH] dts: riscv: spacemit: k3: only keep spacemit,k1-i2c
+From: "Troy Mitchell" <troy.mitchell@linux.spacemit.com>
+To: "Sandie Cao" <sandie.cao@deepcomputing.io>, "Yixun Lan"
+ <dlan@kernel.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260420083931.1427703-1-sandie.cao@deepcomputing.io>
+ <dfa3f1a7-f4c6-4655-94c0-326f88db3896@kernel.org>
+ <87ef529e-b591-49f5-9fc9-3099672e2f0f@kernel.org>
+ <DHXUQHVK4XRN.3CVZ3GH75L4L4@linux.spacemit.com>
+ <20260420090936-GKB203300@kernel.org>
+ <407ce3d77416bb2522b7906b0df3d5adf02c27ee.5595e961.9ee2.4959.8935.9a8f33812b0c@feishu.cn>
+In-Reply-To: <407ce3d77416bb2522b7906b0df3d5adf02c27ee.5595e961.9ee2.4959.8935.9a8f33812b0c@feishu.cn>
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: N/BaP5J2bFjv+cFlyBYAxWjq06zRbwPipQRfHHX9jufE+m+DfwljltAk
+	DDKL9MEkGJlBl2uwtsuiXbgg7XYtFQfkSURsBNBIhtD8AiI0Yf2Lv3eiMi+FVFPRPo4kXkN
+	kDy1IS0ysQeKwg55GdiFp40YR+2+s6XxP1ghb14iiDBx+ipRMtkgxTrwfDTSIK3zkS6G2Jr
+	Te1LX7PLQYCIXQDJwYz5ROnmue/dkHxa0Tw5EWy1+LQhpsHXu4VQy248G2iizl6rX/hBNzB
+	BJ1rWv6uiybQVF1i8/wTzbQv/7eCP1zWN+1WfdZdNmx1xAx0fRlQxE/OWwjxQpZaMqUBPrP
+	ZTLYrEbVCX7+aJltzl047iWYJu19ukYgce0DdeXDmOebd5PbL8lGqkHQzdS073mrCIX2D1t
+	DvMiw8mpZJclcRtqh0eVsprmAKwCpu7tbNfLraO3X/Vh4f3/MVHJadLpHMjJsH4zBatVJDj
+	KqE0V0DhoiIEPA9ObrOVihsShmDkYj3D+7+ExdiaJqFOc0pSUgHiDi1weWlRxK1D5gvFvMc
+	ZW5kEyVOg3BjtFih4WoiFa+HqKR0VxJOQRxlex1WLWyctV2J4R9bHADLbmdNAdroWSMa2qP
+	ikP2g35mh0KKAm1SeNO8DgELvfSqO0JXwMmJNTH+hhjHZVtNqMTic0RFbqaYU9qKGLd9r9x
+	wjlbL2vIgJST0Paj1TRmGCjKtUMJZmQmctpapivoQYF8gu3Ms6mI9yeuSavrk0WuDuYu9Ey
+	JzP5vvCXNDjnVgJPxq8yQR9P/GIAzbx4XkQtkGKY3KrXRthC3qKzOJ1zhtPtBhnOVMlFm6Y
+	NtPsfp+StA0nkAaPLM/C2jd1/lAoDINPCauMkNeAgSWuD6ViC4RI8d9Fk2W6GQvOrovQJFC
+	kahiz56CCu9QFA5TZQjTADPO+8yUhAq27nXIuYcXoWa6OwoixxeOCDhAfoiyw/b1LF76ZaZ
+	or3pB0rE5qPrHo/1+Jg3BwyH1y7sWHHaw/r/zXoBrn5UHomt/qIoFLgbTb9HoEFU4mkDGf9
+	QwOQJfmjfcEufhTsJJlE9x0rHeOXOaC4pv7FjeUcKEEj3cAII85ffLK1LVPbeQ0lUJs9Ncd
+	gfnsfWzIYPm7XHsG2dPB1mi3Lwe4PhugtPCX+osFNBH
+X-QQ-XMRINFO: OWPUhxQsoeAVwkVaQIEGSKwwgKCxK/fD5g==
+X-QQ-RECHKSPAM: 0
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	FROM_DN_EQ_ADDR(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288598-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288599-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[spacemit.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,google.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.spacemit.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.spacemit.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 339A1428E88
+	NEURAL_HAM(-0.00)[-0.998];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.spacemit.com:dkim,linux.spacemit.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email]
+X-Rspamd-Queue-Id: 1C253428EA0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Apr 20, 2026 at 08:24:57AM +0000, Sherry Sun wrote:
+On Mon Apr 20, 2026 at 5:26 PM CST, Sandie Cao wrote:
+> Hi, Lan & Troy & Krzysztof :
+>
+>> From: "Yixun Lan"<dlan@kernel.org>
+>> Date:=C2=A0 Mon, Apr 20, 2026, 17:09
+>
+>> Hi Troy,
+>>=C2=A0
+>> On 16:50 Mon 20 Apr =C2=A0 =C2=A0 , Troy Mitchell wrote:
+>> > On Mon Apr 20, 2026 at 4:44 PM CST, Krzysztof Kozlowski wrote:
+>> > > On 20/04/2026 10:43, Krzysztof Kozlowski wrote:
+>> > >> On 20/04/2026 10:39, Sandie Cao wrote:
+>> > >>> Fix dtcheck issue: compatible:0: 'spacemit,k1-i2c' was expected
+>> > >>=C2=A0
+>> > >> Missing space after main commit msg.
+>> > >>=C2=A0
+>> > >>> Reported-by: kernel test robot <lkp@intel.com>
+>> > >>> Closes: https://lore.kernel.org/r/202604140259.eKDaxKua-lkp@intel.=
+com/
+>> > >>>
+>> > >
+>> > > Also, the file reported in above warning DOES NOT EXIST (I checked
+>> > > next-20260414).
+>> > In Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml:
+>> >=C2=A0
+>> > properties:
+>> > =C2=A0 compatible:
+>> > =C2=A0 =C2=A0 enum:
+>> > =C2=A0 =C2=A0 =C2=A0 - spacemit,k1-pinctrl
+>> > =C2=A0 =C2=A0 =C2=A0 - spacemit,k3-pinctrl
+>> >=C2=A0
+>> I think you refer to wrong file, which should be
+>> =C2=A0Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+>>=C2=A0
+>> > So there's no reason to use k1-i2c. As far as I can tell, while they a=
+re the same IP,
+>> > there are subtle differences between them.
+>> >=C2=A0
+>> But yes, the idea is correct, so NAK to this patch
+>> > =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 - Troy
+>>=C2=A0
+>> --=C2=A0
+>> Yixun Lan (dlan)
+>>=C2=A0
+>
+> Please know that, I send patch[1] to add DeepComputing FML13V05 board dev=
+ice tree.=C2=A0 The patch is based on k1/dt-for-next[2].=C2=A0
+> And it meets dtscheck issue:
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/r/202604140259.eKDaxKua-lkp@intel.com/
+>
+> On k1/dt-for-next, it doesn't have spacemit,k3-i2c in Documentation/devic=
+etree/bindings/i2c/spacemit,k1-i2c.yaml.
+> Or I use the wrong branch?=C2=A0
+Yes... You are using a wrong branch I think.=20
+The k1/dt-for-next branch in this repo is Dlan=E2=80=99s tree. Since DT bin=
+dings are not within
+his purview, they aren't included there. I only mentioned this repository e=
+arlier to
+show that the UART portion of the pinctrl dtsi has already been merged into=
+ it;
+it wasn't intended to be used as your development base.
+>
+> And what should I do for my patch[1] ? =C2=A0
+I think you can use next-20260417 as your base commit.
+Everything you need is available here.
 
-[...]
+                                      - Troy
+>
+> [1] https://lore.kernel.org/all/20260413060524.1235982-1-sandie.cao@deepc=
+omputing.io/
+> [2] https://github.com/spacemit-com/linux/tree/k1/for-next#
+>
+> Best regards
+> Sandie
 
-> > Even if there are PERST# GPIOs from the host, connected to downstream
-> > ports of a PCIe switch, they could be stored in the Root Port's (pci_host_port)
-> > struct as a list of PERST#. This is what pcie-qcom driver does.
-> > 
-> > It is too clumsy to handle PERST# individually for each device. We tried it
-> > before with pwrctrl, but it always ended up biting us on who gets to control
-> > the PERST#. We can't let pwrctrl handle PERST# for a switch port and host
-> > controller driver handle it for RP. And we cannot let pwrctrl handle PERST# for
-> > all ports, because, host controller drivers also need to control them for RC
-> > initialization.
-> > 
-> > That's why it was decided to handle PERST# for all ports in the host controller
-> > drivers. So following that pattern, this helper could also be extended to parse
-> > the PERST# from all ports defined in DT and store them in the same Root Port
-> > struct.
-> > 
-> > It should be trivial to implement this logic in the current helper. @Sherry:
-> > Could you please implement this logic?
-> 
-> Hi Mani, do you mean the similar logic in this patch?
-> https://lore.kernel.org/all/20251216-pci-pwrctrl-rework-v2-1-745a563b9be6@oss.qualcomm.com/
-> If yes, of cause I can do this for current helper functions in pci-host-common.c.
-> 
-
-Yes!
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
