@@ -1,174 +1,164 @@
-Return-Path: <devicetree+bounces-288665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288669-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id O9YEMDYV5mnCrQEAu9opvQ
-	(envelope-from <devicetree+bounces-288665-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:59:50 +0200
+	id SCMpJfQV5mnCrQEAu9opvQ
+	(envelope-from <devicetree+bounces-288669-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:03:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A06B42A5D2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:59:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E95BA42A63A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:02:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3C85B305582F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:56:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4311130915F5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:58:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B48B39EF06;
-	Mon, 20 Apr 2026 11:56:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE41E39F16D;
+	Mon, 20 Apr 2026 11:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GoqWdZGH"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="hxhLqbZG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 253BD39E6FE;
-	Mon, 20 Apr 2026 11:56:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09B1B39D6CF;
+	Mon, 20 Apr 2026 11:58:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776686215; cv=none; b=Nq/9BkXdX+fk+mT6kRu3B9FO4qPUhWt0twQpTC3wZkcDRNGOj+eAT0Y/qNvJiDKhjQiZMvbkxa2OAU9sYYUXR3xMTmdSa/2eiulc5p7E+4Etk4kngkLEdNd6o+Ovya0c/p3hYZtTICTMwOZYaO7ctx+hnGoVXe+JiRXFtFGvHS4=
+	t=1776686313; cv=none; b=ZfXEnOjWRhqlGPC5VdkD+hDFrMHaOGmeoh5xhbr1t+YPWglfafh2vTt0NVUaAqcGbUm1lMrLuAEzP6OM6fdTPYsR54CN2422iAV7dpphW2uk5SQg0DBfZ0i/7iSgTVDmgeLLWpg6nCUVBNpahWOHmgKmedRhkQiNgLchprVmSRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776686215; c=relaxed/simple;
-	bh=9KMynvG87L1peJWulqXENZ0npo26GGL5Wjkedyewtt8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AumouH2XYuJMN6Xb5hHWgBYKIP2QZWXGnRjOekdIdGuCxcxn8jSoCL+EOwpWv7wfu5zNSPrD9KyisPwPh4GRrX/cPJbyWGUZcMzmsY6a6IOfLEv9YesRIFQJmS1akQeYmV6HLiCAd+QHUUiw1zefSAZBWLVzyD5BAQnp9vInaPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GoqWdZGH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99AB9C19425;
-	Mon, 20 Apr 2026 11:56:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776686214;
-	bh=9KMynvG87L1peJWulqXENZ0npo26GGL5Wjkedyewtt8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GoqWdZGH5SMpHJyjUrV6GDcEZOv7H77nXs3eyxJz1pZV+Qer59d+wAtsYPwpB1JpE
-	 LpfOIRdTM3gOsJyQX8QofXoIgDf/kdC8Q14wv+hZB+koN+YGUInS/QVruTL7WXGDP9
-	 jMpINT5KhRgAeZPVJE4Ojyowz5r1dB0HA3nLqFjcnP6soGWd+AoW3/lRf/58iZ4Ttk
-	 pIH2xN6J45+nPtUm1qoRHZqBGiC/RnAvTe4XdK0ne42X5h7ZMibbvVzLtOPThtJ6zp
-	 1tVMlhwKm0/yE5Y982fK1WYGMG66EmAZiFst5895yRXzSRN69f+TzdJds3TpR4MgIY
-	 JFXgNlU1dVH/g==
-Message-ID: <4b074757-ac44-4077-8ab4-5a983d1be50b@kernel.org>
-Date: Mon, 20 Apr 2026 13:56:46 +0200
+	s=arc-20240116; t=1776686313; c=relaxed/simple;
+	bh=YtSJSMn/IVKEwUmUG4/Nu1r030hOOMaWchctzjmW4vw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Otg4TjAZON0ahY6e2NYPaBLvoVPKdST4Nh93jxsjtfwaXlLtgp85aY74mXSCSpIcrz5wcUEBe2P3HIXZeiJ/woHMkYKO83gTJHqYR5LhGCETiAZS/t/kjyJtRtHASJ2eulhlvGDibgitYvdMzNO0VhJearRCEvYTRThQou91+rE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=hxhLqbZG; arc=none smtp.client-ip=65.21.61.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1776686307;
+	bh=YtSJSMn/IVKEwUmUG4/Nu1r030hOOMaWchctzjmW4vw=;
+	h=From:Subject:Date:To:Cc;
+	b=hxhLqbZGw4d6dABN6qxYWcIr3qosAEMECxozQ233TNyYNx1vYB8FGe5KBEDVQOt6o
+	 0bmxQKWXFbcNjC4PW6ULjof9aUUPeBnGF2c3JgbKvai4olyd7f7KPICsgoT34FC17O
+	 zyCN9O6hnEeUSKSQGOdg7Ogex7tt0fjYc1yQF0vQ=
+Subject: [PATCH v3 0/4] arm64: dts: amlogic: t7: Add UART support and
+ enable Bluetooth on VIM4
+Date: Mon, 20 Apr 2026 13:58:08 +0200
+Message-Id: <20260420-add-bluetooth-t7-vim4-v3-0-669cd2530ae5@aliel.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: crypto: qcom,inline-crypto-engine: Document
- Nord ICE
-To: Shawn Guo <shengchao.guo@oss.qualcomm.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
- Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260420073301.1250197-1-shengchao.guo@oss.qualcomm.com>
- <dd5ee12e-1aac-494f-a8f8-74e236ecb47c@kernel.org>
- <aeXmOSfAFoxhIAcD@QCOM-aGQu4IUr3Y>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aeXmOSfAFoxhIAcD@QCOM-aGQu4IUr3Y>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XOQY7CMAwF0KtUWY+Rk6btwGruMWKRJi611DaQh
+ AiEevfJFBZsWH5b/9kPESkwRXGoHiJQ5sh+KaH+qoQdzXIiYFeyUKha1FKDcQ766UrJ+zRC6iD
+ zrGFASVhbTVYZUbrnQAPfNvf3+MyBLtfCp+dQ9CYSWD/PnA7VQrcErxO1+C+MHJMP9+2vLLfGa
+ 998eCFLQMDeYKdba6Vrf8zENO2GsIFZvSPtJ0QVZG+aDvffg8OmeUPWdf0D+67dBC8BAAA=
+X-Change-ID: 20260414-add-bluetooth-t7-vim4-f01e03c4ec2a
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openssh-sha256; t=1776686305; l=2335;
+ i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
+ bh=YtSJSMn/IVKEwUmUG4/Nu1r030hOOMaWchctzjmW4vw=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
+ BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QMVITgx/HfScbL1Srfe5GskALW2NMprSDwVR2qsijtxvzfCVq5EmFrj9ncYljRcCnFx4mhhj3B0
+ 21h1LTwIScgA=
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
+ fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[aliel.fr,quarantine];
+	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	URIBL_MULTI_FAIL(0.00)[sea.lore.kernel.org:server fail];
-	TAGGED_FROM(0.00)[bounces-288665-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-288669-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[aliel.fr:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1A06B42A5D2
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aliel.fr:email,aliel.fr:dkim,aliel.fr:mid]
+X-Rspamd-Queue-Id: E95BA42A63A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/04/2026 10:39, Shawn Guo wrote:
-> On Mon, Apr 20, 2026 at 10:27:56AM +0200, Krzysztof Kozlowski wrote:
->> On 20/04/2026 09:33, Shawn Guo wrote:
->>> Add compatible for Inline Crypto Engine (ICE) on Qualcomm Nord SoC
->>> witha fallback on qcom,inline-crypto-engine.
->>
->> Don't explain what the diff is doing. Explain why. Why do you use fallback?
->>
->> What is Nord? It's nowhere explained. First posting was 1.5 months ago
->> and it did not provide any explanation. I don't see any information
->> being posted in the series sent now.
-> 
-> I'm still checking internally to see how we can get the best socinfo
-> patch describing Nord which is a SoC family covering both SA8997P and
-> IQ10 variant.  Hopefully I will get it soon.
+This series adds all UART controllers for the Amlogic T7 SoC and enables
+the Bluetooth controller on the Khadas VIM4 board.
 
-I found the DTS on:
-https://github.com/qualcomm-linux/kernel-topics/commits/early/hwe/nord/
-so it should be mentioned somewhere, which I kind of asked when we
-discussed about adding compatibles used by that DTS. You would solve
-yourself all my questions from three threads.
+The T7 SoC ships with six UART controllers (A through F), but only
+uart_a was previously described in the device tree.
+
+  - Patch 1 adds the pinctrl group for UART C, which is needed to route
+    its four signals (TX, RX, CTS, RTS) through the correct pads.
+
+  - Patch 2 completes the uart_a node (peripheral clock) and
+    repositions it to respect the ascending reg address order required
+    by the DT specification. It then adds nodes for UART B through F,
+    each with their respective peripheral clock.
+
+  - Patch 3 removes redundant clocks and clock-names for UART A on
+    Khadas VIM4 DT. It then uses those defined from DTSI.
+
+  - Patch 4 enables UART C on the Khadas VIM4 board and attaches the
+    on-board BCM43438 Bluetooth controller to it, with hardware flow
+    control, wakeup GPIOs, LPO clock and power supplies.
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+Changes in v3:
+- Patches 3-4: split into two separate patches:
+               3. remove redundant clocks from UART A
+               4. add UART C node according to Neil's feedback.
+- Link to v2: https://lore.kernel.org/r/20260416-add-bluetooth-t7-vim4-v2-0-9a57098fd055@aliel.fr
+
+Changes in v2:
+- PATCH 1: change underscore to dash in pin node name,
+           according to Xianwei's feedback.
+- PATCH 3: remove clocks and clock-names as already defined in DTSI,
+           according to Xianwei's feedback.
+- Link to v1: https://lore.kernel.org/r/20260415-add-bluetooth-t7-vim4-v1-0-0ba0746cc1d6@aliel.fr
+
+---
+Ronald Claveau (4):
+      arm64: dts: amlogic: t7: Add uart_c pinctrl pins group
+      arm64: dts: amlogic: t7: Add UART controllers nodes
+      arm64: dts: amlogic: t7: khadas-vim4: Remove redundant clocks from UART A
+      arm64: dts: amlogic: t7: khadas-vim4: Enable Bluetooth
+
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 21 ++++++-
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        | 73 +++++++++++++++++++---
+ 2 files changed, 85 insertions(+), 9 deletions(-)
+---
+base-commit: 6aa9edb4f8266cfb913ee74f5e55116550b5574d
+change-id: 20260414-add-bluetooth-t7-vim4-f01e03c4ec2a
 
 Best regards,
-Krzysztof
+-- 
+Ronald Claveau <linux-kernel-dev@aliel.fr>
+
 
