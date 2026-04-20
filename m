@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-288572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288573-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oCIRDuro5WndpAEAu9opvQ
-	(envelope-from <devicetree+bounces-288572-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 10:50:50 +0200
+	id wOjfEjTp5WnxpAEAu9opvQ
+	(envelope-from <devicetree+bounces-288573-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 10:52:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E535428775
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 10:50:45 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B77874287C9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 10:52:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B5893304E0F2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:43:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8DF5F306BA7F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:44:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4217E388364;
-	Mon, 20 Apr 2026 08:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37AA5388399;
+	Mon, 20 Apr 2026 08:44:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SnNU8IjZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Orh6K8S1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E90E2E62AC;
-	Mon, 20 Apr 2026 08:43:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F2D2E62AC;
+	Mon, 20 Apr 2026 08:44:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776674594; cv=none; b=EOcL0/EDdyyyvQ9bZfsElGmUl5G8/A+9nUN7R/gbHcmpH03Udq+X2KTsC0gVXN5G/BmbtUg45EVRP8J2/x4WuAB0Xcsb4+AAQF6vDoGyNpCPxxtF7p/5cr5cCg4fgBOGqN3QizMZ+XuJ6gGG8ujXM7dGmF+4mCXo4v0TPUVyLpM=
+	t=1776674691; cv=none; b=KKVHIhmogDR0GQSLgV2b5ZbUeIcRJ2eko0NtyJUdlgYUo1qEQhKXzzo2z4UV1C562Eeq1X8JikEq9vdcz9WCZ+PVpEUJtokBlLWh1Cf8nadfXQ7oJM13t8aXvxI1mXNxQODM8VyEjepI5Xpuy95XF0tMneedpR4MCaXDajv0v7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776674594; c=relaxed/simple;
-	bh=qBaG8dVSFOBf45SSCko/wmEic1Ge8zi/morj7vkbQ7s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i8/cjxOIAqMZGIVAuQ3uSqDb0be0P6B0poCJyeynaQnWHznJBj1SAoWeuiO8oXAzsc4h1GdID0qRYNnY1A2E7urevoDa9hec8IAULuEpLUda0r0fj6H7g7THwGrPxT80MVj+Y5phKo91QNRNHiE2S8/KyH2qBP3KhSrMAoW4EdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SnNU8IjZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F9FCC19425;
-	Mon, 20 Apr 2026 08:43:10 +0000 (UTC)
+	s=arc-20240116; t=1776674691; c=relaxed/simple;
+	bh=wwJkcklq/d0LUSKaLa5NNiJb86iZWnx7isPH1IKMsH4=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=JuRY4DQ2OeaXPtTqGymAI8MT+4QlSX6HiA9OFwtRdoaRUsrE261JyICse4p9ZnEtWiutczZ0j0RoTesPlrNtERGnfKcHRNoYxMZfqnRm0pOyLKPU3A5ewWj+QEQg1D0U7aiR0ot4CfXCAiPx+hs8MO9zQeCIm6nXZjF89BO+bGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Orh6K8S1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93BB1C19425;
+	Mon, 20 Apr 2026 08:44:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776674593;
-	bh=qBaG8dVSFOBf45SSCko/wmEic1Ge8zi/morj7vkbQ7s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SnNU8IjZqClicDn3FpZJ/jbJ1Vl4VNRUwYUR3WuIMUPAuEXuZGfESQWweerYR128B
-	 4bl+ZS9KbfOaPGmVQ5jvO76C8A2MD1w8Su5dSG6/ahxyVPt85Q4GPaDVs+g9GfY68T
-	 QUdkiSfIwJSXlmiAOXz6sazbn4i4SN9CRM8rxOwIHgx5cudiJ+VY2iGI0kpsdFxxnb
-	 JPWVu1dUWy//D2Y4SH+PTD2f+kZt6uIVkXCMGM98ediHqiTDRKNjGgp14N5d6RldL2
-	 2OsagMpJvIhEbwkuLSc1CvZ+y8wsLTwkHSEG4B0JXANwHCtJGpiDg7/NP7CavR1CrM
-	 ZaIpncXnPjQKw==
-Message-ID: <dfa3f1a7-f4c6-4655-94c0-326f88db3896@kernel.org>
-Date: Mon, 20 Apr 2026 10:43:08 +0200
+	s=k20201202; t=1776674690;
+	bh=wwJkcklq/d0LUSKaLa5NNiJb86iZWnx7isPH1IKMsH4=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=Orh6K8S1SG/IhDYz/oBF2PgUjwknzZlWjP30/Vz77T6S5qRAaeiVbf+6VrEAdfhuI
+	 6n23F5hRl+JuBqHaiBR41NVwZ8plihCfGHFbrArIrBV+ZBV1VY/c2pyBhGQ4eWQ6Yz
+	 T4kQguQlffNF4D6pq4c7hWbJwOps8Yg6gIC1iN8cJgH3q7r3K2IfC7+9TnYbOY6s8A
+	 +2JN9JpR3oeGFFRaX87B+eXFBTq/3Ia/ZwCgDw2u5ajrif9coKiukaHrKVQE9asWnL
+	 faynmgHlkFOVp6KV00S7GMC/tCF2tu8HOvYH/gcwE3CwFwZ1IasmLYlMoijgyPF1oG
+	 vA7ACI/WPOs0w==
+Message-ID: <87ef529e-b591-49f5-9fc9-3099672e2f0f@kernel.org>
+Date: Mon, 20 Apr 2026 10:44:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,6 +54,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] dts: riscv: spacemit: k3: only keep spacemit,k1-i2c
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Sandie Cao <sandie.cao@deepcomputing.io>, Yixun Lan <dlan@kernel.org>,
  Troy Mitchell <troy.mitchell@linux.spacemit.com>
 Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -64,7 +65,7 @@ Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
  linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>
 References: <20260420083931.1427703-1-sandie.cao@deepcomputing.io>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <dfa3f1a7-f4c6-4655-94c0-326f88db3896@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -109,7 +110,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260420083931.1427703-1-sandie.cao@deepcomputing.io>
+In-Reply-To: <dfa3f1a7-f4c6-4655-94c0-326f88db3896@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -117,20 +118,19 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	URIBL_MULTI_FAIL(0.00)[sea.lore.kernel.org:server fail,intel.com:server fail];
-	TAGGED_FROM(0.00)[bounces-288572-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288573-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
@@ -138,32 +138,26 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email]
-X-Rspamd-Queue-Id: 9E535428775
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B77874287C9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/04/2026 10:39, Sandie Cao wrote:
-> Fix dtcheck issue: compatible:0: 'spacemit,k1-i2c' was expected
-
-Missing space after main commit msg.
-
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/r/202604140259.eKDaxKua-lkp@intel.com/
+On 20/04/2026 10:43, Krzysztof Kozlowski wrote:
+> On 20/04/2026 10:39, Sandie Cao wrote:
+>> Fix dtcheck issue: compatible:0: 'spacemit,k1-i2c' was expected
 > 
+> Missing space after main commit msg.
+> 
+>> Reported-by: kernel test robot <lkp@intel.com>
+>> Closes: https://lore.kernel.org/r/202604140259.eKDaxKua-lkp@intel.com/
+>>
 
-There is no space between tags.
+Also, the file reported in above warning DOES NOT EXIST (I checked
+next-20260414).
 
-Anyway, explain WHY K3 device does not use K3 compatible. It is clearly
-violating writing-bindings.
-
-Plus, I don't think this report is correct. You just send us something
-close to random fix of random warning, without even opening the files
-and understanding what is there. spacemit,k3-i2c MUST be used with K1.
-Please read the binding.
-
-NAK
+Please do not send reported-by bug reports for things which do not exist.
 
 Best regards,
 Krzysztof
