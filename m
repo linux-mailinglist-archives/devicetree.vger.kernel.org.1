@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-288483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288484-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sIGPL+F95WkGkgEAu9opvQ
-	(envelope-from <devicetree+bounces-288483-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 03:14:09 +0200
+	id CMq0Msd+5WkGkgEAu9opvQ
+	(envelope-from <devicetree+bounces-288484-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 03:17:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D648425FA4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 03:14:09 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B751425FFF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 03:17:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CC14B3007488
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 01:14:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E74083031E8A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 01:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3DE42641CA;
-	Mon, 20 Apr 2026 01:14:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EDDA264612;
+	Mon, 20 Apr 2026 01:14:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60BF0262FFC;
-	Mon, 20 Apr 2026 01:14:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E85257843;
+	Mon, 20 Apr 2026 01:14:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776647647; cv=none; b=tx8kWyou96hBjR1GNfbkLFEYfyKuE5mJc3ZT1f5050rKR2cqikGase9VWOa399hwffqfCRNgyw18T5pn2EcXMHo4O5F3Svyvu5AV58WVdkktpe9ZLN5Y4hZ0SHZuF0CmeTJ20OPj/bmcTRTs6yVBBhUduV0pnVP8mIMYo1PrQ/A=
+	t=1776647654; cv=none; b=nnz+6FDvnWG8A7N0y+n+Zow8Vw1xR87lWBqvDgqE2TyGBis8ZqYtmdhZ+sOdILUuOM8Rk6/2aRWAK/2Npnhn4FXwbrU3p56dPFOrcGlQmUJgDjvnSX6XLvsE483HmHhqXcw8i94JoxR5173+MmEHni3knRgm04JedbL4n8udspA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776647647; c=relaxed/simple;
-	bh=4u+RIpz2k0+HtyFKL8UNuOl/VleVG5S4J7lMdgJTadw=;
+	s=arc-20240116; t=1776647654; c=relaxed/simple;
+	bh=fUjxGgWhPEMXwJXCDlJg/8e6o/Bo8ZPhSNIhd5bfYQA=;
 	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VuMT+6GRwYkMIHQnmEfgdl8oC4itPO9vSIO2uljVWROBBqR77UjMJ6pj8XWgMNQlg243yGZh1ZsE3ouO3I6JxH5u2an4P7Uk1SihGkHOLKkcwBkikd2RwcpfNh9gw5hBeqCocEyYEkIZUkJ6Nn0ig5GXtQiwgGG4Hk6tPR56Ajc=
+	 Content-Type:Content-Disposition:In-Reply-To; b=rleVYcV76gZdqjhOdPIyPGtyl8cljh4pXv1FBk5g9t2tcO2bNWTIdoKMpp3wbdVK4o6Lr4oREDFtPzdr0OCLblK+MKGl1zUUxKdCf8Pue/N/igfic91giKYPcNzrWVC2c0HtxK5Aox5K2bqvPqPrYwQyIjfvtCn+p0i52GwMtlA=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
@@ -36,9 +36,9 @@ Received: from local
 	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
 	 (Exim 4.99)
 	(envelope-from <daniel@makrotopia.org>)
-	id 1wEdD6-000000002a2-45eE;
-	Mon, 20 Apr 2026 01:14:01 +0000
-Date: Mon, 20 Apr 2026 02:13:57 +0100
+	id 1wEdDD-000000002aX-3qvh;
+	Mon, 20 Apr 2026 01:14:08 +0000
+Date: Mon, 20 Apr 2026 02:14:04 +0100
 From: Daniel Golle <daniel@makrotopia.org>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -55,9 +55,9 @@ To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
 	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 8/9] ARM: dts: mediatek: mt7623: wire HDMI audio path
- clocks into AFE
-Message-ID: <06665ee0738ea70fc175fdbab8fd64ab8cc68f35.1776646435.git.daniel@makrotopia.org>
+Subject: [PATCH v2 9/9] ARM: dts: mediatek: mt7623n-bananapi-bpi-r2: add HDMI
+ audio machine node
+Message-ID: <854c8f99582eb0adf13d91dad8ded3faa4e753ec.1776646435.git.daniel@makrotopia.org>
 References: <cover.1776646435.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -70,14 +70,14 @@ Content-Disposition: inline
 In-Reply-To: <cover.1776646435.git.daniel@makrotopia.org>
 X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288483-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288484-lists,devicetree=lfdr.de];
 	DMARC_NA(0.00)[makrotopia.org];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org,collabora.com,perex.cz,suse.com,arndb.de,mediatek.com,makrotopia.org,renesas.com,linaro.org,vger.kernel.org,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -85,77 +85,51 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
+	DBL_PROHIBIT(0.00)[4.196.180.0:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,makrotopia.org:mid,makrotopia.org:email]
-X-Rspamd-Queue-Id: 6D648425FA4
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,makrotopia.org:mid,makrotopia.org:email]
+X-Rspamd-Queue-Id: 2B751425FFF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Mirror the MT2701 change for the MT7623 SoC dtsi: add HADDS2PLL,
-audio_hdmi, audio_spdf and audio_apll to the AFE clocks list and
-reparent the AUDPLL mux to HADDS2PLL_98M. Required for HDMI audio
-on MT7623N boards via the shared mt2701 AFE driver.
+Instantiate the mediatek,mt2701-hdmi-audio machine on the
+BananaPi BPI-R2, binding the AFE HDMI playback path to the
+on-chip HDMI transmitter acting as the generic HDMI codec.
 
 Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 ---
 v2: no changes
 
- arch/arm/boot/dts/mediatek/mt7623.dtsi | 21 ++++++++++++++++-----
- 1 file changed, 16 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dts | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm/boot/dts/mediatek/mt7623.dtsi b/arch/arm/boot/dts/mediatek/mt7623.dtsi
-index 71ac2b94c6ba3..4eb028ffee6f5 100644
---- a/arch/arm/boot/dts/mediatek/mt7623.dtsi
-+++ b/arch/arm/boot/dts/mediatek/mt7623.dtsi
-@@ -665,7 +665,11 @@ afe: audio-controller {
- 				 <&audsys CLK_AUD_AFE_CONN>,
- 				 <&audsys CLK_AUD_A1SYS>,
- 				 <&audsys CLK_AUD_A2SYS>,
--				 <&audsys CLK_AUD_AFE_MRGIF>;
-+				 <&audsys CLK_AUD_AFE_MRGIF>,
-+				 <&topckgen CLK_TOP_HADDS2PLL_294M>,
-+				 <&audsys CLK_AUD_HDMI>,
-+				 <&audsys CLK_AUD_SPDF>,
-+				 <&audsys CLK_AUD_APLL>;
- 
- 			clock-names = "infra_sys_audio_clk",
- 				      "top_audio_mux1_sel",
-@@ -700,15 +704,22 @@ afe: audio-controller {
- 				      "audio_afe_conn_pd",
- 				      "audio_a1sys_pd",
- 				      "audio_a2sys_pd",
--				      "audio_mrgif_pd";
-+				      "audio_mrgif_pd",
-+				      "hadds2pll_294m",
-+				      "audio_hdmi_pd",
-+				      "audio_spdf_pd",
-+				      "audio_apll_pd";
- 
- 			assigned-clocks = <&topckgen CLK_TOP_AUD_MUX1_SEL>,
- 					  <&topckgen CLK_TOP_AUD_MUX2_SEL>,
- 					  <&topckgen CLK_TOP_AUD_MUX1_DIV>,
--					  <&topckgen CLK_TOP_AUD_MUX2_DIV>;
-+					  <&topckgen CLK_TOP_AUD_MUX2_DIV>,
-+					  <&topckgen CLK_TOP_AUDPLL_MUX_SEL>;
- 			assigned-clock-parents = <&topckgen CLK_TOP_AUD1PLL_98M>,
--						 <&topckgen CLK_TOP_AUD2PLL_90M>;
--			assigned-clock-rates = <0>, <0>, <49152000>, <45158400>;
-+						 <&topckgen CLK_TOP_AUD2PLL_90M>,
-+						 <0>, <0>,
-+						 <&topckgen CLK_TOP_HADDS2PLL_98M>;
-+			assigned-clock-rates = <0>, <0>, <49152000>, <45158400>, <0>;
- 		};
+diff --git a/arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dts b/arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dts
+index a37f3fa223c72..139a76764faa0 100644
+--- a/arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dts
++++ b/arch/arm/boot/dts/mediatek/mt7623n-bananapi-bpi-r2.dts
+@@ -132,6 +132,13 @@ memory@80000000 {
+ 		device_type = "memory";
+ 		reg = <0 0x80000000 0 0x80000000>;
  	};
++
++	sound-hdmi {
++		compatible = "mediatek,mt7623n-hdmi-audio",
++			     "mediatek,mt2701-hdmi-audio";
++		mediatek,platform = <&afe>;
++		mediatek,audio-codec = <&hdmi0>;
++	};
+ };
  
+ &bls {
 -- 
 2.53.0
 
