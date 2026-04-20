@@ -1,141 +1,130 @@
-Return-Path: <devicetree+bounces-288818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288830-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0B8BFPhc5ml6vQEAu9opvQ
-	(envelope-from <devicetree+bounces-288818-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 19:06:00 +0200
+	id sGdGLp9d5ml6vQEAu9opvQ
+	(envelope-from <devicetree+bounces-288830-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 19:08:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C83764308A9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 19:05:59 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34A484309DF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 19:08:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 96D26305A475
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 16:29:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E26433064EA8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 16:35:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7E2C347FD1;
-	Mon, 20 Apr 2026 16:29:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FvXVoNzk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AD134B67F;
+	Mon, 20 Apr 2026 16:34:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3068334C39;
-	Mon, 20 Apr 2026 16:29:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908D734B69C;
+	Mon, 20 Apr 2026 16:34:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776702576; cv=none; b=TRYe/p7sf6YF6FeiXSX1DzH2WwjzWMJ4LOlLof4RM97Slmo0u1omP0ihEOJD3ew3fHQNUzc1wyZmyX3y6J9iuMln+ergvZirEO3mw4TxxgZiIi5x04za16/wS8RAD3atc3f93lBeKS5J5PAy5Qz76x+9B+1oQfEIllfB/dQB7gQ=
+	t=1776702899; cv=none; b=SYvFJxLATXDA9j5Mu+a7Km4QCZQb4wOBVtvIIBNz5iCrFZA5BG8VIw0GCasIwisgMV14mvQmeJSxBbey4eaUtQHY2zZu7ZNUTQn/Pw0ncPYYfCu7sCPqvFT+r4//n3MAOgLV3vkvQuWBlTR5ejZEiGLmEVazbztTEqpfRFeeuyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776702576; c=relaxed/simple;
-	bh=YQdW17/AA+lxKC8kcF6WCd+KieSYnqe1M+yeYbAJevQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bNxbTITjXGQuPo1GqTo+EQD1W/+PV35K69sTyDoNJPWk56KjKWRvca1AMpBzeUHS+XKaQ69k1m/E0i41aO3V2S+vU2HTRuC5eATKkvZcJeppWJsEsNHWNtelzdm/L55ziatZ+5Ozh/W+w46PpzhXlAnGIY/9UoaNYaaM+iMIP28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FvXVoNzk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F4E6C19425;
-	Mon, 20 Apr 2026 16:29:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776702576;
-	bh=YQdW17/AA+lxKC8kcF6WCd+KieSYnqe1M+yeYbAJevQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FvXVoNzk69Ys7W/EUulIQI0838gefgkQ9GwC+3lPvOOSCaVoN94T+1EBB0fwM7i50
-	 18LGyJW37bJl/QhOSwrqNWp3qHfNtn5NqbeiueuXuYoGF+FkzZlKrxLbl6CdroPKEj
-	 sQ/HpdDkhD8kE6FAKt7gcBKtjlW+Q97sKY6+BUZBIJMcwUmVGuBEHluVlHDjl0Ts0Q
-	 A26Cabm/xPwX6alUmvAyNMd5CTPa70AUA5TmgaFOAYXmcvZgNjwnpR/K9cVH/8iuD9
-	 /FgD9x86LQgUWAxYleONY1p6sqvQEj6JHvy/L19NRIdCfKK51hNb0pzOjHThaE6u8a
-	 m0m34d/o+tKzw==
-Date: Mon, 20 Apr 2026 17:29:31 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1776702899; c=relaxed/simple;
+	bh=EsCUyEPRwQSZlruBolpbuf2AreSJOySm10HLNkmg42E=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=jfuRCu+T2zYM+RsS+cLirJl0OPRWCb+/m+uBTGLAXbt0ui2Z94qX1iZDfX7OAsQQaJmaUNGl+ah4S54w90Sctyg9xV++qQEHhh1JHQJ9qQrTamNJPQrzsq4zaLHdSOFc5N/AHCGV4rsdnVBkpHs2hMGEcVvtd15PL6V/y2DDl5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1wEraC-000000001Bl-1o7A;
+	Mon, 20 Apr 2026 16:34:48 +0000
+Date: Mon, 20 Apr 2026 17:34:45 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] spi: qcom-qspi: Fix incomplete error handling in
- runtime PM
-Message-ID: <c38284d9-f7a9-4a0f-a4c7-cafdb1a1f720@sirena.org.uk>
-References: <20260420-spi-nor-v3-0-7de325a29010@oss.qualcomm.com>
- <20260420-spi-nor-v3-2-7de325a29010@oss.qualcomm.com>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Daniel Golle <daniel@makrotopia.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v4 1/3] dt-bindings: rng: mtk-rng: fix style problems in
+ example
+Message-ID: <912fe579eccf577f3064b69d6c945e2c9087cab8.1776702734.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="YEPl/+bK0ZzKjQuR"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260420-spi-nor-v3-2-7de325a29010@oss.qualcomm.com>
-X-Cookie: Sales tax applies.
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288818-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288830-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DMARC_NA(0.00)[makrotopia.org];
+	FREEMAIL_TO(0.00)[selenic.com,gondor.apana.org.au,kernel.org,gmail.com,collabora.com,mediatek.com,makrotopia.org,vger.kernel.org,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C83764308A9
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[1020f000:email,makrotopia.org:mid,makrotopia.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 34A484309DF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Use 4 spaces for each level indentation, remove unused label, and add
+missing empty line between header include and body.
 
---YEPl/+bK0ZzKjQuR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+---
+v4: new patch
 
-On Mon, Apr 20, 2026 at 11:42:49AM +0530, Viken Dadhaniya wrote:
-> The runtime PM functions had incomplete error handling that could leave the
-> system in an inconsistent state. If any operation failed midway through
-> suspend or resume, some resources would be left in the wrong state while
-> others were already changed, leading to potential clock/power imbalances.
+ Documentation/devicetree/bindings/rng/mtk-rng.yaml | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-> +err_select_default_state:
-> +	pinctrl_pm_select_default_state(dev);
-> +err_enable_icc:
-> +	icc_enable(ctrl->icc_path_cpu_to_qspi);
-> +err_enable_clk:
-> +	clk_bulk_prepare_enable(QSPI_NUM_CLKS, ctrl->clks);
-
-clk_bulk_prepare_enable() is marked __must_check.
-
---YEPl/+bK0ZzKjQuR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnmVGoACgkQJNaLcl1U
-h9Ba5gf+OY3mSJsyMuuK/3icHqIuZZc7jH+z0LwxA2Ylmkj87+5SXH0OjYYC7yKU
-auSZV8+2y6dBPMt5ilAGf3KOrLo+Lshc8dz1aCXTgJv6KoTLrcGQIO430yLmC7to
-B9NgPMmiwUjAxahjPC4LhvHWYFFMFAkBF+ieNWkhNTOgMuW7hpGPPK0McxkaMMqh
-vavTM4IqAN1B/Pr/PhKah/YbEV4QiLj7sM8g6gfCiDOFj9qXHD42nanwNIkXKUY3
-S5Lsa/5vdPa5gqI9xuA8pLAjs1amw7tZWc/hW72XsSGoV55RdM3ltHaNr7k6kZy+
-HJ605If84trsQZjMGjxeRdkfo5E56Q==
-=AKIL
------END PGP SIGNATURE-----
-
---YEPl/+bK0ZzKjQuR--
+diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.yaml b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
+index 7e8dc62e5d3a6..8f2f4c32a0cfc 100644
+--- a/Documentation/devicetree/bindings/rng/mtk-rng.yaml
++++ b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
+@@ -47,9 +47,10 @@ additionalProperties: false
+ examples:
+   - |
+     #include <dt-bindings/clock/mt2701-clk.h>
+-    rng: rng@1020f000 {
+-            compatible = "mediatek,mt7623-rng";
+-            reg = <0x1020f000 0x1000>;
+-            clocks = <&infracfg CLK_INFRA_TRNG>;
+-            clock-names = "rng";
++
++    rng@1020f000 {
++        compatible = "mediatek,mt7623-rng";
++        reg = <0x1020f000 0x1000>;
++        clocks = <&infracfg CLK_INFRA_TRNG>;
++        clock-names = "rng";
+     };
+-- 
+2.53.0
 
