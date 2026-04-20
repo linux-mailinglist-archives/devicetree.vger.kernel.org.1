@@ -1,179 +1,149 @@
-Return-Path: <devicetree+bounces-288712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288707-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SMk2OpIx5ml6tAEAu9opvQ
-	(envelope-from <devicetree+bounces-288712-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 16:00:50 +0200
+	id kJejGzct5mliswEAu9opvQ
+	(envelope-from <devicetree+bounces-288707-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:42:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB1D242C84D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 16:00:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0735E42C274
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:42:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E3D18314EC84
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:44:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 682DA3091BAF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677B03E3C64;
-	Mon, 20 Apr 2026 13:24:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38C3D3D092F;
+	Mon, 20 Apr 2026 13:18:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p2H1bGw+"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kf3pTJz0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 432C43BA24E;
-	Mon, 20 Apr 2026 13:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29E623CFF64
+	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 13:18:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776691482; cv=none; b=cQ8Z6WqUM1JsOAI3gJVvGMqiZsNnSfyfQSEu3oPS+5U6mLZ3b5+rk89iwOKRgadVYdU/APHRJrH41QJQ6/FxPRhFSMAw0rWHqqvBdZcTEyqgD9C61asEprISA85DEJmjjRcjJtcWAJjnmLnU6gJhqsY0Qbz1I2zDlJtTvsiN7HE=
+	t=1776691085; cv=none; b=faFL28qbZSUNlsujiDATbd/gtz6Niy82qSMPlAHpxnaAuIlrsQ/LNzCjuxH0whDMKuZ3ff75oIClJONiuUG5bqcUuaGjP5G+1g1J/C8BxVaQZxQxNEQD6T5HI5uRGlaTsIUlHIArxOeBfK8a/mxYNl1R9vI4dArXx/njClIWiMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776691482; c=relaxed/simple;
-	bh=b2N3n3pXJf/7gTblbl17X9f/3O1FJA1n/NyhJMsGXck=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=amgCoZxy4bXG3r3K0j1JlKCHgHw0hts1aCt5XYGKyPWM3mk3yBRtA+PhHrSm4FhNtcHTkNhKvoCzDb5wojg5CoMq1KHD5/7D7DtHphn0EqCzZsZpLHiPpuha5QoByxu8ymzUtINKce8uJNxvsuVe2ovf4Mrf/xUCTAXmzHgdJCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p2H1bGw+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B21FCC2BCB7;
-	Mon, 20 Apr 2026 13:24:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776691482;
-	bh=b2N3n3pXJf/7gTblbl17X9f/3O1FJA1n/NyhJMsGXck=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=p2H1bGw++iBb57Px/sP4j/9BQ0IFhnqvMXqLAqs+CX0Zz/se9u0RztUp0VlX3cuAH
-	 1lUyAEddZIAPFsJtyyA7KsLnq2UJUIfB5ez9zb2wLYydKazxlVjUPlALhEDTKs81wX
-	 MXxEqrUxX5gs4ho1rvAZqrP+Tc8n4Eh72XYiJ13gxCa4dUxaQAIdscArZmHl7n2l0i
-	 0Le9+W9dQZIglCYd5GpwL3yndgYf2lGA+YcNR9X5FA4QJMjjvnxA5MJAKhqxsGtM5N
-	 OjkER1Rg+/VFt58Pi71fduhaFb8cqhRE3cnWFBxwNYQ/ucDogpStEs6TyTIX/4rx81
-	 MbJBWml0lv6Ig==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Sasha Levin <sashal@kernel.org>,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	quic_jingyw@quicinc.com,
-	linux-arm-msm@vger.kernel.org,
+	s=arc-20240116; t=1776691085; c=relaxed/simple;
+	bh=9FkvdrCJWU69BHjBnRUIifEHX2aPcYqJgDqD5nPc410=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MAjzdRYK0Rd6U1++Xr9bQDh8i/LIJNDZ7B4svQXLUDOxPstMxsXj+sBtLW3WWYk3/zWO/GHxrhtCAFSlZ9eza20WyMKvu+r9sW0V8/xXzqyPVPPKAcK0rEK5WlzsXzyIPi6/bx/aSCHdPx/2WTdSXQxNkpvtGoC0fTxhW6ItHxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kf3pTJz0; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 8E3E64E42A74;
+	Mon, 20 Apr 2026 13:18:00 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 625245FFA5;
+	Mon, 20 Apr 2026 13:18:00 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9B7E1104608BD;
+	Mon, 20 Apr 2026 15:17:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1776691079; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=g9j6tP3Etxqo20VEpvRVw0E7sixMpncDmd0IlGjpXiw=;
+	b=kf3pTJz0oJlkKKMIO7TrPhrZohq6pH43EGiLiA7ikenpiiMCzq4izeYWyPoSe9rng5vyWc
+	PMBVlEs97WeOGSj8mnHo9SiWnDactZVpSh8g1Mfj6iLB0de17zK+91JbLi5CMOqZ757KeL
+	HaA0sTVgfGoM8pE54CoFNBVDDkfZMoUYGUxP1Otr2uKS0pcmAaZ6iVaJhJ81NMsdzIDRNq
+	tvuikcigXv7ZvZw023NezItWqB+gZXphlT6zW2x/YMbM/mwBH8kQPQlU5eXIabecYvyWO3
+	3tWUsV8I4ppcIP752X50pMi7f1wh9QN4LxPCtz7F7V00uPVnXsCW+vyYsrW+pw==
+From: "Richard Genoud (TI)" <richard.genoud@bootlin.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Thomas Richard <thomas.richard@bootlin.com>,
+	Udit Kumar <u-kumar1@ti.com>,
+	Abhash Kumar <a-kumar2@ti.com>,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.18] arm64: dts: qcom: monaco: Reserve full Gunyah metadata region
-Date: Mon, 20 Apr 2026 09:17:29 -0400
-Message-ID: <20260420132314.1023554-55-sashal@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260420132314.1023554-1-sashal@kernel.org>
-References: <20260420132314.1023554-1-sashal@kernel.org>
+	linux-kernel@vger.kernel.org,
+	"Richard Genoud (TI)" <richard.genoud@bootlin.com>
+Subject: [PATCH] arm64: dts: ti: k3-j722s: use ti,j7200-padconf compatible
+Date: Mon, 20 Apr 2026 15:17:35 +0200
+Message-ID: <20260420131735.3833993-1-richard.genoud@bootlin.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.18.23
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288712-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-288707-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[richard.genoud@bootlin.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[5.107.6.32:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[93b00000:email,91a80000:email,qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CB1D242C84D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0735E42C274
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+From: Abhash Kumar Jha <a-kumar2@ti.com>
 
-[ Upstream commit 85d98669fa7f1d3041d962515e45ee6e392db6f8 ]
+The pinctrl contexts for j722s should be saved and restored during
+suspend-to-ram, just like it is done for j7200 and j784s4 SoCs.
 
-We observe spurious "Synchronous External Abort" exceptions
-(ESR=0x96000010) and kernel crashes on Monaco-based platforms.
-These faults are caused by the kernel inadvertently accessing
-hypervisor-owned memory that is not properly marked as reserved.
+Use ti,j7200-padconf compatible to save and restore pinctrl contexts during
+suspend-to-ram.
 
->From boot log, The Qualcomm hypervisor reports the memory range
-at 0x91a80000 of size 0x80000 (512 KiB) as hypervisor-owned:
-qhee_hyp_assign_remove_memory: 0x91a80000/0x80000 -> ret 0
-
-However, the EFI memory map provided by firmware only reserves the
-subrange 0x91a40000–0x91a87fff (288 KiB). The remaining portion
-(0x91a88000–0x91afffff) is incorrectly reported as conventional
-memory (from efi debug):
-efi:   0x000091a40000-0x000091a87fff [Reserved...]
-efi:   0x000091a88000-0x0000938fffff [Conventional...]
-
-As a result, the allocator may hand out PFNs inside the hypervisor
-owned region, causing fatal aborts when the kernel accesses those
-addresses.
-
-Add a reserved-memory carveout for the Gunyah hypervisor metadata
-at 0x91a80000 (512 KiB) and mark it as no-map so Linux does not
-map or allocate from this area.
-
-For the record:
-Hyp version: gunyah-e78adb36e debug (2025-11-17 05:38:05 UTC)
-UEFI Ver: 6.0.260122.BOOT.MXF.1.0.c1-00449-KODIAKLA-1
-
-Fixes: 7be190e4bdd2 ("arm64: dts: qcom: add QCS8300 platform")
-Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Link: https://lore.kernel.org/r/20260302142603.1113355-1-loic.poulain@oss.qualcomm.com
-Signed-off-by: Bjorn Andersson <andersson@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Abhash Kumar Jha <a-kumar2@ti.com>
+Signed-off-by: Richard Genoud (TI) <richard.genoud@bootlin.com>
 ---
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-LLM Generated explanations, may be completely bogus:
-
-Error: Failed to generate final synthesis
-
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index b8d4a75baee22..7a4c3e872d8ee 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -756,6 +756,11 @@ smem_mem: smem@90900000 {
- 			hwlocks = <&tcsr_mutex 3>;
- 		};
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+index e66330c71593..757eb6abcd72 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+@@ -242,6 +242,7 @@ &phy_gmii_sel {
+ };
  
-+		gunyah_md_mem: gunyah-md-region@91a80000 {
-+			reg = <0x0 0x91a80000 0x0 0x80000>;
-+			no-map;
-+		};
-+
- 		lpass_machine_learning_mem: lpass-machine-learning-region@93b00000 {
- 			reg = <0x0 0x93b00000 0x0 0xf00000>;
- 			no-map;
+ &main_pmx0 {
++	compatible = "ti,j7200-padconf", "pinctrl-single";
+ 
+ 	main_mcan0_pins_default: main-mcan0-default-pins {
+ 		pinctrl-single,pins = <
+@@ -418,6 +419,7 @@ &main_uart5 {
+ };
+ 
+ &mcu_pmx0 {
++	compatible = "ti,j7200-padconf", "pinctrl-single";
+ 
+ 	mcu_i2c0_pins_default: mcu-i2c0-default-pins {
+ 		pinctrl-single,pins = <
 -- 
-2.53.0
+2.47.3
 
 
