@@ -1,285 +1,156 @@
-Return-Path: <devicetree+bounces-288601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288603-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qC/FJsr05Wl+pgEAu9opvQ
-	(envelope-from <devicetree+bounces-288601-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:41:30 +0200
+	id iP9+HFH15Wl+pgEAu9opvQ
+	(envelope-from <devicetree+bounces-288603-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:43:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E630428F29
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:41:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A286B428F75
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:43:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 46BDF3032765
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 09:40:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 390C8305C8DD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 09:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A3738F643;
-	Mon, 20 Apr 2026 09:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DC823914FA;
+	Mon, 20 Apr 2026 09:42:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="j+VPntb/";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="yML6EmGr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5881538A70B;
-	Mon, 20 Apr 2026 09:40:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.46.229.174
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFD7F388E7C;
+	Mon, 20 Apr 2026 09:42:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776678031; cv=none; b=dA/vnIYlfnJXVuhnPSXnrudHPnWfqJs609mS/rLxzrj1BIp4+NitoSMBlnmbQvQuipuO4O+IaUsrOoCfgV0+Pd50HczIQBoptd7E8G3XlQ5e2Dlvmbduxh3kVgyfoVhNOBinnQhoLpb7kyd/yTGw2QflkiGS48aoaA/gcmvzqk0=
+	t=1776678152; cv=none; b=ToQ8iWV5loJ3kXhbrxMoWEE6/aYMqi7nsU+tkajeWs66xNkuYVWEY4L3eKRw0XN6U9l+wyJuK7HlXw1nuB416rrldDXWJmzA9HG2RHRRJN2nguQdeV0QIEuw9Q6IFlLaTYsdh2/t+64j6mLTBJn/2YULK+1D21ykwQTrMb4FteU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776678031; c=relaxed/simple;
-	bh=v8FUt/04hWzM8ybJchUJAqQnHS8MBz4N5wjw+8TeNQA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=C4kyF/5FdjvriuLzUS0MOh4Dk52TjUIFGQLjOsFHfeNT+DMGMSCL8MvpXBzu4XJciBJ3E/2jZHw74cKkVUTK+DYJPKvgzNfuX/+tooOvpawYopBoegSW2dVWR8orFHMYwAiPIjRHOoQEgyekEmN8hkO3LkODHC4uU+PBJmC2QaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app2 (Coremail) with SMTP id TQJkCgD3DKCA9OVpNi0TAA--.17024S2;
-	Mon, 20 Apr 2026 17:40:17 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	p.zabel@pengutronix.de,
-	huangyifeng@eswincomputing.com,
-	dongxuyang@eswincomputing.com,
-	benoit.monin@bootlin.com,
-	bmasney@redhat.com
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com
-Subject: [PATCH v2 1/3] dt-bindings: clock: Add ESWIN eic7700 HSP clock and reset generator
-Date: Mon, 20 Apr 2026 17:40:14 +0800
-Message-Id: <20260420094014.1955-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20260420093929.1895-1-dongxuyang@eswincomputing.com>
-References: <20260420093929.1895-1-dongxuyang@eswincomputing.com>
+	s=arc-20240116; t=1776678152; c=relaxed/simple;
+	bh=7ggz8o1NyD5NbLeVTyxCalNMovmWXlJppVm7RC8CuTo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ShO57TUgimNEx3Tcwy4vQyJcFxq6QKenvJmnEH1gNC9cKSGpcVV9DAv76fu7bk/80zLMdWQ7HfY+H9wPdxt7t+g0r3X0UagiW2aK+r8mAMuKoNzmbd7rYZJ42fN2UFFj5XwChG83O0KuOm1ahvVzHIc19DWqdDUATayM1ynCKKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=j+VPntb/; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=yML6EmGr; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1776678137; bh=X30xwmXxKaGfGe6ofAEIINU
+	ETrsIr1EVdLkXqIT5Ae4=; b=j+VPntb/txodUk1ILwSB3mo3RxYeBCxhTziljqYvLmC2ZG6oti
+	pYnNIHLDFvgMHVFjCp/WPJAH6x0EjNkVKCDELhFwBM+7SN6+GNL6rs7g6qRgAiXLYm0D6wcynYF
+	hHb4WVF23MHB8L0JLZoZlAhI3nbP0oSxV7YI2gurF8S+Q5udg7TokuidyhA5e9wD/YA2q5CnYs8
+	KSGC01mL8f1q0zSXNug/DZkWUE5/EGHyBk4DKIFlqtbDzHFRb6iaHi4FklcMVx6+squflAVF/A9
+	Y8bD+XpMPRukcHOPu+wMPcug6+gpRSnT0uCrP4dIyqVzQ9OpLbjZa6QGZY7uUef2o+g==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1776678137; bh=X30xwmXxKaGfGe6ofAEIINU
+	ETrsIr1EVdLkXqIT5Ae4=; b=yML6EmGrZURCjaCLG92Mjr8GEA76uqRrVfLmGkQd4DzmfI1jX7
+	iaDTyDPEOEkXXIPml6vkUQlFIU7UY4ieVVDA==;
+From: Nickolay Goppen <setotau@mainlining.org>
+Subject: [PATCH v2 0/3] arm64: dts: qcom: sdm630/660 FastRPC fixes
+Date: Mon, 20 Apr 2026 12:42:08 +0300
+Message-Id: <20260420-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-v2-0-f6c7ab3c889a@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TQJkCgD3DKCA9OVpNi0TAA--.17024S2
-X-Coremail-Antispam: 1UD129KBjvJXoW3JF17CF4UXFy7Cw1rKr4xCrg_yoW7uw1kpF
-	4kCF97Gr1vyF93ua95ta40kryfJ3ZrCry5ArWkJFnrZa1DJw1qqF4IgFyrAF9rZr4fXrWx
-	XF1xXw1av3yxu3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
-	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JU6a0QUUUUU=
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
-X-Spamd-Result: default: False [1.54 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPD05WkC/5WOQQ6CMBREr2K69ptSaImuvIdhUdoC30jB/ko0h
+ Lvb4gncTPImk5lZGbmAjtjlsLLgFiScfAJxPDAzaN87QJuYCS4UrwoJTzONQHZUioOxNIPO0mm
+ KYTZgI0GHb7Dc6FqVgldSs9Q1B5fsfefW/Jhe7d2ZmMtzYkCKU/jsR5Yi5/7dXArgwMu2qmUrz
+ lJW11Gjf6BH35+m0LNm27YvyGCaA/EAAAA=
+X-Change-ID: 20260415-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-d0ca7632045a
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Nickolay Goppen <setotau@mainlining.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776678136; l=1698;
+ i=setotau@mainlining.org; s=20250815; h=from:subject:message-id;
+ bh=7ggz8o1NyD5NbLeVTyxCalNMovmWXlJppVm7RC8CuTo=;
+ b=3vP+N7ypi8M/7HrxYU7ZgY7eBZUqQiaNzKAnDu8+eMjRHBiqjKj2PZ3FVgfakFIiPrr5OSIwi
+ onbGbK9q1KgBsd1Gp8nRqPamJSBEJeukIr7MLuZXz/CqzpA2CSJ973H
+X-Developer-Key: i=setotau@mainlining.org; a=ed25519;
+ pk=Og7YO6LfW+M2QfcJfjaUaXc8oOr5zoK8+4AtX5ICr4o=
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
+	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288601-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288603-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
-	NEURAL_SPAM(0.00)[0.610];
-	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[setotau@mainlining.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mainlining.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:mid,eswincomputing.com:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,3.1.167.64:email]
-X-Rspamd-Queue-Id: 3E630428F29
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,mainlining.org:email,mainlining.org:dkim,mainlining.org:mid,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A286B428F75
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
+This series introduces fixes that make FastRPC on SDM660 work properly.
+Currently only the calculator_example test passes on both ADSP and 
+CDSP [1].
+Also assign adsp_mem region to the ADSP's FastRPC node.
 
-Add bindings for the high-speed peripherals clock and reset generator
-on the ESWIN EIC7700 HSP.
+[1]: https://github.com/qualcomm/fastrpc/issues/269#issuecomment-4232125297
 
-Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
+Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
 ---
- .../bindings/clock/eswin,eic7700-hspcrg.yaml  | 63 +++++++++++++++++++
- MAINTAINERS                                   |  5 +-
- .../dt-bindings/clock/eswin,eic7700-hspcrg.h  | 33 ++++++++++
- .../dt-bindings/reset/eswin,eic7700-hspcrg.h  | 21 +++++++
- 4 files changed, 120 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-hspcrg.yaml
- create mode 100644 include/dt-bindings/clock/eswin,eic7700-hspcrg.h
- create mode 100644 include/dt-bindings/reset/eswin,eic7700-hspcrg.h
+Changes in v2:
+- Dropped patch that changed adsp_mem to reusable
+- Added vmids to fastrpc subnode of adsp (Ekansh Gupta)
+- Link to v1: https://patch.msgid.link/20260415-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-v1-0-03b475b29554@mainlining.org
 
-diff --git a/Documentation/devicetree/bindings/clock/eswin,eic7700-hspcrg.yaml b/Documentation/devicetree/bindings/clock/eswin,eic7700-hspcrg.yaml
-new file mode 100644
-index 000000000000..43df689ae647
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/eswin,eic7700-hspcrg.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/eswin,eic7700-hspcrg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ESWIN EIC7700 HSP Clock and Reset Generator
-+
-+maintainers:
-+  - Xuyang Dong <dongxuyang@eswincomputing.com>
-+
-+description:
-+  Clock and reset generator for the ESWIN EIC7700 HSP (high-speed peripherals).
-+
-+properties:
-+  compatible:
-+    const: eswin,eic7700-hspcrg
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: HSP configuration top clock
-+      - description: MMC top clock
-+      - description: SATA top clock
-+
-+  clock-names:
-+    items:
-+      - const: cfg
-+      - const: mmc
-+      - const: sata
-+
-+  '#clock-cells':
-+    const: 1
-+    description:
-+      See <dt-bindings/clock/eswin,eic7700-hspcrg.h> for valid indices.
-+
-+  '#reset-cells':
-+    const: 1
-+    description:
-+      See <dt-bindings/reset/eswin,eic7700-hspcrg.h> for valid indices.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - '#reset-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@50440000 {
-+        compatible = "eswin,eic7700-hspcrg";
-+        reg = <0x50440000 0x2000>;
-+        clocks = <&clock 171>, <&clock 254>, <&clock 187>;
-+        clock-names = "cfg", "mmc", "sata";
-+        #clock-cells = <1>;
-+        #reset-cells = <1>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fe81fd3baedc..639fd11ebdd7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9573,9 +9573,10 @@ ESWIN EIC7700 CLOCK DRIVER
- M:	Yifeng Huang <huangyifeng@eswincomputing.com>
- M:	Xuyang Dong <dongxuyang@eswincomputing.com>
- S:	Maintained
--F:	Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
-+F:	Documentation/devicetree/bindings/clock/eswin,eic7700*
- F:	drivers/clk/eswin/
--F:	include/dt-bindings/clock/eswin,eic7700-clock.h
-+F:	include/dt-bindings/clock/eswin,eic7700*
-+F:	include/dt-bindings/reset/eswin,eic7700-hspcrg.h
- 
- ET131X NETWORK DRIVER
- M:	Mark Einon <mark.einon@gmail.com>
-diff --git a/include/dt-bindings/clock/eswin,eic7700-hspcrg.h b/include/dt-bindings/clock/eswin,eic7700-hspcrg.h
-new file mode 100644
-index 000000000000..1d1ff15c1154
---- /dev/null
-+++ b/include/dt-bindings/clock/eswin,eic7700-hspcrg.h
-@@ -0,0 +1,33 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd..
-+ * All rights reserved.
-+ *
-+ * Device Tree binding constants for EIC7700 HSP clock controller.
-+ *
-+ * Authors: Xuyang Dong <dongxuyang@eswincomputing.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_ESWIN_EIC7700_HSPCRG_CLOCK_H_
-+#define _DT_BINDINGS_ESWIN_EIC7700_HSPCRG_CLOCK_H_
-+
-+#define EIC7700_HSP_CLK_FAC_CFG_DIV2		0
-+#define EIC7700_HSP_CLK_FAC_CFG_DIV4		1
-+#define EIC7700_HSP_CLK_FAC_MMC_DIV10		2
-+#define EIC7700_HSP_CLK_MUX_EMMC_3MUX1		3
-+#define EIC7700_HSP_CLK_MUX_SD0_3MUX1		4
-+#define EIC7700_HSP_CLK_MUX_SD1_3MUX1		5
-+#define EIC7700_HSP_CLK_MUX_EMMC_CQE_2MUX1	6
-+#define EIC7700_HSP_CLK_MUX_SD0_CQE_2MUX1	7
-+#define EIC7700_HSP_CLK_MUX_SD1_CQE_2MUX1	8
-+#define EIC7700_HSP_CLK_GATE_MSHC0_TMR		9
-+#define EIC7700_HSP_CLK_GATE_EMMC		10
-+#define EIC7700_HSP_CLK_GATE_MSHC1_TMR		11
-+#define EIC7700_HSP_CLK_GATE_SD0		12
-+#define EIC7700_HSP_CLK_GATE_MSHC2_TMR		13
-+#define EIC7700_HSP_CLK_GATE_SD1		14
-+#define EIC7700_HSP_CLK_GATE_USB0		15
-+#define EIC7700_HSP_CLK_GATE_USB1		16
-+#define EIC7700_HSP_CLK_GATE_SATA		17
-+
-+#endif /* _DT_BINDINGS_ESWIN_EIC7700_HSPCRG_CLOCK_H_ */
-diff --git a/include/dt-bindings/reset/eswin,eic7700-hspcrg.h b/include/dt-bindings/reset/eswin,eic7700-hspcrg.h
-new file mode 100644
-index 000000000000..413fcd08c701
---- /dev/null
-+++ b/include/dt-bindings/reset/eswin,eic7700-hspcrg.h
-@@ -0,0 +1,21 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd..
-+ * All rights reserved.
-+ *
-+ * Device Tree binding constants for EIC7700 HSP reset controller.
-+ *
-+ * Authors: Xuyang Dong <dongxuyang@eswincomputing.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_ESWIN_EIC7700_HSPCRG_RESET_H_
-+#define _DT_BINDINGS_ESWIN_EIC7700_HSPCRG_RESET_H_
-+
-+#define EIC7700_HSP_RST_SATA_P0		0
-+#define EIC7700_HSP_RST_SATA_PHY	1
-+#define EIC7700_HSP_RST_USB0		2
-+#define EIC7700_HSP_RST_USB1		3
-+#define EIC7700_HSP_RST_USB0_PHY	4
-+#define EIC7700_HSP_RST_USB1_PHY	5
-+
-+#endif /* _DT_BINDINGS_ESWIN_EIC7700_HSPCRG_RESET_H_ */
--- 
-2.43.0
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Nickolay Goppen <setotau@mainlining.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+---
+Nickolay Goppen (3):
+      arm64: dts: qcom: sdm660: set cdsp compute-cbs' regs properly
+      arm64: dts: qcom: sdm630: set adsp compute-cbs' regs properly
+      arm64: dts: qcom: sdm630: assign adsp_mem region to ADSP FastRPC node
+
+ arch/arm64/boot/dts/qcom/sdm630.dtsi | 19 +++++++++++--------
+ arch/arm64/boot/dts/qcom/sdm660.dtsi | 36 ++++++++++++++++++------------------
+ 2 files changed, 29 insertions(+), 26 deletions(-)
+---
+base-commit: e6efabc0afca02efa263aba533f35d90117ab283
+change-id: 20260415-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-d0ca7632045a
+
+Best regards,
+--  
+Nickolay Goppen <setotau@mainlining.org>
 
 
