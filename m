@@ -1,50 +1,49 @@
-Return-Path: <devicetree+bounces-288666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288667-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wDOtDrkV5mnCrQEAu9opvQ
-	(envelope-from <devicetree+bounces-288666-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:02:01 +0200
+	id KFx2CtcV5mnCrQEAu9opvQ
+	(envelope-from <devicetree+bounces-288667-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:02:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 009CF42A5FF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:01:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF47042A615
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:02:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E796C3007AF9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:58:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D5C15304A6CA
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:58:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62EC339EF14;
-	Mon, 20 Apr 2026 11:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4778039EF32;
+	Mon, 20 Apr 2026 11:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="dpm+XCED"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="Zq0lQpL0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A8E386444;
-	Mon, 20 Apr 2026 11:58:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53FEB39E6FD;
+	Mon, 20 Apr 2026 11:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776686312; cv=none; b=tfa6FmpUnsyH+gZh27pKBZRMbnNRi/7P9ND7lojrIt7tXPx/eNLvPTQXNM2mMIJlzVm/Kc89ck/f1S0W5x4Oq8ov+tV3RmmULDsBDQmRZqDmnIwjVoJkan3cMlCwPy7Qus4QN8Xju36E8BSxCwk1RtNR6xi5rBG0HCnMihIy0/4=
+	t=1776686313; cv=none; b=pj7tX3/vVVRcl7MFmFK2IlkL3csmyfxGn/hX5CMKIQ9yE9LAEDwPmTkTmrG2Alwlx2/hVoy4Njw1jaNjpAo/F2ttWxgSTddfXszMklErMNSjPiCNFmaysyUwxjNJWnG7NYkdJfBpOIX5XqxX9SY1un6a+delCVZehDew/uCPaqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776686312; c=relaxed/simple;
-	bh=lyciA6D1svothfyq1FxMYi4aiIW3PQdO74tZM2hpXA4=;
+	s=arc-20240116; t=1776686313; c=relaxed/simple;
+	bh=1WmAgn/FyzsKhMv+YbDwDX6oHzK8g6LX2ZrR/tJNlRw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nD4eR6EbRN3SIKZp6rAUmwAChspFuccxqJkE+1rpOm5lEZhT9il9Fjaq6zUZ2yPCl6JfuSOBYoEBXyUk5Va2UJEfN7MS3YCNoLe9RLGNzTjDvXYR34xlIp5KR1pr6wymkYnB8tSuu2UclMcyLFF3oGEAQ48DSJiB5+jsEQC8AlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=dpm+XCED; arc=none smtp.client-ip=65.21.61.41
+	 In-Reply-To:To:Cc; b=a0mHSNRkDnJdjuC22P5G38pUbugJVm25RD3xTyUo0pD0AQVQnL6uV58FKywkmUwsbA6aWuNjRzX/5x/3s63BUnO2Q24DrD7jcubr+qKMvsBA3ezFWbwlIwv4jZcDt+wXienxP/xx8rzYJ18bRc4MsXon9FYh3jLmfKzx5uMEgcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=Zq0lQpL0; arc=none smtp.client-ip=65.21.61.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
 	s=courrier-s1; t=1776686308;
-	bh=lyciA6D1svothfyq1FxMYi4aiIW3PQdO74tZM2hpXA4=;
+	bh=1WmAgn/FyzsKhMv+YbDwDX6oHzK8g6LX2ZrR/tJNlRw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=dpm+XCED6KKE42lYOacYUaSZMwedLU7WM+KkajzWdwy3k8OKdVB8fDglKi/6r792f
-	 m4vm9GA4d6Uey+xUOWsn+6wEsLbtKPzj5SDDMn5+FBPBuE8cykOVXmy3VZ0BlyTsQO
-	 ytPLuyi5eEmzfV1zhyqQxtBLDW2HgYC1XSun0wLg=
-Date: Mon, 20 Apr 2026 13:58:09 +0200
-Subject: [PATCH v3 1/4] arm64: dts: amlogic: t7: Add uart_c pinctrl pins
- group
+	b=Zq0lQpL09erDcI35QsWMK54O4QwcsaBe2uGoQdyutNGi53llGlJ21VdkkRI8E9BHv
+	 9brYw4ssMws8HsGwnojT6P6s18STJJ7mAQzwoOOBblzHgAm+yr+9YNrUIkUxukDtxm
+	 GDR5d1Hvoe5qWUs25YFedYj+A3xnzliLjTXLnG8g=
+Date: Mon, 20 Apr 2026 13:58:10 +0200
+Subject: [PATCH v3 2/4] arm64: dts: amlogic: t7: Add UART controllers nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +52,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260420-add-bluetooth-t7-vim4-v3-1-669cd2530ae5@aliel.fr>
+Message-Id: <20260420-add-bluetooth-t7-vim4-v3-2-669cd2530ae5@aliel.fr>
 References: <20260420-add-bluetooth-t7-vim4-v3-0-669cd2530ae5@aliel.fr>
 In-Reply-To: <20260420-add-bluetooth-t7-vim4-v3-0-669cd2530ae5@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -65,13 +64,13 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1776686305; l=985;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1776686306; l=3650;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=lyciA6D1svothfyq1FxMYi4aiIW3PQdO74tZM2hpXA4=;
+ bh=1WmAgn/FyzsKhMv+YbDwDX6oHzK8g6LX2ZrR/tJNlRw=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QIXP3GgOE1T359EuuEL+ssPLRwBHZFf5VYd7Zwf5tg1+ZcPGtb9cZ3ErTKRQI8EIKrJ05twK2Hu
- LLRC45H0RPAA=
+ QP01c986XK1M73imz/pawPqggaTpTWUHpjx/8+Yxoykf0MdHPg0ep6+sR3mPTxJBfkWZfnziwOX
+ hld/29NENvAg=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -79,12 +78,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[aliel.fr,quarantine];
 	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-288667-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288666-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
@@ -93,50 +92,114 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[0.1.64.80:email,0.1.87.192:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[aliel.fr:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aliel.fr:email,aliel.fr:dkim,aliel.fr:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.15.240:email]
-X-Rspamd-Queue-Id: 009CF42A5FF
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.15.240:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aliel.fr:email,aliel.fr:dkim,aliel.fr:mid,0.0.234.96:email,0.1.48.176:email,0.1.56.128:email,0.0.31.144:email]
+X-Rspamd-Queue-Id: CF47042A615
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add the pin multiplexing configuration for UART C (TX, RX, CTS, RTS)
-in the T7 SoC pinctrl node, required to route the UART C signals
-through the correct pads before enabling the controller.
+Add device tree nodes for UART B through F (serial@7a000 to
+serial@82000), completing the UART controller description for the T7
+SoC. Each node includes the peripheral clock.
+
+While at it, move the uart_a node to its correct position in the
+bus address order (0x78000) to comply with the DT requirement that
+nodes be sorted by their reg address. Complete the
+uart_a node with its peripheral clock (CLKID_SYS_UART_A) and the
+associated clock-names, matching the vendor default clock assignment,
+consistent with the other UART nodes.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 61 +++++++++++++++++++++++++----
+ 1 file changed, 54 insertions(+), 7 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 7fe72c94ed623..4a55d9641bc9b 100644
+index 4a55d9641bc9b..81c26b1e3e7a4 100644
 --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -553,6 +553,18 @@ mux {
- 						bias-pull-up;
- 					};
- 				};
-+
-+				uart_c_pins: uart-c {
-+					mux {
-+						groups = "uart_c_tx",
-+							 "uart_c_rx",
-+							 "uart_c_cts",
-+							 "uart_c_rts";
-+						bias-pull-up;
-+						output-high;
-+						function = "uart_c";
-+					};
-+				};
+@@ -577,13 +577,6 @@ gpio_intc: interrupt-controller@4080 {
+ 					<10 11 12 13 14 15 16 17 18 19 20 21>;
  			};
  
- 			gpio_intc: interrupt-controller@4080 {
+-			uart_a: serial@78000 {
+-				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
+-				reg = <0x0 0x78000 0x0 0x18>;
+-				interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+-				status = "disabled";
+-			};
+-
+ 			gp0: clock-controller@8080 {
+ 				compatible = "amlogic,t7-gp0-pll";
+ 				reg = <0x0 0x8080 0x0 0x20>;
+@@ -713,6 +706,60 @@ pwm_ao_cd: pwm@60000 {
+ 				status = "disabled";
+ 			};
+ 
++			uart_a: serial@78000 {
++				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
++				reg = <0x0 0x78000 0x0 0x18>;
++				interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_A>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++				status = "disabled";
++			};
++
++			uart_b: serial@7a000 {
++				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
++				reg = <0x0 0x7a000 0x0 0x18>;
++				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_B>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++				status = "disabled";
++			};
++
++			uart_c: serial@7c000 {
++				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
++				reg = <0x0 0x7c000 0x0 0x18>;
++				interrupts = <GIC_SPI 170 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_C>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++				status = "disabled";
++			};
++
++			uart_d: serial@7e000 {
++				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
++				reg = <0x0 0x7e000 0x0 0x18>;
++				interrupts = <GIC_SPI 171 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_D>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++				status = "disabled";
++			};
++
++			uart_e: serial@80000 {
++				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
++				reg = <0x0 0x80000 0x0 0x18>;
++				interrupts = <GIC_SPI 172 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_E>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++				status = "disabled";
++			};
++
++			uart_f: serial@82000 {
++				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
++				reg = <0x0 0x82000 0x0 0x18>;
++				interrupts = <GIC_SPI 173 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_F>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++				status = "disabled";
++			};
++
+ 			sd_emmc_a: mmc@88000 {
+ 				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
+ 				reg = <0x0 0x88000 0x0 0x800>;
 
 -- 
 2.49.0
