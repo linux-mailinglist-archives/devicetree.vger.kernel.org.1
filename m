@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-288670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288668-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uE98IR8W5mnCrQEAu9opvQ
-	(envelope-from <devicetree+bounces-288670-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:03:43 +0200
+	id YCstJNYV5mnCrQEAu9opvQ
+	(envelope-from <devicetree+bounces-288668-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:02:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D9942A666
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:03:42 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 034D542A616
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:02:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7BA33309B088
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:58:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E3E78304B282
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:58:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D44139F187;
-	Mon, 20 Apr 2026 11:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47A2339EF33;
+	Mon, 20 Apr 2026 11:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="Le5bi12E"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="ZerujxtJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EE6F39E6FE;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9C8939E6FF;
 	Mon, 20 Apr 2026 11:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776686314; cv=none; b=GOYV2u5PKSUv82T1260HnTP6+8zOswZQO/p0LSZTPI5j1csIis7qMYZqbpMGLkjr/EPWTgzJF0qFIKeVdZihHhtTjO2fBkmbhuN5k1U4vV7ahWKAJomhZxTUkyAmRZPUve0BOdWh4QBpDRekHPIovgjlH9Vzu4HAP4Wvhmf5PZ0=
+	t=1776686313; cv=none; b=t6qIqrpQcQk+3yiUOE+w4YBxoDL3JGeAgrFA/UqC5v4umdh+nwdnU3qS640v+E5I9d2nS9MkL3MRNQTlDXy6EudxEzIklKooftUrgYO5fkBLh6mhiLu+y57uDPE6Ny9FFFno9765hdQ5aFsAcxfLppB7pgnMbUka0d+myF0dIv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776686314; c=relaxed/simple;
-	bh=uZbSyEl+Sxr6uO9AnkOGD8y2uFq03R2x1l1DSja6uPs=;
+	s=arc-20240116; t=1776686313; c=relaxed/simple;
+	bh=RBIiK8CES8R9gJcjoYTCoKw0do5/miRgk0+ffcE8qDk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OKRghMgRumTYCI1nLG1zNJXPxpV4FP9ZjuT/4i6x3RB+Dy/CUT25Fvzs/xpU+NZGTHltEKrmeW/9M3oaTfIUHQD6mUtS11nnAKwwQfKjUmSOGsKt1LZ82XJH069DuF2EnPVLkS1u+VeI/ZHVwQoQ6tFWAXc/aljVFCeS9NMEvhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=Le5bi12E; arc=none smtp.client-ip=65.21.61.41
+	 In-Reply-To:To:Cc; b=DWOp3Ze91lbgdfq+eaQtxIiOHLHcoyrW1LHrXKGQNAi/u5fqihYgbAJfTiXltbuD/HrgVk2ae9xV6iy0xo8uQySbcLpoOvuZObooxy/6Npd0ZRIWez/IyUtXo9DJX8rSbD8W4nSoeqkerfq+6ccUpW0gXkKbRMG7VJYg322hZmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=ZerujxtJ; arc=none smtp.client-ip=65.21.61.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776686309;
-	bh=uZbSyEl+Sxr6uO9AnkOGD8y2uFq03R2x1l1DSja6uPs=;
+	s=courrier-s1; t=1776686310;
+	bh=RBIiK8CES8R9gJcjoYTCoKw0do5/miRgk0+ffcE8qDk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=Le5bi12ElraZDjURgaBVgQApD0W2FCoh1e9blkC4h5vZbQ8/whgCLo6psfwSGfXUX
-	 +qzaZ8M6VORlXLv5c+t9CJyMJrSRd+UVYGDRsWoXtsVuQsveVNEKVoxZrGyPNlfSSc
-	 yEQWU/3sRYROHYrYdIkPYyMsMkYWO1mh1L3sQ+Kk=
-Date: Mon, 20 Apr 2026 13:58:11 +0200
-Subject: [PATCH v3 3/4] arm64: dts: amlogic: t7: khadas-vim4: Remove
- redundant clocks from UART A
+	b=ZerujxtJbGVcHbVY4b8YK784n53CsLLh59fArPvcSdwAYmepXTVLw8kpsRcmGx7kn
+	 kG2tgWC6UkR3MAoFl9Ghx5MylUZ2O/xR+jLVZuhugo3/CPT0z6RKMUli7bTsvneZOJ
+	 yKa9MFRcwvqiiI6eDHY7GunPVhWSlEx1c4Db2zpk=
+Date: Mon, 20 Apr 2026 13:58:12 +0200
+Subject: [PATCH v3 4/4] arm64: dts: amlogic: t7: khadas-vim4: Enable
+ Bluetooth
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +53,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260420-add-bluetooth-t7-vim4-v3-3-669cd2530ae5@aliel.fr>
+Message-Id: <20260420-add-bluetooth-t7-vim4-v3-4-669cd2530ae5@aliel.fr>
 References: <20260420-add-bluetooth-t7-vim4-v3-0-669cd2530ae5@aliel.fr>
 In-Reply-To: <20260420-add-bluetooth-t7-vim4-v3-0-669cd2530ae5@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -65,13 +65,13 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1776686306; l=734;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1776686306; l=1452;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=uZbSyEl+Sxr6uO9AnkOGD8y2uFq03R2x1l1DSja6uPs=;
+ bh=RBIiK8CES8R9gJcjoYTCoKw0do5/miRgk0+ffcE8qDk=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QJwMV+8nGkap0JrBgXbWYcIRbe+A0IZ2iLOLsn8GXAF69pzTbCJmK3rcTkc2Ls+/bXTUpwwh/aB
- gtKa6RfxzaAg=
+ QEm5UubTT1JeCQxNolsfWdJjOCnekr349lwOC0xs6MPAtNGVHjpQVVaNkgqgpcF6jLzVEElbdXc
+ mEwZ91s4fPww=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -79,12 +79,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[aliel.fr,quarantine];
 	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288670-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-288668-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
@@ -99,30 +99,51 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aliel.fr:email,aliel.fr:dkim,aliel.fr:mid]
-X-Rspamd-Queue-Id: D9D9942A666
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aliel.fr:email,aliel.fr:dkim,aliel.fr:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 034D542A616
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Remove clocks and clock-names for UART A, as they are defined in DTSI.
+Enable UART C on the Khadas VIM4 board and attach the BCM43438
+ compatible Bluetooth controller to it. The node configures the RTS/CTS
+hardware flow control, the associated pinmux, the power supplies (vddao_3v3
+and vddao_1v8), the 32 kHz LPO clock shared with the wifi32k fixed
+clock, and the GPIO lines used for host wakeup, device wakeup and
+shutdown.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 2 --
- 1 file changed, 2 deletions(-)
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts     | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 69d6118ba57e7..3227ab27de107 100644
+index 3227ab27de107..8ea7ae609fbd5 100644
 --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
 +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -250,6 +250,4 @@ &sd_emmc_c {
- 
+@@ -251,3 +251,22 @@ &sd_emmc_c {
  &uart_a {
  	status = "okay";
--	clocks = <&xtal>, <&xtal>, <&xtal>;
--	clock-names = "xtal", "pclk", "baud";
  };
++
++&uart_c {
++	status = "okay";
++	pinctrl-0 = <&uart_c_pins>;
++	pinctrl-names = "default";
++	uart-has-rtscts;
++
++	bluetooth {
++		compatible = "brcm,bcm43438-bt";
++		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
++		host-wakeup-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
++		device-wakeup-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
++		max-speed = <3000000>;
++		clocks = <&wifi32k>;
++		clock-names = "lpo";
++		vbat-supply = <&vddao_3v3>;
++		vddio-supply = <&vddao_1v8>;
++	};
++};
 
 -- 
 2.49.0
