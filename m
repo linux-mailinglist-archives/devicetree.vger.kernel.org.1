@@ -1,248 +1,168 @@
-Return-Path: <devicetree+bounces-288894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288896-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ML6RDKKe5mmyywEAu9opvQ
-	(envelope-from <devicetree+bounces-288894-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 23:46:10 +0200
+	id yIxKBgKg5mmyywEAu9opvQ
+	(envelope-from <devicetree+bounces-288896-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 23:52:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 836CA434572
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 23:46:09 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E5F434615
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 23:52:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 45DEE3019BAE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 21:40:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 32873301C6FD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 21:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D706A3A9628;
-	Mon, 20 Apr 2026 21:40:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F7F3BBA0B;
+	Mon, 20 Apr 2026 21:51:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D+CW/Lj2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FadkUhAu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B918378D85
-	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 21:40:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E3B33AA1B0;
+	Mon, 20 Apr 2026 21:51:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776721209; cv=none; b=fM5WSz/DfOeMgfnnBSUJhifj+EyWSzuod5GGh/eAo8MGjCgeGkbjXV4BGdF+Iw6/7X8LCFOqUY8X3bUpI8DGEipzXq0cr6o9BAqmVgNO8G2e9yIbSITqH+qSQyUQ4lhb53IHZgowv8DkrRz40PVghlDKSL+lu0WznqVBHcg5NKU=
+	t=1776721912; cv=none; b=sqWNUFQVj3z5LPPUNce2zm+Ju2Smcgtikr89K8TWe9SuRVsbUu2n9A61HLEuq2HMbFJerx/JCxwE4mhqhqMcA4PkL7kVlLizh6kS2kzhCQP19VPIhHcPao8P0Bi30QoTAhuSUBo9pD2aj24kVlETZEn0REr8rYNx9uRlguNkSIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776721209; c=relaxed/simple;
-	bh=ferQ/I0Y9PK2QH16FMGnGF2+/wylIAM94hfiAZxJn5o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aBHed8toa7L3udomw3JtiJ0sA0BB59GqzJ9arZkbCHMq+1eZV3TG+A8NAvZTH3wd8FheIdNtFLwvpOkGfN7AtHc0emBp7W7bKPi32YCGO9Ri3BHZAEDfx6+NieWwdJLtzR1byqfByw/CtVGLnXovSff/01azr21ETdQ9/tXJznQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D+CW/Lj2; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-488b0e1b870so55438895e9.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 14:40:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1776721207; x=1777326007; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pXtK/Bb6scSWKAWFi8Dh0zrFz4wUjG5d2vtkn8qVfbU=;
-        b=D+CW/Lj2bp/pRhTxkcG1ElQEfkOoYApPZZy4Hgr6JE5O6u9V+srlWfdxt9wvyZ9J0T
-         ib26Ydk7vFOPGUyQ0PxECO3r6IBdpw20M4zJfHHNkom9cD/ixuTaNMt/Enmm0MSaSey5
-         qGunbsz6+msQaLfSTIkDN2IvaODGl9COscsVWV0eqVjT7ilDVqFelIt1eqtDeR6cCDND
-         qTrtX4brYm41oQbEciQQ/oNISA4sI1C/7pBCcCBVXdkuj7N7bEOqFMON4u1ns9PUrsao
-         CJxdXWi53xqe25TukBQwZhm0QR3Rb2J+Q/MvFHX24BOuIraDHQBIxXC1Rpb9BltmLAvW
-         nwjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776721207; x=1777326007;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=pXtK/Bb6scSWKAWFi8Dh0zrFz4wUjG5d2vtkn8qVfbU=;
-        b=MtI1QO2wqhycyJrSnvew3lxHup/ure5FX4P1jxHikjS+19Fk9MzT0gJ8H9E+Mc4C/j
-         K7iZa+sxFfVisOUtnJLRrt2aQklnfG5hsAgkOZpSPCW3XbP5wIL/yAI//a5Rv6+4zg7b
-         FhEhJFMKcjYgkwH5A41jjJ1LZMEYZ2A7vUZCEBBikPF3fdG5z5Z2JecG9/cEcPPM/Urr
-         0FgiDywX5VUV9OvSwoNUKvXwN8E/FIAqwfc1BIyOEDQSkJr11It0fqKeG0CO3iJLUmtC
-         UW4Jp5TlXOZXFaOLvDtn9CQ4tdsfSMifE4UKoUyxOfgawspbe+lsU39h8R43KD9FCTP3
-         wAvw==
-X-Forwarded-Encrypted: i=1; AFNElJ9W9bxeePAPsJTsG8wcifwtPR6+Sml1ehX/LCQ2gBjusl9lixYI7IYKDXjqggxj9pT6FcpS+5GgDtST@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvVbfQQ0R+1NL8dR2Y0ZLhljfAd53ecl6HIf63sEOGu+hrA7r1
-	ij0vU0jr/AaJTS9XyTVeIyFbL0BmjvsID4Ejb/qil2k0WY9hX71iY7Zs
-X-Gm-Gg: AeBDietnKqCJYqsosFJN8WwelYY9MayRz2xw6OY7fBwDAvE3wp0rS/jzmjcFY70Gi3/
-	Txs2YJ3IqDL7v4GOLsVOzSFB50+z9UI4IZRTWK7dU7mO4Wtj8B2ItGNfCyfsCUSFKxZL+BczUbz
-	a+K1/8gcYmoL64JFsJuF41MLEuv9lvnu/Z6sKjAwl9xbFttZb9RzzfyEcm/Ekuk9FIfYcnKnSHp
-	GBebcH6/n/4jyLq4lxs8Tfdbry94uxhut+1X+pJptk5QMe8BaRGCoDoxkgv7e0UotQJE6E+vUBf
-	2d/MQwDe5FYf7pPF3F/XCCtss7cCs5MZs1TJIWZU/8tlNI0u5KRgaXCA+7ny4qgl1eTmqq0j2Nb
-	WW6nGCjxg4LuNX39Qe8fsltIltZ9f0b/NroEN619xvy4IU/VBzLM3vBNMzd5xWtiJbhqmqwm8cJ
-	mOU349xJHoeXvNX0isny+8BB7q2fRfEQ==
-X-Received: by 2002:a05:600c:4f13:b0:489:1a65:dd6e with SMTP id 5b1f17b1804b1-4891a65de3emr105875175e9.8.1776721206634;
-        Mon, 20 Apr 2026 14:40:06 -0700 (PDT)
-Received: from luca-vm.lan ([154.61.61.58])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fc140c82sm289500355e9.12.2026.04.20.14.40.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Apr 2026 14:40:06 -0700 (PDT)
-From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-To: linux-mediatek@lists.infradead.org
-Cc: Val Packett <val@packett.cool>,
-	Luca Leonardo Scorcia <l.scorcia@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1776721912; c=relaxed/simple;
+	bh=I8nNv8NY/ksywkTVY0haji/kBEf+9HQMgNuDSyI9tNw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KfCgVQsuSoUlD2B3bkyOV+I6yWIXtip2q06NUTDlF3kb7ddlBupT9JVBcAd3HgSBD/Rciz2bV7WZu5zV/TmU+TjuX3NvmfPzvKI/xKbMOGIG6ml0Bnz11eh63sVpxWD8nYh5SW3caM0s6ZKcolvSF6V4mZTq1Fgzxw8EshUkJfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FadkUhAu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75859C19425;
+	Mon, 20 Apr 2026 21:51:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776721911;
+	bh=I8nNv8NY/ksywkTVY0haji/kBEf+9HQMgNuDSyI9tNw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FadkUhAu/qfwKjLNF1r09v2jnY+1cG6mdmayDB62+hGhOHBm1hiWDwD9slpvXRs0A
+	 6jtWa4p6CKpcmPPnSR7oWDjCDz0Raw3NOqlWHv8WcKhCEOcW0Z5KdvPU4B5jmofklR
+	 0kmHWB6sD5857hQNdWaIPfgJX+pX92v71SZ00IiYMQK8r5V8q7oYtD9bv2vK+ovSLp
+	 QTFMhHMtEnZNjmrVrCHfiAU0wsfDyLzDPEoiVrjEE56VtG5x2ZrqxwMkk/2CJDfliz
+	 iFIPG+5xEI0tr8r3ERSsWk4pmv4Y1sooDL1XS3be45xLulcHTVHzY8HddLrfeBtM3B
+	 YoeWVz+6lvahA==
+Date: Mon, 20 Apr 2026 16:51:49 -0500
+From: Rob Herring <robh@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sen Chu <sen.chu@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	Lee Jones <lee@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Gary Bisson <bisson.gary@gmail.com>,
-	Julien Massot <julien.massot@collabora.com>,
-	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
-	Fabien Parent <parent.f@gmail.com>,
-	Akari Tsuyukusa <akkun11.open@gmail.com>,
-	Chen Zhong <chen.zhong@mediatek.com>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org
-Subject: [PATCH v5 9/9] arm64: dts: mediatek: Add MediaTek MT6392 PMIC dtsi
-Date: Mon, 20 Apr 2026 22:30:08 +0100
-Message-ID: <20260420213529.1645560-10-l.scorcia@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260420213529.1645560-1-l.scorcia@gmail.com>
-References: <20260420213529.1645560-1-l.scorcia@gmail.com>
+	Saravana Kannan <saravanak@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] dt-bindings: automated coding style check for DTS
+ examples
+Message-ID: <20260420215149.GA3324615-robh@kernel.org>
+References: <cover.1776700167.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1776700167.git.daniel@makrotopia.org>
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[packett.cool,gmail.com,kernel.org,mediatek.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-288894-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288896-lists,devicetree=lfdr.de];
 	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[packett.cool:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 836CA434572
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 88E5F434615
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Val Packett <val@packett.cool>
+On Mon, Apr 20, 2026 at 04:50:19PM +0100, Daniel Golle wrote:
+> Reviewing DTS examples in binding YAML files for coding style is
+> tedious and repetitive. The rules in dts-coding-style.rst are well
+> defined but currently not enforced by any tooling -- dtc does not
+> care about whitespace, and yamllint only sees the YAML structure,
+> not the DTS content inside literal block scalars.
+> 
 
-Add the dts to be included by all boards using the MT6392 PMIC.
+Thanks for this!
 
-Signed-off-by: Val Packett <val@packett.cool>
-Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
----
- arch/arm64/boot/dts/mediatek/mt6392.dtsi | 73 ++++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt6392.dtsi
+> This series adds a Python script that produces a canonical form of
+> each DTS example and diffs it against the original. Any difference
+> is a style violation. The checks cover:
+> 
+>  - 4-space indentation per nesting level
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6392.dtsi b/arch/arm64/boot/dts/mediatek/mt6392.dtsi
-new file mode 100644
-index 000000000000..750ee9b2856f
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt6392.dtsi
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019 MediaTek Inc.
-+ * Copyright (c) 2024 Val Packett <val@packett.cool>
-+ */
-+
-+#include <dt-bindings/input/input.h>
-+
-+&pwrap {
-+	pmic: pmic {
-+		compatible = "mediatek,mt6392", "mediatek,mt6323";
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+
-+		keys {
-+			compatible = "mediatek,mt6392-keys";
-+
-+			key-power {
-+				linux,keycodes = <KEY_POWER>;
-+				wakeup-source;
-+			};
-+
-+			key-home {
-+				linux,keycodes = <KEY_HOME>;
-+				wakeup-source;
-+			};
-+		};
-+
-+		pio6392: pinctrl {
-+			compatible = "mediatek,mt6392-pinctrl";
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+		};
-+
-+		rtc {
-+			compatible = "mediatek,mt6392-rtc",
-+				"mediatek,mt6323-rtc";
-+		};
-+
-+		mt6392regulators: regulators {
-+			/* Fixed supply defined in the data sheet */
-+			avddldo-supply = <&mt6392_vsys_reg>;
-+
-+			mt6392_vcore_reg: vcore { };
-+			mt6392_vproc_reg: vproc { };
-+			mt6392_vsys_reg: vsys { };
-+			mt6392_vaud28_reg: vaud28 { };
-+			mt6392_vxo22_reg: vxo22 { };
-+			mt6392_vaud22_reg: vaud22 { };
-+			mt6392_vadc18_reg: vadc18 { };
-+			mt6392_vcama_reg: vcama { };
-+			mt6392_vcn35_reg: vcn35 { };
-+			mt6392_vio28_reg: vio28 { };
-+			mt6392_vusb_reg: vusb { };
-+			mt6392_vmc_reg: vmc { };
-+			mt6392_vmch_reg: vmch { };
-+			mt6392_vemc3v3_reg: vemc3v3 { };
-+			mt6392_vcamaf_reg: vcamaf { };
-+			mt6392_vgp1_reg: vgp1 { };
-+			mt6392_vgp2_reg: vgp2 { };
-+			mt6392_vefuse_reg: vefuse { };
-+			mt6392_vm25_reg: vm25 { };
-+			mt6392_vdig18_reg: vdig18 { };
-+			mt6392_vm_reg: vm { };
-+			mt6392_vio18_reg: vio18 { };
-+			mt6392_vcn18_reg: vcn18 { };
-+			mt6392_vcamd_reg: vcamd { };
-+			mt6392_vcamio_reg: vcamio { };
-+			mt6392_vrtc_reg: vrtc {	};
-+		};
-+	};
-+};
--- 
-2.43.0
+I would like to see a way to disable 2 space indentation warnings. It's 
+not something I think we should 'fix' treewide, so we can't have 
+warnings for all of them. Perhaps just check for consistent indentation.
 
+>  - property ordering (compatible, reg, ranges, standard, vendor, status)
+>  - child node ordering by unit address
+
+I would guess this is more a .dts issue as examples are mostly a single 
+node.
+
+>  - blank line placement (before child nodes and status, nowhere else)
+>  - no trailing whitespace, no tabs in DTS lines
+
+I think we already check this except for spaces followed by tabs. We 
+might be able to add that to yamllint.
+
+>  - node names using only [a-z0-9-]
+
+This could be a schema. I actually have a WIP schema that I never 
+finished. The check I had added was banning 'status' in examples.
+
+>  - no unused labels (defined but never &-referenced)
+> 
+> The script uses only ruamel.yaml (already required by dtschema) and
+> has no other dependencies. It is wired into dt_binding_check_one
+> with || true, so currently informational.
+
+One reason the binding checks are so slow is due to python start-up 
+times. Part of the start-up time is module imports and IIRC ruamel.yaml 
+is pretty slow. That's why dt-doc-validate is not called for each 
+individual binding file for example and we shard it with xargs which you 
+followed. But really, make wants to do things a file at a time.
+
+We already parse the example once with dt-extract-example, so perhaps 
+the best approach would be to run these checks at that point.
+
+> Running it against the current tree finds issues in roughly 70% of
+> existing binding files -- mostly indentation (many older bindings
+> use 2-space indent) and unused labels. These can be cleaned up in
+> follow-up series; the immediate value is catching problems in new
+> submissions before reviewers have to.
+
+'make dt_binding_check' must be warning free (with the exception of 
+using dtschema main (unreleased) branch. So this will need to be 
+reworked to maintain that to be mergeable.
+
+I think this would be useful for .dts files too, so it would be good if 
+the extract example part and checks could be separated. We already have 
+code to extract examples, but then you lose some things like what the 
+indentation should be. And implementing as a diff or automatic fix mode 
+would be harder.
+
+Rob
 
