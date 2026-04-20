@@ -1,207 +1,417 @@
-Return-Path: <devicetree+bounces-288704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288711-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0FLGEbom5mmgsgEAu9opvQ
-	(envelope-from <devicetree+bounces-288704-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:14:34 +0200
+	id SMgQL/ww5ml6tAEAu9opvQ
+	(envelope-from <devicetree+bounces-288711-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:58:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF4F742B670
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:14:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A14042C7B9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:58:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BE363304069D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:14:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 006AD31E4C9B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:43:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 458073A1D0F;
-	Mon, 20 Apr 2026 13:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 323F83E025B;
+	Mon, 20 Apr 2026 13:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IwAdTYXJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ht8SJa56"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE5BD3A1A2B;
-	Mon, 20 Apr 2026 13:13:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D5583E024E;
+	Mon, 20 Apr 2026 13:24:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776690838; cv=none; b=OgS5PMj90X2SMAlUo+PAO/lzDHT/Mhm+XVOwhSXCDiMwUd8MHgAU4p4UZ7jI359pLWCFpqMaxLltmnXbwaoxfHceIx7gSZnoK1TJrJP3PPZXFMg5GjUx4xWDVBarfTuvBmFN4c/EF1IRrBCdh3cZuijTBNMTjUNm8v+648DK28Q=
+	t=1776691469; cv=none; b=dbaOGSigiiqEyRFOH63+SmuLEjzC7ofP7FCJ0gFC9OWO6N4nUce6PjaCGnSQvERLOnsXQ0S4zzMa962In8D9GOPxE9uuZdsCXPc/KPFpmwyr9qDh6f0eV4DxLNeHPjPIQawAcOWoO4JBIG+MiBYHRBAWLpUf/LZ2dsn5+fqYSy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776690838; c=relaxed/simple;
-	bh=OTOH3ZeYgVnJs6tLI3x0KEqkmqaY31h1b+sNXzjNFkw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AHbnrB7B1NduNwTNXuXj/D59FE/0sZ+P27H9C1YRioK0b8gSIr8pjkdGAIgRHaSvZVpy2vWp9ogmSWVsQyszpO66wOyhSN7vYvviHo+/XvQ1fe/bx2DWUEiG5TmZZ7K2VWxG8nKqf5XBW5iVVAnM5Meu/vNhhvNALze41pVhe+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IwAdTYXJ; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [127.0.1.1] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 50D232769;
-	Mon, 20 Apr 2026 15:12:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1776690737;
-	bh=OTOH3ZeYgVnJs6tLI3x0KEqkmqaY31h1b+sNXzjNFkw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=IwAdTYXJYgS9VgKEB9/qQOityYtSAJBHz+PB8BqctLnSVCHve8GZ6z/9SuIL+r8Oz
-	 siDC4k4KxeRjC/duM000T2Z0bi8QFyTneE8fc7sha80ZrZB+i5rmO034c0IxFoFOfZ
-	 zG/hQfjra/7sYMpm0NF4umC0Ce2LO058IzjMaSl0=
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Date: Mon, 20 Apr 2026 16:13:36 +0300
-Subject: [PATCH 2/2] drm/panel: simple: Add timings for Raspberry Pi 7"
- panel
+	s=arc-20240116; t=1776691469; c=relaxed/simple;
+	bh=mdTTLFFRGSvS9pVXxreZEr6WIIMFyUkAMBZmnwnFgGM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qmPPLdyYxtmOrWzJ1g2VVJVSJhrVSU8KKuwvm32ErYVKZL4KjjgY+n7hn4auO4C7Ml9mLrjxlg5sqWM+lLtF25CEHQgmzx154fC1haTgNdgh/VtTKeLfXKErGTK4cafvoUkZJ9RTDliC7wo4o+gkAmf27bgBcwwd7koIOVvBuLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ht8SJa56; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E1D4C2BCB4;
+	Mon, 20 Apr 2026 13:24:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776691468;
+	bh=mdTTLFFRGSvS9pVXxreZEr6WIIMFyUkAMBZmnwnFgGM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Ht8SJa563vBIdvtheNgt9tiBYHMZoa9Hz+7rjpLyO/o+rrpCqTbPDaOLEth6zt5Wu
+	 lWbMnNLYecz90pKu1r5cMtc6Qtf5QqV9nlJl/IclZ/4tZP+/96T97y5H1c8KXTHSR3
+	 6hSq3MuqMlXI8jHcCWrfL6TWY2YzVxrZ7g8+4QqUhZFv6u/Ce9ZydFGnu8Or2W2Hxe
+	 RCMbMB7hHuZI7oq7kx0/txJ8ssEffALSXNvspojoXxnvv8alroxYRtYLD5qTchu44N
+	 fES+MmgaXSc9A2pwlfp9A4sX5lv5kN1yU0OOAZCQNHo/T6JYzLHYJ6tQ+sm+31PZIg
+	 cU1TcKJHqqBaQ==
+From: Sasha Levin <sashal@kernel.org>
+To: patches@lists.linux.dev,
+	stable@vger.kernel.org
+Cc: Thierry Reding <treding@nvidia.com>,
+	Sasha Levin <sashal@kernel.org>,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	thierry.reding@kernel.org,
+	jonathanh@nvidia.com,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH AUTOSEL 7.0-6.12] arm64: tegra: Fix snps,blen properties
+Date: Mon, 20 Apr 2026 09:17:21 -0400
+Message-ID: <20260420132314.1023554-47-sashal@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260420132314.1023554-1-sashal@kernel.org>
+References: <20260420132314.1023554-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260420-rpi-7inch-v1-2-e68d5c9c44bc@ideasonboard.com>
-References: <20260420-rpi-7inch-v1-0-e68d5c9c44bc@ideasonboard.com>
-In-Reply-To: <20260420-rpi-7inch-v1-0-e68d5c9c44bc@ideasonboard.com>
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-X-Mailer: b4 0.15-dev-c25d1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3166;
- i=tomi.valkeinen@ideasonboard.com; h=from:subject:message-id;
- bh=OTOH3ZeYgVnJs6tLI3x0KEqkmqaY31h1b+sNXzjNFkw=;
- b=owEBbQKS/ZANAwAIAfo9qoy8lh71AcsmYgBp5iaOmWf+RtmzIrZdcehacyVvlq8B78OVw8Kwd
- /vh+tW8g+iJAjMEAAEIAB0WIQTEOAw+ll79gQef86f6PaqMvJYe9QUCaeYmjgAKCRD6PaqMvJYe
- 9ZlPD/sG4leh9VTCLgKyRnJb3Dr+6Xbd8kUOqNk/EqAGepcuCEN/aNl9QtYYn4o7qqKnyPwfSzX
- K05EZO9ZgMriVVKzx2xGbd6H8I9jsrXCf6IQV/ZC2TY7DixPUyPAx5N/Xvid0qGpCttCjFs41jd
- 9bYiOMQyrUIoPLY/vueOIM3mR+eAjiweaqZF2p3ws4QRCc3NJpguTP6y02G4AgmrBvc1dgiaIYu
- zuhPG2JkY2w9tiy7ACr4iPoPw465UBhm623VDRaeLehpgA83JRkypOVYMkTHHuZSMzy8AP2OR9m
- 1iNa/Ao5pu0Bb8x8hsa/KH6A6OIBBytr6fPQ4u14DU3JyKpcs5G3Ahfm35nWsD83cGm6Ibpw+93
- B5eoVp8io6gQNyvRSmUb8DfxlgRrE1aCkE254C1O6pVgilidoDGsqrfetVVjRziTEU9xLC1Qzcb
- 3qGP5TyWa1xiSd0J7W0/Gihr21cegLdw+OYNdU/EhMi+j6RdVOHqlxUfFsXvGqqG+V23GGERfQ2
- hW5CqHvkjLmQY/Zt6hKuqvIIOFcmaS/FKZl3XjoNEfNTRl3ve/PhSjD3Ij6wAmpuBp4ggAngKcF
- z34/ze9GFAYPC0PD85Vtz9A2V0wwylVMbpz7w0q47c7TODjZpgDhzYDPtR+EVOVcPUTS/KEmAEJ
- dJMFNwVUXC5BzZw==
-X-Developer-Key: i=tomi.valkeinen@ideasonboard.com; a=openpgp;
- fpr=C4380C3E965EFD81079FF3A7FA3DAA8CBC961EF5
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 7.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288704-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-288711-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[raspberrypi.com,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ravnborg.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: AF4F742B670
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.105.73.32:email,0.103.194.128:email]
+X-Rspamd-Queue-Id: 5A14042C7B9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add timings for the panel used in Raspberry Pi 7" DSI Display module:
-https://www.raspberrypi.com/products/raspberry-pi-touch-display/
+From: Thierry Reding <treding@nvidia.com>
 
-This has been tested with version v1.1 of the display module.
+[ Upstream commit 51f10c527a63dc4a71bce4b40fc53eee78bbbd52 ]
 
-The panel is very strict about the back-porch values, they must be
-exactly 46 for hbp and 23 for vbp. Other timings can be defined quite
-freely.
+The snps,blen property of stmmac-axi-config nodes needs to have 7
+entries in total, with unsupported burst lengths listed as 0.
 
-The panel is exclusive to Raspberry Pi, and different versions of the
-display module can have panels from different vendors which are fully
-compatible. Also, as the panel vendors are not public, the compatible
-string used is "raspberrypi,7inch-dsi".
-
-Note that while the display module has a DSI connector, and the
-compatible has "dsi" in it, we use DRM_MODE_CONNECTOR_DPI as the panel
-itself is a parallel video panel. The display module (as of v1.1) uses
-TC358762 DSI-to-DPI bridge to do the conversion.
-
-We could use DRM_MODE_CONNECTOR_DSI here, which would have the benefit
-of showing a "DSI-1" connector to the userspace. However, the panel IS a
-DPI panel, and gets its input from a DSI-to-DPI bridge, and the
-panel-simple.c behaves differently depending on the connector type used,
-so, DRM_MODE_CONNECTOR_DPI it is.
-
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/panel/panel-simple.c | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 91ab280869ba..e75eb20301f2 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -4208,6 +4208,35 @@ static const struct panel_desc rocktech_rk043fn48h = {
- 	.connector_type = DRM_MODE_CONNECTOR_DPI,
- };
+LLM Generated explanations, may be completely bogus:
+
+Now I have all the information needed for my analysis.
+
+---
+
+## PHASE 1: COMMIT MESSAGE FORENSICS
+
+**Step 1.1: Subject Line**
+- Subsystem: `arm64: tegra` (ARM64 device tree, Tegra SoC)
+- Action verb: "Fix" — direct bug fix language
+- Summary: Fix the `snps,blen` DT properties for MGBE Ethernet
+  controllers
+- Record: [arm64: tegra] [fix] [correcting snps,blen DT property to have
+  required 7 entries]
+
+**Step 1.2: Tags**
+- `Signed-off-by: Thierry Reding <treding@nvidia.com>` — Author is the
+  Tegra platform maintainer at NVIDIA.
+- No Fixes: tag, no Cc: stable, no Reported-by (expected for auto-
+  selection candidates).
+- Record: No notable tags beyond authorship. Author is the subsystem
+  maintainer.
+
+**Step 1.3: Commit Body**
+- States: "The snps,blen property of stmmac-axi-config nodes needs to
+  have 7 entries in total, with unsupported burst lengths listed as 0."
+- This describes a DT schema violation — the property had 4 entries but
+  the driver requires 7.
+- Record: Bug is a malformed DT property that doesn't match the driver's
+  expectation.
+
+**Step 1.4: Hidden Bug Fix Detection**
+- This is NOT a hidden fix — it's explicitly labeled "Fix." The
+  underlying bug is that `of_property_read_u32_array(np, "snps,blen",
+  axi_blen, 7)` fails silently when the property only has 4 entries,
+  leaving the stack buffer uninitialized.
+- Record: Direct bug fix, not disguised.
+
+## PHASE 2: DIFF ANALYSIS
+
+**Step 2.1: Inventory**
+- 1 file changed: `arch/arm64/boot/dts/nvidia/tegra234.dtsi`
+- 3 lines changed (each identical):
+  - `snps,blen = <256 128 64 32>;` → `snps,blen = <256 128 64 32 0 0
+    0>;`
+- Affects MGBE0, MGBE1, MGBE2 stmmac-axi-config nodes.
+- Record: Single DT file, 3 identical one-line changes. Scope:
+  minimal/surgical.
+
+**Step 2.2: Code Flow**
+- Before: DT property has 4 u32 entries.
+- After: DT property has 7 u32 entries (3 trailing zeros for unsupported
+  burst lengths).
+- The stmmac driver calls `of_property_read_u32_array(np, "snps,blen",
+  axi_blen, AXI_BLEN)` where `AXI_BLEN = 7`. With only 4 entries,
+  `of_find_property_value_of_size()` checks `prop->length (16) < min
+  (28)` and returns `-EOVERFLOW`. The stack array `axi_blen[7]` is never
+  written. Then `stmmac_axi_blen_to_mask()` processes uninitialized
+  stack data.
+
+**Step 2.3: Bug Mechanism**
+- Category: **Uninitialized data** / **incorrect DT specification**
+- Mechanism: The DT property is too short, causing
+  `of_property_read_u32_array()` to fail, leaving a stack buffer
+  uninitialized. The uninitialized data is then used to configure the
+  AXI DMA burst length register for network hardware.
+- Record: Uninitialized stack data used for hardware DMA configuration.
+  The fix ensures the property has the correct count.
+
+**Step 2.4: Fix Quality**
+- Obviously correct: all other DT files using `snps,blen` have exactly 7
+  entries (verified by grep across all arm64 DT files).
+- Minimal/surgical: 3 identical one-line changes.
+- Zero regression risk: adding trailing zeros only enables the driver to
+  read the property successfully, and zero entries are explicitly
+  skipped by `stmmac_axi_blen_to_mask()`.
+- Record: Fix is obviously correct, minimal, zero regression risk.
+
+## PHASE 3: GIT HISTORY
+
+**Step 3.1: Blame**
+- The buggy `snps,blen = <256 128 64 32>` was introduced by commit
+  `81695da63b977` ("arm64: tegra: Add AXI configuration for Tegra234
+  MGBE") by Thierry Reding, dated 2024-02-21, merged in v6.9.
+- Record: Bug introduced in v6.9 by the same author who is now fixing
+  it.
+
+**Step 3.2: Fixes tag**
+- No Fixes: tag present. The implicit fix target is `81695da63b977`.
+
+**Step 3.3: File History**
+- Recent changes to `tegra234.dtsi` are mostly DT cleanup/additions. No
+  related fixes.
+- Record: Standalone fix, no prerequisites.
+
+**Step 3.4: Author**
+- Thierry Reding is the Tegra platform maintainer at NVIDIA. He wrote
+  the original buggy commit and is now fixing it.
+- Record: Subsystem maintainer self-fix.
+
+**Step 3.5: Dependencies**
+- None. The fix is a pure DT property value change that applies
+  independently.
+- Record: No dependencies, applies cleanly standalone.
+
+## PHASE 4: MAILING LIST RESEARCH
+
+**Step 4.1: Original Submission**
+- Found via web search: patch is `[PATCH 09/10]` in a series "dt-
+  bindings: Various cleanups for Tegra-related bindings" posted
+  2026-02-23.
+- Part of a v3 cleanup series. While most patches in the series are DT
+  binding cleanups, this specific patch (09/10) is a genuine bug fix.
+- Record: Part of a larger DT cleanup series, but this patch is an
+  independent bug fix.
+
+**Step 4.2: Reviewers**
+- b4 dig found the original commit (81695da63b977) was reviewed and
+  tested by Jon Hunter (NVIDIA Tegra co-maintainer). The fix itself is
+  straightforward enough that formal review was likely implicit.
+- Record: Original buggy code was reviewed by Jon Hunter.
+
+**Step 4.3-4.5: Bug Reports / Stable History**
+- No specific bug report found. Likely discovered by the author during
+  code review / DT validation.
+- No prior stable discussion found.
+
+## PHASE 5: CODE SEMANTIC ANALYSIS
+
+**Step 5.1-5.4: Key Functions**
+- `stmmac_axi_setup()` in `stmmac_platform.c` parses the DT property.
+- Called during stmmac platform driver probe for any device using
+  `snps,axi-config` DT phandle.
+- `stmmac_axi_blen_to_mask()` converts the burst length array to
+  register value.
+- The register value is written to hardware in `dwxgmac2_dma_init()` /
+  `dwmac4_dma_init()` / `dwmac1000_dma_init()`.
+- Impact: Affects AXI DMA configuration for MGBE Ethernet on Tegra234.
+
+**Step 5.5: Similar Patterns**
+- All other arm64 DT files consistently use 7 entries for `snps,blen`.
+  Tegra234 was the ONLY outlier with 4 entries.
+
+## PHASE 6: STABLE TREE ANALYSIS
+
+**Step 6.1: Buggy Code in Stable**
+- Commit `81695da63b977` was introduced in v6.9. It exists in stable
+  trees v6.12.y and any newer LTS branches.
+- It does NOT exist in v6.6.y (confirmed via `git merge-base --is-
+  ancestor`).
+- Record: Bug affects v6.9+ stable trees (v6.12.y at minimum).
+
+**Step 6.2: Backport Complications**
+- Pure DT change with no code dependencies. Should apply cleanly.
+- Record: Clean apply expected.
+
+**Step 6.3: Related Fixes**
+- No prior fix for this issue found in any tree.
+
+## PHASE 7: SUBSYSTEM CONTEXT
+
+**Step 7.1: Subsystem**
+- ARM64 Device Tree for Tegra234 MGBE (Multi-Gigabit Ethernet).
+- Criticality: IMPORTANT — affects Tegra234 network hardware users
+  (NVIDIA Jetson AGX Orin, etc.).
+- Record: [arm64/tegra DT] [IMPORTANT — Jetson platform network
+  hardware]
+
+## PHASE 8: IMPACT AND RISK ASSESSMENT
+
+**Step 8.1: Affected Users**
+- Users of NVIDIA Tegra234 platforms (Jetson AGX Orin) using MGBE
+  Ethernet controllers.
+- Platform-specific but widely deployed in industrial/embedded
+  applications.
+
+**Step 8.2: Trigger Conditions**
+- Triggered on every boot when the MGBE driver probes. No special
+  configuration needed.
+- The AXI burst length read fails silently, so uninitialized data
+  configures DMA hardware.
+
+**Step 8.3: Failure Mode**
+- Uninitialized stack data used for DMA hardware configuration.
+- Could result in suboptimal network performance, potential DMA errors,
+  or undefined hardware behavior depending on what stack values happen
+  to be.
+- Severity: **HIGH** (hardware misconfiguration from uninitialized data,
+  affecting network DMA)
+
+**Step 8.4: Risk-Benefit**
+- BENEFIT: High — fixes broken AXI DMA configuration for 3 MGBE Ethernet
+  controllers on Tegra234.
+- RISK: Very low — 3 identical one-line DT property changes, adding
+  trailing zeros, no code change.
+- Record: Very favorable risk-benefit ratio.
+
+## PHASE 9: FINAL SYNTHESIS
+
+**Step 9.1: Evidence Summary**
+
+FOR backporting:
+- Fixes real bug: `of_property_read_u32_array()` fails with only 4/7
+  entries, leading to uninitialized stack data being used for hardware
+  DMA configuration
+- Minimal, surgical fix: 3 identical one-line DT changes
+- Obviously correct: all other DT files use 7 entries
+- Written by subsystem maintainer (Thierry Reding, NVIDIA Tegra
+  maintainer)
+- Zero regression risk: trailing zeros are explicitly handled ("Burst
+  values of zero must be skipped")
+- Applies to v6.12.y+ stable trees
+
+AGAINST backporting:
+- No explicit user report of symptoms (could mean it works by luck with
+  stack data)
+- Part of a larger series (but this patch is independent)
+
+**Step 9.2: Stable Rules Checklist**
+1. Obviously correct? **YES** — all other DT files have 7 entries
+2. Fixes a real bug? **YES** — uninitialized data used for HW
+   configuration
+3. Important issue? **YES** — hardware DMA misconfiguration
+4. Small and contained? **YES** — 3 one-line changes in 1 DT file
+5. No new features? **YES** — pure DT fix
+6. Can apply to stable? **YES** — clean DT-only change
+
+**Step 9.3: Exception Category**
+- DT update fixing existing hardware description — automatic YES
+  category
+
+## Verification
+
+- [Phase 1] Parsed subject: "Fix" verb, arm64 tegra subsystem, snps,blen
+  property
+- [Phase 2] Diff: 3 lines changed in tegra234.dtsi, each adds `0 0 0` to
+  snps,blen property
+- [Phase 2] Verified AXI_BLEN=7 in `include/linux/stmmac.h` line 109
+- [Phase 2] Verified `of_property_read_u32_array()` calls
+  `of_find_property_value_of_size()` with min=28 bytes; property has 16
+  bytes (4 entries), so it returns -EOVERFLOW
+- [Phase 2] Verified `stmmac_axi_blen_to_mask()` skips zero entries
+  ("Burst values of zero must be skipped")
+- [Phase 3] git blame: buggy code from 81695da63b977 (v6.9), author:
+  Thierry Reding
+- [Phase 3] git merge-base: confirmed 81695da63b977 is in v6.12 but not
+  v6.6
+- [Phase 4] b4 dig: found original commit submission at lore (patch-id
+  match)
+- [Phase 4] Web search: fix is PATCH 09/10 of "dt-bindings: Various
+  cleanups for Tegra-related bindings"
+- [Phase 5] Verified all other arm64 DT snps,blen entries have exactly 7
+  values (grep across arch/arm64/boot/dts)
+- [Phase 5] Traced call chain: stmmac_axi_setup →
+  of_property_read_u32_array → of_find_property_value_of_size
+- [Phase 6] Bug exists in v6.9+ stable trees
+- [Phase 8] Failure mode: uninitialized stack data used for AXI DMA
+  register, severity HIGH
+
+**YES**
+
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+index 850c473235e36..04a95b6658caa 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+@@ -3621,7 +3621,7 @@ ethernet@6800000 {
+ 			snps,axi-config = <&mgbe0_axi_setup>;
  
-+static const struct display_timing raspberrypi_7inch_timing = {
-+	.pixelclock = { 10000000, 30000000, 50000000 },
-+	.hactive = { 800, 800, 800 },
-+	.hfront_porch = { 16, 72, 354 },
-+	.hsync_len = { 1, 32, 40 },
-+	.hback_porch = { 46, 46, 46 },
-+	.vactive = { 480, 480, 480 },
-+	.vfront_porch = { 7, 21, 147 },
-+	.vsync_len = { 1, 2, 20 },
-+	.vback_porch = { 23, 23, 23 },
-+	.flags = DISPLAY_FLAGS_VSYNC_HIGH | DISPLAY_FLAGS_HSYNC_HIGH,
-+	/* Note: the rest of the flags are defined below in bus_flags */
-+};
-+
-+static const struct panel_desc raspberrypi_7inch = {
-+	.timings = &raspberrypi_7inch_timing,
-+	.num_timings = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 154,
-+		.height = 86,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.connector_type = DRM_MODE_CONNECTOR_DPI,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH |
-+		DRM_BUS_FLAG_SYNC_DRIVE_POSEDGE |
-+		DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
-+};
-+
- static const struct display_timing rocktech_rk070er9427_timing = {
- 	.pixelclock = { 26400000, 33300000, 46800000 },
- 	.hactive = { 800, 800, 800 },
-@@ -5490,6 +5519,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "qishenglong,gopher2b-lcd",
- 		.data = &qishenglong_gopher2b_lcd,
-+	}, {
-+		.compatible = "raspberrypi,7inch-dsi",
-+		.data = &raspberrypi_7inch,
- 	}, {
- 		.compatible = "raystar,rff500f-awh-dnn",
- 		.data = &raystar_rff500f_awh_dnn,
-
+ 			mgbe0_axi_setup: stmmac-axi-config {
+-				snps,blen = <256 128 64 32>;
++				snps,blen = <256 128 64 32 0 0 0>;
+ 				snps,rd_osr_lmt = <63>;
+ 				snps,wr_osr_lmt = <63>;
+ 			};
+@@ -3663,7 +3663,7 @@ ethernet@6900000 {
+ 			snps,axi-config = <&mgbe1_axi_setup>;
+ 
+ 			mgbe1_axi_setup: stmmac-axi-config {
+-				snps,blen = <256 128 64 32>;
++				snps,blen = <256 128 64 32 0 0 0>;
+ 				snps,rd_osr_lmt = <63>;
+ 				snps,wr_osr_lmt = <63>;
+ 			};
+@@ -3705,7 +3705,7 @@ ethernet@6a00000 {
+ 			snps,axi-config = <&mgbe2_axi_setup>;
+ 
+ 			mgbe2_axi_setup: stmmac-axi-config {
+-				snps,blen = <256 128 64 32>;
++				snps,blen = <256 128 64 32 0 0 0>;
+ 				snps,rd_osr_lmt = <63>;
+ 				snps,wr_osr_lmt = <63>;
+ 			};
 -- 
-2.43.0
+2.53.0
 
 
