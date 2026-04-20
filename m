@@ -1,62 +1,58 @@
-Return-Path: <devicetree+bounces-288806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288807-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SL+jNqpR5mkDuwEAu9opvQ
-	(envelope-from <devicetree+bounces-288806-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 18:17:46 +0200
+	id eHO8ESdS5mkDuwEAu9opvQ
+	(envelope-from <devicetree+bounces-288807-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 18:19:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88D6142F44E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 18:17:46 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D23EE42F503
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 18:19:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 800903013BB2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 16:11:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9604230573BD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 16:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A90393446B7;
-	Mon, 20 Apr 2026 16:11:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D99B4344D88;
+	Mon, 20 Apr 2026 16:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZXTUL14u"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f4WfUiOz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8420D34402B;
-	Mon, 20 Apr 2026 16:11:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B72C934402B
+	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 16:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776701494; cv=none; b=OCTXjhwyIU+mlxxFhU2Cspt0YEtYvXfbkC5gZ7HIZnaX3dfyBJ4dCWex1JhEnqxNn8RRb9YGgI2BrLuU8ot3Kpikp31cFeu/gZ2qS7eKbEQoTg3FP2TNezaw6y+btiF5LtZLtqairzfSb3JUr3lyp6+pdJRnSBSN7GSCDhAZy08=
+	t=1776701594; cv=none; b=Qpil2q9RT81Mt492rK1UNb1fhLdjhjbT/KIdZjwj43IiEKtMrcz0jXPH1vxa8aGX3Z6MljKC6T35xK1eOQDV9w7U/Ezkd+7GmfKeS6k0JxDfCxgF6ILRxPOa5F3qVhtZZ5ZFc+6Hgou+YVVtTwAWata26dtQdH9GFbHC6jBaW8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776701494; c=relaxed/simple;
-	bh=FF6uudnGlPUPvb2FQizL4UweHN3ZaNOrWAjfmCj8T48=;
+	s=arc-20240116; t=1776701594; c=relaxed/simple;
+	bh=L9AM2bQQF0XfWMH9A8Edh/2OqoKJGvzkeDd8yMbw8TE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ktz3XezaLiwKxFua/SvblMWj95JMFGu77mtt1/wJHwKmvUeZOWS8lOB+XA6meKiq/NQQyNG0ZTymjbPYwSJLZBT+aRMPF12xgBLRPfAjPek6AUnEHwU/tytKyHpwiQmr21LIppfrjy9Yzm7i6hhBm0tgd+/2KbxGQkH9tj2mgSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZXTUL14u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7680C19425;
-	Mon, 20 Apr 2026 16:11:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ck/WR8qkWOLoZlp8VReGUVGyfhDslliUIizANB1Wt3oEk9HVXxZeN1moEo3EEZndtR3qu/5ukDVY+Rec+Iae2bVBlHUcp7iWv1IV9RJwBOOAx4+3TxiSlwlJpZ5Rc5V+PwdSyhNvOLThMvfjOEngbsNaUthfke3zaQDPURPbFF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f4WfUiOz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54200C19425;
+	Mon, 20 Apr 2026 16:13:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776701494;
-	bh=FF6uudnGlPUPvb2FQizL4UweHN3ZaNOrWAjfmCj8T48=;
+	s=k20201202; t=1776701594;
+	bh=L9AM2bQQF0XfWMH9A8Edh/2OqoKJGvzkeDd8yMbw8TE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZXTUL14uffU2HofT4HKpTFjiGL67NRAWrh5o8/RckQDoTYncj4G1aF/H51j1u8AhA
-	 564J3k2ZRziJ0a7rAR+MOFjlJhyJjWqWqUoPfaRZ3DNyLSow6ka1h3KO/r9fEiLuZK
-	 dtAsphvKDLYkFnizr/RrnN6YjogSaA9sgSPngrGSlQmEGBfww9hDTRJYfrUw0P8kfI
-	 QzKVZF0ieXoXtLZSScbsA3RCHJ6oTh260G5BIELmXjsqcewRTZnYUIQVzqmow1MDHn
-	 yyYanQV7e1kRKn2j/qbLDnx1oznGb8I/doqp+2gXcReJZhe4+O19icNabubHuvcrDy
-	 id+vXcS87nvsA==
-Date: Mon, 20 Apr 2026 17:11:29 +0100
+	b=f4WfUiOzgJMwerbWOdXSERQ2UsBuC1s6+gIcSsMOLWrg3pgVbuQyRtOyVEWxmOz+b
+	 m8pfbCDdLkcZDbp3IQsXUKegPwFjZqcvv2V39YBODQddBVtCdYHMSoHV3wqm7oP/rt
+	 ia8TaPrEqt8WwTtrXrPtGKXkJ5nxikdue57wmGfY1JiIRVo+ZadCB4aee+wcXG/R5Z
+	 MWsTf+wcX3lkaVj7XqB+A6MfZ38XLr4QiC52TMiMLUrPLOkFNKRhXJkuPwrc2RT8tp
+	 VUT3w2X7kWjI2oXf3K27EXFyNugIFniKtI6j6eyKBNDWSYK5WwMCZA3lgLkznT7gwr
+	 +i/AsTTrk5okQ==
+Date: Mon, 20 Apr 2026 17:13:11 +0100
 From: Conor Dooley <conor@kernel.org>
-To: christian.koever-draxl@student.uibk.ac.at
+To: Dinh Nguyen <dinguyen@kernel.org>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	neil.armstrong@linaro.org, khilman@baylibre.com,
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-	funderscore@postmarketos.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add X98Q compatible
-Message-ID: <20260420-mahogany-unscathed-633b67317ad1@spud>
-References: <20260420061854.5421-1-christian.koever-draxl@student.uibk.ac.at>
- <20260420061854.5421-2-christian.koever-draxl@student.uibk.ac.at>
+	devicetree@vger.kernel.org
+Subject: Re: [PATCHv2 1/2] dt-bindings: arm: altera: document the Agilex7-M
+ devkit
+Message-ID: <20260420-city-freeload-46c1fe67ee8a@spud>
+References: <20260419232416.68331-1-dinguyen@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,101 +60,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="liOBZr7AzZIB+4ny"
+	protocol="application/pgp-signature"; boundary="dISHVY2JqMCrDD3T"
 Content-Disposition: inline
-In-Reply-To: <20260420061854.5421-2-christian.koever-draxl@student.uibk.ac.at>
-X-Spamd-Result: default: False [-2.26 / 15.00];
+In-Reply-To: <20260419232416.68331-1-dinguyen@kernel.org>
+X-Spamd-Result: default: False [-3.76 / 15.00];
 	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288806-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,baylibre.com,googlemail.com,postmarketos.org,vger.kernel.org,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288807-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 88D6142F44E
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,microchip.com:email]
+X-Rspamd-Queue-Id: D23EE42F503
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---liOBZr7AzZIB+4ny
-Content-Type: text/plain; charset=iso-8859-1
+--dISHVY2JqMCrDD3T
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 20, 2026 at 08:18:53AM +0200, christian.koever-draxl@student.ui=
-bk.ac.at wrote:
-> From: Christian Stefan K=F6v=E9r-Draxl <christian.koever-draxl@student.ui=
-bk.ac.at>
+On Sun, Apr 19, 2026 at 06:24:15PM -0500, Dinh Nguyen wrote:
+> The Agilex7-M is a rebranded version of the original Agilex SoC. The
+> Agilex7-M SoC has the same core peripherals as the Agilex device.
 >=20
-
-Even if a patch is simple, you still need a commit message.
-
-pw-bot: changes-requested
-
-Cheers,
-Conor.
-
-> Signed-off-by: Christian Stefan K=F6v=E9r-Draxl <christian.koever-draxl@s=
-tudent.uibk.ac.at>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+> This change is to document the Agilex7m devkit which has the Agilex7-M
+> device. The Agilex7-M SoC supports DDR4, DDR5, LPDDR5, PCIE 5.0(x16), but
+> not QSPI.
 >=20
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documen=
-tation/devicetree/bindings/arm/amlogic.yaml
-> index a885278bc4e2..82671d58d1da 100644
-> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> @@ -254,6 +254,13 @@ properties:
->                - khadas,vim1s
->            - const: amlogic,s905y4
->            - const: amlogic,s4
-> +     =20
-> +      - description: Boards with the Amlogic Meson S4 S905W2 SoC
-> +        items:
-> +          - enum:
-> +              - amediatech,x98q
-> +          - const: amlogic,s905w2
-> +          - const: amlogic,s4
-> =20
->        - description: Boards with the Amlogic S6 S905X5 SoC
->          items:
-> --=20
-> 2.53.0
+> Also, now that Altera has separated from Intel, use the "altr" company
+> prefix.
 >=20
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 
---liOBZr7AzZIB+4ny
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
+
+--dISHVY2JqMCrDD3T
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaeZQMQAKCRB4tDGHoIJi
-0omFAPoDH5KiAybZREj6lTcK/1DjW034j6NJgBrkPg+Eq2ZqlwEA66+UEajeAGRR
-cVCROz2N0TrTtS58/D6XZeC8XmpKRQw=
-=gb9O
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaeZQlwAKCRB4tDGHoIJi
+0rwtAP4l/+sIWPq3P6ddYcVaMEpGQwp9/mIsXCC51MqDbPztAwD/VDiQ4p91tqcj
+Qi/IUTKwiSLBq+s6JnnNpv3XHpA2fgY=
+=Fm9i
 -----END PGP SIGNATURE-----
 
---liOBZr7AzZIB+4ny--
+--dISHVY2JqMCrDD3T--
 
