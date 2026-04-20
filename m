@@ -1,182 +1,227 @@
-Return-Path: <devicetree+bounces-288531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288536-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aB1JIjrG5WlYoAEAu9opvQ
-	(envelope-from <devicetree+bounces-288531-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:22:50 +0200
+	id SPPADc/M5WlIoAEAu9opvQ
+	(envelope-from <devicetree+bounces-288536-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:50:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E817D4272CC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88B5F427742
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:50:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 33233301DB98
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 06:19:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0AF10300A3BB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 06:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C18C382295;
-	Mon, 20 Apr 2026 06:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1060382375;
+	Mon, 20 Apr 2026 06:44:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="fU/nRDeJ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aQwdBXjS";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="c/J569I4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f51.google.com (mail-dl1-f51.google.com [74.125.82.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CDFC21CC5C
-	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 06:19:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48A6B27B32C
+	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 06:44:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776665962; cv=none; b=llSMZm22HZZ6gsx3deOcXuR3DKmZRILs6V59HbtNqubB8atLusWwqWCzY9MFhluZ186Wl/FvNBcNp4177EPcCXB5JxylwZG5vvqUNPpxjBwlUTQRsFVKhXZKPR/EWFVBwRsSKjVk7hUAOChZbohFL6gVotutNuLgNONbIb1WIPA=
+	t=1776667456; cv=none; b=DQlngv4paep93bQ0yrp+xd5Rd/asRGQ1RPfuUk95//0jflhPleFbewuKX44HYM2YBGTa6e4G2euxyJ5R2gxHrc2AtaFim4NXjtTh5XEXnkkzdSV54IzCIhIEUQiZZEZIosI96K+19HCsHCWR5y7xtARJknjmhCKMIkHIPysaRv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776665962; c=relaxed/simple;
-	bh=NK/KEremqEsg/y4Th6xBx2VTX3iGRFmO8oWMqWtIQTU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=OqNI4uzCflv/qQmAyxiWM5uGNeAkjZzbVldCBxLuzPFsUky4ZtENI1rPqm35SjvJqOLQJU7fLYBnM7h5OAC89o5TinLiimEkKD7lNZR7D62ZC+zuHS9BEtWiFUGyBt5Derc0iyT9/qNYpheiIGo4+2DQQEqV4LtnDuHOfLFVbbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=fU/nRDeJ; arc=none smtp.client-ip=74.125.82.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-dl1-f51.google.com with SMTP id a92af1059eb24-1279eced0b9so3544096c88.0
-        for <devicetree@vger.kernel.org>; Sun, 19 Apr 2026 23:19:19 -0700 (PDT)
+	s=arc-20240116; t=1776667456; c=relaxed/simple;
+	bh=s6pdxHoI5hvCRhFDkqXtAgC7HtCveanbHrTod1f/yLE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZNzBrn1+9CDnLq7eY3ii0SwUnpw9ppGe4ScZNoSOVvUbG63kQFg+Nc67v8eXuu3Gxbs4T+l8gjnjCmyEGz8rB61TsIpToPDI/FlqXsruHP/MQ5pePyCehj+OUh8MBR1vNlfI6oUONAWCAEHy9gqcrKQPni4BG+NwCbiaZdrY/Bg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aQwdBXjS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=c/J569I4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63JNsHmP2428116
+	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 06:44:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=D7K7654DJb4U5jc4p5qdGIOfHpVUN7aYFET
+	3b2LG/ok=; b=aQwdBXjSXkfr+kOhmVtzoe+vG1mV36ULNo6iltWCRtAtsr0d9yV
+	+l0B/SkB1DKB7dL7yT/C7mk33y0P9TX+r9naL+GTC+1zJg6xbk4gpFmc1Vk6N1Fz
+	HO3OzUYxJVxiTCIaONEthrbEWW8SHPGtBVMnLsvXPrTM9nV3m1MWyNf9nK6oaTTS
+	h1m1ers9emvTHG9Br79TSL2KU1/4LxmO1BxZQWNg9XLbdQozlyk9Ln6++WhGlBhE
+	jxhqBApAhk5jW9N6z5WbexGAJPX4dzyHXOcAKKxF8g8ChxjFFr3PyRFm4Z2R3423
+	D8UGuVZ1uQlb/fErKhbS5jOnBGeX69kzI4g==
+Received: from mail-dl1-f69.google.com (mail-dl1-f69.google.com [74.125.82.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dm21umfeg-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 06:44:14 +0000 (GMT)
+Received: by mail-dl1-f69.google.com with SMTP id a92af1059eb24-12c87ba0890so2848180c88.0
+        for <devicetree@vger.kernel.org>; Sun, 19 Apr 2026 23:44:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1776665959; x=1777270759; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=diJI/psFLqVLbcfwBRYzBEf9frlX+rsEVwW6L4ZaGBo=;
-        b=fU/nRDeJkUWey9zZPekp+0GJU3WCANtCPn6VzXSW2PS6utQAXOFZTWTqSwti9gD4Yw
-         3+cj4pqCblHw+yLdlZA1gV4M0dlobQS4f+aNpd4Kq7pGeG4WLoZL2Dj8b25wCRCzZgmT
-         IA9sZtTcGHf5YeKC2OKXX/P1jdrMrQIOjvfmIDg1RqlAw2FKPqiZJoDcCTUwdst3Fwz9
-         XgRQRt67EmolyXEYgeF+PVtRDHACnH+R8idxAyj2ZKiibKE15vU4loV+eF4BCrNX9L/z
-         sUBheLvt8ytuuTfcwWkISN/IIpaRRoAx/fNBfzUB1M0o6rmbD2xufOmxEGtKa6X+a8xn
-         6EmA==
+        d=oss.qualcomm.com; s=google; t=1776667453; x=1777272253; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=D7K7654DJb4U5jc4p5qdGIOfHpVUN7aYFET3b2LG/ok=;
+        b=c/J569I4owNeHUyfC6S8VhmpoCDiVLKEneQ2zXJrz6Hj4W3RPYqztJMvkeSyukk01H
+         p0INkh2L+kF/MGbpb9y93d/DPKSAHhOYLmjkJto+Iuou0oqSc2ykBDKw2aF+70k5IYnG
+         GDtkJ9Q+Ndh7QlhC8EUNoZsxQbZM5caH9JGyv/l4So45iyRzn11ciUPNJD8zrysMx+9m
+         rvePKhyDBUG83/CMw+F4l2KzGqGqoxM85049aXy4mr/AEhL67HWDDyih2D1jDEyXMJcj
+         ppS6uCzJkQ1H2CbgFkzRKh7i5VjjjWXPKMGKKs5LTYd7XrYLPB8/sreVM+mxn0q70at8
+         9tkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776665959; x=1777270759;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20251104; t=1776667453; x=1777272253;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=diJI/psFLqVLbcfwBRYzBEf9frlX+rsEVwW6L4ZaGBo=;
-        b=jcRI1xyAL/QfWF1B00xnYp+wtrQJtXNjepAeNd9LFAqIPV5m+ugBOh+xX847VMOAjp
-         lVY65IEKYqN+2WqZAzanU9nIc6QDH5M7e5yCjt3NZfy+GhJLsS01OC4HPX/U8rxWSRUX
-         JOTf2kFSmCUAhmOZDIE2CZcZ7oyiCRy55AP8qI5oEwv/pH+8LN+vgUXRMRKbNaNxQIoB
-         jLAEW1Fo7Uv0mRUMZR4uGZ5zATwUyKyBPyYNQAKAZIXLQpSLcDQtm+ZhIB890o3m9x6B
-         mJ+elUsP+o364BO5RFFKgKZMz65pt/f9/1KBJNATxxlhdWzKrdJP6v7yvR4fytgMrYmg
-         oA3g==
-X-Forwarded-Encrypted: i=1; AFNElJ958Nu2NTh8Q3Gl4nSSRsKwyV1oHUU+/3Y47CF3TncdeHh2s1o1TpzQjvC8/9RIX50LHF0n09e48boO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyn8dafoblBgyvlMk23RNy4n4LAWPxh3HxYd3a5sHoQ2cFeCM7l
-	CZYr6MZUQ4RsFhMcoamnPrJg2reCftsnxZLNKSp179rqiwtf4Lq9t6vyiqe09ibpwnM=
-X-Gm-Gg: AeBDieu6ildcEZek0V05HDBGKUsUBDRt/moYo8ojsY9sbDYKEnqFeyAxgTkD3m3nsnB
-	9wKmV54EmTNAwkPcz1gK1F5yguoaFfHtTZcnREGsLfbYnNxWjXWTiLLIAhC07mduTDiUxHEu1k9
-	XS9sitFlR+AATuwXqmlRb+bKT5wk9rKxamghyKB6AHwhiliMYH6xFngSEiWEJwI9FtlMSVsdTIq
-	HaNbaQxXJ6WtycPUEoi69G3lXaiW6/qXsFqwzQCGVY6ZSJaDdmO4owSG4W9YHPx00ymVUDz0yt4
-	f3wS0bnM2S33yCqYW9gswWRpzScvCwviXwSZ+d6loIQX2csUKlrIk4XrUoajkJdqggKgwh9i4y+
-	clXMbIRN/m5EqvmdYFehR2ONyABj5PNpAhm4YplV8ZcZR44e7NTv1jcry75LicBVjtAcIOMOElH
-	y78Ni1QXOVg3zhe5RwqOMzgWOj2QD3uSdABmSlhlQtwlXJiA==
-X-Received: by 2002:a05:7022:628c:b0:12a:8ea4:252 with SMTP id a92af1059eb24-12c73f6d5ffmr6084142c88.4.1776665959137;
-        Sun, 19 Apr 2026 23:19:19 -0700 (PDT)
-Received: from sw07.internal.sifive.com ([4.53.31.132])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12c74a18a2bsm19541880c88.10.2026.04.19.23.19.18
+        bh=D7K7654DJb4U5jc4p5qdGIOfHpVUN7aYFET3b2LG/ok=;
+        b=kw/8PPc0bdx8ssCw2NOkmzWqCGTSj57S4y7UKTAAFZtTO9YuKCakDmB59QQXVlv1du
+         3iZiasApByCIufwlICY8gqm2xd6mCETEVImP+eBSrPZrfi44dg0hXsTMQ6puJ4aX0MjL
+         E//B8qg0YEdMAUSYE9+znx67+YpFPrSEEftZN8R/zPb62/LGR6MLacTBG6dXNc7b6BH0
+         3WOzOleHFUHNdTWZQBc7K0E7UlAG4twK8zGUHuaqyhIWNKja6XgoZT4NKVPotFcPXL39
+         gqSu1+mm7jMF84pJGPPmRS9BMJlzlBnxU9frRF8L2BGogI37wSuv7PXJ5UjB1KUsgaMu
+         AieA==
+X-Forwarded-Encrypted: i=1; AFNElJ9b7droPcT6SrEIu1RBrZCr2UbmgMi1693xODSsogKoikxMQ4hvgqYZc9USzZIgC9tPapZI44ZhYeoU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqGxjUFrGkC0zLN90uJiLNA7vqeytZf33x7obSDlLGjAkPh9Mi
+	Qs9jBcm9mF4dGcAmc1+WHU6g/M0mUZkoq7GL9xyWTDAVN6egB/upyO4Yc+89hsKOmfA0wVBF3h6
+	XZAKLAAPoc4NrzmbgX1Wr6BOFUgYBfaoBrL9OERoWKHj9QiHcM0OUoDzM0NMUwtno
+X-Gm-Gg: AeBDieupK4rDScKNsk3cJLrVFnbkhs7PSiG0xnOx5VQg6bVJlI30d5IyCumle9aS5ru
+	EcslAHfLN1HnIUw/21TJ7mGKlxWsDWLJuGDO6Q3JSTTSSnlbbcp0RY7Hbp7AyiZB141cP0X0lR8
+	lAgKxF7OmsY+OWtWx/mmM45B8/yoJy/wghbGlI2UBMgtxQ6sbsPZD/Bnb6x8Nz0yoA6KlZZAf/Z
+	2NO8+PONG6m542QvnFMC1VJJUX4g41O0iqXJJVz5jR/kSQE5DhWPM0M0UmTlbw+6POP+aRTzt9M
+	VSizTRTb43dZDMnsCZpWUeIQIERW9o8k/3CJwsGzyDDQejtt4a3qasf2XvOZ9p5QTFOjX1hm0FT
+	Gx04RwmA1O86O/6qlCry5bYiGTzJOZYVGn9fqlFJtx+qzZTrSMo9NoiJcCeOexxbDSqt+tXXkeh
+	mVOXr1tLs/YXgBz13I
+X-Received: by 2002:a05:7022:eac5:b0:128:ca6f:adf0 with SMTP id a92af1059eb24-12c73f975aamr6675240c88.17.1776667453215;
+        Sun, 19 Apr 2026 23:44:13 -0700 (PDT)
+X-Received: by 2002:a05:7022:eac5:b0:128:ca6f:adf0 with SMTP id a92af1059eb24-12c73f975aamr6675216c88.17.1776667452659;
+        Sun, 19 Apr 2026 23:44:12 -0700 (PDT)
+Received: from QCOM-aGQu4IUr3Y.qualcomm.com (i-global052.qualcomm.com. [199.106.103.52])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12c749d29cdsm13731352c88.6.2026.04.19.23.44.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Apr 2026 23:19:18 -0700 (PDT)
-From: Nick Hu <nick.hu@sifive.com>
-Date: Sun, 19 Apr 2026 23:18:55 -0700
-Subject: [PATCH] dt-bindings: timer: Remove sifive,fine-ctr-bits property
+        Sun, 19 Apr 2026 23:44:11 -0700 (PDT)
+From: Shawn Guo <shengchao.guo@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Praveen Talari <quic_ptalari@quicinc.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+        Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Shawn Guo <shengchao.guo@oss.qualcomm.com>
+Subject: [PATCH] dt-bindings: qcom: geni-se-qup: Add compatible for Nord SoC
+Date: Mon, 20 Apr 2026 14:44:01 +0800
+Message-ID: <20260420064401.1248833-1-shengchao.guo@oss.qualcomm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260419-clintv2-remove-fine-ctr-v1-1-7527f4d45850@sifive.com>
-X-B4-Tracking: v=1; b=H4sIAE7F5WkC/x3MQQqDMBBG4avIrDsQo7Xaq4iLkPzagTbKRIIg3
- t3Q5bd476QEFSR6VycpsiRZY0H9qMh/XFzAEorJGtuZ1gzsvxL3bFnxWzN4lgj2u3J4eofg7Kv
- vGir1ppjl+J/H6bpu8Eli1mkAAAA=
-X-Change-ID: 20260409-clintv2-remove-fine-ctr-d5caeda27863
-To: Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Anup Patel <anup@brainfault.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- Nick Hu <nick.hu@sifive.com>
-X-Mailer: b4 0.14.3
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIwMDA2MyBTYWx0ZWRfX9K6S4SV+rC8l
+ ZN9JZu65pb6KM5O1j8aIDQUTb0rdp+xW/jKyJa6+5JkiDBmvJCko+Mg2mHTdsPBnz+GyU01oAxv
+ Yy3n+QcN5iPm47SyOeuVZMtdsrzJzizjLaGOzEya1o/Px6WaWMol9iPyIzpndKkTxbQy8KeflXI
+ hs8b65tpqB/dw2gDMizEa9Yjvy8aO3KMaNJIkUVoFyKhlJr1T1DIN0YY6fDvAOElWv+eBqgihM/
+ w992T2/vITWkP3xaKExk8L3QzsQG4/6PJNSXiAt1tyG05LT4Q0TTLO4WHklrJ73JTVWq8YAbPC3
+ dQNjy3nNw+DnldJhKWNrMUNoRwzHll8FTcEmTOAse0SLIwbsoT2wTXoqVXAC9O68HifmlUG+6dE
+ Apyo9AzD4P/fpZE+akB73d91t/sUpcmNHRe1ay98ENzSi+PA1P9oSI0byuFxyOcU9mCmpkbPYlp
+ bMRu4ybgYezeymPRmoA==
+X-Proofpoint-GUID: 4mQWjjY9dLhrq3VuvIh6xnmEz1yOwIHm
+X-Proofpoint-ORIG-GUID: 4mQWjjY9dLhrq3VuvIh6xnmEz1yOwIHm
+X-Authority-Analysis: v=2.4 cv=WK1PmHsR c=1 sm=1 tr=0 ts=69e5cb3e cx=c_pps
+ a=kVLUcbK0zfr7ocalXnG1qA==:117 a=b9+bayejhc3NMeqCNyeLQQ==:17
+ a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=EUspDBNiAAAA:8
+ a=RtP18x_fKbAUknpFPucA:9 a=vr4QvYf-bLy2KjpDp97w:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-20_01,2026-04-17_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 malwarescore=0 bulkscore=0
+ suspectscore=0 phishscore=0 clxscore=1015 priorityscore=1501 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604200063
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[sifive.com,reject];
-	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[sifive.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288531-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nick.hu@sifive.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288536-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shengchao.guo@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.991];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: E817D4272CC
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 88B5F427742
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The counter width can be inferred from the compatible string, making the
-explicit "sifive,fine-ctr-bits" property redundant. Remove the property
-to simplify the bindings.
+From: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
 
-Fixes: 0f920690a82c ("dt-bindings: timer: Add SiFive CLINT2")
-Suggested-by: Conor Dooley <conor+dt@kernel.org>
-Link: https://lore.kernel.org/linux-riscv/20260330-relative-hardened-5ce35fe1ef57@spud/
-Signed-off-by: Nick Hu <nick.hu@sifive.com>
+Add compatibles for GENI Serial Engine QUP Wrapper Controller on Nord SoC
+with fallback on SA8255P compatibles.
+
+Signed-off-by: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
+Signed-off-by: Shawn Guo <shengchao.guo@oss.qualcomm.com>
 ---
- .../devicetree/bindings/timer/sifive,clint.yaml          | 16 ----------------
- 1 file changed, 16 deletions(-)
+ .../soc/qcom/qcom,sa8255p-geni-se-qup.yaml    | 20 +++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-index 3c16b260db04..051edb1da0d7 100644
---- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-+++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-@@ -72,22 +72,6 @@ properties:
-     minItems: 1
-     maxItems: 4095
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,sa8255p-geni-se-qup.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,sa8255p-geni-se-qup.yaml
+index 352af3426d34..d73f9edcbbdb 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,sa8255p-geni-se-qup.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,sa8255p-geni-se-qup.yaml
+@@ -19,7 +19,12 @@ description:
  
--  sifive,fine-ctr-bits:
--    maximum: 15
--    description: The width in bits of the fine counter.
--
--if:
--  properties:
--    compatible:
--      contains:
--        const: sifive,clint2
--then:
--  required:
--    - sifive,fine-ctr-bits
--else:
--  properties:
--    sifive,fine-ctr-bits: false
--
- additionalProperties: false
+ properties:
+   compatible:
+-    const: qcom,sa8255p-geni-se-qup
++    oneOf:
++      - enum:
++          - qcom,sa8255p-geni-se-qup
++      - items:
++          - const: qcom,nord-auto-geni-se-qup
++          - const: qcom,sa8255p-geni-se-qup
+ 
+   reg:
+     description: QUP wrapper common register address and length.
+@@ -67,9 +72,16 @@ patternProperties:
+ 
+     properties:
+       compatible:
+-        enum:
+-          - qcom,sa8255p-geni-uart
+-          - qcom,sa8255p-geni-debug-uart
++        oneOf:
++          - enum:
++            - qcom,sa8255p-geni-uart
++            - qcom,sa8255p-geni-debug-uart
++          - items:
++            - const: qcom,nord-auto-geni-uart
++            - const: qcom,sa8255p-geni-uart
++          - items:
++            - const: qcom,nord-auto-geni-debug-uart
++            - const: qcom,sa8255p-geni-debug-uart
  
  required:
-
----
-base-commit: c1f49dea2b8f335813d3b348fd39117fb8efb428
-change-id: 20260409-clintv2-remove-fine-ctr-d5caeda27863
-
-Best regards,
+   - compatible
 -- 
-Nick Hu <nick.hu@sifive.com>
+2.43.0
 
 
