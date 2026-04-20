@@ -1,86 +1,85 @@
-Return-Path: <devicetree+bounces-288850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288848-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CO4CJRhu5mmBwAEAu9opvQ
-	(envelope-from <devicetree+bounces-288850-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 20:19:04 +0200
+	id 8A36AlRu5mmBwAEAu9opvQ
+	(envelope-from <devicetree+bounces-288848-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 20:20:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FDAE432AE5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 20:19:04 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64A8A432B2F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 20:20:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A8A8D31E12E2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 17:40:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 19E8530BAEEA
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 17:40:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 495533A9627;
-	Mon, 20 Apr 2026 17:40:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D3A3A901C;
+	Mon, 20 Apr 2026 17:40:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GiX7I7HB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nNrGQ+2i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE783A7598
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A29F63A7592
 	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 17:40:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776706816; cv=none; b=RtsnSia5XBSzgTQHlQXwX7z3LTzbYoe1mUQzlxEQ6aAip4nWPPQIpOHgfGKoHGgO5v6I0o2TaWrbNTE/YxSfK7yGlv2ILOTtHvswM7JYbcewwTNdIn/gbtGjJBr3+rFcnUz8hzFbZ+UDDy0ZceLtzGreE+E7j0r4ON+IUcQTI50=
+	t=1776706816; cv=none; b=SYODe6l9iaQsVgRnft8Ctu7PBVQksYTSKO9DU60N+SBc1Am49luL6KWoed5VwzBoeYSGoNMyrFwRf5DZJdzudwEJPLPp/uKANv/Bw71vmJQFwEg0Pev0Bi3xUg6CqEBVrOvgpWUKl/ybMjU2dXCVLipiYYAqdlpD1sF5jDkRcT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1776706816; c=relaxed/simple;
-	bh=TKfgOUvv2UcX7X0tyk1IsalC6JmJHiID4ANvKVR4gGI=;
+	bh=XgjX75TxGPBIIGi2Hhu42Ahw08X3bo7nmsKdvF7AL6M=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GAUQtLaeyhO74PJ+MDv06h9raH2ldO3OuVEzWEfp+JZN0kADx0YuHX1c+698eM1Kzw1PATm+dyL4Q5VsaC0mRy1JFeu8w1QUX39HD+bBIqAJmUZJdONmZ/h0OZx66jDvIrPGUORm5/mCr62M8E+BhnbUPEwVhqYHqqrTZOIlVSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GiX7I7HB; arc=none smtp.client-ip=209.85.128.48
+	 In-Reply-To:To:Cc; b=BAaeqQv5HpeIvvkRrwI0VKPFRDefmL9+fEL6g/NWEm75Rglyeg6tuxp34LSl1ge35A63zWunzpLCu/U2ojqH7xzFMHjE8bQN62tY/69lk79x5NHn3jmVDIYIydBhkUy0lgsuwO91F8qcr28SEV73Qj2Ud4Ms8HtiLiPOGGfS9mU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nNrGQ+2i; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-488e1a8ac40so43824125e9.2
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4890d945eb4so10843555e9.0
         for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 10:40:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1776706808; x=1777311608; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1776706809; x=1777311609; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vxBc/M4G+txQiEXs+oWY+3uh4E2qPUY9zSyWwwZhU0Q=;
-        b=GiX7I7HBKiBuzrFsItzQKeknAEBgGUs4GzGywYgVSVNMXUEzClxEXCwvARkAb2ZuBh
-         9JzD03x2ljAIjHOvpRPK/+V4ApLBMq1cz8YFbbon0LK8pnqeY0fROMLCMlodEMlufOb6
-         daXhEyDTbbc44lqj2Z87bP/ZSsGL6LKutKgGzUIqUWxeJU8HLuzhG62b/fQVN5tRT9YP
-         nVQbGSg2bWc6e9TO3L3GmLYfjT1n6SbI/6mWjHOU+ZvyNwXyecmBQTJzdCVt7GFPcGBj
-         3EdO6fNKCZroKN9q1erd4uBRllE+JBKFBxiHcee7XHSF7/Ok7oQVUQDVRMotfSOLJ1FP
-         M4dw==
+        bh=iXQeutTdiOf3MiN68CFIsH/5AMU+Gi3Xza1Pm9hWMrM=;
+        b=nNrGQ+2iKR2umzvi2FRLaJvrr1arBIBND0+BJbNWMNaCrDyoDIxzkcLJYxJKNhrYyx
+         jfWoeTYM+WmSItsFuA7H035mQwYw0zoYeRzpcuu4+tIp3mH0/Xfr2ZaBnqxwZCP5x1qO
+         QBbDrP0RZf33vNeglajstq0YQHrkndAQAyD5FZjyEKeSCZ+XgBdUd3Q0c7gjNfdMROOa
+         CqFmWZl/DIFOM3oQCVeZhEOO/9ZHNQmIxCrkNCsNO32QouhgMk+v0FXci0QkdbxPjM71
+         x3IAr6s5V3sCwyX+QPsz57zcfi8SOjAZ7KpkTKYuNbzk1j62bsvnOJ4FMljKxHhPO/8Z
+         LBOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776706808; x=1777311608;
+        d=1e100.net; s=20251104; t=1776706809; x=1777311609;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=vxBc/M4G+txQiEXs+oWY+3uh4E2qPUY9zSyWwwZhU0Q=;
-        b=fa4AnIOAbtqoeX5qmZqyJj0WSB4CK7rdCUGmagPJpDxNtwOKIU2uZJZr4W1cKItVXQ
-         CHw7S8lXURb/qjETUUSfyoR2j9s02mjLAPvXD6zLIRoaGq7tZCjkRYWqnl40mG4tsZgl
-         6QEAWoLV77R7UCuKuLCoPTON2p9N9Gx8sTnwxZIq8XSzL7RCnZAIlHrBRvbKEFZ/1Hqs
-         3fYNsQB0QSS1XWm8glo2sxeTUl/cJzGC9Q+wK1hPtYpAwKkJhjqJvSFGInXwmTuhmt41
-         jepGwUJDG7vSFA1pTOjNfAzarHkcPkClPHmxOLw8q7HYjMZ6A75TIQ1my+mG/mna0jui
-         wpHw==
-X-Forwarded-Encrypted: i=1; AFNElJ95ga+d++t+OUCCXEQ0Av3YwyabkeolHnPfpo/sjDLZPev+Y9gy3l074H18zhmrbaDqSOb8qHwB+PbN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZXaLbvCo17uLRHmLzGCImDF+NWHVAPqs2UhMshJ7jySw9viPI
-	WmsrFKVapbcwhDodS/sxpyw5ijsEVN/82Aufz6/zrga8BFFrHMjLCD5XfuVIK5lW+88=
-X-Gm-Gg: AeBDiesLL6dlB007ayHBfkt6OXK9k9ZCe0dlq09BrEqf2bDePW55MAyGStSN7ow0OGT
-	2g/MqtOhNKgKBSjpW10xZVxVPclAfg7m3AAUoURa6iLfzN60g+PAOu9U8t85DBTFXgprQPN/IwH
-	MdpifJm5/D8yb02t4y47lt86Gg8WjOQuVLkwXHNqvlLGT8uia0Ayef0sfViJnilT+il0DP3/7rl
-	DrcF1U3CTOWNXqCLB6J+qDchSiJnY+yT5NLfBrgg6r9ulvpfTOGzPropNjKCNQHPM9KwLtk8GOj
-	53YaUwtmrh0zHf0xjyyZSD9b9Yk3XeXOutycAJm91srI70j2J/4HT2HYkxBxg2LW1cuFWg0wpuV
-	jEael1+LerCtJp1dG8br2qCSjohkRsUdGwhsOK184uykziNBzg/W89IRBmk79+02Fduh2HKQkIf
-	bae8KCwb4T+pXoippQo8j2hchURXCT8WSR0b4DXQExwPkXWG6J0j7Ymm9ohg3aWBNW9I+DA1Ij9
-	nqBBaQrmXWhjU1xCw==
-X-Received: by 2002:a05:600c:154e:b0:488:9ed3:1492 with SMTP id 5b1f17b1804b1-488fb74fc02mr205225595e9.10.1776706807908;
-        Mon, 20 Apr 2026 10:40:07 -0700 (PDT)
+        bh=iXQeutTdiOf3MiN68CFIsH/5AMU+Gi3Xza1Pm9hWMrM=;
+        b=cYKMcXK+YWyb07kaBuNrizhpLRcIaE7edH5XzkMhWI7hoif8QAiF5NE27FOu6YUv2J
+         Ik5ckraGyGE2ViIIIivGYdz5wrkU+OIwNQDlsT4I1pgrT1Iqta39f7qVWUqiDseIoQJv
+         56m/z0ZzmKsZUsnT+mxpjarF6VAHhSGM5JcoBtrwt/HFK7eAp2qk8Xg+cmNmUxvu5OJ+
+         C4WibTDp45SI+b2AvChNV20GABawTQVAEk0q9mSAMYAg2FPV/1/0khNN6oY8ZvvvVTP4
+         nTVVjNaZjNqB9GjX4sgmuZvzzsJgjH+cphzdAilT1ACDQljBMlLZN3uKU8JsFvAQM7VP
+         ddig==
+X-Forwarded-Encrypted: i=1; AFNElJ9uQFoOcNzX61cJx8r8LchapnXec+VHrISZGdsl9AzojsUptwOxKaT98Zm8x53ajTT5DkYJbsbAkvqd@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQl3sU8Utlg9Q1favjDhg+OPfKJO1WIjVD+KAIxJZHbo1Pmkhc
+	lqi6cu9RLdtr9pCAyOaWFEjFSnc3rJFUSweeFwDtyRuUeWBsT/56uX9mYFHNvnB9UkQ=
+X-Gm-Gg: AeBDieuUS9nTxqduw0BEuU90CXbpkPus39f2HQtHBMJzxLbEVWKWvJE80177/+CsaQ8
+	CkEOcwqsE1wiH3AKF9HcAbKPeqDUyxp4rPfRhUdgaWDioa5YFdLD2TEdU/twAt168iulb6y6IZj
+	uYjfx2dZ4D3lxIl0O/QXmXqQnY0lR2Zp/MkcCLivBgkLORYcG7g8nAkf6/xw7unsSwFEVohUB0C
+	w0wHDd7b5HjprlBjABVVSVS0gmkM4evyNfytXvKC5mNdm2Y+CzhCtv+Hq2ZhCCImKLtoTNUVIwH
+	c35PRndYBysQESJWRmvHLh7oUfqGfBdpUUJ9AKEaJ4QakvFYM5XbtOuBVsElnFk9nyElUEieoKy
+	rohd5aGOGWAKR3N3dIb+jm1tTVlylNtwnvBsmEHj9PyB/wHkHA+NXy9lHcA2uwi9XC19L9JFgFL
+	sRMyoVfRaXJR6Ez5w+jDaZwZouYZktkC6Px4RwI7zccW8GvJ3c0ZZ8fpckQipUPoxgG/V6RiGkp
+	qMZdw+TpLLmwW9gAr8Br0ELDapu
+X-Received: by 2002:a05:600c:3150:b0:485:3cef:d6ea with SMTP id 5b1f17b1804b1-488fb8b9deamr170689135e9.13.1776706808472;
+        Mon, 20 Apr 2026 10:40:08 -0700 (PDT)
 Received: from ta2.c.googlers.com (17.83.155.104.bc.googleusercontent.com. [104.155.83.17])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fb72d365sm144280285e9.1.2026.04.20.10.40.07
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fb72d365sm144280285e9.1.2026.04.20.10.40.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Apr 2026 10:40:07 -0700 (PDT)
+        Mon, 20 Apr 2026 10:40:08 -0700 (PDT)
 From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Mon, 20 Apr 2026 17:39:50 +0000
-Subject: [PATCH v3 04/10] firmware: samsung: acpm: Make acpm_ops const and
- access via pointer
+Date: Mon, 20 Apr 2026 17:39:51 +0000
+Subject: [PATCH v3 05/10] firmware: samsung: acpm: Add TMU protocol support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +88,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260420-acpm-tmu-v3-4-3dc8e93f0b26@linaro.org>
+Message-Id: <20260420-acpm-tmu-v3-5-3dc8e93f0b26@linaro.org>
 References: <20260420-acpm-tmu-v3-0-3dc8e93f0b26@linaro.org>
 In-Reply-To: <20260420-acpm-tmu-v3-0-3dc8e93f0b26@linaro.org>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
@@ -110,13 +109,14 @@ Cc: willmcvicker@google.com, jyescas@google.com, shin.son@samsung.com,
  linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org, 
- linux-clk@vger.kernel.org, Tudor Ambarus <tudor.ambarus@linaro.org>
+ linux-clk@vger.kernel.org, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776706804; l=6069;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776706804; l=10630;
  i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=TKfgOUvv2UcX7X0tyk1IsalC6JmJHiID4ANvKVR4gGI=;
- b=yPHNYBxf7QnMWUXaEk9LWCsOzM8jHb2VsWtybvDRQxbO69Xt+rNMUJo0MncsB/iNRhmSVWg67
- oAcDAwgi6d0A7mvuDSXLbfmXaFZoou+EEXxq9wDSnbLCykXmuPaYAB6
+ bh=XgjX75TxGPBIIGi2Hhu42Ahw08X3bo7nmsKdvF7AL6M=;
+ b=Swl0FsxHcW7bEIva8PyDAcVFMYGfTkOlsx6yEWdPI2PrBvg0dIfxccivkesvLNQ/Jk5ZN6KxS
+ 48cBUk8LDVGBz5YFlIZbx7DYc5wX5DyCZkHqlPeeaugGlfcdWDXl0+W
 X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
  pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -124,19 +124,19 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288850-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-288848-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,intel.com,arm.com,samsung.com,gmail.com,linaro.org,baylibre.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	RCPT_COUNT_TWELVE(0.00)[31];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -146,171 +146,381 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,linaro.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2FDAE432AE5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,linaro.org:mid,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,msg.data:url]
+X-Rspamd-Queue-Id: 64A8A432B2F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Replace the embedded `struct acpm_ops` inside `struct acpm_handle` with
-a pointer to a `const struct acpm_ops`.
+The Thermal Management Unit (TMU) on the Google GS101 SoC is managed
+through a hybrid model shared between the kernel and the Alive Clock
+and Power Manager (ACPM) firmware.
 
-Previously, the operations structure was embedded directly within the
-handle and populated dynamically at runtime via `acpm_setup_ops()`.
-This resulted in mutable function pointers and unnecessary per-instance
-memory overhead.
-
-By defining `exynos_acpm_driver_ops` statically as a `const` structure,
-the function pointers are now safely housed in the read-only `.rodata`
-section. This improves security by preventing function pointer
-overwrites, saves memory, and slightly reduces initialization overhead
-in `acpm_probe()`.
-
-Consequently, update all consumer drivers (clk, mfd) to access the
-operations via the new pointer indirection (`->ops->`). Finally, fix
-the previously empty kernel-doc description for the ops member to
-reflect its new pointer nature.
+Add the protocol helpers required to communicate with the ACPM for
+thermal operations, including initialization, threshold configuration,
+temperature reading, and system suspend/resume handshakes.
 
 Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- drivers/clk/samsung/clk-acpm.c                     |  8 ++---
- drivers/firmware/samsung/exynos-acpm.c             | 36 ++++++++++------------
- drivers/mfd/sec-acpm.c                             |  6 ++--
- .../linux/firmware/samsung/exynos-acpm-protocol.h  |  4 +--
- 4 files changed, 25 insertions(+), 29 deletions(-)
+ drivers/firmware/samsung/Makefile                  |   1 +
+ drivers/firmware/samsung/exynos-acpm-tmu.c         | 240 +++++++++++++++++++++
+ drivers/firmware/samsung/exynos-acpm-tmu.h         |  28 +++
+ drivers/firmware/samsung/exynos-acpm.c             |  12 ++
+ .../linux/firmware/samsung/exynos-acpm-protocol.h  |  18 ++
+ 5 files changed, 299 insertions(+)
 
-diff --git a/drivers/clk/samsung/clk-acpm.c b/drivers/clk/samsung/clk-acpm.c
-index 93667777094c..953ca8d5720a 100644
---- a/drivers/clk/samsung/clk-acpm.c
-+++ b/drivers/clk/samsung/clk-acpm.c
-@@ -68,8 +68,8 @@ static unsigned long acpm_clk_recalc_rate(struct clk_hw *hw,
- {
- 	struct acpm_clk *clk = to_acpm_clk(hw);
- 
--	return clk->handle->ops.dvfs.get_rate(clk->handle, clk->mbox_chan_id,
--					      clk->id);
-+	return clk->handle->ops->dvfs.get_rate(clk->handle, clk->mbox_chan_id,
-+					       clk->id);
- }
- 
- static int acpm_clk_determine_rate(struct clk_hw *hw,
-@@ -89,8 +89,8 @@ static int acpm_clk_set_rate(struct clk_hw *hw, unsigned long rate,
- {
- 	struct acpm_clk *clk = to_acpm_clk(hw);
- 
--	return clk->handle->ops.dvfs.set_rate(clk->handle, clk->mbox_chan_id,
--					      clk->id, rate);
-+	return clk->handle->ops->dvfs.set_rate(clk->handle, clk->mbox_chan_id,
-+					       clk->id, rate);
- }
- 
- static const struct clk_ops acpm_clk_ops = {
+diff --git a/drivers/firmware/samsung/Makefile b/drivers/firmware/samsung/Makefile
+index 80d4f89b33a9..5a6f72bececf 100644
+--- a/drivers/firmware/samsung/Makefile
++++ b/drivers/firmware/samsung/Makefile
+@@ -3,4 +3,5 @@
+ acpm-protocol-objs			:= exynos-acpm.o
+ acpm-protocol-objs			+= exynos-acpm-pmic.o
+ acpm-protocol-objs			+= exynos-acpm-dvfs.o
++acpm-protocol-objs			+= exynos-acpm-tmu.o
+ obj-$(CONFIG_EXYNOS_ACPM_PROTOCOL)	+= acpm-protocol.o
+diff --git a/drivers/firmware/samsung/exynos-acpm-tmu.c b/drivers/firmware/samsung/exynos-acpm-tmu.c
+new file mode 100644
+index 000000000000..d1ebe2472ed9
+--- /dev/null
++++ b/drivers/firmware/samsung/exynos-acpm-tmu.c
+@@ -0,0 +1,240 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright 2020 Samsung Electronics Co., Ltd.
++ * Copyright 2020 Google LLC.
++ * Copyright 2026 Linaro Ltd.
++ */
++
++#include <linux/array_size.h>
++#include <linux/bitfield.h>
++#include <linux/bits.h>
++#include <linux/firmware/samsung/exynos-acpm-protocol.h>
++#include <linux/ktime.h>
++#include <linux/types.h>
++#include <linux/units.h>
++
++#include "exynos-acpm.h"
++#include "exynos-acpm-tmu.h"
++
++/* IPC Request Types */
++#define ACPM_TMU_INIT		0x01
++#define ACPM_TMU_READ_TEMP	0x02
++#define ACPM_TMU_SUSPEND	0x04
++#define ACPM_TMU_RESUME		0x10
++#define ACPM_TMU_THRESHOLD	0x11
++#define ACPM_TMU_INTEN		0x12
++#define ACPM_TMU_CONTROL	0x13
++#define ACPM_TMU_IRQ_CLEAR	0x14
++
++#define ACPM_TMU_TX_DATA_LEN	8
++#define ACPM_TMU_RX_DATA_LEN	7
++
++struct acpm_tmu_tx {
++	u16 ctx;
++	u16 fw_use;
++	u8 type;
++	u8 rsvd0;
++	u8 tzid;
++	u8 rsvd1;
++	u8 data[ACPM_TMU_TX_DATA_LEN];
++} __packed;
++
++struct acpm_tmu_rx {
++	u16 ctx;
++	u16 fw_use;
++	u8 type;
++	s8 ret;
++	u8 tzid;
++	s8 temp;
++	u8 rsvd;
++	u8 data[ACPM_TMU_RX_DATA_LEN];
++} __packed;
++
++union acpm_tmu_msg {
++	u32 data[4];
++	struct acpm_tmu_tx tx;
++	struct acpm_tmu_rx rx;
++} __packed;
++
++static int acpm_tmu_to_linux_err(s8 fw_err)
++{
++	/*
++	 * ACPM_TMU_INIT uses BIT(0) and BIT(1) of msg.rx.ret to flag APM
++	 * capabilities. Treat zero and all positive values as success.
++	 */
++	if (fw_err >= 0)
++		return 0;
++
++	if (fw_err == -1)
++		return -EACCES;
++
++	return -EIO;
++}
++
++int acpm_tmu_init(struct acpm_handle *handle, unsigned int acpm_chan_id)
++{
++	union acpm_tmu_msg msg = {0};
++	struct acpm_xfer xfer;
++	int ret;
++
++	msg.tx.type = ACPM_TMU_INIT;
++	acpm_set_xfer(&xfer, msg.data, ARRAY_SIZE(msg.data), acpm_chan_id,
++		      true);
++
++	ret = acpm_do_xfer(handle, &xfer);
++	if (ret)
++		return ret;
++
++	return acpm_tmu_to_linux_err(msg.rx.ret);
++}
++
++int acpm_tmu_read_temp(struct acpm_handle *handle, unsigned int acpm_chan_id,
++		       u8 tz, int *temp)
++{
++	union acpm_tmu_msg msg = {0};
++	struct acpm_xfer xfer;
++	int ret;
++
++	msg.tx.type = ACPM_TMU_READ_TEMP;
++	msg.tx.tzid = tz;
++
++	acpm_set_xfer(&xfer, msg.data, ARRAY_SIZE(msg.data), acpm_chan_id,
++		      true);
++
++	ret = acpm_do_xfer(handle, &xfer);
++	if (ret)
++		return ret;
++
++	ret = acpm_tmu_to_linux_err(msg.rx.ret);
++	if (ret)
++		return ret;
++
++	*temp = msg.rx.temp;
++
++	return 0;
++}
++
++int acpm_tmu_set_threshold(struct acpm_handle *handle,
++			   unsigned int acpm_chan_id, u8 tz,
++			   const u8 temperature[8], size_t tlen)
++{
++	union acpm_tmu_msg msg = {0};
++	struct acpm_xfer xfer;
++	int i, ret;
++
++	if (tlen > ACPM_TMU_TX_DATA_LEN)
++		return -EINVAL;
++
++	msg.tx.type = ACPM_TMU_THRESHOLD;
++	msg.tx.tzid = tz;
++
++	for (i = 0; i < tlen; i++)
++		msg.tx.data[i] = temperature[i];
++
++	acpm_set_xfer(&xfer, msg.data, ARRAY_SIZE(msg.data), acpm_chan_id,
++		      true);
++
++	ret = acpm_do_xfer(handle, &xfer);
++	if (ret)
++		return ret;
++
++	return acpm_tmu_to_linux_err(msg.rx.ret);
++}
++
++int acpm_tmu_set_interrupt_enable(struct acpm_handle *handle,
++				  unsigned int acpm_chan_id, u8 tz, u8 inten)
++{
++	union acpm_tmu_msg msg = {0};
++	struct acpm_xfer xfer;
++	int ret;
++
++	msg.tx.type = ACPM_TMU_INTEN;
++	msg.tx.tzid = tz;
++	msg.tx.data[0] = inten;
++
++	acpm_set_xfer(&xfer, msg.data, ARRAY_SIZE(msg.data), acpm_chan_id,
++		      true);
++
++	ret = acpm_do_xfer(handle, &xfer);
++	if (ret)
++		return ret;
++
++	return acpm_tmu_to_linux_err(msg.rx.ret);
++}
++
++int acpm_tmu_tz_control(struct acpm_handle *handle, unsigned int acpm_chan_id,
++			u8 tz, bool enable)
++{
++	union acpm_tmu_msg msg = {0};
++	struct acpm_xfer xfer;
++	int ret;
++
++	msg.tx.type = ACPM_TMU_CONTROL;
++	msg.tx.tzid = tz;
++	msg.tx.data[0] = enable ? 1 : 0;
++
++	acpm_set_xfer(&xfer, msg.data, ARRAY_SIZE(msg.data), acpm_chan_id,
++		      true);
++
++	ret = acpm_do_xfer(handle, &xfer);
++	if (ret)
++		return ret;
++
++	return acpm_tmu_to_linux_err(msg.rx.ret);
++}
++
++int acpm_tmu_clear_tz_irq(struct acpm_handle *handle, unsigned int acpm_chan_id,
++			  u8 tz)
++{
++	union acpm_tmu_msg msg = {0};
++	struct acpm_xfer xfer;
++	int ret;
++
++	msg.tx.type = ACPM_TMU_IRQ_CLEAR;
++	msg.tx.tzid = tz;
++
++	acpm_set_xfer(&xfer, msg.data, ARRAY_SIZE(msg.data), acpm_chan_id,
++		      true);
++
++	ret = acpm_do_xfer(handle, &xfer);
++	if (ret)
++		return ret;
++
++	return acpm_tmu_to_linux_err(msg.rx.ret);
++}
++
++int acpm_tmu_suspend(struct acpm_handle *handle, unsigned int acpm_chan_id)
++{
++	union acpm_tmu_msg msg = {0};
++	struct acpm_xfer xfer;
++	int ret;
++
++	msg.tx.type = ACPM_TMU_SUSPEND;
++
++	acpm_set_xfer(&xfer, msg.data, ARRAY_SIZE(msg.data), acpm_chan_id,
++		      true);
++
++	ret = acpm_do_xfer(handle, &xfer);
++	if (ret)
++		return ret;
++
++	return acpm_tmu_to_linux_err(msg.rx.ret);
++}
++
++int acpm_tmu_resume(struct acpm_handle *handle, unsigned int acpm_chan_id)
++{
++	union acpm_tmu_msg msg = {0};
++	struct acpm_xfer xfer;
++	int ret;
++
++	msg.tx.type = ACPM_TMU_RESUME;
++
++	acpm_set_xfer(&xfer, msg.data, ARRAY_SIZE(msg.data), acpm_chan_id,
++		      true);
++
++	ret = acpm_do_xfer(handle, &xfer);
++	if (ret)
++		return ret;
++
++	return acpm_tmu_to_linux_err(msg.rx.ret);
++}
+diff --git a/drivers/firmware/samsung/exynos-acpm-tmu.h b/drivers/firmware/samsung/exynos-acpm-tmu.h
+new file mode 100644
+index 000000000000..8b89f29fda67
+--- /dev/null
++++ b/drivers/firmware/samsung/exynos-acpm-tmu.h
+@@ -0,0 +1,28 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright 2020 Samsung Electronics Co., Ltd.
++ * Copyright 2020 Google LLC.
++ * Copyright 2026 Linaro Ltd.
++ */
++#ifndef __EXYNOS_ACPM_TMU_H__
++#define __EXYNOS_ACPM_TMU_H__
++
++#include <linux/types.h>
++
++struct acpm_handle;
++
++int acpm_tmu_init(struct acpm_handle *handle, unsigned int acpm_chan_id);
++int acpm_tmu_read_temp(struct acpm_handle *handle, unsigned int acpm_chan_id,
++		       u8 tz, int *temp);
++int acpm_tmu_set_threshold(struct acpm_handle *handle,
++			   unsigned int acpm_chan_id, u8 tz,
++			   const u8 temperature[8], size_t tlen);
++int acpm_tmu_set_interrupt_enable(struct acpm_handle *handle,
++				  unsigned int acpm_chan_id, u8 tz, u8 inten);
++int acpm_tmu_tz_control(struct acpm_handle *handle, unsigned int acpm_chan_id,
++			u8 tz, bool enable);
++int acpm_tmu_clear_tz_irq(struct acpm_handle *handle, unsigned int acpm_chan_id,
++			  u8 tz);
++int acpm_tmu_suspend(struct acpm_handle *handle, unsigned int acpm_chan_id);
++int acpm_tmu_resume(struct acpm_handle *handle, unsigned int acpm_chan_id);
++#endif /* __EXYNOS_ACPM_TMU_H__ */
 diff --git a/drivers/firmware/samsung/exynos-acpm.c b/drivers/firmware/samsung/exynos-acpm.c
-index 39d3d2317659..4f2ad84cd783 100644
+index 4f2ad84cd783..d4afd6b535e4 100644
 --- a/drivers/firmware/samsung/exynos-acpm.c
 +++ b/drivers/firmware/samsung/exynos-acpm.c
-@@ -610,30 +610,26 @@ static int acpm_channels_init(struct acpm_info *acpm)
- 	return 0;
- }
+@@ -31,6 +31,7 @@
+ #include "exynos-acpm.h"
+ #include "exynos-acpm-dvfs.h"
+ #include "exynos-acpm-pmic.h"
++#include "exynos-acpm-tmu.h"
  
--/**
-- * acpm_setup_ops() - setup the operations structures.
-- * @acpm:	pointer to the driver data.
-- */
--static void acpm_setup_ops(struct acpm_info *acpm)
--{
--	struct acpm_dvfs_ops *dvfs_ops = &acpm->handle.ops.dvfs;
--	struct acpm_pmic_ops *pmic_ops = &acpm->handle.ops.pmic;
--
--	dvfs_ops->set_rate = acpm_dvfs_set_rate;
--	dvfs_ops->get_rate = acpm_dvfs_get_rate;
--
--	pmic_ops->read_reg = acpm_pmic_read_reg;
--	pmic_ops->bulk_read = acpm_pmic_bulk_read;
--	pmic_ops->write_reg = acpm_pmic_write_reg;
--	pmic_ops->bulk_write = acpm_pmic_bulk_write;
--	pmic_ops->update_reg = acpm_pmic_update_reg;
--}
--
- static void acpm_clk_pdev_unregister(void *data)
- {
- 	platform_device_unregister(data);
- }
+ #define ACPM_PROTOCOL_SEQNUM		GENMASK(21, 16)
  
-+static const struct acpm_ops exynos_acpm_driver_ops = {
-+	.dvfs = {
-+		.set_rate = acpm_dvfs_set_rate,
-+		.get_rate = acpm_dvfs_get_rate,
-+	},
+@@ -628,6 +629,17 @@ static const struct acpm_ops exynos_acpm_driver_ops = {
+ 		.bulk_write = acpm_pmic_bulk_write,
+ 		.update_reg = acpm_pmic_update_reg,
+ 	},
 +
-+	.pmic = {
-+		.read_reg = acpm_pmic_read_reg,
-+		.bulk_read = acpm_pmic_bulk_read,
-+		.write_reg = acpm_pmic_write_reg,
-+		.bulk_write = acpm_pmic_bulk_write,
-+		.update_reg = acpm_pmic_update_reg,
++	.tmu = {
++		.init = acpm_tmu_init,
++		.read_temp = acpm_tmu_read_temp,
++		.set_threshold = acpm_tmu_set_threshold,
++		.set_interrupt_enable = acpm_tmu_set_interrupt_enable,
++		.tz_control = acpm_tmu_tz_control,
++		.clear_tz_irq = acpm_tmu_clear_tz_irq,
++		.suspend = acpm_tmu_suspend,
++		.resume = acpm_tmu_resume,
 +	},
-+};
-+
- static int acpm_probe(struct platform_device *pdev)
- {
- 	const struct acpm_match_data *match_data;
-@@ -674,7 +670,7 @@ static int acpm_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
--	acpm_setup_ops(acpm);
-+	acpm->handle.ops = &exynos_acpm_driver_ops;
- 
- 	platform_set_drvdata(pdev, acpm);
- 
-diff --git a/drivers/mfd/sec-acpm.c b/drivers/mfd/sec-acpm.c
-index 9e15b260b8df..3397d13d3b7f 100644
---- a/drivers/mfd/sec-acpm.c
-+++ b/drivers/mfd/sec-acpm.c
-@@ -391,7 +391,7 @@ static int sec_pmic_acpm_bus_write(void *context, const void *data,
- {
- 	struct sec_pmic_acpm_bus_context *ctx = context;
- 	struct acpm_handle *acpm = ctx->shared->acpm;
--	const struct acpm_pmic_ops *pmic_ops = &acpm->ops.pmic;
-+	const struct acpm_pmic_ops *pmic_ops = &acpm->ops->pmic;
- 	size_t val_count = count - BITS_TO_BYTES(ACPM_ADDR_BITS);
- 	const u8 *d = data;
- 	const u8 *vals = &d[BITS_TO_BYTES(ACPM_ADDR_BITS)];
-@@ -411,7 +411,7 @@ static int sec_pmic_acpm_bus_read(void *context, const void *reg_buf, size_t reg
- {
- 	struct sec_pmic_acpm_bus_context *ctx = context;
- 	struct acpm_handle *acpm = ctx->shared->acpm;
--	const struct acpm_pmic_ops *pmic_ops = &acpm->ops.pmic;
-+	const struct acpm_pmic_ops *pmic_ops = &acpm->ops->pmic;
- 	const u8 *r = reg_buf;
- 	u8 reg;
- 
-@@ -430,7 +430,7 @@ static int sec_pmic_acpm_bus_reg_update_bits(void *context, unsigned int reg, un
- {
- 	struct sec_pmic_acpm_bus_context *ctx = context;
- 	struct acpm_handle *acpm = ctx->shared->acpm;
--	const struct acpm_pmic_ops *pmic_ops = &acpm->ops.pmic;
-+	const struct acpm_pmic_ops *pmic_ops = &acpm->ops->pmic;
- 
- 	return pmic_ops->update_reg(acpm, ctx->shared->acpm_chan_id, ctx->type, reg & 0xff,
- 				    ctx->shared->speedy_channel, val, mask);
-diff --git a/include/linux/firmware/samsung/exynos-acpm-protocol.h b/include/linux/firmware/samsung/exynos-acpm-protocol.h
-index 62a3eb450067..e13d9ac73ff6 100644
---- a/include/linux/firmware/samsung/exynos-acpm-protocol.h
-+++ b/include/linux/firmware/samsung/exynos-acpm-protocol.h
-@@ -41,10 +41,10 @@ struct acpm_ops {
- 
- /**
-  * struct acpm_handle - Reference to an initialized protocol instance
-- * @ops:
-+ * @ops:	pointer to the constant ACPM protocol operations.
-  */
- struct acpm_handle {
--	struct acpm_ops ops;
-+	const struct acpm_ops *ops;
  };
  
- struct device;
+ static int acpm_probe(struct platform_device *pdev)
+diff --git a/include/linux/firmware/samsung/exynos-acpm-protocol.h b/include/linux/firmware/samsung/exynos-acpm-protocol.h
+index e13d9ac73ff6..8511c3c3983b 100644
+--- a/include/linux/firmware/samsung/exynos-acpm-protocol.h
++++ b/include/linux/firmware/samsung/exynos-acpm-protocol.h
+@@ -34,9 +34,27 @@ struct acpm_pmic_ops {
+ 			  u8 type, u8 reg, u8 chan, u8 value, u8 mask);
+ };
+ 
++struct acpm_tmu_ops {
++	int (*init)(struct acpm_handle *handle, unsigned int acpm_chan_id);
++	int (*read_temp)(struct acpm_handle *handle, unsigned int acpm_chan_id,
++			 u8 tz, int *temp);
++	int (*set_threshold)(struct acpm_handle *handle,
++			     unsigned int acpm_chan_id, u8 tz,
++			     const u8 temperature[8], size_t tlen);
++	int (*set_interrupt_enable)(struct acpm_handle *handle,
++				    unsigned int acpm_chan_id, u8 tz, u8 inten);
++	int (*tz_control)(struct acpm_handle *handle, unsigned int acpm_chan_id,
++			  u8 tz, bool enable);
++	int (*clear_tz_irq)(struct acpm_handle *handle,
++			    unsigned int acpm_chan_id, u8 tz);
++	int (*suspend)(struct acpm_handle *handle, unsigned int acpm_chan_id);
++	int (*resume)(struct acpm_handle *handle, unsigned int acpm_chan_id);
++};
++
+ struct acpm_ops {
+ 	struct acpm_dvfs_ops dvfs;
+ 	struct acpm_pmic_ops pmic;
++	struct acpm_tmu_ops tmu;
+ };
+ 
+ /**
 
 -- 
 2.54.0.rc1.555.g9c883467ad-goog
