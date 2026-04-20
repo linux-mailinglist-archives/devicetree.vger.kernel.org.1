@@ -1,208 +1,134 @@
-Return-Path: <devicetree+bounces-288699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288700-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0O+pDmEl5mmOsgEAu9opvQ
-	(envelope-from <devicetree+bounces-288699-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:08:49 +0200
+	id 4GMoJX0j5mlBsgEAu9opvQ
+	(envelope-from <devicetree+bounces-288700-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:00:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B7E42B427
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:08:48 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 316F442B1F4
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:00:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6367A30E6610
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 12:58:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9BF3E3001008
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC8239A05E;
-	Mon, 20 Apr 2026 12:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98C6739FCAD;
+	Mon, 20 Apr 2026 13:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gxAdgBun"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YlVcalFz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B07441A8F
-	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 12:57:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 742533750BC;
+	Mon, 20 Apr 2026 13:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776689875; cv=none; b=RWM30ul3PV9vNwnxvjgrgVW1D2u7eS7cIOAsKEKovh7yaj5r0rNuqE7PIHkOMQf1svcEZ0Rin+FyEwf8McqtEexo7VkedW9wLOpv4aUUqMU+sJgtvn2iszQJ54uwSn+OR9e8D29sxud88qvDZP9icZGF4A858sZvJYbjC+Yrqdg=
+	t=1776690043; cv=none; b=tNO1A3I24VOzm40af2Z9MSolUh8CWe0H4FRQWheGr399fzN4J2AZLw8Yo4MygK0IxtiJmAfw9RfqHIjs6n1QjEYQQ5Yr9FMbMT+Q5i5ygzvzuS2uTMK1gDSy4AOpM3vbnGaxha7mipZXLCunFkeicruNU8edPiKCigJvn1X1Aho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776689875; c=relaxed/simple;
-	bh=V7FPj1tNedM8iIeydBk5vJ5jEFd2bEmcvSkLalKsPgA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oYsDd0o500woiCkS4R4nMnQuiURUV3wufoK8XMqAYSvk8QUSjeqUXsHax6KTyAudGZ2kOq9LJVy936sn+APTvJq77x3j9WVWwv9dyXGKacZarSTXJ+2rjKAnJmMm+vtpeQl9mU4MYLrgZBhXVHxi2ij65c882nnO+mpfPSq7GE8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gxAdgBun; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA737C19425
-	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 12:57:54 +0000 (UTC)
+	s=arc-20240116; t=1776690043; c=relaxed/simple;
+	bh=tUC2t9kCbTutWnz6IuPE32rjpeccnNIrpMgaz4pD0xY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lBcDMRebU4+/48oQlWZ6W0sECtKC5wdFqV443NiHc0RsOOKmI5Uf26AO2KhhH66PAoSBL6uplOno6KWfgrKkMt6/rk9cBny6EecpJ1qHO3wPXsTrFUtptBJY53eELRjvwsLz+6VkPM13M+gJHXWTLrErVBIuqb4WXRxiZqRWGpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YlVcalFz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BBE1C2BCB4;
+	Mon, 20 Apr 2026 13:00:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776689874;
-	bh=V7FPj1tNedM8iIeydBk5vJ5jEFd2bEmcvSkLalKsPgA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=gxAdgBun7l29CLJmx3skh/iZ6VE3gSZ5GWQLCuJSsfB5Q+ICpcBuAeqKQ1a5j5RpC
-	 87EHEua1uwSu69AjMVicdA8cIJmfz0o9YSx3hD/0dzqFbEHAE4Nue7qxvAZgiPbMC1
-	 Ve0xDwp+aOZbxNFZqFBsrJRBK7Myudq7ZRYBJLpFRFYPCaagjGGkoAbQrFy1ghGGQz
-	 T1Huix/3BJqtzGYpVBGLaFpBT4w8rXT8Yk3gJXyVsfD69Um3fCVcOO+lIZiKXdlVFi
-	 AzJNbnhPW4DptQsGjX9XnTNYYCyzRrWf3FFe+duOdhO2spQirYYjxwI/FQy0fnK/W1
-	 KKqRgXZvNe6KA==
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b8f9568e074so541945166b.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 05:57:54 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ9qnhuXC69gBgR2E64i46kuGk1yqpsagFKlyXRk97cM5eTHJmySGT7neSIHpvPGtTIclr5wL/WY+dqv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0/4FXw/cEzi+GA/2DPTrGBBcYZhdch0UbQo//G8FlteDPKEmG
-	BWmNxphgLNN66+zTrTFQHOFNcHwfp01LW8q9Ys8OlIbP5QsQMLE6XXGCkA0UC82y/RwyVMtQDxJ
-	njMwYFWXjZi1hpwQNO5++Cnnlz0Evvg==
-X-Received: by 2002:a17:907:1682:b0:b9d:872f:f5b9 with SMTP id
- a640c23a62f3a-ba41a91e1abmr709097466b.23.1776689873405; Mon, 20 Apr 2026
- 05:57:53 -0700 (PDT)
+	s=k20201202; t=1776690043;
+	bh=tUC2t9kCbTutWnz6IuPE32rjpeccnNIrpMgaz4pD0xY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YlVcalFzn0PvL+6InUzgqSW+//qTjGG/EfiW0TS8x0zIGJ4uAz3KtlCEIdTY72YTy
+	 SATZbU4nIdedKAryE4IKUikbt2UpAV670DGv37zi22wOPDSq32Z0Zdb/vPQOAHhV7L
+	 R35f+tkpc9jcihD1qrfP0TKz+3uJDOYMmGiwmrFTnnSqiFNSetkcePBGG/xKu5LGnu
+	 asbzNN9TTZLZUbSEsaJ20Fz2H0Z2/jWZQogamuUR9uXs321B0epvjSiYn6Dvex523d
+	 fVOWm2enR6PxWJfmlCw2CuN/R6tbyJzFVc94nrBqhpt1kLO+3wVyNbmb/1ps8rY0Q1
+	 wlb+04KJisEeQ==
+Date: Mon, 20 Apr 2026 15:00:40 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Stefan =?utf-8?B?RMO2c2luZ2Vy?= <stefandoesinger@gmail.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org, Drew Fustini <fustini@kernel.org>, 
+	Linus Walleij <linusw@kernel.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, soc@lists.linux.dev, Arnd Bergmann <arnd@arndb.de>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-serial@vger.kernel.org, Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v4 2/8] dt-bindings: arm: Add zx297520v3 board binding
+Message-ID: <20260420-blue-parrot-of-spirit-2b5f6a@quoll>
+References: <20260416-send-v4-0-e19d02b944ec@gmail.com>
+ <20260416-send-v4-2-e19d02b944ec@gmail.com>
+ <177646012448.2165534.5760108355183774935.robh@kernel.org>
+ <6264667.lOV4Wx5bFT@strix>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <Z0NUdoG17EwuCigT@sashalap> <c25e6a80-f6dc-4ef9-a90d-0fa09cbbc217@linaro.org>
- <Z0NbeyTwxo-M4Lgi@sashalap> <936bf452-3d1f-4940-9a91-69efcdc6985e@collabora.com>
- <CAGXv+5FLkZbZVHNkfRWuT+OioZ0TG=u2WfaFCx-jZFi73QHnVg@mail.gmail.com>
- <19ba4910-f909-41b4-ba62-c904bc37d41d@linaro.org> <e77669ea-9edd-4321-8d17-4da40161b59d@linaro.org>
- <Z0R6myuCR4Jpmc_y@sashalap> <CAL_Jsq+QBweDZ+1=FXq7Hez=+mhiOxOvurr3rP0+3y_FCd49Ew@mail.gmail.com>
- <20241209092809.GA3246424@google.com> <aeKlYzTiL0OB1y3g@google.com>
-In-Reply-To: <aeKlYzTiL0OB1y3g@google.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 20 Apr 2026 07:57:40 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+UCYbKMXG5m8BRNVRA_03Ki8aGF0uoaDs8HHvOSCZ2Mg@mail.gmail.com>
-X-Gm-Features: AQROBzC2C_xA3b0Mjz0zbeaIOwFHYjnlA51sUwMWExHOdDIrYqslHpa-2xJeEdo
-Message-ID: <CAL_Jsq+UCYbKMXG5m8BRNVRA_03Ki8aGF0uoaDs8HHvOSCZ2Mg@mail.gmail.com>
-Subject: Re: [regression] of: mis-parsing Depthcharge's /firmware
-To: Brian Norris <briannorris@chromium.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, Sasha Levin <sashal@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Linus Torvalds <torvalds@linux-foundation.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Doug Anderson <dianders@chromium.org>, 
-	Julius Werner <jwerner@chromium.org>, chrome-platform@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+In-Reply-To: <6264667.lOV4Wx5bFT@strix>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[chromium.org,kernel.org,linaro.org,collabora.com,linux-foundation.org,vger.kernel.org,gmail.com,lists.linux.dev];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288699-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288700-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 90B7E42B427
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 316F442B1F4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 17, 2026 at 4:26=E2=80=AFPM Brian Norris <briannorris@chromium.=
-org> wrote:
->
-> Hi all,
->
-> (New subject; was "Re: [GIT PULL] Devicetree updates for v6.13")
->
-> On Mon, Dec 09, 2024 at 05:28:09PM +0800, Chen-Yu Tsai wrote:
-> > steelix.dtb is the same, plus the firmware now inserts #address-cells
-> > and #size-cells under /firmware. This fix has landed for all future
-> > ChromeOS devices via our main firmware branch [1].
-> >
-> > AFAIK they also have a bad FDT END symbol. This was only recently
-> > discovered and fixed for future devices [2].
-> >
-> >
-> > ChenYu
-> >
-> > [1] Gerrit: https://crrev.com/c/6051580
-> > [2] Gerrit: https://review.coreboot.org/c/coreboot/+/85462
->
-> This all comes back to bite us, since nobody went back to patch the
-> existing Chromebook device trees, and now we've added a true regression
-> on top:
->
-> In commit 6e5773d52f4a ("of/address: Fix WARN when attempting
-> translating non-translatable addresses") we now reject devices without
-> '#address-cells', and this breaks the DTs generated by bootloaders
-> without Chen-Yu's https://crrev.com/c/6051580 fix (this is ... pretty
-> much all Chromebooks). Specifically, Linux now refuses to add 'reg'
-> resources to the /firmware/coreboot device, and we fail with:
->
-> [   11.886271] coreboot_table firmware:coreboot: probe with driver corebo=
-ot_table failed with error -22
->
-> This is almost certainly a DTB ABI regression.
->
-> This was noticed here (OpenWrt supports some Chromium-based WiFi routers
-> that use Depthcharge-based bootloaders from many years ago):
->
-> https://github.com/openwrt/openwrt/issues/21243
->
-> For now, I just patched up the OpenWrt DTS files like so:
-> https://github.com/openwrt/openwrt/pull/22951
->
-> But what should we do going forward? I note that Rob says "We may
-> revisit this later and address with a fixup to the DT itself" in commit
-> 8600058ba28a ("of: Add coreboot firmware to excluded default cells
-> list").
->
-> That never happened, and a ton of Chromium devices are still broken.
+On Sun, Apr 19, 2026 at 11:30:04AM +0300, Stefan D=C3=B6singer wrote:
+> Hi Rob,
+>=20
+> Am Samstag, 18. April 2026, 00:08:44 Ostafrikanische Zeit schrieben Sie:
+>=20
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+>=20
+> Here is a new PEBKAC issue for your mail template: I ran dt_binding_check=
+, it=20
+> wrote the warning you pointed out, but I only checked the return value - =
+which=20
+> indicated success. Which I guess makes sense for a warning, since there s=
+eem=20
+> to be a few preexisting ones. The warning itself was somewhere in the=20
+> scrollback because I let dt_binding_check check all the files.
+>=20
+> So I learned I have to actually look at the output to see if there are an=
+y=20
+> warnings.
 
-The above just silenced the warning. If they are broken, then
-something else broke them.
+Same with every other tool warnings, like compiler warnings...
 
-> (They don't have WARNINGs, but /sys/firmware/vpd, etc., is still
-> missing.)
->
-> Can we patch of_bus_default_match() to accept an empty 'ranges' [1]? Or
-> should I go patch every Chromium-device DTS file I can find? So far, I
-> think I can get that done in 17 files in the upstream tree...
+Best regards,
+Krzysztof
 
-Both.
-
-Though I'd rather the kernel fixup the DT rather than relax the
-parsing code for everyone. Then we know what platforms need this and
-don't let new ones in.
-
->
-> Brian
->
-> [1] From ePAPR:
->
->   "If the [ranges] property is defined with an <empty> value, it
->   specifies that the parent and child address 28 space is identical, and
->   no address translation is required."
->
-> And:
->
->   "An ePAPR-compliant boot program shall supply #address-cells and
->   #size-cells on all nodes 16 that have children.
->
->   If missing, a client program should assume a default value of 2 for
->   #address-cells, and a value of 1 for #size-cells."
-
-ePAPR may say that, but that's not what the kernel implements,
-defaulting to 1 address cell (on !SPARC). dtc however does default to
-2 cells. Relying on defaults has been a warning in dtc essentially
-forever. I'd like to get rid of defaults in the kernel
-
-Rob
 
