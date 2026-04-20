@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-288476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288477-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EGQ6BrR95WkGkgEAu9opvQ
-	(envelope-from <devicetree+bounces-288476-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 03:13:24 +0200
+	id OD1LIfB95WkGkgEAu9opvQ
+	(envelope-from <devicetree+bounces-288477-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 03:14:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61D40425F7E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 03:13:23 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F87425FBB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 03:14:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6AE4F3017028
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 01:13:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C7A233017792
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 01:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5C72566D3;
-	Mon, 20 Apr 2026 01:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75E0E2571A0;
+	Mon, 20 Apr 2026 01:13:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F27E22D7A9;
-	Mon, 20 Apr 2026 01:13:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE3C2494D8;
+	Mon, 20 Apr 2026 01:13:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776647596; cv=none; b=XjZug2v0QHkINPIL8qAzKVA+4m/wpSL3tDsrSfAAsGndSo/9bQvYeQe5nYbEcqED/x0aay3fPtHWN0gtfLUWPAjykhXKvFHoS0jPmRRSrjjvNgulYDJn8RXjBgY8tdEooHJHwTe3gFgJJGJxqAB7ZMKJFj3Bs54IJSGc+FeT9Yk=
+	t=1776647603; cv=none; b=RAnwxb2YDRo/aSdwOhu+kn1R77whIog1DrRK+QzaBpr/r8ACx6GBOvM/uA+MwFNfuBQheasRJCHVjLBLPYtIbXCo0KpnNGZ+SySqtQ82CiM+dVs49E5fLGs0CvH2knHTNGId6hQjSd6J5tsqtZQHCFtiaCnKuvjucGK0zHnsTDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776647596; c=relaxed/simple;
-	bh=c++vziUSEo4eHpLRmyoLGCp+/woYtt4HPRhlZ5kUvv0=;
+	s=arc-20240116; t=1776647603; c=relaxed/simple;
+	bh=qM8S7mF3jI6kc+lzx3wSg5HiRfbtbZmcb5zYXNFQ3m4=;
 	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bd0+lfck5ms3LeFDM4zhIM1IlH/3We4N2+2eQi/ewGlFw1ljZx8W8Vg2Wyl51sL6C/uRT0U67OzB9TS7+BzM8wcVhfVeVstVqUFE7sPxN98BlICXTOufp9CsZr2pe4hPP3xbGllbcElle6kw/2NZ5DUy+B7dgZwbAbxCqmx9azY=
+	 Content-Type:Content-Disposition:In-Reply-To; b=XHzgnHaNU9xh1z4QPLJrmUBZQPgfVVpZLvXddstgl+lL7cG+0WKPTf52fyKqWU7msS78tNb7/vIgsPRaMUhK97Wnz8MlAtdWpmGsJjreLEpmFWBknNzIvIPpVV3IJu9CLfzapl25CBBRbCL1evuTG/LsvvpEbjxc8KqTXSMQdds=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
@@ -36,9 +36,9 @@ Received: from local
 	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
 	 (Exim 4.99)
 	(envelope-from <daniel@makrotopia.org>)
-	id 1wEdCG-000000002Vz-1Irw;
-	Mon, 20 Apr 2026 01:13:08 +0000
-Date: Mon, 20 Apr 2026 02:13:05 +0100
+	id 1wEdCO-000000002Wd-1Hpa;
+	Mon, 20 Apr 2026 01:13:16 +0000
+Date: Mon, 20 Apr 2026 02:13:13 +0100
 From: Daniel Golle <daniel@makrotopia.org>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -55,9 +55,9 @@ To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
 	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 1/9] ASoC: dt-bindings: mt2701-afe-pcm: add HDMI audio
- path clocks
-Message-ID: <69f0b69e49068695db4ba6164c0757ccdf9786fd.1776646435.git.daniel@makrotopia.org>
+Subject: [PATCH v2 2/9] ASoC: dt-bindings: mediatek,mt2701-hdmi-audio: add
+ MT2701 HDMI audio
+Message-ID: <072c4db4a01ac125e9ee5e34f992cd169c78e117.1776646435.git.daniel@makrotopia.org>
 References: <cover.1776646435.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -72,11 +72,11 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288476-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-288477-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[makrotopia.org];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org,collabora.com,perex.cz,suse.com,arndb.de,mediatek.com,makrotopia.org,renesas.com,linaro.org,vger.kernel.org,lists.infradead.org];
@@ -87,91 +87,94 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.983];
+	NEURAL_HAM(-0.00)[-0.984];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 61D40425F7E
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[makrotopia.org:mid,makrotopia.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F3F87425FBB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Document four additional optional clocks feeding the HDMI audio
-output path on MT2701: the HADDS2 PLL (root of the HDMI audio
-clock tree), the HDMI audio and S/PDIF interface power gates,
-and the audio APLL root gate. Older device trees that do not
-wire these up remain valid via minItems. MT7622 does not have
-HDMI audio hardware, so its compatible is restricted to the
-base set of 34 clocks.
+Describe the sound card node that routes the MT2701/MT7623N AFE
+HDMI playback path to the on-chip HDMI transmitter. This is
+separate from the AFE platform binding (mediatek,mt2701-audio)
+because it represents board-level audio routing between the AFE
+and the HDMI codec, not an additional IP block. MT7623N boards
+carry the same IP and use the mt7623n- compatible as a fallback
+to mt2701-.
 
 Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 ---
 v2:
- * Restrict the four HDMI clocks to mediatek,mt2701-audio only
-   using an allOf/if/then conditional; MT7622 is capped at 34
-   clocks (Krzysztof Kozlowski)
+ * Fix subject prefix to use schema filename (Krzysztof Kozlowski)
+ * Rewrite title and description to describe hardware, not driver
+   (Krzysztof Kozlowski)
+ * Clarify in commit message why this is a separate binding from
+   mediatek,mt2701-audio (Krzysztof Kozlowski)
 
- .../bindings/sound/mediatek,mt2701-audio.yaml | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ .../sound/mediatek,mt2701-hdmi-audio.yaml     | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt2701-hdmi-audio.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt2701-audio.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt2701-audio.yaml
-index 45382c4d86aa3..871bf197650b5 100644
---- a/Documentation/devicetree/bindings/sound/mediatek,mt2701-audio.yaml
-+++ b/Documentation/devicetree/bindings/sound/mediatek,mt2701-audio.yaml
-@@ -32,6 +32,7 @@ properties:
-     maxItems: 1
- 
-   clocks:
-+    minItems: 34
-     items:
-       - description: audio infra sys clock
-       - description: top audio mux 1
-@@ -67,8 +68,13 @@ properties:
-       - description: top audio a1 sys pd
-       - description: top audio a2 sys pd
-       - description: audio merge interface pd
-+      - description: HADDS2 PLL 294 MHz (HDMI audio path root)
-+      - description: HDMI audio interface pd
-+      - description: S/PDIF interface pd
-+      - description: audio APLL root pd
- 
-   clock-names:
-+    minItems: 34
-     items:
-       - const: infra_sys_audio_clk
-       - const: top_audio_mux1_sel
-@@ -104,6 +110,10 @@ properties:
-       - const: audio_a1sys_pd
-       - const: audio_a2sys_pd
-       - const: audio_mrgif_pd
-+      - const: hadds2pll_294m
-+      - const: audio_hdmi_pd
-+      - const: audio_spdf_pd
-+      - const: audio_apll_pd
- 
- required:
-   - compatible
-@@ -114,3 +124,16 @@ required:
-   - clock-names
- 
- additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt2701-hdmi-audio.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt2701-hdmi-audio.yaml
+new file mode 100644
+index 0000000000000..9d5a8166e51ff
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/mediatek,mt2701-hdmi-audio.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/mediatek,mt2701-hdmi-audio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: mediatek,mt7622-audio
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 34
-+        clock-names:
-+          maxItems: 34
++title: MediaTek MT2701/MT7623N HDMI audio output
++
++maintainers:
++  - Daniel Golle <daniel@makrotopia.org>
++
++description:
++  Sound card routing the MT2701/MT7623N Audio Front End HDMI
++  playback path to the on-chip HDMI transmitter. The AFE
++  provides the DMA memif and internal I2S engine; the HDMI
++  transmitter acts as the audio codec on the serialised link.
++
++properties:
++  compatible:
++    oneOf:
++      - const: mediatek,mt2701-hdmi-audio
++      - items:
++          - const: mediatek,mt7623n-hdmi-audio
++          - const: mediatek,mt2701-hdmi-audio
++
++  mediatek,platform:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: Phandle of the MT2701/MT7623N AFE platform node.
++
++  mediatek,audio-codec:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: Phandle of the HDMI transmitter acting as audio codec.
++
++required:
++  - compatible
++  - mediatek,platform
++  - mediatek,audio-codec
++
++additionalProperties: false
++
++examples:
++  - |
++    sound-hdmi {
++        compatible = "mediatek,mt7623n-hdmi-audio",
++                     "mediatek,mt2701-hdmi-audio";
++        mediatek,platform = <&afe>;
++        mediatek,audio-codec = <&hdmi0>;
++    };
 -- 
 2.53.0
 
