@@ -1,152 +1,178 @@
-Return-Path: <devicetree+bounces-288721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288709-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KHl5IWpH5mnSuAEAu9opvQ
-	(envelope-from <devicetree+bounces-288721-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 17:34:02 +0200
+	id 4GBgOx4u5mliswEAu9opvQ
+	(envelope-from <devicetree+bounces-288709-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:46:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6F9D42E566
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 17:34:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3581D42C3D2
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:46:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 249153095BAF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:36:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 46B3A320D55B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:33:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504764D2EFE;
-	Mon, 20 Apr 2026 13:33:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F46D3AEF4A;
+	Mon, 20 Apr 2026 13:22:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pc6ojOcG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OZ6xHivM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 286573AE6EB;
-	Mon, 20 Apr 2026 13:33:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8344C3A453D
+	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 13:22:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776692007; cv=none; b=E8EwnsPsodTyOyN4USDuvkIFeu5wsXmf1HUko4PWYnJ7ibsdC0mICdpuSIDfXhHnaujBjeZRimaGMt3UVLch5RJ3Y7Vvk9RWHPEJGZks5n9uQLtP9vKdkmfPNBKNmDkTn0cKSlch+W9O4s3r+anFYTjk6K5oLsvhVxPrrHD4GHE=
+	t=1776691365; cv=none; b=UAU4UQghUK9Oj2SxH0cZJpCSV1R8WSF8wZrj0IMA7qOvWLqo9GA98S1eFNELF+4NqrFcR+1f3oYfSyERDakw33qTvY1p3/4WI1TbmaPDk8XyC6wopcIFtHL3CtRjHuVaX+H7WFRVTMQxn1dbsrEvH9IpYnvEhkv2BvpCke2LviI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776692007; c=relaxed/simple;
-	bh=6ElqZfprnWkaD91inJ4k6uvGlxbYDLR08virTftN5es=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gODkiS4o6up2q9DoT/pEUW5Ert4mpWsInfcb22Lj6XUw3vzXdl987RNlY8A9aspC0ZtPwQJ15BxWeDLews1voKLPM34peYMwlLmBg14lt5EsaskrwDgjbLMFiHfVkdcpxIAfGQPkmZjazne05cC8dS5NmKGozewriJsb9xGF7NQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pc6ojOcG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 690C5C2BCB6;
-	Mon, 20 Apr 2026 13:33:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776692007;
-	bh=6ElqZfprnWkaD91inJ4k6uvGlxbYDLR08virTftN5es=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pc6ojOcGEEpUZ8UIoR/oUpt84ySN/ytVq0S3X4jd1fhy0Um+uu/hohnPwYQlUFOGv
-	 tSgvDrJYkYxuyw/xSl5OG9rEawuztGiaR8ITwWxRhJeLqK0ciEdSmxNgnnkU1HcK4h
-	 dRE8iSaqM4QCQ6ECz0wGmnYxicy/pFDUhd30PKtyGhfb+eh63OB+iz0gbgNzmiosjE
-	 UJ9W/ybJ+Fvo8OcwqlgIIM9t07YnFVfqQ+x00Fq+vyYVfYPGwxA3akr2OpZ7NCswgR
-	 9saBmuJKAWeG1JeLRAHp5f97fkveRZR3i8/HFGOHOcdl7VjUSinabiegX1lZHf6Q1l
-	 0zIwCxeTMULzg==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-	Frank Li <Frank.Li@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sasha Levin <sashal@kernel.org>,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	l.stach@pengutronix.de,
-	agx@sigxcpu.org,
+	s=arc-20240116; t=1776691365; c=relaxed/simple;
+	bh=0CNF4S8Q+dlcJKS4ltoyHAUJrLjYZPUjMR4pqXA8TvU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Xd7L1q2ZRa9Cct+rDaDL31Wp2BPbuo2StiV+ausf3PuK9U3zv5fnGqx+TAbszAuoY9UsAEyvm9C1ZFo46L1gipRmmqe1m9MlsOjZbMOzRuNc4ap4hyfOYMugN0Ex4SK0jDPJeW90Ni9tSFiVWbDygRdKhs4YkpbDqmXBG5kx58s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OZ6xHivM; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-43d73352cf2so2632422f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 06:22:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1776691362; x=1777296162; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wU7KfU1h9bpFsbZofDzyf3qe1yX0F0cyyFkzQzmr9a4=;
+        b=OZ6xHivM9WI9RtEuMfLNtk+ZnxCo7n90MVGz7F5ubHohsAxaXA0gWjhMQdRaolYFrG
+         nQNYS7KK4fBQRDiNu73g6Ov7/aYwkz9yp2322bDZMOm/hx442MV7P4OJpNxQvNreoavC
+         ILGu2QjZ/36K65nVlbF2eqsmRG8eRqMefFo3S37rbXYWD55uIA8QLEvNyT4rk/vQPtbU
+         Sge1VoL+cbmuNqw7OklPpuzxDq2iDOj/r/WVDb2icjsL8GsQmFsB7po/IezZFWBSx+GB
+         0FCqzNXkto5mwEbu8PaO/OJOiDQLSGC8gmY/tqs8j2fgKP5Ux8QJ3FTglGAk/T5nVzmC
+         zayg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776691362; x=1777296162;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wU7KfU1h9bpFsbZofDzyf3qe1yX0F0cyyFkzQzmr9a4=;
+        b=OuCtQzEC+RKQ8cQOYJHXcC2fmX+KYClndnItRdFvreJjZ5ewsEUdduqz0MUSQ/7Ayd
+         DzQlJWsAHRscp6d6gcCnV8fUAeiUB1vdME7Dxxj0yejxBXNsaHAFs2czkMGC04afgFZi
+         vTuc4Z2JDpw1w29qsdzb7gvyRtDSHAf1+Dwu5SCNs8bXlWUc8qpv5gwvNlBo5mVSyugE
+         QKqWHG0itGnasVUjblwLT/oZaRoHbCT1zfbMjXf9PuPaQ7Tp+7TSWXdMWldphssd9Pfi
+         uK9rL0KflJxufE9tJjgGjJqUNrjXaPG5d3jXoq+3HYWdgvSN8NyenrgROjGzmbnbfAeR
+         ISAw==
+X-Forwarded-Encrypted: i=1; AFNElJ8A1IDuGl4+u34fPRLnEXd3J8hkmnhKofbnqxeki+8AAkZJdbCEP0G35vXifszYHCTaEA6AQYyH1lS1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+e2mCUtBSwmdKa4I77l8u7nxRQD6xsuBc++c4bXERIANWfka6
+	5wh3Hq1mF7ipaUjrNf3zFeyTdZvifrqLG1oa7+/G/+fAQcjAlKQkTeh5
+X-Gm-Gg: AeBDiespf+FyAjs1NM70sGa9gnFxx7KjUffliU3ceSHTiOeYVK2Mnli4YZJ0XIuvz/W
+	4xtB3na55nxLvz5fGEqkobkQw0mUxpZT+sIH2tLfUOrMzwycGqydkrG4sr7kckEnTGTqRP8Z50J
+	fJFlTm6Vcq9PrLWEXATgdHEPxnuP16X5MSK7j5hmJGasIYV94JQXnXVCQSTMyex7cfXhO5GST7B
+	Ezv1WTAOaD+W8WzQr4i4pLoAxb8t52/9VjuBBDinYZbVKgduG3kDBrB7r9UPmGTN7Sm1YadU8pD
+	mrIOLl/9dyT3gpOmWZFepuRbWG7EOmITlIG6p5K/aq4WBRJJdt54C21ohtQFnJR7h6SV2FUoNWl
+	mCoEOTfNPGpilGWUSbHkBo8yXXwIfwP7tllvHq0WMQnPCPzScJIBpXjm2qWlyRh/DX2rqxBkAQg
+	/TWBqCCqmX2JzlcyeWwI6Wc/4qSR+0Ddg6ZHMfvV4Zz1uhBj3KBQXHUx02duoP8K9C1Pn1wHfMo
+	08rBPhifm/mLnLI7/qOt3Nk6uaJxJgrHsCOU7YX2KYeXiq6
+X-Received: by 2002:a05:6000:26cf:b0:43d:77e1:6a69 with SMTP id ffacd0b85a97d-43fe3e14384mr21547096f8f.38.1776691361611;
+        Mon, 20 Apr 2026 06:22:41 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:4dc1:ae2c:7f06:f671])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43fe4cb13a0sm29331630f8f.8.2026.04.20.06.22.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Apr 2026 06:22:41 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.18] arm64: dts: imx8mq: Set the correct gpu_ahb clock frequency
-Date: Mon, 20 Apr 2026 09:21:52 -0400
-Message-ID: <20260420132314.1023554-318-sashal@kernel.org>
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] arm64: dts: renesas: rz-smarc-du-adv7513: Simplify DU port configuration
+Date: Mon, 20 Apr 2026 14:22:11 +0100
+Message-ID: <20260420132211.1350656-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260420132314.1023554-1-sashal@kernel.org>
-References: <20260420132314.1023554-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.18.23
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [3.84 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[puri.sm,nxp.com,gmail.com,kernel.org,pengutronix.de,sigxcpu.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	TAGGED_FROM(0.00)[bounces-288721-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-288709-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,bp.renesas.com,renesas.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.995];
+	NEURAL_HAM(-0.00)[-0.865];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[2.67.213.128:email,puri.sm:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email,i.mx:url]
-X-Rspamd-Queue-Id: A6F9D42E566
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,bp.renesas.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email]
+X-Rspamd-Queue-Id: 3581D42C3D2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-[ Upstream commit 1f99b5d93d99ca17d50b386a674d0ce1f20932d8 ]
+The SoC dtsi already defines the du node with its ports hierarchy,
+including the du_out_rgb endpoint node under port@0. There is no need
+to redefine the entire ports/port@0 structure in the board-level dtsi.
 
-According to i.MX 8M Quad Reference Manual, GPU_AHB_CLK_ROOT's maximum
-frequency is 400MHz.
-
-Fixes: 45d2c84eb3a2 ("arm64: dts: imx8mq: add GPU node")
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
+ .../boot/dts/renesas/rz-smarc-du-adv7513.dtsi     | 15 +++------------
+ 1 file changed, 3 insertions(+), 12 deletions(-)
 
-LLM Generated explanations, may be completely bogus:
-
-Error: Failed to generate final synthesis
-
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 607962f807beb..6a25e219832ce 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1632,7 +1632,7 @@ gpu: gpu@38000000 {
- 			                         <&clk IMX8MQ_GPU_PLL_OUT>,
- 			                         <&clk IMX8MQ_GPU_PLL>;
- 			assigned-clock-rates = <800000000>, <800000000>,
--			                       <800000000>, <800000000>, <0>;
-+			                       <800000000>, <400000000>, <0>;
- 			power-domains = <&pgc_gpu>;
- 		};
+diff --git a/arch/arm64/boot/dts/renesas/rz-smarc-du-adv7513.dtsi b/arch/arm64/boot/dts/renesas/rz-smarc-du-adv7513.dtsi
+index f5412578ee65..dbe16908b260 100644
+--- a/arch/arm64/boot/dts/renesas/rz-smarc-du-adv7513.dtsi
++++ b/arch/arm64/boot/dts/renesas/rz-smarc-du-adv7513.dtsi
+@@ -24,19 +24,10 @@ &du {
+ 	pinctrl-names = "default";
  
+ 	status = "okay";
++};
+ 
+-	ports {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		port@0 {
+-			reg = <0>;
+-
+-			du_out_rgb: endpoint {
+-				remote-endpoint = <&adv7513_in>;
+-			};
+-		};
+-	};
++&du_out_rgb {
++	remote-endpoint = <&adv7513_in>;
+ };
+ 
+ &ADV7513_PARENT_I2C {
 -- 
 2.53.0
 
