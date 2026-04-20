@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-288646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288654-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OGpBF00I5mkjqwEAu9opvQ
-	(envelope-from <devicetree+bounces-288646-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:04:45 +0200
+	id kD3RAZQK5mluqwEAu9opvQ
+	(envelope-from <devicetree+bounces-288654-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:14:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB5A3429C03
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:04:44 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F032429D06
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:14:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 65CB43035894
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:00:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6E35B306BA47
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:11:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26DE13815D6;
-	Mon, 20 Apr 2026 11:00:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8F8633F8B4;
+	Mon, 20 Apr 2026 11:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="K0CY6tvZ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="bHtv37oh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72B76344D83;
-	Mon, 20 Apr 2026 11:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E1D939D6D0;
+	Mon, 20 Apr 2026 11:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776682830; cv=none; b=LTYsC5fl1SAm3pizvSDUu5XCitnHDLnymfNQIOP6EHoLtqqoxaAmeNblxNXUuMxTNPm18Xm3mv0sJ/9x/UOdmvxaIb6J2u5+Gdx6hF7KTYtBueA+qyicZ3U/NdgxizWoY82jZJzPcv2fR39gA3ixmSlhmb/s8Fee9uYAKWGaZak=
+	t=1776683436; cv=none; b=UJ2V1xTFDt8BBwOfZDT1uOYXwFq+t3We/tqbqseKbYPwmNgvSbF6Q1JZiHDsCXz0FJ0LV8o2zAKg3tYhsjqJAkZJc4m8TxgrV1vJUqfUhcp4cCIYbBsLpfKP9uIGhdWe4nhmSLnmJRLqxotDP7gz46eLk0tFZth7DDmvxwzfdDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776682830; c=relaxed/simple;
-	bh=PLPNmgPAxeK5mYLQnnUXuoPE4aCHhmjsyDeuAgufwss=;
+	s=arc-20240116; t=1776683436; c=relaxed/simple;
+	bh=Z8VXFLlJoWE07bJb3Qbu/RqEB+C1PaoPjkKJ6JTdIvE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QAb1+VEJiWrdFwlmlqpAZtfuuvr3515pWDhfsVvdfxz96QM/yV2INr3WIZOSHmExQAzmnYwuPdo86TJU1d9BB0i3ceBtzMO8YufFeUsF2O2eF+ywW5eudw5kbo780/VwYjouVcfpXmm37SyApTvPVEGuTqxZYeeboi7ZwcXlTKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=K0CY6tvZ; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=KOyKrxYcOIH6DXfkKa0yxDMqvKqe2koaQUN3PyUVrkZqf7QWAPcJCvD9OONrlIXqho37IiT4XJNZSg6J6pxxhX/BfUX97WhSmvkS5x2bKEFvGSZmpLMWmEVVZ53oKOvuPEhNL0BpeyASuxS2oTj+ywcpN8MUS8y/JB2uOqd4IkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=bHtv37oh; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1776682826;
-	bh=PLPNmgPAxeK5mYLQnnUXuoPE4aCHhmjsyDeuAgufwss=;
+	s=mail; t=1776683428;
+	bh=Z8VXFLlJoWE07bJb3Qbu/RqEB+C1PaoPjkKJ6JTdIvE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=K0CY6tvZ839+ED5+JnvY8glBhKFO790KScWfvsNhZDE9pe4jF7PrB2Kic+moM9ZW3
-	 BIMal4m2vnG6ohpyr2fQrSFew483858a5b26SmlEuJbPp8jlIBh/QdXrFNXi3g0oDj
-	 kaJVEkPIdbGwNncdTi+RkrpomJ7ry+gwM7tTMx9SXcwFkTkzzH+boQ1JaWTRz0C2W2
-	 dnmU7FH1m8muVP55ogcfnrHSzuaqVwNda+qefEMeGqYVIovbCSnv0q5ZFz8qr152qg
-	 RXiseB/qzTH0cnFahf7JzeZ5WxXvPCJuXEiQs0d2OiOa7s1ayeC3o0y90v0ZCWapkC
-	 4V3yepyJhcRCg==
+	b=bHtv37ohJyNm91PWYAMTHaClPZy0Qbjyc490uOLIh7JS8wl3Yc6BxKPNc0krtv8qZ
+	 Zk9qpjPqQR0TnN/DqiuN3J+Xmc4i3TOn+1ncLIbOWgHdHtSI2LXu8pBwrzrhCFeLYr
+	 J2m5jpvmkc1+2AfOITp4QpNIFxAJ4auOSV7eygJ5XDeVU7aN4SeLq2oZBU8h8KzsWM
+	 ArngXbRl2wX523SOe/Zl/8e2SY9CK6farGUHT2ufeQLQKthCp2u+VM4UEcq5J/ho8I
+	 P+zGZ6zwYm2CEi6csbsynPhj1DiOIuLioC5tFDS6YTZT2XYjjlYqi9z1adIDZhZoEi
+	 OsN4R+x0R1RJg==
 Received: from [100.64.0.241] (unknown [100.64.0.241])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1CAE617E1388;
-	Mon, 20 Apr 2026 13:00:26 +0200 (CEST)
-Message-ID: <401a020f-ca5d-4c7d-941e-f0288e144357@collabora.com>
-Date: Mon, 20 Apr 2026 14:00:25 +0300
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 01A9C17E0595;
+	Mon, 20 Apr 2026 13:10:27 +0200 (CEST)
+Message-ID: <66f9574c-8dff-4de2-bf54-20f1c1e64c24@collabora.com>
+Date: Mon, 20 Apr 2026 14:10:27 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,32 +60,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/40] arm64: dts: rockchip: Add frl-enable-gpios to
- rk3576-luckfox-core3576
+Subject: Re: [PATCH 00/40] arm64: dts: rockchip: Wire up frl-enable-gpios for
+ RK3576/RK3588 boards
 To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Cc: kernel@collabora.com, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20260417-dts-rk-frl-enable-gpios-v1-0-a19c0dd8c9f6@collabora.com>
- <2000470.6tgchFWduM@phil>
- <62f51359-9d91-4107-917b-cd722c7321c2@collabora.com>
- <2282688.C4sosBPzcN@phil>
+ <2297365.1BCLMh4Saa@phil>
+ <70e9a8a0-414d-428f-8da8-9b65cc764849@collabora.com>
+ <2435759.n0HT0TaD9V@phil>
 Content-Language: en-US
 From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <2282688.C4sosBPzcN@phil>
+In-Reply-To: <2435759.n0HT0TaD9V@phil>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288646-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-288654-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -96,136 +96,57 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: CB5A3429C03
+X-Rspamd-Queue-Id: 7F032429D06
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Heiko,
-
-On 4/18/26 2:12 AM, Heiko Stuebner wrote:
-> Hi Cristian,
+On 4/18/26 2:18 AM, Heiko Stuebner wrote:
+> Hi Cristan,
 > 
-> Am Freitag, 17. April 2026, 18:34:17 Mitteleuropäische Sommerzeit schrieb Cristian Ciocaltea:
->> On 4/17/26 2:32 PM, Heiko Stuebner wrote:
->>> the comments below apply sort of to all patches in that series.
+> Am Freitag, 17. April 2026, 19:55:17 Mitteleuropäische Sommerzeit schrieb Cristian Ciocaltea:
+>> On 4/17/26 2:34 PM, Heiko Stuebner wrote:
+>>> Am Freitag, 17. April 2026, 11:24:34 Mitteleuropäische Sommerzeit schrieb Cristian Ciocaltea:
 >>>
->>> Am Freitag, 17. April 2026, 11:24:39 Mitteleuropäische Sommerzeit schrieb Cristian Ciocaltea:
->>>> The board exposes the GPIO4_C6 line to control the voltage bias on the
->>>> HDMI data lines.  It must be asserted when operating in HDMI 2.1 FRL
->>>> mode and deasserted for HDMI 1.4/2.0 TMDS mode.
->>>>
->>>> Wire up the HDMI node to the GPIO line using the frl-enable-gpios
->>>> property and drop the line from the vcc_5v0_hdmi regulator to allow
->>>> adjusting the bias when transitioning between TMDS and FRL operating
->>>> modes.
-
-[...]
-
+>>> [...]
 >>>
+>>>> Cristian Ciocaltea (40):
+>>>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-100ask-dshanpi-a1
+>>>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-armsom-sige5
+>>>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-evb1-v10
+>>>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-evb2-v10
+>>>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-luckfox-core3576
+>>>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-nanopi-m5
+>>>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-nanopi-r76s
+>>>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-roc-pc
+>>>>       arm64: dts: rockchip: Add frl-enable-gpios to rk3576-rock-4d
 >>>
->>>> @@ -231,6 +228,8 @@ &gpu {
->>>>  };
->>>>  
->>>>  &hdmi {
->>>> +	pinctrl-0 = <&hdmi_txm0_pins &hdmi_tx_scl &hdmi_tx_sda &hdmi_frl_en>;
->>>> +	frl-enable-gpios = <&gpio4 RK_PC6 GPIO_ACTIVE_LOW>;
->>>
->>> this should be sorted the other way around I think.
->>>
->>> Also please provide a pinctrl-names property too. If for whatever reason
->>> the dw-hdmi aquires a 2nd pinctrl state in the future, this makes sure
->>> board DTs are staying in the "old" compatible mode until they are adapted.
+>>> I do think one patch per SoC (rk3576, rk3588, rk3588s) would make more
+>>> sense, because these patches really are mostly identical :-)
 >>
->> Just to make sure I fully understand, the convention is that 
+>> Yeah, apologies for the large number of patches, I went this way to allow
+>> per-board reviews.  As previously noted, I tried to identify the GPIO pins from
+>> multiple sources, so I'm not entirely sure about the accuracy in every case.
 >>
->>   pinctrl-names = "default";
->>
->> should be always provided, even when the node overrides an existing pinctrl-0
->> property?
->>
->> E.g. in rk3576.dtsi we have:
->>
->>   hdmi: hdmi@27da0000 {
->>     ...
->>     pinctrl-names = "default";
->>     pinctrl-0 = <&hdmi_txm0_pins &hdmi_tx_scl &hdmi_tx_sda>;
->>     ...
->>   }
->>
->> Hence I omitted pinctrl-names which doesn't change and just appended
->> &hdmi_frl_en to pinctrl-0's original value.
+>> Would it be preferable to squash the patches per SoC and board vendor, instead?
 > 
-> correct, please always provide a pinctrl-names entry when setting a new
-> pinctrl-0 .
+> I really would just do it per soc .. so 3 patches. That is a size that is
+> still reviewable for people, who can then check for their board.
 > 
-> The background is, imagine you have a base:
-> 
-> pinctrl-names = "default";
-> pinstrl-0 = <....>;
-> 
-> and override pinctrl-0 in a board.
-> 
-> Now a newer binding introduces a 2nd pinctrl state "foo". Of course
-> we're backwards compatible, and both are valid and the driver checks
-> what states are defined.
-> 
-> So the base sets:
-> pinctrl-names = "default", "foo";
-> pinctrl-0 = <...>;
-> pinctrl-1 = <...>;
-> 
-> in your (old) board you override pinctrl-0, but the driver still sees
-> the new variant with 2 pinctrl states, where it should've stayed with
-> the legacy 1-state, until the board-dts might get adapted in the future.
-> 
-> 
-> And I know, we're likely not doing that everywhere, and also in most
-> cases it won't really matter, but still it is safer and sets the better
-> precedent :-) .
+> If the patch is labeled "Add frl-enable-gpios for all RK3588s boards", I
+> do expect people to notice it the same as "oh _my_ board gets changed".
+> ("all" could also be "most" :-) ).
 
-Thanks for the detailed explanation, that clears things up!
+Ack.  
 
-There are several other nodes (e.g. i2c, pwm, uart) that also lack
-pinctrl-names despite providing pinctrl-0 - I can address those in a
-separate patch.
+I would still keep the more invasive changes — such as those touching
+the regulator hacks — in separate patches, though.
 
-I also noticed an inconsistency in property ordering: some nodes place
-pinctrl-names before pinctrl-<n> and others after.  I have always used
-the former, but we should probably prefer the latter to stay consistent
-with how clocks, resets, phys, etc. are ordered.
-
-Thoughts?
-
-> 
->>>>  	status = "okay";
->>>>  };
->>>>  
->>>> @@ -655,7 +654,7 @@ &pcie0 {
->>>>  
->>>>  &pinctrl {
->>>>  	hdmi {
->>>> -		hdmi_con_en: hdmi-con-en {
->>>> +		hdmi_frl_en: hdmi-frl-en {
->>>
->>> pinctrl names should ideally match the naming in schematics, for example the
->>> "HDMI0_TX_ON_H" for jaguar and tiger. This makes it way easier to> go from DT
->>> to schematics and back.
->>
->> I opted for a more descriptive name that could be used consistently across all
->> boards, given that not all schematics are publicly available.
->>
->> You make a fair point though, we should probably stick with the pretty terrible
->> hdmi[N]_tx_on_h naming instead.
-> 
-> yep, we're doing that everywhere else already too, and sticking to the
-> schematics naming, also prevents any discussions about how something
-> should be named ;-) .
-
-Indeed. :)
+Thanks,
+Cristian
 
