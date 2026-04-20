@@ -1,47 +1,48 @@
-Return-Path: <devicetree+bounces-288529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288535-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eP0hJ+jF5WlIoAEAu9opvQ
-	(envelope-from <devicetree+bounces-288529-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:21:28 +0200
+	id uMjcHxzG5WlIoAEAu9opvQ
+	(envelope-from <devicetree+bounces-288535-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:22:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28BE9427279
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:21:28 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E564272AD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:22:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3CC6D304F216
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 06:17:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 81C45300DA5E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 06:22:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E1073815FB;
-	Mon, 20 Apr 2026 06:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B79CF381AFF;
+	Mon, 20 Apr 2026 06:22:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="c27ynN/h"
+	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="eywXAyTF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out28-194.mail.aliyun.com (out28-194.mail.aliyun.com [115.124.28.194])
+Received: from out28-219.mail.aliyun.com (out28-219.mail.aliyun.com [115.124.28.219])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32F8C29BDBF;
-	Mon, 20 Apr 2026 06:16:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 104483815F8;
+	Mon, 20 Apr 2026 06:22:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.219
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776665821; cv=none; b=KMyFcfYmhhGbs1Z/aFfz6/T1AsaTKvxGsn5AF2QwSfwKXXasLGOgVTvDOeDdxVctYb/dUcqTbsFnw3/mERJJyFi/Y85mdF7CiWg+B290e6LBFtc70JI0MM0/pRURO/510hT2v5IRW7OHdm/yaQKAr9nk7OirQUgaRXPK67MJyfE=
+	t=1776666137; cv=none; b=LY+TW1RBMENJN3wDm6q/dzklVj/ZEA0C0TcrBlGD6QGZzDbND5sW7WzyQdUFWCq64jiJQy94jDkRDzN5TpfZZV8iqJlhYnQ9kxnxeiiXZ/l8R/ARBCiFJZo/yctRALExjQigo8SOSoNWWPMTA4Ogomhel6VtqsJBEeiS9ArsBLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776665821; c=relaxed/simple;
-	bh=1nnUBVTtlI6Gc47mbBtzpDJPdRrp1+o3L5+TQKPWwW8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=W/tSaxgKjubwfz6Ul9GejviiZjaG3ZOTJjZGFzrvLLbZUsugwm4WH0SEAy282gSVOwIDMVvn/jJFHPQroO2kyXt+XVf7fFVGP2UNliS2loe2+FKZB7SS049LsLZVhC2rD56JwPW2M/VdnltAsl4WLyEl0u60jiAj/Mdb80LCurA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=c27ynN/h; arc=none smtp.client-ip=115.124.28.194
+	s=arc-20240116; t=1776666137; c=relaxed/simple;
+	bh=aSzx8ligpJz+V1IfmgO27fs8nAFy4undncnvBb3GN2M=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=usseVRe9N/lMx7t7ipIgieA1RDGLvKPuOU9KmAuNuSlH9drlj76WP5vzm0fsc2CIB7hK6mX4A9ozpya+fg5G4FKpeDmlHTu9J1c6y8dZXyo8qd5rMOKH/PWVpRiR36IaQSTYzqwfJwpLb/hhnzoHYk7zFkgeJxJSpPlz1QbA3JE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=eywXAyTF; arc=none smtp.client-ip=115.124.28.219
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lontium.com
 DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=lontium.com; s=default;
-	t=1776665809; h=From:To:Subject:Date:Message-Id:MIME-Version;
-	bh=joljCzzpQ3BWVjBWEzq/YmymQ3S+YGNeTfY7syNIJMk=;
-	b=c27ynN/h8YsJ49VWFz7YLlLb3UuC5ZI+RR3ieMLABaYrH8uFww79A28BhZCo2a4+lKUWjzmVg1B5TpW5XH4zyCE5VlFhAvszqEgUhYKcZHJL/rPUp5PLZ8N366rpD6ResxUdi9Y4NmxznE6j2zJdBHSeH/LUznRFDtz9QLBpyOMgid5wKWjlWLsg7aOSkPDSPUyagfK96oTr5ibAHJ96GUGLW6uoPaubimKCrI/ldCcdGoCtf+w84PoPzV0nBIZq6VV77c14uJZRRgr2v4wybVLImxIi/NQYZHSSMdAygznmzuswpZqiCZm3JjPr/UXFtZJqEMAmWEkcp3c9uCVMqQ==
-X-Alimail-AntiSpam:AC=CONTINUE;BC=0.08217578|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00760056-0.000148186-0.992251;FP=3247150432297668347|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033032053168;MF=syyang@lontium.com;NM=1;PH=DS;RN=19;RT=19;SR=0;TI=SMTPD_---.hFz0LsH_1776665805;
-Received: from DESKTOP-V2MKAT2.localdomain(mailfrom:syyang@lontium.com fp:SMTPD_---.hFz0LsH_1776665805 cluster:ay29)
+	t=1776666131; h=From:To:Subject:Date:Message-Id:MIME-Version:Content-Type;
+	bh=fz8ZCV6KPGHfcgLZir30aImQqrHMaqA6nm9Cs0iqeIw=;
+	b=eywXAyTFf/GUvfoHBQBKwWchBnhWxAdz737vaxzxKZ6T+sf3zoKfrHgZ5Fn16yKj45HX9D//67JnQuhW/Qbs14oc00qtedjn2S0dQQbR08i+bga5dQHoH9Y/wiZMlCzCQu2RrPFsAOLYpk7zWHr5xGgwgR8oD5woVFaRgw+1VAPuJf8AuvQrjf1RZPmfwo/9kPO+dazYeSjZ757ORkWE2HXKpYozEZjdgoo1Y4knEdEpG8JW7MdNlUN0lZQ9utV14Jo2eJzEHi1MJAzRhJNBNGdWKgKtvp3TAgrVmKv9lHDpK4zYyu4EjSTzKg1oTKRUtNIEHnx6eEjXWR19sT4wug==
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.09271921|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0545463-0.00504074-0.940413;FP=10089197397812664209|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033045220102;MF=syyang@lontium.com;NM=1;PH=DS;RN=19;RT=19;SR=0;TI=SMTPD_---.hFz0LvD_1776665808;
+Received: from DESKTOP-V2MKAT2.localdomain(mailfrom:syyang@lontium.com fp:SMTPD_---.hFz0LvD_1776665808 cluster:ay29)
           by smtp.aliyun-inc.com;
-          Mon, 20 Apr 2026 14:16:46 +0800
+          Mon, 20 Apr 2026 14:16:50 +0800
 From: syyang@lontium.com
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -62,100 +63,113 @@ Cc: Laurent.pinchart@ideasonboard.com,
 	yangsunyun1993@gmail.com,
 	xmzhu@lontium.corp-partner.google.com,
 	Sunyun Yang <syyang@lontium.com>
-Subject: [PATCH v3 0/2] Add LT9611C(EX/UXD) DRM bridge driver and device tree
-Date: Mon, 20 Apr 2026 14:16:42 +0800
-Message-Id: <20260420061644.1251070-1-syyang@lontium.com>
+Subject: [PATCH v3 1/2] dt-bindings: bridge: This patch adds new content  to the lontium,lt9611.yaml binding file
+Date: Mon, 20 Apr 2026 14:16:43 +0800
+Message-Id: <20260420061644.1251070-2-syyang@lontium.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260420061644.1251070-1-syyang@lontium.com>
+References: <20260420061644.1251070-1-syyang@lontium.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
 	R_DKIM_ALLOW(-0.20)[lontium.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-288529-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288535-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	DMARC_NA(0.00)[lontium.com];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[lontium.com:+];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org]
-X-Rspamd-Queue-Id: 28BE9427279
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: E9E564272AD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Sunyun Yang <syyang@lontium.com>
 
-This series adds support for the Lontium LT9611C(EX/UXD) MIPI DSI to HDMI 
-chip:
+Add lt9611c,lt9611ex,lt9611uxd to the lontium,lt9611.yaml file.
+LT9611C(EX/UXD) is a high performance Single/Dual-Port MIPI to
+HDMI 1.4/2.0 converter:
 
--dt-bindings: bridge: This patch adds new content to the lontium,lt9611.yaml
- binding file.
--drm/bridge: This patch add new DRM bridge driver for LT9611C(EX/UXD) chip.
+-Single/Dual-port MIPI DSI Receiver
+ 1. Compliantwith D-PHY1.2&DSI-2 1.0
+ 2. 1/2configurable ports
+ 3. 1 clock lane and 1/2/3/4 configurable data lanes per port
+ 4. 80Mbps~2.5Gbps per data lane
+ 5. Support RGB666, loosely RGB666, RGB888, RGB565,16-bit YCbCr4:2:2
 
-Signed-off-by: Sunyun Yang<syyang@lontium.com>
+-HDMI 1.4/2.0 Transmitter
+ 1.Data rate up to 6Gbps
+ 2.Support HDCP1.4/2.3
+ 3.Support CEC,HDR10
+ 4.Support lane swap
+
+-audio
+ 1.sample rates of 32~192 KHz and sample sizes
+   of 16~24 bits
+ 2.SPDIF interface supports PCM, Dolbydigital, DTS digital audio
+   at up to 192KHz frame rate
+
+-Miscellaneous
+ 1.CSC:RGB<->YUV444<->YUV422
+
+Signed-off-by: Sunyun Yang <syyang@lontium.com>
 ---
-Changes in v3:
--dt-binding:
- 1. lt9611c(ex/uxd) content merged into lontium,lt9611.yaml
--drm/bridge:
- 1. Drop the licence text, only use SPDX header
- 2. Sort the headers
- 3. Use library functions for crc8
- 4. Drop i2c_read_byte and i2c_write_byte
- 5. Lowercase all hex values
- 6. Use paged writes as implemented for LT9611C(EX/UXD)
- 7. Drop dev_info, use dev_dbg
- 8. Modify lt9611c_get_edid_block, don't store EDID in the long-term structures
- 9. Use HDMI audio helpers.
- 10.Remove unnecessary flags,Implement proper cleanup path, unwinding resources 
-    one by one.
- 11.Replace devm_kzalloc with devm_drm_bridge_alloc.
- 12.Remove extra kthread.
--Link to v1: https://lore.kernel.org/lkml/20250903123825.1721443-1-syyang@lontium.com/
+ .../bindings/display/bridge/lontium,lt9611.yaml           | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-Changes in v2:
- 1. Forget modify code, operation error, Please disregard this submit.
-
-Changes in v1:
--dt-binding:
- 1. Submit the first version of the code.
--drm/bridge:
- 1. Submit the first version of the code.
-
----
-Sunyun Yang (2):
-  dt-bindings: bridge: This patch adds new content to the
-    lontium,lt9611.yaml binding file
-  drm/bridge: This patch add new DRM bridge driver for LT9611C chip
-
- .../display/bridge/lontium,lt9611.yaml        |    8 +-
- drivers/gpu/drm/bridge/Kconfig                |   18 +
- drivers/gpu/drm/bridge/Makefile               |    1 +
- drivers/gpu/drm/bridge/lontium-lt9611c.c      | 1365 +++++++++++++++++
- 4 files changed, 1390 insertions(+), 2 deletions(-)
- create mode 100755 drivers/gpu/drm/bridge/lontium-lt9611c.c
-
+diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
+index 429a06057ae8..a67e63a5c87e 100644
+--- a/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
+@@ -4,19 +4,23 @@
+ $id: http://devicetree.org/schemas/display/bridge/lontium,lt9611.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Lontium LT9611(UXC) 2 Port MIPI to HDMI Bridge
++title: Lontium LT9611(UXC/C/EX/UXD) 2 Port MIPI to HDMI Bridge
+ 
+ maintainers:
+   - Vinod Koul <vkoul@kernel.org>
+ 
+ description: |
+-  The LT9611 and LT9611UXC are bridge devices which convert DSI to HDMI
++  The LT9611、LT9611UXC、LT9611C、LT9611EX and LT9611UXD 
++  are bridge devices which convert DSI to HDMI
+ 
+ properties:
+   compatible:
+     enum:
+       - lontium,lt9611
+       - lontium,lt9611uxc
++      - lontium,lt9611c
++      - lontium,lt9611ex
++      - lontium,lt9611uxd
+ 
+   reg:
+     maxItems: 1
 -- 
 2.34.1
 
