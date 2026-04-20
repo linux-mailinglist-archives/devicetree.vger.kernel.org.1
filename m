@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-288651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288653-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OGylKV4I5mkjqwEAu9opvQ
-	(envelope-from <devicetree+bounces-288651-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:05:02 +0200
+	id 6IkqGKMI5mkjqwEAu9opvQ
+	(envelope-from <devicetree+bounces-288653-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:06:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24105429C11
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:05:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82FE7429C36
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:06:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EA6213098B3A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:02:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 666B030B8B35
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:02:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954EB39D6ED;
-	Mon, 20 Apr 2026 11:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40CA539DBEA;
+	Mon, 20 Apr 2026 11:02:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59F0A39BFFA;
-	Mon, 20 Apr 2026 11:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13EAC39B97D;
+	Mon, 20 Apr 2026 11:02:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776682926; cv=none; b=WhT8ZWeELKFT8WHJP6ZyKTae4QIEWCNp9XkaoXc2aKY9bhxP6Zpdtney9zrBDwpxNkd8AuD2921iDI+ZA8Uv46PpK1CIRFqQ2yC73spaG+uo3HmDwLKptkyWvzkqqcM/RcX9pBapTL5eMatkPtfI6fvirfvBziYdmlVt0AnVp7M=
+	t=1776682928; cv=none; b=JcSC530mxgLDP1mS5v6G0RYLV8hA/azeIiSKbkrLhyGObAinojp6ohX6gow68VdxyidjopPSPd9Zub7oeM7DFXcVkXbpPhC2KMbmq5lvY9JcaqTH35Maf7QSLYY5+0BKFOc5nnyjufIqsP7BAhOShBRNIlA8c6uNnpjsZ63fFDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776682926; c=relaxed/simple;
-	bh=Q3xt8NB+mEM7oyDj1T+TJ4cnk32JrzI3m4KxufDlBZU=;
+	s=arc-20240116; t=1776682928; c=relaxed/simple;
+	bh=ZFmyXSJJOR7FOWcV5E20OB+E3lMtlRbauU8LQ8FZDrA=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ek7bJBSxVYrk/A7XBLmQS8ibqk3xXd58OD2XZYK2mDurydaF3CgnEViJ5E1kQ2a9qWybduwmxy2zBtv1zZ6B0iFc62yNm347wKjMhEH9a85cfi1VW5IgMj+til7gxYa0Kd6s8D9YfO8g5UGrhIk1PK6Vie2xo0jBXwmBaux9Iys=
+	 MIME-Version; b=S3Yqa2xVoQmc396R/8dpUz2UjbiBoqkMq66VZ2YLos741W68SUfybfUNtwww5Xab4HnoTQdWAlAAg14T9CH3joglAvmLZ3jp5GMlNsr8uYHTlGeb52A79tQ7mYR5FIQCyaXqGVUOsmaBkRVHrg+x0JDieBUuW178mTuT3b1BRUs=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5625820030D;
-	Mon, 20 Apr 2026 12:52:42 +0200 (CEST)
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 977B32002F2;
+	Mon, 20 Apr 2026 12:52:43 +0200 (CEST)
 Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1EB1A20030B;
-	Mon, 20 Apr 2026 12:52:42 +0200 (CEST)
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5F43F200309;
+	Mon, 20 Apr 2026 12:52:43 +0200 (CEST)
 Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id C2F481800086;
-	Mon, 20 Apr 2026 18:52:40 +0800 (+08)
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 0FBE0180028E;
+	Mon, 20 Apr 2026 18:52:42 +0800 (+08)
 From: Lakshay Piplani <lakshay.piplani@nxp.com>
 To: linux-kernel@vger.kernel.org,
 	linux-i3c@lists.infradead.org,
@@ -57,9 +57,9 @@ Cc: vikash.bansal@nxp.com,
 	priyanka.jain@nxp.com,
 	aman.kumarpandey@nxp.com,
 	Lakshay Piplani <lakshay.piplani@nxp.com>
-Subject: [PATCH v9 2/7] i3c: master: Add the APIs to support I3C hub
-Date: Mon, 20 Apr 2026 16:22:17 +0530
-Message-Id: <20260420105222.1562243-3-lakshay.piplani@nxp.com>
+Subject: [PATCH v9 3/7] dt-bindings: i3c: Add NXP P3H2x4x i3c-hub support
+Date: Mon, 20 Apr 2026 16:22:18 +0530
+Message-Id: <20260420105222.1562243-4-lakshay.piplani@nxp.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260420105222.1562243-1-lakshay.piplani@nxp.com>
 References: <20260420105222.1562243-1-lakshay.piplani@nxp.com>
@@ -76,205 +76,398 @@ X-Spamd-Result: default: False [1.64 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-288651-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288653-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FREEMAIL_TO(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,nxp.com,gmail.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_SPAM(0.00)[0.934];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[lakshay.piplani@nxp.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.180];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 24105429C11
+X-Rspamd-Queue-Id: 82FE7429C36
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
 
-Add simple helpers to direct attach/detach I3C devices and two CCC helpers
-to check CCC support and send CCC commands. These additions prepare the
-master core for I3C hub support.
-
-1) i3c_master_direct_attach_i3c_dev()
-2) i3c_master_direct_detach_i3c_dev()
-3) i3c_master_send_ccc_cmd()
-4) i3c_master_supports_ccc_cmd()
+Add bindings for the NXP P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841)
+multiport I3C hub family. These devices connect to a host via
+I3C/I2C/SMBus and allow communication with multiple downstream
+peripherals.
 
 Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
 Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
 
 ---
 Changes in v9:
- - No change
+ - Referenced i3c.yaml and i2c-controller.yaml for child nodes
+ - Dropped unnecessary #address-cells and #size-cells from child nodes
 
 Changes in v8:
- - No change
+ - Add compatible in i3c example
 
 Changes in v7:
- - Update commit message to clarify purpose (prepare for I3C hub support)
+ - Fix schema validation issues
+ - Adjust required properties
+ - Add I2C example
 
 Changes in v6:
- - Split the patch into two parts:
-        1) expose the existing API
-        2) add new APIs.
----
----
- drivers/i3c/master.c       | 103 +++++++++++++++++++++++++++++++++++++
- include/linux/i3c/master.h |   8 +++
- 2 files changed, 111 insertions(+)
+ - Use a vendor prefix for the attributes
 
-diff --git a/drivers/i3c/master.c b/drivers/i3c/master.c
-index d11fe6937ba8..2b88021d8a23 100644
---- a/drivers/i3c/master.c
-+++ b/drivers/i3c/master.c
-@@ -1652,6 +1652,59 @@ static int i3c_master_attach_i3c_dev(struct i3c_master_controller *master,
- 	return 0;
- }
+Changes in v5:
+ - Removed SW properties: cp0-ldo-microvolt,cp1-ldo-microvolt,
+   tp0145-ldo-microvolt, tp2367-ldo-microvolt
+ - Changed supply entries and its descriptions
+
+Changes in v4:
+ - Fixed DT binding check warning
+ - Removed SW properties: ibi-enable, local-dev, and always-enable
+
+Changes in v3:
+ - Added MFD (Multi-Function Device) support for I3C hub and on-die regulator
+ - Added Regulator supply node
+
+Changes in v2:
+ - Fixed DT binding check warning
+ - Revised logic for parsing DTS nodes
+---
+---
+ .../devicetree/bindings/i3c/nxp,p3h2840.yaml  | 291 ++++++++++++++++++
+ MAINTAINERS                                   |   9 +
+ 2 files changed, 300 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+
+diff --git a/Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml b/Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+new file mode 100644
+index 000000000000..c080eeb0eeaa
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+@@ -0,0 +1,291 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright 2025 NXP
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i3c/nxp,p3h2840.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP P3H2X4X I3C HUB
++
++maintainers:
++  - Aman Kumar Pandey <aman.kumarpandey@nxp.com>
++  - Vikash Bansal <vikash.bansal@nxp.com>
++  - Lakshay Piplani <lakshay.piplani@nxp.com>
++
++description: |
++  P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841) is a family of multiport I3C
++  hub devices that connect to:-
++  1. A host CPU via I3C/I2C/SMBus bus on upstream side and connect to multiple
++     peripheral devices on the downstream  side.
++  2. Have two Controller Ports which can support either
++     I2C/SMBus or I3C buses and connect to a CPU, BMC or SOC.
++  3. P3H2840/ P3H2841 are 8 port I3C hub with eight I3C/I2C Target Port.
++  4. P3H2440/ P3H2441 are 4 port I3C hub with four I3C/I2C Target Port.
++     Target ports can be configured as I2C/SMBus, I3C or GPIO and connect to
++     peripherals.
++
++properties:
++  compatible:
++    const: nxp,p3h2840
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  assigned-address:
++    maximum: 0x7f
++
++  nxp,tp0145-pullup-ohms:
++    description:
++      Selects the pull up resistance for target Port 0/1/4/5, in ohms.
++    enum: [250, 500, 1000, 2000]
++    default: 500
++
++  nxp,tp2367-pullup-ohms:
++    description:
++      Selects the pull up resistance for target Port 2/3/6/7, in ohms.
++    enum: [250, 500, 1000, 2000]
++    default: 500
++
++  nxp,cp0-io-strength-ohms:
++    description:
++      Selects the IO drive strength for controller Port 0, in ohms.
++    enum: [20, 30, 40, 50]
++    default: 20
++
++  nxp,cp1-io-strength-ohms:
++    description:
++      Selects the IO drive strength for controller Port 1, in ohms.
++    enum: [20, 30, 40, 50]
++    default: 20
++
++  nxp,tp0145-io-strength-ohms:
++    description:
++      Selects the IO drive strength for target port 0/1/4/5, in ohms.
++    enum: [20, 30, 40, 50]
++    default: 20
++
++  nxp,tp2367-io-strength-ohms:
++    description:
++      Selects the IO drive strength for target port 2/3/6/7, in ohms.
++    enum: [20, 30, 40, 50]
++    default: 20
++
++  vcc1-supply:
++    description: Controller port 0 power supply.
++
++  vcc2-supply:
++    description: Controller port 1 power supply.
++
++  vcc3-supply:
++    description: Target port 0/1/4/5 power supply.
++
++  vcc4-supply:
++    description: Target port 2/3/6/7 power supply.
++
++  regulators:
++    type: object
++    additionalProperties: false
++
++    properties:
++      ldo-cp0:
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        unevaluatedProperties: false
++
++      ldo-cp1:
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        unevaluatedProperties: false
++
++      ldo-tpg0:
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        unevaluatedProperties: false
++
++      ldo-tpg1:
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        unevaluatedProperties: false
++
++required:
++  - reg
++
++patternProperties:
++  "^i3c@[0-7]$":
++    type: object
++    $ref: /schemas/i3c/i3c.yaml#
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        description:
++          The I3C HUB Target Port number.
++        maximum: 7
++
++      nxp,pullup-enable:
++        type: boolean
++        description:
++          Enables the on-die pull-up for Target Port.
++
++    required:
++      - reg
++
++  "^(i2c|smbus)@[0-7]$":
++    type: object
++    $ref: /schemas/i2c/i2c-controller.yaml#
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        description:
++          The I3C HUB Target Port number.
++        maximum: 7
++
++      nxp,pullup-enable:
++        type: boolean
++        description:
++          Enables the on-die pull-up for Target Port.
++
++    required:
++      - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i3c {
++        #address-cells = <3>;
++        #size-cells = <0>;
++
++        hub@70,236153000c2 {
++            reg = <0x70 0x236 0x3000c2>;
++            compatible = "nxp,p3h2840";
++            #address-cells = <1>;
++            #size-cells = <0>;
++            assigned-address = <0x50>;
++
++            nxp,tp0145-pullup-ohms = <1000>;
++            nxp,tp2367-pullup-ohms = <1000>;
++            nxp,cp0-io-strength-ohms = <50>;
++            nxp,cp1-io-strength-ohms = <50>;
++            nxp,tp0145-io-strength-ohms = <50>;
++            nxp,tp2367-io-strength-ohms = <50>;
++            vcc3-supply = <&reg_tpg0>;
++            vcc4-supply = <&reg_tpg1>;
++
++            regulators {
++                reg_cp0: ldo-cp0 {
++                    regulator-name = "ldo-cp0";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                };
++
++                reg_cp1: ldo-cp1 {
++                    regulator-name = "ldo-cp1";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                };
++
++                reg_tpg0: ldo-tpg0 {
++                    regulator-name = "ldo-tpg0";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                };
++
++                reg_tpg1: ldo-tpg1 {
++                    regulator-name = "ldo-tpg1";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                };
++            };
++
++            smbus@0 {
++                reg = <0x0>;
++                #address-cells = <1>;
++                #size-cells = <0>;
++                nxp,pullup-enable;
++            };
++
++            i2c@1 {
++                reg = <0x1>;
++                #address-cells = <1>;
++                #size-cells = <0>;
++                nxp,pullup-enable;
++            };
++
++            i3c@2 {
++                reg = <0x2>;
++                #address-cells = <3>;
++                #size-cells = <0>;
++                nxp,pullup-enable;
++            };
++        };
++    };
++
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        hub@70 {
++            reg = <0x70>;
++            compatible = "nxp,p3h2840";
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            nxp,tp0145-pullup-ohms = <1000>;
++            nxp,tp2367-pullup-ohms = <1000>;
++            nxp,cp0-io-strength-ohms = <50>;
++            nxp,cp1-io-strength-ohms = <50>;
++            nxp,tp0145-io-strength-ohms = <50>;
++            nxp,tp2367-io-strength-ohms = <50>;
++            vcc3-supply = <&reg_tpg0_i2c>;
++            vcc4-supply = <&reg_tpg1_i2c>;
++
++            regulators {
++                reg_cp0_i2c: ldo-cp0 {
++                    regulator-name = "ldo-cp0";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                };
++
++                reg_cp1_i2c: ldo-cp1 {
++                    regulator-name = "ldo-cp1";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                };
++
++                reg_tpg0_i2c: ldo-tpg0 {
++                    regulator-name = "ldo-tpg0";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                };
++
++                reg_tpg1_i2c: ldo-tpg1 {
++                    regulator-name = "ldo-tpg1";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                };
++            };
++
++            smbus@0 {
++                reg = <0x0>;
++                #address-cells = <1>;
++                #size-cells = <0>;
++                nxp,pullup-enable;
++            };
++
++            i2c@1 {
++                reg = <0x1>;
++                #address-cells = <1>;
++                #size-cells = <0>;
++                nxp,pullup-enable;
++            };
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 76d8291237be..4425816b478b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -19266,6 +19266,15 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/ptp/nxp,ptp-netc.yaml
+ F:	drivers/ptp/ptp_netc.c
  
-+/**
-+ * i3c_master_direct_attach_i3c_dev() - attach an I3C device to a master
-+ * @master: I3C master controller to attach the device to
-+ * @dev: I3C device descriptor representing the device
-+ *
-+ * This function attaches an I3C device to its master controller once the
-+ * device has a valid address on the bus. Devices without
-+ * an assigned address are ignored. The master device itself is never
-+ * attached through this bus.
-+ *
-+ * Return: 0 on success, or a negative error code if the attach operation
-+ *         fails in the master controller driver.
-+ */
-+int i3c_master_direct_attach_i3c_dev(struct i3c_master_controller *master,
-+				     struct i3c_dev_desc *dev)
-+{
-+	int ret = 0;
++NXP P3H2X4X I3C-HUB DRIVER
++M:	Vikash Bansal <vikash.bansal@nxp.com>
++M:	Aman Kumar Pandey <aman.kumarpandey@nxp.com>
++M:	Lakshay Piplani <lakshay.piplani@nxp.com>
++L:	linux-kernel@vger.kernel.org
++L:	linux-i3c-owner@lists.infradead.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
 +
-+	/*
-+	 * We don't attach devices to the controller until they are
-+	 * addressable on the bus.
-+	 */
-+
-+	if (!dev->info.static_addr && !dev->info.dyn_addr)
-+		return -EINVAL;
-+
-+	/* Do not attach the master device itself. */
-+	if (master->this != dev && master->ops->attach_i3c_dev)
-+		ret = master->ops->attach_i3c_dev(dev);
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(i3c_master_direct_attach_i3c_dev);
-+
-+/**
-+ * i3c_master_direct_detach_i3c_dev - Detach an I3C device from its master
-+ * @dev: I3C device descriptor to be detached
-+ *
-+ * This function detaches an I3C device from its master controller.
-+ * It ensures that the master itself is not detached. If the device is not
-+ * the master and the master controller provides a detach operation,
-+ * the detach callback is invoked to perform the actual removal.
-+ */
-+void i3c_master_direct_detach_i3c_dev(struct i3c_dev_desc *dev)
-+{
-+	struct i3c_master_controller *master = i3c_dev_get_master(dev);
-+
-+	/* Do not detach the master device itself. */
-+	if (master->this != dev && master->ops->detach_i3c_dev)
-+		master->ops->detach_i3c_dev(dev);
-+}
-+EXPORT_SYMBOL_GPL(i3c_master_direct_detach_i3c_dev);
-+
- /**
-  * i3c_master_reattach_i3c_dev() - reattach an I3C device with a new address
-  * @dev: I3C device descriptor to reattach
-@@ -1816,6 +1869,56 @@ i3c_master_register_new_i3c_devs(struct i3c_master_controller *master)
- 	}
- }
- 
-+/**
-+ * i3c_master_supports_ccc_cmd() - check CCC command support
-+ * @master: I3C master controller
-+ * @cmd: CCC command to verify
-+ *
-+ * This function verifies whether the given I3C master controller supports
-+ * the specified Common Command Code (CCC).
-+ *
-+ * Return: 0 if the CCC command is supported and executed successfully,
-+ *         -EINVAL if arguments are invalid,
-+ *         -EOPNOTSUPP if the master does not support CCC commands,
-+ *         or another negative error code from the master's operation.
-+ */
-+int i3c_master_supports_ccc_cmd(struct i3c_master_controller *master,
-+				const struct i3c_ccc_cmd *cmd)
-+{
-+	if (!cmd || !master)
-+		return -EINVAL;
-+
-+	if (!master->ops->supports_ccc_cmd)
-+		return -EOPNOTSUPP;
-+
-+	return master->ops->supports_ccc_cmd(master, cmd);
-+}
-+EXPORT_SYMBOL_GPL(i3c_master_supports_ccc_cmd);
-+
-+/**
-+ * i3c_master_send_ccc_cmd() - send a CCC command
-+ * @master: I3C master controller issuing the command
-+ * @cmd: CCC command to be sent
-+ *
-+ * This function sends a Common Command Code (CCC) command to devices on the
-+ * I3C bus. It acquires the bus maintenance lock, executes the command, and
-+ * then releases the lock to ensure safe access to the bus.
-+ *
-+ * Return: 0 on success, or a negative error code on failure.
-+ */
-+int i3c_master_send_ccc_cmd(struct i3c_master_controller *master,
-+			    struct i3c_ccc_cmd *cmd)
-+{
-+	int ret;
-+
-+	i3c_bus_maintenance_lock(&master->bus);
-+	ret = i3c_master_send_ccc_cmd_locked(master, cmd);
-+	i3c_bus_maintenance_unlock(&master->bus);
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(i3c_master_send_ccc_cmd);
-+
- /**
-  * i3c_master_do_daa_ext() - Dynamic Address Assignment (extended version)
-  * @master: controller
-diff --git a/include/linux/i3c/master.h b/include/linux/i3c/master.h
-index aeccec171e64..c00f0918394c 100644
---- a/include/linux/i3c/master.h
-+++ b/include/linux/i3c/master.h
-@@ -615,6 +615,14 @@ DEFINE_FREE(i3c_master_dma_unmap_single, void *,
- 
- int i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
- 				u8 old_dyn_addr);
-+int i3c_master_direct_attach_i3c_dev(struct i3c_master_controller *master,
-+				     struct i3c_dev_desc *dev);
-+void i3c_master_direct_detach_i3c_dev(struct i3c_dev_desc *dev);
-+int i3c_master_send_ccc_cmd(struct i3c_master_controller *master,
-+			    struct i3c_ccc_cmd *cmd);
-+
-+int i3c_master_supports_ccc_cmd(struct i3c_master_controller *master,
-+				const struct i3c_ccc_cmd *cmd);
- int i3c_master_set_info(struct i3c_master_controller *master,
- 			const struct i3c_device_info *info);
- 
+ NXP PF5300/PF5301/PF5302 PMIC REGULATOR DEVICE DRIVER
+ M:	Woodrow Douglass <wdouglass@carnegierobotics.com>
+ S:	Maintained
 -- 
 2.25.1
 
