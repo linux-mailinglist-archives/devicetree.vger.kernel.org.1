@@ -1,70 +1,62 @@
-Return-Path: <devicetree+bounces-288799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288800-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AM2fBiNO5mkgugEAu9opvQ
-	(envelope-from <devicetree+bounces-288799-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 18:02:43 +0200
+	id WC7ULIBO5mkgugEAu9opvQ
+	(envelope-from <devicetree+bounces-288800-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 18:04:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD68942EE28
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 18:02:42 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F4FF42EEAF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 18:04:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 88A8B300CA26
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 16:01:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 959CC301D0AB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 16:02:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95DDA33F5AE;
-	Mon, 20 Apr 2026 16:01:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BBBE33F37F;
+	Mon, 20 Apr 2026 16:02:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JzYk9Yj7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZVYBZ7my"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7321133F58E;
-	Mon, 20 Apr 2026 16:01:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47F8833EAF9;
+	Mon, 20 Apr 2026 16:02:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776700911; cv=none; b=flGmJ8f6KQ3SvNGGTGpih/KPjgA5H5+pwANlGZ6b6NLQnOY9irvQnRg2uBXzmrDK/N/7TWqUWtuPXfrXvaHXyirbqh61g8uhAlnk0CazRBRc1l0K09ysuWYkeJ0VC83q/QYkO7vc+NtrZMoXTfD50T8Xy7nCfmrV9ViAF0CStUY=
+	t=1776700943; cv=none; b=dgVJr6/Mez+5kEHB2fiziD8/SZVWmjGN2A7e+XuURjP4OQHmLJYdyxg5dOMpjqKWnH53LaGpSgkvcgRLYIri/jjFxpbXHBTN5+oV6/JCnX4VybfUzL4Fb8rSOYPU+6hPYrM85Xy3sQmKtQe+TXnpWE6SwdkdnTIOclaDsdnqqt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776700911; c=relaxed/simple;
-	bh=TFfvYyf8eNA1jMBa/chl/2ph4XTsgB6/URx9v/wsFQY=;
+	s=arc-20240116; t=1776700943; c=relaxed/simple;
+	bh=UpSmWLqRnsoJMgs165ruDnPDd2GndLJSvK84cVk/bDA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eH9Sk9DC4bysiAkHaNH2vIAZRPFGD/4TtzbsAvRp75aTO3yqWKIlyGKvcfma55AmQ4UWJtsVDJ6XCWFW/y0Br7AAe1mjvmfssJ8g6UaBvSMegd+iBr/tY8VFv4FHq4Ti05W6qARIesna9ZhkDTCEsX0xHlPfW0tLP9WTEbM9yGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JzYk9Yj7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A534C2BCB6;
-	Mon, 20 Apr 2026 16:01:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jx/xoWa+QBuhHLw6ZxYSN7JSy4e+pscjHe1I9b2ANnat0BwdicL2cqEE1R56wVOjuu706EVY7BYKpX+aPWIhXZIm3JDuh2dfT6m6MMdl736PB8GsJkEjk5r2nIUS/1gc3pPvQqnNv0O1GhgutH3qWce3n1HclpAcHuxhg+lgmZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZVYBZ7my; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C136C2BCB4;
+	Mon, 20 Apr 2026 16:02:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776700911;
-	bh=TFfvYyf8eNA1jMBa/chl/2ph4XTsgB6/URx9v/wsFQY=;
+	s=k20201202; t=1776700943;
+	bh=UpSmWLqRnsoJMgs165ruDnPDd2GndLJSvK84cVk/bDA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JzYk9Yj7Pnrv3DBUSzMOK7bC+dzLeYnjE39rK9y52m7xyOo8T2iglPOxBsvTVLEPb
-	 A0WWrcGtXro5COv7MJwumpvo7PtsOjXC+cleU2gnih1ujR07VBJXO5kuQ0G+oQsjgL
-	 Ta5jChXy7xPsv+lHl85AMLm/uWPLtRyH2JJavUkXkRE3DV/CRrp8iOVREZOz3fKt/6
-	 R8H6//El6n0fvBxMx9LKih+27JQObszl2cZZliIHJCem3sJNiSjObZpewA4DQSkCeK
-	 wNOs25/T/fzam6qv7HUoIKd2NELsCb/FZW1yyno1wcxl52O2NBRohbfam1ef0avxSj
-	 5EkvIJKRVPyKg==
-Date: Mon, 20 Apr 2026 17:01:45 +0100
+	b=ZVYBZ7my7SB9IoozcOOWEjmpH72SauY7ZKa1bvj922TVToVmJ9nbJb8fcgpCmMSZP
+	 gL+en4k5s3lE5Xzw6AZWN5ku5CorrSSUC4iiP6SEvbRDjrVRcl0Ew8/lOzjGOPPtLC
+	 GbFhtm1sQJnoaZ9O3MM/vV9tMg+7i67dEkHSPeKO25DKaCpa7H1O4yi4PjErRPKTrf
+	 GFbdtTIOSxmqyu1JXg9aSAe9QnoHzeK5C6NKPx//p75gpoZKMLhJANoGhHDPs8waTT
+	 KqhBGDa5//9hnpePs9ozHdzlYKgiG3kVN2vEHchLxJb+5s5oxFIFArBNF5kkDnuuXS
+	 Cv5KO92Wv1ZOA==
+Date: Mon, 20 Apr 2026 17:02:19 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add Raspberry Pi 7"
- DSI Display module panel
-Message-ID: <20260420-elaborate-sulphate-45df36ab62ab@spud>
-References: <20260420-rpi-7inch-v1-0-e68d5c9c44bc@ideasonboard.com>
- <20260420-rpi-7inch-v1-1-e68d5c9c44bc@ideasonboard.com>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: trivial-devices: add
+ toradex,lava-hat-spi
+Message-ID: <20260420-task-navy-370ea247fe1d@spud>
+References: <20260420114537.78160-1-francesco@dolcini.it>
+ <20260420114537.78160-2-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,69 +64,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="RueKeo7KxlAH4OXJ"
+	protocol="application/pgp-signature"; boundary="Vy4O/af26KsjQbIU"
 Content-Disposition: inline
-In-Reply-To: <20260420-rpi-7inch-v1-1-e68d5c9c44bc@ideasonboard.com>
+In-Reply-To: <20260420114537.78160-2-francesco@dolcini.it>
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-288800-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288799-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[raspberrypi.com,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ravnborg.org,lists.freedesktop.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ideasonboard.com:email]
-X-Rspamd-Queue-Id: DD68942EE28
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5F4FF42EEAF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---RueKeo7KxlAH4OXJ
+--Vy4O/af26KsjQbIU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 20, 2026 at 04:13:35PM +0300, Tomi Valkeinen wrote:
-> Add compatible string for panel used in Raspberry Pi 7" DSI Display
-> module. The different display module versions have panels from multiple
-> undisclosed vendors.
+On Mon, Apr 20, 2026 at 01:45:35PM +0200, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
 >=20
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> Add a compatible string for the SPI loopback device present on the
+> Toradex LAVA HAT test fixture.
+>=20
+> The Toradex LAVA HAT is a board used for automated hardware-in-the-loop
+> (HIL) testing, it provides several test-related functionalities, and
+> exists in multiple variants depending on the board it is mated with. The
+> SPI function is implemented with a loopback on the MISO/MOSI signals.
+>=20
+> As the device can be fully described using only "compatible" and "reg",
+> it is appropriate to list it under trivial-devices.yaml rather than
+> introducing a dedicated binding.
+>=20
+> The SPI implementation is identical across all Toradex LAVA HAT
+> variants, so a single compatible string is sufficient.
+>=20
+> Link: https://lore.kernel.org/all/20260310133254.GA51497@francesco-nb/
+> Link: https://lore.kernel.org/all/20260316073547.11437-3-francesco@dolcin=
+i.it/
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---RueKeo7KxlAH4OXJ
+--Vy4O/af26KsjQbIU
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaeZN6QAKCRB4tDGHoIJi
-0oXnAP0aCo7RyHP7ZGVmtD6z3YTxQRmzy8Q17uHI3tw72fuG+gD8DgdiCX84T1YB
-ENrbLPayE67iUaoCK7YHtvDGiLa3Kgw=
-=FLqb
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaeZOCwAKCRB4tDGHoIJi
+0rGyAPwPzY+ZERLhF1pxT6HZ+ZFC2rOxT0kUGAradNhbBfN90AD/RBar/xVxXpGj
+x2KCAc0EOulXA4PQG7ZG9ojaGdtk4Qc=
+=lewO
 -----END PGP SIGNATURE-----
 
---RueKeo7KxlAH4OXJ--
+--Vy4O/af26KsjQbIU--
 
