@@ -1,171 +1,187 @@
-Return-Path: <devicetree+bounces-288658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288660-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6KEfLqQN5mkGrAEAu9opvQ
-	(envelope-from <devicetree+bounces-288658-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:27:32 +0200
+	id C2GQMSIP5mk+rAEAu9opvQ
+	(envelope-from <devicetree+bounces-288660-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:33:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 196F4429E93
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:27:31 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 618F4429F22
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:33:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6B961303B7DA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:27:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A85F6300E2BC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:33:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72CFA34405B;
-	Mon, 20 Apr 2026 11:27:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E4413859FD;
+	Mon, 20 Apr 2026 11:33:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="ganxum9C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HAyQZ9dU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55CFD21CC5C;
-	Mon, 20 Apr 2026 11:27:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796E53815D6;
+	Mon, 20 Apr 2026 11:33:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776684449; cv=none; b=O4Lw7EDtRn3gCae7vgKr9YyiTsMpmvyHfni1cDH8Z2xDoFOPc8MJuEem9JeKqqcLp7jPkPiOyZjiY3rrARueU9+O1dfh02mR20y3OuF3XCxYNHX0VhNPwlH+WUx/YwNB7vuuhUNWdAstKU5iKI27CZC/A1ReE2aUtXzB7UweDA4=
+	t=1776684832; cv=none; b=PaMs40INp5t+2yHFT4R6n7JIQ7rJRKt22hRv8zKpC/weB0gYIwmeXx9OAfJizsELduov8tP9/2nDIU7R3KTAx3bSrHK/+MrhOYOdoYB4VS8fZ6pyxJMEGXfVtoeQfiHqCaeBuwTmVONMyDLKLvGJ9tD6h4PJFN7AjPSRu0VKGmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776684449; c=relaxed/simple;
-	bh=TERTCiIFZ32fS6aXGSReCbdHz3r70FRF0BazgeF316o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WGAhvxQXKWMgQqqWooTbObT41iVY6kalTzn2IPmJrKqJ7GaJFwkXsVZg8k3cX2/WzqX/8O2Ay/cjO5I3ZYTg0Ao+hKrN/jZk8+G/pMZX/dJdWO8HirJwu5cwFmzDSxtKmPSKIka/cjXNrtzIfgRaFeEgHefbUTirQ/LwK3i1bsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=ganxum9C; arc=none smtp.client-ip=195.78.66.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=mmpsystems.pl; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=lO4PmKnC7RtL96EuNz/CUFLMcVWEDBDKT8ymENGeBy8=; b=ganxum9CGyKdrKnobefLwPs3nx
-	va8yFYln0i0wQg6n/sHQ19tQfPRRCnupjhBrO4YdLQwVlAGw7gbQraA1DarMjNvJ9fcBIlmuFm2On
-	778xQ/pKUhz5t274zVlvWqCZU7SZE/rdyZ29hpLlTbG4lqUkmCUjXlQiedNK1mrb5qOgiPAADOZrr
-	Y+FWjpRb5D8LcdAuwqB4uCra2Exprf3C0dAe/wta6V4qVG+BKin9w4wLLyCfs0L8CHg5W8tuM33cw
-	aBCGiLSPBe1Yshx6XRTmgnhg1AS0H7X2GlF+4iHaaWKn/5WTwm1KcOCiaqfjs7bSS5C0bEfhhTfhU
-	hA8VH00g==;
-Received: from user-5-173-16-91.play-internet.pl ([5.173.16.91] helo=localhost)
-	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <michal.piekos@mmpsystems.pl>)
-	id 1wEmmh-00000000c32-1qL8;
-	Mon, 20 Apr 2026 13:27:23 +0200
-Date: Mon, 20 Apr 2026 13:27:20 +0200
-From: Michal Piekos <michal.piekos@mmpsystems.pl>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Daniel Lezcano <daniel.lezcano@kernel.org>, 
-	Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 0/4] Add hstimer support for H616 and T113-S3
-Message-ID: <xlvldmapdoql7nt3swube5vd6fdiosq7rt5afg246xertko5fa@4irmzupkar23>
-References: <20260419-h616-t113s-hstimer-v1-0-1af74ebef7c5@mmpsystems.pl>
- <20260419225539.718367e0@ryzen.lan>
+	s=arc-20240116; t=1776684832; c=relaxed/simple;
+	bh=liMwdSxiWyK/QiGmg16SrEda19KDCZ6G/77g9d5KXgo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jxQHAMuK4WL8zOm2t3s5iclvLtysh6FC3VvlAqBdmWLM1bWWWQH+9RRw4+vPDqoFwDcI1NwYuawvv20HJgLQS74Y6eSmeyQXLCaCsbDRu4upgWXrfgRM88x+cyuzqtseXRYalXe6SxtTCHUtjY6ZFZ/D6OSHfF7k9XqnHUeerAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HAyQZ9dU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56019C19425;
+	Mon, 20 Apr 2026 11:33:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776684832;
+	bh=liMwdSxiWyK/QiGmg16SrEda19KDCZ6G/77g9d5KXgo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HAyQZ9dUOY+QrGTpZC0TdQkfKPve82Lz5oCqDqld9vDi6Wxes+PIVwE36nebvvj/b
+	 Mak0OKTSAyjLZKojHh80J49AwPS07M4LaadJECHJANE1PrUxbo8l+C2TGH8QxMovDB
+	 YJH1VmSmwjp9VNa19uN4o5/hlwNMelG3SkvTGBMd0qQ6m711WAht1M7wsXX+ADEFA+
+	 tefVEu0anrdRn7GX0jxXJbzyAEZDmGx6D02BEC9WhWYNddw8u+USyjsvuOA2hwaD+6
+	 KtLzjCJF4yohdBWpT/XRyFKaD5FHe/nZPX0WBv8juLIIXQunb09eqs1k7Mslslc6c5
+	 BLOFJFDg4m3LA==
+Message-ID: <192f1948-bb9a-4831-a1cd-5ef500cfb413@kernel.org>
+Date: Mon, 20 Apr 2026 13:33:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260419225539.718367e0@ryzen.lan>
-X-Authenticated-Id: michal.piekos@mmpsystems.pl
-X-Spamd-Result: default: False [1.64 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: bridge: This patch adds new content
+ to the lontium,lt9611.yaml binding file
+To: syyang@lontium.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ dmitry.baryshkov@oss.qualcomm.com, maarten.lankhorst@linux.intel.com,
+ rfoss@kernel.org, mripard@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com, tzimmermann@ideasonboard.com,
+ jonas@kwiboo.se, jernej.skrabec@gmail.com, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ yangsunyun1993@gmail.com, xmzhu@lontium.corp-partner.google.com
+References: <20260420061644.1251070-1-syyang@lontium.com>
+ <20260420061644.1251070-2-syyang@lontium.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260420061644.1251070-2-syyang@lontium.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288658-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com];
+	TAGGED_FROM(0.00)[bounces-288660-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[mmpsystems.pl:-];
-	NEURAL_HAM(-0.00)[-0.280];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 196F4429E93
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,4.support:url,2.support:url,lontium.com:email]
+X-Rspamd-Queue-Id: 618F4429F22
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, Apr 19, 2026 at 10:55:39PM +0200, Andre Przywara wrote:
-> On Sun, 19 Apr 2026 14:46:06 +0200
-> Michal Piekos <michal.piekos@mmpsystems.pl> wrote:
+On 20/04/2026 08:16, syyang@lontium.com wrote:
+> From: Sunyun Yang <syyang@lontium.com>
 > 
-> Hi Michal,
+> Add lt9611c,lt9611ex,lt9611uxd to the lontium,lt9611.yaml file.
+> LT9611C(EX/UXD) is a high performance Single/Dual-Port MIPI to
+> HDMI 1.4/2.0 converter:
 > 
-> > Add support for Allwinner H616 high speed timer in sun5i hstimer driver
-> > and describe corresponding nodes in dts for H616 and T113-S3.
-> > 
-> > H616 uses same model as existing driver except register shift compared
-> > to older variants. 
-> > 
-> > Added register layout abstraction in the driver, extended the binding
-> > with new compatibles and wired up dts nodes for H616 and T113-S3 which
-> > uses H616 as fallback compatible.
+> -Single/Dual-port MIPI DSI Receiver
+>  1. Compliantwith D-PHY1.2&DSI-2 1.0
+>  2. 1/2configurable ports
+>  3. 1 clock lane and 1/2/3/4 configurable data lanes per port
+>  4. 80Mbps~2.5Gbps per data lane
+>  5. Support RGB666, loosely RGB666, RGB888, RGB565,16-bit YCbCr4:2:2
 > 
-> Can you say *why* we need this? IIUC Linux only ever uses one clock
-> source, and selects the (non-optional) Generic Timer (aka arch timer)
-> for that? So can you say what this hstimer clock source adds? I guess
-> higher resolution, but what is your use case, so why would you need the
-> 200 MHz? And does this offset the higher access cost of an MMIO
-> access, compared to the arch timer's sysreg based access? Also, IIUC,
-> people would need to manually select this as the clocksource, why and
-> when would they do so? (Given they even know about it in the first
-> place).
-> Also the hstimer hasn't been used since the A20, so nobody seemed to
-> have missed it meanwhile?
+> -HDMI 1.4/2.0 Transmitter
+>  1.Data rate up to 6Gbps
+>  2.Support HDCP1.4/2.3
+>  3.Support CEC,HDR10
+>  4.Support lane swap
 > 
-> Cheers,
-> Andre
->
-I took the table from https://linux-sunxi.org/Linux_mainlining_effort as
-a todo list and wanted to help with it. I do not have own use case for
-this timer. If it is not needed then I will spin v2 to include your
-comments and abandon it.
+> -audio
+>  1.sample rates of 32~192 KHz and sample sizes
+>    of 16~24 bits
+>  2.SPDIF interface supports PCM, Dolbydigital, DTS digital audio
+>    at up to 192KHz frame rate
+> 
+> -Miscellaneous
+>  1.CSC:RGB<->YUV444<->YUV422
 
-Michal
+Commit msg is not a datasheet introduction chapter. What does this all
+mean for compatibility? What is the benefit of listing all this?
 
-> > 
-> > Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
-> > ---
-> > Michal Piekos (4):
-> >       dt-bindings: timer: allwinner,sun5i-a13-hstimer: add H616 and T113-S3
-> >       clocksource/drivers/sun5i: add H616 hstimer support
-> >       arm64: dts: allwinner: h616: add hstimer node
-> >       arm: dts: allwinner: t113s: add hstimer node
-> > 
-> >  .../timer/allwinner,sun5i-a13-hstimer.yaml         |  8 +++-
-> >  arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi       | 12 +++++
-> >  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi     |  9 ++++
-> >  drivers/clocksource/timer-sun5i.c                  | 56 +++++++++++++++++++---
-> >  4 files changed, 78 insertions(+), 7 deletions(-)
-> > ---
-> > base-commit: faeab166167f5787719eb8683661fd41a3bb1514
-> > change-id: 20260413-h616-t113s-hstimer-62939948f91c
-> > 
-> > Best regards,
-> 
-> 
+You did not even explain the differences between C, UX and EXD, so all
+above is pointless. Explain the differences and why devices are not
+compatible.
+
+
+Best regards,
+Krzysztof
 
