@@ -1,238 +1,150 @@
-Return-Path: <devicetree+bounces-288708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288713-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OGx9Blot5mliswEAu9opvQ
-	(envelope-from <devicetree+bounces-288708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:42:50 +0200
+	id aGIWM6Qy5mlqtQEAu9opvQ
+	(envelope-from <devicetree+bounces-288713-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 16:05:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79D1F42C2A9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:42:49 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 388DA42C99F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 16:05:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 38A833095C41
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:31:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5C195306EF0E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:53:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34BE83A1E6A;
-	Mon, 20 Apr 2026 13:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E1513F6616;
+	Mon, 20 Apr 2026 13:25:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="TUiouOoP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RuodTQwB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF9243A1A4C;
-	Mon, 20 Apr 2026 13:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D71C93F660F;
+	Mon, 20 Apr 2026 13:25:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776691109; cv=none; b=ObbfEA2nElXy5MiJfm65MfYO3EsPYHtxM7P+B+V/y8ZGRNHGk6puLA/lQ49ZvbOa94UBTqGDKJcFc/dtr88yot73l+ltg+vjXaWLMOrvt5w12NYWMv9sikm2dU9zIkfiz+KO+IguBkLzQ25kF0GpIOlYOyEzx+7O8pMJZnolXjw=
+	t=1776691554; cv=none; b=Hmb46V3cJ2F8hqCMcpZaEhj5Fu8Q7siilYgxcTnmP49ORoRcFPNZswnPehRO/KBRBdUXVhW/7FT0Q6eZZ3gV9IUR81XCwYwPPHXAfHFDRiVvxhWJxvw31NptK/FqDnUUpbP0VrUXNBhNSqxt/grAsTvH+2V/e2RoFZzIOhWlirA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776691109; c=relaxed/simple;
-	bh=+6OHH0Gd4uiBxNx0PSacW6RuCgkwWTHAJNw7dL+NAw8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=hBePyD4d/1e7E6y7UAx4XirbnaPi5NpSOMOIJv6vdhSAa9ZQXqtinyAQfEsRXB1ln/LKhnLVOBE3Td2w1ePnoPdSkdl49qgflEkCyioVFzKO6419FZeGjHjfv5KvmNyrCvrKj1KfIHgqjM9W48aPXuiXfKsWpiCn0fM81IrPetc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=TUiouOoP; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c30:51df:7e0d:3bc9:3b1b:3f69])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6D240265D;
-	Mon, 20 Apr 2026 15:16:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1776691008;
-	bh=+6OHH0Gd4uiBxNx0PSacW6RuCgkwWTHAJNw7dL+NAw8=;
-	h=From:Date:Subject:To:Cc:From;
-	b=TUiouOoPo5hjHO9uv6a6+NSyGpv/HoIZfZHmrRKShef+pfUoCGdnbwR+cN1uLXKO0
-	 KaWjoLp0YnqnvyjtkSPz+T9klp0RE2o4OvHjUY7d1N+gBdCFeAdlio0Owbsb7O4qYw
-	 or4lXpKoo02wd+HF0pTfU5Us1P/hg7ZOSBnZfDAM=
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Date: Mon, 20 Apr 2026 18:48:07 +0530
-Subject: [PATCH] riscv: dts: starfive: jh7110: Drop CAMSS node
+	s=arc-20240116; t=1776691554; c=relaxed/simple;
+	bh=wqssYkH7wHaSK4ZujMsdTPYU7wNv3OKuWpGpkDZUxoc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=j7VaIdmJsLYVF9k/N8uY85Lwc7uF19GEXWBCMNOv2ZoRByeP6vh4FY/cscQxdHW0tW0k0vya/jLKowR5Rl9cokX//VJSclryK6/z2kixy1dsGPQVcI/ZYI5IbrcvzC6Y8rYmNBR/dWo59HSttB4IRjkazJ9ztvYgn2DxbbjAY9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RuodTQwB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 654A6C2BCB9;
+	Mon, 20 Apr 2026 13:25:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776691554;
+	bh=wqssYkH7wHaSK4ZujMsdTPYU7wNv3OKuWpGpkDZUxoc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=RuodTQwBk2ujQrrxOQgXBU2Jse3oOIWcIixuHeftwkx2rhEnzLP3MJ/NJiUxRd9Et
+	 AgtfegnkE1HfGOxw7v+A8FhoPFDN2ag8GhW/g/hViIg3APupWM/NpelHO+TVAsxFuL
+	 bicxbzrSzjIfObZBI/5XUW4FTaPiRnTCcmBhxtjWx65k0tNPtliOq3I0P2VnPwk+JN
+	 de+ymWYLk3uDr2OWc1ZegtMUoX8LENc9+WZa1YoqlZ23g0MsTbfTrtsRtTDj/eXYCA
+	 mFx6DCz/2tOPIXD4sI+xqjT0kPrXi09EfgGsIvAE2hZg4+l/ffvxqqd+Y7CnHAhfKQ
+	 scBkY3zuGIH4w==
+From: Sasha Levin <sashal@kernel.org>
+To: patches@lists.linux.dev,
+	stable@vger.kernel.org
+Cc: Mihai Sain <mihai.sain@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Sasha Levin <sashal@kernel.org>,
+	nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	varshini.rajendran@microchip.com,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.18] ARM: dts: microchip: sam9x7: fix gpio-lines count for pioB
+Date: Mon, 20 Apr 2026 09:18:11 -0400
+Message-ID: <20260420132314.1023554-97-sashal@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260420132314.1023554-1-sashal@kernel.org>
+References: <20260420132314.1023554-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260420-starfive_camss_use-v1-1-ec326af71ca7@ideasonboard.com>
-X-B4-Tracking: v=1; b=H4sIAI4n5mkC/x3MSwqAMAwA0atI1hZqKopeRaSEGjULPzQqgnh3i
- 8u3mHlAOQortNkDkS9R2daEIs8gzLRObGRIBrRY2RKt0YPiKBf7QIuqP5VNTYhNcM5yXUAK98i
- j3P+069/3A0OgqbpkAAAA
-X-Change-ID: 20260420-starfive_camss_use-7a229c330e71
-To: Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
- Changhuang Liang <changhuang.liang@starfivetech.com>, 
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Jai Luthra <jai.luthra@ideasonboard.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3894;
- i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
- bh=+6OHH0Gd4uiBxNx0PSacW6RuCgkwWTHAJNw7dL+NAw8=;
- b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBp5ieTyo0wnR5PToFo2X9uWTkR61KPZaneY8JpT
- VLjEsIcVguJAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCaeYnkwAKCRBD3pH5JJpx
- RXL2D/9KHWDEvRkzU/H+4yYw6ECIGe/d8R0V26PQP5NKu/zMIrJCYRp2+jxryo4qid5gMJiy0hx
- njUJep9xtT+9n8jO6O67K6LYxQLhrcJpkaEi5ZVLvmWThQqWVJC9cX/WSwmrqeghsuDi3nh2+lN
- VZEBxRT3l3dhq0XCRj2J5ZxwjT2TjZj/AKiQbaEBgR2K64jZ13HG3mn9a1G7NAbDP4fXDjTqfUZ
- h3E6iymWDKWFtW7ckxupOev6UvPlH+5ZM9EeydBrbCK4wmom/akBUPZb+XZi5Dg4LwQhNQ3je6s
- Q8DR/C8PAbK5wEwj9WQmfUfoFAhJjng3i+lmRL82EKz4wwX3oStd8nZJmBmN1/Vu5jKLyt1XfZP
- RV3Xl78L1Ic1wMha9pM1KZTLqRueRIHgh0Rh5RBDb9Gnb8rU6S1yFES50T4Aj77C+Jq2zVGV4nf
- AX0vYlufoxxAj7GbPN1OPIB4+82Kt5meLmgOVfLW3v/S0DKj7yv9nh7bn6zmNiAJHi71wgPGBo3
- 91yv7vMtjZmPXBygqoINpegjBMxyXGTjuckDNpJZIwzq0OnvPev+xCiFdGaQIzN/8y6ZlM0Wfiz
- uib6YizHKsRP5nuEQeHeIxQK8RWKTfpBOPW5xZkHfW0wbNBEKQ2U+jflK/aUiAM32yCR9tY+owK
- 27yJnG1ENcAkyEQ==
-X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-X-Spamd-Result: default: False [4.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.18.23
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288708-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-288713-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	R_DKIM_ALLOW(0.00)[ideasonboard.com:s=mail];
-	GREYLIST(0.00)[pass,meta];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[ideasonboard.com,none];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jai.luthra@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.987];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.600];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[1.46.188.0:email,0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,295c0000:email,1.46.109.224:email,0.0.0.1:email]
-X-Rspamd-Queue-Id: 79D1F42C2A9
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fffff600:email,microchip.com:email,tuxon.dev:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 388DA42C99F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The starfive-camss driver and bindings were dropped, as they were no
-longer being worked upon for destaging.
+From: Mihai Sain <mihai.sain@microchip.com>
 
-Drop the relevant node as well to avoid the following build warning:
-"failed to match any schema with compatible: ['starfive,jh7110-camss']"
+[ Upstream commit 907150bbe566e23714a25d7bcb910f236c3c44c0 ]
 
-Fixes: 644673fc8fb04 ("media: dt-bindings: Drop starfive,jh7110-camss from staging")
-Reported-by: Conor Dooley <conor@kernel.org>
-Closes: https://lore.kernel.org/all/20260420-very-cartel-645595ffd1c7@spud/
-Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+The pioB controller on the SAM9X7 SoC actually supports 27 GPIO lines.
+The previous value of 26 was incorrect, leading to the last pin being
+unavailable for use by the GPIO subsystem.
+Update the #gpio-lines property to reflect
+the correct hardware specification.
+
+Fixes: 41af45af8bc3 ("ARM: dts: at91: sam9x7: add device tree for SoC")
+Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
+Link: https://lore.kernel.org/r/20260209090735.2016-1-mihai.sain@microchip.com
+Signed-off-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
-Ideally this patch should have gone in the original series, before the
-one that dropped the bindings which is now merged in mainline.
 
-I've added a Fixes tag so it gets picked in the RC cycles for 7.1.
----
- arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 27 +-----------------------
- arch/riscv/boot/dts/starfive/jh7110.dtsi        | 28 -------------------------
- 2 files changed, 1 insertion(+), 54 deletions(-)
+LLM Generated explanations, may be completely bogus:
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-index 8cfe8033305d80cbe6179ed26601ca057ee00f16..a7a1c09a2c9075711f3a214a49618911fdc7b421 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-@@ -135,29 +135,6 @@ &tdm_ext {
- 	clock-frequency = <49152000>;
- };
+Error: Failed to generate final synthesis
+
+ arch/arm/boot/dts/microchip/sam9x7.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/microchip/sam9x7.dtsi b/arch/arm/boot/dts/microchip/sam9x7.dtsi
+index 46dacbbd201dd..d242d7a934d0f 100644
+--- a/arch/arm/boot/dts/microchip/sam9x7.dtsi
++++ b/arch/arm/boot/dts/microchip/sam9x7.dtsi
+@@ -1226,7 +1226,7 @@ pioB: gpio@fffff600 {
+ 				interrupt-controller;
+ 				#gpio-cells = <2>;
+ 				gpio-controller;
+-				#gpio-lines = <26>;
++				#gpio-lines = <27>;
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 3>;
+ 			};
  
--&camss {
--	assigned-clocks = <&ispcrg JH7110_ISPCLK_DOM4_APB_FUNC>,
--			  <&ispcrg JH7110_ISPCLK_MIPI_RX0_PXL>;
--	assigned-clock-rates = <49500000>, <198000000>;
--
--	ports {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		port@0 {
--			reg = <0>;
--		};
--
--		port@1 {
--			reg = <1>;
--
--			camss_from_csi2rx: endpoint {
--				remote-endpoint = <&csi2rx_to_camss>;
--			};
--		};
--	};
--};
--
- &csi2rx {
- 	assigned-clocks = <&ispcrg JH7110_ISPCLK_VIN_SYS>;
- 	assigned-clock-rates = <297000000>;
-@@ -175,9 +152,7 @@ port@0 {
- 		port@1 {
- 			reg = <1>;
- 
--			csi2rx_to_camss: endpoint {
--				remote-endpoint = <&camss_from_csi2rx>;
--			};
-+			/* remote CAMSS endpoint */
- 		};
- 	};
- };
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 6e56e9d20bb064e86b57a92d4cb05be330cca01a..9c3e4598747eb5541effe697044484715569a285 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -1199,34 +1199,6 @@ csi_phy: phy@19820000 {
- 			#phy-cells = <0>;
- 		};
- 
--		camss: isp@19840000 {
--			compatible = "starfive,jh7110-camss";
--			reg = <0x0 0x19840000 0x0 0x10000>,
--			      <0x0 0x19870000 0x0 0x30000>;
--			reg-names = "syscon", "isp";
--			clocks = <&ispcrg JH7110_ISPCLK_DOM4_APB_FUNC>,
--				 <&ispcrg JH7110_ISPCLK_ISPV2_TOP_WRAPPER_C>,
--				 <&ispcrg JH7110_ISPCLK_DVP_INV>,
--				 <&ispcrg JH7110_ISPCLK_VIN_P_AXI_WR>,
--				 <&ispcrg JH7110_ISPCLK_MIPI_RX0_PXL>,
--				 <&syscrg JH7110_SYSCLK_ISP_TOP_CORE>,
--				 <&syscrg JH7110_SYSCLK_ISP_TOP_AXI>;
--			clock-names = "apb_func", "wrapper_clk_c", "dvp_inv",
--				      "axiwr", "mipi_rx0_pxl", "ispcore_2x",
--				      "isp_axi";
--			resets = <&ispcrg JH7110_ISPRST_ISPV2_TOP_WRAPPER_P>,
--				 <&ispcrg JH7110_ISPRST_ISPV2_TOP_WRAPPER_C>,
--				 <&ispcrg JH7110_ISPRST_VIN_P_AXI_RD>,
--				 <&ispcrg JH7110_ISPRST_VIN_P_AXI_WR>,
--				 <&syscrg JH7110_SYSRST_ISP_TOP>,
--				 <&syscrg JH7110_SYSRST_ISP_TOP_AXI>;
--			reset-names = "wrapper_p", "wrapper_c", "axird",
--				      "axiwr", "isp_top_n", "isp_top_axi";
--			power-domains = <&pwrc JH7110_PD_ISP>;
--			interrupts = <92>, <87>, <90>, <88>;
--			status = "disabled";
--		};
--
- 		voutcrg: clock-controller@295c0000 {
- 			compatible = "starfive,jh7110-voutcrg";
- 			reg = <0x0 0x295c0000 0x0 0x10000>;
-
----
-base-commit: c1f49dea2b8f335813d3b348fd39117fb8efb428
-change-id: 20260420-starfive_camss_use-7a229c330e71
-
-Best regards,
 -- 
-Jai Luthra <jai.luthra@ideasonboard.com>
+2.53.0
 
 
