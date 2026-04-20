@@ -1,66 +1,67 @@
-Return-Path: <devicetree+bounces-288714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288717-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OO4eLjU15mkGtgEAu9opvQ
-	(envelope-from <devicetree+bounces-288714-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 16:16:21 +0200
+	id IDOUMbFP5mkBuwEAu9opvQ
+	(envelope-from <devicetree+bounces-288717-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 18:09:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5532C42CD3C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 16:16:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EA9842F144
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 18:09:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 967223189F9B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:06:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A7E7F32EBD17
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 14:23:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CDDE423A65;
-	Mon, 20 Apr 2026 13:27:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 006E8480341;
+	Mon, 20 Apr 2026 13:31:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m1xO3kOq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kL2cXJ1D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 764EC423A61;
-	Mon, 20 Apr 2026 13:27:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFDDB3A785A;
+	Mon, 20 Apr 2026 13:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776691667; cv=none; b=u9859Fu8kpPEXVehv6kn4c72c6lvSciz0owuNdDdL0avO9nCAG8UcAv6cGaGn9doWY8JiegyeagQN/6hUbhOtDxLL3fLNt4UO8aMXa1mBTvUshxnjnBLNWge0wfgGdQTFxmfv2EKPT5mjVGFePGoe7iP9eyIHPvRiQGoBlGkARA=
+	t=1776691883; cv=none; b=e+IsQ+OiExJBxQXueR6jKc7LoqXoLeRjQCIcG5Kq6k3B5uvDLibEsaMyT1pNCkf1Nw+/W0CCCekBBnLZ8Ao2brIUAZ7iwotMfuHT09RFUbwF8Oqth8/68hdM3up6P8ZakIrYo7/G10sra64KZpsYk4PqLIp6eM/Kz9982hKJLNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776691667; c=relaxed/simple;
-	bh=OmmxsabJzBJrL2Ch/21GzDM4yobf31hGV6JyOlyz/jY=;
+	s=arc-20240116; t=1776691883; c=relaxed/simple;
+	bh=daNxusGK2zC/hQrKEScJBi4trm+F7e7RYwlUjtVpuj4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rS+UhEZh2o1GkHCi8uKPYJo7dz66yjbu3i9obl+2XJ1STBYobYO7vNBwx9IY9ZeP93WfVbhgkn8DaR0FN9a3ElO9C79tzFCY7r/4eCcE4hFzKHAFT6QfpQrvDrW5udG+u/YL7WPMpi/LRaMZUcK1vauVd5KSwlR4Xn8T6/LHOAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m1xO3kOq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A4AFC19425;
-	Mon, 20 Apr 2026 13:27:46 +0000 (UTC)
+	 MIME-Version; b=Qan4qtIrDg4l/tAVJP9aDU9A8JNz84P2D2/OFPIaNcD8fEvseKCfxvXjGRTpOsWGVtJaJYV9utZgPej335OtpFyXswiCqzf50ob/p/rgW13n4uTiNxT2/cv8yasOZbNPjSRzQihqdyjM7CT7YmNQPWBpB5GY6a5iDz0yCHTA/fE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kL2cXJ1D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3429DC2BCB4;
+	Mon, 20 Apr 2026 13:31:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776691667;
-	bh=OmmxsabJzBJrL2Ch/21GzDM4yobf31hGV6JyOlyz/jY=;
+	s=k20201202; t=1776691883;
+	bh=daNxusGK2zC/hQrKEScJBi4trm+F7e7RYwlUjtVpuj4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=m1xO3kOqmrVgWL9I1Lao5bAPbmyJp8aWzaeB4tFTURr6pTb+jI3YGIdxcPOA2Gqp9
-	 DO7teNpTkJQdU3bmwCAiySZP5cVvFTUj9k4GdTkQqY0fpxdG6/UpF5UDzJL902BZaE
-	 saIFBEVQon0rzxuvpUlLdq6PG3xBm2cioy53YETKHjAYoSPIQraqFvmOYnFE9pZC3n
-	 5YC/8JjsKTzkffzn0REP3H2lZiUZVWdbN2Zah5JQLx+MXVXDCEqQWgUGDGJxjdWxoN
-	 u28j+G2CBoyxWzkgHWvRgd6sAlZMXqJFNEOB9iJRY59eow4Yxtjf1W5RQHvzPvjNOW
-	 pOWI2HsiSFDQg==
+	b=kL2cXJ1DodipSppND/Luk862mzDbvS1lfm1c1WLO6/peUbi94gpfgIX4MpO1c9mIK
+	 pB37Gc4VZbdNFbQxWtgd/sDnW/GMpjDbwIyN9FJH3A5KlcW7Capwz414lG/0+QDJv8
+	 qj+wM4S7fPWLlpRvVtzvPUzXVnTzH15XlrOYb166q+Hz5WCnEYubMXCarWotJviQS7
+	 rDXUJ8K9rYmoYx8DuBL0kq51Y5UXTQiMNxeeTU6SEwOBPjoC/oZmMUszr1/hLKrcRp
+	 y1LybowXB67VjxkI1kJniFXlxhzrex4kasujnfBZ+PVXQWUUN5z4YuraGlikoVXQ1Z
+	 EFRYoGXvl6DdQ==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Daniel J Blueman <daniel@quora.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
+Cc: Luke Wang <ziniu.wang_1@nxp.com>,
+	Frank Li <Frank.Li@nxp.com>,
 	Sasha Levin <sashal@kernel.org>,
-	konradybcio@kernel.org,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
+	shawnguo@kernel.org,
+	peng.fan@nxp.com,
 	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.18] arm64: dts: qcom: hamoa/x1: fix idle exit latency
-Date: Mon, 20 Apr 2026 09:19:16 -0400
-Message-ID: <20260420132314.1023554-162-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.18] arm64: dts: imx93-9x9-qsb: change usdhc tuning step for eMMC and SD
+Date: Mon, 20 Apr 2026 09:20:44 -0400
+Message-ID: <20260420132314.1023554-250-sashal@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260420132314.1023554-1-sashal@kernel.org>
 References: <20260420132314.1023554-1-sashal@kernel.org>
@@ -74,61 +75,60 @@ X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.18.23
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-288714-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288717-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.986];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5532C42CD3C
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email]
+X-Rspamd-Queue-Id: 3EA9842F144
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Daniel J Blueman <daniel@quora.org>
+From: Luke Wang <ziniu.wang_1@nxp.com>
 
-[ Upstream commit 3ecea84d2b90bbf934d5ca75514fa902fd71e03f ]
+[ Upstream commit 08903184553def7ba1ad6ba4fa8afe1ba2ee0a21 ]
 
-Designs based on the Qualcomm X1 Hamoa reference platform report:
-driver: Idle state 1 target residency too low
+During system resume, the following errors occurred:
 
-This is because the declared X1 idle entry plus exit latency of 680us
-exceeds the declared minimum 600us residency time:
-  entry-latency-us = <180>;
-  exit-latency-us = <500>;
-  min-residency-us = <600>;
+  [  430.638625] mmc1: error -84 writing Cache Enable bit
+  [  430.643618] mmc1: error -84 doing runtime resume
 
-Fix this to be 320us so the sum of the entry and exit latencies matches
-the downstream 500us exit latency, as directed by Maulik.
+For eMMC and SD, there are two tuning pass windows and the gap between
+those two windows may only have one cell. If tuning step > 1, the gap may
+just be skipped and host assumes those two windows as a continuous
+windows. This will cause a wrong delay cell near the gap to be selected.
 
-Tested on a Lenovo Yoga Slim 7x with Qualcomm X1E-80-100.
+Set the tuning step to 1 to avoid selecting the wrong delay cell.
 
-Fixes: 2e65616ef07f ("arm64: dts: qcom: x1e80100: Update C4/C5 residency/exit numbers")
-Signed-off-by: Daniel J Blueman <daniel@quora.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Link: https://lore.kernel.org/r/20260220124626.8611-1-daniel@quora.org
-Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+For SDIO, the gap is sufficiently large, so the default tuning step does
+not cause this issue.
+
+Fixes: 0565d20cd8c2 ("arm64: dts: freescale: Support i.MX93 9x9 Quick Start Board")
+Signed-off-by: Luke Wang <ziniu.wang_1@nxp.com>
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
@@ -136,22 +136,29 @@ LLM Generated explanations, may be completely bogus:
 
 Error: Failed to generate final synthesis
 
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 6d97329995fe7..efe8d5e7079fe 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -281,7 +281,7 @@ cluster_c4: cpu-sleep-0 {
- 				idle-state-name = "ret";
- 				arm,psci-suspend-param = <0x00000004>;
- 				entry-latency-us = <180>;
--				exit-latency-us = <500>;
-+				exit-latency-us = <320>;
- 				min-residency-us = <600>;
- 			};
- 		};
+diff --git a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
+index 0852067eab2cb..197c8f8b7f669 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
+@@ -507,6 +507,7 @@ &usdhc1 {
+ 	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+ 	bus-width = <8>;
+ 	non-removable;
++	fsl,tuning-step = <1>;
+ 	status = "okay";
+ };
+ 
+@@ -519,6 +520,7 @@ &usdhc2 {
+ 	vmmc-supply = <&reg_usdhc2_vmmc>;
+ 	bus-width = <4>;
+ 	no-mmc;
++	fsl,tuning-step = <1>;
+ 	status = "okay";
+ };
+ 
 -- 
 2.53.0
 
