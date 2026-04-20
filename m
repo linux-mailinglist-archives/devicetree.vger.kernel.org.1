@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-288648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288650-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oCs8EQEI5mkjqwEAu9opvQ
-	(envelope-from <devicetree+bounces-288648-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:03:29 +0200
+	id yD9GLyoI5mkjqwEAu9opvQ
+	(envelope-from <devicetree+bounces-288650-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:04:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10A5429BD4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:03:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A395429BF3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:04:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9039B3076C24
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:02:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2CA95308CAF9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:02:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BEC239BFE5;
-	Mon, 20 Apr 2026 11:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67CDB39D6C8;
+	Mon, 20 Apr 2026 11:02:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D8C73806CC;
-	Mon, 20 Apr 2026 11:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6910939A060;
+	Mon, 20 Apr 2026 11:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776682924; cv=none; b=pueaoYVGEOf0QFc5DNBRUfkeuNitS+wSJagtgqQS+AdjqR0cmgIez3G3nDyQtlSAX1i0VYBpf1nK8KYKO6rPe6WeQ77w3g10Lw6GPUURf/Tbxc8twy17lCgnw8qcaFlEyK4MJD1aGCQbqWwYfrgQq37yOWkEUQZ45sIarfIKDH4=
+	t=1776682925; cv=none; b=r8Zk2SIxwLrq5oNW6qmHuU2lrD3EaoAJTSXay1SEzJ2Xq/bBWykkWXDCrdO/5pOl94wQKF/3cn5jHc991YsQJEwAONRDdN1zKIBuR2czQ7uzFZOxo8CLAr73aeMJ2WXUU5xekKtaGabO57qTxZI2NTQjh5MnJ9mjdwD0b38ozNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776682924; c=relaxed/simple;
-	bh=zjnyboKdG5paHl4nplcUKKs7cY/JybDwIMwsNcFJyKE=;
+	s=arc-20240116; t=1776682925; c=relaxed/simple;
+	bh=L7x+JFFy4S1AZhUYBxLZF06iveeYepvtmuw8pPGyUJE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NjbrcLKJyl/n4b2/rbxO0Cz+1KF0/lwNoNZ14QHFKubt8VwObsykenXdvUHeXOtv+tmebT85e2AnRlhfHRIo/qz7L5xKs7imSMK/CbN9GGq/A17UBzOSzs3UPE+m2P2GjYYSBGAe7+zoEJT/N/hEcEIVo67FPUDDyxAtU5aIUOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+	 MIME-Version; b=cRzziBhAxztN4AIsCS4c7MLKJkUe6ZNXYrVheB35UI45GptM3fD1MXG67vL2VIVoiPy3vAxYFyifpPuN44WDWX7Qg4dLPzk+0rz82OPqAB/OynGakSJ8KEVLS0ZSoB2h95lkqM7h55wOnWgRxk7TfG1ek3o14kwgQOvcqD0IWyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0FC711A0355;
-	Mon, 20 Apr 2026 12:52:45 +0200 (CEST)
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8C99E200314;
+	Mon, 20 Apr 2026 12:52:46 +0200 (CEST)
 Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id CC3681A0308;
-	Mon, 20 Apr 2026 12:52:44 +0200 (CEST)
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 53C362002FA;
+	Mon, 20 Apr 2026 12:52:46 +0200 (CEST)
 Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 76EA61800086;
-	Mon, 20 Apr 2026 18:52:43 +0800 (+08)
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id D1AE91800090;
+	Mon, 20 Apr 2026 18:52:44 +0800 (+08)
 From: Lakshay Piplani <lakshay.piplani@nxp.com>
 To: linux-kernel@vger.kernel.org,
 	linux-i3c@lists.infradead.org,
@@ -56,10 +56,11 @@ To: linux-kernel@vger.kernel.org,
 Cc: vikash.bansal@nxp.com,
 	priyanka.jain@nxp.com,
 	aman.kumarpandey@nxp.com,
-	Lakshay Piplani <lakshay.piplani@nxp.com>
-Subject: [PATCH v9 4/7] mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c hub and on-die regulator
-Date: Mon, 20 Apr 2026 16:22:19 +0530
-Message-Id: <20260420105222.1562243-5-lakshay.piplani@nxp.com>
+	Lakshay Piplani <lakshay.piplani@nxp.com>,
+	Frank Li <frank.li@nxp.com>
+Subject: [PATCH v9 5/7] regulator: p3h2x4x: Add driver for on-die regulators in NXP P3H2x4x i3c hub
+Date: Mon, 20 Apr 2026 16:22:20 +0530
+Message-Id: <20260420105222.1562243-6-lakshay.piplani@nxp.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260420105222.1562243-1-lakshay.piplani@nxp.com>
 References: <20260420105222.1562243-1-lakshay.piplani@nxp.com>
@@ -81,282 +82,335 @@ X-Spamd-Result: default: False [1.64 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-288648-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288650-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FREEMAIL_TO(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,nxp.com,gmail.com];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_SPAM(0.00)[0.194];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[lakshay.piplani@nxp.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.386];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: A10A5429BD4
+X-Rspamd-Queue-Id: 2A395429BF3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
 
-Add core MFD support for the NXP P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841)
-family of multiport I3C hub devices. These devices connect to a host via
-I3C/I2C/SMBus and expose multiple downstream target ports.
+The NXP P3H2x4x family integrates on-die regulators alongside I3C hub
+functionality. This driver registers the regulators using the MFD
+framework and exposes them via the regulator subsystem.
 
 Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
 Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
 Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
+Reviewed-by: Frank Li <frank.li@nxp.com>
 
 ---
 Changes in v9:
- - Renamed macros to follow consistent uppercase naming conventions
- - Made REGMAP selects in the P3H2X4X MFD Kconfig conditional,
-   to avoid I3C/I2C dependency issues
+ - No change
 
 Changes in v8:
  - No change
 
 Changes in v7:
- - Use new config I3C_OR_I2C
+ - No change, added Reviewed-By tag
 
 Changes in v6:
- - No change
+ - Use DEFINE_LOCK_GUARD_1 for reg lock/unlock
 
 Changes in v5:
- - Corrected the ordering in the Makefile and Kconfig for MFD_P3H2X4X
  - Updated dev_err_probe() for regmap_init failure.
  - Updated module description
 
 Changes in v4:
- - Split the driver into three separate patches(mfd, regulator and I3C hub)
- - Added support for NXP P3H2x4x MFD functionality
+ - Split the driver into three separate patches (mfd, regulator and I3C hub)
+ - Introduced driver for on-die regulators in NXP P3H2x4x I3C hub
 ---
 ---
- MAINTAINERS                 |   2 +
- drivers/mfd/Kconfig         |  13 ++++
- drivers/mfd/Makefile        |   1 +
- drivers/mfd/p3h2840.c       | 124 ++++++++++++++++++++++++++++++++++++
- include/linux/mfd/p3h2840.h |  27 ++++++++
- 5 files changed, 167 insertions(+)
- create mode 100644 drivers/mfd/p3h2840.c
- create mode 100644 include/linux/mfd/p3h2840.h
+ MAINTAINERS                                   |   1 +
+ drivers/regulator/Kconfig                     |  10 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/p3h2840_i3c_hub_regulator.c | 218 ++++++++++++++++++
+ 4 files changed, 230 insertions(+)
+ create mode 100644 drivers/regulator/p3h2840_i3c_hub_regulator.c
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 4425816b478b..a2c2f7d944b0 100644
+index a2c2f7d944b0..b2119fadef7b 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -19274,6 +19274,8 @@ L:	linux-kernel@vger.kernel.org
- L:	linux-i3c-owner@lists.infradead.org
+@@ -19275,6 +19275,7 @@ L:	linux-i3c-owner@lists.infradead.org
  S:	Maintained
  F:	Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
-+F:	drivers/mfd/p3h2840.c
-+F:	include/linux/mfd/p3h2840.h
+ F:	drivers/mfd/p3h2840.c
++F:	drivers/regulator/p3h2840_i3c_hub_regulator.c
+ F:	include/linux/mfd/p3h2840.h
  
  NXP PF5300/PF5301/PF5302 PMIC REGULATOR DEVICE DRIVER
- M:	Woodrow Douglass <wdouglass@carnegierobotics.com>
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index 7192c9d1d268..405b50c3c77b 100644
---- a/drivers/mfd/Kconfig
-+++ b/drivers/mfd/Kconfig
-@@ -617,6 +617,19 @@ config MFD_MX25_TSADC
- 	  i.MX25 processors. They consist of a conversion queue for general
- 	  purpose ADC and a queue for Touchscreens.
+diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+index 10e64e3ffb1f..1c90b3679dbe 100644
+--- a/drivers/regulator/Kconfig
++++ b/drivers/regulator/Kconfig
+@@ -1019,6 +1019,16 @@ config REGULATOR_MTK_DVFSRC
+ 	  of Mediatek. It allows for voting on regulator state
+ 	  between multiple users.
  
-+config MFD_P3H2X4X
-+	tristate "NXP P3H2X4X I3C Hub Device"
-+	depends on I3C_OR_I2C
-+	select MFD_CORE
-+	select REGMAP_I3C if I3C
-+	select REGMAP_I2C if I2C
-+	help
-+	  Enable Support for NXP P3H244x/P3H284x I3C HUB device using I3C/I2C
-+	  communication interface.
++config REGULATOR_P3H2X4X
++       tristate "NXP P3H2X4X regulator support"
++       depends on MFD_P3H2X4X
++       help
++         This driver provides support for the voltage regulators of the
++         P3H244x/P3H284x multi-function I3C Hub device.
 +
-+	  This driver provides support for I3C hub and regulator, each subdriver
-+	  can be enabled independently depending on the required functionality.
++         Say M here if you want to include support for this regulator as
++         a module. The module will be named "p3h2840_i3c_hub_regulator".
 +
- config MFD_PF1550
- 	tristate "NXP PF1550 PMIC Support"
- 	depends on I2C=y && OF
-diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index e75e8045c28a..a284b22c7b13 100644
---- a/drivers/mfd/Makefile
-+++ b/drivers/mfd/Makefile
-@@ -122,6 +122,7 @@ obj-$(CONFIG_MFD_MC13XXX)	+= mc13xxx-core.o
- obj-$(CONFIG_MFD_MC13XXX_SPI)	+= mc13xxx-spi.o
- obj-$(CONFIG_MFD_MC13XXX_I2C)	+= mc13xxx-i2c.o
- 
-+obj-$(CONFIG_MFD_P3H2X4X)	+= p3h2840.o
- obj-$(CONFIG_MFD_PF1550)	+= pf1550.o
- 
- obj-$(CONFIG_MFD_NCT6694)	+= nct6694.o
-diff --git a/drivers/mfd/p3h2840.c b/drivers/mfd/p3h2840.c
+ config REGULATOR_PALMAS
+ 	tristate "TI Palmas PMIC Regulators"
+ 	depends on MFD_PALMAS
+diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+index 35639f3115fd..46f586ccde63 100644
+--- a/drivers/regulator/Makefile
++++ b/drivers/regulator/Makefile
+@@ -128,6 +128,7 @@ obj-$(CONFIG_REGULATOR_QCOM_RPMH) += qcom-rpmh-regulator.o
+ obj-$(CONFIG_REGULATOR_QCOM_SMD_RPM) += qcom_smd-regulator.o
+ obj-$(CONFIG_REGULATOR_QCOM_SPMI) += qcom_spmi-regulator.o
+ obj-$(CONFIG_REGULATOR_QCOM_USB_VBUS) += qcom_usb_vbus-regulator.o
++obj-$(CONFIG_REGULATOR_P3H2X4X) += p3h2840_i3c_hub_regulator.o
+ obj-$(CONFIG_REGULATOR_PALMAS) += palmas-regulator.o
+ obj-$(CONFIG_REGULATOR_PCA9450) += pca9450-regulator.o
+ obj-$(CONFIG_REGULATOR_PF0900) += pf0900-regulator.o
+diff --git a/drivers/regulator/p3h2840_i3c_hub_regulator.c b/drivers/regulator/p3h2840_i3c_hub_regulator.c
 new file mode 100644
-index 000000000000..14c0b0f142ef
+index 000000000000..4f2514d4d928
 --- /dev/null
-+++ b/drivers/mfd/p3h2840.c
-@@ -0,0 +1,124 @@
++++ b/drivers/regulator/p3h2840_i3c_hub_regulator.c
+@@ -0,0 +1,218 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
 + * Copyright 2025-2026 NXP
-+ * P3H2X4X i3c hub and regulator device.
++ * This P3H2X4X driver file contain functions for enable/disable regulator and voltage set/get.
 + */
-+
-+#include <linux/i2c.h>
-+#include <linux/i3c/master.h>
-+#include <linux/mfd/core.h>
++#include <linux/bitfield.h>
++#include <linux/cleanup.h>
 +#include <linux/mfd/p3h2840.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
 +#include <linux/regmap.h>
++#include <linux/regulator/driver.h>
 +
-+static const struct mfd_cell p3h2x4x_devs[] = {
++#define P3H2X4X_LDO_AND_PULLUP_CONF				0x19
++#define P3H2X4X_LDO_ENABLE_DISABLE_MASK				GENMASK(3, 0)
++#define P3H2X4X_CP0_EN_LDO				        BIT(0)
++#define P3H2X4X_CP1_EN_LDO				        BIT(1)
++#define P3H2X4X_TP0145_EN_LDO					BIT(2)
++#define P3H2X4X_TP2367_EN_LDO					BIT(3)
++
++#define P3H2X4X_NET_OPER_MODE_CONF				0x15
++#define P3H2X4X_VCCIO_LDO_CONF					0x16
++#define P3H2X4X_CP0_VCCIO_LDO_VOLTAGE_MASK			GENMASK(1, 0)
++#define P3H2X4X_CP0_VCCIO_LDO_VOLTAGE(x)	\
++		FIELD_PREP(P3H2X4X_CP0_VCCIO_LDO_VOLTAGE_MASK, x)
++#define P3H2X4X_CP1_VCCIO_LDO_VOLTAGE_MASK			GENMASK(3, 2)
++#define P3H2X4X_CP1_VCCIO_LDO_VOLTAGE(x)	\
++		FIELD_PREP(P3H2X4X_CP1_VCCIO_LDO_VOLTAGE_MASK, x)
++#define P3H2X4X_TP0145_VCCIO_LDO_VOLTAGE_MASK			GENMASK(5, 4)
++#define P3H2X4X_TP0145_VCCIO_LDO_VOLTAGE(x)	\
++		FIELD_PREP(P3H2X4X_TP0145_VCCIO_LDO_VOLTAGE_MASK, x)
++#define P3H2X4X_TP2367_VCCIO_LDO_VOLTAGE_MASK			GENMASK(7, 6)
++#define P3H2X4X_TP2367_VCCIO_LDO_VOLTAGE(x)	\
++		FIELD_PREP(P3H2X4X_TP2367_VCCIO_LDO_VOLTAGE_MASK, x)
++#define P3H2X4X_LDO_COUNT					4
++
++struct p3h2x4x_regulator_dev {
++	struct regulator_dev *rp3h2x4x_dev[P3H2X4X_LDO_COUNT];
++	struct regmap *regmap;
++};
++
++struct p3h2x4x_reg_state {
++	unsigned int orig;
++	bool restore;
++};
++
++static void p3h2x4x_reg_guard_enter(struct regulator_dev *rdev,
++				    struct p3h2x4x_reg_state *state)
++{
++	state->restore = false;
++
++	if (regmap_read(rdev->regmap,
++			P3H2X4X_DEV_REG_PROTECTION_CODE,
++			&state->orig))
++		return;
++
++	if (state->orig != P3H2X4X_REGISTERS_UNLOCK_CODE) {
++		regmap_write(rdev->regmap,
++			     P3H2X4X_DEV_REG_PROTECTION_CODE,
++			     P3H2X4X_REGISTERS_UNLOCK_CODE);
++		state->restore = true;
++	}
++}
++
++static void p3h2x4x_reg_guard_exit(struct regulator_dev *rdev,
++				   struct p3h2x4x_reg_state *state)
++{
++	if (state->restore)
++		regmap_write(rdev->regmap,
++			     P3H2X4X_DEV_REG_PROTECTION_CODE,
++			     state->orig);
++}
++
++DEFINE_LOCK_GUARD_1(p3h2x4x_reg, struct regulator_dev,
++		    p3h2x4x_reg_guard_enter(_T->lock, &_T->state),
++		    p3h2x4x_reg_guard_exit(_T->lock, &_T->state),
++		    struct p3h2x4x_reg_state state);
++
++static int p3h2x4x_regulator_enable(struct regulator_dev *rdev)
++{
++	guard(p3h2x4x_reg)(rdev);
++	return regulator_enable_regmap(rdev);
++}
++
++static int p3h2x4x_regulator_disable(struct regulator_dev *rdev)
++{
++	guard(p3h2x4x_reg)(rdev);
++	return regulator_disable_regmap(rdev);
++}
++
++static int p3h2x4x_regulator_set_voltage_sel(struct regulator_dev *rdev,
++					     unsigned int sel)
++{
++	guard(p3h2x4x_reg)(rdev);
++	return regulator_set_voltage_sel_regmap(rdev, sel);
++}
++
++static const struct regulator_ops p3h2x4x_ldo_ops = {
++	.list_voltage = regulator_list_voltage_table,
++	.map_voltage = regulator_map_voltage_iterate,
++	.set_voltage_sel = p3h2x4x_regulator_set_voltage_sel,
++	.get_voltage_sel = regulator_get_voltage_sel_regmap,
++	.enable = p3h2x4x_regulator_enable,
++	.disable = p3h2x4x_regulator_disable,
++	.is_enabled = regulator_is_enabled_regmap,
++};
++
++static const unsigned int p3h2x4x_voltage_table[] = {
++	1000000,
++	1100000,
++	1200000,
++	1800000,
++};
++
++static struct regulator_desc p3h2x4x_regulators[] = {
 +	{
++		.name = "ldo-cp0",
++		.of_match = of_match_ptr("ldo-cp0"),
++		.regulators_node = of_match_ptr("regulators"),
++		.volt_table = p3h2x4x_voltage_table,
++		.n_voltages = ARRAY_SIZE(p3h2x4x_voltage_table),
++		.ops = &p3h2x4x_ldo_ops,
++		.type = REGULATOR_VOLTAGE,
++		.owner = THIS_MODULE,
++		.enable_reg = P3H2X4X_LDO_AND_PULLUP_CONF,
++		.enable_mask = P3H2X4X_CP0_EN_LDO,
++		.vsel_reg = P3H2X4X_VCCIO_LDO_CONF,
++		.vsel_mask = P3H2X4X_CP0_VCCIO_LDO_VOLTAGE_MASK,
++	},
++	{
++		.name = "ldo-cp1",
++		.of_match = of_match_ptr("ldo-cp1"),
++		.regulators_node = of_match_ptr("regulators"),
++		.volt_table = p3h2x4x_voltage_table,
++		.n_voltages = ARRAY_SIZE(p3h2x4x_voltage_table),
++		.ops = &p3h2x4x_ldo_ops,
++		.type = REGULATOR_VOLTAGE,
++		.owner = THIS_MODULE,
++		.enable_reg = P3H2X4X_LDO_AND_PULLUP_CONF,
++		.enable_mask = P3H2X4X_CP1_EN_LDO,
++		.vsel_reg = P3H2X4X_VCCIO_LDO_CONF,
++		.vsel_mask = P3H2X4X_CP1_VCCIO_LDO_VOLTAGE_MASK,
++	},
++	{
++		.name = "ldo-tpg0",
++		.of_match = of_match_ptr("ldo-tpg0"),
++		.regulators_node = of_match_ptr("regulators"),
++		.volt_table = p3h2x4x_voltage_table,
++		.n_voltages = ARRAY_SIZE(p3h2x4x_voltage_table),
++		.ops = &p3h2x4x_ldo_ops,
++		.type = REGULATOR_VOLTAGE,
++		.owner = THIS_MODULE,
++		.enable_reg = P3H2X4X_LDO_AND_PULLUP_CONF,
++		.enable_mask = P3H2X4X_TP0145_EN_LDO,
++		.vsel_reg = P3H2X4X_VCCIO_LDO_CONF,
++		.vsel_mask = P3H2X4X_TP0145_VCCIO_LDO_VOLTAGE_MASK,
++	},
++	{
++		.name = "ldo-tpg1",
++		.of_match = of_match_ptr("ldo-tpg1"),
++		.regulators_node = of_match_ptr("regulators"),
++		.volt_table = p3h2x4x_voltage_table,
++		.n_voltages = ARRAY_SIZE(p3h2x4x_voltage_table),
++		.ops = &p3h2x4x_ldo_ops,
++		.type = REGULATOR_VOLTAGE,
++		.owner = THIS_MODULE,
++		.enable_reg = P3H2X4X_LDO_AND_PULLUP_CONF,
++		.enable_mask = P3H2X4X_TP2367_EN_LDO,
++		.vsel_reg = P3H2X4X_VCCIO_LDO_CONF,
++		.vsel_mask = P3H2X4X_TP2367_VCCIO_LDO_VOLTAGE_MASK,
++	},
++};
++
++static int p3h2x4x_regulator_probe(struct platform_device *pdev)
++{
++	struct p3h2x4x_dev *p3h2x4x = dev_get_drvdata(pdev->dev.parent);
++	struct p3h2x4x_regulator_dev *p3h2x4x_regulator;
++	struct regulator_config rcfg = { };
++	struct device *dev = &pdev->dev;
++	struct regulator_dev *rdev;
++	int i;
++
++	p3h2x4x_regulator = devm_kzalloc(dev, sizeof(*p3h2x4x_regulator), GFP_KERNEL);
++	if (!p3h2x4x_regulator)
++		return -ENOMEM;
++
++	platform_set_drvdata(pdev, p3h2x4x_regulator);
++
++	p3h2x4x_regulator->regmap = p3h2x4x->regmap;
++
++	rcfg.dev = dev->parent;
++	rcfg.regmap = p3h2x4x_regulator->regmap;
++	rcfg.driver_data = p3h2x4x_regulator;
++
++	for (i = 0; i < ARRAY_SIZE(p3h2x4x_regulators); i++) {
++		rdev = devm_regulator_register(&pdev->dev, &p3h2x4x_regulators[i], &rcfg);
++		if (IS_ERR(rdev))
++			return dev_err_probe(dev, PTR_ERR(rdev), "Failed to register %s\n",
++					     p3h2x4x_regulators[i].name);
++		p3h2x4x_regulator->rp3h2x4x_dev[i] = rdev;
++	}
++	return 0;
++}
++
++static struct platform_driver p3h2x4x_regulator_driver = {
++	.driver = {
 +		.name = "p3h2x4x-regulator",
++		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
 +	},
-+	{
-+		.name = "p3h2x4x-i3c-hub",
-+	},
++	.probe = p3h2x4x_regulator_probe,
 +};
-+
-+static const struct regmap_config p3h2x4x_regmap_config = {
-+	.reg_bits = P3H2X4X_REG_BITS,
-+	.val_bits = P3H2X4X_VAL_BITS,
-+	.max_register = 0xFF,
-+};
-+
-+static int p3h2x4x_device_probe_i3c(struct i3c_device *i3cdev)
-+{
-+	struct p3h2x4x_dev *p3h2x4x;
-+	int ret;
-+
-+	p3h2x4x = devm_kzalloc(&i3cdev->dev, sizeof(*p3h2x4x), GFP_KERNEL);
-+	if (!p3h2x4x)
-+		return -ENOMEM;
-+
-+	i3cdev_set_drvdata(i3cdev, p3h2x4x);
-+
-+	p3h2x4x->regmap = devm_regmap_init_i3c(i3cdev, &p3h2x4x_regmap_config);
-+	if (IS_ERR(p3h2x4x->regmap))
-+		return dev_err_probe(&i3cdev->dev, PTR_ERR(p3h2x4x->regmap),
-+				     "Failed to register HUB regmap\n");
-+
-+	p3h2x4x->is_p3h2x4x_in_i3c = true;
-+	p3h2x4x->i3cdev = i3cdev;
-+
-+	ret = devm_mfd_add_devices(&i3cdev->dev, PLATFORM_DEVID_AUTO,
-+				   p3h2x4x_devs, ARRAY_SIZE(p3h2x4x_devs),
-+				   NULL, 0, NULL);
-+	if (ret)
-+		return dev_err_probe(&i3cdev->dev, ret, "Failed to add sub devices\n");
-+
-+	return 0;
-+}
-+
-+static int p3h2x4x_device_probe_i2c(struct i2c_client *client)
-+{
-+	struct p3h2x4x_dev *p3h2x4x;
-+	int ret;
-+
-+	p3h2x4x = devm_kzalloc(&client->dev, sizeof(*p3h2x4x), GFP_KERNEL);
-+	if (!p3h2x4x)
-+		return -ENOMEM;
-+
-+	i2c_set_clientdata(client, p3h2x4x);
-+
-+	p3h2x4x->regmap = devm_regmap_init_i2c(client, &p3h2x4x_regmap_config);
-+	if (IS_ERR(p3h2x4x->regmap))
-+		return dev_err_probe(&client->dev, PTR_ERR(p3h2x4x->regmap),
-+				     "Failed to register HUB regmap\n");
-+
-+	p3h2x4x->is_p3h2x4x_in_i3c = false;
-+
-+	ret = devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_AUTO,
-+				   p3h2x4x_devs, ARRAY_SIZE(p3h2x4x_devs),
-+				   NULL, 0, NULL);
-+	if (ret)
-+		return dev_err_probe(&client->dev, ret, "Failed to add sub devices\n");
-+
-+	return 0;
-+}
-+
-+static const struct i3c_device_id p3h2x4x_i3c_ids[] = {
-+	I3C_CLASS(I3C_DCR_HUB, NULL),
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(i3c, p3h2x4x_i3c_ids);
-+
-+static const struct i2c_device_id p3h2x4x_i2c_id_table[] = {
-+	{ "nxp-i3c-hub" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(i2c, p3h2x4x_i2c_id_table);
-+
-+static const struct of_device_id p3h2x4x_i2c_of_match[] = {
-+	{ .compatible = "nxp,p3h2840", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, p3h2x4x_i2c_of_match);
-+
-+static struct i3c_driver p3h2x4x_i3c = {
-+	.driver = {
-+		.name = "p3h2x4x_i3c_drv",
-+	},
-+	.probe = p3h2x4x_device_probe_i3c,
-+	.id_table = p3h2x4x_i3c_ids,
-+};
-+
-+static struct i2c_driver p3h2x4x_i2c = {
-+	.driver = {
-+		.name = "p3h2x4x_i2c_drv",
-+		.of_match_table = p3h2x4x_i2c_of_match,
-+	},
-+	.probe =  p3h2x4x_device_probe_i2c,
-+	.id_table = p3h2x4x_i2c_id_table,
-+};
-+
-+module_i3c_i2c_driver(p3h2x4x_i3c, &p3h2x4x_i2c);
++module_platform_driver(p3h2x4x_regulator_driver);
 +
 +MODULE_AUTHOR("Aman Kumar Pandey <aman.kumarpandey@nxp.com>");
 +MODULE_AUTHOR("Vikash Bansal <vikash.bansal@nxp.com>");
 +MODULE_AUTHOR("Lakshay Piplani <lakshay.piplani@nxp.com>");
-+MODULE_DESCRIPTION("NXP P3H2X4X I3C HUB multi function driver");
++MODULE_DESCRIPTION("NXP P3H2X4X I3C HUB Regulator driver");
 +MODULE_LICENSE("GPL");
-diff --git a/include/linux/mfd/p3h2840.h b/include/linux/mfd/p3h2840.h
-new file mode 100644
-index 000000000000..7ffaf1778f71
---- /dev/null
-+++ b/include/linux/mfd/p3h2840.h
-@@ -0,0 +1,27 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright 2025-2026 NXP
-+ * This header file contain private Reg address and its bit mapping etc.
-+ */
-+
-+#ifndef _LINUX_MFD_P3H2840_H
-+#define _LINUX_MFD_P3H2840_H
-+
-+#include <linux/types.h>
-+
-+/* Device Configuration Registers */
-+#define P3H2X4X_DEV_REG_PROTECTION_CODE				0x10
-+#define P3H2X4X_REGISTERS_LOCK_CODE				0x00
-+#define P3H2X4X_REGISTERS_UNLOCK_CODE				0x69
-+#define P3H2X4X_CP1_REGISTERS_UNLOCK_CODE			0x6a
-+
-+/* Reg config for Regmap */
-+#define P3H2X4X_REG_BITS					8
-+#define P3H2X4X_VAL_BITS					8
-+
-+struct p3h2x4x_dev {
-+	struct i3c_device *i3cdev;
-+	struct regmap *regmap;
-+	bool is_p3h2x4x_in_i3c;
-+};
-+#endif /* _LINUX_MFD_P3H2840_H */
 -- 
 2.25.1
 
