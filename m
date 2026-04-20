@@ -1,196 +1,329 @@
-Return-Path: <devicetree+bounces-288500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288502-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wOs1Dy2W5WnrlgEAu9opvQ
-	(envelope-from <devicetree+bounces-288500-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 04:57:49 +0200
+	id kLZBHIOW5WlxlwEAu9opvQ
+	(envelope-from <devicetree+bounces-288502-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 04:59:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF07D426747
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 04:57:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B56D426777
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 04:59:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B0A14300AC07
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 02:57:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 774BB300A533
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 02:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BC3E37F010;
-	Mon, 20 Apr 2026 02:57:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DCF637F740;
+	Mon, 20 Apr 2026 02:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Bfl9yydF";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ib+AMMH2"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ZLH8JESd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013069.outbound.protection.outlook.com [40.107.162.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2640237EFE1
-	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 02:57:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776653864; cv=none; b=pUT0FnlwSA8eAM4bMo0zYWsmJC1NuvL3j8QfsFOsHpHxxR+mSX03z9f+NY+VB+Ctdb2DXmLl9OswT4x0CcszAMSywF4IyvpI+tVv88g8F74PRyXhvUNG/1t/Z/sBYENckAsa5AIHRG4q7KZtYcc56AJ/Hrp66U+bwgD89gFiN/A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776653864; c=relaxed/simple;
-	bh=9dOaVE48Hg/Z6lF6josr/LqHefZ+NYo+hszbsN9lkMI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AaRCCjaHGhGIf0czswKAQAdVo5OmyjYjlA/mMaHviVXXEzjA4XJ5wECXZTme7mSUQ6J17tO3ZsEgCDmGS1dmILv6a8JIw/e2Nes8/DyvIvVHwaCD9wroJt27q7InWbAPqi2/oiW5/u/BOiTVNehzIzLIusgMcTO/bsUM6sd1OT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Bfl9yydF; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ib+AMMH2; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63J9mGTx1843753
-	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 02:57:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=aVmKcB2K7HMO18UqcPnricoqZOY6WNlZ+jF
-	5oHV/nMY=; b=Bfl9yydF/gqkmIK5iN4VBoxfLJmWF4sPg6doDjMaFM4T0Il5qC8
-	XaiuiURyKrx4vZwnk6L6ZqprsLGaIWE7VnpQ84pXT4jYrvnduhTHURgKP8vruZpC
-	uNiE+ggKdmFikebv0ybjGPpHpSvvXKmKRLLuhVRguQK9ZS5Ld3FAWt0pk9buqV+E
-	pLgOc99mLElWVdvnmYywhmVWVG+oJxIsuE3D6niyyvuyeOrMKqWyojK0X22s3NlP
-	TmYId+ISTd8q438U1FWZz2jDl73jxqYow+E1P3JtGWc2lulo9UIjcsS4q0XHGU9l
-	0Y2nbBiEOSyUo/BAHeOgwyEUNFm2K3RDRVQ==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dm388kpbg-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 02:57:42 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2b249541063so22167245ad.3
-        for <devicetree@vger.kernel.org>; Sun, 19 Apr 2026 19:57:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1776653861; x=1777258661; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aVmKcB2K7HMO18UqcPnricoqZOY6WNlZ+jF5oHV/nMY=;
-        b=ib+AMMH2xj4YZCYiJz5jgCt4Sfez9rH/Z4ZvIX2o1ObgJXp8Gj/bYVycvyu5rotvTK
-         h3Bg1ZW6AvmBWmNLh4KrMd9UEFPcvFtYBDzUEAjFiYHPkC7ydPYUJC1g2CLK52+ULkF2
-         4ojyASMImiRzGZAsEmixYi4dlGbgtvDz+9QcxYMyW7LlpzUWhnomDyYGiW7X1mYYwT3m
-         g0Da6ZIusXoKRfPo5t1vt2rxgpeUxgnogseEQPDTmsk6kW63yT4PX5eKec4BMfplVwT+
-         KPpe4Us+Kp1eXyX2tAEMYMM/1WwijxYm3xv5eBpMLirQwA0rguSs+7b4WOWmcOEAfz0d
-         4Reg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776653861; x=1777258661;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aVmKcB2K7HMO18UqcPnricoqZOY6WNlZ+jF5oHV/nMY=;
-        b=e7GIyf7quu+O3mCg1V035p5CYF9GIT/L8tPXZpPoX5Rp7No+ZZ3QWxNCZldPFYy4oW
-         HF8WCONKawyGz1u46zo87y19mfK4HZVy2XbV38GsdPWVcaunaG82e6fct7hpLhA9Th/I
-         JEJVzGiOancswfp6C262FDWCqOa8rKI7Ql8DmjZBglDFSaYefcg/o4VXyyDQYWH364VJ
-         tlUnqPh6HfVaX5SV92m9ocNYl/FuUmzgRPB6hzlQ9qPlNgAiKsFXJZQNO5ToyrxjONql
-         pSw0i7HCNmJ17Jwq1HPsAJdRz8yp6zXHodD8k9GI1+Q+1eBywhnhLAPH3WZfuO7l3BA5
-         13cA==
-X-Forwarded-Encrypted: i=1; AFNElJ+ULBe/4z5/N42t7Nw9AVsBw1PZwwI762S0RVHPe6BWqoxvi0xrpC3iDXp/7KNGMQP+jqc+T2O1Pkgw@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywmhh1znJa5mS0kJfPGI0dfyYIRyyPTCnC4I0h86DOGLciTukOW
-	ArKC6wLKscoURi8ggWHF9jbn7ZWlKjVl+QAHqBBnKfXAulVRNgzVR/gEPaXw9Exe9ctvNqXcZaM
-	kaf3+JOODo6YyEG9GjBejSPew5R9qiTmWC5tBOmD2wBknkjbkOiVb0M5sKBGE9GPM
-X-Gm-Gg: AeBDietnSZYhiqLflQnRSczv+ydlsmOSZXNgjdjCiS8b/VClnhObzjZ3sGRUf5ODP53
-	XW3IeUd5vjhGDmPAvdlFO4oi6X+veO+LCMqHZsXcS5cvuFBoD6wOstqavC74FBg8vs7c8974cKV
-	FY6Yq618jrtKR2E7Z9viWEUx7GC19UhLWN2ecXQ3YLAkGeVUK2ENX59debu0lrwiebNzuNtVobZ
-	msMY9fdfYmhHVlIZRMj9x6noZIaNYgrmQ2JO13SB/r4ehe1oMxPhrNfcBEOmScUvfhauQse6Suo
-	rhUGvNRlg0XEKmEJ8xq4jdx07uDZtQt5aTszQFDjPfNrIDYZlTUKaW4tOzjlp61jWXErtqxEK2Q
-	OrBGs9YuNCUhwUp5xoc6aKrI+QmcngXQL4ypvU0sw4FTFQqRmaDE0HtYyqTb8hPJM
-X-Received: by 2002:a17:903:1a45:b0:2b2:65db:8c5f with SMTP id d9443c01a7336-2b5f9f4f562mr127496625ad.27.1776653861513;
-        Sun, 19 Apr 2026 19:57:41 -0700 (PDT)
-X-Received: by 2002:a17:903:1a45:b0:2b2:65db:8c5f with SMTP id d9443c01a7336-2b5f9f4f562mr127496315ad.27.1776653861049;
-        Sun, 19 Apr 2026 19:57:41 -0700 (PDT)
-Received: from QCOM-aGQu4IUr3Y.qualcomm.com ([114.94.8.21])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b5faa2f129sm80865365ad.29.2026.04.19.19.57.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Apr 2026 19:57:40 -0700 (PDT)
-From: Shawn Guo <shengchao.guo@oss.qualcomm.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-        Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: crypto: qcom,prng: Document TRNG on Nord SoC
-Date: Mon, 20 Apr 2026 10:57:32 +0800
-Message-ID: <20260420025732.1240525-1-shengchao.guo@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825C237EFEE;
+	Mon, 20 Apr 2026 02:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776653950; cv=fail; b=i4OADpyzEQ6e3tYozTd/jv0MsApIEOBRGXnbndU2vEWgo80oCQiCz5SlRjD906z9uabWxgUpoUzcn5qq4FyPHGUQdZSMHWitLDDfmBaVsV6qG1Ay5mBxVih9WbsGr06aU6ED6A+73f7g9Dnz0jZHAqnG9SMW90QKxdRCOSNp26U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776653950; c=relaxed/simple;
+	bh=HgbxIGSaSBkgBUCArH+jcvekOdWpYOMAWv7x/V9asHg=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=IjbFtjJp+OC2svbwenh/cGVUwfTBy/YdcpJkOKBpzTgs1TH1BuTONuA7iMNwS0aMwxKu5LUfT4w8maoiOC1SRBc1ntNzwy4aS6TxzWgAoa4h9LuN0yXNtNeS1AQBkWjkyONmZFNGCP8gpyy1aYZbxNYioxllPWXj7HpR2Fs6REk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ZLH8JESd; arc=fail smtp.client-ip=40.107.162.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VlYpoiArvz3ebiFFUOSvBvOhwbs1FWk9tCupSxWoFY3PQDEggmczMdpfvAHtVCX5Ko/NnwvIT78PNNkaruTZ1JIrdov2j+ALPkDtiEdyu372MgMsEMVcRP/qfbgdwhVIPqHJHRjX/M4cPNcktgdrSdw2x0MlC13iNbSq3QlnPDkjqN/57WSUSGc8zmkuI8uc32f8iugceFuJrmqjz/fQWEjiNqLZYqGFNEOe9vTJWV19JM6B9RwB/SpBvxE8AW8++gmUrK2a91GkgAHeTv2F/Tu8/gPLW2ejhyBHG4JvKH5to6LD+/KOlYeTCp4DTxNW31WnaOT8WlLfrb+rlyldDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GohfPZ7b0PneqV8zfrmIrWMre5KXUq79+06BLuYuq44=;
+ b=GUJBT43Ip7T08q8YJLZlJ/z9bcZVZZjnoas8/wflTdb9pz7Fztrv8GEBXmqZvTMkIUO+zo9oGHu2CAlRey96alfxPaYvbgCkxBbSxMB8I9dRxxkDaEOQhYFJD/pBSwVzSo3ZUyXfjVFu12khGI+WgoyAnNfd06Nh3N10yujm59ehapr3+i+WCRB5g4yk+XSW+G+UQW3Cg4kzuRBwCX7GKXsN2mNHUconRpoQ7HXCvswG0Sv3gHbKHB78D/xZQyS+eSgKFIfaMF9wexeMR+W/Sf36t2bOa+RwK1x+pDsY60HcrLdVZPa88DPwqN8eJRfRB220PpFynhag3UrpHlgyZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GohfPZ7b0PneqV8zfrmIrWMre5KXUq79+06BLuYuq44=;
+ b=ZLH8JESd/2IioCqFkaBPT072w1Jh/2wuS5/8EogZyUIrQ0S2PUAYUfnfV7qHhscGgfGvv6/+lWcc6+JyaiDT4WSyDnUWjLsMmEp4FIjLI86wqggV8dQNJeua8zcZ8aSD9g9PpR7Z25oF1QGZ/OvOpZWYmLj3F2mtI0AOR47813hXnKfhwv3ujr5lDmEqb34knn/iaA6AX2vO7ynPc2yTPQPPx0dh2ky6N18ts3iXNVLmqrGqwvFu5YN3z0b1/p1viOJ0Ma5UWUb9xFFOb+DZ2IC4EzV+E+kHqUQ2RYyiz7lieR/E6BJqzgmk+boTVx8+dFXVkDwykEiWLCKzwMONPg==
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13) by AS8PR04MB7704.eurprd04.prod.outlook.com
+ (2603:10a6:20b:296::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.32; Mon, 20 Apr
+ 2026 02:59:05 +0000
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994%6]) with mapi id 15.20.9818.032; Mon, 20 Apr 2026
+ 02:59:05 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: Bjorn Helgaas <helgaas@kernel.org>, "mani@kernel.org" <mani@kernel.org>
+CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Frank Li
+	<frank.li@nxp.com>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
+	<festevam@gmail.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kwilczynski@kernel.org" <kwilczynski@kernel.org>, "bhelgaas@google.com"
+	<bhelgaas@google.com>, Hongxing Zhu <hongxing.zhu@nxp.com>,
+	"l.stach@pengutronix.de" <l.stach@pengutronix.de>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH V13 02/12] PCI: host-generic: Add common helpers for
+ parsing Root Port properties
+Thread-Topic: [PATCH V13 02/12] PCI: host-generic: Add common helpers for
+ parsing Root Port properties
+Thread-Index: AQHczZH9Fw0NTzMvoUCb4PMSz4pIBbXiJv2AgABoHuCAAR4OgIADlH+Q
+Date: Mon, 20 Apr 2026 02:59:04 +0000
+Message-ID:
+ <VI0PR04MB121145DB18C2B744856CA6138922F2@VI0PR04MB12114.eurprd04.prod.outlook.com>
+References:
+ <VI0PR04MB1211449884AC3BC8E3711F1AB92202@VI0PR04MB12114.eurprd04.prod.outlook.com>
+ <20260417195533.GA92707@bhelgaas>
+In-Reply-To: <20260417195533.GA92707@bhelgaas>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-Mentions: mani@kernel.org
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|AS8PR04MB7704:EE_
+x-ms-office365-filtering-correlation-id: d3705802-af13-4504-379a-08de9e88c886
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|376014|7416014|19092799006|38070700021|56012099003|22082099003|18002099003;
+x-microsoft-antispam-message-info:
+ OGL6B8WakU+TuMH6L7CwHXM549Eyhj6+pfRuc+D9f+ppQJDipXEzwfp3308Y2yjPWmJEOI0zcTnyLVkXnFIa9TA02o+aG3R/eKkBMNV+0VRMfEjrnSxcCUz3Hrj5HCN5HxRB6sxZAnlCplVG8gvi3jL5aKZW0JU3TgUEN+2TpPZG0+HiTWmRjdRxKvaXwcDC+4E0C14ilMuRiJGbo6CENJnhiNHHOMqoawXDNvL+CyeN6nWb/ALuaFj3DYxp+M2t51xf/mar9SgepYoMojJpkkPMKzofVi1hp8pEdcjB7loGtcIyPtLqRyo2ThdGiHS/dMQ+SgZ2LfDpz7y/YiyeCp6PF5sOikC7S4UqUt519cvuiXTli9G2wKEFMHp5XM+iXZeC7rmWmbpKwa0FU9AlPXmftsSbp3aSCObsp3re+e1k0Ml8zue54qQnuwqPYXBDMoS4Z+YbfxERklLGXvdBWwGf8ia9RB3DHWZnlp5YzpjafWZxECUSLREiLD0YKMon1C/ovM2Pgz1kMiD32ZujaG15n6KAanBgcoB+H0bQqsXPZgdfTLNzAqIVz0T3lVqeFxCs/BSkoGX/4kqn2GQCQ6mxwCnXEI4NmoI6wknXZUyH4v96/+/lSrBEafPtkk1irgfWFLqNjyxC8wgPvi97tSbI4QlNjaeynDlGT4OKBjdQvyJv4JBK3GNMnyJg/qCFjw8gkAivfEoZeRvCZ1WjasTTnXM7k0XAlZ8KpBeTnleM19+w0ZTW8fTnMto+fbaFy9De4yl8MSxCWCM2WTjdwvVTVqcnulQpTYmFmJFT8Cc=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(19092799006)(38070700021)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?Nr9rVP+gw5A9YjuTLFcz6fbmjR14v4WXgxrwvEjKZshTs4RqIxlfUIIWC92J?=
+ =?us-ascii?Q?3zP6TjHgtNKxCgNWu+r4x7lfwDbj9wxdbxiCPGsbaGbiPzfxM7nMCK7T0xrT?=
+ =?us-ascii?Q?/3nSaeFfF52yas0uzzJlW4IOy+Pzq5g5ySRkQF9ZIGjpxF85/8ikGfYlmHlw?=
+ =?us-ascii?Q?E1A3qVnMR0ILoGRB82Mhdl8/1rZy/8deouQ7tjfycRlLEE6HzCpXgvln/mld?=
+ =?us-ascii?Q?97uzjtd+IxKaL8uFX2d4sLzqN1JD0inCus+xaXU3YGN1VR+5QxqvkchNdMn4?=
+ =?us-ascii?Q?Bc8+3XYbA7sFUCWyhB34Na1c1fVyiQo+xLWDh5wWzuhLD1o7FXN1svSjmszo?=
+ =?us-ascii?Q?aDzfi6nMkiWqJPlcw2Z9rcU+wFJY/ix5HghgF3Dt/Y9ZjA5RrJj6YRy50NxD?=
+ =?us-ascii?Q?NQI9yKsJDhYDktXOf4EfPDkgE+VIGXGZa0F/UGSIS9vZKRHgeqYPFYUIxgjy?=
+ =?us-ascii?Q?uGrw5NljBUd/x6Bco92byvkgtzdKxFOTmJVZNfk6Gp0sKRx7byNcnRVigwpL?=
+ =?us-ascii?Q?q/HeSQ6T46641+w3hRDLQVrmQyWThmS1Fci+ZaauoXXqIRtJjJgeH1RLNU/K?=
+ =?us-ascii?Q?EgE1+o2W+MSIiK18gLU1efcKYW7Sbtpof/uj7iiu8HwVyZxf+allnuBaQ5Wt?=
+ =?us-ascii?Q?ZweeHHhOPsDG2/OHMIAKIAvNGd7A51+c0gaM4yu2dMlNS5YjgwnbSr07lnXQ?=
+ =?us-ascii?Q?y/kojkh6HxeR+wvNoPfu20jYijUbAz67B80yZYxqzjP/kiIOx3kcjiXlFucS?=
+ =?us-ascii?Q?mTu8kYXbVuu/x4MyQ2aN7vnGkWAcd8/7KGTC713eoUkmYDzdv1u8abNykf6X?=
+ =?us-ascii?Q?+Y7aDFOXhdFzh62qVkwMMcMCCX/pDQ6Z9mh2KWPFxE6l5OYLeqpxlvwBCBvJ?=
+ =?us-ascii?Q?bjh7jJr+vv5Ky4avJXwdv7YGrtkqeI/92WVG4tILlCNweNJoGUDWYDDwAQ5I?=
+ =?us-ascii?Q?oUnCDVcksSN5a3G9CDyfJ1DZjkOfgZdXuApXRZB5bSn/M6jGiQTshktEthfX?=
+ =?us-ascii?Q?ebWY7Y02hyXVoPR53QXGZTPRHy/duV6zFChzEsTAbjx5alXVAFvvPY2gobVi?=
+ =?us-ascii?Q?Usja+C3PcDTvGH/AjIJu+abxLQKZaxTfiktyhulxLrT4dlKQTqgsLJOhveN8?=
+ =?us-ascii?Q?iAqXOatxg+cO/+Hzd4cDcx67m8yfBP4EfLng+k9mZ0rR8SUIYAOMBA14BKqU?=
+ =?us-ascii?Q?Fov/zVE2xOlE/xnkjld/63fJbY8w5tq+qqLO/HjanRbidbwgNwiT1pa3TQsC?=
+ =?us-ascii?Q?pAjmdtzcglS5ujZ/uvonFySWDCfKZ2Ua8VXuvdIZU0bdlCb3svxDIR1Lpugb?=
+ =?us-ascii?Q?fQkqqmdJYBb9wGbae6Ao92jpHERK18WNBcTeyKy69dJkSnv598X3oN0VWND/?=
+ =?us-ascii?Q?2zbxbI8PqKmxPF713wWe+zGAtPXxmoV2rIfYi4m5ymWlJWdrFLyFs7BlPrup?=
+ =?us-ascii?Q?vCdmgu2Jo3rHYS0mbUvrC6kLARF36yN5R4Dl4lTOV2IxLpAHUzsCGuZWnZCI?=
+ =?us-ascii?Q?5/0Z+Yqb1NZs9vY1g5SrxvirSCNaAEaLRSp6zYJ+bjIHGZMSgEgTG1kx2BaQ?=
+ =?us-ascii?Q?ZRYpl+5ErIENhaEKnF8zu+TcomlhaS6WVsZBL3D4VhbLinXnBH0JcTyUwT0h?=
+ =?us-ascii?Q?p2DQmOiqoRZPDdtp68pq4QUYt+GUPWjV30C9E+Jgym5tHgdywH4QxRP1Kd4/?=
+ =?us-ascii?Q?z+AIZLmaM5T3FSwJoh8rRhRGWUEVHYPjvYcAwWJrxIYmrUae?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=GthyPE1C c=1 sm=1 tr=0 ts=69e59626 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
- a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22 a=EUspDBNiAAAA:8
- a=TDQlr1YfmYFMKhKHBNIA:9 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-GUID: rhp8drnf7CW4vE4RXBWxePa2VRig5fbp
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIwMDAyNSBTYWx0ZWRfX11PfExhU0c4W
- SOVmVw1Zh+pCgncYD2kK1mILZKuvDTLLypxbRSHKJrU1xW16RDpMvNOvJ3bu07td10FMDqZUJez
- xLZbERieAG/T3vfM1eUovB4X6d0El3R+VKFiKcsWqxjt3a7a6IYK/+IC0pY+IrGH4J+9ZsBxJvT
- rBnekhh1yZlmeQ/7SlSYww7SEyr+Yo2GWTnFjhl7ToUDd1Kt3HaNAf1a/B91l5Tt2AqoT2teLrL
- oZ2gYVBlpZrteZQvL6q0Bum58lCIYQI7a8zzhWTlSca+/IB81vr3yyUz9X+im4xLlcfZ8smKD4L
- Zd1PCvlOCNgpW3HUqdXggGMZPCacOI4IerTnTEMas0mayCxbCgyBoTPD+evgRkvELHPO/BgkTjy
- n2ouzqd4zrKG5yP6VtCtVKuM8Jsgx3RZwX/zyAGUjDi60GsHp7IdgscWoCTOZwdRVLX8sYNc35l
- cQ04iOV9w4aHar+Y7iA==
-X-Proofpoint-ORIG-GUID: rhp8drnf7CW4vE4RXBWxePa2VRig5fbp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-19_07,2026-04-17_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 adultscore=0 phishscore=0 lowpriorityscore=0 clxscore=1015
- priorityscore=1501 malwarescore=0 spamscore=0 bulkscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604200025
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3705802-af13-4504-379a-08de9e88c886
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2026 02:59:05.0082
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: UCJxq8a4NEDvQvCOcC6xQRuFGwni1BxfNHuoR9WjZibwfldgE9ztYYwlqW93s8E4tvS+FeYdkg476ADYC2qf7g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7704
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288500-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_NEQ_ENVFROM(0.00)[shengchao.guo@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288502-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,google.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: EF07D426747
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,VI0PR04MB12114.eurprd04.prod.outlook.com:mid,nxp.com:dkim,outlook.com:url,gith:url]
+X-Rspamd-Queue-Id: 7B56D426777
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
 
-Add compatible for True Random Number Generator of Nord SoC with
-a fallback on qcom,trng.
+> On Fri, Apr 17, 2026 at 03:17:16AM +0000, Sherry Sun wrote:
+> > > On Thu, Apr 16, 2026 at 07:14:12PM +0800, Sherry Sun wrote:
+> > > > Introduce generic helper functions to parse Root Port device tree
+> > > > nodes and extract common properties like reset GPIOs. This allows
+> > > > multiple PCI host controller drivers to share the same parsing
+> > > > logic.
+> > > >
+> > > > Define struct pci_host_port to hold common Root Port properties
+> > > > (currently only reset GPIO descriptor) and add
+> > > > pci_host_common_parse_ports() to parse Root Port nodes from device
+> > > > tree.
+> > >
+> > > Are the Root Port and the RC the only possible places for 'reset'
+> > > GPIO descriptions in DT?  I think PERST# routing is outside the PCIe
+> > > spec, so it seems like a system could provide a PERST# GPIO routed
+> > > to any Switch Upstream Port or Endpoint (I assume a PERST# connected
+> > > to a switch would apply to both the upstream port and the downstream
+> > > ports).
+> >
+> > Thanks for the feedback. You're right that PERST# routing could
+> > theoretically be connected to any device in the hierarchy. However,
+> > for this patch series, I've focused on the most common use case in
+> > practice: use Root Port level PERST# instead of the legacy Root
+> > Complex level PERST#.
+> >
+> > Root Port level PERST# - This is the primary target, where each Root
+> > Port has individual control over devices connected to it.  RC level
+> > PERST# - Legacy binding support, where a single GPIO controls all
+> > ports.
+> >
+> > We can extend this framework later if real hardware emerges that needs
+> > Switch or EP-level PERST# control. I can add a comment documenting
+> > this limitation if needed.
+> >
+> > BTW, Mani and Rob had some great discussions in dt-schema about PERST#
+> > and WAKE# sideband signals settings.
+>=20
+> > You can check here:
+> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgit=
+h
+> > ub.com%2Fdevicetree-org%2Fdt-
+> schema%2Fissues%2F168&data=3D05%7C02%7Csher
+> >
+> ry.sun%40nxp.com%7Cd68515fdc0f842ac82d708de9cbb4b2e%7C686ea1d3bc
+> 2b4c6f
+> >
+> a92cd99c5c301635%7C0%7C0%7C639120525411363026%7CUnknown%7CTW
+> FpbGZsb3d8
+> >
+> eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIj
+> oiTW
+> >
+> FpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3DISzWCMSwqYBdw5w%2
+> BDB5ERK51Dr
+> > Tf2jzGtGh3wKNCMZ8%3D&reserved=3D0
+> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgit=
+h
+> > ub.com%2Fdevicetree-org%2Fdt-
+> schema%2Fpull%2F126&data=3D05%7C02%7Csherry
+> > .sun%40nxp.com%7Cd68515fdc0f842ac82d708de9cbb4b2e%7C686ea1d3bc
+> 2b4c6fa9
+> >
+> 2cd99c5c301635%7C0%7C0%7C639120525411380537%7CUnknown%7CTWFp
+> bGZsb3d8ey
+> >
+> JFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiT
+> WFp
+> >
+> bCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3D5cohkQIgl0CDlrOmD0dDIbj
+> Q3%2BVg
+> > VOhiOMDRQD1iwLM%3D&reserved=3D0
+> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgit=
+h
+> > ub.com%2Fdevicetree-org%2Fdt-
+> schema%2Fpull%2F170&data=3D05%7C02%7Csherry
+> > .sun%40nxp.com%7Cd68515fdc0f842ac82d708de9cbb4b2e%7C686ea1d3bc
+> 2b4c6fa9
+> >
+> 2cd99c5c301635%7C0%7C0%7C639120525411391138%7CUnknown%7CTWFp
+> bGZsb3d8ey
+> >
+> JFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiT
+> WFp
+> >
+> bCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3DWtjyGdvt4s84HynGc3%2F0
+> K3UfkZii
+> > naNAW1ypEd%2B11RY%3D&reserved=3D0
+>=20
+> The upshot of all those conversations is that WAKE# and PERST# can be
+> routed to arbitrary devices independent of the PCI topology.
+>=20
+> I think extending host-generic to look for 'reset' in Root Port nodes is =
+the right
+> thing.  My concern is more about where we store it.  This patch saves it =
+in a
+> new "pci_host_port" struct, but someday we'll want a place to save the
+> PERST# GPIOs for several slots behind a switch.
+> Then we'll have two different ways to save the same information.
+>=20
+> WAKE# signals might be more pertinent -- we definitely need to support
+> multiple WAKE# signals below a single Root Port, and it seems like PERST#
+> and WAKE# GPIOs should be saved the same place.
+>=20
+> I'm wondering if both should go in the pci_dev itself.  I guess the impli=
+cation
+> is that a pci_dev->reset GPIO would describe a PERST# connected to the
+> device *below* the pci_dev, at least for Downstream Ports.
 
-Signed-off-by: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
----
- Documentation/devicetree/bindings/crypto/qcom,prng.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Hi Bjorn,
+Ok, understand your concern, currently I've defined the struct pci_host_por=
+t  to
+store the common Root Port properties and added the list of 'ports' to stru=
+ct
+pci_host_bridge.
+I will let @mani to comment and see if this is the appropriate place to sto=
+re
+these info, or if we should store them in struct pci_dev. Mani, can you ple=
+ase help?
 
-diff --git a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
-index 41402599e9ab..1362a8b748a7 100644
---- a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
-+++ b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
-@@ -22,6 +22,7 @@ properties:
-               - qcom,ipq9574-trng
-               - qcom,kaanapali-trng
-               - qcom,milos-trng
-+              - qcom,nord-trng
-               - qcom,qcs615-trng
-               - qcom,qcs8300-trng
-               - qcom,sa8255p-trng
--- 
-2.43.0
+But for now, the motivation for this patch is that many PCI host controller=
+ drivers
+currently share the same requirement: extracting common Root Port propertie=
+s like
+reset GPIOs (at least currently in many drivers, perst is placed in the roo=
+t port). We
+introduce generic helper functions to parse the Root Port t device tree nod=
+es and extract
+these properties so that multiple PCI drivers can share the same parsing lo=
+gic. I'm not
+sure if we should take a step forward here anyway?
 
+Best Regards
+Sherry
+>=20
+> I don't know about WAKE# signals.  When it's in a connector, there's prob=
+ably
+> only a single possible WAKE# per Downstream Port.  But is it possible hav=
+e
+> multiple WAKE# signals from a multi-function device that's on the
+> motherboard?  Saving the WAKE# GPIO in the Downstream Port wouldn't
+> accommodate that case.
 
