@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-288533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288532-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MIFJMnnF5WkGoAEAu9opvQ
-	(envelope-from <devicetree+bounces-288533-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:19:37 +0200
+	id IMJvDUzG5WlIoAEAu9opvQ
+	(envelope-from <devicetree+bounces-288532-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:23:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 316FD42720B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:19:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F5B34272D3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 08:23:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A5BD9300CFE2
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5C9A43007E07
 	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 06:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE7D3815D2;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACBA33803E5;
 	Mon, 20 Apr 2026 06:19:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.b="rBodRtbD"
+	dkim=pass (1024-bit key) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.b="tRyQ74d7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.uibk.ac.at (smtp.uibk.ac.at [138.232.1.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7552C37FF50;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7536E37F019;
 	Mon, 20 Apr 2026 06:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=138.232.1.140
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776665974; cv=none; b=Aww4fMn8HMmWthh9nMXAhPesENlGU55nc5LAX0lEwBU+H7983JzbLBSm7KZQ6V94CWTaTPTkX73b8HlrPMfBhDeTcP0ZE2kf1NIAIypTotkeZCKL+sB4Jr44cdXy0dLsPFbi/waurSOdZXTlrX5Jk9yvyeLg+oYKH4siOAnmr8E=
+	t=1776665974; cv=none; b=NKXijrtIeKL2hDRq8LSSiX4red35352XOxj8WnGxziSJ+lii7a1kiOvl97dvnfic4D4l5M+ulZR0N6yMiwvjBi3AuaY09L7OCX5SPiYkmDMHrnDctoYmf7Fx8SU1e63MG+MOxW3s1BD5NkQI1bx6VoI8mfzVeB/BXR/Aw8Fhsvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1776665974; c=relaxed/simple;
-	bh=b6DFPfLgNn/zuLzMr2wXCqttCiu0+40yPygIAKVA7bQ=;
+	bh=jn9kGIhr91UdOLn5LM5LTicWtS4LUAC/I/1hYv3XIF8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d4pDV1i9p3IqcJ3h+L9L8LZL7S2NkBVaG3BOyGEZnAkLSCZkxUwWUGvVDoEhJ3z+XLD3rgrj2b2xBPIWn4NtPYsyaP6loJ/e7Glfru1ChXScTIosWQ4kaaqZQNhYDTTYv6yQVYZPAca2FBsyWSRmViMEWqKnj7EHotn8fAsX3Xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=student.uibk.ac.at; spf=pass smtp.mailfrom=student.uibk.ac.at; dkim=pass (1024-bit key) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.b=rBodRtbD; arc=none smtp.client-ip=138.232.1.140
+	 MIME-Version:Content-Type; b=erJGiCTjHx1TMrOP6epWef1AgC0TfiQASZzkWe+9NtYMne/SRi72tBUgPuPD/RKRmXn1gNtPZTnJiO/tMzW8duFrMo53XhUkG314kwg/movbrQcZRAJN6ZJRttfc0rH4H/wfWpsArF4dGL/A/6N3QB9vcmvRfalDZuINEuY6QNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=student.uibk.ac.at; spf=pass smtp.mailfrom=student.uibk.ac.at; dkim=pass (1024-bit key) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.b=tRyQ74d7; arc=none smtp.client-ip=138.232.1.140
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=student.uibk.ac.at
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=student.uibk.ac.at
 Received: from surface-pro-5.uibk.ac.at (ydWLT-U1-7-16.uibk.ac.at [172.25.7.16])
 	(authenticated bits=0)
-	by smtp.uibk.ac.at (8.15.2/8.15.2/F1) with ESMTPSA id 63K6Ito81297669
+	by smtp.uibk.ac.at (8.15.2/8.15.2/F1) with ESMTPSA id 63K6Ito91297669
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO);
-	Mon, 20 Apr 2026 08:19:00 +0200
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.uibk.ac.at 63K6Ito81297669
+	Mon, 20 Apr 2026 08:19:01 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.uibk.ac.at 63K6Ito91297669
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=student.uibk.ac.at;
-	s=prod24a; t=1776665940;
-	bh=Ugrejw/BFGpRqCO3FFz5D7BECiapNiJDFJdcWMeJfzE=;
+	s=prod24a; t=1776665941;
+	bh=GIuDalBM65fvAKQrdowCem05OwKL8BgkqSsE6e+glsE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=rBodRtbDxa7ddHesEZcPOqXn2tzk8H/5ri5DB0UhAxBAo9p1+3pPt0bCSZgxA5Q+/
-	 30epiv5tvBOTJs/PSrRL7uFN2kZpW9wPfvkSEza5ikAgC5FXTBKOijk/N83agXxIAu
-	 gzMuPzoueHPnboMlMprHKmSWO5nGek3A/uPQf27Q=
+	b=tRyQ74d7/eWqw7khUgi9+YzdVrrPvpn4KBQlKGronKruwLaxlhUwAU53YoL6bpvSx
+	 kyXhvOXzYPnokZWUtY8OD/GBtk8grqPMbRbwPYM0B3wUhDAQqu+aCYFzPbaHp98oe2
+	 1jwFqE73gzDAADiVd7+FzDai6cpQtx/G9PfaKzjA=
 From: christian.koever-draxl@student.uibk.ac.at
 To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
         neil.armstrong@linaro.org, khilman@baylibre.com
@@ -55,9 +55,9 @@ Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org,
         christian.koever-draxl@student.uibk.ac.at
-Subject: [PATCH v2 1/2] dt-bindings: arm: amlogic: add X98Q compatible
-Date: Mon, 20 Apr 2026 08:18:53 +0200
-Message-ID: <20260420061854.5421-2-christian.koever-draxl@student.uibk.ac.at>
+Subject: [PATCH v2 2/2] arm64: dts: amlogic: add support for X98Q
+Date: Mon, 20 Apr 2026 08:18:54 +0200
+Message-ID: <20260420061854.5421-3-christian.koever-draxl@student.uibk.ac.at>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260420061854.5421-1-christian.koever-draxl@student.uibk.ac.at>
 References: <20260420061854.5421-1-christian.koever-draxl@student.uibk.ac.at>
@@ -69,36 +69,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Score: () -13.0 ALL_TRUSTED,RCV_SMTP_AUTH,RCV_SMTP_UIBK,U_H_APTO_LONG,U_RCPTS_11_PLUS
+X-Spam-Score: () -12.0 ALL_TRUSTED,RCV_SMTP_AUTH,RCV_SMTP_UIBK,UIBK_PHI_SUBJ,U_H_APTO_LONG,U_RCPTS_11_PLUS
 X-Scanned-By: MIMEDefang_3.2_at_uibk.ac.at
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [5.84 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[student.uibk.ac.at,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[student.uibk.ac.at:s=prod24a];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[baylibre.com,googlemail.com,postmarketos.org,vger.kernel.org,lists.infradead.org,student.uibk.ac.at];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-288533-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[christian.koever-draxl@student.uibk.ac.at,devicetree@vger.kernel.org];
-	FROM_NO_DN(0.00)[];
+	FREEMAIL_CC(0.00)[baylibre.com,googlemail.com,postmarketos.org,vger.kernel.org,lists.infradead.org,student.uibk.ac.at];
+	TAGGED_FROM(0.00)[bounces-288532-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[student.uibk.ac.at:s=prod24a];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	GREYLIST(0.00)[pass,meta];
+	DMARC_POLICY_ALLOW(0.00)[student.uibk.ac.at,quarantine];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	MIME_TRACE(0.00)[0:+];
+	NEURAL_HAM(-0.00)[-0.724];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[student.uibk.ac.at:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCPT_COUNT_TWELVE(0.00)[13]
-X-Rspamd-Queue-Id: 316FD42720B
+X-Rspamd-Queue-Id: 7F5B34272D3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -106,27 +109,279 @@ From: Christian Stefan Kövér-Draxl <christian.koever-draxl@student.uibk.ac.at>
 
 Signed-off-by: Christian Stefan Kövér-Draxl <christian.koever-draxl@student.uibk.ac.at>
 ---
- Documentation/devicetree/bindings/arm/amlogic.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../boot/dts/amlogic/meson-s4-s905w2-x98q.dts | 250 ++++++++++++++++++
+ 2 files changed, 251 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s905w2-x98q.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index a885278bc4e2..82671d58d1da 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -254,6 +254,13 @@ properties:
-               - khadas,vim1s
-           - const: amlogic,s905y4
-           - const: amlogic,s4
-+      
-+      - description: Boards with the Amlogic Meson S4 S905W2 SoC
-+        items:
-+          - enum:
-+              - amediatech,x98q
-+          - const: amlogic,s905w2
-+          - const: amlogic,s4
- 
-       - description: Boards with the Amlogic S6 S905X5 SoC
-         items:
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 15f9c817e502..c7752684dea6 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -85,6 +85,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-ugoos-am3.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-s4-s905w2-x98q.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-s4-s905y4-khadas-vim1s.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air-gbit.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s905w2-x98q.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s905w2-x98q.dts
+new file mode 100644
+index 000000000000..26c60a4c2a43
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-s4-s905w2-x98q.dts
+@@ -0,0 +1,250 @@
++
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2026 Christian Stefan Köver-Draxl
++ * Based on meson-s4-s905y4-khadas-vim1s.dts:
++ *  - Copyright (c) 2026 Khadas Technology Co., Ltd.
++ */
++
++/dts-v1/;
++
++#include "meson-s4.dtsi"
++
++/ {
++	model = "Shenzhen Amediatech Technology Co., Ltd X98Q";
++	compatible = "amediatech,x98q", "amlogic,s905w2", "amlogic,s4";
++	interrupt-parent = <&gic>;
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases {
++		mmc0 = &emmc; /* eMMC */
++		mmc1 = &sd; /* SD card */
++		mmc2 = &sdio; /* SDIO */
++		serial0 = &uart_b;
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x40000000>;
++	};
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		/* 52 MiB reserved for ARM Trusted Firmware */
++		secmon_reserved: secmon@5000000 {
++			reg = <0x0 0x05000000 0x0 0x3400000>;
++			no-map;
++		};
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio GPIOB_9 GPIO_ACTIVE_LOW>;
++	};
++
++	sdio_32k: sdio-32k {
++		compatible = "pwm-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
++	};
++
++	sdio_pwrseq: sdio-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
++		clocks = <&sdio_32k>;
++		clock-names = "ext_clock";
++	};
++
++	main_5v: regulator-main-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++	};
++
++	sd_3v3: regulator-sd-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "SD_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio GPIOD_4 GPIO_ACTIVE_LOW>;
++		regulator-always-on;
++	};
++
++	vddio_sd: regulator-vddio-sd {
++		compatible = "regulator-gpio";
++		regulator-name = "VDDIO_SD";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++		gpios = <&gpio GPIOD_9 GPIO_ACTIVE_HIGH>;
++		gpios-states = <1>;
++		states = <1800000 1 3300000 0>;
++	};
++
++	vddao_3v3: regulator-vddao-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&main_5v>;
++		regulator-always-on;
++	};
++
++	vddio_ao1v8: regulator-vddio-ao1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_AO1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-always-on;
++	};
++
++	/* SY8120B1ABC DC/DC Regulator. */
++	vddcpu: regulator-vddcpu {
++		compatible = "pwm-regulator";
++
++		regulator-name = "VDDCPU";
++		regulator-min-microvolt = <689000>;
++		regulator-max-microvolt = <1049000>;
++
++		vin-supply = <&main_5v>;
++
++		pwms = <&pwm_ij 1 1500 0>;
++		pwm-dutycycle-range = <100 0>;
++
++		regulator-boot-on;
++		regulator-always-on;
++		/* Voltage Duty-Cycle */
++		voltage-table = <1049000 0>,
++				<1039000 3>,
++				<1029000 6>,
++				<1019000 9>,
++				<1009000 12>,
++				<999000 14>,
++				<989000 17>,
++				<979000 20>,
++				<969000 23>,
++				<959000 26>,
++				<949000 29>,
++				<939000 31>,
++				<929000 34>,
++				<919000 37>,
++				<909000 40>,
++				<899000 43>,
++				<889000 45>,
++				<879000 48>,
++				<869000 51>,
++				<859000 54>,
++				<849000 56>,
++				<839000 59>,
++				<829000 62>,
++				<819000 65>,
++				<809000 68>,
++				<799000 70>,
++				<789000 73>,
++				<779000 76>,
++				<769000 79>,
++				<759000 81>,
++				<749000 84>,
++				<739000 87>,
++				<729000 89>,
++				<719000 92>,
++				<709000 95>,
++				<699000 98>,
++				<689000 100>;
++	};
++};
++
++&emmc {
++	status = "okay";
++	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
++	pinctrl-1 = <&emmc_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <8>;
++	cap-mmc-highspeed;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++	max-frequency = <200000000>;
++	non-removable;
++	disable-wp;
++
++	mmc-pwrseq = <&emmc_pwrseq>;
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddio_ao1v8>;
++};
++
++&ethmac {
++	status = "okay";
++	phy-handle = <&internal_ephy>;
++	phy-mode = "rmii";
++};
++
++&ir {
++	status = "okay";
++	pinctrl-0 = <&remote_pins>;
++	pinctrl-names = "default";
++};
++
++&pwm_ef {
++	status = "okay";
++	pinctrl-0 = <&pwm_e_pins1>;
++	pinctrl-names = "default";
++};
++
++&pwm_ij {
++	status = "okay";
++};
++
++&sd {
++	status = "okay";
++	pinctrl-0 = <&sdcard_pins>;
++	pinctrl-1 = <&sdcard_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <50000000>;
++	disable-wp;
++
++	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
++
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddao_3v3>;
++};
++
++/*
++* Wireless SDIO Module (Amlogic W150S1)
++* Note: There is no driver for this at the moment.
++*/
++
++&sdio {
++	status = "okay";
++	pinctrl-0 = <&sdio_pins>;
++	pinctrl-1 = <&sdio_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++	#address-cells = <1>;
++	#size-cells = <0>;
++	bus-width = <4>;
++	cap-sd-highspeed;
++	sd-uhs-sdr50;
++	sd-uhs-sdr104;
++	max-frequency = <200000000>;
++	non-removable;
++	disable-wp;
++
++	no-sd;
++	no-mmc;
++	mmc-pwrseq = <&sdio_pwrseq>;
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddio_ao1v8>;
++};
++
++&uart_b {
++	status = "okay";
++};
 -- 
 2.53.0
 
