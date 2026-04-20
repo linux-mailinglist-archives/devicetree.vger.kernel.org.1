@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-288663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288661-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2FIVFR8S5mmnrAEAu9opvQ
-	(envelope-from <devicetree+bounces-288663-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:46:39 +0200
+	id yMG1CwoS5mmlrAEAu9opvQ
+	(envelope-from <devicetree+bounces-288661-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:46:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE88342A086
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70B3A42A067
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:46:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B6E5307A5CF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:46:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BE71D305376C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:46:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B52139EF10;
-	Mon, 20 Apr 2026 11:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A5C639E18E;
+	Mon, 20 Apr 2026 11:46:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="u+AbkmXq"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="laE8dpYJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642FE39C008;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 641E939935D;
 	Mon, 20 Apr 2026 11:45:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776685561; cv=none; b=doo4MfFOkG+Skvk84WJ9fNU1aaA07LJmQ30SyEzrofJOEXVyXWR513W5BkutepIpOuGQuoGzsk4ZfP9KrAfeYjtGgm0C8EE/DLMwyM0YFgy6nUbtyBrNfJnSIlKGq5ygFd2tAQZ6uevsPJBGfkMVJXwXgxBKTQD/WdFrsm5l6Hw=
+	t=1776685560; cv=none; b=VnWZMLs3rXX0h9/OAWV3F7yoNdDOXKW84INjg3reLo4iW4dyJb1tevpirFRZtZefIryOr62oDm3SKB9TYEygO8WdRJchFyTrdI/6vjMpkVzu/h5kWSdZCRZIaVExxYaULrN8WN6FyOcDbObG2CAdb1hAeHELmJWqtKisYq2sF+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776685561; c=relaxed/simple;
-	bh=6+8ztpBvW0SmkNNBsYFtl+tFv50QFcSZtRGui3YpWEQ=;
+	s=arc-20240116; t=1776685560; c=relaxed/simple;
+	bh=j09E/B/OrMFOBEUyjyz2A0FYcOvcCRDmklRDd7Oay4A=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pRxUvp7XLmNSJ1sL0mlx7CEupFeXAVR43xf4Bbo8SpC2KTZk9nlKm3cw8U09ouke7vd6RAx6aJisQarmTKY+6cpGK4ahIKfVKglP9zCL2UgTfl9pOj3M041KTyR01BASaaMiQwUc+q4eEh6j9JcdZVkVPIhEZSXIQv0djJgF/+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=u+AbkmXq; arc=none smtp.client-ip=217.194.8.81
+	 MIME-Version; b=IdmmsbsANAPPxZAPGupBM/svGYpLqsLjPH0SH3socB3x5u8MpC3luLIJioegecBli50lIXRrDqSGgbtJy6ZXRSYNr+Bn+UfkGYhoQQ8RFE89f6HvFiVmWPoSb4JYpcP7PI8X66aphanVo08ihBBy/+mPMkZwNCSYJAksemN24Ug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=laE8dpYJ; arc=none smtp.client-ip=217.194.8.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
 Received: from francesco-nb.. (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
-	by mail11.truemail.it (Postfix) with ESMTPA id E8D5C1FCF0;
-	Mon, 20 Apr 2026 13:45:48 +0200 (CEST)
+	by mail11.truemail.it (Postfix) with ESMTPA id 5D8FF1FCBB;
+	Mon, 20 Apr 2026 13:45:49 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
 	s=default; t=1776685549;
-	bh=QRaxp2u1Z/wpw5MjAmCSXTsAW0bnoQf2guR6EiD40n4=; h=From:To:Subject;
-	b=u+AbkmXqSzN9gNkR9uVT4wmss+1qmZZ8iBvS1820IhADeJpcPqUilkbjnTYqkbJIu
-	 ynWI0C9iPBbSYtC90nZ4GBedTMDbJkQixNgo5toCkymaxSq3Qjss1FViZGt1MHxTxM
-	 HSQPz0rOBBxwtWahfzz0Ghd4mEw307SLaxP9mx5d4jm68eS8q609t6D0VPNhLv27Hj
-	 NPz679KyX7vE+gB6f3+cGkP94QjnuPBLBfzpBFB+tyodAzkCZKNLmAQhoorgJ0JLw1
-	 UZp1AYF+bphvWNEalmP8I0+1iP9mwds9WFb33mgUz7NKQKxworaYERjbkHriIrZd9D
-	 foWxAkdKm7SVQ==
+	bh=miVCOJ+NF3VL81lqNwmUBCNXEiqZM2BQL9sBEasfujk=; h=From:To:Subject;
+	b=laE8dpYJKbnutzsrdaCTcBzhaNLTNKPt215oJ97PKuT6dNc+Js9SCl2Z49ErPLsPr
+	 bseJYjqwQZQB1unm8zoTu75HtnodgkxCZo/dXV7bmsYniLBmL9qCWJNgbBZalh+JHr
+	 nRE3Te1oBk25ZLiNPbG54MizHo3FNxK7wj6USrmPXpmO2Y9JSBNxMUW0A/orCcvTO7
+	 6qgjSeX8PLl/kfHl4xEhmi0fRqV0oq9Gzgl8Pu6UVDw6MibOU5cZkxpmGl24l4le2U
+	 68ZsuvJfR9NwONxK9702zbioo3z88pLMpFy2i9fvOm+nHXcZnY8uveNun7R6sE/t8B
+	 neDS50l7Lu42A==
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -55,9 +55,9 @@ Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-spi@vger.kernel.org
-Subject: [PATCH v1 1/2] dt-bindings: trivial-devices: add toradex,lava-hat-spi
-Date: Mon, 20 Apr 2026 13:45:35 +0200
-Message-ID: <20260420114537.78160-2-francesco@dolcini.it>
+Subject: [PATCH v1 2/2] spi: spidev: Add Toradex LAVA HAT OF compatible
+Date: Mon, 20 Apr 2026 13:45:36 +0200
+Message-ID: <20260420114537.78160-3-francesco@dolcini.it>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260420114537.78160-1-francesco@dolcini.it>
 References: <20260420114537.78160-1-francesco@dolcini.it>
@@ -79,7 +79,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288663-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-288661-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
@@ -94,48 +94,46 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:email,dolcini.it:dkim,dolcini.it:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DE88342A086
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,toradex.com:email,dolcini.it:dkim,dolcini.it:mid]
+X-Rspamd-Queue-Id: 70B3A42A067
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Add a compatible string for the SPI loopback device present on the
-Toradex LAVA HAT test fixture.
-
-The Toradex LAVA HAT is a board used for automated hardware-in-the-loop
-(HIL) testing, it provides several test-related functionalities, and
-exists in multiple variants depending on the board it is mated with. The
-SPI function is implemented with a loopback on the MISO/MOSI signals.
-
-As the device can be fully described using only "compatible" and "reg",
-it is appropriate to list it under trivial-devices.yaml rather than
-introducing a dedicated binding.
-
-The SPI implementation is identical across all Toradex LAVA HAT
-variants, so a single compatible string is sufficient.
+Add "toradex,lava-hat-spi" OF compatible, that describes the SPI
+interface implemented in the Toradex LAVA HAT. The Toradex
+LAVA HAT is a test fixture used in Toradex automated testing lab, it
+provides various functionality, including SPI MISO-MOSI loopback on
+various SPI interface.
 
 Link: https://lore.kernel.org/all/20260310133254.GA51497@francesco-nb/
 Link: https://lore.kernel.org/all/20260316073547.11437-3-francesco@dolcini.it/
 Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ drivers/spi/spidev.c | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 23fd4513933a..95e78ff804af 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -519,6 +519,8 @@ properties:
-           - ti,tps546d24
-             # I2C Touch-Screen Controller
-           - ti,tsc2003
-+            # Toradex Lava Hat SPI
-+          - toradex,lava-hat-spi
-             # Winbond/Nuvoton H/W Monitor
-           - winbond,w83793
- 
+diff --git a/drivers/spi/spidev.c b/drivers/spi/spidev.c
+index 638221178384..2a92dfdc5331 100644
+--- a/drivers/spi/spidev.c
++++ b/drivers/spi/spidev.c
+@@ -701,6 +701,7 @@ static const struct spi_device_id spidev_spi_ids[] = {
+ 	{ .name = /* semtech */ "sx1301" },
+ 	{ .name = /* silabs */ "em3581" },
+ 	{ .name = /* silabs */ "si3210" },
++	{ .name = /* toradex */ "lava-hat-spi" },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(spi, spidev_spi_ids);
+@@ -735,6 +736,7 @@ static const struct of_device_id spidev_dt_ids[] = {
+ 	{ .compatible = "semtech,sx1301", .data = &spidev_of_check },
+ 	{ .compatible = "silabs,em3581", .data = &spidev_of_check },
+ 	{ .compatible = "silabs,si3210", .data = &spidev_of_check },
++	{ .compatible = "toradex,lava-hat-spi", .data = &spidev_of_check },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, spidev_dt_ids);
 -- 
 2.47.3
 
