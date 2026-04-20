@@ -1,187 +1,123 @@
-Return-Path: <devicetree+bounces-288660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288662-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id C2GQMSIP5mk+rAEAu9opvQ
-	(envelope-from <devicetree+bounces-288660-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:33:54 +0200
+	id oEv1FBUS5mmnrAEAu9opvQ
+	(envelope-from <devicetree+bounces-288662-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:46:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 618F4429F22
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:33:54 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5C2B42A076
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A85F6300E2BC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:33:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7B43F3054F62
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E4413859FD;
-	Mon, 20 Apr 2026 11:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBA1E39E6FD;
+	Mon, 20 Apr 2026 11:46:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HAyQZ9dU"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="Cn17oX3X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796E53815D6;
-	Mon, 20 Apr 2026 11:33:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6427739BFE9;
+	Mon, 20 Apr 2026 11:45:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776684832; cv=none; b=PaMs40INp5t+2yHFT4R6n7JIQ7rJRKt22hRv8zKpC/weB0gYIwmeXx9OAfJizsELduov8tP9/2nDIU7R3KTAx3bSrHK/+MrhOYOdoYB4VS8fZ6pyxJMEGXfVtoeQfiHqCaeBuwTmVONMyDLKLvGJ9tD6h4PJFN7AjPSRu0VKGmM=
+	t=1776685560; cv=none; b=EwalZ+kOJqiIJComeJkFjEBjSIKxvT4J5XypJtkYjayBwqJDW34vpqByk0qySo5z3zfKRBeQHZyhax5jB5komoXvC+MSFGlm+oA9WFgfPP5LSlbzg/ObSs1Zd4j+YnFpj4rR+JzXrkwlbQCLtiFBSH9QWnefGT+54GzDwnP7QyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776684832; c=relaxed/simple;
-	bh=liMwdSxiWyK/QiGmg16SrEda19KDCZ6G/77g9d5KXgo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jxQHAMuK4WL8zOm2t3s5iclvLtysh6FC3VvlAqBdmWLM1bWWWQH+9RRw4+vPDqoFwDcI1NwYuawvv20HJgLQS74Y6eSmeyQXLCaCsbDRu4upgWXrfgRM88x+cyuzqtseXRYalXe6SxtTCHUtjY6ZFZ/D6OSHfF7k9XqnHUeerAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HAyQZ9dU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56019C19425;
-	Mon, 20 Apr 2026 11:33:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776684832;
-	bh=liMwdSxiWyK/QiGmg16SrEda19KDCZ6G/77g9d5KXgo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HAyQZ9dUOY+QrGTpZC0TdQkfKPve82Lz5oCqDqld9vDi6Wxes+PIVwE36nebvvj/b
-	 Mak0OKTSAyjLZKojHh80J49AwPS07M4LaadJECHJANE1PrUxbo8l+C2TGH8QxMovDB
-	 YJH1VmSmwjp9VNa19uN4o5/hlwNMelG3SkvTGBMd0qQ6m711WAht1M7wsXX+ADEFA+
-	 tefVEu0anrdRn7GX0jxXJbzyAEZDmGx6D02BEC9WhWYNddw8u+USyjsvuOA2hwaD+6
-	 KtLzjCJF4yohdBWpT/XRyFKaD5FHe/nZPX0WBv8juLIIXQunb09eqs1k7Mslslc6c5
-	 BLOFJFDg4m3LA==
-Message-ID: <192f1948-bb9a-4831-a1cd-5ef500cfb413@kernel.org>
-Date: Mon, 20 Apr 2026 13:33:46 +0200
+	s=arc-20240116; t=1776685560; c=relaxed/simple;
+	bh=fmCUluiOM4pQhqOBw7LaKvSLx/YkSi3y8NX3vRPUB+8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=I66IlbjRR/8XjgVWDBLL9Ze/vuwhxfPW8CJV8Mdc1mq/KKZ9zLSNAu0XLtORia0f77lNciRFBUnlj+z5Q9MwMUcdgJZYH3k1gX8wLA7uD56MEhf3zo3Q7ZXqGyzfsA6McqOxNgIG/k6FEtsqnwiOxfmZ8S5CA2MwPVp5Z5vSPKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=Cn17oX3X; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb.. (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
+	by mail11.truemail.it (Postfix) with ESMTPA id 753061FC8D;
+	Mon, 20 Apr 2026 13:45:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1776685548;
+	bh=bVVY4TQNa7JRVGxpjCbc/o+R/dODtLa+hMeOsdP8WnM=; h=From:To:Subject;
+	b=Cn17oX3X6wd68Y+TY/j/J2iaHCN7RzftOYXIc2cjmo4WnAsvPLsCgTsRhy6u8pRDy
+	 hNeinFJmmzc5qBt7OHdBiYNfYV9hLqJDhiHAu+Vtzz9xdHlnYRko8+swrYCazNScQ9
+	 cJ9T4p2j7dO+JmxVOFkRBdkM/w9YTdRy8YTNa+yJFVhraTH03RnVeKXTeQTKAATX4E
+	 QaUklMn1zXTeDzCy5SaVcxG4IP79pUuc2tSVGDiNcvXLzm6gSp6C8C7x15oNjlCdq6
+	 MZPgnH0IviCQzmhBbQc/SwVixrU+6FSbOJW3dC5BpWV2HneAJuUbxvwiG5IjVULFqB
+	 g5x+3Jv+Ix+WQ==
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Brown <broonie@kernel.org>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org
+Subject: [PATCH v1 0/2] spi: spidev: Add Toradex LAVA HAT
+Date: Mon, 20 Apr 2026 13:45:34 +0200
+Message-ID: <20260420114537.78160-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: bridge: This patch adds new content
- to the lontium,lt9611.yaml binding file
-To: syyang@lontium.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- dmitry.baryshkov@oss.qualcomm.com, maarten.lankhorst@linux.intel.com,
- rfoss@kernel.org, mripard@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com, tzimmermann@ideasonboard.com,
- jonas@kwiboo.se, jernej.skrabec@gmail.com, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- yangsunyun1993@gmail.com, xmzhu@lontium.corp-partner.google.com
-References: <20260420061644.1251070-1-syyang@lontium.com>
- <20260420061644.1251070-2-syyang@lontium.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260420061644.1251070-2-syyang@lontium.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com];
-	TAGGED_FROM(0.00)[bounces-288660-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-288662-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[dolcini.it:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,4.support:url,2.support:url,lontium.com:email]
-X-Rspamd-Queue-Id: 618F4429F22
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,toradex.com:email,dolcini.it:dkim,dolcini.it:mid]
+X-Rspamd-Queue-Id: C5C2B42A076
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/04/2026 08:16, syyang@lontium.com wrote:
-> From: Sunyun Yang <syyang@lontium.com>
-> 
-> Add lt9611c,lt9611ex,lt9611uxd to the lontium,lt9611.yaml file.
-> LT9611C(EX/UXD) is a high performance Single/Dual-Port MIPI to
-> HDMI 1.4/2.0 converter:
-> 
-> -Single/Dual-port MIPI DSI Receiver
->  1. Compliantwith D-PHY1.2&DSI-2 1.0
->  2. 1/2configurable ports
->  3. 1 clock lane and 1/2/3/4 configurable data lanes per port
->  4. 80Mbps~2.5Gbps per data lane
->  5. Support RGB666, loosely RGB666, RGB888, RGB565,16-bit YCbCr4:2:2
-> 
-> -HDMI 1.4/2.0 Transmitter
->  1.Data rate up to 6Gbps
->  2.Support HDCP1.4/2.3
->  3.Support CEC,HDR10
->  4.Support lane swap
-> 
-> -audio
->  1.sample rates of 32~192 KHz and sample sizes
->    of 16~24 bits
->  2.SPDIF interface supports PCM, Dolbydigital, DTS digital audio
->    at up to 192KHz frame rate
-> 
-> -Miscellaneous
->  1.CSC:RGB<->YUV444<->YUV422
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Commit msg is not a datasheet introduction chapter. What does this all
-mean for compatibility? What is the benefit of listing all this?
+Add a compatible string for the SPI loopback device present on the
+Toradex LAVA HAT test fixture and add it to the spidev driver.
 
-You did not even explain the differences between C, UX and EXD, so all
-above is pointless. Explain the differences and why devices are not
-compatible.
+The Toradex LAVA HAT is a board used for automated hardware-in-the-loop
+(HIL) testing, it provides several test-related functionalities, and
+exists in multiple variants depending on the board it is mated with. The
+SPI function is implemented with a loopback on the MISO/MOSI signals.
 
+Link: https://lore.kernel.org/all/20260310133254.GA51497@francesco-nb/
+Link: https://lore.kernel.org/all/20260316073547.11437-3-francesco@dolcini.it/
 
-Best regards,
-Krzysztof
+Francesco Dolcini (2):
+  dt-bindings: trivial-devices: add toradex,lava-hat-spi
+  spi: spidev: Add Toradex LAVA HAT OF compatible
+
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ drivers/spi/spidev.c                                   | 2 ++
+ 2 files changed, 4 insertions(+)
+
+-- 
+2.47.3
+
 
