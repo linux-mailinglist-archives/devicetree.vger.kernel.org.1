@@ -1,136 +1,127 @@
-Return-Path: <devicetree+bounces-288770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288771-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KN7/NZpN5mkgugEAu9opvQ
-	(envelope-from <devicetree+bounces-288770-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 18:00:26 +0200
+	id CEgTC9ZG5mk+uAEAu9opvQ
+	(envelope-from <devicetree+bounces-288771-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 17:31:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 445BB42ED09
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 18:00:26 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 768E542E40F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 17:31:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0143F31D7EDA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:04:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 688DA3524761
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 15:05:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5613A874A;
-	Mon, 20 Apr 2026 14:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C170D3D0916;
+	Mon, 20 Apr 2026 14:27:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ExUiQqn6"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="Diw8+RkR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-4322.protonmail.ch (mail-4322.protonmail.ch [185.70.43.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE493A873A;
-	Mon, 20 Apr 2026 14:25:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E73F3D090A;
+	Mon, 20 Apr 2026 14:27:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776695144; cv=none; b=OniLvSlZu83eWENF8v/HHqC8G7872/KZsA9VBsD4bRTrXdtNEH60545GoJa28W+G4kih5rWr9iplaAWQnFvZoPiOPBfZacqUdWNZEQqm7O+5INnTRxWhtuSOAlGuW5XjoWUrzgL7quQvpvLjxJlzopctRGA3NKNuBDtazpgvHiM=
+	t=1776695277; cv=none; b=gZqRuW9gYgHm7hW8yv3agt6/b+9ovv9+xge/e4Rw+t7xiUACwyB26EwYSUuaW26jHw9rCtVVl1e5IH/T+KwDIyT1Edd7LxCqNvCNi7z3TMTgdCi9W9lnI3kmTrr4r288Zaag7Nop2Bce6yP0Ei0oe0v+D8+PfhWwHooEjBrG/Gw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776695144; c=relaxed/simple;
-	bh=kZ+s/Nwn78KcaXqnaXAIyBNa6oHj1Fx+ThsDHANH3S4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=N2YA+NNHfOklX5G7FzT8snvRt26EqBNz7UpMT5yvh0F2/WAi6DoeycVvpRxvYk0gZXOoGgCMi3zOWrRZ/KnGs+Py9gSVVKmUqSSsbPfuk1+fQSlrhrLipojDDgzKIosfvty7eS/QlTbidUTr+ZKbialMr+SCd4IgZRMU/8RZyoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ExUiQqn6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50395C2BCB4;
-	Mon, 20 Apr 2026 14:25:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776695144;
-	bh=kZ+s/Nwn78KcaXqnaXAIyBNa6oHj1Fx+ThsDHANH3S4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ExUiQqn6lWdhD1k+6jDbIp2sUKTEj4P9z0/Ceq2imfVx1rWY1QAjLXql81bL8MBKV
-	 fiQ4oUWTjK+R7YJly+RYfcD/BALXQ1q4r0+i6BIoJfaNhjVP9oGruvXvqzPEwf5spx
-	 sPaGHBIuZ7woa1TX9jgRZaCGDE19Gk/OOZbstE7q2WSrpgP081UmbD8Zl1cT6vyruZ
-	 3VdtlCTNNcDV9KRIYDsVRZtY9OQQ5bmm4LbBM9eTzE+ZUS0INU4i/NRV/aid2MPiuG
-	 bZAGEXt94eQYPyZEwukX/jtX233jyjsWjbu8bdZgFlefNLWxmGkvSCyBGEINfbC2VD
-	 Ychp7N4EvbZww==
-Date: Mon, 20 Apr 2026 15:25:33 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Hardik Phalet <hardik.phalet@pm.me>
-Cc: gregkh@linuxfoundation.org, andy@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, dlechner@baylibre.com, krzk+dt@kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-staging@lists.linux.dev, me@brighamcampbell.com, nuno.sa@analog.com,
- robh@kernel.org, skhan@linuxfoundation.org, Hardik Phalet
- <hardik.phalet@gmail.com>
-Subject: Re: [PATCH v3 4/5] iio: magnetometer: qmc5883p: add oversampling
- ratio support
-Message-ID: <20260420152533.060c8f9a@jic23-huawei>
-In-Reply-To: <20260420-qmc5883p-driver-v3-4-da1e97088f8b@pm.me>
-References: <20260420-qmc5883p-driver-v3-0-da1e97088f8b@pm.me>
-	<20260420-qmc5883p-driver-v3-4-da1e97088f8b@pm.me>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1776695277; c=relaxed/simple;
+	bh=GmHovF65AhcKaDhKuPYPUEDtvbz4tbknbmC0pegJ98Y=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=QONeNlj1H0w2/ykuhbfgh07chvs3419/H5oU6FSmljLaj7pwBBevoTO9C5NI8BcoML7YqW4hbyb/Y6UkpOE0N0na8Jp+xpJYllFMo/4sqoK/Yihe7+Q5kS0A6Ku11AFpolTwHbqVuyD7CgVqE5s68mESJrvShFofzxBqCkfnzdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=Diw8+RkR; arc=none smtp.client-ip=185.70.43.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+	s=protonmail3; t=1776695272; x=1776954472;
+	bh=17HvWcOauQRMeOJCVn04433LU5s1g0RbLGiy/EatyKY=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=Diw8+RkRQZm1m+spZiGo/UjPxllqV+DYxMJhAgJjNLkqxY4dxb3HrjCegE6IQG0YW
+	 xBTMRa69ZX/0lEFimD57oSJfAYjhNSUMVhPXKTyDINeho7Jev2c3tIaWvHjTOh0psW
+	 O3zFTpA2EEMXETzAG2xZQg08R0yuEBZrHCP7cRRQChDKFQkK9J1Pb3jkKMiso1JLwS
+	 WhLCWba3viy43ANNnWNnLhNh+sEecDM/BOxs0/9EERJ/PcWkEKwKqVro1LLwCJWZqp
+	 pcbtiU/uIrI//oz31y730stRCG9aQraf6m227kcYl2yOS5ncxZY6DhWDvdAU6VSWeQ
+	 TwhBuPUxZ7XTg==
+Date: Mon, 20 Apr 2026 14:27:46 +0000
+To: Bjorn Andersson <andersson@kernel.org>, Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@oss.qualcomm.com>
+From: Alexander Koskovich <akoskovich@pm.me>
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>
+Subject: [PATCH v2 0/2] pinctrl: qcom: eliza: Split up some QUP pin groups
+Message-ID: <20260420-fix-eliza-pinctrl-v2-0-b68329fd6701@pm.me>
+Feedback-ID: 37836894:user:proton
+X-Pm-Message-ID: 5cbdbca9aa3f92a619abb89777b3915c0ea35c61
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288770-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,vger.kernel.org,baylibre.com,lists.linux.dev,brighamcampbell.com,analog.com,gmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[pm.me:+];
+	TAGGED_FROM(0.00)[bounces-288771-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 445BB42ED09
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 768E542E40F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, 19 Apr 2026 22:32:56 +0000
-Hardik Phalet <hardik.phalet@pm.me> wrote:
+Multiple QUPs have lanes that can be routed to one of two GPIOs and
+collapsing them prevents devicetrees from requesting specific routing.
 
-> Expose the CTRL_1 OSR field through IIO_CHAN_INFO_OVERSAMPLING_RATIO so
-> userspace can select among the four oversampling settings (1, 2, 4, 8)
-> supported by the device. Read, write and available handlers mirror the
-> existing SAMP_FREQ plumbing and use the already-present rf.osr regmap
-> field.
-> 
-> Signed-off-by: Hardik Phalet <hardik.phalet@pm.me>
-> ---
+For example, a board that wires an I2C SCL line to one of two GPIOs
+cannot request that specific pin with the groups collapsed.
 
-> @@ -306,6 +320,18 @@ static int qmc5883p_write_odr(struct qmc5883p_data *data, int val)
->  	return -EINVAL;
->  }
->  
-> +static int qmc5883p_write_osr(struct qmc5883p_data *data, int val)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(qmc5883p_osr); i++) {
+This series splits them up so devicetrees can request the configuration
+they need.
 
-Whilst a fairly recent thing, it is now considered fine to do
-	for (int i = 0; i < ... 
+Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
+---
+Changes in v2:
+- Update bindings to reflect new split functions
+- Link to v1: https://lore.kernel.org/r/20260418-fix-eliza-pinctrl-v1-1-864=
+bf95ac83b@pm.me
 
-> +		if (qmc5883p_osr[i] == val)
-> +			return regmap_field_write(data->rf.osr, i);
-> +	}
-> +
-> +	return -EINVAL;
-> +}
+---
+Alexander Koskovich (2):
+      dt-bindings: pinctrl: qcom,eliza-tlmm: Update function list
+      pinctrl: qcom: eliza: Split up some QUP pin groups
+
+ .../bindings/pinctrl/qcom,eliza-tlmm.yaml          |  13 +-
+ drivers/pinctrl/qcom/pinctrl-eliza.c               | 200 +++++++++++++++++=
+----
+ 2 files changed, 179 insertions(+), 34 deletions(-)
+---
+base-commit: c7275b05bc428c7373d97aa2da02d3a7fa6b9f66
+change-id: 20260418-fix-eliza-pinctrl-b6e66dd92766
+
+Best regards,
+--=20
+Alexander Koskovich <akoskovich@pm.me>
 
 
 
