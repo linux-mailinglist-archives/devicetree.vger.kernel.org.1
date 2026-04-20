@@ -1,227 +1,212 @@
-Return-Path: <devicetree+bounces-288643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288649-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UN82EnMF5mkIqgEAu9opvQ
-	(envelope-from <devicetree+bounces-288643-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 12:52:35 +0200
+	id oKvgABcI5mkjqwEAu9opvQ
+	(envelope-from <devicetree+bounces-288649-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:03:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D304299FD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 12:52:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85EBA429BE3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 13:03:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1E51E30E47E7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 10:48:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 03596307F9F4
+	for <lists+devicetree@lfdr.de>; Mon, 20 Apr 2026 11:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B225A39A809;
-	Mon, 20 Apr 2026 10:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hl0XGhGF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B7A39C00E;
+	Mon, 20 Apr 2026 11:02:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 868262BE05E
-	for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 10:47:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.217.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776682078; cv=pass; b=EBtbl7Lfddzunqhct/luKCD1CET2qNEqdGNtEy+0MqRxtblLrLwMMhHA9wV8OSBi6XJsqZ/rw4pcdJJO6H7vV/o+tGjPtnpmu1weJjvbBffAJ9DVFuqcYqe29ygBBThotjoCriPRMu5k7zV0CB96dDOPtaLacyMjDwwhOaY3Egc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776682078; c=relaxed/simple;
-	bh=BuXpBZf0PEuPT4+OxXy/9cCxBlbL135WGtLgJcfyrsM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UrNr9luQd05GwzX6sTuX//17JyAIY08cQSHfEQdyKWCZGZgOb+q19UyHt/xWgnnEWqfSRb3Jnj0hwvkjI79SXfOnEESlg5Odvd7YbsQYOdImgmAaqw5pRM5pT35OeSz7FEw1LGNZciBLhjrjATrvl2g57xweFsuAufPcsaYymew=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Hl0XGhGF; arc=pass smtp.client-ip=209.85.217.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-60fea0840f3so2778016137.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Apr 2026 03:47:56 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1776682075; cv=none;
-        d=google.com; s=arc-20240605;
-        b=jSEBL3IYTChhBO3NtWWXYwK6sHX8hFyM+Wmgnt1u4AJz1P+pZsxpvlDjfVrw9Ffa2J
-         8V0BITau8BK0MYwHYW0ZRoav6hNxFsoDbB+/HoshZ7ugGYHFK+ToYWoiKzv2vPmuYs7M
-         5brYeWYHK2hUw01SgxL0xvwhpXsLvK9ffXQNQYzSbgNDLdm09kKKon5IL9tBntnUGr5S
-         KLznekkgIWu3lVJwPoJiTbPrQypRoT+FRNKyExKmdIX7IPzi8usddPCVOi8rgjflPpfS
-         ukQppA9kxParUVzFl/PanmCqSN+b5YHM87IabBFfjyoLxFkDW3c7cHG13g7Kk023m9d4
-         e7MA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=BuXpBZf0PEuPT4+OxXy/9cCxBlbL135WGtLgJcfyrsM=;
-        fh=pQsH8a4VivJrYEAPv+K2fpZtbRHQJdRZO0+QIIEm39c=;
-        b=SCwoFoXbYlfCiM6eCwzWVzy4MPyLGSbGkWCtjsMAnkoMIRo+6+ZHQV8xmuWQREnn3e
-         ZsQdXVKPfpOFmmo4forgmGOA80gw5beYsFEJf41WXC++lYltfopb/1upqaYDrRu5JfcC
-         5fuP9fe0BbDChE3rkD0Wk15nxA3I+3hVS10OL1hjEzdhcB5rX+te63BHFuKxjuMVx7qO
-         8wbcX+2UorgRGo91Cow/q4EpO5l9yJHL6crKkAXxdlWv8515mRMFtH0KDdQmtkm7DrFO
-         +hsjPrApW2qxTyoPNvJWOfLuInri+p4NqvahtoftmVMUD7nnYRMpOu/HdyDtKMmkmdnx
-         uDow==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1776682075; x=1777286875; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BuXpBZf0PEuPT4+OxXy/9cCxBlbL135WGtLgJcfyrsM=;
-        b=Hl0XGhGFUOoGL+h2gvW2/uCGWUArhe7IyzNyPqEv7R6bFANFcbNEN66UKFrsKkL79D
-         FLtJg5j6du64n+AwguX5AcIJHjs6etqUXjz3iBgTIAQkocZIs0PUu6/obSRdiWuYfMDO
-         QUrqQPWsSO6Ih+OM9NyBrcAiN9PQxfqJPycgTlPZnmBquQ+uHrdvoFvOye4wAWM2XWn6
-         72YDs2yQGp+SGBgu9WEM9JGImyxhhJAvIg4DBEJjK1ImBPptVRfq8m81TXuENAP49C06
-         rucpuKKRM3tSvtv9o3zw3PyPSNq+MSoSOM2jBHFlbh+tpJTkhiOmhxIeN1hrDti66Fjp
-         KIWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776682075; x=1777286875;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=BuXpBZf0PEuPT4+OxXy/9cCxBlbL135WGtLgJcfyrsM=;
-        b=Nq2/h6pk4KCyefeBZhnAMzLhmIANCu0h0inTde+wFRbBv7WOoEa1o0yvJaYfI7cNzY
-         qy256Dj8K49yUrPBoVFWaHteX7YGiYQAGMnFhsrjPK8kXfRa7ivi+eeD52Rk9TFOExsA
-         /soEQnmRJbU1dvkqH4Tt7WYNAEKRNUfdR5KAbSFb3ABR6OrDJxe2dd17UIc9vETdtPFk
-         UU4hEVhljPpf7tV9EjDOOPSPWmKm7wkBzrpcjB7Jqi12f5DjVsWPb4FX6MGwUYw2el9A
-         tR4nuiUoKvWgvii1nEZk+Kd0wJ+xCNybHLbePs/FQwswRHmU07Os6toiEpQYjpXTFptb
-         EKhw==
-X-Forwarded-Encrypted: i=1; AFNElJ+nRtwt+1u7rXIKAUAs3ZyQLIMuURHlck0rwfVvac9O9dgVUxdi17k8vGXwCKsWUsnBqLqwAlWrGDWZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7SBTGBP9JLvE46cTOMFuI41IviVE/YvTD03k8a4e5Rrzs8K40
-	YMgYfU26hgJ68FvDpZ5sXDpJdnmQnTRqAAnPPcYWUeJaYUtSDhYYi1FMaupFiyJtc9XQpZ71IGk
-	+sxOQ3ALp51sWdWXdwsLXTQ3yYOjRSUw=
-X-Gm-Gg: AeBDieujxCFyysts4POUBHQEISADv53jTOC+osVVFwkiaaXDUC9tF5coX87JC7wcfT7
-	v9Ii0KV8JrfbBSqdwkXsU5pF1Y9k4sVRrWP96mEe3mVirSA3HSySb+D+tF4HSEk6MKGUPozE3K1
-	HojgxQeajn4aaHT5dHADVTqafXqnC5res3RWA7N9MJP2HV/aNUDXtVhfs719KzeFLr+2jupKXyb
-	ldEUSZ5EyLUCfRSFK9VVWXcavuMWfoZ37puvwFDx4nZT0/GGI5PkaLbSejraKPkP+k7rX/BC0M2
-	kRUTXcmeCN2d8pQSpbgf0E8q1+OrlGb4SZWa8DkIRcNh7QfWHw==
-X-Received: by 2002:a05:6102:5492:b0:611:959c:86b with SMTP id
- ada2fe7eead31-616fe259128mr4162320137.16.1776682075457; Mon, 20 Apr 2026
- 03:47:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 138922D7DDD;
+	Mon, 20 Apr 2026 11:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776682924; cv=none; b=ppTPEme/nZjFgXPH2sYtIqr3GONcBAI15BAdt+O6P1UXpGbfLgC9H0I1CoCIBVsbYk2pxEHwE3Zd+sD6EgMhfxVhqocMTBpNIeSEFZxJpHF9KkTLfkJZ3LprQWe9TqTJv4dI/ZSTy1Lao4tR8YBrggDzKLJuH1KuSZtxthtnTkU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776682924; c=relaxed/simple;
+	bh=XqPpNupQxn6leCs08F8vJiE1V+uAQ22qZJopv5VObNw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=of0ShcCQ7ODdn5+BUM0UDanXYzKscSptrL7JoA7XyrWeGV6J73Mwsh3LcmXOq/5zHRZJY6izCBvNpNQWUYdTvR/fmTa40FLW+rZKpjcOt/UcIYmtlYZ2wR6esL2mdiZDmDvDs9EqY6xUOo1by9exdjMPrskN79UDIQqU/pZI0RQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A5E2E1A0334;
+	Mon, 20 Apr 2026 12:52:38 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6E38B1A0308;
+	Mon, 20 Apr 2026 12:52:38 +0200 (CEST)
+Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 1EFFC1800257;
+	Mon, 20 Apr 2026 18:52:37 +0800 (+08)
+From: Lakshay Piplani <lakshay.piplani@nxp.com>
+To: linux-kernel@vger.kernel.org,
+	linux-i3c@lists.infradead.org,
+	alexandre.belloni@bootlin.com,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	broonie@kernel.org,
+	lee@kernel.org,
+	Frank.Li@nxp.com,
+	lgirdwood@gmail.com
+Cc: vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com,
+	aman.kumarpandey@nxp.com,
+	Lakshay Piplani <lakshay.piplani@nxp.com>
+Subject: [PATCH v9 0/7] Add support for NXP P3H2x4x I3C hub driver
+Date: Mon, 20 Apr 2026 16:22:15 +0530
+Message-Id: <20260420105222.1562243-1-lakshay.piplani@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260419173251.1180026-1-mitltlatltl@gmail.com>
- <4abb1626-a0a3-45e1-9289-fee366a8d9f0@oss.qualcomm.com> <CAH2e8h4bMve_hfW6VXynBh--DgwW2v8=XuVpAzUoS8N_73ZEhg@mail.gmail.com>
- <b9b58923-40c0-4d3d-991f-52471b29a813@oss.qualcomm.com>
-In-Reply-To: <b9b58923-40c0-4d3d-991f-52471b29a813@oss.qualcomm.com>
-From: Pengyu Luo <mitltlatltl@gmail.com>
-Date: Mon, 20 Apr 2026 18:47:10 +0800
-X-Gm-Features: AQROBzBXeuTko6XXozsGKebKRRWjUWdntml9cNUG_m-eg2R5qI2_Z502Jjjqav0
-Message-ID: <CAH2e8h49SxvPtSXB1AWcNNfqC_ZV6-V2YKbN2_rwSemh7G3b6w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc8280xp: add several missing pdc
- map entries
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spamd-Result: default: False [1.64 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288643-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-288649-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_TO(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,nxp.com,gmail.com];
+	NEURAL_SPAM(0.00)[0.455];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lakshay.piplani@nxp.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com]
-X-Rspamd-Queue-Id: 90D304299FD
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 85EBA429BE3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Apr 20, 2026 at 6:21=E2=80=AFPM Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 4/20/26 11:53 AM, Pengyu Luo wrote:
-> > On Mon, Apr 20, 2026 at 4:32=E2=80=AFPM Konrad Dybcio
-> > <konrad.dybcio@oss.qualcomm.com> wrote:
-> >>
-> >> On 4/19/26 7:32 PM, Pengyu Luo wrote:
-> >>> pdc 215, 256, 257 are missing, but we can find tlmm pin 103, 84, 90
-> >>> are mapped to them respectively, so add the map entries from pdc to
-> >>> gic. These entries are reversed from .data section of qcgpio.sys
-> >>>
-> >>> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> >>> ---
-> >>
-> >> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> >>
-> >> Konrad
-> >>
-> >> The below change on top will fully align it with the data in the docs
-> >> (no functional change)
-> >>
-> >
-> > Glad to know. Could you please help to check the tlmm map too? When I
-> > was parsing the binary, I found
-> >
-> > tlmm 65535 =3D> pdc 70 =3D> gic 520
-> > tlmm 65535 =3D> pdc 174 =3D> gic 733
-> > tlmm 65535 =3D> pdc 175 =3D> gic 734
-> > tlmm 65535 =3D> pdc 176 =3D> gic 735
-> > tlmm 65535 =3D> pdc 177 =3D> gic 736
-> > tlmm 65535 =3D> pdc 178 =3D> gic 737
-> > tlmm 65535 =3D> pdc 184 =3D> gic 743
-> > tlmm 65535 =3D> pdc 185 =3D> gic 744
-> > tlmm 65535 =3D> pdc 186 =3D> gic 745
-> > tlmm 65535 =3D> pdc 187 =3D> gic 746
-> > tlmm 65535 =3D> pdc 188 =3D> gic 747
-> > tlmm 65535 =3D> pdc 194 =3D> gic 753
-> > tlmm 65535 =3D> pdc 195 =3D> gic 754
-> > tlmm 65535 =3D> pdc 196 =3D> gic 755
-> > tlmm 65535 =3D> pdc 197 =3D> gic 756
-> > tlmm 65535 =3D> pdc 198 =3D> gic 757
-> > tlmm 65535 =3D> pdc 199 =3D> gic 416
-> > tlmm 65535 =3D> pdc 204 =3D> gic 462
-> > tlmm 65535 =3D> pdc 205 =3D> gic 264
-> >
-> > If 65536 means the pin is missing, I will send v2 to remove the tlmm
-> > map together with the pdc removal.
->
-> These seem to be LPASS/SSC GPIOs
->
-> There are missing pairs of:
->
-> TLMM 151 -> PDC 264 -> GIC 191
-> TLMM 143 -> PDC 261 -> GIC 402
->
-> and very interestingly, GPIO 190 has two mappings:
-> PDC 70 -> GIC 552
+This series adds a driver for the NXP P3H2x4x family of multiport I3C hub
+devices.
+ 
+This is an MFD driver integrating I3C hub and on-die regulators.
+ 
+The series introduces:
+- Core I3C master enhancements required for hub support
+- Generic I3C hub framework
+- MFD and regulator drivers for P3H2x4x
+- P3H2x4x I3C hub driver built on top of the generic layer
 
-PDC 70 is connected to swr2, which is wakeable. Speaking of this, in
-qcom,pdc.yaml
+Changes in v9:
+- Renamed macros to follow consistent uppercase naming conventions
+- Made REGMAP selects in the P3H2X4X MFD Kconfig conditional, to avoid I3C/I2C dependency issues
+- Referenced i3c.yaml and i2c-controller.yaml for child bus nodes
+- Dropped unnecessary #address-cells and #size-cells from child nodes
+- Added CONFIG_I2C_SLAVE guards where necessary to avoid build errors when I2C slave support is disabled
+- Link to v8: https://lore.kernel.org/linux-i3c/20260323062737.886728-1-lakshay.piplani@nxp.com/T/#u
 
-Drivers requiring wakeup capabilities of their device interrupts
-routed through the PDC, must specify PDC as their interrupt controller
-and request the PDC port associated with the GIC interrupt.
+Changes in v8:
+- Add compatible in i3c example
+- Link to v7: https://lore.kernel.org/linux-i3c/20260319112441.3888957-1-lakshay.piplani@nxp.com/T/#u
 
-But swr2 specifies GIC.
+Changes in v7:
+- Fix kernel-doc warnings across I3C core and hub code
+- Rework DT binding schema and examples to pass dt_binding_check
+- Update MFD Kconfig to use I3C_OR_I2C
+- Convert CONFIG_I3C_HUB to tristate
+- Remove unnecessary CONFIG_I2C_SLAVE guards
+- Replace custom helpers with find_closest()
+- Use devm_regulator_get_enable_optional()
+- Link to v6: https://lore.kernel.org/linux-i3c/64c5070c-aa9e-427a-933e-91e168f0510c@kernel.org/T/#u
 
-I wonder, when should we use tlmm, when pdc, when gic?
+Changes in v6:
+- Update DT binding with vendor-prefixed properties
+- Add generic I3C hub support
+- Remove generic code from P3H2x4x driver
+- Link to v5: https://lore.kernel.org/linux-i3c/20260206120121.856471-1-aman.kumarpandey@nxp.com/T/#u
 
-Best wishes,
-Pengyu
+Changes in v5:
+- Update supply naming and descriptions
+- Improve MFD Kconfig/Makefile ordering
+- Link to v4: https://lore.kernel.org/linux-i3c/20260113114529.1692213-2-aman.kumarpandey@nxp.com/T/#u
 
+Changes in v4:
+- Split driver into MFD, regulator and I3C hub parts
+- Update I3C master for hub support
+- Fix DT binding issues
+- Link to v3: https://lore.kernel.org/linux-i3c/20250811-bittern-of-abstract-prestige-aaeda9@kuoka/T/#u
 
-> PDC 178 -> GIC 769
->
->
-> Konrad
+Changes in v3:
+- Add MFD support for hub and regulators
+- Add regulator integration
+- Link to v2: https://lore.kernel.org/linux-i3c/17145d2f-5d07-4939-8381-74e27cde303c@kernel.org/T/#u
+
+Changes in v2:
+- Fix DT binding warnings
+- Refine DT parsing logic
+- Link to v1: https://lore.kernel.org/linux-i3c/822d6dca-b2c6-4439-ade5-219620ebc435@kernel.org/T/#u
+
+Aman Kumar Pandey (6):
+  i3c: master: Expose the APIs to support I3C hub
+  i3c: master: Add the APIs to support I3C hub
+  dt-bindings: i3c: Add NXP P3H2x4x i3c-hub support
+  mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c hub and on-die regulator
+  regulator: p3h2x4x: Add driver for on-die regulators in NXP P3H2x4x
+    i3c hub
+  i3c: hub: p3h2x4x: Add support for NXP P3H2x4x I3C hub functionality
+
+Lakshay Piplani (1):
+  i3c: hub: Add support for the I3C interface in the I3C hub
+
+ .../devicetree/bindings/i3c/nxp,p3h2840.yaml  | 291 +++++++++++
+ MAINTAINERS                                   |  15 +
+ drivers/i3c/Kconfig                           |  16 +
+ drivers/i3c/Makefile                          |   2 +
+ drivers/i3c/hub.c                             | 460 ++++++++++++++++++
+ drivers/i3c/hub/Kconfig                       |  11 +
+ drivers/i3c/hub/Makefile                      |   4 +
+ drivers/i3c/hub/p3h2840_i3c_hub.h             | 334 +++++++++++++
+ drivers/i3c/hub/p3h2840_i3c_hub_common.c      | 352 ++++++++++++++
+ drivers/i3c/hub/p3h2840_i3c_hub_i3c.c         | 132 +++++
+ drivers/i3c/hub/p3h2840_i3c_hub_smbus.c       | 426 ++++++++++++++++
+ drivers/i3c/master.c                          | 173 ++++++-
+ drivers/mfd/Kconfig                           |  13 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/p3h2840.c                         | 124 +++++
+ drivers/regulator/Kconfig                     |  10 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/p3h2840_i3c_hub_regulator.c | 218 +++++++++
+ include/linux/i3c/device.h                    |   1 +
+ include/linux/i3c/hub.h                       | 107 ++++
+ include/linux/i3c/master.h                    |  10 +
+ include/linux/mfd/p3h2840.h                   |  27 +
+ 22 files changed, 2726 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+ create mode 100644 drivers/i3c/hub.c
+ create mode 100644 drivers/i3c/hub/Kconfig
+ create mode 100644 drivers/i3c/hub/Makefile
+ create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub.h
+ create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_common.c
+ create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
+ create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
+ create mode 100644 drivers/mfd/p3h2840.c
+ create mode 100644 drivers/regulator/p3h2840_i3c_hub_regulator.c
+ create mode 100644 include/linux/i3c/hub.h
+ create mode 100644 include/linux/mfd/p3h2840.h
+
+-- 
+2.25.1
+
 
