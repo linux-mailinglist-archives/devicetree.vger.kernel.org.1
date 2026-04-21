@@ -1,173 +1,155 @@
-Return-Path: <devicetree+bounces-288946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288949-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QCAeNvcY52m73wEAu9opvQ
-	(envelope-from <devicetree+bounces-288946-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 08:28:07 +0200
+	id 2MrkBDwc52k14AEAu9opvQ
+	(envelope-from <devicetree+bounces-288949-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 08:42:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9951D436EE8
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 08:28:06 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30DE743710A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 08:42:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D4AEE300D450
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 06:24:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5A75F300B8C9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 06:41:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31D5937F8A1;
-	Tue, 21 Apr 2026 06:24:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D742E38736A;
+	Tue, 21 Apr 2026 06:41:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=deepcomputing-io.20200927.dkim.feishu.cn header.i=@deepcomputing-io.20200927.dkim.feishu.cn header.b="0AbhKR9o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023121.outbound.protection.outlook.com [52.101.127.121])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from va-2-39.ptr.blmpb.com (va-2-39.ptr.blmpb.com [209.127.231.39])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87B2114BF97;
-	Tue, 21 Apr 2026 06:24:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.121
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776752659; cv=fail; b=TlPKvG3E9XCst+aLCDZyEF6htNBaN83Qv55dv2A3dvRrzhVKZ5yRUGdzHZiUiBQRUoQxc73rQAnXrheeg4FbxghAXRA0uhsdu+n9qihDbFcJP2isf1NCgjPxaKNgl/gXFaMI40YKnEz81DnaAOE+q8QUNvGYm8oi3tHy1AjcM9g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776752659; c=relaxed/simple;
-	bh=2pqdp2YGm+HN51PF5RNC1EpwYkaQ4i8qKpTFKe6n8RE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=juvIaSlsnPmXl/733GbiaCSF5suwL4XAlNKssdL+G78iHLVQQkHfE0WAYJi3OrvLO+HWTUtrW8GtNujh5uLnEJEXYjjy1IrWD7ewe1G9MyGzS3hyoRoRX1ZTnYhMWhehVsG0TwFnJHtrqsJ6iXHVKGXVMBAzg4/FgGTKgCRzpxg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.121
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Y03OgOv/LzBcXWDlFTY3OUu1rXuWiiMW71twmi4uTiwl+w2cT2sr1bHtYgcEZ7AK2bCAMXyc0fk5brEbyOVI7XkuWKBR5kPJi1ZLN1tn39l9zBQmG7GDoEi+U9LFBAbequWDjy3Ux3gUKuWCq0dRCTetQ9+M9IatDGsOR0ZXbYbA7vHp/pxmkT+Ibc/g2s8Bgfqgi2mWSBHUF5yg8wdHL3noMsJwjrZUMM60A8T8mMzEQBcY6z8BYkhl24SLCANVrsduxTjuK6ayOlE++X2ZG5QnnmjtKA7c/W4rr9E4nqHihMHVG+W/PoqJXEWmYWaKtlxJn6EtbQ8mLOo/icCKsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ndkaNkeNpYk4ZBnegT/79anoT+g2F94c2UerE+LttiA=;
- b=ABAP3eQzoY017MUUu62C1y5pVjEKXCg4qcMDXIWJYHYoffjoBX6FQKtBQgMvsP7ZfntHU0FpIvVHHk/ePdPcE2oglaAtgseusr3Sd9ha5ALZ7BDfGVIOoveTnkU8fq0g6q6kL/T/hiKREe79bt1ohvqiv81fEmit3GHpxeqyTvB846Do6XjCstvzOFwWnuiQkE5/qLdK39MIswIcbAHAg9X2mny2R2hNYAOFrQC4ICE2ZRDohJYcwwQn59kcgw2PTxXvQiRqwQiK8KrbJ5SXQphHcOvc1QF6qSlPFMeHLwfTVcRzSPvHVK/4FMzCymgRR9WjSKm+mJsCs6oSGaVhvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arndb.de smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SI2PR01CA0002.apcprd01.prod.exchangelabs.com
- (2603:1096:4:191::21) by SI3PR06MB8611.apcprd06.prod.outlook.com
- (2603:1096:4:2a9::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.33; Tue, 21 Apr
- 2026 06:24:12 +0000
-Received: from SG2PEPF000B66CF.apcprd03.prod.outlook.com
- (2603:1096:4:191:cafe::d3) by SI2PR01CA0002.outlook.office365.com
- (2603:1096:4:191::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9791.48 via Frontend Transport; Tue,
- 21 Apr 2026 06:24:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66CF.mail.protection.outlook.com (10.167.240.23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9791.48 via Frontend Transport; Tue, 21 Apr 2026 06:24:12 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 0DF38446DB61;
-	Tue, 21 Apr 2026 14:24:10 +0800 (CST)
-Date: Tue, 21 Apr 2026 14:24:06 +0800
-From: Peter Chen <peter.chen@cixtech.com>
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Rob Herring <robh@kernel.org>, krzk+dt@kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Pawel Laszczak <pawell@cadence.com>,
-	Roger Quadros <rogerq@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH v3 2/2] usb: cdns3: Add USBSSP platform driver support
-Message-ID: <aecYBkkNTTOhaL8S@nchen-desktop>
-References: <20260421023459.506145-1-peter.chen@cixtech.com>
- <20260421023459.506145-3-peter.chen@cixtech.com>
- <f21d5bab-c79d-4b7d-8aa4-e8188ee11aa8@app.fastmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E604390CB3
+	for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 06:41:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.127.231.39
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776753675; cv=none; b=Jp8mS4kzTBUHDdy4fOXWJvVUAqHvxGr/aPEh3KAQHQhUfH3dJtcVnmYdZAg834HDDwrWKaXv6vME4yS5Ub9DUbS7K23//FrVwX/y9mSgE2mrJDzY6nbt3fycOJptk7XSLNOIkIhRk9VrZYYcvtcdOHEFhHemh5eqwQQm8rlgGjc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776753675; c=relaxed/simple;
+	bh=4csv3KgUsqp6S8xDiKhYe00qaOjZbEpf8B1tr592LPY=;
+	h=From:Mime-Version:Content-Type:To:Cc:Subject:Message-Id:Date; b=QbJnbbze9b3LfCnIqxYeCJW850EDR9fIkVHsSOMAjTEoSZ91nSeq3NIsLmnGIJpAwsRgG5xn5v9I1SJGonEa/r2INKbx0T35BoiTET9wg1V6+ZyRW+ECIvxZkcPuJSjjPdaOm5WDP6+oERT/OxVPjanw9vmvvZvvvT3dF+PgT34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=deepcomputing.io; spf=pass smtp.mailfrom=deepcomputing.io; dkim=pass (2048-bit key) header.d=deepcomputing-io.20200927.dkim.feishu.cn header.i=@deepcomputing-io.20200927.dkim.feishu.cn header.b=0AbhKR9o; arc=none smtp.client-ip=209.127.231.39
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=deepcomputing.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=deepcomputing.io
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=s1; d=deepcomputing-io.20200927.dkim.feishu.cn; t=1776753662;
+  h=from:subject:mime-version:from:date:message-id:subject:to:cc:
+ reply-to:content-type:mime-version:in-reply-to:message-id;
+ bh=bOD3EGcybYF59xsN+7vrNuVhjQ9htAdl90lQIE/I3Uc=;
+ b=0AbhKR9odaVJolw2A8Cc6aTH9iBHe2iV9ySgdqEoYLkOsxcNLtbkyZZFbD1KnEcJiS6nDs
+ Db5BImo4tpprx6TjSylDzjlCErenuu2HsLl9CONIfjcDFfS8qBjmzXUlujv7I6yTVvcN1i
+ KJT0B0Ew5Te8KQs5cqXmPA6THFXZxJW4YsHkhyI42X9SwwHFS6ZCu2O99U2An7fSqHZMgQ
+ Xhdi0Sc3n09RzzqmFFgRcmLD4REx4W2CBTNs7ROmRyt84HmxPlSpRwjPWCngt3SO669b/5
+ 7tvGTOEw3dtrEJ+otweCv/HtQohrP7NHzk6WnftWhIqfHtK/teUCAbeQjWDDOQ==
+From: "Sandie Cao" <sandie.cao@deepcomputing.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <f21d5bab-c79d-4b7d-8aa4-e8188ee11aa8@app.fastmail.com>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CF:EE_|SI3PR06MB8611:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e97b180-f4d3-4286-067f-08de9f6e9ad0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|36860700016|7416014|1800799024|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	Gha7DhZAhibz3L0aMSRy3gJrAW7y9MZ10w2g4lB6kYVJwhNyDTasDhaLhuYpd9euk6kr9BMiwdz8VAidQ5dmB/Vq2vgSGBp4bzUd8SPGiTVDJjT2JHsw8brHfEo5lJ4cyAxiT8H5PmziVHxjXyTH8smi8073Z7uc4fzQQ4e/GTe8Ovs+Y3aiAKKYXK1gCknS9CrSE4BNF6lqTiH3+UhP8z98uWpJ1kaUf7jVmtL3h1ISRp9WZmbDdFmW5bemsvikjPmHo+debW0OEexYGFcLm0cjVf7/WT4iVIhYbdhOCeMvexrx2RrXh5GaqgdVzO2AIwkqX6L2q121UdMBXkAXxhcFONzAetgCtl7MO/JURnnV71uZU67Va4kjjjYmzINId8MG7vDIt9h8dkUS4nGyTcI4y6OZYpcOF+AcfLkyYi5X+etmReykL1gWI3433DKhgMpYgaNhwKK4O5sZd3E2J/XxiUzl+3h+lGwI1/Bt5wGATgg4zNIc66txsKCnKu7TRcgdVRDC9RQNJ6uC0PjyWprCtNt3eVme7/J0tmEQ2hCIbnGKqSEPl0ftozYku9AaQ06DbZH54YMHr74mzfLGvU9l+h4bQlfmIkJ9h8usUAJQ+iW6JfnrTbJBgL8CNaK5Ty6epLauh4gGHnoFidkT65A1EXQEJy9JwxodyIzld+Bey6XCoak34gatQk6AxfjPRQMTi3aodQS8TtpuF3SkV7UwBSEoQPnkrQSZr13pyoTmjxS+/AK0Q+ad+M6oHMSkp4Odkgd90XYLr3rzd+usqw==
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700016)(7416014)(1800799024)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	uXrh5MVkqrzrc8EqYHv0XhMA96pQ8/6ARKfE6nDcot9W2WBPTuX3K57/i5jobRIMvX+kwZqzzEsLz1qkEtZxWnk6iJdFkU8yHe8fnIQ5No5eFcJKHYe9fZz6bw7Zkw5hIx5UIMKuWHM1YLtqA9X9qu++MfV9SK45vsmhd4LvDm2oQQ14rY+gFgt/OM18DpI7MyjLsyTtZ7CFgqPVeuaUbG4HtE+/oIIxXShMCFCoqthB9cSosRSW5kvnp82iGU2cPyAobBnfxhu/KPaPdMnGKHAZnLpuo3fD1L5vtds+zCkqbNsbCRbCeU+BTz/nxCgcH72ggAmDPZc1rS6mMWRm/bwQgXusJTfRucgGLWVsmGu5vMOHyguD6KeO9uxNTPI09vfwSIs9RnONABFL2Ud3mhZuqFwF19xH8i8SykFknLUP1wh4BBSBYqI5S9tNwcE6
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 06:24:12.3876
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e97b180-f4d3-4286-067f-08de9f6e9ad0
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66CF.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI3PR06MB8611
-X-Spamd-Result: default: False [2.54 / 15.00];
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Original-From: Sandie Cao <sandie.cao@deepcomputing.io>
+Content-Type: text/plain; charset=UTF-8
+To: "Yixun Lan" <dlan@kernel.org>, 
+	"Troy Mitchell" <troy.mitchell@linux.spacemit.com>, 
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>
+Cc: "Conor Dooley" <conor+dt@kernel.org>, "Rob Herring" <robh@kernel.org>, 
+	"Paul Walmsley" <paul.walmsley@sifive.com>, 
+	"Palmer Dabbelt" <palmer@dabbelt.com>, 
+	"Albert Ou" <aou@eecs.berkeley.edu>, 
+	"Michael Opdenacker" <michael.opdenacker@rootcommit.com>, 
+	"Alexandre Ghiti" <alex@ghiti.fr>, "Guodong Xu" <guodong@riscstar.com>, 
+	"Hendrik Hamerlinck" <hendrik.hamerlinck@hammernet.be>, 
+	"Yangyu Chen" <cyy@cyyself.name>, <spacemit@lists.linux.dev>, 
+	<linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>, 
+	<linux-kernel@vger.kernel.org>, 
+	"Sandie Cao" <sandie.cao@deepcomputing.io>
+Subject: [PATCH v5 0/2] Add DeepComputing FML13V05 board dts
+Message-Id: <20260421064021.1580094-1-sandie.cao@deepcomputing.io>
+Received: from roma-Laptop-12th-Gen-Intel-Core.. ([113.110.140.180]) by smtp.feishu.cn with ESMTPS; Tue, 21 Apr 2026 14:40:58 +0800
+X-Lms-Return-Path: <lba+269e71bfb+777a81+vger.kernel.org+sandie.cao@deepcomputing.io>
+X-Mailer: git-send-email 2.43.0
+Date: Tue, 21 Apr 2026 14:40:21 +0800
+X-Spamd-Result: default: False [1.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[deepcomputing-io.20200927.dkim.feishu.cn:s=s1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[deepcomputing.io : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288946-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7];
-	DMARC_NA(0.00)[cixtech.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-288949-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peter.chen@cixtech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sandie.cao@deepcomputing.io,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[deepcomputing-io.20200927.dkim.feishu.cn:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[arndb.de:email,cixtech.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9951D436EE8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 30DE743710A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 26-04-21 07:57:25, Arnd Bergmann wrote:
-> > drivers/usb/Makefile: descend into drivers/usb/cdns3/ only when
-> > CONFIG_USB_CDNS_SUPPORT is enabled.
-> >
-> > Assisted-by: Cursor:claude-4.6-opus
-> > Suggested-by: Arnd Bergmann <arnd@arndb.de>
-> > Signed-off-by: Peter Chen <peter.chen@cixtech.com>
-> 
-> This looks fine to me,
-> 
-> Reviewed-by: Arnd Bergmann <arnd@arndb.de>
-> 
-> I've added the patch to my randconfig build setup now, to see if there
-> are any corner cases left that I have missed where it may still
-> get into a build time failure and will let you know if I find any.
-> 
+This series updates Device Tree related files to introduce the
+FML13V05 board from DeepComputing, which incorporates a Spacemit
+K3 SoC.  This board is designed for use on the Framework Laptop 13
+Chassis, which has (Framework) SKU FRANHQ0001.
 
-Thanks, Arnd.
+The series is rebased on next-20260420.
 
+v5:
+rebased on next-20260420.
+
+v4:
+- Patch 1:
+  Add Acked-by Conor Dooley.
+- Patch 2:
+  Copyright begins from 2026.
+Link to v4: https://lore.kernel.org/all/20260413060524.1235982-1-sandie.cao@deepcomputing.io/
+
+v3:
+rebased on k1/dt-for-next.
+- Patch 1:
+   Use formal format user name.
+   Remove Reviewed-by Heinrich Schuchardt from internal system.
+- Patch 2:
+   Use formal format user name.
+   Remove Reviewed-by Heinrich Schuchardt from internal system.
+   Add uart0 pinctrl.
+Link to v3: https://lore.kernel.org/all/20260407055557.1202713-1-sandie.cao@deepcomputing.io/
+ 
+v2 (deprecated):
+Link to v2: https://lore.kernel.org/all/20260331071110.68321-1-sandie.cao@deepcomputing.io/
+
+v1:
+Link to v1: https://lore.kernel.org/all/20260331034423.67142-1-sandie.cao@deepcomputing.io/
+
+Sandie Cao (2):
+  dt-bindings: riscv: spacemit: add deepcomputing,fml13v05
+  riscv: dts: spacemit: add DeepComputing FML13V05 board device tree
+
+ .../devicetree/bindings/riscv/spacemit.yaml   |  1 +
+ arch/riscv/boot/dts/spacemit/Makefile         |  1 +
+ .../spacemit/k3-deepcomputing-fml13v05.dts    | 31 +++++++++++++++++++
+ 3 files changed, 33 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/spacemit/k3-deepcomputing-fml13v05.dts
+
+
+base-commit: 97e797263a5e963da3d1e66e743fd518567dfe37
 -- 
-
-Best regards,
-Peter
+2.43.0
 
