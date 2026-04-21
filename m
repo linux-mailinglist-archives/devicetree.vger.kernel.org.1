@@ -1,113 +1,221 @@
-Return-Path: <devicetree+bounces-289094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289096-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CH9NJtFg52nF7QEAu9opvQ
-	(envelope-from <devicetree+bounces-289094-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 13:34:41 +0200
+	id aE7AM5lk52l07gEAu9opvQ
+	(envelope-from <devicetree+bounces-289096-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 13:50:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3801D43A24B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 13:34:41 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FEDB43A437
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 13:50:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B904C300461A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 11:34:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C296B303FFD0
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 11:50:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C534276049;
-	Tue, 21 Apr 2026 11:34:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D2038C401;
+	Tue, 21 Apr 2026 11:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vhl+CJpu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pibf6729"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 789FA1632DD;
-	Tue, 21 Apr 2026 11:34:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C0D382397;
+	Tue, 21 Apr 2026 11:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776771279; cv=none; b=XtnctzTRk3/zWP102yRLUjI4oJiF0U9OMXg+6203YiSCcPCy9Sj5uFN0HFcQyoQIMh4nxSIVdkNFrmEPKVcnpmHnBMUBOFxVtaSUjRWt258JEBqvsdBpHIivH9laXHAnuc+I+GxLCwzfLeW9WdjHkgTQni6lMoGEnEx8XOOtPxU=
+	t=1776772222; cv=none; b=BPh4/AhFUvCPE4mxjGb3Hxapn1Rp/TIkLhLSW7Cd7LSu2SdWEpuuWzhcYLeS/LjcdvgK5xaNGf5yIKB51csg9UZHC4XaVWq2GEbLRTaY68DhEBKLxHyAdm0SRVRks9gSqQ0mnnVj1RhCe+xDlHBnFXp9l51S0XztFvu5c9pShNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776771279; c=relaxed/simple;
-	bh=yXOXQvszQjUc/HSKlZnze6iRzqFPK8S+zZ/ndPOan3o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=paZRPgUR6XkdQdlCS07WIJIvqnjWfZh35SrtcBdvY23TzDkaz/J/ZHJAjqEzdEkuGwEkTAnQPM6CYo8S+7a66aAlSrEXvWc5FyWayu5hb1SWz2mvIPqZIMq6qPqCo3HhjESTXPQukpbqf9VUbtMg3gRGKLS1Oivf18uk80VawAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vhl+CJpu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94045C2BCB0;
-	Tue, 21 Apr 2026 11:34:38 +0000 (UTC)
+	s=arc-20240116; t=1776772222; c=relaxed/simple;
+	bh=VC/Q4a7RdfAXRKe/MhzmudvduSlkOlMS1+Q4VNDHmYA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nHxo2NK1N9KXtsMwieGhGD09M8JfPvAnZ6nTAHWEKJloskuE+krMq4tZgRGLfIaEfK2Ff6VX2zBw49waq42BhdxXeSHhf6Io6nnOAANrE6FIlCciwtFY44RGl+uwQv/GACxs6DIkmmkGT6Q6c6hgvo47Dije39sD+ARNjKsibEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pibf6729; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 00153C2BCB8;
+	Tue, 21 Apr 2026 11:50:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776771279;
-	bh=yXOXQvszQjUc/HSKlZnze6iRzqFPK8S+zZ/ndPOan3o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Vhl+CJpuKT5JDrToSw9/FHRT5HySnQaHSjjDlVEwN3i1ZSvXOG5+Y9MzW3mpN0uHv
-	 bKOWeOYkk8wc05t+sQUSAqkUAyQIHlxpjGNLH1jOFm0LugZXSvXjJapGsFfH9ZlzyS
-	 mJ2cINBELsRS5OM0CpBCV+dUZm+8U2VpkSIX//sTN/ZSnop4SL3hL0Ak+CuEFeafqF
-	 tMFUqjOFnsm+R29w8lZqQBD33WkuxnGDK+zC2WIdGcQmMWIQwUN/es6Me6IWJZwcTC
-	 UBxlN9tlkXTDtN0ihJqbkdtIjcNyAI35FPkK4V85TJIwPtqxjZ1gWK/ctiHdbP+Cu+
-	 /Ed0RKIut7qPg==
-Date: Tue, 21 Apr 2026 13:34:36 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Saravana Kannan <saravanak@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: add DTS example style checker
-Message-ID: <20260421-blazing-leopard-from-atlantis-bfeb0c@quoll>
-References: <cover.1776700167.git.daniel@makrotopia.org>
- <941c1ca0cd30c596556a88c36d28d60368867409.1776700167.git.daniel@makrotopia.org>
+	s=k20201202; t=1776772222;
+	bh=VC/Q4a7RdfAXRKe/MhzmudvduSlkOlMS1+Q4VNDHmYA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Pibf67290wPq9iqw8azwU3oPyppvKadTYmQAJffZaR/t7TVq5Y5DqqGHyrRx4jAWM
+	 /Fas2GDbETU8jbTZTzqmXHQJQIQw9pY2Lqw+560lyxA13A3e1ymfqc9b8j2Nv9Ds2Y
+	 y384olxWRqmrYYiAKd2anXHDHpyTC6b1AN+hMjmUKNzxTBy6dlXa/fHff9WbsvPBf+
+	 WuIyEe1G4k0cOWkKVuwgkwJ25rTP6S7nxjh1XJWcFuQp8s3LCJuopCbPjGKuwrBpDn
+	 QM3NuLmLXUCYwRCCml/ZeS9CPrleIRPOx386DhLEsD9UP/Sr0VWiUd8TFEVpmqkpul
+	 gYh/ENyOg/G0g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E049FF327D4;
+	Tue, 21 Apr 2026 11:50:21 +0000 (UTC)
+From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
+Subject: [PATCH v4 0/8] Add VIM4 MCU/FAN support
+Date: Tue, 21 Apr 2026 13:49:17 +0200
+Message-Id: <20260421-add-mcu-fan-khadas-vim4-v4-0-447114a28f2d@aliel.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <941c1ca0cd30c596556a88c36d28d60368867409.1776700167.git.daniel@makrotopia.org>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WS3W7bMAyFXyXw9RToX5YxDH2PYRekSDVabSezH
+ aNFkXef4uYi2VbskhLOd8hDvjczT4Xnptu9NxOvZS7HsRb2y65JBxifWRSqdaOl9tJKLYBIDOk
+ sMozi5QAEs1jLYAUklZCdMyliU9WniXN53cjff3zUE/86V4Pl47FBmFmk4zCUpduN/LqIzcToc
+ NUPPM+w2Xe7r7cPL6P21u2VdLVQQomfBcb94fwEQ398Lmlfcd82d1jSYdN6B46Cz5mwdmYA0Jj
+ WIXqXUOogpU1GcuBHlTZB+9hK1WpPZIBCRuUZLQXyZBnQSatD+6hygSPKFqJvgSk7a8iQJOdTV
+ gksoZaoQfnmPt1qdptuyxbTYE1w+ppMJRfsWXCdGmwOMRjoVv1oisHI7NhqZEVtJBUNewOV6Wx
+ 0iTDrFCjgP02NFHVLoowr9IXEaTqeeFreBNZVWorG5KBujn9r1aat0YsliPHc92Limesa0cuWM
+ UcC262qua7/UOblOL1td1afrvv/70mtSsgKU7rmDimgfKpNcr/P04asbd1hzOcYXTGhnoxHra2
+ J8AfG3GFU+BxjKgY8hOyCRKXwDnO5XH4DJXI1jkoDAAA=
+X-Change-ID: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b
+To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Beniamino Galvani <b.galvani@gmail.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4512;
+ i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
+ bh=VC/Q4a7RdfAXRKe/MhzmudvduSlkOlMS1+Q4VNDHmYA=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ+bzlNgfRZ5HjOZxq/gE8jzX5Exb2xX2N5794vmU3b/33
+ 9sTfWVfRykLgxgXg6yYIkv/XMsT7y4fPfN1j3oKzBxWJpAhDFycAjCR8xkM/4N3TDsQaRV5wyMo
+ /bwNa0kDx+wngY/Ovi3df9nr+779rcKMDLeuZkRxVy74/e7xEbaL0s8CW7TuzPH3mlj0hZsl9s0
+ tVl4A
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
+ fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
+X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
+ auth_id=744
+X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Reply-To: linux-kernel-dev@aliel.fr
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289094-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-289096-lists,devicetree=lfdr.de,linux-kernel-dev.aliel.fr];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3801D43A24B
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[linux-kernel-dev@aliel.fr];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aliel.fr:email,aliel.fr:replyto,aliel.fr:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3FEDB43A437
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Apr 20, 2026 at 04:50:27PM +0100, Daniel Golle wrote:
-> Add a Python script that enforces coding style rules from
-> dts-coding-style.rst on examples embedded in YAML binding files.
-> 
-> Checks indentation, property and child node ordering, blank line
-> placement, node naming, tabs, trailing whitespace and unused labels.
-> Produces a canonical form and diffs it against the original.
+The Khadas VIM4 board features a different MCU variant compared to
+previous VIM boards.
+While it shares the same I2C-based communication model,
+it differs in some ways:
 
-Thanks for working on this, I like it a lot.
+  - A distinct register map with its own volatile/writeable register set
+  - A fan control with 0–100 levels instead of the 0–3 levels previously
+  - A fan power supply gated through a regulator
 
-I would be happy to see at least a few test cases for it - bad and good
-binding examples here - so development will be easier.
+This series adds support for this new variant by:
+
+  1. Refactoring the khadas-mcu MFD driver to use per-variant data
+     structures (regmap config, cells, fan platform data),
+     and adding the khadas,vim4-mcu compatible string.
+
+  2. Extending the fan thermal driver to retrieve the fan register
+     and maximum level from platform_data,
+     and to optionally manage a power regulator for the fan supply.
+
+  3. Adding the corresponding DTS node for the VIM4, wiring the MCU to
+     the I2C AO_A bus and exposing it as a thermal cooling device.
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+Changes in v4:
+- PATCH 1: limit fan-supply property by compatible according to Conor's feedback.
+- Link to v3: https://lore.kernel.org/r/20260417-add-mcu-fan-khadas-vim4-v3-0-a6a7f570b11b@aliel.fr
+
+Changes in v3:
+- PATCH 1: adding comment on vim4 compatible saying it is not discoverable,
+           thanks to Rob's and Neil's feedback.
+- Link to v2: https://lore.kernel.org/r/20260403-add-mcu-fan-khadas-vim4-v2-0-70536b22439a@aliel.fr
+
+Changes in v2:
+- PATCH 5: Add regulator_disable on suspend thanks to Neil's feedback.
+- Link to v1: https://lore.kernel.org/r/20260402-add-mcu-fan-khadas-vim4-v1-0-2b12eb4ac7b0@aliel.fr
+
+---
+Ronald Claveau (8):
+      dt-bindings: mfd: khadas: Add new compatible for Khadas VIM4 MCU
+      dt-bindings: i2c: amlogic: Add compatible for T7 SOC
+      mfd: khadas-mcu: Add per-variant configuration infrastructure and VIM4 support
+      mfd: khadas-mcu: Add support for VIM4 MCU variant
+      thermal: khadas-mcu-fan: Add fan config from platform data Add regulator support
+      arm64: dts: amlogic: t7: Add i2c pinctrl node
+      arm64: dts: amlogic: t7: Add i2c controller node
+      arm64: dts: amlogic: t7: khadas-vim4: Add i2c MCU fan node
+
+ .../bindings/i2c/amlogic,meson6-i2c.yaml           |  13 ++-
+ .../devicetree/bindings/mfd/khadas,mcu.yaml        |  18 ++++
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  |  13 +++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        |  20 ++++
+ drivers/mfd/khadas-mcu.c                           | 106 ++++++++++++++++++---
+ drivers/thermal/khadas_mcu_fan.c                   |  49 ++++++++--
+ include/linux/mfd/khadas-mcu.h                     |  39 +++++++-
+ 7 files changed, 235 insertions(+), 23 deletions(-)
+---
+base-commit: f7b64ed948718290209074a50bb0df17e5944873
+change-id: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b
+prerequisite-message-id: <20260326092645.1053261-1-jian.hu@amlogic.com>
+prerequisite-patch-id: f03a086b4137158412b2d47b3de793b858de8dde
+prerequisite-patch-id: 123970c9b29c2090440f2fd71c85d3c6fd8e36de
+prerequisite-patch-id: 3e2e56b0926ba327b520f935df4ced5089bbe503
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-change-id: 20260326-add-bcm43752-compatible-e264a4f7973a:v2
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-change-id: 20260330-fix-invalid-property-bbe54d933f71:v2
+prerequisite-patch-id: 8d675e7a239985c762843515b241f0a2f45f9c92
+prerequisite-change-id: 20260331-fix-aml-t7-null-reset-2b608ebf9da4:v1
+prerequisite-patch-id: 5b5de77af11747ce964404fb827d2ee2bff47ea5
+prerequisite-patch-id: 1e37fc75fed1e533adee0f3e7e6ead1f8ff3c55c
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 2daf583fb5e7449a02bd217d8aca330171b598aa
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: d1ddf9b7710e91f8062de83bd7ba55afb2c4c112
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-patch-id: 9debd88fa60febed9cd7208f86603b4c2d270520
+prerequisite-patch-id: 314ef9ff0c4d1d15dab1dea9d92aa065f1eac3e9
 
 Best regards,
-Krzysztof
+-- 
+Ronald Claveau <linux-kernel-dev@aliel.fr>
+
 
 
