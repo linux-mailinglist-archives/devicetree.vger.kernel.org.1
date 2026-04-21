@@ -1,158 +1,157 @@
-Return-Path: <devicetree+bounces-289029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289024-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uLWiAwpI52kF6QEAu9opvQ
-	(envelope-from <devicetree+bounces-289029-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 11:48:58 +0200
+	id 6HrpAzFI52kF6QEAu9opvQ
+	(envelope-from <devicetree+bounces-289024-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 11:49:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0015543914F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 11:48:56 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5918643919A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 11:49:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4A93230297F7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 09:46:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E2F88306777F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 09:45:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BC443BC668;
-	Tue, 21 Apr 2026 09:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C3C63B2FCD;
+	Tue, 21 Apr 2026 09:45:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="iQmmBRGa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gLLmo/Vf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEC5C3B3BEA;
-	Tue, 21 Apr 2026 09:45:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE353B0AE2;
+	Tue, 21 Apr 2026 09:45:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776764737; cv=none; b=SvJb9GCraHwi8ioSgbLly96tvpicR7jz+lGRwHSiOlFVNiOaVK66Txwpx4iY5fTL/NydEuU2h9871FMX7TCeTi975rfusa0gMs9PCdnKyLLhH2TOxAYVTWJaLRjH5PrbB+MEByfbUb7AC+dBy+EsGXWyT8Vxg9mbMEADcGAYveY=
+	t=1776764713; cv=none; b=HTe/6aNReQcF2EYkK6ZIlvIMyVIa50iZwpZ7Np6T4slUQowKrn9/VWT0XfxaD/xspR+BXdeilvD4dnJYdbIAPmLlbZ1T3LBKpl65LY89Ab7ElFovu9WZc9LPUTogcPEJNK/JIZewihbeBRnFIPFCLgAv4J/BapzbabI1YyI+qq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776764737; c=relaxed/simple;
-	bh=+pWxADjbyAE/GMK2ZySAS6xYdGVF6YeiaKrsK83rTTA=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Me6RuVEYgZZP/0hHmp1oGH+N30GFkWDVxn+afb1j6VtPXIOHA9+HCFRghZuUvvNIW5LluGCCp52GhvjxZex2FLfVi5IdKT82aRYuHxZM1CObyDJB+zoNDmdd44X7Wg7k8KM7WEf1YqERYk2V5jl4jMnVF0Aq+mkPuYfPNKqpXuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=iQmmBRGa; arc=none smtp.client-ip=65.21.61.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-Message-ID: <ff92f28b-8ffa-4ba1-ae7b-a825e4d15fc2@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776764715;
-	bh=+pWxADjbyAE/GMK2ZySAS6xYdGVF6YeiaKrsK83rTTA=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=iQmmBRGaq5waN8O2LVDi0CcM0VTSK51R0OKI1Ib0sy8pkN8F9eb9++2ERvr5CIIPu
-	 iBPR37EhhrZ9A0CWJc8nE4TkVU93cDwAWESd9TIensXbcEOotRQW4kvCwLFan2dkEM
-	 oMPFdQL6jlayPuV93MbhCCKqvDX95/9lb8ScWH9o=
+	s=arc-20240116; t=1776764713; c=relaxed/simple;
+	bh=W5orOX2NOZyn/pgGIuJq6Pcd7YMAePEkGQnUKrcbo78=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=LSNpUorQfOgbs910D2jAqjrNY/mhq1VxMPJ1ZqYI/DKlDVSRkkw7JpSYKs/hiVB1V/V52054PqT/r4mYr+CdmEbSZjpjkdPHFFD2+tQdVEz+m/p/W52rLYPufV5bpUm7Ny1nuZ21rIk+sY1MKJLaJwr3/5AFQroWI4iQI80NXwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gLLmo/Vf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7FCC3C4AF17;
+	Tue, 21 Apr 2026 09:45:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776764713;
+	bh=W5orOX2NOZyn/pgGIuJq6Pcd7YMAePEkGQnUKrcbo78=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=gLLmo/Vfk2IVTlD+nn63lY5tOo5/r8jzQhbbG1PDIDY8BxIdhus2ybsCvsNgIjsJV
+	 ToBTCAWQXhk2h/WUMg5mtnY2vT8cbX6W6oMoX/cyV5rvUug2GZysXflcgxCbfC1vN4
+	 u3wICesfltcf5VfHv6JU84hKOxXjFElcLXvlRUnAXLYBIOieVupvng4gAL4eWf6NPj
+	 /CaqnQCU0kc5IGvnZCxDUOOW516Ru+bt4SRq/eZFFQsMPXeYSuOQnKsL/95lkAO4Pf
+	 F44cEi2IjmFx37H0WWMZmZIvFh1o2eyVlAgLmLOtXuj15Y53ilZolT1AhJfJkG3v+q
+	 5BZza31a203og==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 712DBF327D0;
+	Tue, 21 Apr 2026 09:45:13 +0000 (UTC)
+From: Alexandre MINETTE via B4 Relay <devnull+contact.alex-min.fr@kernel.org>
 Date: Tue, 21 Apr 2026 11:45:13 +0200
+Subject: [PATCH 7/8] ARM: dts: qcom: pm8921: Add USB ID extcon
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH v3 1/8] dt-bindings: mfd: khadas: Add new compatible for
- Khadas VIM4 MCU
-To: Conor Dooley <conor@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Beniamino Galvani <b.galvani@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-pm@vger.kernel.org
-References: <20260417-add-mcu-fan-khadas-vim4-v3-0-a6a7f570b11b@aliel.fr>
- <20260417-add-mcu-fan-khadas-vim4-v3-1-a6a7f570b11b@aliel.fr>
- <20260420-viable-plot-862e0c545837@spud>
-Content-Language: en-US
-In-Reply-To: <20260420-viable-plot-862e0c545837@spud>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20260421-mainline-send-v1-sending-v1-7-bcb0857724de@alex-min.fr>
+References: <20260421-mainline-send-v1-sending-v1-0-bcb0857724de@alex-min.fr>
+In-Reply-To: <20260421-mainline-send-v1-sending-v1-0-bcb0857724de@alex-min.fr>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, 
+ Guru Das Srinagesh <linux@gurudas.dev>, Linus Walleij <linusw@kernel.org>, 
+ Rob Clark <robin.clark@oss.qualcomm.com>, Joerg Roedel <joro@8bytes.org>, 
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+ Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ iommu@lists.linux.dev, Alexandre MINETTE <contact@alex-min.fr>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776764711; l=952;
+ i=contact@alex-min.fr; s=20260421; h=from:subject:message-id;
+ bh=FvTFZEThbXRu0uHZzqdt1WJa7o3nJrMB1bwxpbqanvE=;
+ b=5NhOvPBczl2AAI2Xr7ELaj2yqlM0OrBP6Ix7L3xNccD1muns4qrExAm8Rw3KQ8EADd9Yd82YQ
+ U4+LkDFLXDTBH3vxi3heZczB3fb/HRw6Q6ke5Aj4QA3sd04zzvK3eWZ
+X-Developer-Key: i=contact@alex-min.fr; a=ed25519;
+ pk=KOCaxY4v16ptaT0uk1FRkuaDF2n1JhmnYwLiqWD76M4=
+X-Endpoint-Received: by B4 Relay for contact@alex-min.fr/20260421 with
+ auth_id=743
+X-Original-From: Alexandre MINETTE <contact@alex-min.fr>
+Reply-To: contact@alex-min.fr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[aliel.fr,quarantine];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289029-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-289024-lists,devicetree=lfdr.de,contact.alex-min.fr];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com,lists.infradead.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[contact@alex-min.fr];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[aliel.fr:+];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0015543914F
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[alex-min.fr:email,alex-min.fr:replyto,alex-min.fr:mid,11d:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.148:email]
+X-Rspamd-Queue-Id: 5918643919A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/20/26 6:22 PM, Conor Dooley wrote:
-> On Fri, Apr 17, 2026 at 06:27:17PM +0200, Ronald Claveau wrote:
->> The Khadas VIM4 MCU register is slightly different
->> from previous boards' MCU.
->> This board also features a switchable power source for its fan.
->>
->> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
->> ---
->>  Documentation/devicetree/bindings/mfd/khadas,mcu.yaml | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
->> index 084960fd5a1fd..a80718f7595ce 100644
->> --- a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
->> @@ -18,6 +18,7 @@ properties:
->>    compatible:
->>      enum:
->>        - khadas,mcu # MCU revision is discoverable
->> +      - khadas,vim4-mcu # Different MCU variant, not discoverable
->>  
->>    "#cooling-cells": # Only needed for boards having FAN control feature
->>      const: 2
->> @@ -25,6 +26,10 @@ properties:
->>    reg:
->>      maxItems: 1
->>  
->> +  fan-supply:
->> +    description: Phandle to the regulator that powers the fan.
->> +    $ref: /schemas/types.yaml#/definitions/phandle
-> 
-> Can you limit this by compatible please?
-> pw-bot: changes-requested
-> 
+From: Alexandre MINETTE <contact@alex-min.fr>
 
-Thanks for your feedback, I will add that.
+Add the PM8921 USB ID interrupt as a disabled extcon provider. Boards
+can enable it when their USB controller consumes the PMIC USB ID state
+for OTG role detection.
 
->> +
->>  required:
->>    - compatible
->>    - reg
->>
->> -- 
->> 2.49.0
->>
+The interrupt corresponds to PM8921 USB_ID_IN, block 6 bit 1.
 
+Signed-off-by: Alexandre MINETTE <contact@alex-min.fr>
+---
+ arch/arm/boot/dts/qcom/pm8921.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/arch/arm/boot/dts/qcom/pm8921.dtsi b/arch/arm/boot/dts/qcom/pm8921.dtsi
+index 535cb6a2543f..935383d6a594 100644
+--- a/arch/arm/boot/dts/qcom/pm8921.dtsi
++++ b/arch/arm/boot/dts/qcom/pm8921.dtsi
+@@ -41,6 +41,13 @@ rtc@11d {
+ 			allow-set-time;
+ 		};
+ 
++		usb_id: usb-detect {
++			compatible = "qcom,pm8921-misc";
++			interrupt-names = "usb_id";
++			interrupts-extended = <&pm8921 49 IRQ_TYPE_EDGE_BOTH>;
++			status = "disabled";
++		};
++
+ 		pm8921_keypad: keypad@148 {
+ 			compatible = "qcom,pm8921-keypad";
+ 			reg = <0x148>;
 
 -- 
-Best regards,
-Ronald
+2.43.0
+
+
 
