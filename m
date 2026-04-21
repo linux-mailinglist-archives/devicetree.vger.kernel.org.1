@@ -1,194 +1,161 @@
-Return-Path: <devicetree+bounces-288937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288939-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MKLXD+oR52nL3QEAu9opvQ
-	(envelope-from <devicetree+bounces-288937-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 07:58:02 +0200
+	id qOJiNbUS52nL3QEAu9opvQ
+	(envelope-from <devicetree+bounces-288939-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 08:01:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6620B436A08
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 07:58:01 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CF8A436AAC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 08:01:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D07E63009167
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 05:57:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 469A8301D956
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 06:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D413359A72;
-	Tue, 21 Apr 2026 05:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A142368296;
+	Tue, 21 Apr 2026 06:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="fn4+Lxuc";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="cla/TT5H"
+	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="kAVzyhPr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a6-smtp.messagingengine.com (fhigh-a6-smtp.messagingengine.com [103.168.172.157])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44DE35E956;
-	Tue, 21 Apr 2026 05:57:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.157
+Received: from ultrarisc.com (unknown [218.76.62.146])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6D02368276;
+	Tue, 21 Apr 2026 05:59:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776751074; cv=none; b=t65lnS9B5XXJkuI8R/36w4bQihBnjXZov2TKv8jC67U3waaLia3/98SBi2lzYStOEXUSP29/IrhL9NEotv/+ssB+iM6V+Sl9iZ/wdpoQ9VvVXfCA8cgpWm/pXplD+R2m1R61gsE4EcGADIEfTJHp35VWiFR73boax7+Cq4Rjkmg=
+	t=1776751202; cv=none; b=Fk6p79MV2g3Ql1BtDcVvId1ZT9bvZ0gCo6kSI7g+e/iTm7pGXrY8PRy3TYitM67cah6nRSENDQNT+50Mm9ClwzxZk1CHHZZfyX+niDHqbc0ADni8s7K6uim1DXQlGPmzQaJ8wFc26Wkidqaa4nS6Bzbz4LUiJT/K1Uekb765Ark=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776751074; c=relaxed/simple;
-	bh=tEMGHs1KeLRQ6HHFyocIKgVZcIXfrKTkUu/9VMHwQl4=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=u42xIGXiLRFX7QJtKebplMAaoM7MyEGhF17jZ/zY5QN1jAYAI60+Az6eV6axee2KhLQRyPg4L0zh6daohz3XFa5j3oWGVfiY9bbR6bvHP6ElJc1sMjZ5SdHzUZcjmBYiQfxvhvGgo7tW5xYr9XEgGJ6MUXorHSRKD/IfFTOFS0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=fn4+Lxuc; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=cla/TT5H; arc=none smtp.client-ip=103.168.172.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id D8E30140014C;
-	Tue, 21 Apr 2026 01:57:45 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-04.internal (MEProxy); Tue, 21 Apr 2026 01:57:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1776751065;
-	 x=1776837465; bh=94uP2Bmt02ojJRfgIYFcc/l4EBzopb7Ckik3AaH5TvM=; b=
-	fn4+LxucixeG571c9FOIz6gsNk/KMMiOF9+17uTRR9/fQoc6KKjjpO2A1Zh2DTMI
-	kRipJ462DhzfaiK28AjOejdCYobdsMt6g8U1zxEw2lZAK5aDrlhySlnQcXD0uVZE
-	InRNGDahJHq+phLQQd9BpN6SqsQc0MuIEPJh7mVhrBQMHaI905weZsZHtryrNXbl
-	nkAjw40FiKx6x6vHRkw2ZqmtYm5uRW4rxAPfNl6DRM+LqcZCw4l4eFSDli72An4R
-	XqpjMH6rHi0wQU+55ngzwfeJLZ28gTj1KMZTTTE5Y8FWXzMcBvJpQM5dtfPmo3CU
-	45+gCL6wKeZNtW+XkZdoHA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1776751065; x=
-	1776837465; bh=94uP2Bmt02ojJRfgIYFcc/l4EBzopb7Ckik3AaH5TvM=; b=c
-	la/TT5HUVdURd9E2xmyY2vNgOberTBW+h2YOzNhCqk1O5TgEfR5HiPbHOXjBMU7s
-	LfZ05ZhY7EY0FLeizSBoKH4+xe8Ynz8kz5dCEBcM6e8aioEPvPCh8C4gIR4biGEH
-	QqrRU39DiLgUA0H7q7m4z2UNkLg6P5oRPsBrT+2cnD0VGsrmlRRibLJTmsApEuV6
-	jO46yHK5SVo3BnWlOv/YNi3Qjm/r9183TmP9QxNL+p9/TUJ5f1zRtb1fW99x1k9m
-	P40r1UhAdiegxhm/2SU1e0S2z1xrsjjoqaeLxLXOY/4VxkClx0vWPW6zNWIbLiDr
-	bLbqJSoJ30KMQRIEhmT/A==
-X-ME-Sender: <xms:2RHnaUjkevOdOg24Nk8SA57vsU1jHluUrnGjVJyxfp00jygbtmmbJg>
-    <xme:2RHnaX22WtJZOwGi6J-HAEyFRYhMHec9Cq2n4D1rqTn2sPkTjJCcyROE9iPkQcYTV
-    5H9MtugIUSdO6C7kM84HUZtRht5vnL7KHnz9xufNSBqlP08RTdyy6g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgdeitdeivdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
-    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
-    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
-    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeduuddpmhhouggvpehsmhhtphhouhht
-    pdhrtghpthhtohepphgrfigvlhhlsegtrgguvghntggvrdgtohhmpdhrtghpthhtoheptg
-    higidqkhgvrhhnvghlqdhuphhsthhrvggrmhestghigihtvggthhdrtghomhdprhgtphht
-    thhopehpvghtvghrrdgthhgvnhestghigihtvggthhdrtghomhdprhgtphhtthhopegtoh
-    hnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgv
-    rhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtph
-    htthhopehrohhgvghrqheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghhrvghgkhhh
-    sehlihhnuhigfhhouhhnuggrthhiohhnrdhorhhgpdhrtghpthhtohepuggvvhhitggvth
-    hrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:2RHnaZJcBHyZ_JGLjh0svs33nXjiO1pr1_SDvM_vedhSmhH-6rbXgw>
-    <xmx:2RHnaQ8B0GiObizESnVI7VvD2koMfr1NdwbPkKfpJf8O3SC5es9IAw>
-    <xmx:2RHnadEmqUXGz0q2eqlJOAG38CeLZJFtfsqMDX_OuaYr9NNzxluzRA>
-    <xmx:2RHnaT6KP9unju-wA7zvNNwZ26pYkmXrvR8lla1W_HI5O9hWuUErrQ>
-    <xmx:2RHnafpGkiMFvcdfVb4_Pj3bPCQt5vhxPvEOdEAIWwLUHSp9SNMM2k4V>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 4E553700065; Tue, 21 Apr 2026 01:57:45 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1776751202; c=relaxed/simple;
+	bh=nlzC/TkdOL8Fx2Pa2jwa6BfY6uq0jPunb9jzlydHx7w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HoOdQ0g4+Jli5MLaBLXowi6a4/L0I85AzLwVGQLNZqv4IAmAhM+yAkoj12V4qI9m3jEh7B+4YPLHzsH8NEcaK3bHDdf/77M+zbPPSy72VSp0cOu0CkDvAzsJnJ/AMzhQUfBSMUpH7VlO46wsGLl00QHEt38OZf/OiLPGux3a2Ps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=pass smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=kAVzyhPr; arc=none smtp.client-ip=218.76.62.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ultrarisc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ultrarisc.com; s=dkim; h=Received:From:Subject:Date:Message-Id:
+	MIME-Version:Content-Type:Content-Transfer-Encoding:To:Cc; bh=pv
+	2U/fmy1reiP+MQCpzdYmztXgUgUtkA06G8kvdTjMo=; b=kAVzyhPropr4lSGuxv
+	9Hw9HCWdsJVvqMDAD8dEYrifdSEBRQ4CGtGQfAXBT3oUGaT7LLuhVDul+cW8V4LE
+	fZbVr5yFTn55bIBmtq/dJbe/Rcyq7Lt4XJFuA1jU0qdBmaV1g1XmCWqVZLDcYm2b
+	NA8v3D51P/TGnnodToLo8HlXI=
+Received: from [127.0.0.1] (unknown [192.168.100.1])
+	by localhost.localdomain (Coremail) with SMTP id AQAAfwAnEkNyEudpn5ACAA--.1518S2;
+	Tue, 21 Apr 2026 14:00:19 +0800 (CST)
+From: Jia Wang <wangjia@ultrarisc.com>
+Subject: [PATCH v3 0/2] serial: 8250_dw: Add support for UltraRISC DP1000
+ uart
+Date: Tue, 21 Apr 2026 13:58:50 +0800
+Message-Id: <20260421-ultrarisc-serial-v3-0-3d7f09c2420e@ultrarisc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: A1V1HEM6vmlg
-Date: Tue, 21 Apr 2026 07:57:25 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Peter Chen" <peter.chen@cixtech.com>, "Rob Herring" <robh@kernel.org>,
- krzk+dt@kernel.org, "Conor Dooley" <conor+dt@kernel.org>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Pawel Laszczak" <pawell@cadence.com>, "Roger Quadros" <rogerq@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, cix-kernel-upstream@cixtech.com
-Message-Id: <f21d5bab-c79d-4b7d-8aa4-e8188ee11aa8@app.fastmail.com>
-In-Reply-To: <20260421023459.506145-3-peter.chen@cixtech.com>
-References: <20260421023459.506145-1-peter.chen@cixtech.com>
- <20260421023459.506145-3-peter.chen@cixtech.com>
-Subject: Re: [PATCH v3 2/2] usb: cdns3: Add USBSSP platform driver support
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.65 / 15.00];
+X-B4-Tracking: v=1; b=H4sIABoS52kC/4XNTQ6CMBQE4KuQt7amP1iElfcwLkp5lRoE00KjI
+ dzdFo0LXbicZOabGTw6ix6qbAaHwXo79DGITQa6Vf0ZiW1iBk65pIKWZOpGp5z1mqSl6ojMjZG
+ iwMZwCXF2c2jsfSWPp1f2U31BPSYnNVrrx8E91s/AUu/NM/nLB0Yo0Xl8EVgKoXaHT2Wrhyuki
+ 8D/ITwiUtUCC6P2JdPfyLIsTypzDLULAQAA
+X-Change-ID: 20260309-ultrarisc-serial-64ff637edf26
+To: =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ Jia Wang <wangjia@ultrarisc.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776751174; l=1735;
+ i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
+ bh=nlzC/TkdOL8Fx2Pa2jwa6BfY6uq0jPunb9jzlydHx7w=;
+ b=xYvHnO/glTxpq7fhEoZSLCbJsgh3Ri6zI5A6Opg3VG6rMIhDENYJXBRhBsdU0Iru4u5e4fBsj
+ 3kvBSWUDzG1C7Y0rOAm5keuXs+hOGg4MUPgQhQNOEUl6Q2MsN9+mosD
+X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
+ pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
+X-CM-TRANSID:AQAAfwAnEkNyEudpn5ACAA--.1518S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7ur1DJryfAw1DJFW8Aw15twb_yoW8Ar4rpF
+	nI9Fsxur9xtryjka97tw1xAF4xuF47AryjqF1jkwn8ta98ZF1IqrWfKw45Za4DZrn5Wr40
+	kF15ur1rKa429aUanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnUUvcSsGvfC2KfnxnUUI43ZEXa7xR_UUUUUUUUU==
+X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQADEWnlor4ACwAFsN
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[arndb.de,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[arndb.de:s=fm1,messagingengine.com:s=fm2];
+	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
+	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[arndb.de:+,messagingengine.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-288937-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288939-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[arnd@arndb.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ultrarisc.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 6620B436A08
+X-Rspamd-Queue-Id: 4CF8A436AAC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Apr 21, 2026, at 04:34, Peter Chen wrote:
-> Expose Cadence USBSSP through the same platform path as USBSS, trim
-> Kconfig and Makefile: one core loadable object plus separate glue .ko
-> files.
->
-> Single cdns.ko bundles core, DRD, the generic "cdns,usb3" platform
-> driver in cdns3-plat.c, optional host.o, and optional gadget objects.
-> Use CONFIG_USB_CDNS3_GADGET as a bool to compile gadget support into
-> that module. Remove duplicate MODULE_* declarations from cdns3-plat.c
-> now that it links into the same module.
->
-> Kconfig: the generic platform driver is selected via CONFIG_USB_CDNS3.
-> Move CONFIG_USB_CDNSP_PCI beside CONFIG_USB_CDNS3_PCI_WRAP under
-> "Platform glue driver support". SoC glue entries (TI, i.MX, StarFive)
-> depend only on CONFIG_USB_CDNS3.
->
-> Tighten CONFIG_USB_CDNS_SUPPORT dependencies so the umbrella follows
-> host or gadget when either is built as a module. Match host and gadget
-> bools to the cdns.ko tristate with USB=USB_CDNS3 and USB_GADGET=USB_CDNS3
-> instead of comparing against USB_CDNS_SUPPORT.
->
-> Link host.o when CONFIG_USB_CDNS3_HOST is enabled and use that symbol in
-> host-export.h, removing the redundant CONFIG_USB_CDNS_HOST indirection.
->
-> Export cdns_core_init_role and reorganize the function cdns_init, and
-> controller version could be gotten before the gadget init function is
-> decided per controller.
->
-> Keep host_init / gadget_init callbacks in struct cdns, so core.c does
-> not need direct linkage to host or gadget objects. Refactor cdnsp-pci.c
-> into a thin PCI-to-platform wrapper.
->
-> drivers/usb/Makefile: descend into drivers/usb/cdns3/ only when
-> CONFIG_USB_CDNS_SUPPORT is enabled.
->
-> Assisted-by: Cursor:claude-4.6-opus
-> Suggested-by: Arnd Bergmann <arnd@arndb.de>
-> Signed-off-by: Peter Chen <peter.chen@cixtech.com>
+This patch series adds support for the UltraRISC DP1000 UART controller.
 
-This looks fine to me,
+The series includes two patches:
+1. Document the DP1000-specific compatible string for this UART variant.
+2. Update 8250_dw to use a fixed CPR value for the DP1000 UART.
 
-Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+The patches have been tested on Ultrarisc DP1000 development board with
+Linux v7.0-rc7, verifying basic UART functionality.
 
-I've added the patch to my randconfig build setup now, to see if there
-are any corner cases left that I have missed where it may still
-get into a build time failure and will let you know if I find any.
+Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
+---
+Changes in v3:
+- Rebased on Linux v7.0-rc7.
+- Patch 1:
+   * Removed separate `items` entry for DP1000, merging it into the
+     existing `enum` to comply with the schema.
+   * Updated commit message to describe DP1000 UART hardware differences.
+- Patch 2:
+   * Drop the custom quirk for missing CPR register.
+   * Switch to using DW_UART_QUIRK_CPR_VALUE to provide a fixed CPR value.
+- Link to v2: https://patch.msgid.link/20260316-ultrarisc-serial-v2-0-6ab3e7fa891c@ultrarisc.com
 
-         Arnd
+Changes in v2:
+- Rebased on Linux v7.0-rc4 (previously on v7.0-rc2).
+- Reordered patch series: DT binding patch comes before driver changes.
+- Updated commit message for DT binding patch.
+- Link to v1: https://patch.msgid.link/20260316-ultrarisc-serial-v1-0-c464f3e933a5@ultrarisc.com
+
+---
+Jia Wang (2):
+      dt-bindings: serial: snps-dw-apb-uart: Add UltraRISC DP1000 UART
+      serial: 8250_dw: Use a fixed CPR value for UltraRISC DP1000 UART
+
+ Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml | 1 +
+ drivers/tty/serial/8250/8250_dw.c                              | 7 +++++++
+ 2 files changed, 8 insertions(+)
+---
+base-commit: e774d5f1bc27a85f858bce7688509e866f8e8a4e
+change-id: 20260309-ultrarisc-serial-64ff637edf26
+
+Best regards,
+--  
+Jia Wang <wangjia@ultrarisc.com>
+
 
