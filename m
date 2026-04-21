@@ -1,192 +1,252 @@
-Return-Path: <devicetree+bounces-289046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289048-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGKbCHVO52lW6QEAu9opvQ
-	(envelope-from <devicetree+bounces-289046-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 12:16:21 +0200
+	id CCmLJfxR52mn6gEAu9opvQ
+	(envelope-from <devicetree+bounces-289048-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 12:31:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7BCB439661
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 12:16:15 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 860164398DE
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 12:31:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F1B4E30022D1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 10:16:14 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A130F30093A8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 10:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5555C3AF653;
-	Tue, 21 Apr 2026 10:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F58D34846D;
+	Tue, 21 Apr 2026 10:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="P9J8Ecxn"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BFa0jQ9W";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hVXxV9Ob"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 460702BD59C;
-	Tue, 21 Apr 2026 10:16:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2523D2BD59C
+	for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 10:19:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776766572; cv=none; b=iioMsDvlb4IqwPRV32Xwql7OvYwqb/+Yrnuf2/SXWzQyG/Z8ITm+6GOeSMFvYl375paNYzYKg5WmDm5KR30kZ5gUmrWMyLvlF5PTCpHMBsG6K/faLyJKc8jhD4sLCFJb35uJ6F8jDu+G/soKwfYxUFaD0uZYnONMHaEXYNwxon4=
+	t=1776766801; cv=none; b=JWS4+Rkf6pM5jWigZc6bmnxwDU9hMBhDnz2jR1As1RYr51h3vua0XZJZxGhRZf48aF1sHoQoJIJtRlRfeU6KlhMXC9guQCM1l4IlvKr3dou2zK+NKhbhB2pjqLpcNw5rtevJjWBavoGgwbuWwfUgpThr7XR0lGkDxhTvJV/Ssu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776766572; c=relaxed/simple;
-	bh=bxxTuMlQOcQt9+SutU5wYexe4SpnFx38EDAqmrj2KxQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iJ5/lXDGyKJOACnW528BF9JIg1mwX6U1+FXLM1jfGlJrTWhCHAHHvMAXDE6uCFvlaXPwxgmtRyCmT93z0mCjvBk9dECKaLQhJPEKQI14x7XcW4p4AINpcQQlpua6jO/vrhU5kGEtEaQ9oe/ZolX/nuE3ek9bzENRlfMEux/pxu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=P9J8Ecxn; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch [83.173.201.248])
-	by mail11.truemail.it (Postfix) with ESMTPA id B5DD01F95F;
-	Tue, 21 Apr 2026 12:16:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1776766568;
-	bh=ui7NLbdFMSE3lMZwZtDMX7zed4AiVYTm9v+0mYYPfQU=; h=From:To:Subject;
-	b=P9J8Ecxn7r34vw3O/E5WLMFUxAdCUuO7e7dYl6fG+/kh0y1CPTiPUhKr3c3Kw5JFh
-	 hj4fSbE1SU4lVPjnDiA9E6fYCws79JGv5SWLbtlG3cSWpY6ClYI+NVlORE/fhSH/Ph
-	 nlpccaYRhnZwUETDOHydRoTpGEHHPUztO7mCQoc1WLCpNzfEJcaMxI3X4yGVvSF6Zj
-	 A2oZONfi78MRLiVvSrbfKo9AbUYcs1OU0NHJmHkSbFqs+4VNOFWT8h1M3C3LV5jM6x
-	 CHuZNr1yHeqc//eKkM5lRbEGPw15RRozq7cCEiJFwn/6HrX0z2C7+Va/aBvYYjpHL5
-	 7/9Cq4/O4ccNg==
-Date: Tue, 21 Apr 2026 12:16:06 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: trivial-devices: add
- toradex,lava-hat-spi
-Message-ID: <20260421101606.GC23508@francesco-nb>
-References: <20260420114537.78160-1-francesco@dolcini.it>
- <20260420114537.78160-2-francesco@dolcini.it>
- <20260420-task-navy-370ea247fe1d@spud>
- <005d96ea-b250-4af8-9c5b-d145bae892e5@kernel.org>
- <20260421083843.GA23508@francesco-nb>
- <eb1ae818-eb9c-4225-9969-ebbb05304697@kernel.org>
- <20260421095928.GB23508@francesco-nb>
- <9c9795b0-a8ba-453d-9a92-f07b3ca59070@kernel.org>
+	s=arc-20240116; t=1776766801; c=relaxed/simple;
+	bh=f2d31fKICaRc7eSILNMa+qfIwIjktWJHAPS1tLqZR54=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=XOmZgNxhXIxFpFA1tbU1SLAAt7CWuRZwh4mOof1JjpAMLIwDQ2J0dDiPuSWr451pIPvwcAQz/a1ii7I4jwjPYV0AcEv5UlJ0AFVyYzRXdP9mUnr5fI2BVcJr3/2G21oTu3QoT+BHOMTtkLKXDrq+W1PVxFmhRqhrI9Ly8dtAbzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BFa0jQ9W; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hVXxV9Ob; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63L64RqW3257259
+	for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 10:19:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=lpMC6OOA7fewd0kPfM6zC/yqwiUooS/N1/w
+	2gqDkMuo=; b=BFa0jQ9WqnZ0nazUStHoFzKC8WJbdv++49r253XK2s9+Xm1AA+S
+	t0WllF6stiY+JW2l3/VPmk+Vb6WdcXajwWX3BJkrxLM/mUYE8lOrh6dvB6kxCK4q
+	kqbqiS6/h96IlZMOU41To+1mft/yX2EdDkEFvd/eLH+9Ouv9YLq62ILQtSBg6tWu
+	VVG10LfgYqgYB467GXY+RDdMYeSIFZ8VT5b16kjhQSM5vZhuvqDqpijBKdGnGjpo
+	R60EU/xryks1ISTPkf/al4zxRaHqVpah2FxcR6n6sIEs/1X0/KaxCVTW0MiI1Cdh
+	G/Bu946XP3ZTJF+hQUS141ZWf71OEURILxg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dp3na8xrd-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 10:19:58 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-50d8e4c29caso92039471cf.0
+        for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 03:19:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1776766798; x=1777371598; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lpMC6OOA7fewd0kPfM6zC/yqwiUooS/N1/w2gqDkMuo=;
+        b=hVXxV9ObAmAUJkNEn+PxU3rdnutA/F7T/P/iE+1bQNQoQGPgpbncKIqeZGW8R8A+Za
+         tFvn34uNQYCZGT6TlRVkRwSw2WhtbH945rKoN0OZWD3Du0TfgBsGOJm5ADZENV9tmjpC
+         TcMypWOr85AroU8Xbi8j9bmIPuEKTI/0h1MzMAgCluBiHL2Qg63XtjGPB6+rY1MswyL9
+         xw3JLiMmuSfjfxhyVuknjG256xBu3vxmCcGXZa9rnJdEbKH/3q64vH+Hc/vw5GF/9p1a
+         sC/r0Vq6afsJtef8cKHfY3vfxaqOe5rizPwAFJJYn71Whbi+OpFpl+2XwLyw/mgU66UZ
+         6SPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776766798; x=1777371598;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lpMC6OOA7fewd0kPfM6zC/yqwiUooS/N1/w2gqDkMuo=;
+        b=pNBt16bMUzVzvpld1n9N/suRMHNWeVwCrINvE/1Awgu2RIr/ndfUvrFsXk2970ezXm
+         /YL56KaQLC95/XPH1IzzaDp4CgS+iFPGU/dPI2wWeQsF3deTcPVtMmHGD6V2CL4JdOmV
+         AcYPZ7lmA/nb2hD/hUdgiiTeK07C1pNit4lRirAsjiuQ02ShUDtS3nMvWiH+FX8yytjg
+         Jr0E3NgJCzXidMkKhOlREBzcYBJjuUDNpF2mstG1AUZXS/jm1GPFi65li9e37g/TECRU
+         WxyhFW1KB9eJDX6IGQcoE9vuPh/Tjun8f7BMAAZQMHNhb1XKWLD12TZk1ebfYaZy93dT
+         IRbQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9jEZn/+nMFwok5uTg+AfDJf2MpEIUFFad94yLkCIpdzFRzg/wyxQOGM+uEMq1pgUdQzW6HmcBzQ8eH@vger.kernel.org
+X-Gm-Message-State: AOJu0YysjOAFbSCNheoiAjGMwAgIC2kvYdsCGhazZzuEc+cOP4D4YEcF
+	0pfo6gm8N1APMaZufe4QsI/BMAOaHzrGlCQTijh709Ctu+GbEU9ui5SbsJ/y4EwPFiwAuXW9S3b
+	5GohuTtRvmkrWL5ficZcQcuPyi08I0xEU2WnKQaG5KcdfKmj+Ihi9tAJFv7hton2K
+X-Gm-Gg: AeBDietgwk4FnoRKgc/r+XxArdrPmODMeSo8ikaQhkxoMQcaq5Q8i+SYSM9C3JAuXTu
+	nYvjK2j/V5lWqYYkGJXbr5DfwT9MS46HSmi1qCYU8/RQ4ymivttEg+mLDtygEd7O0R5QOUlHFpy
+	Ll5WdGjSyRcyfWVQtkXv8X3pfr7ivS9d5pG+ggrDVX0n0zkvMXALE5BG48PxFQ2FFbdAIdQaczl
+	lKgH3kgnB3PSPUI1c/71uhdP+xyxJJGWccbIL+PPcQhjQHIE0bZsbQN74kdGHiJr4msmxv0d3as
+	KOaqHUaFrf4lLx2yFLV1tBrm3rMSyg4WUatsrh4TwzoxJRI+GCzXOUP5+JSJue0r462M824pBos
+	77hudrJqXnZylp8RiDrbqRzJ7QcDZv2FZd+hPolEkMoLRnE/d84IQeZb56NhOTWYX8WiWSrPChN
+	2FRPJmLwjmgsp7Kw/5io4=
+X-Received: by 2002:a05:622a:98e:b0:50d:7fe9:aa8a with SMTP id d75a77b69052e-50e36e9c3c8mr268988921cf.31.1776766798401;
+        Tue, 21 Apr 2026 03:19:58 -0700 (PDT)
+X-Received: by 2002:a05:622a:98e:b0:50d:7fe9:aa8a with SMTP id d75a77b69052e-50e36e9c3c8mr268988611cf.31.1776766797990;
+        Tue, 21 Apr 2026 03:19:57 -0700 (PDT)
+Received: from QCOM-eG0v1AUPpu.qualcomm.com ([2a01:e0a:830:450:34a4:17b9:744:69])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ba4512115d6sm440017166b.7.2026.04.21.03.19.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Apr 2026 03:19:57 -0700 (PDT)
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+To: andersson@kernel.org, konradybcio@kernel.org
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>
+Subject: [PATCH] arm64: dts: qcom: monaco-arduino-monza: Add fan controller and thermal cooling
+Date: Tue, 21 Apr 2026 12:19:54 +0200
+Message-Id: <20260421101954.411698-1-loic.poulain@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9c9795b0-a8ba-453d-9a92-f07b3ca59070@kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: CMSjv8y2jh6lHcuUJhaWLgsnBLwlG1vA
+X-Proofpoint-ORIG-GUID: CMSjv8y2jh6lHcuUJhaWLgsnBLwlG1vA
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIxMDEwMSBTYWx0ZWRfX1j9XxXpgG+lT
+ pmwSxrINpnHknL/nlG7s/m59cFRWzhcGiEVh6HNHaH+AZMLVkZsiczQmaQ0Zx9445eRGyQQ2Ghw
+ EQfjMfsjd4oym0TUxdfTtQRvgGt1hvR7s24mqQhr3HVQu3u29npQ4eX8vtNMb0P31uyHcunfsL7
+ f/uazkj4VefFMkFmK8dWSIH38aEHf9pZQ3awNwEJReqsZrqIqidTJjoEWP0xuD/yrIuaRojzNRi
+ W1z8SrSbr7UN86Ahq6nJqz7pde9+bjewvvX/XLYuz3YhAat6hacQ9cirhlp+8vo0rTLqLt67t2k
+ yKafpuCocJ9YkaCWbBk8+UNlDv4nJKHuZAOpMWYb7CXu0Kddu2+gBBUHBCi/3rbiv49yCsYXfYg
+ tzUVb0MNyTTIbUtMdBzTMWuhXKMyv078khA6cNOem9y5ago1YTGhqLc3vkdB3LRleUCvcqn4TcF
+ uRWVjHzCqg0LYz1QBQg==
+X-Authority-Analysis: v=2.4 cv=O9cJeh9W c=1 sm=1 tr=0 ts=69e74f4e cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=A5OVakUREuEA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=_glEPmIy2e8OvE2BGh3C:22 a=EUspDBNiAAAA:8 a=CL9vroWOvsCo93LnfqYA:9
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-21_02,2026-04-20_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 spamscore=0 impostorscore=0 malwarescore=0
+ lowpriorityscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604210101
+X-Spamd-Result: default: False [4.84 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289046-lists,devicetree=lfdr.de];
+	PRECEDENCE_BULK(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-289048-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	GREYLIST(0.00)[pass,body];
+	DMARC_POLICY_ALLOW(0.00)[qualcomm.com,reject];
+	R_DKIM_ALLOW(0.00)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[dolcini.it:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	MAILSPIKE_FAIL(0.00)[2600:3c09:e001:a7::12fc:5321:query timed out];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	NEURAL_SPAM(0.00)[0.390];
+	FROM_NEQ_ENVFROM(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,qualcomm.com:dkim,qualcomm.com:email,2f:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip4:104.64.211.4:c];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,toradex.com:url,dolcini.it:dkim]
-X-Rspamd-Queue-Id: C7BCB439661
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 860164398DE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Apr 21, 2026 at 12:05:45PM +0200, Krzysztof Kozlowski wrote:
-> On 21/04/2026 11:59, Francesco Dolcini wrote:
-> > 
-> >> Toradex LAVA hat is way too generic. No, single compatible string is not
-> >> sufficient, please read writing bindings.
-> >>
-> >> Please define exact model and variants.
-> >>
-> >>>
-> >>> The need is to be able to test SPI with a mainline Linux kernel, so I am
-> >>> looking for a solution that works in mainline Linux.
-> >>
-> >> incomplete devices do not stop you from that.
-> > 
-> > Do this sentence means that I can send a DT file for inclusion in the
-> > Linux kernel using a compatible documented in incomplete-devices?
-> 
-> No. You will be testing a mainline DTS + load non-mainline overlay. So
-> your requirements of "mainline Linux" are fully solved. Overlay is
-> loaded by bootloader for example and thus your kernel is fully mainline.
+Enable the CCI1 bus and add support for the Microchip EMC2305 fan
+controller on the Monaco Arduino Monza board. The controller is
+virtually implemented by the onboard MCU.
 
-Ok, I was not clear enough, I am looking to have a solution that is 100% in
-mainline.
+Add a new active trip point to the cpuss0 thermal zone and
+associate it with onboard fan cooling. The CPU subsystem sensor is
+used as the thermal reference until support for a more appropriate
+onboard/skin sensor becomes available (via spmi-adc5-gen3).
 
-> >> But you don't get exceptions because you want to mainline your DTS. Your
-> >> need detailed hardware description and precise compatible per each exact
-> >> hat ("exists in multiple variants").
-> > 
-> > Let me get into more details here, before sending a new patch version.
-> > 
-> > We have various LAVA HAT devices, the difference is that they provide
-> > different features and a different layout, based on the actual carrier
-> > board they are mated with.
-> > 
-> > We have an "Aquila LAVA HAT", that can be mated with the "Aquila
-> > Development Board", and a "Verdin LAVA HAT", that can be mated with a
-> > "Verdin Dahlia Board".
-> 
-> Of course, because each device is specific so even the hat must be
-> specific, unless you have a standard connector like Arduino or RPi.
-> 
-> > 
-> > As an example, you can find the Verdin Dahlia DTS here,
-> > ti/k3-am625-verdin-wifi-dahlia.dts, that can be mated with the "Verdin
-> > LAVA HAT".
-> > 
-> > The SPI device on both "Aquila LAVA HAT" and "Verdin LAVA HAT", is the
-> > same, no differences. On the Aquila variant we
-> > have two instances of it, while on the Verdin we have only one instance
-> > of it.
-> > 
-> > So, would we need a compatible like this? 
-> > 
-> > compatible = "toradex,aquila-lava-hat-spi", "toradex,lava-hat-spi";
-> > 
-> > or
-> > 
-> > compatible = "toradex,verdin-lava-hat-spi", "toradex,lava-hat-spi";
-> 
-> Yes, assuming that verdin/aquila hat works for EVERY verdin/aquila
-> board, regardless what SoM or SoC you have there.
+Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+---
+ .../boot/dts/qcom/monaco-arduino-monza.dts    | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-This is correct, it's exactly like that.
-
-> Verdin is a SoM family according to:
-> https://www.toradex.com/computer-on-modules/verdin-arm-family
-> 
-> and I doubt you can attach hat to a SoM. There is no connector on SoM
-> for the hat... so probably you have a board, like Dahlia.
-
-Correct, the HAT is for the carrier, and the carrier is for the family.
-
-With that clarified I plan to send a v2, with something like
-"toradex,verdin-dahlia-lava-hat-spi", "toradex,lava-hat-spi" (for each
-carrier board we have) and DTS files where this is used, and properly
-documenting the compatibility between the various HW devices.
-
-Thanks,
-Francesco
+diff --git a/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts b/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
+index ca14f0ea4dae..2d790f726d56 100644
+--- a/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
++++ b/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
+@@ -7,6 +7,7 @@
+ 
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/pwm/pwm.h>
+ #include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
+ 
+ #include "monaco.dtsi"
+@@ -155,6 +156,26 @@ vreg_nvme: regulator-3p3-m2 {
+ 	};
+ };
+ 
++&cci1 {
++	status = "okay";
++};
++
++&cci1_i2c1 {
++	fan_controller: fan-controller@2f {
++		compatible = "microchip,emc2305";
++		reg = <0x2f>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		#pwm-cells = <3>;
++
++		fan: fan@0 {
++			reg = <0x0>;
++			pwms = <&fan_controller 26000 PWM_POLARITY_INVERTED 1>;
++			#cooling-cells = <2>;
++		};
++	};
++};
++
+ &ethernet0 {
+ 	phy-mode = "2500base-x";
+ 	phy-handle = <&hsgmii_phy0>;
+@@ -368,6 +389,25 @@ &pcieport1 {
+ 	reset-gpios = <&tlmm 23 GPIO_ACTIVE_LOW>;
+ };
+ 
++&thermal_zones {
++	cpuss-0-0-thermal {
++		trips {
++			cpuss0_active: cpuss-active {
++				temperature = <32000>;
++				hysteresis = <2000>;
++				type = "active";
++			};
++		};
++
++		cooling-maps {
++			map-active {
++				trip = <&cpuss0_active>;
++				cooling-device = <&fan 0 THERMAL_NO_LIMIT>;
++			};
++		};
++	};
++};
++
+ &tlmm {
+ 	pcie0_default_state: pcie0-default-state {
+ 		wake-pins {
+-- 
+2.34.1
 
 
