@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-289151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289152-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cOBSDHGa52kV+QEAu9opvQ
-	(envelope-from <devicetree+bounces-289151-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 17:40:33 +0200
+	id +IDxDcqZ52kV+QEAu9opvQ
+	(envelope-from <devicetree+bounces-289152-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 17:37:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7D5343CDC2
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 17:40:32 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDCB943CCE9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 17:37:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BF80C30330B7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 15:33:37 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D2DDE30211F7
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 15:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6907A29AB02;
-	Tue, 21 Apr 2026 15:33:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23D21EB5F8;
+	Tue, 21 Apr 2026 15:37:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bwJXcWpB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UcJGNyd1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 446AC86329;
-	Tue, 21 Apr 2026 15:33:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D5032FC01B;
+	Tue, 21 Apr 2026 15:37:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776785616; cv=none; b=OhVN739bjwNaaQra4KqlJ6/K/xER/B8XNw/tD3bnuAoWNefm+QV1O6qjBnKV32ODQ9qbTLChgjH3DrUaT3aOiLXzd6WEp/nlcO0E+NGdj/hnzp3f9tdA8vgUxaUykEwW+yKRaCDvyxzCMkZsFmP+VrML0oOefFvSirQoBE1gDy8=
+	t=1776785848; cv=none; b=luYAxPYbHnc1RLqBXalnKGYta7UnLezQFxS+3X3reCahXnD6xjHl6/ucVgt1ZGTCLsqZLUy9yr7ls9IFi2h4ylTkVM4f5YrAlWQEW3NIfyx7UI6SnCCWXY1AMrzTKetFROYvmUamKz1Gibb950w9DrC/fqQ8xHV+oThR6HLFdwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776785616; c=relaxed/simple;
-	bh=+8giWA5aB5qXoGXTSQOinTyN2DUqZl1jhyu7m0Z8WVM=;
+	s=arc-20240116; t=1776785848; c=relaxed/simple;
+	bh=G2w1sKL3l5wuSUcaAd0p9VSqnfL6gf7sVEeWF7dVURc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uIQVBwWB9VyHe0ZS5JVMSdsKMou7PmrIPdW+VT9Q9KkKRNpgX9PD0c9anh08mAi/Hz18OGl651LcmujyxgDw1BrgFhUTg9px6hVrLL5kXN9U1yHqJe9KRQIBAEHseCJ41BWZ+29orHgaMF/FlsMJYsuNmW6fRTN7BYm9MFHVzN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bwJXcWpB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDFC8C2BCB3;
-	Tue, 21 Apr 2026 15:33:30 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=nKJzz4vgdnBAXtik/YUfbeiulylGOPfH68SYDk8sjAslZ1BtYg9EDOAJYH0gmZnudBc3eU2rHytl783oqqNe6G4j4MvrcZux1jvW267r7KTNOiZMH9sNvcxzLYEpHZr7GsItQH7PcJW2YLwpCXJAnUGcF7k4vQu/ufImbGh8zuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UcJGNyd1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D26BBC2BCB3;
+	Tue, 21 Apr 2026 15:37:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776785615;
-	bh=+8giWA5aB5qXoGXTSQOinTyN2DUqZl1jhyu7m0Z8WVM=;
+	s=k20201202; t=1776785846;
+	bh=G2w1sKL3l5wuSUcaAd0p9VSqnfL6gf7sVEeWF7dVURc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bwJXcWpBifZLV2tl3kYkgRUsTDChSz/amAz/9UU3Qxq1POcVRBYunk/sD+6JYpiv9
-	 NkiBXsuUYpn5FMhiKaJYj4AK791OlA9ebEI9r1VXNUHd91/YQ4rC8seyn9A5qR1Yww
-	 Jz8E2oRhhhH2yEeaBSnPc8GqgpkUrw7TK/iutUVb1OP96rqF3GfKvJb6EZc+vSF91t
-	 +9YyPp5h6K6QjSzGY87/f1CBZ6OKWw453w+SQsSF2om00bQN54q/Otm7UbEprh6H0b
-	 EKP6iciSW7D9u9fsRnD+4nb/Ch8eTBrkXI42YKijd3vsGaBUCvfNrARSt9D4nHhC7R
-	 sbEVvuzP5//Ew==
-Message-ID: <00486b10-4c0b-420b-a735-67c3164eeb24@kernel.org>
-Date: Tue, 21 Apr 2026 17:33:29 +0200
+	b=UcJGNyd1GeMtl8O5K3wA+iJ7Ahd+v8AhzHmn6aQhprdsM5L4DBy2ZbggnbxrXw+KF
+	 LORh54xxGxhZxh8GOWKAJhVKt8R3EODpiLk+0lmzNTUrWVMPJ7BgdE+aFjvlm8lWQZ
+	 gemNdmNQF9kZfikAn/CustdjaUpHKRdIAs5ONLviTSIT93cbWGXelKtIN/kL7ge8lw
+	 nOw4ckyOjLxWLSUDOQxDFX6fXHLC6yX7fXAcvPkib3eq9krWpa6am7OParD+Sva7J1
+	 KSctuyRSH6nuQEa6cIGqoVcP/XZHWsZNo2lrn+XQe500ZAkrpdiKW0Qugg6BmJEghl
+	 QVMbDHcCHK3GQ==
+Message-ID: <b2c9158f-ebaa-41b0-b471-22413ed5bc2b@kernel.org>
+Date: Tue, 21 Apr 2026 17:37:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,24 +53,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/2] platform: Add initial synology microp driver
-To: Markus Probst <markus.probst@posteo.de>, Hans de Goede
- <hansg@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?=
- <ilpo.jarvinen@linux.intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: platform-driver-x86@vger.kernel.org, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org
-References: <20260420-synology_microp_initial-v8-0-7946a9124491@posteo.de>
- <20260420-synology_microp_initial-v8-2-7946a9124491@posteo.de>
+Subject: Re: [PATCH 2/2] soc: qcom: socinfo: Add SoC ID for Nord SA8797P
+To: Shawn Guo <shengchao.guo@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260421040231.1256998-1-shengchao.guo@oss.qualcomm.com>
+ <20260421040231.1256998-3-shengchao.guo@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,58 +109,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260420-synology_microp_initial-v8-2-7946a9124491@posteo.de>
+In-Reply-To: <20260421040231.1256998-3-shengchao.guo@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289151-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[posteo.de,kernel.org,linux.intel.com,linaro.org,garyguo.net,protonmail.com,google.com,umich.edu,linuxfoundation.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-289152-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C7D5343CDC2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DDCB943CCE9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/04/2026 16:24, Markus Probst wrote:
-> +        // pineview
-> +        (DeviceId::new(c"synology,ds710p-microp"), Model::new().led_esata()),
-> +        (DeviceId::new(c"synology,ds1010p-microp"), Model::new().led_alert(Color::Orange)),
-> +        (DeviceId::new(c"synology,ds411p-microp"), Model::new()),
-> +
-> +        // r1000
-> +        (DeviceId::new(c"synology,ds923p-microp"), Model::new()),
-> +        (DeviceId::new(c"synology,ds723p-microp"), Model::new()),
-> +        (DeviceId::new(c"synology,ds1522p-microp"), Model::new()),
+On 21/04/2026 06:02, Shawn Guo wrote:
+> From: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
+> 
+> Nord is a SoC family from Qualcomm designed as the next generation of
+> Lemans series.  SA8797P is the automotive variant of Nord, where
+> the platform resources such as clocks, regulators, interconnects, etc.
+> are managed by firmware through SCMI.
 
-What is this all doing here? Again, what is the fallback and front
-compatible? Why do you keep duplicating all this when I asked to REMOVE
-the completely unnecessary front compatibles?
+Binding said it, no need to say the same twice. Binding commit is
+describing the hardware, not the driver commit. Please look at Git
+history for some examples.
 
-So it is not only schema which is wrong, but your driver makes no sense
-with it.
+With above paragraph dropped:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+
 
 Best regards,
 Krzysztof
