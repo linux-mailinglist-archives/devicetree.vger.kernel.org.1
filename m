@@ -1,224 +1,153 @@
-Return-Path: <devicetree+bounces-288986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288989-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oGLFCqcy52k65QEAu9opvQ
-	(envelope-from <devicetree+bounces-288986-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 10:17:43 +0200
+	id wFzfCO0y52k65QEAu9opvQ
+	(envelope-from <devicetree+bounces-288989-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 10:18:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88E14438030
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 10:17:42 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADCC943804B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 10:18:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2A95F301D067
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 08:17:29 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 60310300C03C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 08:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666D2393DCA;
-	Tue, 21 Apr 2026 08:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E2BE39B96A;
+	Tue, 21 Apr 2026 08:18:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gecQMdlp";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GSk4Nqaj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HbDfS2sz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A055C1C84A2
-	for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 08:17:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C963859C2;
+	Tue, 21 Apr 2026 08:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776759448; cv=none; b=Ee1xtaOchD72W83Pifg9TSpYcS2QnlCR1C9DqfDzaB4sUuNC28HolIv0IluVujeQk10Mb8j7ekxjOUEzcbEl4rGjSFGxyDcbv8e68MT3BFrMjRX/5+n+CG2LOslpmmyFGcke1fF4KFYrhTm8R5hpZga8tBSi8xJGFHQZIrTULo0=
+	t=1776759520; cv=none; b=q2FmPTgpOQ+Wf3DYX4a4tmYOxkaQGAxrmcKasQaBrslyYp0xgJgthbVxliqZN6hwA9Y34jbjdkXmxb07FXMMMv3oDmGhn7VsqALf0VayPoAyy74Ww81GUTA7Y3ADYORjvl436gjWseze9In/NJdQj5DKu2LmWK3aBNRSugPWt/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776759448; c=relaxed/simple;
-	bh=B+IlyedEhZNODOK1mSnA/Zegncl/8PN6pid22WrPik0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MtGd70PwiNudg/itVb2ywEWCrLeFMOujnmmSiHliCBaf/HnbpUGSl2qYlnYRiYhtnFmsesS39EF3Ck+75XH6QdE4KakMPCZpGqj9AKUADvYEpWxzWXdEaBsh/d3OGy3u0PsC5WKLg17ezWC2mB/r8fotddkKbFBGU7vGqvOgi0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gecQMdlp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GSk4Nqaj; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63L5g38h3455883
-	for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 08:17:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=pW4RvJ1J0WjZeebgyc1hyYHI
-	FUKi/UttC0Wl6Mb4bxo=; b=gecQMdlpFY0k7uTpdGCoOknDM23BJE4rmHMxiFKO
-	+iIjg9/Rn31epo6HUwOr/GlNEJCZ3Bh1SA+VULyJaNyNy950ff+YSwZnvZVowz54
-	JbNzY6Ynw70e7MXSBLgxLxnm77dAe0Psiw25NQfyfzhCrEJaHP/F3qa8ke8MK/BY
-	vxmTCs4d2lHMvPVnnoFRpt/gr62VkOIwc56S5ZO6xY0pyjwTxmYJiCTXgVtXGcL0
-	MupbnYJD+g2aUoeO4he5HXv9PU9pTIVYufekgRyH81uNwaV5v52RAO/UDdd2K4qV
-	ijXdCGI20rpTAs7x949sB9tvi8PMKuxi1PQ0h+1Tk0kUQA==
-Received: from mail-dy1-f199.google.com (mail-dy1-f199.google.com [74.125.82.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dnfvjw34n-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 08:17:24 +0000 (GMT)
-Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-2ba9a744f7dso5125690eec.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 01:17:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1776759443; x=1777364243; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pW4RvJ1J0WjZeebgyc1hyYHIFUKi/UttC0Wl6Mb4bxo=;
-        b=GSk4Nqaj4+h89mpf7T4jAbQl2wPLCBAgym4iJEazj2piFPRhN1QfBpjfOJygJT5sBJ
-         jqO5Fo6IxIF0ZyC0Z3/9HrdKKve3M0WjMgA0fwLbYpu3mT5A7jc0n2UxV7LPrm2c7DAn
-         EOnQ1Ni233Ph1b1ogJF7YRX56PS/rJ35Q2VSc9mTIMnKZc0cPCysQ1Z0SGxgpt6hiseF
-         jjLZHniwLvBIEIpI9Apaq3WvVSihzrVKnfqgo2WezRjNPP9EN/6XsL6QR/nl5wNbvBM4
-         YWt8/ITj0JS2vekHp0+551QiU/0hzHonka2aDmLJ9AxK2jwRiFUxZZmK5oNuL07tJBCv
-         nmTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776759443; x=1777364243;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pW4RvJ1J0WjZeebgyc1hyYHIFUKi/UttC0Wl6Mb4bxo=;
-        b=T/2Qpg/hPkP3CHk0F3I05zVRyux5KR39CHjY4cyb2QJ+LenxkSZk/rNv/+buW8Ex4p
-         nmQj6jsER9UfNSmeqPPTE6hJ+BG+1kORZzNwU0yxUc80pAdDLmi3y/t1KAuoX4Izl1Ap
-         I6rzDRnxyWdsAqpE0Tg9KYBkGU98poLoax6GzAuf4L444vNFnpyN40hP4r9kcHA8ax3t
-         s1a6dg9YijN69YpC9Yc4eX8eVY8WrpR1D6nMfdDWr/fwII2aK8DG03UdLkTwu9hCnRtV
-         eYGq54o6X9WAt8odj0uVMt/ok3nHzj/WBSK4oPUDUCK3iR1udjKj1bAh6zOpQGRkxnIj
-         Ckjw==
-X-Forwarded-Encrypted: i=1; AFNElJ+3sIjLUwcqHEDhltz9qTBs5qde6A3G90VTiyszVRxtJNjTmumXahBJ1pmTvV1YXXzI9HJYL6xN792N@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxw8CM2Du1VNUojQoyXZR1RF6NnmSY4r/tzw4OCIdseha38PKRK
-	LUeHXgKKK2kX2yY9WyLAI35x1fNh3w02u5cORp3+SRH33P3zdWEJ8w9SAMOjwjS1gw5MAv4J7Yn
-	CNfgyqPUDkXVfJwqDLsqgso2Y6a9lU/TbC+RuL0WkD3/Kw2eqt+yKMd3QPFtV8MHm
-X-Gm-Gg: AeBDievLg8ElEYlOG5UK+aGyYtaohiSAys4zAV6Gr0UC5hyR1bvR9IYrCMwJAHa/Sde
-	5DF0S4kIh7Kf127ykCKbvQFdzsLTrnCj8lOhnhG5A7cJmlxc4yxmVA/+dUjtEDkD9/LhOH/SxdG
-	GfRIW/UUQ6pLr3nlvFRtWvskUIO5/xGhHn0WfYii8drqMyjzE0YrMVSHyBkNz56GosqUWdACnpv
-	JjdZDjxRd+juCYbWj2ti87N8M/tjyVJwhVszfyiMkz7Tbce04iIC9KbtPdzYdfMCd83egwCCB3r
-	fqfTctqyIN25mdS7gGDD9vb+sjWPS/EdDu+MZrSQWruCL8GeOKLLrZmkVKzcPAdeNk51P5OaDIl
-	NdvSnlqiQDQzvWa9XdYbiuZoPtfsbpuPH2fZNYgM0aa48qbn4b3WenlYju5GTBhRQWkBhEpOP7R
-	4=
-X-Received: by 2002:a05:693c:3007:b0:2d9:6373:ad0a with SMTP id 5a478bee46e88-2e46538fd04mr8455841eec.11.1776759443505;
-        Tue, 21 Apr 2026 01:17:23 -0700 (PDT)
-X-Received: by 2002:a05:693c:3007:b0:2d9:6373:ad0a with SMTP id 5a478bee46e88-2e46538fd04mr8455826eec.11.1776759442926;
-        Tue, 21 Apr 2026 01:17:22 -0700 (PDT)
-Received: from QCOM-aGQu4IUr3Y (i-global052.qualcomm.com. [199.106.103.52])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2e539fa5c38sm17625182eec.5.2026.04.21.01.17.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Apr 2026 01:17:22 -0700 (PDT)
-Date: Tue, 21 Apr 2026 16:17:16 +0800
-From: Shawn Guo <shengchao.guo@oss.qualcomm.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>,
-        linux-kernel@vger.kernel.org,
-        Praveen Talari <quic_ptalari@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Subject: Re: [PATCH] dt-bindings: qcom: geni-se-qup: Add compatible for Nord
- SoC
-Message-ID: <aecyjAkRes7hC1_G@QCOM-aGQu4IUr3Y>
-References: <20260420064401.1248833-1-shengchao.guo@oss.qualcomm.com>
- <177667402766.1199205.7736172019278854390.robh@kernel.org>
+	s=arc-20240116; t=1776759520; c=relaxed/simple;
+	bh=Kz+3pMMySerYI/J54KnH+TrQYs1a5xtXn+eQ4dPN+Sc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CBpZ3v9hekZnyDKqYsLvotxLfLaRrSvDvwwhJdmqEqugqmVM6MDZd5c/AGVpPNhqpLZYCJyi6k6kqxGjwFlOrde1xxrQV5cyF50toVvGv1Mks+59L5aZVCECN11zlquwJXHIF55vF+V8jwqZ++kmgJ5FchMoACyi/qsMIN8mG4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HbDfS2sz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F1F6CC2BCB0;
+	Tue, 21 Apr 2026 08:18:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776759520;
+	bh=Kz+3pMMySerYI/J54KnH+TrQYs1a5xtXn+eQ4dPN+Sc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=HbDfS2sz/GEqyOWvWu0tVs4//pfHUfkVGOhRjoB8dyL0Vu8cSEypyhK6EOLNaVos4
+	 b44YbFhG78K2fFInuoVLv43Ny1LVOdrdX5hLkn0kmHnqvg2Z30x3Jxpp8ugog0hWer
+	 wb2+n0Dt4J/DuiYzWKhO7kSromRIOksl8JI0OUDAXklpNcbH08aO5c17G8foGScP94
+	 O4b+qAVsHrrnyI0lnnPk7CZbn+D4n0PkXloNMPFcEXeFEIjvWOwPXmI+o0kHf7KTvf
+	 lXN0gaUosglh0CE3QvNLp2Mj0gIMgQ5Lt/vywR3uGVx0qnX1anHSNGFYynVpTtx283
+	 0SHJRpAGVqRVg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E6EBEF327B0;
+	Tue, 21 Apr 2026 08:18:39 +0000 (UTC)
+From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Subject: [PATCH v3 0/4] soc: amlogic: clk-measure: add A1 and T7 support
+Date: Tue, 21 Apr 2026 16:17:40 +0800
+Message-Id: <20260421-clkmsr_a1_t7-v3-0-efc00b0f9e6b@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <177667402766.1199205.7736172019278854390.robh@kernel.org>
-X-Proofpoint-ORIG-GUID: ffh9OqkQ0_BPQDZ7zeDPTiwe8vwxiMUa
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIxMDA3OSBTYWx0ZWRfX1r+v07qCBSFT
- O3lcH6YhXYR/XVBg+gaWX9rY9AjucAXWc19z+Bio3H41X0+o0Q3cYVnawSKX7PCyL/nvqQHeYbO
- mK4pk51WAL9zgdhPWivj7Y0OXFlxT842V3i/9U/w1YJvpFBavBuIAJn2U+kAZXh3ieyy9X2HBo1
- 2m0vHSNsul7BhxO6xg2bwqpvDk7jrcfieypEhQtKNQkH1nH7Ao05vSkiXhnPdbow8mrbNCwUxrf
- zEh9vGRww4TheypSnhx8DgL5Yxt5E+gePyU50ltsEHM7GdnxX/79UQQ0VPIYTeS5zNrk8PP5no6
- JDZBv/0vxr5NKlDUUaylwR0LpsaVLJyJzUPqjVu7RMv1+YpzEHzsuv+3tJ0P6DVMYoOQVbp1gvH
- Qdn7xwLBQvr/fIjnla64W5++CeV53JBCyRMHFh3qlb5bI9RV8CZAupOEdXZtV13AAwO4f2FT5zv
- HIVqPQYIRs5SlFAlTAg==
-X-Authority-Analysis: v=2.4 cv=XNMAjwhE c=1 sm=1 tr=0 ts=69e73294 cx=c_pps
- a=cFYjgdjTJScbgFmBucgdfQ==:117 a=b9+bayejhc3NMeqCNyeLQQ==:17
- a=kj9zAlcOel0A:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=SdGosrV6Qt3YffhYJa8A:9 a=CjuIK1q_8ugA:10
- a=scEy_gLbYbu1JhEsrz4S:22
-X-Proofpoint-GUID: ffh9OqkQ0_BPQDZ7zeDPTiwe8vwxiMUa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-21_01,2026-04-20_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 adultscore=0 impostorscore=0 suspectscore=0 clxscore=1015
- phishscore=0 malwarescore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604210079
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKUy52kC/3XMQQ6DIBCF4auYWZcGRoraVe/RGEMRdVKRBoxpY
+ 7h7qfsu/5e8b4doA9kI12KHYDeK5Jcc5akAM+lltIz63IAcFZfiwsz8dDF0WnRrxZoaeVPLnut
+ BQL68gh3ofXD3NvdEcfXhc+gb/tY/0IaMM44PVQopsbLqpt3sRzJn4x20KaUvP46grqoAAAA=
+X-Change-ID: 20260415-clkmsr_a1_t7-9820984d0af1
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Jian Hu <jian.hu@amlogic.com>, Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776759517; l=1276;
+ i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
+ bh=Kz+3pMMySerYI/J54KnH+TrQYs1a5xtXn+eQ4dPN+Sc=;
+ b=87Uj5tJYBxyT81mPVwhTw3g+vaPd1voTESeTuQlrUEWiUyQumNsXr74S/xP5tUaFeLczeJt/x
+ FMyEr/5af2bDMGm7SXh++dvdWb7sGxhSTIGZ2t+KJ6syTecpUqhbSjH
+X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
+ pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
+X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
+ auth_id=735
+X-Original-From: Jian Hu <jian.hu@amlogic.com>
+Reply-To: jian.hu@amlogic.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288986-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-288989-lists,devicetree=lfdr.de,jian.hu.amlogic.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,baylibre.com,googlemail.com];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shengchao.guo@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 88E14438030
+	HAS_REPLYTO(0.00)[jian.hu@amlogic.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: ADCC943804B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Apr 20, 2026 at 03:33:47AM -0500, Rob Herring (Arm) wrote:
-> 
-> On Mon, 20 Apr 2026 14:44:01 +0800, Shawn Guo wrote:
-> > From: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
-> > 
-> > Add compatibles for GENI Serial Engine QUP Wrapper Controller on Nord SoC
-> > with fallback on SA8255P compatibles.
-> > 
-> > Signed-off-by: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
-> > Signed-off-by: Shawn Guo <shengchao.guo@oss.qualcomm.com>
-> > ---
-> >  .../soc/qcom/qcom,sa8255p-geni-se-qup.yaml    | 20 +++++++++++++++----
-> >  1 file changed, 16 insertions(+), 4 deletions(-)
-> > 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/soc/qcom/qcom,sa8255p-geni-se-qup.yaml:77:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-> ./Documentation/devicetree/bindings/soc/qcom/qcom,sa8255p-geni-se-qup.yaml:80:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-> ./Documentation/devicetree/bindings/soc/qcom/qcom,sa8255p-geni-se-qup.yaml:83:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+This series adds Amlogic clock measurement support for A1 and T7 SoCs,
+including binding updates, driver additions, and device tree enablement.
 
-Will get them fixed.
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+Changes in v3:
+- Place the clock-measure node after pwm_ao_gh node for t7.
+- Link to v2: https://lore.kernel.org/r/20260415-clkmsr_a1_t7-v2-0-02b6314427e6@amlogic.com
 
-> dtschema/dtc warnings/errors:
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.kernel.org/project/devicetree/patch/20260420064401.1248833-1-shengchao.guo@oss.qualcomm.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
+Changes in v2:
+- Add const for a1 and t7 clock measure table.
+- Use b4 to send this series.
+- Link to v1: https://lore.kernel.org/all/20260410100329.3167482-1-jian.hu@amlogic.com
 
-I wonder why my dt_binding_check doesn't report the warnings, as I have
-yamllint installed and dt-schema upgraded.
+---
+Jian Hu (4):
+      dt-bindings: soc: amlogic: clk-measure: Add A1 and T7 compatible
+      soc: amlogic: clk-measure: Add A1 and T7 support
+      arm64: dts: meson: a1: Add clk measure support
+      arm64: dts: amlogic: t7: Add clk measure support
 
-Shawn
+ .../soc/amlogic/amlogic,meson-gx-clk-measure.yaml  |   2 +
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        |   5 +
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |   5 +
+ drivers/soc/amlogic/meson-clk-measure.c            | 272 +++++++++++++++++++++
+ 4 files changed, 284 insertions(+)
+---
+base-commit: 401e5c73eedde8225e87bd11c794b8409248ff41
+change-id: 20260415-clkmsr_a1_t7-9820984d0af1
+
+Best regards,
+-- 
+Jian Hu <jian.hu@amlogic.com>
+
+
 
