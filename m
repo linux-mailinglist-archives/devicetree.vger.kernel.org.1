@@ -1,118 +1,168 @@
-Return-Path: <devicetree+bounces-289040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289026-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +GSzJi5L52lW6QEAu9opvQ
-	(envelope-from <devicetree+bounces-289040-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 12:02:22 +0200
+	id oAExFPFH52kF6QEAu9opvQ
+	(envelope-from <devicetree+bounces-289026-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 11:48:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5861143942B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 12:02:20 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A21A4439112
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 11:48:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2A4BA301AA78
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 09:57:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 74C3D3065F0C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 09:45:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 369513A3E67;
-	Tue, 21 Apr 2026 09:57:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D1843BA220;
+	Tue, 21 Apr 2026 09:45:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="InuH+hFw"
+	dkim=pass (2048-bit key) header.d=0leil.net header.i=@0leil.net header.b="JHJycwIX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3276.qiye.163.com (mail-m3276.qiye.163.com [220.197.32.76])
+Received: from smtp-42ab.mail.infomaniak.ch (smtp-42ab.mail.infomaniak.ch [84.16.66.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 059262BDC0E;
-	Tue, 21 Apr 2026 09:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D91E3B52F4
+	for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 09:45:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.66.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776765460; cv=none; b=Kfc9v91/SYwdwYKxQtbpfuEV20H44csTti+AvEpo86Xm+ot0WfzvqqQkjfC9rN7dYVY9ViJQbsY1W+xfQ4lQri5CLfwnOURXOEkJDII5WMfbZJzMaR+bM3sCJtFzt6EQngyTwnxbQxTxSSVEqIrwHOkE8V3NinxHOqYnND2jwic=
+	t=1776764735; cv=none; b=EcnUhTuUNoqzMculCCdMylwYojaFIt+aN8B+oLf8cvb7dYl9E6VhhZ9gvCkMReCiupwBH0f6VEOhFrockVFDJkMDaw3qS7pyjd8iJaXJ8Y60zDzGES4uUoNA/yx26dG4ogIzsQHjN+M0WNbup6w0ekatN3g62cpYmRI/g+9uqWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776765460; c=relaxed/simple;
-	bh=fjkHPG/NH/CuPTcr5lYAI4TDwfTS5OXhRnmxUtSKiwk=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=e60G097xxKjmWo20m3ySS4rCxmz69zo77ACu7j4RqD4CctLJnLjiX2Am3SWweaneWISHPnmhwLrYZz4OPjbSLTie86bgyo0YVD9943V7Pyg9IcXQ9hM7rRTV4BiAjTofWrjd09zxgmUT01+oVghY5fNj90IMunKolBWFB0roq0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=InuH+hFw; arc=none smtp.client-ip=220.197.32.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.17] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3b8ce37ae;
-	Tue, 21 Apr 2026 17:42:07 +0800 (GMT+08:00)
-Message-ID: <3d6b70a7-c199-5986-5580-47467c4972d6@rock-chips.com>
-Date: Tue, 21 Apr 2026 17:42:06 +0800
+	s=arc-20240116; t=1776764735; c=relaxed/simple;
+	bh=bsijqOyWswuF6NZXlWSly9Z6xtYtxBitACbUnOhzrrc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fs3KB1VM5l5Lsim5loBGJdUiJhCB7DpX3a5/6GOwI3/BL3JSRzNuM3ipYrrag1gj9vKeQCKlSoxpXipb9OaxtmHD+4/9167B8gZQK8wMLjgJmYFTYQf/ET8hf8jyxfvFfb1C3+GfOSu/9ZEvsx6RyUYx74zXbh01zrmb8VY8a0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; dkim=pass (2048-bit key) header.d=0leil.net header.i=@0leil.net header.b=JHJycwIX; arc=none smtp.client-ip=84.16.66.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-4-0000.mail.infomaniak.ch (smtp-4-0000.mail.infomaniak.ch [10.7.10.107])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4g0HXL1FVbzZgZ;
+	Tue, 21 Apr 2026 11:45:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=0leil.net;
+	s=20231125; t=1776764721;
+	bh=kIVgKNfgffVMWOXygW28hZLiTs45qb7bepzWyDmIFWE=;
+	h=From:Subject:Date:To:Cc:From;
+	b=JHJycwIXX42FlfTd+u4A59doxw/P/8wi7aixczLnYwx8rPbJEKMk/ee5UOgb/sfM+
+	 HcRSNQebL02r9z6JsNllBFBpeBJyMq2AZ5ynFjou5Y9z4RaTM/lFkZiFj54HuEALDe
+	 4Cza9BPIM13DNIE3MIK/nhcc9GaX2v9pZxGnh0dhX8+Z7KlqfqKKFao3WGRibTujCN
+	 BX2C/BDJt7qsImvlfW48kUJQGIOiIOTyUpke7j7ecN9ybKR+VyCby6YH5V8M3gTUwP
+	 57PLkL1Fb9m+mBUcmMGB+UNQxAXd95vcurSXc7KaeEiI/AvFxditWLZiQU41mM4jl+
+	 bn95jv4y4u28g==
+Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4g0HXH6wHbzZxF;
+	Tue, 21 Apr 2026 11:45:19 +0200 (CEST)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Subject: [PATCH v2 0/2] arm64: dts: rockchip: fix Ethernet PHY on Theobroma
+ PX30 devices
+Date: Tue, 21 Apr 2026 11:45:04 +0200
+Message-Id: <20260421-px30-eth-phy-v2-0-68c375b120fd@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Cc: shawn.lin@rock-chips.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Add cap-aggressive-pm support
-To: Ulf Hansson <ulfh@kernel.org>
-References: <1776739609-122962-1-git-send-email-shawn.lin@rock-chips.com>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <1776739609-122962-1-git-send-email-shawn.lin@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9daf6b235e09cckunmfa81b8e510585f
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCHk5IVk4eTUIaSRhKQxkfQlYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0hVSktLVU
-	pCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=InuH+hFwTDDBaUTCLz/u5DL4kN5e41aR0vDyjMWiZ9+he+7NBfZhbRE0U8PaF5Tm3AvaeDKBwo2yIr3zWYO2u/6i+wxrwkZUaU8a2BNsoSy7V2wHl2EBJ++YqKnPN6qS7rre7edEJ0Icvi94D74MRX65kHImQfAGJvjTgEFOjlc=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=tAnzLbris520gZDO0p5TB0LB7SInTEk9icdx/psxDXE=;
-	h=date:mime-version:subject:message-id:from;
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/1WMOw7CMBAFrxJtjZHXgeVTcQ+UIiRr7Cax7MiKF
+ fnuLKGiGWme9GaDxNFzgnuzQeTsk58nEXNoYHD99GblR3Ew2pDGVquwCnhxKrii6EK2xysyIoF
+ cQmTr1z337MSdT8scy17P+F1/IcF/KKMSsS2dX0ynmzGPwXGM5TgydLXWD6P5EimoAAAA
+X-Change-ID: 20260130-px30-eth-phy-676fa181e116
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiko Stuebner <heiko.stuebner@cherry.de>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@cherry.de>, stable@vger.kernel.org
+X-Mailer: b4 0.15-dev-47773
+X-Infomaniak-Routing: alpha
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	DMARC_POLICY_ALLOW(-0.50)[0leil.net,reject];
+	R_DKIM_ALLOW(-0.20)[0leil.net:s=20231125];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289040-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-289026-lists,devicetree=lfdr.de,kernel];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[0leil.net:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shawn.lin@rock-chips.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[foss@0leil.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:dkim,rock-chips.com:mid]
-X-Rspamd-Queue-Id: 5861143942B
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,msgid.link:url,cherry.de:mid,cherry.de:email]
+X-Rspamd-Queue-Id: A21A4439112
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-在 2026/04/21 星期二 10:46, Shawn Lin 写道:
-> Aggressive power-management is now all-or-nothing set by host drivers.
-> This should be board-specific, add a new dt property to support adding
-> it via firmware;
-> 
+This removes the reliance on the bootloader setting up the Ethernet PHY
+for the Linux kernel to be able to use Ethernet.
 
-Nak myslef.  I forgot we could set it via debugfs now. Sorry for
-the noise.
+This is due to the HW default of the PHY reset line being active and the
+MDIO auto-detection mechanism not controlling a PHY's reset line such
+that we need to hardcode the PHY ID in the compatible property for it to
+be usable by the kernel, regardless of what the bootloader is doing.
 
-> 
-> 
-> Shawn Lin (2):
->    dt-bindings: mmc: Add cap-aggressive-pm property
->    mmc: core: Parse property for aggressive power management
-> 
->   Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml | 5 +++++
->   drivers/mmc/core/host.c                                          | 2 ++
->   2 files changed, 7 insertions(+)
-> 
+We only ever had one PHY (DP83825) for both devices, so it's fine to
+hardcode this way.
+
+As discussed in v1[1][2], even though they suffer from the same
+limitation, only the patch for Ringneck is targeted for stable releases.
+
+Ethernet is currently broken if the bootloader is built without Ethernet
+support for those two boards. Cobra is a product for which the software
+stack can only be replaced or updated by Cherry. Ringneck is a SoM
+supported since kernel 6.1, the user is likely going to write their own
+bootloader support based on the motherboard they attach the SoM to. They
+may disable Ethernet support in the bootloader if they don't need to
+(e.g. to reduce the attack surface or have an easier time certifying a
+ device when arguing with an audit company).
+
+Ethernet-less bootloader was supported until commit e463625af7f9
+("arm64: dts: rockchip: move reset to dedicated eth-phy node on
+ringneck") for Ringneck. Because I do not control what our users have
+made with Ringneck, and that it used to work before commit e463625af7f9,
+the patch fixing the issue on Ringneck is a candidate for backporting to
+stable.
+
+Cobra never supported it due to its support in the kernel being added 
+with this (unknown at the time) limitation. Moreover, Cherry controls
+the whole software stack so this is already patched downstream whenever
+required. Therefore, the patch fixing the issue on Cobra is not marked
+as a candidate for backporting to stable (but if it ends up being
+backported, it's fine as well).
+
+[1] https://lore.kernel.org/linux-rockchip/38452338-6e65-47ad-a696-b90c02ac42f0@lunn.ch/
+[2] https://lore.kernel.org/linux-rockchip/b2f12140-ee3d-45bc-864e-d51317c83b8d@cherry.de/
+
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+---
+Changes in v2:
+- removed Cc stable on Cobra's patch,
+- Link to v1: https://patch.msgid.link/20260202-px30-eth-phy-v1-0-ef365be64922@cherry.de
+
+---
+Quentin Schulz (2):
+      arm64: dts: rockchip: fix Ethernet PHY not found on PX30 Cobra
+      arm64: dts: rockchip: fix Ethernet PHY not found on PX30 Ringneck
+
+ arch/arm64/boot/dts/rockchip/px30-cobra.dtsi    | 2 +-
+ arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+---
+base-commit: c1f49dea2b8f335813d3b348fd39117fb8efb428
+change-id: 20260130-px30-eth-phy-676fa181e116
+
+Best regards,
+--  
+Quentin Schulz <quentin.schulz@cherry.de>
+
 
