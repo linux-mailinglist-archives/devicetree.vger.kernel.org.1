@@ -1,133 +1,161 @@
-Return-Path: <devicetree+bounces-288983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288985-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2F0jAS4v52nE5AEAu9opvQ
-	(envelope-from <devicetree+bounces-288983-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 10:02:54 +0200
+	id mMIkEhsx52kD5QEAu9opvQ
+	(envelope-from <devicetree+bounces-288985-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 10:11:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 385B9437F0D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 10:02:53 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A33D437FC4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 10:11:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 30B9D300D934
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 08:02:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3AC463011763
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 08:11:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE4B2366075;
-	Tue, 21 Apr 2026 08:02:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E76384246;
+	Tue, 21 Apr 2026 08:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e+gg2Cbd"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="dHhiLQWX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B29D283CAF;
-	Tue, 21 Apr 2026 08:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C87272631;
+	Tue, 21 Apr 2026 08:11:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776758569; cv=none; b=ifnQ2Lmr/UvkEWhddQHbAQIobrika4cFnKShOHRvzS8FhhEVi2s/MgdUEY4fb7322S8gHmub43QsO7bh/rY9cPuH4aBAY6G3BKuIIluB5Li+Jqe+Qdtw4NIKGVHM68CY7cqv6GgWuKE5rbDzWV234aMo2pW1/5ZB4GieIkBohC8=
+	t=1776759063; cv=none; b=l5TTtW/KykDkkiJOP9HCs+GQ/RI07nRdeZ3tXO2Q2dC+Xyc2LkA4DWtWEJRRhib5zC3csTmvAZnY3JU3nKCktgqGMnMUYKgZHyHO59Wa56LjmzI0A2Zz9NTDdNKUAPvefzCtQlTa61tTwY//1Eih+1dB2ob1PE/9xpeKDBbreFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776758569; c=relaxed/simple;
-	bh=MQ0U64TDsK6alrkDhbgHgLn1qQ1ZkRwtQIWdPthswAU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LBxG4HwSJb7Y5An3zhcpJ2A3+1AVoOOppB2LjuCgwFYPMJqXY/Lt6gVKxJDhn1jJcCZKn8m+J6xYFizd6Klbav0AgLAjnDnejRBH+ZFv7krYeqaRxqmqxEEz25Cqw8S+vD8h4ER6BVMY5GWadVKr4viisRwxYa3b0kpsPzLArO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e+gg2Cbd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EA89C2BCB0;
-	Tue, 21 Apr 2026 08:02:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776758569;
-	bh=MQ0U64TDsK6alrkDhbgHgLn1qQ1ZkRwtQIWdPthswAU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e+gg2Cbd1haul0eQWTsWxDtkeavAQp3FOX/Mjjg+xuwmc8r/VOZgVKFEtUIwG1DV2
-	 o8rLztNt/XYzS3qCwM9H0lOlDvLCbylHUoVstwGPVJ0pYNV6DQfRO1ntRNcSmu9iYl
-	 jBH+qUMNrDfKKuCK8aEK5gd+KF7XxhuzMy4tObvzfSzZrehdV79TIWenii8KNvpQ/m
-	 f/osnI8xOzAUtRDCjUmMP+8lXVn81+NCBGvDPlpHDg7oIRP2yxYb9lKnYClYfYNk6D
-	 mC1Vip6GkLF/A+WEI+dA3ip4R5xLk8BvN6w3aK65RSiJvW3AO+Ge1JcpQihNO+iram
-	 o0puqKESaGvwA==
-Date: Tue, 21 Apr 2026 10:02:46 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] ARM: dts: renesas: r8a7740: Add ZT/ZTR trace
- clock on R-Mobile A1
-Message-ID: <20260421-cherubic-urban-beluga-49ee00@quoll>
-References: <20260415233300.457892-1-marek.vasut+renesas@mailbox.org>
- <20260415233300.457892-4-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1776759063; c=relaxed/simple;
+	bh=Tw5y/BjaWKbihGRIOsYkTlgniAaZpFkNRSj8PyADtm8=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=D7JPp7774FhocOYZ4r41LhNKrJH8a20zHEikvEdQZABoRdDBmtZZpkrK6SdiVN3M6EIe14k0EhwKnP3T46xirHjA/OkNUYpEJhVyMnyhdyCmIezOuwzFIwDVkeDjJdb02FDiYG3eNoEdQjg/a0vEC+0j0TAQ0QpmFjKmEqehQ3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=dHhiLQWX; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4g0FRJ4rD5z9tMq;
+	Tue, 21 Apr 2026 10:10:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1776759052;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Tw5y/BjaWKbihGRIOsYkTlgniAaZpFkNRSj8PyADtm8=;
+	b=dHhiLQWXIWgWFHaJiWrcbUeW05na81V5ClSqTnpiBMdlHHS+ddX5yPOhQN4CUfDvOifOm5
+	CsSq6HZ64idqIQgd0FbGmyBtHSW0CKc971hEjXK1xMb5zG3S9lqNZ6d1dap736e9vNVEaC
+	fNwf7+pnHoB1wfV0E3XogxIw17WRWOrruixz+kyV4r7PdqziKdFnClKr0BNDgzKlGgtPZQ
+	vVJ0Qw/c1uPhxyYTszZXExAb4cff0lWCwF5/bCI/APZk5t9X+ZrvAEvHzq2jzDXqZzMQYm
+	6z8Pzd+N8x9ow2AEYLmdlqUFtbWSZX9vYDNtVXk40PeZ2dAq9m4Qh8gr9acWNQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260415233300.457892-4-marek.vasut+renesas@mailbox.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 21 Apr 2026 16:10:39 +0800
+Message-Id: <DHYOIIFMGH7J.228ISQ7XYFGKE@mailbox.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, "Viresh Kumar"
+ <viresh.kumar@linaro.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Paul Walmsley" <pjw@kernel.org>, "Palmer Dabbelt" <palmer@dabbelt.com>,
+ "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>,
+ "Yixun Lan" <dlan@kernel.org>, <linux-pm@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+ <spacemit@lists.linux.dev>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] riscv: dts: spacemit: Add cpu scaling for K1 SoC
+From: "Shuwei Wu" <shuwei.wu@mailbox.org>
+To: "Aurelien Jarno" <aurelien@aurel32.net>, "Anand Moon"
+ <linux.amoon@gmail.com>
+References: <20260410-shadow-deps-v2-0-4e16b8c0f60e@mailbox.org>
+ <20260410-shadow-deps-v2-2-4e16b8c0f60e@mailbox.org>
+ <CANAwSgSNHO3MNewNzpYbhuj4K3NTdfzDC9KPoUHbFH97P4M_UQ@mail.gmail.com>
+ <DHUCL24GMX7D.369IWK9DLPZPX@mailbox.org>
+ <CANAwSgRt5-t_ah=phGc+CQYHG-CdWJuOX-2VTW6xE7n7EnVsFw@mail.gmail.com>
+ <aeaXszeaE62rM6BJ@aurel32.net>
+In-Reply-To: <aeaXszeaE62rM6BJ@aurel32.net>
+X-MBO-RS-ID: 898c96528d6322090f5
+X-MBO-RS-META: dyrjym6i7ydcwho6k8h6h6sh3yn8yuoe
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-288983-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-288985-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[aurel32.net,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,glider.be,gmail.com,baylibre.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,baylibre.com:email]
-X-Rspamd-Queue-Id: 385B9437F0D
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shuwei.wu@mailbox.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mailbox.org:dkim,mailbox.org:mid]
+X-Rspamd-Queue-Id: 1A33D437FC4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 16, 2026 at 01:31:40AM +0200, Marek Vasut wrote:
-> Add ZT trace bus and ZTR trace clock on the R-Mobile A1.
-> 
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Magnus Damm <magnus.damm@gmail.com>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-clk@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
-> V2: Add ztr/zt clock at the end of the list to match bindings
-> ---
->  arch/arm/boot/dts/renesas/r8a7740.dtsi    | 2 +-
+Hi Aurelien,
 
->  include/dt-bindings/clock/r8a7740-clock.h | 2 ++
+Thanks for your addition.
 
-This goes to the binding patch.
+On Tue Apr 21, 2026 at 5:16 AM CST, Aurelien Jarno wrote:
+> Hi Anand,
+>
+> On 2026-04-16 17:07, Anand Moon wrote:
+>> After reviewing the Banana Pi F3 schematics, I confirmed that Buck1 and =
+Buck2
+>> Both supply the CORE_0V9 with 0.9V=C2=B11% rail. To resolve the restrict=
+ion errors,
+>> I expanded the voltage range in the DTS to 500,000=E2=80=93950,000 =C2=
+=B5V.
+>>=20
+>> Additionally, I updated the DTS to map the second CPU cluster (cores 4=
+=E2=80=937)
+>> to Buck2 to better align with the hardware's power distribution.
+>
+> Actually the output of Buck1 and Buck2 are connected together, so they=20
+> should always be configured with the same output voltage. And both=20
+> clusters should be mapped to both outputs.
 
-Didn't you have also a checkpatch warning?
+You are right, I received the same response from the official developers.
 
+Therefore, I'm wondering if an additional regulator-coupled-with: property
+definition is also needed here?
+
+>
+> I also wonder why in the original patch the buck1 regulator is named=20
+> buck1_3v45, from the schematics, it should rather be called buck1_0v9.
+
+Yes, my definition here ignores the regulator's default voltage.
+Thank you for pointing this out.
+
+>
+> Regards
+> Aurelien
+
+--=20
 Best regards,
-Krzysztof
-
+Shuwei Wu
 
