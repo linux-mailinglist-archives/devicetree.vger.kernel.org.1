@@ -1,260 +1,219 @@
-Return-Path: <devicetree+bounces-289171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289174-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MDn8K12u52lZ/QEAu9opvQ
-	(envelope-from <devicetree+bounces-289171-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 19:05:33 +0200
+	id sHzONtWu52lZ/QEAu9opvQ
+	(envelope-from <devicetree+bounces-289174-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 19:07:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BCC143DB64
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 19:05:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58FC043DBBE
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 19:07:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3007D3027942
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 17:03:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1AC5B30057A9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 17:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9326372B41;
-	Tue, 21 Apr 2026 17:03:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q1Cut8L5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8334037A481;
+	Tue, 21 Apr 2026 17:07:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A2326E71F;
-	Tue, 21 Apr 2026 17:03:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3113D1509AB;
+	Tue, 21 Apr 2026 17:07:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.228.1.57
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776791036; cv=none; b=ei3Zu5H5Ss7AvgahH5OQbU1kwT7oAFdFZ4lHxEW5cUPfG71YI3OsT5+1klw6wlTOPQ2xb3BL0q0j+v5ULQc7cATqiTW4GgNNAg1YSREiGVnqC2N/C5fsxLYpBOZSxgcJftb5i70nRvvLx1dQ++FHRQT8u4h8KNF4KPCJAB8CSvY=
+	t=1776791251; cv=none; b=YoLVRP0rELpxGlS4rxsWEocB5iqK/F4XRFaPLOyRf4qkL5Sj7ocK6fh+ElZ++lxGds/hy8CLE+yK43WPlGS0PzTsN3UYHPPu6wcg3j5oOtq3Gl2bHIeZjP7t7UiIMBnRVG/6t6oP2c6OH6NNZl5hYN47mi99cjxjn2wAUMb1jaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776791036; c=relaxed/simple;
-	bh=0vjQ9Y6dD5TiOFno1Q68yXI5D0Y2pLi1DknZIvVD400=;
+	s=arc-20240116; t=1776791251; c=relaxed/simple;
+	bh=BmLatGy8n1zKmv3W1i69jDYO1lD52eKYiSdHSJdTpeE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QjxJHqYMC/HimL2RFilLFItU59M2IBLK6NLXQmCml+cGlqvHT1XhJaYh3MADEYjTsplyPV00+z1hgPzJYxVowcfaV1hqTWs+dGm3C/M3kuNk1fD6M1NXG727NxwwMGpwdSIJnNNcfcwsKgCnTNgjLdff/Gb6rUsYQAUuzZ31hho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q1Cut8L5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39614C2BCB0;
-	Tue, 21 Apr 2026 17:03:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776791036;
-	bh=0vjQ9Y6dD5TiOFno1Q68yXI5D0Y2pLi1DknZIvVD400=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q1Cut8L5nPZLACraL34et+ZDudtOmllGmjvGe4FctvAaXredYdyhE7FtLihMVckV1
-	 b3RFRH+oIiaJxvEI8cfHLE1vB3Ug0yMnwTHRY2zZ4FzBhDd+0UaJ1tGYFN1eHeWoEw
-	 P/MO0dwrBEmmChUGpf0a7YOL6h2Ckgi+cLdmEWF1j/K++tV5dsb/0mYIoKix6ELpWv
-	 5ZZAI2FsK6aBzwI9njKh9+wiCDxSb6r3xd+OTDE1HCD/h4enKGjC9w10yd0m7Lewso
-	 DiYpW5YNhU64cbkIPqYBdRNVeTS/TC/Fx+ujxP1TPayZ2YrW44tdOk0GsfrGB8wqk5
-	 hgSRXpnwUhHNw==
-Date: Tue, 21 Apr 2026 18:03:50 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-	Ajay Neeli <ajay.neeli@amd.com>,
-	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Pedro Sousa <pedrom.sousa@synopsys.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-scsi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] scsi: ufs: dt-bindings: starfive: Add UFS Host
- Controller for JHB100 soc
-Message-ID: <20260421-appetite-vowel-ce0837f5625b@spud>
-References: <20260421091215.120632-1-minda.chen@starfivetech.com>
- <20260421091215.120632-2-minda.chen@starfivetech.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hWmmbShRAnnRWeyuIgfALBggo4xC11vz7zRyTtJodnrjqaCuRUb28Y7iawPTgFYWVitNK4etXALUVQ2BeBV5KeMyrhRlr4p2vuvEMeGLlJ8FerHQlwVTMI6e9/6tnHwitHWvoS/I2zUj8sz1JPQYSlmLpWy70oOUfdDZU4As4Do=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.crashing.org; spf=pass smtp.mailfrom=kernel.crashing.org; arc=none smtp.client-ip=63.228.1.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.crashing.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kernel.crashing.org
+Received: from gate.crashing.org (localhost [127.0.0.1])
+	by gate.crashing.org (8.18.1/8.18.1/Debian-2) with ESMTP id 63LH4FuA3771909;
+	Tue, 21 Apr 2026 12:04:15 -0500
+Received: (from segher@localhost)
+	by gate.crashing.org (8.18.1/8.18.1/Submit) id 63LH47sR3771903;
+	Tue, 21 Apr 2026 12:04:07 -0500
+X-Authentication-Warning: gate.crashing.org: segher set sender to segher@kernel.crashing.org using -f
+Date: Tue, 21 Apr 2026 12:04:06 -0500
+From: Segher Boessenkool <segher@kernel.crashing.org>
+To: Link Mauve <linkmauve@linkmauve.fr>
+Cc: linuxppc-dev@lists.ozlabs.org, Madhavan Srinivasan <maddy@linux.ibm.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Juergen Gross <jgross@suse.com>, Ajay Kaher <ajay.kaher@broadcom.com>,
+        Alexey Makhalov <alexey.makhalov@broadcom.com>,
+        Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+        Geoff Levand <geoff@infradead.org>,
+        Mahesh J Salgaonkar <mahesh@linux.ibm.com>,
+        "Oliver O'Halloran" <oohall@gmail.com>,
+        Anatolij Gustschin <agust@denx.de>,
+        Breno =?iso-8859-1?Q?Leit=E3o?= <leitao@debian.org>,
+        Nayna Jain <nayna@linux.ibm.com>,
+        Paulo Flabiano Smorigo <pfsmorigo@gmail.com>,
+        Eric Biggers <ebiggers@kernel.org>,
+        "Jason A. Donenfeld" <Jason@zx2c4.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Thorsten Blum <thorsten.blum@linux.dev>,
+        Thomas Huth <thuth@redhat.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+        David Hildenbrand <david@kernel.org>,
+        Alistair Popple <apopple@nvidia.com>,
+        "Ritesh Harjani (IBM)" <ritesh.list@gmail.com>,
+        Donet Tom <donettom@linux.ibm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        =?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@rivosinc.com>,
+        Will Deacon <will@kernel.org>,
+        "Lorenzo Stoakes (Oracle)" <ljs@kernel.org>,
+        Paul Moore <paul@paul-moore.com>, Nam Cao <namcao@linutronix.de>,
+        Alexander Gordeev <agordeev@linux.ibm.com>,
+        Sourabh Jain <sourabhjain@linux.ibm.com>,
+        Hari Bathini <hbathini@linux.ibm.com>,
+        Srikar Dronamraju <srikar@linux.ibm.com>,
+        Shrikanth Hegde <sshegde@linux.ibm.com>, Jiri Bohac <jbohac@suse.cz>,
+        "Mike Rapoport (Microsoft)" <rppt@kernel.org>,
+        "Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Kees Cook <kees@kernel.org>, Stephen Rothwell <sfr@cab.auug.org.au>,
+        Xichao Zhao <zhao.xichao@vivo.com>,
+        Gautam Menghani <gautam@linux.ibm.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        K Prateek Nayak <kprateek.nayak@amd.com>,
+        Guangshuo Li <lgs201920130244@gmail.com>,
+        Li Chen <chenl311@chinatelecom.cn>,
+        Aboorva Devarajan <aboorvad@linux.ibm.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Feng Tang <feng.tang@linux.alibaba.com>,
+        "Nysal Jan K.A." <nysal@linux.ibm.com>,
+        Aditya Gupta <adityag@linux.ibm.com>,
+        Sayali Patil <sayalip@linux.ibm.com>,
+        Rohan McLure <rmclure@linux.ibm.com>,
+        Pasha Tatashin <pasha.tatashin@soleen.com>,
+        Yeoreum Yun <yeoreum.yun@arm.com>,
+        Kevin Brodsky <kevin.brodsky@arm.com>,
+        "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+        Andrew Donnellan <andrew+kernel@donnellan.id.au>,
+        "Vishal Moola (Oracle)" <vishal.moola@gmail.com>,
+        Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>,
+        Athira Rajeev <atrajeev@linux.ibm.com>,
+        Kajol Jain <kjain@linux.ibm.com>, Thomas Gleixner <tglx@kernel.org>,
+        Chen Ni <nichen@iscas.ac.cn>, Haren Myneni <haren@linux.ibm.com>,
+        Jonathan Greental <yonatan02greental@gmail.com>,
+        Ingo Molnar <mingo@kernel.org>,
+        "Yury Norov (NVIDIA)" <yury.norov@gmail.com>,
+        Gaurav Batra <gbatra@linux.ibm.com>,
+        Nilay Shroff <nilay@linux.ibm.com>,
+        Vivian Wang <wangruikang@iscas.ac.cn>,
+        Adrian =?utf-8?Q?Barna=C5=9B?= <abarnas@google.com>,
+        "Rafael J. Wysocki (Intel)" <rafael@kernel.org>,
+        Thierry Reding <treding@nvidia.com>, Yury Norov <ynorov@nvidia.com>,
+        "Mukesh Kumar Chaurasiya (IBM)" <mkchauras@gmail.com>,
+        Ruben Wauters <rubenru09@aol.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
+        kvm@vger.kernel.org, virtualization@lists.linux.dev, x86@kernel.org
+Subject: Re: [PATCH 2/2] powerpc: Run typos -w
+Message-ID: <aeeuBnjhRN7G9gYK@gate>
+References: <20260421121420.26079-1-linkmauve@linkmauve.fr>
+ <20260421121420.26079-3-linkmauve@linkmauve.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="BeD+x9onsyh/EoOc"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260421091215.120632-2-minda.chen@starfivetech.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+In-Reply-To: <20260421121420.26079-3-linkmauve@linkmauve.fr>
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289171-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[lists.ozlabs.org,linux.ibm.com,ellerman.id.au,gmail.com,kernel.org,gondor.apana.org.au,davemloft.net,suse.com,broadcom.com,infradead.org,denx.de,debian.org,zx2c4.com,linux.dev,redhat.com,ziepe.ca,nvidia.com,linux-foundation.org,rivosinc.com,paul-moore.com,linutronix.de,suse.cz,linuxfoundation.org,linux.intel.com,cab.auug.org.au,vivo.com,amd.com,chinatelecom.cn,linux.alibaba.com,soleen.com,arm.com,donnellan.id.au,iscas.ac.cn,google.com,aol.com,vger.kernel.org,lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_FROM(0.00)[bounces-289174-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[crashing.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,kernel];
+	HAS_XAW(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[segher@kernel.crashing.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,11b10000:email,starfivetech.com:email]
-X-Rspamd-Queue-Id: 1BCC143DB64
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_GT_50(0.00)[94];
+	DBL_PROHIBIT(0.00)[0.0.12.28:email,0.0.0.1:email];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 58FC043DBBE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hi!
 
---BeD+x9onsyh/EoOc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, Apr 21, 2026 at 02:14:14PM +0200, Link Mauve wrote:
+> diff --git a/arch/powerpc/boot/dts/fsl/ppa8548.dts b/arch/powerpc/boot/dts/fsl/ppa8548.dts
+> index f39838d93994..32558104b3a9 100644
+> --- a/arch/powerpc/boot/dts/fsl/ppa8548.dts
+> +++ b/arch/powerpc/boot/dts/fsl/ppa8548.dts
+> @@ -95,7 +95,7 @@ i2c@3100 {
+>  
+>  	/*
+>  	 * Only ethernet controller @25000 and @26000 are used.
+> -	 * Use alias enet2 and enet3 for the remainig controllers,
+> +	 * Use alias enet2 and enet3 for the remaining controllers,
 
-On Tue, Apr 21, 2026 at 05:12:13PM +0800, Minda Chen wrote:
-> Add devicetree document for UFS Host Controller StarFive JHB100 SoC.
-> The UFS controller is based on the Synopsys DesignWare UFS controller.
->=20
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> ---
->  .../devicetree/bindings/ufs/starfive,ufs.yaml | 76 +++++++++++++++++++
->  MAINTAINERS                                   |  5 ++
->  2 files changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ufs/starfive,ufs.ya=
-ml
->=20
-> diff --git a/Documentation/devicetree/bindings/ufs/starfive,ufs.yaml b/Do=
-cumentation/devicetree/bindings/ufs/starfive,ufs.yaml
-> new file mode 100644
-> index 000000000000..c408973dd0ce
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ufs/starfive,ufs.yaml
+Aliases.
 
-Filename should be starfive,jhb100-ufs.
+> diff --git a/arch/powerpc/boot/dts/mpc8308_p1m.dts b/arch/powerpc/boot/dts/mpc8308_p1m.dts
+> index 41f917f97dab..48a98449ecbb 100644
+> --- a/arch/powerpc/boot/dts/mpc8308_p1m.dts
+> +++ b/arch/powerpc/boot/dts/mpc8308_p1m.dts
+> @@ -90,14 +90,14 @@ can@1,0 {
+>  			compatible = "nxp,sja1000";
+>  			reg = <0x1 0x0 0x80>;
+>  			interrupts = <18 0x8>;
+> -			interrups-parent = <&ipic>;
+> +			interrupts-parent = <&ipic>;
+>  		};
 
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ufs/starfive,ufs.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Starfive Universal Flash Storage (UFS) Controller
-> +
-> +maintainers:
-> +  - Minda Chen <minda.chen@starfivetech.com>
-> +
-> +allOf:
-> +  - $ref: ufs-common.yaml
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jhb100-ufs
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: UFS reference clock
-> +      - description: UFS main enable clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ref_clk
+interrupt-parent .
 
-Think "ref" suffices here.
+All the names of properties have a meaning!  Just as you cannot change
+a function name in C without changing all calls to it as well, you
+really should never change a property name (if you want stuff to keep
+on working, that is ;-) ).
 
-> +      - const: ufs
-> +
-> +  resets:
-> +    items:
-> +      - description: UFS main reset
-> +      - description: UFS PHY reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: main
-> +      - const: phy
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  starfive,syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      The phandle to System Register Controller syscon node.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - resets
-> +  - reset-names
-> +  - interrupts
-> +  - starfive,syscon
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    ufs@11b10000 {
-> +        compatible =3D "starfive,jhb100-ufs";
-> +        reg =3D <0x11b10000 0x20000>;
-> +        interrupts =3D <105>;
-> +        clocks =3D <&syscrg 4>,
-> +                 <&syscrg 5>;
-> +        clock-names =3D "ref_clk", "ufs";
-> +        freq-table-hz =3D <26000000 26000000>,
-> +                        <100000000 100000000>;
-> +        resets =3D <&syscrg 10>,
-> +                 <&syscrg 7>;
-> +        reset-names =3D "main", "phy";
-> +        starfive,syscon =3D <&syscon>;
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 32bd94a0b94c..3792c51da63c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -27190,6 +27190,11 @@ L:	linux-scsi@vger.kernel.org
->  S:	Maintained
->  F:	drivers/ufs/host/ufs-renesas.c
-> =20
-> +UNIVERSAL FLASH STORAGE HOST CONTROLLER DRIVER STARFIVE
-> +M:	Minda Chen <minda.cheb@starfivetech.com>
+In this case, the property was never actually used (because of the
+typo).  Maybe it wasn't needed?  If you make changes to a DTS, post it
+*separately* from the rest of this series, and test it *thoroughly*.
+Just a "does it boot" test is certainly not enough.
 
-Typo in your email address here.
+It could well be that fixing the typo (so that the property name becomes
+"interrupt-parent") makes the kernel no longer boot on the systems
+affected, or less obvious problems can show up.
 
-pw-bot: changes-requested
+It will need to be tested and evaluated by whoever maintains the DTSes
+in question, really :-/  And you cannot test it works for one DTS and
+then conclude it will work everywhere, heh.
 
-Thanks,
-Conor.
 
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/ufs/starfive,ufs.yaml
-> +
->  UNIWILL LAPTOP DRIVER
->  M:	Armin Wolf <W_Armin@gmx.de>
->  L:	platform-driver-x86@vger.kernel.org
-> --=20
-> 2.17.1
->=20
->=20
-
---BeD+x9onsyh/EoOc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaeet9gAKCRB4tDGHoIJi
-0h0hAQD1C2lWY7cSC00wSe7joATUSIpjBI6Cx3TuNjrVrWb06AD/XGUJZEm9k8qw
-mfhfFn0AgmdvixEu6ZccTqYwM6IfrAk=
-=i4yy
------END PGP SIGNATURE-----
-
---BeD+x9onsyh/EoOc--
+Segher
 
