@@ -1,193 +1,128 @@
-Return-Path: <devicetree+bounces-289155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289158-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yDVhD2Cd52ml+QEAu9opvQ
-	(envelope-from <devicetree+bounces-289155-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 17:53:04 +0200
+	id SHOwL8ed52ml+QEAu9opvQ
+	(envelope-from <devicetree+bounces-289158-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 17:54:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F20D343CFA2
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 17:53:03 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34F3643CFEE
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 17:54:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 50416301D198
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 15:53:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 174F0303F469
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 15:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A21033F5A2;
-	Tue, 21 Apr 2026 15:53:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 612113624D7;
+	Tue, 21 Apr 2026 15:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="cqcQxAX3"
+	dkim=pass (1024-bit key) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.b="rC6wgR+n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com [91.218.175.180])
+Received: from smtp.uibk.ac.at (smtp.uibk.ac.at [138.232.1.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25C2A2C08CF
-	for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 15:52:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F83D33F5A2;
+	Tue, 21 Apr 2026 15:54:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=138.232.1.140
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776786779; cv=none; b=bVWKd4MbWZqCy4P0q7gcut4LjalTPrGD0l1dbuvqnbCihfYcxYO0+iR5D1hF3fYCctYkocVSk7GFeDINYG25wONdmWLJg4Qkv+M0z9gHYsuv4ElqacIC5lP2RVx57xaurdHkVEYdZz2uzDQX4yReyl/NE14vEeRKPDgXXchyv/g=
+	t=1776786845; cv=none; b=RRs4Kft76/tD8/vw/Yc7YfzvlDZ6BvpQS30mtMc/UE4myb8flRU9fjVBJuFlY5ACeBJLBGK5lb5DNnPCVAtXbUyLraTzp/sVdj4BLlEcuxwYGMwLWP1uyaM9HTJYJd5HZGfzfeTOeveH95vf0apHdO/cE9ATm5D295W9SaL0Pb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776786779; c=relaxed/simple;
-	bh=ADPTNPcNngsBtU+kO72lu0Cf8uZCTIyjUrmakA9Qf1k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eCjupcVoQNHruXOt7Zy/OIV076X9RRwTwvjy9AqOaj5aVTAT5ISfEC37Xd560O50dDepO+eGTki860BivGQtSyLq5bw0ve8JzMQoTc6XR2LXeniB3rdASC8NQ2yTQersHCFTZXitomqLBUMuETgu8kEDgllNwZxPIFm8djqE778=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=cqcQxAX3; arc=none smtp.client-ip=91.218.175.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-Message-ID: <c9af4767-da4c-4e65-9e97-47434a893a73@packett.cool>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1776786766;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rUpEzNKW8mpVwevIJYS1mzUUZaX2RonolbUtkCtLrbs=;
-	b=cqcQxAX3jV2NQtqyPY3WjUylp94HQCuI4o7uEIqwZ9YxUK6bJTBVOz0Ub3wyWP7TLtzlJG
-	ERe42IGUSVr0B+IJht6wGFSiU4B7GKw/v5AE8IrBovscWpg8dVaE5B7d+3GO66UtKzcwkm
-	4P1gm6KC/SXyriMMGhdHCAmVzGCBryUIB16X4CYEwuCzl1OUrkcii5CfEvuBosFKI+fDaK
-	c2V3XJiPSErk3uuOqXiYZlmuItJ4JegjkDFt24/YWbKxTMnyZesARaMBk+I1GuoIiHBZ58
-	9f3a0+f02YPhEOFPIh2zVJykEi4bMmPWN/dJwXXiJnJRmNQustLzFBHRp12uRg==
-Date: Tue, 21 Apr 2026 12:52:37 -0300
+	s=arc-20240116; t=1776786845; c=relaxed/simple;
+	bh=WC43/Zi36PR0jMglG4CV61QZ03CxcLSXxvq9nLXvQHY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GUMI3TH0jUUazt1GAQwq3Tm2QIY/XMfuXT90xpVg85uuAwnJAHbYSzN3KRhxjQewNCI9xaLGZP5TC4kDWVjnRK3YV5/Pw8UPx5YLgN287DiNsJMDU1JTEyQCkdiPyyG0CJN3yp6pkiDAn/q6hkQH8/CkfJ9Onu3Xnw6iiZODFxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=student.uibk.ac.at; spf=pass smtp.mailfrom=student.uibk.ac.at; dkim=pass (1024-bit key) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.b=rC6wgR+n; arc=none smtp.client-ip=138.232.1.140
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=student.uibk.ac.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=student.uibk.ac.at
+Received: from surface-pro-5.uibk.ac.at (ydWLT-U1-7-16.uibk.ac.at [172.25.7.16])
+	(authenticated bits=0)
+	by smtp.uibk.ac.at (8.15.2/8.15.2/F1) with ESMTPSA id 63LFrULx2501267
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO);
+	Tue, 21 Apr 2026 17:53:34 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.uibk.ac.at 63LFrULx2501267
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=student.uibk.ac.at;
+	s=prod24a; t=1776786814;
+	bh=Naa1oyRkUNUVOUuBidaVs+/e9mdftRGQ/QJOlDTjJok=;
+	h=From:To:Cc:Subject:Date;
+	b=rC6wgR+n8nQ04Vk1M06RCP83Gq9TpqmcSbqHKmGkUHwZ5DShA49cGzvjbjLWMwroS
+	 MGjcs+Zm9tvWUEYjErRHbFrfBzmblSP9Y/iL1z1s7opBkR3RpYEC1ybD+TDNVrgLbd
+	 e4A+eBcmCF+EKTDGVIl7+lmXnD+X/xymCwgB7KKY=
+From: christian.koever-draxl@student.uibk.ac.at
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, khilman@baylibre.com
+Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Christian=20Stefan=20K=C3=B6v=C3=A9r-Draxl?= <christian.koever-draxl@student.uibk.ac.at>
+Subject: [PATCH v3 0/2] Add support for Amediatech X98Q (Amlogic S905W2)
+Date: Tue, 21 Apr 2026 17:53:26 +0200
+Message-ID: <20260421155328.26359-1-christian.koever-draxl@student.uibk.ac.at>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: Re: [PATCH] arm64: dts: qcom: kodiak: Add missing clock votes for
- lpass_tlmm
-To: Bhushan Shah <bhushan.shah@machinesoul.in>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Bharadwaj Raju <bharadwaj.raju@machinesoul.in>,
- Alexandre Ferrieux <alexandre.ferrieux@orange.com>,
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260109-kodiak-lpass-tlmm-clocks-v1-1-746112687772@fairphone.com>
- <6749502.DvuYhMxLoT@antlia> <5976946.DvuYhMxLoT@antlia>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Val Packett <val@packett.cool>
-In-Reply-To: <5976946.DvuYhMxLoT@antlia>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spam-Score: () -12.0 ALL_TRUSTED,RCV_SMTP_AUTH,RCV_SMTP_UIBK,UIBK_PHI_SUBJ,U_H_APTO_LONG,U_RCPTS_11_PLUS
+X-Scanned-By: MIMEDefang_3.2_at_uibk.ac.at
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
-	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[student.uibk.ac.at,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[student.uibk.ac.at:s=prod24a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koever-draxl@student.uibk.ac.at,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-289158-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289155-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[baylibre.com,googlemail.com,vger.kernel.org,lists.infradead.org,student.uibk.ac.at];
+	DKIM_TRACE(0.00)[student.uibk.ac.at:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[packett.cool:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,fairphone.com:email,packett.cool:dkim,packett.cool:mid,0.0.0.7:email]
-X-Rspamd-Queue-Id: F20D343CFA2
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 34F3643CFEE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+From: Christian Stefan Kövér-Draxl <christian.koever-draxl@student.uibk.ac.at>
 
-On 1/20/26 7:53 AM, Bhushan Shah wrote:
-> On Friday, 9 January 2026 21:08:32 IST Bhushan Shah wrote:
->> On Friday, 9 January 2026 20:44:34 IST Luca Weiss wrote:
->>> Without the correct clock votes set, we may be hitting a synchronous
->>> external abort error when touching the lpi registers.
->>>
->>>    Internal error: synchronous external abort: 0000000096000010 [#1]  SMP
->>>    <...>
->>>    
->>>    Call trace:
->>>     lpi_gpio_read.isra.0+0x2c/0x58 (P)
->>>     pinmux_enable_setting+0x218/0x300
->>>     pinctrl_commit_state+0xb0/0x280
->>>     pinctrl_select_state+0x28/0x48
->>>     pinctrl_bind_pins+0x1f4/0x2a0
->>>     really_probe+0x64/0x3a8
->>>
->>> Add the clocks to fix that.
->>>
->>> Platforms with this SoC using AudioReach won't be impacted due to
->>> qcs6490-audioreach.dtsi already setting clocks & clock-names for
->>> q6prmcc. The sc7280-chrome-common.dtsi has also been adjusted to keep
->>> the behavior the same as they also do not use Elite with q6afecc.
->>>
->>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> Tested-by: Bhushan Shah <bhushan.shah@machinesoul.in> # On fairphone-fp5
-> As a follow-up;
->
-> While this fixes original abort, it seems on some coldboots or as such(?); it fails
-> to vote the clocks and then eventually soundcard fails to probe, so there is still
-> some issue that needs to be solved.
->
-> [   17.944296] Bluetooth: hci0: Frame reassembly failed (-84)
-> [   20.961100] qcom-q6afe aprsvc:service:4:4: AFE failed to vote (3)
-> [   20.961131] Failed to prepare clk 'core': -110
-> [   20.961137] qcom-sc7280-lpass-lpi-pinctrl 33c0000.pinctrl: error -ETIMEDOUT: Can't enable clocks
-> [   20.961144] qcom-sc7280-lpass-lpi-pinctrl 33c0000.pinctrl: probe with driver qcom-sc7280-lpass-lpi-pinctrl failed with error -110
->
-> So far I was not able to find a precise pattern to this, but doing bunch of coldboots
-> is most easiest way to reproduce I have found.
+Changes in v3:
+- Change position of the entry in the amlogic.yaml.
+- Change formatting of the Amlogic W150S1 Wi-Fi module comment.
+- Fix several formatting issues.
 
-This issue has appeared for a fellow postmarketOS user in the audio 
-chatroom on the sm8250-xiaomi-pipa, the most interesting thing is the 
-error code that was returned:
+Changes in v2:
+- Split dt-bindings and dts changes into separate patches.
+- Updated model string to match documented vendor prefix.
+- Put vddio_sd states array in a single line.
+- Added a comment for the unsupported Amlogic W150S1 Wi-Fi module.
 
-[ 10.823380] PDR: Indication received from msm/adsp/audio_pd, state: 
-0x1fffffff, trans-id: 1
-[ 10.823413] qcom,apr 
-17300000.remoteproc:glink-edge.apr_audio_svc.-1.-1: Adding APR/GPR dev: 
-aprsvc:service:4:3
-[ 10.823476] qcom,apr 
-17300000.remoteproc:glink-edge.apr_audio_svc.-1.-1: Adding APR/GPR dev: 
-aprsvc:service:4:4
-[ 10.825541] qcom,apr 
-17300000.remoteproc:glink-edge.apr_audio_svc.-1.-1: Adding APR/GPR dev: 
-aprsvc:service:4:7
-[ 10.826034] platform 17300000.remoteproc:glink-edge:apr:service@7:dais: 
-Adding to iommu group 28
-[ 10.826399] qcom,apr 
-17300000.remoteproc:glink-edge.apr_audio_svc.-1.-1: Adding APR/GPR dev: 
-aprsvc:service:4:8
-[ 10.827469] qcom-q6afe aprsvc:service:4:4: cmd = 0x100f4 returned error 
-= 0x16
-[ 10.827512] qcom-q6afe aprsvc:service:4:4: Unknown cmd 0x100f4
-…
-[ 14.052896] qcom-q6afe aprsvc:service:4:4: AFE failed to vote (3)
-[ 14.052934] va_macro 3370000.codec: probe with driver va_macro failed 
-with error -110
+Christian Stefan Kövér-Draxl (2):
+  dt-bindings: arm: amlogic: add support for Amediatech X98Q
+  arm64: dts: amlogic: add support for X98Q
 
+ .../devicetree/bindings/arm/amlogic.yaml      |   7 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../boot/dts/amlogic/meson-s4-s905w2-x98q.dts | 249 ++++++++++++++++++
+ 3 files changed, 257 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s905w2-x98q.dts
 
-Uhh, 0x16 is out of the known range of error codes!
+-- 
+2.53.0
 
-q6dsp-errno.h both upstream and downstream ends at 0x15! Wat?!
-
-(Also the "Unknown cmd" error message is confusing, it makes it seem 
-like the ADSP had told us that it doesn't know the cmd, but in reality 
-the *error handler* hit a path where it's an unknown opcode for its 
-processing of the response!)
-
-
-Thanks,
-~val
 
