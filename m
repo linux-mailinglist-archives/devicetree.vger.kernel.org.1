@@ -1,41 +1,41 @@
-Return-Path: <devicetree+bounces-288914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-288926-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qJcOEdno5mlx1wEAu9opvQ
-	(envelope-from <devicetree+bounces-288914-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 05:02:49 +0200
+	id sHfZHBL35mnr2AEAu9opvQ
+	(envelope-from <devicetree+bounces-288926-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 06:03:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6D6D435A8D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 05:02:47 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEC8B43628D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 06:03:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 49692300F15E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 03:02:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C7860301BF6D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 04:02:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEAE330B2E;
-	Tue, 21 Apr 2026 03:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B9E328640B;
+	Tue, 21 Apr 2026 04:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="gW4q8BPP"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="AfpZZdii"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3280.qiye.163.com (mail-m3280.qiye.163.com [220.197.32.80])
+Received: from mail-m1973173.qiye.163.com (mail-m1973173.qiye.163.com [220.197.31.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2266B3164DF;
-	Tue, 21 Apr 2026 03:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.80
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58EFD288B1;
+	Tue, 21 Apr 2026 04:02:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776740563; cv=none; b=lb3mTcA7AvPyjmKm1Eq65RXk/1c36aLANtaxrvN1W7OnXPDolypw1FXinyiYbP6qNngL/SdMlsaHhFv90smIDn3g5W4WOR6Ll1TM+WXudOrmeyedZfNypHCqyms7eqHn46fOIMgcPrwGN/NKYoeBhdT2abMy0lm+eO1axPiCWag=
+	t=1776744178; cv=none; b=fYLa49exgZc1PRo7wkQJy/sxH+TmoVxl1bx9U66hOrE05PUzO4XrhKwZP15fCJS0pxmHSQJN/NO9LI5fZ49StRZpUawDUCfT0ep5vbFNgrY3xacs+rluOP/QR8sjZnaMJjzwk/3efOpNQJe6m3SYsXCE2L0XpYLKp+e9QXont2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776740563; c=relaxed/simple;
-	bh=5ASECufuNR9KeopW7BhPuMtxGo0A04X0+3vH/tPdyEc=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=tQrObLPVnirMwElOQ4PKtJ6FdkkGtz1OYRnjPfvN4NZr/KiSF4/zV+ysSvSurzQkdg7QcPe8lB6h9b+aRfb2m2DFE9VmK3HhwZo9qut5VkreJx9BhaAaZ8+bKAwq5AQ/BmnxODtml2D7vWa6y9on95tlOWshUhGWGvyFaPQwRDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=gW4q8BPP; arc=none smtp.client-ip=220.197.32.80
+	s=arc-20240116; t=1776744178; c=relaxed/simple;
+	bh=qx/k57IVn+hrU1TkQZBd7wTQp0lrUEdP2yhaD4T6+Ss=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=sm9+BvHSONpSYBFlhh47K6RsSU3Z9cSSrjAqbfKT50XOpjSygvYt16ut9RaXS+L/oTCq0BueGK6wdrSdeN2WxcmYhQNTLsJbw8yYKuRhKU4Z2SsP7LtLVnjnhjG6pT+Oi89XYTn0x9khrcQNqmtky2Pbr38DsSWyp62fQrHkqbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=AfpZZdii; arc=none smtp.client-ip=220.197.31.73
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from localhost.localdomain (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3b7d2084d;
-	Tue, 21 Apr 2026 10:46:59 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3b7d2085b;
+	Tue, 21 Apr 2026 10:47:02 +0800 (GMT+08:00)
 From: Shawn Lin <shawn.lin@rock-chips.com>
 To: Ulf Hansson <ulfh@kernel.org>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -45,19 +45,21 @@ Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
 	Shawn Lin <shawn.lin@rock-chips.com>
-Subject: [PATCH 0/2] Add cap-aggressive-pm support
-Date: Tue, 21 Apr 2026 10:46:47 +0800
-Message-Id: <1776739609-122962-1-git-send-email-shawn.lin@rock-chips.com>
+Subject: [PATCH 1/2] dt-bindings: mmc: Add cap-aggressive-pm property
+Date: Tue, 21 Apr 2026 10:46:48 +0800
+Message-Id: <1776739609-122962-2-git-send-email-shawn.lin@rock-chips.com>
 X-Mailer: git-send-email 2.7.4
-X-HM-Tid: 0a9dadef11f109cckunme87b03509c02b
+In-Reply-To: <1776739609-122962-1-git-send-email-shawn.lin@rock-chips.com>
+References: <1776739609-122962-1-git-send-email-shawn.lin@rock-chips.com>
+X-HM-Tid: 0a9dadef1e0909cckunme87b03509c05d
 X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDHhlMVhpCH0oaT09LS0pOQlYVFAkWGhdVEwETFh
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZQklOVhodTkxMGEhKHkxMHVYVFAkWGhdVEwETFh
 	oSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0hVSktLVU
 	pCS0tZBg++
 DKIM-Signature: a=rsa-sha256;
-	b=gW4q8BPPTnkzBmL2Gkqg/JNPwCn3eCovO2SyU2N9Egxpv0Py3EgivbV4aXZgYQpGgkZ4Azhs8aeCfYgok3hYjf6FOViEjpvgULQQ0PazW77Am+nGUsxuP6k25fmrYViOX6nNmjgRjWUhu393dqJTPrV5U1mkG54EIAzNX0DH/a4=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=vsFuk1fsI7/8+FVx/gj8HaiXCuVQtzviX/PAXdoc+Kc=;
+	b=AfpZZdii6j6c4T5P0EnlHgLFthxg4SGqV5+dOZqVWWXhDkFcd6eBrrCUgpPzO0zybrnV3ZWOL6ih+iZo4saUa44f4DLE6fxnCJCtTgthrEBtaMUdi2evnegsNTSQ+TYDsViXMMo8p025TlwDD2PtkYBE048dlSQZTM2wxZapDls=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=dVhwfaRaNvF279kTgGjazKzy0rZD3rGMfZq1ez2Ru0I=;
 	h=date:mime-version:subject:message-id:from;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -71,7 +73,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
 	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -79,37 +81,47 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-288914-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_FROM(0.00)[bounces-288926-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[shawn.lin@rock-chips.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[rock-chips.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A6D6D435A8D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:email,rock-chips.com:dkim,rock-chips.com:mid]
+X-Rspamd-Queue-Id: CEC8B43628D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Introduce a new optional device tree property cap-aggressive-pm for
+the mmc framework to perform aggressive power management strategy.
 
-Aggressive power-management is now all-or-nothing set by host drivers.
-This should be board-specific, add a new dt property to support adding
-it via firmware;
-
-
-
-Shawn Lin (2):
-  dt-bindings: mmc: Add cap-aggressive-pm property
-  mmc: core: Parse property for aggressive power management
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+---
 
  Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml | 5 +++++
- drivers/mmc/core/host.c                                          | 2 ++
- 2 files changed, 7 insertions(+)
+ 1 file changed, 5 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
+index 3d7195e..3c3e5ce 100644
+--- a/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
++++ b/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
+@@ -177,6 +177,11 @@ properties:
+     description:
+       enable SDIO IRQ signalling on this interface
+ 
++  cap-aggressive-pm:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Enable aggressive power management strategy.
++
+   full-pwr-cycle:
+     $ref: /schemas/types.yaml#/definitions/flag
+     description:
 -- 
 2.7.4
 
