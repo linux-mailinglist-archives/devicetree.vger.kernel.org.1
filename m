@@ -1,58 +1,55 @@
-Return-Path: <devicetree+bounces-289028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289017-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EDqaDPVH52kF6QEAu9opvQ
-	(envelope-from <devicetree+bounces-289028-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 11:48:37 +0200
+	id mJuqHO5H52kF6QEAu9opvQ
+	(envelope-from <devicetree+bounces-289017-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 11:48:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96233439125
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 11:48:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D676B439102
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 11:48:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7EC83303B5FB
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 09:45:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2D9AA3051C89
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 09:45:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F77A3BADA6;
-	Tue, 21 Apr 2026 09:45:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 869F23AEF36;
+	Tue, 21 Apr 2026 09:45:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=0leil.net header.i=@0leil.net header.b="MuBqGykW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iD67QomR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-8faf.mail.infomaniak.ch (smtp-8faf.mail.infomaniak.ch [83.166.143.175])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8D73B9D93
-	for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 09:45:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.166.143.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61CEE3AE6F3;
+	Tue, 21 Apr 2026 09:45:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776764735; cv=none; b=fIzcZ3ZSgeNi1rl80uhwSs6n2qs/EVUxJwNZOG9eJoaE09fQyWQJOj1qyJlD2ZI2OTmK8x93DQSn7X0wSWx9WDZOhLvWt5ccx43Hu8j8bWjGiJqwzQKRmjEywO9befbE+XwTNwTMNa9kJPqP8suxzn1Is5ed6cG1ur7xevo0Pmg=
+	t=1776764713; cv=none; b=CJfmO3mhbB820cOkTgsnX4/wsLHGcA1sSHtOxee0V0edxwL6z+dc9AA5vDmBFv9E/zD3ga7u68obH3ky6vk5iGoU62XQvLs6lDZ7aBvfeEOC5TbOYY7XsMyzNZfft0gin4W64sAbZxuCiSlBLbxOKBEN69QqYnuMHxAhaR3+cf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776764735; c=relaxed/simple;
-	bh=rSczTOBfEa8J0mWHfJY7Ropk3TcTNHrAiSB2/t02U20=;
+	s=arc-20240116; t=1776764713; c=relaxed/simple;
+	bh=mPipYwK9VLZR38znykoW7GBA2phEVD7eZlvFmnR+xfM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=T959WAJE6g9EhpdEhfjKmstYhdZddLOtO8QhnY3GlrQmTdfKtcu7jK8q+Wrfyqi+6AGyW5ES7tMZY8da3Jc/o/QimEYdEaTDLsNkhdnDxK4p7H4L82Cq2RvNEUR++ZPxEdpn8jINcndI3QY4IkNCmKTM7Sc81y2x6zAp6GEV2u4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; dkim=pass (2048-bit key) header.d=0leil.net header.i=@0leil.net header.b=MuBqGykW; arc=none smtp.client-ip=83.166.143.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=0leil.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-4-0000.mail.infomaniak.ch (unknown [IPv6:2001:1600:7:10::a6b])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4g0HXM6MgnzXpK;
-	Tue, 21 Apr 2026 11:45:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=0leil.net;
-	s=20231125; t=1776764723;
-	bh=CV9c1b3x442J4d7fS2IkKGulkxFv3w2YEEORXf6cDj8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=MuBqGykWqgBJzLlqi7pe3zx6e3hd5EYSpG6cJ0iJiKGsy9flvPEmCZa7V2lTOnv70
-	 5T7ekGqlve+q3Ui5cwBSRVar4v+t4xTDA+5g3VUibJLiOBebp090IUfcCGqB5kaMpn
-	 n0VF9VymGzVM/SpU2J4uuYrDwRJlEKvXWR/pbU7KKV6j/zLQoBwEuGD6WleMsz7ILx
-	 po1tpN6CHfvgnd7qCu9xJym4owq09TQo5Kdgqe++7eApSy1DciZyG32QCaHWuWvrr5
-	 W/uDHntsHUZuU6mACQcv7fppI0njjp/wrxvw/7F9tuh7pfbVabXRtM+v+DPQRGiJKl
-	 /Ral8emt65UVg==
-Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4g0HXL6s14zb5b;
-	Tue, 21 Apr 2026 11:45:22 +0200 (CEST)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Tue, 21 Apr 2026 11:45:06 +0200
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: fix Ethernet PHY not found on
- PX30 Ringneck
+	 In-Reply-To:To:Cc; b=XPcFzT2L21bwFipPeFBghMQnlSh1zA6GZkyMCRISAx484I1bcaB0oVJ/9Wo0NHDRLO7lPYoB8All33xMeXb1k9pcwx8GFBQLMwjsh7bsT+tTudBhypL2RjhbfcTNzst9e3Bw5CiKjvn1NN7ZWC8qi0mRWsQu3DpE3vW4lRGqSgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iD67QomR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0C687C2BCB0;
+	Tue, 21 Apr 2026 09:45:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776764713;
+	bh=mPipYwK9VLZR38znykoW7GBA2phEVD7eZlvFmnR+xfM=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=iD67QomRbgziVgted+XFBTrXjQYu4bDvN8w3uG7bpBwzZotLAE8UkeUDF1t8dJfiO
+	 +H6dq68haeqTx5++HFMc9LXvc52S9JWGf1rtr8WZVWQjD4MTBUNBX6Mo3a2l8TiBET
+	 7Bv8/AxnOJbdxzlKPmMMhm66+BZv1EbWJq6E66vLq+5X6r2J5F3TjbdMmoGMjUHOLB
+	 d1RD0f3ZpuVgGfQ+f59N6fznw7c02ewItpjIgvki8TAuJQ2mkuzJF4FVGnHU+aWXkI
+	 ptpzhvfDf49eBhCXC0SzL9AewtFPl+Q1zmdKpb8TocHmoDuKhpZ7itCBwlmqugJgZA
+	 N7uAp2eupwCHQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F04C7F327CF;
+	Tue, 21 Apr 2026 09:45:12 +0000 (UTC)
+From: Alexandre MINETTE via B4 Relay <devnull+contact.alex-min.fr@kernel.org>
+Date: Tue, 21 Apr 2026 11:45:07 +0200
+Subject: [PATCH 1/8] dt-bindings: arm: qcom: Add Samsung Galaxy S4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,98 +58,90 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260421-px30-eth-phy-v2-2-68c375b120fd@cherry.de>
-References: <20260421-px30-eth-phy-v2-0-68c375b120fd@cherry.de>
-In-Reply-To: <20260421-px30-eth-phy-v2-0-68c375b120fd@cherry.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiko Stuebner <heiko.stuebner@cherry.de>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>, stable@vger.kernel.org
-X-Mailer: b4 0.15-dev-47773
-X-Infomaniak-Routing: alpha
-X-Spamd-Result: default: False [4.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+Message-Id: <20260421-mainline-send-v1-sending-v1-1-bcb0857724de@alex-min.fr>
+References: <20260421-mainline-send-v1-sending-v1-0-bcb0857724de@alex-min.fr>
+In-Reply-To: <20260421-mainline-send-v1-sending-v1-0-bcb0857724de@alex-min.fr>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, 
+ Guru Das Srinagesh <linux@gurudas.dev>, Linus Walleij <linusw@kernel.org>, 
+ Rob Clark <robin.clark@oss.qualcomm.com>, Joerg Roedel <joro@8bytes.org>, 
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+ Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ iommu@lists.linux.dev, Alexandre MINETTE <contact@alex-min.fr>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776764711; l=776;
+ i=contact@alex-min.fr; s=20260421; h=from:subject:message-id;
+ bh=Akgl3hzfClofydDGp4o3os1sJpq4Hx+LaZv5zck8bfU=;
+ b=+8CpDr4EzIFz+bunBXtMybY6nKObFYFwHNsn8kPnztW+RXdinyTWtxwdUvcKVVKiF4sqAFGWY
+ uiqJGGzqA0gCp/6wT/Z/7k/9dTi8ZAIh9ZbiqknebkATY+p+fp7BPCf
+X-Developer-Key: i=contact@alex-min.fr; a=ed25519;
+ pk=KOCaxY4v16ptaT0uk1FRkuaDF2n1JhmnYwLiqWD76M4=
+X-Endpoint-Received: by B4 Relay for contact@alex-min.fr/20260421 with
+ auth_id=743
+X-Original-From: Alexandre MINETTE <contact@alex-min.fr>
+Reply-To: contact@alex-min.fr
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[0leil.net,reject];
-	TAGGED_FROM(0.00)[bounces-289028-lists,devicetree=lfdr.de,kernel];
 	RCVD_TLS_LAST(0.00)[];
-	R_DKIM_ALLOW(0.00)[0leil.net:s=20231125];
-	MIME_TRACE(0.00)[0:+];
-	GREYLIST(0.00)[pass,meta];
-	DKIM_TRACE(0.00)[0leil.net:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-289017-lists,devicetree=lfdr.de,contact.alex-min.fr];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[foss@0leil.net,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.627];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[contact@alex-min.fr];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cherry.de:mid,cherry.de:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 96233439125
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,alex-min.fr:email,alex-min.fr:replyto,alex-min.fr:mid]
+X-Rspamd-Queue-Id: D676B439102
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+From: Alexandre MINETTE <contact@alex-min.fr>
 
-When not passing the PHY ID with an ethernet-phy-idX.Y compatible
-property, the MDIO bus will attempt to auto-detect the PHY by reading
-its registers and then probing the appropriate driver. For this to work,
-the PHY needs to be in a working state.
+Add the compatible for this Samsung smartphone, codenamed jflte.
 
-Unfortunately, the net subsystem doesn't control the PHY reset GPIO when
-attempting to auto-detect the PHY. This means the PHY needs to be in a
-working state when entering the Linux kernel. This historically has been
-the case for this device, but only because the bootloader was taking
-care of initializing the Ethernet controller even when not using it.
-We're attempting to support the removal of the network stack in the
-bootloader, which means the Linux kernel will be entered with the PHY
-still in reset and now Ethernet doesn't work anymore.
-
-The devices in the field only ever had a TI DP83825, so let's simply
-bypass the auto-detection mechanism entirely by passing the appropriate
-PHY IDs via the compatible.
-
-Note that this is only an issue since commit e463625af7f9 ("arm64: dts:
-rockchip: move reset to dedicated eth-phy node on ringneck") as before
-that commit the reset was done by the MAC controller before starting the
-MDIO auto-detection mechanism, via the snps,reset-* properties.
-
-Cc: stable@vger.kernel.org
-Fixes: e463625af7f9 ("arm64: dts: rockchip: move reset to dedicated eth-phy node on ringneck")
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+Signed-off-by: Alexandre MINETTE <contact@alex-min.fr>
 ---
- arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
-index 4203b335a2633..973b4c5880e24 100644
---- a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
-@@ -344,7 +344,7 @@ &io_domains {
- 
- &mdio {
- 	dp83825: ethernet-phy@0 {
--		compatible = "ethernet-phy-ieee802.3-c22";
-+		compatible = "ethernet-phy-id2000.a140";
- 		reg = <0x0>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&phy_rst>;
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index b4943123d2e4..2ec9f8be9609 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -40,6 +40,7 @@ properties:
+               - asus,nexus7-flo
+               - lg,nexus4-mako
+               - sony,xperia-yuga
++              - samsung,jflte
+               - qcom,apq8064-cm-qs600
+               - qcom,apq8064-ifc6410
+           - const: qcom,apq8064
 
 -- 
-2.53.0
+2.43.0
+
 
 
