@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-289187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289186-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wGz4NHW352mu/wEAu9opvQ
-	(envelope-from <devicetree+bounces-289187-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 19:44:21 +0200
+	id WAl/FXO352mu/wEAu9opvQ
+	(envelope-from <devicetree+bounces-289186-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 19:44:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CE4643E1FD
-	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 19:44:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A2B943E1F6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 19:44:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E4EED305543F
+	by sea.lore.kernel.org (Postfix) with ESMTP id CB5393054F58
 	for <lists+devicetree@lfdr.de>; Tue, 21 Apr 2026 17:38:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E41231E827;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E34A31B80D;
 	Tue, 21 Apr 2026 17:38:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sxWh8HGd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qo69LB0R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF0B72EA749;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF02D2E3AF1;
 	Tue, 21 Apr 2026 17:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776793121; cv=none; b=IOeD6g2g7Y37gU3dj+mr3wLTNpHSXtQUMuHnZ5D+EmvZ7zu4i+oSnf3TIrPNO1YGwP1RFmucMs3QUPlrCkw8NX7hMEobLzPLuQZeL/Opu4ZIuwaQRAKl9Fz5ZPNZ9Qyq3fMFaY+RiatM0LQlhZUmcAzjazEJogSrx6E1dTUWDIg=
+	t=1776793121; cv=none; b=ftyOv5JEwTeTkZIm19xDvXYYYskp84fSdBhMC0iaXWmRHSrKANnAAgLGqD/0BIx/ORMZJtO3RwCHAW/gvF/OESBEQFh7FdL8qeXfJHrAHiOemkNUPiKRTlpwQlGx2pjgJkqb1kn3WfbHJanoOfiar611L4u59MHSmVnLoYPPWeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1776793121; c=relaxed/simple;
-	bh=xvVeCMS46Knlj7LbuK2fp5ztldwZGUoNK8tMjveYJA4=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MYsbUBK1oWxV6QcFj+dxF4Z2oc4ExnSLzCcXQBKZwKyth3yKa9JYc3vWHYw0MciQA8fqVaMGt+YI9XijU8wmg4q5O5X/0ZY3qbXIRmprQIKl9h2+cWUlBGRkjeLKWfMcjtTPBCALTpYuDjhYL32pv/Hn30XY305kpoxykFThZSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sxWh8HGd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9F480C2BCB0;
+	bh=oAVLn0Pf8rZYdqjOGJ0372UjEDnO37tJPkJuki+zbTQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=mIcUZ+VX6MKqp1QMZaVNmWxfbBXpkkyLm0109ntATVswKhWfjZdpA8C4YPR9MINJ8Q8jyuOVkhrIjtprw9K3PplzKRLtyszAqWuHqnMTlmZCEQyK+scxh21GGkRfRkvf0KiFjpbnFZknyv4fQ1Ug5YyPgepCXdBsbaR600DU5L0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qo69LB0R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B90CDC2BCB5;
 	Tue, 21 Apr 2026 17:38:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1776793120;
-	bh=xvVeCMS46Knlj7LbuK2fp5ztldwZGUoNK8tMjveYJA4=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=sxWh8HGdF6Qjc+pUnyGkKUNmnjgvAG86qTiHXVnLFLIQhpG97TncGzX0gW3YOul/7
-	 xIWgtB5icVrwW0B36jCgedCucjqvSMUb03tIJm3Wz21yVJatw6v7Fazt+Xjp6UmhF5
-	 6evD6YBo3VV7bjwCu4RkYWwkLeGh/DOctGuLsNJ3jBWP8Czd/phHJi1ncovRTMot4C
-	 3lyrDp6q8goC7uXT68TPfDrm5eZSwzrosgaCC508HdoyyIMJ4jAjvrLB9t5dhtou32
-	 dBrJLi1Tys+gFatJlXufvs9ZsdZzZoQcyZ8hSNq8E5gg5luygODpnJU7goPtnnca4+
-	 MKXgigUwaGsDQ==
+	bh=oAVLn0Pf8rZYdqjOGJ0372UjEDnO37tJPkJuki+zbTQ=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=qo69LB0R3uYYnm0psLLp3HoROMnfpMz1qZb6AmFj7i6xQwAan5zm3g5KooUspCvkz
+	 l68xHZQFLXFnQNM9ZhRrYQQ/xzJXPXfza2/Nfw3MMmcQDvwZXoRDnRKS5zCSy4Xpzv
+	 yd1f3DVdVNKOY05qbq0HgOZQtpLzBfVwhKAsB222tfFk1cFK4ScJBoZM+iVMZhQW++
+	 OSSGkbr7TZJVf77C+W3x1yP8H3YRm8F4zGMtPGa4WNvAv/3AJOcfO3wjUiLREQSEHx
+	 e1R8hFWnAn8zTgP/4oFXbHJP7W4CctfhzVq9HCfdM1u2PufRJ1XmccmrgBh8xMIwur
+	 WeEUv0NE92Jcg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 93B18F8FA64;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A5D4AF327D9;
 	Tue, 21 Apr 2026 17:38:40 +0000 (UTC)
 From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Subject: [PATCH v5 0/2] drm/panel: Add panel driver for ChipWealth CH13726A
- based panels
-Date: Tue, 21 Apr 2026 12:38:36 -0500
-Message-Id: <20260421-ch13726a-v5-0-f7f6f4f30e05@gmail.com>
+Date: Tue, 21 Apr 2026 12:38:37 -0500
+Subject: [PATCH v5 1/2] dt-bindings: display: panel: Add ChipWealth
+ CH13726A AMOLED driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,13 +59,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2WPy07DMBBFfyXyGqPxOLbHWfEfiIUfY2qJtjQpE
- VXVf8dNkRLB8o7m3MdVTDxWnsTQXcXIc53q8dCEeepE2oXDO8uamxYIaAERZNop7dAGaXyy1lE
- 2OpNo758jl/q9WL2+PfTIp6/meH4cRQwTy3Tc7+t56CKz5aAh9eSIWJHuSYMv5BVnCiUW5wBDE
- tsmQ/fooZwMl4M8pYmMAalsAhetzox2mI24x+/qdD6Ol2XYrJb83w24bpiVBMkGVHatApjw8r4
- P9eO5lVxMZlxB3UJXEBuIFEJvY8o2w19Qb0DUG1DfE5GiLd4Vpn9gv4I90AbsG+hjVMFHKhr9F
- rzdbj93t5ZbygEAAA==
-X-Change-ID: 20260220-ch13726a-59c6678d53d8
+Message-Id: <20260421-ch13726a-v5-1-f7f6f4f30e05@gmail.com>
+References: <20260421-ch13726a-v5-0-f7f6f4f30e05@gmail.com>
+In-Reply-To: <20260421-ch13726a-v5-0-f7f6f4f30e05@gmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Jessica Zhang <jesszhan0024@gmail.com>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -77,112 +73,143 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>, 
  Aaron Kling <webgeek1234@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776793120; l=2550;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776793120; l=2232;
  i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=xvVeCMS46Knlj7LbuK2fp5ztldwZGUoNK8tMjveYJA4=;
- b=3IbrQPi2U0CwfSYEwMtAhjQbaYNgWC7PZoJZGnZrqYC6IuCgVO5NNKjfVaX0WbGFBpyMsZ1FV
- 4pm71/fk2rIDb4eD6VQaG1G/ET7TrH3Q22ChApUtzrsIPpauDohi8C5
+ bh=9mFynGjtbhyIlNz+8QqjnthJKrW1n6N71zYlWYxXU8Y=;
+ b=t/6NZe7KGkazfs2i7oNOeSYtuJWNCvxVsHVzfxdCPGOsCUT5NY6Oj4J5Nyk6jO6SA8MFvbdKD
+ yPWOfuKa13XDkyQO9Oft1tdBfNhTGO/whcJei+nBpTxsLtalUgtsghX
 X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
  pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
 X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
  auth_id=342
 X-Original-From: Aaron Kling <webgeek1234@gmail.com>
 Reply-To: webgeek1234@gmail.com
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [6.84 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-289186-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
+	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289187-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
-	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
+	GREYLIST(0.00)[pass,meta];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	HAS_REPLYTO(0.00)[webgeek1234@gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,sobir.in,gmail.com];
+	NEURAL_HAM(-0.00)[-0.825];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,sobir.in,gmail.com];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6CE4643E1FD
-X-Rspamd-Action: no action
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8A2B943E1F6
+X-Rspamd-Action: add header
 X-Rspamd-Server: lfdr
+X-Spam: Yes
 
-This driver is based on the one by Teguh Sobirin [0], cut down to only
-support the AYN Thor bottom panel.
+From: Aaron Kling <webgeek1234@gmail.com>
 
-Due to [1], the AYN vendor description patch has been folded into the
-AYN QCS8550 dt series. Which means this series now depends on said
-series and it must be picked up before this.
-
-[0] https://github.com/AYNTechnologies/linux/commit/d0ff75b09e66023c5f88992706dee4601aa7a437
-[1] https://lore.kernel.org/linux-arm-msm/c7fb3f89-6574-4761-9ef2-2fdf6d4801b5@kernel.org
+The Chip Wealth Technology CH13726A AMOLED driver is a single chip
+solution for MIPI-DSI. This is used for the AYN Thor bottom panel.
 
 Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 ---
-Changes in v5:
-- Don't duplicate prepared tracking
-- Use devm_regulator_bulk_get_const() instead of setting names in probe
-- Use devm_drm_panel_alloc() instead of drm_panel_init()
-- Link to v4: https://lore.kernel.org/r/20260408-ch13726a-v4-0-9bb1a9b8f329@gmail.com
+ .../display/panel/chipwealth,ch13726a.yaml         | 67 ++++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
 
-Changes in v4:
-- Add fallback compatible to bindings doc in patch 1
-- Link to v3: https://lore.kernel.org/r/20260323-ch13726a-v3-0-e28b6f97fe80@gmail.com
+diff --git a/Documentation/devicetree/bindings/display/panel/chipwealth,ch13726a.yaml b/Documentation/devicetree/bindings/display/panel/chipwealth,ch13726a.yaml
+new file mode 100644
+index 00000000000000..c8d7b61037e622
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/chipwealth,ch13726a.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/chipwealth,ch13726a.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Chip Wealth Technology CH13726A AMOLED driver
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++description:
++  Chip Wealth Technology CH13726A is a single-chip solution
++  for AMOLED connected using a MIPI-DSI video interface.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - const: ayntec,thor-panel-bottom
++      - const: chipwealth,ch13726a
++
++  reg:
++    maxItems: 1
++    description: DSI virtual channel
++
++  vdd-supply: true
++  vddio-supply: true
++  vdd1v2-supply: true
++  avdd-supply: true
++
++  port: true
++  reset-gpios: true
++  rotation: true
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++  - vddio-supply
++  - vdd1v2-supply
++  - avdd-supply
++  - reset-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        panel@0 {
++            compatible = "ayntec,thor-panel-bottom", "chipwealth,ch13726a";
++            reg = <0>;
++            vdd1v2-supply = <&vreg_l11b_1p2>;
++            vddio-supply = <&vdd_disp_1v8>;
++            vdd-supply = <&vreg_l13b_3p0>;
++            avdd-supply = <&vdd_disp2_2v8>;
++            reset-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
++        };
++    };
++
++...
 
-Changes in v3:
-- Reword patch 1 commit message for clarity
-- Order properties properly in patch 1
-- Track vendor description dependency series change
-- Link to v2: https://lore.kernel.org/r/20260317-ch13726a-v2-0-28aa46bcd6d0@gmail.com
-
-Changes in v2:
-- Add Neil Armstrong to binding maintainer list
-- Add 120hz mode, which required a minor restructure of the driver
-- Link to v1: https://lore.kernel.org/r/20260222-ch13726a-v1-0-e501d78e105a@gmail.com
-
----
-Aaron Kling (1):
-      dt-bindings: display: panel: Add ChipWealth CH13726A AMOLED driver
-
-Teguh Sobirin (1):
-      drm/panel: Add panel driver for ChipWealth CH13726A based panels
-
- .../display/panel/chipwealth,ch13726a.yaml         |  67 +++++
- drivers/gpu/drm/panel/Kconfig                      |  11 +
- drivers/gpu/drm/panel/Makefile                     |   1 +
- drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c  | 333 +++++++++++++++++++++
- 4 files changed, 412 insertions(+)
----
-base-commit: bee6ea30c48788e18348309f891ed8afbf7702ac
-change-id: 20260220-ch13726a-59c6678d53d8
-prerequisite-change-id: 20260217-ayn-qcs8550-16c07b63de26:v5
-prerequisite-patch-id: 2b010637c46f5ea0e19a2fa87cc5ccb19bfd9204
-prerequisite-patch-id: d0c633dc17f0aba726a8e8d21fee52b944bf67ff
-prerequisite-patch-id: 76ac126273870a96f05e1bd87f4f31bdc3746440
-prerequisite-patch-id: 76b61799dba520fc7fa3ff39b044e24103337af3
-prerequisite-patch-id: 3844bef2eda3cf59031b1d131eb6ba9295629bb4
-prerequisite-patch-id: 3331648bc6f4ac3bb156f0525aa1ede92bfc57f1
-
-Best regards,
 -- 
-Aaron Kling <webgeek1234@gmail.com>
+2.53.0
 
 
 
