@@ -1,48 +1,50 @@
-Return-Path: <devicetree+bounces-289501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289502-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oJUFM9w46WnFWAIAu9opvQ
-	(envelope-from <devicetree+bounces-289501-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 23:08:44 +0200
+	id gOIqLAs56WnFWAIAu9opvQ
+	(envelope-from <devicetree+bounces-289502-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 23:09:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33B6944ACA7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 23:08:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D59F44ACB5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 23:09:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 79DB4301A3A6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 21:08:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8D8CA30648BC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 21:08:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC673612F4;
-	Wed, 22 Apr 2026 21:08:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 195ED36AB57;
+	Wed, 22 Apr 2026 21:08:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="HQQh5p+t"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="diigRvAL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8778E2C15A9;
-	Wed, 22 Apr 2026 21:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81439347FFE;
+	Wed, 22 Apr 2026 21:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776892104; cv=none; b=o7zkZpiY/PSgtYS0jkaHNEN8iJiuMOFOd6DaOwVgVhfQhfLWmPTxMdQoNvTPE+GnotMmM2DzDV7CjKi/b9i2buVaE3G5TFe3olswaLwQhMhLN+1XH00+XmNFf1qPM9tw5cubN2qxMc62kTYucg0oCaz4pLsWq85i5FjaoSxOM4w=
+	t=1776892105; cv=none; b=AJmkzl1exxcLk3VbFEJcgSvHgCFJaMG3rZlm0CdurIBgjuAeR8Y1Wjz0EFJXvPYFNs+zWE8VyZsHud9TSTAj8xsveIdu8l3X7s1qjOhDsOeQS2j3ger2NyIA/yT67GKF7fgBTjb1qyhB6HKhAAtyfZPpTsbM4N3uDfmF+cWrZqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776892104; c=relaxed/simple;
-	bh=FN+f0G9nCsY/gUP+tHl5fE3xiPBFKSs+iMJGsXMspaE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=p5FA9MZNZfEjLoNQL6gP4P1KDwM4DbNHIV7vgZYK/zaU3TZ5Y+MMyt2DggSm5/VM6MSs8gcs5IrhW9Z+fZfG7mukAdsooNspr5OHP+lGIOC9Kab2J5bq1kVhm+P4K45U8HzX57ENNDY/6ZOYCY+rNFA6GNpwoxgXVv+7phGrd+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=HQQh5p+t; arc=none smtp.client-ip=178.251.229.89
+	s=arc-20240116; t=1776892105; c=relaxed/simple;
+	bh=opajQm6udq6m/migfOwFNPme8+VZx90YleJev5vmE0I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=gEd5+nFJMuYzU+EzCw7PBX2jTghaENnNEBvKJ7hFCZuybbASd8T1vO6lceSLxr2tcj6ZUhVeoOpUE3f/Vx8FHbgEBn2lZvaC/AVAzttGPlnJIoN4tuG0dQvGfmGknHcD1AHxOLWOmRHWXiqMewf7z2Xt/2aZSnk2oSs9IqWmKgY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=diigRvAL; arc=none smtp.client-ip=178.251.229.89
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B6672114A90;
-	Wed, 22 Apr 2026 23:08:14 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4EE99114B33;
+	Wed, 22 Apr 2026 23:08:20 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1776892099; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=HjmnKNM37fm6w755PgZH/lD1zoBOPUZWIJ4A0qH84ws=;
-	b=HQQh5p+twdo0EV3++xC4i1o9q4rND9TiRedEge3SUvimGZxWT9GrPXbl+5inMlr3t6kH9/
-	lAIFw1TOyw4il3ZZrGTR5CmHiKoh1bVcKDEAlzTuOcu1OHpzptsl4PwaV3/Gkfu6QxC/HI
-	gfLu+HtmMC7LsNmYTpGPysH4hDWae9tUqN5VmLB80KFGU0OuY87KDQWy0vFvhkzcM2y/UY
-	88377k4Pja1Sil4fxjXFKjdscth2f9T9ean0lQDEJl1h+ca0UvP2sv6OOfG+NH91Rs2Uj/
-	jqlYQWLxsWZDYpXKGr95vJEmYkDcGrL+yhaUzQsPNxTH2si1zjRfCL1jhiMroA==
+	s=dkim; t=1776892101; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=t6Lu79H5Cv29UG2GxLMMRQLK0gy9NI9/AQURP2Ocdd0=;
+	b=diigRvALxdDTtYxjBj/87TLJ0QTEabZT+UnirpBJJgy2fWOuzeiZkfAVWmT5BlCRHWilfB
+	ZffiVVMLJO1Ws/BQL2k9LNskKNDUHU7BxSU9FnZl/KC0RqUnxR7Oyr3lC9WLSuj2GZiewV
+	jHqaWN975RtAlEIhJVXCuxDcIhgntGkrn//ZR/8esYl5lHX4myxMLVxYvoWxCWY5l8CW4z
+	b8ekMq9GHWd+UvjqBvPmwWkHASBZSN0EDvXTJc1V2MvLBF95H49JeswEJQ83u1pPj3VAdb
+	mpM9+hEtjWy19xo6orbS9kI5CNH688eu3NcRuGOiHrUfYDieEf+Xq3agtBUDdA==
 From: Marek Vasut <marex@nabladev.com>
 To: dri-devel@lists.freedesktop.org
 Cc: Marek Vasut <marex@nabladev.com>,
@@ -63,10 +65,12 @@ Cc: Marek Vasut <marex@nabladev.com>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Displaytech Ltd.
-Date: Wed, 22 Apr 2026 23:07:23 +0200
-Message-ID: <20260422210806.80948-1-marex@nabladev.com>
+Subject: [PATCH 2/3] dt-bindings: display: simple: Document Displaytech DT050BTFT-PTS panel
+Date: Wed, 22 Apr 2026 23:07:24 +0200
+Message-ID: <20260422210806.80948-2-marex@nabladev.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260422210806.80948-1-marex@nabladev.com>
+References: <20260422210806.80948-1-marex@nabladev.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,12 +85,12 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289501-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-289502-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[19];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -100,15 +104,19 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[nabladev.com,kael-k.io,oss.qualcomm.com,kernel.org,gmail.com,bp.renesas.com,linux.intel.com,linaro.org,ravnborg.org,ffwll.ch,suse.de,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 33B6944ACA7
+X-Rspamd-Queue-Id: 2D59F44ACB5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add "displaytech" vendor prefix for Displaytech Ltd. .
+Document the Displaytech DT050BTFT-PTS 5.0" (800x480) color TFT LCD
+panel, connected over DPI. The datasheet from 16 Nov 2023 is available
+from Seacomp:
+
+https://www.seacomp.com/sites/default/files/datasheets/DT050BTFT-Displaytech-Spec.pdf
 
 Signed-off-by: Marek Vasut <marex@nabladev.com>
 ---
@@ -131,22 +139,22 @@ Cc: devicetree@vger.kernel.org
 Cc: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 28784d66ae7ba..11c55b5df0e4c 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -437,6 +437,8 @@ patternProperties:
-     description: Diodes, Inc.
-   "^dioo,.*":
-     description: Dioo Microcircuit Co., Ltd
-+  "^displaytech,.*":
-+    description: Displaytech Ltd.
-   "^djn,.*":
-     description: Shenzhen DJN Optronics Technology Co., Ltd
-   "^dlc,.*":
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 3e41ed0ef5d51..9c2faeb47b812 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -97,6 +97,8 @@ properties:
+       - dataimage,fg1001l0dsswmg01
+         # DataImage, Inc. 7" WVGA (800x480) TFT LCD panel with 24-bit parallel interface.
+       - dataimage,scf0700c48ggu18
++        # Displaytech DT050BTFT-PTS 5.0" 800x480 TFT LCD Panel
++      - displaytech,dt050btft-pts
+         # DLC Display Co. DLC1010GIG 10.1" WXGA TFT LCD Panel
+       - dlc,dlc1010gig
+         # Emerging Display Technology Corp. 3.5" QVGA TFT LCD panel
 -- 
 2.53.0
 
