@@ -1,120 +1,193 @@
-Return-Path: <devicetree+bounces-289308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289310-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qCKUMiJ96GmsKwIAu9opvQ
-	(envelope-from <devicetree+bounces-289308-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 09:47:46 +0200
+	id eIy/NtN96GkILAIAu9opvQ
+	(envelope-from <devicetree+bounces-289310-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 09:50:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31AB74431C8
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 09:47:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E1FF443254
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 09:50:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7F0DB302000C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 07:41:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AC7CA3077E3E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 07:43:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD7235F614;
-	Wed, 22 Apr 2026 07:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C57372B45;
+	Wed, 22 Apr 2026 07:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="egXy5pXo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MQT+ZjnW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 535C4306D2A;
-	Wed, 22 Apr 2026 07:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F7D36A02F;
+	Wed, 22 Apr 2026 07:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776843711; cv=none; b=pBQHdE4Eb27olO1v5rPRpqdRwcqpdyT8VilSxI0E68t9iRYOwCRvL/NoGD/r1sjgn7U5kfLeopsRzQl3XMNPelWLjQ2j7ixQQUSdiyPFbPjcy+dcepnfhO0V+kTlRZs5Bs5PcQs4pMspaYNqR2rUCeTRRn7UtV4JQvlRs5arbPI=
+	t=1776843821; cv=none; b=nFDrAfv1OYDJsODXGZiM+/UBC4tSaMCR6HTkePIkSZmstjXCIMLreTwvC0k5/fhpMYuj/29vreFLzBeIixNMjQGjwgvE00mM1xjzncWJbl71c4qemnXJ8BfejEWMG0HxCus1RTsfF9bqH/I5Z5QYSEUHzdvQcnBFtCgbYw+6V7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776843711; c=relaxed/simple;
-	bh=MT6k3Q8ZZzow3nqeVqoJJUPcXBo3aekhSuJbE4SAZWM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C0iMsSzWKlOGj84JAYSOmFMgn0rImdCcov5h6j//1vKGKxrD5A5DNdHSsHUnZN/jcs7t8IKfrOtacEv49eWb003PhpHb0nK/fQR8x7P6840Ika5v8G/wxJEiPs+62mEqpbXYnuXL8s7NgbeLzmbFGUsr/pXxfKL8SmQ8cn4SKq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=egXy5pXo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E59EC19425;
-	Wed, 22 Apr 2026 07:41:50 +0000 (UTC)
+	s=arc-20240116; t=1776843821; c=relaxed/simple;
+	bh=IZr7RTAdxhkJ/lgF3S2u0E922vN1YnMMh25lXatpibc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oXbOT2ptJZUhVpUfmj1abbETM8GUp9SkeBzDzyA5zB1Goy7bug5irE6qVclsn788x53IZ8BPoWxsp4hxH0329aP89Yh56BDMm/j2Cx+SF1FuQYD4GxTenM24nJF/8z1BzGN9z5Z34297Wn76GIRfliGBmK1dA6uVLBUhnpC8V8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MQT+ZjnW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3AA91C19425;
+	Wed, 22 Apr 2026 07:43:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776843710;
-	bh=MT6k3Q8ZZzow3nqeVqoJJUPcXBo3aekhSuJbE4SAZWM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=egXy5pXoN4WuKrznFtVsH4ww92ARuQRcPkdl26CHQCobtvcFUq4xh3S3D2qqduVjA
-	 TuzCZUT3wUllLPSWfdKgpECi2Jf5skgowdLGOQl3myOLuphmawTagzg7762bBulTz+
-	 gstzXXlSHJcwdWMU+40hNYdlMgrTyTSGRH4RZYhGsr4mIGB4R2TQVwYtvWTjRKQpVz
-	 VJvjCmHpwHoIOPuSnL2B7SHgZpPaPEImsLu8mczwywH5W5uH2jGr560IdGZOrc+Q1K
-	 4Jvzci8+XPJIs40oyuqdQGI67bWsBiMldkRRnZiS83UdUK/aMtcPSELswxa5KipI7i
-	 Br3vc6qB3RzCQ==
-Date: Wed, 22 Apr 2026 09:41:48 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
-	Ajit Pandey <ajit.pandey@oss.qualcomm.com>, Imran Shaik <imran.shaik@oss.qualcomm.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Maulik Shah <maulik.shah@oss.qualcomm.com>, 
-	Taniya Das <taniya.das@oss.qualcomm.com>
-Subject: Re: [PATCH 02/13] dt-bindings: clock: qcom,sm8550-dispcc: Add
- display CESTA support on SM8750
-Message-ID: <20260422-savvy-wolverine-of-chivalry-9ae6fc@quoll>
-References: <20260420-cesta-sm870-dispcc-v1-0-eb27d845df9c@oss.qualcomm.com>
- <20260420-cesta-sm870-dispcc-v1-2-eb27d845df9c@oss.qualcomm.com>
+	s=k20201202; t=1776843821;
+	bh=IZr7RTAdxhkJ/lgF3S2u0E922vN1YnMMh25lXatpibc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=MQT+ZjnWNRF2kQeI9RLeUwtlp9JZm8eaNplTuPOpqz6Sqqd9ndWNJS7F+Fh3BYtsj
+	 2dhBlqpNopiDD4zJL0Lx2xfvMff2cId1F4o1gIdTmB3wyAoXDd0tMzjQHD1TEDzzcp
+	 sVhQGQ1TRyie8uAk79vDweECJAFvAzvFvTtCMlYNyBVxisxBHLsxVYlJZUqL9of8Ob
+	 aeMrCYyeX+eJ00sCyrMMvIytCnTNBru6vDTm/CNkI1Uu4+zlFQm1/rrn1MDzHDrjrY
+	 BP2E8iD7LPyOp0sj90UFs+kJquby2kXHUmutTOq62puuJ7wNVXQoSOl3+FkASZniFc
+	 gA3ILGE4+P9EA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 28EE1F94CDC;
+	Wed, 22 Apr 2026 07:43:41 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Subject: [PATCH v6 0/2] drm/panel: Add panel driver for ChipWealth CH13726A
+ based panels
+Date: Wed, 22 Apr 2026 02:43:23 -0500
+Message-Id: <20260422-ch13726a-v6-0-03680d6673ff@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260420-cesta-sm870-dispcc-v1-2-eb27d845df9c@oss.qualcomm.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2XPTW7DIBAF4KtYrEs1DAbGXvUeVRf8DAlSEzd2a
+ jWKcvcSp5KtdDmIb96bq5h4LDyJvrmKkecyleFYB/vSiLj3xx3LkuosENACIsi4V9qh9dJ00Vp
+ HyehEon7/GjmXn2XV+8djHvn0XTeeH48i+IllHA6Hcu6bwGzZa4gtOSJWpFvS0GXqFCfyOWTnA
+ H0U2yZ98+ihnPSXozzFiYwBqWwEF6xOjLafjbjH78t0HsbLctislvy/G3C9YVYSJBtQydUKYPz
+ b7uDL52stuSyZcYW6hq4QK0TyvrUhJpvgGeoNRL2B+p6IFGzuXGb6B9sVtkAb2FbYhaB8Fyhr7
+ J6h2UBUG2gqzC7b3GYNDGYLb7fbL1cZfL8DAgAA
+X-Change-ID: 20260220-ch13726a-59c6678d53d8
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>, 
+ Aaron Kling <webgeek1234@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776843820; l=2679;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=IZr7RTAdxhkJ/lgF3S2u0E922vN1YnMMh25lXatpibc=;
+ b=uFXcjC0ouNG/Zv4BGaGP4EHRfyB4e8yCSJ3ew9FYHuH8qsQ68qUGLJjbkNdi6LHlsHEs6YB4f
+ PNXUefb/1LgAnBUdltvpY3tLDdQcvjeTv29CrkWOYhhREE5ThrLsy0N
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-289310-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289308-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,sobir.in,gmail.com,oss.qualcomm.com];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[webgeek1234@gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 31AB74431C8
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 5E1FF443254
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Apr 20, 2026 at 09:58:55PM +0530, Jagadeesh Kona wrote:
-> On SM8750, a subset of DISPCC clocks is controlled by the display CESTA
-> (Client State Aggregator) hardware. These clocks can be scaled to the
-> desired frequency by sending votes to the display CRM(CESTA Resource
-> manager) instead of programming DISPCC registers directly.
+This driver is based on the one by Teguh Sobirin [0], cut down to only
+support the AYN Thor bottom panel.
 
-This looks like completely new, vendor clock API, so no.
+Due to [1], the AYN vendor description patch has been folded into the
+AYN QCS8550 dt series. Which means this series now depends on said
+series and it must be picked up before this.
 
-Resource voting or clock scaling is nothing new and you do not get a
-vendor phandle to do it. That's like basic upstreaming 101: we do not
-want another vendor re-implementation of common or typical solutions.
+[0] https://github.com/AYNTechnologies/linux/commit/d0ff75b09e66023c5f88992706dee4601aa7a437
+[1] https://lore.kernel.org/linux-arm-msm/c7fb3f89-6574-4761-9ef2-2fdf6d4801b5@kernel.org
+
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+Changes in v6:
+- Add trailers from v4
+- Link to v5: https://lore.kernel.org/r/20260421-ch13726a-v5-0-f7f6f4f30e05@gmail.com
+
+Changes in v5:
+- Don't duplicate prepared tracking
+- Use devm_regulator_bulk_get_const() instead of setting names in probe
+- Use devm_drm_panel_alloc() instead of drm_panel_init()
+- Link to v4: https://lore.kernel.org/r/20260408-ch13726a-v4-0-9bb1a9b8f329@gmail.com
+
+Changes in v4:
+- Add fallback compatible to bindings doc in patch 1
+- Link to v3: https://lore.kernel.org/r/20260323-ch13726a-v3-0-e28b6f97fe80@gmail.com
+
+Changes in v3:
+- Reword patch 1 commit message for clarity
+- Order properties properly in patch 1
+- Track vendor description dependency series change
+- Link to v2: https://lore.kernel.org/r/20260317-ch13726a-v2-0-28aa46bcd6d0@gmail.com
+
+Changes in v2:
+- Add Neil Armstrong to binding maintainer list
+- Add 120hz mode, which required a minor restructure of the driver
+- Link to v1: https://lore.kernel.org/r/20260222-ch13726a-v1-0-e501d78e105a@gmail.com
+
+---
+Aaron Kling (1):
+      dt-bindings: display: panel: Add ChipWealth CH13726A AMOLED driver
+
+Teguh Sobirin (1):
+      drm/panel: Add panel driver for ChipWealth CH13726A based panels
+
+ .../display/panel/chipwealth,ch13726a.yaml         |  67 +++++
+ drivers/gpu/drm/panel/Kconfig                      |  11 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c  | 333 +++++++++++++++++++++
+ 4 files changed, 412 insertions(+)
+---
+base-commit: bee6ea30c48788e18348309f891ed8afbf7702ac
+change-id: 20260220-ch13726a-59c6678d53d8
+prerequisite-change-id: 20260217-ayn-qcs8550-16c07b63de26:v5
+prerequisite-patch-id: 2b010637c46f5ea0e19a2fa87cc5ccb19bfd9204
+prerequisite-patch-id: d0c633dc17f0aba726a8e8d21fee52b944bf67ff
+prerequisite-patch-id: 76ac126273870a96f05e1bd87f4f31bdc3746440
+prerequisite-patch-id: 76b61799dba520fc7fa3ff39b044e24103337af3
+prerequisite-patch-id: 3844bef2eda3cf59031b1d131eb6ba9295629bb4
+prerequisite-patch-id: 3331648bc6f4ac3bb156f0525aa1ede92bfc57f1
 
 Best regards,
-Krzysztof
+-- 
+Aaron Kling <webgeek1234@gmail.com>
+
 
 
