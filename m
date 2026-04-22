@@ -1,162 +1,217 @@
-Return-Path: <devicetree+bounces-289404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289405-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UB6+GWLM6GklQQIAu9opvQ
-	(envelope-from <devicetree+bounces-289404-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 15:25:54 +0200
+	id cGFLKXnP6GklQQIAu9opvQ
+	(envelope-from <devicetree+bounces-289405-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 15:39:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7AB3446B33
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 15:25:53 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DFF0446D64
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 15:39:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 185E0303FF2B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 13:20:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9347F300D360
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 13:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C9B23EBF29;
-	Wed, 22 Apr 2026 13:20:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89B2023D7C2;
+	Wed, 22 Apr 2026 13:39:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z67Osh7N"
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="cJX6XLaZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69BD93EBF1E
-	for <devicetree@vger.kernel.org>; Wed, 22 Apr 2026 13:20:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4BD23AE87;
+	Wed, 22 Apr 2026 13:39:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776864039; cv=none; b=lIQMMLBz5aDv6g0l9xKD+fX8lRD0aGyz+5ksxfpWMbZKY4wKyGyLw1EueToGX53GLacHdxvbOu3e7UIHNFIfikvmfIKrrNH1zpJwAiPBInsiX110cd3ccrHgW3f1LhbVVUMS58N9biTP50SjALWkPZFv3zhfoY0mZ5WaLs8LiV4=
+	t=1776865143; cv=none; b=A1KWcDSiFR1T+U92luxRGEQzUMFtQ1GEvsCB/I03K/9If19J0j9w3TeYFih154ipMLkXfCATDwbYaD/eD5E+RrziLnqAdp0c166j1R76avw87uk7jTDGzt8XGRh3xKLc048d3//j8MxWKhvGsOx74l/DK68wsbSl+/sq6sEpHV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776864039; c=relaxed/simple;
-	bh=5KP0HfyPYW0J2NmQ5DIgfn3Yf4onw2cQ4Oqkk1x/qtk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KBoIEVxuLpT1/00nfJzhCM0gd6+/fVD5WpfXRf7UBw27G3axdcuSykYqcDoeZN8l5eFUulhmiGk2g7kY81QaGhEHsrrUtqCaEN5Hwpia1Zemz8A6GRsIZ2Uy11AyRugFcsy+bIgl6Ml3oLElX1YCvkuFanizgm9Lga9uSOKRtuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z67Osh7N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F34CC2BCFA
-	for <devicetree@vger.kernel.org>; Wed, 22 Apr 2026 13:20:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776864039;
-	bh=5KP0HfyPYW0J2NmQ5DIgfn3Yf4onw2cQ4Oqkk1x/qtk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Z67Osh7NnCzrAfvRVwJh3SfS8cXvfXaJR2137ozKBFsPKaNnEP20KUcxNsrDqAZ76
-	 wOWoEhRJrVOIV8HyUZYJGphpDHZHy6/KDtT40o0HsaWvT4pEvkcVbGy2cPy28V77lx
-	 jM/agiy9BcxxYe0fQj8ejwHk+tc79Pi+SDmJ9g34YsdwVt9UWYtde81/fr8/4Od0Mr
-	 JIGMZn4mfYYTxzs/iedSnFdHkLDvcsqjMqjOZm3HSW74FcHZWh5HTksHNmesnit0/Y
-	 2SLI13/cPgk/mfNUB6f+KbKFisoapNuFm1ccDMeLaoafstg94Np3k7mMqLCU21ikEZ
-	 lgWZnqY7uBC5Q==
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5a2c500750dso6109960e87.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Apr 2026 06:20:39 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ8WyZISvJhGWaNsXDon/DjBvwG0F/wmt38rk/lYd372vDa3wMpYjmLOv/wOj6G7vb1YDxh/l3vmmqg3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZ2wH57k5ssylWEmIu/VFaBmuGV/WXh5lSchIgq1sFEqO9QqVQ
-	VF+2V+N92wZ+lEltbjML2LGmmw4VwKrnVTWqc8ZXPOOV/ERuVgB3+A3RK+0F5HsBy7kRXdhQ9rn
-	5fwZPK3ldkAFZLxpXmqdp2qJAmxyIp9Y=
-X-Received: by 2002:a05:6512:8005:20b0:5a4:1904:b1fb with SMTP id
- 2adb3069b0e04-5a41904b214mr4908355e87.40.1776864037735; Wed, 22 Apr 2026
- 06:20:37 -0700 (PDT)
+	s=arc-20240116; t=1776865143; c=relaxed/simple;
+	bh=7rpgALkRycPSgcaAOgE3Prm0pYeBYUlmAelrxMIZcMI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NTvk6J9TveDfdpHUE6WktNYquXS6hxQ7nXB/yXrljuLbzk8z87u6/8xcYQZWjhHqw3K+gjIxZ/+7px+Te2UjI3Y+gT3lAA3NPZ5BFOdlsg+sWC7s5KyLE/4PlvgtQbJLfztsOLQPAgs1D18QaHYSlTovo8oa+uJEmBYahibZMlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=cJX6XLaZ; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B75A61FC4;
+	Wed, 22 Apr 2026 06:38:55 -0700 (PDT)
+Received: from [10.57.33.69] (unknown [10.57.33.69])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0EE173F836;
+	Wed, 22 Apr 2026 06:38:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1776865141; bh=7rpgALkRycPSgcaAOgE3Prm0pYeBYUlmAelrxMIZcMI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cJX6XLaZ9w4cDlcqe/N6PdfC9Zmxg3eiCrHKrqfZb5e2qMpOmbffF2ER/ReBGBsaO
+	 5NspPcgUbyYXsYrEuudf2IubWTqk9tkKDpK3wofmCPbhZmpMvB0V1B84V1aYFDm7B2
+	 f2axAPb9yLv6lAJxgakoM4b10yG38GbpsL22pD+w=
+Message-ID: <44aab543-a200-49bd-81e5-70d77ebe1c85@arm.com>
+Date: Wed, 22 Apr 2026 15:38:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260411-waveshare-dsi-touch-v2-0-75cdbeac5156@oss.qualcomm.com> <20260411-waveshare-dsi-touch-v2-21-75cdbeac5156@oss.qualcomm.com>
-In-Reply-To: <20260411-waveshare-dsi-touch-v2-21-75cdbeac5156@oss.qualcomm.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 22 Apr 2026 15:20:26 +0200
-X-Gmail-Original-Message-ID: <CAD++jL=zmd8yto9HuyjC8cmBj1oMgOa7C899yo_toP9Q+QJcDw@mail.gmail.com>
-X-Gm-Features: AQROBzBIUxYxh6Fy1Y8k9jeq0K6g4QE275A5ZjWo0tNfC3Tdj4tYrWP4PCpCQTw
-Message-ID: <CAD++jL=zmd8yto9HuyjC8cmBj1oMgOa7C899yo_toP9Q+QJcDw@mail.gmail.com>
-Subject: Re: [PATCH v2 21/21] gpio: add GPIO controller found on Waveshare DSI
- TOUCH panels
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Cong Yang <yangcong5@huaqin.corp-partner.google.com>, Ondrej Jirman <megi@xff.cz>, 
-	Javier Martinez Canillas <javierm@redhat.com>, Jagan Teki <jagan@edgeble.ai>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Riccardo Mereu <r.mereu@arduino.cc>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] Add hstimer support for H616 and T113-S3
+To: Michal Piekos <michal.piekos@mmpsystems.pl>
+Cc: Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+References: <20260419-h616-t113s-hstimer-v1-0-1af74ebef7c5@mmpsystems.pl>
+ <20260419225539.718367e0@ryzen.lan>
+ <xlvldmapdoql7nt3swube5vd6fdiosq7rt5afg246xertko5fa@4irmzupkar23>
+ <b89c1c8b-2678-4f4f-a63c-03b92cf7617c@arm.com>
+ <h4b3xluygfptee3ej4gbr3hctgjk6q4oytkisk66saii4uyvl3@lw4qdtfuyoz5>
+Content-Language: en-US
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <h4b3xluygfptee3ej4gbr3hctgjk6q4oytkisk66saii4uyvl3@lw4qdtfuyoz5>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289404-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,huaqin.corp-partner.google.com,xff.cz,redhat.com,edgeble.ai,lists.freedesktop.org,vger.kernel.org,arduino.cc];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-289405-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[arm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arduino.cc:email,qualcomm.com:email]
-X-Rspamd-Queue-Id: C7AB3446B33
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,arm.com:dkim,arm.com:mid]
+X-Rspamd-Queue-Id: 4DFF0446D64
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Dmitry,
+Hi Michal,
 
-On Sat, Apr 11, 2026 at 2:11=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
+On 4/21/26 16:05, Michal Piekos wrote:
+> On Mon, Apr 20, 2026 at 04:14:44PM +0200, Andre Przywara wrote:
+>> Hi Michal,
+>>
+>> On 4/20/26 13:27, Michal Piekos wrote:
+>>> On Sun, Apr 19, 2026 at 10:55:39PM +0200, Andre Przywara wrote:
+>>>> On Sun, 19 Apr 2026 14:46:06 +0200
+>>>> Michal Piekos <michal.piekos@mmpsystems.pl> wrote:
+>>>>
+....
 
-> The Waveshare DSI TOUCH family of panels has separate on-board GPIO
-> controller, which controls power supplies to the panel and the touch
-> screen and provides reset pins for both the panel and the touchscreen.
-> Also it provides a simple PWM controller for panel backlight. Add
-> support for this GPIO controller.
->
-> Tested-by: Riccardo Mereu <r.mereu@arduino.cc>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-(...)
+>>>>
+>>> I took the table from https://linux-sunxi.org/Linux_mainlining_effort as
+>>> a todo list and wanted to help with it. I do not have own use case for
+>>> this timer. If it is not needed then I will spin v2 to include your
+>>> comments and abandon it.
+>>
+>> Ah, that's good to know, and thanks for picking things from that list! I
+>> don't think there is a particular need to abandon your work, we could as
+>> well upstream it. At least the DT changes should be added, so that other DT
+>> users could make use of the timers - after all it's a Linux implementation
+>> choice to utilise just one timer. But please go ahead and post a complete
+>> v2, I don't think it hurts to have HSTIMER support in the kernel.
+>> And while you are at it: can you figure out what the need is for using two
+>> timers? One is a clock source, the other is for clock events? And why do we
+>> limit the counters and timers to 32 bit? Even the A13 manual lists them as
+>> 56 bits, and a wraparound time of roughly 21 seconds (with 32 bit counters)
+>> does not sound very long to me.
+>>
+> Yes. Channel 0 is clockevent and channel 1 is a clocksource and sync
+> reference for channel 0 disable timing.
+> 
+> 32 bit counters seems like implementation choice rather than limitation
+> but that would need to be implemented and tested. Would you suggest to
+> extend it to 56 bit in the following patch?
 
-> +static int waveshare_gpio_get(struct waveshare_gpio *state, unsigned int=
- offset)
-> +{
-> +       u16 pwr_state;
-> +
-> +       guard(mutex)(&state->pwr_lock);
-> +       pwr_state =3D state->poweron_state & BIT(offset);
+Well, yes, I would assume we want as long an overflow period as 
+possible. The tricky/interesting part is that the interface is still 
+32-bit MMIO reads, so we need to find out how the consistency works. The 
+manual recommends to read LO first, but not sure that means its latching 
+HI upon the LO read. Otherwise we should read HI, LO, and HI again and 
+compare both HI's. Probably needs some testing.
 
-Why is this not just flagging the same register as write-only
-in the regmap and just re-reading that same register from the
-regmap cache?
+>> Not sure what your primary motivation for fixing Allwinner support is, but
+>> we could probably find more worthwhile targets. Do you have Allwinner boards
+>> other than the OrangePi Zero 3? There are not many low hanging fruits on the
+>> H616 left (MBUS and LDOs(?) maybe), but the A523 has quite some missing
+>> drivers still, some of them probably more on the easy side.
+>>
+> I have boards with A733, A527, T113-S3, H616, H6, H3 and I
+> think some older stuff too. My motivation is mostly fun and learning.
 
-> +
-> +       return !!pwr_state;
-> +}
+That's great, and what I was hoping for! ;-)
+Feel free to reach out on IRC if you have any questions or comments.
 
-OK so it's write-only.
+> I also use those boards in custom projects.
+> 
+> I will take up GPADC on A527 after finishing this as I worked with ADC's
+> a lot on MCU's. Unless other suggestions?
 
-> +static int waveshare_gpio_set(struct waveshare_gpio *state, unsigned int=
- offset, int value)
+Yes, LRADC and GPADC are good devices to start with. Also crypto comes 
+to mind, the most useful there being the TRNG device, which helps the 
+kernel to start its own RNG much quicker. Chances are those things are 
+close to the existing SoCs, so there might be not too much to do here.
 
-This looks like it can be replaced with a few lines of
-select GPIO_REGMAP
-#include <linux/gpio/regmap.h>
-helpers.
+Cheers,
+Andre
 
-Has this not been discussed earlier?
+> 
+> Thank you for comments.
+> Michal
+> 
+>> If you are stuck with the OpiZero3, then you could just look and check the
+>> existing devices, and verify their operation. For instance I think USB-OTG
+>> is still broken - across most Allwinner SoCs actually, so it's a sunxi
+>> driver issue.
+>>
+>> Thanks,
+>> Andre
+>>
+>>>
+>>> Michal
+>>>
+>>>>>
+>>>>> Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
+>>>>> ---
+>>>>> Michal Piekos (4):
+>>>>>         dt-bindings: timer: allwinner,sun5i-a13-hstimer: add H616 and T113-S3
+>>>>>         clocksource/drivers/sun5i: add H616 hstimer support
+>>>>>         arm64: dts: allwinner: h616: add hstimer node
+>>>>>         arm: dts: allwinner: t113s: add hstimer node
+>>>>>
+>>>>>    .../timer/allwinner,sun5i-a13-hstimer.yaml         |  8 +++-
+>>>>>    arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi       | 12 +++++
+>>>>>    arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi     |  9 ++++
+>>>>>    drivers/clocksource/timer-sun5i.c                  | 56 +++++++++++++++++++---
+>>>>>    4 files changed, 78 insertions(+), 7 deletions(-)
+>>>>> ---
+>>>>> base-commit: faeab166167f5787719eb8683661fd41a3bb1514
+>>>>> change-id: 20260413-h616-t113s-hstimer-62939948f91c
+>>>>>
+>>>>> Best regards,
+>>>>
+>>>>
+>>
+>>
 
-Yours,
-Linus Walleij
 
