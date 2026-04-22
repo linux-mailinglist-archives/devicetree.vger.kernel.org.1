@@ -1,175 +1,191 @@
-Return-Path: <devicetree+bounces-289415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289419-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OKc5KHTe6GnOQwIAu9opvQ
-	(envelope-from <devicetree+bounces-289415-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 16:43:00 +0200
+	id iLt9JYTf6GlDRAIAu9opvQ
+	(envelope-from <devicetree+bounces-289419-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 16:47:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11A19447649
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 16:43:00 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A12BC447724
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 16:47:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AE51F3085A02
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 14:37:10 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B9554301E669
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 14:46:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3C53EDAA2;
-	Wed, 22 Apr 2026 14:37:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82A0033121E;
+	Wed, 22 Apr 2026 14:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qSVcdCPF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NJydrSpG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E885D30B514;
-	Wed, 22 Apr 2026 14:37:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5526B31F9BA;
+	Wed, 22 Apr 2026 14:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776868629; cv=none; b=Ymudzi6iHUTxVu8FvR5dvLEHrMPeL0kXRqLCMWan3xCoaFwihwXvvHshUVBi2fj/627GcB3WbRQEmJaNL9ijAs/wzGtfFDSBsaCtjOOYB4BgE15d97Fq0t8hFz2uT4ShgfP7dtmGWyZydzNyO+DOtsH8q/0j/rrYdUOiUhnQrvQ=
+	t=1776869184; cv=none; b=AXHVP5mjkQ+fJIFdJ1vJv1A09Zy+riKQsBKB8Nv/eSuEh14ApmDWgOatzKuYxgvxM2ZyTf1gE9oKcKDMVHZM+k6LnB5zPsGxkY1dIjyBLQza/3CcHW70E+Qq9K/cOmxFvtc0379qDqQJrnNtWQWp1+x6ZuE65Jq601S61OpCtVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776868629; c=relaxed/simple;
-	bh=aoanNOEr5f+E432Mdit7VaoB/FUSBppJLnjCmNdlexQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WfqKLr6awzyQ7Zgh6uigbh+7GKFd1wynHrnX4qt9OgjIbyrBJqytuXHyxSkmcGWLNXgyk026yvc7o3PPJbz0j/D0Z4wKl55mWdscK06DVb8IkidGWV47TZ3yRfM4ys0KOkRkjI1WS+G4VLWb1VmrLsUT3GA5I5hZgv/KP/77sZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qSVcdCPF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82270C19425;
-	Wed, 22 Apr 2026 14:37:05 +0000 (UTC)
+	s=arc-20240116; t=1776869184; c=relaxed/simple;
+	bh=+jyI2fVMyjIivhQsiJU3XcRjwvd0On+YXNM0kRRkZrM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=k0tyJJ42EXQjGD8Y0U3FVKAMFbXVKBGilUrrbc2I52NS0T279LNxAsiIQOsrWbDfxGHsscivBmTcYONzpjXJ/9R2J1ijOMUJ8++/dF1PUsdWi9jV8IQCYZGYLCTQY35QcS9fhdfg7zLorJvi13Dv6zQ5rra/v3eLJ+S6exbhT+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NJydrSpG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C1974C2BCAF;
+	Wed, 22 Apr 2026 14:46:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776868628;
-	bh=aoanNOEr5f+E432Mdit7VaoB/FUSBppJLnjCmNdlexQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qSVcdCPFy5W0fCCGN0TkPgCUuclGbAjBluSvWj3x3w2t8fZikjerC7bgkqsjGawwz
-	 6kNzpG5PBf3s2ec06C8R7jqsnzM8uVOjV52CUCteAySZ0TIJBKCROHL7Pk2bpsC6Vj
-	 6IyKVzF6Ss3u8Wf0N7dYtL0bXE504k1Ifn3CTVvV6lQP1BGtLU2+MPJeWfxiNT0mDU
-	 RVerBVj+7gQq2LwBHTsX/15WuYioqRUvvGFRPy1wblaks3QiM76NPVfnipLJ2YDjw8
-	 P3infQbb82gtkAUPjcvEttPFuh/w0GA2cXDhBmh494dzjVffYP4eMNxeBIQK46Ax3a
-	 yV5DPmmmUHgaA==
-Message-ID: <42e86a47-fbcf-4964-8dda-acfd1dfab53e@kernel.org>
-Date: Wed, 22 Apr 2026 16:37:03 +0200
+	s=k20201202; t=1776869183;
+	bh=+jyI2fVMyjIivhQsiJU3XcRjwvd0On+YXNM0kRRkZrM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=NJydrSpGnjpZmWfAGndTMimbILDBCJIpYHc6/zUYVUEmx7H8+gz6lArGm6Vqw6e7s
+	 gOyg4yLF1rHAC3uH4yRySof/zcrqchX0l63CSPTAtUK3QADZLdk7KPs7vjjOQVcpRf
+	 eN6wR1Q7NaeKtZkWfzFE/ifSYPgfxBRTqdzMRxQD7IZjNyTI1w/id4nfdPXmNoQC7Z
+	 PX3S2bhAKucH0i2h1eMGorwEF2BuuQYyd6iKlEHf6yE92WWKBpjCFbrgyGcHzURpbh
+	 46mmwoq3a/TD5rcToIfOgCuEvoxeCmVxnHcvf2iIq8rYe45K3pro9OnubKVOQm0TtJ
+	 m9toL3tuqBzIQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B12F1F9EDC9;
+	Wed, 22 Apr 2026 14:46:23 +0000 (UTC)
+From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Subject: [PATCH 00/22] Extend device support for AD5686 driver
+Date: Wed, 22 Apr 2026 15:45:34 +0100
+Message-Id: <20260422-ad5313r-iio-support-v1-0-ed7dca001d1b@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm-smmu: qcom:: Fix Hawi compatible
- placement
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Robin Murphy <Robin.Murphy@arm.com>,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260422083329.885979-1-mukesh.ojha@oss.qualcomm.com>
- <d1d24380-06e8-4833-b893-631c063d77ff@oss.qualcomm.com>
- <20260422142710.2f6f2oijbsjojbmi@hu-mojha-hyd.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260422142710.2f6f2oijbsjojbmi@hu-mojha-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA/f6GkC/x3MMQqAMAxA0atIZgO2oaJeRRyKjZrFllRFEO9uc
+ XzD/w9kVuEMQ/WA8iVZ4l5g6grmze8ro4RisI1tG7IOfXBkSFEkYj5Tinpg11kfqCfXsoFSJuV
+ F7v86Tu/7AZ1g67FlAAAA
+X-Change-ID: 20260325-ad5313r-iio-support-882ad39356e1
+To: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Michael Auchter <michael.auchter@ni.com>, linux-hardening@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Rodrigo Alencar <rodrigo.alencar@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776869181; l=3288;
+ i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
+ bh=+jyI2fVMyjIivhQsiJU3XcRjwvd0On+YXNM0kRRkZrM=;
+ b=GiE3VtANGmnhUKacLVTpE7nQ/MtzrJgeV+U/UQENXckFs3ws6ToShYeSp0T8QsXg2PYUHEMAc
+ bupTL1waAPvAe3PDqhZVTuUSHy6RdPm/8aZZW3RE4R2f1+Eq23+utFS
+X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
+ pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
+X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
+ with auth_id=561
+X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Reply-To: rodrigo.alencar@analog.com
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289415-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-289419-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 11A19447649
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,analog.com:replyto,analog.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A12BC447724
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 22/04/2026 16:27, Mukesh Ojha wrote:
->>>            - enum:
->>>                - qcom,eliza-smmu-500
->>>                - qcom,glymur-smmu-500
->>> +              - qcom,hawi-smmu-500
->>>                - qcom,kaanapali-smmu-500
->>>                - qcom,milos-smmu-500
->>>                - qcom,qcm2290-smmu-500
->>> @@ -93,7 +94,6 @@ properties:
->>>          items:
->>>            - enum:
->>>                - qcom,glymur-smmu-500
->>> -              - qcom,hawi-smmu-500
->>
->> No, why? That's for GPU. Why are you moving GPU compatible to non-GPU place?
-> 
-> Earlier commit was meant for CPUs and not for GPUs, hence moving it Or,
+This series adds support for multiple nanoDAC parts, adding triggered
+buffer and gain control support to the ad5686 DAC driver family, along
+with a number of driver cleanups and fixes.
 
-OK, but:
+Initial patches update the device-tree bindings:
+- Add compatible entries for missing and new parts;
+- Add GPIO properties for RESET, GAIN and LDAC pins;
+- Add missing power supplies properties.
 
-> Are you saying do not do the movement and add one for CPUs ?
+Driver cleanups and fixes:
+- Refactor include headers (IWYU);
+- Switch to device managed mutex initialization;
+- Drop enum chip id in favor of per-device chip_info structs;
+- Fix voltage reference control on single-channel devices;
+- Fix powerdown control on dual-channel devices;
+- Introduce bus ops struct with a sync() operation for batching
+  bus transfers.
 
-yeah, because you might need it in this place for the GPU. Therefore I
-would propose to check what compatible you expect for the GPU part and
-just add it.
+New functionality:
+- Device support for: AD5316R, AD5675, AD5697R, AD5313R, AD5317R,
+  AD5674, AD5679, AD5687, AD5687R, AD5689 and AD5689R;
+- Consume optional reset and new power supplies;
+- LDAC GPIO handling (active-low, held low when unused);
+- SPI bus sync() implementation for batching multiple transfers;
+- Triggered buffer support, leveraging LDAC and sync() to flush
+  all channel writes atomically;
+- Gain control support through the scale property.
+
+Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+---
+Rodrigo Alencar (22):
+      dt-bindings: iio: dac: ad5696: extend device support
+      dt-bindings: iio: dac: ad5696: add reset/ldac/gain gpio support
+      dt-bindings: iio: dac: ad5696: rework on power supplies
+      dt-bindings: iio: dac: ad5686: extend device support
+      dt-bindings: iio: dac: ad5686: add reset/ldac/gain gpio support
+      dt-bindings: iio: dac: ad5686: rework on power supplies
+      iio: dac: ad5686: refactor include headers
+      iio: dac: ad5686: remove redundant register definition
+      iio: dac: ad5686: drop enum id
+      iio: dac: ad5686: add of_match table to the spi driver
+      iio: dac: ad5686: fix ref bit initialization for single-channel parts
+      iio: dac: ad5686: fix powerdown control
+      iio: dac: ad5686: fix input raw value check
+      iio: dac: ad5686: add support for missing power supplies
+      iio: dac: ad5686: create bus ops struct
+      iio: dac: ad5686: extend device support with new parts
+      iio: dac: ad5686: update device list description
+      iio: dac: ad5686: consume optional reset signal
+      iio: dac: ad5686: add ldac gpio
+      iio: dac: ad5686: implement new sync() op for the spi bus
+      iio: dac: ad5686: add triggered buffer support
+      iio: dac: ad5686: add gain control support
+
+ .../devicetree/bindings/iio/dac/adi,ad5686.yaml    |  61 +-
+ .../devicetree/bindings/iio/dac/adi,ad5696.yaml    |  60 +-
+ drivers/iio/dac/Kconfig                            |  18 +-
+ drivers/iio/dac/ad5686-spi.c                       | 200 ++++--
+ drivers/iio/dac/ad5686.c                           | 775 +++++++++++++--------
+ drivers/iio/dac/ad5686.h                           | 144 ++--
+ drivers/iio/dac/ad5696-i2c.c                       |  94 +--
+ 7 files changed, 906 insertions(+), 446 deletions(-)
+---
+base-commit: eade2b843d9b1f668fc1775f15611bb0a1999cd9
+change-id: 20260325-ad5313r-iio-support-882ad39356e1
 
 Best regards,
-Krzysztof
+-- 
+Rodrigo Alencar <rodrigo.alencar@analog.com>
+
+
 
