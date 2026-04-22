@@ -1,145 +1,208 @@
-Return-Path: <devicetree+bounces-289500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289493-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kOqeHfo26Wk1WAIAu9opvQ
-	(envelope-from <devicetree+bounces-289500-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 23:00:42 +0200
+	id zfjYL7ss6WmmVQIAu9opvQ
+	(envelope-from <devicetree+bounces-289493-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 22:16:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D800244AC22
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 23:00:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06D5244A8B6
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 22:16:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5B80E302FEA4
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 20:59:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A4B35303DABF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 20:16:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0209B35E925;
-	Wed, 22 Apr 2026 20:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B19133B945;
+	Wed, 22 Apr 2026 20:16:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FfY67YR5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cDxH7VJa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D01231EA65;
-	Wed, 22 Apr 2026 20:59:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E7E32860F;
+	Wed, 22 Apr 2026 20:16:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776891590; cv=none; b=qG/M895ENbjZoKbjoT9wO0m9ZV+/rkIhR321BlAQzFIF1J1jb5gQGfAbG7M5VRS0SW47QyDBsX0sdRDXgcRe5BVyeVGPhHOrwksGKTprBMJQU/CynyC/9enPd9GBQu6Y1GsLGhYUc8IJX+Uz1xjVy6ZXEhmLZwHqX85ZoSDff3I=
+	t=1776889014; cv=none; b=Sa9cCezyd4fD2Ci4BQsuqyldtQZSNy2u4O3vssuruYT3kLlo3Wy3Pea+jKfX0zlkqqz0x8Y21fdDLJ5Sn2TCKpbNhN5vSzuEmAdHJt2ylVs1deKDC+ikHJs0iV1MZMb4Uo9Zle1KKxId0Du1HrXupTxO81iC4bQB6y/Yg3l+ZQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776891590; c=relaxed/simple;
-	bh=M5RsCE0TEqbxoMSQ1p9Ml6g36oMexHF5KHWHyQAkR3k=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=UJXJK3W9kl8asIcRP42p1qAvLTWWLMjg9itDJyU6l2pzSbh7CkMOZewrsYoOCPa6ViLt3zzePp9wz8M7H5dHSbwwqfDUiMjWotgk8irb8mO8IGcw5T11haqBakcVqZBgksS5h8Enjzo6LSR4nSdc9yMn8qEaj5pbhLJjibfyJcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FfY67YR5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D3B3C19425;
-	Wed, 22 Apr 2026 20:59:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776891590;
-	bh=M5RsCE0TEqbxoMSQ1p9Ml6g36oMexHF5KHWHyQAkR3k=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=FfY67YR5us/+wOBlJz+MTMSd7DGLxtlQF14kKB2cDMQJevscVJ5I5PvNDYKC5ZPRw
-	 M998FrR7No3SgPFuHaJm9EvoDSVJHtD3l9+Ze/HPLw88OmDh0n7SDltmOFtcGKf+b+
-	 ukib9I0MnzV3HWEpB98s5czNGRzFRHnbOqlbVNNwha+KLduFhKB4npQZxN5O5+gG7V
-	 ffW/jI3T+fu9IMj84NHjkkfoIIiuSo56Ifpd17eUPB3DYbMnDJfYxc9O/s1FdMSU7A
-	 cenmF4arot6RRl5KKZIXzz+je6vGqOxWHih5XHyrFBM2Sc2EuCqsstS/0yXL1DmgGD
-	 pHSYFnTukByfA==
-From: Mark Brown <broonie@kernel.org>
-To: tiwai@suse.de, Baojun Xu <baojun.xu@ti.com>
-Cc: andriy.shevchenko@linux.intel.com, 13916275206@139.com, 
- shenghao-ding@ti.com, linux-sound@vger.kernel.org, 
- linux-kernel@vger.kernel.org, lgirdwood@gmail.com, robh@kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
- k-yi@ti.com, henry.lo@ti.com, robinchen@ti.com, will-wang@ti.com, 
- jim.shil@goertek.com, toastcheng@google.com, chinkaiting@google.com
-In-Reply-To: <20260414015441.2439-1-baojun.xu@ti.com>
-References: <20260414015441.2439-1-baojun.xu@ti.com>
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: ti,tas2781: Add TAS5832
- support
-Message-Id: <177688897222.36226.274253868203239470.b4-ty@b4>
-Date: Wed, 22 Apr 2026 21:16:12 +0100
+	s=arc-20240116; t=1776889014; c=relaxed/simple;
+	bh=XxzWMiQc10zG3tMyK37kwgGSuM0sEg9L/1nezQQ2Isk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y+W//mesP9yAlyYaMCYR4JdJjbNtT7O8dEPez9xjd9YolPIU4/i+k/LCQTjQtQoiCOXnBomAUnRulSxlnYXB4GRR72M+AsBR/M4ImhCA4DhCcDExTHQj4qyIV4qe6mYTJ6osVHNG7FFPYdi5M+JxUiDcJrj+9EduMy06SpuM1mk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cDxH7VJa; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1776889013; x=1808425013;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XxzWMiQc10zG3tMyK37kwgGSuM0sEg9L/1nezQQ2Isk=;
+  b=cDxH7VJaORkYSOTszKG6+nK2bnGLiPmxITe26R219cNJEkRozmtiIo+J
+   g2czvvdzVW5rebs+zf2XgC0YvjV4rMkwkeCryNNJKYoRXbCCmoHZnLZ3g
+   50mFop9zWqB6xZX4W102S2ShPHAQp6O1+6c9+zWBODo4Oi27RvTY6bH8r
+   tnjhTvHQj7NLCgNa2jSGq77ryamj9bEbAI62wU6xTR6EkusM105xrYVRf
+   h7TOQh+2hLkdw0rawaSpwiyxWp4vOL+qYGoq26fc2haGxGXSiAJgYwjen
+   whjAu/vWFynsCkqgC5LCFkOuI2JhEgyr5rS8SkCUwhKFVSBvSoQ8xhhW8
+   w==;
+X-CSE-ConnectionGUID: KHGELFnIRS6olBghYVpo9A==
+X-CSE-MsgGUID: 9nmgdbJsTTmSzMZnHTS4bg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="77868155"
+X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; 
+   d="scan'208";a="77868155"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2026 13:16:52 -0700
+X-CSE-ConnectionGUID: p3r6NocQS6+IMJHAsltZZQ==
+X-CSE-MsgGUID: MW9v2S8hQuyEEjmjr93csA==
+X-ExtLoop1: 1
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.201])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2026 13:16:49 -0700
+Date: Wed, 22 Apr 2026 23:16:47 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Piyush Patle <piyushpatle228@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Andreas Klinger <ak@it-klinger.de>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] iio: adc: hx711: refactor to per-chip
+ hx711_chip_info structure
+Message-ID: <aeksrz1Q0n5NMFUu@ashevche-desk.local>
+References: <20260422175910.1258579-1-piyushpatle228@gmail.com>
+ <20260422175910.1258579-3-piyushpatle228@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1216; i=broonie@kernel.org;
- h=from:subject:message-id; bh=M5RsCE0TEqbxoMSQ1p9Ml6g36oMexHF5KHWHyQAkR3k=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBp6TbCYQbceaFGcfpPamgGKidcFgtztfK2UYdeu
- sRT5dtLBqKJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaek2wgAKCRAk1otyXVSH
- 0JRIB/9Ouhp9BP2sm72lyUe7xSDx18QBlrILWouiJo89yb6GZ0QzaMaKwh/msx0fpEVa04Zmfof
- 6Ut0X9eyltMaug3CA9wa17tL3YdZZzhumhReSEe4nY/UImkrUKRJoDtsJXmO+Tq6nags4RGdI2w
- H/KPcsZQtb14rm0J+0GjSHOmfgauMrwLZ8YsrCtnQFn+7Cz+hCXFTVeppk9aG1N+v58rrm+6Sd0
- K6M4N9LZg2tgUcckZd0/nxxwEvdZ8XXsw3XrKnp1OAQCuxntS705Acwk5adIq4wsEmMgBLsKcCp
- PN/sdTm5Ppqi1rbEjqEupFSTPHZWoSztTQpYmPxlE9VOwnPx
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260422175910.1258579-3-piyushpatle228@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289500-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-289493-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linux.intel.com,139.com,ti.com,vger.kernel.org,gmail.com,kernel.org,goertek.com,google.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: D800244AC22
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ashevche-desk.local:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: 06D5244A8B6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 14 Apr 2026 09:54:40 +0800, Baojun Xu wrote:
-> ASoC: dt-bindings: ti,tas2781: Add TAS5832 support
+On Wed, Apr 22, 2026 at 11:29:09PM +0530, Piyush Patle wrote:
 
-Applied to
+...
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.1
+>  config HX711
+> -	tristate "AVIA HX711 ADC for weight cells"
+> +	tristate "AVIA HX711 and compatible ADCs"
+>  	depends on GPIOLIB
+>  	select IIO_BUFFER
+>  	select IIO_TRIGGERED_BUFFER
+>  	help
+> -	  If you say yes here you get support for AVIA HX711 ADC which is used
+> -	  for weigh cells
+> +	  If you say Y here you get support for the following AVIA ADCs:
+> +	    - HX711
+> +	  which are used for bridge sensors such as weigh cells.
+>  
+>  	  This driver uses two GPIOs, one acts as the clock and controls the
+>  	  channel selection and gain, the other one is used for the measurement
 
-Thanks!
+This along with top comment and other text doesn't belong to the change, please
+split into separate patch.
 
-[1/2] ASoC: dt-bindings: ti,tas2781: Add TAS5832 support
-      https://git.kernel.org/broonie/sound/c/6d619f739703
-[2/2] ASoC: tas2781: Add tas5832 support
-      https://git.kernel.org/broonie/sound/c/1f95fdef685e
+> +/**
+> + * struct hx711_chip_info - per-variant static configuration
+> + * @name: IIO device name
+> + * @channels: channel specification
+> + * @num_channels: number of channels
+> + * @iio_info: IIO info ops for this variant
+> + */
+> +struct hx711_chip_info {
+> +	const char			*name;
+> +	const struct iio_chan_spec	*channels;
+> +	unsigned int			num_channels;
+> +	const struct iio_info		*iio_info;
+> +};
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+...
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+>  	/*
+> -	 * delay after a rising edge on SCK until the data is ready DOUT
+> -	 * this is dependent on the hx711 where the datasheet tells a
+> -	 * maximum value of 100 ns
+> -	 * but also on potential parasitic capacities on the wiring
+> +	 * Delay after SCK rising edge before sampling DOUT.
+>  	 */
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Doesn't seem like a part of this change.
 
-Thanks,
-Mark
+...
+
+> -	for (i = 0; i < 24; i++) {
+> +	for (int i = 0; i < 24; i++) {
+
+Be consistent. Why here is 'i' signed?
+
+In any case doesn't belong to this change.
+
+...
+
+> -			ret = hx711_read(hx711_data);
+> +			ret = hx711_read(hx711_data,
+> +					 hx711_get_gain_to_pulse(hx711_data->gain_set));
+
+This sounds like a separate change to me.
+
+...
+
+> -MODULE_DESCRIPTION("HX711 bitbanging driver - ADC for weight cells");
+> +MODULE_DESCRIPTION("HX711 and compatible bitbanging ADC driver");
+
+Doesn't belong to this change.
+
+...
+
+This needs to be split to 3 or even more patches!
+- text in the MODULE_*(), top comments, and Kconfig
+- chip_info initial change
+
+- modifying  the existing code to prepare for new HW support
+(the above  ^^^ might be done in a couple of patches)
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
