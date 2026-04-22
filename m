@@ -1,178 +1,217 @@
-Return-Path: <devicetree+bounces-289285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289289-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uOvHJZpx6GmvKQIAu9opvQ
-	(envelope-from <devicetree+bounces-289285-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 08:58:34 +0200
+	id sJ5AKuNy6GkSKgIAu9opvQ
+	(envelope-from <devicetree+bounces-289289-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 09:04:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3794442A97
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 08:58:33 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD553442B93
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 09:04:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B6D7D3006155
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 06:58:23 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 460C4300C369
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 07:03:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0211D2BEC43;
-	Wed, 22 Apr 2026 06:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E38836C0CF;
+	Wed, 22 Apr 2026 07:03:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aC2/Dm1P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF65427EFEE
-	for <devicetree@vger.kernel.org>; Wed, 22 Apr 2026 06:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE91536A03A
+	for <devicetree@vger.kernel.org>; Wed, 22 Apr 2026 07:03:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776841102; cv=none; b=GFNSpv/fgJ1TM+CtuvNOCwT3Xa72lcDFh6wChDiLKP1AHip1Yh7lkfacsdsatLFzB5pYdoLIMHxNvdDBjjt4tMIl4qbP8R1AR3DiALkTm9ER2hGfvm91yiaEfDg8o9pDsFYsI5ZiUgOd3X9mye+qTMBKf8sX5H18NNdGLhDG7Pg=
+	t=1776841416; cv=none; b=SMoAQxwuW8nT8Sztw8DT5QCCi6LicxaQxcQhw9JO3LNKP0QTzrwKZOCV2hPJSLlMgXyPtlKwzYGpgGy+b9e8sa/sBJm0jRpEiaWW/38oCq9cIkLljj09HqZ4hLANYSP3HA5Q1+L/wqwQG7ZTtTM0eJ1+qyCxCzxJlJpp1QXH7vU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776841102; c=relaxed/simple;
-	bh=wpkRjIorbMJMpqwzpLdjkd4Y24lBbCPn4ze08bDnJqE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aKIG3PJ51unYJPIArhMGYQJ+zyVlYNUICMm4u58QS4Yx7clm9rww2S4/9WxmQQmCwyF0HvWbQpYtWsjjejQzToeX17d4S2+jZeM/1d/zQrVbMA7vR6I0DLtI3ZjyRyAswDx3QsujnDq0yQqzFdZ6VdxI+QQOAg6yIOYm6YTmVoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1776841416; c=relaxed/simple;
+	bh=hn43hGUeHubAAxxfHt1D/92CcVRX0B2T9HMeJ6SisBc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=BSHICD12BTRwyc7PdcyPyUjZmltSiww3ZhS6bWPwHGO0TL5nY9kVqYspX5HUJNFrNHNd/yQ14hkrZ2cQl9wqSpQ+IUu+TWewKJhaOc2WXuM0F0yKIQMmXEIYxzZZZGyTAYMQomYSnkh5KBbpIicise2rf1yHpL9plPo7gdRz+3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aC2/Dm1P; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-7dcc9b506d9so2228465a34.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 23:58:21 -0700 (PDT)
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-358ed696623so2316344a91.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Apr 2026 00:03:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1776841414; x=1777446214; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jc8hj/fYyFv6f/gblFlvOohyiQz/DHY7gT0SmMXTVYo=;
+        b=aC2/Dm1PnAJRIZ4r+errD1PakvGZw5iJAtaP8lWVdjsCyz0OJjGx9rvrciIKT40H9j
+         ewC1poq6QbSST19gwUEAPUBg095/l2wTopT2YNMXxAgmXkXIqQol4q0K7WnJEYXheNQJ
+         SKR3gGS0v4Ru6xqA1/sR4b+dwmQrG7dSiJzEIeJVVhfX1DbyDdn/cGoXcD5TKjvNMcrc
+         rQ7Q/fD8zZw+65iRCZOQz6E3N7z1/pnjSq0FMfBW9EE1mCCDvZhemzUNajFkxvrtucCW
+         QiFRoMip/aYLCnpiFVdeiL+s/a0HCgRsXp9cZR8jdMflbRY6+kMMVNe8wcKxhhLSS7MF
+         9dPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776841100; x=1777445900;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20251104; t=1776841414; x=1777446214;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EQBlVUrhFqLpmXIMAS6FxW1MbLcWzT++sufCtB36Fh4=;
-        b=M23l5ZWwhKhM2hZEYrM1ALY6Vkv+9fIG3WiTawxSkgZbFPS37sj5TEdT4tkoVFTPv3
-         6rIsUkPwbCHFYl+jl2xAy5TJFUbqD7Qa5b7hF93zpqdUhiyzhbH4IdRT3pWBKRr+Binm
-         G5N4SUe3JE75RSFLoQGb4VnJw+SymA/B7bnDBRQTcBp898ITiD5SbZkYCkNDGZc32POg
-         2kpjOFChlhoNJN64IZS3xhcHs7qRhN/ccl1vR8dGcS0SJVNM1TBQyFMXwxMqV5autE8C
-         Xzj0MWV8Fj9zy4h+EhR0KxxOhoUWyexK7LaDPjaa6oNwPMvIB1+tsM8iUsenmH1sH7fa
-         sTPg==
-X-Forwarded-Encrypted: i=1; AFNElJ+/f10ljv2K6tyzczVxHD8JcRhF+KHbmwynRF96gn/aN4D6luxmF19Zy1LGYvSJZkKzUJTXdD/BFErP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWRRJ/gowK2O/ZGo5EPuW79T3eZrcHxHS8k1jhjHcYeIqNTii0
-	I6bV9ld9pwN5ozRxYPhF7GZ8x4lYkLKenKvCeuVieCBbgIljHbi4IgaGWDBZwTaDsL0=
-X-Gm-Gg: AeBDieun2IYxhVeAWJjR62uyFHEUhnp39XYkZdDtHCNE3mOmW6nX0QU/AzrnMQjn8zz
-	f9XyhEVQYbdCQmrXH9/PRgf22rY0fVbp4UbwDPEpUOuc6yoiLT9QmnP1zTBZwtTQoA5rqDSex6D
-	B6lTXzf071XKda5VnYd78xujLHsrMl6+is2lBSR2p6e06LQOzrOWiGTyxu37K0Q8AbOrTDEwZXT
-	+fgnKlfBUgijIbeaPD6WXmWJCLv/f1Z/NaJ+wNcCoaHlTQW2gzYk5t2yKSp2X+KFt4GQ7juvEif
-	Tluf3b8JNVoyuXtEWZf7gP2HENSL6Vk4Fml+2wMlHzlwebvsBk1Ff4QdQbxyDsBvD3NY6GFNLLP
-	K1Pe9k52+NyNUMm7GxuFlLlUrSAuvjS2sQcGSiZ4zFYWmfGKVR8Q8RjvcAf583577ZFJC5xihpR
-	jieIQ+TRYGTa7+6f11dxZ7rHoPKUmK82kzMHbl/LQGl2Py3dgKLp3obwMM5aKdEuPTtXa5AEg=
-X-Received: by 2002:a05:6830:34a4:b0:7d7:e142:2ead with SMTP id 46e09a7af769-7dc9523108bmr13257188a34.20.1776841100574;
-        Tue, 21 Apr 2026 23:58:20 -0700 (PDT)
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com. [209.85.160.41])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7dcdbef352bsm3022185a34.10.2026.04.21.23.58.20
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Apr 2026 23:58:20 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-40ee9b945d5so4031576fac.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Apr 2026 23:58:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ/k5T4v9uLHgocaeAmh8QnA716o8f2lameix7gAlFDhan3IRu8eLrgShki19V8lrrAfExOopxY0V7B5@vger.kernel.org
-X-Received: by 2002:a05:6102:3a0d:b0:60f:f543:232a with SMTP id
- ada2fe7eead31-616f4b50368mr11299488137.2.1776840661908; Tue, 21 Apr 2026
- 23:51:01 -0700 (PDT)
+        bh=Jc8hj/fYyFv6f/gblFlvOohyiQz/DHY7gT0SmMXTVYo=;
+        b=WHfg/6gEvAQk8kyXdH9U0lb6HUksec8OyY5Rc+jAyRG9D59rKR0iYWouvF5e/OrTuQ
+         Dw4iGRqeWQqyDTgXr/PkS08dDY95N1RSRvhr+VNlNDnDtd3TJaA6WHctTtlo2t8SkKhr
+         QbawaT//NVpAJC/dr0mrhZS2z7Q0/4blEslupNFiikWxU2qbyFs+Dg/1humbNKOoQnER
+         AklX/MQjZTlbGBG/XRxyFjEobaqy8QPeMmeWmOLLJjqsuFtlYrvx5+pCq41sDQR4jjWl
+         9IXddSbNfaBIxhgPjW79uRc7jqNmKsmHbX1GT4Xnf3WID9Vdqqp9KePIs0x3yMHn46RI
+         UaRA==
+X-Forwarded-Encrypted: i=1; AFNElJ84fD/+ooVq0qiN4FEHEEY6dcpQKIj/yGUDgu25zpYIggkQoi7fRm3SeU3xFfDU8WCWCt8ulnGshYVp@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQWBSrvQZ8/ExSMcn1Jf1RStFK/TP5FyIedPkLWQeAKZRqPjF2
+	pKpFKjkJ7HSzE47aAUTM9kmdFKGX3E+xwyPXmoOhzU7/fKZ8IFM1MDgf
+X-Gm-Gg: AeBDieu7GCjkvQ+/niPLFQhlRMDPDZbSe65aPPngfqET2CqLslnF3O+QUYZXGk06mDH
+	iEUqEnzoCQnDqrEeqeSlblDt0yMIST8u921B6artTMB4XF3Azb2h8WwKwq0Ct3oK798b/qFflXx
+	L4rozt9/zEQhiOHs2JsyLc5aEqsv9+0bjkSQmpCAiYAm6/NIZoqgKXd6Vz8+KTzMc6mjBFB5sqp
+	UaEUGCsHMo1Wv8G4J3DRgHOySKFPPotp+QlJ2tdqU9d1s/MN3kBK3eHU9iSt0tkn2OJ4yOUGUaQ
+	TFpEp9hdSjBSiDXJUUVHmAbMtjEG0qa8D0MVVi4C0mlZg2nfpmWHQebghqMUxBlllvDzCekosvx
+	buJh7BMgNgHgRgB4fxsRgqV9TRERuGx5kumiQqNtZ+97fnW6oxTk5EPsRoaUpUAkcZo70VZ8Z82
+	d9xXkkuDtV8EgZI3W2f/bkkzdHsEToo6P0odG203lPBgAVXs7wtswJwDps
+X-Received: by 2002:a17:90b:5383:b0:35f:b7c1:faad with SMTP id 98e67ed59e1d1-361404a727fmr20892356a91.25.1776841413968;
+        Wed, 22 Apr 2026 00:03:33 -0700 (PDT)
+Received: from twhmp6px (mxsmtp211.mxic.com.tw. [211.75.127.162])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-362b9b6f5b5sm2241209a91.1.2026.04.22.00.03.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Apr 2026 00:03:30 -0700 (PDT)
+Received: from hqs-appsw-a2o.mp600.macronix.com (unknown [172.17.236.67])
+	by twhmp6px (Postfix) with ESMTPS id 157144163B69;
+	Wed, 22 Apr 2026 15:03:28 +0800 (CST)
+From: Cheng Ming Lin <linchengming884@gmail.com>
+To: miquel.raynal@bootlin.com,
+	richard@nod.at,
+	vigneshr@ti.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	alvinzhou@mxic.com.tw,
+	Cheng Ming Lin <chengminglin@mxic.com.tw>
+Subject: [PATCH v9 0/3] mtd: spi-nand: Add support for randomizer feature
+Date: Wed, 22 Apr 2026 15:02:00 +0800
+Message-Id: <20260422070203.698716-1-linchengming884@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1776793163.git.geert+renesas@glider.be> <72e2a0e7a5abda02fe36b3f5851842f7a77b2593.1776793163.git.geert+renesas@glider.be>
-In-Reply-To: <72e2a0e7a5abda02fe36b3f5851842f7a77b2593.1776793163.git.geert+renesas@glider.be>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 22 Apr 2026 08:50:50 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXxEsYuOay0+Tf=4ByTAMp0=iXwcS4YSy7UY9_CE0hb5A@mail.gmail.com>
-X-Gm-Features: AQROBzBFb_WdSQXK0LqlocZWzf5masVqawoXkZ-ffV8evv9b39yVA9knMtYt5TM
-Message-ID: <CAMuHMdXxEsYuOay0+Tf=4ByTAMp0=iXwcS4YSy7UY9_CE0hb5A@mail.gmail.com>
-Subject: Re: [PATCH/RFC 05/14] firmware: arm_scmi: Add scmi_get_base_info()
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Sudeep Holla <sudeep.holla@kernel.org>, Cristian Marussi <cristian.marussi@arm.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Ulf Hansson <ulfh@kernel.org>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Marek Vasut <marek.vasut+renesas@mailbox.org>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, arm-scmi@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [0.04 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,arm.com,gmail.com,baylibre.com,pengutronix.de,broadcom.com,sang-engineering.com,mailbox.org,renesas.com,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-289285-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-289289-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linchengming884@gmail.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	R_DKIM_NA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux-m68k.org:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: F3794442A97
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mxic.com.tw:email]
+X-Rspamd-Queue-Id: AD553442B93
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 21 Apr 2026 at 20:12, Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
-> Currently non-SCMI drivers cannot find out what the specific versions of
-> each SCMI provider implementation on the running system are.
->
-> However, different versions may use different ABIs (e.g. different clock
-> IDs), or behave different, requiring remapping or workarounds in other
-> drivers.
->
-> Add a public function to obtain base protocol information for the
-> selected SCMI provider.  This will be used by the R-Car X5H Clock Pulse
-> Generator and Module Controller drivers.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+From: Cheng Ming Lin <chengminglin@mxic.com.tw>
 
-> --- a/drivers/firmware/arm_scmi/driver.c
-> +++ b/drivers/firmware/arm_scmi/driver.c
-> @@ -3504,6 +3504,37 @@ int scmi_inflight_count(const struct scmi_handle *handle)
->         }
->  }
->
-> +/**
-> + * scmi_get_base_info() - Get SCMI base protocol information
-> + *
-> + * @of_node: pointer to a device node for an SCMI provider
-> + * @version: pointer to write base protocol information
-> + *
-> + * Check if an SCMI device has been instantiated for the passed device node
-> + * pointer, and, if found, return its base info.
-> +
+This patch series introduces randomizer support for SPI NAND devices.
 
-Missing asterisk, reported by the kernel test robot.
+- Patch 1: add the nand-randomizer property to the generic nand-chip.yaml
+           bindings. Instead of using boolean properties, it introduces a
+           uint32 enum (0 or 1). If the property is omitted, the driver
+           will not interfere and will leave the randomizer in its current
+           state.
+- Patch 2: add the initialization logic and the set_randomizer callback
+           to the core framework. The core will now parse the device tree
+           properties and enable or disable the randomizer accordingly
+           during spinand_init.
+- Patch 3: implement the set_randomizer callback specifically for Macronix
+           chips (MX35LF/UF series) to handle the vendor-specific register
+           operations.
 
-> + * Return: 0 on Success or -ENOENT.
-> + */
+v9:
+* Replaced 'nand-enable-randomizer'/'nand-disable-randomizer'
+  boolean properties with a single 'nand-randomizer' uint32 enum.
+* Switched to use of_property_read_u32() to align with the new
+  binding.
 
-Gr{oetje,eeting}s,
+v8:
+* dt-bindings: spi-nand: macronix: Remove the chip-specific Application
+  Note link from the commit message to keep the binding generic.
+* mtd: spi-nand: macronix: Update the broken Application Note link and
+  move it here from the dt-binding patch per Miquel's suggestion.
 
-                        Geert
+v7:
+* Directly return the result in macronix_set_randomizer()
+
+v6:
+* Added mutual-exclusive constraints using not with required for
+  nand-randomizer-enable and nand-randomizer-disable properties based
+  on Krzysztof's feedback.
+* Simplified the return path in macronix_set_randomizer() to directly
+  return ret; and dropped unrelated formatting changes.
+
+v5:
+* Promoted the randomizer configuration to use generic NAND properties
+  (nand-randomizer-enable and nand-randomizer-disable) instead of
+  vendor-specific bindings.
+* Refactored the initialization architecture in core.c. The core framework
+  is now responsible for parsing the device tree properties and deciding
+  whether to enable or disable the randomizer.
+
+v4:
+* Fix a build error in spinand_randomizer_init() where a value was
+  returned from a void function. (Reported by kernel test robot)
+* Update the return type to int.
+
+v3:
+* Revert the device tree property to the vendor-specific
+  "mxic,randomizer-enable" to strictly follow vendor-specific bindings.
+
+* Update the 'set_randomizer' callback signature to accept a boolean
+  'enable' argument, allowing the feature to be explicitly enabled or
+  disabled.
+
+* Switch the implementation to use the standard SET_FEATURE command
+  to modify the Configuration Register (0x10), replacing the previous
+  special program command method.
+
+v2:
+* Create a global NAND DT property
+
+Cheng Ming Lin (3):
+  dt-bindings: mtd: nand: Add nand-randomizer property
+  mtd: spi-nand: Add support for randomizer
+  mtd: spi-nand: macronix: Enable randomizer support
+
+ .../devicetree/bindings/mtd/nand-chip.yaml    |  9 +++++
+ drivers/mtd/nand/spi/core.c                   | 20 ++++++++++
+ drivers/mtd/nand/spi/macronix.c               | 38 ++++++++++++++-----
+ include/linux/mtd/spinand.h                   |  9 +++++
+ 4 files changed, 66 insertions(+), 10 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.25.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
