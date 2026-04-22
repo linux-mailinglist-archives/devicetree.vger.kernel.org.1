@@ -1,167 +1,153 @@
-Return-Path: <devicetree+bounces-289499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289501-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GGUDB1sv6WkFVgIAu9opvQ
-	(envelope-from <devicetree+bounces-289499-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 22:28:11 +0200
+	id oJUFM9w46WnFWAIAu9opvQ
+	(envelope-from <devicetree+bounces-289501-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 23:08:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1D6444A972
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 22:28:10 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33B6944ACA7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 23:08:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DF03D300E02B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 20:28:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 79DB4301A3A6
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 21:08:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E50837418A;
-	Wed, 22 Apr 2026 20:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC673612F4;
+	Wed, 22 Apr 2026 21:08:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SiJG6fQ0"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="HQQh5p+t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FF71372685;
-	Wed, 22 Apr 2026 20:28:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8778E2C15A9;
+	Wed, 22 Apr 2026 21:08:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776889688; cv=none; b=mi5tPVd+09lHVkYpFt0qLa/QQb4ChwzKR8q/qgkdbYD7Q+477gCWMaOFeyO53CdOtoKunaRkq6GVsUGFBIvzf5Mxf5Q/fMNdGmxZQidCC+1tQtJJ4TFMH7OEoK0p7XYLTrwcyogDcX4Ger8gkNwoKg3UTbTmojbvBeY7+Jz8pMs=
+	t=1776892104; cv=none; b=o7zkZpiY/PSgtYS0jkaHNEN8iJiuMOFOd6DaOwVgVhfQhfLWmPTxMdQoNvTPE+GnotMmM2DzDV7CjKi/b9i2buVaE3G5TFe3olswaLwQhMhLN+1XH00+XmNFf1qPM9tw5cubN2qxMc62kTYucg0oCaz4pLsWq85i5FjaoSxOM4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776889688; c=relaxed/simple;
-	bh=nNeRYHOhXQoZprrKwwxdGkcK5H+iTWY8NjFprmFvOps=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NDDxAmNJH7o3ZsR/Uq5J5lI4lRhi+2BPB146XI4K7oJqJpOO/8tEN8ylCMZRi0u3vNKIYbGVxixXe38MO3YP0lD6P3u+tfGZJLJuo44n5qvBxS24MTYXyucWaaNk7vst/QdvhJy8j10bLzHnVdbB+GrgQzvvw1Q2LAfSY3pm6T4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SiJG6fQ0; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1776889687; x=1808425687;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nNeRYHOhXQoZprrKwwxdGkcK5H+iTWY8NjFprmFvOps=;
-  b=SiJG6fQ0JavthR/54rYfh2lkK/YZL+5WYsGPrKJVzkxeMjG5K1H2uwjo
-   hYMu9tozwqY5FtE8NSYqSv5wVf7yvhF04ZEpLUta7UeyTDYvtsKs6Qj5y
-   i2IQ+Rsw1zankEe3BR2s075IN8vlDi6oT77zk99JawwJMw4r4XlgTJuFn
-   JTpnp0YrWVWMILF8brd4D2R7nVO+4LGsiZ5h1T9+6eDJO0QpvLs10T5Ah
-   HQhWnh1TlNm4403+/3jQ+AchCfglnUdVMcp/STojSAIAyIeC6siqFb3oj
-   d3VhSCMbTi7MQv5y9uWMSGuEbzy+pRIXbnbitys9+ypqtqNTnGIh79xKu
-   w==;
-X-CSE-ConnectionGUID: AtWfFK2gTQWg10U7FW/pTQ==
-X-CSE-MsgGUID: FxZiRLvYTkutqibYYDxbew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="103315023"
-X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; 
-   d="scan'208";a="103315023"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2026 13:28:07 -0700
-X-CSE-ConnectionGUID: +i85qFizRXWElbz1ps92OA==
-X-CSE-MsgGUID: g3HNlv3yQz6DCMJMCpGm0g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; 
-   d="scan'208";a="236452322"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.201])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Apr 2026 13:28:03 -0700
-Date: Wed, 22 Apr 2026 23:28:00 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Michael Auchter <michael.auchter@ni.com>,
-	linux-hardening@vger.kernel.org,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1776892104; c=relaxed/simple;
+	bh=FN+f0G9nCsY/gUP+tHl5fE3xiPBFKSs+iMJGsXMspaE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=p5FA9MZNZfEjLoNQL6gP4P1KDwM4DbNHIV7vgZYK/zaU3TZ5Y+MMyt2DggSm5/VM6MSs8gcs5IrhW9Z+fZfG7mukAdsooNspr5OHP+lGIOC9Kab2J5bq1kVhm+P4K45U8HzX57ENNDY/6ZOYCY+rNFA6GNpwoxgXVv+7phGrd+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=HQQh5p+t; arc=none smtp.client-ip=178.251.229.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B6672114A90;
+	Wed, 22 Apr 2026 23:08:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1776892099; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=HjmnKNM37fm6w755PgZH/lD1zoBOPUZWIJ4A0qH84ws=;
+	b=HQQh5p+twdo0EV3++xC4i1o9q4rND9TiRedEge3SUvimGZxWT9GrPXbl+5inMlr3t6kH9/
+	lAIFw1TOyw4il3ZZrGTR5CmHiKoh1bVcKDEAlzTuOcu1OHpzptsl4PwaV3/Gkfu6QxC/HI
+	gfLu+HtmMC7LsNmYTpGPysH4hDWae9tUqN5VmLB80KFGU0OuY87KDQWy0vFvhkzcM2y/UY
+	88377k4Pja1Sil4fxjXFKjdscth2f9T9ean0lQDEJl1h+ca0UvP2sv6OOfG+NH91Rs2Uj/
+	jqlYQWLxsWZDYpXKGr95vJEmYkDcGrL+yhaUzQsPNxTH2si1zjRfCL1jhiMroA==
+From: Marek Vasut <marex@nabladev.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Marek Vasut <marex@nabladev.com>,
+	"Kael D'Alcamo" <dev@kael-k.io>,
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 00/22] Extend device support for AD5686 driver
-Message-ID: <aekvUKh2SoAaLKW6@ashevche-desk.local>
-References: <20260422-ad5313r-iio-support-v1-0-ed7dca001d1b@analog.com>
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Displaytech Ltd.
+Date: Wed, 22 Apr 2026 23:07:23 +0200
+Message-ID: <20260422210806.80948-1-marex@nabladev.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260422-ad5313r-iio-support-v1-0-ed7dca001d1b@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289499-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-289501-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[nabladev.com:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ashevche-desk.local:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: D1D6444A972
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[nabladev.com,kael-k.io,oss.qualcomm.com,kernel.org,gmail.com,bp.renesas.com,linux.intel.com,linaro.org,ravnborg.org,ffwll.ch,suse.de,vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 33B6944ACA7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Apr 22, 2026 at 03:45:34PM +0100, Rodrigo Alencar via B4 Relay wrote:
-> This series adds support for multiple nanoDAC parts, adding triggered
-> buffer and gain control support to the ad5686 DAC driver family, along
-> with a number of driver cleanups and fixes.
-> 
-> Initial patches update the device-tree bindings:
-> - Add compatible entries for missing and new parts;
-> - Add GPIO properties for RESET, GAIN and LDAC pins;
-> - Add missing power supplies properties.
+Add "displaytech" vendor prefix for Displaytech Ltd. .
 
-> Driver cleanups and fixes:
-> - Refactor include headers (IWYU);
-> - Switch to device managed mutex initialization;
-> - Drop enum chip id in favor of per-device chip_info structs;
-> - Fix voltage reference control on single-channel devices;
-> - Fix powerdown control on dual-channel devices;
-> - Introduce bus ops struct with a sync() operation for batching
->   bus transfers.
-> 
-> New functionality:
-> - Device support for: AD5316R, AD5675, AD5697R, AD5313R, AD5317R,
->   AD5674, AD5679, AD5687, AD5687R, AD5689 and AD5689R;
-> - Consume optional reset and new power supplies;
-> - LDAC GPIO handling (active-low, held low when unused);
-> - SPI bus sync() implementation for batching multiple transfers;
-> - Triggered buffer support, leveraging LDAC and sync() to flush
->   all channel writes atomically;
-> - Gain control support through the scale property.
+Signed-off-by: Marek Vasut <marex@nabladev.com>
+---
+Cc: "Kael D'Alcamo" <dev@kael-k.io>
+Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Jessica Zhang <jesszhan0024@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-This is rather long series. Please, start from the fixes series first that is
-independent on the features.
-
-I see here ~3 sequential series. Can we rather do them this way?
-
-Personally I stopped reviewing on patch 12 (without even opening DT stuff)
-because it's exhaustive. Documentation usually suggests the series to be
-limited by ~15 patches IIRC.
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 28784d66ae7ba..11c55b5df0e4c 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -437,6 +437,8 @@ patternProperties:
+     description: Diodes, Inc.
+   "^dioo,.*":
+     description: Dioo Microcircuit Co., Ltd
++  "^displaytech,.*":
++    description: Displaytech Ltd.
+   "^djn,.*":
+     description: Shenzhen DJN Optronics Technology Co., Ltd
+   "^dlc,.*":
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.53.0
 
 
