@@ -1,173 +1,215 @@
-Return-Path: <devicetree+bounces-289453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289454-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WGAaGWry6GkdRwIAu9opvQ
-	(envelope-from <devicetree+bounces-289453-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 18:08:10 +0200
+	id 2CCaHAL46GkgSQIAu9opvQ
+	(envelope-from <devicetree+bounces-289454-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 18:32:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C30AB4483FB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 18:08:04 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE3BC448B14
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 18:32:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 86D9730177B9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 16:08:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6606830AEA9C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Apr 2026 16:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5A428A1E6;
-	Wed, 22 Apr 2026 16:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0780A383C60;
+	Wed, 22 Apr 2026 16:25:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qk/CmxwQ"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="bn1u6R6/";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="A9Ey9xa7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86916223DE7;
-	Wed, 22 Apr 2026 16:08:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB4237C90B
+	for <devicetree@vger.kernel.org>; Wed, 22 Apr 2026 16:25:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776874081; cv=none; b=uaf1tUiGhODVjUMUamV0AM/vqBvZrUcBDb4TSZZT15HzlL034OMsfqS3i2pvgMTGvzd88ZBvCwUqxltwdgvRAsJC2ol5lLUkOOLRfyAWou93EpUiW0Y5Tdltnve0O1IHZCV5+80lxmq9DCMx3dgxEukxwVCOV/9Rc3spoIwhWO0=
+	t=1776875113; cv=none; b=AqNIYnCSLQmPOc8H0g1SHwqjtkGexUOkBlzaOqXBSo9RgtKJMnm5MqJsx7ObEfv8b+Apmv82pQzfbS6IGZPGxA7c0rTFDGsEB25CE7jlrJbd4cM+OoV9Bsmbkek+OHJRyjxBzKsr3Ihk9ByMQwbDiRFzDi1gP+FOneWtM3/TAKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776874081; c=relaxed/simple;
-	bh=VqHvIq4YLcnoBaLcjXcjBeQp30kEHXPChjhpfAKdOpE=;
+	s=arc-20240116; t=1776875113; c=relaxed/simple;
+	bh=aGdnrrjI8lPxcmoVxdZhR1KhhfM/YGirogLtJVSTsZ0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d0skVJJuR/kUYPy2GUW4JLjxIvmDePIVJHrfjGare/92axqp0Nsby16YPdqmSMUHM6KsppqnLCfyTqG5eKbm4z/hTYoMbqX8egXq1JELAxamm8IshrrgQJodrJMiA104NuWUsafXj9C7sUqmSKKGoZFmDmHKqk8PJMdDp2WHAm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qk/CmxwQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 180D6C19425;
-	Wed, 22 Apr 2026 16:07:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776874081;
-	bh=VqHvIq4YLcnoBaLcjXcjBeQp30kEHXPChjhpfAKdOpE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qk/CmxwQPVGiJz1nPNeqAAVdGUCrrg55svk0uUKzNz12MNEG7/AZR68ZsAxrz0RiB
-	 xG/nfHSm74Q/VYtx0CLU4+SBmQOR1F1PO8SghTolQ5+jvMJRu/dTLKrSDgQMHNWewL
-	 ihvmMrCftQxTPCMDJa+1gxxwZfyWbYWpBvUTx/WIQAXq0netbqr7Y8iorqMt4VIvPg
-	 sz4GBtm+oO0Ho5ifi+tJgkaF+at7qZRr03bF0cJce59cIyl/7nRao1jnYY5u0db6Si
-	 kh6fQTaR7zgka3vpi7gIHETOxDLimqqVNmgYF9xGgDUvdPQucADsXyO3xnIH6Mn2Nw
-	 8yMgeKJ0H8Idg==
-Date: Wed, 22 Apr 2026 17:07:55 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-	Ajay Neeli <ajay.neeli@amd.com>,
-	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Pedro Sousa <pedrom.sousa@synopsys.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ex6eZk1afllmA6p/0liCZQk8XRj6yl+4Oa97zX117MH4Z+lsXAqSKxgTQh5NOJOnjRTSv/rAPy1/6YsMTi1Sr2L2zrCDKEfpvgWOTd0QqNcAIC16lEmywrE8IQoa9tHdlKGqLOvrhWquVBZc3Xf9uE7cosZSEcLTOMJmf7Ihbjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=bn1u6R6/; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=A9Ey9xa7; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1776875111;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qSFlJjwss7taNy6z+vQcHuBtEn5xpw5EWTakbtj//YQ=;
+	b=bn1u6R6/p/Du6M2hmbeYrjDBdl1SXVNvm1Cyqq6mkZ+3m2blZ24Sl4e2d0DzRu5y894oXq
+	p/ofcSxKEvVzehtYUJ8QS1Yi544vFe55C+64bagmF7t7Sh/7vK5bgupuELnesbgStrpObJ
+	CtnnFLk8H69qmJtln/qK4Xi5nkJUA/Q=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-157-TXjuBVBbPy6SaLaJDsiR8A-1; Wed, 22 Apr 2026 12:25:09 -0400
+X-MC-Unique: TXjuBVBbPy6SaLaJDsiR8A-1
+X-Mimecast-MFC-AGG-ID: TXjuBVBbPy6SaLaJDsiR8A_1776875109
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-8acaea1ffe7so142527056d6.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Apr 2026 09:25:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1776875109; x=1777479909; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qSFlJjwss7taNy6z+vQcHuBtEn5xpw5EWTakbtj//YQ=;
+        b=A9Ey9xa70A5SKHXoNskNfM3bxNqDiOi+tpPAA/h+RFIKba14rChZieNeI91Prl8oPc
+         NiUeGncnz1Es6UFp9Ms3k7uspWudfDDcpPBAuAk//ZSgEUW8JdyMiRSgW1QDApn6eeC0
+         34qhGvA7+eMBt12LIdk5aLMVR1y+7Qo2fzKP1Zp7M0fa32EbYm5n3e/0sBi/pTRWieqG
+         6h7h3khW9gFxfFXgH9lnwH/PCFW3X4Ul10EdjNH+fFInDZANTDU2tGABz9D/hAp4xQjd
+         K8GwRXi5p211hEvWORltaBgZXAGXWHrKB4coJG6zkgKHZLrgMZ31Ak025iAceuDvDnzE
+         58Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776875109; x=1777479909;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qSFlJjwss7taNy6z+vQcHuBtEn5xpw5EWTakbtj//YQ=;
+        b=MCKA+rz276CH/iiS/6vdUJ4VS9ubrLYWZ+v5rvjjij9R1yuzQhv2DG9Wqcw2T7lydj
+         V++i2lPf5fbDxql12Sxnw/ZEtZxm81mLv69nGxTOmLhuPydKy7iNcNJVL727RU3QgVuc
+         iRrbSea1uoWALl1UxB1sKzzxZtHYT+l+JTto5OGSj++aUbMIPTb7YXiRge4K3fayJ6Fd
+         sE5Sg3FS9FHmgIDBCq9EuXg0sQ+43ZirUC5Kh24Q7M4xACsYG2LPkjr8/nBA3adhvWK5
+         QTk5TC+OnyJ6yLGLqop2mtbYtTMIN/oNQOnO7dfKOOOvX8BoMKx2Y8ENJ3s6sJkV/g4b
+         zEFA==
+X-Forwarded-Encrypted: i=1; AFNElJ9UfM27eTsO3qbEgQr6OYOMiHcDpNuMokv4VGaMDdXiSM7yc6n8lLOdXEkHrkOjn6n6yPbU0TAVUQPE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8KnbdWQoXA1WGmXZCDxF26xwJ8R96QWezqfuPL15ioxBmONEr
+	loxK1XPEtG2395/vnVZV7IX1196MS6KeK2j+ci8Udx+T8lVZuv/rvjZym52w2JPsNHI8D0mAJiK
+	VC9+tAbOxsEybJd09BECaJilERR1db2RAHa/QX2fgsVQBIy/aaLounQvNpOSLpPk=
+X-Gm-Gg: AeBDiesVNA1b6XveOsV42ICYn4SFpi4e1TAL09BgLTe30/aLBhVpmTpt149zLmMXD+G
+	1W0Oahrh9IwAUtftDOdbTQUzIk9re+cZBvQxa9ADaFl9GIipnHCYCbamn+O+kHWCH7wE5R7VpGz
+	cEfNlDPFsaxMmcc5zZfL58dtB6INbQx/75XUCdgfbE+qbQ5iNH/cZUzOESt4PvcqYWR+SlwPd7e
+	3TS0wy0HopOiIa/8LHu65BlXxKDR/WmiZZj13mtm+i3AEAiuiyX39pQy9ZQYx9ghAD3+T5bXtIJ
+	Fn1mZiYzvsDeJFBniw7Mf/Xl4wptE5zsx9vPPh/OT1B4zI/u5Cd0dJKbnpRgXKjT6kOmitnjX90
+	eG5BJHTIbWFNxEzXvwOfFfLhQQsoENtg5gwGV5u0Bjw==
+X-Received: by 2002:a0c:e007:0:b0:8ac:a893:8b5d with SMTP id 6a1803df08f44-8b027fd1849mr309816186d6.7.1776875108481;
+        Wed, 22 Apr 2026 09:25:08 -0700 (PDT)
+X-Received: by 2002:a0c:e007:0:b0:8ac:a893:8b5d with SMTP id 6a1803df08f44-8b027fd1849mr309815476d6.7.1776875107978;
+        Wed, 22 Apr 2026 09:25:07 -0700 (PDT)
+Received: from rh-jkangas-kernel ([2601:1c2:4400:6bf0:7677:bcee:4ef0:e09d])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8b02ae7d79esm130910876d6.36.2026.04.22.09.25.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Apr 2026 09:25:07 -0700 (PDT)
+Date: Wed, 22 Apr 2026 09:25:03 -0700
+From: Jared Kangas <jkangas@redhat.com>
+To: Dan Carpenter <error27@gmail.com>
+Cc: Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	NXP S32 Linux Team <s32@nxp.com>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	"linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1 1/3] scsi: ufs: dt-bindings: starfive: Add UFS Host
- Controller for JHB100 soc
-Message-ID: <20260422-tighten-baritone-bc216c670275@spud>
-References: <20260421091215.120632-1-minda.chen@starfivetech.com>
- <20260421091215.120632-2-minda.chen@starfivetech.com>
- <20260421-appetite-vowel-ce0837f5625b@spud>
- <SH0PR01MB08588CCE01874CEC5FBEF0D4E62D2@SH0PR01MB0858.CHNPR01.prod.partner.outlook.cn>
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linaro-s32@linaro.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v6 3/3] dts: s32g: Add GPR syscon region
+Message-ID: <aej2X2Gp-UI3Vmvo@rh-jkangas-kernel>
+References: <cover.1769764941.git.dan.carpenter@linaro.org>
+ <0e922537c02d1c47734142090f98eb78e921ed34.1769764941.git.dan.carpenter@linaro.org>
+ <aeKn2dvOOO43zdev@jkangas-thinkpadp1gen3.rmtuswa.csb>
+ <aeZOcCOgMy2g9wqp@rh-jkangas-kernel>
+ <aeZYQp9b5aoV7Ihv@stanley.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sJ5MKeWHqe7LrEf3"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <SH0PR01MB08588CCE01874CEC5FBEF0D4E62D2@SH0PR01MB0858.CHNPR01.prod.partner.outlook.cn>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+In-Reply-To: <aeZYQp9b5aoV7Ihv@stanley.mountain>
+X-Spamd-Result: default: False [5.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289453-lists,devicetree=lfdr.de];
-	URIBL_MULTI_FAIL(0.00)[starfivetech.com:server fail,sea.lore.kernel.org:server fail];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	MAILSPIKE_FAIL(0.00)[2600:3c0a:e001:db::12fc:5321:query timed out];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-289454-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	FREEMAIL_TO(0.00)[gmail.com];
+	GREYLIST(0.00)[pass,meta];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[gmail.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de,kernel.org,lists.infradead.org,lists.linux.dev,vger.kernel.org,linaro.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[redhat.com,quarantine];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[starfivetech.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C30AB4483FB
+	DBL_PROHIBIT(0.00)[64.7.192.0:email];
+	NEURAL_HAM(-0.00)[-0.346];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[jkangas@redhat.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip4:172.105.105.114:c];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email]
+X-Rspamd-Queue-Id: CE3BC448B14
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Mon, Apr 20, 2026 at 07:45:54PM +0300, Dan Carpenter wrote:
+> On Mon, Apr 20, 2026 at 09:04:00AM -0700, Jared Kangas wrote:
+> > Fixing Dan's address based on mailmap update, sorry for the noise.
+> > 
+> > On Fri, Apr 17, 2026 at 02:36:25PM -0700, Jared Kangas wrote:
+> > > Hi Dan,
+> > > 
+> > > [snip]
+> > > 
+> > > I gave this a test on an S32G-VNP-RDB3 and didn't see any issues on the
+> > > dwmac-s32 side, but this appears to trigger a panic when reading the new
+> > > debugfs regmap/*/registers file for the syscon node:
+> > > 
+> > > [snip]
+> 
+> Oh, ugh...  I didn't realize that this wasn't merged.  I don't have a
+> way to test this any more.  The simplest fix would be to do change the
+> 0x3000 to 0x100.  The GPR63 register is at 0xFC.
+> 
+> 		reg = <0x4007c000 0x100>;
+> 
+> That's probably the best fix as well.  The later register areas would
+> be their own syscons.
 
---sJ5MKeWHqe7LrEf3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Tried that out and it looks good to me. With the write routed through
+syscon:
 
-On Wed, Apr 22, 2026 at 11:04:22AM +0000, Minda Chen wrote:
->=20
->=20
-> >=20
-> > On Tue, Apr 21, 2026 at 05:12:13PM +0800, Minda Chen wrote:
-> > > Add devicetree document for UFS Host Controller StarFive JHB100 SoC.
-> > > The UFS controller is based on the Synopsys DesignWare UFS controller.
-> > >
-> > > Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> > > ---
-> > >  .../devicetree/bindings/ufs/starfive,ufs.yaml | 76 +++++++++++++++++=
-++
-> > >  MAINTAINERS                                   |  5 ++
-> > >  2 files changed, 81 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/ufs/starfive,ufs.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/ufs/starfive,ufs.yaml
-> > > b/Documentation/devicetree/bindings/ufs/starfive,ufs.yaml
-> > > new file mode 100644
-> > > index 000000000000..c408973dd0ce
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/ufs/starfive,ufs.yaml
-> >=20
-> > Filename should be starfive,jhb100-ufs.
-> >=20
-> Thanks. Conor. I see some vendors's dt-binding doc without IC name
-> because ufs host controller registers are standard. So I think if we(Star=
-Five) change
-> IP vendor will still using the same driver files and dt doc. =20
+    # xxd -g4 /proc/device-tree/soc@0/syscon@4007c000/reg
+    00000000: 4007c000 00000100                    @.......
+    # cat /sys/kernel/debug/regmap/dummy-syscon@0x000000004007c000/registers
+    00: 00000000
+    04: 00000002
+    08: 000000e7
+    0c: 00000001
+    10: ffffffff
+    14: 1fffffff
+    18: 00007fff
+    1c: 00000000
+    20: 00000000
+    ...
+    f4: 00000000
+    f8: 00000000
+    fc: 00000000
 
-Other than lack of oversight or age of the bindings, there's no real
-reason for filenames not matching the compatible. UFS isn't special
-here.
+No more crashes and 04's value lines up with the S32_PHY_INTF_SEL_RGMII
+(0x2) write, so if you're able to post a revision, feel free to add my
+T-b:
 
-> If the scsi UFS maintainer no comments to this I will change this.
+Tested-by: Jared Kangas <jkangas@redhat.com>
 
---sJ5MKeWHqe7LrEf3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaejyWwAKCRB4tDGHoIJi
-0q6KAQDwVEx/MZiyLnbXpok/zxt7rCs8XfVvQ1CedHhQZeaJNAEAgyQyONAgAn8q
-S3A/nD16WM25/6QTLE//peQCSZPA+wg=
-=Ge0L
------END PGP SIGNATURE-----
-
---sJ5MKeWHqe7LrEf3--
 
