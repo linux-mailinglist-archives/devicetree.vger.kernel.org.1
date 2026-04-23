@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-289758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289759-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6MVIO2lb6mnXyQIAu9opvQ
-	(envelope-from <devicetree+bounces-289758-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 19:48:25 +0200
+	id kJyAOape6mmrygIAu9opvQ
+	(envelope-from <devicetree+bounces-289759-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 20:02:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4071C455BE1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 19:48:25 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92B96455DBC
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 20:02:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 305ED3012EB0
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:47:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1B97530A49EB
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:56:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89C7E3A873E;
-	Thu, 23 Apr 2026 17:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B37833D4E2;
+	Thu, 23 Apr 2026 17:56:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WBgmMBre"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mkdjH/uv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6613F351C22;
-	Thu, 23 Apr 2026 17:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3BAE3A9620;
+	Thu, 23 Apr 2026 17:56:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776966455; cv=none; b=aP5Jg8uqBjVo3/fHZ+BaHd3g9j2sZ5N7cSrclE0NyZwKN3itrxZbBfWNw+27FFhrcbC2LPNjEbVNnT1sArWC1v7+yd0RuPOKTqq3EInLygd1W5A6y2RsB2z7yzUaKRfeRwWr7Nj955XBndotzAYBDuYX11cviQKqWjvCZDt4nTY=
+	t=1776967002; cv=none; b=ldloLzl5IVzKkg3C7P9vyOVHiajX0so9HNAB30/MYOD2Dug+BY0nj3SbC5YveQcArhyWXKAlJftsipARSTNjTJ5N7lChcAs+cWxJUt6RbPU6RPsdB4X/5UiAL6JDzqXf+O1Ah690LyPzbKP2IGgGcpMVJNMhkK2MSCWGpxjfmGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776966455; c=relaxed/simple;
-	bh=drWxfBZSOVpa9kupE9PJ7W9/Yaa2usdxmvDAQDRpTmc=;
+	s=arc-20240116; t=1776967002; c=relaxed/simple;
+	bh=yQpkTOp+6lAIN9jorcsCREiRudJEjOS61AFk1HgA9I8=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=goeL7nBJoGeqGIIpz75+gYPqi1utj07TNM3gxi3PTzA4jLoMvzTlb2GvHG+JwBGnFZVszdd6ASg0xswStakUV67TwmeI1r0LOAUDjehsJMuJUmKndiHHnmyX2U45OZU00Rmc2wsXsGsmqq7i1UiiS4WOT1LkSHdvzkDdh0TQ3pk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WBgmMBre; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4648EC2BCAF;
-	Thu, 23 Apr 2026 17:47:28 +0000 (UTC)
+	 MIME-Version:Content-Type; b=X7rY7HwrftrRg1yGKDln53fMhqKcPm3uZmPBC3Fpw/6ZzleR1dr2nmYxsz0RafQas6U/vA2pCZk3Vn8H14DLO15qtDlB0c10FIbDUkmVUflgt7+XpRfORu37AsoyPZ1uD9/KKxQDq0+TcmCFqvjIT1L8I0oDD7wLf87XXY4bARA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mkdjH/uv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96176C2BCAF;
+	Thu, 23 Apr 2026 17:56:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776966455;
-	bh=drWxfBZSOVpa9kupE9PJ7W9/Yaa2usdxmvDAQDRpTmc=;
+	s=k20201202; t=1776967002;
+	bh=yQpkTOp+6lAIN9jorcsCREiRudJEjOS61AFk1HgA9I8=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=WBgmMBreJ87HdkKA4WawOgpUz8e6vhdsm6kjLhqTHMsXsWYnnFFOCCdrRvHtsD491
-	 vOtoeRERs4KBE6wJaggL7zl0is7c1ygzQ5UN1NipxsEr4Jw/yTxodzAwaiwTn5XAmK
-	 FeFf5kDVpqCCfVrEpvwEvTv8AlmLhre49+wTPgiSu5HZ/5GBniFjp9mjRdvX4DZexf
-	 jJX4j85Y29inxwwEHfiqARG0WEWHx4Hvkd+uL2EonN56uMZnW2QqTEmc+mjHg8DvHh
-	 RBKs3xwmE37kJTy6Oa+fFcJFV5GoaQfR7OaRa+DSmle+ZDEfx2sX2o5PYOxjJHV1Zt
-	 c6+A4LpXf4gyg==
-Date: Thu, 23 Apr 2026 18:47:23 +0100
+	b=mkdjH/uvqAWsmVHz6WLh0Ou5fB7TooF3DMF9CndprEOeHUmb7/7Br5fIXWDRJ/Wqp
+	 ruxYsBLYhQX1gFcZZxnd1ZH4ykaGvmtTa0+xSLKzTcw4wMtHztJWfDvTtQwullfJT5
+	 XG+2KZFd1wqGrCLgyH840XGtLGuB0qGmj3BIgsXSR/lflPmKUGTqFEfQEEMGic3o1h
+	 a05FUiD4G0HZFzMFlSkVcFyk/daq+KDiJidaU1GMVbHc5ppaOXcg43Mqug8Io6okqs
+	 VLTJLrTVuNI+ivippAsUEgb/4bBcZoR9Dg/eu4ZvW4O+h6qBoNNMonNvs1DTCfShBO
+	 GjF0HRUiOL1hw==
+Date: Thu, 23 Apr 2026 18:56:31 +0100
 From: Jonathan Cameron <jic23@kernel.org>
 To: Rodrigo Alencar via B4 Relay
  <devnull+rodrigo.alencar.analog.com@kernel.org>
@@ -57,12 +57,12 @@ Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
  Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kees
  Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
  Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 03/22] dt-bindings: iio: dac: ad5696: rework on power
- supplies
-Message-ID: <20260423184723.54ddbd67@jic23-huawei>
-In-Reply-To: <20260422-ad5313r-iio-support-v1-3-ed7dca001d1b@analog.com>
+Subject: Re: [PATCH 11/22] iio: dac: ad5686: fix ref bit initialization for
+ single-channel parts
+Message-ID: <20260423185631.7afc4deb@jic23-huawei>
+In-Reply-To: <20260422-ad5313r-iio-support-v1-11-ed7dca001d1b@analog.com>
 References: <20260422-ad5313r-iio-support-v1-0-ed7dca001d1b@analog.com>
-	<20260422-ad5313r-iio-support-v1-3-ed7dca001d1b@analog.com>
+	<20260422-ad5313r-iio-support-v1-11-ed7dca001d1b@analog.com>
 X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -72,100 +72,120 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [5.34 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-289759-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289758-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
-	GREYLIST(0.00)[pass,meta];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.915];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email,0.0.0.0:email]
-X-Rspamd-Queue-Id: 4071C455BE1
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 92B96455DBC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 22 Apr 2026 15:45:37 +0100
+On Wed, 22 Apr 2026 15:45:45 +0100
 Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 
 > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 > 
-> Add supplies for VDD, VLOGIC and VREF input voltage pins. The vcc-supply
-> property is deprecated.
-
-Please provide some information on why? Was it always just wrong and that
-naming was never used for any of the supported parts?
-
-> Certain devices require vref-supply to be
-> available once an internal reference voltage is absent. Still, this patch
-> does not add those as 'required' so that the ABI is not broken.
+> For single-channel parts the control register is used to enable the
+> internal voltage reference and perform powerdown control. The reference
+> enable bit position was ignored when writing the register at the probe
+> function. This patch adds a control_sync() function that properly consumes
+> the mask definitions with FIELD_PREP(). As further cleanup, the created
+> functions and definitions are also used in ad5686_write_dac_powerdown().
+> Some local variables ended up being unused (so removed) and
+> st->use_internal_vref is initialized earlier in probe.
 > 
 > Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> ---
->  .../devicetree/bindings/iio/dac/adi,ad5696.yaml     | 21 ++++++++++++++++++---
->  1 file changed, 18 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
-> index f286e5072abc..21b80fe597d1 100644
-> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
-> @@ -38,9 +38,22 @@ properties:
->    reg:
->      maxItems: 1
+Hi Rodrigo,
+
+Just one minor thing inline.
+
+Thanks,
+
+> @@ -65,8 +85,8 @@ static ssize_t ad5686_write_dac_powerdown(struct iio_dev *indio_dev,
+>  	bool readin;
+>  	int ret;
+>  	struct ad5686_state *st = iio_priv(indio_dev);
+> -	unsigned int val, ref_bit_msk;
+> -	u8 shift, address = 0;
+> +	unsigned int val;
+> +	u8 address = 0;
 >  
-> +  vdd-supply:
-> +    description: Input power supply.
-> +
-> +  vlogic-supply:
-> +    description:
-> +      Digital power supply. If not supplied, it is assumed to be the same as
-> +      vdd-supply. VLOGIC may be hardwired to VDD in some board designs or
-> +      internally connected in small packages.
-> +
-> +  vref-supply:
-> +    description:
-> +      Reference voltage supply. If not supplied the internal reference is used.
-> +
->    vcc-supply:
-> -    description: |
-> -      The regulator supply for DAC reference voltage.
-> +    deprecated: true
-> +    description: Use vref-supply instead.
+>  	ret = kstrtobool(buf, &readin);
+>  	if (ret)
+> @@ -79,30 +99,26 @@ static ssize_t ad5686_write_dac_powerdown(struct iio_dev *indio_dev,
 >  
->    reset-gpios:
->      description: Active-low RESET pin to reset the device.
-> @@ -88,7 +101,9 @@ examples:
->        ad5696: dac@0 {
->          compatible = "adi,ad5696";
->          reg = <0>;
-> -        vcc-supply = <&dac_vref>;
-> +        vdd-supply = <&dac_vdd>;
-> +        vlogic-supply = <&dac_vlogic>;
-> +        vref-supply = <&dac_vref>;
->          ldac-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
->        };
->      };
-> 
+>  	switch (st->chip_info->regmap_type) {
+>  	case AD5310_REGMAP:
+> -		shift = 9;
+> -		ref_bit_msk = AD5310_REF_BIT_MSK;
+> +		ret = ad5310_control_sync(st);
+I'd add explicit error check and return here.
+		if (ret)
+			return ret;
+>  		break;
+>  	case AD5683_REGMAP:
+> -		shift = 13;
+> -		ref_bit_msk = AD5683_REF_BIT_MSK;
+> +		ret = ad5683_control_sync(st);
+and here.
+>  		break;
+>  	case AD5686_REGMAP:
+> -		shift = 0;
+> -		ref_bit_msk = 0;
+>  		/* AD5674R/AD5679R have 16 channels and 2 powerdown registers */
+> -		if (chan->channel > 0x7)
+> +		val = st->pwr_down_mask & st->pwr_down_mode;
+> +		if (chan->channel > 0x7) {
+>  			address = 0x8;
+> +			val = upper_16_bits(val);
+> +		} else {
+> +			val = lower_16_bits(val);
+> +		}
+> +		ret = st->write(st, AD5686_CMD_POWERDOWN_DAC, address, val);
+and here.
+>  		break;
+>  	default:
+>  		return -EINVAL;
+>  	}
+>  
+> -	val = ((st->pwr_down_mask & st->pwr_down_mode) << shift);
+> -	if (!st->use_internal_vref)
+> -		val |= ref_bit_msk;
+> -
+> -	ret = st->write(st, AD5686_CMD_POWERDOWN_DAC,
+> -			address, val >> (address * 2));
+>  
+>  	return ret ? ret : len;
+Then I think this just ends up as
+	return len;
+
+Adds a few lines of code, but makes it clear when we are exiting
+early due to error and there is nothing else to do.
+
+>  }
+
 
 
