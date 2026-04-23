@@ -1,172 +1,290 @@
-Return-Path: <devicetree+bounces-289715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289719-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iK6OJrc16mk+xAIAu9opvQ
-	(envelope-from <devicetree+bounces-289715-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:07:35 +0200
+	id cEDcMTk56mnYxAIAu9opvQ
+	(envelope-from <devicetree+bounces-289719-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:22:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B176454171
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:07:34 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 401044543C4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:22:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6E18830A9AE4
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 15:02:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 441C5307E578
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 15:19:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE61C35CB9C;
-	Thu, 23 Apr 2026 15:02:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 511F4318B83;
+	Thu, 23 Apr 2026 15:19:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="NRGIDgU5"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="L8gvUVSO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B05A285CA4;
-	Thu, 23 Apr 2026 15:02:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 259C216F288;
+	Thu, 23 Apr 2026 15:19:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776956522; cv=none; b=ISSfhoKk+b1mz/J9Vrdg0Y0ujWIM0DnoHeEqm4O9RieH4xl9UlclmBVsCV+mFgzuVJyQgmf6tgVQgtbX+rvZMV/q8u05V85CopOfEWBSlNnh5y5L/XiQ7xwG7ZO0XBwMKQGl76SEQE00I9DDcX1q0dKoQ8Blgeer6quWzI/Blkg=
+	t=1776957553; cv=none; b=RRyMvzXydJEVHUdVYe3OTkYiyize2bXJMBQ7aXU1aostD6wlkuaKkA2z29fhYiMHHP922/xpBppfi/6lrscwQcTPGzlbt1IQwnwKCH2/NOFpSzFf/hcD/IxEyaZ8WKSPRaUmDIlneecAzzyJD2rWl8W4DipFan+3Rk0pXDTSI+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776956522; c=relaxed/simple;
-	bh=PPqnjiPUXR1jFV5RDIv+mYtA4/prS2yGlfk/ZnkqGLU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LSHkRbWb6ztNRDzcVQgkfWRkH9RW/s8+idz+Eyr9AmH1LlGV0e+5NU0k6b/olPLn10MlSCBPUF3t4IgDmtpLQQ3BgaAaKU2A4vkjCrB01q6juUJ/log5i3SzVuzlBi6go60AgbGIwfcB3UdiDxobe1DwByFuiJdlmCeSAi6YaoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=NRGIDgU5; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 64DA9BCA;
-	Thu, 23 Apr 2026 17:00:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1776956419;
-	bh=PPqnjiPUXR1jFV5RDIv+mYtA4/prS2yGlfk/ZnkqGLU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NRGIDgU5Jl3mS8c3JwCit43p8MAVJNt+N64yuU5i+IIvH7BW2L2Y0yrX4bZdvAA59
-	 pRzNA3Sg4b83UxB6g21hO9vVjHvbAwRWdfEpBpqrGmBkrpVa14PuGHZxz9uG7wn5Lh
-	 HW5yA5qvAT9fvhIVVZ2aJwPXd1ZJLKonuhqXPsds=
-Message-ID: <103f94d0-2599-497d-ae37-d88922b9f669@ideasonboard.com>
-Date: Thu, 23 Apr 2026 18:01:54 +0300
+	s=arc-20240116; t=1776957553; c=relaxed/simple;
+	bh=piKDcOgjcm+FqKMFf8GBg3CE1PJohOeelaXmkED6UDY=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=cIFkrcPV6SbzQw+YAhMTCjFqQt6j1truN1xV+WkZvWylamGVJ8sBzNMN0WLOtxfcVBZZDp7YUElHwnGEvKrTfvwaASsDSZzI3SPFsEhutyPs+3z061KFSVwRirTvzyN+JqikPqdC7b+F9B9/zjfUQAikNQgJHO7bbqa6S+dJe4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=L8gvUVSO; arc=none smtp.client-ip=65.21.61.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
+Message-ID: <19d70883-21db-4963-841d-7c00505e0d9e@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1776956983;
+	bh=piKDcOgjcm+FqKMFf8GBg3CE1PJohOeelaXmkED6UDY=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=L8gvUVSOu4mCjW2Z+XaVEo7qANhshywZdZSvqUUiHdnmrsSpdRvMKPifgNJvjoBDD
+	 nae1D0LMx8ahyMvlnDEzZAqJ13YZWcr+0HlKIt+hkF0bXwa6cxf9+fpPYsvNAew3zG
+	 aWSqvQk3Ufo4S+Cntm3dcU8+FYHoJ+Ruxs/anKkM=
+Date: Thu, 23 Apr 2026 17:09:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/panel: simple: Add timings for Raspberry Pi 7"
- panel
-To: Marek Vasut <marex@nabladev.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Maxime Ripard <mripard@kernel.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+User-Agent: Mozilla Thunderbird Beta
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH v3 4/8] thermal: amlogic: Add support for secure monitor
+ calibration readout
+To: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Guillaume La Roque <glaroque@baylibre.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260420-rpi-7inch-v1-0-e68d5c9c44bc@ideasonboard.com>
- <20260420-rpi-7inch-v1-2-e68d5c9c44bc@ideasonboard.com>
- <3z3u5mbngmbzsch3mzs3twlh3aec6r7jokstzv3ghxyusrzt6b@jqvdnuiapx6e>
- <af71183d-70b8-4a41-8466-67123e7aab02@ideasonboard.com>
- <20260423-kickass-fat-boa-209f68@houat>
- <72c2cd94-0a8b-46c8-981b-4ad4a3222e59@ideasonboard.com>
- <CAO9ioeVX6OChRTgUrUdgrPF+3s2_7vme7m0yb85pjYtH1MFskw@mail.gmail.com>
- <ced05a92-06b4-4f6f-95b6-c3dc104c35f3@ideasonboard.com>
- <b24c428f-5752-4544-a8b4-77e91d7bc158@ideasonboard.com>
- <da6bdb78-7fe8-4f51-b9e6-444748ebc319@nabladev.com>
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20260421-add-thermal-t7-vim4-v3-0-a2e7215ed003@aliel.fr>
+ <20260421-add-thermal-t7-vim4-v3-4-a2e7215ed003@aliel.fr>
+ <7aaa7873-9274-48d8-a6fe-cff4239b03b4@oss.qualcomm.com>
 Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <da6bdb78-7fe8-4f51-b9e6-444748ebc319@nabladev.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <7aaa7873-9274-48d8-a6fe-cff4239b03b4@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[aliel.fr,quarantine];
+	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289715-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,raspberrypi.com,linaro.org,gmail.com,ffwll.ch,linux.intel.com,suse.de,ravnborg.org,lists.freedesktop.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-289719-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,baylibre.com,kernel.org,intel.com,arm.com,linaro.org,googlemail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MAILSPIKE_FAIL(0.00)[2600:3c0a:e001:db::12fc:5321:server fail];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[aliel.fr:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[raspberrypi.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,digikey.com:url,ideasonboard.com:email,ideasonboard.com:dkim,ideasonboard.com:mid]
-X-Rspamd-Queue-Id: 0B176454171
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aliel.fr:email,aliel.fr:dkim,aliel.fr:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 401044543C4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+Hi Daniel,
 
-On 23/04/2026 16:54, Marek Vasut wrote:
-> On 4/23/26 3:16 PM, Tomi Valkeinen wrote:
+Thanks for your feedback.
+
+On 4/23/26 12:25 PM, Daniel Lezcano wrote:
 > 
-> Hello Tomi,
+> Hi Ronald,
 > 
->>>> In the past I used this panel compat instead of the
->>>> panel-raspberrypi-touchscreen.c and it worked.
->>>> IIRC Marek splitted the multi-function module into a regulator and the
->>>> panel description.
->>> Ok... Indeed https://pip.raspberrypi.com/categories/651-pcn lists 
->>> PH800480T013 as one of the panels used. Although two variants are 
->>> listed, and also a third panel model, possibly from another vendor.
->>>
->>> My module is v1.1, and I think it has the PH800480T013-IAC21 D/5624/ 
->>> KIT- LC variant.
->> A question to Marek: Where did you get the timings for PH800480T013? 
->> Did you find a datasheet?
-> Search engine first link:
+> On 4/21/26 09:19, Ronald Claveau wrote:
+>> Some SoCs (e.g. T7) expose thermal calibration data through the secure
+>> monitor rather than a directly accessible eFuse register. Add a use_sm
+>> flag to amlogic_thermal_data to select this path, and retrieve the
+>> firmware handle and tsensor_id from the "amlogic,secure-monitor" DT
+>> phandle with one fixed argument.
+>>
+>> Also introduce the amlogic,t7-thermal compatible using this new path.
+>>
+>> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+>> ---
+>>   drivers/thermal/amlogic_thermal.c | 58 +++++++++++++++++++++++++++++
+>> ++++++----
+>>   1 file changed, 53 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/
+>> amlogic_thermal.c
+>> index 5448d772db12a..11e3948cc0669 100644
+>> --- a/drivers/thermal/amlogic_thermal.c
+>> +++ b/drivers/thermal/amlogic_thermal.c
+>> @@ -25,6 +25,7 @@
+>>   #include <linux/platform_device.h>
+>>   #include <linux/regmap.h>
+>>   #include <linux/thermal.h>
+>> +#include <linux/firmware/meson/meson_sm.h>
+>>     #include "thermal_hwmon.h"
+>>   @@ -84,12 +85,14 @@ struct amlogic_thermal_soc_calib_data {
+>>    * @u_efuse_off: register offset to read fused calibration value
+>>    * @calibration_parameters: calibration parameters structure pointer
+>>    * @regmap_config: regmap config for the device
+>> + * @use_sm: read data from secure monitor instead of efuse
+>>    * This structure is required for configuration of amlogic thermal
+>> driver.
+>>    */
+>>   struct amlogic_thermal_data {
+>>       int u_efuse_off;
+>>       const struct amlogic_thermal_soc_calib_data
+>> *calibration_parameters;
+>>       const struct regmap_config *regmap_config;
+>> +    bool use_sm;
+>>   };
+>>     struct amlogic_thermal {
+>> @@ -100,6 +103,8 @@ struct amlogic_thermal {
+>>       struct clk *clk;
+>>       struct thermal_zone_device *tzd;
+>>       u32 trim_info;
+>> +    struct meson_sm_firmware *sm_fw;
+>> +    u32 tsensor_id;
+>>   };
+>>     /*
+>> @@ -138,6 +143,12 @@ static int amlogic_thermal_initialize(struct
+>> amlogic_thermal *pdata)
+>>       int ret = 0;
+>>       int ver;
+>>   +    if (pdata->data->use_sm) {
+>> +        return meson_sm_get_thermal_calib(pdata->sm_fw,
+>> +                          &pdata->trim_info,
+>> +                          pdata->tsensor_id);
+>> +    }
+>> +
+>>       regmap_read(pdata->sec_ao_map, pdata->data->u_efuse_off,
+>>               &pdata->trim_info);
+>>   @@ -226,6 +237,12 @@ static const struct amlogic_thermal_data
+>> amlogic_thermal_a1_cpu_param = {
+>>       .regmap_config = &amlogic_thermal_regmap_config_g12a,
+>>   };
+>>   +static const struct amlogic_thermal_data amlogic_thermal_t7_param = {
+>> +    .use_sm            = true,
+>> +    .calibration_parameters    = &amlogic_thermal_g12a,
+>> +    .regmap_config        = &amlogic_thermal_regmap_config_g12a,
+>> +};
+>> +
+>>   static const struct of_device_id of_amlogic_thermal_match[] = {
+>>       {
+>>           .compatible = "amlogic,g12a-ddr-thermal",
+>> @@ -239,6 +256,10 @@ static const struct of_device_id
+>> of_amlogic_thermal_match[] = {
+>>           .compatible = "amlogic,a1-cpu-thermal",
+>>           .data = &amlogic_thermal_a1_cpu_param,
+>>       },
+>> +    {
+>> +        .compatible = "amlogic,t7-thermal",
+>> +        .data = &amlogic_thermal_t7_param,
+>> +    },
+>>       { /* sentinel */ }
+>>   };
+>>   MODULE_DEVICE_TABLE(of, of_amlogic_thermal_match);
+>> @@ -271,11 +292,38 @@ static int amlogic_thermal_probe(struct
+>> platform_device *pdev)
+>>       if (IS_ERR(pdata->clk))
+>>           return dev_err_probe(dev, PTR_ERR(pdata->clk), "failed to
+>> get clock\n");
+>>   -    pdata->sec_ao_map = syscon_regmap_lookup_by_phandle
+>> -        (pdev->dev.of_node, "amlogic,ao-secure");
+>> -    if (IS_ERR(pdata->sec_ao_map)) {
+>> -        dev_err(dev, "syscon regmap lookup failed.\n");
+>> -        return PTR_ERR(pdata->sec_ao_map);
+>> +    if (pdata->data->use_sm) {
+>> +        struct device_node *sm_np;
+>> +        struct of_phandle_args ph_args;
+>> +
+>> +        ret = of_parse_phandle_with_fixed_args(pdev->dev.of_node,
+>> +                               "amlogic,secure-monitor",
+>> +                               1, 0, &ph_args);
+>> +        if (ret)
+>> +            return ret;
+>> +
+>> +        sm_np = ph_args.np;
+>> +        if (!sm_np) {
+>> +            dev_err(dev,
+>> +                "Failed to parse secure monitor phandle\n");
+>> +            return -ENODEV;
+>> +        }
+>> +
+>> +        pdata->sm_fw = meson_sm_get(sm_np);
+>> +        of_node_put(sm_np);
+>> +        if (!pdata->sm_fw) {
+>> +            dev_err(dev, "Failed to get secure monitor firmware\n");
+>> +            return -EPROBE_DEFER;
+>> +        }
+>> +
+>> +        pdata->tsensor_id = ph_args.args[0];
+>> +    } else {
+>> +        pdata->sec_ao_map = syscon_regmap_lookup_by_phandle
+>> +            (pdev->dev.of_node, "amlogic,ao-secure");
+>> +        if (IS_ERR(pdata->sec_ao_map)) {
+>> +            dev_err(dev, "syscon regmap lookup failed.\n");
+>> +            return PTR_ERR(pdata->sec_ao_map);
+>> +        }
+>>       }
 > 
-> https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5337/ 
-> PH800480T013-IHC09.pdf
+> I suggest to separate these two routines into functions. That will help
+> the readability.
+> 
 
-I tested the "powertip,ph800480t013-idf02". I'm using BeagleY-AI here, 
-and it didn't work at all. After some testing, I figured out these:
+Sure, I will do that.
 
-HSW of 2 is much too small. But this could be an issue on the display 
-controller or the DSI encoder side. HWS of around 8 starts to work ok. 
-Below that, I don't get anything on the screen.
+>>       pdata->tzd = devm_thermal_of_zone_register(&pdev->dev
+> 
+> The thermal zone is registered before calling
+> amlogic_thermal_initialize(), thus pdata->trim_info is not initialized.
+> When a thermal zone is registered the thermal framework reads the
+> temperature, so it reads an invalid value because:
+> 
+> devm_thermal_of_zone_register()
+>  -> thermal_of_zone_register()
+>    -> thermal_zone_device_register_with_trips()
+>    -> thermal_zone_device_enable()
+>       -> __thermal_zone_device_update()
+>         -> __thermal_zone_get_temp()
+>           -> amlogic_thermal_get_temp()
+>              -> amlogic_thermal_code_to_millicelsius()
+>                  [ Use of uninitialized pdata->trim_info ]
+> 
+> Right ?
+> 
 
-The syncs are interesting. I set them to DISPLAY_FLAGS_VSYNC_HIGH | 
-DISPLAY_FLAGS_HSYNC_HIGH, Marek to DRM_MODE_FLAG_NVSYNC | 
-DRM_MODE_FLAG_NHSYNC. But I have sent the TC358762 series, which fixes 
-the syncs that the bridge sends 
-(20260327-tc358762-fixes-v2-0-3589d3c45f4a@ideasonboard.com).
+Yes, I will move the initialize before the register.
 
-Flipping the syncs might explain why I used 46 and 23 as the 
-backporches, Marked used 46-hsw and 23-vsw for backporches (well, 
-Marek's vbp was off by one as I mentioned).
+> IIUC, amlogic_thermal_initialize() can be also split and moved the
+> corresponding blocks to the functions to be created in the comment above.
+> 
 
-But now I'm getting unsure if my TC358762 fixed the syncs correctly... 
-I'm pretty sure I measured those with my scope, though.
+The SM and syscon setup will be extracted into two functions.
+amlogic_thermal_initialize() itself is kept as-is but moved before
+devm_thermal_of_zone_register().
+Let me know if you'd prefer a different approach.
 
-The fps is different, too. I aimed for 60fps, Marek for 50fps (I think, 
-it doesn't match exactly).
+> 
+>>
+> 
 
-In any case... I think I have to dig out my scope again and validate 
-that I see exactly what I have in the driver. Btw, reviews for the 
-TC358762 series is appreciated!
 
-  Tomi
-
+-- 
+Best regards,
+Ronald
 
