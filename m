@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-289791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289792-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8BxCAXmP6mn10gIAu9opvQ
-	(envelope-from <devicetree+bounces-289791-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 23:30:33 +0200
+	id SGJ6NfaO6mn10gIAu9opvQ
+	(envelope-from <devicetree+bounces-289792-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 23:28:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B407A457E31
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 23:30:32 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB17457DDF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 23:28:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D7F9C30E30CD
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 21:25:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D50CD30046A2
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 21:26:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B7423BE632;
-	Thu, 23 Apr 2026 21:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D93B37C901;
+	Thu, 23 Apr 2026 21:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pr5rX5+i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hHRlZOeK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 590A23BF695
-	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 21:24:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42603BF677
+	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 21:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776979486; cv=none; b=p2tlqI7EF5qqavRkpDwfl47SoF4TxC1Xfh+jz+SB90M2NO4POS+TQw5yN8+XGis05Er8BnqGM+IIG6jYzIXnE7nA3zzlDWJRBeGZxOXieMSk7O8fBXC2H+1tfFAC5BkM4PfiVkR8O+m6h109U8vzTONrujsFn3SwoSDD0RI/bvE=
+	t=1776979574; cv=none; b=EJeWdcmpapz4YzDjqLDmme3vid7Cm5WdyQC22uxWNGQt9T6H2oGcFhO14uCG6R5uhz7VVwTailAIP9YfqzKnRWBve/z2yXBIOt0sVS2zimq0AZYf6KbzCOuNr5dUYdSO+uNkN9+h39TDret9Hr9en+rzzy8cH7xFCLdgDgp6MEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776979486; c=relaxed/simple;
-	bh=bwLbQ5NviOj/bY0u6od11N2GNC6P5OodS0ixTy9vUk8=;
+	s=arc-20240116; t=1776979574; c=relaxed/simple;
+	bh=QoQhslnr2VDDv4dJKxyzU8pClbacRNGZ6y9c0nTvw58=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FwxoQpJPE91adWKheOXismCmd9H8wjczrRdEO23ErOl9TZPbUV0ucP8kVUPXJN+qb/YVK6CAM7Gqr8tTWXMtKZT5JQbDUkv5bOfOsKLO63jW1IkOEqDyDN3ExGCLhLfdfb2APPC7N6anBxh+hnDg1S3uxkQ1sjQBzQDYZ+I4cBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pr5rX5+i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1A9AC2BCB2
-	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 21:24:45 +0000 (UTC)
+	 To:Cc:Content-Type; b=N97sKbt8DrYvlVugiPKpsd26JUJOrSs/wqCAkQQ1iD7oJE2Pw/FxpI5ZNx6ddmY9HfAODfUe8BlMdA3SZdn7B7ZEdN29/1EcwO+NtLwTjeBOIwCERIuTpCRWSvoGVjL8WkJj2dvJp62pClyoXW3iLDD1SUt3UeFSxB0T7KQoya4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hHRlZOeK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D769C2BCF4
+	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 21:26:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776979485;
-	bh=bwLbQ5NviOj/bY0u6od11N2GNC6P5OodS0ixTy9vUk8=;
+	s=k20201202; t=1776979574;
+	bh=QoQhslnr2VDDv4dJKxyzU8pClbacRNGZ6y9c0nTvw58=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Pr5rX5+iSOtoDmywesPolyZqj/RoYZzXZzqAKOCPXaAPVbQy181gcY4KqmWelL3xe
-	 iI8OxPQrJC/OTrH/ZLz0rOUiOTVtcX+tgL8fQldFAyifEXq4Ro7X9rCkCPHaEon8lf
-	 78I3H6UHjrVSc0vZ/rmfbV584lCxPbmjMUsEw20EYHIC1m11yOmA53E7zZ9iwFFwMY
-	 h1y3TQiPQ/Mn6Lkn2GPmkG1BtNNIAudFgaxnIc/Wmh/3c8UYfH/tzhp03vDl1Esv5z
-	 JNQTUBvUtjQZhZCzy7NjdstndEvcCFBbiVJ8BrVj/ubjrTdizCo6szD4gaROtGlr3Q
-	 7rfjwEOk7fYLQ==
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5a3af1b7549so8994024e87.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 14:24:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ9k5NJkrJzUq3JxRyXmGeqzd2NWv9jSHiKoahdP2c2Uok+RiQAWxQ5c3aJQ23F9usrup9vQy8WlXQ2H@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzryj+G5ePG+lZLaHd6lq70whsekMOPSquFhXo5qaBPm7kYT4ql
-	iP5v3QD0Z0YVExkr6GZk5j2i2f+/XK2TiPW8XoBQVGyUOwg4BO9G4Km38zoKiM+6WXDkIIH9orb
-	AP4v4NPFeIm7sxg3TEPrpCN+kl4aCLhY=
-X-Received: by 2002:a05:6512:118b:b0:5a2:8568:826a with SMTP id
- 2adb3069b0e04-5a4172eece0mr8397088e87.34.1776979484421; Thu, 23 Apr 2026
- 14:24:44 -0700 (PDT)
+	b=hHRlZOeKFAljiXXH6X7AXE1TD3AOWdINseVHnhCIz6ZsdBOPUuwYkdaJOtmY8IHd3
+	 pYOBhsNYdUuGVUr2mFrZCP/cYpGZfMBPkBpmN6wpp/8ontKUCQvhmpT3eHYSRfGuvi
+	 uBdf5qzzKaPpsXsV/VpBeFtEhzQPX3E0bAH/sktULPDuwDR3keHhX1uaQ/6J6h2tYp
+	 9QiiOy3eAUW3/y+cl5nJH/Fg9tzs4O/H2X/UZs3XaDZ8QHX6VsSq0hOACHuiCm0e0u
+	 2b8VGFvYISf03NYqQpVdFMfB7PKADurExOMoWaP962uCLDDLBV68MJyuVh0FTzmF+h
+	 DJbepJSK0sksQ==
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5a40cfab24dso7493246e87.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 14:26:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+hZcMcivKgxkCwelzvF4piwCJYRRF9k9D2vhldGY12F+/EhOE/dtDHFvYYXkN97bt5V4FMCqOCYRCR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxa3tFWt/1E5Ubgg5xPecVig8uMxL6cbPgnjW/UAIdgzx0jJVRs
+	d8f5X8Y1MWzKLw8cIJ2KsEtSNP8Tr+s6Lo2yQ9uGmFCY6Im+9T1j1AnvjyTh5WgiNWVuoVB3OOB
+	rT5vP3rxA3lyaT7E8ePPomtvqNMpYWPY=
+X-Received: by 2002:a05:6512:1302:b0:5a3:fe60:471c with SMTP id
+ 2adb3069b0e04-5a4172cb33amr10098495e87.16.1776979572944; Thu, 23 Apr 2026
+ 14:26:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260413-waveshare-dsi-touch-v3-0-3aeb53022c32@oss.qualcomm.com> <20260413-waveshare-dsi-touch-v3-17-3aeb53022c32@oss.qualcomm.com>
-In-Reply-To: <20260413-waveshare-dsi-touch-v3-17-3aeb53022c32@oss.qualcomm.com>
+References: <20260413-waveshare-dsi-touch-v3-0-3aeb53022c32@oss.qualcomm.com> <20260413-waveshare-dsi-touch-v3-7-3aeb53022c32@oss.qualcomm.com>
+In-Reply-To: <20260413-waveshare-dsi-touch-v3-7-3aeb53022c32@oss.qualcomm.com>
 From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 23 Apr 2026 23:24:32 +0200
-X-Gmail-Original-Message-ID: <CAD++jLnsVc3xqKfhuZo08wQFkGrgDiw+OAhTOfUi7vD5ZFY2_g@mail.gmail.com>
-X-Gm-Features: AQROBzCz31PGPdHjUDpQGU0MKBOAMjnGwCLXEjwbbDFHz8TqNnaOCqTWhFhlvZ4
-Message-ID: <CAD++jLnsVc3xqKfhuZo08wQFkGrgDiw+OAhTOfUi7vD5ZFY2_g@mail.gmail.com>
-Subject: Re: [PATCH v3 17/21] drm/panel: ilitek-ili9881c: support Waveshare
- 7.0" DSI panel
+Date: Thu, 23 Apr 2026 23:26:01 +0200
+X-Gmail-Original-Message-ID: <CAD++jLkRf0ehBr0CpCALJHL58gUw4954XzjxHOu8c7n7=b-bUQ@mail.gmail.com>
+X-Gm-Features: AQROBzBtnhd6trpGrfIHMX-D0f7VMPVcAX7SFq928axT4eaRMtmMnoYhsxJIvXU
+Message-ID: <CAD++jLkRf0ehBr0CpCALJHL58gUw4954XzjxHOu8c7n7=b-bUQ@mail.gmail.com>
+Subject: Re: [PATCH v3 07/21] drm/panel: himax-hx83102: support Waveshare
+ 12.3" DSI panel
 To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
 	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
@@ -87,11 +87,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289791-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-289792-lists,devicetree=lfdr.de];
 	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,huaqin.corp-partner.google.com,xff.cz,redhat.com,edgeble.ai,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -108,17 +108,18 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B407A457E31
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DDB17457DDF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Apr 13, 2026 at 4:06=E2=80=AFPM Dmitry Baryshkov
+On Mon, Apr 13, 2026 at 4:05=E2=80=AFPM Dmitry Baryshkov
 <dmitry.baryshkov@oss.qualcomm.com> wrote:
 
-> Enable support for Waveshare 7.0" DSI TOUCH-A panel. It requires
-> additional voltage regulator, iovcc.
+> Add support for the Waveshare 12.3" DSI TOUCH-A panel. According to the
+> vendor driver, it uses different mode_flags, so let the panel
+> descriptions override driver-wide defaults.
 >
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
