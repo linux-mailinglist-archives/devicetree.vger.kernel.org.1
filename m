@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-289723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289725-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8ARiJjQ66mnYxAIAu9opvQ
-	(envelope-from <devicetree+bounces-289723-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:26:44 +0200
+	id 6PiQODU76mnYxAIAu9opvQ
+	(envelope-from <devicetree+bounces-289725-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:31:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 365724544F0
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:26:43 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B4F45466A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:31:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7A216306494D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 15:23:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BA98531B2099
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 15:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731C9374190;
-	Thu, 23 Apr 2026 15:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4263C37CD41;
+	Thu, 23 Apr 2026 15:23:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LgzzNB7J"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mZX7+hid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E8336997A
-	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 15:23:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C1B036D9E6
+	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 15:23:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776957784; cv=none; b=icsyi74umTGwvr+k+S1N4drofNXIt0gDe0XXd9CvsFkUPNHux724nH39AcdxKWmAAX/zjHfcU2DkhMutEvDlqgcdJCV5KDA+6pVKSSRhj03VDkQrsbTQhC/8Zid018wFCy50GeWpaRlQ1auwaJnHd72GGHZb/K8AvVuuXYYbpSs=
+	t=1776957786; cv=none; b=dSYC1TnnCiA6GgkTwmcOEW6h/tpMteepu7DCpqZw0QO9ud1PvGQAbStrI9R7K2jy47HiDMi0Jx6KLdOmM/FGmUJPMXmjJVaJpMNFJY90mAAAswiMHO+3aOkBHctXevKPPxITYvFtGwtE4q7meeygpZq6LHtOdPegYKScxhc1IMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776957784; c=relaxed/simple;
-	bh=gury5o9fYQVnz5W9CUhyVTJ47BHUwb3hn+iE10aL2Hg=;
+	s=arc-20240116; t=1776957786; c=relaxed/simple;
+	bh=6Fhzjxw+vi8XP19sFgBxNUlkscVh4nTSp5CfK4gr45o=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mG9Tp2Q88LHEZHJ/mW9VwcdAm8JZatA5vKwgtXnCK7X9mquWwp0CkmrE93QWTQqgsSO4zf3S49QZg2UaNpRFJaBA1c14sOLa/z4efNg6q+Vq3F+k2gMyH5tedMWOFALSJiD6GjvDKfzvfU0/zK2wpiyzhkQZOtSzAebSpWkyK40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LgzzNB7J; arc=none smtp.client-ip=209.85.128.43
+	 In-Reply-To:To:Cc; b=LZBIuSB4SLBLsXBmP5SWNae+CmGCznkkOksp53bguBqh1BPi8J0YTKB7Mv2laGl0c5dD5jxlI0z2UzEq4Vj7h/7W3WLIrIVDWMmERhrn6U8CP9IXxXDhhuFHuxx3H/uyqAEa/bhQZuA/CIx8ODCtHFwu8H6EfTEpGnGwbD3Z/hc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mZX7+hid; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-488a88aeec9so87489245e9.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 08:23:02 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4891e5b9c1fso48861735e9.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 08:23:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1776957781; x=1777562581; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5JCThqhLH7NqPNtx6lIFMXhC0R0ZENSripHC9ZQYy5U=;
-        b=LgzzNB7JBQu42//n6yFjQskEW1mXxvv5rt1e9kA9WYUUMar/kWtA2mKfxtJ/FQlWE8
-         ZzIx50EliucmykkSWvWFQaJLJ73GhAIJe0amseF9vEPWwIYu0WcYSqfgicz8GBcJQ1oR
-         JJ4mziBHE0jLsWXjDFurj9+FadSrulj8HSvCzq1hXHSGQzaUi9+S3VjubqQZwEIOku6Q
-         ap1Y4CURWUbw3by80qgomRwqh0tbhaV3zksgqzMWgW5Vm59cHyHwiLAFWtAOISzZKi4F
-         BANI/UKB2bvzwOnejjsJVgFqqtXAsx6SkGZlxwm7amLRD13P0v7Nx6IPtF8dW480C4Ms
-         oIMg==
+        bh=EN4V9UR7DRre5LEE2+ZTpG14TXvnUwqmjv4/QNq2Ugs=;
+        b=mZX7+hidc61FA6sH/uyYWJldAoksCQcQsVAhILJPId2UQIio9Ged0bLOmGtAA5UflZ
+         AQC+l1Fkvp4MziSQgyZbOX2Fs06xSkOqnziv5hTUiGR2oDD7QCF2H3Ht6NG60mDdwDtt
+         H/vE/n98RVt96vVl106DByEk3DNimyuz5WZxVXSrfZ+hQ+wL4yHnZwW5kr+QOy9hvFHB
+         40sYhLjK7WGmSXkA9CbK9PlyirO8jAjMUZN49Wk2U1XsLc9Kl8EMs8K3znv8uxrviQUK
+         6uLwsd41GoL+fQvOUmS8r5oZ+2eX6KvMIZWOgfiLUnau4OXWjLqSm6kreh5tXBT9fHbl
+         PlWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20251104; t=1776957781; x=1777562581;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=5JCThqhLH7NqPNtx6lIFMXhC0R0ZENSripHC9ZQYy5U=;
-        b=qJdOOPhTdsKVc1vxfRwzxtfaPlP1VPNMCYMK1WdKE4uJylY06L9wMxQOd4GbcBtD5Q
-         mM9r6oT2w1hgdupMXEV1LLimX59B8gAfbhPB42r9ggBk4zfo1UUVEYvfwvmNeiZ15mCU
-         y/JuYMn90SbDgdvRPQ2+GCrL3oPYav4UZY0JoqX5qSuHjgqDkeXjZTd2n1GrO9Q57/Nc
-         2aa8f9HY/zYAH7Gxbd9DR+q6/b1HIoFrVerD4cKKwQw/bG4c++Gyk9I2+8dXNBIWhLZa
-         0PPVP6f4IH9BMBfsuYZI/CcNTI66ouBMcvFqe3/iSnTT+n9ePnEyBh6hJF/UV46wnZcL
-         0GLA==
-X-Forwarded-Encrypted: i=1; AFNElJ9w+JgcfxcFWihL63PYZk/qsz/eoBLiIGdD73gAiOaVJC+hJkTR94NTHjt34iM90pjtzMLSlBejQzHj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsFMAyjIAsfTKxKSZI0eBV6aIbNEJRGe9jBnLZt2NKyeoE0QB6
-	uZlg9ZP6rL6+JMEbVP6gcRycROUfB9f6yKQb3YVBNJP27iLPj73l6JTtT7xb/Qj1JpY=
-X-Gm-Gg: AeBDieuQ/CnmL2gg7yUPkKY6Bnkf+vuyj9NO3F3P76u2yiu/Ww2+2IVpPfrthzDaZ/c
-	uDPLyp2wb2P9XcBun7wK0daF5TBKcoE3hD/3OnIzwHVdfD/hQTZB9wh7osUSjZ2dKwbKwoSYCAf
-	BSJ81YXCUHu9M15d0FWQN2S9CdZHNKnwVDTbGFzcy6ufJIxiwrl+uO3gWKYpUGJCvGabDkoB91s
-	zoPKFFRjYs+epkyx741ioXSqeaOdxKH3WstHClvNgALlrL8ZOa2M1E18YmA1JvbCro5klJaXnWG
-	Ad0Kxim3MYxj9S8wYEIBmYEwSQJhboTPQB6DG+0M1qj4tw0u5u0ATzilfGHEA4b3iBkcFmNgvsW
-	bhUjDfLpqcync45EhqH73hUWzhRcs/mAWn+xStE8Z71NYEEYl8YwddJB74BRdtGxs6a2N/s33O5
-	0jXlk5tzZ3xIPWk7GcEJqVaQZLtY24N5ctX/e02QPCIYGdhWE4AU5Mo2g/5lNNF5h8SpxnWLlq2
-	nAUmzt4L9kuGPiRGA==
-X-Received: by 2002:a05:600c:8717:b0:48a:568f:ae6d with SMTP id 5b1f17b1804b1-48a568faffemr168084565e9.8.1776957780945;
-        Thu, 23 Apr 2026 08:23:00 -0700 (PDT)
+        bh=EN4V9UR7DRre5LEE2+ZTpG14TXvnUwqmjv4/QNq2Ugs=;
+        b=quEAWK3pTE2q5gnFYpztpnBjJ0yUuh3eZy3y8s7DH9fBXJF+SMIY04VNHXLZxIJQ+K
+         srPrx/64XXk+ryw55TJIQpiOEqe6v2MDdF25q31NJAAN8It4yElb4I1A1A6U8MQPwMoJ
+         lzyKunnfSl68IlwW9Z2If0OjxhGZtmY2xvOfIEMf8jm+cAcZgawQz9kBEBS8Vs3aURYU
+         FzUENQzBTOD4Iom5KB/7aQ51Br1qvxO/bokibRC8L3sQoV4zL0uXrpThtWKMKR0zLM2y
+         Xe0j1VjLj/MLLaCbFmsuPGLIb1wymKl2U8WU6Q32jTUdycmvIuP0l8syq5LjgGhV7zxo
+         ZNCw==
+X-Forwarded-Encrypted: i=1; AFNElJ8gKrw5n8VWR1vgSTmrPAW9k8Q8/xegV2u7ZTUdDcKbj1Ih+y8b9eMmxaw6rDX/5HwkuoaVQE87xpmv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4ASlEpau6Ju9LlTvYxaBgyzNMGuji043cM9vDYC+hksnHcsbC
+	MknTvkO5ubdF+6u/v1XQUlQ7u1PA4Kuzr1TpONxzpZjVDNwodI7hCNUo8TVMO2X899I=
+X-Gm-Gg: AeBDievnzMCP2gM6SvJfxFbqbwoGmDgoUupRbMtHHL45BMzL9HREfoU11UBToAEP1Zg
+	lKzHOoTvx0swhUjrl3qe5nGZbpIOOlP+UoDy/NL9m/Y5xFI3BgR6z3RIqqtBeNH8612x0T36eZl
+	JSog/BqmTMT+lh3Suer7DSJkHBJdL4c+ytRBR5zXFSKUgDN9VcEER/kA13MAlJrJdfarnaEMp6+
+	d7cCFphWAZTdU+aUvidz105Aer/l6BLA1XKcegdp1nd33LHaHfNOfC67Y+oQGT2618cPTq0Y3AN
+	/5TY3Y7ll/Ej829kgj8QN8eLAxEgrPpoNInmSaRNKILX+Ei4ubvtz8feWSyebRe52Xz+Wl51aFa
+	Oj40sR0EXaL9DTcePQgPNwhgwW5nzKZ+17qt5olwI02QP91nT++VrvXYgqopNfJXrpZV09yCgQR
+	P1rVxvWMZhDjz/Hcx0jp5Oh0VWPDvgzJ+uboBoltjGEvrdwFgLQUpU7n6hENc4gOiCmCPG9a3+G
+	le3CIVVIDCTAU3Viw==
+X-Received: by 2002:a05:600c:a105:b0:486:fb69:4960 with SMTP id 5b1f17b1804b1-488fb7786e4mr293834645e9.19.1776957781446;
+        Thu, 23 Apr 2026 08:23:01 -0700 (PDT)
 Received: from ta2.c.googlers.com (17.83.155.104.bc.googleusercontent.com. [104.155.83.17])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4891f98728dsm90550755e9.23.2026.04.23.08.23.00
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4891f98728dsm90550755e9.23.2026.04.23.08.23.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Apr 2026 08:23:00 -0700 (PDT)
+        Thu, 23 Apr 2026 08:23:01 -0700 (PDT)
 From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Thu, 23 Apr 2026 15:22:51 +0000
-Subject: [PATCH v4 03/11] firmware: samsung: acpm: Annotate rx_data->cmd
- with __counted_by_ptr
+Date: Thu, 23 Apr 2026 15:22:52 +0000
+Subject: [PATCH v4 04/11] firmware: samsung: acpm: Drop redundant _ops
+ suffix in acpm_ops members
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260423-acpm-tmu-v4-3-8b59f8548634@linaro.org>
+Message-Id: <20260423-acpm-tmu-v4-4-8b59f8548634@linaro.org>
 References: <20260423-acpm-tmu-v4-0-8b59f8548634@linaro.org>
 In-Reply-To: <20260423-acpm-tmu-v4-0-8b59f8548634@linaro.org>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
@@ -112,11 +112,11 @@ Cc: willmcvicker@google.com, jyescas@google.com, shin.son@samsung.com,
  linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org, 
  linux-clk@vger.kernel.org, Tudor Ambarus <tudor.ambarus@linaro.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776957778; l=2360;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776957778; l=4435;
  i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=gury5o9fYQVnz5W9CUhyVTJ47BHUwb3hn+iE10aL2Hg=;
- b=rnq8EwtbRM8Uo4+EdwheI9WJInqZ2Ii7f76t+qs1T0eX1VEh7VaHRXuo3uQIS5mJhWB2Hl3W3
- K9JwcPUFqrTCwdeRp4V5y5l9W2cA/B6S/kY9D29yeAnF06612VjIT9V
+ bh=6Fhzjxw+vi8XP19sFgBxNUlkscVh4nTSp5CfK4gr45o=;
+ b=m4fvvg7wwQHeVb0yPnYIqHEWlawnheJct73ayBmrt0vkfwIxMaAcSV6BGF7raasQPHx7k6W2Y
+ gg/2Y1LaGpgDZ1YNuIQjhH8k3GmTU4AO/Uu4HrbMnBnxExDYFknXje1
 X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
  pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -124,11 +124,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289723-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-289725-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,intel.com,arm.com,samsung.com,gmail.com,linaro.org,baylibre.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -136,7 +136,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[30];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -146,77 +146,115 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,linaro.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 365724544F0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email,linaro.org:dkim,linaro.org:mid]
+X-Rspamd-Queue-Id: A3B4F45466A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Rename the `n_cmd` member of `struct acpm_rx_data` to `cmdcnt` to
-maintain consistent nomenclature across the driver (aligning with
-`txcnt`, `rxcnt`, and transfer helpers).
+Rename the `dvfs_ops` and `pmic_ops` members of `struct acpm_ops` to
+`dvfs` and `pmic` respectively.
 
-With the member renamed, annotate the dynamically allocated `cmd`
-pointer with the `__counted_by_ptr(cmdcnt)` macro to improve runtime
-bounds checking.
+Since these members are housed within the `acpm_ops` structure and
+utilize the `acpm_*_ops` types, the `_ops` suffix on the variable names
+creates unnecessary redundancy (e.g., `handle.ops.dvfs_ops`).
+
+This cleanup removes the stuttering, leading to cleaner consumer code.
 
 Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 ---
- drivers/firmware/samsung/exynos-acpm.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ drivers/clk/samsung/clk-acpm.c                        | 8 ++++----
+ drivers/firmware/samsung/exynos-acpm.c                | 4 ++--
+ drivers/mfd/sec-acpm.c                                | 6 +++---
+ include/linux/firmware/samsung/exynos-acpm-protocol.h | 4 ++--
+ 4 files changed, 11 insertions(+), 11 deletions(-)
 
+diff --git a/drivers/clk/samsung/clk-acpm.c b/drivers/clk/samsung/clk-acpm.c
+index d8944160793a..93667777094c 100644
+--- a/drivers/clk/samsung/clk-acpm.c
++++ b/drivers/clk/samsung/clk-acpm.c
+@@ -68,8 +68,8 @@ static unsigned long acpm_clk_recalc_rate(struct clk_hw *hw,
+ {
+ 	struct acpm_clk *clk = to_acpm_clk(hw);
+ 
+-	return clk->handle->ops.dvfs_ops.get_rate(clk->handle,
+-					clk->mbox_chan_id, clk->id);
++	return clk->handle->ops.dvfs.get_rate(clk->handle, clk->mbox_chan_id,
++					      clk->id);
+ }
+ 
+ static int acpm_clk_determine_rate(struct clk_hw *hw,
+@@ -89,8 +89,8 @@ static int acpm_clk_set_rate(struct clk_hw *hw, unsigned long rate,
+ {
+ 	struct acpm_clk *clk = to_acpm_clk(hw);
+ 
+-	return clk->handle->ops.dvfs_ops.set_rate(clk->handle,
+-					clk->mbox_chan_id, clk->id, rate);
++	return clk->handle->ops.dvfs.set_rate(clk->handle, clk->mbox_chan_id,
++					      clk->id, rate);
+ }
+ 
+ static const struct clk_ops acpm_clk_ops = {
 diff --git a/drivers/firmware/samsung/exynos-acpm.c b/drivers/firmware/samsung/exynos-acpm.c
-index c4aca61a63e4..e5c85d769d0a 100644
+index e5c85d769d0a..a2cd54ee4589 100644
 --- a/drivers/firmware/samsung/exynos-acpm.c
 +++ b/drivers/firmware/samsung/exynos-acpm.c
-@@ -103,12 +103,12 @@ struct acpm_queue {
-  * struct acpm_rx_data - RX queue data.
-  *
-  * @cmd:	pointer to where the data shall be saved.
-- * @n_cmd:	number of 32-bit commands.
-+ * @cmdcnt:	allocated capacity of the @cmd buffer in 32-bit words.
-  * @rxcnt:	expected length of the response in 32-bit words.
+@@ -627,8 +627,8 @@ static int acpm_channels_init(struct acpm_info *acpm)
   */
- struct acpm_rx_data {
--	u32 *cmd;
--	size_t n_cmd;
-+	u32 *cmd __counted_by_ptr(cmdcnt);
-+	size_t cmdcnt;
- 	size_t rxcnt;
+ static void acpm_setup_ops(struct acpm_info *acpm)
+ {
+-	struct acpm_dvfs_ops *dvfs_ops = &acpm->handle.ops.dvfs_ops;
+-	struct acpm_pmic_ops *pmic_ops = &acpm->handle.ops.pmic_ops;
++	struct acpm_dvfs_ops *dvfs_ops = &acpm->handle.ops.dvfs;
++	struct acpm_pmic_ops *pmic_ops = &acpm->handle.ops.pmic;
+ 
+ 	dvfs_ops->set_rate = acpm_dvfs_set_rate;
+ 	dvfs_ops->get_rate = acpm_dvfs_get_rate;
+diff --git a/drivers/mfd/sec-acpm.c b/drivers/mfd/sec-acpm.c
+index 0e23b9d9f7ee..9e15b260b8df 100644
+--- a/drivers/mfd/sec-acpm.c
++++ b/drivers/mfd/sec-acpm.c
+@@ -391,7 +391,7 @@ static int sec_pmic_acpm_bus_write(void *context, const void *data,
+ {
+ 	struct sec_pmic_acpm_bus_context *ctx = context;
+ 	struct acpm_handle *acpm = ctx->shared->acpm;
+-	const struct acpm_pmic_ops *pmic_ops = &acpm->ops.pmic_ops;
++	const struct acpm_pmic_ops *pmic_ops = &acpm->ops.pmic;
+ 	size_t val_count = count - BITS_TO_BYTES(ACPM_ADDR_BITS);
+ 	const u8 *d = data;
+ 	const u8 *vals = &d[BITS_TO_BYTES(ACPM_ADDR_BITS)];
+@@ -411,7 +411,7 @@ static int sec_pmic_acpm_bus_read(void *context, const void *reg_buf, size_t reg
+ {
+ 	struct sec_pmic_acpm_bus_context *ctx = context;
+ 	struct acpm_handle *acpm = ctx->shared->acpm;
+-	const struct acpm_pmic_ops *pmic_ops = &acpm->ops.pmic_ops;
++	const struct acpm_pmic_ops *pmic_ops = &acpm->ops.pmic;
+ 	const u8 *r = reg_buf;
+ 	u8 reg;
+ 
+@@ -430,7 +430,7 @@ static int sec_pmic_acpm_bus_reg_update_bits(void *context, unsigned int reg, un
+ {
+ 	struct sec_pmic_acpm_bus_context *ctx = context;
+ 	struct acpm_handle *acpm = ctx->shared->acpm;
+-	const struct acpm_pmic_ops *pmic_ops = &acpm->ops.pmic_ops;
++	const struct acpm_pmic_ops *pmic_ops = &acpm->ops.pmic;
+ 
+ 	return pmic_ops->update_reg(acpm, ctx->shared->acpm_chan_id, ctx->type, reg & 0xff,
+ 				    ctx->shared->speedy_channel, val, mask);
+diff --git a/include/linux/firmware/samsung/exynos-acpm-protocol.h b/include/linux/firmware/samsung/exynos-acpm-protocol.h
+index d4db2796a6fb..b206efa62be6 100644
+--- a/include/linux/firmware/samsung/exynos-acpm-protocol.h
++++ b/include/linux/firmware/samsung/exynos-acpm-protocol.h
+@@ -36,8 +36,8 @@ struct acpm_pmic_ops {
  };
  
-@@ -384,7 +384,7 @@ static void acpm_prepare_xfer(struct acpm_chan *achan,
+ struct acpm_ops {
+-	struct acpm_dvfs_ops dvfs_ops;
+-	struct acpm_pmic_ops pmic_ops;
++	struct acpm_dvfs_ops dvfs;
++	struct acpm_pmic_ops pmic;
+ };
  
- 	/* Clear data for upcoming responses */
- 	rx_data = &achan->rx_data[achan->seqnum - 1];
--	memset(rx_data->cmd, 0, sizeof(*rx_data->cmd) * rx_data->n_cmd);
-+	memset(rx_data->cmd, 0, sizeof(*rx_data->cmd) * rx_data->cmdcnt);
- 	/* zero means no response expected */
- 	rx_data->rxcnt = xfer->rxcnt;
- 
-@@ -537,19 +537,19 @@ static int acpm_achan_alloc_cmds(struct acpm_chan *achan)
- {
- 	struct device *dev = achan->acpm->dev;
- 	struct acpm_rx_data *rx_data;
--	size_t cmd_size, n_cmd;
-+	size_t cmd_size, cmdcnt;
- 	int i;
- 
- 	if (achan->mlen == 0)
- 		return 0;
- 
- 	cmd_size = sizeof(*(achan->rx_data[0].cmd));
--	n_cmd = DIV_ROUND_UP_ULL(achan->mlen, cmd_size);
-+	cmdcnt = DIV_ROUND_UP_ULL(achan->mlen, cmd_size);
- 
- 	for (i = 0; i < ACPM_SEQNUM_MAX; i++) {
- 		rx_data = &achan->rx_data[i];
--		rx_data->n_cmd = n_cmd;
--		rx_data->cmd = devm_kcalloc(dev, n_cmd, cmd_size, GFP_KERNEL);
-+		rx_data->cmdcnt = cmdcnt;
-+		rx_data->cmd = devm_kcalloc(dev, cmdcnt, cmd_size, GFP_KERNEL);
- 		if (!rx_data->cmd)
- 			return -ENOMEM;
- 	}
+ /**
 
 -- 
 2.54.0.545.g6539524ca2-goog
