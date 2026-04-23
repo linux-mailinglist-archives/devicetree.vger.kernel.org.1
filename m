@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-289761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289762-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YJuRLA9e6mksygIAu9opvQ
-	(envelope-from <devicetree+bounces-289761-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 19:59:43 +0200
+	id CN1LAdhf6mmrygIAu9opvQ
+	(envelope-from <devicetree+bounces-289762-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 20:07:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29F4C455D10
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 19:59:42 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 566A1455E9C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 20:07:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2879730156C2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:59:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B27A430903F1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 18:03:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36E0392C32;
-	Thu, 23 Apr 2026 17:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3DE837BE8F;
+	Thu, 23 Apr 2026 18:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MDmkjeoc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MvSRYz7X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EBC536E46C;
-	Thu, 23 Apr 2026 17:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F68642AA6;
+	Thu, 23 Apr 2026 18:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776967174; cv=none; b=GDB3IiGU2kJ5hGMhz4ntAsnRHpsN9G68jT7FcByORZ0QcSrLe73s+bcWciIPFSvTCcEXwBxD3WLH4ZohsQ1gksTqv8/KoLvWaHsO3Gh8aHvvfZ/aiMyysldvhIYOiXkaudGPUjt1u8Qs79m/bB0HubGE2AZsqRKf5S0okKjKlSo=
+	t=1776967394; cv=none; b=oFrbYc0pxiaZjgVvaJnKwgLyW1Ji8gQhlExnd54qRl4598pGBcryKsPZLeZTP23TXWWhKbQMO4VYtzuohf+YArukNVvhhNCOkoAZJIPCJy5i8K/KUsaiya0z/srMa4l/31fm4ZIhbZS03avlpv85AheZPpWH2aNbw8gC2RBWn+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776967174; c=relaxed/simple;
-	bh=piCFcL2iIZKcQyjk2NcguxyqTnbHLrGuvcjbgiTr5Ao=;
+	s=arc-20240116; t=1776967394; c=relaxed/simple;
+	bh=EHpWjMAwCtqlswKrTVZYZTYG/QQCfwOqSJOsa6+21OA=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ap9giwUffP/GbUn7gXKDtDan50u/aTqXsZCla3ODy13SjO8hiXYvp1FExFXvlWrIFelu1xb8U7J06GxcaaRUmaco1F/4KGSvn+ZTTVxuZV0iO+hmZHZu4lQ8t2kP9yMwzSlCOhUn4P15K6bwsSeYzgTdwu0kNBY+ECOINKNxIAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MDmkjeoc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 585F9C2BCAF;
-	Thu, 23 Apr 2026 17:59:27 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Axd9mnrCpcKSB6eeZ8EfHCTEvxr5ExeAdYq+KzGffss3G/fGDeWTi5uSNYtvnCPFIy9l38n1wLQsGntSGvj1UiDqiiCRi/gOluW+T0KZlaFamK5ERXbYygwg1t0r8CZOG5zVjn1dcDme/ow7STg4/0Sxw1LF+S022xmo69qMeRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MvSRYz7X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C56AC2BCAF;
+	Thu, 23 Apr 2026 18:03:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776967174;
-	bh=piCFcL2iIZKcQyjk2NcguxyqTnbHLrGuvcjbgiTr5Ao=;
+	s=k20201202; t=1776967394;
+	bh=EHpWjMAwCtqlswKrTVZYZTYG/QQCfwOqSJOsa6+21OA=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MDmkjeocIHOpDWrNaTDWPDUdnIzMPh4aXptVJxggJAO3M5r7+vMQXTrYu1fAeQDC2
-	 w9xuxNytWbw6f1a+1L19X+6YY1z3crDkAs55yXr/Fougn5oQ43zlL+J78w5C6eIBHF
-	 JuodWsNaCnTMEcizA0tt+gP3ObgyFfoOnzF0ppa7+HraQ0Qz/56usn2tLrPsoVriMy
-	 kcXeuNFe3fBBD6bwhS39djo0cpgWnxmn92MDbi913zRAeG1RLqAYVlBxWP8HJA78io
-	 5weT8VjSWZj+IOSFNTnFa8h1lFZVZRXsRd3Mr9RGJlcY3NWuMT8+N7W749K+PtMTLR
-	 pcQ+BBVvtXsMg==
-Date: Thu, 23 Apr 2026 18:59:23 +0100
+	b=MvSRYz7X8GKaO059s0KYld760Ux6kXUjq7D6qr9G9qe1TNIBoUN1beuePVYfzhDi5
+	 yrnGDBmxyQg8GDoebISFifYpTmOcFMuZQSFsBsJtysKDria3PPHuolKpf11+/Qr/tm
+	 SuINKg6QDtEzXjunUi8/XC/0HNA0GX36Dqhv6Ga1WavNqil2YUTRhD+0pN81/TjbJT
+	 s+WbM0qhkollvop2EbC0rYfj8NjeMN5HX4W3Jphyn8w5seuiMeGds5m0hSWUTXSOk3
+	 oUvyE2YiQyTgG5Ea92kqzcke2EgSmU6P4DYBPqv/xqCk/G1+o+UDbkJnpTFnEVa21F
+	 l2AiixKobgDSQ==
+Date: Thu, 23 Apr 2026 19:03:02 +0100
 From: Jonathan Cameron <jic23@kernel.org>
 To: Rodrigo Alencar via B4 Relay
  <devnull+rodrigo.alencar.analog.com@kernel.org>
@@ -57,11 +57,11 @@ Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
  Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kees
  Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
  Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 12/22] iio: dac: ad5686: fix powerdown control
-Message-ID: <20260423185923.5f25da8d@jic23-huawei>
-In-Reply-To: <20260422-ad5313r-iio-support-v1-12-ed7dca001d1b@analog.com>
+Subject: Re: [PATCH 13/22] iio: dac: ad5686: fix input raw value check
+Message-ID: <20260423190302.338ecdbe@jic23-huawei>
+In-Reply-To: <20260422-ad5313r-iio-support-v1-13-ed7dca001d1b@analog.com>
 References: <20260422-ad5313r-iio-support-v1-0-ed7dca001d1b@analog.com>
-	<20260422-ad5313r-iio-support-v1-12-ed7dca001d1b@analog.com>
+	<20260422-ad5313r-iio-support-v1-13-ed7dca001d1b@analog.com>
 X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -76,12 +76,12 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289761-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-289762-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
@@ -96,55 +96,45 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:email]
-X-Rspamd-Queue-Id: 29F4C455D10
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 566A1455E9C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 22 Apr 2026 15:45:46 +0100
+On Wed, 22 Apr 2026 15:45:47 +0100
 Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 
 > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 > 
-> This patch fixes powerdown control issues by protecting the cached
-> powerdown states with mutex access, and by using a proper bit shift for
-> the powerdown mask values. During initialization, powerdown bits are
-> initialized so that unused bits are set to 1 and the correct bit shift is
-> used.
-> 
-
-Mostly avoiding repeating stuff Andy raised already.
-
-> Dual-channel devices use one-hot encondig in the address and that reflects
-
-encoding.
-
-> on the position of the powerdown bits, which are not channel-index based
-> for that case. Quad-channel devices also use one-hot encondig for the
-> channel address but the result of log2(address) coincides with the channel
-> index value.
+> Use in_range() to fix range check for input raw value, which is off by
+> one, i.e., for a 10-bit DAC the max valid value is 1023, but 1 << 10
+> equals 1024, which passes the previous check, allowing an out-of-range
+> write.
 > 
 > Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
->
->  static int ad5686_get_powerdown_mode(struct iio_dev *indio_dev,
->  				     const struct iio_chan_spec *chan)
->  {
->  	struct ad5686_state *st = iio_priv(indio_dev);
-> +	int mode, shift = ad5686_pd_mask_shift(chan);
-Split that into two lines.  
-	int shift = ...
-	int mode;
-
-Having a mixture of initialized and not is not good for readability.
-
+> ---
+>  drivers/iio/dac/ad5686.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/dac/ad5686.c b/drivers/iio/dac/ad5686.c
+> index 19d791c655b7..07a944311f0e 100644
+> --- a/drivers/iio/dac/ad5686.c
+> +++ b/drivers/iio/dac/ad5686.c
+> @@ -185,7 +185,7 @@ static int ad5686_write_raw(struct iio_dev *indio_dev,
 >  
-> -	return ((st->pwr_down_mode >> (chan->channel * 2)) & 0x3) - 1;
-> +	mutex_lock(&st->lock);
-> +	mode = ((st->pwr_down_mode >> shift) & 0x3) - 1;
-> +	mutex_unlock(&st->lock);
-> +
-> +	return mode;
-...
+>  	switch (mask) {
+>  	case IIO_CHAN_INFO_RAW:
+> -		if (val > (1 << chan->scan_type.realbits) || val < 0)
+> +		if (!in_range(val, 0, 1 << chan->scan_type.realbits))
+
+Might just be me, but I do find in range a bit weird when the offset is 0.
+
+I'd be tempted to just make the check >=
+ 
+>  			return -EINVAL;
+>  
+>  		mutex_lock(&st->lock);
+> 
 
 
