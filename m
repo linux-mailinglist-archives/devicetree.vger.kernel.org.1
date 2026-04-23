@@ -1,192 +1,171 @@
-Return-Path: <devicetree+bounces-289757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289758-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AA2BOhNb6mnXyQIAu9opvQ
-	(envelope-from <devicetree+bounces-289757-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 19:46:59 +0200
+	id 6MVIO2lb6mnXyQIAu9opvQ
+	(envelope-from <devicetree+bounces-289758-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 19:48:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90920455B6B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 19:46:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4071C455BE1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 19:48:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9471A3033246
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:45:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 305ED3012EB0
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:47:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 839C43AB289;
-	Thu, 23 Apr 2026 17:44:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89C7E3A873E;
+	Thu, 23 Apr 2026 17:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aBu8iRtF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WBgmMBre"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F89037C10A;
-	Thu, 23 Apr 2026 17:44:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6613F351C22;
+	Thu, 23 Apr 2026 17:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776966268; cv=none; b=NSNu15bgROQ0cUOZVkucfH7fUBARoJn694dDG78eDUows6TAN+3NWSRH103NDi32X00NGi1XFymaiYjRWwejyyuOJLVuwTDtSiQDyXImGNTIWQtc2Megrxvrfdb7+N+Wg+OZuENr673DjDS8m3Zn6wxQcu2RmOqWEh9BPTxG+3w=
+	t=1776966455; cv=none; b=aP5Jg8uqBjVo3/fHZ+BaHd3g9j2sZ5N7cSrclE0NyZwKN3itrxZbBfWNw+27FFhrcbC2LPNjEbVNnT1sArWC1v7+yd0RuPOKTqq3EInLygd1W5A6y2RsB2z7yzUaKRfeRwWr7Nj955XBndotzAYBDuYX11cviQKqWjvCZDt4nTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776966268; c=relaxed/simple;
-	bh=Ca6918fcOAXDM3mevQIr9UFJydEQNXb86m/+edpbIC8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dftPrP++McxpH3CQNxoJ0mA58V7k9ezDR6xEY4K78TP4k23QVLj17k5TwQ3GD3P9hLFa0wDq0D1TUdBTrQ2F8Xa141m09qPjPlNOwgMgG5ujHPUTd4igcBILbRCK7PItAZjmNuUXGn0JRnimzkM2MxtYZ9tdxD70X3kDpXFOW2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aBu8iRtF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B558DC2BCAF;
-	Thu, 23 Apr 2026 17:44:24 +0000 (UTC)
+	s=arc-20240116; t=1776966455; c=relaxed/simple;
+	bh=drWxfBZSOVpa9kupE9PJ7W9/Yaa2usdxmvDAQDRpTmc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=goeL7nBJoGeqGIIpz75+gYPqi1utj07TNM3gxi3PTzA4jLoMvzTlb2GvHG+JwBGnFZVszdd6ASg0xswStakUV67TwmeI1r0LOAUDjehsJMuJUmKndiHHnmyX2U45OZU00Rmc2wsXsGsmqq7i1UiiS4WOT1LkSHdvzkDdh0TQ3pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WBgmMBre; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4648EC2BCAF;
+	Thu, 23 Apr 2026 17:47:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776966268;
-	bh=Ca6918fcOAXDM3mevQIr9UFJydEQNXb86m/+edpbIC8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aBu8iRtFL+Ml28WAMlWVSTzNQysPYMICkXs8iHwEl66fo33PA83dxwmevXPQQ+8r+
-	 03oNzphPXfEn2JbEdywqHe7tIQBtSWk2smDoiP5qJEz4T9SIQJTUmfhl4b9SQHt5je
-	 ZOwt4sdI6EeBvPuh2YSRd1/7Nzc0ld+fSTlcJlo/M6Q/KKZVTJ9Yb0rkFLeCpYg3vq
-	 RUXInthqnG+cSRYc7ZytRSXcRZSrWI99++7ZWujhmzXACHfFkIte2jw04JlDIc58OZ
-	 +EYO0HeTnSkElit8Iw3fYHtGMH0IddZ9VlxfAChsS1CaEM59XvTguRxlE6Em7hXYYF
-	 Onb3Y/C9LQ6gA==
-Date: Thu, 23 Apr 2026 18:44:22 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Ryan Chen <ryan_chen@aspeedtech.com>,
-	Andrew Jeffery <andrew@aj.id.au>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v7 1/3] dt-bindings: pinctrl: Add
- aspeed,ast2700-soc0-pinctrl
-Message-ID: <20260423-clever-swooned-a06907e9101e@spud>
-References: <20260416-upstream_pinctrl-v7-0-d72762253163@aspeedtech.com>
- <20260416-upstream_pinctrl-v7-1-d72762253163@aspeedtech.com>
- <20260416-brutishly-saga-ba7168a4cd14@spud>
- <OSQPR06MB7252EB0C2A1A3313DE49406B8B202@OSQPR06MB7252.apcprd06.prod.outlook.com>
- <20260417-anemia-borrower-fb90ac02b417@spud>
- <OSQPR06MB7252BD7967D2567AD6DA7A1D8B2F2@OSQPR06MB7252.apcprd06.prod.outlook.com>
+	s=k20201202; t=1776966455;
+	bh=drWxfBZSOVpa9kupE9PJ7W9/Yaa2usdxmvDAQDRpTmc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=WBgmMBreJ87HdkKA4WawOgpUz8e6vhdsm6kjLhqTHMsXsWYnnFFOCCdrRvHtsD491
+	 vOtoeRERs4KBE6wJaggL7zl0is7c1ygzQ5UN1NipxsEr4Jw/yTxodzAwaiwTn5XAmK
+	 FeFf5kDVpqCCfVrEpvwEvTv8AlmLhre49+wTPgiSu5HZ/5GBniFjp9mjRdvX4DZexf
+	 jJX4j85Y29inxwwEHfiqARG0WEWHx4Hvkd+uL2EonN56uMZnW2QqTEmc+mjHg8DvHh
+	 RBKs3xwmE37kJTy6Oa+fFcJFV5GoaQfR7OaRa+DSmle+ZDEfx2sX2o5PYOxjJHV1Zt
+	 c6+A4LpXf4gyg==
+Date: Thu, 23 Apr 2026 18:47:23 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rodrigo Alencar via B4 Relay
+ <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Michael Auchter
+ <michael.auchter@ni.com>, linux-hardening@vger.kernel.org, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kees
+ Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH 03/22] dt-bindings: iio: dac: ad5696: rework on power
+ supplies
+Message-ID: <20260423184723.54ddbd67@jic23-huawei>
+In-Reply-To: <20260422-ad5313r-iio-support-v1-3-ed7dca001d1b@analog.com>
+References: <20260422-ad5313r-iio-support-v1-0-ed7dca001d1b@analog.com>
+	<20260422-ad5313r-iio-support-v1-3-ed7dca001d1b@analog.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="JAt2RGrDeiha8/Di"
-Content-Disposition: inline
-In-Reply-To: <OSQPR06MB7252BD7967D2567AD6DA7A1D8B2F2@OSQPR06MB7252.apcprd06.prod.outlook.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [5.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289757-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-289758-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
+	GREYLIST(0.00)[pass,meta];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 90920455B6B
+	NEURAL_HAM(-0.00)[-0.915];
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email,0.0.0.0:email]
+X-Rspamd-Queue-Id: 4071C455BE1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Wed, 22 Apr 2026 15:45:37 +0100
+Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 
---JAt2RGrDeiha8/Di
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> 
+> Add supplies for VDD, VLOGIC and VREF input voltage pins. The vcc-supply
+> property is deprecated.
 
-On Mon, Apr 20, 2026 at 07:22:57AM +0000, Billy Tsai wrote:
-> In particular, I'll split the constraints as follows:
->=20
-> - For pinmux, the presence of `function` will require `groups`, and
->   `pins` will not be allowed. This reflects the hardware design, where
->   the groups are defined by the pins affected by a given mux expression
->=20
-> - For pin configuration, exactly one of `groups` or `pins` will be
->   required (using oneOf), so that configuration is applied either at
->   group level or per-pin, but not both.
->=20
->=20
-> - if:
->     required:
->       - function
->   then:
->     required:
->       - groups
->     not:
->       required:
->         - pins
+Please provide some information on why? Was it always just wrong and that
+naming was never used for any of the supported parts?
 
->   else:
+> Certain devices require vref-supply to be
+> available once an internal reference voltage is absent. Still, this patch
+> does not add those as 'required' so that the ABI is not broken.
+> 
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> ---
+>  .../devicetree/bindings/iio/dac/adi,ad5696.yaml     | 21 ++++++++++++++++++---
+>  1 file changed, 18 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
+> index f286e5072abc..21b80fe597d1 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
+> @@ -38,9 +38,22 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  vdd-supply:
+> +    description: Input power supply.
+> +
+> +  vlogic-supply:
+> +    description:
+> +      Digital power supply. If not supplied, it is assumed to be the same as
+> +      vdd-supply. VLOGIC may be hardwired to VDD in some board designs or
+> +      internally connected in small packages.
+> +
+> +  vref-supply:
+> +    description:
+> +      Reference voltage supply. If not supplied the internal reference is used.
+> +
+>    vcc-supply:
+> -    description: |
+> -      The regulator supply for DAC reference voltage.
+> +    deprecated: true
+> +    description: Use vref-supply instead.
+>  
+>    reset-gpios:
+>      description: Active-low RESET pin to reset the device.
+> @@ -88,7 +101,9 @@ examples:
+>        ad5696: dac@0 {
+>          compatible = "adi,ad5696";
+>          reg = <0>;
+> -        vcc-supply = <&dac_vref>;
+> +        vdd-supply = <&dac_vdd>;
+> +        vlogic-supply = <&dac_vlogic>;
+> +        vref-supply = <&dac_vref>;
+>          ldac-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
+>        };
+>      };
+> 
 
-I think this is a separate section under an allOf, rather than an else.
-You can also simplify the condition above to just be
-- if:
-    required:
-      - function
-  then:
-    required:
-      - groups
-since the node will then always be tested against what you have below
-
->     oneOf:
->       - required:
->           - groups
->         not:
->           required:
->             - pins
->       - required:
->           - pins
->         not:
->           required:
->             - groups
-
-I think this here simplifies to
-oneOf:
-  - required:
-     - groups
-  - required:
-     - pins
-
-You'd also need to note that pin level config settings should take
-precedence over group level ones.
-
---JAt2RGrDeiha8/Di
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaepadgAKCRB4tDGHoIJi
-0iGUAQCSvZRjl2it7AaROKHK0Bp704DuQXDbJXJ0D6NcO6IYSQD/TPXLQsCR9Y10
-jtbhzr6qfBOMLqlIhuZTFyJ2Xq5jBAw=
-=i4l7
------END PGP SIGNATURE-----
-
---JAt2RGrDeiha8/Di--
 
