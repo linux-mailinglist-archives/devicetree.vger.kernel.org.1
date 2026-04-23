@@ -1,55 +1,101 @@
-Return-Path: <devicetree+bounces-289677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289680-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qBwBIT0f6mn/ugIAu9opvQ
-	(envelope-from <devicetree+bounces-289677-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 15:31:41 +0200
+	id kLiDFb0f6mntuQIAu9opvQ
+	(envelope-from <devicetree+bounces-289680-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 15:33:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02D97452F44
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 15:31:40 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 317BF45300F
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 15:33:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3FFF23023DAD
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 13:25:14 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 88A3F3024919
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 13:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F3003F0AA7;
-	Thu, 23 Apr 2026 13:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2ED33F166C;
+	Thu, 23 Apr 2026 13:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QAXRSA3z"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ha2f6MxK";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QBMAzQa1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A322222580;
-	Thu, 23 Apr 2026 13:25:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B0CC3F0AB6
+	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 13:25:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776950712; cv=none; b=oKU6zQcEm5Y5/oYRjIX1ooX7SXOjMMfyDfdXzk8ageWK63zmPNEx5kI1aXVQD8+gjx8cjU7UY+LEtdGFDgcIuzrazwXOx3ang/ONnfa+tF2UnSwy99ah84OnNgLWf65KmjmkMIKNIDR41PFNa3tGwAZiGL1RSQK+sekRuPIiPiQ=
+	t=1776950748; cv=none; b=ATeBc4ZfIZ/BRPyNwVmm0nMOHalXbEesq+G3O+TXezKH+6Hrsv/U8zHtdBZGTPhr397j9HwWtokdps2ieMDdlnO2taQWManwHgXJ/37YCaKN+5dWabn2oXeFYItbmHzCtRYp0zTx0BV1NSP+HiztBA2haE9+1FMzTKTo+GTiMHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776950712; c=relaxed/simple;
-	bh=JoKC7abK0zYTLANNJhtgcSK5I7VibFOKQkmDYtPkK70=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hg243O06ClboQWKRVEahS/RggoMj8s76jTGOTS9PRUF1TVfleSZHg5lgQUtKR3TPv20rWOB689dJ015m/SN+63NnxicoXa5SJcTIkKfIz+yAiMvoL21nS7kzl9y37rURjvcCCvKpgoUM72h6q0rk6nzbI3l6+FKMvdyU1vMzz40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QAXRSA3z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E1D7DC2BCAF;
-	Thu, 23 Apr 2026 13:25:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776950712;
-	bh=JoKC7abK0zYTLANNJhtgcSK5I7VibFOKQkmDYtPkK70=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=QAXRSA3zNmJ99uOXQWHLdYKTyC0RbiIcCC3/5Wa6aaHggfn5sHhZqFHdLtPioLC2g
-	 W26e4YDl2EPctIhSCoInNl2aCCTgE87ZA8F1C6ogrQW7W1viStZ6pzlKpo4bQs73HA
-	 OCts5cObO7PBHtdO/v1MoAFQ5t3h15HILvUT+m102t7HdLfmgfV+1swIfFufJg5/yR
-	 wohdJjrBKoluZD1rlHV7ncys6CD/pk407eRLhCujf8iJSIRGw2INeye5HFyx/3nzk6
-	 Q5Z10j+xLpibTBGBvmPk7S9KzCiSGUSeYd74+oNNgxZxwQIrF4oBGMDpC39ScHRGIz
-	 G95h7+iD/DbYQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2274F589D4;
-	Thu, 23 Apr 2026 13:25:11 +0000 (UTC)
-From: David Wales via B4 Relay <devnull+daviewales.disroot.org@kernel.org>
-Date: Thu, 23 Apr 2026 23:24:51 +1000
-Subject: [PATCH 2/2] ARM: dts: qcom: Support Motorola Moto G2 (2014)
+	s=arc-20240116; t=1776950748; c=relaxed/simple;
+	bh=mhFWDjcQIlaFOUDhsBU+7/btI9eHrJel0pVml7G0csI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=YgaD7TNjjy+f7zDENAaGCA2t+PUJGpdcD4GRi5o2hiWCxtArHgRpd7p/IkfNmCIMIEJbmB8oNnj8WbalPunGL6yswQnamSJslbrcJTrVhVUunw6XhZLHuG7JbvUYlEK4L6QeoN4dCO5FkIAqk9tHN3/GvYWToi2CqWwaULgLYLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ha2f6MxK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QBMAzQa1; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63NBwijV009895
+	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 13:25:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=t5PtXP2uc5cR+cffqPRMLt
+	M49KDHVnt86V5Mw48FhQ0=; b=Ha2f6MxKPMf0GmVGSQvi7Ob6/0WDbNVZHUD7D4
+	WI8mo+ZK3xUt01S1M0ihjjCMFPYnwVfwkmCnAzrdDqErA9mwvNI5yWMY7Nhcoavv
+	tX6XZ77T0V0GWTpWNydGwlWpNsgDiyMxXFvuTxzVG33qmehczkQsxgMtTM7dCWNG
+	sp9LpkIo1CtzBNiKAfysFvl3j8FFjVVjWKfgYEacFV4BvAcha/mCOoFZy/N0N8JY
+	mrW9q54KB7pq99jkZy878bKfAV+ofqRI6WJLvP+7kzWQcZLToy+xGUFbtOw0lhea
+	TbBKvb4kLmchlL97fpiDss+eYyNbyIKLR8s3KB5lvgzCQp3Q==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dqk1789sk-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 13:25:46 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b630b4d8d52so3798977a12.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 06:25:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1776950745; x=1777555545; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=t5PtXP2uc5cR+cffqPRMLtM49KDHVnt86V5Mw48FhQ0=;
+        b=QBMAzQa1CXol7HZA884aankYZ30qqabrTlNaX/WotxwCg1YjTB57vYVtBCfo9S5REL
+         IvD4zypyBM1irSsW12C8gY/lBLbazLhJVezFQO8FXKjMAN9pYMmQktgsYX+eJxY2/GLZ
+         4tkQa3+FicR9gbCsR1vriWILfAloUNUHmeu2d5hbNx+QsvNX3HWI6DrKjShWwsWzOSNw
+         RjvRhw56GvFkvWk0Nw5uqrCcnoVRvYFlkY2ejBUYEcBLGzEgLqOWIt2QhOsFj2j+UPDD
+         1PzIfqL/WJYQd0l4SCkJi9sYCDxL3hCL6/Y0hYyzCEeuPPTScVJA2K8IzHQZGqC5YIPx
+         I0tQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776950745; x=1777555545;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t5PtXP2uc5cR+cffqPRMLtM49KDHVnt86V5Mw48FhQ0=;
+        b=kYkG94mYIpZDbzYqUtMqk1/Xlxw7Dg3jXc3EHuIcsPlPg7TylF38IqHd8XyO69Pwty
+         SX633ZSjNxPbAI8mX8sq+wv9dmkG5hu5maomf+vprc/UNOhcFFs/WuwOn76q6Cqlstkg
+         JQpytKjg7RIX5qH+q/vDP62qK4QneUGb2sHOT2/D0sK5nh1iWQu7L/ukPifWt1R0jlZd
+         JFtOpE21RMCseJrchd8Z7Hh4mF5+Pyzdcet3rjkH2FmGiESoCw/7lrSsFBr49xbNHnGt
+         Xuv4QOrsGu3rUCB3oj0q2BD0+NVS+63F5NftNg726tDLJHrRObS55kE4iwzHU9NNFQoH
+         q9Fg==
+X-Forwarded-Encrypted: i=1; AFNElJ9g1amT7/voze/RGK10+izWpa3atkIT3SWf5wkHrGDXzsaTE01JUwQRBsqjSTSnK1/8KzrE1fiPn/Xm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRac3Ju7Gmb51P8t/Aqbn1yplJLV7zSfk7VMnu+ZPbxzhRrd0/
+	4G6CvINyJDxRB7WzX/Rq+hOH9Y0xwikb/GsoAkdKHa3l15EHVpgUpLuNNypQybUQevB42YujVqW
+	ygeqRG3DFb8GA9XSdkUiqQ200sxEdYIoCsJOTdDAlEung3cbC1paHFG/Om9hanumK
+X-Gm-Gg: AeBDievU0FtOopvJN9Cl/x4SRwTSmDyleFmPSpfOj7oFaNnG/bxpKgeuwyHNlcYkwhE
+	+eCEBg3s7rbOJltk91ai7oK/lZiIa3znJZp9udlrriBdDX+JDGH/Ypt/9gRFlORsr8qVdSxjX1T
+	FGYHBe61J5Do1u5zDVFL5pubsn1W/8pTDfvlyNyl8TNZTi6VC7sm9vlc11KGrxoBixEEmY7JUJJ
+	9c9AHdZX8dFgdEQV5+4ShTv+JeHseYhysHAEQzpNWRJMW9YaY4xR+3jdjMUlEZiP3XHgj+GKVW7
+	OhxIu+jlslKKuedknr8Nob0n9l54rRsyY0SocX/deNZDq4NwYIaU0KYXYdFVMaX/Yx9PefYoP8U
+	8ug44XxJod87GWO2XF5t+jeb+jvd+q/VempIUqT+/o+Xh9cOHhzGUXIV5DQf6zQmBoA==
+X-Received: by 2002:a05:6a20:4306:b0:39b:c79d:2336 with SMTP id adf61e73a8af0-3a08d89fb6dmr29537155637.27.1776950745215;
+        Thu, 23 Apr 2026 06:25:45 -0700 (PDT)
+X-Received: by 2002:a05:6a20:4306:b0:39b:c79d:2336 with SMTP id adf61e73a8af0-3a08d89fb6dmr29537106637.27.1776950744586;
+        Thu, 23 Apr 2026 06:25:44 -0700 (PDT)
+Received: from hu-kuldsing-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c79770587c1sm15647276a12.32.2026.04.23.06.25.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Apr 2026 06:25:44 -0700 (PDT)
+From: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
+Date: Thu, 23 Apr 2026 18:55:31 +0530
+Subject: [PATCH] arm64: dts: qcom: kaanapali: Add TRNG node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,460 +104,116 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260423-device-motorola-titan-mainline-v1-2-e1813a028cc8@disroot.org>
-References: <20260423-device-motorola-titan-mainline-v1-0-e1813a028cc8@disroot.org>
-In-Reply-To: <20260423-device-motorola-titan-mainline-v1-0-e1813a028cc8@disroot.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, David Wales <daviewales@disroot.org>
+Message-Id: <20260423-knp_rng-v1-1-9df6c0391a8f@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAMod6mkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDEyNj3ey8gviivHTdVNMU4zSDFIMkEwtDJaDqgqLUtMwKsEnRsRB+cWl
+ SVmpyCUi7Um0tABBnN5ZrAAAA
+X-Change-ID: 20260423-knp_rng-e5d3f0d0b481
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9111;
- i=daviewales@disroot.org; h=from:subject:message-id;
- bh=Pso6mnHMePzlz73ajKH9CQ4GAdeq67YB7T/4eugpYsU=;
- b=owEBbQGS/pANAwAKAW1jV4FG9KFmAcsmYgBp6h21DTVu2ydkLkljItoAOUkFjIPvncbYhynNR
- 84MChmUg1aJATMEAAEKAB0WIQTXikd3yUPmOPWSLPJtY1eBRvShZgUCaeodtQAKCRBtY1eBRvSh
- Zvs3B/9CIWC4fkDFZL92lUp0b584FPfEZL+N64Bmml6obk4dflvNKsG6Urk0A4OyaPD1N/4Jm0g
- 0USbcdpeCf9crglQeg6icpziwSqh2HJuA3ko49vHCpvDsdB9xZ91h9OUUVc0iH6u/0WHxc+DX7b
- Yb/baIncvwu2qvxOhqsDXxtS6Oa6aQ49YZ9T/0+DISurG49uo/SMwtbLpjD+b+rRcp/OdZQQwQC
- xQX5WN/UZriyQmJa2keXsTrSdAyYltANF+59jfTCPrQlBI7C3T4nYcgdMzQ7OFcJhW9uX12I92A
- INQ74zN47KidKJ3Ommuuz20ydKpUHa+nVVPveCTW4wntxQgs
-X-Developer-Key: i=daviewales@disroot.org; a=openpgp;
- fpr=8F5BAFB15444A769DC3B61684022B817D275D037
-X-Endpoint-Received: by B4 Relay for daviewales@disroot.org/default with
- auth_id=737
-X-Original-From: David Wales <daviewales@disroot.org>
-Reply-To: daviewales@disroot.org
+X-Proofpoint-GUID: 3iXEgl_ZDtFKAb3Wry9ol-lwwDvn4gyc
+X-Authority-Analysis: v=2.4 cv=R98z39RX c=1 sm=1 tr=0 ts=69ea1dda cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=EUspDBNiAAAA:8 a=wRMDb1tyTjY7daH1K8wA:9 a=QEXdDO2ut3YA:10
+ a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIzMDEzNCBTYWx0ZWRfX2oVgx3p6v3ai
+ QWYKdaWeX7sCCUjChEYJS+aHaSS+omXXdq24HcTXeiJZu3FPF8u0uPy9JiCkgm0xjiEZUZ2E/x6
+ cah9hzQOzu8PEicYrs41dgLvLUubE+kzojPMNO/W9kPseB7JODM3gUTBWQgkdnn6BQwr7PyTfmn
+ T4GPANcWlL7gz3AqOarIMwJLnk/21IL8KIQExB91FgTtcmX24b5y7DBw4aoxXvpZV7vRfXla0zU
+ LVCqgriI3NlxdpLptZvl3xJzoiZuV77ugnoSJdxFoyzzXlpH68pPWrGErbwUBBVI1XOqqN7Mufy
+ Y5rJJJpPbbhxquCUUKJvFvyNTPKb7HfqCH7zshpi6zBoRRlex7o6HAlVMTXIGbliMKkROyZhilf
+ kzXw7S5kANhLVLZ57WobRGFoPEhJNBSpQLNXtsHcjA7WTZdy8hOhe2LThThZzNtNa0uQy/pxzor
+ 08oHJ4NDvA7XDAaMgqQ==
+X-Proofpoint-ORIG-GUID: 3iXEgl_ZDtFKAb3Wry9ol-lwwDvn4gyc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-23_03,2026-04-21_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 spamscore=0 clxscore=1015 priorityscore=1501 phishscore=0
+ malwarescore=0 impostorscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604230134
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289677-lists,devicetree=lfdr.de,daviewales.disroot.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	HAS_REPLYTO(0.00)[daviewales@disroot.org];
-	MAILSPIKE_FAIL(0.00)[2600:3c04:e001:36c::12fc:5321:server fail];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-289680-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,10c3000:email,0.16.224.80:email];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kuldeep.singh@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MAILSPIKE_FAIL(0.00)[104.64.211.4:server fail];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:email,disroot.org:replyto,disroot.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,3e:email,f500000:email,0.48.212.0:email,fa00000:email]
-X-Rspamd-Queue-Id: 02D97452F44
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 317BF45300F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: David Wales <daviewales@disroot.org>
+Add the kaanpali nodes for the True Random Number Generator (TRNG).
 
-Add device tree for Motorola Moto G2 (2014) (motorola-titan) smartphone
-based on the Qualcomm MSM8226 SoC.
-
-Initially supported features:
-  - Buttons (Volume Down/Up, Power)
-  - eMMC
-  - Hall Effect Sensor
-  - Simple framebuffer display
-  - Vibrator
-
-Based on device tree for similar device msm8226-motorola-falcon.
-Initial commit for falcon notes that dhob and shob reserved-memory
-regions seem to be related to a Motorola specific mechanism. [1]
-
-[1] https://github.com/LineageOS/android_kernel_motorola_msm8226/blob/cm-14.1/Documentation/devicetree/bindings/misc/hob_ram.txt
-
-Signed-off-by: David Wales <daviewales@disroot.org>
+Signed-off-by: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
 ---
- arch/arm/boot/dts/qcom/Makefile                   |   1 +
- arch/arm/boot/dts/qcom/msm8226-motorola-titan.dts | 351 ++++++++++++++++++++++
- 2 files changed, 352 insertions(+)
+Tested-on: kaanapali-mtp
 
-diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-index c7873dcef154..de311293ce16 100644
---- a/arch/arm/boot/dts/qcom/Makefile
-+++ b/arch/arm/boot/dts/qcom/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_QCOM) += \
- 	msm8226-motorola-falcon.dtb \
-+	msm8226-motorola-titan.dtb \
- 	qcom-apq8016-sbc.dtb \
- 	qcom-apq8026-asus-sparrow.dtb \
- 	qcom-apq8026-huawei-sturgeon.dtb \
-diff --git a/arch/arm/boot/dts/qcom/msm8226-motorola-titan.dts b/arch/arm/boot/dts/qcom/msm8226-motorola-titan.dts
-new file mode 100644
-index 000000000000..9abb4738749d
---- /dev/null
-+++ b/arch/arm/boot/dts/qcom/msm8226-motorola-titan.dts
-@@ -0,0 +1,351 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2026, David Wales <daviewales@disroot.org>
-+ */
-+
-+/dts-v1/;
-+
-+#include "qcom-msm8226.dtsi"
-+#include "pm8226.dtsi"
-+
-+/delete-node/ &smem_region;
-+
-+/ {
-+	model = "Motorola Moto G2 (2014)";
-+	compatible = "motorola,titan", "qcom,msm8226";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &sdhc_1; /* eMMC */
-+	};
-+
-+	chosen {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		framebuffer@3200000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0x03200000 0x800000>;
-+			width = <720>;
-+			height = <1280>;
-+			stride = <(720 * 3)>;
-+			format = "r8g8b8";
-+			vsp-supply = <&reg_lcd_pos>;
-+			vsn-supply = <&reg_lcd_neg>;
-+			vddio-supply = <&vddio_disp_vreg>;
-+
-+			clocks = <&mmcc MDSS_AHB_CLK>,
-+				 <&mmcc MDSS_AXI_CLK>,
-+				 <&mmcc MDSS_BYTE0_CLK>,
-+				 <&mmcc MDSS_ESC0_CLK>,
-+				 <&mmcc MDSS_MDP_CLK>,
-+				 <&mmcc MMSS_MISC_AHB_CLK>,
-+				 <&mmcc MDSS_PCLK0_CLK>,
-+				 <&mmcc MDSS_VSYNC_CLK>;
-+			power-domains = <&mmcc MDSS_GDSC>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		event-hall-sensor {
-+			label = "Hall Effect Sensor";
-+			gpios = <&tlmm 109 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_LID>;
-+			linux,can-disable;
-+		};
-+
-+		key-volume-down {
-+			label = "Volume Down";
-+			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			debounce-interval = <15>;
-+		};
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			gpios = <&tlmm 106 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			debounce-interval = <15>;
-+		};
-+	};
-+
-+	vddio_disp_vreg: regulator-vddio-disp {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vddio_disp";
-+
-+		gpio = <&tlmm 10 GPIO_ACTIVE_HIGH>;
-+		startup-delay-us = <300>;
-+		enable-active-high;
-+		regulator-boot-on;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		framebuffer@3200000 {
-+			reg = <0x03200000 0xfa0000>;
-+			no-map;
-+		};
-+
-+		dhob@f500000 {
-+			reg = <0x0f500000 0x40000>;
-+			no-map;
-+		};
-+
-+		shob@f540000 {
-+			reg = <0x0f540000 0x2000>;
-+			no-map;
-+		};
-+
-+		smem_region: smem@fa00000 {
-+			reg = <0x0fa00000 0x100000>;
-+			no-map;
-+		};
-+
-+		reserved@fb00000 {
-+			reg = <0x0fb00000 0x400000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&blsp1_i2c4 {
-+	status = "okay";
-+
-+	regulator@3e {
-+		compatible = "ti,tps65132";
-+		reg = <0x3e>;
-+
-+		pinctrl-0 = <&reg_lcd_default>;
-+		pinctrl-names = "default";
-+
-+		reg_lcd_pos: outp {
-+			regulator-name = "outp";
-+			regulator-min-microvolt = <5400000>;
-+			regulator-max-microvolt = <5600000>;
-+			regulator-active-discharge = <1>;
-+			regulator-boot-on;
-+			enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		reg_lcd_neg: outn {
-+			regulator-name = "outn";
-+			regulator-min-microvolt = <5400000>;
-+			regulator-max-microvolt = <5600000>;
-+			regulator-active-discharge = <1>;
-+			regulator-boot-on;
-+			enable-gpios = <&tlmm 13 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+&pm8226_vib {
-+	status = "okay";
-+};
-+
-+&rpm_requests {
-+	regulators {
-+		compatible = "qcom,rpm-pm8226-regulators";
-+
-+		pm8226_s3: s3 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1300000>;
-+		};
-+
-+		pm8226_s4: s4 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2200000>;
-+		};
-+
-+		pm8226_s5: s5 {
-+			regulator-min-microvolt = <1150000>;
-+			regulator-max-microvolt = <1150000>;
-+		};
-+
-+		pm8226_l1: l1 {
-+			regulator-min-microvolt = <1225000>;
-+			regulator-max-microvolt = <1225000>;
-+		};
-+
-+		pm8226_l2: l2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		pm8226_l3: l3 {
-+			regulator-min-microvolt = <750000>;
-+			regulator-max-microvolt = <1337500>;
-+		};
-+
-+		pm8226_l4: l4 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		pm8226_l5: l5 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		pm8226_l6: l6 {
-+			/* Hall effect sensor */
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-always-on;
-+		};
-+
-+		pm8226_l7: l7 {
-+			regulator-min-microvolt = <1850000>;
-+			regulator-max-microvolt = <1850000>;
-+		};
-+
-+		pm8226_l8: l8 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8226_l9: l9 {
-+			regulator-min-microvolt = <2050000>;
-+			regulator-max-microvolt = <2050000>;
-+		};
-+
-+		pm8226_l10: l10 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8226_l12: l12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8226_l14: l14 {
-+			regulator-min-microvolt = <2750000>;
-+			regulator-max-microvolt = <2750000>;
-+		};
-+
-+		pm8226_l15: l15 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+		};
-+
-+		pm8226_l16: l16 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3350000>;
-+		};
-+
-+		pm8226_l17: l17 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8226_l18: l18 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8226_l19: l19 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2850000>;
-+		};
-+
-+		pm8226_l20: l20 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3075000>;
-+		};
-+
-+		pm8226_l21: l21 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		pm8226_l22: l22 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8226_l23: l23 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8226_l24: l24 {
-+			regulator-min-microvolt = <1300000>;
-+			regulator-max-microvolt = <1350000>;
-+		};
-+
-+		pm8226_l25: l25 {
-+			regulator-min-microvolt = <1775000>;
-+			regulator-max-microvolt = <2125000>;
-+		};
-+
-+		pm8226_l26: l26 {
-+			regulator-min-microvolt = <1225000>;
-+			regulator-max-microvolt = <1225000>;
-+		};
-+
-+		pm8226_l27: l27 {
-+			regulator-min-microvolt = <2050000>;
-+			regulator-max-microvolt = <2050000>;
-+		};
-+
-+		pm8226_l28: l28 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3400000>;
-+			regulator-boot-on;
-+		};
-+
-+		pm8226_lvs1: lvs1 {
-+			/* Pull-up for I2C lines */
-+			regulator-always-on;
-+		};
-+	};
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&pm8226_l17>;
-+	vqmmc-supply = <&pm8226_l6>;
-+	bus-width = <8>;
-+	non-removable;
-+
-+	status = "okay";
-+};
-+
-+&smbb {
-+	qcom,fast-charge-safe-current = <2000000>;
-+	qcom,fast-charge-current-limit = <1900000>;
-+	qcom,fast-charge-safe-voltage = <4400000>;
-+	qcom,minimum-input-voltage = <4300000>;
-+
-+	status = "okay";
-+};
-+
-+&usb {
-+	extcon = <&smbb>;
-+	dr_mode = "peripheral";
-+
-+	status = "okay";
-+};
-+
-+&usb_hs_phy {
-+	extcon = <&smbb>;
-+	v1p8-supply = <&pm8226_l10>;
-+	v3p3-supply = <&pm8226_l20>;
-+};
-+
-+&tlmm {
-+	reg_lcd_default: reg-lcd-default-state {
-+		pins = "gpio12", "gpio13";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+		output-high;
-+	};
-+};
+Testing:
+- Boot the board and verify qcom_rng driver probe success.
+- Validated rngtest utils
 
--- 
-2.53.0
+Steps followed:
+- cat /sys/class/misc/hw_random/rng_available
+- echo qcom_hwrng > /sys/class/misc/hw_random/rng_current
+- cat /sys/class/misc/hw_random/rng_current
+- cat /dev/random | rngtest -c 1000
+---
+ arch/arm64/boot/dts/qcom/kaanapali.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/qcom/kaanapali.dtsi b/arch/arm64/boot/dts/qcom/kaanapali.dtsi
+index 7cc326aa1a1a..9dafd5518c0f 100644
+--- a/arch/arm64/boot/dts/qcom/kaanapali.dtsi
++++ b/arch/arm64/boot/dts/qcom/kaanapali.dtsi
+@@ -1513,6 +1513,11 @@ &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 			};
+ 		};
+ 
++		rng: rng@10c3000 {
++			compatible = "qcom,kaanapali-trng", "qcom,trng";
++			reg = <0x0 0x010c3000 0x0 0x1000>;
++		};
++
+ 		ipcc: mailbox@1106000 {
+ 			compatible = "qcom,kaanapali-ipcc", "qcom,ipcc";
+ 			reg = <0x0 0x01106000 0x0 0x1000>;
+
+---
+base-commit: 70c8a7ec6715b5fb14e501731b5b9210a16684f7
+change-id: 20260423-knp_rng-e5d3f0d0b481
+
+Best regards,
+--  
+Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
 
 
