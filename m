@@ -1,183 +1,224 @@
-Return-Path: <devicetree+bounces-289660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289662-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YFuREpkK6mnFsgIAu9opvQ
-	(envelope-from <devicetree+bounces-289660-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 14:03:37 +0200
+	id sMD6EdQM6mn4sgIAu9opvQ
+	(envelope-from <devicetree+bounces-289662-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 14:13:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 338C4451B08
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 14:03:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26415451CEF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 14:13:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 51E583009E32
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 12:02:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BBEA730097E9
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 12:07:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C6B83E8684;
-	Thu, 23 Apr 2026 12:02:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BCB13EB7F0;
+	Thu, 23 Apr 2026 12:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="hYU+Rth/"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="iEu1Bpdb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010004.outbound.protection.outlook.com [52.101.84.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4568437646B;
-	Thu, 23 Apr 2026 12:01:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776945721; cv=none; b=PuHnLkLe7l6/+OVXyOPQxIfINXdmKJPOpWEQ8iw4bSY4mQhyq9v/sLErJww5wqHVzxIbLu9jP7VdmkLdzZPwzrRwNBLVVB38fO7Vi1YLs0WD/+TUsLJrxnp6onjUuXAdiX9jVgZfi1pQI/pvkJfM8ZPLDHOdrQaSQX2HNxKDU+4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776945721; c=relaxed/simple;
-	bh=Fx938U2Vfj0K/y5jh7enFEPw/OYujGES1OBKTsXTLso=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WGipBoJpwrxkYhyYqxTukU1MuSLS8uj24GxGcHDIYf1Z/n+V3/8g1SzQxLNB1NqexKqmM48pbgNr2KxiHLIyl3XbcSdod1gRW7eJ8kgstXaUS1o2jxZ9FI9wYfsgzalXfypMuSniPkWGADinK5/V7m/Oxmo3+t036Bx6BSyCvSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=hYU+Rth/; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 030669A4;
-	Thu, 23 Apr 2026 14:00:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1776945617;
-	bh=Fx938U2Vfj0K/y5jh7enFEPw/OYujGES1OBKTsXTLso=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hYU+Rth/LWlUi09SWn3C1ojFeB3bob/ROPmYmxTjEC+TzCblfv6fwLHZ97Aoxhp8q
-	 KK8aYt7qWstD46FDSAt3LHGL8oq4RUzkmxaXoMS6iHzRJTHxKBVlJJ4rXcZ+UltJ3o
-	 0oDuaK1K8Wnvw9XxASotvt1EjrM5algZ1YOzfjdY=
-Message-ID: <af71183d-70b8-4a41-8466-67123e7aab02@ideasonboard.com>
-Date: Thu, 23 Apr 2026 15:01:51 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D783628CF77;
+	Thu, 23 Apr 2026 12:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.4
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1776946069; cv=fail; b=HlYtAWuzk8XJotRIePlmrbOqzwk//4Pp4IStX0OFqhxTbGr3hCJSPv72W/WN1QO3DlACVzijWaB2/P0CVVx9YA89V8XxpDBDS/4uwxw+4iHAuaGlqTD9N2aC12zroxojWArRyK2b8F1WzJcvfvbLp4jmJwg27/8fkpZJlgF0cWE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1776946069; c=relaxed/simple;
+	bh=5CA4EQ1X0FLWdMpKDORkAHNEpe93eWzQh9ciySfekuo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=AOgxjtPz+3HspV/D1DOhPHboov9xYYXK6dN6GV3F+PGdRoUD7jWMV3XkVixCkavo+ArfF14Is6KII1tI2PlNqoidFHrY5gRWanMK2zOHosloM7XyyVfHP3nawHgbe7bWwLx1b6hqRv1uHjCSELweTicbooxrstqKV0qeTghQAkg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=iEu1Bpdb; arc=fail smtp.client-ip=52.101.84.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KjWw6HsFiMbmOZp+Kd/lmZTW/4Aam6wsgomDtGQPHkA6ywTj3I7YYN3cJp5ul6AWtIxRGbBAzEbM9V1CMMV9hkzfCIkaHqWWmhxTw1a4Bnu/2CImKGSoiKkAbnStPvi6E0G0AAvOrTQ3jB86fEQ2V+wT2IYf/UszpOC4FRHCzI8NxKPPVnMsc+9muNh0g34TvRrkh/JU8cl9QSBxyyFyJCz+ib7dR3PQf00RqL8NFasDV+wWysNoai9WVG3GIZvnawZURjVhXYing6g5E/xNn2qhZJ43gUN+U9cqCIxssWrYUwVQNiLdHotj1lSM/2ReSxCen+aw3pCHnXkUTgZ/YQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5CA4EQ1X0FLWdMpKDORkAHNEpe93eWzQh9ciySfekuo=;
+ b=gRBO1LL7L4QMg+aTOViNtOgXr/m8r9GwBVSgGr+P93Xt6GberqQUPhS+TousD9CpDAvWMtnIsgIhD8rO406UkLme1eNmlRrVAIgK/yTREZdnRt4YoLgDIeXAmm3yY5H4Lo4Sw+Yn3zHomkZ4GxpSdPHYr5DRVqqmsIXb6rE1L6Zsuq/zpn7MNHCFAlre8F5KEts5ZKrPFOkjDHuKLPRD5dFwEgwnlDEdyUAgsxbAeguAKZ16SGlyBQke5HlyTjoiSg15yld0viqpYwbmkdDSO8NCEGFqWYpMmFIsB7nZlN3gBkSYM+I6CXJ6sFh3HjTYafCv5aJFTfWE7uXKkUs5KQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5CA4EQ1X0FLWdMpKDORkAHNEpe93eWzQh9ciySfekuo=;
+ b=iEu1Bpdb9/za7yWg9Xe17po+yrP1TDrvlF0SrcULuwH1JASUSt9U3FaLo3v3M5HOamoh2iTonHityEw+mpSnUAlMKE4a//QYjNnB0qsqqbUpfOO2XxY/nZbCQvbX2dvosGmPQ4z+1koiu+y9GouXi8FTSi53coVecZCNPTkJBRXqPGyawjBMiSFDEtT+VnBbYSpTHkWJ9k3qoKdBzdiZLek8pa+F6zhB2LHJL/p8dImGdYco9vGsiFyuKdGkH7tc9IMdsKc72zzTV/3HEpHpEtu0P2Kmq9FpP2NQsLLfwNahWD3FzfFLQfncXTxjZfku5/09+7oh6G/y1wVX96E/HQ==
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by DU6PR04MB11157.eurprd04.prod.outlook.com (2603:10a6:10:5c2::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.21; Thu, 23 Apr
+ 2026 12:07:42 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::4972:7eaa:b9f6:7b5e]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::4972:7eaa:b9f6:7b5e%3]) with mapi id 15.20.9846.021; Thu, 23 Apr 2026
+ 12:07:42 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Xu Yang <xu.yang_2@nxp.com>, Frank Li <frank.li@nxp.com>
+CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de"
+	<kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, Jun Li <jun.li@nxp.com>
+Subject: RE: [PATCH 2/4] arm64: dts: imx95: switch usb3 controller to
+ flattened model
+Thread-Topic: [PATCH 2/4] arm64: dts: imx95: switch usb3 controller to
+ flattened model
+Thread-Index: AQHc0X03wBeL1YynIU+/n2MIuSBlObXqdBoAgAIAOYCAABv1oA==
+Date: Thu, 23 Apr 2026 12:07:42 +0000
+Message-ID:
+ <PAXPR04MB845957613BCD5E86D96FA4E3882A2@PAXPR04MB8459.eurprd04.prod.outlook.com>
+References: <20260421105503.1416566-1-xu.yang_2@nxp.com>
+ <20260421105503.1416566-2-xu.yang_2@nxp.com>
+ <aehGKE8qLXiBKvvB@lizhi-Precision-Tower-5810>
+ <cfyvip6atz6hh57iga5gvkzrdxeorv4tuxontvzixflqn36h7h@2awtzkxkn45c>
+In-Reply-To: <cfyvip6atz6hh57iga5gvkzrdxeorv4tuxontvzixflqn36h7h@2awtzkxkn45c>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB8459:EE_|DU6PR04MB11157:EE_
+x-ms-office365-filtering-correlation-id: 670b6a8d-8a23-4eb6-c831-08dea130ec32
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|1800799024|7416014|19092799006|366016|18002099003|56012099003|22082099003|38070700021;
+x-microsoft-antispam-message-info:
+ suVGDF6j+y7aSL+Trv5f469eBiA8QTYt4LBabpS9zQwPKwIAS5qLr9/HWaR/mqn2Ng+RRvBrx+sIF1XEJX9H2EvP5w8ZV3MsCOwdLkcr8QbKF9xy/kon+F+ySYUNQ04m8hf8iLzGbHzJAYxrbzkoZqbtOvzwBcjK7SxtOAeJkl5UjbFoC0N1NWFr2xzjHUVDAbuVo6iyslcsebP6I2lZAp2JTq+4AAyQ60W6elc6cdePwYmS9ZMgA78AI3oXtafRRtWaoNBGywr6n58cv/lviBarNV+/vp5fOHBTukBT/EA5UqWDlARRyRivg5xjDaEOZLEW5lbHwmAzI7nneoID71YAj75ccdHgzMss40R0HkFveoTeQVzaEbIjMtDmh8dUDMBIHUmteQFywND8ytmaUL/EipHqzRKAfNBOsDB0i5hGjsQkYhzDsdnMJ8dy7ZM7LBg4MzTIRONpGRjKNAe+gWc4XbOPexTrlQH84uKYpApLN6CIxFKTYYScQ/L1hOvZO0w0Z5BpqwxJgPcDTdppdUp3qzjra8Z7IjZvYNhIoVhngvFOO3K0UdvdMvQihqe20wdq7TeGD80L+rPJPM74L0ochkfiYc1NZbPt5+t8nTe2XGRZ3Gz+o+7Czgb1qiQRGSvWEn+JLllsC2Cw5dILCWGdEo/O+/hGFef8RMyHwftuN+NXhDkmox3r8TJbTtseu27g1zopLlHWcohGRNsZAkLwy0a9ugdewvDvmYobnalj4L7ve5sLYfzDaZPSfFD0kH3xXtXWTfvdBucTpPTCBS/6NAcM9IzxUPDICJiuevY=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(19092799006)(366016)(18002099003)(56012099003)(22082099003)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?6wekbGBA1SoO+L5VjqFYIeVS2EPU2VxMRn/z7kn4P+M/ayt7ZDmAwxOUJ6VE?=
+ =?us-ascii?Q?OYhL2/4/BnCqWifjurexXQqAdjXZ9lh1bB6hs6sAJV2JsByYzBKp6OBSJ1/k?=
+ =?us-ascii?Q?VvanMFNdDRr1ZTV/QN76VJo/Fpi6rE5q0EGghip6zkpUV9cl7zLNZ20i0tY5?=
+ =?us-ascii?Q?G0gfTBtQaJYpEXPgOrPv7cYPfU13s/PDpIDrR97VBvSM5EsVhePDWdsHj5KR?=
+ =?us-ascii?Q?TvWKPkeAf7pPryMy1U7URDFnHB2Wpz6cGLNZJITr5kCYg/RmiA34nFqRCmhg?=
+ =?us-ascii?Q?csQ95L9fqC6KhJt5JBmpX7Jpq8tM4QgmqcpcZ74OePn99pnwMbGSvM1Uj/lw?=
+ =?us-ascii?Q?VDtjzu5k+ae0FTNACfrVzKliBz5hr2jp8E2Umz3nk2rX1lpQM+JyS8LSXQUd?=
+ =?us-ascii?Q?NcPNP8u14Nue7MHxLxu9BwG83hm3RrRZxriqEwSggIAYZlI0fol2F4DCfDEn?=
+ =?us-ascii?Q?cYP6NdN7OIDnMXKvlgQX3m8sHhdk/tA5akodMnBHhClJNi+MACso+KsKbzOZ?=
+ =?us-ascii?Q?mSUpUI79Y5tK3F5pjiv0en9WJVTd8ibMml7kyLrn99QP0xAAxoYxsWfxCK6p?=
+ =?us-ascii?Q?s0Bmh1nakhkQUN1MiuVs6j1LMP1wmAVIl43Z6I0WAaTtDwoQbMUGJz4gj55O?=
+ =?us-ascii?Q?eeUGyf5zATV8WxcIhEG6hZdnlmUElxSU9WQVx/XSlxW3CWb7J19kZSLrnT3P?=
+ =?us-ascii?Q?F3MQOzvQl18Y3CH9KrQBq1+vdoSC+fVKEZMcoYULf0RjFjJ6AECQUtvzn3Q7?=
+ =?us-ascii?Q?dmC6cmD/PvxL/8dwqmO3b88RcImTL5Rufp9cYspL9ICCVywYxVxUILMt+2bV?=
+ =?us-ascii?Q?DU3DIWtItmlwcAtoRQO9zA0b8jXD0qM25F8JTUuHuZndLUnbWcooKbdVEtWo?=
+ =?us-ascii?Q?0u0HlAA9vn/FyAzm3T4sy/+w+U2ywPwS5vll/MGG8lsG7b15+a9H9anHDBU8?=
+ =?us-ascii?Q?R7is5dVNueT5iCYe9TXNZZkMFMTZB5QqxzGLfcpVFDZSZQIm1ANc5ctYBXDP?=
+ =?us-ascii?Q?2WOzf1TJCVPkM8X+TVZLdRS3crco7hozXoFC7aMnvMCrjkRxsapLc79VXxE2?=
+ =?us-ascii?Q?ODdRQ6o36Yl020aoCS62avSfXDfowUtpIouhoe0JH9chE15FZQYB+HFR2+on?=
+ =?us-ascii?Q?6QDZ7VBllMX3IrwsjO4ASsUYWalQ62gHzQZKv7hFxztHqLTOafo3bBjk6SJr?=
+ =?us-ascii?Q?GjibfSj/eDclnNhpg5P9rJiOC4BIO8giPsrJ86sUD7vN7ZiVA1n0t75VvmF6?=
+ =?us-ascii?Q?q0puO3AG5BMcgel+H0Fd9ffuiQPEpcISeF58FuSs682djyXsHAONIq+BJmOe?=
+ =?us-ascii?Q?+L1jwlNrRdaq+R0uDan0KHecrunEjX7NNKHlJq/6gw6OC7qt7iKaWvJ0tNf3?=
+ =?us-ascii?Q?BoTUPcMdDi31SEPCo86v9CV2jBKvFrntiigLMOL97rPc1rU5eIYMrFOKkQP2?=
+ =?us-ascii?Q?wHC8nuN/6MSITuqBTEZDbZak+p8MI/9QVl+21aDTcmVSpq1+aRwW1hP2bsNf?=
+ =?us-ascii?Q?xCAY1uixiXzf+D7oRxFp1VCnPbZ0Fl26KZHFf7t7MNNbKa+jS+jRE5VQNFlu?=
+ =?us-ascii?Q?nJKSB+s3il6ICyp2n3TW7QoO1Msf787WQT66u57uuQFqO2Q+9yG8AtGV1/1p?=
+ =?us-ascii?Q?TgN2Xb/Y7rZs8kwDDWZ4v8TcsGaMrKoP2mApRgXGGJ2nhhT6czERttF1FGBx?=
+ =?us-ascii?Q?eszVbZvE2EnaUte+g8UVbBWKLdzJA9GepB/i220EXWCwBgMD?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/panel: simple: Add timings for Raspberry Pi 7"
- panel
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260420-rpi-7inch-v1-0-e68d5c9c44bc@ideasonboard.com>
- <20260420-rpi-7inch-v1-2-e68d5c9c44bc@ideasonboard.com>
- <3z3u5mbngmbzsch3mzs3twlh3aec6r7jokstzv3ghxyusrzt6b@jqvdnuiapx6e>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <3z3u5mbngmbzsch3mzs3twlh3aec6r7jokstzv3ghxyusrzt6b@jqvdnuiapx6e>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 670b6a8d-8a23-4eb6-c831-08dea130ec32
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Apr 2026 12:07:42.6133
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /l3toX/wOB/hduwgbYJOgFpxmAAKLuAfCT3y3d3C6h19MISeD2sdSadgHaXggp+lF3vqYux/Jm6H6NdV4zvROQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU6PR04MB11157
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-289660-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[raspberrypi.com,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ravnborg.org,lists.freedesktop.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-289662-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nxp.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MAILSPIKE_FAIL(0.00)[2600:3c15:e001:75::12fc:5321:query timed out];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ideasonboard.com:email,ideasonboard.com:dkim,ideasonboard.com:mid,raspberrypi.com:url]
-X-Rspamd-Queue-Id: 338C4451B08
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peng.fan@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,PAXPR04MB8459.eurprd04.prod.outlook.com:mid]
+X-Rspamd-Queue-Id: 26415451CEF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+> Subject: Re: [PATCH 2/4] arm64: dts: imx95: switch usb3 controller to
+> flattened model
+>=20
+> On Tue, Apr 21, 2026 at 11:53:12PM -0400, Frank Li wrote:
+> > On Tue, Apr 21, 2026 at 06:55:01PM +0800, Xu Yang wrote:
+> > > Switch to use flattened model for USB3 controller. To enable USB
+> > > controller with restricted DMA access range to work correctly, add
+> a
+> > > pseudo simple-bus to constrain the dma address.
+> >
+> > i.mx95 should fix >4G dma space's problem. Does it impact other no-
+> nxp
+> > boards?
+>=20
+> Yes, i.MX95 has fixed >3G address DMA access problem.
+>=20
+> It's another issue. HSIO domain only support 36 bit bus access. If not
+> use smmu, no any issue. If use smmu, it will allocate memory space of
+> 36 bit < iova < 48bit.
+> HSIO can't handle this case.
 
-On 22/04/2026 22:22, Dmitry Baryshkov wrote:
-> On Mon, Apr 20, 2026 at 04:13:36PM +0300, Tomi Valkeinen wrote:
->> Add timings for the panel used in Raspberry Pi 7" DSI Display module:
->> https://www.raspberrypi.com/products/raspberry-pi-touch-display/
->>
->> This has been tested with version v1.1 of the display module.
->>
->> The panel is very strict about the back-porch values, they must be
->> exactly 46 for hbp and 23 for vbp. Other timings can be defined quite
->> freely.
->>
->> The panel is exclusive to Raspberry Pi, and different versions of the
->> display module can have panels from different vendors which are fully
->> compatible. Also, as the panel vendors are not public, the compatible
->> string used is "raspberrypi,7inch-dsi".
->>
->> Note that while the display module has a DSI connector, and the
->> compatible has "dsi" in it, we use DRM_MODE_CONNECTOR_DPI as the panel
->> itself is a parallel video panel. The display module (as of v1.1) uses
->> TC358762 DSI-to-DPI bridge to do the conversion.
->>
->> We could use DRM_MODE_CONNECTOR_DSI here, which would have the benefit
->> of showing a "DSI-1" connector to the userspace. However, the panel IS a
->> DPI panel, and gets its input from a DSI-to-DPI bridge, and the
->> panel-simple.c behaves differently depending on the connector type used,
->> so, DRM_MODE_CONNECTOR_DPI it is.
->>
->> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->> ---
->>   drivers/gpu/drm/panel/panel-simple.c | 32 ++++++++++++++++++++++++++++++++
->>   1 file changed, 32 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
->> index 91ab280869ba..e75eb20301f2 100644
->> --- a/drivers/gpu/drm/panel/panel-simple.c
->> +++ b/drivers/gpu/drm/panel/panel-simple.c
->> @@ -4208,6 +4208,35 @@ static const struct panel_desc rocktech_rk043fn48h = {
->>   	.connector_type = DRM_MODE_CONNECTOR_DPI,
->>   };
->>   
->> +static const struct display_timing raspberrypi_7inch_timing = {
->> +	.pixelclock = { 10000000, 30000000, 50000000 },
->> +	.hactive = { 800, 800, 800 },
->> +	.hfront_porch = { 16, 72, 354 },
->> +	.hsync_len = { 1, 32, 40 },
->> +	.hback_porch = { 46, 46, 46 },
->> +	.vactive = { 480, 480, 480 },
->> +	.vfront_porch = { 7, 21, 147 },
->> +	.vsync_len = { 1, 2, 20 },
->> +	.vback_porch = { 23, 23, 23 },
->> +	.flags = DISPLAY_FLAGS_VSYNC_HIGH | DISPLAY_FLAGS_HSYNC_HIGH,
->> +	/* Note: the rest of the flags are defined below in bus_flags */
->> +};
-> 
-> This looks pretty close to powertip panels that have been used before
-> hand in those modules. Are you sure that powertip,ph800480t013-idf02
-> or powertip,ph800480t032-zhc19 don't work for you?
+If using smmu, iova will be in range {36bit, 48bit}? How?
 
-I haven't tested those, but the hbp and vbp do not seem to be the same. 
-For me, they had to be exactly as they are here. This was also confirmed 
-from Raspberry Pi, the panel datasheet had min/typ/max values (i.e. not 
-ranges) of 46 and 23 for back porches.
+Thanks
+Peng
 
-Where did the information come from that powertip,ph800480t013-idf02 or 
-powertip,ph800480t032-zhc19 are used in the display modules? Or did you 
-mean that while those models are not used in the Raspberry display 
-module, people have used them successfully?
-
-  Tomi
+>=20
+> >
+> > Need do break compatible judgement such as
+> >
+> > i.MX95 is new SoC and still is heave development. The break
+> compatible
+> > is accepable at development early phase.
+> >
+> > You can rephrase it.
+>=20
+> OK.
+>=20
+> Thanks,
+> Xu Yang
 
 
