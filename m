@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-289552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289553-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sGwTJW3P6Wm9kgIAu9opvQ
-	(envelope-from <devicetree+bounces-289552-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 09:51:09 +0200
+	id QFsZD9rS6Wm9kgIAu9opvQ
+	(envelope-from <devicetree+bounces-289553-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 10:05:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4250144E2B4
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 09:51:09 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3CB244E4E3
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 10:05:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B43F2304C0C4
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 07:48:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CFFD53017260
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 08:05:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87682F6596;
-	Thu, 23 Apr 2026 07:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8BA836402C;
+	Thu, 23 Apr 2026 08:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qHd57Ita"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VDWEgaAu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1A11D5160;
-	Thu, 23 Apr 2026 07:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F274363C4B;
+	Thu, 23 Apr 2026 08:05:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776930518; cv=none; b=sQE7kolcV7GuigLn6ggm1Px1NQxX0U81LpAXFx9oKTcgQhxtWx64UYTBlszRBIB5S0brSHj+0PtDbEnqmmUfgcRHoDOdR3lBu0qLd5CSShy6VTGLQQZCCkkPgFIlY4jP0tVWKBagh813MQuHFIINjkpox4aQ2nWvVKiNDmNMUeA=
+	t=1776931536; cv=none; b=JeXtTDGNuavcBB+iwbRRo9kHixFoLPdDYtqi7vqB9rFj7HFhPHOUeCqzhNs9N6GsQfnkLCGkV01qpKTdBqKDNKJC80ooR2QIkhr0NOo4EoGrm34Xk2afiqhNAVeYqKsS34vq0bgNPO09cfgjxtL3eD9LUSaTwqFUSDUa31gA1rQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776930518; c=relaxed/simple;
-	bh=6q8zIzEyZvqhWWWK8S5N+7p4Cs/FMvgTjRNWpvfJeBQ=;
+	s=arc-20240116; t=1776931536; c=relaxed/simple;
+	bh=7rkkN+VqoLd6RHME3M+2tu7KACqyhFTH9C25nKv/qv0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u/FgJc2O9pYgkqP2PzNHevEeVnzF8eFyU7eXD2O8QWnFPoLLv8RcPviPw2eHbcVbwwHefRn/kugguLja+TW20ugJWIRXGIw5Syls2ohnNMWzkLIx03NLp8Y9oUDC0gHgh8+y/Lbc4W7rbvI7yEkzrMfusyrZBB1ZjCzDhzCt78Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qHd57Ita; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4791C2BCB2;
-	Thu, 23 Apr 2026 07:48:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Uh3v+70AKoGPEPiWl5hOThA1SDNPJvtOdS4A5Q+6/h5WA8jFsDjz0wQfLm3oeYybOr5S2sG9YoutMvjtmY1YZfov7IJMQ3tJm2Ih2yk6yrIg43rBvk6W7ZbCkIzZP5cNCChkNAyVqG1Esif+ntBh+2U+TzN8fAuHJDQuOzZw7gE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VDWEgaAu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9270DC2BCAF;
+	Thu, 23 Apr 2026 08:05:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776930518;
-	bh=6q8zIzEyZvqhWWWK8S5N+7p4Cs/FMvgTjRNWpvfJeBQ=;
+	s=k20201202; t=1776931535;
+	bh=7rkkN+VqoLd6RHME3M+2tu7KACqyhFTH9C25nKv/qv0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qHd57ItaEmf10jqH349WgU6KbiwNqr9kFRIjKXvp0QDGTrCJn9B61WZPLMOG74YDd
-	 iEheuSTiX08B/dO7G2M+SdhsXgyfUWZEDLc0zOnxg5WCjNhRMfdeFxA82AVG+Ng+2O
-	 cWlBrsTZ5qB8qOkEi3QhNCD81y6z4Cdwb0szzhQXNUvhMwrEHmEwUBXOS7ln6fQr7y
-	 h8hf1qm68trGq73rPVt81u2JV99TmNuwt8+3E6IK8ZL/ybT7Fb7O3H5dv01IrjDfXf
-	 hDe1gu0vsYGnZNIF4Gt76laJ+3AGQncsQ7WFAnLpSk2UnPwF0iV7Qc03iHuwx4fQnB
-	 8T0TolAYS5CKA==
-Date: Thu, 23 Apr 2026 09:48:35 +0200
+	b=VDWEgaAugasr928sOcH0MeVZh3XUuwkwej9OTlDlRp1z9qrQ16xeEQPcYN1GPW+ul
+	 Q05iGcmitgHrFd5N/UMojvY4AR0rDDzfCMXxV8IkxoBoLJvKyEfvic4Gc/U3+PP4pX
+	 F5tYf6KpoQbGo7PZjsxf8MY5P7MBCBYOrjOPcZEL3FxCltMLYBep4SJ3EzCjjHRvgL
+	 NfC/dQjxZtWKFHdEQoH3a4Mpc3f1Qmp/LT1M+bIgwcr83gDMlLRdthj5txZj9YeFIN
+	 EzBtno/7/TSqqFesrHbIquHZ+f3Wf6Z2XFM9AEyAEFX7hMaHyiiAZ89+XVCSqJ7O1b
+	 1tZxiJcEjaGpQ==
+Date: Thu, 23 Apr 2026 10:05:32 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-Cc: linux-sound@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3] ASoC: dt-bindings: mediatek: Convert mtk-btcvsd-snd
- to DT Schema
-Message-ID: <20260423-scrupulous-stoat-of-perception-0a3d9b@quoll>
-References: <20260421193858.347258-1-l.scorcia@gmail.com>
+To: Piyush Patle <piyushpatle228@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Andreas Klinger <ak@it-klinger.de>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, 
+	Andy Shevchenko <andriy.shevchenko@intel.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: iio: adc: avia-hx711: add
+ avia,hx710b compatible
+Message-ID: <20260423-famous-tody-of-opposition-73c8af@quoll>
+References: <20260422175910.1258579-1-piyushpatle228@gmail.com>
+ <20260422175910.1258579-2-piyushpatle228@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,76 +66,58 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260421193858.347258-1-l.scorcia@gmail.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+In-Reply-To: <20260422175910.1258579-2-piyushpatle228@gmail.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289552-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-289553-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,kernel.org,collabora.com,lists.infradead.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	MAILSPIKE_FAIL(0.00)[172.105.105.114:query timed out];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4250144E2B4
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: D3CB244E4E3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Apr 21, 2026 at 08:38:35PM +0100, Luca Leonardo Scorcia wrote:
-> +title: Mediatek ALSA BT SCO CVSD/MSBC Driver
+On Wed, Apr 22, 2026 at 11:29:08PM +0530, Piyush Patle wrote:
+> The HX710B shares the same two-wire interface as the HX711 but differs
+> in its channel and gain model: gain is fixed at 128 and the number of
+> trailing PD_SCK pulses selects the input channel rather than the gain.
+> 
+> Add avia,hx710b to the compatible enum. Document the chip differences
+> in the description and add chip-specific supply properties (dvdd-supply,
+> vsup-supply) for the HX711, a rate-gpios property for the HX711 RATE
+> pin, and an allOf constraint that forbids HX711-only properties on
+> HX710B nodes. Clarify the clock-frequency description to reflect its
+> actual purpose: controlling the SCK bit-bang timing.
+> 
+> Signed-off-by: Piyush Patle <piyushpatle228@gmail.com>
+> ---
+> Changes in v3:
 
-s/Driver//
-
-> +
-> +maintainers:
-> +  - Luca Leonardo Scorcia <l.scorcia@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mtk-btcvsd-snd
-> +
-> +  reg:
-> +    minItems: 2
-
-Drop
-
-> +    maxItems: 2
-
-and actually drop this too and list the items with description - PKV and
-SRAM_BANK2 regions
-
-> +
-> +  reg-names:
-> +    items:
-> +      - const: pkv
-> +      - const: sram-bank2
-
-Old binding did not have reg-names and nothing in commit msg explains
-changes done to the binding.
-
-To remind: if you change the binding, you must mention it and explain
-WHY.
-
-I don't see any use of that, so why did you add it?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
