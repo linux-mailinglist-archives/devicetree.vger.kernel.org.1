@@ -1,238 +1,220 @@
-Return-Path: <devicetree+bounces-289623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289629-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WF1GMZnr6Wm2nAIAu9opvQ
-	(envelope-from <devicetree+bounces-289623-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 11:51:21 +0200
+	id wM9oKmLs6Wm2nAIAu9opvQ
+	(envelope-from <devicetree+bounces-289629-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 11:54:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 273B3450059
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 11:51:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EBCF450115
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 11:54:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1FC503095C72
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 09:44:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CCFDD31025BE
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 09:47:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ADB03E51DF;
-	Thu, 23 Apr 2026 09:44:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B06F33E6DD0;
+	Thu, 23 Apr 2026 09:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b8fqnLTl"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="MX5u9jLm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76A673E3D9F;
-	Thu, 23 Apr 2026 09:44:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55F503E5EC4;
+	Thu, 23 Apr 2026 09:47:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776937488; cv=none; b=ILAIgPxmnS9idv6WlXlfmMZ9LIzujV49uhCC5a8820wtYZroFVp0FUy0WK6+o78TAQ2zQA/OAGvP5df2lDWt2/7doO+aVoS0J4BDgXWWimsTjP3mIlgWU+AaezuJrYccEToESvO0H10kntsWrckLhPTcSVjtM5W26jrJN0DdXSQ=
+	t=1776937637; cv=none; b=I6SGaox/rpgFLG0tY/sNxuTznz8pVBeQNlAwb2ZU5l3mdvyS6Pb9zfZAKJFWO1RPkJOnDtURe2WY23dz5tj+fey3DEdvhmzVclMxiy0fjmXC3csW3YyfOSDUqnO9PPSWtHKiy3pCJUzO4DwCKVP6ToA0haff/ZJK/jxAgBsJmzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776937488; c=relaxed/simple;
-	bh=UV9jQ9XvPw0/PwdWna/NVSWez2dG6UsrgOwaXbivd94=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tP1qx8byWe2X2qj2+Ar2oFdQvshil2a1XhVVydCx2C9sLlVo+Pgx1bdoJo6kr3RAOrUjCYDWM+MjtRddo9oT6qDgxuABbB7YHAk4t40ZCEPettR+HQjLO8FnzCCmQmOGJ70c5QYoLOKuwXkX9Sc8ULHDRg8WdjiasKj2PYWMZNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b8fqnLTl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50C79C2BCAF;
-	Thu, 23 Apr 2026 09:44:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776937488;
-	bh=UV9jQ9XvPw0/PwdWna/NVSWez2dG6UsrgOwaXbivd94=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=b8fqnLTle6qiUny9GLiB66mYAvo5pBUfGKBD9j/SahanJ30PqBLowxW5CMXWn6bcB
-	 /9KKEDA4+3JjPVlO8reAQWz3gbHKJHh6CjB0/r0QC1XDIRFmwXmNjdzG5kNEXNX4i7
-	 ZreC1J8OXDRgUYm2lq6drbBN35SKwmpclgU8Lj30YaGYBidek7X8ob6HkWEHe90Im1
-	 SerDAq+lK3VQnHz9bka8lfRCLgXkZqiZ13bXwAKg2i7/a4khm2umdT52rkMkCQfZlM
-	 PAqGOSCIsL90EjYGlCqI3uxbscyr3PsSgAvwt86DBFzgHFg+U0nL2MiJ6ID7r0lSxm
-	 wNVlQgxv8w7kw==
-Message-ID: <be916c95-1c31-4a98-8fdf-06538e693911@kernel.org>
-Date: Thu, 23 Apr 2026 11:44:41 +0200
+	s=arc-20240116; t=1776937637; c=relaxed/simple;
+	bh=9d+NhOjG9okpZsWxXGxZ/OaxyPAQdlS8X99mpac+mTA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=IKOmM6fuT4XzB7UZciJEu/ukGYD29YbsDnvvwkwsgnTzDVHekybstcb9eXYexRR4A5ojWQX5fF177weEKEyKs4Z4lfHDoqOylHbbUBcE6cVpa9vxxjEUnzO2MORpDmJ8iL8lGmOHzv3vPjC/JusqNmZt62cZO0uoiq9rmxnHunY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=MX5u9jLm; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 614906d83ef911f19781c1a04af40193-20260423
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:To:From; bh=qgLpb03rA/VB4m2qJlLIRGjqfCwA9y2IVE+wL7RS9A4=;
+	b=MX5u9jLmAb10Mb4RRx7z4xcFc5E8JwEOfwnXAmG1+oDdDt2BKbf5HRY4eY5uA/lRYjf6EoPE0M6oE8NMtqDbmHDji1tu68jDEkuZvar79PhM2mZxFjyYPe2/7UPVUdsX7sclrQSemY7zml2jRuwDOOZSLWDGO2uK2c0t8/c6des=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12,REQID:7866269b-9d4d-49d9-8b75-ad584f921fc5,IP:0,U
+	RL:0,TC:0,Content:0,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:e7bac3a,CLOUDID:8295cb8f-6df4-4a3d-a7a4-fbdc42d669ce,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|865|888|898,TC:-5,Content:0|
+	15|50,EDM:2,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI:0,
+	OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 614906d83ef911f19781c1a04af40193-20260423
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+	(envelope-from <kyrie.wu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 356573399; Thu, 23 Apr 2026 17:47:02 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Thu, 23 Apr 2026 17:47:01 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Thu, 23 Apr 2026 17:47:00 +0800
+From: Kyrie Wu <kyrie.wu@mediatek.com>
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>
+Subject: [PATCH v14 00/12]Enable jpeg enc & dec multi-hardwares for MT8196
+Date: Thu, 23 Apr 2026 17:46:44 +0800
+Message-ID: <20260423094656.32044-1-kyrie.wu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 0/9] riscv: spacemit: enable SD card support with UHS
- modes for OrangePi RV2
-To: Iker Pedrosa <ikerpedrosam@gmail.com>,
- Troy Mitchell <troy.mitchell@linux.dev>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Yixun Lan <dlan@kernel.org>,
- Michael Opdenacker <michael.opdenacker@rootcommit.com>,
- Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
- Anand Moon <linux.amoon@gmail.com>, Trevor Gamblin <tgamblin@baylibre.com>,
- Vincent Legoll <legoll@online.fr>
-References: <20260413-orangepi-sd-card-uhs-v8-0-c21c40ec16d0@gmail.com>
- <f58ec12c-3957-4d44-b823-6a1ae1a1dd94@kernel.org>
- <CABdCQ=NhTkGJUh_fKnZoQMzdpyO-UbV5zrSfiNVUC7bkSBifTA@mail.gmail.com>
- <DHSQ6VG82QYX.1EVAYV9JTBCL7@linux.dev>
- <CABdCQ=Oata1oXds6pV-RipwZjcztM0xk_J=Rk8Of2w2RqegbHA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CABdCQ=Oata1oXds6pV-RipwZjcztM0xk_J=Rk8Of2w2RqegbHA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain
+X-MTK: N
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_TO(0.00)[xs4all.nl,kernel.org,collabora.com,gmail.com,mediatek.com,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289623-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-289629-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,linux.dev];
-	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,baylibre.com,online.fr];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kyrie.wu@mediatek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mediatek.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.dev:email,rootcommit.com:email]
-X-Rspamd-Queue-Id: 273B3450059
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mediatek.com:dkim,mediatek.com:mid]
+X-Rspamd-Queue-Id: 0EBCF450115
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 16/04/2026 10:18, Iker Pedrosa wrote:
-> El mar, 14 abr 2026 a las 10:16, Troy Mitchell
-> (<troy.mitchell@linux.dev>) escribió:
->>
->> On Tue Apr 14, 2026 at 3:12 PM CST, Iker Pedrosa wrote:
->>> El lun, 13 abr 2026 a las 10:07, Krzysztof Kozlowski
->>> (<krzk@kernel.org>) escribió:
->>>>
->>>> On 13/04/2026 10:02, Iker Pedrosa wrote:
->>>>> This series enables complete SD card support for the Spacemit K1-based
->>>>> OrangePi RV2 board, including UHS (Ultra High Speed) modes for
->>>>> high-performance SD card operation.
->>>>>
->>>>> Background
->>>>>
->>>>> The Spacemit K1 SoC includes an SDHCI controller capable of supporting
->>>>> SD cards up to UHS-I speeds (SDR104 at 208MHz). However, mainline
->>>>> currently lacks basic SD controller configuration, SDHCI driver
->>>>> enhancements for voltage switching and tuning, and power management
->>>>> infrastructure.
->>>>>
->>>>> Implementation
->>>>>
->>>>> The series enables SD card support through coordinated layers:
->>>>>
->>>>> - Hardware infrastructure (patches 1-2): Device tree bindings for voltage
->>>>> switching hardware and essential clock infrastructure.
->>>>> - SDHCI driver enhancements (patches 3-7): Regulator framework
->>>>> integration, pinctrl state switching for voltage domains, AIB register
->>>>> programming, and comprehensive SDR tuning support for reliable UHS
->>>>> operation.
->>>>> - SoC and board integration (patches 8-10): Complete K1 SoC controller
->>>>> definitions, PMIC power infrastructure, and OrangePi RV2 board enablement
->>>>> with full UHS support.
->>>>>
->>>>> This transforms the OrangePi RV2 from having no SD card support to full
->>>>> UHS-I capability, enabling high-performance storage up to 208MHz.
->>>>>
->>>>> Tested-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
->>>>> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
->>>>> ---
->>>>> Changes in v8:
->>>>> - Resending the series as v8. The v7 submission failed due to an SMTP
->>>>>   error during transit, which resulted in a broken thread on the mailing
->>>>>   list.
->>>>
->>>> Hm? Everything is here:
->>>> https://lore.kernel.org/all/20260413-orangepi-sd-card-uhs-v7-1-16650f49c022@gmail.com/
->>>>
->>>> You can send individual patches to fix up threading, use --in-reply-to.
->>>
->>> My apologies for the noise and the rapid resend.
->>>
->>> The reason for v8 was that the v7 cover letter (0/9) failed to reach
->>> the mailing list due to an SMTP error on my end. This left the v7
->>> thread "headless" in the archives without the changelog or the full
->>> context of the series. I was attempting to fix the threading
->>> immediately so that reviewers would have a complete set of patches to
->>> look at, but I realize now that resending the entire series on the
->>> same day was premature.
->> So that's why Krzysztof said you should send individual patch with --in-reply-to.
-> 
-> I see, thanks for the clarification. Just to clarify for my future
-> workflow: is it acceptable for a series to be 'headless' (starting
-> with Patch 1) if the cover letter is lost, or is the cover letter
-> (Patch 0) strictly required as the thread root?
-> 
-> In such cases, would it be better to just send the missing cover
-> letter as a reply to Patch 1 afterward to complete the thread without
-> resending the whole series?
+This series have the follow changing:
+Firstly fix some bugs, including resolution change handleing, stop
+streaming sw flow, fix buffer layout and clock setting to support multi-hw
+jpeg working and others.
+Secondly add mt8196 jpegdec and jpegenc compatible to support MT8196
+kernel driver.
+Lastly, Add smmu setting to support smmu and iommu at the same time.
 
-Replacing missed cover letter is tricky. If you patches have in-reply-to
-with ID to a missing posting, but you could do that with a bit mangling
-- you would need to send the cover letter with that exactly MessageID.
+This series has been tested with MT8196 tast test.
+Encoding and decoding worked for this chip.
 
-If patches do not have in-reply-too, then you can send cover letter as
-reply to patch #1.
+Patches 1 fix jpeg hw count setting to support different chips.
+Patches 2 fix jpeg buffer payload setting to handle buffer
+size bug while resolution changed.
+Patches 3 fix jpeg dst buffer layout.
+Patches 4 fix multi-core stop streaming flow
+Patches 5 fix multi-core clk suspend/resume setting
+Patches 6 fix decoding buffer number setting timing issue
+Patches 7 fix decoding resolution change operation
+Patches 8 fix remove buffer operation
+Patches 9-11 Adds jpeg encoder and decoder compatible.
+Patches 12 add jpeg smmu sid setting.
 
-Best regards,
-Krzysztof
+---
+Changes compared with v13:
+--Rebased on top of the latest media tree
+
+Changes compared with v12:
+--Rebased on top of the latest media tree
+--fix kernel rebot build warnings in patch 5
+
+Changes compared with v11:
+--Rebased on top of the latest media tree
+--Some modifications for patch v11's review comments.
+--add reviewer to commit messages
+
+Changes compared with v10:
+--Rebased on top of the latest media tree
+--add reviewer to commit messages
+
+Changes compared with v9:
+--Rebased on top of the latest media tree
+
+Changes compared with v8:
+--Rebased on top of the latest media tree
+
+Changes compared with v7:
+--Rebased on top of the latest media tree
+
+Changes compared with v6:
+--Rebased on top of the latest media tree
+
+Changes compared with v5:
+--reorder the patches set.
+--fix commit message of patch 1-8.
+
+Changes compared with v4:
+--fix kernel robot build errors for patch 4.
+--add reviewer for patch 1 and patch 2.
+
+Changes compared with v3:
+--change patch subject of jpeg encoder and decoder compatible.
+
+Changes compared with v2:
+--refactor smmu sid setting function interface
+--Some modifications for patch v2's review comments.
+
+Changes compared with v1:
+--refine jpeg dt-bindings for MT8196
+--optimize software code to manage jpeg HW count
+--refactor smmu sid setting function interface
+--Some modifications for patch v1's review comments.
+
+Kyrie Wu (12):
+  media: mediatek: jpeg: fix jpeg cores' amounts setting
+  media: mediatek: jpeg: fix jpeg buffer payload size setting
+  media: mediatek: jpeg: fix buffer structure size and layout
+  media: mediatek: jpeg: Fix buffer completion on multi-core streaming
+    stop
+  media: mediatek: jpeg: Fix multi-core clk suspend and resume setting
+  media: mediatek: jpeg: fix decoding buffer number setting timing issue
+  media: mediatek: jpeg: fix resolution change event handling in decoder
+  media: mediatek: jpeg: fix remove buffer removal timing for multi-core
+  media: dt-bindings: mediatek,jpeg: Add mediatek, mt8196-jpgdec
+    compatible
+  media: dt-bindings: mediatek,jpeg: Add mediatek, mt8196-jpgenc
+    compatible
+  media: mediatek: jpeg: add jpeg compatible
+  media: mediatek: jpeg: add jpeg smmu sid setting
+
+ .../media/mediatek,mt8195-jpegdec.yaml        |   8 +-
+ .../media/mediatek,mt8195-jpegenc.yaml        |   8 +-
+ .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 151 +++++++++++++-----
+ .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  19 ++-
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  |  90 ++++++++++-
+ .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  |  88 +++++++++-
+ 6 files changed, 308 insertions(+), 56 deletions(-)
+
+-- 
+2.45.2
+
 
