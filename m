@@ -1,222 +1,242 @@
-Return-Path: <devicetree+bounces-289522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289527-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CBJ6Jah46WkBagIAu9opvQ
-	(envelope-from <devicetree+bounces-289522-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 03:40:56 +0200
+	id yHQbDzaW6WmpeQIAu9opvQ
+	(envelope-from <devicetree+bounces-289527-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 05:47:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1D3544C283
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 03:40:55 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AB2C44C94E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 05:47:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BA6C8303FFDB
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 01:39:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C4DC3300647A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 03:47:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45EE53B3C11;
-	Thu, 23 Apr 2026 01:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B4029D27A;
+	Thu, 23 Apr 2026 03:46:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lHhGTmla"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2109.outbound.protection.partner.outlook.cn [139.219.17.109])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B8B53B47EC;
-	Thu, 23 Apr 2026 01:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.109
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F143523E33D
+	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 03:46:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.54
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776908384; cv=fail; b=e2Jp+2c9a3aeb8sjqlWriJsX4q9dC4/nByJKSHz6E7q4vsKE9FC912R25nVKAMM+KfB9QbtqjdKofv7UKOynTSLe10m+bVhQKHVNxJ979ZuFjjCcrYHP1g1IF4ghIfcxw/Lg0LM86IeUi5HOGFElShNYvX/YZZf0Wlx4iUiHTbU=
+	t=1776916019; cv=pass; b=jP9+wIrMgKAP2fE2Okiw8LlOh9vjS6DEBTlXo+SG/e3RTxRDOTy2RTXPAMEyAfBKKkrDUEW6xKrhYD5djrg8vyWHqO6MGf7FLer33sS3ahzNRuBVRC3yyNeZRDW7X4fJoRmCgSw3BaHCworIqX7hGZ/TspoiSq31ArgDLN8zsxA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776908384; c=relaxed/simple;
-	bh=U5hX8VS9xn4/cSrBqh+yEZPSn/t8L/rcjJHA8cVdpIc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=B/FvdyQBFogjiePg9Q4Uugb9N1r1MACeUzg/R1yixkcfmXF+KffCfXlI8nyH6zXglVpDKuR9fNwEWD7IGKi0C6aZx9QBhJd4HNeVM7sbKhByIxhnWZOXNiTBDwMfigQfjWZJLYNdt3u+KeMNsST5nIwRYmBH1wC+fkFinf2m21I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.109
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OGP8et/PWoWkMFb/1m0/NnXUdYCwidGeJdONHasu0rA+PA5tbqXAgdYVo2pKsQJuaIlccizQORrc4JAMxCrEBeaGKl2pLVwmRUo8zHuVMFEl3B/RPmfhHIqcDyqjkfT0cxGJgOvL66m68zELnNg5ELWlAmeHa/VQS3/mh/LacU3w8YHbwIf/HHZteOxbOWdzdO4xx+8eEl+tjMYpfcesoG/zfAAxiikakI6omXGIABLZ1YjYNmMydbvjTUMPb7a2UVBueImPmHxYU2Qm+OWhdvI9TXoyxChDlzkX9RAiJxL9IqwPDMJZ85BFSyzhzZH7qY+b/VM2SYwe92md6eVifA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U5hX8VS9xn4/cSrBqh+yEZPSn/t8L/rcjJHA8cVdpIc=;
- b=DS59HkH3drEEb2iQRwUwji9cXXiID21nVTKJISYeJ/G9MHDoEzMHXiUJHHE35CC8Z+UQxxBpfN5n6pDBSFTPp9lbUtg3yk8tabPoJ/v5fI7lbDz+wvzHKVcQNviEbNYndBsl1JGgTXCFmsBrDN71PbJK+5UoIP8VdtZo8WRYBt5mefjnu0AtZp/BAI6Ng16Or1B8yTlLPWmYjyWxN4DNQxFYvuYrN/zzRma4JZTCZOmP/gS0yR0MOEVD25SEv3bAL8CFbPsaJza2afaMJljOwSP+PY2ctUgNCkZ6xzVG4lZ47mtdprQYnnWaFKqN38J1cV4OYFmJjQxPOhpNJ8OKqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c211:18::12) by BJXPR01MB0808.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c211:1a::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.32; Thu, 23 Apr
- 2026 01:23:21 +0000
-Received: from BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
- ([fe80::e2de:92aa:4c1c:a829]) by
- BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn ([fe80::e2de:92aa:4c1c:a829%6])
- with mapi id 15.20.9846.017; Thu, 23 Apr 2026 01:23:21 +0000
-From: Minda Chen <minda.chen@starfivetech.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>, Sai Krishna Potthuri
-	<sai.krishna.potthuri@amd.com>, Ajay Neeli <ajay.neeli@amd.com>, "James E . J
- . Bottomley" <James.Bottomley@hansenpartnership.com>, "Martin K . Petersen"
-	<martin.petersen@oracle.com>, Pedro Sousa <pedrom.sousa@synopsys.com>, Arnd
- Bergmann <arnd@arndb.de>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, "linux-scsi@vger.kernel.org"
-	<linux-scsi@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject:
- =?gb2312?B?u9i4tDogW1BBVENIIHYxIDEvM10gc2NzaTogdWZzOiBkdC1iaW5kaW5nczog?=
- =?gb2312?B?c3RhcmZpdmU6IEFkZCBVRlMgSG9zdCBDb250cm9sbGVyIGZvciBKSEIxMDAg?=
- =?gb2312?Q?soc?=
-Thread-Topic: [PATCH v1 1/3] scsi: ufs: dt-bindings: starfive: Add UFS Host
- Controller for JHB100 soc
-Thread-Index: AQHc0W74yy82rVma1k2GvS7u9EjKZrXpvsgAgAIdjSA=
-Date: Thu, 23 Apr 2026 01:23:21 +0000
-Message-ID:
- <BJXPR01MB08557CF6A2E31F7AFC64CFFAE62A2@BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn>
-References: <20260421091215.120632-1-minda.chen@starfivetech.com>
- <20260421091215.120632-2-minda.chen@starfivetech.com>
- <20260421-appetite-vowel-ce0837f5625b@spud>
-In-Reply-To: <20260421-appetite-vowel-ce0837f5625b@spud>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BJXPR01MB0855:EE_|BJXPR01MB0808:EE_
-x-ms-office365-filtering-correlation-id: 3b14bf4c-8b4c-4f6c-e31e-08dea0d6e823
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|366016|1800799024|7416014|38070700021|18002099003|56012099003|22082099003;
-x-microsoft-antispam-message-info:
- l7UMYhxubhCS0a8lxBJaZPFJYyDa6SXXpmte8GYUFceYk4zxfJvdaeAeZaHXksTDiLVhj9sfB3uQxWX/4mphMN2u9RmFBWbUTVs5n79GsNmxcpX8zpNiKk6XnCQikfrAGsAzM9zmjqVsVHFGL6JsIjDOnQpy2QYTcjFSf6+N4F9yUl3MhWyneKSEhQ8ruZC3zB2HHsQJJSW5zVknbgXZpJQXM17i4tnM0TyFS/i8s6q/5a4VsifKWSZkYmcpQ0CUdgzSoeMV7u9u8/L5T08SwnAGTppufcyNS4bjuvCleoX7ey7F1y9bv8fCaNDBHahfoJUwQeu9RIXzsc18TXj8d3JU4hftJ45r8AtFhlSlRJjOvJ8m7qtXJO1+2q7oQO+1+u34HlmrxWkRD7nBUGeTm+X8IPB74rAi8h41j93EMb6YwFPugCtBC7HeLgmKjxu5+QPwJ/lG8cMRXEmp6/Yg5Ly/oxU+cgaL4GerN7F0Ekimtxi+FZJSi9n1jXygIAIOmNuS/54YpKsZfyD+Cd76mQoAdO5goyVWO4Wrzq/JdEoRmPFnNg6yGqTuIpy1vlNKSTHIrEUFNGxQ2ueetjaObw==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(7416014)(38070700021)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?gb2312?B?ektmT2JyZ3hZaVdZNDlVSytKL1hFSGNGNm9TR3VqRFUxZms4N1hPMG54czJp?=
- =?gb2312?B?ZHNYVVJmbHUxSFBtUGN1eUtwaGRqSVcrMjJRUE5kNmV0dmFZSUc3RkwxTHp2?=
- =?gb2312?B?d2txRVFnaW5sZ210Um0zVVBYTWc2RHlVL2RiYmJZSVE5enFqRG5KMHM1dVBV?=
- =?gb2312?B?MUl2L1N6ZXpoU3p4ZWEvemRVSUVuRGxlT0tjRHpIOFhVTjFHd3JHcGRkRkFy?=
- =?gb2312?B?VHlXMHp5RDJHWTBpNzJqNUpIcWkyZTRkaFlMZEpWdU1WbGNmN2ZFS3pxS1Vx?=
- =?gb2312?B?UVQ1THpVUEdxRE96dll6UDQ4YUYrUFBtQktjMUxpWHhXOTI5WUVTZnhtVExU?=
- =?gb2312?B?ZG03cnVDc0lOQXhKMmFvd1NEM1ZGYkdFbXpZS01aV2pYMHlmWm4wYTQyQTRJ?=
- =?gb2312?B?NnZMV1N3dlk1Nkw0TFJQOGNkZHQwWk5SdVRPZDZFbTFnWCsvK0doQmdPYlBX?=
- =?gb2312?B?NTFXSy9oQUpoVlRpVHdZY0luTTIwWFhiQkErS0laWE1waVYwWDRhU0d0UGVB?=
- =?gb2312?B?clhWUlZxaFVUNWpWUVl1OWN5eG84RmU5ZG41a0ZDWDJKblBsK01jMUlYSWhW?=
- =?gb2312?B?YVI0blo1Q25DZTUraStlN1FVTWwyNG1ZRkJUWjhEQTIyVEgwamd0NjlDcGtW?=
- =?gb2312?B?eFJvUzlLaWtORDZwL0Z0Q1NjMWVkOEpMa055RXE0MHRoTUhHbHo5L29nQ29U?=
- =?gb2312?B?UFVKT3JrWFpYUCtXbnNaOTBmRW9yVkZySmpyN3dNSFFoRy9NSzczNnB4anRk?=
- =?gb2312?B?YXNSZ3ljQUxjZVArRE0vdEl1SWduMGRZbitueTBUSDBGaEtCaW5wVWJ6dk5P?=
- =?gb2312?B?VDFrN1k3WHNFNnpKbm1jOTdsekFpbTVjTnJLcDJNUStJazVycmtqdTBCL05D?=
- =?gb2312?B?WXZiZGZqMXNLcjB6aFp6ZGdXazRIczd6dmNPbzUwdWhTUE9GK0RZRGFaSkhr?=
- =?gb2312?B?c3VWaUpxVmd3aHNZSnpEUWZqYWlNYzZqb3NHb0d6OHdZQjEzL0ZjdFBQbW4r?=
- =?gb2312?B?ZHRJUytUQjJsQXNWUFhzQ1orazlFZUl6OWpXSm1UN1dYc1ZhdXpxKzhaUmpT?=
- =?gb2312?B?ZjE4eDFHN0NOY2tmRW16eFdrSXFXV1d4TTgweXBZUU5RTk9USmFrUkxYWXdx?=
- =?gb2312?B?NjVJcE4vcU5pdFFmVWY3dzdodGI1VHgwYnlVbmpMcThQQnEyQnpQRSs5bk1F?=
- =?gb2312?B?S3VENy9DcU03T0pHa0M2a3FGR0hQL3pBN1YvSWUwU0xjTE5hcjJaUjl4KzZu?=
- =?gb2312?B?KzE4Qm5oUGg2S2hBUTlyTUJnL2RnKy94bVg4bkJ6ZVBURGVrR01UREFvb29W?=
- =?gb2312?B?dzJXUk41MnlMeFE4SGZHaFByUWdPZllRUEp5SDJ2RloxZ1FtRWtHVURnRG5Q?=
- =?gb2312?B?M29lTmd0Tkt1SnlOVW52RUNZczl0S1RGaVNma1MxUXpkbWIvelg1d0lNVFB3?=
- =?gb2312?B?VUFGeVJYZE5TbFRTeUgwdTl5b0hnV3pnWmpyRi9EUU1NSTI5MGx2MGtINlFm?=
- =?gb2312?B?dXV5RlJLK05MY2VIZ2dZRTFHWlhtNElOMStMWnhJVExBUllkRUZoQjV4UDB5?=
- =?gb2312?B?bzBiaGcwVktRMWV6Y0hSOG9GK09NN0M0cUFyL3dLUjM1RDdzTWxtWklzMW9H?=
- =?gb2312?B?ZmVXMUJlaC94a29qYnBlOGJ0YnpucUxBSWlNNEZRSG1FM3JuSWNsSVljWlI3?=
- =?gb2312?B?SkY1aDlRUVVxWlZIZW5CbEhmUkQ4aklOYlNRbGk3UWpOWkJNMkpGSVpuT1Zh?=
- =?gb2312?B?c2hCaXpuWHJDT2xCUmk2TndTNStHNGRXaHBVbVpNcS8zc292SUtDVWhlLzVE?=
- =?gb2312?B?a3I3RmM2VVFkN09EY2hnS1BJcEh2NnNwVUg2RXVvVXlscmNmVENaNTZyM0ta?=
- =?gb2312?B?M2tFaWVUZjZpOGJTR2xiejYxRTU2T2d3M3p3QTVjbi9RQktLZ2RqcS9Udk5W?=
- =?gb2312?B?blh5cGg1MnJiRFBiSEk0cjk5bmNLdk52WVkzYVFVQy9oSlFxMkR0UUpBcW5Q?=
- =?gb2312?B?bmIxb1drUWtjSml4S0hrTnIwZ3dYWjIrRE03WXVJcVhaQ0ZrUURKUCtVYXBG?=
- =?gb2312?B?dDVtKzJUaHFkcUxndTZXM09rLzNkd1hFWlJYdzZrSXZoTXAxTCtGbm1NcEFp?=
- =?gb2312?B?RTlRZG1MY2pzSkhwWmthYzVBY0JKSExKZ1FhcUVlK1pibU9zVEpKTEZvS3NL?=
- =?gb2312?B?MWdkVUpHWGgrazErdXovSW8rd0hIcVFzalk3Y29SdklMTlczb3JqR0djdmZE?=
- =?gb2312?B?WkdGeXNEZTlGU1J6d3hCM3NLK3psZms5OVAzSlg2blR0bG5VMWJlcWYwakgz?=
- =?gb2312?B?cHFvdlVmVXdLNmtrczRQNVlIVTB5eWx4bVhUcDVHSjB6b3JHdFhOZz09?=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1776916019; c=relaxed/simple;
+	bh=WeNkOMzbwUsxL+mQAEdQI1bS1CFi3gSHibm8joPuWt0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kPPx6V3VneKTBApbxKvGHG9v1f2flc9NsKJ9SVu8p9a6L58o+8DQ/c0Bcj7ruNFxeP2EF6cznBpVJ3Pb+mrURbf+GTRF7E+Tw3HdPGDummRjSjHlFupP/nd8oBMniY7uxUOjirD0zEFYpLtRtC4RtLt0qu7sLTt1rBZto0QdnD0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lHhGTmla; arc=pass smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b932fe2e1a7so29358366b.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Apr 2026 20:46:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1776916016; cv=none;
+        d=google.com; s=arc-20240605;
+        b=gs9dAGuEq7UFo5dixJowmNF+F9l+hEufg3M+68WVCl2WLtAC6sXTHbP4k5gP3gPNuY
+         uZWQPLkcW91ozk7dAzwSVY19FmZvlVBkCEpTD9TmpVXkb5N98rapQYVvw7Ww1pS7UfGH
+         qpBK9lgsWhovb0YtzM+D3cJJXK6o0nLF/CCJ+MKLpjfW6CynJJDh48Lt8nm4JAfcLKl9
+         +7wZDffz5viwcWC6R1HwbQ8k9ZCnR3IW6eZUVZQ3gQabbaKb12W2LxDwUtDXM+jSVghb
+         bvbWKjafXexNYAVS7dfQYFB8CaUNCUt2GwXRPuU3jsRD/iGVNZ37NAKvdWz4mA+JWWUm
+         cGxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=c9GSW2Phd9oXEma1/9uB2odB8s4SQeX9sU39sUkX9FY=;
+        fh=8lfOncRohiJ3SI7FgT6gBkeRh8TrgzB/taqdzzJ5R9o=;
+        b=GDvuAGaH87PFs9/av36i3uwpWot6K2s7b3k5M8g1botvf9Yg8GkuJhtSA8eNSMdhT7
+         DXkeGP+OBshq8lYPLWc51vy6ySHOwUf2yXYuKvi9nMjV0MUaYNyhW3rIMRZ3kK0/I9BY
+         4aSDoTZ4gUWnGpk7RSxKyKDOuZ1Hz89uoKP9am111FbUX1iHoXbR+oKiegF6Ua3IA68r
+         2oYn+Hs1+npe4YVBDepIrStaQRS7qmmCKcG7WmRvh4FWtApEn5yIdW5AyFfWncL8fYGJ
+         Oojloo+6k2Z6pFNGj6PFSZ1e0BmNueCbFOMEJ7VLSj1R64TVutZd2z7kXo+OTp8OkCmX
+         Z6cA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1776916016; x=1777520816; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c9GSW2Phd9oXEma1/9uB2odB8s4SQeX9sU39sUkX9FY=;
+        b=lHhGTmlaieYH55/zPwV+zLy4DF34PgsYfn1vRiGRrV7Lh9gOqRo1rZOZyhVTaOunQW
+         oFb1aLQV5zCirfs+bcUX+iVgOWdXc+Q73e2iMowE0n75JSKV+3Zu6IPVyThxJWtzNBz8
+         NZ8CQ996VJ41yicjPK6VV8bnqwoi8MzCDRYjdeb0MsHx4HyLFXd/gz7BJ2VAY6PChUrc
+         CgbFRuN0xDc3N3r1LhbjCPb0K/YHlwBGVEV/E4rxbozEGZrCW/h47zSFFx2A3bJGXbru
+         SWIHhUjq0ggFCFzHA5nPzp6KIKGNEuoKq4WKoudqjn9Sjah7ipA6QTeSYhANMnwixBKM
+         82cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776916016; x=1777520816;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=c9GSW2Phd9oXEma1/9uB2odB8s4SQeX9sU39sUkX9FY=;
+        b=XT75B2uzkIrF8KWglhZ7LrvglchdXmNHTUHrUW9Kp5HWX0faz5pfTgSWX6vobh7dVQ
+         K+5mDmzygiY8BKtiqUIRHZ/UpeSovgrKQRv1LCWFHUDxYKjYtdJS5JuR1ixHhnOf6VLK
+         VsWP6SRUReLhj9bxo5cFXwQqYKYja9SEd5DYbalv9+ndgIzHFsYljVOnYBYx9LgCzqZ1
+         zQmGLhgn/9Y2n5QQf7ovydWWpkrbD2lMxdCL71A+KAnicA2MHknPzGnd4YVGfa1o8Knf
+         Uk6FGPYlRXoTg2CtZ4p/BvOa8MjA2PUm9y9471e0du58ydrjB42Cs4/mUFhk1aop8OkC
+         sJDA==
+X-Forwarded-Encrypted: i=1; AFNElJ98YGu0XX0wEa3Z11t5RaG8bW1VgjZYpa/gyd97SzeoAkl9HE6A8HEA7u66sb1zwb3XAodB/iZZTaDI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6V70GrTlUyLvdf6W8CkIFP+bbzMsoSt914sLy5O6G1RZvXSGc
+	G6556JSglXygLqx01OJqBKDVOELs0kN2OcG3Nt4bOzpFiHMOn0d/ipoRcBT92XzkMTQVY7OBnqY
+	fPUttqH/wYhJau+jjw/49NJ4XnoLa07S5Pg==
+X-Gm-Gg: AeBDiesojsyiKmzOKs+MXOBe1DydCi4EblEaguNOEMtiI57WNaDHXeuDjRiOlzs4alj
+	FUn/z4noqHTaSvQiOoI36MLndoG1q7yEh0Xw+Z5Xi2Va5OqVtbHw/gLXQWo0WMv5oEmY0+DrM/U
+	Fy6uxGWuUEEWv1NaN49Q89O1TjZxKtcw/qTeDyyCj+2uasqlJwbokHm4zLt9d/gA5JBLwEaGuIX
+	pHybvXDvb/FFdytKxQocwMmYWz/dHX7eP5dRAA4OVyDpMdYTPCGyXp8DYGN+LARHvdmASO3kGOA
+	77ZlBhnVPnWmC4M=
+X-Received: by 2002:a17:907:1c10:b0:ba8:7b3:176b with SMTP id
+ a640c23a62f3a-ba807b322c2mr525199966b.49.1776916015972; Wed, 22 Apr 2026
+ 20:46:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b14bf4c-8b4c-4f6c-e31e-08dea0d6e823
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Apr 2026 01:23:21.0918
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: AKfD1MvAg9PUNvsZx79dmaaYMx4GAa1W3ZPpkgeST4jEMxdTWvar/gUlctQ6Cmafoa6jNzjRrIRXdbObRSQuZ/epbKB2b0Qq3hFo3zI/s2c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BJXPR01MB0808
-X-Spamd-Result: default: False [4.64 / 15.00];
+References: <20260119-patchv2-k1-thermal-v3-0-3d82c9ebe8a4@163.com>
+ <20260119-patchv2-k1-thermal-v3-3-3d82c9ebe8a4@163.com> <CANAwSgTOmbb+Vzhck1riVaFM89zYLdMe3dn6DRHrc7p+rkR2DQ@mail.gmail.com>
+ <DHZM9D696P6G.NVPMN20XXM3H@mailbox.org>
+In-Reply-To: <DHZM9D696P6G.NVPMN20XXM3H@mailbox.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 23 Apr 2026 09:16:40 +0530
+X-Gm-Features: AQROBzAWkvO9UaeaqqzBdwiPl2IRb1rnMdxCjeOVlETl66PPfZzCcgEwKW1aUrg
+Message-ID: <CANAwSgQCOoC7aZWhekqmVS3OTTyzTyDaSxsTsdfMUphxx8vX+Q@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] riscv: dts: spacemit: Add thermal sensor for K1 SoC
+To: Shuwei Wu <shuwei.wu@mailbox.org>
+Cc: Shuwei Wu <shuweiwoo@163.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-289522-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	GREYLIST(0.00)[pass,meta];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[minda.chen@starfivetech.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-289527-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[163.com,kernel.org,linaro.org,intel.com,arm.com,gentoo.org,pengutronix.de,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linuxamoon@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn:mid,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,starfivetech.com:email]
-X-Rspamd-Queue-Id: D1D3544C283
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid,mailbox.org:email,spacemit.com:url]
+X-Rspamd-Queue-Id: 7AB2C44C94E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-DQoNCj4gDQo+IE9uIFR1ZSwgQXByIDIxLCAyMDI2IGF0IDA1OjEyOjEzUE0gKzA4MDAsIE1pbmRh
-IENoZW4gd3JvdGU6DQo+ID4gQWRkIGRldmljZXRyZWUgZG9jdW1lbnQgZm9yIFVGUyBIb3N0IENv
-bnRyb2xsZXIgU3RhckZpdmUgSkhCMTAwIFNvQy4NCj4gPiBUaGUgVUZTIGNvbnRyb2xsZXIgaXMg
-YmFzZWQgb24gdGhlIFN5bm9wc3lzIERlc2lnbldhcmUgVUZTIGNvbnRyb2xsZXIuDQo+ID4NCj4g
-PiBTaWduZWQtb2ZmLWJ5OiBNaW5kYSBDaGVuIDxtaW5kYS5jaGVuQHN0YXJmaXZldGVjaC5jb20+
-DQo+ID4gLS0tDQo+ID4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Vmcy9zdGFyZml2ZSx1ZnMu
-eWFtbCB8IDc2ICsrKysrKysrKysrKysrKysrKysNCj4gPiAgTUFJTlRBSU5FUlMgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDUgKysNCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCA4
-MSBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+IERvY3VtZW50YXRp
-b24vZGV2aWNldHJlZS9iaW5kaW5ncy91ZnMvc3RhcmZpdmUsdWZzLnlhbWwNCj4gPg0KPiA+IGRp
-ZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdWZzL3N0YXJmaXZl
-LHVmcy55YW1sDQo+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdWZzL3N0
-YXJmaXZlLHVmcy55YW1sDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAw
-MDAwMDAwMDAuLmM0MDg5NzNkZDBjZQ0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdWZzL3N0YXJmaXZlLHVmcy55YW1sDQo+IA0K
-PiBGaWxlbmFtZSBzaG91bGQgYmUgc3RhcmZpdmUsamhiMTAwLXVmcy4NCj4gDQpPa2F5LiBUaGFu
-a3MuDQo+ID4gQEAgLTAsMCArMSw3NiBAQA0KPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVy
-OiBHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlICVZQU1MIDEuMg0KPiA+ICstLS0NCj4gPiAr
-JGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy91ZnMvc3RhcmZpdmUsdWZzLnlhbWwj
-DQo+ID4gKyRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55
-YW1sIw0KPiA+ICsNCj4gPiArdGl0bGU6IFN0YXJmaXZlIFVuaXZlcnNhbCBGbGFzaCBTdG9yYWdl
-IChVRlMpIENvbnRyb2xsZXINCj4gPiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+ICsgIC0gTWlu
-ZGEgQ2hlbiA8bWluZGEuY2hlbkBzdGFyZml2ZXRlY2guY29tPg0KPiA+ICsNCj4gPiArYWxsT2Y6
-DQo+ID4gKyAgLSAkcmVmOiB1ZnMtY29tbW9uLnlhbWwNCj4gPiArDQo+ID4gK3Byb3BlcnRpZXM6
-DQo+ID4gKyAgY29tcGF0aWJsZToNCj4gPiArICAgIGNvbnN0OiBzdGFyZml2ZSxqaGIxMDAtdWZz
-DQo+ID4gKw0KPiA+ICsgIHJlZzoNCj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsg
-IGNsb2NrczoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBVRlMg
-cmVmZXJlbmNlIGNsb2NrDQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IFVGUyBtYWluIGVuYWJs
-ZSBjbG9jaw0KPiA+ICsNCj4gPiArICBjbG9jay1uYW1lczoNCj4gPiArICAgIGl0ZW1zOg0KPiA+
-ICsgICAgICAtIGNvbnN0OiByZWZfY2xrDQo+IA0KPiBUaGluayAicmVmIiBzdWZmaWNlcyBoZXJl
-Lg0KPiANCiAicmVmX2NsayIgaXMgdXNlZCBieSB1ZnMgaG9zdCBkcml2ZXIgY29kZS4gQ2FuIG5v
-dCBjaGFuZ2UuDQoNCg==
+Hi Shuwei,
+
+On Wed, 22 Apr 2026 at 16:07, Shuwei Wu <shuwei.wu@mailbox.org> wrote:
+>
+> Hi Anand,
+>
+> Thank you for the careful review.
+>
+> On Wed Apr 22, 2026 at 1:56 PM CST, Anand Moon wrote:
+> > Hi Shuwei,
+> >
+> > On Mon, 19 Jan 2026 at 08:13, Shuwei Wu <shuweiwoo@163.com> wrote:
+> >>
+> >> Include the Thermal Sensor node in the SpacemiT K1 dtsi
+> >> with definitions for registers, clocks, and interrupts.
+> >> Additionally, configure thermal zones for the soc, package, gpu, and
+> >> clusters to enable temperature monitoring via the thermal framework.
+> >>
+> >> Signed-off-by: Shuwei Wu <shuweiwoo@163.com>
+> >> ---
+> >> Changes in v2:
+> >> - Update compatible to "spacemit,k1-tsensor"
+> >> ---
+> >>  arch/riscv/boot/dts/spacemit/k1.dtsi | 101 ++++++++++++++++++++++++++=
++++++++++
+> >>  1 file changed, 101 insertions(+)
+> >>
+> >> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dt=
+s/spacemit/k1.dtsi
+> >> index 7818ca4979b6..0fe7396ea6e4 100644
+> >> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+> >> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> >> @@ -338,6 +338,96 @@ osc_32k: clock-32k {
+> >>                 };
+> >>         };
+> >>
+> > I feel the thermal zones appear to be configured at significantly
+> > higher temperatures
+> > compared to the thresholds typically used in commercial-grade and
+> > industrial-grade device
+> > test environments 1.2 Test Environment
+> >
+> > [1] https://www.spacemit.com/community/document/info?lang=3Den&nodepath=
+=3Dhardware/key_stone/k1/k1_hw/avl_veri_sop.md
+>
+> The official definition of this temperature range is as follows:
+> "The CPU delivers stable and reliable computing power from -40=C2=B0C to =
+85=C2=B0C,
+> complying with the demanding requirements of industrial applications."
+>
+> [1] https://www.spacemit.com/community/document/info?lang=3Den&nodepath=
+=3Dhardware/key_stone
+> /k1/k1_docs/root_overview.md
+>
+> Therefore, this does not mean that the chip cannot continue to work above
+> this temperature.
+>
+> The datasheet also defines another temperature, the Junction Temperature,
+> which represents the chip's temperature limit. Exceeding this temperature
+> may permanently damage the chip.
+>
+> [2] https://www.spacemit.com/community/document/info?lang=3Den&nodepath=
+=3Dhardware/key_stone
+> /k1/k1_docs/k1_usermanual/4.Electrical_Characteristics.md
+>
+Ok,
+> >
+> > Thermal zones should be defined as part of the SBC board design,
+> > with the option to integrate PWM-controlled fan support in the future.
+>
+> These thermal zones describe fixed hardware properties of the K1 SoC itse=
+lf,
+> and are common for all K1-based boards.
+>
+Ok,
+> And this is also done in Allwinner D1, StarFive JH7110 and some other chi=
+ps.
+>
+Ok thanks.
+> >
+> > Thanks
+> > -Anand
+> Best regards,
+> Shuwei Wu
+Thanks
+-Anand
 
