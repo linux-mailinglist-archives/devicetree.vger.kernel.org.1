@@ -1,296 +1,198 @@
-Return-Path: <devicetree+bounces-289718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289720-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UIVQJck56mnrxAIAu9opvQ
-	(envelope-from <devicetree+bounces-289718-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:24:57 +0200
+	id kKxQCZM56mnYxAIAu9opvQ
+	(envelope-from <devicetree+bounces-289720-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:24:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE6F4454477
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:24:56 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F25B454416
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 17:24:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D34B43076C23
-	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 15:17:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BF515300D90A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Apr 2026 15:20:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26BD6313550;
-	Thu, 23 Apr 2026 15:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D687233ADBC;
+	Thu, 23 Apr 2026 15:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PA6gL6/3";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Xo0BsJ62"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Iw84djJy";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="LNACJnJz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF34830BF4F
-	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 15:17:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741CB326930
+	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 15:20:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1776957439; cv=none; b=iB0cI36bCNvxUFWFqSB+l4mccX6A+lBoBI3LEep0JpUtIiQVi+TiguKwusoTyBxKEDxo8KeZYU9sTuFrv1kVqZJl7fqpLZQv5KoTBjGohtVtDQDtBLeMft75cNmifBhf92QnUuVaPEkE9g3WhOJDTMeX/VzD9GwM0x802F6ctjs=
+	t=1776957645; cv=none; b=cEG9f6ulfr1UwY/YZz0DxkEyuZR6kFyyruToo9TQUC9esNeN4UTtW/qjMSWaWVdIs9fIIxMSk76RHs/EXNypXcoemZyHHY1Ak8WMpet0ipuY2NwDngjVZwNMtyvDI7XGEbMqCll9j5Zq1XjfqPXWcGgNFj3kPlnq11+ZzFU5lkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1776957439; c=relaxed/simple;
-	bh=gaE8mNQT6IPknLkLLO6v/or9S4a6F9swdPDSRgxH6eI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MLgn4staSX5tZADhQ936UCi7fX0yWGYkUR+jF2KCRRNAUzTGiNEil/gilX9JLO+gySioGBDa4FkOUlVYq1ztWGBZg8gr2jCEb/36aWkQd9Gq2bZn0inBb9Gn8XlwxNyJvx0YI6WhPDplXnbNO8x1jvvdvbCWYnbVxsnruXjaA3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PA6gL6/3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Xo0BsJ62; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63N8uPUS1565879
-	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 15:17:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Eze/1plM2v1qn5QnTvk0ysvssVshSt8k0/rXfQex3Xg=; b=PA6gL6/3dqpWMUfW
-	jEkt63+YX5zSJ4fDKeSX6I0cS9gGGPnzeX0g16rPwysV6c1G3Sdxr9/EHJgS61BH
-	apN6HLXVpgRHrhjy35HCYO74wSh5ud8aQgRrhIXzQPhxd3cgcnO2z8OpxaN5qy2u
-	PQGatrXMIpHgAeakubttffluTsQzVZbQfsMPtjxWs6TgwoSa4VFpwQZvKcTQ5m9x
-	Xr77nDCX+F4E4QA10o08WcIcwVL6ERjkHSKgVCRoskcpUDop90IAJVlfIze1gstY
-	egS/4r8ycsjCO7Ed0HaMQAahN0mSwVRKQTIWM9dghK2WiZNdZo32t3lTTZHLhceh
-	uBnBpQ==
-Received: from mail-oi1-f200.google.com (mail-oi1-f200.google.com [209.85.167.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dq16wvpbf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 15:17:16 +0000 (GMT)
-Received: by mail-oi1-f200.google.com with SMTP id 5614622812f47-479d4674399so3132143b6e.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 08:17:16 -0700 (PDT)
+	s=arc-20240116; t=1776957645; c=relaxed/simple;
+	bh=Braew1XveMAGlyFC2s/mzZ41yr7jUS4QWkO2xuBRjyE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E+hnZ0+U2Ll3COmJFCHGFWAEEYPlBM2Xvm/vIUaBynI1UO9QfGd578T8iOeczNz4xrEW9wC9wV3CJNePLfPU80HDFGIfFYzEvUvn1EKa7sVu4l9/QoDLL/Wyohta9A/YChWC2HGB+mC4hKSweSEYN0PxAUt3aOauoJ0GbxWcR6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Iw84djJy; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=LNACJnJz; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1776957643;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=iQf/P7hvHt9A1fs4c4DenfrxwjfBH28w3+BhoS4FuwU=;
+	b=Iw84djJymNIk6+G3cRW7Q4xhD4jtMzvt0YeI6KS8xVLizLZD257++7PxemfwsDwWCcDOp3
+	ekWT8agTwTndycj68bNsCm9AVjXs+qZaomvtoimiZT0o8UoawQ6YopeM/xC4A/FWSGqvp9
+	e2d7cyHXkBzVjwAmqSHWf8Y43rvXVv4=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-371-h2DzTwQ-MTuHf_ixbh4NkQ-1; Thu, 23 Apr 2026 11:20:42 -0400
+X-MC-Unique: h2DzTwQ-MTuHf_ixbh4NkQ-1
+X-Mimecast-MFC-AGG-ID: h2DzTwQ-MTuHf_ixbh4NkQ_1776957641
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-50d5d1c2289so146542321cf.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Apr 2026 08:20:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1776957436; x=1777562236; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Eze/1plM2v1qn5QnTvk0ysvssVshSt8k0/rXfQex3Xg=;
-        b=Xo0BsJ62Hxjv46R7YE4QCdMgwn+ifZsRAlOnsNyqygEMwgo7mkpAYLjjvnPIZorueF
-         /mmKomef6lTnP1zBsQ5SJPBzeJNe5zYEGvobw8UXlDzukdEXF1dn3r7VaRbeoAL3V0de
-         p9oousPnAKcd3lTGtWaVu4VeQDLuSZ3D6wK3RADjc3Whv75VYKAn3FC+D4C8EPrmK3AB
-         Ht71rsjHEkRStoYHWyvp/r3c1z4pKfd1DrAcItG5iLe178+tJUz8VYdWw5kBnUhf6L2u
-         eTOUD4yxBhf2jiNfm9oLk7glHQqEc/0BRJ6OgNfnZwBTL2SSFthkkv1V2cYa6HyZ/X5A
-         UPVg==
+        d=redhat.com; s=google; t=1776957641; x=1777562441; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=iQf/P7hvHt9A1fs4c4DenfrxwjfBH28w3+BhoS4FuwU=;
+        b=LNACJnJz28uaWH8nXZUMxS045YJzSwXA8m7SsOppr3w/cerL0OTOINBm+7I8Nua98c
+         fNTvQl4rswH/Yj25YHZEXod1gZj85Rnm0gcgvnB/GYDoIjfJAALh8xu7EC13oL2GM21R
+         usi4dX5Vu1bGH9SywLXoMJgNMk1co4pEtryAE0koj6FDaj5Fx5r4nkTQWOqN1lukP9Tl
+         1X85VVo2ki46aVNfhB9WlIBDBYgglsBftK9vReQ2A/bgiFFUOE4NN9adUVtdMJR49NYJ
+         Eq8NC+qAmLC6DPnqWXHeAB7FrzFqCgkTnQhLFQiYnZ9yXaU3dAuQldiet3D1gxxEiHeS
+         02hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776957436; x=1777562236;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Eze/1plM2v1qn5QnTvk0ysvssVshSt8k0/rXfQex3Xg=;
-        b=QJ2hYUq0MizvV/iGyBRNrRltdKk9M0cE/cG/oxwE+XwlEbCBs7kIs4Mtxqi6KfYOmD
-         24v/s1rbJxHINBzOfNg7VV02EGtYLglBOQ2nK5Ghpd1GkimGTaOw1tetC6AMnu7vfkSs
-         uZMKMTO8mdsAIImtAU8n3iD1BpjCY9CEqCVu57MS7X1xCsV8Vrz3MoEIaInnyn2dgg0F
-         PoqLvIVxuMiWX5muKIJRN2pw8RMWDJ2BdMUtpNJcy2JVk0WfOlQsteZPwMZ3MTk1mhlZ
-         fI0G+lMA/iEjwS2oyU+hgBDxKIJ+hg2iPtqWhuMCQcD7UU1Fisn1sVaEbGrkt5Y41KEQ
-         yXDQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/GzQnQ5r8brV3wam/n74V0mWUBoYcKbZHtp35k7xr8yHljguRf2ZcWVkycHGXJyejCJiVq5xNNCzra@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpeE8+BQyHjZDvAMrwGNt0zTL1hzxXBL71ZG1HjJSlyCi2AM8Y
-	je19DZ2xyoOq+To57YKUtkTeZQvAT8LTVn9No1uJliU2MR5oAifmMPTVTj5faU2kt94mQiYzWR5
-	HFVe5g1UM32TFmfhkD8eNN9bzDDTT3T/iC0ooy5UC00voWdxjIAGpvN0vXjVfml70
-X-Gm-Gg: AeBDieu6QXTMT9bdkj7xrREMUSU/pE9lGHThBL/ywe2RV+fLrXOYyFdIHZAMrNTycM1
-	yfsvoMNy7IcrlcGjoBxIu7uiopYwa7H/sxLAiL/y9yxg0HEaT43yJmfIGYzsEbz6VyqTqbJPOFt
-	xcUsFoVcviGDpr1OsWNPACxkVrj5zqGjCCk3s+ONXtCDHG9cg3eaggfKfiTNTvWZgU7oSqh+8sG
-	ZZsa7a6jaIPwUPsFaowOjS96Hu2vT4EZCNLy/c5pq64/0d5CiRwu/2Y4tsfm4PcLrzzmG1jIKyS
-	Nz+WxdDGahQXB32wF/em6ggJkl6gwilI9vc3eNIBTyr1yGUOAF+B7NUKGoR26IQZ7zCNuDlQOF+
-	/Rp6yj1kFxXnUbklKQdYPBnvL5igSsZpT/gFIXSn64i+Fizt/tSfiy5cUVTt/g2lGTSezjZ554T
-	khkm1eddYlkVWCmR0bE8g=
-X-Received: by 2002:a05:6808:50a0:b0:47a:8c2:a558 with SMTP id 5614622812f47-47a08c2b6a8mr4055143b6e.43.1776957435926;
-        Thu, 23 Apr 2026 08:17:15 -0700 (PDT)
-X-Received: by 2002:a05:6808:50a0:b0:47a:8c2:a558 with SMTP id 5614622812f47-47a08c2b6a8mr4055087b6e.43.1776957435470;
-        Thu, 23 Apr 2026 08:17:15 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:8a9b:1477:c29c:4bcb? ([2a05:6e02:1041:c10:8a9b:1477:c29c:4bcb])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fc0b4c85sm502913835e9.0.2026.04.23.08.17.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Apr 2026 08:17:14 -0700 (PDT)
-Message-ID: <8a4dcb94-ab88-4559-9027-49308ad02b73@oss.qualcomm.com>
-Date: Thu, 23 Apr 2026 17:17:13 +0200
+        d=1e100.net; s=20251104; t=1776957641; x=1777562441;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iQf/P7hvHt9A1fs4c4DenfrxwjfBH28w3+BhoS4FuwU=;
+        b=l9I81JQal6muTpacDDxTAZfLB1HVE2mqR3rJbLGWnA1G3rgk6Ouv7Qf9oQEZRdcwc5
+         Ve2Xl6HB5WL16pTXmTflVtY3q6Ioop2Kl+EywFGL7/r1HVkEiW+I/ORLlZVcBVyi1OkW
+         /QbF65vm61i5uHv+4NXfEZHLED4YUAMEER2/CGjvzFpeKTRDAs2Pcc2KXg7GNCkqM0oQ
+         bXDdVnsx/fpkVTzsiVb+X3gXh6nj1RNuolKTBkbpTfLQogRa0ZHmqycpY62ipD7GElf4
+         hntZy1kflTjuqID/MxIrNnNoQstg3+HCpJRFXOMgnL2WYi3tdJnAScJzELprpS1erfnU
+         AMSQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8pt+Av2OEUtdkfmKIOlXfNl9ceG+B9ydhWSXG7slR8ct3iBIuVgwmBfjDsjQMZND/DdFwYXSNp+vm7@vger.kernel.org
+X-Gm-Message-State: AOJu0YysbsIrKKlVhZ/l3nfUxV2BIoCwtF3FQG2Rr20vNkPz5Esr1ZhL
+	4yNN9xVwvIdeyr4jHKesqM9RrdWDAjB5AdtMphqHpppqFyhFxqeRXr02jQmgjqgIXltm44FOHSe
+	4TIDTkpbtBoREuR9All6HYHIezFOsUaF3+MsGFXZKt/ycMTSA+3Z3TME96QhF6AM=
+X-Gm-Gg: AeBDietn3k7IDe0cvxPPoQlzLrB347JBH2SGiFADVF4ASEy2petAoJnjf7YpDq1yNZx
+	ftNO59hcOrcQ1fa/o5Rsc+OoLsUpvNcnftuC/CImRwkGODbGFQMF8zGKRAUXT7eDXDq+8a4OVPu
+	b7uenhSDXb2efGJjKuGsCkRqDY3or2AM2aaYzNEK1F3vC9VQAxHMJZZ3UZxp+0m8XJFWj4lryoE
+	UXiERRG5P25IShbzHdFgUB2nTwmatpHQEHWabGCS6QK9NxJEiUbVHvvBRvCtcX/83bELdmmckMj
+	IbgwesFF7grpHzS6GlA0FzzjI4CpEr1ic9KRp16FTD/V+361w3fP7UY93vWczRkLhmG6k908yd1
+	WhfDaR6BwzdPunR8pzJYWMml1WwcWEOWbTiP3DTr3XA==
+X-Received: by 2002:a05:622a:1390:b0:50f:b076:43dd with SMTP id d75a77b69052e-50fb0764918mr197598101cf.36.1776957640952;
+        Thu, 23 Apr 2026 08:20:40 -0700 (PDT)
+X-Received: by 2002:a05:622a:1390:b0:50f:b076:43dd with SMTP id d75a77b69052e-50fb0764918mr197597111cf.36.1776957640401;
+        Thu, 23 Apr 2026 08:20:40 -0700 (PDT)
+Received: from rh-jkangas-kernel ([2601:1c2:4400:6bf0:7677:bcee:4ef0:e09d])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-50e5f5cc439sm105170541cf.17.2026.04.23.08.20.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Apr 2026 08:20:39 -0700 (PDT)
+Date: Thu, 23 Apr 2026 08:20:34 -0700
+From: Jared Kangas <jkangas@redhat.com>
+To: jan.petrous@oss.nxp.com
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	rmk+kernel@armlinux.org.uk, vladimir.oltean@nxp.com,
+	boon.khai.ng@altera.com
+Subject: Re: [PATCH net-next v12 2/4] arm64: dts: s32: set Ethernet channel
+ irqs
+Message-ID: <aeo4wlrSinKUsdrZ@rh-jkangas-kernel>
+References: <20260313-dwmac_multi_irq-v12-0-b5c9d0aa13d6@oss.nxp.com>
+ <20260313-dwmac_multi_irq-v12-2-b5c9d0aa13d6@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/8] thermal: amlogic: Add support for secure monitor
- calibration readout
-To: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Guillaume La Roque <glaroque@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20260421-add-thermal-t7-vim4-v3-0-a2e7215ed003@aliel.fr>
- <20260421-add-thermal-t7-vim4-v3-4-a2e7215ed003@aliel.fr>
- <7aaa7873-9274-48d8-a6fe-cff4239b03b4@oss.qualcomm.com>
- <19d70883-21db-4963-841d-7c00505e0d9e@aliel.fr>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
-In-Reply-To: <19d70883-21db-4963-841d-7c00505e0d9e@aliel.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIzMDE1MiBTYWx0ZWRfXyOYqQR+uP1N5
- TjH7IB7bEltf5vxZdIaKHwbLe7b3LazpKhsaJvixq/5cNncQvHbqmvj3oRwW8hYM45pxx4Pm0HM
- qaKd9Iem9SunSmEHmyKpP3wwS1zr15AH8yVYPKsb20H4qfsEKiZyEmqcs53f/Wb5c7Jlf4+Quy6
- sPg6yTB/EhLhFuuqNbuUGN86KHdWACR0+gTMWuneI7KdxRdqNzxEK+IUCISicKpjexWFPbvWvXI
- 2DBr5fsWiMbdQpZlgYbhoP9QT2fwV90FoJm2+9PaFRqMp98TQmYumSE3JBnxR8o4aAeRIx8faLX
- g5Qupax4NcWM9AZO4PpsizU1hsDI0HZgYDGNDjvOkYQRhFWu3mnSgzin3z0HlRrKd5bxa6GqGCL
- +bKt/nxaiCgHrt85kVGRhwq91Q1m3nw5MTvmUsBZ9Nxff0QgTQJa8n4p4JukJ+V994qgqdG5Uhq
- Y3Aq+fYI7OwRXrmxE5g==
-X-Authority-Analysis: v=2.4 cv=dL+WXuZb c=1 sm=1 tr=0 ts=69ea37fc cx=c_pps
- a=AKZTfHrQPB8q3CcvmcIuDA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=pD_S-A0WoN6OyM3pGvIA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=pF_qn-MSjDawc0seGVz6:22
-X-Proofpoint-GUID: xP7ir0druQsPk0xWUoyRkg6iSe_FDsSe
-X-Proofpoint-ORIG-GUID: xP7ir0druQsPk0xWUoyRkg6iSe_FDsSe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-23_03,2026-04-21_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 spamscore=0 priorityscore=1501 malwarescore=0
- adultscore=0 clxscore=1015 suspectscore=0 lowpriorityscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604230152
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260313-dwmac_multi_irq-v12-2-b5c9d0aa13d6@oss.nxp.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,baylibre.com,kernel.org,intel.com,arm.com,linaro.org,googlemail.com];
-	TAGGED_FROM(0.00)[bounces-289718-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-289720-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[29];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel.lezcano@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,lists.linux.dev,armlinux.org.uk,altera.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jkangas@redhat.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[redhat.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: EE6F4454477
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8F25B454416
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/23/26 17:09, Ronald Claveau wrote:
-> Hi Daniel,
+On Fri, Mar 13, 2026 at 08:13:33AM +0100, Jan Petrous via B4 Relay wrote:
+> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
 > 
-> Thanks for your feedback.
+> The GMAC Ethernet controller found on S32G2/S32G3 and S32R45
+> contains up to 5 RX and 5 TX channels.
+> It can operate in two interrupt modes:
 > 
-> On 4/23/26 12:25 PM, Daniel Lezcano wrote:
->>
->> Hi Ronald,
->>
-
-function1() {
-
-
->>> +    if (pdata->data->use_sm) {
->>> +        struct device_node *sm_np;
->>> +        struct of_phandle_args ph_args;
->>> +
->>> +        ret = of_parse_phandle_with_fixed_args(pdev->dev.of_node,
->>> +                               "amlogic,secure-monitor",
->>> +                               1, 0, &ph_args);
->>> +        if (ret)
->>> +            return ret;
->>> +
->>> +        sm_np = ph_args.np;
->>> +        if (!sm_np) {
->>> +            dev_err(dev,
->>> +                "Failed to parse secure monitor phandle\n");
->>> +            return -ENODEV;
->>> +        }
->>> +
->>> +        pdata->sm_fw = meson_sm_get(sm_np);
->>> +        of_node_put(sm_np);
->>> +        if (!pdata->sm_fw) {
->>> +            dev_err(dev, "Failed to get secure monitor firmware\n");
->>> +            return -EPROBE_DEFER;
->>> +        }
->>> +
->>> +        pdata->tsensor_id = ph_args.args[0];
->>> +    } 
-
-}
-
-function2() {
-
-else {
->>> +        pdata->sec_ao_map = syscon_regmap_lookup_by_phandle
->>> +            (pdev->dev.of_node, "amlogic,ao-secure");
->>> +        if (IS_ERR(pdata->sec_ao_map)) {
->>> +            dev_err(dev, "syscon regmap lookup failed.\n");
->>> +            return PTR_ERR(pdata->sec_ao_map);
->>> +        }
->>>        }
-
-}
-
-> Sure, I will do that.
+>   1) Sharing IRQ mode: only MAC IRQ line is used
+>      for all channels.
 > 
->>>        pdata->tzd = devm_thermal_of_zone_register(&pdev->dev
->>
->> The thermal zone is registered before calling
->> amlogic_thermal_initialize(), thus pdata->trim_info is not initialized.
->> When a thermal zone is registered the thermal framework reads the
->> temperature, so it reads an invalid value because:
->>
->> devm_thermal_of_zone_register()
->>   -> thermal_of_zone_register()
->>     -> thermal_zone_device_register_with_trips()
->>     -> thermal_zone_device_enable()
->>        -> __thermal_zone_device_update()
->>          -> __thermal_zone_get_temp()
->>            -> amlogic_thermal_get_temp()
->>               -> amlogic_thermal_code_to_millicelsius()
->>                   [ Use of uninitialized pdata->trim_info ]
->>
->> Right ?
->>
+>   2) Multiple IRQ mode: every channel uses two IRQ lines,
+>      one for RX and second for TX.
 > 
-> Yes, I will move the initialize before the register.
+> Specify all IRQ twins for all channels.
 > 
->> IIUC, amlogic_thermal_initialize() can be also split and moved the
->> corresponding blocks to the functions to be created in the comment above.
->>
-> 
-> The SM and syscon setup will be extracted into two functions.
-> amlogic_thermal_initialize() itself is kept as-is but moved before
-> devm_thermal_of_zone_register().
-> Let me know if you'd prefer a different approach.
+> Reviewed-by: Matthias Brugger <mbrugger@suse.com>
+> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> ---
 
-In the initialize function the following chunk is added:
+I missed that there was a net-next rebase and ended up sending a T-b to
+v11 instead of here ([1], [2]), sorry about that.
 
-+    if (pdata->data->use_sm) {
-+        return meson_sm_get_thermal_calib(pdata->sm_fw,
-+                          &pdata->trim_info,
-+                          pdata->tsensor_id);
-+    }
+To give more details on my testing around this specific patch since the
+driver patch was merged: I configured RX queues 1-4 with
+'snps,route-multi-broad' across several different boots and verified
+that interrupts showed for all TX/RX channels in /proc/interrupts.
 
-I was suggesting to move it to function1() and the rest of code from 
-initialize in function2()
+Tested-by: Jared Kangas <jkangas@redhat.com>
 
-That results in amlogic_thermal_initialize() to be dissolved in 
-function1() and function2()
-
-
+[1]: https://lore.kernel.org/all/aefX7Ajltzt5EqIR@rh-jkangas-kernel/
+[2]: https://lore.kernel.org/all/aefY8WGCuNr4BQG4@rh-jkangas-kernel/
 
 
