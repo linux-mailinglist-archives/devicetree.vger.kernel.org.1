@@ -1,160 +1,197 @@
-Return-Path: <devicetree+bounces-289925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289930-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wOdIBX0362kgKAAAu9opvQ
-	(envelope-from <devicetree+bounces-289925-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:27:25 +0200
+	id +J2zGo0462nRJwAAu9opvQ
+	(envelope-from <devicetree+bounces-289930-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:31:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62A9945C2CC
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:27:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF2745C3F4
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:31:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7D20A300A777
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:26:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 56F34300EAA3
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:30:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F6DC38422E;
-	Fri, 24 Apr 2026 09:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ADD63890F3;
+	Fri, 24 Apr 2026 09:30:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="s1k1Ml26"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4268B3537E9
-	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 09:26:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A337438AC71
+	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 09:30:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777022770; cv=none; b=qaPrlDLjKkcpQMD0qgAEGDTe5LRR77vefDDLMLxVlO+jr4G8LrvbhwE05oq1DLnl59LzQOZCdHodNbaIhheuRr+okldfHaJI0bQcyjQZi+qr+Jyp8biM5Y+MnSy2Lq5o9UxFsW2dTe7B0j56vi4q00eMsJHHaNVJijv+HJFx0vU=
+	t=1777023024; cv=none; b=Y+AlgnHTlmCrMmBtmC509QO5xA1eHoka6wGCZfAcAhgCZBtttE4z7CdeKQ+NIfINBaIPQCFMsohK8PCW0v11oXXbpd0zmPMh8TZC50rzcI0PGTHFE+4e14fytHKA15U6ozHMmCAXwYdGi1AIgz+qOhu2d656vCbnbaZdesLMl2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777022770; c=relaxed/simple;
-	bh=m6WV7EWKujpqNzwSC6VrIDZlcXz5kzfkgETq5VnefOM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=DUzC63GmORaQFvmzL0VcnVHLRY/EGGxEX2u4kMipms/SmV1T0CASrH62HY7ESN2YJOAe6wIeaMR0RdX7aEsR7qfy+gPLKCHUEH6rb5DA7iSF238a3C8sgfwvMMew47Fmp97Np3krlHa0vwEHtGhmTRusDrmYten2XydUQl1l9tI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1wGCnP-0004S8-9Z; Fri, 24 Apr 2026 11:25:59 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1wGCnN-006yIh-2c;
-	Fri, 24 Apr 2026 11:25:57 +0200
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1wGCnN-000000005kQ-2zTp;
-	Fri, 24 Apr 2026 11:25:57 +0200
-Message-ID: <a38717c7b357a8e7669a8b05f9f41751d1bbf627.camel@pengutronix.de>
-Subject: Re: [PATCH 18/22] iio: dac: ad5686: consume optional reset signal
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: rodrigo.alencar@analog.com, Jonathan Cameron <jic23@kernel.org>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Michael Auchter <michael.auchter@ni.com>, 
-	linux-hardening@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich	
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>, Kees
- Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Date: Fri, 24 Apr 2026 11:25:57 +0200
-In-Reply-To: <20260422-ad5313r-iio-support-v1-18-ed7dca001d1b@analog.com>
-References: <20260422-ad5313r-iio-support-v1-0-ed7dca001d1b@analog.com>
-	 <20260422-ad5313r-iio-support-v1-18-ed7dca001d1b@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1777023024; c=relaxed/simple;
+	bh=OsNPHX4jeofbnoke8t+ygRvQX/qpdNEBz1MsGO83J8c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qjUg6Rr+3QAWPuJuWHPWtdRTRG48BEVqLJpYi0fk/K5j/LAYHoTpXuJWd0+MzWBgbKE6/qIQfdAIJ+mscYWXcHN0ugQDZQDB2EOZSUuhm5FwjgODv7ZCXqUZ/ohp3xTa8Q4ovvdTGSVmdhqhQF/An8NS9UsUk6bqo82qIA9P/Gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=s1k1Ml26; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-c79467f128cso2882413a12.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 02:30:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1777023022; x=1777627822; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WRwTAJEdshpMeygRgfdm3dyxt0e0Cc0hy7FOZ+1cEoo=;
+        b=s1k1Ml26wfIiltftOP8cvXabfdisJT2uX+OgYHNfFfVCtYQygc5DFyWam0azf4YTjm
+         YtHSnGCTXmXA1vyZH8B2PWieI382AynW3bUAnrxbW/D3+ZC0WJfMMTLgOr+tuyL78jQT
+         /xCSxpr5EQiUe51BLSaDO8kWsJp5afmQqzlkjh3HEO/gMGpv3F/yObyYrYeNSCd3P8e+
+         4gMGIV8/+6ykGx+T07tsgPP1d+ZNUxOLllzXuip8ZcB+Uuc2gygv4AVDj2g+nDZEmol8
+         R5FTyKxgnI+QIHuehdW4KAXC2mcMIluX5S60QeFFlfz3pf8NMUV+1hCn/UdbhOTMQ9d8
+         sm7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777023022; x=1777627822;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WRwTAJEdshpMeygRgfdm3dyxt0e0Cc0hy7FOZ+1cEoo=;
+        b=Vrs5NQSQiS9Z8w4EbM/fQnSF9qv1ovoq+bUByEpyA+/MWuEnqpyTb0LWdNSZ3i8CbN
+         nKClBQp+NtPowAKkP6+HXKVKhWrPVUqZUp45kxlHgRLhswErHanbSifmAJok9/n9NIb7
+         gR/knA1lhWr3so7n+xPCZ8A0JaWfNA8yuxoPUJCGjHFJpzF/L2bt6lZYullE24aKEJUX
+         3NRQjb1ix6mgvZIocWvblQc6fWX51AUAJJG1rgOv65TMrIx/SaKHSOMCLjefn2qCQP71
+         9A74ohismWhHd/KuPIaG4iTJsQG5HvL10v0P/wV9ihxLs9RJ1VhtartOPRXG7rzQVskL
+         IsFg==
+X-Gm-Message-State: AOJu0YwoRCPplCpM1gwiAeIszXEtN5G64CwAOcBYjdZDFhMQrci8T1eM
+	GGjvKJg9cv8q6pIQFNAHagGxZAMybHjGy46AWgrIOAuoLh2Uj1n1WgILDHIfXw==
+X-Gm-Gg: AeBDievUMh9OPupX0nD9YbafRaWVZaQ4fgqb2++SH53nw0OZh5rhVYJeeqJymQv7BGT
+	WV1D9RmkpvrtTllUv1jWOKYz/2VEgrpJlrREDEb/Ylrl5TtZ4NPNOcvdqKqM4ybqYYpEFtNwXBC
+	mazbea+WJANEGpjXJBQrukg8/BAtvypj4C3rEH9liA7Lr63mbpWHxgFRx/EIFUnDapUhEcFW+Ao
+	C3LDrsLVXn6mUlrlpv2/9VQNo5NvquD/bBORo+7noUfEt2ZfmwR4q2+xjblRlbTGv76vdcCh1MQ
+	6eCaOQCNElEkMKEswmVzLwT7pcfuCxTXwLjmn4B7IBwg5Wjv+vZ2HMzGhAC2vFGtV//5GSMHgT1
+	JN5CqlwFCtuCAlQxwUsqNuTx97PVM0bmUUx8jxxPvEQ295WHoWZpJw4g2VBj18OJ+sFVQUmfgd8
+	YQpeu0S7FdgHiAqpH9Nj+8aXw7uXQU9RmKNcnM5ETiVln5zcOWQhA5y2G0uJF+3E0ORieYDkSkM
+	g==
+X-Received: by 2002:a05:6a20:3d85:b0:398:a659:eb0 with SMTP id adf61e73a8af0-3a08d8a6695mr36356423637.34.1777023021700;
+        Fri, 24 Apr 2026 02:30:21 -0700 (PDT)
+Received: from [127.0.1.1] (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82f8ebe92desm22658143b3a.44.2026.04.24.02.30.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Apr 2026 02:30:21 -0700 (PDT)
+From: Kyle Hsieh <kylehsieh1995@gmail.com>
+Subject: [PATCH v4 0/2] Add Meta(Facebook) ventura2 BMC(AST2600)
+Date: Fri, 24 Apr 2026 17:30:48 +0800
+Message-Id: <20260424-ventura2_initial_dts-v4-0-806b00ea4314@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: 62A9945C2CC
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEg462kC/4XN3wqCMBTH8VeJXbfYznTLrnqPCJlu6gH/xGajE
+ N+9KQRCSJffH5zPmYi3Dq0nl8NEnA3ocehjJMcDKRvd15aiiU2AQcoBgAbbj0+nIcceR9RtbkZ
+ PM5YVApQyUqYknj6crfC1srd77Ab9OLj3+iXwZf0DBk4Z5RWTXMpSnbW41p3G9lQOHVnAAFsk2
+ UEgIhXPRKFTkzD1g4gvIhnnYgcREQFTVEZLnRaJ2iLzPH8AXyb320IBAAA=
+X-Change-ID: 20251222-ventura2_initial_dts-909b3277d665
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Kyle Hsieh <kylehsieh1995@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2020;
+ i=kylehsieh1995@gmail.com; h=from:subject:message-id;
+ bh=OsNPHX4jeofbnoke8t+ygRvQX/qpdNEBz1MsGO83J8c=;
+ b=owEBbQGS/pANAwAKAaWDQrcJVsSBAcsmYgBp6zhMtNInLf1W8Lk5DvyqGuC2M/I8frqBBvEe/
+ b8/gD36idKJATMEAAEKAB0WIQTJHsaNZOdY+THGqJelg0K3CVbEgQUCaes4TAAKCRClg0K3CVbE
+ gdc3CACqDuZpjAuJQGDt4CwXYmls3MIocoPuyLH5gxIO7xr5zKFYT36q71wL9C2iVRF0xs2xiFM
+ RQFU3Z2bvxNhZ/7Scm17U5hEvK6cl4+xSUil/dTnX1YToXrvhuXKkUgFB/KShUr0sxqJM1goh96
+ vxqLOder7vKskzFo4axbeEpgLShGAgtU2SDkSJh7WUJzsaJ+alUK49AGFqLL6TAFTV/l3rgj1K3
+ cu29OVgwMmtsuC1Df74d6ZQtzsAi9FU8Ltqg6mUVLNLdc/0UC0TbZ0JJa8Bmx20bS7JKnUhNbYr
+ xrI0bWR7U29BXya2NaNhE4fimtycS1nGWEeObDa9gOo4Umzw
+X-Developer-Key: i=kylehsieh1995@gmail.com; a=openpgp;
+ fpr=C91EC68D64E758F931C6A897A58342B70956C481
+X-Rspamd-Queue-Id: CFF2745C3F4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289925-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.ozlabs.org,gmail.com,oss.qualcomm.com];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-289930-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MAILSPIKE_FAIL(0.00)[172.234.253.10:query timed out];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kylehsieh1995@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email,pengutronix.de:mid,pengutronix.de:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-On Mi, 2026-04-22 at 15:45 +0100, Rodrigo Alencar via B4 Relay wrote:
-> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
->=20
-> Add RESET pin GPIO support through an optional reset controller, which is
-> local to the probe function and deasserted by default.
->=20
-> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> ---
->  drivers/iio/dac/ad5686.c | 7 +++++++
->  1 file changed, 7 insertions(+)
->=20
-> diff --git a/drivers/iio/dac/ad5686.c b/drivers/iio/dac/ad5686.c
-> index cfbc1624e01c..f239880d1cc7 100644
-> --- a/drivers/iio/dac/ad5686.c
-> +++ b/drivers/iio/dac/ad5686.c
-> @@ -12,6 +12,7 @@
->  #include <linux/export.h>
->  #include <linux/module.h>
->  #include <linux/regulator/consumer.h>
-> +#include <linux/reset.h>
->  #include <linux/sysfs.h>
->  #include <linux/wordpart.h>
-> =20
-> @@ -509,6 +510,7 @@ int ad5686_probe(struct device *dev,
->  		 const struct ad5686_chip_info *chip_info,
->  		 const char *name, const struct ad5686_bus_ops *ops)
->  {
-> +	struct reset_control *rstc;
->  	struct iio_dev *indio_dev;
->  	struct ad5686_state *st;
->  	int ret, i, shift;
-> @@ -544,6 +546,11 @@ int ad5686_probe(struct device *dev,
->  		return dev_err_probe(dev, -EINVAL,
->  				     "invalid or not provided vref voltage\n");
-> =20
-> +	rstc =3D devm_reset_control_get_optional_exclusive_deasserted(dev, NULL=
-);
-> +	if (IS_ERR(rstc))
-> +		return dev_err_probe(dev, PTR_ERR(rstc),
-> +				     "Failed to get reset controller\n");
-> +
+Summary:
+Add linux device tree entry related to Meta(Facebook) ventura2.
+specific devices connected to BMC(AST2600) SoC.
 
-Nitpick: "reset control" [1]
+Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
+---
+Changes in v4:
+- Fixed capitalization: "ventura2" -> "Ventura2".
+- Reordered I2C child nodes in ascending order of unit addresses.
+- Enable PECI, LPC control, and KCS3 interfaces for host communication.
+- Configure MCTP controller on I2C4 and enable MCTP support for specific mux channels.
+- Add Infineon TDA38640 and TI INA230 power monitor nodes.
+- GPIO and Pinmux cleanup for PVT:
+    - Aligned gpio-line-names as requested.
+    - Remove unused or non-existent GPIO line names to align with Ventura2 PVT.
+    - Update specific GPIO pins to empty strings where signals were removed or consolidated.
+- Adjust SGPIOM frequency to 200kHz and update signal line names.
+- Enable UART3 and add serial2 alias.
+- Link to v3: https://lore.kernel.org/r/20260113-ventura2_initial_dts-v3-0-2dbfda6a5b47@gmail.com
 
-[1] https://docs.kernel.org/driver-api/reset.html#glossary
+Changes in v3:
+- Add annotation for marvel 88e6393x
+- Modify the gpio-line-name
+- Modify the node order alphabetically
+- Modify dt-bindings document for rmc instead of bmc
+- Move the gpio-line-names to original node
+- Link to v2: https://lore.kernel.org/r/20251224-ventura2_initial_dts-v2-0-f193ba5d4073@gmail.com
 
-Same in the commit description. Otherwise,
+Changes in v2:
+- Remove unused mdio
+- Link to v1: https://lore.kernel.org/r/20251222-ventura2_initial_dts-v1-0-1f06166c78a3@gmail.com
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+---
+Kyle Hsieh (2):
+      dt-bindings: arm: aspeed: add Meta ventura2 board
+      ARM: dts: aspeed: ventura2: Add Meta ventura2 BMC
 
-regards
-Philipp
+ .../devicetree/bindings/arm/aspeed/aspeed.yaml     |    1 +
+ arch/arm/boot/dts/aspeed/Makefile                  |    1 +
+ .../dts/aspeed/aspeed-bmc-facebook-ventura2.dts    | 2925 ++++++++++++++++++++
+ 3 files changed, 2927 insertions(+)
+---
+base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
+change-id: 20251222-ventura2_initial_dts-909b3277d665
+
+Best regards,
+-- 
+Kyle Hsieh <kylehsieh1995@gmail.com>
+
 
