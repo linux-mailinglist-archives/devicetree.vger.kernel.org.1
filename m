@@ -1,140 +1,207 @@
-Return-Path: <devicetree+bounces-289913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289909-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IEK4Nb0y62lfJwAAu9opvQ
-	(envelope-from <devicetree+bounces-289913-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:07:09 +0200
+	id WG7bMOIv62mBJgAAu9opvQ
+	(envelope-from <devicetree+bounces-289909-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 10:54:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15E5245BE10
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:07:09 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3367E45BC1D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 10:54:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 131383008217
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:06:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3930F3002315
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 08:54:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA6236F433;
-	Fri, 24 Apr 2026 09:06:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4943135DA6D;
+	Fri, 24 Apr 2026 08:54:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="FuE9gt8b"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="Vxhoj+jD";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ucGkRF3d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out198-7.us.a.mail.aliyun.com (out198-7.us.a.mail.aliyun.com [47.90.198.7])
+Received: from fhigh-b3-smtp.messagingengine.com (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C5F934EF07;
-	Fri, 24 Apr 2026 09:06:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=47.90.198.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A28F62E1F0E;
+	Fri, 24 Apr 2026 08:54:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777021568; cv=none; b=TcelVwedcjDlnPcgyr/e6D+NLsN/jkwoZEhe2STpBGaibbudrT8K2glaIGMatos+cmg5Kz6GBstx5LOLStaFihqNQ9lOdHUrMRqKyT3mynslXSTSUBbf5MdMDBOKN02bX9vc8R0el8BMDhJW5GFFn/vDaNAvMadyWvx/1uX+UFE=
+	t=1777020896; cv=none; b=nazWpYDX0cwAck1/6WgfYIlwZ9nWTwrn7xyOMGoc1BMIpJw1G3GE5t9Hev3IA3KlOBqXh4hRSTY1BhmtIJf4ilS+tsDOYa/wCY4vsOLuycPSBsr2HOeDrRBa6Spxu0Y4O+y53Xa8X692RgMCrGwF2htc0zHjKCqFXMSwPTImZ4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777021568; c=relaxed/simple;
-	bh=6aCZtPg87Y1M2DdguRjqyAFTX8sp4JNEkrDHBgMBx8o=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jlfNRJcZd48Njs5HBNW6b6VKguBaqMDiQbgsFHCnRQmU9tf1eC0F3UKz/TvHEsIad8qokLMdTbC+OX0oKOtQUDrGIPz74IVpeU96XRleImM1G23e+8uNTZ1mSMVqCBCdmMAxwAgU/m9cigw8B6FydrWkyicfz97nFPGFG6KO63Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=FuE9gt8b; arc=none smtp.client-ip=47.90.198.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lontium.com
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=lontium.com; s=default;
-	t=1777021548; h=From:To:Subject:Date:Message-Id:MIME-Version;
-	bh=ecfHlwbhziqCnj0RyxvgFELOclmn9GpLOgHDwwYNFXo=;
-	b=FuE9gt8bqRe8VqnA9HICyefLx5j1QrSXKANeo5feuaDfV97+s1nhfFDEjzHtuFyjSVDBxHqnM3LKWJHMaTOSt8qNT9zH93msVNJsVGKwIAkilMVV6MaKsFhe4hXCTQYX+49aDBWaEEILof/9Y7sNSUk4JDOXtwwe6DCCaUmn7B4JKlz6niEf2gM1wQOub8Q7/Q5wbc4r6MIUbnlDsE1uWJliNGqb+C89rM3RoSRXqGliX1d+LPFoNvzkVDn90lCmq4jpZ4So9aUpxrQdn1h3AxAZB6nlRB0rJaQPWG4ngMTTyRyKUtJJ763rb07bqH/RBDwNQp7jsbt1K9KR4MRPbw==
-X-Alimail-AntiSpam:AC=CONTINUE;BC=0.1011229|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0257291-0.00697652-0.967294;FP=310979370624404713|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033037071049;MF=syyang@lontium.com;NM=1;PH=DS;RN=20;RT=20;SR=0;TI=SMTPD_---.hJOs6zM_1777020609;
-Received: from DESKTOP-V2MKAT2.localdomain(mailfrom:syyang@lontium.com fp:SMTPD_---.hJOs6zM_1777020609 cluster:ay29)
-          by smtp.aliyun-inc.com;
-          Fri, 24 Apr 2026 16:50:10 +0800
-From: Sunyun Yang <syyang@lontium.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org,
-	dmitry.baryshkov@oss.qualcomm.com,
-	maarten.lankhorst@linux.intel.com,
-	rfoss@kernel.org,
-	mripard@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com,
-	tzimmermann@suse.de,
-	jonas@kwiboo.se,
-	jernej.skrabec@gmail.com,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	yangsunyun1993@gmail.com,
-	xmzhu@lontium.corp-partner.google.com,
-	xmzhu@lontium.com,
-	Sunyun Yang <syyang@lontium.com>
-Subject: [PATCH] drm/bridge: Fix the interrupt clearing error in LT9611
-Date: Fri, 24 Apr 2026 16:50:07 +0800
-Message-Id: <20260424085007.3239969-1-syyang@lontium.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1777020896; c=relaxed/simple;
+	bh=Ut8QNhBBEel3DXviCPKsyQ47X/HsgXFi/0/Zh+EVM/0=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=Cqmzlc+HDkvxBfUcHy9eIecr8qO+HsNlEB371bfJXRwkNKaIaKwyVqv1w/g3P5YbTGJhefR8LNDWIQnrB8w4R9QzYjTVIAVQq0n60xSr+XLAYcElADuwGwyvvL983aRQmVLvAUnPQSV9gLInMRPSP/4zSJwPJgNfkU5Y6ErC5MA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=Vxhoj+jD; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ucGkRF3d; arc=none smtp.client-ip=202.12.124.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 66AC47A0129;
+	Fri, 24 Apr 2026 04:54:52 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-04.internal (MEProxy); Fri, 24 Apr 2026 04:54:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1777020892;
+	 x=1777107292; bh=hDlP8y8oJfAzwiriWyNXaxF8PNjiFivBJXX2WXCxPWQ=; b=
+	Vxhoj+jDQThNaBN3A0wYJrBZQVfAvaeIBhrBatMkWC2/kkNDZ7eVboZribHL84Gk
+	Z2II62yW3Z154p5LcRS/EBPk6XYqESbvuxjTAE/JRGg2chHaWsou4YXt5gwd9akH
+	rg6g3+TE2uTRoKAbK7nP6YUj/Vb1B5Zru0tD7AWsrYcYN9jxjun7aui9T0pM9oO+
+	m4+67c4kKp8WAwmxoBJFJGvdhX+OF2tWKLeUfnXydOvJRvzbUPXJoXwLnUawtUrL
+	1ioe+Qq4H0cj8el4wvuck7AVBVIEWzDfJaTYgtFyxZ2Q/TiGpdMHjscJH+GBjI8L
+	GYkZftPgpcDVtrXn/A5W/w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1777020892; x=
+	1777107292; bh=hDlP8y8oJfAzwiriWyNXaxF8PNjiFivBJXX2WXCxPWQ=; b=u
+	cGkRF3dtcivkq7R/h1UtsQ3V0Rd3zT5GxWqVEt5taeGENmTcXVAnDIo56Ss/A1Mt
+	svvOzZ8pPoMS4G00FDbRtXQEGvN5PNG9R+2DF/WIkCmORfsCxKtiG5AXDzeytdIS
+	i9qTgkHBFSRsaH1A+xB9lfEgVCufshADpXNnYE1vcAoxpZG0UpGntE1dRmKfWiMx
+	fpgTYFp9uUhepRfScqD6TqS2KBL96oRLiylytKMSXj/aADu6vROTAT/trTZqlEhS
+	/KV6uenyD5sWM8Qm9ObV/Fmqj2KsfoniWs8QOj6GksYlOI737av/jjuu/269x7i8
+	L/hlKKwdmYFUVoFJWSXrQ==
+X-ME-Sender: <xms:2y_raRexXU55OfgzDqZmFJV1vD2xyDg3RucKZLkm9J_JWf3CZD7rzA>
+    <xme:2y_raaDkwZkbg-xZglrjzJ-G4gY5RkomaWh6CQXornCtGwrJtoJDLnvalOZ6uguxH
+    tvO3BfeKxXQN4SfBH1R5vSBNJPmv2p-wFwccHMCmvKUQo15SIxmwZg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgdeileeitdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthhqredtredtjeenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpedvhfdvkeeuudevfffftefgvdevfedvleehvddvgeejvdefhedtgeegveehfeeljeen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeduledpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtoheplhhinhhugiesrghrmhhlihhnuhigrdhorhhgrdhukhdprhgtphhtth
+    hopegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmpdhrtghp
+    thhtohepshhtvghfrghnughovghsihhnghgvrhesghhmrghilhdrtghomhdprhgtphhtth
+    hopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepfhhushhtihhn
+    iheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhhirhhishhlrggshieskhgvrhhnvg
+    hlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghp
+    thhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhhsfieskh
+    gvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:2y_raTg-oLq7z23uFnT5LQ8pf2PQAxekJTje9QHXbtbBzrhHWGQ5fA>
+    <xmx:2y_raea3M60xVRBvsZG6KSm_KKZBupGnMZ8oOrGOYwaRinxEos785g>
+    <xmx:2y_rafGpsa3rbSAeUpGn0L6bd-FS74ff7OLTFz9cgYW-pTQ87ANG8g>
+    <xmx:2y_raTZ42_tE0JvdJpKYMgNPgJGxqfnwKLSVzb3ORsbfXhpGx8LCfw>
+    <xmx:3C_raXpkK6XsJJv4ahSNjJaaJcp19Z3-bcksbi1eu__DcapeCDOv1EOd>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 5F1AA700069; Fri, 24 Apr 2026 04:54:51 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 15E5245BE10
+X-ThreadId: Agn-P3jpxnXN
+Date: Fri, 24 Apr 2026 10:54:11 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Linus Walleij" <linusw@kernel.org>,
+ =?UTF-8?Q?Stefan_D=C3=B6singer?= <stefandoesinger@gmail.com>
+Cc: "Jonathan Corbet" <corbet@lwn.net>,
+ "Shuah Khan" <skhan@linuxfoundation.org>,
+ "Russell King" <linux@armlinux.org.uk>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzk@kernel.org>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ "Drew Fustini" <fustini@kernel.org>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Jiri Slaby" <jirislaby@kernel.org>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, soc@lists.linux.dev, linux-serial@vger.kernel.org
+Message-Id: <30b96e0d-f296-4c31-8701-a15c568ebffc@app.fastmail.com>
+In-Reply-To: 
+ <CAD++jL=_eDY_mG_QBreSrZiho0hUrDSciedq=vrxXaTiMwrSyg@mail.gmail.com>
+References: <20260421-send-v5-0-ace038e63515@gmail.com>
+ <20260421-send-v5-8-ace038e63515@gmail.com>
+ <CAD++jL=_eDY_mG_QBreSrZiho0hUrDSciedq=vrxXaTiMwrSyg@mail.gmail.com>
+Subject: Re: [PATCH v5 8/8] ARM: defconfig: Add a zx29 defconfig file
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 3367E45BC1D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.65 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[lontium.com:s=default];
+	DMARC_POLICY_ALLOW(-0.50)[arndb.de,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[arndb.de:s=fm2,messagingengine.com:s=fm2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289913-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	XM_UA_NO_VERSION(0.01)[];
+	TAGGED_FROM(0.00)[bounces-289909-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[lontium.com];
-	DKIM_TRACE(0.00)[lontium.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[arnd@arndb.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[arndb.de:+,messagingengine.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[app.fastmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,arndb.de:dkim]
 
-Incorrect clearing of the LT9611 interrupt register causes subsequent
-interrupts to not be recognized.
+On Fri, Apr 24, 2026, at 09:13, Linus Walleij wrote:
+> On Tue, Apr 21, 2026 at 10:24=E2=80=AFPM Stefan D=C3=B6singer
+> <stefandoesinger@gmail.com> wrote:
+>
+>> This enables existing drivers that already are (UART) or will be (USB,
+>> GPIO) necessary to operate this board even if they aren't declared in
+>> the DTS yet.
+>>
+>> Signed-off-by: Stefan D=C3=B6singer <stefandoesinger@gmail.com>
+>
+> *I* personally (as SoC maintainer) think that having a few more defcon=
+figs
+> is fine, even helpful.
+>
+> But I would defer this to the more senior SoC maintainers because I th=
+ink
+> their stance is something like:
+>
+> - We have multi_v7_defconfig for compile testing
+>
+> - We know that binary gets way to big for your system: it's for build
+>   testing and perhaps booting in QEMU or systems with many MB of
+>   RAM, not for actually running it on products.
+>
+> - You are encouraged to keep your own defconfig out-of-tree.
 
-Signed-off-by: Sunyun Yang <syyang@lontium.com>
----
- drivers/gpu/drm/bridge/lontium-lt9611.c | 2 ++
- 1 file changed, 2 insertions(+)
+Right, we clearly need to do something better than what we are with
+the general defconfigs, as I'm sure many of the existing ones are
+never actually used for booting a machine, and are horribly out of
+date with the Kconfig options.
 
-diff --git a/drivers/gpu/drm/bridge/lontium-lt9611.c b/drivers/gpu/drm/bridge/lontium-lt9611.c
-index 4517aee83332..f30a2875000f 100644
---- a/drivers/gpu/drm/bridge/lontium-lt9611.c
-+++ b/drivers/gpu/drm/bridge/lontium-lt9611.c
-@@ -398,6 +398,7 @@ static irqreturn_t lt9611_irq_thread_handler(int irq, void *dev_id)
- 		dev_info(lt9611->dev, "hdmi cable disconnected\n");
- 
- 		regmap_write(lt9611->regmap, 0x8207, 0xbf);
-+		regmap_write(lt9611->regmap, 0x8207, 0xff);
- 		regmap_write(lt9611->regmap, 0x8207, 0x3f);
- 	}
- 
-@@ -406,6 +407,7 @@ static irqreturn_t lt9611_irq_thread_handler(int irq, void *dev_id)
- 		dev_info(lt9611->dev, "hdmi cable connected\n");
- 
- 		regmap_write(lt9611->regmap, 0x8207, 0x7f);
-+		regmap_write(lt9611->regmap, 0x8207, 0xff);
- 		regmap_write(lt9611->regmap, 0x8207, 0x3f);
- 	}
- 
--- 
-2.34.1
+I wouldn't object to adding another defconfig for a new (or revived)
+soc family, but I don't want to have more per-board ones.
+Overall, we have about 70 defconfigs and 55 soc families that have their
+own mach-* directory (plus a few without code), and the number of
+defconfigs alone makes it hard to keep them up to date.=20
 
+> However I even challenged this myself by adding a defconfig for memory
+> constrained Broadcoms a while back (NACKed/ignored ;) so if it was all
+> up to me I would merge this.
+
+I don't even remember that discussion ;-)
+
+One idea might be to have a tiny base defconfig, plus platform
+specific fragments that add drivers. The problem is agreeing
+what bits are essential enough to still get enabled in the
+tiny config.
+
+       Arnd
 
