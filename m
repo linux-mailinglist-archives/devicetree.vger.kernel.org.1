@@ -1,155 +1,254 @@
-Return-Path: <devicetree+bounces-290097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290102-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WCOTCgiN62lAOQAAu9opvQ
-	(envelope-from <devicetree+bounces-290097-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 17:32:24 +0200
+	id KHtcCqCQ62k+OQAAu9opvQ
+	(envelope-from <devicetree+bounces-290102-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 17:47:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80F3C460CAE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 17:32:23 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE4A3460F38
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 17:47:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5122E301AF6C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 15:31:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5BDB1301A7D7
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 15:47:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D109E3A5E98;
-	Fri, 24 Apr 2026 15:31:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D046363C64;
+	Fri, 24 Apr 2026 15:47:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fks5Jd4b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qOX5eBlh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f180.google.com (mail-dy1-f180.google.com [74.125.82.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16B883B95FF
-	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 15:31:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33F643346B2;
+	Fri, 24 Apr 2026 15:47:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777044716; cv=none; b=bJgcZVZYIJB8z6E0+ifZOArkmfFO0pkzyV5vkAshOKuURJ9UFJr3ogMRPOHoeKrbF6KbYUsr1L+fbtm4uLutrRO5gerMuXPC9YOgkQGwmUbJ0UviKACoQYUqmbw5mL00z086pYR59lNU0OrsRqADdqOe8HGF0xs1GXDumbIhg1c=
+	t=1777045656; cv=none; b=MVQhPdc4pHk4QqcjBP9BmfGHhXislQU0+KXFQSspktD2m1zwBgBKtWgL2t0RdD64jixi3U6+SyP3VER8iM37gb0rH/pWJ9th9ac8qAyNKMk3gviPTtXis2FcVpr32He3gw/NI6P9oSTDEjwT+vxBvLyi982/6j7DRJEAebJ8ls0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777044716; c=relaxed/simple;
-	bh=otD7jQdcDLxaXX/SFvmfgLVOCJ6x6Ljebj6G+BBXCTw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YJ/wYr8MyMRQHelSi+hgZUDSHgg3twSIPfzbYnFqrnNk8UJOmDo1OzA5IBrVw8T3Wy5Dfl5JSQ5o74tafx/+pWq6X+DCMwUMcq3VSVeidBmmD+blMvJM/aoNisjPyquQgLOdIzKFd321bfwuRvZ+CJFi4LevQSoZojdchcDNmR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fks5Jd4b; arc=none smtp.client-ip=74.125.82.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f180.google.com with SMTP id 5a478bee46e88-2d868d014a5so7809902eec.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 08:31:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777044714; x=1777649514; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3J8fVdyPxB0m2xHleeQEB0k0imM/1ZciMz1C7VyY1IU=;
-        b=fks5Jd4b5wx5wDPU3rJvoFnDM2ZhAbwDdNjF7ljO+ZS4UEYddxsmPVeEqgnpoqkZbr
-         PRW967WbdROt/JdZr5JtZZPs1WtZ93XmMP2EMnr/alflntSKpptGgZkNHoWBMe/Zzpj7
-         GKJG+iL73h4QyolE4p815wrIC79TNWH1R99Vemw4T1+GXIL8wQp2Kbd1UiVq9o99PNV4
-         Gk9vexxrmaUYNqjxrc/rpU0K1godWNP/pt4BRaBDFUxeEBJDYKuI5nGp3UPB9e0xtN5N
-         gDWCXLFgkAhjKaQbe1mB4EbXYAFG8pVGwQ0/4igiOeanSK0fMK4b2ET9cR0OLgzC+ncZ
-         2+Ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777044714; x=1777649514;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3J8fVdyPxB0m2xHleeQEB0k0imM/1ZciMz1C7VyY1IU=;
-        b=lDNzsQ1Tukrw2wXLqDVsog/zQKZqG6i5eOaSIIhafszDjeUPco2nH3H6FUB2xgZyG2
-         ykkrWzgRM+851byUwLNwFvnX75jNL1/N6pD5PLKQYZf1itJjxsh+MexV7Vxcfzqrl8NE
-         /dNajUFxmmBxaNwJKQv0WrmDFtddPBa5gWTfdz5GJmAtlH4akvhVdvMHsrK/20nYxLfo
-         tvf2IO+hbkapdAbxXIUJ0PR9ZoEkrRmA1GqPtgc8VKCJaXxzHEP6YeuKDp+HNuxACE/M
-         QmM1hXRgFLMlW+Cb9//4FLcZ++AtzbiAluU8nQp27VrEHVsa6Sft2XKtyZiaC3ZczSfN
-         vNSQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/OgcHGhwJwK6qqXMFp6C/hgqYQmZgW3u46T3XGqGl28Mt08Wky6BwdMOiW2VkJJPh9dMuSL/s+kGlY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyca/YQ7ak3pibYbNnZntLjDLLrep4QzbYmPdHIoCDYtGhQAlVk
-	FtGShZlPhstgXbACvqeYsUR7QBgKsDZ6WSan6x4Pgnivizs/q0LvkWh2
-X-Gm-Gg: AeBDieu39dC+traN4d0xtQZINiv4mPsK9opmLw8jrMzHNL0fTGwAxzpynAY5Aj3FLG9
-	idPW1v5x+oeDNmUIXWnG4dKP7NYcGTbdxWsmrZx/j0HAcrtToo34o7ZwQYoQnOXk+s/p3pb6ZLa
-	aEfeXXzu242h9ffyTCi2HM7E7l10DaOc/VcNvnjlZCLPGtdBV73abM2fDj+A1sKuio6WW6UPoHl
-	Yk//Jev5WxUfg1jR8v/TKXdkzhLXuwqet3wF6WNckulh7nsWU7S7e5Cb0hqjpHz8gR1lpXH+3+M
-	cxxhDuOMd5NNY67yKUOIMnSkjrafD8LI36i5sn7thLkKXp5KznoxKxDlgtDn3wbsN+ByWcC1f6p
-	CAeEIeBpSxGarsf8HrXDHxQq/3ftgqJaXCVAI4AKuwsMN8y58XVteryL+q3A9IDk+Eu8AesO/oy
-	Lp3NKo3vins+bglUdjfJeOXaaMZNJ32iHgBdWqJBB4DCxEPcx29gurnjg+khrfCZCYOgHLO0l0u
-	94=
-X-Received: by 2002:a05:7300:b905:b0:2dd:5641:f01 with SMTP id 5a478bee46e88-2e479110b4emr18033448eec.28.1777044713716;
-        Fri, 24 Apr 2026 08:31:53 -0700 (PDT)
-Received: from google.com ([2a00:79e0:2ebe:8:f405:91aa:7e5f:f595])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2e539fa5c86sm38983450eec.1.2026.04.24.08.31.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Apr 2026 08:31:53 -0700 (PDT)
-Date: Fri, 24 Apr 2026 08:31:50 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] Input: isa1200 - new driver for Imagis ISA1200
-Message-ID: <aeuMn2w3kSUl-wxF@google.com>
-References: <20260424071305.89503-1-clamor95@gmail.com>
- <20260424071305.89503-3-clamor95@gmail.com>
+	s=arc-20240116; t=1777045656; c=relaxed/simple;
+	bh=FSssUM/qlp7ESfovypvjaASUoJXNo+ODFXcjPxtQWdE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=B+4CPABmPlf6t35PN2HASGTVIOCa/GlSIyfxhhqE9VuC5Zw5rqwpZo4WDBy/qpDumvWutcAMTAaM+ZPBtw3Www4UFHD6JcxpfqHQp6+/+KQJbjbDxOnaECH/aLFHXb7VzeRY4CaQOivVUdTrM05YH91Ij4nhUiWdV8Xc6JW/R70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qOX5eBlh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C69BCC19425;
+	Fri, 24 Apr 2026 15:47:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777045655;
+	bh=FSssUM/qlp7ESfovypvjaASUoJXNo+ODFXcjPxtQWdE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=qOX5eBlhdNBZYd/8lIpY6nkazOyfy6CxJjbj5PDdcmn33fFmTRkVvAavRqf/sUgof
+	 dg2XHoH3vjPhpH4OUdrmdQiLfh6xpIXroDUi2UXWuNLDEwFALHjaEwTSjIdLfXiB+2
+	 Nk8u7AT2XK+Az6oflaUIJOJ5+FXOuGljYb9G5k7uTNE2pmhJQjBmJ/H9SxjgJOT74o
+	 RCXeSFJc5IARw9BA/Puq28uLkUfIzGfp6CQM/QOMK5joB9u1p1c3aGeBiPSyzGVMhL
+	 HRQgDHEQ2p2dy032uGUJEvPgK/6kWwm4fR+md24unZskpG3Pdm6bAt26EAJs9OUMYA
+	 sRJT3nfrIWMsQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BACF8FED3D7;
+	Fri, 24 Apr 2026 15:47:35 +0000 (UTC)
+From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
+Subject: [PATCH v5 0/8] arm64: amlogic: T7 thermal support
+Date: Fri, 24 Apr 2026 17:45:08 +0200
+Message-Id: <20260424-add-thermal-t7-vim4-v5-0-9040ca36afe2@aliel.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260424071305.89503-3-clamor95@gmail.com>
-X-Rspamd-Queue-Id: 80F3C460CAE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32TzW7bMBCEX8XQuTSW/6JQFHmPoocldxmzlWRXk
+ oUEgd+9tJyDk7o96LAC5hvN7uitmXkqPDfd7q2ZeC1zOY51sF92TTrg+MyiUJ0bBcqBkSCQSCw
+ HngbsxeLFWgYjANh6GZFSkk1VnibO5WWjfv9xmyf+fa7w5fayGXiecYN3u68bW9cnKGfsXoKtg
+ xRS/Cw47g/nJxz643NJ+3Qcvm18XNJh0zqLlrzLmWIKUSNGrVsbo7MpgvIAJmlgzx9VSnvlQgu
+ yVY5II/kcpeNoyJMjwxgtGOXbjyrrOURoMbgWmbI1mjQBWZeyTGgoKogKpWvud1fN3tNtm4tpM
+ NpbJWqUSi6xZ8E1NZrsg9fYreqjafQasmWjIktqA8mg2WmsTGuCTRSzSp58fGiqQdQ7iDKu2Bc
+ Sp+l44ml5FTGyNRS0zl6+O/6tlZu2rv565vHc92LimRehooOWYw6EplvlI7EBtaUd0llkHMWvA
+ xLOt65gkqnaW13v1a32Ko8483UhQ1m63cgv1eO2M99c23Mo83KcXreKVr9rff7bxlUKEDJkFVt
+ CX2/6VNNzv8/Thqt57xD6MUJdEQCKAiA4UJ8Q+g6h5GOErghU7JW0TAD6E8LcI/7xFfXPEmSSt
+ Kql2khzh7hcLn8ARWh9CrwDAAA=
+X-Change-ID: 20260410-add-thermal-t7-vim4-00e571badcc1
+To: Guillaume La Roque <glaroque@baylibre.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6516;
+ i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
+ bh=FSssUM/qlp7ESfovypvjaASUoJXNo+ODFXcjPxtQWdE=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ+brCfVn9+Y/M5/nsthm/8zQaZ+35Pz5Nj+z5M08/8uGb
+ jnnFr6a3lHKwiDGxSArpsjSP9fyxLvLR8983aOeAjOHlQlkCAMXpwBM5OZ2hv9FOe+8f0X/LYts
+ Pyrjt03ZuFA1tFlUOqmFWbPD6tW0+z0MfyVCWr3PLvv28LIJS0WNctPLx25ZLrPtTxfJ/XR7p8X
+ 0hgsA
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
+ fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
+X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
+ auth_id=744
+X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Reply-To: linux-kernel-dev@aliel.fr
+X-Rspamd-Queue-Id: DE4A3460F38
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290097-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-290102-lists,devicetree=lfdr.de,linux-kernel-dev.aliel.fr];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[baylibre.com,kernel.org,intel.com,arm.com,linaro.org,googlemail.com];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url]
+	HAS_REPLYTO(0.00)[linux-kernel-dev@aliel.fr];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aliel.fr:email,aliel.fr:replyto,aliel.fr:mid]
 
-On Fri, Apr 24, 2026 at 10:13:05AM +0300, Svyatoslav Ryhel wrote:
-> From: Linus Walleij <linusw@kernel.org>
-> 
-> The ISA1200 is a haptic feedback unit from Imagis Technology using two
-> motors for haptic feedback in mobile phones. Used in many mobile devices
-> c. 2012 including Samsung Galxy S Advance GT-I9070 (Janice), Samsung Beam
-> GT-I8350 (Gavini), LG Optimus 4X P880 and LG Optimus Vu P895.
-> 
-> The exact datasheet for the ISA1200 is not available; all data was modeled
-> based on available downstream kernel sources for various devices and
-> fragments of information scattered across the internet.
-> 
-> Signed-off-by: Linus Walleij <linusw@kernel.org>
-> Co-developed-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+This series adds thermal monitoring support for the Amlogic T7 SoC,
+used on the Khadas VIM4 board.
 
-There are a bunch of valid sashiko comments, please address them:
+The T7 exposes six thermal sensors (a53, a73, gpu, nna, vpu, hevc),
+each accessible through the secure monitor firmware interface rather
+than a directly mapped eFuse register as on older SoCs.
 
-https://sashiko.dev/#/patchset/20260424071305.89503-1-clamor95%40gmail.com
+The series is organized as follows:
 
-Thanks.
+- Patch 1 extends the amlogic,t7-thermal DT binding to describe the
+  new amlogic,secure-monitor property.
+- Patches 2-3 extend the Meson secure monitor driver to expose a
+  thermal calibration read command (SMC ID 0x82000047).
+- Patch 4 adds the secure monitor readout path to the amlogic thermal
+  driver and introduces the amlogic,t7-thermal compatible.
+- Patches 5-7 wire up the T7 DTSI with CPU cooling cells, sensor
+  nodes, and thermal zones.
+- Patch 8 extends the Khadas VIM4 DTS to map all thermal zones to the
+  on-board MCU fan controller (states 30–100, corresponding to the
+  FAN_CTRL register range 0x1E–0x64).
 
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+Changes in v5:
+- PATCH 4: Remove unnecessary variable and coding style alignment
+           according to Neil's feedback.
+- Link to v4: https://lore.kernel.org/r/20260423-add-thermal-t7-vim4-v4-0-d4c1528d5044@aliel.fr
+
+Changes in v4:
+- PATCH 4: Extract SM and syscon setup into amlogic_thermal_probe_sm() and
+           amlogic_thermal_probe_syscon() removing amlogic_thermal_initialize()
+           from Daniel's feedback.
+           Also fix pre-existing bug: move calibration readout before
+           devm_thermal_of_zone_register() to avoid reading uninitialized
+           trim_info, according to Daniel's feedback.
+- Link to v3: https://lore.kernel.org/r/20260421-add-thermal-t7-vim4-v3-0-a2e7215ed003@aliel.fr
+
+Changes in v3:
+- PATCH 1: Replace second if check by an else statement.
+  Remove unnecessary label in example according to Conor's feedback
+- Link to v2: https://lore.kernel.org/r/20260413-add-thermal-t7-vim4-v2-0-1002d90a0602@aliel.fr
+
+Changes in v2:
+- PATCH 1: change two const entries to enum, explain why sensor index is needed
+  reorder conditional compatible for required, and fallback only according to
+  Krzysztof's feedback.
+- PATCH 3: Add kerneldoc for meson_sm_get_thermal_calib exported function
+  according to Krzysztof's feedback.
+- Link to v1: https://lore.kernel.org/r/20260410-add-thermal-t7-vim4-v1-0-19f2b8da74d7@aliel.fr
+
+---
+Ronald Claveau (8):
+      dt-bindings: thermal: amlogic: Add support for T7
+      firmware: meson: sm: Thermal calibration read via secure monitor
+      firmware: meson: sm: Add thermal calibration SMC call
+      thermal: amlogic: Add support for secure monitor calibration readout
+      arm64: dts: amlogic: t7: Add cooling cells to all CPUs
+      arm64: dts: amlogic: t7: Add thermal sensor nodes
+      arm64: dts: amlogic: t7: Add thermal zones
+      arm64: dts: amlogic: t7: khadas-vim4: Add fan cooling to thermal zones
+
+ .../bindings/thermal/amlogic,thermal.yaml          |  37 +++-
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 102 +++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        | 245 +++++++++++++++++++++
+ drivers/firmware/meson/meson_sm.c                  |  29 ++-
+ drivers/thermal/amlogic_thermal.c                  | 112 +++++++---
+ include/linux/firmware/meson/meson_sm.h            |   3 +
+ 6 files changed, 491 insertions(+), 37 deletions(-)
+---
+base-commit: f7b64ed948718290209074a50bb0df17e5944873
+change-id: 20260410-add-thermal-t7-vim4-00e571badcc1
+prerequisite-message-id: <20260326092645.1053261-1-jian.hu@amlogic.com>
+prerequisite-patch-id: f03a086b4137158412b2d47b3de793b858de8dde
+prerequisite-patch-id: 123970c9b29c2090440f2fd71c85d3c6fd8e36de
+prerequisite-patch-id: 3e2e56b0926ba327b520f935df4ced5089bbe503
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-change-id: 20260326-add-bcm43752-compatible-e264a4f7973a:v2
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-change-id: 20260330-fix-invalid-property-bbe54d933f71:v2
+prerequisite-patch-id: 8d675e7a239985c762843515b241f0a2f45f9c92
+prerequisite-change-id: 20260331-fix-aml-t7-null-reset-2b608ebf9da4:v1
+prerequisite-patch-id: 5b5de77af11747ce964404fb827d2ee2bff47ea5
+prerequisite-patch-id: 1e37fc75fed1e533adee0f3e7e6ead1f8ff3c55c
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 2daf583fb5e7449a02bd217d8aca330171b598aa
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: d1ddf9b7710e91f8062de83bd7ba55afb2c4c112
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-patch-id: 9debd88fa60febed9cd7208f86603b4c2d270520
+prerequisite-patch-id: 314ef9ff0c4d1d15dab1dea9d92aa065f1eac3e9
+prerequisite-change-id: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b:v5
+prerequisite-patch-id: f03a086b4137158412b2d47b3de793b858de8dde
+prerequisite-patch-id: 123970c9b29c2090440f2fd71c85d3c6fd8e36de
+prerequisite-patch-id: 3e2e56b0926ba327b520f935df4ced5089bbe503
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-patch-id: 8d675e7a239985c762843515b241f0a2f45f9c92
+prerequisite-patch-id: 9debd88fa60febed9cd7208f86603b4c2d270520
+prerequisite-patch-id: 314ef9ff0c4d1d15dab1dea9d92aa065f1eac3e9
+prerequisite-patch-id: e6a1b58b91a877504a12ae68bee71eb4e496c33b
+prerequisite-patch-id: 406f88d7dabd3a870b358fb53c21686f29eb32b7
+prerequisite-patch-id: d7a75ae3be0f54e0a7e81ccb0043a2f05423c9d0
+prerequisite-patch-id: 5e19dc5ace12b532284246f5c2ff3f214d8a9c4f
+prerequisite-patch-id: 06e85862f502b682dac8a0932986d43f0bb82770
+prerequisite-patch-id: 4809bbedf79f59e1abc52c17cffc0b1bbb43d365
+prerequisite-patch-id: c050e8bac4b5491f6c7008a5ccb26f20fad38b46
+prerequisite-patch-id: 30677db8fc57270787245103c0d5acf8791307b0
+
+Best regards,
 -- 
-Dmitry
+Ronald Claveau <linux-kernel-dev@aliel.fr>
+
+
 
