@@ -1,169 +1,141 @@
-Return-Path: <devicetree+bounces-289883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289884-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UOMiMWAd62mRIgAAu9opvQ
-	(envelope-from <devicetree+bounces-289883-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:36:00 +0200
+	id kPsnH8Ee62mRIgAAu9opvQ
+	(envelope-from <devicetree+bounces-289884-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:41:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D364C45AC16
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:35:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBF1E45ACCA
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:41:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 82C3B300FEDB
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 07:35:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E20873010BA7
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 07:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08AC3345CD0;
-	Fri, 24 Apr 2026 07:35:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AA2431F9A8;
+	Fri, 24 Apr 2026 07:41:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cOLd6VB6"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="N7dNr0GT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3F643033FC
-	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 07:35:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B68227FD74;
+	Fri, 24 Apr 2026 07:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777016157; cv=none; b=IpyfYgIoS+UznWD8a0UTqpu1/N9YlWUzJXkguaedgS1PczaEedjS2WK4O2am90rbLaDB0b25hCn7eIYq6Seg5Hv9Ufsj5Yft6WRTfwkqWt22wqKdasiTqzTsglzv9zXVqnjYDJk8FLgn88sq0HQWD4bxhjH7fjCP7O8Pyp9v2V4=
+	t=1777016508; cv=none; b=tD+Qb+KeIypsJF22KpijhOQcedgCtajUZjsCMsfrBNKNhyksDGubsdhvTELeyvByZA+XyvT0QDQR9D5DHbscKVumG7Csnno1Va20TG3bs92pfSCu71Ly0aEs1MWsdCiLXGwi8JxiVq4CsZQVlZCLS3gY0RyrqXtgljaDpelBrsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777016157; c=relaxed/simple;
-	bh=wDgcirggJduBcVdRsft7PykNXrKztvJ+7d8v88xJsoc=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iBXJ5F+WE5Wgz7Yb8LTj1nDgFa1EJDrMcpMecxYWazJ5eJrAKtHthQm4yqasKh2UdTDfOOt2YLQKmVIjD7VGvBgf0iluQZJnyCbXKUV1HJ94ZJ9ssKK5Nbekyq4o7HEYA25dVUPkBSWhHWdJbHV5YyUGEfxkwTkWDyY7YR9fepw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cOLd6VB6; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-43d7650202fso5769089f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 00:35:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777016155; x=1777620955; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3o7ZPgK+KU82N6aJZP72mCPOuaPHic03cUfPsM2xL1A=;
-        b=cOLd6VB6ZrbG0bDWdLWwbBehZiOi8Z1uPvgzo8dMz14WINH2iKKGA291sNLlIsjxWF
-         VvRogTcwHflCsnbGKYy5QvE48D9H6sufRPlOHi5Kl3wIWW1fiwejVIGRV32aC58pySlm
-         qfboBujzyP8yucqLRB3MkY7/eQCl3pcRzSJxpMPcLYMpRRHxpwr3EZxHZZHf39qGPQSF
-         POp424KwlMib8NTmgZFTgoWKXMWNT/cg0tIVNnVJChSM4Szp2VKcf0OKuPgKeTvH3oJz
-         tqP/0zarMpqkV5/FYF+QYGb+huqU0udwVX/ze4tgTXONYn+5Ucci5Pj9j5k3CX70BrGR
-         bs/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777016155; x=1777620955;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3o7ZPgK+KU82N6aJZP72mCPOuaPHic03cUfPsM2xL1A=;
-        b=drOM9CyWI06NvRYocWl3RSE2F+//l9yy+JNxlBSpn9FmPZUgDh/5jj6dCesXnshGWu
-         RFjj75onDEQb2MY5LzFFhkKVqtZYOVcAQRo0GwO1tP6LDRED88yZS02u8qgFyc2K3SPI
-         BZ5fDDPftxZgxYCCbms8kp7bGplBRSktU7LhJJQETI3Lu3jC2cRw4Q8p0tr4ltnb69RM
-         RBxYJbe75X0P+7+HreqfHIYiMOZOpRVN0jKZ3U15Jsd3zE67Y0QE4gWkjsyoFNqYF4qG
-         zeKiyOq2ovd49o7bMgpYLb4XitsJCnGhpli+JaNyOhEn24+VS3eMGY9T3UICaZAt3ueY
-         mkTg==
-X-Forwarded-Encrypted: i=1; AFNElJ9F0Ern8l9Nx0U7rvGqscq6wxnI7lykapgdr3Bfkh0dk3uPn0gFGSv0kXBunIVGXAQRAUaye4Z10a/g@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywq51tj5nV7AI95hMryVOT7PsZvErEIFTjoHNV0Q+Y63yp5fEFD
-	gjvAzQHHx1xznaLfwFDRFu7fUVoJ4xESXeC66edUHE24a94SNXKkjJI+
-X-Gm-Gg: AeBDieuSIjp7zV507RrGA9KmGRS4t+Hhtx6aZbr+rT6GdYlvtfYuGqoT/rowcXefH4g
-	/3U9S/ye90uP2bhUvnyw1IXbzx5RQF1EtBuRVFlKFeJ7pqplw0bDaEUQWJjGCZFOtYNQ9bth0Xq
-	rYBwOMTCFBPRGm5fWcF5E45/jCTBWDXv4KM/vW5EZ1kCtMt4mndtvg/eg75LPAyg4OatfezhEKF
-	opU2a9wGxGVJaNZasB8CGReSIXM3i+LnsPZvAmvjFheRfvwL2+V67mSVVASeBKjXpmliZYgFN6u
-	zxJpHbOWczT1q8ydzYxae4B3GgUoS769gd5w3KpVEkUvfcXlM37nMWeVGfZFjWY4TBFAWJy3IZs
-	X8WXmtQrAbliotzjj1hrp8wgJ3XlMl4KEA1QjxeAhaQMk45fhlhsUwaNetcVSpnbF2AQC8G/UpX
-	PFL6QiDAKYWKJmOYAAVrQ8FNR1g0g4TvikM4NG7AJGZHvtYc/F/KG+ASvssf9e06V9Hc1Capz8s
-	ctuzui0JL3Jevl8gFcorqQnTAAZaAT6hFZ+UfqhmZ42b/ErzPxVF2nOTv3C8Q==
-X-Received: by 2002:a05:6000:2284:b0:43b:42af:75e with SMTP id ffacd0b85a97d-43fe3e23abbmr47806405f8f.44.1777016154793;
-        Fri, 24 Apr 2026 00:35:54 -0700 (PDT)
-Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43fe4cb1176sm59625994f8f.3.2026.04.24.00.35.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Apr 2026 00:35:54 -0700 (PDT)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Fri, 24 Apr 2026 08:35:51 +0100
-To: Conor Dooley <conor@kernel.org>, rodrigo.alencar@analog.com
-Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Michael Auchter <michael.auchter@ni.com>, linux-hardening@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 06/22] dt-bindings: iio: dac: ad5686: rework on power
- supplies
-Message-ID: <p76mchyeawpgqghojx6ww4yrw3fxxv7u32clkn4wwa7hzb3yx4@52ivn6p5hxu2>
-References: <20260422-ad5313r-iio-support-v1-0-ed7dca001d1b@analog.com>
- <20260422-ad5313r-iio-support-v1-6-ed7dca001d1b@analog.com>
- <20260423-revenue-sensation-c62f759e457a@spud>
+	s=arc-20240116; t=1777016508; c=relaxed/simple;
+	bh=QN7KVGFo1BBaETCje+vuDDb7jfacPCDEHCKeQNll9dw=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=A2RR2S8JkxmpWoABKhcm/TUBMZxHMKx++55FNSBf1npsbCeslCq/Oshyfc5Yac5Km2r2V6Q3SaxAzGQT8tqCqj7gtM1SZScQN8KdNyLxfszV3a2hbSG05gThRIFrZ4zpDG7UGaf+Px1BCFh4QYCUW6QBNlPh0tFuvMOI5nBRsCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=N7dNr0GT; arc=none smtp.client-ip=54.92.39.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1777016474;
+	bh=PyZmHuWfKfnxFQXFKX9eFlxb2Dgp9LXI++/EQXWEc0o=;
+	h=Mime-Version:Date:Message-Id:Subject:From:To;
+	b=N7dNr0GTeBYGuAJVwlLXrrc5qB6R668qCsngUoPvDtAju0e34mX5+atctbZJHQXCp
+	 1kyS8PTYMxJjOVf8II9t4j0Q3pJbTi2GRf7Gd7XMdL6zVm0+YzkY542dUueIp69D27
+	 T9khJMtQK28wrPbMQrML6pdjGqo+7CmIckT9gbWQ=
+X-QQ-mid: esmtpsz17t1777016471tb355b527
+X-QQ-Originating-IP: I3YscDtf5R4mtzw4gOyfBpObXsnW5epaXi8nhYV/Te0=
+Received: from = ( [120.237.158.181])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 24 Apr 2026 15:41:08 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 11335633746206723623
+EX-QQ-RecipientCnt: 18
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260423-revenue-sensation-c62f759e457a@spud>
-X-Rspamd-Queue-Id: D364C45AC16
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 24 Apr 2026 15:41:08 +0800
+Message-Id: <DI17RJXO783M.HVG11THU3E9T@linux.spacemit.com>
+Cc: "Conor Dooley" <conor+dt@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Paul Walmsley" <paul.walmsley@sifive.com>, "Palmer Dabbelt"
+ <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, "Michael
+ Opdenacker" <michael.opdenacker@rootcommit.com>, "Alexandre Ghiti"
+ <alex@ghiti.fr>, "Guodong Xu" <guodong@riscstar.com>, "Hendrik Hamerlinck"
+ <hendrik.hamerlinck@hammernet.be>, "Yangyu Chen" <cyy@cyyself.name>,
+ <spacemit@lists.linux.dev>, <linux-riscv@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 0/2] Add DeepComputing FML13V05 board dts
+From: "Troy Mitchell" <troy.mitchell@linux.spacemit.com>
+To: "Sandie Cao" <sandie.cao@deepcomputing.io>, "Yixun Lan"
+ <dlan@kernel.org>, "Troy Mitchell" <troy.mitchell@linux.spacemit.com>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260421064021.1580094-1-sandie.cao@deepcomputing.io>
+In-Reply-To: <20260421064021.1580094-1-sandie.cao@deepcomputing.io>
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: NpzNf8JHXbEI/OxfmaUgVALc9nQiYaoolaOMBFjVIceqRDaqyQsBJwuT
+	9LeUsohyECSKzDFj9EPczKjVgzeDsDjlZkh64TybvRW/WQZ63yZN+Bi/kCh30h00C3C1BgD
+	BVjSikJ6PIBeTVOcFsHoX/dgNIRYE0Ruqn/tMjgAkDj4JHzNj17Dg+YEK4+6OXf1u1wZf3w
+	ihz5KMg8xVEpLcBJBUDQ3Z3L9b89uhWEZF34QxQ16ZJzMWP0braowNpxN0PNeyrQ4NapnRU
+	RNlSEzzqBWnTQjnUFN0m23gP92ISL+wW+WxLN1c/+LQlZLVork4NAl6wgiGzn15VlY1okOC
+	dilH/uQqZBFpFt6OgPMCs5gwbqDWael3Nphok2sR7ZHNHBT4BGt2ug6dBd5ou9z3E/AVJUs
+	/CHb5+nn/SCJ3c3OUfiQokPK0zMcPIBUGWJq1c6+9D9dcgFaNnqHAeW8UyWVnF8O15B+4s+
+	5LL36UJ5bZ9y3LfC1wgWEvsG2xcFdq36VyzS+i9bbnMRdspSoIlMlabSKvqbl3Fa4LbSFWl
+	yQuRxqB9p5hC6RldS3xuQ3vjmR904+hx9cZtGyM7TGTduzaAQylcSOlA3uJDfzG+8ROFEsx
+	SlB/faW7rk5W6V8dph8K9+zGP9kjLksKqjHgxfRkUPwYtswEuzVbAYeBbge+i4X5HN67SXK
+	BqzejYBvjqBWnuyL7k8DAGEGH44eaLTMUew19Kc06t7Mc9P75Ytkon/VgkD2/792E0aSbVV
+	gj4cH4xO2KLnrIbbiMvM/FJiKrY/TR69Ch8dyodn7N2QkPnIYUnKD5JJwlIHl3/RSUjfqow
+	DJ6zczVYWTKKbOGCIZwI6qiFAcjbNu0l4Gs6Qfnp6+9CcXg3vtsUf+5IiN/0S+Sv0XCBvAe
+	9aM9sw+bG/Lvc4+pyZd40Z8u6m4HJ6dx2LQARGXNlDIT3o/FwQa5As0HXkmqUHYW4XKdwug
+	YDCcEdHfrjaQU9F9eQg2NND3bu1IzfaRZyk2ygvpBJXrwYv/kQAkLz79S63pmxr7ASFgsHX
+	ThV87cRWqgRQtSKqUXHy53jZDQCxvulhuccmZUr1VjsV4uBZt6WCCdAgIbFh4=
+X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
+X-QQ-RECHKSPAM: 0
+X-Rspamd-Queue-Id: DBF1E45ACCA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289883-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-289884-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[spacemit.com];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.spacemit.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.spacemit.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,spacemit.com:email,linux.spacemit.com:dkim,linux.spacemit.com:mid]
 
-On 26/04/23 06:32PM, Conor Dooley wrote:
-> On Wed, Apr 22, 2026 at 03:45:40PM +0100, Rodrigo Alencar via B4 Relay wrote:
-> > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > 
-> > Add supplies for VDD, VLOGIC and VREF input voltage pins. The vcc-supply
-> > property is deprecated. Certain devices require vref-supply to be
-> 
-> Why is it deprecated? Is the naming incorrect?
+On Tue Apr 21, 2026 at 2:40 PM CST, Sandie Cao wrote:
+> This series updates Device Tree related files to introduce the
+> FML13V05 board from DeepComputing, which incorporates a Spacemit
+> K3 SoC.  This board is designed for use on the Framework Laptop 13
+> Chassis, which has (Framework) SKU FRANHQ0001.
+>
+> The series is rebased on next-20260420.
+>
+Thanks.
 
-Yes, vcc does not exist. It is also misleading as it may sound as the input
-power supply, but in fact it is being used a voltage reference for the DAC output,
-which has a proper name, vref.
- 
-> > available once an internal reference voltage is absent. Still, this patch
-> > does not add those as 'required' so that the ABI is not broken.
-
-...
-
-> > +  vref-supply:
-> > +    description:
-> > +      Reference voltage supply. If not supplied the internal reference is used.
-> > +
-> >    vcc-supply:
-> > -    description: If not supplied the internal reference is used.
-> > +    deprecated: true
-> > +    description: Use vref-supply instead.
-
--- 
-Kind regards,
-
-Rodrigo Alencar
+Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
 
