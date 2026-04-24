@@ -1,48 +1,49 @@
-Return-Path: <devicetree+bounces-289841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289842-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wCobMdXp6mkrFgAAu9opvQ
-	(envelope-from <devicetree+bounces-289841-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 05:56:05 +0200
+	id YJ1cGdbp6mkrFgAAu9opvQ
+	(envelope-from <devicetree+bounces-289842-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 05:56:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54B314598BA
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 05:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32DAA4598C1
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 05:56:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 503F8300233E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 03:56:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7EB213003801
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 03:56:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3EA2D0C97;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3042F619D;
 	Fri, 24 Apr 2026 03:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B6nJDoXu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R14xCIg/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC1BE211A28
-	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 03:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A0E211A28
+	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 03:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777002962; cv=none; b=Z2FMNF5ihv0fcEdndJ+O2go1h9ZMIMCokqCYXmejXR4sgh9s6FvdD93ZHLqYW5YbSX+iC7e116WBArUXtaykbytNL7E8mYxxXek8m1Pak7xVUQgG1WD3O2ugvovmsbvex8RHS2AQeKTsCT4vnpk6WkNh4tTbRw9RzHub4vtIZ4g=
+	t=1777002962; cv=none; b=Qc3AzV3p6zbzXslaeatno+i9C1ygosTRtgZUPzk0lssbmpvFqgE+C/dIusKYusmYtKiGNPSZg9/MRCCrXWJPho/r+E1V5TKfOKNLwRmJ1jfgcCy8WwAkF2eu73s2Y1O1H6CwCEfbTwI2Z1loP8+BmfKZturt+svXWOMui9KxHMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1777002962; c=relaxed/simple;
-	bh=uIcinqDTwAD+6bWlk8Jl9BxgCl399jpzEpwpaVxWOPs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QSddCb+qLdflai9Ylg2sD75nHLxCZ0KxkHVBSKbATugZlGRg81jb/pXgqc1krAO0pcfOK4MxTQDTb0cZuetdDBeih1f86a2E00sPFaDj873DUqOYDB9qyP6K0sFNUq37kPTO63m0QTGGXuj0BQQAUZWEYOjexq413FCiRwYdM1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B6nJDoXu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0373FC19425;
-	Fri, 24 Apr 2026 03:56:00 +0000 (UTC)
+	bh=bFjtymfXxE5/k41sX1HOBu+kS6i2Js6tqtc4OgyUK9Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=uClGAy3IEg95Z4JvfLL1tQYftbjG+SJekIoMllK6CMjTWN6B87tzaLqnO5gyukJGQyvBV8GxvVfMD/WkUmU+5Gmyh8jWeyvHDWslqFOkmy97aNW6KwI6sNtN3LfvDgd3D6Dmsdyx8vR8L6Db6eq3wgA8/rDgNuFwy/hhL70VAwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R14xCIg/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B94C3C2BCB0;
+	Fri, 24 Apr 2026 03:56:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777002961;
-	bh=uIcinqDTwAD+6bWlk8Jl9BxgCl399jpzEpwpaVxWOPs=;
-	h=From:To:Cc:Subject:Date:From;
-	b=B6nJDoXuWTic3+m8PGdXM0t1gY06eXRAmtn1RchNKF+ojjrWTOwm6+7aWF9aIh3PV
-	 ifJ7L4e1dXNICRljIqfOGSPxpwW8BJ/N7Y0epMXPC32MpgI4n7wpoSTTm6tiuLMZzL
-	 SBGmudNlTif5JrkU8HQ0i7B/VVuPGHfrHXuKtWhZGe3wIKhGm97tCvdH7tk2uK1qId
-	 EEnVkmfzXWb03LJFQttcGP+oE6/YqkZXVpHF5kFDUYwumZB0zqyqmOd593X/je6L75
-	 5msrKJ2u6Bc9/KwVNpkHb6r4dLjkQLLDbx96QWFUKvH+HJQY3GbNUy0J74OdH8occA
-	 SUYXSvIO1rSlA==
+	s=k20201202; t=1777002962;
+	bh=bFjtymfXxE5/k41sX1HOBu+kS6i2Js6tqtc4OgyUK9Y=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=R14xCIg/iJtiIRXDaA7TQ7sBE8tAI2qzKvtjIYrx6g7SJAYfUdCdiT9JI622edlx1
+	 2qK/w3iKjyh6YoXLzkznbEvyXmvj/nz4M1/UJ2Kp9ODjHPiXz8fyYDXyD7P/YDjje1
+	 coKuyCHiarS0zWydHVTJos/I9MKLej998QKrVmOCTNO9u4XaNnwXWfFVAGexvS6Baw
+	 VWwrFMVaWfbisAmiOd1nMwVqvZjwT0Hvvd7lsEZthLeTt+ycZpa7q4NL7Nh1SmAKU2
+	 IufyCPaWhOOmrebShCX9dDVZ/K2ZqvlxGA0xypYlbkEVyvBxy5XQZffO/waItVvi6L
+	 YLVBB8WrnElYQ==
 From: Dinh Nguyen <dinguyen@kernel.org>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -50,10 +51,12 @@ To: robh@kernel.org,
 Cc: dinguyen@kernel.org,
 	devicetree@vger.kernel.org,
 	michal.simek@amd.com
-Subject: [PATCH 1/2] ARM: dts: socfpga: remove the reg property in the pmu
-Date: Thu, 23 Apr 2026 22:55:45 -0500
-Message-ID: <20260424035546.646650-1-dinguyen@kernel.org>
+Subject: [PATCH 2/2] ARM: dts: zynq: remove the reg property in the pmu
+Date: Thu, 23 Apr 2026 22:55:46 -0500
+Message-ID: <20260424035546.646650-2-dinguyen@kernel.org>
 X-Mailer: git-send-email 2.42.0.411.g813d9a9188
+In-Reply-To: <20260424035546.646650-1-dinguyen@kernel.org>
+References: <20260424035546.646650-1-dinguyen@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,38 +64,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 54B314598BA
+X-Rspamd-Queue-Id: 32DAA4598C1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-289841-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dinguyen@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-289842-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dinguyen@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
 	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[fffed000:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 
 The Cortex-A9 PMU accesses the hardware via system coprocessor registers,
 not memory-mapped I/O. The driver does not parse or use a 'reg' property
@@ -104,48 +106,27 @@ This change fixes this dtbs_check warning:
 
 Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
- arch/arm/boot/dts/intel/socfpga/socfpga.dtsi         | 4 +---
- arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi | 4 +---
- 2 files changed, 2 insertions(+), 6 deletions(-)
+ arch/arm/boot/dts/xilinx/zynq-7000.dtsi | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
-index 5dc8d33e8ad7..98cb4cad2a10 100644
---- a/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
-+++ b/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
-@@ -37,13 +37,11 @@ cpu1: cpu@1 {
- 		};
+diff --git a/arch/arm/boot/dts/xilinx/zynq-7000.dtsi b/arch/arm/boot/dts/xilinx/zynq-7000.dtsi
+index 153b8d93cbee..fc7d5b5cfaa0 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-7000.dtsi
++++ b/arch/arm/boot/dts/xilinx/zynq-7000.dtsi
+@@ -49,12 +49,10 @@ fpga_full: fpga-region {
+ 		ranges;
  	};
  
--	pmu: pmu@ff111000 {
+-	pmu@f8891000 {
 +	pmu: pmu {
  		compatible = "arm,cortex-a9-pmu";
+ 		interrupts = <0 5 4>, <0 6 4>;
  		interrupt-parent = <&intc>;
- 		interrupts = <0 176 4>, <0 177 4>;
- 		interrupt-affinity = <&cpu0>, <&cpu1>;
--		reg = <0xff111000 0x1000>,
--		      <0xff113000 0x1000>;
+-		reg = <0xf8891000 0x1000>,
+-		      <0xf8893000 0x1000>;
  	};
  
- 	intc: interrupt-controller@fffed000 {
-diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
-index a53a94678df2..ba4c0ca89788 100644
---- a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
-+++ b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
-@@ -29,13 +29,11 @@ cpu1: cpu@1 {
- 		};
- 	};
- 
--	pmu: pmu@ff111000 {
-+	pmu: pmu {
- 		compatible = "arm,cortex-a9-pmu";
- 		interrupt-parent = <&intc>;
- 		interrupts = <0 124 4>, <0 125 4>;
- 		interrupt-affinity = <&cpu0>, <&cpu1>;
--		reg = <0xff111000 0x1000>,
--		      <0xff113000 0x1000>;
- 	};
- 
- 	intc: interrupt-controller@ffffd000 {
+ 	regulator_vccpint: fixedregulator {
 -- 
 2.42.0.411.g813d9a9188
 
