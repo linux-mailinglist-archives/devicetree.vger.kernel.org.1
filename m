@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-290133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290134-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iL88DU6l62mrPwAAu9opvQ
-	(envelope-from <devicetree+bounces-290133-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 19:15:58 +0200
+	id SOfgCM6m62mrPwAAu9opvQ
+	(envelope-from <devicetree+bounces-290134-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 19:22:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1E85461BEA
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 19:15:57 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79EDE461E14
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 19:22:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7F6BC3070416
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 17:10:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC3A2303C400
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 17:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E99D53E5570;
-	Fri, 24 Apr 2026 17:10:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D194D3E4C9F;
+	Fri, 24 Apr 2026 17:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RLp+9G0o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mWBg9CoY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3B573E51DB;
-	Fri, 24 Apr 2026 17:10:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A055F3264E6;
+	Fri, 24 Apr 2026 17:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777050642; cv=none; b=bBr5c4itwUIxNW20nfPkm36WvATFPSegrgIWHbkyvUlByJxAhKsLqQipXcXr4623Bl3LGt8AdFiUwpPGWLC6jbveGpxXQXfE1C++xGAIdERYUmqPJnoS2oJ83L8X0MDU0cryVaq7kOQcf+w13v/pSvVlkI7EmkLBmVq7yOfvTMY=
+	t=1777050697; cv=none; b=hB1tVKHPjtthyxPLOUu10Y7XB6ut4lIuDttkCeSLi69EVROhSCh5QI0sUCcg5TCelhF15kMXX3DahOSr7qDLC/Hgh3gb9R2t6pw9sRa06HJG581kZq6TDnrRlBWW2MsCPGeMpsIYVkq4VDKw3AoHnBZZic/DHrWzJ28lA3qL1pk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777050642; c=relaxed/simple;
-	bh=Ammc+9LMdTmtT/fzG979zu8syJ7zUShBhwZ/8YHoqXE=;
+	s=arc-20240116; t=1777050697; c=relaxed/simple;
+	bh=xLZz4WC8Bo8u0efX2LWmkvpBmMfi9ZcfdInsNPrIn4A=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nSvrktB0tGJV4vGDkGlxONHZla1Z9HTXnXGZI4WzeBnM3uFLZeHgtFSV3Kl/VPoXX7xDscGstDmEKdiUauhlDF5Qa3TceqZGNhaOpwT4+wdyTXIgALejjpsRoRnhyEmWCpYZnnOSdcAb9k5rHtNbMwVcpRYTj2ydAzlK90FsLsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RLp+9G0o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E09E4C19425;
-	Fri, 24 Apr 2026 17:10:35 +0000 (UTC)
+	 MIME-Version:Content-Type; b=M+VfwIjLuGmlM/qRXvSSCShasYpcx94RqrBZ9iaVOFPHw8oxuyxcyD0whM8Tdzvm9HRRbunxTOJdOgVjBG9dUhoxjooA4RLJLmDFbadNyqOFkzD+DGcph+DCuaAFM1e+R1DJ/smhSFfacoY+GF4Vk07Qf3ST41Lq2QflpnovqB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mWBg9CoY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 923C8C19425;
+	Fri, 24 Apr 2026 17:11:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777050642;
-	bh=Ammc+9LMdTmtT/fzG979zu8syJ7zUShBhwZ/8YHoqXE=;
+	s=k20201202; t=1777050697;
+	bh=xLZz4WC8Bo8u0efX2LWmkvpBmMfi9ZcfdInsNPrIn4A=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=RLp+9G0oZHF26TKhq0clrLk7CySnxTuc9+JpkdUqYj3lc5xyEPSzjilNOvAGWxOzI
-	 oEOOnRFGNagkfc9RCvqvG6d92ynU+duuyowy3mxOMnXO4MEUS02yXEnIJmSxt0KoHs
-	 mAesDwegNtYtDUJwxvt7AzQppM2CHbPvyxULiEQG44d7Yo0qfk3oJsUr1OBmgsXaZC
-	 asaqRFTUgYgfrCKRdllPl5kxtqCx7q1CWnelmzIhIiKjqq2yXccrCTJP1iu5CYA9GW
-	 ZIcQB+lqEwbxigVF4o9w8Cfzana2pWmDCrqkQ1CvH/cxPNQJJ705/Nh3bji/rrezhq
-	 ewl8rPUkjVROg==
-Date: Fri, 24 Apr 2026 18:10:31 +0100
+	b=mWBg9CoYIa1d+e43erewy3MvCpQVOp7TUxQ+7W2m9+oGX7OlGF2kD3C2JQdQaWThG
+	 TcE0jz3jmfNwMopsEE74S2AS8ObuSicruj1fl/Bgd1MZh8YMG447wSdsuHCKqa49Sd
+	 oiNury1DOjrJ2hteAhPSKUluuiz9zIlyR/mm5s11J+XrTRH749Vzovf8cs8xD1kWUU
+	 ZZeAAB+PqogvTfiSw+Aq3qVUNdm0pmiGp1Fp4aWQXeFzoHeSCQSlGJyp95PzTV7XFU
+	 4daqLy0k9ZhK8KRLAKJc007LH8b0/dU9+0RHFG91hKJNw+kXq6fB+KQ+wQPR51UgoX
+	 IMYC6Kj6QTQPg==
+Date: Fri, 24 Apr 2026 18:11:25 +0100
 From: Jonathan Cameron <jic23@kernel.org>
 To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
 Cc: Rodrigo Alencar via B4 Relay
@@ -58,14 +58,13 @@ Cc: Rodrigo Alencar via B4 Relay
  Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kees
  Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
  Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 14/22] iio: dac: ad5686: add support for missing power
- supplies
-Message-ID: <20260424181031.2270a508@jic23-huawei>
-In-Reply-To: <mr2roj56empkjsfmeptr4iemblzca4myxohcieobk7bx5ikpy4@5a2j52x7x7lo>
+Subject: Re: [PATCH 21/22] iio: dac: ad5686: add triggered buffer support
+Message-ID: <20260424181125.7df826eb@jic23-huawei>
+In-Reply-To: <h65ofgapkjztmi5szcmtejcwtjchiyxyp73njefrppxyalw7y3@fjz764sgxkbz>
 References: <20260422-ad5313r-iio-support-v1-0-ed7dca001d1b@analog.com>
-	<20260422-ad5313r-iio-support-v1-14-ed7dca001d1b@analog.com>
-	<20260423190524.12ef4acb@jic23-huawei>
-	<mr2roj56empkjsfmeptr4iemblzca4myxohcieobk7bx5ikpy4@5a2j52x7x7lo>
+	<20260422-ad5313r-iio-support-v1-21-ed7dca001d1b@analog.com>
+	<20260423192714.04eaa55e@jic23-huawei>
+	<h65ofgapkjztmi5szcmtejcwtjchiyxyp73njefrppxyalw7y3@fjz764sgxkbz>
 X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -75,7 +74,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: A1E85461BEA
+X-Rspamd-Queue-Id: 79EDE461E14
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
@@ -83,12 +82,12 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-290133-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290134-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -103,77 +102,52 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[]
 
-On Fri, 24 Apr 2026 09:08:30 +0100
+On Fri, 24 Apr 2026 10:20:43 +0100
 Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
 
-> On 26/04/23 07:05PM, Jonathan Cameron wrote:
-> > On Wed, 22 Apr 2026 15:45:48 +0100
-> > Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
-> >   
-> > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > > 
-> > > Get optional regulators for vdd, vlogic and vref input power pins. vdd is
-> > > the input power supply, while vlogic powers the digital side. vref is
-> > > replacing vcc, which is being deprecated, but still supported. The value
-> > > of vref_mv is checked so that a device without internal voltage reference
-> > > cannot proceed without an explicit supply. Error report uses
-> > > dev_err_probe(), which helps debugging an init issue.  
+> On 26/04/23 07:27PM, Jonathan Cameron wrote:
+> > On Wed, 22 Apr 2026 15:45:55 +0100
+> > Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:  
 > 
 > ...
 > 
-> > > -	ret = devm_regulator_get_enable_read_voltage(dev, "vcc");
-> > > +	ret = devm_regulator_get_enable_optional(dev, "vdd");
-> > > +	if (ret && ret != -ENODEV)
-> > > +		return dev_err_probe(dev, ret, "failed to enable vdd supply\n");  
-> > vdd is very rarely optional.  Can we not rely on the stub regulator
-> > that will be provided if there isn't one in DT?  
+> > > +static irqreturn_t ad5686_trigger_handler(int irq, void *p)
+> > > +{
+> > > +	struct iio_poll_func *pf = p;
+> > > +	struct iio_dev *indio_dev = pf->indio_dev;
+> > > +	struct iio_buffer *buffer = indio_dev->buffer;
+> > > +	struct ad5686_state *st = iio_priv(indio_dev);
+> > > +	const struct iio_chan_spec *chan;
+> > > +	u16 val[AD5686_MAX_CHANNELS];  
+> > 
+> > I may be wrong but I suspect the static analysers won't like the
+> > fact that only part of this is initialised and they can't
+> > tell how much of it is then used. We might need some sanity checks
+> > to keep them happy even though we know they will always be fine
+> > (branch predictors should quickly make them near cost free).  
 > 
-> Corret, vdd should not be optional, but I havent made it required in the dt-binding
-> doc. Should I be concerned on breaking existing dts in the driver implementation?
-
-If we never read the voltage then the stub regulator you'll get
-with devm_regulator_get_enable() should be fine.
-
-Making the binding say that it is required is fine (as long as clear
-reasons given) but the driver must continue working without it.
-That can be via stub regulators though.
-
-
+> will just add = { } to end, so it get initialized to zero:
 > 
+> 	u16 val[AD5686_MAX_CHANNELS] = { };
+> 
+> > > +	int ret, ch, i = 0;
+> > > +	bool async_update;
+> > > +	u8 cmd;
 > > > +
-> > > +	ret = devm_regulator_get_enable_optional(dev, "vlogic");  
-> > Also doesn't sound very optional.  
+> > > +	ret = iio_pop_from_buffer(buffer, val);  
+> > At somepoint we should probably add a sanity check on buffer size to that.  
 > 
-> The same way, that is not required in the dt-binding doc. Also, there are different
-> packaging for the same device, on which vlogic is internally connected to vdd and only
-> vdd is exposed. Some board designs may also do the same externally.
-
-Ugly if it's a packaging thing.  In some sense those different packaged
-versions aren't compatible in that case.  It wouldn't be correct to use
-a stub regulator in this case as we should be mapping it to the same
-one connected to vdd (reference count should just end up as 2 for that one).
-
-Any way we can detect the packaging difference?  I think for some similar
-cases we've taken the view that this makes the parts incompatible so
-they need different compatibles, but that seems overkill for this.
-
-If not I think I'd go with a stub regulator (so drop the _optional)
-and just not worry too much that it might ideally be the one on vdd.
-
+> nothing to be done here then, I suppose that should be an API-level change
+> for iio_pop_from_buffer().
 > 
-> > > +	if (ret && ret != -ENODEV)
-> > > +		return dev_err_probe(dev, ret, "failed to enable vlogic supply\n");
-> > > +
-> > > +	ret = devm_regulator_get_enable_read_voltage(dev, "vref");
-> > > +	if (ret == -ENODEV) /* vcc-supply is deprecated, but supported still */
-> > > +		ret = devm_regulator_get_enable_read_voltage(dev, "vcc");
-> > >  	if (ret < 0 && ret != -ENODEV)
-> > > -		return ret;
-> > > +		return dev_err_probe(dev, ret, "failed to read vref voltage\n");
-> > >    
+Exactly. One for another day :)
+
+J
+> > > +	if (ret)
+> > > +		goto out;  
 > 
 
 
