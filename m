@@ -1,62 +1,66 @@
-Return-Path: <devicetree+bounces-289935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289937-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SHedOdY562nRJwAAu9opvQ
-	(envelope-from <devicetree+bounces-289935-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:37:26 +0200
+	id 2Ib/Mus562nRJwAAu9opvQ
+	(envelope-from <devicetree+bounces-289937-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:37:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51AC845C4B5
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:37:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D68745C4C8
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:37:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BCCCA30117B5
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:37:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AC7FF3019C83
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE57938AC75;
-	Fri, 24 Apr 2026 09:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19BB238BF75;
+	Fri, 24 Apr 2026 09:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.b="Y9PgnblU"
+	dkim=pass (1024-bit key) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.b="rJ08/PGW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.uibk.ac.at (smtp.uibk.ac.at [138.232.1.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32BC73890F3;
-	Fri, 24 Apr 2026 09:37:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A69638B142;
+	Fri, 24 Apr 2026 09:37:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=138.232.1.140
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777023441; cv=none; b=px4st7DlgEddGaWrbBuTfGyUVZNLSfV5NTAY4AWa0ZKLVhclQkXn0I3ee+O34lUqKY7ZKj+B0hSVHzqAjrAVnmzJwTHDmec2zTANpgKxdbd2yRxfzCm7RmTLrP9moxWKdyiBhdo4fjjrN494e7ZdVLWctbCtQ+arc7BCslzR3Wo=
+	t=1777023444; cv=none; b=HXcd7VTz8kD6fDBfANZIoD/2Vk1dwH85zK30H+MGOTveBlstbAgSbOJ4IkE0hwmLzQzUYYdDf7zHu2K6CWHhQYvPhz/qdxXZzwXWB2UdnEn2xCIF+7WML8j7fULJrJTajWDn3i+LJveaOhBgQx4BEPs479nAUCCQCw4hF8zOldE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777023441; c=relaxed/simple;
-	bh=tPKNOQ8tFfrDVSGdnYn/5C3W0D4rP2QDRj63GZG8vsY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JgeY8jJfljKTlk2Vtca6d7f0ce8KoSxbxs68sPn1ya4rxLXIvTO+hRIzgBImGLMgurrbRvRPSisVVX7fk408fxXTXKxHKaKUrqr9sp518P8oSruLHdTI/ERJBCfUJ4NA8mfv15yG4tVkYbWtRqwCP/qp7vISiB58srq0rjGQoec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=student.uibk.ac.at; spf=pass smtp.mailfrom=student.uibk.ac.at; dkim=pass (1024-bit key) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.b=Y9PgnblU; arc=none smtp.client-ip=138.232.1.140
+	s=arc-20240116; t=1777023444; c=relaxed/simple;
+	bh=a0V0e+SBbKgLrqg7xX2uz/rnFz+l0ndpLNjHfaL2BdM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JkzzCrmvIy9Xmrw3uauZMTQ5YxuWFa3G8DVKATyttrczWP8nA1NJqCifX7RT8PoKRLeXyLOvswAS5XBTWAiFy675rgGMDCcsj6NI3wC+vJQ/J2jpN0OjS5TxQ/REkK1tYWCJZ0pJjQvO/xhoEvu/2JoI4T3GPJCYi4DsF6ZPbbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=student.uibk.ac.at; spf=pass smtp.mailfrom=student.uibk.ac.at; dkim=pass (1024-bit key) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.b=rJ08/PGW; arc=none smtp.client-ip=138.232.1.140
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=student.uibk.ac.at
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=student.uibk.ac.at
 Received: from surface-pro-5 (77.119.189.242.wireless.dyn.drei.com [77.119.189.242])
 	(authenticated bits=0)
-	by smtp.uibk.ac.at (8.15.2/8.15.2/F1) with ESMTPSA id 63O9ago91184944
+	by smtp.uibk.ac.at (8.15.2/8.15.2/F1) with ESMTPSA id 63O9agoA1184944
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 24 Apr 2026 11:36:46 +0200
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.uibk.ac.at 63O9ago91184944
+	Fri, 24 Apr 2026 11:36:52 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.uibk.ac.at 63O9agoA1184944
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=student.uibk.ac.at;
-	s=prod24a; t=1777023407;
-	bh=HLJxDrkixMXPsXH2OAxwjljjHn3k7qhworZTCrexYVc=;
-	h=From:To:Cc:Subject:Date;
-	b=Y9PgnblUa1aoWUyT4wfZFk1xG6xiLaUU2qK8P8+PJj4faPENA0jwl2SscxzAirL1r
-	 /Wgx4AX4FggpC5APoG++uocqDPU3c0VV1GnCbBGnNJVYxBzQaqkIztS8gLzgOHBLO8
-	 rUQb8OhDskM2nyo0cnYtnK32bZh6n9S6+GVyCgZA=
+	s=prod24a; t=1777023412;
+	bh=r7frfbPf1U6f464ol2QjGAiiMus/6aLxPIWxUChKGh4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=rJ08/PGWx1y9C+1JnR1Bm2TC2dGyA+Lc+AJh5zw1Ruv97sMM5l3b6SjBhswp/jZBF
+	 EmQrOjumbHuIH1BoP8agAdkXZ6rurK2MEKC6XGiLavkVInMagJ5DoYA736qXgKFC0/
+	 s14uYtM2xxpMLIVMdwwG2j6pyzjxD51yIIR1aYHM=
 From: christian.koever-draxl@student.uibk.ac.at
 To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
         neil.armstrong@linaro.org, khilman@baylibre.com
 Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
         devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Christian=20Stefan=20K=C3=B6v=C3=A9r-Draxl?= <christian.koever-draxl@student.uibk.ac.at>
-Subject: [PATCH v5 0/2] Add support for Amediatech X98Q (Amlogic S905W2)
-Date: Fri, 24 Apr 2026 11:36:31 +0200
-Message-ID: <20260424093633.10734-1-christian.koever-draxl@student.uibk.ac.at>
+        =?UTF-8?q?Christian=20Stefan=20K=C3=B6v=C3=A9r-Draxl?= <christian.koever-draxl@student.uibk.ac.at>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v5 1/2] dt-bindings: arm: amlogic: add support for Amediatech X98Q
+Date: Fri, 24 Apr 2026 11:36:32 +0200
+Message-ID: <20260424093633.10734-2-christian.koever-draxl@student.uibk.ac.at>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260424093633.10734-1-christian.koever-draxl@student.uibk.ac.at>
+References: <20260424093633.10734-1-christian.koever-draxl@student.uibk.ac.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +71,7 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Score: () -12.0 ALL_TRUSTED,RCV_SMTP_AUTH,RCV_SMTP_UIBK,UIBK_PHI_SUBJ,U_H_APTO_LONG,U_RCPTS_11_PLUS
 X-Scanned-By: MIMEDefang_3.2_at_uibk.ac.at
-X-Rspamd-Queue-Id: 51AC845C4B5
+X-Rspamd-Queue-Id: 4D68745C4C8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
@@ -81,13 +85,13 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_NEQ_ENVFROM(0.00)[christian.koever-draxl@student.uibk.ac.at,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-289935-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-289937-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[baylibre.com,googlemail.com,vger.kernel.org,lists.infradead.org,student.uibk.ac.at];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[baylibre.com,googlemail.com,vger.kernel.org,lists.infradead.org,student.uibk.ac.at,microchip.com];
 	DKIM_TRACE(0.00)[student.uibk.ac.at:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -97,50 +101,36 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[student.uibk.ac.at:dkim,student.uibk.ac.at:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,uibk.ac.at:email]
 
 From: Christian Stefan Kövér-Draxl <christian.koever-draxl@student.uibk.ac.at>
 
-Supported features:
-- 1GB RAM (2GB variants exist)
-- 10/100 Ethernet (Internal PHY)
-- eMMC and SD card storage
-- PWM-based CPU voltage regulation
-- UART (Serial console)
+Add the board binding for the Amediatech X98Q TV box.
 
-Notes:
-- The console uses uart_b at 921600 baud.
-- Verified memory via /proc/device-tree; U-Boot patches the node.
-- Tested on the 2GB RAM plus 16GB eMMC variant.
+Signed-off-by: Christian Stefan Kövér-Draxl <christian.koever-draxl@student.uibk.ac.at>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Changes in v5:
-- Drop Wireless SDIO Module comment.
-- Add generic description of Wireless SDIO Module in dts.
-
-Changes in v4:
-- Add/Change hardware description to cover letter and dts patch.
-
-Changes in v3:
-- Change position of the entry in the amlogic.yaml.
-- Change formatting of the Amlogic W150S1 Wi-Fi module comment.
-- Fix several formatting issues.
-
-Changes in v2:
-- Split dt-bindings and dts changes into separate patches.
-- Updated model string to match documented vendor prefix.
-- Put vddio_sd states array in a single line.
-- Added a comment for the unsupported Amlogic W150S1 Wi-Fi module. 
-
-Christian Stefan Kövér-Draxl (2):
-  dt-bindings: arm: amlogic: add support for Amediatech X98Q
-  arm64: dts: amlogic: add support for Amediatech X98Q
-
- .../devicetree/bindings/arm/amlogic.yaml      |   7 +
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../boot/dts/amlogic/meson-s4-s905w2-x98q.dts | 249 ++++++++++++++++++
- 3 files changed, 257 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s905w2-x98q.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index a885278bc4e2..c0167fbc310a 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -248,6 +248,13 @@ properties:
+           - const: amlogic,s805x2
+           - const: amlogic,s4
+ 
++      - description: Boards with the Amlogic Meson S4 S905W2 SoC
++        items:
++          - enum:
++              - amediatech,x98q
++          - const: amlogic,s905w2
++          - const: amlogic,s4
++
+       - description: Boards with the Amlogic Meson S4 S905Y4 SoC
+         items:
+           - enum:
 -- 
 2.54.0
 
