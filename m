@@ -1,165 +1,228 @@
-Return-Path: <devicetree+bounces-290082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290083-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MG7lHMd562npNAAAu9opvQ
-	(envelope-from <devicetree+bounces-290082-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 16:10:15 +0200
+	id QDAcKMR862npNAAAu9opvQ
+	(envelope-from <devicetree+bounces-290083-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 16:23:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 760F146006C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 16:10:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4990D460259
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 16:23:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D01603003BCE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 14:10:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 546B23054F7C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 14:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC64B386C0A;
-	Fri, 24 Apr 2026 14:09:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6758A3DC4B9;
+	Fri, 24 Apr 2026 14:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n5MH/1v5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S2+CWeWn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD5A3644A2;
-	Fri, 24 Apr 2026 14:09:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F5E3377EAC;
+	Fri, 24 Apr 2026 14:20:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777039797; cv=none; b=ZVurE/Uoua5EO2XCpOy8LKnCFkaoDlNpbZZucmw7Jy7ciwRKZ9JX01VsaFrHXEXUlL8XRpE6hRmWGBOxgmPTTTo8JVLg0G5w21moNm7ZJlV4K2GTM1Wh0/F0owVIobltResZFLz3Ppa/kKtlOcmyrTiYjXFWNtkwareHpjrmF6s=
+	t=1777040410; cv=none; b=BgjH2xvYsDGTRLs9RGiSw0EQjX3NC3WsSF6r78KdIZ06MMNS1uwl7x5ow5shDBdKK/FTAsLlx4AVLGqY+HaKEYjnJrKT4fFkp9BKHiBB0RRulWyrSYnsH9OblhzCAOw06jWXJU9DoWT0PoZUPs8oWqiP0/PXxnp4tvNVSQ+j1ws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777039797; c=relaxed/simple;
-	bh=CXW/N769EENkYazHiZUEH9F4WWwQnrYKB/iViMQHhk4=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=IgKP4ArIZ1TxxjG6E/eAuOugiZJnl220kOZ+nMAV8wqcpV/ViHsO+QPzHkT0/sSki032LztDhr4IfQII8g0WYkErW3c2LLtszEuMMnFU6DBfVkG+P6m5zKbpKcHl2auIWXWw7Xk2jSKl+KeNgxDAqci3YJwfu4aCP+hNQiuX/bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n5MH/1v5; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1777039796; x=1808575796;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=CXW/N769EENkYazHiZUEH9F4WWwQnrYKB/iViMQHhk4=;
-  b=n5MH/1v5bN3SZLFhMu1Joj8kN00LGjLlzLz01WJlR297/tAdazbjGsRs
-   7Rtn5w/EhWVNux22H5UhjLmeLaY3bTGRzrB0eDkedPGnxMgBJPV+88eie
-   5eXpBy9sqgiDJ85RMOqqvulmlc1cvS8VeAqyc+brwKHBL659DoZ2+wkqN
-   HZVAqfWujoB5K2NMh1pwtxr99wUBHjP8b0KFQbFepz9/m5ExFoeiM5M2F
-   9ZdjLHdFBkolLgeQbia5vPjMDxD2Hn49NwAXkoNWsbuAaAKNEVgO8aHbi
-   sRnu/1KROaFfDSBx8g9MYqK+eWakJaviJVdGsufrqa9G4Z+L4x76eEMy0
-   Q==;
-X-CSE-ConnectionGUID: GNoI1CaZR3axmbi+WIG+ew==
-X-CSE-MsgGUID: uFbX3veSRTerdN2WRYdmEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="103482503"
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; 
-   d="scan'208";a="103482503"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2026 07:09:55 -0700
-X-CSE-ConnectionGUID: EcNEermSRsqeTayQSmKK5w==
-X-CSE-MsgGUID: EDkeemBFRn2yA3w5F4NG/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; 
-   d="scan'208";a="263368955"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.120])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2026 07:09:50 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Fri, 24 Apr 2026 17:09:46 +0300 (EEST)
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-cc: Jia Wang <wangjia@ultrarisc.com>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
-    Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-    Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
-    linux-serial <linux-serial@vger.kernel.org>, 
-    linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] serial: 8250_dw: build Renesas RZN1 CPR value
- from DW_UART_CPR_* definitions
-In-Reply-To: <aetv2ljDOpH_Hs4s@ashevche-desk.local>
-Message-ID: <363a636d-f014-cc29-6be4-ec3041f43855@linux.intel.com>
-References: <20260424-ultrarisc-serial-v4-0-1765a0b4c4a0@ultrarisc.com> <20260424-ultrarisc-serial-v4-2-1765a0b4c4a0@ultrarisc.com> <4548483c-cbba-899e-6b1a-1290d36b59cd@linux.intel.com> <aetv2ljDOpH_Hs4s@ashevche-desk.local>
+	s=arc-20240116; t=1777040410; c=relaxed/simple;
+	bh=tjPcTbHATZZVk2EWmuWBPpmcu6B3OW4hKOS1rdd7OQ4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ohk6dWPWfPEA/wx55ghoBgYnnqIEPVXTzDEB8YtrIyBLms535ncXif8xO4GkvjH/YAfu6N5NgYsZxyNN956nSrpco9wWCinyo0KpSyMtSRa9SmMxR51mxQ8XpJUCfxyAtNdfLWFZq0tyxbC7j228DKE7ZIcfKeHomUtnA3uE3/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S2+CWeWn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CF745C19425;
+	Fri, 24 Apr 2026 14:20:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777040409;
+	bh=tjPcTbHATZZVk2EWmuWBPpmcu6B3OW4hKOS1rdd7OQ4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=S2+CWeWnTJJ0nEZUr3ni0iiCC+HZ+O24SAHDPwR6NnvOSm/dHBEp79PBtwKT9D2xf
+	 O4aF9L5gwEy2k9dBj08qYFVctLwotgBYU3VeV2iDSErpTVJuxzuGc6ERPLbDdpZBvo
+	 IjZdI/cPz8HaIUJqnNZbzvusA7lbH9cTWWV8D+THHLkoI6dd1z2/FDaYnV63XnYqz8
+	 lr2uOIfiaEIAiepE5LgVdm7HFPCl4SVA6voRUSIlPFnDtAfYWGQspynWXP+guM8JPs
+	 xMfFns9KKCAmP+our4idATQf8LNfbLXyveLjfJoJdcGKCDYLTVNJJqNPLR8cW6lbXu
+	 XlmpZrcRo1rXQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BE335FED3D1;
+	Fri, 24 Apr 2026 14:20:09 +0000 (UTC)
+From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
+Subject: [PATCH v5 0/8] Add VIM4 MCU/FAN support
+Date: Fri, 24 Apr 2026 16:17:31 +0200
+Message-Id: <20260424-add-mcu-fan-khadas-vim4-v5-0-afcfa7157b23@aliel.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-2024444435-1777039786=:958"
-X-Rspamd-Queue-Id: 760F146006C
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WS3W7bMAyFXyXw9RToX3YwDH2PYRekSDXabCezn
+ aBFkXcf4+Yi6VbskhLOd8hDvjUzT5XnZrd5ayY+17keRinCl02T9zA+s6okdWO1jdprq4BIDfm
+ kCozq1x4IZnWug1eQTUYOweUOG1EfJy71ZSV///FeT/z7JAbL+2ODMLPKh2Goy24z8suiVhNn0
+ 1U/8DzDar/bfL19RN3Z6MPW6CCFUUb9rDBu96cnGPrDc81bwX1b3WHJ+1UbAwRKsRRC6cwBoHN
+ tQIwho7ZJa5+d5sSPKuuSjV2rTWsjkQNKBU1k9JQokmfAoL1N7aMqJO5Qt9DFFphK8I4caQoxF
+ 5PBE1qNFkxs7tMVs9t0a7aYB+9SsNdkhFyxZ8UyNfiSuuRgd7aPppicLoG9RTbUdmQ6x9GBMIP
+ vQiYsNidK+E9Tp5VsSdXxDH0ldZwOR56WV4WySk+dcyWZm+PfWrNqJXq1JDWe+l5NPLOsEaNuG
+ UtH4Hdn01zXv6/zcphe1zuTp+v+/3tSZ6O0wIyV3CEn1E/SJPfbMq1IaesO4z7HWMEkOZmI1nr
+ XwQeMu8OY9DnGCQYipBKSRmPwA8bfYaz5HOMF430yxoNti6U7zOVy+QPGXp2IkQMAAA==
+X-Change-ID: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b
+To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Beniamino Galvani <b.galvani@gmail.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4844;
+ i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
+ bh=tjPcTbHATZZVk2EWmuWBPpmcu6B3OW4hKOS1rdd7OQ4=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ+br6vdvC7yMozQOCZkcCvBfyNhQULs4oGzCUdvSGYbCr
+ zbte5jWUcrCIMbFICumyNI/1/LEu8tHz3zdo54CM4eVCWQIAxenAExkiQPD/7qkGapKioK/J368
+ r37r2Z6GzlnJTz3Oxss8U6g42HC05jnD/4hze/Py951zTNjMcXPRX2ZuxaMHPS6e3/Ng0mbF/50
+ T+XkB
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
+ fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
+X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
+ auth_id=744
+X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Reply-To: linux-kernel-dev@aliel.fr
+X-Rspamd-Queue-Id: 4990D460259
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	CTYPE_MIXED_BOGUS(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-290082-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+,1:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290083-lists,devicetree=lfdr.de,linux-kernel-dev.aliel.fr];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com];
 	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ilpo.jarvinen@linux.intel.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linux.intel.com:mid,intel.com:dkim]
+	HAS_REPLYTO(0.00)[linux-kernel-dev@aliel.fr];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amlogic.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aliel.fr:email,aliel.fr:replyto,aliel.fr:mid]
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+The Khadas VIM4 board features a different MCU variant compared to
+previous VIM boards.
+While it shares the same I2C-based communication model,
+it differs in some ways:
 
---8323328-2024444435-1777039786=:958
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+  - A distinct register map with its own volatile/writeable register set
+  - A fan control with 0–100 levels instead of the 0–3 levels previously
+  - A fan power supply gated through a regulator
 
-On Fri, 24 Apr 2026, Andy Shevchenko wrote:
+This series adds support for this new variant by:
 
-> On Fri, Apr 24, 2026 at 02:38:56PM +0300, Ilpo J=E4rvinen wrote:
-> > On Fri, 24 Apr 2026, Jia Wang wrote:
->=20
-> ...
->=20
-> > Hmm, maybe there should also be macro also for this one which takes the=
-=20
-> > fifosize as input and converts it to CPR field vlaue (effectively, the=
-=20
-> > macro is an inverse of DW_UART_CPR_FIFO_SIZE()). It would be more reada=
-ble=20
-> > than the literal.
->=20
-> But this can be done separately, right?
+  1. Refactoring the khadas-mcu MFD driver to use per-variant data
+     structures (regmap config, cells, fan platform data),
+     and adding the khadas,vim4-mcu compatible string.
 
-It's logically part of the cpr_value literal to defines conversion (of=20
-course one could introduce it in own patch without users but I don't see=20
-much benefit from that).
+  2. Extending the fan thermal driver to retrieve the fan register
+     and maximum level from platform_data,
+     and to optionally manage a power regulator for the fan supply.
 
-> > Also include BUILD_BUG_ON(!IS_ALIGNED(fifosize, 16) + bounds checks)=20
-> > inside that macro to catch invalid fifo sizes (+ don't forget the=20
-> > necessary headers for those two new things).
->=20
-> Hmm... Some devices may have FIFO =3D 8 or 4 bytes (Intel Quark IIRC has =
-less
-> than 16 and it's DW IP).
+  3. Adding the corresponding DTS node for the VIM4, wiring the MCU to
+     the I2C AO_A bus and exposing it as a thermal cooling device.
 
-Perhaps but according the DW databook I've at hand, there are no values in=
-=20
-FIFO_MODE field for such FIFO sizes. So what would CPR contain in those
-cases for FIFO_MODE field?
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+Changes in v5:
+- PATCH 5: Replace devm_regulator_get_optional() with devm_regulator_get()
+           to simplify error handling and remove NULL checks, also
+           ordering as reverse christmas according to Neil's feedback.
+- Link to v4: https://lore.kernel.org/r/20260421-add-mcu-fan-khadas-vim4-v4-0-447114a28f2d@aliel.fr
 
---=20
- i.
+Changes in v4:
+- PATCH 1: limit fan-supply property by compatible according to Conor's feedback.
+- Link to v3: https://lore.kernel.org/r/20260417-add-mcu-fan-khadas-vim4-v3-0-a6a7f570b11b@aliel.fr
 
---8323328-2024444435-1777039786=:958--
+Changes in v3:
+- PATCH 1: adding comment on vim4 compatible saying it is not discoverable,
+           thanks to Rob's and Neil's feedback.
+- Link to v2: https://lore.kernel.org/r/20260403-add-mcu-fan-khadas-vim4-v2-0-70536b22439a@aliel.fr
+
+Changes in v2:
+- PATCH 5: Add regulator_disable on suspend thanks to Neil's feedback.
+- Link to v1: https://lore.kernel.org/r/20260402-add-mcu-fan-khadas-vim4-v1-0-2b12eb4ac7b0@aliel.fr
+
+---
+Ronald Claveau (8):
+      dt-bindings: mfd: khadas: Add new compatible for Khadas VIM4 MCU
+      dt-bindings: i2c: amlogic: Add compatible for T7 SOC
+      mfd: khadas-mcu: Add per-variant configuration infrastructure and VIM4 support
+      mfd: khadas-mcu: Add support for VIM4 MCU variant
+      thermal: khadas-mcu-fan: Add fan config from platform data Add regulator support
+      arm64: dts: amlogic: t7: Add i2c pinctrl node
+      arm64: dts: amlogic: t7: Add i2c controller node
+      arm64: dts: amlogic: t7: khadas-vim4: Add i2c MCU fan node
+
+ .../bindings/i2c/amlogic,meson6-i2c.yaml           |  13 ++-
+ .../devicetree/bindings/mfd/khadas,mcu.yaml        |  18 ++++
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  |  13 +++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        |  20 ++++
+ drivers/mfd/khadas-mcu.c                           | 106 ++++++++++++++++++---
+ drivers/thermal/khadas_mcu_fan.c                   |  37 +++++--
+ include/linux/mfd/khadas-mcu.h                     |  39 +++++++-
+ 7 files changed, 222 insertions(+), 24 deletions(-)
+---
+base-commit: f7b64ed948718290209074a50bb0df17e5944873
+change-id: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b
+prerequisite-message-id: <20260326092645.1053261-1-jian.hu@amlogic.com>
+prerequisite-patch-id: f03a086b4137158412b2d47b3de793b858de8dde
+prerequisite-patch-id: 123970c9b29c2090440f2fd71c85d3c6fd8e36de
+prerequisite-patch-id: 3e2e56b0926ba327b520f935df4ced5089bbe503
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-change-id: 20260326-add-bcm43752-compatible-e264a4f7973a:v2
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-change-id: 20260330-fix-invalid-property-bbe54d933f71:v2
+prerequisite-patch-id: 8d675e7a239985c762843515b241f0a2f45f9c92
+prerequisite-change-id: 20260331-fix-aml-t7-null-reset-2b608ebf9da4:v1
+prerequisite-patch-id: 5b5de77af11747ce964404fb827d2ee2bff47ea5
+prerequisite-patch-id: 1e37fc75fed1e533adee0f3e7e6ead1f8ff3c55c
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 2daf583fb5e7449a02bd217d8aca330171b598aa
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: d1ddf9b7710e91f8062de83bd7ba55afb2c4c112
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-patch-id: 9debd88fa60febed9cd7208f86603b4c2d270520
+prerequisite-patch-id: 314ef9ff0c4d1d15dab1dea9d92aa065f1eac3e9
+
+Best regards,
+-- 
+Ronald Claveau <linux-kernel-dev@aliel.fr>
+
+
 
