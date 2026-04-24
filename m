@@ -1,411 +1,240 @@
-Return-Path: <devicetree+bounces-289936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289938-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iKhVBnc762mMKAAAu9opvQ
-	(envelope-from <devicetree+bounces-289936-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:44:23 +0200
+	id sEsoGK8662nRJwAAu9opvQ
+	(envelope-from <devicetree+bounces-289938-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:41:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EAFE45C6A4
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:44:22 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AB8B45C599
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 11:41:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 064333014520
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:37:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 37B4230015B0
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:40:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33AA838B15E;
-	Fri, 24 Apr 2026 09:37:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE8B238B12B;
+	Fri, 24 Apr 2026 09:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.b="C9Mn7oN9"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iU68V2J0";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YQqcNEpR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.uibk.ac.at (smtp.uibk.ac.at [138.232.1.140])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9803638A736;
-	Fri, 24 Apr 2026 09:37:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=138.232.1.140
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863EF3890F3
+	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 09:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777023443; cv=none; b=YgiqlhUcmF/5j30xv3ipw8rRxBQUJyWVpC7mfBUlISCfGs7N1381aJJJ7NorWaIPYy0dCOfhcm0TSn5sR4WvO5Rps4SNv4PDAp/jpqup+n65dnCPZSoRY+GBP4QyIjRKpAAzKsb/zXJHHw4FJw2K4LjdFIz24xCPR74tw58I4Mk=
+	t=1777023656; cv=none; b=N/RQZ8qJf3TPpByJDyBhVOG5L4XWtQ72jEZkB2HYCcTVodgGPk9M8oRcJd19VYTzJc8FukcBKiRsbHzZRrt/WUQgh+yT3cPSTqc1Yt4gXlTIttpl3bhXkxO7lOIy0fi+g+JNadc5KlGF947ldvRoN9BzCF6NvqcpU2nflhbY51k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777023443; c=relaxed/simple;
-	bh=yJjNdQ4gyuL1fvWl0noG443oVd2WFaesEfV/4B691WA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KVK8uFJjQjC6yyolAedmnLhVlux7TtsuwG3GFULMRuQjGtWiqIDfyZGUlkg6WKl/g/p4NuOz2SzjyKflJfAvMm3Ef1y+C8UCiTKEZaKMA5xpCxpx54UERz09K7pTfbj7shYYLN9B2oAeLntZ3y2rJZMamBhY1fZirYzgESlLPdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=student.uibk.ac.at; spf=pass smtp.mailfrom=student.uibk.ac.at; dkim=pass (1024-bit key) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.b=C9Mn7oN9; arc=none smtp.client-ip=138.232.1.140
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=student.uibk.ac.at
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=student.uibk.ac.at
-Received: from surface-pro-5 (77.119.189.242.wireless.dyn.drei.com [77.119.189.242])
-	(authenticated bits=0)
-	by smtp.uibk.ac.at (8.15.2/8.15.2/F1) with ESMTPSA id 63O9agoB1184944
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 24 Apr 2026 11:36:55 +0200
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.uibk.ac.at 63O9agoB1184944
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=student.uibk.ac.at;
-	s=prod24a; t=1777023416;
-	bh=vtG9ryUpXaA3g5Jnj/VxKyr4WUiVR8itH9Y90O6bAZ0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=C9Mn7oN9Xepx/TzBsJ6uVR/5oFnewznAKw1wJG0yQbZmoQ40cGANJldIQIaQX2GnN
-	 gOESh+bOlrIGcrvhptpUtHaK7voNEBcn+XGTRhbZcn9yGITqbSFtSnkJ2102iYZkSq
-	 9q+xi8pwD5uKWrV1ZFS+OlhEiQCKJltGnngAZi8o=
-From: christian.koever-draxl@student.uibk.ac.at
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        neil.armstrong@linaro.org, khilman@baylibre.com
-Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Christian=20Stefan=20K=C3=B6v=C3=A9r-Draxl?= <christian.koever-draxl@student.uibk.ac.at>
-Subject: [PATCH v5 2/2] arm64: dts: amlogic: add support for Amediatech X98Q
-Date: Fri, 24 Apr 2026 11:36:33 +0200
-Message-ID: <20260424093633.10734-3-christian.koever-draxl@student.uibk.ac.at>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260424093633.10734-1-christian.koever-draxl@student.uibk.ac.at>
-References: <20260424093633.10734-1-christian.koever-draxl@student.uibk.ac.at>
+	s=arc-20240116; t=1777023656; c=relaxed/simple;
+	bh=Vf9H2UG05qoKr398eIXjoUC57YQbGM7DmdYxZ9Ef0Yg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=u3P99CtFu38zbYdm6mqI+38lz6i+J7x+rO+sZhPcZdBr0P/SzkhUmS2l+Il0dW8fIK5LYT6u9A9qjZ2tYbg0RliIu1ll8G2VNAODQEhd0hqVEjcmAIGzPixG866IEgsmokvVYHm8B+4EZgMIALMExVLde28HDngI7MCajBbHE5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iU68V2J0; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YQqcNEpR; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63O91VRB2709808
+	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 09:40:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TUhERKpJzC7ZYA/PnGzU9lEKyH7Mxyrhg7LHLvtN+QQ=; b=iU68V2J0hud5/fJy
+	nuvb94oFVoUDgL7peYgVg3ExtzCV+kGhH/+iaNbTHa4CCtIV2bZxsaxaqriRbh4t
+	PJ5BTc3jH7ybihihfQ0fAW7sjC8m94cNisCxHCTPkoQWqEGzNddAMA+3Zjg/Pp0F
+	1tghCwRagqdU3BCG8qxjQGxJGbzoMa+h6ZhsLCktXN5uXjj7lBUbQph0vTqHysRr
+	1slNLPgbnTDFYeUj6Kc4kMaItlFNy75CT+SFAYrb+negNIf5VrwJAnKxiCnGo9US
+	5FV+8Lm2hSwYU+KlA6ct0Ymy7MFXaYkPnbUxlE78qp/3AGE9TtWpRbzixFOOxkkQ
+	DD36LA==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dqqu9ueks-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 09:40:54 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-50d8c183c2eso69489411cf.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 02:40:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1777023654; x=1777628454; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TUhERKpJzC7ZYA/PnGzU9lEKyH7Mxyrhg7LHLvtN+QQ=;
+        b=YQqcNEpRoItbgZX95Oy4MwWuT60XpuDcklvr+9GNFbJCyP1nO36kc4XzqrTBS3tAAq
+         TnzO3AnXo4b65Wb4gmW7vbSNDqwo9GnJy0TVSjDLvKYdqyJ63N3NuWnLRKitk3xWExgf
+         8R7BjWZMKITl224fh8T7AZ+158wVPrzgCrPBwjUVOxTT40eqmxzBNKZ4gy1aLW/5NXL/
+         NNJX0HuHzZ//G8jUCS5bJOH6yyNJuUWI1f13aeBBegEn9/B3b3STW55ZjSaaV01MQVuF
+         oTSVw5u3k0+yeQpJQZYTA9Dfg3peEmiwUu70oO2vBCOQ+Mm970xJbf6U3DKEyOrBVu3m
+         FStQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777023654; x=1777628454;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TUhERKpJzC7ZYA/PnGzU9lEKyH7Mxyrhg7LHLvtN+QQ=;
+        b=sv+H/BpmQOeMEf9LHQqvNUvSjC7AE/V020eV3Mg7M+EEzS0FlfnpDsCUsCkNjyJGzV
+         pnNgKxiUmuDaLEMfkMnZmtX9BsV/0ScRLbO/PCc3MzsEQ2+lvJNTSizZwyIq5VCHjzBU
+         8E1jh+6jBRcYtZ5HQTcMJgFkgMTMbJEYEy6uEkC7YypenE8h7jVwGAk+xm1tAjmFn053
+         VRBwJfRj3P0zk9uPONLGi+8M/8rfD8UjYbknc7YppHVAQpFqDYmSHyNX2+Z39wg7Z/CU
+         CauZtQ9FIY0S76d9BtqxeOkzAEyDPmYYnrwwZyfhZpORn2KAkOpF7dX4jqcwemrgXIaX
+         vO8A==
+X-Forwarded-Encrypted: i=1; AFNElJ+aMJiwmqe5yxjsQMTnby0MOj7XTHFJ3O+wcjedwsA9eAaEgtUhREmMk2GBKoEI2yGgrgX1r7qHRa5/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHkray3KQVGsBPI8akptaKvUD/YjdXuXQQfEJqkvt398F+xjPV
+	i44zCftMz1Y1G+f/AjFVI59ZacFnBF6rlT9FlyXl4TZ98OvbVJSKDexHj5gBNqB6H90zNttTWIl
+	EzIcfeoWHfobHtgpaXdrodXtb4mssrVtJ+Vo5CrxzHRAyFK3NVEH7EkmoHvpk1oFO
+X-Gm-Gg: AeBDieuZm3pIyhshlorJ0Dxu0/xxHyWMdSGQCbMoe5lg4Ia5oSlt7TKePgMjcLBrujI
+	BD8D6u/Vz8PWRSAZczY04DGfryhFs+FGKsRq6u+TmSxtv/PnTzGHyyDe3Cre3wxGicsRX6upj4v
+	I7+Y3uw+HYC8Wqy09rab094jLLqp97NGgyvtA/dd+FgYFf00gYC+jun8QgOxFLC1CleDcEmznJF
+	Fa8URJih4m2ZzfomjOf+8iWXeNuK3Sp7K0g+e0Pg3lCzPkeLpndPPf2WQqlUQsl9xWdQl2Np/Aw
+	qNNfHy+SfMUUFypdXESu5EqRYp7pEHsRJIs3gEyHouMNqz298F8PDgUOoCGWufR6yiMgQaJmXTh
+	pP1CcdLMWRX2JsL4v7G7YeSPe1eOpRX7lmqJVPH79vOBHFeJei8p2qDpIsIfJ1JbkddiakmVW1Y
+	zWhdKyJb1Co4z4+Q==
+X-Received: by 2002:a05:620a:4589:b0:8cd:8bfb:a4a with SMTP id af79cd13be357-8e78bee4fc9mr2868064885a.0.1777023653804;
+        Fri, 24 Apr 2026 02:40:53 -0700 (PDT)
+X-Received: by 2002:a05:620a:4589:b0:8cd:8bfb:a4a with SMTP id af79cd13be357-8e78bee4fc9mr2868063185a.0.1777023653393;
+        Fri, 24 Apr 2026 02:40:53 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-672c4d4561fsm5009428a12.16.2026.04.24.02.40.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Apr 2026 02:40:52 -0700 (PDT)
+Message-ID: <31c1a601-c249-426b-8f0e-30d729907a89@oss.qualcomm.com>
+Date: Fri, 24 Apr 2026 11:40:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v4 6/7] drm/msm/adreno: add Adreno 810 GPU support
+To: Alexander Koskovich <akoskovich@pm.me>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar
+ <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Luca Weiss
+ <luca.weiss@fairphone.com>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260416-adreno-810-v4-0-61676e073f8a@pm.me>
+ <20260416-adreno-810-v4-6-61676e073f8a@pm.me>
+ <23fbb36e-56b4-4ecf-94e9-4038c6311b31@oss.qualcomm.com>
+ <oka0Q911ixJLZzAbfWBx54dOmxbQAre36QqHUX4iDZoH3TE5jD-IqTAHspti6B8kfpLQ-OTnuWjFdXtsqJM-CUC8G9R3x_9vFI--LnpppiA=@pm.me>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <oka0Q911ixJLZzAbfWBx54dOmxbQAre36QqHUX4iDZoH3TE5jD-IqTAHspti6B8kfpLQ-OTnuWjFdXtsqJM-CUC8G9R3x_9vFI--LnpppiA=@pm.me>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: () -12.0 ALL_TRUSTED,RCV_SMTP_AUTH,RCV_SMTP_UIBK,UIBK_PHI_SUBJ,U_H_APTO_LONG,U_RCPTS_11_PLUS
-X-Scanned-By: MIMEDefang_3.2_at_uibk.ac.at
-X-Rspamd-Queue-Id: 7EAFE45C6A4
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: GGhAyqTgoCrUaEAywKPmGHCY4cU29kxD
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI0MDA5MCBTYWx0ZWRfX4xC3FFy2VuI+
+ WojqNQ3dMTrJvf2dXlD7zajx99VxJLcTatxcCtEF12czwoMf/bLGlVR7U2BDvBGpUIpD5AwmKRU
+ Gm7OrqoYBmADyA35HErVi3A/mmMZTzUoXUmMpXo7YEXcAXvSfeTJPOHvvqkEBeNVA6j0ZWbnmsd
+ YvHj7emAgVHOXH1sv2X8BcrZewzr3/liafeCMDaZUfD0ytfqErdPBrz17kqVCqPZ9UYAcS69opu
+ KxYuco6OhAAUkSVpStiNL1yVmuWFawo/5pk5fYFVXtCcufc57W6uxcmbueCRT5oANl/cHQ+IYhb
+ gJc9o8nRnoEPbHjkkTJxtG9W+o7GY2ytdGAE+JTA4wj0O03QmV0gCa5hvmgb14iHwVWUnSFKKOW
+ zXCPT4KQO+S1iCw9QB5QRWXlzZl2+8VtUmZhIVNFllb3uhMOiC5oRQHFnyo6zQ8wqbxQfXAp1aJ
+ 4HY+sB/uTNesDAatxXw==
+X-Proofpoint-ORIG-GUID: GGhAyqTgoCrUaEAywKPmGHCY4cU29kxD
+X-Authority-Analysis: v=2.4 cv=QJNYgALL c=1 sm=1 tr=0 ts=69eb3aa6 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=e5mUnYsNAAAA:8 a=EUspDBNiAAAA:8 a=aOPa8h4f5WR7Ygev7eEA:9 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22 a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-23_03,2026-04-21_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 bulkscore=0 malwarescore=0 adultscore=0
+ impostorscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604200000
+ definitions=main-2604240090
+X-Rspamd-Queue-Id: 5AB8B45C599
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [5.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289936-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[student.uibk.ac.at:s=prod24a];
-	RCVD_COUNT_THREE(0.00)[4];
-	GREYLIST(0.00)[pass,body];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[baylibre.com,googlemail.com,vger.kernel.org,lists.infradead.org,student.uibk.ac.at];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,linux.intel.com,suse.de,ffwll.ch,fairphone.com,vger.kernel.org,lists.freedesktop.org];
+	TAGGED_FROM(0.00)[bounces-289938-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,pm.me:email,gitlab.freedesktop.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koever-draxl@student.uibk.ac.at,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[student.uibk.ac.at:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_SPF_ALLOW(0.00)[+ip4:172.105.105.114];
-	NEURAL_HAM(-0.00)[-0.918];
 	PRECEDENCE_BULK(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[student.uibk.ac.at,quarantine];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[student.uibk.ac.at:dkim,student.uibk.ac.at:mid,0.0.0.1:email,uibk.ac.at:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,0.76.75.64:email]
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 
-From: Christian Stefan Kövér-Draxl <christian.koever-draxl@student.uibk.ac.at>
+On 4/23/26 10:34 PM, Alexander Koskovich wrote:
+> On Wednesday, April 22nd, 2026 at 9:04 AM, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
+> 
+>> On 4/16/26 1:05 PM, Alexander Koskovich wrote:
+>>> Add catalog entry and register configuration for the Adreno 810
+>>> found in Qualcomm SM7635 (Milos) based devices.
+>>>
+>>> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
+>>> ---
 
-Add dts enabling core hardware for the Amediatech X98Q TV box.
+[...]
 
-The board features:
-- Amlogic S905W2 (Meson S4) SoC
-- 1 GiB RAM (2 GiB variants exist)
-- eMMC and microSD card slot
-- SDIO-based WiFi module (unsupported)
-- RMII Ethernet with internal PHY
-- IR receiver and UART console
-- Status LED
+>>> +static const u32 a810_ifpc_reglist_regs[] = {
+>>> +	REG_A8XX_RBBM_NC_MODE_CNTL,
+>>> +	REG_A8XX_RBBM_PERFCTR_CNTL,
+>>
+>> This list matches the expectations, modulo this RBBM_PERFCTR_CNTL
+> 
+> Note on this, added this shortly before submitting this series as requested by Akhil:
+> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/40613#note_3395308
 
-Enabled peripherals:
-- eMMC (HS200)
-- SD card interface
-- SDIO bus (WiFi, no driver yet)
-- Ethernet (RMII)
-- UART_B
-- IR receiver
-- PWM-controlled CPU regulator
-- PWM and Fixed regulators for core and IO rails
+Yes, I forgot about that bit. So it's OK.
 
-Known limitations:
-- No support for the onboard WiFi module
-- Missing multimedia (HDMI/audio)
+[...]
 
-Signed-off-by: Christian Stefan Kövér-Draxl <christian.koever-draxl@student.uibk.ac.at>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../boot/dts/amlogic/meson-s4-s905w2-x98q.dts | 249 ++++++++++++++++++
- 2 files changed, 250 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s905w2-x98q.dts
+>>> +		.speedbins = ADRENO_SPEEDBINS(
+>>> +			{ 0,   0 },
+>>> +			{ 242, 1 },
+>>> +			{ 221, 2 },
+>>> +		),
+>>
+>> The DTs I have all point to SMEM-based SKU checks. Did you find these
+>> numbers empirically?
+> 
+> Yes, and I used speedbin instead as upstream doesn't support the SKU checks
+> downstream does. Utilizing GPU_CC_FREQ_LIMIT_VAL to serve as speedbin
+> on this platform.
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 15f9c817e502..c7752684dea6 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -85,6 +85,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-ugoos-am3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-s4-s905w2-x98q.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-s4-s905y4-khadas-vim1s.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air-gbit.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s905w2-x98q.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s905w2-x98q.dts
-index 000000000000..fe84259a20f3
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4-s905w2-x98q.dts
-@@ -0,0 +1,249 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2026 Christian Stefan Köver-Draxl
-+ * Based on meson-s4-s905y4-khadas-vim1s.dts:
-+ *  - Copyright (c) 2026 Khadas Technology Co., Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-s4.dtsi"
-+
-+/ {
-+	model = "Shenzhen Amediatech Technology Co., Ltd X98Q";
-+	compatible = "amediatech,x98q", "amlogic,s905w2", "amlogic,s4";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		mmc0 = &emmc; /* eMMC */
-+		mmc1 = &sd; /* SD card */
-+		mmc2 = &sdio; /* SDIO */
-+		serial0 = &uart_b;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* 52 MiB reserved for ARM Trusted Firmware */
-+		secmon_reserved: secmon@5000000 {
-+			reg = <0x0 0x05000000 0x0 0x3400000>;
-+			no-map;
-+		};
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio GPIOB_9 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	sdio_32k: sdio-32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&sdio_32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	main_5v: regulator-main-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	sd_3v3: regulator-sd-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "SD_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio GPIOD_4 GPIO_ACTIVE_LOW>;
-+		regulator-always-on;
-+	};
-+
-+	vddio_sd: regulator-vddio-sd {
-+		compatible = "regulator-gpio";
-+		regulator-name = "VDDIO_SD";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpios = <&gpio GPIOD_9 GPIO_ACTIVE_HIGH>;
-+		gpios-states = <1>;
-+		states = <1800000 1 3300000 0>;
-+	};
-+
-+	vddao_3v3: regulator-vddao-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&main_5v>;
-+		regulator-always-on;
-+	};
-+
-+	vddio_ao1v8: regulator-vddio-ao1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	/* SY8120B1ABC DC/DC Regulator. */
-+	vddcpu: regulator-vddcpu {
-+		compatible = "pwm-regulator";
-+
-+		regulator-name = "VDDCPU";
-+		regulator-min-microvolt = <689000>;
-+		regulator-max-microvolt = <1049000>;
-+
-+		vin-supply = <&main_5v>;
-+
-+		pwms = <&pwm_ij 1 1500 0>;
-+		pwm-dutycycle-range = <100 0>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+		/* Voltage Duty-Cycle */
-+		voltage-table = <1049000 0>,
-+				<1039000 3>,
-+				<1029000 6>,
-+				<1019000 9>,
-+				<1009000 12>,
-+				<999000 14>,
-+				<989000 17>,
-+				<979000 20>,
-+				<969000 23>,
-+				<959000 26>,
-+				<949000 29>,
-+				<939000 31>,
-+				<929000 34>,
-+				<919000 37>,
-+				<909000 40>,
-+				<899000 43>,
-+				<889000 45>,
-+				<879000 48>,
-+				<869000 51>,
-+				<859000 54>,
-+				<849000 56>,
-+				<839000 59>,
-+				<829000 62>,
-+				<819000 65>,
-+				<809000 68>,
-+				<799000 70>,
-+				<789000 73>,
-+				<779000 76>,
-+				<769000 79>,
-+				<759000 81>,
-+				<749000 84>,
-+				<739000 87>,
-+				<729000 89>,
-+				<719000 92>,
-+				<709000 95>,
-+				<699000 98>,
-+				<689000 100>;
-+	};
-+};
-+
-+&emmc {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_ao1v8>;
-+};
-+
-+&ethmac {
-+	status = "okay";
-+	phy-handle = <&internal_ephy>;
-+	phy-mode = "rmii";
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins1>;
-+	pinctrl-names = "default";
-+};
-+
-+&pwm_ij {
-+	status = "okay";
-+};
-+
-+&sd {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <50000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddao_3v3>;
-+};
-+
-+&sdio {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+
-+	no-sd;
-+	no-mmc;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_ao1v8>;
-+
-+	wifi: wifi@1 {
-+		/* Amlogic W150S1 */
-+		reg = <1>;
-+	};
-+};
-+
-+&uart_b {
-+	status = "okay";
-+};
--- 
-2.54.0
+Hm, I'm not sure whether it's a stable identifier on this platform, or
+whether it just worked by change. Akhil?
 
+Konrad
 
