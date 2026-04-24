@@ -1,142 +1,168 @@
-Return-Path: <devicetree+bounces-289871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289876-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ADmmAhsY62niIQAAu9opvQ
-	(envelope-from <devicetree+bounces-289871-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:13:31 +0200
+	id wIRTOl8a62lTIgAAu9opvQ
+	(envelope-from <devicetree+bounces-289876-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:23:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14F0E45A976
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:13:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FA0245AA69
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:23:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5BBB03008083
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 07:13:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 18E5D3010BB7
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 07:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A9CA37187E;
-	Fri, 24 Apr 2026 07:13:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F4CD371CEE;
+	Fri, 24 Apr 2026 07:22:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZqTAkPNF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bm7tURmI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 889A93612E9
-	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 07:13:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B39FA358D14
+	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 07:22:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777014800; cv=none; b=Vi47B+ZkOUyzmyTEtEnh4JXBxXrF6/0zIBxO+OGgJ3fl7CyLoem/qucmRMPU7Df3ryCcXAY7DPwxubt56gNjAyBx/83nySQOayxCLYS9sXNnIkK4x1j/9u+RrsAKpHlJ1e8EhYjrvuDm5tmNDNYkPWUvvkWnBsoC60qSPO+tE4M=
+	t=1777015373; cv=none; b=F6gH/i5ZZ2l3Vx4OsLNJ4PXTbWR5FhRwnMOMwUMLdmpnNdYMsFZlCc/ooRC3UBXH/b9x2sBBoHPPrjCcZ2lGZaFrhibkOJ9/+OdzJTbF7jEPKNVPbCN/DAFrmyf1mG4cqJarmtyV2wMG90pWIj/vh0fRsgfUM0hTTflAzZMTD3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777014800; c=relaxed/simple;
-	bh=tLZ/GDek49sI5Zs/eZ/fXFs5/EAJg95zumCgRfB6mFI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kGNlp5UyMRhSxePiGPye2iwfCzBiDdScW/KY/NRCNRTecRH/MMvlh5n3DncN64nNtSYkKuuYX6hJR1x61M1bxP1H0igH8aIo8X/+ffkKsJPIF0XcW0dzdyKBFwaxnArn5T/OvX5JUoqTWaSKOh5guuMVBO9YeANiNQfd1Ja/564=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZqTAkPNF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B8A8C2BCB9
-	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 07:13:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777014799;
-	bh=tLZ/GDek49sI5Zs/eZ/fXFs5/EAJg95zumCgRfB6mFI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ZqTAkPNFuRt4zBNN91MjsuvIMRLyywfrnFCAPb7T7f0WzSHRKVAzABlzj6MTWuHbO
-	 DipU6fp9WKBSaiUKDif7XxbY2cwSKQFsZVjec2UqA6paA98OtJdhzXApvhX9eQM1B5
-	 KWVQ48tVMzv2gxHax2ms3LlSmP4v3rQ1z0m6p71HyPxmc48Q4c4VbWzKoOQ3d0NGMI
-	 BtrWK5VwCDE+cOiJ6a45f6dCGhdjqDGEPtZGrNrAcJkWy4okptGPbEExz8hJJUsr+s
-	 jnkuFrOqTdX49kDYy4u6sIUy7EAaa7WILsMvqfJfS7CRoujVTv8Ba4S9IT2zFRoh/G
-	 moZTOHfwajdSQ==
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5a41099fa86so6646085e87.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 00:13:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+hL5HspjTAl8U86IhARX9JnkxzOP9qTZ2fnwXznWQAvTGUkSFV1end225BEmYrzgxINMoAA8fH655x@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx95mb+DK42x56CI9Krdp5J5N3EHEPCpoq5wtbpJ8SEgoHVhjOs
-	BNtw9+ezQ9NZhXk8Q/cNiAUHOQuxwIX3P8hOB2CwjuYGQfUz8YbXPJGc/AvoW3Lvr4QqZ8G+cHv
-	ULoQn+UhiNU5S+PrX3MmeaiBr8ADMysA=
-X-Received: by 2002:a05:6512:3b0b:b0:5a2:c0ab:b57f with SMTP id
- 2adb3069b0e04-5a4172bfef2mr9090696e87.14.1777014797734; Fri, 24 Apr 2026
- 00:13:17 -0700 (PDT)
+	s=arc-20240116; t=1777015373; c=relaxed/simple;
+	bh=LGgBuPl13OVCqY6MyycN+/CmKgvRl/RP9kAEoA1MlxA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ALozXva1Qr/wNaNvdiFzIffJHo4IUbk/EyPuBmyGN8k3QOpqvW5kEGhL6yL2Rx7m2xmdyU3Yu/whijGk6KYFASroR4gCReWGm+dmfLi8JXOgc5Ys/g6QeQ/OVdaoB4NXqF7Otmz39RuMrIli3nuW0u8VYOVCLGzzD2lWSWJ7/T0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bm7tURmI; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5a40d02b58bso6569294e87.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 00:22:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1777015369; x=1777620169; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hTQRz/Y/73N4N7zfobml6VuwnylLNpcaq2f4fU14Mdk=;
+        b=Bm7tURmI9YwYmJIF4TJ+BX+QeVrvXQ7yMqwqeCh7Vhs3SO/AOFpCsGgUWLFLxVk0UM
+         br0pJNhlRH3GTyGWjvvsQTTDR4azRgvFosiQJaBCpIWKOlvYL48wZEBfO7K/krR9vwTg
+         vajxqXhPEQATW+rxWojHu+F5Ezl5qX1fzJQSLCuzXJTR82QDFdJ/Ks+i8OIWNsyMlsMa
+         /dbktNb6rjii4z4yZY7GL6IiJD743HiUu/Fl/zTQZE5qdScUqXVfXn4Moqu8LQI/FCRY
+         o1808CqS194iXwkBAXsuclBvL2zf5i6FnwkCYwFBXbqWRhYz/qajEpeIzB+PBJ9IWRe0
+         AHVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777015369; x=1777620169;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hTQRz/Y/73N4N7zfobml6VuwnylLNpcaq2f4fU14Mdk=;
+        b=s3KfDIIluee1IEboPat9v8LWUbirfGzYWGhdUfQRLVMyBbN5A5RTluseh5oWFgVwug
+         kiNNn7/rAavZesLcEkVbQUu5ZAHJNFE+z+uVx1zQEYRhvWeYlpRQMdvwA9/BGLRenEoL
+         DkCifM3X1l5r6+D9G+iUew7LjW/jqxrjsRnSuTZoh51z+pek/uRtb1pMk8rm9csOM5oV
+         Ioy1+kTNU0VtcW6v3Fr1BfqqB7xOTmwX62aQyJ668JHDuV8gDe8jJcw6igQSKODLeC6U
+         1QSmQKbeN3QEfXyF3hswfAZmnQZoE1y31/64MPeOHfnb17sLvlVpy4qP6ipIqLajyGPR
+         cq4Q==
+X-Forwarded-Encrypted: i=1; AFNElJ/XdUsRBFtRM5b02nFe6/OcIfqQph/yd88zD2khjPewUXHjd4sTO9Q+qSRntUDfzOP2B/0/1RZzhQFo@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXXB2yE1ZxaXFeVSqNOKzWJHv+YUMJOe8LE6Yo+NweZAb5vbzk
+	pCxW90OoYvQDme7yEOmPgd8wKU97yNbk1FXUYQJg/d4L0p/T/LfN5mA9
+X-Gm-Gg: AeBDiesQMCk3wQJnhl7VPTSuQaHjT1dRiYsgHGNJ49ak/oYBtDkQwGDUbZcDFwBiYUx
+	8PhNDt8FLZEAjBSc/w7VJzuCfP6s3J783ru+ye+iLi4gUMoya/P1DIVC4eo/2CJ0ZrV5WOmaSc6
+	VhLlyOQE6Y3qQSShEsnuABTUmY0CKuXVvFDEsE0JjloPhBf5r3ogYZjG3m5BOx+5muk1UvGv7zx
+	uQKgBhYSlj+XchcxUdoKBP8G5+9QSxG3/uM7w4+96vzw6k3Dp4LfpcII8zu79c0jbj+g4CZeEde
+	L74ZfISN9w3IYyqmlx5asm6zi9owBe+vSEWVvFWwNnjeSq6uKx/vsJDxa82N4++GBNTq3+ehzhD
+	36v1Vvq3plxDxTacP5nOBhs54ChQMLqI4Usz1bXgiHJ+2LoTjTc+d8V8/Cadt04qYef1OYAxAlD
+	HcVA/nS1YwqxrP4dRQvtuVIMU1cLIg4BzJRQ==
+X-Received: by 2002:a05:6512:33d6:b0:5a2:c05c:1141 with SMTP id 2adb3069b0e04-5a4172b749emr10164473e87.4.1777015368566;
+        Fri, 24 Apr 2026 00:22:48 -0700 (PDT)
+Received: from xeon ([188.163.112.56])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a41a238563sm5612550e87.55.2026.04.24.00.22.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Apr 2026 00:22:48 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org
+Subject: [PATCH v3 0/5] media: lm3560: convert to use OF bindings
+Date: Fri, 24 Apr 2026 10:22:25 +0300
+Message-ID: <20260424072230.90354-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260421-send-v5-0-ace038e63515@gmail.com> <20260421-send-v5-8-ace038e63515@gmail.com>
-In-Reply-To: <20260421-send-v5-8-ace038e63515@gmail.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 24 Apr 2026 09:13:06 +0200
-X-Gmail-Original-Message-ID: <CAD++jL=_eDY_mG_QBreSrZiho0hUrDSciedq=vrxXaTiMwrSyg@mail.gmail.com>
-X-Gm-Features: AQROBzAS_qKgmsidFIdx7V3XpX1JGmVrzkG_9S8znjc0YtyWq-b8e9KYfjIHcLw
-Message-ID: <CAD++jL=_eDY_mG_QBreSrZiho0hUrDSciedq=vrxXaTiMwrSyg@mail.gmail.com>
-Subject: Re: [PATCH v5 8/8] ARM: defconfig: Add a zx29 defconfig file
-To: =?UTF-8?Q?Stefan_D=C3=B6singer?= <stefandoesinger@gmail.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
-	Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Drew Fustini <fustini@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, soc@lists.linux.dev, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 14F0E45A976
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 7FA0245AA69
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289871-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-289876-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-On Tue, Apr 21, 2026 at 10:24=E2=80=AFPM Stefan D=C3=B6singer
-<stefandoesinger@gmail.com> wrote:
+Add missing HWEN input pin and IN supply. Fix v4l2 subdev registration.
+Remove platform data and switch to OF device tree bindings.
 
-> This enables existing drivers that already are (UART) or will be (USB,
-> GPIO) necessary to operate this board even if they aren't declared in
-> the DTS yet.
->
-> Signed-off-by: Stefan D=C3=B6singer <stefandoesinger@gmail.com>
+---
+Changes in v3:
+- added note regarding lm3559 in the schema commit
+- lm3560 power on/off functions converted to be part of PM,
+  dropped redundant wrappers
 
-*I* personally (as SoC maintainer) think that having a few more defconfigs
-is fine, even helpful.
+Changes in v2:
+- vendor properties swapped with generic LED properties
+- added mutex lock usage optimization
+- power supply and enable gpio commits squashed into PM
+  configuration since they are both required in making
+  proper on/off sequence.
+---
 
-But I would defer this to the more senior SoC maintainers because I think
-their stance is something like:
+Svyatoslav Ryhel (5):
+  dt-bindings: leds: Document TI LM3560 Synchronous Boost Flash Driver
+  media: i2c: lm3560: Fix v4l2 subdev registration
+  media: i2c: lm3560: Optimize mutex lock usage
+  media: i2c: lm3560: Convert to use OF bindings
+  media: i2c: lm3560: Add support for PM features
 
-- We have multi_v7_defconfig for compile testing
+ .../devicetree/bindings/leds/ti,lm3560.yaml   | 131 +++++++++
+ drivers/media/i2c/lm3560.c                    | 250 ++++++++++++++----
+ include/media/i2c/lm3560.h                    |  15 --
+ 3 files changed, 328 insertions(+), 68 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/leds/ti,lm3560.yaml
 
-- We know that binary gets way to big for your system: it's for build
-  testing and perhaps booting in QEMU or systems with many MB of
-  RAM, not for actually running it on products.
+-- 
+2.51.0
 
-- You are encouraged to keep your own defconfig out-of-tree.
-
-However I even challenged this myself by adding a defconfig for memory
-constrained Broadcoms a while back (NACKed/ignored ;) so if it was all
-up to me I would merge this.
-
-Yours,
-Linus Walleij
 
