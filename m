@@ -1,322 +1,178 @@
-Return-Path: <devicetree+bounces-289849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289852-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eMOJOjzz6mngGAAAu9opvQ
-	(envelope-from <devicetree+bounces-289849-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 06:36:12 +0200
+	id yGiLEVUC62laHQAAu9opvQ
+	(envelope-from <devicetree+bounces-289852-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 07:40:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C233459D03
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 06:36:11 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A17FC459F6B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 07:40:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A7E8F3010BAE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 04:36:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4230E300DA60
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 05:40:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD582248BE;
-	Fri, 24 Apr 2026 04:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49EBA345724;
+	Fri, 24 Apr 2026 05:40:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="GTYJ8U/F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023115.outbound.protection.outlook.com [40.107.44.115])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8D3CBA3D;
-	Fri, 24 Apr 2026 04:36:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.115
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777005370; cv=fail; b=Qj+BFo8Oi3DhJKDVA9asBtcM+spCskplgcxxEYX5jUA4ozvksJX6r5e3nuajwYkaaMkiwuBqLACRbRNWeuI5rAERdihoAFgeEUzzpKcTsvQivSkxTzHUBlhlKziLroNRoQQ3BqIvzPaPM0KVHPHsK07MFzWg/eKDxiKWN8zpnVA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777005370; c=relaxed/simple;
-	bh=Dul6zFE90qBxGc4Z56SS6GKK+mU5thvc2BIbSWzLTM0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tqYrAYyOf5S/XaAGcEtFHJm01KfzHd/lXL/jfp5nCz8MBiogdLIRNLmUTFFVI9ZM5pyFCXsq0Cd47GrUCrSGT+ljpzSO9AnSfn8plR087/VHmo99Hcxb7e27LFGKhdQvZo7Hx/sK0JHIA7t9HDjC4pUtKaPYrjuYwC0yNt8RfbQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GFR36WgZF4m2eDEZKB7tQuGlAnIxGlMCrULGNQn2cTOvlNpGZTfaH5L2oFky18VhlwTpmtwkGBpNOqchv8nlpuSqEB8z1k6iR9ryI63njI+gTlZFqw0U3vwn8X3Fc6EcdFN9KdmZzqOPunBgKe+bkzCIBOdCUWzZYS0diP2x/nggWLkNxXCPBG9rSdJgiRee1SNz0DDMXa/BkXydYnKHbAob28coER4fKhBWK5FzrsSIaVqyG7UgvaQMCzRzK+PZaOtQmsjLU0yaZOmKLQ6q+G43iOHxce6N9NwWJ0WaopNpArDwlE2aETr6BH0A30COtRMHQfPxIbY1R5yZ9wR+AA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pxgxQyyKWqZBx7IdmmZQX+12pRTGINVK28rje9OnCZM=;
- b=bMKq3pCJG+D6w3CpX4bEVnvGG+uQZ7Pj6TQOjqbGs/OP/Z3fnqvU8NEC743res1jdOibtfAGvWCL3Wru8fQf2z3b72g4kU6S0tXcsx4nMlsMU5FkzgaJetRtsanATZCZTDrPckH25AFTEW9cxn+gcZPaLavOvTPtItY8c7lqDngQZ7T6UEaG/UjizvYblbLpTcqOuTv4c6cT5xSgVKzxclq4FMCNayFAAjbsz3t8R6mv7L5ZC83+mF+dYd10VOYyYJGI6e6dp7dBJE5Adc4fYYzKi7/2hrcUfXP0Vw2DiWRNtAhC4/0ZMyY00PMGKZNRSqTvqhrbccgG3rc4SymOLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from OS0PR01CA0150.jpnprd01.prod.outlook.com (2603:1096:604:27::25)
- by KU4PR06MB8411.apcprd06.prod.outlook.com (2603:1096:d10:7c::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.22; Fri, 24 Apr
- 2026 04:36:03 +0000
-Received: from OSA0EPF000000C7.apcprd02.prod.outlook.com
- (2603:1096:604:27:cafe::66) by OS0PR01CA0150.outlook.office365.com
- (2603:1096:604:27::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.22 via Frontend Transport; Fri,
- 24 Apr 2026 04:36:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000C7.mail.protection.outlook.com (10.167.240.53) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.18 via Frontend Transport; Fri, 24 Apr 2026 04:36:02 +0000
-Received: from local (unknown [172.16.64.130])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id C0E5942D9460;
-	Fri, 24 Apr 2026 12:36:01 +0800 (CST)
-From: Devin Li <Devin.Li@cixtech.com>
-To: peter.chen@cixtech.com,
-	fugang.duan@cixtech.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	cix-kernel-upstream@cixtech.com
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	guoyin.chen@cixtech.com,
-	robin.wang@cixtech.com,
-	hong.guo@cixtech.com,
-	Devin.Li@cixtech.com
-Subject: [PATCH v1] arm64: dts: cix: Add CPU idle states for Sky1
-Date: Fri, 24 Apr 2026 12:34:36 +0800
-Message-ID: <20260424043436.162009-1-Devin.Li@cixtech.com>
-X-Mailer: git-send-email @GIT_VERSION@
+Received: from ultrarisc.com (unknown [218.76.62.146])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD07D3446C4;
+	Fri, 24 Apr 2026 05:40:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777009229; cv=none; b=KtDSYUGBLIauEfGDnYh90a3y+mX5QaTCn2NvP7guR2+eG5+ZZmaAAF1zkrax5tv0ns9bYmjpGViRfNv/meBWdxLm7hw2r/yCqwJiTH00pAvhijPvtjvhNtzwkusfjjjFTWnn9+AgeUeBRuFSP3ZuT5Pv3+QJ6OvBgDFuiWB5Qws=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777009229; c=relaxed/simple;
+	bh=k55XBV/nmFEVR3wNAXd6Yzldm76QwPMOMHGutyTPK34=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tbY+gFq2ph7VLXtwodYB88+MvcYnKV7xOpELCOJVefpdF8uOwR27qzBwj5SnppFxDanEdO4ViJdd7JW6ZKxSpdtOcz9mNh4QEKWQf5eA36BkTn4jsWaa3AiFCDQDvJwdPaiknnQLWXqfWhxoRB3omLYRA8pU9rikj2occoGwV0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=pass smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=GTYJ8U/F; arc=none smtp.client-ip=218.76.62.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ultrarisc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ultrarisc.com; s=dkim; h=Received:From:Subject:Date:Message-Id:
+	MIME-Version:Content-Type:Content-Transfer-Encoding:To:Cc; bh=En
+	tjKiXGiVc7g9ljDSOTLPPgkKKwLhEPaqid4wCky4Q=; b=GTYJ8U/FXpj2dAoA/9
+	9Q6vlXq/sTbGO86OIEn+q/fm/JP8f4hvz00a2P1eKSXGJ73MHQCuKOPZb7+94xNR
+	K6GSkEOyV6DTmstskOc0BXnku47zcL3ko+KocOoYabmVfAjh+3tmUC+p4GVwD6+1
+	eAhcPC61wrJqrE2vz1RE3Er+4=
+Received: from [127.0.0.1] (unknown [192.168.100.1])
+	by localhost.localdomain (Coremail) with SMTP id AQAAfwAnYUJlAutpm8gCAA--.1607S2;
+	Fri, 24 Apr 2026 13:40:53 +0800 (CST)
+From: Jia Wang <wangjia@ultrarisc.com>
+Subject: [PATCH v4 0/4] serial: 8250_dw: Add support for UltraRISC DP1000
+ UART
+Date: Fri, 24 Apr 2026 13:39:27 +0800
+Message-Id: <20260424-ultrarisc-serial-v4-0-1765a0b4c4a0@ultrarisc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000C7:EE_|KU4PR06MB8411:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 82b3b829-b132-43a1-73a8-08dea1bafdf0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700016|376014|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	hI6S1LUloO6ukXxGXj3aeiyIu5oV7MX+ENLI3167lhNT9CEAlB/0rrBhIwGoKLt/EJ5Orv9BDD5l9nFA64cSfmbRKHXcfggtvITCEyfDCVZoxSkm7iKREYWx1X8a+U3xCrk9eJHLGlNgTyUzAdi/J89Wv1Npq9aitoi8tov647bdFLOJs7cXZ3hKh5SRRCS10KN3dGoT3WbbjPF6UKDcvvwZBfvXWN2uC98RdT2EyhE4dtZaJLGx5NgI1bHEkXIHEs0M/Fy76fq7GN4fWGlv9o5sXbkUm8X2qsmaHHx5ffguyPNFvnWpHB5AkqFEAVt0dXOKks11ibbwQeI6DjetoxG0AgQTyOHIWLuHEJhN7OhQbrVz3RGB7MTV0Ow6/kBKVIdOtGZ6BHezus3uU8RMyI9IXIPVrMEtcWv/S3Gl8+efwd3hr3VAEwDYYlW+UlJ15FzqbPU7j5WBXIHb23vC+cbZRJTwhit63/HRu7IpMx6gq2xOQ3GE5eTlEqw0SpsTGjSCGraIXHj7ZX4+AINROYKZz7vE5/GNJafVwOUIwqk8exoFkEvPeBfAQEOUVobz/YSqkD1n4amvPQ2QEp5zxALI3ZYHhqI6/cinV7+6qjjX6aQz++R51fc+UgZntcWd05E6YnlANe0L8ml4W/vjjbvJDXGodBake5tIN+ccyq5oTX/i1TKqa6Qe4IVnCG9SP+qsZqWdcdjZ0yvIBFO+Wvf3MjRO6V1IVU/YuS/Wu2bZT8OiHPuZSRzeJkoKaG+BY3PH9M2MbTFqD0Ew6bBssQ==
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(18002099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	k4e6ER95WTxYrosmFjbDBNMK3vR7E5ycKJFCymtF3wvHzFSu0LSUduvJ6LrR66/znPdb1f4luQUFbMY/4gmo0GSIdzhdmBINsbL7qXUJS/D0PW9Zvtq2ZGEXWsVjh1VG+5HedE9QAtzI2XnOUCoK4Y0yUqAi6kYxyR2YTmwBGDwoGcd2lnAkSJICuihfOJ/hBjaSpr54NnVAkipCNZSfpwJ50ccQWGbflxPZ04k+IF2Tvd12+5iXRLwCbIhbVixoHTwIwCHfc1hMdC/JctYhL67aaoOKud0a5Y0uoInFKNsOZMiyNsFeLPA8TS2+2oGTTykciamY9GZfZd0C1DT6z34PRBIE91M25hMXYb8hT1pYHJNaaI/L+iGSdXnl9wyiQo+mEfpfEmVsMc8DYKvDUwTUAqrlBGjaYhMgbk4becHzJMP1MnUdrfbCncXGc/n0
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2026 04:36:02.6656
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82b3b829-b132-43a1-73a8-08dea1bafdf0
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	OSA0EPF000000C7.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KU4PR06MB8411
-X-Rspamd-Queue-Id: 0C233459D03
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA8C62kC/4XN0QrCIBgF4FcJrzPU31zrqveILpz7bUZtodsox
+ t49XVFQgy4PnPOdgQT0DgPZLgbisXfBNXUMcrkgptL1EakrYyaCCcWA5bQ7t157FwxNS32mSlq
+ rIMPSCkXi7OrRuttE7g/PHLrihKZNTmpULrSNv0+fPU+9F8/VL99zyqiR8QUwB9Dr3buyMs2Fp
+ Ite/ENERJQuADOrNzk3cwh8ECn4DAIRgTKzLDdCCobfyDiOD4RaV+xQAQAA
+X-Change-ID: 20260309-ultrarisc-serial-64ff637edf26
+To: =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ Jia Wang <wangjia@ultrarisc.com>, Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777009209; l=2625;
+ i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
+ bh=k55XBV/nmFEVR3wNAXd6Yzldm76QwPMOMHGutyTPK34=;
+ b=m23lxKeGrSvvMwMxC73BQt4E78pRW+AQ7iu8g4y1JQfYxO9PI4ZTzunANxT1JBHzTSzpkMpQH
+ ntlP33boulFAWNe9XpxLyoirrnpZjx4EtX0GJFkroVlq+LW290Lz55j
+X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
+ pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
+X-CM-TRANSID:AQAAfwAnYUJlAutpm8gCAA--.1607S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxXrWfCr4Uuw45CF45tr13Arb_yoW5Gry7pF
+	43KrZIyr98tFySkan7tw1IvF1fWF48JryUXFnrKw1Yq3W5ZF18trWrKw45AF98Zr95Wr1j
+	9F45u34rGa4UuwUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnUUvcSsGvfC2KfnxnUUI43ZEXa7xR_UUUUUUUUU==
+X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAHEWnq6L8ACAAAsL
+X-Rspamd-Queue-Id: A17FC459F6B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [5.85 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
+	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289849-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	GREYLIST(0.00)[pass,meta];
-	FROM_NEQ_ENVFROM(0.00)[Devin.Li@cixtech.com,devicetree@vger.kernel.org];
-	DMARC_NA(0.00)[cixtech.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-289852-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_SEVEN(0.00)[7];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ultrarisc.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[]
 
-From: "devin.li" <Devin.Li@cixtech.com>
+This patch series adds support for the UltraRISC DP1000 UART controller.
 
-Add PSCI-based CPU idle state definitions for the Sky1 SoC,
-enabling core and cluster level power management through
-ARM PSCI firmware.
+The series includes four patches. The first two are preparatory cleanups;
+the last two add the DP1000 compatible and fixed CPR handling.
 
-Three idle states are defined:
+The patches have been tested on an UltraRISC DP1000 development board with
+Linux v7.0-rc7, verifying basic UART functionality.
 
-- CPU_SLEEP_0: Core idle state for A520 cores
-  (psci-suspend-param 0x0010000), entry-latency 34us,
-  exit-latency 100us
-
-- CPU_SLEEP_1: Core idle state for A720 cores
-  (psci-suspend-param 0x10000), entry-latency 31us,
-  exit-latency 79us
-
-- CLUSTER_SLEEP_0: Cluster idle state shared by all cores
-  (psci-suspend-param 0x1010000), entry-latency 41us,
-  exit-latency 104us
-
-A520 cores (cpu0-3) reference CPU_SLEEP_0 and CLUSTER_SLEEP_0,
-while A720 cores (cpu4-11) reference CPU_SLEEP_1 and
-CLUSTER_SLEEP_0.
-
-Signed-off-by: devin.li <Devin.Li@cixtech.com>
+Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
 ---
- arch/arm64/boot/dts/cix/sky1.dtsi | 41 +++++++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+Changes in v4:
+- Added two preparatory patches before the original series, shifting patch
+  numbers (former 1/2 -> now 3/4).
+- Patch 1:
+  * Move all DesignWare UART register/field definitions into 8250_dwlib.h
+    for shared use with 8250_dw.
+- Patch 2:
+  * Converted the Renesas RZ/N1 CPR magic value to use DW_UART_CPR_* macros
+    and FIELD_PREP_CONST().
+- Patch 4:
+  * Converted the UltraRISC DP1000 CPR magic value to use
+    DW_UART_CPR_* macros and FIELD_PREP_CONST() (value unchanged).
+- Link to v3: https://patch.msgid.link/20260421-ultrarisc-serial-v3-0-3d7f09c2420e@ultrarisc.com
 
-diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-index bb5cfb1f2113..0611098b5f05 100644
---- a/arch/arm64/boot/dts/cix/sky1.dtsi
-+++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-@@ -23,6 +23,7 @@ cpu0: cpu@0 {
- 			reg = <0x0 0x0>;
- 			device_type = "cpu";
- 			capacity-dmips-mhz = <403>;
-+			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
- 		};
- 
- 		cpu1: cpu@100 {
-@@ -31,6 +32,7 @@ cpu1: cpu@100 {
- 			reg = <0x0 0x100>;
- 			device_type = "cpu";
- 			capacity-dmips-mhz = <403>;
-+			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
- 		};
- 
- 		cpu2: cpu@200 {
-@@ -39,6 +41,7 @@ cpu2: cpu@200 {
- 			reg = <0x0 0x200>;
- 			device_type = "cpu";
- 			capacity-dmips-mhz = <403>;
-+			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
- 		};
- 
- 		cpu3: cpu@300 {
-@@ -47,6 +50,7 @@ cpu3: cpu@300 {
- 			reg = <0x0 0x300>;
- 			device_type = "cpu";
- 			capacity-dmips-mhz = <403>;
-+			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
- 		};
- 
- 		cpu4: cpu@400 {
-@@ -55,6 +59,7 @@ cpu4: cpu@400 {
- 			reg = <0x0 0x400>;
- 			device_type = "cpu";
- 			capacity-dmips-mhz = <1024>;
-+			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
- 		};
- 
- 		cpu5: cpu@500 {
-@@ -63,6 +68,7 @@ cpu5: cpu@500 {
- 			reg = <0x0 0x500>;
- 			device_type = "cpu";
- 			capacity-dmips-mhz = <1024>;
-+			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
- 		};
- 
- 		cpu6: cpu@600 {
-@@ -71,6 +77,7 @@ cpu6: cpu@600 {
- 			reg = <0x0 0x600>;
- 			device_type = "cpu";
- 			capacity-dmips-mhz = <1024>;
-+			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
- 		};
- 
- 		cpu7: cpu@700 {
-@@ -79,6 +86,7 @@ cpu7: cpu@700 {
- 			reg = <0x0 0x700>;
- 			device_type = "cpu";
- 			capacity-dmips-mhz = <1024>;
-+			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
- 		};
- 
- 		cpu8: cpu@800 {
-@@ -87,6 +95,7 @@ cpu8: cpu@800 {
- 			reg = <0x0 0x800>;
- 			device_type = "cpu";
- 			capacity-dmips-mhz = <1024>;
-+			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
- 		};
- 
- 		cpu9: cpu@900 {
-@@ -95,6 +104,7 @@ cpu9: cpu@900 {
- 			reg = <0x0 0x900>;
- 			device_type = "cpu";
- 			capacity-dmips-mhz = <1024>;
-+			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
- 		};
- 
- 		cpu10: cpu@a00 {
-@@ -103,6 +113,7 @@ cpu10: cpu@a00 {
- 			reg = <0x0 0xa00>;
- 			device_type = "cpu";
- 			capacity-dmips-mhz = <1024>;
-+			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
- 		};
- 
- 		cpu11: cpu@b00 {
-@@ -111,6 +122,7 @@ cpu11: cpu@b00 {
- 			reg = <0x0 0xb00>;
- 			device_type = "cpu";
- 			capacity-dmips-mhz = <1024>;
-+			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
- 		};
- 
- 		cpu-map {
-@@ -153,6 +165,35 @@ core11 {
- 				};
- 			};
- 		};
-+
-+		idle-states {
-+			CPU_SLEEP_0: cpu-sleep-0 {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x0010000>;
-+				local-timer-stop;
-+				entry-latency-us = <34>;
-+				exit-latency-us = <100>;
-+				min-residency-us = <3000>;
-+			};
-+
-+			CPU_SLEEP_1: cpu-sleep-1 {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x0010000>;
-+				local-timer-stop;
-+				entry-latency-us = <31>;
-+				exit-latency-us = <79>;
-+				min-residency-us = <3000>;
-+			};
-+
-+			CLUSTER_SLEEP_0: cluster-sleep-0 {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x1010000>;
-+				local-timer-stop;
-+				entry-latency-us = <41>;
-+				exit-latency-us = <104>;
-+				min-residency-us = <4000>;
-+			};
-+		};
- 	};
- 
- 	firmware {
--- 
-2.49.0
+Changes in v3:
+- Rebased on Linux v7.0-rc7.
+- Patch 1:
+   * Removed separate `items` entry for DP1000, merging it into the
+     existing `enum` to comply with the schema.
+   * Updated commit message to describe DP1000 UART hardware differences.
+- Patch 2:
+   * Drop the custom quirk for missing CPR register.
+   * Switch to using DW_UART_QUIRK_CPR_VALUE to provide a fixed CPR value.
+- Link to v2: https://patch.msgid.link/20260316-ultrarisc-serial-v2-0-6ab3e7fa891c@ultrarisc.com
+
+Changes in v2:
+- Rebased on Linux v7.0-rc4 (previously on v7.0-rc2).
+- Reordered patch series: DT binding patch comes before driver changes.
+- Updated commit message for DT binding patch.
+- Link to v1: https://patch.msgid.link/20260316-ultrarisc-serial-v1-0-c464f3e933a5@ultrarisc.com
+
+---
+Jia Wang (4):
+      serial: 8250_dwlib: move DesignWare register definitions to header
+      serial: 8250_dw: build Renesas RZN1 CPR value from DW_UART_CPR_* definitions
+      dt-bindings: serial: snps-dw-apb-uart: Add UltraRISC DP1000 UART
+      serial: 8250_dw: Use a fixed CPR value for UltraRISC DP1000 UART
+
+ .../bindings/serial/snps-dw-apb-uart.yaml          |  1 +
+ drivers/tty/serial/8250/8250_dw.c                  | 31 ++++++-----
+ drivers/tty/serial/8250/8250_dwlib.c               | 49 -----------------
+ drivers/tty/serial/8250/8250_dwlib.h               | 63 ++++++++++++++++++++++
+ 4 files changed, 83 insertions(+), 61 deletions(-)
+---
+base-commit: e774d5f1bc27a85f858bce7688509e866f8e8a4e
+change-id: 20260309-ultrarisc-serial-64ff637edf26
+
+Best regards,
+--  
+Jia Wang <wangjia@ultrarisc.com>
 
 
