@@ -1,125 +1,159 @@
-Return-Path: <devicetree+bounces-289870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-289873-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CDlaCmYX62nWIQAAu9opvQ
-	(envelope-from <devicetree+bounces-289870-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:10:30 +0200
+	id 4IJzKUIY62kGIgAAu9opvQ
+	(envelope-from <devicetree+bounces-289873-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:14:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B5F245A8CE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:10:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B348A45A9AC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 09:14:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BEA683029614
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 07:07:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D247E301413C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 07:13:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 017D834404E;
-	Fri, 24 Apr 2026 07:07:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D881E371885;
+	Fri, 24 Apr 2026 07:13:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="njlx00A1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VUhfNRB9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28843375C3
-	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 07:07:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40A0B36D9EE
+	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 07:13:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777014442; cv=none; b=Ayqyi8AJkpq0mKxi4/eoMPESZd9qguT31RJm99nghYQLJn3+Y0QJlG1ULOK+rW3dZMDNMcn64zKUe4zU/riO3MQp+E4V+l+Ll6+exZYRoWRMLOfivHP34J7waf5750G6WHe1Gf/eqCxw93u58w8mXlQv6NRxr3Q5rm+KqQuQeD0=
+	t=1777014825; cv=none; b=o5j22y5bY2qVoeeE36NvmefJobNiT2bSQyUfU9mmvqzg7FvYqfUrpsHFLN6tjX2bDu1bTdGEMNY8WaTuM5Q1GE7nH1wyCv5M1rKAI+uorpD7pEkRN01wtUclqwZdyXi0LQn0VA3V0PLfbr/xzkgpsDdGQm+CSJlQjV4uSaU12TI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777014442; c=relaxed/simple;
-	bh=pbnGJiqrP8jRAcn40oS1Ab2bMTl/WwxZH6xu9xU/G1E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oVkJO8+3PYoNKUmwLuD0FBadlEgkE0RGdy3qV3+V/dYy2Z2EPc/KGihCSz5dclbyxIlBpBmxTWbQ2IOMSzxA4Q77XpHcakpxu/5hOPnNdVAgZ6gwWD/BbbudE/C6/trQJifsO7pX3hKCFaQsTyaQiRj+oYPnpXFgxJT/oDmsjaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=njlx00A1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AF0EC2BCF7
-	for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 07:07:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777014442;
-	bh=pbnGJiqrP8jRAcn40oS1Ab2bMTl/WwxZH6xu9xU/G1E=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=njlx00A1MRjkjmQw2YjC10g1xTfcnCDzvhb4huNB0WmZNvulUOaNMK3/KiGBrWm27
-	 bTgBWVRhU0dKV3rRvbpge7Y+9OsjRFNiwMDIAsTTFJoKr0OolQrrSlelDAIjK9vwSe
-	 DRsBB1rbumOu9WZMqfVInxH+22Ihp+Jum38e3fTeuXd7yokd/6UjoEkRvv1l7yl9q4
-	 lFs5FnvL1RGnS2X3BF6aoU0S6MQCVcuUoLCUmgQB21uiuiJHrnu3rV3ADbTgCnyIck
-	 JrUBYmWRJi+pT+O/kDIh8/7t7wNf5NH1AH0JOrgC+WFh71fwjvsaMqIgVfZU2j79Mm
-	 DmLXoGWVdm7aw==
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5a2c9c5ff87so8214436e87.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 00:07:22 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+pnLkA1//0WjkSN538hLnQW7cvK86rcYTiJ1JmKi4Mt4O3dMNHbJ+F6wLN0zUq6Pmz7jfugkwnpFO1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzl3lM9UCUXGVR44AJBvbs4C7VJk/PnlmuNIdGo5j6kLOkF/PGv
-	/b2jZwlk+vz8P+zqbk2ZasrAsnYikFod5QEFWA0JRtWpOWKwAu43nX0dup6n54z4R6Umrymr0ue
-	Xy2gbY68Yzy4dj+xlmYrE1DeP8+K460E=
-X-Received: by 2002:a05:6512:1189:b0:5a2:7c1c:74a with SMTP id
- 2adb3069b0e04-5a4172e78f7mr10272865e87.29.1777014441285; Fri, 24 Apr 2026
- 00:07:21 -0700 (PDT)
+	s=arc-20240116; t=1777014825; c=relaxed/simple;
+	bh=TTMApobnGmWOOW06RSWxzVL2ux7eZCtH8CR2tkV9zBc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rZuwLnVGZuMM6VrpJsttZ2cW0ej4zwSjUVdfhOpx6PoV7U9Co2JGVK9fteiJRGv2ouOuKWvPJV4qKfFiRCKzVkYNmb+H2B4tJAv9AWxBVCk8jh8k+2trm0V7nxpBuLRY1fCYxVnIq8f2AyPBAYleRaLuJligw4naxlL1d3dNuO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VUhfNRB9; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-38e936caafeso74788691fa.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Apr 2026 00:13:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1777014813; x=1777619613; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=A182jZR5TwBM/HJjBNyA3hAZAqMm6f76hkhqyZnm/tw=;
+        b=VUhfNRB9sds1opZVvInmxG5RQYS2iN0wJhkYjK0kVRtDjW61M8YoxPYAmhpeJk+12k
+         k1koRQlGVfcxnLBNR5F1q1kdNVxDxFsXa4eyuyxqyzTZyMgdDABxdWlwZY+tJvdsmP71
+         GMuuRDAhAIjrLA9M4CzQ/NIcKhLgKDH3Hp4K9Dt+tqXNXJuSAFuB94PxFPB01wiI1/DB
+         fe6ZDofZk5cz9OGZEb/kk1nnIiwigWB8zaci34EzNw1jCBX8NuYmdsp47jyh8hoZV04i
+         2kcZtYFA+3urkfIXA29v5IsdC081a4gD+GR8DQshAQgKHf6fkyq0JSkfScOkKwA5cAVB
+         897Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777014813; x=1777619613;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=A182jZR5TwBM/HJjBNyA3hAZAqMm6f76hkhqyZnm/tw=;
+        b=ruu0U084ocKdePC6D9VAa1aKntxaSe5wxCz3XrP1g6YVAlisagmZO9Qs4twaWaH6zY
+         XMgNTTY2h60XV2HjmkE2A2AeGdK7J18Dn1vpVPWkKxZhwbMmZYb+J+aNn+RIG84zW5Oi
+         O1m5hWKWEnzsdhVLBb+xj4avoytoPX+1I+0IQheA2Q0Vr2FkJdTJYzRhSM5xMI7w52MK
+         KRQBHQmO+OsVaIP+YT/phIcUskb2s3xjf2e6ojFnbzszZk1g1MQKWdDOXi1BmU8EeKr0
+         85EX7Nf1XnBDawzlu/inSjkT2c7QRGAcn9zVyMKFbhX92EsmmLhFXpSCiqgmZvNERq0y
+         kl1A==
+X-Forwarded-Encrypted: i=1; AFNElJ/8OfQ+iYB47q++gj3O3nv/fgIPbJi7QEOEapdbPBG4GqSgvqjHNNCcdei3UdVQDIr+y3+ONJdzmGsS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHuk0ijLoUtRcYl6vGkzE5r0hzWhyAsonJVi0p1MOVx4b5qh/v
+	2tnl+sXgJ+/W9GxHIe0oQ8keK1hSdBqjOQgMXjAOHBFk/quVjmwnNCHt
+X-Gm-Gg: AeBDievYhT1dcgyHlxAR+7KwJoLPmGuL3r91eP3IWOGXRhXr59OlSpr/6oKUGvKwR8h
+	9dGKO8G4b1gD3r9Pi7wHni+rsh5n85sQl2puGJUCQKnpPufLJRnf42XOFv9Pqob67z9RiAMiATm
+	Q4wiZk3KoU+knd3VAfUdWYbc1X5FY0X7MMYW4tl8d3/bwGlmpCDt1S8odbzFcR31yzZFxsqFOWV
+	7y8vqhZzXyJ3LcO5GNuBxyf652uZ1t+7eCKwsUoGvTDUjutM7+3ihT5m/WRbey5RRZ9bUAllAki
+	+0VHkXJtdtK5TY5ABjyupIMxy7toqfea3bFMWeebehol/BXLjiRWhZBE04qWVvK+1QStjkoALAA
+	zoPqbMergiVpMHzHhdeCN396BswuTnTvGEVfTLg2TaOMQtLppOPtuNlD5HTV/Ifi+aDXebIeEtt
+	XDhvYxMV0kNNGbv7SuZh2+PZ4=
+X-Received: by 2002:a05:651c:1448:b0:38e:90b9:ce98 with SMTP id 38308e7fff4ca-38ec780d734mr96591931fa.6.1777014813092;
+        Fri, 24 Apr 2026 00:13:33 -0700 (PDT)
+Received: from xeon ([188.163.112.56])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38ecb290095sm43760131fa.0.2026.04.24.00.13.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Apr 2026 00:13:32 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] input: misc: add support for Imagis ISA1200 haptic motor driver
+Date: Fri, 24 Apr 2026 10:13:03 +0300
+Message-ID: <20260424071305.89503-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260421-send-v5-0-ace038e63515@gmail.com> <20260421-send-v5-4-ace038e63515@gmail.com>
-In-Reply-To: <20260421-send-v5-4-ace038e63515@gmail.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 24 Apr 2026 09:07:09 +0200
-X-Gmail-Original-Message-ID: <CAD++jLmLRTEjG15y1=f47te-5uirMUnpOTATA_5F21dSaWuGeA@mail.gmail.com>
-X-Gm-Features: AQROBzA-9wp9u4XvJ0O13Bd6ibbYj5VYWJ5xrqchTqPmB8NQokc3_R07wRhKPaM
-Message-ID: <CAD++jLmLRTEjG15y1=f47te-5uirMUnpOTATA_5F21dSaWuGeA@mail.gmail.com>
-Subject: Re: [PATCH v5 4/8] ARM: zte: Add support for zx29 low level debug
-To: =?UTF-8?Q?Stefan_D=C3=B6singer?= <stefandoesinger@gmail.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
-	Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Drew Fustini <fustini@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, soc@lists.linux.dev, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 0B5F245A8CE
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: B348A45A9AC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-289870-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-289873-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-On Tue, Apr 21, 2026 at 10:24=E2=80=AFPM Stefan D=C3=B6singer
-<stefandoesinger@gmail.com> wrote:
+The ISA1200 is a haptic feedback unit from Imagis Technology using two
+motors for haptic feedback in mobile phones. Used in many mobile devices
+c. 2012 including Samsung Galxy S Advance GT-I9070 (Janice), Samsung Beam
+GT-I8350 (Gavini), LG Optimus 4X P880 and LG Optimus Vu P895.
 
-> This is based on the removed zx29 code. A separate (more complicated)
-> patch will re-add the register map to the pl011 serial driver.
->
-> Signed-off-by: Stefan D=C3=B6singer <stefandoesinger@gmail.com>
+The exact datasheet for the ISA1200 is not available; all data was modeled
+based on available downstream kernel sources for various devices and
+fragments of information scattered across the internet.
 
-Reviewed-by: Linus Walleij <linusw@kernel.org>
+Linus Walleij (1):
+  Input: isa1200 - new driver for Imagis ISA1200
 
-Yours,
-Linus Walleij
+Svyatoslav Ryhel (1):
+  dt-bindings: input: Document Imagis ISA1200 haptic motor driver
+
+ .../bindings/input/imagis,isa1200.yaml        | 145 ++++++
+ drivers/input/misc/Kconfig                    |  11 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/isa1200.c                  | 459 ++++++++++++++++++
+ include/dt-bindings/input/isa1200.h           |  16 +
+ 5 files changed, 632 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/imagis,isa1200.yaml
+ create mode 100644 drivers/input/misc/isa1200.c
+ create mode 100644 include/dt-bindings/input/isa1200.h
+
+-- 
+2.51.0
+
 
