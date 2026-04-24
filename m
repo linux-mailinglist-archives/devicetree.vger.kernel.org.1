@@ -1,216 +1,234 @@
-Return-Path: <devicetree+bounces-290070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290081-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6EdlEKpw62nCMwAAu9opvQ
-	(envelope-from <devicetree+bounces-290070-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 15:31:22 +0200
+	id oCMwL9t462npNAAAu9opvQ
+	(envelope-from <devicetree+bounces-290081-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 16:06:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32D1945F0C9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 15:31:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AD9145FFB6
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 16:06:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D6F6D3002D1E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 13:31:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B51BC300CC19
+	for <lists+devicetree@lfdr.de>; Fri, 24 Apr 2026 14:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4FE3D6CD6;
-	Fri, 24 Apr 2026 13:31:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1333D813E;
+	Fri, 24 Apr 2026 14:02:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Dzgn4zLA"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="eVrbBPSa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010002.outbound.protection.outlook.com [52.101.61.2])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4723B3D6494;
-	Fri, 24 Apr 2026 13:31:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.2
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777037473; cv=fail; b=ZfmiIif2gcmf7ORtXjF9NRUkp9olQhdWNowGuCad6Xpe5c8bngBXl+kuesYpVWflnDXm4Hv01x/KN4yJxO9tNumbc8yps1p6u22rYE+G6DXSdTnjA+rgsoklj+dLSHet8tS+lhSkDoS2j1vQCh9rLNE1jDIrcxjq1h7ZUk8X8OM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777037473; c=relaxed/simple;
-	bh=EXyGKHxPN4burkMCFyyHtgH3/H2bvN1G2ai9FlHQjuw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=GuaD1/H9IAgh4MFSHvDeyQR790w85Povak0MOGKTE//jzlPReXpcOvBzznwBbgT6Wo3jN1MBheq1DRyoL6vFNsj3YjO/lepI3W4i5oIW4fFxBqT6diSjR4BnUNjAhgHZ1+nyXDftsFI4CvquPsXX35Utk33aMqzV/pFNLrqYqb8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Dzgn4zLA; arc=fail smtp.client-ip=52.101.61.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jaPwEHrDUXOS1M/kUd4cIsrqeigiac71MOL+l2sjbznsx0JFhZ4JkaCODii8f36dqhsXRreNYeQmvgMZ8Vthbn5eTpq7UwikTDoEpef+n2ctt3Q26xyYZisnViAnZF0DEztiTTQTzwPHKyOm8UVfoGdaG3reUsXGdujKmL6+J6Ds6fEfxHoCR/60ZsABCJSeJPm5MTjrALKp8h9S+w9iW+rDh4Xf1J0+shahvfhCR51ZJLb7XxBT3Qdf3k3gxDBzB/dKy8mxjeWSLyudZFYaOlFkyb80kvDitSRsCCBOMB63f/aGndxS41whav5SvkWDwic/XMBOESCLwrqbyaPZQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EXyGKHxPN4burkMCFyyHtgH3/H2bvN1G2ai9FlHQjuw=;
- b=dn2ltIbluQtbmBDVR6yA0VPuFKTx2W1otNAdjq3MtNiGSNq7vECKvJvSepf6kH73jdU83wwTDJsGeLRI3kyX9RZZYjA/wehQFPP/ZRu0c5oIEUGQ17ici2jzT+O23bi4nPSF80E2EvOLF3KxmaAa707e6az70IqnaWCnwSJFccRGo32Vd7enA6s/RQ+4BxQbvrfbFwL4jp/EbIuzaAFJQxQtzWQKnCcRkPzyI9zDILb/w5YDDR8IPkox+kMdnTrx37y+S3elazHCTImUf9YAsCCV0ZPJ5Eq8EwgL5cy0yEvsLRiZ4E/ZimOJfNR/NxTyOBEFTty9zed4znbe6V61Cw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EXyGKHxPN4burkMCFyyHtgH3/H2bvN1G2ai9FlHQjuw=;
- b=Dzgn4zLA9PYDbPyFFbUu3cK7or5tFyWgIjL4OnVMLwgTLj7Y6WcbAJ8yNB9DhfeBhhn1xnGBU5/wL2RpvZ2LIqn4ytdcRnPvfX5UzzKEuxjchsdShXzSZV+Hly8EBfEiYG/cDmJSB6gwSzgNF1DbX31vdNp6gLVWwVBPrkk4z35DibXNG/B9QBafeLsL9kImwJrkkJcofYkJniIE0mAdpiYIHD9d6n3oWLADxaI3bNUwGQuebKYf300W50DHDHdCZ6F2+uWnkmqOfuKyiaxPvTBLQ3XlsuHK7ksSWRFKxXZVbYEy1JFgV4b/izcTPkzsZAL8USKRdQ74xqe8cFGkrg==
-Received: from PH7PR11MB8251.namprd11.prod.outlook.com (2603:10b6:510:1a9::9)
- by MW4PR11MB8266.namprd11.prod.outlook.com (2603:10b6:303:1e3::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.22; Fri, 24 Apr
- 2026 13:31:00 +0000
-Received: from PH7PR11MB8251.namprd11.prod.outlook.com
- ([fe80::e81b:3e24:1804:5c7c]) by PH7PR11MB8251.namprd11.prod.outlook.com
- ([fe80::e81b:3e24:1804:5c7c%3]) with mapi id 15.20.9846.021; Fri, 24 Apr 2026
- 13:30:59 +0000
-From: <Ariana.Lazar@microchip.com>
-To: <jic23@kernel.org>
-CC: <dlechner@baylibre.com>, <nuno.sa@analog.com>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, <robh@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <andy@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-Subject: Re: [PATCH 2/2] iio: dac: add support for Microchip MCP48FEB02
-Thread-Topic: [PATCH 2/2] iio: dac: add support for Microchip MCP48FEB02
-Thread-Index: AQHcnB4CEkxJgPuKSkiQaY7LrEYHMrWEEUaAgGo3ioCAACaUAIAANYqA
-Date: Fri, 24 Apr 2026 13:30:59 +0000
-Message-ID: <3ecc683135c742e097ec6ba91f275cbf5d8202ce.camel@microchip.com>
-References: <20260212-mcp48feb02-v1-0-ce5843db65db@microchip.com>
-	 <20260212-mcp48feb02-v1-2-ce5843db65db@microchip.com>
-	 <20260215175857.4085bc2c@jic23-huawei>
-	 <f7f45b4327c9ce5c806cd878bd9b53e8fcbf7785.camel@microchip.com>
-	 <20260424111920.61765602@jic23-huawei>
-In-Reply-To: <20260424111920.61765602@jic23-huawei>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB8251:EE_|MW4PR11MB8266:EE_
-x-ms-office365-filtering-correlation-id: f7f1a43c-f018-4b99-0456-08dea205b922
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700021|22082099003|18002099003|56012099003;
-x-microsoft-antispam-message-info:
- g++u80jgylHfxfvnKmq6ALMdNz+esWXpLuk5x4NDFJRA0Cihlj/Q5ZHzKez/8A/MVOschvDG2GuFZRbVdIGo6CCDS7SKqgbghxOPbGEh7M2SDqkDoGS+LXQg2ceTC92Mx9cYGZDL7TQFukLmBObezNzhcCrcYlWbyQ45y8i4Ta/1dDiv6UGdcZ2nTK1DYksjAyva74Qd7h7nW0yCeTpbMi1AywDiJGxl/88C2yg9iezSzTn6LNnFmDJQUmDiF/wiivPbKBtg79UBXWmZIR2P5IVxJqx321D4ioRapHacQjzlw3Y0eNDwJxspd4kc4jRhSkZ6Q3BvIDOrnIsRCA1CcMGfE2Ocf8EFyG3CUl7mGJDlkdeLqdpMM0hwV3dz8AyGm1rkMc/jH9AJUT8G+bmRpkNeTAxNwoTu0QvEBqqS7tiINCo3kCMctKCaRTrIWGlQIBg42yh0qNPtnnKZfFEE/5YBX0JF0A6SUC4l1Kl76wiEDhhAw+eScWkJ2wX5fXs1zjLpOkbu4KBnKFtHGozsd/6ap9TPl5ix54QPyjC+rrMY6eOHxEtJ2bdVW/bzHrkh/Hwl5L7W87BgsPC050XEBtYMDQl3yOACg0R4KF//Abg9oBE3EvN59Qa4YegpZzRn+3Gg+SjIBell3uJOxl10yJv4KhfZVOw9QX29aJAh3IqV+Sq31ZA2kourzJuluJYx9tL2SFLln+2V+DXNQTEof2Vn6yWoQKUISIodhXrppLUcQAU1742gJrfcui0PMy7dp0LhLOTPFv1TkkO+JfW91Lhoq32zNNv36xpb7MUN/vs=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB8251.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700021)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?WmxQRWp4dzRUK3FiME9OSU4rVHJGc2gybHV6YVdndzFHalZ5SWF0UTArbDFx?=
- =?utf-8?B?WDhSQlVHU0l3aTd6Qlo0di9XaGZDZzJ1NmJRRlpRTmVwaVE0ZmVIM1A3YnhE?=
- =?utf-8?B?aFl4Uk1Sd3QrMnp5d2ZwNWpFU0o5MVVHNEdOd1RqYVQxVDZ1cGFvMDIvNUw3?=
- =?utf-8?B?R2thd1RhZnVvdFkvVEVxTTNOajJ4SmdEZkljdVVpdTlkRzhheTlDMXg3NmI2?=
- =?utf-8?B?MFJMbzBpK1VoRGUxVUpOS0VJd041R2lwMnJiY3pKeEtyaXpDaXFLTFViNENx?=
- =?utf-8?B?Ty9waFhKR2hKTTlqWDhGQzFiYnh2eXVMS05neEJqU0xIRFBGd2w3YWIvS0Mx?=
- =?utf-8?B?aFc0UXVpU0Y1VWJJUVRQNnZ0Tzc4NGdhbFJXc1oyVC9TVmtLT0RGaXdHaWlD?=
- =?utf-8?B?V3plTE5hRzVIa3NVMjFhbUFjaEFlS0w3NWFSL0xRR0Z6TnhPc0RHV2RLUWJC?=
- =?utf-8?B?aHBPMXlEd1dweFhqTDBYSHoxa2oxZWdPTFVmNGRkb0JCRkRuMzRDREltbjJ0?=
- =?utf-8?B?SS9ibm5GTDNVdmpqTnFKMFNON2dHVHd4dThhN0hlbGZJd2E2dm9zV0FlbUlO?=
- =?utf-8?B?WG1mbG9HRFYwRjBSeWFhU1BoTmpXUEZ6V01TWENuTTNURjlQV3Z2cTMwT2V0?=
- =?utf-8?B?QlN3Y21USWpkS3IzbDdQSzZUOTNjT2d4Mi9NbmdQbisxcGc2aXVxMWo2WDk3?=
- =?utf-8?B?NE1Hc0Nod0RhRGJsL3FNZUNzYzNWMkFESjBGeG5RYzFXNXJjQTJWT2tkR3JX?=
- =?utf-8?B?cXQxclFTalFwTUtCMnVZdW9GNzNpZENaQzZzbVNxWUhPRnd3WmVyTVJWd1VM?=
- =?utf-8?B?UWI3TnlvM2hIdWlTWmxuRHN2M0hJYy9xY25EU1VJUGpURWFUQmFSL25KNVFO?=
- =?utf-8?B?WFY1U0JEdjA3dlRiWS92WkRaZ3ZodkZoWXhESUZuSU52UW5tVWUvMHVtQXFy?=
- =?utf-8?B?T1YwYjdRa1lwZ3UxaHNnNXdzREhzVGxGSjVLWUc1UkJvU1pVT1Q3ZUJRRWhn?=
- =?utf-8?B?NW5BRTNZR29McDFKNEJhZHhOTDNzalpCKzdYK1VnNnNwVEZINDVRMkJ3V1hV?=
- =?utf-8?B?MldNSlhVRk00aGdtMU5ZU3dKc0tLUXFiMmNETU9Ca0t3QjdKLzJzdE5qdldM?=
- =?utf-8?B?VnVxRWJMUnh1QnVnUnZBOGFvaVRlR2xKd1BZVDlUTnN5cmdIVkdiRHlNa0wv?=
- =?utf-8?B?Wjc1cFhnMTlOSFpxKzlzbXlKUDByV3NySmMzTDc5eTluWG1aTDM1aksvTHAv?=
- =?utf-8?B?MW1wYzFiekYyWUN4MWhXKzZlT215cDhPMmhFalBWbzNhN1UvS2IxSmNyQnR5?=
- =?utf-8?B?bXl1SHpVUGYyUnBJa3hQY3d0cWtkOWJ0WFdSVGhadUE1SU8zR0cyakxKNjk3?=
- =?utf-8?B?c1pTOEsrZkNpejhqRklVTVVlaXRJT2Z2bGdwU1FZWi9hMXM1TFRzQWNVRUV3?=
- =?utf-8?B?UzExeXF1MmZ2Smk4MkxXeXhIRldXY3dZZUN1QVNxZVFsYlpGSkdOTkJPd0ZX?=
- =?utf-8?B?SXNMREdGbXgyN011OTI4U3pFWE9FRFQwWXZzQ3VyUjJEazFMYkJ3V0pvTThw?=
- =?utf-8?B?a0JxMDZiUzBQMjdiUHY2SzJ6Z1doSXBZcUlwZ28wVDNmZVppTlpSM3RQTkFQ?=
- =?utf-8?B?N0ZBZEJ0c3B2aGg3STM1dUJiNCtxL3o5QlkrWGU5aUI0R0pNbEszMG4zQ3Z4?=
- =?utf-8?B?R2NqODFUaFNJbVM0SUVQWk5ZMEVpMjBIWjByNmphVFVOVVJtb1pvYWZiN1NH?=
- =?utf-8?B?SXQrQjlUenU1RkdwTzhzd1k4bjAraWVBeWloRjRwRkg3QXhYeXgyekdhSERu?=
- =?utf-8?B?TElZcFpmM0FJbG43dmt3QWR5S0I4cnoyNnN2c2pnNUhiOUhicWVxRVR6TGlV?=
- =?utf-8?B?VVBJRlZNTE5LK3BrWEtxcnoyY0lUaTRnd2lyb201akN3R1dUTlhBM0xTWHNV?=
- =?utf-8?B?RFRFdy9JeGZ6ZFB6ZWU2bzdUTjd2SldHZ3pGSTNlK1V1azZEaGhoWEZPVXpw?=
- =?utf-8?B?QnZEbnM5cWNvVlR4ellNWlZsYUZhODcxSmhTSitPQ3BBNWVrY0hHeHBNY0Fx?=
- =?utf-8?B?VlE4cUx4UW1TcE1raWFZVFhsTTcxZnZGMzhDM3c1TkFrZENGVnh6WmlnbHFN?=
- =?utf-8?B?NGdGMldhL3BRMGw2b1BqdVpaVld3a2dkeGdEY3RNckZnMis0Zm1CWVFJWWNU?=
- =?utf-8?B?dWxzRUlpZ3RIRzBHYzhnakx1d1NiNVRLVG40cnNwNmJHQnVObUoySlJDcXc3?=
- =?utf-8?B?SlIwWE1hUnJncUE1ckhFNkpmM2lxQkh0MnRwNXFhVXdEaXhDTEJsQ2ovZ2Z2?=
- =?utf-8?B?eitFN3NCdUdpY0RveFkxRUV6aEE5NHJVQWtGL21XMDZTamFzSjB0R2hsa01G?=
- =?utf-8?Q?Y9rBVEuWtEqWFTMU=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D172F66EAF79FD439FF7D69EB459771A@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D1A3845CB;
+	Fri, 24 Apr 2026 14:02:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777039343; cv=none; b=QwqGNvsoSkUbh19EmdDdmaeoYvUoiFqmJalbYArGGi1ky/NKHmOFA5XpmrNn20EgTLQXs0O4ue+OccyvgLDTEll0zbWjxD/40o4wlMHkjI/mFjcRvb6H1PMqm+nfw25nejI88ZBRZeWNQ4uEGTrcskgIlmNwYuzwkGldAWI1mj4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777039343; c=relaxed/simple;
+	bh=ack7mYbip6ZcuORQPpGdCVHFIO+2WE0qOIuDR99tjcI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sRoOebb+MrJ65ce4GV1vlcQOxqpjMMYEex+ohRjF59lHBiYNqKWetpbbNSIUlPv+gONPHAXDBQqsS2m63cSsxFnD56Zfh1qFcM3ba/54O9Ogj3/YxVYnmP0q1SNU1fBS7HbvC4abiRkLgDVyXm5kYHm3re82Qpg3Sp0zSXleqGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=eVrbBPSa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 300E0C19425;
+	Fri, 24 Apr 2026 14:02:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1777039342;
+	bh=ack7mYbip6ZcuORQPpGdCVHFIO+2WE0qOIuDR99tjcI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eVrbBPSay5lsKqpmLH1QRqkLYOnAbpPXdwffDswEX5wCx3OM8YNgFVoAszeWet41J
+	 N7en7QHUFyw55uVogTj/9asNhK9JcorV9woWHwY6p95kzbYb9NwfRCbUQ+iccUgFGa
+	 1atSKUuBQu1QGh/D5JqOoasZsOzablfgD/xYZz5k=
+Date: Fri, 24 Apr 2026 15:34:38 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+Cc: Bryan O'Donoghue <bod@kernel.org>,
+	Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+	Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Stefan Schmidt <stefan.schmidt@linaro.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Jonathan Hunter <jonathanh@nvidia.com>, linux-media@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+	driver-core@lists.linux.dev, dri-devel@lists.freedesktop.org,
+	linux-tegra@vger.kernel.org,
+	Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH v2 02/13] drivers: base: Add generic dma context bus
+Message-ID: <2026042442-luxurious-antonym-f20c@gregkh>
+References: <20260423-glymur-v2-0-0296bccb9f4e@oss.qualcomm.com>
+ <20260423-glymur-v2-2-0296bccb9f4e@oss.qualcomm.com>
+ <2026042346-trustable-register-095a@gregkh>
+ <06c04947-e72e-679b-493b-e112d693f391@oss.qualcomm.com>
+ <2026042422-deem-chemist-8d0f@gregkh>
+ <4c3fa710-f61a-4aad-622d-54909190cb9e@oss.qualcomm.com>
+ <2026042428-blemish-helpline-7d8d@gregkh>
+ <1e039dd5-da3f-19b2-ef98-29e64fdd925d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: microchip.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8251.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f7f1a43c-f018-4b99-0456-08dea205b922
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Apr 2026 13:30:59.7277
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: F6ze+Yomts0kKTQbRBSVNBFa8U+4ipd6tFWNs/R0QziEqCFwqkgy/ehN+S0s3H9P6BFMk3o84gxVduj8j+TK0JAE9Pbrs4dxPgssv9A2rCg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB8266
-X-Rspamd-Queue-Id: 32D1945F0C9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1e039dd5-da3f-19b2-ef98-29e64fdd925d@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 0AD9145FFB6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.44 / 15.00];
+X-Spamd-Result: default: False [3.84 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[Ariana.Lazar@microchip.com,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	TAGGED_FROM(0.00)[bounces-290070-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NO_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290081-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[33];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linux.dev,8bytes.org,arm.com,linaro.org,nvidia.com,gmail.com,ffwll.ch,vger.kernel.org,lists.linux.dev,lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linuxfoundation.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
 
-SGkgSm9uYXRoYW4sDQoNCj4gDQo+IFRoZSBzdGF0ZW1lbnQgYWJvdmUgYWJvdXQgaXQgbm90IGJl
-aW5nIHBvc3NpYmxlIHRvIHVzZSB0aGUgaW50ZXJuYWwNCj4gYmFuZCBnYXANCj4gaWYgYSB2cmVm
-IGlzIHdpcmVkIGxlYXZlcyBtZSB3aXRoIG1vcmUgcXVlc3Rpb25zIGFib3V0IHRoaXMuDQo+IA0K
-PiBJJ20gYSBiaXQgY29uY2VybmVkIGFib3V0IGNhc2VzIGxpa2U6DQo+IA0KPiBWcmVmIGlzIHdp
-cmVkIGFuZCBlZXByb20gaXMgc2V0IGZvciBpbnRlcm5hbCByZWZlcmVuY2UuwqDCoCBTaG91bGQg
-d2UNCj4gYmUgdmVyeSBjYXJlZnVsIHRvIG5vdCBlbmFibGUgdnJlZiB1bnRpbCB0aGF0IHNpdHVh
-dGlvbiBpcyByZXNvbHZlZD8NCj4gSXQgbWlnaHQgYmUgb24gYW55d2F5IGJ1dCB3ZSBjYW4gYXQg
-bGVhc3QgbWFrZSBzdXJlIHdlIGFyZSByZXBvbnNpYmxlDQo+IGZvciB0dXJuaW5nIGl0IG9uLg0K
-PiANCj4gTWF5YmUgdGhlIGNoaXAgaGFzIHN1ZmZpY2llbnQgcHJvdGVjdGl2ZSBlbGVtZW50cyB0
-byBjb3BlIHdpdGggdGhhdA0KPiB0aG91Z2ggb2J2aW91c2x5IGl0IHdvbid0IGdpdmUgc2Vuc2li
-bGUgb3V0cHV0IHdoaWxzdCB0aGlzIGlzIHRydWUuDQo+IA0KPiBJZiBhbGwgdGhvc2UgYXJlIGZp
-bmUsIGRldl9pbmZvKCkgbWFrZXMgc2Vuc2UgdG8gbWUuDQo+IEkgd29uZGVyIGlmIHdlIHNob3Vs
-ZCByZXR1cm4gLUVCVVNZIGZvciBhdHRlbXB0cyB0byByZWFkIHRoZSB2b2x0YWdlDQo+IGJhY2sg
-d2hpbHN0IGluIHRoaXMgc3RhdGUgYXMgd2VsbD/CoCBNaWdodCBwcm92aWRlIHNvbWUgYWRkaXRp
-b25hbA0KPiBpbmRpY2F0aW9uIHNvbWV0aGluZyBpcyBtaXNtYXRjaGVkIGFuZCB3ZSBkb24ndCBl
-eHBlY3QgdGhlIGRldmljZSB0bw0KPiB3b3JrDQo+IGNvcnJlY3RseS4NCj4gDQoNClRoZXJlIGFy
-ZSAyIHBvc3NpYmxlIHdheXMgdG8gaGFuZGxlIHRoaXM6DQoNCi0gS2VlcCB0aGUgY3VycmVudCBh
-cHByb2FjaCwgc2luY2UgcmVzdG9yaW5nIGEgbWlzbWF0Y2hpbmcNCmNvbmZpZ3VyYXRpb24gYXQg
-cG93ZXItdXAgc2hvdWxkIG5vdCBkYW1hZ2UgdGhlIGRldmljZS4NCi0gQXMgeW91IHN1Z2dlc3Rl
-ZCwgb25seSByZWFkIHRoZSBleHRlcm5hbCByZWd1bGF0b3Igdm9sdGFnZSBhdCBwcm9iZQ0KdG8g
-Y29tcHV0ZSB0aGUgcmVsYXRlZCBzY2FsZSBhbmQgZW5hYmxlIHRoZSByZWd1bGF0b3Igd2hlbiB1
-c2VyIHNwYWNlDQpmaXJzdCBzZWxlY3RzIHRoYXQgc2NhbGUuDQoNCkluIGJvdGggY2FzZXMsIGlm
-IHlvdSBhZ3JlZSwgSSBjYW4gcmV0dXJuIC1FQlVTWSBmb3IgUkFXIGFjY2VzcyB1bnRpbA0KdGhl
-IGNvcnJlY3Qgc2NhbGUgaXMgd3JpdHRlbiBmcm9tIHVzZXIgc3BhY2UuDQoNCkkgd2lsbCBhbHNv
-IGltcHJvdmUgdGhlIGN1cnJlbnQgbWVzc2FnZXMgaW4gb3JkZXIgdG8gZW5zdXJlIHRoZSB1c2Vy
-DQpzZXRzIHRoZSBjb3JyZWN0IGNvbmZpZ3VyYXRpb24gYmVmb3JlIGF0dGVtcHRpbmcgdG8gcmVh
-ZCB2b2x0YWdlLg0KDQpCZXN0IHJlZ2FyZHMsDQpBcmlhbmENCg0KDQoNCg0KDQoNCg0K
+On Fri, Apr 24, 2026 at 06:12:09PM +0530, Vishnu Reddy wrote:
+> 
+> On 4/24/2026 5:25 PM, Greg Kroah-Hartman wrote:
+> > On Fri, Apr 24, 2026 at 05:15:02PM +0530, Vishnu Reddy wrote:
+> >> On 4/24/2026 4:43 PM, Greg Kroah-Hartman wrote:
+> >>> On Fri, Apr 24, 2026 at 04:01:13PM +0530, Vishnu Reddy wrote:
+> >>>> On 4/23/2026 7:07 PM, Greg Kroah-Hartman wrote:
+> >>>>> On Thu, Apr 23, 2026 at 06:59:31PM +0530, Vishnu Reddy wrote:
+> >>>>>> From: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
+> >>>>>>
+> >>>>>> When a driver needs to create virtual device at runtime and map it to
+> >>>>>> an IOMMU context for memory isolation, there is no common bus available
+> >>>>>> for this purpose. Each driver ends up implementing its own bus type,
+> >>>>>> leading to duplicated logic across multiple drivers.
+> >>>>>>
+> >>>>>> host1x driver implemented its own bus type to attach an IOMMU context to
+> >>>>>> a dynamically created device. The Iris VPU driver now has the same
+> >>>>>> requirement. Rather than duplicating the same bus logic again, a shared
+> >>>>>> bus type is introduced under drivers/base that multiple drivers can use
+> >>>>>> directly.
+> >>>>>>
+> >>>>>> The bus takes care of creating a device and attaching the IOMMU context
+> >>>>>> to it based on the client inputs.
+> >>>>>>
+> >>>>>> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> >>>>>> Signed-off-by: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
+> >>>>>> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+> >>>>>> Signed-off-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+> >>>>>> ---
+> >>>>>>  drivers/base/Kconfig            |  3 ++
+> >>>>>>  drivers/base/Makefile           |  1 +
+> >>>>>>  drivers/base/dma_context_bus.c  | 77 +++++++++++++++++++++++++++++++++++++++++
+> >>>>>>  include/linux/dma_context_bus.h | 26 ++++++++++++++
+> >>>>>>  4 files changed, 107 insertions(+)
+> >>>>> as you can not have a device on multiple busses at the same time, this
+> >>>>> makes no sense to me at all.  "dma context" is a bus-specific thing, so
+> >>>>> please add it to the bus that you are wanting it for.  It can't be a
+> >>>>> generic bus as that just doesn't work.
+> >>>>>
+> >>>>> Or what am I missing here?
+> >>>>>
+> >>>>> And why is DMA somehow "special" here from any other hardware attribute?
+> >>>> Let me give brief information which was discussed, in the initial series,
+> >>>> the iris VPU used platform bus for dynamically created devices and we got
+> >>>> the comment/suggestion from Robin to implement a proper bus_type with a
+> >>>> .dma_configure callback.
+> >>>>
+> >>>> https://lore.kernel.org/all/02b3d0f5-f94c-43cd-93af-97cfcf7751b1@arm.com/
+> >>>>
+> >>>> based on the discussion, implemented the dma_context_bus and used for iris
+> >>>> VPU devices instead of platform bus.
+> >>> Why not make a irus_vpu_bus where you can do what you want?
+> >> Initially iris_vpu_bus was introduced, and it was made generic based on the
+> >> discussion,
+> >>
+> >> https://lore.kernel.org/all/20260227-kaanapali-iris-v2-3-850043ac3933@oss.qualcomm.com/
+> > I don't really see that request here, I see a "make this better and more
+> > generic for other busses" but that does not mean "dump it into
+> > drivers/bus/ for someone else to maintain" :)
+> >
+> >>>> Here, the device have only one bus (dma_context_bus), not multiple buses.
+> >>>>
+> >>>> Regarding the "DMA" naming, the core operation of this bus is its
+> >>>> .dma_configure callback, which calls of_dma_configure_id() to map the device
+> >>>> to a corresponding IOMMU stream ID. The name "dma_context" reflects this
+> >>>> purpose.
+> >>>>
+> >>>> I am open to suggestions from you or Robin or anyone else, if there is a
+> >>>> better or preferred way to achieve this, I am happy to consider it and
+> >>>> rework the implementation accordingly.
+> >>> As there is only one user, just make this your own bus please and do all
+> >>> of the needed bus operations for your devices there (i.e. don't hang an
+> >>> "empty" device off of it.)
+> >> The reasoning behind to make it generic was to have more users - host1x,
+> >> Iris VPU, QDA on the generic context bus, instead of each of them having
+> >> their own. Let me know if you suggest to have the iris_vpu_bus.
+> > But you did not add such users here, so how would we know this?
+> >
+> > And still, I have no idea what this bus really is doing.  Is it dynamic?
+> > Is it self-describing?  Why not just use aux-bus?  What is it supposed
+> > to be doing and used for?
+> 
+> This bus will allow users to create a dynamic device and map to IOMMU stream
+> ID via .dma_configure callback which calls the of_dma_confgure_id() based on
+> the user inputs. This bus is under the iommu_buses list to register for bus
+> notifier callbacks for iommu_probe_device() and iommu_release_device() during
+> add and remove.
+
+But a device is nothing on its own.  You can not just have a random
+'struct device' hanging out there that does nothing but iommu, right?
+It should be doing something else that is very "bus" specific.
+
+Again, why not create a bus for your hardware type and have that control
+the bindings of drivers to the devices, like it should be done.  You
+better not be creating platform devices for these things :)
+
+> auxilary bus don't have the .dma_callback and bus notifier callbacks where it
+> can do iommu_probe_device() and iommu_release_device(). iommu_release_device(),
+> being a static api, need to be called from bus notifier callbacks which should
+> be under the list of iommu_buses.
+
+True, because aux bus devices don't do that directly, they are "sharing"
+resources with their parent device and something has to mediate for it.
+So yes, you are right, that is not a good idea.  Make a custom bus type
+instead please.
+
+thanks,
+
+greg k-h
 
