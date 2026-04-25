@@ -1,280 +1,279 @@
-Return-Path: <devicetree+bounces-290249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290252-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qCO8E+w17WlRgwAAu9opvQ
-	(envelope-from <devicetree+bounces-290249-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 23:45:16 +0200
+	id ENUAEE1B7Wk0hQAAu9opvQ
+	(envelope-from <devicetree+bounces-290252-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 00:33:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA07C467E67
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 23:45:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB4F4680C3
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 00:33:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8616C30097FD
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 21:45:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D553F301E6DF
+	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 22:33:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4362D30C37E;
-	Sat, 25 Apr 2026 21:45:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0CAD38BF75;
+	Sat, 25 Apr 2026 22:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HCc64IYQ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Mtxf6XL0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="qmpLTdQ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF6BC2C21EC
-	for <devicetree@vger.kernel.org>; Sat, 25 Apr 2026 21:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 270A7381AFB
+	for <devicetree@vger.kernel.org>; Sat, 25 Apr 2026 22:33:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777153507; cv=none; b=KBUBZ3ahBpmkw6GUEGvhlz8Tyn3z0Jr6GVPT6GdznRvzXOb4stBi2+GYTG3mr5PcgowvGmy3I6N9xlxdnA6DKfgNNmyHfn9dpF5ug4GkO/sxyYn5Wf8HaGOD0KO/C19I/1qIlDuaBaFr5QpW4JzTc7TOvUcu8v3AyxsHvQjHtz0=
+	t=1777156401; cv=none; b=eU/C+HgtwfmtqhDKN6xCgMGORXux/staMNg5A7TXu2l9CK5lIpfwbds03gZ3cMjThyTkbfOLkiaW1tm9OtrClxRIlIkC+TFIRmrzrq+DWzuk6sUi7sEXFvIf9Y94LtysbgtoJ7MRnDx5IABHAwkDV485rS7sw1hMOVlLMfI98IU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777153507; c=relaxed/simple;
-	bh=GcdDyvhP1h1G7SbVZkJdtKdUnc1ecmKRBNmvV0DWOm4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZuBouOYM3yHXD3QqfkuJJM3pHmYy83QvvEIc4b8qFDjXocLTFQNHWlKtukCvhLK3NJFV0/qCOXhk/5dQzJGs34ELYIPyxwLDRcVmGOdfLU0Szg8tiaNz0/qHfh6+2OMiAiCfr3c8nvlb91YGta9XubPxs0NZGTzpPQkFRo0PmpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HCc64IYQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Mtxf6XL0; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63PJTjAo2426010
-	for <devicetree@vger.kernel.org>; Sat, 25 Apr 2026 21:45:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	f7RZGJSN3+WAdtDl5rsnVh3J53kF5urGcCMS3HU8Vss=; b=HCc64IYQood0E5bQ
-	AlFPx6OvkHkwa+Zof3Wz+yWMy1ecMhIpTttSv863tnJO2Db2vapgafoxrbmZjuUZ
-	cwdDVCrC/Frfl93m9h4MUzmOfwvZC2qJTx6ym8tsyHw0/6C7yw8cTVlPL5bbfDc6
-	vkzmdJgS0n7UaX7uYhdzTQ+szOdQ5oK/llQzHTIwzKZTv0ZgSOhNY7mp2OL1g1fg
-	rTJ1U9wQVHHhZMh0SpHMwKBaeAy19RzUr3Y/5tT/TVwnxFcvLkmeXDU2sgOJxWh5
-	IIjHZuSc5Msh9NOQkUH/T7Eed7QhvkYImpDZn7jyf2y5DRz7W3XOrK9QpNu2Yx+Y
-	CKaa3g==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4drnq5sq91-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 25 Apr 2026 21:45:04 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-50d8e8c47a3so239628691cf.0
-        for <devicetree@vger.kernel.org>; Sat, 25 Apr 2026 14:45:04 -0700 (PDT)
+	s=arc-20240116; t=1777156401; c=relaxed/simple;
+	bh=xo5Wyr/E6BBbS4gr7hmzYlkdUcxsvL3RQCQ9QqINkVM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=H0dSqB5wE3yUXVWBIisnUn7G1S6MhNDHa1ueoG73a4z9ryXaG9gT/IBnl4tygF8JFGKhUng3P77/fGxI+aQY0YEi8Ak8Mni23UJKR6edgcfFOtLPodyKytwO5A47PWAErQ34raUNcW+wRx+tkL4mns4dstizyvPd29h9gfwCh9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qmpLTdQ6; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-488ff90d6c7so74989365e9.2
+        for <devicetree@vger.kernel.org>; Sat, 25 Apr 2026 15:33:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1777153504; x=1777758304; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=f7RZGJSN3+WAdtDl5rsnVh3J53kF5urGcCMS3HU8Vss=;
-        b=Mtxf6XL0szQZF93PIoXVaCmE7CxEXwiQyHP5dSgihH7u6nsOllHNBWYh8f4TKQITE+
-         W0FWmMRG5QJTMzKiVlzlWQ6S+saxsjrF0Ha/bHfbstDzJN8G22oylPete1joLH+vPUSn
-         IYr/J3nvJi5Wnno9CNdguKAWIQE6Njq8W7Q449ndKlUFy0Wl+4DhNnYhm5rW1P0HsCti
-         UVoLVGDGkvzy8mCSxDB0EPku0CLjMt7NAbKAEBAOC9aRWyrQppoAiy8t2+wIhf8vDIsH
-         e7Id4MRKLoRfCSpE6NI57QeRTWel94LPUwMpshIEUZ/Z2rUE9wMTOvR8QUbK9OGhVRBO
-         4D+w==
+        d=gmail.com; s=20251104; t=1777156399; x=1777761199; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Kxna5mGX/2SY/e7CJ7HPSsWx1DYUCM4yq1ObcxqGl9A=;
+        b=qmpLTdQ6sfS6sJ/7M+tN+ZTPD3YSnmUJYIn0zXjwku+AF5N801h5kCu6cZSDD80V2P
+         Dfe9rsS2L4TX+NPjcMBWHxSizq732dVPA3Sa88ToVpL6pwmHzvSZhUHHoTpT/HkhboxB
+         tJOwe0bC8f6o8VHHWa9Ks0OHDOg3sLbcsktUvx2y7aIthv6Tm8HX/W5TPabjEyzIYARR
+         efFDqrk98vExtzrs+rvGTq6sCPh7VfxP4c5AmCrwCHxWk05lAzamvfjQi7bNeXMpuxZB
+         mQvgcy9kjRSJOIoePK7cTy2Rk1nyfZvtjoEWoKCrk7oZZWDCM++BEGJVtzMqYhj71Dll
+         FkqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777153504; x=1777758304;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f7RZGJSN3+WAdtDl5rsnVh3J53kF5urGcCMS3HU8Vss=;
-        b=SjTSnr79FkZUl8xA6REtu6XU2WO8ovhZp//CxoAwqAGhsuQfy1P2IX6kuQcnybpm3c
-         lSKszIMTrP6PXCHg647NlZ7XE0XfaaoVJd76mi9W83GUrA5PIX5gbmHw741rGYez1TMz
-         fLYtCHymB55fISjjuqZXAhGrC12h3Ja3FGaV2CYRp+Bxc2YXvyek1MzRlrgpUoNtufGt
-         dFfdM9mfNhmn93s+zmNJtmxKHM0FY3k8KkLdXKnEYhUicGr9uslXWxuHB/S6c8iXxWCP
-         o16yWL/XDYizb70XgDCxmn9vNVaVl4KAf1tCE8JKerTh9r4XNxvrLJLFbZII1vhfAGbv
-         0a+w==
-X-Forwarded-Encrypted: i=1; AFNElJ8MXANLG+lcP6iMgdJTne31FjMNsba5ocNBRBMXaT+5k722Tn0rL+pylZIZrLa7PwgdBJoK7NV11wNr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw54dv7CsOn+96XEivo2J8xzg97ki05DCfrUzMArFrm51X/tpFf
-	IoJh7DXXVUVVVhPYLgmdDhNR1xazlHI6sI/L1LXTUKj15lCrzVquCv4VyodNeR/9B/1EUkXnJA4
-	GI+lTQ4OBMOBz+zi7WuVgQHPjr1ZS0t0fIGD94aDr9BWeNmHrunP8KmSW15ddc4VYLXYXFQPExl
-	XRwQ==
-X-Gm-Gg: AeBDievkydvRkHSm7WhbCMbrTmSQLSDalXnJ4DkmbxXwsu3MRMrCwINckJv6tJBdFGD
-	/fT1Wt3zxQBZ/jqdblEam2TI0hRQhQFBRIWVzi4N20jxZQwN++CezfINj1xqMKZZDUnp7kqBjFU
-	w2AmHPyR4v/OlqyW1jqpzrOfLAY2X7OOSvWT2/ALdz4ybCOGqehMQ5seK2hQnpDiDUMH24eYJtX
-	wlfhT0jnx9aA/BtFMicQ3IJtSLEa+pWkG9qylopdliMg3zlBvRRKgeKkn9iJQdugjA68a11nDot
-	8Evs+JWU4tDV4lkSFLGDIjeCjf9O/0cpwiCSlTzn8p8MU/GdgAx9XJVB3t31LS5xP36BmRItsaK
-	VgxyIQ5nHlbiJuIi+kcjvMA7crGwDC03Ug5pxFrQFbxe4ratnpGjXCT972l9v4bkTFbZ23+NCrL
-	xFKwFUJd+pbRw39zaDTs/k0DryCeQQL7aj0JAv3qo55BE1VQ==
-X-Received: by 2002:a05:622a:1f0d:b0:50d:aae1:7070 with SMTP id d75a77b69052e-50e36c56a1dmr524175471cf.48.1777153503572;
-        Sat, 25 Apr 2026 14:45:03 -0700 (PDT)
-X-Received: by 2002:a05:622a:1f0d:b0:50d:aae1:7070 with SMTP id d75a77b69052e-50e36c56a1dmr524174881cf.48.1777153502621;
-        Sat, 25 Apr 2026 14:45:02 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a4185ad0c5sm7017077e87.10.2026.04.25.14.45.01
+        d=1e100.net; s=20251104; t=1777156399; x=1777761199;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Kxna5mGX/2SY/e7CJ7HPSsWx1DYUCM4yq1ObcxqGl9A=;
+        b=WJ3ePzEdMglJFZNJ4aqjAPDliLihhvDUjvpQNeUfui1Ik+Dmmf5cD//ZRUvETumpCX
+         RVn0T4lZaoxrWe4ItOq1fvbefNN4YQDu+LPTzhe/pew6BkvU8xZzEHqHNbD1YvDMgXfG
+         Xr25dWx+bwVhMvl0X67yHkzVC5rHJS3XrpBBZaXcf4St/sFIfHuIB9vuO0A25e530oPB
+         lzRWf/3Zk/iv5QgCqMMen11XfRcWJeL+DpIUOBVoFLkWCByhwn1eDaCs+ek3cVNTKJYi
+         aijOQ/lDrveC9Ovr93X4W5I9ZCyGe1jtXfKOZXRapkWhdj88gS6wnbh+PH+3XsBd43hl
+         Vz9g==
+X-Forwarded-Encrypted: i=1; AFNElJ+GR/NEUdGzwv6N8OMvT0Be1VQrDCiph4OlnmVHphurqe84UMV+TZ/GooRKayYRT0EUYAjKemRugpL8@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLwwS0N6QaKJj4TS8XRnTK13tUaVHF+gliVvj+OQsgpkrB7Ce/
+	B8/JE0+0k/yZGjcblD83NNFMEZAsubJnAmWuUC7U3mmRro4m5txVM4xN
+X-Gm-Gg: AeBDieuhaC0x5bQNHg9dUpQ7rCUvisObvXSDOfwAoXwOGHSx00Kn+3xExQAb/SB+yG6
+	70GvXZfUYPkahri8C1z/Xu2+XBEcSG850wp/93Tfae2Q7voX6TgOjeWaO9To34AK3xI6/UjWqrP
+	Y5VWi854T6neVVDg7GPmueHZaqUX5/H5s1TLraQizmByVU7HoVAEK8+iQiX7dI7S2dXbq/ecDbh
+	SdKB3D/YCXsWyFoOYSzV32PIGERzO/ETNIAnbNj7FP/h55K4lXdsFWLJGmcA6f6T7M4t/BPrJng
+	LPAVm/3J6k1HSyMMOzkv+eEbtFtiw4SVnosFexwHx0ORgV5uLb7dNZINMv+uaqAV2SRVZY3oQIc
+	OiTzWA9pFh+XZxnHlDU0tHbYA4vwk6sZlyXICktMT3Cn1308oIJDaSC//UuBPPhrwTdhi8flFiV
+	jydScss++4gG/nLxfRPPaG0R7Ie3MWkxgA8QXYdSad3ylxp9JbLr+tUheOkDzmGr/GyHDIVPTYi
+	Ko=
+X-Received: by 2002:a05:600c:48a1:b0:489:a4:e58a with SMTP id 5b1f17b1804b1-48900a4e881mr307679065e9.19.1777156398539;
+        Sat, 25 Apr 2026 15:33:18 -0700 (PDT)
+Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-489fec8f7cbsm393443685e9.11.2026.04.25.15.33.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Apr 2026 14:45:01 -0700 (PDT)
-Date: Sun, 26 Apr 2026 00:44:59 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Dennis Gilmore <dennis@ausil.us>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>, Alexey Charkov <alchark@gmail.com>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 3/6] drm/bridge: simple: Add the Lontium LT8711UXD
- DP-to-HDMI bridge
-Message-ID: <ur7mow4lw47ylxj3uigwwasrfywe6n42zb2to7ygeyjlkcgfkf@guzkembyy5hc>
-References: <20260425031011.2529364-1-dennis@ausil.us>
- <20260425031011.2529364-4-dennis@ausil.us>
- <20260425112844.GB2964234@killaraus.ideasonboard.com>
- <45evt7lkzuykoqsc2z27hsvm7fasmn6sr6gbjtdnme54jauehf@dmvon2o5emzd>
- <CAABkxwt1=n=CnrVfCcw+EHjqjfsLkp67POk451fV8Gqw4vdnQw@mail.gmail.com>
+        Sat, 25 Apr 2026 15:33:18 -0700 (PDT)
+Date: Sat, 25 Apr 2026 23:33:16 +0100
+From: David Laight <david.laight.linux@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>, Rodrigo Alencar
+ <rodrigo.alencar@analog.com>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Andrew Morton
+ <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, Steven Rostedt
+ <rostedt@goodmis.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, Sergey Senozhatsky
+ <senozhatsky@chromium.org>, Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v10 02/11] lib: kstrtox: add kstrtoudec64() and
+ kstrtodec64()
+Message-ID: <20260425233316.0a2e2abd@pumpkin>
+In-Reply-To: <20260425164006.17b75faf@jic23-huawei>
+References: <20260415-adf41513-iio-driver-v10-0-df61046d5457@analog.com>
+	<20260415-adf41513-iio-driver-v10-2-df61046d5457@analog.com>
+	<mhfgedq2t5lqtu6535ahdmpbvib2xzp2hmyt7ezflnf52r56jh@ze6tee7vpij3>
+	<20260425164006.17b75faf@jic23-huawei>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAABkxwt1=n=CnrVfCcw+EHjqjfsLkp67POk451fV8Gqw4vdnQw@mail.gmail.com>
-X-Authority-Analysis: v=2.4 cv=QNxYgALL c=1 sm=1 tr=0 ts=69ed35e0 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=EUspDBNiAAAA:8
- a=c7CpEUyHu0UMHcTobk4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-GUID: WRu4EmxAfQVGAi401q-MPAK8w3wBbHaf
-X-Proofpoint-ORIG-GUID: WRu4EmxAfQVGAi401q-MPAK8w3wBbHaf
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI1MDIyNyBTYWx0ZWRfX0RAiRyT/eqKb
- Ci9i4DUBEKKMPXTIkcwW50hcub0IkZ3HUG1R34vfni9XmwzZv1ceeAK1VfRwSxJJCFsZHOLNN/A
- EJrQFQa6n2cHApciuhYodc6vO8AezZegUk6uEQak9uV3mnw9hwT9MYtlVTah1O7j+HtpcsPzIfb
- MVfrPY6wQ2R/NI14y8swtJHMXDp2bZPffFAvm0ziIpJf7FZHjBL37e5hrQjRw+gCYrvsZK1iMhY
- GOa0uTFNkVVihr6iwap0xCb3RL0FfVgRuuG3qLh+m+2f9L13JOOG5dSFC1ws2zfpCjZAAyJGABS
- t6ZqTtrHBbHMkbQN7uBUkKoVCrmQ9TMKYpFQC2vxifEFn4N4i4zIekJg6dLJ1rStA0mGZs5wUHX
- xLHP4UWaDRrnDcsEPoef3rcbmlSfk4bkwPMrpumD5q9puxzgyke9a9IO3pkHgo7uL74DNEoMpQ2
- D4i+JCD2X8baOTBUsfg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-25_06,2026-04-21_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 bulkscore=0 phishscore=0 spamscore=0
- adultscore=0 priorityscore=1501 lowpriorityscore=0 malwarescore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604200000
- definitions=main-2604250227
-X-Rspamd-Queue-Id: AA07C467E67
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 8FB4F4680C3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-290249-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[ideasonboard.com,sntech.de,intel.com,linaro.org,kernel.org,kwiboo.se,gmail.com,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email,ausil.us:email];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-290252-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[gmail.com,analog.com,vger.kernel.org,baylibre.com,kernel.org,metafoo.de,lwn.net,linux-foundation.org,suse.com,goodmis.org,linux.intel.com,rasmusvillemoes.dk,chromium.org,linuxfoundation.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[davidlaightlinux@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-On Sat, Apr 25, 2026 at 01:10:02PM -0500, Dennis Gilmore wrote:
-> On Sat, Apr 25, 2026 at 9:24 AM Dmitry Baryshkov
-> <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> >
-> > On Sat, Apr 25, 2026 at 02:28:44PM +0300, Laurent Pinchart wrote:
-> > > Hi Dennis,
-> > >
-> > > Thank you for the patch.
-> > >
-> > > On Fri, Apr 24, 2026 at 10:10:08PM -0500, Dennis Gilmore wrote:
-> > > > The Lontium LT8711UXD is a high performance two lane Type-C/DP1.4
-> > > > to HDMI2.0 converter, designed to connect a USB Type-C source or
-> > > > a DP1.4 source to an HDMI2.0 sink.
-> > >
-> > > As far as I can tell, the LT8711UXD has an I2C control interface.
-> > > Shouldn't it be an I2C device ?
-> >
-> > From the datasheet:
-> >
-> > The device is capable of automatic operation which is
-> > enabled by an integrated microprocessor that uses an
-> > embedded SPI flash for firmware storage. System control
-> > is also available through the use of a dedicated
-> > configuration I2C slave interface.
-> >
-> > My guess was that it can either be an I2C device or it can function as a
-> > simple platdev with no I2C controls. Please correct me if my
-> > understanding was wrong.
-> >
-> > But now looking at the schematics, it seems to be connected to I2C6.
-> > Which means that it should be desribed (and bound) as such.
-> 
-> Hi Dmitry and Laurent,
-> 
-> While the schematic shows that it can use I2C and has been wired up,
-> it also shows that both MODE_SEL and I2C_ADDR have unpopulated 10k
-> resistors; as a result, MODE_SEL is connected directly to GND, putting
-> the bridge in autonomous mode. I confirmed this by running `i2cdetect
-> -r -y 6`, with the only device on the bus being the HYM8563 RTC at
-> 0x51. Without reworking the board, the device is not directly
-> controllable and just runs autonomously.
+On Sat, 25 Apr 2026 16:40:06 +0100
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-I think it would be nice to mention:
-- In the commit for the bindings, that the device can be running
-  uncontrolled or it can be attached over I2C, bindings describe the
-  uncontrolled mode.
-- In this commit message, the same.
-- In the commit message for the board DT mention your findings about the
-  board, mention soldering R9 or R17 (which one?) and R27.
+> On Fri, 17 Apr 2026 09:36:20 +0100
+> Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
 > 
-> Dennis
+> > On 26/04/15 10:51AM, Rodrigo Alencar wrote:  
+> > > Add helpers that parses decimal numbers into 64-bit number, i.e., decimal
+> > > point numbers with pre-defined scale are parsed into a 64-bit value (fixed
+> > > precision). After the decimal point, digits beyond the specified scale
+> > > are ignored.    
+> > 
+> > ...
+> >   
+> > > +static int _kstrtoudec64(const char *s, unsigned int scale, u64 *res)
+> > > +{
+> > > +	u64 _res = 0, _frac = 0;
+> > > +	unsigned int rv;
+> > > +
+> > > +	if (scale > 19) /* log10(2^64) = 19.26 */
+> > > +		return -EINVAL;
+> > > +
+> > > +	if (*s != '.') {
+> > > +		rv = _parse_integer(s, 10, &_res);
+> > > +		if (rv & KSTRTOX_OVERFLOW)
+> > > +			return -ERANGE;
+> > > +		if (rv == 0)
+> > > +			return -EINVAL;
+> > > +		s += rv;
+> > > +	}
+> > > +
+> > > +	if (*s == '.' && scale) {
+> > > +		s++; /* skip decimal point */
+> > > +		rv = _parse_integer_limit(s, 10, &_frac, scale);
+> > > +		if (rv & KSTRTOX_OVERFLOW)
+> > > +			return -ERANGE;
+> > > +		if (rv == 0)
+> > > +			return -EINVAL;
+> > > +		s += rv;
+> > > +		if (rv < scale)
+> > > +			_frac *= int_pow(10, scale - rv);
+> > > +		while (isdigit(*s)) /* truncate */
+> > > +			s++;
+> > > +	}
+> > > +
+> > > +	if (*s == '\n')
+> > > +		s++;
+> > > +	if (*s)
+> > > +		return -EINVAL;
+> > > +
+> > > +	if (check_mul_overflow(_res, int_pow(10, scale), &_res) ||
+> > > +	    check_add_overflow(_res, _frac, &_res))
+> > > +		return -ERANGE;
+> > > +
+> > > +	*res = _res;
+> > > +	return 0;
+> > > +}    
+> > 
+> > I have an alternative (slightly more complex) implementation of this function
+> > that handles E notation. I find this particularly handy when writting big
+> > values like 25 GHz when the ABI is defined in Hz, so instead of writing
+> > 25000000000, one can just use 25e9, or 2.5e10. I found that my python code
+> > was printing big floating point values or really small ones using E notation
+> > and that was giving me -EINVAL, so I had to adjust formatting when generating
+> > the string input to the file. No big deal, and we would not need this here,
+> > but if maintainers find this useful I could add it into a v11 of this series.
+> >   
 > 
-> > >
-> > > > Signed-off-by: Dennis Gilmore <dennis@ausil.us>
-> > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > > > ---
-> > > >  drivers/gpu/drm/bridge/simple-bridge.c | 5 +++++
-> > > >  1 file changed, 5 insertions(+)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/bridge/simple-bridge.c b/drivers/gpu/drm/bridge/simple-bridge.c
-> > > > index 8aa31ca3c72d..42c1f3d5ba0c 100644
-> > > > --- a/drivers/gpu/drm/bridge/simple-bridge.c
-> > > > +++ b/drivers/gpu/drm/bridge/simple-bridge.c
-> > > > @@ -270,6 +270,11 @@ static const struct of_device_id simple_bridge_match[] = {
-> > > >             .data = &(const struct simple_bridge_info) {
-> > > >                     .connector_type = DRM_MODE_CONNECTOR_HDMIA,
-> > > >             },
-> > > > +   }, {
-> > > > +           .compatible = "lontium,lt8711uxd",
-> > > > +           .data = &(const struct simple_bridge_info) {
-> > > > +                   .connector_type = DRM_MODE_CONNECTOR_HDMIA,
-> > > > +           },
-> > > >     }, {
-> > > >             .compatible = "parade,ps185hdm",
-> > > >             .data = &(const struct simple_bridge_info) {
-> > >
-> > > --
-> > > Regards,
-> > >
-> > > Laurent Pinchart
-> >
-> > --
-> > With best wishes
-> > Dmitry
+> I'd rather we didn't slow this one down. However I'm waiting on some tags
+> on this patch from folk who are more familiar with these parsers than
+> I am.  Given discussion, Andy or David Laight perhaps?
+> +CC David - please make sure to include folk who have been active
+> in discussion of earlier versions to decrease chance they miss the new
+> one.
 
--- 
-With best wishes
-Dmitry
+I can't help feeling this code would be smaller if it didn't try to use
+the existing conversion functions.
+Something like:
+	u64 r = 0;
+	unsigned int n = ~0;
+	while (*s == ' ' || *s == '\n')
+		s++;
+	for (;;) {
+		unsigned int dig = *s++ - '0';
+		if (dig <= 9) {
+			if (!n)
+				continue;
+			n--;
+			r = r * 10 + dig;
+			continue;
+		}
+		switch (s[-1]) {
+		case '.':
+			if (n <= scale)
+				return -EINVAL;
+			n = scale;
+			continue;
+		case '\n':
+			if (*s)
+				return -EINVAL;
+			break;
+		case 0:
+			break;
+		default:
+			return -EIVAL;
+		}
+		break;
+	}
+	if (n > scale)
+		n = scale;
+	while (n--)
+		r *= 10;
+	*res = r;
+	return 0;
+}
+
+That is missing the overflow detect for the multiply and add.
+While check_add_overflow() hopefully looks at the carry flag (on non-mips
+style cpu), I don't know how the 'mul' variant works - it might be horrid.
+A bound check against ~0ull/10 might generate better code.
+
+But I really prefer functions that return the terminating character to
+the caller - they are more useful for parsing compound parameters.
+
+	David
+
+> 
+> Maybe start a discussion about whether adding e notation as a separate
+> thread after this has merged?
+> 
+> Jonathan
+> 
+> 
+
 
