@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-290183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290184-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UPOqDGOU7Gl8aAAAu9opvQ
-	(envelope-from <devicetree+bounces-290183-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 12:16:03 +0200
+	id gxh5K+CV7Gm/aAAAu9opvQ
+	(envelope-from <devicetree+bounces-290184-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 12:22:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F5B5465DAC
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 12:16:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06226465DFE
+	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 12:22:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4DC6F3015889
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 10:16:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4876D300C592
+	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 10:22:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0259A31E849;
-	Sat, 25 Apr 2026 10:15:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B8A39446B;
+	Sat, 25 Apr 2026 10:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="roPFzf6o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WVigzOjT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34CD29898F;
-	Sat, 25 Apr 2026 10:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70045393DE9;
+	Sat, 25 Apr 2026 10:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777112157; cv=none; b=Nii20xYWqLvxNCQcdcYMeBRm4qr8Z4jBVWboHnTI4sUO2T5F6FpBMj/P/cZRimm9h1SKb3V6Xan5rb7mU7+jS53pxvU0wEm8hkgBG1owuZHkBA4NugKV6DM7dp9G/9JysBenejKYDIx3Q3FLP7ytweUkrJRJe7lXRTdjjAXrPFg=
+	t=1777112541; cv=none; b=sgo3scEdaWg2HXqG6+GMC7KrW23j7nKmluYM8HMG/KOADZ+XjUJyIs0KHe9hz0txhOBMfqtEL/aGlECHMoEpknV/6U+Rczeq8WRmEHUI/lONK3V+/S0VWvr2XHM8GRntICUBricJwriYGL/YhlCJF2W1jql+ZE4RmmnmfOpxTCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777112157; c=relaxed/simple;
-	bh=/Fi4KBZSuwahGziSSvfPYbgoDm2sFpiwbfvgpYBAR1Q=;
+	s=arc-20240116; t=1777112541; c=relaxed/simple;
+	bh=ZUPPhFVZQbljNA332u3LYRTprpkVR+YVWiGn+DzoKto=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nP0U4XLAYIcgSOD+kqv560BUawe9HZorHykp+vPgM7qc2HB0zNIkcfM5ZXpcNOl3dxJ8e7vLG5DAGmAovBtgzhdIY9CGR54Gr58Tf5Catu4UjJMfJDm78IuLmOtmra5I4b0Encag65f/GrLTVjT8QtEQXQErKORAk/FoW4I91Fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=roPFzf6o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C19A2C2BCB0;
-	Sat, 25 Apr 2026 10:15:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iYh3ka2sBXRkqDqMTSuXaiZrDv+yGjxOIard560DPbFZv1Ii8xvLbOPCHtnC7CVEipLEcpUEuurIUTcXTJSSDRUKlMNnQcKRSM0gC14m9M2EA5Hj3vTIQ96OfAqBpS/QprEXWkrglcOSHQH7gU9EY4gKayCLSwFSX2W6t8JhWc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WVigzOjT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77D4DC2BCB0;
+	Sat, 25 Apr 2026 10:22:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777112157;
-	bh=/Fi4KBZSuwahGziSSvfPYbgoDm2sFpiwbfvgpYBAR1Q=;
+	s=k20201202; t=1777112541;
+	bh=ZUPPhFVZQbljNA332u3LYRTprpkVR+YVWiGn+DzoKto=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=roPFzf6o21rr2/JZVPfx7lp7MWWRoO4MZhz9oFvFZky+6i91/TvU3F1rkZP0/NgUN
-	 wjOjZvD6++l8fvjsJ6dGEaRijQkWLnGQYVDx1+UHhyS5+0B5aeWY9i8vuz31OARIG3
-	 bHl7w/gtLS469M0vGRqeFTefxQ1DN3bsMT+e6bkK79RdlbftUJzuHyGI9teESzmtr2
-	 3MGcqPhcAzKwO6pa3RItpd5sRmbAh4zsp0ppcfvKttL819ooy7ZqNnwO4LuAz0wbW9
-	 k0ziPBo7CrWtqQ/FOtR0pMFc/hjzFdPK2WRagfgzR45F1JdiuNC7A4k41YiloJC3/L
-	 9/N1SewPCQ2LQ==
-Date: Sat, 25 Apr 2026 12:15:54 +0200
+	b=WVigzOjTrHYv7Ua8lBOX9q+n9FsWYiyPo6WTeju8Fq6eKONInM+g4ZnN+90LbTky9
+	 2E7Ch0CVEOC36VYM3o/VzOL3wrryEfnGTxKVS4YrFG2aW2wYcRkNMdejOnDonyJOt/
+	 n7jc2UAa2zZwgnV0HLAabusZcazKhRuT+cJB7f3Br1q2gwdrAMs9Q3DX6929DvjSWc
+	 s610BDZRiB6gjdqJWlpk6Ne2XkUsKNXl/vKMwKHeeh2HCdAHAmCKdWvulItHY+aJNo
+	 cbS7XMDADiW9k5cz3Ah6opxkaWex5RW0dugONUJ7Te69LHUgs287Cx2H8RUd8X/NJV
+	 1Ca7YP7W2leig==
+Date: Sat, 25 Apr 2026 12:22:19 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Baolin Wang <baolin.wang@linux.alibaba.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mason Huo <mason.huo@starfivetech.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: hwlock: Add the support of
- HWspinlock for StarFive JHB100
-Message-ID: <20260425-didactic-junglefowl-of-science-096e34@quoll>
-References: <20260424032026.62301-1-xingyu.wu@starfivetech.com>
- <20260424032026.62301-2-xingyu.wu@starfivetech.com>
+To: Mahesh Vaidya <mahesh.vaidya@altera.com>
+Cc: joyce.ooi@intel.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+	mani@kernel.org, robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, subhransu.sekhar.prusty@altera.com, dinguyen@kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: altera: add binding for Agilex 5
+Message-ID: <20260425-witty-heron-of-perfection-cedddd@quoll>
+References: <20260424094913.522123-1-mahesh.vaidya@altera.com>
+ <20260424094913.522123-2-mahesh.vaidya@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,98 +63,100 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260424032026.62301-2-xingyu.wu@starfivetech.com>
-X-Rspamd-Queue-Id: 6F5B5465DAC
+In-Reply-To: <20260424094913.522123-2-mahesh.vaidya@altera.com>
+X-Rspamd-Queue-Id: 06226465DFE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-290183-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290184-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	TO_DN_SOME(0.00)[]
 
-On Fri, Apr 24, 2026 at 11:20:25AM +0800, Xingyu Wu wrote:
-> Add the new documentation of hardware spinlock for the StarFive JHB100 SoC.
+On Fri, Apr 24, 2026 at 02:49:11AM -0700, Mahesh Vaidya wrote:
+>      enum:
+>        - altr,pcie-root-port-1.0
+> @@ -25,20 +26,15 @@ properties:
+>        - altr,pcie-root-port-3.0-f-tile
+>        - altr,pcie-root-port-3.0-p-tile
+>        - altr,pcie-root-port-3.0-r-tile
+> +      - altr,pcie-root-port-4.0
+>  
+>    reg:
+> -    items:
+> -      - description: TX slave port region
+> -      - description: Control register access region
+> -      - description: Hard IP region
 
-Simplify the subject. You cannot add here support for a device, you just
-add a device simply.
+I don't understand why you are removing this.
 
-"Add StarFive JHB100 HW lock"
+>      minItems: 2
+> +    maxItems: 3
+>  
+>    reg-names:
+> -    items:
+> -      - const: Txs
+> -      - const: Cra
+> -      - const: Hip
+>      minItems: 2
+> +    maxItems: 3
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -80,18 +76,25 @@ allOf:
+>      then:
+>        properties:
+>          reg:
+> -          maxItems: 2
+> -
+> +          items:
+> +            - description: TX slave port region
+> +            - description: Control register access region
+>          reg-names:
+> -          maxItems: 2
+> -
+> +          items:
+> +            - const: Txs
+> +            - const: Cra
+>      else:
+>        properties:
+>          reg:
+> -          minItems: 3
+> -
+> +          items:
+> +            - description: TX slave port region
+> +            - description: Control register access region
+> +            - description: Hard IP region
+>          reg-names:
+> -          minItems: 3
+> +          items:
+> +            - const: Txs
+> +            - const: Cra
+> +            - const: Hip
 
-> 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> ---
->  .../hwlock/starfive,jhb100-hwspinlock.yaml    | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwlock/starfive,jhb100-hwspinlock.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwlock/starfive,jhb100-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/starfive,jhb100-hwspinlock.yaml
-> new file mode 100644
-> index 000000000000..b1b27fafe9bc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwlock/starfive,jhb100-hwspinlock.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwlock/starfive,jhb100-hwspinlock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive Hardware Spinlock
-
-StarFive JHB100?
-
-> +
-> +maintainers:
-> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jhb100-hwspinlock
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  "#hwlock-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - resets
-> +  - "#hwlock-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    hwspinlock@13012000 {
-
-name: hwlock
+So it's the same... Confusing or I miss here something.
 
 Best regards,
 Krzysztof
