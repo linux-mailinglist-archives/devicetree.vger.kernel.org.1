@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-290177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290178-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ySTlDl+P7GnBZwAAu9opvQ
-	(envelope-from <devicetree+bounces-290177-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 11:54:39 +0200
+	id UK5SJ76P7Gm/ZwAAu9opvQ
+	(envelope-from <devicetree+bounces-290178-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 11:56:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9412D465C83
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 11:54:38 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DF66465CDC
+	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 11:56:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 20071300E632
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 09:54:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9C1723006982
+	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 09:56:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B3F39021B;
-	Sat, 25 Apr 2026 09:54:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 226CB3932EF;
+	Sat, 25 Apr 2026 09:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XFm/6Ir0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YQaav5Vz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0D55208D0;
-	Sat, 25 Apr 2026 09:54:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2DAE38B146;
+	Sat, 25 Apr 2026 09:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777110876; cv=none; b=r4e9GdwjlGiIBQuMx+rxDSsAtn0UyvkX8vJw4ttIHu7s9EOlSpKAsNwMimQNro3wRTHcfyPM+BPsgVdiHyO/Dp3+h1rZxh6QLmXHBKeZykzgnubl51tXmP6rBaXLB+b9Om0qJxYI8kThDI4Y+GNc2lB4tG8xF3ViNSm+TkM6t98=
+	t=1777110967; cv=none; b=pArtNnRB5LfHuBPBmEAufkISrq5sPG3Gmb6rr9zODJCQxIsuxa0wUKK78snx6UZTf6vwgVZ/vFuic7s8PzxREVO0yAWgF9Xk9A41gMzeUJ/IDJ626EbYJFEyeK6WX1SqK/vFUIPTX2AVwDDscW31teo5RyEMiBnIWR1qLZW1mjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777110876; c=relaxed/simple;
-	bh=RTKJFkZOhPvSkw4w1T5IdZXZkOeETqyobx085qFKyh0=;
+	s=arc-20240116; t=1777110967; c=relaxed/simple;
+	bh=WJcc1NZETmbddcBcUKF7rrXIoSuykV0QJB1jUEB7vEQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LK+SwIEsORDNM9j0LMWQ8jgXgTOEbK1A7kXEj4BIcu8P4fWf8OiJ3FviGUKH77wFustut0GiFoxhuWfeG2qysSNBRL3d6qLktdpaldEJzQp19IgmubhWxB6+9Eg8eW5Jl9q8p6Vf6aA7sNuePJpeLHxrX9l4GaFTg4TlO+qLYAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XFm/6Ir0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3858C2BCB5;
-	Sat, 25 Apr 2026 09:54:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gd9YMU6HSieenwh8kpKVYpiQa5JqwDxRY0EXxOa6O80m6RlpEWkPmbiPkdsJhNLXujPsmZmRz64BB09ZhoGJWiv/BA4kWX/bXD3lR0UESs8KjIr+hWiBeqqlU8FXQKfEToEKVeDCyrDOFnkARYo5ylO7PNiQha14x/1FFbz9fJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YQaav5Vz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1EA9C2BCB0;
+	Sat, 25 Apr 2026 09:56:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777110875;
-	bh=RTKJFkZOhPvSkw4w1T5IdZXZkOeETqyobx085qFKyh0=;
+	s=k20201202; t=1777110966;
+	bh=WJcc1NZETmbddcBcUKF7rrXIoSuykV0QJB1jUEB7vEQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XFm/6Ir0UoLq2kqL/P6LiY88zut5JBR0WxqAguLcedSe9xjim+tjjko8QnNSavNvB
-	 6XHYz+D2CRO6BO+Gx3lI30y0pu8sO8sOX6CpxHRglsvlm9Rw6z1f7+GdjxgyDy5O0R
-	 yND4prjQDM0XaTC4XmbUhf1v1XOnxHwEHBcOgOw8vsEu0Cd2YY5L8d18KuRccNSflz
-	 nTaxduh7rAAWfXdPbK/fNFb3toSgSgXuhr/ZsWWt+TDesHI//MM7Htd8pdphJYKfFy
-	 sjYg0qnCmpeSTHSeY8IhZEl0jVvcAC/q7OwOcD7RAx03RDyeJt0n9I7i8r9JyOTiNw
-	 oH4+7vR90xH3Q==
-Date: Sat, 25 Apr 2026 11:54:33 +0200
+	b=YQaav5VzbXA3ZKzDIAcL2FZVk7pFwk4MWSaisn9CqO/T5tbx63RhH0O0/4h/UuDz2
+	 J1HRbdWoue6NAxI5kU4UT9sL9c/e48aJlD5tb/ZEGds0rkTjaZJ+mU8cNgvx+IxSz3
+	 Q10QxMOHtnmdz2CaVydUMd7IknbArXP8sqkcfI9yGr8wRyHuif6QPeJqlk4ofFIAgH
+	 cpVJlKKDpZ6Z34sjVh4PBguEwDuwJ4R5vcXkMUNUnzSbNc3xOvsLmbn6lBciwJtdxj
+	 4OGgw7wdjWGnINf5OSVMmxNO/zJD/pPfWMZ1gTcQCOZ8q8aeMYKqIMYGiiPjp/safH
+	 XMPzpaERlmqyg==
+Date: Sat, 25 Apr 2026 11:56:04 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Lukas Timmermann <linux@timmermann.space>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -57,13 +57,11 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
 	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, dri-devel@lists.freedesktop.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Alexandre Marquet <tb@a-marquet.fr>
-Subject: Re: [PATCH 1/5] dt-bindings: display: panel: Document Samsung
- LTL101DL02-002 panel
-Message-ID: <20260425-subtle-silent-dolphin-0a7ae3@quoll>
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/5] dt-bindings: clock: samsung: Add fimd1 and vpll muxes
+Message-ID: <20260425-uncovered-otter-of-sunshine-d00ed0@quoll>
 References: <20260423-manta-display-v1-0-196f80c5673a@timmermann.space>
- <20260423-manta-display-v1-1-196f80c5673a@timmermann.space>
+ <20260423-manta-display-v1-3-196f80c5673a@timmermann.space>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,8 +70,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260423-manta-display-v1-1-196f80c5673a@timmermann.space>
-X-Rspamd-Queue-Id: 9412D465C83
+In-Reply-To: <20260423-manta-display-v1-3-196f80c5673a@timmermann.space>
+X-Rspamd-Queue-Id: 9DF66465CDC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
@@ -82,18 +80,18 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-290177-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290178-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,ravnborg.org,chromium.org,samsung.com,baylibre.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,a-marquet.fr];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,ravnborg.org,chromium.org,samsung.com,baylibre.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -101,37 +99,26 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,a-marquet.fr:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[timmermann.space:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
-On Thu, Apr 23, 2026 at 11:14:37PM +0200, Lukas Timmermann wrote:
-> From: Alexandre Marquet <tb@a-marquet.fr>
+On Thu, Apr 23, 2026 at 11:14:39PM +0200, Lukas Timmermann wrote:
+> Add two clocks necessary for the google-manta board
+> display.
 > 
-> Add the dt-bindings for the LTL101DL02-002 panel.
-> 
-> Signed-off-by: Alexandre Marquet <tb@a-marquet.fr>
-> Signed-off-by: Lukas Timmermann	<linux@timmermann.space>
+> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
 > ---
->  Documentation/devicetree/bindings/display/panel/panel-simple.yaml | 2 ++
+>  include/dt-bindings/clock/exynos5250.h | 2 ++
 >  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> index 24e277b19094..2de0a3a6d1fe 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> @@ -283,6 +283,8 @@ properties:
->          # Samsung Electronics 10.6" FWXGA (1366x768) TFT LCD panel
->        - samsung,ltl106al01
->          # Samsung Electronics 10.1" WSVGA TFT LCD panel
-> +      - samsung,ltl101dl02-002
+>
 
-This looks like incorrectly placed (101 < 106) and comment should be
-above the compatible, at least judging by context.
+If there is going to be any new version, better to split this and send
+all SoC patches (clk + DTS) separately from DRM.
 
-> +        # Samsung Electronics 10.1" WQXGA (2560x1600) TFT LCD panel
->        - samsung,ltn101nt05
+No need to resend just for that, I will pick up Samsung SoC things after
+the merge window.
 
 Best regards,
 Krzysztof
