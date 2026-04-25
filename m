@@ -1,237 +1,206 @@
-Return-Path: <devicetree+bounces-290158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290161-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2EI8CDJU7GkMXgAAu9opvQ
-	(envelope-from <devicetree+bounces-290158-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 07:42:10 +0200
+	id kEzRC3Nn7Gn9YQAAu9opvQ
+	(envelope-from <devicetree+bounces-290161-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 09:04:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AF844650DE
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 07:42:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B18846555B
+	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 09:04:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E6EE33007F4B
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 05:42:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9EA1E304A59A
+	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 07:00:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB262D1913;
-	Sat, 25 Apr 2026 05:42:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60DD320A04;
+	Sat, 25 Apr 2026 07:00:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="AIulHLRA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lYpQeRo/";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PIo7saEM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B04C5CDF1;
-	Sat, 25 Apr 2026 05:42:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BF8D313543
+	for <devicetree@vger.kernel.org>; Sat, 25 Apr 2026 07:00:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777095727; cv=none; b=JwYZeZeqL0sQ7k3Zc7Nc78/unXyAriXeD885CEwuVVwPGtBoFTpVOwU5eyRx7iaNu+QiAs6UQmTys8hyw57AFqGxjViw7g6H9fzA0mjhIdY2s2OqksWabL8HYIKgEOq4Vx5lmt6zKF9A4kBmSE4qo7OAp2HDawMiJ3YcUho+8as=
+	t=1777100423; cv=none; b=ps0CxJJXoHURzZHQDyKu9od3VTqfUecx0mzTLSX1VKNd1+KVUg9YxU7gus2HTRECIwHtPUoJ4ryBImSFy4G40PKXu0gb0Mf3sJzmRoKdbeb6jXyjBSoMK7mtbUQXaIW3Fg7jCcjGNImu1KzuaPk8iSp8Q220eiSkyeB55lyTlDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777095727; c=relaxed/simple;
-	bh=HPRnxwXK8vu5np6VX+55Q2Y3ogOkac72lAGyNzFWA/g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R3Re49FwHaP8eIO03P1z7v2xQIt8wcGIVe9n6fs9hoy2KvmvjqeZJpBLEcvRtXmyvms0uuKH2OFpaxyaJ0FxTUmHL5A9sIwyi0Pqh6H6O1gBIMAR9CN32Rl10WEBOqdiOmn5ShTTwctS8WdeWcvF6cwZPEUppQKZVG9VwjTG9dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=AIulHLRA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F38FC2BCB2;
-	Sat, 25 Apr 2026 05:42:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1777095726;
-	bh=HPRnxwXK8vu5np6VX+55Q2Y3ogOkac72lAGyNzFWA/g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AIulHLRAKLlLErfT4LNX6qehizWiYSRf/7frr23MN5EuQV/uv1/GMEgWhNnYOC3S2
-	 P7aAr8Ifr31gNTvRcI/4Tu1+p8sDQj+AymmqnfPtX25X51hEmG9Qfc+0zfM+WqN3cH
-	 qxacBTLwV8747T2MjGJ/lwbO5Uglr0akF36/x8Rk=
-Date: Sat, 25 Apr 2026 07:42:04 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
-	Bryan O'Donoghue <bod@kernel.org>,
-	Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-	Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Stefan Schmidt <stefan.schmidt@linaro.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Jonathan Hunter <jonathanh@nvidia.com>, linux-media@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-	driver-core@lists.linux.dev, dri-devel@lists.freedesktop.org,
-	linux-tegra@vger.kernel.org,
-	Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-Subject: Re: [PATCH v2 02/13] drivers: base: Add generic dma context bus
-Message-ID: <2026042539-swab-active-21a5@gregkh>
-References: <20260423-glymur-v2-0-0296bccb9f4e@oss.qualcomm.com>
- <20260423-glymur-v2-2-0296bccb9f4e@oss.qualcomm.com>
- <2026042346-trustable-register-095a@gregkh>
- <06c04947-e72e-679b-493b-e112d693f391@oss.qualcomm.com>
- <2026042422-deem-chemist-8d0f@gregkh>
- <4c3fa710-f61a-4aad-622d-54909190cb9e@oss.qualcomm.com>
- <2026042428-blemish-helpline-7d8d@gregkh>
- <1e039dd5-da3f-19b2-ef98-29e64fdd925d@oss.qualcomm.com>
- <2026042442-luxurious-antonym-f20c@gregkh>
- <xuitjl6tzfl6nl4ds4vdy3637i5cqtjuqntcpqt5fnkx2ogcws@iapcavrwhyzv>
+	s=arc-20240116; t=1777100423; c=relaxed/simple;
+	bh=wp91t95lhjh15mikAKqw1dtodhywMRTjcp8qVMa9ghU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=UiTihCtVpmakJeq+8M9/brjDQ5TjjWgwbEFDqJQFgSD1b3NPCaYwy6FPAu4UYxaCLyRHB4Rei2/ptNYcDrG76ijHv382eIXuWZkBwFcLy9S26eVbCXtbxZisrQqFeY7yj+eBNU/Wgp9HLsGAgrwMpFeCQV82Sq9umeWk4kqs6uk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lYpQeRo/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PIo7saEM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63P3RfE22952676
+	for <devicetree@vger.kernel.org>; Sat, 25 Apr 2026 07:00:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=u95S0dwADM496+fuZWR4w1DhE/LLWmP01tc
+	nf4xUUdg=; b=lYpQeRo/gUlm/XZu5UEckjqsRJS3mZnBg+1THadc1l14reUD3yL
+	kvo4aa1oLI2gKt2o4J2+i6J+vcZV3YHw9yI/AmYZl/4TS7kuINmKzSczsHujT9Lk
+	6Z67i4LLnGIhQj9X8Fgci2/93oqqY3mZpbWDA3dTB0D2kp4jQ/VVKlt2IhEc4tiR
+	5rTzahFD+3u/lPBqXHqcHEt1v3Wi2HO/Gq0CDTIcEiM0UN57+mRCzo5gb20apPjf
+	hgYAvIPm+AAp8BPNjUAwSGLcWYv47P24ohgkeJ94nooge0qY5skngOqQjXxBRUd7
+	keD+28d1IGYj8N7zdWLqVFRbdSIp7cc1AHQ==
+Received: from mail-dl1-f72.google.com (mail-dl1-f72.google.com [74.125.82.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4drnqrgbga-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 25 Apr 2026 07:00:13 +0000 (GMT)
+Received: by mail-dl1-f72.google.com with SMTP id a92af1059eb24-12c8ccc7593so9868418c88.1
+        for <devicetree@vger.kernel.org>; Sat, 25 Apr 2026 00:00:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1777100413; x=1777705213; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=u95S0dwADM496+fuZWR4w1DhE/LLWmP01tcnf4xUUdg=;
+        b=PIo7saEMpzliz3lGKSOHp2azWE5xm8mt1Go6i4tPZ67BrXUlWuTFIy1jBln2360IGS
+         SdugecTQb3s74Sh1WGbBILcfpAGyfoUdIlB0Zelddpt0BaTEMOBTty7phYTIBotECLtz
+         3pf/3dnu3S+u6Ao3DfspiaRgkkpUZfm3yjP1gnfh74frF5EBlASCU0Ed1Hm7lMt8giX+
+         iFKXkv8ZXzQjZ7yL6up/cKVVMjmQdqF36KYoodjg8MxbMZL2iZCJvIA2/RGC38hVs7E6
+         GsiwXt/S+CbChYaJP+pWvBCqHX9NqDf96/jG3x5ogC7BaXP46KxyckzpPEg1n1pAm614
+         sKxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777100413; x=1777705213;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=u95S0dwADM496+fuZWR4w1DhE/LLWmP01tcnf4xUUdg=;
+        b=KrDH8JABLdKlNOfs1XYR8djjFSnm+9DOlHr8uNjSuBTkf3kovGD4wgHqAPM4/QdgxV
+         vk6QCDxtm6+uP25oJEcKPAFAel/xJJcSfW0iZojRRBjAgOhuQa2nzhv6buKouAoK/bF3
+         igqj3hlUX300FJiDsPImu3oc7L2SAYPSd78xUhdzPkNSxdp5U1WHgo6gc6EJM7Kn9vv+
+         1ozithwdC5jwE9TZQ0PwbmnrdfhEX1u4Ckk1N95nKWUa7zZvt3Igq5GhcipCnkTrIMGK
+         ssYBhDasmS+Qqr0pqovpWlvIhg59kVH0irmD+CgK1S8TutN8OI1l/Qm9+Ef8UHPTIz0O
+         LNWQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/GRWH2modWn2LPnoy/I0CUX7ACIz9LtVGcgDPDQniWQEaDXiiksSi6TgxO3XuvI7FnSRGGAu81apMc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZcS5RjQMZaIWfXCduopyM4NHXAMv9Qq6Mi7n3PT58car3PL2v
+	2fUMRgmCS5QMYVH1IrknDK0R6WPrtqh18diiFw5jur3ZlRMnRFOw/eThQ6ht42ZdCoUNTN+1Awm
+	fRLW5tK2dPU7jj+vZdZ2m5RadydesFYPF56K9gk8b4uw38rdkmjTjSX8zKbADo7tQ
+X-Gm-Gg: AeBDievFsfa6ow4Agj26MF+l1oOLFGJvXXyzPaWsGjv0yYQrbBzIigcjZg8yYr+9Q5l
+	MpoPYVxJFPy6FWug59ZyagIMs+lHzZK/3OEHHhYlPrjHMnmnzG6Dovlwztlt6iFIzqnnoBFHd7w
+	7tUJ8jW41qqE4wXGJvL2tSMM9RPVRDWlMg5D+9rC8n6ozM0r2K4CQ5QO4WPWfgwrcgmBh5quNkd
+	7FVJfol6BJakegJnrIAGwzpfqCVtvJiQJNj32EkJSwL2VCwQaSzuMP49Ht4K/KR2bzykrqTkY0S
+	ococoYJYusmQxEzWfdYc0QuEo4+pLXYJMdB7fxssZUHsqgFse34DlyelljynN6yjX4JSWXdIsrJ
+	kTBNUwa5jdUuJIeVcrJerpKrFjHN6DWryGgPqYwSqoO3mnKs8FWeA4iV73sF+QA1a1MIdZUgym2
+	ZDn+kker1cpQ==
+X-Received: by 2002:a05:7022:90a:b0:128:ceac:6db1 with SMTP id a92af1059eb24-12c73fa71demr16584841c88.28.1777100412458;
+        Sat, 25 Apr 2026 00:00:12 -0700 (PDT)
+X-Received: by 2002:a05:7022:90a:b0:128:ceac:6db1 with SMTP id a92af1059eb24-12c73fa71demr16584822c88.28.1777100411921;
+        Sat, 25 Apr 2026 00:00:11 -0700 (PDT)
+Received: from hu-rraheja-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12dc2dfad8csm9430630c88.3.2026.04.25.00.00.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Apr 2026 00:00:11 -0700 (PDT)
+From: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+To: vkoul@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org,
+        neil.armstrong@linaro.org, gregkh@linuxfoundation.org
+Cc: dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
+        abel.vesa@oss.qualcomm.com, wesley.cheng@oss.qualcomm.com,
+        ronak.raheja@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] phy: qcom: Introduce USB support for Hawi
+Date: Fri, 24 Apr 2026 23:59:58 -0700
+Message-Id: <20260425070002.348733-1-ronak.raheja@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <xuitjl6tzfl6nl4ds4vdy3637i5cqtjuqntcpqt5fnkx2ogcws@iapcavrwhyzv>
-X-Rspamd-Queue-Id: 4AF844650DE
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI1MDA2NSBTYWx0ZWRfX7Q2/uHJLhn65
+ JBU+eSnKRrrBJm1pO4YCUiiQb6PDGFE87xEaCmBR0JxfQ2V3Xd2ECRuSQBDVkA7vvvVufM7umfl
+ shBZbdLdPm56I3c4316RMx8Mx0uxsX+CmR1amtkjwoZbMJMO5hXm+BFhgj6fNbrSkKuqlDATTRr
+ Mh8KQ9Csl0tpORx/lqlcZesb2ax/rq1easqB4zD94RLYizjVo8jXO8YiRDfV+mSlWPR0TJnugTo
+ OjWmM0a48+HmiFUCS/+vHoady7kRvGwNfZUyA01jIklVxi3+sQz3z0DkRXg7Lbk2XjuVA3Hzoth
+ qh2NBy1L4Ek0jLqAIMJG/2751khZgYlZiySjLhoatUg6mXLrGoCF1QmBsorYXQ3wCp+XFhO1hGv
+ 9qutTwblFo7NhyP0VV98M7kcZCyrcv5xqROM9Bk/B0JCWJPOG3uSCcnX/A7+wDUUdqOeGH9kT9e
+ 0mvZJLr70eUZNMXeEwQ==
+X-Proofpoint-ORIG-GUID: j8QFCDz2qtIrsqEQg1dkUICuirDmnoDG
+X-Proofpoint-GUID: j8QFCDz2qtIrsqEQg1dkUICuirDmnoDG
+X-Authority-Analysis: v=2.4 cv=UcthjqSN c=1 sm=1 tr=0 ts=69ec667d cx=c_pps
+ a=bS7HVuBVfinNPG3f6cIo3Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=MeUEimlcFosfp0q7v7UA:9
+ a=vBUdepa8ALXHeOFLBtFW:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-25_02,2026-04-21_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1011 malwarescore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
+ adultscore=0 priorityscore=1501 bulkscore=0 suspectscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604250065
+X-Rspamd-Queue-Id: 4B18846555B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.84 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290158-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[ronak.raheja@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[33];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linux.dev,8bytes.org,arm.com,linaro.org,nvidia.com,gmail.com,ffwll.ch,vger.kernel.org,lists.linux.dev,lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_FROM(0.00)[bounces-290161-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
 
-On Fri, Apr 24, 2026 at 07:11:35PM +0300, Dmitry Baryshkov wrote:
-> On Fri, Apr 24, 2026 at 03:34:38PM +0200, Greg Kroah-Hartman wrote:
-> > On Fri, Apr 24, 2026 at 06:12:09PM +0530, Vishnu Reddy wrote:
-> > > 
-> > > On 4/24/2026 5:25 PM, Greg Kroah-Hartman wrote:
-> > > > On Fri, Apr 24, 2026 at 05:15:02PM +0530, Vishnu Reddy wrote:
-> > > >> On 4/24/2026 4:43 PM, Greg Kroah-Hartman wrote:
-> > > >>> On Fri, Apr 24, 2026 at 04:01:13PM +0530, Vishnu Reddy wrote:
-> > > >>>> On 4/23/2026 7:07 PM, Greg Kroah-Hartman wrote:
-> > > >>>>> On Thu, Apr 23, 2026 at 06:59:31PM +0530, Vishnu Reddy wrote:
-> > > >>>>>> From: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-> > > >>>>>>
-> > > >>>>>> When a driver needs to create virtual device at runtime and map it to
-> > > >>>>>> an IOMMU context for memory isolation, there is no common bus available
-> > > >>>>>> for this purpose. Each driver ends up implementing its own bus type,
-> > > >>>>>> leading to duplicated logic across multiple drivers.
-> > > >>>>>>
-> > > >>>>>> host1x driver implemented its own bus type to attach an IOMMU context to
-> > > >>>>>> a dynamically created device. The Iris VPU driver now has the same
-> > > >>>>>> requirement. Rather than duplicating the same bus logic again, a shared
-> > > >>>>>> bus type is introduced under drivers/base that multiple drivers can use
-> > > >>>>>> directly.
-> > > >>>>>>
-> > > >>>>>> The bus takes care of creating a device and attaching the IOMMU context
-> > > >>>>>> to it based on the client inputs.
-> > > >>>>>>
-> > > >>>>>> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > > >>>>>> Signed-off-by: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-> > > >>>>>> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-> > > >>>>>> Signed-off-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
-> > > >>>>>> ---
-> > > >>>>>>  drivers/base/Kconfig            |  3 ++
-> > > >>>>>>  drivers/base/Makefile           |  1 +
-> > > >>>>>>  drivers/base/dma_context_bus.c  | 77 +++++++++++++++++++++++++++++++++++++++++
-> > > >>>>>>  include/linux/dma_context_bus.h | 26 ++++++++++++++
-> > > >>>>>>  4 files changed, 107 insertions(+)
-> > > >>>>> as you can not have a device on multiple busses at the same time, this
-> > > >>>>> makes no sense to me at all.  "dma context" is a bus-specific thing, so
-> > > >>>>> please add it to the bus that you are wanting it for.  It can't be a
-> > > >>>>> generic bus as that just doesn't work.
-> > > >>>>>
-> > > >>>>> Or what am I missing here?
-> > > >>>>>
-> > > >>>>> And why is DMA somehow "special" here from any other hardware attribute?
-> > > >>>> Let me give brief information which was discussed, in the initial series,
-> > > >>>> the iris VPU used platform bus for dynamically created devices and we got
-> > > >>>> the comment/suggestion from Robin to implement a proper bus_type with a
-> > > >>>> .dma_configure callback.
-> > > >>>>
-> > > >>>> https://lore.kernel.org/all/02b3d0f5-f94c-43cd-93af-97cfcf7751b1@arm.com/
-> > > >>>>
-> > > >>>> based on the discussion, implemented the dma_context_bus and used for iris
-> > > >>>> VPU devices instead of platform bus.
-> > > >>> Why not make a irus_vpu_bus where you can do what you want?
-> > > >> Initially iris_vpu_bus was introduced, and it was made generic based on the
-> > > >> discussion,
-> > > >>
-> > > >> https://lore.kernel.org/all/20260227-kaanapali-iris-v2-3-850043ac3933@oss.qualcomm.com/
-> > > > I don't really see that request here, I see a "make this better and more
-> > > > generic for other busses" but that does not mean "dump it into
-> > > > drivers/bus/ for someone else to maintain" :)
-> > > >
-> > > >>>> Here, the device have only one bus (dma_context_bus), not multiple buses.
-> > > >>>>
-> > > >>>> Regarding the "DMA" naming, the core operation of this bus is its
-> > > >>>> .dma_configure callback, which calls of_dma_configure_id() to map the device
-> > > >>>> to a corresponding IOMMU stream ID. The name "dma_context" reflects this
-> > > >>>> purpose.
-> > > >>>>
-> > > >>>> I am open to suggestions from you or Robin or anyone else, if there is a
-> > > >>>> better or preferred way to achieve this, I am happy to consider it and
-> > > >>>> rework the implementation accordingly.
-> > > >>> As there is only one user, just make this your own bus please and do all
-> > > >>> of the needed bus operations for your devices there (i.e. don't hang an
-> > > >>> "empty" device off of it.)
-> > > >> The reasoning behind to make it generic was to have more users - host1x,
-> > > >> Iris VPU, QDA on the generic context bus, instead of each of them having
-> > > >> their own. Let me know if you suggest to have the iris_vpu_bus.
-> > > > But you did not add such users here, so how would we know this?
-> > > >
-> > > > And still, I have no idea what this bus really is doing.  Is it dynamic?
-> > > > Is it self-describing?  Why not just use aux-bus?  What is it supposed
-> > > > to be doing and used for?
-> > > 
-> > > This bus will allow users to create a dynamic device and map to IOMMU stream
-> > > ID via .dma_configure callback which calls the of_dma_confgure_id() based on
-> > > the user inputs. This bus is under the iommu_buses list to register for bus
-> > > notifier callbacks for iommu_probe_device() and iommu_release_device() during
-> > > add and remove.
-> > 
-> > But a device is nothing on its own.  You can not just have a random
-> > 'struct device' hanging out there that does nothing but iommu, right?
-> > It should be doing something else that is very "bus" specific.
-> 
-> Unfortunately, it is a pattern of IOMMU-only devices. All the actual
-> programmig is done through IO region associated with the main device,
-> while subdevices are mostly used for DMA buffer allocation.
+This series adds USB PHY support for the Hawi SoC. It documents the
+QMP USB3-DP combo PHY and M31 eUSB2 PHY bindings, adds the Hawi
+compatible to the DWC3 USB binding, and adds the PHY initialization
+sequences to the qmp-combo driver.
 
-Great, then you have a "host controller" for the devices, and children
-devices on that bus, with proper drivers binding to them.  Like all
-other normal busses.
+Ronak Raheja (4):
+  dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: Add Hawi QMP PHY
+  dt-bindings: phy: qcom,m31-eusb2-phy: Document M31 eUSB2 PHY for Hawi
+  dt-bindings: usb: qcom,snps-dwc3: Add Hawi compatible
+  phy: qualcomm: qmp-combo: Add support for Hawi SoC
 
-Yes, writing a new bus is a bit more pain than it should be, one of
-these days someone will get around to making that simpler...
+ .../bindings/phy/qcom,m31-eusb2-phy.yaml      |   1 +
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    |   2 +
+ .../bindings/usb/qcom,snps-dwc3.yaml          |   3 +
+ .../phy/qualcomm/phy-qcom-qmp-com-aon-v10.h   |  15 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c     | 232 +++++++++++++++++-
+ .../phy/qualcomm/phy-qcom-qmp-dp-phy-v10.h    |  15 ++
+ .../phy/qualcomm/phy-qcom-qmp-pcs-aon-v10.h   |  13 +
+ .../phy/qualcomm/phy-qcom-qmp-pcs-usb-v10.h   |  19 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-v10.h   |  34 +++
+ .../qualcomm/phy-qcom-qmp-qserdes-com-v10.h   |  89 +++++++
+ .../qualcomm/phy-qcom-qmp-qserdes-txrx-v10.h  |  89 +++++++
+ drivers/phy/qualcomm/phy-qcom-qmp.h           |   5 +
+ 12 files changed, 513 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-com-aon-v10.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-dp-phy-v10.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-aon-v10.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-usb-v10.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-v10.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v10.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-txrx-v10.h
 
-Along those lines, why aren't these new drivers in rust?  :)
+-- 
+2.34.1
 
-thanks,
-
-greg k-h
 
