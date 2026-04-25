@@ -1,279 +1,195 @@
-Return-Path: <devicetree+bounces-290252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290254-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ENUAEE1B7Wk0hQAAu9opvQ
-	(envelope-from <devicetree+bounces-290252-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 00:33:49 +0200
+	id SKBYMudS7WlLiAAAu9opvQ
+	(envelope-from <devicetree+bounces-290254-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 01:48:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB4F4680C3
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 00:33:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47ADA4685CA
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 01:48:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D553F301E6DF
-	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 22:33:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3EBE4300A4CD
+	for <lists+devicetree@lfdr.de>; Sat, 25 Apr 2026 23:48:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0CAD38BF75;
-	Sat, 25 Apr 2026 22:33:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C02038237A;
+	Sat, 25 Apr 2026 23:48:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="qmpLTdQ6"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="aBosJ+CP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 270A7381AFB
-	for <devicetree@vger.kernel.org>; Sat, 25 Apr 2026 22:33:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A732DB7B7;
+	Sat, 25 Apr 2026 23:48:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777156401; cv=none; b=eU/C+HgtwfmtqhDKN6xCgMGORXux/staMNg5A7TXu2l9CK5lIpfwbds03gZ3cMjThyTkbfOLkiaW1tm9OtrClxRIlIkC+TFIRmrzrq+DWzuk6sUi7sEXFvIf9Y94LtysbgtoJ7MRnDx5IABHAwkDV485rS7sw1hMOVlLMfI98IU=
+	t=1777160932; cv=none; b=iUypgG0FryzOqO0Vo8uDXnJojR6x2b13yoecCL8xrdOH3x3Bf9qpOF90mtWRcN+GB7m1pS76+g2IMg3yvvpKGa9Ge1OHegBQHPzkRzLeNF/Oj4A7EuyRpA4XUzowm0AszrLXiviyH0wSj62gq5dIfpPYaMLbi0zw7D7w3Iz2/g0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777156401; c=relaxed/simple;
-	bh=xo5Wyr/E6BBbS4gr7hmzYlkdUcxsvL3RQCQ9QqINkVM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H0dSqB5wE3yUXVWBIisnUn7G1S6MhNDHa1ueoG73a4z9ryXaG9gT/IBnl4tygF8JFGKhUng3P77/fGxI+aQY0YEi8Ak8Mni23UJKR6edgcfFOtLPodyKytwO5A47PWAErQ34raUNcW+wRx+tkL4mns4dstizyvPd29h9gfwCh9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qmpLTdQ6; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-488ff90d6c7so74989365e9.2
-        for <devicetree@vger.kernel.org>; Sat, 25 Apr 2026 15:33:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777156399; x=1777761199; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Kxna5mGX/2SY/e7CJ7HPSsWx1DYUCM4yq1ObcxqGl9A=;
-        b=qmpLTdQ6sfS6sJ/7M+tN+ZTPD3YSnmUJYIn0zXjwku+AF5N801h5kCu6cZSDD80V2P
-         Dfe9rsS2L4TX+NPjcMBWHxSizq732dVPA3Sa88ToVpL6pwmHzvSZhUHHoTpT/HkhboxB
-         tJOwe0bC8f6o8VHHWa9Ks0OHDOg3sLbcsktUvx2y7aIthv6Tm8HX/W5TPabjEyzIYARR
-         efFDqrk98vExtzrs+rvGTq6sCPh7VfxP4c5AmCrwCHxWk05lAzamvfjQi7bNeXMpuxZB
-         mQvgcy9kjRSJOIoePK7cTy2Rk1nyfZvtjoEWoKCrk7oZZWDCM++BEGJVtzMqYhj71Dll
-         FkqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777156399; x=1777761199;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Kxna5mGX/2SY/e7CJ7HPSsWx1DYUCM4yq1ObcxqGl9A=;
-        b=WJ3ePzEdMglJFZNJ4aqjAPDliLihhvDUjvpQNeUfui1Ik+Dmmf5cD//ZRUvETumpCX
-         RVn0T4lZaoxrWe4ItOq1fvbefNN4YQDu+LPTzhe/pew6BkvU8xZzEHqHNbD1YvDMgXfG
-         Xr25dWx+bwVhMvl0X67yHkzVC5rHJS3XrpBBZaXcf4St/sFIfHuIB9vuO0A25e530oPB
-         lzRWf/3Zk/iv5QgCqMMen11XfRcWJeL+DpIUOBVoFLkWCByhwn1eDaCs+ek3cVNTKJYi
-         aijOQ/lDrveC9Ovr93X4W5I9ZCyGe1jtXfKOZXRapkWhdj88gS6wnbh+PH+3XsBd43hl
-         Vz9g==
-X-Forwarded-Encrypted: i=1; AFNElJ+GR/NEUdGzwv6N8OMvT0Be1VQrDCiph4OlnmVHphurqe84UMV+TZ/GooRKayYRT0EUYAjKemRugpL8@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLwwS0N6QaKJj4TS8XRnTK13tUaVHF+gliVvj+OQsgpkrB7Ce/
-	B8/JE0+0k/yZGjcblD83NNFMEZAsubJnAmWuUC7U3mmRro4m5txVM4xN
-X-Gm-Gg: AeBDieuhaC0x5bQNHg9dUpQ7rCUvisObvXSDOfwAoXwOGHSx00Kn+3xExQAb/SB+yG6
-	70GvXZfUYPkahri8C1z/Xu2+XBEcSG850wp/93Tfae2Q7voX6TgOjeWaO9To34AK3xI6/UjWqrP
-	Y5VWi854T6neVVDg7GPmueHZaqUX5/H5s1TLraQizmByVU7HoVAEK8+iQiX7dI7S2dXbq/ecDbh
-	SdKB3D/YCXsWyFoOYSzV32PIGERzO/ETNIAnbNj7FP/h55K4lXdsFWLJGmcA6f6T7M4t/BPrJng
-	LPAVm/3J6k1HSyMMOzkv+eEbtFtiw4SVnosFexwHx0ORgV5uLb7dNZINMv+uaqAV2SRVZY3oQIc
-	OiTzWA9pFh+XZxnHlDU0tHbYA4vwk6sZlyXICktMT3Cn1308oIJDaSC//UuBPPhrwTdhi8flFiV
-	jydScss++4gG/nLxfRPPaG0R7Ie3MWkxgA8QXYdSad3ylxp9JbLr+tUheOkDzmGr/GyHDIVPTYi
-	Ko=
-X-Received: by 2002:a05:600c:48a1:b0:489:a4:e58a with SMTP id 5b1f17b1804b1-48900a4e881mr307679065e9.19.1777156398539;
-        Sat, 25 Apr 2026 15:33:18 -0700 (PDT)
-Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-489fec8f7cbsm393443685e9.11.2026.04.25.15.33.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Apr 2026 15:33:18 -0700 (PDT)
-Date: Sat, 25 Apr 2026 23:33:16 +0100
-From: David Laight <david.laight.linux@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>, Rodrigo Alencar
- <rodrigo.alencar@analog.com>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Andrew Morton
- <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, Steven Rostedt
- <rostedt@goodmis.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, Sergey Senozhatsky
- <senozhatsky@chromium.org>, Shuah Khan <skhan@linuxfoundation.org>
-Subject: Re: [PATCH v10 02/11] lib: kstrtox: add kstrtoudec64() and
- kstrtodec64()
-Message-ID: <20260425233316.0a2e2abd@pumpkin>
-In-Reply-To: <20260425164006.17b75faf@jic23-huawei>
-References: <20260415-adf41513-iio-driver-v10-0-df61046d5457@analog.com>
-	<20260415-adf41513-iio-driver-v10-2-df61046d5457@analog.com>
-	<mhfgedq2t5lqtu6535ahdmpbvib2xzp2hmyt7ezflnf52r56jh@ze6tee7vpij3>
-	<20260425164006.17b75faf@jic23-huawei>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+	s=arc-20240116; t=1777160932; c=relaxed/simple;
+	bh=Bp8RyEnQL0UxPw7eElHX5mckH3F8+ELKhrN2JVsixec=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IOLqPhgsnXiEipodCpuKXFksMOx+17naBbveefCiOZSlpC9G9KbuXqERU6YN945NsloNcfzR12cz7ysDKAt7y22nY1Zb/dcJVTv0l78v53KLSwuZm2z3G06uJvMEPJYOthYTfcmcPJ1/ZS1UJgqsxeHIIxRTcWJBo8GYFmWrVgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=aBosJ+CP; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from killaraus.ideasonboard.com (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A956F1544;
+	Sun, 26 Apr 2026 01:47:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1777160826;
+	bh=Bp8RyEnQL0UxPw7eElHX5mckH3F8+ELKhrN2JVsixec=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aBosJ+CPRWpbzNhjnEakqNIWx8v6lvj20KVcTdhjJHN+Ndm/UNWPtYyXx6WQQbise
+	 L8hXN5SGvJ/awHLT9vgqFhYtYGLwhcvKW6IpH+xHcG2egbT8THwrLcbcNhFYgXfQdc
+	 j4ji2Tag7R41Gax3AEIZ/M90dRFcVrQECrMOoRD0=
+Date: Sun, 26 Apr 2026 02:48:45 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Dennis Gilmore <dennis@ausil.us>, Heiko Stuebner <heiko@sntech.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Alexey Charkov <alchark@gmail.com>, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 3/6] drm/bridge: simple: Add the Lontium LT8711UXD
+ DP-to-HDMI bridge
+Message-ID: <20260425234845.GC2964234@killaraus.ideasonboard.com>
+References: <20260425031011.2529364-1-dennis@ausil.us>
+ <20260425031011.2529364-4-dennis@ausil.us>
+ <20260425112844.GB2964234@killaraus.ideasonboard.com>
+ <45evt7lkzuykoqsc2z27hsvm7fasmn6sr6gbjtdnme54jauehf@dmvon2o5emzd>
+ <CAABkxwt1=n=CnrVfCcw+EHjqjfsLkp67POk451fV8Gqw4vdnQw@mail.gmail.com>
+ <ur7mow4lw47ylxj3uigwwasrfywe6n42zb2to7ygeyjlkcgfkf@guzkembyy5hc>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 8FB4F4680C3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ur7mow4lw47ylxj3uigwwasrfywe6n42zb2to7ygeyjlkcgfkf@guzkembyy5hc>
+X-Rspamd-Queue-Id: 47ADA4685CA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-290254-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290252-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[gmail.com,analog.com,vger.kernel.org,baylibre.com,kernel.org,metafoo.de,lwn.net,linux-foundation.org,suse.com,goodmis.org,linux.intel.com,rasmusvillemoes.dk,chromium.org,linuxfoundation.org];
+	FREEMAIL_CC(0.00)[ausil.us,sntech.de,intel.com,linaro.org,kernel.org,kwiboo.se,gmail.com,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[davidlaightlinux@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-On Sat, 25 Apr 2026 16:40:06 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
-
-> On Fri, 17 Apr 2026 09:36:20 +0100
-> Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
-> 
-> > On 26/04/15 10:51AM, Rodrigo Alencar wrote:  
-> > > Add helpers that parses decimal numbers into 64-bit number, i.e., decimal
-> > > point numbers with pre-defined scale are parsed into a 64-bit value (fixed
-> > > precision). After the decimal point, digits beyond the specified scale
-> > > are ignored.    
+On Sun, Apr 26, 2026 at 12:44:59AM +0300, Dmitry Baryshkov wrote:
+> On Sat, Apr 25, 2026 at 01:10:02PM -0500, Dennis Gilmore wrote:
+> > On Sat, Apr 25, 2026 at 9:24 AM Dmitry Baryshkov wrote:
+> > > On Sat, Apr 25, 2026 at 02:28:44PM +0300, Laurent Pinchart wrote:
+> > > > Hi Dennis,
+> > > >
+> > > > Thank you for the patch.
+> > > >
+> > > > On Fri, Apr 24, 2026 at 10:10:08PM -0500, Dennis Gilmore wrote:
+> > > > > The Lontium LT8711UXD is a high performance two lane Type-C/DP1.4
+> > > > > to HDMI2.0 converter, designed to connect a USB Type-C source or
+> > > > > a DP1.4 source to an HDMI2.0 sink.
+> > > >
+> > > > As far as I can tell, the LT8711UXD has an I2C control interface.
+> > > > Shouldn't it be an I2C device ?
+> > >
+> > > From the datasheet:
+> > >
+> > > The device is capable of automatic operation which is
+> > > enabled by an integrated microprocessor that uses an
+> > > embedded SPI flash for firmware storage. System control
+> > > is also available through the use of a dedicated
+> > > configuration I2C slave interface.
+> > >
+> > > My guess was that it can either be an I2C device or it can function as a
+> > > simple platdev with no I2C controls. Please correct me if my
+> > > understanding was wrong.
+> > >
+> > > But now looking at the schematics, it seems to be connected to I2C6.
+> > > Which means that it should be desribed (and bound) as such.
 > > 
-> > ...
-> >   
-> > > +static int _kstrtoudec64(const char *s, unsigned int scale, u64 *res)
-> > > +{
-> > > +	u64 _res = 0, _frac = 0;
-> > > +	unsigned int rv;
-> > > +
-> > > +	if (scale > 19) /* log10(2^64) = 19.26 */
-> > > +		return -EINVAL;
-> > > +
-> > > +	if (*s != '.') {
-> > > +		rv = _parse_integer(s, 10, &_res);
-> > > +		if (rv & KSTRTOX_OVERFLOW)
-> > > +			return -ERANGE;
-> > > +		if (rv == 0)
-> > > +			return -EINVAL;
-> > > +		s += rv;
-> > > +	}
-> > > +
-> > > +	if (*s == '.' && scale) {
-> > > +		s++; /* skip decimal point */
-> > > +		rv = _parse_integer_limit(s, 10, &_frac, scale);
-> > > +		if (rv & KSTRTOX_OVERFLOW)
-> > > +			return -ERANGE;
-> > > +		if (rv == 0)
-> > > +			return -EINVAL;
-> > > +		s += rv;
-> > > +		if (rv < scale)
-> > > +			_frac *= int_pow(10, scale - rv);
-> > > +		while (isdigit(*s)) /* truncate */
-> > > +			s++;
-> > > +	}
-> > > +
-> > > +	if (*s == '\n')
-> > > +		s++;
-> > > +	if (*s)
-> > > +		return -EINVAL;
-> > > +
-> > > +	if (check_mul_overflow(_res, int_pow(10, scale), &_res) ||
-> > > +	    check_add_overflow(_res, _frac, &_res))
-> > > +		return -ERANGE;
-> > > +
-> > > +	*res = _res;
-> > > +	return 0;
-> > > +}    
+> > Hi Dmitry and Laurent,
 > > 
-> > I have an alternative (slightly more complex) implementation of this function
-> > that handles E notation. I find this particularly handy when writting big
-> > values like 25 GHz when the ABI is defined in Hz, so instead of writing
-> > 25000000000, one can just use 25e9, or 2.5e10. I found that my python code
-> > was printing big floating point values or really small ones using E notation
-> > and that was giving me -EINVAL, so I had to adjust formatting when generating
-> > the string input to the file. No big deal, and we would not need this here,
-> > but if maintainers find this useful I could add it into a v11 of this series.
-> >   
+> > While the schematic shows that it can use I2C and has been wired up,
+> > it also shows that both MODE_SEL and I2C_ADDR have unpopulated 10k
+> > resistors; as a result, MODE_SEL is connected directly to GND, putting
+> > the bridge in autonomous mode. I confirmed this by running `i2cdetect
+> > -r -y 6`, with the only device on the bus being the HYM8563 RTC at
+> > 0x51. Without reworking the board, the device is not directly
+> > controllable and just runs autonomously.
 > 
-> I'd rather we didn't slow this one down. However I'm waiting on some tags
-> on this patch from folk who are more familiar with these parsers than
-> I am.  Given discussion, Andy or David Laight perhaps?
-> +CC David - please make sure to include folk who have been active
-> in discussion of earlier versions to decrease chance they miss the new
-> one.
+> I think it would be nice to mention:
+> - In the commit for the bindings, that the device can be running
+>   uncontrolled or it can be attached over I2C, bindings describe the
+>   uncontrolled mode.
+> - In this commit message, the same.
+> - In the commit message for the board DT mention your findings about the
+>   board, mention soldering R9 or R17 (which one?) and R27.
 
-I can't help feeling this code would be smaller if it didn't try to use
-the existing conversion functions.
-Something like:
-	u64 r = 0;
-	unsigned int n = ~0;
-	while (*s == ' ' || *s == '\n')
-		s++;
-	for (;;) {
-		unsigned int dig = *s++ - '0';
-		if (dig <= 9) {
-			if (!n)
-				continue;
-			n--;
-			r = r * 10 + dig;
-			continue;
-		}
-		switch (s[-1]) {
-		case '.':
-			if (n <= scale)
-				return -EINVAL;
-			n = scale;
-			continue;
-		case '\n':
-			if (*s)
-				return -EINVAL;
-			break;
-		case 0:
-			break;
-		default:
-			return -EIVAL;
-		}
-		break;
-	}
-	if (n > scale)
-		n = scale;
-	while (n--)
-		r *= 10;
-	*res = r;
-	return 0;
-}
+Additionally, how are we going to handle boards where the device
+operates in I2C mode ? Will we use a different compatible string (maybe
+"lontium,lt8711uxd-i2c") ? If DT maintainers are fine with that, I have
+no objection to this patch.
 
-That is missing the overflow detect for the multiply and add.
-While check_add_overflow() hopefully looks at the carry flag (on non-mips
-style cpu), I don't know how the 'mul' variant works - it might be horrid.
-A bound check against ~0ull/10 might generate better code.
+> > > > > Signed-off-by: Dennis Gilmore <dennis@ausil.us>
+> > > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/bridge/simple-bridge.c | 5 +++++
+> > > > >  1 file changed, 5 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/bridge/simple-bridge.c b/drivers/gpu/drm/bridge/simple-bridge.c
+> > > > > index 8aa31ca3c72d..42c1f3d5ba0c 100644
+> > > > > --- a/drivers/gpu/drm/bridge/simple-bridge.c
+> > > > > +++ b/drivers/gpu/drm/bridge/simple-bridge.c
+> > > > > @@ -270,6 +270,11 @@ static const struct of_device_id simple_bridge_match[] = {
+> > > > >             .data = &(const struct simple_bridge_info) {
+> > > > >                     .connector_type = DRM_MODE_CONNECTOR_HDMIA,
+> > > > >             },
+> > > > > +   }, {
+> > > > > +           .compatible = "lontium,lt8711uxd",
+> > > > > +           .data = &(const struct simple_bridge_info) {
+> > > > > +                   .connector_type = DRM_MODE_CONNECTOR_HDMIA,
+> > > > > +           },
+> > > > >     }, {
+> > > > >             .compatible = "parade,ps185hdm",
+> > > > >             .data = &(const struct simple_bridge_info) {
 
-But I really prefer functions that return the terminating character to
-the caller - they are more useful for parsing compound parameters.
+-- 
+Regards,
 
-	David
-
-> 
-> Maybe start a discussion about whether adding e notation as a separate
-> thread after this has merged?
-> 
-> Jonathan
-> 
-> 
-
+Laurent Pinchart
 
