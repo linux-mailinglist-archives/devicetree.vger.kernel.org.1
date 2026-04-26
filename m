@@ -1,357 +1,251 @@
-Return-Path: <devicetree+bounces-290263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290261-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id JCRII/TQ7WkGoAAAu9opvQ
-	(envelope-from <devicetree+bounces-290263-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 10:46:44 +0200
+	id ADGaIKDG7WmengAAu9opvQ
+	(envelope-from <devicetree+bounces-290261-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 10:02:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 211BA469243
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 10:46:43 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E0D6468FF5
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 10:02:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D324D300B05F
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 08:46:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 326DB300515C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 08:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26EC7271456;
-	Sun, 26 Apr 2026 08:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C214F2DCF41;
+	Sun, 26 Apr 2026 08:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="IbFrEF5A"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hO0dCqvh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49224.qiye.163.com (mail-m49224.qiye.163.com [45.254.49.224])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E0F19E819;
-	Sun, 26 Apr 2026 08:46:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.224
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B9740DFDA
+	for <devicetree@vger.kernel.org>; Sun, 26 Apr 2026 08:02:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777193200; cv=none; b=PYhHTJFhP/2muvCLH8Sw02QLvBCwO4vmod391gajuZt63paxqmmJqyHQE/VKcY5Lm2/52tK+pAx2Uurn2BVDD5eNRLe6TFLA1rG5M3rHtmGRORWy/tdaE48yodVmAbQDSR6Tz1kqbE5LPRmHQyWcpqMbOKiK7pjmKyklseE1rwo=
+	t=1777190555; cv=none; b=N+W0ysckE9dX2QcicvKy3hvg71w9IJx7wYjli44cYnihs+7yIR8UHsAzapicHLVL/84xMnmCBAX8AkvtyLPrYRuxRC3VjYqT83SG0JISeMq02pjcTpBCYv0zRDlVolIKo8MbXHMLw9sNS1XYCQHCJfpfidC2S34pbQMjyYVL7cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777193200; c=relaxed/simple;
-	bh=L2lmvLBo7kwQqnoKMMibhJ38HixexXwMyjLfJZAqF+M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fEg8bYmDAlkofuEvjicocq/FIaiybeQRVRrR3uaw4aBPX8xiTPuS9C3QMVYh7BNFoI4uL50p3Y+N1ArVKanN8mbMvUPIM6gFSGNLRDyQUXMRTINgup7K6gTcnrWXw495jie07t9QMF1VGUNwzGmLPK+WyNqdKtdZ+Q3xECxGbpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=IbFrEF5A; arc=none smtp.client-ip=45.254.49.224
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.43] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3c2a404a3;
-	Sun, 26 Apr 2026 15:30:35 +0800 (GMT+08:00)
-Message-ID: <7e55f270-5422-4696-987d-e2a2ab16240b@rock-chips.com>
-Date: Sun, 26 Apr 2026 15:30:35 +0800
+	s=arc-20240116; t=1777190555; c=relaxed/simple;
+	bh=XsaRMfhCO0nZB4jMrQV6CzGmjKsoR/dI8GgJRwqoZ/k=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u0pcQmZ2JEogVe0s8aNZDzdSMTKaWvfr9R89adIWv0pBk2ll58nVgaJKaJdPaoegWEGOeNKxiuJYhGqcRE4hxp/Oh5nE/FCKjWFX3AgnaaGiiXj45qOZ7OyOB2F8VjW7/QSGPk3qEdxWZhu5B4jgteBWNGyV4rsitWxkzGMVjpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hO0dCqvh; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-488ba840146so82546175e9.1
+        for <devicetree@vger.kernel.org>; Sun, 26 Apr 2026 01:02:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1777190553; x=1777795353; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3fGYomxVnuRzyBPEOqDgFLPn+GSFKuRtiOgJCbOKeHI=;
+        b=hO0dCqvhnA+Fv3dLndByFr/KMWYZ9yqxLad0h97HIxAewYku10HU5VxrPdAQAMlbjz
+         MZY/YmEYbb0XlJFE4zNNn6hgPJ13v55c8iEgzcX0pQEpdN3n3NBU9OJ47ZEIkGaMOB/O
+         0Qzbp4NS2KMO5W/HyDIpbm6maShSaYzGT1qvM0EIINLJ7j+z5kfF8O9Jg4GUdW3opN29
+         PgfMtbrSEBsjF5QqLWO0HFD4hblMvf4GhuM4f5oGPcjw20MjajmQQTd1ZTbhnEVSNBMZ
+         01OtezbCJzV1R3cVeYiCy4aQpTBukto7tg2wkJ92PstQn4tYJ9L36YfgpoM4vfBOCpAR
+         kJFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777190553; x=1777795353;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3fGYomxVnuRzyBPEOqDgFLPn+GSFKuRtiOgJCbOKeHI=;
+        b=CU73mS5vyDbL28wu+lmbXjTEFypUaWt6jUh6xDiw92S2mhBV+/Ggp4Co2biEAQ2iKf
+         ue3PHTP0rFvwPRykT/hBekPzsXCdo3K4J6oAEprLEm0CrJf12J8EaJ0vcVF0nnaKeglw
+         sD69n1O2eiGCCSkWaLtn27igOBwd86IRdD3RHC4kbgn7DAryIez0iyzEA/MWCd0XQPWh
+         G7nxozXIFtYwgYKAtrIJIhhhgLW8KCVmhcXmBYpUKYV+IFxp+IFQAHRUtMa6ZCTjzdFO
+         O4EZq4Q+g05lN7hkwqDEOZfpE4pr0SRL/t33pvTARx26zuWikIr7lV3usRVp+qHjtaC3
+         ToeQ==
+X-Forwarded-Encrypted: i=1; AFNElJ96O+U/2QXm9B9VrFh08Ol6zZta8RAwyBvV+P9gm+drZN7gog3gqXbpErQqAw2Wz8O49kG5g1zuu2cZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgUOSqrJQJOmTtj0Oj+Rca9gKZ0AkF1GqZ8nyJdU7+58/MXoJm
+	/P2s+DjN80twL93p7N9HMGrbTtosEXz51ztPAwHJ96l22epCK3oY48P2
+X-Gm-Gg: AeBDieu1yhekz1gmlWxw+AXTxWlzvvsA8P4T3pA8JUhpg9juv4O0/SV3gaFVMKqAgJg
+	/FfgUDvbvMFDWcJ6EBnDF8zen0BRT6gYe5Kt/8PjMizEW+3NTAb033AFaTHj8YJgR70HxJ374eD
+	0jc2VWL97Gh2/F41KUiJhauVCK9h2Qbabdx5LoCqBPEFWnbuYTxA1tv6Kdgg/L1Wm5bxBF9n9px
+	49YC212XHksh6ckEMUIOnjT5b2UnTys58JG9CpiZ02ONPXg2GBqouG962+8cANU4KEjhFJq8cHt
+	V93//QP7DMXw6CyOGUbnHAOOoCwaPZsoYjYzPQJztB9j802iyR2hJR8ScqmhUWr7SFy+tBQW+d7
+	eCnioQjQFkcXboMXCpeeu+5UZAfj49UPTNyTh4B39LTzsNKYhJBi2IblHka/ScDEaPe6C9mG5Mv
+	TcwH17lEPwSj9uYdyX5xwRP3i1II3qxJOesLByDWZfKA5c679pdx9YI+rnx6e6LZyd6giEyt2+I
+	VewgLgEuR2VTJShvF5JdUfITvFzJYxi+Pq9ubXqLtCZ2mfWqjur/5MLuFbB
+X-Received: by 2002:a05:600c:c085:b0:488:c530:48a0 with SMTP id 5b1f17b1804b1-488fb784843mr432614835e9.24.1777190552498;
+        Sun, 26 Apr 2026 01:02:32 -0700 (PDT)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a5549f582sm127037955e9.33.2026.04.26.01.02.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Apr 2026 01:02:31 -0700 (PDT)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Sun, 26 Apr 2026 09:02:26 +0100
+To: David Laight <david.laight.linux@gmail.com>, 
+	Jonathan Cameron <jic23@kernel.org>
+Cc: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>, 
+	Rodrigo Alencar <rodrigo.alencar@analog.com>, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, 
+	Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Andrew Morton <akpm@linux-foundation.org>, 
+	Petr Mladek <pmladek@suse.com>, Steven Rostedt <rostedt@goodmis.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Rasmus Villemoes <linux@rasmusvillemoes.dk>, 
+	Sergey Senozhatsky <senozhatsky@chromium.org>, Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v10 02/11] lib: kstrtox: add kstrtoudec64() and
+ kstrtodec64()
+Message-ID: <o5m4mp6qrt6pzhns4q5vyxc3fwlat7675a46wpr2phjbveosw3@rwmdqelfnkix>
+References: <20260415-adf41513-iio-driver-v10-0-df61046d5457@analog.com>
+ <20260415-adf41513-iio-driver-v10-2-df61046d5457@analog.com>
+ <mhfgedq2t5lqtu6535ahdmpbvib2xzp2hmyt7ezflnf52r56jh@ze6tee7vpij3>
+ <20260425164006.17b75faf@jic23-huawei>
+ <20260425233316.0a2e2abd@pumpkin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/6] arm64: dts: rockchip: add PWM nodes to RK3576 SoC
- dtsi
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Lee Jones <lee@kernel.org>, William Breathitt Gray <wbg@kernel.org>
-Cc: kernel@collabora.com, Jonas Karlman <jonas@kwiboo.se>,
- Alexey Charkov <alchark@gmail.com>, linux-rockchip@lists.infradead.org,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20260420-rk3576-pwm-v5-0-ae7cfbbe5427@collabora.com>
- <20260420-rk3576-pwm-v5-5-ae7cfbbe5427@collabora.com>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <20260420-rk3576-pwm-v5-5-ae7cfbbe5427@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9dc8b282f103a3kunm5e5a610713ec55
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1kYFggdWUFKV1ktWUFJV1kPCRoVCBIfWUFZGUIdH1ZIGUlJQ0pPSx
-	8dQh9WFRQJFhoXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0
-	tIVUpLSU9PT0hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=IbFrEF5AZwgTn9ILKm7PdjZuml/51hPqi9yF563W+xC4TVPGo4y99OxqEX1Wj8x7+IPz6bTT46VYGLM/kXqYcO94cJ3wBGZC+kPSmMjJj1pQuka2tuZf0pWSwRRgjIlXUSjZgIzhsWZhvL66UGkXrQI9oNIAm+fa3tg0gtFiq2k=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=cvKBY+c+iYjGsEpoYL9NRwD1uu5gqclMVNxmGMDvE7c=;
-	h=date:mime-version:subject:message-id:from;
-X-Rspamd-Queue-Id: 211BA469243
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260425233316.0a2e2abd@pumpkin>
+X-Rspamd-Queue-Id: 4E0D6468FF5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290263-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290261-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[collabora.com,kwiboo.se,gmail.com,lists.infradead.org,vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FREEMAIL_CC(0.00)[gmail.com,analog.com,vger.kernel.org,baylibre.com,kernel.org,metafoo.de,lwn.net,linux-foundation.org,suse.com,goodmis.org,linux.intel.com,rasmusvillemoes.dk,chromium.org,linuxfoundation.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-Hi Nicolas,
-
-On 4/20/2026 9:52 PM, Nicolas Frattaroli wrote:
-> The RK3576 SoC features three distinct PWM controllers, with variable
-> numbers of channels. Add each channel as a separate node to the SoC's
-> device tree, as they don't really overlap in register ranges.
+On 26/04/25 11:33PM, David Laight wrote:
+> On Sat, 25 Apr 2026 16:40:06 +0100
+> Jonathan Cameron <jic23@kernel.org> wrote:
 > 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->   arch/arm64/boot/dts/rockchip/rk3576.dtsi | 208 +++++++++++++++++++++++++++++++
->   1 file changed, 208 insertions(+)
+> > On Fri, 17 Apr 2026 09:36:20 +0100
+> > Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
+> > 
+> > > On 26/04/15 10:51AM, Rodrigo Alencar wrote:  
+> > > > Add helpers that parses decimal numbers into 64-bit number, i.e., decimal
+> > > > point numbers with pre-defined scale are parsed into a 64-bit value (fixed
+> > > > precision). After the decimal point, digits beyond the specified scale
+> > > > are ignored.    
+
+...
+
+> > > I have an alternative (slightly more complex) implementation of this function
+> > > that handles E notation. I find this particularly handy when writting big
+> > > values like 25 GHz when the ABI is defined in Hz, so instead of writing
+> > > 25000000000, one can just use 25e9, or 2.5e10. I found that my python code
+> > > was printing big floating point values or really small ones using E notation
+> > > and that was giving me -EINVAL, so I had to adjust formatting when generating
+> > > the string input to the file. No big deal, and we would not need this here,
+> > > but if maintainers find this useful I could add it into a v11 of this series.
+> > >   
+> > 
+> > I'd rather we didn't slow this one down. However I'm waiting on some tags
+> > on this patch from folk who are more familiar with these parsers than
+> > I am.  Given discussion, Andy or David Laight perhaps?
+> > +CC David - please make sure to include folk who have been active
+> > in discussion of earlier versions to decrease chance they miss the new
+> > one.
+
+From Andy's message "We still have several weeks time", I thought we would have
+time to discuss this e-notation thing, but that's just a nice-to-have indeed.
+It fits well in the decimal context, as it is widely used and works in powers of 10!
+
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> index e12a2a0cfb89..55d6b103c329 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> @@ -1032,6 +1032,32 @@ uart1: serial@27310000 {
->   			status = "disabled";
->   		};
->   
-> +		pwm0_2ch_0: pwm@27330000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x27330000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PMU1PWM>, <&cru PCLK_PMU1PWM>,
-> +				 <&cru CLK_PMU1PWM_OSC>, <&cru CLK_PMU1PWM_RC>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm0m0_ch0>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm0_2ch_1: pwm@27331000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x27331000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PMU1PWM>, <&cru PCLK_PMU1PWM>,
-> +				 <&cru CLK_PMU1PWM_OSC>, <&cru CLK_PMU1PWM_RC>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm0m0_ch1>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
->   		pmu: power-management@27380000 {
->   			compatible = "rockchip,rk3576-pmu", "syscon", "simple-mfd";
->   			reg = <0x0 0x27380000 0x0 0x800>;
-> @@ -2630,6 +2656,188 @@ uart9: serial@2adc0000 {
->   			status = "disabled";
->   		};
->   
-> +		pwm1_6ch_0: pwm@2add0000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2add0000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>,
-> +				 <&cru CLK_OSC_PWM1>, <&cru CLK_RC_PWM1>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm1m0_ch0>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm1_6ch_1: pwm@2add1000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2add1000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>,
-> +				 <&cru CLK_OSC_PWM1>, <&cru CLK_RC_PWM1>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm1m0_ch1>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm1_6ch_2: pwm@2add2000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2add2000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>,
-> +				 <&cru CLK_OSC_PWM1>, <&cru CLK_RC_PWM1>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm1m0_ch2>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm1_6ch_3: pwm@2add3000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2add3000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>,
-> +				 <&cru CLK_OSC_PWM1>, <&cru CLK_RC_PWM1>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm1m0_ch3>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm1_6ch_4: pwm@2add4000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2add4000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>,
-> +				 <&cru CLK_OSC_PWM1>, <&cru CLK_RC_PWM1>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm1m0_ch4>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm1_6ch_5: pwm@2add5000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2add5000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>,
-> +				 <&cru CLK_OSC_PWM1>, <&cru CLK_RC_PWM1>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm1m0_ch5>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm2_8ch_0: pwm@2ade0000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2ade0000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>,
-> +				 <&cru CLK_OSC_PWM2>, <&cru CLK_RC_PWM2>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm2m0_ch0>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm2_8ch_1: pwm@2ade1000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2ade1000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>,
-> +				 <&cru CLK_OSC_PWM2>, <&cru CLK_RC_PWM2>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm2m0_ch1>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm2_8ch_2: pwm@2ade2000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2ade2000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>,
-> +				 <&cru CLK_OSC_PWM2>, <&cru CLK_RC_PWM2>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm2m0_ch2>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm2_8ch_3: pwm@2ade3000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2ade3000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>,
-> +				 <&cru CLK_OSC_PWM2>, <&cru CLK_RC_PWM2>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm2m0_ch3>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm2_8ch_4: pwm@2ade4000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2ade4000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>,
-> +				 <&cru CLK_OSC_PWM2>, <&cru CLK_RC_PWM2>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm2m0_ch4>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm2_8ch_5: pwm@2ade5000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2ade5000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>,
-> +				 <&cru CLK_OSC_PWM2>, <&cru CLK_RC_PWM2>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm2m0_ch5>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm2_8ch_6: pwm@2ade6000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2ade6000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>,
-> +				 <&cru CLK_OSC_PWM2>, <&cru CLK_RC_PWM2>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm2m0_ch6>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm2_8ch_7: pwm@2ade7000 {
-> +			compatible = "rockchip,rk3576-pwm";
-> +			reg = <0x0 0x2ade7000 0x0 0x1000>;
-> +			clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>,
-> +				 <&cru CLK_OSC_PWM2>, <&cru CLK_RC_PWM2>;
-> +			clock-names = "pwm", "pclk", "osc", "rc";
-> +			interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pwm2m0_ch7>;
-> +			#pwm-cells = <3>;
-> +			status = "disabled";
-> +		};
-> +
->   		saradc: adc@2ae00000 {
->   			compatible = "rockchip,rk3576-saradc", "rockchip,rk3588-saradc";
->   			reg = <0x0 0x2ae00000 0x0 0x10000>;
+> I can't help feeling this code would be smaller if it didn't try to use
+> the existing conversion functions.
+> Something like:
+> 	u64 r = 0;
+> 	unsigned int n = ~0;
+> 	while (*s == ' ' || *s == '\n')
+> 		s++;
+> 	for (;;) {
+> 		unsigned int dig = *s++ - '0';
+> 		if (dig <= 9) {
+> 			if (!n)
+> 				continue;
+> 			n--;
+> 			r = r * 10 + dig;
+> 			continue;
+> 		}
+> 		switch (s[-1]) {
+> 		case '.':
+> 			if (n <= scale)
+> 				return -EINVAL;
+> 			n = scale;
+> 			continue;
+> 		case '\n':
+> 			if (*s)
+> 				return -EINVAL;
+> 			break;
+> 		case 0:
+> 			break;
+> 		default:
+> 			return -EIVAL;
+> 		}
+> 		break;
+> 	}
+> 	if (n > scale)
+> 		n = scale;
+> 	while (n--)
+> 		r *= 10;
+> 	*res = r;
+> 	return 0;
+> }
 > 
+> That is missing the overflow detect for the multiply and add.
+> While check_add_overflow() hopefully looks at the carry flag (on non-mips
+> style cpu), I don't know how the 'mul' variant works - it might be horrid.
+> A bound check against ~0ull/10 might generate better code.
 
-According to the RK3576 TRM, the register base address, clocks and 
-interrupt configuration of the PWM node are all correct
+It may be a compact parsing but aside from bugs or typos, there is a readability
+tradeoff. For the context, yes, it would be better to accumulate interger and
+fractional parts to the same variable, rather than separate ones.
+_parse_integer_limit() would have to allow for a custom init value, so we could
+just skip the decimal point and resume. The proposed implementation reuses tested
+infrastructure and follows kstrto* conventions. I suppose the most important thing
+to review here is the new interface with its function prototypes.
 
-Reviewed-by: Damon Ding <damon.ding@rock-chips.com>
+> But I really prefer functions that return the terminating character to
+> the caller - they are more useful for parsing compound parameters.
 
-Best regards,
-Damon
+I agree, I tried something like this with the kstrntoull() approach.
 
+> > Maybe start a discussion about whether adding e notation as a separate
+> > thread after this has merged?
+
+Agreed.
+
+-- 
+Kind regards,
+
+Rodrigo Alencar
 
