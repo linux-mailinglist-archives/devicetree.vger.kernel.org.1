@@ -1,263 +1,159 @@
-Return-Path: <devicetree+bounces-290306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290308-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gKrDG0SL7mn7vAAAu9opvQ
-	(envelope-from <devicetree+bounces-290306-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 00:01:40 +0200
+	id gGVaJCee7mk2wAAAu9opvQ
+	(envelope-from <devicetree+bounces-290308-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 01:22:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE82046B573
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 00:01:39 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FE8046B789
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 01:22:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 51E43301B920
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 22:01:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EE6D93004CAE
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 23:21:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80C043090F4;
-	Sun, 26 Apr 2026 22:01:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B83E3019BA;
+	Sun, 26 Apr 2026 23:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J9WnTzis"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JoCrGdD3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99E742F5328
-	for <devicetree@vger.kernel.org>; Sun, 26 Apr 2026 22:01:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.179
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777240883; cv=pass; b=cx+aDK1vdX8HvGq8kYdqbxYRpDEubr2LtGhOpj0Dihc6tMjEZQ2S3dvhO3ZUYEDDPW/V7QiDL//M6ndMZBSOHZL5gF2zzWPitRMmriV8IHfZOO7rpclzaMwXd9jGgfXc6IcJslLJ4lMJDJzyoViit6U5Xnx7A5mKVsy5S+Mks3g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777240883; c=relaxed/simple;
-	bh=RoT0FlC8gkkNooY3mtKiEh/Tcw4FrSpEj3ULsGOQBCk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=k0yKA1M4TpNlPw4yBG4QeZKklq53Oo/aTkF65vwZkmjz8b1Y46L7FbBZHRSCH3iZqn4tKukefoKYZ/KVGn8Ms3/+L8YdZT0Kbhp0GtrYYMdAVpOwT3NIHLqZ93sCCWShtLY6sb7OM3FdF1NFujiwFy3eQqt3e/4CSo8JqIyAkYM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J9WnTzis; arc=pass smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-38cc8708d76so81595781fa.3
-        for <devicetree@vger.kernel.org>; Sun, 26 Apr 2026 15:01:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1777240879; cv=none;
-        d=google.com; s=arc-20240605;
-        b=XUqjtKPYa43eKK5L2z0k3qZWodd1Tfx7a049vor9SFbu/1OIhd2eWASvrYFP7aW8gp
-         hLlhM++y1UzBJc7n+OUO1l9+hRbiIEg1p9XH2PRHkOzDCKknq2sUq75VGgsaN7mKwNfZ
-         7f8xPF8JYNdrnk4ZPIQz5eKDRakGT0K59sgOHbSFJPh7zlM4mCm5YllEvKhWrBrrogAI
-         k/suXQOR/8MVUlY68nSG70CxEdthTtK2MNirxYZZH1iS2RXml9NvRG11s/oOZIdlAAUJ
-         QdzF2TjKksQ6+Uu4IdlXJ3uuIwbVxvJEXUmsCc2pJRUrH4DW4Namnd+fvixS/CQF/Ssh
-         RhhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=unC3pOUTEhfVaDjzyQfHFJSBQuvGVy5qfgGYkg7iaoM=;
-        fh=Qz24+vz4K4zuYuMjAU8l2jYxDg6+D6ykSh++XYdQQ3M=;
-        b=fCQgxdQsWoqWg/fb+ElCNotLUTWHh3HpkxKqICGxbrmgWlV1QoQVzQyc+9i7TNoFik
-         uTZPss5FhRw2rQChX7+xyH5ID88cQcev/Ku0JH/3iYghVqdJJNIwcCT2yPYCsr/rrE+H
-         dQWgzZERzwlLl2QekOqJ7j9V+osW6+0Cdh/Z7ZgSGl+FthzosyTOdmsayMTu0pHDTaoM
-         8vjW0lGMSSeRGZ5ChBtzWXHDVIrlxvCGryowTRu0WMQF767MPfugVwEHK6DmpeqX4m0s
-         4LhdB+4lXJ+ZaHEYxSRbk5fZeZt0vf165ZuXgokh9m4i8Ym7jnxRiEy0fklkSAQZpTvU
-         1vRg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777240879; x=1777845679; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=unC3pOUTEhfVaDjzyQfHFJSBQuvGVy5qfgGYkg7iaoM=;
-        b=J9WnTziszKpiM60uYow68ma0QflpBiltDac3uNDKA6uQS0GAr46GX3ktNSCoLm3Uxi
-         5qHU275NMbYJnB/1PrPreGzMEvBRyhs20XBRrD6dO2YPpQna4rzGexkkxH5k9+LNQNT0
-         5780EuESkIh6SvsSe4Wx82h97GfI2/0nB4aEEtz/CNg2Vk1NTOV1VGGVdMtZDS1VOYB7
-         D3aQj7lveKN9HmdTsurLiaCycKhUMXsFTCFeKhV/wvmb7+TTmFFg/ng/r1Mkd6lZ1/pX
-         LqtR9R/omqtlqPJS0bRzpZ4CT4sb/Jh7mKtmvpwjkG2Vzlr87ZKIK6GOyjAL57c4BPov
-         Cp8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777240879; x=1777845679;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=unC3pOUTEhfVaDjzyQfHFJSBQuvGVy5qfgGYkg7iaoM=;
-        b=qLzf7XzZ0GNDXxzS5GfqX5kQr/o8+9EmbQ3zvVI53kRwhjLW/nRNxtFasjxSKZVxVE
-         b1x8k4qaWsX/s8QXV+D++ZpQcyn61T+5UWaA0bcgipHyKwkArqNMIZg3Y5NGmg2uj2ZW
-         W5Q1BgJtlH/O/G7Hc7KcaLPkylwIZCzcnaoApF7joRotDAyq8ujrLsN8q3OYjE4JB+Dw
-         ecGSLnh0fY0b35B7dFeLxkVm4NH38kKq5p88e7XzhIhjbLZAWjqrhN0IRaJcCbnDpQcx
-         y9ykQnQyQzJfXioPJFEsonu9Ld7dnSNbuRgMBMMJBNG48+KEPU/QQrenmvNU3HBOIRF3
-         B6sw==
-X-Forwarded-Encrypted: i=1; AFNElJ9qg496wJRNL7WHlJ2ObvbM40HFRVGNcLsq10hIyswHNsodLwv5arXn0X/H49wBonLBkW/eCq3bOm4Q@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8uzkWnZ14SHgrsuXGwtGDq8RDHtqAtMvpiMqQMWXoqptOR0ro
-	8J68tGHsHfcDzGZF3Un8FAf756tqjMgjHn/U3h0LUeCBXTX/YK3ezJ0jUTrMhd6Q3byKnvZB70S
-	YfQRM45dH/iRu+DuxO3OCDRb1Nr3eY30=
-X-Gm-Gg: AeBDievf0Y0zYBztxfkitnO1zfP/F4R3PkAhbU86Xkfe0RATfu9YjVu5cOtHFF2mzs2
-	fFBAqzZW90CfLC3BMqmWwrjFYo80Sa6Nb3qzKbybq7XolxWMWypru8ugKdTb3H6mhTWEzX+E06g
-	qmgsOXZvWS760K8m/lb12TFIOgojPf3PGcultoghEOTr2MTGe1X55CDxG1tCv5WnkoNaWPHwTWF
-	8Oi0Uu7ULRCbKOnh2grZi17fKiTOf8cwOl5Rc4EA5TJ+C2T/IbCZKCY2XOgelXEitj038a0mqpB
-	CMB86mUoTRh0n0h49XgvcRe6vgddgR+dg7WuLaHccBOFxNG46L0oC7qMb2Hywqj3oVYEOcQOsGl
-	l3rMnUwaLSMLKHQ==
-X-Received: by 2002:a05:651c:41d0:b0:38e:1dcc:6c77 with SMTP id
- 38308e7fff4ca-38ec7b2b156mr114555861fa.29.1777240878494; Sun, 26 Apr 2026
- 15:01:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1844026A08A;
+	Sun, 26 Apr 2026 23:21:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777245717; cv=none; b=q59/RTkgNdAReF+gmkTPV8kXmWIBjZAShTSzr2BiEA755mwllkjp39XyT8Gpwd7c3u9WOhCuZ31alXCsr09YbseYpf1r7s+8O89viyXv6jb2ia/bX8zDUUOV5XUrzzUa8uEwq1pbH/T0QNWXPvTGU9YrixbAhzUERx54cjJWQaA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777245717; c=relaxed/simple;
+	bh=rA86lA0g7W/+V7BO/FVvGSvEuTg3X2fgF21kbHGVYgo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Nh+Pd8hwszb7v5+EkWO7HnUPa86jKfS0mB1tQJHjlNeORPuSTubZbyjYzokSHiMzSWJigKxnDVHF4/YZw7jPHVxG+BTq2R75hSKdATsOfNHjloRHbO1egEZIuV2l3eBSd2yK8Vn9wBuPClGj0xYCvzSbJQjNmeoMeylfUvsNYng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JoCrGdD3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D66EC2BCAF;
+	Sun, 26 Apr 2026 23:21:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777245716;
+	bh=rA86lA0g7W/+V7BO/FVvGSvEuTg3X2fgF21kbHGVYgo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=JoCrGdD3YOaO1Yk1P3J7IOlXL66bvP/5+YTJhI2rldp6s2OaEPH1R6XjYzQmMTuH/
+	 HH45cpNz7VrG+fuzWz8by4DqC0JZWyPmKFt4hRJUaZa8ZddGLFD8hhGmnmyhGRtXmJ
+	 uLRoUZ3wiHX9kwMqCSHiDuAO+VEhm9CCu+j2vNArLuxvItw0mb9qbReQhC3gdie3Z9
+	 FS04F0t93/kUZb7Ifz+LriW83o2y584m2Vjn8369M9No6m0nbg1nI0/kYoT1teMAUb
+	 Z/MQh19RP6WpAHseo88+dGKMbnv5tXGsh0mKC1LvLVSLYA2vYjiG5ykDxk/RE49QGq
+	 YCDOLXJKF0+pg==
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Gene Chen <gene_chen@richtek.com>, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org
+In-Reply-To: <20260414-mtk-g1200-pmic-cleanup-v1-0-2a7193ed4e93@collabora.com>
+References: <20260414-mtk-g1200-pmic-cleanup-v1-0-2a7193ed4e93@collabora.com>
+Subject: Re: (subset) [PATCH 0/3] Mediatek Genio 1200-EVK: MT6315/MT6360
+ PMIC regulator supply cleanup
+Message-Id: <177724330298.266775.14132313883869438377.b4-ty@b4>
+Date: Mon, 27 Apr 2026 07:41:42 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260408-ayn-qcs8550-v5-0-c90abeb7a152@gmail.com>
- <20260408-ayn-qcs8550-v5-3-c90abeb7a152@gmail.com> <de40fcbb-f5a9-460a-b9f5-482b0c245c4d@oss.qualcomm.com>
-In-Reply-To: <de40fcbb-f5a9-460a-b9f5-482b0c245c4d@oss.qualcomm.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Sun, 26 Apr 2026 17:01:07 -0500
-X-Gm-Features: AQROBzC4PWgXisDcKBnew0rBTvlfXoAdNMzrSM-lmHbg-nMJCSxzVxmhKjcHWdI
-Message-ID: <CALHNRZ-8r9KSpAEsv6F1YfSjWUfJihwKfzdeDTkRsPJfwr_s5Q@mail.gmail.com>
-Subject: Re: [PATCH v5 3/6] arm64: dts: qcom: Add AYN QCS8550 Common
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: BE82046B573
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1756; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=rA86lA0g7W/+V7BO/FVvGSvEuTg3X2fgF21kbHGVYgo=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBp7p4RN+O47GpsvyrSWQ01EVchEW48pBlZVoTbr
+ uiw1p0XiXyJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCae6eEQAKCRAk1otyXVSH
+ 0CRAB/wL2SMaWjRhWwuhdNYcG4TzAg1zkfTQqVHM79iM+l9cygxMo2mcBEhZ1Cc2/VJGxgPxQ6d
+ irFFH+YlHSWmH8ReXi/9AQshr6NRvVfpVG3+bbko9WweZdMVCSuyNChqShzZz890FZOxFkIrmBn
+ z9mpTTcvOdpmrRS4d6jzYUlnSzPZ/IZLbRLO7vrcY1GrVpp/Yf4PvGtJlx0IkSAwczvpsb6r7ur
+ p9r73MUc6r3oLH9LPk5NnFs/yNpV7dxWvUApOKHQ0mnMKjzlApi3wdMIxgaRyFm8ztAmZ1mzji+
+ 4Ms8Dwn/lELwQu7M6xOleeg+qrcbQ5eknSANDHyd54uMaayA
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-Rspamd-Queue-Id: 8FE8046B789
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-290306-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,richtek.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[webgeek1234@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-290308-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
-On Fri, Apr 24, 2026 at 7:11=E2=80=AFAM Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 4/8/26 9:41 PM, Aaron Kling via B4 Relay wrote:
-> > From: Teguh Sobirin <teguh@sobir.in>
-> >
-> > This contains everything common between the AYN QCS8550 devices. It wil=
-l
-> > be included by device specific dts'.
-> >
-> > Signed-off-by: Teguh Sobirin <teguh@sobir.in>
-> > Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
-> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > ---
->
+On Tue, 14 Apr 2026 13:44:09 +0200, Louis-Alexis Eyraud wrote:
+> Mediatek Genio 1200-EVK: MT6315/MT6360 PMIC regulator supply cleanup
+> 
+> This series goal is to cleanup the power supplies of MT6315 and MT6360
+> PMIC regulators, that are either missing or incorrect in the Mediatek
+> Genio 1200-EVK board devicetree.
+> 
+> Patch 1 completes the MT6360 dt-bindings by adding the missing power
+> supply descriptions for its buck regulators, that already handled by
+> the mt6360 regulator driver.
+> Patch 2 adds for the board the MT6315 regulator supply properties, that
+> were added in the dt-bindings by [1].
+> Patch 3 adds for the board the MT6360 regulator supply properties and
+> fixes the existing one.
+> 
 > [...]
->
-> > +     // The tzlog label is required by ABL to apply a dtbo, but it can=
- be on any node
->
-> I don't know if the policy changed, but I think C-style (/* Foo */)
-> comments are still preferred
 
-Ack
+Applied to
 
-> [...]
->
->
-> > +     // The arch_timer label is unused here, but is required by ABL to=
- apply a dtbo
-> > +     arch_timer: timer { };
->
-> ditto
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.2
 
-Ack
+Thanks!
 
-> [...]
->
-> > +&pm8550_gpios {
-> > +     fan_pwm_active: fan-pwm-active-state {
-> > +             pins =3D "gpio8";
-> > +             function =3D "func1";
-> > +             input-disable;
-> > +             output-enable;
-> > +             output-low;
->
-> Looks like this should be a regulator then, probably?
+[1/3] regulator: dt-bindings: mt6360: add buck regulator supplies
+      https://git.kernel.org/broonie/regulator/c/a8fccc792f42
 
-Mmm, what would it be tied to, then? The fan already has a reg. I
-presume just modeling it as an always on reg tied to nothing is
-undesirable. I also have no idea what the voltage would be.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-> [...]
->
-> > +     wcd_default: wcd-reset-n-active-state {
-> > +             pins =3D "gpio108";
-> > +             function =3D "gpio";
-> > +             drive-strength =3D <16>;
-> > +             bias-disable;
-> > +             output-low;
->
-> no need for this property
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-I'll start with saying that I know basically nothing about qcom
-hardware design and what the average pinmuxing layout looks like. But
-I do note that a lot of existing devices have this exact same node,
-for example the sm8550 hdk [0]. Is there something that makes these
-devices different? Or is this unnecessary everywhere?
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-> > +     };
-> > +
-> > +     fan_pwr_active: fan-pwr-active-state {
-> > +             pins =3D "gpio109";
-> > +             function =3D "gpio";
-> > +             drive-strength =3D <2>;
-> > +             bias-disable;
-> > +             output-low;
->
-> likewise, especially since it's the opposite of the active state
-> defined in the vreg node
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Ack, this one makes sense since the fan power sequence will set stuff
-as necessary.
+Thanks,
+Mark
 
-> [...]
->
-> > +     usb0_sbu_default: usb0-sbu-state {
-> > +             oe-n-pins {
-> > +                     pins =3D "gpio140";
-> > +                     function =3D "gpio";
-> > +                     bias-disable;
-> > +                     drive-strength =3D <16>;
-> > +                     output-high;
->
-> This is probably not required too.. unless there's a hw bug?
->
-> fwiw 16 mA is a very high drive-strength - does this come from vendor
-> sources?
-
-I do not see any pinmux for gpio140 in the downstream dt or anything
-matching pi3usb102 at all, I'm not sure how it's handled there. The
-original source of this dt was written before there was a public gpl
-code release from AYN. I do see other qcom users of the pi3usb102
-doing similar however, for example the sc8280xp crd [1]. So I've got
-the same question as above: is there something different here, or is
-it possible other existing copies of this are also wrong?
-
-Aaron
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/arch/arm64/boot/dts/qcom/sm8550-hdk.dts?h=3Dv7.0#n1302
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts?h=3Dv7.0#n1175
 
