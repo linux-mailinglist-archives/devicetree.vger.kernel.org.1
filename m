@@ -1,166 +1,142 @@
-Return-Path: <devicetree+bounces-290262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290283-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QKxtHpDO7WmwnwAAu9opvQ
-	(envelope-from <devicetree+bounces-290262-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 10:36:32 +0200
+	id cO7kFhAA7mlGpwAAu9opvQ
+	(envelope-from <devicetree+bounces-290283-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 14:07:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FBFB469115
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 10:36:31 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55AC6469BFC
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 14:07:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2D9083003BEA
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 08:36:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5A0783001A6B
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 12:07:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C648F342CB1;
-	Sun, 26 Apr 2026 08:36:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9883535837C;
+	Sun, 26 Apr 2026 12:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="udhCOe34"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="CJLx/i7y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m15597.qiye.163.com (mail-m15597.qiye.163.com [101.71.155.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0F6822A4E1
-	for <devicetree@vger.kernel.org>; Sun, 26 Apr 2026 08:36:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6E2B17C211;
+	Sun, 26 Apr 2026 12:07:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.97
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777192584; cv=none; b=GFclHCu9Maos9a0aS1S+/6nDFI/u3ukP/r0XxjlxKOKsaMo7VoTVzEPQCuzoagjqgLxbu5z5qqErJ9NzC/vnh80/uyIxoXpCnY8gpRZZ6gG3z1Mfye4nsBthFmikffGs3AqDQH8JwrgwBLsO2I5FaxtE/aIE1xCd/9EVMW99ep4=
+	t=1777205257; cv=none; b=DJfZhzd1uaSM/KQ2k+phYNGm9F5hlJoagktsF+Z23rJrOjXMjRaQ8FCJAx89rLOzuDxMjVQZCS14yQJLxDKFMNVJEJjt1ZUhXvoT/53C9j4jWRznUCOH3bZaCA1qEjnug8U/XpbPP0dKseNPrpnv16HpuP4CeMI/qBt/LZeN0lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777192584; c=relaxed/simple;
-	bh=1/6VvyfAL9R5vjxY+AXLp9W1S3GtT0OmLzFLKCWtrJs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bOz6fDOB82Jsxh/zD1QHWu0e0ea3E9GEOZWbCr5WXHruK6JR7kaiYASn4IXEkxOhG5Bz5752ZGjaSqhU8+Pi6uOisrgdShBVBFpQaMDVQMg7JG//h7a5GoWO4v6PSZBbr5MFyCF82az2C6/UmfgEm6EzKzJnTpA14t0BHgvCkUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=udhCOe34; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57174C4AF09
-	for <devicetree@vger.kernel.org>; Sun, 26 Apr 2026 08:36:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777192584;
-	bh=1/6VvyfAL9R5vjxY+AXLp9W1S3GtT0OmLzFLKCWtrJs=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=udhCOe34rIDWmvzUvt0BIz8XQXO3Ah4sQFGkkX3txna2RL/uzF1YSHOZGrEFHbp7N
-	 P7xdh8tvzx8Pue6FVNHREXMJg5PtfVLFHsfgv0LKmBrERoK31FuhdXj8+AHzXUmknX
-	 3EjvWzIMKNn+8h6+CNjVXg4+TmYeUwuxWjZgIuQf/nIlDsKbrFACQAPT7PhhvykvSX
-	 GxfrgV+aaBmvSK1hqvswcWgiQ1vQZ5UVlpAtjML60BRgLLgTkzEUIf5jqUUTdeI8q2
-	 C3Gnp8wugat1zOs1JYEHKloHiMmu6ZUfqzd/4zFqRY5mFUSmF+lpkjIM7qKJadZOYG
-	 VYo8pB8jbbCTQ==
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5a283c44478so15066831e87.3
-        for <devicetree@vger.kernel.org>; Sun, 26 Apr 2026 01:36:24 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ8ni8oPZctRibLh60z90zuZVZMaP0b6MAKLhWX2HSHxHOsYHhdg0yoBcnkACwTMVvQuw4TB6ymq9BVX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxL+ehPUuFfAF+sfNipcqhEXWYRzrwe241b9ss9V4HQ5Rb+upiP
-	TwkIir6dBl9REO8+qFOHvqCGG7KYAtKv6InrIKQB6QHrCl4loASxURDkfqu+BFlHTNl5F1iMvob
-	kYjuoHoTNt7QPtaeSbUqmZgfryzTXoKs=
-X-Received: by 2002:a05:6512:3ca0:b0:5a2:b979:4b06 with SMTP id
- 2adb3069b0e04-5a4172b7ae4mr12820186e87.4.1777192583057; Sun, 26 Apr 2026
- 01:36:23 -0700 (PDT)
+	s=arc-20240116; t=1777205257; c=relaxed/simple;
+	bh=KWBNUAXaq4SARsO6xZHW2yyqx4CeLpiPK/53gmtpHV4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JTMfGm12g0YwTU1MjDTqAflZOgybfudjdUNAibRL3GqRL3JlUOh5nIuTU6RI5RXui8nftOGBvh98R5bk7khv1/PdcFZaog5NJo9Z/Yd4i80T5wPioGHHStllX8sEvjO5/jzgTpG3i6gmufjUavGSQr1CKtHINr0WGljFz6CZKyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=CJLx/i7y; arc=none smtp.client-ip=101.71.155.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.43] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3c2b50084;
+	Sun, 26 Apr 2026 17:44:46 +0800 (GMT+08:00)
+Message-ID: <4592b323-bebd-4242-ae31-892a51b5b3be@rock-chips.com>
+Date: Sun, 26 Apr 2026 17:44:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260424-ds90ub953-v6-0-7a84efbab316@oss.nxp.com> <20260424-ds90ub953-v6-1-7a84efbab316@oss.nxp.com>
-In-Reply-To: <20260424-ds90ub953-v6-1-7a84efbab316@oss.nxp.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Sun, 26 Apr 2026 10:36:11 +0200
-X-Gmail-Original-Message-ID: <CAD++jLmi1Q4sGeY6vK7fxw8AdCmiiW-8kdEi4OFkV1xep=Od_A@mail.gmail.com>
-X-Gm-Features: AVHnY4JPq-BE7FCv42DA9knJSs0rb0sCy7jk1s9CJjtuaDpy_xLU0YkpPQu4V6Y
-Message-ID: <CAD++jLmi1Q4sGeY6vK7fxw8AdCmiiW-8kdEi4OFkV1xep=Od_A@mail.gmail.com>
-Subject: Re: [PATCH v6 1/4] dt-bindings: media: ti,ds90ub953: Add support for
- remote GPIO data source
-To: Guoniu Zhou <guoniu.zhou@oss.nxp.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
-	Vladimir Zapolskiy <vz@mleia.com>, Bartosz Golaszewski <brgl@kernel.org>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-gpio@vger.kernel.org, Guoniu Zhou <guoniu.zhou@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 6FBFB469115
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/6] pwm: Add rockchip PWMv4 driver
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Lee Jones <lee@kernel.org>, William Breathitt Gray <wbg@kernel.org>
+Cc: kernel@collabora.com, Jonas Karlman <jonas@kwiboo.se>,
+ Alexey Charkov <alchark@gmail.com>, linux-rockchip@lists.infradead.org,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20260420-rk3576-pwm-v5-0-ae7cfbbe5427@collabora.com>
+ <20260420-rk3576-pwm-v5-3-ae7cfbbe5427@collabora.com>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20260420-rk3576-pwm-v5-3-ae7cfbbe5427@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9dc92d5ac103a3kunmad79455f144c6e
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1kYFggdWUFKV1ktWUFJV1kPCRoVCBIfWUFZQ0gZSlZMHU8aT0pIGh
+	8dQx9WFRQJFhoXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0
+	tIVUpLSU9PT0hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=CJLx/i7y6XIEhYYkK+bcgbOZWb7NOyQLgyDPGnFicFerhHIaBNhya23FTvMhF0ELqg0hwYPcLAE8ijcflb+VnzUyvdw1e702NyfyYnKk08xcMHFVZIbWrDHosDGHV59BmABw2a+DV9+1R2xtfFph6z2yjW0VDJnk4GjdMRUUAas=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=QT/EFaL4fcCqqsu06HNkALgIVcLkVsgdWHpd2+shATA=;
+	h=date:mime-version:subject:message-id:from;
+X-Rspamd-Queue-Id: 55AC6469BFC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-290262-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-290283-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[collabora.com,kwiboo.se,gmail.com,lists.infradead.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nxp.com:email]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
-Hi Guoniu,
+Hi Nicolas,
 
-thanks for your patch!
+On 4/20/2026 9:52 PM, Nicolas Frattaroli wrote:
+> The Rockchip RK3576 brings with it a new PWM IP, in downstream code
+> referred to as "v4". This new IP is different enough from the previous
+> Rockchip IP that I felt it necessary to add a new driver for it, instead
+> of shoehorning it in the old one.
+> 
+> Add this new driver, based on the PWM core's waveform APIs. Its platform
+> device is registered by the parent mfpwm driver, from which it also
+> receives a little platform data struct, so that mfpwm can guarantee that
+> all the platform device drivers spread across different subsystems for
+> this specific hardware IP do not interfere with each other.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Tested-by: Damon Ding <damon.ding@rock-chips.com>
 
-n Fri, Apr 24, 2026 at 3:40=E2=80=AFAM Guoniu Zhou <guoniu.zhou@oss.nxp.com=
-> wrote:
+The continuous mode of all PWM channels has been preliminarily tested
+and verified working on the RK3576 IoT board.
 
-> The DS90UB953 supports four pins, GPIO0 through GPIO3. When enabled as an
-> output, it can be programed to output local data or remote data coming
-> from the remote compatible deserializer.
->
-> Add GPIO flag in second cell to select remote GPIO data source.
->
-> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
-(...)
-> ---
-> Changes in v6:
-> - Added GPIO_DATA_SOURCE_REMOTE flag to dt-bindings/gpio/gpio.h
+I have tested with several typical period and duty cycle configurations.
 
-(...)
-> +/*
-> + * Bit 24 indicates the GPIO data source is from a remote device.
-> + * This is used in serializer/deserializer setups where the GPIO pin
-> + * on the local device (e.g., TI DS90UB953 serializer) reflects the
-> + * state of a GPIO on the remote device (e.g., TI DS90UB960 deserializer=
-).
-> + */
-> +#define GPIO_DATA_SOURCE_REMOTE                0x01000000
+Following Uwe's suggestion [0], I also tested with libpwm using commands
+similar to the following:
 
-So this is added to all GPIO controllers ever in existance as something
-fundamental about GPIO that may need its own flag.
+./pwmset -c 0 -p 0 -P 1000000 -D 500000 -s 5000
 
-I doubt this.
+I was previously unaware of the existence of libpwm. I will continue to 
+follow its upstream development and updates going forward. :-)
 
-I understand that the driver needs to deal with this in a per-gpio-line
-basis though, have you considered:
+Best regards,
+Damon
 
-1. Just hard-coding this into the driver based on the .compatible
-  string, if the remote GPIOs are always the same for this TI thing?
-
-2. If it is just for one particular system, you *could* actually have
-  a table/mask inside the driver for this:
-  if (of_machine_is_compatible("my-funky-system")) which will
-  kick in only on that very machine,
-
-3. If you really want to store the information in the media i2c
-  device node, add some custom property like this:
-  ti,remote-sources =3D <0x0000001f>;
-  where a bit is set to 1 for each GPIO which is remote.
-
-Putting flags on the GPIO lines themselves seems too complex
-and system-specific.
-
-Yours,
-Linus Walleij
+[0]https://lore.kernel.org/all/fgu42esufq2x4fcccncqs3hlotih2gqmws5atotlaznuahoslw@34vblr6vboze/
 
