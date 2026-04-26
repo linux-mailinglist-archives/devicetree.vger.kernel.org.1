@@ -1,192 +1,232 @@
-Return-Path: <devicetree+bounces-290264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290270-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WMb8LxPh7WldoQAAu9opvQ
-	(envelope-from <devicetree+bounces-290264-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 11:55:31 +0200
+	id ++WoEVvo7WmWogAAu9opvQ
+	(envelope-from <devicetree+bounces-290270-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 12:26:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F00D46957E
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 11:55:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B5C46960F
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 12:26:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE276300A60C
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 09:55:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 83B893013AB6
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 10:26:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEA5C2EC0B0;
-	Sun, 26 Apr 2026 09:55:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 986C633ADBA;
+	Sun, 26 Apr 2026 10:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="m/RnLxP8"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="eb4I3kZa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail-m1973184.qiye.163.com (mail-m1973184.qiye.163.com [220.197.31.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4622DA768;
-	Sun, 26 Apr 2026 09:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A0B30DEA6;
+	Sun, 26 Apr 2026 10:26:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777197328; cv=none; b=YkmUrGMkZXr4AtWrtX1efI2d/pwHMScQvA+CKSD3dDEcttAaNNBSpLt5redeNRpIrF7tZUmYW13ACrnJqq1t9tN5R3aVuEdoquLKqFZXQOrYqp7ltJ+KYoZkDc/yVY3iBKW1CBMP/ENtmgcLv7ILj27FZzHV/JD7foB481382kI=
+	t=1777199191; cv=none; b=d4WamQpt+1J9p7Cf+k3kn1ncO4MDtpiVIiKcQOtOV20LMtSUPPekynGFJ+RaOutV/FLoc2tqeWGab9snOeKPb0FSSwVsuks2em7GxXgbvDwC9zj2CxvE0/pOYOmoVY1JOT7CXG+4XKTITZJwvn/gnpjkRuWVhvcvF/AeQEZeYGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777197328; c=relaxed/simple;
-	bh=/j2U8GHgnU3IUfAQqLUXZNxR7oh2Ut6KIWp2xiiUyCg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uY2Xz3a8q7DyY0CZDEo8rKbj4+QAIwnnOzmQrQYCVo+Tzlmfv8cdBwSpH+BC0U5t+LAFm9Cj1KbTTDxnEVlN2BjACTF29OkXDgaCR562lhudh63X4H/sOU6CS9fQv3Y6Qyv7F3yFSx29pOzzKgFMZ91REAhc8imHOmy3xrKfzBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=m/RnLxP8; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=gV5QBlTsgLILU6JSw4kpZ5JoHyOHW2i+WmDaIwIjC9Q=; b=m/RnLxP8B4FG5gPj38wYUIyKCA
-	CC9/YsFqeiKmTnfNyo7aW4aoT4sLU56ys9nX+rf3mmRGcIk95Zmoj7uIITMPpqNZYNasOQR3JINNa
-	oA1x4aBNMQ5de6+rzVQYTtYpttYYN5AtwRuOJRzBGhhYZ+FORvC0OBhC9uN9J9aScekucU3ilfD9x
-	AASX62TJqQ89SmONeYN2mK/FmwomBNMVo6Lamdpz0JOLIGnEuQEVnyouxtcPYWcZZL3gPW8+oYaT2
-	SrwklFlVqsgB0qJgBWw4wKal98Mpm+EG7Qv2fJPMwDIFS3sXUZ3Q+bc8+uHmsWTQQSXDs95H/WPQ1
-	frCIgW1g==;
-From: Heiko Stuebner <heiko@sntech.de>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Dennis Gilmore <dennis@ausil.us>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maxime Ripard <mripard@kernel.org>, Alexey Charkov <alchark@gmail.com>,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v8 3/6] drm/bridge: simple: Add the Lontium LT8711UXD DP-to-HDMI
- bridge
-Date: Sun, 26 Apr 2026 11:54:57 +0200
-Message-ID: <6519122.LvFx2qVVIh@phil>
-In-Reply-To: <20260425234845.GC2964234@killaraus.ideasonboard.com>
-References:
- <20260425031011.2529364-1-dennis@ausil.us>
- <ur7mow4lw47ylxj3uigwwasrfywe6n42zb2to7ygeyjlkcgfkf@guzkembyy5hc>
- <20260425234845.GC2964234@killaraus.ideasonboard.com>
+	s=arc-20240116; t=1777199191; c=relaxed/simple;
+	bh=NU+3pI4S3vTdc99oasSjbBJ8xb5MfMfeWxgKJ05r3B8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CH0CcRw+tncosI+paglJbSA4KrjJSCE6WfiG0ejcYvZWtd5H2C0KXj2n/bpSZ/FhojqmHbjSbZiM1A/PgZLZ39v42zQwMo5sltWQKIewlbJTkUksATe27hP0lOYg07br1gOyhlxyOB9TgFqpB6LCC4c0yVgeYWtXm7C1JS6SnuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=eb4I3kZa; arc=none smtp.client-ip=220.197.31.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.43] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3c2b8e6e5;
+	Sun, 26 Apr 2026 18:09:58 +0800 (GMT+08:00)
+Message-ID: <544c8d66-b242-4895-b8de-2f1dfdd0c7b4@rock-chips.com>
+Date: Sun, 26 Apr 2026 18:09:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Rspamd-Queue-Id: 2F00D46957E
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/6] pwm: Add rockchip PWMv4 driver
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Lee Jones <lee@kernel.org>, William Breathitt Gray <wbg@kernel.org>
+Cc: kernel@collabora.com, Jonas Karlman <jonas@kwiboo.se>,
+ Alexey Charkov <alchark@gmail.com>, linux-rockchip@lists.infradead.org,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20260420-rk3576-pwm-v5-0-ae7cfbbe5427@collabora.com>
+ <20260420-rk3576-pwm-v5-3-ae7cfbbe5427@collabora.com>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20260420-rk3576-pwm-v5-3-ae7cfbbe5427@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9dc9446f9103a3kunm6b0f68e1145d79
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1kYFggdWUFKV1ktWUFJV1kPCRoVCBIfWUFZQh5KTlZPHh0aGBkaTU
+	MdQhpWFRQJFhoXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0
+	tIVUpLSU9PT0hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=eb4I3kZaySR2+F0gMBqA+RVFFlrWOKdh4b1SAYLJKcnbvJzdFS3sxr68WQO9M8q2IYHeje3rvXLc0fvoKnlmY70h3B0YqxEyL/k1lwEJe3P43wERT4kvuBmCEXLea3V6AmnaLYA6wjfjEaWn+q21PmIEP8kRvTgW6DbdSnvdcoQ=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=sxbl4epg48KUX2MzjpAavq4/tG2sfpxD57DOODEbyl0=;
+	h=date:mime-version:subject:message-id:from;
+X-Rspamd-Queue-Id: 15B5C46960F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290264-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
+	TAGGED_FROM(0.00)[bounces-290270-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[sntech.de:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[ausil.us,intel.com,linaro.org,kernel.org,kwiboo.se,gmail.com,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[collabora.com,kwiboo.se,gmail.com,lists.infradead.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sntech.de:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,10k.nc:url]
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:url,rock-chips.com:dkim,rock-chips.com:mid]
 
-Am Sonntag, 26. April 2026, 01:48:45 Mitteleurop=C3=A4ische Sommerzeit schr=
-ieb Laurent Pinchart:
-> On Sun, Apr 26, 2026 at 12:44:59AM +0300, Dmitry Baryshkov wrote:
-> > On Sat, Apr 25, 2026 at 01:10:02PM -0500, Dennis Gilmore wrote:
-> > > On Sat, Apr 25, 2026 at 9:24=E2=80=AFAM Dmitry Baryshkov wrote:
-> > > > On Sat, Apr 25, 2026 at 02:28:44PM +0300, Laurent Pinchart wrote:
-> > > > > Hi Dennis,
-> > > > >
-> > > > > Thank you for the patch.
-> > > > >
-> > > > > On Fri, Apr 24, 2026 at 10:10:08PM -0500, Dennis Gilmore wrote:
-> > > > > > The Lontium LT8711UXD is a high performance two lane Type-C/DP1=
-=2E4
-> > > > > > to HDMI2.0 converter, designed to connect a USB Type-C source or
-> > > > > > a DP1.4 source to an HDMI2.0 sink.
-> > > > >
-> > > > > As far as I can tell, the LT8711UXD has an I2C control interface.
-> > > > > Shouldn't it be an I2C device ?
-> > > >
-> > > > From the datasheet:
-> > > >
-> > > > The device is capable of automatic operation which is
-> > > > enabled by an integrated microprocessor that uses an
-> > > > embedded SPI flash for firmware storage. System control
-> > > > is also available through the use of a dedicated
-> > > > configuration I2C slave interface.
-> > > >
-> > > > My guess was that it can either be an I2C device or it can function=
- as a
-> > > > simple platdev with no I2C controls. Please correct me if my
-> > > > understanding was wrong.
-> > > >
-> > > > But now looking at the schematics, it seems to be connected to I2C6.
-> > > > Which means that it should be desribed (and bound) as such.
-> > >=20
-> > > Hi Dmitry and Laurent,
-> > >=20
-> > > While the schematic shows that it can use I2C and has been wired up,
-> > > it also shows that both MODE_SEL and I2C_ADDR have unpopulated 10k
-> > > resistors; as a result, MODE_SEL is connected directly to GND,
+Hi Nicolas，
 
-looking at the schematics linked in the board patch, I somehow see
-both R9 (mode_sel -> vcc3v3_io) but also R17 (mode_sel -> gnd) marked
-as 10K.nc ?
+On 4/20/2026 9:52 PM, Nicolas Frattaroli wrote:
+> The Rockchip RK3576 brings with it a new PWM IP, in downstream code
+> referred to as "v4". This new IP is different enough from the previous
+> Rockchip IP that I felt it necessary to add a new driver for it, instead
+> of shoehorning it in the old one.
+> 
+> Add this new driver, based on the PWM core's waveform APIs. Its platform
+> device is registered by the parent mfpwm driver, from which it also
+> receives a little platform data struct, so that mfpwm can guarantee that
+> all the platform device drivers spread across different subsystems for
+> this specific hardware IP do not interfere with each other.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>   MAINTAINERS                   |   1 +
+>   drivers/pwm/Kconfig           |  11 ++
+>   drivers/pwm/Makefile          |   1 +
+>   drivers/pwm/pwm-rockchip-v4.c | 383 ++++++++++++++++++++++++++++++++++++++++++
+>   4 files changed, 396 insertions(+)
+> 
+......
+> diff --git a/drivers/pwm/pwm-rockchip-v4.c b/drivers/pwm/pwm-rockchip-v4.c
+> new file mode 100644
+> index 000000000000..b7de72c433c5
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-rockchip-v4.c
+> @@ -0,0 +1,383 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (c) 2025 Collabora Ltd.
+> + *
+> + * A Pulse-Width-Modulation (PWM) generator driver for the generators found in
+> + * Rockchip SoCs such as the RK3576, internally referred to as "PWM v4". Uses
+> + * the MFPWM infrastructure to guarantee exclusive use over the device without
+> + * other functions of the device from different drivers interfering with its
+> + * operation while it's active.
+> + *
+> + * Technical Reference Manual: Chapter 31 of the RK3506 TRM Part 1, a SoC which
+> + * uses the same PWM hardware and has a publicly available TRM.
+> + * https://opensource.rock-chips.com/images/3/36/Rockchip_RK3506_TRM_Part_1_V1.2-20250811.pdf
+> + *
+> + * Authors:
+> + *     Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> + *
+> + * Limitations:
+> + * - The hardware supports both completing the currently running period
+> + *   on disable (by switching to oneshot mode with a single repetition and
+> + *   only disable when the complete irq fires), and abrupt disable (freeze).
+> + *   Only the latter is implemented in the driver.
+> + * - When the output is disabled, the pin will remain driven to whatever state
+> + *   it last had.
 
+This limitation exists because after disabling the PWM output via 
+registers, the actual shutdown only happens after the current period 
+completes.
 
-> > > putting
-> > > the bridge in autonomous mode. I confirmed this by running `i2cdetect
-> > > -r -y 6`, with the only device on the bus being the HYM8563 RTC at
-> > > 0x51. Without reworking the board, the device is not directly
-> > > controllable and just runs autonomously.
-> >=20
-> > I think it would be nice to mention:
-> > - In the commit for the bindings, that the device can be running
-> >   uncontrolled or it can be attached over I2C, bindings describe the
-> >   uncontrolled mode.
-> > - In this commit message, the same.
-> > - In the commit message for the board DT mention your findings about the
-> >   board, mention soldering R9 or R17 (which one?) and R27.
->=20
-> Additionally, how are we going to handle boards where the device
-> operates in I2C mode ? Will we use a different compatible string (maybe
-> "lontium,lt8711uxd-i2c") ? If DT maintainers are fine with that, I have
-> no objection to this patch.
+Therefore, the better approach is to add a delay of one full period
+before disabling &rockchip_mfpwm_func.core.
 
-I would assume it'd be more the dt-maintainers objecting?
-I.e. the two different bindings for the same hardware and leaking Linux
-implementation-specifics into the binding.
+> + * - Adjustments to the duty cycle will only take effect during the next period.
+> + * - Adjustments to the period length will only take effect during the next
+> + *   period.
+> + * - The hardware only supports offsets in [0, period - duty_cycle]
+> + */
+> +
+......
+> +
+> +	if (wfhw->rate) {
+> +		if (!was_enabled) {
+> +			dev_dbg(&chip->dev, "Enabling PWM output\n");
+> +			ret = clk_enable(pc->pwmf->core);
+> +			if (ret)
+> +				goto err_mfpwm_release;
+> +			ret = clk_set_rate_exclusive(pc->pwmf->core, wfhw->rate);
+> +			if (ret) {
+> +				clk_disable(pc->pwmf->core);
+> +				goto err_mfpwm_release;
+> +			}
+> +
+> +			/*
+> +			 * Output should be on now, acquire device to guarantee
+> +			 * exclusion with other device functions while it's on.
+> +			 *
+> +			 * It's highly unlikely that this fails, as mfpwm has
+> +			 * already been acquired before, and this is just a
+> +			 * usage counter increase. Not worth the added
+> +			 * complexity of clearing the PWMV4_REG_ENABLE again,
+> +			 * especially considering the CTRL_UPDATE_EN behaviour.
+> +			 */
+> +			ret = mfpwm_acquire(pc->pwmf);
+> +			if (ret) {
+> +				clk_rate_exclusive_put(pc->pwmf->core);
+> +				clk_disable(pc->pwmf->core);
+> +				goto err_mfpwm_release;
+> +			}
+> +		}
+> +	} else if (was_enabled) {
+> +		dev_dbg(&chip->dev, "Disabling PWM output\n");
 
-I'm don't have deep insight into the i2c framework, but I guess the i2c
-device probe does not need to talk to an i2c device due to resources
-needing setup. Does the i2c core need to talk to the device at all?
+Delay for one full PWM period before disabling the dclk.
 
-Because otherwise, you could just do a regular i2c device (the routing
-for everything is there afterall), add a lontium,automatic-mode; flag
-to the node to denote mode.
+Although this may introduce some latency for disable -> re-enable 
+operations, it ensures that the state after shutdown aligns with the 
+actual polarity configuration.
 
-And if for whatever reason a variant appears with the lines connected
-you can just modifiy the DT via an overlay?
+> +		clk_rate_exclusive_put(pc->pwmf->core);
+> +		clk_disable(pc->pwmf->core);
+> +		/* Output is off now, extra release to balance extra acquire */
+> +		mfpwm_release(pc->pwmf);
+> +	}
+> +
+> +err_mfpwm_release:
+> +	mfpwm_release(pc->pwmf);
+> +
+> +	return ret;
+> +}
+> +
+> 
 
-
-Heiko
-
+Best regards,
+Damon
 
 
