@@ -1,232 +1,158 @@
-Return-Path: <devicetree+bounces-290270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290267-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ++WoEVvo7WmWogAAu9opvQ
-	(envelope-from <devicetree+bounces-290270-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 12:26:35 +0200
+	id 0BgKKxDm7WkbogAAu9opvQ
+	(envelope-from <devicetree+bounces-290267-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 12:16:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15B5C46960F
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 12:26:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 293594695D2
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 12:16:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 83B893013AB6
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 10:26:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9F78E301CCF2
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 10:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 986C633ADBA;
-	Sun, 26 Apr 2026 10:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A22A3126D0;
+	Sun, 26 Apr 2026 10:16:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="eb4I3kZa"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="fgTBTP5p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973184.qiye.163.com (mail-m1973184.qiye.163.com [220.197.31.84])
+Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A0B30DEA6;
-	Sun, 26 Apr 2026 10:26:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9BA42AA6;
+	Sun, 26 Apr 2026 10:16:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777199191; cv=none; b=d4WamQpt+1J9p7Cf+k3kn1ncO4MDtpiVIiKcQOtOV20LMtSUPPekynGFJ+RaOutV/FLoc2tqeWGab9snOeKPb0FSSwVsuks2em7GxXgbvDwC9zj2CxvE0/pOYOmoVY1JOT7CXG+4XKTITZJwvn/gnpjkRuWVhvcvF/AeQEZeYGY=
+	t=1777198581; cv=none; b=TH7gH5buKeUwye+DEX3nyVwTOzjZdnNGlDrWd+8OugB4fGdMyyqK5UGEKdL0LIY4RmOS9v+rD7lQjUZDfhjHYA8Nn+pKFwWq7GVRuyA0OD438bkLxywRdOpm9hH4mZL7pIxM2M2WN9BrDUMY3trWswQnJP/S8YJcOKQC9dgQnAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777199191; c=relaxed/simple;
-	bh=NU+3pI4S3vTdc99oasSjbBJ8xb5MfMfeWxgKJ05r3B8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CH0CcRw+tncosI+paglJbSA4KrjJSCE6WfiG0ejcYvZWtd5H2C0KXj2n/bpSZ/FhojqmHbjSbZiM1A/PgZLZ39v42zQwMo5sltWQKIewlbJTkUksATe27hP0lOYg07br1gOyhlxyOB9TgFqpB6LCC4c0yVgeYWtXm7C1JS6SnuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=eb4I3kZa; arc=none smtp.client-ip=220.197.31.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.43] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3c2b8e6e5;
-	Sun, 26 Apr 2026 18:09:58 +0800 (GMT+08:00)
-Message-ID: <544c8d66-b242-4895-b8de-2f1dfdd0c7b4@rock-chips.com>
-Date: Sun, 26 Apr 2026 18:09:59 +0800
+	s=arc-20240116; t=1777198581; c=relaxed/simple;
+	bh=JZpe5juyjekGSl3KCHZz9FQl9GVXcxrzou7nqEme28E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RjM22yfCEPG5MX4gqnt+l6sXTtbFE9myW0ZPn/PJdAyvXS998QuEFGdRp6tfKJHlKU0fB0papbPbQ8bQT/U3JSYekrmoc2MF0kMtlZjftaeMK3ClsLKEHvcmS7PfR6PsLUx1t49FrH6AFcCOusNOIIq5RKuwcOm79vjCL+2Pnow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=fgTBTP5p; arc=none smtp.client-ip=195.78.66.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=mmpsystems.pl; s=x; h=Cc:To:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=s7Vri4uvx6ICfdudfHf69UQj1XDimRGVCirH9YF26Z0=; b=fgTBTP5pRUAdmMHivaZCYGt8LL
+	MqYDacMsHGIfuBVMt795ZH+TGKhcm/Wkh+0j5xVJ/ERnUICQztZf4xlmUEJRzEVvvPWOIhUOnvdtG
+	w8W0+/Wls7CwKI54h6tnc+w6CgVB7v0hTR31PBDY+fSYtq8HlSiHS6GKZplVd83kwf8NOusD1lnwm
+	BnfRLD9xAIRFB+XDOT0D8k02n4u7wcsAG4nnnI++TbK5izqW0/YWfYPe2IDbKqy5uZ1wvI5CJtvme
+	iraSjMCx0787u5RPyFYVamW+FKpRgpPBRMdpjaBxkF3iEbepmMNbA0snLGrHXiddu6S0aZvHDAV5i
+	zD9SebaA==;
+Received: from user-188-33-36-99.play-internet.pl ([188.33.36.99] helo=localhost)
+	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <michal.piekos@mmpsystems.pl>)
+	id 1wGwX6-0000000CADG-3c16;
+	Sun, 26 Apr 2026 12:16:12 +0200
+From: Michal Piekos <michal.piekos@mmpsystems.pl>
+Subject: [PATCH v2 0/4] Add hstimer support for H616 and T113-S3
+Date: Sun, 26 Apr 2026 12:15:25 +0200
+Message-Id: <20260426-h616-t113s-hstimer-v2-0-e65e9dc0c9da@mmpsystems.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/6] pwm: Add rockchip PWMv4 driver
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Lee Jones <lee@kernel.org>, William Breathitt Gray <wbg@kernel.org>
-Cc: kernel@collabora.com, Jonas Karlman <jonas@kwiboo.se>,
- Alexey Charkov <alchark@gmail.com>, linux-rockchip@lists.infradead.org,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20260420-rk3576-pwm-v5-0-ae7cfbbe5427@collabora.com>
- <20260420-rk3576-pwm-v5-3-ae7cfbbe5427@collabora.com>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <20260420-rk3576-pwm-v5-3-ae7cfbbe5427@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9dc9446f9103a3kunm6b0f68e1145d79
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1kYFggdWUFKV1ktWUFJV1kPCRoVCBIfWUFZQh5KTlZPHh0aGBkaTU
-	MdQhpWFRQJFhoXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0
-	tIVUpLSU9PT0hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=eb4I3kZaySR2+F0gMBqA+RVFFlrWOKdh4b1SAYLJKcnbvJzdFS3sxr68WQO9M8q2IYHeje3rvXLc0fvoKnlmY70h3B0YqxEyL/k1lwEJe3P43wERT4kvuBmCEXLea3V6AmnaLYA6wjfjEaWn+q21PmIEP8kRvTgW6DbdSnvdcoQ=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=sxbl4epg48KUX2MzjpAavq4/tG2sfpxD57DOODEbyl0=;
-	h=date:mime-version:subject:message-id:from;
-X-Rspamd-Queue-Id: 15B5C46960F
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL3l7WkC/22NQQ6CMBBFr0Jm7RimYLGuvIdhgTi1TSyQTkMkh
+ LtbSdy5fC/5768gHD0LXIoVIs9e/DhkUIcCetcNT0b/yAyqVLqsqUKnSWMiqgSdJB84olamMqY
+ +W0M95OEU2fr3Hr21mZ2XNMZl/5jpa3858y83E5ZInW1qvrNt+tM1hEkWSRzkOL2g3bbtAydLj
+ uC4AAAA
+To: Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ Michal Piekos <michal.piekos@mmpsystems.pl>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777198529; l=1530;
+ i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
+ bh=JZpe5juyjekGSl3KCHZz9FQl9GVXcxrzou7nqEme28E=;
+ b=aadCL9ko4VIlfT7g7cDV9EBJEIWSGLjvkbnjogOi26mShXAxUnKPKEmdzgQb/c9Hs9LbOtDSP
+ 6L58evY3Sj4AwRTeNqUsqZ3sQbjf+WZmiIcXY3f2Cu0Se9+CDEnVBcu
+X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
+ pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
+X-Authenticated-Id: michal.piekos@mmpsystems.pl
+X-Rspamd-Queue-Id: 293594695D2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-290267-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290270-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[collabora.com,kwiboo.se,gmail.com,lists.infradead.org,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.598];
+	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[mmpsystems.pl:-];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:url,rock-chips.com:dkim,rock-chips.com:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mmpsystems.pl:mid,mmpsystems.pl:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-Hi Nicolas，
+Add support for Allwinner D1 high speed timer in sun5i hstimer driver
+and describe corresponding nodes in dts for H616 and T113-S3 SoC's.
 
-On 4/20/2026 9:52 PM, Nicolas Frattaroli wrote:
-> The Rockchip RK3576 brings with it a new PWM IP, in downstream code
-> referred to as "v4". This new IP is different enough from the previous
-> Rockchip IP that I felt it necessary to add a new driver for it, instead
-> of shoehorning it in the old one.
-> 
-> Add this new driver, based on the PWM core's waveform APIs. Its platform
-> device is registered by the parent mfpwm driver, from which it also
-> receives a little platform data struct, so that mfpwm can guarantee that
-> all the platform device drivers spread across different subsystems for
-> this specific hardware IP do not interfere with each other.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->   MAINTAINERS                   |   1 +
->   drivers/pwm/Kconfig           |  11 ++
->   drivers/pwm/Makefile          |   1 +
->   drivers/pwm/pwm-rockchip-v4.c | 383 ++++++++++++++++++++++++++++++++++++++++++
->   4 files changed, 396 insertions(+)
-> 
-......
-> diff --git a/drivers/pwm/pwm-rockchip-v4.c b/drivers/pwm/pwm-rockchip-v4.c
-> new file mode 100644
-> index 000000000000..b7de72c433c5
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-rockchip-v4.c
-> @@ -0,0 +1,383 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Copyright (c) 2025 Collabora Ltd.
-> + *
-> + * A Pulse-Width-Modulation (PWM) generator driver for the generators found in
-> + * Rockchip SoCs such as the RK3576, internally referred to as "PWM v4". Uses
-> + * the MFPWM infrastructure to guarantee exclusive use over the device without
-> + * other functions of the device from different drivers interfering with its
-> + * operation while it's active.
-> + *
-> + * Technical Reference Manual: Chapter 31 of the RK3506 TRM Part 1, a SoC which
-> + * uses the same PWM hardware and has a publicly available TRM.
-> + * https://opensource.rock-chips.com/images/3/36/Rockchip_RK3506_TRM_Part_1_V1.2-20250811.pdf
-> + *
-> + * Authors:
-> + *     Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> + *
-> + * Limitations:
-> + * - The hardware supports both completing the currently running period
-> + *   on disable (by switching to oneshot mode with a single repetition and
-> + *   only disable when the complete irq fires), and abrupt disable (freeze).
-> + *   Only the latter is implemented in the driver.
-> + * - When the output is disabled, the pin will remain driven to whatever state
-> + *   it last had.
+D1 and H616 uses same model as existing driver except register shift
+compared to older variants. 
 
-This limitation exists because after disabling the PWM output via 
-registers, the actual shutdown only happens after the current period 
-completes.
+Added register layout abstraction in the driver, extended the binding
+with new compatibles and wired up dts nodes for T113-S3 and H616 which
+uses D1 as fallback compatible.
 
-Therefore, the better approach is to add a delay of one full period
-before disabling &rockchip_mfpwm_func.core.
+Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
+---
+Changes in v2:
+- Change driver handling of different offsets to using quirks
+- Change from t113s to d1 as the fallback compatible string
+- Fix conditional compatible matching
+- Link to v1: https://lore.kernel.org/r/20260419-h616-t113s-hstimer-v1-0-1af74ebef7c5@mmpsystems.pl
 
-> + * - Adjustments to the duty cycle will only take effect during the next period.
-> + * - Adjustments to the period length will only take effect during the next
-> + *   period.
-> + * - The hardware only supports offsets in [0, period - duty_cycle]
-> + */
-> +
-......
-> +
-> +	if (wfhw->rate) {
-> +		if (!was_enabled) {
-> +			dev_dbg(&chip->dev, "Enabling PWM output\n");
-> +			ret = clk_enable(pc->pwmf->core);
-> +			if (ret)
-> +				goto err_mfpwm_release;
-> +			ret = clk_set_rate_exclusive(pc->pwmf->core, wfhw->rate);
-> +			if (ret) {
-> +				clk_disable(pc->pwmf->core);
-> +				goto err_mfpwm_release;
-> +			}
-> +
-> +			/*
-> +			 * Output should be on now, acquire device to guarantee
-> +			 * exclusion with other device functions while it's on.
-> +			 *
-> +			 * It's highly unlikely that this fails, as mfpwm has
-> +			 * already been acquired before, and this is just a
-> +			 * usage counter increase. Not worth the added
-> +			 * complexity of clearing the PWMV4_REG_ENABLE again,
-> +			 * especially considering the CTRL_UPDATE_EN behaviour.
-> +			 */
-> +			ret = mfpwm_acquire(pc->pwmf);
-> +			if (ret) {
-> +				clk_rate_exclusive_put(pc->pwmf->core);
-> +				clk_disable(pc->pwmf->core);
-> +				goto err_mfpwm_release;
-> +			}
-> +		}
-> +	} else if (was_enabled) {
-> +		dev_dbg(&chip->dev, "Disabling PWM output\n");
+---
+Michal Piekos (4):
+      dt-bindings: timer: allwinner,sun5i-a13-hstimer: add H616 and D1
+      clocksource/drivers/sun5i: add D1 hstimer support
+      arm: dts: allwinner: t113s: add hstimer node
+      arm64: dts: allwinner: h616: add hstimer node
 
-Delay for one full PWM period before disabling the dclk.
-
-Although this may introduce some latency for disable -> re-enable 
-operations, it ensures that the state after shutdown aligns with the 
-actual polarity configuration.
-
-> +		clk_rate_exclusive_put(pc->pwmf->core);
-> +		clk_disable(pc->pwmf->core);
-> +		/* Output is off now, extra release to balance extra acquire */
-> +		mfpwm_release(pc->pwmf);
-> +	}
-> +
-> +err_mfpwm_release:
-> +	mfpwm_release(pc->pwmf);
-> +
-> +	return ret;
-> +}
-> +
-> 
+ .../timer/allwinner,sun5i-a13-hstimer.yaml         |  9 ++-
+ arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi       | 11 +++
+ arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi     | 10 +++
+ drivers/clocksource/timer-sun5i.c                  | 88 +++++++++++++++++-----
+ 4 files changed, 98 insertions(+), 20 deletions(-)
+---
+base-commit: 897d54018cc9aa97fd1529ca08a53b429d05a566
+change-id: 20260413-h616-t113s-hstimer-62939948f91c
 
 Best regards,
-Damon
+-- 
+Michal Piekos <michal.piekos@mmpsystems.pl>
 
 
