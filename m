@@ -1,157 +1,217 @@
-Return-Path: <devicetree+bounces-290268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290272-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +EPPA/7l7WkdogAAu9opvQ
-	(envelope-from <devicetree+bounces-290268-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 12:16:30 +0200
+	id /Z7jNtHy7WkfpQAAu9opvQ
+	(envelope-from <devicetree+bounces-290272-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 13:11:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78DC64695C3
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 12:16:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08B5446988A
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 13:11:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4F65B300D700
-	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 10:16:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 465C23013A70
+	for <lists+devicetree@lfdr.de>; Sun, 26 Apr 2026 11:11:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99CD6317146;
-	Sun, 26 Apr 2026 10:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D07535838F;
+	Sun, 26 Apr 2026 11:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="BK7Bz3OV"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="k3j+KzqG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
+Received: from mail-m49216.qiye.163.com (mail-m49216.qiye.163.com [45.254.49.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0E591BD9C9;
-	Sun, 26 Apr 2026 10:16:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B503D165F16;
+	Sun, 26 Apr 2026 11:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777198581; cv=none; b=jTRmUIDT9ETqt3ZEkcwTSHAMF/tD21rWemEETiR9oMpmkI7qyXk68kTnIei92eUnoXZqK+V35TKwtRYTynyMkp4fWQud7p+f/AbQho71ZCpg3VR5GT7AKH6GDbo/8WvliOu/2zpriEsj+bh6oUdZftDftQhoPw/IHPMySd4/4ok=
+	t=1777201869; cv=none; b=jZqW933EtW8l6AmqRO19BMI3o93TFeC3GKmDFGuzqArIPui8DjoK8GRqgGIr3VAddXrkZWoN2vzlFwn5/iN/tfSMyVGTTkpcPkR81Hub3EbKF4mOM2i/AaFhXsqvQQ9Mh5RIF3HKzkU1HuKjD7b5eX1zMgdlmTugLLw9UE04MzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777198581; c=relaxed/simple;
-	bh=cCHCvUuPpHPu5/1mgf/ezZ1u0bRGr6TqCo7i9RhbRKk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MeA0hTdhL7b5ejbaCquvBZogjocKaKRqC0kmgNbIoC/FkGCnxMbl2e+hadoQmEw32hGYc+d4oPFJjsALbpXbR8EHZ3XIV0c4X22BgRFYXjn3eMatFNE+eMil9npqmEcmeHw3v5Z1vaHJVMYRLi5wrHS1McsK5dsQzfYx8nO5dlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=BK7Bz3OV; arc=none smtp.client-ip=195.78.66.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=mmpsystems.pl; s=x; h=Cc:To:In-Reply-To:References:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=uNFzzd95mcTYhcO+wG3xMSmWT3vJi7xx2yg5IbFJlII=; b=BK7Bz3OVlygoGKz6TSBEGDuzY9
-	nKq/RULN7AVEGlNaIwQ2wB3KXYF59XDtOJ9E1ny5mOljANkJ4zI38btt8jXI2Lzc2YXHTlTgT/enV
-	Ph18uzznc22o4KyS6pd72dS+M3dAb2hP4bJxXY3P87/zOsh6YLhyv8LFZ4zFQcBz6/40717lwBhhJ
-	7TJ2WzI6Uui4/mY/dq66lGo+eIqKphoBWnqCYW6xxWOAx2im92fDYlwsKshF04ZvMEu2FfxshQ78+
-	UVW+RGDLgvF1xOlRURDdXsqdU+vwIiVqePxlUxW54gb0obaP9nDk2POAxYu1qfJBBUIyyUaPsLn7P
-	hwbI3caQ==;
-Received: from user-188-33-36-99.play-internet.pl ([188.33.36.99] helo=localhost)
-	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <michal.piekos@mmpsystems.pl>)
-	id 1wGwX9-0000000CBRV-3ut5;
-	Sun, 26 Apr 2026 12:16:16 +0200
-From: Michal Piekos <michal.piekos@mmpsystems.pl>
-Date: Sun, 26 Apr 2026 12:15:29 +0200
-Subject: [PATCH v2 4/4] arm64: dts: allwinner: h616: add hstimer node
+	s=arc-20240116; t=1777201869; c=relaxed/simple;
+	bh=3HWdO9G2DFHbWy3pq1NGFJr6mA281UK6sb66l/eo520=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nQB5jIST9EVgi1hh+3vsUZeD16jK3LPYRXXSkCEeOTDv/UBgRkIAoyW//pdUnxwfvdUZmJLPdIBsiYKufkTzVZ3buRPZnYytVuT2nmp6ArOFH/eLIIwQDjJFijQL5YWtq92YXu3DqWxKYe8HujHuVnMjTv/aJK3ksDv6+cQQnW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=k3j+KzqG; arc=none smtp.client-ip=45.254.49.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.43] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3c2bf0f7e;
+	Sun, 26 Apr 2026 18:55:20 +0800 (GMT+08:00)
+Message-ID: <91eed9a4-4dc3-4846-baf3-e9cef53be79b@rock-chips.com>
+Date: Sun, 26 Apr 2026 18:55:20 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/6] counter: Add rockchip-pwm-capture driver
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Lee Jones <lee@kernel.org>, William Breathitt Gray <wbg@kernel.org>
+Cc: kernel@collabora.com, Jonas Karlman <jonas@kwiboo.se>,
+ Alexey Charkov <alchark@gmail.com>, linux-rockchip@lists.infradead.org,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20260420-rk3576-pwm-v5-0-ae7cfbbe5427@collabora.com>
+ <20260420-rk3576-pwm-v5-4-ae7cfbbe5427@collabora.com>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20260420-rk3576-pwm-v5-4-ae7cfbbe5427@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260426-h616-t113s-hstimer-v2-4-e65e9dc0c9da@mmpsystems.pl>
-References: <20260426-h616-t113s-hstimer-v2-0-e65e9dc0c9da@mmpsystems.pl>
-In-Reply-To: <20260426-h616-t113s-hstimer-v2-0-e65e9dc0c9da@mmpsystems.pl>
-To: Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- Michal Piekos <michal.piekos@mmpsystems.pl>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777198529; l=1212;
- i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
- bh=cCHCvUuPpHPu5/1mgf/ezZ1u0bRGr6TqCo7i9RhbRKk=;
- b=0x0K5umTBuHAYa/VBYZvkuflhbBQIa1oByPmLb0zonwXUViZBNgJ3TSBKIRGDk/8Payuva2uG
- zx9x83mwLcMC2kPHFZJEXGuASvsTKqT0CnfES+2VefcrYFfTnsswHp4
-X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
- pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
-X-Authenticated-Id: michal.piekos@mmpsystems.pl
-X-Rspamd-Queue-Id: 78DC64695C3
+X-HM-Tid: 0a9dc96df5f203a3kunm44ef251f147654
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1kYFggdWUFKV1ktWUFJV1kPCRoVCBIfWUFZGRhISVYdHRlPS0MZS0
+	tDSUNWFRQJFhoXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0
+	tIVUpLSU9PT0hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=k3j+KzqGo1yaYNVbzfra2FBJAB62XBtxGRT9nkLjxBKiMb1q/TYYcRi9XcqBDo/RiMjdsaPIkvHa9ZoY23x44LOUxm+CFZK78NVUnV9cMTGU17QFoIC5YUd5A6tD1VJ9wWOAw3i5/SIB/vW3gEGp87tCuoH3P0kJQUAyzPnKtgk=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=msZgS8n7WJEel0UQMVZgdBaQJewEl2x1ppuOvvbY4aQ=;
+	h=date:mime-version:subject:message-id:from;
+X-Rspamd-Queue-Id: 08B5446988A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-290268-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-290272-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[collabora.com,kwiboo.se,gmail.com,lists.infradead.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.45.233.232:email];
-	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[mmpsystems.pl:-];
-	NEURAL_HAM(-0.00)[-0.631];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mmpsystems.pl:mid,mmpsystems.pl:email,0.45.218.72:email,30090a0:email]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:email,rock-chips.com:dkim,rock-chips.com:mid]
 
-Describe high speed timer block on Allwinner H616.
+Hi Nicolas,
 
-Tested on Orange Pi Zero 3:
-- hstimer is registered as clocksource
-- switching clocksource at runtime works
-- after rating increase hstimer operates as a broadcast clockevent device
+On 4/20/2026 9:52 PM, Nicolas Frattaroli wrote:
+> Among many other things, Rockchip's new PWMv4 IP in the RK3576 supports
+> PWM capture functionality.
+> 
+> Add a basic driver for this that works to expose HPC/LPC counts and
+> state change events to userspace through the counter framework. It's
+> quite basic, but works well enough to demonstrate the device function
+> exclusion stuff that mfpwm does, in order to eventually support all the
+> functions of this device in drivers within their appropriate subsystems,
+> without them interfering with each other.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>   MAINTAINERS                            |   1 +
+>   drivers/counter/Kconfig                |  11 ++
+>   drivers/counter/Makefile               |   1 +
+>   drivers/counter/rockchip-pwm-capture.c | 307 +++++++++++++++++++++++++++++++++
+>   4 files changed, 320 insertions(+)
+> 
 
-Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
----
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+For functional validation, I connected PWM0/PWM1 (continuous output)
+to PWM2 (capture input) pairwise.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index bf054869e78b..1356e5df2562 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -237,6 +237,16 @@ timer0: timer@3009000 {
- 			clocks = <&osc24M>;
- 		};
- 
-+		hstimer@3005000 {
-+			compatible = "allwinner,sun50i-h616-hstimer",
-+				     "allwinner,sun20i-d1-hstimer";
-+			reg = <0x03005000 0x1000>;
-+			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_HSTIMER>;
-+			resets = <&ccu RST_BUS_HSTIMER>;
-+		};
-+
- 		watchdog: watchdog@30090a0 {
- 			compatible = "allwinner,sun50i-h616-wdt",
- 				     "allwinner,sun6i-a31-wdt";
+I enabled the counter via:
+/sys/bus/counter/devices/counter0/count0/enable
 
--- 
-2.43.0
+Then I verified the functionality by reading the count values from:
+/sys/bus/counter/devices/counter0/count0/count
+/sys/bus/counter/devices/counter0/count1/count
+
+Tested-by: Damon Ding <damon.ding@rock-chips.com>
+
+BTW: Is there any user-space test tool similar to libpwm for the
+counter subsystem?
+
+......
+> diff --git a/drivers/counter/rockchip-pwm-capture.c b/drivers/counter/rockchip-pwm-capture.c
+> new file mode 100644
+> index 000000000000..09a92f2bc409
+> --- /dev/null
+> +++ b/drivers/counter/rockchip-pwm-capture.c
+> @@ -0,0 +1,307 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (c) 2025 Collabora Ltd.
+> + *
+> + * A counter driver for the Pulse-Width-Modulation (PWM) hardware found on
+> + * Rockchip SoCs such as the RK3576, internally referred to as "PWM v4". It
+> + * allows for measuring the high cycles and low cycles of a PWM signal through
+> + * the generic counter framework, while guaranteeing exclusive use over the
+> + * MFPWM device while the counter is enabled.
+> + *
+> + * Authors:
+> + *     Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> + */
+> +
+> +#include <linux/cleanup.h>
+> +#include <linux/counter.h>
+> +#include <linux/devm-helpers.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/mfd/rockchip-mfpwm.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/spinlock.h>
+> +
+> +#define RKPWMC_INT_MASK			(PWMV4_INT_LPC | PWMV4_INT_HPC)
+> +
+> +struct rockchip_pwm_capture {
+> +	struct rockchip_mfpwm_func *pwmf;
+> +	struct counter_device *counter;
+> +};
+> +
+> +static struct counter_signal rkpwmc_signals[] = {
+> +	{
+> +		.id = 0,
+> +		.name = "PWM Clock"
+> +	},
+> +};
+> +
+> +static const enum counter_synapse_action rkpwmc_hpc_lpc_actions[] = {
+> +	COUNTER_SYNAPSE_ACTION_BOTH_EDGES,
+> +	COUNTER_SYNAPSE_ACTION_NONE,
+> +};
+
+For the capture function, it uses the PWM's reference clock (dclk) as 
+the time base to measure how many reference cycles the high and low 
+levels of the input waveform last respectively.
+
+I find it a bit strange to set COUNTER_SYNAPSE_ACTION_BOTH_EDGES for 
+counting. If we treat the input waveform as a sequence of square waves 
+sampled by dclk cycles, it feels like we should count on a single edge 
+(rising edge only) rather than both edges.
+
+> +
+> +static struct counter_synapse rkpwmc_pwm_synapses[] = {
+> +	{
+> +		.actions_list = rkpwmc_hpc_lpc_actions,
+> +		.num_actions = ARRAY_SIZE(rkpwmc_hpc_lpc_actions),
+> +		.signal = &rkpwmc_signals[0]
+> +	},
+> +};
+> +
+
+Best regards,
+Damon
 
 
