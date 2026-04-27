@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-290471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290473-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YEFOEPk372nV+QAAu9opvQ
-	(envelope-from <devicetree+bounces-290471-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 12:18:33 +0200
+	id 0AZJIQo472nV+QAAu9opvQ
+	(envelope-from <devicetree+bounces-290473-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 12:18:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4662470CB2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 12:18:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1945470CE2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 12:18:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CE518304DEB6
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 10:10:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0075B3060308
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 10:10:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734F53603EF;
-	Mon, 27 Apr 2026 10:10:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88F763B52FB;
+	Mon, 27 Apr 2026 10:10:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c6LtIQii"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ePDfWqKX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BAB4223DE7
-	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 10:10:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1429B19CCF5
+	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 10:10:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777284604; cv=none; b=gw1MdtMhinSQeKH5hyzO6WITx1OhAXKszZVvU3HNOqZEwzCOCc+wpFQGXq/fbn9rWVvytT8RkmYD+DB6BMrA7zZ9XAjnHZoB8Ux9EFH/iRYTM+tTwI8iiHnU99qXaTsllU6O5kDq4n+JbWuaj4oxdx3fwFpquB6oUdDHN906lAo=
+	t=1777284612; cv=none; b=UPrs9XfPcZI5TMcKy+t5gq5WYdhGNo+hRsATNj5UpAD/4/KxPCdpcg88yvTBpy5mGHVk1FR8nNdP0aD/8cXIPgqiPYRh+5rFIyJ2orkkzLy0PhNJ2XeRXaSylUnZksgR2k39bdqU2YTJNeqW22UnguWu55McBVCkMH49yei3Rdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777284604; c=relaxed/simple;
-	bh=PFD2iL3lpSvNkhMI6YUePwdFN+Bl2X+7rN4+GU/fR9o=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ixcQt9xq8QMu1GQgkIr615C7iG1+F2+yT7H+3L1P1dyJ7duLNYXMPvZ3IFfevd1R4lD6U8XWv7Yiq3zLjBmgEjmmsWA3prVmZGUEzfcQtLxKhxesfOMyk8aEUVRi1niBcMUdHAGn2RK4UT3QcZ6V+0D9frDImkv3pJwEzVllx9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c6LtIQii; arc=none smtp.client-ip=209.85.210.178
+	s=arc-20240116; t=1777284612; c=relaxed/simple;
+	bh=0PUkoXhMDarNP9t/5JZNDvxydLZwYMiP1Clat9658yU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=op+CfzdhERCIrxJ1PLEsUmpkSE9FdlanTHcyclzOO+8Eu08hqxV9l9IJJa9foKEVCzfUlIgg2FYIDKp59OpdJFrdH9n2GtZP5NE2m7qhMWhZb+kKhlOdVd7+mXrh+zJmA/WodZptInXubRonoFsQtwyOxchqu/IBJQUAP6J+RSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ePDfWqKX; arc=none smtp.client-ip=209.85.215.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-82fbf5d4dc2so6163992b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 03:10:01 -0700 (PDT)
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-c76b9efc299so4063105a12.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 03:10:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777284601; x=1777889401; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MVjZJGi1bRfvcXa1V21Dt9zuEIBVC1nCvcLpxsqr/7I=;
-        b=c6LtIQiiyUSLjyzovRZmBcso1MrYhtU88fvm9ZAxe2EiNnr/8LRBm6jchPjaRPTxVX
-         TvfHPN3X53GjixhJhWH4XeTglM+sNB3Hr4Eg/a1dEcb0lMyv0NJAPkBMzqWHKL3W1duU
-         zbY9fXrcG7RdfVicXCNY1JDbEJAwNQ3zJkYsiVuMtTYhCx6yQgzaelImyzVh7E789fK4
-         GZrGK/NWG9yzKPXBZ/O50KifPIp1GTchNVv5JyTFqHjAFqvhGjC304mzk5Sr8baBM7b/
-         KlXn2p0VjWeuirEILWcK+NlhpC0+2Db6egPxvKz0oMdi1mG9aQZtpZKKULyjaNY11CUH
-         zgzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777284601; x=1777889401;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1777284609; x=1777889409; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MVjZJGi1bRfvcXa1V21Dt9zuEIBVC1nCvcLpxsqr/7I=;
-        b=jySBZEtf83upzj5dnfktqKJwvhALOvo49bMLP7HoROGtCPUkl4Oc3HYQjSH3MI9xAs
-         hbGoN8+taAo/vgzGVfkCRxQYCY4yzvK2HMyjh1ebxn/V8+1Hj9UgnLahhGAwxceVBrBh
-         Zs2D5tT99X1iCIBwcFWleWLMNY0I8JEVD1WuQN7cUFGpeHaj4oGcPgEoGNlP8y12zMG5
-         nWKagykVxDcUnCdvGm3ZF9lrtbsBxaj/G3JlpTCbQZgv/zUEL5Wic+DnHCbfZUb4TxoF
-         UqKYNB59XfP5hrWaSxMlGtzksWH+a/cGAHu9ntKjQFueW1KnNBaTdztfmj7q9M4MbjT+
-         NDEg==
-X-Forwarded-Encrypted: i=1; AFNElJ+aIiXd2pQjY2hExBgq9MRGw41QqOWOiriVCUdYYOAkuXyxmvKMmOpR5RxUyCSIDdG+J4daBb8B8Snc@vger.kernel.org
-X-Gm-Message-State: AOJu0YznapO8s+M4F+usTOvMqBk3tyW1akfH9V0CcxwU6OjQ0iaN+idZ
-	iu2Hop7N7fVCgjhsLzl9QWb+VXIV2tX7uNKY7QgGcrhwY+OO+ncHOtMp
-X-Gm-Gg: AeBDieuwVEARlhRXWcX6/aXHMehDBVib1NmIkdAJYD2+48CdToT/K/c3W7lRR+hUnuM
-	0ic3gUiHUXp/tB0tIeqNWpkj6KNCOuPxUhaEfWp32ovt4vRg4MqOeb04lnL5S1ec0udirEOYqUe
-	1L01hiyZcvlhsQem6ls7hOohBpBeJUOaHeRA/+Ii6dmoYotO/1Vm4bhYJi3BCxRzEaEvS206LJX
-	475w7axeRYCcdxKY86dhs9Lk8pRMAIWXVNqX/YGcf0E/dOAL1Ht5pO8fVrdNL2nTexOHSxpJBN/
-	VxXGjjGd7yTORe/A080E3eEEyjRnp6nd/9IXc161yM7rcJzmNOt1xjvC/OzAPQl44cCq3tUViqG
-	ed0AS4W9SJSdAX27va+ptRIH4eG/zon3+BEQpa846R5oX7VYjZpxqR6TGal2ZCh+tAkX9lm53jL
-	ysMYQBYFj/RUhbGHIYOZ83+f7SGPbBaVX6uetvCy+0WShieylw9b6fEtwJcuPqqRrhmbvxFJ+g6
-	HafwXF1rSHb+Ow9Ca2t4zZN/wn6pQU0WITSEbUILL8jcDf5/w==
-X-Received: by 2002:a05:6a00:4186:b0:82c:21b8:4a1f with SMTP id d2e1a72fcca58-82f8c7dd163mr46226289b3a.5.1777284601404;
-        Mon, 27 Apr 2026 03:10:01 -0700 (PDT)
+        bh=DbGHpgdnNrh8VCIxoCiZ35IAkxAnxOipEdRQVtqttRY=;
+        b=ePDfWqKXToKssoSJRTXpp1zcC2bjUAo9g8FIpp81kqamB4B76sZaDU3zh3QD0fEH4m
+         fRKDDcghcwhCgZzx6MOIujFEvUD537CGDVHPgZZv4Jr+ij8jRNQTRlLX61z8zq3/F6bu
+         5mcgJUXmpAeeve4T/vtxITbxxZQKTuWvGK2BWpsQFCO2gstVENR46My9Ux5GJZI9y/cf
+         f8HHRA8D9LgnJNwvkgcfYXR5ad+yer/I1p7dYNr1bgHUlFovUSVZ/imRjvPFEYBUHnvk
+         g8Ypomiji/SISgzonPgmUIsHZNn2A92BJZpR3LjtV0PUNAVWj2XLSkiX82W1fbUidlTq
+         2sbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777284609; x=1777889409;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=DbGHpgdnNrh8VCIxoCiZ35IAkxAnxOipEdRQVtqttRY=;
+        b=ZLPkfsImF/mrl23xUSFA70HS0RqGrzHwVAjQLnyRq/pYeouYSKNbzJeFJDOjCPWgCJ
+         3gFVpVxwa4dNDWl6EEH4IqLhLrQsI5t/1d42UbsVBKyHSBDpvgERNKra7U0j2RedLoMZ
+         j4oKF4yMliXzh0G7ytNACdNav2xFIfXst+uf3XVnKhCFqiNX9kK1iBj4Udoaf/6z6Oc2
+         9GUxPGEqw7ukize2uBw2aBvxcy8YqoukUkoHUyPU0P7D2ICSlXYOaGFzwvPIsLE/sG3f
+         cVwYKTXRRbo32gp00S4kjOxzdL4E+encEmRl2TXHKceiX+v0EgFD7rFAM7Z7xOC6iucz
+         5PcA==
+X-Forwarded-Encrypted: i=1; AFNElJ/LY19VRnGmeQVealZBbUfe1THT1Q922y3a9XKtN6AUSPXWPjoWlNAN/gxpmdPZxoDf0bDfTHDzp6bC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRPEIfYXprVvY/OO9RNx6Gz+0pZbn42uV9mbjueSQOJyDvbSim
+	L8BIgHBsDgmj8BTIlwudgyCQrwzWbOsCq9MQiJuIMvNJ97Z0hAOaLfdi
+X-Gm-Gg: AeBDievimTgw6kbNg6k5kXiYrqU6CLKw3P5+mgo+KTLpjBZt4R2y47L6lK+dL00Jwkr
+	uEqoOoZzDCEDIyhdFzchcJSdZ/iT7seLNhYdZ5Cx078uIzk38gG1bQPc1aERUZ/XhyYS0EJwuy1
+	vaubUqTNz9NUKKvB/At0DFQHz9VmV5Qtmg91+ZtbQZSZ0wW2NGtnj8/XwYtVMKVjwlWjl+20JNH
+	EygqB37Ef/RDPmWnKKVkY8z1eE58nIKnNIQl6pXf/zmIful6d3S21zKc0XMG9e9KN++bSo92yi0
+	YkkMGPdw5JnDid7JgypIDLs+r4Uej8yQrH+nes/Hlew8p5VrlQHzlpKtp5oPsfhJMhzOE3DMGMx
+	o4eWKrACiDLv4CEPe9G0m90fSr9LiLPfRuSQYCGCxGGZg+jCt655cMYEQXTpIAXsTr0a1QyfRHM
+	BWozZv/PucIPVamLKnVsxVQX7ZTmDohL0PqpY11luxAPrNEL1aRBLs5zoOGAIhevAq/71zwq1Ru
+	2frASpkbd1RKFhznXiOdiuhLeE6FQ+BBBbqlYO0jn1is5yQBA==
+X-Received: by 2002:a05:6a00:3397:b0:82f:6c31:51f5 with SMTP id d2e1a72fcca58-82f8c830364mr47167373b3a.3.1777284609395;
+        Mon, 27 Apr 2026 03:10:09 -0700 (PDT)
 Received: from lord-daniel-VivoBook-ASUSLaptop-K3502ZA-S3502ZA.. ([2405:201:31:d016:e577:22da:dc9:7f6c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82f8ebba485sm39534225b3a.38.2026.04.27.03.09.55
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82f8ebba485sm39534225b3a.38.2026.04.27.03.10.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Apr 2026 03:10:00 -0700 (PDT)
+        Mon, 27 Apr 2026 03:10:08 -0700 (PDT)
 From: Piyush Patle <piyushpatle228@gmail.com>
 To: ak@it-klinger.de,
 	jic23@kernel.org
@@ -87,10 +89,12 @@ Cc: dlechner@baylibre.com,
 	linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 0/7] iio: adc: hx711: add HX710B support
-Date: Mon, 27 Apr 2026 15:39:31 +0530
-Message-ID: <20260427100950.33936-1-piyushpatle228@gmail.com>
+Subject: [PATCH v4 1/7] dt-bindings: iio: adc: avia-hx711: add avia,hx710b compatible
+Date: Mon, 27 Apr 2026 15:39:32 +0530
+Message-ID: <20260427100950.33936-2-piyushpatle228@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260427100950.33936-1-piyushpatle228@gmail.com>
+References: <20260427100950.33936-1-piyushpatle228@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,7 +102,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: D4662470CB2
+X-Rspamd-Queue-Id: F1945470CE2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
@@ -113,7 +117,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_FROM(0.00)[bounces-290471-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290473-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -125,106 +129,187 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,it-klinger.de:email,aviaic.com:url]
 
-Add support for the HX710B ADC, a variant of the HX711 with the same
-GPIO interface but a different channel and gain model.
+The HX710B shares the same two-wire interface as the HX711 but differs
+in its channel and gain model: gain is fixed at 128 and the number of
+trailing PD_SCK pulses selects the input channel rather than the gain.
 
-The first patch updates the devicetree binding to add the
-`avia,hx710b` compatible, document the variant-specific hardware
-behaviour, and add chip-specific supply properties (avdd-supply,
-dvdd-supply, vsup-supply, vref-supply), the RATE pin for the HX711, and
-allOf constraints forbidding HX711-only properties on HX710B nodes and
-vice versa.
+Add avia,hx710b to the compatible enum. Document the chip differences
+in the description and add chip-specific supply properties (dvdd-supply,
+vsup-supply, vref-supply) and a rate-gpios property for the HX711 RATE
+pin. Add allOf constraints that forbid HX711-only properties on HX710B
+nodes and vice versa. Clarify the clock-frequency description to
+reflect its actual purpose: controlling the SCK bit-bang timing.
 
-The second patch fixes a pre-existing bug: hx711_gain_to_scale[].scale
-is a global array overwritten on each probe call, which breaks multiple
-sensor instances that have different AVDD supplies. This is fixed by
-moving the scale into a per-device array.
-
-Patches 3-6 split the v3 refactor into smaller independent steps as
-requested by Andy Shevchenko: text cleanup (Kconfig, header,
-MODULE_DESCRIPTION), chip_info introduction, trailing-pulse
-parametrisation of hx711_read(), and iio_chan_spec * signature for
-hx711_reset_read().
-
-The final patch adds HX710B support using that infrastructure. Trailing
-pulse counts from Table 3 of the HX710B datasheet are stored in
-chan->address. Three channels are exposed: two differential inputs
-(10 SPS and 40 SPS) and a DVDD-AVDD supply monitor (40 SPS). The driver
-probes vref-supply first for the ADC reference and falls back to
-avdd-supply when the VREF pin is tied to AVDD on the board.
-
-Tested on PocketBeagle2 with an HX710B breakout module. The device
-probed successfully, all three channels returned stable raw readings, and
-alternating reads confirmed channel switching between the differential
-input and the DVDD-AVDD supply monitor path.
-
-Build-tested with:
-- make -s W=1 drivers/iio/adc/hx711.o
-- pahole -C hx711_chip_info drivers/iio/adc/hx711.o
-
-pahole reports hx711_chip_info as 40 bytes with no internal holes. The
-remaining 7 bytes are tail padding from 8-byte pointer alignment.
-
+Signed-off-by: Piyush Patle <piyushpatle228@gmail.com>
+---
 Changes in v4:
-- Fix pre-existing global scale mutation bug (new patch 2).
-- Split the v3 refactor patch into four independent patches (patches
-  3-6) as requested by Andy Shevchenko.
-- Keep hx711_chip_info fields in their final order from introduction;
-  the HX710B patch only appends new fields without reordering.
-- Add vref-supply binding and probe path for HX710B VREF pin.
-- Add a third HX710B channel (27 pulses, differential 40 SPS) from
-  Table 3 of the datasheet.
-- Use .channel = 2 for the supply monitor to avoid indexing clash with
-  .channel2 = 1 of the differential pair.
-- Remove dvdd-supply from the HX710B forbidden list in the binding; the
+- Add vref-supply for the HX710B VREF reference voltage pin.
+- Remove dvdd-supply from the HX710B forbidden properties list; the
   HX710B has a DVDD supply and the DVDD-AVDD channel relies on it.
-- Add NULL guard on device_get_match_data() return value.
-- Fix checkpatch alignment in multi-line hx711_read() calls.
+- Add allOf block forbidding vref-supply on HX711 nodes.
+- Add an HX710B example showing vref-supply.
+- Update description: avoid specific channel-number references in
+  hardware text.
 
 Changes in v3:
-- See individual patch changelogs for full details.
-- dt-bindings: remove vref-supply wording; drop repeated
-  clock-frequency default text; restore example node name; remove the
-  extra HX710B example
-- driver: split the hx711_chip_info refactor from the HX710B support
-  patch; fix signedness; update channel_set only after successful
-  channel switching; keep HX710B scale based on the documented fixed
-  gain of 128; add direct ARRAY_SIZE/types includes; use pahole to
-  verify and improve hx711_chip_info field ordering
-- Reworked Kconfig text to use "HX711 and compatible ADCs" and list
-  supported AVIA ADCs one per line.
-- Restored/updated driver header and module description wording while
-  keeping the bitbanging context.
+- Drop the vref-supply mention from avdd-supply; no such binding
+  property exists.
+- Drop the clock-frequency sentence that repeated the schema default.
+- Restore the example node name to weight.
+- Remove the separate HX710B example.
 
 Changes in v2:
-- See individual patch changelogs for full details.
-- dt-bindings: add dvdd-supply, vsup-supply, rate-gpios; allOf if/then
-  for HX710B; fix clock-frequency description; remove dead vendor URL;
-  clarify AVDD as voltage reference on both chips
-- driver: fix pulse count bug ({25,26}->{1,2}); move counts to
-  chan->address; add fixed_gain flag; add .differential/.channel2;
-  remove NULL check; drop reset_channel; pass iio_chan_spec * directly
+- Remove driver implementation details from the description and describe
+  hardware behaviour only.
+- Drop unrelated punctuation cleanup.
+- Add dvdd-supply and vsup-supply optional properties for HX711.
+- Add rate-gpios optional property for the HX711 RATE pin and forbid it
+  on HX710B.
+- Add the allOf if/then block forbidding HX711-only properties on
+  HX710B nodes.
+- Clarify clock-frequency as SCK bit-bang timing, not a crystal or
+  external clock input.
+- Sort compatible enum alphabetically.
+- Remove redundant example comments.
+- Update the HX711 example to exercise rate-gpios.
+---
+ .../bindings/iio/adc/avia-hx711.yaml          | 82 +++++++++++++++----
+ 1 file changed, 67 insertions(+), 15 deletions(-)
 
-Piyush Patle (7):
-  dt-bindings: iio: adc: avia-hx711: add avia,hx710b compatible
-  iio: adc: hx711: move scale computation to per-device storage
-  iio: adc: hx711: update Kconfig, module description and file header
-  iio: adc: hx711: introduce hx711_chip_info per-variant structure
-  iio: adc: hx711: pass trailing pulse count into hx711_read()
-  iio: adc: hx711: pass iio_chan_spec to hx711_reset_read()
-  iio: adc: hx711: add support for HX710B
-
- .../bindings/iio/adc/avia-hx711.yaml          |  82 +++++-
- drivers/iio/adc/Kconfig                       |   8 +-
- drivers/iio/adc/hx711.c                       | 278 ++++++++++++++----
- 3 files changed, 297 insertions(+), 71 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml b/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+index 9c57eb13f892..fddd296bfaca 100644
+--- a/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+@@ -4,49 +4,91 @@
+ $id: http://devicetree.org/schemas/iio/adc/avia-hx711.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: AVIA HX711 ADC chip for weight cells
++title: AVIA HX711 and HX710B ADCs
+ 
+ maintainers:
+   - Andreas Klinger <ak@it-klinger.de>
+ 
+ description: |
+-  Bit-banging driver using two GPIOs:
+-  - sck-gpio gives a clock to the sensor with 24 cycles for data retrieval
+-    and up to 3 cycles for selection of the input channel and gain for the
+-    next measurement
+-  - dout-gpio is the sensor data the sensor responds to the clock
++  The HX711 is a 24-bit ADC with selectable gain (32/64/128) and two
++  differential input channels. Channel A supports gain 64 and 128;
++  channel B supports gain 32.
+ 
+-  Specifications about the driver can be found at:
+-  http://www.aviaic.com/ENProducts.aspx
++  The HX710B is a 24-bit ADC with fixed gain of 128. One input measures
++  the differential voltage between the two input pins; a second measures
++  the DVDD-AVDD supply voltage difference for battery level detection.
+ 
+ properties:
+   compatible:
+     enum:
++      - avia,hx710b
+       - avia,hx711
+ 
+   sck-gpios:
+     description:
+-      Definition of the GPIO for the clock (output). In the datasheet it is
+-      named PD_SCK
++      GPIO for the clock output (PD_SCK in the datasheet).
+     maxItems: 1
+ 
+   dout-gpios:
+     description:
+-      Definition of the GPIO for the data-out sent by the sensor in
+-      response to the clock (input).
+-      See Documentation/devicetree/bindings/gpio/gpio.txt for information
+-      on how to specify a consumer gpio.
++      GPIO for the data output from the sensor (DOUT in the datasheet).
+     maxItems: 1
+ 
+   avdd-supply:
+     description:
+-      Definition of the regulator used as analog supply
++      Analog supply voltage (AVDD). Also serves as the voltage reference on
++      both chips.
++
++  dvdd-supply:
++    description:
++      Digital supply voltage (DVDD). For the HX710B, DVDD must be greater
++      than or equal to AVDD. When DVDD is a battery rail and AVDD is a
++      regulated supply, one channel monitors the DVDD-AVDD difference for
++      battery level detection.
++
++  vsup-supply:
++    description:
++      Supply voltage for the on-chip regulator (VSUP). HX711 only.
++
++  vref-supply:
++    description:
++      Reference voltage input (VREF). HX710B only. When omitted, the driver
++      assumes VREF is tied to AVDD on the board.
++
++  rate-gpios:
++    description:
++      GPIO connected to the RATE pin (HX711 only). When driven low the
++      output data rate is 10 SPS; when driven high it is 80 SPS. If
++      omitted the RATE pin state is determined by the board wiring.
++    maxItems: 1
+ 
+   clock-frequency:
++    description:
++      Controls the SCK bit-bang timing. The value is used to derive the
++      delay between SCK edges; keep the SCK high time below 60 us to
++      avoid triggering chip power-down mode.
+     minimum: 20000
+     maximum: 2500000
+     default: 400000
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          const: avia,hx710b
++    then:
++      properties:
++        vsup-supply: false
++        rate-gpios: false
++
++  - if:
++      properties:
++        compatible:
++          const: avia,hx711
++    then:
++      properties:
++        vref-supply: false
++
+ required:
+   - compatible
+   - sck-gpios
+@@ -62,6 +104,16 @@ examples:
+         compatible = "avia,hx711";
+         sck-gpios = <&gpio3 10 GPIO_ACTIVE_HIGH>;
+         dout-gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;
++        rate-gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
+         avdd-supply = <&avdd>;
+         clock-frequency = <100000>;
+     };
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    weight {
++        compatible = "avia,hx710b";
++        sck-gpios = <&gpio3 10 GPIO_ACTIVE_HIGH>;
++        dout-gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;
++        avdd-supply = <&avdd>;
++        vref-supply = <&vref>;
++    };
 -- 
 2.43.0
 
