@@ -1,134 +1,154 @@
-Return-Path: <devicetree+bounces-290513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290514-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uAwGOspJ72lO/wAAu9opvQ
-	(envelope-from <devicetree+bounces-290513-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 13:34:34 +0200
+	id iO/lLnVL72lO/wAAu9opvQ
+	(envelope-from <devicetree+bounces-290514-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 13:41:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45E8A471CE1
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 13:34:34 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0AE8471E2D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 13:41:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DCF4C309B6C3
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 11:29:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6AB753002F70
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 11:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8EC03B9DAE;
-	Mon, 27 Apr 2026 11:28:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8E630F548;
+	Mon, 27 Apr 2026 11:41:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bm12jgGb"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="DG3hGznG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B593B3B8BB2;
-	Mon, 27 Apr 2026 11:28:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B6552C11E7;
+	Mon, 27 Apr 2026 11:41:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777289334; cv=none; b=oQ0Qg6fbisYQeWPrfxbrG2wcGt3YKX1Itv8Uz8qlmCjZFCt9Uh4JeRQSyAcyZOAGrlWAk0ijvcJUgKLBUGo7004QBIoiBDdi+T5B/X9Ti1jGlG0UdDwZ3pZOpSzdtAsFHIldC/woqwViKKxnLIshI0bAprh7bAG9saNxb9UAHw0=
+	t=1777290096; cv=none; b=WbwtWnhaWoHNhbZlRxdxDVRBIye3WzuDztJ9jx5NC8j2Z7eiqbCmmIr7qQ6Nbno4LxqxqOaIWeBUHtwrYTb5hO4M3gSNLSDB3cG9TCTk0VNYNrL6Q4nhE9jwaBEdIYRAZdafyAUYeQzqflQ+zyd/fiTpAL6m1k+OEAusyHfL2OY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777289334; c=relaxed/simple;
-	bh=qqYiNYscYR+g3VL5uDHvMgMHV/pf8DMOn6VnzrdrXGY=;
+	s=arc-20240116; t=1777290096; c=relaxed/simple;
+	bh=KMB876ik0w6xgl7pJ5idP+hGjhYfwwCmNCvxpvKgAh0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ye2ll5Vd/4on5IOqcBiWIiFuW8LV5x2FbPJfX10xKs/el76gPVK3ITpfBRKfebx1GZ2Z1r2aVmH85mVN+QXiUb6qw7qjcQbQFV02VaSZ/BwoE63/1uNkSrqJHFlELgtWkYdGLtXfQq6ZnyDmqF6Wwn+Osd/ZyBBjETR81T5ZBls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bm12jgGb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55E77C19425;
-	Mon, 27 Apr 2026 11:28:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777289334;
-	bh=qqYiNYscYR+g3VL5uDHvMgMHV/pf8DMOn6VnzrdrXGY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=bm12jgGb8Xax59SGFx+LwxQX3jpNu+KJzDxwsrn9PiAhhd4G8F2NGuEU1wnSNKea2
-	 dzM5tsQBMutHYaZvXXhTOAPNiuEsid5q0Cb4No6tedvM9V5whuGHSvHqDXEkl1lOU0
-	 IwOEczPxcjzi7Kd6nnpLWOgYD/T+Wtke2Yu52e4qFUoNorkBYV3RpNfPCylgMFKheQ
-	 uXMW5YadhkRXn8jDbjDdTO67kmFnHchuoaOF1ZB8mZtSFkFZ9Mvb6LpO1sLtpuLtLn
-	 e7X8Y6u3T+EXEOU8aTlqzaOe2nc7eDL5Uj9Ofmfc36STt+o5o01whZIOm3Grm/Eqgw
-	 jR+3xbFgajgbA==
-From: Sumit Garg <sumit.garg@kernel.org>
-To: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: andersson@kernel.org,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	bsatish@qti.qualcomm.com,
-	akhiverm@qti.qualcomm.com,
-	nicolas.dechesne@oss.qualcomm.com,
-	Sumit Garg <sumit.garg@oss.qualcomm.com>
-Subject: [PATCH 2/2] arm64: dts: qcom: qrb2210-arduino-imola: Drop modem support
-Date: Mon, 27 Apr 2026 16:58:33 +0530
-Message-ID: <20260427112833.1160332-2-sumit.garg@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260427112833.1160332-1-sumit.garg@kernel.org>
-References: <20260427112833.1160332-1-sumit.garg@kernel.org>
+	 MIME-Version:Content-Type; b=Pm9lyNJOO0fj7Ackrv7YKpB+81Mzq4dGVgfv83b/tXqNPXYC76OibR/PiEA4ST2sJ+oYIM6y6om4bbjYEJykgf3Kait1bqn2GwGi8XhwBH0aqfQTSUqQd4ITcZuGYiLhwtwVLLV5uHbJ7sHkEpd8+Cbk74yop63XzleiCkNnhBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=DG3hGznG; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=eeePnVv+YslUA1tdZWBh3CRQb3jVb+oSpxOE0TqYCFo=; b=DG3hGznGy33YluhslljvE9HRgx
+	6LCBBDX1MCOA+cThYGvqf7VHFGm24WvhEBb0GIEauW74rHzWqbgQa0KyfrY3GIHcfB/jdZQfuASkY
+	9noS6ydajlQOjwuOpewAm+GYATxNCl2vw8DHUDyaOOWWkCQ1swnKdlxmEbozDVA4n+dJjvY+KRWC5
+	XfVDimk6F4g3U9KNCo5yJUL2kHovw7mrIejEGgCD4FkMwC9r4EjOnL61p/eN2JAR0rXEuBTQfMfXW
+	7iSAszUY55zOofrwoyhCYbLaC6ywLRT2bd8VQR2k6NyKualnHTkXYouQjqQLpFQKDabRrvG4W6Rhc
+	W0CqMA7Q==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: guoweix <2298701336@qq.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ f.kardame@manjaro.org, pgwipeout@gmail.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, guoweix <2298701336@qq.com>
+Subject:
+ Re: [PATCH] arm64: dts: rockchip: fix rk809 interrupt pin on rk3566-roc-pc
+Date: Mon, 27 Apr 2026 13:41:24 +0200
+Message-ID: <26138973.6Emhk5qWAg@phil>
+In-Reply-To: <tencent_CF3170E7191769F8FB22C55A0F952E82E105@qq.com>
+References: <tencent_CF3170E7191769F8FB22C55A0F952E82E105@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 45E8A471CE1
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Rspamd-Queue-Id: C0AE8471E2D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290513-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-290514-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_TO(0.00)[qq.com];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,manjaro.org,gmail.com,vger.kernel.org,lists.infradead.org,qq.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,user.name:url,0.0.0.20:email]
 
-From: Sumit Garg <sumit.garg@oss.qualcomm.com>
+Hi,
 
-QRB2210 has modem fused out as it's only available on the mobile variant
-which is QCM2290. So let's disable modem support from Arduino Imola/UNO-Q.
+Am Mittwoch, 8. April 2026, 17:09:44 Mitteleurop=C3=A4ische Sommerzeit schr=
+ieb guoweix:
+> The RK809 PMIC interrupt pin on the Firefly ROC-RK3566-PC (Station M2)
+> is physically connected to GPIO0_A3 (RK_PA3) according to the board's
+> schematic.
+>=20
+> Currently, the PMIC node incorrectly specifies RK_PA7 for the interrupt,
+> which prevents the PMIC from correctly signaling interrupts. (Note that
+> the pinctrl node 'pmic_int' correctly configures RK_PA3).
+>=20
+> Fix this by updating the interrupts property to use RK_PA3.
+>=20
+> Fixes: 30ac9b4e25d8 ("arm64: dts: rockchip: add dts for Firefly Station M=
+2 rk3566")
+>=20
+> Signed-off-by: guoweix <2298701336@qq.com>
 
-Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts | 6 ------
- 1 file changed, 6 deletions(-)
+Could you use the more standard naming of "given name + surname" please?
+=46or example with:
+	git commit --amend --author=3D"givenname surname <2298701336@qq.com>"
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts b/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
-index 5266f89feaaf..34f8bef222be 100644
---- a/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
-@@ -343,12 +343,6 @@ &remoteproc_adsp {
- 	status = "okay";
- };
- 
--&remoteproc_mpss {
--	firmware-name = "qcom/qcm2290/modem.mbn";
--
--	status = "okay";
--};
--
- &rpm_requests {
- 	regulators {
- 		compatible = "qcom,rpm-pm2250-regulators";
--- 
-2.51.0
+Or setting user.name in your .gitconfig.
+
+Patch otherwise looks good.
+
+
+Thanks a lot
+Heiko
+
+
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts b/arch/arm64/=
+boot/dts/rockchip/rk3566-roc-pc.dts
+> index 7e499064e035..985770e3a5e2 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts
+> @@ -245,7 +245,7 @@ rk809: pmic@20 {
+>  		compatible =3D "rockchip,rk809";
+>  		reg =3D <0x20>;
+>  		interrupt-parent =3D <&gpio0>;
+> -		interrupts =3D <RK_PA7 IRQ_TYPE_LEVEL_LOW>;
+> +		interrupts =3D <RK_PA3 IRQ_TYPE_LEVEL_LOW>;
+>  		clock-output-names =3D "rk808-clkout1", "rk808-clkout2";
+>  		assigned-clocks =3D <&cru I2S1_MCLKOUT_TX>;
+>  		assigned-clock-parents =3D <&cru CLK_I2S1_8CH_TX>;
+>=20
+
+
+
 
 
