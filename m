@@ -1,56 +1,55 @@
-Return-Path: <devicetree+bounces-290360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290362-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EMXHEpXo7mn30AAAu9opvQ
-	(envelope-from <devicetree+bounces-290360-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 06:39:49 +0200
+	id wHgsLHDq7mmM0QAAu9opvQ
+	(envelope-from <devicetree+bounces-290362-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 06:47:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B065546D073
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 06:39:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DF4C46D0FF
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 06:47:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 619CC30045B0
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 04:39:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F3E2300917A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 04:47:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D409285CA2;
-	Mon, 27 Apr 2026 04:39:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 941F72D4816;
+	Mon, 27 Apr 2026 04:47:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HP7a1/LV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rGgwZwUP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 083831D5ADE;
-	Mon, 27 Apr 2026 04:39:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 700F21BD9C9;
+	Mon, 27 Apr 2026 04:47:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777264784; cv=none; b=jNyAZOGwtj8LDRjdOVow8fN7xMiSXYRdfe1TwceoKLtLiRvm+OEaLRGJ0pNe99RG27RmWXbUb6U8UH/1eOeXVJWJEvzqDYW7EDH+WBNtLSzHnUdbkt4AUAcFjaRot84kGSImcALZVQSiNTgeWXaoFCveGMkLNMlGE/QTght6lec=
+	t=1777265225; cv=none; b=ZTaVrIoCqh7mBJBXgitAzbgy3nPBbyFyt6plPvuBxap+i3QFDJT7z8NxbENGYwe9BPD6qzFo6rBlfDB0HCywewrDzaPRAi4itUioRkASEPedLiqpOhO15Mwpzo3wovALhDfGOrDk7L59uThnmCSXo93kTuNt649fOBcnFJDtmZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777264784; c=relaxed/simple;
-	bh=J1cQ9y0XCpx7XEIF/h2r0olsL12haGNtzcr/MM2fmvs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZLr8K2NGkHJltgd1nzj68VF0QM3c7GrPVHtJ1SU/rkH+XvC2a8Vsol34NCLtS5+KTLC6oY3d2rIwgVpXAU99E6sHoX4l/YKjged7Q9UV7aZlAmw5iE7xKaRjEhLuFu9VzrMN1tLEOO1AAbvimjJQRUZSZNjNVQFReaeyvRPKCLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HP7a1/LV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B858DC2BCB5;
-	Mon, 27 Apr 2026 04:39:43 +0000 (UTC)
+	s=arc-20240116; t=1777265225; c=relaxed/simple;
+	bh=2e+jaRWKKHaIzkuAYWVb2DBGxZhzSWlmnIKBT3yji3E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=G9/QEHobfVfgKqIF1RXmWpAwOytc7eGhwMREOW/+PXEdvkZ1Y44/3wYhQDMOyn13/Bmgyuq5D1Cgq3YukKsmoPeUShx6LvPkdTcXT3xWmM6cxneS5n78+HDhx0XwqrxmHE0qoNL+YGVM1NX5BJNOixwrITBy6mcINbVAL1dfdQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rGgwZwUP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 07352C19425;
+	Mon, 27 Apr 2026 04:47:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777264783;
-	bh=J1cQ9y0XCpx7XEIF/h2r0olsL12haGNtzcr/MM2fmvs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=HP7a1/LV13rqRQ29Gl1oFFYzNslB3JZrobgL9TUTpwwG6x5SBNQzB00gnbjJuqZaL
-	 IL4tP8Sbo0IvtlFmxGXy9BhNp3MfdKbF//fgiuxMrGillzhFYs6ascaJlgKhJJdlzN
-	 b/2tw8aoFqcxSVyscK1iYGN/NtIRIWvUlX7ohw7jVdJGDtS7Th0pwfe0KfJfDFhdTA
-	 w3Q+bsY7ja9YoDm8WVXAaUv4EDlkB3IMMJtjwdPjjuk2htVxiMYMDrut1/QClbeEJG
-	 lz+SJr72UQ7EDEfbn6JW82BIIuV9s0OQWqSj+DMWyd0JWBd2i6Odlx+Scg3U3pWHMz
-	 CwSwzc9byjFbw==
+	s=k20201202; t=1777265225;
+	bh=2e+jaRWKKHaIzkuAYWVb2DBGxZhzSWlmnIKBT3yji3E=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=rGgwZwUPM0dWsquC+gT647f85ohTpi0t+m4KO+1LHPz+TkDxIyufEFxM3KEAZpkje
+	 wtbEIyuN63VBFEgUsDnEfTjGUJOwExkckYMUC6G5Iqv5wfAwqwRs1kUoJILuXWHqsW
+	 U7Ce1NbPiWDP9TSxZ/Vn5gAPdsAC9qlIJI0sSTgbYPbisRvcbFMU1Yu+nQ23hyZwuz
+	 vFw0nsWc+0ZXUfHQy4/3R2vsvuPmyKWkd3mje8N3jDwxjXV3wqpOopbfhJimGApfXV
+	 rDEpzGklzLNfxaZGpvpSf6dGrlM0Xa4JochaS+g2NzGBqvN8OZSOFrypreP2UdBU4h
+	 L3+1XdZV/sqaA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A565CFF8850;
-	Mon, 27 Apr 2026 04:39:43 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Sun, 26 Apr 2026 23:39:38 -0500
-Subject: [PATCH v7 2/2] drm/panel: Add panel driver for ChipWealth CH13726A
- based panels
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ECAA0FF8861;
+	Mon, 27 Apr 2026 04:47:04 +0000 (UTC)
+From: Harpreet Saini via B4 Relay <devnull+sainiharpreet29.yahoo.com@kernel.org>
+Subject: [PATCH v5 0/2] input: misc: Add PixArt PAJ7620 gesture sensor
+Date: Mon, 27 Apr 2026 00:46:52 -0400
+Message-Id: <20260427-paj7620-v5-v5-0-6f9bbe7b4ce3@yahoo.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,458 +58,130 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260426-ch13726a-v7-2-554247c569e5@gmail.com>
-References: <20260426-ch13726a-v7-0-554247c569e5@gmail.com>
-In-Reply-To: <20260426-ch13726a-v7-0-554247c569e5@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+X-B4-Tracking: v=1; b=H4sIADzq7mkC/yXMTQ5AMBBA4avIrDVphtbPVcSircFYIC0iEXdXL
+ L/FexcE8kwB6uQCTwcHXuYIlSbgRjMPJLiLBpSoZY5arGYqNEpxKFFUxmJpMouUQwxWTz2f36x
+ pf4fdTuS29wD3/QCGR6xQbgAAAA==
+X-Change-ID: 20260426-paj7620-v5-79ab28a3b2e4
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>, 
- Aaron Kling <webgeek1234@gmail.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777264782; l=11359;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=keQeKR/UNaCqafInWKGsnIJ6eSkA8+y4YbOCN9buK00=;
- b=ocp4K0YtmexaT1EkcAeLzNSsw14e1lEX5ygF4GQe+YievHdtAM9XAx70Oxr3UJGz1pe6FX4PS
- 5+6B1yD+MAEAxS0qQRxUdK/fmqvXqF4a/BZL5tuunCmqhyRStgBaurH
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
-X-Rspamd-Queue-Id: B065546D073
+ Conor Dooley <conor+dt@kernel.org>, 
+ Harpreet Saini <sainiharpreet29@yahoo.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777265221; l=2621;
+ i=sainiharpreet29@yahoo.com; s=20260427; h=from:subject:message-id;
+ bh=2e+jaRWKKHaIzkuAYWVb2DBGxZhzSWlmnIKBT3yji3E=;
+ b=qgjaXpOS+ZF5m+6PuaZVyxOyEdjTO9MG9TidqenodY1XQgwQ0ngUzLpRbH38GyRpWNhqLfFyR
+ QrrJLv8ki30AvIo3d2bYKbDcx1OIbT6bgYaQ4KueoqCbCNFP1hR+MHt
+X-Developer-Key: i=sainiharpreet29@yahoo.com; a=ed25519;
+ pk=xht+vKyGRLShWSTBYoH2qBaDzKUL90zr77TVwj1ra9s=
+X-Endpoint-Received: by B4 Relay for sainiharpreet29@yahoo.com/20260427
+ with auth_id=754
+X-Original-From: Harpreet Saini <sainiharpreet29@yahoo.com>
+Reply-To: sainiharpreet29@yahoo.com
+X-Rspamd-Queue-Id: 5DF4C46D0FF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [3.34 / 15.00];
 	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+	FORGED_MSGID_YAHOO(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-290362-lists,devicetree=lfdr.de,sainiharpreet29.yahoo.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290360-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
-	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,yahoo.com];
+	FREEMAIL_REPLYTO(0.00)[yahoo.com];
 	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[webgeek1234@gmail.com];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,sobir.in,gmail.com,oss.qualcomm.com];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[sainiharpreet29@yahoo.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sobir.in:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-From: Teguh Sobirin <teguh@sobir.in>
+Add support for PixArt PAJ7620 gesture sensor
 
-This is used by the AYN Thor for the bottom panel.
+This series adds support for the PixArt PAJ7620 hand gesture sensor.
+The sensor is connected via I2C and supports 9 different gestures. 
+The first patch adds the DT bindings, and the second patch adds the 
+driver itself.
 
-Signed-off-by: Teguh Sobirin <teguh@sobir.in>
-Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Changes in v5:
+  - Added this missing cover letter.
+  - Included Reviewed-by tag for the bindings patch.
+  - Linked to previous v4 discussion.
+  - No functional changes since v4.
+
+Changes in v4:
+  - In pixart,paj7620.yaml dt-binding file added allOf: with $ref and 
+    unevaluatedProperties
+  - No changes in other files
+  - Link to v4: https://lore.kernel.org/all/20260421041505.4548-2-sainiharpreet29@yahoo.com
+
+Changes in v3:
+  - Moved sensor power-up and paj7620_init() to input open/close callbacks
+  - Implemented dynamic keymap support via 'linux,keycodes' DT property
+  and enabled userspace adjustment via EVIOCSKEYCODE.
+  - Updated YAML bindings to include mandatory vdd, vbus, and vled
+  supplies.
+  - Added gpio-controller properties to YAML for hardware completeness.
+  - Link to v3: https://lore.kernel.org/all/20260418062241.104697-1-sainiharpreet29@yahoo.com
+
+Changes in v2:
+  - Moved driver from drivers/iio/light to drivers/input/misc
+  - Updated DT bindings to include mandatory vdd, vbus, and vled supplies
+  - Added Runtime PM support with autosuspend logic
+  - Combined bindings and driver into a single series
+  - Link to v2: https://lore.kernel.org/all/20260417052527.62535-1-sainiharpreet29@yahoo.com
+
+Changes in v1:
+  - Initial patch for dt-binding and driver was added to iio/light
+    subsystem.
+  - Link to v1: https://lore.kernel.org/all/20260413000308.7618-1-sainiharpreet29@yahoo.com 
+
+Testing:
+  - Hardware: Raspberry Pi 3
+  - Method: Verified all hand gestures using 'evtest' to confirm correct
+    input event reporting.
+
+Signed-off-by: Harpreet Saini <sainiharpreet29@yahoo.com>
+
 ---
- drivers/gpu/drm/panel/Kconfig                     |  11 +
- drivers/gpu/drm/panel/Makefile                    |   1 +
- drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c | 333 ++++++++++++++++++++++
- 3 files changed, 345 insertions(+)
+Harpreet Saini (2):
+      dt-bindings: input: Add PixArt PAJ7620 gesture sensor
+      input: misc: Add PixArt PAJ7620 gesture sensor driver
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index d6863b28ddc559..e2c00f08f4507d 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -105,6 +105,17 @@ config DRM_PANEL_BOE_TV101WUM_LL2
- 	  Say Y here if you want to support for BOE TV101WUM-LL2
- 	  WUXGA PANEL DSI Video Mode panel
- 
-+config DRM_PANEL_CHIPWEALTH_CH13726A
-+	tristate "CHIPWEALTH CH13726A-based DSI panel"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	select DRM_DISPLAY_DP_HELPER
-+	select DRM_DISPLAY_HELPER
-+	help
-+	  Say Y here if you want to enable support for ChipWealth
-+	  CH13726A-based display panels.
-+
- config DRM_PANEL_EBBG_FT8719
- 	tristate "EBBG FT8719 panel driver"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index a4291dc3905bed..343d283d1620fb 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -9,6 +9,7 @@ obj-$(CONFIG_DRM_PANEL_BOE_TD4320) += panel-boe-td4320.o
- obj-$(CONFIG_DRM_PANEL_BOE_TH101MB31UIG002_28A) += panel-boe-th101mb31ig002-28a.o
- obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_LL2) += panel-boe-tv101wum-ll2.o
- obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_NL6) += panel-boe-tv101wum-nl6.o
-+obj-$(CONFIG_DRM_PANEL_CHIPWEALTH_CH13726A) += panel-chipwealth-ch13726a.o
- obj-$(CONFIG_DRM_PANEL_DSI_CM) += panel-dsi-cm.o
- obj-$(CONFIG_DRM_PANEL_LVDS) += panel-lvds.o
- obj-$(CONFIG_DRM_PANEL_SIMPLE) += panel-simple.o
-diff --git a/drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c b/drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c
-new file mode 100644
-index 00000000000000..be76bc825c3fd2
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c
-@@ -0,0 +1,333 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * ChipWealth CH13726A MIPI-DSI panel driver
-+ * Copyright (c) 2024, Teguh Sobirin <teguh@sobir.in>.
-+ */
-+
-+#include <linux/backlight.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+
-+#include <video/mipi_display.h>
-+
-+static const struct regulator_bulk_data ch13726a_supplies[] = {
-+	{ .supply = "vdd1v2", },
-+	{ .supply = "vddio", },
-+	{ .supply = "vdd", },
-+	{ .supply = "avdd", },
-+};
-+
-+struct ch13726a_panel {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct regulator_bulk_data *supplies;
-+	struct gpio_desc *reset_gpio;
-+	struct ch13726a_desc *desc;
-+	enum drm_panel_orientation orientation;
-+};
-+
-+struct ch13726a_desc {
-+	unsigned int width_mm;
-+	unsigned int height_mm;
-+	unsigned int bpc;
-+
-+	const struct drm_display_mode *modes;
-+	unsigned int num_modes;
-+};
-+
-+static inline struct ch13726a_panel *to_ch13726a_panel(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct ch13726a_panel, panel);
-+}
-+
-+static void ch13726a_reset(struct ch13726a_panel *ctx)
-+{
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(10000, 11000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+}
-+
-+static int ch13726a_on(struct ch13726a_panel *ctx)
-+{
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
-+
-+	ctx->dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xf0, 0x50);
-+	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xb9, 0x00);
-+
-+	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-+
-+	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-+
-+	return dsi_ctx.accum_err;
-+}
-+
-+static int ch13726a_disable(struct drm_panel *panel)
-+{
-+	struct ch13726a_panel *ctx = to_ch13726a_panel(panel);
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
-+
-+	ctx->dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
-+	mipi_dsi_msleep(&dsi_ctx, 50);
-+	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
-+
-+	return dsi_ctx.accum_err;
-+}
-+
-+static int ch13726a_prepare(struct drm_panel *panel)
-+{
-+	struct ch13726a_panel *ctx = to_ch13726a_panel(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(ch13726a_supplies), ctx->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enable regulators: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ch13726a_reset(ctx);
-+
-+	ret = ch13726a_on(ctx);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-+		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+		regulator_bulk_disable(ARRAY_SIZE(ch13726a_supplies), ctx->supplies);
-+		return ret;
-+	}
-+
-+	msleep(28);
-+
-+	return 0;
-+}
-+
-+static int ch13726a_unprepare(struct drm_panel *panel)
-+{
-+	struct ch13726a_panel *ctx = to_ch13726a_panel(panel);
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	regulator_bulk_disable(ARRAY_SIZE(ch13726a_supplies), ctx->supplies);
-+
-+	return 0;
-+}
-+
-+static const struct drm_display_mode thor_bottom_modes[] = {
-+	{
-+		/* 120Hz */
-+		.clock = (1080 + 28 + 4 + 36) * (1240 + 16 + 4 + 8) * 120 / 1000,
-+		.hdisplay = 1080,
-+		.hsync_start = 1080 + 28,
-+		.hsync_end = 1080 + 28 + 4,
-+		.htotal = 1080 + 28 + 4 + 36,
-+		.vdisplay = 1240,
-+		.vsync_start = 1240 + 16,
-+		.vsync_end = 1240 + 16 + 4,
-+		.vtotal = 1240 + 16 + 4 + 8,
-+	},
-+	{
-+		/* 60Hz */
-+		.clock = (1080 + 28 + 4 + 36) * (1240 + 16 + 4 + 8) * 60 / 1000,
-+		.hdisplay = 1080,
-+		.hsync_start = 1080 + 28,
-+		.hsync_end = 1080 + 28 + 4,
-+		.htotal = 1080 + 28 + 4 + 36,
-+		.vdisplay = 1240,
-+		.vsync_start = 1240 + 16,
-+		.vsync_end = 1240 + 16 + 4,
-+		.vtotal = 1240 + 16 + 4 + 8,
-+	}
-+};
-+
-+static struct ch13726a_desc thor_bottom_desc = {
-+	.modes = thor_bottom_modes,
-+	.num_modes = ARRAY_SIZE(thor_bottom_modes),
-+	.width_mm = 65,
-+	.height_mm = 75,
-+	.bpc = 8,
-+};
-+
-+static int ch13726a_get_modes(struct drm_panel *panel,
-+					struct drm_connector *connector)
-+{
-+	struct ch13726a_panel *ctx = to_ch13726a_panel(panel);
-+
-+	for (uint8_t i = 0; i < ctx->desc->num_modes; i++) {
-+		const struct drm_display_mode *m = &ctx->desc->modes[i];
-+		struct drm_display_mode *mode;
-+
-+		mode = drm_mode_duplicate(connector->dev, m);
-+		if (!mode) {
-+			dev_err(&ctx->dsi->dev, "failed to add mode %ux%u@%u\n",
-+				m->hdisplay, m->vdisplay, drm_mode_vrefresh(m));
-+			return -ENOMEM;
-+		}
-+
-+		mode->type = DRM_MODE_TYPE_DRIVER;
-+		if (i == 0)
-+			mode->type |= DRM_MODE_TYPE_PREFERRED;
-+
-+		drm_mode_set_name(mode);
-+		drm_mode_probed_add(connector, mode);
-+	}
-+
-+	connector->display_info.width_mm = ctx->desc->width_mm;
-+	connector->display_info.height_mm = ctx->desc->height_mm;
-+	connector->display_info.bpc = ctx->desc->bpc;
-+
-+	return ctx->desc->num_modes;
-+}
-+
-+static enum drm_panel_orientation ch13726a_get_orientation(struct drm_panel *panel)
-+{
-+	struct ch13726a_panel *ctx = to_ch13726a_panel(panel);
-+
-+	return ctx->orientation;
-+}
-+
-+static const struct drm_panel_funcs ch13726a_panel_funcs = {
-+	.prepare = ch13726a_prepare,
-+	.unprepare = ch13726a_unprepare,
-+	.disable = ch13726a_disable,
-+	.get_modes = ch13726a_get_modes,
-+	.get_orientation = ch13726a_get_orientation,
-+};
-+
-+static int ch13726a_bl_update_status(struct backlight_device *bl)
-+{
-+	struct mipi_dsi_device *dsi = bl_get_data(bl);
-+	u16 brightness = backlight_get_brightness(bl);
-+	int ret;
-+
-+	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	ret = mipi_dsi_dcs_set_display_brightness(dsi, brightness);
-+	if (ret < 0)
-+		return ret;
-+
-+	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	return 0;
-+}
-+
-+static const struct backlight_ops ch13726a_bl_ops = {
-+	.update_status = ch13726a_bl_update_status,
-+};
-+
-+static struct backlight_device *
-+ch13726a_create_backlight(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	const struct backlight_properties props = {
-+		.type = BACKLIGHT_RAW,
-+		.brightness = 255,
-+		.max_brightness = 255,
-+	};
-+
-+	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
-+					      &ch13726a_bl_ops, &props);
-+}
-+
-+static int ch13726a_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct ch13726a_panel *ctx;
-+	int ret;
-+
-+	ctx = devm_drm_panel_alloc(dev, __typeof(*ctx), panel,
-+				   &ch13726a_panel_funcs,
-+				   DRM_MODE_CONNECTOR_DSI);
-+	if (IS_ERR(ctx))
-+		return PTR_ERR(ctx);
-+
-+	ctx->desc = (struct ch13726a_desc *)of_device_get_match_data(dev);
-+	if (!ctx->desc)
-+		return -ENODEV;
-+
-+	ret = devm_regulator_bulk_get_const(dev,
-+					    ARRAY_SIZE(ch13726a_supplies),
-+					    ch13726a_supplies,
-+					    &ctx->supplies);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to get regulators\n");
-+
-+	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	ret = of_drm_get_panel_orientation(dev->of_node, &ctx->orientation);
-+	if (ret < 0) {
-+		dev_err(dev, "%pOF: failed to get orientation %d\n", dev->of_node, ret);
-+		return ret;
-+	}
-+
-+	ctx->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO |
-+			  MIPI_DSI_CLOCK_NON_CONTINUOUS;
-+
-+	ctx->panel.prepare_prev_first = true;
-+
-+	ctx->panel.backlight = ch13726a_create_backlight(dsi);
-+	if (IS_ERR(ctx->panel.backlight))
-+		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
-+				     "Failed to create backlight\n");
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
-+		drm_panel_remove(&ctx->panel);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void ch13726a_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct ch13726a_panel *ctx = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-+
-+	drm_panel_remove(&ctx->panel);
-+}
-+
-+static const struct of_device_id ch13726a_of_match[] = {
-+	{ .compatible = "ayntec,thor-panel-bottom", .data = &thor_bottom_desc },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, ch13726a_of_match);
-+
-+static struct mipi_dsi_driver ch13726a_driver = {
-+	.probe = ch13726a_probe,
-+	.remove = ch13726a_remove,
-+	.driver = {
-+		.name = "panel-ch13726a-amoled",
-+		.of_match_table = ch13726a_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(ch13726a_driver);
-+
-+MODULE_DESCRIPTION("DRM driver for CH13726A DSI panels");
-+MODULE_LICENSE("GPL");
+ .../devicetree/bindings/input/pixart,paj7620.yaml  |  84 +++++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ drivers/input/misc/Kconfig                         |  12 +
+ drivers/input/misc/Makefile                        |   1 +
+ drivers/input/misc/paj7620.c                       | 338 +++++++++++++++++++++
+ 5 files changed, 437 insertions(+)
+---
+base-commit: bf9c95f3eeefb7fc4b4a6380cc23f1dca744e379
+change-id: 20260426-paj7620-v5-79ab28a3b2e4
 
--- 
-2.53.0
+Best regards,
+--  
+Harpreet Saini <sainiharpreet29@yahoo.com>
 
 
 
