@@ -1,162 +1,292 @@
-Return-Path: <devicetree+bounces-290502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290495-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8NrlJudF72m1/gAAu9opvQ
-	(envelope-from <devicetree+bounces-290502-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 13:17:59 +0200
+	id iF+BGWxF72m2/gAAu9opvQ
+	(envelope-from <devicetree+bounces-290495-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 13:15:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A57747195C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 13:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 111144718D0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 13:15:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C74C7305DECB
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 11:15:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D3488302D53E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 11:15:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98CE63B8BC5;
-	Mon, 27 Apr 2026 11:15:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D296C3B7778;
+	Mon, 27 Apr 2026 11:15:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="OVQjYj+Z"
+	dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b="L91vQEj1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336B23B894B;
-	Mon, 27 Apr 2026 11:15:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A73653B6C15
+	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 11:15:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777288518; cv=none; b=FWdPLW44cJEP1Ak8Hy4bK2yVf1+LsRYZAqp0kYBFq2p3mYJYmOYwigerVmneJRRMK8DDuPX6OC823OF51XNeMrdHaJ6WURbuWsggqAdUYnywIgzjfKnz9jBoNBYVMcSscnokggW7/9k7wXKK0CNsrTji9MiSlSsa3cXCPltEzTg=
+	t=1777288511; cv=none; b=qIp1xHf/+M3XLK2fOJ0ZQHI5G2drjny04vA4zRdp6J+pvDD0gLA3gbENZN5uWjPxLOvaeTIJz2/a+hHfzGCYVmTn7j6M/eEVZ+kzFzqPJdP0UzL2Z851188i9VxQhxMQvIwoD5zWlxNQHKdinKmw0nVPSg8CMX90o/Ny3eDEaNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777288518; c=relaxed/simple;
-	bh=KIuBF8VcxDJ32+OrASEWukv5W35acgxE/Pr4k00xbYY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NJsgHaj/fxvARL32b2y/W59JIUrIX4ienItIoVFCsXm3SRmEeZ1vz9I9rF3j4okDs1qnlbCwmgqP4jGxvRqDpiS0/cyQkZ+Sg+MbmoDq9n37y0whQ4/JNrJTHCgJt8PRkZPawqXNaDVY35jO+zB19mHVvFoTQ/w2hHtmoOSosUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=OVQjYj+Z; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 5c1efb0c422a11f19a16598d5ca7f8ec-20260427
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=86q4Zuo6aBd/L3i4NYi1P6U8VCnSNpXDSdHTFbafsWg=;
-	b=OVQjYj+ZiDTkPz7CvtX5vf23V0npAozbQ0hR4J0zVbzWt0nZQKK4CH3nzAjyJ0daZBD8l5G/tByEmJsspmOEbkTKzlIG4VTVgQZugDg/uu8cb61DNuu0ri86W/Zzm9AbOv9ug4y8EPRP671g92/sSbXry5exTJNXficWbYhilMo=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.12,REQID:ac9179bb-1918-467f-83d7-3b8f4a9898ff,IP:0,U
-	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-5
-X-CID-META: VersionHash:e7bac3a,CLOUDID:337d82be-65a8-4b41-ac18-3671578a914d,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|865|888|898,TC:-5,Cont
-	ent:0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0
-	,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 5c1efb0c422a11f19a16598d5ca7f8ec-20260427
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-	(envelope-from <xiangzhi.tang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1632408405; Mon, 27 Apr 2026 19:15:12 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 27 Apr 2026 19:15:11 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Mon, 27 Apr 2026 19:15:10 +0800
-From: Xiangzhi Tang <xiangzhi.tang@mediatek.com>
-To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
-	<mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Xiangzhi Tang
-	<Xiangzhi.Tang@mediatek.com>
-CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Hailong Fan
-	<Hailong.Fan@mediatek.com>, Huayu Zong <Huayu.Zong@mediatek.com>, Jarried Lin
-	<Jarried.Lin@mediatek.com>, Justin Yeh <Justin.Yeh@mediatek.com>, Vince-WL
- Liu <Vince-WL.Liu@mediatek.com>, Xiangzhi Tang <xiangzhi.tang@mediatek.com>
-Subject: [PATCH v4 7/7] MAINTAINERS: Add entry for MediaTek VCP remoteproc driver
-Date: Mon, 27 Apr 2026 19:04:46 +0800
-Message-ID: <20260427111446.22955-8-xiangzhi.tang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20260427111446.22955-1-xiangzhi.tang@mediatek.com>
-References: <20260427111446.22955-1-xiangzhi.tang@mediatek.com>
+	s=arc-20240116; t=1777288511; c=relaxed/simple;
+	bh=S5v5a2xILTFOuUeOI4/ZHldfWBXVtIB51PyRpwW4Xuc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f7hQKRTIZF6y7JHm539VML8DnK+Q5pCaFzOXIZCVOGYRUABV3sXBYNc0HEJqMqYR+zJm5DoAzci9Xcql4yRkkayRbTZ5LznVMs6Yz8waOPmY7Kk7SOcDzABGunUqcTzYOKH157aLWhwydB5709iFA1v5ls8hCiv8c8lBYQVwlAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com; spf=pass smtp.mailfrom=inventec.com; dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b=L91vQEj1; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=inventec.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-c7973f67f4dso2907156a12.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 04:15:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=inventec.com; s=google; t=1777288507; x=1777893307; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rj51DoniKArwyiQTRmeeRmOZITT30YvMqLl9YIyYIsU=;
+        b=L91vQEj1bSom3oomISEnGlu52fE4Sbkg2C3X8tSHqb/wnxP8yrNyal80RDmquANPJw
+         c0Uk6hGHDnmH3m2Hg1D5CKOcqdtTO27z+T++RCiS21VftXRnTZcA/QMvnaPbcNF2MowJ
+         /bgP2L5ibYKDzFNrj8H8skqrLEcmb3OFvctWrQRsMcppiLRP9OnKZXUR76AFsKNBREYW
+         VLm+cw3CljrT+YNvSqMSqqYxTYq3bXh7n29FEPGGIhzqUIJZnR5lQxBd9sVTq8QIS01H
+         a7i09BXGuINfZJXzXAx1kG58/+RxHqRU2TvByGm2rGTq5bQF4jHEBBpRu3XRRsVHXlB/
+         7ZPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777288507; x=1777893307;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Rj51DoniKArwyiQTRmeeRmOZITT30YvMqLl9YIyYIsU=;
+        b=f3xmF3qOEApvgiyaTkIePFIC0L36NQHVOMiapIX4zj6Q6IMc4Oz95HFOFDYlt8C4q6
+         fR7zSdRIhWX7OL+ReZwjv8LOaI1pkRz50wfUnI6zNHFqRBg2jAdi6t5rbkpJcecKuTtK
+         zkH4/nI5oHMuWqzrQPA6ttCJjN96uOGnAbblwOEJg0GNNfkEMfCslh3QlUc8eQUf3MA2
+         gSbaXTqp6IJefVuzel2fvtWJ7l+P/SB1dBWVS9DZKNXzBPVPK9qdGYcMftBYUwdwtA8Z
+         b6O0aPNUPJFp49xJfWyRkL6lV/u8UdVVZOjghEpq/r3EybEwpKT6Cq/H5az4gEL1aFl5
+         4Fzw==
+X-Forwarded-Encrypted: i=1; AFNElJ+Upf2pLqT2i+4xDxldW16ucux5o0jcm0xYEvOCfRozlrJPYv9rgkSAoanzH5M0yE/maqYulRvDzGn1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyq0mV75Gq79gBKbA6ZIB+0l87hUzxwxB6+3tDQKuBu/rsg67F8
+	XjEmhEQTarVFAcGAaMTnaT/AOWjMHT49j0q0TRuWWgznQSBFA5kmd6Jpj96yoCzWWgA=
+X-Gm-Gg: AeBDiesUeylwIkGG4Sy+w3GxOnXVigudoVv4LmijaBBUXq/b1V135QCvCtEyT9fuRSs
+	HhDdR+DFm5fIiDbg7ihE4Y5DGkQSG/Clz/YoY9rw/MIdMi/UY57hdTeDoBKPpJxM0GpWn3msIt1
+	B6pDdsj1soubWCf/7ea8vLVY0nN20uhF33KH3rEmO6k5WXDwHUAFIFIz3ztZybTl3QqD+mPw0eq
+	VxIF+veBNdiN5siteXA3+xvjwX1Tg+ghjAUmFWyrbrt2aDNj/vwyaJi+sllUjqazo5Vw4JKMIYs
+	3OPg3kYGIzyHC1syu/+QQpUtOa99s5NWMs+VHanSwQYQiqpPZ5TaYY7ltLotkFgX/jGeOC7Wa44
+	QfduZp3ajMneHAuomm0a1WPGPJ6mBMiy7hZTAvmTYbsxJIr3cUWMAj43MKGtBrA6xB37fvtue1i
+	8Mjrqm03tuswtd4gAwkNxB7pKPkQahWrHPy/JM815IJFq1iXpowuIY4UGvSOQ/2uaXEvnSRwCzp
+	hl9ksk=
+X-Received: by 2002:a17:90b:380c:b0:35f:bc9f:e1b6 with SMTP id 98e67ed59e1d1-3613ffce9b0mr33845874a91.1.1777288506885;
+        Mon, 27 Apr 2026 04:15:06 -0700 (PDT)
+Received: from TAO-BU2-SWA-3 (60-250-242-163.hinet-ip.hinet.net. [60.250.242.163])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-361410bac6dsm31270802a91.14.2026.04.27.04.15.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Apr 2026 04:15:06 -0700 (PDT)
+Date: Mon, 27 Apr 2026 11:15:02 +0000
+From: Brian Chiang <chiang.brian@inventec.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: (pmbus/lx1308) Add LX1308 support
+Message-ID: <bnyp2ct63m2p2ln52lnmrxjrh7bgwfcelekeptbj6j3vgygpae@og4y7ul7gumz>
+References: <20260422-add-support-lx1308-v1-0-9b8322f45aae@inventec.com>
+ <20260422-add-support-lx1308-v1-1-9b8322f45aae@inventec.com>
+ <20260423-free-blond-boobook-ceae7e@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Rspamd-Queue-Id: 3A57747195C
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20260423-free-blond-boobook-ceae7e@quoll>
+X-Rspamd-Queue-Id: 111144718D0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[inventec.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
+	R_DKIM_ALLOW(-0.20)[inventec.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,gmail.com,collabora.com,mediatek.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290502-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xiangzhi.tang@mediatek.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-290495-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mediatek.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[inventec.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,infradead.org:email,mediatek.com:email,mediatek.com:dkim,mediatek.com:mid,collabora.com:email]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[chiang.brian@inventec.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,inventec.com:dkim,inventec.com:email,0.0.0.60:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-Add maintainer entry for the MediaTek Video Companion Processor
-(VCP) remoteproc driver, including the device tree bindings,
-firmware IPC interface, remoteproc driver, and public headers.
+On Thu, Apr 23, 2026 at 10:41:18AM +0200, Krzysztof Kozlowski wrote:
+>On Wed, Apr 22, 2026 at 12:06:15PM +0000, Brian Chiang wrote:
+>> Add device tree bindings for the Luxshare LX1308, a high-efficiency
+>> 12V 860W DC/DC power module with PMBus interface.
+>>
+>> Signed-off-by: Brian Chiang <chiang.brian@inventec.com>
+>> ---
+>>  .../bindings/hwmon/pmbus/luxshare,lx1308.yaml      | 49 ++++++++++++++++++++++
+>>  .../devicetree/bindings/vendor-prefixes.yaml       |  2 +
+>>  MAINTAINERS                                        |  8 ++++
+>>  3 files changed, 59 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/luxshare,lx1308.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/luxshare,lx1308.yaml
+>> new file mode 100644
+>> index 000000000000..a8d92447508d
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/luxshare,lx1308.yaml
+>> @@ -0,0 +1,49 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +
+>
+>Drop blank line here
 
-Signed-off-by: Xiangzhi Tang <xiangzhi.tang@mediatek.com>
----
- MAINTAINERS | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Will fix in v2.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 62b89d0013d2..4e27fcca28f8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3065,6 +3065,20 @@ N:	mtk
- N:	mt[2678]
- K:	mediatek
- 
-+ARM/MEDIATEK VCP REMOTEPROC DRIVER
-+M:	Xiangzhi Tang <xiangzhi.tang@mediatek.com>
-+M:	Matthias Brugger <matthias.bgg@gmail.com>
-+M:	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+L:	linux-remoteproc@vger.kernel.org
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.yaml
-+F:	drivers/firmware/mtk-vcp-ipc.c
-+F:	drivers/remoteproc/mtk_vcp*
-+F:	include/linux/firmware/mediatek/mtk-vcp-ipc.h
-+F:	include/linux/remoteproc/mtk_vcp_public.h
-+
- ARM/Mediatek USB3 PHY DRIVER
- M:	Chunfeng Yun <chunfeng.yun@mediatek.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
--- 
-2.46.0
+>
+>> +$id: http://devicetree.org/schemas/hwmon/pmbus/luxshare,lx1308.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Luxshare LX1308 Digital DC/DC Power Module
+>> +
+>> +maintainers:
+>> +  - Brian Chiang <chiang.brian@inventec.com>
+>> +
+>> +description: |
+>
+>Do not need '|' unless you need to preserve formatting.
+
+Will drop the '|' in v2.
+
+>
+>> +  The LX1308 is a high-efficiency, non-isolated, regulated 12V, 860W,
+>> +  digital DC/DC power module. The module operates from a 40V to 60V DC
+>> +  primary bus and provides a 12V regulated output voltage. It can deliver
+>> +  up to 860W continuous and 1300W in transient.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - luxshare,lx1308lch
+>> +      - luxshare,lx1308nch
+>> +      - luxshare,lx1308sch
+>> +      - luxshare,lx1308ldh
+>> +      - luxshare,lx1308ndh
+>> +      - luxshare,lx1308sdh
+>> +      - luxshare,lx1308
+>
+>What are all these devices? What are the differences?
+>
+>Especially, what is the difference between lx1308sdh and lx1308?
+
+Thanks for catching this. The suffix letters encode purely
+mechanical/packaging options with no software visibility:
+
+   1st letter - pin length    (S=0.11", N=0.145", L=0.17")
+   2nd letter - pin assignment (C=pin14 IShare, D=pin14 NC,
+                                S=pin9/14 used as Vo sense)
+   3rd letter - HSP option    (H=HSP, O=open frame)
+   4th letter - output cap    (blank=600uF, C=2000uF)
+
+All variants share the same PMBus register map, scaling, and behavior.
+
+>
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>
+>No properties? Looks like suitable for trivial bundings.
+
+Agreed. Since there are no device-specific properties and software-wise
+this is a single device, I will drop the standalone binding in v2 and
+add a single entry to trivial-devices.yaml:
+
+   - description: Luxshare LX1308 12V/860W digital DC/DC power module
+     compatible: luxshare,lx1308
+
+The mechanical variant information will be documented in
+Documentation/hwmon/lx1308.rst (sent in patch 2/2) so integrators can
+still find it, without polluting the ABI.
+
+>
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    i2c {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +
+>> +      power-module@60 {
+>> +        compatible = "luxshare,lx1308";
+>> +        reg = <0x60>;
+>> +      };
+>> +    };
+>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> index ee7fd3cfe203..67fb1592daaa 100644
+>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> @@ -967,6 +967,8 @@ patternProperties:
+>>      description: Shenzhen Luckfox Technology Co., Ltd.
+>>    "^lunzn,.*":
+>>      description: Shenzhen Lunzn Technology Co., Ltd.
+>> +  "^luxshare,.*":
+>> +    description: Luxshare-ICT Co., Ltd.
+>>    "^luxul,.*":
+>>      description: Lagrand | AV
+>>    "^lwn,.*":
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index c3fe46d7c4bc..58fa595cff6a 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -15175,6 +15175,14 @@ S:	Maintained
+>>  F:	Documentation/devicetree/bindings/iio/light/liteon,ltr390.yaml
+>>  F:	drivers/iio/light/ltr390.c
+>>
+>> +LUXSHARE LX1308 PMBUS DRIVER
+>> +M:	Brian Chiang <chiang.brian@inventec.com>
+>> +L:	linux-hwmon@vger.kernel.org
+>> +S:	Maintained
+>> +F:	Documentation/devicetree/bindings/hwmon/pmbus/luxshare,lx1308.yaml
+>
+>
+>> +F:	Documentation/hwmon/lx1308.rst
+>> +F:	drivers/hwmon/pmbus/lx1308.c
+>
+>There are no such files
+
+These files are added in patch 2/2 of this series:
+https://lore.kernel.org/lkml/20260422-add-support-lx1308-v1-0-9b8322f45aae@inventec.com/
+
+I will note the series ordering more clearly in the v2 cover letter.
+
+>
+>Best regards,
+>Krzysztof
+>
+
+Thanks for the review.
+
+Best regards,
+Brian
 
 
