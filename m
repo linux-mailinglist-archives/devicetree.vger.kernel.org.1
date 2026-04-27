@@ -1,84 +1,85 @@
-Return-Path: <devicetree+bounces-290643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290645-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GNgiEByN72l5CwEAu9opvQ
-	(envelope-from <devicetree+bounces-290643-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 18:21:48 +0200
+	id 6FcnDDiN72l5CwEAu9opvQ
+	(envelope-from <devicetree+bounces-290645-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 18:22:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB03F47643A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 18:21:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98709476448
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 18:22:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EC0A13053BD9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 16:15:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DEFA9305CB94
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 16:15:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91D00358D37;
-	Mon, 27 Apr 2026 16:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44CF435C1BC;
+	Mon, 27 Apr 2026 16:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GQfxqP9/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sBnZLave"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5C23502A9
-	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 16:15:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F71351C2A
+	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 16:15:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777306516; cv=none; b=VA1ggP3x8wuvbOh+USDQeuhxJLTSwd9fIF6jazFLBtTzMEDjhaS/NuqFcfhVk+xD0Fz7m/+8zUuHQIPIvr/6sRmzDZPOqMx7DWM6GvhQfAw+Ktw5yh6mVeWqFFQwpQSRPDJaF71hNax6BgoTk2Nf4/6Y49E61iwn7NlgvlRKRyg=
+	t=1777306518; cv=none; b=HBkQnY6wZQ/aHRACVjvzheW72betFyF0/GwoyzseFBOLvogkakL4mgaEDPnbPhXemr4LoKAVnXZwkiTTTgN8DZCzc8ac1ujxbAu1biUmNVuiOHqxyJjZQzHSwEAItVw0UH30IISVBRgzRjVdxGejvSlWiZndILwkJ975bhDkq5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777306516; c=relaxed/simple;
-	bh=ja52A81219p0ePqreXtVMW+SLCQcQR7+LrrsEvke3mU=;
+	s=arc-20240116; t=1777306518; c=relaxed/simple;
+	bh=gh+gyyibXVgmz6oKLPN+g/HIIFQnoruH6nJZZLk/vMI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ILLCvNbu5r0Snn3DzSO72hkTkn/RT06hneCXe2XJU2beekzECctX4//KRGaB0IQAFj8n3Wxaco7/8M4iKqqmAxdZstM4qdCfOkYPC7QkPAFTg4YL+dzSoEKyeibCWqEkIg268ZCzbpdS7N4xkZ6YLjAdrh9dzYMFwALoLrszy+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GQfxqP9/; arc=none smtp.client-ip=209.85.128.43
+	 In-Reply-To:To:Cc; b=I5ltQJhFcyITVk5p/GJnDAKOiWY1DDl92Ir/pUG+5wnZEmmzxRKC+1UbB+RWYYFSQko7N8FDD0xSifiDhqwAlcvNeIwILMri+Tg5IIUZ42FKNwmQZ9SiPqeuOw8zpklyG58acf+7k+nT5UoepU+waNf8GkFV6eXifHT1ir7sN+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sBnZLave; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-488a14c31eeso86452645e9.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 09:15:14 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-488af96f6b2so137406415e9.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 09:15:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1777306513; x=1777911313; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1777306514; x=1777911314; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=EEGCvJMMGZUGWRRutNitBQD1FIXZV4buFivR+bBW190=;
-        b=GQfxqP9/1tKU5sCwXQv2s9hWdphUhVJ8iWU7qSj92kpC1WaIpjyFggOo8+QwceoJcU
-         gmAD+3fy+kJcJnG7YyLnYAU8+nRwQm4353xiVMx0hFdLP5MsNyANcTnmiHiAgMGYxDRI
-         Syc7xtC2SFycWV3pyydTtZyQSOxtgbDK5yx0YlLvnvsLwsEgENXJ08la1CybGUSyihzn
-         GaoqO4abUxv8d7bmzCkBCx4mjSNFbOxnZXJRHgKgesVNKLEWk2VPdxl6Vb2cYh5UH+2+
-         +x5J4YPsDTiup2nQavVhQGHn0ZXBRKdD9tdyNbnzWwSS8V1XxNmGprxnMQQuNLSjw0Io
-         nHWg==
+        bh=P7nHYFe9E6eacQa3hEJLzgoVLJqj03Ug6IiFcdL3B3E=;
+        b=sBnZLaverHYKfmio8i569WoYqqoQkndadL0CZgbd4E3tcbdo4EHeJlsRE88zVaJUjr
+         drn5ZU0ubv89e+Yt9PTSx75f48641ee/UGIfl+s8hfsetios+Tktl6gdyjcZf9RoQlWm
+         dkxlRxq3Cf8PocylFTxC87wC2gltcrFxX2h63mW0dP9j0vKyGucM+MOg1xJJte/a93mf
+         cAr8NhypiTseBHMyiaEmnCY8eymsh1cFDKF9eJSjT6qeGGZTNJCLMzQWdsixSQfdQMPb
+         j7DnTDVXvwklP5EhVgxGyvwh/IjktTUDHQCAk0G/bAhmxUwfSSwdyiC6liLyunaN9Iti
+         NiBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777306513; x=1777911313;
+        d=1e100.net; s=20251104; t=1777306514; x=1777911314;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=EEGCvJMMGZUGWRRutNitBQD1FIXZV4buFivR+bBW190=;
-        b=NtO5315q/qshZKq/DLYLPmajbyxBlIOgwlHZMjf25apP1CaayLCQCEM50vloc9miKq
-         Ide45/IQdBqtzCAZepIr4vgUhQljFnbZmjjNrbsxxiLtiuaScjs2rfPXiTrq7IHWIciO
-         EJBNWJbJT8GVezLSNJuJ3N2GlgR1EfNzhHLLhwc6ejobM5Qk8nxKnYRSxXPK7YfvjFD6
-         B3/eGEQKNFbQwQ0sQRTtB20N/YkJlJvXwMZW54RLKAA1EbXA6oUcvdRt6T6KuoO7gTNf
-         4rBmgJUzCCsh6IYWNquGukxkem2Kr/p/4ebg58UYr9Co/kJs5eyN/SlQBArWOI70j/aU
-         b0Lg==
-X-Forwarded-Encrypted: i=1; AFNElJ8xH//cpfkSAwlb3qQhsqPzMVCVr0pHtQt4KlB7iduOcISo+PH1IBlNSI0zpUSFMlVWgf1HScofVEoo@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmN6FG0xXkUipjQi5A2aERbDIzWladJvwicdRB4ZDs+wvFr9ea
-	yE9jz1tO16z38jlEPstoA/jKIRJKdYzY3MsBQ3uqo9jhyLok0iimuIoMtyH5iyNL+mA=
-X-Gm-Gg: AeBDietLdAmvFeXGlSibFMCvIUFrO1/lISIcaKVSNKc/Z46n9tVcFbqRY9nsGIyHtx/
-	RpFUyjTXt/sZXs6SZZXSc1ZeaoKj1Xc1NPRtHESkb2QwZnw6fRtZhmOA2sFuO59PD9hxO4tX6aj
-	6ByB88ZixzfR6AVFBwqKqfXBXLGzaXpQNtrO5Byia83L94qPGKcVQoIzi0OApRfQS60mlV/tCnb
-	8y5fHaSojP0Bnp6BvyYoO3VJ+Mgki0evBUBzxLPv5yOxQcOhCc1KS8FhY4zRWEO9esYaKT+CKFk
-	hTzzV120akHjyf1tLcCU5Uqgpn6ZcNwdWN1bA0y3L76wMs6RHUcOY8Gk0W/HZzOgZJ69n5g/3M0
-	BM95SzKKEuIeEIEcbl9yyUDZ0binw+Hfha2k8um4KD10aZLgnXGBZS3IS4EqqFB9KJoW0jy6kXe
-	EWIBUGg6UBHmXpW6xNtosHax5m6hTOv2UUqtgivNKG/ULhClL7/7qDuu8=
-X-Received: by 2002:a05:600c:348d:b0:48a:6798:52e9 with SMTP id 5b1f17b1804b1-48a76e00c19mr1628115e9.0.1777306513158;
+        bh=P7nHYFe9E6eacQa3hEJLzgoVLJqj03Ug6IiFcdL3B3E=;
+        b=QjYey28OCB0sa19eshxVzhNBrtsU8gx3CRTQ+mYji+yqBGrNoXNHLO3KQdW3L6QJmS
+         +h2QYaH2J4F7bctye8TbPr4ftSUy5kSC3CnsoLrjpBV/0Mdeh+XxShAqbDdocZ6Nv98O
+         uku/CZVwua0p9NaDvvB63R6aexWdumxi/+uB+fmvrwOuRhCkh6AgHZ+W9g1HWv/Ag/e6
+         jJxD7BsM6Vbu1d/U73wbTVAgetcLtb6tOxRncPtqJqTArni1XfZkwK7GLeKYb87fAGDa
+         HTRm+ucMsM+R7018gXRnpC8soV9Zer3ajqwEMxguK83pOQ5HqAKor4DiaLMLff24Zde3
+         ujWQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8kmGUoZ3k/EfBcc1edWheqnT4zqH141rxPuyjDCSbKF7HJ8Ni2/NAZAlSWR38I04M167pS0jWKBe/0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9DuOoF9gGcQKES03GMb3tdOaLNMLDVBI/3m64+PVdCXgByctm
+	KgodkRNSzyRQBoDbMoEvfuA6pCVxupM7E2mTlbvOf1qSCVZqpVfaXUctxpE5zFWDQBw=
+X-Gm-Gg: AeBDiev0/ITgmvFArxWdZMmzszb3+Xh0ePzxe7ZrYuWB1/b0gXIqBi5TARrBCpBviLm
+	0XmRluPkvT/sD8KXrjiI8Krw1XOJJNXU6gc+4MXpryEXrmcJT09xuerCEW89ni37EP3Uujd/e31
+	zJlXntaOU88CUCtYc9piB20N3mWOCCC4a5Ef5qP9qnqFrVKIeJk7kKkKjEyDvhmwR7b5oryX836
+	51OcH+YOdvRxZtvtG/Hz+Qof/xLKbSTpvZ1aJuPrrI0mIOySiKaXTyLhAXf5OfVh/Is8plw5RCW
+	mfVoEXhfCnxEiG2ET7lQ73vbsh0Z3zO629RgDeV/O3YR3APP/lN8beaOrh/LLVQ7VOcgPwNcMSF
+	0QIBa86EGQ2osu/NCj8E3i0x9NUvA7IIPOxbHyeguxDiA4rhC9+nZZREbtmbBSmAyweqvDC4aj0
+	YDl88POfTqRkqpLaSOzTpiMAuZIsr9CuyQnkK7oltBtMC+zrdN2hLGm40=
+X-Received: by 2002:a05:600c:5303:b0:48a:5c23:cab with SMTP id 5b1f17b1804b1-48a76f773d3mr512715e9.19.1777306513974;
         Mon, 27 Apr 2026 09:15:13 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a5aa3ae83sm831407275e9.12.2026.04.27.09.15.12
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a5aa3ae83sm831407275e9.12.2026.04.27.09.15.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Apr 2026 09:15:12 -0700 (PDT)
+        Mon, 27 Apr 2026 09:15:13 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 27 Apr 2026 18:15:06 +0200
-Subject: [PATCH RFC 2/6] arm64: dts: qcom: pmk8550: add VADC node
+Date: Mon, 27 Apr 2026 18:15:07 +0200
+Subject: [PATCH RFC 3/6] arm64: dts: qcom: sm8550-qrd: add SPMI ADC
+ channels and thermal nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,7 +88,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260427-topic-sm8x50-adc5-gen3-v1-2-8a70f7b90a75@linaro.org>
+Message-Id: <20260427-topic-sm8x50-adc5-gen3-v1-3-8a70f7b90a75@linaro.org>
 References: <20260427-topic-sm8x50-adc5-gen3-v1-0-8a70f7b90a75@linaro.org>
 In-Reply-To: <20260427-topic-sm8x50-adc5-gen3-v1-0-8a70f7b90a75@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -97,111 +98,385 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1601;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7619;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=ja52A81219p0ePqreXtVMW+SLCQcQR7+LrrsEvke3mU=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBp74uMHV9IkV+hAR6m8z5+XvyiJ8jBWig2Dko94AkI
- vk7W6dGJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCae+LjAAKCRB33NvayMhJ0TGLD/
- 9z0OPMlS+b6Ksh5+XnUkoro3vILp1uAs96hRYPdXBiBG8pKSoKj3ulu9x3TwCaUUBMmF6EqPJsXEZF
- K8Wq+LvpGE8a/U8i3Yu8cU9K2xbHD2l7GVSm/lKUTsPH5HbNE+CSnL9TqfLi/zckY24MK95j7PuE2X
- jVbotqxHmw4tjBIrN2Ti1cf2zg2GNXkllVe4sV5Cjl7DpJD3XMl6VYZoG7XS3BVf+AY2Z2SRLi//Qz
- /6O6zbeytvuJcMGWtvcEQUULJ2uKtXKIXEGWXb9Lj/g1dh8YhMti0YmEY63c4uPCk1l7e8RXPmws4S
- MqhnU8FULGejy6yiKeX02/geDP17gTVrnmwTExPjWUsI0HadzRFFja6h+6o+P5e4Kdy6jE0ROgKAAI
- HzluxwWWnVSlgxbLT5z4XUyrX7JHmWYy/1Neh9aOfKgD9b/wYfJsboHLu3g9ZQJ7enPXjaPn+Bkty8
- srziYf6JdtmrHZy6MGSldaXgZXJnEFZI2KroyQgyz1NTAb3ken//0ZKIpbBToGrVfyH5Nv63dHX0Gz
- IU9OPpFQvzI3BZNmwOtZw1uUbIfp96i9JR68ZH+6tBBqAJ2TUx7voSdIfZf1qnhR+64lD721M6XFJp
- +oK6ZxWjqPnJZXzZvr4idbdNai1mo6fOqBc6+wM2qF942ci+G6EfoI2twZfg==
+ bh=gh+gyyibXVgmz6oKLPN+g/HIIFQnoruH6nJZZLk/vMI=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBp74uM5g9t+edRbUSyWS5F7vCV9zBCRSr35K4ZR4HY
+ 8qfnN7eJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCae+LjAAKCRB33NvayMhJ0b/CD/
+ 0T0V+Yh0cpUBgyBZJCcqPLAYoO9+O+6NLkUXxzoR+/BjUyaaRsAuhGvqiLFbnFLjaONoDq8p0T0obI
+ q+Bv3cTmnj73u+Y/cZs7wa48ofSN953/AWLZT4O3PDN+kodXkZXwmW2uAh/u16oF97nOXnQyxCCidC
+ nwk2NfoHJO+OJnx1rh5SVE2I+3UZd8Kec7rBSVcN5sF9MGRbyz3kI4gXjoP2DVUHAmHo6w11cVPgMc
+ AUkw0srTCIG8KchK74Ho/3jBXGmYxvVPUdid8uEFlA8sjXho5+5VUYRaEF51g/brSi3zbZGbmQAwt2
+ xt99r1jpurlyohRTSUXBdRrcApLOt9AT+vCqWfXAH/9oMppeSn9gps5XgiWwogBt2GKcYHGyHh8F6s
+ 6yj1OKIQ8W5B17RhIG2iqeWdIKk0MP1wqYSzOobPFgMIcd2ybGhdOQX3rtMzrURCKXfHN87yub0siq
+ cRxj7QCWnD9el5wGYp89WwRsxpcZRyUDh/FXVVU0rAuvB6ZXUfVjxD8UoKMjUhdma/u2iqXsA9+CRU
+ tpkyOJ8s0ZgCz0Kr1PrvLEqmufsqOsJQ8J+SRf5AbuoeUikzmSKrUGob1AxlVM2xUutR0nkk+oEpSR
+ 941HoMRr++THykgnacapMeADKdh1Jun4BsyeJp5BgZCGuAwL6typthyS/b6A==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Rspamd-Queue-Id: AB03F47643A
+X-Rspamd-Queue-Id: 98709476448
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.34 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_POLICY_ALLOW(0.00)[linaro.org,none];
-	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290643-lists,devicetree=lfdr.de];
-	NEURAL_SPAM(0.00)[0.260];
-	MIME_TRACE(0.00)[0:+];
-	R_DKIM_ALLOW(0.00)[linaro.org:s=google];
-	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DBL_PROHIBIT(0.00)[0.0.23.212:email];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290645-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	R_SPF_ALLOW(0.00)[+ip4:172.105.105.114:c];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.35.40:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.3:email,0.0.0.0:email,linaro.org:email,linaro.org:dkim,linaro.org:mid,0.0.0.1:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-Add the VADC node and the initial pmk8550 adc channels.
+Add the SPMI ADC channels on the PMK8550 SPMI5 ADC3 for the
+other PMICS on the system.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/pmk8550.dtsi | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 279 ++++++++++++++++++++++++++++++++
+ 1 file changed, 279 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/pmk8550.dtsi b/arch/arm64/boot/dts/qcom/pmk8550.dtsi
-index 3049eb6b46d7..92d57d101c7c 100644
---- a/arch/arm64/boot/dts/qcom/pmk8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmk8550.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
-+#include "qcom,pmk8550-adc5-gen3.h"
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+index 2fb2e0be5e4c..8405cb9e0d6d 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+@@ -17,6 +17,9 @@
+ #include "pmk8550.dtsi"
+ #include "pmr735d_a.dtsi"
+ #include "pmr735d_b.dtsi"
++#include "qcom,pm8550-adc5-gen3.h"
++#include "qcom,pm8550b-adc5-gen3.h"
++#include "qcom,pm8550vx-adc5-gen3.h"
  
  / {
- 	reboot-mode {
-@@ -44,6 +45,36 @@ pon_resin: resin {
- 			};
+ 	model = "Qualcomm Technologies, Inc. SM8550 QRD";
+@@ -205,6 +208,92 @@ platform {
  		};
+ 	};
  
++	thermal-zones {
++		skin-thermal {
++			thermal-sensors = <&pmk8550_vadc PM8550_ADC5_GEN3_AMUX_THM1_100K_PU(1)>;
 +
-+		pmk8550_vadc: adc@9000 {
-+			compatible = "qcom,spmi-adc5-gen3";
-+			reg = <0x9000>, <0x9100>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <0x0 0x90 0x1 IRQ_TYPE_EDGE_RISING>,
-+				     <0x0 0x91 0x1 IRQ_TYPE_EDGE_RISING>;
-+			#io-channel-cells = <1>;
-+			#thermal-sensor-cells = <1>;
-+
-+			channel@0 {
-+				reg = <PMK8550_ADC5_GEN3_REF_GND(0)>;
-+				label = "pmk8550_offset_ref";
-+				qcom,pre-scaling = <1 1>;
-+			};
-+
-+			channel@1 {
-+				reg = <PMK8550_ADC5_GEN3_1P25VREF(0)>;
-+				label = "pmk8550_vref_1p25";
-+				qcom,pre-scaling = <1 1>;
-+			};
-+
-+			channel@3 {
-+				reg = <PMK8550_ADC5_GEN3_DIE_TEMP(0)>;
-+				label = "pmk8550_die_temp";
-+				qcom,pre-scaling = <1 1>;
++			trips {
++				active-config0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
 +			};
 +		};
 +
- 		pmk8550_rtc: rtc@6100 {
- 			compatible = "qcom,pmk8350-rtc";
- 			reg = <0x6100>, <0x6200>;
++		cam-flash-thermal {
++			thermal-sensors = <&pmk8550_vadc PM8550_ADC5_GEN3_AMUX_THM2_100K_PU(1)>;
++
++			trips {
++				active-config0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		wlan-thermal {
++			thermal-sensors = <&pmk8550_vadc PM8550_ADC5_GEN3_AMUX_THM3_100K_PU(1)>;
++
++			trips {
++				active-config0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		pa-thermal {
++			thermal-sensors = <&pmk8550_vadc PM8550_ADC5_GEN3_AMUX_THM4_100K_PU(1)>;
++
++			trips {
++				active-config0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		rear-tof-thermal {
++			thermal-sensors = <&pmk8550_vadc PM8550_ADC5_GEN3_AMUX_THM5_100K_PU(1)>;
++
++			trips {
++				active-config0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		usb-thermal {
++			thermal-sensors = <&pmk8550_vadc PM8550B_ADC5_GEN3_AMUX_THM4_USB_THERM_100K_PU(7)>;
++
++			trips {
++				active-config0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		wls-thermal {
++			thermal-sensors = <&pmk8550_vadc PM8550B_ADC5_GEN3_AMUX_THM6_GPIO10_100K_PU(7)>;
++
++			trips {
++				active-config0 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++	};
++
+ 	vph_pwr: vph-pwr-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vph_pwr";
+@@ -997,27 +1086,217 @@ led@3 {
+ 	};
+ };
+ 
++&pm8550_temp_alarm {
++	io-channels = <&pmk8550_vadc PM8550_ADC5_GEN3_DIE_TEMP(1)>;
++	io-channel-names = "thermal";
++};
++
+ &pm8550b_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l15b_1p8>;
+ 	vdd3-supply = <&vreg_l5b_3p1>;
+ };
+ 
++&pm8550b_temp_alarm {
++	io-channels = <&pmk8550_vadc PM8550B_ADC5_GEN3_DIE_TEMP(7)>;
++	io-channel-names = "thermal";
++};
++
+ &pm8550vs_c {
+ 	status = "okay";
+ };
+ 
++&pm8550vs_c_temp_alarm {
++	io-channels = <&pmk8550_vadc PM8550VS_ADC5_GEN3_DIE_TEMP(2)>;
++	io-channel-names = "thermal";
++};
++
+ &pm8550vs_d {
+ 	status = "okay";
+ };
+ 
++&pm8550vs_d_temp_alarm {
++	io-channels = <&pmk8550_vadc PM8550VS_ADC5_GEN3_DIE_TEMP(3)>;
++	io-channel-names = "thermal";
++};
++
+ &pm8550vs_e {
+ 	status = "okay";
+ };
+ 
++&pm8550vs_e_temp_alarm {
++	io-channels = <&pmk8550_vadc PM8550VS_ADC5_GEN3_DIE_TEMP(4)>;
++	io-channel-names = "thermal";
++};
++
+ &pm8550vs_g {
+ 	status = "okay";
+ };
+ 
++&pm8550vs_g_temp_alarm {
++	io-channels = <&pmk8550_vadc PM8550VS_ADC5_GEN3_DIE_TEMP(6)>;
++	io-channel-names = "thermal";
++};
++
++&pm8550ve_temp_alarm {
++	io-channels = <&pmk8550_vadc PM8550VE_ADC5_GEN3_DIE_TEMP(PMK8550VE_SID)>;
++	io-channel-names = "thermal";
++};
++
++&pmk8550_vadc {
++	/* PM8550 Channel nodes */
++	channel@100 {
++		reg = <PM8550_ADC5_GEN3_REF_GND(1)>;
++		label = "pm8550_offset_ref";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	channel@101 {
++		reg = <PM8550_ADC5_GEN3_1P25VREF(1)>;
++		label = "pm8550_vref_1p25";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	channel@103 {
++		reg = <PM8550_ADC5_GEN3_DIE_TEMP(1)>;
++		label = "pm8550_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	channel@18e {
++		reg = <PM8550_ADC5_GEN3_VPH_PWR(1)>;
++		label = "pm8550_vph_pwr";
++		qcom,pre-scaling = <1 3>;
++	};
++
++	channel@144 {
++		reg = <PM8550_ADC5_GEN3_AMUX_THM1_100K_PU(1)>;
++		label = "pm8550_msm_therm";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	channel@145 {
++		reg = <PM8550_ADC5_GEN3_AMUX_THM2_100K_PU(1)>;
++		label = "pm8550_cam_flash_therm";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	channel@146 {
++		reg = <PM8550_ADC5_GEN3_AMUX_THM3_100K_PU(1)>;
++		label = "pm8550_wlan_therm";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	channel@147 {
++		reg = <PM8550_ADC5_GEN3_AMUX_THM4_100K_PU(1)>;
++		label = "pm8550_pa_therm_1";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	channel@148 {
++		reg = <PM8550_ADC5_GEN3_AMUX_THM5_100K_PU(1)>;
++		label = "pm8550_rear_tof_therm";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	/* PM8550VS_C Channel nodes */
++	channel@203 {
++		reg = <PM8550VS_ADC5_GEN3_DIE_TEMP(2)>;
++		label = "pm8550vs_c_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	/* PM8550VS_D Channel nodes */
++	channel@303 {
++		reg = <PM8550VS_ADC5_GEN3_DIE_TEMP(3)>;
++		label = "pm8550vs_d_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	/* PM8550VS_E Channel nodes */
++	channel@403 {
++		reg = <PM8550VS_ADC5_GEN3_DIE_TEMP(4)>;
++		label = "pm8550vs_e_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	/* PM8550VE Channel nodes */
++	channel@503 {
++		reg = <PM8550VE_ADC5_GEN3_DIE_TEMP(PMK8550VE_SID)>;
++		label = "pm8550ve_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	/* PM8550VS_G Channel nodes */
++	channel@603 {
++		reg = <PM8550VS_ADC5_GEN3_DIE_TEMP(6)>;
++		label = "pm8550vs_g_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	/* PM8550B Channel nodes */
++	channel@700 {
++		reg = <PM8550B_ADC5_GEN3_REF_GND(7)>;
++		label = "pm8550b_offset_ref";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	channel@701 {
++		reg = <PM8550B_ADC5_GEN3_1P25VREF(7)>;
++		label = "pm8550b_vref_1p25";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	channel@703 {
++		reg = <PM8550B_ADC5_GEN3_DIE_TEMP(7)>;
++		label = "pm8550b_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	channel@78e {
++		reg = <PM8550B_ADC5_GEN3_VPH_PWR(7)>;
++		label = "pm8550b_vph_pwr";
++		qcom,pre-scaling = <1 3>;
++	};
++
++	channel@78f {
++		reg = <PM8550B_ADC5_GEN3_VBAT_SNS_QBG(7)>;
++		label = "pm8550b_vbat_sns_qbg";
++		qcom,pre-scaling = <1 6>;
++	};
++
++	channel@747 {
++		reg = <PM8550B_ADC5_GEN3_AMUX_THM4_USB_THERM_100K_PU(7)>;
++		label = "pm8550b_usb_therm";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++
++	channel@749 {
++		reg = <PM8550B_ADC5_GEN3_AMUX_THM6_GPIO10_100K_PU(7)>;
++		label = "pm8550b_wls_therm";
++		qcom,ratiometric;
++		qcom,pre-scaling = <1 1>;
++		qcom,adc-tm;
++	};
++};
++
+ &pon_pwrkey {
+ 	status = "okay";
+ };
 
 -- 
 2.34.1
