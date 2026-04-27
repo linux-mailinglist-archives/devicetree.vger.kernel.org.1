@@ -1,54 +1,56 @@
-Return-Path: <devicetree+bounces-290607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290608-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EDfjNCF072kcBgEAu9opvQ
-	(envelope-from <devicetree+bounces-290607-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 16:35:13 +0200
+	id 4FJSG0xz72kcBgEAu9opvQ
+	(envelope-from <devicetree+bounces-290608-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 16:31:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5613A474768
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 16:35:12 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04A0847469D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 16:31:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 57F29302BA1D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 14:29:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 10CB1305DF00
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 14:29:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AC943D4127;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD5A43D47A6;
 	Mon, 27 Apr 2026 14:29:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OBm2Oc5R"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="2lrwh2x4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8DBD3D3D0B;
-	Mon, 27 Apr 2026 14:29:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B9283D411A
+	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 14:29:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777300179; cv=none; b=RJ9aZoHP1hJVQPnnmOOipLwd01D+gLZ0+PQynr+YCjMnZFvRDG3vH46Poqd++ZfkbrKNZFYisb+aTRg/gUVmjaE5419LOEcoiuPWFZ5dgB1/P1ZKQWRc+nrMGo8TDgvH7Egh7D70asvUIItFXCbmenmi4u07NleqyZh94NpRnSA=
+	t=1777300179; cv=none; b=oyNsozB8k/czXcW/SsJiny/tX9KLJKegAS99KKHWGNYAjlZYZU7zu0hLiCZGdIQmeZg5hg+U2oMxxCJ56238xvXfRraB/HDZX4mB6tlHrPSMez1b4UegcX0JXslv6P/gLH5ylBCH0WMRSMv2tQaD1gdWc6BM/HWmAA+Xg1TJET4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1777300179; c=relaxed/simple;
-	bh=//KCYd4sUbFf1VGVKterjR2zPORTkGpjGpP6pVIc4gY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=u7rVoTGxBHuakc8m7Hgpjv9UjowYYWeouocI4XZcFombLV7ngs62OYh2kXkidvN+nQIolQZ+14b1a7/S1y9IaJtoAJWZsvf1SP/M2mcHGF3FtXsupiZndLZ9KhdYHUX6W5RjeNmXzi5OcXnLjRdvArII3322RHBcgwnXQRakV5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OBm2Oc5R; arc=none smtp.client-ip=185.171.202.116
+	bh=CE3L7UT9Dl66mTLL4kN6XoGftovug+bLETY+5ZdFT3k=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=qKI0Cq6ezh8D06ERX8c0XyiQTzcfhd2x+Vko9WGJ5YqO0ObrexGMOSTN7FEc02PwriE9ezWoQSrz678EqjPNhdf5hWVNrUAhu0MumuY2I2JJCB75fBfGV14IAWbF3E3yQvlJ88VYFnOAAWwPmnB2iH3206dQ+pD471xym/lm4NU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=2lrwh2x4; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 2BAF0C5CD4B;
-	Mon, 27 Apr 2026 14:30:18 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 91C084E42B35;
+	Mon, 27 Apr 2026 14:29:36 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id DD899600D1;
-	Mon, 27 Apr 2026 14:29:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 77F8010728201;
-	Mon, 27 Apr 2026 16:29:29 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 63C0A600D1;
+	Mon, 27 Apr 2026 14:29:36 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4D9B91072823B;
+	Mon, 27 Apr 2026 16:29:34 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1777300174; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=IMFvWn4bMUcIXQpx/OE+bHq9xpHDeiZjz5kCAiCvPSE=;
-	b=OBm2Oc5RhoK+jY+juB43n1SFGuNEXi4M5PKpopAuBMfJF2QZ5rEgo5rDJb9ZCbItBMWI8J
-	KSvxANLmV2wspDotACNXnb89PvoNj5lYp05ZGiliReQBRGQcWLsDnMr1PZNkR/ypRl9CYl
-	qa2WEQ2QBXFR4/AGck6xDDzPlk2Xx0zxe40tKHVROBXiz7oTR+GUaNF97+TyriGFY39Q9P
-	4JN7wxtK6mvvTOA1w61Y4qD6iLo+j1W/jrrmoc3Z3aeUJWDIiVeIBTBUnNNl5R0/oj8Pb8
-	D1ZSCk/h+K8GkuPWcJSrHL1ANyQTc3aHpepTgr1a52goz1l0ok9XBqwoCFn0FQ==
+	t=1777300175; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=uBTPwmmRps7fixb46EdJWX5fjWrgSn5Qg9Xm/D96I/c=;
+	b=2lrwh2x4A+veKBbp314CyZrZFUh7SwMrooMH9r8mdbNXJ7IetEblPJYYRjxJMMcDEx8Q5G
+	Di0UR5iVf/kNA9cOjCXPWMfr6V/5gpka8ww8CaRRl/frKf7SRKbzQbdfwbunlCmIZvCkup
+	EQ1N6u8dS/TzV/BYWpgwPAMpm9IrT25OOxaZHC2kQQBsnYrJkWbs9BdgkAqyCwtk288MBl
+	/25Q1SNqGm7wrEzbcnT6on0MPEdKE0wAzQv8ZDVUexfoEFMk7MZJmWYu9Ss4D2kxImN/fY
+	Cw7biZJiOWRk6qSG85lsxcXHpR47jErqCMilu6URegB4ah/e6I3EWD3x59IHww==
 From: "Richard Genoud (TI)" <richard.genoud@bootlin.com>
 To: Nishanth Menon <nm@ti.com>,
 	Vignesh Raghavendra <vigneshr@ti.com>,
@@ -65,10 +67,12 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	"Richard Genoud (TI)" <richard.genoud@bootlin.com>
-Subject: [PATCH v2 0/3] J722s: s2r: use ti,j7200-padconf
-Date: Mon, 27 Apr 2026 16:28:58 +0200
-Message-ID: <20260427142901.341861-1-richard.genoud@bootlin.com>
+Subject: [PATCH v2 1/3] arm64: dts: ti: k3-j722s: Use ti,j7200-padconf compatible
+Date: Mon, 27 Apr 2026 16:28:59 +0200
+Message-ID: <20260427142901.341861-2-richard.genoud@bootlin.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260427142901.341861-1-richard.genoud@bootlin.com>
+References: <20260427142901.341861-1-richard.genoud@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +81,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 5613A474768
+X-Rspamd-Queue-Id: 04A0847469D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -86,18 +90,18 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-290607-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290608-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[richard.genoud@bootlin.com,devicetree@vger.kernel.org];
@@ -107,39 +111,46 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid]
+
+From: Abhash Kumar Jha <a-kumar2@ti.com>
 
 The pinctrl contexts for j722s should be saved and restored during
 suspend-to-ram, just like it is done for j7200 and j784s4 SoCs.
 
-The first patch adds the ti,j7200-padconf compatible, and the next 2
-patches introduce k3-j722s-mcu.dtsi and k3-j722s-wakeup.dtsi, preventing
-using k3-j722s-main.dtsi for something else than main domain
-peripherals.
+Use ti,j7200-padconf compatible to save and restore pinctrl contexts during
+suspend-to-ram.
 
-Changes from v1:
-- Add ti,j7200-padconf at SoC level instead of board level.
-- create k3-j722s-mcu.dtsi and k3-j722s-wakeup.dtsi for mcu/wakeup
-  domain peripherals.
+Signed-off-by: Abhash Kumar Jha <a-kumar2@ti.com>
+Signed-off-by: Richard Genoud (TI) <richard.genoud@bootlin.com>
+---
+ arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-- Link to v1: https://lore.kernel.org/lkml/20260420131735.3833993-1-richard.genoud@bootlin.com/
-
-Abhash Kumar Jha (1):
-  arm64: dts: ti: k3-j722s: Use ti,j7200-padconf compatible
-
-Richard Genoud (TI) (2):
-  arm64: dts: ti: k3-j722s: Add mcu domain peripherals specific to J722S
-  arm64: dts: ti: k3-j722s: Add wakeup domain peripherals specific to
-    J722S
-
- arch/arm64/boot/dts/ti/k3-j722s-main.dtsi   | 24 ++++-----------------
- arch/arm64/boot/dts/ti/k3-j722s-mcu.dtsi    | 15 +++++++++++++
- arch/arm64/boot/dts/ti/k3-j722s-wakeup.dtsi | 18 ++++++++++++++++
- arch/arm64/boot/dts/ti/k3-j722s.dtsi        |  2 ++
- 4 files changed, 39 insertions(+), 20 deletions(-)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-mcu.dtsi
- create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-wakeup.dtsi
-
-
-base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+index ddf20e44f0ea..d14caa9d8619 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+@@ -432,6 +432,10 @@ &main_bcdma_csi {
+ 
+ /* MCU domain overrides */
+ 
++&mcu_pmx0 {
++	compatible = "ti,j7200-padconf", "pinctrl-single";
++};
++
+ &mcu_r5fss0_core0 {
+ 	firmware-name = "j722s-mcu-r5f0_0-fw";
+ };
+@@ -473,6 +477,10 @@ &inta_main_dmss {
+ 	ti,interrupt-ranges = <7 71 21>;
+ };
+ 
++&main_pmx0 {
++	compatible = "ti,j7200-padconf", "pinctrl-single";
++};
++
+ &main_gpio0 {
+ 	gpio-ranges = <&main_pmx0 0 0 32>, <&main_pmx0 32 33 38>,
+ 			<&main_pmx0 70 72 17>;
 
