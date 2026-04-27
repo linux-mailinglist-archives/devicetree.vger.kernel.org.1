@@ -1,165 +1,181 @@
-Return-Path: <devicetree+bounces-290766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290759-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OJySFgXc72kiHAEAu9opvQ
-	(envelope-from <devicetree+bounces-290766-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 23:58:29 +0200
+	id UBoYGdXb72kiHAEAu9opvQ
+	(envelope-from <devicetree+bounces-290759-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 23:57:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE6A47B007
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 23:58:28 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B42647AFCD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 23:57:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 688D0301D338
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 21:57:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 89EE330095D6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 21:57:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9112C3A1A4D;
-	Mon, 27 Apr 2026 21:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BB6937F009;
+	Mon, 27 Apr 2026 21:57:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DGcWLsln"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sMyQxbao"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21710376BD9;
-	Mon, 27 Apr 2026 21:57:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C6637D110
+	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 21:57:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777327075; cv=none; b=ul724aWp9qlGfYygvrV4564ESdYVwNkoi2JIvBjn1vRLtrWe12vuylf7tPK8zTOypa65TWYF4/snQUW04iXhvpkfqhzs3Uk/491lV5+A6dCaUFVXR3sM4+SqMssW5MSIYT1HhbL/sWVodCEx18+2ZFhIkRwcCLsEfPYFlW5+O5g=
+	t=1777327056; cv=none; b=YZ+1d1S0FyzoKixERnAq2ePCHY5PJx1kjxThxDjQAGOte4j8gn/0OfuvFJM5BZ9/ugDW03C+1OV3tPAmhz87ab5vcGRZWW2oakRZd5tBSVl3JVcXntJXDz3vxr7hDGG7DdgbeY+z9Ea5vrkdl7fmL22+8FImod7eS793XouzJ+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777327075; c=relaxed/simple;
-	bh=KpitoL56kjSJH2zK4K2wF3mkADlzeBuLCe4iX7ONuFs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BDV+LnY4iZtoR4OiIjOlNh2LuVlYt5Q0NKkCQQLQYJOuOU99cmAqgQl0K3ikL1JZ3/3rZDj+zlti3w+B90V5TJmPTt3o1gv5b0Wr/bmNuIEQIhnfo0bM0QRR18PCLqwjZrjQIOiGFPRaNcaenva4vJMDOjIVGbdnfg77kRfm9JE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DGcWLsln; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1777327068;
-	bh=KpitoL56kjSJH2zK4K2wF3mkADlzeBuLCe4iX7ONuFs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=DGcWLsln1qTLCz7HwxEJL/dzvhjgqfKwhKhdB8MT/xBD9r1sM8ixuYQLANXnf5BdU
-	 rtYqjsiuVrXxSim6vuPpjg6tMCIJJ35uFHm4iKqGjl3zeyNTpl45Oj6RVMRMZ6V3rS
-	 FO14UTUvEpKob73Lt2Xd2dT98JOqVKid0rnOIe2w7gvP5XYkExCJntI2m2AiUkC+57
-	 8RtB85fWyJoMLCVK/we65ey1f7yzO/1z9HGPxYbxir4GENyhWyALhoXc9PGhBW0JjF
-	 h6HI5lgm5eIilYT+N/VW3uGq2bl7yG8TrIZ4KF46NEEUfDp77hR9HLuw7JwiDnEvnC
-	 eKFq4utsgfwVg==
-Received: from localhost (unknown [100.64.0.241])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 62AA117E1537;
-	Mon, 27 Apr 2026 23:57:48 +0200 (CEST)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Tue, 28 Apr 2026 00:57:25 +0300
-Subject: [PATCH v2 07/13] arm64: dts: rockchip: Add frl-enable-gpios to
- rk3588s-khadas-edge2
+	s=arc-20240116; t=1777327056; c=relaxed/simple;
+	bh=OFgtGCn1mfUaoCP8LhdAyM8uQwb3Te8gLBE/Ti+VRMI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D6ZDWjg1reI9mXyEtZEYPnxsR+7IcGJaQqqQtZxsNmSfAvnECfyZgOg5fCdbnA+/NcnLhbiguZLoY6MQa6ODWVyhMyag/KFfTdjPxIB8aa7WO/zfBiDm44F8d6RKP469kyKwrCftTmX9ZRSQcOgpG0/DeUVuBja3CDRVSMmN4/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sMyQxbao; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-48a563e4ef7so73546615e9.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 14:57:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1777327053; x=1777931853; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kV+WIZsj9AmJtT9rTaHxlweLR0VMyPyAnS2ki5QOUJg=;
+        b=sMyQxbaoFGJX/irParUdWhOOocCeUXvxFueNP6tsUkKMDA09z0L27fpY339j5ZCWOJ
+         eVzCjDzD7vnD2t2iCuSoLzQnv8USvbSt3L5MxtOEvVMMsKRrHEN7CIJ7Ulxt3yKHD9rU
+         ztw18e5W+kSqQHS/HYUdoXTEBfEYL5cNNw50k/MGVAFE2645Bh6ZHm8MLFtuOZPFXKs2
+         K8cp10m4Ix5aYnNASAg3qCMpay1gY4706zIWd6QX752KDNbqy1i0ZvFqGRtaPrll93QD
+         gr9BHek6wJpEQzL+mHVhiOaVsUl6npQ8cQJpWbOeGOtPrZG87br/DgVk19I4KrDSDGtY
+         eTQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777327053; x=1777931853;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kV+WIZsj9AmJtT9rTaHxlweLR0VMyPyAnS2ki5QOUJg=;
+        b=CeZmBWtTdC73kX3ddD8cMONR4YqkBS932B7qPYu19rYSmfqa2WsPJtsIpeBE9CE75J
+         DK69WUt6tM1LRZXsPGo+MwVdXXTi2SNWR3eFEchNrjfAbeR/kui2tiDGpsK+Wa3XNiU0
+         M4w8A0tudhtaeJsThN0PD3A/J75A5KHwWddYRLfSVQV+Bx0RWBXOmxViYv5E8fNiMbNa
+         0ZGJtp0eOdD/W4S40pqD5HwXk4IfbM5ExB4fFwg4mNhBHyW450YkSDa7VSmIuf5xN3SK
+         RYIsLBOC0D3zvAQEMn2k2BvnIItyIYrt8cWgCCWUOS5bWsKpMH2M9m787VEDU70z7V/4
+         +oyA==
+X-Forwarded-Encrypted: i=1; AFNElJ9huNGdvT4xkk89VnK+jZMkrmIgkDZBdvLfbHV8iQ5xVr3oYLXVoqQfEH+Eao32nDIo9b4xJf9BXrlv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8ifrg1czICrH19H3bVD6PoB/v++KXoTgPReIlLjGhWgI/6PwE
+	s5HDqAetiEJSy19Z6Y1znsmdzdNQd12a+gCMbl2uWp3ZpjJCosCQZEPChNoz+Wi11hk=
+X-Gm-Gg: AeBDietjwxHEawaenuN6q/FEFmT8fJhnAapABTh3jEYDUPEOVw8DGSRXu6T8/AS+9lV
+	BJxXirtmo+9KVIu2xkKm69TPveb30jQjrMgtbkTn7F957BM63E2Ww/BhYeRGuYdwDXGy4a3sMOq
+	sMfTEMJgVmBmuLjmggXbrGcJN2H2tlocRUP7aWdxsky3GJoC648mU6o2N8+9UdEGXMnZ/5Ssy3J
+	y9wWhZ48uglwmQUza+9Og4mjJPO/kZmFjJ/xXx2CvGHO6tZEU80/moy8ThIzUKmPSo3U81DipTi
+	BlcWZ8NjOQ6fJOxrNs/JCHcMVjhUzNKGPhfJ9qc0u22u0SxUsrIbKJCqe7wmhjLS0nI1ynFWrUU
+	HwzfqoYDAYHoa4ZI0rcOJKS0m6+eMNABTYVo8wP5WKdmLF/cd7zjwCpYIDIBZT0hyJHCSHNlUM4
+	JoxucP6O6j/XebPWMxXTUP74JUyHcUUX+FZ5+Tr0nibgeVCL0VpoCeZA==
+X-Received: by 2002:a05:600c:4f0b:b0:48a:55d8:7882 with SMTP id 5b1f17b1804b1-48a77ae6477mr5384895e9.9.1777327052826;
+        Mon, 27 Apr 2026 14:57:32 -0700 (PDT)
+Received: from [10.156.67.45] ([89.101.53.25])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a77609a82sm3993585e9.36.2026.04.27.14.57.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Apr 2026 14:57:32 -0700 (PDT)
+Message-ID: <1b914585-4c27-4f4d-8264-181340c27791@linaro.org>
+Date: Mon, 27 Apr 2026 22:57:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 12/14] media: uapi: Add CAMSS ISP configuration
+ definition
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Bryan O'Donoghue <bod@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+ devicetree@vger.kernel.org, laurent.pinchart@ideasonboard.com,
+ kieran.bingham@ideasonboard.com
+References: <20260427-camss-isp-ope-v2-0-f430e7485009@oss.qualcomm.com>
+ <20260427-camss-isp-ope-v2-12-f430e7485009@oss.qualcomm.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20260427-camss-isp-ope-v2-12-f430e7485009@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260428-dts-rk-frl-enable-gpios-v2-7-924df9db884a@collabora.com>
-References: <20260428-dts-rk-frl-enable-gpios-v2-0-924df9db884a@collabora.com>
-In-Reply-To: <20260428-dts-rk-frl-enable-gpios-v2-0-924df9db884a@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.15.1
-X-Rspamd-Queue-Id: CDE6A47B007
+X-Rspamd-Queue-Id: 6B42647AFCD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290766-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290759-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:dkim,collabora.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
-The board exposes the GPIO4_B1 pin to control the voltage bias on the
-HDMI0 data lines.  It must be asserted when operating in HDMI 2.1 FRL
-mode and deasserted for HDMI 1.4/2.0 TMDS mode.
+On 27/04/2026 13:43, Loic Poulain wrote:
+> +/**
+> + * struct camss_params_wb_gain - White Balance gains
+> + *
+> + * @header:   generic block header; @header.type = CAMSS_PARAMS_WB_GAIN
+> + * @g_gain:   green channel gain (15uQ10)
+> + * @b_gain:   blue channel gain (15uQ10)
+> + * @r_gain:   red channel gain (15uQ10)
+> + */
+> +struct camss_params_wb_gain {
+> +	struct v4l2_isp_params_block_header header;
+> +	__u16 g_gain;
+> +	__u16 b_gain;
+> +	__u16 r_gain;
+> +	__u16 _pad;
+> +} __attribute__((aligned(8)));
 
-Wire up the hdmi0 node to its dedicated GPIO via frl-enable-gpios to
-allow adjusting the bias when transitioning between TMDS and FRL modes.
+So I published a comprehensive list of these structures a few days ago.
 
-While at it, remove the duplicated &hdmi0_sound node.
+https://lore.kernel.org/linux-media/20260426000418.1158716-1-bryan.odonoghue@linaro.org/T/#u
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+See:
+
+struct camss_params_wb_gain - White balance gains and offsets
+
+The ICP/HFI structures - at least for the stats I believe are how 
+hardware writes data to memory.
+
+OTOH on the way in, the params ought to be pretty uniform as again 
+HFI/ICP needs to take that representation and either
+
+- Hand it over to CDM or
+- Pass it over HFI so that ICP can hand it over to CDM
+
+The ordering and precision is a resolved thing. I'm ~ sure OPE must 
+write and consume in the same format.
+
 ---
- arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
-index 2c22abaf40a8..5afbc593341b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
-@@ -194,6 +194,10 @@ &gpu {
- };
- 
- &hdmi0 {
-+	frl-enable-gpios = <&gpio4 RK_PB1 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&hdmim0_tx0_cec &hdmim0_tx0_hpd
-+		     &hdmim0_tx0_scl &hdmim0_tx0_sda &hdmi0_tx_on_h>;
-+	pinctrl-names = "default";
- 	status = "okay";
- };
- 
-@@ -217,10 +221,6 @@ &hdptxphy0 {
- 	status = "okay";
- };
- 
--&hdmi0_sound {
--	status = "okay";
--};
--
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0m2_xfer>;
-@@ -282,6 +282,12 @@ &pd_gpu {
- };
- 
- &pinctrl {
-+	hdmi {
-+		hdmi0_tx_on_h: hdmi0-tx-on-h {
-+			rockchip,pins = <4 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	vdd_sd {
- 		vdd_sd_en: vdd-sd-en {
- 			rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_up>;
-
--- 
-2.53.0
-
+bod
 
