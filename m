@@ -1,182 +1,177 @@
-Return-Path: <devicetree+bounces-290311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290327-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yHN0GJmr7mlXwgAAu9opvQ
-	(envelope-from <devicetree+bounces-290311-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 02:19:37 +0200
+	id +JQ1ECy47mmMxAAAu9opvQ
+	(envelope-from <devicetree+bounces-290327-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 03:13:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEF3646BAA7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 02:19:36 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02F2C46BD78
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 03:13:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 50AE2300B9EA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 00:19:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 839473007964
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 01:12:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EBBB1B4257;
-	Mon, 27 Apr 2026 00:19:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74AAB23D2AB;
+	Mon, 27 Apr 2026 01:12:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Co9Xs1UR"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="rJqb2EOV";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="eqb8BHgg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56E0917745
-	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 00:19:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.216.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777249170; cv=pass; b=Sj9rci6AHAkaCJuXA7edNWt/Yd49scJbNIo+Lqt5u3T1XkDB3/kFcNIrgn7WEZVTMmjWtlU/+3ivasuozJp4u/Y6rqK1x2UbNLkiSUXSehjUTUcqLuzUXVyVgDzOVYw5D7yUoG2LNn9TK3wSsqJC/h30clieAMzGoOYDY02oSHg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777249170; c=relaxed/simple;
-	bh=ugOVfCCiJp+93ixYgWWnYCXqvdHveCQmPGZim7XNpME=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ko39+7c85WhTvvI9hWPdspawFvKfOz3fhgQz3p8hSwUolttxAFSG74licV9t5gVHPlM/L6/3dXOTb6ycNRQIZq4RhD7h8Le6kmW/5oklZMEkhjgayq/uebjFMqVHQiDLxz4BCy1ZmcAeNJPbvT0BwjfJA11ZotHIm+bZ1YcDJv0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Co9Xs1UR; arc=pass smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-358e3cc5e7eso5515242a91.0
-        for <devicetree@vger.kernel.org>; Sun, 26 Apr 2026 17:19:29 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1777249169; cv=none;
-        d=google.com; s=arc-20240605;
-        b=lZhYK+qPAi8dj3fyoHuet/akD830tXVfC5hrN1vLFISc7zFGcKbwvF9IF2+XjZ76I/
-         MeJFPQpvGaOWRq+BdskjsqOmzMegOVfuK5xjCXX8DaMOndEofl8at1jVjzzziJY51Ppq
-         4txiWwf6jpLQR/35cLXGeUPYSVynoI6YQhixE9h8J4N2TcI72KatqX2jkCzmKvMA0tTS
-         zS7FjMM4S1jNZKmlg1XbqTwuhiTvpoGfDJFLGF0ArVVPmEBURn7ZT25eXSDx0UfHk52d
-         CQvMzK/gOj/YslvvhLw95pL6VFY9TXGvaA7l8yZ0j5qWfDA6+efyqHAmjhpjoWbBeyUi
-         GK1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=ugOVfCCiJp+93ixYgWWnYCXqvdHveCQmPGZim7XNpME=;
-        fh=4NXi7Rh0Ye93k2gd6XZRFLw2JNHgXH8W0ZqklDDAWh8=;
-        b=hQGAz4ss2leIxQinSr/G/j0YYgfIOAf92ok467MmDL3C5/UquFYYiyewdSQsbCAL4Z
-         jn7gKrGEPMzS8LMk7Qxt2M/r4IwhAvFQOAzFlsxAb5gJmt3Ly6D7P6EScGUd1lz0Khpp
-         dhIn7m2wWwjf1oRNisrv8n81YvN5BI8I7KGWMDZaTnELcdheB0DdQgKgvMyZneoAkssC
-         vRXI8k1V6IOcYfiNBRZvKQ2osCsar+VmmE7x4EJRlIxuBWG67PJPfQ9fjgvgPoewM8wa
-         vmWNMmHTe5GyDm0QJ9Yj+p4bx1K+V7VXaKnHta8LQyiftBZe2udXXQeWUt6abjgREdIY
-         A8Ng==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777249169; x=1777853969; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ugOVfCCiJp+93ixYgWWnYCXqvdHveCQmPGZim7XNpME=;
-        b=Co9Xs1UR/5GhVp/Mg8sBa3+wMayef/UGATUJ7MRs67G8STwVmPgA+6PkXYCciMICP4
-         i/Qza1CJGAjizMKd9JLnz3pJY3CU71o9uRGE9+acb9RBSyVsIdNoTlSGpifhOqnnjWto
-         Rb/tUCtdcua6+8VL3TrrPLjaNU9XJ2+6Wn4MCHbXXAanr+8magUJCH8cGzFn1l8HPjmj
-         kuxIJ9i5xQ5/kkH1Kh52hWJTxRYBhzAf0cJHB5hE5Mm/hWLbh2YKUMXaQspcP1FCHKN8
-         qWXgWJXHNliqbIk83Ca0EcutmocwBhKfRVDD18qsgbuk/S2dVBmrro9gHudHbm5g9YSD
-         Pc5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777249169; x=1777853969;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ugOVfCCiJp+93ixYgWWnYCXqvdHveCQmPGZim7XNpME=;
-        b=ftE/ui1jxIEOjMu2aaNps6eKHDn+yI6gaY/uohxAugA0zblL3+iZGI2qivn/K2RkkN
-         qdpRKzXKaJMqDdo7omtNGLsI8V8OzMGgVhX/473g/Mc0rEp4lBq29YLP+cA+XpCDt/0R
-         nwbTmNO92IeUzn9FsAvpSFK/YwLqcm7REkdDS7ARHP5RBKHktmplorMb9M4DelPKzTiq
-         TPi2PNmLMoJJ7ytpX8a0CPkiU6TWCunYCgT5S5QkJgK9qV2D97k5+2eZJN5x30hm9uCv
-         wmzIfRj2woYBPeeZF5TsGqU1ferRilVYAHMPMTbumOgo7YQ7S6pwsu8Bkpl8YNeynxMR
-         kPLg==
-X-Forwarded-Encrypted: i=1; AFNElJ9D9RXS71dj2PLvL+Fm7tiDP+rhw1Iwgiq5IFFV+ILZUc0YwzsLJoZ0LdyJLHVxcl2B2H+EZsqdaZLn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdUcQNfBYk95S+Vu12bKLgLXKoQOas0+gQQwap6w7IO+bnnC0y
-	T4l+NQ8AND7n+ByaC1vXVQG1qBWUu+DhJMC5xPrDfPflkElMnXI+vTJJ3HIuYxtYio3SCwDFLks
-	Hsai+edoykoossugEggAOFxVATKykX8E=
-X-Gm-Gg: AeBDiesDf65VQzAtpQwThVcc+2JH5qHzQCLbuJPINQDRYKa2IvQA2kEYmskjUhVVyf4
-	HxLpi0UFK1peaKqR5Or9XfEXlvErI6wrj4VG5YwF2Gxw2UXD1l94E0ii+KMT5TQ0kwazPNOXC77
-	jhgC/JYWdVaF/IoBTRRtjwbvJ1ZgXMsfrx8gH7LEFOPRJVALU8agyxqfw2bHDp7mnWGjQJhGzrN
-	Ag7/3TLBJOXzkZkyT2B915oaM1aa8KkfgK8WgzFt5aQbLF7DrQAiOy8jeSYkc50J+rBXkfJeSa1
-	mwVcRldVfK4pWkQHQ7wKmdy1EceKfBnZhb2d5jAcXpAjk4o=
-X-Received: by 2002:a17:90b:3b4a:b0:35d:a4c0:a0ac with SMTP id
- 98e67ed59e1d1-361403d61camr40703643a91.3.1777249168661; Sun, 26 Apr 2026
- 17:19:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 927851917F0;
+	Mon, 27 Apr 2026 01:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777252375; cv=none; b=Svd4U4QK/Nz3kcXPY5YB4c5Dmr+mB/TfLaamMMG0m411I5b4mvPzdPIXbqLVGkm0x/hYbd3NwtnaGc+WxhJWWlWDe8Jwz0Viad8J900O1NCqTQby5FBJxQCpuBiF7e7VEzttDccGK8eunUUQfioQKx0eavU+RtkWewZPojx/tIE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777252375; c=relaxed/simple;
+	bh=voPRn9jezyFPizf/WKNRYjidyxo5ge6q1b7zHR9UuzU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VD93k3aPIB1ZvSySgqYAq/42lx+m7W/4FCsp5SM5j49n+Qnh7ZQcfGf9I0y5fWpj4f3qjmlmdAupNfbP53GJ+0ULsVT5KptX2vHl55c2nJhMqvhkY9gK1QCUhB1ffze+58G0iJhcBGSffYtbaNaFDaS/lMWr7ndkWcnhbr1AkTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=rJqb2EOV; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=eqb8BHgg; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4g3lt53xPVz9tHp;
+	Mon, 27 Apr 2026 03:12:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1777252365;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=n/vau+b8Z6KXPKxb16NGp/J2UsKe/YefmAdKbBEzfzI=;
+	b=rJqb2EOVxm7zLUY4fPO9GnFcM3dw6TF/pgQAlMOJhi2HY+fHRGEb1V48IERordu2LOJ5lq
+	Jxb4ogzTB0a0eUvKtKYsqBZcGMRiJ61MESefVbChA7FQz7NRRDVaiyAsVw+fL6tHcfclG0
+	AbrMRWgE3PSbC5KNJtOpK/8iRbf+YAxV1lcAsi5yI9KUrR5+4yJMa+eJEdUf+/lDm9JL7D
+	xM+FJUCRkcMf2Un0PrOdIxl9sc1QrniOuN+o8wIMU4IzgY4dK4jP09vcKdQteIgE/HHN+G
+	1iLcLVjb4NZprCXHP/sYLBl0LFyqZVJKStAD7l1TQbH1QQJL+9IXLlnK7eigtg==
+Message-ID: <b3a8bf69-bdd2-4122-93c4-4c4d94240da4@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1777252363;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=n/vau+b8Z6KXPKxb16NGp/J2UsKe/YefmAdKbBEzfzI=;
+	b=eqb8BHggIKW7Id+ffGHthTGnuw06a9FekWbi8S/mMrzYYyEQ4HfPpWFfsMsnX78BOi5Wqv
+	vE5G8hpZEJxNQU5Xbm6EuVsyOn9ydMp3Hi6qpPsuGo18Rv3RCQNJp4HBXCW9JCu4SKTgGe
+	nFS+Sx6/hsowqquk/9Jpx2gm79TwA3PB3uTh+6LdN2uTVhtuRUco5YEiU27TsQ40hxYIdP
+	HABJEi2s0HaC9Fw9eiq1erxE2rwIqtfN1ERyhe69VNXsj1miaTqZ2jZllZ/g+/W03v9ZLd
+	tfRXGTn6z+58/prjLiT3VgG+tN21g3LZH6Tbjbsxdfpi6GMgDz/QKr6JP8Xaew==
+Date: Mon, 27 Apr 2026 02:32:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260417021858.6582-1-phucduc.bui@gmail.com> <a145db93-a8ad-4bee-8404-21f356d7d4ab@kernel.org>
-In-Reply-To: <a145db93-a8ad-4bee-8404-21f356d7d4ab@kernel.org>
-From: Bui Duc Phuc <phucduc.bui@gmail.com>
-Date: Mon, 27 Apr 2026 07:19:13 +0700
-X-Gm-Features: AQROBzDh5S1ZBzuVxFYQ8RBWiB9vcWv-M3KhV5VA_7nj_DMjt8E8DfNhVOVUkdY
-Message-ID: <CAABR9nE_vwzWwZ=2bbwTYgEtp=SGDnzVUA5Y8jp7gp-Ky8MN-Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Remove the redundant 'type: boolean'
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	nick@shmanahar.org, dmitry.torokhov@gmail.com, nicolas.ferre@microchip.com, 
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, lee@kernel.org, 
-	heiko@sntech.de, gregkh@linuxfoundation.org, linusw@kernel.org, 
-	zyw@rock-chips.com, zhangqing@rock-chips.com, gene_chen@richtek.com, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: BEF3646BAA7
+Subject: Re: [PATCH v2 3/4] ARM: dts: renesas: r8a7740: Add ZT/ZTR trace clock
+ on R-Mobile A1
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm
+ <magnus.damm@gmail.com>, Michael Turquette <mturquette@baylibre.com>,
+ Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20260415233300.457892-1-marek.vasut+renesas@mailbox.org>
+ <20260415233300.457892-4-marek.vasut+renesas@mailbox.org>
+ <20260421-cherubic-urban-beluga-49ee00@quoll>
+ <0f933506-c196-4503-844f-2a375e2cf690@mailbox.org>
+ <161eb29f-2d07-455a-bd74-4f22061b5dfb@kernel.org>
+ <c9ef9d73-6f1b-42ea-b5f0-09fcf904c78e@mailbox.org>
+ <d246edd2-5f9d-4e95-850d-abff175088a6@kernel.org>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <d246edd2-5f9d-4e95-850d-abff175088a6@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: jxpzoosb6bbjrefbcyhnhqa7tzzogyhw
+X-MBO-RS-ID: e708615267761e85859
+X-Rspamd-Queue-Id: 02F2C46BD78
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290311-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290327-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[kernel.org,shmanahar.org,gmail.com,microchip.com,bootlin.com,tuxon.dev,sntech.de,linuxfoundation.org,rock-chips.com,richtek.com,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,glider.be,gmail.com,baylibre.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mailbox.org:dkim,mailbox.org:mid]
 
-Hi Krzysztof,
+On 4/23/26 4:00 PM, Krzysztof Kozlowski wrote:
 
-> Why did you change one file and ignore the rest?
+Hello Krzysztof,
 
-I'm processing the remaining files with caution. Files without
-significant descriptions or context will be updated in the upcoming
-patches.
-Those with specific descriptions require deeper review and will be
-handled in separate patch series later.
+>>>> "
+>>>> WARNING: DT binding docs and includes should be a separate patch. See:
+>>>> Documentation/devicetree/bindings/submitting-patches.rst
+>>>
+>>> So you did not implement it... Include goes with the binding. Always.
+>>> Look at other commits.
+>> The warning says the exact opposite thing , does it not ?
+>>
+>> Maybe the warning text needs to be updated ?
+> 
+> The warning is shown for patches mixing stuff, like DTSI+header, so for
+> this context the AND means binding doc plus header are separate FROM
+> this patch. Not separate from each other.
 
-> Why did you not mention previous feedback I gave you on your patches
+Oh, thank you for the clarification.
 
-> (some time ago), that there are TWO TYPES defined for wakeup-source.
+> To me it is clear, so I don't feel like finding different text. If you
+> find it unclear or confusing, you should propose something better.
 
-Thanks for mentioning this.
-In v2 of the patch, I reviewed the previous discussion between you and
-Connor regarding the two types for wakeup-source.
-https://lore.kernel.org/all/20260316034606.11304-1-phucduc.bui@gmail.com/
+How about this:
 
-When moving to v3, I followed Rob=E2=80=99s suggestion to use true. I also
-sent a follow-up email to confirm this approach,
-and since I did not receive further comments, I assumed this direction
-was acceptable.
-
-https://lore.kernel.org/all/CAABR9nH3hr+Y5ksD0cn3Gd9XUvmb07X7zJw0b4k_yVbnAu=
-z9=3Dw@mail.gmail.com/
-
-
-Best Regards,
-Phuc
+"
+diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+index 0d18771f1b013..715a98ccc69f7 100755
+--- a/scripts/checkpatch.pl
++++ b/scripts/checkpatch.pl
+@@ -2957,7 +2957,7 @@ sub process {
+                                 if (($last_binding_patch != -1) &&
+                                     ($last_binding_patch ^ 
+$is_binding_patch)) {
+                                         WARN("DT_SPLIT_BINDING_PATCH",
+-                                            "DT binding docs and 
+includes should be a separate patch. See: 
+Documentation/devicetree/bindings/submitting-patches.rst\n");
++                                            "DT binding docs and 
+includes should be a single patch, but separate from this patch. See: 
+Documentation/devicetree/bindings/submitting-patches.rst\n");
+                                 }
+                         }
+"
 
