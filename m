@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-290338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290340-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wIoSGwG97mlQxQAAu9opvQ
-	(envelope-from <devicetree+bounces-290338-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 03:33:53 +0200
+	id qM3sKTq97mlQxQAAu9opvQ
+	(envelope-from <devicetree+bounces-290340-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 03:34:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0BD046BF79
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 03:33:52 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AF2146BFA0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 03:34:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BD2403021E42
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 01:32:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 30B17302F721
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 01:32:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2BFA26A0DD;
-	Mon, 27 Apr 2026 01:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B891427603A;
+	Mon, 27 Apr 2026 01:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="GuJOMXei"
+	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="hKPFaOWu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C295325785D;
-	Mon, 27 Apr 2026 01:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A872726056C;
+	Mon, 27 Apr 2026 01:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777253564; cv=none; b=Ibyeu6Zyue61QWwCstR2nwyZU0WavyBf4fbRn6dg7uh3jNpAWbMXOLuqFcU91a0Mm86S9lTCzPNps072ytePAImAVZ63dMz+A69XCNYD/qtDqlgJ+QsfIYpJKL2DFpkBMCbfHSHwMVS4hMi7OedJzDp4TqfxNjO6S3pTXFT5nkc=
+	t=1777253566; cv=none; b=Fb1X743AdCfZm4kTbyPPeW++yuoH2bzatZtKMIUO1B9SvHvuszpDCYFBA3u3k8iXqdlwM9NWa/yRCj3xU3j0HfGj9KvVnZttFUJ55KMlG+Ef2Zw+KRT/XjSBQ3I2DnFEAnckQJxSJWmI3RlS7dmsR1qy975bv69FLZCsEtYUxUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777253564; c=relaxed/simple;
-	bh=QdzIULHchgm6W2vSCIC/etjrebZnjnmuExvyJn88zMQ=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iPdolcij9KvuM/McLq0fWk6TT+NzAMg0IJofAfz944PDCgTzalzpoJJqgm50wBSz728wo0UYSHdeMfpUTzUA3kxUDb1SAoMoET/CQ6+Sgle1w/mn3yZ0R+w3XKnpoPkCwGZUVbo4BV13EP2APDX9YUBBAxB8StGxBNCS8p7HLcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=pass smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=GuJOMXei; arc=none smtp.client-ip=218.76.62.146
+	s=arc-20240116; t=1777253566; c=relaxed/simple;
+	bh=k7xaltOxr1FPtLfLBpXG0T+uklw6wvxgverm552wOjM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=XKDU3w6KbBAVRj0Il5Pc6tSIcsBGT3DzYzf1jPxnbrBbInP3gBKgF0p/1x8/zbBjXR0zq3hpVujgpK5ZYfFB5RxwRb7QRuP1kntvrN3QST1D3cHZ+E7KSROOvNgmBvVtOMQ8Szz9HKPgwedtx4E2RZKWfNyk3T1D2VoX9MkxNn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=pass smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=hKPFaOWu; arc=none smtp.client-ip=218.76.62.146
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ultrarisc.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:From:Subject:Date:Message-Id:
-	MIME-Version:Content-Type:Content-Transfer-Encoding:To:Cc; bh=W1
-	OSDnY0uPdVYrdVQOgWw2IW/C6VhYNToYtSoQxsDZU=; b=GuJOMXeig/YxxlXWI7
-	hionvUii6HbJEr/ymsfBKuE+8+Dz7Mf5bT4w1PT+om5Vu06WOBuZMo+qzM4Y1/EZ
-	3LQYL2CBs+pN+4UX9StqLST3Pc0IrUQCyoL+J9aLMtyVzMw8dXsLyxLJwriOwruR
-	5s56hNayUBasr0xVAv5QZ2vgY=
+	d=ultrarisc.com; s=dkim; h=Received:From:Date:Subject:
+	MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:
+	References:In-Reply-To:To:Cc; bh=eQFrKZlyykJUvAf7cH1ltvcwo0fJKri
+	xuIUmANqBSKM=; b=hKPFaOWurshbXRPwokWX++MQJ0h5ALZ1vk7HqZrShy1ai5H
+	aAH0+CUxhoA6I8YaI4p0ZUYf/mJ/3qJIaPb9JttMuVU6wDJ5FRJdrGtSTgt1aU1M
+	Blc/rSuyD0KMUyvUqk+UFXreQEcDWSQE0XML9sg2mPg/RiKuTGx9GJB50oxo=
 Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwA3cULPvO5ps_0CAA--.1758S2;
-	Mon, 27 Apr 2026 09:33:04 +0800 (CST)
+	by localhost.localdomain (Coremail) with SMTP id AQAAfwA3cULPvO5ps_0CAA--.1758S3;
+	Mon, 27 Apr 2026 09:33:06 +0800 (CST)
 From: Jia Wang <wangjia@ultrarisc.com>
-Subject: [PATCH v4 0/3] riscv: Add PCIe support for UltraRISC DP1000 SoC
-Date: Mon, 27 Apr 2026 09:32:09 +0800
-Message-Id: <20260427-ultrarisc-pcie-v4-0-98935f6cdfb5@ultrarisc.com>
+Date: Mon, 27 Apr 2026 09:32:10 +0800
+Subject: [PATCH v4 1/3] riscv: add UltraRISC SoC family Kconfig support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,11 +53,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJm87mkC/23Nyw6CMBQE0F8xXVvTl63Xlf9hXJR6kRoF0gLRE
- P7dgvERcTnJzJmeRAweI9kuehKw89FXZQpquSCusOUJqT+mTAQTmknOaHtpgg0+Olo7j1SBAtg
- YLSUASaM6YO5vE7g/PHNsszO6ZlTGRuFjU4X79NjxsffC9S/eccoo5gKUxiNq2OzehZWrrmQ86
- MSHUMzMCJEIYa2wHKzJM/mPkF8EX88ImQgjc6YRjNBc/xLDMDwAG2m7FUgBAAA=
-X-Change-ID: 20260310-ultrarisc-pcie-494998763399
+Message-Id: <20260427-ultrarisc-pcie-v4-1-98935f6cdfb5@ultrarisc.com>
+References: <20260427-ultrarisc-pcie-v4-0-98935f6cdfb5@ultrarisc.com>
+In-Reply-To: <20260427-ultrarisc-pcie-v4-0-98935f6cdfb5@ultrarisc.com>
 To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
  Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
  Lorenzo Pieralisi <lpieralisi@kernel.org>, 
@@ -69,23 +67,22 @@ To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
  linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
- Jia Wang <wangjia@ultrarisc.com>, Conor Dooley <conor.dooley@microchip.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+ Jia Wang <wangjia@ultrarisc.com>, Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777253539; l=4082;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777253539; l=811;
  i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
- bh=QdzIULHchgm6W2vSCIC/etjrebZnjnmuExvyJn88zMQ=;
- b=f8mVz/ZK7J8cviQ6X69XHjNzz8kvK3Aj2eyEdS7h2QGZ6Wmd9oeCDg4FxNE8anUZqsZT3rT+6
- 3qyX6RbIHP0A4YjcUnuv8lkiLuw0TSY95V+NDa1CvI+jsduMtLLL5cT
+ bh=k7xaltOxr1FPtLfLBpXG0T+uklw6wvxgverm552wOjM=;
+ b=zaln2mLqZ1Yv0Fad/TPkjQDpkYqh8P2/CDZDbEDXOJQ2aHm+YQx0BCCsrZqUwqQ/c6+1CnQ7h
+ jm6uQnLUiWhBRsVJyQ6/6hJBb9dWVbls9r9OlCy6OpCwlicJfG6NJO5
 X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
  pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
-X-CM-TRANSID:AQAAfwA3cULPvO5ps_0CAA--.1758S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxWw1fuw4DCF45Zw15XF4UXFb_yoWrXr4Dpa
-	98WF4fAF97Jr1agF4ft3W8WF1SqF4kArW2qF42gwnFyasxuFyUXr9aga1YvFnrCrn5Xr12
-	yr4a9r1rGay7ZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnUUvcSsGvfC2KfnxnUUI43ZEXa7xR_UUUUUUUUU==
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAHEWnq6L8AGAAOsV
-X-Rspamd-Queue-Id: E0BD046BF79
+X-CM-TRANSID:AQAAfwA3cULPvO5ps_0CAA--.1758S3
+X-Coremail-Antispam: 1UD129KBjvdXoW7Jw45XFy3Xry8JF1Uuw1Utrb_yoW3ZFb_C3
+	4xJ348ZFyrAFW09a98Wrs3WF95Aws5WFy5Gr1ftryDuryxXw1xW3yDKr1jyw1Uuw15Xay8
+	XrZayFWfAryayjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJ3UbIYCTnIWIevJa73UjIFyTuYvj4RJUUUUUUUU
+X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAKEWnti78ABQAAsv
+X-Rspamd-Queue-Id: 0AF2146BFA0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -93,7 +90,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
 	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -103,9 +100,9 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,google.com,gmail.com,ultrarisc.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-290338-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290340-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[ultrarisc.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -114,102 +111,37 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ultrarisc.com:email,ultrarisc.com:dkim,ultrarisc.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ultrarisc.com:email,ultrarisc.com:dkim,ultrarisc.com:mid,microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-This patch series adds PCIe controller support for the UltraRISC DP1000 SoC.
-The DP1000 is an 8-core 64-bit RISC-V SoC based on UltraRISC CP100 cores,
-supporting RV64GCBHX ISA with Hardware Virtualization and RISC-V H(v1.0)
-Extension.
-
-The PCIe controller is based on Synopsys DesignWare PCIe IP.
-This series adds:
-- Patch 1 adds the basic SoC family Kconfig support for UltraRISC platforms.
-- Patch 2 adds the device tree bindings documentation for the PCIe controller.
-- Patch 3 introduces the PCIe host controller driver.
-
-The patches have been tested on UltraRISC DP1000 development board with
-various PCIe devices including NVMe SSDs and network cards, verifying
-link establishment, enumeration, and basic data transfer.
+The first SoC in the UltraRISC series is UR-DP1000, containing octa
+UltraRISC CP100 cores.
 
 Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
-Changes in v4:
-- Patch 3:
-  * Drop the wrapper struct and store struct dw_pcie directly as driver data.
-  * Drop the unused platform_get_irq() call.
-  * Move the extra DBI programming out of .start_link() into the host init
-    callback (and skip it when the link is already up), keeping .start_link()
-    limited to enabling LTSSM.
-  * Replace the hard-coded Completion Timeout value with a named macro.
-  * Do not force max_link_speed; keep the hardware default.
-  * Drop unused header includes.
-- Link to v3: https://patch.msgid.link/20260415-ultrarisc-pcie-v3-0-73f06e972616@ultrarisc.com
+ arch/riscv/Kconfig.socs | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Changes in v3:
-- Fold the MAINTAINERS update into the binding/driver patches and drop
-  the standalone MAINTAINERS patch from v2.
-- Patch 1:
-   * Trim DP1000-specific ISA/feature details from the help text.
-- Patch 2:
-   * Simplify the description formatting and remove the redundant.
-   * Drop the max-link-speed property from the binding.
-   * Remove the redundant interrupts description line.
-   * Clean up the example.
-- Patch 3:
-   * Drop unused regmap include.
-   * Drop the unused irq_mask[] field.
-   * Set pci->max_link_speed = 4 based on the fixed hardware capability.
-- Link to v2: https://patch.msgid.link/20260407-ultrarisc-pcie-v2-0-2aa2a19a7fb3@ultrarisc.com
+diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+index d621b85dd63b..0b4d06a7b4bf 100644
+--- a/arch/riscv/Kconfig.socs
++++ b/arch/riscv/Kconfig.socs
+@@ -84,6 +84,12 @@ config ARCH_THEAD
+ 	help
+ 	  This enables support for the RISC-V based T-HEAD SoCs.
+ 
++config ARCH_ULTRARISC
++	bool "UltraRISC RISC-V SoCs"
++	help
++	  This enables support for UltraRISC SoC platform hardware,
++	  including boards based on the UR-DP1000.
++
+ config ARCH_VIRT
+ 	bool "QEMU Virt Machine"
+ 	select POWER_RESET
 
-Changes in v2:
-- Rebased onto v7.0-rc7.
-- Patch 1:
-   * Removed unnecessary 'depends' line.
-   * Fixed help text indentation.
-- Patch 2:
-   * No changes.
-- Patch 3:
-   * Updated $ref to use 'snps,dw-pcie.yaml' as the base schema.
-   * Add interrupts/interrupt-names (MSI + INTx).
-   * Drop properties covered by generic DWC/PCI host bindings;
-     update example accordingly.
-   * Verified the schema passes 'make dt_binding_check' and 'yamllint'.
-- Patch 4:
-   * Update commit message.
-   * Kconfig: switch PCIE_ULTRARISC to tristate; simplify help text.
-   * Convert suspend/resume to dev_pm_ops and called
-      `dw_pcie_suspend_noirq()` / `dw_pcie_resume_noirq()`.
-   * Use FIELD_MODIFY(); adjust DWC header macros/comments.
-   * Added empty `.pme_turn_off()` callback for DP1000 limitation.
-   * Renamed link callback to `start_link`.
-   * Switched to `module_platform_driver()`.
-   * Formatting cleanups (headers order, spacing, variable naming,
-     function names)
-- Link to v1: https://patch.msgid.link/20260316-ultrarisc-pcie-v1-0-ef2946ede698@ultrarisc.com
-
----
-Jia Wang (2):
-      riscv: add UltraRISC SoC family Kconfig support
-      dt-bindings: PCI: Add UltraRISC DP1000 PCIe controller
-
-Xincheng Zhang (1):
-      PCI: ultrarisc: Add UltraRISC DP1000 PCIe Root Complex driver
-
- .../bindings/pci/ultrarisc,dp1000-pcie.yaml        |  93 +++++++++++
- MAINTAINERS                                        |   8 +
- arch/riscv/Kconfig.socs                            |   6 +
- drivers/pci/controller/dwc/Kconfig                 |  12 ++
- drivers/pci/controller/dwc/Makefile                |   1 +
- drivers/pci/controller/dwc/pcie-designware.h       |  22 +++
- drivers/pci/controller/dwc/pcie-ultrarisc.c        | 175 +++++++++++++++++++++
- 7 files changed, 317 insertions(+)
----
-base-commit: e774d5f1bc27a85f858bce7688509e866f8e8a4e
-change-id: 20260310-ultrarisc-pcie-494998763399
-
-Best regards,
---  
-Jia Wang <wangjia@ultrarisc.com>
+-- 
+2.34.1
 
 
