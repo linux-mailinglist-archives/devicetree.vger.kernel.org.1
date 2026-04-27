@@ -1,196 +1,225 @@
-Return-Path: <devicetree+bounces-290472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290480-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2CJkHv0372nV+QAAu9opvQ
-	(envelope-from <devicetree+bounces-290472-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 12:18:37 +0200
+	id YPN2NQc572mD+gAAu9opvQ
+	(envelope-from <devicetree+bounces-290480-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 12:23:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC2C6470CCA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 12:18:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47332470E73
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 12:23:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 66ED23055D60
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 10:10:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5156C30C8904
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 10:14:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 885093B47F5;
-	Mon, 27 Apr 2026 10:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA203B5305;
+	Mon, 27 Apr 2026 10:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ocljP44C";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="KCOEhINc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mYd1Ij22"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A85E3B47CF
-	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 10:10:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C79E3B4EAC;
+	Mon, 27 Apr 2026 10:14:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777284606; cv=none; b=cnTxoNOhjN2kMrO77WAEeemLSz4f1hkJX3P77QCUV40WK9nAmjoaj2+Akn/VeLVvriHazeUHqW1L93Eg198RQ2PI0lgh+k2/3NqBUaCA9uc9PAxn9c+ueCI3Mx3gteDE7LKZfFKaLmQdCPzpiUZMic4M1WeYEvLdh3xr7PksCwo=
+	t=1777284878; cv=none; b=kNrCivbAeEIy6FOsx5qp7HM/lhD1XASUIhHMUTISHka6VXU8r7tNsWAhA/072Rvbo0W8iDOdgZrpoKyfYJV58XsG/hRypwiAYeVNPoAUZEXM2IIaUUN89eqel73/CIADA2S24MvUO1X89FbXumUYkuqCluL5DoM+bGBlhOedvv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777284606; c=relaxed/simple;
-	bh=df59Xk7yR3KlM3Nop9TG33Euc01Wqj3JKaFTj1LdW1k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Cflv3ER6Cnm4vZm+IMLcQwo0iodY8loJs70rGHoTF6HgUSE1P9dkDA3nLSRTvnK4U85xRLwAmBvultHISk7aDF8qDcok8/sG+TEu5kCgM4mAU8t+k68/mpLIiUDuvQPyLMlqcOLlzXlg2krxc6luN+Om271zI2lrF16BkFtv9ho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ocljP44C; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KCOEhINc; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63R8T7OQ3639521
-	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 10:10:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UySfCgJ955LJs37rWuiTegFDYRglF9oeDO5PYw8FEcs=; b=ocljP44CtJkbAB/z
-	Qoc3gQ2MQ4o2ZXOenOsn5fH363WaY0ST/PXBY0+G4x34isCBAIRNRPi54/JwyJa8
-	jtzTY9KXk0y6NuxAMGRSno/IKvfs/Tbn4R9zIK4HqSet5q871lBYyVtX5g/AK/Cc
-	gKZkidEgo/MafZTvBt6klXYjBevbgH317qh/JdAj0yPxeipu5ZziF6ggaY+9vAAL
-	9G4ueM07g5Wid80WUS7twQfaxU+gjldcZD3hE/FxHcT2vSWx0H/EGJMnGSZeJnMZ
-	sRa3XS2Rd/j8Ea2o91urF5K7LA9XBa4F3HtSG96PHtIaIt3d6EJewfT1zc5oM8uJ
-	j7t5dw==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dsya01k8b-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 10:10:03 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-50fb0b93e90so22141861cf.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 03:10:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1777284603; x=1777889403; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UySfCgJ955LJs37rWuiTegFDYRglF9oeDO5PYw8FEcs=;
-        b=KCOEhINcDEqXQndDzbf4Z7MdxHN3KYKnk/HMQFy9x6E8YeGKwyDL6SdMKCDW0FrfGh
-         k5U5T6w6fKmYedeJWKUBy/4GGQ3NtITTw0CDHr9uLW5d+sRdgzQ/lnW6lwFSq70AwiWI
-         gqMfA8V0cHBvCUTGnmHQHuQEZoBZaNN883s+vp8RDH/iJFT4cIhLEKXNz+nFHqOLyoxE
-         J7NrzzM9bXCTeZjd5ibDkFmiqKH13M/CCauKnbwKIICkq//Kc8F494RAnbH0O2fEve/D
-         3pC+A/uaoX+Q6KDS1cU1yRye1Djwr8b8TJ4sIoHHBaIlMhyT/ONYZAkcDditMtQ0BxD+
-         w2Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777284603; x=1777889403;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UySfCgJ955LJs37rWuiTegFDYRglF9oeDO5PYw8FEcs=;
-        b=qvx3VvbX7KgDb1Va2uKfQeZj45Em58wl8iuta8A1iDhhwvvEqjHnqT7ppoIOmxlwX0
-         8LkwTs6uHZ/QmfisalsmsPdIfOOM1mLJyIH/s/ApeiRVuF3sBwAuDLQmvhNaW6265J8u
-         iNUcSJh6Zs7w537p9xVYiqvJxM3czc4UNIEeDjjx3l/OoiFzhOwmn/CdoTjo/RE/+h5x
-         qb2I588mkOsgthZo0hr2Yj9EF8vypZDWgmcodE753ScOKniiRX+/78IRFp9JpT2yLJ+e
-         7tBlL8CDF4zUe1ugGmQKOa7HaMW21gkNP5HT5p6w+T0+LR+AheTS2GoYmbkvc3A219v2
-         +RMQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9b5ZRnuQZtnXASSNytjzCm9o67ePv5HEbMfhgNZ0Lt/wq+gJbnhiDb//RdHOG4byiESyGWBL51OpJz@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTJ9a+6UqTWWPGl6Yb/efCfO6yYQIh5rMHK4NWdjLwlzYd8WxC
-	0kCHBgKSElQi4SGg2633YtjQduRjt9h1w/lvFy44/jJKG8apEtg9dnTlR1tkywWN2HZA7GbMbkU
-	YDlSfgj+pnajiT7NVnnT44a2xsAOBbT28wlX4Oi0Sf2XIm6oxIErKltnXpi4nDq9L
-X-Gm-Gg: AeBDieuzCzJU+44Qz89UJK7iphS65DmCVuuZvFddJFS7xTP2Tq7RrdG9bZZVYHEp/Wn
-	gh+CvLaZieK4ZZSc2rYlVKv0tFDdp2Cf2jl4B6KB4SMoHj99mcwd4tS1p4H1Mwi4kcj36/wPAWQ
-	90IE64vCx3/nuLEww8u12lmTW58eoeQFW/897pwjnoTIYc1umJSLcy5MA73B6FFfitPABK7EgvI
-	AbZ29PDZmbB2/mjYKM9X90U98w/V7wHch8pfP/qwi/i79GEiP7BVuUj0eaK8HyZCLr8Sx/KwwUk
-	xYBtgufmMjWD3OHvw8gQ+aYKRYHOjiEAkfmhGNZ6Q3RKpT35SFolh6JcW5thO/7j3adGkLJ+3Ga
-	vKMi1ajVXkg9fzOn6ONCIpinpVeZJEkk/QQk23ljO6DA8xBrZNx5QgDxHQSRd7wXGOesR4ocPlX
-	EW0WXNbgxfZMfBjg==
-X-Received: by 2002:a05:622a:a06:b0:50e:5cc3:6f59 with SMTP id d75a77b69052e-50fad4a0f81mr303493201cf.5.1777284603363;
-        Mon, 27 Apr 2026 03:10:03 -0700 (PDT)
-X-Received: by 2002:a05:622a:a06:b0:50e:5cc3:6f59 with SMTP id d75a77b69052e-50fad4a0f81mr303492691cf.5.1777284602682;
-        Mon, 27 Apr 2026 03:10:02 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ba451cdd2b8sm1107652966b.25.2026.04.27.03.10.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Apr 2026 03:10:01 -0700 (PDT)
-Message-ID: <97c230b5-167c-41d4-9f36-e62b97ff202d@oss.qualcomm.com>
-Date: Mon, 27 Apr 2026 12:09:59 +0200
+	s=arc-20240116; t=1777284878; c=relaxed/simple;
+	bh=ymu0eUd3YK4oXzP/gRhZgOL4MPCC2MmIsenK9sXvDSs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=D7clIRsb92LsS0J763KG+TI+a7AyWm/sAwWV+TshwHqXWFh40+z3WC9ePMn0iFYYz9Dwr3ka9FAvZsI8gQu1K9nP0qCbG45uUW7Kaq44YXuKA+A+ZaK5xFz6KD7fL0Daej6RoMxPGWceXrv9zKyYK7v5sL/OkZQ7fWBUxxxkxmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mYd1Ij22; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18B52C19425;
+	Mon, 27 Apr 2026 10:14:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777284877;
+	bh=ymu0eUd3YK4oXzP/gRhZgOL4MPCC2MmIsenK9sXvDSs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=mYd1Ij22Y+mulmLhL1lg0ODbAtmnEqfchj4tyLA2XSj0a25y7koiZqOhOTuvZU3PQ
+	 uVA/naNYn+Yq7/1Kw3pIAdNs9K93c+fjCFRExj4iH6KIf97jiUgObmLdaXXKsQL+9V
+	 4fqREuRaiaXKDS3Ne5HGp94QzIWKsTmYMyFxDfag6554VPRQn+mmcG6B9cy50GqgSS
+	 RYfT9gp/Ab4ZLdgcyXqxxlJYZ3JHdaOChZcNDHTEF1+3VK+R+R9oUnGEf7KFFGsh4U
+	 ni1APS7bVDnJm6kE8+UH43jAi+lkPT1Y869lIA8PU2KiPCG21F0xZlcoCDGZ5VbvbD
+	 MZBjWi+i14bkA==
+Date: Mon, 27 Apr 2026 11:14:25 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, "David Lechner" <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko
+ <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@oss.qualcomm.com>, Andy Shevchenko
+ <andriy.shevchenko@intel.com>
+Subject: Re: [PATCH v9 0/2] Add support for AD5706R DAC
+Message-ID: <20260427111425.2d7d693a@jic23-huawei>
+In-Reply-To: <20260427-dev_ad5706r-v9-0-a8e4cae499d7@analog.com>
+References: <20260427-dev_ad5706r-v9-0-a8e4cae499d7@analog.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: monaco: fix wrong connection for the
- replicator
-To: Jie Gan <jie.gan@oss.qualcomm.com>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260427-fix-monaco-coresight-dt-v1-1-1707017f20c5@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260427-fix-monaco-coresight-dt-v1-1-1707017f20c5@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: ye-DBj2FuNzkMl0CFgf0CXGu3xq_wRex
-X-Proofpoint-ORIG-GUID: ye-DBj2FuNzkMl0CFgf0CXGu3xq_wRex
-X-Authority-Analysis: v=2.4 cv=DZEnbPtW c=1 sm=1 tr=0 ts=69ef35fb cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=EUspDBNiAAAA:8 a=TcQrU0szjGiQgjDi6ycA:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI3MDEwNSBTYWx0ZWRfX4JIPhsr8op0l
- 0xbSPTWvHUj7hE1dIMYLbDQ0NWUTzV/JM9HeRN2ghXcQ0a7M9IOozPAHDEKlIa7va7MsdoxwSGo
- ShnqAb0mTvDjhvjIakEjy3pz9Lib/tNx9Jl8+bPs3JD4J1kSZ5hk/1HyZ0tKKTF/6qSToIALQDQ
- JaZ+e0AMg7sajSWrP+HxSxk00vK2XUQymfhOsPvoRwBCFhfQUSL+WgxJY5N9GBv6Ti9ctaChZuk
- nIjJjlXt+R/1gSvxjJFcOpAyUme0GeJ5qQrarud5z2MFCqEucfo7OAUAf7z79NME+uWO5hCaVSP
- cEHYkzbkO5h9vf4++VlaoTnUJfU+LsR3SQX26OXolsnZt8z6aKbSPa0Q9SUMk1Z0oZyxooZCwOq
- I9rUpHalmJMxorttuvyRTU5WVFkmMGuxAittxUv97mLN7ZkjwMch8aeYSchtMBqg2tSHCsoGOeD
- O45jBAqLRyvWWpGlZEw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-27_03,2026-04-21_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 spamscore=0 adultscore=0 bulkscore=0
- lowpriorityscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604200000
- definitions=main-2604270105
-X-Rspamd-Queue-Id: DC2C6470CCA
+X-Rspamd-Queue-Id: 47332470E73
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	TAGGED_FROM(0.00)[bounces-290480-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290472-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-On 4/27/26 6:33 AM, Jie Gan wrote:
-> Fix the wrong connection for the qdss replicator device.
+On Mon, 27 Apr 2026 14:23:15 +0800
+Alexis Czezar Torreno <alexisczezar.torreno@analog.com> wrote:
+
+> This series adds support for the Analog Devices AD5706R, a 4-channel
+> 16-bit current output digital-to-analog converter with SPI interface.
 > 
-> Fixes: 0f43254763b3 ("arm64: dts: qcom: qcs8300: Add coresight nodes")
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+> This initial driver provides basic DAC functionality through standard
+> IIO interfaces.
+> 
+> Datasheet: https://www.analog.com/en/products/ad5706r.html
+Doesn't matter as no need to have tags in cover letter anyway, but that's
+a tag so no line break before the SoB.
+> 
+> Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+
+Applied to the testing branch of iio.git.  I'll push that out as togreg
+in a day or two once 0-day has had a play with it.
+
+thanks,
+
+Jonathan
+
 > ---
+> Changes in v9:
+> - Kconfig: changed REGMAP_SPI to REGMAP
+> - updated cover letter and driver commit message
+> - Link to v8: https://lore.kernel.org/r/20260417-dev_ad5706r-v8-0-ef87dff62b57@analog.com
+> 
+> Changes in v8:
+> - driver:
+>   - changed DAC_CODE from BIT(16) to GENMASK(15,0)
+>   - removed defines for single/multi byte, replaced with number
+>   - adjusted regmap_write to use if/else similar to read()
+>   - reverted in_range back to open code equivalent, removed minmax.h
+> - Link to v7: https://lore.kernel.org/r/20260410-dev_ad5706r-v7-0-af93a4caa186@analog.com
+> 
+> Changes in v7:
+> - driver:
+>   - Moved/added size validation before data access in write()/read()
+> - Link to v6: https://lore.kernel.org/r/20260410-dev_ad5706r-v6-0-f3fda5921fe4@analog.com
+> 
+> Changes in v6:
+> - driver:
+>   - Added size validation in regmap_write()
+>   - Used &st->tx_buf[0] consistently in _be32/be16 calls
+>   - Added missing indent in AD5706R_CHAN
+> - Link to v5: https://lore.kernel.org/r/20260407-dev_ad5706r-v5-0-a4c7737b6ae9@analog.com
+> 
+> Changes in v5:
+> - dt-bindings:
+>   - Changed out-en-gpios to enable-gpios
+> - driver:
+>   - Kconfig: Added select REGMAP_SPI
+>   - Headers: Removed device.h, errno.h, string.h; added dev_printk.h
+>   - Use IIO_DMA_MINALIGN instead of ARCH_DMA_MINALIGN
+>   - Replaced memcpy/memset with put_unaligned_be* for consistency
+>   - Added struct device *dev shorthand in probe()
+>   - other minor style edits
+> - Link to v4: https://lore.kernel.org/r/20260401-dev_ad5706r-v4-0-a785184a8d53@analog.com
+> 
+> Changes in v4:
+> - dt-bindings:
+>   - Reverted pwm and gpio entries.
+>   - Added missing power supply properties
+>   - Clocks not added back as they were driver specific, not device
+>     properties
+> - driver:
+>   - Added missing includes
+>   - Converted to use regmap with custom SPI bus implementation.
+>     spi_write_then_read not applied as suggested, prevents future
+>     need to change SPI speed
+>   - removed driver speciifc mutex/guards in favor of regmap internal
+>     locking
+>   - Minor style cleanups
+> - Link to v3: https://lore.kernel.org/r/20260318-dev_ad5706r-v3-0-5d078f41e988@analog.com
+> 
+> Changes in v3:
+> - Added MAINTAINERS entry, files added on each patch
+> - dt-bindings:
+>   - Added allOf and ref to spi-peripheral-props.yaml
+>   - Changed additionalProperties to unevaluatedProperties
+>   - Added avdd-supply property and added it to required
+> - driver:
+>   - Removed redundant includes, added respective includes of APIs used
+>   - Simplified bit manipulation in SPI read/write, used feedback from v2
+>   - Fixed inconsistent trailing commas in device ID tables
+>   - Removed zero initialization in spi_device_id
+> - Link to v2: https://lore.kernel.org/r/20260311-dev_ad5706r-v2-0-f367063dbd1b@analog.com
+> 
+> Changes in v2:
+> - Stripped driver down to basic DAC functionality (read/write raw,
+>   read-only scale) as suggested.
+> - Removed PWM (LDAC), GPIO (reset/shutdown), clock generator,
+>   SPI engine frequency switching, debugfs streaming, and all
+>   custom ext_info sysfs attributes
+> - Removed regmap, IIO_BUFFER, and iio/sysfs.h dependencies
+> - Simplified SPI read/write to use standard spi_sync_transfer
+>   without clock mode logic
+> - Scale reports default 50mA range as read-only using
+>   IIO_VAL_FRACTIONAL_LOG2; writable range selection deferred
+>   to future follow-up series
+> - Simplified DT binding to only require compatible, reg, and
+>   spi-max-frequency
+> - Link to v1: https://lore.kernel.org/r/20260220-dev_ad5706r-v1-0-7253bbd74889@analog.com
+> 
+> ---
+> Alexis Czezar Torreno (2):
+>       dt-bindings: iio: dac: Add ADI AD5706R
+>       iio: dac: ad5706r: Add support for AD5706R DAC
+> 
+>  .../devicetree/bindings/iio/dac/adi,ad5706r.yaml   | 105 +++++++++
+>  MAINTAINERS                                        |   8 +
+>  drivers/iio/dac/Kconfig                            |  11 +
+>  drivers/iio/dac/Makefile                           |   1 +
+>  drivers/iio/dac/ad5706r.c                          | 253 +++++++++++++++++++++
+>  5 files changed, 378 insertions(+)
+> ---
+> base-commit: 3674f3ca92730d9a07b42b311f1337d83c4d5605
+> change-id: 20260220-dev_ad5706r-2105e1dd29ab
+> 
+> Best regards,
 
-I'm afraid this patch will miss-apply since the visible context is not
-very telling.
-
-Try setting `git config diff.context 20` (you can revert to the previous/
-default value later because usually the default is reasonable)
-
-Konrad
 
