@@ -1,171 +1,231 @@
-Return-Path: <devicetree+bounces-290385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290387-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SHgAJpwG72lJ4AAAu9opvQ
-	(envelope-from <devicetree+bounces-290385-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 08:47:56 +0200
+	id +HSOCfYI72n14QAAu9opvQ
+	(envelope-from <devicetree+bounces-290387-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 08:57:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B505546DD3B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 08:47:55 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7171E46DEE6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 08:57:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 70412300380E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 06:47:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EA14C30276BA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 06:53:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37D86378D88;
-	Mon, 27 Apr 2026 06:47:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E6638B7AA;
+	Mon, 27 Apr 2026 06:53:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="tVn55DDp"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="awhpednU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B71285CA4;
-	Mon, 27 Apr 2026 06:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1DF73806AA;
+	Mon, 27 Apr 2026 06:53:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777272440; cv=none; b=M2u5fCxA4pNf1E7Cp4/Tb2sKqDEf23vTDKcptXPs+fTYk/obAiBDjz0DQAfaYp1qWuDpPdq3unR8vvCthgrE9dn/PzDrsdFP5a6ZeWvwN+n/L3KMpr/eTx7NZ6TZ18w2bxgDMeQjnmvKSZTM3mmAr3QCgsU5+2AgZPCcusHXYPg=
+	t=1777272788; cv=none; b=epbx9xsBHoukJPl4SU9IyYkKKb3Z0iVpLAZU9gngeKJu4tmql2aviFhFNcbaIQrbKWqpKGXW0NevPmHZ7UCCdgvBXRvygmH115yHOGAqvzReENylxI0bAwpmMXUw5LnkYZxMh5Vtlz5ffORBdwaxS5AtssJPOa9rgs1dCQwmJ8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777272440; c=relaxed/simple;
-	bh=ilnIqpXFCyNt6g6RokOmstrJQTMIjyHCwgEExR/hbPs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DZ58gZBYxv8PsbyMHRi2UABuqAhSs0mjlfGFV5/ul494f65tMQM4UX5xduyxj9AL+dIDCv230TTgF7pf7rBh/ARXR30g0pr7wRBM57d+7EgYYIp74Ef2v00DwMFF64uciCeZq5khqJBoT4gwfBWLXtomuyso24VxMyW447aOzvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=tVn55DDp; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch [83.173.201.248])
-	by mail11.truemail.it (Postfix) with ESMTPA id 2944B1F94F;
-	Mon, 27 Apr 2026 08:47:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1777272429;
-	bh=kbd+KJ62CZU4qnR3q8Wb/lGJuOs9KI6EpKwpM2lUoVc=; h=From:To:Subject;
-	b=tVn55DDp/bNzLaXOdmrsekwW1j/RGVrzSryO6xtEvOGnM47lLZu4sHZoIbLZ3O50D
-	 QLuh58iINvRQlZPI2oGj7ijDMlBombEcGp2s8l7Q3FBbnFd61SujArKZkArTLsgeQ/
-	 8KL7u/Ias7XgtOuEtORdSLFCSDGyrOmLvQ3r7WQy50GvXVY8+M+84PkbchtzHu7Fmc
-	 d/yTv5mVVO8G+2veajDbG2BO9od7+77/ts0/pSmt1iVFL4SltVKOxvDZEc53S2gPY3
-	 w78TFRrQa3eRrvWRfBPkMUx69iEKQcoQ3jWRrCVcLMHByifQEwQXtJYW9yqeAZSiv0
-	 6hIZ5IIubfeSw==
-Date: Mon, 27 Apr 2026 08:47:04 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, Frank Li <Frank.Li@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, driver-core@lists.linux.dev,
-	regressions@lists.linux.dev
-Subject: Re: [PATCH v2 6/9] soc: imx8m: don't access of_root directly
-Message-ID: <20260427064704.GA17710@francesco-nb>
-References: <20260223-soc-of-root-v2-0-b45da45903c8@oss.qualcomm.com>
- <20260223-soc-of-root-v2-6-b45da45903c8@oss.qualcomm.com>
- <6593091.DvuYhMxLoT@steina-w>
+	s=arc-20240116; t=1777272788; c=relaxed/simple;
+	bh=89hHDqbexTyMlPyPP2yOVYeZDBludThuf4hJ81dY12g=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fCRhhls7a+Z49o/iPGEY16klDB4dt5cfXRawLp18OCQOxj94zzLFvGgP9pslLCdHmuS8UCYG0Pe7W3BHjO/O9tsiWwEYymbQKcypevJ0hwBF1xf2xrK9CwsPgJW6IhhKYSpsv0C9c0xFHSH6jJ05grz+HXAaDORuzqhoDV8NYm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=awhpednU; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: b9ec45c0420511f19a16598d5ca7f8ec-20260427
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Ss2cj82M0/89oGj9sC/6bQnm3td5UO2hvLaBpDMWa60=;
+	b=awhpednUdviT4JTNQMf2bSgBpOkE3bktTP9Exc/eIowf5YPWHgEQDZ6m9uxwsQMIsPM85VpPV7PWSlfP07zgT5xi6Zicb0vXOWgeO2FBAzzz/IIKdAwrlB4RfrlLk4g+Ii1NXnmZGMw3boyOFoFRwLzDH5jKjX/IXrud7Hmlnn0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12,REQID:c0283e32-f901-4a08-a5f4-983d2f97041c,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:e7bac3a,CLOUDID:1387a764-469e-4eb6-aeb8-4b21454b0f32,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|865|888|898,TC:-5,Content:0|
+	15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI:0
+	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: b9ec45c0420511f19a16598d5ca7f8ec-20260427
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
+	(envelope-from <kuanfu.lu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1144651653; Mon, 27 Apr 2026 14:52:58 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 27 Apr 2026 14:52:57 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Mon, 27 Apr 2026 14:52:57 +0800
+From: mtk36707 <kuanfu.lu@mediatek.com>
+To: "Rafael J . Wysocki" <rafael@kernel.org>, Daniel Lezcano
+	<daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
+	<lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Balsam
+ CHIHI <bchihi@baylibre.com>
+CC: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <jarried.lin@mediatek.com>,
+	<vince-wl.liu@mediatek.com>, <justin.yeh@mediatek.com>, Kuanfu Lu
+	<kuanfu.lu@mediatek.com>
+Subject: [PATCH 1/2] dt-bindings: thermal: mediatek: Add MT8189 LVTS bindings
+Date: Mon, 27 Apr 2026 14:48:29 +0800
+Message-ID: <20260427065236.1685057-1-kuanfu.lu@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6593091.DvuYhMxLoT@steina-w>
-X-Rspamd-Queue-Id: B505546DD3B
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
+X-Rspamd-Queue-Id: 7171E46DEE6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
-	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-290385-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,intel.com,arm.com,pengutronix.de,gmail.com,collabora.com,baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290387-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[27];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,pengutronix.de,gmail.com,glider.be,sholland.org,nxp.com,lists.infradead.org,vger.kernel.org,lists.ozlabs.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[dolcini.it:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dolcini.it:dkim,qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oe-host:email]
+	FROM_NEQ_ENVFROM(0.00)[kuanfu.lu@mediatek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mediatek.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mediatek.com:email,mediatek.com:dkim,mediatek.com:mid]
 
-Hello Alexander, Bartosz
+From: Kuanfu Lu <kuanfu.lu@mediatek.com>
 
-On Tue, Mar 24, 2026 at 11:24:09AM +0100, Alexander Stein wrote:
-> Hi,
-> 
-> Am Montag, 23. Februar 2026, 14:37:21 CET schrieb Bartosz Golaszewski:
-> > Don't access of_root directly as it reduces the build test coverage for
-> > this driver with COMPILE_TEST=y and OF=n. Use existing helper functions
-> > to retrieve the relevant information.
-> > 
-> > Suggested-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> 
-> today I noticed the following warning running next-20260323:
-> > caam 30900000.crypto: No clock data provided for i.MX SoC
-> 
-> This happens when there is no matching against the soc_id.
-> 
-> Checking the source it turns out this patch is the cause that the SoC info
-> does not provide soc_id anymore.
-> next-20260323:
-> > $ grep . /sys/devices/soc0/*
-> > /sys/devices/soc0/family:Freescale i.MX
-> > /sys/devices/soc0/machine:TQ-Systems i.MX8MPlus TQMa8MPxL on MBa8MP-RAS314
-> > grep: /sys/devices/soc0/power: Is a directory
-> > /sys/devices/soc0/revision:unknown
-> > /sys/devices/soc0/serial_number:0000000000000000
-> > grep: /sys/devices/soc0/subsystem: Is a directory
-> 
-> reverting this patch (2524b293a59e586afd06358d0b191ab57208a920):
-> > $ grep . /sys/devices/soc0/*
-> > /sys/devices/soc0/family:Freescale i.MX
-> > /sys/devices/soc0/machine:TQ-Systems i.MX8MPlus TQMa8MPxL on MBa8MP-RAS314
-> > grep: /sys/devices/soc0/power: Is a directory
-> > /sys/devices/soc0/revision:1.1
-> > /sys/devices/soc0/serial_number:469677A693A4B8CE131D180033E44903
-> > /sys/devices/soc0/soc_id:i.MX8MP
-> > grep: /sys/devices/soc0/subsystem: Is a directory
-> 
-> soc_id is restored. Now that I write these lines I noticed that
-> serial_number also contained empty value which is restored with the revert.
+Add support for the MediaTek MT8189 LVTS thermal controller to
+the device tree bindings. This includes new compatible strings
+and required properties for MT8189.
 
-Any update on this? I would say this is a regression in 7.1-rc1.
+Signed-off-by: Kuanfu Lu <kuanfu.lu@mediatek.com>
+---
+ .../thermal/mediatek,lvts-thermal.yaml        | 27 +++++++++++++++++--
+ .../thermal/mediatek,lvts-thermal.h           | 20 ++++++++++++++
+ 2 files changed, 45 insertions(+), 2 deletions(-)
 
-I noticed the same issue, and CAAM is not working.
-
-[    0.000000] Linux version 7.1.0-rc1-0.0.0-devel (oe-user@oe-host) (aarch64-tdx-linux-gcc (GCC) 15.2.0, GNU ld (GNU Binutils) 2.46) #1 SMP PREEMPT Sun Apr 26 21:19:00 UTC 2026
-...
-[   10.611139] caam 30900000.crypto: No clock data provided for i.MX SoC
-[   10.611211] caam 30900000.crypto: probe with driver caam failed with error -22
-
-Francesco
+diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+index 975235130670..64fc6b5385de 100644
+--- a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+@@ -23,6 +23,8 @@ properties:
+       - mediatek,mt8186-lvts
+       - mediatek,mt8188-lvts-ap
+       - mediatek,mt8188-lvts-mcu
++      - mediatek,mt8189-lvts-ap
++      - mediatek,mt8189-lvts-mcu
+       - mediatek,mt8192-lvts-ap
+       - mediatek,mt8192-lvts-mcu
+       - mediatek,mt8195-lvts-ap
+@@ -61,6 +63,21 @@ properties:
+ allOf:
+   - $ref: thermal-sensor.yaml#
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - mediatek,mt8189-lvts-ap
++              - mediatek,mt8189-lvts-mcu
++    then:
++      properties:
++        nvmem-cells:
++          minItems: 2
++
++        nvmem-cell-names:
++          minItems: 2
++
+   - if:
+       properties:
+         compatible:
+@@ -78,6 +95,10 @@ allOf:
+         nvmem-cell-names:
+           maxItems: 1
+ 
++      required:
++          - clocks
++          - resets
++
+   - if:
+       properties:
+         compatible:
+@@ -94,12 +115,14 @@ allOf:
+         nvmem-cell-names:
+           minItems: 2
+ 
++      required:
++          - clocks
++          - resets
++
+ required:
+   - compatible
+   - reg
+   - interrupts
+-  - clocks
+-  - resets
+   - nvmem-cells
+   - nvmem-cell-names
+ 
+diff --git a/include/dt-bindings/thermal/mediatek,lvts-thermal.h b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+index 350f98178b26..3f493d7f13b3 100644
+--- a/include/dt-bindings/thermal/mediatek,lvts-thermal.h
++++ b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+@@ -45,6 +45,26 @@
+ #define MT8188_AP_CAM1		6
+ #define MT8188_AP_CAM2		7
+ 
++#define MT8189_MCU_BIG_CPU1     0
++#define MT8189_MCU_BIG_CPU2     1
++#define MT8189_MCU_BIG_CPU3     2
++#define MT8189_MCU_BIG_CPU4     3
++#define MT8189_MCU_LITTLE_CPU1  4
++#define MT8189_MCU_LITTLE_CPU2  5
++#define MT8189_MCU_LITTLE_CPU3  6
++#define MT8189_MCU_LITTLE_CPU4  7
++#define MT8189_MCU_LITTLE_CPU5  8
++#define MT8189_MCU_LITTLE_CPU6  9
++#define MT8189_MCU_LITTLE_CPU7  10
++#define MT8189_MCU_LITTLE_CPU8  11
++
++#define MT8189_AP_SOC1          12
++#define MT8189_AP_SOC2          13
++#define MT8189_AP_SOC3          14
++#define MT8189_AP_APU           15
++#define MT8189_AP_GPU1          16
++#define MT8189_AP_GPU2          17
++
+ #define MT8195_MCU_BIG_CPU0     0
+ #define MT8195_MCU_BIG_CPU1     1
+ #define MT8195_MCU_BIG_CPU2     2
+-- 
+2.45.2
 
 
