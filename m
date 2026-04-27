@@ -1,162 +1,149 @@
-Return-Path: <devicetree+bounces-290414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290412-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AMeUCM4Q72mU5QAAu9opvQ
-	(envelope-from <devicetree+bounces-290414-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 09:31:26 +0200
+	id MBPlIjUQ72mT5QAAu9opvQ
+	(envelope-from <devicetree+bounces-290412-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 09:28:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E8746E602
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 09:31:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37EEE46E5BE
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 09:28:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EDECE302DF66
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 07:27:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 58CAE303AAAB
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 07:26:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B92391855;
-	Mon, 27 Apr 2026 07:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36C6E391838;
+	Mon, 27 Apr 2026 07:26:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.eswincomputing.com (mail.eswincomputing.com [123.124.195.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A22536AB77;
-	Mon, 27 Apr 2026 07:27:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.124.195.78
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [4.193.249.245])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AAA390CB2;
+	Mon, 27 Apr 2026 07:26:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=4.193.249.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777274852; cv=none; b=XYOEBFeytwRzIETNYijJnb7aRHXHVuSpUvDqj30ALFPvjswoSV9iGc8HOZb7O/DDcOGEOidX0tbp8HsqiTJtA5It9y8Qf3EJmkinNWtBZOBN1OTxFyGmt/QWVflxL1ntiWo5Vmuji4rHXLvh0V6qldCAZiINAV4zfonPk4ayQ1Q=
+	t=1777274780; cv=none; b=UuczXO48MeXVDuJLgZhxXZKNylfivmxduIIXFq13Gg9CtDKKg9w3/aD5oIEwrjRRi6VkVthH9MC6Z6bwLypssGha4Z2QBkK6vQvvoIExidczQTauiJWFjXZgco7+BbDmHdi4jHIEzEz16zMdrXnyIisIQIg9msuzL15vgCAhA2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777274852; c=relaxed/simple;
-	bh=VWbHMN/Vau/n/YZ4U9o4rE+X3k0yJff0Gk73WPb7DrY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XiuIyAN+SSBcCBhV/uz/n0H9V+ekbcLvWPD66si/rCOwzfhg3GQjl61s6v5R92jvg27v4JYgO1bJ3FLiVwR5yvFBrOoOGUCQJco8+CFPyAN+FJdkfFeGxBqRgpi/R6j1N3in6L2Z/QgG8uW2WQqTrv1Mg4yrcW1IjV9l124bnK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=123.124.195.78
+	s=arc-20240116; t=1777274780; c=relaxed/simple;
+	bh=+f/Ak5ZvNVLxWoZopsI2/wbpbNejzmreXm9s1vzcDiA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=k+vpr6YZ2c3YXLn0JNOqRPXarshoHe5iFanX77Xq+8Zgmvi3Ek2hSGQL/I4RnxKvttdno+5wuar8+HXeWijY/C8WyqDz3mbJJ/V1le+Lv/Ty3UAhgut8cMvkMnleI1U5RZvOZnDXa9/1Vo0jRH1vAlD6syFnYo7T4LYiU49Xeoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=4.193.249.245
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0004057DT.eswin.cn (unknown [10.11.96.26])
-	by app1 (Coremail) with SMTP id TAJkCgDHXHF3D+9pgxAVAA--.17532S2;
-	Mon, 27 Apr 2026 15:25:44 +0800 (CST)
-From: lizhi2@eswincomputing.com
-To: devicetree@vger.kernel.org,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	netdev@vger.kernel.org,
-	pabeni@redhat.com,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	rmk+kernel@armlinux.org.uk,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	maxime.chevallier@bootlin.com
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	pritesh.patel@einfochips.com,
-	weishangjuan@eswincomputing.com,
-	horms@kernel.org,
-	Zhi Li <lizhi2@eswincomputing.com>
-Subject: [PATCH net-next v7 3/4] dt-bindings: mfd: syscon: add ESWIN EIC7700 compatible
-Date: Mon, 27 Apr 2026 15:25:41 +0800
-Message-ID: <20260427072541.1174-1-lizhi2@eswincomputing.com>
-X-Mailer: git-send-email 2.52.0.windows.1
-In-Reply-To: <20260427072353.1114-1-lizhi2@eswincomputing.com>
-References: <20260427072353.1114-1-lizhi2@eswincomputing.com>
+Received: from hehuan1$eswincomputing.com ( [10.12.96.103] ) by
+ ajax-webmail-app2 (Coremail) ; Mon, 27 Apr 2026 15:25:56 +0800 (GMT+08:00)
+Date: Mon, 27 Apr 2026 15:25:56 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Huan He" <hehuan1@eswincomputing.com>
+To: conor+dt@kernel.org
+Cc: linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
+	p.zabel@pengutronix.de, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, luyulin@eswincomputing.com,
+	conor.dooley@microchip.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add Eswin EIC7700 PVT sensor
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <20260306094508.1098-1-hehuan1@eswincomputing.com>
+References: <20260306094312.1043-1-hehuan1@eswincomputing.com>
+ <20260306094508.1098-1-hehuan1@eswincomputing.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgDHXHF3D+9pgxAVAA--.17532S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7Gw4UtF48uw13KF1kZFW5KFg_yoWDuFgE9r
-	17urn8A39xAFW0g3yvvrZ7JF4fA3WSkr1kZ39ruF1vy34Fv3W5XF97J345Ar47uFs7ur1r
-	W3WkXrW7t3ZrGjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUb68FF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
-	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
-	6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
-	Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-	I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
-	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
-	n2kIc2xKxwAKzVCY07xG64k0F24lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw2
-	8IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4l
-	x2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrw
-	CI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr1U
-	MIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I
-	8E87Iv6xkF7I0E14v26r4UJVWxJrUvcSsGvfC2KfnxnUUI43ZEXa7sRiWrW5UUUUU==
-X-CM-SenderInfo: xol2xx2s6h245lqf0zpsxwx03jof0z/
-X-Rspamd-Queue-Id: A5E8746E602
+Message-ID: <28b4eea0.5ad0.19dcdd49d49.Coremail.hehuan1@eswincomputing.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:TQJkCgA3TJ+ED+9pcAkVAA--.2927W
+X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/1tbiAQEKCmnuPhohtAAA
+	s2
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
+X-Rspamd-Queue-Id: 37EEE46E5BE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-290412-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[eswincomputing.com];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-290414-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FREEMAIL_TO(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com,bootlin.com];
-	FROM_NO_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lizhi2@eswincomputing.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.985];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	R_DKIM_NA(0.00)[];
+	HAS_X_PRIO_THREE(0.00)[3];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:mid,eswincomputing.com:email]
+	RCPT_COUNT_TWELVE(0.00)[13];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.902];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:mid,eswincomputing.com:email]
 
-From: Zhi Li <lizhi2@eswincomputing.com>
-
-Document ESWIN EIC7700 SoC compatible for syscon registers.
-
-Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
----
- Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index e22867088063..7d3365601249 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -62,6 +62,7 @@ select:
-           - cirrus,ep7209-syscon3
-           - cnxt,cx92755-uc
-           - econet,en751221-chip-scu
-+          - eswin,eic7700-syscfg
-           - freecom,fsg-cs2-system-controller
-           - fsl,imx93-aonmix-ns-syscfg
-           - fsl,imx93-wakeupmix-syscfg
-@@ -175,6 +176,7 @@ properties:
-               - cirrus,ep7209-syscon3
-               - cnxt,cx92755-uc
-               - econet,en751221-chip-scu
-+              - eswin,eic7700-syscfg
-               - freecom,fsg-cs2-system-controller
-               - fsl,imx93-aonmix-ns-syscfg
-               - fsl,imx93-wakeupmix-syscfg
--- 
-2.25.1
-
+PiBGcm9tOiBIdWFuIEhlIDxoZWh1YW4xQGVzd2luY29tcHV0aW5nLmNvbT4KPiAKPiBBZGQgZGV2
+aWNlIHRyZWUgYmluZGluZyBkb2N1bWVudGF0aW9uIGZvciBFU1dJTiBFSUM3NzAwIFByb2Nlc3Ms
+IFZvbHRhZ2UKPiBhbmQgVGVtcGVyYXR1cmUgc2Vuc29yLgo+IAo+IFRoZSBFSUM3NzAwIFNvQyBp
+bnRlZ3JhdGVzIHR3byBQVlQgaW5zdGFuY2VzIGZvciBtb25pdG9yaW5nIFNvQyBhbmQgRERSCj4g
+cG93ZXIgZG9tYWlucyByZXNwZWN0aXZlbHkuCj4gCj4gU2lnbmVkLW9mZi1ieTogWXVsaW4gTHUg
+PGx1eXVsaW5AZXN3aW5jb21wdXRpbmcuY29tPgo+IFNpZ25lZC1vZmYtYnk6IEh1YW4gSGUgPGhl
+aHVhbjFAZXN3aW5jb21wdXRpbmcuY29tPgo+IFJldmlld2VkLWJ5OiBDb25vciBEb29sZXkgPGNv
+bm9yLmRvb2xleUBtaWNyb2NoaXAuY29tPgo+IC0tLQo+ICAuLi4vYmluZGluZ3MvaHdtb24vZXN3
+aW4sZWljNzcwMC1wdnQueWFtbCAgICAgfCA2NSArKysrKysrKysrKysrKysrKysrCj4gIDEgZmls
+ZSBjaGFuZ2VkLCA2NSBpbnNlcnRpb25zKCspCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaHdtb24vZXN3aW4sZWljNzcwMC1wdnQueWFtbAo+
+IAo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaHdtb24v
+ZXN3aW4sZWljNzcwMC1wdnQueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
+cy9od21vbi9lc3dpbixlaWM3NzAwLXB2dC55YW1sCj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQKPiBp
+bmRleCAwMDAwMDAwMDAwMDAuLjM2NmRjZTNjNmQ0Mwo+IC0tLSAvZGV2L251bGwKPiArKysgYi9E
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaHdtb24vZXN3aW4sZWljNzcwMC1wdnQu
+eWFtbAo+IEBAIC0wLDAgKzEsNjUgQEAKPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQ
+TC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UpCj4gKyVZQU1MIDEuMgo+ICstLS0KPiArJGlkOiBo
+dHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9od21vbi9lc3dpbixlaWM3NzAwLXB2dC55YW1s
+Iwo+ICskc2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFt
+bCMKPiArCj4gK3RpdGxlOiBFU1dJTiBFSUM3NzAwIFBWVCBTZW5zb3IKPiArCj4gK21haW50YWlu
+ZXJzOgo+ICsgIC0gWXVsaW4gTHUgPGx1eXVsaW5AZXN3aW5jb21wdXRpbmcuY29tPgo+ICsgIC0g
+SHVhbiBIZSA8aGVodWFuMUBlc3dpbmNvbXB1dGluZy5jb20+Cj4gKwo+ICtkZXNjcmlwdGlvbjoK
+PiArICBFU1dJTiBFSUM3NzAwIFNvQyBpbnRlZ3JhdGVzIGVtYmVkZGVkIHByb2Nlc3MsIHZvbHRh
+Z2UgYW5kIHRlbXBlcmF0dXJlCj4gKyAgc2Vuc29ycyB0byBtb25pdG9yIHRoZSBpbnRlcm5hbCBT
+b0MgZW52aXJvbm1lbnQuIFRoZSBzeXN0ZW0gaW5jbHVkZXMgdHdvCj4gKyAgUFZUIHNlbnNvciBp
+bnN0YW5jZXMuIFRoZSBQVlQwIG1vbml0b3JzIHRoZSBtYWluIFNvQyBwb3dlciBkb21haW4uIFRo
+ZQo+ICsgIFBWVDEgc2Vuc29yIG1vbml0b3JzIHRoZSBERFIgY29yZSBwb3dlciBkb21haW4uCj4g
+Kwo+ICthbGxPZjoKPiArICAtICRyZWY6IC9zY2hlbWFzL2h3bW9uL2h3bW9uLWNvbW1vbi55YW1s
+Iwo+ICsKPiArcHJvcGVydGllczoKPiArICBjb21wYXRpYmxlOgo+ICsgICAgY29uc3Q6IGVzd2lu
+LGVpYzc3MDAtcHZ0Cj4gKwo+ICsgIHJlZzoKPiArICAgIG1heEl0ZW1zOiAxCj4gKwo+ICsgIGNs
+b2NrczoKPiArICAgIG1heEl0ZW1zOiAxCj4gKwo+ICsgIGludGVycnVwdHM6Cj4gKyAgICBtYXhJ
+dGVtczogMQo+ICsKPiArICBsYWJlbDogdHJ1ZQoKSGkgQ29ub3IsCgpUaGUgbGFiZWwgcHJvcGVy
+dHkgaXMgY3VycmVudGx5IGRlY2xhcmVkIGFzICdsYWJlbDogdHJ1ZScgd2l0aG91dCBhbnkKdmFs
+dWUgY29uc3RyYWludHMuIEhvd2V2ZXIsIHRoZSBkcml2ZXIgZXhwZWN0cyBzcGVjaWZpYyBsYWJl
+bCB2YWx1ZXMgKHB2dDAKb3IgcHZ0MSkuIElzIGl0IG9rIHRvIHVwZGF0ZSB0aGUgRFQgYmluZGlu
+ZyBzY2hlbWEgdG8gY29uc3RyYWluIHRoZSBsYWJlbApwcm9wZXJ0eSB0byBhbiBlbnVtOgoKLcKg
+IGxhYmVsOiB0cnVlCivCoCBsYWJlbDoKK8KgIMKgIGVudW06CivCoCDCoCDCoCAtIHB2dDAKK8Kg
+IMKgIMKgIC0gcHZ0MQoKQmVzdCByZWdhcmRzLApIdWFuIEhlCgo+ICsKPiArICByZXNldHM6Cj4g
+KyAgICBtYXhJdGVtczogMQo+ICsKPiArICAnI3RoZXJtYWwtc2Vuc29yLWNlbGxzJzoKPiArICAg
+IGNvbnN0OiAwCj4gKwo+ICtyZXF1aXJlZDoKPiArICAtIGNvbXBhdGlibGUKPiArICAtIHJlZwo+
+ICsgIC0gY2xvY2tzCj4gKyAgLSBpbnRlcnJ1cHRzCj4gKyAgLSBsYWJlbAo+ICsgIC0gcmVzZXRz
+Cj4gKwo+ICt1bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlCj4gKwo+ICtleGFtcGxlczoKPiAr
+ICAtIHwKPiArICAgIHB2dEA1MGIwMDAwMCB7Cj4gKyAgICAgIGNvbXBhdGlibGUgPSAiZXN3aW4s
+ZWljNzcwMC1wdnQiOwo+ICsgICAgICByZWcgPSA8MHg1MGIwMDAwMCAweDEwMDAwPjsKPiArICAg
+ICAgY2xvY2tzID0gPCZjbG9ja3MgMjQ0PjsKPiArICAgICAgaW50ZXJydXB0cyA9IDwzNDk+Owo+
+ICsgICAgICBpbnRlcnJ1cHQtcGFyZW50ID0gPCZwbGljPjsKPiArICAgICAgbGFiZWwgPSAicHZ0
+MCI7Cj4gKyAgICAgIHJlc2V0cyA9IDwmcmVzZXQgMTExPjsKPiArICAgICAgI3RoZXJtYWwtc2Vu
+c29yLWNlbGxzID0gPDA+Owo+ICsgICAgfTsKPiArLi4uCj4gLS0gCj4gMi4yNS4xCg==
 
