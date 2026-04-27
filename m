@@ -1,117 +1,155 @@
-Return-Path: <devicetree+bounces-290631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290649-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8JUpKPeC72nmBwEAu9opvQ
-	(envelope-from <devicetree+bounces-290631-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 17:38:31 +0200
+	id SCcLHIeQ72nRCwEAu9opvQ
+	(envelope-from <devicetree+bounces-290649-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 18:36:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B5B4475585
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 17:38:30 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C575C4767FC
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 18:36:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 80DC83068DAF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 15:27:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 28ED8322BAB3
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 16:19:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B45BA3368BF;
-	Mon, 27 Apr 2026 15:27:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 258A235F5E5;
+	Mon, 27 Apr 2026 16:19:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BpV+2Zm5"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=minlexx.ru header.i=@minlexx.ru header.b="OS+y4sxj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sm24.hosting.reg.ru (sm24.hosting.reg.ru [31.31.198.150])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91507334695;
-	Mon, 27 Apr 2026 15:27:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E14834F25C;
+	Mon, 27 Apr 2026 16:19:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=31.31.198.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777303677; cv=none; b=BPsxrYuVwVK/l6dWstgeQiKcw9YXAS/QmuJvz2oRdDU+lZhfLyG+2hOLMjXrRJfZn8aPx82zIhcIlCP1cS3ZSc2LmMqFyBkC420r6f33BEVQjT7lDcPP70SGGe/TquNKR878HbC7/6G0qf/cfmp2oAITh2Bl4m3gKtZO4oL9qXM=
+	t=1777306757; cv=none; b=g2UgS3jFktXBY4KKYzGPcty4ruj044xycNwMo+4gIsGkbxd2AAwhRvw92BHWZo0YiuJ3wcTqALdWIdaSF16O1IPV8XS6GGQTyq+KGV0HkBtQu1rtt5bNoKCetm2wCvIizWigLPUsdMBH7yrh7kHz+SOPRonw1KmDUGUAd7YOVnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777303677; c=relaxed/simple;
-	bh=kZuAlP3Nr9NwZ2yzjYCg6oSkTi0vhJTtqOJ280luNbI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=V09MELdzc50JIBTEkL6eWE0KzBjKPL+1jh6vAOOo5XLozIjL+tLW/BPr79ljU80x45fsmSd1i0DlfCn4qNcEW+1eXWIHaNK6qSo90uPIUcaOsHaCOAlDDcmbCcLcyysb9SP4vfLILQ3TLOZUMlh53QKajF4CKc4a5OCmrD5lAKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BpV+2Zm5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73360C19425;
-	Mon, 27 Apr 2026 15:27:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777303677;
-	bh=kZuAlP3Nr9NwZ2yzjYCg6oSkTi0vhJTtqOJ280luNbI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=BpV+2Zm5Pm4O+AF5uQ263C+7+iiIt0dmeth3oLzNyLVtKNWDk9uaQl3eMJ3uWBzwI
-	 wdaJzdzXQiIg3lalSrc6BOYtuubnyL7EYt4KrE2lkHUIVkG6wrOu99QsjnQrJHDW2M
-	 nXx6BzRa4Sne14Fx0ifIM9D6G+HMfT/4tNFB0MOlCSqCabgERNo7FI3/cbbfl7plZP
-	 LctWmDmtkoz3xsGpDY/0x3U6IJ0nRXmSDCUmVhYJqhqM7/tMhjVN58luCeZYYfIQbe
-	 PWDsSnPbGwhlo4r2zX/9B/AXs2zRwWkAfkcmTVHCZMEK19Lpm5Y3iuFKtczaYeTIcA
-	 YaBXUAv5peQZA==
-From: Chen-Yu Tsai <wens@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260324164357.1607247-1-wens@kernel.org>
-References: <20260324164357.1607247-1-wens@kernel.org>
-Subject: Re: (subset) [PATCH 0/7] soc: sunxi: sram: Add H616 SRAM support
-Message-Id: <177730367517.346804.17043761045926586221.b4-ty@kernel.org>
-Date: Mon, 27 Apr 2026 23:27:55 +0800
+	s=arc-20240116; t=1777306757; c=relaxed/simple;
+	bh=AtrtQo5Z7gDgHNtgssM/kHXPD4ldxoB/JeYYsOkHC0A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J9ulfLzVNxKOxH/hqmrOkn8KqJpUXLzT0MaaP3leLpPePhZH7OeYWqhjw8CpCu8o4dhL5gnP88iN/wCoPcOig6ybdgUperazYi9pC9vRZ8PA6tEysEpCbm4hb60THsDnXctbDb6WHYBi2sKpjHbEwgXhHfu88b6oy1LvDQoNJG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=minlexx.ru; spf=none smtp.mailfrom=minlexx.ru; dkim=pass (1024-bit key) header.d=minlexx.ru header.i=@minlexx.ru header.b=OS+y4sxj; arc=none smtp.client-ip=31.31.198.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=minlexx.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=minlexx.ru
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=minlexx.ru;
+	s=dkim; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:
+	Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=iopoB8Zza6G0Nj8rYRASXGVK7MZeQTqskc0jaDKpLsM=; b=OS+y4sxjX4DD/9HWQlfwcavdKF
+	9ItOADSChZlpAPSU1LCRppyATYqI3EZzstcUjOiMuLW8/DKJnJVtXlNGgKqB08TW55rMmhMCQ0o4P
+	aapXr0Y9JTMzvro2i9jVPAJS+jH1iX86PSKz7YX0oKNOJFtj/jeElrudjLrHI1xW0U1w=;
+Received: 
+	by sm24.hosting.reg.ru with esmtpsa (TLS1.3) tls TLS_AES_128_GCM_SHA256
+	(envelope-from <alexeymin@minlexx.ru>)
+	id 1wHNsw-00000001j2k-19xx;
+	Mon, 27 Apr 2026 18:28:34 +0300
+Message-ID: <1bd384d1-a4b9-4501-b22a-70596536d434@minlexx.ru>
+Date: Mon, 27 Apr 2026 18:28:32 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
-X-Rspamd-Queue-Id: 9B5B4475585
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: sdm630: describe adsp_mem region
+ properly
+To: Nickolay Goppen <setotau@mainlining.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20260422-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-v3-0-274ba3715db0@mainlining.org>
+ <20260422-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-v3-3-274ba3715db0@mainlining.org>
+ <337d362d-93de-4e81-8141-a51fa75d615c@oss.qualcomm.com>
+ <e282acd6-dfcb-45a6-977d-eb71b2619b7d@mainlining.org>
+Content-Language: en-US
+From: Alexey Minnekhanov <alexeymin@minlexx.ru>
+In-Reply-To: <e282acd6-dfcb-45a6-977d-eb71b2619b7d@mainlining.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: C575C4767FC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[minlexx.ru:s=dkim];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[minlexx.ru : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290631-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-290649-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.826];
+	FROM_NEQ_ENVFROM(0.00)[alexeymin@minlexx.ru,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DKIM_TRACE(0.00)[minlexx.ru:-];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[9f800000:email,sr.ht:url,minlexx.ru:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-On Wed, 25 Mar 2026 00:43:48 +0800, Chen-Yu Tsai wrote:
-> The Allwinner H616 has two switchable peripheral SRAM regions:
+On 27.04.2026 18:20, Nickolay Goppen wrote:
 > 
-> - The VE SRAM is a 2 MB dedicated SRAM for the Video Engine. CPU access
->   to this region is enabled by default. CPU access can be disabled,
->   after which reads will show the same stale value for all addresses,
->   while writes are ignored.
+> 27.04.2026 14:49, Konrad Dybcio пишет:
+>> On 4/22/26 5:39 PM, Nickolay Goppen wrote:
+>>> Downstream [1] this region is marked as shared, reusable and dynamic so
+>>> describe it that way.
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/ 
+>>> dts/qcom/sdm630.dtsi
+>>> index 4b47efdb57b2..36b419dea153 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>>> @@ -494,9 +494,12 @@ venus_region: venus@9f800000 {
+>>>               no-map;
+>>>           };
+>>> -        adsp_mem: adsp-region@f6000000 {
+>>> -            reg = <0x0 0xf6000000 0x0 0x800000>;
+>>> -            no-map;
+>>> +        adsp_mem: adsp-region {
+>>> +            compatible = "shared-dma-pool";
+>>> +            alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+>> Please make this = <0x0 0x80000000 0x0 0x80000000>; instead, since the 
+>> RAM
+>> starts at 0x80000000
 > 
-> [...]
+> +Alexey Min found out that on 3 GiB xiaomi-lavender RAM starts at 
+> 0x40000000
+> 
+> 40000000-855fffff : System RAM
+>    40080000-41bfffff : Kernel code
+>    42600000-42fd0fff : Kernel data
+> 88f00000-8abfffff : System RAM
+> 95000000-feabffff : System RAM
+> 
 
-Applied to sunxi/drivers-for-7.2 in local tree, thanks!
+Hi, yes, most other devices seem to in fact start at 80000000, even 6Gb
+ones, but not sdm660-xiaomi-lavender. Here is some old UART log from
+stock bootloader which also clearly shows RAM Partitions discovered
+by it [1].
 
-[7/7] arm64: dts: allwinner: sun50i-h616: Add SRAM nodes
-      (no commit info)
+[1] https://paste.sr.ht/~minlexx/145c5077bf1ce83fe3ad6d25d923bdb9f78b548b
 
-Best regards,
--- 
-Chen-Yu Tsai <wens@kernel.org>
-
+--
+Regards,
+Alexey Minnekhanov
 
