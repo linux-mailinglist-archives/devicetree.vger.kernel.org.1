@@ -1,41 +1,42 @@
-Return-Path: <devicetree+bounces-290421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290447-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OIe2G7kS72kP5wAAu9opvQ
-	(envelope-from <devicetree+bounces-290421-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 09:39:37 +0200
+	id sFUZNvgx72mb8wAAu9opvQ
+	(envelope-from <devicetree+bounces-290447-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 11:52:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0547546E78C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 09:39:36 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF3704702B2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 11:52:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F1B073007B8A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 07:39:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CA4FB3004F2D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 09:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124AD3803EB;
-	Mon, 27 Apr 2026 07:39:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3C183B38BF;
+	Mon, 27 Apr 2026 09:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="DKA68PBr"
+	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="XrhtiPlI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49203.qiye.163.com (mail-m49203.qiye.163.com [45.254.49.203])
+Received: from mail-m49195.qiye.163.com (mail-m49195.qiye.163.com [45.254.49.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F27EF37EFFB;
-	Mon, 27 Apr 2026 07:39:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.203
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 076333B38BB;
+	Mon, 27 Apr 2026 09:52:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777275559; cv=none; b=PQ7WvQrexINYUM372UWhkQs8Fwb0fD9EVeQukUHq8WJiAnSg3OnSrjFT43vzupiCYIteCXQR1a3SDSRPq9+7wdnKoSZwEsVhEh/jiH6+ucaRo+wXAoZeJCGC24W4NQUP5BxVJsBUgAjmlslOSvc8fn7JPhcLUFoKZXK46RS7rl4=
+	t=1777283573; cv=none; b=gFCJGbu8rfWGDFL0WJtCbwilsxH0tOTXdAuMbYt/NQpbgV0K5YRTKOQMl+4fnVxa28yHt8eZD9kI95PojkYF6f5X/fypOqmYn5BvBqMp3+ofJx5RHrAYnnqLOqyPFwBWpZBzvaUAzF0H3+2PF/1YlS1HYQrB8cMRwJYfYu5khWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777275559; c=relaxed/simple;
-	bh=F35NhBgfXecgyVTVLNehcvh5eeYhUdwFgyO4pLr9voU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TcGBptzUsSFYd9O6Y7gp0GjNjuxjAKc8lKJuhFRsqY1h6mCXkygL4tG4LNW3WwhMI80wy1LyT5jtwPQanHwWFNzkbUTgy10utF/lJheUZEcQNdPgpRZ5zRpvaH+uE12HOzPun8g+Ge5m0Tmo8FPDSe3MNL7nS4nPv/Euag9uEHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=DKA68PBr; arc=none smtp.client-ip=45.254.49.203
+	s=arc-20240116; t=1777283573; c=relaxed/simple;
+	bh=hzIoHfnPdYQMF9GtwItmBDS7TD1MqyYSOUvBP3HWYXU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=jGggxt9e5RLYarklZTmMO6vTJxVc4yIA6EnGFYKngnnF5VU2HqFhArmNLZcZTgB69jU6HnXUvnbUK6sij6w0E4hR6ELfo0z5/qJhb4w2pvbAOjJTA5JdFMV2Jn3zQLBr2FviL6qHCoBQF/dxtu14Bm6mgH6/cO5aKTYsRnyoaEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=XrhtiPlI; arc=none smtp.client-ip=45.254.49.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
 Received: from albert-OptiPlex-7080.. (unknown [112.65.126.162])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3c40fa9fc;
-	Mon, 27 Apr 2026 14:23:29 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3c40faa06;
+	Mon, 27 Apr 2026 14:23:31 +0800 (GMT+08:00)
 From: Albert Yang <yangzh0906@thundersoft.com>
 To: gordon.ge@bst.ai,
 	krzk@kernel.org,
@@ -49,10 +50,12 @@ Cc: bst-upstream@bstai.top,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v8 0/2] arm64: dts/defconfig: enable BST C1200 eMMC
-Date: Mon, 27 Apr 2026 14:23:27 +0800
-Message-ID: <20260427062329.3715925-1-yangzh0906@thundersoft.com>
+Subject: [PATCH v8 1/2] arm64: dts: bst: enable eMMC controller in C1200 CDCU1.0 board
+Date: Mon, 27 Apr 2026 14:23:28 +0800
+Message-ID: <20260427062329.3715925-2-yangzh0906@thundersoft.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260427062329.3715925-1-yangzh0906@thundersoft.com>
+References: <20260427062329.3715925-1-yangzh0906@thundersoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,17 +63,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9dcd9b729209cckunmcd249b321a30c8
+X-HM-Tid: 0a9dcd9b778c09cckunmcd249b321a30d5
 X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaS0pMVkhOHkhCHU9KTE9NTlYVFA
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaTR1DVkJJHUkfTExKGE1MSVYVFA
 	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlKSklVTU5VSklNVUpNSVlXWRYaDxIVHRRZQVlPS0hVSk
 	tJT09PSFVKS0tVSkJLS1kG
 DKIM-Signature: a=rsa-sha256;
-	b=DKA68PBru2D4eT/6NocWZbaGuxh8T116UNor2n8Jq1iy5xLaJNMKiTrSdffbeC58cNmNTn4cOQAzPBUVCpM2jCd5/OEWl1bRkf6rr1OrBrWp8iPnHoGYyi+ur+V2ug06NFOgbshM1voDdECTSn12M5MHXsiDJP+TUyw+Gd6mJHM=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
-	bh=77u5SnqzYB1kLOAl7anj33qdv0Ahp9BFyG5sDgjr5/w=;
+	b=XrhtiPlIUTegFw1ieLby/O9MrO+eVqF8NCzfQhVAjPOSKWC+C1R44nkBhylZU6fXR6U2hHqH1qW6ki4UPYuR2uKpAS22EYCT5tNHb8Uju7Ispb8TpIf9K/i9qdr5ln7DQiuxqCVtF4C+QyAreOZ0Te/EaHaqGvSVJIUUry30PIA=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
+	bh=I/Qf+Jt8jBH61yX/14Jp1btkMWzHWiNR5UF+Cn43c64=;
 	h=date:mime-version:subject:message-id:from;
-X-Rspamd-Queue-Id: 0547546E78C
+X-Rspamd-Queue-Id: CF3704702B2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
@@ -79,82 +82,136 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[thundersoft.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[thundersoft.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-290447-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290421-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[thundersoft.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[yangzh0906@thundersoft.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[thundersoft.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[thundersoft.com:dkim,thundersoft.com:mid,checkpatch.pl:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bst.ai:email]
+	DBL_PROHIBIT(0.00)[1.82.190.192:email,48.71.158.128:email,0.78.188.64:email];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,1.244.125.0:email,1.49.76.64:email]
 
-This series adds DTS and defconfig support for the eMMC controller on
-Black Sesame Technologies C1200 SoC, split from the v5 MMC series [1].
+Add eMMC controller support to the BST C1200 device tree:
 
-The MMC driver patches (dt-bindings, sdhci bounce buffer, BST SDHCI
-driver, and MAINTAINERS update) were merged via mmc-next during the
-v7.1 merge window and are now in mainline as of Linux 7.1-rc1 [2].
-These remaining DTS and defconfig patches are submitted to the mailing
-lists for review (per Krzysztof's feedback on v6 [3])
+- bstc1200.dtsi: Add mmc0 node for the DWCMSHC SDHCI controller
+  with basic configuration (disabled by default)
+- bstc1200.dtsi: Add fixed clock definition for MMC controller
+- bstc1200-cdcu1.0-adas_4c2g.dts: Enable mmc0 with board-specific
+  configuration including 8-bit bus width and reserved SRAM buffer
 
-Both patches now carry Acked-by: Gordon Ge <gordon.ge@bst.ai> (BST
-maintainer), collected from the v7 thread [4][5].
+The bounce buffer in reserved SRAM addresses hardware constraints
+where the eMMC controller cannot access main system memory through
+SMMU due to a hardware bug, and all DRAM is located outside the
+4GB boundary.
 
-Changes since v7 [6]:
-- Collected Acked-by: Gordon Ge <gordon.ge@bst.ai> on patch 1/2 [4]
-- Collected Acked-by: Gordon Ge <gordon.ge@bst.ai> on patch 2/2 [5]
+Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
+Acked-by: Gordon Ge <gordon.ge@bst.ai>
+---
+Changes for v8:
+- Collected Acked-by: Gordon Ge <gordon.ge@bst.ai>
 - Rebased onto v7.1-rc1
 - No code changes
 
-Changes since v6:
-- Resend with corrected recipients: send to mailing lists for review
-  first, not directly to soc@ (BST has a platform maintainer in
-  MAINTAINERS), per Krzysztof's feedback [3].
+Changes for v7:
+- No code changes; resend with corrected recipients
 
-Changes since v5:
-- Patch 2 (defconfig): fix CONFIG_MMC_SDHCI_BST ordering to match
-  Kconfig position (between CONFIG_MMC_SDHCI_TEGRA and
-  CONFIG_MMC_SDHCI_F_SDH30), as pointed out by Krzysztof Kozlowski.
-  Confirmed via savedefconfig.
+Changes for v5:
+- Split from platform series per Arnd's feedback
 
-Build/check on v7.1-rc1:
-- arch/arm64 defconfig: clean (savedefconfig keeps CONFIG_MMC_SDHCI_BST
-  at its Kconfig-ordered position; no diff in the MMC_SDHCI section)
-- arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dtb: builds clean
-  with W=1 and CHECK_DTBS=y (no new warnings)
-- checkpatch.pl --strict: 0 errors, 0 warnings, 0 checks on both patches
+Changes for v4:
+- Change compatible to bst,c1200-sdhci
+- Move bus-width and non-removable to board dts
 
-[1] https://lore.kernel.org/lkml/20260123095342.272505-1-yangzh0906@thundersoft.com/
-[2] https://lore.kernel.org/lkml/CAPDyKFrcXFAiYouOpjDx3NN-xWACU9jAzEfTU2m_-yvQ9SpC_A@mail.gmail.com/
-[3] https://lore.kernel.org/lkml/12058c14-67c7-4b43-bbbc-ef0ccb813e61@kernel.org/
-[4] https://lore.kernel.org/lkml/20260417.164709-gordon.ge@bst.ai/
-[5] https://lore.kernel.org/lkml/20260417.163754-gordon.ge@bst.ai/
-[6] https://lore.kernel.org/lkml/20260310091211.4171307-1-yangzh0906@thundersoft.com/
+Changes for v3:
+- Split defconfig into dedicated patch
 
-Albert Yang (2):
-  arm64: dts: bst: enable eMMC controller in C1200 CDCU1.0 board
-  arm64: defconfig: enable BST SDHCI controller
-
+Changes for v2:
+- Reorganize memory map, standardize interrupt definitions
+---
  .../dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts    | 19 +++++++++++++++++++
  arch/arm64/boot/dts/bst/bstc1200.dtsi         | 18 ++++++++++++++++++
- arch/arm64/configs/defconfig                  |  1 +
- 3 files changed, 38 insertions(+)
+ 2 files changed, 37 insertions(+)
 
-
-base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+diff --git a/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts b/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
+index 5eb9ef369d8c..178ad4bf4f0a 100644
+--- a/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
++++ b/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
+@@ -17,6 +17,25 @@ memory@810000000 {
+ 		      <0x8 0xc0000000 0x1 0x0>,
+ 		      <0xc 0x00000000 0x0 0x40000000>;
+ 	};
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		mmc0_reserved: mmc0-reserved@5160000 {
++			compatible = "shared-dma-pool";
++			reg = <0x0 0x5160000 0x0 0x10000>;
++			no-map;
++		};
++	};
++};
++
++&mmc0 {
++	bus-width = <8>;
++	memory-region = <&mmc0_reserved>;
++	non-removable;
++	status = "okay";
+ };
+ 
+ &uart0 {
+diff --git a/arch/arm64/boot/dts/bst/bstc1200.dtsi b/arch/arm64/boot/dts/bst/bstc1200.dtsi
+index dd13c6bfc3c8..9660d8396e27 100644
+--- a/arch/arm64/boot/dts/bst/bstc1200.dtsi
++++ b/arch/arm64/boot/dts/bst/bstc1200.dtsi
+@@ -7,6 +7,12 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
++	clk_mmc: clock-4000000 {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <4000000>;
++	};
++
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -72,6 +78,18 @@ uart0: serial@20008000 {
+ 			status = "disabled";
+ 		};
+ 
++		mmc0: mmc@22200000 {
++			compatible = "bst,c1200-sdhci";
++			reg = <0x0 0x22200000 0x0 0x1000>,
++			      <0x0 0x23006000 0x0 0x1000>;
++			clocks = <&clk_mmc>;
++			clock-names = "core";
++			dma-coherent;
++			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
++			max-frequency = <200000000>;
++			status = "disabled";
++		};
++
+ 		gic: interrupt-controller@32800000 {
+ 			compatible = "arm,gic-v3";
+ 			reg = <0x0 0x32800000 0x0 0x10000>,
 -- 
 2.43.0
 
