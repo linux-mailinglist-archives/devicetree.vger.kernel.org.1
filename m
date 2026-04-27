@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-290762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290763-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MGFPJA3c72kiHAEAu9opvQ
-	(envelope-from <devicetree+bounces-290762-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 23:58:37 +0200
+	id QFtZLufb72kiHAEAu9opvQ
+	(envelope-from <devicetree+bounces-290763-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 23:57:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28DDB47B017
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 23:58:36 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B39747AFF2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 23:57:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 41D53309B1C2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 21:57:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E61583026884
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 21:57:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D34D3A1E89;
-	Mon, 27 Apr 2026 21:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 567CB3A6F11;
+	Mon, 27 Apr 2026 21:57:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dYqZN9A5"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="cdF06wVZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0502136D517;
-	Mon, 27 Apr 2026 21:57:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D88AF39F190;
+	Mon, 27 Apr 2026 21:57:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777327067; cv=none; b=HfgYpk/Z8GAvRaO8rj1BTao0eTwwo+Lik/L5Ck3zC35xD52Bitb5A321WN/MpIILew+GSTYobgqm7h1ecU+awxR1p2zkHCplIjNc7roL/NcnqNHqbsqTEDcsvl7absXxQUcrbH5jn5tNYiB81FLu2ogxSGNqKCf/Lmv3Aq9bl44=
+	t=1777327068; cv=none; b=dpTj4RRomXaVOeRI8YiXgcotg6fVrlRJgRxyu4aEcGPmbHl8s5hnAV+oHcLkwI70e/VEuBWQWb2MVFflycDQoXjYvUIK5gBJRmvFVH9eDxTYe9ZJJy68e+pak1HZxlffwKlCJTRSN73L6HadHmyUhHa+GMljz39wrFmeq+y/EFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777327067; c=relaxed/simple;
-	bh=zhyJCoZrrjcFXrqebOcpw3bjPfuh5lPY066+qDv72rI=;
+	s=arc-20240116; t=1777327068; c=relaxed/simple;
+	bh=/vBqt9UZcZFgAFm1ZsAr9FZXZJaxsAIpfwkQQgR2SJM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OMXbqxzf2OCb/D/RraAVXIm5mtglrF++vU7cT9MTCqYDKEpXgUkje4hbYImSuinoIHrrZ9PDxTSjw2yyeLq31YwM8bdEHidjKHHLR+hBrrYazAy2tF2PrQKDT3ppIgNHGwkgnQG3MsECFQ9uPevEFD4H1EDXKAsy5N7Vk1gQiCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=dYqZN9A5; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=rkR5CUyFeF/we2Vu9dJFvGcjOpaPZguzpJ40ZZ5z7J2j+wDhCte4IKodZs5wfQkgxvzN4t547FXSqx6N4vdC7MLwRueKpJRE/Bj3DwJIvX1ezEi12f7sZB+y3IcBkJfIaXL0n7YM5cwJ19jQniKB9vG82a1rblSZ0PQOlE05HUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=cdF06wVZ; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1777327064;
-	bh=zhyJCoZrrjcFXrqebOcpw3bjPfuh5lPY066+qDv72rI=;
+	s=mail; t=1777327065;
+	bh=/vBqt9UZcZFgAFm1ZsAr9FZXZJaxsAIpfwkQQgR2SJM=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=dYqZN9A5MNQw5/2Ml1+Wz98fulhnNPfA/3X/bpIe2n3tpwG4oaPoQJ8F016R0dChn
-	 gXkO7r0qi3CoP8HJzZXbodXjZ5wnFaPwn8tMXjYJQEKyNm12I5F29kO/d5cfJmJPSk
-	 og/7Z7rKEM4F8r2SS2z76BnHKgCBdGiO5vdBsqtEJQMmFq4k5auD0blWpyJWEj6S4S
-	 i907OGNh7HCcaAxx89YpGKLw/2fS0XD/IOVuY7nMoSCRJeLeTro4S7h/+RUGyDXiXv
-	 rRe4HZRpTkCvJe+Z+S9HiCR+oxw20JxX8MBCWN8SrqAs85x0I7cMIQu5hlVuX/LTN2
-	 PmrssxhUX2PtQ==
+	b=cdF06wVZD/rNIwL5iUuHOlH/u0AAsbFbiMf/jol7/U2i2VMxCs3608IFIPhn8oj1o
+	 m7D28H23UoYGpLOURhHVM1fqJsOHruJPNqx5UGv/56gOcdMSjDZ+GwTBbeilv/x8PD
+	 NDiBwzoMu5opewZayvBsgGXsj/KHxIjArPQchDqf3xr+Xy0V2VX2lxvLpjwgwvA1gq
+	 fdSpk8ks3HMTh5EgUoAtcm2fho67XGD2AclqD0GP3txToU3Qv3+KWnVhzZA7W+rC2h
+	 lkDWa62r2Cxw+ViuA4lAldXoAyMLR7u92mz2G7u573x0bZCI9XxM9guzjub0GzmUvv
+	 wRQzt69EZzpzw==
 Received: from localhost (unknown [100.64.0.241])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4DE2517E1274;
-	Mon, 27 Apr 2026 23:57:44 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1FFBE17E141F;
+	Mon, 27 Apr 2026 23:57:45 +0200 (CEST)
 From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Tue, 28 Apr 2026 00:57:20 +0300
-Subject: [PATCH v2 02/13] arm64: dts: rockchip: Add frl-enable-gpios to
- rk3576-luckfox-core3576
+Date: Tue, 28 Apr 2026 00:57:21 +0300
+Subject: [PATCH v2 03/13] arm64: dts: rockchip: Add frl-enable-gpios to
+ rk3576-nanopi-r76s
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260428-dts-rk-frl-enable-gpios-v2-2-924df9db884a@collabora.com>
+Message-Id: <20260428-dts-rk-frl-enable-gpios-v2-3-924df9db884a@collabora.com>
 References: <20260428-dts-rk-frl-enable-gpios-v2-0-924df9db884a@collabora.com>
 In-Reply-To: <20260428-dts-rk-frl-enable-gpios-v2-0-924df9db884a@collabora.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -72,27 +72,27 @@ Cc: kernel@collabora.com, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
  linux-kernel@vger.kernel.org
 X-Mailer: b4 0.15.1
-X-Rspamd-Queue-Id: 28DDB47B017
+X-Rspamd-Queue-Id: 5B39747AFF2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290762-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290763-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
@@ -103,7 +103,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,collabora.com:dkim,collabora.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:dkim,collabora.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
 The board exposes the GPIO4_C6 pin to control the voltage bias on the
 HDMI data lines.  It must be asserted when operating in HDMI 2.1 FRL
@@ -112,54 +112,46 @@ mode and deasserted for HDMI 1.4/2.0 TMDS mode.
 Wire up the hdmi node to its dedicated GPIO via frl-enable-gpios to
 allow adjusting the bias when transitioning between TMDS and FRL modes.
 
-Additionally, remove the now unnecessary workaround of using
-vcc_5v0_hdmi as hdmi-pwr-supply solely to drive the GPIO into its
-default state.
-
-Also rename the hdmi_con_en pinctrl to hdmi_tx_on_h to match the
-schematic naming.
+Additionally, drop the now unnecessary workaround of using vcc5v_hdmi_tx
+as hdmi-pwr-supply solely to drive the GPIO into its default state.
 
 Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 ---
- .../boot/dts/rockchip/rk3576-luckfox-core3576.dtsi | 22 ++++------------------
- 1 file changed, 4 insertions(+), 18 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts | 16 +++-------------
+ 1 file changed, 3 insertions(+), 13 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi
-index 749f0a54b478..4fc8496828f8 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi
-@@ -26,7 +26,6 @@ chosen {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts b/arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts
+index 7ec27b05ff10..0a5cd5f6fd33 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts
+@@ -70,7 +70,6 @@ led-2 {
  
  	hdmi-con {
  		compatible = "hdmi-connector";
--		hdmi-pwr-supply = <&vcc_5v0_hdmi>;
+-		hdmi-pwr-supply = <&vcc5v_hdmi_tx>;
  		type = "a";
  
  		port {
-@@ -138,22 +137,6 @@ regulator-state-mem {
- 		};
+@@ -109,18 +108,6 @@ vcc5v_dcin: regulator-vcc5v-dcin {
+ 		regulator-name = "vcc5v_dcin";
  	};
  
--	vcc_5v0_hdmi: regulator-vcc-5v0-hdmi {
+-	vcc5v_hdmi_tx: regulator-vcc5v-hdmi-tx {
 -		compatible = "regulator-fixed";
 -		enable-active-high;
 -		gpios = <&gpio4 RK_PC6 GPIO_ACTIVE_HIGH>;
 -		pinctrl-names = "default";
--		pinctrl-0 = <&hdmi_con_en>;
+-		pinctrl-0 = <&hdmi_tx_on_h>;
 -		regulator-min-microvolt = <5000000>;
 -		regulator-max-microvolt = <5000000>;
--		regulator-name = "vcc_5v0_hdmi";
--		vin-supply = <&vcc_5v0_sys>;
--
--		regulator-state-mem {
--			regulator-off-in-suspend;
--		};
+-		regulator-name = "vcc5v_hdmi_tx";
+-		vin-supply = <&vcc5v0_sys_s5>;
 -	};
 -
- 	vcc_5v0_host: regulator-vcc-5v0-host {
+ 	vcc5v0_device_s0: regulator-vcc5v0-device-s0 {
  		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -231,6 +214,9 @@ &gpu {
+ 		regulator-always-on;
+@@ -252,6 +239,9 @@ &gpu {
  };
  
  &hdmi {
@@ -169,15 +161,6 @@ index 749f0a54b478..4fc8496828f8 100644
  	status = "okay";
  };
  
-@@ -655,7 +641,7 @@ &pcie0 {
- 
- &pinctrl {
- 	hdmi {
--		hdmi_con_en: hdmi-con-en {
-+		hdmi_tx_on_h: hdmi-tx-on-h {
- 			rockchip,pins = <4 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
 
 -- 
 2.53.0
