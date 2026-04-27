@@ -1,171 +1,147 @@
-Return-Path: <devicetree+bounces-290539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290541-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +BZDJtNZ72n5AQEAu9opvQ
-	(envelope-from <devicetree+bounces-290539-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 14:42:59 +0200
+	id wFnKFvVZ72n5AQEAu9opvQ
+	(envelope-from <devicetree+bounces-290541-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 14:43:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CCEA472A90
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 14:42:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABEEB472AB6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 14:43:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0C995303A844
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 12:39:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2CD3C304BDB9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 12:40:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF2B33B8D6D;
-	Mon, 27 Apr 2026 12:39:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SEdolQrk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE1D3B95E0;
+	Mon, 27 Apr 2026 12:40:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894FA3B8D4A;
-	Mon, 27 Apr 2026 12:39:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C6939B959
+	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 12:40:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777293590; cv=none; b=p5ojgDZ9aYVbZYlZomSW7BG3/JiT0cPOcHU4iUjOzAnTgQplWO3kGJInQhUCez0udyORfg4/uoARN+HL6+8S++6q+eamVewM8B2a49P9VstGShUX8zWMWifBSQAfsb/3vjA1guHg8p+1O1gFR0yhbST4HbdmlAfNqKIdsKKoTgE=
+	t=1777293614; cv=none; b=qi10D2MOz20cUnmjAsTQch8vIFpVTYJPV296f2gkGBuQoG2Y5oqkfG6YQYJZeY1i/yLNjAIHN2yQWDi+NHmi6jgesGfScZQHJkyMcdijy+ih2ifSKmDDJ/ETjSCYfcZl4BoaP/yNrJ6Cmo7DyLF8WYrSBGWSBW0DeZGg7QCarWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777293590; c=relaxed/simple;
-	bh=B6VXB3n93X8gQas+e8Yh7Mmm6pVyLJdNvfAKeHZtWuI=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=bcALVtrKz5C955IETXD04yRNJN/UnwhPrzrF/QJHLY7ZxsIKhoMdRa9YMGsaZRDF2+8FF0X5z7sV9Z+UK4J/Usti/R7fBhD7D9aI5EGwSyVo9EPb1a4j6eE3j8466siDIGVoQHVdsdnWp02opQgTWN3A3VEPOQvXIYNRqev6ON0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SEdolQrk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA629C19425;
-	Mon, 27 Apr 2026 12:39:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777293590;
-	bh=B6VXB3n93X8gQas+e8Yh7Mmm6pVyLJdNvfAKeHZtWuI=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=SEdolQrkY49wv+MM4qEkvALcwMpbb0oXZH16A8bc8mYX5c+E7xMGPIxt06/5wBMk2
-	 xhswo/oTLqCb2cOsjDqgTHUhr2pvauHIITQNBY2qmsm0308ZmnEPDszb2o8huKxCNN
-	 f5CCUvp9jlbjuhCT3ZdQkmTJiVsCdkmVO2aNL5mkwNfhKi1Ko/aJcmLmwYxlT7Vwsw
-	 RzZGzuzwE7jJciqCr9ar7VMpi8vOBjkMZbTGaN2nSHvJuDs0Mz/bFlUrb8tXzZgUYN
-	 7zGBgT2/OW/aQrUdd9p/kkFHGy+YWBb+dXpyHwj61BXnsvTS1BMAbothMwKyCT5CEM
-	 vYJw0fb2MhYHg==
-Date: Mon, 27 Apr 2026 07:39:48 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1777293614; c=relaxed/simple;
+	bh=9Fkw2nHzd0jcBU63nsLw9TsU/VmPTpjWCDsbuOWp1Xo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DegKcxxddWXsiNsC+gx59Oo3kThpGFpafSE/krH2ns6W8EQOeTlY+UK6zzdRQZPbVBLrGZ6huhRlZASbH965nEZUz1ZjhmKrkWmngUkCaSzfOIGzjNNbcvdyM6CxifwUBvMLVS58/MBb6uAPBAlrXf9vWLZWfkiAwhG9qaUULmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-95695190911so2193050241.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 05:40:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777293612; x=1777898412;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0mLdfPcCMerm9jSxUSMQpVhZltIoWZ/5WS8yzwZGc9g=;
+        b=kkqoBLjwRbXt4zyTLGFmaHbW1Me26lgJyCxoScyOJztbm5gvmPxmrZSaooxoHcemBr
+         nWpzC7wgtl1kycnfPksMn5E0Zmacg7LP+n7nLWHnMyrcOjgFTwSxoDefYMvEMCncCx02
+         HD3P7EdS1qdQv3cQkiFruXGbbqmxQh3wNvOK/GoTSK1R3j+1MGkEOXhYCv7oc7+yN/7w
+         vnVH4xEhgz8YksQj24xtCqKDI1Ic3TB7M8DVtYaSJxJdO+CF8JZyEaKlDAhqvSma4k9Q
+         CV0tDQ7bRtmSRpvpNiKfkP26ITCTyyi2GDcu68HmekOYPjlZ/dPe5MDT7mvdWBITi5PV
+         ODnA==
+X-Forwarded-Encrypted: i=1; AFNElJ9Pjud4k4PckspfSJiMLdixUN0dSm01f64OdCGD1jwqs5BcjspzlukjEpRjRFHKZ9rOPHOUCZBhJ8TF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9obCO7R9HgG9ZKSu9NiBrIg3r7sR3krgETQctmhqrQIWJxp/3
+	Q8g9PNp35PR05EGBSjnamZ85qbjBfK44Ivo8A0SqGgvhngTh/B5Kv6lioqw9RSQn0Bc=
+X-Gm-Gg: AeBDietiJs8KhLGFAlVlNP/0zdHINEzunaTXGiu1+qrE1xPnr048IakFlRET18GjSm/
+	YhPp8U4UKCDChkWeRGjdVpBgvwgk7wZsg/ImLbFYab1WUs3SrviAIEhoVDZVnllxWDqRFPB6RAP
+	0DpWMTtYarOcVeaoK7XBkTR1d80rgqdG6EUNmkMZ2Pg6vk6C6h+uA22yZ6TjE8hYSF6ya2y3TKM
+	08OveewDHG8FwaPgmmnGjtYTlcvJSkqy4oHjc+WcAkO5lSELm/+vQnKdbUE8RwWRqUCpUOU6mZW
+	Ar/U+SWdBJejMF9oxu6jtCQMjPAK87D+kPW0awhDNHuEJbmzUOXsF/sAPOEDvtA2NaOQP8ddESb
+	rKpKK5PQC+U4TzRIHGBW0rdpAyxr3a/UKS4aXFSD0zeje+wOrJslMdL8ZTBkEyEryG9NICDzYMA
+	CEwc9VfUh13l0Gy/PNgFI1AgX+lSQh9VG5no+OR2up68gSQgKAi0QT4kTgz0lzpxXpVkxTcDS50
+	1TW+ihr4A==
+X-Received: by 2002:a05:6102:1484:b0:609:4db5:de7c with SMTP id ada2fe7eead31-616f66c4421mr20591772137.13.1777293611985;
+        Mon, 27 Apr 2026 05:40:11 -0700 (PDT)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-9589065388asm15486376241.0.2026.04.27.05.40.11
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Apr 2026 05:40:11 -0700 (PDT)
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-60fbbac2938so4009238137.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 05:40:11 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8JfYDkHGwUxbaDVtLAzJFFdbLuasHwRtrYYyCxeB7shbqpQWdN68UnaC30uKYLPv56u05Ky/x93WbK@vger.kernel.org
+X-Received: by 2002:a05:6102:4415:b0:605:7a45:c7c5 with SMTP id
+ ada2fe7eead31-616f772e9c4mr19149950137.14.1777293611470; Mon, 27 Apr 2026
+ 05:40:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Hailong Fan <Hailong.Fan@mediatek.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Project_Global_Chrome_Upstream_Group@mediatek.com, 
- Justin Yeh <Justin.Yeh@mediatek.com>, Conor Dooley <conor+dt@kernel.org>, 
- Xiangzhi Tang <Xiangzhi.Tang@mediatek.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- linux-remoteproc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Vince-WL Liu <Vince-WL.Liu@mediatek.com>, 
- Huayu Zong <Huayu.Zong@mediatek.com>, 
- Jarried Lin <Jarried.Lin@mediatek.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Xiangzhi Tang <xiangzhi.tang@mediatek.com>
-In-Reply-To: <20260427111446.22955-2-xiangzhi.tang@mediatek.com>
-References: <20260427111446.22955-1-xiangzhi.tang@mediatek.com>
- <20260427111446.22955-2-xiangzhi.tang@mediatek.com>
-Message-Id: <177729358821.1983670.16657208241339249962.robh@kernel.org>
-Subject: Re: [PATCH v4 1/7] dt-bindings: remoteproc: Add MediaTek mt8196
- VCP binding
-X-Rspamd-Queue-Id: 1CCEA472A90
+References: <20260317101627.174491-1-biju.das.jz@bp.renesas.com> <20260317101627.174491-4-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20260317101627.174491-4-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 27 Apr 2026 14:39:59 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXQ4W7Gjs2uHF+JBzmbEN-XL3+pnKSWO9kugxB7BfWODA@mail.gmail.com>
+X-Gm-Features: AVHnY4Jn5h6-wc2ZEMcdSg_3PErpp8tISoj2_DA77h0UJ4kFfmvlw4Y9g55jhsM
+Message-ID: <CAMuHMdXQ4W7Gjs2uHF+JBzmbEN-XL3+pnKSWO9kugxB7BfWODA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/8] arm64: dts: renesas: Add reset-names for RZ/G2L
+ and RZ/V2H family SoCs
+To: Biju <biju.das.au@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: ABEEB472AB6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[mediatek.com,kernel.org,lists.infradead.org,vger.kernel.org,collabora.com,gmail.com,linaro.org];
-	TAGGED_FROM(0.00)[bounces-290539-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,bp.renesas.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-290541-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mediatek.com:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.995];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,glider.be:email]
+
+On Tue, 17 Mar 2026 at 11:16, Biju <biju.das.au@gmail.com> wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> Add reset-names for RZ/{G2L,G2UL,G3S} and RZ/{V2L,V2H,V2N} SoCs.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.2.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 
-On Mon, 27 Apr 2026 19:04:40 +0800, Xiangzhi Tang wrote:
-> Add device tree binding for the MediaTek Video Companion Processor
-> (VCP), a RISC-V based coprocessor used for video processing and
-> multimedia tasks on mt8196 and future MediaTek SoCs.
-> 
-> The VCP is a heterogeneous multi-core processor that can contain
-> multiple RISC-V cores with different hart (hardware thread)
-> configurations. Key features:
-> 
-> - Supports both single-core and multi-core VCP configurations
-> - Each core can have 1 or 2 harts (hardware threads)
-> - Shared SRAM memory space partitioned among cores
-> - Communication via 5 dedicated mailbox channels for IPI messaging
-> - Integrated with SoC IOMMU for multimedia memory management
-> - Boot and power management coordinated with ARM Trusted Firmware
-> 
-> The binding defines both the top-level VCP device (with mailboxes,
-> interrupts, and power domains) and child nodes for individual VCP
-> cores (with SRAM allocation and hart configuration).
-> 
-> Signed-off-by: Xiangzhi Tang <xiangzhi.tang@mediatek.com>
-> ---
->  .../remoteproc/mediatek,mt8196-vcp.yaml       | 166 ++++++++++++++++++
->  1 file changed, 166 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.yaml
-> 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.example.dts:26:18: fatal error: dt-bindings/power/mt8196-power.h: No such file or directory
-   26 |         #include <dt-bindings/power/mt8196-power.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.dtbs:140: Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1635: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260427111446.22955-2-xiangzhi.tang@mediatek.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
