@@ -1,174 +1,189 @@
-Return-Path: <devicetree+bounces-290415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290418-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EK3oIgcR72mU5QAAu9opvQ
-	(envelope-from <devicetree+bounces-290415-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 09:32:23 +0200
+	id uOPILJ0S72mU5QAAu9opvQ
+	(envelope-from <devicetree+bounces-290418-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 09:39:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9BE146E627
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 09:32:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 227EC46E75B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 09:39:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B470D300144C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 07:32:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 94A31302801B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 07:35:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 696BA2DA75A;
-	Mon, 27 Apr 2026 07:32:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D1D37F8DB;
+	Mon, 27 Apr 2026 07:34:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="N7sMJ2Qg"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="b6E/j7Rx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27BE12DB7BD;
-	Mon, 27 Apr 2026 07:32:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777275139; cv=none; b=MIjAqhgmsGUCCUZvnT7j7AtQsn6mJx3luJh7jMasq3i1LjpmoHOhurnfAqRjl9Wm8i9vP6zu4MCTDH2iIb3XelQp9XomadutZ6lVSBn79b6KS85GEmKS1OkPWFBDukwh+Cj1CKMiLTODbjWNBPbv83Ax6dHjqYuY8S62puONgig=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777275139; c=relaxed/simple;
-	bh=z6STT3pmp/kQBgHhBzbeymcDt4gyan7Jmn4OwjXUfv8=;
-	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=jxwHjPhIGIE07UymaSj3bg21z4f0FcGS+xqKlMOvLf8cWbFPNMqSoSe9JaSTbzq7AHnA7oE6hH7hL7dJevk7tuBSqzvvmfQSWsR+Rg1gvc0HpIEPufUhJPUhLsY8cCkplydMZ97yZAN4QgrO5B+y1oYP4NaR7meYFgTQZq6/P5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=N7sMJ2Qg; arc=none smtp.client-ip=218.76.62.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ultrarisc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
-	References:Date:Message-Id; bh=9daiWUd7+mDFWppd/lLOASVmD/eZMAIDQ
-	fi0EwUbB8o=; b=N7sMJ2QgL6XBV0wtW5cpZ/1rA44oP2O5kQW3qtOPXgfkfKsSx
-	S2URw5PtkEw/GLM8DaBQbdzuEFHvZwM/CHROGElWD9aTstZzMlKAminWXNn9eSVo
-	nmjU3P0DqjyRjjvyUt5O34BimApD/WqcOvMhySMbTr0Dd39nW4yVJO+t/8=
-Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwDXEEIcEe9pwwEDAA--.1554S2;
-	Mon, 27 Apr 2026 15:32:45 +0800 (CST)
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010016.outbound.protection.outlook.com [52.101.56.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D85A937DEAF;
+	Mon, 27 Apr 2026 07:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.16
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777275288; cv=fail; b=twRFr3JWAVsi3jUwVnIAQ9jgnvnuoNvFGLsEtdNTgvVH7PL1hDyaLNItbybdkmVYmrBBVV0/GH4ZXnh+bLHoxQHJ8yNxB/rvtzW1390QuZXUjkzFdZYMDI5qXBkWlkwyWkHKHDrU+0e1wErJIfc2V8NRybz2QdYvOkMPqnDaJbw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777275288; c=relaxed/simple;
+	bh=edv3ckUL8tzUNRqQdFTGAzgsRV+9Jw14hoOmo8d+SSk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FMWuMiHXIkWORwFTTJ9PN/shA/2UTPguLJlyzJcRKPG56GvkWB8+bNBW6nCeoLi0dPLLPkgX5uQoGF7RwEKhzYmjj1e3jO7p4AK+m4xaLPKjajSdvfeEHaY7h7O3oOEND7xhu9GZ7NW6BTiEq0ajQKna6pfQWdUToUwZisWSdLs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=b6E/j7Rx; arc=fail smtp.client-ip=52.101.56.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZeSR56R3CioxZxCUFkN6fzVqF0oONPwltCi9ORxInlw5ZdvGqKBcLWu++b0/l2qGIk8nneUS5fdsFH6jDO060lB1ZWb0Mw6BD44WJCZwRAauq0DqThaqyTXlhLtCHqp3EYr8BAwZtdReT7yWAHPcKDK4FrM/758xInruwjdNqHJMnkyH2C0tbKZgBqdRpXUbjwiUvYwYVTHakh87Xxj0vd5meXPef0biBVuCAXv+leP2PlDNFaHuJb+3u2ieVl+5hk3Oc4D2bAkFlB6BI0Lqc6ZB21359DvHREEKgO+9Wai2N/7nbxKUJ87awBnLYIaUej99YNIvjeV8uCMazLYexg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+q7IYLpaxzxj8Slac4vYCcUnab7W/GohFGTeDkD9O/s=;
+ b=QkkQvHDE1yhut9aCSTVIJcDTIPbeSdJ0rg9OFHTeebzxC/epoEr1eLHJf6HIhM0ENfuPWpY35Omzss+DhdS8ruWynPc3TSVsWH6jmXcByk/UM3ctpGI9WJbFm69GF7NzjRn/pfp/cCHuUZ9VN4qVkjS6WNd9JWMERfVp4hwEt7fr3/CJKA0uy2UhUzDKER/hYyPHSw2hzMLCByRhs7925DrNa/T0mJbqZdL3KfGjaAsX5b4kEbiYmWJtX/Qhv9mqwo6pnz+uiSwsdFjYEFgAtlIPw/iXGSEeI4BVBkeMT9o9DgxQ/xDoxI6PD6c9t798EhCreRBsUMFc+iEGppJF6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.233) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+q7IYLpaxzxj8Slac4vYCcUnab7W/GohFGTeDkD9O/s=;
+ b=b6E/j7Rxtzk44C4tHMBeEsb8AIDgLlyxqp5PedaL/GaSWe/oYNNqr+c6ZpWktk+eLtKpEZJ7xXzeOMG2MBq8rJxMvh8uaVMMiiMWzogN5KakE3zDuBS/mTQaFcJNoKScnMjqTgmJNU7EFKW7v0TY1M97RR4wxu3CDND7I99p1q+Uy31gS4N5Qbev771LDd0fgVgQXPdbpnF7z1lwuGHEh6/942Vv+VjXKgsrghwAkBEe/wpaDDYkfOoo2nvId9o5LeJFvVZ8YcRSPY3Yki/QmWUXVhkXx5TLnKNIxzfvk2ISWvVmJo1z5KAtNppQTxoom6+2rwMxO4Y2ggGONSvM/w==
+Received: from BL1PR13CA0439.namprd13.prod.outlook.com (2603:10b6:208:2c3::24)
+ by CH1PPF12253E83C.namprd12.prod.outlook.com (2603:10b6:61f:fc00::606) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.22; Mon, 27 Apr
+ 2026 07:34:39 +0000
+Received: from BL02EPF0001A0FC.namprd03.prod.outlook.com
+ (2603:10b6:208:2c3:cafe::a9) by BL1PR13CA0439.outlook.office365.com
+ (2603:10b6:208:2c3::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.26 via Frontend Transport; Mon,
+ 27 Apr 2026 07:34:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.233) by
+ BL02EPF0001A0FC.mail.protection.outlook.com (10.167.242.103) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9846.18 via Frontend Transport; Mon, 27 Apr 2026 07:34:38 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
+ (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 27 Apr
+ 2026 00:34:27 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.20; Mon, 27 Apr 2026 00:34:26 -0700
+Received: from build-amhetre-focal-20250829.internal (10.127.8.12) by
+ mail.nvidia.com (10.126.190.180) with Microsoft SMTP Server id 15.2.2562.20
+ via Frontend Transport; Mon, 27 Apr 2026 00:34:26 -0700
+From: Ashish Mhetre <amhetre@nvidia.com>
+To: <krzk@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+	<=thierry.reding@kernel.org>, <jonathanh@nvidia.com>, <sumitg@nvidia.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, Ashish Mhetre <amhetre@nvidia.com>
+Subject: [PATCH V2 0/2] memory: tegra: Add Tegra238 memory controller support
+Date: Mon, 27 Apr 2026 07:34:17 +0000
+Message-ID: <20260427073419.567360-1-amhetre@nvidia.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 2/4] serial: 8250_dw: build Renesas RZN1 CPR value
- from DW_UART_CPR_* definitions
-From: Jia Wang <wangjia@ultrarisc.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Jia Wang <wangjia@ultrarisc.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
- linux-serial <linux-serial@vger.kernel.org>, 
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-In-Reply-To: <aeuJTMqADw8J0x0u@ashevche-desk.local>
-References: <20260424-ultrarisc-serial-v4-0-1765a0b4c4a0@ultrarisc.com>
- <20260424-ultrarisc-serial-v4-2-1765a0b4c4a0@ultrarisc.com>
- <4548483c-cbba-899e-6b1a-1290d36b59cd@linux.intel.com>
- <aetv2ljDOpH_Hs4s@ashevche-desk.local>
- <363a636d-f014-cc29-6be4-ec3041f43855@linux.intel.com>
- <aeuJTMqADw8J0x0u@ashevche-desk.local>
-Date: Mon, 27 Apr 2026 15:32:00 +0800
-Message-Id: <177727512077.1796253.17951689513534549167.b4-reply@b4>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777275121; l=1960;
- i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
- bh=z6STT3pmp/kQBgHhBzbeymcDt4gyan7Jmn4OwjXUfv8=;
- b=Zmk7cQzNqKX2aQZQQyrNt5HXRMNdjrAcbrEgt4ShlWIw9e2VNfgYrlj6XxHuyq4nBzzOfBOmT
- rcay0btFWpBDRxDF7nT33gZad7L1/8UktLaSjW/pLS0coTWS7LZ0xcn
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
-X-CM-TRANSID:AQAAfwDXEEIcEe9pwwEDAA--.1554S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7trWxtw13GFW8XryDZryDAwb_yoW8Cr1Dpr
-	W3Wa4jqFZ7KrnrAr4kt3WFqF4rtFs8JFyDXrn8Xry8AFZF9r1agrW8tFWYkF9rZrn3Aw1U
-	Aa1UXa9xu34vvaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnUUvcSsGvfC2KfnxnUUI43ZEXa7xR_UUUUUUUUU==
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAKEWnti78ACwAHsm
-X-Rspamd-Queue-Id: D9BE146E627
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FC:EE_|CH1PPF12253E83C:EE_
+X-MS-Office365-Filtering-Correlation-Id: c2c5e957-f5b0-4787-dfe1-08dea42f7000
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|36860700016|82310400026|1800799024|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	GvRLgnlMbpbmejSEzIQOZIm4qqkamoOG3T2eMDQJqdOE6Pjgamgaf3Q06WU+CCMVkcHW4mLFSpibMpqJ0KQcxQ2J/1CLDOZ8Q4Hta209PPoVgFNAgd3mk2o0GjoWcMSbQMb0HDhMGyfVA7HpUeU3khkVcNRgKCjjjDPBBJoMgWmz6Eu4/ixCtwTRE+oHqEKt4jPWJpp1TLzbFlTaxW6Xxx+wKUDI2MinKgjZcRK3nrNhopTnQmfjRNL7NkP1RwxIHNbDpFOdhfCoQAtcBBtcb+URe8CU5R2IuHfhLpN61aI4gI5+hzRsmdEdoLckcD/pb0ltgfSfjIpNkKdnUtagK2SknRB/tbjv2iwVwnYtGJpNuLhL1EPcxQEjpIPypzYXJizCRJNj0aOc3Y7lI1nPpwX/dJyJpPKkMjBXrb2S2LPdcDTdoZK/uVAKevy4ih2NYxZ6qqWQTpG6zPaJ+FYq4Hz6GYsywZ8luW2u0QXL2LpQlPlVpBf7P2j4C87HUH3AY9kQv+9lkXJw6tsstjzBNwpibvFIhP3/4nF8Mi9c7Q2C33Ix3+jVGVBudqUGx1Xm1pzRa17FG27c9DmscE7StM68sCaUDgm+KMG/XNP8Cked0zVieOze49Uh8KvaGjCruKyKMNi++WIBTOO7wCTGkmwilPoxynn3Mdhwg+xOm1bI+HYRfB2hNjCwgrDgMD8hVuUyxm47QHh3TDC+Mn1JW1eYYQ575RWhTaORnV9jWYiIxUmZMQHgGa8B/J10BkLIBX5KoBKUvtXRLeUr7TfqHg==
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	9oZLoia/QBpRt53yyylI7Y5AL/V68anOSU21pdEiRSVlljR/acw/ZcGgg1cGILRNPTVV6NZvRsRJf3TzvHFeofZ1U+zwzGxsUsMluiobYB8wDdvX3KpO+xxwySsRtC/1nVCe6dSSMfWAYeYQzYqEDknfl3+YCqYHsHvGGjp2RoZ/9zsJ6Les5OcKe0fbA5NrLa0e1X9CcdleUGbEDTffpQq3hA0on4Rj7M/UKlcL7IhM/B1tghS6EMeEnzsJ1mFVV8gaItr7Ua2lTTxfo+iL5AEh4hQLzDEKDYyd/7PqcDAl60Lfv+mndfsnHaVSlUoQcYL08BqFJnmjmdlKe/al5oN4LZEl075rCKqpkt86M61GbMRyE0dcNN4ojtEdwPvOOxSP6qlbRuaHkr0uFUn1yYdkMK4K8ZFPBuXvLA3wDrNXY4P/dgeESXX8kjDwXqQl
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 07:34:38.0646
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c2c5e957-f5b0-4787-dfe1-08dea42f7000
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL02EPF0001A0FC.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PPF12253E83C
+X-Rspamd-Queue-Id: 227EC46E75B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
-	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-290418-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,nvidia.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-290415-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[ultrarisc.com:+];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[amhetre@nvidia.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
+	RCVD_COUNT_SEVEN(0.00)[9]
 
-On 2026-04-24 18:16 +0300, Andy Shevchenko wrote:
-> On Fri, Apr 24, 2026 at 05:09:46PM +0300, Ilpo Järvinen wrote:
-> > On Fri, 24 Apr 2026, Andy Shevchenko wrote:
-> > > On Fri, Apr 24, 2026 at 02:38:56PM +0300, Ilpo Järvinen wrote:
-> > > > On Fri, 24 Apr 2026, Jia Wang wrote:
-> 
-> ...
-> 
-> > > > Hmm, maybe there should also be macro also for this one which takes the 
-> > > > fifosize as input and converts it to CPR field vlaue (effectively, the 
-> > > > macro is an inverse of DW_UART_CPR_FIFO_SIZE()). It would be more readable 
-> > > > than the literal.
-> > > 
-> > > But this can be done separately, right?
-> > 
-> > It's logically part of the cpr_value literal to defines conversion (of 
-> > course one could introduce it in own patch without users but I don't see 
-> > much benefit from that).
-> 
-> No objections.
-> 
-> > > > Also include BUILD_BUG_ON(!IS_ALIGNED(fifosize, 16) + bounds checks) 
-> > > > inside that macro to catch invalid fifo sizes (+ don't forget the 
-> > > > necessary headers for those two new things).
-> > > 
-> > > Hmm... Some devices may have FIFO = 8 or 4 bytes (Intel Quark IIRC has less
-> > > than 16 and it's DW IP).
-> > 
-> > Perhaps but according the DW databook I've at hand, there are no values in 
-> > FIFO_MODE field for such FIFO sizes. So what would CPR contain in those
-> > cases for FIFO_MODE field?
-> 
-> On real HW it returns 0s for all registers above 0x07 (multiplied by 4 as
-> a stride). But I also checked the values of xmit_fifo_size and it shows 16.
-> What 8 is it is the DMA max_burst. Hence the proposed assertion should work.
-> 
+This series adds Memory Controller driver support for the Tegra238 SoC.
 
-Thanks for the discussion and clarification. I'll add the macro
-DW_UART_CPR_FIFO_MODE_FROM_SIZE() in 8250_dwlib.h (in patch 2) with the
-suggested build‑time checks (using BUILD_BUG_ON_ZERO for bounds validation),
- and update patch 4 to use it.
+Tegra238 is similar to Tegra234 but with a reduced memory controller
+configuration featuring 8 channels instead of 16. The driver reuses
+Tegra234 memory client IDs and ICC operations, with Tegra238-specific
+stream IDs for SMMU configuration.
 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
-> 
+Changes in V2:
+- Reorder patches: dt-bindings patch first, driver patch second
+- Resolve tegra238 build dependency on CONFIG_ARCH_TEGRA_234_SOC
+- Remove lite carveouts comment from tegra238_mc_soc
 
-Best Regards,
-Jia Wang
+Ashish Mhetre (2):
+  dt-bindings: memory: tegra: Add nvidia,tegra238-mc compatible
+  memory: tegra: Add T238 MC support
+
+ .../nvidia,tegra186-mc.yaml                   |  31 ++
+ drivers/memory/tegra/Makefile                 |   1 +
+ drivers/memory/tegra/mc.c                     |   3 +
+ drivers/memory/tegra/mc.h                     |   9 +
+ drivers/memory/tegra/tegra234.c               |   2 +-
+ drivers/memory/tegra/tegra238.c               | 391 ++++++++++++++++++
+ .../dt-bindings/memory/nvidia,tegra238-mc.h   |  74 ++++
+ 7 files changed, 510 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/memory/tegra/tegra238.c
+ create mode 100644 include/dt-bindings/memory/nvidia,tegra238-mc.h
 
 
+-- 
+2.50.1
 
 
