@@ -1,68 +1,65 @@
-Return-Path: <devicetree+bounces-290528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290526-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8MZ4FgtW72nJAQEAu9opvQ
-	(envelope-from <devicetree+bounces-290528-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 14:26:51 +0200
+	id CP+QOt9V72nJAQEAu9opvQ
+	(envelope-from <devicetree+bounces-290526-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 14:26:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFE0D47277F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 14:26:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85193472739
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 14:26:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3842C3062886
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 12:23:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9433B3039838
+	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 12:23:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 549823B95E0;
-	Mon, 27 Apr 2026 12:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 261743B8BBB;
+	Mon, 27 Apr 2026 12:23:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="UYzELeGy"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="bB+zpJOd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D749F3B894A;
-	Mon, 27 Apr 2026 12:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2E3330BB8D;
+	Mon, 27 Apr 2026 12:23:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777292616; cv=none; b=pO8STWCdhXir8JkdSzIHj0NX1y/Sq96f+jcsQYDj9Winqy2xnReVNc+I48cfrRbSMT8MXbguyC1f0rLrx0csjJS36K3cLeM2zvC0B7hbubOr/S9jTtpkeWDka8mQ38/CRJh/hRuNMWi+RVbmvZDbDyhp2n8tupwJeBEEUPEIElY=
+	t=1777292615; cv=none; b=cdqFtR5/SjdkrA6bPJsD/DRU/I6wWw/6JX2fPryHUBz6orOlsGJdAXl5Ueh37tkSBveFCtjv8ajPdzvF2f0cHC4pGKoDfcg6xcW3H05wZnahywkhH3Q8L6RG3pqUYOB7fgy9Q8Jg+3mba4/u5YoK/kbTzOn9l30dzj9RPTRSLPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777292616; c=relaxed/simple;
-	bh=wHwgwUHjFL+DaHaQ7+2+TRjloCkt1nTGqE101j5LmC8=;
+	s=arc-20240116; t=1777292615; c=relaxed/simple;
+	bh=wOMRb+S84xYGj3ALNi/rLiHx5Y569BD0oCZsej4FYLQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mrvhX/bZisY1KDjXvQ5jmXa9DS5hnS00bDwo1kvCSPl4+yeCisK9VP2gxVvsw+BkrnxN5p1hidOs2YG/GAZAg/7O2DbLbR3wBVEABZOhq2SAJeWz5UOHHNof3C0+HZRxbmzOY5UHcYF0ibYmfLw5bYjdhUgcstrsE20irz8e6Q0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=UYzELeGy; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=f4iUi4UzpNcyxfKnNwDOEZd00FlR3V/fireyVXJXcSDBNz9I/Kqs9B/iTgUEpyAQeS+kecb82zqBy13ux4eih3qXQduQCVhYnZfLg5gJPmPU2RsCf/S7sxH+6+n9rIOd86Zi+qoh3voAA7NYVrklRT2zm+6pfhBW1gxYiZ7nDug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=bB+zpJOd; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=rSa4DsT5RHn/LdrwfWnRLn67k6i1+NfLB6ROGNloCyo=; b=UYzELeGymE59QPg89eSJu+qECD
-	6mqObrTNGCj4NLoYQNA/Q3HgnAIl1clnfFZiJPFl0oY0nEbUGEhVoLcoN3QunicBTxe++VzPdizGL
-	0x9TFsEhxGeiWwnoUl3FbTezFHK5BmDRCyWeqgHdmHHJ4gD8xgMRHhuO30bLkBPBdA+vhX16dIO5M
-	ZgNcNcrWx4/+1SUMSXKoXD/HgOgGLnbg/wQu5JOw+S61WY673LcD6ykWOahZmccHrKM0/bhEelTxg
-	bhPrABLndzFbmv+jUZD8d/luHby8kKUAev3Bota6q2DGYrVtrFcb9Uks5r25lJopooGZoTGyL+NDM
-	d6OMEPcg==;
+	bh=uE986gg6nM72Izjx5bFVwuKM9D3x70M7dapwBTjDcY4=; b=bB+zpJOdC0HNgQrSiDejgSn50j
+	iWqMaJluZTxDFGPRSsmoFr/m07oe1sTBf9PpDNwiUw6hDpqgHGlHNcUrwr+T+d4qk0DEG2W/JjUuY
+	4Mj+bP2ZixSzPB4MC9DiEXfqIfnkrPp84Ts4oyhja1J5GIwfsjyEpLHIPa8OV36sCtR2pKoahYZak
+	In3s0WMe1lKhfVfbPhQRLPGOuFxOq7Pv68r0wIpSreg8taKf8EQt/r+6zkyXJVd5UUz0/otWZumLD
+	mZ1j7+gCPVgdnwmYkSOYWeJRg+5mhmdXQEI1+RWMTr37EGyi6gdFIRwR6byQKvzcjcFiy5OGpu0uf
+	wyaDGvqQ==;
 From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Quentin Schulz <foss+kernel@0leil.net>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Gray Huang <gray.huang@wesion.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] arm64: dts: rockchip: fix Ethernet PHY on Theobroma PX30 devices
-Date: Mon, 27 Apr 2026 14:23:19 +0200
-Message-ID: <177729258224.1866089.13274076466595011566.b4-ty@sntech.de>
+	nick@khadas.com
+Subject: Re: (subset) [PATCH 0/6] arm64: dts: rockchip: Add peripheral support for Khadas Edge 2L
+Date: Mon, 27 Apr 2026 14:23:20 +0200
+Message-ID: <177729258237.1866089.1613069864896514625.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260421-px30-eth-phy-v2-0-68c375b120fd@cherry.de>
-References: <20260421-px30-eth-phy-v2-0-68c375b120fd@cherry.de>
+In-Reply-To: <20260325054614.1497147-1-gray.huang@wesion.com>
+References: <20260325054614.1497147-1-gray.huang@wesion.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,54 +68,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: CFE0D47277F
+X-Rspamd-Queue-Id: 85193472739
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290528-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290526-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sntech.de:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,kernel];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sntech.de:email,sntech.de:dkim,sntech.de:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
 
-On Tue, 21 Apr 2026 11:45:04 +0200, Quentin Schulz wrote:
-> This removes the reliance on the bootloader setting up the Ethernet PHY
-> for the Linux kernel to be able to use Ethernet.
+On Wed, 25 Mar 2026 13:46:08 +0800, Gray Huang wrote:
+> This patch series adds support for several key peripherals to the
+> Khadas Edge 2L board, which is based on the Rockchip RK3576 SoC.
 > 
-> This is due to the HW default of the PHY reset line being active and the
-> MDIO auto-detection mechanism not controlling a PHY's reset line such
-> that we need to hardcode the PHY ID in the compatible property for it to
-> be usable by the kernel, regardless of what the bootloader is doing.
+> These patches build upon the basic board support that was previously
+> applied to the rockchip tree. This series enables essential
+> functionalities including power management, wireless connectivity,
+> graphics, display output, and USB support.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] arm64: dts: rockchip: fix Ethernet PHY not found on PX30 Cobra
-      commit: 6598ed3586a4b1cc79423666e66b9861631a6c7e
-[2/2] arm64: dts: rockchip: fix Ethernet PHY not found on PX30 Ringneck
-      commit: ae653cb854f36d1555681ce70ca3d80d0ec73516
+[1/6] arm64: dts: rockchip: Add PMIC support for Khadas Edge 2L
+      commit: 7cd8b37304be367106a02d4d902294e9bea3f45d
+[3/6] arm64: dts: rockchip: Enable GPU for Khadas Edge 2L
+      commit: 6d72e0d07145449a33678624436c73da09873c43
+[4/6] arm64: dts: rockchip: Add HDMI and VOP support for Khadas Edge 2L
+      commit: e9ec83fbc3d46b39fe92a0cbda4795ece30717f5
 
 Best regards,
 -- 
