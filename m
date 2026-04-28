@@ -1,44 +1,45 @@
-Return-Path: <devicetree+bounces-290956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290968-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oIXUCo+B8Gn6UAEAu9opvQ
-	(envelope-from <devicetree+bounces-290956-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:44:47 +0200
+	id CMqKOT588GkaUAEAu9opvQ
+	(envelope-from <devicetree+bounces-290968-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:22:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 357E2481BF2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F222648145C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:22:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3B558304792E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 09:05:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EA9E1328601B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 09:06:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10FE73DA7EA;
-	Tue, 28 Apr 2026 09:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1A243F7898;
+	Tue, 28 Apr 2026 09:01:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B71EB3DA7E0
-	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 09:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62C1D3D8135
+	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 09:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777366888; cv=none; b=ZllhyZwD+tqjRlEeO3HgGLEeOkoqmcBhs16wp7FS/UXgakBRPggAsqVagRVjguwAoQg2tbca/gFdUnbeI/h+9Ipcg4rk9NoPauZABx5c9h/bgzaRztBkqIQZnGljCr10q2zZY15svOCYnZ2IidRekVmIz1lmzIu5TUdrGjPOYWM=
+	t=1777366897; cv=none; b=ULVivHRLqLZH+uJD71wwSGE5OmzNvr03gwxJjKxOyksxmpUSAduHF1Gv4QaeKI4OYWCs8YRLiP8U7WBmEScSLS4SyyFCSi/k8Eq9UMPLHk3A14PHjOy0T/TbBCMV+MXdZliG+fPSYv7KVRf//xMEXnUTcO1Hza3np4jUHa+o3Vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777366888; c=relaxed/simple;
-	bh=TTPvb0x4OqQ5w6C/6ClXG5pZvqC8ITR3Tf7/nAb0BGE=;
+	s=arc-20240116; t=1777366897; c=relaxed/simple;
+	bh=Ik7wVtrOHKYzimsGwxz4CxrPgF8JxX/MMCTmwdWfxvQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Zpf/yD1QT/VYfPONAuMJO9jO/YRpfHSkrnPuqynn6RUEruyURZ1hQmJEylEieNb5QfPsS9SrhJJoi8vBPiu9riY0vTkxkQeiVfLHboHPb3I1kmxomdrU2jOljZZeiOzCyXaksTwyipjNXVNAR7ACUYvVpcDieSNDbq0ZvpWTST4=
+	 In-Reply-To:To:Cc; b=WCQvO2Ie4tw1K0pP9p5US1/gj7iJtxwPgmA2l39uPfzwGf+3w0ot9pHjpWH9/+3DCdxcrSk5fLaiS7+eB2PtxENGTKH7ysMkKTpIkrRVw/IN7dF/lp5/cP5dsnDCP4IjFUqWZOWQQsuT7S8C5w3aVp2UXJJE1wGXYt17GuI7WSM=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=peter.mobile.pengutronix.de)
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1wHeJF-0004Lz-Pm; Tue, 28 Apr 2026 11:00:49 +0200
+	id 1wHeJG-0004Lz-9x; Tue, 28 Apr 2026 11:00:50 +0200
 From: =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-Date: Tue, 28 Apr 2026 11:00:50 +0200
-Subject: [PATCH v5 15/29] media: rockchip: rga: align stride to 4 bytes
+Date: Tue, 28 Apr 2026 11:00:51 +0200
+Subject: [PATCH v5 16/29] media: rockchip: rga: split flip and rotate into
+ separate function
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,7 +48,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260428-spu-rga3-v5-15-eb7f5d019d86@pengutronix.de>
+Message-Id: <20260428-spu-rga3-v5-16-eb7f5d019d86@pengutronix.de>
 References: <20260428-spu-rga3-v5-0-eb7f5d019d86@pengutronix.de>
 In-Reply-To: <20260428-spu-rga3-v5-0-eb7f5d019d86@pengutronix.de>
 To: Jacob Chen <jacob-chen@iotwrt.com>, 
@@ -60,14 +61,13 @@ Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org, kernel@pengutronix.de, nicolas@ndufresne.ca, 
  sebastian.reichel@collabora.com, 
- =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>
+ =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
 X-Mailer: b4 0.15.2
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
 X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: 357E2481BF2
+X-Rspamd-Queue-Id: F222648145C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.04 / 15.00];
@@ -78,12 +78,12 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290956-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290968-lists,devicetree=lfdr.de];
 	DMARC_NA(0.00)[pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -94,75 +94,101 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,collabora.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
-Add an alignment setting to rga_hw to set the desired stride alignment.
-As the RGA2 register for the stride counts in word units, the code
-already divides the bytesperline value by 4 when writing it into the
-register. Therefore fix the alignment to a multiple of 4 to avoid
-potential off by one errors due from the division.
+Split the flip and rotate command configuration into a separate
+function in preparation of filling the command stream at streamon.
+As the userspace can change the flipping and rotation controls while
+streaming, we have to update them with each new frame to prevent the
+user being unable to change them while streaming.
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
 ---
- drivers/media/platform/rockchip/rga/rga-hw.c |  1 +
- drivers/media/platform/rockchip/rga/rga.c    | 11 ++++++-----
- drivers/media/platform/rockchip/rga/rga.h    |  1 +
- 3 files changed, 8 insertions(+), 5 deletions(-)
+ drivers/media/platform/rockchip/rga/rga-hw.c | 57 +++++++++++++++++-----------
+ 1 file changed, 34 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/media/platform/rockchip/rga/rga-hw.c b/drivers/media/platform/rockchip/rga/rga-hw.c
-index 9881c14f908d5..dac3cb6aa17d3 100644
+index dac3cb6aa17d3..6c1956b04f6ba 100644
 --- a/drivers/media/platform/rockchip/rga/rga-hw.c
 +++ b/drivers/media/platform/rockchip/rga/rga-hw.c
-@@ -580,6 +580,7 @@ const struct rga_hw rga2_hw = {
- 	.max_width = MAX_WIDTH,
- 	.min_height = MIN_HEIGHT,
- 	.max_height = MAX_HEIGHT,
-+	.stride_alignment = 4,
+@@ -156,7 +156,38 @@ static void rga_cmd_set_dst_addr(struct rga_ctx *ctx, dma_addr_t dma_addr)
+ 	dest[reg >> 2] |= 0x7 << 8;
+ }
  
- 	.start = rga_hw_start,
- 	.handle_irq = rga_handle_irq,
-diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/platform/rockchip/rga/rga.c
-index bf6bbcbfc869b..16a663aeef8c9 100644
---- a/drivers/media/platform/rockchip/rga/rga.c
-+++ b/drivers/media/platform/rockchip/rga/rga.c
-@@ -234,10 +234,10 @@ static int rga_open(struct file *file)
- 	ctx->in = def_frame;
- 	ctx->out = def_frame;
+-static void rga_cmd_set_trans_info(struct rga_ctx *ctx)
++static void rga_cmd_set_flip_rotate_info(struct rga_ctx *ctx)
++{
++	u32 *dest = ctx->cmdbuf_virt;
++	union rga_src_info src_info;
++
++	src_info.val = dest[(RGA_SRC_INFO - RGA_MODE_BASE_REG) >> 2];
++
++	if (ctx->vflip)
++		src_info.data.mir_mode |= RGA_SRC_MIRR_MODE_X;
++
++	if (ctx->hflip)
++		src_info.data.mir_mode |= RGA_SRC_MIRR_MODE_Y;
++
++	switch (ctx->rotate) {
++	case 90:
++		src_info.data.rot_mode = RGA_SRC_ROT_MODE_90_DEGREE;
++		break;
++	case 180:
++		src_info.data.rot_mode = RGA_SRC_ROT_MODE_180_DEGREE;
++		break;
++	case 270:
++		src_info.data.rot_mode = RGA_SRC_ROT_MODE_270_DEGREE;
++		break;
++	default:
++		src_info.data.rot_mode = RGA_SRC_ROT_MODE_0_DEGREE;
++		break;
++	}
++
++	dest[(RGA_SRC_INFO - RGA_MODE_BASE_REG) >> 2] = src_info.val;
++}
++
++static void rga_cmd_set_format_scale_info(struct rga_ctx *ctx)
+ {
+ 	struct rockchip_rga *rga = ctx->rga;
+ 	u32 *dest = ctx->cmdbuf_virt;
+@@ -219,27 +250,6 @@ static void rga_cmd_set_trans_info(struct rga_ctx *ctx)
+ 		}
+ 	}
  
--	v4l2_fill_pixfmt_mp(&ctx->in.pix,
--			    ctx->in.fmt->fourcc, def_width, def_height);
--	v4l2_fill_pixfmt_mp(&ctx->out.pix,
--			    ctx->out.fmt->fourcc, def_width, def_height);
-+	v4l2_fill_pixfmt_mp_aligned(&ctx->in.pix, ctx->in.fmt->fourcc,
-+				    def_width, def_height, rga->hw->stride_alignment);
-+	v4l2_fill_pixfmt_mp_aligned(&ctx->out.pix, ctx->out.fmt->fourcc,
-+				    def_width, def_height, rga->hw->stride_alignment);
+-	if (ctx->vflip)
+-		src_info.data.mir_mode |= RGA_SRC_MIRR_MODE_X;
+-
+-	if (ctx->hflip)
+-		src_info.data.mir_mode |= RGA_SRC_MIRR_MODE_Y;
+-
+-	switch (ctx->rotate) {
+-	case 90:
+-		src_info.data.rot_mode = RGA_SRC_ROT_MODE_90_DEGREE;
+-		break;
+-	case 180:
+-		src_info.data.rot_mode = RGA_SRC_ROT_MODE_180_DEGREE;
+-		break;
+-	case 270:
+-		src_info.data.rot_mode = RGA_SRC_ROT_MODE_270_DEGREE;
+-		break;
+-	default:
+-		src_info.data.rot_mode = RGA_SRC_ROT_MODE_0_DEGREE;
+-		break;
+-	}
+-
+ 	/*
+ 	 * Calculate the up/down scaling mode/factor.
+ 	 *
+@@ -431,7 +441,8 @@ static void rga_cmd_set(struct rga_ctx *ctx,
  
- 	if (mutex_lock_interruptible(&rga->mutex)) {
- 		ret = -ERESTARTSYS;
-@@ -393,7 +393,8 @@ static int vidioc_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
- 		fmt = &hw->formats[0];
+ 	rga_cmd_set_src_info(ctx, &src->offset);
+ 	rga_cmd_set_dst_info(ctx, &dst->offset);
+-	rga_cmd_set_trans_info(ctx);
++	rga_cmd_set_format_scale_info(ctx);
++	rga_cmd_set_flip_rotate_info(ctx);
  
- 	v4l2_apply_frmsize_constraints(&pix_fmt->width, &pix_fmt->height, &frmsize);
--	v4l2_fill_pixfmt_mp(pix_fmt, fmt->fourcc, pix_fmt->width, pix_fmt->height);
-+	v4l2_fill_pixfmt_mp_aligned(pix_fmt, pix_fmt->pixelformat,
-+				    pix_fmt->width, pix_fmt->height, hw->stride_alignment);
- 	pix_fmt->field = V4L2_FIELD_NONE;
+ 	rga_write(rga, RGA_CMD_BASE, ctx->cmdbuf_phy);
  
- 	return 0;
-diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/platform/rockchip/rga/rga.h
-index 04aeb7b429523..38518146910a6 100644
---- a/drivers/media/platform/rockchip/rga/rga.h
-+++ b/drivers/media/platform/rockchip/rga/rga.h
-@@ -150,6 +150,7 @@ struct rga_hw {
- 	size_t cmdbuf_size;
- 	u32 min_width, min_height;
- 	u32 max_width, max_height;
-+	u8 stride_alignment;
- 
- 	void (*start)(struct rockchip_rga *rga,
- 		      struct rga_vb_buffer *src, struct rga_vb_buffer *dst);
 
 -- 
 2.54.0
