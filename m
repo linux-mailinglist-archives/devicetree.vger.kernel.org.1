@@ -1,219 +1,299 @@
-Return-Path: <devicetree+bounces-290927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290932-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kBBYDK918GkMTwEAu9opvQ
-	(envelope-from <devicetree+bounces-290927-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 10:54:07 +0200
+	id MBqlKWR58GnMTwEAu9opvQ
+	(envelope-from <devicetree+bounces-290932-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:09:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0807E480A59
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 10:54:07 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C33CA480FA5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:09:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4E32630544C0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 08:48:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 926B2305DF6C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 08:53:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE173D648C;
-	Tue, 28 Apr 2026 08:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8278D3DA5C6;
+	Tue, 28 Apr 2026 08:52:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s7/sr7q/"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="q0JwYACV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010034.outbound.protection.outlook.com [52.101.46.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 384B33D5648;
-	Tue, 28 Apr 2026 08:47:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777366076; cv=none; b=P4bjhrheP4bPvd0+qgKr5IGsXbcwfsdTDERHsZcEZhSsvW5CgC616yvBMp9sgp7TCILjnG4YPzRUxIqGFRaNDBK4G/dbftfPBIQ6GmqeSkAbl/3YDz3DdrtzZgEQT5cvbbReGw4GU82lJeuyrm2ZGPCClYmbnZ9mYKx8e0kei18=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777366076; c=relaxed/simple;
-	bh=fJvWZVvTQMLzqag5MBlqQAvDAgjLFqRj96D23TMgFiU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fU0vLkfy7edWT6ewpmV6zhDSjzXWmzP7A7040nr2/9TLeITzC4mtmn3VapsHh0Lj4dnCuAzlZXF2vE9aJwpCBQnJDnFwirjc1t8zdofbrNsT/c63NEjiFRASeBXl2HnltSrcYk/yDCws4BWThmf3x3iozIKXqHLNBXhpA/CokuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s7/sr7q/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A1BAC2BCAF;
-	Tue, 28 Apr 2026 08:47:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777366076;
-	bh=fJvWZVvTQMLzqag5MBlqQAvDAgjLFqRj96D23TMgFiU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s7/sr7q/aBKk1jPJYgRvgwf2KE69Nojlzj8s2opBiTIvhr3SpWSnqkoSXfk9sMLLy
-	 1aA9Jph4qfqndlJFZ5EO0W0H129j76nEFUQVGOtRP0xdoSTsa1TvqlN+EUPSEKoD7g
-	 S7gNZiPBjceDzGQN11P15dZ+4V5XDiSXcPZ/x4SrG4D9G3XYl/19H5MfDYLWWa6ZSB
-	 zL+/abfIIMgjfZst6jxX5wR9EZDTRLM/Zrywi6FgmFEtAbVr42LkOw0JtRweqHCZkO
-	 chFZlgAw3XnkRiyvidqoZ1K2BbHQ/LHMkUH6O3GPUwxnU6U7z9cX4bM5yfZWXGnlh6
-	 3tSvJDSaAIiQA==
-Message-ID: <998b67ff-192a-478f-a9c6-ddcd7773e27c@kernel.org>
-Date: Tue, 28 Apr 2026 10:47:51 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB40E3D905F;
+	Tue, 28 Apr 2026 08:52:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.46.34
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777366369; cv=fail; b=AfFeE+gfO28bqsHhPoeO+bTJmhwdjUuPLq+xwwh3lTg+g0+mjakDtwek5RYj5MyfxX3wMVxj8y5gJOf1sl0crPMij2mfj9khnOSQLAx+FGwYXu58jGnYjQC0HO1LIvRMb37YT0pLsjNDMFjzF5yrFyUsrwou/P9G2MsHEfLnHtc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777366369; c=relaxed/simple;
+	bh=NDqlDf3n2tS8Pona1Z1WtZ4OzW3MUZbJItiaXBIyBt0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dbtomZUgeJDbuqv9O+DpjX4n7a98+A4QTeQNcJ9+v+ciah8xwa1Zr8dSEDV7z2EXVBlEqrnIxF2fAmRczuwsWqf5dfa1DTu9sPnU5H99sI5YcuwIqACGR805F+bYNJCMhRXbBY9Fc9SWizAxjam/K0xYSBINMUmLqcGVypDlEUs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=q0JwYACV; arc=fail smtp.client-ip=52.101.46.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XxImIP5w5y2zl+oafrYD5I/4XcpMb6GzPIrg+EJG2O+eumW0I5Ep6oqdrjILhZzfxUNisyeS2gZj8Dig8gdbr6b2NiQlOb4fqUbjpgcmLuoNTy8OP50guoKi3M/suXNZ6cu08cBqDzuQax7dOMkLSB3a72gwORjg8TjRtFNKYmtLTrza5hutGPvDZLtlxTjWA8fpxCdCewcvSbiZsMBlm9WTkb9dv5GyuiKn1ZxsjppFmQsBZ79gQkEkCqkS2OS7j7A4ieH8vb8aKYy3JpColGV5L/6rMG1xXKM9lTNK5OpfseLPpxr0RTcqHqVpKwme3iKeNLvt2s8X5DmFhhv73A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gpxIoxDMIuDwGhFhUsSNJT8jkrPzYIt3kEp/GIogvFo=;
+ b=falBDFOwLN4c3T4okGofx1zS7BJIPDmautU1Ft5tOAJBMS3VGgCS0kmRL2lGuu56Jq0KWk6o2Qr3znT632vnPMEwBi4n+mAy+yHitZ/xs49aVvMA3/SHGbSr33sjK0NByUmYW+Izk9Xs6Ycp+7zwoa/8pWpHt/PzUDqt2EYDFwPqgea+QkFxCya7g4lQzJ5I6b0Ep9ghVFwx1yeUfmWqGRkjUbyEHGT7PHihdKwGZZnVK9dNiweImGOEVquRWIQCZTYJf/XpKzEURKy3AZ6EiAZYKLVQMSMF4xq/Tr5hbOffw2PmeTavJMe9boGIHIUZy4S2bWuSsJRnMyXDCdlH1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=nxp.com smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gpxIoxDMIuDwGhFhUsSNJT8jkrPzYIt3kEp/GIogvFo=;
+ b=q0JwYACVWrgnnUPUSYmNQ38iDkSAVJdv2tlA6tBTgoyzquEy15QZk9Tp7SPwLy6AX6W8Nn5Enb+AmNmUcIg5MG7p8vmskQvYLhVQA2bkPTY2Oxfy4j5iuF6KFVOE2XbsJaIfm2b/Uhrka+R9GAmyZeCIow1tHu1YsroZgDBpCiY=
+Received: from MW4PR03CA0183.namprd03.prod.outlook.com (2603:10b6:303:b8::8)
+ by SA2PR10MB4729.namprd10.prod.outlook.com (2603:10b6:806:11c::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.26; Tue, 28 Apr
+ 2026 08:52:45 +0000
+Received: from SJ5PEPF000001F2.namprd05.prod.outlook.com
+ (2603:10b6:303:b8:cafe::ea) by MW4PR03CA0183.outlook.office365.com
+ (2603:10b6:303:b8::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.26 via Frontend Transport; Tue,
+ 28 Apr 2026 08:52:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ SJ5PEPF000001F2.mail.protection.outlook.com (10.167.242.70) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9846.18 via Frontend Transport; Tue, 28 Apr 2026 08:52:42 +0000
+Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 28 Apr
+ 2026 03:52:12 -0500
+Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 28 Apr
+ 2026 03:52:11 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE207.ent.ti.com
+ (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 28 Apr 2026 03:52:11 -0500
+Received: from uda0498651.dhcp.ti.com (uda0498651.dhcp.ti.com [172.24.233.239])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 63S8q6MI623293;
+	Tue, 28 Apr 2026 03:52:07 -0500
+From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+To: <peter.ujfalusi@gmail.com>, <vkoul@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nm@ti.com>,
+	<ssantosh@kernel.org>, <dmaengine@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
+	<Frank.li@nxp.com>, <s-adivi@ti.com>
+CC: <r-sharma3@ti.com>, <gehariprasath@ti.com>
+Subject: [PATCH v6 00/19] dmaengine: ti: Add support for BCDMA v2 and PKTDMA v2
+Date: Tue, 28 Apr 2026 14:21:29 +0530
+Message-ID: <20260428085202.1724548-1-s-adivi@ti.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: document AMD BRAM-based
- rproc
-To: Michal Simek <michal.simek@amd.com>, Ben Levinsky <ben.levinsky@amd.com>
-Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, tanmay.shah@amd.com
-References: <20260427162703.1644103-1-ben.levinsky@amd.com>
- <20260427162703.1644103-2-ben.levinsky@amd.com>
- <20260428-curly-hyena-of-triumph-fc1f4c@quoll>
- <68cf4479-c6f5-4947-bc75-df9be73644d3@amd.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <68cf4479-c6f5-4947-bc75-df9be73644d3@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 0807E480A59
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F2:EE_|SA2PR10MB4729:EE_
+X-MS-Office365-Filtering-Correlation-Id: a631c869-50bb-4f04-a8dd-08dea503826f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|7416014|36860700016|921020|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	lYcFMAmo2VbJzXIFKpUtBem1qz0r38Ctb+4jSd7ayiIWSNeKFXqq042Nlyerv6Buni2dEsgbma+5Ba7QzlQB/LeYlwy4ITavpwypDAXEoRyg33893TE9ljyuXUggBL12ImB31uw8g2ze6xxqIJQHsGDE4tNZhpYc9fyae/iZmfSzoBT0lPSet8f92pIZSU00fVjK1ajU/gvzLvKL++Hdzt/woXUgZsjRPXnUv/i7xwkhjtBfetSGPjVdtfBjC5xcf9Nz6oVoreN+v2pY5Rd3UP4q96/uxlNIuuPXLVFgC+fakbysJcMy0SeGZ/d20BBahNFKgf75xPMGQRre3N5RuhAgrYN9EFQDz6JCUX5B/j/MRcOLDKjYFQfGYSOVAahUZs5frhLO2vOodjSeZPrlgnPov3kifOU00B+aBi0ZnqsiHDn/N4vujGv3nAgVs+5KJNbQ9+Z+Y4s0VEMyJ7bG/TGuS4wO8y970zfIuAIvdxL028Fkwo2Cihlb7rVJy1GdGH6oCdhaBLPGYWDvFVUvtIn7//2wq1dF03SJEyWBN4B+OW4CeTUKkaIIQHvkXI6KfX0lccjvwjnyUBXx5GesIAYc3nepSSAqy+17msLHa3a/HWqkncxF5UI1UOfTnW13tvqyraUa0pRjpvtTNQMts+6YVg31Y1B4/txbcnnGpjCJ3qANGxbNLxWae7K2zPAqkqfr+AYfnytZYOzGt3tzk3yOSpNa/AZgdvabaE3GeKdAlA3B6ylb2pZgVzOZbq41fJDCtkSxTsgkgakXEAL7SRJCeQ1FR2G6mAtYb4YPLaFAYssoU2+nR9QH3wPjLBC3y3l3JdnJciQkfns8mHufbg==
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(7416014)(36860700016)(921020)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	jAu5/2MdqOl+czl8jRhbkGDTDUVJwir/RuBdNoWQ3Pl5vqwpy0HN71W+jiJW/5yIQaaf5ImAU2EhJIqegKePlWB/RkO28jhNwU1N88PZ1xwxA/aVUagOurwP0CczN2Zk7VrOJxZhThhuVCynusTu49ufXEjwV38K195L3eV0s9tok1C6qBNp9OzG06/rvHBedHKq3UXJinAFp//0a5ofOpFMWgnBYG2uwrRFDiriOYzIGkWepVjGESoKLVVPJoIyRPZPGi9IsMS4YTsOGtvgO5gPczd7mHquy5geNnMkDutqqr2luBJfc3oOOeHHshob2iNQGvM7X8hq2lg9ndW1z1GsjyDQAmHYVh2EFKMqySfRNdrP2AbDRvbjK+45GIN8IQPfWp2JRN/f8oSYpN52eiYXHmuz3XUKoW9Qkc70sOKfUxsXCCm5JiSlJm2RdNTw
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 08:52:42.3672
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a631c869-50bb-4f04-a8dd-08dea503826f
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ5PEPF000001F2.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR10MB4729
+X-Rspamd-Queue-Id: C33CA480FA5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [2.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-290927-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,ti.com,vger.kernel.org,lists.infradead.org,nxp.com];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290932-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[s-adivi@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:dkim,ti.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,amd.com:email]
+	RCVD_COUNT_SEVEN(0.00)[10]
 
-On 28/04/2026 10:33, Michal Simek wrote:
-> 
-> 
-> On 4/28/26 08:50, Krzysztof Kozlowski wrote:
->> On Mon, Apr 27, 2026 at 09:27:02AM -0700, Ben Levinsky wrote:
->>> Describe an AMD BRAM-based soft-core processor subsystem instantiated in
->>> programmable logic and using dual-port BRAM for firmware storage and
->>> execution.
->>>
->>> The binding models a soft-core processor subsystem instantiated in AMD
->>> programmable logic and using dual-port BRAM for firmware storage and
->>> execution. The remoteproc device is represented as a child node whose
->>> reg property describes the firmware memory window in the processor-local
->>> address space. The parent bus node provides standard devicetree address
->>> translation through ranges so Linux can access the same BRAM through the
->>> system physical address space.
->>>
->>> A clock input feeds the soft-core processor subsystem, and an active-low
->>> reset GPIO holds the processor in reset until firmware loading
->>> completes. The firmware-name property is optional.
->>>
->>> Signed-off-by: Ben Levinsky <ben.levinsky@amd.com>
->>> ---
->>>   .../bindings/remoteproc/amd,bram-rproc.yaml   | 98 +++++++++++++++++++
->>>   1 file changed, 98 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/amd,bram-rproc.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/amd,bram-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/amd,bram-rproc.yaml
->>> new file mode 100644
->>> index 000000000000..f16657dc0d9f
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/remoteproc/amd,bram-rproc.yaml
->>> @@ -0,0 +1,98 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/remoteproc/amd,bram-rproc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: AMD BRAM-based Remote Processor
->>> +
->>> +maintainers:
->>> +  - Ben Levinsky <ben.levinsky@amd.com>
->>> +
->>> +description: |
->>> +  Soft-core processor subsystem instantiated in AMD programmable logic and
->>> +  using dual-port BRAM for firmware storage and execution.
->>
->> Isn't the soft-core or FPGA still part of some Xilinx SoC? Or is this
->> completely different thing from SoC and there is a design WITHOUT SoC
->> using this remote proc?
-> 
-> In 99% case this is going to be used on Xilinx SOC with programmable logic next 
-> to ARM core.
-> soft core means - means VHDL/Verilog code synthesized to programmable 
-> logic/fpga. It means exact location in chip varies based on build and constraints.
-> 
-> hard core - physical HW location - like ARM cores in our chip.
-> 
-> (ARM is providing RTL/code that even ARM cores in fpga emulated platforms are 
-> actually used as soft cores).
-> 
-> Not sure if you want me to talk about that 1% use cases which are also possible 
-> but don't think anybody will design them.
+This series adds support for the BCDMA_V2 and PKTDMA_V2 which is
+introduced in AM62L.
 
-Then I would treat it exactly like every other block of a SoC - you need
-a SoC specific compatible. If there is a fallback, SoC specific
-compatible should be used in the fallback as well - that's all already
-documented in writing-bindings.
+The key differences between the existing DMA and DMA V2 are:
+- Absence of TISCI: Instead of configuring via TISCI calls, direct
+  register writes are required.
+- Autopair: There is no longer a need for PSIL pair and instead AUTOPAIR
+  bit needs to set in the RT_CTL register.
+- Static channel mapping: Each channel is mapped to a single peripheral.
+- Direct IRQs: There is no INT-A and interrupt lines from DMA are
+  directly connected to GIC.
+- Remote side configuration handled by DMA. So no need to write to PEER
+  registers to START / STOP / PAUSE / TEARDOWN.
+- Unified Channel Space: Tx and Rx channels share a single register
+  space. Each channel index is specifically fixed in hardware as either
+  Tx or Rx in an interleaved manner.
 
-If this is ever used standalone, outside of SoC, then maybe it will need
-its own wiring thus it will get its own compatible.
+Full tree with device tree patches can be reviewed at:
+https://github.com/sskartheekadivi/linux/tree/dma-upstream
 
-Best regards,
-Krzysztof
+Changes from v5 to v6:
+- Switch from interrupt-map to interrupts and interrupt-names in the
+  dt-bindings.
+- Reverse the if DMA version checks to check for v1 and else v2.
+- Add new patch [01/19] before refactoring to fix sporadic crash
+  observed on AM62x.
+link to v5:
+https://lore.kernel.org/all/20260218095243.2832115-1-s-adivi@ti.com/
+
+Changes from v4 to v5:
+- Introduce a new version variable in udma_match_data to differentiate
+  between K3 UDMA V1 and K3 UDMA V2. This simplifies the approach for
+  adding any future possible variants avoiding complex if conditions.
+- Fix both K3 BCDMA V2 and PKTDMA V2 dt bindings as per the comments
+  from previous versions.
+- Fix minor nitpicks like following the reverse christmas tree order for
+  variable declarations.
+- Remove the patch [v4 19/19] that switches to synchronous descriptor
+  freeing. With this patch, dma_free_coherent gets called in irq
+  context and hence a WARN().
+link to v4:
+https://lore.kernel.org/all/20260130110159.359501-1-s-adivi@ti.com/
+
+Changes from v3 to v4:
+- Rename the dt-binding files to add "ti," prefix.
+- Update cell description in dt-bindings and add client examples.
+- Update k3_ring_intr_regs reg names
+- Rename soc specific data to bcdma_v2_data and pktdma_v2_data to
+  bcdma_v2_am62l_data and pktdma_v2_am62l_data.
+- Add a new patch [18/19] to fix a null pointer dereference issue when
+  trying to reserve a channel id that is out of bounds in
+  udma_reserve_##res macro. Also fix logging issues in this macro.
+- Add a new patch [19/19] to switch to synchronous descriptor freeing to
+  avoid running out of memory during stress tests.
+- Fix checkpatch warnings.
+link to v3:
+https://lore.kernel.org/linux-arm-kernel/20250623053716.1493974-1-s-adivi@ti.com
+
+Changes from v2 to v3:
+- Fix checkpatch errors & spellings.
+link to v2:
+https://lore.kernel.org/linux-arm-kernel/20250612071521.3116831-1-s-adivi@ti.com
+
+Changes from v1 to v2:
+- Split refactoring of k3-udma driver into multiple commits
+- Fix bcdma v2 and pktdma v2 dt-binding examples
+- Fix compatibles in k3-udma-v2.c
+- move udma_is_desc_really_done to k3-udma-common.c as the difference
+  between k3-udma and k3-udma-v2 implementation is minor.
+- remove udma_ prefix to function pointers in udma_dev
+- reorder the commits to first refactor the existing code completely and
+  then introduce k3-udma-v2 related commits.
+- remove redundant includes in k3-udma-common.c
+- remove ti_sci_ dependency for k3_ringacc in Kconfig
+- refactor setup_resources functions to remove ti_sci_ code from common
+  logic.
+link to v1:
+https://lore.kernel.org/linux-arm-kernel/20250428072032.946008-1-s-adivi@ti.com
+
+Sai Sree Kartheek Adivi (18):
+  dmaengine: ti: k3-udma: move macros to header file
+  dmaengine: ti: k3-udma: move structs and enums to header file
+  dmaengine: ti: k3-udma: move static inline helper functions to header
+    file
+  dmaengine: ti: k3-udma: move descriptor management to k3-udma-common.c
+  dmaengine: ti: k3-udma: move ring management functions to
+    k3-udma-common.c
+  dmaengine: ti: k3-udma: Add variant-specific function pointers to
+    udma_dev
+  dmaengine: ti: k3-udma: move udma utility functions to
+    k3-udma-common.c
+  dmaengine: ti: k3-udma: move resource management functions to
+    k3-udma-common.c
+  dmaengine: ti: k3-udma: refactor resource setup functions
+  dmaengine: ti: k3-udma: move inclusion of k3-udma-private.c to
+    k3-udma-common.c
+  drivers: soc: ti: k3-ringacc: handle absence of tisci
+  dt-bindings: dma: ti: Add K3 BCDMA V2
+  dt-bindings: dma: ti: Add K3 PKTDMA V2
+  dmaengine: ti: k3-psil-am62l: Add AM62Lx PSIL and PDMA data
+  dmaengine: ti: k3-udma-v2: New driver for K3 BCDMA_V2
+  dmaengine: ti: k3-udma-v2: Add support for PKTDMA V2
+  dmaengine: ti: k3-udma-v2: Update glue layer to support PKTDMA V2
+  dmaengine: ti: k3-udma: Validate resource ID and fix logging in
+    reservation
+
+Vignesh Raghavendra (1):
+  dmaengine: ti: k3-udma: Fix sporadic crash on AM62x
+
+ .../bindings/dma/ti/ti,am62l-dmss-bcdma.yaml  |  121 +
+ .../bindings/dma/ti/ti,am62l-dmss-pktdma.yaml |  101 +
+ drivers/dma/ti/Kconfig                        |   21 +-
+ drivers/dma/ti/Makefile                       |    5 +-
+ drivers/dma/ti/k3-psil-am62l.c                |  132 +
+ drivers/dma/ti/k3-psil-priv.h                 |    1 +
+ drivers/dma/ti/k3-psil.c                      |    1 +
+ drivers/dma/ti/k3-udma-common.c               | 2610 ++++++++++++++
+ drivers/dma/ti/k3-udma-glue.c                 |   91 +-
+ drivers/dma/ti/k3-udma-private.c              |   37 +-
+ drivers/dma/ti/k3-udma-v2.c                   | 1467 ++++++++
+ drivers/dma/ti/k3-udma.c                      | 3104 +----------------
+ drivers/dma/ti/k3-udma.h                      |  590 ++++
+ drivers/soc/ti/k3-ringacc.c                   |  188 +-
+ include/linux/soc/ti/k3-ringacc.h             |   20 +
+ 15 files changed, 5449 insertions(+), 3040 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-bcdma.yaml
+ create mode 100644 Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-pktdma.yaml
+ create mode 100644 drivers/dma/ti/k3-psil-am62l.c
+ create mode 100644 drivers/dma/ti/k3-udma-common.c
+ create mode 100644 drivers/dma/ti/k3-udma-v2.c
+
+-- 
+2.53.0
+
 
