@@ -1,203 +1,180 @@
-Return-Path: <devicetree+bounces-291163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291169-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gLV2K07m8Gm+awEAu9opvQ
-	(envelope-from <devicetree+bounces-291163-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 18:54:38 +0200
+	id GE6FLUPm8Gm+awEAu9opvQ
+	(envelope-from <devicetree+bounces-291169-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 18:54:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEAF64896AE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 18:54:37 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 464E748969C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 18:54:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id ACBAB36F768E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 16:20:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1EB67313163A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 16:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D185447D956;
-	Tue, 28 Apr 2026 16:14:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA97C327C00;
+	Tue, 28 Apr 2026 16:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nTc8psaP";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="F0Y+5eRb"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="iwo9t9tb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D49DB43E48E
-	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 16:14:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4232765FF;
+	Tue, 28 Apr 2026 16:29:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777392859; cv=none; b=YRgQHEwoQECnUtK4cWue1cXEyXniTSs9a524b5gyRHGgLZcPQvkyGlaPa2phm/owfACYRegN3f6cpCdRsDU5U6MRvvIcRrm1zwJXxUfRboqWI7BL8RrpF/xLu+/8qYabxLkJOk942qXVLGQmEB6CyA45zZD650Veiml+TcnCYNs=
+	t=1777393774; cv=none; b=CR0C/zVlagNz1bu4DU+WT2cgU1CVXEddqSrUeVre0UV9QOLMhtrzC+QfSVbWJsBJBgVD9C3wRlBKEtTNLn8voM+eQ1FbHV5Vb3YahYJ5ahQdjpNT0w+RTdl3VJIAXuTsoeC6NW/ENpBfxb/1Kfl8/vn3mxpjRzMVwOgXRVAqLwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777392859; c=relaxed/simple;
-	bh=OGGx6Juc3+wfrS3W7vKIGdl7XlXSnp2EAZG1ceHvcEk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fd/Rsy15xAENGL3DUsXnbGtV9SesV+H4vUsCsdCL9l7c180ktR3uABNtR0YrXP8aJ6vdFiisfNtnasE+VF2x/Jxba0+nndIa0X9IaUpoQncjg9SdUOz4ZLuNlE2DMP9e7pVqOEUax6vAGRFaalixSQs/drDRLZWoML5f4u5NKJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nTc8psaP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=F0Y+5eRb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63SFsRnv3705163
-	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 16:14:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	T6oBcVBcyteYW09E2HTiBvm+oEW8wd4V4D6A2fwJL7g=; b=nTc8psaP9spOnEss
-	BctGpWDa4uTwTFgwV8U9Ue07Evsqz3mnp0VWoyj7GO+XljHrfVTFmQSfpEuyW7A4
-	FCGerCp+k8eboHHdPbxDTFwHxPEHBHhaC2xwZKR9rRoPrTlWaaNJU3PXLBFLxaan
-	lptvdek22/FiC9Fp0X5rQ6xqsgMcxqOEvtfbD3is+mCuBTQBhDDiVp4QhODZ+60t
-	CfDvAD9CllFbXszsTufAR060TKWVVSXM3DurLdW1zE88X1hzG+OfhKt/Dg0ZSq/Q
-	v8165B/sEjszvuQxvZoZMyxc9HMMZV9NdkJrur05PIeuhRJgXuUnOA00t8ParNDK
-	Cwu2HQ==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dttxh9d95-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 16:14:13 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-35fbb5779e8so12286894a91.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 09:14:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1777392852; x=1777997652; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=T6oBcVBcyteYW09E2HTiBvm+oEW8wd4V4D6A2fwJL7g=;
-        b=F0Y+5eRbvZbHDAWykbZOEVgYqr1qlZLF9ICiwpqdJ6ND8VpAONIh/05IZb+JmvOQP7
-         2u7drFeAWH2p8ccbkY4CJCxdYDoh+ma5DDgW++/gsRiz899C0zuTac5r7FoOkUFgrrYg
-         K1sRtW79uMhgzgq9bm0GUTywucn5ibPsG2bEd54FjI7LIQNrzQ1y5OzShMEBewgBc/Tf
-         M0E80Dp+XtUYVlxUoQ9xrORws6gpvjS/MQUCQIQab8MFnAEb4iv+IxdILWHLNGW1/iiM
-         N002hiNU9uF27HaYaSevPeW3rqZCvVH/+Jh7FwPFPlOJCt16oe3lxVbNId7Np/jMbvag
-         c0Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777392852; x=1777997652;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=T6oBcVBcyteYW09E2HTiBvm+oEW8wd4V4D6A2fwJL7g=;
-        b=sGFC5JlkPnWM19xPsoM4ZHRaCwN2hgRKxOpYFABYm+CG3+Gyl37eSe/CPrYfT8IgVy
-         cusdrsFWBuDUg3lt8IkORuisYrGwJR4C36s4pj2PujUyfKn8B5jZlDq0TrGyhou1Exqy
-         p1oJO8mDW0f/6sJwriUH3ZZKJ48bvoZEtK6BhNFwGWXYUdQv63cmg7HBGCchNHE+oibz
-         mPtZ7Ujn4Jo+rXfDK18IUUz7IPQRwWft9f0whQJUzEaki1lgJLqJo3CK3QNWd7cNQgWR
-         nu3uw2dnRKBHtav5ZKNI9+XHwrj3/JXtOkXt6JN/wBgNBM+PUnZs7hGJhnKuqDDZhyeJ
-         Hoow==
-X-Forwarded-Encrypted: i=1; AFNElJ/U6GPNQJU5Oy8trsYbTlN8D6KMjUlf0gHzIkaScc6ApmldEaelY78556V9M4RC3Qjaw8vY3R1eik8x@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkhgnGP2yGTtIF26zcU1MO2kKmFLj5ekTdVJBGAgjks+MqM6Oc
-	tlgtVPyJDyhnOytQxqAtE0nr2xkYSLqQbgQlItlp2GiYoQoMUT/iSvUCoogXeWop2kxWDPLsa/T
-	ToPGqv1Ib/uRXfgjTgjX+vRoW/LhxEgkjGzZmrk+ualDIMQzbubXr3U2kUAxfE2Ij
-X-Gm-Gg: AeBDiev1FQfCK32EKY8OfGNuynunBo0guq44yq1OJuobIYFjjhOCtFzGsKGaSTayod3
-	+z1xSUUi8bVNTSJgclAQsk8NuYwA2Q5zdCfTz7LkkmJdSzYNtbYOwO4gBIsaGiOOwj3OFwLjSgq
-	hTIiUE2riEeRabwWRvqLyOv7s1dMJTp9/hEUmRvCWet8HYbeVjZV2ybhuNy9FLOHBJN6WIN7eD3
-	GgjIzE2axRLhR14nltqPtipNT8C2VWxWZER/upUNxK1BFVjTdnqgsWEmrgYoRDtnaaHilDVKOcz
-	URhqobMv+Voop4NvXkpyB1z2ScI8bbniv+RfaKkJfWT7NfWxOqpEgnsQJ0FlxkUo60qtNs82nnD
-	EedZJl5nfjm1r+kdBzJkWwFylsyuD2pKON5uK4uIvz3BQWjlS9VLd9tPpzOSUJGE8rIXT/unXsv
-	cL
-X-Received: by 2002:a17:90b:3504:b0:35d:a3b4:2ef6 with SMTP id 98e67ed59e1d1-364a0f23de5mr8504a91.21.1777392852115;
-        Tue, 28 Apr 2026 09:14:12 -0700 (PDT)
-X-Received: by 2002:a17:90b:3504:b0:35d:a3b4:2ef6 with SMTP id 98e67ed59e1d1-364a0f23de5mr8470a91.21.1777392851489;
-        Tue, 28 Apr 2026 09:14:11 -0700 (PDT)
-Received: from [10.48.22.70] ([110.224.93.172])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-364a0213862sm90551a91.15.2026.04.28.09.14.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Apr 2026 09:14:11 -0700 (PDT)
-Message-ID: <3f5103b8-ebc5-4855-b032-f20f93c89dc8@oss.qualcomm.com>
-Date: Tue, 28 Apr 2026 21:44:06 +0530
+	s=arc-20240116; t=1777393774; c=relaxed/simple;
+	bh=A/z3Dpfl8QWne2AA3wu272pF/oQI3BQ4sW56WDfbAfI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dKTHmS6ihCtj68HmtY63kyJmOVwjYXxdHEz04MO9v6agFExhrPHWC/0UMzRBF/6ekJgq+93KLZzwMotCioPBSlsU2y38TNCqx+1VHLpUKnVb7KAq2EtkBGyC2tGxNn1GBP4duW+lWYoHotHZErsxPe/l9+sq1voSdlJorvL3kLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=iwo9t9tb; arc=none smtp.client-ip=195.78.66.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=mmpsystems.pl; s=x; h=Cc:To:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=n+gzKv8oABCibww26yHxbbHYrvpU+Axs/A9jx80GuIo=; b=iwo9t9tbfRmgklfoJ45J2GevEw
+	Yra2fSUDPmfbMdCp3PFIPzLC2nMmReCNdhefU+oOWqPBIZP2pp0Qz7vIt6iTqgL0NnHiEYbGN7TFa
+	ZoxxMG8EUzJiVCl2/vbsC/gVxr0+V941w0epJeEQGtWGqFhqJB4ytBk4AsxQvKl8/CanFr4tr6Zes
+	tasAEKto8LuQJBpdbrIctkZB3WdnjfTRshdMRMQdQYkVtub4fl3xumFH/K5ZNXKUw8k0vFwEvTISo
+	v9oqMmv6ZTXcITRhpsrgJCju37s9JWRdAuavWWpti2nV87+92qbqb/3O5HL1SN8PIXjXEUDxxRC9c
+	8UtXJvBQ==;
+Received: from user-188-33-36-99.play-internet.pl ([188.33.36.99] helo=localhost)
+	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <michal.piekos@mmpsystems.pl>)
+	id 1wHlJO-0000000AxAL-3BSY;
+	Tue, 28 Apr 2026 18:29:26 +0200
+From: Michal Piekos <michal.piekos@mmpsystems.pl>
+Subject: [PATCH v3 0/4] Add hstimer support for H616 and T113-S3
+Date: Tue, 28 Apr 2026 18:26:57 +0200
+Message-Id: <20260428-h616-t113s-hstimer-v3-0-7e02178a93ee@mmpsystems.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Introduce TLMM driver for Qualcomm IPQ9650 SoC
-To: Linus Walleij <linusw@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260415-ipq9650_tlmm-v1-0-bd16ccb06332@oss.qualcomm.com>
- <CAD++jLmxJUPNjXkFi490GSPwB-bHs4tdJmMFwxyCX07N=kxGHA@mail.gmail.com>
-Content-Language: en-US
-From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-In-Reply-To: <CAD++jLmxJUPNjXkFi490GSPwB-bHs4tdJmMFwxyCX07N=kxGHA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI4MDE1NSBTYWx0ZWRfX7j6FHhXBejYL
- M8iNGNAimkzkq2eE1usoHvTZPnCosgW0Dw/oOEm3sPQRKrIC8m7t4Opz0lE3OSMaRoktreNkJ/R
- nGhATDxczeDRpklkHOhUDBacpFyVL0+/PTEIsoA4sn6sFcp1xdF9wjDXu6ALKFkJKRi+uHMX4s/
- m/AN+gApKeJixwb93CpkGxa3BjD57ZMJI02JelByUkgPwsM9iezEt6d2tPRKuxHysAQWH1X43dB
- S8Xl2BoTkTUy1+jgNOAVpNW3p65Mk+YRUOzBBbfBus75SHXsVUqmVRtI3uLwnxsUEa5kROsyVQs
- dvaXN6d3X3LRg8d7UtKpNtihqyeggyTnyqSAMy7Drn8Uyq84Zgn5iHY6GvaLL+T/g8B2YrtCK26
- J49FUOiGz5X9TkOxIKdppp+na/jro9bBfWTW9xbiY0KeG4q1Ca+luX9IljYdYnMhq+8VA/nBQC1
- 6+KGgDy0S8TPgTWxpSg==
-X-Authority-Analysis: v=2.4 cv=Uu5T8ewB c=1 sm=1 tr=0 ts=69f0dcd5 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=m8rBHnErhwdSF42aeuMaWQ==:17
- a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=rkh08bgVQrwZcmFFEZkA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10 a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-ORIG-GUID: QjREGCpfZso0HJS0QYW1q9KICi8S5B59
-X-Proofpoint-GUID: QjREGCpfZso0HJS0QYW1q9KICi8S5B59
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-28_05,2026-04-28_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0 phishscore=0 adultscore=0 clxscore=1015
- suspectscore=0 impostorscore=0 bulkscore=0 priorityscore=1501
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604200000
- definitions=main-2604280155
-X-Rspamd-Queue-Id: AEAF64896AE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANHf8GkC/23NTQrCMBCG4auUrI3kp02NK+8hLmo6MQFjSyYES
+ +ndTQuCSJfvB/PMTBCiByTnaiYRskc/vErIQ0WM614PoL4vTQQTitVcUqe4oolzidRh8gEiVUJ
+ LreuT1dyQcjhGsP69oddbaecxDXHafmS+rl9O73GZU0Z5Z9sa7mBb01xCGHHCBAGP45OsZBY/j
+ FC7jCgMqAZ0b5jRfffPLMvyAQGfVwb/AAAA
+X-Change-ID: 20260413-h616-t113s-hstimer-62939948f91c
+To: Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>
+Cc: Michal Piekos <michal.piekos@mmpsystems.pl>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ Andre Przywara <andre.przywara@arm.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777393718; l=2250;
+ i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
+ bh=A/z3Dpfl8QWne2AA3wu272pF/oQI3BQ4sW56WDfbAfI=;
+ b=YPZWR+z30g3msHg1ulMXtaCsLN3LuFhl2eHGZpUPuq53B/zuv72jSPhP5CCpRtZc9XhzdIEMH
+ c2BUsjyTrnKDL6V/szS3V7KKPrsWEIAwA8noNiNE5dAB1xGDRY+lgJy
+X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
+ pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
+X-Authenticated-Id: michal.piekos@mmpsystems.pl
+X-Rspamd-Queue-Id: 464E748969C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
+	TAGGED_FROM(0.00)[bounces-291169-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291163-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.694];
+	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[mmpsystems.pl:-];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[kathiravan.thirumoorthy@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
+Add support for Allwinner D1 high speed timer in sun5i hstimer driver
+and describe corresponding nodes in dts for H616 and T113-S3 SoC's.
 
-On 4/28/2026 2:57 PM, Linus Walleij wrote:
-> On Wed, Apr 15, 2026 at 1:29 PM Kathiravan Thirumoorthy
-> <kathiravan.thirumoorthy@oss.qualcomm.com> wrote:
->
->> The IPQ9650 is Qualcomm's SoC for Routers, Gateways and Access Points.
->> Add the pinctrl support for the same.
->>
->> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-> Patches applied for v7.2!
+D1 and H616 uses same model as existing driver except register shift
+compared to older variants. 
 
-Thanks Linus.
+Added register layout abstraction in the driver, extended the binding
+with new compatibles and wired up dts nodes for T113-S3 and H616 which
+uses D1 as fallback compatible.
 
-To align with Krzysztof's change[1], do you prefer me to send the patch 
-for IPQ9650 on top of his change or do you plan to take care of it when 
-apply his change? Kindly do let me know.
+Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
+---
+Changes in v3:
+- Removed left over dead code from v1
+- Link to v2: https://lore.kernel.org/r/20260426-h616-t113s-hstimer-v2-0-e65e9dc0c9da@mmpsystems.pl
 
-[1] 
-https://lore.kernel.org/linux-arm-msm/3e7b941c-b297-48ea-89b7-e21a51f56acf@oss.qualcomm.com/T/#mb046f22f0c90ed7073e17073dc04daa931e40ee4
+Changes in v2:
+- Change driver handling of different offsets to using quirks
+- Change from t113s to d1 as the fallback compatible string
+- Fix conditional compatible matching
+- Link to v1: https://lore.kernel.org/r/20260419-h616-t113s-hstimer-v1-0-1af74ebef7c5@mmpsystems.pl
 
->
-> Yours,
-> Linus Walleij
+To: Daniel Lezcano <daniel.lezcano@kernel.org>
+To: Thomas Gleixner <tglx@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Chen-Yu Tsai <wens@kernel.org>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: Samuel Holland <samuel@sholland.org>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-sunxi@lists.linux.dev
+Cc: Andre Przywara <andre.przywara@arm.com>
+
+---
+Michal Piekos (4):
+      dt-bindings: timer: allwinner,sun5i-a13-hstimer: add H616 and D1
+      clocksource/drivers/sun5i: add D1 hstimer support
+      arm: dts: allwinner: t113s: add hstimer node
+      arm64: dts: allwinner: h616: add hstimer node
+
+ .../timer/allwinner,sun5i-a13-hstimer.yaml         |  9 ++-
+ arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi       | 11 +++
+ arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi     | 10 +++
+ drivers/clocksource/timer-sun5i.c                  | 84 +++++++++++++++++-----
+ 4 files changed, 94 insertions(+), 20 deletions(-)
+---
+base-commit: dca922e019dd758b4c1b4bec8f1d509efddeaab4
+change-id: 20260413-h616-t113s-hstimer-62939948f91c
+
+Best regards,
+--  
+Michal Piekos <michal.piekos@mmpsystems.pl>
+
 
