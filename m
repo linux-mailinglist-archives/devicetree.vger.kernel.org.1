@@ -1,145 +1,177 @@
-Return-Path: <devicetree+bounces-291292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291224-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uF38Lu+G8WmchgEAu9opvQ
-	(envelope-from <devicetree+bounces-291292-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:19:59 +0200
+	id MFFGH1hJ8WnAfgEAu9opvQ
+	(envelope-from <devicetree+bounces-291224-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 01:57:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB36948F192
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:19:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5DC048DA57
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 01:57:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F09C3300FEC8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 04:19:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6A25B31FA75A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 23:38:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB8ED38838A;
-	Wed, 29 Apr 2026 04:19:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F674389DE0;
+	Tue, 28 Apr 2026 23:35:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cnLaDfum"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lqhu2+sG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A3837C0FE;
-	Wed, 29 Apr 2026 04:19:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777436392; cv=none; b=J+CKUtS044k94fA+Pewf3FqnVkDi4pbtFftuq4sWBKVtmBUto5QvDYHjyBBFVjSvoHfWacszEvhd5WM6yBpooGgMV/xYtl7CZaPf92Y+3milPLGic6r/J++jkhhMePg9TY+Ae3TV5s22N9FJdfuMEQjcsnuwkxaIXpQO6BzrgWU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777436392; c=relaxed/simple;
-	bh=AmD4vqaT2uUvRTUm6AyJgjIJNJLVUy55SkGkTF49aMQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=YiEo11faye8YOqqidKIEUpk6YLdzeK3KhecpMpHo3/llw6wZ16ZZTm2sWzPywyl9AsEjWXtBZhQ0inWPI9QpmIZaqipjAMKGfJ3xPgIhVrL/RVPJRuvUG6XdZOsVbieYLPn88wzDh4xuwjeLFQKbVvjuvNKeZ0kYD6iD9Rghy4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cnLaDfum; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E197C2BCB4;
-	Wed, 29 Apr 2026 04:19:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777436392;
-	bh=AmD4vqaT2uUvRTUm6AyJgjIJNJLVUy55SkGkTF49aMQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=cnLaDfumluBRuImtdokXh4ERk0qYVsC+bj2tEcf2BK0yh7Xia87nSp1T1ouJ/mlne
-	 Mfg5oV0QjF6QOdgAakpqdKAuX21qceXVtTOd59nhQlXdsk0YKMcmvDk2yI39vUglR3
-	 2tgKxpFRxGTLy47vQ207oMOAUtZ21vqwThC9W5gZQ0yZgpuzgxLhl0LYYLq9jV+fqk
-	 aVUDIuZWaatTUIoC8yC+KpmeJ4AO93Bho1hjgZw/xz4FV+E9rybRsRgia1WVVY9eQr
-	 /qSJzDSeaxZuFJH9QDl8KDECEXplYL6OKex9HxfYbiwvN105IMxQ2DgqVIvSYI7eFt
-	 Ywx14L+qYwi5w==
-From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, Manish Baing <manishbaing2789@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
- kaichieh.chuang@mediatek.com, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20260428171644.5703-1-manishbaing2789@gmail.com>
-References: <20260428171644.5703-1-manishbaing2789@gmail.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: mediatek,mt6351: convert to DT
- schema
-Message-Id: <177741830306.363516.10918867152857147398.b4-ty@b4>
-Date: Wed, 29 Apr 2026 08:18:23 +0900
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5812D35CB66
+	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 23:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.178
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777419355; cv=pass; b=YrPbS1nuqLkGYS54V5J8cImYcjv3DLujy3cMOqr2yKQaIg3F/q12F1Z9gR9D5EhQHjqA5v6vbwQ1DpURRrw+vopFD/xP7Ouh+IGr5k6gYJo7cMJ5+yImjpRV4m3v0FKrDOSJQMS0bPGa3RMRBlKqB8P+/hgJsW9TbBXMM2DeLN4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777419355; c=relaxed/simple;
+	bh=p24DGe2ChYsLvCmBXf6Kp5TWFFLOr7i+/3Xsm2m1l9M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VinKe5e3Tvs0Vzp7qomozAOVuokyUTE1WTx33Vdsnw2jpbUGEk9IrzI/OgYkpUgVFY1i62L77BTDk79keAILUYm+hsOz/EEYU4APXtrpbAxl8WoTuQeYaiVn/iC8aEVjqmZ1kNQpHNVm9Eiz2aJ6NrpXHxqAthimpda3JJzv2yo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lqhu2+sG; arc=pass smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2ad9516a653so60839105ad.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 16:35:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1777419354; cv=none;
+        d=google.com; s=arc-20240605;
+        b=HaitsWGyBazoa3j5/CrO3FDVy2GPDREfSBhrQ8lnrlebh0VvvjVGIUCCA9QelG1ozt
+         SXVRmZzgtfMxGpBD2cNiB3i1oDOCh9XmGIyDYNAu19fDFKuC0gFesNrrDiLh080jemVq
+         7zt/4epmJi0mjpDWETLOAMpTuCZdE4I/9tQJ7SvyOQWYURTMy4n9XiKyQ2bvkn97/qnK
+         GRSIqYn8H/aoiZKvrfKFrnZffvEPh3ZFRAsAaqQXs9hZRR+erQpKKZqkcfCsBcAWnOb+
+         YOm4IKp4/Ai1+YZZLa1MYjbMDxi9+WjF1MeZzeHm2PVI55211hpxL3pV/NkbfFDD915O
+         FR0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=0db33wYSB/VKxNPenizKPNWOjqB/3saiIIrw++PQlmA=;
+        fh=q2wP/SQSI3YPDsd6+p3UQYD3Gp+QIkmDln6ZGaRUGr4=;
+        b=lIAF5tkGVN0x5iuAP4ROMZ8GTUmiXUjbreeypipvr4iw6J3l/NDBVwCiHnrfmFaiUp
+         o1qWEpAhbb3yAjhXSB+Mnh50B4qg2FyVg8SBY5kyZHa55iVkQpJMG5CBjtY/p1rBXTuz
+         fvSTCji9g05nkF5wipSbXorc2bHnUyrYnquBPvdfJLq4ZQSp3vwaddN3S6DhSsNmeRua
+         IskzcBb80x3JXIlsm+QzL22M/a0gAdbDR/60SKdvmD5DkiofAJjNdcu1wZPkODGDhh6s
+         USnpZl0OZBhKcFy6lxZNZvhtMnaiCszDcKJDjWjlH4wY6Qibi1g62jXzJGzazEouzXAF
+         zLTQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1777419354; x=1778024154; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0db33wYSB/VKxNPenizKPNWOjqB/3saiIIrw++PQlmA=;
+        b=lqhu2+sGzhBTsyZRRos2jZ387BvKCfAcc1fKf1A/JtGEisIHLLncDhhkhhRlvdUIMJ
+         Dlg3Jve5tuMahEqtI8RpjhflyeAMzsEIi3hfFO6jBbs2PLnQBwAKxE8w8h5rWhIu/b7h
+         i+1ggRanMO3AgRtgI6tcLrx4Anl5NaM4VL1nKJ7UaCeVYW34Bh8SvOqkrjGoFf+B4m3z
+         XwhrlcC7MepsVB3dW4Sa6QjGUZJZW5ERxk8/PwiX1ZKWInGa07LASTJi254vjO4TYUf8
+         KsgPXB1etH51a2Ky1hoCINE5EHN+oYpO5Ep8rRjv2b9Dl1aRPtQdeWinaMksZwxTenym
+         bY2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777419354; x=1778024154;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0db33wYSB/VKxNPenizKPNWOjqB/3saiIIrw++PQlmA=;
+        b=qmnTa5KOl0tDuGEnSumfbXAfW1yfGoQ43oGbBL5vyyryVRZh4YbmJ5aVPN5YBiMvqk
+         V9xNzJYYH9s92RaaE8lMRIhLWF3+pMuEjzCv4pWYNaAvAeygjuOMBsuleT+1MgE0Tk6Q
+         HSdEWFg6g7P0A6Sw3VAtsj4pSF3iRp3h3kO5NuMCqGEDqc7zAmAQ5aI0ITMZxaPEsOrQ
+         0MoBJ5ARod0G0stEHi3D+Y+BsC8ljOuYpwMa350cFvN05q7bSDY5Ne2r8md1vzgxgu91
+         VbzJD9khM45j4PheHwCJy9007OaG7K2yOICKqwQzGlHXHSboRjubTP/sD58jh+riB9cc
+         wo0w==
+X-Forwarded-Encrypted: i=1; AFNElJ+s88NeUApKkrXS3DyuCKed9/fKCDf1jLzvA40rnFjHFq5eOohEF2r6NhChYc3IcDd0guM/2qptYw3R@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfyD/qtKll71ScfEFRfiM3Wrd44mzGXTwVkjbSICSS85XieRwq
+	EHtsQtz83zmWm4Vp74Tn3B4/B79uDwiGZZjTQyXs5R4YRYSI4lzCeDVYoMgc+/6T2Brm7c9y6nP
+	hr9UvI2L3qDtryIjveFpVawsjUIMP20o=
+X-Gm-Gg: AeBDietGAfpWPEg5Gz3VQR5ivbaaHeK81V6qhhmXoCDUxnf7gzV4bIJxlR2DDvfuXvH
+	qVXHptvxf9jNCcr5Hxfx2gX3DpJPlVFNlS4JktDPxweOiqUUOAWA1tU+n14r7NWJKSP6sX1JPuc
+	+Wj8mXlnB/l89LBSsmEti/m6F9EGv8C9C+v41QzWyz4NryRxkQx8dCPYd/Pxpjb7heiRaWkU2Y1
+	A5cdxwdWGxwmXTcv12MIlDc+IybJujpGY2oSqkJXj/H5OYsAHx3UBiqfL1uZmEN886sgLumEYyH
+	KMD/Dl/K/UKyBb7hXUUPhzoCeKkQr/RRW5c4QbHJqIS5LlZc0dY=
+X-Received: by 2002:a17:903:1c5:b0:2b2:4b4e:e4d8 with SMTP id
+ d9443c01a7336-2b98730ca87mr13536075ad.4.1777419353607; Tue, 28 Apr 2026
+ 16:35:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1130; i=broonie@kernel.org;
- h=from:subject:message-id; bh=AmD4vqaT2uUvRTUm6AyJgjIJNJLVUy55SkGkTF49aMQ=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBp8YbjsZ1LJmGgZqCojzF1xlJO7LUOaQtvFgSPB
- oYB1ACcsHqJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCafGG4wAKCRAk1otyXVSH
- 0KSgB/4tV5PGktpNn5RUJqR6GvCP1Gg4ClOhRGo+4xsjo6d3QDrgQYWGh+k7sHjnZ0whup/bleN
- ZAQ8rZ1cWU3ljz98jPwzILKB92yEL5nc4wVorZmV4jfJmcuuLTTjJcEe2KxRVnuuCSRGMj0rA91
- lyoU+dcYwElbS5E7xLIcjTn2PQDR6B7bDlPwgl9LoE+gKe0r4freqjJg4upNCQAQmfmVO8Uxj7E
- hsg+tuy0noKZk5oHGZVMJtzFS6qhfdMN5l/mRkUbgY+rc+NhIxbVG4b6xnyovT9mu/mDuy2FV0X
- Ha6X1ic3NkSFi63+eth81l/6Pf5NGmmGzSdy2+8ZYLpRmAos
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
-X-Rspamd-Queue-Id: BB36948F192
+References: <20260428-topic-sm8650-ayaneo-pocket-s2-sy7758-v1-0-0caade5fdb32@linaro.org>
+ <20260428-topic-sm8650-ayaneo-pocket-s2-sy7758-v1-2-0caade5fdb32@linaro.org>
+In-Reply-To: <20260428-topic-sm8650-ayaneo-pocket-s2-sy7758-v1-2-0caade5fdb32@linaro.org>
+From: Gyeyoung Baek <gye976@gmail.com>
+Date: Wed, 29 Apr 2026 08:35:41 +0900
+X-Gm-Features: AVHnY4IUG0aEhSqiUeS0javv0LFZ7gitoer-tm54oLakxbwVeIPwDa7HUcbCYTI
+Message-ID: <CAKbEznvPAYFUt-ykH7rCQwMFUq6N68B9x7Dd97WRDm3Mvj34fw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] backlight: Add SY7758 6-channel High Efficiency LED
+ Driver support
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
+	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-fbdev@vger.kernel.org, KancyJoe <kancy2333@outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: B5DC048DA57
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291292-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291224-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org,oss.qualcomm.com];
+	FROM_NEQ_ENVFROM(0.00)[gye976@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,gmx.de,lists.freedesktop.org,vger.kernel.org,outlook.com];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
 
-On Tue, 28 Apr 2026 17:16:44 +0000, Manish Baing wrote:
-> ASoC: dt-bindings: mediatek,mt6351: convert to DT schema
+Hi,
 
-Applied to
+> +
+> +static int sy7758_probe(struct i2c_client *client)
+> +{
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.2
+> +
+> +       /* try read and check device id */
+> +       ret = regmap_read(sydev->regmap, REG_DEV_ID, &dev_id);
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, -EPROBE_DEFER,
+> +                                    "failed to read device id\n");
 
-Thanks!
+regmap_read() seems it can return errors other than -EPROBE_DEFER
+(like -EINVAL,), and hardcoding -EPROBE_DEFER here might drop the
+actual error.
+And maybe would keep retrying probe forever
 
-[1/1] ASoC: dt-bindings: mediatek,mt6351: convert to DT schema
-      https://git.kernel.org/broonie/sound/c/f103e6c27fa2
+How about this?
+> +               return dev_err_probe(dev, ret, "failed to read device id\n");
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
+-- 
 Thanks,
-Mark
-
+Gyeyoung
 
