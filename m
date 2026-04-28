@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-290824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290822-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJKOAv1G8GmIRAEAu9opvQ
-	(envelope-from <devicetree+bounces-290824-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 07:34:53 +0200
+	id SO0wOqtG8GlYRAEAu9opvQ
+	(envelope-from <devicetree+bounces-290822-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 07:33:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3A2647DA99
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 07:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA0FF47DA2D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 07:33:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0462930520CE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 05:28:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E42B3304790A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 05:28:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D48B03CEBB8;
-	Tue, 28 Apr 2026 05:26:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47DFC33F8D4;
+	Tue, 28 Apr 2026 05:26:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="BYhLsZJK"
+	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="pXJigaJV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEA4134252B;
-	Tue, 28 Apr 2026 05:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A353128B6;
+	Tue, 28 Apr 2026 05:26:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777354018; cv=none; b=KV+ZO0ZeMix01Qz9FBlRkdvitAmSd799kdp9SOCM5fGsbMisTKcaeBUUhUgp5YvhYfis7C5fA+2TPSVEaMEAk8wYuOBcKpZWECIX+U99YxRFDZOC6K3swhhUcOcnJm6YI2brq7X7SPfX7FwD/fHHI3vsIqomp4AMq5u1xdPBjXI=
+	t=1777354016; cv=none; b=AKMlVMlgUHrXYPKh/zyy6ntjPx0A+lhEoM6SHubFerjjbZ0VCduRJaA8YZdIfTQwy7Fm54Keua+EMiVUfmZIpDGaJbdf5L3kCDN8a80F+5y0qALifP9I/ffGRIMhAmHZYQ3djpazIaxXyuA/2qjHbNsJYLLq3XRmFlnmlcXKj2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777354018; c=relaxed/simple;
-	bh=jO0zlNA1eKxRESAZ5hHV3AD2XwV5WDA/D8hVXLHOwgY=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hBTGj7VZUFSb1/CsCEaD97tgeeM6vtZdQy3c4lifnd+hq1vozA7sKH4RYjkYdgtm1PEL6yCEkBLp7WVMys9MkC6inyEvLOHil2RtpmGRcIiyorPW1g7RnHDsHGXyG7Sh2TtXzS3gcd7fw/NLy2AtQ+0jdAfh9w0iL4iOoefPDKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=BYhLsZJK; arc=none smtp.client-ip=218.76.62.146
+	s=arc-20240116; t=1777354016; c=relaxed/simple;
+	bh=Fkiul2iLEVZ+3kLemmQNOMQEqokZ8eD0O6yeEXTTgPQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=NpA/Ui7NDWI2HLtMLFUo/d2G94N55EOxS0OSyAKvmeG9StdK7Il1wW9g0UZtbvXa4vwpQzA2p6yBAgteSC95CX5Gx+zu90wkhyRcs/MAzfvZUMJorb4rXPWxC/W3hrfpBdjv1SPRvw1fFxcR1HrIezO3Mc1uT2BL0m8Lpfs3HCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=pXJigaJV; arc=none smtp.client-ip=218.76.62.146
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ultrarisc.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:From:Subject:Date:Message-Id:
-	MIME-Version:Content-Type:Content-Transfer-Encoding:To:Cc; bh=tk
-	+Su0SD8Q9/52Qv4/eBjgpzRRMB+Aab/0Tn5htEYYs=; b=BYhLsZJK/a+Gi/xhNK
-	WI8B2pRhuqlFjB7EBTIo+FswAGSDuR/mewYPoXDlNRHlsdaeTwlCHgml46pno5nE
-	uiJEgTBJf3VJqDmdAMES2ghPheUj6um2U4xi/WygJtuCANte4FNM4aAL9KuE9/km
-	nSxCkkG47VJ+6LyL4Ic0GQ75c=
+	d=ultrarisc.com; s=dkim; h=Received:From:Date:Subject:
+	MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:
+	References:In-Reply-To:To:Cc; bh=Tocwkc4VYot/GoL8fVUOvCYHQKZ2C28
+	eNYcOYHfHk2E=; b=pXJigaJVEFEwEsHzBWShthxdVruzsFZ4kjYezcAr7ogJAGi
+	RymWj23zFGXKv2EQYe1NDNddrlnJ2jJ/+Ssv0gCuyvxdSKbEq1XZe0WEbrI6o1Kl
+	SxUJyw/vEStH6CkLIaTiIjtV6YN1iZE3PTWWnPHsu7NBwXY/7ZCXoBx7NbHs=
 Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwA3cUIxRfBpJRMDAA--.1785S2;
-	Tue, 28 Apr 2026 13:27:13 +0800 (CST)
+	by localhost.localdomain (Coremail) with SMTP id AQAAfwA3cUIxRfBpJRMDAA--.1785S3;
+	Tue, 28 Apr 2026 13:27:15 +0800 (CST)
 From: Jia Wang <wangjia@ultrarisc.com>
-Subject: [PATCH v5 0/4] serial: 8250_dw: Add support for UltraRISC DP1000
- UART
-Date: Tue, 28 Apr 2026 13:26:25 +0800
-Message-Id: <20260428-ultrarisc-serial-v5-0-97de63b1e3eb@ultrarisc.com>
+Date: Tue, 28 Apr 2026 13:26:26 +0800
+Subject: [PATCH v5 1/4] serial: 8250_dwlib: move DesignWare register
+ definitions to header
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,12 +54,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAFF8GkC/4XNwU6EMBQF0F8hXVvT9j2KzMr/MC5KeR1qECYtE
- A3h323ROJORxOVN7j13ZZGCp8hOxcoCLT76cUihfCiY7cxwJu7blJkSSgsQNZ/7KZjgo+V5aXq
- u0TkNFbVOaZZml0DOf+zky+t3jnPzRnbKTm50Pk5j+Nw/F5l7P7zUf/lFcsEtphegGsCUz7+VR
- zu+s3yxqP8QlRBtGqDKmada2iMErggqeYBAQqCtnKitQiXoCMFbBA8QTIisdGlEgxaNuEe2bfs
- CG3W1MpUBAAA=
-X-Change-ID: 20260309-ultrarisc-serial-64ff637edf26
+Message-Id: <20260428-ultrarisc-serial-v5-1-97de63b1e3eb@ultrarisc.com>
+References: <20260428-ultrarisc-serial-v5-0-97de63b1e3eb@ultrarisc.com>
+In-Reply-To: <20260428-ultrarisc-serial-v5-0-97de63b1e3eb@ultrarisc.com>
 To: =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
@@ -70,22 +67,22 @@ To: =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
  linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- Jia Wang <wangjia@ultrarisc.com>, Conor Dooley <conor.dooley@microchip.com>
+ Jia Wang <wangjia@ultrarisc.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777353989; l=2987;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777353989; l=7244;
  i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
- bh=jO0zlNA1eKxRESAZ5hHV3AD2XwV5WDA/D8hVXLHOwgY=;
- b=mZB5PyptJVQTQp7P790pUMUE+WLiBvm2WEW+kA5FWYSWDhGjVMiknAZFQQ//eZh+aglDFUiB0
- fBJh4X5WS5aDx9wuh4u8gA+rAmXyk4Url1jwqMOecct1fAgsq05C38U
+ bh=Fkiul2iLEVZ+3kLemmQNOMQEqokZ8eD0O6yeEXTTgPQ=;
+ b=Vx37BdtzdbWEMSjPuMv93rRYoALJkJiPSCxjPGNckNGgwaaGyB19aifBDbdbDt7VPVHX9E3Ro
+ xJULVGeKY2uCuTLFOzwSqFXP4l5+J5JikfOUE00hh4Emiu9jc0IeCmj
 X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
  pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
-X-CM-TRANSID:AQAAfwA3cUIxRfBpJRMDAA--.1785S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxXrWDGr17CryDtrW8tr1xAFb_yoW5Ar4fpF
-	4YgFsIy3s8tFyfKan7tw1rZF1SgF4rJrWYqFsrKw1Yv3W5ZF1IqrWrKw45ZF9xZ3s5Xr1j
-	9F13uw1rGa42vwUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+X-CM-TRANSID:AQAAfwA3cUIxRfBpJRMDAA--.1785S3
+X-Coremail-Antispam: 1UD129KBjvJXoW3WF48Gw1UCr1Dur45JF1UKFg_yoW3Gw4DpF
+	1FkFZ8tF1qya13W34xtFW3tr4xXFWfGw1I9ry3W3yDtFW8A34ktFyYvFW3tr4DXryrArWU
+	XF1UAw4Y9a4I9r7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
 	9KBjDU0xBIdaVrnUUvcSsGvfC2KfnxnUUI43ZEXa7xR_UUUUUUUUU==
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAKEWnti78ACwAes-
-X-Rspamd-Queue-Id: F3A2647DA99
+X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAKEWnti78ACwAgsB
+X-Rspamd-Queue-Id: EA0FF47DA2D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -98,11 +95,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290824-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290822-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -114,77 +111,197 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ultrarisc.com:email,ultrarisc.com:dkim,ultrarisc.com:mid,msgid.link:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
-This patch series adds support for the UltraRISC DP1000 UART controller.
+Move the DW_UART_* register offsets and CPR bit/field definitions from
+8250_dwlib.c into 8250_dwlib.h so they can be shared by 8250_dw and
+8250_dwlib users.
 
-The series includes four patches. The first two are preparatory cleanups;
-the last two add the DP1000 compatible and fixed CPR handling.
-
-The patches have been tested on an UltraRISC DP1000 development board with
-Linux v7.1-rc1, verifying basic UART functionality.
+Add an include guard for 8250_dwlib.h.
 
 Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
 ---
-Changes in v5:
-- Rebased onto Linux v7.1-rc1.
-- Patch 1:
-  * Reorder and document the moved DesignWare register/bit definitions.
-- Patch 2:
-  * Add a FIFO size -> CPR FIFO_MODE helper and use it for RZ/N1.
-- Patch 4:
-  * Use the FIFO_MODE helper for DP1000.
-- Link to v4: https://patch.msgid.link/20260424-ultrarisc-serial-v4-0-1765a0b4c4a0@ultrarisc.com
+ drivers/tty/serial/8250/8250_dw.c    | 11 ------
+ drivers/tty/serial/8250/8250_dwlib.c | 49 --------------------------
+ drivers/tty/serial/8250/8250_dwlib.h | 67 ++++++++++++++++++++++++++++++++++++
+ 3 files changed, 67 insertions(+), 60 deletions(-)
 
-Changes in v4:
-- Added two preparatory patches before the original series, shifting patch
-  numbers (former 1/2 -> now 3/4).
-- Patch 1:
-  * Move all DesignWare UART register/field definitions into 8250_dwlib.h
-    for shared use with 8250_dw.
-- Patch 2:
-  * Converted the Renesas RZ/N1 CPR magic value to use DW_UART_CPR_* macros
-    and FIELD_PREP_CONST().
-- Patch 4:
-  * Converted the UltraRISC DP1000 CPR magic value to use
-    DW_UART_CPR_* macros and FIELD_PREP_CONST() (value unchanged).
-- Link to v3: https://patch.msgid.link/20260421-ultrarisc-serial-v3-0-3d7f09c2420e@ultrarisc.com
+diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
+index 94beadb4024d..467755bf0092 100644
+--- a/drivers/tty/serial/8250/8250_dw.c
++++ b/drivers/tty/serial/8250/8250_dw.c
+@@ -34,22 +34,11 @@
+ 
+ #include "8250_dwlib.h"
+ 
+-/* Offsets for the DesignWare specific registers */
+-#define DW_UART_USR	0x1f /* UART Status Register */
+-#define DW_UART_DMASA	0xa8 /* DMA Software Ack */
+-
+ #define OCTEON_UART_USR	0x27 /* UART Status Register */
+ 
+ #define RZN1_UART_TDMACR 0x10c /* DMA Control Register Transmit Mode */
+ #define RZN1_UART_RDMACR 0x110 /* DMA Control Register Receive Mode */
+ 
+-/* DesignWare specific register fields */
+-#define DW_UART_IIR_IID			GENMASK(3, 0)
+-
+-#define DW_UART_MCR_SIRE		BIT(6)
+-
+-#define DW_UART_USR_BUSY		BIT(0)
+-
+ /* Renesas specific register fields */
+ #define RZN1_UART_xDMACR_DMA_EN		BIT(0)
+ #define RZN1_UART_xDMACR_1_WORD_BURST	(0 << 1)
+diff --git a/drivers/tty/serial/8250/8250_dwlib.c b/drivers/tty/serial/8250/8250_dwlib.c
+index b055d89cfb39..8859e66d2d71 100644
+--- a/drivers/tty/serial/8250/8250_dwlib.c
++++ b/drivers/tty/serial/8250/8250_dwlib.c
+@@ -13,55 +13,6 @@
+ 
+ #include "8250_dwlib.h"
+ 
+-/* Offsets for the DesignWare specific registers */
+-#define DW_UART_TCR	0xac /* Transceiver Control Register (RS485) */
+-#define DW_UART_DE_EN	0xb0 /* Driver Output Enable Register */
+-#define DW_UART_RE_EN	0xb4 /* Receiver Output Enable Register */
+-#define DW_UART_DLF	0xc0 /* Divisor Latch Fraction Register */
+-#define DW_UART_RAR	0xc4 /* Receive Address Register */
+-#define DW_UART_TAR	0xc8 /* Transmit Address Register */
+-#define DW_UART_LCR_EXT	0xcc /* Line Extended Control Register */
+-#define DW_UART_CPR	0xf4 /* Component Parameter Register */
+-#define DW_UART_UCV	0xf8 /* UART Component Version */
+-
+-/* Receive / Transmit Address Register bits */
+-#define DW_UART_ADDR_MASK		GENMASK(7, 0)
+-
+-/* Line Status Register bits */
+-#define DW_UART_LSR_ADDR_RCVD		BIT(8)
+-
+-/* Transceiver Control Register bits */
+-#define DW_UART_TCR_RS485_EN		BIT(0)
+-#define DW_UART_TCR_RE_POL		BIT(1)
+-#define DW_UART_TCR_DE_POL		BIT(2)
+-#define DW_UART_TCR_XFER_MODE		GENMASK(4, 3)
+-#define DW_UART_TCR_XFER_MODE_DE_DURING_RE	FIELD_PREP(DW_UART_TCR_XFER_MODE, 0)
+-#define DW_UART_TCR_XFER_MODE_SW_DE_OR_RE	FIELD_PREP(DW_UART_TCR_XFER_MODE, 1)
+-#define DW_UART_TCR_XFER_MODE_DE_OR_RE		FIELD_PREP(DW_UART_TCR_XFER_MODE, 2)
+-
+-/* Line Extended Control Register bits */
+-#define DW_UART_LCR_EXT_DLS_E		BIT(0)
+-#define DW_UART_LCR_EXT_ADDR_MATCH	BIT(1)
+-#define DW_UART_LCR_EXT_SEND_ADDR	BIT(2)
+-#define DW_UART_LCR_EXT_TRANSMIT_MODE	BIT(3)
+-
+-/* Component Parameter Register bits */
+-#define DW_UART_CPR_ABP_DATA_WIDTH	GENMASK(1, 0)
+-#define DW_UART_CPR_AFCE_MODE		BIT(4)
+-#define DW_UART_CPR_THRE_MODE		BIT(5)
+-#define DW_UART_CPR_SIR_MODE		BIT(6)
+-#define DW_UART_CPR_SIR_LP_MODE		BIT(7)
+-#define DW_UART_CPR_ADDITIONAL_FEATURES	BIT(8)
+-#define DW_UART_CPR_FIFO_ACCESS		BIT(9)
+-#define DW_UART_CPR_FIFO_STAT		BIT(10)
+-#define DW_UART_CPR_SHADOW		BIT(11)
+-#define DW_UART_CPR_ENCODED_PARMS	BIT(12)
+-#define DW_UART_CPR_DMA_EXTRA		BIT(13)
+-#define DW_UART_CPR_FIFO_MODE		GENMASK(23, 16)
+-
+-/* Helper for FIFO size calculation */
+-#define DW_UART_CPR_FIFO_SIZE(a)	(FIELD_GET(DW_UART_CPR_FIFO_MODE, (a)) * 16)
+-
+ /*
+  * divisor = div(I) + div(F)
+  * "I" means integer, "F" means fractional
+diff --git a/drivers/tty/serial/8250/8250_dwlib.h b/drivers/tty/serial/8250/8250_dwlib.h
+index 7dd2a8e7b780..2f26f9ecacbe 100644
+--- a/drivers/tty/serial/8250/8250_dwlib.h
++++ b/drivers/tty/serial/8250/8250_dwlib.h
+@@ -1,11 +1,76 @@
+ /* SPDX-License-Identifier: GPL-2.0+ */
+ /* Synopsys DesignWare 8250 library header file. */
+ 
++#ifndef _SERIAL_8250_DWLIB_H_
++#define _SERIAL_8250_DWLIB_H_
++
++#include <linux/bitfield.h>
++#include <linux/bits.h>
+ #include <linux/io.h>
+ #include <linux/types.h>
+ 
+ #include "8250.h"
+ 
++/* Offsets for the DesignWare specific registers */
++#define DW_UART_USR	0x1f /* UART Status Register */
++#define DW_UART_DMASA	0xa8 /* DMA Software Ack */
++#define DW_UART_TCR	0xac /* Transceiver Control Register (RS485) */
++#define DW_UART_DE_EN	0xb0 /* Driver Output Enable Register */
++#define DW_UART_RE_EN	0xb4 /* Receiver Output Enable Register */
++#define DW_UART_DLF	0xc0 /* Divisor Latch Fraction Register */
++#define DW_UART_RAR	0xc4 /* Receive Address Register */
++#define DW_UART_TAR	0xc8 /* Transmit Address Register */
++#define DW_UART_LCR_EXT	0xcc /* Line Extended Control Register */
++#define DW_UART_CPR	0xf4 /* Component Parameter Register */
++#define DW_UART_UCV	0xf8 /* UART Component Version */
++
++/* Interrupt ID Register bits */
++#define DW_UART_IIR_IID			GENMASK(3, 0)
++
++/* Modem Control Register bits */
++#define DW_UART_MCR_SIRE		BIT(6)
++
++/* Line Status Register bits */
++#define DW_UART_LSR_ADDR_RCVD		BIT(8)
++
++/* UART Status Register bits */
++#define DW_UART_USR_BUSY		BIT(0)
++
++/* Transceiver Control Register bits */
++#define DW_UART_TCR_RS485_EN		BIT(0)
++#define DW_UART_TCR_RE_POL		BIT(1)
++#define DW_UART_TCR_DE_POL		BIT(2)
++#define DW_UART_TCR_XFER_MODE		GENMASK(4, 3)
++#define DW_UART_TCR_XFER_MODE_DE_DURING_RE	FIELD_PREP(DW_UART_TCR_XFER_MODE, 0)
++#define DW_UART_TCR_XFER_MODE_SW_DE_OR_RE	FIELD_PREP(DW_UART_TCR_XFER_MODE, 1)
++#define DW_UART_TCR_XFER_MODE_DE_OR_RE		FIELD_PREP(DW_UART_TCR_XFER_MODE, 2)
++
++/* Receive / Transmit Address Register bits */
++#define DW_UART_ADDR_MASK		GENMASK(7, 0)
++
++/* Line Extended Control Register bits */
++#define DW_UART_LCR_EXT_DLS_E		BIT(0)
++#define DW_UART_LCR_EXT_ADDR_MATCH	BIT(1)
++#define DW_UART_LCR_EXT_SEND_ADDR	BIT(2)
++#define DW_UART_LCR_EXT_TRANSMIT_MODE	BIT(3)
++
++/* Component Parameter Register bits */
++#define DW_UART_CPR_ABP_DATA_WIDTH	GENMASK(1, 0)
++#define DW_UART_CPR_AFCE_MODE		BIT(4)
++#define DW_UART_CPR_THRE_MODE		BIT(5)
++#define DW_UART_CPR_SIR_MODE		BIT(6)
++#define DW_UART_CPR_SIR_LP_MODE		BIT(7)
++#define DW_UART_CPR_ADDITIONAL_FEATURES	BIT(8)
++#define DW_UART_CPR_FIFO_ACCESS		BIT(9)
++#define DW_UART_CPR_FIFO_STAT		BIT(10)
++#define DW_UART_CPR_SHADOW		BIT(11)
++#define DW_UART_CPR_ENCODED_PARMS	BIT(12)
++#define DW_UART_CPR_DMA_EXTRA		BIT(13)
++#define DW_UART_CPR_FIFO_MODE		GENMASK(23, 16)
++
++/* Helper for FIFO size calculation */
++#define DW_UART_CPR_FIFO_SIZE(a)	(FIELD_GET(DW_UART_CPR_FIFO_MODE, (a)) * 16)
++
+ struct dw8250_port_data {
+ 	/* Port properties */
+ 	int			line;
+@@ -38,3 +103,5 @@ static inline void dw8250_writel_ext(struct uart_port *p, int offset, u32 reg)
+ 	else
+ 		writel(reg, p->membase + offset);
+ }
++
++#endif /* _SERIAL_8250_DWLIB_H_ */
 
-Changes in v3:
-- Rebased on Linux v7.0-rc7.
-- Patch 1:
-   * Removed separate `items` entry for DP1000, merging it into the
-     existing `enum` to comply with the schema.
-   * Updated commit message to describe DP1000 UART hardware differences.
-- Patch 2:
-   * Drop the custom quirk for missing CPR register.
-   * Switch to using DW_UART_QUIRK_CPR_VALUE to provide a fixed CPR value.
-- Link to v2: https://patch.msgid.link/20260316-ultrarisc-serial-v2-0-6ab3e7fa891c@ultrarisc.com
-
-Changes in v2:
-- Rebased on Linux v7.0-rc4 (previously on v7.0-rc2).
-- Reordered patch series: DT binding patch comes before driver changes.
-- Updated commit message for DT binding patch.
-- Link to v1: https://patch.msgid.link/20260316-ultrarisc-serial-v1-0-c464f3e933a5@ultrarisc.com
-
----
-Jia Wang (4):
-      serial: 8250_dwlib: move DesignWare register definitions to header
-      serial: 8250_dw: build Renesas RZN1 CPR value from DW_UART_CPR_* definitions
-      dt-bindings: serial: snps-dw-apb-uart: Add UltraRISC DP1000 UART
-      serial: 8250_dw: Use a fixed CPR value for UltraRISC DP1000 UART
-
- .../bindings/serial/snps-dw-apb-uart.yaml          |  1 +
- drivers/tty/serial/8250/8250_dw.c                  | 33 ++++++----
- drivers/tty/serial/8250/8250_dwlib.c               | 49 --------------
- drivers/tty/serial/8250/8250_dwlib.h               | 74 ++++++++++++++++++++++
- 4 files changed, 96 insertions(+), 61 deletions(-)
----
-base-commit: 3b3bea6d4b9c162f9e555905d96b8c1da67ecd5b
-change-id: 20260309-ultrarisc-serial-64ff637edf26
-
-Best regards,
---  
-Jia Wang <wangjia@ultrarisc.com>
+-- 
+2.34.1
 
 
