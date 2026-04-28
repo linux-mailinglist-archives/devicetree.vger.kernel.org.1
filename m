@@ -1,86 +1,87 @@
-Return-Path: <devicetree+bounces-291128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291129-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJibDUPS8GnDYwEAu9opvQ
-	(envelope-from <devicetree+bounces-291128-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 17:29:07 +0200
+	id 2K6VC0HS8GnDYwEAu9opvQ
+	(envelope-from <devicetree+bounces-291129-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 17:29:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 979AD487D69
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 17:29:06 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9A3D487D62
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 17:29:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B8FC330021C4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 15:17:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2ADB73037647
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 15:17:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43AB5396587;
-	Tue, 28 Apr 2026 15:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF23A37BE95;
+	Tue, 28 Apr 2026 15:17:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b="Kl3gtfvM"
+	dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b="eC+j3vpM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7FBD3815D3
-	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 15:17:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F31DC75809
+	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 15:17:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777389471; cv=none; b=N4XpjXGOzwolOBbxnvoJL/YaVhBLeVEAttOPlXcf4gid5qzQvuWWvQXNpbBxwd5XuGwsnGjXoSsxYZ83aGcPrGPSj8EY1uzlDiA2WssO+cXIXDwYTlHgySRSUUrsM4XX00gL7ZO5n5wif6szlea+bPuG38AUOH0HUtdjUlcTe+E=
+	t=1777389473; cv=none; b=k975A/8D0vwx4k+CVwUmk8aeFeqojFugXYjZipSUuyRPIDldPhWBnDwelVeGAeGReKyYOFApGDYZSWEhO9fFvqezeFaAI2ZDz39dZ2nhuINNNWHojOs9q+vhUxOLjMzlRJBxLN1/6YgJ1NpyoBwK77iP2hda1IykZwG1B3j6QFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777389471; c=relaxed/simple;
-	bh=uSNuIW8V0hpSA/AMFdHGivxZvSGWV1GQMwe2XzwmbVo=;
+	s=arc-20240116; t=1777389473; c=relaxed/simple;
+	bh=7n+1n3tAUVlUb2NTZ6/xqHUyMp1IQXVl03uYXR/xiLE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=B7UusEI7ReT/At9yY6NexImQCoXm6uYv60wvfaITgrGYQ5kIbu41SHSKKScjoYSrjcjaPWyPOPzSia6T5IgFiUNl8alIVwDfovGMszzncfx+eqI1xjo1geJpReVssduYenbjXDQB8p7fRNo/och7g61Xjs4vXkvlZVb9wxtX2ow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imd-tec.com; spf=pass smtp.mailfrom=imd-tec.com; dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b=Kl3gtfvM; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:To:Cc; b=T9EmWpxuy9EYQgx0ljlOBFqb2ByyEWMDHihAyN8/G8U6B6W2t9hzmrXSOH6OMpxO5WYVfS9tlXgb6LaorSOoFWnibA3v/ngdmNIwvOK1+0qcEaWmUMnv3KIedQMO9/4Sg540s23D8A+wiodrVYvCFV8Tt4phihB0FYjLeG13ukk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imd-tec.com; spf=pass smtp.mailfrom=imd-tec.com; dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b=eC+j3vpM; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imd-tec.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imd-tec.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ba51e69988aso1574167066b.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 08:17:48 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b8f97c626aaso998507166b.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 08:17:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=imd-tec.com; s=google; t=1777389466; x=1777994266; darn=vger.kernel.org;
+        d=imd-tec.com; s=google; t=1777389468; x=1777994268; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=a/8nD0wR4HMebuAgJ83wvxsntol+jKIWo4zghtxRUaQ=;
-        b=Kl3gtfvMlmExd1Xsqght1hVl+Z76rAjMSqMjHr7rjAoiJ8sdZwViGAwbH19PycT71h
-         /yVHWQ0uJ6P9Z3ifBLcpaClf3fJc45Pdx5WcHMyLb921AFaD6ShhaxNljxGOYbGNwMek
-         1olcaCIrO+DiQHpJlBEojIn+cv/rpi5fbgj2O4gxDLhDVqWegmaQq013qS5V5fS4tABY
-         N2VH9VIFQPK5Ao2QYrEDAebZm+/a6kJdJbeHCq97c75ChpCAB9Qjwv85MtFnkFGVzPsw
-         L96CHN59BhFx1Q0Rv2NArXmmnTbasbwVhYZdwqMxxB7iVfvtzfSMWPeBO+HUAo0/WkqJ
-         BuhQ==
+        bh=RY/5ve0AYi87wKI8M4T8nphzcR95Syd1n7GrDKReYDI=;
+        b=eC+j3vpMThJMO9eS8Tb5kwA+1637H+Xk+Z9MKCLQfN6cFpXwVf/4ShiMKgwLXtJP8U
+         wA0k+XbUDI5lT35v6J00GnIgAbpPFC+Qx0McUXaTGUWPW4oJFuKMv46neSzFVsR9w4S1
+         O74Vjv5Meu6B8C7JbmNbZrDtbyJSxMhzdyTowneDqRw5dRX3LBevSXoQmGHxNKJnbD35
+         mXV0X81hctDamF6ocvq6scq0YXsz8bOXQQrdeKojmuVHlU8T194XKsxu85k+F9tUzeaX
+         HDIajVKNzrrY0r/RGekp0vNXqdiw6nWIc8flY4nnACsSS6ZDr1KJ9jx1gbiS/Qtzaqmb
+         7zGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777389466; x=1777994266;
+        d=1e100.net; s=20251104; t=1777389468; x=1777994268;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=a/8nD0wR4HMebuAgJ83wvxsntol+jKIWo4zghtxRUaQ=;
-        b=sOWvWYlgYW4TeUw0sivT88AQ2DH3L2qEA4LnTiX0QU2DdA2iNfvxa49ddqJr+50yMS
-         IqGyn7P8oLf8Rw2UQPtyOefNWszU1yXtG8kS6d0LTb4LX6/cki1d/xqO/PGwLi1ywKew
-         rT1itk6h6UQafy+Q5KU5teSgEe/RXq632Lbdgwn86E5hGrKBvpA9oXedd9j4CskfkOKl
-         bavTtYB03xvgZniPrI7ekUZPLTyCkqUvj9LrUocQP19+czOABDtuC9k58nN216bbVb0O
-         IR8kpzPJ9pnYFlOK9HpK7Bu4PeT+nbvZWkB/oNo3axv+3nw/Pji19iDxn8M0fhyQsOnZ
-         Z9Rw==
-X-Forwarded-Encrypted: i=1; AFNElJ8kO1nrcOl7ikYIAsHqNYVROm+tYHAqRnmD8sDHu276673/1JlbAnFdYtyWo+j6BDEWokofGa9gxa2Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVv3tXzEPdEjXso+uABrkPsbcCw8Lw0RPCq6ffk/9qqWZ2DBhU
-	+i8I6pL1bXINyP/Qc+gbnbjrMyKGeHbkxBY6rCzdBRrYrLRCWMxldH/mvZEBYpiN2A8=
-X-Gm-Gg: AeBDietVhKOMNHK0nzbgKIROwAFh19A2tMmBInhjaFGZTt/K+RCSO9pNZwRcMt9bp66
-	QKDuLJescEHI8uIwzue4Kmnw1HRg1rE+QcdSwA931rfGlMaxvIcx1mqeu70HpXLyxzet+iWE5t6
-	eIuHaUaXs05p4EKNjuig90q3empCr6rEd0jCHeVzZ2NN9/7nA9ktL6rnmfXH9F29NzIvtLnWs1+
-	mdIO6vTLq+FoltQkYm5Ll0MzlATnBHHDutafg61L5q+qlpMsTZJ18Pq1Ofo74riJK1lhuIoWyN/
-	VEbH/foP+CJWpjKo2s/iIe8b82wTfeQJ4r9j76L/dXBaLe7WNPRB2uSbL/7UsjUDdp4vCcfp23w
-	yqK7Obj9psw15Uj7wa26/xo9pYS97oZv32y1Pa1Iw/DPw4rwWUod0y2vPY/659TUu+wuyWhNScJ
-	HNv07EcL9BmocAgzQK4VxubFR70hiAeRU4Or3c57VMqzLUTMkS4TfBYcgYJ3jiPcEgmNThjScr/
-	Gb4YlQyCcLqA/R8wPpgZ9UHeIQ+8w==
-X-Received: by 2002:a17:907:7fa5:b0:ba6:689e:2f48 with SMTP id a640c23a62f3a-bb803f5924emr208958966b.25.1777389466250;
-        Tue, 28 Apr 2026 08:17:46 -0700 (PDT)
+        bh=RY/5ve0AYi87wKI8M4T8nphzcR95Syd1n7GrDKReYDI=;
+        b=UNW3DJlzuj4CjGvDh1DVMZuJuy8sNCxz5PckIo05TZsrbhP8aLNIiBQr7PG1SKou1Z
+         8mqYUsVygCAsZJZ5hGRG2ygA9dFntKdbpaX5pvbqIEi05lT8jk259gbQuUhDQuHZ6OC3
+         Tl/Rb+sq5sI6sgdAJY+qvtx7YcYxpmDhqadEP0DHl/GzljqTr2vZlC5hTiL2bVSly5WU
+         D9ExfMXgLrbW/5gN1ZrhQBumTUpTfuF2bUmCyeYE6BlspzAJ7RT5jM3RGHEG84Ax881g
+         xtOMnOtFFkCfK+WOUZ4xtuJi8i1ofiq1y7y9Y4gvSVcS2wes5rAqzuxAg+duiLLEgLmz
+         o0vg==
+X-Forwarded-Encrypted: i=1; AFNElJ9Cg/Ige1y5V2L6d/gthXxOiSmN3KZQ1CfK5Q6VCtHor2UKC+SEngKCLhifTLAt83gPxh7F6GwVsgai@vger.kernel.org
+X-Gm-Message-State: AOJu0YygPJP/JaSlYYS40sh9tycJemx3EVyqcdJlg3zB4OPlVMUgj2t3
+	XCLp/rRLwFyMyvtPSJGYMYTKBZKE4xml8NPeTOZf2zKimgOLL32Fhj0DEaqiw/0JT+I0YINVVXd
+	rB7hhPsRhfQ==
+X-Gm-Gg: AeBDiesKEei2KMOrCu+EbisTLmQMJ0uagwyqZRuNkvueDjFTH9ooQB1f+L+L2OFLdtk
+	pMs4+a1L6Rsbgypx5yyjfH7hNHrOuYApnYIwSt/2Vnf8s8wAtTB3tWzbZUTC3qufsww1I4kZBXB
+	3hVzXlfQ5MaScz22lX8B07a0WV/7XGqVzul79Qq8bIQVC8xNz8BoxrJnkyKiphHtmqhPjPo0Lc4
+	3KyD5OOjvtU1uoEf03pKheKNd/K4P/DctMa5EY8YpL76JKJztIQH4kmCN/SJFPZpaphRQ73FVbV
+	IV58KnDCD9l7d3kHlRMEOLQbUCasjZvCCJTe6/7AgcsXduMC1wakLNp69pSjhC4kL7k50k4lCsC
+	1qAxNe5PylbU4f5t5sZ+6U1oIC5E5zhZIB8zBcw9/ILZesXD2OxwcGLDAxUQM4M7S/6kULIYfrT
+	Jt8B3RZGreSwFGBC19Pou6rWyt9pY4o+LNPhUb0oifPMnwy8qCdEk92gY9k5voln2mSvwSmAWu9
+	XyAePPBcMRjUTjP3qGvlESu0BSf3A==
+X-Received: by 2002:a17:907:8b95:b0:bad:667f:efa3 with SMTP id a640c23a62f3a-bb8026bcbb7mr172309266b.11.1777389467428;
+        Tue, 28 Apr 2026 08:17:47 -0700 (PDT)
 Received: from [127.0.1.1] ([82.71.135.85])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bb80c0828d0sm115205366b.56.2026.04.28.08.17.45
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bb80c0828d0sm115205366b.56.2026.04.28.08.17.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Apr 2026 08:17:45 -0700 (PDT)
+        Tue, 28 Apr 2026 08:17:46 -0700 (PDT)
 From: William Bright <william.bright@imd-tec.com>
-Date: Tue, 28 Apr 2026 16:17:24 +0100
-Subject: [PATCH v2 1/2] dt-bindings: panel-simple-dsi: Add Team Source
- Display TST070WSNE-196C
+Date: Tue, 28 Apr 2026 16:17:25 +0100
+Subject: [PATCH v2 2/2] drm/panel: simple: Add Team Source Display
+ TST070WSBE-196C panel
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +90,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260428-imdt-dsi-display-v2-1-cf7294b5d7d6@imd-tec.com>
+Message-Id: <20260428-imdt-dsi-display-v2-2-cf7294b5d7d6@imd-tec.com>
 References: <20260428-imdt-dsi-display-v2-0-cf7294b5d7d6@imd-tec.com>
 In-Reply-To: <20260428-imdt-dsi-display-v2-0-cf7294b5d7d6@imd-tec.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -103,7 +104,7 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, William Bright <william.bright@imd-tec.com>
 X-Mailer: b4 0.15.2
-X-Rspamd-Queue-Id: 979AD487D69
+X-Rspamd-Queue-Id: C9A3D487D62
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -111,11 +112,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[imd-tec.com,none];
 	R_DKIM_ALLOW(-0.20)[imd-tec.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291128-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291129-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,ravnborg.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -123,7 +124,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[imd-tec.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -133,30 +134,78 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imd-tec.com:email,imd-tec.com:dkim,imd-tec.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[raw.githubusercontent.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,imd-tec.com:email,imd-tec.com:dkim,imd-tec.com:mid]
 
-Add device tree binding documentation for the Team Source Display
+Add a dedicated panel driver for the Team Source Display
 TST070WSBE-196C, a 7" 1024x600 MIPI-DSI TFT LCD panel
 using an EK79007AD controller.
 
+The DSI timings were calculated using
+"linux-mdss-dsi-panel-driver-generator" [1], reading the downstream
+file "dsi-panel-imdt-tst070wsbe165c-video.dtsi" [2].
+
+[1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
+[2] https://raw.githubusercontent.com/imd-tec/meta-imdt-qcom/refs/heads/kirkstone/recipes-display/displaydevicetree/displaydevicetree/0001-Initial-bringup-of-IMDT-Display-3.patch
+
 Signed-off-by: William Bright <william.bright@imd-tec.com>
 ---
- Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/panel/panel-simple.c | 36 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-index cc8d795df732..6d4133b91e7c 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-@@ -63,6 +63,8 @@ properties:
-       - samsung,s6e3fa7-ams559nk06
-         # Shangai Top Display Optoelectronics 7" TL070WSH30 1024x600 TFT LCD panel
-       - tdo,tl070wsh30
-+        # Team Source Display Technology 7" TST070WSBE-196C 1024x600 TFT LCD panel
-+      - team-source-display,tst070wsbe-196c
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index 236bd56208cc..0010bb3db484 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -5936,6 +5936,39 @@ static const struct panel_desc_dsi osd101t2045_53ts = {
+ 	.lanes = 4,
+ };
  
-   reg:
-     maxItems: 1
++static const struct drm_display_mode tsd_tst070wsbe_196c_mode = {
++	.clock = 52477,
++	.hdisplay = 1024,
++	.hsync_start = 1024 + 160,
++	.hsync_end = 1024 + 160 + 12,
++	.htotal = 1024 + 160 + 160 + 12,
++	.vdisplay = 600,
++	.vsync_start = 600 + 12,
++	.vsync_end = 600 + 12 + 10,
++	.vtotal = 600 + 12 + 10 + 23,
++};
++
++static const struct panel_desc_dsi tsd_tst070wsbe_196c = {
++	.desc = {
++		.modes = &tsd_tst070wsbe_196c_mode,
++		.num_modes = 1,
++		.bpc = 8,
++		.size = {
++			.width = 190,
++			.height = 121,
++		},
++		.delay = {
++			.prepare = 20,
++		},
++		.connector_type = DRM_MODE_CONNECTOR_DSI,
++	},
++	.flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_LPM |
++		 MIPI_DSI_MODE_VIDEO_BURST |
++		 MIPI_DSI_MODE_VIDEO_SYNC_PULSE,
++	.format = MIPI_DSI_FMT_RGB888,
++	.lanes = 4,
++};
++
+ static const struct of_device_id dsi_of_match[] = {
+ 	{
+ 		.compatible = "auo,b080uan01",
+@@ -5955,6 +5988,9 @@ static const struct of_device_id dsi_of_match[] = {
+ 	}, {
+ 		.compatible = "osddisplays,osd101t2045-53ts",
+ 		.data = &osd101t2045_53ts
++	}, {
++		.compatible = "team-source-display,tst070wsbe-196c",
++		.data = &tsd_tst070wsbe_196c
+ 	}, {
+ 		/* sentinel */
+ 	}
 
 -- 
 2.43.0
