@@ -1,45 +1,44 @@
-Return-Path: <devicetree+bounces-290960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290966-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0IGGCSp88GkaUAEAu9opvQ
-	(envelope-from <devicetree+bounces-290960-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:21:46 +0200
+	id cALnIz168GnMTwEAu9opvQ
+	(envelope-from <devicetree+bounces-290966-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:13:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37895481438
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:21:45 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45ED64810C0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:13:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 687D5302A5ED
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 09:05:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3147A303B5E2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 09:06:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05A223DABE3;
-	Tue, 28 Apr 2026 09:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E0F93DCD9A;
+	Tue, 28 Apr 2026 09:01:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 516863DB630
-	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 09:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D7163DC4D8
+	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 09:01:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777366892; cv=none; b=eSvCo0HOK8NZn81xR9h7QmdEWPY2X/KbxxVosNyUtjbCOzZFSpfNS8+JbV2ebs2NQ3WG8sRUp3EY7OC0DEqiTJAjkqsXeicEFSzXysXkc5vI8KbIJGvMXp+g9xFT+wVdB10EfuHU54A8j9iAxBew5Knfvhn5lC2WQfYSgK9knP4=
+	t=1777366897; cv=none; b=bmdc/99N/Z1LUH736cVlszFwy+qOwF5xw44ImF2uU2ezER5Lnek1UUUClcWoqPIlYbjmkVjUvynOYDSU3AbMfia3mzB66zjghx0Z4zeoS9tFLs3tnSqzuPKx2kfhXo48bJuexktocjsPW95+sqQ2nwfGf7K6IDZrVbOWyQCMyIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777366892; c=relaxed/simple;
-	bh=nq7RCHacjxW5EVdjmF//uWDgPOh24j6z6FUTeV2RpiI=;
+	s=arc-20240116; t=1777366897; c=relaxed/simple;
+	bh=l6bSG3NQKF5d4z8cPxaFXt/pwQb6kHi9wSPD2dRYwAc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CzzXb27Q/1ohf5beKC/M5yul8C95RiLg2sZ/SfKHcxx9eqZUfw7Itp4pX11wUP0gqolLlsdnvlni3aM1XCM10QY9+kMiK490FwMKA6R6P7tIXpbZUVDPewsNoien+x/nwjFFHNj7rx+Yvx/gKPsIHvi+zxdvAO2qrwB5nsRRv/Y=
+	 In-Reply-To:To:Cc; b=jLYdqGNIguBDqw8poDcEmaQOhs0bdBjV24p5KB4fl+1v2+x3+YlJ0nrPBHPtMEM06clz8FLDd8jBq+8kML7OF9gl7bwiQ8GvfYuVXBq8z+oLpyxGo/Z+HdiQKHRK8F0iq3TdXA4ihJk4NUCCTe+aYEIGyAWTfF+WovLeTlmpsms=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=peter.mobile.pengutronix.de)
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1wHeJJ-0004Lz-OC; Tue, 28 Apr 2026 11:00:53 +0200
+	id 1wHeJK-0004Lz-HC; Tue, 28 Apr 2026 11:00:54 +0200
 From: =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-Date: Tue, 28 Apr 2026 11:00:57 +0200
-Subject: [PATCH v5 22/29] media: rockchip: rga: share the interrupt when an
- external iommu is used
+Date: Tue, 28 Apr 2026 11:00:58 +0200
+Subject: [PATCH v5 23/29] media: rockchip: rga: remove size from rga_frame
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,7 +47,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260428-spu-rga3-v5-22-eb7f5d019d86@pengutronix.de>
+Message-Id: <20260428-spu-rga3-v5-23-eb7f5d019d86@pengutronix.de>
 References: <20260428-spu-rga3-v5-0-eb7f5d019d86@pengutronix.de>
 In-Reply-To: <20260428-spu-rga3-v5-0-eb7f5d019d86@pengutronix.de>
 To: Jacob Chen <jacob-chen@iotwrt.com>, 
@@ -62,69 +61,125 @@ Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
  devicetree@vger.kernel.org, kernel@pengutronix.de, nicolas@ndufresne.ca, 
  sebastian.reichel@collabora.com, 
  =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>, 
- Michael Olbrich <m.olbrich@pengutronix.de>, 
  Nicolas Dufresne <nicolas.dufresne@collabora.com>
 X-Mailer: b4 0.15.2
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
 X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: 37895481438
+X-Rspamd-Queue-Id: 45ED64810C0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290960-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290966-lists,devicetree=lfdr.de];
 	DMARC_NA(0.00)[pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[s.pueschel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-0.993];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:email]
 
-From: Michael Olbrich <m.olbrich@pengutronix.de>
+The size member is only used for the mmu page table mapping.
+Therefore avoid storing the value and instead only calculate it
+in place. This also avoids the calculation entirely when an external
+iommu is used.
 
-The RGA3 and the corresponding iommu share the interrupt. So in that
-case, request a shared interrupt so that the iommu driver can request
-it as well.
-
-Signed-off-by: Michael Olbrich <m.olbrich@pengutronix.de>
 Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
 ---
- drivers/media/platform/rockchip/rga/rga.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/media/platform/rockchip/rga/rga-buf.c | 6 +++++-
+ drivers/media/platform/rockchip/rga/rga.c     | 8 ++------
+ drivers/media/platform/rockchip/rga/rga.h     | 1 -
+ 3 files changed, 7 insertions(+), 8 deletions(-)
 
+diff --git a/drivers/media/platform/rockchip/rga/rga-buf.c b/drivers/media/platform/rockchip/rga/rga-buf.c
+index 4e82ca1a5e8d9..c0cc885ba58a8 100644
+--- a/drivers/media/platform/rockchip/rga/rga-buf.c
++++ b/drivers/media/platform/rockchip/rga/rga-buf.c
+@@ -79,6 +79,8 @@ static int rga_buf_init(struct vb2_buffer *vb)
+ 	struct rockchip_rga *rga = ctx->rga;
+ 	struct rga_frame *f = rga_get_frame(ctx, vb->vb2_queue->type);
+ 	size_t n_desc = 0;
++	u32 size = 0;
++	u8 i;
+ 
+ 	if (IS_ERR(f))
+ 		return PTR_ERR(f);
+@@ -86,7 +88,9 @@ static int rga_buf_init(struct vb2_buffer *vb)
+ 	if (!rga_has_internal_iommu(rga))
+ 		return 0;
+ 
+-	n_desc = DIV_ROUND_UP(f->size, PAGE_SIZE);
++	for (i = 0; i < f->pix.num_planes; i++)
++		size += f->pix.plane_fmt[i].sizeimage;
++	n_desc = DIV_ROUND_UP(size, PAGE_SIZE);
+ 
+ 	rbuf->n_desc = n_desc;
+ 	rbuf->dma_desc = dma_alloc_coherent(rga->dev,
 diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/platform/rockchip/rga/rga.c
-index 5bdc8dc51ab68..eb7b211a99e66 100644
+index eb7b211a99e66..2695bc5077a03 100644
 --- a/drivers/media/platform/rockchip/rga/rga.c
 +++ b/drivers/media/platform/rockchip/rga/rga.c
-@@ -761,7 +761,8 @@ static int rga_probe(struct platform_device *pdev)
- 		goto err_put_clk;
- 	}
+@@ -221,7 +221,6 @@ static int rga_open(struct file *file)
+ 	};
  
--	ret = devm_request_irq(rga->dev, irq, rga_isr, 0,
-+	ret = devm_request_irq(rga->dev, irq, rga_isr,
-+			       rga_has_internal_iommu(rga) ? 0 : IRQF_SHARED,
- 			       dev_name(rga->dev), rga);
- 	if (ret < 0) {
- 		dev_err(rga->dev, "failed to request irq\n");
+ 	def_frame.stride = (def_width * def_frame.fmt->depth) >> 3;
+-	def_frame.size = def_frame.stride * def_height;
+ 
+ 	ctx = kzalloc_obj(*ctx);
+ 	if (!ctx)
+@@ -459,9 +458,6 @@ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ 	frm = rga_get_frame(ctx, f->type);
+ 	if (IS_ERR(frm))
+ 		return PTR_ERR(frm);
+-	frm->size = 0;
+-	for (i = 0; i < pix_fmt->num_planes; i++)
+-		frm->size += pix_fmt->plane_fmt[i].sizeimage;
+ 	frm->fmt = rga_fmt_find(rga, pix_fmt->pixelformat);
+ 	frm->stride = pix_fmt->plane_fmt[0].bytesperline;
+ 
+@@ -485,10 +481,10 @@ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ 	frm->pix = *pix_fmt;
+ 
+ 	v4l2_dbg(debug, 1, &rga->v4l2_dev,
+-		 "[%s] fmt - %p4cc %dx%d (stride %d, sizeimage %d)\n",
++		 "[%s] fmt - %p4cc %dx%d (stride %d)\n",
+ 		  V4L2_TYPE_IS_OUTPUT(f->type) ? "OUTPUT" : "CAPTURE",
+ 		  &frm->fmt->fourcc, pix_fmt->width, pix_fmt->height,
+-		  frm->stride, frm->size);
++		  frm->stride);
+ 
+ 	for (i = 0; i < pix_fmt->num_planes; i++) {
+ 		v4l2_dbg(debug, 1, &rga->v4l2_dev,
+diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/platform/rockchip/rga/rga.h
+index 95fa7fd1c509a..2838fc7785f72 100644
+--- a/drivers/media/platform/rockchip/rga/rga.h
++++ b/drivers/media/platform/rockchip/rga/rga.h
+@@ -34,7 +34,6 @@ struct rga_frame {
+ 
+ 	/* Variables that can calculated once and reused */
+ 	u32 stride;
+-	u32 size;
+ };
+ 
+ struct rga_dma_desc {
 
 -- 
 2.54.0
