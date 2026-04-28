@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-291169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291165-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GE6FLUPm8Gm+awEAu9opvQ
-	(envelope-from <devicetree+bounces-291169-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 18:54:27 +0200
+	id qABrHijk8GmoagEAu9opvQ
+	(envelope-from <devicetree+bounces-291165-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 18:45:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 464E748969C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 18:54:27 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C96474893CD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 18:45:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1EB67313163A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 16:29:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6A98030BB689
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 16:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA97C327C00;
-	Tue, 28 Apr 2026 16:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF6D313E29;
+	Tue, 28 Apr 2026 16:29:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="iwo9t9tb"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="x8GowFnr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4232765FF;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF5DADDA9;
 	Tue, 28 Apr 2026 16:29:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777393774; cv=none; b=CR0C/zVlagNz1bu4DU+WT2cgU1CVXEddqSrUeVre0UV9QOLMhtrzC+QfSVbWJsBJBgVD9C3wRlBKEtTNLn8voM+eQ1FbHV5Vb3YahYJ5ahQdjpNT0w+RTdl3VJIAXuTsoeC6NW/ENpBfxb/1Kfl8/vn3mxpjRzMVwOgXRVAqLwo=
+	t=1777393773; cv=none; b=mNUgPfn44NhkFo/24ofuenUxfp1a5RSDDTlvYsmOKrzvpbPRZRzkLaiI7ER/rvGQz25jlWHws1YSCLCEQ6+GGHPI2roQn4/HOciV1EYVYDMhrAusej7zmYItkD6KJZkIL8n3/1OQwzDnGjXClCkJIwsJNljwvEdpMxNC1F5u6ts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777393774; c=relaxed/simple;
-	bh=A/z3Dpfl8QWne2AA3wu272pF/oQI3BQ4sW56WDfbAfI=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dKTHmS6ihCtj68HmtY63kyJmOVwjYXxdHEz04MO9v6agFExhrPHWC/0UMzRBF/6ekJgq+93KLZzwMotCioPBSlsU2y38TNCqx+1VHLpUKnVb7KAq2EtkBGyC2tGxNn1GBP4duW+lWYoHotHZErsxPe/l9+sq1voSdlJorvL3kLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=iwo9t9tb; arc=none smtp.client-ip=195.78.66.88
+	s=arc-20240116; t=1777393773; c=relaxed/simple;
+	bh=qh9sEc57bKsGot5lE2/m8eNigSmNqLcdmef/IL3Fdfc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=A9n2su2gOc4caIIblrfASNNJ4VhRNjWT7TD/cEq8RG6zUvJXDAkAyOSarIW7vU2mnw8xaEej4YHI2lOz81nbQ7au1IoMg6soRBtnaBXlUAXoiGIXPLLbaGKVoXVSPNGNm6QfaF5XJwHMay1kMKF3YE6qHpUHG1/LXXqGge1GywU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=x8GowFnr; arc=none smtp.client-ip=195.78.66.88
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=mmpsystems.pl; s=x; h=Cc:To:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	d=mmpsystems.pl; s=x; h=Cc:To:In-Reply-To:References:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=n+gzKv8oABCibww26yHxbbHYrvpU+Axs/A9jx80GuIo=; b=iwo9t9tbfRmgklfoJ45J2GevEw
-	Yra2fSUDPmfbMdCp3PFIPzLC2nMmReCNdhefU+oOWqPBIZP2pp0Qz7vIt6iTqgL0NnHiEYbGN7TFa
-	ZoxxMG8EUzJiVCl2/vbsC/gVxr0+V941w0epJeEQGtWGqFhqJB4ytBk4AsxQvKl8/CanFr4tr6Zes
-	tasAEKto8LuQJBpdbrIctkZB3WdnjfTRshdMRMQdQYkVtub4fl3xumFH/K5ZNXKUw8k0vFwEvTISo
-	v9oqMmv6ZTXcITRhpsrgJCju37s9JWRdAuavWWpti2nV87+92qbqb/3O5HL1SN8PIXjXEUDxxRC9c
-	8UtXJvBQ==;
+	bh=Qe8+erd3ATmRXcw/RE05XoQwx+r6eTzDQ+NZAClJ7ws=; b=x8GowFnrAjfX8ib/qwlXmO6cnM
+	wwzYEean0JaCy0vYjT6nXjrGzDQelBRPnVfAZkWUjte2g4BWVtYKsp06Z8PfcJsHP9VFWd/u9ZeUI
+	1R2cst1qfcASPkDEwxpHMu7f8aj2psVx546rdPO0hqWCHvAf8X3f+DzLXonr2L9B0aJPt2sre8mlG
+	IYAaeo0Y15C4gomD9fZj9J04u6NiJ5yULl6n8VG7rrmuU+PH+MVhi7zO+YghmxieQuoEme5WTqjB8
+	tJeUn9MojQPlK5xnlbmoK18Xg2q+Tfn+0NK146Oz6uOAkUn7iuVNLzNTf70drDmHHt9JfSfztEnk1
+	/3URn4kA==;
 Received: from user-188-33-36-99.play-internet.pl ([188.33.36.99] helo=localhost)
 	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <michal.piekos@mmpsystems.pl>)
-	id 1wHlJO-0000000AxAL-3BSY;
-	Tue, 28 Apr 2026 18:29:26 +0200
+	id 1wHlJQ-0000000Ay6i-1iSc;
+	Tue, 28 Apr 2026 18:29:28 +0200
 From: Michal Piekos <michal.piekos@mmpsystems.pl>
-Subject: [PATCH v3 0/4] Add hstimer support for H616 and T113-S3
-Date: Tue, 28 Apr 2026 18:26:57 +0200
-Message-Id: <20260428-h616-t113s-hstimer-v3-0-7e02178a93ee@mmpsystems.pl>
+Date: Tue, 28 Apr 2026 18:26:58 +0200
+Subject: [PATCH v3 1/4] dt-bindings: timer: allwinner,sun5i-a13-hstimer:
+ add H616 and D1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,11 +64,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIANHf8GkC/23NTQrCMBCG4auUrI3kp02NK+8hLmo6MQFjSyYES
- +ndTQuCSJfvB/PMTBCiByTnaiYRskc/vErIQ0WM614PoL4vTQQTitVcUqe4oolzidRh8gEiVUJ
- LreuT1dyQcjhGsP69oddbaecxDXHafmS+rl9O73GZU0Z5Z9sa7mBb01xCGHHCBAGP45OsZBY/j
- FC7jCgMqAZ0b5jRfffPLMvyAQGfVwb/AAAA
-X-Change-ID: 20260413-h616-t113s-hstimer-62939948f91c
+Message-Id: <20260428-h616-t113s-hstimer-v3-1-7e02178a93ee@mmpsystems.pl>
+References: <20260428-h616-t113s-hstimer-v3-0-7e02178a93ee@mmpsystems.pl>
+In-Reply-To: <20260428-h616-t113s-hstimer-v3-0-7e02178a93ee@mmpsystems.pl>
 To: Daniel Lezcano <daniel.lezcano@kernel.org>, 
  Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -80,27 +79,27 @@ Cc: Michal Piekos <michal.piekos@mmpsystems.pl>,
  Andre Przywara <andre.przywara@arm.com>, 
  Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777393718; l=2250;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777393718; l=1635;
  i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
- bh=A/z3Dpfl8QWne2AA3wu272pF/oQI3BQ4sW56WDfbAfI=;
- b=YPZWR+z30g3msHg1ulMXtaCsLN3LuFhl2eHGZpUPuq53B/zuv72jSPhP5CCpRtZc9XhzdIEMH
- c2BUsjyTrnKDL6V/szS3V7KKPrsWEIAwA8noNiNE5dAB1xGDRY+lgJy
+ bh=qh9sEc57bKsGot5lE2/m8eNigSmNqLcdmef/IL3Fdfc=;
+ b=qZpLCw+wrAJsF4G8/+1yRLu0Hy+1pGSqIursXJzKh2gfawBEHa96O7LKTtjNdtJ3/lkXgakcC
+ ggXYALl7/QBClz8aezK217dHYM0oQZH0QAzwDhORe1NZCfFzvo7j7tA
 X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
  pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
 X-Authenticated-Id: michal.piekos@mmpsystems.pl
-X-Rspamd-Queue-Id: 464E748969C
+X-Rspamd-Queue-Id: C96474893CD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291169-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291165-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -110,71 +109,62 @@ X-Spamd-Result: default: False [1.14 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.694];
+	NEURAL_HAM(-0.00)[-0.651];
 	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[mmpsystems.pl:-];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mmpsystems.pl:mid,mmpsystems.pl:email,microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-Add support for Allwinner D1 high speed timer in sun5i hstimer driver
-and describe corresponding nodes in dts for H616 and T113-S3 SoC's.
+D1 is similar to existing sun5i, but with different register offsets.
+H616 uses same offsets as D1.
 
-D1 and H616 uses same model as existing driver except register shift
-compared to older variants. 
-
-Added register layout abstraction in the driver, extended the binding
-with new compatibles and wired up dts nodes for T113-S3 and H616 which
-uses D1 as fallback compatible.
+Add allwinner,sun20i-d1-hstimer
+Add allwinner,sun50i-h616-hstimer with fallback to
+allwinner,sun20i-d1-hstimer
+Extend schema condition for interrupts to cover D1 compatible variant.
 
 Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
-Changes in v3:
-- Removed left over dead code from v1
-- Link to v2: https://lore.kernel.org/r/20260426-h616-t113s-hstimer-v2-0-e65e9dc0c9da@mmpsystems.pl
+ .../devicetree/bindings/timer/allwinner,sun5i-a13-hstimer.yaml   | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-Changes in v2:
-- Change driver handling of different offsets to using quirks
-- Change from t113s to d1 as the fallback compatible string
-- Fix conditional compatible matching
-- Link to v1: https://lore.kernel.org/r/20260419-h616-t113s-hstimer-v1-0-1af74ebef7c5@mmpsystems.pl
+diff --git a/Documentation/devicetree/bindings/timer/allwinner,sun5i-a13-hstimer.yaml b/Documentation/devicetree/bindings/timer/allwinner,sun5i-a13-hstimer.yaml
+index f1853daec2f9..3e2725c56995 100644
+--- a/Documentation/devicetree/bindings/timer/allwinner,sun5i-a13-hstimer.yaml
++++ b/Documentation/devicetree/bindings/timer/allwinner,sun5i-a13-hstimer.yaml
+@@ -15,9 +15,13 @@ properties:
+     oneOf:
+       - const: allwinner,sun5i-a13-hstimer
+       - const: allwinner,sun7i-a20-hstimer
++      - const: allwinner,sun20i-d1-hstimer
+       - items:
+           - const: allwinner,sun6i-a31-hstimer
+           - const: allwinner,sun7i-a20-hstimer
++      - items:
++          - const: allwinner,sun50i-h616-hstimer
++          - const: allwinner,sun20i-d1-hstimer
+ 
+   reg:
+     maxItems: 1
+@@ -45,7 +49,10 @@ required:
+ if:
+   properties:
+     compatible:
+-      const: allwinner,sun5i-a13-hstimer
++      anyOf:
++        - const: allwinner,sun5i-a13-hstimer
++        - contains:
++            const: allwinner,sun20i-d1-hstimer
+ 
+ then:
+   properties:
 
-To: Daniel Lezcano <daniel.lezcano@kernel.org>
-To: Thomas Gleixner <tglx@kernel.org>
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Chen-Yu Tsai <wens@kernel.org>
-To: Jernej Skrabec <jernej.skrabec@gmail.com>
-To: Samuel Holland <samuel@sholland.org>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: linux-kernel@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-sunxi@lists.linux.dev
-Cc: Andre Przywara <andre.przywara@arm.com>
-
----
-Michal Piekos (4):
-      dt-bindings: timer: allwinner,sun5i-a13-hstimer: add H616 and D1
-      clocksource/drivers/sun5i: add D1 hstimer support
-      arm: dts: allwinner: t113s: add hstimer node
-      arm64: dts: allwinner: h616: add hstimer node
-
- .../timer/allwinner,sun5i-a13-hstimer.yaml         |  9 ++-
- arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi       | 11 +++
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi     | 10 +++
- drivers/clocksource/timer-sun5i.c                  | 84 +++++++++++++++++-----
- 4 files changed, 94 insertions(+), 20 deletions(-)
----
-base-commit: dca922e019dd758b4c1b4bec8f1d509efddeaab4
-change-id: 20260413-h616-t113s-hstimer-62939948f91c
-
-Best regards,
---  
-Michal Piekos <michal.piekos@mmpsystems.pl>
+-- 
+2.43.0
 
 
