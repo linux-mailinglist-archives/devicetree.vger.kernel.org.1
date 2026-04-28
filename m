@@ -1,238 +1,160 @@
-Return-Path: <devicetree+bounces-290805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290807-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cIVXJtMp8GkjPQEAu9opvQ
-	(envelope-from <devicetree+bounces-290805-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 05:30:27 +0200
+	id mK+oAMku8GkHPgEAu9opvQ
+	(envelope-from <devicetree+bounces-290807-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 05:51:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 410DD47D134
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 05:30:26 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C6DB47D2E5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 05:51:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A1108300BCBF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 03:30:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 07B7C300B8C3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 03:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 263A5199385;
-	Tue, 28 Apr 2026 03:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7916C31F9B9;
+	Tue, 28 Apr 2026 03:51:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="Ax7zlBnD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="om7wcb+v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from canpmsgout11.his.huawei.com (canpmsgout11.his.huawei.com [113.46.200.226])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8381E12CD8B;
-	Tue, 28 Apr 2026 03:30:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC3B40DFD7
+	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 03:51:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777347024; cv=none; b=ISw7zuTIdXUUbWPIsA0Ml3N3NatsCgi/0xo5W6UwFN10/8cmHUTB23XzVh/cZHBbEPPyVz8PDC4bHZc6kxfIp3gQopMhUAHiAxuszOtlQxlivgFPBYb6cX1WAjvJMVxvHFJmAwSYZNxHfYtoWAxRWdmp6p9X3gIWDBJZE1EvViA=
+	t=1777348290; cv=none; b=g1IU2tZ2ETjMVgtPOn7DjcF3Eisj37j03ldM4HTLC0eO/sVAuq0V+BeqDrKohBOWspj0vhjjuis1NmUdvKFs8TQESLC1WNZ4jSmjkmKRTqNRzyhKJjXzjt0kdCiJBZr6oqRcfDBVQUgsTc9xLziE7ZnzxQp16fk1rrau9FFsqYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777347024; c=relaxed/simple;
-	bh=DcJ+UKIOigb3Vcrq6OMlHY7VBWT9vE4zAdc3++oY6+Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=K45G/DkW+KBS2tvtZHslHKUCW1d52lsZ+uekKxugzD/57Z0bhJnLqrAqvxSqsh5t4b/zKZurac5fuH8Igis6bRzNcr3e7vaQl76MuR/pCe8r1mL5LWjk5KXH0fMzcQ2SrCHcBjzBLHbKkqeXW5+np6HiSb2vG1nVdCdYuUHLRzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=Ax7zlBnD; arc=none smtp.client-ip=113.46.200.226
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=53v80o50pdZvZamiU87690P2YfIvRYFux+/+SYSB+8A=;
-	b=Ax7zlBnDvsHBrG11SUZ1Pks+cdQ09GMnJHUeJDFPnJ+emSKulfDm5/phFAybcSONUZOz7Zmdk
-	JuXPr9JubkLETkbEhoVW7TASFkDw2eI7slX9Rgg90k2o6zU9Md1T0fRV5pJf4I+L2IYefJy2p2S
-	PTql3k7K5Kbuffhny79gszs=
-Received: from mail.maildlp.com (unknown [172.19.162.92])
-	by canpmsgout11.his.huawei.com (SkyGuard) with ESMTPS id 4g4Qks12FrzKm6G;
-	Tue, 28 Apr 2026 11:23:49 +0800 (CST)
-Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
-	by mail.maildlp.com (Postfix) with ESMTPS id 25E5F40562;
-	Tue, 28 Apr 2026 11:30:17 +0800 (CST)
-Received: from [10.67.109.254] (10.67.109.254) by
- dggpemf500011.china.huawei.com (7.185.36.131) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Tue, 28 Apr 2026 11:30:14 +0800
-Message-ID: <dfa24c4b-a423-4c80-9a8f-28c577c9ec11@huawei.com>
-Date: Tue, 28 Apr 2026 11:30:13 +0800
+	s=arc-20240116; t=1777348290; c=relaxed/simple;
+	bh=RQfjDmjDhFBZQeNCmuYx5MyE8j6k2g5d33MZmHmxCmg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iwFyspySj0J5AjOW04y2EY0+dKB8lWris9fp7NrHmhBXPJJMSy86YFibc0AJ2jgRY1/S/jU1LqfV0zT8dfIVZtETF5mNQe9lg3Q127axTuacZck4CWA3AOzCbyIpq+7/m0PV70j/efaDZrtoLFpw4o57lraKHuwYf2EnXIsGlLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=om7wcb+v; arc=none smtp.client-ip=209.85.222.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-8d736211595so718853085a.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 20:51:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1777348288; x=1777953088; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=63f4GofBoWLfXQjvxrKaQNrlmvp+JGGyl1KjrPUdmXI=;
+        b=om7wcb+v6jOtI69VUjVTFihCYGBnZ5on48uPRzAVMvPTaqFaNcbrLl/6MkV5QW+DcB
+         kxPDH4bKZSsy5XmRm6RUPqu+fcooPzoHWEhtjRZAX44M6VDtYXsp9PJa0AlQ564ogkmu
+         022TOCX/89rPiIRSdYugVcf4FDmF2hozU9ZqVhVnuTB2Ex2JO9VFPkiLEV1CkoV/C1F+
+         CqvoYdDWOskf2ylBidvPs0a0KN4SQMrNQOTTlZ2uEPoEZNlvSQtV3HlOtYfy9h+v8X+9
+         0xdTds4jnVnlRDkYlkB2JIi604qcnCLwU4hZMjyQ39PogIL4lNHuMGTgg5w+drVjz7kS
+         RN/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777348288; x=1777953088;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=63f4GofBoWLfXQjvxrKaQNrlmvp+JGGyl1KjrPUdmXI=;
+        b=DMgUQ60CCxUCw/eX5p2INYtbwwSfTeC0w7rPykp70Y9Z49YYc84d4VxzSN4oVnZtGk
+         5SWNXX7WXj8xj6rxgngnOA2GtxdDwr9UTp/PLloPJ1SULhWv3WnZZJIwpsKDRVx1cj2Z
+         3M6J2BOTd1xUnsPK3tlCxvDQAnMumPjl/4CY/8BvU4Stk7oBccgbjKSWN5sR9kmHVYSG
+         5qGi3CNt1ng4dJoM0WzcknGCevd47upJ15/3VA7lle65jImDul+FHxaVC7Ou4VsFaLHn
+         gkp8hz1Ce706L/PTU1iYHsiWWAq2mw+Nb+CjnG7iyfagTV41naPPKNfbwwwImUeS9wA2
+         RudA==
+X-Forwarded-Encrypted: i=1; AFNElJ+BW7R5y/zoF1JS9Lc/brMn2wpuIPvb0bOa/LezkIF/3A1xKJ/quwvunRSPLXHDf5vJKnnlXgqqdeHg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyfw7L1PFgKt4gDMh9bPox8sgfyoNMcwwcnzfuaWFmGiVbarvvS
+	rkS5eELP05TnpJC3wagYmsqN9IsAxf/AsDYnTK7qAdgS9773hECA90Zn
+X-Gm-Gg: AeBDieuS42Ylh5B3zduyhIIhZ3xQVilj/NuBKWN0pe/lCe95My4Kdr6CQc+JUGEbzcn
+	inxS4UFGHrKPVJw0Igx8yFb69KttgBf2Wug+B+9Hvcg8Y2LPjMvDjlF8SgJrEk/iU8rpmEdXBYe
+	Mm8FA3clCoctgS+TjLgjNGN5chTb2uj2LwgFqPc/4cHF4vIJS1c3r/opY08hLiHrIYYS4269XK/
+	WfWOBKQDGjLoSZL7x6mFPjFOubfKB4yTPqVwA6WRtJjuYSGwckKy1yfTndFAlvclelxOE15bOWj
+	boNYDDCead4PQGpBtMZLau2z1yY4ZqqGuIdlBYvYWThrR6Et8Egm9qhw253ID48886kpB6MiCmq
+	Szyt8ideb+3rdHNJmAdWk0MHpB7uM1wYWonxE23RF0YbfPcxuZX27fkBU1Ii2phgi1+4/gqneO5
+	97u553kR+VCtyhXFyahp7pnWeVauCFAEEqvegq
+X-Received: by 2002:a05:620a:29c1:b0:8f0:f1a5:680c with SMTP id af79cd13be357-8f7d9016b82mr191945585a.29.1777348288133;
+        Mon, 27 Apr 2026 20:51:28 -0700 (PDT)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8f7c4dbcfbdsm100150285a.12.2026.04.27.20.51.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Apr 2026 20:51:27 -0700 (PDT)
+Date: Mon, 27 Apr 2026 23:52:10 -0400
+From: Richard Acayan <mailingradian@gmail.com>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+	Todor Tomov <todor.too@gmail.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Robert Mader <robert.mader@collabora.com>,
+	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v9 1/7] dt-bindings: media: qcom,sdm670-camss: Remove
+ clock-lanes requirement
+Message-ID: <afAu6ueMsjBY-yUB@rdacayan>
+References: <20260217002738.133534-1-mailingradian@gmail.com>
+ <20260217002738.133534-2-mailingradian@gmail.com>
+ <4898366c-108d-479e-93cb-f79b27ba811f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 00/15] arm64/riscv: Add support for crashkernel CMA
- reservation
-To: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
-	<will@kernel.org>, <chenhuacai@kernel.org>, <kernel@xen0n.name>,
-	<maddy@linux.ibm.com>, <mpe@ellerman.id.au>, <npiggin@gmail.com>,
-	<chleroy@kernel.org>, <pjw@kernel.org>, <palmer@dabbelt.com>,
-	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <tglx@kernel.org>,
-	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
-	<hpa@zytor.com>, <robh@kernel.org>, <saravanak@kernel.org>,
-	<akpm@linux-foundation.org>, <bhe@redhat.com>, <vgoyal@redhat.com>,
-	<dyoung@redhat.com>, <rdunlap@infradead.org>, <peterz@infradead.org>,
-	<pawan.kumar.gupta@linux.intel.com>, <feng.tang@linux.alibaba.com>,
-	<dapeng1.mi@linux.intel.com>, <kees@kernel.org>, <elver@google.com>,
-	<paulmck@kernel.org>, <lirongqing@baidu.com>, <rppt@kernel.org>,
-	<leitao@debian.org>, <ardb@kernel.org>, <jbohac@suse.cz>,
-	<cfsworks@gmail.com>, <tangyouling@kylinos.cn>, <sourabhjain@linux.ibm.com>,
-	<ritesh.list@gmail.com>, <hbathini@linux.ibm.com>, <eajames@linux.ibm.com>,
-	<guoren@kernel.org>, <songshuaishuai@tinylab.org>, <kevin.brodsky@arm.com>,
-	<vishal.moola@gmail.com>, <junhui.liu@pigmoral.tech>, <coxu@redhat.com>,
-	<fuqiang.wang@easystack.cn>, <liaoyuanhong@vivo.com>,
-	<takahiro.akashi@linaro.org>, <james.morse@arm.com>, <lizhengyu3@huawei.com>,
-	<x86@kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<loongarch@lists.linux.dev>, <linuxppc-dev@lists.ozlabs.org>,
-	<linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<kexec@lists.infradead.org>
-References: <20260402072701.628293-1-ruanjinjie@huawei.com>
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <20260402072701.628293-1-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
- dggpemf500011.china.huawei.com (7.185.36.131)
-X-Rspamd-Queue-Id: 410DD47D134
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4898366c-108d-479e-93cb-f79b27ba811f@linaro.org>
+X-Rspamd-Queue-Id: 0C6DB47D2E5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DKIM_TRACE(0.00)[huawei.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,infradead.org,linux.alibaba.com,google.com,baidu.com,debian.org,suse.cz,kylinos.cn,tinylab.org,pigmoral.tech,easystack.cn,vivo.com,linaro.org,huawei.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
-	TAGGED_FROM(0.00)[bounces-290805-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290807-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[64];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linaro.org,intel.com,linux.intel.com,vger.kernel.org,collabora.com,ixit.cz];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_NONE(0.00)[];
-	MIME_TRACE(0.00)[0:+]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
+On Wed, Apr 01, 2026 at 12:22:34AM +0300, Vladimir Zapolskiy wrote:
+> On 2/17/26 02:27, Richard Acayan wrote:
+> > The clock-lanes property has no effect on the hardware configuration, as
+> > of commit 336136e197e2 ("media: dt-bindings: media: camss: Remove
+> > clock-lane property"). Since boards with new camss support can omit the
+> > property, remove it from the required lists.
+> > 
+> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> 
+> If you send another v10 of the series, please remove 'clock-lanes'
+> property from the example as well.
 
-
-On 4/2/2026 3:26 PM, Jinjie Ruan wrote:
-> The crash memory allocation, and the exclude of crashk_res, crashk_low_res
-> and crashk_cma memory are almost identical across different architectures,
-> This patch set handle them in crash core in a general way, which eliminate
-> a lot of duplication code.
-> 
-> And add support for crashkernel CMA reservation for arm64 and riscv.
-> 
-> Rebased on v7.0-rc1.
-> 
-> Basic second kernel boot test were performed on QEMU platforms for x86,
-> ARM64, and RISC-V architectures with the following parameters:
-> 
-> 	"cma=256M crashkernel=256M crashkernel=64M,cma"
-> 
-> Changes in v12:
-> - Remove the unused "nr_mem_ranges" for x86.
-> - Add "Fix crashk_low_res not exclude bug" test log.
-> - Provide a separate patch for each architecture for using
->   crash_prepare_headers(), which will make the review more convenient.
-> - Add Reviewed-by and Tested-by.
-> - Link to v11: https://lore.kernel.org/all/20260328074013.3589544-1-ruanjinjie@huawei.com/
-> 
-> Changes in v11:
-> - Avoid silently drop crash memory if the crash kernel is built without
->   CONFIG_CMA.
-> - Remove unnecessary "cmem->nr_ranges = 0" for arch_crash_populate_cmem()
->   as we use kvzalloc().
-> - Provide a separate patch for each architecture to fix the existing
->   buffer overflow issue.
-> - Add Acked-bys for arm64.
-> 
-> Changes in v10:
-> - Fix crashk_low_res not excluded bug in the existing
->   RISC-V code.
-> - Fix an existing memory leak issue in the existing PowerPC code.
-> - Fix the ordering issue of adding CMA ranges to
->   "linux,usable-memory-range".
-> - Fix an existing concurrency issue. A Concurrent memory hotplug may occur
->   between reading memblock and attempting to fill cmem during kexec_load()
->   for almost all existing architectures.
-> - Link to v9: https://lore.kernel.org/all/20260323072745.2481719-1-ruanjinjie@huawei.com/
-> 
-> Changes in v9:
-> - Collect Reviewed-by and Acked-by, and prepare for Sashiko AI review.
-> - Link to v8: https://lore.kernel.org/all/20260302035315.3892241-1-ruanjinjie@huawei.com/
-> 
-> Changes in v8:
-> - Fix the build issues reported by kernel test robot and Sourabh.
-> - Link to v7: https://lore.kernel.org/all/20260226130437.1867658-1-ruanjinjie@huawei.com/
-> 
-> Changes in v7:
-> - Correct the inclusion of CMA-reserved ranges for kdump kernel in of/kexec
->   for arm64 and riscv.
-> - Add Acked-by.
-> - Link to v6: https://lore.kernel.org/all/20260224085342.387996-1-ruanjinjie@huawei.com/
-> 
-> Changes in v6:
-> - Update the crash core exclude code as Mike suggested.
-> - Rebased on v7.0-rc1.
-> - Add acked-by.
-> - Link to v5: https://lore.kernel.org/all/20260212101001.343158-1-ruanjinjie@huawei.com/
-> 
-> Jinjie Ruan (14):
->   riscv: kexec_file: Fix crashk_low_res not exclude bug
->   powerpc/crash: Fix possible memory leak in update_crash_elfcorehdr()
->   x86/kexec: Fix potential buffer overflow in prepare_elf_headers()
->   arm64: kexec_file: Fix potential buffer overflow in
->     prepare_elf_headers()
->   riscv: kexec_file: Fix potential buffer overflow in
->     prepare_elf_headers()
->   LoongArch: kexec: Fix potential buffer overflow in
->     prepare_elf_headers()
->   crash: Add crash_prepare_headers() to exclude crash kernel memory
->   arm64: kexec_file: Use crash_prepare_headers() helper to simplify code
->   x86/kexec: Use crash_prepare_headers() helper to simplify code
->   riscv: kexec_file: Use crash_prepare_headers() helper to simplify code
->   LoongArch: kexec: Use crash_prepare_headers() helper to simplify code
->   crash: Use crash_exclude_core_ranges() on powerpc
->   arm64: kexec: Add support for crashkernel CMA reservation
->   riscv: kexec: Add support for crashkernel CMA reservation
-
-Hi, every one,
-
-It seems the patches for crash core rework, powerpc, riscv, and arm64
-are mostly ready to be merged. Could any maintainer help pick these up,
-or should I rebase the entire series against v7.1-rc1?
-
-> 
-> Sourabh Jain (1):
->   powerpc/crash: sort crash memory ranges before preparing elfcorehdr
-> 
->  .../admin-guide/kernel-parameters.txt         |  16 +--
->  arch/arm64/kernel/machine_kexec_file.c        |  43 +++-----
->  arch/arm64/mm/init.c                          |   5 +-
->  arch/loongarch/kernel/machine_kexec_file.c    |  43 +++-----
->  arch/powerpc/include/asm/kexec_ranges.h       |   1 -
->  arch/powerpc/kexec/crash.c                    |   7 +-
->  arch/powerpc/kexec/ranges.c                   | 101 +-----------------
->  arch/riscv/kernel/machine_kexec_file.c        |  42 +++-----
->  arch/riscv/mm/init.c                          |   5 +-
->  arch/x86/kernel/crash.c                       |  92 +++-------------
->  drivers/of/fdt.c                              |   9 +-
->  drivers/of/kexec.c                            |   9 ++
->  include/linux/crash_core.h                    |   9 ++
->  include/linux/crash_reserve.h                 |   4 +-
->  kernel/crash_core.c                           |  89 ++++++++++++++-
->  15 files changed, 193 insertions(+), 282 deletions(-)
-> 
-
+I don't think I can send a new revision of this patch since it's already
+applied, though there may be an opportunity if clock-lanes requirements
+are removed in bulk.
 
