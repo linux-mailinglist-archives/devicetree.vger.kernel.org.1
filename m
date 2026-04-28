@@ -1,231 +1,298 @@
-Return-Path: <devicetree+bounces-290949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290959-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SK69BYR68GnMTwEAu9opvQ
-	(envelope-from <devicetree+bounces-290949-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:14:44 +0200
+	id MHycDHl78GnMTwEAu9opvQ
+	(envelope-from <devicetree+bounces-290959-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:18:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED0948113F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:14:42 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A03D1481345
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 11:18:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9E62430D97CC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 08:58:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6A2CF30739D1
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 09:05:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF122D8DCA;
-	Tue, 28 Apr 2026 08:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SnbT/UeZ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YVErJX6W"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CCDE3DB639;
+	Tue, 28 Apr 2026 09:01:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943F53D6666
-	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 08:57:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 946663DA7D4
+	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 09:01:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777366635; cv=none; b=N9SDT0qvLdWu/Z5MiJf7zg1RACEVYonD2Wgvr6qWnMMF/V3AH4cjwXpJ1zz1f3b2/15SdgBU+h73u+RM1zRwwgBgF6TGxjpSaUa8GXxXK2C5g+KW6jhDsy50BwBmCgxhr6wh/5EHz+isQMl1MTNgUgFbQvteBSltsFl7BKLsOaM=
+	t=1777366891; cv=none; b=H8TGgE6WEuqqWSCEme6CIDREJ+mlsHkC36yUZg+Y17wz21Yz0oj6Tl1ybHPFWOBPWN0lYZ52lD0FUPMmJ058xzZrgrgjxaJdhxrrRnD29vuc6UhgGIIapomwwZ6tUG8m5ykscOPUCO0AevYSB8ffptplNNmaGOCVwkd1bRAx+XY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777366635; c=relaxed/simple;
-	bh=6/kXOpIPrMyYeAZQVyerbvyBh4ZULLVmilh78gfeyXo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q8dVAOXYchuzm4My6sIEdnt36Sio6bUoWcmcVvWaaTQ6cuJ3JVQKsKn0oTnxSy/cp8K0PSqLYOvlZOTKWWH4+WAzfKTnL/NEx6CNZBoGbll2a/v4Twowmt7aKJrQsPfDZAdoPiKoahJbPBGI4B98wgxGtzZ6kvc6FKo2d5lrCaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SnbT/UeZ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YVErJX6W; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63S47YFu2383065
-	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 08:57:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZrIv032C0RLaUKbrdVzoDDiJxw7RgWufz1Fjh7XtFuQ=; b=SnbT/UeZ9SYbGdo4
-	0WzyD5jTFOmk3wtQ71JvXsSaDGkEc0WhrOO4rBTVFrbs2Yl7ChxzVnYs27d8rjla
-	2TjFrPGnn5N1LoADoXEuDPOtk+9uipRVs+3UW00ztwBfY2kPIHgkz29//pU8JcQZ
-	MXkwcdp+jr0K5CJWJcK6ujQRx3eIOb+2z+CSNHsgX/U+J48VsApo/HMylPnJC0G/
-	AnbW5wQlEMYHWK6c2Mg2AtJrbCkMbaEPQyAI4UyBFqP7AxfpmUp52HhvcIVkr0rd
-	SZg4gEsCY78pPaBtnklnmMkvBfuUcDmIxPHoWFIFPIRoKwcwB8fzQRgV6KJR6S/k
-	xpV12A==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dt85xv6ek-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 08:57:13 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-8a016b99579so39537966d6.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 01:57:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1777366632; x=1777971432; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZrIv032C0RLaUKbrdVzoDDiJxw7RgWufz1Fjh7XtFuQ=;
-        b=YVErJX6WuBg9HU1KVE6h7PaxTFMPUmZOqH7WWlUcw2lv/K72mXj8S+Aj7IPG9godH6
-         7RQFGNF+W/I7eW6CPMeDqg8n57jjUdFY3c5ql9KfL3jsvZbSIg39hTjsS1I+MxDUaIHQ
-         iYP992ttS4iNYSqXrWpg28F2k2W66/YREZjud1BxOlgjlWjnGWTUrOyFr0g7bRDh9+60
-         CmIbPKqoqLKqJ53AHzK3jPwu4nk/ZDJ5XtUhdcLODnOfxQpRYGTbKbap4akzB+t7F6NM
-         lsZNN+TaTO9j2YJwYvbJPHx6854jdJoM6RYwrRnDAIIZfz3eLdxB/2n+UFh3nMzsDnBy
-         91aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777366632; x=1777971432;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZrIv032C0RLaUKbrdVzoDDiJxw7RgWufz1Fjh7XtFuQ=;
-        b=Rw8hay3SmYTNhAcOUmC9fhPzBKVljGdO+iaeNuzQW6QQ9Edycqip0m/HYqT93IVKmd
-         PmWmQ6gIPYmxkhNLhNhwo04eqTpqZzPA3ltKAxZq9yz37XHalxzaJDYBWYq4f/WhF3a3
-         KbQzURTE4hez+NVyt6KV1O1l3LStMrwFc0Y3hr8FzvU5M3rVi1kl5yEw2xJ3epybalv0
-         pho4Dsy0HyKkNZQa9DVtzXgtoKhcMSBa6cuJ9h/s+mv+qwcEhWRKVacoBh2y4/69j1tu
-         WmYYSD5tafb5RoTc7MNlUqqjEpvR2nE9rOzbpE+FOMPwzPZAmQHC//PK3mcfiWXEBRHp
-         CByw==
-X-Forwarded-Encrypted: i=1; AFNElJ/A90x1sXFyrasQoiEg4AkPQ4FFvAeSxUfVGrwC0VXaYr3bwy5NZjPPW5DKwtqiez+UAeghrvUuRnkg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwX50WJjonXoobPMFurAqQeV64gvq0qUVgQkKK11I+jVlnXMGqI
-	y/pin7BHlidh3rD4oikZR37YvyO1Mek/qODia278I2fyjAiwFAm5uXzlbq9qD1Ug0RXeYtBOBEl
-	Q4Ag206DTUWpnomyVOpfffoYafc8NAf7WO+0wpdC5SR/t6YgNABf30NkDxuy0EqqR
-X-Gm-Gg: AeBDievWphEpEu2FTu2pF7WieVRZMTHtnGYZZNA8DoXjso+zlDEFpDybA78eA2bQCjk
-	CqRGQHNe17Sk4XDdgjSnysVo2EddP4u3SeySlB2kf6pyascJiGzjulLEJVuNFeKq67juRYFFUcu
-	WkqfUSvNKjGeT+60pFWnIygeYwFcagLTMR9R+g+UnEQkfLnHrn2djLgwX+y9g6ePj2CQq+szupe
-	5dWEnqk7OMXgn95I6qxTHpIOnSeNwZ4llx6i54WSz6JpK8ets1XrUy/BN5qrbfrpLtGRRBinkL4
-	zzMQ+v3JQigzBf0533vu9xIRquOJhyV/ziagpxctFigxCfXC9BEviUkZ3VV4svZ6wgCJgfDUgQ6
-	E9iOE9RBOAmhTMCQuu7+xEjY/VSchSy385jYmNWlxy9jcUdDKAo9RrFUPuhJ5wqXIpZ/2NnPWtJ
-	chTLf+R5Lzft8oRg==
-X-Received: by 2002:a05:6214:629:b0:89a:4741:2147 with SMTP id 6a1803df08f44-8b3e2a0dfa3mr27568776d6.8.1777366632257;
-        Tue, 28 Apr 2026 01:57:12 -0700 (PDT)
-X-Received: by 2002:a05:6214:629:b0:89a:4741:2147 with SMTP id 6a1803df08f44-8b3e2a0dfa3mr27568606d6.8.1777366631761;
-        Tue, 28 Apr 2026 01:57:11 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bb808a35e19sm70631966b.16.2026.04.28.01.57.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Apr 2026 01:57:10 -0700 (PDT)
-Message-ID: <97969bf9-8eb2-4498-90bd-9973fb2bd638@oss.qualcomm.com>
-Date: Tue, 28 Apr 2026 10:57:07 +0200
+	s=arc-20240116; t=1777366891; c=relaxed/simple;
+	bh=bS3TLNSJnwhL7S0Q1umoEt4VYf26k0U96R/FOq8RVnU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XqoJ3exZYyrQDco8CHPSEGgWz+Nob2bRp7XDUOv3HYTP6cEk6a8aW9jM++yzcd2wuQCsR5p2sAoeHdvF5dQ2aggSG7YrRuoGe/3EK9TWoyeGqPWUO+GGlzgm8NJCsmH7P/OnnNfJSgBnbW3hoKejE9mREQqA3g3zL4K3EW+W+SE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=peter.mobile.pengutronix.de)
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <s.pueschel@pengutronix.de>)
+	id 1wHeJ7-0004Lz-Aw; Tue, 28 Apr 2026 11:00:41 +0200
+From: =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
+Subject: [PATCH v5 00/29] media: platform: rga: Add RGA3 support
+Date: Tue, 28 Apr 2026 11:00:35 +0200
+Message-Id: <20260428-spu-rga3-v5-0-eb7f5d019d86@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 8/8] ARM: dts: qcom: Add Samsung Galaxy S4
-To: contact@alex-min.fr, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Guru Das Srinagesh
- <linux@gurudas.dev>,
-        Linus Walleij <linusw@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, Kees Cook <kees@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        iommu@lists.linux.dev, phone-devel@vger.kernel.org
-References: <20260427-mainline-send-v1-sending-v2-0-dcaa9178007b@alex-min.fr>
- <20260427-mainline-send-v1-sending-v2-8-dcaa9178007b@alex-min.fr>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260427-mainline-send-v1-sending-v2-8-dcaa9178007b@alex-min.fr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Zs3d7d7G c=1 sm=1 tr=0 ts=69f07669 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=J1_VKfl4AAOAIIosoXcA:9 a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-ORIG-GUID: MWXFwspBJbC52qYRx_CCRLUIj-fEJU3D
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI4MDA4MCBTYWx0ZWRfX1FURjQjeDpPv
- phiZe7G/vFsyxk912OtquclRX2nmxMOabYpPLnnHykmgHcI3+wt0pWQnukao9RNxL23Cu+5qyCI
- aEbquehh7DxmtirBMDxEiGCfOboxYm4KOIgbeD/DQDZBPv+aYs8Vt3O7ikiIq3y84WjI4j58djy
- vzA0GyzV3yhM+s3z0yhV0RZG8V3wGpSu2jjPaHTEZn/SuaazHQsuC9yt7/ETF2mXOanJXmUZnBj
- bO7UpjB8DggnFAY3LDhbgUrEpXIs1eq45Gk4BevNHiCPyblHWXJFixe5c96Sej9sXofoK0MsAMn
- ahqM9EPHygBv/aPO88COtJ7beJ0bNgsyK7sK6Gs83QDozXLpFahwgdS4q+BgH0kb6A9Ize2bTlP
- eKlV1iRFd37dSTGj21GSMiR/KOkM5647ukMQtcgZ7vX2DDe+GOQub6CeP/zEmlpvrylw1XCOidH
- p0ztCrNX/lRP6KM54tA==
-X-Proofpoint-GUID: MWXFwspBJbC52qYRx_CCRLUIj-fEJU3D
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-28_02,2026-04-21_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 phishscore=0 bulkscore=0 malwarescore=0
- impostorscore=0 adultscore=0 suspectscore=0 spamscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604280080
-X-Rspamd-Queue-Id: 1ED0948113F
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22Qy26DMBAAfwX5XLfrN3Dqf1Q9GLMhPvCobRBVl
+ H+vIYpAao5r7czKcyMRg8dI6uJGAi4++nHIg3oriLvaoUPq2zwTDlwxAEbjNNPQWUFLC4DAyoZ
+ xIHl9Cnjx6676+s7z1cc0ht/dvLDt9Skxh2RhFKjQti2VMiCBf044dHMK4+DX9xbJZlr4QXMQJ
+ 5pnuiorq00lzcWwl7R40hoYP98WmTam4UaANg02L2l50IKrEy0zjRWgY04zoeQ/+v6IEvBnzln
+ To8xRtS72DzGud6kf+35u09aQuhac4lI6I22d22VRYyNSl3d8qoseW28/BlxTvnL/AwLwIi3EA
+ QAA
+X-Change-ID: 20251001-spu-rga3-8a00e018b120
+To: Jacob Chen <jacob-chen@iotwrt.com>, 
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, kernel@pengutronix.de, nicolas@ndufresne.ca, 
+ sebastian.reichel@collabora.com, 
+ =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Michael Olbrich <m.olbrich@pengutronix.de>
+X-Mailer: b4 0.15.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: A03D1481345
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290949-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290959-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[alex-min.fr:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:dkim];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[s.pueschel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-0.991];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-On 4/27/26 9:34 PM, Alexandre MINETTE via B4 Relay wrote:
-> From: Alexandre MINETTE <contact@alex-min.fr>
-> 
-> Add a device tree for the Samsung Galaxy S4, codenamed jflte.
-> 
-> This has been tested on a Samsung Galaxy S4 GT-I9505. The initial support
-> covers UART, USB peripheral mode with USB networking, the front LED and
-> the physical buttons.
-> 
-> Signed-off-by: Alexandre MINETTE <contact@alex-min.fr>
-> ---
->  arch/arm/boot/dts/qcom/Makefile                    |   1 +
->  .../boot/dts/qcom/qcom-apq8064-samsung-jflte.dts   | 485 +++++++++++++++++++++
->  2 files changed, 486 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-> index 32a44b02d2fa..c23c961f79e3 100644
-> --- a/arch/arm/boot/dts/qcom/Makefile
-> +++ b/arch/arm/boot/dts/qcom/Makefile
-> @@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
->  	qcom-apq8064-ifc6410.dtb \
->  	qcom-apq8064-sony-xperia-lagan-yuga.dtb \
->  	qcom-apq8064-asus-nexus7-flo.dtb \
-> +	qcom-apq8064-samsung-jflte.dtb \
->  	qcom-apq8064-lg-nexus4-mako.dtb \
+This series adds support for the Raster Graphic Acceleration 3 (RGA3)
+peripheral, which is included in the RK3588 SoC. The RK3588
+contains one RGA2-Enhanced core (which is already implemented by the
+rockchip rga driver) and two independent RGA3 cores. They feature
+a similar functionality of scaling, cropping and rotating of up to two input
+images into one output image. Key differences of the RGA3 are:
 
-'l'g < 's'amsung
+- supports 10bit YUV output formats
+- supports 8x8 tiles and FBCD as inputs and outputs
+- supports BT2020 color space conversion
+- max output resolution of (8192-64)x(8192-64)
+- MMU can map up to 32G DDR RAM
+- fully planar formats (3 planes) are not supported
+- max scale up/down factor of 8 (RGA2 allows up to 16)
 
-[...]
+This patch set adds support for one RGA3 core in the existing
+rga m2m driver. The feature set of the PR is limited to scaling,
+format and color space conversions between common 8bit RGB/YUV formats.
+This already allows a practical usage of the RGA3.
 
-> +	i2c-led {
-> +		compatible = "i2c-gpio";
-> +		sda-gpios = <&tlmm_pinmux 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		scl-gpios = <&tlmm_pinmux 7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+During testing it has been noted that the scaling of the hardware is
+slightly incorrect. A test conversion of 128x128 RGBA to 256x256 RGBA
+causes a slight shift to the bottom right. The shift is suddle, as it seems
+that the image is shifted by about 2px down and right and then cropped to
+it's final size (probably caused by the source sampling).
+The same behavior has been observed when using the vendor driver
+with the librga library.
 
-Have you tried setting up the I2C-GPIO busses as GSBI devices, like
-I think I suggested the last time? This will potentially bring power
-and latency benefits, since there's an actual bus controller
-connected to these pins
+Furthermore comparing the RGA3 conversion with the GStreamer
+videoconvertscale element, the chroma-site is different. A quick testing
+didn't reveal a chroma-site that creates the same image with the
+GStreamer Element. Also when converting from YUV to RGB the RGB values
+differ by 1 or 2. This doesn't seem to be a colorspace conversion issue
+but rather a slightly different precision on the calculation.
 
-Konrad
+This was tested on a Radxa Rock 5T. Around 80 fps were measured when
+scaling and converting from RGBA 480x360 to NV12 3840x2160 in a single
+gstreamer pipeline. Format conversions were tested with a single
+gstreamer pipeline converting a fixed input to a given input format.
+Afterwards it's piped through the RGA3 and the result is converted back
+to rgba and compared against a given hash value (generated after
+comparing the output manually to the input).
+
+The patchset also fixes the failing v4l2-compliance tests due to the
+missing colorimetry propagation from output to capture:
+
+  v4l2-compliance 1.32.0, 64 bits, 64-bit time_t
+  ...
+  	Card type        : rga2
+  ...
+  Total for rockchip-rga device /dev/video0: 48, Succeeded: 48, Failed: 0, Warnings: 0
+
+  v4l2-compliance 1.32.0, 64 bits, 64-bit time_t
+  ...
+	Card type        : rga3
+  ...
+  Total for rockchip-rga device /dev/video1: 48, Succeeded: 48, Failed: 0, Warnings: 0
+
+To distinguish the RGA2 core from the RGA3 cores the Card type is set
+accordingly. Scheduling operations between both RGA3 cores to double
+the possible frame rate might be a future improvement. Until then
+additional RGA3 cores are disabled to only provide one video device to
+the user space. This prevents a potential ABI breakage when multi core
+support is implemented.
+
+The DTS change at the end is just as a preview, as this series targets
+media/next. After it's merged the DTS change will be sent as a new
+patch not targeting media.
+
+Patch 1 updates the dtb bindings doc to support the RGA3
+Patch 2-5 extend v4l2 common functionality
+Patch 6-10 are general cleanups
+Patch 11-27 prepare the rga driver for the RGA3
+Patch 28 adds RGA3 support to the rga driver
+Patch 29 dtsi additions for the RGA3
+
+Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
+---
+Changes in v5:
+- Fixed cmdbuf allocation size being only a quarter
+- Fixed streamon cmdbuf preparation to not set
+  rotation/flipping which prevents changing it during streaming
+- Link to v4: https://patch.msgid.link/20260325-spu-rga3-v4-0-e90ec1c61354@pengutronix.de
+
+Changes in v4:
+- Add Nicolas to Cc for potential reviews and Sebastian for the nice
+  RK3588 mainline status table
+- Improved single memory plane y stride alignment adjustments
+- Adjusted scaling inaccuracy description
+- Dropped required iommu property from the binding yaml
+- Fixed binding yaml indentation
+- Link to v3: https://lore.kernel.org/r/20260127-spu-rga3-v3-0-77b273067beb@pengutronix.de
+
+Changes in v3:
+- Add iommus property to the dtb bindings documentation
+- Drop interrupt name from the dtsi
+- Added v4l2_format_info for missing 2 byte RGB formats
+- Fixed incorrect dt node reference in the binding patch commit message
+- Removed now unused depth member of rga_frame
+- Replaced RGA3 semi planar bool with v4l2_format_info check
+- Calculated x_div/y_div variables instead of storing them
+- Limited width/height to even values for YUV formats
+- Support all 4 CSC modes: BT601L, BT601F, BT709L, BT2020L
+- Note slightly incorrect scaling by the hardware
+- Fix stride alignment to bytes
+- Use early returns in rga-buf init/cleanup
+- Fix incorrect devm_clk_bulk_get with devm_clk_bulk_get_all
+- Don't enforce max scaling factor in try_fmt (only in s_fmt)
+- Merge single register editing RGA3 functions into the other functions
+- Link to v2: https://lore.kernel.org/r/20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de
+
+Changes in v2:
+- Removed overclocking (assigning higher clock speeds in the dts)
+- Disable the second RGA3 core
+- Improved RGA3 feature documentation and code comments
+- Don't write the whole command buffer in each frame
+- Don't announce CIDs for the RGA3 and error out on s_selection
+- Check the max scaling factor of 16 (RGA2) and 8 (RGA3)
+- Move stride alignment and alpha checking to v4l2 common
+- Register the interrupt as shared for an external IOMMU
+- Add IOMMU patch as dependency to fix sporadic hangups
+- Link to v1: https://lore.kernel.org/r/20251007-spu-rga3-v1-0-36ad85570402@pengutronix.de
+
+To: Jacob Chen <jacob-chen@iotwrt.com>
+To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+To: Hans Verkuil <hverkuil@kernel.org>
+Cc: linux-media@vger.kernel.org
+Cc: linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+
+---
+Michael Olbrich (1):
+      media: rockchip: rga: share the interrupt when an external iommu is used
+
+Sven Püschel (28):
+      media: dt-bindings: media: rockchip-rga: add rockchip,rk3588-rga3
+      media: v4l2-common: sort RGB formats in v4l2_format_info
+      media: v4l2-common: add missing 1 and 2 byte RGB formats to v4l2_format_info
+      media: v4l2-common: add has_alpha to v4l2_format_info
+      media: v4l2-common: add v4l2_fill_pixfmt_mp_aligned helper
+      media: rockchip: rga: fix too small buffer size
+      media: rockchip: rga: use clk_bulk api
+      media: rockchip: rga: use stride for offset calculation
+      media: rockchip: rga: remove redundant rga_frame variables
+      media: rockchip: rga: announce and sync colorimetry
+      media: rockchip: rga: move hw specific parts to a dedicated struct
+      media: rockchip: rga: avoid odd frame sizes for YUV formats
+      media: rockchip: rga: calculate x_div/y_div using v4l2_format_info
+      media: rockchip: rga: move cmdbuf to rga_ctx
+      media: rockchip: rga: align stride to 4 bytes
+      media: rockchip: rga: split flip and rotate into separate function
+      media: rockchip: rga: prepare cmdbuf on streamon
+      media: rockchip: rga: check scaling factor
+      media: rockchip: rga: use card type to specify rga type
+      media: rockchip: rga: change offset to dma_addresses
+      media: rockchip: rga: support external iommus
+      media: rockchip: rga: remove size from rga_frame
+      media: rockchip: rga: remove stride from rga_frame
+      media: rockchip: rga: move rga_fmt to rga-hw.h
+      media: rockchip: rga: add feature flags
+      media: rockchip: rga: disable multi-core support
+      media: rockchip: rga: add rga3 support
+      arm64: dts: rockchip: add rga3 dt nodes
+
+ .../devicetree/bindings/media/rockchip-rga.yaml    |  10 +-
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |  44 ++
+ drivers/media/platform/rockchip/rga/Makefile       |   2 +-
+ drivers/media/platform/rockchip/rga/rga-buf.c      |  61 ++-
+ drivers/media/platform/rockchip/rga/rga-hw.c       | 413 ++++++++++-----
+ drivers/media/platform/rockchip/rga/rga-hw.h       |  16 +-
+ drivers/media/platform/rockchip/rga/rga.c          | 577 ++++++++++-----------
+ drivers/media/platform/rockchip/rga/rga.h          |  85 +--
+ drivers/media/platform/rockchip/rga/rga3-hw.c      | 507 ++++++++++++++++++
+ drivers/media/platform/rockchip/rga/rga3-hw.h      | 192 +++++++
+ drivers/media/v4l2-core/v4l2-common.c              | 128 +++--
+ include/media/v4l2-common.h                        |   6 +
+ 12 files changed, 1514 insertions(+), 527 deletions(-)
+---
+base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+change-id: 20251001-spu-rga3-8a00e018b120
+prerequisite-change-id: 20251126-spu-iommudtefix-cd0c5244c74a:v1
+prerequisite-patch-id: 10c6c977c0f71400931941b42da73adcaf63e810
+
+Best regards,
+--  
+Sven Püschel <s.pueschel@pengutronix.de>
+
 
