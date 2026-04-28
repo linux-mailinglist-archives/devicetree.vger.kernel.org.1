@@ -1,159 +1,145 @@
-Return-Path: <devicetree+bounces-290781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290793-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2EhjK6r872kmNAEAu9opvQ
-	(envelope-from <devicetree+bounces-290781-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 02:17:46 +0200
+	id AJwUIkEQ8GnTNgEAu9opvQ
+	(envelope-from <devicetree+bounces-290793-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 03:41:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A8FE47C159
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 02:17:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCE3A47C7C2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 03:41:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1584F3034E16
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 00:17:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B46D301C586
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 01:41:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554261FECBA;
-	Tue, 28 Apr 2026 00:17:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9AFB2C0261;
+	Tue, 28 Apr 2026 01:41:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cJ78DAZp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jcxhCKlB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30F191E9B35;
-	Tue, 28 Apr 2026 00:17:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97461DF6C;
+	Tue, 28 Apr 2026 01:41:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777335458; cv=none; b=n3ywUgAEC2CjRzQrxpNg6pYRPSzUvQxCzSn4EyPvvIHTdUQQbSfFOr0Q04waPeQhnhXeG8Ab8MfavKy5EYPMTz/g1x67wnwArKRJt4wj+Ll46+DPXZUFHy909R7R7g0o6tRldJKkNz3r1cryPP4oIyMexT/W9MqXJnLwme9je9k=
+	t=1777340477; cv=none; b=VqYJ6ydfE5FaDb+ge4/FILtKESgpIjdbC/zWtzMYtm87fHcUWy6Xt1tIBTZRq6xQrwnvTh0GFMD0FJTXim93GBsCyHfrMieZTfjiqSznUVcrfxRHB+ytNp6OozZTNgTEJMrFb1KiqxoMfudq+yHTceImvdrsM1eg5BzWathHyz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777335458; c=relaxed/simple;
-	bh=6RCzVcVHnWB7Xitp60ejz8BoMUtumigfr5ZwTpbOtJc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S4DsFcLzyuh+itm5J8CSzCUzOhA4K8aI+QTPGBhCzfZGpRbZjNAZ3Ihl3JldSSAwmYqoYjOmme809qq7in34h1cPvH3E4VBYYHHu4WE6kBdVAQGXOzgEL9k+NN/ZnA0X81ddIyUg9oTOoSB7HljkRjesl2keNUAZvU0uXJ0IKic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cJ78DAZp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E13E9C19425;
-	Tue, 28 Apr 2026 00:17:37 +0000 (UTC)
+	s=arc-20240116; t=1777340477; c=relaxed/simple;
+	bh=Qirg9HtlKwgQkuFZC2c0wY82dvncnY8EFG+Hd58B11w=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=J5NUP4JO87iAZgzWifQ+Lya/OXLt/OqqDwKmNakGxKcati0y/NYopapDS8W2fTke2lpErFmqjTMr/l5YJYXktk9KDUkZRcJ2LfdpcX3S9EKABvyDNVisFysbyxzf1OeoZgaSqAtk+NO4Z65/uF3KpEAfMjAwdaTlPA951KKpIBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jcxhCKlB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E29F4C19425;
+	Tue, 28 Apr 2026 01:41:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777335458;
-	bh=6RCzVcVHnWB7Xitp60ejz8BoMUtumigfr5ZwTpbOtJc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cJ78DAZprfEadaOsdbT59/5Ch0WQGduepbtv8F020hgjU0ql+lhvRnGHz+VTrwjdD
-	 5EehzHaQkK4rgZw4wM0UqMP8ETaTDZ5Ty7c8ziuHuG1jCyEJwPH0J73BFEm6rBQt5a
-	 2vnTUPGVi01plwJSvt8F3c41VgmDMblGOalFxUzPx8tP/M1X2C+lbKUewl/KpFHy+y
-	 4uSL4AejTYdfJGJ13o6kdZnGmIhMQ5rZY4rs/o+kOmRIXoMPCbB7clr2ulMJ0kkE9S
-	 Ui08MzklpYlwOG35XfZzRRDEkmC0qg5VUlKHcASl8ufgrTMib9ww8R+rO3z3BYWcx9
-	 owOWzMyrBOOgQ==
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-	id 31EB71AC583E; Tue, 28 Apr 2026 01:17:35 +0100 (BST)
-Date: Tue, 28 Apr 2026 09:17:35 +0900
-From: Mark Brown <broonie@kernel.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>,
-	Alex Elder <elder@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Alex Elder <elder@riscstar.com>
-Subject: Re: [PATCH v9 2/3] spi: spacemit: introduce SpacemiT K1 SPI
- controller driver
-Message-ID: <ae_8n0I_ORDLib1y@sirena.co.uk>
-References: <20260427-spi-spacemit-k1-v9-0-ff753b551302@riscstar.com>
- <20260427-spi-spacemit-k1-v9-2-ff753b551302@riscstar.com>
+	s=k20201202; t=1777340477;
+	bh=Qirg9HtlKwgQkuFZC2c0wY82dvncnY8EFG+Hd58B11w=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=jcxhCKlBm3Ew03yvSBJq4UttFb7TAqZ29lTngr/O4jYdxYuBChEifCOQttAeOIg+6
+	 tSOS9K0CwJA1W7wbqfKRfKW+ntMvlAzjugSom+4SiAxTwE1b5VVm/JL8zEOJ0zVUrK
+	 1uwqMjv/dV/eblYC8OS2pYiYCT9XDXpScgKBkcsn78V6aaxWN60dqkKuqDLeHHqqZC
+	 oWv/90yNPzzXhCnu809Pjd6mYNeP2qf0lbvYgV/OzmJs8T1ceYnDL9TxA/UIkI7N9F
+	 EjXgOZFnKFEEELq9/wTL/muoLWbt/gXt/Fj2L114Tdt1M2reFku3Rfnpg1VSdOoAMo
+	 u4NbAoX8vUKQQ==
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="uloWIL4Vd8FJnYvz"
-Content-Disposition: inline
-In-Reply-To: <20260427-spi-spacemit-k1-v9-2-ff753b551302@riscstar.com>
-X-Cookie: Victory uber allies!
-X-Rspamd-Queue-Id: 5A8FE47C159
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CABx5tqK7p_XJHfXZ70gXhR88PzAteV7cVSFPoRzccgmjanADMw@mail.gmail.com>
+References: <20260423090904.2108-1-dongxuyang@eswincomputing.com> <20260423091114.2326-1-dongxuyang@eswincomputing.com> <aeo8nn-eigzlojWx@redhat.com> <4e5c887.5a31.19dbf179fb6.Coremail.dongxuyang@eswincomputing.com> <CABx5tqK7p_XJHfXZ70gXhR88PzAteV7cVSFPoRzccgmjanADMw@mail.gmail.com>
+Subject: Re: Re: [PATCH v3 2/3] clk: eswin: Add eic7700 HSP clock driver
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, p.zabel@pengutronix.de, huangyifeng@eswincomputing.com, benoit.monin@bootlin.com, ningyu@eswincomputing.com, linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
+To: Brian Masney <bmasney@redhat.com>, Xuyang Dong <dongxuyang@eswincomputing.com>
+Date: Mon, 27 Apr 2026 17:21:48 -0700
+Message-ID: <177733570840.5403.12558106273673899411@lazor>
+User-Agent: alot/0.12
+X-Rspamd-Queue-Id: DCE3A47C7C2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290781-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-290793-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sboyd@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.co.uk:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:email]
 
+Quoting Brian Masney (2026-04-24 04:15:46)
+> On Fri, Apr 24, 2026 at 6:45=E2=80=AFAM Xuyang Dong
+> <dongxuyang@eswincomputing.com> wrote:
+> > Thanks for the feedback. I did some research based on your comments.
+> >
+> > lock_ctx is a local variable declared inside the function body. It is n=
+ot
+> > in scope at the attribute site. The attribute expands to
+> > __attribute__((acquire_capability(lock_ctx->lock))), and since lock_ctx
+> > doesn't exist at the declaration point, clang's analysis cannot resolve=
+ it
+> > and silently drops the annotation. That's why you see no warnings from
+> > make C=3D2 or -Wthread-safety.
+> >
+> > Why -Wthread-safety produces no output
+> > Two reasons:
+> >   1. The lock_ctx->lock expression is unresolvable at the attribute sit=
+e,
+> >   so clang drops the annotation silently =E2=80=94 no acquire/release t=
+racking,
+> >   no warnings.
+> >   2. Even if the expression were resolvable, spinlock_t in this driver =
+is
+> >   a plain pointer field (spinlock_t *lock) accessed through a void *
+> >   callback =E2=80=94 the analysis can't track lock state through that i=
+ndirection.
+> >
+> > The closest correct expression would be:
+> > __acquires(((struct eic7700_hsp_regmap_lock *)arg)->lock)
+> > But that also won't work: arg is void *, and clang's thread-safety
+> > analysis is type-based. It can't trace through a void pointer cast to
+> > determine which spinlock_t instance is being acquired. The analysis
+> > would still silently ignore it.
+> >
+> > For void * regmap callbacks, there is no clean way to make __acquires()
+> > work, because the lock is always hidden behind the opaque pointer.
+> > The annotations should be dropped.
+> >
+> > Based on the above analysis, I suggest removing the annotations entirel=
+y.
+> > However, I'd like to hear your thoughts on this approach.
+>=20
+> I agree to remove the annotations. Before you post a new version,
+> let's let this series sit out on the list for a week or two, and see
+> if anyone else replies with the proper way to do this.
+>=20
 
---uloWIL4Vd8FJnYvz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Mon, Apr 27, 2026 at 10:01:28PM -0400, Guodong Xu wrote:
-
-> +static int k1_spi_transfer_one(struct spi_controller *host,
-> +			       struct spi_device *spi,
-> +			       struct spi_transfer *transfer)
-> +{
-
-> +	/* Record how many words the len bytes represent */
-> +	count = transfer->len / drv_data->bytes;
-> +	drv_data->rx_resid = count;
-> +	drv_data->tx_resid = count;
-
-This is setting up _resid with a number of words.
-
-> +static void k1_spi_write_word(struct k1_spi_driver_data *drv_data)
-> +{
-> +	struct spi_transfer *transfer = drv_data->transfer;
-> +	u32 bytes = drv_data->bytes;
-> +	u32 val;
-> +
-> +	if (transfer->tx_buf) {
-> +		const void *buf;
-> +
-> +		buf = transfer->tx_buf + (transfer->len - drv_data->tx_resid);
-
-This is using _resid as a byte count.  It'll be fine for 8 bits per word
-(which is by far the most common thing).
-
---uloWIL4Vd8FJnYvz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnv/J4ACgkQJNaLcl1U
-h9BKxgf9HFwNyeCFgiJ1m6lF9UKtdez+pweMTHvDt7wqUtMyufYwnBTIxOIB3Kv7
-mh5QcTbeorohLLIvkOV2893vxCNwlLyZdUU+dFQak6B6RQGSYLJoIjDJtSuyjYhM
-T+2YKiSllt6ejJCezhmo56WDtVCSJR820A3qYN+T5B/52xwFkNa7SoiBG7PB9Wya
-57r8VQLQ4ZeG5MBmwHe23njUPZj2WYYwMUo0Uz0j+9H1gdPugU1nv7B2q9hKCRPe
-Xo1mIWG3NiZ28wHyCT73ICpkRSOj62o8nw9EUauWSu9hwI6z4wT508HxWY+tkSAy
-qBlmsjEqZ/rJtgIQyFZsnKgAi341Vw==
-=TBfs
------END PGP SIGNATURE-----
-
---uloWIL4Vd8FJnYvz--
+Why not use a regmap instead? That would enforce locking on registers
+and then you use the right regmap APIs to update the register under the
+lock (like regmap_update_bits() or something).
 
