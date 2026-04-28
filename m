@@ -1,160 +1,267 @@
-Return-Path: <devicetree+bounces-290821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290826-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QBK9Du1G8GmIRAEAu9opvQ
-	(envelope-from <devicetree+bounces-290821-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 07:34:37 +0200
+	id 0MLAAeNJ8GmIRAEAu9opvQ
+	(envelope-from <devicetree+bounces-290826-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 07:47:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8662847DA7D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 07:34:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59C9C47DC25
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 07:47:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3CF4030413B0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 05:28:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6ABB53024CA9
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 05:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 468A233F8C6;
-	Tue, 28 Apr 2026 05:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923273101A0;
+	Tue, 28 Apr 2026 05:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="F0UDzJ5N"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dVJM4Ysl";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="iRB7959S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B699631F996;
-	Tue, 28 Apr 2026 05:26:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777354016; cv=none; b=Dd711v/MvbSdOlRGHrDC9kF7+nMl54+lCn8SkJ17OisteVZHM6Wt3LLXpAyLk4n+GckTO+COR7+8OLl+ABtPxbuMKOOyECISfV7Yki2QluPfo+jtfHrucybN1w3HEKUvTnl7aWE7eETc6tBzIoeEB9wR2tzmvsl1NXWKLD9ZZU0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777354016; c=relaxed/simple;
-	bh=X9UYu1zooc3rzPodVEod6KEBoXrIW4ahtjph2K7oVQU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mrEIBM5XYnXCxot1oUn9WcLKQRa+5jCRyWE3VkxBnAlIAFyhU/blcWj9EqNRblXCu4GMq5MeohWqMpPbhMBa2T2WZPPQJ3qnk5+azE+JYjtxvNl446NVMFcaVofavTeLNCJZXSs+raV4qAutJIz4D6OcRyH6rrwQhmNoUb7P4+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=F0UDzJ5N; arc=none smtp.client-ip=218.76.62.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ultrarisc.com
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD0581E1C11
+	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 05:47:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=205.220.168.131
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777355231; cv=pass; b=AR+8AR/47ySnNRHjPxDoWKiKh+jD+19DGaUhW3DFSC4mKvnSG9SjGr3r38DFY+GIdWXQFuOFDBiuz/yxnk4P17Jqx9bXsjTd4wYIa72PC1rYYEj8EZ0qGl4ZpiObyv1gFoTeJgy9ov7DDeffdR1xkc0LO7RKZLj524yx/w4jUcI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777355231; c=relaxed/simple;
+	bh=mlMqdXFriR1NPOu++ehwnapqTjBgv5WcCndQlg95xUE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QLhm4MiBmd9kYLdkS5MMnDMBFXezL7VRWypW6ChqijHswBV4gsFLxsQ9Mm0m7+4uTxCkTEwe32Hm/NjzUcpPFKJZiGeF7a5E/7Og3cFtgrxnAHvUjNvy0Y3mjCei2q7tdknXcDh1EaDugw7h8xIuWcr8LzFmnmiH1WaXGn/VB5M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dVJM4Ysl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iRB7959S; arc=pass smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63S21uYE3123516
+	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 05:47:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	904MNvmo4S/voCKmtIZIg0Hvxx0Xe/N1YqgI1M2/QbI=; b=dVJM4YslGSenrGrz
+	dFvK6y6Ib/j/FMHv4J5DcEMjHIEascpkTwZ9y4xeEFgva+kgCN1ReHjJ4Ua3z2lL
+	wKskdIrUYED+N/sHnAPcwKeHxMCPy4UtRLtZaLsfsFyd6wFIEP6c0QACma2KJ2LT
+	oAooIib6vQ0WJ+ImC+76z3B1tL2nybXaMEKMgn9C9nXaZLi4uAEoUxchoBJs4vd6
+	mDQxVeeTofYhXoDC81jmsCZ2HRrab3jCKbMbbpuom79ox6SARxqprR0jS8csyybL
+	LQf0uy+h5Lx2pFIeN5Xu/PQWpvDIW9IEA0lSb+/tXRNc7ASfvy1Y0Hsegy6k/aZL
+	LfwOtw==
+Received: from mail-yw1-f197.google.com (mail-yw1-f197.google.com [209.85.128.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dt5qgky4y-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 05:47:08 +0000 (GMT)
+Received: by mail-yw1-f197.google.com with SMTP id 00721157ae682-7b3e41a97f0so150460767b3.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 22:47:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1777355228; cv=none;
+        d=google.com; s=arc-20240605;
+        b=M3nrf1fgL+wIDKM1UMUaGLJqe/UG1MGCxB1aI6ok4rluvIXxlEMoABDfQnmC04osxm
+         1cilw3Shu5flryB+BlW9bHtlsIlG5UB7oz9/QO4aOxFJLHOQ9xkpMv2ZjE3vlW550vj7
+         szPkawhUhgmqhV8nHZ2ehAzAWZn3Xi511nFeEWFRqQlEGm9eNkRVgsW7SRyEHKNVzdjw
+         l2uso1TGtdc5nNTml53jO0nLcoxW5oBofMbP8mWMr1trxSszF5Nc0wxox5kIwTvxmyJQ
+         mhCpeFrTAw9KhEtmGfmYoaDv48LTF+I1HzRbQMW3kwkC0GMwHev3LaOTXYV9cUpFUVyy
+         ppEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=904MNvmo4S/voCKmtIZIg0Hvxx0Xe/N1YqgI1M2/QbI=;
+        fh=gt6U8W6NUJYwYd8jMy4zJMFahkLoabHFWwQ/C00mYHw=;
+        b=g5g+MFVpGBpqTwQAHw81q+sufYFVVIUlMf6s6C7LosNcx74dsc5uZiTT5jqbU3KhYD
+         lxGUd8qeXf/c4sZNBYxO+g/x3Fn5/A+Z/cl0ILEgWlwXTV6dJVPIlrAD6MeTwO36sfUL
+         6gRQuaY8UO9u+5XFyG0YekjeaO4LSj2K8mte0tw6+jXoy+M80Czp5vpBhYJqGh704auC
+         HdxvptevAa9qSi6GiL3zPvCyvLpcxwXpbaAkm/OJS1vEtFo1YiOa0kTqk9+5W7qfwA0/
+         CzA6BzN6onHY8jve/DwxhzlgL+rFeTA/G8MuMiLoK0vzVsMfxs8+rS4N9Gr2Bxqo3PXn
+         s06g==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:From:Date:Subject:
-	MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:
-	References:In-Reply-To:To:Cc; bh=9i7uFJ3TqgWZcNGBsH0cl+nq2vGVqjL
-	Xv8OMC9b26W0=; b=F0UDzJ5NTUIg4y1RQ+QTRZRwykmA6gMWpmMp4tXhdoIfW0G
-	oMi+CsoNFJLehyqH9mbn5Z6ZxI+8ZoZ55TwLQEVeaQ+FU4eGX/7Ex4thslxa9CdU
-	2Jbg4clEOszSmBUGBXXU+gK6Nb22l7cRNh++fx7uDGj8SL58/wDp/1NWSyhg=
-Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwA3cUIxRfBpJRMDAA--.1785S6;
-	Tue, 28 Apr 2026 13:27:25 +0800 (CST)
-From: Jia Wang <wangjia@ultrarisc.com>
-Date: Tue, 28 Apr 2026 13:26:29 +0800
-Subject: [PATCH v5 4/4] serial: 8250_dw: Use a fixed CPR value for
- UltraRISC DP1000 UART
+        d=oss.qualcomm.com; s=google; t=1777355228; x=1777960028; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=904MNvmo4S/voCKmtIZIg0Hvxx0Xe/N1YqgI1M2/QbI=;
+        b=iRB7959S7RhRk0zW9v7eNDBieOqyhfKXf3h3q0iHdeDToFr/jMTSFPTxF/6BDtlk47
+         hT1nl2QGOnbXmODRTYA2VUjJzqEOfpYwJvMnk/qH9cnjNHfrHk7w3yv6ssIX+g1eVglb
+         3jnrWc/K1sfkMK4vaz+EjomwnHxYMqyMwtd8oYv4xl5JHN7WBMkWKAcuORZOZ0Zn+pLw
+         C45htYNjfr5BKmb+MwuzLio9bo2/7d3Du0Ky1VOE22qWHAE3ovgZbOVOb3xa4xOX1UFT
+         /lHTGs04O790WRUudY7HOxbSFPa/+R3gjyzDDCfZYcQbMYHl58VnAWVh3R/zbwo0yzPJ
+         Dqig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777355228; x=1777960028;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=904MNvmo4S/voCKmtIZIg0Hvxx0Xe/N1YqgI1M2/QbI=;
+        b=tJr04VhxVjH5Wt57Ay+TC9wETf/uqs2rRXqiQQpMuGHQzJJdebDC5N7IPFe5GwBW+M
+         /SN/gJzvxQTo/ehsNANytYspuBX3MDR1NEjSdpfVk3Ss5yLO6DVcWzafbyqEqmUUZQnI
+         udwxRfY9w5b57AqBXbF68L+84llCxbm+ZUIvwEJk8d3X/x3aCdQpO/gvSPQvZ0Hbln6S
+         ST8f64zCd5s/SITEB/Amo3J+t8KYBNNV1VpSQfgY8ORnBZi1adChiD6G0PFTm0XZtHyI
+         7yBH/DjgTLXgzoPTExmVCaFOBVOVkaAtLYDgEQtem97AKwM/RhVIeKK1pxaHfKJXIw+l
+         YaKg==
+X-Forwarded-Encrypted: i=1; AFNElJ8WH2DUsSRA4svhZ/hE01DBceJezjyt1pR8WgilpjljrfZUouYdYOqrBQ3KHZMyovu9R4/6OZLma8zw@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdLn4gJ89ZLgo8Ji7HwI4H+Ygq9qLBcsUe5VCInmawBIxWfGgm
+	slXgAUC5xCDnWWYYEJxfgFPOx629+W4yl2g/3F5tQX7BEBsSNHMOKyKyG4n78x3K5qAVmkiRgCV
+	qpurLjwE4PwoI6R2wyoWFmbnlbgfJix8fUFmBdK2V0VNfWqbS8tyP4WSbA5lzIb/mGWSK5aYUAA
+	+UNdsZCRTbGhifhufa11ng6iNOi2xXUyR8xTzi0Qw=
+X-Gm-Gg: AeBDieuH2BxwWAEqc0EsZKfI6thBb2gk8d2Xcxyz5gJBwKa+jop864FhAjNgLHxZMfF
+	8STuuRiPR+sTnFtIJ7czoLGA+jqUU6SkTygvqgtPK68FJaNceFYKtEEbQHWm9cbckdLeBu/3BcD
+	YocioWi1Z3QusidZisqyhXPkea0WuB1tJc+pAOQ5+yRNI6iefHNc3Yo6h09UCwbvKuvMj4x7R23
+	MD6DPp6o0ojSn9Jqj4MDF0EMgZG61rnHE0wEmLuJC6riHSSGf4=
+X-Received: by 2002:a05:690c:87:b0:7b2:136d:2436 with SMTP id 00721157ae682-7bcf50d16b8mr15101727b3.8.1777355227933;
+        Mon, 27 Apr 2026 22:47:07 -0700 (PDT)
+X-Received: by 2002:a05:690c:87:b0:7b2:136d:2436 with SMTP id
+ 00721157ae682-7bcf50d16b8mr15101557b3.8.1777355227528; Mon, 27 Apr 2026
+ 22:47:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260428-ultrarisc-serial-v5-4-97de63b1e3eb@ultrarisc.com>
-References: <20260428-ultrarisc-serial-v5-0-97de63b1e3eb@ultrarisc.com>
-In-Reply-To: <20260428-ultrarisc-serial-v5-0-97de63b1e3eb@ultrarisc.com>
-To: =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- Jia Wang <wangjia@ultrarisc.com>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777353989; l=1780;
- i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
- bh=X9UYu1zooc3rzPodVEod6KEBoXrIW4ahtjph2K7oVQU=;
- b=z+2OmzPT06i+BL/PBMHsAPWM0CsEXx/6xG+PPE3jq0YSHs39Q5ti1ZP9xbKZURiMVfPvf/5d/
- zBZDV04HI7cCP2hu7of2SeqMcacmTLJKgz7AEUYULBpuVZVgX8ojZDY
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
-X-CM-TRANSID:AQAAfwA3cUIxRfBpJRMDAA--.1785S6
-X-Coremail-Antispam: 1UD129KBjvJXoW7tw4UJFyfJr1UCF48Xr4kXrb_yoW8Aw4DpF
-	42krZ0vrySgF4Yg3WIya1vvFWfua1Yvry2k3srK347tFn8tryUJrnayryay3ZIgFySqr1j
-	yF1YvrW7Aa18u3JanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnUUvcSsGvfC2KfnxnUUI43ZEXa7xR_UUUUUUUUU==
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAKEWnti78ACwAmsH
-X-Rspamd-Queue-Id: 8662847DA7D
+References: <20260331-eliza-adsp-usb-v1-0-d8a251be20c3@oss.qualcomm.com>
+ <20260331-eliza-adsp-usb-v1-1-d8a251be20c3@oss.qualcomm.com>
+ <69d644bd-d64e-4ef4-b0ca-b47103e84764@oss.qualcomm.com> <p6duntiwahnmxwit2qgegcmqerv3or3h36y5cel36ekw4vkcfp@exmgriqkkqqb>
+ <e0dacc06-432f-4924-89e8-f5fafaee4906@oss.qualcomm.com> <jznwxsifczinkboh5kakjj7etxvfbvn5hwbxvxauy42mr3cgph@dnnqiihclguy>
+In-Reply-To: <jznwxsifczinkboh5kakjj7etxvfbvn5hwbxvxauy42mr3cgph@dnnqiihclguy>
+From: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>
+Date: Tue, 28 Apr 2026 11:16:54 +0530
+X-Gm-Features: AVHnY4IW-s7ZWmxCMcWomBKPRZTyXnt6XjkBi2QcMC6pnWY9-35jJ5-YLd-9OZw
+Message-ID: <CAEiyvpq0e_VgTq0FYOSKGxa_d88sz9uOQgMCBoZfztRk1cjD2A@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: eliza: Describe the ADSP and USB
+ related nodes
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Wesley Cheng <wesley.cheng@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI4MDA1MCBTYWx0ZWRfX0hO58m1TbKnk
+ MM5dDdiEuYlnd2r/2SAsJPSUTQ+6YUUejtwT+WQ3ypKiAXLsjHn8TLICRN3Sz+mwmVYet1zibxU
+ jZk6xcElvtXUIIbuJTV5iUzttRTeZ0WXLkTnVEMaAaoWNO+/GWumin440OxvS65VkZY2SFA0bIa
+ KORkqdnQNnHudFhU4jQYx2AUfReXZWoyanizEdYK1KVLENSlYYoYUgJCtUsLjafhSKJ3ELWdZ4T
+ Zg9J1yVA5LUJdZOKMEQEd9ArpWvoPgJs79+4cpqy06r+a6tiZLDTo7Qi9HFvdiuDu9dR33Pybzp
+ JYVr8HjpPbxfMzoil4TD5SVB1Q8yCjSAL0DM4v0sd4hpsPnuK21zSU4AQXCV9xqb7iuSFImJ+75
+ 78jhliioOYOS/qbltRNYM8savZJLlBk99h+3fEoN1CINgKHoaYLArfZiPRS5tSyW3jZz1fQAlTn
+ zY7qsqrt8Ifzo/aC3Yw==
+X-Authority-Analysis: v=2.4 cv=V69NF+ni c=1 sm=1 tr=0 ts=69f049dc cx=c_pps
+ a=0mLRTIufkjop4KoA/9S1MA==:117 a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=yOCtJkima9RkubShWh1s:22 a=EUspDBNiAAAA:8 a=TO9xln4AVH5IzxScuHwA:9
+ a=QEXdDO2ut3YA:10 a=WgItmB6HBUc_1uVUp3mg:22
+X-Proofpoint-GUID: nXv0WEdEy4NgMw1JhU3mYs04shlUnNlY
+X-Proofpoint-ORIG-GUID: nXv0WEdEy4NgMw1JhU3mYs04shlUnNlY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-28_01,2026-04-21_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 clxscore=1015 suspectscore=0 adultscore=0 spamscore=0
+ phishscore=0 priorityscore=1501 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604200000
+ definitions=main-2604280050
+X-Rspamd-Queue-Id: 59C9C47DC25
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
-	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290821-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290826-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ultrarisc.com:+];
+	FROM_NEQ_ENVFROM(0.00)[krishna.kurapati@oss.qualcomm.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,88e3000:email]
 
-The UltraRISC DP1000 UART does not provide the standard CPR register used
-by 8250_dw to discover port capabilities.
+On Wed, Apr 22, 2026 at 3:55=E2=80=AFPM Abel Vesa <abel.vesa@oss.qualcomm.c=
+om> wrote:
+>
+> On 26-04-22 12:09:31, Konrad Dybcio wrote:
+> > On 4/22/26 11:41 AM, Abel Vesa wrote:
+> > > On 26-03-31 15:37:08, Konrad Dybcio wrote:
+> > >> On 3/31/26 12:37 PM, Abel Vesa wrote:
+> > >>> Describe the ADSP remoteproc node along with its dependencies, incl=
+uding
+> > >>> the IPCC mailbox, AOSS QMP and SMP2P links used for communication.
+> > >>>
+> > >>> The Eliza SoC features a USB 3.1 Gen 2 controller connected to a QM=
+P
+> > >>> combo PHY and an SNPS eUSB2 PHY. Describe them.
+> > >>>
+> > >>> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> > >>> ---
+> > >>
+> > >> [...]
+> > >>
+> > >>> +         usb_hsphy: phy@88e3000 {
+> > >>> +                 compatible =3D "qcom,eliza-snps-eusb2-phy",
+> > >>> +                              "qcom,sm8550-snps-eusb2-phy";
+> > >>> +                 reg =3D <0x0 0x088e3000 0x0 0x154>;
+> > >>> +                 #phy-cells =3D <0>;
+> > >>> +
+> > >>> +                 clocks =3D <&rpmhcc RPMH_CXO_CLK>;
+> > >>
+> > >> This is TCSR_USB2_CLKREF_EN
+> > >
+> > > Good point. Will fix.
+> > >
+> > >>
+> > >>
+> > >>> +         usb: usb@a600000 {
+> > >>> +                 compatible =3D "qcom,eliza-dwc3", "qcom,snps-dwc3=
+";
+> > >>
+> > >> Does the device suspend and resume successfully?
+> > >
+> > > Well, tested with pm_test devices and it does suspend and resume
+> > > successfully, but there is this:
+> > >
+> > > [   54.584126] dwc3-qcom a600000.usb: port-1 HS-PHY not in L2
+> > >
+> > > But if I'm not mistaken, this is valid accross all SNPS eUSB2 PHYs, o=
+n
+> > > all platforms that have them.
+> >
+> > Well it's not fatal, but ideally this wouldn't be there. Maybe you're m=
+issing
+> > some DWC quirk in the list, although it seems pretty long already. Perh=
+aps
+> > Wesley would know more.
+>
+> + Wesley
+>
 
-Provide a fixed CPR value for the DP1000-specific compatible so the
-driver can configure the port correctly.
+As per HPG and downstream, this is what needs to be done while entering sus=
+pend:
 
-Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
----
- drivers/tty/serial/8250/8250_dw.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+1. Clear PWR_EVNT_LPM_IN_L2_MASK bit of pwr_evnt_irq_stat_reg
+2. Clear PWR_EVNT_LPM_OUT_L2_MASK bit of pwr_evnt_irq_stat_reg
+3. Set the following bits in the pwr_evnt_irq_stat_reg:
+ a)  DWC3_GUSB2PHYCFG_ENBLSLPM  and  DWC3_GUSB2PHYCFG_SUSPHY
+4. Wait for 3ms for PWR_EVNT_LPM_IN_L2_MASK to be set
+5. If it is not set, then we can print the error
+6. If its set, then we need to clear the bits.
 
-diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-index 5cf3bb74b285..6fa7c8440919 100644
---- a/drivers/tty/serial/8250/8250_dw.c
-+++ b/drivers/tty/serial/8250/8250_dw.c
-@@ -960,6 +960,16 @@ static const struct dw8250_platform_data dw8250_intc10ee = {
- 	.quirks = DW_UART_QUIRK_IER_KICK,
- };
- 
-+static const struct dw8250_platform_data dw8250_ultrarisc_dp1000_data = {
-+	.usr_reg = DW_UART_USR,
-+	.cpr_value = FIELD_PREP_CONST(DW_UART_CPR_ABP_DATA_WIDTH, 2) |
-+		     DW_UART_CPR_THRE_MODE |
-+		     DW_UART_CPR_DMA_EXTRA |
-+		     FIELD_PREP_CONST(DW_UART_CPR_FIFO_MODE,
-+				      DW_UART_CPR_FIFO_MODE_FROM_SIZE(32)),
-+	.quirks = DW_UART_QUIRK_CPR_VALUE,
-+};
-+
- static const struct of_device_id dw8250_of_match[] = {
- 	{ .compatible = "snps,dw-apb-uart", .data = &dw8250_dw_apb },
- 	{ .compatible = "cavium,octeon-3860-uart", .data = &dw8250_octeon_3860_data },
-@@ -967,6 +977,7 @@ static const struct of_device_id dw8250_of_match[] = {
- 	{ .compatible = "renesas,rzn1-uart", .data = &dw8250_renesas_rzn1_data },
- 	{ .compatible = "sophgo,sg2044-uart", .data = &dw8250_skip_set_rate_data },
- 	{ .compatible = "starfive,jh7100-uart", .data = &dw8250_skip_set_rate_data },
-+	{ .compatible = "ultrarisc,dp1000-uart", .data = &dw8250_ultrarisc_dp1000_data },
- 	{ /* Sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, dw8250_of_match);
-
--- 
-2.34.1
-
+Regards,
+Krishna,
 
