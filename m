@@ -1,152 +1,159 @@
-Return-Path: <devicetree+bounces-290806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290781-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eP4vNngr8GmBPQEAu9opvQ
-	(envelope-from <devicetree+bounces-290806-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 05:37:28 +0200
+	id 2EhjK6r872kmNAEAu9opvQ
+	(envelope-from <devicetree+bounces-290781-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 02:17:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58AB047D1A0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 05:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A8FE47C159
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 02:17:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 486CD301C893
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 03:37:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1584F3034E16
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 00:17:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E25927603A;
-	Tue, 28 Apr 2026 03:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554261FECBA;
+	Tue, 28 Apr 2026 00:17:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IT23CfrV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cJ78DAZp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A5477404E;
-	Tue, 28 Apr 2026 03:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30F191E9B35;
+	Tue, 28 Apr 2026 00:17:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777347445; cv=none; b=JJuv3klSai+2Ml6GIYC4Wp67apF1a+Qlh4XIksZYaRHnzKEolV+mERe1SYBk8G1vkPns6Xl1nx2o3nzOoWsW2/ZbmM1v20YFVkBo8R86zMLnBnkgI9045HJrDD2ByGuZmIp8ZdrwBHhhDcJpcHcnDz4E/468jUvLiT3O1NXhGzc=
+	t=1777335458; cv=none; b=n3ywUgAEC2CjRzQrxpNg6pYRPSzUvQxCzSn4EyPvvIHTdUQQbSfFOr0Q04waPeQhnhXeG8Ab8MfavKy5EYPMTz/g1x67wnwArKRJt4wj+Ll46+DPXZUFHy909R7R7g0o6tRldJKkNz3r1cryPP4oIyMexT/W9MqXJnLwme9je9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777347445; c=relaxed/simple;
-	bh=+pLxNKzVbDT5VbW3yYMkCdfxj3d2fvBuAxoNX8+DvzY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Gb6aCLfo1ef84DEu2Hybat5lBHNcsgVHh2hKGePGRGYS9A5nHbdcIpN+/6/I2wB0QXtKXqGGXFf23wmqdTwBth8nlnBl1e1I8flha9mgcuvc1gzJoQbKsPuqroYy4bmbxHoEPdccsE77piLsrcaMGvzotRzxNjhiIc+eBAayfRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IT23CfrV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D00CC2BCAF;
-	Tue, 28 Apr 2026 03:37:22 +0000 (UTC)
+	s=arc-20240116; t=1777335458; c=relaxed/simple;
+	bh=6RCzVcVHnWB7Xitp60ejz8BoMUtumigfr5ZwTpbOtJc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S4DsFcLzyuh+itm5J8CSzCUzOhA4K8aI+QTPGBhCzfZGpRbZjNAZ3Ihl3JldSSAwmYqoYjOmme809qq7in34h1cPvH3E4VBYYHHu4WE6kBdVAQGXOzgEL9k+NN/ZnA0X81ddIyUg9oTOoSB7HljkRjesl2keNUAZvU0uXJ0IKic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cJ78DAZp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E13E9C19425;
+	Tue, 28 Apr 2026 00:17:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777347445;
-	bh=+pLxNKzVbDT5VbW3yYMkCdfxj3d2fvBuAxoNX8+DvzY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=IT23CfrVMSc79SX5d0gi3ajEW45UuHSSlDgQbhOmQajFuqtrSBs18b8IMfV0se7Nt
-	 MOecPSIVzbbU4WhP8ENmr7txY8yADfzd7EVIQYRKOPp9MDChkWddoS34TepKHjnGcl
-	 7/cLyC4CaKwyPrKUhSy6Z5qRVFFMz+hJOBcZSkiYNpQOsTQEzYNZeIT8K/BjRCEOuT
-	 b7aDabXuYRAMyx4aYRftFcPoEY6P4u4RmJBayylAdGDH/fJ0shlZEdpzBOcYXUix0/
-	 nd7AcW4Y6AgY2gjEmcLJ4qsfjxiPs27FRl9EmRLlenOZQRguImagw6PGDD4yjXtCgX
-	 Kq6B9dIVaY/WQ==
+	s=k20201202; t=1777335458;
+	bh=6RCzVcVHnWB7Xitp60ejz8BoMUtumigfr5ZwTpbOtJc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cJ78DAZprfEadaOsdbT59/5Ch0WQGduepbtv8F020hgjU0ql+lhvRnGHz+VTrwjdD
+	 5EehzHaQkK4rgZw4wM0UqMP8ETaTDZ5Ty7c8ziuHuG1jCyEJwPH0J73BFEm6rBQt5a
+	 2vnTUPGVi01plwJSvt8F3c41VgmDMblGOalFxUzPx8tP/M1X2C+lbKUewl/KpFHy+y
+	 4uSL4AejTYdfJGJ13o6kdZnGmIhMQ5rZY4rs/o+kOmRIXoMPCbB7clr2ulMJ0kkE9S
+	 Ui08MzklpYlwOG35XfZzRRDEkmC0qg5VUlKHcASl8ufgrTMib9ww8R+rO3z3BYWcx9
+	 owOWzMyrBOOgQ==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id 31EB71AC583E; Tue, 28 Apr 2026 01:17:35 +0100 (BST)
+Date: Tue, 28 Apr 2026 09:17:35 +0900
 From: Mark Brown <broonie@kernel.org>
-To: Shawn Guo <shengchao.guo@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
- Dmitry Baryshkov <lumag@kernel.org>, 
- Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>, 
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
- Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260427011159.230698-1-shengchao.guo@oss.qualcomm.com>
-References: <20260427011159.230698-1-shengchao.guo@oss.qualcomm.com>
-Subject: Re: [PATCH v2 0/2] Add PMAU0102 RPMH regulator support
-Message-Id: <177733258718.324244.8879121147375028827.b4-ty@b4>
-Date: Tue, 28 Apr 2026 08:29:47 +0900
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>,
+	Alex Elder <elder@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org, Alex Elder <elder@riscstar.com>
+Subject: Re: [PATCH v9 2/3] spi: spacemit: introduce SpacemiT K1 SPI
+ controller driver
+Message-ID: <ae_8n0I_ORDLib1y@sirena.co.uk>
+References: <20260427-spi-spacemit-k1-v9-0-ff753b551302@riscstar.com>
+ <20260427-spi-spacemit-k1-v9-2-ff753b551302@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1497; i=broonie@kernel.org;
- h=from:subject:message-id; bh=+pLxNKzVbDT5VbW3yYMkCdfxj3d2fvBuAxoNX8+DvzY=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBp8CtxEI9oCIvXdYxO67QBx8W9YECca1Q+c86Ia
- iNea5oD/duJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCafArcQAKCRAk1otyXVSH
- 0D72B/4i8qf9+e2/+kJlFLWHHbMwHumSI176AQewS5L4S6Ps3sgj6Tud7kbk5tRjC30vRY2TlVt
- 7jbDRsydvG7Ph+8ePBiYeUHrhd+9WmMtT0XEhW9A99feNsBA3/RVZUQyDvDt9yerYQvuVJ71gU/
- 1um3fgSSf74udm32ZZJmnZO7emXgAYGwHqBI6KTeB0gStsPmcL26IV9/qYre+pzY2gzywCt8APZ
- qTzKrJCMMIcvbm2Jo9UKAmAoMyAm7svKouKysrFd4QZuw8Q6HfvWDRD9a989vyfg5S1Z2kT2qII
- Tq+ime6nQX1Kdv7nkFxhg/DOusRmx0Hq2fVCFR67wIeFwPMz
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
-X-Rspamd-Queue-Id: 58AB047D1A0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="uloWIL4Vd8FJnYvz"
+Content-Disposition: inline
+In-Reply-To: <20260427-spi-spacemit-k1-v9-2-ff753b551302@riscstar.com>
+X-Cookie: Victory uber allies!
+X-Rspamd-Queue-Id: 5A8FE47C159
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290806-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290781-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.co.uk:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-On Mon, 27 Apr 2026 09:11:57 +0800, Shawn Guo wrote:
-> Add PMAU0102 RPMH regulator support
-> 
-> This series adds RPMH regulator support for PMAU0102 PMIC found on
-> Qualcomm Nord SoC based devices.
-> 
-> Patch 1 adds the PMAU0102 compatible to the dt-bindings for
-> qcom,rpmh-regulator, documenting its 8 SMPSes and 3 LDOs.
-> 
-> [...]
 
-Applied to
+--uloWIL4Vd8FJnYvz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.2
+On Mon, Apr 27, 2026 at 10:01:28PM -0400, Guodong Xu wrote:
 
-Thanks!
+> +static int k1_spi_transfer_one(struct spi_controller *host,
+> +			       struct spi_device *spi,
+> +			       struct spi_transfer *transfer)
+> +{
 
-[1/2] regulator: dt-bindings: qcom,rpmh: Add PMAU0102 support
-      https://git.kernel.org/broonie/regulator/c/1804b8a1b436
-[2/2] regulator: rpmh-regulator: Add RPMH regulator support for Nord
-      https://git.kernel.org/broonie/regulator/c/bb6ea5ae0b27
+> +	/* Record how many words the len bytes represent */
+> +	count = transfer->len / drv_data->bytes;
+> +	drv_data->rx_resid = count;
+> +	drv_data->tx_resid = count;
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+This is setting up _resid with a number of words.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+> +static void k1_spi_write_word(struct k1_spi_driver_data *drv_data)
+> +{
+> +	struct spi_transfer *transfer = drv_data->transfer;
+> +	u32 bytes = drv_data->bytes;
+> +	u32 val;
+> +
+> +	if (transfer->tx_buf) {
+> +		const void *buf;
+> +
+> +		buf = transfer->tx_buf + (transfer->len - drv_data->tx_resid);
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+This is using _resid as a byte count.  It'll be fine for 8 bits per word
+(which is by far the most common thing).
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+--uloWIL4Vd8FJnYvz
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Thanks,
-Mark
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnv/J4ACgkQJNaLcl1U
+h9BKxgf9HFwNyeCFgiJ1m6lF9UKtdez+pweMTHvDt7wqUtMyufYwnBTIxOIB3Kv7
+mh5QcTbeorohLLIvkOV2893vxCNwlLyZdUU+dFQak6B6RQGSYLJoIjDJtSuyjYhM
+T+2YKiSllt6ejJCezhmo56WDtVCSJR820A3qYN+T5B/52xwFkNa7SoiBG7PB9Wya
+57r8VQLQ4ZeG5MBmwHe23njUPZj2WYYwMUo0Uz0j+9H1gdPugU1nv7B2q9hKCRPe
+Xo1mIWG3NiZ28wHyCT73ICpkRSOj62o8nw9EUauWSu9hwI6z4wT508HxWY+tkSAy
+qBlmsjEqZ/rJtgIQyFZsnKgAi341Vw==
+=TBfs
+-----END PGP SIGNATURE-----
+
+--uloWIL4Vd8FJnYvz--
 
