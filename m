@@ -1,245 +1,211 @@
-Return-Path: <devicetree+bounces-290590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290798-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0FUbI/Vu72mHBQEAu9opvQ
-	(envelope-from <devicetree+bounces-290590-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 16:13:09 +0200
+	id UA5yNLcc8GlYOgEAu9opvQ
+	(envelope-from <devicetree+bounces-290798-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 04:34:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8D4A4741D6
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 16:13:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1B847CC94
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 04:34:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C6EF2307B863
-	for <lists+devicetree@lfdr.de>; Mon, 27 Apr 2026 14:02:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 786DE300DF78
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 02:34:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A5C53D3CF3;
-	Mon, 27 Apr 2026 14:02:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B79389DFF;
+	Tue, 28 Apr 2026 02:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b="GKkemFHd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GgOuSeMN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com [74.125.82.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C0453D3498
-	for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 14:02:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D54B7154425
+	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 02:34:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777298541; cv=none; b=S9Q7Gl3gPG7A465l4xlmL0t4zgpRoAIv3CfAAARUbiJ/1KTKWXBcBBKXIig3HciqjarBv85rPHIWeuGzMzrj4/lf1ycXrYrzAkTE+zNs8XxqxBEh5u+tpHTpNLd+fLJtP+BRiWguAn1Xt0tp19cHASn1IlqxpVixiX8zajZZGKc=
+	t=1777343653; cv=none; b=D8PtfQVRZEfFQpC3xwxj8HsqCXa3zD7eLd24G5dHJ8NaAYt6xFPYH7OcX0n5xJDd/+cfEZJbz6Vg/nL4jbpaupvvLey4DRK8xdIDEgM5xFz3rlVKfSCyo1WIG3uT/B/tZWu8vQyj8guBqxbxrMosRCa567ke2ujEL7GV4p2hpSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777298541; c=relaxed/simple;
-	bh=DL7WXDFY1O5eBh2tmSI3Zsd/h0SrUvqrCzd486m+vE8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KAHSpSVoY3bj0UvJnKgWBr42dgdaYhkbEVrfeR0o7hhzLozAGdEfm4J/d4VeuQhHFKypcKCe1hQkwZGZQzO4VyKDEjZe/cGhH0G9seNd7VxcSSY+KzKoTEwEwaHOVH0n6Q21ZPedVwQ3oGM/e95aReEUlp9H7Ygfcv3mr80e5z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b=GKkemFHd; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2aae146b604so68374295ad.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 07:02:20 -0700 (PDT)
+	s=arc-20240116; t=1777343653; c=relaxed/simple;
+	bh=B2NJzaNjCJ0DyQe5Mzm2TtPc+J/lHI3Q0EjfI8MXkQo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AtQLdIkhkT8xAdj5ZhVXe+ezScVv6OBsy8eQGfbEGA2m3hJpJeIbqUlu+rrnkPcKbsWD2VMXKzrm9V7OZBwh8P8NMMxaLvQ0F5I9Vtb88DZ3FgHERAxyQ5RPj2qRnkXk7mje29f4V35hujSgKYRGAuI1LpcUGl51TxBEFq+RNqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GgOuSeMN; arc=none smtp.client-ip=74.125.82.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f179.google.com with SMTP id 5a478bee46e88-2d891442388so917212eec.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Apr 2026 19:34:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20251104.gappssmtp.com; s=20251104; t=1777298540; x=1777903340; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4Zn1VHf2vGq/Rgp6tmVMmYAtaKJKXMEkXpNhjeJ8VMM=;
-        b=GKkemFHd+RZyEWGbir64WPIi7wKWUu2IoBYL7safr3T1j34Ps51hF/6GKW7IxuQRlj
-         uN4IUh/UzSHgCQIPkEcjk0SOyvVcFJb6VAyPgGMb5T7rE4ENHsLGisIajoxS50uUvDie
-         /oZ0NvcCvPO63bmT7BmsByPuT6L6l3B7ZsptJObuO+Bc618+qelaWSYqe2MNpK3IMlRq
-         rq2Tg+NM2EzTCTyCNeSoHrjYMA/0faSPydcQKpcFPuAfFEcyv5Aqm0zgy8d111pQXYR9
-         NOaS1U+HysVCJm2w9br3lLYhB8qrW+OJKhZiciypfDyGsG2leWlAoPC5qaZ29HWX3kaK
-         za0g==
+        d=gmail.com; s=20251104; t=1777343651; x=1777948451; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xT34PXRwCoPIF5vxgIxThc3YCrZamZtv7P8orH77yuA=;
+        b=GgOuSeMNmtJwMwbMhexmiPSPtEI0WhyahRbDVtKtkUWbJrBYm+zQY1H3+tKQYr/tF4
+         ts332KbCgwU1zu2nCdul0j8DdeRfVXPKOS9kOh3XEtA+7c5CHE41EO8Gt7vhGcue7014
+         SiW2dLNcwJI0363nXdOfzHAnw77V8Uy7yXsqf2CsCRaa5qwe9hKAVJ3ZqYx3N9Mrf0lx
+         sB2gP4mQRllqL2S1Wv+vUaFXOm+dGHCDtrhA3qZRwrPQtmIFx1Eg8oaSbseOVVRWZXpQ
+         5vInhNsrnJ7VND9gnkbiZcQPz6zT7+ao51jc2/Vwer7+gj74ezJWHK1elJfqTeZFixRe
+         aqzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777298540; x=1777903340;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4Zn1VHf2vGq/Rgp6tmVMmYAtaKJKXMEkXpNhjeJ8VMM=;
-        b=DsAx07X1ZoWy+bVc1bhw3qxjo08Q74F1LPTSpcA8t6fQTKhmbUvp7lqthqv0Vn4AvJ
-         /ACSZWYCqB5xP2ciZFkdUcz29x19nGBs47BOyfQjWdoNddiMhjDyjuCnv96AhVKUm1x9
-         gGm5/m7mS8TUqFVzyCd17F3sTqc16TsObsBZbje9SDrcRywUj2pnR8OGKIIOyoMDZRvu
-         k3N9v7nGNFWfAFCMdVaQ5p8i6wp2Di2AKWqVf7YjOg/Hd71SoUd4KC5IPF5bOb9yJJeT
-         XrfPGO1KAF6mZ8lo7yhkkXvOcfcGmAubsO+fPSlh/N6QN2t4DSTIRzrvCxfQ2Cgi7BAD
-         1dfw==
-X-Forwarded-Encrypted: i=1; AFNElJ/na2BHg14ObD0iBCvKku6QWUuY8cX8OJ8nlIIYYm5yJflFA4cOhYKYr+Z86KWr8kgiV0Z7YLMkqw0t@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFaAm/0m6jme9L7ubnEIwnD47wzeMPbQhZoMfjQbwO9kyCtmFh
-	Dv4F1phSnq0KV0j8csmJtMvbATO9bI9RLebsy1IyLoj9nMp11/U/sLdAfBQuAMii5lk=
-X-Gm-Gg: AeBDievwgFUurHPtt6Pmbq2aKAXfASQnsBSeZDCw5v2wgxMvMJ6shNVacYyx0htlXEF
-	o4d2R0HHhe1XyWMWmndwV2O4jjKt+To8T5voMm2WpRhk1fNZX4TioC2x6KS6TNh+LO1PrBJ0CkJ
-	HmfNBHZsfyXSb8QAkXQQCoiR2nkbUWN2ieiua1ZVOmWMOaq9WlVwsDu0zbhjIq/WKVrtJAvBW5H
-	VrF9rM7Snb+UzqW7DMV8q3B/6xLjxXvXypXDhvreWB2/oYlhqgj0LENZUlrs2W2yRPhbYnBlthB
-	enCeLlk7aas+LOaQ4EMT5grb2hugxI2nEjQwRzNAaHa8cR5XaX9JrhqkJipkgM+yARL3nIiLyRy
-	Z5LP7pYq4gatDAxgYoixcAzE/c/uWj/4Ps2nab4M3vX1D//yX7RgRfR/U629+nnQ3ZccUWK2c4e
-	JRLcedtErt1SjonTwkXJx0hKmas1AOezisXKG3jhMPYmZOdzLdgb3kKw==
-X-Received: by 2002:a17:903:3db3:b0:2b2:58a2:c8a with SMTP id d9443c01a7336-2b5f9d68827mr300145985ad.0.1777298539927;
-        Mon, 27 Apr 2026 07:02:19 -0700 (PDT)
-Received: from [127.0.1.1] ([2a12:a305:4::3016])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b5fa9ff98csm307143625ad.3.2026.04.27.07.02.13
+        d=1e100.net; s=20251104; t=1777343651; x=1777948451;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xT34PXRwCoPIF5vxgIxThc3YCrZamZtv7P8orH77yuA=;
+        b=S6xCSYPDciCaj1LmrpgjoQjK6CQHoXCzWxoA1d4N1DE9Q0MUWgvdCxhohbv6yREobo
+         /X3opEhHIVUxS7iAtEAjcoHer61X2lQYkWpMl1tan7UN6mSrkIOK6B48DdU1gcxG2oxq
+         zVyPUHnNt1G7qRchMQ/zICPVSng+lncImQVUpU+fYaC4Y08CKpLpf+8ztidLI8GLxbGM
+         oYMCd5QlxAr2PQgk2uwbYsxDZHNqGMe5xt+sGk+Uz9aOJfj9p1ORKLr4h7Yy0RURsGob
+         F4VeVnF/V9WPpaZTYb1TAqDa7aZj1M/RHVr15ACKjZeC/UrJ4p9kxUWTy/0gdoUabL1T
+         GgmA==
+X-Forwarded-Encrypted: i=1; AFNElJ9LqZ05xd0hcg6K8sUfy52lzrPJ7Ql5r3zkBSlVkNsBobEWMlKKcuv086npy94n9y6XyHrlUaNbvKQ+@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywqmu9dWDJgocEasoaP96INQzG4Q35MglOkPyylYn575SlgOB1K
+	XwMBQCoQjindsB5l4SUYpszMDycI/kBl7DXZlssRri/d+KYLtCmFfdaf
+X-Gm-Gg: AeBDiet9C7k9q0T0AvtfJbjavtXvW996Z4pIZN6mhDlUdx5Njm0M51bDStomGpIaetl
+	qxwMYZGgK0JqqfuLtCLIH8Uh5SSZ9rwc7nv83+4nCm1Mz9eoxHiyfHwr7NhUxPm+0gvwbk1T/Xd
+	1wCnniRhJ8kz9HYHSwKFZw+aLSC5iDnAybu6nA5X9kPnKby0S+tvMgWQNcuuiHE4a/9SPe8oyCj
+	GtSL9LXh5x29+50hIN7yvP3VSbOqSMj5Sgo6BgUi4oNwY4TCUOCzYhZQ5GBilFYNPNK1eaPBGpt
+	/P+fOFLou/KQl8TxGEmLDtOGzkf7RERMrWxdnINZYd6nK9N8CVEpStrPi0OlPoAD57WojkYaJEz
+	Wf8d9UsYmtnctozkB9Q7B8WeYjWcvL5tMuBYH4SUqAkvw7eE4Jqb+pJqbq4WQmwh06IW/ilw9VZ
+	8jgPQTpB47EmgE+MC/6jIZ7Bv+DeAy+yE=
+X-Received: by 2002:a05:7300:a148:b0:2ea:ed3e:d0b7 with SMTP id 5a478bee46e88-2ed0a09937emr738460eec.18.1777343650867;
+        Mon, 27 Apr 2026 19:34:10 -0700 (PDT)
+Received: from arch.localdomain ([2409:8a28:a59:55d1::1002])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2ed0a13ebe6sm1088066eec.30.2026.04.27.19.34.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Apr 2026 07:02:19 -0700 (PDT)
-From: Guodong Xu <guodong@riscstar.com>
-Date: Mon, 27 Apr 2026 22:01:29 -0400
-Subject: [PATCH v9 3/3] riscv: dts: spacemit: define a SPI controller node
+        Mon, 27 Apr 2026 19:34:10 -0700 (PDT)
+From: Jun Yan <jerrysteve1101@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Cc: lee@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	luccafachinetti@gmail.com,
+	pzalewski@thegoodpenguin.co.uk,
+	daniel@zonque.org,
+	Jun Yan <jerrysteve1101@gmail.com>
+Subject: [PATCH v2 0/5] leds: Add shutdown gpio for is31fl32xx
+Date: Tue, 28 Apr 2026 10:33:56 +0800
+Message-ID: <20260428023401.330308-1-jerrysteve1101@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260427-spi-spacemit-k1-v9-3-ff753b551302@riscstar.com>
-References: <20260427-spi-spacemit-k1-v9-0-ff753b551302@riscstar.com>
-In-Reply-To: <20260427-spi-spacemit-k1-v9-0-ff753b551302@riscstar.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
- Alex Elder <elder@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Guodong Xu <guodong@riscstar.com>, 
- Alex Elder <elder@riscstar.com>, Yixun Lan <dlan@kernel.org>
-X-Mailer: b4 0.15.1
-X-Rspamd-Queue-Id: E8D4A4741D6
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 3C1B847CC94
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.94 / 15.00];
-	DATE_IN_FUTURE(4.00)[11];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[riscstar-com.20251104.gappssmtp.com:s=20251104];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-290590-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,thegoodpenguin.co.uk,zonque.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[riscstar-com.20251104.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290798-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[guodong@riscstar.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[d420c000:email,d401c000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,riscstar-com.20251104.gappssmtp.com:dkim,riscstar.com:mid,riscstar.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,controller.it:url]
 
-From: Alex Elder <elder@riscstar.com>
+This patch series primarily adds the shutdown-gpios support                =
+                                                                           =
+                                                                           =
+                                            for the IS31FL32xx controller.I=
+t also includes a fix and                                                  =
+                                                                           =
+                                                                           =
+             dt-bindings updates derived from previous attempts [1].       =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                          Patch 1 and patch 2 are based on a previous attem=
+pt [1].                                                                    =
+                                                                           =
+                                                                      The d=
+river-related updates in patch 2 have already been merged.                 =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+        Patch 3 and Patch 4 add support for the shutdown-gpios property,   =
+                                                                           =
+                                                                           =
+                                                    which corresponds to th=
+e SDB pin of the IS31FL32xx series chips.                                  =
+                                                                           =
+                                                                           =
+                     This pin is used to enter and exit the hardware shutdo=
+wn mode.                                                                   =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                  Patch 5 fixes errors introduced by previo=
+us changes. It impacts                                                     =
+                                                                           =
+                                                                           =
+   the brightness control function of the IS31FL3236.                      =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                                           =
+                [1] https://lore.kernel.org/linux-leds/20250723-leds-is31fl=
+3236a-v6-0-210328058625@thegoodpenguin.co.uk/
 
-Define a node for the fourth SoC SPI controller (number 3) on the
-SpacemiT K1 SoC.
+Changes in v2:
+- Fix $id mismatch with file name in dt-binding.
+- Link to v1: https://lore.kernel.org/linux-leds/20260428003412.322032-1-je=
+rrysteve1101@gmail.com/
 
-Enable it on the Banana Pi BPI-F3 board, which exposes this feature
-via its GPIO block:
-  GPIO PIN 19:  MOSI
-  GPIO PIN 21:  MISO
-  GPIO PIN 23:  SCLK
-  GPIO PIN 24:  SS (inverted)
+Jun Yan (5):
+  dt-bindings: leds: is31fl32xx: convert the binding to yaml
+  dt-bindings: leds: leds-is31fl32xx: add support for is31fl3236a
+  dt-bindings: leds: leds-is31fl32xx: Add shutdown-gpios property
+  leds: is31fl32xx: Add shutdown pin to exit hardware shutdown mode
+  leds: is31f132xx: Fix missing brightness_steps for is31f13236
 
-Define pincontrol configurations for the pins as used on that board.
+ .../bindings/leds/issl,is31fl32xx.yaml        | 200 ++++++++++++++++++
+ .../bindings/leds/leds-is31fl32xx.txt         |  53 -----
+ drivers/leds/leds-is31fl32xx.c                |   7 +
+ 3 files changed, 207 insertions(+), 53 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/leds/issl,is31fl32xx.=
+yaml
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-is31fl32xx.=
+txt
 
-(This was tested using a GigaDevice GD25Q64E SPI NOR chip.)
-
-Reviewed-by: Yixun Lan <dlan@gentoo.org>
-Signed-off-by: Alex Elder <elder@riscstar.com>
-Signed-off-by: Guodong Xu <guodong@riscstar.com>
----
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts |  7 +++++++
- arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi    | 20 ++++++++++++++++++++
- arch/riscv/boot/dts/spacemit/k1.dtsi            | 15 +++++++++++++++
- 3 files changed, 42 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 5790d927b93db..9429189354d6a 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -14,6 +14,7 @@ aliases {
- 		ethernet0 = &eth0;
- 		ethernet1 = &eth1;
- 		serial0 = &uart0;
-+		spi3 = &spi3;
- 		i2c2 = &i2c2;
- 		i2c8 = &i2c8;
- 	};
-@@ -335,6 +336,12 @@ &pcie2 {
- 	status = "okay";
- };
- 
-+&spi3 {
-+	pinctrl-0 = <&ssp3_0_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
-diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-index b13dcb10f4d66..34d88334e95e4 100644
---- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-@@ -570,4 +570,24 @@ pwm14-1-pins {
- 			drive-strength = <32>;
- 		};
- 	};
-+
-+	ssp3_0_cfg: ssp3-0-cfg {
-+		ssp3-0-pins {
-+			pinmux = <K1_PADCONF(75, 2)>,	/* SCLK */
-+				 <K1_PADCONF(77, 2)>,	/* MOSI  */
-+				 <K1_PADCONF(78, 2)>;	/* MISO */
-+
-+			bias-disable;
-+			drive-strength = <19>;
-+			power-source = <3300>;
-+		};
-+
-+		ssp3-0-frm-pins {
-+			pinmux = <K1_PADCONF(76, 2)>;	/* FRM (frame) */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <19>;
-+			power-source = <3300>;
-+		};
-+	};
- };
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index f0bad6855c970..f8747190d2e12 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -983,6 +983,21 @@ qspi: spi@d420c000 {
- 				status = "disabled";
- 			};
- 
-+			spi3: spi@d401c000 {
-+				compatible = "spacemit,k1-spi";
-+				reg = <0x0 0xd401c000 0x0 0x30>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks = <&syscon_apbc CLK_SSP3>,
-+					 <&syscon_apbc CLK_SSP3_BUS>;
-+				clock-names = "core", "bus";
-+				resets = <&syscon_apbc RESET_SSP3>;
-+				interrupts = <55>;
-+				dmas = <&pdma 20>, <&pdma 19>;
-+				dma-names = "rx", "tx";
-+				status = "disabled";
-+			};
-+
- 			/* sec_uart1: 0xf0612000, not available from Linux */
- 		};
- 
-
--- 
-2.43.0
+--=20
+2.53.0
 
 
