@@ -1,229 +1,199 @@
-Return-Path: <devicetree+bounces-291210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291202-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cLjCMqgU8WnwcwEAu9opvQ
-	(envelope-from <devicetree+bounces-291210-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 22:12:24 +0200
+	id QM2DD3wT8WlZcwEAu9opvQ
+	(envelope-from <devicetree+bounces-291202-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 22:07:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26E9A48B8AB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 22:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B69B048B72A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 22:07:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7F2263147CC0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 20:07:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A2BF302E915
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 20:07:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40CDA3D47B5;
-	Tue, 28 Apr 2026 20:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8803B6348;
+	Tue, 28 Apr 2026 20:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dGM3kAzT"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RGv6v9ku"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f53.google.com (mail-dl1-f53.google.com [74.125.82.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC983D5225
-	for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 20:07:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A357C37DEAE;
+	Tue, 28 Apr 2026 20:07:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777406876; cv=none; b=Z+kKE/uW4r2DsvieGWNy9cRb5NCjmJt7sEdcmGdWQaAD6WkeUEZJU7N/1bfQENsjWU2f5LZGKxH6M1YmWm0Ig8ATgC/mgpv9T0tVcG89PCUyVWJ6fENIz339F2H5GbXma6O5G0as6cbiEDZagN9+A9VLbJaT8CMdY6aqV4CVSM0=
+	t=1777406838; cv=none; b=qh5MSG7ZUs33zyznYAQIjC9Gdyzgg4vAgYg71iUbaf0Z1f4+R20aOXLA52TOWQEFE8XL0bfUa+G5/fPjoePujAC26JkYVW05qrLB6XaeSSDHIMmJ6ph+m2kPyrBqBZO2QBdI+IWJMW1r3eVjQ61GbPynJBW5E6virjc6nUY+3uM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777406876; c=relaxed/simple;
-	bh=U4+LflP710DVR4kB1UOr2zgqsKpE/7u4FQUoCfyFE04=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DFIv9mxO/aE/+pbzCO+CMs55ykiT0TTmSYeldkFfEdt5xJc05NcxrtcJDhtwPmwORB0R6lWhcuS37zcPijnGcPZ84/ZmQd+qIZptu6BugtXPl/cnn11nVvJbH1kTIUrLP2bsByLmftOBMArCwS59xVGIhat7SpFQ1V1IhqKP1SU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=dGM3kAzT; arc=none smtp.client-ip=74.125.82.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-dl1-f53.google.com with SMTP id a92af1059eb24-12dcdcd54adso2004886c88.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 13:07:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1777406873; x=1778011673; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gK+EAT4GmZMdYdv/TPcw5cMAUzBnAuCqdYs+Qlpxwc0=;
-        b=dGM3kAzTdCwfpk8x/dsiLIULQBN0/rsvWnK9tWm5qb+YMetfKHeARagEVQClBucyDT
-         kxCxr1k0k8XFmT0pIXfH6zW13/lEGH1P4tpAgZkK1wk4qJ08LvN2M7ZL5PjJizcRZHHJ
-         Lq+JcbuWLeRAV11E7Qu3muOuMKTPmIhmwHgw4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777406873; x=1778011673;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=gK+EAT4GmZMdYdv/TPcw5cMAUzBnAuCqdYs+Qlpxwc0=;
-        b=R6/Ul58DlGGgSlh56USNSkDHoRkZamA48kn7almzWfiVI+qWZiemql5CFVybVdDCBr
-         wFUuGe5Zy3xffr9oaDSLhBcWZ+l8fJiyuY8WdOMaJ6L1LkCh2/JCl2Dac3I3E4sSVEja
-         ZWJDykfXQ5h6uLh43SmmVTPUFn9zjL8kyasTJDx4+4PRdOrglfmpVFnd/4xHiLUw4y7A
-         4SVfeYnQEemF3hghZHl61Yc5a5wiH680dzTnQjnvOdRQ5NmpOMPP4duaotiWo1tpqnjQ
-         97aR2kfB3KfC9Z7nHmTajoawXiyEri0VkxXt/XRLPkBQU2NEZJq7vORbWMmT6khhrlTz
-         mi9A==
-X-Gm-Message-State: AOJu0YwbF9wKpGh2mwqoRctKhdSERbW4BhURG11mzEfoHGc+KM0cdVRo
-	hdeIdIscIaEUQvknsjua4Qhvq5A2emAlmQuEuRp/AEBcIUzWqL6zjh8F9eWKu8iGfQ==
-X-Gm-Gg: AeBDievtyimtP7Y/jHWx1KF0iyr6G7eTxgmR0hwB4j8CQ4d6O6hPC+hEXgZtMwa47D7
-	m1GSYgQKKcLbPHozfJ3eUhZRuxhv7XZf3CxIW0nqpxW44rfFAu3Tb5H9gAaFlKr9scO3nw8Kh2W
-	oyy0ybWV4Ik/VxSX2ZeGOMl6SZY/n2h/skcBs8aqBvaX7REQZ8cgejTG7neQsIjp8DkSQQvHVEX
-	mWCOPUqHbu0zoDjiO38TdZPtL96ZXtip8idgdds8g75D78KVdNbKUOteyRBhhDg97I9Fy2ZxS52
-	M6x2SxT8qA3p/xg5Ydtx6A+dSRIblfc5NU5kQJdVz9tJ2TnWZMT1oCuUKY9k3d+kjRwVsPIkZu7
-	htbpilQlqXSaFbuomNX3SBJlNM6FUQ9I97OyNfRrVIyKIS2HsZlHJVG29ovXpXAaBAJ00NaMa2Q
-	3+PHTRPJNETS01xSbAaBAXbiL9ibQ3ZYM+1NKefyIQc5fGmwM4PvblHmCKNVn8h8NEpYsQ5R5p
-X-Received: by 2002:a05:7022:b96:b0:128:ccaf:85d5 with SMTP id a92af1059eb24-12ddd959d36mr2219620c88.15.1777406872635;
-        Tue, 28 Apr 2026 13:07:52 -0700 (PDT)
-Received: from localhost ([2a00:79e0:2e7c:8:4ff5:9607:c7e5:48f3])
-        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-2ed0a10678csm3167991eec.24.2026.04.28.13.07.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Apr 2026 13:07:52 -0700 (PDT)
-From: Brian Norris <briannorris@chromium.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	Doug Anderson <dianders@chromium.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	chrome-platform@lists.linux.dev,
-	Brian Norris <briannorris@chromium.org>,
-	linux-rockchip@lists.infradead.org,
-	Julius Werner <jwerner@chromium.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	cros-qcom-dts-watchers@chromium.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 7/7] arm64: dts: qcom: Add #{address,size}-cells to Chromium-based /firmware
-Date: Tue, 28 Apr 2026 13:06:59 -0700
-Message-ID: <20260428200712.2660635-8-briannorris@chromium.org>
-X-Mailer: git-send-email 2.54.0.545.g6539524ca2-goog
-In-Reply-To: <20260428200712.2660635-1-briannorris@chromium.org>
-References: <20260428200712.2660635-1-briannorris@chromium.org>
+	s=arc-20240116; t=1777406838; c=relaxed/simple;
+	bh=Ev8aX7stxAx9Q7bxIzYbAML6rU3CMkG5o51TUX4ilvg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=JKRnFeeEsfMME6i34u83gryOavS1H16OB7WH3anKdf7GAqFej1kwbqStz4Lc2DHaoPQmMXHx7hA/NDnXrvNzZc3PDr1Qsgm1sSJAqQqHO1W5GVDJ8ZAgdfHRlx7ixdZrkl9Ou05SaDtzdc/MN7rPTM3Jtc4HTHQvBB3pyQbhJPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RGv6v9ku; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1777406834;
+	bh=Ev8aX7stxAx9Q7bxIzYbAML6rU3CMkG5o51TUX4ilvg=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=RGv6v9kuSEWj255hrs2/XxoBNOIndWTlAqF19bOAkE5QfhY35+T42ka4z+nV73Gz5
+	 no0Ua2ivRTaBBrjB76rJJUxWHyqymsoGY8wq2MY/matZeHE9VM/jDXCIJk+X6Grib1
+	 2V1ZkR8c1svVqiYRsDIm+RiQc44Pz2ebsnnc2Uk6G90xN8ZIsknQvtm21QV+p7Or5V
+	 wGwjAkZt7E1P9gXNaUt3NjbimQSFvvahaO2vqGp79SAZ8NSsXg6dwu0RlMPNtiYFQy
+	 9mclmS0+nc45vjs3SpkM/rUqoLTdCIjZEdWun9wZimShBe4KY2DuG6jVeccK7ycn0I
+	 5osI5H2MJ718A==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C1B5F17E1513;
+	Tue, 28 Apr 2026 22:07:12 +0200 (CEST)
+Message-ID: <9be87e9d1f24d67423d2062bd2e31284773fd286.camel@collabora.com>
+Subject: Re: [PATCH v6 1/6] docs: uapi: media: Clarify HEVC slice_param
+ bit_size, data_byte_offset
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>, Sakari Ailus	
+ <sakari.ailus@linux.intel.com>, Laurent Pinchart	
+ <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Florian Fainelli
+ <florian.fainelli@broadcom.com>, Broadcom internal kernel review list	
+ <bcm-kernel-feedback-list@broadcom.com>, John Cox
+ <john.cox@raspberrypi.com>,  Dom Cobley <dom@raspberrypi.com>, review list
+ <kernel-list@raspberrypi.com>, Ezequiel Garcia	
+ <ezequiel@vanguardiasur.com.ar>
+Cc: John Cox <jc@kynesim.co.uk>, Stefan Wahren <wahrenst@gmx.net>, 
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org
+Date: Tue, 28 Apr 2026 16:07:11 -0400
+In-Reply-To: <20260304-media-rpi-hevc-dec-v6-1-93868ae6dff8@raspberrypi.com>
+References: <20260304-media-rpi-hevc-dec-v6-0-93868ae6dff8@raspberrypi.com>
+	 <20260304-media-rpi-hevc-dec-v6-1-93868ae6dff8@raspberrypi.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-7EA+qBz5VcXUAxImbcuP"
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 26E9A48B8AB
+X-Rspamd-Queue-Id: B69B048B72A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-291202-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291210-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[kynesim.co.uk,gmx.net,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,nvidia.com,sntech.de,gmail.com,collabora.com];
-	DKIM_TRACE(0.00)[chromium.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[briannorris@chromium.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.dufresne@collabora.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.994];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:email,chromium.org:dkim,chromium.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,crrev.com:url]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,collabora.com:dkim,collabora.com:mid]
 
-Chromium/Depthcharge bootloaders may dynamically add a few device nodes
-to a system's DTB under a /firmware node. A typical DT looks something
-like the following:
 
-/ {
-        firmware {
-                ranges;
+--=-7EA+qBz5VcXUAxImbcuP
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-                coreboot {
-                        compatible = "coreboot";
-                        reg = <...>;
-                        ...;
-                };
-        };
-};
+Le mercredi 04 mars 2026 =C3=A0 14:05 +0000, Dave Stevenson a =C3=A9crit=C2=
+=A0:
+> From: John Cox <john.cox@raspberrypi.com>
+>=20
+> Clarify exactly what bit_size and data_byte_offset mean when there are
+> multiple slices in the bitstream data.
+>=20
+> Signed-off-by: John Cox <john.cox@raspberrypi.com>
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 
-Notably, the /firmware node has an empty 'ranges', but does not have
-address/size-cells.
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 
-Commit 6e5773d52f4a ("of/address: Fix WARN when attempting translating
-non-translatable addresses") started requiring #address-cells for a
-device's parent if we want to use the reg resource in a device node.
-This leads to errors like the following:
+> ---
+> =C2=A0Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst=
+ | 6 ++++--
+> =C2=A01 file changed, 4 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-codec-statel=
+ess.rst b/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.r=
+st
+> index 3b1e05c6eb13..a54e8ea29440 100644
+> --- a/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst
+> +++ b/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst
+> @@ -2399,10 +2399,12 @@ This structure contains all loop filter related p=
+arameters. See sections
+> =C2=A0
+> =C2=A0=C2=A0=C2=A0=C2=A0 * - __u32
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - ``bit_size``
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Size (in bits) of the current slice dat=
+a.
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Size in bits of the slice_segment_data =
+for the current slice including
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 any emulation prevention byte=
+s.
+> =C2=A0=C2=A0=C2=A0=C2=A0 * - __u32
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - ``data_byte_offset``
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Offset (in byte) to the video data in t=
+he current slice data.
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Offset in bytes from the start of the c=
+urrent v4l2_buffer to the start
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of the slice_segment_data for=
+ the current slice.
+> =C2=A0=C2=A0=C2=A0=C2=A0 * - __u32
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - ``num_entry_point_offsets``
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Specifies the number of entry poin=
+t offset syntax elements in the slice header.
 
-[    7.763870] coreboot_table firmware:coreboot: probe with driver coreboot_table failed with error -22
+--=-7EA+qBz5VcXUAxImbcuP
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-Add appropriate #{address,size}-cells to work around the problem.
+-----BEGIN PGP SIGNATURE-----
 
-Note that Google has also patched the Depthcharge bootloader source to
-add {address,size}-cells [1], but bootloader updates are typically
-delivered only via Google OS updates. Not all users install Google
-software updates, and even if they do, Google may not produce updated
-binaries for all/older devices.
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCafETbwAKCRDZQZRRKWBy
+9Ap+AQDAwcqqlDsM/bas7xT/tgtXpUgO0TPivPBSGOOaKMBRrQEAzzS8JahEFtdO
+ikRTjkOUHBpaoCFYVemwuzPvOAAutgc=
+=Yyrz
+-----END PGP SIGNATURE-----
 
-[1] https://lore.kernel.org/all/20241209092809.GA3246424@google.com/
-    https://crrev.com/c/6051580 ("coreboot: Insert #address-cells and
-    #size-cells for firmware node")
-
-Closes: https://lore.kernel.org/all/aeKlYzTiL0OB1y3g@google.com/
-Fixes: 6e5773d52f4a ("of/address: Fix WARN when attempting translating non-translatable addresses")
-Signed-off-by: Brian Norris <briannorris@chromium.org>
----
-
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi   | 5 +++++
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 5 +++++
- 2 files changed, 10 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index b398f69917f0..cd4a0e281cf8 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -99,6 +99,11 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	firmware {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+	};
-+
- 	/* FIXED REGULATORS - parents above children */
- 
- 	/* This is the top level supply and variable voltage */
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index 5c5e4f1dd221..58ea0532c0fb 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -25,6 +25,11 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	firmware {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+	};
-+
- 	/*
- 	 * FIXED REGULATORS
- 	 *
--- 
-2.54.0.545.g6539524ca2-goog
-
+--=-7EA+qBz5VcXUAxImbcuP--
 
