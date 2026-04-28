@@ -1,163 +1,144 @@
-Return-Path: <devicetree+bounces-290893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291291-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iE0ZFkto8GlyTAEAu9opvQ
-	(envelope-from <devicetree+bounces-290893-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 09:56:59 +0200
+	id 4LgjIPGG8WmchgEAu9opvQ
+	(envelope-from <devicetree+bounces-291291-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:20:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F228D47F671
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 09:56:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC57F48F199
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:20:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5F0603012201
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 07:56:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E8D25301AA49
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 04:19:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 143673148A8;
-	Tue, 28 Apr 2026 07:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 843DD37CD34;
+	Wed, 29 Apr 2026 04:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cY/mOurf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="us3hP0iE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28BB1C84BC;
-	Tue, 28 Apr 2026 07:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E6E5175A7E;
+	Wed, 29 Apr 2026 04:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777362994; cv=none; b=iRLFdC2+eYr3SCrQxvJLrdJ7nATltuf45pvQ0SXNX8H4vyCQH/7jXnTpPB/RlC7Mj6/owJ1T6F4YrRMOS3PWmRNRlHiiBHS88ZH70du9sdTmpvPs7k1QIv3SlAnVr5+/OqpRemXSSIxwRfYmGF1H6iQ9eK4VzxxKz5w4miKRMSY=
+	t=1777436386; cv=none; b=NmZv7pKUCIZGVeJaUXWLpoiI2Bc3huZl4F6sk7yt7sQUpG7FvS2jWai/VIh1mzcNFYGevtcxSxdul9aywXKjrhhBLw0PJNKENN1xnkcFeOuQxVltfqr6F+1y4MV2SwuFokAttS/Hu4r0ihxWp4g8gH12I+mU3IQkchJDvuJLNjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777362994; c=relaxed/simple;
-	bh=Mzlq90K/VTzR+F+26arnfLMjVpYCl7Zu2AB1/5S1PyI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IpYK2cqNPkCKZYoszLTCS24HfJxExoU/yHbfMQFCKbGhgABbzE1OmY0a6wESvAqG6u+nF8TMaLD+Haago8oZdXt9SylXAbnnSmcct6r/M6CeNAlxAmxrqO0I7r49pouZvogrqC5GlYLLO6c7S1hCXiItgq2lp+TOfaJXso+o2TY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cY/mOurf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7D66C2BCAF;
-	Tue, 28 Apr 2026 07:56:33 +0000 (UTC)
+	s=arc-20240116; t=1777436386; c=relaxed/simple;
+	bh=fLkUNRG3XzNi2vIwOAcnS+7uMsvjo7QmjxTi8juHVQM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=GLaHyP4cKAkPAMVbLyhCoARhxoe/rQEsJPTw1qo1A8Z0rHsKnvTvywj8RWa8/er00Fyib6i4c0qGHMmMcN0IN4LTe4O57eAUHC0i+lTt1fr8H8kx2OQrPWbg8thwgF279Dcs0tQ1L/fTw3Yza04Vn/MHwYCdqUmIi1UQpRZ3qbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=us3hP0iE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA8C4C19425;
+	Wed, 29 Apr 2026 04:19:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777362994;
-	bh=Mzlq90K/VTzR+F+26arnfLMjVpYCl7Zu2AB1/5S1PyI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cY/mOurfmE7MW35rMnA3eBhijxSBFke9z4rkAmG7LU/v+gt2QEXHGRGzRqHqjgZr0
-	 g9Z9+e1hlmA6psMDM97KuE9wpOGHHHXxVBQwUexE1J6eNwfCXKXAos1HwR93+77Ytr
-	 FiDLFjoo7k0+HjGtlzLiP2o8bl4JHz5OhXVUnEIPOqgNt6AKn7RINzjY0jqUoyPms5
-	 nYF1Bl0y59a/A6AuyCSNFc0PtkYsZgntKTPJpcr2KmnjuDOkc5qVHQqjACARtSSwQj
-	 m5Hibyqhg6s7h9T+2EdLCrGToPTepcMIVU6T6I/hwtc1mDm5Ue66tMdtDwR/JJWAXO
-	 x4h+gZHrWkx3w==
-Date: Tue, 28 Apr 2026 09:56:31 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, xsf@rock-chips.com, sre@kernel.org, 
-	simona@ffwll.ch, airlied@gmail.com, tzimmermann@suse.de, mripard@kernel.org, 
-	maarten.lankhorst@linux.intel.com, jesszhan0024@gmail.com, neil.armstrong@linaro.org, 
-	heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 2/6] power: supply: sgm41542: Add SG Micro sgm41542
- charger
-Message-ID: <20260428-vivacious-fearless-monkey-fe433e@quoll>
-References: <20260427170914.5062-1-macroalpha82@gmail.com>
- <20260427170914.5062-3-macroalpha82@gmail.com>
+	s=k20201202; t=1777436386;
+	bh=fLkUNRG3XzNi2vIwOAcnS+7uMsvjo7QmjxTi8juHVQM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=us3hP0iE/GxjQ14Em1xVk943gZomAFPEgNDYhHuBLhRr/XIxyI+eb3t9jhemN8i/U
+	 h0B1JMHB2lmye5Ex0imvUD+eGqpYT+8eP6apWtUdKcC/LvPgdW/9TVhnyHKYIfWnV9
+	 HedGNYTden3fuvy9/9Hdga+NzVWgXL4OVC0Fl85I8vtHI5hiJJFJ3pOWbygMVpEi6y
+	 068hJ4VGf7E8qs20NwKpgOhhaB95FRCGR6ygCDlZzQc3kFhNwTE7OcHGY8F7dwAlKf
+	 jirIczD0MRWfPUz5sJTZC7hRsJTgkgkZ+UvafC6I+0CJzduOwIEEX2r+jAiijPEZOW
+	 DilO3Y7pJsN0Q==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, Manish Baing <manishbaing2789@gmail.com>
+Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+ kaichieh.chuang@mediatek.com, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20260424210302.39972-1-manishbaing2789@gmail.com>
+References: <20260424210302.39972-1-manishbaing2789@gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: mediatek,mt6351: convert to DT
+ schema
+Message-Id: <177736327649.363516.9564887357760635920.b4-ty@b4>
+Date: Tue, 28 Apr 2026 17:01:16 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260427170914.5062-3-macroalpha82@gmail.com>
-X-Rspamd-Queue-Id: F228D47F671
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1129; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=fLkUNRG3XzNi2vIwOAcnS+7uMsvjo7QmjxTi8juHVQM=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBp8YbdA1/LjEVGI9CN1pUs7Qfnz3Mp/buprmIT4
+ DdKFSKULvKJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCafGG3QAKCRAk1otyXVSH
+ 0I6dB/9o6DjEA3Q+Kl/BtNHLQQzbaLkdI1VD0OdhzSJaHV1ZJ3GayaaJ/jpZ9ItcEbPkRMVxC0C
+ Qy+Fj597SFlGvHfF2JpLQaxfBW6U6gpmstvTorf25pHSi+Qwn2F8n4BACIxbQnSeIPLOgmdqA9Q
+ HErwzn1TvkjkJBHMRJSxGdnxLIkU+7fa/PJ3xP1FDheQJz0ztMTMbD9pWX2XCs/yGlGNKC3L1PA
+ l1brn0ue6CfPBjxt2HTfn+K/q+42kN7dDnn9j+gphhh05hWtmsRAjva/EJqwnED2hxpFC1T4op1
+ +6epv3XjfENVWwXUUrV/zd3k4kPp7Bizt3dotkN9qn1t84La
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-Rspamd-Queue-Id: DC57F48F199
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290893-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-291291-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,lists.freedesktop.org,rock-chips.com,kernel.org,ffwll.ch,gmail.com,suse.de,linux.intel.com,linaro.org,sntech.de,hotmail.com];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-On Mon, Apr 27, 2026 at 12:09:10PM -0500, Chris Morgan wrote:
-> +	strscpy(sgm->model_name, id->name, I2C_NAME_SIZE);
-> +
-> +	sgm->regmap = devm_regmap_init_i2c(client, &sgm4154x_regmap_config);
-> +	if (IS_ERR(sgm->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(sgm->regmap),
-> +				     "Failed to allocate register map\n");
-> +
-> +	i2c_set_clientdata(client, sgm);
-> +
-> +	ret = sgm4154x_hw_chipid_detect(sgm);
-> +	if (ret)
-> +		dev_err_probe(dev, ret, "Unable to read HW ID\n");
-> +
-> +	device_init_wakeup(dev, 1);
-> +
-> +	if (client->irq) {
-> +		ret = devm_request_threaded_irq(dev, client->irq, NULL,
-> +						sgm4154x_irq_handler_thread,
-> +						IRQF_TRIGGER_FALLING |
-> +						IRQF_ONESHOT,
-> +						"sgm41542-irq", sgm);
+On Fri, 24 Apr 2026 21:03:02 +0000, Manish Baing wrote:
+> ASoC: dt-bindings: mediatek,mt6351: convert to DT schema
 
-Interrupt should be requested and enabled at the end or almost at the
-end. If it is triggered now, which supply are you marking as "changed"?
+Applied to
 
-Code looks at least correct in relation between interrupt and workqueue,
-but it is not really obvious and thus not following established coding
-practice. Practice is usually: first you allocate driver-like or
-memory-like resources, then you request hardware related resources.
-That's why every probe starts with devm_kzalloc(). Similarly with
-workqueue, initializing power supply etc.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.2
 
-> +		if (ret)
-> +			return ret;
-> +		enable_irq_wake(client->irq);
-> +	}
-> +
-> +	ret = sgm4154x_power_supply_init(sgm, dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to register power supply\n");
-> +
-> +	ret = sgm4154x_hw_init(sgm);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Cannot initialize the chip.\n");
-> +
-> +	sgm->sgm_monitor_wq = alloc_ordered_workqueue("%s",
-> +			WQ_MEM_RECLAIM | WQ_FREEZABLE, "sgm-monitor-wq");
-> +	if (!sgm->sgm_monitor_wq)
-> +		return -EINVAL;
-> +
-> +	ret = devm_add_action_or_reset(dev, sgm4154x_destroy_workqueue,
-> +				       sgm->sgm_monitor_wq);
+Thanks!
 
-Use rather devm_alloc_ordered_workqueue().
+[1/1] ASoC: dt-bindings: mediatek,mt6351: convert to DT schema
+      https://git.kernel.org/broonie/asoc/c/0770899ca192
 
-Best regards,
-Krzysztof
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
