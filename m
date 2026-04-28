@@ -1,315 +1,195 @@
-Return-Path: <devicetree+bounces-290864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290866-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wHgiBM5j8GkRSwEAu9opvQ
-	(envelope-from <devicetree+bounces-290864-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 09:37:50 +0200
+	id iIlEIvtl8GmWSwEAu9opvQ
+	(envelope-from <devicetree+bounces-290866-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 09:47:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CAEF47F00D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 09:37:49 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04CD447F2CA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 09:47:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F3DF6326BF31
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 07:31:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 439DB319A2DD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 07:31:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A904B3D6664;
-	Tue, 28 Apr 2026 07:25:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F15573D75C2;
+	Tue, 28 Apr 2026 07:27:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fLIvst1e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MXAjMJu7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013008.outbound.protection.outlook.com [40.93.201.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C1F3CCFC4;
-	Tue, 28 Apr 2026 07:25:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.8
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777361146; cv=fail; b=TZCWWnKfQ27kwfGLr18ZZeLdDYpqcr3ZQNOb3dx1k1nG0NOLMgeNEzI0vO1j46l68LaluPnwk9I9tcN2lDhJLIQ1hXkYnwgiNPlmp0pltnEXbf9/LNA/s9i+b+iGu7ULvbPkjXPBu+tx8O3TdRAWQFLvT0T8I95LPfhvnBBmfHs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777361146; c=relaxed/simple;
-	bh=r+z682TwOQVQQHEUUSEZRbnzsbAdRwkWkLRrIH7NXjo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=AQJMkNB4oPouEE4pOQrKCJeNiPsyY+U7nIIrMA6DLnVUXS+2n8kEuVHHIMMX6havsomMT8vQx51IimDjc5J2GvhDOlInpxlnmgjxmY/akl/pvJSBZCTeeMmjnf2FUCbGEH+FeTjAoP1bOXQ8AEL18WeYl+V3+NImOtrAiWwHHVY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fLIvst1e; arc=fail smtp.client-ip=40.93.201.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kHalBljTsqhUnLDRmwN4B68FchroGamOt1ZpSwPYoY4pGSagzMXCTk3z4ngW3aFTwlSpnnBQcoxWBQKSEiNi0JG8gGqcv5rs8bgDXQJRrJWbZMsNUcv1c9877LMovhtZfKK40WVP89p0D/2W8hEdh9uAVw2sgFw8e+b3gQNJvyO0pPV8w7yAC/wiKSqbG8DXEdy2N+Y11VfQVfrUfV66qWIXYq3n3fiRY5/WW/IWlZUoYqPtgV/fgdpj4Jnh1LJYMdOs1XE8FrXeYjS7kBBaIvY73ueERMJnFNtGQBJc+q3Ezk0mcOj2IzwoFUJx2wVgAdHjAFroY/GhfjYOtdOp5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9RGhWb3pV9aImbB6FCeZNp/U9ZSNBoqD2tyoy8boP7g=;
- b=sxXyDAHzMhgoa86lDkFADbY8/leHAdorXsGXBzYBGxkFhgFUxi1fpzujW9nQptD7Hf9Pmi/hQIXE00gqSR3F31BN8OE3QgqsVUU08om5thOumBG7/CFEc0oPvJGb7bSj0CQbNZeksdePDJOogMGPsu43iLxFFnhBXjw4Y512isG/auwKf3VV5LVJAiv7E7XpfFhSrtYT31jmbDFwS6gn7g4qs1MPh8g18r4WnomL5/9NwmEOvFaNHx+7Vq6u6ULYcXWnGCSEQxJjHxxXbSk0rlXTYtMfSBy4Zdiz8ZPSaTa9+XhfqxmP6qPxA9EPfzRWxWzeRojpgRSJqd+ss63ZPQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=lunn.ch smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9RGhWb3pV9aImbB6FCeZNp/U9ZSNBoqD2tyoy8boP7g=;
- b=fLIvst1edSq0A6/QlbOhnTGjbZbcWm7asOOheprvFhBJMcr9+WKDoIXi0ycroUmAp+/DTQydvJbckJS0FDQhZGeHeFOeacdK8NgkJjZVYwdn3uk3bJLxfOrgp7PXNWmCzoaAZx/a5rcVvUMiNxy5Iyjdt4P3kEgN8JqXhY0Ebj8=
-Received: from SA1P222CA0038.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:2d0::19)
- by SA1PR10MB5823.namprd10.prod.outlook.com (2603:10b6:806:235::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.26; Tue, 28 Apr
- 2026 07:25:41 +0000
-Received: from SA2PEPF00001508.namprd04.prod.outlook.com
- (2603:10b6:806:2d0:cafe::b1) by SA1P222CA0038.outlook.office365.com
- (2603:10b6:806:2d0::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.28 via Frontend Transport; Tue,
- 28 Apr 2026 07:25:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- SA2PEPF00001508.mail.protection.outlook.com (10.167.242.40) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.18 via Frontend Transport; Tue, 28 Apr 2026 07:25:40 +0000
-Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 28 Apr
- 2026 02:25:36 -0500
-Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 28 Apr
- 2026 02:25:35 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 28 Apr 2026 02:25:35 -0500
-Received: from [10.24.50.162] (uda0510294.dhcp.ti.com [10.24.50.162])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 63S7PTlA490896;
-	Tue, 28 Apr 2026 02:25:29 -0500
-Message-ID: <29485742-6e49-482e-b73d-228295daaeec@ti.com>
-Date: Tue, 28 Apr 2026 12:55:28 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7ED3C553B;
+	Tue, 28 Apr 2026 07:27:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777361245; cv=none; b=UcH1fS3+TlSJj2OSakPKG6gTQ94avnLIBV7CKIrJZwaYqeaDue7N+lSqhWcU2uJTM1lU3k1IA/6DHVR1UYujxLGfkoLGTwOQTJJ7efX+bQjBjilJ8I9MlbrIpFxmf1Q9LmVTeScx9EJSt4s1iPfXb2jjxsII57tKZ8zEDv7WGTw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777361245; c=relaxed/simple;
+	bh=cOCFZjd7RXNktRNhFi+WwngiMUpyxWBbJzfzYRqEYPM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rJkHEhD+oVJjlTiy/k3iUhWR9zT/hl5DreV2ZpUZADf+Y33HC/CIkEyJvjrtpKMg8sxv/dtQ57H8tXYGY+2qNsoovndAfXBzIgtsdY/WSQ5plXPnLW7L3xrhloq17nzP0UByxTudLXa22JnJwsfgAUuYMInF0kF9xHk0vNsCb8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MXAjMJu7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 729A2C2BCAF;
+	Tue, 28 Apr 2026 07:27:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777361245;
+	bh=cOCFZjd7RXNktRNhFi+WwngiMUpyxWBbJzfzYRqEYPM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=MXAjMJu7qhBYxlsWu1m6Z+YyoADU4pq3AHR/FtGTA+dXri+XlsJzi2BzYDt8ewVIM
+	 59X4t/jSEfy38wzaQ45KTxS+bnXK5y+JYaDxkLAi43f/9mejh6rO0kGVNhpSxuQl+t
+	 FASjZQuvUOo0v2BttYdfv8WfDuQkYE9DOT04J/7dM3IwCYKAQ4IIG5c5nqahm/Ha1v
+	 s9w79cmm9jCvbt3U0y+YNqX06ZtHbfsNnS2/5QP9foDiFVvITGNvxtYI9nDCQd5hWW
+	 QZaF6CuBqgacZsVevs23k1mgMvUfQR7HcUIhxmg/CwqbOe+neoBVL4ij8dzaCw7Ceo
+	 WBLP05no3EFEw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E6CDFF885D;
+	Tue, 28 Apr 2026 07:27:25 +0000 (UTC)
+From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
+Subject: [PATCH v5 0/2] media: synopsys: csi2rx: add support for rk3588
+ variant
+Date: Tue, 28 Apr 2026 09:27:22 +0200
+Message-Id: <20260305-rk3588-csi2rx-v5-0-3b7061d043ea@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
-To: Shenwei Wang <shenwei.wang@nxp.com>, Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet <corbet@lwn.net>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	"Mathieu Poirier" <mathieu.poirier@linaro.org>, Frank Li <frank.li@nxp.com>,
-	"Sascha Hauer" <s.hauer@pengutronix.de>
-CC: Shuah Khan <skhan@linuxfoundation.org>, "linux-gpio@vger.kernel.org"
-	<linux-gpio@vger.kernel.org>, "linux-doc@vger.kernel.org"
-	<linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan
-	<peng.fan@nxp.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-remoteproc@vger.kernel.org"
-	<linux-remoteproc@vger.kernel.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, dl-linux-imx <linux-imx@nxp.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Andrew Lunn <andrew@lunn.ch>
-References: <20260422212849.1240591-1-shenwei.wang@nxp.com>
- <20260422212849.1240591-4-shenwei.wang@nxp.com>
- <22fb5fac-2568-42be-a7e3-7e89d0017eb3@ti.com>
- <PAXPR04MB91850A11C58419C03909145F89362@PAXPR04MB9185.eurprd04.prod.outlook.com>
-Content-Language: en-US
-From: Beleswar Prasad Padhi <b-padhi@ti.com>
-In-Reply-To: <PAXPR04MB91850A11C58419C03909145F89362@PAXPR04MB9185.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00001508:EE_|SA1PR10MB5823:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8c8ddfbc-3b63-40b7-833c-08dea4f759b3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|36860700016|7416014|1800799024|82310400026|18096099003|56012099003|18002099003|22082099003|921020;
-X-Microsoft-Antispam-Message-Info:
-	VD0qqZ7wE0UfNhfPiqXa0Yyo7rgipeIwN1MMqcwssWpU3VuOWLmt1eWs9lQ9dn69j/WyJ0vzXo7iIViEuGlY+e0h90etRk4Kd97rJB1Oo7IG6Cfj86O+KPWn7Mq4LKZXiOI+dELlm+NR3vn46c11LNbgwEqKJjmhGKOp3L4z7fdEdzkgQuQJZ4ca4gOUCNPl/JrmUKmO6fYYGUzrdr0nQTzUo8zt7IB/DUFwPoRphbzrHqsVDuk1ugXtZ8m6ZUe9YS6rJjY7lH0Y1esldBQlaZEA1bxjj4dmW7RUThHDS3Bl8mldS5Q4d9MMqkqhZyBw82jTUE5Pv46fcl7Ciw8NaPcXbIIzSWsa9q4puh62b8v59JAan/QWQM3PJxCRJoJW4nKy8qKiWcNnmMxHGigWEwJ2cuiO0AkO9TW3VSfm53yepAnsXF5TYaaSZXPhEnw+iSPB2CS9E5IAiY/N5OBOr6ClWUq4EaPeQ5pbMr6PkXZE5sPbVVQgOByhhphAcGWVQ1/y2/cTHs/ufneepbtDeRkEHvdlIr5CD3iJhHcbLwPirXu00BsjIzf79sJh8ENnkG2viO8OdcKVFp7uyiihmtJ/D5YWbngQaK/y/es3LR9jtz/l4buprUQlEuPO/QUFjkFpQ/jdoeMvRO4/2pEPg5CoSJNhkfsZSdrGjoFkCbcs0EXM2WS4W5bdpWgSrR/pLwUGUMDdJViFWPJLHJYKOANZtpdzWrruQQ1EGn0ULdWvIsw0x5OfMa8OViLy1q6hpE2Jdfp8n1BEIt0zyZtnRIkzZVsgIbXcopTmlF9/Mii+BPN7TEOoQao1Fttnvn9Z
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(36860700016)(7416014)(1800799024)(82310400026)(18096099003)(56012099003)(18002099003)(22082099003)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	KtEklt5Glk8w7fwe9Onv2y5hZKccaw9lvxBBzrIPls3ZnHjXZoQ/oU/JjDwhqkqfk4JeIxXUAG/LlFk/OcYdPATyafn6NOnEjLz3FYV4d/n9G3pTavDh5wVOnSjQDNkeWEpybZCEn8PIsTs1VGhUcuEFJVtx6UiKmPGYC5jtsmsGtfSaTYryLORJdkQe6gVcb9lJd3qCUO0EARyyinWW4OCscwSWWBONzqLyPxIRnWFJRrTtP/gCeutJIlNJPbQr/xcJzn8lyFySWjeVLoafr9O9hU+pRPYpbuWQ/bP5PeC33iFkVqNvtcbIkZY7DSShnEhT7/Lk/EglV8/EiUGovSVVYsy/QEXCe9jOgNglEuk//TnDpBf4XX7nldrGcJSpikLJM4Ht5E4vMZH2AOgtVaFssc3lq9ZZ+1XpaTd/U5ibsT9j87Y/W85jjsI+W9zJ
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 07:25:40.1266
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c8ddfbc-3b63-40b7-833c-08dea4f759b3
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SA2PEPF00001508.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB5823
-X-Rspamd-Queue-Id: 7CAEF47F00D
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFph8GkC/33NzW7DIBAE4FeJOJeK5c+4p7xH1MOyhhrVNRUkV
+ qrI716cY5T4OCPNNzdWQ0mhso/DjZWwpJry3IJ5OzAacf4KPA0tMymkFUoYXr6VcY5TTbJcOQL
+ EjsCgFsjaxmMN3BecaWyr+TJNrfwtIabr/eT02fKY6jmXv/vnAlv7il+ACy5ocIP0UToSR8rTh
+ D4XfKf8wzZtkbuCbELXDwK8BaOdfSaoXUFtgtG6U72DqPpngt4VdBMckPUUQ0SrHoV1Xf8By+V
+ gWokBAAA=
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Frank Li <Frank.li@nxp.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Collabora Kernel Team <kernel@collabora.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Michael Riesch <michael.riesch@collabora.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777361244; l=2718;
+ i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
+ bh=cOCFZjd7RXNktRNhFi+WwngiMUpyxWBbJzfzYRqEYPM=;
+ b=b8eDH2iJ05fbZA2wyw0TtBzDDkPV2Zzh+lBJWn6y5BFw94DYqjngvqOHPn1r3X/lhDIcFPnw6
+ uzKk2S0vf5+CBJx+SUaJ4mpulhuEzqL5FaXORdcnnCz35Umel6rJMt4
+X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
+ pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
+X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
+ with auth_id=371
+X-Original-From: Michael Riesch <michael.riesch@collabora.com>
+Reply-To: michael.riesch@collabora.com
+X-Rspamd-Queue-Id: 04CD447F2CA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290864-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,vger.kernel.org,pengutronix.de,gmail.com,nxp.com,lists.linux.dev,lists.infradead.org,bgdev.pl,lunn.ch];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:dkim,ti.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[b-padhi@ti.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-290866-lists,devicetree=lfdr.de,michael.riesch.collabora.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[michael.riesch@collabora.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:replyto,collabora.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
+Habidere,
 
-On 28/04/26 00:53, Shenwei Wang wrote:
-[...]
->>> +
->>> +struct rpmsg_gpio_packet {
->>> +     u8 type;        /* Message type */
->>> +     u8 cmd;         /* Command code */
->>> +     u8 port_idx;
->>> +     u8 line;
->>> +     u8 val1;
->>> +     u8 val2;
->>> +};
->>
->> Could you please document the fields in these structs (and the below ones too)?
->> From the code, it looks like while sending a message from Linux to Firmware; val1
->> and val2 are used to describe the values to set. Whereas while receiving a
->> response, val1 represents a possible error code, and val2 represents the actual
->> message of get type queries. If that is so, you might want to change the variable
->> names to be more descriptive and also use a union.
->>
-> The fields in the two structs are fairly self-explanatory. Do we really need the additional comments?
+The Rockchip RK3588 features six MIPI CSI-2 receiver units:
+ - MIPI0: connected to MIPI DCPHY0
+ - MIPI1: connected to MIPI DCPHY1
+ - MIPI2: connected to MIPI DPHY0
+ - MIPI3: connected to MIPI DPHY0-1 (only with split DPHY0)
+ - MIPI4: connected to MIPI DPHY1
+ - MIPI5: connected to MIPI DPHY1-1 (only with split DPHY1)
 
+The MIPI DCPHYs (at least the CSI-2 features of them) as well as the split
+DPHY mode of the DPHYs are not yet supported by mainline. However, we can 
+already provide support for the MIPI2 and MIPI4 units.
 
-val1 and val2 sounded arbitrary, that's all. If we are moving away from
-that, then there is no need :)
+When support for the split DPHY mode is introduced, the DPHY nodes should 
+have the property
+    #phy-cells = <1>;
+and the MIPI CSI-2 receiver nodes should have the property
+    phys = <&csi_dphy{0,1} {0,1}>;
+in case the split mode is desired. Since this is a board specific hardware 
+design, the properties need to be changed in the board device tree (or any 
+overlays).
 
-[...]
+As reasonable default, however, we can define, e.g., 
+    #phy-cells = <0>;
+and
+    phys = <&csi_dphy{0,1}>;
+in the SoC device tree include. This series introduces initial support for 
+this default configuration.
 
->
->>> +     void *channel_devices[MAX_PORT_PER_CHANNEL];
->>
->> So this is technically a rpmsg endpoint (struct rpmsg_endpoint) without naming it
->> "endpoint". Every rpmsg endpoint has a reference to its parent rpmsg channel
->> (struct rpmsg_device) which represents the same information here. So we should
->> use the framework standard here.
->>
-> Yes, agree to use "endpoint_devices".
+Looking forward to your comments!
 
+Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+---
+Changes in v5:
+- rebased onto new media-committers/next (= v7.1-rc1)
+- reflowed commit messages (Sakari)
+- Link to v4: https://lore.kernel.org/r/20260305-rk3588-csi2rx-v4-0-81c6bcfefa63@collabora.com
 
-I did not mean to say to just change the variable name from
-"channel_devices" to "endpoint_devices". Infact you would not need to
-have this field & struct anymore.
+Changes in v4:
+- rebased onto media-commiters/next again (as Frank's patches
+  are now there)
+- changed "oneOf entries to enum in dt binding (Rob)
+- Link to v3: https://lore.kernel.org/r/20260305-rk3588-csi2rx-v3-0-754473981f39@collabora.com
 
-Pseudo-code:
-1. Add a 'struct rpmsg_endpoint *ept' field to struct rpmsg_gpio_port
-    to maintain the ept to port idx map.
+Changes in v3:
+- rebased onto Sakari's cleanup branch (as Frank's patches were merged)
+  (Sakari)
+- added Rob's Acked-by
+- Link to v2: https://lore.kernel.org/r/20260305-rk3588-csi2rx-v2-0-79d01b615486@collabora.com
 
-2. Call port->ept = rpmsg_create_ept(rpdev,
-                                                            rpmsg_gpio_channel_callback,
-                                                            port, {rpdev.id.name,
-                                                            RPMSG_ADDR_ANY,
-                                                            RPMSG_ADDR_ANY})
-    from rpmsg_gpiochip_register().
+Changes in v2:
+- use fallback compatible instead of separate compatible (Krzysztof)
+- dropped patch 2 and 4 (as a consequence thereof)
+- Link to v1: https://lore.kernel.org/r/20260305-rk3588-csi2rx-v1-0-0cd8d2bf28c0@collabora.com
 
-3. Send msgs from local ept in rpmsg_gpio_send_message() by:
-    rpmsg_send(port->ept, msg, sizeof(*msg));
+---
+Michael Riesch (2):
+      media: dt-bindings: rockchip,rk3568-mipi-csi2: add rk3588 compatible
+      arm64: dts: rockchip: add mipi csi-2 receiver nodes to rk3588
 
-4. Get the port info in rpmsg_gpio_channel_callback() by:
-    struct rpmsg_gpio_port *port = priv;
+ .../bindings/media/rockchip,rk3568-mipi-csi2.yaml  | 11 +++--
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      | 52 ++++++++++++++++++++++
+ 2 files changed, 60 insertions(+), 3 deletions(-)
+---
+base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+change-id: 20260305-rk3588-csi2rx-a11f7c15a40a
 
-Which also eliminates the need for struct rpdev_drvdata as you can just
-do rpmsg_get_rproc_node_name(rpdev) from rpmsg_gpiochip_register().
+Best regards,
+-- 
+Michael Riesch <michael.riesch@collabora.com>
 
-
->
->> This also allows for dynamic creation and deletion of ports too! (if/when the
->> firmware supports it)
->>
->> Which means at port init time, we should make a call to
->> rpmsg_create_ept() for each port tying the same callback
->> rpmsg_gpio_channel_callback(). And based on the 'u32 src', we could identify the
->> appropriate gpio port in the callback.
->>
-
-[...]
->>
->>> +
->>> +     girq = &gc->irq;
->>> +     gpio_irq_chip_set_chip(girq, &gpio_rpmsg_irq_chip);
->>> +     girq->parent_handler = NULL;
->>> +     girq->num_parents = 0;
->>> +     girq->parents = NULL;
->>> +     girq->chip->name = devm_kasprintf(&rpdev->dev, GFP_KERNEL, "%s-
->> gpio%d",
->>> +                                       drvdata->rproc_name,
->>> + port->idx);
->>
->> We could just re-use gc->label here...
-> We also want to include the remoteproc name (for example, remoteproc-cm33-gpio0), rather than just gpio0.
-
-
-Isn't it also included in the gc->label field?
-
-gc->label = devm_kasprintf(&rpdev->dev, GFP_KERNEL, "%s-gpio%d",
-+                   drvdata->rproc_name, port->idx);
-
-[...]
-
->>> +}
->>> +
->>> +static int rpmsg_gpio_channel_probe(struct rpmsg_device *rpdev) {
->>> +     struct device *dev = &rpdev->dev;
->>> +     struct rpdev_drvdata *drvdata;
->>> +     struct device_node *np;
->>> +     int ret = -ENODEV;
->>> +
->>> +     if (!dev->of_node) {
->>> +             np = rpmsg_get_channel_ofnode(rpdev, rpdev->id.name);
->>> +             if (np) {
->>> +                     dev->of_node = np;
->>> +                     set_primary_fwnode(dev, of_fwnode_handle(np));
->>> +             }
->>> +             return -EPROBE_DEFER;
->>
->> I know this was asked in the v10 version also. But I don't think the answer is
->> sufficient. Should we not continue the intialization of drvdata etc if np != 0? Why
->> return a deferred probe, and let the kernel come back to it again to do the same
->> stuff with extra latency?
->>
->> We could just do:
->> if (!np) return -EPROBE_DEFER;
->> else {everything_else};
->>
-> After configuring dev->of_node, it would be better to restart the driver probe process. 
-> This ensures that all required resources, such as pinctrl, clocks, and power domains, are 
-> properly set up if they are specified in the device node, before the probe function is invoked.
-
-
-Hmm that makes sense to me... Thanks!
-
-Thanks,
-Beleswar
 
 
