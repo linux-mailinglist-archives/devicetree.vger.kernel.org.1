@@ -1,67 +1,59 @@
-Return-Path: <devicetree+bounces-290830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290831-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OAr+D+FO8GncRQEAu9opvQ
-	(envelope-from <devicetree+bounces-290830-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 08:08:33 +0200
+	id sBw+J2RP8GlNRgEAu9opvQ
+	(envelope-from <devicetree+bounces-290831-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 08:10:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD38A47DE69
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 08:08:32 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E1A47DECB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 08:10:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 47CBA303E4F0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 06:01:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4079D3019141
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 06:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E703532A3EC;
-	Tue, 28 Apr 2026 06:01:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76FD5342177;
+	Tue, 28 Apr 2026 06:10:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UjJk8EXv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mbTi9/Xt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF9262E5B21;
-	Tue, 28 Apr 2026 06:01:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 511E3340281;
+	Tue, 28 Apr 2026 06:10:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777356082; cv=none; b=RO9l0TBoDmOR9jeXXzVf6Nt7rjlO/wQEjDuohLX+0dyuMNIfXoJLx9hiTWce9cgiR22SXeQrKJo7tX2ZQyeCa4ueUQoqUuKY/fTtcjJES9SAgwr8aiREug9QoX3JMxcFUM++o3Pj4YGr1BZLgc7XjNxMiY6ctKaAHnEwfuJbfy8=
+	t=1777356635; cv=none; b=divSXkSbV1MkakG3j2wp+ocTt27JY2DgR2yJ1rTTjQETfBHPBIR4fIYdbZ4XFLpAR4FJLUhJhYcD6iWubli2K0qxf8K2LnEEwR0M0KMUyOdurDsBiqd/FcMievbbiOeX0LUnMH1wWRGSC1cU4Q0ilu8mM/14ZinnjZJIPqZu+FU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777356082; c=relaxed/simple;
-	bh=v+Mvyg673DGKe6yZoQGc06NZvj6FBFDVdJZxb9VZvp0=;
+	s=arc-20240116; t=1777356635; c=relaxed/simple;
+	bh=DEns1PhTGMCdiGSER2v0308nM0XWg7ICGAyYvDQ4J3A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=unyFJco+KWlUHGTAOqb3V8qQHUdH2UbRq9K3DzYtacbObtUOEx3z2TJOqiRcFjAqZ0/DyxQAPzfHDx7eFHrzxbSvzVR4uNLUZrjUeMwQlSoHS7iiYgWiOsHpEYZ6xW0soJyTfgLi3kcGzCRAQnP/EsYiuIQ+7Ki6mZ+tjHbg8vU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UjJk8EXv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDD5DC2BCB3;
-	Tue, 28 Apr 2026 06:01:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PUvu7g9NiSQeeaspM03SW/hXAhGNMk4CcBj9Rb75St29FuFkQZCdWq1OFczQPtITwe0quys9dNEjCiimmgLj2Q086iEMSIcB/Z6ocnlmaqw8itSTGCVx6cKqZGJx3r/agREnKnENG4c2n2i6+kVJEpVTCDlysiH/v1JNt7EU/fo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mbTi9/Xt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63D36C2BCB7;
+	Tue, 28 Apr 2026 06:10:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777356082;
-	bh=v+Mvyg673DGKe6yZoQGc06NZvj6FBFDVdJZxb9VZvp0=;
+	s=k20201202; t=1777356634;
+	bh=DEns1PhTGMCdiGSER2v0308nM0XWg7ICGAyYvDQ4J3A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UjJk8EXvGr0ICYCP8O6OFJfrzepw9yAcxWFLWskVCg/oNHJx9yvw/DLeByg00NCMq
-	 U4PZ/9+TriUhRn9ckLUTSIdjnzHtwRoGuA4cyTfQWGbVKcsKg6IAXy0F5rMcD7wPSN
-	 xJRcD9TDIYIOoFYY86Hns8WR7XMuIykpYTnl/iStYxceB8Mb4+8QylicX2cY60ZbGy
-	 Nyzk6tOMMtXD/Z681cQDlnT5QYDoWJhnCZdJlWcsG3nJJrenIA8Hrgg1LsDia3c1fR
-	 b2Y97E62vhS+UYUHD4xdxouGAwghIxcFEoZxe175QhITtpwZdoU37pk4Fiq5TvdvNj
-	 rgot+0K/xlujA==
-Date: Tue, 28 Apr 2026 08:01:19 +0200
+	b=mbTi9/XtjseKnaKl8Tjbs/cReK7KRb1nLGW4LlHFH5iW+rwdRaTds2g1K4PMN0mNE
+	 fyWJxRT9ZKX6zoogwfQRNQMLTV2Dn9hwIQx0qaBXy447I4v65dW7l7CpcZdpiRxEer
+	 50xNJSqfgG/Ty42al3p4J1YBKy5blgGUEKLqOYEZp/RcCcV6ugDyweCIZgyrHBg6ZN
+	 TyS9qQq9mpvfB7sodxlJN5n1vjVbrlvU1MkXOXCYj5dIWRy8MnrQB+++ppXPSTQqjM
+	 RUFjw7Ehw3cNZH/N/ocBIlDwZz82FfnuNYi6iofje5eGA6cw0CGA/+0x+tuC9Ninuf
+	 1AIOFNeLHxOuA==
+Date: Tue, 28 Apr 2026 08:10:31 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Sebastian Reichel <sre@kernel.org>, 
-	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
-	Nam Tran <trannamatk@gmail.com>, =?utf-8?B?xYF1a2FzeiBMZWJpZWR6acWEc2tp?= <kernel@lvkasz.us>, 
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v5 03/11] dt-bindings: mfd: add documentation for S2MU005
- PMIC
-Message-ID: <20260428-fortunate-olive-asp-fe4f53@quoll>
-References: <20260424-s2mu005-pmic-v5-0-fcbc9da5a004@disroot.org>
- <20260424-s2mu005-pmic-v5-3-fcbc9da5a004@disroot.org>
+To: pshete@nvidia.com
+Cc: linusw@kernel.org, thierry.reding@kernel.org, jonathanh@nvidia.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, webgeek1234@gmail.com, 
+	rosenp@gmail.com, linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/6] Add Tegra238 and Tegra264 pinctrl support
+Message-ID: <20260428-terrestrial-elegant-bittern-cafcfc@quoll>
+References: <20260427134231.531222-1-pshete@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,184 +62,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260424-s2mu005-pmic-v5-3-fcbc9da5a004@disroot.org>
-X-Rspamd-Queue-Id: DD38A47DE69
+In-Reply-To: <20260427134231.531222-1-pshete@nvidia.com>
+X-Rspamd-Queue-Id: 42E1A47DECB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [5.34 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-290831-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,gmail.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-290830-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
 	FROM_HAS_DN(0.00)[];
-	GREYLIST(0.00)[pass,body];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,bootlin.com,lwn.net,linuxfoundation.org,gmail.com,lvkasz.us,vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	NEURAL_SPAM(0.00)[0.271];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,devicetree.org:url,3d:email,disroot.org:email,0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nvidia.com:email]
 
-On Fri, Apr 24, 2026 at 01:09:02AM +0530, Kaustabh Chakraborty wrote:
-> Samsung's S2MU005 PMIC includes subdevices for a charger, an MUIC (Micro
-> USB Interface Controller), and flash and RGB LED controllers.
+On Mon, Apr 27, 2026 at 01:42:25PM +0000, pshete@nvidia.com wrote:
+> From: Prathamesh Shete <pshete@nvidia.com>
 > 
-> Add the compatible and documentation for the S2MU005 PMIC. Also, add an
-> example for nodes for supported sub-devices, i.e. MUIC, flash LEDs, and
-> RGB LEDs. Charger sub-device uses the node of the parent.
+> Add pinctrl driver support for Tegra238 and Tegra264 along with the
+> corresponding device tree binding documentation. Additionally, export
+> tegra_pinctrl_probe() to allow the drivers to be built as loadable modules.
 > 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  .../bindings/mfd/samsung,s2mu005-pmic.yaml         | 120 +++++++++++++++++++++
->  1 file changed, 120 insertions(+)
-\r> 
-> diff --git a/Documentation/devicetree/bindings/mfd/samsung,s2mu005-pmic.yaml b/Documentation/devicetree/bindings/mfd/samsung,s2mu005-pmic.yaml
-> new file mode 100644
-> index 0000000000000..0e6afb7d2017b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/samsung,s2mu005-pmic.yaml
-> @@ -0,0 +1,120 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/samsung,s2mu005-pmic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung S2MU005 Power Management IC
-> +
-> +maintainers:
-> +  - Kaustabh Chakraborty <kauschluss@disroot.org>
-> +
-> +description: |
-> +  The S2MU005 is a companion power management IC which includes subdevices for
-> +  a charger controller, an MUIC (Micro USB Interface Controller), and flash and
-> +  RGB LED controllers.
-> +
-> +allOf:
-> +  - $ref: /schemas/power/supply/power-supply.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: samsung,s2mu005-pmic
-> +
-> +  flash:
-> +    $ref: /schemas/leds/samsung,s2mu005-flash.yaml
-> +    description:
-> +      Child node describing flash LEDs.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  muic:
-> +    $ref: /schemas/extcon/samsung,s2mu005-muic.yaml#
-> +    description:
-> +      Child node describing MUIC device.
-> +
-> +  multi-led:
-> +    type: object
-> +
-> +    allOf:
-> +      - $ref: /schemas/leds/leds-class-multicolor.yaml#
-> +
-> +    properties:
-> +      compatible:
-> +        const: samsung,s2mu005-rgb
-> +
-> +    required:
-> +      - compatible
-> +
-> +    unevaluatedProperties: false
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pmic@3d {
-> +            compatible = "samsung,s2mu005-pmic";
-> +            reg = <0x3d>;
-> +            interrupt-parent = <&gpa2>;
-> +            interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +            monitored-battery = <&battery>;
-> +
-> +            flash {
-> +                compatible = "samsung,s2mu005-flash";
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                led@0 {
-> +                    reg = <0>;
-> +                    color = <LED_COLOR_ID_WHITE>;
-> +                    function = LED_FUNCTION_FLASH;
-> +                };
-> +
-> +                led@1 {
-> +                    reg = <1>;
-> +                    color = <LED_COLOR_ID_WHITE>;
-> +                    function = LED_FUNCTION_FLASH;
-> +                    function-enumerator = <1>;
-> +                };
-> +            };
-> +
-> +            muic {
-> +                compatible = "samsung,s2mu005-muic";
-> +
-> +                connector {
-> +                    compatible = "usb-b-connector";
-> +                    label = "micro-USB";
-> +                    type = "micro";
-> +                };
-> +
-> +                port {
-> +                    muic_to_usb: endpoint {
-> +                        remote-endpoint = <&usb_to_muic>;
-> +                    };
-> +                };
-> +            };
-> +
-> +            multi-led {
-> +                compatible = "samsung,s2mu005-rgb";
-> +                color = <LED_COLOR_ID_RGB>;
-> +                function = LED_FUNCTION_INDICATOR;
-> +                linux,default-trigger = "pattern";
-> +            };
-> +        };
-> +    };
-> 
-> -- 
-> 2.53.0
-> 
+> Changes in v3:
+>   - Wrap commit message to 75 chars per line (v2 was too short).
+
+For the record:
+
+b4 diff 20260427134231.531222-1-pshete@nvidia.com
+Looking up https://lore.kernel.org/all/20260427134231.531222-1-pshete@nvidia.com/
+Grabbing thread from lore.kernel.org/all/20260427134231.531222-1-pshete@nvidia.com/t.mbox.gz
+Checking for older revisions
+Grabbing search results from lore.kernel.org
+  Added from v2: 6 patches
+---
+Analyzing 27 messages in the thread
+Preparing fake-am for v2: pinctrl: tegra: Export tegra_pinctrl_probe()
+ERROR: v2 series incomplete; unable to create a fake-am range
+---
+Could not create fake-am range for lower series v2
+
+When we ask to use standard process to send patches, we ask for this for
+a reason.
+
+Best regards,
+Krzysztof
+
 
