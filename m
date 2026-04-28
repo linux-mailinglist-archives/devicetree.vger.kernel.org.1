@@ -1,207 +1,177 @@
-Return-Path: <devicetree+bounces-290915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-290918-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QGlSE+Fz8GngTgEAu9opvQ
-	(envelope-from <devicetree+bounces-290915-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 10:46:25 +0200
+	id 0GxiGh518GkfTwEAu9opvQ
+	(envelope-from <devicetree+bounces-290918-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 10:51:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4C58480790
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 10:46:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A3F4809E3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 10:51:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1DD653026CD6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 08:37:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E4C3730A3F0F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Apr 2026 08:40:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B433D75D0;
-	Tue, 28 Apr 2026 08:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B713101C8;
+	Tue, 28 Apr 2026 08:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="R6pxoPtV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cCgTwAd5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D949A3D47AC;
-	Tue, 28 Apr 2026 08:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42D621DD877;
+	Tue, 28 Apr 2026 08:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777365419; cv=none; b=I7Oyk6le6UvHQzZLGwSaF9QX6t/xRC3qDpcfvHxD64YFV5TfL0RfD5ABlj7AD9cAvsxbSOMd8Rs01aoiIHRr22kNrKetZchh5NtD+e/593Vvz1rQGaSy8URnyIAGSrrLhOvPzWgzG/L6/IKcie7IRq8FNLpkN2TRHMcDeMcCZkk=
+	t=1777365655; cv=none; b=JBEcCBpOPdP8l5mml43fRhR1+7EB6i/t/km13WZ3/KCH8IqXxRbuSjeLoheZGh7rCgZ+yRQ7q7iyX7gC056fQKaJr67FKsgj71MVuGI1WcGbpsa5XIul8T94jrxeK/2kbDiTWFs45ShaRzK1/Eu0NaOzNoFQUt7jA0KkvZ7e8bI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777365419; c=relaxed/simple;
-	bh=BIhqOapgNnxmFfe3qKZl8GPilR7cf2rVzseYikZONhI=;
-	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=P47PORNJuKKaj9tZaCM6m4PZfOTwpj6NioT5IkpFR6ZcaRp+qwZrlqIbT3gUnkbWV/oq3zEPZmweDtMAWSF8ToKSLqmLlqQ2qWU8CGCr/5Fk0YrcO1GCVovQoAYoIJxx0qnRTUpvaS4jMR5OXCOGPoUYizLCfuvVzejwlriNBXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=R6pxoPtV; arc=none smtp.client-ip=218.76.62.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ultrarisc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
-	References:Date:Message-Id; bh=KePaejAKmGTlKVZsIEne9HnS+XEQm8GEA
-	gV1azEh90Q=; b=R6pxoPtVizSzffiUatA+8a+DF2lQV1xkSXK+o/JvMXqrRD1Gb
-	IXeev0BfRHZZQyPJBqMOuywQSG36PeAQ0lh2SR0ylppJOaR99ucLeGCAcptOLpun
-	r4QBdVKxEyXL9wFdneBzLBtMACe4TqO67D9v+3Oy5veiS6AWkJ1ZWsnnp8=
-Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwAnYUK5cfBpHBUDAA--.1706S2;
-	Tue, 28 Apr 2026 16:37:13 +0800 (CST)
+	s=arc-20240116; t=1777365655; c=relaxed/simple;
+	bh=ItVJ5F6UDc9yJQwS4bk61nzLdZyax39MtPrAql5QAmA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f1dJbb9Ksam16NaBm+mYTznMBLH7MehT6wmoIuLD4wkYiabLrfsaz+S2TIpQKYJbzcscXxK1K2m4JzKLk15eoGuXjzxk0iANGrGyyBs/cb2CBgKzjl4seEb8yTADr6JuC/APOxa15zNHYtUSHzyGu3cEm01CXk3XfD/UlUM87Yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cCgTwAd5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79B83C2BCB5;
+	Tue, 28 Apr 2026 08:40:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777365654;
+	bh=ItVJ5F6UDc9yJQwS4bk61nzLdZyax39MtPrAql5QAmA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cCgTwAd5SRAVCZExSUQ051DjhblKL34IeBbpL1emWrxSkKmybKl7kXD47E/RnKMsh
+	 nfig+sNUR13rAgJu5kCdM8QdsR+TJ7w1X0kKHKeDPKi1x+5xViWO2mgNMMe83nHVxl
+	 sXM14/iy0v/n7q5gbMl0vIHQyX4NG/53LoGTQuTdQd6U0ztIDflr+Eq0TVeDaViR04
+	 jJWsGJpU5XP1jQ8vicNeppu2MZufodPMba5Tl+DmPZ5OIVp1RJtuqLusw/iKITjo8I
+	 WHZo3e7X82JBTNQ5+kNAWaa8ZXihnfUuatrOOaM/dnv13GiO6upuNkfSFRvT40m3AG
+	 3SCoKbo8siDNg==
+Message-ID: <006bd158-87aa-4fda-93cf-91f714fb72b6@kernel.org>
+Date: Tue, 28 Apr 2026 10:40:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: gpio: fairchild,74hc595: add
+ registers-default property
+To: Chanhong Jung <happycpu@gmail.com>
+Cc: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1776872453.git.happycpu@gmail.com>
+ <33d515f13769c685e6811463a14e111252a7c58d.1776872453.git.happycpu@gmail.com>
+ <20260423-quantum-precious-mantis-2481d7@quoll>
+ <20260423103347.4054425-1-happycpu@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260423103347.4054425-1-happycpu@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v5 2/4] serial: 8250_dw: build Renesas RZN1 CPR value
- from DW_UART_CPR_* definitions
-From: Jia Wang <wangjia@ultrarisc.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Jia Wang <wangjia@ultrarisc.com>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- linux-serial@vger.kernel.org, linux-riscv@lists.infradead.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <afBhkbGLsuqUitOl@ashevche-desk.local>
-References: <20260428-ultrarisc-serial-v5-0-97de63b1e3eb@ultrarisc.com>
- <20260428-ultrarisc-serial-v5-2-97de63b1e3eb@ultrarisc.com>
- <afBhkbGLsuqUitOl@ashevche-desk.local>
-Date: Tue, 28 Apr 2026 16:36:28 +0800
-Message-Id: <177736538896.2886867.15148210690849632028.b4-reply@b4>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777365389; l=2751;
- i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
- bh=BIhqOapgNnxmFfe3qKZl8GPilR7cf2rVzseYikZONhI=;
- b=3Qkn6OIgn6PUC+UvtN8XqfDX/d/c+/bwCpge0C2foJyPdr1NP0/c0f13y7Vraca80xZhAfO1Q
- az4DLZaWn6JBfnsAyumzrsf5+bZyYq1UYbj6IBktCBYkZMEa57KXpRK
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
-X-CM-TRANSID:AQAAfwAnYUK5cfBpHBUDAA--.1706S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxWF47AFyUXF48uw1xAFy7Wrg_yoW5GF4fpF
-	W5KF4UtF48Crn7C340yFy2yF4SqFWrGw1IgFyUuF1Dta15Xwn2gryvvFZxtr97ZwsYyayF
-	qFsrtFnxu34Fy3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnUUvcSsGvfC2KfnxnUUI43ZEXa7xR_UUUUUUUUU==
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAKEWnti78ACwAwsR
-X-Rspamd-Queue-Id: A4C58480790
+X-Rspamd-Queue-Id: 14A3F4809E3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-290918-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[ultrarisc.com:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-290915-lists,devicetree=lfdr.de];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-On 2026-04-28 10:28 +0300, Andy Shevchenko wrote:
-> On Tue, Apr 28, 2026 at 01:26:27PM +0800, Jia Wang wrote:
-> > Replace the magic CPR value for Renesas RZ/N1 with a composition using
-> > DW_UART_CPR_* bit/field definitions and FIELD_PREP_CONST().
-> > 
-> > Introduce a helper macro to convert a FIFO size (bytes) into the CPR
-> > FIFO_MODE field value, with BUILD_BUG_ON_ZERO() checks for alignment and
-> > bounds. Use it to replace the literal FIFO_MODE values in the RZN1.
+On 23/04/2026 12:33, Chanhong Jung wrote:
+> Hi Krzysztof,
 > 
-> A couple of nit-picks below. After addressing them you can add
+> Thanks for the review.
 > 
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
->
+>> You can fix the driver not to do that. Or fix the driver to properly
+>> parse hogs. I don't understand why exactly this one driver needs
+>> default registers stored in DT, but all other drivers in the kernel
+>> don't.
+> 
+> I thought about both, but I don't think either works for this chip.
+> 
+> 74HC595/74LVC594 is pure write-only: no MISO path, no register
+> read-back, and the data sheet defines the power-on state of the
+> parallel outputs as whatever /SRCLR and /OE do before the SPI master
+> is up. That's different from MCP23xxx, PCA953x, STMPE and the rest,
+> which are either readable (so the driver can RMW) or have a defined
+> reset value. None of those drivers need a seed property. This one
+> does, because there is nothing to read back and no defined state to
+> fall back on.
+> 
+> Partial updates aren't possible either. set_value() has to shift the
+> full chain every time - see __gen_74x164_write_config() - so whatever
 
-Thanks for the review. I'll address them and add your Reviewed-by tag
-in v6.
- 
-> ...
-> 
-> >  #include <linux/bitfield.h>
-> >  #include <linux/bits.h>
-> > +#include <linux/build_bug.h>
-> > +#include <linux/align.h>
-> 
-> Preserve order, 'a' goes before 'b'.
-> 
-
-Will fix in v6.
-
-> >  #include <linux/io.h>
-> >  #include <linux/types.h>
-> 
-> ...
-> 
-> >  /* Helper for FIFO size calculation */
-> >  #define DW_UART_CPR_FIFO_SIZE(a)	(FIELD_GET(DW_UART_CPR_FIFO_MODE, (a)) * 16)
-> 
-> > +#define DW_UART_CPR_FIFO_MODE_MAX	0x80
-> 
-> You used decimal values elsewhere (id est 16), use upper limit in decimal
-> as well.
-> 
-
-This define will be removed in v6.
-
-> > +#define DW_UART_CPR_FIFO_MODE_FROM_SIZE(size)				\
-> > +	(BUILD_BUG_ON_ZERO(!IS_ALIGNED((size), 16)) +			\
-> > +	 BUILD_BUG_ON_ZERO(((size) / 16) > DW_UART_CPR_FIFO_MODE_MAX) +	\
-> > +	 ((size) / 16))
-> 
-> I don't see the need in having that maximum being defined separately (we don't
-> have that for 16, no need to have it for 128.
-> 
-> Since some ISA:s have one assembly instruction to get both / and % divisions,
-> it's better to use that instead of IS_ALIGNED(). Can you check code generation
-> for x86_64 / x86?
-> 
-> #define DW_UART_CPR_FIFO_MODE_FROM_SIZE(size)				\
-> 	(BUILD_BUG_ON_ZERO((size) > 2048) + BUILD_BUG_ON_ZERO((size) % 16) + ((size) / 16))
-> 
-> Note, I dropped first division in order to show the upper limit in a plain
-> number since 16 is also FIFO size in bytes.
-> 
-> Also note, this evaluates (size) three times, which might be problematic,
-> but I think we can leave with that for now.
->
-
-Makes sense. I'll fold the upper limit into the macro and switch to
-(size) > 2048 and (size) % 16 checks for v6.
-
-In the driver, the macro is used only in static initializers, so the
-constants are fully resolved at compile time.
-
-I also checked code generation on x86_64/x86: both IS_ALIGNED() and % 16
-produce identical instructions at -O2. I'll still switch to % 16 as you
-suggest for clarity.
-
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
->
-
-Best Regards,
-Jia Wang 
+This should also be explained in the commit msg.
 
 
+
+Best regards,
+Krzysztof
 
