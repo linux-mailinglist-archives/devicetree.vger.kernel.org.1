@@ -1,135 +1,274 @@
-Return-Path: <devicetree+bounces-291343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291345-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EGBdI6Cr8WkAjgEAu9opvQ
-	(envelope-from <devicetree+bounces-291343-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 08:56:32 +0200
+	id GOglFius8WmGjgEAu9opvQ
+	(envelope-from <devicetree+bounces-291345-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 08:58:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F8884900C2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 08:56:32 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC2DD490110
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 08:58:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7913930156DA
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:55:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DF858300D1D8
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4619439C00D;
-	Wed, 29 Apr 2026 06:55:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3F0239D6F9;
+	Wed, 29 Apr 2026 06:58:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VFhgfhPg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g5UebSqy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com [209.85.210.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B82339719;
-	Wed, 29 Apr 2026 06:55:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 362BA39C65D
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 06:58:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777445740; cv=none; b=epgDDHtJJAYuANHpDYOIdiRbRknLPAsOLt5XQY2k0EMtFgYWVYFA3zo9U3U7Hs8K6OHv2QTUL0RWfE8gqcNV7Gh5+QAXIDlKRRfGFKBFn1II+5uuHtxIJvqQjBfaFcC9SrD1RZ8ww8IdAf9+Q8iWk0MLOfRRX4vmfvsmxo3AQ5Q=
+	t=1777445926; cv=none; b=DDAQlxihDnV1i0fHnhoD8/VmrEwdkLS2KvXP38uVuKEWaGmlyEGU8Jl2v9oiwDHOudiJpezFfdAg963QmU6hqQEbjhra2qnZc9viTmaBMcw+B+cvNdydJuX03tTPjgiNwSDwLlc7zi++FKusuFK7YUqUE6EQP6SbmkbYynoqi4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777445740; c=relaxed/simple;
-	bh=PHll4ZUqKiT08v1DLiiLenqv/Uz1VMM8r2/32Bt5mL4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pQUTEMsYWu9RU8g7LZbtLzxXBbzYYnvi/fw6MCEUsucIBpBk9+A//lQr8iuhcorvrvMs8s3V7aiEgxd2R8gW/LJBqvU/XcVe5heTvI7cwuewvykoj19BXBGTzjB2QAX/2/284DsREc55dgl6UGZWbD9dG50Ts9A1Puy5Eb8jl10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VFhgfhPg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 420CAC2BCB3;
-	Wed, 29 Apr 2026 06:55:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777445739;
-	bh=PHll4ZUqKiT08v1DLiiLenqv/Uz1VMM8r2/32Bt5mL4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VFhgfhPge/7WpbcBc2sMONWoZHLu8VL0rWWNY364iv6D5SQfahsqi1hTa0Mluri7T
-	 CcsM9sRnXsc5j2lftprdsiE43Ve2gSwAKA3SrlIhJe5CZfOiaPJicX0CqQxJGvzlXK
-	 k3Z/NBSA+S0xnr9RC9d82YUQYsX9fqcIRwsTNbKULEiWGaINpTd4nW2TUhscX956B9
-	 mYacKBtQN4CXxY3ZZ5VMz6hwfmszSmT9R/ozpe2XRqycmy4FMJOTjAOojzHIqdjgup
-	 L4Ojis1NJn1aZkkLJdIXnN656kdewwcmDAhlweLtJZ8M/zK4nhhVxD/CLoBVJ6MCvd
-	 UvozQfhvMxJ0A==
-Date: Wed, 29 Apr 2026 08:55:37 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Arnd Bergmann <arnd@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
-	Andreas Kemnade <andreas@kemnade.info>, Bartosz Golaszewski <brgl@kernel.org>, 
-	=?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>, "David S. Miller" <davem@davemloft.net>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Eric Dumazet <edumazet@google.com>, 
-	Felipe Balbi <balbi@kernel.org>, Jakub Kicinski <kuba@kernel.org>, 
-	Johannes Berg <johannes@sipsolutions.net>, Kevin Hilman <khilman@baylibre.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, linux-omap@vger.kernel.org, 
-	Christian Lamparter <chunkeey@gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: add st,stlc45xx/p54spi binding
-Message-ID: <20260429-crouching-dangerous-basilisk-22cfda@quoll>
-References: <20260427142355.2532714-1-arnd@kernel.org>
- <20260427142355.2532714-2-arnd@kernel.org>
+	s=arc-20240116; t=1777445926; c=relaxed/simple;
+	bh=z8QrbyEQ9Qhmn8e7bcE+J1PUsYSh4gHOBxd0HU0dPH0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JRmm4cEu461cvZyEPLcptdlCCvQpXWn2z39+cuqykQeoz2HmfCWiMlKWfckdGfZMZnfD6ygUQZoiSXTxNRkJOZgUsGS6I0i4ICZWJYNatIrxeh7hT1VO8W9PN9C5brsAPfcK0fF7HvFz/xn9ztgz9+E5TKpKS99IbVSiJ4ypPd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g5UebSqy; arc=none smtp.client-ip=209.85.210.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f194.google.com with SMTP id d2e1a72fcca58-82d0b68837aso7234799b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 23:58:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1777445924; x=1778050724; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2YAMiQdl0y9iAuHJeag5d0legeH39piZcT0MdhE3hIc=;
+        b=g5UebSqybmlZmoOdPsh9rz3fTm2Km6Vz5pgUYTdHnKyhd/95JcBcF2HZlWlAX9CLl+
+         +QP53fGJ/XTMe+G9kHQ1pwvlS0w+Lpmiz40L/l9MQPRgxSbcHEuv8nA4JaXCVXcz68b/
+         /gsp1kJKMNBreaCaN/mzuAuhWUsLAc7wBzSQcDURugNGo8UliTXKY7d2mCOG6Oq+41un
+         R75iIL/I/Qc6tyy/MCKDcqZ08SZMq68zX8OdOyeYdPswd2aTk63S3CZ673wI55d/0PH8
+         dnyZX/a87HCZJM4PZimuQ4HmGDQGrAI4KJ4v7vG9i+7skKqe5kkSkoYD1MCRyIc4CgRs
+         ccBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777445924; x=1778050724;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2YAMiQdl0y9iAuHJeag5d0legeH39piZcT0MdhE3hIc=;
+        b=jUG8mFmINg6JdgGs7MDaQCkSAkWLe3+Xkrl7mjWlfSfbiDFtJWZ9A82wXolk3XX9IR
+         wsJFoR0zucp68Ks9bwLaXBirPSzrLyeyGz5XhArCjjT8RrZD/+P2uh9gUbBOGlyIUfIp
+         SCTTTui1vncDbCoiYnaopc3AAIP77tzEzlsVJGdZYpv80/4E23Loxze4qO3/uUMuUVox
+         xBJdQl2i/l4CIYbmd/VcDQIBkiEjj4mZXyvawqjg371VUHMV8MFADxl8hns/aXFFStRB
+         MXnnBYIhOW7zPk3YdLE1L+LHajU8jyfhWx2DatqYqf/+k/Vh8ULS1RrlnKLzh0wz+aDu
+         ewUQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/JmuXsrC4nm4MjKZB/2GmjdV+LRR6fsjWY+HkcDOSpnarmxAWceyf14BtNTbvJGdINXP9ci4p13ynD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx98gnB3HyPFLZY5p5KkDO0Ef6+1IUZv0nEEImD96oR+OijpjKX
+	qXDkJ6rAKuVoKwbXyNeLrGwJPIUHcArbtxq/2gD5xmPaJaBcyKBXQPLg
+X-Gm-Gg: AeBDiesYxDqdRE3VJh5T5x3tULoCgxWVAw5f62IrghILwLNXR8VzZ/1AG7WjnJv2Fer
+	l10M+jGAbxOCpSLzKBZDSphvYjytcJD54m0bCvYuJugxOE7QFqBZNDG3yeJevScpPQX9bTQ91sg
+	fVDz3s53R7BsEsWI1b0Vwls9F+J6B31pxZY5dz6pAf0TigtryFn45/x+p5YyIGmgosAzda3WLyn
+	wErixLFjmPAy7qgiul4AaN8msFzRLeQNUJs/xXUxdvGTZwleqU+Lje+OPD89KXlDAaPcs9H4RdH
+	XiRdVCLgSm7v1LMJ+7IFlW5yfq8ADJM7qjSlf8+cZiU2VI5e5QnrvQBkeXpgGUtzMEWMvNZNdOI
+	LvFxEkEC2k/4aGFcbetQQGWoOXYhG5nRam8WApcuqvsiwkYQPra3JxaKkYqFhH4tP9ZPWr1xg8g
+	ybfMJRIzznLzsWjlAJRb83VmwkAc7YV17oE0t/DpwLBPHorAxA
+X-Received: by 2002:a05:6a00:883:b0:829:7d31:dd99 with SMTP id d2e1a72fcca58-834ddbd42f5mr6432638b3a.38.1777445924448;
+        Tue, 28 Apr 2026 23:58:44 -0700 (PDT)
+Received: from intel.company.local ([210.184.73.204])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-834ed7eaf93sm1043146b3a.40.2026.04.28.23.58.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Apr 2026 23:58:43 -0700 (PDT)
+From: Chen Wandun <chenwandun1@gmail.com>
+X-Google-Original-From: Chen Wandun <chenwandun@lixiang.com>
+To: kexec@lists.infradead.org,
+	linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	loongarch@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: akpm@linux-foundation.org,
+	bhe@redhat.com,
+	rppt@kernel.org,
+	pasha.tatashin@soleen.com,
+	pratyush@kernel.org,
+	ruirui.yang@linux.dev,
+	corbet@lwn.net,
+	skhan@linuxfoundation.org,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	chenhuacai@kernel.org,
+	kernel@xen0n.name,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	robh@kernel.org,
+	saravanak@kernel.org,
+	chenwandun@lixiang.com,
+	zhaomeijing@lixiang.com,
+	everyzhao@126.com
+Subject: [PATCH 00/11] kdump: reduce vmcore size and capture time via linux,no-dump
+Date: Wed, 29 Apr 2026 14:58:20 +0800
+Message-ID: <20260429065831.1510858-1-chenwandun@lixiang.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260427142355.2532714-2-arnd@kernel.org>
-X-Rspamd-Queue-Id: 1F8884900C2
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: DC2DD490110
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291343-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291345-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[arndb.de,iki.fi,kemnade.info,kernel.org,baylibre.com,davemloft.net,gmail.com,google.com,sipsolutions.net,redhat.com,atomide.com,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	FREEMAIL_CC(0.00)[linux-foundation.org,redhat.com,kernel.org,soleen.com,linux.dev,lwn.net,linuxfoundation.org,arm.com,xen0n.name,dabbelt.com,eecs.berkeley.edu,lixiang.com,126.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[chenwandun1@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,arndb.de:email]
+	TAGGED_RCPT(0.00)[devicetree];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lixiang.com:mid]
 
-On Mon, Apr 27, 2026 at 04:23:53PM +0200, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> The SPI version of Prism54 was sold under a couple of different
-> names and supported by the Linux p54spi driver, but there was
-> never a DT binding for it.
-> 
-> Document the four known names of this device and the properties
-> that are sufficient for its use on the Nokia N8x0 tablet.
-> 
-> As I don't have this hardware or documentation for it, this is
-> purely based on existing usage in the driver.
-> 
-> Link: https://lore.kernel.org/all/e8dc9acb-6f85-e0a9-a145-d101ca6da201@gmail.com/
-> Acked-by: Christian Lamparter <chunkeey@gmail.com>
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
->  .../bindings/net/wireless/st,stlc45xx.yaml    | 58 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/st,stlc45xx.yaml
+This series has two parts:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+ - Patches 1-4 are OF reserved_mem bug fixes and small hardening
+   changes. They stand on their own and at the same time prepare the
+   ground for the feature work that follows (accurate region counts,
+   consistent two-pass save/reserve state, and an early-out when the
+   array is empty).
 
-Best regards,
-Krzysztof
+ - Patches 5-11 introduce a new 'linux,no-dump' reserved-memory
+   device tree property and the kdump plumbing to honour it, split
+   further as:
+
+     * Patches 5-7: core OF changes - parse 'linux,no-dump' on
+       /reserved-memory/ children, save /memreserve/ firmware regions
+       into reserved_mem[] with no_dump defaulted on, and add generic
+       no-dump crash_mem exclusion helpers.
+
+     * Patches 8-10: arch kdump consumers - arm64, riscv and
+       loongarch each call the helpers from patch 7 in their
+       prepare_elf_headers() so that 'linux,no-dump' /reserved-memory/
+       children and /memreserve/ regions are filtered out of the
+       vmcore ELF PT_LOAD segments.
+
+     * Patch 11: user-facing documentation in
+       Documentation/admin-guide/kdump/kdump.rst.
+
+Motivation
+==========
+
+On SoCs that carve out large firmware-owned reserved memory (GPU
+firmware, DSP, modem, camera ISP, NPU, ...), kdump currently dumps
+those carveouts as part of system RAM even though their contents are
+firmware state that is not useful for kernel crash analysis. On a
+machine with several hundred MiB of such carveouts, the overhead per
+vmcore is substantial.
+
+This series adds a declarative way for DT authors to mark such
+regions:
+
+    reserved-memory {
+        npu_fw@a0000000 {
+            reg = <0x0 0xa0000000 0x0 0x10000000>;
+            linux,no-dump;
+        };
+    };
+
+and also defaults /memreserve/ firmware regions (Trusted Firmware /
+BL31 images, secondary-CPU spin-table pens, bootloader scratch per
+Documentation/arch/arm64/booting.rst and upstream DTS files) to
+no_dump=true.
+
+Interaction with existing reserved-memory flags is kept simple:
+'linux,no-dump' is an OS hint, it is redundant (but harmless) when
+combined with 'no-map' and silently ignored on 'reusable' (CMA)
+regions whose contents are relevant for crash analysis. The 'linux,'
+prefix follows existing precedents like 'linux,cma-default' since
+kdump is a Linux-specific concept.
+
+Benefits
+========
+
+ - Smaller vmcore. The excluded firmware carveouts are omitted from
+   the ELF PT_LOAD segments entirely, so the resulting dump file is
+   smaller by roughly the sum of the tagged regions - on SoCs with
+   hundreds of MiB of GPU/DSP/modem/NPU carveouts this is a
+   substantial saving, both on disk and in transit to a dump server.
+
+ - Faster kdump. The dump-capture kernel writes less data to storage
+   or over the network, which directly shortens the crash-to-dump
+   turnaround. Tools that walk the dump (makedumpfile, crash) also
+   spend less time on regions that were never going to be useful
+   anyway.
+
+ - No existing behaviour change for DTs that do not opt in: regions
+   without 'linux,no-dump' and systems without /memreserve/ entries
+   are dumped exactly as before.
+
+DT binding
+==========
+
+The 'linux,no-dump' property is maintained in dt-schema
+(reserved-memory.yaml moved there from the kernel tree).
+Corresponding PR:
+
+  https://github.com/devicetree-org/dt-schema/pull/193
+
+Follow-ups
+==========
+
+ - powerpc also uses kexec_file and /reserved-memory/, but its
+   arch/powerpc/kexec/ranges.c uses the _guarded variant of
+   crash_exclude_mem_range with dynamic realloc and collects
+   additional RTAS/OPAL firmware ranges. Adapting it needs a small
+   extra helper; left as a follow-up.
+
+---
+
+Chen Wandun (11):
+  of: reserved_mem: fix region count for nodes with multiple reg entries
+  of: reserved_mem: reject reserved memory outside physical address
+    range
+  of: reserved_mem: avoid unconditional save of reg entries in
+    fdt_scan_reserved_mem_late()
+  of: reserved_mem: skip reserved_mem array allocation when there is
+    nothing to save
+  of: reserved_mem: add linux,no-dump property support for reserved
+    memory regions
+  of: reserved_mem: save /memreserve/ entries into reserved_mem array
+  of: reserved_mem: add no-dump crash_mem exclusion helpers
+  arm64: kdump: exclude no-dump reserved memory regions from vmcore
+  riscv: kdump: exclude no-dump reserved memory regions from vmcore
+  loongarch: kdump: exclude no-dump reserved memory regions from vmcore
+  Documentation: admin-guide: kdump: document linux,no-dump DT property
+
+ Documentation/admin-guide/kdump/kdump.rst  |  59 ++++++
+ arch/arm64/kernel/machine_kexec_file.c     |   6 +
+ arch/loongarch/kernel/machine_kexec_file.c |   6 +
+ arch/riscv/kernel/machine_kexec_file.c     |   4 +
+ drivers/of/of_reserved_mem.c               | 233 ++++++++++++++++++---
+ include/linux/of_reserved_mem.h            |  16 ++
+ 6 files changed, 295 insertions(+), 29 deletions(-)
+
+-- 
+2.43.0
 
 
