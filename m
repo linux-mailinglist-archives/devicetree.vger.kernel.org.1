@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-291390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291393-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8B7tHPS38WngjwEAu9opvQ
-	(envelope-from <devicetree+bounces-291390-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:49:08 +0200
+	id YEYJCiG38WngjwEAu9opvQ
+	(envelope-from <devicetree+bounces-291393-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:45:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B75EF490BD2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:49:07 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9170490A8F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:45:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9A5EC30D4C9D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 07:44:34 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 83FE1301785F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 07:45:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED563AA1A1;
-	Wed, 29 Apr 2026 07:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E628E3AE1B9;
+	Wed, 29 Apr 2026 07:44:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="1X0M2PKq"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Ex7TX76q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 022633A75AA;
-	Wed, 29 Apr 2026 07:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BADA63A7F66
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 07:44:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777448666; cv=none; b=ehnWLt6UTO+bnFwK+GsOkDhYYRAZGi3jSXIRjfhWrvctXm6W1wC0toH0ynFLlfvRTP5/P0D05UlH9zD9REQCmAf/JRGQXHPBhKl9t7ivEwiTKlrSmc7gGF1nnxtvm4uHdwMqHTgDATx96YpIs06ZpeIBBrhJL6ZF31X+wJvkVPg=
+	t=1777448673; cv=none; b=bN8npgjeZUJyUU3O86TkkNk2NcMGDgDE7oOXqtAMnxRGlmQmGqIh3Haz22K9M/dxV7Hp4sQjkdzE5qlILzMHd1WCky/p1apoqJck84eevhkVaXgnukGu466d+2UUmGXqOARTahSat8XrdMeU9WX35lx0Go9LeeV8vCfgWpaMilI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777448666; c=relaxed/simple;
-	bh=XB4PAC9+Xt1SlGkK8fa2uT700JX99DgEJP/N4cZVx6I=;
+	s=arc-20240116; t=1777448673; c=relaxed/simple;
+	bh=Hgc2uiWzscD7t/E3wgC9iKLt80BoqxNLjQKgfvNVCIU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Jxt3aKLQkQ2+WfjouapzBUAVSoUJkrwRVJpRjaayRfW3jtDi4nMuh95tk+j1rMtmXAgUayuIgadI9SxSxe5fFO+f6+QGqZzoT3QyOSfZOrRq8XWsIrhMORG2hwhOXhhowWW0UAD4NWcNlMpIFI5THmKubnt0S/l1FGqr7rW7S4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1X0M2PKq; arc=none smtp.client-ip=185.171.202.116
+	 MIME-Version; b=BQ6OhErj5jip88NJU81LyWIfThaUiCA/mpjxNZeOGJpNwiNI8d8HTzR1Lq73hBMT9YvnTUkBNTbciwlHoPfAhYSmLKfQqSxUIP30HN8kU0HvPUxX4BYWvaMI16FpZwW713yh6/nkR/hVuCxVLIR5+U0JFUjGUEjVFA/p5dpTOwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Ex7TX76q; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id B0E2AC5CD50;
-	Wed, 29 Apr 2026 07:45:07 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 718A34E42ADE;
+	Wed, 29 Apr 2026 07:44:26 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id AFF7E601DF;
-	Wed, 29 Apr 2026 07:44:23 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8490B1072988A;
-	Wed, 29 Apr 2026 09:44:19 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 46DD7601DF;
+	Wed, 29 Apr 2026 07:44:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 05BCE1072989B;
+	Wed, 29 Apr 2026 09:44:22 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1777448662; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1777448665; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=Ao/Ge/7pzeYgeQwu1DzSFkfa9mVgrNeq6YT9C0YLJQ0=;
-	b=1X0M2PKqVM0WS0MleB02urqi7GBYeGMCv8SJ5CPt7amRZfcFD4QlAP5AAXCfjV0lqjvig4
-	1A+ju3PTz7wr52GBXbUnkg4h8/rqBdUgUWgp9DKvbU464x6iXf7NMy/ETWsFaMJBMcVNOy
-	IA8Y3RVL76ZNeGp3aItjB0mJ5Gw87jMYgngLbHBzaq7kbr768lnm39unfmEWbja9lQdTdQ
-	89PTgGUwhzmZH/S1/lH3pf5E7M6AFj7cH73aXUM41yGxxempLqTGC5+Ogsnr363aujRXG8
-	gOQaNrf5CpUgka9fFEZtD0EwGZVd/lWjJ3BX/Wg3Dhvwr3IK8Z2uocA1YhF6pw==
+	bh=MDWbndD0MDPCeru1OfQ7pxS5JaPa/gaaif8SAMi6MO8=;
+	b=Ex7TX76q53iLj9ujUT51zN0Qh4luveldr+SCzvFBKzPk0pxUbJ9tym8dYPN0eLkpls5l+5
+	tvgvDGj0Mw1A7GKs22CJkYamdYqC7uqJoQmKId9yQnUbIeUy0btJaVAj71NGfsLGAyabVR
+	+86P6V2c7klbQK5bhCSPVs5wRhmF8JX+lr3xHQHqrQyLS7gcR3QFvzWlEigfPCz3+UXxV6
+	xpdsSf3Q6rba7izjZypcAh39pyxZnmVR59QWACIxj8jCx5MH4uMczTOtnf0greIesTtPZ/
+	ynFrdhvZkwW3U/Oa3h2Wm09cSUBWK0wEzKc8mSq7jgcvc2x4mbm2+GUrH9Tjfw==
 From: Herve Codina <herve.codina@bootlin.com>
 To: Herve Codina <herve.codina@bootlin.com>,
 	Bartosz Golaszewski <brgl@kernel.org>,
@@ -69,9 +69,9 @@ Cc: linux-sound@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Christophe Leroy <christophe.leroy@csgroup.eu>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v2 05/17] ASoC: simple-amplifier: Remove CONFIG_OF flag and of_match_ptr()
-Date: Wed, 29 Apr 2026 09:43:41 +0200
-Message-ID: <20260429074356.118420-6-herve.codina@bootlin.com>
+Subject: [PATCH v2 06/17] ASoC: simple-amplifier: Rename drv_event() function
+Date: Wed, 29 Apr 2026 09:43:42 +0200
+Message-ID: <20260429074356.118420-7-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260429074356.118420-1-herve.codina@bootlin.com>
 References: <20260429074356.118420-1-herve.codina@bootlin.com>
@@ -83,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: B75EF490BD2
+X-Rspamd-Queue-Id: A9170490A8F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
@@ -92,7 +92,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -100,7 +100,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_TO(0.00)[bootlin.com,kernel.org,gmail.com,perex.cz,suse.com];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291390-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291393-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
@@ -113,45 +113,50 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,bootlin.com:dkim,bootlin.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid]
 
-The simple-amplifier Use CONFIG_OF flag for its of_device_id table
-and of_match_ptr() when it assigns the table in the driver declaration.
+The drv_event() is used to handle power events related to the DRV item.
 
-This is no more needed. Drop them.
+Later, with the support for gpio-audio-amp, this function will be
+also used to handle power events related to the PGA item.
+
+Also, more functions will be added in the driver and it is a common
+usage to prefix functions based on the driver name.
+
+Rename the drv_event() function to simple_amp_power_event() to follow
+common usage and get rid of the 'drv' term.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- sound/soc/codecs/simple-amplifier.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ sound/soc/codecs/simple-amplifier.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/sound/soc/codecs/simple-amplifier.c b/sound/soc/codecs/simple-amplifier.c
-index 5b44bcfef49e..215318ff62fc 100644
+index 215318ff62fc..8f2daec55134 100644
 --- a/sound/soc/codecs/simple-amplifier.c
 +++ b/sound/soc/codecs/simple-amplifier.c
-@@ -86,19 +86,17 @@ static int simple_amp_probe(struct platform_device *pdev)
- 					       NULL, 0);
- }
- 
--#ifdef CONFIG_OF
- static const struct of_device_id simple_amp_ids[] = {
- 	{ .compatible = "dioo,dio2125", },
- 	{ .compatible = "simple-audio-amplifier", },
- 	{ }
+@@ -15,8 +15,8 @@ struct simple_amp {
+ 	struct gpio_desc *gpiod_enable;
  };
- MODULE_DEVICE_TABLE(of, simple_amp_ids);
--#endif
  
- static struct platform_driver simple_amp_driver = {
- 	.driver = {
- 		.name = "simple-amplifier",
--		.of_match_table = of_match_ptr(simple_amp_ids),
-+		.of_match_table = simple_amp_ids,
- 	},
- 	.probe = simple_amp_probe,
- };
+-static int drv_event(struct snd_soc_dapm_widget *w,
+-		     struct snd_kcontrol *control, int event)
++static int simple_amp_power_event(struct snd_soc_dapm_widget *w,
++				  struct snd_kcontrol *control, int event)
+ {
+ 	struct snd_soc_component *c = snd_soc_dapm_to_component(w->dapm);
+ 	struct simple_amp *priv = snd_soc_component_get_drvdata(c);
+@@ -42,7 +42,7 @@ static int drv_event(struct snd_soc_dapm_widget *w,
+ static const struct snd_soc_dapm_widget simple_amp_dapm_widgets[] = {
+ 	SND_SOC_DAPM_INPUT("INL"),
+ 	SND_SOC_DAPM_INPUT("INR"),
+-	SND_SOC_DAPM_OUT_DRV_E("DRV", SND_SOC_NOPM, 0, 0, NULL, 0, drv_event,
++	SND_SOC_DAPM_OUT_DRV_E("DRV", SND_SOC_NOPM, 0, 0, NULL, 0, simple_amp_power_event,
+ 			       (SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD)),
+ 	SND_SOC_DAPM_OUTPUT("OUTL"),
+ 	SND_SOC_DAPM_OUTPUT("OUTR"),
 -- 
 2.53.0
 
