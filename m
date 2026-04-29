@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-291238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291240-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4KjlDmZh8WnhgQEAu9opvQ
-	(envelope-from <devicetree+bounces-291238-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:39:50 +0200
+	id OOaoM2Fh8WnhgQEAu9opvQ
+	(envelope-from <devicetree+bounces-291240-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:39:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37F6248E06C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:39:48 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F39A48E062
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:39:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 962BA301BDEA
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 01:39:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 99F72301CD89
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 01:39:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0F925CC79;
-	Wed, 29 Apr 2026 01:39:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F635277035;
+	Wed, 29 Apr 2026 01:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="w8ALSAXr"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="nHkucCRv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
+Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571F825B2FA;
-	Wed, 29 Apr 2026 01:39:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622BB22370A;
+	Wed, 29 Apr 2026 01:39:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777426757; cv=none; b=uRUgWN07oGWEDO+sjCxpi41fy6bxhssxlW3y963h7dfVda6DL04j/rTMGh1g5zpggEVpEY86fMq9oZKKubhB1m+Yi7JM/LEy/hg7KWqFWFpY6rL8Kc1v7zTZ+DB8kQzE2pDU3nEuWxxTwtSYR4ZHfIBGXP4ULZuSs76fggeP6TY=
+	t=1777426759; cv=none; b=sxq997cxxaQonDdosbAh5YIpJs83M3KPvp/UTT7XA7oRWFhLJvlS/GgQQt959xBpyiUFb1On6Cv+x2BRNpfGkAnF3WmCvW+YEunqjJNisONsdCS6DZiH+xAEs1gCxEv7QuZnU7+BJ/g+NfGoQzhja21/+zKH9UT4DVvwMKy/+bc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777426757; c=relaxed/simple;
-	bh=TN3IekLzdp18HVU+1Rpq+9TEk2UtnO7ag9ShWepOCxY=;
+	s=arc-20240116; t=1777426759; c=relaxed/simple;
+	bh=PyG99/8R0TpsWO1jWHnifATKcOhOPS8LywBZeCYZFZY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qGAepACnDMpZXaTao/vgpTUAwwNU2fDVwg4YextvzqlVTwU4XSP4Uws+608mZqF+QrJu08uB+qTWX6ayYaWK5+JICP2aX0qtXnHPzLC9kRs0OQhPSvHhHz6ZYMNMgLznXNR0RjGitX1krrOfzKwBuYVaSBKgmvq7lJtdkMjYVaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=w8ALSAXr; arc=none smtp.client-ip=52.59.177.22
+	 In-Reply-To:To:Cc; b=hpgzD/lylHUVsj8/WGsFOcAWPhvt7ev/kpHRbKKf1NWvlS97SxVnoTtbXPDddkZvSmi3lporNgWz+xXIbrNK+aJZ/5Yf5EKK8slH8xYFyeCM1ouR4LpqgfgkwfyhRDR2uuvKjU5E+DKGJCy4ruvL7Iwl1r04cTrX0zJH7K5Fzfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=nHkucCRv; arc=none smtp.client-ip=54.254.200.128
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1777426751;
-	bh=IhNm7b5aaqeGytIsBEHmKesKKDGy9a0voGkBOun2Fb4=;
+	s=mxsw2412; t=1777426755;
+	bh=wUXoDWfKSMmaRMhMXzMvroZGWtAYAAcr+bc0qP0VGz8=;
 	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=w8ALSAXrcB5slO3vMAEilljRcTkxN/2/vWCx/BUZQ13uZ7y6aZ+jnGJ/3GrI03kqs
-	 A4IJfYoJSG0gc75J5mM5j7noMhPY6eku74LA+2zIBLgZmqG8uPsA5uNv7v7MvMhpa/
-	 OFjUeOQO5WROlcpVlebB+x3QMOXeekqkno+7CEWk=
-X-QQ-mid: esmtpgz13t1777426747t360c3668
-X-QQ-Originating-IP: rd3CXtHqGvswSSKw6JZjHsL50HqUHdZsoRaXYQ+43t8=
+	b=nHkucCRvl0GFeUoU8qsUbQDI689HRP6VU2d1huJEi3iQTAE91Ssa1lzi9Y1yWmgR/
+	 4IIfaNk5V/xEwzJxo+XapGFwwfWPJXlA0QMTCogH8Y8DCxoACC2Tz3vwqs3vYa1+8Q
+	 5ipBkJjo/Ge6afT40zIh8zQUNLWhrwEll/sdveik=
+X-QQ-mid: esmtpgz16t1777426751taed3181a
+X-QQ-Originating-IP: vI4sGNfIgv1/h6mK+YQd1WJmQOsZPj6r30Cg1uCqF3A=
 Received: from = ( [120.237.158.181])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 29 Apr 2026 09:39:04 +0800 (CST)
+	id ; Wed, 29 Apr 2026 09:39:08 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 7139710470832578007
+X-BIZMAIL-ID: 11863181746122903502
 EX-QQ-RecipientCnt: 15
 From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Wed, 29 Apr 2026 09:38:48 +0800
-Subject: [PATCH 3/7] ASoC: spacemit: adjust FIFO trigger threshold to half
- FIFO size
+Date: Wed, 29 Apr 2026 09:38:49 +0800
+Subject: [PATCH 4/7] ASoC: dt-bindings: add SpacemiT K3 SoC compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +61,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260429-k3-i2s-v1-3-2fe99db11ecb@linux.spacemit.com>
+Message-Id: <20260429-k3-i2s-v1-4-2fe99db11ecb@linux.spacemit.com>
 References: <20260429-k3-i2s-v1-0-2fe99db11ecb@linux.spacemit.com>
 In-Reply-To: <20260429-k3-i2s-v1-0-2fe99db11ecb@linux.spacemit.com>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -75,43 +74,43 @@ Cc: linux-sound@vger.kernel.org, linux-riscv@lists.infradead.org,
  devicetree@vger.kernel.org, 
  Troy Mitchell <troy.mitchell@linux.spacemit.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777426731; l=1063;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777426731; l=2426;
  i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=TN3IekLzdp18HVU+1Rpq+9TEk2UtnO7ag9ShWepOCxY=;
- b=ec7QeL6JrXUVZ6cJTDvuUdDooCidwlmr8lArWG5oMoYjQVIX6WmJGiNfPdpsvXXfGLqXc069i
- /HyE4YCuvkYAufz1dVpsxL1IkXIvH2zfUQfXE1mxlIB7tMZqKJGy3L5
+ bh=PyG99/8R0TpsWO1jWHnifATKcOhOPS8LywBZeCYZFZY=;
+ b=XPnYB5sjZ9lutwmRgfjnz0oFWS9Zl6AxEVe+jvTb9maBaSi+h5G1J+ifvsEpt1vdxM4vWqIly
+ r4iSsTIbzNCAFX10bIHT7pe+HZc1V1QBdd7FpLdew8mK2kPqfcC5oxk
 X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
  pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
 X-QQ-SENDSIZE: 520
 Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: MydYCacP+cDPw+ybcMtVnqNHyV5jWfq0oQKckuQo8iFxq4X/1cJb4lZw
-	Ib7aePYK8MUjrE/gduReSZFAd1QWr/7LzMC7L7LfX6ruVoXCswXDyhSFFRcLBcpoZKj6Zuu
-	aliZcTxzHLiBNZXjWJeZpz/L3YvPxwC1Vxz3HrUtexzvzdKLdvo206zpBDq+pG/8YnYzfo+
-	lbQTVhNLQIKeH75Eca1EGHv07KpBKvWcwWOGzlwuDiLt2NTfm0uyKHWi4/EsNiQ7EPQPuWS
-	z7DcvqJIlNjuf2X6j94CCs7yatI4xjqh9h5Nka34nKGgvy0IHQnOPg+maurjRrqGr2dn+PJ
-	1ImtDSujHUjLRseCNH0rc0+wymhYXm2Jj40htL0zmMlF8ZTh+l3OqNE28ZAnVhYyia54g8e
-	un6FfKcHYjUrm0T/kiz89FxihBkdqZOrXMmsHXOlPx4FGO+mA8DqNcXMe0POekHx+DUHkKh
-	rm8zX+qKQS7afWfvAc7BdJT4rpBrz1rzUxBwpHRY6DOVy4Xh64f1koxwoGt4ssvmD1tLM3y
-	iLj7y57tvcIbUYaVtknwEV7C5yQs9CTcsxv2X/RWpgSc6oPjA+yvFfE6M5G4m7CpLY7jmOi
-	sE329vgV2uKSq3nKFL1kBVWzTY8Fjm7Y8h9Emx0LfvSAa6VhXU2ki4FNDuczZTvUPWBEVTo
-	3ZszcuBREXjFAsn3HFDkm/rUzpVQQzpBGLarWpnzBDVVDgmY2kIhRUWhtPWZcy1PhSTP3LO
-	tP89GntTHWc1nUGzLE2h7MAVYjM04YcNCH201TxKZ9S8fCGfyAa/4m+Ci3jwI+1PTjGZaYY
-	o8Fq5rAK7IfNSjnFjywoFxo2Tfigs+Jih8+CPI3bOQM7rFXwxSuD14dUWVTK6f+RKdXZ/OB
-	KhZXn3WZZsLh14pM/ifKsmk1TfN3YSCMWlSRTzCiTP4vropGuyvrY+HDFBLnbz9x0RCxtW8
-	b7JfDw7NIBvxlbHRSPwX+a6ZdOvp/+53mtfe46JPG7Cij3oQecLwYSCva/rB2HOY7vVqkrG
-	M2XZ0X7lJEki2hgrsV3gtp3rZLQMFXKVJuZd6BnAMctiLzhIUpvbX24eZn0WKFcpKXTB1Zo
-	nWQqaCuxSJruVhjiWeR8XrgYFPdyvfCjtK6TJaaBY5PIL7xgFqO9v6eXNlbHjXLco0UyBgj
-	9e/lO6T7hdxtndI=
-X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
+X-QQ-XMAILINFO: M/5qe47GLMYOQHgZY0Ycgek5hYmKhrz1s2Pf3TldZ+DzyI4ntzjZTVVq
+	reeTDxqTfR2Dj9Ov00i3JLBZOYWDeTLyJ8riYslVZ7nx6CVl3GAO4hnIeHGogWLRH3LvXp/
+	U1aWIrFC2hFVUyqlRsDFI5qlaV4i+rVM/xqF5eWiQnop5Nsb9V9KxkPk+5T9BqmEcXauDyR
+	8gTEqZmnhmdNyXJncqP0fnUK+hs+J9H295Ns7zVwgnJoTCYISOne170n2Mp7WjwSVjJQnsc
+	49QBbUqVuBYqRXZ1SBugVehs/KseKDR1tbRCdWh6XleLRKkZf6H4eAI/F+njWFBc2sica41
+	BzOo9XfP0spWSxzHIms4wVX3rGkNLyrV8edHnNQkCWZf3rqHAOUpKg6Wo6wKqM6+U8VNgNv
+	TTZtoCil3F/10kQswNSUeh4rbQMOu+D9NHZrQIB3/UuL0EF1oejRB/2bMZCTHxJanzMAUYM
+	1jrdu0FrinW+gl8QJ5PAX4pYHi/vhw2IsF67ZlbG4j2aLxlkHC7Oxp3QVHhZWSEiaRewQlY
+	l++mucbEJvpeBWBklckQFwA/oNCFdb8NPcHeVWFi5Fb3XcIMkZB+OQZ7LLOdfo2jWFQW5gs
+	4zUTrlvr1EjB+H1nB2HjqeqgqyqpMgNcO98LTwJvlURICdcEZOGNaHAi5gMxmTRObxQOfJQ
+	hFck1z4fU+7aGU0CCFiuxUq0ANqSyxP+K/vw4l85Up1yw01THvgUnqS98FRq64GhDTL6OZ0
+	ml0nblwcwf79Yi+v0hsuf/h/0X7UzC44Sb291ydzLeaF9cW8MA0C50xjd0nAqUaJAm66gG9
+	N8CeHntgpt9d4mfjz0Sem+4JJR3kmK709VhdJbhQR3BsZFz80N5Uxtzb8vuC2nUyQMowRM8
+	3jPu8FlwVYBp95RiV43czYFTTRj6MJd8EhrSRsU6guClqmNiXc+q8K5vNlxFI97Mew0Kyjy
+	YIQ1LdcUBWEYAuctqRO+T5tuLHOfBTVfMBMdVLBgTf+SFsYqNfFB45fb60sgKSl/ZMKAcDK
+	Orw1p89bKi73n1vy+q2T8auvQ5ZAQ/IyHof2Eh8ZmBL/sAEgN0LXeidZ9FpJ4Hb74EzwZQW
+	7mdIFHiIW2RYuSuw3xrouw7DY2rIZiiSUUZuoWP+PCgUcuR2CxBSVDeJ6TnFHEGHgCZoORp
+	S86PuRt7QvcUfiVtxo013tKdtLT9bVIdifez
+X-QQ-XMRINFO: MSVp+SPm3vtSI1QTLgDHQqIV1w2oNKDqfg==
 X-QQ-RECHKSPAM: 0
-X-Rspamd-Queue-Id: 37F6248E06C
+X-Rspamd-Queue-Id: 7F39A48E062
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -123,7 +122,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_NA(0.00)[spacemit.com];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-291238-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291240-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -132,34 +131,91 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.spacemit.com:dkim,linux.spacemit.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.spacemit.com:dkim,linux.spacemit.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 
-Set both TX and RX FIFO trigger thresholds (TFT/RFT) to 0xF (half of
-the 32-entry FIFO) instead of 5. This provides better DMA efficiency
-by allowing more data to accumulate before triggering a DMA request,
-reducing the number of DMA transactions needed.
+Add the spacemit,k3-i2s compatible string for the K3 SoC I2S
+controller. The K3 I2S IP is the same as K1 but requires additional
+clocks: sysclk_div, common_sysclk, and common_bclk. These common
+clocks are shared across multiple I2S controllers on K3.
+
+Also add the spacemit,fixed-sample-rate property which constrains
+the sample rate when multiple I2S controllers share a common bclk.
 
 Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
 ---
- sound/soc/spacemit/k1_i2s.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/sound/spacemit,k1-i2s.yaml | 31 ++++++++++++++++++++--
+ 1 file changed, 29 insertions(+), 2 deletions(-)
 
-diff --git a/sound/soc/spacemit/k1_i2s.c b/sound/soc/spacemit/k1_i2s.c
-index e59624b2e23a..cef883ba4de9 100644
---- a/sound/soc/spacemit/k1_i2s.c
-+++ b/sound/soc/spacemit/k1_i2s.c
-@@ -93,8 +93,8 @@ static void spacemit_i2s_init(struct spacemit_i2s_dev *i2s)
- 	u32 sscr_val, sspsp_val, ssfcr_val, ssrwt_val;
+diff --git a/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml b/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml
+index 55bd0b307d22..240d90402e4f 100644
+--- a/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml
++++ b/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/sound/spacemit,k1-i2s.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
- 	sscr_val = SSCR_TRAIL | SSCR_FRF_PSP;
--	ssfcr_val = FIELD_PREP(SSFCR_FIELD_TFT, 5) |
--		    FIELD_PREP(SSFCR_FIELD_RFT, 5) |
-+	ssfcr_val = FIELD_PREP(SSFCR_FIELD_TFT, 0xF) |
-+		    FIELD_PREP(SSFCR_FIELD_RFT, 0xF) |
- 		    SSFCR_RSRE | SSFCR_TSRE;
- 	ssrwt_val = SSRWT_RWOT;
- 	sspsp_val = SSPSP_SFRMP;
+-title: K1 I2S controller
++title: SpacemiT K1/K3 I2S controller
+ 
+ description:
+   The I2S bus (Inter-IC sound bus) is a serial link for digital
+@@ -15,27 +15,54 @@ maintainers:
+ 
+ allOf:
+   - $ref: dai-common.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: spacemit,k3-i2s
++    then:
++      properties:
++        clocks:
++          minItems: 7
++        clock-names:
++          minItems: 7
++    else:
++      properties:
++        clocks:
++          maxItems: 4
++        clock-names:
++          maxItems: 4
+ 
+ properties:
+   compatible:
+-    const: spacemit,k1-i2s
++    enum:
++      - spacemit,k1-i2s
++      - spacemit,k3-i2s
+ 
+   reg:
+     maxItems: 1
+ 
+   clocks:
++    minItems: 4
+     items:
+       - description: clock for I2S sysclk
+       - description: clock for I2S bclk
+       - description: clock for I2S bus
+       - description: clock for I2S controller
++      - description: clock for I2S sysclk divider
++      - description: clock for I2S common sysclk
++      - description: clock for I2S common bclk
+ 
+   clock-names:
++    minItems: 4
+     items:
+       - const: sysclk
+       - const: bclk
+       - const: bus
+       - const: func
++      - const: sysclk_div
++      - const: c_sysclk
++      - const: c_bclk
+ 
+   dmas:
+     minItems: 1
 
 -- 
 2.54.0
