@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-291237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291239-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EEwNI1ph8WnhgQEAu9opvQ
-	(envelope-from <devicetree+bounces-291237-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:39:38 +0200
+	id oA1qH8Nh8WnhgQEAu9opvQ
+	(envelope-from <devicetree+bounces-291239-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:41:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AB4448E04A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:39:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B7FB48E097
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:41:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4B2EB304F332
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 01:39:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B0218301EC6D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 01:39:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65B56262FC0;
-	Wed, 29 Apr 2026 01:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1341126B756;
+	Wed, 29 Apr 2026 01:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="Ux5Ml9QA"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="bMB1qep2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
+Received: from smtpbguseast2.qq.com (smtpbguseast2.qq.com [54.204.34.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C860523183B;
-	Wed, 29 Apr 2026 01:39:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96939258CE5;
+	Wed, 29 Apr 2026 01:39:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777426749; cv=none; b=mNk4cIUUWEKn8pncJRiQq+hZICdMT6s+HvbwfFHfH6B/rQF0FZrl1OW8XMl/UDKttig2a8C7nSyj6zjUNTln4WhoPcyUQSbOPBytCf2JHxUnkLFgZ/SM8qOM2Zmu4NB6YQreZM6JhwTdDs68TQmbOsuv5Y3p+2G10I4R7Umx2S0=
+	t=1777426759; cv=none; b=VoWLGjLhY2FI2fErs9P0qw08XkMilKEr0kDyLVq8ZC+rewHIOn91j/+XOawzaTg2KVwGhYlhyWXKck5HPIyaUoI3qDSsG2RdnBD5UBCr7ShoaZA9rExFAlhSWBDJcRVL2m6PyirMr6hUrjjLmdPU0NRblG4GkFwRL71NqRaLi4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777426749; c=relaxed/simple;
-	bh=fqs712JSCd2q2Oqmt1LbqXOCERM/xXmlTc8QrXeirL0=;
+	s=arc-20240116; t=1777426759; c=relaxed/simple;
+	bh=RWny2LNzrPrEagJ3GrRqR5NlLn0/KK5X3ayFUZDi8u4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jpDI8RterJDeukwMO5gTCAe/+gcBSbay2Z59wOzW+Grho0koXYzsL12Xy/N+dpC1S3lmOmKXZWB+Ghs02yHXL5rp3EmLzppKDDtmYoM5zLmeHSkSTXW+k0drAW2olPQcHD5LOxgvxk4hzqtM4DXcJAIYIFz+sJBLiC7cD1hwSnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=Ux5Ml9QA; arc=none smtp.client-ip=54.254.200.128
+	 In-Reply-To:To:Cc; b=a5FwLqqVWJkElcQsxfmJACD9vYw/SA6RnmcJ/SciHmuN237r7pGAYFpQFAl69AfEY9dbJ8qTdsUpYg1GsIFGsjjREW5spMdeZug5xeJoD4JGZsJKioOMEz2tN0G7g5ivqisHTjNRAe+3AXk48w46yw6VU0xvSM5Ys80aYERpT+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=bMB1qep2; arc=none smtp.client-ip=54.204.34.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1777426744;
-	bh=umt9s+fWxPSHuP81XZcEF9uKcHi4dTg/6NHhQ9slX2A=;
+	s=mxsw2412; t=1777426746;
+	bh=jSE/lZ8lv/JgPhAki8HHzPUjZ2Vg7C6vpdz7KPeviJM=;
 	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=Ux5Ml9QAvRYWiIiN35of9j/C4ZTcGQ6f6dRG+wZdRmGJfTZcBYZAbJOZCV1u+/SFM
-	 Ydn1IwEk45gMf7Bjn8KsbZuMSXbLwnGFuWOek499KLCdXJ8Ol6DnLpOxfQJaSQ8ZKQ
-	 4uLIZ3tlnCXbC3tXlElLVWNZoZLLQxaYiFMIN7yo=
-X-QQ-mid: esmtpgz13t1777426738tdd87611e
-X-QQ-Originating-IP: vWIv63VhrF74ROnm/3QKqWXpoDGEYGEsALkQyVl99SY=
+	b=bMB1qep2c6V8sTJOykiR7JRe4yIJEjlrASDivQ0oczFItp9arwiJ3y85ncACRPbUs
+	 4VXjGAryla1+JnB9Y30wVlzSR7KtoYhvcDETcFBAriKHbomZ1fL4EMtiK2pHLNm9gL
+	 yopyfRzOo1UMiXUN1OL4kxzCSAinDS9cdo3y8eXg=
+X-QQ-mid: zesmtpgz1t1777426743t04c28cc3
+X-QQ-Originating-IP: X3b/ae0GrihuowuBpKcF5vlJDI0UwVsxLLurFmJWMKg=
 Received: from = ( [120.237.158.181])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 29 Apr 2026 09:38:55 +0800 (CST)
+	id ; Wed, 29 Apr 2026 09:39:00 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 10487816630640131910
+X-BIZMAIL-ID: 5249929831929191583
 EX-QQ-RecipientCnt: 15
 From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Wed, 29 Apr 2026 09:38:46 +0800
-Subject: [PATCH 1/7] ASoC: spacemit: fix RX DMA params not set when TX is
- running
+Date: Wed, 29 Apr 2026 09:38:47 +0800
+Subject: [PATCH 2/7] ASoC: spacemit: move hw constraints from hw_params to
+ startup
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260429-k3-i2s-v1-1-2fe99db11ecb@linux.spacemit.com>
+Message-Id: <20260429-k3-i2s-v1-2-2fe99db11ecb@linux.spacemit.com>
 References: <20260429-k3-i2s-v1-0-2fe99db11ecb@linux.spacemit.com>
 In-Reply-To: <20260429-k3-i2s-v1-0-2fe99db11ecb@linux.spacemit.com>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -75,36 +75,36 @@ Cc: linux-sound@vger.kernel.org, linux-riscv@lists.infradead.org,
  devicetree@vger.kernel.org, 
  Troy Mitchell <troy.mitchell@linux.spacemit.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777426731; l=1471;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777426731; l=3191;
  i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=fqs712JSCd2q2Oqmt1LbqXOCERM/xXmlTc8QrXeirL0=;
- b=dOkNR7ewgmOY2VvQT0HJotglsEmMZlVysXzc+cYHBp6B84ugDG50p8cS5glYCM8tWSKL89oW4
- GPOpMOXWpanDhly6ItJjrKyqP673diM7Q2lOO/kPQfEvnQtFmta0DYt
+ bh=RWny2LNzrPrEagJ3GrRqR5NlLn0/KK5X3ayFUZDi8u4=;
+ b=wwoi9MYNJCqKjdN/C6ghsVSY+1vMmYnAh65X69vBVqtWQ9L/9Ra/BZlqbfPps05yOXGcuEesX
+ jQcUsC+UxWRCgIl4ZvcTXH85nDmWSZHLn+zvCoBDaJ1Rwz02ogrjIwH
 X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
  pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
 X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: MPVgWQkf6XGksJ3xgJaYfoTzYb//cGREN3mcLLVDKxOw4FgzyLLrNYQ5
-	RMPWMQXQJP8miOcgN09ILcQrYZxydMCdzETBrvKWb+Mu4NkU9KDTeDgDdLy8I3gKfRGLzjr
-	ABDt5o9jdePjmR931eys6TSNLifOlXNYqSN8n3UAfCkbNgtjlU41VuQVSiQcVzK3q4O6Jzk
-	V0Qx+CAbMxo0k2g1pqm4sjcdB3nydEbvtf/JAMpmHCTzFT1ntLFakYcN7MUq74wjfz6PF3X
-	GUA6wi0MWPvQbN3310Vpu7mTmhawlhAdraeCsiEcazgYvOEZ/BtpOUPiVd4OAvGsXSzw4Yh
-	q36tFXC/YD3Bx109TB74ZouyVgpRUqubF0yer4rPnt7NAog1BfnWhk3zgTglH/JYL/G9kgZ
-	5PEcwdVlOC3Pe1vCaoSBNRCrfvEwmCDLW+Z2JR5+ARnsyf553N5LxCIXoZLkQkj7U/ynCGh
-	pVFzVPuBRJkQQQ4Xk+YW0FxNG1u36PsKiMY61KMOeMmqM5cLiD9QJRySEDNop7N+D/Bt0mM
-	fqjG9kybuov4Vx5R4VOJLSCKWLvqAGauxE4pl3FG9SvRjgX6nmMRH/vOFsOEUld5D4JQego
-	unqAEDTtlVp8Ls9xwoVFmN3AJjHP2HUJkcwNWsrMhl1zwpLX2el3T04+sqdPbLpTAukyhCr
-	WWt/fT7LcA1djogNSX5tVj2Kir0hWFj3JhTzEbawB/dZwKohd1mWQ7NQ90BULjGyT31F6wi
-	fHNVVduk2GuBQFVLB3kWMyPBe/hD2dJXG3MTD1lxZKktQ6dh8dFB1SHfF+eL5LSZMFdDAWf
-	10IktGAyRsH9VEsEcPb4mnBJSPnpVzFLGD+dicEuO+L7E3/PBo1B9PRkVlr+LmftOLQ2X3a
-	YkpWELfI1Otd81B9nMEyXdgRDkXEM3PsGSXCONWrCyVG+lvhjBwbwHpC6qLDYCbACNWe/ZQ
-	12v/0Glm/mr4PqNcWS4Euu1DB9BM5w9WJ304vX8fqJPyj/tT60T1TbLhFAhAY6l4d3Mmv+e
-	blx9Ac9xoBkL+IzG085ylQLWGn2TD+r6KC4CrVaY4+GlFAcoDWk39HEcSeR1RcUsMfj1157
-	91wNQbkY1Pu8BunGBrsh9WyoWjhyH6JbuV8yuE9fTtaDVtkKv6QFfUikooM4KSTPIr5s+zX
-	m3IG
-X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
+Feedback-ID: zesmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: NI/m03HJomrRu74cG2oYePhVtV5YEuilgncDg/eYOyMaexSu4UQNCiGi
+	NdNTfOdUDz23t+hVVJyHeJO6tZsJ0qo9HD0BqjRpxR0AHbCj1FUsgXNG1PkAkPPtfibJj3X
+	HLm8843qoLIR23wBolFMARPCUDiW0+O7ICzIGq0NRATgcZ/8E5RMlw1tiYgVRBnuATLwFx8
+	N8f+v1XKTqFJWj6EnikI+Yt7156czVSTCQ8pnpO3n5YaCIZJEGxyVCWfVGX94wQ0cBrhQV9
+	MlMxDl2wFrRw/Ap6k+ALtphP2AEfvRUxeoeRVzNlKL7WUd+Xv2O83hwEsn94L8Ii52DYAI5
+	EsmxQgMVKkJFzq7yTSpXXH1gXs/8imQ51J0pzTEpBklHJo9Yhfo5FkZsSMumm+16/QAUb6z
+	7LOSu8L17LThJlmXJSDrygh/gffq/9jPGF79NNnU2z+5tdJz2UcUPUuB1x21a94jsVsKtg4
+	o5eheQFeI9V0GuBGLTx3e5JUsu1WD1bjLocfc14tUaomrTZx+CJvLONvRMr2b/O0bvgbyfe
+	VDaGPC2B8XTp7oDcs9m6y/DYe3EmjuxJWz7ipX+HHOS8Mxc+nGl9eZu749Y9cfRt8Yl2LRg
+	c8jLtScwCtJZSY6wN6kPlmviWe7CZKycw/Q0gF+15f0IlMZqYrhNJbI1bS5pIORFxyKQz47
+	6d8iR2UIdGKd9TyFH1NP5xXyyOnc2w/rM7P7D64iJhQ7sFH6T6ci5R3G0/XNNyYeyvIqVwl
+	7W0qRplw6gWKDoCiE+dfAgoj5zMui1CwYF6C6QH6DY4UZY1JRfFpFfn27bN9Y1S4F+uxSKY
+	OM0AcZHrUsEk4sqTFzrNHIMIytytpREzIRdXeHVBPHXm8oo0o2FKhPaj8V/tUhBbwyzcuz9
+	Xth/skY3tN/0mMQForR7lma0BLOkxmVrPujgkrC7Nm5IUJC/6ErWvj34uXGGivhsud5xRyV
+	H5jQ04677ft0n+hVUV5e11oLKte0efnkmSXn+fHRrlB32I1nv9blxyTxb/JZ60XscnC4uuC
+	QshEPDsPe+e6q+AjtFDRfY+OFyIK6gFAhwA9RSvrhtRT3E9yLSWneCHvtVBA7Ehoy5bIw+U
+	SvPWmF2NpZZSLEvKsRvPW5BdfDKZFNkSLSXWIV6GGJVkh8UU9bsEFOlPz5nh+qOr4ggF013
+	XXNV
+X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
 X-QQ-RECHKSPAM: 0
-X-Rspamd-Queue-Id: 2AB4448E04A
+X-Rspamd-Queue-Id: 2B7FB48E097
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
@@ -123,7 +123,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_NA(0.00)[spacemit.com];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-291237-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291239-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -133,49 +133,95 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.spacemit.com:dkim,linux.spacemit.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.spacemit.com:dkim,linux.spacemit.com:mid,spacemit.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-When TX is already running (SSCR_SSE is set), the hw_params callback
-returns early before setting up DMA parameters for the RX stream. This
-prevents the capture path from configuring its DMA data properly.
+Hardware constraints should be applied in the startup callback rather
+than hw_params, as hw_params may be called too late for the constraints
+to take effect properly.
 
-Move the SSCR_SSE check after DMA parameter setup and format
-constraints, so both TX and RX streams get their DMA configuration
-regardless of whether the hardware is already enabled. The early return
-now only skips the register writes that would disrupt an active stream.
+Move the channel count and format constraints for I2S and DSP_A/DSP_B
+modes into a new startup callback. This also tightens the I2S mode
+channel constraint from 1-2 to exactly 2, matching the actual hardware
+behavior.
 
-Fixes: 955f7b46873e ("ASoC: spacemit: add i2s support for K1 SoC")
 Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
 ---
- sound/soc/spacemit/k1_i2s.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ sound/soc/spacemit/k1_i2s.c | 45 ++++++++++++++++++++++++++++++++-------------
+ 1 file changed, 32 insertions(+), 13 deletions(-)
 
 diff --git a/sound/soc/spacemit/k1_i2s.c b/sound/soc/spacemit/k1_i2s.c
-index 1cb99f1abc7c..5c878f02cc93 100644
+index 5c878f02cc93..e59624b2e23a 100644
 --- a/sound/soc/spacemit/k1_i2s.c
 +++ b/sound/soc/spacemit/k1_i2s.c
-@@ -117,10 +117,6 @@ static int spacemit_i2s_hw_params(struct snd_pcm_substream *substream,
- 	u32 val;
- 	int ret;
+@@ -106,6 +106,37 @@ static void spacemit_i2s_init(struct spacemit_i2s_dev *i2s)
+ 	writel(0, i2s->base + SSINTEN);
+ }
  
--	val = readl(i2s->base + SSCR);
--	if (val & SSCR_SSE)
--		return 0;
--
- 	dma_data = &i2s->playback_dma_data;
- 
- 	if (substream->stream == SNDRV_PCM_STREAM_CAPTURE)
-@@ -180,6 +176,10 @@ static int spacemit_i2s_hw_params(struct snd_pcm_substream *substream,
- 
- 	}
- 
-+	val = readl(i2s->base + SSCR);
-+	if (val & SSCR_SSE)
-+		return 0;
++static int spacemit_i2s_startup(struct snd_pcm_substream *substream,
++	struct snd_soc_dai *dai)
++{
++	struct spacemit_i2s_dev *i2s = snd_soc_dai_get_drvdata(dai);
 +
- 	val = readl(i2s->base + SSCR);
- 	val &= ~SSCR_DW_32BYTE;
- 	val |= data_width;
++	switch (i2s->dai_fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
++	case SND_SOC_DAIFMT_I2S:
++		snd_pcm_hw_constraint_minmax(substream->runtime,
++					     SNDRV_PCM_HW_PARAM_CHANNELS,
++					     2, 2);
++		snd_pcm_hw_constraint_mask64(substream->runtime,
++					     SNDRV_PCM_HW_PARAM_FORMAT,
++					     SNDRV_PCM_FMTBIT_S16_LE);
++		break;
++	case SND_SOC_DAIFMT_DSP_A:
++	case SND_SOC_DAIFMT_DSP_B:
++		snd_pcm_hw_constraint_minmax(substream->runtime,
++					     SNDRV_PCM_HW_PARAM_CHANNELS,
++					     1, 1);
++		snd_pcm_hw_constraint_mask64(substream->runtime,
++					     SNDRV_PCM_HW_PARAM_FORMAT,
++					     SNDRV_PCM_FMTBIT_S32_LE);
++		break;
++	default:
++		dev_dbg(i2s->dev, "unexpected format type");
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
+ static int spacemit_i2s_hw_params(struct snd_pcm_substream *substream,
+ 				  struct snd_pcm_hw_params *params,
+ 				  struct snd_soc_dai *dai)
+@@ -153,22 +184,9 @@ static int spacemit_i2s_hw_params(struct snd_pcm_substream *substream,
+ 			dma_data->maxburst = 32;
+ 			dma_data->addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
+ 		}
+-
+-		snd_pcm_hw_constraint_minmax(substream->runtime,
+-					     SNDRV_PCM_HW_PARAM_CHANNELS,
+-					     1, 2);
+-		snd_pcm_hw_constraint_mask64(substream->runtime,
+-					     SNDRV_PCM_HW_PARAM_FORMAT,
+-					     SNDRV_PCM_FMTBIT_S16_LE);
+ 		break;
+ 	case SND_SOC_DAIFMT_DSP_A:
+ 	case SND_SOC_DAIFMT_DSP_B:
+-		snd_pcm_hw_constraint_minmax(substream->runtime,
+-					     SNDRV_PCM_HW_PARAM_CHANNELS,
+-					     1, 1);
+-		snd_pcm_hw_constraint_mask64(substream->runtime,
+-					     SNDRV_PCM_HW_PARAM_FORMAT,
+-					     SNDRV_PCM_FMTBIT_S32_LE);
+ 		break;
+ 	default:
+ 		dev_dbg(i2s->dev, "unexpected format type");
+@@ -303,6 +321,7 @@ static int spacemit_i2s_dai_remove(struct snd_soc_dai *dai)
+ static const struct snd_soc_dai_ops spacemit_i2s_dai_ops = {
+ 	.probe = spacemit_i2s_dai_probe,
+ 	.remove = spacemit_i2s_dai_remove,
++	.startup = spacemit_i2s_startup,
+ 	.hw_params = spacemit_i2s_hw_params,
+ 	.set_sysclk = spacemit_i2s_set_sysclk,
+ 	.set_fmt = spacemit_i2s_set_fmt,
 
 -- 
 2.54.0
