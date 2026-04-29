@@ -1,138 +1,281 @@
-Return-Path: <devicetree+bounces-291249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291270-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QPPDJpdu8WkIgwEAu9opvQ
-	(envelope-from <devicetree+bounces-291249-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 04:36:07 +0200
+	id yFfHBK2A8WlYhQEAu9opvQ
+	(envelope-from <devicetree+bounces-291270-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 05:53:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 108D148E5C4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 04:36:06 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F3F348ED8D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 05:53:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 260B0300AC37
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 02:35:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4361B306A423
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:48:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 804D23822AB;
-	Wed, 29 Apr 2026 02:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC96538BF8D;
+	Wed, 29 Apr 2026 03:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VyE768Oe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DMQu5Idj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53FEB2D7D27;
-	Wed, 29 Apr 2026 02:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 985D738B7A6;
+	Wed, 29 Apr 2026 03:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777430111; cv=none; b=MuOlw0qzprjqtRm4NOmzc/N1Nrdns7hzBBE3msbGMC+2DKGpE313+VMfzVZxzaZR3fgaaxnQ/o8DNuxpLJhGmJgnX5KuaxpNazDM1JOWKCimK3ehRIZDELPqXOh2rs+K4nbY4RWeXLnrnGM+fNRLpHp5ZmpjCDgedEbLV8Y9aaQ=
+	t=1777434437; cv=none; b=BcYIaKK16AP2pUISKrOl8By2zCG6HRr7waEyISBhQx7a57bdm3bFciZfF/jMyebLwYcuvoxXJ/ZMHfPBprIy1p+jlbqtjghj/4w21Zo6mZQ1ej8K3imXy2GwsUncRuaahTL6isWwXZLy/oRsbSTwvMQZLd+ErlxjXFmU6pgSwZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777430111; c=relaxed/simple;
-	bh=jpIK6hmwn1Fh9Mum9QGhf4dG9xqtXCD2+W4rd2H5kHI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SxsHudI/DX+NIUVhv1CXH2L5MdwOYOgaxkjBQH5tocx5H+5nfEnPCp9TWkA3e8diwF3SgqPX4ADqBkyQ3NCTCyrhMTuCV1AkdCdqOLuVHDdjDO10hUQPUb38yhIuiuVLWDR55LmOkU5eLcDWXZyPnwvb9sb1qnsBYp6Cxe2NKl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VyE768Oe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2969C2BCB7;
-	Wed, 29 Apr 2026 02:35:10 +0000 (UTC)
+	s=arc-20240116; t=1777434437; c=relaxed/simple;
+	bh=B2MxUIU/9qAaXrCQHc2wOOoDvcafiNI2e+7E+HVZ9Qk=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=VsRBUVEP3kFgLh2Cztchjvq2/8ILMDUVh80ZQHIQEG5tAEt2QAiDta+w4TNg8YuSyXMWsGlRdPRtFLUJg+CzDxUhL5acPV01o5XeI1nOOCxY2Wvt3kNc//oA79XnWNP0pKLoCCV2Cq/SPAqb9zCg4ftai4eOixZMNNSCAWKEyDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DMQu5Idj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62037C2BCC9;
+	Wed, 29 Apr 2026 03:47:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777430110;
-	bh=jpIK6hmwn1Fh9Mum9QGhf4dG9xqtXCD2+W4rd2H5kHI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VyE768OeMJEbsnEmzterKf2Ez6S9dXkfXVgURSw0yZZPBa4lC6KimD3De3kJ241hf
-	 EKix9Yx6+xExVdlAmyTJw/rTYuCi5cYPcrDo992b3n5+k8yr9xi3VTN52t5NwURZbu
-	 2NAleXgSgWr9SzC+OFskpT240fur+rU2XAtP8YQyOoRr2tBITlX5YJF3CR9djkISuW
-	 qpxONGLSHpa1nqH9Tx1M9r2L5MOKSVZIm2sT1PH4Du6KOnlZZFe3wyOpZh+27QhFSD
-	 a73xVcMGnKotP50ndLF9TDW1d3CciFrHVQbWLaRvBE1NBnOO6QxqmsdymMTJeLt99K
-	 ynoe4U5qSaXQQ==
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-	id CBF701AC5851; Wed, 29 Apr 2026 03:35:08 +0100 (BST)
-Date: Wed, 29 Apr 2026 11:35:08 +0900
-From: Mark Brown <broonie@kernel.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Yixun Lan <dlan@kernel.org>,
-	Jinmei Wei <weijinmei@linux.spacemit.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/7] ASoC: spacemit: fix RX DMA params not set when TX is
- running
-Message-ID: <afFuXO3IfV6CSsLf@sirena.co.uk>
-References: <20260429-k3-i2s-v1-0-2fe99db11ecb@linux.spacemit.com>
- <20260429-k3-i2s-v1-1-2fe99db11ecb@linux.spacemit.com>
+	s=k20201202; t=1777434437;
+	bh=B2MxUIU/9qAaXrCQHc2wOOoDvcafiNI2e+7E+HVZ9Qk=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=DMQu5Idj43hB7Yjsko9N0wdASQFZAb4VovZmMhPrmyluiSaDzNMjeOQqDoIZBsRfI
+	 EB3yPOxnsd39MrFtK9bNbpvdqpZUPVsJSGvtAjFFYqlJIoGiiOxkA5I4mjOToy0KqT
+	 YlHypgClXZzwuuE/f8PKvmcSzU5I8B6gAMP4rrZxHS7Nv+ZuYOLrL0wD5JDFLICvpY
+	 10nIxoTcZFygLv1myfvIUj/PDZllog9PNmdLIfm8of3ciqYVhhLaL+lctHxu6AxJ4P
+	 Fid0RXES3FMbI7NJnykqg9AwUtZCu58/m/u9bv3NpuoLQ/gC5lg/coNnjUj3lWZfUL
+	 SyS1hyzLp4EuA==
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Ywcan+wgjpNp2zB0"
-Content-Disposition: inline
-In-Reply-To: <20260429-k3-i2s-v1-1-2fe99db11ecb@linux.spacemit.com>
-X-Cookie: 667:
-X-Rspamd-Queue-Id: 108D148E5C4
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260312-clk-ssc-v7-1-v9-4-0a9d2e188d9e@nxp.com>
+References: <20260312-clk-ssc-v7-1-v9-0-0a9d2e188d9e@nxp.com> <20260312-clk-ssc-v7-1-v9-4-0a9d2e188d9e@nxp.com>
+Subject: Re: [PATCH v9 4/6] clk: Add KUnit tests for assigned-clock-sscs
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Brian Masney <bmasney@redhat.com>, Conor Dooley <conor+dt@kernel.org>, Cristian Marussi <cristian.marussi@arm.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Sebin Francis <sebin.francis@ti.com>, Sudeep Holla <sudeep.holla@kernel.org>
+Date: Tue, 28 Apr 2026 19:38:36 -0700
+Message-ID: <177743031609.5403.8748588339056479001@localhost.localdomain>
+User-Agent: alot/0.12
+X-Rspamd-Queue-Id: 7F3F348ED8D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291249-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,perex.cz,suse.com,kernel.org,linux.spacemit.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-291270-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sboyd@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sirena.co.uk:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,localhost.localdomain:mid]
 
+Quoting Peng Fan (OSS) (2026-03-11 23:58:20)
+> diff --git a/drivers/clk/clk_test.c b/drivers/clk/clk_test.c
+> index a268d7b5d4cb28ec1f029f828c31107f8e130556..97113b61c2841701a44603ca9=
+935638374000a2e 100644
+> --- a/drivers/clk/clk_test.c
+> +++ b/drivers/clk/clk_test.c
+> @@ -3203,6 +3223,9 @@ static void clk_assigned_rates_assigns_one(struct k=
+unit *test)
+>         struct clk_assigned_rates_context *ctx =3D test->priv;
+> =20
+>         KUNIT_EXPECT_EQ(test, ctx->clk0.rate, ASSIGNED_RATES_0_RATE);
+> +       KUNIT_EXPECT_EQ(test, ctx->clk0.sscs.modfreq_hz, ASSIGNED_SSCS_0_=
+MODFREQ);
+> +       KUNIT_EXPECT_EQ(test, ctx->clk0.sscs.spread_bp, ASSIGNED_SSCS_0_S=
+PREAD);
+> +       KUNIT_EXPECT_EQ(test, ctx->clk0.sscs.method, ASSIGNED_SSCS_0_METH=
+OD);
+>  }
+> =20
+>  static void clk_assigned_rates_assigns_multiple(struct kunit *test)
+> @@ -3210,7 +3233,13 @@ static void clk_assigned_rates_assigns_multiple(st=
+ruct kunit *test)
+>         struct clk_assigned_rates_context *ctx =3D test->priv;
+> =20
+>         KUNIT_EXPECT_EQ(test, ctx->clk0.rate, ASSIGNED_RATES_0_RATE);
+> +       KUNIT_EXPECT_EQ(test, ctx->clk0.sscs.modfreq_hz, ASSIGNED_SSCS_0_=
+MODFREQ);
+> +       KUNIT_EXPECT_EQ(test, ctx->clk0.sscs.spread_bp, ASSIGNED_SSCS_0_S=
+PREAD);
+> +       KUNIT_EXPECT_EQ(test, ctx->clk0.sscs.method, ASSIGNED_SSCS_0_METH=
+OD);
+>         KUNIT_EXPECT_EQ(test, ctx->clk1.rate, ASSIGNED_RATES_1_RATE);
+> +       KUNIT_EXPECT_EQ(test, ctx->clk1.sscs.modfreq_hz, ASSIGNED_SSCS_1_=
+MODFREQ);
+> +       KUNIT_EXPECT_EQ(test, ctx->clk1.sscs.spread_bp, ASSIGNED_SSCS_1_S=
+PREAD);
+> +       KUNIT_EXPECT_EQ(test, ctx->clk1.sscs.method, ASSIGNED_SSCS_1_METH=
+OD);
+>  }
+> =20
+>  static void clk_assigned_rates_skips(struct kunit *test)
+> @@ -3222,6 +3251,19 @@ static void clk_assigned_rates_skips(struct kunit =
+*test)
+>         KUNIT_EXPECT_EQ(test, ctx->clk0.rate, test_param->rate0);
+>  }
+> =20
+> +static void clk_assigned_sscs_skips(struct kunit *test)
+> +{
+> +       struct clk_assigned_rates_context *ctx =3D test->priv;
+> +       const struct clk_assigned_rates_test_param *test_param =3D test->=
+param_value;
+> +
+> +       KUNIT_EXPECT_NE(test, ctx->clk0.sscs.modfreq_hz, ASSIGNED_SSCS_0_=
+MODFREQ);
+> +       KUNIT_EXPECT_NE(test, ctx->clk0.sscs.spread_bp, ASSIGNED_SSCS_0_S=
+PREAD);
+> +       KUNIT_EXPECT_NE(test, ctx->clk0.sscs.method, ASSIGNED_SSCS_0_METH=
+OD);
+> +       KUNIT_EXPECT_EQ(test, ctx->clk0.sscs.modfreq_hz, test_param->sscs=
+.modfreq_hz);
+> +       KUNIT_EXPECT_EQ(test, ctx->clk0.sscs.spread_bp, test_param->sscs.=
+spread_bp);
+> +       KUNIT_EXPECT_EQ(test, ctx->clk0.sscs.method, test_param->sscs.met=
+hod);
+> +}
+> +
+>  OF_OVERLAY_DECLARE(kunit_clk_assigned_rates_one);
+>  OF_OVERLAY_DECLARE(kunit_clk_assigned_rates_one_consumer);
+>  OF_OVERLAY_DECLARE(kunit_clk_assigned_rates_u64_one);
+> @@ -3384,6 +3426,77 @@ KUNIT_ARRAY_PARAM_DESC(clk_assigned_rates_skips,
+>                        clk_assigned_rates_skips_test_params,
+>                        desc)
+> =20
+> +OF_OVERLAY_DECLARE(kunit_clk_assigned_sscs_without);
+> +OF_OVERLAY_DECLARE(kunit_clk_assigned_sscs_without_consumer);
+> +OF_OVERLAY_DECLARE(kunit_clk_assigned_sscs_zero);
+> +OF_OVERLAY_DECLARE(kunit_clk_assigned_sscs_zero_consumer);
+> +OF_OVERLAY_DECLARE(kunit_clk_assigned_sscs_null);
+> +OF_OVERLAY_DECLARE(kunit_clk_assigned_sscs_null_consumer);
+> +
+> +/* Test cases that skip changing the sscs due to malformed DT */
+> +static const struct clk_assigned_rates_test_param clk_assigned_sscs_skip=
+s_test_params[] =3D {
+> +       {
+> +               /*
+> +                * Test that an assigned-clock-sscs property without an a=
+ssigned-clocks
+> +                * property fails when the property is in the provider.
+> +                */
+> +               .desc =3D "provider missing assigned-clocks",
+> +               TEST_PARAM_OVERLAY(kunit_clk_assigned_sscs_without),
+> +               .sscs =3D {50000, 60000, 3},
+> +       },
+> +       {
+> +               /*
+> +                * Test that an assigned-clock-rates property without an =
+assigned-clocks
 
---Ywcan+wgjpNp2zB0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+It is?
 
-On Wed, Apr 29, 2026 at 09:38:46AM +0800, Troy Mitchell wrote:
+> +                * property fails when the property is in the consumer.
+> +                */
+> +               .desc =3D "consumer missing assigned-clocks",
+> +               TEST_PARAM_OVERLAY(kunit_clk_assigned_sscs_without_consum=
+er),
+> +               .sscs =3D {50000, 60000, 3},
+> +               .consumer_test =3D true,
+> +       },
+> +       {
+> +               /*
+> +                * Test that an assigned-clock-rates property of zero doe=
+sn't
 
-> Fixes: 955f7b46873e ("ASoC: spacemit: add i2s support for K1 SoC")
+Typo?
 
-	Fixes tag: Fixes: 955f7b46873e ("ASoC: spacemit: add i2s support for K1 SoC")
-	Has these problem(s):
-		- Target SHA1 does not exist
+> +                * set a rate when the property is in the provider.
+> +                */
+> +               .desc =3D "provider assigned-clock-sscs of zero",
+> +               TEST_PARAM_OVERLAY(kunit_clk_assigned_sscs_zero),
+> +               .sscs =3D {50000, 60000, 3},
+> +       },
+> +       {
+> +               /*
+> +                * Test that an assigned-clock-rates property of zero doe=
+sn't
+> +                * set a rate when the property is in the consumer.
+> +                */
+> +               .desc =3D "consumer assigned-clock-sscs of zero",
+> +               TEST_PARAM_OVERLAY(kunit_clk_assigned_sscs_zero_consumer),
+> +               .sscs =3D {50000, 60000, 3},
+> +               .consumer_test =3D true,
+> +       },
+> +       {
+> +               /*
+> +                * Test that an assigned-clocks property with a null phan=
+dle
+> +                * doesn't set a rate when the property is in the provide=
+r.
+> +                */
+> +               .desc =3D "provider assigned-clocks null phandle",
+> +               TEST_PARAM_OVERLAY(kunit_clk_assigned_sscs_null),
+> +               .sscs =3D {50000, 60000, 3},
+> +       },
+> +       {
+> +               /*
+> +                * Test that an assigned-clocks property with a null phan=
+dle
+> +                * doesn't set a rate when the property is in the consume=
+r.
 
---Ywcan+wgjpNp2zB0
-Content-Type: application/pgp-signature; name="signature.asc"
+None of these comments are correct.
 
------BEGIN PGP SIGNATURE-----
+> +                */
+> +               .desc =3D "provider assigned-clocks null phandle",
+> +               TEST_PARAM_OVERLAY(kunit_clk_assigned_sscs_null_consumer),
+> +               .sscs =3D {50000, 60000, 3},
+> +               .consumer_test =3D true,
+> +       },
+> +};
+> +KUNIT_ARRAY_PARAM_DESC(clk_assigned_sscs_skips,
+> +                      clk_assigned_sscs_skips_test_params,
+> +                      desc)
+> +
+>  static struct kunit_case clk_assigned_rates_test_cases[] =3D {
+>         KUNIT_CASE_PARAM(clk_assigned_rates_assigns_one,
+>                          clk_assigned_rates_assigns_one_gen_params),
+> @@ -3391,6 +3504,8 @@ static struct kunit_case clk_assigned_rates_test_ca=
+ses[] =3D {
+>                          clk_assigned_rates_assigns_multiple_gen_params),
+>         KUNIT_CASE_PARAM(clk_assigned_rates_skips,
+>                          clk_assigned_rates_skips_gen_params),
+> +       KUNIT_CASE_PARAM(clk_assigned_sscs_skips,
+> +                        clk_assigned_sscs_skips_gen_params),
+>         {}
+>  };
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnxblwACgkQJNaLcl1U
-h9AmPgf9EyhGWupByngJPOAIOzddMuTD9q6YNSITxCShSQtFhMR+vK56aZ3D5n1L
-amCgyhAauqiGTQ63bwkPr9qS92t2dbTVyUB3H9/pjkxGFlTKv5Y7V94NpTGZZDFi
-1gquKI8BJzie0dafW99Jt0lo+6K/W5h1MULK0imK8tCDjC/0P3OnzKnWqCzwI0rf
-eGfhYIwotlK622QxStby4B65tEaF3Tbj9T/zvs3wmCzjg2CL6CXiC/UKQsD0vUUG
-tECTMR9TLnBikNBuebd5Tfm+loHIjUNtwT4NioCdcp79oJblFKsrZnZXrLIsWRaN
-uWl6P30eBVqFokFL/GbNRyZJ2uWtRQ==
-=eVWm
------END PGP SIGNATURE-----
+Instead of adding on another case just copy the entire thing,
+kunit_case, test_params, etc. and implement the tests you want. Test
+code is the opposite of DRY (DAMP?) so don't be afraid to just copy a
+bunch of stuff. The reason why that is encouraged is because existing
+tests are unchanged, and we don't have to worry that this patch breaks
+the existing tests. It also helps the reviewer see the whole picture
+because all the test code is in the patch instead of in the context.
 
---Ywcan+wgjpNp2zB0--
+For example, clk_assigned_rates_assigns_multiple() is saying that a
+clock-assigned-rates property with multiple rates assigns multiple
+rates. It's not supposed to be testing ssc. Don't modify it.
 
