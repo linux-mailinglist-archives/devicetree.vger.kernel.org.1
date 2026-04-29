@@ -1,243 +1,143 @@
-Return-Path: <devicetree+bounces-291242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291244-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OIA2NB5i8WnhgQEAu9opvQ
-	(envelope-from <devicetree+bounces-291242-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:42:54 +0200
+	id yAVoJPth8WnhgQEAu9opvQ
+	(envelope-from <devicetree+bounces-291244-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:42:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D02248E0E2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:42:54 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26C1348E0CD
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:42:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 70BE9307043D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 01:39:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F1AB0302335F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 01:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE4926B756;
-	Wed, 29 Apr 2026 01:39:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0DC027F010;
+	Wed, 29 Apr 2026 01:42:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="on0XyaXQ"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="kp+edf72"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1CB2248896;
-	Wed, 29 Apr 2026 01:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C2F271A6D;
+	Wed, 29 Apr 2026 01:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777426773; cv=none; b=SUoenkVGEJ0ARwskXXVTLHIURlvd1HynJkNVvpNPj/JfIu5b634SK/Amyb+VAjwbUmiGaTVdWZI+TjwspR31nPRpr3+PjbNL4bDp8X3EDVMWWJE/7xJPZT5VNcXd55L3DVACE1zqKAqrkpIHyk9wqds4iI1NxF96mjiPNuW2lRw=
+	t=1777426928; cv=none; b=ZSDVHDQgLp72TA7EEUJaKiItI59WUAIw/YZ7DLjywfWx1Kt8cm3fbeJIGRcs254623loA4VXJ3/SemYoBR/JqAl0bfqJJPA2Wpx5UzFhGvm2OCnAsTWty9ZA3EmrRXe8r8pddnXJSyx7lgr0Ov/QSRxqPg5tJYjpFVmo51AK8e4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777426773; c=relaxed/simple;
-	bh=qAqcJ83kaw19HjWRQknjj1xWQQygIw8l7xygJK2JwWc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VKv6Qz0WMKH+6o/EO/eIdwfMz0O2jPVAI4md74X35EEZ4rG1Nnp4CbZtkqxqxGPHqZa0VUazTrFGm+I1lVJoRkx0fJoJxn0Go61MVMkSHAjoLyyZof8Q8iAzZnprf7/kM0UcXlFrIP/Vwzg6KSe9LmiiTqJcuxumGD+1moNwWOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=on0XyaXQ; arc=none smtp.client-ip=52.59.177.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1777426767;
-	bh=NSNQ83OsaYFc+31IOLlDSGE8Gku2x+xwHFumIM2Xoao=;
-	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=on0XyaXQB5bNTbLqbGBLLQZgho73/Yrf7uhogYorYTAx3mYldqtIx7JDwz7fDyXYq
-	 o11Q62OdQiTZn1JcPMhA40Je76ZtEJPDm+38U+AjIlt4qwQPka33q4J8/UkdPKu8FD
-	 OGOEZQIrwhkOZ7UonzuGwvYylaBce0qWKbdnCsK4=
-X-QQ-mid: esmtpgz13t1777426763t62530b6d
-X-QQ-Originating-IP: nmfJNHOigBnEag6KlKG7z7lVhDqeBR83Y7aFBFWp/Tg=
-Received: from = ( [120.237.158.181])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 29 Apr 2026 09:39:20 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 590894259723190294
-EX-QQ-RecipientCnt: 15
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Wed, 29 Apr 2026 09:38:52 +0800
-Subject: [PATCH 7/7] ASoC: spacemit: add K3 SoC support with additional
- clocks
+	s=arc-20240116; t=1777426928; c=relaxed/simple;
+	bh=v67v7KT5BIZDe+T4/abHvDx4Y87f8RhD9dCoqpqCDHk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YeZdT4b9B79ZvTYTGsK72QhXOLMuKGQNMmMwAlS4I4V53AdSKE+t/cA3MYnbkUGF+QLyLzIKL6UxPu2Jg+P7atboTZd63CVmJF9YRl3tuaArFvs4h/B890jzE5Q6KUBglalzqb5YXiVcpxEghGwQii/rILEfYj7e4nJjxNzxrjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=kp+edf72; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=xr++0uW3/aWfxubO3cxQcvyMCVatN4XOXUV5OwG2V2w=; b=kp+edf72edokyxU3mtqEnZKTr3
+	IdsBZ36KjZkY+e6Mq+wkNkDnqeAGDWrgyJ93hMP+ALlz9+l3ZutV6C30c3TTf1iuG0U5PLgIzieVn
+	XNbOI/kNLVqt5Yk26Maej/3KG2oCWZjyZb6Uwktr5gIfLqnUtIv8x4BMfVTQ1yt+/QTY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wHtw1-000Rgl-Lj; Wed, 29 Apr 2026 03:41:53 +0200
+Date: Wed, 29 Apr 2026 03:41:53 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: lizhi2@eswincomputing.com
+Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
+	pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	maxime.chevallier@bootlin.com, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	pritesh.patel@einfochips.com, weishangjuan@eswincomputing.com,
+	horms@kernel.org
+Subject: Re: [PATCH net-next v7 4/4] riscv: dts: eswin:
+ eic7700-hifive-premier-p550: enable Ethernet controller
+Message-ID: <d662fa07-cd0f-48c4-a6e4-03c5fd390e92@lunn.ch>
+References: <20260427072353.1114-1-lizhi2@eswincomputing.com>
+ <20260427072603.1191-1-lizhi2@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260429-k3-i2s-v1-7-2fe99db11ecb@linux.spacemit.com>
-References: <20260429-k3-i2s-v1-0-2fe99db11ecb@linux.spacemit.com>
-In-Reply-To: <20260429-k3-i2s-v1-0-2fe99db11ecb@linux.spacemit.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Yixun Lan <dlan@kernel.org>, Jinmei Wei <weijinmei@linux.spacemit.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777426731; l=3698;
- i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=qAqcJ83kaw19HjWRQknjj1xWQQygIw8l7xygJK2JwWc=;
- b=G4wVCG1wze3HR5862QucHtv0jgAgib3iuet7TLLbnJzILRz53wW34MyK+SMvQYBDp3Z1GLaTe
- Wro6x7DQ6BoDdL1BdEdZTo4wfsmQdUODGqAkBfdolzIpj11iVsy3DWQ
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: MS/AgMCtUj9T6Bp9BMXv9CqDuszRXdQa76v3wScWLfPTFAlcEWMZnhxt
-	dzOeVSHD01N//7BujmWzvkwJgtk13HTJRU9ThzyJqyWsP/4x6CSAbhGSCYnFklNE6fkpCcQ
-	PIR2jCoK1bks0YcXN9O9vOkHIMcVEJpCFgI4hMSoweyfuUKSMJolDXaptb8DphVViK7rH6r
-	b0w4Omr3MsR/2waWRLbA043ak/ix8IVitME+qs1Rceny7DddaroXpQmR7aKeZf29S58p6rb
-	glRkZg/JLEGuzItb9tA5Uc8nUZ+4OudBnMBCMlrHKks8o8Z43ETwkVafMIWKVK92UYmtKpT
-	87NGhD03qaP3nxxgMuzNEYxu6p9g9QdBZjFuRd07krs4qNp1Mp/3NqvNss6LlYdcvoU6DGb
-	21/Vg8OOwt98KRYkMDhv6yHtnWh35V1DmxaFTwupbJPzGCeFePWj74t500mKKqBUtXVMg7S
-	SUldWuHP42hAS1A/PVccYdQDcV//G10BFWfXIge2RBTq8eerMwsEXZgTbFN+zD1zsVYDsDV
-	28aT09WxNlfeMA/abmhYWOJMOu/yHWLe9GltXZlt2XQXmLAFWnY9By2/K5/XxxgtMRFj0S9
-	q5vqdUoX46uLbA4uHpcLiaxYjcEL/0YJ2y6HdeAkVSxSR2vE7CeA5wrhKU07aP8JCd9hgyR
-	RfT4+iIgqGdlkvR15+QvG+AxupESes5pD7C3wocyaaKNB8ACPpHij6HfzOuXlgJX8LfSemx
-	O0cwZwVb6w1tGz8iE/If0cDaa1/87PJYN43xyDhiEGTJLNzTucH85JPCb+PVSy81BxSmyJC
-	VqyhAPfs2gCYu66OsQQ4Trbcmf+Mp6PlYnkcerEcosApUiiVGUXH58nTEm4p8gr81nW5Xje
-	NlaCGHjN4kTXM+mSNuVP69dypmFGXNNlpWn9Pth29TqENsXfUzEMldnQI3Id48qUtGuqe9r
-	5w6TnAghkJ0g32S3IzyVIhqwIcj4fOYypewRshsAzIaIB703VhTz3eec+eNQ/cAG+qcGm+i
-	3E0W8dvj0O/5bBc8M1cAHfzpBmjlywX0VKFy/Nq/SZzUFVUqbfC7JkUi8t2fT+LTgfXSMe0
-	j27ai9SX9ERq50OTCywDqXO00msj13USqzKmKY6C1L5Amw1DsG1KISGPOtd4Lx9OIwQy4KF
-	DGjVxrTGLixc15hvN3dtvdUymA==
-X-QQ-XMRINFO: M/715EihBoGS47X28/vv4NpnfpeBLnr4Qg==
-X-QQ-RECHKSPAM: 0
-X-Rspamd-Queue-Id: 8D02248E0E2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260427072603.1191-1-lizhi2@eswincomputing.com>
+X-Rspamd-Queue-Id: 26C1348E0CD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com,bootlin.com,eswincomputing.com,einfochips.com];
+	TAGGED_FROM(0.00)[bounces-291244-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,perex.cz,suse.com,linux.spacemit.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[spacemit.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-291242-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.spacemit.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.spacemit.com:+];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.spacemit.com:dkim,linux.spacemit.com:mid,spacemit.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:dkim,lunn.ch:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-Add support for the SpacemiT K3 SoC I2S controller, which shares the
-same IP as K1 but requires additional clocks: sysclk_div, c_sysclk,
-and c_bclk. These clocks only exist on K3 and are not present on K1.
-The sysclk_div clock is present on most K3 I2S controllers except I2S1.
-The c_sysclk and c_bclk clocks are shared across multiple I2S
-controllers on K3.
+> +&gmac1 {
+> +	phy-handle = <&gmac1_phy0>;
+> +	/*
+> +	 * For the TX path of gmac1, there is a skew between the TX clock
+> +	 * and data on the MAC controller inside the silicon. This skew happens
+> +	 * to be approximately 2 ns. Therefore, it can be considered that the
+> +	 * 2 ns delay of TX is provided by the MAC.
+> +	 * No delay configuration for tx is needed in software via PHY driver.
+> +	 */
+> +	phy-mode = "rgmii-rxid";
 
-Use devm_clk_get_optional_enabled() to acquire these clocks so that
-the driver works on both K1 (where they are absent) and K3 without
-needing SoC-specific match data. For K3, the sysclk_div rate is set
-before sysclk in set_sysclk, and the common clock rates are configured
-in hw_params based on the sample rate.
+This is wrong. Take a read of
 
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+https://elixir.bootlin.com/linux/v6.15/source/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L287
+
+phy-mode describes the board. If the board provides the 2ns delay, you
+use rgmii. If the MAC/PHY pair needs to provide the delay, you using
+rgmii-id.
+
+If rgmii-id is used, it is up to the MAC/PHY to decide which will add
+the delay. If the MAC adds the delay, it needs to mask the value of
+phy-mode it passes to the PHY so it does not also add the delay.
+
+Your broken hardware means you cannot support 'rgmii' or 'rgmii-rx',
+since you cannot turn off this 2ns delay, so you end up with double
+delays if anybody designs a board with 2ns TX delay on the board
+itself. So please validate the PHY modes and return -EINVAL if these
+modes are used.
+
+    Andrew
+
 ---
- sound/soc/spacemit/k1_i2s.c | 36 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 35 insertions(+), 1 deletion(-)
-
-diff --git a/sound/soc/spacemit/k1_i2s.c b/sound/soc/spacemit/k1_i2s.c
-index 7d0794d21ea6..c2a2b99d91f8 100644
---- a/sound/soc/spacemit/k1_i2s.c
-+++ b/sound/soc/spacemit/k1_i2s.c
-@@ -54,6 +54,9 @@ struct spacemit_i2s_dev {
- 	struct clk *sysclk;
- 	struct clk *bclk;
- 	struct clk *sspa_clk;
-+	struct clk *sysclk_div;
-+	struct clk *c_sysclk;
-+	struct clk *c_bclk;
- 
- 	unsigned int fixed_sample_rate;
- 
-@@ -217,6 +220,14 @@ static int spacemit_i2s_hw_params(struct snd_pcm_substream *substream,
- 		    params_rate(params) *
- 		    data_bits;
- 
-+	ret = clk_set_rate(i2s->c_sysclk, bclk_rate * 2);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_set_rate(i2s->c_bclk, bclk_rate);
-+	if (ret)
-+		return ret;
-+
- 	ret = clk_set_rate(i2s->bclk, bclk_rate);
- 	if (ret)
- 		return ret;
-@@ -228,10 +239,17 @@ static int spacemit_i2s_set_sysclk(struct snd_soc_dai *cpu_dai, int clk_id,
- 				   unsigned int freq, int dir)
- {
- 	struct spacemit_i2s_dev *i2s = dev_get_drvdata(cpu_dai->dev);
-+	int ret;
- 
- 	if (freq == 0)
- 		return 0;
- 
-+	if (i2s->sysclk_div) {
-+		ret = clk_set_rate(i2s->sysclk_div, freq);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	return clk_set_rate(i2s->sysclk, freq);
- }
- 
-@@ -450,6 +468,21 @@ static int spacemit_i2s_probe(struct platform_device *pdev)
- 	of_property_read_u32(i2s->dev->of_node, "spacemit,fixed-sample-rate",
- 			     &i2s->fixed_sample_rate);
- 
-+	i2s->sysclk_div = devm_clk_get_optional_enabled(i2s->dev, "sysclk_div");
-+	if (IS_ERR(i2s->sysclk_div))
-+		return dev_err_probe(i2s->dev, PTR_ERR(i2s->sysclk_div),
-+				     "failed to enable sysclk_div clock\n");
-+
-+	i2s->c_sysclk = devm_clk_get_optional_enabled(i2s->dev, "c_sysclk");
-+	if (IS_ERR(i2s->c_sysclk))
-+		return dev_err_probe(i2s->dev, PTR_ERR(i2s->c_sysclk),
-+				     "failed to enable c_sysclk clock\n");
-+
-+	i2s->c_bclk = devm_clk_get_optional_enabled(i2s->dev, "c_bclk");
-+	if (IS_ERR(i2s->c_bclk))
-+		return dev_err_probe(i2s->dev, PTR_ERR(i2s->c_bclk),
-+				     "failed to enable c_bclk clock\n");
-+
- 	i2s->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
- 	if (IS_ERR(i2s->base))
- 		return dev_err_probe(i2s->dev, PTR_ERR(i2s->base), "failed to map registers\n");
-@@ -476,6 +509,7 @@ static int spacemit_i2s_probe(struct platform_device *pdev)
- 
- static const struct of_device_id spacemit_i2s_of_match[] = {
- 	{ .compatible = "spacemit,k1-i2s", },
-+	{ .compatible = "spacemit,k3-i2s", },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, spacemit_i2s_of_match);
-@@ -490,4 +524,4 @@ static struct platform_driver spacemit_i2s_driver = {
- module_platform_driver(spacemit_i2s_driver);
- 
- MODULE_LICENSE("GPL");
--MODULE_DESCRIPTION("I2S bus driver for SpacemiT K1 SoC");
-+MODULE_DESCRIPTION("I2S bus driver for SpacemiT K1/K3 SoC");
-
--- 
-2.54.0
-
+pw-bot: cr
 
