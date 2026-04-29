@@ -1,153 +1,182 @@
-Return-Path: <devicetree+bounces-291444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291448-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mI7lFinQ8WmjkgEAu9opvQ
-	(envelope-from <devicetree+bounces-291444-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:32:25 +0200
+	id 6PG6C7fQ8WlrkgEAu9opvQ
+	(envelope-from <devicetree+bounces-291448-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:34:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD326491F23
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:32:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 601DF491FC7
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:34:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 34DB7304D141
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:30:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6975330DBF78
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B510A3C3C1A;
-	Wed, 29 Apr 2026 09:30:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476FD3C2772;
+	Wed, 29 Apr 2026 09:30:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="SJqp01h7";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="5Q/MWX61"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.229.168.213])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661613BD25E;
-	Wed, 29 Apr 2026 09:30:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.229.168.213
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F9A3C060B;
+	Wed, 29 Apr 2026 09:30:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777455026; cv=none; b=Cy5ravnIxAMOvPE9TN1zmS7FuPHI8NBHV6B8FRtYKxmq3NtSynIlULHFdnsoyZLYMLWBOgZFFuse/vXjmH/aZYpgkXL4bW2FQ3TucQDMIWdsveIVLGhuw+GVLdGCYSfbrfaKXcVatilIiieOKVQ2qK50ktl0mSKAvldWEfpCMr4=
+	t=1777455031; cv=none; b=T5J+0G32OWz1lQitxU2g5rRY+DAElnj/B5p/2V6OMgb6RnAqZhFk/ywcwz5tH4JFGBGBSSUq03SpnN4pZSYJgzw5tGXWTfM9f1p+gAsyyttI50yEf4ZyBPenJsDmtJdS3CKApB9dl/+flWPqF2yX+wBpqkPTLqo3vey7jc+F4s0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777455026; c=relaxed/simple;
-	bh=7kgD4cBDoa9BDLuThA7ZzUozXm/+LOVRP4yAm/zV6z8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=O6vgcBTT06Igxd+6Gq8vm+KO1KfTGTY1sNkU1/DgmHT0oaTNo2VsWUn1SohD+70T8GZgCo1KUGY8KpMkzquqG6fgQhm+mCp+GIfHMpnkxmYYlUkmIdYrwdINIIR1HE8lGDV0dZvSEQw96Yk7ta4xwGLQRUq9H75nnyfvhFw+U74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.229.168.213
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
- ajax-webmail-app2 (Coremail) ; Wed, 29 Apr 2026 17:30:00 +0800 (GMT+08:00)
-Date: Wed, 29 Apr 2026 17:30:00 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Xuyang Dong" <dongxuyang@eswincomputing.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ben-linux@fluff.org, ben.dooks@codethink.co.uk,
-	p.zabel@pengutronix.de, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	xuxiang@eswincomputing.com, wangguosheng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com
-Subject: Re: Re: [PATCH v6 1/2] dt-bindings: pwm: dwc: add optional reset
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <7bd6129a-dd37-48e8-a54c-cc149a2b84a2@kernel.org>
-References: <20260424094529.1691-1-dongxuyang@eswincomputing.com>
- <20260424095435.1721-1-dongxuyang@eswincomputing.com>
- <ee58a5d6-9268-445c-a270-1f4a49b49c6e@kernel.org>
- <622e18f1.5bb3.19dd36d0c40.Coremail.dongxuyang@eswincomputing.com>
- <7bd6129a-dd37-48e8-a54c-cc149a2b84a2@kernel.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1777455031; c=relaxed/simple;
+	bh=xRErcKPQnoGFO/OuoFMb+jcfuLMIcQU35H8D5CzakEU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZhE3trlgs3ClMzSXZt2nRtIN+iaLu4MsKbCpf4p12xdKbUhpn5lKTeSNEmyn6NDTMyi2qBZnQphA0HjFMzYxai0MUg0p7M61gWuXtQpM79VMmQp6TWxwuokF4tpjPTIKoyLS5AcqEk2MWDh2ac1CKlPYhxiqg7lssH2b53ZDv18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=SJqp01h7; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=5Q/MWX61; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1777455012; bh=us61U4dauSW9BvRwTbffQGU
+	gfbtB4S9QeDn8Q3GvZ5o=; b=SJqp01h7TUzWixGXVpL5hGL/hY0JblECHjPFnwAZY8ez+oybL0
+	H0CrTmJLC0M6E/b//oXj640Yfg/3jOMhKRlGGGrwShUpHvChxcLVqNiPc+2Uc1W8i0H8ASSr/DO
+	8gviWdUvvxMeFjxVy2A0RFhhaOG2jSWr5Eclqkz7mlXqd4JyALDysw4bctFFHL/6A6A4XnaHmzn
+	JHskj2z1L3Apzghgoh2KpaMX/Nic5/BrUWz7+ndVcJu2fXLuSdzg3UTnniYhQkMzE95KZ7gw54y
+	LbZcTqIa5YaZGcWSQIAuUr0VdOlOnWh427P5njcg/z4eOvyCrQItR3XUJngQwfBtAMQ==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1777455012; bh=us61U4dauSW9BvRwTbffQGU
+	gfbtB4S9QeDn8Q3GvZ5o=; b=5Q/MWX61o9jo8ydrVV0IN3yE7hwVw6UgO8uZQqGRqsW2gX61u/
+	e89VSTDUf0obBfNeLk+RGG4YuFB2FmkFi7CQ==;
+From: Nickolay Goppen <setotau@mainlining.org>
+Subject: [PATCH v5 0/5] arm64: dts: qcom: sdm630/660 FastRPC fixes
+Date: Wed, 29 Apr 2026 12:30:07 +0300
+Message-Id: <20260429-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-v5-0-16bc82e622ad@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <1ac7fae4.5c66.19dd892ec4d.Coremail.dongxuyang@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgAnPqGYz_FpCq8VAA--.5067W
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAQEMAmnw4RseG
-	QAAsq
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
-X-Rspamd-Queue-Id: BD326491F23
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ/P8WkC/5XOTU7DMBAF4KtUXjPIGY/tlhX3QF34L6kRcYKdR
+ qAqd8cpm0h0ETYjvdHoe3NjJeQYCns53FgOcyxxSDXIpwNzF5O6ANHXzJCj4tRI+HRDD8X3SnF
+ wvoxg1tGaMuXRgZ8KtPELPHdGK4GcpGHVGnOo63vP2/k3l6t9D25a8fXiEss05O/7I3Oz3v23c
+ 26AAxeWtLR4kpJeexPTR0wxdc9D7thaPOOGRr6Xxkq3ymljhTseT+YhLbY07qVFpVGTNUI30lv
+ +kKYtTXtpqnQIEqVWpEjjH3pZlh8OW59+AgIAAA==
+X-Change-ID: 20260415-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-d0ca7632045a
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Nickolay Goppen <setotau@mainlining.org>, 
+ Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Konrad Dybcio <konradybcio@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777455011; l=2735;
+ i=setotau@mainlining.org; s=20250815; h=from:subject:message-id;
+ bh=xRErcKPQnoGFO/OuoFMb+jcfuLMIcQU35H8D5CzakEU=;
+ b=32wlkg4Ws+nxg3L7pBLlSHJfbeoee7TP3jbl6LDNSC5SvsidYfCMs0yIjs4oJjiDYW2i7VPbt
+ sjNLEje8XYQCPA0GMgdsK1kgGiCG4jW9cKSycZjwqP9xaNPXBEaBhV5
+X-Developer-Key: i=setotau@mainlining.org; a=ed25519;
+ pk=Og7YO6LfW+M2QfcJfjaUaXc8oOr5zoK8+4AtX5ICr4o=
+X-Rspamd-Queue-Id: 601DF491FC7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
+	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DMARC_NA(0.00)[eswincomputing.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-291444-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-291448-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[mainlining.org,oss.qualcomm.com,vger.kernel.org,lists.sr.ht,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-0.862];
+	FROM_NEQ_ENVFROM(0.00)[setotau@mainlining.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mainlining.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,eswincomputing.com:mid]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-PiA+Pj4gIAo+ID4+PiArYWxsT2Y6Cj4gPj4+ICsgIC0gJHJlZjogcHdtLnlhbWwjCj4gPj4+ICsK
-PiA+Pj4gKyAgLSBpZjoKPiA+Pj4gKyAgICAgIHByb3BlcnRpZXM6Cj4gPj4+ICsgICAgICAgIGNv
-bXBhdGlibGU6Cj4gPj4+ICsgICAgICAgICAgY29udGFpbnM6Cj4gPj4+ICsgICAgICAgICAgICBj
-b25zdDogZXN3aW4sZWljNzcwMC1wd20KPiA+Pgo+ID4+IFNhbWUgcHJvYmxlbSBhcyB2MyB3aGlj
-aCBJIGNvbW1lbnRlZC4gSSBkbyBub3QgdW5kZXJzdGFuZCB3aHkgeW91ciBuZXcKPiA+PiBkZXZp
-Y2UgaGFzIGFsc28gMSByZXNldC4KPiA+Pgo+ID4+IFlvdXIgY29tbWl0IG1zZyBNVVNUIGV4cGxh
-aW4gd2h5IDEgcmVzZXQgaXMgdmFsaWQuCj4gPj4KPiA+IAo+ID4gSGkgS3J6eXN6dG9mLAo+ID4g
-Cj4gPiBBbHRob3VnaCB0aGUgUFdNIElQIHN1cHBvcnRzIHR3byBjbG9jayBkb21haW5zLCBlYWNo
-IHJlcXVpcmluZyBhIHJlc2V0LMKgCj4gPiB0aGUgRUlDNzcwMCBpbXBsZW1lbnRhdGlvbiB1c2Vz
-IHRoZSBzYW1lIGNsb2NrIGRvbWFpbiBmb3IgYm90aCBjbG9ja8KgCj4gPiBzaWduYWxzLiBUaGVy
-ZWZvcmUsIHRoZSBlaWM3NzAwLXB3bSBvbmx5IHN1cHBvcnRzIG9uZSByZXNldC4KPiA+Cj4gCj4g
-SWYgd2Ugc3BlYWsgYWJvdXQgZWljNzcwMCwgZXhwbGFpbiB3aHkgaXQgaGFzIHR3byByZXNldHMg
-bm93LCBhY2NvcmRpbmcKPiB0byBzY2hlbWEsIGV2ZW4gdGhvdWdoIHlvdSBzYXkgaXQgaGFzIG5v
-dC4KPiAKPiBCdXQgSSB3YXMgc3BlYWtpbmcgYWJvdXQgZHctYXBiLXRpbWVycy1wd20sIHdoaWNo
-IGhhcyBvbmUgcmVzZXQgYXMgd2VsbCEKPiBXaHkgeW91IGFyZSBub3QgaGF2aW5nIHByb3BlciBj
-b25zdHJhaW50cz8gUGxlYXNlIHJlYWQgd3JpdGluZyBiaW5kaW5ncwo+IGRvY3VtZW50Lgo+IAoK
-SGkgS3J6eXN6dG9mLAoKTGV0IG1lIGNsYXJpZnkgdGhlIHJlc2V0IHNpZ25hbHMuCsKgIC0gc25w
-cyxkdy1hcGItdGltZXJzLXB3bTI6IElQIHNwZWMgaGFzIDIgb3B0aW9uYWwgcmVzZXQgc2lnbmFs
-cyAob25lIHBlcgpjbG9jayBkb21haW4pLCBTb0MgdmVuZG9yIGRlY2lkZXMgd2hldGhlciB0byB3
-aXJlIHRoZW0g4oCUIHNvIG1heEl0ZW1zOiAyLMKgCm9wdGlvbmFsIGluIHJlcXVpcmVkLgrCoCAt
-IGVzd2luLGVpYzc3MDAtcHdtOiBTb0MgcGh5c2ljYWxseSB0aWVzIGJvdGggc2lnbmFscyB0byBv
-bmUgcmVzZXQg4oCUIHNvCmV4YWN0bHkgMSwgcmVxdWlyZWQuCgpTbyBJIHRoaW5rIHRoZSBjb3Jy
-ZWN0IHBhdGNoIHNob3VsZCBiZSBsaWtlIHRoaXM6Ck1vZGlmeSB0aGUgY29tbWl0IG1lc3NhZ2Ug
-YXMgZm9sbG93czoKClRoZSBEZXNpZ25XYXJlIFBXTSBJUCBoYXMgdXAgdG8gdHdvIG9wdGlvbmFs
-IHJlc2V0IHNpZ25hbHMsIG9uZSBwZXIgY2xvY2sKZG9tYWluIChwcmVzZXRuIGZvciBwY2xrLCB0
-aW1lcl9OX3Jlc2V0biBmb3IgdGltZXJfTl9jbGspLgpTb0MgdmVuZG9ycyBkZWNpZGVzIHRvIHdp
-cmUgdGhlbSwgc28gbWF4SXRlbXM6IDIgaXMgdGhlIHVwcGVyIGJvdW5kIGZvcsKgCnRoZSBnZW5l
-cmljIHNucHMsZHctYXBiLXRpbWVycy1wd20yIGNvbXBhdGlibGUuCgpUaGUgRVNXSU4gRUlDNzcw
-MCB0aWVzIGJvdGggcmVzZXQgZG9tYWlucyB0byBhIHNpbmdsZSBwaHlzaWNhbCByZXNldMKgCnNp
-Z25hbCwgc28gZXhhY3RseSBvbmUgcmVzZXQgaXMgcmVxdWlyZWQuIEFkZCBtYXhJdGVtczogMSB0
-byB0aGUgaWYtdGhlbsKgCmJsb2NrIGZvciBlc3dpbixlaWM3NzAwLXB3bSB0byBlbmZvcmNlIHRo
-aXMuCgpNb2RpZnkgdGhlIFlBTUwgYXMgZm9sbG93czoKCi1hbGxPZjoKLcKgIC0gJHJlZjogcHdt
-LnlhbWwjCi0KwqBwcm9wZXJ0aWVzOgrCoCDCoGNvbXBhdGlibGU6Ci3CoCDCoCBjb25zdDogc25w
-cyxkdy1hcGItdGltZXJzLXB3bTIKK8KgIMKgIGVudW06CivCoCDCoCDCoCAtIHNucHMsZHctYXBi
-LXRpbWVycy1wd20yCivCoCDCoCDCoCAtIGVzd2luLGVpYzc3MDAtcHdtCgrCoCDCoHJlZzoKwqAg
-wqAgwqBtYXhJdGVtczogMQpAQCAtNDMsNiArNDIsMTMgQEAgcHJvcGVydGllczoKwqAgwqAgwqAg
-wqAtIGNvbnN0OiBidXMKwqAgwqAgwqAgwqAtIGNvbnN0OiB0aW1lcgoKK8KgIHJlc2V0czoKK8Kg
-IMKgIG1pbkl0ZW1zOiAxCivCoCDCoCBtYXhJdGVtczogMgorCsKgIMKgc25wcyxwd20tbnVtYmVy
-OgrCoCDCoCDCoCRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMgrC
-oCDCoCDCoGRlc2NyaXB0aW9uOiBUaGUgbnVtYmVyIG9mIFBXTSBjaGFubmVscyBjb25maWd1cmVk
-IGZvciB0aGlzIGluc3RhbmNlCkBAIC01NCw2ICs2MCwyMSBAQCByZXF1aXJlZDoKwqAgwqAtIGNs
-b2NrcwrCoCDCoC0gY2xvY2stbmFtZXMKCithbGxPZjoKK8KgIC0gJHJlZjogcHdtLnlhbWwjCisK
-K8KgIC0gaWY6CivCoCDCoCDCoCBwcm9wZXJ0aWVzOgorwqAgwqAgwqAgwqAgY29tcGF0aWJsZToK
-K8KgIMKgIMKgIMKgIMKgIGNvbnRhaW5zOgorwqAgwqAgwqAgwqAgwqAgwqAgY29uc3Q6IGVzd2lu
-LGVpYzc3MDAtcHdtCivCoCDCoCB0aGVuOgorwqAgwqAgwqAgcHJvcGVydGllczoKK8KgIMKgIMKg
-IMKgIHJlc2V0czoKK8KgIMKgIMKgIMKgIMKgIG1heEl0ZW1zOiAxCivCoCDCoCDCoCByZXF1aXJl
-ZDoKK8KgIMKgIMKgIMKgIC0gcmVzZXRzCisKwqBhZGRpdGlvbmFsUHJvcGVydGllczogZmFsc2UK
-CkRvIHlvdSB0aGluayB0aGlzIG1vZGlmaWNhdGlvbiBpcyBtb3JlIGFwcHJvcHJpYXRlPwoKQmVz
-dCByZWdhcmRzLApYdXlhbmcgRG9uZwo=
+This series introduces fixes that make FastRPC on SDM660 work properly.
+Currently only the calculator_example test passes on both ADSP and 
+CDSP [1].
+Also assign adsp_mem region to the ADSP's FastRPC node.
+
+[1]: https://github.com/qualcomm/fastrpc/issues/269#issuecomment-4232125297
+
+Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+---
+Changes in v5:
+- Changed alloc-ranges of adsp_mem (Konrad Dybcio)
+- Reordered patches
+- Link to v4: https://patch.msgid.link/20260424-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-v4-0-ee5257646472@mainlining.org
+
+Changes in v4:
+- Added CP_ADSP_SHARED VMID to dt-bindings (Ekansh Gupta and Konrad Dybcio)
+- Added Fixes tags
+- Link to v3: https://patch.msgid.link/20260422-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-v3-0-274ba3715db0@mainlining.org
+
+Changes in v3:
+- Brought back patch that changed adsp_mem to reusable (Ekansh Gupta)
+- Changed adsp_mem to dynamic allocation (Ekansh Gupta)
+- Fixed alignment of the vmids property of adsp
+- Link to v2: https://patch.msgid.link/20260420-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-v2-0-f6c7ab3c889a@mainlining.org
+
+Changes in v2:
+- Dropped patch that changed adsp_mem to reusable
+- Added vmids to fastrpc subnode of adsp (Ekansh Gupta)
+- Link to v1: https://patch.msgid.link/20260415-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-v1-0-03b475b29554@mainlining.org
+
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Nickolay Goppen <setotau@mainlining.org>
+Cc: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Konrad Dybcio <konradybcio@gmail.com>
+
+---
+Nickolay Goppen (5):
+      dt-bindings: firmware: qcom: scm: add CP_ADSP_SHARED VMID
+      arm64: dts: qcom: sdm660: set cdsp compute-cbs' regs properly
+      arm64: dts: qcom: sdm630: set adsp compute-cbs' regs properly
+      arm64: dts: qcom: sdm630: describe adsp_mem region properly
+      arm64: dts: qcom: sdm630: assign adsp_mem region to ADSP FastRPC node
+
+ arch/arm64/boot/dts/qcom/sdm630.dtsi    | 28 +++++++++++++++----------
+ arch/arm64/boot/dts/qcom/sdm660.dtsi    | 36 ++++++++++++++++-----------------
+ include/dt-bindings/firmware/qcom,scm.h |  1 +
+ 3 files changed, 36 insertions(+), 29 deletions(-)
+---
+base-commit: 5a154741a8271f2db906ed4c33a55a1c83e84da1
+change-id: 20260415-qcom-sdm660-cdsp-adsp-fastrpc-dts-fix-d0ca7632045a
+
+Best regards,
+--  
+Nickolay Goppen <setotau@mainlining.org>
+
 
