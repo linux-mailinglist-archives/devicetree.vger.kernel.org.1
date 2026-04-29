@@ -1,93 +1,91 @@
-Return-Path: <devicetree+bounces-291511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291517-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OMyVKXvw8WkOlwEAu9opvQ
-	(envelope-from <devicetree+bounces-291511-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:50:19 +0200
+	id YEYCIKrx8WkOlwEAu9opvQ
+	(envelope-from <devicetree+bounces-291517-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:55:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61AC7493B93
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:50:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F906493C6A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:55:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B9256300669E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:50:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 070DA309ED86
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3468385507;
-	Wed, 29 Apr 2026 11:50:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B2DF3F23BD;
+	Wed, 29 Apr 2026 11:53:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8262175A81
-	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 11:50:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C75E63F211F
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 11:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777463413; cv=none; b=RFx7C0C/GcmR5eAhETN9+ie2DTe8SXczMsJHZT4tZzHKOyvVgQg8oTabDZ90SdXdrLrN7NM4qvFdMlLyK3geMunPsImYjzDzQK4ls/UC/gchibWVzfIHW40sC/QZOP5dEff/HUxiMxve0xC4wg6sRCd7Z3zqpIawueKJijQ7GIs=
+	t=1777463592; cv=none; b=TE+bhQr7XFv0QHr3PDQNIgOFaVsDYmkLEp/xsq786q6Hc5VPJEAYNUx0ihl/HVNPWgC+N6kpZnhyEYW7I390ga+Hh+11vJlPh8hyo9uUdLYZNxy5ceunokIgSOYrHeaaZdI2i7WtbOM1A1uxcoS0A8g7fyurGjVEdgE3wW0hHIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777463413; c=relaxed/simple;
-	bh=k3006wJqxnTat9Xj8MW2QjrO2YW2+jD6t20DobBX4xo=;
+	s=arc-20240116; t=1777463592; c=relaxed/simple;
+	bh=XXFyujGrM3k+GZFKEyqRdilaXBG204QClf2AQk9kJz0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AgU8++KdvmyJCDOTIfMRMvq++T0OzsZw2XGQ+GTDkP8qOa2OyNga1HjUo118EXaikOfKC6TCv+J1N/bH35xkEWWjJowknULwOfV2BhEdyhS6e9v5EJIBm9UHk7+mWlueheN8VAgVkMrQhhq+PlZDzSTOHbwBdiEOkHArM0mdBMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.170
+	 To:Cc:Content-Type; b=oGqSlmyQK6Ieo+1iwP4pK/eWMwkQWh/Zf43m0HjP8UFgtBvhm3XYI5lIXwLH2XBkNGY0RDevk/COIozr0uO0/T+NLeqHjmaNCeSdV+9R20wsibs3UzoxT3WbG4T5CahZiBgVcLn5WgK8WosodFSgPDV16gqRCK9PQNgcmTMKTfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2a7a9b8ed69so106651395ad.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 04:50:12 -0700 (PDT)
+Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-8d6d5e45c43so1375670485a.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 04:53:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777463412; x=1778068212;
+        d=1e100.net; s=20251104; t=1777463590; x=1778068390;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=07iUR/sIOeK9OY28Ao/jBJ40ezKJgRa8Xi1S5qNmXhs=;
-        b=FMqty1Zq6IxZ+uNYLkJXjevT3AgIvNTkV3Y+TOD3uKWeq3H2PZuXNFC9at/tYVaTso
-         m10OpxhoeCTBxPOlvAs005F2Tw7EE8qqa3iH/IDftaKZ5PiN+dWeuWYF9lCoUKrcScL6
-         zwpAYDSlylHbutOPzOEQ1cOnjIicwU/jm8UzgKHhVrqe4T5QrdT/Y2PJtP6AUuQOVM9D
-         CucUg+u6RmERrgDnagKnAej3e0y6sEzuY+CRqATfZhJvzoN/dpUpsr1pP26PVdiDzVxi
-         cCHsfn2ZDeE6KFsHB2Yjkz2SxcbOodKBPJKbs/lJ/N96NEp8fba7FBRMflejmpgNhSiR
-         MEeQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+zk/bLf2jL75V847yzWta3RAaSYcSt2Lax1TXtyjorEjRmnqp5IfVESbPzDmhzAmB4p7TENd0meqUp@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGnDOPEcUJfq1CsUj5HCijluy/H1WxaVE5hBc3urGiOF43KeN4
-	ku+FcaW2mdPNr5umlsPgg2mwuo5g/jVfwA5ko1aIg6JIb/FnKA0aSMgY4NfwoHr+IdU=
-X-Gm-Gg: AeBDiesBVQgjZC0usugD/SOxH99ql/6QOiHFxROWo6lk756Zq6eM41S0S2uviJtRPoJ
-	Qs8LQcPpV1NDnCnKT/cyu8Y1gxsu/fzTARxlL1lDBl0IloXskSZOHgxhg38zDsgq71XeHfn00+I
-	r4NrcwPsaWw5mvKVcUs7De/fo1GD8DYf5W7LSKdU/SWHro/hA8gaCg9qBeYHlYY2VV49XBU5FMU
-	opeeSDunsSrseEMz3OYwAdDO31IDXL0OixYlDGlfECd2wMvkvckLk1XLF+pi+g/o/PM2GLEYI6I
-	Re4QWbBTQrjYaPaaxU88XV1j0aaEYJI6eUBOevNWrFQ0o6gzx3E2TgQn4Kz8alRYMMXcLGbMFgJ
-	KFd6rv0Vbz8BiMwiAX4RUvdRzKlYow36SNJtonMAz12g+ndXoptyJGo8oJD4oR/3zQRQ8Iu9v5e
-	WHGBztbYEse2w3ROXKmwBZsMx/qajSiNJV5AI2V2WUJnO01hV3s8KHQX6cQRbMVOBPVgosjmv5G
-	JU=
-X-Received: by 2002:a17:903:3bcc:b0:2b9:87e0:1f80 with SMTP id d9443c01a7336-2b987e02b8emr33303895ad.24.1777463411965;
-        Wed, 29 Apr 2026 04:50:11 -0700 (PDT)
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com. [209.85.215.169])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b98893f317sm21188865ad.53.2026.04.29.04.50.11
+        bh=1eQI/JeVJWqMxkzWYnwpYH2rFZzbRa7DUVbDEpXwBWE=;
+        b=CfE6WABhB5toOgNp6rB6Wp8IrZ7cG2Nhr0BunnWNiPzFP8oR61GE5iR1kEVtX1EQ3K
+         Ee5/6b68VNEUWuFCFNjTF77uF4MHpCY3CrB4Ne4thvq1r69Yt/C+GW/u94PpMdSIfNjp
+         JmEMBEUVdmkdQuzvhF/RpEIxpu8ReY9shz3i5ug87HSA5yxrJdaHJQcu26HsTGkqXFXP
+         S+A5vtI4tGBEQpyvb8gXgQzXZSrG6PBUP1WWyL9qHcyIwW9MALqOVoUdUniaIyFBzJrc
+         T0pH6y1zKTwbsqMeNMWT8uk+4dVC+8pVs5g26BZVFLKUZW33anPW1oDRreBgYq8Yz+r1
+         Q7xA==
+X-Forwarded-Encrypted: i=1; AFNElJ8xBDuRFMQjNb2TSjGAkqruPdJvE7/aQCAOwvQ7q5OJysA/L5wylf+sVkD07ISYqJW7JxjKhtVmXQBL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBJ0BgA2dXwX137kCcAlGAV5Wqc4yCnBnsJCCP1PvFCcG5FSBN
+	6HsLLFCkPMQBQzH/Rm2XJsfJggDh9Aq/ORQ4yz5RCK4t5PdckZPTzPSJnZEMLm8r1ME=
+X-Gm-Gg: AeBDieszTu8rOBGNC2ZtwmAnMGVtzZrwUpl13apD2FnRyeRVAZFpShVaSpj3HAsXcTv
+	jq8hj3vy4iUZ2O6S9bkJZR43YAUpFfckIxBfK3XBA6NUj6IhyyhoN7c2lS5Io/ttkUwWDDjhgtx
+	HqIY7bsdGk42DRFqyUQHJ6itavFU0SYohCN8oekLs9AeX1bIRj4cC+p1mv6YSePrR1KvDSxkWge
+	Bc8CZKwgW5hBYWHaR3dAEULsgwh3G5fxMgdo8V/M8ILWHsAnhxZZMQ3hNz4WmAcphKHn4QvIXob
+	J3+JTfxTiXJNBZ/jG3kQEkrB50Bl/YHs0QP918pamLgza2Rnu+IsRTWnXnLPnPTFRfF3Yt5eA1w
+	YGgTQcvZEVuPiLE4+xW+FM1LHdecjgYu4fs83TZaShQu9NY4RljAC4/55HHnJMgd95rR0v5Np5X
+	ADdM9BXiknLYga3LBlrFf0O7HkvXNHe0XlgKflpbG25n6JRLSu9uh43o75fW+KTAbxdKm517U=
+X-Received: by 2002:a05:620a:3721:b0:8d7:531:cb8e with SMTP id af79cd13be357-8f7d97f9982mr1004943685a.49.1777463589725;
+        Wed, 29 Apr 2026 04:53:09 -0700 (PDT)
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com. [209.85.219.50])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8f93f582e46sm149187685a.25.2026.04.29.04.53.09
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Apr 2026 04:50:11 -0700 (PDT)
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-c70c112cb61so8194338a12.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 04:50:11 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ/+GH0YpTnm+hnKZdf92rH230hKtqkvaWcYXOyg8DviZb4/B/xzXV1f+4ECU80ybcqIv+JGUnaye9t8@vger.kernel.org
-X-Received: by 2002:a05:6122:8b0c:b0:56f:7300:37c9 with SMTP id
- 71dfb90a1353d-573b368cf79mr1448638e0c.10.1777463106983; Wed, 29 Apr 2026
- 04:45:06 -0700 (PDT)
+        Wed, 29 Apr 2026 04:53:09 -0700 (PDT)
+Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-8a1e1817db6so98821136d6.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 04:53:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+z2ClHpb2bbWGzg1wsUxfhOrJQle+DV3oiBrZ3gvUxP1UlFRUGk1ctUTGu5rpiLyor8goGL9XOdiyZ@vger.kernel.org
+X-Received: by 2002:a05:6102:8496:20b0:60c:fe65:7dbd with SMTP id
+ ada2fe7eead31-62808c547e7mr2534931137.5.1777463176356; Wed, 29 Apr 2026
+ 04:46:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260419193718.133174-1-marek.vasut+renesas@mailbox.org> <20260419193718.133174-5-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260419193718.133174-5-marek.vasut+renesas@mailbox.org>
+References: <20260419193718.133174-1-marek.vasut+renesas@mailbox.org> <20260419193718.133174-6-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260419193718.133174-6-marek.vasut+renesas@mailbox.org>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 29 Apr 2026 13:44:55 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVLUFZzwUjvMuZOOTJk9jn-pTM4-rYHE8OZzp9RpQd2tw@mail.gmail.com>
-X-Gm-Features: AVHnY4LhTK0YHEkXOgViPxtDX3drSx5eXMIsHWPwRkcxiJzGfAV6beExDjAOpFs
-Message-ID: <CAMuHMdVLUFZzwUjvMuZOOTJk9jn-pTM4-rYHE8OZzp9RpQd2tw@mail.gmail.com>
-Subject: Re: [PATCH 4/7] dt-bindings: soc: renesas: Document Renesas R-Car
- R8A779MD Geist
+Date: Wed, 29 Apr 2026 13:46:05 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU7Wv=ff34PGtauGE=pxu-gz60bYckFvC0s_7+NGF2sSQ@mail.gmail.com>
+X-Gm-Features: AVHnY4LIrMWzlW7YEacrKVCpl1tXW3XTPU8aR2UA76Yz1rMTuJKkQscGTQj67Yc
+Message-ID: <CAMuHMdU7Wv=ff34PGtauGE=pxu-gz60bYckFvC0s_7+NGF2sSQ@mail.gmail.com>
+Subject: Re: [PATCH 5/7] soc: renesas: Identify Renesas R-Car R8A779MD M3Le SoC
 To: Marek Vasut <marek.vasut+renesas@mailbox.org>
 Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	David Airlie <airlied@gmail.com>, 
 	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
 	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
@@ -99,69 +97,47 @@ Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
 	dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 61AC7493B93
+X-Rspamd-Queue-Id: 0F906493C6A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291511-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291517-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,glider.be,ideasonboard.com,renesas.com,baylibre.com,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,ideasonboard.com,renesas.com,baylibre.com,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	NEURAL_SPAM(0.00)[0.538];
+	NEURAL_SPAM(0.00)[0.160];
 	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linux-m68k.org:email,mailbox.org:email]
-
-Hi Marek,
+	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,linux-m68k.org:email,mailbox.org:email]
 
 On Sun, 19 Apr 2026 at 21:38, Marek Vasut
 <marek.vasut+renesas@mailbox.org> wrote:
-> Document the compatible value for the Renesas R-Car M3Le (R8A779MD)
-> SoC and the Renesas Geist development board. The Renesas M3Le SoC is
-> a register-compatible variant of the R8A77965 (M3-N) with reduced set
-> of peripherals. The Geist board is derived from Renesas Salvator-X/XS
-> boards, with adjustment for the R8A779MD SoC.
+> Add support for identifying the R-Car M3Le (R8A779MD) SoC.
+>
+> The Renesas R-Car R8A779MD M3Le SoC is a variant of the
+> already supported R-Car M3-N SoC with reduced peripherals.
+> Enable support for the M3Le SoC through already existing
+> ARCH_R8A77965 configuration symbol. PRR reads 0x67c05501 .
 >
 > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-
-Thanks for your patch!
-
-> --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> @@ -473,6 +473,12 @@ properties:
->            - const: renesas,r8a779mb
->            - const: renesas,r8a7795
->
-> +      - description: R-Car M3Le (R8A779MD)
-> +        items:
-> +          - const: renesas,geist    # M3Le Geist
-
-"Geist (RTP8A779MDASKB0F10S)"
-
-> +          - const: renesas,r8a779md
-> +          - const: renesas,r8a77965
-> +
->        - description: R-Car X5H (R8A78000)
->          items:
->            - enum:
 
 Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
