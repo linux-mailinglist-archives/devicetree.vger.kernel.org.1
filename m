@@ -1,162 +1,133 @@
-Return-Path: <devicetree+bounces-291230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291232-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id csPpC2ZX8WnAgAEAu9opvQ
-	(envelope-from <devicetree+bounces-291230-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 02:57:10 +0200
+	id mNG4LaVZ8Wn/gAEAu9opvQ
+	(envelope-from <devicetree+bounces-291232-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:06:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2ABB48DD59
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 02:57:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E04C48DDD3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:06:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 532D53029241
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 00:57:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 78A103066880
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 01:06:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B589214204;
-	Wed, 29 Apr 2026 00:57:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F29822689C;
+	Wed, 29 Apr 2026 01:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="lkwrEdAV"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="jcUaphJi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58BE1A682C;
-	Wed, 29 Apr 2026 00:57:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351A01514F8;
+	Wed, 29 Apr 2026 01:06:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777424224; cv=none; b=kXcAEwavPbJRMmB18mCXksImR4oPYpDqyMW228HR0MNK6/KkXNjskjpoQlXGI0/hSKkWjKKdHkSDfw+GhGq/PDo9KCoXadIGnWCSIUxqUZXZg1ZrTzYg13cTtrzmallP6Q3dMCN4G+zksBGkG4tzxFLthwKb1i6DMC1/egqp2Jg=
+	t=1777424788; cv=none; b=GcJoKJdB1X7lvRutpMjBvyg2SbXiDGxWfGiFEyuX5pXXMjFl0SlPgQhoc77r++WLdfUIORgO9GDl08YB1MX+tIMf7hfzeWNMk2F2EHiDQp8Jv9HfeleUmvMeu+nM1Se1Diqfjh/ttvo3eqKkmplR0O0rZMwQsl3H2IekDMYgav4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777424224; c=relaxed/simple;
-	bh=4czbswj4ht+A87lTkdcd08crGu9AEPernCdFv5ThrwI=;
-	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=YGqiAGsOQtpUb5sWA8QwWDz0RtuocTl4biZfBr4dwldb/XWlfZqIzQWEn1KMwUbc0/fUAaKqzk4veISy6KV2OBL64Cn1ssCw/RYA0KqSaj1sBj76RuW04oS8lIDl0AWvkj+skmmuNSw/ffnwdKgWoycFXdjU7p1EiTNak5oQPoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=pass smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=lkwrEdAV; arc=none smtp.client-ip=218.76.62.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ultrarisc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
-	References:Date:Message-Id; bh=KMl/DXyKt0CwRNL4eOdNzXil5p4m9/51p
-	alhvFtb1Jk=; b=lkwrEdAVJ3T33HJmbKZ8FbOsYr7gxijC3om73VoICJecU+gRD
-	fx6AIw2ycIdUDBYNXaLyQ2bRPVd0KLT3Z3E6+lBXo6dRo4dVHC2lYtPvlTPqpab/
-	Xc2PogI4t7kkANU6nXW37oGq8rMsEIW1Qjg16K1szgulRBnMlkPHaPJEvY=
-Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwA3cUJ5V_Fp_B4DAA--.1799S2;
-	Wed, 29 Apr 2026 08:57:29 +0800 (CST)
+	s=arc-20240116; t=1777424788; c=relaxed/simple;
+	bh=FbbMYy43PUndM6JPNtV61qlInWSiX44oXWU5kPw/J1Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GQP52Y8d5iKuc4++UFbDv2854fx+/0dkprAiGhg+sRy8lADGeP8MpmvlOTgxREvsGs50Eb5UfBh0oGIUlBAuhN1aYw5lkQzhEKzy5z8kDdfJj/Rs5uqzKCrTKoSOFegysPrghO6IeikePq/a31pjlkgiCC2cWBPoWGy448rfCy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=jcUaphJi; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=WJyEk5iF/qClSow4VldMYLiNlMJs/+IOgRx7E06PJ0E=; b=jcUaphJirF4jpAsR5pNq2ZozJW
+	w4uXI1olYO9kwy4WUOcz5TkLzG79ZBioNzGCAOCw+9PLMGxAPV7UKXq17hoEznOvhX1I9w5WgLmB4
+	79QLQFdKVGdcw7aEKo4Hc+cLHhIUuX1NQY88sWJ8zjfmVyGpAKSt6FrFdPhmBvhkxfds=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wHtNB-000RMN-PA; Wed, 29 Apr 2026 03:05:53 +0200
+Date: Wed, 29 Apr 2026 03:05:53 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Jens Axboe <axboe@kernel.dk>,
+	Johannes Berg <johannes@sipsolutions.net>,
+	Jeff Johnson <jjohnson@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+	Rocky Liao <quic_rjliao@quicinc.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-block@vger.kernel.org,
+	linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+	daniel@makrotopia.org
+Subject: Re: [PATCH 0/9] Support for block device NVMEM providers
+Message-ID: <b4de6c89-dd89-4e02-8d79-911e4f9f0813@lunn.ch>
+References: <20260428-block-as-nvmem-v1-0-6ad23e75190a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v5 2/4] serial: 8250_dw: build Renesas RZN1 CPR value
- from DW_UART_CPR_* definitions
-From: Jia Wang <wangjia@ultrarisc.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Jia Wang <wangjia@ultrarisc.com>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
- linux-serial <linux-serial@vger.kernel.org>, 
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-In-Reply-To: <afCS7GEG7gtyC7RH@ashevche-desk.local>
-References: <20260428-ultrarisc-serial-v5-0-97de63b1e3eb@ultrarisc.com>
- <20260428-ultrarisc-serial-v5-2-97de63b1e3eb@ultrarisc.com>
- <afBhkbGLsuqUitOl@ashevche-desk.local>
- <23c80500-f2c1-0eb3-f640-00f7b108059b@linux.intel.com>
- <177736726936.2886867.7725295920724488690.b4-reply@b4>
- <afCS7GEG7gtyC7RH@ashevche-desk.local>
-Date: Wed, 29 Apr 2026 08:56:45 +0800
-Message-Id: <177742420562.3222151.9689419292413018986.b4-reply@b4>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777424206; l=1149;
- i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
- bh=4czbswj4ht+A87lTkdcd08crGu9AEPernCdFv5ThrwI=;
- b=aleoixAjfRCIOq4JvlJdssuNfQRSsaLUgal5WrjqOTgcvlwjcpvsyS6aVVeeZSRyDQLO2GjPq
- FHF8Ra0GbLxDxcUS8OtHSaYRbFpqmV2H9q6SyPpx0Vc/piOJ0/gNUHC
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
-X-CM-TRANSID:AQAAfwA3cUJ5V_Fp_B4DAA--.1799S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7XrykAF4fZr1rur18uF4fAFb_yoWDZrX_Ar
-	W0kr4kua1kC39Fvw4DK3sIkws0krW7Zw4YqryrWF12kr9rX3s8Xwn5uasYgFnav3yIkr92
-	93WYqryF9F4qgjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJ3UbIYCTnIWIevJa73UjIFyTuYvj4RJUUUUUUUU
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAKEWnti78ACwA6sb
-X-Rspamd-Queue-Id: B2ABB48DD59
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260428-block-as-nvmem-v1-0-6ad23e75190a@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 2E04C48DDD3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-291232-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,kernel.dk,sipsolutions.net,holtmann.org,gmail.com,quicinc.com,davemloft.net,google.com,redhat.com,vger.kernel.org,lists.infradead.org,makrotopia.org];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-291230-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DKIM_TRACE(0.00)[ultrarisc.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:dkim,lunn.ch:mid,bootlin.com:url]
 
-On 2026-04-28 13:58 +0300, Andy Shevchenko wrote:
-> On Tue, Apr 28, 2026 at 05:07:49PM +0800, Jia Wang wrote:
-> > On 2026-04-28 11:41 +0300, Ilpo Järvinen wrote:
-> > > On Tue, 28 Apr 2026, Andy Shevchenko wrote:
-> > > > On Tue, Apr 28, 2026 at 01:26:27PM +0800, Jia Wang wrote:
-> 
-> ...
-> 
-> > > #define DW_UART_CPR_FIFO_MODE_FROM_SIZE(size)			\
-> > > ({								\
-> > > 	typeof (size) __size = size;				\
-> > > 								\
-> > > 	static_assert(IS_ALIGNED((__size), 16));		\
-> > > 	static_assert(__size <= DW_UART_CPR_FIFO_MODE_MAX);	\
-> > > 								\
-> > > 	FIELD_PREP_CONST(DW_UART_CPR_FIFO_MODE, __size / 16);	\
-> > > })
-> > 
-> > Thanks. I tried that approach, but the statement-expression form does
-> > not work in this case because the helper is used in static initializers.
-> > So I'll keep it as a plain expression macro for now, and just rework it
-> > into a cleaner multi-line form.
-> 
-> Still you can move FIELD_PREP_CONST() into it.
->
+> Note that this is currently limited to eMMC-backed block devices, as
+> only the eMMC core associates a firmware node with the block device
+> (add_disk_fwnode). This can be easily extended in the future to
+> support additional block drivers.
 
-Right, I'll move FIELD_PREP_CONST() in. By the way, does your Reviewed-by
-still hold?
- 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
-> 
+Would this be
 
-Best Regards,
-Jia Wang
+https://elixir.bootlin.com/linux/v7.0.1/source/drivers/mmc/core/block.c#L2641
 
+Looking at that function, mmc_blk_alloc_req() i don't see it doing
+anything different between an eMMC and MMC.
 
+An eMMC you don't expect to go away, since it is soldered
+down. However an MMC can be ejected. Is the code prepared for that?
+
+      Andrew
 
