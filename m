@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-291284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291286-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMIGOOyF8WlEhgEAu9opvQ
-	(envelope-from <devicetree+bounces-291284-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:15:40 +0200
+	id CByLFAGG8WlEhgEAu9opvQ
+	(envelope-from <devicetree+bounces-291286-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:16:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42EEE48F0B6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:15:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDE0748F102
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:16:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C2B90301DCF0
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 04:15:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 938C4304C974
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 04:15:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FEEB38550B;
-	Wed, 29 Apr 2026 04:15:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A028389469;
+	Wed, 29 Apr 2026 04:15:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ausil.us header.i=@ausil.us header.b="lUH1Aprg"
+	dkim=pass (2048-bit key) header.d=ausil.us header.i=@ausil.us header.b="OoPuHOzI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f103.google.com (mail-ot1-f103.google.com [209.85.210.103])
+Received: from mail-oo1-f97.google.com (mail-oo1-f97.google.com [209.85.161.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B292384233
-	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 04:15:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.103
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C8F8336EF8
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 04:15:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.97
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777436138; cv=none; b=NX1G+cYOnVCM1OaAKusA9Le4hs8YI1RZuU+OfBsDofUp0QbLLl1GCfjgtNp7Zc5UMzO+5ZUyVy/HDUyWl/BEhXDRJErEeIz6+KyzpduYNHuyHwKPlOrpTXlQxIQXm/Zv3lB34u8Oo0BLNX+4DdqE4hs3oZ7ifT2uCv/m1dXYje8=
+	t=1777436140; cv=none; b=APHDCaaYWlWP/ZU7vkHl5aK3WBj56OiLS+eDVTmE75fK+8by8OX+syDtElTI9Te4gba2IiIt0YZ5aBXig3NZI8vU+iGAdQ7xy+9uegxz+xVt5xgMD7xAhmDYnY4F6yXNoQ/yfqVLyiTqWCeCKcTIhiRwmm4l8zeSQFBi5YIqqZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777436138; c=relaxed/simple;
-	bh=otskfmhD8ySo3ULRgdnWJTgPH4dRmbQZJyen3fjxWtU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Es/DFa0NZx6peFjTe2DCGQOYrd/2fTOOk3VuLr64cqf3iT7CJQn6K3vkp3AcFnWbSbCUIPDbpY3YarCvu0FprnaZHXu973UOFjUQZVPnpW4RwuinJRQM4HQGfnCfVZ9Gu+tiAkKO/+ARpRNuQYEBxObszdDHexz7d0qNHT3Io7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ausil.us; spf=pass smtp.mailfrom=ausil.us; dkim=pass (2048-bit key) header.d=ausil.us header.i=@ausil.us header.b=lUH1Aprg; arc=none smtp.client-ip=209.85.210.103
+	s=arc-20240116; t=1777436140; c=relaxed/simple;
+	bh=FOJ42zieAav8ocVCkcKSLh45lzS8XHSfrGPYjm/TzKk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=bSR6+/2vLl0N16MDSIx7zjEZQBKvUcSBQtPsZBbmPoyc/BGyh233gVXHwD9dyzhBvm9tAWefUWZ9u+cvcL+xhesNa/tLqGwG3xiq4Dm8gLYdNzWjZoPUB+ClghokoBeqyb1jzDBieaLqFT6lwSlyzb4xMkQQCzAJU14MSOuwjVw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ausil.us; spf=pass smtp.mailfrom=ausil.us; dkim=pass (2048-bit key) header.d=ausil.us header.i=@ausil.us header.b=OoPuHOzI; arc=none smtp.client-ip=209.85.161.97
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ausil.us
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ausil.us
-Received: by mail-ot1-f103.google.com with SMTP id 46e09a7af769-7dcc9b506d9so8313174a34.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 21:15:36 -0700 (PDT)
+Received: by mail-oo1-f97.google.com with SMTP id 006d021491bc7-6948da50eb5so274932eaf.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 21:15:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ausil.us; s=google; t=1777436135; x=1778040935; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FtGPxykfSJnjMbp7TJp87gUGFkeGywBatbMxDcRE/PA=;
-        b=lUH1AprgdZMJaY4mjDacMtfRo0lMk3p1zZINiX94hEc7n4yPgnfhfM6oCQ12Zy1kx7
-         Yixj7JBoDxSoTYIuIO/Yzjj5iBW4jchgC2UOHxoNEwaH5+p5KC4NJXjFeeyZkJBTW+Ef
-         KMRNyzLWh+b0ASMuPJ9ovY9HRDm0adRxs/PEnoQFPf+qK/r6V5gOT9TrrIPb7NUsDc1d
-         gVQ0RxUbW9DTukhviE3n4aJzUYvdq8jNW0fvEXxCOnS4TAE+2Iho9Vv0V5crjZZor0SR
-         aXwxjws7YFbGkDSK8yxyVAzTPunah/omcJxyQz4DNErOnyqfPdTA/r50RtfJd9bGaOjA
-         0bxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777436135; x=1778040935;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=ausil.us; s=google; t=1777436136; x=1778040936; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FtGPxykfSJnjMbp7TJp87gUGFkeGywBatbMxDcRE/PA=;
-        b=jpSIv93ydW1vVkiSt/uacTeny1mGKK9jgxQiwu4yMDjYcj+7twlzkOx4uPapviWI0G
-         PvRSuCLUqXbFXRoaW7L6ggY3bqiW7/efLfdLrVhD8+788SMpRh7plYvbKS0gBtQr5Jhf
-         utyD/mCLSZ0PmLe+El9DpXlhUOFc1K3INCAK8jnUBlyWolS0S64fYg/3qdnBUxGa2QsB
-         8DYaYK+I+S+wExOZCPGjExO8hVqD4skfqc+Pp82o2dwXKjnOX2Uk00hmgxlNubdVHVnC
-         fOokz7zWd7K0Yytozd93c6U4+lhpA0BUzUgriUFuloLA8Ed6/keeveU7EL3cxG0rziRC
-         mlPQ==
-X-Forwarded-Encrypted: i=1; AFNElJ8akVthhVHyovJfng2d59THDFb2B1rJ0/EuCGsFqvhmSPXOpZ7hHZzWNrzLZD+ImLLGxW9tBAUL5r3e@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+19v3SR2aMTIw01hq3xikBliiumOORKSCtL1FHmAScS4IVzz3
-	Ri89ywNGIWJeE7qP3V3v/g1j+JEhZOhltAtw05DL8M8T7B+RTAwShjI2d4KjIVrAcI0O8tVz5BZ
-	uq/wNuLNfnIKcBR75PbFJeICXUG7d6bK0ZyGC
-X-Gm-Gg: AeBDietBlgSMJT43EcbUerqiSVYXxJG8wSHDXdFLO4qmRAzXkLlyg43/ZpSdej4TUCJ
-	34NLMFqdjvde/yNBGayg4BVBmh0XFfjT+9k7G3xMEJHXuu725H8Q5AL0AcD55ZaB+yEeQWhN22P
-	C1+oV/dAirVS4IHQxsJfIorCSpmCcM3/Od3+z1gfcKhbGVB8ERPs6ehJCkNwUYK9AtiWWqq9QW8
-	SnO4H1EPUI9Fj4GoIT7xyIFE6jQmewPiSna+EwYs/Ik3c3MA06McibKGZCdWesb44cj3LoQi0YF
-	N1SUCc1ONyRT3rYwj1+KO1YMKbrCkPiMqUnYetYyB4DQ01CdMuZxhhJ0/L6FdES1oEiO/NzwTnA
-	W/ZU/6cCLHC7iDTufd0vEsde7HErUnqf0Zkq41/2KN/mllAkntO6/dIE=
-X-Received: by 2002:a05:6820:1987:b0:694:926b:551 with SMTP id 006d021491bc7-69668520ec9mr1220128eaf.55.1777436135405;
-        Tue, 28 Apr 2026 21:15:35 -0700 (PDT)
+        bh=cUANSDjJgu1WXHjNheDgVJfCwB+h6we7yJfErm3QH3E=;
+        b=OoPuHOzIV5mq7XaXBqqo0qTkf40ZjKBuqJ6KLwUoYjmc3mtpp8mr6G/PJaUD3ysq3q
+         rBgswULNhMBLFkLat2vRLQfFnKBNfRZgAc86CD7+cfnJKy+UFNvX7jCOk0kVkmEO5WvV
+         vRe9Ux49ZgVhyey4uhqqBNrXmeuSDePMPSV7/tVnG2vAPT2wxf8pmC+C9I6eZmYFVra8
+         uyJkrHKAhKlZir2XImJFIPMh+C1pEuYqpCwXjeG5yRUWsnzwh5RlncSqjYYTe8iisbCY
+         1s3qHMDbredsM0AjAJEzH0kkdA2phbItmV9LmXBmWGvPgUl0XSnHhc9zMK6mNOY9+W3d
+         9rhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777436136; x=1778040936;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=cUANSDjJgu1WXHjNheDgVJfCwB+h6we7yJfErm3QH3E=;
+        b=EP+hYBrW9lgO/FkDL7MUVbB7sGszNZlEJdmY5dwAqrwP5dwvXePSDVoH55Gq6TJuC5
+         q3cTg+zcGTEz2YTTbqxBwBU22quUu9IYkFcY+Tgm0jKnENxPh7i9BQlJQOxd10wkUo0G
+         +CN1M+jccBzPlWuJd929Z82aoyBqfLBJttYY+oI7SL5oYxGe3EmTXPQrr66vwlwYO4Ww
+         iKi6s2zg96GcoQyZfNyX+b3nHJFKZWZH9i663les8x1d3IGWUFpu+IQwwXCQVE2VExPy
+         Z0Mk2cF8GHDTZIWL7FTCcsxcgx+IMcBFv90dFEI67xVB8Uu6pO4wsHCMyi6xNwgNovOa
+         BnKQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9SymfKZIGCnBXYy8v/beEeBGKeQKigWNk1oMERmkplVvy/WoKkGMsaq55E93JuzrPhw5af5xCcDHLY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCvqhB/EA9PCFdrlIJWKDv059neP69AqaWDBm+7BtTZX26qvbO
+	z6K+qmzv1BMlLuGs9KjsctzE7zrgpjCn/30KkImVPYM2jIoFphQLvzHvTQKVsR6uavsaXCiEjcr
+	vZgC7m5IVmpW7tWF11XfmsQxtq0yXh5TGTRpz
+X-Gm-Gg: AeBDievQ6qbimEiYO3cduwO9Wstj6tPDOR8SiJAg7nePv0iiAHwwwppuiqbL5Y8KK9O
+	s3toh+WYit1cUDUKo/44XA/Yn8uFsuThTmtlBy6RhhRC+lXC3lUHKtuOJwMQagO4APuBHCc0oBE
+	qZ4EO2vDcvZrLuwowthwL/veJnzfv2qZUqMTz/Q5jrpLzt22RetH4pKRnJbGKtt7ZjrcNYiBs9g
+	jbtjR/0a+ALVTI2a1qMr1yllYF4CmHsVE+Pql5wD1IcR8DR9NmmuVSF6pzi7LPrNlIzQrJjQ/uf
+	i39No4bdxrrwH4kANNCBZW+fozmkiAo4HjycGf2taUFBTFH2RUFlZ4/q4Qb9/EoYqy512n6yFA8
+	Ea2UJO5mx1LjqkQqRavELdPgz/rw5EwizpUHdUBxoSSYgU6MM6TjQ/VU=
+X-Received: by 2002:a05:6820:2210:b0:67e:2a62:35ba with SMTP id 006d021491bc7-696699b7162mr686474eaf.15.1777436136286;
+        Tue, 28 Apr 2026 21:15:36 -0700 (PDT)
 Received: from ryac.ausil.us (207-179-239-100.mtco.net. [207.179.239.100])
-        by smtp-relay.gmail.com with ESMTPS id 006d021491bc7-6966baf952asm41557eaf.9.2026.04.28.21.15.34
+        by smtp-relay.gmail.com with ESMTPS id 006d021491bc7-6966baf952asm41557eaf.9.2026.04.28.21.15.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Apr 2026 21:15:35 -0700 (PDT)
+        Tue, 28 Apr 2026 21:15:36 -0700 (PDT)
 X-Relaying-Domain: ausil.us
 From: Dennis Gilmore <dennis@ausil.us>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
@@ -97,11 +99,14 @@ Cc: Alexey Charkov <alchark@gmail.com>,
 	Jonas Karlman <jonas@kwiboo.se>,
 	Jernej Skrabec <jernej.skrabec@gmail.com>,
 	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Dennis Gilmore <dennis@ausil.us>
-Subject: [PATCH 0/3] drm/bridge: Add Lontium LT8711UXD DP-to-HDMI transparent bridge
-Date: Tue, 28 Apr 2026 23:15:25 -0500
-Message-ID: <20260429041528.558254-1-dennis@ausil.us>
+	Dennis Gilmore <dennis@ausil.us>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH 1/3] dt-bindings: display: bridge: simple: document the Lontium LT8711UXD DP-to-HDMI bridge
+Date: Tue, 28 Apr 2026 23:15:26 -0500
+Message-ID: <20260429041528.558254-2-dennis@ausil.us>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260429041528.558254-1-dennis@ausil.us>
+References: <20260429041528.558254-1-dennis@ausil.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,7 +114,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 42EEE48F0B6
+X-Rspamd-Queue-Id: EDE0748F102
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
@@ -118,18 +123,18 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[ausil.us:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291284-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291286-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,suse.de,gmail.com,ffwll.ch,sntech.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DMARC_BAD_POLICY(0.00)[ausil.us : Multiple policies defined in DNS];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,kwiboo.se,ideasonboard.com,ausil.us];
+	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,kwiboo.se,ideasonboard.com,ausil.us,oss.qualcomm.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -138,51 +143,33 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	DKIM_TRACE(0.00)[ausil.us:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.943];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-0.985];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ausil.us:email,ausil.us:dkim,ausil.us:mid]
 
-The Lontium LT8711UXD supports two modes of operation: autonomous mode,
-where it configures itself via strapping resistors, and I2C-controlled
-mode. Review of the earlier Orange Pi 5 Pro series raised the question
-of how a future board requiring I2C control should be handled, a second
-compatible with a driver or we make both work with a single compatible
+The Lontium LT8711UXD is a high performance two lane Type-C/DP1.4
+to HDMI2.0 converter, designed to connect a USB Type-C source or a DP1.4
+source to an HDMI2.0 sink. The device can be running uncontrolled or it
+can be attached over I2C, the bindings describe the uncontrolled mode.
 
-This patch set covers autonomous mode only. On the Orange Pi 5 Pro,
-resistors R9, R17, and R27 are unpopulated, which straps MODE_SEL low
-leaving the device invisible on the I2C bus; I2C control is not enabled
-on this board.
+Signed-off-by: Dennis Gilmore <dennis@ausil.us>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+---
+ .../devicetree/bindings/display/bridge/simple-bridge.yaml        | 1 +
+ 1 file changed, 1 insertion(+)
 
-The earlier review thread is at:
-https://lore.kernel.org/linux-devicetree/20260425031011.2529364-4-dennis@ausil.us/
-
-One non-obvious detail in the DTS patch: vcc3v3_dp carries
-regulator-always-on because simple-bridge only fires pre_enable once a
-modeset starts, but no modeset will start until the connector reports
-connected, and the connector won't report connected until HPD asserts,
-and HPD won't assert until the bridge is powered. Holding the enable
-line high from boot breaks this deadlock.
-
-Tested on Orange Pi 5 Pro with Linux 7.0: HPD asserts, EDID reads,
-link trains, and scanout reaches the display.
-
-Please take a look.
-
-Thank you,
-
-Dennis Gilmore
-
-Dennis Gilmore (3):
-  dt-bindings: display: bridge: simple: document the Lontium LT8711UXD
-    DP-to-HDMI bridge
-  drm/bridge: simple: Add the Lontium LT8711UXD DP-to-HDMI bridge
-  arm64: dts: rockchip: orangepi-5-pro: Add LT8711UXD DP-to-HDMI bridge
-
- .../display/bridge/simple-bridge.yaml         |  1 +
- .../dts/rockchip/rk3588s-orangepi-5-pro.dts   | 88 ++++++++++++++++++-
- drivers/gpu/drm/bridge/simple-bridge.c        |  5 ++
- 3 files changed, 91 insertions(+), 3 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml b/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
+index e6808419f625..752c736c8f85 100644
+--- a/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
+@@ -30,6 +30,7 @@ properties:
+           - algoltek,ag6311
+           - asl-tek,cs5263
+           - dumb-vga-dac
++          - lontium,lt8711uxd
+           - parade,ps185hdm
+           - radxa,ra620
+           - realtek,rtd2171
 -- 
 2.54.0
 
