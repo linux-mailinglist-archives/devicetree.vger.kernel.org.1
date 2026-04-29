@@ -1,185 +1,142 @@
-Return-Path: <devicetree+bounces-291659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291660-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KDsMJ/dL8mnNpQEAu9opvQ
-	(envelope-from <devicetree+bounces-291659-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 20:20:39 +0200
+	id 6Es6HuRO8mkapgEAu9opvQ
+	(envelope-from <devicetree+bounces-291660-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 20:33:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04B97498EB5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 20:20:38 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A66C499203
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 20:33:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0F344310A043
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 18:18:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 46F82303158A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 18:24:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857DB4218AA;
-	Wed, 29 Apr 2026 18:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35286421EEF;
+	Wed, 29 Apr 2026 18:22:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CbfBDsW/"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="SQVWa/55"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA6C413259;
-	Wed, 29 Apr 2026 18:18:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37E5B421EE5;
+	Wed, 29 Apr 2026 18:22:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777486690; cv=none; b=jMQ/W/eMFYhMvlE/uWjqB6J1oxTSSVQURMkS+gNI4NwgCrsnMLKJmONOxQnH/xfMGcPJ/a75n8Unx5sz4VIlxJ5fmo+eN3YDGXr5aoIucI5BUj1y83EE9a2DBQkf+7pU84VlT205glPt3w4s8zGKrXRlri99HuPqgrS+12yRnA0=
+	t=1777486930; cv=none; b=EPUVgkLZWESaugZlJmBQZz+E5dWif/6INUdJzsVoBUV0lzhWXnaW8eeFNbGAhHqfgT6LQv/PY4+SA0c51puqadhq3x9bFboE8Qz9xCCVsMvLuRUeo5KiFL1nHKQXNda8pvmr7Xy1CZbX2yzPREdlQoDwMhucONhR8f2znplLDNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777486690; c=relaxed/simple;
-	bh=UdSAZ4Ed89EsgnscyKgKTV5jZmvavrICMX4k55nyzeI=;
+	s=arc-20240116; t=1777486930; c=relaxed/simple;
+	bh=A2HWuygo9laZl+MF0ZT85lu9bwwS8oO/uA3OEJNjKOs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JgWH92ZzOF7LetPaAaRU9X3U4V2aNAAoxtvI5M9VYDJMk2n3DZz50ZEbaWdQjc3bzVff0pX4BXMVwwooswstGbcnMqrr6oV4kCLAHdSkdSW1C9fbQLsmyK/0w3KlFF9a+EO9Ld+HZYTWmmCKQs17I2t2sH/h5c//vM0IeS3BwKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CbfBDsW/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FD5BC2BCB8;
-	Wed, 29 Apr 2026 18:18:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777486690;
-	bh=UdSAZ4Ed89EsgnscyKgKTV5jZmvavrICMX4k55nyzeI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CbfBDsW/nyPye5VIbtgNiO28oc3SZxbKtVn2E3OWdbW/8KVI8GeIONNhieeZ/Z0hy
-	 rlkPXrjvjPGCFiouw+FTywdjwyj9DC5DHI9MSwgKGpRNCH71Z4gfLHRdEqkO8g2gqv
-	 rNq2ZrIotKFGd2U3KMTEk4auAnD9lH0Tou54X+TnEwUHXkYEAs329PYL4SGFgBepCR
-	 2o+A7bgoRIih32zJtE5xIj4gD0fGPr6IfvNH8+SCn1G8F+VJcg+n31KzDtD+Ziej9N
-	 gMCLSBlMxWQUvfsz3Wy20FMyFjWRirphFOCzPDs20giCnLZ6aNcuqksYnHX28BR9gX
-	 Hv5CBJqO5Kefg==
-Date: Wed, 29 Apr 2026 19:18:04 +0100
-From: Conor Dooley <conor@kernel.org>
-To: florin.leotescu@oss.nxp.com
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=NBOrlRxhaSzjv5bD2wWx6N3cdeCZ4KjkfKB7qWeni0lAMyfGsR7hZmWjXMPdySfQDv55B1yziM7xJ3qKSzjJfQl3ZIKhHPma7//tc5vHbFEkhNUk+8Ik3ZOSbooItQqibkOhIl16tkL0jiOyLqADtoSNRxn1mbDX7641Gq6Lwi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=SQVWa/55; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=z3GtHk/ol4lljLIonjZbUzzf+Kywq4ueWS/Omn2wpWg=; b=SQVWa/55JM8wQBVpqHDNM1xFfS
+	mXU4TJjeNC4nMrKXqeH6Pxpu44WvN93U2Dka+zbZRN6hDJAI/EfQr1KElAYio7tNyxC15K45AcvWc
+	EwYY1ynlGZTtB0O9GYa8BrqxnIE8+zcVB41N3akHQx8P4e4bI+Bb9cqlfks8drQY8Wfc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wI9Xo-000ZDq-JK; Wed, 29 Apr 2026 20:21:56 +0200
+Date: Wed, 29 Apr 2026 20:21:56 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Padhi, Beleswar" <b-padhi@ti.com>
+Cc: Shenwei Wang <shenwei.wang@nxp.com>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Michael Shych <michaelsh@nvidia.com>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	daniel.baluta@nxp.com, viorel.suman@nxp.com,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	festevam@gmail.com, Florin Leotescu <florin.leotescu@nxp.com>
-Subject: Re: [PATCH v7 2/3] dt-bindings: hwmon: emc2305: Add
- fan-shutdown-percent property
-Message-ID: <20260429-shiftless-docile-e57509e967c4@spud>
-References: <20260429065955.2113012-1-florin.leotescu@oss.nxp.com>
- <20260429065955.2113012-3-florin.leotescu@oss.nxp.com>
+	Bjorn Andersson <andersson@kernel.org>, Frank Li <frank.li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	dl-linux-imx <linux-imx@nxp.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v13 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
+Message-ID: <9837070a-f096-4e8f-a83d-efda0570e62a@lunn.ch>
+References: <20260422212849.1240591-4-shenwei.wang@nxp.com>
+ <22fb5fac-2568-42be-a7e3-7e89d0017eb3@ti.com>
+ <PAXPR04MB91850A11C58419C03909145F89362@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <6412a758-4560-4cf1-a0d0-5b24d1a715f1@lunn.ch>
+ <PAXPR04MB9185009A17DFDF3D6C8B44E789362@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <6e01e114-e336-4744-b6b4-563ec42e321b@lunn.ch>
+ <PAXPR04MB9185A098D894B6A6EBCC13F889372@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <afImuoeHolxGgw3H@p14s>
+ <PAXPR04MB9185F2F6DDB55AC56C92D63B89342@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <b80e17fb-7986-4a95-a845-48a7d318ff33@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="O/6ha+tJR4ql1YNr"
-Content-Disposition: inline
-In-Reply-To: <20260429065955.2113012-3-florin.leotescu@oss.nxp.com>
-X-Rspamd-Queue-Id: 04B97498EB5
-X-Rspamd-Action: no action
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.24 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
-	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291659-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[roeck-us.net,kernel.org,nvidia.com,vger.kernel.org,nxp.com,lists.infradead.org,lists.linux.dev,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	NEURAL_SPAM(0.00)[0.909];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email,nxp.com:email]
-
-
---O/6ha+tJR4ql1YNr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <b80e17fb-7986-4a95-a845-48a7d318ff33@ti.com>
+X-Rspamd-Queue-Id: 8A66C499203
+X-Rspamd-Action: no action
+X-Rspamd-Server: lfdr
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-291660-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[nxp.com,linaro.org,kernel.org,lwn.net,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
-On Wed, Apr 29, 2026 at 09:59:54AM +0300, florin.leotescu@oss.nxp.com wrote:
-> From: Florin Leotescu <florin.leotescu@nxp.com>
->=20
-> The EMC2305 fan controller supports multiple independent PWM fan
-> outputs. Some systems require fans to enter a defined safe state
-> during system shutdown or reboot handoff, until firmware or the next
-> boot stage reconfigures the controller.
->=20
-> Add an optional "fan-shutdown-percent" property to fan child nodes
-> allowing the PWM duty cycle applied during shutdown to be configured
-> per fan output.
->=20
-> Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
+> About this, we only need to do this because you are defining the gpio
+> controller instances "statically" in the device tree. I understand gpio
+> nodes can act as providers, but I do not see any device referencing the
+> gpio nodes you are defining in the device tree.
 
-Why didn't you pick up my tag from here:
-https://lore.kernel.org/all/20260407-slang-scoff-795164352c62@spud/
+They probably come later, and a board specific. The GPIO controllers
+are probably SoC specific, so can be defined at the SoC .dtsi
+level. The users are then in the board .dts files.
 
-> ---
->  .../devicetree/bindings/hwmon/microchip,emc2305.yaml      | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.ya=
-ml b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> index d3f06ebc19fa..8c2548539d7f 100644
-> --- a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> @@ -54,6 +54,12 @@ patternProperties:
->            The fan number used to determine the associated PWM channel.
->          maxItems: 1
-> =20
-> +      fan-shutdown-percent:
-> +        description:
-> +          PWM duty cycle in percent applied to the fan during shutdown.
-> +        minimum: 0
-> +        maximum: 100
-> +
->      required:
->        - reg
-> =20
-> @@ -80,12 +86,14 @@ examples:
->              fan@0 {
->                  reg =3D <0x0>;
->                  pwms =3D <&fan_controller 26000 PWM_POLARITY_INVERTED 1>;
-> +                fan-shutdown-percent =3D <100>;
->                  #cooling-cells =3D <2>;
->              };
-> =20
->              fan@1 {
->                  reg =3D <0x1>;
->                  pwms =3D <&fan_controller 26000 0 1>;
-> +                fan-shutdown-percent =3D <50>;
->                  #cooling-cells =3D <2>;
->              };
-> =20
-> --=20
-> 2.34.1
->=20
+This is how GPIOs are typically used. Same will be true of I2C, the
+SoC provides the I2C adaptor, the boards have devices on the bus,
+again, described in DT.
 
---O/6ha+tJR4ql1YNr
-Content-Type: application/pgp-signature; name="signature.asc"
+       Andrew
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCafJLXAAKCRB4tDGHoIJi
-0gavAQCPTKrm8kliUt98l4rMdBj0rVjas+i0gGIqNsxjP1AXLgD/Vp1BZn+P5YxZ
-Odh6zOWq9LiWRscCj2gLht0B4n8sWQk=
-=7V1K
------END PGP SIGNATURE-----
-
---O/6ha+tJR4ql1YNr--
+     
 
