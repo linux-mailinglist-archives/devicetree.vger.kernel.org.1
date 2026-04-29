@@ -1,151 +1,271 @@
-Return-Path: <devicetree+bounces-291477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291479-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SH1uF/TX8Wm3kgEAu9opvQ
-	(envelope-from <devicetree+bounces-291477-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 12:05:40 +0200
+	id yGEiO03Y8Wm3kgEAu9opvQ
+	(envelope-from <devicetree+bounces-291479-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 12:07:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55A7F49292C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 12:05:38 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 496A0492951
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 12:07:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8B45C30142B0
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:51:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 873C73035801
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 10:03:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 789013B27CA;
-	Wed, 29 Apr 2026 09:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LcBn0mGB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48454347518;
+	Wed, 29 Apr 2026 10:03:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 557B933B97A
-	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 09:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD6F628B4E2
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 10:03:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777456272; cv=none; b=lf0cIE5aeIkaFaPml73DStMQhx9nH63UDd69aEEKNYq9szRr5H5r9ymq5MiRBrZ10cVeJmwUkDLuFLT3zX7YJqDCQeRaFI11znyPyOVHyUZQ+DdYeWicrq6+yqZT66V3T9IVyv4z2UCatGhXs30Nkx4HmEQn+nEW8GxPyo2XUMs=
+	t=1777456988; cv=none; b=RuTRpC7uW6Yhfj5US9M8Ln7X+raylJDdTPclVoqlgt9UP2h+BAH35OTrN/F/Wy9ZBxAQr89UDpv1PJvKwofwIBvEoxgLKEZ67D93+9P98ElGH01Mt39mIG87UIb7RSXLADw5HulGBCiKXs4Py9TnKPpwUNq5m7UTGXlC/RLy3c0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777456272; c=relaxed/simple;
-	bh=xl75P3m2W4e1+CXN4v9hPNik1UQ7Md24Me8vwhtUHnI=;
+	s=arc-20240116; t=1777456988; c=relaxed/simple;
+	bh=Nn0K43nvpoluFLl6ARYq8Tlw/SbTNjxDaYPa0VhNrN8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TKI+97DqOJszImttWjMHxQGex2WSxsnYSDC5k7ivfZtPlaEspDcJQ6UWkZLiGML7ZduTA0H30vxZAzAlDcekWAuAKBlpwzHaS510X3ZxkiCNRKVmRNrMnGZY0Qkc1Ra/LDc6iF/4IdzdJXHa0paPdU5rlStMILU6JqBl8PFeZF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LcBn0mGB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26D6FC2BCC9
-	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 09:51:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777456272;
-	bh=xl75P3m2W4e1+CXN4v9hPNik1UQ7Md24Me8vwhtUHnI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=LcBn0mGB0AkVtEMj9jrv7LeAZPOb3o0WVtpCkcA8YUUpgqqu5YaW9cwe45jw6Hn9v
-	 XRP0G7QuQXX04Mc35yvP0Q0Ux6AiN9av9IopvzVFxea0Zfb+Gobi71lWWZctzlxdda
-	 c+QC7QK4PZH3/R0QZUWe9QuFu9ldriWdkXDG2kXFHOFjSt+WaypYdUH0gRKSknIhLw
-	 o7ENkA/O+28yy8X5aMZlLDh+RUEdepHYi67UC5vQyGVKBdozKFEdAO+qYPXNGgXiv8
-	 KSHtcbP8ufBNwfHhyUT9Oj2yrr5x5dpQA2fBuqqR9yUA/hplpa3siZWAbrXSgu1jTu
-	 8uidrtuT1gzvg==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5a2c500750dso14189063e87.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 02:51:12 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ8fbtRXiklMziqowPPu+AglPxmLfShOLn7Hw8F6hHgiElFYZADnoH2KvZAmu+plqLs37E6oHHvcles8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxodNQISqd+wRy9z5EXEEG17tUw8ZuXteQBAgvxAhDFKCS2uM8F
-	uftToduvj7fnJ8yejSgbN+5Rr857rhAht+pSHeQQJzWv7PFYpB66iUvvNgttk0yvB03/2ekIsyd
-	ydDw/hqx1E102oOYaPYpNaasC/C+0IDvqaZ3NzcAAAg==
-X-Received: by 2002:a05:6512:15a4:b0:5a2:c0d8:e634 with SMTP id
- 2adb3069b0e04-5a746409fc9mr3018093e87.8.1777456270423; Wed, 29 Apr 2026
- 02:51:10 -0700 (PDT)
+	 To:Cc:Content-Type; b=TY/Tf4MeDI8OEHS6qYAPEcnHZhK15n9GttdAGX85JtJKwrfIafhg3hVo+MNgW3sQivEaZKxRlHtrQIPu1lRCCUoZaIXRzCza54Biz/OtB60Oq5UMVSJr6PfyomQHvpi3aU+/wMgec8pftVcqMVKpHR6r1gRaYChaI8kVGJvKf0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-8ea8563c693so1143573985a.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 03:03:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777456986; x=1778061786;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=727TQd0c+qHkAEInnHUXDqUTv77oNJr8Ljf4nlxgtUQ=;
+        b=DSE/knVWyCFG3VpRg+pj2fd8MOJHKrC/22dv2PSKnTYH6bGKiCnWgwrXn8WRS0hhNS
+         NcVQm+nqoj71oaSa9gGRt6lw1FzpQ7VNU53tiUoS1/7r+ze/QrwR9fVqhSZJYk/CU0gU
+         4K/0l1U7cwK01/ScgW+Voy3TB2N7FbiuM2oONpNz4lSIO746TnzUivVPd0rnUS0aEBb0
+         3mg7ynne2DlNXNuCQOU8Ac67w/Q0Y1EhGiQUDQ6e5whvqw5oeL8jCPyhj8/NMTwkfJp9
+         ok8KZ7c2Nhyy+SbSwBdC0cyLGdiIUWfke/Q3DJYw6ajlMd8HgceIPqbOmdliVvW7veqT
+         P5VA==
+X-Forwarded-Encrypted: i=1; AFNElJ/VX2I4IG1NkHZoJn2qYrDB3dGNrBFH1FtKL8/kEmkE9ycaaLIfMdlcfkvbOS9a7m2S4Ws5CO8tT1Ig@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbmPd+5XFWpvKzrEU3PPN4OPLB7dTRTpD1BVjq0DvAQEdnXeN5
+	+U+HSAqQSbBTiYYHYrG3hmXDOORbuKoXj1s2Kew0r+OwzKNX15Ggyrgz71CVdiskRe0=
+X-Gm-Gg: AeBDiesZsJgbqylUKM6BJXynBA5lKdkcVFCSdFIDsCwuAY5VvGpSqCg30IHoVdVbSau
+	cubnCmve/SSWBVCuUuysjx7z955W/PplAiJP/IENO180wln0Qz1+5JdOx76cgzrKwBd/fujj/06
+	6ychSS3iNmOXpmhGCJ+bPBIRZ07NvqEcpC/dMY6nQjYMr8uXtZECwFPaco+pqtVwbqtm/wgv0rb
+	lu3y+1Wm/zqvrsRkvGviu/sE19T8GIO779+Ohk8bcfrLQVKjsc5sEs80NdFr0jkzpwTQfj1P4pW
+	SuM2CvNKWruniL62He2Z/cNb7mWfKyprFdwNbFAQqwdzZVKUGYWRT91F+MczDgCejs4MhmRe8nC
+	HecnnVKGNsulkEU4eQQ7QL7IFMv4PVewdo4RBHe0PcjR4u2a3ktE8rK9kQRp5PUiqYknSSrfIMl
+	MrhApcgo3kZ9paPZB6hLWDSNSRaXRII5Ys8Tou7/6gSDQXgrSq137+9PvBPpW0bCMe/rN9CQ/CU
+	0k=
+X-Received: by 2002:a05:620a:c4a:b0:8ee:630e:350a with SMTP id af79cd13be357-8f8f6d54f33mr440303285a.58.1777456985434;
+        Wed, 29 Apr 2026 03:03:05 -0700 (PDT)
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com. [209.85.222.179])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8f93f582e46sm131005885a.25.2026.04.29.03.03.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Apr 2026 03:03:05 -0700 (PDT)
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-8f0a87e23daso772936285a.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 03:03:05 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/i82ameOcvadZYQ2+JOx98M8oKhOwGaVGJU/+KyenSE0OYxRY7pfKoym48bwcuLnPmoXBbMxILrNMI@vger.kernel.org
+X-Received: by 2002:a05:6102:598e:b0:61a:c2e2:932e with SMTP id
+ ada2fe7eead31-629272e37fbmr1942655137.22.1777456671431; Wed, 29 Apr 2026
+ 02:57:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260427-arm-psci-system_reset2-vendor-reboots-v21-0-dcf937775e73@oss.qualcomm.com>
- <20260427-arm-psci-system_reset2-vendor-reboots-v21-8-dcf937775e73@oss.qualcomm.com>
- <CAMRc=Mf+-04Zr7jjRoaxTzO3LKSMyQ7DzxJc=dHNSyThEUiq_Q@mail.gmail.com>
- <c0677503-8073-4940-8eb0-c06b34f843d2@oss.qualcomm.com> <CAMRc=MdxpSXiqAn-8Az4ig4N8TFVdE9psacPVG9J9KehuFnbwA@mail.gmail.com>
- <d6112b9c-01ea-483c-98fe-b480e78872e5@oss.qualcomm.com> <ce92a493-5016-41a2-8337-d2227cdf760a@oss.qualcomm.com>
-In-Reply-To: <ce92a493-5016-41a2-8337-d2227cdf760a@oss.qualcomm.com>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Wed, 29 Apr 2026 11:50:58 +0200
-X-Gmail-Original-Message-ID: <CAMRc=Md_OON4cAGcJ=jDu=VY_mw0qa8HPz4VCDxYLpr7JMxLRw@mail.gmail.com>
-X-Gm-Features: AVHnY4LjKEpG9nYw8-Iw2BW7MqAsGu51jz6EVLHSjBeVIe-JDK-BL3dxnn93Q4c
-Message-ID: <CAMRc=Md_OON4cAGcJ=jDu=VY_mw0qa8HPz4VCDxYLpr7JMxLRw@mail.gmail.com>
-Subject: Re: [PATCH v21 08/13] mfd: core: Add firmware-node support to MFD cells
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Andre Draszik <andre.draszik@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, 
-	Srinivas Kandagatla <srini@kernel.org>, Sebastian Reichel <sre@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@kernel.org>, Christian Loehle <christian.loehle@arm.com>, 
-	Ulf Hansson <ulfh@kernel.org>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Souvik Chakravarty <Souvik.Chakravarty@arm.com>, 
-	Andy Yan <andy.yan@rock-chips.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	John Stultz <john.stultz@linaro.org>, Moritz Fischer <moritz.fischer@ettus.com>, 
-	Sudeep Holla <sudeep.holla@kernel.org>
+References: <20260419193718.133174-1-marek.vasut+renesas@mailbox.org> <20260419193718.133174-2-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260419193718.133174-2-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 29 Apr 2026 11:57:39 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUzRoELGedrM3ELUjZr-N6DnF4TXtdQR_k74Xmfppu9fA@mail.gmail.com>
+X-Gm-Features: AVHnY4IlsJzOGR_PMCF4iS-Uk9l-2ljuIGS7ZCYV7JbOA-5TFuOsoyAbIfAM7Nc
+Message-ID: <CAMuHMdUzRoELGedrM3ELUjZr-N6DnF4TXtdQR_k74Xmfppu9fA@mail.gmail.com>
+Subject: Re: [PATCH 1/7] dt-bindings: display: renesas,du: Document Renesas
+ R-Car R8A779MD M3Le
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	David Airlie <airlied@gmail.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Simona Vetter <simona@ffwll.ch>, Stephen Boyd <sboyd@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 55A7F49292C
+X-Rspamd-Queue-Id: 496A0492951
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [4.84 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291477-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,broadcom.com,kernel.org,oss.qualcomm.com,linaro.org,linuxfoundation.org,arm.com,arndb.de,rock-chips.com,gmail.com,ettus.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,ideasonboard.com,renesas.com,baylibre.com,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org];
+	TAGGED_FROM(0.00)[bounces-291479-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[34];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	GREYLIST(0.00)[pass,body];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	DMARC_NA(0.00)[linux-m68k.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_SPAM(0.00)[0.805];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,mail.gmail.com:mid]
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.3:email,0.0.0.2:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,linux-m68k.org:email,mailbox.org:email,0.0.0.0:email,0.0.0.1:email]
 
-On Wed, Apr 29, 2026 at 11:46=E2=80=AFAM Shivendra Pratap
-<shivendra.pratap@oss.qualcomm.com> wrote:
->
-> >>
-> >> If set, it would be called from MFD core and would do the name lookup
-> >> and return the fwnode which would then be assigned to the cell device?
-> >
->
-> Or should we just drop this patch for fwnode in mfd-core?
->
-> Export a new call in reboot-mode framework as:
-> reboot_mode_register_node(struct reboot_mode_driver *reboot,
->                    struct device_node *np / fwnode)
->
-> Use the parent node in psci-reboot-mode and find reboot-mode and call
-> reboot_mode_register_node?
->
+Hi Marek,
 
-No, I think the reboot-mode device (as pointed to by the dev field of
-struct reboot_mode_driver) should be associated with the right fwnode
-from the start so it should be handled in MFD core.
+Thanks for your patch!
 
-I'm of course open to other ideas on how to do it.
+On Sun, 19 Apr 2026 at 21:37, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Extend the Renesas DU display bindings to support the Renesas R-Car
+> R8A779MD M3Le SoC. This SoC is similar to R-Car R8A77965 M3-N SoC,
+> except the HDMI port@1 is not present.
 
-Bart
+"and DU1 is unused." (whatever that may mean...)
+
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+
+> --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
+> +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> @@ -42,6 +42,7 @@ properties:
+>        - renesas,du-r8a779a0 # for R-Car V3U compatible DU
+>        - renesas,du-r8a779g0 # for R-Car V4H compatible DU
+>        - renesas,du-r8a779h0 # for R-Car V4M compatible DU
+> +      - renesas,du-r8a779md # for R-Car M3Le compatible DU
+
+I am not sure you need a new compatible value: is the DU really
+different than on R-Car M3-N, or does it just lack some wiring? ...
+
+>
+>    reg:
+>      maxItems: 1
+> @@ -890,6 +891,75 @@ allOf:
+>          - reset-names
+>          - renesas,vsps
+>
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,du-r8a779md
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 3
+> +          items:
+> +            - description: Functional clock for DU0
+> +            - description: Functional clock for DU1
+
+... E.g. you still have a module clock for DU1 (the documentation
+for R-Car M3Le does not mention any changes in clocks).
+
+> +            - description: Functional clock for DU3
+> +            - description: DU_DOTCLKIN0 input clock
+> +            - description: DU_DOTCLKIN1 input clock
+
+... E.g. the package is documented to have pin DU_DOTCLKIN1.
+
+> +            - description: DU_DOTCLKIN3 input clock
+> +
+> +        clock-names:
+> +          minItems: 3
+> +          items:
+> +            - const: du.0
+> +            - const: du.1
+> +            - const: du.3
+> +            - pattern: '^dclkin\.[013]$'
+> +            - pattern: '^dclkin\.[013]$'
+> +            - pattern: '^dclkin\.[013]$'
+> +
+> +        interrupts:
+> +          minItems: 3
+> +          maxItems: 3
+
+... E.g. you still have an interrupt for DU1 (the documentation
+for R-Car M3Le does not mention any changes in interrupts).
+
+> +
+> +        resets:
+> +          minItems: 2
+> +          maxItems: 2
+> +
+> +        reset-names:
+> +          items:
+> +            - const: du.0
+> +            - const: du.3
+> +
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              description: DPAD 0
+> +            port@1: false
+
+Perhaps port@1 can be present (and thus required), but left unconnected
+instead?
+
+> +            port@2:
+> +              description: LVDS 0
+> +            port@3: false
+> +
+> +          required:
+> +            - port@0
+> +            - port@2
+> +
+> +        renesas,cmms:
+> +          minItems: 3
+> +          maxItems: 3
+> +
+> +        renesas,vsps:
+> +          minItems: 3
+> +          maxItems: 3
+
+Your arch/arm64/boot/dts/renesas/r8a779md.dtsi only has two entries
+in renesas,cmms and renesas,vsps?
+
+> +
+> +      required:
+> +        - clock-names
+> +        - interrupts
+> +        - resets
+> +        - reset-names
+> +        - renesas,vsps
+> +
+>  additionalProperties: false
+>
+>  examples:
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
