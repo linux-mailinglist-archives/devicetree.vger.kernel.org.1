@@ -1,105 +1,140 @@
-Return-Path: <devicetree+bounces-291269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291246-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QJ+7ALd/8Wk2hQEAu9opvQ
-	(envelope-from <devicetree+bounces-291269-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 05:49:11 +0200
+	id F1EGGYpq8WnhggEAu9opvQ
+	(envelope-from <devicetree+bounces-291246-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 04:18:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A797E48EC70
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 05:49:08 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB6248E474
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 04:18:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 65EF0302D876
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:48:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DE5FC30142BB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 02:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89EE3393DC7;
-	Wed, 29 Apr 2026 03:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E4AA366823;
+	Wed, 29 Apr 2026 02:18:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jpe+EyN5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E5IHIhKt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 646CE3932E8;
-	Wed, 29 Apr 2026 03:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ADC023EAB7;
+	Wed, 29 Apr 2026 02:18:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777434430; cv=none; b=YYBxeuwyArhdPrRKU+Tbqeqe4m8oB97a5csSkvS6j1KA3S9ZUfc0ibp2jF0xGUf0U6mtmmOEoOj/CnIG7guwlc3n8SeZWy8H6xGoAlP3ORAfZ0jxHzOxt4EZHB9xBud4akZrnUq71P0flMDYfNLlBT9BgQo9nudhKtebV9Z7nx8=
+	t=1777429124; cv=none; b=e02CfMnIIDv6Amb4aGRY2S0SrxqQNUD0ig1yHFqgP/EoBhUYEtLyy5M0Pb4odMT/JC7DnQQuy3zWNxWTz9Opj3NNqiBi4t2qSn5dFsN3dCuIYfFK+xHEbQChbsLmHuVRagjGEsNGQ23ufPOoYKopdpFUbEmiOoQukFUczTZtyaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777434430; c=relaxed/simple;
-	bh=i4i7Xm8YltywNE9Vi6II5NYEZBD1iQLfp4F1NTKsRcg=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=PLFRL/pXAoCJvC+BvCyAfv8ZBC3ana61kqSkLGqCYqNsG4NrSazrsARpmkdfDgGFX4EtHDG9VL2fDNaiv2y3mDJ62XM7DkKSj321LaYX1h70d3MAnsGCmVWurkx9H/hFP9QKgn8hzbwfiWjIfwhLgf7bml7sYqM+0vI2HNbolmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jpe+EyN5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F2DDC2BCC4;
-	Wed, 29 Apr 2026 03:47:10 +0000 (UTC)
+	s=arc-20240116; t=1777429124; c=relaxed/simple;
+	bh=vGSVbfAVTOpSVg1fm2QT59qVSHoz0uJHSJXD4xG06mM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bgl2OZzbetplOSy9cyT1Ihfl7Rq3wj3k5U6BYUVSzfr3gR5zpYtstLnstf/Ez2WFRJCIK4w5j4L5ZGd7fKDQbu/wVmrAlQ/c5JMFzfsz6OU2KvdLZ5KX3YVUAp9uY+q2KUXz2VlA9nqySVR6YNFbnhm/cFrv1efgn4cwALNbRm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E5IHIhKt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA7D2C2BCB7;
+	Wed, 29 Apr 2026 02:18:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777434430;
-	bh=i4i7Xm8YltywNE9Vi6II5NYEZBD1iQLfp4F1NTKsRcg=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=jpe+EyN5vlo3AFXgHK80+TWvubFVayxRprfSNv8o9GmYj7I4Lv1FpYN58AzXDR5iZ
-	 nkU614mr8rMANZ6n5xZhGTkB4C/dMRy0UxFVxLk1L4QfHaP26HC9x+HtwVZt9erDHV
-	 JUPvAv5QarVcjNpLq7S2sOWEc2g4IminhU/dWysUgAOJutxqaf5PwgAzdFQdV6CveB
-	 NUfniOdOAjs9MIK6e8OP/76KFMRfaXLGrxS72ZKcyoHMOuljn/RZjYh99c5kctuovW
-	 D4qPtIljLmQUCjtyda761hBo2Ih7NcC66YF2ePo6VzP3/lVcFbh1b4ZPezUy/BXHy2
-	 hOmCKJgSP8Jqg==
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1777429124;
+	bh=vGSVbfAVTOpSVg1fm2QT59qVSHoz0uJHSJXD4xG06mM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=E5IHIhKtVgkAVtcj1ExEsmkatJgBLFWB7W9wBJlC1v175fncWjLK0FcaT/THfDB8Q
+	 VceqdeqaWKsSf351p1f9iwXkteowC68OHYcfw86IEP8dw2NXwHl6kYNJbT3i3wI28T
+	 3ibahPTbSiE8K3qbPhNizRiCkkHM8cDSXUuH35Wb+FrWk4m4ewt5ZYdp3B0BiFP22k
+	 1TWQQ1SVddrFv1p6JF8bNLO3+o74cQgqM3SqXqHFUczuwnDHyPMADEoJxurpSu6I5E
+	 YUIv/EubEx0sZSIXd4lUgeUiJTso+ndSSKU2ve1p6UwW+eO/f8w3hjZlHsrJ4KTJj/
+	 VceEGxELdw9Qw==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id BA2491AC584E; Wed, 29 Apr 2026 03:18:40 +0100 (BST)
+Date: Wed, 29 Apr 2026 11:18:40 +0900
+From: Mark Brown <broonie@kernel.org>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>, Yixun Lan <dlan@kernel.org>,
+	Jinmei Wei <weijinmei@linux.spacemit.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 5/7] ASoC: dt-bindings: add fixed-sample-rate property
+ for SpacemiT K1/K3
+Message-ID: <afFqgF6ZRwYdfUmL@sirena.co.uk>
+References: <20260429-k3-i2s-v1-0-2fe99db11ecb@linux.spacemit.com>
+ <20260429-k3-i2s-v1-5-2fe99db11ecb@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260414-pxa1908-clk-reset-v1-1-94bae5f3a8cf@dujemihanovic.xyz>
-References: <20260414-pxa1908-clk-reset-v1-0-94bae5f3a8cf@dujemihanovic.xyz> <20260414-pxa1908-clk-reset-v1-1-94bae5f3a8cf@dujemihanovic.xyz>
-Subject: Re: [PATCH 1/4] dt-bindings: clock: marvell,pxa1908: Add #reset-cells
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Karel Balej <balejk@matfyz.cz>, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, Duje =?utf-8?q?Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-To: Conor Dooley <conor+dt@kernel.org>, Duje =?utf-8?q?Mihanovi=C4=87?= <dujemihanovic32@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>
-Date: Tue, 28 Apr 2026 19:08:36 -0700
-Message-ID: <177742851672.5403.5765326540508025807@localhost.localdomain>
-User-Agent: alot/0.12
-X-Rspamd-Queue-Id: A797E48EC70
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="IS1KD8op5z8FDjax"
+Content-Disposition: inline
+In-Reply-To: <20260429-k3-i2s-v1-5-2fe99db11ecb@linux.spacemit.com>
+X-Cookie: 667:
+X-Rspamd-Queue-Id: 5BB6248E474
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291269-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,baylibre.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-291246-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,perex.cz,suse.com,kernel.org,linux.spacemit.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sboyd@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dujemihanovic.xyz:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,localhost.localdomain:mid]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sirena.co.uk:mid]
 
-Quoting Duje Mihanovi=C4=87 (2026-04-14 12:51:50)
-> From: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
->=20
-> The APBC and APBCP controllers have reset lines exposed. Give them
-> a #reset-cells so that they may be used as reset controllers.
->=20
-> Signed-off-by: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
-> ---
 
-Applied to clk-next
+--IS1KD8op5z8FDjax
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Wed, Apr 29, 2026 at 09:38:50AM +0800, Troy Mitchell wrote:
+> Add the optional spacemit,fixed-sample-rate property. When multiple I2S
+> controllers share a common bclk, this property constrains all
+> controllers to the same sample rate. This applies to both K1 and K3
+> SoCs and is only needed when two or more I2S controllers are active
+> simultaneously.
+
+This doesn't seem controller specific, it should be factored out into
+the core - the same issue will apply with any system sharing a BCLK.
+
+--IS1KD8op5z8FDjax
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnxan8ACgkQJNaLcl1U
+h9Ctsgf7BigM6trDym58z1FxPiU6RC6NIViof8JRu2+HoU5tOUI3IEfmeCu5RPjz
+kNaDvDYvJRCpUnWNySV2bzDhChyCYHDeN4aReVbA4sqcgV8abNBd4evnVJ7gIbLX
+YmZuymQocJ1SHzmJebkzMw+eJhTTGnMGKutZi6Mb+wHsfeqjZAJJUpsYE81dLG3Q
+sHhkHg1pccPmLig8OiiCBsy0tpkwhOnTyM8Z4WQKi8qgvkiGKR0/fwbefUqRyETf
+lNO4qPKH9aXZJ4BpyvM+sXdiKGxLTny65mqBGCpyLwhKivhwzFHlXf8Lsy8kvJZa
+hJsLtDneM5uQH6jSfZU/w5hUU0Y5lA==
+=d0Ef
+-----END PGP SIGNATURE-----
+
+--IS1KD8op5z8FDjax--
 
