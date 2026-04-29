@@ -1,160 +1,157 @@
-Return-Path: <devicetree+bounces-291428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291424-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UP+EEvnJ8Wn+kQEAu9opvQ
-	(envelope-from <devicetree+bounces-291428-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:06:01 +0200
+	id gNyGCO7J8Wn+kQEAu9opvQ
+	(envelope-from <devicetree+bounces-291424-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:05:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 036BE49187B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:06:00 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E0F49185E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:05:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A89F83006143
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:05:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id ABD4F300D907
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCFC13BED37;
-	Wed, 29 Apr 2026 09:05:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26ECA3BBA0A;
+	Wed, 29 Apr 2026 09:05:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="ePM4MGVp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hvc7elpg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF14C3A544A;
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D082F3B9D9F;
 	Wed, 29 Apr 2026 09:05:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777453541; cv=none; b=mmYqEbcWAuApZky2zrZvlT6y/Z70iVBW3JgYuef28tyet4wZrIVc0OXRSb8YvLv34KfrOq0mAKYvAt2tb2h+rrisDOmRQuqE2buAY51rJ0JBWdP8COcMV+tpgHoedHI5SQf3YvD0Jk9CDtEmGDw/QSYS3JgkCxBQ9J5dDpYcSrk=
+	t=1777453540; cv=none; b=gWN42vCNY6Qr52DEciPBGP3yyM0e9MF+X4jdifbEOdEboyvkETVNE+DELsVBPiZO9myP4XFqvBOxT1iFStsNWm5Ity7lF7nmnusTF/Cwkln+LM5q68s20y14vpqDE+Phws4I1Kvkm3cJ+LkN9v7JsOq8qSRXixhx2H8r5dlnk5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777453541; c=relaxed/simple;
-	bh=+dtQ3f+XBoxv3HZDucz50ukJ2U/SQ+5U7lcx9cpy2/w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kxwXuZcme6XRIFGDGEZNcSBVvg/VCrfGGFCty6ts3+gYOjqvHoEjp5DWJvGeO4xUk3X9RlwspiqzWylBe8+KGjntbNgVk4lgeGJZs52+TXR16WrVWGAc6+IjGDxpB1EGA9yi9OcZ4lLJoZCqSDBrkbSKPqK28boSMzWgHOQzfY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=ePM4MGVp; arc=none smtp.client-ip=218.76.62.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ultrarisc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:From:Date:Subject:
-	MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:
-	References:In-Reply-To:To:Cc; bh=W6qFc8IOjX0c5M+yiuQoc29Iohko0me
-	7jng1y1x4BCM=; b=ePM4MGVpf9924uFeoKwkWH6Sw4vL3/gPeI1GfCL12EStSbP
-	mLaA4gHrT+tyEcROYfbFJQoPrdeNMIRZ+L2VmlKximQqTpTATymifgNMpnxvFwsg
-	HO//ddNKLQe7M8nRj50l8F4ogjZwl1Zz2lohXr6s6j7x1laOBto2z/5+B+/A=
-Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwAnYUL1yfFp_SQDAA--.1731S6;
-	Wed, 29 Apr 2026 17:06:10 +0800 (CST)
-From: Jia Wang <wangjia@ultrarisc.com>
-Date: Wed, 29 Apr 2026 17:05:16 +0800
-Subject: [PATCH v6 4/4] serial: 8250_dw: Use a fixed CPR value for
- UltraRISC DP1000 UART
+	s=arc-20240116; t=1777453540; c=relaxed/simple;
+	bh=1hxYCiayBlxyU/sHOL5JNJjVec/HYOBaNVT0PyswTsY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gNkyNslrhy/mFoeIR1RnogYuvGRghiL4Fvjz/IVG2zEdH4ciYWnXjc9y0Lew/Dyl0qxhaFFhkxKD5NQDJ5mo327ZsI+jmqL2YXhvgyx5MZqONCKc5BBN5AMHFFtgMGvh0gvNfpQdVvf58/7L+aUYsYx+R07X1GHcnrVdYEPmhj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hvc7elpg; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1777453539; x=1808989539;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=1hxYCiayBlxyU/sHOL5JNJjVec/HYOBaNVT0PyswTsY=;
+  b=hvc7elpgxIqMjNz+DeWzJlgEf2LvaJh2Qp3RBe7dSvEev95xhtZ7p2vJ
+   s5jjIqajDqmpY6yGJ0R8TjZdRNk3R0+0Su3lfYPT2WeEFm+T2mLQK12mj
+   z51plgMr//3PXPGWVoK+YQN8w/Hz4udeZdAEDDwMGcKk8uKJ55ZqXVtmH
+   2R3VKyiN9IUu1ZUo7BpG4UdHsXhgrQoQhvsp70O161IPzPS3fVvkPHMbq
+   PUmCvQ244YiAwnTmuHdVFpuNNW4a04LCw1kaKEzvZU5vC/hqWvMUsa7RC
+   7lHwUThIJkZ01f07Xl1Fz24IxyfkaFRNEzjHsI1xIG2hvlaDN3O6wrSZK
+   g==;
+X-CSE-ConnectionGUID: 233sDmciSemBTfMHOKcvPQ==
+X-CSE-MsgGUID: uzpZyJjhRuiJMsE6eX9pVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="88975639"
+X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; 
+   d="scan'208";a="88975639"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2026 02:05:38 -0700
+X-CSE-ConnectionGUID: UEKWoQTOS4SMxFcTkePYlw==
+X-CSE-MsgGUID: hxUwmqDhRbaVY3Ybs6Knpg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; 
+   d="scan'208";a="234080178"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.245.141])
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2026 02:05:35 -0700
+Date: Wed, 29 Apr 2026 12:05:32 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Jia Wang <wangjia@ultrarisc.com>
+Cc: Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	LKML <linux-kernel@vger.kernel.org>,
+	linux-serial <linux-serial@vger.kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/4] serial: 8250_dw: build Renesas RZN1 CPR value
+ from DW_UART_CPR_* definitions
+Message-ID: <afHJ3DArX34FQMuY@ashevche-desk.local>
+References: <20260428-ultrarisc-serial-v5-0-97de63b1e3eb@ultrarisc.com>
+ <20260428-ultrarisc-serial-v5-2-97de63b1e3eb@ultrarisc.com>
+ <afBhkbGLsuqUitOl@ashevche-desk.local>
+ <23c80500-f2c1-0eb3-f640-00f7b108059b@linux.intel.com>
+ <177736726936.2886867.7725295920724488690.b4-reply@b4>
+ <afCS7GEG7gtyC7RH@ashevche-desk.local>
+ <177742420562.3222151.9689419292413018986.b4-reply@b4>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260429-ultrarisc-serial-v6-4-b2c852e0c4c3@ultrarisc.com>
-References: <20260429-ultrarisc-serial-v6-0-b2c852e0c4c3@ultrarisc.com>
-In-Reply-To: <20260429-ultrarisc-serial-v6-0-b2c852e0c4c3@ultrarisc.com>
-To: =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- Jia Wang <wangjia@ultrarisc.com>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777453513; l=1792;
- i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
- bh=+dtQ3f+XBoxv3HZDucz50ukJ2U/SQ+5U7lcx9cpy2/w=;
- b=hlZOX7ivuGaWLXDlOUGfAVrfPDA/0UViH6Qo0xE/YJCj8zdY3mqBetMt+L+KVGHX55O4+9kXC
- WHeiqaHbiOGCCSPoE3AsOgVveCcG2C3+pmFb3OdBPuQdRiqthSkXBQh
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
-X-CM-TRANSID:AQAAfwAnYUL1yfFp_SQDAA--.1731S6
-X-Coremail-Antispam: 1UD129KBjvJXoW7tw1kXw4fWry5Gw18AryfXrb_yoW8Cr4fpF
-	47GrZ0vFySgF4Yg3WIy3WvvFZ7ua17Zry2k3srK347tFn8tFyUJrnakrWay3ZIgFySqw1a
-	yF1Y9rW7Aa18Za7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnUUvcSsGvfC2KfnxnUUI43ZEXa7xR_UUUUUUUUU==
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAKEWnti78ACwBFsk
-X-Rspamd-Queue-Id: 036BE49187B
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <177742420562.3222151.9689419292413018986.b4-reply@b4>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: 88E0F49185E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
-	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291428-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-291424-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ultrarisc.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ultrarisc.com:email,ultrarisc.com:dkim,ultrarisc.com:mid]
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
 
-The UltraRISC DP1000 UART does not provide the standard CPR register used
-by 8250_dw to discover port capabilities.
+On Wed, Apr 29, 2026 at 08:56:45AM +0800, Jia Wang wrote:
+> On 2026-04-28 13:58 +0300, Andy Shevchenko wrote:
+> > On Tue, Apr 28, 2026 at 05:07:49PM +0800, Jia Wang wrote:
+> > > On 2026-04-28 11:41 +0300, Ilpo Järvinen wrote:
 
-Provide a fixed CPR value for the DP1000-specific compatible so the
-driver can configure the port correctly.
+...
 
-Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- drivers/tty/serial/8250/8250_dw.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> > > Thanks. I tried that approach, but the statement-expression form does
+> > > not work in this case because the helper is used in static initializers.
+> > > So I'll keep it as a plain expression macro for now, and just rework it
+> > > into a cleaner multi-line form.
+> > 
+> > Still you can move FIELD_PREP_CONST() into it.
+> 
+> Right, I'll move FIELD_PREP_CONST() in. By the way, does your Reviewed-by
+> still hold?
 
-diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-index 480f82d89856..55e40c10f46a 100644
---- a/drivers/tty/serial/8250/8250_dw.c
-+++ b/drivers/tty/serial/8250/8250_dw.c
-@@ -959,6 +959,15 @@ static const struct dw8250_platform_data dw8250_intc10ee = {
- 	.quirks = DW_UART_QUIRK_IER_KICK,
- };
- 
-+static const struct dw8250_platform_data dw8250_ultrarisc_dp1000_data = {
-+	.usr_reg = DW_UART_USR,
-+	.cpr_value = FIELD_PREP_CONST(DW_UART_CPR_ABP_DATA_WIDTH, 2) |
-+		     DW_UART_CPR_THRE_MODE |
-+		     DW_UART_CPR_DMA_EXTRA |
-+		     DW_UART_CPR_FIFO_MODE_FROM_SIZE(32),
-+	.quirks = DW_UART_QUIRK_CPR_VALUE,
-+};
-+
- static const struct of_device_id dw8250_of_match[] = {
- 	{ .compatible = "snps,dw-apb-uart", .data = &dw8250_dw_apb },
- 	{ .compatible = "cavium,octeon-3860-uart", .data = &dw8250_octeon_3860_data },
-@@ -966,6 +975,7 @@ static const struct of_device_id dw8250_of_match[] = {
- 	{ .compatible = "renesas,rzn1-uart", .data = &dw8250_renesas_rzn1_data },
- 	{ .compatible = "sophgo,sg2044-uart", .data = &dw8250_skip_set_rate_data },
- 	{ .compatible = "starfive,jh7100-uart", .data = &dw8250_skip_set_rate_data },
-+	{ .compatible = "ultrarisc,dp1000-uart", .data = &dw8250_ultrarisc_dp1000_data },
- 	{ /* Sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, dw8250_of_match);
+Not for this patch, as it seems we get too many modifications and discussions
+around. Let have a fresh look in v6 (the rest of the patches are okay, please
+keep tags there).
 
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
 
