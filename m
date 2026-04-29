@@ -1,247 +1,142 @@
-Return-Path: <devicetree+bounces-291359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291346-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eLxTHZKt8WnTjgEAu9opvQ
-	(envelope-from <devicetree+bounces-291359-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:04:50 +0200
+	id yC5fE0Gs8WmGjgEAu9opvQ
+	(envelope-from <devicetree+bounces-291346-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 08:59:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 982304902B0
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:04:45 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4C2E490158
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 08:59:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3B61F301F19B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 07:00:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 95D50303D8B4
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F26453A169E;
-	Wed, 29 Apr 2026 07:00:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24B139E164;
+	Wed, 29 Apr 2026 06:58:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MteDqc+N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cuSlswfz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com [209.85.210.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55EA93A1A21
-	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 07:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BACAD39D6F9;
+	Wed, 29 Apr 2026 06:58:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777446035; cv=none; b=sJfTF5OZ+AWEAL2IXTY1T6NXTy1Gpo7sKLYHMvzYQ7KPeup8M/a+R3gh5SCW2i+v0hWrBKISTUobZ1fPS5h/tFy8ZizBHNl80YOemRY0rk8DWb2zI/7pYqxfCCUkZjv5my6YyN3NiWzZMdUIx8DNb1DH0qUvy/CGT0uN2CmIfdk=
+	t=1777445930; cv=none; b=Rn/YptPs2ZTVP90S54BZp1+14Gwm0YKr5QAIFWkt7Dn075/r8sInjuhNGNn7l8/ArzwrL8xricpvAoqG6mf7hKTR0crmm08EXU72Zv0oPRiSJkWl2fly41YcPe2zpUyFxLfx+FkmBTHejd7W0LMyTgVBUmBmxTvO23wnI+LrqQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777446035; c=relaxed/simple;
-	bh=GlzyRXhW7BOFU2J58m5FlsVsMQJSPP8T+AYIfqJL/UM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FIVCTjIOMlbrq7/B0GWL/O1f3mTpViq4i6xJjJ5yUmbDo71RYHMu8Ogwaa4/z+TsdtqpVdcs2/kWFMq81xLDQKamqTf2JOVlGBUUcojjV2jbg3C1OQsJu1MKUYfH0pEIdNeoZE/wX5zGvoAe5okF9ABTPV4NsFATR3WcnC7o31E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MteDqc+N; arc=none smtp.client-ip=209.85.210.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f195.google.com with SMTP id d2e1a72fcca58-82f8893bff3so5739722b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 00:00:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777446033; x=1778050833; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZWH07l9RWm03Oah+cccPH78bmOCX+VwKmCZ1Y6ji5X8=;
-        b=MteDqc+Nzc+Y+LXHt9TzYJ2mp5ZYiSxukpwu3QPoJO+o0S6b7Zc9OO+TCF5qiv35mj
-         cFQxvOoNVVNf3ROdWdO/OsBhNoaIP8GsolwA2wziNfG+ahtDiha5Ma1xGCFPSE3WPZz0
-         zwVFryPwXIqe6PJu9JIyYB/gwrE6s8hBBM6etlW5egAh/mHpFMv54Lv9oSM7rJQa4t2f
-         iSUmVZZZL/YTcD3FoPNHJlzyz8R59m2OeIE1xNr42ktveu4LEaX7q8/R+ri03p9oRfPX
-         t/eRV+nVysY7hyjhsJd/4btqeS8vHJL3qvIRrAQ/y3mOZDIYfZb6gM8i8RP4/4pG8TFO
-         9oZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777446033; x=1778050833;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ZWH07l9RWm03Oah+cccPH78bmOCX+VwKmCZ1Y6ji5X8=;
-        b=AZqRkWd/bYN95rJzFX9/Zo6Cvz9Rj6ZNQ+2YJtY5Dt8QNmNCJggAm10pGJ3ScQ92CM
-         0jrC3q+UiJkY3TMgi1LfPSoNyNLsoba7CB83x3LWgVqKC0Od4J+S4TgNfODqNXeEoQWW
-         nlsI4KUENJI2Vo0ORFEOOhWtwgQIsTIbrVuvELUuH0rw8ioEToMbHahQBj5D8vHWacVb
-         Mab1B0uQlDxO0EoZCk96r4piz+Xv/wiw6QvRhQtQd9wTQv1MWKAbqs39xVNvIwawvYC/
-         ibffFDpKCoqpJMSefdbu/sSfOPVAmhV+vsChvC+3kCMItc687avMG0V2e7yXux/16/dS
-         fZ+w==
-X-Forwarded-Encrypted: i=1; AFNElJ/z0aOiD2fymVhVmyXMpnPr1AbqXp3gKLZpyNs4CzYberTOOpBKNzz6aIVpuI1X0FDNurdQu6p8J/nC@vger.kernel.org
-X-Gm-Message-State: AOJu0YweYkrlcmuDHJU0SWfq74DBrPW+uhSwKpfJwwKwTLc2aJeeR9JC
-	YrPBMRDrDutDWN4+QGciPJPepGPx7AKHvtdVn8EDlbxwX0DlApp8HReS
-X-Gm-Gg: AeBDievfIyhkVoo5gj+0ac8ukngbb7IqQYw4tefsE14ZqEXzp/YQhhE6npYgzCTTzk6
-	zvR7tdL6Ib+QC3f8K/C6kGXGqTLlk2W+UBMod3wEKVTU3Cx+WQyQkBFPewXAx0try0L9K/AcSbP
-	LC73j4x8sKaOi0OWxN+lPViSjBLogZe5HH60g6oYsFWzJwV3FE70xCCwF3jlwzcMeLHFVUM4Wjo
-	SjBQHPMKR3NyIGCk8+v4tCy9dHLAFyDe8GZpr3s5SiBgIdXM8NNIkC6w+ZcBBv1yj/9hPTJ8WYg
-	HTbbcj5fMo0O55Uhn6QwBNTfLzNZDTsR13qaAEKRC1Jy3w3baI/kMqkZrRZojrpTctHCG0PJajR
-	ShJuhOyXEEiXKoOTrcJEx941Rz3O3tzzhwaBtkBAFGaWk2h1UPwrgvPOb8XAxSuxgDSZqqhTs3g
-	jXh5zY2RkDurez2IO+E/nZHI7LC2XkrlL6A6/gD889NYJ2k7RU
-X-Received: by 2002:a05:6a00:a14:b0:82f:9985:d4a1 with SMTP id d2e1a72fcca58-834ddc14f4emr6920159b3a.24.1777446032715;
-        Wed, 29 Apr 2026 00:00:32 -0700 (PDT)
-Received: from intel.company.local ([210.184.73.204])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-834ed7eaf93sm1043146b3a.40.2026.04.29.00.00.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Apr 2026 00:00:32 -0700 (PDT)
-From: Chen Wandun <chenwandun1@gmail.com>
-X-Google-Original-From: Chen Wandun <chenwandun@lixiang.com>
-To: kexec@lists.infradead.org,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	loongarch@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: akpm@linux-foundation.org,
-	bhe@redhat.com,
-	rppt@kernel.org,
-	pasha.tatashin@soleen.com,
-	pratyush@kernel.org,
-	ruirui.yang@linux.dev,
-	corbet@lwn.net,
-	skhan@linuxfoundation.org,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	chenhuacai@kernel.org,
-	kernel@xen0n.name,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	robh@kernel.org,
-	saravanak@kernel.org,
-	chenwandun@lixiang.com,
-	zhaomeijing@lixiang.com,
-	everyzhao@126.com
-Subject: [PATCH 11/11] Documentation: admin-guide: kdump: document linux,no-dump DT property
-Date: Wed, 29 Apr 2026 14:58:31 +0800
-Message-ID: <20260429065831.1510858-12-chenwandun@lixiang.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260429065831.1510858-1-chenwandun@lixiang.com>
-References: <20260429065831.1510858-1-chenwandun@lixiang.com>
+	s=arc-20240116; t=1777445930; c=relaxed/simple;
+	bh=u4Pfn5a/U0AlGb8AqkEdtAoy0eLj8UmNKcvMgCHYYec=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B/SCrNPrHImbFaGur/XhHpSTXVwcJUyZ6uzBYw5BtBfGJ2iT5xNXpenbjzpsmHvFSn77Q1QodZpQILoUQ4xqy+ucEwHzM8tO+AzGCCtTEutqd4b4+7PHzLaw3mk/2/A0x+pnmTd+w30PfAlqe4A+sZABTgk5lvATbjXRuR4t/ik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cuSlswfz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B28B9C19425;
+	Wed, 29 Apr 2026 06:58:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777445930;
+	bh=u4Pfn5a/U0AlGb8AqkEdtAoy0eLj8UmNKcvMgCHYYec=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cuSlswfzB7iS01np7vobw5kDq/S0raz1Y/72kRLxRYcbyrLrEdn4ZOR8t2PNUMkzt
+	 u1OP4+iIAGHPqITBECrxxjDugEXnmIfRf/Rm2L831QdbQB4mH5TChRjrlBt78n/nO6
+	 PLrX9vFwp7OL6chDwF0DODIPk7lXFnIF5kHCyPz7HUAsnoMWuZza0o4BodA+a5/DNI
+	 HCpRZXJhV94y2RAWQ2wNfTDmS9Oiz7E4U7p4aYSIN6xUG4pv8jzCadXvGp6ki3hCg1
+	 oBkLSGLOP3wnrkXi6ai2/+5mCBUCrzxueCKz48RCeVHQd3OzLeRZnG8akIcBbxV/TO
+	 ISSB8xNmlZd/g==
+Date: Wed, 29 Apr 2026 08:58:47 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+Cc: Vikash Garodia <vikash.garodia@oss.qualcomm.com>, 
+	Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
+	Bryan O'Donoghue <bod@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Hans Verkuil <hverkuil@kernel.org>, Stefan Schmidt <stefan.schmidt@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, iommu@lists.linux.dev
+Subject: Re: [PATCH v3 02/12] dt-bindings: media: qcom,glymur-iris: Add
+ glymur video codec
+Message-ID: <20260429-calm-shark-of-tempest-3a7bcb@quoll>
+References: <20260428-glymur-v3-0-8f28930f47d3@oss.qualcomm.com>
+ <20260428-glymur-v3-2-8f28930f47d3@oss.qualcomm.com>
+ <20260428-nifty-quaint-hoatzin-6de65d@quoll>
+ <97aa5f18-d1d5-f082-9075-a385255f2e97@oss.qualcomm.com>
+ <7d775357-c7b1-4cf5-af90-012d1364e773@kernel.org>
+ <6ebe28dc-b8a3-db92-0e66-3f0541e23e13@oss.qualcomm.com>
+ <1f88a8eb-1725-4e6a-b4f3-287ec538ee7d@kernel.org>
+ <e39df722-3868-60d4-07f3-768d11762e12@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 982304902B0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <e39df722-3868-60d4-07f3-768d11762e12@oss.qualcomm.com>
+X-Rspamd-Queue-Id: C4C2E490158
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291359-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291346-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[linux-foundation.org,redhat.com,kernel.org,soleen.com,linux.dev,lwn.net,linuxfoundation.org,arm.com,xen0n.name,dabbelt.com,eecs.berkeley.edu,lixiang.com,126.com];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	FROM_NEQ_ENVFROM(0.00)[chenwandun1@gmail.com,devicetree@vger.kernel.org];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,linux.dev,kernel.org,linaro.org,gmail.com,8bytes.org,arm.com,vger.kernel.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lixiang.com:mid,lixiang.com:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-Describe the new 'linux,no-dump' reserved-memory device tree property
-and the automatic exclusion of /memreserve/ entries from the kdump
-vmcore.
+On Tue, Apr 28, 2026 at 05:46:55PM +0530, Vishnu Reddy wrote:
+> >> Glymur is the first platform where the common schema limits become a h=
+ard
+> >> blocker, unlike all prior platforms that happened to stay within those=
+ limits.
+> > Hard blocker? What? How? you are imagining some problems here which do
+> > not exist in any other devices, any other IP blocks.
+> >
+> > Why is this special and GPU is not? Or display is not? Or anything else?
+> > Why standard rules of writing bindings do not apply here? What is
+> > exactly different? Write like this:
+>=20
+> The intent is not to treat Glymur as =E2=80=9Cspecial=E2=80=9D in the sen=
+se of resource
+> count alone. The key difference is architectural:
+>=20
+> The existing qcom,venus-common.yaml was originally written with single
+> Venus/Iris video core and its maxItems for clocks and power domains were
+> defined accordingly. All existing platforms fit within that assumption,
+> even if their exact counts differ slightly.
 
-The section covers:
+I don't think that's anyhow relevant difference here. Just change the
+common binding and be 100% SURE that all devices have correct/fixed
+consrtaints.
 
- - The two mechanisms that exclude reserved memory from the vmcore
-   (firmware /memreserve/ entries and linux,no-dump child nodes).
- - Intended use cases (firmware-owned GPU, DSP and modem carveouts).
- - Interaction with the existing 'no-map' and 'reusable' flags, with
-   the silent-ignore precedence implemented by the kernel.
- - Architectures honouring the hint (arm64, riscv, loongarch).
- - An illustrative reserved-memory DTS snippet.
-
-The DT binding for the property itself is maintained in dt-schema.
-
-Signed-off-by: Chen Wandun <chenwandun@lixiang.com>
----
- Documentation/admin-guide/kdump/kdump.rst | 59 +++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
-
-diff --git a/Documentation/admin-guide/kdump/kdump.rst b/Documentation/admin-guide/kdump/kdump.rst
-index 7587caadbae1..c2246888e84d 100644
---- a/Documentation/admin-guide/kdump/kdump.rst
-+++ b/Documentation/admin-guide/kdump/kdump.rst
-@@ -600,6 +600,65 @@ with /sys/kernel/config/crash_dm_crypt_keys for setup,
- 3. After the dump-capture kerne get booted, restore the keys to user keyring
-    echo yes > /sys/kernel/crash_dm_crypt_keys/restore
- 
-+Excluding reserved memory regions from the vmcore (device tree)
-+===============================================================
-+
-+On architectures that boot from a device tree and use kexec_file for
-+kdump (arm64, riscv, loongarch), specific reserved memory regions can
-+be excluded from the ELF PT_LOAD segments of the crash dump.
-+
-+Two mechanisms contribute to the exclusion:
-+
-+1) /memreserve/ entries from the FDT header.
-+
-+   These are firmware-level memory reservations with no associated
-+   device tree node and therefore no driver-level description. Their
-+   contents are typically firmware scratch areas that carry no value
-+   for kernel crash analysis, so they are excluded from the vmcore
-+   automatically.
-+
-+2) Reserved-memory nodes carrying the 'linux,no-dump' property.
-+
-+   Device tree authors can add this boolean hint to any
-+   /reserved-memory child node to request that the kernel skip that
-+   region when constructing the elfcorehdr. This is intended for
-+   firmware-owned carveouts such as GPU, DSP and modem memory, whose
-+   contents tend to significantly inflate the vmcore without aiding
-+   kernel crash analysis.
-+
-+   Example::
-+
-+       reserved-memory {
-+               #address-cells = <2>;
-+               #size-cells = <2>;
-+               ranges;
-+
-+               gpu_fw@a0000000 {
-+                       reg = <0x0 0xa0000000 0x0 0x01000000>;
-+                       no-map;
-+                       linux,no-dump;
-+               };
-+
-+               modem_fw@b0000000 {
-+                       reg = <0x0 0xb0000000 0x0 0x02000000>;
-+                       linux,no-dump;
-+               };
-+       };
-+
-+Interaction with other reserved-memory flags:
-+
-+- 'no-map': the region is already absent from the kernel linear map,
-+  so it does not appear in the vmcore to begin with. Combining
-+  'linux,no-dump' with 'no-map' is harmless but redundant.
-+
-+- 'reusable': the region is actively used by the kernel for movable
-+  page allocations (CMA) and its contents are relevant to crash
-+  analysis. 'linux,no-dump' is silently ignored on a reusable region.
-+
-+The property is an operating-system hint; DTBs that do not set it
-+retain the legacy behaviour (all memory is dumped). Architectures
-+that do not honour the hint simply ignore it.
-+
- Contact
- =======
- 
--- 
-2.43.0
+Best regards,
+Krzysztof
 
 
