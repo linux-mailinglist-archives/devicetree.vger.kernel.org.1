@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-291530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291525-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eAXJBPj/8WmElwEAu9opvQ
-	(envelope-from <devicetree+bounces-291530-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 14:56:24 +0200
+	id wNSsIgn/8WmElwEAu9opvQ
+	(envelope-from <devicetree+bounces-291525-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 14:52:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83F0C49457E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 14:56:19 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFB48494492
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 14:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 06F5C30704ED
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 12:52:23 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5752D3008D08
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 12:52:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7D533FB079;
-	Wed, 29 Apr 2026 12:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88CCB3FB051;
+	Wed, 29 Apr 2026 12:52:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N6w3AYil"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HI8HWxNv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B2F93FB071;
-	Wed, 29 Apr 2026 12:52:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 235BD3FADFD;
+	Wed, 29 Apr 2026 12:52:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777467142; cv=none; b=Pj91LC3T+Bv4zp2unF4ooUq3S6VnfgfYEOAXU7F/j/rP4ZRF9Au3V0C3Yx/GSLRyqCIF1s9Z4T3r/z/nZORCQQM6KHO8eZ7nGPyP3cp6/37fF39O0ggbEPVpsat+aOII9TIBVGdR94a6EwIMSB7OdSZ+BZzkhUkCGBfUHL1npmw=
+	t=1777467133; cv=none; b=Fv40yPSy4bNkUy9UWZVnir7H30kFatcTFbLO18XVhI2o47iG68q/tzsGHySF46tFX/sFgXI9ZiVGr2luanvZKDCOuB1UwUm8ud7g19BTgrkdsyykpjoa7NcDFDU/kp399/GjLqs8wTBCpoluLyS+dhUCGyn2w0IqTb4U6IbBkFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777467142; c=relaxed/simple;
-	bh=cYR1n+zirgG0zH8tcvTp+EPdhOZ9Ul9RSaJkma0s8SE=;
+	s=arc-20240116; t=1777467133; c=relaxed/simple;
+	bh=Gc+4eX+7d9GOQrPACi3xAJsGkCxvi2Pk1g3X8hrWZMA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DIyLwvos2jnHNGKlA5buZQIJU8XQHHQNf1uXYH56hHS/1Z/7jr2ehknb4aT9G08mRInT4XUQDrx8+9R7ihEgmHV1k+ODY5hr9VlS/1EcREorHkt22+XxyDG5V+nxnMhZBHXGIaPDbkrAwpHISlxRC3luUwzDI6E94Ez+C3FJ2j4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N6w3AYil; arc=none smtp.client-ip=205.220.168.131
+	 MIME-Version; b=k7NSbHN6RS+8z24+bh+lEhCovK4x3HrW/70PamjPW8ItGhV0+ISz7cvTtdTGdCQ0X0CZZWK5VdnnkquD7+oluCSUJJlKenocWIZbepl6/EkQZJNPM+hqAupdZ2olMhHV8J4e/BzkmWosqLT22KNnqf0T7Rqpmen/xT9j+rzjOTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HI8HWxNv; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
 Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63TCefnc317335;
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63TCeRiX316843;
 	Wed, 29 Apr 2026 12:51:41 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=/YKoPwdEO8W
-	YEpMs9vHeAEAiqtm6RK9Cw3ZK+rSJyqE=; b=N6w3AYilJcasjSwSunbUi/9QvmA
-	l6uDs/P3BKYmcbTCCh4hkDSkSF/XaARLPNa4ZRbEbOzKBojjrWMCak5UiRfS4sYU
-	h00l5nJWlYvoFPMDCkqZRBRJAC8IU1W0N/grsTmohyYEh9Jcerj8huxbF0wImrOY
-	1SSyIP2VkxQHLz1CQKFpDgW6SUpUSUDhm6ICZCRUEcm2sG4pIOptR9cDcXUoJPsH
-	hpoCxRXVSOzbRjCLOJWMQ0xldtlvS4krrVj/mQtBrxkoJG4rBkdodLvfF0Lw5Aa1
-	lzuFUgmOhtB6qShocHYW3+ixuKn0hB5x8zQAj3UtN/+b1Gg28NFw0qQoNow==
+	:mime-version:references:subject:to; s=qcppdkim1; bh=CiL2aaqk/Kq
+	BI1IjgghdPCw+FMzlCUSHV6o7boNi888=; b=HI8HWxNvjM41i2GiwSUTeM9behF
+	mroGRis5I/CAk0lsM9kfZ+5EVlekiJ9inN9bp/7obfgp0ftURx+U1KJeviGxzSdF
+	mStjVEa4QmQt4ZlByVH5rsYJIYEFNxltjClV0K7U/384TgEt9gt/K8Y0ly5pqSXS
+	v4IfrpJbeTAn9FHKzs6z8juP4RnPEykUhl3OSVLurxajpvz6u6ZzIXlItMUmC1+j
+	A6BmWWbAdilOvSMEJ9/KgvqU1081ra0EhDfzNUVXQbDrtRb+tISRnaAGgrxPNmII
+	xnLfsAY3CidzpEmvsh/ZvFHdZTLNN8tpohnzMK5/Ki5Ny7Id547dFbbImLQ==
 Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4duj6t813x-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4duj6t813y-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 Apr 2026 12:51:40 +0000 (GMT)
+	Wed, 29 Apr 2026 12:51:41 +0000 (GMT)
 Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 63TCpbOU010778;
+	by APBLRPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 63TCpbKE010775;
 	Wed, 29 Apr 2026 12:51:37 GMT
 Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4ds65fvr0u-1
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4ds65fvr0s-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Wed, 29 Apr 2026 12:51:37 +0000 (GMT)
 Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 63TCpb99010750;
+	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 63TCpbun010749;
 	Wed, 29 Apr 2026 12:51:37 GMT
 Received: from hu-devc-blr-u24-a.qualcomm.com (hu-anuppate-blr.qualcomm.com [10.131.36.165])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 63TCpbfo010744
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 63TCpbBr010746
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Wed, 29 Apr 2026 12:51:37 +0000 (GMT)
 Received: by hu-devc-blr-u24-a.qualcomm.com (Postfix, from userid 486687)
-	id B875021CCF; Wed, 29 Apr 2026 18:21:36 +0530 (+0530)
+	id BC33521D1B; Wed, 29 Apr 2026 18:21:36 +0530 (+0530)
 From: Anup Patel <anup.patel@oss.qualcomm.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
@@ -82,11 +82,11 @@ Cc: Alexandre Ghiti <alex@ghiti.fr>, Peter Zijlstra <peterz@infradead.org>,
         Andrew Jones <andrew.jones@oss.qualcomm.com>,
         Sunil V L <sunilvl@oss.qualcomm.com>, linux-riscv@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Anup Patel <anup.patel@oss.qualcomm.com>,
-        Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
-Subject: [PATCH v4 03/12] rvtrace: Add functions to create/destroy a trace component path
-Date: Wed, 29 Apr 2026 18:21:26 +0530
-Message-ID: <20260429125135.1983498-4-anup.patel@oss.qualcomm.com>
+        Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>,
+        Anup Patel <anup.patel@oss.qualcomm.com>
+Subject: [PATCH v4 04/12] rvtrace: Add functions to start/stop tracing on a component path
+Date: Wed, 29 Apr 2026 18:21:27 +0530
+Message-ID: <20260429125135.1983498-5-anup.patel@oss.qualcomm.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260429125135.1983498-1-anup.patel@oss.qualcomm.com>
 References: <20260429125135.1983498-1-anup.patel@oss.qualcomm.com>
@@ -99,30 +99,30 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-QCInternal: smtphost
 X-QCInternal: smtphost
-X-Proofpoint-GUID: nICYyS_84c7fsqcSUXORReGBfPy-v7wb
+X-Proofpoint-GUID: _VkAvuobiMqMgK3w947Xs9pTn9Ir3apj
 X-Authority-Analysis: v=2.4 cv=KcHidwYD c=1 sm=1 tr=0 ts=69f1fedd cx=c_pps
  a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
  a=A5OVakUREuEA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=YMgV9FUhrdKAYTUUvYB2:22 a=EUspDBNiAAAA:8 a=UaIybRF2xpGp7VXWmyEA:9
-X-Proofpoint-ORIG-GUID: nICYyS_84c7fsqcSUXORReGBfPy-v7wb
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI5MDEzMCBTYWx0ZWRfXzkgU9sqDtl3N
- FKNKxNydqbTVVSQPkOzThZGlMcAe1ghhOBj0Or4cbRUkjg78u4aBNINlOFocD7ZxnN6v/IIJh50
- ZY5THXXLSz6C3vOWAyjYNNh8SSx0/z/Zf60oKJXHzkg+A+BBQUJzIYQ2mozyoHHgG6JVw+8Bg0R
- 76LLm7irNWuMWe81Ufdl1Xn0euymN5xlICUchAFlYwJqKA9462YWb7gyTo/r6dOIyHCwl8ZkoE6
- n/PekMlewG4Y4IjDJRLHIlV66tuQmkRDxTtTRhfT1xXRQnLvQ1vlprx77NqjKCsmNCHXrOacXL4
- admjCeSWq3PSZo0OW1RC8jK6SDSJlwVKaU4haZZqGrk3vY5CY6VIdk0CDp510IgC0KJQKjsWtEi
- X3qheULkv+728uYdxqkpWToV8EhuIWzXM9jNQLymR5jXq4bLzoRxzk9zIotjLuAfcCPmnG3Adht
- 2jvK6Yrpf2nmZ7W7Q/Q==
+ a=YMgV9FUhrdKAYTUUvYB2:22 a=EUspDBNiAAAA:8 a=a8cUU4qgmBzOD3ajWOcA:9
+X-Proofpoint-ORIG-GUID: _VkAvuobiMqMgK3w947Xs9pTn9Ir3apj
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI5MDEzMCBTYWx0ZWRfX2ZHDR7eHayy4
+ TvUlQbpwm01TAJHPVGyubLqrkIx0qzmhZ10vXCtLw2SrArJaZHdsIfRgIO76WRTE1UR6ofG6cEQ
+ zkqoyu/3xC3aPVMGoQ4cHRZAMxJ5Hk/SEbw64eNVEInqVfu1QGUcXp+SzIg9p6MUsKciyndUwbc
+ EovXoijuCeElHIqftd9sj12G4sONAwfIYi+Y9+PMvgYT+3KIm1h+ZUZ2yKx2+EB6LGo2vy+9VI2
+ aCI9mtq9sp5ZU8F7ck/QwvzjmkopkBaO4AuJbwJI8eLZ836dwg+XTZLKxGhk5CwLJWKuHAf6l3e
+ /Xh65u0IJpwOQyhSJj/urT7vu2q2dxKv9PvUpVrbHsr/BUNX/XdyUNFvwzTdNxp6TFtZpzcC1vB
+ 9b/d1Z79o9udasIvWC+MbnMo0SMlB7kmbAdtRUlFgZUJh5bDCF17zaSA//r2sH2F0z575SCF2TI
+ up5VFuCXbCSwlfkUt4w==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-04-28_05,2026-04-28_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  impostorscore=0 spamscore=0 phishscore=0 bulkscore=0 suspectscore=0
- malwarescore=0 lowpriorityscore=0 clxscore=1011 adultscore=0
+ malwarescore=0 lowpriorityscore=0 clxscore=1015 adultscore=0
  priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604200000
  definitions=main-2604290130
-X-Rspamd-Queue-Id: 83F0C49457E
+X-Rspamd-Queue-Id: AFB48494492
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
@@ -131,7 +131,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -139,7 +139,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_CC(0.00)[ghiti.fr,infradead.org,redhat.com,kernel.org,arm.com,intel.com,gmail.com,brainfault.org,linux.dev,oss.qualcomm.com,lists.infradead.org,vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-291530-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291525-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -148,350 +148,109 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[anup.patel@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:mid];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.997];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[10]
 
-Trace needs to be configured on a chain of trace components which are
-connected to each other. These chain of components is also referred
-to as trace component path. Add functions to create/destroy a trace
-component path which will be later used by RISC-V trace perf support.
+From: Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
 
-Co-developed-by: Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
-Signed-off-by: Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
+The perf driver framework needs to be able to start / stop all components
+in a trace component path during its operation. Add rvtrace_path_start()
+and rvtrace_path_stop() functions for this purpose.
+
+Co-developed-by: Anup Patel <anup.patel@oss.qualcomm.com>
 Signed-off-by: Anup Patel <anup.patel@oss.qualcomm.com>
+Signed-off-by: Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
 ---
- drivers/hwtracing/rvtrace/rvtrace-core.c | 223 +++++++++++++++++++++++
- include/linux/rvtrace.h                  |  43 ++++-
- 2 files changed, 264 insertions(+), 2 deletions(-)
+ drivers/hwtracing/rvtrace/rvtrace-core.c | 44 ++++++++++++++++++++++++
+ include/linux/rvtrace.h                  |  6 ++++
+ 2 files changed, 50 insertions(+)
 
 diff --git a/drivers/hwtracing/rvtrace/rvtrace-core.c b/drivers/hwtracing/rvtrace/rvtrace-core.c
-index d69c2236493a..f78e3ba9a0e5 100644
+index f78e3ba9a0e5..733d07abffbc 100644
 --- a/drivers/hwtracing/rvtrace/rvtrace-core.c
 +++ b/drivers/hwtracing/rvtrace/rvtrace-core.c
-@@ -229,6 +229,53 @@ int rvtrace_reset_component(struct rvtrace_platform_data *pdata)
+@@ -620,6 +620,50 @@ static void rvtrace_release_path_nodes(struct rvtrace_path *path)
+ 	}
  }
- EXPORT_SYMBOL_GPL(rvtrace_reset_component);
  
-+static int __rvtrace_walk_output_components(struct rvtrace_component *comp,
-+					    bool *stop, void *priv,
-+					    int (*fn)(struct rvtrace_component *comp, bool *stop,
-+						      struct rvtrace_connection *stop_conn,
-+						      void *priv))
++int rvtrace_path_start(struct rvtrace_path *path)
 +{
-+	struct rvtrace_connection *conn, *stop_conn = NULL;
-+	struct rvtrace_platform_data *pdata = comp->pdata;
-+	int i, ret;
-+
-+	for (i = 0; i < pdata->nr_outconns; i++) {
-+		conn = pdata->outconns[i];
-+		ret = __rvtrace_walk_output_components(conn->dest_comp, stop, priv, fn);
-+		if (ret)
-+			return ret;
-+		if (*stop) {
-+			stop_conn = conn;
-+			break;
-+		}
-+	}
-+
-+	ret = fn(comp, stop, stop_conn, priv);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+int rvtrace_walk_output_components(struct rvtrace_component *comp, void *priv,
-+				   int (*fn)(struct rvtrace_component *comp, bool *stop,
-+					     struct rvtrace_connection *stop_conn,
-+					     void *priv))
-+{
-+	bool stop = false;
++	const struct rvtrace_driver *rtdrv;
++	struct rvtrace_component *comp;
++	struct rvtrace_path_node *node;
 +	int ret;
 +
-+	if (!comp || !fn)
-+		return -EINVAL;
-+
-+	mutex_lock(&rvtrace_mutex);
-+	ret = __rvtrace_walk_output_components(comp, &stop, priv, fn);
-+	mutex_unlock(&rvtrace_mutex);
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(rvtrace_walk_output_components);
-+
- struct rvtrace_component *rvtrace_cpu_source(unsigned int cpu)
- {
- 	if (!cpu_present(cpu))
-@@ -452,6 +499,182 @@ void rvtrace_unregister_component(struct rvtrace_component *comp)
- }
- EXPORT_SYMBOL_GPL(rvtrace_unregister_component);
- 
-+struct rvtrace_path_node {
-+	struct list_head		head;
-+	struct rvtrace_component	*comp;
-+	struct rvtrace_connection	*conn;
-+};
-+
-+struct rvtrace_component *rvtrace_path_source(struct rvtrace_path *path)
-+{
-+	struct rvtrace_path_node *node;
-+
-+	node = list_first_entry(&path->comp_list, struct rvtrace_path_node, head);
-+	return node->comp;
-+}
-+EXPORT_SYMBOL_GPL(rvtrace_path_source);
-+
-+struct rvtrace_component *rvtrace_path_sink(struct rvtrace_path *path)
-+{
-+	struct rvtrace_path_node *node;
-+
-+	node = list_last_entry(&path->comp_list, struct rvtrace_path_node, head);
-+	return node->comp;
-+}
-+EXPORT_SYMBOL_GPL(rvtrace_path_sink);
-+
-+static int rvtrace_assign_trace_id(struct rvtrace_path *path)
-+{
-+	const struct rvtrace_driver *rtdrv;
-+	struct rvtrace_component *comp;
-+	struct rvtrace_path_node *node;
-+	int trace_id;
-+
-+	list_for_each_entry(node, &path->comp_list, head) {
++	list_for_each_entry_reverse(node, &path->comp_list, head) {
 +		comp = node->comp;
 +		rtdrv = to_rvtrace_driver(comp->dev.driver);
-+
-+		if (!rtdrv->get_trace_id)
++		if (!rtdrv->start)
 +			continue;
 +
-+		trace_id = rtdrv->get_trace_id(comp, path->mode);
-+		if (trace_id > 0) {
-+			path->trace_id = trace_id;
-+			return 0;
-+		} else if (trace_id < 0) {
-+			return trace_id;
-+		}
++		ret = rtdrv->start(comp);
++		if (ret)
++			return ret;
 +	}
 +
 +	return 0;
 +}
++EXPORT_SYMBOL_GPL(rvtrace_path_start);
 +
-+static void rvtrace_unassign_trace_id(struct rvtrace_path *path)
++int rvtrace_path_stop(struct rvtrace_path *path)
 +{
 +	const struct rvtrace_driver *rtdrv;
 +	struct rvtrace_component *comp;
 +	struct rvtrace_path_node *node;
++	int ret;
 +
 +	list_for_each_entry(node, &path->comp_list, head) {
 +		comp = node->comp;
 +		rtdrv = to_rvtrace_driver(comp->dev.driver);
-+
-+		if (!rtdrv->put_trace_id)
++		if (!rtdrv->stop)
 +			continue;
 +
-+		rtdrv->put_trace_id(comp, path->mode, path->trace_id);
-+	}
-+}
-+
-+static bool rvtrace_path_ready(struct rvtrace_path *path)
-+{
-+	struct rvtrace_path_node *node;
-+
-+	list_for_each_entry(node, &path->comp_list, head) {
-+		if (!node->comp->ready)
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
-+struct build_path_walk_priv {
-+	struct rvtrace_path		*path;
-+	struct rvtrace_component	*sink;
-+};
-+
-+static int build_path_walk_fn(struct rvtrace_component *comp, bool *stop,
-+			      struct rvtrace_connection *stop_conn,
-+			      void *priv)
-+{
-+	struct build_path_walk_priv *ppriv = priv;
-+	struct rvtrace_path *path = ppriv->path;
-+	struct rvtrace_path_node *node;
-+
-+	if ((!ppriv->sink && rvtrace_is_sink(comp->pdata)) ||
-+	    (ppriv->sink && ppriv->sink == comp))
-+		*stop = true;
-+
-+	if (*stop) {
-+		node = kzalloc_obj(*node);
-+		if (!path)
-+			return -ENOMEM;
-+		INIT_LIST_HEAD(&node->head);
-+		rvtrace_get_component(comp);
-+		node->comp = comp;
-+		node->conn = stop_conn;
-+		list_add(&node->head, &path->comp_list);
++		ret = rtdrv->stop(comp);
++		if (ret)
++			return ret;
 +	}
 +
 +	return 0;
 +}
++EXPORT_SYMBOL_GPL(rvtrace_path_stop);
 +
-+static void rvtrace_release_path_nodes(struct rvtrace_path *path)
-+{
-+	struct rvtrace_path_node *node, *node1;
-+
-+	list_for_each_entry_safe(node, node1, &path->comp_list, head) {
-+		list_del(&node->head);
-+		rvtrace_put_component(node->comp);
-+		kfree(node);
-+	}
-+}
-+
-+struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *source,
-+					 struct rvtrace_component *sink,
-+					 enum rvtrace_component_mode mode)
-+{
-+	struct build_path_walk_priv priv;
-+	struct rvtrace_path *path;
-+	int ret = 0;
-+
-+	if (!source || mode >= RVTRACE_COMPONENT_MODE_MAX) {
-+		ret = -EINVAL;
-+		goto err_out;
-+	}
-+
-+	path = kzalloc_obj(*path);
-+	if (!path) {
-+		ret = -ENOMEM;
-+		goto err_out;
-+	}
-+	INIT_LIST_HEAD(&path->comp_list);
-+	path->mode = mode;
-+	path->trace_id = RVTRACE_INVALID_TRACE_ID;
-+
-+	priv.path = path;
-+	priv.sink = sink;
-+	ret = rvtrace_walk_output_components(source, &priv, build_path_walk_fn);
-+	if (ret < 0)
-+		goto err_release_path_nodes;
-+
-+	if (!rvtrace_path_ready(path)) {
-+		ret = -EOPNOTSUPP;
-+		goto err_release_path_nodes;
-+	}
-+
-+	ret = rvtrace_assign_trace_id(path);
-+	if (ret < 0)
-+		goto err_release_path_nodes;
-+
-+	return path;
-+
-+err_release_path_nodes:
-+	rvtrace_release_path_nodes(path);
-+	kfree(path);
-+err_out:
-+	return ERR_PTR(ret);
-+}
-+EXPORT_SYMBOL_GPL(rvtrace_create_path);
-+
-+void rvtrace_destroy_path(struct rvtrace_path *path)
-+{
-+	rvtrace_unassign_trace_id(path);
-+	rvtrace_release_path_nodes(path);
-+	kfree(path);
-+}
-+EXPORT_SYMBOL_GPL(rvtrace_destroy_path);
-+
- int __rvtrace_register_driver(struct module *owner, struct rvtrace_driver *rtdrv)
- {
- 	rtdrv->driver.owner = owner;
+ struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *source,
+ 					 struct rvtrace_component *sink,
+ 					 enum rvtrace_component_mode mode)
 diff --git a/include/linux/rvtrace.h b/include/linux/rvtrace.h
-index d6be6e3cc10f..00b63fa22da9 100644
+index 00b63fa22da9..2a7d8afd27c8 100644
 --- a/include/linux/rvtrace.h
 +++ b/include/linux/rvtrace.h
-@@ -8,6 +8,8 @@
+@@ -277,10 +277,14 @@ struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *source,
+ 					 struct rvtrace_component *sink,
+ 					 enum rvtrace_component_mode mode);
+ void rvtrace_destroy_path(struct rvtrace_path *path);
++int rvtrace_path_start(struct rvtrace_path *path);
++int rvtrace_path_stop(struct rvtrace_path *path);
  
- #include <linux/device.h>
- #include <linux/io.h>
-+#include <linux/limits.h>
-+#include <linux/list.h>
- #include <linux/platform_device.h>
- #include <linux/property.h>
- #include <linux/types.h>
-@@ -72,6 +74,12 @@ enum rvtrace_component_impid {
- 	RVTRACE_COMPONENT_IMPID_MAX
- };
- 
-+/* Supported usage modes for RISC-V trace components */
-+enum rvtrace_component_mode {
-+	RVTRACE_COMPONENT_MODE_PERF,
-+	RVTRACE_COMPONENT_MODE_MAX
-+};
-+
- /**
-  * struct rvtrace_connection - Representation of a physical connection between
-  * two RISC-V trace components.
-@@ -239,6 +247,10 @@ int rvtrace_enable_component(struct rvtrace_platform_data *pdata);
- int rvtrace_disable_component(struct rvtrace_platform_data *pdata);
- int rvtrace_reset_component(struct rvtrace_platform_data *pdata);
- 
-+int rvtrace_walk_output_components(struct rvtrace_component *comp, void *priv,
-+				   int (*fn)(struct rvtrace_component *comp, bool *stop,
-+					     struct rvtrace_connection *stop_conn,
-+					     void *priv));
- struct rvtrace_component *rvtrace_cpu_source(unsigned int cpu);
- 
- struct rvtrace_component *rvtrace_register_component(enum rvtrace_component_type type,
-@@ -246,17 +258,44 @@ struct rvtrace_component *rvtrace_register_component(enum rvtrace_component_type
- 						     struct rvtrace_platform_data *pdata);
- void rvtrace_unregister_component(struct rvtrace_component *comp);
- 
-+/**
-+ * struct rvtrace_path - Representation of a RISC-V trace path from source to sink
-+ * @comp_list: List of RISC-V trace components in the path
-+ * @mode:      Usage mode for RISC-V trace components
-+ * @trace_id:  ID of the trace source (typically hart id)
-+ */
-+struct rvtrace_path {
-+	struct list_head		comp_list;
-+	enum rvtrace_component_mode	mode;
-+	u32				trace_id;
-+#define RVTRACE_INVALID_TRACE_ID	0
-+};
-+
-+struct rvtrace_component *rvtrace_path_source(struct rvtrace_path *path);
-+struct rvtrace_component *rvtrace_path_sink(struct rvtrace_path *path);
-+struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *source,
-+					 struct rvtrace_component *sink,
-+					 enum rvtrace_component_mode mode);
-+void rvtrace_destroy_path(struct rvtrace_path *path);
-+
  /**
   * struct rvtrace_driver - Representation of a RISC-V trace driver
   * id_table: Table to match components handled by the driver
-- * probe:    Driver probe() function
-- * remove:   Driver remove() function
-+ * probe:        Driver probe() function
-+ * remove:       Driver remove() function
-+ * get_trace_id: Get/allocate a trace ID
-+ * put_trace_id: Put/free a trace ID
-  * driver:   Device driver instance
++ * start:        Callback to start tracing
++ * stop:         Callback to stop tracing
+  * probe:        Driver probe() function
+  * remove:       Driver remove() function
+  * get_trace_id: Get/allocate a trace ID
+@@ -289,6 +293,8 @@ void rvtrace_destroy_path(struct rvtrace_path *path);
   */
  struct rvtrace_driver {
  	const struct rvtrace_component_id *id_table;
++	int			(*start)(struct rvtrace_component *comp);
++	int			(*stop)(struct rvtrace_component *comp);
  	int			(*probe)(struct rvtrace_component *comp);
  	void			(*remove)(struct rvtrace_component *comp);
-+	int			(*get_trace_id)(struct rvtrace_component *comp,
-+						enum rvtrace_component_mode mode);
-+	void			(*put_trace_id)(struct rvtrace_component *comp,
-+						enum rvtrace_component_mode mode,
-+						u32 trace_id);
- 	struct device_driver	driver;
- };
- 
+ 	int			(*get_trace_id)(struct rvtrace_component *comp,
 -- 
 2.43.0
 
