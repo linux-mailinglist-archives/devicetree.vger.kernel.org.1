@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-291554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291559-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +HRiOnAH8mkimwEAu9opvQ
-	(envelope-from <devicetree+bounces-291554-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:28:16 +0200
+	id INbEIfAH8mkimwEAu9opvQ
+	(envelope-from <devicetree+bounces-291559-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:30:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E574494CF1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:28:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94B10494D9C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:30:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D101130236C3
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:22:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1786C3025625
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:23:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFB733FD147;
-	Wed, 29 Apr 2026 13:22:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73BA3FE351;
+	Wed, 29 Apr 2026 13:23:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EvMG5VKB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OzXCxOfi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A61DB3B6376
-	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 13:22:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FDD53FE347
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 13:23:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777468975; cv=none; b=sQNp8Cr6Us6ux1Brn1bseXZEErWRqZQ+PwPQU/6CgmCW0o2ZYrs0BeG6YVgu1lVNGFsa3MWPJ2ulJ70UPeRK+0RofsZxTnHnSYmbk9w+2uSaVh745Hc9F3L5mG3mOzLz62oDvuVPAlR2itFPTdrVBFqRTT9Elkp493Fk1Z/mVCU=
+	t=1777468984; cv=none; b=R0upMp6BDjxzg5EQu9ormSZLaJbKYCTLtzuZgj0M7YPKva1DYEtBhQq0pZMzxN2T97MGWCCwGG8QibWwIbS700+JV+RFw8VUQc+B+g5SAHEhnHzlnQzPOeUdiwTW4d4d2rDH4EcwtoS9k/IJRqOCxD9ipa4ihgqqwt6ASzKpBe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777468975; c=relaxed/simple;
-	bh=01DQgwaJ3ce2HaFqHqFVOsD/TYkkeJShpzCaK3dyx4M=;
+	s=arc-20240116; t=1777468984; c=relaxed/simple;
+	bh=gczVuAShdEGpAOX27PF16GmBdqERLGb5Ax6/ItUK9YQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GubsbOexza2d+ou5Lgl0h80jdnntNG8gf0rO/AUBeyI3WjQGXUK1trEl8ga6TAugF1dR63iJLNVq+QRUPvJy/fEHmsGjnAotFBTjL9Dn0TkLLNXFouAJZSPv4pxv89y1ElgfqBAhDL8zr4zC8KIm74l3I/F9qur9+UuMIGDWNns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EvMG5VKB; arc=none smtp.client-ip=209.85.215.178
+	 MIME-Version:Content-Type; b=iuPpfl+NDcG+ey+/LeiMye7t000LFpmKuWjD9/FSHlN/s+JRuXm9S/t5ZPzyxtkgcXxlNKeX408i1RHlnT8rk57mk1X77vUmoSW6p40s5aFAr7Z8fgO8VNyMrMdVmavSvpL3KUeYfRTSpOhOsjtB/Ic9InkJKMipZGK9igfvmrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OzXCxOfi; arc=none smtp.client-ip=209.85.210.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-c7b9f54d3deso4906689a12.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 06:22:54 -0700 (PDT)
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-82f943870baso5387743b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 06:23:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777468974; x=1778073774; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1777468982; x=1778073782; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DZTB0k5HzoHvpW2eiYdnzwypWK5KqzxoJlBxqEnFu+U=;
-        b=EvMG5VKByiGkhnQNWvlq+k0VssqHnbUaCTMi9hYZGr5HsGBTfAbPCehd6dav8zCxrT
-         pEBNgmNaUjIMMJwpKrk+ON+TNvPiZNmzIgWnv67s3t0yQDwFeJHwxyKqcPzl8J5IF/5+
-         CxAn3MHz3z38B8lSfbrrFwCOAGgRxi4AfcHvQz3y0VaOz8iAmMxexzltu/abDGMC5Bkb
-         /gY5ZsB4GWg2EQN0HsqNGvJ9IE2htbmU3mySv2CaSNbo33rhwGC8Va9lzMGHvgWfmv8i
-         1DuQkKsqmFFby4XI61DW8XFwUj8Kz2+SMcLm0MZ6d9PeZU1x/kUCZXYIgnEEp18tQBR9
-         8ccw==
+        bh=Zk/HPFBK4IBkCNGG/AGyeD13qmMu2NSM3WquJIJ4QH8=;
+        b=OzXCxOfiL60JCgMFSwI+5r37xX0ckhAzuf50RPcwf4f31UHQtCXAoypmSQvBzOh0nw
+         EA8Davx0sMaun/AderP+D+gBbW4Tsne/aXWkrlzLaPmhg+h+gdwczeXPe5x5qTZ4Vv44
+         cuLMIXeKwkwd0kpVVr4HYcN+f7YUEPXuX06P3uVduhTDkeC2azVXGDC+0khREetPIxBL
+         6hAmWlktL/xjG0+tPvppK4f0+Hy54TSWaFaUW4zgkbBkZ2eMYJ+OQ8/qWFGafJ2XXkb1
+         Qj58G4WBYZlrWzCXIrIbmn3TL3SSV1cAbaVGNWy59kRByyTZExjzQgakGCtOZuuLX4kO
+         +CJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777468974; x=1778073774;
+        d=1e100.net; s=20251104; t=1777468982; x=1778073782;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=DZTB0k5HzoHvpW2eiYdnzwypWK5KqzxoJlBxqEnFu+U=;
-        b=W89ruGMr0Bm4CgtfbfnmqI9u84SHCsHJr59wqeLBOGLHG60Y38/0Z6IZ15N0mriybS
-         sESTWpZITRo+G1Ylmo/XduAJbnoPZR1GrSf22Hv9T2PHFWiVFZB7uW9rZEI132mLB7is
-         kNDO3/ozOKavj+ytRjMXtVhaKAgd/qSC1kLWd2aeKApiuxBBHbHxkpmflgZRxPZbiJ2Q
-         j2kftY9heNvYlxVrV8FasqEH+Hsk0Jbl2ehDrC+autoSOYFBEFZVZCbmPXJupDha3CQc
-         xaoD/Zxu9A7BslYPUyNg3yLSIvF+wjZZV0eoh1bPdshfL4cWn8E6wsQ0vWGiBtfGm0op
-         33SQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+ZImDzlUtcfIndSFUPmqfIy4EV7JyFpaaNmu0YXr0L9aNCV0Zqz9hj6eTHR/1HrdgLJ2m08UFDrOyl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxX0e1tlZXC5OeOM+ws5wpQPdXqcfBtPPFrdV5d9AuYWz5mbPEc
-	WebVoy2DvDPvFRGO5GcMRSxh/p78zKEaWMBgiebe3P4xDgIpA6zrD09v
-X-Gm-Gg: AeBDiev1u4WkDV/2Vn7D21AtYamu7NUabUEbonxFB+c91cnsyN8TIgGBE55+nkn/bEr
-	pbvlOL7JDvrqFwmeMQbsMxuMNWRbqZgYeDWFt6ZaSgoCXiWy3zWV/lllYUj7W5yx9RhL1Jds20w
-	cBFWQJ2UPJPkOv77sRZfT69OYxlqEokPkfsV7Ak2KsqqREdlnC4UlHygMx9gNrEtTEEvKmajU+x
-	1jLa2by7iEq8A2dA81KrhlWVDTZ0MzFJ1X6JDzwlU1UteNb9ngTYKEWt3DudKd4pyysgHkfnYMv
-	HIwfluccTxaDc2PQTrdPx8GXg8ACrdZZ0ztODA8fWiUefccliJRvd6Bhop8FKUBidqs4K9pVUQO
-	6tGTdjCVe1hNGRs163RXLttw5WEx4Z4wHQR8WUxN2S1Fzg/NRSLTMhN70XwIxlOVPpFxn41jWHv
-	3dVlHcvwai01AlZzcLs3v8Q5z2eeEsyi9lpCd6963bmimOKAU8uNKKnSBNQ9s+Mjinf8B8ygpG+
-	TWymYATS9iSbQ4SkAInQ6rLzA==
-X-Received: by 2002:a05:6a21:9981:b0:3a3:472b:2e6a with SMTP id adf61e73a8af0-3a39c058afcmr8013894637.18.1777468973973;
-        Wed, 29 Apr 2026 06:22:53 -0700 (PDT)
+        bh=Zk/HPFBK4IBkCNGG/AGyeD13qmMu2NSM3WquJIJ4QH8=;
+        b=nutWBOE3FJlk6z/xYmBaOjpltYR7ztmw/rzXGN5T7vvUNP+FUbZDF6O2ajldWnewtL
+         53BGin8O3DvX+Gvbu9wzpA1OJnGT+7QCuU1A4GUB+HxDX5kNHgXyFkH6jM3YkBjooL3N
+         FYCKMkIxHIC9HaNK8licCASsUGjAWy0nU6TXoiYTjA2BvmPygGKvuAYcQqNGy3KObSxv
+         nGpp6mV3WugVIQIht8ukbG7ShELdu5XHruMJwiQ81Y7Jwji6b6nIgEZ0ptYpPLKN2Qcr
+         WRnUNF66UB/G3puxr/UWn8HIr+SQnPreMZDbb4LlXVLMWH6pZvcXfUlTVvuToRajlFuQ
+         if7Q==
+X-Forwarded-Encrypted: i=1; AFNElJ/c/rSKEYwD0zG2rmrzMY4LK3evBXjCxj5hfkesYf3tipkTf8vN6aOCA6cg9EMNfJHeZ13KQl0jmvlc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPg1AVn/2bV2K9NoxEYoV2s/hUMZlmmKeGNA9diuMMt20OvO1O
+	i5L62p8wUmMHu0vorMb2qgVtMx6nUod0UmvQAxz41xDLojEMp3vSvCJ3WGadgU07
+X-Gm-Gg: AeBDiesrwVLG//K19XV8rbEYv+zU2yoxq7CQfdr4dtUWJZpL/oA0HLMmvlHs1pryTKB
+	jfSTsCBiCccz4YNUh6gAVrYH565zkGsov1gWc7HOyvV1yHiv979ZurQWZZVjGfj0QhW0a9/jBVM
+	txTw4f6vb1DyJVscH793P9gNZo30gS+nINgWgfd7DZ7xvkcfBiKOViN3SIEog6gmqoEnOZ1DVS8
+	3WR+AoXMt72Mrps5eQTxYwfbtsnkV0wrhJo2Ck2obUKETJTo5qtAnI3+wwn8ZZv/NSksQWnUNMT
+	pLjW4yspcHJXOnAbp2B9RowrO3T4c5BaW00pg6kAXJ3wQLJKrmrEApEWTjJnp2vJhDIkOp3ezkr
+	y3ebMYEJFZ+GGMYLQCIYriDt+YhXEWLM5mEacbdqTadTRkzMK+BpZMzV3DMCPeQYcuuraH34qI+
+	Sp3fajC4zvOVJO8lP8AFkROP7XvwiW0xCJ51eCc69OQb9pFnEBLN/hqTw/E6RA5PBTOC1NFee5k
+	hp1azaipO/+9sXTJ2xFTCisJg==
+X-Received: by 2002:a05:6a00:849:b0:82f:238f:b5a8 with SMTP id d2e1a72fcca58-834ddae11cfmr7829325b3a.9.1777468982443;
+        Wed, 29 Apr 2026 06:23:02 -0700 (PDT)
 Received: from localhost.localdomain ([2001:448a:2002:4381:3859:fd0d:505e:362c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-834ed5cd407sm2091372b3a.13.2026.04.29.06.22.47
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-834ed5cd407sm2091372b3a.13.2026.04.29.06.22.58
         (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Wed, 29 Apr 2026 06:22:53 -0700 (PDT)
+        Wed, 29 Apr 2026 06:23:01 -0700 (PDT)
 From: Muchamad Coirul Anwar <muchamadcoirulanwar@gmail.com>
 To: jic23@kernel.org,
 	linux-iio@vger.kernel.org,
@@ -91,9 +91,9 @@ Cc: branstj@gmail.com,
 	igor.korotin.linux@gmail.com,
 	linux-kernel@vger.kernel.org,
 	Muchamad Coirul Anwar <muchamadcoirulanwar@gmail.com>
-Subject: [RFC PATCH v2 1/4] i2c: rust: add smbus_read_byte_data and smbus_read_word_data
-Date: Wed, 29 Apr 2026 20:22:27 +0700
-Message-ID: <20260429132234.30514-2-muchamadcoirulanwar@gmail.com>
+Subject: [RFC PATCH v2 2/4] rust: add minimal IIO subsystem abstractions
+Date: Wed, 29 Apr 2026 20:22:28 +0700
+Message-ID: <20260429132234.30514-3-muchamadcoirulanwar@gmail.com>
 X-Mailer: git-send-email 2.50.0
 In-Reply-To: <20260429132234.30514-1-muchamadcoirulanwar@gmail.com>
 References: <20260429132234.30514-1-muchamadcoirulanwar@gmail.com>
@@ -103,80 +103,304 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 0E574494CF1
+X-Rspamd-Queue-Id: 94B10494D9C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-291559-lists,devicetree=lfdr.de];
 	FREEMAIL_CC(0.00)[gmail.com,metafoo.de,kernel.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-291554-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[muchamadcoirulanwar@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
 Signed-off-by: Muchamad Coirul Anwar <muchamadcoirulanwar@gmail.com>
 ---
- rust/kernel/i2c.rs | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ rust/bindings/bindings_helper.h |   2 +
+ rust/kernel/iio.rs              | 224 ++++++++++++++++++++++++++++++++
+ rust/kernel/lib.rs              |   2 +
+ 3 files changed, 228 insertions(+)
+ create mode 100644 rust/kernel/iio.rs
 
-diff --git a/rust/kernel/i2c.rs b/rust/kernel/i2c.rs
-index 7b908f0c5a58..6eaea1158fda 100644
---- a/rust/kernel/i2c.rs
-+++ b/rust/kernel/i2c.rs
-@@ -477,6 +477,30 @@ impl<Ctx: device::DeviceContext> I2cClient<Ctx> {
-     fn as_raw(&self) -> *mut bindings::i2c_client {
-         self.0.get()
-     }
+diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
+index 083cc44aa952..e732ee19b90c 100644
+--- a/rust/bindings/bindings_helper.h
++++ b/rust/bindings/bindings_helper.h
+@@ -58,6 +58,8 @@
+ #include <linux/firmware.h>
+ #include <linux/fs.h>
+ #include <linux/i2c.h>
++#include <linux/iio/iio.h>
++#include <linux/iio/types.h>
+ #include <linux/interrupt.h>
+ #include <linux/io-pgtable.h>
+ #include <linux/ioport.h>
+diff --git a/rust/kernel/iio.rs b/rust/kernel/iio.rs
+new file mode 100644
+index 000000000000..ee27d928e803
+--- /dev/null
++++ b/rust/kernel/iio.rs
+@@ -0,0 +1,224 @@
++// SPDX-License-Identifier: GPL-2.0
++// Copyright (C) 2026 Muchamad Coirul Anwar <muchamadcoirulanwar@gmail.com>
++//! IIO subsystem abstractions.
++//!
++//! Minimal safe Rust wrappers for the Linux IIO (Industrial I/O) subsystem.
++//! Provides [`Device`] for allocating and registering an IIO device, and the
++//! [`IioDriver`] trait for implementing `read_raw` callbacks in safe Rust.
 +
-+    /// Reads a single byte from a register via SMBus.
-+    pub fn smbus_read_byte_data(&self, reg: u8) -> Result<u8> {
-+        // SAFETY: `self.as_raw()` is a valid pointer to a `struct i2c_client`
-+        // by the type invariant of `I2cClient`.
-+        let ret = unsafe { bindings::i2c_smbus_read_byte_data(self.as_raw(), reg) };
-+        if ret < 0 {
-+            Err(Error::from_errno(ret))
-+        } else {
-+            Ok(ret as u8)
++use crate::{
++    bindings::{
++        __iio_device_register, iio_chan_spec, iio_dev, iio_device_alloc, iio_device_free,
++        iio_device_unregister, iio_info, INDIO_DIRECT_MODE,
++    },
++    device,
++    error::{code::*, to_result, Result},
++    prelude::*,
++    ThisModule,
++};
++use core::{
++    ffi::c_int,
++    marker::PhantomData,
++    mem::{size_of, zeroed},
++    ptr::{drop_in_place, write},
++};
++use pin_init::{pin_data, pinned_drop};
++/// IIO value type: single integer (`IIO_VAL_INT`).
++pub const IIO_VAL_INT: c_int = crate::bindings::IIO_VAL_INT as c_int;
++/// IIO value type: integer plus micro part (`IIO_VAL_INT_PLUS_MICRO`).
++pub const IIO_VAL_INT_PLUS_MICRO: c_int = crate::bindings::IIO_VAL_INT_PLUS_MICRO as c_int;
++/// IIO value type: integer plus nano part (`IIO_VAL_INT_PLUS_NANO`).
++pub const IIO_VAL_INT_PLUS_NANO: c_int = crate::bindings::IIO_VAL_INT_PLUS_NANO as c_int;
++/// IIO value type: fractional (`IIO_VAL_FRACTIONAL`).
++pub const IIO_VAL_FRACTIONAL: c_int = crate::bindings::IIO_VAL_FRACTIONAL as c_int;
++
++/// Represents the return value of a `read_raw` operation.
++///
++/// Each variant corresponds to an `IIO_VAL_*` constant and tells the
++/// IIO core how to format `val` and `val2` for userspace.
++pub enum IioVal {
++    /// A single integer value.
++    Int(i32),
++    /// A fractional value represented as `val / val2`.
++    Fractional(i32, i32),
++    /// An integer plus a micro (10⁻⁶) fractional part: `val.val2`.
++    IntPlusMicro(i32, i32),
++    /// An integer plus a nano (10⁻⁹) fractional part: `val.val2`.
++    IntPlusNano(i32, i32),
++}
++
++/// Trait to be implemented by IIO driver private data.
++///
++/// Implementors supply the `read_raw` callback invoked by the IIO core
++/// when userspace reads a channel attribute (e.g. `in_angl_raw`).
++pub trait IioDriver {
++    /// Called by the IIO core when userspace reads a channel attribute.
++    ///
++    /// `chan` is the channel being read; `mask` selects the attribute
++    /// (e.g. `IIO_CHAN_INFO_RAW`, `IIO_CHAN_INFO_SCALE`).
++    fn read_raw(&self, chan: *const iio_chan_spec, mask: isize) -> Result<IioVal>;
++
++    /// Returns the channel specifications for this driver.
++    ///
++    /// The default implementation returns an empty slice.
++    fn channels(&self) -> &[iio_chan_spec] {
++        &[]
++    }
++}
++
++/// C-compatible trampoline for the `iio_info.read_raw` callback.
++///
++/// # Safety
++///
++/// This function is only called by the IIO core with valid pointers:
++/// - `indio_dev` is a valid `iio_dev` allocated by `iio_device_alloc`.
++/// - `chan` points to a valid channel spec from the device's channel array.
++/// - `val` and `val2` are valid pointers for writing the result.
++unsafe extern "C" fn read_raw_callback<T: IioDriver>(
++    indio_dev: *mut iio_dev,
++    chan: *const iio_chan_spec,
++    val: *mut c_int,
++    val2: *mut c_int,
++    mask: isize,
++) -> c_int {
++    // SAFETY: `indio_dev` is valid and was allocated with space for `T` in its
++    // private data area. The `priv_` field was initialized in `Device::new()`.
++    let priv_ptr = unsafe { (*indio_dev).priv_ as *mut T };
++    // SAFETY: `priv_ptr` points to a valid, initialized instance of `T` that
++    // lives as long as the `iio_dev` allocation.
++    let driver = unsafe { &*priv_ptr };
++
++    match driver.read_raw(chan, mask) {
++        Ok(IioVal::Int(v)) => {
++            // SAFETY: `val` is a valid pointer provided by the IIO core.
++            unsafe { *val = v };
++            IIO_VAL_INT
++        }
++        Ok(IioVal::Fractional(v, v2)) => {
++            // SAFETY: `val` and `val2` are valid pointers provided by the IIO core.
++            unsafe {
++                *val = v;
++                *val2 = v2;
++            };
++            IIO_VAL_FRACTIONAL
++        }
++        Ok(IioVal::IntPlusMicro(v, v2)) => {
++            // SAFETY: `val` and `val2` are valid pointers provided by the IIO core.
++            unsafe {
++                *val = v;
++                *val2 = v2;
++            }
++            IIO_VAL_INT_PLUS_MICRO
++        }
++        Ok(IioVal::IntPlusNano(v, v2)) => {
++            // SAFETY: `val` and `val2` are valid pointers provided by the IIO core.
++            unsafe {
++                *val = v;
++                *val2 = v2;
++            }
++            IIO_VAL_INT_PLUS_NANO
++        }
++        Err(e) => e.to_errno(),
++    }
++}
++
++/// A registered IIO device.
++///
++/// Wraps a C `struct iio_dev` and manages its lifetime. On drop the
++/// device is unregistered (if registered) and its memory freed.
++#[pin_data(PinnedDrop)]
++pub struct Device<T: IioDriver> {
++    indio_dev: *mut iio_dev,
++    registered: bool,
++    _p: PhantomData<T>,
++}
++
++// SAFETY: `Device` only contains a raw pointer to a kernel-managed `iio_dev`.
++// The IIO core serializes access to the device, and `T` is required to be `Send`.
++unsafe impl<T: IioDriver + Send> Send for Device<T> {}
++// SAFETY: All `&self` access to the `iio_dev` is read-only or goes through the
++// IIO core which provides its own synchronization. `T` is required to be `Sync`.
++unsafe impl<T: IioDriver + Sync> Sync for Device<T> {}
++
++#[pinned_drop]
++impl<T: IioDriver> PinnedDrop for Device<T> {
++    // SAFETY: `self.indio_dev` was allocated by `iio_device_alloc` in `new()`
++    // and is valid for the lifetime of this struct. We unregister first (if
++    // registered), then drop the private data, then free the `iio_dev`.
++    // This ordering is critical: unregister ensures no more callbacks can
++    // fire before we drop the driver data they reference.
++    fn drop(self: Pin<&mut Self>) {
++        unsafe {
++            if self.registered {
++                iio_device_unregister(self.indio_dev);
++            }
++            let priv_ptr = (*self.indio_dev).priv_ as *mut T;
++            drop_in_place(priv_ptr);
++            iio_device_free(self.indio_dev);
 +        }
 +    }
++}
 +
-+    /// Reads a 16-bit word from a register via SMBus.
-+    pub fn smbus_read_word_data(&self, reg: u8) -> Result<u16> {
-+        // SAFETY: `self.as_raw()` is a valid pointer to a `struct i2c_client`
-+        // by the type invariant of `I2cClient`.
-+        let ret = unsafe { bindings::i2c_smbus_read_word_data(self.as_raw(), reg) };
-+        if ret < 0 {
-+            Err(Error::from_errno(ret))
-+        } else {
-+            Ok(ret as u16)
++impl<T: IioDriver> Device<T> {
++    // SAFETY: The remaining fields of `iio_info` are pointers and function
++    // pointers. Zeroed values are NULL, and the IIO core checks for NULL
++    // before invoking callbacks or dereferencing attribute group pointers.
++    const VTABLE: iio_info = iio_info {
++        read_raw: Some(read_raw_callback::<T>),
++        ..unsafe { zeroed() }
++    };
++
++    /// Allocates a new IIO device with the given driver data.
++    ///
++    /// The device is not yet registered; call [`register`](Self::register)
++    /// to make it visible to userspace.
++    pub fn new(dev: &device::Device, data: T, name: &'static CStr) -> Result<Self> {
++        // SAFETY: `dev.as_raw()` returns a valid `struct device` pointer.
++        // `iio_device_alloc` allocates an `iio_dev` with `sizeof(T)` bytes of
++        // private data. Returns NULL on failure.
++        let indio_dev = unsafe { iio_device_alloc(dev.as_raw(), size_of::<T>() as _) };
++        if indio_dev.is_null() {
++            return Err(ENOMEM);
 +        }
++
++        // SAFETY: `indio_dev` is a valid, newly allocated `iio_dev`.
++        // - `priv_` points to an uninitialized area of `sizeof(T)` bytes.
++        // - `core::ptr::write` initializes it without reading the old value.
++        // - `name` is a `'static` C string that outlives the device.
++        // - `VTABLE` is a `'static` const and outlives the device.
++        // - `channels()` returns a reference to data owned by `T` in `priv_`,
++        //   which remains at a fixed address for the lifetime of `indio_dev`
++        //   because `priv_` is heap-allocated by `iio_device_alloc`.
++        unsafe {
++            let priv_ptr = (*indio_dev).priv_ as *mut T;
++            write(priv_ptr, data);
++            (*indio_dev).name = name.as_char_ptr();
++            (*indio_dev).info = &Self::VTABLE;
++
++            let chans = (*priv_ptr).channels();
++            (*indio_dev).channels = chans.as_ptr() as *const iio_chan_spec;
++            (*indio_dev).num_channels = chans.len() as _;
++            (*indio_dev).modes = INDIO_DIRECT_MODE as i32;
++        }
++
++        Ok(Self {
++            indio_dev,
++            registered: false,
++            _p: PhantomData,
++        })
 +    }
- }
- 
- // SAFETY: `I2cClient` is a transparent wrapper of `struct i2c_client`.
++
++    /// Registers the IIO device, making it visible to userspace via sysfs.
++    ///
++    /// On success, channel attributes like `in_angl_raw` become readable.
++    /// On failure the device stays unregistered and will be freed when
++    /// this [`Device`] is dropped.
++    pub fn register(&mut self, _dev: &device::Device, module: &'static ThisModule) -> Result {
++        // SAFETY: `self.indio_dev` is a valid, fully initialized `iio_dev`.
++        // `module.as_ptr()` provides the module owner for proper refcounting.
++        let ret = unsafe { __iio_device_register(self.indio_dev, module.as_ptr()) };
++        to_result(ret)?;
++        self.registered = true;
++        Ok(())
++    }
++}
+diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+index 138d846f798d..ec6eb4dbdb6a 100644
+--- a/rust/kernel/lib.rs
++++ b/rust/kernel/lib.rs
+@@ -99,6 +99,8 @@
+ #[cfg(CONFIG_I2C = "y")]
+ pub mod i2c;
+ pub mod id_pool;
++#[cfg(CONFIG_IIO)]
++pub mod iio;
+ #[doc(hidden)]
+ pub mod impl_flags;
+ pub mod init;
 -- 
 2.50.0
 
