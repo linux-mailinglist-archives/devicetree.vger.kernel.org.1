@@ -1,122 +1,270 @@
-Return-Path: <devicetree+bounces-291336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291341-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ACU8EXio8WnqjQEAu9opvQ
-	(envelope-from <devicetree+bounces-291336-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 08:43:04 +0200
+	id oB41Fgaq8WkAjgEAu9opvQ
+	(envelope-from <devicetree+bounces-291341-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 08:49:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 293CD48FE27
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 08:43:03 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A10748FF92
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 08:49:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9AE203062287
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:41:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D8076300681A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B0A938C2C3;
-	Wed, 29 Apr 2026 06:41:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DU+ksaYf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 967E8399002;
+	Wed, 29 Apr 2026 06:49:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023129.outbound.protection.outlook.com [40.107.44.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4757D3822BE;
-	Wed, 29 Apr 2026 06:41:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777444893; cv=none; b=n9Erooz3qy8v3LgYL1BMq0K8880lfj4p/em2IYWHPr65x6iYlYWMIxW7jhUK38fEUlutxz9qGMK3rqRjbA2ygUUfXbh2ljwms4532wtzwaipGUeDTd9Njqt9CfRh1/kjvOd5tjG6BHjLkNYmcbVEg77MqD6YjYXJZWA3bgvj91w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777444893; c=relaxed/simple;
-	bh=oKjb7C49gv0pn6lRPliZU0YnLLIFrT/1+bsMVpt3iiQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nyI1dqcNktTeTSJxV25ai9UTG62IqzdIK3KesuW/UURKbwjfJeHaH5z4mbv2LNwbgBDrOb5LNtuD0uzWgxMPfyRl6cVstpXwsWaDVu3Dy+SrBkXOP+ixDjRtG2wv8AF9yLNVOLcj7C0yGTKm19XUfX0S4oAeifnYFusvJkv/f20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DU+ksaYf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D1D8C19425;
-	Wed, 29 Apr 2026 06:41:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777444892;
-	bh=oKjb7C49gv0pn6lRPliZU0YnLLIFrT/1+bsMVpt3iiQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DU+ksaYf5HGGKUM44/yKZxnYujci/trSc+pNGMSXt/cLb0y+hBUczR/qj65ot1OTn
-	 V0wcriwSJKLJzivysaBk9fl1mrb7bBkyGCKURuceQHm2WnXAh6R8ngotR7UocbWDbQ
-	 4sxSFATr8B18uNKinOqb3WhvbedoDksdqJoekH9SKveUhBaQaTDxS28kZQTL1mRZUS
-	 58tuvIDaFkZAHanJeklwgVIuFZZgQ6XSfydudI5gyOUqNG8seP9YLJfoOS5aHXTN1M
-	 M/oalhzTG871ILX+oHimdtFLp8c1VEUZbDTmeaOkU67FBIGqEjTishW2HZgKIZQHdO
-	 alanjcpOIN3rA==
-Date: Wed, 29 Apr 2026 08:41:30 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: pshete@nvidia.com
-Cc: linusw@kernel.org, thierry.reding@kernel.org, jonathanh@nvidia.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, webgeek1234@gmail.com, 
-	rosenp@gmail.com, linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v3 4/6] dt-bindings: pinctrl: Document Tegra264 pin
- controllers
-Message-ID: <20260429-slick-intelligent-myna-8cba6c@quoll>
-References: <20260427134231.531222-1-pshete@nvidia.com>
- <20260427134231.531222-5-pshete@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A87D3803D3;
+	Wed, 29 Apr 2026 06:49:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.129
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777445375; cv=fail; b=n5ppI9pszdbzpfHfD8OFBhClUCJTIVIE/BT5YtopUtNfW75k/eNa4mf2JpxCkedzbgXkVOUc1OfXLGYpew3Sz7tKdQsQl0utuiIY+eB5c9FKDKtK9C4w1mXbHAU0EF3DrQNoe7oYomxMGFMzTC9nf2QXNzyhylOTedWP+GiEbIs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777445375; c=relaxed/simple;
+	bh=hTtk0wiO3yn2+Sb+WQWuZTZMOKrjO4u3++kt7gaA8is=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=VWakElWTs7h8/ZAgjPR1nhK/BrJfEGjrMFuI8uwVXEuYLwxtNlOGHobExw6i25pe2cCrvZN/RJjiS/OLPAvfLgSY99dBSyJs0PRgou+vHzwAyIbFr9U6ZJfPYtLtqxVQyGiRh+INfqfgwUFuQ28CpYSOPeZr+BAMZYIR27kkGoE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.44.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AGUuaaBuqyd5fqA7YbELJb1KNclSK0iPcjNG1o080aPTb7QaFDjIKksr9rszE940SBXAnLQxz0Acp3f+8OwlsMdWyMWxTz12NbaaLEPwyy2GFnriY0c/jGzpOWij1D24QxeBZ7Gurtizn1H/XZAVpGS7hG9q24iS/GsOOXCW3NwcKzonccGr3mZlXKv+4bYhHMhTfDgFF66fGAcYPK0RkofddWn4jPr7wRWvlUkIQcaMetfvGaRAFRAmNgwKJUAjmOzmqT9PUNzgTMdiSa9HvAL/2r9q6cjyHiUc5xIG2f0jDXfErXNpPHcmWPQADszWbpYWkiE7KvXzEdCuPm8mkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cdPA0mCuir88A0hSvUIoQsQfdb0RD+VwyBdVFh/a/qI=;
+ b=c99a0Kzyv6G2oYNT8mV87IYxyyPFz5W6Lo+zuFWG0Cb221CKCGj349x+SaOezQzojpETi1G1RHMDXxiIWnw7nNhkxG2mWHSCQcLykYzW4AdiskOVel0RiHCZiiAkgpuzxsVXb5Y9ruxwbpHSYljkOqDhgY3r5DLVnI8y9KpsJj19/BWY0vGKdRlhAAIcJcI4w202W6WI9JIp8Rk79rHf9Q/Wo9WarAmcUci9qAtSVwbnJaTh+nSvQ4SZdZxtIW+3ecMpsmZhgKpIKd2w7y3oipCwuv/43tPM2TUaVMqWmVNf2GnNTQkI4spz4JNuQb0xR+P82tIgaoLsn34Pf/iYxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
+ dkim=pass header.d=wesion.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wesion.com;
+Received: from JH0PR03MB8617.apcprd03.prod.outlook.com (2603:1096:990:91::14)
+ by TYSPR03MB9618.apcprd03.prod.outlook.com (2603:1096:405:85::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.26; Wed, 29 Apr
+ 2026 06:49:31 +0000
+Received: from JH0PR03MB8617.apcprd03.prod.outlook.com
+ ([fe80::28d:6503:f51c:11b7]) by JH0PR03MB8617.apcprd03.prod.outlook.com
+ ([fe80::28d:6503:f51c:11b7%5]) with mapi id 15.20.9870.016; Wed, 29 Apr 2026
+ 06:49:30 +0000
+Message-ID: <ec07016c-832e-408c-a6ac-77e22c95c214@wesion.com>
+Date: Wed, 29 Apr 2026 14:49:26 +0800
+User-Agent: Mozilla Thunderbird
+Subject: [PATCH 5/6] arm64: dts: rockchip: Enable USB for Khadas Edge 2L
+To: Heiko Stuebner <heiko@sntech.de>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ nick@khadas.com
+References: <20260325054614.1497147-1-gray.huang@wesion.com>
+ <20260325054614.1497147-6-gray.huang@wesion.com> <5673086.MHq7AAxBmi@phil>
+Content-Language: en-US
+From: Gray Huang <gray.huang@wesion.com>
+In-Reply-To: <5673086.MHq7AAxBmi@phil>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: TPYP295CA0018.TWNP295.PROD.OUTLOOK.COM
+ (2603:1096:7d0:a::19) To JH0PR03MB8617.apcprd03.prod.outlook.com
+ (2603:1096:990:91::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260427134231.531222-5-pshete@nvidia.com>
-X-Rspamd-Queue-Id: 293CD48FE27
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: JH0PR03MB8617:EE_|TYSPR03MB9618:EE_
+X-MS-Office365-Filtering-Correlation-Id: c3fee1d3-5b87-4ecf-10d1-08dea5bb7713
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+	OVUqJSyBvX+XNftlBNOYdWpmMSRp2TucrGs5j/Qg3iq/5iB5un9kbnzfB+gupWhkLMhSRnJF/H5KWkJELvZJ3R90cr5tFtY9PbGWcGKs8JElcPJqGFVd1QVdRInElouT7Esq2n15PAWIsAdWgI0EwkZUUhkfyt9rh2yJeXr7YGygPjhZEW5yf6uB07hFmNqJPEl+drnsfwICR9nHbzBMOV94HJIWFu5YTZytuWaX0U+veFN9LvgzIVvv8HV7AeWCzWtLvzaBG2HzViT8wOiExCoxV5nQmHZHh90b4OdnJGs7xCZaS5PLDBkUMufJjNSHooovkgDBMZ5x4VqTkhoXxteom8k6HhXYdWyz3w1S8NSxy56GXE5RrMrg8p9mQTlMksjaTltjr/xypqeHJanU1fqkVRdW890bTbLyMpiihEC9DHcEjbD2zgrsXdFGf5KS/g2HJtdYTWviBzjxIegdZaqO6DR7ObLvDu/iF5RWoUay/0iEW2FqkzzvGBZbg5WZZ2r3zdq+jBdmuFFfhZJgubkAKROOeu7y9CU2eKfMkBREe1bL7U6PgBLuQmfJds+l3D2+OJR2uzBemF135k1WsD9SYqMpZRPZsOYAzfIhCoQ510A5FHo90TJIdjKw1Mgf79SK6QW+rtGRFAuaxMuADChihB0S1G6/xyxkS4X9E3X7bPfhMz3+6QK26gt3QCuE4VW2J/m4Pm+eDARynJOioIg9XwdHm+0RMeXISwOpalg=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:JH0PR03MB8617.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?d2Z0TVNFd2UwSktaZWp2aXltS1hhM0FZeVBhM3EwTWEyTU9EY2dlWHV0b0ta?=
+ =?utf-8?B?SURFTVM4dFBwdkV6Tk9XeHgycjBOWUFlWmw2VEdzVUk4amRVcmpTTW14TzN5?=
+ =?utf-8?B?cXJzWXhUaWNSYmc5NDljbzM0RXUzcm9RRFJPMGROQTc1TnBYMndFNFM2M3Fs?=
+ =?utf-8?B?SStWSVc1YUpERWV3NUw4emlvRExSVXRJUXA1WWlIb0ZPYnRhRnRVOWFRU3RJ?=
+ =?utf-8?B?c3Aray8xVExBZExsYVRabUpuRnhOQS9aMVpGMHZFanU1L05TMzdqWFd5eTl1?=
+ =?utf-8?B?VnRBbkVzT0V1YzZkaFV1T25LczA2bW9BN1JwYVJXNDlyRlJmNmY5bGFhbFJT?=
+ =?utf-8?B?anpySythb1Zja0tmVW1kUW9uc2V5ckZkNVprdkp2MElVa3J2eHY5cTVsbmNv?=
+ =?utf-8?B?RkJtUzBXRzd3UDUzT0dneUxRVS9QbHZ0blArVG9VQk53dWRwQUxvTkR1Umta?=
+ =?utf-8?B?Tk1OZS9SZXRlckJHRFZJbEVJT0hETDd0K0FsSEI3TERrbUprYmYrMk5iVCta?=
+ =?utf-8?B?c1k5cXdFQndteXFYMXZUZEtHVSt5UFNsK01wWGU5blE2Q0JPdmVDZmNHaDBn?=
+ =?utf-8?B?UmhMT1d3Mk4zNW1DbFVXWk9oNC9TV3cwRGNSOEc2N1pRSkJKb3laL3pkNlht?=
+ =?utf-8?B?Y01sNkhWRG84N0RCS05hdE5tTWtKZjBqeVJDd29jaytJOHR5YjVYWElRZHNs?=
+ =?utf-8?B?clNzZVpUdmFqZHphdWFhVFRHd2s3QjZqV1FyNlh1VGNHV0J0Si81U1NEK3cx?=
+ =?utf-8?B?aEhibVk5cWdib2NhZDc2emUrUWNWYnBWL3Y4Tjl3T1pYTmxiQWcrdUhOOW1H?=
+ =?utf-8?B?NFk3WDdJanhvQjBRMDV3S3FNYkR4YnFScXNpMDNDdWJMS2YrYzVoTkl2amVa?=
+ =?utf-8?B?WUtQclc4TGZmYWVxb3g0eTRYNXFOS3VMWDJNOWVRcjFyNWRnQUxLNTVXQnd5?=
+ =?utf-8?B?RXk0MjM3QUhXUTYwU1pFMHpWMmoxMFFaSW5UazhLTWxPTDMzZjlwZTdZUUdx?=
+ =?utf-8?B?elQ4SDFoNmhoZEp1WFVqdkQ5aVFwTitEQzlPWFFDb3NYbzltTWFNWlZIVzRv?=
+ =?utf-8?B?RFJsMW9laVIvZ2JXdmFnWkxKMEdwUEZGNy9nQVZpWmkrMXJJaFk0SStkSFBU?=
+ =?utf-8?B?Z0MycHdGRTdzbXFUa2dmNGdTd2FKbmRmdml0KzNWNEgxbW05cE5DYUNnN2ds?=
+ =?utf-8?B?ZVpYODNEenNQMzd5QVVtQjlkaG41Zkt6L2ZYQTlmVnl2SFF3VDJaTGIyOE9C?=
+ =?utf-8?B?elRtOFNsbnJtODBNa0xicEEvSFFoNG1TMitkOHBWK09GUXZxYWYxNDJVeENi?=
+ =?utf-8?B?eHpIaGR4UDFSY3c1b1Q3YXdEcnlRQlNGSHo0Z3V0QjBuZXFZYVNYc0l4RzlY?=
+ =?utf-8?B?ek5hdG5JUzE3K2RvczFQSzJKd1RvMXBJQ3d6U1ZVL3BRTFlQeElsM1FTcnRY?=
+ =?utf-8?B?ZkJTeUIrMG5VR2lzUXNFeDFYUnVaTDJtVThIT08yL1RCQVMxejEyTGNkWENW?=
+ =?utf-8?B?SjBTTGcxODR0eHFRZmdIdC9MZ0dFdUs5TXVRNEFCblNGaG1PaUJnRjYvL0lh?=
+ =?utf-8?B?QTcyQUlhMEV0ZHVWOFFkcmVaWVJHN2hXR3k2SnN5QlpScEpNSi9GM1B5VXdx?=
+ =?utf-8?B?S0kxRGhKSkJkSnFraWcranI2dVpzTUJNeFlzL0RoVnpublk2Vk56VWo3MUJJ?=
+ =?utf-8?B?Yi9laWRDVTB4U1g0Tm96ZHNIdGg0WEJ2R2grdGZPOGRDRWd0M1E3YzJLYk1y?=
+ =?utf-8?B?NE84TDYxOENyb09VUWN0ZWdUNmRodExjTyswcWhJZTNaY3FyUHdKMmluQ2lQ?=
+ =?utf-8?B?TWRDYTh4QUYvOGY5SUNXRkYzbnM1b0lidU9SZ0s2dkpsdWczeENnNFdRLy9x?=
+ =?utf-8?B?YzM2UGRHd3lUZnZOazBMNHlOejdLTExhY2pTMkNRODZCR2JzbUF1ZHpCSURy?=
+ =?utf-8?B?NlRZbnZLN005ZThLV0RUVkUxVUl3bmR4TkhITGtjV1RtR2p1WndFRnUwTHdK?=
+ =?utf-8?B?S2ljZnhnekNvTHg2a1plV1RvQ1F3dmh3K3UzaURIZlFZcmYyTzY2ZGhCOW42?=
+ =?utf-8?B?ZGk4MDMrSVFSczQzRlNYTGxueWNWTzB2OW8vL0hSb1lJSGdWTndvOGR3VFZn?=
+ =?utf-8?B?NzV5NitKZVBFeEhid0FDVFJBKzczd3JiSnBRTUEvTytCcVpQUFZVa0dpdm9V?=
+ =?utf-8?B?ZzQ4dVZkdUVzd1Vvd2s5MnV4cFNQYll1SVNJZm9BUnB0ZThDR0hpdVc2TnNp?=
+ =?utf-8?B?R1VsSU1uVTZIRE1PYU56cTFWalM2MHZmSTI5UnBYZ1p4eDlwUFNBc2hzS0lG?=
+ =?utf-8?B?MWJpcTR5cm1mNTJxKzFyeXNzUmdkelNIVk8vcTExMU9WTGxtQzlBQT09?=
+X-OriginatorOrg: wesion.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3fee1d3-5b87-4ecf-10d1-08dea5bb7713
+X-MS-Exchange-CrossTenant-AuthSource: JH0PR03MB8617.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2026 06:49:30.9506
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vzQGCbhCuT1wu69iQyGwGNHdwR3IolBYLPKIIUtmhfDfacA2gcRzzySGuPdpoHI+m92CaUkM8gxjjnlJwco/Vg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB9618
+X-Rspamd-Queue-Id: 4A10748FF92
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [2.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291336-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,gmail.com,vger.kernel.org,oss.qualcomm.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-291341-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[wesion.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nvidia.com:email,qualcomm.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gray.huang@wesion.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.422];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,wesion.com:mid,wesion.com:email]
 
-On Mon, Apr 27, 2026 at 01:42:29PM +0000, pshete@nvidia.com wrote:
-> From: Prathamesh Shete <pshete@nvidia.com>
-> 
-> Tegra264 contains three pin controllers. Document their compatible strings
-> and describe the list of pins and functions that they provide.
-> 
-> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> ---
-> Changes in v3:
->   - Wrap commit message to 75 chars per line (v2 was too short).
-> Changes in v2:
->   - Add a 'required:' block listing 'compatible' and 'reg'.
->   - Switch top-level 'unevaluatedProperties: false' to
->     'additionalProperties: false'.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+On 4/27/26 20:27, Heiko Stuebner wrote:
+> Am Mittwoch, 25. März 2026, 06:46:13 Mitteleuropäische Sommerzeit schrieb Gray Huang:
+>> The Khadas Edge 2L board provides one USB 3.0 Host port and one
+>> USB 2.0 port (connected via an internal hub). Enable the
+>> corresponding DWC3 controllers and PHYs.
+>>
+>> Signed-off-by: Gray Huang <gray.huang@wesion.com>
+>> ---
+>>   .../dts/rockchip/rk3576-khadas-edge-2l.dts    | 47 +++++++++++++++++++
+>>   1 file changed, 47 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-khadas-edge-2l.dts b/arch/arm64/boot/dts/rockchip/rk3576-khadas-edge-2l.dts
+>> index 003342fd69a7..8ecd00f6645d 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3576-khadas-edge-2l.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3576-khadas-edge-2l.dts
+>> @@ -30,6 +30,29 @@ hdmi_con_in: endpoint {
+>>   		};
+>>   	};
+>>   
+>> +	vcc5v0_device: regulator-vcc5v0-device {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vcc5v0_device";
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+>> +	};
+>> +
+>> +	vcc5v0_host: regulator-vcc5v0-host {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vcc5v0_host";
+>> +		regulator-boot-on;
+>> +		regulator-always-on;
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+>> +		enable-active-high;
+>> +		gpio = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
+>> +		vin-supply = <&vcc5v0_device>;
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&usb_host_pwren>;
+>> +	};
+>> +
+>>   	vcc_sys: regulator-vcc5v0-sys {
+>>   		compatible = "regulator-fixed";
+>>   		regulator-name = "vcc_sys";
+>> @@ -531,6 +554,12 @@ pcie0_rst: pcie0-rst {
+>>   		};
+>>   	};
+>>   
+>> +	usb {
+>> +		usb_host_pwren: usb-host-pwren {
+>> +			rockchip,pins = <2 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
+>> +		};
+>> +	};
+>> +
+>>   	wifi {
+>>   		wifi_reg_on: wifi-reg-on {
+>>   			rockchip,pins = <4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>;
+>> @@ -542,6 +571,24 @@ wifi_wake_host: wifi-wake-host {
+>>   	};
+>>   };
+>>   
+>> +&usb_drd1_dwc3 {
+>> +	dr_mode = "host";
+>> +	status = "okay";
+>> +};
+>> +
+>> +&u2phy1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&u2phy1_otg {
+>> +	phy-supply = <&vcc5v0_host>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&combphy1_psu {
+>> +	status = "okay";
+>> +};
+> same here, u-something and c-something between pinctrl and sdhci
+> is the wrong place.
+>
+> Heko
 
-Best regards,
-Krzysztof
+Has been sorted alphabetically in patch of v2.
 
+Gray
+
+>> +
+>>   &sdhci {
+>>   	bus-width = <8>;
+>>   	no-sdio;
+>>
+>
+>
+>
 
