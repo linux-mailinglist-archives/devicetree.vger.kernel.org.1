@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-291241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291243-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +LsOCwVi8WnhgQEAu9opvQ
-	(envelope-from <devicetree+bounces-291241-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:42:29 +0200
+	id CJbbJjpi8WnhgQEAu9opvQ
+	(envelope-from <devicetree+bounces-291243-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:43:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FA8C48E0DA
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:42:28 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E6AB48E0F1
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 03:43:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 23E16306A8F9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 01:39:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C2C0B3077345
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 01:39:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F4562571DD;
-	Wed, 29 Apr 2026 01:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E01042571DD;
+	Wed, 29 Apr 2026 01:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="f2RHNbWz"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="FaAGJtSS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
+Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68BA810F2;
-	Wed, 29 Apr 2026 01:39:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD1E222370A;
+	Wed, 29 Apr 2026 01:39:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.194.254.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777426765; cv=none; b=gpRyqmpMpTS2K8qFjlGBOSaBtCo/ZPVafGysBBfaUon18vyKWsQKJLy+GEBB2dbVQ2bD38kiTvD1/k8NxxDrgMFGuzJJ3GYFnBbdGPMdRUfcPWvEmIgHIufxRaFP+qFhIqrVkRVb6pNUCERvzPF2ISd+3ka6EVbBSy0ZEi/sVfc=
+	t=1777426786; cv=none; b=DN0i2F8zvOo+zrUf6dY/x95FyA9h/Iq7msIaDjHrBpXjXN2Jo0g9mySXTiHrH52DgNbKSJFCDhiXokisPkExV9x3FBFA7YJXnAzo4jUseNzBWRrOOzRRpa26Ag1aeyYAfMvMhUI19FwZx7HA+8+37i0iBKJh68oDK7DXNIPWq4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777426765; c=relaxed/simple;
-	bh=NAgZL6RRaKXXih+6ACD5ImpEXa86qDP16TxAOhPDHIQ=;
+	s=arc-20240116; t=1777426786; c=relaxed/simple;
+	bh=rQ3g1iEURZi4LnziZ1fc6sbszDwJlqQ9RIGs3gyTlGc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EDTPqvZD3dWzIC2/8Fb2UHdUUrIUXaV6Olo1fGrmStYr5jElXOPXmdhJ2u9KDQXPE2DFb/br46MEQOCUlyD1hYYrbCdeV+GQkhYpxLf3c4IInbOX2lfJ09H4iOamDu4HjQRjIRqZa7vSAKqdrfnIokcxMnVfY4JRD+6R3udYFHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=f2RHNbWz; arc=none smtp.client-ip=52.59.177.22
+	 In-Reply-To:To:Cc; b=HqZyzsc521o54zwKbPIT/nk2kEc9esWFlXTvzidFOa/HDIG8oPGNd7pWF2QyOzZZuoBI4F8vmVPXlj6E/oMZNoAgYiUwDtGf0oSW/U7Z5MHkxaIdyL9FFRxu8Lz95yH7/lwvLbpD1+5CAe8WNSA+Jc1vKVYGwa2Tv7x/6rTwbjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=FaAGJtSS; arc=none smtp.client-ip=18.194.254.142
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1777426759;
-	bh=FI4ajARcW5357tLN5/I0ua9TZkOJrFRVAlMis1T0b2M=;
+	s=mxsw2412; t=1777426763;
+	bh=Fa1GhJ9Mm6+UlP/0zx8pjid8wYuGhB8oXYTC38+xnlU=;
 	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=f2RHNbWza+D8n4xRFvCFEbb10aFrEYaiMIqi/OS40cLEzbm/qww1Zcj+29BHr1/4+
-	 NVSyLMCAjiS7Ih6HAQxNfVsaOXV/cStJWdXygfIwVHNM4xBu6TvbNGi+odiL58l0bI
-	 ANNsJBqnft1DE+MoS3Qojpavsivug5fz5fzD8/7o=
-X-QQ-mid: esmtpgz12t1777426755t013c7bfe
-X-QQ-Originating-IP: xdBdhRDl77xch4NsM0af+nFog4tII5MZi881pdQy8Kw=
+	b=FaAGJtSSafvVC1M50qydn+RM3yPEyk61qo7sqlA1MKbwjWYpfCr//pb9xQZGuWzOn
+	 XnJUIp1q/qOyImmUsI9kuGcifNLKJcojlgyN6mSYTHZePz3zgJ4yUjS9ofuIq5CrKq
+	 Lm/gR7reHlTXz3B1+z97kQ4djFGUua2PNRb4URMY=
+X-QQ-mid: esmtpgz14t1777426759ta66e92bf
+X-QQ-Originating-IP: TnZa94EYn/Y67XrWQDnUM6ySI8l1koZCnIZNF1cOgfk=
 Received: from = ( [120.237.158.181])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 29 Apr 2026 09:39:12 +0800 (CST)
+	id ; Wed, 29 Apr 2026 09:39:16 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 7627828452192065809
+X-BIZMAIL-ID: 8148319090196438835
 EX-QQ-RecipientCnt: 15
 From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Wed, 29 Apr 2026 09:38:50 +0800
-Subject: [PATCH 5/7] ASoC: dt-bindings: add fixed-sample-rate property for
- SpacemiT K1/K3
+Date: Wed, 29 Apr 2026 09:38:51 +0800
+Subject: [PATCH 6/7] ASoC: spacemit: add fixed-sample-rate constraint
+ support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260429-k3-i2s-v1-5-2fe99db11ecb@linux.spacemit.com>
+Message-Id: <20260429-k3-i2s-v1-6-2fe99db11ecb@linux.spacemit.com>
 References: <20260429-k3-i2s-v1-0-2fe99db11ecb@linux.spacemit.com>
 In-Reply-To: <20260429-k3-i2s-v1-0-2fe99db11ecb@linux.spacemit.com>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -75,43 +75,43 @@ Cc: linux-sound@vger.kernel.org, linux-riscv@lists.infradead.org,
  devicetree@vger.kernel.org, 
  Troy Mitchell <troy.mitchell@linux.spacemit.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777426731; l=1270;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777426731; l=2155;
  i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=NAgZL6RRaKXXih+6ACD5ImpEXa86qDP16TxAOhPDHIQ=;
- b=TusiHIciXUEkTyZdF0agxDOszJih+9MIoUSFVA68HIDOa8vi2cUesDBfQe6f4l4R+9H2D8znc
- iEXn6JQBHR1DS1pO8ZQIdzSeDXsQeMaCRPGheSGBpUYrD6BmdWQTB97
+ bh=rQ3g1iEURZi4LnziZ1fc6sbszDwJlqQ9RIGs3gyTlGc=;
+ b=1QAW1hqaGPJM7giTj3fW5j/i0VLxVFmLKJwW6gR8vxiDo5ByP5sbUNgS70bD3NzQFt64DAf0Z
+ HYKiC8VJCVOAt8KHIMtFWqYJgdquan9RXkP5vET9BXSGlQQqWfcQuxr
 X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
  pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
 X-QQ-SENDSIZE: 520
 Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: NV33GuG3VJ0ZMZyi/YYYHy5b1IYD3h2lu4bAGgv6aLCmLSi/OTtZwO79
-	8WlrHfVyuI1CP68DHGbyaGFgE0az28ZQwwmwKGzll8nP1wWkMd6Oy0PWZYjqsQZEJhAdDHl
-	5J9UqsVmNw9W4eYiJaDwuan05x4vWc/zznAETMUaDVLOeIv4SxjL+pVC4bkbKi0dptHUUHy
-	EAKI4yclmXKN9azte1EHOkfbUK0CBpP//kjIdW4MZLRH8Qcia2a32ioEIQFf2VP/v1v+IVx
-	BgEQfBNj7MzjcI+q4eStpil3r7+GXM48IwQOHdU9xZEHNTr5jnZAD70NmEX+XPuaFQ3Io16
-	Vaapzktmrno5gCucjVB0mn5t1EBPm+uO7Zu7ohqMbF+ND8LgJSME5ycft9f9JrJgnE0GY/o
-	AzMmm9vyyJWOSi8TTzSD2k6BiBBqD4ebm0II17F0IgTMXjol+Ot7q6Rf4JvsTmtWwcksRGv
-	oD7C194ZzcZEyVfEeV7t+2YIQpaUYOWxaFll6psycENAbPRapU3q4nDvkYGFj/ZzCdvKHCV
-	Rzf4ygqEgmXnIyLBoMc6fKdWElwVkUoh4/d2+h/mtXvt5HNMJytClwSCvS01Mymadttu8os
-	TNQGCmb8R8mgCNnlncabD3Yzi2yiTmH7oTB4aSJB1CQxbAxwmF4n15afqDHs4x0t82hcXYu
-	fcXu+y9A6Yp6RQFRKV74DcvnnCnXK2BmSu+ywpSJRBYZfIOqgwDdkplNaa+G87FYTaFvwRv
-	14XiOOkTO2y0RIApJzpYmJUHt4qrjHl6nkmxPIjoWzRr7A7iqYxpnxnCMPuLdqRuhxIfR0y
-	84V2sCyGXKfnpfoVD3YOnjq/+bfxvSj+mMe3lMo7SNq6tGBodPA0EoAdDIj2c1QlY7+KO52
-	OclItZDKYsleLLZDd05/Y5iZvkxqMMEHu5YJhUecUmMligFhVlO+7H7pUDhXSaK3Jbj7Ovj
-	PrESz7JKrdgo0UdNuz+SfHkmspMUtENpGLfJ+HXdnCmPj4BqQ0/9n3TfP9QTwP+TVY63nuO
-	XHAqzxM2lNFBJrx4UQe/IZGtIV/mp7CJHIyCmxldxG3K7Uwq7cmo9PcnZToxpB9FpgziUcP
-	dJOCkY+WPM5koUFgFYZbMfoI/Ckz57lGb3YyAH9KOriWUhGXYrp13Rc3LdHwPGtLNsq2HQJ
-	aZDwF3cdO9sy/e+ND4HNtanwpQ==
-X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
+X-QQ-XMAILINFO: MwFkbloawFgLdqwuzIolXdFu8PlJrDU0tcUuI5gQcmauejLvoJwaahYg
+	n6J1F9x8gUI6vDG9aFJXgpIzLrbFuEbxSsuGrZk2qEEbJ0eDVUqrF4ezIrAQle0L4bgjmgJ
+	WfcXHkP2iN8not2q81kv+O2ahHk4Pr95V8XFkZ9VgMvvJT1mEn24FT+EfRHf0nnkvetmXMd
+	dQtYsRzHJrU8vXeNzm4LzP+9t6GqNffjtOaIjmmt58AA1JxeVowbzUjM1TLFPV4pTVcC4hO
+	b/k5ggE0JBFy8Pj8dF/VNJrj/Z/qp6DuRELZ1SP99P1NJIqJAhEbtkHf+2XFbt1R7MvT7sP
+	6mhDFjRdDk2N3SaVva+Prc8SEsg1gsgY/ik50t1S63ZVRRLtLO/pCO0ooUucw9eVfcBsfog
+	usl735+nX3+ovPl/z+/wO1heieh09IMbKf/oRtyJpFNjBVOqWyC9Qw1EPsNUjMGBdCtAniy
+	lLPi4d4xQQ2xziZM4mGqA7HlhnNsh/IwhJ7J7o132G9GP36IdepsGBd7jMa4TXTJqMTXte9
+	x+HMs+UfaUMtyqf2aEY4B7WwPE2h8I1apzVIXmaLf0ar30ae0xSR9lpbIxnQyIzLBYgeZBP
+	D4D/GAg8Vrcv7fKXkPR/QhPADO/8kG4o0YfAHUuejxrATACHj2GRhfXqIOG2q0cMnHyWd70
+	7uZ0ZUfGHBYw/jr2RR3MfkxMZukXLSSjPHEd3iGSqm/zt5pMZxXYLpI9Wrp5sUB1E0dPCz7
+	c1mQrfn7L3/ys2VnsFkC+l3fXV+KFQNXFXtcel6Rc4SXU9HNh6/yx2wk1iiYVd/sYIdQM4N
+	k++yonT0fGslVwzJ3bbWsr9hw7P6x/+Otbc/Hgc3OjIasOMfH8Bt0lKlwkWdSneA/sVQ1tB
+	TdzuZ80SjACE1S0lF7w0YLMT9oYFN+/aWWBfMNl3dQb8gy6UY2WMEFVofXBeKRiXt1kgnzd
+	1yssyarUjC5Cz5IxDqxbWQE5t9FlxHmMhQLWt01lbUZluS/DM7goQBuKtM3VnM9kOBBom+S
+	0i3La9eUffrAdag9jH9wYXXuXeFTtrRxF4heOLH7JaxAe+A9n0odgP46HVreW97HnVrus1+
+	kGF7F6VPwqD9UzEELOs1Z2YG+ab6bmYoT0UPhM55Pnmt8pxKUKzE0Zs2dodfp6c7jJsRQqH
+	bYGCPnVGglUMNrlsS6JfHmjDau7oTWaSKzh7
+X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
 X-QQ-RECHKSPAM: 0
-X-Rspamd-Queue-Id: 8FA8C48E0DA
+X-Rspamd-Queue-Id: 0E6AB48E0F1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -123,7 +123,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_NA(0.00)[spacemit.com];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-291241-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291243-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -132,39 +132,67 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.spacemit.com:dkim,linux.spacemit.com:mid,spacemit.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-Add the optional spacemit,fixed-sample-rate property. When multiple I2S
-controllers share a common bclk, this property constrains all
-controllers to the same sample rate. This applies to both K1 and K3
-SoCs and is only needed when two or more I2S controllers are active
-simultaneously.
+When multiple I2S controllers share a common bclk, they must all use
+the same sample rate. Read the optional spacemit,fixed-sample-rate DT
+property and apply it as a hardware constraint in the startup callback,
+restricting the PCM rate to the specified value.
+
+This applies to both K1 and K3 SoCs and is only needed when two or
+more I2S controllers are active simultaneously.
 
 Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
 ---
- Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ sound/soc/spacemit/k1_i2s.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml b/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml
-index 240d90402e4f..137070ad9eba 100644
---- a/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml
-+++ b/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml
-@@ -84,6 +84,14 @@ properties:
-   "#sound-dai-cells":
-     const: 0
+diff --git a/sound/soc/spacemit/k1_i2s.c b/sound/soc/spacemit/k1_i2s.c
+index cef883ba4de9..7d0794d21ea6 100644
+--- a/sound/soc/spacemit/k1_i2s.c
++++ b/sound/soc/spacemit/k1_i2s.c
+@@ -3,6 +3,7 @@
  
-+  spacemit,fixed-sample-rate:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Fixed sample rate in Hz. When multiple I2S controllers share a
-+      common bclk, this property constrains all controllers to the same
-+      sample rate. Only needed when two or more I2S controllers are
-+      active simultaneously.
+ #include <linux/bitfield.h>
+ #include <linux/clk.h>
++#include <linux/of.h>
+ #include <linux/reset.h>
+ #include <sound/dmaengine_pcm.h>
+ #include <sound/pcm.h>
+@@ -54,6 +55,8 @@ struct spacemit_i2s_dev {
+ 	struct clk *bclk;
+ 	struct clk *sspa_clk;
+ 
++	unsigned int fixed_sample_rate;
 +
- required:
-   - compatible
-   - reg
+ 	struct snd_dmaengine_dai_dma_data capture_dma_data;
+ 	struct snd_dmaengine_dai_dma_data playback_dma_data;
+ 
+@@ -111,6 +114,13 @@ static int spacemit_i2s_startup(struct snd_pcm_substream *substream,
+ {
+ 	struct spacemit_i2s_dev *i2s = snd_soc_dai_get_drvdata(dai);
+ 
++	if (i2s->fixed_sample_rate) {
++		snd_pcm_hw_constraint_minmax(substream->runtime,
++					     SNDRV_PCM_HW_PARAM_RATE,
++					     i2s->fixed_sample_rate,
++					     i2s->fixed_sample_rate);
++	}
++
+ 	switch (i2s->dai_fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
+ 	case SND_SOC_DAIFMT_I2S:
+ 		snd_pcm_hw_constraint_minmax(substream->runtime,
+@@ -437,6 +447,9 @@ static int spacemit_i2s_probe(struct platform_device *pdev)
+ 		return dev_err_probe(i2s->dev, PTR_ERR(i2s->sspa_clk),
+ 				     "failed to enable sspa clock\n");
+ 
++	of_property_read_u32(i2s->dev->of_node, "spacemit,fixed-sample-rate",
++			     &i2s->fixed_sample_rate);
++
+ 	i2s->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+ 	if (IS_ERR(i2s->base))
+ 		return dev_err_probe(i2s->dev, PTR_ERR(i2s->base), "failed to map registers\n");
 
 -- 
 2.54.0
