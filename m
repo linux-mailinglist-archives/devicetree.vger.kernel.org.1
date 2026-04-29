@@ -1,180 +1,215 @@
-Return-Path: <devicetree+bounces-291558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291552-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UA49KMAH8mkimwEAu9opvQ
-	(envelope-from <devicetree+bounces-291558-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:29:36 +0200
+	id wG8xIW4H8mkimwEAu9opvQ
+	(envelope-from <devicetree+bounces-291552-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:28:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC853494D77
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:29:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 118A6494CEE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:28:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1CBA630392F6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:23:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9FEB3307D8EC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 438D13FE658;
-	Wed, 29 Apr 2026 13:23:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061653FD139;
+	Wed, 29 Apr 2026 13:22:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="L0PV0ZQm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a+og0c+k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779223FE35D
-	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 13:22:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834F93F54AB
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 13:22:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777468980; cv=none; b=Hskfl5CvlDGzdMJj+agxWVhRLQNMiAU+EbcAT4r1PFQQWtkSWWwQdxx/ccXmoG5sejmfiW0hm41qrBfrXO+BsLmyRm7JgZ9TNEpdY6j9qYi/kiWhbps13kJiSw6k/CwVJ9yYul4tKKZjdveumPwk7d6vlepCO9NsEGDOnU7MLF8=
+	t=1777468966; cv=none; b=KPO+gVR2QMgh2hul8nlIxmRev1/qBQAOjja6aXSo0HLFKaL2h9D1ik/Fne+6zAOF+tB6hyUtBKYW7FfYJ2uLXc6yW91Wn7DSfCiYL/KQ8wugoqpuIlosBin6tlPmekVkL+nm+mazkZE8ckuf+dXn/wfm2yXgr5sTtJv1bYeTiGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777468980; c=relaxed/simple;
-	bh=VsaP4LCm9vj+GPBKWc9GbqkMJjZILMOds/rJOobS64k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=G03oc9MhTmlWNoPNhIhvslpV22mwiRVSnwnNONASgTSky02KyDiNeGgyYM/v80p4pV2ATpDzReGQmyAAxOHoES//siXHehjjFnBYdHyzjkweW9HAXNGLM87m0uKeMBPW2ZMuZMVZve8Lj/QrD3kmd2A6cfvOtSWb9WQ5SsTLUcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=L0PV0ZQm; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-488a14c31eeso104713875e9.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 06:22:58 -0700 (PDT)
+	s=arc-20240116; t=1777468966; c=relaxed/simple;
+	bh=QntNCRxsqRUOS0ylI7Pz/qxqd7q8WopawYe4imAZ9cM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s2MWz+1QnyytVq2d9mYHhICmCEoaVoGYIjmp79E0lygJJ3eAT7GhuNXAtUdd9TuWvdqpl7zcF+h5nyy0g4VXNxJtDNtul1lqAAv6O4MaJpSvroaOupO8XjIzowqpOTUM7ItFeqoyGUV1PY6zD3k2sL0FVrouO6VLxN1/6Squfwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a+og0c+k; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-82f6b592fc7so5637962b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 06:22:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1777468977; x=1778073777; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rJisnvoilHvM1tcsiW91zKp6fAV95Xpg1TUbZ8titHM=;
-        b=L0PV0ZQmjDljlaZ0Y80UBJirQFCW53fWnytXltxVz+OPhbBx4qMB2Mh7c+sPSZJy1o
-         7megrm3TZewuN3CIkv4xEsd610NPkagrkE2hnlv5IEjYPnnmwor2jub8eYcnqYY5uGNt
-         NLG33+1AGNK8DkcYwJBi92VfaA5F1zbh21XcJeYWM5j06nnmmecNLjIalDyDAKX5r0z7
-         RBg3kRDO0lY+COl/x2KsKBgtdau/qwuFwg+SJ0JtRpT3AEENavBgOqBrPKbicBXIUQ01
-         g0aYmk1ZtiHFunoeDctU5d82cM7vXttdggSbvGGaUK0YhufuOt4kUDONCjfCCXaZUOhK
-         TJog==
+        d=gmail.com; s=20251104; t=1777468965; x=1778073765; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GHDw5P/WKuWdQLGr63cox/hFUSLBxTNMcAldluDTWOk=;
+        b=a+og0c+kQ+B8MfH1G9mvqqOKRs14SiqfH9j7JV23DE0DZYMvYXQXwCn32fHimOap6J
+         YHLRsvH7Be3Vzo0FzKAXPyJmjwbuu1wW2etthAkVW9BKciXEIBZ7xT3Wx4CRNFGkNFjg
+         fpc6wlPwL7UX3evvJVJDqXGM6xfv0DrZOGo1P+l+0fSP516/XrM+I89uL+xCZryepvfa
+         9EyZ3FS/HMls2vEjFtX+oqfZnfDw1HDG64RnqGRWxOEriI6+73JiBv9lxe/ClIZMxLaa
+         GBnHKD0DrQp13HttYuRSNBn5WDg4QkXhN4rDVL9m+Bu1zM5CC6iifnbiwRNK3tgK/L7R
+         8QNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777468977; x=1778073777;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rJisnvoilHvM1tcsiW91zKp6fAV95Xpg1TUbZ8titHM=;
-        b=E1Fx1ZhSKQz0XyktzfqD22RhDFQRXu4rEWvRuAx6vAqutSfpoRCYe6/Z7ms5dZwY8b
-         pIEqdAqfL/XLw1wkA4cDVWsMqITvDseagrANS4B9zFcb96AXpRuVSs9LEXkfeZrV35+M
-         RAdmiSAh+ONWjm4T3na3vKfMKCGN0kl4Dfkq5mSmJ7v4+7TG0IQYiMuVqDkpsqJN5w85
-         E3D/uDMrgbo3gsuYl+8DwVrBdNpnRS+sls4m6Ik8bqDndEh9REbzpj4QDfmwaYz//OI1
-         qlAgau2FBmNimzZzUl0Y54+4J+y5/QbIMEsHAb1aMl720f5JOztYtv8ilk6xGI7/xOA5
-         CsKg==
-X-Forwarded-Encrypted: i=1; AFNElJ9Xw2WZm1p1308qHvs7D5fU/QhYUmx7w+ytxN2KNVDN8KexTSqnS2Ocfsn8zNc1KJ9kq32h9uJ1316J@vger.kernel.org
-X-Gm-Message-State: AOJu0Yybr+0PtfW7JkOI/XdxnUCuZQqo7F0/j4blW9ArkA7R4DnxA9YF
-	ZIDqDBjLM5YO2w/Nu4NWBTcvMCWD+mupNKVcAbijPlKoa9jTqVqz3exrXcIFdOcwnK0=
-X-Gm-Gg: AeBDieuHQMNADRQ9nCZJaJkWOzxDqZJtmeW8rJJJZumDr8gZqDOz4ydWmYcji7fgEII
-	CL/O5h1HuX586Ys7dSgqsaCHy8vAZE6svPswV01Ai2Nc/72Ss9NnxVgCewK59EoHXlu6H4AQvIP
-	SCjFVlKPvRRd3fYJTYEXsQnzlA/PhqLbGmrZBjvaOvlpIpiBLg+VuGggcyJMz8E5dDiKUgb+yhD
-	+SpbWavpGwaIIrtSU208WE981gWGwdurl6wVtEZWbysuMS8WwSoakINR42ireCOXZGSfLEst0xP
-	2SzK4P66XqdllsYjMWCypoBwq/FCIcg5oPOPvb4NIn41drPCEJbC+6/eQ/t74AaoAPBonjDt2Cp
-	VHT6UOtc9xDIjFkPVot0VpBs+35qUUt1owNn0nGFNbeli/5WtZXxuqAo6wulfPSgnT+Tp41vRIH
-	dZu6V7b8D/f0z/lSnxAVRRDrnhNGcjTT/T26N0aGjyPA==
-X-Received: by 2002:a05:600c:3541:b0:488:936a:6220 with SMTP id 5b1f17b1804b1-48a77b1bb4cmr126176615e9.21.1777468976657;
-        Wed, 29 Apr 2026 06:22:56 -0700 (PDT)
-Received: from localhost ([2001:4090:a246:83ca:1917:a47e:1872:2063])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-447b3d4843bsm5752703f8f.7.2026.04.29.06.22.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Apr 2026 06:22:56 -0700 (PDT)
-From: "Markus Schneider-Pargmann (TI)" <msp@baylibre.com>
-Date: Wed, 29 Apr 2026 15:22:11 +0200
-Subject: [PATCH v4 4/4] arm64: dts: ti: k3-am62p5-sk: Add r5f nodes to
- pre-ram bootphase
+        d=1e100.net; s=20251104; t=1777468965; x=1778073765;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GHDw5P/WKuWdQLGr63cox/hFUSLBxTNMcAldluDTWOk=;
+        b=LDvetNf5vloj79HBBM/igHZ2ilNLOXRBh3JzllsDcVyEFGh/UXywfinljPBgCDW9H2
+         AFTO7Cdi5CnyGnScd17HETt9ObLoIh1Fz9SNn5W6vQ5M/xqT/sOSiDx+EuQtCxnHFznY
+         YSnNmMsjnPjPanizQND7ufbdwgRoMhWQrpZIhGQo+ikgjvce0K5r2CdWbAEKWdqSsByJ
+         Y8XxHezSeMDEKYft/dRz6lv6MgdHaIvukZm8MwR0tk4Y5iumkYaxiX5cvBIZc5N3MceL
+         9Q1Jv/SIrn+JWK9v2YIy5eV6licnfSCG943c7nA6AExWuhOgl+LOpLMfpd3L0jiSr2dA
+         kg4A==
+X-Forwarded-Encrypted: i=1; AFNElJ+Mfo5vpGRNdmAijXI8xWF2VedbtGnK6SFafooLIuDO7K6mfpwV+Qr0iVpptB+9FfZT6pSOdzXIPzGR@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRWo9lEwcEw2BFLpqyjL5DcllN5DzICIC7fZIAZJXTbZC7c7X0
+	283qYnn0+eqBkV11Lzre4oq3fRsBnoznCZjMKU0o6hBLP1TeqZjpOikJ
+X-Gm-Gg: AeBDietqi0qnwk+FCzTpDYCiv8mXT0O2RyYvtbejYOeFoLYwlHumLBpLbuVFXojaZDu
+	9IjmR8q3fdrVkZSWPXaWXJTOuQsQwv6butj552qcSKu+T4nD8cnh4G0qG9IZmHhbjE8utH+OrjW
+	i+tSAsWogVdusIRQjnO/bJG/fNzWVxdFHJ2yAHvxRItWiv2RcHVXyR04fL6vFVREvrXVHznQvov
+	Eyg8+aJpELHC3+RlHif3OW51E9pxJ33U08xlui9CKpP2XPbUkg8dkQGVb4WKEgobhFuepc1PX62
+	Ix3sk+XOPnjmQ7PCAiaLSAGb3MRzNANN+oKIXrdWu9GPQUZ3JlSBahuKKaajNnGofZhvKAgApaR
+	NEnOJAeuJMURFLWScgE9SOnk65xHCnS959JdfEKg+/FIP63y00dG+ASPJIDcexRjynYXErSX8IR
+	wiXSK6PujxR8OQeop6oK2m3YaFShy6TdiqUOnp/XxXaK7r7FabIkc0wQamLvYr9rZbWKFdzXTLq
+	rpVBsRfMGVjNH0=
+X-Received: by 2002:a05:6a00:950d:b0:82c:212a:a9b5 with SMTP id d2e1a72fcca58-834ea663abdmr3633488b3a.36.1777468964920;
+        Wed, 29 Apr 2026 06:22:44 -0700 (PDT)
+Received: from localhost.localdomain ([2001:448a:2002:4381:3859:fd0d:505e:362c])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-834ed5cd407sm2091372b3a.13.2026.04.29.06.22.39
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Wed, 29 Apr 2026 06:22:44 -0700 (PDT)
+From: Muchamad Coirul Anwar <muchamadcoirulanwar@gmail.com>
+To: jic23@kernel.org,
+	linux-iio@vger.kernel.org,
+	rust-for-linux@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: branstj@gmail.com,
+	lars@metafoo.de,
+	ojeda@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	igor.korotin.linux@gmail.com,
+	linux-kernel@vger.kernel.org,
+	Muchamad Coirul Anwar <muchamadcoirulanwar@gmail.com>
+Subject: [RFC PATCH v2 0/4] iio: position: add Rust driver for ams AS5600
+Date: Wed, 29 Apr 2026 20:22:26 +0700
+Message-ID: <20260429132234.30514-1-muchamadcoirulanwar@gmail.com>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260429-topic-am62a-ioddr-dt-v6-19-v4-4-fc27d6ac753c@baylibre.com>
-References: <20260429-topic-am62a-ioddr-dt-v6-19-v4-0-fc27d6ac753c@baylibre.com>
-In-Reply-To: <20260429-topic-am62a-ioddr-dt-v6-19-v4-0-fc27d6ac753c@baylibre.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Suman Anna <s-anna@ti.com>, 
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>
-Cc: Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, 
- Dhruva Gole <d-gole@ti.com>, Sebin Francis <sebin.francis@ti.com>, 
- Kendall Willis <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- "Markus Schneider-Pargmann (TI)" <msp@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1183; i=msp@baylibre.com;
- h=from:subject:message-id; bh=VsaP4LCm9vj+GPBKWc9GbqkMJjZILMOds/rJOobS64k=;
- b=owGbwMvMwCXWejAsc4KoVzDjabUkhsxPbIo2lfKnvyd5e3KfnbSlfZnmWTaubknzS18bTirrP
- G3daDS7o5SFQYyLQVZMkaUzMTTtv/zOY8mLlm2GmcPKBDKEgYtTACbCs5/hr+C8JRf/f9h62W/S
- 5pfTLq3Xdxbrk7F3a97vFxwtUWr1SYrhv+8pgftnGGb9OrxftfTKlucSV5xcjrV61ucsFq/0rHQ
- 4xQkA
-X-Developer-Key: i=msp@baylibre.com; a=openpgp;
- fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
-X-Rspamd-Queue-Id: BC853494D77
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 118A6494CEE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291558-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[gmail.com,metafoo.de,kernel.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-291552-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[msp@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[muchamadcoirulanwar@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,9ca08000:email,baylibre.com:mid,baylibre.com:email,baylibre-com.20251104.gappssmtp.com:dkim,9ca09000:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-For IO+DDR the wkup_r5fss0_core0 and the
-wkup_r5fss0_core0_lpm_metadata_region need to be accessed before RAM
-setup is done. These are used to read the lpm metadata region in which
-data is stored to resume. This needs to be done before RAM is in use to
-avoid overwriting data.
+This is v2 of the Rust driver for the ams AS5600 12-bit magnetic rotary
+position sensor. v1 was a probe-only stub; this version adds minimal
+Rust IIO abstractions and exposes in_angl_raw and in_angl_scale via
+sysfs.
 
-Signed-off-by: Markus Schneider-Pargmann (TI) <msp@baylibre.com>
+Link: https://lore.kernel.org/linux-iio/20260419151327.26306-1-muchamadcoirulanwar@gmail.com/
+
+Changes since RFC v1:
+  - Moved magnet validation from probe() to read_raw() per Jonathan's
+    feedback. probe() now only verifies I2C communication.
+  - Added minimal Rust IIO abstractions (rust/kernel/iio.rs) wrapping
+    iio_device_alloc, iio_device_register, and the read_raw callback.
+  - Added OF device table for devicetree matching (ams,as5600).
+  - Replaced hex bit masks with kernel::bits::bit_u8() per Miguel's
+    pointer.
+  - Replaced magic numbers with bindings constants
+    (iio_chan_info_enum_*, INDIO_DIRECT_MODE).
+  - Downgraded log messages to dev_dbg!(), removed unbind noise.
+  - Added devicetree binding documentation.
+  - iio_info vtable is now a compile-time const.
+  - Uses iio_device_alloc with PinnedDrop instead of devm_* to avoid
+    lifetime conflicts with Rust's ownership model.
+
+The IIO abstraction design was informed by earlier unpublished work
+from Brandon Saint-John.
+
+The IIO abstraction is intentionally minimal: it supports read_raw
+with IIO_VAL_INT, IIO_VAL_INT_PLUS_NANO, IIO_VAL_INT_PLUS_MICRO,
+and IIO_VAL_FRACTIONAL. write_raw and buffer support are left for
+future work.
+
+Muchamad Coirul Anwar (4):
+  i2c: rust: add smbus_read_byte_data and smbus_read_word_data
+  rust: add minimal IIO subsystem abstractions
+  dt-bindings: iio: position: add ams,as5600
+  iio: position: add Rust driver for ams AS5600
+
+Signed-off-by: Muchamad Coirul Anwar <muchamadcoirulanwar@gmail.com>
 ---
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 2 ++
- 1 file changed, 2 insertions(+)
+Tested on BeagleBone Black (AM335x), kernel v7.0.0-rc3,
+AS5600 on i2c-2 (0x36) at 3.3V, diametric neodymium magnet.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index e67489a178f2a2caedf1306e1c1c9dd6a95745e6..b4a4e427637bb4d5ca408d29234b95fe7e69d006 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -71,6 +71,7 @@ wkup_r5fss0_core0_lpm_metadata_region: memory@9ca08000 {
- 			compatible = "shared-dma-pool";
- 			reg = <0x00 0x9ca08000 0x00 0x1000>;
- 			no-map;
-+			bootph-pre-ram;
- 		};
- 
- 		wkup_r5fss0_core0_lpm_rest_region: memory@9ca09000 {
-@@ -879,4 +880,5 @@ &wkup_r5fss0_core0 {
- 	memory-region-names = "dma", "ipc", "lpm-stub",
- 			      "lpm-metadata", "lpm-context",
- 			      "dm-firmware";
-+	bootph-pre-ram;
- };
+  $ cat /sys/bus/iio/devices/iio:device0/in_angl_raw
+  3296
+  $ cat /sys/bus/iio/devices/iio:device0/in_angl_raw
+  1675
+  $ cat /sys/bus/iio/devices/iio:device0/in_angl_raw
+  468
+
+  $ cat /sys/bus/iio/devices/iio:device0/in_angl_scale
+  0.001533981
+
+Magnet removed:
+
+  $ cat /sys/bus/iio/devices/iio:device0/in_angl_raw
+  cat: '/sys/bus/iio/devices/iio:device0/in_angl_raw': No data available
+
+Muchamad Coirul Anwar (4):
+  i2c: rust: add smbus_read_byte_data and smbus_read_word_data
+  rust: add minimal IIO subsystem abstractions
+  dt-bindings: iio: position: add ams,as5600
+  iio: position: add Rust driver for ams AS5600
+
+ .../bindings/iio/position/ams,as5600.yaml     |  40 ++++
+ drivers/iio/position/Kconfig                  |  14 ++
+ drivers/iio/position/Makefile                 |   1 +
+ drivers/iio/position/as5600.rs                | 129 +++++
+ rust/bindings/bindings_helper.h               |   2 +
+ rust/kernel/i2c.rs                            |  24 +
+ rust/kernel/iio.rs                            | 224 ++++++++++
+ rust/kernel/lib.rs                            |   2 +
+ 8 files changed, 436 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/position/ams,as5600.yaml
+ create mode 100644 drivers/iio/position/as5600.rs
+ create mode 100644 rust/kernel/iio.rs
 
 -- 
-2.53.0
+2.50.0
 
 
