@@ -1,387 +1,180 @@
-Return-Path: <devicetree+bounces-291454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291456-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sHEgO8TR8Wm3kgEAu9opvQ
-	(envelope-from <devicetree+bounces-291454-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:39:16 +0200
+	id 6OMCMT7T8Wn7kgEAu9opvQ
+	(envelope-from <devicetree+bounces-291456-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:45:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46A254921E8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:39:16 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1F19492398
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:45:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7DFCF301990A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:34:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4FAEE30593D0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D18395D84;
-	Wed, 29 Apr 2026 09:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8C2B3A783E;
+	Wed, 29 Apr 2026 09:36:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HC+fKy59"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="liFlFwoG";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="VhRNBFCH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-a1-smtp.messagingengine.com (fout-a1-smtp.messagingengine.com [103.168.172.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D129E3921C2;
-	Wed, 29 Apr 2026 09:34:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E1853A1A2F;
+	Wed, 29 Apr 2026 09:36:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777455255; cv=none; b=hA5Wr4bYFyHKrA/zgxzeK4Fafk0FdgGCvyYx2OK85xB272uM24sPy7zkJU2kzeyxeZFF1c9q3ObdSZlR5CRMSOc+9t0j4T+RvRfnf61QsiOxgMlC2/38lknxG8//vsHZ23z+5ZnuXGKR4+0vTTxjKB9IbABU4MlSWWdNjDSM6fQ=
+	t=1777455380; cv=none; b=n6BBP3bRtwvxEvvrFts2QFuQIlDhdfE/hONFBINJryrzHEdc5uJEk/SyiMfYbIhhv0Dc/mCf+vGUkLF/Ifg9QhueyDARjgDlqgIMfbXrSV8z1ygoP3bAw1ond6EuFXTuVeBhYYGyjsworn+crz/gCt1l0yXQY4PzmAWmNrUS8cQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777455255; c=relaxed/simple;
-	bh=u3toxTEJgbhB59Lpk2WKlSojq3rFP8wovjYLrHyZBr0=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=trEYg9D6q4kDLnOiTDeg7efVYB1lUq8tY8VfnJmEBRK4zGMJ0mFKGoS5kZZx0+edfvn43EhRoDVtYM6r1qBZOe5o9W2lVXCEtgg8NgA/A/er1nm79aulGY99AktBjoqC1gBrsoV/fre3ryDqTv2EuiXypvvdLFjZQ2nye4cezsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HC+fKy59; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 388E1C19425;
-	Wed, 29 Apr 2026 09:34:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777455255;
-	bh=u3toxTEJgbhB59Lpk2WKlSojq3rFP8wovjYLrHyZBr0=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=HC+fKy59/HbXZ7rjeOl9dT0/8d3nKoG6ZSS3YnrYLqeO856FxBlwEab4WR/Awgfyo
-	 YjoXI+8tsWfaI9tit/NENzevtdMPRNIHk2iRH4qVjwmLWN0miwi7knMKY0cyGZL1bp
-	 x1w3XmEO3BSlYWkZo6uQzmZCoa3mgZxRsl62ksD+YH/zYkXUoiWLvWSA9PS0Dfvjmc
-	 GYI32VTH+1frLWIbZfhypeoxNwNmogHydx97Oipup2jvkCb12/eYUuTPbrxqvnz54m
-	 01zrcBrjWSR11LZMdnr5yfov5nuG8vWs63d6dJDNgSpznUY6skAsTrv9tYHG5PbKxT
-	 mgmOLrkUmL/vA==
-Date: Wed, 29 Apr 2026 04:34:13 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1777455380; c=relaxed/simple;
+	bh=Xf6zZJzgLMvmAW30t87H7JUR7g6g8WBSZqFVbcO1fkc=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=PPMBhh6eYCfvpWFbvzxa4dRtIV6fYmxG3+w9rvKvRRljnGpwmcLdcX8ZZ8KniDCUl9tql4uo0W2Y5Ym8OZxGc4kECXdbsQHxQ3A4LG/t/IYMGM+JvlJ14TwWNyQK341rYhQOncAS59/Hq1CHRNjhMOvJe6tnHlxPd0KIEBN/4NI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=liFlFwoG; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=VhRNBFCH; arc=none smtp.client-ip=103.168.172.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
+	by mailfout.phl.internal (Postfix) with ESMTP id A2BA4EC018B;
+	Wed, 29 Apr 2026 05:36:18 -0400 (EDT)
+Received: from phl-imap-08 ([10.202.2.84])
+  by phl-compute-03.internal (MEProxy); Wed, 29 Apr 2026 05:36:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1777455378;
+	 x=1777541778; bh=RrrQxnCiP4A6oVNx6GsMcrgkKaGPOhYYSIH0FcBHhLk=; b=
+	liFlFwoGDYgC23B+Kwgw0pkhWWNfLZ2ELx9qRFn7ScjmQq/5KmK96ZZMWwZgvmCO
+	QCXNTLuRNtBSk6BH/TuxXiZqVgzQnoBhAnpmFSXDlMfsYrR33uis3kw7un/qkPzI
+	mnPiio298np+BGbH11N7iaFv9nKqy7CNK0m2wJjX22WmX3uKCP37cidA/nvMDdOL
+	2YQYK0wqxn32BpHFrXP4zRTS/6Bfm+2HlrlwnpcoJEDRjqRYATuuKoczYzv1/Mm0
+	EcU5MAARlBYkI8CTr7FSZQUzu3Y99N1GJ2YPRUbB2Vr8e8smW6UG1dBOBJ0agcBb
+	DZNVFGB3M1iJmE/kWP7+5Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1777455378; x=
+	1777541778; bh=RrrQxnCiP4A6oVNx6GsMcrgkKaGPOhYYSIH0FcBHhLk=; b=V
+	hRNBFCHaHknS3aWRi6PDhQst5r5ROGYzfEnDZ9aQcc+e/C7gwHfbAcy/UTeC4d2z
+	RbcUSLGiazuYxTiYFakA1ho8nxmR7ZSLz7OlXyZKwWI5RyqRDrZYwCF/1wlnp6ls
+	nRV8lJgaQLEM6wKeQm632kLgH9G0uYtJKRgr2Hjm7T/0U/5iD1EvFbe6ZyLWEvrd
+	Pn4YVep+PkD9nIDfdhM9SviM+qs7a9JBvEUkFt1OWADgb4oc0IJS2SqvHHPuwcpW
+	tb1DUjPmfGyrFhyKuxx5aVZYZFOYwwx8aGot1vz7aM/1Zcpc7Mu/CqA9k+qnIXju
+	p38jm55yIMR1hhwn5YLhw==
+X-ME-Sender: <xms:EdHxaQqQl1rGrNqLNPEFB20pswlrXXKKRUDlw2HGL2Mt23gKizGUgw>
+    <xme:EdHxaRckuA4aIVspRX7Vwaws32pblT9FkIunAV3iBHfvj7XZuAbJx-53T117XdQH7
+    mvHrZI8KLu3v7BNfaXPLx_lpOHSBGCfTQakKyuQOKlaAyU4v_S5Og>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgdekgedtlecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdflihgrgihu
+    nhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmqeenuc
+    ggtffrrghtthgvrhhnpefhtefhuddtieegleeuiedttdehheduveffjeettdekvdeuiedt
+    udejfeeijeeifeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmpdhnsggprhgtphht
+    thhopeekpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehtshgsohhgvghnugesrg
+    hlphhhrgdrfhhrrghnkhgvnhdruggvpdhrtghpthhtohepiihhvghnghigihhnghgurges
+    ihhstggrshdrrggtrdgtnhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrd
+    horhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthht
+    oheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvg
+    esvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgv
+    lhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhmihhpsh
+    esvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:EdHxaX7k3I-3o4O8j_P--SAa_vZvv7qzlQ3-FPpeay1wKWRP83kq4A>
+    <xmx:EdHxadUzILC4Q1aAiffPCMKtTQa43vwVXu8Axhq0Xo7YYJxd8XkLcw>
+    <xmx:EdHxafJrqjPb5nrK4RMV_BimM_Tc1-oL8T4FgOkyENLX-L34Q4Sl-w>
+    <xmx:EdHxaftIb_Ngp2uk4oW12e-eLK1jA0_3OrU1NxD5_XvjIIp_lzSshA>
+    <xmx:EtHxab6R05X8krldV1dMOT4erXvQi5jvAwKZHo6d3lAOnf7fWcWAZaAA>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id A25F72CE0072; Wed, 29 Apr 2026 05:36:17 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: miriam.rachel.korenblit@intel.com, devicetree@vger.kernel.org, 
- krzk+dt@kernel.org, emmanuel.grumbach@intel.com, 
- linux-wireless@vger.kernel.org, conor+dt@kernel.org, 
- johannes@sipsolutions.net, kobi.guetta@intel.com, 
+X-ThreadId: ApIjjO01HLYR
+Date: Wed, 29 Apr 2026 10:35:34 +0100
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Icenowy Zheng" <zhengxingda@iscas.ac.cn>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
+Cc: devicetree@vger.kernel.org,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
  linux-kernel@vger.kernel.org
-To: Avinash Bhatt <avinash.bhatt@intel.com>
-In-Reply-To: <20260429081403.46087-2-avinash.bhatt@intel.com>
-References: <20260429081403.46087-1-avinash.bhatt@intel.com>
- <20260429081403.46087-2-avinash.bhatt@intel.com>
-Message-Id: <177745525320.299703.826725062501048305.robh@kernel.org>
-Subject: Re: [PATCH 1/1] dt-bindings: net: wireless: intel,iwlwifi: add
- binding
-X-Rspamd-Queue-Id: 46A254921E8
+Message-Id: <3194da09-3bfc-4482-b179-04b6d5df4a00@app.fastmail.com>
+In-Reply-To: <20260411101744.4020216-1-zhengxingda@iscas.ac.cn>
+References: <20260411101744.4020216-1-zhengxingda@iscas.ac.cn>
+Subject: Re: [PATCH 0/2] Enable LPC interrupt controller on MIPS LS7A systems
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: C1F19492398
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.65 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[flygoat.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[flygoat.com:s=fm3,messagingengine.com:s=fm2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291454-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	XM_UA_NO_VERSION(0.01)[];
+	TAGGED_FROM(0.00)[bounces-291456-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jiaxun.yang@flygoat.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[flygoat.com:+,messagingengine.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[messagingengine.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,flygoat.com:dkim,flygoat.com:email,app.fastmail.com:mid]
 
 
-On Wed, 29 Apr 2026 11:14:03 +0300, Avinash Bhatt wrote:
-> Add a devicetree schema binding for Intel discrete Wi-Fi 7 BE200 PCIe
-> adapters.
-> 
-> The binding documents OEM platform configuration properties for
-> platforms that use Device Tree instead of platform firmware
-> methods. All properties mirror the existing equivalents in
-> structure and semantics, covering SAR power limits (intel,wrds),
-> 6 GHz AP type support (intel,uats), static power limit
-> (intel,splc), channel puncturing (intel,wcpe), 320 MHz per-MCC
-> enablement (intel,wbem), ETSI SRD channel configuration
-> (intel,srd), 6-7 GHz UHB country enable bitmask (intel,6e-uhb),
-> and additional regulatory override properties.
-> 
-> Signed-off-by: Avinash Bhatt <avinash.bhatt@intel.com>
-> ---
->  .../bindings/net/wireless/intel,iwlwifi.yaml  | 445 ++++++++++++++++++
->  1 file changed, 445 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml
-> 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Sat, 11 Apr 2026, at 11:17 AM, Icenowy Zheng wrote:
+> This patchset tries to enable support for LPC interrupts on MIPS-based
+> Loongson systems with Loongson 7A1000 PCH chip.
+>
+> The corresponding irqchip support (along with the DT binding) is already
+> added to the tip tree.
+>
+> Tested on a Haier Boyue G51 system with legacy i8042 keyboard/mouse as
+> integrated ones.
+>
+> This patchset is splitted from the original patchset that contains both
+> driver part and DT part.
 
-yamllint warnings/errors:
+For the series:
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,splc:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}, {'minimum': 1}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,splc:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}, {'minimum': 1}] is too long
-	[{'const': 0}, {'minimum': 1}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,splc:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}, {'minimum': 1}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,splc:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}, {'minimum': 1}] is too long
-	[{'const': 0}, {'minimum': 1}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,wcpe:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,wcpe:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,wcpe:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,wcpe:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,6e-uhb:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,6e-uhb:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,6e-uhb:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,6e-uhb:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,regulatory-special:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,regulatory-special:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,regulatory-special:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,regulatory-special:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,uats:allOf:1: {'minItems': 339, 'maxItems': 339, 'items': [{'const': 1}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,uats:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 339
-	[{'const': 1}] is too short
-	1 was expected
-	339 is greater than the maximum of 2
-	339 is greater than the maximum of 3
-	339 is greater than the maximum of 4
-	339 is greater than the maximum of 5
-	339 is greater than the maximum of 6
-	339 is greater than the maximum of 7
-	339 is greater than the maximum of 8
-	339 is greater than the maximum of 9
-	339 is greater than the maximum of 10
-	339 is greater than the maximum of 11
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,uats:allOf:1: {'minItems': 339, 'maxItems': 339, 'items': [{'const': 1}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,uats:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 339
-	[{'const': 1}] is too short
-	1 was expected
-	339 is greater than the maximum of 2
-	339 is greater than the maximum of 3
-	339 is greater than the maximum of 4
-	339 is greater than the maximum of 5
-	339 is greater than the maximum of 6
-	339 is greater than the maximum of 7
-	339 is greater than the maximum of 8
-	339 is greater than the maximum of 9
-	339 is greater than the maximum of 10
-	339 is greater than the maximum of 11
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,force-disable-channels:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,force-disable-channels:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,force-disable-channels:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,force-disable-channels:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,wrds:allOf:1: {'minItems': 50, 'maxItems': 50, 'items': [{'const': 3}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,wrds:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 50
-	[{'const': 3}] is too short
-	1 was expected
-	50 is greater than the maximum of 2
-	50 is greater than the maximum of 3
-	50 is greater than the maximum of 4
-	50 is greater than the maximum of 5
-	50 is greater than the maximum of 6
-	50 is greater than the maximum of 7
-	50 is greater than the maximum of 8
-	50 is greater than the maximum of 9
-	50 is greater than the maximum of 10
-	50 is greater than the maximum of 11
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,wrds:allOf:1: {'minItems': 50, 'maxItems': 50, 'items': [{'const': 3}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,wrds:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 50
-	[{'const': 3}] is too short
-	1 was expected
-	50 is greater than the maximum of 2
-	50 is greater than the maximum of 3
-	50 is greater than the maximum of 4
-	50 is greater than the maximum of 5
-	50 is greater than the maximum of 6
-	50 is greater than the maximum of 7
-	50 is greater than the maximum of 8
-	50 is greater than the maximum of 9
-	50 is greater than the maximum of 10
-	50 is greater than the maximum of 11
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,activate-channel:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,activate-channel:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,activate-channel:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,activate-channel:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,wbem:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,wbem:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,wbem:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,wbem:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,srd:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}, {'enum': [0, 1, 2]}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,srd:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}, {'enum': [0, 1, 2]}] is too long
-	[{'const': 0}, {'enum': [0, 1, 2]}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,srd:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}, {'enum': [0, 1, 2]}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,srd:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}, {'enum': [0, 1, 2]}] is too long
-	[{'const': 0}, {'enum': [0, 1, 2]}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,11be:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,11be:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,11be:allOf:1: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 0}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/intel,iwlwifi.yaml: properties:intel,11be:allOf:1: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 2
-	[{'const': 0}] is too short
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
+Acked-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
 
-doc reference errors (make refcheckdocs):
+>
+> Icenowy Zheng (2):
+>   MIPS: Loongson64: dts: Sort nodes
+>   MIPS: Loongson64: dts: Add node for LS7A PCH LPC
+>
+>  arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 17 +++++++++++++----
+>  1 file changed, 13 insertions(+), 4 deletions(-)
+>
+> -- 
+> 2.52.0
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260429081403.46087-2-avinash.bhatt@intel.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+- Jiaxun
 
