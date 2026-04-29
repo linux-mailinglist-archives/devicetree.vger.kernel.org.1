@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-291533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291537-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QI7YDVH/8WmElwEAu9opvQ
-	(envelope-from <devicetree+bounces-291533-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 14:53:37 +0200
+	id SD/SD70A8mmElwEAu9opvQ
+	(envelope-from <devicetree+bounces-291537-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 14:59:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63E4E49450B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 14:53:32 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D3D9494634
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 14:59:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3B108300EB41
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 12:52:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B0FEC309E67A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 12:54:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 348F13FBEDA;
-	Wed, 29 Apr 2026 12:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECC443FB056;
+	Wed, 29 Apr 2026 12:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YW/TTd0A"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jX+daNjY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53E153FB7E4;
-	Wed, 29 Apr 2026 12:52:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF33E401488;
+	Wed, 29 Apr 2026 12:52:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777467146; cv=none; b=IOoPQllwDiYuo78y5F58oHMduUX2MdvrFEl6FGJa2xg4gLNB5u2pgtfJ/brf6RH+PWIC/OPpmVZlgh65uXWEuiGuP5IotwnylShi/6nNxOg3io087/TvmPKm5GUwFgQUOHjEEBD0Iwg1g5CRHM8B62MxMxpkUfER/Vyj26/Jkvo=
+	t=1777467159; cv=none; b=fi2SKR8+fTrzrnqqP98BCzWw6cktIibQf/SkaD4iNdU0bwuMk6y7wsE3p3K8zb/EBekTx6Zo6+H+2bM092H9OIHG1q1p8nO84J7GEsLsSAnuFj/u+rJzwtOh7km1v7FUeePq+YJmJq9AWa0qfhqNB1qR40cm1SMrxjCcoxIiFhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777467146; c=relaxed/simple;
-	bh=+DL1DclBlXFeMArXfCaUevQHEMgSDsY+8x6YxAFkm14=;
+	s=arc-20240116; t=1777467159; c=relaxed/simple;
+	bh=yy7I52APMPCUW/rid7cXQxA7lqmgiY7KHX7tKBvjytY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QciNnpJcVnb0uJiaxqi7dw7VHNt3WV1sEKbQ1IYy9AM3y5Ckje33GPB86RkPZNDQYU7TATiqy/zpt0j85CE2VBAxjHyy/lgUQH+3gra/eX0ixZY53ymyc3djNvYxVzZD979krPf8SdE50QKPOMplWKZSVhuRPWLzybMC0xz3WDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YW/TTd0A; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=JnHjycrGDzqOmDxTbtQphwET9LeMAgmLuIe6xRzCfNMsHRaDDKyLdXws02KyycdWLOyoBxsuMyBzwR8j2mERvxxUPrHK7QYjkCbgsc+cluvrQR3Ae9zWIIxCQaYvD14ode22l8n31mOJTuwnLPcqdZpi7L8352T2irc1Dl18CA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jX+daNjY; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63T8qEbU3066969;
-	Wed, 29 Apr 2026 12:51:43 GMT
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63T8qcGf870170;
+	Wed, 29 Apr 2026 12:51:42 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=paPXV6QvgMm
-	syxf0ALUvgRJENAz5jaR9fVu6RhkIUR8=; b=YW/TTd0A6X9pNz+mwBMHD0Q+9qb
-	Y1HW9ZwFXU3hn9iUaWbBDTTxCaZrmqVfRU1ArD5v8EO4kmB+n5Sg+w7AsyMlxJMh
-	ZLnLSHG/R+H+gmlyVLgZUHcdBnzV41HOGkl3hxy+JEu/yYYpmCbss0UpN5U7HcWn
-	i4QYjA5P+zMsuNEbxJ4FykHCkcOMKs96ASWPQpbGVGtAcXyntzexJq7j4TCxFPrF
-	lysILOHn94YaEz8W4T4ljQf/cdbhCjEZHXU0D83MTLCdLKRjB0nqf1341X6cK4Qp
-	sJXILbMGVhV62MdwR05o5bd0Ecc+Wr2hhnOc72CDSKI8sL870QcDkOilgUw==
+	:mime-version:references:subject:to; s=qcppdkim1; bh=Um4b1vdTfO7
+	UEMAByHqKwcuVXLD08tA6X7O8a/l44zA=; b=jX+daNjYUgPyzKq+/wLNXbJsx39
+	qmZ6YfTvJhKBChOXYx8LdiUraX3Gs47XA7RcslXAEv4JuhAVHNL5YRYhZd3rxvpm
+	rL6bXnOqvynoMCC72xUYXqbgD16mKOde0mLHm4bFgm7iC6kgEytwFma19jnHFmt4
+	mV3QHpmPeHYPYumK6ZnPsXRUONBCeX6RrU6vf5RyV1cOlgiyOi+haPHySjbDOF1l
+	qJFwqdQq0H1QIjG3gYMnIdR5Qu97RsWCTpMF53yMcMa538fPAbQR4xywnYCE0BQe
+	RsmRLfN39B3/LgQoOnoVf7N4P+m1paKHAr+sBbGP8X2AIonKIGSRv7nbj+g==
 Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4du7sxaj0x-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4du0u1uxvc-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Wed, 29 Apr 2026 12:51:42 +0000 (GMT)
 Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 63TCpbOW010778;
+	by APBLRPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 63TCpdjg010860;
 	Wed, 29 Apr 2026 12:51:39 GMT
 Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4ds65fvr21-1
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4ds65fvr24-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 Apr 2026 12:51:38 +0000 (GMT)
+	Wed, 29 Apr 2026 12:51:39 +0000 (GMT)
 Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 63TCpbF1010751;
+	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 63TCpcqH010817;
 	Wed, 29 Apr 2026 12:51:38 GMT
 Received: from hu-devc-blr-u24-a.qualcomm.com (hu-anuppate-blr.qualcomm.com [10.131.36.165])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 63TCpcRu010805
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 63TCpcv7010800
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Wed, 29 Apr 2026 12:51:38 +0000 (GMT)
 Received: by hu-devc-blr-u24-a.qualcomm.com (Postfix, from userid 486687)
-	id D2AC7222FF; Wed, 29 Apr 2026 18:21:36 +0530 (+0530)
+	id D64372230D; Wed, 29 Apr 2026 18:21:36 +0530 (+0530)
 From: Anup Patel <anup.patel@oss.qualcomm.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
@@ -83,11 +83,10 @@ Cc: Alexandre Ghiti <alex@ghiti.fr>, Peter Zijlstra <peterz@infradead.org>,
         Sunil V L <sunilvl@oss.qualcomm.com>, linux-riscv@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>,
-        Anup Patel <anup.patel@oss.qualcomm.com>,
-        Nutty Liu <nutty.liu@hotmail.com>
-Subject: [PATCH v4 10/12] perf tools: Add RISC-V trace PMU record capabilities
-Date: Wed, 29 Apr 2026 18:21:33 +0530
-Message-ID: <20260429125135.1983498-11-anup.patel@oss.qualcomm.com>
+        Anup Patel <anup.patel@oss.qualcomm.com>
+Subject: [PATCH v4 11/12] perf tools: Initial support for RISC-V trace decoder
+Date: Wed, 29 Apr 2026 18:21:34 +0530
+Message-ID: <20260429125135.1983498-12-anup.patel@oss.qualcomm.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260429125135.1983498-1-anup.patel@oss.qualcomm.com>
 References: <20260429125135.1983498-1-anup.patel@oss.qualcomm.com>
@@ -100,360 +99,216 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-QCInternal: smtphost
 X-QCInternal: smtphost
-X-Proofpoint-GUID: iEpIFKEAVp5HPzyz6TGC8zZgOOCZVX5i
-X-Authority-Analysis: v=2.4 cv=eeANubEH c=1 sm=1 tr=0 ts=69f1fede cx=c_pps
+X-Proofpoint-GUID: GXZ_LK5W6CyPgkCBnkuGCNWe4pp21o4p
+X-Proofpoint-ORIG-GUID: GXZ_LK5W6CyPgkCBnkuGCNWe4pp21o4p
+X-Authority-Analysis: v=2.4 cv=aPPAb79m c=1 sm=1 tr=0 ts=69f1fede cx=c_pps
  a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
  a=A5OVakUREuEA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=gowsoOTTUOVcmtlkKump:22 a=EUspDBNiAAAA:8 a=69EAbJreAAAA:8
- a=kkaCVUy_t53esOPYLmQA:9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI5MDEzMCBTYWx0ZWRfX7GNyk4/6b4uI
- b8HHjBjmiTSTiq9mLO2chtwNZaOQDYegSZu01I7nmoF+c/yhi4JAiBMlCn4m0iYXERdRz3eHiZw
- pj4L024LdT1JwKXBpVaiVPKb09oHBlSZ81ImiZ404JZilZs9uM1WHeGM3rAxb+e3TJyeljvlG44
- qa0HUQ1X0eznTvwGb6op/WhQ2fb7Z7SeyBdXl+X+0tR6Yk4F0VZwxteUIjt22SynBQk2ENmO93K
- LWRPJ48FtBn029GSpJoVXeqWMH/DfQBVIqt0kDs9kKaP32TknC/3HD7P3OqR9l/hhEZrKdWh3Ng
- TV39md31Ab0NJRC/PL3ApLB9PYnNLWUbgUbVxc3i4aIWhvgd7jpByeJg5Q///aXjERWlZSyfISo
- i6aksLsIKoXk7heyrIxriRzdoBpNveTc7wsWA0RD0JAOxb+mco9ckpG9AiZj/OxSDVnBPaY/TBr
- 1EyLRs5A5j5B9IGnUBQ==
-X-Proofpoint-ORIG-GUID: iEpIFKEAVp5HPzyz6TGC8zZgOOCZVX5i
+ a=eoimf2acIAo5FJnRuUoq:22 a=EUspDBNiAAAA:8 a=b95MOGMN5JXeKaQ3w7sA:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI5MDEzMCBTYWx0ZWRfX/bjOdeUhI326
+ XQCRdUGY4lAcmX8FneMP3WhM+j48qZdVZkSUX88ihTPMgLUEco7UktEvZrJuR0jMdK3cuVKvHna
+ 82Ah24cGuS50OJaV6na3/SymS7KNIGwTdoXtd9JbUtXAUknoSWBogndnwPpkRva4gqm08zd8Bev
+ rrpn2Hzzcz+zV0YV09ZSwbeXf24EVEdCE0MFwcrg/NDVDRJJEBW35pujqpwHvcmKTu9GJkFAlmc
+ QsvpAP/2GXzEpR9BXQoWYIwox6jxm0xXsofPfcI2VK/di6/aWeJ6/Mzoem3m7hG2ie+xAj79ItA
+ R2oPtRnxN3QBqY0cK/pP/63lPeVHWYBDdUNmb2yHaflgiarRIxFDnXRSSzhrZhPBPf8/rxQTtGr
+ yCwRDH87Xtby6OOpDthJe4NbNOaixliMVxW0s5vR5p+KP/N9lhPzbzYtl4fRFUkzrxnjrwgrLdk
+ q/U/1G/TIb5KrLPxFhA==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-04-28_05,2026-04-28_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 clxscore=1015 malwarescore=0 impostorscore=0
- phishscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0 spamscore=0
+ suspectscore=0 clxscore=1015 priorityscore=1501 adultscore=0 impostorscore=0
+ lowpriorityscore=0 phishscore=0 bulkscore=0 malwarescore=0 spamscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604290130
-X-Rspamd-Queue-Id: 63E4E49450B
+X-Rspamd-Queue-Id: 4D3D9494634
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[ghiti.fr,infradead.org,redhat.com,kernel.org,arm.com,intel.com,gmail.com,brainfault.org,linux.dev,oss.qualcomm.com,lists.infradead.org,vger.kernel.org,hotmail.com];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-291533-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[ghiti.fr,infradead.org,redhat.com,kernel.org,arm.com,intel.com,gmail.com,brainfault.org,linux.dev,oss.qualcomm.com,lists.infradead.org,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	TAGGED_FROM(0.00)[bounces-291537-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[anup.patel@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
+	PRECEDENCE_BULK(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.997];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[10]
 
 From: Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
 
-Introduce the required auxiliary API functions allowing the perf core
-to interact with RISC-V trace perf driver.
+Add bare bones support for RISC-V trace decoder so that the data received
+from the hardware by the RISC-V trace perf driver can be written to the
+perf record output file.
 
 Co-developed-by: Anup Patel <anup.patel@oss.qualcomm.com>
 Signed-off-by: Anup Patel <anup.patel@oss.qualcomm.com>
 Signed-off-by: Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
-Reviewed-by: Nutty Liu <nutty.liu@hotmail.com>
 ---
- tools/perf/arch/riscv/util/Build      |   1 +
- tools/perf/arch/riscv/util/auxtrace.c | 219 ++++++++++++++++++++++++++
- tools/perf/util/auxtrace.c            |   1 +
- tools/perf/util/auxtrace.h            |   1 +
- tools/perf/util/rvtrace.h             |  18 +++
- 5 files changed, 240 insertions(+)
- create mode 100644 tools/perf/arch/riscv/util/auxtrace.c
- create mode 100644 tools/perf/util/rvtrace.h
+ tools/perf/util/Build             |  1 +
+ tools/perf/util/auxtrace.c        |  3 +
+ tools/perf/util/rvtrace-decoder.c | 91 +++++++++++++++++++++++++++++++
+ tools/perf/util/rvtrace.h         |  1 +
+ 4 files changed, 96 insertions(+)
+ create mode 100644 tools/perf/util/rvtrace-decoder.c
 
-diff --git a/tools/perf/arch/riscv/util/Build b/tools/perf/arch/riscv/util/Build
-index 2328fb9a30a3..e07d5525ece6 100644
---- a/tools/perf/arch/riscv/util/Build
-+++ b/tools/perf/arch/riscv/util/Build
-@@ -1 +1,2 @@
- perf-util-y += header.o
-+perf-util-y += auxtrace.o
-diff --git a/tools/perf/arch/riscv/util/auxtrace.c b/tools/perf/arch/riscv/util/auxtrace.c
-new file mode 100644
-index 000000000000..5293ece2147d
---- /dev/null
-+++ b/tools/perf/arch/riscv/util/auxtrace.c
-@@ -0,0 +1,219 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Risc-V E-Trace support
-+ */
-+
-+#include <linux/kernel.h>
-+#include <linux/types.h>
-+#include <linux/bitops.h>
-+#include <linux/log2.h>
-+#include <linux/zalloc.h>
-+#include <errno.h>
-+#include <time.h>
-+
-+#include <internal/lib.h>
-+#include "../../../util/auxtrace.h"
-+#include "../../../util/cpumap.h"
-+#include "../../../util/debug.h"
-+#include "../../../util/event.h"
-+#include "../../../util/evlist.h"
-+#include "../../../util/evsel.h"
-+#include "../../../util/rvtrace.h"
-+#include "../../../util/pmu.h"
-+#include "../../../util/record.h"
-+#include "../../../util/session.h"
-+#include "../../../util/tsc.h"
-+
-+#define RVTRACE_PMU_NAME "rvtrace"
-+#define KiB(x) ((x) * 1024)
-+#define MiB(x) ((x) * 1024 * 1024)
-+
-+struct rvtrace_recording {
-+	struct auxtrace_record	itr;
-+	struct perf_pmu *rvtrace_pmu;
-+	struct evlist *evlist;
-+};
-+
-+static size_t rvtrace_info_priv_size(struct auxtrace_record *itr __maybe_unused,
-+				     struct evlist *evlist __maybe_unused)
-+{
-+	return RVTRACE_AUXTRACE_PRIV_SIZE;
-+}
-+
-+static int rvtrace_info_fill(struct auxtrace_record *itr, struct perf_session *session,
-+			     struct perf_record_auxtrace_info *auxtrace_info, size_t priv_size)
-+{
-+	struct rvtrace_recording *ptr = container_of(itr, struct rvtrace_recording, itr);
-+	struct perf_pmu *rvtrace_pmu = ptr->rvtrace_pmu;
-+
-+	if (priv_size != RVTRACE_AUXTRACE_PRIV_SIZE)
-+		return -EINVAL;
-+
-+	if (!session->evlist->core.nr_mmaps)
-+		return -EINVAL;
-+
-+	auxtrace_info->type = PERF_AUXTRACE_RISCV_TRACE;
-+	auxtrace_info->priv[0] = rvtrace_pmu->type;
-+
-+	return 0;
-+}
-+
-+static int rvtrace_set_auxtrace_mmap_page(struct record_opts *opts)
-+{
-+	bool privileged = perf_event_paranoid_check(-1);
-+
-+	if (!opts->full_auxtrace)
-+		return 0;
-+
-+	if (opts->full_auxtrace && !opts->auxtrace_mmap_pages) {
-+		if (privileged) {
-+			opts->auxtrace_mmap_pages = MiB(16) / page_size;
-+		} else {
-+			opts->auxtrace_mmap_pages = KiB(128) / page_size;
-+			if (opts->mmap_pages == UINT_MAX)
-+				opts->mmap_pages = KiB(256) / page_size;
-+		}
-+	}
-+
-+	/* Validate auxtrace_mmap_pages */
-+	if (opts->auxtrace_mmap_pages) {
-+		size_t sz = opts->auxtrace_mmap_pages * (size_t)page_size;
-+		size_t min_sz = KiB(8);
-+
-+		if (sz < min_sz || !is_power_of_2(sz)) {
-+			pr_err("Invalid mmap size : must be at least %zuKiB and a power of 2\n",
-+			       min_sz / 1024);
-+			return -EINVAL;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int rvtrace_recording_options(struct auxtrace_record *itr, struct evlist *evlist,
-+				     struct record_opts *opts)
-+{
-+	struct rvtrace_recording *ptr = container_of(itr, struct rvtrace_recording, itr);
-+	struct perf_pmu *rvtrace_pmu = ptr->rvtrace_pmu;
-+	struct evsel *evsel, *rvtrace_evsel = NULL;
-+	struct evsel *tracking_evsel;
-+	int err;
-+
-+	ptr->evlist = evlist;
-+	evlist__for_each_entry(evlist, evsel) {
-+		if (evsel->core.attr.type == rvtrace_pmu->type) {
-+			if (rvtrace_evsel) {
-+				pr_err("There may be only one " RVTRACE_PMU_NAME "x event\n");
-+				return -EINVAL;
-+			}
-+			evsel->core.attr.freq = 0;
-+			evsel->core.attr.sample_period = 1;
-+			evsel->needs_auxtrace_mmap = true;
-+			rvtrace_evsel = evsel;
-+			opts->full_auxtrace = true;
-+		}
-+	}
-+
-+	err = rvtrace_set_auxtrace_mmap_page(opts);
-+	if (err)
-+		return err;
-+	/*
-+	 * To obtain the auxtrace buffer file descriptor, the auxtrace event
-+	 * must come first.
-+	 */
-+	evlist__to_front(evlist, rvtrace_evsel);
-+	evsel__set_sample_bit(rvtrace_evsel, TIME);
-+
-+	/* Add dummy event to keep tracking */
-+	err = parse_event(evlist, "dummy:u");
-+	if (err)
-+		return err;
-+
-+	tracking_evsel = evlist__last(evlist);
-+	evlist__set_tracking_event(evlist, tracking_evsel);
-+
-+	tracking_evsel->core.attr.freq = 0;
-+	tracking_evsel->core.attr.sample_period = 1;
-+	evsel__set_sample_bit(tracking_evsel, TIME);
-+
-+	return 0;
-+}
-+
-+static u64 rvtrace_reference(struct auxtrace_record *itr __maybe_unused)
-+{
-+	return rdtsc();
-+}
-+
-+static void rvtrace_recording_free(struct auxtrace_record *itr)
-+{
-+	struct rvtrace_recording *ptr =
-+			container_of(itr, struct rvtrace_recording, itr);
-+
-+	free(ptr);
-+}
-+
-+static struct auxtrace_record *rvtrace_recording_init(int *err, struct perf_pmu *rvtrace_pmu)
-+{
-+	struct rvtrace_recording *ptr;
-+
-+	if (!rvtrace_pmu) {
-+		*err = -ENODEV;
-+		return NULL;
-+	}
-+
-+	ptr = zalloc(sizeof(*ptr));
-+	if (!ptr) {
-+		*err = -ENOMEM;
-+		return NULL;
-+	}
-+
-+	ptr->rvtrace_pmu = rvtrace_pmu;
-+	ptr->itr.recording_options = rvtrace_recording_options;
-+	ptr->itr.info_priv_size = rvtrace_info_priv_size;
-+	ptr->itr.info_fill = rvtrace_info_fill;
-+	ptr->itr.free = rvtrace_recording_free;
-+	ptr->itr.reference = rvtrace_reference;
-+	ptr->itr.read_finish = auxtrace_record__read_finish;
-+	ptr->itr.alignment = 0;
-+
-+	*err = 0;
-+	return &ptr->itr;
-+}
-+
-+static struct perf_pmu *find_pmu_for_event(struct perf_pmu **pmus,
-+					   int pmu_nr, struct evsel *evsel)
-+{
-+	int i;
-+
-+	if (!pmus)
-+		return NULL;
-+
-+	for (i = 0; i < pmu_nr; i++) {
-+		if (evsel->core.attr.type == pmus[i]->type)
-+			return pmus[i];
-+	}
-+
-+	return NULL;
-+}
-+
-+struct auxtrace_record *auxtrace_record__init(struct evlist *evlist, int *err)
-+{
-+	struct perf_pmu	*rvtrace_pmu = NULL;
-+	struct perf_pmu *found_pmu = NULL;
-+	struct evsel *evsel;
-+
-+	if (!evlist)
-+		return NULL;
-+
-+	rvtrace_pmu = perf_pmus__find(RVTRACE_PMU_NAME);
-+	evlist__for_each_entry(evlist, evsel) {
-+		if (rvtrace_pmu && !found_pmu)
-+			found_pmu = find_pmu_for_event(&rvtrace_pmu, 1, evsel);
-+	}
-+
-+	if (found_pmu)
-+		return rvtrace_recording_init(err, rvtrace_pmu);
-+
-+	*err = 0;
-+	return NULL;
-+}
+diff --git a/tools/perf/util/Build b/tools/perf/util/Build
+index 70cc91d00804..1cd1491f93c8 100644
+--- a/tools/perf/util/Build
++++ b/tools/perf/util/Build
+@@ -147,6 +147,7 @@ perf-util-y += cs-etm.o
+ perf-util-y += cs-etm-decoder/
+ endif
+ perf-util-y += cs-etm-base.o
++perf-util-y += rvtrace-decoder.o
+ 
+ perf-util-y += parse-branch-options.o
+ perf-util-y += parse-regs-options.o
 diff --git a/tools/perf/util/auxtrace.c b/tools/perf/util/auxtrace.c
-index a224687ffbc1..944a43d48739 100644
+index 944a43d48739..c6bd6642ce05 100644
 --- a/tools/perf/util/auxtrace.c
 +++ b/tools/perf/util/auxtrace.c
-@@ -1411,6 +1411,7 @@ int perf_event__process_auxtrace_info(const struct perf_tool *tool __maybe_unuse
- 	case PERF_AUXTRACE_VPA_DTL:
+@@ -54,6 +54,7 @@
+ #include "arm-spe.h"
+ #include "hisi-ptt.h"
+ #include "s390-cpumsf.h"
++#include "rvtrace.h"
+ #include "util/mmap.h"
+ #include "powerpc-vpadtl.h"
+ 
+@@ -1412,6 +1413,8 @@ int perf_event__process_auxtrace_info(const struct perf_tool *tool __maybe_unuse
  		err = powerpc_vpadtl_process_auxtrace_info(event, session);
  		break;
-+	case PERF_AUXTRACE_RISCV_TRACE:
+ 	case PERF_AUXTRACE_RISCV_TRACE:
++		err = rvtrace__process_auxtrace_info(event, session);
++		break;
  	case PERF_AUXTRACE_UNKNOWN:
  	default:
  		return -EINVAL;
-diff --git a/tools/perf/util/auxtrace.h b/tools/perf/util/auxtrace.h
-index 6947f3f284c0..4f4714c1b53f 100644
---- a/tools/perf/util/auxtrace.h
-+++ b/tools/perf/util/auxtrace.h
-@@ -46,6 +46,7 @@ enum auxtrace_type {
- 	PERF_AUXTRACE_S390_CPUMSF,
- 	PERF_AUXTRACE_HISI_PTT,
- 	PERF_AUXTRACE_VPA_DTL,
-+	PERF_AUXTRACE_RISCV_TRACE,
- };
- 
- enum itrace_period_type {
-diff --git a/tools/perf/util/rvtrace.h b/tools/perf/util/rvtrace.h
+diff --git a/tools/perf/util/rvtrace-decoder.c b/tools/perf/util/rvtrace-decoder.c
 new file mode 100644
-index 000000000000..24b32947fb4c
+index 000000000000..58db5ca62c1a
 --- /dev/null
-+++ b/tools/perf/util/rvtrace.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
++++ b/tools/perf/util/rvtrace-decoder.c
+@@ -0,0 +1,91 @@
++// SPDX-License-Identifier: GPL-2.0
 +/*
-+ * Copyright (c) 2026 Qualcomm Technologies, Inc.
-+ * Author: Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
++ * RISC-V trace Decoder
 + */
 +
-+#ifndef INCLUDE__UTIL_PERF_RVTRACE_H__
-+#define INCLUDE__UTIL_PERF_RVTRACE_H__
++#include <errno.h>
++#include <inttypes.h>
++#include "evlist.h"
++#include <internal/lib.h>
++#include "rvtrace.h"
 +
-+#include "debug.h"
-+#include "auxtrace.h"
-+#include "util/event.h"
-+#include "util/session.h"
-+#include <linux/bits.h>
++struct rvtrace_decoder {
++	struct auxtrace auxtrace;
++	u32 auxtrace_type;
++	struct perf_session *session;
++	struct machine *machine;
++	u32 pmu_type;
++};
 +
-+#define RVTRACE_AUXTRACE_PRIV_SIZE	sizeof(u64)
++static int rvtrace_process_event(struct perf_session *session __maybe_unused,
++				 union perf_event *event __maybe_unused,
++				 struct perf_sample *sample __maybe_unused,
++				 const struct perf_tool *tool __maybe_unused)
++{
++	return 0;
++}
 +
-+#endif
++static int rvtrace_process_auxtrace_event(struct perf_session *session __maybe_unused,
++					  union perf_event *event __maybe_unused,
++					  const struct perf_tool *tool __maybe_unused)
++{
++	return 0;
++}
++
++static int rvtrace_flush(struct perf_session *session __maybe_unused,
++			 const struct perf_tool *tool __maybe_unused)
++{
++	return 0;
++}
++
++static void rvtrace_free_events(struct perf_session *session __maybe_unused)
++{
++}
++
++static void rvtrace_free(struct perf_session *session)
++{
++	struct rvtrace_decoder *ptr = container_of(session->auxtrace, struct rvtrace_decoder,
++					    auxtrace);
++
++	session->auxtrace = NULL;
++	free(ptr);
++}
++
++static bool rvtrace_evsel_is_auxtrace(struct perf_session *session,
++				      struct evsel *evsel)
++{
++	struct rvtrace_decoder *ptr = container_of(session->auxtrace,
++						   struct rvtrace_decoder, auxtrace);
++
++	return evsel->core.attr.type == ptr->pmu_type;
++}
++
++int rvtrace__process_auxtrace_info(union perf_event *event,
++				   struct perf_session *session)
++{
++	struct perf_record_auxtrace_info *auxtrace_info = &event->auxtrace_info;
++	struct rvtrace_decoder *ptr;
++
++	if (auxtrace_info->header.size < RVTRACE_AUXTRACE_PRIV_SIZE +
++	    sizeof(struct perf_record_auxtrace_info))
++		return -EINVAL;
++
++	ptr = zalloc(sizeof(*ptr));
++	if (!ptr)
++		return -ENOMEM;
++
++	ptr->session = session;
++	ptr->machine = &session->machines.host;
++	ptr->auxtrace_type = auxtrace_info->type;
++	ptr->pmu_type = auxtrace_info->priv[0];
++
++	ptr->auxtrace.process_event = rvtrace_process_event;
++	ptr->auxtrace.process_auxtrace_event = rvtrace_process_auxtrace_event;
++	ptr->auxtrace.flush_events = rvtrace_flush;
++	ptr->auxtrace.free_events = rvtrace_free_events;
++	ptr->auxtrace.free = rvtrace_free;
++	ptr->auxtrace.evsel_is_auxtrace = rvtrace_evsel_is_auxtrace;
++	session->auxtrace = &ptr->auxtrace;
++
++	return 0;
++}
+diff --git a/tools/perf/util/rvtrace.h b/tools/perf/util/rvtrace.h
+index 24b32947fb4c..8e3eb4d681a7 100644
+--- a/tools/perf/util/rvtrace.h
++++ b/tools/perf/util/rvtrace.h
+@@ -15,4 +15,5 @@
+ 
+ #define RVTRACE_AUXTRACE_PRIV_SIZE	sizeof(u64)
+ 
++int rvtrace__process_auxtrace_info(union perf_event *event, struct perf_session *session);
+ #endif
 -- 
 2.43.0
 
