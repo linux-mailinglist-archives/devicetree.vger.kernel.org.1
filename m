@@ -1,146 +1,190 @@
-Return-Path: <devicetree+bounces-291516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291518-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OAElKb3w8WkOlwEAu9opvQ
-	(envelope-from <devicetree+bounces-291516-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:51:25 +0200
+	id AK4oM2jy8WmElwEAu9opvQ
+	(envelope-from <devicetree+bounces-291518-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:58:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 094F2493BD3
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:51:24 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67B75493CA6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:58:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 24A793028354
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:51:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 349DB300D93A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:58:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A281B3C9EE6;
-	Wed, 29 Apr 2026 11:51:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECE413BFE38;
+	Wed, 29 Apr 2026 11:58:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Zdg5iybp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QQC0WLW4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A67529BD95
-	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 11:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7801A3F54C4;
+	Wed, 29 Apr 2026 11:58:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777463482; cv=none; b=hiNEFclHzNnv3vIgs4sB6oXC7pMpon2mXvbM8aCxIzVNX885qFJaLcXpjUWWG1wXidmPTu1NbBYGaIMyNC+NiI1fU1RV/WUpoeMxgwuQMgC2Uu8ccJ+hcR65ai8AA6OFaQrzpobnWdQxAdWXQeLEgSioG56Z964lKyHPTeWNXjU=
+	t=1777463905; cv=none; b=pUyQ0cDUzbFV5e3sOLvF6VuhBCpBuFBjBO74QwZv/n2QdxiQBiamTwjkASdKd5QWY0J7wQ4UEBdOx/YMAfRYe1LBxzSuiJS+8d6xHx1F/p7F6g1yO3l3cIpny+9eFAx7mWKAZA7swnife6+D1T6SgTvcf6jm0rHvFIvxr5SP84Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777463482; c=relaxed/simple;
-	bh=VAJSA2xgO3c4cQcXZQBkqY65yBvsEuuS1NjB7gElWtY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YbiOyP0wSyxbjtB/xVHlFtNT9qDrVBC/XzIIDr+ZUy81db4EWD/hPJQTVLdUqhvaCRQL/pIWiiEZZPWQLVKXJKKnC6pVT0SU+KdDiPEvoTj3GDjL24JqJmR0u7PlHObyhkjMLvZ3Oyz1mDW1QzZ/qNGjZxa8I0dVmPqCJ/CF07A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Zdg5iybp; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id DE2F14E42AF3;
-	Wed, 29 Apr 2026 11:51:10 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id AD0E2601DF;
-	Wed, 29 Apr 2026 11:51:10 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CA08010729012;
-	Wed, 29 Apr 2026 13:51:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1777463469; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=kYgU7p+5G7jRn2Lu2neiA6JjUceaSNvUkJDhIyk539E=;
-	b=Zdg5iybpl50u7W6h5DFjstn0a8BWQtxfafcPB2bcM9TYKLAvWFqs66pfSKmtm7P3pzmiqY
-	O4WyrW3q4ovV9HRkBsU7KGUrazY3Hv5xZJV4lfgii7qacpTpqhqYlhCNL8+WJpiIqxf+9x
-	PRW9xiL9vfk4trACNdFQMDv5dpDmfeXS1SsBKWyS6/TC9CCk0imLEM8J93s1g3a3BzeKDB
-	IvjHZMonKaTiTtI3Ju11c8tUo2DkQ2JMX2wGC+4QNUxOHwfcgia+IgEMW0KWxX5rF3lx7o
-	PD4Mfhy6bFzkLe93GkxdIVFgiNhKy9a64V6mSKul9vQno28eozIPS+fEdWHErQ==
-From: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v2 4/4] MAINTAINERS: Add the Renesas RZ/N1 timers driver entry
-Date: Wed, 29 Apr 2026 13:50:23 +0200
-Message-ID: <20260429115054.158160-5-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260429115054.158160-1-herve.codina@bootlin.com>
-References: <20260429115054.158160-1-herve.codina@bootlin.com>
+	s=arc-20240116; t=1777463905; c=relaxed/simple;
+	bh=tc1x2jFTiS6LhuWXCPLieRSj6Q/gppWfSAnb8qnejuE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iDNxvFkn/YKIpSdSPtxpFh9i5/QqpUVNSHc8yo8oy+a/nMz5UcNhx2K5oYtMF1YAXVfH+vPJrVJavI5JLT12JbWGRy/zyeTKw6lhOGFWWOIc5TWBZ7kByHr4kdJFyI5KFUb+horHx7mOfEexArIiiiHGoU8rXTRdxzQb5yuVb+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QQC0WLW4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55EB8C19425;
+	Wed, 29 Apr 2026 11:58:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777463904;
+	bh=tc1x2jFTiS6LhuWXCPLieRSj6Q/gppWfSAnb8qnejuE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QQC0WLW4S7uH5MRDcyQoXC+Q5Yk9pkq0jUEVDOB41gvOk4I+/t3GCO8tM7RLlMP4U
+	 eZSNx7aYxglGV7RjSQleKBtaQ81faWIlY975sQntD+D9oJxqRJDalQTHFk5RCZK2v8
+	 P29HH0IhBCqmf0rEEkeIP9BGiRPCtKd5hhZik/26VjglbsTPGuO/EYqoNu4iTmpWEj
+	 zeRnCRNxdf3aIfydquon806G/im0+rwiTIQMJUPtj+5mQYJA2j8lCdyULBWQlSgzdI
+	 opEYVKiELwOlx9/VjoAfynGSocsN9rUTLJt6lE/3Vn4A/QeidMPTgFur81eudNp7Gf
+	 033itvB5gus8Q==
+Date: Wed, 29 Apr 2026 13:58:22 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Chris Morgan <macromorgan@hotmail.com>
+Cc: Chris Morgan <macroalpha82@gmail.com>, 
+	linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, xsf@rock-chips.com, sre@kernel.org, simona@ffwll.ch, 
+	airlied@gmail.com, tzimmermann@suse.de, mripard@kernel.org, 
+	maarten.lankhorst@linux.intel.com, jesszhan0024@gmail.com, neil.armstrong@linaro.org, 
+	heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: power: supply: sgm41542: document
+ sgm41542
+Message-ID: <20260429-boisterous-cyber-hyena-ce870a@quoll>
+References: <20260427170914.5062-1-macroalpha82@gmail.com>
+ <20260427170914.5062-2-macroalpha82@gmail.com>
+ <20260428-bulky-nebulous-reindeer-ed45ed@quoll>
+ <PH0PR19MB997338F0B06B7B99AA0ED3C6C4A5372@PH0PR19MB997338.namprd19.prod.outlook.com>
+ <534f0795-0002-4c04-a83c-fa1b3ce68216@kernel.org>
+ <PH0PR19MB99733813E0295B511539050BA9A5372@PH0PR19MB997338.namprd19.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 094F2493BD3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <PH0PR19MB99733813E0295B511539050BA9A5372@PH0PR19MB997338.namprd19.prod.outlook.com>
+X-Rspamd-Queue-Id: 67B75493CA6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-291516-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[sang-engineering.com,bootlin.com,kernel.org,glider.be,gmail.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-291518-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[hotmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,lists.infradead.org,vger.kernel.org,lists.freedesktop.org,rock-chips.com,kernel.org,ffwll.ch,suse.de,linux.intel.com,linaro.org,sntech.de];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:email,bootlin.com:dkim,bootlin.com:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url]
 
-After contributing the driver, add myself as the maintainer for the
-Renesas RZ/N1 timers driver.
+On Tue, Apr 28, 2026 at 02:54:53PM -0500, Chris Morgan wrote:
+> On Tue, Apr 28, 2026 at 05:09:49PM +0200, Krzysztof Kozlowski wrote:
+> > On 28/04/2026 16:09, Chris Morgan wrote:
+> > > On Tue, Apr 28, 2026 at 09:47:00AM +0200, Krzysztof Kozlowski wrote:
+> > >> On Mon, Apr 27, 2026 at 12:09:09PM -0500, Chris Morgan wrote:
+> > >>> From: Chris Morgan <macromorgan@hotmail.com>
+> > >>>
+> > >>> Document the SG Micro sgm41542 battery charger/boost converter.
+> > >>>
+> > >>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > >>> ---
+> > >>>  .../supply/sgmicro,sgm41542-charger.yaml      | 99 +++++++++++++++++++
+> > >>>  1 file changed, 99 insertions(+)
+> > >>>  create mode 100644 Documentation/devicetree/bindings/power/supply/sgmicro,sgm41542-charger.yaml
+> > >>>
+> > >>> diff --git a/Documentation/devicetree/bindings/power/supply/sgmicro,sgm41542-charger.yaml b/Documentation/devicetree/bindings/power/supply/sgmicro,sgm41542-charger.yaml
+> > >>> new file mode 100644
+> > >>> index 000000000000..3e5041e5b551
+> > >>> --- /dev/null
+> > >>> +++ b/Documentation/devicetree/bindings/power/supply/sgmicro,sgm41542-charger.yaml
+> > >>
+> > >> Filename must match compatible.
+> > > 
+> > > Acknowledged.
+> > > 
+> > >>
+> > >>> @@ -0,0 +1,99 @@
+> > >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > >>> +%YAML 1.2
+> > >>> +---
+> > >>> +$id: http://devicetree.org/schemas/power/supply/sgmicro,sgm41542-charger.yaml#
+> > >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > >>> +
+> > >>> +title: SGM41542 Battery Charger
+> > >>> +
+> > >>> +description: |
+> > >>
+> > >> Do not need '|' unless you need to preserve formatting.
+> > >>
+> > > 
+> > > Will fix.
+> > > 
+> > >>> +  The SGMicro SGM41542 is a single cell battery charger/boost controller.
+> > >>> +
+> > >>> +maintainers:
+> > >>> +  - Chris Morgan <macromorgan@hotmail.com>
+> > >>> +  - Xu Shengfei <xsf@rock-chips.com>
+> > >>> +
+> > >>> +properties:
+> > >>> +  compatible:
+> > >>> +    const: sgmicro,sgm41542
+> > >>> +
+> > >>> +  input-current-limit-microamp:
+> > >>
+> > >> Missing vendor prefix.
+> > >>
+> > > 
+> > > This *appears* to be a standard value (perhaps not formally, but in use by
+> > > enough devices to suggest a defacto standard), which is why I did not use
+> > > the vendor prefix here. Do I need to add that for this one?
+> > 
+> > I know, I found these other properties but I think they were just coming
+> > from old schema.
+> > 
+> > If it is really a common property, then should be defined in a common
+> > schema and this did not happen.
+> 
+> Would now be a good time to add it to the power-supply.yaml document?
+> It looks like this value is used by about 10 other devices.
 
-Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+I have mixed feelings. Adding it there would mean that all schemas using
+unevaluatedProperties will get that property. That suggests they have
+such limiting ability in hardware or this ABI is implemented in some
+generic part of the kernel.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2fb1c75afd16..6f0bc793d657 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22708,6 +22708,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/rtc/renesas,rzn1-rtc.yaml
- F:	drivers/rtc/rtc-rzn1.c
- 
-+RENESAS RZ/N1 TIMERS DRIVER
-+M:	Herve Codina <herve.codina@bootlin.com>
-+L:	linux-renesas-soc@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/timer/renesas,rzn1-timer.yaml
-+F:	drivers/clocksource/timer-rzn1.c
-+
- RENESAS RZ/N1 USBF CONTROLLER DRIVER
- M:	Herve Codina <herve.codina@bootlin.com>
- L:	linux-renesas-soc@vger.kernel.org
--- 
-2.53.0
+None of these are true, I think.
+
+Maybe we need some documented guidance on usage of common schemas.
+
+Best regards,
+Krzysztof
 
 
