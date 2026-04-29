@@ -1,157 +1,188 @@
-Return-Path: <devicetree+bounces-291424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291430-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNyGCO7J8Wn+kQEAu9opvQ
-	(envelope-from <devicetree+bounces-291424-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:05:50 +0200
+	id SFaKCaHK8Wn+kQEAu9opvQ
+	(envelope-from <devicetree+bounces-291430-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:08:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88E0F49185E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:05:49 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BEEF491926
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:08:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id ABD4F300D907
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:05:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C601F300C6D8
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 09:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26ECA3BBA0A;
-	Wed, 29 Apr 2026 09:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 015D13BD642;
+	Wed, 29 Apr 2026 09:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hvc7elpg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WzlnfwAr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D082F3B9D9F;
-	Wed, 29 Apr 2026 09:05:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8800B3B9D9C
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 09:07:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777453540; cv=none; b=gWN42vCNY6Qr52DEciPBGP3yyM0e9MF+X4jdifbEOdEboyvkETVNE+DELsVBPiZO9myP4XFqvBOxT1iFStsNWm5Ity7lF7nmnusTF/Cwkln+LM5q68s20y14vpqDE+Phws4I1Kvkm3cJ+LkN9v7JsOq8qSRXixhx2H8r5dlnk5c=
+	t=1777453656; cv=none; b=Cq1scujAefD7h2pwsMoAXCJi+XadN3P6JT+i+CMc8/Pjb59NArSbYqtI6hAK3NmRgYmw0I2K9OUIojeWFoT6IXMtDFq6TM1LI++p/xs+yBIUlkS2iOK2+J40iuZbmgm7Q1CdtLsJ++hNv5aFT3t/Sxd3P9cKFFVE40Ap5YHfUE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777453540; c=relaxed/simple;
-	bh=1hxYCiayBlxyU/sHOL5JNJjVec/HYOBaNVT0PyswTsY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gNkyNslrhy/mFoeIR1RnogYuvGRghiL4Fvjz/IVG2zEdH4ciYWnXjc9y0Lew/Dyl0qxhaFFhkxKD5NQDJ5mo327ZsI+jmqL2YXhvgyx5MZqONCKc5BBN5AMHFFtgMGvh0gvNfpQdVvf58/7L+aUYsYx+R07X1GHcnrVdYEPmhj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hvc7elpg; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1777453539; x=1808989539;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=1hxYCiayBlxyU/sHOL5JNJjVec/HYOBaNVT0PyswTsY=;
-  b=hvc7elpgxIqMjNz+DeWzJlgEf2LvaJh2Qp3RBe7dSvEev95xhtZ7p2vJ
-   s5jjIqajDqmpY6yGJ0R8TjZdRNk3R0+0Su3lfYPT2WeEFm+T2mLQK12mj
-   z51plgMr//3PXPGWVoK+YQN8w/Hz4udeZdAEDDwMGcKk8uKJ55ZqXVtmH
-   2R3VKyiN9IUu1ZUo7BpG4UdHsXhgrQoQhvsp70O161IPzPS3fVvkPHMbq
-   PUmCvQ244YiAwnTmuHdVFpuNNW4a04LCw1kaKEzvZU5vC/hqWvMUsa7RC
-   7lHwUThIJkZ01f07Xl1Fz24IxyfkaFRNEzjHsI1xIG2hvlaDN3O6wrSZK
-   g==;
-X-CSE-ConnectionGUID: 233sDmciSemBTfMHOKcvPQ==
-X-CSE-MsgGUID: uzpZyJjhRuiJMsE6eX9pVQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="88975639"
-X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; 
-   d="scan'208";a="88975639"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2026 02:05:38 -0700
-X-CSE-ConnectionGUID: UEKWoQTOS4SMxFcTkePYlw==
-X-CSE-MsgGUID: hxUwmqDhRbaVY3Ybs6Knpg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; 
-   d="scan'208";a="234080178"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.245.141])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2026 02:05:35 -0700
-Date: Wed, 29 Apr 2026 12:05:32 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jia Wang <wangjia@ultrarisc.com>
-Cc: Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	LKML <linux-kernel@vger.kernel.org>,
-	linux-serial <linux-serial@vger.kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/4] serial: 8250_dw: build Renesas RZN1 CPR value
- from DW_UART_CPR_* definitions
-Message-ID: <afHJ3DArX34FQMuY@ashevche-desk.local>
-References: <20260428-ultrarisc-serial-v5-0-97de63b1e3eb@ultrarisc.com>
- <20260428-ultrarisc-serial-v5-2-97de63b1e3eb@ultrarisc.com>
- <afBhkbGLsuqUitOl@ashevche-desk.local>
- <23c80500-f2c1-0eb3-f640-00f7b108059b@linux.intel.com>
- <177736726936.2886867.7725295920724488690.b4-reply@b4>
- <afCS7GEG7gtyC7RH@ashevche-desk.local>
- <177742420562.3222151.9689419292413018986.b4-reply@b4>
+	s=arc-20240116; t=1777453656; c=relaxed/simple;
+	bh=AwZuUXPk4/WpmF+r8jDpB7wrDuVU3zFwiYudmOuTakQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BSBbup4XWb/2xd9NYVmNu5D2SaX6373qt0rLNXA0Vp0AwecTdGpC3VQVCKpB+MYmf5uNSGuaB30eIigsYoRv9vOcmeznk9KemFWKLiZTLpZ2DkF3orqwYshrQv9S4K85ftX0EhvA6zE0CKJ4ebRm/7HSRAxoGd7E7zsld8E+Mtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WzlnfwAr; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-48374014a77so157736835e9.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 02:07:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1777453653; x=1778058453; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8Lj5tmUBXJFmzYH2N7Dd27gLNCll+S51FdGFIIdlW1Y=;
+        b=WzlnfwAr4DJID5MtMtZ5nD/hIInr+BJPMOmbnxGKYJdc5oZo19tk5YD9fLAkzZx6XQ
+         t3oQIb8ONLqCn/clp6+dSaUcXmlYA3KCj10APjyZq7ZodhQmXFSqwnaLOmUGNbyCleTm
+         06KP2V5WK1ba+Rto9wLX78pIU7NRQJ04Q0CVYPJrBu62F7rfNGcphlKxmE4TuIEXtKCL
+         cvgXoI3me+BsJRE8jRB9xrFiYKz/sWrAL/oJepsxfZK1x95WzrxSfx7SCcR3wacUGxKy
+         CrMfpKo5lqE5pUI2WOG5Vws/QVrqM3u92g9nBypyXlW7YbdWoFLZ72kYqIFcDXyRtY+7
+         r+6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777453653; x=1778058453;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8Lj5tmUBXJFmzYH2N7Dd27gLNCll+S51FdGFIIdlW1Y=;
+        b=TCEyrVo3BhyJZb00dfnWrcXEvJAJpoD1LQUT0QUpZHbDF4JFfho11t56lf2lbd9Ebw
+         lfErd7ih+9+NWc+Nvct5zOoyxZQZFMm2Y8h0hBi6oCAVsoSOJz4q3sDLdlNXB1XIaEoZ
+         9ucE8IjYMk73e2fWp83r2lvaB84rk2ZmO0a3euE8ypcuBu78Mtl0DQ5cl6cWvdwD8CNk
+         XwGo+LVfBpf0XRP+I2uCDpQJFDBcIcx1ZVslzz8w+ka6YNSqNuA5FZARpP9/IT8sUDQg
+         n7KXv2GIOBCZ9k3YaS7csHMUoFyaEmOH7iaonQfMwCHgk9ZEbBaBVJdxbqysTeIsRXdl
+         eaFQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8FSCTW5GsusogVkE4MuQOTUeoLREAp7yzPbb9L+uXyT+4EZXleFhdvbFi+yYt8ERH5+pIxq5972qwK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOIgxt+Fdc0g9PGqELQSyTrIJ5b0E0iIicf7NkeEUdnsNX5pMm
+	iUvhGd4iNluQk2tE3ryuttoVlcZ8xXKVjE1XkL6CvAkYmyDdT5ao/s0cCDt8aGRatpE=
+X-Gm-Gg: AeBDievkE0oDJMIOpsd6PlsjyYq3avlNpkVCtU/wF05vmmtBOenv9IQTyVVN5Iyw0BD
+	lk8g8hvAhjeV9nN+hfsL4o9GRvvbIhtCsyd8h9kOBBbxEVa6jndJj5wpyCJCZSns0SYsfG8Wo+e
+	LY3myvpHWcqXgkjDWoKa1XESKz6b3KFvQiEDBFoJRK8EDfKtdovZoLgf8w5LM/YFDucRoQeNjvk
+	Hn/yKOMGvlGBWQ/C0rL+zd7ytvpSwRYYE+2EX+Na6+cOTzAYD/zCyLwHxhatdv156hgbrx7rOhA
+	xNymx/6TM5fCEHjqMYtaF+XT2VmhReiupTzKahsFt6TqPCbf0rRe8NfnDNIOZL9TT+QPtIgRmyn
+	wK8+qcBv1ZJNBa/AsmCNtBNMM8crOtUeVi31Paf29xYWD8e02N+q1SgbL5DLihCDt3kSxAfMVDG
+	3pp1cYO32KP3WWl0IHGGylAuw0zgkHApAgBnkJlpWNagU=
+X-Received: by 2002:a05:600c:2e55:b0:48a:7b55:12a6 with SMTP id 5b1f17b1804b1-48a7b55131amr28563845e9.0.1777453652729;
+        Wed, 29 Apr 2026 02:07:32 -0700 (PDT)
+Received: from [10.11.12.108] ([79.115.63.228])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a7c5d1a53sm40803645e9.14.2026.04.29.02.07.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Apr 2026 02:07:32 -0700 (PDT)
+Message-ID: <6dcb5348-e973-494d-adf1-7fa2dc5655f2@linaro.org>
+Date: Wed, 29 Apr 2026 12:07:28 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <177742420562.3222151.9689419292413018986.b4-reply@b4>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: 88E0F49185E
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] mailbox: exynos: Add support for Exynos850 mailbox
+To: Alexey Klimov <alexey.klimov@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sam Protsenko <semen.protsenko@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>, linux-samsung-soc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260402-exynos850-ap2apm-mailbox-v2-0-ca5ffdff99d4@linaro.org>
+ <20260402-exynos850-ap2apm-mailbox-v2-2-ca5ffdff99d4@linaro.org>
+ <a02a693e-b06e-43bf-ac5f-8253f298c83d@linaro.org>
+ <DHNSP3FVR4ZQ.1PIRHF0KJGKI5@linaro.org>
+ <DI52JP9JH6AH.3I5OKWOZ56MIU@linaro.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <DI52JP9JH6AH.3I5OKWOZ56MIU@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 0BEEF491926
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291424-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,baylibre.com,gmail.com,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-291430-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tudor.ambarus@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:dkim,linaro.org:mid]
 
-On Wed, Apr 29, 2026 at 08:56:45AM +0800, Jia Wang wrote:
-> On 2026-04-28 13:58 +0300, Andy Shevchenko wrote:
-> > On Tue, Apr 28, 2026 at 05:07:49PM +0800, Jia Wang wrote:
-> > > On 2026-04-28 11:41 +0300, Ilpo Järvinen wrote:
 
-...
 
-> > > Thanks. I tried that approach, but the statement-expression form does
-> > > not work in this case because the helper is used in static initializers.
-> > > So I'll keep it as a plain expression macro for now, and just rework it
-> > > into a cleaner multi-line form.
-> > 
-> > Still you can move FIELD_PREP_CONST() into it.
+On 4/28/26 11:26 PM, Alexey Klimov wrote:
+> On Wed Apr 8, 2026 at 2:08 PM BST, Alexey Klimov wrote:
 > 
-> Right, I'll move FIELD_PREP_CONST() in. By the way, does your Reviewed-by
-> still hold?
+> [...]
+> 
+>> On Thu Apr 2, 2026 at 9:42 AM BST, Tudor Ambarus wrote:
+>>>>  static int exynos_mbox_send_data(struct mbox_chan *chan, void *data)
+>>>> @@ -57,7 +104,8 @@ static int exynos_mbox_send_data(struct mbox_chan *chan, void *data)
+>>>>  		return -EINVAL;
+>>>>  	}
+>>>>  
+>>>> -	writel(BIT(msg->chan_id), exynos_mbox->regs + EXYNOS_MBOX_INTGR1);
+>>>> +	writel(BIT(msg->chan_id) << exynos_mbox->data->irq_doorbell_shift,
+>>>> +	       exynos_mbox->regs + exynos_mbox->data->irq_doorbell_offset);
+>>>
+>>> Use FIELD_PREP from <linux/bitfield.h> please. You will use a mask instead of
+>>> a shift.
+>>>
+>>> I would rename irq_doorbell_offset to intgr. It aligns with the register name
+>>> from the datasheet. You won't need to prepend _offset to the name, we already
+>>> see it's an offset when doing the writel().
+>>
+>> Sure. Thanks. Let's use FIELD_PREP.
+> 
+> +       /* Ring the doorbell */
+> +       writel(BIT(msg->chan_id) << exynos_mbox->data->intgr_shift,
+> +              exynos_mbox->regs + exynos_mbox->data->intgr);
+> 
+> FIELD_PREP() wants a mask as a compile-time constant. Unless you want me to
 
-Not for this patch, as it seems we get too many modifications and discussions
-around. Let have a fresh look in v6 (the rest of the patches are okay, please
-keep tags there).
+Indeed, I forgot, sorry.
 
--- 
-With Best Regards,
-Andy Shevchenko
+> add switch/case for different SoCs or I misunderstood something I don't see
+> how this is gonna fly.
 
+other option is to have a .ring_doorbell callback defined in the SoC data,
+and then you can use FIELD_PREP. But it increases boilerplate code just to
+ring a doorbell. I wouldn't go via switch/case. I think we'll have to live
+with the mask and shift.
 
+Cheers,
+ta
 
