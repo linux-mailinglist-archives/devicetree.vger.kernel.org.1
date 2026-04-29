@@ -1,148 +1,210 @@
-Return-Path: <devicetree+bounces-291550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291553-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +JfvJc4F8mnNmgEAu9opvQ
-	(envelope-from <devicetree+bounces-291550-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:21:18 +0200
+	id +PSoD28H8mkimwEAu9opvQ
+	(envelope-from <devicetree+bounces-291553-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:28:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D9E7494B4B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:21:14 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D65C494CEF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:28:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A018530041EC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:21:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C9F6A30235A6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3053FCB18;
-	Wed, 29 Apr 2026 13:21:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40CC83FCB27;
+	Wed, 29 Apr 2026 13:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=vinatta.cz header.i=@vinatta.cz header.b="IyM+Dn02"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="KvJEawRJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vinatta.cz (vinatta.cz [37.205.8.231])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39AE83FBEC2;
-	Wed, 29 Apr 2026 13:20:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71FF3F2101
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 13:22:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777468866; cv=none; b=d0hKgX3Iv80FDr3i0E6TF4AnRlNvy4y9EtCMKy/2/Uj7GqzqzEdeSjMLugddMbrjHPgiVeZtm9svRAkXnwBSnAKWVlWudoyWQiaI8J1bJfo60QelXB6w2XHP+LAJbGE27nSj9um2dW0MgyYjR1ZFI2njbvFGbdOUfaLnbDMyYCk=
+	t=1777468975; cv=none; b=nJQpwIIHWxTayN1DnygFcYaE0zGSMcTUlPBNet+Lzo9zMgSagEPBXFlsxqsXIls8ecCTl0CL/kUqVAh7/64EsLwa42ELMblFBe8d49KZ8GrgVb7T6m00RExvSS2ame+GSqHeloppYUpOyiLiajj/fDdeuE78iTmZVru7rWv9CoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777468866; c=relaxed/simple;
-	bh=xqRqdqb9cql00b3xqlZ9Qf54W2TCp7JZjtSRq3okoys=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
-	 References:In-Reply-To; b=l1t8UcFwRIgWJP9/HjfE1rUWx+3HZBlHFONSca6gCkj92EEutu8TrXvKVhsF2aHyS6N4kuM6LNsJBkQW1mW58KvhrNAMb1kBV1KtJwS0pdQ5gvxgjSGso1p5vEhizqdO+v2A1rHwqYb/pGuHJ+FUd5Ez27Dz+0hOactjYwjnrco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=vinatta.cz; dkim=pass (2048-bit key) header.d=vinatta.cz header.i=@vinatta.cz header.b=IyM+Dn02; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=matfyz.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinatta.cz
-DKIM-Signature: a=rsa-sha256; bh=xqRqdqb9cql00b3xqlZ9Qf54W2TCp7JZjtSRq3okoys=;
- c=relaxed/relaxed; d=vinatta.cz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@vinatta.cz; s=default; t=1777468828; v=1; x=1777900828;
- b=IyM+Dn02OPnovfHH7qNxVHpRW3lq/vYVi8gIZcW4AH7D2xne9s+wetiIl+wxpJE6OZFyTOkm
- RguW5ARTHy3psH4xEHq1wSvuu9pVbbBnDs7WkbnysjUgPn2Zn3tjG/vwTwPw6Jzk8QNkZajEwln
- bEnKo/NHeCiP3dxeqdMa/VD2iYAHYg6eNe9oGnLxh+poF0IoDqoQFGNVA00lFNXMxn6Ic/jt0CK
- fy6UDDHUSrkQHQ1sajzCK6X3Ek3xAf3QWRyeapcFtUvNGmSxGuNDfAOtcZFgdBCEUkHi/u1pIh5
- 7MIEt8s/hY14nWI79pi1zTXz57/0aOCSnp6eLVR7s/6cQ==
-Received: by vinatta.cz (envelope-sender <karel@vinatta.cz>) with ESMTPS id
- 2b91500b; Wed, 29 Apr 2026 15:20:28 +0200
+	s=arc-20240116; t=1777468975; c=relaxed/simple;
+	bh=+7e0qQOb7xNJ1GonbhJehRvqndv8OQWX5XWwzpXYTbA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=a7MuUBBy+S0VqJ4HGj/lcKMD4MK2qa2Sim4kAzt3OrWFpKAL3LPxQuOwc2jN7HkVF6pbXpo0nElh/eFnt5/aGMk21ieMD/SeJjso16AAV/YhUSAI71pWeht/lVf1MAbVxu7RKQtztquZDcEW9m8mxtLI5US6V71RChHE5ESCj64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=KvJEawRJ; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-488b0046078so113453155e9.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 06:22:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1777468971; x=1778073771; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1qz1XwK5bgbF4fSDLGldtnnQW+IDkK0wUVzSv05ZMs8=;
+        b=KvJEawRJgW4mIR9V9uTeaRKa8KZ9eoKEVmQs4P6QvxcluhAFyDI5OBnwLdW6zlrXxF
+         2vFgkTWZHUd1I5+4ZAPPOp9N9oIprNwC7MNQzHaQ9FU7DynV8kx6v6weywB5j5unPy4U
+         DPUDH8AkiwM9zhjx7nSw0/clrLtxDqH7L+0OLaAIPQViRSYCHadEkTB/IJbTUXyow97C
+         YXY1gwWFcjSuQTmoPP54Kvh2xzzzH7oIcSbOhiNVY5wyFl+iJ0acZA/RDK9INlBAL1Xi
+         dpdL+oig1seFYGzWLv9JJplqVirT3F7C9X4PAhgbQPFpRFPjtDqXLNyqemMvp2RLfonl
+         WCsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777468971; x=1778073771;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1qz1XwK5bgbF4fSDLGldtnnQW+IDkK0wUVzSv05ZMs8=;
+        b=PmgHp2KJibl2S8Z5Mzgxuae6Rqah0mZH4q/7V72ejfwVm547C+QdaCGLqV18GVfy8n
+         LFGMEcSni+0zXGgCMwYRxLNYkqgJ0r5CwZxG3Hp32HTyIs3GxfpLiOZQ4HNMIJxc517O
+         x4rVxjQpLzPBFGEJLBC5Ds1z3aWL6y1B8KFo3SBatQZ/I8/29aResM7v+3sRaMJdv1Vv
+         4Vk9DTpWWfX/r4ZPs+xGK0kuPmd+mK6jtyWySQcvwkQ0eZWK6gysb1uIPwNTj89dFFL6
+         xhuexk2354JBvYKRdLtD7m2z/mTjTxoffkCOZ3KZL1FmfEY0JNi8F/Au6dzu9ZkOZ96g
+         V4rw==
+X-Forwarded-Encrypted: i=1; AFNElJ/DW+g91SHpDvyHSRJD7TxT5LRpXsBP0Lnmchkzd2S9OHEGNEdGE7ITtceqtcVwSHFf7Pi9QaQCDAHK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6iFUaQgQffOm2Vr+qOOYOU9/qKTP7UkQ2tZw2qv7BFNyJ5cFB
+	x/6Y/j9gu9V2qyrzQoT2Y77Brrw9/crDFSB0PJPs5SmlZdg4J0x50J0OBsXpvuPrn+M=
+X-Gm-Gg: AeBDieuEngeUevesZz4/pAEfzn0q8J0VWez11Mnq1ERTIlW7UeI1vxzlL7MPgypTqCK
+	5SH7mEK5l6WFESvj1Wmo2PYDr7NaVb7hxg+kMg2LJ7q4ETKckHNlwAmZ6uXMQemE7lbHDewibPX
+	2nEGcw3evyTp+gaDKsqDvgHnwQ9yoXEUsCsVuTcgB3vWhvWRdDHM4p2/BQ2PwrEd+o4xaGMvpHo
+	o7h5nqARRRClx8HkJ525Kj9JA9r+VC8uKu40ogUVxh/OPYDKZpk4kwjjtUx8bvW7vOMbpdjllgj
+	T5/gAGdWbj5nlsaeOEX8xoWXyyZfWof/8JIse8X5gfr8yrVVqGXbiAaUZj43wjI2LIKsEPX7PVn
+	MtcoYV/ssq0fnDxxBbXqp4jXEmX5tSWlVqxUFvYcVJ544YltwULwhX6Aonjun8SAQj6QhOkJsxV
+	QpHuPqNDGIGC2RyX+qeUKScv3QjFpr2f0=
+X-Received: by 2002:a05:600c:1382:b0:488:b99b:4177 with SMTP id 5b1f17b1804b1-48a77b232femr117816745e9.25.1777468971146;
+        Wed, 29 Apr 2026 06:22:51 -0700 (PDT)
+Received: from localhost ([2001:4090:a246:83ca:1917:a47e:1872:2063])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a7b91cab9sm28569085e9.2.2026.04.29.06.22.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Apr 2026 06:22:49 -0700 (PDT)
+From: "Markus Schneider-Pargmann (TI)" <msp@baylibre.com>
+Subject: [PATCH v4 0/4] arm64: dts: ti: k3-am62a7-sk: Split r5f memory
+ region
+Date: Wed, 29 Apr 2026 15:22:07 +0200
+Message-Id: <20260429-topic-am62a-ioddr-dt-v6-19-v4-0-fc27d6ac753c@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 29 Apr 2026 15:20:28 +0200
-Message-Id: <DI5O432AFZVX.3VGKJP31AZX97@matfyz.cz>
-Cc: "Brian Norris" <briannorris@chromium.org>, "Johannes Berg"
- <johannes@sipsolutions.net>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>, "Andrew Lunn"
- <andrew@lunn.ch>, "Gregory Clement" <gregory.clement@bootlin.com>,
- "Sebastian Hesselbarth" <sebastian.hesselbarth@gmail.com>, "Ulf Hansson"
- <ulf.hansson@linaro.org>, "Frank Li" <Frank.Li@nxp.com>,
- <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-mmc@vger.kernel.org>, <~postmarketos/upstreaming@lists.sr.ht>,
- <phone-devel@vger.kernel.org>, "Jeff Chen" <jeff.chen_1@nxp.com>, "Peng
- Fan" <peng.fan@nxp.com>, <david@ixit.cz>
-Subject: Re: [DONOTAPPLY RFC PATCH v2 0/4] WiFi support for
- samsung,coreprimevelte
-To: "Francesco Dolcini" <francesco@dolcini.it>
-From: "Karel Balej" <balejk@matfyz.cz>
-References: <20251026182602.26464-1-balejk@matfyz.cz>
- <DEJL1ATTQMVE.120JV9YW59I27@matfyz.cz>
- <aSnWYS2g5slVFaSk@gaggiata.pivistrello.it>
- <DI5L100Q1RKO.1A68EJIPWYSRC@matfyz.cz>
- <20260429112232.GD17033@francesco-nb>
-In-Reply-To: <20260429112232.GD17033@francesco-nb>
-X-Rspamd-Queue-Id: 5D9E7494B4B
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP8F8mkC/33NQW7CMBCF4asgrzuVZ5zGKSvugVjY46GMVDByI
+ guEcvcaukEIZfm/xfduZpSiMpr16maKVB01n1p0HyvDh3D6EdDU2pCl3hJamPJZGcKxpwCaUyq
+ QJqg94DfYFLxHsgMmbxpwLrLXywPf7lofdJxyuT6+Kt7Xf9ZZt8RWBAtIe/EUY2cTbWK4/mos8
+ sn5aO5ypScNaVGjpjnP0bMI91/DG809a8Oi5prGHXbecSTH7kWb5/kPZXoAkGMBAAA=
+X-Change-ID: 20260210-topic-am62a-ioddr-dt-v6-19-0da7712081d7
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Suman Anna <s-anna@ti.com>, 
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>
+Cc: Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Dhruva Gole <d-gole@ti.com>, Sebin Francis <sebin.francis@ti.com>, 
+ Kendall Willis <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ "Markus Schneider-Pargmann (TI)" <msp@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2643; i=msp@baylibre.com;
+ h=from:subject:message-id; bh=+7e0qQOb7xNJ1GonbhJehRvqndv8OQWX5XWwzpXYTbA=;
+ b=owGbwMvMwCXWejAsc4KoVzDjabUkhsxPbMz9GtdfHPNUnsnqmedka7px/412lxsP7fne/yuo9
+ LT/z6zUUcrCIMbFICumyNKZGJr2X37nseRFyzbDzGFlAhnCwMUpABO59YyR4bz7z5WGL0peNnBb
+ d0hELloR7ux82G77sk1FnR71+6JTfBgZfmgn9EsvnK+a8eLlLHmDCvNP3o+THKV6W3xk9+Qd2l3
+ JAwA=
+X-Developer-Key: i=msp@baylibre.com; a=openpgp;
+ fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
+X-Rspamd-Queue-Id: 6D65C494CEF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.44 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[vinatta.cz:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[matfyz.cz : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-291553-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291550-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[chromium.org,sipsolutions.net,kernel.org,dujemihanovic.xyz,lunn.ch,bootlin.com,gmail.com,linaro.org,nxp.com,vger.kernel.org,lists.infradead.org,lists.sr.ht,ixit.cz];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[balejk@matfyz.cz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[vinatta.cz:+];
-	NEURAL_HAM(-0.00)[-0.995];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[msp@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	TO_DN_SOME(0.00)[]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,baylibre-com.20251104.gappssmtp.com:dkim,baylibre.com:mid,baylibre.com:email]
 
-Hello, Francesco,
+Hi,
 
-Francesco Dolcini, 2026-04-29T13:22:32+02:00:
-> On Wed, Apr 29, 2026 at 12:55:23PM +0200, Karel Balej wrote:
->> without the firmware being in linux-firmware?
->
-> What's the license of this firmware? Am I wrong saying that if
-> the license allows it, you could just send a patch to have it integrated
-> to the linux-firmware repository? Is there any history or documentation
-> on the topic (please apologize if this is a well known topic, just
-> answer RTFM if this is the case).
+Split the firmware memory region in more specific parts so it is better
+described where which information is stored. Specifically the LPM metadata
+region is important as bootloader software like U-Boot has to know where
+that data is to be able to read that data and resume from RAM.
 
-that's one of the issues, the license is not specified explicitly
-anywhere as far as I know. Likely it is the same as the other Marvell
-blobs already in linux-firmware (the mrvl directory), but we don't know
-for sure.
+The bindings are already applied. The remaining patches use the new
+layout for the platforms that are capable to support IO+DDR. For IO+DDR
+the new layout is necessary as it defines the location of the LPM
+metadata.
 
-As far as I know, even if I was to submit the firmware myself, it would
-still require a sign-off from someone from NXP [1].
+Additionally the two important devicetree nodes for resuming from IO+DDR
+have the bootph-pre-ram flag added as this data needs to be read before
+the RAM is in use.
 
-> I read a couple of days ago that for example the firmwares for the
-> various Apple arm64 laptop cannot be redistributed and every single
-> individual that wants to use those needs to extract those from their
-> system.
+The changes in this series were suggested as part of the IO+DDR u-boot series:
+  https://lore.kernel.org/r/814c211f-a9eb-4311-bb84-165b1a69755f@ti.com
 
-Are those blobs loaded by the mainline kernel? If so, it would be the
-same situation as I'm proposing here I believe.
+Best
+Markus
 
-> All of that seems just a legal matter, and IANAL ...
+Signed-off-by: Markus Schneider-Pargmann (TI) <msp@baylibre.com>
+---
+Changes in v4:
+- Rebased to v7.1-rc1
+- Dropped all already applied patches that are the bindings and the
+  initial introduction of memory-region-names
+- Link to v3: https://lore.kernel.org/r/20260318-topic-am62a-ioddr-dt-v6-19-v3-0-c41473cb23c3@baylibre.com
 
-It is.
+Changes in v3:
+- Squash the enforcement of the memory-region-names requirement in the
+  patch adding the memory-region-names, as suggested.
+- Link to v2: https://lore.kernel.org/r/20260312-topic-am62a-ioddr-dt-v6-19-v2-0-37cb7ceec658@baylibre.com
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware=
-.git/about/#signed-off-by-requirement
+Changes in v2:
+- Make memory-region-names required if memory-region is present
+- Fixup memory-region and memory-region-names conditions. Require either
+  2 or 6 regions for memory-region and memory-region-names
+- Reword and restructure the binding documentation for memory-region and
+  memory-region-names
+- Add memory-region-names to all uses of memory-region
+- Link to v1: https://lore.kernel.org/r/20260303-topic-am62a-ioddr-dt-v6-19-v1-0-12fe72bb40d2@baylibre.com
 
-Karel
+---
+Markus Schneider-Pargmann (TI) (4):
+      arm64: dts: ti: k3-am62a7-sk: Split r5f memory region
+      arm64: dts: ti: k3-am62p5-sk: Split r5f memory region
+      arm64: dts: ti: k3-am62a7-sk: Add r5f nodes to pre-ram bootphase
+      arm64: dts: ti: k3-am62p5-sk: Add r5f nodes to pre-ram bootphase
+
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 42 +++++++++++++++++++++++++++++++--
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 42 +++++++++++++++++++++++++++++++--
+ 2 files changed, 80 insertions(+), 4 deletions(-)
+---
+base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+change-id: 20260210-topic-am62a-ioddr-dt-v6-19-0da7712081d7
+
+Best regards,
+-- 
+Markus Schneider-Pargmann (TI) <msp@baylibre.com>
+
 
