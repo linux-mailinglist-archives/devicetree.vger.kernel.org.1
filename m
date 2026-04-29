@@ -1,189 +1,243 @@
-Return-Path: <devicetree+bounces-291536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291538-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GNsAIJsA8mmElwEAu9opvQ
-	(envelope-from <devicetree+bounces-291536-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 14:59:07 +0200
+	id CKvmLsAB8mmElwEAu9opvQ
+	(envelope-from <devicetree+bounces-291538-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:04:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1084B494615
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 14:59:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 520F94946BF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 15:03:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0F1BD30BA52C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 12:53:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DC1BB300FC4A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 12:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D053FD129;
-	Wed, 29 Apr 2026 12:52:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18C6D3FADFC;
+	Wed, 29 Apr 2026 12:58:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ppK8rpbW"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Vvytqtf7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 814D23FFABE;
-	Wed, 29 Apr 2026 12:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C49D27E1D7;
+	Wed, 29 Apr 2026 12:58:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777467158; cv=none; b=PNDkBqQFJMVVgjden1BN6Rh8VTXU8QmezjqH4JNpjR3cnXMPDCsTtC80m0RjyOiGGmrJaOdXob4srikoaOFK8qdXka6zozTO7qFbjxXy6CZI5g8VseCAeog2kpuQvUpGPbsQ4tOWA21qdvvwe+NB4l0D2QZG3rfOjG/jhWvlfEE=
+	t=1777467494; cv=none; b=KRnGQ9LdRLNu9hIHbQYwqIw7oLgI3hwSm9wtfSxlSpjAFNW+xjm/Aw1925ooy5bie0RDSG+htoIMcs4Tgzv/8tkDd+StsDeVvt/W2/uxeupQTMUdqQIVl0KSqDgbxVxUPDzv0Ld9C1b6wuc4D5ba2T97Q5afFr0X3ZCLffZdBEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777467158; c=relaxed/simple;
-	bh=cXAT2Hh0qTQjSTUqDzzoGYsm6EcvGSrPeTmAHc9D6c8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HW25j5ZcxFi4oEm6gCKfamTL+04DrazizOY6p1TvhzTpMgsLuhbadPeu8RF2HDNij56EvnNlgnT6eiPwY66a9Xek/niBCJNFgdn1+/Qod7t+trfcQswu3h16Zwg1qJBohAhpfFUyKzgDKJlbZ89uqi1F+KOziHa7NvZXAx6wMxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ppK8rpbW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63T8q74s1721242;
-	Wed, 29 Apr 2026 12:51:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=+jG25hwzYFE
-	dW4tHJTb6Enm9wZPCo8BV4CKkZSIZ0rg=; b=ppK8rpbWA6SNAwjvW+C/w5RQHw9
-	7Bzew6dOl/IndnaqaxGl+ey6PWcyW757kohMt48pL3v3D02Fyv4pFdCT9TlN+Djm
-	fotbZOClEkiWaS2dO82l06BmL5X4xjwSR9YRCroN4YGM6nV9AlUWAwHwnR6j08sA
-	oLhwAoEFxDdo0QtMwJVj7rXsQlh789PUKYn+uenDWg3OB8VbozsSt+ZTroMzHvyT
-	hIkWfwMn0BLAHytoCzgZpR/vXsRlPI6hmifYdkd3PzIYADyFNG1vtgcqDG7H6XGz
-	vw06KKcVbw8Bxc5W6MENX2SAXCjNpARhSQlmTFfv1QkCUCTn0t9b0egkhZA==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dua7322yd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 Apr 2026 12:51:42 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 63TCpb4U010776;
-	Wed, 29 Apr 2026 12:51:39 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4ds65fvr1w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 Apr 2026 12:51:38 +0000 (GMT)
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 63TCpbD5010748;
-	Wed, 29 Apr 2026 12:51:38 GMT
-Received: from hu-devc-blr-u24-a.qualcomm.com (hu-anuppate-blr.qualcomm.com [10.131.36.165])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 63TCpcYR010804
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 Apr 2026 12:51:38 +0000 (GMT)
-Received: by hu-devc-blr-u24-a.qualcomm.com (Postfix, from userid 486687)
-	id D9F0B22313; Wed, 29 Apr 2026 18:21:36 +0530 (+0530)
-From: Anup Patel <anup.patel@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Ian Rogers <irogers@google.com>
-Cc: Alexandre Ghiti <alex@ghiti.fr>, Peter Zijlstra <peterz@infradead.org>,
-        Ingo Molnar <mingo@redhat.com>, Namhyung Kim <namhyung@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, Jiri Olsa <jolsa@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Mayuresh Chitale <mchitale@gmail.com>,
-        Anup Patel <anup@brainfault.org>, Atish Patra <atish.patra@linux.dev>,
-        Andrew Jones <andrew.jones@oss.qualcomm.com>,
-        Sunil V L <sunilvl@oss.qualcomm.com>, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Anup Patel <anup.patel@oss.qualcomm.com>
-Subject: [PATCH v4 12/12] MAINTAINERS: Add entry for RISC-V trace framework
-Date: Wed, 29 Apr 2026 18:21:35 +0530
-Message-ID: <20260429125135.1983498-13-anup.patel@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260429125135.1983498-1-anup.patel@oss.qualcomm.com>
-References: <20260429125135.1983498-1-anup.patel@oss.qualcomm.com>
+	s=arc-20240116; t=1777467494; c=relaxed/simple;
+	bh=MIaOqc3Sw3N/I+3s6dRjJ1THgyRNml5MePNI4A9oQGM=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=P+hlAPMhSKMUhN9eNdvw4eIlUdRv9lSBR9KGcIXP0smelRaPD0ZaL9Znvsl+S7tOFgKzETg3UzUw2LyHE+Gnpiqz5Bghb3kGs/pxMH/LFaN0VMNhc8bMlgvXrGDbacokO59AkXK94tVuh7L1G2tVJ3wNY9GODNbJBGtIn23dreE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Vvytqtf7; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1777467492; x=1809003492;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=MIaOqc3Sw3N/I+3s6dRjJ1THgyRNml5MePNI4A9oQGM=;
+  b=Vvytqtf7nidR4ig8N/71CYC/ZSmUPPjZ+LAvPySb8XnVG3RYte/yw1JO
+   nPEvwllNIo4NmezY1H9MkNylA+TGf9SzRC+SQQEkvjQkEKHmDB65VpiJj
+   gd8wSwD5E1GjXUF83Y0b1c2e1yKhi92SsR5z/hqp3rrZR1//Oacz5/qs8
+   Kal2VdOy3sT6kGXymu0nTn3vDDWgHeX+SUnQJlp9p4mBJZJy/JdxMu9hr
+   8rXjItMFJ61h4LZK/w29no31O0jRff1q7WPYLjurNO9UN652aMYP7K35n
+   Kt1wW7w+LM396F9UiQZQeYrNvoOX52ANQWciaff/sGtst37T1jQW9Fv3A
+   w==;
+X-CSE-ConnectionGUID: ikVasmBiRaGK3yt3K6FbPQ==
+X-CSE-MsgGUID: HmHTmpTESe+5vKkiBAHn/Q==
+X-IronPort-AV: E=Sophos;i="6.23,206,1770620400"; 
+   d="scan'208";a="56007566"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2026 05:58:11 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex4.mchp-main.com (10.10.87.33) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.37; Wed, 29 Apr 2026 05:58:12 -0700
+Received: from marius-VM.mshome.net (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Wed, 29 Apr 2026 05:58:09 -0700
+From: Marius Cristea <marius.cristea@microchip.com>
+Subject: [PATCH v10 0/2] Add support for Microchip EMC1812
+Date: Wed, 29 Apr 2026 15:58:06 +0300
+Message-ID: <20260429-hw_mon-emc1812-v10-0-a8ca1d779502@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Authority-Analysis: v=2.4 cv=XtvK/1F9 c=1 sm=1 tr=0 ts=69f1fede cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=A5OVakUREuEA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=DJpcGTmdVt4CTyJn9g5Z:22 a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8 a=W-_n0kkjAAAA:8
- a=JfrnYn6hAAAA:8 a=UgJECxHJAAAA:8 a=cfWhVP6ADMLbqTyXlKgA:9
- a=qeNa2pbTr82C0GpJEZFS:22 a=1CNFftbPRP8L7MoqJWF3:22 a=-El7cUbtino8hM1DCn8D:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI5MDEzMCBTYWx0ZWRfX4lDEAoF95WqS
- p/i16/o3m1BRsEytKqCIQdhWUsLESZiH5n/eTfKoiUzDKF1z/584uVG/qB4rNNJwBvX47rZ8kH/
- cHoQyVjF1oq77rAEvAIi2nHNtcLD7fjQYQqUGGXXwdmpH8syGG73vmFC+nx92xQzqPl1GP2p2+k
- FoDTNyMid/zKMZ78Z+iv756pft3Exz3O3rpzGBMIcGqsSzhEstiVUKiia27XMIl348vtsX7P+Ex
- KcT3nOhaj7wnozxE3DFJwnT8r1Req+IaIPDRwJm7OAqP+dLFU7LlOgH755GzCAtXHlfi2r7NloO
- XvOYri9MLtgLbl4jIZyBnXu32ykdgJb4uPKRJZs3t1pxfSTRJm+dC61SgogQ6MfETCh6vv5uPRY
- R2rv6IPPtt+FUJb9njmuBSf5T7TkArQtzyZslbQLTkmUuonslE0SnviA05VgH1AMdehS0rTXj1S
- PUhilOgoAGJRp3jSeTQ==
-X-Proofpoint-GUID: H2kW0fIPXQuBJTbeDzHbl-Brc6ph9xWh
-X-Proofpoint-ORIG-GUID: H2kW0fIPXQuBJTbeDzHbl-Brc6ph9xWh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-28_05,2026-04-28_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 lowpriorityscore=0 clxscore=1015 spamscore=0 bulkscore=0
- adultscore=0 impostorscore=0 phishscore=0 priorityscore=1501 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604290130
-X-Rspamd-Queue-Id: 1084B494615
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF4A8mkC/23RzWrDMAwH8FcpOS9Dkr+UnvYeYww7kRcf0pRkZ
+ Bul7z6nbKTUOUqgn4T+l2qWKclcHQ+XapIlzWk85QLh6VC1vT99SJ263KgIyCAA1f3X+zCeahl
+ aZKQ6YmCwml2HUOWh8yQxfd/E17dc92n+HKef24IF1+4fRc0jtWANdRAdO/YR0PqXIbXT2Pbp/
+ NyOQ7VyC20EEhYEZcIEAgeRg3O8R6iNIOSCUJnwSMp33gU2zR6h/wkLSK4gdCZsiFbZYDRrt0e
+ YjSAwBWEyQYpYGS9ROO4R9o7AIpnFZkKUkyYo7rjZ/YW7I0gVhFvfiULW2aiFYI/gjVAIBcFrq
+ C0a48gJdLRHNBuhobyiyQR613BU2EaSR+J6vf4CFD5dp8kCAAA=
+X-Change-ID: 20251002-hw_mon-emc1812-f1b806487d10
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+CC: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>, Marius Cristea
+	<marius.cristea@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5015;
+ i=marius.cristea@microchip.com; h=from:subject:message-id;
+ bh=MIaOqc3Sw3N/I+3s6dRjJ1THgyRNml5MePNI4A9oQGM=;
+ b=owGbwMvMwCW2tbSTZa7u0x2Mp9WSGDI/MSS0/p4XqaTsfkDBp/+i1QwVFVW/8nKHR1u6yp4c4
+ xI/EK/ZUcrCIMbFICumyLLirZ9a1doPl5XEMnVg5rAygQxh4OIUgInMvcXI8FL0ubbp9Kt2NzQ/
+ rv3qxLD+mvwTe9MNs/UdzU6ZF31UVGP4nxLz6fWbvS8vHr/kPEW5nDXM9Qr/kYMbSt/YHpo8q3P
+ 3HQ4A
+X-Developer-Key: i=marius.cristea@microchip.com; a=openpgp;
+ fpr=E32F8D4396E72E463E8CCD91446DE0ABD9140C3E
+X-Rspamd-Queue-Id: 520F94946BF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[ghiti.fr,infradead.org,redhat.com,kernel.org,arm.com,intel.com,gmail.com,brainfault.org,linux.dev,oss.qualcomm.com,lists.infradead.org,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	TAGGED_FROM(0.00)[bounces-291536-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-291538-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[anup.patel@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marius.cristea@microchip.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,microchip.com:dkim,microchip.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-Add Mayuresh and myself as maintainers for RISC-V trace framework
-and drivers.
+This is the hwmon driver for EMC1812/13/14/15/33 multichannel Low-Voltage
+Remote Diode Sensor Family. The chips in the family have one internal
+and different numbers of external channels, ranging from 1 (EMC1812) to
+4 channels (EMC1815).
+Reading diodes in anti-parallel connection is supported by EMC1814, EMC1815
+and EMC1833.
 
-Signed-off-by: Anup Patel <anup.patel@oss.qualcomm.com>
+Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
 ---
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Changes in v10:
+- made comments more clear into the devicetree binding
+- allow channel 0 (internal channel) into devicetree binding
+- allow the default name for Channel 0 to be overridden by the Device Tree property
+- translate temperature limits to support the hardware's extended temperature range
+- update channel count validation to properly account for the internal channel
+- return -EOPNOTSUPP if channel is greater than or equal to phys_channels
+- Link to v9: https://lore.kernel.org/r/20260403-hw_mon-emc1812-v9-0-1a798f31cf2e@microchip.com
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bee6eef2bcd4..352169340ec5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -23059,6 +23059,17 @@ F:	include/dt-bindings/power/thead,th1520-power.h
- F:	include/dt-bindings/reset/thead,th1520-reset.h
- F:	include/linux/firmware/thead/thead,th1520-aon.h
- 
-+RISC-V TRACE FRAMEWORK AND DRIVERS
-+M:	Mayuresh Chitale <mchitale@gmail.com>
-+M:	Anup Patel <anup@brainfault.org>
-+L:	linux-riscv@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/riscv/riscv,trace-component.yaml
-+F:	drivers/hwtracing/rvtrace/*
-+F:	include/linux/rvtrace*
-+F:	tools/perf/arch/riscv/util/auxtrace.c
-+F:	tools/perf/util/rvtrace*
-+
- RNBD BLOCK DRIVERS
- M:	Md. Haris Iqbal <haris.iqbal@ionos.com>
- M:	Jack Wang <jinpu.wang@ionos.com>
+Changes in v9:
+- improve the wording in the Documentation/hwmon/emc1812.rst file
+- add const to variables in the driver
+- initialize the EXT2_BETA_CONFIG only for the pats that support it
+- update the writeble regmap table to exclude read-only registers
+- Link to v8: https://lore.kernel.org/r/20260310-hw_mon-emc1812-v8-0-bc155727e0d2@microchip.com
+
+Changes in v8:
+- remove "address scan" from emc1812.rst documentation
+- change the second dimension of emc1812_limit_regs_low[][] to 2
+- clamp input value before doing math on it to avoid overflow
+- use rounding instead of truncation for 8 bits limit registers
+- fix misleading comment when HW ID is not recognized
+- Link to v7: https://lore.kernel.org/r/20260223-hw_mon-emc1812-v7-0-51e2676f4e20@microchip.com
+
+Changes in v7:
+- driver
+  - fix an overflow emc1812_set_hyst
+  - remove unused parameter in emc1812_set_temp
+- devicetree binding:
+  - remove unneeded restrictions not to bloating the binding
+- Link to v6: https://lore.kernel.org/r/20260212-hw_mon-emc1812-v6-0-e37e9b38d898@microchip.com
+
+Changes in v6:
+- driver
+  - fix an overflow when writing more then 191875 to limits stored on 8
+    bits register
+  - remove "i2c_set_clientdata" from probe
+  - fix discrepancy where writing 16ms and reading it back returns 15ms
+    at update interval
+  - skip setting the ideality factor for channels that are not available
+    on the device
+- devicetree binding:
+  - change the way interrupts are described/used
+  - add "microchip,enable-anti-parallel"
+  - rewrite "allOf" section to be more clear
+- Link to v5: https://lore.kernel.org/r/20260205-hw_mon-emc1812-v5-0-232835aefe8f@microchip.com
+
+Changes in v5:
+- fix calculation in emc1812_get_limit_temp 
+- use i2c_get_match_data cover the case when the driver is instantiated
+  via I2C ID table.
+- replace dev_info with dev_warn
+- remove some unnecessary truncation on 8 bits
+- remove clamping when reading the temerature with hyst
+- not change the conversion rate at probe time
+- use a generic define to remove duplicate channel_info entries
+- Link to v4: https://lore.kernel.org/r/20260127-hw_mon-emc1812-v4-0-6bf636b54847@microchip.com
+
+Changes in v4:
+- fix file permissions for read only properties
+- fix calculation when the limits are written
+- remove the temp_min_hyst because the part doesn't support it
+- Link to v3: https://lore.kernel.org/r/20251218-hw_mon-emc1812-v3-0-a123ada7b859@microchip.com
+
+Changes in v3:
+- remove mesages that are not helpfull
+- fix an issue related to NULL labels
+- fix sign/unsign calculation
+- replace E2BIG with EINVAL
+- use BIT() to create mask
+- Link to v2: https://lore.kernel.org/r/20251121-hw_mon-emc1812-v2-0-5b2070f8b778@microchip.com
+
+Changes in v2:
+- update the interrupt section from yaml file
+- update index.rst
+- remove fault condition from internal sensor
+- remove unused members from structures
+- update the driver to work on systems without device tree or
+  firmware nodes
+- add missing include files
+- make NULL labels to be not visible
+- corect sign/unsign calculations
+- corect possible underflow for limits
+- Link to v1: https://lore.kernel.org/r/20251029-hw_mon-emc1812-v1-0-be4fd8af016a@microchip.com
+
+---
+Marius Cristea (2):
+      dt-bindings: hwmon: temperature: add support for EMC1812
+      hwmon: temperature: add support for EMC1812
+
+ .../bindings/hwmon/microchip,emc1812.yaml          | 193 ++++
+ Documentation/hwmon/emc1812.rst                    |  67 ++
+ Documentation/hwmon/index.rst                      |   1 +
+ MAINTAINERS                                        |   8 +
+ drivers/hwmon/Kconfig                              |  11 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/emc1812.c                            | 980 +++++++++++++++++++++
+ 7 files changed, 1261 insertions(+)
+---
+base-commit: d2b2fea3503e5e12b2e28784152937e48bcca6ff
+change-id: 20251002-hw_mon-emc1812-f1b806487d10
+
+Best regards,
 -- 
-2.43.0
+Marius Cristea <marius.cristea@microchip.com>
 
 
