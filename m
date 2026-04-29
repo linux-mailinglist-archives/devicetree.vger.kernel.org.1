@@ -1,332 +1,246 @@
-Return-Path: <devicetree+bounces-291519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291521-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eMilD27y8WmElwEAu9opvQ
-	(envelope-from <devicetree+bounces-291519-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:58:38 +0200
+	id 2FexKDj48WmElwEAu9opvQ
+	(envelope-from <devicetree+bounces-291521-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 14:23:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1F7493CBC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 13:58:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 283D549403B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 14:23:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C8C68300F78A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 11:58:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BEE0E3002B5B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 12:23:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22AEB3EFD00;
-	Wed, 29 Apr 2026 11:58:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EgAirL3R"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610EC3988E5;
+	Wed, 29 Apr 2026 12:23:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9983F54BB;
-	Wed, 29 Apr 2026 11:58:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B072C3248
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 12:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777463910; cv=none; b=X1f8qxYPZxCoruRdTh1qYJWzFNRpua/qdIpKt6NA0rhJYWJ53Lnj+UO7h4nIywHDwEjOqvVdy1YnSccPfup0bO7WKXHK0kfeF8uVr9bJIqZ2oDlKz1NrLYPH68Owu+RJoP8A+XLAUGG7nVodN85vDWbnLQF21wUJAXQyAjXtXV8=
+	t=1777465394; cv=none; b=i7bqc+NTQEFNhC2MJVCXG67uXdjdW17ok+iPN8WfSgo/SYLOeRE/OETKGj8r6QDVEb27mlr/+TTBUZdlRO/LLLqflyoRzSVrZu1ctcD0kFWRLgv8OxoGqMKmu0aLuQdRoGEBVOu5PaP1HnN9St7tjHZ84FnJM1Y1Wx7/A6Stdyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777463910; c=relaxed/simple;
-	bh=ImkyKLFtN/1vxOuQh2Z8V5psink+u58NmG29EGtcceg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CMTskjnllo8kV1HyfnpZEUuVdS/aww3W1uszOWjKs3urb4Gn3sjTNcXHJ4RYeDVOffvPRUTVaAwottNDQgQzS6yet3eUpP+uZm057RKqfF99fw1jF8eAg5VUXAhn3nNu90uiFtf+Goq93zYpDKgF8AcIuigD4+e2X5y46LjIbLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EgAirL3R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1803CC19425;
-	Wed, 29 Apr 2026 11:58:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777463909;
-	bh=ImkyKLFtN/1vxOuQh2Z8V5psink+u58NmG29EGtcceg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EgAirL3RD2yoN019hFwf6D7qRWhPiQ+LoCusRE9mo+cml2FRZ5kI7lbMVA6yKpCop
-	 ULK3WhdL6gepOJG24P9vUnY48IwACx6sDycPwWMmZ5L7Fr+gVDKBZC4Wuytq6TBQYm
-	 14joobILN3m50EJ0F4KMjzi4az/YWeLgq0AHeZ4rxbzC7pFD0vLGm6rLfXom8zxThw
-	 8wGGpEmOWpxh8DQQ4D9ZnCxXMFh7pxblN/6dSOD378pkP+nulloWzSFfbQwHPsE4QO
-	 mN1SGmRSD5QBGTbjUo1Y3s1bFdTV3p9XdniHcTgkp+a3amJBWBY/UyM8uoUTFhhB9B
-	 EmPRJynKoV7Xg==
-Date: Wed, 29 Apr 2026 12:58:24 +0100
-From: Lee Jones <lee@kernel.org>
-To: Thomas Richard <thomas.richard@bootlin.com>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 06/11] mfd: omap-usb-host: Sanitize error path in the
- probe()
-Message-ID: <20260429115824.GB1806155@google.com>
-References: <20260330-omap4-fix-usb-support-v2-0-1c1e11b190dc@bootlin.com>
- <20260330-omap4-fix-usb-support-v2-6-1c1e11b190dc@bootlin.com>
+	s=arc-20240116; t=1777465394; c=relaxed/simple;
+	bh=KOGV9jLH5RXBywSOyxQCqGJvaYR1+Y2TL0szPQtLy74=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lLysm32p9mQrCqF2NW3LShic2d0atWyrcWQ3dsDupNP9e9hMsbC5eEvuw6XIoTW+MHOGBfyLR8Ymgdnf5+HQze9/DngvO6O4KZCDJR4Q4kY1QYeamYhmYeP9s+aSz0cBP9ch6Y6j/kliYozWr/xVx4VZO82lmraa8bRFkOmOy7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5a2c9c5ff87so13045184e87.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 05:23:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777465391; x=1778070191;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DYIYCIsBtJDK4jXwWO2JUdTXoGJvuUmgU1KwSHdoXoc=;
+        b=RA6DU4KpuxAra1Q5PGoUiSUMdOt5tuNCDzum09mVTAQBUU1PvNcZ8yrAlVoskpWPwD
+         /l0Wp6nHcXZK5L/LeawFD+ZbVtrpUbZmVSOP7EDOn4fydGDn35jojgv2bTzns74ia2yF
+         4z2+ewBQDhNJBe2dWdKzD83WpcMk4IzFpZSHRx3rGYUyqpReWUxBpGjp6h7DiCkfLDbZ
+         ScuI/xu4qoRhpG7ye6TLmBBofONKeS4FSeXKMvBFaGrjZIfoFwsu4q/pF/U1Pl/VrpaH
+         nc5KyQvJCOAjNb7rzP/SNrWg9GeCc6744ewRZl5ONyOXYeI9IIm2DrKDgof1OwaFgsdj
+         jutA==
+X-Forwarded-Encrypted: i=1; AFNElJ/+Mygne+UXBjXog+7p908WPStl380EselwkS8JVCruNVQU30PK4FPmUemsDHH7NHeURt2/nqaUjwm/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxG9waEE2Q/LhHJeOW4wXnj+TRfuclXuebmdR7FRZIAlKBZ8+G8
+	cm5qMbecOjRgjYRA/18Jt/dARYf09X/r1YExe/cP9elCG1WtooPGAvB0dr/22y5ivfI=
+X-Gm-Gg: AeBDies/QKN5v4Tbm448QYdtvWdDit4NjQ2zOonD4mf8TfsbKuLOtFyb3ODrJoNPHPJ
+	AjfrG6lVMxIX+sI0De7+bovgN1m1s4imfAeRjb5qzHYGqBLRn4vu5CPH90tmkjlfYLmkVVN0sn4
+	ze0V6ExDRciPvt6IBYd36i8c7EJmolLqAn/IqS+grMfL14fr+8yPdyENkDluXbpdbjMIF0ukUC8
+	P2qrnQP1pDVj0rHakSnhP8mH5xiNAJ2G5VIwmXW2uzpso+ANrixUjF+BDXhYzXIAHlGk+QxuORi
+	ntLuo61v6OpemDXB27RuDFoLfsHw80b+U036N1dDcWPyJ512graAu+1kgj6lZsPXAhUZfdiwm5q
+	F5N1PmCsdVRkPCCyW8ZFPCGNV7xeNmZchLKdernogik7MabUk+AobgjiR3KJ846v+54QEXoXz67
+	GwtiwsbMcoDoJR+4hSPsjbC3UnX6e90149/XLPB0iZPZJuAVWCPLxrHAizcSdeGYJw087xwNUwS
+	04=
+X-Received: by 2002:a05:6512:1110:b0:5a4:12a4:856f with SMTP id 2adb3069b0e04-5a74662c56dmr3278312e87.30.1777465389449;
+        Wed, 29 Apr 2026 05:23:09 -0700 (PDT)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a74a756f99sm500781e87.43.2026.04.29.05.23.09
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Apr 2026 05:23:09 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-38e7d984096so139823951fa.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 05:23:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+Tm1lfCywCDB/Zcx4GuNUmTGDVRH/11PqRy7VdBpGiRiZDb4etKD7KgvWAyouBgQGJoP4xqfDE1Snm@vger.kernel.org
+X-Received: by 2002:a05:6402:2b8d:b0:676:9c6d:7448 with SMTP id
+ 4fb4d7f45d1cf-679bb0969d8mr3789280a12.22.1777465006980; Wed, 29 Apr 2026
+ 05:16:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260330-omap4-fix-usb-support-v2-6-1c1e11b190dc@bootlin.com>
-X-Rspamd-Queue-Id: DA1F7493CBC
+References: <20260419193718.133174-1-marek.vasut+renesas@mailbox.org> <20260419193718.133174-7-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260419193718.133174-7-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 29 Apr 2026 14:16:33 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV5NRFjGmLLSAFkst=y_v=haZ9_-oiZ7_3M2J1s5jiJSQ@mail.gmail.com>
+X-Gm-Features: AVHnY4J_eIQauePt3-ENfJ0vvJTMmNJqoEy-L_5paGzJVO5LgQ5rAyTsYv0XxdM
+Message-ID: <CAMuHMdV5NRFjGmLLSAFkst=y_v=haZ9_-oiZ7_3M2J1s5jiJSQ@mail.gmail.com>
+Subject: Re: [PATCH 6/7] arm64: dts: renesas: r8a779md: Add Renesas R-Car
+ R8A779MD M3Le DTs
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+	Nguyen Tran <nguyen.tran.pz@bp.renesas.com>, Conor Dooley <conor+dt@kernel.org>, 
+	David Airlie <airlied@gmail.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Simona Vetter <simona@ffwll.ch>, Stephen Boyd <sboyd@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: 283D549403B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291519-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[iki.fi,kemnade.info,baylibre.com,kernel.org,atomide.com,gmail.com,bootlin.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-291521-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,bp.renesas.com,kernel.org,gmail.com,ideasonboard.com,renesas.com,baylibre.com,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org,sang-engineering.com];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:email]
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	NEURAL_SPAM(0.00)[0.141];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email,mail.gmail.com:mid,0.0.0.1:email]
 
-On Mon, 30 Mar 2026, Thomas Richard wrote:
+Hi Marek,
 
-> Use dev_err_probe() to simplify the code and standardize the error output.
-> Remove -ENOMEM messages, there's already enough output.
-> 
-> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
-> ---
->  drivers/mfd/omap-usb-host.c | 81 +++++++++++++++++++--------------------------
->  1 file changed, 34 insertions(+), 47 deletions(-)
-> 
-> diff --git a/drivers/mfd/omap-usb-host.c b/drivers/mfd/omap-usb-host.c
-> index 4e066a17cef0..ac974285be34 100644
-> --- a/drivers/mfd/omap-usb-host.c
-> +++ b/drivers/mfd/omap-usb-host.c
-> @@ -546,22 +546,17 @@ static int usbhs_omap_probe(struct platform_device *pdev)
->  		dev->platform_data = pdata;
->  	}
->  
-> -	if (!pdata) {
-> -		dev_err(dev, "Missing platform data\n");
-> -		return -ENODEV;
-> -	}
-> +	if (!pdata)
-> +		return dev_err_probe(dev, -ENODEV, "Missing platform data\n");
->  
-> -	if (pdata->nports > OMAP3_HS_USB_PORTS) {
-> -		dev_info(dev, "Too many num_ports <%d> in platform_data. Max %d\n",
-> -				pdata->nports, OMAP3_HS_USB_PORTS);
-> -		return -ENODEV;
-> -	}
-> +	if (pdata->nports > OMAP3_HS_USB_PORTS)
-> +		return dev_err_probe(dev, -ENODEV,
-> +				     "Too many num_ports <%d> in platform_data. Max %d\n",
-> +				     pdata->nports, OMAP3_HS_USB_PORTS);
->  
->  	omap = devm_kzalloc(dev, sizeof(*omap), GFP_KERNEL);
-> -	if (!omap) {
-> -		dev_err(dev, "Memory allocation failed\n");
-> +	if (!omap)
->  		return -ENOMEM;
-> -	}
->  
->  	omap->uhh_base = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(omap->uhh_base))
-> @@ -614,7 +609,6 @@ static int usbhs_omap_probe(struct platform_device *pdev)
->  	omap->hsic60m_clk = devm_kzalloc(dev, i, GFP_KERNEL);
->  
->  	if (!omap->utmi_clk || !omap->hsic480m_clk || !omap->hsic60m_clk) {
-> -		dev_err(dev, "Memory allocation failed\n");
->  		ret = -ENOMEM;
->  		goto err_mem;
->  	}
-> @@ -648,9 +642,8 @@ static int usbhs_omap_probe(struct platform_device *pdev)
->  			omap->ehci_logic_fck = devm_clk_get(dev,
->  							    "usbhost_120m_fck");
->  			if (IS_ERR(omap->ehci_logic_fck)) {
-> -				ret = PTR_ERR(omap->ehci_logic_fck);
-> -				dev_err(dev, "usbhost_120m_fck failed:%d\n",
-> -					ret);
-> +				ret = dev_err_probe(dev, PTR_ERR(omap->ehci_logic_fck),
-> +						    "usbhost_120m_fck failed\n");
+CC wsa
 
-Can we take this opportunity to make this a bit more user friendly?
+On Sun, 19 Apr 2026 at 21:38, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> From: Nguyen Tran <nguyen.tran.pz@bp.renesas.com>
+>
+> Add support for the Renesas R-Car M3Le (R8A779MD) SoC, a variant of the
+> R-Car M3-N (R8A77965) SoC. The Renesas M3Le SoC is a register-compatible
+> variant of the R8A77965 (M3-N) with reduced set of peripherals.
+>
+> Signed-off-by: Nguyen Tran <nguyen.tran.pz@bp.renesas.com>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-"Failed to get usbhost_120m_fck clock
+Thanks for your patch!
 
-Same throughout please.
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r8a779md.dtsi
+> @@ -0,0 +1,48 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Device Tree Source for the R-Car M3Le (R8A779MD) SoC
+> + *
+> + * Copyright (C) 2025-2026 Renesas Electronics Corp.
+> + */
+> +
+> +#include "r8a77965.dtsi"
+> +
+> +/ {
+> +       compatible = "renesas,r8a779md", "renesas,r8a77965";
+> +};
+> +
+> +/delete-node/ &csi20;
+> +/delete-node/ &drif00;
+> +/delete-node/ &drif01;
+> +/delete-node/ &drif10;
+> +/delete-node/ &drif11;
+> +/delete-node/ &drif20;
+> +/delete-node/ &drif21;
+> +/delete-node/ &drif30;
+> +/delete-node/ &drif31;
+> +/delete-node/ &hdmi0;
+> +/delete-node/ &mlp;
+> +/delete-node/ &pciec1;
+> +/delete-node/ &sata;
+> +/delete-node/ &sdhi3;
 
->  				goto err_mem;
->  			}
->  		}
-> @@ -660,36 +653,36 @@ static int usbhs_omap_probe(struct platform_device *pdev)
->  	/* for OMAP4+ i.e. USBHS REV2+ */
->  	omap->utmi_p1_gfclk = devm_clk_get(dev, "utmi_p1_gfclk");
->  	if (IS_ERR(omap->utmi_p1_gfclk)) {
-> -		ret = PTR_ERR(omap->utmi_p1_gfclk);
-> -		dev_err(dev, "utmi_p1_gfclk failed error:%d\n", ret);
-> +		ret = dev_err_probe(dev, PTR_ERR(omap->utmi_p1_gfclk),
-> +				    "utmi_p1_gfclk failed error\n");
->  		goto err_mem;
->  	}
->  
->  	omap->utmi_p2_gfclk = devm_clk_get(dev, "utmi_p2_gfclk");
->  	if (IS_ERR(omap->utmi_p2_gfclk)) {
-> -		ret = PTR_ERR(omap->utmi_p2_gfclk);
-> -		dev_err(dev, "utmi_p2_gfclk failed error:%d\n", ret);
-> +		ret = dev_err_probe(dev, PTR_ERR(omap->utmi_p2_gfclk),
-> +				    "utmi_p2_gfclk failed error\n");
->  		goto err_mem;
->  	}
->  
->  	omap->xclk60mhsp1_ck = devm_clk_get(dev, "refclk_60m_ext_p1");
->  	if (IS_ERR(omap->xclk60mhsp1_ck)) {
-> -		ret = PTR_ERR(omap->xclk60mhsp1_ck);
-> -		dev_err(dev, "refclk_60m_ext_p1 failed error:%d\n", ret);
-> +		ret = dev_err_probe(dev, PTR_ERR(omap->xclk60mhsp1_ck),
-> +				    "refclk_60m_ext_p1 failed error\n");
->  		goto err_mem;
->  	}
->  
->  	omap->xclk60mhsp2_ck = devm_clk_get(dev, "refclk_60m_ext_p2");
->  	if (IS_ERR(omap->xclk60mhsp2_ck)) {
-> -		ret = PTR_ERR(omap->xclk60mhsp2_ck);
-> -		dev_err(dev, "refclk_60m_ext_p2 failed error:%d\n", ret);
-> +		ret = dev_err_probe(dev, PTR_ERR(omap->xclk60mhsp2_ck),
-> +				    "refclk_60m_ext_p2 failed error\n");
->  		goto err_mem;
->  	}
->  
->  	omap->init_60m_fclk = devm_clk_get(dev, "refclk_60m_int");
->  	if (IS_ERR(omap->init_60m_fclk)) {
-> -		ret = PTR_ERR(omap->init_60m_fclk);
-> -		dev_err(dev, "refclk_60m_int failed error:%d\n", ret);
-> +		ret = dev_err_probe(dev, PTR_ERR(omap->init_60m_fclk),
-> +				    "refclk_60m_int failed error\n");
->  		goto err_mem;
->  	}
->  
-> @@ -706,9 +699,9 @@ static int usbhs_omap_probe(struct platform_device *pdev)
->  		 */
->  		omap->utmi_clk[i] = devm_clk_get(dev, clkname);
->  		if (IS_ERR(omap->utmi_clk[i])) {
-> -			ret = PTR_ERR(omap->utmi_clk[i]);
-> -			dev_err(dev, "Failed to get clock : %s : %d\n",
-> -				clkname, ret);
-> +			ret = dev_err_probe(dev, PTR_ERR(omap->utmi_clk[i]),
-> +					    "Failed to get clock : %s\n",
-> +					    clkname);
->  			goto err_mem;
->  		}
->  
-> @@ -716,9 +709,9 @@ static int usbhs_omap_probe(struct platform_device *pdev)
->  				"usb_host_hs_hsic480m_p%d_clk", i + 1);
->  		omap->hsic480m_clk[i] = devm_clk_get(dev, clkname);
->  		if (IS_ERR(omap->hsic480m_clk[i])) {
-> -			ret = PTR_ERR(omap->hsic480m_clk[i]);
-> -			dev_err(dev, "Failed to get clock : %s : %d\n",
-> -				clkname, ret);
-> +			ret = dev_err_probe(dev, PTR_ERR(omap->hsic480m_clk[i]),
-> +					    "Failed to get clock : %s\n",
-> +					    clkname);
->  			goto err_mem;
->  		}
->  
-> @@ -726,9 +719,9 @@ static int usbhs_omap_probe(struct platform_device *pdev)
->  				"usb_host_hs_hsic60m_p%d_clk", i + 1);
->  		omap->hsic60m_clk[i] = devm_clk_get(dev, clkname);
->  		if (IS_ERR(omap->hsic60m_clk[i])) {
-> -			ret = PTR_ERR(omap->hsic60m_clk[i]);
-> -			dev_err(dev, "Failed to get clock : %s : %d\n",
-> -				clkname, ret);
-> +			ret = dev_err_probe(dev, PTR_ERR(omap->hsic60m_clk[i]),
-> +					    "Failed to get clock : %s\n",
-> +					    clkname);
->  			goto err_mem;
->  		}
->  	}
-> @@ -737,16 +730,14 @@ static int usbhs_omap_probe(struct platform_device *pdev)
->  		ret = clk_set_parent(omap->utmi_p1_gfclk,
->  					omap->xclk60mhsp1_ck);
->  		if (ret != 0) {
-> -			dev_err(dev, "xclk60mhsp1_ck set parent failed: %d\n",
-> -				ret);
-> +			dev_err_probe(dev, ret, "xclk60mhsp1_ck set parent failed\n");
->  			goto err_mem;
->  		}
->  	} else if (is_ehci_tll_mode(pdata->port_mode[0])) {
->  		ret = clk_set_parent(omap->utmi_p1_gfclk,
->  					omap->init_60m_fclk);
->  		if (ret != 0) {
-> -			dev_err(dev, "P0 init_60m_fclk set parent failed: %d\n",
-> -				ret);
-> +			dev_err_probe(dev, ret, "P0 init_60m_fclk set parent failed\n");
->  			goto err_mem;
->  		}
->  	}
-> @@ -755,16 +746,14 @@ static int usbhs_omap_probe(struct platform_device *pdev)
->  		ret = clk_set_parent(omap->utmi_p2_gfclk,
->  					omap->xclk60mhsp2_ck);
->  		if (ret != 0) {
-> -			dev_err(dev, "xclk60mhsp2_ck set parent failed: %d\n",
-> -				ret);
-> +			dev_err_probe(dev, ret, "xclk60mhsp2_ck set parent failed\n");
->  			goto err_mem;
->  		}
->  	} else if (is_ehci_tll_mode(pdata->port_mode[1])) {
->  		ret = clk_set_parent(omap->utmi_p2_gfclk,
->  						omap->init_60m_fclk);
->  		if (ret != 0) {
-> -			dev_err(dev, "P1 init_60m_fclk set parent failed: %d\n",
-> -				ret);
-> +			dev_err_probe(dev, ret, "P1 init_60m_fclk set parent failed\n");
->  			goto err_mem;
->  		}
->  	}
-> @@ -775,17 +764,15 @@ static int usbhs_omap_probe(struct platform_device *pdev)
->  	if (dev->of_node) {
->  		ret = of_platform_populate(dev->of_node,
->  				usbhs_child_match_table, NULL, dev);
-> -
->  		if (ret) {
-> -			dev_err(dev, "Failed to create DT children: %d\n", ret);
-> +			dev_err_probe(dev, ret, "Failed to create DT children\n");
->  			goto err_mem;
->  		}
->  
->  	} else {
->  		ret = omap_usbhs_alloc_children(pdev);
->  		if (ret) {
-> -			dev_err(dev, "omap_usbhs_alloc_children failed: %d\n",
-> -						ret);
-> +			dev_err_probe(dev, ret, "omap_usbhs_alloc_children failed\n");
+I am not sure disabling sdhi3 is correct.
+The R-Car M3Le documentation says:
 
-We certainly don't want to mention function names.
+   "M3Le does not support MMC1.
+    M3Le supports one MMC channel (MMC0) only.
+    SD3 is used only for SDHI and is not used for MMC.
+    M3Le does not support MMC HS400 class transfer rate."
 
->  			goto err_mem;
->  		}
->  	}
-> 
-> -- 
-> 2.53.0
-> 
+The main R-Car Gen3 documentation says:
+
+   "This LSI has four SD card interfaces (SDHI0 to SDHI3), two of
+    which can also be used as MMC interfaces (SDHI2 and SDHI3)."
+
+So while MMC1 is indeed sdhi3, sdhi3 can still be used in SD mode?
+Do we need a new compatible value, as R-Car M3Le does not support HS400?
+
+> +/delete-node/ &usb3_peri0;
+> +/delete-node/ &usb3_phy0;
+> +/delete-node/ &vin0csi20;
+> +/delete-node/ &vin1csi20;
+> +/delete-node/ &vin2csi20;
+> +/delete-node/ &vin3csi20;
+> +/delete-node/ &vin4csi20;
+> +/delete-node/ &vin5csi20;
+> +/delete-node/ &vin6csi20;
+> +/delete-node/ &vin7csi20;
+> +/delete-node/ &xhci0;
+
+Shouldn't the following be disabled, too?
+  - ohci1, ehci1, and usb2_phy1,
+  - cmm1 and vspd1 (cfr. DU below).
+
+> +
+> +&du {
+> +       compatible = "renesas,du-r8a779md";
+
+Assuming the DU needs a new compatible value...
+
+> +       renesas,cmms = <&cmm0>, <&cmm3>;
+> +       renesas,vsps = <&vspd0 0>, <&vspd1 0>;
+
+Shouldn't this be
+
+    renesas,vsps = <&vspd0 0>, <&vspd0 1>;
+
+? DU1 is unused, but DU3 is used.
+
+> +
+> +       ports {
+> +               /delete-node/ port@1;
+> +       };
+> +};
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Lee Jones
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
