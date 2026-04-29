@@ -1,264 +1,277 @@
-Return-Path: <devicetree+bounces-291638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291639-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sKXiNYs58mlopAEAu9opvQ
-	(envelope-from <devicetree+bounces-291638-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 19:02:03 +0200
+	id AAJXKds68mlypAEAu9opvQ
+	(envelope-from <devicetree+bounces-291639-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 19:07:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76B97497E5C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 19:01:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 319D3497F99
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 19:07:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BAB92303F471
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 17:00:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EB8E330FE541
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 17:02:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 047BB410D16;
-	Wed, 29 Apr 2026 17:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5AD413237;
+	Wed, 29 Apr 2026 17:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L9v6t60E"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="I4LyWxxU";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JanxAVwG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B91F410D2C
-	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 17:00:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C988E413229
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 17:01:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777482027; cv=none; b=bOnR7EUXzUnZGUU6McrCoyax5EpAA5yho7URc6XgvjGBRPBVVKSe6+25D2UW/2cGBSH4HuNOYxN6HaUqyP7bDAOg7pP3ElxlYfk8uv8yCZ/6j/+MfCceLWxotXUZOe4GuQneT4LYjtNXaBA/Fm2QSP3aOcAx0Z2v7YO8RA2ArTE=
+	t=1777482116; cv=none; b=kSZgph4Y/I3rhz7UAR+TDP8JVePaFcFM+Qub4eCFpZ/hX68M/MC/50ME+6EH8tU/HTWpgp0f01CG0swMzyZCp5gN1gdP9ekHGuEGU5BtsjvXO8RJo7ZpkTEXaSZpdfVgJ1OnyuYM/u6u/5u3tQ/1j4SQVShFwiZlHfv0D3biA28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777482027; c=relaxed/simple;
-	bh=5KJb4pUz9ISCWuOFq3mdW6ldExid2fnbaeYjkHbT2Ng=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qa8oGiWPE/XBFyJTVwJf++ZZPzYsXzlwNcXaM5hcmtkMhCecy5A8i9jWWUW69nWTk7XYhjotM8C+lFiOFbTNyI9SQwej5X+LiJkR64dS8tgGsZoX/fjIOC41CpdlBpdTHXqgqO4Bw2UPuPOULTlCB4v7I6M6RD/h3nEfrbgZC7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L9v6t60E; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4852a9c6309so115919545e9.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 10:00:24 -0700 (PDT)
+	s=arc-20240116; t=1777482116; c=relaxed/simple;
+	bh=SXa4NSNdU/XIj9zZigyMpKZ4wZlS2vJhYXIJ/TlKKfM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nxAbkrumCncusbWF49oS9q4S0WYJeXoH6nx4pv3xOpBsS06ppkRGau+9FrV/B8SZSNXoxH3S4DDxEwo6OAGfEb7DJkISBUUKwJjZGWaXm86dOjWamaaRf2QG1/aGxHfQvUbXDafB08pBUIamq6K2o0Hj1UYFg91bmA5z8J5kXGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=I4LyWxxU; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JanxAVwG; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63TFOCai1728671
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 17:01:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=k/k1EVZf1KXzwkXQ6Y6mGr
+	bzNF1yCRYykNpkpO+q6c8=; b=I4LyWxxUTmh0r9izokM2KOb0oFQvB0dtvhRJ7o
+	MIWDRR9VzBzl8XysB3O2KrO8R6lptrpR14KNR/kYnBS42GmUM7jIz0zxzKJQC+Oz
+	1RgTwQzw8JvYuaWLdUbnLvwLJItpst1NjnQfkypXB7+tmoKgiInklO2/UFRmSBCO
+	9XkDwGIIf8KGR8vjFiij/9rPdsNIMcl6+Uu06SScXCWnBmT0/lVDIBKX0bsaZTdW
+	G1Gzn+V+dxkfolLR61q7CiUCzTgCJGM6lAyItt7s/r1x9h7lJKysIZ6CXS029U+p
+	B0fvC9rsiDP37rr6Z5GXQeGUh1LTbMcJ01WwDtkGA1wfyjUw==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4due5kt4kh-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 17:01:47 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2b24a00d12cso129545ad.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 10:01:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777482023; x=1778086823; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vkSm8ny43p543u10ucazCdZPdCMdlkGl7rYD8obUTQI=;
-        b=L9v6t60EVwJS0l40I9Wxs7ixw3yT/RqlkQPjdsj8+jsEfZRhSBV5wCqavh5b+xkkIh
-         cu/uSbyRPbXzLL0GlxeETvfbG0Rso5UlJ3ar1XeypEvWrvZVrP1nQkvva68BVCFR91RD
-         Vt+/tMXh82o00vbnliNomQjABvJ0TUz4b+EepgwTRR6NUnCRIre2LWmiB46z6B2vQqHM
-         Rmehb5/cHcBkV3N0+pRsFT4B9JYxBmZEB1mHpn7FLqWdr5RnoWBeanUG3peYcHHFdFUK
-         3HoWWJH2wW3r3lTsLkXKY5sxq5gIhUeXjgWDJ49+p+9d+KWRQKASam0L7xAMrsqhSq9i
-         Bg3A==
+        d=oss.qualcomm.com; s=google; t=1777482106; x=1778086906; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=k/k1EVZf1KXzwkXQ6Y6mGrbzNF1yCRYykNpkpO+q6c8=;
+        b=JanxAVwGDt0nOhnDWP9fKSbnITdWaTsMh5QkJd2d93RJyZrcOLkk6BNqlCgyYjTEFs
+         mUx4lqqTY2OBSU5QaahvJUGF/2DMT9MK3G6w5c7Y5304H93S29rZ+Sk1LipqzCVGtfAy
+         u7eZSipUY0Sl2XhrrBZkx1mQ/Kx0jdoaGTidVUumhk7cQw7x4X6tCt1VO/xjvXOgiK6f
+         RRgdRBIRtpKG/8VGRqYS66lHSXMabtDLFg9i7+5d2g/meT1fdFRRJsYE3mHUlZS03AKR
+         Zd1WkcOj/kbuA44p/AyOpRZzcU0XPtw1ZIuyDB3o4EqcuBWIBTYPkHP6FqWCNAKrZ+GH
+         m8oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777482023; x=1778086823;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=vkSm8ny43p543u10ucazCdZPdCMdlkGl7rYD8obUTQI=;
-        b=PidRXPjaaIHV3+0Rse3J+PoRTVj7WzbaIksna2LhcGMvO8axyiXx9Ce9BFQK6lC0rJ
-         aLQ/ywR3yEY1VZvgRX9tCgcXWrNaWjeF3FlfVy/3Yv4HaAzzp950MeB3jwhGwdkoytB1
-         5fdwS/0AMxSves5gkiF7uFs5xjVaSFV3ia39hIODxFC105V5fRWdxqoIW+t5W+3VxjI7
-         1k5D82hsADoIXxsu6HMvywi9b3bcc6ZYgvFfZLN2Gl0vN1SiSbcuWY72V4PlWIwUo81Z
-         aTKmx50wsvkMOX/kwdXLPrC6VuDhAYjj+gr1KjzkEbi6G0cSOoLHKh+nn9vpJdOmbVni
-         gTDQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/QkTddQbrjV3ry8EcPi4aUD4vqKiA4vKSd7auGI1ysMEkSwnjJ/S1xxOiUtM4VJa7HzCCjI7Y18q9A@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdY38NoQZmk+WQtrMPLw/yhGDe5gproJ37OtbRfapI94daCn9Q
-	zFGwCBoLtdKdmKyJ9jWH10ItP3kEPhsg4u7J/86AbtgG+69l4ruYBDyr
-X-Gm-Gg: AeBDieu8jQBEpIKkFkocMbR9S8/XrLpthutxen8Pkk3VTRaA+C2AUym4SxY/UEOfLXy
-	iJvriQE98EMcpTAYq2FiV2Y7mm/WYY2em4ils13bIVjigJilbwEE8Ib0v2TR8WoHyaXTrm+CD1y
-	D8Epr4974r/GyZWnLirJl7qfmF9bhttRnp6XEQW4Zle+7mrerNgN0T9nJGLupKt6Ieu72PQrVqQ
-	bw4DAvLnBuMQxyUk8NzGif2KheISk29A20Y1fHclHk666yS6HYcRhK9woZGY3+a8rCxrfb+5Vb9
-	6mNmLstiOPn+214u//14aML7r2EOUokuQiIj0VTRhy8k/2IAgz+HQBOh9WBYRK2YslwRPoo2o1f
-	MZJek1UDW9yQv122heOgAJEtmC4XVuoN2lHi/I5FT1zdj1/g2eynNaof55FUmbmdgIpsaVPNJlJ
-	175DOQ5j/0z+l/5xEqnJ5JQjuJdjjtfvL3bBKnaGcM/ZaXFKqCbhkB1Eaw1ywVNrn2mflVUCs5l
-	WmvCccUi50X98S4DUVtaUQg7Dvw6KQCjal0WMuoooaTjSXS
-X-Received: by 2002:a05:600c:609a:b0:48a:54a6:b29f with SMTP id 5b1f17b1804b1-48a77b1da9dmr131662065e9.17.1777482022872;
-        Wed, 29 Apr 2026 10:00:22 -0700 (PDT)
-Received: from iku.Home ([2a06:5906:61b:2d00:212b:3a69:4f2c:3897])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a820c856dsm4809755e9.6.2026.04.29.10.00.22
+        d=1e100.net; s=20251104; t=1777482106; x=1778086906;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k/k1EVZf1KXzwkXQ6Y6mGrbzNF1yCRYykNpkpO+q6c8=;
+        b=plCFnHsiPVBUSiRjWagGTa1yUkjAigKjG2D9vX6eJtd1KzyAZchF8AJq8dZVrfRwCC
+         zxFwXQ3Yjpx0eqQvQO5MrUHHtzGH8STtJAWAhlwBRCWMkkyLPoHFBEgN+znsD34jROLu
+         uVKrgk+1KPnsNs9XE8CrC3VTjRhH9uCotArrDu1KxdYkpV0xGIkORpDvOIwwD5HX1ew/
+         aGhjt+op8YbG3hvkut3Ei9sNTTkwDKF8tyopNmfV2Dx9PxcEPzT7uaXovHcPAV0yThkn
+         ToICeGgD68XaGq9MsMBdtW0gVqKs1RpfvIBZ0vE+r9FFGAzZ6LbT7znNm+l/xJ5aocaF
+         hm2A==
+X-Forwarded-Encrypted: i=1; AFNElJ9PoYE7deIfnAmzsGHGnHMkk/raEYoZ1D1EQPx7tZjZRwAS5Tm8LJzGiubb6cPYJWdYfRmYF+gZovnR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw161IlfogyHMfM+YeEcxyjK9R9KlYL9pMeSZ/Qp6q0BSF01vLT
+	RhMh0RVHA5VGlbZOIuxX3NCdP6bmZg1Qa5D6RhC0gmjmu1CvUs6gox8qoA5LzozUWh77xx/gNfT
+	3E0pGydHgcWpIzbjrxvKUgQCz0vQ/WelH2GLQ4HhzUMIobas865hxs4Spz5Zu7wbo
+X-Gm-Gg: AeBDiev9EiLfTwMQ7luypYTK8anSPgBdp1OAD8Dpxbv3C/aHLHN+VDAaFGmnw3u3jN6
+	SK/VNYZGedzXMubzgDh+ZjG0m9vfrw8RKw//kOSKusiiiofOBhyKnvaAaq+LJ+eHoMRB6J07/MR
+	I8Zap0QRvCunLu7NphMb7MTnQT+l3XREDsWjhaztHqX3hrei4keKKXEn54bJAZIzpS8QQLagC5e
+	4W0s4RMzDa0Z8jAx/sbdp6hD66RHlpqZJ1NQnoHDpK+MvBQNv4Co5Bct08AuhZSjd3eYVGEvvll
+	qo4iKgh9K4gcAqsHNNkFbZvC5H96pBNzUAV0FrNy32+YykY0nF/4hAPZ+etJ2J6Y9qCmonsXVNk
+	dogvL/7HYybCRqOwHtYqNC11WvngQakGN5ns43HeONCPbSmNyCzxEz9Eu+UmnoTlvdcai
+X-Received: by 2002:a17:903:a90:b0:2b2:65db:8c5f with SMTP id d9443c01a7336-2b97c4c8995mr75298545ad.27.1777482106112;
+        Wed, 29 Apr 2026 10:01:46 -0700 (PDT)
+X-Received: by 2002:a17:903:a90:b0:2b2:65db:8c5f with SMTP id d9443c01a7336-2b97c4c8995mr75298015ad.27.1777482105417;
+        Wed, 29 Apr 2026 10:01:45 -0700 (PDT)
+Received: from hu-vdadhani-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b9887853a2sm29530195ad.18.2026.04.29.10.01.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Apr 2026 10:00:22 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	dri-devel@lists.freedesktop.org
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 4/4] drm: renesas: rz-du: Add support for RZ/T2H SoC
-Date: Wed, 29 Apr 2026 18:00:12 +0100
-Message-ID: <20260429170012.366537-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260429170012.366537-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20260429170012.366537-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Wed, 29 Apr 2026 10:01:44 -0700 (PDT)
+From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Subject: [PATCH v5 0/7] Add QSPI support for QCS615 and improve
+ interconnect handling
+Date: Wed, 29 Apr 2026 22:31:35 +0530
+Message-Id: <20260429-spi-nor-v5-0-993016c9711e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 76B97497E5C
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAG858mkC/3XOTQ7CIBAF4KsY1mKGPw2uvIdxAXSqGC0VtNE0v
+ btQF22ibkhe8r439CRh9JjIdtGTiJ1PPjQ5qOWCuJNpjkh9lTPhwNcguKSp9bQJkYJ260ojVAi
+ K5HYbsfbPcWl/+OT0sGd098JL4+TTPcTXeKpjpfe92jEKVGCNSjvmGNO7kNLq9jAXF67XVX5IG
+ e/4xCWbcZ65dc7I/C9pVf2HixnnMHGR+aZCwZXhGhj84XLO9cRl4aK2zBoLwpoffBiGN/39MNN
+ 0AQAA
+X-Change-ID: 20260324-spi-nor-09c6d9e0de05
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777482100; l=4134;
+ i=viken.dadhaniya@oss.qualcomm.com; s=20260324; h=from:subject:message-id;
+ bh=SXa4NSNdU/XIj9zZigyMpKZ4wZlS2vJhYXIJ/TlKKfM=;
+ b=G98i6QTKkKi4+Bxo87HTfyTzT+uLlQ1DtZTgTG3Rqj8KVwRYPMcNwYs7f0t9zCiAMDmijwhGj
+ Janz0fxJOKyBSKEOOmnZij/ux5QmMrULgiqEALp31RPzvYxkPoLUimb
+X-Developer-Key: i=viken.dadhaniya@oss.qualcomm.com; a=ed25519;
+ pk=C39f+LOIGhh/02LQpT46TsUSXRvBn9qXC8Xb26KJ44Y=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI5MDE3MSBTYWx0ZWRfX7R75SLRIjGcT
+ 82+KiXXBbJN/uztit1iJDF8WJ0p6l6+nOwBaDpIq2wl1uc+X3vycfageTHTyekQrX8WxaPqadep
+ q2LYGb7PLQpLi+S9/wQWTtC6t5Pkuo1qHgsSfN1w9BMXco+uXBILM6M1o1+wOUbFINn3vzgpmMN
+ vrIPD75Yg440o3scKD+z2n35VsPBwnPI38JUrEDKeF4RwkiwS9QDlWum9ON1TVGwbZmlz4oqerq
+ n82m7ctXhmV/j/brXXfFSrjF/sec6IqaULqfnsGawETQxGXvB6XCE9+7ggFZWGB7JXqCZgDEPEx
+ 9yUZC1+hE6+4fFPWWlav5Rta3tPXLfbC05MnvTWX1RktCbm74uw1okOd6TL3uL4o6oqE7CDTeod
+ zQ0EzNer6xyrZkghYksD4xfqM+Vnmw==
+X-Proofpoint-GUID: twxumcUzOGIsGivxTjldcdYfmyDYHkAo
+X-Proofpoint-ORIG-GUID: twxumcUzOGIsGivxTjldcdYfmyDYHkAo
+X-Authority-Analysis: v=2.4 cv=CL4amxrD c=1 sm=1 tr=0 ts=69f2397b cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8 a=YsM2utnLYs980cnplJsA:9 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22 a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-29_01,2026-04-28_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 adultscore=0 phishscore=0 lowpriorityscore=0 spamscore=0
+ malwarescore=0 bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604200000
+ definitions=main-2604290171
+X-Rspamd-Queue-Id: 319D3497F99
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_MATCH_TO(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291638-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[bp.renesas.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,pengutronix.de,glider.be,ideasonboard.com,lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-291639-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,renesas.com,bp.renesas.com];
-	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	NEURAL_HAM(-0.00)[-0.997];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,renesas.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,msgid.link:url,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[viken.dadhaniya@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Add QSPI controller support for the QCS615 (Talos) platform and improve
+interconnect bandwidth management for QSPI controllers across multiple
+Qualcomm SoCs.
 
-The RZ/T2H (R9A09G077) SoC includes a DU with a DPI interface,
-supporting resolutions up to WXGA with two RPFs for layer blending.
-Unlike earlier RZ/G2L SoCs, RZ/T2H requires explicit assertion of a
-DPI output-enable signal (DU_MCR0_DPI_EN) during CRTC startup.
+The series consists of:
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+1. Add QCS615 compatible string to device tree bindings.
+2. Add qspi-memory interconnect path support to the driver for proper DMA
+   bandwidth allocation.
+3. Add QSPI support to QCS615 platform including OPP table, pinmux, and
+   controller node.
+4. Enable QSPI controller and SPI-NOR flash on QCS615-RIDE board.
+5. Add QSPI memory interconnect paths to existing SC7180 and Kodiak
+   platforms.
+
+The key improvement in this series is adding the qspi-memory interconnect
+path. Previously, the QSPI driver only managed the CPU-to-QSPI
+configuration path. Add support for the QSPI-to-memory path, which is
+essential for proper bandwidth allocation during DMA operations when the
+QSPI controller transfers data to/from system memory.
+
+Set the memory path bandwidth equal to the transfer speed, matching the
+existing pattern used for the CPU path. Enable and disable both paths
+properly during runtime PM transitions to ensure efficient power
+management.
+
+Apply this change to existing platforms (SC7180/Kodiak) as well as the
+newly added QCS615 platform to ensure consistent interconnect handling
+across all QSPI-enabled SoCs.
+
+Testing:
+- Verified QSPI functionality on QCS615-RIDE with SPI-NOR flash
+- Confirmed proper interconnect bandwidth voting during transfers
+- Validated runtime PM transitions with both interconnect paths 
+
+Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
 ---
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c |  7 ++++++-
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c  | 14 ++++++++++++++
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h  | 10 ++++++++++
- 3 files changed, 30 insertions(+), 1 deletion(-)
+Changes in v5:
+- Rebased on top of current mainline to apply cleanly.
+- Link to v4: https://patch.msgid.link/20260429-spi-nor-v4-0-73fb1bab03ba@oss.qualcomm.com
 
-diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c
-index 2b772a11c7ee..017d5f26bc96 100644
---- a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c
-+++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c
-@@ -28,6 +28,7 @@
- #include "rzg2l_du_vsp.h"
- 
- #define DU_MCR0			0x00
-+#define DU_MCR0_DPI_EN		BIT(0)
- #define DU_MCR0_DI_EN		BIT(8)
- 
- #define DU_DITR0		0x10
-@@ -217,8 +218,12 @@ static void rzg2l_du_crtc_put(struct rzg2l_du_crtc *rcrtc)
- static void rzg2l_du_start_stop(struct rzg2l_du_crtc *rcrtc, bool start)
- {
- 	struct rzg2l_du_device *rcdu = rcrtc->dev;
-+	u32 val = DU_MCR0_DI_EN;
- 
--	writel(start ? DU_MCR0_DI_EN : 0, rcdu->mmio + DU_MCR0);
-+	if (start && rzg2l_du_has(rcdu, RZG2L_DU_FEATURE_DPIO_OE))
-+		val |= DU_MCR0_DPI_EN;
-+
-+	writel(start ? val : 0, rcdu->mmio + DU_MCR0);
- }
- 
- static void rzg2l_du_crtc_start(struct rzg2l_du_crtc *rcrtc)
-diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c
-index 3b7162c6e1f4..fc55dfffebaf 100644
---- a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c
-+++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c
-@@ -63,10 +63,24 @@ static const struct rzg2l_du_device_info rzg2l_du_r9a09g057_info = {
- 	},
- };
- 
-+static const struct rzg2l_du_device_info rzg2l_du_r9a09g077_info = {
-+	.channels_mask = BIT(0),
-+	.routes = {
-+		[RZG2L_DU_OUTPUT_DPAD0] = {
-+			.possible_outputs = BIT(0),
-+			.port = 0,
-+		},
-+	},
-+	.features = RZG2L_DU_FEATURE_DPIO_OE,
-+	.mode_clock_min = 5000,
-+	.mode_clock_max = 100000,
-+};
-+
- static const struct of_device_id rzg2l_du_of_table[] = {
- 	{ .compatible = "renesas,r9a07g043u-du", .data = &rzg2l_du_r9a07g043u_info },
- 	{ .compatible = "renesas,r9a07g044-du", .data = &rzg2l_du_r9a07g044_info },
- 	{ .compatible = "renesas,r9a09g057-du", .data = &rzg2l_du_r9a09g057_info },
-+	{ .compatible = "renesas,r9a09g077-du", .data = &rzg2l_du_r9a09g077_info },
- 	{ /* sentinel */ }
- };
- 
-diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h
-index 885558eb9547..baf076d69cda 100644
---- a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h
-+++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h
-@@ -20,6 +20,8 @@
- struct device;
- struct drm_property;
- 
-+#define RZG2L_DU_FEATURE_DPIO_OE	BIT(0)	/* Has DPIO output enable control */
-+
- enum rzg2l_du_output {
- 	RZG2L_DU_OUTPUT_DSI0,
- 	RZG2L_DU_OUTPUT_DPAD0,
-@@ -46,12 +48,14 @@ struct rzg2l_du_output_routing {
-  * @routes: array of CRTC to output routes, indexed by output (RZG2L_DU_OUTPUT_*)
-  * @mode_clock_min: minimum pixel clock in kHz
-  * @mode_clock_max: maximum pixel clock in kHz
-+ * @features: device features (RZG2L_DU_FEATURE_*)
-  */
- struct rzg2l_du_device_info {
- 	unsigned int channels_mask;
- 	struct rzg2l_du_output_routing routes[RZG2L_DU_OUTPUT_MAX];
- 	u32 mode_clock_min;
- 	u32 mode_clock_max;
-+	unsigned int features;
- };
- 
- #define RZG2L_DU_MAX_CRTCS		1
-@@ -77,6 +81,12 @@ static inline struct rzg2l_du_device *to_rzg2l_du_device(struct drm_device *dev)
- 	return container_of(dev, struct rzg2l_du_device, ddev);
- }
- 
-+static inline bool rzg2l_du_has(struct rzg2l_du_device *rcdu,
-+				unsigned int feature)
-+{
-+	return rcdu->info->features & feature;
-+}
-+
- const char *rzg2l_du_output_name(enum rzg2l_du_output output);
- 
- #endif /* __RZG2L_DU_DRV_H__ */
--- 
-2.54.0
+Changes in v4:
+- Made qspi-memory node handling optional to gracefully fall back to legacy
+  single-region behavior when the node is absent in older Device trees.
+- Checked return value of clk_bulk_prepare_enable() and logged error on
+  failure in resume error path.
+- Fixed subject line style to match subsystem conventions
+- Link to v3: https://patch.msgid.link/20260420-spi-nor-v3-0-7de325a29010@oss.qualcomm.com
+
+Changes in v3:
+- Added missing interconnect-names constraint for qcom,qcs615-qspi.
+- Changed interconnect tags for qspi-memory path to QCOM_ICC_TAG_ALWAYS
+- Fixed suspend sequence: now disables clocks before dropping performance
+  state to avoid brownout risk
+- Link to v2: https://patch.msgid.link/20260414-spi-nor-v2-0-bcca40de4b5f@oss.qualcomm.com
+
+Changes in v2:
+- Moved allOf section to bottom of binding schema
+- Added if:then constraint requiring minimum 2 interconnects for qcs615
+- Fixed runtime PM error handling with complete goto-based cleanup
+- Added proper error paths in suspend/resume functions
+- Changed interconnect tags from raw 0 to QCOM_ICC_TAG_ACTIVE_ONLY
+- Link to v1: https://patch.msgid.link/20260324-spi-nor-v1-0-3efe59c1c119@oss.qualcomm.com
+
+---
+Viken Dadhaniya (7):
+      spi: dt-bindings: qcom,spi-qcom-qspi: Add qcom,qcs615-qspi compatible
+      spi: spi-qcom-qspi: Fix incomplete error handling in runtime PM
+      spi: spi-qcom-qspi: Add interconnect support for memory path
+      arm64: dts: qcom: talos: Add QSPI support
+      arm64: dts: qcom: qcs615-ride: Enable QSPI and NOR flash
+      arm64: dts: qcom: kodiak: Add QSPI memory interconnect path
+      arm64: dts: qcom: sc7180: Add QSPI memory interconnect path
+
+ .../bindings/spi/qcom,spi-qcom-qspi.yaml           | 21 +++++-
+ arch/arm64/boot/dts/qcom/kodiak.dtsi               |  9 ++-
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts           | 12 ++++
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               |  9 ++-
+ arch/arm64/boot/dts/qcom/talos.dtsi                | 80 ++++++++++++++++++++++
+ drivers/spi/spi-qcom-qspi.c                        | 80 +++++++++++++++++++---
+ 6 files changed, 192 insertions(+), 19 deletions(-)
+---
+base-commit: 0787c45ea08a13b5482e701fabc741877cf681f6
+change-id: 20260324-spi-nor-09c6d9e0de05
+
+Best regards,
+--  
+Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
 
 
