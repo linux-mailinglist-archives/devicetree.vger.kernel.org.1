@@ -1,381 +1,256 @@
-Return-Path: <devicetree+bounces-291651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291656-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oGmDGa5A8mn7pAEAu9opvQ
-	(envelope-from <devicetree+bounces-291651-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 19:32:30 +0200
+	id MI2gOPRA8mkApQEAu9opvQ
+	(envelope-from <devicetree+bounces-291656-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 19:33:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 444EE4982ED
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 19:32:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29BA049835B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 19:33:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3F01C300AD94
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 17:32:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 263D1301C581
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 17:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7BC83EFD26;
-	Wed, 29 Apr 2026 17:32:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02D9F413229;
+	Wed, 29 Apr 2026 17:33:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Ip6rWcD3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PEKrzCC/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010016.outbound.protection.outlook.com [52.101.201.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116472EAD1C;
-	Wed, 29 Apr 2026 17:32:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 089882EAD1C
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 17:33:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.41
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777483942; cv=fail; b=jce/ApANmXIBDjJ5WRvGe/hwLnzPS6tbh6wdzwT1iNgdD+hRmYOObJyzwOaoB8Xc8JPI6ZO3FT7/rNt206SHCXmx8fH4+mDdBkxo3+ISEORuKFhES8c+1OgOHUuh4yFoe+CTXTEtSiGthbq7Twe37whCNx3KwfrHNICEFcCr0wQ=
+	t=1777484013; cv=pass; b=TnKMvsJFjdqengassKf2TQvXcWsgPFneclM2P3qS/RwV0XLg/4VUDcHtHu+H069IFhyOrUWpGjfL0kqrWOoDDKUlQNgqtBpDFTKp+Xez8nuSdwJqMdfRa1c/5vuAWAiLOrYfb2Di/DaBSJAIYkSu2pXYTWvCU+LCpca1fv80CMI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777483942; c=relaxed/simple;
-	bh=VEgtLeU9bKF+qUL9urxwWfRYu5f0CkOMRFLZukK0r6g=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Xu4LPHyTjzDF6D5zTPcqeX99q68lrcHpXmCRcwcZ4++STQ4pZlYCBjwMTt6Ogak+xf3tnOnZw1sokMdYxSi8PdAUK84S0oSeurgMsQe3hTXTQVE/FZif/Y9hCxJ0/sxG9WMkeBkB+NosoGf8zBettmNdjZEM7fiA3wpLSPWNAFU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Ip6rWcD3; arc=fail smtp.client-ip=52.101.201.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SZR95Kz/gOPlVm8/xP9hTVkceeZKC+VQAljhDcGRMzO8+4sF5QYfuWx9ZsKmCpew4NHaBRhGVBJlWlzZCcRyV4p/F7RQg2wXqF+KBcSUIW5cPn1cq9zMtNVbna4W8pqdNtepOsy90fyP8qIDRPHw6U0fHUJo+8CZCwuzn0xzoThi+osNQH/6dV2pM+WTHLEt5M8zQQO2Is+RNjGqfXXfkv/lA5qcZ2HjkOIr1GnzXrqEBvoALN1Zrn67h1cLt7ZqQCSniSDMtypQsYPUaROYxciubasbic1yHyOivTmnUN6cMotb5bGbfWhhok3zBKOIY+jeLUOyWC+L7iDlUd02Cw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rTm78k3fFETGWViJ721DhEUmbtENttOSBrfkcivcRUM=;
- b=nDqyXOWY8iRHK7I+EBSpjUvQEafFFwfflCamHOBbMDl6HM0/9zo35sU86cY+aRtAMSjZsf04/Lksnrbx9FCj/LT29hFzgv2JUJ5BhWIxIxr0AvDnyLynVfL0+TZ148AptIgUpmbgbneBhwjQq1iTRajE8iXfmbhMVnF0jkabojSG6VcY/AQv35DVCofQmgq0cvtRg7uwdjYXWMEFN/iLs5LHXKRJvilpw8HErNrfScoUHJsw6NTH0z+Zpg45AqQhow7ccGdKMFJFlX4fuCWx5wHQu+Ekt/R+n2htQKD/M5GHKF1xtImsmUQ8It4B4zxr10n3vXKWeBScZmpNirRt+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rTm78k3fFETGWViJ721DhEUmbtENttOSBrfkcivcRUM=;
- b=Ip6rWcD32PquLxcq16Q9bk4vJYW9J2yf2COEQXYNyd2vPq/35c5Ks9m1JfHbNsn7Mm4EiZUY6NlQQGQjBADtbEWX8NhqC+R7uGeuQtQvrgoBC7AENQXquHor0tcT6JvYGBGx/rgeQC/pEc1zx6/H/LdvR8vYIZsgrYy4ks+88nc=
-Received: from SJ0PR05CA0042.namprd05.prod.outlook.com (2603:10b6:a03:33f::17)
- by MW4PR12MB6921.namprd12.prod.outlook.com (2603:10b6:303:208::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.18; Wed, 29 Apr
- 2026 17:32:18 +0000
-Received: from CO1PEPF000066E7.namprd05.prod.outlook.com
- (2603:10b6:a03:33f:cafe::38) by SJ0PR05CA0042.outlook.office365.com
- (2603:10b6:a03:33f::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9870.16 via Frontend Transport; Wed,
- 29 Apr 2026 17:32:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CO1PEPF000066E7.mail.protection.outlook.com (10.167.249.9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.18 via Frontend Transport; Wed, 29 Apr 2026 17:32:17 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Wed, 29 Apr
- 2026 12:31:52 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 29 Apr
- 2026 12:31:34 -0500
-Received: from xhdradheys41.xilinx.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Wed, 29 Apr 2026 12:31:30 -0500
-From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-To: <gregkh@linuxfoundation.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <michal.simek@amd.com>, <Thinh.Nguyen@synopsys.com>,
-	<p.zabel@pengutronix.de>
-CC: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<git@amd.com>, Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-Subject: [PATCH v3 4/4] usb: dwc3: xilinx: Add support to program MMI USB TX deemphasis
-Date: Wed, 29 Apr 2026 23:00:50 +0530
-Message-ID: <20260429173050.1772377-5-radhey.shyam.pandey@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260429173050.1772377-1-radhey.shyam.pandey@amd.com>
-References: <20260429173050.1772377-1-radhey.shyam.pandey@amd.com>
+	s=arc-20240116; t=1777484013; c=relaxed/simple;
+	bh=kN1Jg8zrE0WkiYysXn+g0/IiPU/u/Efvo6UZbhbtzTE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pZ/MGVQYlNhntBbfRxlJ6aFlgf+hGZR05nE1mg+zzwVBZA6c2pj7FDAoay/ElqInrZgEiJYDegAEB+a39zYsISkvTZCLj71MW7frlHwXTDyVcUr754CkYHtn2YSiZVgrxvlYZU1jNAhjJ9Zsf0mhXO39nf6tIE08uUeJHAxLAuc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PEKrzCC/; arc=pass smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-67790429f71so91522a12.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 10:33:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1777484010; cv=none;
+        d=google.com; s=arc-20240605;
+        b=kgtDZ1QQMPO1/EziM8z/+pYcfZTLk85vj5Wi/VWI+oKLRKSlGarU0NmDCqyu9sdndN
+         nJbAodlg3K/r+TGr0jXYTXW4bmkKzHIQqFU+h1uIImTAk6HorcWJbW5RucOOk4ArzLns
+         5VGeYjy+5V1PWrHGoyFsgMtRvnT+JpDYOzv71qpB+SsojycSTzKEmPlYfSEFU4OVcdlY
+         RcyFlzG8QG1b6HTl+s1ZvKyHCKlMlIgCQrhVKA/UVJTuFQNpNJXVwiE/DGeprKOEMFxi
+         t4XNn4YvYInLgSgG2mK9/FK8qPYScaLtMjdHNflcTjy+6rKYijYi/MvrY5lNUr9p0VDJ
+         5jZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=/kb5CXOOm0mj4ODKw/K4npAFTtH0bYa0bnYZ1mb4DgI=;
+        fh=Fvu/kkka4QaqVREDzTRXVto7FyFqQ3XzX3c6O3p1OWo=;
+        b=MGB8MeSWXIU/kK+mLf3yXJc+zq3ayX7UNxae0anVbzUKfFisFZ3mO25EDzTPSVpJM5
+         +WEqK7HvTY4bPzpG2pAE5xaaJAwZSgNp16xh8w0+SCAFCx+9JqMHJ/OT8RWie2F542PP
+         Eb6sTqtoGRlCU+iHJUXIfCzHJmaphveeTs0bXYVmrQLqjjfWLy5mjcFEVeHyfduwAWhc
+         XajfORvnGWGuCade/4CbnjEU0/kqLqq5h7UpiENkwYulmxhY16jJiDGulzO3rWUYBhRn
+         agvJM8eT4PvDHo0NchkDgA2glTWojV8C76WWsdSHKRrfDCQv7P17gQyHo8yep3Q+gWM4
+         3yrg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1777484010; x=1778088810; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/kb5CXOOm0mj4ODKw/K4npAFTtH0bYa0bnYZ1mb4DgI=;
+        b=PEKrzCC/rAYDBGbkyjxCwRTqVSUmwyhWncEDGEJDD1tfT5AzME3HRihUbthWq6pyp7
+         QycNd14wHmXXNN4jxEJuyFaSq0o38AsPNg5DRuCjwju8yAj+dHEc5XA3z+AOik/nGGFV
+         PDb5YwnzrlCwoYLc4vYEYt8bxJOeIFByHRSmhhXVCB7oQ/GbdX0I9UeL/bv7mhXQri8i
+         gjprCCsn+XGTdBgqVKYQvvzUE5ujR0ETrdAn/nn7Rpy9ZbsyZ5UUHHoya8VBKoH+tUWZ
+         oLZq+y8E9nwRapDuGWGykFWfM1s5u9sPt7k1ygv6klmBTPlahP7K493EyogU3Qa68M07
+         NlPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777484010; x=1778088810;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/kb5CXOOm0mj4ODKw/K4npAFTtH0bYa0bnYZ1mb4DgI=;
+        b=P5yoFzYQtWVsNOYkqyNmT6Tz2L2MpZr/RDiyO5Pm1kw2juR4X9nvrk31BpY+ziYf1p
+         CmXf6h3KYcVNJPSV18E/N45D2BlJPEum3BgthcDBeyBJuwzHzifaUiIfOBgmbsRZbelP
+         2bywQuUXSycpojWnAHasiq5Lp76XIeTU/Qb4HdOCdLtXwAiInJBi2JcG62C8LfFjd8S8
+         pbdamdIzrnXQ8hfPv5Ok8bm4nDqqo+7tfCpRkMTqnv8/ZYOWJ7TqmUITNnDfQea54WHj
+         2oGTfs9vyRouhxK79KqKceD1nXnSawVOomEOKGaSkFxwnqyZKQIId0Vs/TaNZx0N8H/U
+         KRuA==
+X-Forwarded-Encrypted: i=1; AFNElJ/eE3xyW7tzBr6TvlFNpE/0u1BbhOMG+ZA8lVtITKpVSV8lTC3n88IrknY5+au7YE3UPzWzjxBvly0T@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuS4oC7G2GpmSMtGgWxxF2xPyYIiyAGTXh/iPGrrOzKfpHwX5r
+	PIz8Q5i0UYtSkmaKtPKi44IerPDXhYN+s9jZ/2Hm6s6Ft2kqtVfzPgOP0BAlypgEYvvarbbtI2Y
+	TqU0lwdhDmyd9RVHFSFUy+XlRSOkCDs1Tvi7Zx66HPy2QTYqaMP7E
+X-Gm-Gg: AeBDietX20VA21NbnUzKPZz1G6SqF2uTCc65Bc/rqHKk7XlycRIBswlbKRqvyzlbuJu
+	TUqvvZEB3ZjbI3GPrrBkWzQwGsnkiBUqPKEqdQuuv1WdWiZ7+WaHtoSPR9v7MJnp3oqJYQR+9xE
+	04aLyI8KQPuVZVB2GPU19uwXPtvIXI6i4LCiOFgZfbEm/zZBcNZJZpmYEspxs12fIRDiFx3Y5Lf
+	boIow85S9xKV1H2Jp0jcfHIYCR9a5srmw4PD/MF9HYKKWNnUvnp49R+ln5WXe8cgkKqKvzyZnZi
+	d8C3p8yLu+EJZnLTqitgHRtWRg4awbYamJVZscCIEAfWDOxpkBv9
+X-Received: by 2002:a05:6402:1ed3:b0:672:5255:af77 with SMTP id
+ 4fb4d7f45d1cf-679bb07ee71mr5034063a12.13.1777484010328; Wed, 29 Apr 2026
+ 10:33:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: radhey.shyam.pandey@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000066E7:EE_|MW4PR12MB6921:EE_
-X-MS-Office365-Filtering-Correlation-Id: b2e1c753-b705-4149-3470-08dea61542cd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700016|82310400026|7416014|376014|1800799024|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	zOaFGPasF7Pnf01XC1Frwd3i5prNaq16T78Xp/S6FwrlsRRY2zlO4xP6CLY2s3GwFDPUkDpcrdJV4pgq+pWf/w9PPvCuB+6Sn+wCtg0J3LGtSf8SFSi4GldbRKLbd+/fo+lQBQWdhMaCjz13tKCs9OVyxWXPJZrYZ6/H3crMg8x2qWWWcyOUm1B0lIhGYAo6ZlfWfsGgc5xanCI3G6AfnXYQB7eEEoeIiZRtqHSPsMh5kBVtM5STo6+eOM3vuecJq3bipcUBLHyUtEXVXXUj9e1NbVa5JMDBiy5qm1cHjO6dmNWUwHzhL2kW0RMTn7eSbqstX/3Zo9lKexSYoB3l1WKYDQLyMRta8A3tAfcSR0BHtBw4NbU4a/mecmkA4CfRQq72zZGe16mIdTxba8JSNwkb565wVtu8be11zimxPEOPwElYcG97s0Wzi3txi17Py0xkvm9bz+9iKCZMRJ71amEyRPYmTnCb7jdvszHUyjxUt4Ak+oD64AhTrKwd1Kj6ukQs/4bAiNVWauhth9LscKlACG5yllZ9kkDxGGOieLLPFV9lJPbUaHQVNjBC2ycONrTSizVP5tyO4toU+xWM+iVNY9jEZQVU150VkmiHayL+Xnd64LtqI4eoWVdTkbb7UjZP54AuLndKczYhvfyWUNZulCdEBAmyfBr4dOPyhc2YB0A0yGlbLZ93MfQZn/xPlCYRgTTbCI5/1IRoCRDI7VEUTR3aN5ddPjw7eqiXSBuH57tPnIUARmQLLWA/UcHjvOywf78bxrTecpSn1W27jA==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(7416014)(376014)(1800799024)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	+B6PkhKMkWEccLbzLvZOEBDa34B9b0aU+uYa/Sx+LWQx8sX67HV3L3dyKy4Z7esdxSNqk5Hpu/dB3zS7T+4khEATp9Ds4wM+hzSQNo89petihZNd14RaCMlo/HT9cn8vqP13wZHws0QcN1Ezl/2mk1qgqqhDaBqyhPrfFVEzW8SRBbYtDhJH0kTfhfajnCUOGmCzoEK++e1aHmqNbuF85NxSbiHT0FjuTrbIr/p84s+xFrtdo/YzuBHK8QYTyYOtce7WjgtXzAG5SZlcyq2sTgijMBPFlvMwEVq48vk8ti4qJdC+5a7sHoyhaIiO+EGtECrfpnkcvzx/0k+bduAzlzR9suHLL1BZ6qyhKU7t0vN7okr1Te+ASxKDA2kK/wvE8GgfZA2SIUKTNyUFkV6WXyGCP2/+jSSKR0/l2nks8CRIY27MUiNN7Sdg8Mlf4tNa
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2026 17:32:17.7645
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b2e1c753-b705-4149-3470-08dea61542cd
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000066E7.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6921
-X-Rspamd-Queue-Id: 444EE4982ED
+References: <20260422212849.1240591-1-shenwei.wang@nxp.com>
+ <20260422212849.1240591-4-shenwei.wang@nxp.com> <22fb5fac-2568-42be-a7e3-7e89d0017eb3@ti.com>
+ <PAXPR04MB91850A11C58419C03909145F89362@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <6412a758-4560-4cf1-a0d0-5b24d1a715f1@lunn.ch> <PAXPR04MB9185009A17DFDF3D6C8B44E789362@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <6e01e114-e336-4744-b6b4-563ec42e321b@lunn.ch> <PAXPR04MB9185A098D894B6A6EBCC13F889372@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <afImuoeHolxGgw3H@p14s> <PAXPR04MB9185F2F6DDB55AC56C92D63B89342@PAXPR04MB9185.eurprd04.prod.outlook.com>
+In-Reply-To: <PAXPR04MB9185F2F6DDB55AC56C92D63B89342@PAXPR04MB9185.eurprd04.prod.outlook.com>
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+Date: Wed, 29 Apr 2026 11:33:18 -0600
+X-Gm-Features: AVHnY4KBveuXaT50xXGT561BJAnz_p9YSdb7SJnI5b60PkMgL6_ZMJ8SGU0KF-U
+Message-ID: <CANLsYkwvL0Z3+12MD=J+Dc2yAU2T8ypizyG=6AhYoWOh55odHA@mail.gmail.com>
+Subject: Re: [PATCH v13 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, "Padhi, Beleswar" <b-padhi@ti.com>, Linus Walleij <linusw@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Frank Li <frank.li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shuah Khan <skhan@linuxfoundation.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>, 
+	"imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, dl-linux-imx <linux-imx@nxp.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: 29BA049835B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-291656-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,ti.com,kernel.org,lwn.net,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-291651-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[radhey.shyam.pandey@amd.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[mathieu.poirier@linaro.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-Introduces support for programming the 18-bit TX deemphasis value that
-drives the pipe_TxDeemph signal, as defined in the PIPE4 specification.
+On Wed, 29 Apr 2026 at 10:53, Shenwei Wang <shenwei.wang@nxp.com> wrote:
+>
+>
+>
+> > -----Original Message-----
+> > From: Mathieu Poirier <mathieu.poirier@linaro.org>
+> > Sent: Wednesday, April 29, 2026 10:42 AM
+> > To: Shenwei Wang <shenwei.wang@nxp.com>
+> > Cc: Andrew Lunn <andrew@lunn.ch>; Padhi, Beleswar <b-padhi@ti.com>; Linus
+> > Walleij <linusw@kernel.org>; Bartosz Golaszewski <brgl@kernel.org>; Jonathan
+> > Corbet <corbet@lwn.net>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+> > <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Bjorn Andersson
+> > <andersson@kernel.org>; Frank Li <frank.li@nxp.com>; Sascha Hauer
+> > <s.hauer@pengutronix.de>; Shuah Khan <skhan@linuxfoundation.org>; linux-
+> > gpio@vger.kernel.org; linux-doc@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> > <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>;
+> > devicetree@vger.kernel.org; linux-remoteproc@vger.kernel.org;
+> > imx@lists.linux.dev; linux-arm-kernel@lists.infradead.org; dl-linux-imx <linux-
+> > imx@nxp.com>; Bartosz Golaszewski <brgl@bgdev.pl>
+> > Subject: [EXT] Re: [PATCH v13 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
+> > On Tue, Apr 28, 2026 at 03:24:59PM +0000, Shenwei Wang wrote:
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Andrew Lunn <andrew@lunn.ch>
+> > > > Sent: Monday, April 27, 2026 3:49 PM
+> > > > To: Shenwei Wang <shenwei.wang@nxp.com>
+> > > > Cc: Padhi, Beleswar <b-padhi@ti.com>; Linus Walleij
+> > > > <linusw@kernel.org>; Bartosz Golaszewski <brgl@kernel.org>; Jonathan
+> > > > Corbet <corbet@lwn.net>; Rob Herring <robh@kernel.org>; Krzysztof
+> > > > Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
+> > > > Bjorn Andersson <andersson@kernel.org>; Mathieu Poirier
+> > > > <mathieu.poirier@linaro.org>; Frank Li <frank.li@nxp.com>; Sascha
+> > > > Hauer <s.hauer@pengutronix.de>; Shuah Khan
+> > > > <skhan@linuxfoundation.org>; linux-gpio@vger.kernel.org; linux-
+> > > > doc@vger.kernel.org; linux-kernel@vger.kernel.org; Pengutronix
+> > > > Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> > > > <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>;
+> > > > devicetree@vger.kernel.org; linux- remoteproc@vger.kernel.org;
+> > > > imx@lists.linux.dev; linux-arm- kernel@lists.infradead.org;
+> > > > dl-linux-imx <linux-imx@nxp.com>; Bartosz Golaszewski
+> > > > <brgl@bgdev.pl>
+> > > > Subject: [EXT] Re: [PATCH v13 3/4] gpio: rpmsg: add generic rpmsg
+> > > > GPIO driver
+> > > > > > struct virtio_gpio_response {
+> > > > > >         __u8 status;
+> > > > > >         __u8 value;
+> > > > > > };
+> > > >
+> > > > > It is the same message format. Please see the message definition
+> > > > (GET_DIRECTION) below:
+> > > >
+> > > > > +   +-----+-----+-----+-----+-----+----+
+> > > > > +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05|
+> > > > > +   | 1   | 2   |port |line | err | dir|
+> > > > > +   +-----+-----+-----+-----+-----+----+
+> > > >
+> > > > Sorry, but i don't see how two u8 vs six u8 are the same message format.
+> > > >
+> > >
+> > > Some changes to the message format are necessary.
+> > >
+> > > Virtio uses two communication channels (virtqueues): one for requests and
+> > replies, and a second one for events.
+> > > In contrast, rpmsg provides only a single communication channel, so a
+> > > type field is required to distinguish between different kinds of messages.
+> > >
+> > > Since rpmsg replies and events share the same message format, an additional
+> > line is introduced to handle both cases.
+> > >
+> > > Finally, rpmsg supports multiple GPIO controllers, so a port field is added to
+> > uniquely identify the target controller.
+> >
+> > I have commented on this before - RPMSG is already providing multiplexing
+> > capability by way of endpoints.  There is no need for a port field.  One endpoint,
+> > one GPIO controller.
+> >
+>
+> You still need a way to let the remote side know which port the endpoint maps to, either
+> by embedding the port information in the message (the current way), or by sending it
+> separately.
+>
 
-The configured value is recommended by Synopsys and is intended for
-standard (non-compliance) operation. These Gen2 equalization settings
-have been validated through both internal and external compliance
-testing. By applying this setting, the stability of USB 3.2 enumeration
-is improved and now SuperSpeedPlus devices are consistently recognized as
-USB 3.2 Gen2 by the MMI USB Host controller.
+An endpoint is created with every namespace request.  There should be
+one namespace request for every GPIO controller, which yields a unique
+endpoint for each controller and eliminates the need for an extra
+field to identify them.
 
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
---
-Changes for v3:
-- Define DWC3_LCSR_TX_DEEMPH(n) and multiport handling. Thinh: Please
-  review on this offset calculation as MMI USB IP support single usb3
-  port.
-- Default set the tx_deemph to the DWC3_LCSR_TX_DEEMPH_UNSPECIFIED.
-
-Changes for v2:
-- Don't use compatible check for deemphasis programming.
-- Rename property "snps,lcsr_tx_deemph" to "snps,lcsr-tx-deemph"
-  (hyphens per kernel convention).
-- Fix double space in LCSR_TX_DEEMPH register comment.
-- Add blank line between register offset define and "Bit fields" section.
----
- drivers/usb/dwc3/core.c        | 24 ++++++++++++++++++++++++
- drivers/usb/dwc3/core.h        | 14 ++++++++++++++
- drivers/usb/dwc3/dwc3-xilinx.c | 20 +++++++++++++++++---
- 3 files changed, 55 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-index 58899b1fa96d..426e30563caf 100644
---- a/drivers/usb/dwc3/core.c
-+++ b/drivers/usb/dwc3/core.c
-@@ -646,6 +646,22 @@ static void dwc3_config_soc_bus(struct dwc3 *dwc)
- 		reg |= DWC3_GSBUSCFG0_REQINFO(dwc->gsbuscfg0_reqinfo);
- 		dwc3_writel(dwc, DWC3_GSBUSCFG0, reg);
- 	}
-+
-+	/*
-+	 * The csr_tx_deemph setting is common across the controller and
-+	 * is configured per port using DWC3_LCSR_TX_DEEMPH(port).
-+	 */
-+	if (dwc->csr_tx_deemph_field_1 != DWC3_LCSR_TX_DEEMPH_UNSPECIFIED) {
-+		unsigned int port;
-+		u32 reg;
-+
-+		for (port = 0; port < dwc->num_usb3_ports; port++) {
-+			reg = dwc3_readl(dwc, DWC3_LCSR_TX_DEEMPH(port));
-+			reg &= ~DWC3_LCSR_TX_DEEMPH_MASK(~0);
-+			reg |= DWC3_LCSR_TX_DEEMPH_MASK(dwc->csr_tx_deemph_field_1);
-+			dwc3_writel(dwc, DWC3_LCSR_TX_DEEMPH(port), reg);
-+		}
-+	}
- }
- 
- static int dwc3_core_ulpi_init(struct dwc3 *dwc)
-@@ -1691,6 +1707,7 @@ static void dwc3_core_exit_mode(struct dwc3 *dwc)
- static void dwc3_get_software_properties(struct dwc3 *dwc,
- 					 const struct dwc3_properties *properties)
- {
-+	u32 csr_tx_deemph_field_1;
- 	struct device *tmpdev;
- 	u16 gsbuscfg0_reqinfo;
- 	int ret;
-@@ -1699,6 +1716,7 @@ static void dwc3_get_software_properties(struct dwc3 *dwc,
- 		dwc->needs_full_reinit = true;
- 
- 	dwc->gsbuscfg0_reqinfo = DWC3_GSBUSCFG0_REQINFO_UNSPECIFIED;
-+	dwc->csr_tx_deemph_field_1 = DWC3_LCSR_TX_DEEMPH_UNSPECIFIED;
- 
- 	if (properties->gsbuscfg0_reqinfo !=
- 	    DWC3_GSBUSCFG0_REQINFO_UNSPECIFIED) {
-@@ -1716,6 +1734,12 @@ static void dwc3_get_software_properties(struct dwc3 *dwc,
- 					       &gsbuscfg0_reqinfo);
- 		if (!ret)
- 			dwc->gsbuscfg0_reqinfo = gsbuscfg0_reqinfo;
-+
-+		ret = device_property_read_u32(tmpdev,
-+					       "snps,lcsr-tx-deemph",
-+					       &csr_tx_deemph_field_1);
-+		if (!ret)
-+			dwc->csr_tx_deemph_field_1 = csr_tx_deemph_field_1;
- 	}
- }
- 
-diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index e0dee9d28740..ab68c6d7b021 100644
---- a/drivers/usb/dwc3/core.h
-+++ b/drivers/usb/dwc3/core.h
-@@ -181,6 +181,12 @@
- 
- #define DWC3_LLUCTL(n)		(0xd024 + ((n) * 0x80))
- 
-+/*
-+ * LCSR TX deemphasis register for USB3 port @n.
-+ * Offset stride matches DWC3_LLUCTL.
-+ */
-+#define DWC3_LCSR_TX_DEEMPH(n)		(0xd060 + ((n) * 0x80))
-+
- /* Bit fields */
- 
- /* Global SoC Bus Configuration INCRx Register 0 */
-@@ -198,6 +204,10 @@
- #define DWC3_GSBUSCFG0_REQINFO(n)	(((n) & 0xffff) << 16)
- #define DWC3_GSBUSCFG0_REQINFO_UNSPECIFIED	0xffffffff
- 
-+/* LCSR_TX_DEEMPH Register: setting TX deemphasis used in normal operation in gen2 */
-+#define DWC3_LCSR_TX_DEEMPH_MASK(n)		((n) & 0x3ffff)
-+#define DWC3_LCSR_TX_DEEMPH_UNSPECIFIED		0xffffffff
-+
- /* Global Debug LSP MUX Select */
- #define DWC3_GDBGLSPMUX_ENDBC		BIT(15)	/* Host only */
- #define DWC3_GDBGLSPMUX_HOSTSELECT(n)	((n) & 0x3fff)
-@@ -1185,6 +1195,9 @@ struct dwc3_glue_ops {
-  * @wakeup_pending_funcs: Indicates whether any interface has requested for
-  *			 function wakeup in bitmap format where bit position
-  *			 represents interface_id.
-+ * @csr_tx_deemph_field_1: stores TX deemphasis used in Gen2 operation.
-+ *                         The csr_tx_deemph setting is applied to each
-+ *			   USB3 port.
-  */
- struct dwc3 {
- 	struct work_struct	drd_work;
-@@ -1424,6 +1437,7 @@ struct dwc3 {
- 	struct dentry		*debug_root;
- 	u32			gsbuscfg0_reqinfo;
- 	u32			wakeup_pending_funcs;
-+	u32			csr_tx_deemph_field_1;
- };
- 
- #define INCRX_BURST_MODE 0
-diff --git a/drivers/usb/dwc3/dwc3-xilinx.c b/drivers/usb/dwc3/dwc3-xilinx.c
-index b601cca485ed..7c6111a9ca44 100644
---- a/drivers/usb/dwc3/dwc3-xilinx.c
-+++ b/drivers/usb/dwc3/dwc3-xilinx.c
-@@ -25,6 +25,8 @@
- 
- #include <linux/phy/phy.h>
- 
-+#include "core.h"
-+
- /* USB phy reset mask register */
- #define XLNX_USB_PHY_RST_EN			0x001C
- #define XLNX_PHY_RST_MASK			0x1
-@@ -41,12 +43,14 @@
- #define PIPE_CLK_SELECT				0
- #define XLNX_USB_FPD_POWER_PRSNT		0x80
- #define FPD_POWER_PRSNT_OPTION			BIT(0)
-+#define XLNX_MMI_USB_TX_DEEMPH_DEF		0x8c45
- 
- struct dwc3_xlnx;
- 
- struct dwc3_xlnx_config {
- 	int				(*pltfm_init)(struct dwc3_xlnx *data);
- 	bool				no_mem_map;
-+	u32				tx_deemph;
- };
- 
- struct dwc3_xlnx {
-@@ -280,15 +284,18 @@ static int dwc3_xlnx_init_zynqmp(struct dwc3_xlnx *priv_data)
- 
- static const struct dwc3_xlnx_config zynqmp_config = {
- 	.pltfm_init = dwc3_xlnx_init_zynqmp,
-+	.tx_deemph = DWC3_LCSR_TX_DEEMPH_UNSPECIFIED,
- };
- 
- static const struct dwc3_xlnx_config versal_config = {
- 	.pltfm_init = dwc3_xlnx_init_versal,
-+	.tx_deemph = DWC3_LCSR_TX_DEEMPH_UNSPECIFIED,
- };
- 
- static const struct dwc3_xlnx_config versal2_config = {
- 	.pltfm_init = dwc3_xlnx_init_versal2,
- 	.no_mem_map = true,
-+	.tx_deemph = XLNX_MMI_USB_TX_DEEMPH_DEF,
- };
- 
- static const struct of_device_id dwc3_xlnx_of_match[] = {
-@@ -308,10 +315,12 @@ static const struct of_device_id dwc3_xlnx_of_match[] = {
- };
- MODULE_DEVICE_TABLE(of, dwc3_xlnx_of_match);
- 
--static int dwc3_set_swnode(struct device *dev)
-+static int dwc3_set_swnode(struct dwc3_xlnx *priv_data)
- {
-+	struct device *dev = priv_data->dev;
-+	const struct dwc3_xlnx_config *config = priv_data->dwc3_config;
- 	struct device_node *np = dev->of_node, *dwc3_np;
--	struct property_entry props[2];
-+	struct property_entry props[3];
- 	int prop_idx = 0, ret = 0;
- 
- 	dwc3_np = of_get_compatible_child(np, "snps,dwc3");
-@@ -325,6 +334,11 @@ static int dwc3_set_swnode(struct device *dev)
- 	if (of_dma_is_coherent(dwc3_np))
- 		props[prop_idx++] = PROPERTY_ENTRY_U16("snps,gsbuscfg0-reqinfo",
- 						       0xffff);
-+
-+	if (config->tx_deemph != DWC3_LCSR_TX_DEEMPH_UNSPECIFIED)
-+		props[prop_idx++] = PROPERTY_ENTRY_U32("snps,lcsr-tx-deemph",
-+						       config->tx_deemph);
-+
- 	of_node_put(dwc3_np);
- 
- 	if (prop_idx)
-@@ -377,7 +391,7 @@ static int dwc3_xlnx_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_clk_put;
- 
--	ret = dwc3_set_swnode(dev);
-+	ret = dwc3_set_swnode(priv_data);
- 	if (ret)
- 		goto err_clk_put;
- 
--- 
-2.43.0
-
+> Shenwei
+>
+> > >
+> > > Shenwei
+> > >
+> > > >        Andrew
 
