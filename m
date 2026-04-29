@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-291285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291287-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aDDGHgCG8WlEhgEAu9opvQ
-	(envelope-from <devicetree+bounces-291285-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:16:00 +0200
+	id 0GJqEiKG8WlEhgEAu9opvQ
+	(envelope-from <devicetree+bounces-291287-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:16:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D51E348F0FB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:15:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94A0D48F118
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 06:16:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6BB90304B2AC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 04:15:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7BF5B306D2BF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Apr 2026 04:15:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0406138911F;
-	Wed, 29 Apr 2026 04:15:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7431384233;
+	Wed, 29 Apr 2026 04:15:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ausil.us header.i=@ausil.us header.b="CSl9p8L1"
+	dkim=pass (2048-bit key) header.d=ausil.us header.i=@ausil.us header.b="b6ik6n1V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f100.google.com (mail-ot1-f100.google.com [209.85.210.100])
+Received: from mail-oo1-f98.google.com (mail-oo1-f98.google.com [209.85.161.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ADA0388E60
-	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 04:15:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2A73388E5E
+	for <devicetree@vger.kernel.org>; Wed, 29 Apr 2026 04:15:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777436139; cv=none; b=DnBxXybOUZdrWsW8HWRv33SKTjOhIW4ooeanrNURSYfv/aFPBYzfl5SGtfDgd5WZvJahxPBr92vRQJTQiyUz/v8yZWNXishZXBjWNIkAibqz3mwxhOdKROHzu1sJ4n5U+wZrUq8VZD56DWsmYt6fl1yodAuBkebmXxU9DXOHuhU=
+	t=1777436141; cv=none; b=EEuFvYxgPvIgDWSolu+9jFzIW/KKDysdd588UXai+EO/soVzZo/e6PcvkZ82vuaYD+loDcyauq+a8CSBx7IlFpkJR58ugRIEMGyjVngK5VVAGfZAyRzDtgwhTubJfsbK9akE5EPAcf3vyAr2z/FSY3P+/zZ3GkdNnbZG+mqpmKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777436139; c=relaxed/simple;
-	bh=Utc2QGdKsqyPoNlC4WG7Q8Z0HLqtqz0lyRmUliqchBg=;
+	s=arc-20240116; t=1777436141; c=relaxed/simple;
+	bh=c5u3tQmKQRP5OqvEAVk1Zbo39EXKJ4EsRIzIvILoCK4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=u0YWGgdIwK5gMBCXkbfT2BgJPUGHahLrUkYkXMURgASs7CsrVQTeQQZgLYuJJ6YXwEDEKAORONEXEmoZOlTxA0HUb9hzbxlNCMdytSWM2/KugSnzL2p1U8Fte76pGlN/gix7jK1ZOwW7fN4x9DCChC3Etk482tF4lx12X3kqvVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ausil.us; spf=pass smtp.mailfrom=ausil.us; dkim=pass (2048-bit key) header.d=ausil.us header.i=@ausil.us header.b=CSl9p8L1; arc=none smtp.client-ip=209.85.210.100
+	 MIME-Version; b=XPA3FSsf2I/niwpCYHrG293CaqcddtT/Pah8uUC6bwP7OboZKVkwbzAgYwHq2ypXpZ/OBon0sLbFNpWBwYPzi3WaYzzTHIB1tiP4HwZA3CLxP3f74uT5bRPNkAIJTdX6buXKDXfZxW62NqAy9dbdrcjxWrRJ/qrH0QKqRUyAP/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ausil.us; spf=pass smtp.mailfrom=ausil.us; dkim=pass (2048-bit key) header.d=ausil.us header.i=@ausil.us header.b=b6ik6n1V; arc=none smtp.client-ip=209.85.161.98
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ausil.us
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ausil.us
-Received: by mail-ot1-f100.google.com with SMTP id 46e09a7af769-7dbe437b072so6964774a34.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 21:15:38 -0700 (PDT)
+Received: by mail-oo1-f98.google.com with SMTP id 006d021491bc7-67e0d3f288aso7369947eaf.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Apr 2026 21:15:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ausil.us; s=google; t=1777436137; x=1778040937; darn=vger.kernel.org;
+        d=ausil.us; s=google; t=1777436138; x=1778040938; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MhsANxfjmjB7vk5bKYmWUGk+7KV8pJM6GvanWdmMMRI=;
-        b=CSl9p8L1ZdYvcJUgMGmodko6NG/Y+uTlwZ65/oMddTqEne0yzirGG4OmGTKrfU33E1
-         Hg08duwiYFbKdwbJCYqgtfT/2RLErk9fn8+ugYuMUPol2U2aIpfoxdU5vtTxVeMj6tdx
-         vuU6/dfSXd2qFC5EqeJePZwf0uD62oeG/c+DmhFa5z2XAYfsrdfcuO0DD4ciKe2VWQ0M
-         W7RjjnKHERnbSo0dmK5+/HDRhD1hhOwkykK9+BVVPrYxA2RJntkUV85BeOxkg04YgvYd
-         iTM8EHEjUXKovULB62fSVbsW7B0E0vPQhbNeaRhpDd3jtCVszG+1lBcbGsnC1o3jS2QW
-         PtxA==
+        bh=x93/l1w2YfvuQmLZ4l2/nRL+2Tpf+p0vaW0AsgHcapU=;
+        b=b6ik6n1VuHTDSr7xREnr+4+8cWseezKJuWV/Y/NHDyePKuGoCqOfVyGsKYB3xVzfQj
+         0ElA8lJvgFpulRm2dDOcMP/d032OjJ/Ns18mgOJP5vkIRjw6zDxkzO33BsiWOpkiHzkB
+         eeKErA5mkDrty9bDaTJeIXbbrMnQYXebN9tHinosJbkhGf5c76r2bPCeOraOLGJnKPW3
+         BdcWU/upizbcTIn6BjNx6fhwbw3zQYHk/W/DJRhu8S6R74ZEO2qnae2YaE+pplwDpkT+
+         k2yUBpO5Iyj5tAwuIVUjfre2lBlBeSJBgjZ5UDAE9Eg5lofPBWmajNjzQi+6pnBbTVwT
+         Ck4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777436137; x=1778040937;
+        d=1e100.net; s=20251104; t=1777436138; x=1778040938;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=MhsANxfjmjB7vk5bKYmWUGk+7KV8pJM6GvanWdmMMRI=;
-        b=IOoPsvSKWF/JVFikREKVw5BPZrrjrbvMWcyqFeFFDMH521raecmRjy2BQWzSDQHpWs
-         xc+Eq+oIMTXwte/VtHL3MjtXqc3e/sVyrwZ21Ds7w5p0nOuNHCyXx2RcB+MCwPG5D50q
-         /tuFjYYPHMkTn6LJHMhwJL9QZOpCwAgxy+nEr2H1gDubfKnS/oHrUAgGls9d/rw1Hv0e
-         nChJiN5MA71EBtIG2LteyTCVhYJhYKZnqz72Bzl9xR/qh9OWG6wqvAJiiPN9Ipqruz0G
-         05lDh+nDKfl7vX7GnpA75xezphX0vFujDeJ6PU2Q62lRNP8By3FClIOV4qONTtQgBe/R
-         H+sg==
-X-Forwarded-Encrypted: i=1; AFNElJ+mltQ1BdB1aNfEhcS3GRCIi0onUhC7Q1AdeItxBQuvE3fRjIgRdLxArElj/KDUEFRDkqlJ4MlriEqw@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrRzALHnveBm3b0x5NIhqTagVBnlZjCwuoPGOwIYU3+nzG0MBf
-	eouaNi8pgsnurZGDJLn+xpf5A8vMtSLS0v0VUpl83cGGuMvD9AXwpUgG7AoEdde6tQa1Bnk/3dH
-	MLO3JtmN2EK9aBhg/deb4zlK6IrEz8P/MCQ5+
-X-Gm-Gg: AeBDiet1Vc5dggHJULlZ8PoSFZsQpuad5+g5R2Mhu9hBNi+JSpUQssZqYQW0iONhszn
-	LSVfaeUiBXz0hi9GLRYUeamLyD8Ca5xg6j+j0KCVgdl5x5yetVMq9y8IdMq8TzJc4MZyqfetj9i
-	6TBF1fIQ4eAizf32rqkmT5FURT2Dg3yzX/rExdcMK9/pxjj0BYH+mDWHZqT0S9VWGP/E8vWABrj
-	xKbMYaW0R0FwI1utrtGKBNO2W7TJOzsCHXq66AWmMg/wzQnawuJtNd/6hdXJVa18mfjOJEuagW8
-	GlWz+Ct/tjRRTIHAJxgS3WhU5qxEPkxt+DwzROK0+pNOHtO4gu2O6JNOZw8EGv0KyvSAFWfpEuh
-	apPrl/F+qdobjBdXTNhBcbGAwHUCGlSiu557H8HJqpqQ1WMupJEf3DAY=
-X-Received: by 2002:a05:6820:4b13:b0:696:1bda:5dbe with SMTP id 006d021491bc7-6965cbce522mr2941455eaf.56.1777436137366;
-        Tue, 28 Apr 2026 21:15:37 -0700 (PDT)
+        bh=x93/l1w2YfvuQmLZ4l2/nRL+2Tpf+p0vaW0AsgHcapU=;
+        b=jqgbON9OB/OVEK456e/DDcJef5gnGp/FqjY9/8pYrXE4+ashPtoymqEYoghQRvWXBm
+         KOgPbCq3rcb2zcPv+HUBWiAnS3LRM6rBy6iFe5NhxqiejGxyXY/X4D3OgCJGonc6VzMt
+         JREZKJDOK94wvrlE9gqagEbX+NtGw9FN33bF5OD2ydq55m4Ts4kYB397oza0bgNkXgkM
+         2busRDfelsOKqV36m4rpsA3jEoTO5TftY5jpVsW0xZqHChWXQOQXAW/mRNSxY3JV8YED
+         lilb88b7+JIMPSvKiaOLIuvJlINWY+f2H7sFmS4I91trNQ7x5j4la1tv35QEz9Dr9oXo
+         5/eA==
+X-Forwarded-Encrypted: i=1; AFNElJ/eSFoddJTrhxm4iWCufhzjKDq/+2R+pg0WTZOvk38Ofr0uXuwizvJoP0QLseEJdc9Jd3eLOM9ZpmMx@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoCybMhWLfiU67m3CMIMQHH5tBqxgqKI2Bbicdft202B87RiuB
+	4MFFB603OpWNgHRMO6rStGy+TdvKKmmOtcacfCMaT3Vtl/6UDER8sVrGBvxfzZRH5YXGteEV+wk
+	0+3vMmcfw3xCg8Iif63LyqDGB6fiuaFuY77vf
+X-Gm-Gg: AeBDievRdo6PIg1OQf3k2VAfZctisaABQwiz1XeTE1pBKWnQsUcpXSILxU5k8a8g4br
+	LpVs7R58bjL+yiatA2CJBvv9U9M1MuRriVAxmx+ES7rIvahmh5JZpnpkafetB0Wfjq2lD9ek0Sm
+	KC3mqe7Y6lTHprP+jPz/C0r8exw33RzXzPqeNfsWUIMrkRlmx4ek6PSx4aJwMA5EQ7QKCYUGbp/
+	jBPptmEOHh/m3yOrTGkD92it0egCswY49sFsypmrAL8Rwzeu+ZriK16umHVkOS6JOVPOUWQtbjB
+	ruq1+nCwk7L8DajEBXloiUG0xj90aV5kwr+Bkjw6x7+Gs9jOXyrptH0Mqh6B8ZiNkkYWz/ovmB4
+	owlti20qQjL2GG6qo5OpblMatRJe7Ocsad3dHayS1pk0zGOc7sLeWqXU=
+X-Received: by 2002:a05:6820:2908:b0:694:92fe:54f1 with SMTP id 006d021491bc7-6966854819amr1134201eaf.54.1777436138476;
+        Tue, 28 Apr 2026 21:15:38 -0700 (PDT)
 Received: from ryac.ausil.us (207-179-239-100.mtco.net. [207.179.239.100])
-        by smtp-relay.gmail.com with ESMTPS id 006d021491bc7-6966baf952asm41557eaf.9.2026.04.28.21.15.36
+        by smtp-relay.gmail.com with ESMTPS id 006d021491bc7-6966baf952asm41557eaf.9.2026.04.28.21.15.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Apr 2026 21:15:37 -0700 (PDT)
+        Tue, 28 Apr 2026 21:15:38 -0700 (PDT)
 X-Relaying-Domain: ausil.us
 From: Dennis Gilmore <dennis@ausil.us>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
@@ -99,11 +99,10 @@ Cc: Alexey Charkov <alchark@gmail.com>,
 	Jonas Karlman <jonas@kwiboo.se>,
 	Jernej Skrabec <jernej.skrabec@gmail.com>,
 	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Dennis Gilmore <dennis@ausil.us>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: [PATCH 2/3] drm/bridge: simple: Add the Lontium LT8711UXD DP-to-HDMI bridge
-Date: Tue, 28 Apr 2026 23:15:27 -0500
-Message-ID: <20260429041528.558254-3-dennis@ausil.us>
+	Dennis Gilmore <dennis@ausil.us>
+Subject: [PATCH 3/3] arm64: dts: rockchip: orangepi-5-pro: Add LT8711UXD DP-to-HDMI bridge
+Date: Tue, 28 Apr 2026 23:15:28 -0500
+Message-ID: <20260429041528.558254-4-dennis@ausil.us>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260429041528.558254-1-dennis@ausil.us>
 References: <20260429041528.558254-1-dennis@ausil.us>
@@ -114,66 +113,186 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: D51E348F0FB
-X-Rspamd-Action: no action
+X-Rspamd-Queue-Id: 94A0D48F118
+X-Rspamd-Action: add header
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [6.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[ausil.us:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-291287-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291285-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,suse.de,gmail.com,ffwll.ch,sntech.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	R_DKIM_ALLOW(0.00)[ausil.us:s=google];
 	DMARC_BAD_POLICY(0.00)[ausil.us : Multiple policies defined in DNS];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	GREYLIST(0.00)[pass,meta];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,suse.de,gmail.com,ffwll.ch,sntech.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,kwiboo.se,ideasonboard.com,ausil.us,oss.qualcomm.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,kwiboo.se,ideasonboard.com,ausil.us];
+	DKIM_TRACE(0.00)[ausil.us:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[dennis@ausil.us,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ausil.us:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.989];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
+	NEURAL_SPAM(0.00)[0.993];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ausil.us:email,ausil.us:dkim,ausil.us:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email,0.0.0.0:email,ausil.us:email,ausil.us:dkim,ausil.us:mid,a:email]
+X-Spam: Yes
 
-The Lontium LT8711UXD is a high performance two lane Type-C/DP1.4 to
-HDMI2.0 converter, designed to connect a USB Type-C source or a DP1.4
-source to an HDMI2.0 sink. The device can be run uncontrolled or it can
-be attached over I2C, this supports the uncontrolled mode.
+Wire up the second HDMI port on the Orange Pi 5 Pro. It uses a Lontium
+LT8711UXD high performance two lane Type-C/DP1.4 to HDMI2.0 converter,
+designed to connect a USB Type-C source or a DP1.4 source to an HDMI2.0
+sink. The bridge can be controlled via i2c or run as an autonomous device.
+
+The Orange Pi 5 Pro has i2c wired up to i2c6, however there are 10k
+resistors left off of R9 and R17 to enable MODE_SEL, and R27 for
+I2C_ADDR resulting in MODE_SEL going to GND and the bridge let in
+autonomous mode. As shipped I verified that the bridge does not show up
+on the i2c bus.
 
 Signed-off-by: Dennis Gilmore <dennis@ausil.us>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- drivers/gpu/drm/bridge/simple-bridge.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../dts/rockchip/rk3588s-orangepi-5-pro.dts   | 88 ++++++++++++++++++-
+ 1 file changed, 85 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/simple-bridge.c b/drivers/gpu/drm/bridge/simple-bridge.c
-index 8aa31ca3c72d..42c1f3d5ba0c 100644
---- a/drivers/gpu/drm/bridge/simple-bridge.c
-+++ b/drivers/gpu/drm/bridge/simple-bridge.c
-@@ -270,6 +270,11 @@ static const struct of_device_id simple_bridge_match[] = {
- 		.data = &(const struct simple_bridge_info) {
- 			.connector_type = DRM_MODE_CONNECTOR_HDMIA,
- 		},
-+	}, {
-+		.compatible = "lontium,lt8711uxd",
-+		.data = &(const struct simple_bridge_info) {
-+			.connector_type = DRM_MODE_CONNECTOR_HDMIA,
-+		},
- 	}, {
- 		.compatible = "parade,ps185hdm",
- 		.data = &(const struct simple_bridge_info) {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
+index 895d954a9f23..67363709c4ca 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
+@@ -14,6 +14,44 @@ aliases {
+ 		mmc2 = &sdio;
+ 	};
+ 
++	hdmi1-con {
++		compatible = "hdmi-connector";
++		label = "HDMI1 OUT";
++		type = "a";
++
++		port {
++			hdmi1_con_in: endpoint {
++				remote-endpoint = <&lt8711uxd_out>;
++			};
++		};
++	};
++
++	hdmi-bridge {
++		compatible = "lontium,lt8711uxd";
++		vdd-supply = <&vcc3v3_dp>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				lt8711uxd_in: endpoint {
++					remote-endpoint = <&dp0_out_con>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++
++				lt8711uxd_out: endpoint {
++					remote-endpoint = <&hdmi1_con_in>;
++				};
++			};
++		};
++	};
++
+ 	analog-sound {
+ 		compatible = "simple-audio-card";
+ 		pinctrl-names = "default";
+@@ -72,6 +110,19 @@ fan: pwm-fan {
+ 		pwms = <&pwm2 0 20000000 0>;
+ 	};
+ 
++	vcc3v3_dp: regulator-vcc3v3-dp {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&dp_bridge_en>;
++		regulator-max-microvolt = <3300000>;
++		regulator-min-microvolt = <3300000>;
++		regulator-name = "vcc3v3_dp";
++		regulator-always-on;
++		vin-supply = <&vcc_3v3_s3>;
++	};
++
+ 	vcc3v3_eth: regulator-vcc3v3-eth {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+@@ -116,6 +167,24 @@ typea_con: usb-a-connector {
+ 	};
+ };
+ 
++&dp0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&dp0m0_pins>;
++	status = "okay";
++};
++
++&dp0_in {
++	dp0_in_vp1: endpoint {
++		remote-endpoint = <&vp1_out_dp0>;
++	};
++};
++
++&dp0_out {
++	dp0_out_con: endpoint {
++		remote-endpoint = <&lt8711uxd_in>;
++	};
++};
++
+ &i2c1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c1m4_xfer>;
+@@ -217,6 +286,12 @@ bt_wake_host_irq: bt-wake-host-irq {
+ 		};
+ 	};
+ 
++	dp {
++		dp_bridge_en: dp-bridge-en {
++			rockchip,pins = <3 RK_PC2 RK_FUNC_GPIO &pcfg_pull_down>;
++		};
++	};
++
+ 	ethernet {
+ 		ethernet_en: ethernet-en {
+ 			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_down>;
+@@ -350,9 +425,16 @@ &usb_host0_xhci {
+ 
+ &usbdp_phy0 {
+ 	/*
+-	 * The USB3 Type-A host connector is wired to PHY lanes 2/3. Lanes 0/1
+-	 * are connected to the LT8711UXD DP-to-HDMI bridge on the board.
+-	 * dp-lane-mux routes USB3 SuperSpeed to the correct lanes.
++	 * USBDP PHY0 is wired to a USB3 Type-A host connector via lanes 2/3.
++	 * Additionally lanes 0/1 and the aux channel are wired to the
++	 * Lontium LT8711UXD DP-to-HDMI bridge feeding the HDMI1 connector.
+ 	 */
+ 	rockchip,dp-lane-mux = <0 1>;
+ };
++
++&vp1 {
++	vp1_out_dp0: endpoint@a {
++		reg = <ROCKCHIP_VOP2_EP_DP0>;
++		remote-endpoint = <&dp0_in_vp1>;
++	};
++};
 -- 
 2.54.0
 
