@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-291934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291937-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sN+wGShR82lnzQEAu9opvQ
-	(envelope-from <devicetree+bounces-291934-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 14:55:04 +0200
+	id 4Hx0KVNS82lnzQEAu9opvQ
+	(envelope-from <devicetree+bounces-291937-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 15:00:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0B004A2FA5
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 14:55:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B464A3127
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 15:00:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 515C130438DF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 12:54:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 70B8430A5D55
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 12:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307ED413235;
-	Thu, 30 Apr 2026 12:53:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7B741B37B;
+	Thu, 30 Apr 2026 12:53:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="andrU4lK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PiJproqB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B0940F8F4
-	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 12:53:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FBCE402B8F
+	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 12:53:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777553632; cv=none; b=Me9DU2vJD3N3bHeCVIy9I7x5Oq0AXECInBgjZuYqow9KMW6oVqlTByx6KMccNFRNs8iZwxlgc7MJ5lw7aX2i3/a+U/Zt5nqSrbyZeusaAIkFmmooEwE63hkN3ynn8IDsxpnOshFgLmjw+WM2hQ0eTk3d+B/ov919jBrcu+TkX+U=
+	t=1777553635; cv=none; b=p62IbnZJWWb08pwL8UJyPDiNsJnIMgHAK7dio6wOBPKr207E6lNtPafz7rGt9bZZJDFX+DlECSdmFhk9m4ZvwXsPbP7SNpyqaccoslMxkAqT60Rk8j+rT77Dgll3+luII3mNGgqgbtXjjO6hERdSipri9CyXyRUBxrBoK4uqIRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777553632; c=relaxed/simple;
-	bh=jfVeofbM4FsGBMB4nS41bLeAnHwm8WLMQmt6Bs/9Fgw=;
+	s=arc-20240116; t=1777553635; c=relaxed/simple;
+	bh=YQIfS26jvrHPJO+3OEX8X39JX9m56jb+tChw9+nyM+A=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MBttXbTC9K4NEyr61/SajZzdEDENhJeUj7enOny7d6Zj3NYfSoydS+OAVNKB/pAORZAU1OrRuYAMCNVm2UVF07EWjnKmLX26mrRUrVzHnmvXR0sOMkTbeeGlIH9wFXfsiGW0wLUu44jBYZYKJmtNFS95NNDz4dREwceqPHCIVtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=andrU4lK; arc=none smtp.client-ip=209.85.221.52
+	 MIME-Version; b=Gf4IhKqo5dHKKMvNrLLZIZfIk/Oe2mP8smQPgX1e3c9M57HMPYYCMqOoA3CqrSR6lJrVajsCe6ez/73dEHyiM0i1djB6neRWcWSFF3NjIfH3J5ZBY6fTZNFljWq0B7oAYTjoJErAn1SKDrw+5fK7r/+kH1Sbmu+cmpIVEbPOF/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PiJproqB; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-43d75312379so1221699f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 05:53:49 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-488af9fdaa7so5090885e9.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 05:53:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777553628; x=1778158428; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1777553630; x=1778158430; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gTjc6L78xC21KmVadoJAJO3a31crXYGBNgBY8pS3owE=;
-        b=andrU4lK8FSutf+BM6AIdFU/S+2zMtWmNzFhWWhoV2rmxu0yeMomfPXQSQr81BLTW5
-         JSaIeGvyx5MX6rdxVCQrWujSPfdhzPfikUaOyIcJoK+a9YVWUz+CotPBq9lTcWEbwcT4
-         lwrGZQSrHQpEtI2LKkBzeACTpouAvFuBp5sN36pJO0EvpSQTuBeDNdMoGoEoan+53kba
-         c89XU33hf4EMMtU18S3XldsH200CGIeYSbUPuKb5iHzxS1vRreT+XqQoxPWRzieO28jb
-         Yz4latfVWTLAVRp2iXeL4HXXcLB6Qbyvu1dG1YDyJDwWpp5zzeCc+4eO3NhoLGunxizt
-         xbLw==
+        bh=x4PmWsl+VpxDeREtZmv2hm9P+Gs6imFjooqUiVKxd/I=;
+        b=PiJproqB4YSo1d/Hdq3rTIw8WOTQSAJ6981sa4GigbJAvjI4AOEy7Dmxsxr49V5zE6
+         j7lw7/4jfr6ygIB5he1nXb87JnD3io0pCiKU17yptyfv727ZR6GgZcNtuhdqz7aqLwAS
+         WgoVOs+EVJZVesziLOqsyS/dV4YUmNfn/SYWaxwYOeg6OuSDUlITYiKRR0O0+7yMirI1
+         wcLao5uyA7lRsJceJuZ5md2PG1swD4Cg7s0avBQTeGOt1kvKGxsWuNOsMkdx6DX6/kZd
+         hxO4El2igIuSyBRW9+nQU51oOKZRByOH52SZpdAsZ4kIH3/XPQAVFCyYenbJLxMG7UGZ
+         BISQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777553628; x=1778158428;
+        d=1e100.net; s=20251104; t=1777553630; x=1778158430;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=gTjc6L78xC21KmVadoJAJO3a31crXYGBNgBY8pS3owE=;
-        b=glaWKI+SttQ8liC8dFgr4Jnow81W2ngBsXWzSeqSStGF/CNk4AzdcwoQNKBjbP1733
-         RRyS3rnJrNJse1Kz8zr7MKlzhUCXcgyRWagm/PhQhPaTq06ZDsF/QrMASJXqIPO0dDKM
-         JE1r8I+vArJNbUPFf4rdFIU7DD6AW47iJEO/i8xtfdENHMzkNOM87l0glD0882K7Ganu
-         RY7FJiGlMXwLJDGtSBz47qnPw0HRoPBRbdsI6cJNOH1vuzNccAT5jpYfO7z/+sB7t7uM
-         VOqgxsvWn/7aN5GcxBgDEPBmnFFcxYhRL+Ewz+0r/OMvBmTNjFfuWxKhaOhbGldJH/lF
-         yQ5g==
-X-Forwarded-Encrypted: i=1; AFNElJ8Ra1mwS01UPGJ6E/8tQY8BDx4yaUUNhXS82BHqBMx1Zqp1uohzwU9v8CzzLcPNALpjHtiqdyPpHh3f@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeIOtm+W9izGiSZEfECMOG0rhr6MrNKai9SYDBIDK0OjanibZA
-	VFvGn7x+jLzF2nGF9nAbnzJI/IqqgxYE/0n+IF1FiMNM5sroqMc5+ZWZ
-X-Gm-Gg: AeBDievfmSVUO0kKTtiZ4/ssEXgW7FOERgu8QIMfx3sDYZzRqQXatzHAMgGRqVJ7yqM
-	Zi8xBW/YdoqChB1EhgWSiFnFY2UFS0YimSqzE3XoS3UlB5OVc48ZMhn/brvCp+Dr2D3fDj2jrwy
-	YEz26hm5iuoSQ7vBfv4Q18wH7plnFWfJhm47ZC5NL8OgJrq0mKCRh4SdDesu+Yk+ka5z4ZqqUPK
-	XbxzpXroYQtzoXVt0xNipPIl+81nC9KLpfn36QIs53mS/pqetoWT8wKuErJKezKVPMpdVhvFQMz
-	Vmukjgz5NrU2vzJ3UNSVE4Fngj7/eZhRCo8+5w1ri4lWR24kRL0TSWhHMgq6rEZYAUDIB6pPZVv
-	LOGCrvW+a31Y5zSoho4P72VZo6KHbJvWnDq9byEBZkg0+BORXAk/KZ0V+3WhbLG9pzpMtH0uFX2
-	uJM2uPn/3r9cfJSBRwGlqFUfVXeBrqMoLGo46dV90=
-X-Received: by 2002:a05:600c:3e8e:b0:48a:5339:a46 with SMTP id 5b1f17b1804b1-48a86069e04mr35589725e9.9.1777553628360;
-        Thu, 30 Apr 2026 05:53:48 -0700 (PDT)
+        bh=x4PmWsl+VpxDeREtZmv2hm9P+Gs6imFjooqUiVKxd/I=;
+        b=joMhEovT/Kzl5sEnW63b+Q1v5KHBJIBlXiKpE8uvzrcubgGXqs6WB3QV4h/cXwyDZf
+         96/6y/aHVmdv7IuAesXFHz1+PHg02HYfTBl8TUXWxIZ23rmPTaLTv2B/AwYLoKZNYE9Q
+         p242pzILgqsglicG+qOx7lox9wO4+e3mVm+rwnEM6PE7IjKKn07CFb8lOYsH+57g/5HH
+         Osd1ZX/MRna5cU8SQSs6zcFWu+e/ElKRagQrxUMIyOBchHDo4EJUcUtXRItk/eozu6VI
+         +4RBUjQQFn1ZpguEP3tn1NgYjC89slyHYu7uXe24W9lfmKXBDVYNk6ScubUyWGwTLYsp
+         iCgQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+IwY1CqO8bfxkf96rUgRYU3dO849WpO0zjNTr1nJG78E/lazNlD4naMW9ee2gBHtaXfD1mghzD4N8I@vger.kernel.org
+X-Gm-Message-State: AOJu0YzX00GsC9cwtQU8D8wv7I+/x20Jp+aHSGbYlukAa5UZXZWWAgOE
+	QlV3lXSef5LRkd2cf88OCHkrW/nYiHJ31El1g4DizPgfCiKHAs9J6ftY
+X-Gm-Gg: AeBDieukMSZtpS88cfX5iTGA9cNe3l/O1wmC06U1JpyJ8NQ0DQJpB2xQZsM7qWy+rvO
+	FhV3nNaOm7F+6NuGFYfb0ge+bcpp30/Gvwx1G8fYoGgzxd9W0zXV6uwKRjFDmzKQtfLYMysIIXh
+	u3Tl5E6Qh4wa/LZZNDXYlbOlJ8ldP2XC6x5O5PYUSCXscsnbn7sP5JFcvj1hHnj0Rw4tFLelUOy
+	lflRyh7jdy3efUYRMOMwGCI9YTWNOB+8rFYqwuFOHNdKrvU9+qtO0mAnvkVgQm1/ybFX+0Wbnim
+	FNa+SuhXEq5+ux05narFzGB09O4PYQrLQ1mBd4CGq2f0zM5urRy4M5lFSUvoaJR2Vjsj6ksipCa
+	s7gFJNYyvdXga490mP5TB4Ezoe2StH3UTFh+m3nG0NwFe9i79A6/Vwo2exMJqYLpkodgmo6OqKc
+	tiWuF4V1g/ExfyVfKgizpfUSLpmUpw+JOvn6rqvCM=
+X-Received: by 2002:a05:600c:c049:b0:48a:5546:61a1 with SMTP id 5b1f17b1804b1-48a844683edmr34819515e9.15.1777553629708;
+        Thu, 30 Apr 2026 05:53:49 -0700 (PDT)
 Received: from biju.lan ([2a00:23c4:a758:8a01:342:901:e785:f7d2])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a7c3057ecsm40995825e9.20.2026.04.30.05.53.47
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a7c3057ecsm40995825e9.20.2026.04.30.05.53.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 30 Apr 2026 05:53:48 -0700 (PDT)
 From: Biju <biju.das.au@gmail.com>
@@ -89,9 +89,9 @@ Cc: Biju Das <biju.das.jz@bp.renesas.com>,
 	linux-kernel@vger.kernel.org,
 	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
 	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v3 1/6] arm64: dts: renesas: r9a08g046: Add OPP table
-Date: Thu, 30 Apr 2026 13:53:05 +0100
-Message-ID: <20260430125342.439755-2-biju.das.jz@bp.renesas.com>
+Subject: [PATCH v3 2/6] arm64: dts: renesas: r9a08g046: Add ICU node
+Date: Thu, 30 Apr 2026 13:53:06 +0100
+Message-ID: <20260430125342.439755-3-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260430125342.439755-1-biju.das.jz@bp.renesas.com>
 References: <20260430125342.439755-1-biju.das.jz@bp.renesas.com>
@@ -102,136 +102,152 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: D0B004A2FA5
+X-Rspamd-Queue-Id: 45B464A3127
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-291937-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	TAGGED_FROM(0.00)[bounces-291934-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
 	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	NEURAL_HAM(-0.00)[-0.434];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
 	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	R_SPF_ALLOW(0.00)[+ip4:172.105.105.114:c];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,0.0.0.200:email,0.0.1.44:email,0.0.0.100:email,0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.168.156.16:email,0.168.77.240:email,renesas.com:email]
 
 From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Add OPP table for RZ/G3L SoC.
+Add interrupt control node to RZ/G3L ("R9A08G046") SoC DTSI.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
 v3:
- * New patch
+ * New patch.
 ---
- arch/arm64/boot/dts/renesas/r9a08g046.dtsi | 44 ++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+ arch/arm64/boot/dts/renesas/r9a08g046.dtsi | 90 ++++++++++++++++++++++
+ 1 file changed, 90 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/renesas/r9a08g046.dtsi b/arch/arm64/boot/dts/renesas/r9a08g046.dtsi
-index 236a675231e5..e52498b3a745 100644
+index e52498b3a745..232a0e299df7 100644
 --- a/arch/arm64/boot/dts/renesas/r9a08g046.dtsi
 +++ b/arch/arm64/boot/dts/renesas/r9a08g046.dtsi
-@@ -14,6 +14,42 @@ / {
- 	#size-cells = <2>;
- 	interrupt-parent = <&gic>;
+@@ -210,6 +210,96 @@ pinctrl: pinctrl@11030000 {
+ 			/* placeholder */
+ 		};
  
-+	cluster0_opp: opp-table-0 {
-+		compatible = "operating-points-v2";
++		icu: interrupt-controller@11050000 {
++			compatible = "renesas,r9a08g046-irqc";
++			#interrupt-cells = <2>;
++			#address-cells = <0>;
++			interrupt-controller;
++			reg = <0 0x11050000 0 0x10000>;
++			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 534 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 505 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 510 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 511 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 512 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 513 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 514 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 515 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 516 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 517 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 518 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 519 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 521 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 522 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 523 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 524 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 525 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 526 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 527 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 528 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 534 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 236 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 296 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "nmi",
++					  "irq0", "irq1", "irq2", "irq3",
++					  "irq4", "irq5", "irq6", "irq7",
++					  "irq8", "irq9", "irq10", "irq11",
++					  "irq12", "irq13", "irq14", "irq15",
++					  "tint0", "tint1", "tint2", "tint3",
++					  "tint4", "tint5", "tint6", "tint7",
++					  "tint8", "tint9", "tint10", "tint11",
++					  "tint12", "tint13", "tint14", "tint15",
++					  "tint16", "tint17", "tint18", "tint19",
++					  "tint20", "tint21", "tint22", "tint23",
++					  "tint24", "tint25", "tint26", "tint27",
++					  "tint28", "tint29", "tint30", "tint31",
++					  "bus-err", "ec7tie1-0", "ec7tie2-0", "ec7tiovf-0",
++					  "ovfunf0", "ovfunf1", "ovfunf2", "ovfunf3",
++					  "ovfunf4", "ovfunf5", "ovfunf6", "ovfunf7";
++			clocks = <&cpg CPG_MOD R9A08G046_IA55_CLK>,
++				 <&cpg CPG_MOD R9A08G046_IA55_PCLK>;
++			clock-names = "clk", "pclk";
++			power-domains = <&cpg>;
++			resets = <&cpg R9A08G046_IA55_RESETN>;
++		};
 +
-+		opp-37500000 {
-+			opp-hz = /bits/ 64 <37500000>;
-+			opp-microvolt = <1000000>;
-+			clock-latency-ns = <300000>;
-+		};
-+		opp-75000000 {
-+			opp-hz = /bits/ 64 <75000000>;
-+			opp-microvolt = <1000000>;
-+			clock-latency-ns = <300000>;
-+		};
-+		opp-150000000 {
-+			opp-hz = /bits/ 64 <150000000>;
-+			opp-microvolt = <1000000>;
-+			clock-latency-ns = <300000>;
-+		};
-+		opp-300000000 {
-+			opp-hz = /bits/ 64 <300000000>;
-+			opp-microvolt = <1000000>;
-+			clock-latency-ns = <300000>;
-+		};
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-microvolt = <1000000>;
-+			clock-latency-ns = <300000>;
-+		};
-+		opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <1000000>;
-+			clock-latency-ns = <300000>;
-+			opp-suspend;
-+		};
-+	};
-+
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-@@ -24,6 +60,8 @@ cpu0: cpu@0 {
- 			device_type = "cpu";
- 			next-level-cache = <&L3_CA55>;
- 			enable-method = "psci";
-+			clocks = <&cpg CPG_CORE R9A08G046_CLK_IC0>;
-+			operating-points-v2 = <&cluster0_opp>;
- 		};
- 
- 		cpu1: cpu@100 {
-@@ -32,6 +70,8 @@ cpu1: cpu@100 {
- 			device_type = "cpu";
- 			next-level-cache = <&L3_CA55>;
- 			enable-method = "psci";
-+			clocks = <&cpg CPG_CORE R9A08G046_CLK_IC1>;
-+			operating-points-v2 = <&cluster0_opp>;
- 		};
- 
- 		cpu2: cpu@200 {
-@@ -40,6 +80,8 @@ cpu2: cpu@200 {
- 			device_type = "cpu";
- 			next-level-cache = <&L3_CA55>;
- 			enable-method = "psci";
-+			clocks = <&cpg CPG_CORE R9A08G046_CLK_IC2>;
-+			operating-points-v2 = <&cluster0_opp>;
- 		};
- 
- 		cpu3: cpu@300 {
-@@ -48,6 +90,8 @@ cpu3: cpu@300 {
- 			device_type = "cpu";
- 			next-level-cache = <&L3_CA55>;
- 			enable-method = "psci";
-+			clocks = <&cpg CPG_CORE R9A08G046_CLK_IC3>;
-+			operating-points-v2 = <&cluster0_opp>;
- 		};
- 
- 		L3_CA55: cache-controller-0 {
+ 		sdhi1: mmc@11c10000 {
+ 			reg = <0x0 0x11c10000 0 0x10000>;
+ 			/* placeholder */
 -- 
 2.43.0
 
