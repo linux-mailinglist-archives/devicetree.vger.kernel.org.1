@@ -1,228 +1,151 @@
-Return-Path: <devicetree+bounces-291959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291961-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +EqOH79g82lT1wEAu9opvQ
-	(envelope-from <devicetree+bounces-291959-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 16:01:35 +0200
+	id SNWJFxli82le2AEAu9opvQ
+	(envelope-from <devicetree+bounces-291961-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 16:07:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 360C34A3CB3
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 16:01:30 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D82ED4A3DA2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 16:07:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1ED483018591
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 14:01:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1E1C53016521
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 14:07:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85CF5428838;
-	Thu, 30 Apr 2026 14:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71B39407575;
+	Thu, 30 Apr 2026 14:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UF30Fap2"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XRqQ7vFu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C997B40B6F3
-	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 14:01:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F6AB40B6DE;
+	Thu, 30 Apr 2026 14:06:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777557687; cv=none; b=nnPgmW1v2crAlsTlXX1Jj7l0bLBwJkEo4vTXphxHF5AUERBUloqb7gIn8c5lCT0GWQvWsS1oRj2b6/Ru5tefjSzxFivpq9xOu9SBNrZb0uMyXl0G2UgOCieYqOE01jmLtkgsh34UyHNi9XB9s3fkEgV5jYWrQtet2oyS/73ZviA=
+	t=1777558022; cv=none; b=WGpuXwADjws1jn3Ei5zkcELXESzpDd6/sTNr9XOn4yQ8FjFrasXubtSFZ/eYZO1cdhmyyDD9yhePK0C2n8xY4ErtyIudw8iJW7s54bW0gnHqLFUEr5IPO/IwlQXl6cOqfgv5HpxSs6ktaTEer7jzKF/UXKkKAKMVNqFCP6XI94A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777557687; c=relaxed/simple;
-	bh=msv4UKCWnzRJ8AaUkkjBcemw+RJMUndgSk28nTFccU8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W4eZxMT+Qe2lZuAHVN7p8l/jpXEn0Sd4pe3TG9WvNKqqG7Z0FaVF5G//jVXYB+/pXADE/E0MXxXoMzSsrW03qNhU3H8sI6hlJyJzrLjl240SmyEWAIIfygm1b4PkjYZ3JTETOqjNEUgClrs1mmvppvFVy/cNa/GTcrr7YdhDD+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UF30Fap2; arc=none smtp.client-ip=74.125.82.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f50.google.com with SMTP id a92af1059eb24-12c19d23b19so1321364c88.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 07:01:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777557685; x=1778162485; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=qfZbAXfxGOXaCq4/H3CYpwcnIHDGtx5biK9MXIffcuI=;
-        b=UF30Fap2OP/jPoGwTfeqM9oMj9KBgS0zZmZ5USk1NV+1Oe9G+Vy7x9at21mo4KtAoe
-         /BM46uzhZf869bMOEhOlUfQXxdQGAbl+JcR4Yzac7G756qiC4GDj0Qk9SPww7H1Zz/yd
-         LSNTCXEm+xdKYA4Znod+rk2sFfkeSEBRPFKNsOER9UIF60sVisQhntf0fNgc3sX8MdLj
-         80tnux1/nkHMS7CVjm3SRPna3aN+iKueC9q2NtoOJ2fziVRgkOpleDNV9jANMCMGIFWE
-         T9YRz+SqlADevINb6C4eq2RsuO1XkAuj4PJdDwXG0CskWEzPmevVc6NDOOilhw0FYAXg
-         CVwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777557685; x=1778162485;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qfZbAXfxGOXaCq4/H3CYpwcnIHDGtx5biK9MXIffcuI=;
-        b=ZM2KpxFUlW/o5NdlekP7rghBmvvb/izWKJha2AohTKfqV1cPBaOUX9v6EAQMxnVoQJ
-         1wUY4yPYPYH/Qmsj+e59m3BPfQBJtyVxU1rg/yPt17QGK1MQ+fSl97pqis4I11W53sWr
-         tbbUQtYjNcRRQW46yyM4zcYuGvmE9fOfqyOuowM7cfysRH7isA9YMsyNvH7S3H30Ll8u
-         iyUBkyzAOHj5mTbeLucS5ulTi8qlvWmgU1zd+FnnHaygCHoYM4k/N0kVu2gPzT8ccr4I
-         gSl6Q7afQWLQCS/2oyB6koT8GOKo0rsi5Y7zQrSiyShK5kx/JiyMKnFklu+zt5OT80Sk
-         ZzVQ==
-X-Gm-Message-State: AOJu0YwCbpmVGQ5lu1vB27UciwXIfus2nt0HKAGtYLgY+DrGuaSFToDh
-	diSAZQPCc6744Ggn4Zgqoorp1KEoqMdAIOL+0xeGKz0baFPHUZtvs5Uo
-X-Gm-Gg: AeBDiet6aAeh2+DaTLuSlPqr5hAY+YMVJzibPlmzkCAUPxthXcYgyIPuyG6Fmd7WdU3
-	zhETzvvS78q+ryC76n2n3z16kgs3Qg3t986CYLiUEfTFH20NQoRYjVb+/++Qg3ZJJGvj/EW40VE
-	QXrYaaRBkEMmH4FlBvLHpzy4kUnH1uaH5Uqo13QeG7V42NelRMdSnRcXL9FURBP7bC1/hPKYBHu
-	G1M9d8T9af/XK6eqkc4E2fzbJL0YqfpY0pgPg+Qj9EZRpSbjKlK+A+OlkL+Y986adZFVrrtUwKs
-	70mZbwgiUmrCHQi8sCUPXr1yXb1hA6ukXT4f3gGP8nFOJfYFij5bvfAbjR+NmKxHIrkyP3Ar07n
-	QTFDmY9az40ETG3sHb2ED2vNChA5HuPaV/FlQamNl41SnO8Wm1QY+4tcl7XDbhZ8Mxba32j61if
-	HTO08EwD/rsaTC5Gdb5SzxsUYgG58Ax16cZ1wcx7dHydEGDWXCorV3e4dJrugQLZnbekZ8yQRsm
-	d7vDuaJPRo=
-X-Received: by 2002:a05:7022:1702:b0:12d:ccf5:271c with SMTP id a92af1059eb24-12deace0f72mr564658c88.22.1777557684718;
-        Thu, 30 Apr 2026 07:01:24 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12de321df36sm10222426c88.7.2026.04.30.07.01.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Apr 2026 07:01:23 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <f3b8d049-744c-42ab-a641-086bc1726b24@roeck-us.net>
-Date: Thu, 30 Apr 2026 07:01:22 -0700
+	s=arc-20240116; t=1777558022; c=relaxed/simple;
+	bh=tU+0UxDytiVL+yVVVe0/BtP3SVKh0FV94j6KFD2OP/0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nk8KlQ4cPRgdV4ZXZkzrIdGlS0gvl86JHxLutoYHsSXrpLYNpkHSV7CwyTh71Q4tfl2Sq5mpiKtmXozPnYWIDYqvZE3tUqjLqCdoLznu4Jz/p5Qg0X9kEyxasYRYAcH04Vy4bho+armN1SaOqTFHR81JQeHC27UXFY5hUHrvx88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XRqQ7vFu; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=odfisOKLb+4yvBy7AJ37qHBwXC8cw5zHJIG7y4mEJ/0=; b=XR
+	qQ7vFu0LANTE4mm9ix8Cgztidd9/ZquCyUK52yVFPuQkm5lA+iProb2QG98KcUuj8BRdUyali4w+T
+	zG9zkQXaIC2wUnl+2rx33fzfb3xFiypXO6j5ybYInFDr+7zSh6p2Ise5RUbF307L3xY6+bXOi7Sma
+	TbT+nrZPd4U9qIU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wIS2J-000gvp-5P; Thu, 30 Apr 2026 16:06:39 +0200
+Date: Thu, 30 Apr 2026 16:06:39 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	Mikhail Anikin <mikhail.anikin@solid-run.com>,
+	Alexander Dahl <ada@thorsis.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] arm64: dts: imx8dxl: Add SolidRun SoM and
+ HummingBoard
+Message-ID: <d0c9d2c9-3743-4ee6-a2d7-692118903141@lunn.ch>
+References: <20260409-imx8dxl-sr-som-v2-0-83ff20629ba0@solid-run.com>
+ <20260409-imx8dxl-sr-som-v2-3-83ff20629ba0@solid-run.com>
+ <8efbafe3-0a8a-4005-960c-e8fe62cee719@lunn.ch>
+ <bd2e73c5-2e61-4ea1-ab3b-42a6573b31f8@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] hwmon: (pmbus/q54sj108a2) Add support for
- q50sn12072 and q54sn120a1
-To: Brian Chiang <chiang.brian@inventec.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org, Jack Cheng <Cheng.JackHY@inventec.com>
-References: <20260429-add-support-for-q50sn12072-and-q54sn120a1-v7-0-f1f83d2039f7@inventec.com>
- <20260429-add-support-for-q50sn12072-and-q54sn120a1-v7-2-f1f83d2039f7@inventec.com>
- <mhguhlt5gi7sg7qsgetsizdslm2z4vdhlgag55bqjnq3a2kz24@iafh7hhezp4l>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <mhguhlt5gi7sg7qsgetsizdslm2z4vdhlgag55bqjnq3a2kz24@iafh7hhezp4l>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 360C34A3CB3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bd2e73c5-2e61-4ea1-ab3b-42a6573b31f8@solid-run.com>
+X-Rspamd-Queue-Id: D82ED4A3DA2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_FROM(0.00)[bounces-291959-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[roeck-us.net];
-	RSPAMD_URIBL_FAIL(0.00)[inventec.com:query timed out];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,davemloft.net,google.com,redhat.com,solid-run.com,thorsis.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,microchip.com];
+	TAGGED_FROM(0.00)[bounces-291961-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RSPAMD_EMAILBL_FAIL(0.00)[cheng.jackhy.inventec.com:query timed out];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,roeck-us.net:mid,inventec.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[]
 
-On 4/29/26 23:58, Brian Chiang wrote:
-> On Wed, Apr 29, 2026 at 11:29:37AM +0000, Brian Chiang wrote:
->> From: Jack Cheng <cheng.jackhy@inventec.com>
->>
->> The Q50SN12072 and Q54SN120A1 are high-efficiency, high-density DC-DC power
->> module from Delta Power Modules.
->>
->> The Q50SN12072, quarter brick, single output 12V. This product provides up
->> to 1200 watts of output power at 38~60V. The Q50SN12072 offers peak
->> efficiency up to 98.3%@54Vin.
->>
->> The Q54SN120A1, quarter brick, single output 12V. This product provides up
->> to 1300 watts of output power at 40~60V. The Q54SN120A1 offers peak
->> efficiency up to 98.1%@54Vin.
->>
->> Add support for them to q54sj108a2 driver.
+> > Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> >
+> >     Andrew
 > 
-> Greetings, I received the feedback from Sashiko for this patch:
+> Thanks!
 > 
-> ```
-> This isn't a bug, but the commit message only mentions adding support for
-> the new modules. However, the patch also includes several other changes:
-> adding PMBus locking in the debugfs read/write paths, fixing the
-> WRITE_PROTECT restore logic, modifying the configuration for the existing
-> q54sj108a2 module, and refactoring the device identification logic.
-> Could the commit message be updated to describe these additional changes,
-> or should they be split into separate patches?
-> ```
-> 
-> I'm wondering if it is more appropriate to split only `fixing the WRITE_PROTECT restore logic` into separate patch? Since disabling WRITE_PROTECT was introduced in previous commit. And maybe keeping
-> other changes Sashiko mentioned in this patch and record them in the commit message?
-> 
-> Please let me know if you have any suggestion, thanks.
-> 
+> I don't know how to keep this partial review for v3, so I will send it without.
 
-Sorry, I seem to be missing something. I dont understand the logic above.
-What does fixing a bug have to do with how or when it was introduced ?
+You can add my Reviewed-by. It is on record in the archive that it
+only applies to a subset.
 
-The missing lock in debugfs functions is a pre-existing bug, isn't it ?
-All pre-existing bugs should be fixed first in separate patches so they
-can be backported.
+And in general, nobody can know the whole kernel, all the different
+subsystems, and the details for all the DT bindings. So i would allow
+some fuzziness for Reviewed-by: for a DT patch.
 
-Please use guard(pmbus_lock)(client) instead of pmbus_lock_interruptible().
+Interesting, an Acked-by: might actually be more appropriate.
 
-Also, your patch does not apply anymore. Support for q54sn120a1 was already
-added in a separate patch. Please rebase your patches to v7.1-rc1.
+    Acked-by: does not necessarily indicate acknowledgement of the
+    entire patch. For example, if a patch affects multiple subsystems
+    and has an Acked-by: from one subsystem maintainer then this
+    usually indicates acknowledgement of just the part which affects
+    that maintainer’s code. Judgement should be used here.
 
-Thanks,
-Guenter
+So how about:
+
+Acked-by: Andrew Lunn <andrew@lunn.ch>
+
+and you can take your pick :-)
+
+    Andrew
 
