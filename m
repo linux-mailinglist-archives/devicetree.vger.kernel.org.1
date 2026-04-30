@@ -1,176 +1,211 @@
-Return-Path: <devicetree+bounces-291796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291797-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0LRnLDYL82mSwwEAu9opvQ
-	(envelope-from <devicetree+bounces-291796-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:56:38 +0200
+	id oCLWAksL82mSwwEAu9opvQ
+	(envelope-from <devicetree+bounces-291797-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:56:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ADE249EF37
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:56:37 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B9C49EF54
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:56:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5B8A1300B44F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 07:56:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 815F230215BB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 07:56:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 676C43FB055;
-	Thu, 30 Apr 2026 07:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8350D3FB7FA;
+	Thu, 30 Apr 2026 07:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AYsaJNX/"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="nCcSEF8W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013032.outbound.protection.outlook.com [40.107.162.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4432C3E1D18;
-	Thu, 30 Apr 2026 07:56:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777535795; cv=none; b=jZG8fRHFt2pNJqmvPrHcegEbcKRvEIIo92b/BWeGvW97J8bFUaA3u7L0NY66Sv8mpAHyoIIX6Kb9pd/TXKyVr5bw8OYVHCRtFRxC+VLThYTU3//7VBPG0VcmRGk/dKpJNWnncHMrX0FjXVvseWY1YZJle+2h9EwV8VvTX1oMp9c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777535795; c=relaxed/simple;
-	bh=izexGcIwdtyGTJHND8E/q0tfWCcSCGUGo5HOHm0zPtM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OOdWZv3p7IvaDo2qC2pcMnd+0+ylapEHmJZGHvi/+JIUAfdYvAJ0wSaFZYI8vF/qHhPkaA9z4Mr+QFWQgUWTvVqxmi3r3/X0K0TbDv9qa9p2x2+o+WdCbSI0fzLX8Clz3L4lVo7bJ+Q2wef2qmKkat4J0RhrIBE66kfC/VfEXtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AYsaJNX/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EB91C2BCB4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2519D36E467;
 	Thu, 30 Apr 2026 07:56:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777535794;
-	bh=izexGcIwdtyGTJHND8E/q0tfWCcSCGUGo5HOHm0zPtM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AYsaJNX/CQOjYCeNvICWroD8akoGwIQ0LoaykxGr7zvn7J4IxIr1BkgyeKU4iVQHY
-	 NhsBJBadIh1ACEsyTqGpta4tqEoZhSnFbUI0yrLE9PbYcpHyPqB8JX4cW8F/nWonh6
-	 9xklaskRHq/BL/MYOSBqYwKSXLtK4ZtIlZURMU7pkxiNgLyJ4fDVERusTpNIY0Q/Zu
-	 U/9w2kWPPLhnaDcVPwqcA6qD0dCNj5qx89YTzstIrB7HZ48snF49+0mSRdNlElJjdz
-	 TAANz3dOsVqx/fUmqNLIajoVxKpfWyBkVRax6niQuZM+0OJaR90tdD+36HYhecNmyO
-	 R9x5PrUeQAFVQ==
-Date: Thu, 30 Apr 2026 09:56:32 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: syyang@lontium.com
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	andrzej.hajda@intel.com, neil.armstrong@linaro.org, dmitry.baryshkov@oss.qualcomm.com, 
-	maarten.lankhorst@linux.intel.com, rfoss@kernel.org, mripard@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, tzimmermann@suse.de, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	yangsunyun1993@gmail.com, xmzhu@lontium.corp-partner.google.com, xmzhu@lontium.com, 
-	rlyu@lontium.com, xbpeng@lontium.com
-Subject: Re: [PATCH v3 1/2] dt-bindings:bridge: Add Lontiun LT7911EXC eDP to
- MIPI DSI bridge
-Message-ID: <20260430-gainful-hopping-quokka-da7e7b@quoll>
-References: <20260429040541.3404116-1-syyang@lontium.com>
- <20260429040541.3404116-2-syyang@lontium.com>
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.32
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777535797; cv=fail; b=AmC1w9E31Sqiu1Ej/wOVKPTJfSJZ+XyyEb2U04LfsE+DC3CCC0PbWCGVIlJaWYymP8D9xunkjBOxdojNNZV68z5rqZVYFCtAI8vrYsQo52AHYduEVn5GalnbsjqZoz2+9oU6TgHeqMOFPYf88wXYb7X8B/R1DMTFupl5w3EApJ8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777535797; c=relaxed/simple;
+	bh=dBPB6CE5c9MXAhMYc6QfAXGrokGS7r3aI0nC+ddTiNM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=FAYm9teS1LjO7jJj1GPawUzLWiYmGFM/92d6QeS7jbH5ojefxK/n8xEUNjCroq0OKrXmFHC8PKY42u2Tf3fsRlik27BdiVsfm/IjFNvK93LjMS8/5LKRaOoXT1KyCNyNHmLQ8faFjdBrEHuMph7yihpccLFA5dDEB3tw7Xrwyz4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=nCcSEF8W; arc=fail smtp.client-ip=40.107.162.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kChlr7PaY3841j49e9Epq/HgKGkvMT/Kj+3hLnYiRYnPtKWUbdYIOi4uCgx+pfkve6hyETHXwCH4FJYQ1FC/FmF/lNa+x8evoCegKWvIjcaUxy/2C7ARKXRh41cPa557r4bCw00q4vHSVs8NKckNzXJd6k/LbUAEatNt12kTnWp5Reo8ZKcSDFySCRJo1sRD1ccCpcuYwjacj2gJg2kyn353W2vmos0pOhxsvAQg289MOFB2V91/N2EFaBtxfukjWDBlJ9F8dzMWWfyVRgZBOnHb+Jtb3JWs5OoS1xJoTJndbJwXDE1SnCQrBfTMc1Ke/DfNRJdKgMu+c+Y7y5I1dQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4tikxytgc7wHISLx86kQqo3ef3gAydm6SUl7ZcMbu+w=;
+ b=kYYEeTQo6lFUztKuM9ztitzmwYHibHV+fY9BkH2jbr9/0Q4+xwx7nqssbAS1pVVjVcIiv+gycWfHP/IBLTfBdNCAR1zjYvRhHzyyduxkXr43p9fY2j21QrpWyC3txO6Nm9o65mAKroHovz0g7XMSLc3x2yO9V0izZtpMWWQd8Q5zw+wHj4eXsWqpfg709F6S3zjQj03nvWzvymxOR6rrOP4bYEpX5SPlZoJLA7btzHp/vURzcLZ9kT5nZ5NyvEOQpC0iqQe+446oBcyTb6Bg+YHjW7AP3XJKe/pcwGMCcDDCDFid252IoCVlgJqctMFqi1nLQjbKsBUskwWMWr/AIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4tikxytgc7wHISLx86kQqo3ef3gAydm6SUl7ZcMbu+w=;
+ b=nCcSEF8WdRtNGrrkofmAvjocyKTdw4fcBzjF6GkmLonC8OkUaClASroEXoEyvy7HrDEo7EXB0B86BYt/XpUROxvMxWAQbgPoI35NMJqr6nsGEUj51TuMW/o3RC9Iok1GBIdLsSJF8iPpT27ytrCUvJxb67FAX9GBMt7o1+KRCddORw9rtFWVYEC8LvHCMsXEAusYNQKrSkj7MMPiYyg2u1409jRaxHexdDCYnk++ACj00Bnr9d0OHogipw5Skgti4Ex3wlKmGPG+gG74p1I/4yMDTf0oSaWOi/r22nltHxezsdHnTQFBA6E/bEMhzd95IUwvG2V5/mLy3h/Svmo8SA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB7821.eurprd04.prod.outlook.com (2603:10a6:102:c5::5)
+ by MRWPR04MB12119.eurprd04.prod.outlook.com (2603:10a6:501:97::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.19; Thu, 30 Apr
+ 2026 07:56:30 +0000
+Received: from PA4PR04MB7821.eurprd04.prod.outlook.com
+ ([fe80::67dc:4bd2:8552:9b50]) by PA4PR04MB7821.eurprd04.prod.outlook.com
+ ([fe80::67dc:4bd2:8552:9b50%5]) with mapi id 15.20.9870.020; Thu, 30 Apr 2026
+ 07:56:30 +0000
+Date: Thu, 30 Apr 2026 15:58:40 +0800
+From: Robby Cai <robby.cai@nxp.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	s.hauer@pengutronix.de, festevam@gmail.com, shawnguo@kernel.org,
+	martin.kepplinger@puri.sm, kernel@pengutronix.de,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mq: Correct MIPI CSI clocks
+Message-ID: <20260430075820.GA3539725@shlinux88>
+References: <20260417110200.753678-1-robby.cai@nxp.com>
+ <20260417110200.753678-2-robby.cai@nxp.com>
+ <aeIX-YbSwhmuJwst@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aeIX-YbSwhmuJwst@lizhi-Precision-Tower-5810>
+X-ClientProxiedBy: MA5PR01CA0060.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b8::7) To PA4PR04MB7821.eurprd04.prod.outlook.com
+ (2603:10a6:102:c5::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260429040541.3404116-2-syyang@lontium.com>
-X-Rspamd-Queue-Id: 4ADE249EF37
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB7821:EE_|MRWPR04MB12119:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0915a502-0f59-4524-9e84-08dea68dfd3f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|19092799006|7416014|1800799024|376014|52116014|22082099003|56012099003|18002099003|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	IejdUvLdfebZY83L2Wak3AENgh4slBXYKTfu11FdrvtcH0iXaZrfZWsLvNWjiJuprC3i9NguGSb8+QYjGT64BzZuzOVJgRY77jlVqDiGsRnXq8oVhiaZ2U213wIbsm2l80h85WkksVSLq59rLWYr69uUIhSFIP5LOfFwOYmFU4bbrWeJlatzTnWSBegO6kAMPFXrMtFwJDLGHVLdECMfqZh+xoJ2/L+Y5W43Mvs2dOnXTv34BCFaMvLgjD8gLi3PBgyVqQrivClT+kiwDL+udkAUHWFYhEDgwOC+RarnE/SsV8ScAo5CjiVmdArH2Oi+KrZxe5kcUVYkjSg1DR0cv4t+uSuT3zrHDGMqhlwmQ60JFZOg6FzHVEUSHPngx5saZ0imdMuqo4f+V5f6KPqUDvm4AJ71k7/X1TdCKWIyukuCwHAnYXf9WpidYx+Z898CMe+/0RUosOKctOKhwimBxf4gK9n7qiM2XemguzoT5OXqF43voRXBj0RYzHgt5D8/uO5oUyv3Hj1LdCyYxgQMYfYBhd6VtKs2mXOL3oSJ7GIV6kqi4Z0VEL/9azkHORyhR/bmvEkzwJ6USOnZp4y6CDbSan9UCObZ8ffePTEyDsdBvSQGV/woQQ5CHMXbqHmoQxW0VFvo7qZ4ZIq1/duFsJzeEZzPYs0gHxA8wJ2Zn4S4QniIjSIK/fQbqQsWZsCOAlvdzG7OEI/L2XAYnqXG2QpDAqD/cL/GHT9FY3pNLyd1g0vOtkQmgo8ekobgyuLh0V/Yk67AAXrElPI3ntTmn3WsXAo2tYGKZLfev9rEpLs=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB7821.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(7416014)(1800799024)(376014)(52116014)(22082099003)(56012099003)(18002099003)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?L7uE+TpPXaJ06qUijWDuCAZ06f+Pm197pnRg3lmL3pmvTvjmjUjmErGZ/Yxn?=
+ =?us-ascii?Q?HT6Ol2wW9I1m+m5CB4Tgt3ayVZry/+aCsk/Pjufp5p2N05KaSl2fJwsh8U5I?=
+ =?us-ascii?Q?3e5PUt4ZNj8T9z4fgUshtglMtbjYqSrTUaTF+85KyDsy0Eqy98UWVftbXkA9?=
+ =?us-ascii?Q?AcfBqBEdoBajQ3QYHFst2u3r/xLQLHU/Vgn7qJEK7ZPbM+oa41CQbm9jT0x0?=
+ =?us-ascii?Q?XUuB2ZetIXGoZ/xhyE+XmFnZPEtnVmswdOVD9DMRpkkGsGsGos4mr9/1IMgb?=
+ =?us-ascii?Q?xcw+Aap4WnIJ8W09O1bVUJjjqJVYetmASL63pXh00wT/tcpn6JrsJSUypeuK?=
+ =?us-ascii?Q?U9E2hazYhR15QOXCmkfjftKVf7eRoAoL5ZOeKJbyxOLw3Kp0Fd41/8PTcyBa?=
+ =?us-ascii?Q?8CiMKvzE3+VJYqgrZFOqIRqKSgd/1yE82PQ8d656QFsSizD0jNOXunI7m/UU?=
+ =?us-ascii?Q?hNwaeWJN9VCVP3O2MO0wmL/Y2b6uZwuPb77F1YcCDmGKei+7yZR6iBtvGxy8?=
+ =?us-ascii?Q?oQ8nQqFnSRwWWWZcpl6B8fJYpb+irkzcRRQ+FNOvKN4e37jlGDGqYxbq2Cid?=
+ =?us-ascii?Q?5sFtYih+5odmepIX0P3DUvxowRQT2TOE464DKF/3itLdz7FQC8OzMrcFpLmM?=
+ =?us-ascii?Q?I49aagYr9ejxtBybTE8j9icpw6mNjGQ9qAfvzej2h/P12iXP9JHTaenXuClu?=
+ =?us-ascii?Q?UdWjiYwUfnK3o6BOEFh56bYB4G4VD1wWTl2IIHrC7RKtU1zNMq+ha1Np9nH9?=
+ =?us-ascii?Q?I43jZRFH7B3wWktte8Awh5nNApKLxzejlHVSlX9XqUCyaKRmIxVx47xB+IGP?=
+ =?us-ascii?Q?ll+are67t762JN1gHOB0QqTDkvq7dbf0xHvxNxVgR62zQMP08HJRixpF4lk7?=
+ =?us-ascii?Q?+xt5Qq9zHIDw95wguEskfxxiIA5+qDAunJ1ufv4Cmpw1imb4hEaeBN7WZrAt?=
+ =?us-ascii?Q?3DabHUfhPf8Iis41ZgcTIf4wiITaQzw4HLxhSWOsf0/yxcGwRHMXMU50o2Rh?=
+ =?us-ascii?Q?4A0S33Cvwf4/FGT9cE/uQpshhTF5xWX9EVIu0n/r7l54hR1hvdiW9Qlqrs7x?=
+ =?us-ascii?Q?3HYOhKycx53PHyZ6mRNiuBxjgqsl2YI76jqL/d5fwcGZpbBZNYOSEkjloK5G?=
+ =?us-ascii?Q?/8hurgpMjWOwcG6yc2BKAwvHvi7nhE0tc0O+7W1tt0DrvmGGs8t0p3ockkoj?=
+ =?us-ascii?Q?fU3RYLvMZhGxBO5pys+V8wQCYv3L6X1TXUDzqKT3RhEOT5uLDMGaNCjbQPRq?=
+ =?us-ascii?Q?BTAkp4mjLhzgb1oEdKCpLHWzCs9oqcDS5uxOS5XLZ8oZhDxkZLtWRj99/b/o?=
+ =?us-ascii?Q?4pv/iuWUqDTlS6za3jjsOrP3I0wMdHY1/sx2CbQ0GMnRrq7Lb5OnfkPfGcJU?=
+ =?us-ascii?Q?GZKONhJa72DlJBGNUz/UAiWEbu86U4whIbpmplB3D0Ej5x9tYz1Sf8yaXgME?=
+ =?us-ascii?Q?rZHfdgtBBFqIxLPfREn0kQmISZAH18YgTUAseQBfr4algqoWAzOUjwlv2BXe?=
+ =?us-ascii?Q?woEDmva/KaK19GGSsaWPRRdibyoUtP/t7phG2zu+i5w3kATwMcSMc2MJoggs?=
+ =?us-ascii?Q?CogeS6/Zowceg8WQfVuvdPztp9SeEkqyKN2S57FJeno8qHkeRrsgtN142zZx?=
+ =?us-ascii?Q?OrYXv/tvkRcYt5qwdxzfL6YLEl+IVFeOccJI9CDRL4cHo6udf1a6lfzM/Xv4?=
+ =?us-ascii?Q?IvVKYDhydQU5+3f8VQlO6lNfFjqqTsG1XanCSL1nmoVuuKniIzka1oT0ga1J?=
+ =?us-ascii?Q?cSakQLJ8AA=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0915a502-0f59-4524-9e84-08dea68dfd3f
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB7821.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 07:56:30.5002
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: r11ncT+z2xzLRkrowsoXEqd/yBI1gvtH0CdBF4OmM0xlh87C+JGxFZlHLiu+XB88UKWdgcXTToPpLHRQXcjXvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MRWPR04MB12119
+X-Rspamd-Queue-Id: 87B9C49EF54
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [5.34 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291796-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291797-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,oss.qualcomm.com,linux.intel.com,ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
 	MIME_TRACE(0.00)[0:+];
-	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	GREYLIST(0.00)[pass,meta];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,puri.sm,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	R_SPF_ALLOW(0.00)[+ip4:172.232.135.74:c];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	NEURAL_SPAM(0.00)[0.970];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robby.cai@nxp.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.41:email,0.0.0.1:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,nxp.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-On Wed, Apr 29, 2026 at 12:05:40PM +0800, syyang@lontium.com wrote:
-> From: Sunyun Yang <syyang@lontium.com>
+On Fri, Apr 17, 2026 at 07:22:33AM -0400, Frank Li wrote:
+> On Fri, Apr 17, 2026 at 07:01:59PM +0800, Robby Cai wrote:
+> > CSI capture may intermittently fail due to mismatched clock rates. The
+> > previous configuration violated the timing requirement stated in the
+> > i.MX8MQ Reference Manual:
+> >
+> >   "The frequency of clk must be exactly equal to or greater than the RX
+> >    byte clock coming from the RX DPHY."
+> >
+> > Update the clock configuration to ensure that the CSI core clock rate is
+> > equal to or greater than the incoming DPHY byte clock.
 > 
-> The LT7911EXC is an I2C-controlled bridge that Receiver eDP1.4
-> and output signal/dual port mipi.
+> You reduce clock, how to make sure it >= ?
+
+This is a mistake in the commit message. IMX8MQ_CLK_CSIX_PHY_REF refers to the
+UI clock (clk_ui), not the RX DPHY byte clock. There is no direct >= relationship
+with the CSI core clock other than the documented bandwidth requirement.
+
 > 
-> Signed-off-by: Sunyun Yang <syyang@lontium.com>
+> > The updated clock
+> > ratios are consistent with those used in NXP's downstream BSP.
+> 
+> "downstream BSP" is not solidate reference for clock rate, it'd better
+> refer to date sheet, dose datasheet require such frequecy
+> 
+> Frank
 
-Missing space after ':' in subject.
+I will revisit the clock assumptions in the next revision.
 
-...
+Regards,
+Robby
+> >
+> > Fixes: bcadd5f66c2a ("arm64: dts: imx8mq: add mipi csi phy and csi bridge descriptions")
+> > Cc: stable@vger.kernel.org
+> > Signed-off-by: Robby Cai <robby.cai@nxp.com>
+> > ---
 
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Video port for MIPI DSI output.
-
-Wrong description, first is input. Look at your DTS.
-
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Video port for eDP input.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reset-gpios
-> +  - vdd-supply
-> +  - vcc-supply
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        mipi-bridge@41 {
-> +            compatible = "lontium,lt7911exc";
-> +            reg = <0x41>;
-> +            reset-gpios = <&gpy8 8 GPIO_ACTIVE_LOW>;
-> +            vdd-supply = <&lt7911exc_1v2>;
-> +            vcc-supply = <&lt7911exc_3v3>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    bridge_in: endpoint {
-> +                        remote-endpoint = <&edp_out>;
-> +                    };
-> +                };
-
-Best regards,
-Krzysztof
-
+[...]
 
