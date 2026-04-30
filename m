@@ -1,291 +1,173 @@
-Return-Path: <devicetree+bounces-292044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292046-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CBIbIPXc82lk8AEAu9opvQ
-	(envelope-from <devicetree+bounces-292044-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 00:51:33 +0200
+	id gHmCATHi82mG8QEAu9opvQ
+	(envelope-from <devicetree+bounces-292046-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 01:13:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D540E4A8AA8
-	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 00:51:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B5D04A8B80
+	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 01:13:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8F7EC301877B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 22:51:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 02F6C3013680
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 23:13:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7C2353ED9;
-	Thu, 30 Apr 2026 22:51:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9CC03A3824;
+	Thu, 30 Apr 2026 23:13:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="AZJGWSUo";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="hTbEVrAs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A0Vp4vz2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B9871A08AF
-	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 22:51:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C0283A2572;
+	Thu, 30 Apr 2026 23:13:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777589491; cv=none; b=jD+DKFXNJ9QMrDSJirbZQ2tqq5A8Qss0iFLmUKVvo6GyYESQIBUaMIQFxLtSEz9yUSFVysPi+dKwgESMs5bTs3kvUmQ5GK8azpAuItupfRFmcWOue7oU3dzRnCMFb8UAqUFQqHNchm8ywwU2Li9Z25++rNlxOawY+Z61wMLxTeI=
+	t=1777590803; cv=none; b=dEitxVJXLCcPkn1bBsPbWSUyxvEQ5+WttPCFPHXahAj9fcT6VJWgi60jiwGgWsBZ0Zl7oJAZCv5l82ciSqkif1rCu0KhCjPXRrU1bsUMgC42Pd+eg0JhFAfejbXi97k08z3DDKHxMZwjk1AKON1PAZk/GQqA+s0Sprvd9aI+tNI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777589491; c=relaxed/simple;
-	bh=ccySoFKEoNVQ75TK1fIyIDu/J5XEcUCUomg+Rj0oapg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kc6Q82hLTka7nKgjIw7L2KCygDPhBrv+UAH0SINtAs6238MbsZT8MM/S9T3rx8T13IpJyHqZWmxLSlTUumGLjq1S/rC6aLyGgh5BXnWAkqKDXpDex8ouEiyj49pk8FUdOOFnJW15Ma57+bJ7t+1VW0WP+kmE+4HIRXoERtPvfSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=AZJGWSUo; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=hTbEVrAs; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1777589488;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HdVxrW5qbfv9o4/xQYAtdxN+n/sFjjbbXDDlDPx+0zc=;
-	b=AZJGWSUoxJodatNFtesF8iJgFMQXJ45FDJyo+cUuSqICU5kcdFthFxhbaPdJ5CWvVIuc1d
-	wwZurbLNJBgbruiCVbpWZEKHwog3kmU/nMCbb6xVlTGRwnSLyaW8T1OC7eIj6d8kzDHRtx
-	zwbVwMBj42AiIrMYGPvDNzgBouPnoRE=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-407-RojLGcKmOyq3keKziVYHBA-1; Thu, 30 Apr 2026 18:51:27 -0400
-X-MC-Unique: RojLGcKmOyq3keKziVYHBA-1
-X-Mimecast-MFC-AGG-ID: RojLGcKmOyq3keKziVYHBA_1777589487
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-5102a9671c8so27465931cf.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 15:51:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1777589487; x=1778194287; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-transfer-encoding
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HdVxrW5qbfv9o4/xQYAtdxN+n/sFjjbbXDDlDPx+0zc=;
-        b=hTbEVrAsUsjjGdpfbVWRlj1ctolSZLULfSkcePLvxvDxEH7xGSuu2M6QYH6MH28L7T
-         I48zkN6lYytB2W6sAzy7+5Ta6iguzzPdHrA87Ja8sOeQqQe5IaqT2Ttk7vl7zD3Z5B4f
-         Tmd1EWdRjBT5JUz4mXAHiCZpWpmblOgGmWk5gqEdjBnh1Sr8vQoXJzIw6PHusT9eUhb9
-         nK4mQPpAkmbVyk0FCLXqSVOidaAKYqCkAQvoyxpo4auUk7y0IfM4PNkEb6j7znV32uXv
-         ZIHfD89ICl065y4RY+lhM9gqNK1IlC4TXiHoLX+VvlEHLka4De4NKV2FuaxMrhihw/nr
-         z6bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777589487; x=1778194287;
-        h=user-agent:in-reply-to:content-transfer-encoding
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HdVxrW5qbfv9o4/xQYAtdxN+n/sFjjbbXDDlDPx+0zc=;
-        b=olg6E60/zBi6W09zM9KzQT9A3LLaEf9owmB6fgkwc+8RLYBtsnbrJs8nTqZPSDzaAd
-         /g9f4RSUZR0nNAkYq/oaxfhX2fJ0iYGcIYDzD6zmCMYtDzNzrkG7GC+dd4/fz5KURHZj
-         xyy8+gSp8hvkHAK8u7zmVbJ6LLhT6bgcM2npXo557wBB7e+9lvHETnR6bzoTjDkegRCC
-         KOblhpiQjA+pgDB1Aadn6M3OcrewntrNNOBXqrIqfq48/SJuVZt7wyixbB+lZIlWXIYi
-         5ntyCoS4ntB932pv/WLRc1z7Ri4YoG//4OlO2HzxaDHDImmXcC0NvomrePeR/9qwLLdk
-         xBCw==
-X-Forwarded-Encrypted: i=1; AFNElJ9lf9PwOOKa/b9prcoXNdd0Ri2g9RQNtxNPVk1bsMyBJs79/pxcOgx8DNmoBOIqaC30lfYt6yFYsNa4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyi28PbkQJ9wu2jyqcQzO4gtXXsPt2yCHxYPyDbEfv5bKaixFE7
-	hk1a1MVVudJ+HhwXJmzDOfjvDbVhT0k4kEIm36XuEaBvPObw6qmbZeJyMMuYt+v6IA08R3RuGgi
-	gs6f+xEr3Y+MYC8QB8sp4oDnb0nhAkycT0AR+2cMxnQEoe9rrDImT2NOfTaF3p34=
-X-Gm-Gg: AeBDietc+eKJfIVC1auAukFHet3MixGLgY8sBMxhegz/tI38Tcf1B0sZWpGvXubFStu
-	r/529eY7Q63HaTT9dtm++PTx1uULgAw7rhZsRmU0f8DgqRnoNJlzPd/3kbOMs+RoHoo5CeAz2Qc
-	piqdqBU8h14bjPMQaqXp+8LGIEv3FEwVLwrF3vLRJ/C2Kd0B32R9Cqhn36ZmnFhruIehXSXFY0f
-	XcR2TzsKs/17D/KaUMWPtI84a3Sk8APv/iJ2ZVpJbnJWVDmwDE+lO3cHcczO3LY8ZFpfB0jkkRK
-	6yAwy/no9uwq9s/UNZqg4gcUczOFS9zJXSCjTp9E/FxJmum+rsgdaXqwn37FFIn7JEgdbAB8+rC
-	yVI9bLwgsO6qa5ql9LhtDMrHzuykKYuY=
-X-Received: by 2002:ac8:5ad6:0:b0:509:4406:44e0 with SMTP id d75a77b69052e-5102ab52a6fmr73290371cf.27.1777589486770;
-        Thu, 30 Apr 2026 15:51:26 -0700 (PDT)
-X-Received: by 2002:ac8:5ad6:0:b0:509:4406:44e0 with SMTP id d75a77b69052e-5102ab52a6fmr73289921cf.27.1777589486342;
-        Thu, 30 Apr 2026 15:51:26 -0700 (PDT)
-Received: from redhat.com ([2600:382:7701:f83c:fba1:9a93:4c64:db25])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8b538b1d761sm4868636d6.9.2026.04.30.15.51.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Apr 2026 15:51:25 -0700 (PDT)
-Date: Thu, 30 Apr 2026 18:51:23 -0400
-From: Brian Masney <bmasney@redhat.com>
-To: Xuyang Dong <dongxuyang@eswincomputing.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, mturquette@baylibre.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-	huangyifeng@eswincomputing.com, benoit.monin@bootlin.com,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com
-Subject: Re: Re: Re: Re: Re: [PATCH v3 2/3] clk: eswin: Add eic7700 HSP clock
- driver
-Message-ID: <afPc66GcXiSzQ6uN@redhat.com>
-References: <20260423091114.2326-1-dongxuyang@eswincomputing.com>
- <aeo8nn-eigzlojWx@redhat.com>
- <4e5c887.5a31.19dbf179fb6.Coremail.dongxuyang@eswincomputing.com>
- <CABx5tqK7p_XJHfXZ70gXhR88PzAteV7cVSFPoRzccgmjanADMw@mail.gmail.com>
- <177733570840.5403.12558106273673899411@lazor>
- <7a76d8cb.5bab.19dd3645d4e.Coremail.dongxuyang@eswincomputing.com>
- <177742748214.5403.15526965667317467444@localhost.localdomain>
- <4257942f.5c6d.19dd89b06f8.Coremail.dongxuyang@eswincomputing.com>
- <afINjhKluCxeb9LK@redhat.com>
- <1f0a2d11.5cd2.19ddcf8114a.Coremail.dongxuyang@eswincomputing.com>
+	s=arc-20240116; t=1777590803; c=relaxed/simple;
+	bh=7xRirdrcdNDJxBT3KqPmWP/KblOa1u6IjU3g1eGOTAY=;
+	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
+	 References:Date:Message-Id; b=GgCIjG45V+WTTgxUSRLkNnlgIFzNo7TqhyYLLhfDOQ9EPcv64XjLfJ5y0A1/cVQGJzBB79dQsVYEHHgdDsCQkQYA5NclPhhM5Cv5zadLcT6ZaXumA5WuaERk5mKLLfpMUtuQMWsnUtwmnqk9QrRD4TK5GmISZK9AkigfvJMxLcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A0Vp4vz2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A54CEC2BCB4;
+	Thu, 30 Apr 2026 23:13:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777590803;
+	bh=7xRirdrcdNDJxBT3KqPmWP/KblOa1u6IjU3g1eGOTAY=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date:From;
+	b=A0Vp4vz26gaM8UyTLq8CWy33QKFEWsclMRGvqpdNTSsbAgFkf7TOtlEuSuW0shbJW
+	 UZxIU5Fdz8haBPyweDgKs2dTb2GTQwffOn8fZeWCQLIb/xcPTm/1iuvpTWCA736GI4
+	 i12Up1Gdy3hWc2e5+pZPygqe3TERO2Ee4sl/9XGK1jzLTL1eJdDyzZkEx49GKRo1wf
+	 8BpyJNGNVpMs4EAlslQHab/0EnsMLsuHqyHyVusAG8/itNJlWZxdcDEWN13cb2HvBK
+	 1xyQv62xpdm/lEaVdHDBPq7bXNp93kXrH02tgM6E0Pfo79nVHjwTeTkmvLEsrshGek
+	 CqkK/aWQ2B//A==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1f0a2d11.5cd2.19ddcf8114a.Coremail.dongxuyang@eswincomputing.com>
-User-Agent: Mutt/2.3.1 (2026-03-20)
-X-Rspamd-Queue-Id: D540E4A8AA8
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2 2/3] dt-bindings: wire style checker into
+ dt_binding_check
+From: Nathan Chancellor <nathan@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+ Nicolas Schier <nsc@kernel.org>, Saravana Kannan <saravanak@kernel.org>, 
+ Miguel Ojeda <ojeda@kernel.org>, Masahiro Yamada <masahiroy@kernel.org>, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>, 
+ Tamir Duberstein <tamird@kernel.org>, Steven Rostedt <rostedt@goodmis.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Aleksander Jan Bajkowski <olek2@wp.pl>, 
+ Test User <test@example.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org
+In-Reply-To: <ed254ed45f19f37a7e7933a33f2f00195d8e5f20.1777471439.git.daniel@makrotopia.org>
+References: <cover.1777471439.git.daniel@makrotopia.org>
+ <ed254ed45f19f37a7e7933a33f2f00195d8e5f20.1777471439.git.daniel@makrotopia.org>
+Date: Thu, 30 Apr 2026 16:13:14 -0700
+Message-Id: <177759079451.708.5456611555998959857.b4-review@b4>
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2021; i=nathan@kernel.org;
+ h=from:subject:message-id; bh=7xRirdrcdNDJxBT3KqPmWP/KblOa1u6IjU3g1eGOTAY=;
+ b=owGbwMvMwCUmm602sfCA1DTG02pJDJmfH/FHhYTsv2h8NFZN/nyQaG7KOxUJz8tBT8wPNO0su
+ NydPbmzo5SFQYyLQVZMkaX6sepxQ8M5ZxlvnJoEM4eVCWQIAxenAExEnYuR4VarC6vqstvTGuPW
+ Cb1zOfvonmy5xpapVUXcRXlzvmxpdmJk2PWJ/eutFb/n1XopTgl8X/5NV2uV964Xu/Trioy2usu
+ lMwIA
+X-Developer-Key: i=nathan@kernel.org; a=openpgp;
+ fpr=2437CB76E544CB6AB3D9DFD399739260CB6CB716
+X-Rspamd-Queue-Id: 5B5D04A8B80
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292044-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[redhat.com:+];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292046-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nathan@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,weissschuh.net,goodmis.org,roeck-us.net,wp.pl,example.com,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,makrotopia.org:email]
 
-Hi Xuyang,
+On Wed, 29 Apr 2026 15:21:33 +0100, Daniel Golle <daniel@makrotopia.org> wrote:
 
-On Thu, Apr 30, 2026 at 01:58:58PM +0800, Xuyang Dong wrote:
-> > On Wed, Apr 29, 2026 at 05:38:51PM +0800, Xuyang Dong wrote:
-> > > > > 
-> > > > > The common gate API, the HSP private API, and the reset driver all access 
-> > > > > the same register space.
-> > > > > Therefore, they need to be protected by the same data->lock.
-> > > > > 
-> > > > 
-> > > > If everything is accessing registers through regmap why aren't we using
-> > > > the builtin lock with struct regmap_config::use_raw_spinlock? I don't
-> > > > understand why we're rolling our own here.
-> > > 
-> > > Hi Stephen,
-> > > 
-> > > In the HSP clock driver and reset driver, there are three components that
-> > > access the HSP register space: a common gate clock, a custom gate clock 
-> > > (i.e., 0x800), and a reset.
-> > > 
-> > > 1. The common gate uses eswin_clk_register_gate() to register a gate clock 
-> > > via devm_clk_hw_register_gate_parent_data(). It accesses the register 
-> > > using clk_gate_endisable().
-> > > 
-> > > static void clk_gate_endisable(struct clk_hw *hw, int enable)
-> > > {
-> > > 	struct clk_gate *gate = to_clk_gate(hw);
-> > > 	unsigned long flags;
-> > > 
-> > > 	if (gate->lock)
-> > > 		spin_lock_irqsave(gate->lock, flags);
-> > > 	else
-> > > 		__acquire(gate->lock);
-> > > ...
-> > > 	if (gate->lock)
-> > > 		spin_unlock_irqrestore(gate->lock, flags);
-> > > 	else
-> > > 		__release(gate->lock);
-> > > }
-> > > 
-> > > The gate->lock in use is the data->lock passed in from the clock driver.
-> > > 
-> > > 2. The custom gate uses hsp_clk_register_gate() to register a gate clock. 
-> > > It accesses the register using hsp_clk_gate_endisable().
-> > > 
-> > > static void hsp_clk_gate_endisable(struct clk_hw *hw, int enable)
-> > > {
-> > > 	struct eic7700_hsp_clk_gate *gate = to_gate_clk(hw);
-> > > 
-> > > 	guard(spinlock_irqsave)(gate->lock);
-> > > ...
-> > > }
-> > > 
-> > > The gate->lock in use is the same data->lock passed in from the clock 
-> > > driver.
-> > > 
-> > > 3. The reset uses eic7700_hsp_reset_assert() and 
-> > > eic7700_hsp_reset_deassert(), which call regmap_assign_bits() to access 
-> > > the register.
-> > > 
-> > > All three methods access the same register space; therefore, they must be 
-> > > protected by the same lock (data->lock).
-> > > 
-> > > That's why we introduced eic7700_hsp_regmap_lock/unlock for 
-> > > eic7700_hsp_regmap_config.
-> > > 	eic7700_hsp_regmap_config = {
-> > > 		.lock = eic7700_hsp_regmap_lock,
-> > > 		.unlock = eic7700_hsp_regmap_unlock,
-> > > 		.lock_arg = lock_ctx,
-> > > 	};
-> > > 
-> > > The 'lock_ctx->lock' in eic7700_hsp_regmap_lock/unlock is the 'data->lock'.
-> > > 	static void eic7700_hsp_regmap_lock(void *arg)
-> > > 	__acquires(lock_ctx->lock)
-> > > 	{
-> > > 		struct eic7700_hsp_regmap_lock *const lock_ctx = arg;
-> > > 		unsigned long flags;
-> > > 	
-> > > 		spin_lock_irqsave(lock_ctx->lock, flags);
-> > > 		lock_ctx->flags = flags;
-> > > 	}
-> > > 
-> > > The similar approach can be found in clk-imx8ulp-sim-lpav.c.
-> > > 
-> > > The annotations what we mentioned previously is the above 
-> > > "__acquires(lock_ctx->lock)".
-> > 
-> > I see what Stephen is saying. Take a look at __regmap_init() in
-> > drivers/base/regmap/regmap.c. If the lock/unlock ops are not specified,
-> > then the final else will automatically setup locking. By default, it'll
-> > use a mutex, but there is the ability to use a spinlock.
-> > 
-> > So you can drop the lock/unlock ops from the driver, and add to the ops:
-> > 
-> > 	fast_io: 1,
-> > 	use_raw_spinlock: 1,
-> > 
-> > Given the critcal nature of clks, I agree with Stephen that a raw
-> > spinlock should be used here.
-> > 
-> 
-> Hi Stephen and Brian,
-> 
-> In the HSP clock driver, hsp_clk_gate_endisable() only accesses the 
-> registers at 0x800/0x900, and reset accesses the same registers as well, 
-> which leads to concurrent RMW (read-modify-write) races.
-> 
-> There are two approaches to solve these races.
-> 
-> The first method is the current implementation. All three functions 
-> (clk_gate_endisable(), hsp_clk_gate_endisable(), 
-> and eic7700_hsp_reset_assert()) use data->lock to prevent concurrent 
-> RMW races.
-> 
-> The second method is as Stephen said. If I understand correctly, it is to 
-> change the register read/write operations in hsp_clk_gate_endisable() to 
-> use the regmap API and use the same lock (map->raw_spinlock) as reset.
-> 
-> Is the second approach preferable?
+Hi Daniel,
 
-Use the same regmap everywhere. Also you don't have to explicitly define
-the raw spinlock in your driver since the regmap API will create a raw
-spinlock for you if you use the fast_io / use_raw_spinlock options I
-described above.
+Some comments from the Kbuild side.
 
-Brian
+>
+> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+> index 7b668f7fd400..35ddd0b7a349 100644
+> --- a/Documentation/devicetree/bindings/Makefile
+> +++ b/Documentation/devicetree/bindings/Makefile
+> @@ -46,6 +46,19 @@ quiet_cmd_chk_bindings = CHKDT   $(src)
+>  			  xargs -n200 -P$$(nproc) $(DT_DOC_CHECKER) -u $(src)) \
+>  			  && touch $@ || true
+>  
+> +DT_CHK_STYLE = $(srctree)/scripts/dtc/dt-check-style
+> +
+> +# Feed the file list to the checker via @argfile in a single Python
+> +# process so the ruamel.yaml import is paid once. scripts/jobserver-exec
+> +# claims slots from the GNU make jobserver and exposes the count via
+> +# $PARALLELISM, which dt-check-style picks up to size its worker pool.
+> +quiet_cmd_chk_style = STYLE   $(src)
+> +      cmd_chk_style = f=$$(mktemp) && $(find_cmd) > $$f && \
+
+Please use Kbuild's $(tmp-target) for temporary files:
+
+  cmd_chk_style = $(find_cmd) >$(tmp-target) && \
+
+I see that mk_scheme uses mktemp but all output from the build should
+stay within the build folder. It would make the clean up below
+unnecessary, which would simplify things future with a suggestion I have
+below.
+
+> +		      $(PYTHON3) $(srctree)/scripts/jobserver-exec \
+> +		      $(PYTHON3) $(DT_CHK_STYLE) @$$f; \
+
+@$(tmp-target)
+
+based on the above suggestion.
+
+> +		      r=$$?; rm -f $$f; \
+> +		      if [ $$r -eq 0 ]; then touch $@; else exit $$r; fi
+
+Does this work with Kbuild's use of 'set -e' for cmd? I think this could
+just be simplified to just
+
+  touch $@
+
+since the 'r=$$?' won't be reached if dt-check-style exists with a
+non-zero exit code? Sashiko has some comments around this if you have
+not already seen it:
+
+  https://sashiko.dev/#/patchset/ed254ed45f19f37a7e7933a33f2f00195d8e5f20.1777471439.git.daniel@makrotopia.org
+
+-- 
+Cheers,
+Nathan
 
 
