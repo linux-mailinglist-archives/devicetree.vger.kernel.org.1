@@ -1,449 +1,291 @@
-Return-Path: <devicetree+bounces-292042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292044-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +O0cKh7W82lh7wEAu9opvQ
-	(envelope-from <devicetree+bounces-292042-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 00:22:22 +0200
+	id CBIbIPXc82lk8AEAu9opvQ
+	(envelope-from <devicetree+bounces-292044-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 00:51:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E96874A88B0
-	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 00:22:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D540E4A8AA8
+	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 00:51:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B8BFA300F7A0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 22:21:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8F7EC301877B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 22:51:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F2703C8708;
-	Thu, 30 Apr 2026 22:20:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7C2353ED9;
+	Thu, 30 Apr 2026 22:51:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jvkUMlMs"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="AZJGWSUo";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="hTbEVrAs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B49B3BC692;
-	Thu, 30 Apr 2026 22:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B9871A08AF
+	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 22:51:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777587645; cv=none; b=Q0hZYHj6lLx9DTC2NsMIt/8HULYtNdWyfAdvj3dptxSiOVOHJM8ks7lXPb/ZGk3HoTx98snZq9w/9E7qpfjROLqk5RVzs7q9kEpB1MSw5sFM5qIAwHhf/vfUJ1YtGtdyWEwjPji5LY/siGNQNKxIcZZaasarw3f35STnXdOqXK0=
+	t=1777589491; cv=none; b=jD+DKFXNJ9QMrDSJirbZQ2tqq5A8Qss0iFLmUKVvo6GyYESQIBUaMIQFxLtSEz9yUSFVysPi+dKwgESMs5bTs3kvUmQ5GK8azpAuItupfRFmcWOue7oU3dzRnCMFb8UAqUFQqHNchm8ywwU2Li9Z25++rNlxOawY+Z61wMLxTeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777587645; c=relaxed/simple;
-	bh=0ni3pX2nNQ6mCPh6vxtTd85jsAFVj8xiNJ60l+laMrM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lwP9JLWuh8eAThiaYEPqfYC1jAb19UX5CWwrp/QcJ3xvtBRa2H9cTfBvrGO+2Q7EENOe2ihFu3o9lpCCb2nIs1CBL8UXSGGowfpnFzwKPusYbY/Da2MKj9xRsnyGYGLSY9M1+xBxGebcap0g97ghKt6jnROafRYEUcwxaqyeX1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jvkUMlMs; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1777587638;
-	bh=0ni3pX2nNQ6mCPh6vxtTd85jsAFVj8xiNJ60l+laMrM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=jvkUMlMs3IhE5ltmmMW61Qqv8ipeA72tUrvMTn+CxN+PKxFjZlMipyqzcKQ9ID3qF
-	 sIDx7tiSU+dP73/jT0DnZs/dVvg5h/lXjZiNHUgAGXCTUQ7P7g8ZGHt3H1jDo0ogJ6
-	 sVyf6nLW8gc0H2UtRmF27LEeiXxeZ4tf7+i8H1AbJX0PX6G4xPSShZdhHooJu4FhFA
-	 rTNL4VAY3Ep1dKfPDZLbsuQLfe1DYZg744AySpyOu5F3PuxNaokmBl16BRbumYrLGk
-	 /0T6pna2bKnzDGF0aqlauLkSqFTW3vZ8x/J+Gnl70x+k2OhhP06B4lLlfPKl/JoF9E
-	 eRLKmen6TNR3Q==
-Received: from jupiter.universe (unknown [100.64.1.62])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D8F5117E15A7;
-	Fri,  1 May 2026 00:20:37 +0200 (CEST)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 20927480055; Fri, 01 May 2026 00:20:37 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Fri, 01 May 2026 00:20:39 +0200
-Subject: [PATCH v2 12/12] drm/bridge: synopsys: dw-dp: Add audio support
+	s=arc-20240116; t=1777589491; c=relaxed/simple;
+	bh=ccySoFKEoNVQ75TK1fIyIDu/J5XEcUCUomg+Rj0oapg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kc6Q82hLTka7nKgjIw7L2KCygDPhBrv+UAH0SINtAs6238MbsZT8MM/S9T3rx8T13IpJyHqZWmxLSlTUumGLjq1S/rC6aLyGgh5BXnWAkqKDXpDex8ouEiyj49pk8FUdOOFnJW15Ma57+bJ7t+1VW0WP+kmE+4HIRXoERtPvfSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=AZJGWSUo; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=hTbEVrAs; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1777589488;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HdVxrW5qbfv9o4/xQYAtdxN+n/sFjjbbXDDlDPx+0zc=;
+	b=AZJGWSUoxJodatNFtesF8iJgFMQXJ45FDJyo+cUuSqICU5kcdFthFxhbaPdJ5CWvVIuc1d
+	wwZurbLNJBgbruiCVbpWZEKHwog3kmU/nMCbb6xVlTGRwnSLyaW8T1OC7eIj6d8kzDHRtx
+	zwbVwMBj42AiIrMYGPvDNzgBouPnoRE=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-407-RojLGcKmOyq3keKziVYHBA-1; Thu, 30 Apr 2026 18:51:27 -0400
+X-MC-Unique: RojLGcKmOyq3keKziVYHBA-1
+X-Mimecast-MFC-AGG-ID: RojLGcKmOyq3keKziVYHBA_1777589487
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-5102a9671c8so27465931cf.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 15:51:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1777589487; x=1778194287; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=HdVxrW5qbfv9o4/xQYAtdxN+n/sFjjbbXDDlDPx+0zc=;
+        b=hTbEVrAsUsjjGdpfbVWRlj1ctolSZLULfSkcePLvxvDxEH7xGSuu2M6QYH6MH28L7T
+         I48zkN6lYytB2W6sAzy7+5Ta6iguzzPdHrA87Ja8sOeQqQe5IaqT2Ttk7vl7zD3Z5B4f
+         Tmd1EWdRjBT5JUz4mXAHiCZpWpmblOgGmWk5gqEdjBnh1Sr8vQoXJzIw6PHusT9eUhb9
+         nK4mQPpAkmbVyk0FCLXqSVOidaAKYqCkAQvoyxpo4auUk7y0IfM4PNkEb6j7znV32uXv
+         ZIHfD89ICl065y4RY+lhM9gqNK1IlC4TXiHoLX+VvlEHLka4De4NKV2FuaxMrhihw/nr
+         z6bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777589487; x=1778194287;
+        h=user-agent:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HdVxrW5qbfv9o4/xQYAtdxN+n/sFjjbbXDDlDPx+0zc=;
+        b=olg6E60/zBi6W09zM9KzQT9A3LLaEf9owmB6fgkwc+8RLYBtsnbrJs8nTqZPSDzaAd
+         /g9f4RSUZR0nNAkYq/oaxfhX2fJ0iYGcIYDzD6zmCMYtDzNzrkG7GC+dd4/fz5KURHZj
+         xyy8+gSp8hvkHAK8u7zmVbJ6LLhT6bgcM2npXo557wBB7e+9lvHETnR6bzoTjDkegRCC
+         KOblhpiQjA+pgDB1Aadn6M3OcrewntrNNOBXqrIqfq48/SJuVZt7wyixbB+lZIlWXIYi
+         5ntyCoS4ntB932pv/WLRc1z7Ri4YoG//4OlO2HzxaDHDImmXcC0NvomrePeR/9qwLLdk
+         xBCw==
+X-Forwarded-Encrypted: i=1; AFNElJ9lf9PwOOKa/b9prcoXNdd0Ri2g9RQNtxNPVk1bsMyBJs79/pxcOgx8DNmoBOIqaC30lfYt6yFYsNa4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyi28PbkQJ9wu2jyqcQzO4gtXXsPt2yCHxYPyDbEfv5bKaixFE7
+	hk1a1MVVudJ+HhwXJmzDOfjvDbVhT0k4kEIm36XuEaBvPObw6qmbZeJyMMuYt+v6IA08R3RuGgi
+	gs6f+xEr3Y+MYC8QB8sp4oDnb0nhAkycT0AR+2cMxnQEoe9rrDImT2NOfTaF3p34=
+X-Gm-Gg: AeBDietc+eKJfIVC1auAukFHet3MixGLgY8sBMxhegz/tI38Tcf1B0sZWpGvXubFStu
+	r/529eY7Q63HaTT9dtm++PTx1uULgAw7rhZsRmU0f8DgqRnoNJlzPd/3kbOMs+RoHoo5CeAz2Qc
+	piqdqBU8h14bjPMQaqXp+8LGIEv3FEwVLwrF3vLRJ/C2Kd0B32R9Cqhn36ZmnFhruIehXSXFY0f
+	XcR2TzsKs/17D/KaUMWPtI84a3Sk8APv/iJ2ZVpJbnJWVDmwDE+lO3cHcczO3LY8ZFpfB0jkkRK
+	6yAwy/no9uwq9s/UNZqg4gcUczOFS9zJXSCjTp9E/FxJmum+rsgdaXqwn37FFIn7JEgdbAB8+rC
+	yVI9bLwgsO6qa5ql9LhtDMrHzuykKYuY=
+X-Received: by 2002:ac8:5ad6:0:b0:509:4406:44e0 with SMTP id d75a77b69052e-5102ab52a6fmr73290371cf.27.1777589486770;
+        Thu, 30 Apr 2026 15:51:26 -0700 (PDT)
+X-Received: by 2002:ac8:5ad6:0:b0:509:4406:44e0 with SMTP id d75a77b69052e-5102ab52a6fmr73289921cf.27.1777589486342;
+        Thu, 30 Apr 2026 15:51:26 -0700 (PDT)
+Received: from redhat.com ([2600:382:7701:f83c:fba1:9a93:4c64:db25])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8b538b1d761sm4868636d6.9.2026.04.30.15.51.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Apr 2026 15:51:25 -0700 (PDT)
+Date: Thu, 30 Apr 2026 18:51:23 -0400
+From: Brian Masney <bmasney@redhat.com>
+To: Xuyang Dong <dongxuyang@eswincomputing.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, mturquette@baylibre.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+	huangyifeng@eswincomputing.com, benoit.monin@bootlin.com,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com
+Subject: Re: Re: Re: Re: Re: [PATCH v3 2/3] clk: eswin: Add eic7700 HSP clock
+ driver
+Message-ID: <afPc66GcXiSzQ6uN@redhat.com>
+References: <20260423091114.2326-1-dongxuyang@eswincomputing.com>
+ <aeo8nn-eigzlojWx@redhat.com>
+ <4e5c887.5a31.19dbf179fb6.Coremail.dongxuyang@eswincomputing.com>
+ <CABx5tqK7p_XJHfXZ70gXhR88PzAteV7cVSFPoRzccgmjanADMw@mail.gmail.com>
+ <177733570840.5403.12558106273673899411@lazor>
+ <7a76d8cb.5bab.19dd3645d4e.Coremail.dongxuyang@eswincomputing.com>
+ <177742748214.5403.15526965667317467444@localhost.localdomain>
+ <4257942f.5c6d.19dd89b06f8.Coremail.dongxuyang@eswincomputing.com>
+ <afINjhKluCxeb9LK@redhat.com>
+ <1f0a2d11.5cd2.19ddcf8114a.Coremail.dongxuyang@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260501-synopsys-dw-dp-improvements-v2-12-d7e7f6bac77f@collabora.com>
-References: <20260501-synopsys-dw-dp-improvements-v2-0-d7e7f6bac77f@collabora.com>
-In-Reply-To: <20260501-synopsys-dw-dp-improvements-v2-0-d7e7f6bac77f@collabora.com>
-To: Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
- Damon Ding <damon.ding@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>, 
- Alexey Charkov <alchark@gmail.com>, dri-devel@lists.freedesktop.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, kernel@collabora.com, 
- linux-arm-kernel@lists.infradead.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9488;
- i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=0ni3pX2nNQ6mCPh6vxtTd85jsAFVj8xiNJ60l+laMrM=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGnz1bUpfsVNXrdiZj2i3PzM/cdpJR7VNhDTz
- +WCStg+iV5XJIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJp89W1AAoJENju1/PI
- O/qavsMP/2pQFx6MBI1a8QHB/HAatJB8sKkfdHkfBw5fH+fh0mkSuffxskSdqQpse1A5nPJF5F1
- Tq5Cgq389OrXUDwbepanUB/bOvyjte+2LBKZOm4ZpQvFyRjpMyjWVZRlUkBfrTzIedkMWYF9hjq
- bQTpZEyNXSwXc2E2ihhjWGpET+S16O3DxeYOSaLCDhq9m5XI6HBAvZNY5gBMkJqsTZsPzOhruMN
- P1kMD/olFCfZ0IsW1Y+uGXhcv81eAE/YnVlhODIs2yM3N5r9zNuwtpABewHV7gR9apTZkIQ48zb
- rDAkZSy7tE0+L9A8lX/4WWDP/7GFCFzvTCgyddnpVWoDsljeRQLazk3oi+/ni3zDIz037N24LPa
- rJ0XXPmr+f7RdOJq8/JEltr90h8duBHeWih3NyH2HHHWIQFi84dtbaTeYPi26DAPYA3T+W1HY5a
- t/2oyREw8OX5j4SPlDw61ZTJQb0PsuG/jXk/6Gv6uP2u4ntw4QB8S6IpPYdy/LRwbwM9TDpCsnT
- VSqh3UEgfsZQYDn5hx5g9OzGUyIJgtSPABZWtGJoo3/0az4aZHblAkglEjn7ZVUBAr+Nfwa5Tnv
- i3hDTZi+8PEMeBboOJ0Y1y8AfKrb8/qfmpJpF6cLB9azUk5m/0bHFb+MBnLb7Lc73qz92tWUX6M
- 9Z8/gsHyvt098rNU3+sk1IQ==
-X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
-X-Rspamd-Queue-Id: E96874A88B0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1f0a2d11.5cd2.19ddcf8114a.Coremail.dongxuyang@eswincomputing.com>
+User-Agent: Mutt/2.3.1 (2026-03-20)
+X-Rspamd-Queue-Id: D540E4A8AA8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-292042-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,oss.qualcomm.com,bootlin.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[collabora.com,rock-chips.com,kernel.org,gmail.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[30];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292044-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FROM_NEQ_ENVFROM(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,collabora.com:email,collabora.com:dkim,collabora.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-Implement audio support for the Synopsys DesignWare DisplayPort
-controller.
+Hi Xuyang,
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- drivers/gpu/drm/bridge/synopsys/dw-dp.c | 221 +++++++++++++++++++++++++++++++-
- 1 file changed, 220 insertions(+), 1 deletion(-)
+On Thu, Apr 30, 2026 at 01:58:58PM +0800, Xuyang Dong wrote:
+> > On Wed, Apr 29, 2026 at 05:38:51PM +0800, Xuyang Dong wrote:
+> > > > > 
+> > > > > The common gate API, the HSP private API, and the reset driver all access 
+> > > > > the same register space.
+> > > > > Therefore, they need to be protected by the same data->lock.
+> > > > > 
+> > > > 
+> > > > If everything is accessing registers through regmap why aren't we using
+> > > > the builtin lock with struct regmap_config::use_raw_spinlock? I don't
+> > > > understand why we're rolling our own here.
+> > > 
+> > > Hi Stephen,
+> > > 
+> > > In the HSP clock driver and reset driver, there are three components that
+> > > access the HSP register space: a common gate clock, a custom gate clock 
+> > > (i.e., 0x800), and a reset.
+> > > 
+> > > 1. The common gate uses eswin_clk_register_gate() to register a gate clock 
+> > > via devm_clk_hw_register_gate_parent_data(). It accesses the register 
+> > > using clk_gate_endisable().
+> > > 
+> > > static void clk_gate_endisable(struct clk_hw *hw, int enable)
+> > > {
+> > > 	struct clk_gate *gate = to_clk_gate(hw);
+> > > 	unsigned long flags;
+> > > 
+> > > 	if (gate->lock)
+> > > 		spin_lock_irqsave(gate->lock, flags);
+> > > 	else
+> > > 		__acquire(gate->lock);
+> > > ...
+> > > 	if (gate->lock)
+> > > 		spin_unlock_irqrestore(gate->lock, flags);
+> > > 	else
+> > > 		__release(gate->lock);
+> > > }
+> > > 
+> > > The gate->lock in use is the data->lock passed in from the clock driver.
+> > > 
+> > > 2. The custom gate uses hsp_clk_register_gate() to register a gate clock. 
+> > > It accesses the register using hsp_clk_gate_endisable().
+> > > 
+> > > static void hsp_clk_gate_endisable(struct clk_hw *hw, int enable)
+> > > {
+> > > 	struct eic7700_hsp_clk_gate *gate = to_gate_clk(hw);
+> > > 
+> > > 	guard(spinlock_irqsave)(gate->lock);
+> > > ...
+> > > }
+> > > 
+> > > The gate->lock in use is the same data->lock passed in from the clock 
+> > > driver.
+> > > 
+> > > 3. The reset uses eic7700_hsp_reset_assert() and 
+> > > eic7700_hsp_reset_deassert(), which call regmap_assign_bits() to access 
+> > > the register.
+> > > 
+> > > All three methods access the same register space; therefore, they must be 
+> > > protected by the same lock (data->lock).
+> > > 
+> > > That's why we introduced eic7700_hsp_regmap_lock/unlock for 
+> > > eic7700_hsp_regmap_config.
+> > > 	eic7700_hsp_regmap_config = {
+> > > 		.lock = eic7700_hsp_regmap_lock,
+> > > 		.unlock = eic7700_hsp_regmap_unlock,
+> > > 		.lock_arg = lock_ctx,
+> > > 	};
+> > > 
+> > > The 'lock_ctx->lock' in eic7700_hsp_regmap_lock/unlock is the 'data->lock'.
+> > > 	static void eic7700_hsp_regmap_lock(void *arg)
+> > > 	__acquires(lock_ctx->lock)
+> > > 	{
+> > > 		struct eic7700_hsp_regmap_lock *const lock_ctx = arg;
+> > > 		unsigned long flags;
+> > > 	
+> > > 		spin_lock_irqsave(lock_ctx->lock, flags);
+> > > 		lock_ctx->flags = flags;
+> > > 	}
+> > > 
+> > > The similar approach can be found in clk-imx8ulp-sim-lpav.c.
+> > > 
+> > > The annotations what we mentioned previously is the above 
+> > > "__acquires(lock_ctx->lock)".
+> > 
+> > I see what Stephen is saying. Take a look at __regmap_init() in
+> > drivers/base/regmap/regmap.c. If the lock/unlock ops are not specified,
+> > then the final else will automatically setup locking. By default, it'll
+> > use a mutex, but there is the ability to use a spinlock.
+> > 
+> > So you can drop the lock/unlock ops from the driver, and add to the ops:
+> > 
+> > 	fast_io: 1,
+> > 	use_raw_spinlock: 1,
+> > 
+> > Given the critcal nature of clks, I agree with Stephen that a raw
+> > spinlock should be used here.
+> > 
+> 
+> Hi Stephen and Brian,
+> 
+> In the HSP clock driver, hsp_clk_gate_endisable() only accesses the 
+> registers at 0x800/0x900, and reset accesses the same registers as well, 
+> which leads to concurrent RMW (read-modify-write) races.
+> 
+> There are two approaches to solve these races.
+> 
+> The first method is the current implementation. All three functions 
+> (clk_gate_endisable(), hsp_clk_gate_endisable(), 
+> and eic7700_hsp_reset_assert()) use data->lock to prevent concurrent 
+> RMW races.
+> 
+> The second method is as Stephen said. If I understand correctly, it is to 
+> change the register read/write operations in hsp_clk_gate_endisable() to 
+> use the regmap API and use the same lock (map->raw_spinlock) as reset.
+> 
+> Is the second approach preferable?
 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-dp.c b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-index b0ab2b3d478d..9553bad690d9 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-@@ -23,17 +23,21 @@
- #include <drm/drm_bridge.h>
- #include <drm/drm_bridge_connector.h>
- #include <drm/display/drm_dp_helper.h>
-+#include <drm/display/drm_hdmi_audio_helper.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_of.h>
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_simple_kms_helper.h>
- 
-+#include <sound/hdmi-codec.h>
-+
- #define DW_DP_VERSION_NUMBER			0x0000
- #define DW_DP_VERSION_TYPE			0x0004
- #define DW_DP_ID				0x0008
- 
- #define DW_DP_CONFIG_REG1			0x0100
-+#define AUDIO_SELECT				GENMASK(2, 1)
- #define DW_DP_CONFIG_REG2			0x0104
- #define DW_DP_CONFIG_REG3			0x0108
- 
-@@ -110,6 +114,10 @@
- #define HBR_MODE_ENABLE				BIT(10)
- #define AUDIO_DATA_WIDTH			GENMASK(9, 5)
- #define AUDIO_DATA_IN_EN			GENMASK(4, 1)
-+#define AUDIO_DATA_IN_EN_CHANNEL12		BIT(0)
-+#define AUDIO_DATA_IN_EN_CHANNEL34		BIT(1)
-+#define AUDIO_DATA_IN_EN_CHANNEL56		BIT(2)
-+#define AUDIO_DATA_IN_EN_CHANNEL78		BIT(3)
- #define AUDIO_INF_SELECT			BIT(0)
- 
- #define DW_DP_SDP_VERTICAL_CTRL			0x0500
-@@ -253,6 +261,8 @@
- 
- #define SDP_REG_BANK_SIZE			16
- 
-+#define DW_DP_SDP_VERSION			0x12
-+
- struct dw_dp_link_caps {
- 	bool enhanced_framing;
- 	bool tps3_supported;
-@@ -305,6 +315,19 @@ struct dw_dp_hotplug {
- 	bool long_hpd;
- };
- 
-+enum dw_dp_audio_interface_support {
-+	DW_DP_AUDIO_I2S_ONLY = 0,
-+	DW_DP_AUDIO_SPDIF_ONLY = 1,
-+	DW_DP_AUDIO_I2S_AND_SPDIF = 2,
-+	DW_DP_AUDIO_NONE = 3,
-+};
-+
-+enum dw_dp_audio_interface {
-+	DW_DP_AUDIO_I2S = 0,
-+	DW_DP_AUDIO_SPDIF = 1,
-+	DW_DP_AUDIO_UNUSED,
-+};
-+
- struct dw_dp {
- 	struct drm_bridge bridge;
- 	struct device *dev;
-@@ -320,6 +343,8 @@ struct dw_dp {
- 	int irq;
- 	struct work_struct hpd_work;
- 	struct dw_dp_hotplug hotplug;
-+	enum dw_dp_audio_interface audio_interface;
-+	int audio_channels;
- 	/* Serialize hpd status access */
- 	struct mutex irq_lock;
- 
-@@ -1837,6 +1862,186 @@ static void dw_dp_bridge_oob_notify(struct drm_bridge *bridge,
- 		dev_err_once(dp->dev, "Missing platform handler for OOB HPD handling\n");
- }
- 
-+static int dw_dp_audio_infoframe_send(struct dw_dp *dp)
-+{
-+	struct hdmi_audio_infoframe frame;
-+	struct dw_dp_sdp sdp;
-+	int ret;
-+
-+	ret = hdmi_audio_infoframe_init(&frame);
-+	if (ret < 0)
-+		return ret;
-+
-+	frame.coding_type = HDMI_AUDIO_CODING_TYPE_STREAM;
-+	frame.sample_frequency = HDMI_AUDIO_SAMPLE_FREQUENCY_STREAM;
-+	frame.sample_size = HDMI_AUDIO_SAMPLE_SIZE_STREAM;
-+	frame.channels = dp->audio_channels;
-+
-+	ret = hdmi_audio_infoframe_pack_for_dp(&frame, &sdp.base, DW_DP_SDP_VERSION);
-+	if (ret < 0)
-+		return ret;
-+
-+	sdp.flags = DW_DP_SDP_VERTICAL_INTERVAL;
-+
-+	return dw_dp_send_sdp(dp, &sdp);
-+}
-+
-+static int dw_dp_audio_startup(struct drm_bridge *bridge,
-+			       struct drm_connector *connector)
-+{
-+	struct dw_dp *dp = bridge_to_dp(bridge);
-+
-+	dev_dbg(dp->dev, "audio startup\n");
-+	pm_runtime_get_sync(dp->dev);
-+
-+	return 0;
-+}
-+
-+static void dw_dp_audio_unprepare(struct drm_bridge *bridge,
-+				  struct drm_connector *connector)
-+{
-+	struct dw_dp *dp = bridge_to_dp(bridge);
-+
-+	/* Disable all audio streams */
-+	regmap_update_bits(dp->regmap, DW_DP_AUD_CONFIG1, AUDIO_DATA_IN_EN,
-+			   FIELD_PREP(AUDIO_DATA_IN_EN, 0));
-+
-+	if (dp->audio_interface == DW_DP_AUDIO_SPDIF)
-+		clk_disable_unprepare(dp->spdif_clk);
-+	else if (dp->audio_interface == DW_DP_AUDIO_I2S)
-+		clk_disable_unprepare(dp->i2s_clk);
-+
-+	dp->audio_interface = DW_DP_AUDIO_UNUSED;
-+}
-+
-+static int dw_dp_audio_prepare(struct drm_bridge *bridge,
-+			       struct drm_connector *connector,
-+			       struct hdmi_codec_daifmt *daifmt,
-+			       struct hdmi_codec_params *params)
-+{
-+	struct dw_dp *dp = bridge_to_dp(bridge);
-+	u8 audio_data_in_en, supported_audio_interfaces;
-+	u32 cfg1;
-+	int ret;
-+
-+	/*
-+	 * prepare might be called multiple times, so release the clocks
-+	 * from previous calls to keep the calls in balance.
-+	 */
-+	if (dp->audio_interface != DW_DP_AUDIO_UNUSED)
-+		dw_dp_audio_unprepare(bridge, connector);
-+
-+	dp->audio_channels = params->cea.channels;
-+	switch (params->cea.channels) {
-+	case 1:
-+	case 2:
-+		audio_data_in_en = AUDIO_DATA_IN_EN_CHANNEL12;
-+		break;
-+	case 8:
-+		audio_data_in_en = AUDIO_DATA_IN_EN_CHANNEL12 |
-+				   AUDIO_DATA_IN_EN_CHANNEL34 |
-+				   AUDIO_DATA_IN_EN_CHANNEL56 |
-+				   AUDIO_DATA_IN_EN_CHANNEL78;
-+		break;
-+	default:
-+		dev_err(dp->dev, "invalid audio channels %d\n", dp->audio_channels);
-+		return -EINVAL;
-+	}
-+
-+	switch (daifmt->fmt) {
-+	case HDMI_SPDIF:
-+		dp->audio_interface = DW_DP_AUDIO_SPDIF;
-+		break;
-+	case HDMI_I2S:
-+		/*
-+		 * It is recommended to use SPDIF instead of I2S, since I2S mode requires
-+		 * manually inserting PCUV control bits from userspace and this is done
-+		 * automatically in hardware for SPDIF mode.
-+		 */
-+		dp->audio_interface = DW_DP_AUDIO_I2S;
-+		break;
-+	default:
-+		dev_err(dp->dev, "invalid DAI format %d\n", daifmt->fmt);
-+		return -EINVAL;
-+	}
-+
-+	regmap_read(dp->regmap, DW_DP_CONFIG_REG1, &cfg1);
-+	supported_audio_interfaces = FIELD_GET(AUDIO_SELECT, cfg1);
-+
-+	if (supported_audio_interfaces != DW_DP_AUDIO_I2S_AND_SPDIF &&
-+	    supported_audio_interfaces != dp->audio_interface) {
-+		dev_err(dp->dev, "unsupported DAI %d\n", daifmt->fmt);
-+		return -EINVAL;
-+	}
-+
-+	clk_prepare_enable(dp->spdif_clk);
-+	clk_prepare_enable(dp->i2s_clk);
-+
-+	regmap_update_bits(dp->regmap, DW_DP_AUD_CONFIG1,
-+			   AUDIO_DATA_IN_EN | NUM_CHANNELS | AUDIO_DATA_WIDTH |
-+			   AUDIO_INF_SELECT | HBR_MODE_ENABLE,
-+			   FIELD_PREP(AUDIO_DATA_IN_EN, audio_data_in_en) |
-+			   FIELD_PREP(NUM_CHANNELS, dp->audio_channels - 1) |
-+			   FIELD_PREP(AUDIO_DATA_WIDTH, params->sample_width) |
-+			   FIELD_PREP(AUDIO_INF_SELECT, dp->audio_interface) |
-+			   FIELD_PREP(HBR_MODE_ENABLE, 0));
-+
-+	/* Wait for inf switch */
-+	usleep_range(20, 40);
-+
-+	if (dp->audio_interface == DW_DP_AUDIO_I2S)
-+		clk_disable_unprepare(dp->spdif_clk);
-+	else if (dp->audio_interface == DW_DP_AUDIO_SPDIF)
-+		clk_disable_unprepare(dp->i2s_clk);
-+
-+	/*
-+	 * Send audio stream during vertical and horizontal blanking periods.
-+	 * Send out audio timestamp SDP once per video frame during the vertical
-+	 * blanking period
-+	 */
-+	regmap_update_bits(dp->regmap, DW_DP_SDP_VERTICAL_CTRL,
-+			   EN_AUDIO_STREAM_SDP | EN_AUDIO_TIMESTAMP_SDP,
-+			   FIELD_PREP(EN_AUDIO_STREAM_SDP, 1) |
-+			   FIELD_PREP(EN_AUDIO_TIMESTAMP_SDP, 1));
-+	regmap_update_bits(dp->regmap, DW_DP_SDP_HORIZONTAL_CTRL,
-+			   EN_AUDIO_STREAM_SDP,
-+			   FIELD_PREP(EN_AUDIO_STREAM_SDP, 1));
-+
-+	ret = dw_dp_audio_infoframe_send(dp);
-+	if (ret < 0)
-+		dev_err(dp->dev, "failed to send audio infoframe\n");
-+
-+	dev_dbg(dp->dev, "audio prepare with %d channels using DAI=%d\n",
-+		dp->audio_channels, dp->audio_interface);
-+
-+	return 0;
-+}
-+
-+static void dw_dp_audio_shutdown(struct drm_bridge *bridge,
-+				 struct drm_connector *connector)
-+{
-+	struct dw_dp *dp = bridge_to_dp(bridge);
-+
-+	dev_dbg(dp->dev, "audio shutdown\n");
-+
-+	dw_dp_audio_unprepare(bridge, connector);
-+	pm_runtime_put_autosuspend(dp->dev);
-+}
-+
-+static int dw_dp_audio_mute_stream(struct drm_bridge *bridge,
-+				   struct drm_connector *connector,
-+				   bool enable, int direction)
-+{
-+	struct dw_dp *dp = bridge_to_dp(bridge);
-+
-+	dev_dbg(dp->dev, "audio %smute\n", enable ? "" : "un");
-+
-+	regmap_update_bits(dp->regmap, DW_DP_AUD_CONFIG1, AUDIO_MUTE,
-+			   FIELD_PREP(AUDIO_MUTE, enable));
-+
-+	return 0;
-+}
-+
- static const struct drm_bridge_funcs dw_dp_bridge_funcs = {
- 	.atomic_duplicate_state = dw_dp_bridge_atomic_duplicate_state,
- 	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-@@ -1850,6 +2055,11 @@ static const struct drm_bridge_funcs dw_dp_bridge_funcs = {
- 	.detect = dw_dp_bridge_detect,
- 	.edid_read = dw_dp_bridge_edid_read,
- 	.oob_notify = dw_dp_bridge_oob_notify,
-+
-+	.dp_audio_startup = dw_dp_audio_startup,
-+	.dp_audio_prepare = dw_dp_audio_prepare,
-+	.dp_audio_shutdown = dw_dp_audio_shutdown,
-+	.dp_audio_mute_stream = dw_dp_audio_mute_stream,
- };
- 
- static int dw_dp_link_retrain(struct dw_dp *dp)
-@@ -2076,10 +2286,19 @@ struct dw_dp *dw_dp_bind(struct device *dev, struct drm_encoder *encoder,
- 	}
- 
- 	bridge->of_node = dev->of_node;
--	bridge->ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP_HPD;
-+	bridge->ops = DRM_BRIDGE_OP_DP_AUDIO |
-+		      DRM_BRIDGE_OP_DETECT |
-+		      DRM_BRIDGE_OP_EDID |
-+		      DRM_BRIDGE_OP_HPD;
- 	bridge->type = DRM_MODE_CONNECTOR_DisplayPort;
- 	bridge->ycbcr_420_allowed = true;
- 
-+	dp->audio_interface = DW_DP_AUDIO_UNUSED;
-+	bridge->hdmi_audio_dev = dev;
-+	bridge->hdmi_audio_max_i2s_playback_channels = 8;
-+	bridge->hdmi_audio_dai_port = 1;
-+	bridge->hdmi_audio_spdif_playback = true;
-+
- 	ret = devm_drm_bridge_add(dev, bridge);
- 	if (ret)
- 		return ERR_PTR(ret);
+Use the same regmap everywhere. Also you don't have to explicitly define
+the raw spinlock in your driver since the regmap API will create a raw
+spinlock for you if you use the fast_io / use_raw_spinlock options I
+described above.
 
--- 
-2.53.0
+Brian
 
 
