@@ -1,62 +1,70 @@
-Return-Path: <devicetree+bounces-291850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291851-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CH2cC6Ej82n9xQEAu9opvQ
-	(envelope-from <devicetree+bounces-291850-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:40:49 +0200
+	id SOJ3Kwgq82mwxgEAu9opvQ
+	(envelope-from <devicetree+bounces-291851-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 12:08:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9921549FFA9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:40:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C1374A0842
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 12:08:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B0CA5301C100
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:40:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5AD6930394E0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 766903A3E7E;
-	Thu, 30 Apr 2026 09:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B183A9DA1;
+	Thu, 30 Apr 2026 09:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bi7W1P5N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bplODJU/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF7C28751B;
-	Thu, 30 Apr 2026 09:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4183A5E81;
+	Thu, 30 Apr 2026 09:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777542035; cv=none; b=pe77fnV4LUaC+xqGDE6SS4Aop0Og1Vyavwlp7PGlaECeE4DCdvVPTZaqtNJuBcwWxiHwg5hAFvKdHL5HorX5xknGS9fh/V8W9Vd64NpVU0lOAUJiyVGtobGNfWw+YtzdDZOGT2OR+2NP2ovOVFV4sypFGpUIkt7R/MLIWJpfk6c=
+	t=1777542241; cv=none; b=CQQJNRzQ9svU4Dvm5jbkyuZAFwrbzfsNVU/fSMzYc9oYukMcXb/lusnz5RcxDM6ymPK5EQtNQXNr5YltnJPN3rp0E/R6ZUmhHq185q8W3Nee5vzUYpVmN9I5EqIsXbVh0LbjmuhWXtapMdt8C7aTsXCuOoCoJXnsjIdE6umtmH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777542035; c=relaxed/simple;
-	bh=Tj7K1qp7clDNye0BbLNXPFP5MofQdFJ7SeapubT7TdM=;
+	s=arc-20240116; t=1777542241; c=relaxed/simple;
+	bh=pjD4a8rJ5wy6WIWFMXc/dMRwPE2lWwOkl+wfhS2cIxg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s2XRgmTJLgy6KIMErNjE9SgwHSn7aLd4DWYXvV4cNCh90KmuS3SAv1fFaTjPO59GH+h6dz0YyWHxxlA15aIzLQ/oVvzbtdN/sOalWJjPKyLPn+T7qNvD7yg7ZSZxFp9FbbAZK4xXP3RYFbWtjrEjdzj6WgYt3X3IgTiVd4pYjmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bi7W1P5N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AF26C2BCC4;
-	Thu, 30 Apr 2026 09:40:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=A6jLjC0mAFIS8/tGx5TlxlOnPGlb7yNv15qXboiAs9kMiuBWR5Lm1gZ4ohD1mAh52Es+k8/ZknJ42TECzDMrEphGTOrC6okF6qmbCYfGTJcoNBMpHKjCKr6XPehmyAoPEi795qjCFxE/je4A57IAZycbXgTVbqLpTfSFZpXE5yE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bplODJU/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92F83C2BCB3;
+	Thu, 30 Apr 2026 09:44:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777542035;
-	bh=Tj7K1qp7clDNye0BbLNXPFP5MofQdFJ7SeapubT7TdM=;
+	s=k20201202; t=1777542241;
+	bh=pjD4a8rJ5wy6WIWFMXc/dMRwPE2lWwOkl+wfhS2cIxg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Bi7W1P5NJgq5JgaZXIam/iHdqEEAlfiLj7Mcclo9abxMfE34smq9+J23v+F0BA5o0
-	 2IL+vhwg4/+gBP6RaTxNJnUsP0zOrKn6G3RCVDpsG2dYr02CNH540qDfSeXxOcQdBp
-	 5u4y/gjsUb3TUUP1LdLm4wq7vm3nQdPLBGZVy19Bap5vYgbttxRlgWogIX+y2jGdQc
-	 3kZpOL/nh+GeUL1Qbs/Z/A0tjaUqcpi0tHot2hfV3vQc0BoJNg1j2hPXBeaAT8B4nM
-	 B9wJhzgPhxoTRLEB/lMaaz0Itu25mOemAeMXV0AKC30/EujE8GJdqq0IWERpWwALp4
-	 bGCuSSYKNrH4w==
-Date: Thu, 30 Apr 2026 11:40:32 +0200
+	b=bplODJU/7ooHDNPIO3jofxmXUudXii8FNNlM4cLlKsg2xa1rzkJtzGIaCQEE5PtlT
+	 k2X2s+mFd8BHQrw+yditg9/oAb2mOFnydZHwRjIeFD0D5um8JnTMBeGiyY0lIqzu8A
+	 1dkEpe7x9CySs76qPyfav4wXZJZ33CEYe0VOX2WxMb4kdeR5izyJ4N7QuOfKzD+DYH
+	 OdTB2zDSzpq/JKsvbnZADUyziLCEVZsv4jiGSpL+Rn0Cub486PPITbtdu63OuNPubA
+	 cOL0/bXqyVZSeTcBqQGrpC11wIezKJWt6LrGGRX7T3O57Xmkl/hs+yrorqRVZFkcrf
+	 jmBwyEe1LL1xQ==
+Date: Thu, 30 Apr 2026 11:43:58 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org, KancyJoe <kancy2333@outlook.com>
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: document the SY7758
- 6-channel High Efficiency LED Driver
-Message-ID: <20260430-interesting-pink-salmon-082def@quoll>
-References: <20260428-topic-sm8650-ayaneo-pocket-s2-sy7758-v1-0-0caade5fdb32@linaro.org>
- <20260428-topic-sm8650-ayaneo-pocket-s2-sy7758-v1-1-0caade5fdb32@linaro.org>
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Jens Axboe <axboe@kernel.dk>, Johannes Berg <johannes@sipsolutions.net>, 
+	Jeff Johnson <jjohnson@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-block@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	ath10k@lists.infradead.org, linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org, 
+	daniel@makrotopia.org
+Subject: Re: [PATCH 2/9] arm64: dts: qcom: arduino-imola: Describe boot1
+ NVMEM layout
+Message-ID: <20260430-famous-meek-dinosaur-edacc6@quoll>
+References: <20260428-block-as-nvmem-v1-0-6ad23e75190a@oss.qualcomm.com>
+ <20260428-block-as-nvmem-v1-2-6ad23e75190a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,78 +73,105 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260428-topic-sm8650-ayaneo-pocket-s2-sy7758-v1-1-0caade5fdb32@linaro.org>
-X-Rspamd-Queue-Id: 9921549FFA9
+In-Reply-To: <20260428-block-as-nvmem-v1-2-6ad23e75190a@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 4C1374A0842
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [5.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291850-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-291851-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	GREYLIST(0.00)[pass,body];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,gmx.de,lists.freedesktop.org,vger.kernel.org,outlook.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,kernel.dk,sipsolutions.net,holtmann.org,gmail.com,quicinc.com,davemloft.net,google.com,redhat.com,vger.kernel.org,lists.infradead.org,makrotopia.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	NEURAL_SPAM(0.00)[0.608];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email,devicetree.org:url,qualcomm.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.17.48:email,0.0.0.0:email,qualcomm.com:email,0.0.21.24:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-On Tue, Apr 28, 2026 at 03:59:11PM +0200, Neil Armstrong wrote:
-> Document the Silergy SY7758 6-channel High Efficiency LED Driver
-> used for backlight brightness control.
+On Tue, Apr 28, 2026 at 04:23:07PM +0200, Loic Poulain wrote:
+> On Arduino Uno-Q, the eMMC boot1 partition is factory provisioned
+> with device-specific information such as the WiFi MAC address
+> and the Bluetooth BD address. This partition can serve as an
+> alternative to additional non-volatile memory, such as a
+> dedicated EEPROM.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> The eMMC boot partitions are typically good candidates, as they
+> are realively small, read-only by default (and can be enforced
+> as hardware read-only), and are not affected by board reflashing
+> procedures, which generally target the eMMC user or GP partitions.
+> 
+> Describe the corresponding nvmem-layout for the WiFi and
+> Bluetooth addresses.
+> 
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
 > ---
->  .../bindings/leds/backlight/silergy,sy7758.yaml    | 53 ++++++++++++++++++++++
->  1 file changed, 53 insertions(+)
+>  arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts | 24 ++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 > 
-
-subject - not a regulator prefix
-
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/silergy,sy7758.yaml b/Documentation/devicetree/bindings/leds/backlight/silergy,sy7758.yaml
-> new file mode 100644
-> index 000000000000..dc44b3b502e2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/backlight/silergy,sy7758.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/backlight/silergy,sy7758.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts b/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
+> index bf088fa9807f040f0c8f405f9111b01790b09377..dc85cf94f71cac8666cab30ccf37cc2d2f8fd941 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
+> @@ -409,7 +409,31 @@ &sdhc_1 {
+>  	no-sdio;
+>  	no-sd;
+>  
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
 > +
-> +title: Silergy SY7758 6-channel High Efficiency LED Driver
+>  	status = "okay";
 > +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +	card@0 {
+> +		compatible = "mmc-card";
+> +		reg = <0>;
+
 > +
-> +description: |
+> +		partitions-boot1 {
+> +			nvmem-layout {
 
-Drop |
+This should not be a separate patch. You add the layout AND you use it.
 
-With these two fixed:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-Best regards,
-Krzysztof
-
+> +				compatible = "fixed-layout";
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +
+> +				wifi_mac_addr: mac-addr@4400 {
+> +					reg = <0x4400 0x6>;
+> +				};
+> +
+> +				bd_addr: bd-addr@5400 {
+> +					reg = <0x5400 0x6>;
+> +				};
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &spi5 {
+> 
+> -- 
+> 2.34.1
+> 
 
