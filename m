@@ -1,159 +1,211 @@
-Return-Path: <devicetree+bounces-291946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291941-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YA6mIhhV82mLzgEAu9opvQ
-	(envelope-from <devicetree+bounces-291946-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 15:11:52 +0200
+	id EK+OKmVR82lnzQEAu9opvQ
+	(envelope-from <devicetree+bounces-291941-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 14:56:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB6994A3364
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 15:11:51 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C85E4A2FEE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 14:56:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 83809305C493
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 13:08:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B5C263010251
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 12:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444D740B6FF;
-	Thu, 30 Apr 2026 13:08:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="GDxd1AZx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0856D40F8F9;
+	Thu, 30 Apr 2026 12:55:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07DE4221721;
-	Thu, 30 Apr 2026 13:07:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622CA401A38
+	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 12:55:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777554481; cv=none; b=R6zoQu9k6KpxANcWyp45nyGDU41+KAaE50fSmrHvQoZw4o2cgGLWDWnvSeJtIQayG5X+wxSd6KM2dXDQKCLCLLbGl0Xlczfyr2/K/NN65heTARjWyhFWNfxBX81L5qc9SJZ/XYDnkzGjIxFkhClIGAE309S/y5sCfw/D4oqZ4Jg=
+	t=1777553747; cv=none; b=difLvNerrFtRAbiq6bR5PGmQ1PczUB2zvvD3bicLd065jx3KcdXpkLqkHNQNFqcArXtFsPOM1VzzR5jd6L+8AKBVSgpKSGE+jyrks2Hs26PuwT1gK09CplMSLKxJujCKwQvB0QXNxoiRHJMsAEDW1nF/0MNeYX69RhOUfHneMmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777554481; c=relaxed/simple;
-	bh=ONGR1P2sejPwseI1U48nJ6Sn9Q1O9l+eOpPQC/6BOKQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=usHr1TT24Czrz+e8ZS44Aob4qv9JX3oqmslz9+xJPzR7NYBDIwP0bbZF0kxQVZFer7cCzHNrgTPcbieLhkrvNdLJGTExJME6VKFYwQOkzLlc99Qx/x9x1Ayl9U5Q9lL00guWyYcniUNB64KHQTWOKBF6HC7PR8csMQ4MPZnu3qA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=GDxd1AZx; arc=none smtp.client-ip=188.40.3.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=Content-Type:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=ONGR1P2sejPwseI1U48nJ6Sn9Q1O9l+eOpPQC/6BOKQ=; b=GDxd1AZxCnVt3bGh86E2xy02FF
-	zD1YjTRphX9Wx+vRvEYcC2Bp/M+DJphjoDQr/LGJozmZ2YMKHeZQBzVpQzO9m6eDgct9qvvxWxcsc
-	o7eRgeivb+MvqVr1UPdmTr3gfrjQi+JYG8QN8yjvC95Xaz8yspeiX9phBRs+4u9W9pO4b7cmmiRkd
-	bf+9cTekx1kB/uJgozCHPDabIgck2MoipIjTezVRioi3g74uyWxNNsndFblVYF2UhnhsBKX9Spsip
-	b1vhwwPIMsSP6nPf6D+WoZG9vU5+khFElS03T84ODUAiL0DJvaycS3tWIqQJWkVhBGTcFOjEXbydo
-	1LyYCQ0Q==;
-Received: from sslproxy04.your-server.de ([78.46.152.42])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1wIQnh-000A3k-0Y;
-	Thu, 30 Apr 2026 14:47:29 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy04.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1wIQng-000HY2-06;
-	Thu, 30 Apr 2026 14:47:28 +0200
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc: Parshuram Thombare <pthombar@cadence.com>,
- Swapnil Jakhade <sjakhade@cadence.com>, Dmitry Baryshkov <lumag@kernel.org>,
- Nikhil Devshatwar <nikhil.nd@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux@ew.tq-group.com, Ying Liu <victor.liu@nxp.com>
-Subject: Re: [PATCH v22 4/8] drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
-Date: Thu, 30 Apr 2026 14:47:27 +0200
-Message-ID: <15228814.O9o76ZdvQC@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <q7rze73ohtylj4jgtxun3cg6ih42crfs2u6tioby6yfqciemem@udrdm2g32fgn>
-References:
- <20260424-dcss-hdmi-upstreaming-v22-0-30a28f89298d@oss.nxp.com>
- <DI3YF7J7ZW0P.3OKMUXAM7GW5C@bootlin.com>
- <q7rze73ohtylj4jgtxun3cg6ih42crfs2u6tioby6yfqciemem@udrdm2g32fgn>
+	s=arc-20240116; t=1777553747; c=relaxed/simple;
+	bh=EUAeZZiWir+om8O/lfmhWKlIvgnl/Vp0lghxn/70ykI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WKFMYbnaQBomqjaPt0hSFagBVaYVVud76Qd8XkLXjZLwTV2ehY0mcWMON2gaTi27XFh0Bg4P6lyseJo4Ik50qV/ipD7Be+muVUdf5TGazNVjCEfkW+QS7Pl5cq3ZqJtIylt5y1b8cRuvC+YDYoasrltzyF3Q4u99NhmCRHhSzyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b9c3e2cf3c0so144979166b.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 05:55:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777553744; x=1778158544;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nuQFrVM35wc/XdWiWZfeFiOqf6xuZFSJEgb1hfqaX5M=;
+        b=KSRFQHjErDJpIley+AyITQQt8fdM0/F7WKWl+9Wd1sfz3ty/Gaxhqk4thBdy9tKyYr
+         seBh+CRQDcgXEbVUOZehJY0mrf/JqOhRO/DIx456jwIugxh8EiYuPveOLoGN2qk+h50w
+         4EJBH+UYkJQ/Lr8Yvo6GbENrUnAdF9LNs30dmg4AGJt/MydWeDb80pWuU14EdSCRDgmF
+         2dQk2dKAqj9FgGNvASoyRq1OdlxRSPyElh+57uFcme0wNtHPwmKgIH0PK5uWK9T6hSpx
+         EHiyz4hOhdPpFnw1b1iPg2b9+4bBvX2YWpMQeiQXQoHcQXDX6nXdCysisXg4+GLJJ3Od
+         l8aw==
+X-Forwarded-Encrypted: i=1; AFNElJ8fFBVjWFThfSP+gCdGf9AxTZrTUvfQtMoqIibCbg8M5krigKfb4EN9Gg63zfZM7OZiMQETWI6gz3/0@vger.kernel.org
+X-Gm-Message-State: AOJu0YyG8+M2MwKQX8fZUYvkf7HOQZHdFgTkZSo9hCK3ccuO/TBsKEyU
+	NmimnKfLTbD0pm9paUCS5MEkFna2mGSH/CbN8pxNzCtjDZULGSEqpAgCzG6rwStMeQo=
+X-Gm-Gg: AeBDietNJo3uqoQOPMtVH44TEReT4Yf/Z0NN3pKR0tjOfqTNGkfiXH851F/jxQAufOz
+	M+dr43pgqF2HlYtu7pz3U003GkyXunMo0DRig+kcxZr3OUjVF3v+W3I4rJfHNC6dseOHyBUsQye
+	9lQqKvBVOOl2SCxDbfnPkJtHNugzOPjT440kZuwjdjxFKO6R/9SmKnn35k2RVfh2a3Ga46itCEg
+	S65BvJ2Pk0JxA/Xamj5+BFsqcFQF7pyj5+Q9b6kHv0zrFCoxNhOo2JshdUSBLyaq+ZHFHPcRSyj
+	cIuvuzvs76VLvNm9MQm5zckNVzus6auL8dHEnxQvW3cb9150r0rdFvDWpC0dQM6K7iD1hbZd9hg
+	IkIleUCBjTS15o7h8QOjfouAxWQsyGLEPa2201sPak/X7lCvFtj+KEiPi2IcLFNAYh5bS6yNJ+q
+	hEvueetsClBhKtLkt9LujhjCX2vksmxkKVivNOZOPVWbjMfBazTzcQ/RqMp20jzqcpXAVG7/ze
+X-Received: by 2002:a17:907:1b09:b0:ba7:3578:f627 with SMTP id a640c23a62f3a-bbac6eb68e4mr167852566b.37.1777553744102;
+        Thu, 30 Apr 2026 05:55:44 -0700 (PDT)
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com. [209.85.208.46])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bb985e1d589sm231267466b.52.2026.04.30.05.55.43
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Apr 2026 05:55:43 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-67785ef88feso1488390a12.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 05:55:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ91204kkX+XdekL52CE/CCFbUkJPEqh5c7Qcu0gjaujD5J6siwzg2qhfqPfm8OZV5Acvfqo1VACAtjt@vger.kernel.org
+X-Received: by 2002:a05:6512:10c8:b0:5a4:175a:ce72 with SMTP id
+ 2adb3069b0e04-5a8522dd822mr1025501e87.39.1777553399625; Thu, 30 Apr 2026
+ 05:49:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20251025043129.160454-1-iuncuim@gmail.com> <20251025043129.160454-2-iuncuim@gmail.com>
+ <20251026210905.GA2941518-robh@kernel.org> <1935223.tdWV9SEqCh@jernej-laptop>
+In-Reply-To: <1935223.tdWV9SEqCh@jernej-laptop>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Thu, 30 Apr 2026 21:49:47 +0900
+X-Gmail-Original-Message-ID: <CAGb2v64z9RMsGiy0skudn4cgo=RajxCho-vaXr5rUo5HPpqjPQ@mail.gmail.com>
+X-Gm-Features: AVHnY4IT6nLdgfoMRlxWNV7nGADa-98ikdi3BEcPI2XpUYcTyVZLvYz4C1kzI-g
+Message-ID: <CAGb2v64z9RMsGiy0skudn4cgo=RajxCho-vaXr5rUo5HPpqjPQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: thermal: sun8i: Add A523 THS0/1 controllers
+To: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc: iuncuim <iuncuim@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Andre Przywara <andre.przywara@arm.com>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Virus-Scanned: Clear (ClamAV 1.4.3/27987/Thu Apr 30 08:25:46 2026)
-X-Rspamd-Queue-Id: DB6994A3364
+X-Rspamd-Queue-Id: 4C85E4A2FEE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[csie.org : SPF not aligned (relaxed), No valid DKIM,quarantine,sampled_out];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291946-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	TAGGED_FROM(0.00)[bounces-291941-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_CC(0.00)[cadence.com,kernel.org,ti.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,ew.tq-group.com,nxp.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ew.tq-group.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,tq-group.com:url]
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linaro.org,intel.com,arm.com,sholland.org,pengutronix.de,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@csie.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.992];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	HAS_REPLYTO(0.00)[wens@csie.org];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[csie.org:replyto,mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 
-Hi,
-
-Am Montag, 27. April 2026, 16:35:55 CEST schrieb Laurentiu Palcu:
-> Hi Luca,
+On Tue, Oct 28, 2025 at 3:01=E2=80=AFAM Jernej =C5=A0krabec <jernej.skrabec=
+@gmail.com> wrote:
 >
-> [snip]
-> >=20
-> > Another question is whether this driver should have two compatible stri=
-ngs,
-> > one for hdmi and one for dp, and set the bridge_type based on that. This
-> > would make it a lot simpler and remove the need for this function.
->=20
-> I think this is a good idea. I see no reason why having 2 different
-> compatibles wouldn't work. I'll give it a try.
+> Hi,
+>
+> Dne nedelja, 26. oktober 2025 ob 22:09:05 Srednjeevropski standardni =C4=
+=8Das je Rob Herring napisal(a):
+> > On Sat, Oct 25, 2025 at 12:31:24PM +0800, iuncuim wrote:
+> > > From: Mikhail Kalashnikov <iuncuim@gmail.com>
+> > >
+> > > Add a binding for D1/T113s thermal sensor controller. Add dt-bindings
+> > > description of the thermal sensors in the A523 processor.
+> > > The controllers require activation of the additional frequency of the
+> > > associated gpadc controller, so a new clock property has been added.
+> > >
+> > > The calibration data is split into two cells that are in different ar=
+eas
+> > > of nvmem. Both controllers require access to both memory cell, so a n=
+ew
+> > > property nvmem-cells has been added. To maintain backward compatibili=
+ty,
+> > > the name of the old cell remains the same and the new nvmem-cell-name=
+s is
+> > > called calibration-second-part
+> > >
+> > > Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
+> > > ---
+> > >  .../thermal/allwinner,sun8i-a83t-ths.yaml     | 56 +++++++++++++++++=
++-
+> > >  1 file changed, 53 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/thermal/allwinner,sun8=
+i-a83t-ths.yaml b/Documentation/devicetree/bindings/thermal/allwinner,sun8i=
+-a83t-ths.yaml
+> > > index 3e61689f6..b2f750ef2 100644
+> > > --- a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-=
+ths.yaml
+> > > +++ b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-=
+ths.yaml
+> > > @@ -24,18 +24,23 @@ properties:
+> > >        - allwinner,sun50i-h5-ths
+> > >        - allwinner,sun50i-h6-ths
+> > >        - allwinner,sun50i-h616-ths
+> > > +      - allwinner,sun55i-a523-ths0
+> > > +      - allwinner,sun55i-a523-ths1
+> > >
+> > >    clocks:
+> > >      minItems: 1
+> > >      items:
+> > >        - description: Bus Clock
+> > >        - description: Module Clock
+> > > +      - description: GPADC Clock
+> > >
+> > >    clock-names:
+> > >      minItems: 1
+> > > +    maxItems: 2
+> >
+> > How can the max be both 2 and...
+> >
+> > >      items:
+> > >        - const: bus
+> > >        - const: mod
+> > > +      - const: gpadc
+> >
+> > ...3 entries?
+> >
+>
+> Because old variant uses "bus" and "mod" and new variant uses "bus" and
+> "gpadc" and none of them uses all 3 entries.
+>
+> Although, I guess we can simplify and just use "mod" in both cases.
 
-IIRC the original implementation of Sandor had two compatibles, essentially
-duplicating lots of code for DP and HDMI. Maybe meanwhile with the rework t=
-he
-duplication is gone and the different compatibles are feasible again.
-
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Yes. Please just keep using "mod".
 
 
+ChenYu
 
