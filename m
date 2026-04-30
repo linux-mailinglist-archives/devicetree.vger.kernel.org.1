@@ -1,213 +1,168 @@
-Return-Path: <devicetree+bounces-291857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291864-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AESrLgUm82mZxgEAu9opvQ
-	(envelope-from <devicetree+bounces-291857-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:51:01 +0200
+	id yDrBLCoo82mwxgEAu9opvQ
+	(envelope-from <devicetree+bounces-291864-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 12:00:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 917834A0311
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:51:00 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 573BE4A064E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 12:00:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C657E307DA62
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:45:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0B027316E871
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:52:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27F553FE362;
-	Thu, 30 Apr 2026 09:45:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B596D3A7F69;
+	Thu, 30 Apr 2026 09:51:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cupf8YAg";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Qq0QSOvG"
+	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="m1P/sVVa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from out28-194.mail.aliyun.com (out28-194.mail.aliyun.com [115.124.28.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0070D3A8743
-	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 09:45:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 979BF3A545A;
+	Thu, 30 Apr 2026 09:51:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777542341; cv=none; b=ujYxqmvUfFKD121JYKrXWZiLjCJsLbODbUS1VkjcwAFDeCP3Qamd7gLbZFSGSHGxv8DldDlXLKRuPuGNywXNnGTRZQKb8bEnyPoEC4fw5Mi9CpkLie+Ehe8aogDKgiwX6HKQtYJ11XtGpIFuXL4sLcP+9Y61Q1AnRO3dKUlgXdo=
+	t=1777542710; cv=none; b=LFgDMN01wCNpQ3mtb0vmplLw+5/FL3J+dDNcsAxooX4igE9q5sTr8wd+9R2U10HOJPuOvU3do9ocRTIjjCeypxl7Y12xb4EVSk0/rEYkpcN+oCIR0FkV9mFH9b7RyeAfYpPFSnjLcNKYxkc32EiEGosw5Ee1oOFYscE5u9LGbOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777542341; c=relaxed/simple;
-	bh=u9UYAcBfPm+Cjij/4yHsiT59K7r+ruo3k0BHpFBTT3M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lOZBKefy6KJFVjwh3qzLQPYuYRVb/+nBTWOqWd/bW5xVllcK8sxrcHKrPTQGH3iNeOxMWhSSLeHkac/d7hlbQXEcUEpEVv604B6GjOhys4vWN6izbNfxLUM37Uy0qhKnDJnECSUkkb50DyeNPFR/YEGi87flEKA6Nin417Z8hVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cupf8YAg; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Qq0QSOvG; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63U59JMj2907506
-	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 09:45:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	L53kthztgvDO0gpZ7CrzJcti9CkeL2yF+aYSX5DyYaU=; b=cupf8YAgOKOePClH
-	8c7dK5mQvmjcxfWxCE//0zxHTCh4u1qdO6dqXRVwAk11ZeExUaBIMRnG/jvlD7lE
-	mqEI7QaNBCTbZIv8OzSjsQrEtGaLq8CilTt/KwN4ovaZRFtOrIJQpfNiIkUzO5wy
-	4KTRiCv3Nx0W/Gzf3mtkn9N5JVUCGriiVYv0cJ4xlfFMFhtP3fSrEtHLzl4jTGp8
-	kj17Isly+JSvFjnrshd96MRjENf8IWe+jvggdVYKWwkjtl56w13VfnZR9rpHHDnm
-	CYUyNZtZdqQ7gFBTnl+PV9SgfqJMexQyotpowsfwinHV4Ntmi/Wp1HA07wZ+Bq+w
-	imFnqQ==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dv0pf91ff-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 09:45:38 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-82fa860e71eso450250b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 02:45:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1777542338; x=1778147138; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L53kthztgvDO0gpZ7CrzJcti9CkeL2yF+aYSX5DyYaU=;
-        b=Qq0QSOvGJZ0nVLCUOHs6UZWE89lGBj0wm5hhJ8Rd6KG2igvPOq9iMKok+OX1XnciK9
-         vyuAS8erSAkHjUWih48Nd+/hahPdjip5C76SuDXvF2A69+ZjIh83JrIGO46DghROSmyx
-         diykMMUs/niDJJiGQrLHENmS80o5nm8n0oJj0qUS4u8vlQscahqQea5hE5/xcMPmL5no
-         q9quKuNxT+f/EX7LQLHhtLKWjecF6ks/aI10wW9AQnRtx4vMMpP5wkMkSC2/l29EP1C/
-         YQNhaLSryiHYzWoKumW8oEt6MMHTBjPbCXNorrMZM+0Oq8P3jNTqFo5yHTNgKwnpnmVa
-         4w4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777542338; x=1778147138;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=L53kthztgvDO0gpZ7CrzJcti9CkeL2yF+aYSX5DyYaU=;
-        b=OvYOY3+5K3+xiGE3WZdnLXKUVmuR7kTDeVmrlvEo6YdMDChBnh84Udg3s/IUDI3mls
-         0egPVK6wmZWNCw6NTorqt4+kjP42um8axH5eGQsCkCGsHt1PKBrqmjZzaxR5yNq1KIlF
-         FyvZb2/2Ut0gjnMoBnmjsTmjC4xCepTrXS0mQUK944lASVJK3oyMoXsUJCBfrY6qN0AI
-         yofDgksawzb9JwISoKb1JHRod/liYq2qf2IAYNcA46XMDiLW8/o5sFEBa2Pr8RSCef4g
-         8L/6XXWOWig6dm/gjmRhDZFf1ZVPiFvw6pS3Zotz9uW+UI+Wk+uJvnmAX6B66sA/8qJa
-         oORQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/7ss7XJlB9ldwyKgtcifBuQlEaEiMDfH4zpdKjumjHHi19hPZkTqLyUm5qWaWkDABStrRS5EswlpIv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9JB9B4Aggy85iFCZLHssJOW7IPo0zE+uiy9GHuIFP+zramByk
-	Q4s/25kboFzV/iiw+s3yxcfsi7BXr7F2JLyPjW5HhM3ajOcfdrrGv8Rd6gdB3JGrHTwbtuybTq5
-	nL6evmDIS/fkuHxnjGgnLeVN6iFoojvgRSZt4RjqHz2Xar/73ypGGXWE/f7jFPTxk
-X-Gm-Gg: AeBDieudbS9eokh/wAZcJWwfMNeUSJ3e1YJQ2qlT25B04MBqrjB+wTZfXGxWzmHfCDu
-	2KS/rsu64JHF72D7ppklL6tMk9vWLztZ/K3nI2iYYi+Od59LFeOAI+wtKiXkXONckN86u2uBX3L
-	KEr7hsvtAHoKhmdshzHQ25NNXiY+i5bnyLSu7ifJfCTvvKvuDQnFdFSvc+BPdB1hxSjg7bXahjn
-	BD8lfjyGts1WIpp6obZQ0qzhKCzzFtspFKfu1dEoihwH93wCp1Omgux5a9f96F+W/dODuvc1NAB
-	8NQrq8yo56Fc3g1FiHL87gz6cqWv1WbNYysv2rQ9JFm8l0JJz/IV8VHGMQKWzk0n13JACOSe4r3
-	ZA7xTBBaSRD/asNZvq2kNokQD2Oz1SEU9BnrUCphQI4x6TRdKtIVKl6HcEvN6sw==
-X-Received: by 2002:a05:6a00:92a7:b0:82f:8332:4933 with SMTP id d2e1a72fcca58-834fdb078a3mr2596473b3a.3.1777542337713;
-        Thu, 30 Apr 2026 02:45:37 -0700 (PDT)
-X-Received: by 2002:a05:6a00:92a7:b0:82f:8332:4933 with SMTP id d2e1a72fcca58-834fdb078a3mr2596438b3a.3.1777542337108;
-        Thu, 30 Apr 2026 02:45:37 -0700 (PDT)
-Received: from hu-smankad-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-834ed7eb691sm4718937b3a.48.2026.04.30.02.45.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Apr 2026 02:45:36 -0700 (PDT)
-From: Sneh Mankad <sneh.mankad@oss.qualcomm.com>
-Date: Thu, 30 Apr 2026 15:14:59 +0530
-Subject: [PATCH 4/4] mailbox: qcom-apcs-ipc: Add Shikra APCS IPC support
+	s=arc-20240116; t=1777542710; c=relaxed/simple;
+	bh=JrDiQmU36Dnvpxm3obMClOqvaiJ9dgoWkYrEpSYGC1c=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=i5DePVTyyb3fK9fvt4hNyfVykZ14++KHq7UKI/DL8fdEzNo+eMPrkDHP3ds0PO2rWi6WMHd/7CkSgvS3Y89qr/H1CHpluxZBc597NKnKGs8sAclYJ0Y2xA0ZTsaP2feN3JwqNP3TSCtStCEYTJ9kMoFycEevcSKSQ4h+2QYPogI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=m1P/sVVa; arc=none smtp.client-ip=115.124.28.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lontium.com
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=lontium.com; s=default;
+	t=1777542699; h=From:To:Subject:Date:Message-Id:MIME-Version;
+	bh=LE+sPblj04tWoSeV8fpMr+HaJy7Zfzk68wAWVO5KMq0=;
+	b=m1P/sVVatriuuIPdsDo7Fw1Ev8sTgpjx855Oco9bmWTg29BKkwVtWjDyBV4sgVMYFXvv64KYgTYdDFyWnuwCHbgjc+sQeO/3Js3u+XylVO2O+PzquPsSa6TRD5gwLOkMqqiFVGLuv3tMtcvUInAJy4m8+WwozwDdFrdm3EgSLqlipTxsuyh5HM/LCZZE/Z7BVRj7FHGV+MfdwcyK3a7SfMOE/g5tywO5q4gC/FQn1VX2XQCuwb/HqYi/hSxB9LHcgTOQ5xUEAT6+MVAEA6KrAQ9de5d+HagyPcgZyuHWzh/6COh3S9TCbNHxeNH6Yfzc7yJhygykvMo+EKJ+v8kmxQ==
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.08588946|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00363759-8.50324e-05-0.996277;FP=7874775103993203832|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033037006180;MF=syyang@lontium.com;NM=1;PH=DS;RN=22;RT=22;SR=0;TI=SMTPD_---.hNVpxsM_1777542374;
+Received: from DESKTOP-V2MKAT2.localdomain(mailfrom:syyang@lontium.com fp:SMTPD_---.hNVpxsM_1777542374 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Thu, 30 Apr 2026 17:46:16 +0800
+From: syyang@lontium.com
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	dmitry.baryshkov@oss.qualcomm.com,
+	maarten.lankhorst@linux.intel.com,
+	rfoss@kernel.org,
+	mripard@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	tzimmermann@suse.de,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	yangsunyun1993@gmail.com,
+	xmzhu@lontium.corp-partner.google.com,
+	xmzhu@lontium.com,
+	rlyu@lontium.com,
+	xbpeng@lontium.com,
+	Sunyun Yang <syyang@lontium.com>
+Subject: [PATCH v4 0/2] Add Lontium LT7911EXC eDP to MIPI DSI bridge
+Date: Thu, 30 Apr 2026 17:46:10 +0800
+Message-Id: <20260430094612.3408174-1-syyang@lontium.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260430-shikra_mailbox_and_rpm_changes-v1-4-61ad7c57ef27@oss.qualcomm.com>
-References: <20260430-shikra_mailbox_and_rpm_changes-v1-0-61ad7c57ef27@oss.qualcomm.com>
-In-Reply-To: <20260430-shikra_mailbox_and_rpm_changes-v1-0-61ad7c57ef27@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Jassi Brar <jassisinghbrar@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        Sneh Mankad <sneh.mankad@oss.qualcomm.com>,
-        Vishnu Santhosh <vishnu.santhosh@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777542312; l=1107;
- i=sneh.mankad@oss.qualcomm.com; s=20250818; h=from:subject:message-id;
- bh=QPOvZ4FdMA2wnx84lf4VqyIVMhJ9E7QIKahaQXRd0/E=;
- b=mq2VuzLxRAGP9zg5b7p4sZnxYqzSs0QHgyWzhLlX2DOzHvOMgBxvjykHYlMoWtnFwY4cTgUkF
- 8B9sCbEtFThBlWzoY7kS6dOIHJvWbMBxxPEznqr3jUev3FowOQTZBy4
-X-Developer-Key: i=sneh.mankad@oss.qualcomm.com; a=ed25519;
- pk=sv57EGwdcfnp6xJmoBCIT1JFSqWI+gawRHkJWj/T2B0=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDMwMDA5NiBTYWx0ZWRfX84RnLP62ARuD
- ce/4AWcS2/94Xfi+XWHxILv1kUaYQ93UvN63t/9NImbtXmttioBENfyR7X64pEJ5ruaiIC4wGZ8
- HaAzAd4Q/ETOvXmdOX0QIqvoXPZuWT63WLyd5kssPRj4k2668xh0TaLynJGab1fKweRWG3jGpPg
- mWTjQy7tFVd77LoJvbnLv2BpKAbEU1q8BBum3Pr5X5K95XuS2G0lQtK6W3xC3BxwSKLrvu71ACF
- 3b/xJwLaxNQX0H2QeDJyLXnn6IVDCQAQ0MaBMFQ/1oMlLpzeYX0UjRzP4s8ovzUsYYOA1pdhbA+
- QUngNV0GXYcr4gYS5ztMUJK7gBx6Dk7mFC5sjnmizLF0B5TBxwwDplxzw/qgm+Ha/1be6XK94SB
- utRTEkIfUL5OgZshOJ/Y6Y3h4NZL3nBNlVW/QG2u4vT2UHVq/em7AC74RUjiSZxcoyREy07t0yg
- HO7B1NgLOhSCdeKpbtQ==
-X-Authority-Analysis: v=2.4 cv=Zrnd7d7G c=1 sm=1 tr=0 ts=69f324c2 cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=EUspDBNiAAAA:8 a=3n6LiYR9N_aqWDaFmTgA:9 a=QEXdDO2ut3YA:10
- a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-ORIG-GUID: QqmryT0elbKWuK_7sxzNmKEag8fAsk9D
-X-Proofpoint-GUID: QqmryT0elbKWuK_7sxzNmKEag8fAsk9D
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-30_03,2026-04-28_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 lowpriorityscore=0 clxscore=1015 spamscore=0
- adultscore=0 phishscore=0 suspectscore=0 impostorscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604300096
-X-Rspamd-Queue-Id: 917834A0311
-X-Rspamd-Action: no action
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 573BE4A064E
+X-Rspamd-Action: add header
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [6.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291857-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,gerhold.net,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-291864-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	R_DKIM_ALLOW(0.00)[lontium.com:s=default];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	GREYLIST(0.00)[pass,meta];
+	DMARC_NA(0.00)[lontium.com];
+	DKIM_TRACE(0.00)[lontium.com:+];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sneh.mankad@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_SPAM(0.00)[0.995];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email,0.0.0.0:email,lontium.com:email,lontium.com:dkim,lontium.com:mid]
+X-Spam: Yes
 
-From: Vishnu Santhosh <vishnu.santhosh@oss.qualcomm.com>
+From: Sunyun Yang <syyang@lontium.com>
 
-Enable Shikra APCS IPC support by adding the compatible.
-It reuses apps_shared_apcs_data.
+The LT7911EXC is an I2C-controlled bridge that Receiver eDP1.4
+and output signal/dual port mipi. This series introduces:
 
-Signed-off-by: Vishnu Santhosh <vishnu.santhosh@oss.qualcomm.com>
-Signed-off-by: Sneh Mankad <sneh.mankad@oss.qualcomm.com>
+- A device tree binding YAML file describing the hardware
+- A new DRM bridge driver implementing the basic functionality
+
+Signed-off-by: Sunyun Yang<syyang@lontium.com>
 ---
- drivers/mailbox/qcom-apcs-ipc-mailbox.c | 1 +
- 1 file changed, 1 insertion(+)
+Change in v4:
+- dt-binding:
+ 1. Fix the missing spaces on the "subject".             [Krzysztof]
+ 2. Fix the error descriptions for port@0 and port@1.
+- drm/bridge:
+- Link to v3: https://lore.kernel.org/lkml/20260429040541.3404116-1-syyang@lontium.com/
 
-diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-index d3a8f6b4a03b368821ef9a5b24fee78037104610..25f76965921ba695e3a1bf4df47ce643916a28cb 100644
---- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-+++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-@@ -168,6 +168,7 @@ static const struct of_device_id qcom_apcs_ipc_of_match[] = {
- 	{ .compatible = "qcom,ipq8074-apcs-apps-global", .data = &ipq6018_apcs_data },
- 	{ .compatible = "qcom,sc7180-apss-shared", .data = &apps_shared_apcs_data },
- 	{ .compatible = "qcom,sc8180x-apss-shared", .data = &apps_shared_apcs_data },
-+	{ .compatible = "qcom,shikra-apss-shared", .data = &apps_shared_apcs_data },
- 	{ .compatible = "qcom,sm8150-apss-shared", .data = &apps_shared_apcs_data },
- 	{}
- };
+Change in v3:
+- dt-binding:
+- drm/bridge:
+ 1. already submit lt7911exc_fw.bin to linux-firmware.  [Dmitry]
+ 2. remove lt7911exc_remove function.
+ 3. drop  the "lontium, "  in lt7911exc_i2c_table.
+- Link to v2: https://lore.kernel.org/lkml/20260428063224.3316655-1-syyang@lontium.com/
+
+Change in v2:
+- dt-binding:
+ 1. reset pins use active low.                        [Dmitry]
+- drm/bridge:
+ 1. use atomic_* callbacks.                           [Quentin]
+ 2. fix the incorrect formatting and spaces.
+ 3. add the required header files.                    [Dmitry]
+ 4. remove "enabled" flag.
+ 5. remove *fw from the lt7911exc struct.
+ 6. .max_register and .range_max use actual range.
+ 7. regulator use bulk interface.
+ 8. use dev_err_probe, devm_mutex_init and devm_drm_bridge_add.
+ 9. Replace GPL v2 with GPL.
+- Link to v1: https://lore.kernel.org/lkml/20260420023354.1192642-1-syyang@lontium.com/
+---
+Sunyun Yang (2):
+  dt-bindings: bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+  drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+
+ .../display/bridge/lontium,lt7911exc.yaml     |  89 ++++
+ drivers/gpu/drm/bridge/Kconfig                |  13 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/lontium-lt7911exc.c    | 493 ++++++++++++++++++
+ 4 files changed, 596 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt7911exc.yaml
+ create mode 100644 drivers/gpu/drm/bridge/lontium-lt7911exc.c
 
 -- 
 2.34.1
