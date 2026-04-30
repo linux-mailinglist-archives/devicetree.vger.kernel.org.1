@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-291849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291850-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mOBBNtUk82nIxQEAu9opvQ
-	(envelope-from <devicetree+bounces-291849-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:45:57 +0200
+	id CH2cC6Ej82n9xQEAu9opvQ
+	(envelope-from <devicetree+bounces-291850-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:40:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 129CB4A01AA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:45:56 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9921549FFA9
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:40:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 124963055D4E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:38:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B0CA5301C100
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:40:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B06723A545A;
-	Thu, 30 Apr 2026 09:38:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 766903A3E7E;
+	Thu, 30 Apr 2026 09:40:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YTawBjCV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bi7W1P5N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C7033A450C;
-	Thu, 30 Apr 2026 09:38:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF7C28751B;
+	Thu, 30 Apr 2026 09:40:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777541917; cv=none; b=cqDu9x00qI/qySmOQ6EqjS7xemo8QYUG96QzEzr5z5KUm0sOHgmw2hXnr9v7vAfVU5Br2VGr4XeqQZBHMneCcJNeS7zvP0DTiAE4u1s/S7rz0ikXwzifMf+q0iw/uECJC0LK9WuGNkXeoasya84dlqNyCwCFTIP/t4+xxYNXeGI=
+	t=1777542035; cv=none; b=pe77fnV4LUaC+xqGDE6SS4Aop0Og1Vyavwlp7PGlaECeE4DCdvVPTZaqtNJuBcwWxiHwg5hAFvKdHL5HorX5xknGS9fh/V8W9Vd64NpVU0lOAUJiyVGtobGNfWw+YtzdDZOGT2OR+2NP2ovOVFV4sypFGpUIkt7R/MLIWJpfk6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777541917; c=relaxed/simple;
-	bh=JiT+0O5PVve6jQjJOFekHXnlt5jKctxL2hT5GIHUfbc=;
+	s=arc-20240116; t=1777542035; c=relaxed/simple;
+	bh=Tj7K1qp7clDNye0BbLNXPFP5MofQdFJ7SeapubT7TdM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=llxb/KjEb8lGP1cImXc0qWR+GKnMWDKc6kbMcb19hPoDAFwn2C8wefSuMh0AUK2zRnAgBaNtHxbOAd+rL/QIkiqmT8HRGeJm3zct7r6ALxY9QfYTg45OgEQwky8xKNNUkd4X9DZrSq+QI7mOXQTqnndwEy3+LsO1xc3pZXpoGzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YTawBjCV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3D3EC2BCB4;
-	Thu, 30 Apr 2026 09:38:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=s2XRgmTJLgy6KIMErNjE9SgwHSn7aLd4DWYXvV4cNCh90KmuS3SAv1fFaTjPO59GH+h6dz0YyWHxxlA15aIzLQ/oVvzbtdN/sOalWJjPKyLPn+T7qNvD7yg7ZSZxFp9FbbAZK4xXP3RYFbWtjrEjdzj6WgYt3X3IgTiVd4pYjmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bi7W1P5N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AF26C2BCC4;
+	Thu, 30 Apr 2026 09:40:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777541917;
-	bh=JiT+0O5PVve6jQjJOFekHXnlt5jKctxL2hT5GIHUfbc=;
+	s=k20201202; t=1777542035;
+	bh=Tj7K1qp7clDNye0BbLNXPFP5MofQdFJ7SeapubT7TdM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YTawBjCVZMssZ7Mb0KLf5BAvzP96xpfcHFpL7e6y50TQNkslX8bExqmSNQFy1IG9P
-	 WabFE/XxxWsvJzcRkql6ey3uE0KHApjC555UXRCyU6BvTJ0lJDfjaWWdIsvx0JXSRt
-	 xt1jSth+Dg/Y4uiy8ZFTbL73DawUE3wMsI3/BUC5AoJ8IkfS2REsEQz7qruvc3TmOh
-	 DVBMWIxZKK1uCYBhzKv0LOqLICprd2kLqH/UB8n4xj6eTI13i7VIDpgiwCnkW0rZj9
-	 GB7NDRSudZ/JMmDolzp/uxch+Fg4H0C6O1V8jK0Shd/vVCWIUjfi+rAOx9YxUwXrGT
-	 hopwQC6ht3aQA==
-Date: Thu, 30 Apr 2026 11:38:34 +0200
+	b=Bi7W1P5NJgq5JgaZXIam/iHdqEEAlfiLj7Mcclo9abxMfE34smq9+J23v+F0BA5o0
+	 2IL+vhwg4/+gBP6RaTxNJnUsP0zOrKn6G3RCVDpsG2dYr02CNH540qDfSeXxOcQdBp
+	 5u4y/gjsUb3TUUP1LdLm4wq7vm3nQdPLBGZVy19Bap5vYgbttxRlgWogIX+y2jGdQc
+	 3kZpOL/nh+GeUL1Qbs/Z/A0tjaUqcpi0tHot2hfV3vQc0BoJNg1j2hPXBeaAT8B4nM
+	 B9wJhzgPhxoTRLEB/lMaaz0Itu25mOemAeMXV0AKC30/EujE8GJdqq0IWERpWwALp4
+	 bGCuSSYKNrH4w==
+Date: Thu, 30 Apr 2026 11:40:32 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] soc: qcom: socinfo: Add SoC ID for Shikra IoT
- variants
-Message-ID: <20260430-woodoo-elk-of-order-1b534f@quoll>
-References: <20260428-shikra-socid-v1-0-6ff16bad5ea2@oss.qualcomm.com>
- <20260428-shikra-socid-v1-2-6ff16bad5ea2@oss.qualcomm.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
+	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org, KancyJoe <kancy2333@outlook.com>
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: document the SY7758
+ 6-channel High Efficiency LED Driver
+Message-ID: <20260430-interesting-pink-salmon-082def@quoll>
+References: <20260428-topic-sm8650-ayaneo-pocket-s2-sy7758-v1-0-0caade5fdb32@linaro.org>
+ <20260428-topic-sm8650-ayaneo-pocket-s2-sy7758-v1-1-0caade5fdb32@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,45 +65,74 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260428-shikra-socid-v1-2-6ff16bad5ea2@oss.qualcomm.com>
-X-Rspamd-Queue-Id: 129CB4A01AA
+In-Reply-To: <20260428-topic-sm8650-ayaneo-pocket-s2-sy7758-v1-1-0caade5fdb32@linaro.org>
+X-Rspamd-Queue-Id: 9921549FFA9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-291850-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291849-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,gmx.de,lists.freedesktop.org,vger.kernel.org,outlook.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email,devicetree.org:url,qualcomm.com:email]
 
-On Tue, Apr 28, 2026 at 02:47:47PM +0530, Komal Bajaj wrote:
-> Add SoC ID for Shikra IoT variants: CQ2390M, CQ2390S and IQ2390S.
+On Tue, Apr 28, 2026 at 03:59:11PM +0200, Neil Armstrong wrote:
+> Document the Silergy SY7758 6-channel High Efficiency LED Driver
+> used for backlight brightness control.
 > 
-> Signed-off-by: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  drivers/soc/qcom/socinfo.c | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../bindings/leds/backlight/silergy,sy7758.yaml    | 53 ++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
+
+subject - not a regulator prefix
+
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/silergy,sy7758.yaml b/Documentation/devicetree/bindings/leds/backlight/silergy,sy7758.yaml
+> new file mode 100644
+> index 000000000000..dc44b3b502e2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/backlight/silergy,sy7758.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/backlight/silergy,sy7758.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Silergy SY7758 6-channel High Efficiency LED Driver
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +description: |
+
+Drop |
+
+With these two fixed:
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
