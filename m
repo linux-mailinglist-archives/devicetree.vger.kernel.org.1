@@ -1,157 +1,176 @@
-Return-Path: <devicetree+bounces-291794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291796-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SISsCfAJ82mMwwEAu9opvQ
-	(envelope-from <devicetree+bounces-291794-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:51:12 +0200
+	id 0LRnLDYL82mSwwEAu9opvQ
+	(envelope-from <devicetree+bounces-291796-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:56:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D2949EE60
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:51:11 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ADE249EF37
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:56:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3DC04300E17E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 07:50:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5B8A1300B44F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 07:56:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF0CF3FADE9;
-	Thu, 30 Apr 2026 07:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 676C43FB055;
+	Thu, 30 Apr 2026 07:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GKLQgYsb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AYsaJNX/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04593FA5EC;
-	Thu, 30 Apr 2026 07:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4432C3E1D18;
+	Thu, 30 Apr 2026 07:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777535447; cv=none; b=sAeCIqeI+m7cUOuW30jgQRZwM9AnobG9/LawrfL1UfVp7Udu4GIqWy4yBWftyA2SHtwV0aWYQJUsTkO+TgusS/kgc0VwYxETI+gFGzSJXuvFIqeo900rodlptvXJSKFQSYVEr8UXnBWF3QykV/TYu0Nfe/DZ/D+fRJClAb6vReU=
+	t=1777535795; cv=none; b=jZG8fRHFt2pNJqmvPrHcegEbcKRvEIIo92b/BWeGvW97J8bFUaA3u7L0NY66Sv8mpAHyoIIX6Kb9pd/TXKyVr5bw8OYVHCRtFRxC+VLThYTU3//7VBPG0VcmRGk/dKpJNWnncHMrX0FjXVvseWY1YZJle+2h9EwV8VvTX1oMp9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777535447; c=relaxed/simple;
-	bh=+9uMsFAYr4OeFOcUn3r6XhuwBzb0G771w8yvJmSWjUc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QScFbfy3JsL1lHu6c6fvhiB5igQ5580C4qsYRWnpHxGrQ3/UU1wT48rIHOKxVxm/uK4kXfD7FAj16b4RDtN6jB8H5Pfs4dtK4kvtoy9AaRPA8I3+higGvyn+cBJrAw0HHQucXtEFmYrmMsSWnS53BJQ3yKg4jDzWQnYoPaRKqFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GKLQgYsb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40165C2BCB3;
-	Thu, 30 Apr 2026 07:50:44 +0000 (UTC)
+	s=arc-20240116; t=1777535795; c=relaxed/simple;
+	bh=izexGcIwdtyGTJHND8E/q0tfWCcSCGUGo5HOHm0zPtM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OOdWZv3p7IvaDo2qC2pcMnd+0+ylapEHmJZGHvi/+JIUAfdYvAJ0wSaFZYI8vF/qHhPkaA9z4Mr+QFWQgUWTvVqxmi3r3/X0K0TbDv9qa9p2x2+o+WdCbSI0fzLX8Clz3L4lVo7bJ+Q2wef2qmKkat4J0RhrIBE66kfC/VfEXtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AYsaJNX/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EB91C2BCB4;
+	Thu, 30 Apr 2026 07:56:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777535447;
-	bh=+9uMsFAYr4OeFOcUn3r6XhuwBzb0G771w8yvJmSWjUc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GKLQgYsbX2DsBldWtBmEjokHAciVMh5OqdZbv148sfkv9YaQ6nYEOnym4cyjxA20w
-	 TYZ1APdKAKhVGsMMoE/YL7jvet8GHU+iBcxFV3QiKE0z66BR5ec+mnBplrCr2HmEoD
-	 xn0bgEw6CwEUO0Kkd2Glr7vROg1oYdK0Rl1RRoGMfNgVU8fMAJ9C3CVZ+tdE+Ydohz
-	 EsPRBQeKp8aRhg1C1yFTj3wiYpfqb56qqzyHAyKg4Ymw7uHq5Q/fwfkgFRwNZT2C9i
-	 g66Gu6FKW/wpSEDlqbN1zMU7VrcS383bXmMmYz3aIoeD4GbrxkXFS6qe5nEMbpPi6L
-	 A2wxX4vh8pRow==
-Message-ID: <f8351134-c421-49ce-a314-8731c9d1cf02@kernel.org>
-Date: Thu, 30 Apr 2026 09:50:41 +0200
+	s=k20201202; t=1777535794;
+	bh=izexGcIwdtyGTJHND8E/q0tfWCcSCGUGo5HOHm0zPtM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AYsaJNX/CQOjYCeNvICWroD8akoGwIQ0LoaykxGr7zvn7J4IxIr1BkgyeKU4iVQHY
+	 NhsBJBadIh1ACEsyTqGpta4tqEoZhSnFbUI0yrLE9PbYcpHyPqB8JX4cW8F/nWonh6
+	 9xklaskRHq/BL/MYOSBqYwKSXLtK4ZtIlZURMU7pkxiNgLyJ4fDVERusTpNIY0Q/Zu
+	 U/9w2kWPPLhnaDcVPwqcA6qD0dCNj5qx89YTzstIrB7HZ48snF49+0mSRdNlElJjdz
+	 TAANz3dOsVqx/fUmqNLIajoVxKpfWyBkVRax6niQuZM+0OJaR90tdD+36HYhecNmyO
+	 R9x5PrUeQAFVQ==
+Date: Thu, 30 Apr 2026 09:56:32 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: syyang@lontium.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org, dmitry.baryshkov@oss.qualcomm.com, 
+	maarten.lankhorst@linux.intel.com, rfoss@kernel.org, mripard@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, tzimmermann@suse.de, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	yangsunyun1993@gmail.com, xmzhu@lontium.corp-partner.google.com, xmzhu@lontium.com, 
+	rlyu@lontium.com, xbpeng@lontium.com
+Subject: Re: [PATCH v3 1/2] dt-bindings:bridge: Add Lontiun LT7911EXC eDP to
+ MIPI DSI bridge
+Message-ID: <20260430-gainful-hopping-quokka-da7e7b@quoll>
+References: <20260429040541.3404116-1-syyang@lontium.com>
+ <20260429040541.3404116-2-syyang@lontium.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/1] dt-bindings: net: wireless: intel,iwlwifi: add
- binding
-To: Avinash Bhatt <avinash.bhatt@intel.com>, devicetree@vger.kernel.org
-Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- johannes@sipsolutions.net, miriam.rachel.korenblit@intel.com,
- kobi.guetta@intel.com, emmanuel.grumbach@intel.com
-References: <20260429081403.46087-1-avinash.bhatt@intel.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260429081403.46087-1-avinash.bhatt@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 97D2949EE60
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260429040541.3404116-2-syyang@lontium.com>
+X-Rspamd-Queue-Id: 4ADE249EF37
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [5.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-291794-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291796-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,oss.qualcomm.com,linux.intel.com,ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
+	MIME_TRACE(0.00)[0:+];
+	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	GREYLIST(0.00)[pass,meta];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	R_SPF_ALLOW(0.00)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	NEURAL_SPAM(0.00)[0.970];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.41:email,0.0.0.1:email]
 
-On 29/04/2026 10:14, Avinash Bhatt wrote:
-> Add Device Tree binding schema for Intel discrete Wi-Fi 7 BE200 PCIe
-> adapters. The binding documents optional OEM platform configuration
-> properties for platforms using Device Tree instead of ACPI/UEFI firmware
-> methods.
+On Wed, Apr 29, 2026 at 12:05:40PM +0800, syyang@lontium.com wrote:
+> From: Sunyun Yang <syyang@lontium.com>
 > 
-> Link to RFC: https://patchwork.kernel.org/project/devicetree/patch/20260408055709.11579-2-avinash.bhatt@intel.com/
+> The LT7911EXC is an I2C-controlled bridge that Receiver eDP1.4
+> and output signal/dual port mipi.
+> 
+> Signed-off-by: Sunyun Yang <syyang@lontium.com>
 
-So that's a v2. Please version your patches correctly.
+Missing space after ':' in subject.
 
-Also, I don't understand how could you claim that RFC passes tests but
-this obviously was not tested.
+...
+
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Video port for MIPI DSI output.
+
+Wrong description, first is input. Look at your DTS.
+
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Video port for eDP input.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +  - vdd-supply
+> +  - vcc-supply
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        mipi-bridge@41 {
+> +            compatible = "lontium,lt7911exc";
+> +            reg = <0x41>;
+> +            reset-gpios = <&gpy8 8 GPIO_ACTIVE_LOW>;
+> +            vdd-supply = <&lt7911exc_1v2>;
+> +            vcc-supply = <&lt7911exc_3v3>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                port@0 {
+> +                    reg = <0>;
+> +                    bridge_in: endpoint {
+> +                        remote-endpoint = <&edp_out>;
+> +                    };
+> +                };
 
 Best regards,
 Krzysztof
+
 
