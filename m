@@ -1,83 +1,84 @@
-Return-Path: <devicetree+bounces-291996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291998-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oPYoJ8uV82nO5AEAu9opvQ
-	(envelope-from <devicetree+bounces-291996-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 19:47:55 +0200
+	id uAYzCf2V82nO5AEAu9opvQ
+	(envelope-from <devicetree+bounces-291998-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 19:48:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 938214A6913
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 19:47:53 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A93974A694D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 19:48:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8D2E33007A43
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 17:47:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6459A3047E6F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 17:47:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6BE247A0AB;
-	Thu, 30 Apr 2026 17:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ECED47AF49;
+	Thu, 30 Apr 2026 17:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b="UXIboP3c"
+	dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b="Wd1Aj/ro"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92EA3AA502
-	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 17:47:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2775644D688
+	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 17:47:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777571266; cv=none; b=Sf0XSPLkpnNJyLJQPe7XQswmyeiYAhlqu1CivhJ4pYEHDG0HnbcAfE8s68cRSrPo+Bx8FYdTpS7Rd4IWN4e5ZYKbCn7tk5acWx97cLsa/pelVw9PCd/AbSvkPvfIgysMaq1nWHoY5U6wUPXF9Ps5RVgdxv7qwZNGTTZQZxZNK0M=
+	t=1777571267; cv=none; b=beZVbm/GpH2k6FJjtvXK3IH92LY/M7ilE3/VnYzKOuoAkfkgesZIOIblS2TJcxxrYhmDeU94JoYOx1STMQkymyQlC1AkWw37w98jd6ktNGJ5M1yvkirK7t+a6JTGhCzMIxx4zOziw7tAtyA9Isp4x03hj2ury1JeneZk8Q8tHzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777571266; c=relaxed/simple;
-	bh=HpS3tu/4Ze7sR9gDX4heP6NH6jx5x3n6hiVs7K4rwHw=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lid+GvGHZUZLEc1R8/51+0coJ02QlN0o32KGpbcws1KPPxNWRZbBrVT0BjgKF/y0ADCiz95fylhjhpn7iZrvv2DlaFzVtHctO6KhiyhMXLvDef+NEvRXxg5QajIKIgvhpkJw1LyOULBIenFUL510WycoGqOeeC7qN9ND8agEdYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imd-tec.com; spf=pass smtp.mailfrom=imd-tec.com; dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b=UXIboP3c; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1777571267; c=relaxed/simple;
+	bh=eWyFo6wtcwjcGn72c1H93Yp+EkyaoRZ7SE6IqiBOBuE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=hB/Np48dcI7BeRnNnXlrWw3N+Q4bkiYNI231rUz8d21GqHIZJHvcIPjEYAq7Nng1f99+fWF8s9rulzUQDt94UEPW5Z0F6Xi4h2SY68JGDR/MDrA1NhGbA19pOi1Qh3hB1rxoVoK1BF+oVmzQn0sTiM5sRDDNNbhcayRDXPCH83A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imd-tec.com; spf=pass smtp.mailfrom=imd-tec.com; dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b=Wd1Aj/ro; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imd-tec.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imd-tec.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-488ba840146so10195475e9.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 10:47:43 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-488ff90d6c7so11728475e9.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 10:47:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=imd-tec.com; s=google; t=1777571262; x=1778176062; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0vazd2QkVpnLaBHZCRGcJYbqmcBsD9o0dHNYR3gel8s=;
-        b=UXIboP3cIqN10+XWLGMSuhNXi218QAf9gcYmFxW9rooynGYKq5Xk6voBPwQ6VaSKjD
-         VkADUmGHs9xJ66FD9JR+dioShjo4moKld5UF4aRy3LclPhA0YS7ZmzU4Ymc1MYRpSd63
-         fqWVqJo7wWVCggwIJHCfNN9z+GYYJ94nbudpbcKeEl3tF9p3THYRWxSyWWVcJie2uA+2
-         0yIQ6LYYUK7kGe56pNFTEZaYrMW6O2IaKMd8KiQ69GYSK/tkVAxqzZKGjLcNO2aV6C7x
-         pWmquL5e/kCx1HxWSWrvyr21EhGtsXkcv6shYBOjzm3pC+tkb9T/oDrAvKgucqT/PdYy
-         k3Hw==
+        d=imd-tec.com; s=google; t=1777571264; x=1778176064; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5gbkbiFxStV52q4s9W7vmjcqc2PkrySXx7kVEFbo+QI=;
+        b=Wd1Aj/roBKasuMdcYbPquAiufq5cWkzAf6ieBw/SkL+4FBaDfukP13+FifJ5aRfyOe
+         out9ZiDm4i3UIfh/AqeCKTAWesoc94b/DyTbijsI3X9WjQRzXqyS94O0QTrLKtT5E1D0
+         6HXwid76Hre6hFBzONViXTHcyZovEiNcwJp0Ei85J5W+lhH5k/PRyxc1wjKrm84q+kso
+         aAoNAKuRVnDggqc22Kmlh3FNuIdaxlWBbS1ZqNn15MXaE2YXQdBoIv+uVD5MAwDC8kLu
+         1m47jpzVJ2Yh9LjrF9COuHME0QXuSSiTbCY+CPVMvfWUMp7ktevwtkY2iNEetiYR3wpw
+         0RUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777571262; x=1778176062;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0vazd2QkVpnLaBHZCRGcJYbqmcBsD9o0dHNYR3gel8s=;
-        b=NZhzp/fjTq3o0kdj9SyvYviMpGOSm21L1TW2XsbCN7BVvhoz51LlwsyfWEyStXDpWc
-         iUpsop0gHqfikEgtyj0MVosk1OLfh/kXCwvwZQMKSrzXDOp5CWfTvBz0z73yu5CMG4V3
-         ErUCTJOtdU2yaKbt+loQL4i2YSpE4qIS8KRuPgzYb3F7LAZpfozXj3Kregh+QOC+IP8+
-         WLPW4iODEhZYVf1pFmbKtvnOkXP9N4doVc2zIWQeZPc+CwmLhr5n3SCVmUHFGyZvoKEJ
-         SlFKmdQgQnxvHl08/08Rq5EO6YLO5B6OkSsQN4WEO+T22RruchEEoMy9LEOcwYuv767T
-         l73Q==
-X-Gm-Message-State: AOJu0Yy/cwMBNXBSq7ao/rYjFFVnQWfMi2rUv3DjRzChHHxyROX5XpJL
-	ehY1MY8Eovk16uGnuHJKNhFQrwyGkZQ7ZkP3Y0UHCwaiyHY5SxToZX6Hf8WM5Lx5Blk=
-X-Gm-Gg: AeBDievkufSOyYHQ8BbHMdA3Lk8FsF9rsCO7T8176JMv8vSRTw/Yo2aty3IBIhEf2sb
-	gUjCSaU7WCq/sQg7297ncaOIypnmcDjjpYnrRldGJPhsT8sT6B8FIdDsbkjA8+8tE0kGkshIwJ1
-	bHL8T8VdF2bh8Q0xzFdsuiSGt4yaCMXWjOa+rrloMw6+YPpmKxNZBcw/3STcf4XD8ZCmeR9h/+d
-	ds/YQHozdILIhD/tkHt788UN/rkQbZ1lZmhdnvgGbabrOPyqyes7PlWkITcn8X8HRwu0ZeyUYuD
-	FWsFSqQhSZ4rMURxbf9b967kzh3/BWpk3Ul1yxVIrDnnvF5hN/ASa2ee8rtaGTT5sd4M8VBCumu
-	vyxLzz9KLgYUsxKQ91tRYJ9Mbf1/jbVGAQ+k3XnzlXguGHsrDD7s6bBIax8rFVAiHS41Z/zqfpE
-	pIvsI6RArGdr+hxC2rRvZUqCNhq6dCMuQU+nAvWULBR63NbpuA+xJWnKjPXYo74IqwiLUS3MDqt
-	W8SKcr9xufmMF+sl6nxIb404G36jIrqP0gPNJSffJxKoA==
-X-Received: by 2002:a05:600c:5254:b0:489:149a:f9e6 with SMTP id 5b1f17b1804b1-48a844640bdmr67159235e9.28.1777571262495;
-        Thu, 30 Apr 2026 10:47:42 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1777571264; x=1778176064;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=5gbkbiFxStV52q4s9W7vmjcqc2PkrySXx7kVEFbo+QI=;
+        b=osZr7TdM/oGZH3pldeUcZN7nUsaeSZCiLHG1+1wUkwrVL6qd16bgn1xzNA2PU81yUK
+         MtFAh/ionATmh1qCGiJMv2JFP0cA8bXVVlce1faEJxS2GqcUraC2mzq8xaAStb9dk/xE
+         6JncdFJ9LGT5qWSFibAOZwGYEGkTn/k6qVdEA+C9BgVgNUNAqB8mhJvOD1mgZM7wqP41
+         sw5OpFzaWJvinyxXmchkfIfxxZ0jsocJVfeT/jNlAdTlk/62CEF+A5hY0BUOQ9Go05WF
+         qBxeUaHs8hDwxl2otD6Rx6tUHXhRF39Rio87v2G/ugKbIeYiJZCzlIy7CFabRRxJEFUX
+         5qMQ==
+X-Gm-Message-State: AOJu0YwY4/VUuJwAu0ICX7QY16Dc01wx8roRak9Vc8Z8mdZw9E1LtPWR
+	SWrLY4WtLmfReZ7wa481PJKr3/ZFo2IV8zM2uaZBXBCloCddEhpuZ5A0VN40yWfBqb8=
+X-Gm-Gg: AeBDieulIa4qHViyMhDkLxi6305+QjCINnhvKpvM/be80xE3syK9gedl2eKy+xqUPOG
+	vUiepYpm75iaf1Uxb9oR1J+C0Gy0rwoaKnKPAkrlRdycK+Or/8Z1UVxk+PqhP7OpcG6Or8H6kLs
+	/Cc8PwkTG2b5wJwe3C45JB839bw2Om/c2NeUvZTh5eUf8lNKeInFH1sF3ToY/2z4lOgf9XNyX2w
+	N46YYuZdfsEJzIpTNxOtX/wtPqDzHjRjKjUhmAJNhfLtUtysHIAs/plOwYxBShrcRsVyYUVcao/
+	SP7ag4HCRv8P/mFQJ92S0aFi3BPd5ics0qk9KyIw07r7PYrAtYiHlrkb6EwOXgwHwkzZ4Ka/tWH
+	hwx0HioRzYPYt6QPe8K7o0uDAt6q8rwE7AcBpTD10o7Hf6Ik/miyHudn5XlcA3h/9vWqoC1iYQj
+	FnYjRk9QB+Y6o7zdlyIbMLlJ2pjflvhxUPvuXKmKHeLcszG39gid93fNXGWnitItgfoinkhMSrR
+	tgXBj4zRIjtwvsQXyEA8kKOFdu7sWIgFok=
+X-Received: by 2002:a05:600c:8b84:b0:480:69b6:dfed with SMTP id 5b1f17b1804b1-48a84460ab3mr68015285e9.24.1777571263279;
+        Thu, 30 Apr 2026 10:47:43 -0700 (PDT)
 Received: from [127.0.1.1] ([2a00:23c6:2736:8e01:fd90:2598:5764:5f01])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a7c1d0228sm174449435e9.2.2026.04.30.10.47.41
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a7c1d0228sm174449435e9.2.2026.04.30.10.47.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 30 Apr 2026 10:47:42 -0700 (PDT)
 From: William Bright <william.bright@imd-tec.com>
-Subject: [PATCH RFC 0/3] arm64: dts: qcom: Add IMDT QCS8550 SBC
-Date: Thu, 30 Apr 2026 18:47:00 +0100
-Message-Id: <20260430-imdt-qcs8550-sbc-rfc-v1-0-4d2b6675eaa3@imd-tec.com>
+Date: Thu, 30 Apr 2026 18:47:01 +0100
+Subject: [PATCH RFC 1/3] dt-bindings: vendor-prefixes: Add IMDT
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,24 +87,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJSV82kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDE2MD3czclBLdwuRiC1NTA93ipGTdorRkXZNU8+SktKTkxJQUCyWg1oK
- i1LTMCrCx0UpBbs5KsbW1AAv0UzdrAAAA
-X-Change-ID: 20260430-imdt-qcs8550-sbc-rfc-4e7cbfbcadd8
+Message-Id: <20260430-imdt-qcs8550-sbc-rfc-v1-1-4d2b6675eaa3@imd-tec.com>
+References: <20260430-imdt-qcs8550-sbc-rfc-v1-0-4d2b6675eaa3@imd-tec.com>
+In-Reply-To: <20260430-imdt-qcs8550-sbc-rfc-v1-0-4d2b6675eaa3@imd-tec.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konradybcio@kernel.org>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-arm-msm@vger.kernel.org, William Bright <william.bright@imd-tec.com>
 X-Mailer: b4 0.15.2
-X-Rspamd-Queue-Id: 938214A6913
+X-Rspamd-Queue-Id: A93974A694D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[imd-tec.com,none];
 	R_DKIM_ALLOW(-0.20)[imd-tec.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -112,9 +112,9 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291996-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291998-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
@@ -124,67 +124,31 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[9];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imd-tec.com:email,imd-tec.com:dkim,imd-tec.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imd-tec.com:email,imd-tec.com:dkim,imd-tec.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-This patch series adds DT support for the IMD Technologies Ltd
-(IMDT) QCS8550 SBC and corresponding SoM.
-The patch series is RFC due to the open SDHC4 patch [1].
-The SBC DTS supports the following hardware on the SBC:
-- Gigabit Ethernet (using a Microchip LAN7430 behind the on-board
-  PCIe switch on PCIE1)
-- USB3 as gadget mode only (No DP alt-mode and flip detection support)
-- SD card (SDHC2)
-- Wi-Fi and Bluetooth (SDHC4) using an NXP-IW416
-- SBC regulators (carrier-board fixed and GPIO regulators)
-- M.2 Key-E (PCIE0)
-The SoM DTSI supports the following hardware:
-- PM8550 PMICs (similar to the SM8550-HDK)
-- QCS8550 and UFS
-
-The IMDT QCS8550 SBC hardware is capable of the following but
-support is not included in this patch series:
-- USB3 flip detection
-- 8 MIPI CSI2 cameras are supported using 8 IAS connectors
-- MIPI DSI Displays via a DSI/I2C connector
-- Microphone input
-- Speaker output
-- Fan control
-- RS232
-- M.2 Key-B (also on PCIE1, selected by toggling the on-board PCIe
-  switch away from the LAN7430 upstream port)
-
-The DTS files were written using the SM8550-HDK as an initial
-starting point with patches ported from downstream [2].
-
-Claude Opus 4.7 was used for formatting and reviewing
-the device trees against other QCS/SM8550 boards.
-
-Patch 1 adds the IMDT vendor prefix
-Patch 2 adds DT bindings for the SoM and SBC
-Patch 3 adds the SoM and SBC DTS files
-
-[1] https://lore.kernel.org/all/20260427-sm8550-sdhc4-support-v2-1-a4241f43ecd5@imd-tec.com
-[2] https://github.com/imd-tec/meta-imdt-qcom/tree/kirkstone/patches/msm-kernel-devicetree/files
+Add IMDT (IMD Technologies Ltd) to the vendor prefixes
+list.
 
 Signed-off-by: William Bright <william.bright@imd-tec.com>
 ---
-William Bright (3):
-      dt-bindings: vendor-prefixes: Add IMDT
-      dt-bindings: qcom: Document IMDT QCS8550 SBC and SoM
-      arm64: dts: qcom: Add IMDT QCS8550 SBC
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- Documentation/devicetree/bindings/arm/qcom.yaml    |   7 +
- .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- arch/arm64/boot/dts/qcom/qcs8550-imdt-sbc.dts      | 845 +++++++++++++++++++++
- arch/arm64/boot/dts/qcom/qcs8550-imdt-som.dtsi     | 319 ++++++++
- 5 files changed, 1174 insertions(+)
----
-base-commit: 95b3f1f1b54d79bada9cf47420034cfe23df978f
-change-id: 20260430-imdt-qcs8550-sbc-rfc-4e7cbfbcadd8
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index ee7fd3cfe203..2db12a1cb6e1 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -769,6 +769,8 @@ patternProperties:
+     description: ILI Technology Corporation (ILITEK)
+   "^imagis,.*":
+     description: Imagis Technologies Co., Ltd.
++  "^imdt,.*":
++    description: IMD Technologies Ltd.
+   "^img,.*":
+     description: Imagination Technologies Ltd.
+   "^imi,.*":
 
-Best regards,
---  
-William Bright <william.bright@imd-tec.com>
+-- 
+2.43.0
 
 
