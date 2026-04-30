@@ -1,243 +1,158 @@
-Return-Path: <devicetree+bounces-291801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291803-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OF9vIVAO82nZwwEAu9opvQ
-	(envelope-from <devicetree+bounces-291801-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 10:09:52 +0200
+	id 8H9EMpQO82nZwwEAu9opvQ
+	(envelope-from <devicetree+bounces-291803-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 10:11:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 050DF49F116
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 10:09:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30D1C49F16B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 10:11:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 69CFC3010262
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 08:09:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EB1AA301F183
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 08:10:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA8D83FB06B;
-	Thu, 30 Apr 2026 08:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2E653FBEB0;
+	Thu, 30 Apr 2026 08:10:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="S1kOkTHw";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="jH7B12uI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z7KfP51d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B32239DBDF
-	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 08:09:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3473C1E1DE5
+	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 08:10:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777536589; cv=none; b=kA1M9XCcHZIWnJV3kscNoLGhNPEdDqcG+62Xqj1IUgHgGmkQtj3GoDdAuXCz1rA6FqE7+D/QyEvZOzv/b2Lu1UAQSqPLErfD/RGnYxcmNRXMtpVbd9mEZOUs0GRNxZJsNUhnFzkYR07aLSqCh16tYcZ0931NMN2WYv//rBq5IeU=
+	t=1777536640; cv=none; b=bKdRLoxDNBx+mesCgygkcHhQrafV9Pj4pd/BM5t5lZLt8L2QQI7Hutp85ZwMhbxMH+STXES6M7D2j9zFwOyEb3VEdNL5PPLRVDrewmgrgd5yjbLSc02HMX5OmPM25an4oLgBVMB9ezjPBW6o9FtqD213YXetfBN6RdkWw4guRpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777536589; c=relaxed/simple;
-	bh=P/Va7b9oi7EzhBp+mBnd7Ehsh75YSeMT12CU7XQ1b5w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gkY4Ann41slBmymzwf/QKw52Cr0CaFB9Y/xgEYN5PNosTS3MyAhK1aW/kyvNX8m3nZPZITK01C6eyRSYD6MsXInjMKcSSVDyOPHXywfh85kRChT3M8IkUSBT8/TUmpPL6S9XshdvVOcVdZ8z1RLT/LZ/kTxlE1T2fpOnKfq0FLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=S1kOkTHw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=jH7B12uI; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63TNuHE33636516
-	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 08:09:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	wXogd7QkYAMuJeC9lEVQeWa6XXf4lK9naY79j9evPIo=; b=S1kOkTHws41QeWRm
-	MLbltE02vS9s6+x63s0Uspysyb7/12mSGoSn7O07gAZhZFlyDO0C7hcMG+JUS2QE
-	UgjKt/8eHRw5Bzde939NkVwOvt++b8zG/G9RnvMwkc4G+pHhERh7hy49mMys8WkD
-	mA+RfZPEMwdWN9TwlYaMY4NLEA3ajzrGD9e60OEqfd3LWuoWPtXj4WUruI3+hWXq
-	FeDkdLsDC458IP2ltVY0QmU1qHAnIlR9YoG+gSioxAq15ZmvqMrAK6HpaW7wMnXv
-	MXaTMVIKwJfxqBqbZnQf5aJPFBS46sAXIhQziSGp0CHVcdv2Ua48+fCsG00lOwJ4
-	BXJOnA==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4duv3q1hqn-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 08:09:47 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-35e5791871fso1345629a91.3
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 01:09:47 -0700 (PDT)
+	s=arc-20240116; t=1777536640; c=relaxed/simple;
+	bh=Y7Z+f4twj102MaqgafUmbmWhaBz0+bcIsL4YX6/rdag=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kt1C7pX1/AKSkpPaPXryx2c6Dt3VS9JypUI9R++NBlXpSVAyKJMt9ACTvhWvYY2IjWManGJf9yjEIgApwCpa7KP1vkI5jJQkihDDIAreFOeSdfCZpkBiwOuBW6yzJe6UnIIFQxZN3Q/cIrwOjSKqGonyE+WzwVdNa6UNYUYbjpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z7KfP51d; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-43d64313c39so462531f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 01:10:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1777536586; x=1778141386; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wXogd7QkYAMuJeC9lEVQeWa6XXf4lK9naY79j9evPIo=;
-        b=jH7B12uIhykKZS0OxumemlCZY4SbVSFJ7dTvgUGI9417C69OF/841enFL89Lml2Brw
-         VSwI+u/gS89il9VcoguF6UP9bSL+4l5vC0nWeJbLjh61r5h1oGVQuOaxgTptU8aoyxCO
-         fU0aBGxPDE087Rnp78rPyAntiNMpwS0Y33JaI0Z/+ncTROBbHaTd6uR6zhsh9E9uZSHq
-         ut3RVdG2myl4n6IwSK0Q85VQ+L/0eUaMTVRdMhDhm2mA18U2goGc+8YoFqR4i4LTu1Ni
-         fhqBtTcZxvN/VJwVb9FeczHt/Hel8TdyKOcisZXbjnm0XciibK4TOFCFb8AYVygcucwg
-         eMwQ==
+        d=gmail.com; s=20251104; t=1777536637; x=1778141437; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4VTLShMWp8Pof70NawJHNcJQ7O87q7RcUOF6Y6NMU6I=;
+        b=Z7KfP51dmH0v9j+barHH7eiqByr37ZEp1hNdtF0TEs3EPQCceqBdUqvf7l/gKnc+tz
+         /uVve7xARNXVr07PSZ3F7zKHejYPi+5LTgXu3WDUsbx9JayM+2OJ+dLuXTfHGumKqqJY
+         ehEaYvEbxN9H1Xai337//LDQ0K3RCH1h5bCOkiF96ekTJ2ddHNpvD+YKLC03P4Z+4AoF
+         FyTWB7dDkxWeJI/QEzaixXCOc/7HJ5fubV9sz5uOQdHwNUjStZYjqnh0bWaRoIIdl2U8
+         IPZupobdFrWn73sTxvkMBzAhUEYIEZ2q1rmQ+WayCd/S2afijDkRUAhNUIGq2yc8spFX
+         oqaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777536586; x=1778141386;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wXogd7QkYAMuJeC9lEVQeWa6XXf4lK9naY79j9evPIo=;
-        b=mQ3f1FWzUdddgBprUVjKy1nViYCAbbUlobyib4GRG6ocDe0ZrboFP6fHPf2et9jg0z
-         1SlB+BVszYqbSwm8EGEUyQNcAlSujeHxBOZHua64wbcoB5HPWhODJMV9nwN7c1EktGPl
-         JQdS+BKvIn0lj59sPOkQT6801kaP+7gfOMmORz8VrZICYYpJC3Rjbngz04hcsjGhBskP
-         WaGmQnHMWEIf+Zs/Zio0DPoTqlt5E4gAxQakW9rSQdE0wX/6+Ua0EY2nTSuVS3dQQNl+
-         XUitWEcPg4IxFum2Z2KDYSDzz4q6FnWBzFfs/ZMyeRECUytrV8a4fRykcUCAZBFx5aO5
-         dKpg==
-X-Forwarded-Encrypted: i=1; AFNElJ8psbUNGEYv9sRd/kSw8nfFJlL8GM7Jsy9y5x8GbR4DF64enaZOhdQ4KseGCWQpCtLX6/cx6Tthd7/h@vger.kernel.org
-X-Gm-Message-State: AOJu0YyW9qZt42CHapwp09s5BMR6IUdFWs7SOZKKuCbwJJQz6AjPoTvi
-	Mno9KYOjc0yGgihcyqoFvHPcuczKKUeMKa1FoESZisnZIJBKLcO9bDVGwTeopgGlUdCg8H0dnsk
-	YTsusg8GRk5wX4T0Dp9Fb/p6yU2EwC4Oe4bjh2BW+n8+oKyB02EMZOEejDIJi+trKZlLkcSF+
-X-Gm-Gg: AeBDiesgypaq6HNJAr5hRxkFNq9Ho7JDEuMa+8JEt5e83L43ASA5IFpHkTD9jJOr+V0
-	G07BGt7IiHDKh8m3KvMz4gOZzOoqpNJn8Us3N8Zok49GhRVH4udCH7t6mOPM/NdxT2DeoMzDsPI
-	voRhC3lJ0KxPIJ4v//BLuC41bYlR9zGF55w+crKQj6wHXJkG/med81CUjHYfhh2eVfr3CbnM1DG
-	UJHwy/iYRZBd1UiLWMXcb+5QJP1UWA1nDCCEj34RSfnlQ+CmUnVj8+2aOM0mMtREVyyFt3Ahfrp
-	ND50ZPHMeaMr9OdUp/ujuRqGYJ5ZGHwlTqxU5yQT22qJzNbcXuKY2aQWaHtoipBTouiU8HagRft
-	PKbVNeYn+VWxrQbhAPX6bMdz5Cuyg5bpgE9EhtGYlwtCMZkFAQzSS5/MNRIygsUE=
-X-Received: by 2002:a05:6a20:3ca2:b0:3a2:ebfc:6bee with SMTP id adf61e73a8af0-3a3cf86d7c6mr2289336637.41.1777536586240;
-        Thu, 30 Apr 2026 01:09:46 -0700 (PDT)
-X-Received: by 2002:a05:6a20:3ca2:b0:3a2:ebfc:6bee with SMTP id adf61e73a8af0-3a3cf86d7c6mr2289285637.41.1777536585696;
-        Thu, 30 Apr 2026 01:09:45 -0700 (PDT)
-Received: from [10.0.0.4] ([106.222.229.64])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c7fd5bcced4sm4129908a12.0.2026.04.30.01.09.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Apr 2026 01:09:45 -0700 (PDT)
-Message-ID: <663947c0-b316-59bb-3ea3-d1bf313577af@oss.qualcomm.com>
-Date: Thu, 30 Apr 2026 13:39:39 +0530
+        d=1e100.net; s=20251104; t=1777536637; x=1778141437;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4VTLShMWp8Pof70NawJHNcJQ7O87q7RcUOF6Y6NMU6I=;
+        b=Im5HurDrjxgL2VO+72r6QuzxpAC6k0ryPYcKh52Ma1m/d7zmK+akFqsxIDxsE2mLJN
+         v5tCvFuKkTB2dRk3FoGdGBIlew445syrfPE7FzRjNLXD/+6tHS55i7V4Mni5iYI7BDxY
+         vgzMEm5p1al/UT3qcysuqXPFAl+2N2sV6NOU4YpmeLFsoSyihu8yRZfcqezPMWTnrRTS
+         beI/GXRQsDXKqjaYQmx2IteEPna6sqpPsllWh485W5MJiAj2qZhPT6HJoxKldM6ian7K
+         Kz9SXA+DzfLNbU/StfOQBMAjVKYfknvBhU2NmECSQOKGfD3FniRzi04O+ZDKalKc9wVi
+         nbFQ==
+X-Gm-Message-State: AOJu0Yzalb15uoS/WGJ7H58AzjOYH3LzjdRsoYzmKuvR+FxyeiGIUaAr
+	9oklQ0+lxaVVSZ/XFAOCSWwhs2d9VYCaYSe8ltaqz9nKvfd97wgmLlsV
+X-Gm-Gg: AeBDievAHnQm+Pglpfkx0T+W8P/pO7DhPMAkS4SegyTAh7xAmiXZhGoDYQIrLBx4O07
+	W31ZCokc18SacYGKk6z2Ci97WEdIGpEe5QkWfa1bfj56dQKnVPnArSQdxuNlaXm0lcIdIqiX1kx
+	OTWAtdD4YowCcGSRwoV72ehmrt4lGVv+mHKu0ja1OHnoKgY32ARK9RCLrnKO8ZKstVgb+Zx6Bqr
+	tkHgJly20pqE+MAYTgjYq4rBdt9vZdjFaPDLyUhr88WZp/ZtogfZoyaq6R6Xsfz42XaRTcx7ntf
+	43HZK6z3yKxf+EWq9WbiCEDRi1gBx2Dn3XT75ESHkSQO+qcq39KHGmx6ODhcxo/3LjWzhJHWMD9
+	9KKFS69hTF9KwCZ9xo0anlBXp/z00oblUa559WGe8U5eixo4kCljC7C3TR+ZywwwCxVYAbuFx90
+	YLEQkHNMc2frLyKuS53qs5UNk=
+X-Received: by 2002:a05:6000:2c11:b0:43d:6787:992f with SMTP id ffacd0b85a97d-4493d02a39bmr2853909f8f.10.1777536636357;
+        Thu, 30 Apr 2026 01:10:36 -0700 (PDT)
+Received: from xeon ([188.163.112.56])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-447b120bdefsm11809517f8f.0.2026.04.30.01.10.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Apr 2026 01:10:35 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	=?UTF-8?q?Jonas=20Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: [PATCH v2 0/2] power: supply: Add support for Surface RT battery and charger
+Date: Thu, 30 Apr 2026 11:10:13 +0300
+Message-ID: <20260430081017.59345-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v5 2/5] media: iris: Add hardware power on/off ops for
- X1P42100
-Content-Language: en-US
-To: Wangao Wang <wangao.wang@oss.qualcomm.com>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20260429-enable_iris_on_purwa-v5-0-438fa96da248@oss.qualcomm.com>
- <20260429-enable_iris_on_purwa-v5-2-438fa96da248@oss.qualcomm.com>
-From: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
-In-Reply-To: <20260429-enable_iris_on_purwa-v5-2-438fa96da248@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: SlKZvXJARImcAND-GoxVWpypAttIzIVp
-X-Authority-Analysis: v=2.4 cv=dOyWXuZb c=1 sm=1 tr=0 ts=69f30e4b cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=sQGdqEwRzC/zEhaLYLcr+w==:17
- a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=isqJhVKGVgDRGp0WoxgA:9 a=QEXdDO2ut3YA:10
- a=mQ_c8vxmzFEMiUWkPHU9:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDMwMDA3OSBTYWx0ZWRfXxSLG0fu3MJsz
- rHD74yGUKkY5mR0YnWKfj+AX4rmHuAeO2wD1hUQT47a0fvovTzvvNWF27FNcPQW+YroPkCMAwx+
- O9jxTd5kE7do8XPGTQHfNyWQnqDVNFp6OoY1C2+lCdD6/E3niQxZbPfdSBPVrc3gmlRGF0cSNwj
- n7XzVytOVZGmOZg8TRqBFr8/o6YeSEJ3D8sNP19ILiAJnHva19hN+3lfaJgEQAxNNL+353z8XcV
- CK7QthfLR/QzYIiivNAmEfFcO13c9EfHCOopoeRsByTfGaXFxUUoJ98LmbhIQXFdL2Z5w28vKAx
- Hi2OiNTfZ/d/x0gk8CO97Gf5nCW06XEs4nO5i1A6guKFrzxPobSuW/V7y6A2R6+jFSfzfiCVi2g
- kypYS1ABd0eZFkL4j9sRb9/Y0nt5ScdQ0AtuMq+b12Fd4SQvmMpHCqE+WEHKwawH04J4FtO6/3p
- d41QzZBU7bkDjFhiIOw==
-X-Proofpoint-ORIG-GUID: SlKZvXJARImcAND-GoxVWpypAttIzIVp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-30_02,2026-04-28_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 adultscore=0 spamscore=0 lowpriorityscore=0
- bulkscore=0 suspectscore=0 priorityscore=1501 phishscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604300079
-X-Rspamd-Queue-Id: 050DF49F116
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 30D1C49F16B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-291803-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,yahoo.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291801-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,qualcomm.com:dkim,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dikshita.agarwal@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
+Add support for Embedded Controller found in the Microsoft Surface RT and
+used to monitor battery cell and charger input status and properties.
+Controller works both for UEFI and APX booting.
 
+---
+Changes in v2:
+- srt_bat_get_string > i2c_smbus_read_i2c_block_data
+- added devm_kasprintf return check
+---
 
-On 4/29/2026 1:13 PM, Wangao Wang wrote:
-> On X1P42100 the Iris block has an extra BSE clock. Wire this clock into
-> the power on/off sequence.
-> 
-> The BSE clock is used to drive the Bin Stream Engine, which is a sub-block
-> of the video codec hardware responsible for bitstream-level processing. It
-> is required to be enabled separately from the core clock to ensure proper
-> codec operation.
-> 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Wangao Wang <wangao.wang@oss.qualcomm.com>
-> ---
->  drivers/media/platform/qcom/iris/iris_vpu_common.c | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.c b/drivers/media/platform/qcom/iris/iris_vpu_common.c
-> index 548e5f1727fdb7543f76a1871f17257fa2360733..281b1f54cb962dedbfb0ec96ed3a5aab99b50eb8 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vpu_common.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vpu_common.c
-> @@ -224,6 +224,7 @@ void iris_vpu_power_off_hw(struct iris_core *core)
->  {
->  	dev_pm_genpd_set_hwmode(core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN], false);
->  	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN]);
-> +	iris_disable_unprepare_clock(core, IRIS_BSE_HW_CLK);
->  	iris_disable_unprepare_clock(core, IRIS_HW_AHB_CLK);
->  	iris_disable_unprepare_clock(core, IRIS_HW_CLK);
->  }
-> @@ -292,12 +293,18 @@ int iris_vpu_power_on_hw(struct iris_core *core)
->  	if (ret && ret != -ENOENT)
->  		goto err_disable_hw_clock;
->  
-> +	ret = iris_prepare_enable_clock(core, IRIS_BSE_HW_CLK);
-> +	if (ret && ret != -ENOENT)
-> +		goto err_disable_hw_ahb_clock;
-> +
->  	ret = dev_pm_genpd_set_hwmode(core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN], true);
->  	if (ret)
-> -		goto err_disable_hw_ahb_clock;
-> +		goto err_disable_bse_hw_clock;
->  
->  	return 0;
->  
-> +err_disable_bse_hw_clock:
-> +	iris_disable_unprepare_clock(core, IRIS_BSE_HW_CLK);
->  err_disable_hw_ahb_clock:
->  	iris_disable_unprepare_clock(core, IRIS_HW_AHB_CLK);
->  err_disable_hw_clock:
-> 
+Jonas Schwöbel (1):
+  power: supply: Add support for Surface RT battery and charger
 
-Reviewed-by: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
+Svyatoslav Ryhel (1):
+  dt-bindings: embedded-controller: Document Surface RT EC
 
-Thanks,
-Dikshita
+ .../microsoft,surface-rt-ec.yaml              |  63 +++
+ drivers/power/supply/Kconfig                  |  11 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/surface-rt-ec.c          | 389 ++++++++++++++++++
+ 4 files changed, 464 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/embedded-controller/microsoft,surface-rt-ec.yaml
+ create mode 100644 drivers/power/supply/surface-rt-ec.c
+
+-- 
+2.51.0
+
 
