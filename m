@@ -1,263 +1,348 @@
-Return-Path: <devicetree+bounces-291834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291836-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AINXG7Mi82nIxQEAu9opvQ
-	(envelope-from <devicetree+bounces-291834-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:36:51 +0200
+	id QEkaOWAi82nIxQEAu9opvQ
+	(envelope-from <devicetree+bounces-291836-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:35:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07B5249FE93
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:36:50 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79EC649FE4C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:35:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 31B1F3038518
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:34:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AAA9E300908A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:35:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF1913A63F9;
-	Thu, 30 Apr 2026 09:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EA463A7595;
+	Thu, 30 Apr 2026 09:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KpKblg51"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="JNqab8Sp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DA9739B4A0
-	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 09:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C993C3A63FE;
+	Thu, 30 Apr 2026 09:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777541670; cv=none; b=aPhtGfWS+P9s5V18YWnVW7oC61lDrlCgRYwrLEUDs+OeINFIrgYPGqIEoOVqn5prsIgFT7uSVf/bMv+m3wttGI6mgBUqRt6l9eitj3mf/+kgL1tLg9RAmjLd/1sRa8m9cCh2gaDDriKuGo7D+nwb6fV9iSnw/hdzNqDf/zqQC2s=
+	t=1777541691; cv=none; b=H4s57N/vV55xxfHDwIDN821AX2dmo+vAQrTzUE3nVq+DwfCUe9zLfKi9tLaPOPKPfXAcGanPXRXEBzAM/NWTZkJOY+9sfAo2F1yvzyc2LBsWh8dsvsi2nV/klFfdYgNSAgt6m+pj06pwDsz0X3o7CYwtEW3rBWaqSLl5ZYncy/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777541670; c=relaxed/simple;
-	bh=2FY+4h7hB3E2g/vAnzM8D+ctfKyKw0UkzdwKveu8pvY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HOo6xexHMesERgRrdxtUbaYroOtM8G45ijlbKC9rku+H1CCOFpRZt98EIZGVzF7qhYp7gayu80i5veTVS70bTQBLU1HeeCqB3oA65v9DbZLVXRRrzQvrP+CGSa44v8LW1hW0fFMp1zDuRdy3kI7K7snE5nu13/UmoMfppkmj1XU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KpKblg51; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-43d7e23defbso401644f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 02:34:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777541667; x=1778146467; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DdHsjRXgE4RkIPMJ+uwSXVihouNvsOsYu4YaJgqIAYA=;
-        b=KpKblg51Koxm+Xc1dFb3h4KV0ebQLnhyDFTLRul+oWwQmZiXFpYx/dOndwGlIhjmJl
-         ssdPorLDbUGLTp8K2XPiyi9e51e4F9O34+EUA4zgug7auAbQPAs0HpZsb+WY1F7+T8uT
-         jrv8fdhho9dLV/uTBaYgiw8WJVMDjMTJlihBZpriwo7ncsqINwQADRv0qQqpc6xaWLau
-         Mn25kgxHm10HZ3NlwJnyrFWTm6MZU9ZK9x1bSPVM996836xhCuZeahO8yQMY+sCD++cj
-         9684OI6YSYaH0e2algPeMry6Px9hYpAgTw2aeLHtlykB5X/v/JE/zQiVEe9Jjb5HRMab
-         HSRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777541667; x=1778146467;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=DdHsjRXgE4RkIPMJ+uwSXVihouNvsOsYu4YaJgqIAYA=;
-        b=MM3zY7BkVtsoHkXSVqV/5ACUglvUIgNtU0LlWigJUzdpVTkoKfzV5D4rOGYtZn/WDl
-         uSTdZoZdlKwvr2Mi1UNJf11WDShjVHIxoekRC89xs6vvcwtYEqG5zwZ5KUTNk3G0IkdC
-         mDC5PS8Gy7WUrv/GIZwXzzKSoG+p8LHNg4S4AmtWVk7NTYuH8syvlnTlXw+JE6RH8QLI
-         Huq2FcFXXrGZtvYjP/Zz0mdZTtOVNQhO9KMXIxUCHIlCNOIFIQskCBs0x04o46pt2LpY
-         gLxyBt70tOJudOIGBqU3FSw8zX1VpxqYfsN2sr9lcEE86Zikq9yl7cECQflfI82WeX+K
-         sXEg==
-X-Forwarded-Encrypted: i=1; AFNElJ+Oxpr4MhvRRu4aWnNTEuUDTHLRtKUV1DBX8gSPq5SCeUP2TOu/SK+eTcgfdZJakhb/eBXuYmno+UZG@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTa7vH0CnDr86R/pGFwoCeWFpZ3rfq6EbnVOX84QSWUxVSRhti
-	fGd6+IBTYT2NKPaH5qqQ+naBu2MNos8r1slmWew8Br7nTndYaQPMlQCr
-X-Gm-Gg: AeBDies24iYTY4QQzJ10Ze8u7f0MUi0+QlU+m6WiOwvgwbsBfDxyVSQwjxEi7NFWCje
-	xVQp/VwBtlJXBCRwDynaoBrqrngWlCIUVyihIxbN+u8ha6jtUI/v7HRiqxPxFnNPQydkawjh6cU
-	0HAKEOpjkxt7nBQxjLXMvZT117LzfN7A2NmTMuKyLNUSG2CVAbJPFzn/1l2qb8HchNLkUQw2wC6
-	BporAWzwHviol2D2YrVOZBLkeiudkrQzJshZiILUZXPau0a+p6bzJo6Nz9FSeK2ebu6qM3si8Jl
-	r+G0wxoaGsoRtFDxcx1pvnJUlC+o66eemrQEFgmQpLly7crsXcQ3s7mP2LsFqouopEw8I/KWkN5
-	TGzIdh/tGRmaN60s7lH19BL0Mpzx4U1IS7dTaD6BftJDB2QggVRSfYmjSN+x8/i/a39AI0Z76Om
-	AE0NuLP8o5QWma6N2BgK67Ws1b98UFoxGsN24zBfVdnTbbqTSlv0T4G29y
-X-Received: by 2002:a05:6000:24c9:b0:448:e182:b7ae with SMTP id ffacd0b85a97d-4493d8f4194mr3306042f8f.7.1777541666717;
-        Thu, 30 Apr 2026 02:34:26 -0700 (PDT)
-Received: from localhost.localdomain ([2a00:23c4:a758:8a01:342:901:e785:f7d2])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-447b76e5c22sm11953913f8f.28.2026.04.30.02.34.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Apr 2026 02:34:26 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Linus Walleij <linusw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v4 1/7] dt-bindings: pinctrl: renesas: Document RZ/G3L SoC
-Date: Thu, 30 Apr 2026 10:34:06 +0100
-Message-ID: <20260430093422.74812-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260430093422.74812-1-biju.das.jz@bp.renesas.com>
-References: <20260430093422.74812-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1777541691; c=relaxed/simple;
+	bh=JDjtwW88jnkAGXNsrX9D410OSiQ1z76VO7p4dLbW1C0=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=Ry1ZB2EtvcJeG7AdGCziquePieimbXSvzPXZY1izwDaAlsVfHjt+0jMYodC9/Qg/ruU8pTQNlj2yabij89OGvCjnjTBPv9/77q/5qBcU/XndFvq6KX2gOaVYjxPbXHC+KUThhvViaFx9oBFbL5rP3DWAisvimnjIcDexlxHxopc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=JNqab8Sp; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1777541688; x=1809077688;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=JDjtwW88jnkAGXNsrX9D410OSiQ1z76VO7p4dLbW1C0=;
+  b=JNqab8Sphi41eKMWAZYGzx4ePzEerW3LPXWVYaskTR+hRAEzME49tJAJ
+   lnBTc6YU1btDUBELbeDfrEHWWCrYCr+lv12n2+X1vx0/SzpyqnAjavBX8
+   2c+xWeifhvzvIjZrcvPSuet0OpFCXFPmNUmzzfKC7VWqoKA7LMUUvvS7Y
+   ObSrIYKvypRI4Qw3C+0CwK7lEDmv4nHQfR2+1xgPBEpYxD5YFtCraGt8Z
+   Ol5xpwxvQkMRXru16O926uANaPn+uZM//2i7cQaFPZhC5qfXLudPss7hd
+   i1LgHfNZEN2anjvsNNwuWD7yAj9m0G60MkTy5CmvZCqNsj4lmIxt7y4kD
+   Q==;
+X-CSE-ConnectionGUID: 1GwX5uIaRciwTigTSXWsYA==
+X-CSE-MsgGUID: 4jXX1YLWSzqw6u9G0NCmQQ==
+X-IronPort-AV: E=Sophos;i="6.23,207,1770620400"; 
+   d="scan'208";a="64989150"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Apr 2026 02:34:39 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.37; Thu, 30 Apr 2026 02:34:40 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Thu, 30 Apr 2026 02:34:36 -0700
+From: =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+Subject: [PATCH net-next v4 0/9] net: dsa: add DSA support for the LAN9645x
+ switch chip family
+Date: Thu, 30 Apr 2026 11:34:08 +0200
+Message-ID: <20260430-dsa_lan9645x_switch_driver_base-v4-0-f1b6005fa8b7@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 07B5249FE93
+X-B4-Tracking: v=1; b=H4sIABAi82kC/43Qy2rDMBCF4VcJWkdF99hd9T1KMbqM4oFEDpJRX
+ YLfvUKbllJIloeB74e5kwIZoZDXw51kqFhwSW2o44H42aYzUAxtE8GEYYIzGoqdLjaNRultKp+
+ 4+nkKGSvkydkCVHLhXPTyBMGRptwyRNx64Z0kWGmCbSUf7TJjWZf81dOV93uvSCYfViqnjLoYB
+ 2+5HE3Ub1f0efEz3l78cu1+Fb9MoR6bopnxpJkC6ZgZ+H+m/DHVE9+ospnWBj/oUUtmwl9z3/d
+ vF2R1loQBAAA=
+To: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>, "Vladimir
+ Oltean" <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Woojung Huh <woojung.huh@microchip.com>, Russell King
+	<linux@armlinux.org.uk>, Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>
+CC: <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+X-Mailer: b4 0.15-dev
+X-Rspamd-Queue-Id: 79EC649FE4C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291834-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-291836-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[glider.be,kernel.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com,microchip.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email]
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bridge_mld.sh:url,microchip.com:mid,microchip.com:email,microchip.com:dkim,microchip.com:url,bridge_mdb.sh:url,test_fdb_stress_test.sh:url]
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+This series provides the Microchip LAN9645X Switch driver.
 
-Add documentation for the pin controller found on the Renesas RZ/G3L
-(R9A08G046) SoC. The RZ/G3L PFC is similar to the RZ/G3S SoC but has
-more pins.
+The LAN9645x is a family of chips with ethernet switch functionality and
+multiple peripheral functions. The switch delivers up to 9 ethernet
+ports and 12 Gbps switching bandwidth.
 
-Also add header file similar to RZ/G3E and RZ/V2H as it has alpha
-numeric ports.
+The switch chip has 5 integrated copper PHYs, support for 2x RGMII
+interfaces, 2x SGMII and one QSGMII interface.
 
-Document renesas,clonech property for controlling clone channel
-control register located on SYSC IP block on RZ/G3L SoC.
+The switch chip is from the same design architecture family as ocelot
+and lan966x, and the driver reflects this similarity. However, LAN9645x
+does not have an internal CPU in any package, and must be driven
+externally. For register IO it supports interfaces such as SPI, I2C and
+MDIO.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+The chip supports a variety of network features such as
+
+* Mactable for MDB/FDB functionality
+* Bridge forwarding offload
+* VLAN-aware bridging
+* IGMP/MLD snooping
+* Link aggregation
+* PTP timestamping
+* FRER (802.1CB)
+* Media Redundancy Protocol
+* Parallel Redundancy and High-Availability Seamless Redundancy
+  (HSR/PRP) in DANH/DANP mode
+* Per stream filtering and policing
+* Shapers such as Credit Based Shaping and Time Aware Shaing
+* Frame preemption
+* A TCAM (VCAP) for line-rate frame processing
+
+The LAN9645x family consists of the following SKUs:
+
+LAN96455F
+LAN96457F
+LAN96459F
+LAN96455S
+LAN96457S
+LAN96459S
+
+The difference between the SKUs is the number of supported ports (5, 7
+or 9) and features supported. The F subfamily supports HSR/PRP and TSN,
+while the S subfamily does not.
+
+The intended way to bind this driver is using a parent MFD driver,
+responsible for the register IO protocol, and distributing regmaps to
+child devices. The goal is to use the same approach as the MFD driver in
+drivers/mfd/ocelot-spi.c.
+
+This driver expects to request named regmaps from a parent device. This
+approach is similar to the DSA driver
+
+drivers/net/dsa/ocelot/ocelot_ext.c
+
+which supports being driven by an external CPU via SPI with parent
+device drivers/mfd/ocelot-spi.c.
+
+The MFD driver will come in a later series, because there are
+requirements on the number of child devices before a driver qualifies as
+a MFD device.
+
+Development is done using the LAN966x as a host CPU, running the lan966x
+swichdev driver, using the EVB-LAN9668 EDS2 board.
+
+The datasheet is available here:
+https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/LAN9645xF-Data-Sheet-DS00006065.pdf
+
+This series will deliver the following features:
+
+* Standalone ports
+* Bridge forwarding and FDB offloading
+* VLAN-aware bridge
+* Stats integration
+
+More support will be added at a later stage. Here is a tentative plan of
+future patches for this DSA driver:
+
+* Add LAG support.
+* Add MDB support.
+* Add TC matchall mirror support.
+* Add TC matchall police support.
+* Add DCB/qos support.
+* Add simple TC support: mqprio, cbs, tbf, ebf.
+* Add TC flower filter support.
+* Add HSR/PRP offloading support.
+* Add PTP support.
+* Add TC taprio support.
+
+For completeness I include tentative plan of planned patches for
+LAN9645x peripherals:
+
+* Extend pinctrl-ocelot for LAN9645x:
+  https://lore.kernel.org/linux-gpio/20260119-pinctrl_ocelot_extend_support_for_lan9645x-v1-0-1228155ed0ee@microchip.com/
+* Add driver for internal PHY:
+  https://lore.kernel.org/netdev/20260123-phy_micrel_add_support_for_lan9645x_internal_phy-v1-1-8484b1a5a7fd@microchip.com/
+* MFD driver for managing register IO protocol and child device
+  initialization.
+* Extend pinctrl-microchip-sgpio for LAN9645x support.
+* Extend i2c_designware for LAN9645x support.
+* Add driver for outbound interrupt controller.
+* Add serdes driver for lan9645x.
+
+Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
 ---
-v3->v4:
- * Dropped Port P4 as it does not exist on RZ/G3L SoC.
- * Retained the tag as it is trivial change.
-v2->v3:
- * Documented renesas,clonech property for controlling clone channel
-   control register located on SYSC IP block on RZ/G3L SoC.
- * Retained the tag as it is similar change for RZ/G3E thermal bindings.
-v1->v2:
- * Collected tag
----
- .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 20 ++++++++++
- .../pinctrl/renesas,r9a08g046-pinctrl.h       | 38 +++++++++++++++++++
- 2 files changed, 58 insertions(+)
- create mode 100644 include/dt-bindings/pinctrl/renesas,r9a08g046-pinctrl.h
+Changes in v4:
+- v3 was deferred, but I made some changes based on the Sashiko review
+- Individual patches mention specific v4 changes
+- Fix offset in postpull_rcsum so prefix eth header is cleared, not
+  actual eth header, so tag driver works with CHECKSUM_COMPLETE host
+  NICs
+- Fix untagged rx on vlan aware port with pvid
+- Add comment to QSYS_RES_CFG configuration
+- Phylink_mac_prepare: fix to make sure we can dynamically change rgmii
+  on port 4
+- Move ports allocation to probe
+- tag_npi_setup: reject cascaded setups
+- Skip WARN_ON in lan9645x_to_port
+- set_host_flood changed to per port work to coalesce values and skip
+  atomic allocations
+- Fix clear HOST_PVID vlan membership when a port joins a bridge.
+- Explicit default value write to tag type register for untagged frames
+- Use lan_rmw for ANA_DROP_CFG
+- Add comment for error path in lan9645x_vlan_hw_wr
+- Remove mac_entries list and just do direct IO to mac table from
+  fdb_add/fdb_del.
+- Clean up fresh mdb when hw mac table write fails.
+- Remove rx_uc and tx_uc from ethtool stats list, as they are derivable
+  from the eth-mac group
+- Split stats_init into stats_alloc and stats_init, use alloc in probe
+  and init in dsa_setup
+- Link to v3: https://lore.kernel.org/r/20260410-dsa_lan9645x_switch_driver_base-v3-0-aadc8595306d@microchip.com
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-index 1a94e396b1b0..fb1fe1ea759f 100644
---- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-@@ -26,6 +26,7 @@ properties:
-               - renesas,r9a07g043-pinctrl # RZ/G2UL{Type-1,Type-2} and RZ/Five
-               - renesas,r9a07g044-pinctrl # RZ/G2{L,LC}
-               - renesas,r9a08g045-pinctrl # RZ/G3S
-+              - renesas,r9a08g046-pinctrl # RZ/G3L
-               - renesas,r9a09g047-pinctrl # RZ/G3E
-               - renesas,r9a09g056-pinctrl # RZ/V2N
-               - renesas,r9a09g057-pinctrl # RZ/V2H(P)
-@@ -88,6 +89,16 @@ properties:
-           - const: main
-           - const: error
- 
-+  renesas,clonech:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to system controller
-+          - description: offset of clone channel control register
-+    description:
-+      Phandle and offset to the system controller containing the clone channel
-+      control values.
-+
- additionalProperties:
-   anyOf:
-     - type: object
-@@ -150,6 +161,15 @@ additionalProperties:
- allOf:
-   - $ref: pinctrl.yaml#
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a08g046-pinctrl
-+    then:
-+      required:
-+        - renesas,clonech
-+
-   - if:
-       properties:
-         compatible:
-diff --git a/include/dt-bindings/pinctrl/renesas,r9a08g046-pinctrl.h b/include/dt-bindings/pinctrl/renesas,r9a08g046-pinctrl.h
-new file mode 100644
-index 000000000000..5ec5bfc27c7d
---- /dev/null
-+++ b/include/dt-bindings/pinctrl/renesas,r9a08g046-pinctrl.h
-@@ -0,0 +1,38 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * This header provides constants for Renesas RZ/G3L family pinctrl bindings.
-+ *
-+ * Copyright (C) 2026 Renesas Electronics Corp.
-+ *
-+ */
-+
-+#ifndef __DT_BINDINGS_PINCTRL_RENESAS_R9A08G046_PINCTRL_H__
-+#define __DT_BINDINGS_PINCTRL_RENESAS_R9A08G046_PINCTRL_H__
-+
-+#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-+
-+/* RZG3L_Px = Offset address of PFC_P_mn  - 0x22 */
-+#define RZG3L_P2	2
-+#define RZG3L_P3	3
-+#define RZG3L_P5	5
-+#define RZG3L_P6	6
-+#define RZG3L_P7	7
-+#define RZG3L_P8	8
-+#define RZG3L_PA	10
-+#define RZG3L_PB	11
-+#define RZG3L_PC	12
-+#define RZG3L_PD	13
-+#define RZG3L_PE	14
-+#define RZG3L_PF	15
-+#define RZG3L_PG	16
-+#define RZG3L_PH	17
-+#define RZG3L_PJ	19
-+#define RZG3L_PK	20
-+#define RZG3L_PL	21
-+#define RZG3L_PM	22
-+#define RZG3L_PS	28
-+
-+#define RZG3L_PORT_PINMUX(b, p, f)	RZG2L_PORT_PINMUX(RZG3L_P##b, p, f)
-+#define RZG3L_GPIO(port, pin)		RZG2L_GPIO(RZG3L_P##port, pin)
-+
-+#endif /* __DT_BINDINGS_PINCTRL_RENESAS_R9A08G046_PINCTRL_H__ */
+Changes in v3:
+- Individual patches mention specific v3 changes.
+- Add guard before vlan_remove_tag on xmit
+- Add pskb_may_pull checks on rx
+- Remove additionalProperties: true in bindings
+- Remove unnecessary | from description in bindings
+- Change top level $ref to dsa.yaml#/$defs/ethernet-ports
+- Use ethernet-ports and ethernet-port
+- Move ethernet-ports under properties instead of patternProperties
+- Move unevaluatedProperties: false after $ref
+- Update bindings example to use ethernet-ports and ethernet-port
+- Move DEV_MAC_TAGS_CFG to port setup, instead of vlan config, so vlan
+  overhead is always included in port frame maxlen calculation.
+- Remove code disabling ipv6 on conduit
+- Use of_property_read_u32 for {rx,tx}-internal-delay-ps
+- Use dsa_user_ports(ds) instead of
+  GENMASK(lan9645x->num_phys_ports - 1, 0) as base flood mask.
+- Add comment explaining obey vlan
+- Allow disabling aging with explicit zero parameters.
+- Fix non-forwarding STP states in bridge fwd calculation.
+- Restore host flood state on bridge leave.
+- Avoid mac_entry dealloc when mac table writes fail.
+- Avoid mdb_entry dealloc when mac table writes fail.
+- Dealloc mac_entries on deinit.
+- Dealloc mdb_entries on deinit.
+- Link to v2: https://lore.kernel.org/r/20260324-dsa_lan9645x_switch_driver_base-v2-0-f7504e3b0681@microchip.com
+
+Changes in v2:
+- Individual patches have specific v2 changes.
+- Ran DSA, and std counters, selftests, which prompted several changes.
+  The following selftests pass, except for some expected failures:
+    - bridge_vlan_aware.sh
+    - bridge_vlan_unaware.sh
+    - bridge_vlan_mcast.sh
+    - no_forwarding.sh
+    - bridge_mdb.sh
+    - bridge_mld.sh
+    - test_fdb_stress_test.sh
+    - .../drivers/net/hw/ethtool_rmon.sh
+    - .../drivers/net/hw/ethtool_std_stats.sh (from Ioana's series)
+- Added new patch for MDB management, as this was required for selftests.
+- Added port_set_host_flood to enable unknown traffic to standalone during
+  promisc/ALL_MULTI (selftests).
+- Remove the dubugfs.
+- Link to v1: https://lore.kernel.org/r/20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com
+
+---
+Jens Emil Schulz Østergaard (9):
+      net: dsa: add tag driver for LAN9645X
+      dt-bindings: net: lan9645x: add LAN9645X switch bindings
+      net: dsa: lan9645x: add autogenerated register macros
+      net: dsa: lan9645x: add basic dsa driver for LAN9645X
+      net: dsa: lan9645x: add bridge support
+      net: dsa: lan9645x: add vlan support
+      net: dsa: lan9645x: add mac table integration
+      net: dsa: lan9645x: add mdb management
+      net: dsa: lan9645x: add port statistics
+
+ .../net/dsa/microchip,lan96455s-switch.yaml        |  111 ++
+ MAINTAINERS                                        |   10 +
+ drivers/net/dsa/Kconfig                            |    2 +
+ drivers/net/dsa/microchip/Makefile                 |    1 +
+ drivers/net/dsa/microchip/lan9645x/Kconfig         |   11 +
+ drivers/net/dsa/microchip/lan9645x/Makefile        |   12 +
+ drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c  |  294 +++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_main.c |  993 ++++++++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_main.h |  433 +++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_mdb.c  |  397 ++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_npi.c  |   79 +
+ .../net/dsa/microchip/lan9645x/lan9645x_phylink.c  |  383 ++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_port.c |  204 +++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_regs.h | 1915 ++++++++++++++++++++
+ .../net/dsa/microchip/lan9645x/lan9645x_stats.c    |  930 ++++++++++
+ .../net/dsa/microchip/lan9645x/lan9645x_stats.h    |  279 +++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_vlan.c |  403 ++++
+ include/linux/dsa/lan9645x.h                       |  145 ++
+ include/net/dsa.h                                  |    2 +
+ net/dsa/Kconfig                                    |   11 +
+ net/dsa/Makefile                                   |    1 +
+ net/dsa/tag_lan9645x.c                             |  313 ++++
+ 22 files changed, 6929 insertions(+)
+---
+base-commit: 09942ddedcb960f9e78fd817ec33f501d1040c5b
+change-id: 20260210-dsa_lan9645x_switch_driver_base-312bbfc37edb
+
+Best regards,
 -- 
-2.43.0
+Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
 
 
