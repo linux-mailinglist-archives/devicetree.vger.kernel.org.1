@@ -1,144 +1,252 @@
-Return-Path: <devicetree+bounces-292007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292009-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SKuFBAed82kx5QEAu9opvQ
-	(envelope-from <devicetree+bounces-292007-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 20:18:47 +0200
+	id IAJHGYqg82ly5QEAu9opvQ
+	(envelope-from <devicetree+bounces-292009-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 20:33:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD2044A6C89
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 20:18:46 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 010664A6FE8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 20:33:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2B79A3025D27
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 18:18:36 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4322B300E597
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 18:33:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EA1647CC63;
-	Thu, 30 Apr 2026 18:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0AF247CC89;
+	Thu, 30 Apr 2026 18:33:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JV3/8xfo"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="js/lhCa/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011033.outbound.protection.outlook.com [52.101.52.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C495447AF60
-	for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 18:18:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777573115; cv=none; b=EpVxAOmiEJ5HealPHwvxuXKrtzMn3wGJiNDul36MZh+VDzDXX3BCLjaDSBWqMx1LOzZaJOpXJufCaDQ4BHu5oEuo5+mDpQZcSMrkQH5dlY3L4IG3oWhyh3QVo0gThkfoEt1UxZ4TOyiWSoppxHBPLgQAAzL68yTO+OzZFATw6xY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777573115; c=relaxed/simple;
-	bh=r1xldGkskM1LoWG/eSEiuRbHYKyqMWnb+9qvWV8vW+o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vFYR6JoT/Im2PNI8CMLyTdRrjN4yZG0umbttZJyhkKPu7dqI2/CHuX7acue7Kft2QfHZMC02Wa/OK8ENUCnaRCjMxqy1R43I0i/kfcwE78QGF+s8vWx7I3KYayndcUHSXHdOXiFNYSDsQTZKakDd8P8lGAIJBsZIrMnZbjKYCkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JV3/8xfo; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-82ce2e2880cso876397b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Apr 2026 11:18:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777573113; x=1778177913; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SKm1ZdQlx5hjZVefyBU7lA6ZzR4xQCcmrN+zV7mG1fg=;
-        b=JV3/8xfoTgec5Wt52gaGXCR0bNLsZVLmAckC+6/gFM6lWXuruFnwajK0CBJ0Hm4xlb
-         +pA1CnZX0gAWSv/9O7uLOeNIytKzFFCjSQIquHw1gJRJ2qEWf3JDPIHCyH6lJBUkr0zi
-         DZPmAi1R502fNr3V0Nn5Wzk3cZlhV2C1lKiwAzYeiCsPzbdE60o3P4FxLuUB2ZrdTV9i
-         ROPELSSK2fxcXvmOhxmH7SqxhiKJ7/lWwSU3+mXmHJRTfq0XhLbwDBaeh6IuwMbNVPGw
-         cnWoLtcBuK/pCDL5yvaZiof3SttPSqQUhhR5P9KZ4VbbF3HndX0z8pRjGq9HSipyzLCO
-         7Kyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777573113; x=1778177913;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=SKm1ZdQlx5hjZVefyBU7lA6ZzR4xQCcmrN+zV7mG1fg=;
-        b=TIIJihbzDrNtUBqs01uozCat262PKJ/xMbrY3hKi6D2R6ucWgOmTsS8w844dZbyV7y
-         P6T1CYZ/7JFucXxJ94XvNXp3PpTbcQ9FLGd/dhQuypcVWXJxItNZcAsHm1BGU7by2TpB
-         ZIpSHct0PJBK0My5I/7lBD2oTETppOILjOOKcz6MuQj4WL2ziyhd8mcn5pfGD9Xy6uWT
-         H6eNZ0z1Mh7jQra6Sro4E9DYZ6JucNHDlKohyA+tjJdQ//EZKXqzLIoJSzor01VehY4k
-         N5X8x6ha0MnVgRLryxO7CJNhVVAz0Dd+DgNmUpszfUwzPSy/02v47z3mPZOSYKM5V5sg
-         pU2g==
-X-Forwarded-Encrypted: i=1; AFNElJ9XCWHLrhxn2H0xBVVW37Ve/C/PWTbbTBaazWA6a+0MPgg1BKJk/9YxDaoEyRMm0KRbyPGaWU3/j2eC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8fQUf4InRdADffScv58T+1HNCYew13sVPaGeshMlPFMSLuojj
-	qeor8xV/WoDEPUVyhcHbBAtLpVfffKnMZWkZ5zfDKkmj4D2CNPWpq3AC
-X-Gm-Gg: AeBDietyQi3QzOoKuwTal44HzSu8RX7oSuZInL+r2WMYCKCflGEmgTGG6IjwtUHRaPn
-	by+wmbG24YOo4mIaJAN1ZARxZTNexUfS9DWJbknmXyB6/UMioWde9ZKspDhjTvpMwqpuFDshfmB
-	ea1WcA38aCbuFIosUc6zkFGWQaeScmD65+1L+V62IW6E9Qkm4iTyyH93WP6DBTRpTo9ExcSDA8J
-	FCpuKJFyILZWh7BkzAYWn1tOqfqTA85qJhZGSFLRKAm+G9kb0dAh9R7jo7yafjh4lKMdf20ZsVr
-	0dMr12gdyy+51pjvuPoZcF6qeiqZEcVIOsfFdjelUWNwqKxDeJUFP9acXNUvT4CNpaqaKfQa2RM
-	1Ua3KOOFuLthDNJZyVJEAbj1ryCPdi2UVK7IgFm3H4LWmeH7NJ5E87nuySLVutf2BUigj8/hY2J
-	jsQrX/w/F0qZi9np8hShTQBqB2yeuV6FhnJniKOepLvxjJMJs=
-X-Received: by 2002:a05:6a00:28c5:b0:82c:70a8:faee with SMTP id d2e1a72fcca58-834fdadf50amr5266501b3a.6.1777573112943;
-        Thu, 30 Apr 2026 11:18:32 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-835158aa1ffsm311794b3a.22.2026.04.30.11.18.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Apr 2026 11:18:32 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Thu, 30 Apr 2026 11:18:31 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Brian Chiang <chiang.brian@inventec.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] hwmon: (pmbus/lx1308) Add support for LX1308
-Message-ID: <136527f6-5bcb-4cd1-b60c-ce7c80fd149b@roeck-us.net>
-References: <20260428-add-support-lx1308-v2-0-90f115954143@inventec.com>
- <20260428-add-support-lx1308-v2-2-90f115954143@inventec.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0332647A0B5;
+	Thu, 30 Apr 2026 18:33:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.33
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777574024; cv=fail; b=Jbjiqi64TyPtwMuSzov3fe3VVXcOyK1FLLEtFEtngR/IjacguFAzqFSBQhL/1iohxW0DDUsbJI683ZsFpgr2aLs7GANsslbfIjqDEksFGkFC7Rv0ud8R7Iw9nBgK+pKW0A0NbPA3IfpALHNRaqgreMzmV+oJpV/pnF8FwGFpQEo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777574024; c=relaxed/simple;
+	bh=rX2fHSJcIyEy7OQ64BAVgO/whETQ1cBL1QAhVhhHIg8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SKUPIgcHpA5SYZ8R2CrGiRv7H1ixj3eXStJ+P/fdvWSOC/Le7iGMKJ7tnbN+txwcpRzz0yx0tmglqEmzusE+Wv8x+uL5W4Fw66yC6K+taEQzpIMZ6qwBoSDXUwpR+XUif9burqke7ofpe77QF1/HYkQ/PFiYN47otxfzhrYIPBo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=js/lhCa/; arc=fail smtp.client-ip=52.101.52.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Fvngzw4JiXX3KB8dqBTDqvZRt2OJGkRgBBlUb/GfZp71lnHNjaf4b5rECA2YyUZPnk1rnTqSZylxq78sDIHIQr4GXq8Arm1GTtLklUpYZu3BcVI7o9di6tMpEw2XLDtpXDlC1bsRBsknxIWYzb85MkhOUwMZIlFdz07Gmd+OrfbM9YnIt0xzeyq30f/Vyl4gCuCsweh6ofurpGiVefBKC2Ls+LWV+PrdcEPjuEY77p3ai+V5B64i83k98AXBSt4yxLJGQzSogk8DRhJhHOmANqOu+bmbZb5htVWnoPS6+Snm46AW9VtZ+AOJSnJ1Np6PUQiGoT/HSsZ78u8ZZKrPqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qYu2nmwpmNZsI5X8MoooH3uoTuTf34eMt1KDPShWHNY=;
+ b=PEMdZ1A3twhbHkqhnYEHOBu4kPupKzAVAJRVgtdzluhcUX23z+f46MQndORFnKhuX75PUnhHfnP/5JC0Hxt6ajVw5C0pkQmHEKV1EkRykOU34nA0Fh9yGC2Y1X/TK55kTuc9UDCM7iKZPH1FvS/M+BZkRPUpLS44Ormemy8GwxLUYWQ9b7BXXsaQrGGpvuUY8gOhFYCsf/63GUNYG7oj0boKtYokNtinZwW6N4OjwnQFK/U9BZVpGhrOF24uzzdlApnr9JIZEUoMgCsf0bfJRJCa1vm40LxqAyEYDXdJH4kfWcjKqCmuF+VCEKD02yghxXAvIXIFc4CmElVC3hdVDA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qYu2nmwpmNZsI5X8MoooH3uoTuTf34eMt1KDPShWHNY=;
+ b=js/lhCa/FHeDzSoz09RjqA4lkSNeksk4ZKOLjN1/KCDhHsVilRcSe9IXRDRFtinHVTN8fK0UM9Q4NS+ml1ftaRXmbXxlhfHbH5WDfaLSYEjEpIKTb1fjelX9+XYg/w3hv7kqTZ8c+87YaftrmRKLJC2zgWTq2TApYIX6cpWFr+E=
+Received: from PH7PR13CA0014.namprd13.prod.outlook.com (2603:10b6:510:174::28)
+ by DS7PR10MB7180.namprd10.prod.outlook.com (2603:10b6:8:ed::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9870.19; Thu, 30 Apr 2026 18:33:38 +0000
+Received: from CY4PEPF0000EDD7.namprd03.prod.outlook.com
+ (2603:10b6:510:174:cafe::4a) by PH7PR13CA0014.outlook.office365.com
+ (2603:10b6:510:174::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.7 via Frontend Transport; Thu,
+ 30 Apr 2026 18:33:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ CY4PEPF0000EDD7.mail.protection.outlook.com (10.167.241.203) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9870.22 via Frontend Transport; Thu, 30 Apr 2026 18:33:36 +0000
+Received: from DFLE204.ent.ti.com (10.64.6.62) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 30 Apr
+ 2026 13:33:26 -0500
+Received: from DFLE202.ent.ti.com (10.64.6.60) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 30 Apr
+ 2026 13:33:25 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE202.ent.ti.com
+ (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 30 Apr 2026 13:33:25 -0500
+Received: from localhost (ti.dhcp.ti.com [172.24.233.157] (may be forged))
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 63UIXOaM1942851;
+	Thu, 30 Apr 2026 13:33:24 -0500
+From: Devarsh Thakkar <devarsht@ti.com>
+To: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	"Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, "Bjorn
+ Andersson" <bjorn.andersson@oss.qualcomm.com>,
+	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+CC: <praneeth@ti.com>, <vigneshr@ti.com>, <s-jain1@ti.com>, <s-wang12@ti.com>,
+	<r-donadkar@ti.com>, <r-sharma3@ti.com>, <devarsht@ti.com>, <afd@ti.com>
+Subject: [PATCH 0/6] Add DRM driver for Solomon SSD16xx e-paper display controllers
+Date: Fri, 1 May 2026 00:03:05 +0530
+Message-ID: <20260430183311.2978142-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.39.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260428-add-support-lx1308-v2-2-90f115954143@inventec.com>
-X-Rspamd-Queue-Id: AD2044A6C89
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD7:EE_|DS7PR10MB7180:EE_
+X-MS-Office365-Filtering-Correlation-Id: c715f9e8-3d06-440a-e99e-08dea6e6fe2b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700016|7416014|376014|921020|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	qrnfyNeU21ZSzK+KCQ1zcrph8YuRrNxUdK58eklCmfAb5ijalXnMohDNeb+lQ1tuKIukB8Jo9VGoG0P0ERXRTtJavfTKwbf09n2vu/DUAqU3mXL4etyDpbAgC+U0TgFutFzrGXyms49lqNfEmcnonETaA5lLLUOxJ18KhUyXDbPii0qN1Ej0rTC2ikeOahHDGf0FNP84MBCo+MElzwWf7lLdDAYZoe7cm9Pu+xq4OMbl8bi1ewVANl8Hrlq4ULAJ3Ik9riF1+DzdBl4GPp6tHXTMlRSVLYnB/o057WMnX7fj4zlep9mCE2BWlg6fahgz+p/oIeT54mapyuVeOilsRn1NjfOjzGrF9BxyZnYpG6e+WZ79OQGlXzxlZm9rjo/56W60+yhxav4kZ7UhgRcVlhhMx7APyJsFTbTJvLbrNHS0QQtm9Ms+kjhsFuNl1+ohBxdqzDlAzYF+NIFIq8Dz4+sbOi/PIeoil5UTTlPhfj14pQfsvn131dfvLS5Dm2qunotla5uLB0ZHWeqbbHHGTNOOFAy8FIWtphFX5KX9u2HuyC5zUoGT2brigCJtJSIpBX7zXItCan4oCbzs+OQBcq6XUynYF9LECg8Qx9c9ZQSy14fw59IlIS6RTxGu36+gHQF99VhXnxWx2ZREKAQc4V40epNbrEQZ1h78UB8dakEl4yH2PIvfZuKFMVexhmsTTVTjTsqucNHIMEvuHiMe8Td8kLH4q3E0iawCBYCZ9B7m+BTkl86NWrgqoTfbzJ+PIQBK/clmUNjnNhgXRP0Cbow3OhDsTnqZOwzwRMGWD4U=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(7416014)(376014)(921020)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	hGz9DSRtibof2nFLTi5R/wqyt9IrRQ+VhadZUv2R4x6hAIsq0GbYzMiJHvWmBw51gKqDFroo/+yXgeyRSv5rNb8NYK/0NTizJaxz/9zqwMZWUuhPfn1tBsc+SVCXeZlTzzZ9LVsRh98N9K0Ov6RwAQo0C/c6mgHUpLi3JJMbhrkdZIszSOlb4hEfy47OL4o78g16qX5IQW3HMFtTAO10PH9gPafZOxlNOnXLm4V4/HdM+j3o+awGUv+XuDQT54TLxYs1V1o+Aio4L8YOEDf7lXJcssmWmqMskgoouunFY3y64NDppvBzSnPTzl/0ODPtSpT67SKJQorjbc1UZusm7D8ekkl0ky4gdhcTds5e3Z+9lzN0FjvepmrzOk/MorMphBxmmhcwdUn/fFI+7S6zBS55gqYIvAxkuX6Cf9+4OiN3riyToL5m19J03Bf3tmjz
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 18:33:36.9301
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c715f9e8-3d06-440a-e99e-08dea6e6fe2b
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000EDD7.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB7180
+X-Rspamd-Queue-Id: 010664A6FE8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [2.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292007-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292009-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,linaro.org,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:dkim,ti.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	DKIM_TRACE(0.00)[ti.com:+];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devarsht@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid,inventec.com:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[10]
 
-On Tue, Apr 28, 2026 at 12:19:29PM +0000, Brian Chiang wrote:
-> Add support for the Luxshare LX1308, a high-efficiency 12V 860W
-> DC/DC power module. The module operates from 40-60V input voltage.
-> 
-> Signed-off-by: Brian Chiang <chiang.brian@inventec.com>
+This series adds a DRM driver for the Solomon Systech SSD16xx family of
+e-paper display controllers (SSD1673, SSD1680, SSD1681, SSD1683), starting
+with support for the Gooddisplay GDEY042T81, a 4.2" 400×300 black-and-white
+e-paper panel driven by the SSD1683 controller.
 
-Applied.
+E-paper displays are bistable: they retain the last image indefinitely
+without power, making them well-suited for applications where display
+content changes infrequently — dashboards, e-labels, signage, e-readers
+and e-badges and low-power IoT interfaces. The driver is designed
+and architected keeping this bi-stable nature and low-power requirements
+along with having adequate flexibility to support varying use-case
+requirements for the e-paper display use-cases.
 
-Thanks,
-Guenter
+The driver integrates with the DRM atomic modesetting framework and
+supports:
+
+  - SPI communication in both 4-wire mode (separate D/C GPIO) and
+    3-wire mode (9-bit SPI with embedded D/C# bit)
+  - Full 4-way rotation via the Data Entry Mode register, with no GPU
+    or memory-copy overhead
+  - Three independently selectable refresh waveforms: partial (~300–500 ms),
+    full (~1.5–2 s), and fast (~1.0–1.5 s)
+  - 3-colour BWR pixel classification for panels with a red RAM plane
+  - Broad pixel format coverage: XRGB8888, RGB888, RGB565, R8, NV12,
+    NV16, YUYV, UYVY, R1 (native 1bpp)
+  - Runtime PM with configurable autosuspend: the controller enters
+    Mode 1 deep sleep (RAM retained) after an idle timeout, waking
+    transparently on the next frame update
+  - System suspend/resume: switches to Mode 2 deep sleep (maximum
+    power savings) on system suspend and rebuilds the pipeline on resume
+  - Runtime-configurable DRM connector properties for refresh mode,
+    rotation, border waveform, clear-on-init/close/disable, colour mode,
+    and init-refresh waveform, each with a corresponding module parameter
+    for boot-time or sysfs configuration
+
+Tested on AM62L3 EVM using Gooddisplay GDEY042T81 using following branch
+and test suite:
+
+Test suite:
+https://github.com/devarsht/linux-next/tree/drm_ssd16xx_epaper/ssd16xx_tests
+Test scripts:
+https://github.com/devarsht/linux-next/blob/drm_ssd16xx_epaper/ssd16xx_tests/run_all_tests.sh (parent script)
+https://github.com/devarsht/linux-next/blob/drm_ssd16xx_epaper/ssd16xx_tests/test*.sh (Individual test scripts)
+
+Testi console logs and summary:
+https://github.com/devarsht/linux-next/blob/drm_ssd16xx_epaper/ssd16xx_tests/logs.txt
+https://github.com/devarsht/linux-next/blob/drm_ssd16xx_epaper/ssd16xx_tests/results/run_all_20260430_224250.summary
+
+Individual test results:
+
+Supported Pixel Formats tests:
+https://github.com/devarsht/linux-next/blob/drm_ssd16xx_epaper/ssd16xx_tests/results/test_formats
+Integration (Misc) tests:
+https://github.com/devarsht/linux-next/blob/drm_ssd16xx_epaper/ssd16xx_tests/results/test_integration_20260430_223910.result
+https://github.com/devarsht/linux-next/blob/drm_ssd16xx_epaper/ssd16xx_tests/results/test_integration_20260430_225207.result
+Module params tests:
+https://github.com/devarsht/linux-next/blob/drm_ssd16xx_epaper/ssd16xx_tests/results/test_module_params_20260430_224700.result
+PM Automated tests:
+https://github.com/devarsht/linux-next/blob/drm_ssd16xx_epaper/ssd16xx_tests/results/test_pm_20260430_225028.result
+DRM properties tests:
+https://github.com/devarsht/linux-next/blob/drm_ssd16xx_epaper/ssd16xx_tests/results/test_properties_20260430_224329.result
+
+Devarsh Thakkar (6):
+  dt-bindings: vendor-prefixes: Add Dalian Good Display Co., Ltd.
+  dt-bindings/display: Add Solomon SSD16xx e-paper controller binding
+  drm/tiny: Add DRM driver for Solomon SSD16xx e-paper display
+    controllers
+  drm/tiny: panel-ssd16xx: Add power management support
+  MAINTAINERS: Add entry for Solomon SSD16xx DRM driver
+  arm64: defconfig: Enable DRM_PANEL_SSD16XX
+
+ .../bindings/display/solomon,ssd16xx.yaml     |   81 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    7 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/gpu/drm/tiny/Kconfig                  |   13 +
+ drivers/gpu/drm/tiny/Makefile                 |    1 +
+ drivers/gpu/drm/tiny/panel-ssd16xx.c          | 2731 +++++++++++++++++
+ 7 files changed, 2836 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd16xx.yaml
+ create mode 100644 drivers/gpu/drm/tiny/panel-ssd16xx.c
+
+-- 
+2.39.1
+
 
