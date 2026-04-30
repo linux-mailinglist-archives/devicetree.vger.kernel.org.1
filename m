@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-291847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-291848-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6EnUNcIk82nIxQEAu9opvQ
-	(envelope-from <devicetree+bounces-291847-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:45:38 +0200
+	id OK6xOg4j82nIxQEAu9opvQ
+	(envelope-from <devicetree+bounces-291848-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:38:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 538814A0175
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:45:37 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FDD649FEFD
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 11:38:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B5D4B304B285
-	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:37:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 76F73300E257
+	for <lists+devicetree@lfdr.de>; Thu, 30 Apr 2026 09:38:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C2F3A380A;
-	Thu, 30 Apr 2026 09:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD10A3A450C;
+	Thu, 30 Apr 2026 09:38:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eOVeVjT2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d06rEknN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A6E3346B4;
-	Thu, 30 Apr 2026 09:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B997639FCA9;
+	Thu, 30 Apr 2026 09:38:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777541827; cv=none; b=eezHce5ckITPWiNzW1lII1QrWDHKEW5M2IvCx0fiPkSG+gKcGvOg7WQ1+sMkZCUkCc0wZlUVJTS0kZZ1+0ZtdD6lAjJFMz30vYYymvXdDgQZzpMeu0tKnyq1YJq13LGxNEUfVQNqGn90kPtTd9NQIaQhInZ2fTDHUIzVBPNf3p8=
+	t=1777541900; cv=none; b=J73gKUk+oiUPUnuwFn5hfQgiG1Mi4lo7U+/alRmYkxtt+oj0Vw4SRrTNIybJrENYTl8J8QE5pD7K+p+o8NLSeCJCC8uPElrwB6K0KdRQ+OVjw0fmb+k7VxhFXGuaxmh9rMwDllRnHpHDO3tUBae7jPDgLS+wAQD/XuPk75JiuzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777541827; c=relaxed/simple;
-	bh=JdRBy9JTXepiQJIQLVB6n+J++dpMx0UKFXt7j+zymeo=;
+	s=arc-20240116; t=1777541900; c=relaxed/simple;
+	bh=kv0TUkmohaaqYzvigSROWOOzro5pbUlGjS6X3h7CMWs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rH48Sn31eXT7UvVBYK1dVi5XkeCB9iJngcHbPjnT5j8PdqBNCuaVytmh7loZrgtQqxwI+pgfbhjVaMX4ZGQSxPDrAxrRT+aBe+g8Q/hYKp7z94ouun9Kw8oXLxjbGHW2Epg/MMBf7cL+5GInlCrGv0yNz9LKcRdsrbVgXhiWpbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eOVeVjT2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC137C2BCB4;
-	Thu, 30 Apr 2026 09:37:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CJShbMt6nXt8eS1/BjXpnofqP3eRp6fg54VNFUi3mTXNtLMz4/lLVRtWfcR+cO1LPrlsBRh8juJNSNuVXg58SyijbxMQr6ZO3xgkLwoPwBHPU6qfphuJt3WlW6ICmcQu44kOpRsqCBcYYt48q9FM9VbI4R9RlGoiejp2Odi+7Z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d06rEknN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C61D5C2BCB4;
+	Thu, 30 Apr 2026 09:38:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777541827;
-	bh=JdRBy9JTXepiQJIQLVB6n+J++dpMx0UKFXt7j+zymeo=;
+	s=k20201202; t=1777541900;
+	bh=kv0TUkmohaaqYzvigSROWOOzro5pbUlGjS6X3h7CMWs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eOVeVjT2XBR1WWAVMUafKp0bnBh6/6aLcqK4h1bV6W6HQo5JmmHlq7cThtJTj1WU6
-	 jOhEcT6BWrEkSFuUzjbW2xgA066fhY67XumLgOrom3UeSZHDAa8YZ0BAAAcNW9rqRg
-	 8X+4faLiuJJo8Wk0Zoa7RQt++fvNsJ0TVIxoiL/pCLduAnmXWE3z07BVfTCMXUlS8i
-	 QV5ksvJ4I77QwdI7Xs3BLF59iEsXC8SHA4hBdl5OT2rXMMb8/E1BvoARqE+sv9iS9x
-	 XcpuY0hL5UtzKyNaThIh6PJ8Acv8r85sDHJLcZk//1BJacJpsl5kF/h8RlxbMUxmBP
-	 1SqTovAiHpuIw==
-Date: Thu, 30 Apr 2026 11:37:04 +0200
+	b=d06rEknNIVee+8zoY7PiRP5KAOiSW/yACu/G9K412A6It94tMNqBC2poh4DkNprgS
+	 r1JwWAK0ShfDuFpHus3P1bEEVz9rCbohI6sIeLesW4F0sQ9eeSKseafLLRpnBdBLwO
+	 cGw4Wb5GjM4c4QLcsorBDrtMV8oaMvRlphiig0813czL2pbXb0JufNHHVlOe8J6vZz
+	 zeZU/TSjDX7waW99gMhlydF5nIGSmJ6S2SHlbfGti0kAwRCimLZ4SkwAY7gZp8qMei
+	 mIeXvc9CSqvRNn/kqXowptVGEoL+t8X6oOTnlBMhHF06AJPpgFc3PRWBDDiL9Lf+Lt
+	 pZ0/LN2+OF95Q==
+Date: Thu, 30 Apr 2026 11:38:17 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-Cc: Sylvain Petinot <sylvain.petinot@foss.st.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil+cisco@kernel.org>, 
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 5/5] media: dt-bindings: vd55g1: Add vd55g4 compatible
-Message-ID: <20260430-friendly-athletic-lemur-0ce874@quoll>
-References: <20260428-vd55g4_and_fixes-v1-0-4f745a83b87e@foss.st.com>
- <20260428-vd55g4_and_fixes-v1-5-4f745a83b87e@foss.st.com>
+To: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom,ids: Add SoC ID for Shikra
+ IoT variants
+Message-ID: <20260430-unselfish-archetypal-lemur-6e4bad@quoll>
+References: <20260428-shikra-socid-v1-0-6ff16bad5ea2@oss.qualcomm.com>
+ <20260428-shikra-socid-v1-1-6ff16bad5ea2@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,8 +64,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260428-vd55g4_and_fixes-v1-5-4f745a83b87e@foss.st.com>
-X-Rspamd-Queue-Id: 538814A0175
+In-Reply-To: <20260428-shikra-socid-v1-1-6ff16bad5ea2@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 7FDD649FEFD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.66 / 15.00];
@@ -73,44 +73,41 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-291847-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-291848-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[st.com:email,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
 
-On Tue, Apr 28, 2026 at 10:40:59AM +0200, Benjamin Mugnier wrote:
-> Define it as a new monochrome variant of vd65g4.
+On Tue, Apr 28, 2026 at 02:47:46PM +0530, Komal Bajaj wrote:
+> Document the IDs used by Shikra SoC IoT variants:
+> - CQ2390M: Shikra Retail with modem
+> - CQ2390S: Shikra Retail without modem
+> - IQ2390S: Shikra Industrial without modem
 > 
-> Signed-off-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+> Signed-off-by: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
 > ---
->  Documentation/devicetree/bindings/media/i2c/st,vd55g1.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
+>  include/dt-bindings/arm/qcom,ids.h | 3 +++
+>  1 file changed, 3 insertions(+)
 
-Please organize the patch documenting the compatible (DT bindings)
-before the patch using that compatible.
-See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
-
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
