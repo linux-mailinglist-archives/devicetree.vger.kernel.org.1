@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-292154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292156-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0IuVIqXH9GmMEgIAu9opvQ
-	(envelope-from <devicetree+bounces-292154-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 17:32:53 +0200
+	id YBIkAM7H9GmPEgIAu9opvQ
+	(envelope-from <devicetree+bounces-292156-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 17:33:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E69F24AD974
-	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 17:32:52 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53F504AD9B9
+	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 17:33:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8B5F7301A712
-	for <lists+devicetree@lfdr.de>; Fri,  1 May 2026 15:32:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C3E053034BC4
+	for <lists+devicetree@lfdr.de>; Fri,  1 May 2026 15:33:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CB0A3CFF70;
-	Fri,  1 May 2026 15:32:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB80F3D16ED;
+	Fri,  1 May 2026 15:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="qVFS7W5Z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nLT9S2Qs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BADD72857EA
-	for <devicetree@vger.kernel.org>; Fri,  1 May 2026 15:32:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 424C43CFF73
+	for <devicetree@vger.kernel.org>; Fri,  1 May 2026 15:32:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777649570; cv=none; b=I0KgOrh294DIekqw9oPBwCIGYo7jkQElT4Gp6YilHzMQhd+c8HxmkQ/B3ithHyj+qct9UVvz4OnXf8AGwYU8ROoNTIj5oBaVdFdadab1EvwIfHs10sp304d7FeWCenfDrLEQRYjnFrIMgMUaU0BWAMlLDnEJMWrMX1vWuan1hxQ=
+	t=1777649578; cv=none; b=YADghlUDasSN2Tplgl+RKkiUjKcmHJvYG1oXcAPtZffUsup/m0lcJ+tMTKe7gNVQGRRE10N/3W33JSsIexR6JGu/p9xxoH5frrvR89y09YR/YBviJM/3/cNFgbE+XiqNRj4dHP/XBqJtHQ2/W3fh0pwDUaKERD/xD0CbmPzTdk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777649570; c=relaxed/simple;
-	bh=TalITnoTVgN8hqSEly4krP0OENxfJ38rWqsEvppux40=;
+	s=arc-20240116; t=1777649578; c=relaxed/simple;
+	bh=kWzw/voZgkZ9F987lwcQbashORT/zBgp+puHFaAHgP0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Whm0HaYVvOOQgiwlXluAA8PCeWl91GA+RHC1RKEUNGGifiOPefxddY2LTX4I2Rh7JvYmYmAxBtbJ2A0EMo4NhHRVZM1MRG+IbRWo/NKcK8I2TLrCmj7wdne88KH3Uh6vW01iQxYu/W4VQsn3svWCv+4n/w6PZlRhB1/41UyN5MI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qVFS7W5Z; arc=none smtp.client-ip=209.85.222.178
+	 MIME-Version; b=dprQTE+Jefh7OK3G+ge7NGQVjD3NyP6rzBYRsx0HCLPc/z8Dw8e3LhkZ1s+6aNq5zmhFrBoAAzgJMoxArNjvzWXEMGtDBZQsZwYLZ0iuQC360N5zrlFI19Sw24qnIjEs5TQxEdEgy15OpvlWwzLO6Hdfx17ZgwRh80U4jSQ3eHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nLT9S2Qs; arc=none smtp.client-ip=209.85.222.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-8d560ede296so227941485a.0
-        for <devicetree@vger.kernel.org>; Fri, 01 May 2026 08:32:49 -0700 (PDT)
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-8cb38e86cf2so179687585a.1
+        for <devicetree@vger.kernel.org>; Fri, 01 May 2026 08:32:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777649569; x=1778254369; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1777649575; x=1778254375; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/EEuToxfj2xtrYU96bpcfJV42FkeZzgzuAg8mxxCUfw=;
-        b=qVFS7W5Z0k/2wzxDPfDGo+paXlOv+BT5UgU07oavsmgzhEjw93fM4xnuyPQRm8hslU
-         /eu4EVFkU1zosXlC6SyckfvYDCy2QcxEJJvCX6mdxtH3e/O0ZlnsrV89y01ogx6BFvb6
-         a9EhzYUxsPsPLOlVT8ooT6ewvDRxUqRUCx3fCKk1VVy7aN5y+L0O4mEj5bcjG+1u4UAt
-         F1xr/d7ohLO+3hwqB/JgIUze+oVua9nbGy2rbJCGoSxFIjY9emKtKkz3PS5KKIIBNYGA
-         /IvWGbLBEhcy9kO6xYS+W6D4h7QJAyhGhOtrNmK05Fqn8McgXFfJpOWsbH+bF7TPVvR6
-         QtdA==
+        bh=pPPYmlM0l3hrpJwW2jPS8aUg+kvVKXo2i1UV0uK9TUI=;
+        b=nLT9S2QsRmIhRR7rHy4H41XXnhJomDU4h16q847ruLzGxMcDkI+eWvNQAuIRy3b9t7
+         fTYXglOX0zD1PnMvL5jPwaDYtWdPHFAJkwdqsfYkGrQyT0q7FjYiHrZeoA4vpFJe4ABE
+         rE5N7y0Bscmk21WZdL7dBD/plyH+/CZdfCoN9flE/cFF5CsudOCXBnB+37njgJ80RoX9
+         U6tYLEYWD2wv2j/xVHQsu6QGDlNUfo8F53oYFdojq3/p+mlLhuDcNl8IZzatLVYvIc5/
+         zRP4GUmNi2UnEd8pDhNa72pJ0lFLZcSw/yzNeUsnOCawr3P/1zhx1aMU9Q7tV9Az0v+8
+         u8dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777649569; x=1778254369;
+        d=1e100.net; s=20251104; t=1777649575; x=1778254375;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=/EEuToxfj2xtrYU96bpcfJV42FkeZzgzuAg8mxxCUfw=;
-        b=ap2NcBEgjtlzFcr6V+JT1KZcdsflKJ8ArfQ3oLvLma/qkvOnZtUByRlCI6ezHqD8EC
-         nRHxtT3UV7kZ6/EJ6AMbgTmMvZKqDseGUrcpNnNsDuJD2Ak9hLomjj01ks5KWLnx8FpX
-         MBJi0sJZGMzLoCEC8uCa/Ex1I6kdAyJlkGKh3Z6AOT+kalBFO8bprkOJhzEu2g7kbC85
-         itdF/MuBuFKjSld5ls0dy5o3CzGKEzpke43a9tcUIzxo2wtCvaYecpTezWi6zgR+fT9w
-         AQgC0loaBsAjRGv3D72ASYol///fkVsAnVFyc/qmX/PNc2FQO84Ra4cW0dRIL+Z8VJPK
-         z1SQ==
-X-Forwarded-Encrypted: i=1; AFNElJ95cukxRtPr4dJZD2llipF8EivV2++qBD5hCyfmgciu/787tA2JMeIoJNCBArZDmaA7hYpX8RPOIdCJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnXpr+wobx3/IAFEOB0Gg4pA5T1fmFYORFgEwrEpeZaKbj0b6O
-	A+JBTzhFEfFn1DRil/PJ6Syp/OXxmLqOQL6xEJMRQJ/q2wIXkK9gwSCU
-X-Gm-Gg: AeBDieuG4DE5LHbpqnK7zDspye4by3q1JnPYyFQgf8wfow4GhfyMcft+6W/PSTPDfn6
-	MJiWvgRHUux6mcuwA8o6hRrAfjRs9KayPqGUrPLvRZtP5G33IoGO4U4oHr8Dr5QIahvpjKNuCBC
-	I7aCdqTEOO6fj262kynnAaeiUfEubtSQ5yzBa5J4kvslJlnK31JVpahhU0ydgrHRqPt7s6+LdCz
-	sEIuoK3k91zALDDqzbUuALr4NdhX1+nf77A067nVsn9qQwBH060cALhWfBF4qCbkLbIyGUf/8f/
-	E1ydEsJYY8FuNhWcwYOt8rc0fRuNuU0/XqzJ1npyBO0IRjevOzMTu5qgpSsotcW4IbsJ9dJTRyk
-	AmLSE9zxYckexAc8dHf99V2EBJng/D09iG7lapv5QJPg7XQPHI3UNYJc7eXUiDkfX+/ZAtdKqa4
-	VTvDYkMVZIgFHl5uAbLqODWkkJ+nJVAPuidWMjaN3CA2HqLIo=
-X-Received: by 2002:a05:620a:4551:b0:8cd:8a55:510d with SMTP id af79cd13be357-8fab1c4ef7bmr1029971885a.48.1777649568576;
-        Fri, 01 May 2026 08:32:48 -0700 (PDT)
-Received: from localhost ([184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8fc2c34a0d4sm186890585a.25.2026.05.01.08.32.47
+        bh=pPPYmlM0l3hrpJwW2jPS8aUg+kvVKXo2i1UV0uK9TUI=;
+        b=SlkVJZc1uRZrwnukqlABrGzI0WBf2i2zLF5tpUDz22wbsbSgzogtW6zeJmtxGwQ3c0
+         nkudB3C3MkNJgsFxMNkmk2lY7HCcyUsyU95AWAwSTeMi+GMkDupqCYGL05WdijKiQlnF
+         Sgi29JdNjAPeM1QdovxSny6ZHbugIk5O3Yw/tdRd0nAzqXQrJDhk+uwUbxnFeA5AO8k0
+         6TZiiadB1aQAgATRqob9hrHc3AF6rdYZNFCpz+dUrHyX0XOAYr1yiMw4OKBLF1BA+Bhd
+         nwyFYe/iKDnPICWBTrkaYUZaNo8WMP+q1i7QJ0aaRRxZKupMh6cX5GU2dqPslBpE+b70
+         6iIA==
+X-Forwarded-Encrypted: i=1; AFNElJ+58ac4g/ILMYDNVhRmKABVDSP+bMGZ2gsRV1pYpbO/q2wkrJXdBZu+zmtpTSN+ABn6xNsJopiLSTFR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+cfY0aRmvhE9hKpszUXLBsMIWE11AVFzDsZ1pJ+56dBDJI78p
+	RJelYmvm4GuyKix4D0vYz+nt1aWPdqPGRmpL53vuuulCRs7HReuKA310
+X-Gm-Gg: AeBDietD0QN7Es0QYuWbWCqDOTHrqlX68yebDklYwMvRUEjG9faaJI0sEqjtyTJB/Fb
+	cBTQLlGF/sjD765KZsxCqUBOfG0vPOmose3/BeI36cczTeAwk5GyE8e+7sd1YuoFGHQhHXAZbBQ
+	UjuMVHgqNiiC4wqD9wYks/1rnWQ/F8UhOn08k7IM4BZmUe0Md/PlSwvGlZMRBTwkFrot/TMot5g
+	LkgtyTy1tcSf3ucdvKn9+pWLYySKUrMlamqBzSGDcae+WcL3H8He9LgQbhkGLT/W/2UApZEMVGN
+	RGm4f3LTOxVUVreGg8l4W2Ye83yPgGLFMBCocfTsfJFHA13ZPrYKcYHVjuOu+5WYWJFo7mAVa7s
+	JK4Ji1BF3NNWk9B9k61j7T/AqIDW8tJk6FacNu6BRtweWlgtQRHFhhgDFDbr43zVhLLtjp4PDLt
+	bqEWUHNK8N9OmU+N5dZKkS8MY3jZW/n4K9p5lihXY+pFXdekzpYPwg2Dk4ubOttPguAm494w/si
+	Q6BY7UZ3oTdOLOt27bSbvQ9VA==
+X-Received: by 2002:a05:620a:46aa:b0:8f2:a656:1d8c with SMTP id af79cd13be357-8fbf3174795mr468381385a.38.1777649575114;
+        Fri, 01 May 2026 08:32:55 -0700 (PDT)
+Received: from localhost (bras-base-toroon21-grc-75-184-144-58-243.dsl.bell.ca. [184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8fc29a7f9c6sm206704685a.14.2026.05.01.08.32.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 May 2026 08:32:48 -0700 (PDT)
+        Fri, 01 May 2026 08:32:54 -0700 (PDT)
 From: Richard Acayan <mailingradian@gmail.com>
 To: Srinivas Kandagatla <srini@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>,
@@ -101,9 +102,9 @@ Cc: Nickolay Goppen <setotau@mainlining.org>,
 	Charles Keepax <ckeepax@opensource.cirrus.com>,
 	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
 	Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH v4 12/15] ASoC: qcom: sm8250: add SDM660 compatible
-Date: Fri,  1 May 2026 11:31:25 -0400
-Message-ID: <20260501153128.8152-13-mailingradian@gmail.com>
+Subject: [PATCH v4 13/15] ASoC: msm8916-wcd-analog: add pm8950 codec
+Date: Fri,  1 May 2026 11:31:26 -0400
+Message-ID: <20260501153128.8152-14-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260501153128.8152-1-mailingradian@gmail.com>
 References: <20260501153128.8152-1-mailingradian@gmail.com>
@@ -114,7 +115,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: E69F24AD974
+X-Rspamd-Queue-Id: 53F504AD9B9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
@@ -123,13 +124,13 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292154-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-292156-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
@@ -145,31 +146,131 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.991];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.996];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email]
 
-Add the compatible for SDM660 and SDM670 devices, which can use the
-support for WCD codecs connected to internal MI2S.
+From: Adam Skladowski <a39.skl@gmail.com>
 
+Add regs overrides for PM8950 codec and implement matching reg overrides
+via compatible.
+
+Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 ---
- sound/soc/qcom/sm8250.c | 1 +
- 1 file changed, 1 insertion(+)
+ sound/soc/codecs/msm8916-wcd-analog.c | 52 ++++++++++++++++++++++++---
+ 1 file changed, 48 insertions(+), 4 deletions(-)
 
-diff --git a/sound/soc/qcom/sm8250.c b/sound/soc/qcom/sm8250.c
-index b8f1c91725df..84898bfff7d8 100644
---- a/sound/soc/qcom/sm8250.c
-+++ b/sound/soc/qcom/sm8250.c
-@@ -210,6 +210,7 @@ static const struct of_device_id snd_sm8250_dt_match[] = {
- 	{ .compatible = "qcom,qrb2210-sndcard", .data = "qcm2290" },
- 	{ .compatible = "qcom,qrb4210-rb2-sndcard", .data = "sm4250" },
- 	{ .compatible = "qcom,qrb5165-rb5-sndcard", .data = "sm8250" },
-+	{ .compatible = "qcom,sdm660-sndcard", .data = "sdm660" },
- 	{ .compatible = "qcom,sm8250-sndcard", .data = "sm8250" },
- 	{}
+diff --git a/sound/soc/codecs/msm8916-wcd-analog.c b/sound/soc/codecs/msm8916-wcd-analog.c
+index 9ca381812975..13df60409857 100644
+--- a/sound/soc/codecs/msm8916-wcd-analog.c
++++ b/sound/soc/codecs/msm8916-wcd-analog.c
+@@ -232,6 +232,8 @@
+ #define RX_EAR_CTL_PA_SEL_MASK			BIT(7)
+ #define RX_EAR_CTL_PA_SEL			BIT(7)
+ 
++#define CDC_A_RX_EAR_STATUS		(0xf1A1)
++
+ #define CDC_A_SPKR_DAC_CTL		(0xf1B0)
+ #define SPKR_DAC_CTL_DAC_RESET_MASK	BIT(4)
+ #define SPKR_DAC_CTL_DAC_RESET_NORMAL	0
+@@ -250,6 +252,7 @@
+ 		SPKR_DRV_CAL_EN | SPKR_DRV_SETTLE_EN | \
+ 		SPKR_DRV_FW_EN | SPKR_DRV_BOOST_SET | \
+ 		SPKR_DRV_CMFB_SET | SPKR_DRV_GAIN_SET)
++#define CDC_A_SPKR_ANA_BIAS_SET		(0xf1B3)
+ #define CDC_A_SPKR_OCP_CTL		(0xf1B4)
+ #define CDC_A_SPKR_PWRSTG_CTL		(0xf1B5)
+ #define SPKR_PWRSTG_CTL_DAC_EN_MASK	BIT(0)
+@@ -264,6 +267,7 @@
+ 
+ #define CDC_A_SPKR_DRV_DBG		(0xf1B7)
+ #define CDC_A_CURRENT_LIMIT		(0xf1C0)
++#define CDC_A_BYPASS_MODE		(0xf1C2)
+ #define CDC_A_BOOST_EN_CTL		(0xf1C3)
+ #define CDC_A_SLOPE_COMP_IP_ZERO	(0xf1C4)
+ #define CDC_A_SEC_ACCESS		(0xf1D0)
+@@ -286,6 +290,11 @@ static const char * const supply_names[] = {
+ 
+ #define MBHC_MAX_BUTTONS	(5)
+ 
++struct wcd_reg_seq {
++	const struct reg_default *seq;
++	int seq_size;
++};
++
+ struct pm8916_wcd_analog_priv {
+ 	u16 pmic_rev;
+ 	u16 codec_version;
+@@ -715,9 +724,41 @@ static const struct reg_default wcd_reg_defaults_2_0[] = {
+ 	{CDC_A_MASTER_BIAS_CTL, 0x30},
  };
+ 
++static const struct wcd_reg_seq pm8916_data = {
++	.seq = wcd_reg_defaults_2_0,
++	.seq_size = ARRAY_SIZE(wcd_reg_defaults_2_0),
++};
++
++static const struct reg_default wcd_reg_defaults_pm8950[] = {
++	{CDC_A_RX_COM_OCP_CTL, 0xd1},
++	{CDC_A_RX_COM_OCP_COUNT, 0xff},
++	{CDC_D_SEC_ACCESS, 0xa5},
++	{CDC_D_PERPH_RESET_CTL3, 0x0f},
++	{CDC_A_TX_1_2_OPAMP_BIAS, 0x4c},
++	{CDC_A_NCP_FBCTRL, 0xa8},
++	{CDC_A_NCP_VCTRL, 0xa4},
++	{CDC_A_SPKR_DRV_CTL, 0x69},
++	{CDC_A_SPKR_DRV_DBG, 0x01},
++	{CDC_A_SEC_ACCESS, 0xa5},
++	{CDC_A_PERPH_RESET_CTL3, 0x0f},
++	{CDC_A_CURRENT_LIMIT, 0x82},
++	{CDC_A_SPKR_ANA_BIAS_SET, 0x41},
++	{CDC_A_SPKR_DAC_CTL, 0x03},
++	{CDC_A_SPKR_OCP_CTL, 0xe1},
++	{CDC_A_RX_HPH_BIAS_PA, 0xfa},
++	{CDC_A_MASTER_BIAS_CTL, 0x30},
++	{CDC_A_MICB_1_INT_RBIAS, 0x00},
++};
++
++static const struct wcd_reg_seq pm8950_data = {
++	.seq = wcd_reg_defaults_pm8950,
++	.seq_size = ARRAY_SIZE(wcd_reg_defaults_pm8950),
++};
++
+ static int pm8916_wcd_analog_probe(struct snd_soc_component *component)
+ {
+ 	struct pm8916_wcd_analog_priv *priv = dev_get_drvdata(component->dev);
++	const struct wcd_reg_seq *wcd_reg_init_data;
+ 	int err, reg;
+ 
+ 	err = regulator_bulk_enable(ARRAY_SIZE(priv->supplies), priv->supplies);
+@@ -738,9 +779,11 @@ static int pm8916_wcd_analog_probe(struct snd_soc_component *component)
+ 	snd_soc_component_write(component, CDC_D_PERPH_RESET_CTL4, 0x01);
+ 	snd_soc_component_write(component, CDC_A_PERPH_RESET_CTL4, 0x01);
+ 
+-	for (reg = 0; reg < ARRAY_SIZE(wcd_reg_defaults_2_0); reg++)
+-		snd_soc_component_write(component, wcd_reg_defaults_2_0[reg].reg,
+-			      wcd_reg_defaults_2_0[reg].def);
++	wcd_reg_init_data = of_device_get_match_data(component->dev);
++
++	for (reg = 0; reg < wcd_reg_init_data->seq_size; reg++)
++		snd_soc_component_write(component, wcd_reg_init_data->seq[reg].reg,
++					wcd_reg_init_data->seq[reg].def);
+ 
+ 	priv->component = component;
+ 
+@@ -1259,7 +1302,8 @@ static int pm8916_wcd_analog_spmi_probe(struct platform_device *pdev)
+ }
+ 
+ static const struct of_device_id pm8916_wcd_analog_spmi_match_table[] = {
+-	{ .compatible = "qcom,pm8916-wcd-analog-codec", },
++	{ .compatible = "qcom,pm8916-wcd-analog-codec", .data = &pm8916_data },
++	{ .compatible = "qcom,pm8950-wcd-analog-codec", .data = &pm8950_data },
+ 	{ }
+ };
+ 
 -- 
 2.54.0
 
