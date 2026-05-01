@@ -1,198 +1,193 @@
-Return-Path: <devicetree+bounces-292243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292245-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GFlWOIsv9WlaJQIAu9opvQ
-	(envelope-from <devicetree+bounces-292243-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 02 May 2026 00:56:11 +0200
+	id kHAjD/U39WlNJgIAu9opvQ
+	(envelope-from <devicetree+bounces-292245-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 02 May 2026 01:32:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A904A4B01E7
-	for <lists+devicetree@lfdr.de>; Sat, 02 May 2026 00:56:11 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FCAE4B04D0
+	for <lists+devicetree@lfdr.de>; Sat, 02 May 2026 01:32:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AAD63300F169
-	for <lists+devicetree@lfdr.de>; Fri,  1 May 2026 22:56:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CC4C3301AAA8
+	for <lists+devicetree@lfdr.de>; Fri,  1 May 2026 23:32:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E689137D10C;
-	Fri,  1 May 2026 22:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B309F37F01C;
+	Fri,  1 May 2026 23:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tVWaxZw9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Blygc0+Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012022.outbound.protection.outlook.com [52.101.53.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0F2E36A030;
-	Fri,  1 May 2026 22:56:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777676167; cv=none; b=JnoJhTHFXSbWwTSvR4VKrkwHxNSoZUqpTVVcmU0dAKpSlZJFNux7v4g1Ohs0zvU+wmuue7l61P/i70j70ko4oXmEGKyf371M7pJkT5V9NatlHSJwH8pW/dhP56GP+7xRo7fEVrSlb+uCLSKglMTB23NjbPuZZa6sW0PuntqEe4w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777676167; c=relaxed/simple;
-	bh=1iwI2aafpKey+TcNpyfdl6cbDQtnncXbzDesvM+TRLI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mpEvm/ygj9URzhMN9J/BzYeW9EOTWjOLtHH96S9gOl3nIROpCk3gkfZwmREu8Lx/2/cQrFmC1ZF5AVKj3YfeDUz4IOwEXokV8a/PERzeJUnmd4m+xOYI7ekDrG4d/GlrFVrDu+ntjbzxp0aqkmqvYuHHXmALnOyELTgT1ILo9YE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tVWaxZw9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C758C2BCB4;
-	Fri,  1 May 2026 22:56:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777676167;
-	bh=1iwI2aafpKey+TcNpyfdl6cbDQtnncXbzDesvM+TRLI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tVWaxZw91EPxSiL0niMsYUnvbV+iahQvNTUpd2iooPHMe2tXk4F+76ugSAQB+ZfyL
-	 83MAIleVOYBCp16xg9ptRPFXaa5CCJuvu0ZZT7oNDHUKJwO13e2CEPYgPbFUQqDyCu
-	 KGhC6IMSFarh6xghANHhjuz2NVGGt4GF2uKMpgc7LstKNdacnhtV6vveZoHzetcClP
-	 M0hfNwdQnIFUvxOAcHaldKZsxFP3wAa74ssiZqk67KGHol/SyCHyPq0cZ1s9gtwFCN
-	 dWeB8uLQgq9hWxQYORvT72I2PTp6YmIWELyLBEs7VvsM9aFg076a15zuwo1Pq2ACAW
-	 FRSa9mf8D8Caw==
-Date: Fri, 1 May 2026 15:56:05 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Reinette Chatre <reinette.chatre@intel.com>
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Adrien Ricciardi <aricciardi@baylibre.com>,
-	Nicolas Pitre <npitre@baylibre.com>,
-	Kornel =?utf-8?Q?Dul=C4=99ba?= <mindal@semihalf.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Atish Kumar Patra <atishp@rivosinc.com>,
-	Vasudevan Srinivasan <vasu@rivosinc.com>,
-	Ved Shanbhogue <ved@rivosinc.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	yunhui cui <cuiyunhui@bytedance.com>,
-	Chen Pei <cp0613@linux.alibaba.com>,
-	Liu Zhiwei <zhiwei_liu@linux.alibaba.com>,
-	Weiwei Li <liwei1518@gmail.com>, guo.wenjia23@zte.com.cn,
-	Gong Shuai <gong.shuai@sanechips.com.cn>,
-	Gong Shuai <gsh517@gmail.com>, liu.qingtao2@zte.com.cn,
-	Tony Luck <tony.luck@intel.com>, Babu Moger <babu.moger@amd.com>,
-	Peter Newman <peternewman@google.com>,
-	Fenghua Yu <fenghua.yu@intel.com>,
-	James Morse <james.morse@arm.com>, Ben Horgan <ben.horgan@arm.com>,
-	Dave Martin <Dave.Martin@arm.com>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Robert Moore <robert.moore@intel.com>,
-	Sunil V L <sunilvl@ventanamicro.com>, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, x86@kernel.org,
-	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [PATCH RFC v3 06/11] RISC-V: QoS: add resctrl setup and domain
- management
-Message-ID: <afUvhf4SdKVjLqfk@x1>
-References: <20260414-ssqosid-cbqri-rqsc-v7-0-v3-0-b3b2e7e9847a@kernel.org>
- <20260414-ssqosid-cbqri-rqsc-v7-0-v3-6-b3b2e7e9847a@kernel.org>
- <9a8860a5-f63f-497c-ade9-6f64286abff0@intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED071E1024;
+	Fri,  1 May 2026 23:31:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.22
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777678317; cv=fail; b=On/WuclST3ui8vMH3FL7F41eCW5svID9MC5SVaiqGqtDiJKwgkEoKSvy5ZBjmNMZpJFh0tAcdEUYtq+O2aQkcW/8B3ttgDb8jfOqj52iHLoE8zfV1T90W7wACoovpzTxZGw/3ox3FpWv+ldQKeoeLnzdJCRBn3gF7TsFbqOz05w=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777678317; c=relaxed/simple;
+	bh=iM20yalbQWhvFYc1ARp0V8vqHwMaAL2cVFDSEGzfKj4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hH2JE4Ab1RBAJzZdE3XbGkcK41Ak6/UDuS7jkIP7DR9yWcnhYftx097LKgHCh6OpX7HJ+FAdzYpg0TjVEJC28fsyEQXObYwqWOcPITbmf+E4H864W93VCxqwIm5VHsZ/ppFJnM+n6xiobkpBeMk4I8X3uImY1PmIgijKziOHvZ4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Blygc0+Z; arc=fail smtp.client-ip=52.101.53.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=g/FmyBnioi/67FcWH1m8Aqwz0IChBTAHhv6hvD1Tb3nQI3K/w+LsGHWpVvD+Cp/ISZgHE0ZmcL80IhkCtPD5GDNpOb1t84vQNIEZYF3P0LwDnWZ25dkrZKruDQVa9XNm+Pb4sSGQsxNBHMjSwZxPn3abjgyD3rEUK0nqXiKkRt0EYzxS4IyZyDzOe6IjJHpD+0tZGl7mfu0zMIxvOBpwZe+yb8roYpdkULeutb7TkKzADshz1Rd+G7HG40xxeCzeBicLOkR4E3U/sFjYwW9jqeioHl7Z+jLFQBTmVILVtqcM4YC7nw0u8WFMFOHoipRilNFpQYOCk8vWvpS7wD34dw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aCLqdNIR2MQf+R76fpx+mK++eMcrpirTDum8bpyNsvg=;
+ b=nvGlMh9PbZhBLsa48l5QTqqj6YJwYjM9GjMIX+tSO82XMXyfDOAIY1zqSFOz5LQiEfaqXOk7HIgFzxLZkS4oyGvjXKUwFDuyJMQv3aoHbVlidzKov0DNIuGeG6Qg9EluG6w4A42UdqFGkojNWMBiis30FzwuLrdRYkuLnOvDu0Gq0BtJ8myVhYzZPXkkVDiR0fgaF2lcqo5buR7Fhfk4M62482OCL6991h23r61DWaJj1fbR2hhRqxIMEkyQr6OiL4W8+V6RjlCZBk5GE9NzBa0QVUe69xGsiJwjeIkH6aUhWCOCe923gv2wjlf6DehlGNdcueuJdzhGK4aE2Az7/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aCLqdNIR2MQf+R76fpx+mK++eMcrpirTDum8bpyNsvg=;
+ b=Blygc0+ZcO+o/BkpYpJoGS2xAKDS2Vx4onfdrl/QZlsX0mgkOQSjQhNPFgHLY1FwyOUg7Txgfg3q4lCJ5HBvZkdwB3fQyO4ADWArzHkba1aegS8l0uCJkZzNceyo1bk5cJNU/NVG/bbkG6HbthOSlpOuZMqtlouKFzBunji0lr8=
+Received: from CH2PR17CA0013.namprd17.prod.outlook.com (2603:10b6:610:53::23)
+ by PH7PR10MB6380.namprd10.prod.outlook.com (2603:10b6:510:1aa::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.22; Fri, 1 May
+ 2026 23:31:51 +0000
+Received: from CH3PEPF0000000E.namprd04.prod.outlook.com
+ (2603:10b6:610:53:cafe::4) by CH2PR17CA0013.outlook.office365.com
+ (2603:10b6:610:53::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9870.21 via Frontend Transport; Fri,
+ 1 May 2026 23:31:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ CH3PEPF0000000E.mail.protection.outlook.com (10.167.244.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9891.9 via Frontend Transport; Fri, 1 May 2026 23:31:49 +0000
+Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 1 May
+ 2026 18:31:49 -0500
+Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 1 May
+ 2026 18:31:48 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE207.ent.ti.com
+ (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 1 May 2026 18:31:48 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 641NVmOL4174732;
+	Fri, 1 May 2026 18:31:48 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>, Bryan Brattlof
+	<bb@ti.com>
+Subject: [PATCH 0/2] arm64: dts/bindings: Add support for BeagleBadge
+Date: Fri, 1 May 2026 18:31:46 -0500
+Message-ID: <20260501233148.4180391-1-jm@ti.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9a8860a5-f63f-497c-ade9-6f64286abff0@intel.com>
-X-Rspamd-Queue-Id: A904A4B01E7
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF0000000E:EE_|PH7PR10MB6380:EE_
+X-MS-Office365-Filtering-Correlation-Id: cae6e7d2-6ad9-415f-8deb-08dea7d9d1ac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700016|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	FbeHjUCPLNjBPTeWqvTZVu6XGyHXzmItnF6cURBI8DyXGMd/HU0kM8b1sN0maj3pUy7K4TusipHVNkttEKSCuJL4fM3mTR7hDDu0RIg4BZ1cZ2Fls6aHInY7GuzI0Dx1dDD9PIZg18tdHGQ6b/S3WOLgnWAJyE5QaTvNbShRY4Adz6UgTB+exdJwOmUethC0EilWJrnHdfgFBajmEz0oB/SR+/MSe5dy6ViCwncuM+RwI/7EaT6FXrGBlHU7jVZxkXipHCIgb7XkEx9tb5nOaCas673E2u2pqG0d4mqonPeB+UKUkcL2xkDvHMLLcyEvWfd9INypyeIz1v/MPHzR8YOpMJDq1SJt5AER43qq7Ak1eKjw4Kz9T5e0tXZsgEMqmR2htxxAW76kzFFDkyHEamK2kaMtPjnmdoyq7Zu8advfAAkiXiIFsYnV1CjTaQjCoCG1j5ZFRvw52rgkxMiKIiGoG6iNQD1/lRM2AsP7mjKAVGGHCDiYTGPTD49iqIWtMJiqp7TCkl4wvVz0qAkS9TUWErEOM2VjzaW0u4Ah3sdpZv9c4GpQKsj77jPDc5Zxeq2n6oriy7rQNkAqI5r/Hr3ocjUPELNUGzkb0lPTU6DxOddUZtgfVZUyaKOQe9DbZZiKl83jfXwMCLCLYRXH9mhdn104I0NEc8wK6bye1Kd1b+RhsSacMp7ydEKdQ0y7
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	uDs2uiJX+ZOSbkvnXX3uKHpVD4f+Jc5QqWxF6Nyup5+oH+1KMR4aNQ4++RR0LP5Z9r/kysgSzNU4aQem+gQcE4p08Njn5enyvE0hS3j1yfnYnguKcaE20pCdF2dlQo5kR7GSFvKAQEWTSikd8WM/SlibaBRnVPoFdcOVOCkgJ7e8n6ikjKXzAbwTcLKoAIPaf6q6Zj/8tpC3KChkoCl2BbDSxa2FxnlSk8clCgWLjnW4a9wT/C3MUVWL1vEWcgTWo7nzerzA/zXwszHe+C0smSxkfPS2Ak0ectZs86+fEsAJC9LNnfUuM3qwDlinvMMJoyox3wYkFWZ834y2jKJoTblLtqEOsZ9nror4eQsiIisVOgrDhJOupUioD+ih5xntK21JcddeF3uFABR1Owi3b9aeHtDmhYRM3gVZsAr2OhLUJnBoajkyNeg/gniXH6kT
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2026 23:31:49.9593
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cae6e7d2-6ad9-415f-8deb-08dea7d9d1ac
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH3PEPF0000000E.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB6380
+X-Rspamd-Queue-Id: 9FCAE4B04D0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-292243-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[44];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,microchip.com,bytedance.com,linux.alibaba.com,gmail.com,zte.com.cn,sanechips.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292245-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[jm@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
 
-On Thu, Apr 30, 2026 at 04:20:09PM -0700, Reinette Chatre wrote:
-> Hi Drew,
-> 
-> On 4/14/26 6:54 PM, Drew Fustini wrote:
-> > +
-> > +static int qos_resctrl_add_controller_domain(struct cbqri_controller *ctrl)
-> > +{
-> > +	struct rdt_ctrl_domain *domain;
-> > +	struct cbqri_resctrl_res *cbqri_res = NULL;
-> > +	struct rdt_resource *res = NULL;
-> > +	struct list_head *pos = NULL;
-> > +	int err;
-> > +
-> > +	domain = qos_new_domain(ctrl);
-> > +	if (!domain)
-> > +		return -ENOSPC;
-> > +
-> > +	switch (ctrl->type) {
-> > +	case CBQRI_CONTROLLER_TYPE_CAPACITY:
-> > +		cpumask_copy(&domain->hdr.cpu_mask, &ctrl->cache.cpu_mask);
-> 
-> Looking at patch #10 ctrl->cache.cpu_mask contains all CPUs associated with cache
-> even if they are offline. This is not what resctrl expects. Instead the expectation is
-> that a domain exists and is online (hence "resctrl_online_ctrl_domain()") if at least one CPU
-> belonging to that domain is online and domain->hdr.cpu_mask lists all the *online* CPUs
-> associated with that domain.
-> This is why resctrl always takes the CPU hotplug lock when traversing the domain
-> lists.
-> 
-> I thus expected this initialization to be split between an early initialization of
-> resource capabilities and then domain initialization as part of the CPU online/offline
-> handlers.
+Hi,
 
-Good point. I'll rework this so that domain allocation moves to the cpu
-online/offline handlers.
+BeagleBoard.org BeagleBadge[1] is a compact, affordable open source
+hardware [2] single board computer based on the Texas Instruments AM62L3
+SoC designed for IoT and embedded applications. Add base support for
+the same.
 
-[..]
-> > +	if (pos)
-> > +		list_add_tail(&domain->hdr.list, pos);
-> > +	else
-> > +		list_add_tail(&domain->hdr.list, &res->ctrl_domains);
-> 
-> resctrl_find_domain() returns NULL if it cannot find an existing domain, in that
-> case it initializes "pos" to support adding a new domain in a sorted list.
-> Expectation is that domains are managed as part of CPU hotplug handlers. When
-> a CPU comes online then handler can check if the domain it belongs to already exists,
-> if it does then the CPU can just be added to that domain's cpu_mask, if it does
-> not then a new domain is created and added in the the appropriate spot in the
-> sorted list (based on domain ID) of domains. 
+Bootlog: https://gist.github.com/jmenti/d85f17bf5264f1364866df91e60231eb
 
-Okay, I'll move this from probe to qos_resctrl_online_cpu().
+This patch series adds:
+  - Device tree bindings update for am62l3-badge
+  - Device tree source for BeagleBadge board
 
-> > +int qos_resctrl_online_cpu(unsigned int cpu)
-> > +{
-> > +	resctrl_online_cpu(cpu);
-> 
-> This is where a domain is expected to be added when its first CPU comes online.
-[..]
-> > +int qos_resctrl_offline_cpu(unsigned int cpu)
-> > +{
-> > +	resctrl_offline_cpu(cpu);
-> 
-> This is where a domain is expected to be removed when its last CPU goes offline.
+[0] https://beagleboard.org/
+[1] https://www.beagleboard.org/boards/beaglebadge
+[2] https://github.com/beagleboard/BeagleBadge/blob/main/design/BeagleBadge_RevA_V0.7_SCH_251107.pdf
 
-Okay, I'll update v4 to add and remove domains in these hooks.
+Judith Mendez (2):
+  dt-bindings: arm: ti: Add am62l3-badge
+  arm64: dts: ti: Add k3-am62l3-beaglebadge
 
-Thanks,
-Drew
+ .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
+ arch/arm64/boot/dts/ti/Makefile               |   1 +
+ arch/arm64/boot/dts/ti/k3-am62l3-badge.dts    | 655 ++++++++++++++++++
+ 3 files changed, 657 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62l3-badge.dts
+
+-- 
+2.53.0
+
 
