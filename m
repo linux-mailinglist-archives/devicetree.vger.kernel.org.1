@@ -1,198 +1,158 @@
-Return-Path: <devicetree+bounces-292186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292197-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YLriL2vd9GmfFQIAu9opvQ
-	(envelope-from <devicetree+bounces-292186-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 19:05:47 +0200
+	id cJxXFJ3e9Gn8FQIAu9opvQ
+	(envelope-from <devicetree+bounces-292197-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 19:10:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23A164AE49E
-	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 19:05:46 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A2B14AE5E2
+	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 19:10:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8D3503009B31
-	for <lists+devicetree@lfdr.de>; Fri,  1 May 2026 17:05:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C01C63025244
+	for <lists+devicetree@lfdr.de>; Fri,  1 May 2026 17:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D89F13C942C;
-	Fri,  1 May 2026 17:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06FCE428471;
+	Fri,  1 May 2026 17:06:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QtH5hMsv"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="znFlC6Z1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B57B03939B4;
-	Fri,  1 May 2026 17:05:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 495A4402B98;
+	Fri,  1 May 2026 17:06:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777655144; cv=none; b=FaPFwvh5OTdXh2A60ycZrsP5cO+DHxBr/QJcrJIGf8it82+qtKF25mgF7WpvcCBqj9+zEIiOTHE4mwjiTNrez7IO8DgE55xRscxStOjqMEEmyCZVb+m3h94aFrdCV81SNOTRktGb3lJZyPh8l0QIP+9fRNkQabTGMDp6OPSHlh8=
+	t=1777655211; cv=none; b=bRlMxenRpRGk+6JB1u01QD/24wsM4xJ0e4CemSoX1rA+By2lXSmN6rM491a3fSb3EjJnz95j8d2/s4lQgBEeKpJzFG8kFMa5cnIK7POafzx+9TDJ7Ms6qzvg7hunU23UiXdYCWvBHRqAD+iGctpHY7Kxr4Fg9Xv1YuLmVZHzfQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777655144; c=relaxed/simple;
-	bh=Zky/w8roGFiUskCftirIBIfMhxs+OSpIo7CAX+36NS0=;
+	s=arc-20240116; t=1777655211; c=relaxed/simple;
+	bh=4imj/IMIMrx39ICad1g98Rh7aEv+9l7I2apVSPKjhBw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WuMl6eBLg+CXZNQKsOaW5bbExC37gCiZaAeBZKbqwMuiN+0hJUnIor0vyViIbvDErz2yOeRXzX9UuZvzB4524YjrcY23yV0o4WFsx3E80iSZohxr72WZjnG9/spSzTz7FlrYQ0kE5a8OKQ1i5E6alkhZLSPz5ymnWLCgr3zMvYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QtH5hMsv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6FA5C2BCB4;
-	Fri,  1 May 2026 17:05:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777655144;
-	bh=Zky/w8roGFiUskCftirIBIfMhxs+OSpIo7CAX+36NS0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QtH5hMsvh1iRv05XWNAfD5QvbGiCBqqoCOnRFj8pkOvmZu4lQIZI7yk5Z3afewJEN
-	 P9KZt3qbDUvj6EMnD77W2JSTbqssTn8tvc2SQQT6dNlZ8ZIsDXrHSFjlkGSYY4odtT
-	 d0pJXRYJ9NfXlH8UMMYlTbgq7PrfpXpO8c1Hjk/bcjYMwTCCALqclcmv2zSEhNM0ez
-	 KkaXMKOvFyfhlDEZ5IlFSrt8S1Cf2fDGtMx8p1Y7f0dq1dvWNPhm9BHQNW281LgK3n
-	 iBzXBUSoQ4niJachMKcBa7X1H3mq+b628v1/kMP10EThlQpmJliQ4Xs1/DJ6do4k4Y
-	 z3zjOzOF2ZYIA==
-Date: Fri, 1 May 2026 18:05:40 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Markus Stockhausen <markus.stockhausen@gmx.de>
-Cc: linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jdelvare@suse.com, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] hwmon: (lm75) Support active-high alert polarity
-Message-ID: <20260501-earache-balance-3ac33716ac5a@spud>
-References: <20260501120518.3085501-1-markus.stockhausen@gmx.de>
- <20260501120518.3085501-3-markus.stockhausen@gmx.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=dW+ejlDPpD7OMec6dkM9iyP+bH8naOTS6BC8cw3M5cUlfATKVkwc/DDI73tNh6P0tir08PbO4pS1ZNTZaJKtDOFgQT1RcYZXN5xsmp/Yoe+GIbjzkiQUlJSxfX/SECUfzHsmOZKTpbz9IUaXSVfJJUPK0uwARizmAFm6hXFRi+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=znFlC6Z1; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=bZzzOxdjkmfCxqp8bZuNqOw9QLZECcXjlZTbJ9BtGjs=; b=znFlC6Z1LbaPEB8hdbXzJvnLmX
+	ZBb5bVF2HsqCqy7NL8xzUAScLF3GtUTr2nfELsGPhw5RG6eMWlshgtivDVmVnuBJG1PPwK2X/OEFw
+	7Pwq/+yrfBQMddetIGMjgb6xDlSbYL5+c3pO1lHwmCZw38A89SyejKB1b5Jl0htXaRDk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wIrJf-000qaI-Mk; Fri, 01 May 2026 19:06:15 +0200
+Date: Fri, 1 May 2026 19:06:15 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Alex Elder <elder@riscstar.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, maxime.chevallier@bootlin.com,
+	rmk+kernel@armlinux.org.uk, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linusw@kernel.org, brgl@kernel.org,
+	arnd@arndb.de, gregkh@linuxfoundation.org,
+	Daniel Thompson <daniel@riscstar.com>, mohd.anwar@oss.qualcomm.com,
+	a0987203069@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
+	boon.khai.ng@altera.com, chenchuangyu@xiaomi.com,
+	chenhuacai@kernel.org, daniel@iogearbox.net, hawk@kernel.org,
+	hkallweit1@gmail.com, inochiama@gmail.com, john.fastabend@gmail.com,
+	julianbraha@gmail.com, livelycarpet87@gmail.com,
+	matthew.gerlach@altera.com, mcoquelin.stm32@gmail.com, me@ziyao.cc,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
+	rohan.g.thomas@altera.com, sdf@fomichev.me,
+	siyanteng@cqsoftware.com.cn, weishangjuan@eswincomputing.com,
+	wens@kernel.org, netdev@vger.kernel.org, bpf@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 03/12] net: pcs: pcs-xpcs: Preserve BMCR_ANENBLE
+ during link up
+Message-ID: <91332fc1-11ed-444e-a211-699420cf0108@lunn.ch>
+References: <20260501155421.3329862-1-elder@riscstar.com>
+ <20260501155421.3329862-4-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="io1WObltbTbzSrNV"
-Content-Disposition: inline
-In-Reply-To: <20260501120518.3085501-3-markus.stockhausen@gmx.de>
-X-Rspamd-Queue-Id: 23A164AE49E
-X-Rspamd-Action: no action
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	MAILLIST(-0.15)[generic];
-	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292186-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmx.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-
-
---io1WObltbTbzSrNV
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260501155421.3329862-4-elder@riscstar.com>
+X-Rspamd-Queue-Id: 4A2B14AE5E2
+X-Rspamd-Action: no action
+X-Rspamd-Server: lfdr
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-292197-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[50];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:dkim,lunn.ch:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,riscstar.com:email]
 
-On Fri, May 01, 2026 at 02:05:18PM +0200, Markus Stockhausen wrote:
-> All chips supported by this driver support configurable active-high
-> alert polarity. This is already documented in the devicetree description.
-> Add support for it to the driver.
->=20
-> The default polarity of the devices is 0 (active-low). So there is
-> no need to change the clear mask. For consistency reasons adapt the
-> hard-coded configuration value of the AS6200. It is the only device
-> that defaults to active-high polarity.
+On Fri, May 01, 2026 at 10:54:11AM -0500, Alex Elder wrote:
+> From: Daniel Thompson <daniel@riscstar.com>
+> 
+> Currently the XCPS found on Toshiba TC9564 (a.k.a. Qualcomm QPS615)
+> is unable to operate at 1000base-X and slower with a PHY connected
+> using SGMII/2500base-X (in our case a Qualcomm QCA8081). The link
+> negotiates speed correctly but the MAC can't get any packets out.
 
-Uh, I dunno if you can do this, changing defaults is an ABI break
-typically. What makes it okay to do that in this case?
+We need to break this down into its components.
 
->=20
-> Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
-> ---
->  drivers/hwmon/lm75.c | 18 ++++++++++++++----
->  1 file changed, 14 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/hwmon/lm75.c b/drivers/hwmon/lm75.c
-> index f1a1e5b888f6..4b075a7b1cd7 100644
-> --- a/drivers/hwmon/lm75.c
-> +++ b/drivers/hwmon/lm75.c
-> @@ -123,7 +123,9 @@ struct lm75_data {
-> =20
->  static const u8 lm75_sample_set_masks[] =3D { 0 << 5, 1 << 5, 2 << 5, 3 =
-<< 5 };
-> =20
-> -#define LM75_SAMPLE_CLEAR_MASK	(3 << 5)
-> +#define LM75_ALERT_POLARITY_HIGH_8_BIT	(BIT(2))
-> +#define LM75_ALERT_POLARITY_HIGH_16_BIT	(BIT(2) << 8)
-> +#define LM75_SAMPLE_CLEAR_MASK		(3 << 5)
-> =20
->  /* The structure below stores the configuration values of the supported =
-devices.
->   * In case of being supported multiple configurations, the default one m=
-ust
-> @@ -137,7 +139,7 @@ static const struct lm75_params device_params[] =3D {
->  	},
->  	[as6200] =3D {
->  		.config_reg_16bits =3D true,
-> -		.set_mask =3D 0x94C0,	/* 8 sample/s, 4 CF, positive polarity */
-> +		.set_mask =3D 0x90C0,	/* 8 sample/s, 4 CF */
->  		.default_resolution =3D 12,
->  		.default_sample_time =3D 125,
->  		.num_sample_times =3D 4,
-> @@ -728,6 +730,7 @@ static int lm75_generic_probe(struct device *dev, con=
-st char *name,
->  	struct device *hwmon_dev;
->  	struct lm75_data *data;
->  	int status, err;
-> +	u16 set_mask;
-> =20
->  	data =3D devm_kzalloc(dev, sizeof(struct lm75_data), GFP_KERNEL);
->  	if (!data)
-> @@ -762,8 +765,15 @@ static int lm75_generic_probe(struct device *dev, co=
-nst char *name,
->  		return err;
->  	data->orig_conf =3D status;
-> =20
-> -	err =3D lm75_write_config(data, data->params->set_mask,
-> -				data->params->clr_mask);
-> +	set_mask =3D data->params->set_mask;
-> +	if (of_property_read_bool(dev->of_node, "lm75,alert-polarity-active-hig=
-h")) {
-> +		if (!data->params->config_reg_16bits)
-> +			set_mask |=3D LM75_ALERT_POLARITY_HIGH_8_BIT;
-> +		else
-> +			set_mask |=3D LM75_ALERT_POLARITY_HIGH_16_BIT;
-> +	}
-> +
-> +	err =3D lm75_write_config(data, set_mask, data->params->clr_mask);
->  	if (err)
->  		return err;
-> =20
-> --=20
-> 2.54.0
->=20
+I assume you are saying the PHY negotiates the media speed with the
+link partner. That is PHY talking to PHY.
 
---io1WObltbTbzSrNV
-Content-Type: application/pgp-signature; name="signature.asc"
+But we also have the PCS talking to the PHY. There can be inband
+signalling here, for SGMII and 2500BaseX. But not for over clocked
+SGMII, which is how some vendors implement 2500BaseX. SGMII signalling
+does not work when overclocked to 2.5G.
 
------BEGIN PGP SIGNATURE-----
+> This attracted attention to the ANENABLE bit and we observed that the
+> bit is currently set during config and cleared during link up.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCafTdZAAKCRB4tDGHoIJi
-0sRhAP9cz2sSId3JiEBRhI4GSGt2Qgvy5RMclPY8f9aBBTPKuQD6A3T7JxhBNWz2
-D6FjAoSfQHoFQJSD0UF5ZrDHQRHmXgI=
-=cLHo
------END PGP SIGNATURE-----
+Here we are talking about the PCS ANEBNABLE, not the PHY ANEBNABLE. So
+this is negotiation between the PCS and the PHY.
 
---io1WObltbTbzSrNV--
+> Preserving the bit during link up allows the system to work as expected.
+
+>  	int ret;
+>  
+>  	if (neg_mode == PHYLINK_PCS_NEG_INBAND_ENABLED)
+>  		return;
+
+Think about this.
+
+>  	ret = xpcs_write(xpcs, MDIO_MMD_VEND2, MII_BMCR,
+> -			 mii_bmcr_encode_fixed(speed, duplex));
+> +			 mii_bmcr_encode_fixed(speed, duplex) | an_enable);
+
+And mii_bmcr_encode_fixed().
+
+    Andrew
 
