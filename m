@@ -1,72 +1,69 @@
-Return-Path: <devicetree+bounces-292113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292115-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eELdOiyX9GnTCgIAu9opvQ
-	(envelope-from <devicetree+bounces-292113-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 14:06:04 +0200
+	id aOIsEE+f9Gm9CwIAu9opvQ
+	(envelope-from <devicetree+bounces-292115-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 14:40:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD18D4AC323
-	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 14:06:04 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 994974AC73F
+	for <lists+devicetree@lfdr.de>; Fri, 01 May 2026 14:40:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3D5AD300613C
-	for <lists+devicetree@lfdr.de>; Fri,  1 May 2026 12:06:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5BD723007C94
+	for <lists+devicetree@lfdr.de>; Fri,  1 May 2026 12:40:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B14395D9B;
-	Fri,  1 May 2026 12:06:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5775C3A542A;
+	Fri,  1 May 2026 12:40:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="S2IyIPcd"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=hendrik-noack@gmx.de header.b="sBvr4NIs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90AE5219EB;
-	Fri,  1 May 2026 12:06:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 521B43A4F5C;
+	Fri,  1 May 2026 12:40:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777637162; cv=none; b=NkyUsD+kv8Ss0GM6yStfBxheNxsgIV5MaY1ajVPuhsWZY2TxqUfQJ4aTUnMHhghNhUFqBW2E3ZsIOm6Fe9o+wSpHvXuvKPL5ALTd1EnWNTP9bO2yjeB4E+vkX4at/8rSFblDHwLy0q6MeukaXAbj4mWL6YBntVI6o/4F0eGuphQ=
+	t=1777639244; cv=none; b=ocpRABj5eBsNllHJ1n2BH5HstcW4DzysPduQFhzVjh5AZWenGgSfslrlzbvgz40Xn7bk5lwQqrYdbVa0GyH0Z7PeW1j1iNoBdXi5MvlflkoJEPVifXoqk5dIvURjmD8TtfRvYpizmLTKSVaYJJXssl5pZiRCAkaoJPsfhNgBAkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777637162; c=relaxed/simple;
-	bh=8iyeq+C7Q8QA0E+CwqSZo6ihdpMjHEbJb3Jf3VkPZ4s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SsWm7RHaf0AJiET6RQui0Tn56NZwOGtCwMJk2lZUQwHq93kT5Pl1Pp5dAbyrwUyOXhXmS9rFzuFlsUUKmRzlQbaZaxNq41MctrYFAEox+hGrJG8TMGu7nNl8oAUNVPWa2N1GGwt/Sk0x/OvxK5SRhTNIYkUV7p9PwdsJ/MRexx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=S2IyIPcd; arc=none smtp.client-ip=212.227.17.21
+	s=arc-20240116; t=1777639244; c=relaxed/simple;
+	bh=kkdbuU5ZmfZeUfc75/z26T1bHziufO3Mg8Ox/NZv7O4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VNojfW6LWgctu2a6+MWC+J3iNBBRUcyoFHjxwc4YD4lL3xFXMRuSaaCQUCgqqVd2Fi1zUAuwk2PRWA65Mexg+AZBxNG/OzPmh1DAubXIJziiVNaXFbayT77HYulswMnvaWrEehq2U4Dtd/BCiuUojLmjIuIntkD1aqAdCW4UALU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=hendrik-noack@gmx.de header.b=sBvr4NIs; arc=none smtp.client-ip=212.227.17.21
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1777637134; x=1778241934;
-	i=markus.stockhausen@gmx.de;
-	bh=q9mbLlAUpFtH1kJqdTQTllxIdXHS22ESwwmwvkV5uK0=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
-	 References:MIME-Version:Content-Transfer-Encoding:cc:
+	s=s31663417; t=1777639231; x=1778244031; i=hendrik-noack@gmx.de;
+	bh=CjsSnpQ12gvKsmGHBmflJ6WdlAazlOtfkfbklASlxcI=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
+	 MIME-Version:Content-Transfer-Encoding:cc:
 	 content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=S2IyIPcdpFrQBVixqz9ioi3CiI6n4ywMfYL2dyumhcGj6gHs0xv3XMEdMSTQsiTa
-	 F0iBuE9vHJrmwuLjXZm5wByWcPkFaNwAvhSxpkbULJlyjyXOEY6k+QBnxBLHTaaKK
-	 2pf2TYCkSvcTkzLJVH3DlHTOngTqWHhbBm09zXO43C5yVzVrJJcTWYXRrIuPDRkU3
-	 2xOI93Dk27AyTLvfIM2NeDRg4tyOG8wCW+Ca4IBrDKtF79Wv8qrMqyi/ZIrPhp0D9
-	 SrvG8qzg8cjvljqPCcnZgnOLsNuSgVOCeFZIZRzE+snKzVV0Gufu60nbsxrQqbjcP
-	 96X70hz0bHWMwwd7Bw==
+	b=sBvr4NIsVB3oLLIuSKgJer3gk+gShSZ/npEaZn3pus6DRPiDd0+B1XdacnkaizFH
+	 CUaOzs+mzxtqJNIlcOoxbzmoscHo2DN9m9bPR2V8I/kUdm1Ly1fLGNOM7H+IdtxYO
+	 LYWaidMGwjO4CSpJLZzdr7lTEn48osA8Mp0VhJjWVch3vtlQYR3B2RkSSZpmdc/wF
+	 hrv+OOhlITu0O/yJ5zqlCBDIakX/+VtHgbt5+lIj7RChGhxIjq141NScMcU4j1EBm
+	 d+34rEXE+aaouKDXCXanpjtM9+tsok4UEMmIS4is+u1mXdIFBiztpRv9cqp54NhcO
+	 aIU0+E5TcXPCJMiLaw==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from client.hidden.invalid by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N5mKJ-1vHlcT0tPH-00tEYe; Fri, 01
- May 2026 14:05:34 +0200
-From: Markus Stockhausen <markus.stockhausen@gmx.de>
-To: linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jdelvare@suse.com,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Markus Stockhausen <markus.stockhausen@gmx.de>
-Subject: [PATCH 2/2] hwmon: (lm75) Support active-high alert polarity
-Date: Fri,  1 May 2026 14:05:18 +0200
-Message-ID: <20260501120518.3085501-3-markus.stockhausen@gmx.de>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260501120518.3085501-1-markus.stockhausen@gmx.de>
-References: <20260501120518.3085501-1-markus.stockhausen@gmx.de>
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1M1HZi-1wLWzN1Rdq-00Fimj; Fri, 01
+ May 2026 14:40:31 +0200
+From: Hendrik Noack <hendrik-noack@gmx.de>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Hendrik Noack <hendrik-noack@gmx.de>,
+	Ferass El Hafidi <funderscore@postmarketos.org>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/2] Add support for Wacom W9000-series penabled touchscreens
+Date: Fri,  1 May 2026 14:40:00 +0200
+Message-ID: <20260501124002.132540-1-hendrik-noack@gmx.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,194 +71,181 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Mo6vqm2jrcjfNhWAqKepqRMqlKkR96r3rzvsH22wmaX1BbF/Be2
- 3Bd1PCY00kYRZ+Xzn08bC/6qxpxawK08ZKJq1ExU1QHwkEPv/nf2s9PBBXV3WS2LpLMGm/U
- Qrq+NmqeCkK942zut5WzyfbG9p4MFp0ctk1zdOeTSd6ciy1Egc1M8nq1TFxy9/Eqf7yBaYj
- 4pTa6p7SHuVdMVR4zplVw==
+X-Provags-ID: V03:K1:s6E7fxCYzFGnT3eu40pLGRWB5bXmNfj+Xm18cWIcN9t+WU3xaYe
+ xOaeKrOYiw7KVbQKpgnT/4iCmIRgcKtKX3OLTR8f2xnI0hpg3e8EQjx4cQ4uQrCNU31acXb
+ CIqu2L3DD0X9splrnSMRBwG6Jkjo71MfYbf1sHWoTKiJCktIm860tO93JzIrMPGCYTP3jb7
+ E91VanzbcsrJA+GT0NE2A==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:74tm0Q9CGGc=;uU+QiTPlhGt5n+qcdfHuamac1Ql
- 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
- oY9T1TogZ3q7Oxw==
-X-Rspamd-Queue-Id: CD18D4AC323
+UI-OutboundReport: notjunk:1;M01:P0:OwZcjJwuJ9Q=;7guZk2W2M+GuBeI3xdJdC70cwuv
+ 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
+X-Rspamd-Queue-Id: 994974AC73F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmx.de,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmx.de:s=s31663417];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[gmx.de];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-292113-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmx.de,postmarketos.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-292115-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmx.de];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[markus.stockhausen@gmx.de,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[hendrik-noack@gmx.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmx.de:+];
-	NEURAL_HAM(-0.00)[-0.993];
+	NEURAL_HAM(-0.00)[-0.989];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,gmx.de:dkim,gmx.de:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,gmx.de:email,gmx.de:dkim,gmx.de:mid]
 
-All chips supported by this driver support configurable active-high
-alert polarity. This is already documented in the devicetree description.
-Add support for it to the driver.
+Add devicetree bindings and a driver for the Wacom W9000-series penabled
+touchscreens.
 
-The default polarity of the devices is 0 (active-low). So there is
-no need to change the clear mask. For consistency reasons adapt the
-hard-coded configuration value of the AS6200. It is the only device
-that defaults to active-high polarity.
+The driver currently only contains the information for the W9002 and
+W9007A, which I or Ferass could test on devices. It should also work with
+other chips, such as W9001 or W9010. However, I couldn't test it on these
+and the message length would need to be added.
 
-Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
+Signed-off-by: Hendrik Noack <hendrik-noack@gmx.de>
 =2D--
- drivers/hwmon/lm75.c | 18 ++++++++++++++----
- 1 file changed, 14 insertions(+), 4 deletions(-)
+Changes in v2:
+- remove pdct-gpios, as it's unnecessary
+- fix devicetree example
+- adopt to kernel coding style
 
-diff --git a/drivers/hwmon/lm75.c b/drivers/hwmon/lm75.c
-index f1a1e5b888f6..4b075a7b1cd7 100644
-=2D-- a/drivers/hwmon/lm75.c
-+++ b/drivers/hwmon/lm75.c
-@@ -123,7 +123,9 @@ struct lm75_data {
-=20
- static const u8 lm75_sample_set_masks[] =3D { 0 << 5, 1 << 5, 2 << 5, 3 <=
-< 5 };
-=20
--#define LM75_SAMPLE_CLEAR_MASK	(3 << 5)
-+#define LM75_ALERT_POLARITY_HIGH_8_BIT	(BIT(2))
-+#define LM75_ALERT_POLARITY_HIGH_16_BIT	(BIT(2) << 8)
-+#define LM75_SAMPLE_CLEAR_MASK		(3 << 5)
-=20
- /* The structure below stores the configuration values of the supported d=
-evices.
-  * In case of being supported multiple configurations, the default one mu=
-st
-@@ -137,7 +139,7 @@ static const struct lm75_params device_params[] =3D {
- 	},
- 	[as6200] =3D {
- 		.config_reg_16bits =3D true,
--		.set_mask =3D 0x94C0,	/* 8 sample/s, 4 CF, positive polarity */
-+		.set_mask =3D 0x90C0,	/* 8 sample/s, 4 CF */
- 		.default_resolution =3D 12,
- 		.default_sample_time =3D 125,
- 		.num_sample_times =3D 4,
-@@ -728,6 +730,7 @@ static int lm75_generic_probe(struct device *dev, cons=
-t char *name,
- 	struct device *hwmon_dev;
- 	struct lm75_data *data;
- 	int status, err;
-+	u16 set_mask;
-=20
- 	data =3D devm_kzalloc(dev, sizeof(struct lm75_data), GFP_KERNEL);
- 	if (!data)
-@@ -762,8 +765,15 @@ static int lm75_generic_probe(struct device *dev, con=
-st char *name,
- 		return err;
- 	data->orig_conf =3D status;
-=20
--	err =3D lm75_write_config(data, data->params->set_mask,
--				data->params->clr_mask);
-+	set_mask =3D data->params->set_mask;
-+	if (of_property_read_bool(dev->of_node, "lm75,alert-polarity-active-high=
-")) {
-+		if (!data->params->config_reg_16bits)
-+			set_mask |=3D LM75_ALERT_POLARITY_HIGH_8_BIT;
-+		else
-+			set_mask |=3D LM75_ALERT_POLARITY_HIGH_16_BIT;
-+	}
-+
-+	err =3D lm75_write_config(data, set_mask, data->params->clr_mask);
- 	if (err)
- 		return err;
-=20
+=2D--
+Changes in v3:
+- fix missing include (thanks lkp@intel.com)
+
+=2D--
+Changes in v4:
+- adopt to feedback (thanks dmitry.torokhov@gmail.com)
+- add W9002 support (thanks funderscore@postmarketos.org)
+- add reset-gpios, necessary for some chips
+- remove R-b from krzk due to changes in dt-bindings
+
+=2D--
+Changes in v5:
+- adopt dt-bindings format to suggestion (thanks krzk@kernel.org)
+- remove pen-inserted functionality as suggested (thanks dmitry.torokhov@g=
+mail.com)
+
+=2D--
+Changes in v6:
+- add info on difference between variants
+- add A-b from conor
+- add warning for out of range pressure
+
+=2D--
+Changes in v7:
+- address feedback of sashiko (thanks dmitry.torokhov@gmail.com)
+
+=2D--
+Hendrik Noack (2):
+  dt-bindings: Input: Add Wacom W9000-series penabled touchscreens
+  Input: Add support for Wacom W9000-series penabled touchscreens
+
+ .../input/touchscreen/wacom,w9007a-lt03.yaml  |  73 +++
+ drivers/input/touchscreen/Kconfig             |  12 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/wacom_w9000.c       | 446 ++++++++++++++++++
+ 4 files changed, 532 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/wa=
+com,w9007a-lt03.yaml
+ create mode 100644 drivers/input/touchscreen/wacom_w9000.c
+
 =2D-=20
-2.54.0
+2.43.0
 
 
