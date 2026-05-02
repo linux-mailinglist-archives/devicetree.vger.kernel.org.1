@@ -1,140 +1,210 @@
-Return-Path: <devicetree+bounces-292322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292324-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YErlAcVy9mloVAIAu9opvQ
-	(envelope-from <devicetree+bounces-292322-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 02 May 2026 23:55:17 +0200
+	id IF08ABeI9mkUWAIAu9opvQ
+	(envelope-from <devicetree+bounces-292324-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 01:26:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D12C84B38CA
-	for <lists+devicetree@lfdr.de>; Sat, 02 May 2026 23:55:16 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E8144B39F4
+	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 01:26:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6F92E3003994
-	for <lists+devicetree@lfdr.de>; Sat,  2 May 2026 21:54:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7F9683014649
+	for <lists+devicetree@lfdr.de>; Sat,  2 May 2026 23:25:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E9A33469C;
-	Sat,  2 May 2026 21:54:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D57314A79;
+	Sat,  2 May 2026 23:25:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qAO4cdUq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from angie.orcam.me.uk (angie.orcam.me.uk [78.133.224.34])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62BDA319847;
-	Sat,  2 May 2026 21:54:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.133.224.34
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7910627FB1C;
+	Sat,  2 May 2026 23:25:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777758882; cv=none; b=f9L9hAy5Yu8FN/YQ7dyP/5br2S9sfuesWdSpVPsRAEVHRJETcjLyeW1FGkxtSYZnvISDThyG6CCWHvs/EhqBn6Uc+3SAACINLattDOQRyJ3wKq8d1cUGDdGqndYe6trxuCKTTzOHTme+ohk2ZMZ3HbCdNka1Z7LkZiilVJVzwtQ=
+	t=1777764337; cv=none; b=RFkAVn5wlN1CUvyMG5UIz34yJiRFwg6E5yMOPSzidp/k3vSjVb5GHP/NygPyJiM0TTrjMmSSG/grxmF2YCNUchQTh+owT48B3zQ4WU8eErG/QNI3LrOWv1QdDiQ/S2y2Pu7hnptcLW8V2EmNhrsHroReDyKiitOvSvEQTNcx44Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777758882; c=relaxed/simple;
-	bh=tpnnFjisTahUM4MUYPoN0l/SLFoAL+pWtU6uPI3YPFU=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=jybJ5PaWoc7t92AqyxQZXvEbUdhXy/71JBeZ5sq5Nmvp24OhZXthTD7Z1azhZPPxMJTsxqh2QAsg/s56f1ZR96i8wI8malIr6q93pDn/JlfVrk6rfvoDn/zq3bKoBF1ruTz4Sk/EPJH9WvZOhpgIs2j/AKHgJpuwbrHrEJEd8q0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=orcam.me.uk; spf=none smtp.mailfrom=orcam.me.uk; arc=none smtp.client-ip=78.133.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=orcam.me.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=orcam.me.uk
-Received: by angie.orcam.me.uk (Postfix, from userid 500)
-	id 632CD92009C; Sat,  2 May 2026 23:54:37 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by angie.orcam.me.uk (Postfix) with ESMTP id 5E56B92009B;
-	Sat,  2 May 2026 22:54:37 +0100 (BST)
-Date: Sat, 2 May 2026 22:54:37 +0100 (BST)
-From: "Maciej W. Rozycki" <macro@orcam.me.uk>
-To: Thomas Gleixner <tglx@kernel.org>
-cc: Caleb James DeLisle <cjd@cjdns.fr>, linux-mips@vger.kernel.org, 
-    robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-    linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] irqchip/econet-en751221: Support MIPS 34Kc VEIC
- mode
-In-Reply-To: <87tssuxmh8.ffs@tglx>
-Message-ID: <alpine.DEB.2.21.2605022158400.23161@angie.orcam.me.uk>
-References: <20260425123531.270548-1-cjd@cjdns.fr> <20260425123531.270548-3-cjd@cjdns.fr> <87tssuxmh8.ffs@tglx>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+	s=arc-20240116; t=1777764337; c=relaxed/simple;
+	bh=/W92qVR03CbZRW8UHk+eSWnYxaVea1W7O/eNRCZFrvU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YyCe9JC1EtbJTnM+E1jW8gYYZLuxg68wxcTw7ZljQ0H1vFPNGdQtGE2SjICiUBZF7X1QFA7yW0/2bMr/gbIscZAefGEeehgKHmSNx800BRQUofhlhRdf13fVefQOPrdV99K9nM4D0XH8aSjyAn1aMNLP4h//6/ASQUVivKi5VyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qAO4cdUq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1480AC19425;
+	Sat,  2 May 2026 23:25:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777764337;
+	bh=/W92qVR03CbZRW8UHk+eSWnYxaVea1W7O/eNRCZFrvU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=qAO4cdUqxLHd4sRc9P7Z0/fka1bzNoJ8RkMIosz5BI6tDhqAsozMD1bKgHSSvSA+Q
+	 GX+5IGdfBn0QJDd/IEbn5eUr/TRpl62etP9/HtHhZ92S63hcUaL8gRkQ1j3+xZhNH5
+	 yGlmUjFtfCE+WRbxm1erx0bm7zb8CnD3HZ1jvEUmlu7ti5YSUwdRagPdN0hNIrMMtS
+	 szeVv0q+a6y1ueuu0JBT2yfYEloXEOf9i8nGCtg4T+6dGBT5FrRg10357Zw3r3jGTK
+	 oqpebH0KogEkdWmM+5kbh/dZ4AmYSRyBX1NFp1nPSK+ZK1FI39VZhHgeHiEOU1Elod
+	 DatwkiN6xQpUg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 03922CD3423;
+	Sat,  2 May 2026 23:25:37 +0000 (UTC)
+From: Ciprian Regus via B4 Relay <devnull+ciprian.regus.analog.com@kernel.org>
+Subject: [PATCH net-next 0/5] net: Add ADIN1140 support
+Date: Sun, 03 May 2026 02:24:49 +0300
+Message-Id: <20260503-adin1140-driver-v1-0-dd043cdd88f0@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Rspamd-Queue-Id: D12C84B38CA
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMGH9mkC/x3MSwqDQBBF0a1IjS3oj/jbimTQpF9iTUqpFhHEv
+ afJ8AzuvanABIXm5ibDKUU2rfBtQ+816RcsuZqCC73rwsQpi3rfOc4mJ4ynmOByHProR6rVbvj
+ I9T8upDhYcR30ep4fRQP+YWsAAAA=
+To: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-doc@vger.kernel.org, devicetree@vger.kernel.org, 
+ Ciprian Regus <ciprian.regus@analog.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777764335; l=4571;
+ i=ciprian.regus@analog.com; s=20260330; h=from:subject:message-id;
+ bh=/W92qVR03CbZRW8UHk+eSWnYxaVea1W7O/eNRCZFrvU=;
+ b=9I5lCGeJwQ9U+jGD0xmD1gwarv3Gl44zOKfWaLZYM3N8pEDydrjZYK0E0Ox5CF7T+bz7356b+
+ 1+XrxzC/yGqDm09arGzec4f0OJlkwgthto3HkJGoD1O7xbsyBcWzdbc
+X-Developer-Key: i=ciprian.regus@analog.com; a=ed25519;
+ pk=8WoNhI0kQcQUl8YqJO5ZevROYk9HP8lOIeIgIYgjfbc=
+X-Endpoint-Received: by B4 Relay for ciprian.regus@analog.com/20260330 with
+ auth_id=703
+X-Original-From: Ciprian Regus <ciprian.regus@analog.com>
+Reply-To: ciprian.regus@analog.com
+X-Rspamd-Queue-Id: 8E8144B39F4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DMARC_NA(0.00)[orcam.me.uk];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292322-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292324-lists,devicetree=lfdr.de,ciprian.regus.analog.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[macro@orcam.me.uk,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk];
 	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.993];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	HAS_REPLYTO(0.00)[ciprian.regus@analog.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email,analog.com:replyto,analog.com:mid]
 
-On Wed, 29 Apr 2026, Thomas Gleixner wrote:
+This series introduces support for the ADIN1140 (also called AD3306)
+10BASE-T1S single port MACPHY. The device integrates the MAC and PHY in
+the same package. The communication with the host CPU is done through an
+SPI interface, using the Open Alliance TC6 protocol for control and data
+transactions. As a result, the oa_tc6 framework is used to implement
+the communication with the device (register accesses and Ethernet frame
+RX/TX).
 
-> Other than those nits, this look like a reasonable solution for a
-> completely unreasonable hardware design.
+The MAC and PHY are connected internally using an MII and MDIO bus.
 
- Why do you think this design is unreasonable?
+The PHY is a half duplex 10Mbps device, which implements both the PLCA
+RS (IEEE 802.3 clause 148) and CSMA/CD methods of accessing the Ethernet
+medium. The 10BASE-T1S standard allows multiple PHY devices to be
+connected (in parallel) on the same single twisted pair network segment,
+so PLCA can be configured in order to provide a fair access scheme to
+all the nodes and reduce the jitter introduced by the unordered CSMA/CD
+transmits. The PHY's internal register map can be accessed using the
+direct MDIO mode of the OA TC6. The control, status, phy id 1 & 2 C22
+registers are mapped to the 0xFF00 - 0xFF03 range. As for C45
+addressable devices, the PHY has PCS, PMA and PLCA blocks.
 
- How is that different, at the high level, from say the x86 APIC priority 
-resolver and vector generator, combined with the interrupt descriptor 
-table (except for additional optional GPR stack switching, which saves the 
-handler from the hassle and extra cycles needed for GPR preservation, 
-though I reckon with x86 you could use task gates in the IDT to yield a 
-similar effect although at much higher cost performance-wise as x86 does 
-not implement alternative GPR stacks)?
+The first 2 patches in the series are changes to the oa_tc6, that would
+make the framework usable by the subsequent ADIN1140 MAC driver.
 
- Analogously to x86 in the MIPS VEIC mode the IRQ number is determined by 
-the vector rather than the somewhat arbitrarily numbered (particularly in 
-cascaded topologies) IRQ line and available to the handler in the 
-CP0.Cause.RIPL register field.
+The first commit is required because the ADIN1140 only allows protected
+mode OA TC6 control transactions, which the oa_tc6 framework doesn't
+currently implement.
 
- NB this arbitrary non-VEIC IRQ numbering is particularly obvious with 
-MIPS platforms featuring an x86-style PCI southbridge with an embedded 
-8259A interrupt controller pair, where for compatibility with our driver 
-code we give root MIPS CPU IRQ lines numbers 16-23 while 8259A IRQ lines 
-cascaded from one of the IRQ lines 18-23 are given numbers 0-15.
+The second commit is required in order to allow the MAC driver to have a
+custom implementation for the mii_bus access methods as a workaround for
+hardware issues:
 
- Example such an odd topology:
+1. The OA TC6 standard defines the direct and indirect access modes for
+   MDIO transactions. The ADIN1140 incorrectly advertises indirect mode
+   only (supported capabilities register - 0x2, bit 9), while actually
+   implementing just the direct mode. We cannot rely on the CAP register
+   to choose an access method (which oa_tc6 does by default, even though
+   it only implements the direct mode), so the driver has to use its
+   own.
+2. The ADIN1140 cannot access the C22 register space of the internal
+   PHY, while the PHY is busy receiving frames. If that happens, the
+   CONFIG0 and CONFIG2 registers of the MAC will get corrupted and the
+   data transfer will stop. Those two registers configure settings for
+   the transfer protocol between the MAC and host, so the value for some
+   of their subfields shouldn't be changed while the netdev is up.
+   Since we know the PHY is internal, the MAC driver can implement a
+   custom mii_bus, which can intercept C22 accesses. Most of the
+   registers mapped in the 0x0 - 0x3 range (the only ones the PHY offers)
+   are read only, and their value can be read from somewhere else (e.g
+   the PHYID 1 & 2 have the same value as 0x1 in the MAC memory map).
+   C45 accesses do not cause this issue, so we can properly implement
+   them.
 
-           CPU0       
-  0:          0   XT-PIC   0  timer
-  1:          0   XT-PIC   1  i8042
-  2:          0   XT-PIC   2  cascade
-  3:          4   XT-PIC   3  ttyS1
-  4:         37   XT-PIC   4  ttyS0
-  6:          3   XT-PIC   6  floppy
-  7:      52456   XT-PIC   7  parport0
-  8:          0   XT-PIC   8  rtc0
- 10:   99668740   XT-PIC  10  fddi0
- 11:          0   XT-PIC  11  uhci_hcd:usb1
- 12:          1   XT-PIC  12  i8042
- 14:          0   XT-PIC  14  ata_piix
- 15:         15   XT-PIC  15  ata_piix
- 20:          0     MIPS   4  ttyS2
- 21:          0     MIPS   5  CoreHi
- 23:  803937130     MIPS   7  timer
-ERR:          1
+Even though they have different driver, the MAC one cannot function
+without the PHY driver, since the PHY is not compatible with the generic
+c22 driver. As such CONFIG_ADIN1140 selects CONFIG_ADIN1140_PHY.
 
-(where XT-PIC interrupts are cascaded from IRQ line 18/MIPS line 2, not 
-actually given stub registration).  At least the VEIC mode brings some 
-sanity here.
+Signed-off-by: Ciprian Regus <ciprian.regus@analog.com>
+---
+Ciprian Regus (5):
+      net: ethernet: oa_tc6: Handle the OA TC6 SPI protected mode
+      net: ethernet: oa_tc6: Allow custom mii_bus
+      net: phy: Add support for the ADIN1140 PHY
+      net: ethernet: adi: Add a driver for the ADIN1140 MACPHY
+      dt-bindings: net: Add bindings for the ADIN1140
 
- FWIW,
+ .../devicetree/bindings/net/adi,adin1140.yaml      |  69 ++
+ Documentation/networking/oa-tc6-framework.rst      |   3 +-
+ MAINTAINERS                                        |  15 +
+ drivers/net/ethernet/adi/Kconfig                   |  12 +
+ drivers/net/ethernet/adi/Makefile                  |   1 +
+ drivers/net/ethernet/adi/adin1140.c                | 805 +++++++++++++++++++++
+ drivers/net/ethernet/microchip/lan865x/lan865x.c   |   6 +-
+ drivers/net/ethernet/oa_tc6.c                      | 194 +++--
+ drivers/net/phy/Kconfig                            |   6 +
+ drivers/net/phy/Makefile                           |   1 +
+ drivers/net/phy/adin1140.c                         | 102 +++
+ include/linux/oa_tc6.h                             |   9 +-
+ 12 files changed, 1173 insertions(+), 50 deletions(-)
+---
+base-commit: fbf6f64a4322cfeb0d98f39baf8ce18246dd12c0
+change-id: 20260429-adin1140-driver-93ae0d376318
 
-  Maciej
+Best regards,
+-- 
+Ciprian Regus <ciprian.regus@analog.com>
+
+
 
