@@ -1,92 +1,69 @@
-Return-Path: <devicetree+bounces-292311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292313-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mL43CNdK9mk2TgIAu9opvQ
-	(envelope-from <devicetree+bounces-292311-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 02 May 2026 21:04:55 +0200
+	id +Pq4IdBK9mk0TgIAu9opvQ
+	(envelope-from <devicetree+bounces-292313-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 02 May 2026 21:04:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E6294B346E
-	for <lists+devicetree@lfdr.de>; Sat, 02 May 2026 21:04:54 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C4994B345E
+	for <lists+devicetree@lfdr.de>; Sat, 02 May 2026 21:04:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 98BC93004C80
-	for <lists+devicetree@lfdr.de>; Sat,  2 May 2026 18:56:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC1D6300EF40
+	for <lists+devicetree@lfdr.de>; Sat,  2 May 2026 19:04:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7917B3876C5;
-	Sat,  2 May 2026 18:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E65723876B0;
+	Sat,  2 May 2026 19:04:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="VcUoxl/6";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ILxESlRZ"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="tJu2qBVq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D77832BEFEE;
-	Sat,  2 May 2026 18:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE89938758B;
+	Sat,  2 May 2026 19:04:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777748185; cv=none; b=HoSkjApIpByuVqVlBVyh//BSU30qLvS84HVmxDpk4qFUnh8KmELYaxAjFCWeAOIuRHMT8rF5HNAWilCf5bpco3w+Ppu+opAttNWnTa9Youu4fdF2UIAJmcaz022MgF5lY+NCnIpqQvolRHE1bmcf+R0CpLDhtiDTvIe8WfJrlH0=
+	t=1777748662; cv=none; b=G3Ek+QL/ZelUlgLwmPq+86FGb0b8EQrFRXekh8rexcN9ni0TUxPR89zXfQar+gIkXmnoN70RgQJ7IUjRIW1j5Bgq5OhJbu96EbFJDc3MF7pROboOha/xd/3bLuYRLqciAtRXyXBbBJRH2fd5QF56NzFiIAj1toTadY4pV3oZNnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777748185; c=relaxed/simple;
-	bh=jVFRCuZO+yNG8H6cyWaT3LdbduYGPhzSKBbD9iHrsgY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=i5pwRi+dTJYt9YKI7kQdINH6uNMkH7+GbN+YPobOC1ZOiKQfkxRZspIMxdHnyrzJP2r5ISqc0UOooeU7vhvnboDHxD94R566KZ57A9BTfVg6AERRaCp0IWl+Xo0Uati01QFfMQqpKV7m1/JdaJmZnd4cwGJyTqqdw3bGsAQaPTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=VcUoxl/6; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ILxESlRZ; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4g7HF20Lx4z9ttQ;
-	Sat,  2 May 2026 20:56:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1777748182;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7KAzkLlbASG4LW7V5LypyNoWScFuOeCwZgBmWCYq3qI=;
-	b=VcUoxl/6896CDJJC28XPPz2ZRiL2AvAchZ8B0F3lcH+dxMqfBig2Ue501L5axPMtMt2kEW
-	HCwhdNU4LBwvXuz3tQXYRfiEtUkltrPLbMHhwRFUeiDtafBVUWAesm/PMfSSQtvJAYXOBu
-	XZfd+/Sm8Cj9YxOQLl+TtieDeMXNBgsN1fsg5CQK2RQea3/u80s1led5wytLxvQMSPieqm
-	xLcV59TLhVi2omJk0O/i5jDKx7+7qchSFnNSGHxvWNyRG5nkmvZxwi4dDtlz6wAVIogYr+
-	cTRLE3mZR6HkHcrtv7cWksuQ2kGGMzOei7Uz96BBx5tVIASv7nYMEDsLxVcluQ==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=ILxESlRZ;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1777748180;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7KAzkLlbASG4LW7V5LypyNoWScFuOeCwZgBmWCYq3qI=;
-	b=ILxESlRZUZQPs9XRIr+S/PmVgZ5fvh4JX5MUTytXcWpb+Llu21133twCdz4YRgWySwXKLF
-	Hq/aJqRIv38IP7uYgJQJiiat4KMFsJCqXr8bxkfLKmBz3dWIw2osjoYwimfhAtFtQETHRV
-	4GlCwIUhS4jb7tzT6o+R5aSug1sjr5h/w8Xw8zjW7ydpJc2XsFilqZbcMt3nzDuD7fQHza
-	dA/fEY957Ns58ZrEzfpHxJ8SZcd6OLSQmV8zOoTBNs2cm/s1zoX8WwDPH4x/RvMfR0BGRE
-	+yV7jGrh8e//+DR8yQXFG4tq+YKgL2uOW8Rj1r9bie52sUh9DGcWLzouv0UP5w==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 4/4] ARM: dts: renesas: r8a73a4: Describe coresight on R-Mobile APE6
-Date: Sat,  2 May 2026 20:55:45 +0200
-Message-ID: <20260502185557.93061-5-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260502185557.93061-1-marek.vasut+renesas@mailbox.org>
-References: <20260502185557.93061-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1777748662; c=relaxed/simple;
+	bh=Zuw1y+XK0Y+ckAYeITz31T9MIPPRI0wiOk5RT/5LNOM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XPlgsuh/JsaNw5h65zLpTIL3dQ3CFjhZoHs/RDEuHjtdiqqKXrUltkUzY79QK6tjxuYOUXl3/MpLV6UIbkFdDnz/SaIorHQR5ZhLeuQl5/jNnXEmw/bSmV+c/58RzYYcwuWQMVC+pyaxFxUlYJfDzLT5Kv26xBG0TgUsSPWE18g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=tJu2qBVq; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+	s=s31663417; t=1777748659; x=1778353459;
+	i=markus.stockhausen@gmx.de;
+	bh=Zuw1y+XK0Y+ckAYeITz31T9MIPPRI0wiOk5RT/5LNOM=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
+	 MIME-Version:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=tJu2qBVqO9gcLA/RWSHZUnvzwn9iCKS2zlrMcvvcAGJgy9oYzzdHd6otB4v0tDLb
+	 eDHX0ZXv56eEa93S4uLrxtL1q0ZkKzK2Z4ROEk1vSVy9sNg/eZqhDiWpAsy6aNoOL
+	 +okjbdY9gOzN17+iP7JCmRjJktTrPfEVLoocJU/g3PgFwbLQ9IKSmGDA1JYfmiCwY
+	 CnwdvLqkJo2BjLAslGrCXFXXy3fTDHdLL0Dmht2JzsTbqru6vIR1ovlfPj67ZgIHx
+	 nRC+fgeCRC1BfK+6bWf8hOtdiVJ+GiBqfCn5GkQFJZHNiUbX4vfOJ1n2c9YQHwH9M
+	 clq86eSbQMlU7PpopA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from client.hidden.invalid by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MpDJX-1vXrWH3svn-00aQB7; Sat, 02
+ May 2026 21:04:19 +0200
+From: Markus Stockhausen <markus.stockhausen@gmx.de>
+To: linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	jdelvare@suse.com,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Markus Stockhausen <markus.stockhausen@gmx.de>
+Subject: [PATCH v2 0/2] Support active-high alert polarity for LM75
+Date: Sat,  2 May 2026 21:04:06 +0200
+Message-ID: <20260502190408.3577731-1-markus.stockhausen@gmx.de>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,193 +71,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 939a1c036ea3e18311a
-X-MBO-RS-META: at5tgu1ibk9swst1773rnnhh8qwqp8px
-X-Rspamd-Queue-Id: 1E6294B346E
+X-Provags-ID: V03:K1:a0wdPPArZ+BnhgPApxtbkAxsfjApU1Hrz3MfLc/sX0cGePL5Pg6
+ Cn6QIrMW7+kVZm0rUv9CZHpbXM0KFaHqbYHv4Mvi46raSSMc4dTdn7M74jYNxpkSMnHeEGP
+ yF3xDHb1SAGMSbCEijMXB4cdKH4XEBr8TGD8Jb1SpQC/9N8ayZ4mYFetLfodvFbr0P8hVhz
+ KMt2HITlki6uYRJTFe5Yg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:poqgwcpI3f0=;CbXx/3bT5AfhJfqIcnxEqSgfcS3
+ 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
+ 3tsXbDv4DWK4nCL8qdamF6BiSySV4sfCQQyI=
+X-Rspamd-Queue-Id: 2C4994B345E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [5.34 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmx.de,quarantine];
+	R_DKIM_ALLOW(-0.20)[gmx.de:s=s31663417];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292311-lists,devicetree=lfdr.de,renesas];
-	R_DKIM_ALLOW(0.00)[mailbox.org:s=mail20150812];
-	RCVD_COUNT_THREE(0.00)[4];
-	GREYLIST(0.00)[pass,body];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[mailbox.org,kernel.org,glider.be,gmail.com,baylibre.com,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[mailbox.org,reject];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[gmx.de];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-292313-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmx.de];
 	PRECEDENCE_BULK(0.00)[];
-	NEURAL_HAM(-0.00)[-0.345];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[markus.stockhausen@gmx.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c15:e001:75::/64:c];
-	MISSING_XM_UA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	DKIM_TRACE(0.00)[gmx.de:+];
+	NEURAL_HAM(-0.00)[-0.992];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,gmx.de:email,gmx.de:dkim,gmx.de:mid]
 
-Describe coresight topology on R-Mobile APE6. Extend the current PTM node
-with connection funnel, TPIU, ETB and replicator. The coresight on this
-hardware is clocked from the ZT/ZTR trace clock.
+The LM75 configuration register allows to switch the alert polarity.
+In default mode the alert output pin is active-low. There are hardware
+designs that use this alert output for an hardware assisted automatic
+fan speed control. E.g. the D-Link DGS-1250 implements
 
-Note that only core 0 part of the topology is described, because the
-other cores are still not present in the DT.
+- temperature below Tmax threshold -> alert pin low -> fan slow speed
+- temperature above Tmax threshold -> alert pin high -> fan high speed
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Provide a devicetree configuration option and a driver enhancement to
+support these hardware designs.
+
+Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
+
 ---
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-clk@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
----
- arch/arm/boot/dts/renesas/r8a73a4.dtsi | 112 ++++++++++++++++++++++++-
- 1 file changed, 110 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/renesas/r8a73a4.dtsi b/arch/arm/boot/dts/renesas/r8a73a4.dtsi
-index a70a0dc402a5f..c3427dc7cf7dd 100644
---- a/arch/arm/boot/dts/renesas/r8a73a4.dtsi
-+++ b/arch/arm/boot/dts/renesas/r8a73a4.dtsi
-@@ -47,9 +47,117 @@ L2_CA7: cache-controller-1 {
- 		};
- 	};
- 
--	ptm {
--		compatible = "arm,coresight-etm3x";
-+	replicator {
-+		compatible = "arm,coresight-static-replicator";
-+		clocks = <&cpg_clocks R8A73A4_CLK_ZTR>;
-+		clock-names = "atclk";
- 		power-domains = <&pd_d4>;
-+
-+		out-ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			/* replicator output ports */
-+			port@0 {
-+				reg = <0>;
-+
-+				replicator_out_port0: endpoint {
-+					remote-endpoint = <&tpiu_in_port>;
-+				};
-+			};
-+			port@1 {
-+				reg = <1>;
-+
-+				replicator_out_port1: endpoint {
-+					remote-endpoint = <&etb_in_port>;
-+				};
-+			};
-+		};
-+
-+		in-ports {
-+			/* replicator input port */
-+			port {
-+				replicator_in_port0: endpoint {
-+					remote-endpoint = <&funnel_out_port>;
-+				};
-+			};
-+		};
-+	};
-+
-+	etb@e6f81000 {
-+		compatible = "arm,coresight-etb10", "arm,primecell";
-+		reg = <0 0xe6f81000 0 0x1000>;
-+		clocks = <&cpg_clocks R8A73A4_CLK_ZT>, <&cpg_clocks R8A73A4_CLK_ZTR>;
-+		clock-names = "apb_pclk", "atclk";
-+		power-domains = <&pd_d4>;
-+
-+		in-ports {
-+			port {
-+				etb_in_port: endpoint {
-+					remote-endpoint = <&replicator_out_port1>;
-+				};
-+			};
-+		};
-+	};
-+
-+	tpiu@e6f83000 {
-+		compatible = "arm,coresight-tpiu", "arm,primecell";
-+		reg = <0 0xe6f83000 0 0x1000>;
-+		clocks = <&cpg_clocks R8A73A4_CLK_ZT>, <&cpg_clocks R8A73A4_CLK_ZTR>;
-+		clock-names = "apb_pclk", "atclk";
-+		power-domains = <&pd_d4>;
-+
-+		in-ports {
-+			port {
-+				tpiu_in_port: endpoint {
-+					remote-endpoint = <&replicator_out_port0>;
-+				};
-+			};
-+		};
-+	};
-+
-+	funnel {
-+		compatible = "arm,coresight-static-funnel";
-+
-+		/* funnel output ports */
-+		out-ports {
-+			port {
-+				funnel_out_port: endpoint {
-+					remote-endpoint =
-+						<&replicator_in_port0>;
-+				};
-+			};
-+		};
-+
-+		in-ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			/* funnel input ports */
-+			port@0 {
-+				reg = <0>;
-+				funnel0_in_port0: endpoint {
-+					remote-endpoint = <&ptm0_out_port>;
-+				};
-+			};
-+		};
-+	};
-+
-+	ptm@e6fbc000 {
-+		compatible = "arm,coresight-etm3x", "arm,primecell";
-+		reg = <0 0xe6fbc000 0 0x1000>;
-+		clocks = <&cpg_clocks R8A73A4_CLK_ZT>, <&cpg_clocks R8A73A4_CLK_ZTR>;
-+		clock-names = "apb_pclk", "atclk";
-+		cpu = <&cpu0>;
-+		power-domains = <&pd_d4>;
-+
-+		out-ports {
-+			port {
-+				ptm0_out_port: endpoint {
-+					remote-endpoint = <&funnel0_in_port0>;
-+				};
-+			};
-+		};
- 	};
- 
- 	timer {
--- 
-2.53.0
+Changes in v2
+- Carve out AS6200 polarity fix into separate series
+- Rename devicetree prefix from lm75 to ti
 
 
